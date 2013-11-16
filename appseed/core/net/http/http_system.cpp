@@ -497,7 +497,7 @@ namespace http
             if(papp != NULL)
             {
 
-               string strFontopusServer = Sys(papp).get_fontopus_server(strUrl, papp);
+               string strFontopusServer = ::fontopus::get_server(strUrl, 8);
 
                url_domain domainFontopus;
 
@@ -719,7 +719,7 @@ retry:
             if(papp != NULL)
             {
 
-               string strFontopusServer = Sys(papp).get_fontopus_server(strUrl, papp);
+               string strFontopusServer = ::fontopus::get_server(strUrl, 8);
 
                url_domain domainFontopus;
 
@@ -1131,7 +1131,7 @@ retry:
             if(papp != NULL)
             {
 
-               string strFontopusServer = Sys(papp).get_fontopus_server(strUrl, papp, 8);
+               string strFontopusServer = ::fontopus::get_server(strUrl, 8);
 
                url_domain domainFontopus;
 

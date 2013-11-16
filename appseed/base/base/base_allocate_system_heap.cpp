@@ -67,7 +67,7 @@ void system_heap_free(void * p)
 
 #ifdef WINDOWSEX
 
-   if(!::HeapFree(g_system_heap(), 0, p)
+   if(!::HeapFree(g_system_heap(), 0, p))
    {
 
       uint32_t dw = ::GetLastError();

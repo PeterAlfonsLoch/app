@@ -561,6 +561,29 @@ bool os_simple_graphics::fill_polygon(POINT * p, int32_t iCount, ::draw2d::e_fil
 }
 
 
+bool os_simple_graphics::draw_polygon(POINT * p, int32_t iCount, ::draw2d::e_fill_mode)
+{
+
+   if (m_pen.m_ppen == NULL)
+      return true;
+
+   Gdiplus::Point * ppa = new Gdiplus::Point[iCount];
+
+   for (int32_t i = 0; i < iCount; i++)
+   {
+      ppa[i].X = p[i].x;
+      ppa[i].Y = p[i].y;
+   }
+
+   bool bOk = m_pgraphics->DrawPolygon(m_pen.m_ppen, ppa, 4) == Gdiplus::Ok;
+
+   delete ppa;
+
+   return bOk;
+
+
+}
+
 
 bool os_simple_graphics::draw_path(simple_path & path, simple_pen & pen)
 {

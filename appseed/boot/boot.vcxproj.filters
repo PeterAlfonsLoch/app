@@ -90,6 +90,12 @@
     <Filter Include="Source Files\boot">
       <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\fontopus">
+      <UniqueIdentifier>{316fb895-d334-4338-9d8b-1afb1c381f55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\fontopus">
+      <UniqueIdentifier>{df0faa69-64d3-44d7-89b6-7c8321bbd705}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hotplugin\hotplugin.h">
@@ -461,6 +467,15 @@
     <ClInclude Include="boot\boot_window_graphics.h">
       <Filter>Header Files\boot</Filter>
     </ClInclude>
+    <ClInclude Include="fontopus\fontopus_user_authentication.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="fontopus\fontopus_authentication_map.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="fontopus\fontopus.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
@@ -798,6 +813,15 @@
     </ClCompile>
     <ClCompile Include="android\android_window_android.cpp">
       <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\windows_fontopus.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="fontopus\fontopus_authentication_map.cpp">
+      <Filter>Source Files\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="fontopus\fontopus.cpp">
+      <Filter>Source Files\fontopus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

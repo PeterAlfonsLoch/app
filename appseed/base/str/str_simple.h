@@ -586,7 +586,7 @@ public:
 
       strsize nOldLength = get_length();
       
-      strsize nNewLength = nOldLength+1;
+      strsize nNewLength = nOldLength + i;
       
       char * pszBuffer = GetBuffer( nNewLength );
       

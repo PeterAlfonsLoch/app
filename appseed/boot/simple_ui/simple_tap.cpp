@@ -28,16 +28,18 @@ void simple_tap::draw_this(simple_graphics & g)
 
 
 
-void simple_tap::on_lbutton_down(int32_t x, int32_t y)
+bool simple_tap::on_lbutton_down(int32_t x, int32_t y)
 {
 
    set_focus(this);
 
    m_bDown = true;
 
+   return true;
+
 }
 
-void simple_tap::on_lbutton_up(int32_t x, int32_t y)
+bool simple_tap::on_lbutton_up(int32_t x, int32_t y)
 {
 
    if(m_bDown)
@@ -49,14 +51,18 @@ void simple_tap::on_lbutton_up(int32_t x, int32_t y)
 
    }
 
+   return true;
+
 }
 
-void simple_tap::on_mouse_move(int32_t x, int32_t y)
+bool simple_tap::on_mouse_move(int32_t x, int32_t y)
 {
 
    m_bMouseMove = true;
 
    //m_pplugin->redraw();
+
+   return true;
 
 }
 
@@ -68,26 +74,13 @@ bool simple_tap::is_focusable()
 bool simple_tap::is_hover()
 {
 
-   RECT rectWindow = m_rect;
+   RECT rectWindow;
 
-   ::hotplugin::plugin * pplugin = get_plugin();
-
-   int32_t dx = pplugin->m_phost->m_rect.left;
-
-   int32_t dy = pplugin->m_phost->m_rect.top;
-
-   rectWindow.left      += dx;
-   rectWindow.right     += dx;
-   rectWindow.top       += dy;
-   rectWindow.bottom    += dy;
+   get_window_rect(&rectWindow);
 
    POINT ptCursor;
 
    ::GetCursorPos(&ptCursor);
-
-   ptCursor.x += pplugin->m_ptCursorPhase.x;
-
-   ptCursor.y += pplugin->m_ptCursorPhase.y;
 
    bool bHover = ptCursor.x >= rectWindow.left
               && ptCursor.x <= rectWindow.right
@@ -184,7 +177,7 @@ void simple_tap::draw_volume(simple_graphics & g)
 
          crOut = ARGB(184, 255, 210, 255);
 
-         crIn = ARGB(255, 255, 84 + 49, 255);
+         crIn = ARGB(255, 255, 184 + 49, 255);
 
          crBorderOut = ARGB(184, 90, 20, 90);
 
@@ -259,7 +252,7 @@ void simple_tap::draw_text(simple_graphics & g)
 }
 
 
-void simple_tap::on_char(int32_t iKey, const string & strChar)
+bool simple_tap::on_char(int32_t iKey, const string & strChar)
 {
 
    if(iKey == VK_RETURN || iKey == VK_SPACE)
@@ -267,13 +260,18 @@ void simple_tap::on_char(int32_t iKey, const string & strChar)
 
       on_action(m_strId);
 
+      return true;
+
    }
    else if(iKey == VK_TAB)
    {
 
       focus_next();
 
+      return true;
+
    }
 
+   return false;
 
 }

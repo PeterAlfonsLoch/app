@@ -48,6 +48,7 @@ public:
 
 
    bool fill_polygon(POINT * p, int32_t iCount, ::draw2d::e_fill_mode);
+   bool draw_polygon(POINT * p, int32_t iCount, ::draw2d::e_fill_mode);
 
 
    bool draw_path(simple_path & path, simple_pen & pen);

@@ -1,10 +1,10 @@
 #pragma once
 
 
-namespace spa_install
+namespace spa
 {
 
-   class plugin;
+   class style;
 
 } // namespace spa
 
@@ -40,21 +40,26 @@ public:
    simple_password      m_password;
    simple_tap           m_tap;
 
-   string             m_strPasshash;
+   string               m_strPasshash;
 
    callback *           m_pcallback;
-   string             m_strKeyHash;
+   string               m_strKeyHash;
+   string               m_strSessId;
+   string               m_strSecureId;
+   string               m_strLoginUrl;
+   string               m_strFontopusServer;
+   string               m_strRequestingServer;
 
    
-   spa_login();
+   spa_login(int left, int top);
    virtual ~spa_login();
 
 
-   virtual void on_action(const char * pszId);
+   virtual bool on_action(const char * pszId);
 
    void initialize();
 
-   void defer_translate(::spa_install::plugin * pplugin);
+   void defer_translate(::spa::style * pstyle);
 
    void start_login();
 
@@ -71,6 +76,9 @@ public:
 
    virtual void authentication_failed();
 
+   virtual void layout();
+
+   virtual spa_login::e_result process_response(string strResponse);
 
 };
 

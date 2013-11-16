@@ -213,9 +213,28 @@ namespace fontopus
          m_loginthread.m_strModHash.Empty();
          m_loginthread.m_strKeyHash.Empty();
          m_loginthread.m_strCa2Hash.Empty();
-         ensure_main_document();
-         page1();
-         show_and_request_auth();
+
+         string strUsername;
+         string strSessId;
+         string strSecureId;
+
+         if (show_auth_window(strUsername, strSessId, strSecureId, m_loginthread.m_strLoginUrl, m_loginthread.m_strRequestingServer) != "ok")
+         {
+            delete m_puser;
+            return NULL;
+         }
+
+         m_puser = Application.m_pfontopus->allocate_user();
+
+         m_puser->m_strLogin = strUsername;
+         m_puser->m_strFontopusServerSessId = strSessId;
+         m_puser->set_sessid(m_puser->m_strFontopusServerSessId, m_loginthread.m_strLoginUrl);
+         m_puser->m_strRequestingServer = m_loginthread.m_strRequestingServer;
+         m_puser->m_strFunUserId = strSecureId;
+
+         //ensure_main_document();
+         //page1();
+         //show_and_request_auth();
          return m_puser;
 
       }
@@ -511,8 +530,8 @@ namespace fontopus
       {
          if(doc.get_root()->attr("id") == "auth" && doc.get_root()->attr("passhash").has_char() && doc.get_root()->attr("secureuserid").has_char())
          {
-            System.m_authmap[m_strUsername].m_mapServer[m_strRequestingServer] = strResponse;
-            System.m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer] = strResponse;
+            ::fontopus::authentication_map::m_authmap[m_strUsername].m_mapServer[m_strRequestingServer] = strResponse;
+            ::fontopus::authentication_map::m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer] = strResponse;
             m_puser->m_strLogin = m_strUsername;
             m_puser->m_strFontopusServerSessId = doc.get_root()->attr("sessid");
             m_puser->set_sessid(m_puser->m_strFontopusServerSessId, m_strLoginUrl);
@@ -642,9 +661,9 @@ namespace fontopus
    string login_thread::NetLogin(::http::e_status * pestatus)
    {
 
-      if(System.m_authmap[m_strUsername].m_mapServer[m_strRequestingServer].get_length() > 32)
+      if(::fontopus::authentication_map::m_authmap[m_strUsername].m_mapServer[m_strRequestingServer].get_length() > 32)
       {
-         return System.m_authmap[m_strUsername].m_mapServer[m_strRequestingServer];
+         return ::fontopus::authentication_map::m_authmap[m_strUsername].m_mapServer[m_strRequestingServer];
       }
 
       string strGetFontopus("http://" + m_strRequestingServer + "/get_fontopus");
@@ -655,16 +674,16 @@ namespace fontopus
 
       url_domain domainFontopus;
 
-      m_strFontopusServer = System.get_fontopus_server(strGetFontopus, papp, 8);
+      m_strFontopusServer = ::fontopus::get_server(strGetFontopus, 8);
 
       domainFontopus.create(m_strFontopusServer);
 
       if(domainFontopus.m_strRadix != "ca2")
          return "";
 
-      if(System.m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer].get_length() > 32)
+      if (::fontopus::authentication_map::m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer].get_length() > 32)
       {
-         return System.m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer];
+         return ::fontopus::authentication_map::m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer];
       }
 
 
@@ -1177,9 +1196,10 @@ namespace fontopus
 
    void validate::ensure_main_document()
    {
-
+      return;  
       if(m_pdoc != NULL)
          return;
+
 
       sp(::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
@@ -1200,7 +1220,7 @@ namespace fontopus
    void validate::page1(const stringa & straMatter)
    {
 
-      m_pdocAuth->get_html_data()->m_puser = m_loginthread.m_puser;
+      /*m_pdocAuth->get_html_data()->m_puser = m_loginthread.m_puser;
 
       string strPath;
 
@@ -1261,7 +1281,7 @@ namespace fontopus
             }
          }
 
-      }
+      }*/
 
    }
 
@@ -1660,6 +1680,7 @@ namespace fontopus
       int32_t iWidth = rectOpen.width();
       int32_t iHeight = rectOpen.width();
       rectOpen.deflate(iWidth / 5, iHeight / 5);
+
       m_ptabview->GetParentFrame()->SetWindowPos(ZORDER_TOP, rectOpen.left,
          rectOpen.top,
          rectOpen.width(), rectOpen.height(), SWP_SHOWWINDOW);

@@ -1934,45 +1934,6 @@ sp(::command_thread) system::command_thread()
    }
 
 
-   string system::get_fontopus_server(const char * pszUrl, sp(base_application) papp, int32_t iRetry)
-   {
-
-      string strFontopusServer;
-
-      if(m_mapFontopusServer.Lookup(pszUrl, strFontopusServer) && strFontopusServer.has_char())
-      {
-         return strFontopusServer;
-      }
-
-retry:
-
-      if(iRetry < 0)
-         return ""; // should not retry or lookup is valid and strFontopusServer is really empty
-
-      string strGetFontopus("http://" + System.url().get_server(pszUrl) + "/get_fontopus");
-      try
-      {
-         property_set post;
-         property_set headers;
-         property_set set;
-         set["disable_ca2_sessid"] = true;
-         set["app"] = papp;
-         Application.http().get(strGetFontopus, strFontopusServer, post, headers, set, NULL, NULL, NULL, NULL);
-      }
-      catch(...)
-      {
-      }
-
-      m_mapFontopusServer.set_at(pszUrl, strFontopusServer);
-
-      iRetry--;
-
-      if(strFontopusServer.is_empty())
-         goto retry;
-
-      return strFontopusServer;
-
-   }
 
    void system::get_cursor_pos(LPPOINT lppoint)
    {

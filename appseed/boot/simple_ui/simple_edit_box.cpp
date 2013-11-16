@@ -18,15 +18,20 @@ simple_edit_box::~simple_edit_box()
 
 
 
-void simple_edit_box::on_lbutton_down(int32_t x, int32_t y)
+bool simple_edit_box::on_lbutton_down(int32_t x, int32_t y)
 {
 
    set_focus(this);
 
+   return true;
+
 }
 
-void simple_edit_box::on_lbutton_up(int32_t x, int32_t y)
+bool simple_edit_box::on_lbutton_up(int32_t x, int32_t y)
 {
+
+   return true;
+
 }
 
 
@@ -96,16 +101,18 @@ void simple_edit_box::draw_this(simple_graphics & g)
 
 }
 
-void simple_edit_box::on_char(int32_t iKey, const string & strChar)
+bool simple_edit_box::on_char(int32_t iKey, const string & strChar)
 {
 
    if(iKey == VK_TAB)
    {
       focus_next();
+      return true;
    }
    else if(iKey == VK_RETURN)
    {
       on_action("submit");
+      return true;
    }
    else if(iKey == VK_BACK)
    {
@@ -122,6 +129,7 @@ void simple_edit_box::on_char(int32_t iKey, const string & strChar)
       {
          m_iPos = 0;
       }
+      return true;
    }
    else if(iKey == VK_DELETE)
    {
@@ -133,6 +141,7 @@ void simple_edit_box::on_char(int32_t iKey, const string & strChar)
       {
          m_strText = m_strText.substr(0, m_iPos) + m_strText.substr(m_iPos + 1);
       }
+      return true;
    }
    else
    {
@@ -140,6 +149,7 @@ void simple_edit_box::on_char(int32_t iKey, const string & strChar)
       m_strText = m_strText.substr(0, m_iPos) + strChar + m_strText.substr(m_iPos + 1);
 
       m_iPos++;
+      return true;
 
    }
 

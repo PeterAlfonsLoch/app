@@ -168,6 +168,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 #include "zlib/zlib.h"
 
+#include "app/appseed/boot/fontopus/fontopus.h"
+
 #include "boot_simple_app.h"
 
 

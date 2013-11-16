@@ -16,10 +16,12 @@ void simple_label::draw_this(simple_graphics & g)
 {
 
 
+   g.set_alpha_mode(::draw2d::alpha_mode_blend);
+
 
    COLORREF c;
 
-   if(get_plugin()->m_eschema == ::hotplugin::plugin::schema_darker)
+   if(get_style()->m_eschema == ::hotplugin::plugin::schema_darker)
    {
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS

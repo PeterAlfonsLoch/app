@@ -17,6 +17,7 @@ namespace spa_install
 
 
    class CLASS_DECL_BOOT plugin :
+      virtual public ::spa::style,
       virtual public ::hotplugin::plugin,
       virtual public ::simple_ui,
       virtual public ::spa_login::callback
@@ -116,7 +117,6 @@ namespace spa_install
 
       virtual string defer_get_plugin();
 
-      virtual string defer_get(const char * pszUrl);
 
 
    };

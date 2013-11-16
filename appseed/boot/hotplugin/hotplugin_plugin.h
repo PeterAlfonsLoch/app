@@ -1,17 +1,10 @@
 #pragma once
 
 
-namespace hotplugin
+namespace spa
 {
 
-
-   class host;
-
-
-   class CLASS_DECL_BOOT plugin 
-#ifndef METROWIN
-      : virtual public ::small_ipc_channel
-#endif
+   class CLASS_DECL_BOOT style
    {
    public:
 
@@ -22,6 +15,44 @@ namespace hotplugin
          schema_darker
 
       };
+
+      e_schema                      m_eschema;
+      string                        m_strLocale;
+      string                        m_strSchema;
+      string                        m_strRuri;
+
+
+      style();
+
+      virtual ~style();
+
+      virtual string defer_get_plugin();
+
+      virtual string defer_get(const char * pszUrl);
+
+      virtual string calc_locale();
+      virtual string calc_schema();
+   };
+
+}
+
+
+
+namespace hotplugin
+{
+
+
+   class host;
+
+
+   class CLASS_DECL_BOOT plugin :
+      virtual public ::spa::style
+#ifndef METROWIN
+      , virtual public ::small_ipc_channel
+#endif
+   {
+   public:
+
 
       string                      m_strPluginUrl;
       string                      m_strPluginHeaders;
@@ -65,10 +96,6 @@ namespace hotplugin
       string                      m_strBitmapChannel;
       POINT                         m_ptCursorPhase;
 
-      e_schema                      m_eschema;
-      string                      m_strLocale;
-      string                      m_strSchema;
-      string                      m_strRuri;
 
 
       plugin();

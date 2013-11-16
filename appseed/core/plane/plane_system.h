@@ -70,7 +70,6 @@ namespace plane
       ::net::port_forward_sp                        m_spportforward;
 
       class ::fontopus::user_set                   m_userset;
-      string_to_string                         m_mapFontopusServer;
 
 
       sp(::plane::session::run_start_installer)      m_prunstartinstaller;
@@ -82,9 +81,6 @@ namespace plane
       sp(::user::window_draw)                        m_ptwf;
       //      ::sockets::net                               m_net;
       //      sp(::core::filehandler::handler)  m_spfilehandler;
-
-
-      fontopus::authentication_map                 m_authmap;
 
 
       // certain instantiators like npca2plugin and iexca2plugin rely
@@ -389,8 +385,6 @@ namespace plane
 
 
       virtual bool on_install();
-
-      virtual string get_fontopus_server(const char * pszUrl, sp(base_application) papp, int32_t iRetry = -1);
 
       virtual string get_host_location_url();
 

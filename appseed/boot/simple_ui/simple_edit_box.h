@@ -17,9 +17,9 @@ public:
    virtual void draw_this(simple_graphics & g);
 
 
-   virtual void on_char(int32_t iKey, const string & strChar);
-   virtual void on_lbutton_down(int32_t x, int32_t y);
-   virtual void on_lbutton_up(int32_t x, int32_t y);
+   virtual bool on_char(int32_t iKey, const string & strChar);
+   virtual bool on_lbutton_down(int32_t x, int32_t y);
+   virtual bool on_lbutton_up(int32_t x, int32_t y);
 
    virtual bool is_focusable();
 
