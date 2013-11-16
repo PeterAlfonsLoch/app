@@ -745,6 +745,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClCompile Include="metrowin\metrowin_thread.cpp" />
     <ClCompile Include="metrowin\metrowin_time.cpp" />
     <ClCompile Include="metrowin\metrowin_window_impl.cpp" />
+    <ClCompile Include="metrowin_user.cpp" />
     <ClCompile Include="multithreading\multithreading_condition.cpp" />
     <ClCompile Include="multithreading\multithreading_core.cpp" />
     <ClCompile Include="multithreading\multithreading_critical_section.cpp" />

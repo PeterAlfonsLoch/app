@@ -80,17 +80,7 @@ bool simple_tap::is_hover()
 
    POINT ptCursor;
 
-   ::wait(Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([=, &ptCursor]()
-   {
-      try
-      {
-         ::GetCursorPos(&ptCursor);
-      }
-      catch (...)
-      {
-      }
-   })));
-      
+   ui_get_cursor_pos(&ptCursor);
 
    bool bHover = ptCursor.x >= rectWindow.left
               && ptCursor.x <= rectWindow.right
