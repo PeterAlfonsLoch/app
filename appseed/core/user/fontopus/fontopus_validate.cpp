@@ -220,7 +220,7 @@ namespace fontopus
 
          rect rectDesktop;
 
-         System.get_window_rect(rectDesktop);
+         System.get_monitor_rect(0, rectDesktop);
 
          if (show_auth_window(rectDesktop, strUsername, strSessId, strSecureId, m_loginthread.m_strLoginUrl, m_loginthread.m_strRequestingServer) != "ok")
          {

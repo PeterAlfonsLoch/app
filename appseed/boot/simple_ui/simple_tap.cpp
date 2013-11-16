@@ -74,7 +74,7 @@ bool simple_tap::is_focusable()
 bool simple_tap::is_hover()
 {
 
-   RECT rectWindow;
+   rect rectWindow;
 
    get_window_rect(&rectWindow);
 
@@ -82,10 +82,7 @@ bool simple_tap::is_hover()
 
    ui_get_cursor_pos(&ptCursor);
 
-   bool bHover = ptCursor.x >= rectWindow.left
-              && ptCursor.x <= rectWindow.right
-              && ptCursor.y >= rectWindow.top
-              && ptCursor.y <= rectWindow.bottom;
+   bool bHover = rectWindow.contains(ptCursor);
 
    if(!bHover)
       m_bMouseMove = false;

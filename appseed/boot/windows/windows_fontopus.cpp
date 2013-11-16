@@ -41,7 +41,7 @@ namespace fontopus
 
       HWND              m_hwnd;
       bool              m_bDrag;
-
+      rect              m_rectDesktop;
 
 
       fontopus();
@@ -51,7 +51,7 @@ namespace fontopus
       static LRESULT CALLBACK s_window_prodecure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 
-      virtual string show_auth_window(string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
+      virtual string show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
 
       virtual ATOM register_window_class(HINSTANCE hInstance);
 
@@ -362,8 +362,21 @@ namespace fontopus
    {
    }
 
-   string fontopus::show_auth_window(string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
+   string fontopus::show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
    {
+
+      if (lprect == NULL)
+      {
+
+         ::GetWindowRect(::GetDesktopWindow(), &m_rectDesktop);
+
+      }
+      else
+      {
+
+         m_rectDesktop = *lprect;
+
+      }
 
       // TODO: Place code here.
       MSG msg;
@@ -456,14 +469,7 @@ namespace fontopus
 
       m_hinstance = hInstance; // Store instance handle in our global variable
 
-      rect rectDesktop;
-
-      rectDesktop.left = 0;
-      rectDesktop.top = 0;
-      rectDesktop.right = 600;
-      rectDesktop.bottom = 400;
-
-      ::GetWindowRect(::GetDesktopWindow(), &rectDesktop);
+      rect & rectDesktop = m_rectDesktop;
 
       rect rectFontopus;
 
@@ -665,10 +671,6 @@ namespace fontopus
 
    LRESULT fontopus::window_procedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
    {
-
-      int wmId, wmEvent;
-      PAINTSTRUCT ps;
-      HDC hdc;
 
       switch (message)
       {
@@ -983,10 +985,10 @@ namespace fontopus
 
    fontopus fontopus::s_fontopus;
 
-   string CLASS_DECL_BOOT show_auth_window(string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
+   string CLASS_DECL_BOOT show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
    {
 
-      return ::fontopus::fontopus::s_fontopus.show_auth_window(strUsername, strSessId, strServerId, strLoginUrl, strFontopusServer);
+      return ::fontopus::fontopus::s_fontopus.show_auth_window(lprect, strUsername, strSessId, strServerId, strLoginUrl, strFontopusServer);
 
    }
 

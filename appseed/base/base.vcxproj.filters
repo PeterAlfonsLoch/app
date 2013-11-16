@@ -141,6 +141,12 @@
     <Filter Include="Binary Files\x86">
       <UniqueIdentifier>{8bedbbf7-bbee-4bec-b9ca-3e59352115ef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\os\cross">
+      <UniqueIdentifier>{f22e1b28-50e1-41b7-ab05-fbf12e97db6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\os\cross\metrowin">
+      <UniqueIdentifier>{e16bae98-9b4b-4f16-8aea-c1eeeb80d1d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework_c.h">
@@ -1900,6 +1906,9 @@
     <ClCompile Include="android\android_locale.c">
       <Filter>Source Files\android</Filter>
     </ClCompile>
+    <ClCompile Include="os\cross\metrowin\metrowin_user.cpp">
+      <Filter>Source Files\os\cross\metrowin</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -1985,6 +1994,9 @@
     </None>
     <None Include="primitive\primitive_factory_impl.inl">
       <Filter>Header Files\primitive</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

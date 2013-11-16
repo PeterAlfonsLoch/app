@@ -1122,20 +1122,25 @@ _cairo_default_context_reset_clip (void *abstract_cr)
 }
 
 static cairo_status_t
-_cairo_default_context_clip_extents (void *abstract_cr,
-				     double *x1, double *y1, double *x2, double *y2)
+_cairo_default_context_clip_extents (void * abstract_cr, double * x1, double * y1, double * x2, double * y2)
 {
+
     cairo_default_context_t *cr = abstract_cr;
 
-    if (! _cairo_gstate_clip_extents (cr->gstate, x1, y1, x2, y2)) {
-	*x1 = -INFINITY;
-	*y1 = -INFINITY;
-	*x2 = +INFINITY;
-	*y2 = +INFINITY;
+    if (! _cairo_gstate_clip_extents (cr->gstate, x1, y1, x2, y2))
+    {
+    
+      *x1   = - (double) INFINITY;
+      *y1   = - (double) INFINITY;
+      *x2   = (double) +INFINITY;
+      *y2   = (double) +INFINITY;
+
     }
 
     return CAIRO_STATUS_SUCCESS;
+
 }
+
 
 static cairo_rectangle_list_t *
 _cairo_default_context_copy_clip_rectangle_list (void *abstract_cr)
