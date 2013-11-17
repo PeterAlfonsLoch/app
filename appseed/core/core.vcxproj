@@ -1029,7 +1029,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core_timer_callback.h" />
     <ClInclude Include="core\core_timer_listener.h" />
     <ClInclude Include="core\core_timer_window.h" />
-    <ClInclude Include="core\core_trace.h" />
     <ClInclude Include="core\core_twit.h" />
     <ClInclude Include="core\core_types.h" />
     <ClInclude Include="core\core_util.h" />
@@ -1510,7 +1509,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="plane\plane_system.h" />
     <ClInclude Include="plane\plane_system_allocate.h" />
     <ClInclude Include="plane\plane_system_ca2_template.h" />
-    <ClInclude Include="plane\plane_system_template_trace.h" />
     <ClInclude Include="plane\session\bergedge\bergedge.h" />
     <ClInclude Include="plane\session\bergedge\bergedge_document.h" />
     <ClInclude Include="plane\session\bergedge\bergedge_form_callback.h" />

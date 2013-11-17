@@ -4,6 +4,12 @@
 #include "app/appseed/base/primitive/primitive_color.h"
 
 
+namespace user
+{
+   class window;
+}
+
+
 namespace draw2d
 {
 
@@ -259,6 +265,8 @@ namespace draw2d
       virtual void write(::file::output_stream & ostream);
       virtual void read(::file::input_stream & istream);
 
+      virtual bool update_window(::user::window * pwnd, signal_details * pobj);
+      virtual bool print_window(::user::window * pwnd, signal_details * pobj);
 
 
       static void static_initialize();

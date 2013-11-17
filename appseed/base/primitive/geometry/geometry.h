@@ -212,3 +212,6 @@ CLASS_DECL_BASE bool deflate(LPRECT prect, LPCRECT lpcrect);
 
 
 
+#include "geometry_types.h"
+
+

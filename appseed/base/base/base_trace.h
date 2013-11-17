@@ -14,10 +14,10 @@ namespace core
 
    //typedef void ( * PFN_trace_v)(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
 
-   CLASS_DECL_CORE void raw_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
-   //CLASS_DECL_CORE void system_log_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
+   CLASS_DECL_BASE void raw_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
+   //CLASS_DECL_BASE void system_log_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
 
-   //extern CLASS_DECL_CORE PFN_trace_v trace_v;
+   //extern CLASS_DECL_BASE PFN_trace_v trace_v;
 
    namespace trace
    {
@@ -58,21 +58,21 @@ namespace core
          category_User3,
          category_User4,
          category_AppMsg = 500,        // main message pump trace (includes DDE)
-         category_WinMsg ,        // Windows message tracing
-         category_CmdRouting ,    // Windows command routing trace
-         category_Ole ,          // special OLE callback trace
-         category_Database ,     // special database trace
-         category_Internet ,     // special Internet client trace
-         category_dumpContext ,   // traces from dump_context
-         category_Memory ,      // generic non-kernel primitive::memory traces
-         category_Html ,         // Html traces
-         category_Socket ,      // socket traces
+         category_WinMsg,        // Windows message tracing
+         category_CmdRouting,    // Windows command routing trace
+         category_Ole,          // special OLE callback trace
+         category_Database,     // special database trace
+         category_Internet,     // special Internet client trace
+         category_dumpContext,   // traces from dump_context
+         category_Memory,      // generic non-kernel primitive::memory traces
+         category_Html,         // Html traces
+         category_Socket,      // socket traces
       };
 
       class trace;
 
       // Declare a global instance of this class to automatically register a custom trace category at startup
-      class CLASS_DECL_CORE category
+      class CLASS_DECL_BASE category
       {
       public:
 
@@ -80,7 +80,7 @@ namespace core
          ~category();
 
          UINT GetLevel() const throw();
-         void SetLevel( UINT nLevel ) throw();
+         void SetLevel(UINT nLevel) throw();
          e_status GetStatus() const throw();
          void SetStatus(e_status eStatus) throw();
 
@@ -93,7 +93,7 @@ namespace core
       };
 
 
-      class CLASS_DECL_CORE trace
+      class CLASS_DECL_BASE trace
       {
       public:
 
@@ -132,7 +132,7 @@ namespace core
       public:
          CNoUIAssertHook()
          {
-            ASSERT( s_pfnPrevHook == NULL );
+            ASSERT(s_pfnPrevHook == NULL);
 #ifdef VC6
             //s_pfnPrevHook = _CrtGetReportHook();
             _CrtSetReportHook(CrtHookProc);
@@ -152,8 +152,8 @@ namespace core
 
             if (eReportType == _CRT_ASSERT)
             {
-               ::OutputDebugStringA( "ASSERTION FAILED\n" );
-               ::OutputDebugStringA( pszMessage );
+               ::OutputDebugStringA("ASSERTION FAILED\n");
+               ::OutputDebugStringA(pszMessage);
                //If caller doesn't want retVal, so be it.
                if (pnRetVal != NULL)
                {
@@ -178,7 +178,7 @@ namespace core
 
 #ifdef WINDOWS
 
-      __declspec( selectany ) _CRT_REPORT_HOOK CNoUIAssertHook::s_pfnPrevHook = NULL;
+      __declspec(selectany) _CRT_REPORT_HOOK CNoUIAssertHook::s_pfnPrevHook = NULL;
 
 #endif
 
@@ -187,10 +187,10 @@ namespace core
 #endif  // _NO_DEBUG_CRT
 
 
-      CLASS_DECL_CORE void __cdecl __trace(const char * pszFormat, ...);
-      CLASS_DECL_CORE void __cdecl __trace(const wchar_t * pszFormat, ...);
-      CLASS_DECL_CORE void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const char * pszFormat, ...);
-      CLASS_DECL_CORE void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const wchar_t * pszFormat, ...);
+      CLASS_DECL_BASE void __cdecl __trace(const char * pszFormat, ...);
+      CLASS_DECL_BASE void __cdecl __trace(const wchar_t * pszFormat, ...);
+      CLASS_DECL_BASE void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const char * pszFormat, ...);
+      CLASS_DECL_BASE void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const wchar_t * pszFormat, ...);
 #define TRACENOTIMPL(funcname)  do { TRACE(::core::atlTraceNotImpl, 0, "core: %s not implemented.\n", funcname); return E_NOTIMPL; } while(0)
    } // namespace trace
 

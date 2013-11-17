@@ -4,8 +4,6 @@
 thread::thread()
 {
 
-   m_pthread = NULL;
-
 }
 
 

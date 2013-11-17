@@ -211,8 +211,6 @@ namespace plane
       virtual string file_title(const char * psz);
       virtual string file_name(const char * psz);
 
-      class ::core::log                     & log();
-
       sp(::user::window_draw )              get_twf();
 
       FT_Library                          & ftlibrary();

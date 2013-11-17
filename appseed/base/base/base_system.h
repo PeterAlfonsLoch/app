@@ -240,6 +240,8 @@ public:
    ::xml::departament                           & xml();
    class ::str::base64                          & base64();
 
+   class ::core::log                     & log();
+
 
 
    using base_application::alloc;

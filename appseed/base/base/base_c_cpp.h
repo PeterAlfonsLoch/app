@@ -337,6 +337,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 #include "base/base_log.h"
+#include "base/base_trace.h"
 
 
 #include "base/net/net.h"
@@ -365,6 +366,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 #include "base/net/sockets/sockets.h"
+
+#include "base/programming/javascript/javascript.h"
 
 #include "net/http/http_http.h"
 #include "net/http/http_application.h"
@@ -414,7 +417,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
-
+#include "base/graphics/visual/visual.h"
 
 
 
@@ -443,6 +446,9 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 #define new BASE_NEW
+
+
+#include "base_system_trace.h"
 
 
 #include "base/multithreading/multithreading.inl"
@@ -593,3 +599,15 @@ namespace numeric_info
 #include "base_system_factory.inl"
 #include "base_system_primitive_var.inl"
 #include "base_system_xml.inl"
+
+
+
+#ifdef WINDOWSEX
+#define _DRAW2D_GDIPLUS_STATIC
+#include "nodeapp/appseed/draw2d_gdiplus/draw2d_gdiplus.h"
+#undef _DRAW2D_GDIPLUS_STATIC
+#endif
+
+
+#define AppUser(pbaseapp) (*planeApp(pbaseapp).m_pfontopus->get_user())
+#define ApplicationUser (AppUser(m_pbaseapp))

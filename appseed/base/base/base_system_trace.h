@@ -5,7 +5,7 @@ namespace core
 {
 
 
-   class CLASS_DECL_CORE trace_add_file_and_line
+   class CLASS_DECL_BASE trace_add_file_and_line
 #if defined(LINUX) || defined(MACOS)
       : public string_format_printer
 #endif
@@ -20,7 +20,7 @@ namespace core
 
 #if defined(LINUX) || defined(MACOS) || defined(ANDROID)
 
-      class CLASS_DECL_CORE category_level
+      class CLASS_DECL_BASE category_level
       {
       public:
 
@@ -71,7 +71,7 @@ namespace core
       void trace_category_level(void * pvoid, const char * psz)
       {
 
-         category_level * pcategorylevel = (category_level *) pvoid;
+         category_level * pcategorylevel = (category_level *)pvoid;
 
          System.log().trace(m_pszFileName, m_nLineNo, pcategorylevel->m_dwCategory, pcategorylevel->m_nLevel, psz);
 

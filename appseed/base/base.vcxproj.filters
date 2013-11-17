@@ -243,6 +243,27 @@
     <Filter Include="Source Files\net\mail">
       <UniqueIdentifier>{8d52bcde-a2a8-4c66-8e6f-b5e19b649041}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\programming">
+      <UniqueIdentifier>{d0b4c014-e341-4901-87ae-635655fd469d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\programming\javascript">
+      <UniqueIdentifier>{d0c7ea9a-6603-4e55-9f3c-47dc1f6beb7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\programming">
+      <UniqueIdentifier>{0c781238-460c-42fb-8480-ad29ea72ff6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\programming\javascript">
+      <UniqueIdentifier>{1523f2fe-95c5-4ef8-aeb6-44864f6d2cc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\os\windows\builtin_draw2d_gdiplus">
+      <UniqueIdentifier>{e52501eb-5d02-44a1-9ba6-2eb7748ab202}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\os\windows\builtin_draw2d_gdiplus">
+      <UniqueIdentifier>{6ea73a7e-f176-4d5a-a82b-5ff48ddf036f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\visual\NewFilter1">
+      <UniqueIdentifier>{e1918c5d-ee64-4625-97b7-3b4dbb92f175}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework_c.h">
@@ -1637,6 +1658,66 @@
     <ClInclude Include="os\windows\windows_utils.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
+    <ClInclude Include="programming\javascript\javascript.h">
+      <Filter>Header Files\programming\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\javascript\javascript_functions.h">
+      <Filter>Header Files\programming\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\javascript\javascript_tinyjs.h">
+      <Filter>Header Files\programming\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\javascript\javascript_tinyjs_functions.h">
+      <Filter>Header Files\programming\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_trace.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_system_trace.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry\geometry_types.h">
+      <Filter>Header Files\primitive\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus.h">
+      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_bitmap.h">
+      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_brush.h">
+      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_dib.h">
+      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_factory_exchange.h">
+      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_font.h">
+      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_graphics.h">
+      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_object.h">
+      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_palette.h">
+      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_path.h">
+      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_pen.h">
+      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_region.h">
+      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_icon.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_c.c">
@@ -2619,6 +2700,54 @@
     </ClCompile>
     <ClCompile Include="net\mail\pop3_socket.cpp">
       <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\javascript\javascript.cpp">
+      <Filter>Source Files\programming\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\javascript\javascript_functions.cpp">
+      <Filter>Source Files\programming\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\javascript\javascript_script.cpp">
+      <Filter>Source Files\programming\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp">
+      <Filter>Source Files\programming\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_bitmap.cpp">
+      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_brush.cpp">
+      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_dib.cpp">
+      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_factory_exchange.cpp">
+      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_font.cpp">
+      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_graphics.cpp">
+      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_object.cpp">
+      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_palette.cpp">
+      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_path.cpp">
+      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_pen.cpp">
+      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_preview_dc.cpp">
+      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_region.cpp">
+      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

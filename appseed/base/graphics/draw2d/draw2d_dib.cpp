@@ -1041,7 +1041,7 @@ fill_last:
 
       rect rect(lprect);
 
-      return pgraphics->BitBlt(rect.left, rect.top, rect.width(), rect.height, get_graphics(), 0, 0, SRCCOPY) != FALSE;
+      return pgraphics->BitBlt(rect.left, rect.top, rect.width(), rect.height(), get_graphics(), 0, 0, SRCCOPY) != FALSE;
 
    }
 

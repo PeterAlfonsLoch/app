@@ -578,9 +578,6 @@
     <ClInclude Include="plane\plane_system.h">
       <Filter>Header Files\plane</Filter>
     </ClInclude>
-    <ClInclude Include="plane\plane_system_template_trace.h">
-      <Filter>Header Files\plane</Filter>
-    </ClInclude>
     <ClInclude Include="plane\plane_system_allocate.h">
       <Filter>Header Files\plane</Filter>
     </ClInclude>
@@ -2775,9 +2772,6 @@
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core_timer_window.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core_trace.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core_twit.h">

@@ -23,7 +23,6 @@ namespace plane
       sp(service_base)                    m_pservice;
       class ::file::dir::application        m_dir;
       class ::file::application        m_file;
-      class ::http::application       m_http;
 
       sp(class ::fontopus::license)       m_splicense;
       sp(class ::fs::data)                m_spfsdata;

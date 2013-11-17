@@ -2,3 +2,4 @@
 
 
 
+#include "visual_icon.h"
