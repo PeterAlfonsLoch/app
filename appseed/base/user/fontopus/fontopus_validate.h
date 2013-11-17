@@ -94,10 +94,7 @@ namespace fontopus
 
 
    class CLASS_DECL_BASE validate :
-      virtual public ::user::form_callback,
-      virtual public ::user::view_creator,
-      virtual public login_thread_callback,
-      virtual public ::user::tab_callback
+      virtual public login_thread_callback
    {
    public:
 
@@ -129,14 +126,8 @@ namespace fontopus
       bool                                      m_bLicense;
       bool                                      m_bInteractive;
       bool                                      m_bDeferRegistration;
-      sp(::user::single_document_template)    m_ptemplatePane;
-      sp(::form_document)                           m_pdoc;
-      sp(::userex::pane_tab_view)                 m_ptabview;
-      sp(::form_document)                           m_pdocAuth;
-      sp(::form_document)                           m_pdocMessage;
-      sp(form_view)                               m_pviewAuth;
-      ::usernet::network_configuration              m_netcfg;
-      sp(::userex::keyboard_layout)                  m_pkeyboardlayout;
+//      ::usernet::network_configuration              m_netcfg;
+  //    sp(::userex::keyboard_layout)                  m_pkeyboardlayout;
       void *                                    m_pvOldWindow;
 
 
@@ -205,12 +196,12 @@ namespace fontopus
          //virtual void authentication_failed(::fontopus::e_result iAuth, const char * pszResponse);
          //virtual void authentication_succeeded();
 
-         virtual void on_create_view(::user::view_creator_data * pcreatordata);
+//         virtual void on_create_view(::user::view_creator_data * pcreatordata);
 
          //virtual void on_show_view();
 
 
-         virtual bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);
+  //       virtual bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);
 
 
   //    virtual bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);

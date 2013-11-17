@@ -5,7 +5,7 @@ namespace userpresence
 {
 
 
-   class CLASS_DECL_CORE userpresence :
+   class CLASS_DECL_BASE userpresence :
       virtual public ::base_departament,
       virtual public message_queue
    {

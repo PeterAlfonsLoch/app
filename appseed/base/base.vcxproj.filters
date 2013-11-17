@@ -270,6 +270,9 @@
     <Filter Include="Source Files\user\fontopus">
       <UniqueIdentifier>{d0c65bf7-e04b-4672-a73c-349e12dc5e5d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user\userpresence">
+      <UniqueIdentifier>{5f8d1e2a-7a7d-40d2-b25c-52033b755438}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework_c.h">
@@ -1753,6 +1756,24 @@
     </ClInclude>
     <ClInclude Include="user\fontopus\fontopus_validate.h">
       <Filter>Header Files\user\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userpresence\userpresence.h">
+      <Filter>Header Files\user\userpresence</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userpresence\userpresence_user_presence.h">
+      <Filter>Header Files\user\userpresence</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userpresence\userpresence_userpresence.h">
+      <Filter>Header Files\user\userpresence</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_message_queue.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_message_queue_listener.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_url_domain.h">
+      <Filter>Header Files\net</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

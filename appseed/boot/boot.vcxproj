@@ -1115,7 +1115,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="boot\boot.h" />
+    <ClInclude Include="boot\boot2.h" />
     <ClInclude Include="boot\boot_2.h" />
     <ClInclude Include="boot\boot_async.h" />
     <ClInclude Include="boot\boot_cpu_architecture.h" />
@@ -1183,7 +1183,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="simple_ui\simple_tap.h" />
     <ClInclude Include="simple_ui\simple_ui.h" />
     <ClInclude Include="spa\resource.h" />
-    <ClInclude Include="spa\spa.h" />
+    <ClInclude Include="spa\spa2.h" />
     <ClInclude Include="spa\spa_boot.h" />
     <ClInclude Include="spa\spa_ca2_install_canvas.h" />
     <ClInclude Include="spa\spa_canvas.h" />
@@ -1191,7 +1191,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="spa\spa_cube_run.h" />
     <ClInclude Include="spa\spa_focus.h" />
     <ClInclude Include="spa\spa_http.h" />
-    <ClInclude Include="spa\spa_installer.h" />
+    <ClInclude Include="spa\spa_installer2.h" />
     <ClInclude Include="spa\spa_install_ca2.h" />
     <ClInclude Include="spa\spa_login.h" />
     <ClInclude Include="spa\spa_machine_event.h" />

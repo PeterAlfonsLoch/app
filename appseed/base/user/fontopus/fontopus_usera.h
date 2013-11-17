@@ -1,9 +1,11 @@
 #pragma once
 
+
 namespace fontopus
 {
 
-   class usera :
+
+   class CLASS_DECL_BASE usera :
       virtual public comparable_array < user * >
    {
    public:
@@ -11,8 +13,6 @@ namespace fontopus
 
       usera();
       virtual ~usera();
-
-
 
 
    };

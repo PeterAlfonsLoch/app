@@ -952,7 +952,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\api\api.h" />
     <ClInclude Include="core\api\api_rotate.h" />
     <ClInclude Include="core\api\mktime.h" />
-    <ClInclude Include="core\core.h" />
+    <ClInclude Include="core\core2.h" />
     <ClInclude Include="core\core_allocator.h" />
     <ClInclude Include="core\core_application.h" />
     <ClInclude Include="core\core_back_insert_iterator.h" />
@@ -994,9 +994,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core_match.h" />
     <ClInclude Include="core\core_math.h" />
     <ClInclude Include="core\core_math_rng.h" />
-    <ClInclude Include="core\core_message_queue.h" />
-    <ClInclude Include="core\core_message_queue_listener.h" />
-    <ClInclude Include="core\core_message_window.h" />
     <ClInclude Include="core\core_microtimer.h" />
     <ClInclude Include="core\core_muldiv32.h" />
     <ClInclude Include="core\core_oauth.h" />
@@ -1217,7 +1214,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="compress\zip\zip.h" />
     <ClInclude Include="compress\zip\zipImpl.h" />
     <ClInclude Include="compress\zip\zip_internal.h" />
-    <ClInclude Include="database\database.h" />
+    <ClInclude Include="database\database2.h" />
     <ClInclude Include="database\database1.h" />
     <ClInclude Include="database\databaseuser\databaseuser.h" />
     <ClInclude Include="database\databaseuser\data_key_list_data.h" />

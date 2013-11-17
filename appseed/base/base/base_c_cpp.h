@@ -374,7 +374,9 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "net/http/http_system.h"
 #include "net/http/http_get_socket.h"
 
-
+#include "base_message_queue_listener.h"
+#include "base_message_queue.h"
+#include "base/user/userpresence/userpresence.h"
 #include "base/user/fontopus/fontopus.h"
 
 

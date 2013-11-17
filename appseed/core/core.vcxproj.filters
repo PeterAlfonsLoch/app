@@ -503,9 +503,6 @@
     <ClInclude Include="compress\zip\zipImpl.h">
       <Filter>Header Files\compress\zip</Filter>
     </ClInclude>
-    <ClInclude Include="database\database.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
     <ClInclude Include="database\database_application.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
@@ -2516,9 +2513,6 @@
     <ClInclude Include="core\data\data_tree_item.h">
       <Filter>Header Files\core\data</Filter>
     </ClInclude>
-    <ClInclude Include="core\core.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core_allocator.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
@@ -2640,9 +2634,6 @@
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core_math_rng.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core_message_window.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core_microtimer.h">
@@ -2867,12 +2858,6 @@
     <ClInclude Include="graphics\gcom\gcom_util.h">
       <Filter>Header Files\graphics\gcom</Filter>
     </ClInclude>
-    <ClInclude Include="core\core_message_queue_listener.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core_message_queue.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_view_update_hint.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -2959,6 +2944,12 @@
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_data.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core2.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database2.h">
+      <Filter>Header Files\database</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

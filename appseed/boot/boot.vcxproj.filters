@@ -122,9 +122,6 @@
     <ClInclude Include="spa\spa_machine_event_data.h">
       <Filter>Header Files\spa_install</Filter>
     </ClInclude>
-    <ClInclude Include="spa\spa.h">
-      <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
     <ClInclude Include="spa\spa_boot.h">
       <Filter>Header Files\spa_install</Filter>
     </ClInclude>
@@ -144,9 +141,6 @@
       <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="spa\spa_install_ca2.h">
-      <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\spa_installer.h">
       <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="spa\spa_plugin.h">
@@ -380,9 +374,6 @@
     <ClInclude Include="simple_ui\simple_tap.h">
       <Filter>Header Files\simple_ui</Filter>
     </ClInclude>
-    <ClInclude Include="boot\boot.h">
-      <Filter>Header Files\boot</Filter>
-    </ClInclude>
     <ClInclude Include="boot\boot_2.h">
       <Filter>Header Files\boot</Filter>
     </ClInclude>
@@ -475,6 +466,15 @@
     </ClInclude>
     <ClInclude Include="fontopus\fontopus.h">
       <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_installer2.h">
+      <Filter>Header Files\spa_install</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa2.h">
+      <Filter>Header Files\spa_install</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot2.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

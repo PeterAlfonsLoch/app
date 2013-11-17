@@ -1052,6 +1052,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base_flags.h" />
     <ClInclude Include="base\base_log.h" />
     <ClInclude Include="base\base_message.h" />
+    <ClInclude Include="base\base_message_queue.h" />
+    <ClInclude Include="base\base_message_queue_listener.h" />
     <ClInclude Include="base\base_new.h" />
     <ClInclude Include="base\base_root.h" />
     <ClInclude Include="base\base_c.h" />
@@ -1152,6 +1154,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="net\net_email_address.h" />
     <ClInclude Include="net\net_net.h" />
     <ClInclude Include="net\net_url_departament.h" />
+    <ClInclude Include="net\net_url_domain.h" />
     <ClInclude Include="net\sockets\base\sockets_base_socket.h" />
     <ClInclude Include="net\sockets\base\sockets_base_socket_handler.h" />
     <ClInclude Include="net\sockets\bsd\asynch_dns\resolv_server.h" />
@@ -1485,6 +1488,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\fontopus\fontopus_user_authentication.h" />
     <ClInclude Include="user\fontopus\fontopus_user_set.h" />
     <ClInclude Include="user\fontopus\fontopus_validate.h" />
+    <ClInclude Include="user\userpresence\userpresence.h" />
+    <ClInclude Include="user\userpresence\userpresence_userpresence.h" />
+    <ClInclude Include="user\userpresence\userpresence_user_presence.h" />
     <ClInclude Include="user\user_base_document.h" />
     <ClInclude Include="user\user_base_document_template.h" />
     <ClInclude Include="user\user_base_interaction.h" />
