@@ -40,7 +40,7 @@
 
 #include "base_types.h"
 
-#include "base/math/math_math.h"
+#include "base/primitive/math/math_math.h"
 
 #include "base_heap.h"
 
@@ -50,7 +50,7 @@
 
 #include "base/primitive/primitive_memory_c.h"
 
-#include "base/datetime/datetime_c.h"
+#include "base/primitive/datetime/datetime_c.h"
 
 #include "base/os/os.h"
 

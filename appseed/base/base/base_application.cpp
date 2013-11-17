@@ -108,12 +108,12 @@ string base_application::file_as_string(var varFile)
    if(::str::begins_ci(varFile.get_string(), "http://")
    || ::str::begins_ci(varFile.get_string(), "https://"))
    {
-      return http_get_dup(varFile.get_string());
+      return Application.http().get(varFile.get_string());
    }
    else if(::str::begins_ci(varFile["url"].get_string(), "http://")
    || ::str::begins_ci(varFile["url"].get_string(), "https://"))
    {
-      return http_get_dup(varFile["url"].get_string());
+      return Application.http().get(varFile["url"].get_string());
    }
    else
    {

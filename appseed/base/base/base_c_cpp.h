@@ -163,12 +163,12 @@ namespace file
 
 
 
-#include "base/math/math_static_numeric_info.h"
-#include "base/math/math_numeric_info.h"
-#include "base/math/math_number.h"
+#include "base/primitive/math/math_static_numeric_info.h"
+#include "base/primitive/math/math_numeric_info.h"
+#include "base/primitive/math/math_number.h"
 
 
-#include "base/datetime/datetime_duration.h"
+#include "base/primitive/datetime/datetime_duration.h"
 
 
 #include "base/base/base_element.h"
@@ -183,7 +183,7 @@ namespace file
 
 #include "base_template.h"
 
-#include "base/comparison/comparison_md5.h"
+#include "base/primitive/comparison/comparison_md5.h"
 
 #include "base/net/net.h"
 
@@ -204,10 +204,10 @@ namespace file
 #include "base/primitive/primitive_object.h"
 
 
-#include "base/collection/collection_decl.h"
-#include "base/collection/collection_array_decl.h"
-#include "base/collection/collection_raw_array_decl.h"
-#include "base/collection/collection_lemon_array_decl.h"
+#include "base/primitive/collection/collection_decl.h"
+#include "base/primitive/collection/collection_array_decl.h"
+#include "base/primitive/collection/collection_raw_array_decl.h"
+#include "base/primitive/collection/collection_lemon_array_decl.h"
 
 
 #include "base_fixed_alloc.h"
@@ -226,7 +226,7 @@ namespace file
 #include "base_common.h"
 
 
-#include "base/datetime/datetime_time.h"
+#include "base/primitive/datetime/datetime_time.h"
 
 
 
@@ -236,13 +236,13 @@ namespace file
 
 
 
-#include "base/geometry/geometry.h"
+#include "base/primitive/geometry/geometry.h"
 
 
-#include "base/comparison/comparison.h"
+#include "base/primitive/comparison/comparison.h"
 
 
-#include "base/collection/collection.h"
+#include "base/primitive/collection/collection.h"
 
 
 #include "base/file/file_string_buffer.h"
@@ -291,7 +291,7 @@ namespace file
 
 #elif defined(WINDOWS)
 
-#include "base/windows/windows.h"
+#include "base/os/windows/windows.h"
 
 #endif
 
@@ -329,16 +329,51 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "core/core/core_keeper.h"
 #include "file/file_stream2.h"
 #include "user/user_interaction.h"
+#include "user/user_window.h"
 #include "base_live_object.h"
 #include "multithreading/multithreading_thread.h"
 #include "multithreading/multithreading_simple_thread.h"
 #include "multithreading/multithreading_go_thread.h"
 
 
-#include "base_application.h"
+#include "base/base_log.h"
+
+
+#include "base/net/net.h"
+
+
+#include "base/primitive/primitive_memory_base.h"
+#include "base/primitive/primitive_memory.h"
+#include "base/primitive/primitive_shared_memory.h"
+#include "base/primitive/primitive_virtual_memory.h"
+#include "base/primitive/primitive_memory_container.h"
+
+#include "base/file/file_memory_buffer.h"
+
+#include "base/file/file_byte_stream_memory_buffer.h"
+
+#include "base/file/file_plain_text_stream_memory_buffer.h"
+
+#include "base/file/file_circular_buffer.h"
+
+#include "base/str/str_international2.h"
+
+#include "net/http/http_output_stream.h"
 
 #include "base_departament.h"
 #include "base_departament_container.h"
+
+
+#include "base/net/sockets/sockets.h"
+
+#include "net/http/http_http.h"
+#include "net/http/http_application.h"
+#include "net/http/http_system.h"
+#include "net/http/http_get_socket.h"
+
+
+#include "base_application.h"
+
 
 #include "base_session.h"
 
@@ -378,21 +413,6 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_system.h"
 
 
-#include "base/primitive/primitive_memory_base.h"
-#include "base/primitive/primitive_memory.h"
-#include "base/primitive/primitive_shared_memory.h"
-#include "base/primitive/primitive_virtual_memory.h"
-#include "base/primitive/primitive_memory_container.h"
-
-#include "base/file/file_memory_buffer.h"
-
-#include "base/file/file_byte_stream_memory_buffer.h"
-
-#include "base/file/file_plain_text_stream_memory_buffer.h"
-
-#include "base/file/file_circular_buffer.h"
-
-#include "base/str/str_international2.h"
 
 
 
@@ -403,7 +423,6 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
-#include "base/net/net.h"
 
 
 #include "base/os/os.h"
@@ -415,13 +434,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
-#include "net/http/http_output_stream.h"
 
 
-#include "base/base_log.h"
-
-
-#include "net/sockets/sockets.h"
 
 
 
@@ -553,17 +567,17 @@ namespace numeric_info
    
    
    
-#include "base/collection/collection_array_impl.inl"
-#include "base/collection/collection_raw_array_impl.inl"
-#include "base/collection/collection_sort_array_impl.inl"
-#include "base/collection/collection_lemon_array_impl.inl"
+#include "base/primitive/collection/collection_array_impl.inl"
+#include "base/primitive/collection/collection_raw_array_impl.inl"
+#include "base/primitive/collection/collection_sort_array_impl.inl"
+#include "base/primitive/collection/collection_lemon_array_impl.inl"
 
-#include "base/collection/collection_list_impl.inl"
-#include "base/collection/collection_map_impl.inl"
+#include "base/primitive/collection/collection_list_impl.inl"
+#include "base/primitive/collection/collection_map_impl.inl"
 
-#include "base/collection/collection_sort_map_impl.inl"
+#include "base/primitive/collection/collection_sort_map_impl.inl"
 
-#include "base/collection/collection_fifo_map_impl.inl"
+#include "base/primitive/collection/collection_fifo_map_impl.inl"
 
 
 

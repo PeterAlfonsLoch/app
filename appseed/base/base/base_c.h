@@ -14,17 +14,17 @@
 
 
 #if defined(ANDROID)
-#include "base/android/android.h"
+#include "base/os/android/android.h"
 #elif defined(MACOS)
-#include "base/macos/macos.h"
+#include "base/os/macos/macos.h"
 #elif defined(LINUX)
-#include "base/linux/linux.h"
+#include "base/os/linux/linux.h"
 #elif defined(METROWIN)
-#include "base/metrowin/metrowin.h"
+#include "base/os/metrowin/metrowin.h"
 #elif defined(WINDOWS)
-#include "base/windows/windows.h"
+#include "base/os/windows/windows.h"
 #elif defined(SOLARIS)
-#include "base/solaris/solaris.h"
+#include "base/os/solaris/solaris.h"
 #else
 #error Not Supported Operational System
 #endif

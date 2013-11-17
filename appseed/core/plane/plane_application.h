@@ -76,7 +76,6 @@ namespace plane
 
       inline class ::file::dir::application       & dir()        { return m_dir          ; }
       inline class ::file::application       & file()       { return m_file         ; }
-      inline class ::http::application      & http()       { return m_http         ; }
       inline class ::fontopus::license          & license()    { return *m_splicense    ; }
       inline sp(class ::fs::data)               fs()           { return m_spfsdata     ; }
       inline sp(class ::user::user)             user()         { return m_spuser       ; }

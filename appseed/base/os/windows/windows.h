@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include <shellapi.h>
+
+
+
 //#include "openssl/ssl.h"
 
 /*#include "ca/os/os.h"

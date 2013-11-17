@@ -1807,11 +1807,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user_virtual_user_interface.h" />
     <ClInclude Include="user\user_wait_cursor.h" />
     <ClInclude Include="user\user_wait_message_dialog.h" />
-    <ClInclude Include="user\user_window.h" />
     <ClInclude Include="user\user_window_draw.h" />
     <ClInclude Include="user\user_window_id.h" />
     <ClInclude Include="user\user_window_map.h" />
-    <ClInclude Include="user\user_window_util.h" />
     <ClInclude Include="user\user_xfplayer_view_line.h" />
     <ClInclude Include="user\user_xfplayer_view_lines.h" />
     <ClInclude Include="user\user_xfplayer_view_line_selection.h" />

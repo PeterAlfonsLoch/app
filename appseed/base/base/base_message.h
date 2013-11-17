@@ -469,7 +469,7 @@ namespace message
 
 
       set_cursor(sp(base_application) papp) : element(papp), message::base(papp) {}
-      sp(::user::window) m_pWnd;
+      sp(::user::interaction) m_pWnd;
       UINT m_nHitTest;
       UINT m_message;
    };

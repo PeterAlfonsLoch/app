@@ -64,6 +64,9 @@ public:
 
    virtual bool is_system();
 
+   inline class ::http::application      & http()       { return m_http; }
+
+
 //   virtual string matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);
 //   virtual string dir_matter(const char * pszMatter, const char * pszMatter2 = NULL);
    virtual bool is_inside_time_dir(const char * pszPath);

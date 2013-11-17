@@ -569,9 +569,6 @@
     <ClInclude Include="user\user_interaction.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user_window_util.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="plane\plane.h">
       <Filter>Header Files\plane</Filter>
     </ClInclude>
@@ -2520,9 +2517,6 @@
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="user\user_wait_cursor.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_window.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_window_draw.h">

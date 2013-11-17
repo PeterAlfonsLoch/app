@@ -312,4 +312,4 @@ inline plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
 
 
 
-#define new DEBUG_NEW
+#define new BASE_NEW
