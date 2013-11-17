@@ -90,6 +90,15 @@ namespace user
 } // namespace user
 
 
+enum e_extract
+{
+   extract_none,
+   extract_first,
+   extract_all,
+};
+
+
+
 class random_access_iterator { public: };
 
 
@@ -425,7 +434,10 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base/graphics/visual/visual.h"
 
 
-
+#include "base/file/file_application.h"
+#include "base/file/file_dir_application.h"
+#include "base/file/file_system.h"
+#include "base/file/file_dir_system.h"
 
 
 

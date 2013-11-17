@@ -22,7 +22,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_CORE path :
+   class CLASS_DECL_BASE path :
       virtual public object
 
    {
@@ -35,14 +35,14 @@ namespace file
    {
 
 
-      class CLASS_DECL_CORE system :
+      class CLASS_DECL_BASE system :
          virtual public object
       {
       public:
 
 
 
-         class CLASS_DECL_CORE is_dir
+         class CLASS_DECL_BASE is_dir
          {
          public:
 
@@ -55,7 +55,7 @@ namespace file
          };
 
 
-         class CLASS_DECL_CORE is_dir_map :
+         class CLASS_DECL_BASE is_dir_map :
             virtual public string_map < is_dir >
          {
          public:

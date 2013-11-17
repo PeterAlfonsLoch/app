@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_CORE application :
+   class CLASS_DECL_BASE application :
       public object
    {
    public:

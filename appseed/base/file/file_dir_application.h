@@ -11,7 +11,7 @@ namespace file
    namespace dir
    {
 
-      class CLASS_DECL_CORE application :
+      class CLASS_DECL_BASE application :
          virtual public object
       {
       public:

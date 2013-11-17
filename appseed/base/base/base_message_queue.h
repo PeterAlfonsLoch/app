@@ -1,9 +1,7 @@
 #pragma once
 
 
-
-
-class CLASS_DECL_CORE message_queue :
+class CLASS_DECL_BASE message_queue :
    virtual public message_queue_listener
 {
 public:
