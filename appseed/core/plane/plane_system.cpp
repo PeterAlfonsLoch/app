@@ -15,7 +15,6 @@ namespace plane
    system::system(sp(base_application) papp) :
       m_mutexDelete(this),
       m_httpsystem(this),
-      m_net(this),
       m_mutex(this),
 #ifndef METROWIN
       m_processsection(this),
@@ -839,11 +838,6 @@ namespace plane
    application_ptra & system::appptra()
    {
       return m_appptra;
-   }
-
-   ::sockets::net & system::net()
-   {
-      return m_net;
    }
 
    ::core::stra & system::stra()

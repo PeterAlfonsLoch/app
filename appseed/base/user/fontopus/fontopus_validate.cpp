@@ -141,9 +141,9 @@ namespace fontopus
       straRequestingServer.add("asia-account.ca2.cc");
       if(strHost.is_empty())
       {
-         if(::get_thread() != NULL && ::get_thread()->m_pthread->m_strWorkUrl.has_char())
+         if(::get_thread() != NULL && ::get_thread()->m_strWorkUrl.has_char())
          {
-            strHost = ::get_thread()->m_pthread->m_strWorkUrl;
+            strHost = ::get_thread()->m_strWorkUrl;
          }
          else
          {
@@ -1317,7 +1317,7 @@ namespace fontopus
       }
 #ifdef WINDOWSEX
       int_ptr ui1 = GetCurrentThreadId();
-      int_ptr ui2 = m_ptabview->GetTopLevelFrame()->m_pthread->m_pthread->get_os_int();
+      int_ptr ui2 = m_ptabview->GetTopLevelFrame()->get_os_int();
       if(::AttachThreadInput((uint32_t) ui1, (uint32_t) ui2, TRUE))
       {
          TRACE("AttachedThreadInput");

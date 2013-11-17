@@ -11,5 +11,6 @@ public:
 
    ::plane::session *      m_pplanesession;
 
+   string_map < sp(base_application) >                    m_mapApplication;
 
 };

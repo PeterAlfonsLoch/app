@@ -233,7 +233,7 @@ namespace fontopus
                   return m_puser;
                return NULL;
             }
-            keeper < thread * > keepCreatingUser(&m_pthreadCreatingUser, ::get_thread()->m_pthread->m_pthread, NULL, true);
+            keeper < thread * > keepCreatingUser(&m_pthreadCreatingUser, ::get_thread()->m_pthread, NULL, true);
             user * puser = create_current_user();
             if(!puser->initialize())
             {

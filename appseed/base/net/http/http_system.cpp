@@ -31,7 +31,7 @@ namespace http
       else if(i == 1)
       {
          // telmico: no proxy
-         string str = System.file_as_string(&System, System.dir().appdata("machine/proxy.xml"));
+         string str = System.file().as_string(System.dir().appdata("machine/proxy.xml"), &System);
          if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
          {
             Application.file().copy(System.dir().appdata("proxy_original.xml"), System.dir().element("proxy.xml"), false);
@@ -58,7 +58,7 @@ namespace http
       else
       {
          // telmico: simple default proxy configuration : hostname=>proxy - try etc/hosts port=>80  - assume HTTP proxy
-         string str = System.file_as_string(&System, System.dir().appdata("proxy.xml"));
+         string str = System.file().as_string(System.dir().appdata("proxy.xml"), &System);
          if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
          {
             Application.file().copy(System.dir().appdata("proxy_original.xml"), System.dir().appdata("proxy.xml"), false);
@@ -332,7 +332,7 @@ namespace http
    {
 
       xml::document doc(get_app());
-      string str = System.file_as_string(&System, System.dir().appdata("proxy.xml"));
+      string str = System.file().as_string(System.dir().appdata("proxy.xml"), &System);
       if(str.has_char() && str.find("<") < 0 && str.find(">") < 0)
       {
          stringa stra;
@@ -404,7 +404,9 @@ namespace http
       if(!bOk)
       {
 
-         bool bAutoDetect = System.os().connection_settings_get_auto_detect();
+// xxx         bool bAutoDetect = System.os().connection_settings_get_auto_detect();
+
+         bool bAutoDetect = false;
 
          if(bAutoDetect)
          {
@@ -412,7 +414,9 @@ namespace http
                return;
          }
 
-         string strUrl = System.os().connection_settings_get_auto_config_url();
+// xxx         string strUrl = System.os().connection_settings_get_auto_config_url();
+
+         string strUrl;
 
          if(strUrl.has_char())
          {

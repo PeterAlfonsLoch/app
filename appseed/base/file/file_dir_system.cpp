@@ -33,7 +33,7 @@ namespace file
          m_mutex(papp),
          m_isdirmap(papp)
       {
-         m_pziputil = new zip::Util;
+//         m_pziputil = new zip::Util;
          m_isdirmap.m_dwTimeOut = 15000;
       }
 
@@ -41,7 +41,7 @@ namespace file
       {
          if(m_pziputil != NULL)
          {
-            delete m_pziputil;
+//            delete m_pziputil;
          }
       }
 
@@ -387,12 +387,12 @@ namespace file
       {
          UNREFERENCED_PARAMETER(pstraRelative);
          UNREFERENCED_PARAMETER(pszPattern);
-         if(eextract != extract_none && papp->m_pplaneapp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
+/* xxx         if(eextract != extract_none && papp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
          {
             throw "should implement recursive zip";
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize, eextract == extract_all ? extract_all : extract_none);
             return;
-         }
+         }*/
          throw not_implemented(get_app(), "is really a directory or compressed directory/file??");
 
       }
@@ -410,11 +410,11 @@ namespace file
             }
             return;
          }
-         if(papp->m_pplaneapp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
+/* xxx         if(papp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
          {
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize);
             return;
-         }
+         } */
          throw not_implemented(get_app(), "is really a directory or compressed directory/file??");
 
       }
@@ -431,7 +431,7 @@ namespace file
 
       void system::rls(sp(base_application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
       {
-         if(eextract != extract_none && papp->m_pplaneapp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
+/* xxx         if(eextract != extract_none && papp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
          {
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract == extract_all ? extract_all : extract_none);
             return;
@@ -439,7 +439,7 @@ namespace file
          else
          {
             return;
-         }
+         }*/
       }
 
       void system::rls_dir(sp(base_application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
@@ -453,7 +453,7 @@ namespace file
 
       void system::ls_dir(sp(base_application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
       {
-         if(papp->m_pplaneapp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
+         /* xxx if(papp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
          {
             m_pziputil->ls_dir(papp, lpcsz, pstraPath, pstraTitle);
             return;
@@ -461,7 +461,7 @@ namespace file
          else
          {
             return;
-         }
+         } */
       }
 
       bool system::has_subdir(sp(base_application) papp, const char * lpcsz)
@@ -492,7 +492,7 @@ namespace file
 
          }
 
-         if (papp->m_pplaneapp->m_bZipIsDir && (::str::ends_ci(lpcszPath, ".zip")))
+/* xxx         if (papp->m_bZipIsDir && (::str::ends_ci(lpcszPath, ".zip")))
          {
 
             bIs = true;
@@ -500,7 +500,7 @@ namespace file
             return true;
          }
 
-         if (papp->m_pplaneapp->m_bZipIsDir && (::str::find_ci(".zip:", lpcszPath) >= 0))
+         if (papp->m_bZipIsDir && (::str::find_ci(".zip:", lpcszPath) >= 0))
          {
             
             bool bHasSubFolder;
@@ -525,7 +525,7 @@ namespace file
             return true;
 
          }
-
+         */
          return false;
 
       }
@@ -550,12 +550,12 @@ namespace file
             return App(papp).http().exists(strPath);
          }
 
-         if(papp->m_pplaneapp->m_bZipIsDir && (::str::ends_ci(strPath, ".zip")))
+/* xxx         if(papp->m_bZipIsDir && (::str::ends_ci(strPath, ".zip")))
          {
             m_isdirmap.set(strPath, true, 0);
             return true;
          }
-         if(papp->m_pplaneapp->m_bZipIsDir && (::str::find_ci(".zip:", strPath) >= 0))
+         if(papp->m_bZipIsDir && (::str::find_ci(".zip:", strPath) >= 0))
          {
             bool bHasSubFolder;
             uint32_t dwLastError;
@@ -564,7 +564,7 @@ namespace file
             bHasSubFolder = m_pziputil->HasSubFolder(papp, strPath);
             m_isdirmap.set(strPath, bHasSubFolder, GetLastError());
             return bHasSubFolder;
-         }
+         } */
          return false;
       }
 
@@ -581,12 +581,12 @@ namespace file
       bool system::name_is(const string & strPath, sp(base_application) papp)
       {
          //OutputDebugString(strPath);
-         if(papp->m_pplaneapp->m_bZipIsDir && (::str::ends_ci(strPath, ".zip")))
+/* xxx         if(papp->m_bZipIsDir && (::str::ends_ci(strPath, ".zip")))
          {
             m_isdirmap.set(strPath, true, 0);
             return true;
          }
-         if(papp->m_pplaneapp->m_bZipIsDir && (::str::find_ci(".zip:", strPath) >= 0))
+         if(papp->m_bZipIsDir && (::str::find_ci(".zip:", strPath) >= 0))
          {
             bool bHasSubFolder;
             uint32_t dwLastError;
@@ -595,7 +595,7 @@ namespace file
             bHasSubFolder = m_pziputil->HasSubFolder(papp, strPath);
             m_isdirmap.set(strPath, bHasSubFolder, GetLastError());
             return bHasSubFolder;
-         }
+         } */
          return false;
       }
 
@@ -848,16 +848,16 @@ namespace file
       string system::locale_schema(sp(base_application) papp, const string & strLocale, const string & strSchema)
       {
 
-         return papp->m_pplaneapp->get_locale_schema_dir(strLocale, strSchema);
+         return papp->get_locale_schema_dir(strLocale, strSchema);
 
       }
 
       string system::locale_schema_matter(sp(base_application) papp, const string & strLocale, const string & strSchema)
       {
 
-         //single_lock sl(&papp->m_pplaneapp->m_mutexMatterLocator, true);
+         //single_lock sl(&papp->m_mutexMatterLocator, true);
 
-         return path(papp->m_pplaneapp->m_strMatterLocator, papp->m_pplaneapp->get_locale_schema_dir(strLocale, strSchema));
+         return path(papp->m_strMatterLocator, papp->get_locale_schema_dir(strLocale, strSchema));
 
       }
 
@@ -919,7 +919,7 @@ namespace file
             strSchema  = pcontext->m_plocaleschema->m_idSchema;
             strLs      = locale_schema_matter(papp, strLocale, strSchema);
 
-            strFile = System.dir().appdata(path("cache", papp->m_pplaneapp->get_locale_schema_dir(strLocale, strSchema), stra.implode(",") + ".map_question"));
+            strFile = System.dir().appdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), stra.implode(",") + ".map_question"));
 
             strsize iFind = strFile.find(DIR_SEPARATOR);
 
@@ -1057,10 +1057,10 @@ namespace file
          }
 
 
-         if(papp->m_pplaneapp->m_psession != NULL && papp->m_pplaneapp->m_psession != papp &&
-            (sp(base_application)) papp->m_pplaneapp->m_psystem != (sp(base_application)) papp)
+         if(papp->m_psession != NULL && papp->m_psession != papp &&
+            (sp(base_application)) papp->m_psystem != (sp(base_application)) papp)
          {
-            strPath = matter(papp->m_pplaneapp->m_psession, stra, bDir);
+            strPath = matter(papp->m_psession, stra, bDir);
             if(bDir)
             {
                if(System.dir().is(strPath, get_app()))
@@ -1073,10 +1073,10 @@ namespace file
             }
          }
 
-         if(papp->m_pplaneapp->m_psystem != NULL && papp->m_pplaneapp->m_psystem != papp &&
-            (sp(base_application)) papp->m_pplaneapp->m_psystem != (sp(base_application)) papp->m_pplaneapp->m_psession)
+         if(papp->m_psystem != NULL && papp->m_psystem != papp &&
+            (sp(base_application)) papp->m_psystem != (sp(base_application)) papp->m_psession)
          {
-            strPath = matter(papp->m_pplaneapp->m_psystem, stra, bDir);
+            strPath = matter(papp->m_psystem, stra, bDir);
             if(bDir)
             {
                if(System.dir().is(strPath, get_app()))
@@ -1144,7 +1144,7 @@ ret:
             strSchema  = pcontext->m_plocaleschema->m_idSchema;
             strLs      = locale_schema_matter(papp, strLocale, strSchema);
 
-            strFile = System.dir().appdata(path("cache", papp->m_pplaneapp->get_locale_schema_dir(strLocale, strSchema), str + ::str::has_char(str2, ",") + ".map_question"));
+            strFile = System.dir().appdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), str + ::str::has_char(str2, ",") + ".map_question"));
 
             strsize iFind = strFile.find(DIR_SEPARATOR);
 
@@ -1249,10 +1249,10 @@ ret:
             }
 
 
-            if(papp->m_pplaneapp->m_psession != NULL && papp->m_pplaneapp->m_psession != papp &&
-               (sp(base_application)) papp->m_pplaneapp->m_psystem != (sp(base_application)) papp)
+            if(papp->m_psession != NULL && papp->m_psession != papp &&
+               (sp(base_application)) papp->m_psystem != (sp(base_application)) papp)
             {
-               strPath = matter(papp->m_pplaneapp->m_psession, str, str2);
+               strPath = matter(papp->m_psession, str, str2);
                if(bDir)
                {
                   if(System.dir().is(strPath, papp))
@@ -1270,10 +1270,10 @@ ret:
 #endif
 
 
-         if(papp->m_pplaneapp->m_psystem != NULL && papp->m_pplaneapp->m_psystem != papp &&
-            (sp(base_application)) papp->m_pplaneapp->m_psystem != (sp(base_application)) papp->m_pplaneapp->m_psession)
+         if(papp->m_psystem != NULL && papp->m_psystem != papp &&
+            (sp(base_application)) papp->m_psystem != (sp(base_application)) papp->m_psession)
          {
-            strPath = matter(papp->m_pplaneapp->m_psystem, str, str2);
+            strPath = matter(papp->m_psystem, str, str2);
             if(bDir)
             {
                if(System.dir().is(strPath, get_app()))
@@ -1333,17 +1333,17 @@ ret:
          strPath = path(locale_schema_matter(papp, "se", "se"), str, str2);
          if(System.file().exists(strPath, papp))
             return strPath;
-         if(papp->m_pplaneapp->m_psession != NULL && papp->m_pplaneapp->m_psession != papp &&
-            (sp(base_application)) papp->m_pplaneapp->m_psystem != (sp(base_application)) papp)
+         if(papp->m_psession != NULL && papp->m_psession != papp &&
+            (sp(base_application)) papp->m_psystem != (sp(base_application)) papp)
          {
-            strPath = matter(papp->m_pplaneapp->m_psession, str, str2);
+            strPath = matter(papp->m_psession, str, str2);
             if(System.file().exists(strPath, papp))
                return strPath;
          }
-         if(papp->m_pplaneapp->m_psystem != NULL && papp->m_pplaneapp->m_psystem != papp &&
-            (sp(base_application)) papp->m_pplaneapp->m_psystem != (sp(base_application)) papp->m_pplaneapp->m_psession)
+         if(papp->m_psystem != NULL && papp->m_psystem != papp &&
+            (sp(base_application)) papp->m_psystem != (sp(base_application)) papp->m_psession)
          {
-            strPath = matter(papp->m_pplaneapp->m_psystem, str, str2);
+            strPath = matter(papp->m_psystem, str, str2);
             if(System.file().exists(strPath, papp))
                return strPath;
          }
@@ -1464,7 +1464,7 @@ ret:
       void system::appmatter_locators(string & strRoot, string & strDomain, sp(base_application) papp)
       {
 
-         if(papp->m_pplaneapp->is_system())
+         if(papp->is_system())
          {
             strRoot     = "app";
             strDomain   = "main";
@@ -1472,7 +1472,7 @@ ret:
          else
          {
 
-            appmatter_locators(strRoot, strDomain, papp->m_pplaneapp->m_strLibraryName, papp->m_pplaneapp->m_strAppId);
+            appmatter_locators(strRoot, strDomain, papp->m_strLibraryName, papp->m_strAppId);
 
 
             if(strRoot.is_empty() || strDomain.is_empty())

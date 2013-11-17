@@ -973,7 +973,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core_enum.h" />
     <ClInclude Include="core\core_folder_watch.h" />
     <ClInclude Include="core\core_fs_interface.h" />
-    <ClInclude Include="core\core_geometry.h" />
     <ClInclude Include="core\core_history.h" />
     <ClInclude Include="core\core_insert_iterator.h" />
     <ClInclude Include="core\core_international_locale_schema.h" />
@@ -992,8 +991,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core_main_init_data.h" />
     <ClInclude Include="core\core_map_to_smart_pointer.h" />
     <ClInclude Include="core\core_match.h" />
-    <ClInclude Include="core\core_math.h" />
-    <ClInclude Include="core\core_math_rng.h" />
     <ClInclude Include="core\core_microtimer.h" />
     <ClInclude Include="core\core_muldiv32.h" />
     <ClInclude Include="core\core_oauth.h" />
@@ -1342,17 +1339,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="filesystem\file\file_stream_binder.h" />
     <ClInclude Include="filesystem\file\file_system.h" />
     <ClInclude Include="filesystem\file\file_text_buffer.h" />
-    <ClInclude Include="filesystem\fs\fs.h" />
-    <ClInclude Include="filesystem\fs\fs_data.h" />
-    <ClInclude Include="filesystem\fs\fs_fs.h" />
-    <ClInclude Include="filesystem\fs\fs_ifs.h" />
-    <ClInclude Include="filesystem\fs\fs_ifs_file.h" />
-    <ClInclude Include="filesystem\fs\fs_item.h" />
-    <ClInclude Include="filesystem\fs\fs_item_array.h" />
-    <ClInclude Include="filesystem\fs\fs_native_fs.h" />
-    <ClInclude Include="filesystem\fs\fs_remote_native_file.h" />
-    <ClInclude Include="filesystem\fs\fs_remote_native_fs.h" />
-    <ClInclude Include="filesystem\fs\fs_set.h" />
     <ClInclude Include="filesystem\userfs\userfs.h" />
     <ClInclude Include="filesystem\userfs\userfs_document.h" />
     <ClInclude Include="filesystem\userfs\userfs_userfs.h" />
@@ -2248,16 +2234,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="filesystem\file\file_stream_binder.cpp" />
     <ClCompile Include="filesystem\file\file_system.cpp" />
     <ClCompile Include="filesystem\file\file_text_buffer.cpp" />
-    <ClCompile Include="filesystem\fs\fs_data.cpp" />
-    <ClCompile Include="filesystem\fs\fs_fs.cpp" />
-    <ClCompile Include="filesystem\fs\fs_ifs.cpp" />
-    <ClCompile Include="filesystem\fs\fs_ifs_file.cpp" />
-    <ClCompile Include="filesystem\fs\fs_item.cpp" />
-    <ClCompile Include="filesystem\fs\fs_item_array.cpp" />
-    <ClCompile Include="filesystem\fs\fs_native_fs.cpp" />
-    <ClCompile Include="filesystem\fs\fs_remote_native_file.cpp" />
-    <ClCompile Include="filesystem\fs\fs_remote_native_fs.cpp" />
-    <ClCompile Include="filesystem\fs\fs_set.cpp" />
     <ClCompile Include="filesystem\userfs\userfs_document.cpp" />
     <ClCompile Include="filesystem\userfs\userfs_userfs.cpp" />
     <ClCompile Include="filesystem\userfs\userfs_list.cpp" />
@@ -2652,9 +2628,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     </ProjectReference>
     <ProjectReference Include="..\..\thirdparty\appseed\openssl\openssl.vcxproj">
       <Project>{ac98b756-e84c-4a70-9cdb-e9812fef9b98}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\thirdparty\appseed\zlib\_ca2zlib.vcxproj">
-      <Project>{9ffc2cf6-737c-43db-a1ee-383f7bfdb05b}</Project>
     </ProjectReference>
     <ProjectReference Include="..\base\base.vcxproj">
       <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>

@@ -49,7 +49,6 @@ namespace plane
       bool                                                  m_bShowPlatform;
 
       sp(base_application)                                   m_pappCurrent;
-      string_map < sp(base_application) >                    m_mapApplication;
 
 
       var                                                   m_varTopicFile;

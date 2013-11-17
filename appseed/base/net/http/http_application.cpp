@@ -145,7 +145,7 @@ namespace http
       {
          if(get_thread() != NULL)
          {
-            keeper < string > keepWorkUrl(&get_thread()->m_pthread->m_strWorkUrl, pszUrl, get_thread()->m_pthread->m_strWorkUrl, true);
+            keeper < string > keepWorkUrl(&get_thread()->m_strWorkUrl, pszUrl, get_thread()->m_strWorkUrl, true);
             puser = &ApplicationUser;
          }
          else
@@ -191,7 +191,7 @@ namespace http
       }
 
       if(puser == NULL && !get_app()->is_system() 
-         && (!get_app()->m_pplaneapp->is_session() || get_app()->m_pplaneapp->cast_app < ::plane::session > ().m_pfontopus->m_puser != NULL)
+         && (!get_app()->is_session() || get_app()->m_pfontopus->m_puser != NULL)
          && (pvarQuery == NULL || (!(bool)pvarQuery->operator[]("disable_ca2_sessid") && !(bool)pvarQuery->operator[]("optional_ca2_sessid")))) 
       {
          puser = &ApplicationUser;

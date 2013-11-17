@@ -21,8 +21,6 @@ namespace plane
    public:
 
       sp(service_base)                    m_pservice;
-      class ::file::dir::application        m_dir;
-      class ::file::application        m_file;
 
       sp(class ::fontopus::license)       m_splicense;
       sp(class ::fs::data)                m_spfsdata;
@@ -72,12 +70,9 @@ namespace plane
       virtual int32_t exit_instance();
 
 
-      inline class ::file::dir::application       & dir()        { return m_dir          ; }
-      inline class ::file::application       & file()       { return m_file         ; }
       inline class ::fontopus::license          & license()    { return *m_splicense    ; }
       inline sp(class ::fs::data)               fs()           { return m_spfsdata     ; }
       inline sp(class ::user::user)             user()         { return m_spuser       ; }
-      inline sp(::fontopus::fontopus)           fontopus()     { return m_pfontopus    ; }
       inline sp(::html::html)                   html()         { return m_phtml        ; }
       inline class ::simpledb::simpledb         & simpledb()   { return m_simpledb     ; }
 

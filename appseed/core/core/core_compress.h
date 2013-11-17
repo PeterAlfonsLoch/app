@@ -29,7 +29,6 @@ namespace core
       bool _uncompress(primitive::memory & memoryUncompressed, primitive::memory & memoryCompressed, ::primitive::memory_size ulSizeUncompressed);
 
 
-      bool null(::file::output_stream & ostream, ::file::input_stream & istream);
 
 
       void extract_all(const char * pszFile, sp(base_application) papp);

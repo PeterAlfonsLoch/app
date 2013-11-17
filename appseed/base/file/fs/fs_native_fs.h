@@ -8,7 +8,7 @@ namespace fs
 // fs::interface - file system interface
 
 
-   class CLASS_DECL_CORE native :
+   class CLASS_DECL_BASE native :
       virtual public ::fs::data
    {
    public:

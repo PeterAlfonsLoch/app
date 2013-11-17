@@ -96,7 +96,15 @@ namespace fs
 
          set.parse_url_query(strResponse);
 
-         string strMd5Here = System.crypt().md5(*m_varFile["xml"].cast < ::file::memory_buffer >()->get_primitive_memory());
+         md5::md5 md5;
+
+         md5.initialize();
+
+         md5.update(m_varFile["xml"].cast < ::file::memory_buffer >()->get_primitive_memory()->get_data(), m_varFile["xml"].cast < ::file::memory_buffer >()->get_primitive_memory()->get_size());
+
+         md5.finalize();
+
+         string strMd5Here = md5.to_string();
          string strMd5There = set["md5"];
 
          if(strMd5Here == strMd5There)

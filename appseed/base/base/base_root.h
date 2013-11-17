@@ -80,6 +80,13 @@ bool is_null(TYPE * p)
    return (((int_ptr) p) < sizeof(TYPE));
 }
 
+template < class TYPE >
+bool is_null(TYPE & t)
+{
+   return (((int_ptr)&t) < sizeof(TYPE));
+}
+
+
 template <class t>
 inline void delptr(t *& p)
 {

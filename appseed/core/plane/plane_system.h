@@ -54,7 +54,6 @@ namespace plane
       class ::core::process_departament              m_processsection;
 #endif
       sp(class ::core::datetime)                     m_pdatetime;
-      class ::sockets::net                         m_net;
 
       class ::core::compress                         m_compress;
       class ::core::patch                            m_patch;
@@ -216,8 +215,6 @@ namespace plane
       application_ptra              & appptra();
       ::core::datetime                      & datetime();
 
-      inline ::file::system            & file()    { return *m_spfile; }
-      inline ::file::dir::system            & dir()     { return *m_spdir; }
       ::core::stra                          & stra();
       ::core::install                       & install();
       ::core::service                       & service();
@@ -226,8 +223,6 @@ namespace plane
 #ifndef METROWIN
       ::core::process_departament           & process();
 #endif
-      class ::sockets::net                & net();
-
       ::core::history                    & hist();
 
       class ::core::compress            & compress();

@@ -40,7 +40,7 @@
 
 #include "base_types.h"
 
-#include "base/primitive/math/math_math.h"
+#include "base/primitive/math/math.h"
 
 #include "base_heap.h"
 

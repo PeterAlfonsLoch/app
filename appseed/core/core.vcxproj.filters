@@ -135,17 +135,11 @@
     <Filter Include="Header Files\filesystem">
       <UniqueIdentifier>{978dd301-1f2c-4a11-af75-ffb6e7cbb417}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\filesystem\fs">
-      <UniqueIdentifier>{621393bf-5b0e-49d4-9763-9ae1151ba382}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\filesystem\filemanager">
       <UniqueIdentifier>{f10835e1-a7df-4b45-988e-0edf213ea89b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\filesystem">
       <UniqueIdentifier>{826e67e1-b446-4e6c-9205-ae22e27cf23d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\filesystem\fs">
-      <UniqueIdentifier>{27adf4d6-d8dd-46f3-83a7-31e918cf981f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\filesystem\filemanager">
       <UniqueIdentifier>{fa7100a2-1362-4489-815c-c61082c5fee9}</UniqueIdentifier>
@@ -1397,39 +1391,6 @@
     <ClInclude Include="plane\plane_library.h">
       <Filter>Header Files\plane</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\fs\fs.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_data.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_fs.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_ifs.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_ifs_file.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_item.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_item_array.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_native_fs.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_remote_native_file.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_remote_native_fs.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_set.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filemanager\file_operation.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
@@ -2573,9 +2534,6 @@
     <ClInclude Include="core\core_fs_interface.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core_geometry.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core_history.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
@@ -2628,12 +2586,6 @@
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core_match.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core_math.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core_math_rng.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core_microtimer.h">
@@ -3777,36 +3729,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_operation_view.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_data.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_fs.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_ifs.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_ifs_file.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_item.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_item_array.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_native_fs.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_remote_native_file.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_remote_native_fs.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_set.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
     <ClCompile Include="graphics\html\html_lite\html_lite_html_attributes.cpp">
       <Filter>Source Files\graphics\html\html_lite</Filter>

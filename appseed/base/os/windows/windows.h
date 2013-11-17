@@ -2,6 +2,7 @@
 
 
 #include <shellapi.h>
+#include <wincrypt.h>
 
 
 

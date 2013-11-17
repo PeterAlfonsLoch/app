@@ -346,7 +346,7 @@ void oswindow_data::set_user_interaction(::user::base_interaction * pui)
 
    m_pui = pui;
 
-   m_hthread = pui->m_pthread->get_os_handle();
+   m_hthread = pui->get_os_handle();
 
 }
 

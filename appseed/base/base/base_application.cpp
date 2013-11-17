@@ -28,6 +28,8 @@ base_application::base_application() :
 
    m_pplaneapp = NULL;
 
+   m_pbasesession = NULL;
+
    m_psignal = new class signal();
 
    m_pcommandthread           = new ::command_thread(this);
@@ -86,6 +88,12 @@ bool base_application::is_system()
 
 }
 
+bool base_application::is_session()
+{
+
+   return true;
+
+}
 
 
 //string base_application::matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);

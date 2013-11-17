@@ -152,17 +152,6 @@ namespace core
       return true;
    }
 
-   bool compress::null(::file::output_stream & ostream, ::file::input_stream & istream)
-   {
-      class primitive::memory memory;
-      memory.allocate(1024 * 256);
-      ::primitive::memory_size  uiRead;
-      while((uiRead = istream.read(memory, memory.get_size())) > 0)
-      {
-         ostream.write(memory, uiRead);
-      }
-      return true;
-   }
 
    bool compress::ungz(sp(base_application) papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
    {

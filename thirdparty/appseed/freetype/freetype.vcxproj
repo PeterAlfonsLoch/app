@@ -1048,11 +1048,6 @@
   <ItemGroup>
     <None Include="basefreetype.def" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\zlib\_ca2zlib.vcxproj">
-      <Project>{9ffc2cf6-737c-43db-a1ee-383f7bfdb05b}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

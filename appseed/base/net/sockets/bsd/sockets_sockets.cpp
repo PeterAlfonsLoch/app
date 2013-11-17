@@ -30,7 +30,7 @@ namespace sockets
       if(Application.is_system())
       {
 
-         ::sockets::SSLInitializer ssl_init(m_pbaseapp->m_pplaneapp->m_psystem);
+         ::sockets::SSLInitializer ssl_init(m_pbaseapp->m_pbasesystem);
 
          System.factory().creatable_small < ::file::memory_buffer > ();
 

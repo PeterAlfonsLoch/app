@@ -35,4 +35,6 @@ CLASS_DECL_BASE void zero_pad(string & str, count iPad);
 
 #include "str_base64.h"
 
+#include "str_parse.h"
+
 

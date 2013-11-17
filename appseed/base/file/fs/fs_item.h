@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   class CLASS_DECL_CORE item :
+   class CLASS_DECL_BASE item :
       virtual public element
    {
    public:

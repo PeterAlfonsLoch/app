@@ -273,6 +273,18 @@
     <Filter Include="Header Files\user\userpresence">
       <UniqueIdentifier>{5f8d1e2a-7a7d-40d2-b25c-52033b755438}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\file\fs">
+      <UniqueIdentifier>{b19eccb3-0ff3-4b9c-b6de-ab7724054f1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\file\fs">
+      <UniqueIdentifier>{ac8dd5af-8993-4120-b887-6a1e4eaaa29d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\zlib">
+      <UniqueIdentifier>{48b6a75c-017c-44c3-b453-d0b7ad5e4105}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\zlib">
+      <UniqueIdentifier>{4d421910-8554-4853-a632-557bbb942229}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework_c.h">
@@ -1787,6 +1799,84 @@
     <ClInclude Include="file\file_system.h">
       <Filter>Header Files\file</Filter>
     </ClInclude>
+    <ClInclude Include="file\fs\fs.h">
+      <Filter>Header Files\file\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="file\fs\fs_data.h">
+      <Filter>Header Files\file\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="file\fs\fs_fs.h">
+      <Filter>Header Files\file\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="file\fs\fs_ifs.h">
+      <Filter>Header Files\file\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="file\fs\fs_ifs_file.h">
+      <Filter>Header Files\file\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="file\fs\fs_item.h">
+      <Filter>Header Files\file\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="file\fs\fs_item_array.h">
+      <Filter>Header Files\file\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="file\fs\fs_native_fs.h">
+      <Filter>Header Files\file\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="file\fs\fs_remote_native_file.h">
+      <Filter>Header Files\file\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="file\fs\fs_remote_native_fs.h">
+      <Filter>Header Files\file\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="file\fs\fs_set.h">
+      <Filter>Header Files\file\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\math.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry\geometry_geometry.h">
+      <Filter>Header Files\primitive\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\math_math_rng.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_parse.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="base\zlib\crc32.h">
+      <Filter>Header Files\base\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="base\zlib\deflate.h">
+      <Filter>Header Files\base\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="base\zlib\gzguts.h">
+      <Filter>Header Files\base\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="base\zlib\inffast.h">
+      <Filter>Header Files\base\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="base\zlib\inffixed.h">
+      <Filter>Header Files\base\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="base\zlib\inflate.h">
+      <Filter>Header Files\base\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="base\zlib\inftrees.h">
+      <Filter>Header Files\base\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="base\zlib\trees.h">
+      <Filter>Header Files\base\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="base\zlib\zconf.h">
+      <Filter>Header Files\base\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="base\zlib\zlib.h">
+      <Filter>Header Files\base\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="base\zlib\zutil.h">
+      <Filter>Header Files\base\zlib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_c.c">
@@ -2641,9 +2731,6 @@
     <ClCompile Include="primitive\geometry\geometry_types.cpp">
       <Filter>Source Files\primitive\geometry</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\math\math_math.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\collection\collection_2d_array.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
@@ -2752,24 +2839,6 @@
     <ClCompile Include="net\mail\mail_simple_pop3.cpp">
       <Filter>Source Files\net\mail</Filter>
     </ClCompile>
-    <ClCompile Include="net\mail\pop3_format.cpp">
-      <Filter>Source Files\net\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\mail\pop3_objects.cpp">
-      <Filter>Source Files\net\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\mail\pop3_parsing.cpp">
-      <Filter>Source Files\net\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\mail\pop3_queries.cpp">
-      <Filter>Source Files\net\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\mail\pop3_session.cpp">
-      <Filter>Source Files\net\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\mail\pop3_socket.cpp">
-      <Filter>Source Files\net\mail</Filter>
-    </ClCompile>
     <ClCompile Include="programming\javascript\javascript.cpp">
       <Filter>Source Files\programming\javascript</Filter>
     </ClCompile>
@@ -2850,6 +2919,87 @@
     </ClCompile>
     <ClCompile Include="file\file_system.cpp">
       <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\fs\fs_data.cpp">
+      <Filter>Source Files\file\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="file\fs\fs_fs.cpp">
+      <Filter>Source Files\file\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="file\fs\fs_ifs.cpp">
+      <Filter>Source Files\file\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="file\fs\fs_ifs_file.cpp">
+      <Filter>Source Files\file\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="file\fs\fs_item.cpp">
+      <Filter>Source Files\file\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="file\fs\fs_item_array.cpp">
+      <Filter>Source Files\file\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="file\fs\fs_native_fs.cpp">
+      <Filter>Source Files\file\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="file\fs\fs_remote_native_file.cpp">
+      <Filter>Source Files\file\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="file\fs\fs_remote_native_fs.cpp">
+      <Filter>Source Files\file\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="file\fs\fs_set.cpp">
+      <Filter>Source Files\file\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math.cpp">
+      <Filter>Source Files\primitive\math</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_math.cpp">
+      <Filter>Source Files\primitive\math</Filter>
+    </ClCompile>
+    <ClCompile Include="base\zlib\adler32.c">
+      <Filter>Source Files\base\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\zlib\compress.c">
+      <Filter>Source Files\base\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\zlib\crc32.c">
+      <Filter>Source Files\base\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\zlib\deflate.c">
+      <Filter>Source Files\base\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\zlib\gzclose.c">
+      <Filter>Source Files\base\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\zlib\gzlib.c">
+      <Filter>Source Files\base\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\zlib\gzread.c">
+      <Filter>Source Files\base\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\zlib\gzwrite.c">
+      <Filter>Source Files\base\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\zlib\infback.c">
+      <Filter>Source Files\base\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\zlib\inffast.c">
+      <Filter>Source Files\base\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\zlib\inflate.c">
+      <Filter>Source Files\base\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\zlib\inftrees.c">
+      <Filter>Source Files\base\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\zlib\trees.c">
+      <Filter>Source Files\base\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\zlib\uncompr.c">
+      <Filter>Source Files\base\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\zlib\zutil.c">
+      <Filter>Source Files\base\zlib</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -2966,6 +3116,9 @@
     </None>
     <None Include="base\base_live_object.h">
       <Filter>Header Files\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

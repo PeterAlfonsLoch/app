@@ -1281,9 +1281,6 @@
     <ProjectReference Include="..\pixman\_ca2pixman.vcxproj">
       <Project>{63108f1c-eaa8-4c49-a591-13f813a76b05}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\zlib\_ca2zlib.vcxproj">
-      <Project>{9ffc2cf6-737c-43db-a1ee-383f7bfdb05b}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="basecairo.def" />

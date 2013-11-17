@@ -33,6 +33,9 @@ namespace fontopus
 
       sp(::userpresence::presence)             m_ppresence;
 
+      sp(::ifs)                                  m_pifs;
+
+
       user(sp(base_application) papp);
       virtual ~user();
 

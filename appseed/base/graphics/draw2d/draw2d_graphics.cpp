@@ -108,11 +108,12 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
-   int32_t graphics::ExcludeUpdateRgn(sp(::user::window) pWnd)
+/*   int32_t graphics::ExcludeUpdateRgn(sp(::user::window) pWnd)
    {
       UNREFERENCED_PARAMETER(pWnd);
       throw interface_only_exception(get_app());
    }
+   */
 
    int32_t graphics::GetDeviceCaps(int32_t nIndex) const
    {

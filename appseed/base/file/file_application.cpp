@@ -208,6 +208,7 @@ namespace file
       else if(::str::find_ci(".zip:", strPath) >= 0)
       {
 
+         /* xxx
          zip::InFile * pinfile = new zip::InFile(get_app());
 
          if(pinfile != NULL)
@@ -225,6 +226,8 @@ namespace file
          }
 
          spfile = pinfile;
+
+         */
 
       }
       else if(::str::begins(strPath, "http://") || ::str::begins(strPath, "https://"))
@@ -267,7 +270,7 @@ namespace file
 
             strFileDownloading = strFile + ".downloading";
 
-            if(m_pbaseapp->m_pplaneapp->m_file.exists(strFile) && !m_pbaseapp->m_pplaneapp->m_file.exists(strFileDownloading))
+            if(m_pbaseapp->m_file.exists(strFile) && !m_pbaseapp->m_file.exists(strFileDownloading))
             {
 
                spfile = Application.alloc(System.type_info < ::file::binary_buffer > ());
@@ -304,7 +307,7 @@ namespace file
 
             varQuery["disable_ca2_sessid"] = true;
 
-            if(m_pbaseapp->m_pplaneapp->m_file.exists(strFileDownloading) || m_pbaseapp->m_pplaneapp->m_http.exists(strPath, &varQuery))
+            if(m_pbaseapp->m_file.exists(strFileDownloading) || m_pbaseapp->m_http.exists(strPath, &varQuery))
             {
 
                spfile = new ::sockets::http_buffer(get_app());
@@ -315,7 +318,7 @@ namespace file
                   spfile.release();
 
                }
-               else if(!m_pbaseapp->m_pplaneapp->m_file.exists(strFileDownloading))
+               else if(!m_pbaseapp->m_file.exists(strFileDownloading))
                {
 
                   try
@@ -323,7 +326,7 @@ namespace file
 
                      ::file::input_stream is(spfile);
 
-                     System.file().output(m_pbaseapp, strFile, &System.compress(), &::core::compress::null, is);
+                     System.file().output(m_pbaseapp, strFile, &System, &::base_system::null_compressor, is);
 
                   }
                   catch(...)
@@ -371,7 +374,7 @@ namespace file
          }
 
       }
-      else if(::str::begins(strPath, "fs://"))
+/* xxx      else if(::str::begins(strPath, "fs://"))
       {
 
          if(&Session == NULL)
@@ -387,13 +390,13 @@ namespace file
 
          }
 
-      }
+      } */
       else if(::str::begins_eat_ci(strPath, "matter://"))
       {
 
          sp(base_application) papp = NULL;
 
-         if(System.url().get_server("matter://" + strPath) == m_pbaseapp->m_pplaneapp->m_strAppName)
+         if(System.url().get_server("matter://" + strPath) == m_pbaseapp->m_strAppName)
          {
 
             strPath = System.url().get_object("matter://" + strPath).Mid(1);

@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   class CLASS_DECL_CORE set :
+   class CLASS_DECL_BASE set :
       public ::fs::data
    {
    public:

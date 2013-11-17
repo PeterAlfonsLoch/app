@@ -40,8 +40,9 @@ class CLASS_DECL_BASE base_application :
 public:
 
 
-   class signal *                                  m_psignal;
    base_system *                                   m_pbasesystem;
+   base_session *                                  m_pbasesession;
+   class signal *                                  m_psignal;
    string                                          m_strAppName;
    sp(::command_thread)                            m_pcommandthread;
    allocatorsp                                     m_allocer;
@@ -49,6 +50,11 @@ public:
    string_to_ptr                                   m_appmap;
    class ::http::application                       m_http;
    sp(::fontopus::fontopus)                        m_pfontopus;
+   class ::file::dir::application                  m_dir;
+   class ::file::application                       m_file;
+   math::math *                                    m_pmath;
+   geometry::geometry *                            m_pgeometry;
+   ::sockets::sockets *                            m_psockets;
 
 
 
@@ -66,8 +72,30 @@ public:
    virtual bool load_string(string & str, id id);
 
    virtual bool is_system();
+   virtual bool is_session();
 
    inline class ::http::application      & http()       { return m_http; }
+   inline class ::file::dir::application       & dir()        { return m_dir; }
+   inline class ::file::application       & file()       { return m_file; }
+   math::math & math();
+   geometry::geometry & geometry();
+   inline sp(::fontopus::fontopus)           fontopus()     { return m_pfontopus; }
+   inline ::sockets::sockets                 & sockets() { return *m_psockets; }
+
+
+
+
+
+#ifndef METROWIN
+   virtual void get_time(timeval *p);
+#endif
+
+
+   virtual string get_locale();
+   virtual string get_schema();
+   virtual string get_locale_schema_dir(const string & strLocale, const string & strSchema);
+   virtual string get_locale_schema_dir(const string & strLocale);
+   virtual string get_locale_schema_dir();
 
 
 //   virtual string matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);

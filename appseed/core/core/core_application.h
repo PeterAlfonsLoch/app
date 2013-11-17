@@ -293,7 +293,6 @@ public:
 
 
    ::calculator::calculator                                                                * m_pcalculator;
-   ::sockets::sockets                                                                      * m_psockets;
    ::colorertake5::colorertake5                                                            * m_pcolorertake5;
    //string                                                                                    m_strFontopusServer;
    //string                                                                                    m_strMatterUrl;
@@ -328,8 +327,6 @@ public:
    sp(base_session)                    m_psession;
 
    class signal                        m_signalAppLanguageChange;
-   math::math *                        m_pmath;
-   geometry::geometry *                m_pgeometry;
    core::savings *                     m_psavings;
    string                              m_strCa2ModulePath;
    string                              m_strCa2ModuleFolder;
@@ -513,11 +510,6 @@ public:
 
    //virtual int32_t run();
 
-   virtual string get_locale();
-   virtual string get_schema();
-   virtual string get_locale_schema_dir(const string & strLocale, const string & strSchema);
-   virtual string get_locale_schema_dir(const string & strLocale);
-   virtual string get_locale_schema_dir();
 
    virtual void EnableShellOpen();
 
@@ -547,7 +539,6 @@ public:
 
 
    inline ::calculator::calculator           & calculator      () { return *m_pcalculator    ; }
-   inline ::sockets::sockets                 & sockets         () { return *m_psockets       ; }
    inline ::colorertake5::colorertake5       & colorertake5    () { return *m_pcolorertake5  ; }
 
 
@@ -577,9 +568,6 @@ public:
 
    virtual string get_license_id();
 
-#ifndef METROWIN
-   virtual void get_time(timeval *p);
-#endif
    virtual void set_env_var(const string & var,const string & value);
    virtual uint32_t get_thread_id();
 
@@ -608,8 +596,6 @@ public:
    // document template to it.
    virtual void on_request(sp(::create_context) pline);
 
-   math::math & math();
-   geometry::geometry & geometry();
    core::savings & savings();
 
    virtual void defer_add_document_template(sp(::user::document_template) ptemplate);

@@ -226,6 +226,7 @@ public:
 
    ::file::system_sp                         m_spfile;
    ::file::dir::system_sp                         m_spdir;
+   class ::sockets::net                         m_net;
 
 
    base_system(sp(base_application) papp);
@@ -235,6 +236,7 @@ public:
 
    virtual bool initialize_instance();
 
+   bool null_compressor(::file::output_stream & ostream, ::file::input_stream & istream);
 
 
    class base_factory                           & factory();
@@ -243,6 +245,13 @@ public:
    class ::str::base64                          & base64();
 
    class ::core::log                     & log();
+
+   using ::base_application::file;
+   inline ::file::system            & file()    { return *m_spfile; }
+   using ::base_application::dir;
+   inline ::file::dir::system            & dir()     { return *m_spdir; }
+   class ::sockets::net                & net();
+
 
 
 

@@ -373,7 +373,6 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_departament.h"
 #include "base_departament_container.h"
 
-
 #include "base/net/sockets/sockets.h"
 
 #include "base/programming/javascript/javascript.h"
@@ -386,16 +385,6 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_message_queue_listener.h"
 #include "base_message_queue.h"
 #include "base/user/userpresence/userpresence.h"
-#include "base/user/fontopus/fontopus.h"
-
-
-#include "base_application.h"
-
-
-#include "base_session.h"
-
-#include "base/net/net_url_departament.h"
-
 #include "base/primitive/primitive_interlocked_long.h"
 #include "base/primitive/primitive_interlocked_long_pulse.h"
 #include "base/primitive/primitive_factory.h"
@@ -403,6 +392,24 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base/primitive/primitive_data_listener.h"
 #include "base/primitive/primitive_data_container.h"
 #include "base/primitive/primitive_edit.h"
+#include "base/file/fs/fs.h"
+#include "base/user/fontopus/fontopus.h"
+
+#include "base/file/file_application.h"
+#include "base/file/file_dir_application.h"
+
+#include "base/primitive/math/math_math_rng.h"
+#include "base/primitive/math/math_math.h"
+#include "base/primitive/geometry/geometry_geometry.h"
+
+#include "base_application.h"
+
+
+#include "base_session.h"
+
+#include "base/net/net_url_departament.h"
+#include "base/net/net_url_domain.h"
+
 
 
 #include "base/xml/xml.h"
@@ -433,8 +440,6 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base/graphics/visual/visual.h"
 
 
-#include "base/file/file_application.h"
-#include "base/file/file_dir_application.h"
 #include "base/file/file_system.h"
 #include "base/file/file_dir_system.h"
 
@@ -628,3 +633,6 @@ namespace numeric_info
 
 #define AppUser(pbaseapp) (*App(pbaseapp).m_pfontopus->get_user())
 #define ApplicationUser (AppUser(m_pbaseapp))
+#define Sess(pbaseapp) (*pbaseapp->m_pbasesession)
+#define Session (Sess(this->m_pbaseapp))
+

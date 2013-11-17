@@ -7,7 +7,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
 #ifndef ANDROID
 
 
-   if(hthread == NULL || hthread->m_pthread == NULL || hthread->m_pthread->get_x_window_count() <= 0)
+   if(hthread == NULL || hthread->m_pthread == NULL || hthread->get_x_window_count() <= 0)
       return false;
 
    synch_lock sl(&user_mutex());
