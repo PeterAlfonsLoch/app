@@ -34,6 +34,8 @@ base_application::base_application() :
 
    m_pcommandthread           = new ::command_thread(this);
 
+   m_bZipIsDir = true;
+
 }
 
 base_application::~base_application()

@@ -55,6 +55,7 @@ public:
    math::math *                                    m_pmath;
    geometry::geometry *                            m_pgeometry;
    ::sockets::sockets *                            m_psockets;
+   bool                                            m_bZipIsDir;
 
 
 

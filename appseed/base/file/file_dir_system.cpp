@@ -387,12 +387,12 @@ namespace file
       {
          UNREFERENCED_PARAMETER(pstraRelative);
          UNREFERENCED_PARAMETER(pszPattern);
-/* xxx         if(eextract != extract_none && papp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
+         if(eextract != extract_none && papp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
          {
             throw "should implement recursive zip";
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize, eextract == extract_all ? extract_all : extract_none);
             return;
-         }*/
+         }
          throw not_implemented(get_app(), "is really a directory or compressed directory/file??");
 
       }
@@ -410,11 +410,11 @@ namespace file
             }
             return;
          }
-/* xxx         if(papp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
+         if(papp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
          {
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize);
             return;
-         } */
+         }
          throw not_implemented(get_app(), "is really a directory or compressed directory/file??");
 
       }
@@ -431,7 +431,7 @@ namespace file
 
       void system::rls(sp(base_application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
       {
-/* xxx         if(eextract != extract_none && papp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
+         if(eextract != extract_none && papp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
          {
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract == extract_all ? extract_all : extract_none);
             return;
@@ -439,7 +439,7 @@ namespace file
          else
          {
             return;
-         }*/
+         }
       }
 
       void system::rls_dir(sp(base_application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
@@ -453,7 +453,7 @@ namespace file
 
       void system::ls_dir(sp(base_application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
       {
-         /* xxx if(papp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
+         if(papp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
          {
             m_pziputil->ls_dir(papp, lpcsz, pstraPath, pstraTitle);
             return;
@@ -461,7 +461,7 @@ namespace file
          else
          {
             return;
-         } */
+         }
       }
 
       bool system::has_subdir(sp(base_application) papp, const char * lpcsz)
@@ -492,7 +492,7 @@ namespace file
 
          }
 
-/* xxx         if (papp->m_bZipIsDir && (::str::ends_ci(lpcszPath, ".zip")))
+         if (papp->m_bZipIsDir && (::str::ends_ci(lpcszPath, ".zip")))
          {
 
             bIs = true;
@@ -525,7 +525,6 @@ namespace file
             return true;
 
          }
-         */
          return false;
 
       }
@@ -550,7 +549,7 @@ namespace file
             return App(papp).http().exists(strPath);
          }
 
-/* xxx         if(papp->m_bZipIsDir && (::str::ends_ci(strPath, ".zip")))
+         if(papp->m_bZipIsDir && (::str::ends_ci(strPath, ".zip")))
          {
             m_isdirmap.set(strPath, true, 0);
             return true;
@@ -564,7 +563,7 @@ namespace file
             bHasSubFolder = m_pziputil->HasSubFolder(papp, strPath);
             m_isdirmap.set(strPath, bHasSubFolder, GetLastError());
             return bHasSubFolder;
-         } */
+         } 
          return false;
       }
 
@@ -581,7 +580,7 @@ namespace file
       bool system::name_is(const string & strPath, sp(base_application) papp)
       {
          //OutputDebugString(strPath);
-/* xxx         if(papp->m_bZipIsDir && (::str::ends_ci(strPath, ".zip")))
+         if(papp->m_bZipIsDir && (::str::ends_ci(strPath, ".zip")))
          {
             m_isdirmap.set(strPath, true, 0);
             return true;
@@ -595,7 +594,7 @@ namespace file
             bHasSubFolder = m_pziputil->HasSubFolder(papp, strPath);
             m_isdirmap.set(strPath, bHasSubFolder, GetLastError());
             return bHasSubFolder;
-         } */
+         } 
          return false;
       }
 

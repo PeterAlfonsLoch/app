@@ -279,11 +279,23 @@
     <Filter Include="Header Files\file\fs">
       <UniqueIdentifier>{ac8dd5af-8993-4120-b887-6a1e4eaaa29d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\base\zlib">
-      <UniqueIdentifier>{48b6a75c-017c-44c3-b453-d0b7ad5e4105}</UniqueIdentifier>
+    <Filter Include="Header Files\base\compress">
+      <UniqueIdentifier>{81b4689d-269d-4f05-8d03-9fd0d7fb0783}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\base\zlib">
+    <Filter Include="Header Files\base\compress\zlib">
+      <UniqueIdentifier>{da7ff1e7-14c8-4c47-8f7b-c0623c1067f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\compress\zip">
+      <UniqueIdentifier>{a8ba95fd-1ee1-4c54-885a-73221d29eba7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\compress">
+      <UniqueIdentifier>{75053c2a-c9d5-43d3-aa2e-3bd3da3bccac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\compress\zlib">
       <UniqueIdentifier>{4d421910-8554-4853-a632-557bbb942229}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\compress\zip">
+      <UniqueIdentifier>{487ab119-db2e-4fdd-b0b1-3d12dad9dd07}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1844,38 +1856,74 @@
     <ClInclude Include="str\str_parse.h">
       <Filter>Header Files\str</Filter>
     </ClInclude>
-    <ClInclude Include="base\zlib\crc32.h">
-      <Filter>Header Files\base\zlib</Filter>
+    <ClInclude Include="base\compress\zlib\crc32.h">
+      <Filter>Header Files\base\compress\zlib</Filter>
     </ClInclude>
-    <ClInclude Include="base\zlib\deflate.h">
-      <Filter>Header Files\base\zlib</Filter>
+    <ClInclude Include="base\compress\zlib\deflate.h">
+      <Filter>Header Files\base\compress\zlib</Filter>
     </ClInclude>
-    <ClInclude Include="base\zlib\gzguts.h">
-      <Filter>Header Files\base\zlib</Filter>
+    <ClInclude Include="base\compress\zlib\gzguts.h">
+      <Filter>Header Files\base\compress\zlib</Filter>
     </ClInclude>
-    <ClInclude Include="base\zlib\inffast.h">
-      <Filter>Header Files\base\zlib</Filter>
+    <ClInclude Include="base\compress\zlib\inffast.h">
+      <Filter>Header Files\base\compress\zlib</Filter>
     </ClInclude>
-    <ClInclude Include="base\zlib\inffixed.h">
-      <Filter>Header Files\base\zlib</Filter>
+    <ClInclude Include="base\compress\zlib\inffixed.h">
+      <Filter>Header Files\base\compress\zlib</Filter>
     </ClInclude>
-    <ClInclude Include="base\zlib\inflate.h">
-      <Filter>Header Files\base\zlib</Filter>
+    <ClInclude Include="base\compress\zlib\inflate.h">
+      <Filter>Header Files\base\compress\zlib</Filter>
     </ClInclude>
-    <ClInclude Include="base\zlib\inftrees.h">
-      <Filter>Header Files\base\zlib</Filter>
+    <ClInclude Include="base\compress\zlib\inftrees.h">
+      <Filter>Header Files\base\compress\zlib</Filter>
     </ClInclude>
-    <ClInclude Include="base\zlib\trees.h">
-      <Filter>Header Files\base\zlib</Filter>
+    <ClInclude Include="base\compress\zlib\trees.h">
+      <Filter>Header Files\base\compress\zlib</Filter>
     </ClInclude>
-    <ClInclude Include="base\zlib\zconf.h">
-      <Filter>Header Files\base\zlib</Filter>
+    <ClInclude Include="base\compress\zlib\zconf.h">
+      <Filter>Header Files\base\compress\zlib</Filter>
     </ClInclude>
-    <ClInclude Include="base\zlib\zlib.h">
-      <Filter>Header Files\base\zlib</Filter>
+    <ClInclude Include="base\compress\zlib\zlib.h">
+      <Filter>Header Files\base\compress\zlib</Filter>
     </ClInclude>
-    <ClInclude Include="base\zlib\zutil.h">
-      <Filter>Header Files\base\zlib</Filter>
+    <ClInclude Include="base\compress\zlib\zutil.h">
+      <Filter>Header Files\base\compress\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="base\compress\zip\zip_internal.h">
+      <Filter>Source Files\base\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="base\compress\zip\api.h">
+      <Filter>Header Files\base\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="base\compress\zip\crypt.h">
+      <Filter>Header Files\base\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="base\compress\zip\File.h">
+      <Filter>Header Files\base\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="base\compress\zip\InFile.h">
+      <Filter>Header Files\base\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="base\compress\zip\ioapi.h">
+      <Filter>Header Files\base\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="base\compress\zip\iowin32.h">
+      <Filter>Header Files\base\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="base\compress\zip\memory_buffer.h">
+      <Filter>Header Files\base\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="base\compress\zip\unzip.h">
+      <Filter>Header Files\base\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="base\compress\zip\Util.h">
+      <Filter>Header Files\base\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="base\compress\zip\zip.h">
+      <Filter>Header Files\base\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="base\compress\compress.h">
+      <Filter>Header Files\base\compress</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2956,50 +3004,74 @@
     <ClCompile Include="primitive\math\math_math.cpp">
       <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
-    <ClCompile Include="base\zlib\adler32.c">
-      <Filter>Source Files\base\zlib</Filter>
+    <ClCompile Include="base\compress\zip\zip_api.cpp">
+      <Filter>Source Files\base\compress\zip</Filter>
     </ClCompile>
-    <ClCompile Include="base\zlib\compress.c">
-      <Filter>Source Files\base\zlib</Filter>
+    <ClCompile Include="base\compress\zip\zip_file.cpp">
+      <Filter>Source Files\base\compress\zip</Filter>
     </ClCompile>
-    <ClCompile Include="base\zlib\crc32.c">
-      <Filter>Source Files\base\zlib</Filter>
+    <ClCompile Include="base\compress\zip\zip_in_file.cpp">
+      <Filter>Source Files\base\compress\zip</Filter>
     </ClCompile>
-    <ClCompile Include="base\zlib\deflate.c">
-      <Filter>Source Files\base\zlib</Filter>
+    <ClCompile Include="base\compress\zip\zip_ioapi.cpp">
+      <Filter>Source Files\base\compress\zip</Filter>
     </ClCompile>
-    <ClCompile Include="base\zlib\gzclose.c">
-      <Filter>Source Files\base\zlib</Filter>
+    <ClCompile Include="base\compress\zip\zip_memory_buffer.cpp">
+      <Filter>Source Files\base\compress\zip</Filter>
     </ClCompile>
-    <ClCompile Include="base\zlib\gzlib.c">
-      <Filter>Source Files\base\zlib</Filter>
+    <ClCompile Include="base\compress\zip\zip_unzip.cpp">
+      <Filter>Source Files\base\compress\zip</Filter>
     </ClCompile>
-    <ClCompile Include="base\zlib\gzread.c">
-      <Filter>Source Files\base\zlib</Filter>
+    <ClCompile Include="base\compress\zip\zip_util.cpp">
+      <Filter>Source Files\base\compress\zip</Filter>
     </ClCompile>
-    <ClCompile Include="base\zlib\gzwrite.c">
-      <Filter>Source Files\base\zlib</Filter>
+    <ClCompile Include="base\compress\zip\zip_zip.cpp">
+      <Filter>Source Files\base\compress\zip</Filter>
     </ClCompile>
-    <ClCompile Include="base\zlib\infback.c">
-      <Filter>Source Files\base\zlib</Filter>
+    <ClCompile Include="base\compress\zlib\adler32.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="base\zlib\inffast.c">
-      <Filter>Source Files\base\zlib</Filter>
+    <ClCompile Include="base\compress\zlib\compress.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="base\zlib\inflate.c">
-      <Filter>Source Files\base\zlib</Filter>
+    <ClCompile Include="base\compress\zlib\crc32.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="base\zlib\inftrees.c">
-      <Filter>Source Files\base\zlib</Filter>
+    <ClCompile Include="base\compress\zlib\deflate.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="base\zlib\trees.c">
-      <Filter>Source Files\base\zlib</Filter>
+    <ClCompile Include="base\compress\zlib\gzclose.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="base\zlib\uncompr.c">
-      <Filter>Source Files\base\zlib</Filter>
+    <ClCompile Include="base\compress\zlib\gzlib.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="base\zlib\zutil.c">
-      <Filter>Source Files\base\zlib</Filter>
+    <ClCompile Include="base\compress\zlib\gzread.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\gzwrite.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\infback.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\inffast.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\inflate.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\inftrees.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\trees.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\uncompr.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\zutil.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3116,6 +3188,9 @@
     </None>
     <None Include="base\base_live_object.h">
       <Filter>Header Files\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

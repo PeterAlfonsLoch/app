@@ -322,7 +322,6 @@ public:
    bool                                m_bInitializeProDevianMode;
    ::core::main_init_data *            m_pinitmaindata;
    bool                                m_bService;
-   bool                                m_bZipIsDir;
    ::plane::system *                   m_psystem;
    sp(base_session)                    m_psession;
 

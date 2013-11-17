@@ -636,3 +636,4 @@ namespace numeric_info
 #define Sess(pbaseapp) (*pbaseapp->m_pbasesession)
 #define Session (Sess(this->m_pbaseapp))
 
+#include "compress/compress.h"
