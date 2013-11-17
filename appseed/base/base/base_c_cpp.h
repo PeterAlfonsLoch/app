@@ -375,6 +375,9 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "net/http/http_get_socket.h"
 
 
+#include "base/user/fontopus/fontopus.h"
+
+
 #include "base_application.h"
 
 
@@ -609,5 +612,5 @@ namespace numeric_info
 #endif
 
 
-#define AppUser(pbaseapp) (*planeApp(pbaseapp).m_pfontopus->get_user())
+#define AppUser(pbaseapp) (*App(pbaseapp).m_pfontopus->get_user())
 #define ApplicationUser (AppUser(m_pbaseapp))

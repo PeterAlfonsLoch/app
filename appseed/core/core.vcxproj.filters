@@ -312,14 +312,8 @@
     <Filter Include="Source Files\core\plugin">
       <UniqueIdentifier>{079ee505-bca6-43e2-9e84-e7fcc53a03df}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user\fontopus">
-      <UniqueIdentifier>{4387558a-eec5-477c-a058-6d0898f937f0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\math\calculator">
       <UniqueIdentifier>{77cd1c49-1750-4c7e-99f2-f2dc16fa0e6b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\user\fontopus">
-      <UniqueIdentifier>{d6496124-393a-4893-88a9-83f4dd0f2810}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\net\usernet">
       <UniqueIdentifier>{d2d1dc3a-6586-4253-878f-984f6d547ed6}</UniqueIdentifier>
@@ -2239,36 +2233,6 @@
     </ClInclude>
     <ClInclude Include="core\windows\os_utils.h">
       <Filter>Header Files\core\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_authentication_map.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_contact_list.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_fontopus.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_license.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_user.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_user_authentication.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_user_set.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_usera.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_validate.h">
-      <Filter>Header Files\user\fontopus</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\userex_wait_message_dialog.h">
       <Filter>Header Files\user\userex</Filter>
@@ -4371,27 +4335,6 @@
     </ClCompile>
     <ClCompile Include="core\plugin\plugin_system.cpp">
       <Filter>Source Files\core\plugin</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_contact_list.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_fontopus.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_license.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_user.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_user_set.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_usera.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_validate.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
     </ClCompile>
     <ClCompile Include="math\calculator\calculator_calculator.cpp">
       <Filter>Source Files\math\calculator</Filter>

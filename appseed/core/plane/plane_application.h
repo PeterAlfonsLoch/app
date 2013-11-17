@@ -31,7 +31,6 @@ namespace plane
       bool                                m_bUpdateMatterOnInstall;
       sp(user::user)                      m_spuser;
       sp(::userfs::userfs)                        m_spuserfs;
-      sp(::fontopus::fontopus)            m_pfontopus;
       sp(::html::html)                    m_phtml;
       ::simpledb::simpledb                m_simpledb;
 

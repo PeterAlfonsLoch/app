@@ -97,8 +97,6 @@ public:
 
    bool true_blend(::draw2d::graphics * pdc, LPCRECT lpcrect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork = NULL, ::draw2d::dib * pdibWork2 = NULL, ::draw2d::dib * pdibWork3 = NULL);
 
-   bool true_blend(::draw2d::graphics * pdc, point pt, size size, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork = NULL, ::draw2d::dib * pdibWork2 = NULL, ::draw2d::dib * pdibWork3 = NULL);
-
    bool blur(::draw2d::graphics * pdcDst, point ptDst, size size, ::draw2d::graphics * pdcSrc, point ptSrc, int32_t iRadius);
 
    void color_blend_24CC(
@@ -115,7 +113,6 @@ public:
       int32_t w3);
 
 
-   bool color_blend(::draw2d::graphics * pdc, point pt, size size, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork = NULL, ::draw2d::dib * pdibWork2 = NULL);
    bool color_blend(::draw2d::graphics * pdc, LPCRECT lpcrect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork = NULL);
 
    bool color_blend(::draw2d::graphics * pdc, LPCRECT lpcrect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, double dBlend);

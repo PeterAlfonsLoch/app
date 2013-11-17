@@ -48,6 +48,7 @@ public:
    ::plane::application *                          m_pplaneapp; // can be used only from core and upper
    string_to_ptr                                   m_appmap;
    class ::http::application                       m_http;
+   sp(::fontopus::fontopus)                        m_pfontopus;
 
 
 
