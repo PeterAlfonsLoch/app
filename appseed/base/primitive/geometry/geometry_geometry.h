@@ -5,18 +5,18 @@ namespace geometry
 {
 
 
-   class CLASS_DECL_CORE rotation
+   class CLASS_DECL_BASE rotation
    {
    public:
       double   m_dCosPhi;
       double   m_dSinPhi;
       int32_t      m_iXCenter;
       int32_t      m_iYCenter;
-         
+
       void rotate(LPPOINT lppoint, int32_t iCount);
    };
 
-   class CLASS_DECL_CORE geometry  :
+   class CLASS_DECL_BASE geometry :
       virtual public object
    {
    public:
@@ -29,7 +29,7 @@ namespace geometry
       void RandomPoint(POINT & pt, LPCRECT lpcrect);
       void deflate(LPRECT lprect, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate);
 
-         
+
       geometry(sp(base_application) papp);
       virtual ~geometry();
 
