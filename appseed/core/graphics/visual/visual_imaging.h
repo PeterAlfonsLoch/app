@@ -259,29 +259,6 @@ public:
       ::draw2d::graphics * pdcAlpha, // alpha information device (in alpha channel)
       point ptAlpha);
 
-   /*bool bitmap_blend(::draw2d::graphics * pdcDst, point pt, size size, ::draw2d::graphics * pdcSrc, point ptSrc,
-      ::draw2d::graphics * pdcAlpha, // alpha information device (in red channel)
-      point ptAlpha,
-      BYTE alphaConstant = 255,
-      ::draw2d::dib * pdibWorkA = NULL,
-      ::draw2d::dib * pdibWorkB = NULL);*/
-
-
-/*   bool bitmap_blend(::draw2d::graphics * pdcDst, point pt, size size, ::draw2d::dib * pdibSrc, point ptSrc,
-      ::draw2d::dib * pdibAlpha, // alpha information device (in red channel)
-      point ptAlpha,
-      BYTE alphaConstant = 255);*/
-
-   /*bool bitmap_blend(::draw2d::graphics * pdcDst, point pt, size size, ::draw2d::graphics * pdcSrc, point ptSrc,
-      ::draw2d::graphics * pdcAlpha, // alpha information device (in alpha channel)
-      point ptAlpha,
-      ::draw2d::graphics * pdcAlphaComplement, // alpha information device (in alpha channel)
-      point ptAlphaComplement);*/
-
-   bool bitmap_blend(::draw2d::graphics * pdcDst, point pt, size size,
-      ::draw2d::graphics * pdcSrcWithAlpha, // source device
-      point ptSrc);
-
    bool BitmapDivBlend(::draw2d::graphics * pdcDst, point pt, size size, ::draw2d::graphics * pdcSrc, point ptSrc, BYTE bAlpha);
 
    bool bitmap_blend(::draw2d::graphics * pdcDst, point pt, size size, ::draw2d::graphics * pdcSrc, point ptSrc, BYTE bAlpha);

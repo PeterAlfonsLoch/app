@@ -137,7 +137,7 @@ namespace filemanager
    }
 
 
-   /*bool document::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
+   /*bool document::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
    {
    if (nCode == CN_UPDATE_COMMAND_UI)
    {
@@ -373,9 +373,9 @@ namespace filemanager
       update_all_views(NULL, 0, &uh);
    }
 
-   bool document::HandleDefaultFileManagerItemCmdMsg(BaseCmdMsg * pcmdmsg, ::fs::item_array & itema)
+   bool document::HandleDefaultFileManagerItemCmdMsg(base_cmd_msg * pcmdmsg, ::fs::item_array & itema)
    {
-      if(pcmdmsg->m_etype == BaseCmdMsg::type_cmdui)
+      if(pcmdmsg->m_etype == base_cmd_msg::type_cmdui)
       {
          if(get_filemanager_data()->m_pcallback->GetFileManagerItemCallback(
             get_filemanager_data(), pcmdmsg->m_pcmdui->m_id, itema))

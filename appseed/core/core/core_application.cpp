@@ -1519,7 +1519,7 @@ void application::ProcessWndProcException(::exception::base* e, signal_details *
    }
 }
 
-bool application::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
+bool application::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
 
 {
    if(command_target_interface::_001OnCmdMsg(pcmdmsg))

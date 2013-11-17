@@ -4679,7 +4679,7 @@ bool imaging::color_blend(::draw2d::graphics * pdc, point pt, size size, ::draw2
 
 
 
-   return pdc->BitBlt(pt.x, pt.y, size.cx, size.cy, pdcColorAlpha, ptAlpha.x, ptAlpha.y, SRCCOPY) != FALSE;
+   
 
 
 }

@@ -218,7 +218,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Command routing
 
-   bool view::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
+   bool view::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
 
    {
 

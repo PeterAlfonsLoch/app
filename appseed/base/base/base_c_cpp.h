@@ -261,13 +261,13 @@ namespace file
 #include "base/multithreading/multithreading.h"
 
 
-#include "base_thread.h"
-
-
 #include "base_draw2d.h"
 
 
-#include "base/user/user_key_enum.h"
+
+
+
+
 #include "base/user/user_base_document.h"
 #include "base/user/user_base_document_template.h"
 #include "base/user/user_base_interaction.h"
@@ -307,6 +307,33 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_plex_heap.h"
 
 #include "base/primitive/primitive_type.h"
+
+
+#include "graphics/graphics.h"
+#include "user/user_keyboard_focus.h"
+#include "user/user_mouse_focus.h"
+#include "user/user_elemental.h"
+#include "base_flags.h"
+#include "primitive/primitive_check.h"
+#include "user/user_check_interface.h"
+#include "base_command.h"
+#include "graphics/visual/visual_const.h"
+#include "base/user/user_key_enum.h"
+#include "base_message.h"
+#include "base_command_target.h"
+#include "user/user_text_interface.h"
+#include "user/user_draw_interface.h"
+#include "user/user_window_util.h"
+#include "user/user_window_interface.h"
+#include "user/user_buffer.h"
+#include "core/core/core_keeper.h"
+#include "file/file_stream2.h"
+#include "user/user_interaction.h"
+#include "base_live_object.h"
+#include "multithreading/multithreading_thread.h"
+#include "multithreading/multithreading_simple_thread.h"
+#include "multithreading/multithreading_go_thread.h"
+
 
 #include "base_application.h"
 
@@ -363,6 +390,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 #include "base/file/file_plain_text_stream_memory_buffer.h"
 
+#include "base/file/file_circular_buffer.h"
+
 #include "base/str/str_international2.h"
 
 
@@ -381,6 +410,19 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 #include "base/os/os_process.h"
+
+
+
+
+
+#include "net/http/http_output_stream.h"
+
+
+#include "base/base_log.h"
+
+
+#include "net/sockets/sockets.h"
+
 
 
 #include "base/spa/spa_trace.h"

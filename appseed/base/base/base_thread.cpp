@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-base_thread::base_thread()
+thread::thread()
 {
 
    m_pthread = NULL;
@@ -9,13 +9,13 @@ base_thread::base_thread()
 }
 
 
-base_thread::~base_thread()
+thread::~thread()
 {
 
 }
 
 
-HTHREAD base_thread::get_os_handle() const
+HTHREAD thread::get_os_handle() const
 {
 
    return NULL;
@@ -23,7 +23,7 @@ HTHREAD base_thread::get_os_handle() const
 }
 
 
-int base_thread::get_x_window_count() const
+int thread::get_x_window_count() const
 {
 
 return 0;
@@ -31,18 +31,18 @@ return 0;
 }
 
 
-void base_thread::step_timer()
+void thread::step_timer()
 {
 
 }
 
-bool base_thread::get_run()
+bool thread::get_run()
 {
 return true;
 }
 
 
-bool base_thread::on_run_exception(::exception::exception & e)
+bool thread::on_run_exception(::exception::exception & e)
 {
    UNREFERENCED_PARAMETER(e);
    return false;
@@ -64,7 +64,7 @@ CLASS_DECL_BASE PFN_get_thread g_pfn_get_thread = NULL;
 CLASS_DECL_BASE PFN_get_thread_state g_pfn_get_thread_state = NULL;
 
 
-base_thread * get_thread()
+thread * get_thread()
 {
 
    if(g_pfn_get_thread == NULL)
@@ -78,7 +78,7 @@ base_thread * get_thread()
 base_application * get_thread_app()
 {
 
-   base_thread * pthread = get_thread();
+   thread * pthread = get_thread();
 
    if(pthread == NULL)
       return NULL;
@@ -98,7 +98,7 @@ thread_state * get_thread_state()
 
 
 
-bool base_thread::verb()
+bool thread::verb()
 {
 
    return true; // continue execution ... go on...

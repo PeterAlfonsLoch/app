@@ -4,7 +4,7 @@
 namespace sip
 {
 
-   class CLASS_DECL_CORE request : 
+   class CLASS_DECL_BASE request : 
       virtual public transaction
    {
    public:

@@ -5,7 +5,7 @@
    {
 
 
-      class CLASS_DECL_CORE sockets :
+      class CLASS_DECL_BASE sockets :
          virtual public ::base_departament
       {
       public:

@@ -1,13 +1,7 @@
 #pragma once
 
 
-struct FIBITMAP;
-
-
-#include <ft2build.h>
-
-
-#include FT_FREETYPE_H
+#include "app/appseed/base/primitive/primitive_color.h"
 
 
 namespace draw2d
@@ -21,7 +15,7 @@ namespace draw2d
    //////////////////////////////////////////////////////////////////////
 
 
-   class CLASS_DECL_CORE dib :
+   class CLASS_DECL_BASE dib :
       virtual public object,
       virtual public ::file::serializable
    {
@@ -107,8 +101,6 @@ namespace draw2d
 
 
       virtual bool dc_select(bool bSelect = true);
-
-      virtual bool from(::draw2d::graphics * pgraphics, FIBITMAP * pfibitmap, bool bUnloadFI);
 
       virtual COLORREF GetAverageColor();
       virtual bool blend(dib * pdib, dib * pdibRate);
@@ -269,17 +261,11 @@ namespace draw2d
 
 
 
-      virtual void draw_bitmap(int32_t dx, int32_t dy, FT_Bitmap * bitmap, FT_Int x, FT_Int y);
-
-      virtual bool update_window(::user::window * pwnd, signal_details * pobj);
-      virtual bool print_window(::user::window * pwnd, signal_details * pobj);
-
-
       static void static_initialize();
 
    };
 
-   class CLASS_DECL_CORE dib_sp :
+   class CLASS_DECL_BASE dib_sp :
       public smart_pointer < dib >
    {
    public:
@@ -309,7 +295,7 @@ namespace draw2d
 
    };
 
-   class CLASS_DECL_CORE dibmap :
+   class CLASS_DECL_BASE dibmap :
       virtual public map < size, size, ::draw2d::dib_sp, ::draw2d::dib_sp >
    {
    public:
@@ -343,7 +329,7 @@ namespace comparison
 
 
    template < >
-   class CLASS_DECL_CORE hash < const ::draw2d::dib::descriptor & >
+   class CLASS_DECL_BASE hash < const ::draw2d::dib::descriptor & >
    {
    public:
 
@@ -367,7 +353,7 @@ namespace comparison
 namespace draw2d
 {
 
-   class CLASS_DECL_CORE dibmap_ex1 :
+   class CLASS_DECL_BASE dibmap_ex1 :
       virtual public map < ::draw2d::dib::descriptor, const ::draw2d::dib::descriptor &, ::draw2d::dib_sp, ::draw2d::dib_sp >
    {
    public:

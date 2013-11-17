@@ -5,7 +5,7 @@ namespace data
 {
 
 
-   class CLASS_DECL_CORE tree :
+   class CLASS_DECL_BASE tree :
       virtual public ::data::data,
       virtual public ::signalizable
    {

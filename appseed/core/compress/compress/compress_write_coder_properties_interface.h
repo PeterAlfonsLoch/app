@@ -5,7 +5,7 @@
 namespace libcompress
 {
 
-   class CLASS_DECL_CORE write_coder_properties_interface :
+   class CLASS_DECL_BASE write_coder_properties_interface :
       virtual public object
    {
    public:

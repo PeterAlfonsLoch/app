@@ -143,7 +143,7 @@ namespace user
       virtual void on_idle();
       virtual void on_final_release();
 
-      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
+      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
       friend class document_template;
 

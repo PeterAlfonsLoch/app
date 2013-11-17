@@ -48,7 +48,7 @@ namespace sockets
 
    /** socket container class, event generator.
    \ingroup basic */
-   class CLASS_DECL_CORE base_socket_handler : 
+   class CLASS_DECL_BASE base_socket_handler : 
       virtual public ::object
    {
    public:

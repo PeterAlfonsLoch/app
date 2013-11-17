@@ -45,7 +45,7 @@ namespace libcompress
 
 
 
-   class CLASS_DECL_CORE set_coder_properties_interface :
+   class CLASS_DECL_BASE set_coder_properties_interface :
       virtual public object
    {
    public:

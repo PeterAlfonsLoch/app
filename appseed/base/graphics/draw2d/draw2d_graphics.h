@@ -5,7 +5,7 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_CORE graphics :
+   class CLASS_DECL_BASE graphics :
       virtual public ::core::simple_chain < ::user::draw_context >
    {
    public:
@@ -59,7 +59,6 @@ namespace draw2d
       }
 
       virtual bool attach(void * pdata);
-      virtual bool attach(simple_graphics & g);
       virtual void * detach();
 
 
@@ -234,7 +233,7 @@ namespace draw2d
       virtual int32_t SelectClipRgn(::draw2d::region* pRgn);
       virtual int32_t ExcludeClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual int32_t ExcludeClipRect(LPCRECT lpRect);
-      virtual int32_t ExcludeUpdateRgn(sp(::user::window) pWnd);
+//      virtual int32_t ExcludeUpdateRgn(sp(::user::window) pWnd);
       virtual int32_t IntersectClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual int32_t IntersectClipRect(LPCRECT lpRect);
       virtual int32_t OffsetClipRgn(int32_t x, int32_t y);
@@ -560,13 +559,13 @@ namespace draw2d
       virtual bool setFont(::draw2d::font * pfont);
       virtual bool set_font(::draw2d::font * pfont);
 
-      virtual bool create_client_dc(::user::window * pwnd);
-      virtual bool create_window_dc(::user::window * pwnd);
-      virtual bool release_dc(::user::window * pwnd);
+//      virtual bool create_client_dc(::user::window * pwnd);
+  //    virtual bool create_window_dc(::user::window * pwnd);
+    //  virtual bool release_dc(::user::window * pwnd);
 
    };
 
-   class CLASS_DECL_CORE graphics_sp :
+   class CLASS_DECL_BASE graphics_sp :
       public smart_pointer < graphics >
    {
    public:
@@ -593,7 +592,7 @@ namespace draw2d
 
    };
 
-   class CLASS_DECL_CORE memory_graphics :
+   class CLASS_DECL_BASE memory_graphics :
       public graphics_sp
    {
    public:
@@ -604,7 +603,7 @@ namespace draw2d
    };
 
 
-   class CLASS_DECL_CORE window_graphics :
+/*   class CLASS_DECL_BASE window_graphics :
       virtual public graphics_sp
    {
    public:
@@ -616,7 +615,7 @@ namespace draw2d
 
    };
 
-   class CLASS_DECL_CORE paint_graphics :
+   class CLASS_DECL_BASE paint_graphics :
       virtual public graphics_sp
    {
    public:
@@ -629,7 +628,7 @@ namespace draw2d
       paint_graphics(sp(::user::window) pwindow);
       virtual ~paint_graphics();
 
-   };
+   };*/
 
 } // namespace core
 

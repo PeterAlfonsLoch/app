@@ -58,7 +58,7 @@ namespace user
       return view::GuieProc(pobj);
    }
 
-   bool menu_list_view::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
+   bool menu_list_view::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
    {
       if(m_pguieNotify != NULL && m_pguieNotify != this)
       {

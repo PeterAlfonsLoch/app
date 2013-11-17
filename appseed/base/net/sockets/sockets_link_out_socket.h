@@ -7,7 +7,7 @@ namespace sockets
 
    class link_in_socket;
 
-   class CLASS_DECL_CORE link_out_socket : public tcp_socket
+   class CLASS_DECL_BASE link_out_socket : public tcp_socket
    {
    public:
 

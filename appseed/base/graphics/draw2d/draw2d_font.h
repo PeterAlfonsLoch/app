@@ -5,7 +5,7 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_CORE font :
+   class CLASS_DECL_BASE font :
       virtual public ::draw2d::object
    {
    public:

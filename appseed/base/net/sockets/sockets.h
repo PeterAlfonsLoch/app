@@ -53,7 +53,7 @@ namespace net
 #include "sockets_trace_logger.h"
 
 
-#include "core/net/net_address.h"
+#include "base/net/net_address.h"
 #include "base/sockets_base_socket.h"
 
 
@@ -65,7 +65,8 @@ namespace net
 #error "Unknown Sockets Type?"
 #endif
 
-
+#include "base/file/file_timeout_buffer.h"
+#include "base/file/file_transfer_buffer.h"
 #include "sockets_http_buffer.h"
 #include "sockets_http_batch_buffer.h"
 

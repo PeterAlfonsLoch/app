@@ -13,7 +13,7 @@
 namespace libcompress
 {
 
-   class CLASS_DECL_CORE filter_coder:
+   class CLASS_DECL_BASE filter_coder:
       public coder_interface,
       public set_input_stream_interface,
       public set_output_stream_interface,

@@ -264,7 +264,7 @@ namespace user
       }
    }
 
-   bool document_template::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
+   bool document_template::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
    {
       return command_target::_001OnCmdMsg(pcmdmsg);
    }

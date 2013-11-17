@@ -73,7 +73,7 @@ namespace user
 
 
 
-      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
+      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 

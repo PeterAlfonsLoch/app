@@ -856,7 +856,7 @@ namespace user
    }
 
 
-   bool frame_window::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
+   bool frame_window::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
    {
 
       if(m_workset._001OnCmdMsg(pcmdmsg))

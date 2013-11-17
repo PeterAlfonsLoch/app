@@ -414,9 +414,9 @@ namespace frame
       return false;
    }
 
-   bool WorkSet::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
+   bool WorkSet::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
    {
-      if(pcmdmsg->m_etype == BaseCmdMsg::type_command
+      if(pcmdmsg->m_etype == base_cmd_msg::type_command
       && m_pwndCommand != NULL)
       {
           WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pwndCommand.m_p);

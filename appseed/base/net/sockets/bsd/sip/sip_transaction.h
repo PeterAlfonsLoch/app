@@ -3,7 +3,7 @@
 namespace sip
 {
 
-   class CLASS_DECL_CORE transaction :
+   class CLASS_DECL_BASE transaction :
       virtual public object
    {
    public:

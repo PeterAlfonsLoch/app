@@ -5,7 +5,7 @@
 namespace libcompress
 {
 
-   class CLASS_DECL_CORE set_decoder_properties2_interface :
+   class CLASS_DECL_BASE set_decoder_properties2_interface :
       virtual public object
    {
    public:

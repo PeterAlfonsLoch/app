@@ -4,7 +4,7 @@
    namespace sockets
    {
 
-      class CLASS_DECL_CORE http_tunnel :
+      class CLASS_DECL_BASE http_tunnel :
          virtual public http_socket
       {
       public:

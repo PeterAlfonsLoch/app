@@ -26,7 +26,7 @@ namespace zip
 
    class File;
 
-   class CLASS_DECL_CORE InFile :
+   class CLASS_DECL_BASE InFile :
       public ::file::binary_buffer
    {
    public:

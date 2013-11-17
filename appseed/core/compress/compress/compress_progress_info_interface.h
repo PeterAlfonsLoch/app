@@ -3,7 +3,7 @@
 namespace libcompress
 {
 
-   class CLASS_DECL_CORE progress_info_interface :
+   class CLASS_DECL_BASE progress_info_interface :
       virtual public object
    {
    public:

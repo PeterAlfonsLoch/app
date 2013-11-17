@@ -19,7 +19,7 @@ namespace user
 
       virtual void GuieProc(signal_details * pobj);
 
-      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
+      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
       bool LoadMenu(sp(::xml::node) pnode, sp(::user::interaction) pguieNotify, UINT uiCallbackMessage);
          

@@ -5,7 +5,7 @@
 namespace libcompress
 {
 
-   class CLASS_DECL_CORE filter_interface :
+   class CLASS_DECL_BASE filter_interface :
       virtual public object
    {
    public:

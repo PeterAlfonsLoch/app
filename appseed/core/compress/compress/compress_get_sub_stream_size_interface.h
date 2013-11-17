@@ -3,7 +3,7 @@
 namespace libcompress
 {
 
-   class CLASS_DECL_CORE get_sub_stream_size_interface :
+   class CLASS_DECL_BASE get_sub_stream_size_interface :
       virtual public object
    {
    public:

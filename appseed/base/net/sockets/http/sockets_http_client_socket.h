@@ -7,7 +7,7 @@
 
       /** get http response to file or primitive::memory.
       \ingroup http */
-      class CLASS_DECL_CORE http_client_socket :
+      class CLASS_DECL_BASE http_client_socket :
          virtual public http_tunnel
       {
       public:

@@ -53,7 +53,7 @@ namespace user
 
 
 
-   bool document::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
+   bool document::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
 
    {
       if (command_target::_001OnCmdMsg(pcmdmsg))

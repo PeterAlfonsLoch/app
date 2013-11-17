@@ -10,13 +10,13 @@
 
 
 #ifdef _CORE_LIBRARY
-   #define CLASS_DECL_CORE  CLASS_DECL_EXPORT
+   #define CLASS_DECL_BASE  CLASS_DECL_EXPORT
 #else
-   #define CLASS_DECL_CORE  CLASS_DECL_IMPORT
+   #define CLASS_DECL_BASE  CLASS_DECL_IMPORT
 #endif
 
 
-extern CLASS_DECL_CORE string g_strNote;
+extern CLASS_DECL_BASE string g_strNote;
 
 
 namespace plane
@@ -82,10 +82,6 @@ class job;
 #include "api/api_rotate.h"
 
 
-#define rgba_get_r(rgba)      ((byte)(rgba & 0xff))
-#define rgba_get_g(rgba)      ((byte)((rgba >> 8) & 0xff))
-#define rgba_get_b(rgba)      ((byte)((rgba >> 16) & 0xff))
-#define rgba_get_a(rgba)      ((byte)((rgba >> 24) & 0xff))
 
 #ifdef WINDOWS
 #include <crtdbg.h>
@@ -268,7 +264,7 @@ struct memory_state;
 
 
 #undef __DATA
-#define __DATA CLASS_DECL_CORE
+#define __DATA CLASS_DECL_BASE
 
 
 #ifdef ___ALL_WARNINGS
@@ -511,18 +507,18 @@ enum __HELP_TYPE
 
 #ifdef DEBUG
 // Diagnostic Output
-CLASS_DECL_CORE dump_context & operator<<(dump_context & dumpcontext, SIZE size);
-CLASS_DECL_CORE dump_context & operator<<(dump_context & dumpcontext, POINT point);
-CLASS_DECL_CORE dump_context & operator<<(dump_context & dumpcontext, const RECT& rect);
+CLASS_DECL_BASE dump_context & operator<<(dump_context & dumpcontext, SIZE size);
+CLASS_DECL_BASE dump_context & operator<<(dump_context & dumpcontext, POINT point);
+CLASS_DECL_BASE dump_context & operator<<(dump_context & dumpcontext, const RECT& rect);
 #endif //DEBUG
 
 // Serialization
-/*CLASS_DECL_CORE CArchive& operator<<(CArchive& ar, SIZE size);
-CLASS_DECL_CORE CArchive& operator<<(CArchive& ar, POINT point);
-CLASS_DECL_CORE CArchive& operator<<(CArchive& ar, const RECT& rect);
-CLASS_DECL_CORE CArchive& operator>>(CArchive& ar, SIZE& size);
-CLASS_DECL_CORE CArchive& operator>>(CArchive& ar, POINT& point);
-CLASS_DECL_CORE CArchive& operator>>(CArchive& ar, RECT& rect);
+/*CLASS_DECL_BASE CArchive& operator<<(CArchive& ar, SIZE size);
+CLASS_DECL_BASE CArchive& operator<<(CArchive& ar, POINT point);
+CLASS_DECL_BASE CArchive& operator<<(CArchive& ar, const RECT& rect);
+CLASS_DECL_BASE CArchive& operator>>(CArchive& ar, SIZE& size);
+CLASS_DECL_BASE CArchive& operator>>(CArchive& ar, POINT& point);
+CLASS_DECL_BASE CArchive& operator>>(CArchive& ar, RECT& rect);
 */
 
 
@@ -530,15 +526,10 @@ CLASS_DECL_CORE CArchive& operator>>(CArchive& ar, RECT& rect);
 
 
 
-CLASS_DECL_CORE void __get_gray_bitmap(sp(base_application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF crBackground);
-CLASS_DECL_CORE void __draw_gray_bitmap(sp(base_application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF crBackground);
-CLASS_DECL_CORE void __get_dithered_bitmap(sp(base_application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF cr1, COLORREF cr2);
-CLASS_DECL_CORE void __draw_dithered_bitmap(sp(base_application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
-
-
-#include "graphics/draw2d/draw2d.h"
-
-
+CLASS_DECL_BASE void __get_gray_bitmap(sp(base_application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF crBackground);
+CLASS_DECL_BASE void __draw_gray_bitmap(sp(base_application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF crBackground);
+CLASS_DECL_BASE void __get_dithered_bitmap(sp(base_application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_BASE void __draw_dithered_bitmap(sp(base_application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
 
 
 #include "graphics/visual/visual_const.h"
@@ -552,35 +543,12 @@ CLASS_DECL_CORE void __draw_dithered_bitmap(sp(base_application) papp, ::draw2d:
 
 
 
-typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
-
-
-CLASS_DECL_CORE thread* __begin_thread(sp(base_application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, int32_t epriority = ::core::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
-/* xxx CLASS_DECL_CORE thread* __begin_thread(sp(::coretype) pThreadClass,
-   int32_t nPriority = scheduling_priority_normal, UINT nStackSize = 0,
-   uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
-
-
-template < class THREAD_TYPE >
-THREAD_TYPE * __begin_thread (sp(base_application) papp, int32_t epriority = ::core::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
-{
-   THREAD_TYPE * pthread = new THREAD_TYPE(papp);
-   pthread->begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
-   return pthread;
-}
-
-
-
-
-
-// Use instead of PostQuitMessage in OLE server applications
-CLASS_DECL_CORE void __post_quit_message(int32_t nExitCode);
 
 
 class CRecentFileList;          // forward reference (see afxadv.h)
 
 
-/*class CLASS_DECL_CORE CCommandLineInfo : public ::core::object
+/*class CLASS_DECL_BASE CCommandLineInfo : public ::core::object
 {
 public:
    // Sets default values
@@ -621,11 +589,11 @@ protected:
 // ::user::document_manager
 
 
-/*CLASS_DECL_CORE bool __delete_reg_key(const char * lpszKey);
+/*CLASS_DECL_BASE bool __delete_reg_key(const char * lpszKey);
 
 
 
-CLASS_DECL_CORE bool _API
+CLASS_DECL_BASE bool _API
 __set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszValueName = NULL);
 
 */
@@ -760,11 +728,11 @@ namespace windows
 // Extra diagnostic tracing options
 
 #ifdef DEBUG
-extern CLASS_DECL_CORE UINT g_uiTraceFlags;
+extern CLASS_DECL_BASE UINT g_uiTraceFlags;
 #endif // DEBUG
 
 #ifdef DEBUG
-#define DECLARE___TRACE_CATEGORY( name ) extern CLASS_DECL_CORE ::core::trace::category name;
+#define DECLARE___TRACE_CATEGORY( name ) extern CLASS_DECL_BASE ::core::trace::category name;
 #else
 #define DECLARE___TRACE_CATEGORY( name ) const uint_ptr name = 0;
 #endif
@@ -773,22 +741,22 @@ extern CLASS_DECL_CORE UINT g_uiTraceFlags;
 //////////////////////////////////////////////////////////////////////////////
 // MessageBox helpers
 
-//CLASS_DECL_CORE void ::core::FormatString1(string & rString, UINT nIDS, const char * lpsz1);
-//CLASS_DECL_CORE void ::core::FormatString2(string & rString, UINT nIDS,
+//CLASS_DECL_BASE void ::core::FormatString1(string & rString, UINT nIDS, const char * lpsz1);
+//CLASS_DECL_BASE void ::core::FormatString2(string & rString, UINT nIDS,
 //            const char * lpsz1, const char * lpsz2);
-/*CLASS_DECL_CORE int32_t System.simple_message_box(const char * lpszText, UINT nType = MB_OK,
+/*CLASS_DECL_BASE int32_t System.simple_message_box(const char * lpszText, UINT nType = MB_OK,
             UINT nIDHelp = 0);*/
-/*CLASS_DECL_CORE int32_t System.simple_message_box(UINT nIDPrompt, UINT nType = MB_OK,
+/*CLASS_DECL_BASE int32_t System.simple_message_box(UINT nIDPrompt, UINT nType = MB_OK,
             UINT nIDHelp = (UINT)-1);*/
 
 // Implementation string helpers
-//CLASS_DECL_CORE void __format_strings(string & rString, UINT nIDS,
+//CLASS_DECL_BASE void __format_strings(string & rString, UINT nIDS,
 //            const char * const* rglpsz, int32_t nString);
 namespace core
 {
 
-   CLASS_DECL_CORE void format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int32_t nString);
-   CLASS_DECL_CORE bool extract_sub_string(string & rString, const char * lpszFullString, int32_t iSubString, char chSep = '\n');
+   CLASS_DECL_BASE void format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int32_t nString);
+   CLASS_DECL_BASE bool extract_sub_string(string & rString, const char * lpszFullString, int32_t iSubString, char chSep = '\n');
 
 }
 
@@ -986,7 +954,7 @@ enum {  FS_SHOW = 0x01, FS_HIDE = 0x02,
       FS_ENABLE = 0x10, FS_DISABLE = 0x20,
       FS_SYNCACTIVE = 0x40 };
 
-CLASS_DECL_CORE void __reposition_window(__SIZEPARENTPARAMS* lpLayout, sp(::user::interaction) oswindow, LPCRECT lpRect);
+CLASS_DECL_BASE void __reposition_window(__SIZEPARENTPARAMS* lpLayout, sp(::user::interaction) oswindow, LPCRECT lpRect);
 
 #ifndef LAYOUT_LTR
 #define LAYOUT_LTR                         0x00000000
@@ -1127,7 +1095,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // CArchiveStream
 /*
-class CLASS_DECL_CORE CArchiveStream : public IStream
+class CLASS_DECL_BASE CArchiveStream : public IStream
 {
 public:
    CArchiveStream(CArchive* pArchive);
@@ -1156,12 +1124,12 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // Global UNICODE<>ANSI translation helpers
 
-CLASS_DECL_CORE void ::core::BSTR2String(string* pStr, BSTR bstr);
+CLASS_DECL_BASE void ::core::BSTR2String(string* pStr, BSTR bstr);
 
 #if !defined(_UNICODE)
-CLASS_DECL_CORE BSTR ::core::BSTR2ABSTR(BSTR bstrW);
-CLASS_DECL_CORE wchar_t * ::core::TaskStringA2W(const char * lpa);
-CLASS_DECL_CORE char * ::core::TaskStringW2A(const wchar_t * lpw);
+CLASS_DECL_BASE BSTR ::core::BSTR2ABSTR(BSTR bstrW);
+CLASS_DECL_BASE wchar_t * ::core::TaskStringA2W(const char * lpa);
+CLASS_DECL_BASE char * ::core::TaskStringW2A(const wchar_t * lpw);
 #endif
 
 #endif // __AFXPRIV2_H__DISP__
@@ -1272,8 +1240,8 @@ inline bool is_null(const TYPE & ref)
 #define NULL_REF(class) (*((class *) NULL))
 
 
-//CLASS_DECL_CORE ::core::byte_input_stream &  operator >>(::core::byte_input_stream & istream, string & string);
-//CLASS_DECL_CORE ::core::byte_output_stream &  operator <<(::core::byte_output_stream & ostream, const string & string);
+//CLASS_DECL_BASE ::core::byte_input_stream &  operator >>(::core::byte_input_stream & istream, string & string);
+//CLASS_DECL_BASE ::core::byte_output_stream &  operator <<(::core::byte_output_stream & ostream, const string & string);
 
 //#ifdef WIN32
 //#include "core_file_association.h"
@@ -1382,10 +1350,6 @@ class Ex1FactoryImpl;
 
 #include "net/net_email_address.h"
 #include "net/net_email.h"
-
-
-
-#include "net/sockets/sockets.h"
 
 
 

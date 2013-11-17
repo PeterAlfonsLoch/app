@@ -99,7 +99,7 @@ namespace user
       void add_document_template(sp(::user::document_template) ptemplate);
       virtual sp(::user::document) _vmsguserbaseOpenDocumentFile(const char * lpszFileName);
 
-      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
+      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
 
       virtual void _001OnFileNew();

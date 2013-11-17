@@ -172,7 +172,7 @@ namespace frame
       bool IsFullScreen();
       bool ViewFullScreen(bool bFullScreen);
 
-      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
+      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg); 
 
       virtual void OnSize(UINT nType, int32_t cx, int32_t cy);
 

@@ -7,13 +7,13 @@ base_cmd_ui::base_cmd_ui(class ::signal * psignal) :
 }
 
 
-BaseCommand::BaseCommand(class ::signal * psignal) :
+base_cmd::base_cmd(class ::signal * psignal) :
    signal_details(psignal)
 {
 }
 
 
-BaseCmdMsg::BaseCmdMsg()
+base_cmd_msg::base_cmd_msg()
 {
 
 
@@ -23,7 +23,7 @@ BaseCmdMsg::BaseCmdMsg()
 }
 
 
-BaseCmdMsg::BaseCmdMsg(id id)
+base_cmd_msg::base_cmd_msg(id id)
 {
 
 
@@ -34,7 +34,7 @@ BaseCmdMsg::BaseCmdMsg(id id)
 }
 
 
-BaseCmdMsg::BaseCmdMsg(cmd_ui * pcmdui)
+base_cmd_msg::base_cmd_msg(cmd_ui * pcmdui)
 {
 
 
@@ -45,32 +45,32 @@ BaseCmdMsg::BaseCmdMsg(cmd_ui * pcmdui)
 }
 
 
-bool BaseCmdMsg::handle(::command_target * pcommandtarget)
+bool base_cmd_msg::handle(::command_target * pcommandtarget)
 {
    return m_commandtargetptraHandle.add_unique(pcommandtarget);
 }
 
-bool BaseCmdMsg::is_handled(::command_target * pcommandtarget)
+bool base_cmd_msg::is_handled(::command_target * pcommandtarget)
 {
    return m_commandtargetptraHandle.contains(pcommandtarget);
 }
 
 bool command_target_interface::_001SendCommand(id id)
 {
-   BaseCmdMsg msg(id);
+   base_cmd_msg msg(id);
    return _001OnCmdMsg(&msg);
 }
 
 bool command_target_interface::_001SendUpdateCmdUi(cmd_ui * pcmdui)
 {
-   BaseCmdMsg msg(pcmdui);
+   base_cmd_msg msg(pcmdui);
    return _001OnCmdMsg(&msg);
 }
 
-bool command_target_interface::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
+bool command_target_interface::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
 {
 
-   if(pcmdmsg->m_etype == BaseCmdMsg::type_command)
+   if(pcmdmsg->m_etype == base_cmd_msg::type_command)
    {
 
       CTestCmdUI cmdui(get_app());
@@ -125,11 +125,11 @@ command_target_interface::command_target_interface(sp(base_application) papp)
 bool command_target_interface::_001OnCommand(id id)
 {
    ::dispatch::signal_item_ptr_array signalptra;
-   get_command_signal_array(BaseCmdMsg::type_command, signalptra, id);
+   get_command_signal_array(base_cmd_msg::type_command, signalptra, id);
    bool bOk = false;
    for(int32_t i = 0; i < signalptra.get_size(); i++)
    {
-      BaseCommand command(signalptra[i]->m_psignal);
+      base_cmd command(signalptra[i]->m_psignal);
       command.m_id = id;
       signalptra[i]->m_psignal->emit(&command);
       if(command.m_bRet)
@@ -143,7 +143,7 @@ bool command_target_interface::_001HasCommandHandler(id id)
 
    ::dispatch::signal_item_ptr_array signalptra;
 
-   get_command_signal_array(BaseCmdMsg::type_command, signalptra, id);
+   get_command_signal_array(base_cmd_msg::type_command, signalptra, id);
 
    return signalptra.get_size() > 0;
 
@@ -153,7 +153,7 @@ bool command_target_interface::_001HasCommandHandler(id id)
 bool command_target_interface::_001OnUpdateCmdUi(cmd_ui * pcmdui)
 {
    ::dispatch::signal_item_ptr_array signalptra;
-   get_command_signal_array(BaseCmdMsg::type_cmdui, signalptra, pcmdui->m_id);
+   get_command_signal_array(base_cmd_msg::type_cmdui, signalptra, pcmdui->m_id);
    bool bOk = false;
    for(int32_t i = 0; i < signalptra.get_size(); i++)
    {
@@ -166,7 +166,7 @@ bool command_target_interface::_001OnUpdateCmdUi(cmd_ui * pcmdui)
    return bOk;
 }
 
-void command_target_interface::get_command_signal_array(BaseCmdMsg::e_type etype, ::dispatch::signal_item_ptr_array & signalptra, id id)
+void command_target_interface::get_command_signal_array(base_cmd_msg::e_type etype, ::dispatch::signal_item_ptr_array & signalptra, id id)
 {
    command_signalid signalid;
    signalid.m_id = id;
@@ -176,11 +176,11 @@ void command_target_interface::get_command_signal_array(BaseCmdMsg::e_type etype
       class signalid * pid = m_signalidaCommand[i];
       if(pid->matches(&signalid))
       {
-         if(etype == BaseCmdMsg::type_command)
+         if(etype == base_cmd_msg::type_command)
          {
             m_dispatchCommand.m_signala.GetSignalsById(signalptra, &signalid);
          }
-         else if(etype == BaseCmdMsg::type_cmdui)
+         else if(etype == base_cmd_msg::type_cmdui)
          {
             m_dispatchUpdateCmdUi.m_signala.GetSignalsById(signalptra, &signalid);
          }

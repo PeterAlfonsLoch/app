@@ -853,7 +853,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // command routing
 
-   bool document_interface::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
+   bool document_interface::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
    {
       if (command_target::_001OnCmdMsg(pcmdmsg))
          return TRUE;

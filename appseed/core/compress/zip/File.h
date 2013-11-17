@@ -8,7 +8,7 @@
 namespace zip
 {
 
-   class CLASS_DECL_CORE File : 
+   class CLASS_DECL_BASE File : 
       virtual public object
    {
    public:

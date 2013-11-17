@@ -1,6 +1,9 @@
 #pragma once
 
 
+#undef new
+
+
 inline void * plex_heap_alloc_sync::Alloc()
 {
 
@@ -308,3 +311,5 @@ inline plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
 
 
 
+
+#define new DEBUG_NEW

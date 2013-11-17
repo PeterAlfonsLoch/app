@@ -8,7 +8,7 @@ namespace http
 {
 
 
-   class CLASS_DECL_CORE cookie :
+   class CLASS_DECL_BASE cookie :
       virtual public root
    {
    public:
@@ -63,7 +63,7 @@ namespace http
 
 
 
-   class CLASS_DECL_CORE cookies :
+   class CLASS_DECL_BASE cookies :
       public spa(cookie)
    {
    public:

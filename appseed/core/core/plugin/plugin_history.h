@@ -3,7 +3,7 @@
 namespace plugin
 {
 
-   class CLASS_DECL_CORE history :
+   class CLASS_DECL_BASE history :
       virtual public ::core::history
    {
    public:

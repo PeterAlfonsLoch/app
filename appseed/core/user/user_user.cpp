@@ -714,7 +714,7 @@ retry_license:
    }
 
 
-   bool user::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)  
+   bool user::_001OnCmdMsg(base_cmd_msg * pcmdmsg)  
    {
       UNREFERENCED_PARAMETER(pcmdmsg);
       return false;

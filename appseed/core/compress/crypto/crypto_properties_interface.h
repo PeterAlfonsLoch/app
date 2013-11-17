@@ -2,7 +2,7 @@
 
 namespace crypto
 {
-   class CLASS_DECL_CORE properties_interface :
+   class CLASS_DECL_BASE properties_interface :
       virtual public object
    {
    public:

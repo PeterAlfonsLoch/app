@@ -4,7 +4,7 @@
 
 namespace sockets
 {
-   class CLASS_DECL_CORE sip_base :
+   class CLASS_DECL_BASE sip_base :
       virtual public object
    {
    public:

@@ -5,7 +5,7 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_CORE object :
+   class CLASS_DECL_BASE object :
       virtual public ::object
    {
    public:

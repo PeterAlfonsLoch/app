@@ -5,7 +5,7 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_CORE path :
+   class CLASS_DECL_BASE path :
       virtual public ::draw2d::object
    {
    public:
@@ -140,7 +140,7 @@ namespace draw2d
    };
 
 
-   class CLASS_DECL_CORE path_sp :
+   class CLASS_DECL_BASE path_sp :
       public smart_pointer < path >
    {
    public:

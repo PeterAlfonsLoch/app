@@ -5,7 +5,7 @@ namespace core
 {
 
 
-   class CLASS_DECL_CORE install :
+   class CLASS_DECL_BASE install :
       public object
    {
    public:

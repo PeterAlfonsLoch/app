@@ -646,7 +646,7 @@ public:
    void OnUpdateRecentFileMenu(cmd_ui * pcmdui) ;
 
    virtual DECL_GEN_SIGNAL(OnAppLanguage)
-      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
+      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
 
    virtual string get_local_mutex_id();

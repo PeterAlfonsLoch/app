@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_CORE sip_server :
+   class CLASS_DECL_BASE sip_server :
       public thread,
       public sip_base
    {

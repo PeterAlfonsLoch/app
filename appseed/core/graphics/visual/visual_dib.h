@@ -2,6 +2,12 @@
 
 struct FIBITMAP;
 
+
+#include <ft2build.h>
+
+
+#include FT_FREETYPE_H
+
 namespace visual
 {
 
@@ -50,6 +56,18 @@ namespace visual
 
       virtual bool save_to_file(var varFile, save_image * psaveimage = NULL);
       virtual bool write_to_file(::file::buffer_sp  pfile, save_image * psaveimage = NULL);
+
+
+      virtual bool from(::draw2d::graphics * pgraphics, FIBITMAP * pfibitmap, bool bUnloadFI);
+
+      virtual void draw_bitmap(int32_t dx, int32_t dy, FT_Bitmap * bitmap, FT_Int x, FT_Int y);
+
+
+      virtual bool update_window(::user::window * pwnd, signal_details * pobj);
+      virtual bool print_window(::user::window * pwnd, signal_details * pobj);
+
+
+
 
 
    };

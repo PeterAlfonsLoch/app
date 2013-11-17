@@ -22,7 +22,7 @@ namespace user
    public:
 
 
-      ::base_thread *         m_pthread;
+      ::thread *         m_pthread;
       ::user::interaction *   m_pui;
 
 

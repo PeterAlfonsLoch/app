@@ -3,7 +3,7 @@
 namespace libcompress
 {
 
-   class CLASS_DECL_CORE coder_interface :
+   class CLASS_DECL_BASE coder_interface :
       virtual public object
    {
    public:

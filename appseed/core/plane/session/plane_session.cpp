@@ -259,7 +259,7 @@ namespace plane
    }
 
 
-   bool session::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
+   bool session::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
 
    {
       return application::_001OnCmdMsg(pcmdmsg);

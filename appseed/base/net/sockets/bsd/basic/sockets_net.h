@@ -85,7 +85,7 @@ namespace sockets
    */
 
 
-   class CLASS_DECL_CORE net :
+   class CLASS_DECL_BASE net :
       public object
    {
    private:
@@ -102,7 +102,7 @@ namespace sockets
    public:
 
 
-      class CLASS_DECL_CORE dns_cache_item
+      class CLASS_DECL_BASE dns_cache_item
       {
       public:
 

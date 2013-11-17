@@ -12,6 +12,13 @@ class multi_lock;
 
 
 
+
+
+// Use instead of PostQuitMessage in OLE server applications
+CLASS_DECL_BASE void __post_quit_message(int32_t nExitCode);
+
+
+
 #include "multithreading_sync_object.h"
 #include "multithreading_event_base.h"
 #include "multithreading_event_collection.h"
@@ -51,5 +58,26 @@ class multi_lock;
 
 
 #include "multithreading_thread_os.h"
-#include "multithreading_thread.h"
+
+typedef UINT(c_cdecl *__THREADPROC)(LPVOID);
+
+
+CLASS_DECL_BASE thread* __begin_thread(sp(base_application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, int32_t epriority = ::core::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+/* xxx CLASS_DECL_BASE thread* __begin_thread(sp(::coretype) pThreadClass,
+int32_t nPriority = scheduling_priority_normal, UINT nStackSize = 0,
+uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
+
+
+template < class THREAD_TYPE >
+THREAD_TYPE * __begin_thread(sp(base_application) papp, int32_t epriority = ::core::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
+{
+   THREAD_TYPE * pthread = new THREAD_TYPE(papp);
+   pthread->begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
+   return pthread;
+}
+
+
+CLASS_DECL_BASE HTHREAD get_current_thread();
+
+
 

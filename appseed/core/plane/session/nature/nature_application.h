@@ -33,7 +33,7 @@ namespace nature
 
       void _001OnFileNew();
 
-      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
+      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
    };
 

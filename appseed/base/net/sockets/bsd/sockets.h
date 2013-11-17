@@ -16,7 +16,7 @@
 #include "basic/sockets_tls_socket.h"
 
 
-#include "core/net/sockets/base/sockets_base_socket_handler.h"
+#include "base/net/sockets/base/sockets_base_socket_handler.h"
 #include "basic/sockets_socket_handler.h"
 #include "basic/sockets_listen_socket.h"
 
@@ -25,7 +25,7 @@
 
 
 
-#include "core/net/sockets/http/sockets_http.h"
+#include "base/net/sockets/http/sockets_http.h"
 
 
 
@@ -50,6 +50,9 @@
 #include "sip/sip_client.h"
 #include "sip/sip_server.h"
 
+#include "net/net_email_address.h"
+#include "net/net_email.h"
+
 #include "smtp/smtp_socket.h"
 #include "smtp/smtpd_socket.h"
 
@@ -67,8 +70,8 @@
 #include "basic/sockets_sync_socket_handler.h"
 
 
-#include "core/net/sockets/sockets_link_out_socket.h"
-#include "core/net/sockets/sockets_link_in_socket.h"
+#include "base/net/sockets/sockets_link_out_socket.h"
+#include "base/net/sockets/sockets_link_in_socket.h"
 
 #include "basic/sockets_net.h"
 

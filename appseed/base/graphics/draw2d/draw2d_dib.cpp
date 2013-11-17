@@ -1038,14 +1038,11 @@ fill_last:
 
    bool dib::bitmap_blend(::draw2d::graphics * pgraphics, LPCRECT lprect)
    {
+
       rect rect(lprect);
 
-      return System.visual().imaging().bitmap_blend(
-         pgraphics,
-         rect.top_left(),
-         rect.size(),
-         get_graphics(),
-         null_point());
+      return pgraphics->BitBlt(rect.left, rect.top, rect.width(), rect.height, get_graphics(), 0, 0, SRCCOPY) != FALSE;
+
    }
 
 

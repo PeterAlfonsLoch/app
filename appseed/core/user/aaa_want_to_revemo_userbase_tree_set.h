@@ -24,7 +24,7 @@ namespace user
       void RenameFile(int32_t iLine, string & str);
       virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
 
-      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
+      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
       virtual void on_update(::user::view * pSender, LPARAM lHint, base_object* pHint);
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);

@@ -596,7 +596,7 @@ namespace filemanager
       //SetTimer(1234567, 50, NULL);
    }
 
-   bool file_list::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
+   bool file_list::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
    {
       ::fs::item_array itema;
       GetSelected(itema);
@@ -613,7 +613,7 @@ namespace filemanager
 
    void file_list::_001OnFileManagerItemCommand(signal_details * pobj)
    {
-      SCAST_PTR(BaseCommand, pcommand, pobj)
+      SCAST_PTR(base_cmd, pcommand, pobj)
       ::fs::item_array itema;
       index iItemRange, iItem;
       range range;

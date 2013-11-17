@@ -378,7 +378,7 @@ namespace user
    }
 #endif
 
-   bool window::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
+   bool window::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
    {
       UNREFERENCED_PARAMETER(pcmdmsg);
       throw interface_only_exception(get_app());

@@ -6,7 +6,7 @@
 namespace zip
 {
 
-   class CLASS_DECL_CORE api  
+   class CLASS_DECL_BASE api  
    {
    public:
 

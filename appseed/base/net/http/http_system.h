@@ -17,13 +17,13 @@ namespace fontopus
 namespace http
 {
 
-   class CLASS_DECL_CORE system :
+   class CLASS_DECL_BASE system :
       virtual public signalizable
    {
    public:
 
 
-      class CLASS_DECL_CORE pac :
+      class CLASS_DECL_BASE pac :
          virtual public object
       {
       public:
@@ -41,7 +41,7 @@ namespace http
       };
 
 
-      class CLASS_DECL_CORE proxy :
+      class CLASS_DECL_BASE proxy :
          virtual public object
       {
       public:

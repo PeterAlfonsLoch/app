@@ -35,7 +35,7 @@ public:
 
 
 class CLASS_DECL_BASE base_application :
-   virtual public base_thread
+   virtual public thread
 {
 public:
 

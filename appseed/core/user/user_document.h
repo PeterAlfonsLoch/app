@@ -31,7 +31,7 @@ namespace user
       virtual void dump(dump_context &) const;
       virtual void assert_valid() const;
 
-      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
+      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
 
 

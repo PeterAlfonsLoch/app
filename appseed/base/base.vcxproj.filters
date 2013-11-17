@@ -147,6 +147,102 @@
     <Filter Include="Source Files\os\cross\metrowin">
       <UniqueIdentifier>{e16bae98-9b4b-4f16-8aea-c1eeeb80d1d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\net\http">
+      <UniqueIdentifier>{87154103-1603-4ede-93b7-a339452693d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets">
+      <UniqueIdentifier>{8fae7900-ce7c-490a-a003-21d7bbc52bba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd">
+      <UniqueIdentifier>{aa2de5fd-433e-4c87-a975-f11c7df0e2a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\asynch_dns">
+      <UniqueIdentifier>{baf4bf79-0723-4aa5-9196-54f9af9dd6a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\basic">
+      <UniqueIdentifier>{7a21e308-ac3d-4e9c-baed-60bca85b09ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\internal">
+      <UniqueIdentifier>{4ff161c8-bc1d-4055-970d-44982ecbde11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\smtp">
+      <UniqueIdentifier>{1dedc2b1-d1f0-4908-99f2-09c8fd1ef98a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\sip">
+      <UniqueIdentifier>{f3eb02c4-8094-402d-881b-710f80d399a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\timer">
+      <UniqueIdentifier>{a1f3ff52-fcc1-408b-8341-a9f71dc4aa5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\webserver">
+      <UniqueIdentifier>{7778ba93-af59-4ce3-8697-5fb3fccc9ca2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\webserver">
+      <UniqueIdentifier>{aba1157a-0acc-40b6-a867-7640fc18260f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\base">
+      <UniqueIdentifier>{e1cfdcb3-5c36-4daf-bf60-bee8dda845b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\http">
+      <UniqueIdentifier>{a5c7501f-8541-45c3-a3a3-755c723b2e05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\smtp\NewFilter1">
+      <UniqueIdentifier>{4d9ffa81-d63c-4b08-9569-b94adbe41760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{99770166-4760-4a1f-97fa-e3f6766a517c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\draw2d">
+      <UniqueIdentifier>{f63fcdc5-a231-426e-9b32-4429c5fee34d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{b8226273-efa2-4c5c-814e-29792dd05b58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\http">
+      <UniqueIdentifier>{2451c210-f24a-4626-b8cc-97b3f5930555}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets">
+      <UniqueIdentifier>{176a1d43-41e0-46f2-8712-2fba8a448aac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\bsd">
+      <UniqueIdentifier>{337710ef-0295-4559-85f6-5d63ce2022cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\bsd\asynch_dns">
+      <UniqueIdentifier>{81f6d057-4560-4f85-9a5e-6b94d5484070}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\bsd\internal">
+      <UniqueIdentifier>{a6046340-d6ab-4917-8a48-caa83b44298c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\bsd\sip">
+      <UniqueIdentifier>{94f7a9a2-8c4d-47f1-be59-bca4e9a68f3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\bsd\smtp">
+      <UniqueIdentifier>{ce8e1910-fdab-4916-be09-39a3d446de5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\bsd\timer">
+      <UniqueIdentifier>{f004c46c-913f-44e3-8276-613682f04b0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\bsd\webserver">
+      <UniqueIdentifier>{cfa9b769-297b-4db9-98ca-510975595975}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\webserver">
+      <UniqueIdentifier>{c2b29c7c-2e42-47ec-8530-4abbfb7d3468}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\base">
+      <UniqueIdentifier>{f43de315-2e56-41f7-a09d-08a1e060ea43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\http">
+      <UniqueIdentifier>{16d3ab4a-a67a-4333-96da-7245b291e6e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\bsd\basic">
+      <UniqueIdentifier>{12411c8f-2a93-40cf-bb5e-14f2988930a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\draw2d">
+      <UniqueIdentifier>{adb13c14-e574-4d1e-b88d-00b62542c49e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\visual">
+      <UniqueIdentifier>{2703a7f6-7ead-46b3-b241-4cbd23d6a89e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework_c.h">
@@ -806,9 +902,6 @@
     <ClInclude Include="primitive\primitive_create_context.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="net\net_http.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
     <ClInclude Include="net\net.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
@@ -1195,6 +1288,351 @@
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_set_event_on_exit.h">
       <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_application.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_get_socket.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_http.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_output_stream.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_system.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\base\sockets_base_socket.h">
+      <Filter>Header Files\net\sockets\base</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\base\sockets_base_socket_handler.h">
+      <Filter>Header Files\net\sockets\base</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\asynch_dns\resolv_server.h">
+      <Filter>Header Files\net\sockets\bsd\asynch_dns</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\asynch_dns\resolv_socket.h">
+      <Filter>Header Files\net\sockets\bsd\asynch_dns</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\internal\SSLInitializer.h">
+      <Filter>Header Files\net\sockets\bsd\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_client_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_debug_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_get_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_post_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_put_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_request_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_session.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_tunnel.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\webserver\webserver_http_cookie.h">
+      <Filter>Header Files\net\sockets\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\webserver\webserver_http_form.h">
+      <Filter>Header Files\net\sockets\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\webserver\webserver_http_request.h">
+      <Filter>Header Files\net\sockets\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\webserver\webserver_http_response.h">
+      <Filter>Header Files\net\sockets\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\webserver\webserver_http_transaction.h">
+      <Filter>Header Files\net\sockets\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_http_batch_buffer.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_http_buffer.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_link_in_socket.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_link_out_socket.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_logger.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_trace_logger.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_base.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_base_client_socket.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_callback.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_client.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_event.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_request.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_response.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_server.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_socket.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_tcp_client_socket.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_transaction.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_udp_client_socket.h">
+      <Filter>Header Files\net\sockets\bsd\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_listen_socket.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_net.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_sctp_socket.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_socket.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_socket_handler.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_stream_socket.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_sync_socket_handler.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_tcp_socket.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_tls_socket.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_udp_socket.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\smtp\smtp_socket.h">
+      <Filter>Header Files\net\sockets\bsd\smtp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\smtp\smtpd_socket.h">
+      <Filter>Header Files\net\sockets\bsd\smtp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\timer\Event.h">
+      <Filter>Header Files\net\sockets\bsd\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\timer\EventHandler.h">
+      <Filter>Header Files\net\sockets\bsd\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\timer\EventTime.h">
+      <Filter>Header Files\net\sockets\bsd\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\timer\IEventHandler.h">
+      <Filter>Header Files\net\sockets\bsd\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\timer\IEventOwner.h">
+      <Filter>Header Files\net\sockets\bsd\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\webserver\ajp13.h">
+      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\webserver\Ajp13Socket.h">
+      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\webserver\AjpBaseSocket.h">
+      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\webserver\http_base_socket.h">
+      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\webserver\httpd_socket.h">
+      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sockets.h">
+      <Filter>Header Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sockets_config.h">
+      <Filter>Header Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sockets_sockets.h">
+      <Filter>Header Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_bitmap.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_brush.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_dib.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_font.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_graphics.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_igui.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_object.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_palette.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_path.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_pen.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_region.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_color.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_key_enum.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_draw_context.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_job.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_log.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_message.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_interaction.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_window_interface.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_elemental.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_keyboard_focus.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_mouse_focus.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_const.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_command.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_address.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_command_target.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_flags.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_check_interface.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_text_interface.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_check.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_window_util.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_draw_interface.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_buffer.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_stream2.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_circular_buffer.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_email.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_email_address.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_go_thread.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_simple_thread.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_transfer_buffer.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_timeout_buffer.h">
+      <Filter>Header Files\file</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1909,6 +2347,252 @@
     <ClCompile Include="os\cross\metrowin\metrowin_user.cpp">
       <Filter>Source Files\os\cross\metrowin</Filter>
     </ClCompile>
+    <ClCompile Include="net\http\http_application.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_get_socket.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_output_stream.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_signal.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_system.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\base\sockets_base_socket.cpp">
+      <Filter>Source Files\net\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\base\sockets_base_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_listen_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_net.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_sctp_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_Socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_stream_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_sync_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_tcp_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_tls_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_udp_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_server.cpp">
+      <Filter>Source Files\net\sockets\bsd\asynch_dns</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\asynch_dns</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\internal\sockets_SSLInitializer.cpp">
+      <Filter>Source Files\net\sockets\bsd\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base_client_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_callback.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_client.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_request.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_response.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_server.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_tcp_client_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_transaction.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_udp_client_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\smtp\sockets_smtp_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\smtp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\smtp\sockets_smtpd_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\smtp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\timer\sockets_Event.cpp">
+      <Filter>Source Files\net\sockets\bsd\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\timer\sockets_EventHandler.cpp">
+      <Filter>Source Files\net\sockets\bsd\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\timer\sockets_EventTime.cpp">
+      <Filter>Source Files\net\sockets\bsd\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\timer\sockets_IEventOwner.cpp">
+      <Filter>Source Files\net\sockets\bsd\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\webserver\sockets_Ajp13Socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\webserver\sockets_AjpBaseSocket.cpp">
+      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\webserver\sockets_http_base_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\webserver\sockets_httpd_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sockets_include.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sockets_sockets.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_client_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_debug_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_get_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_post_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_put_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_request_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_session.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_tunnel.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\webserver\sockets_http_cookie.cpp">
+      <Filter>Source Files\net\sockets\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\webserver\sockets_http_form.cpp">
+      <Filter>Source Files\net\sockets\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\webserver\sockets_http_request.cpp">
+      <Filter>Source Files\net\sockets\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\webserver\sockets_http_response.cpp">
+      <Filter>Source Files\net\sockets\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\webserver\sockets_http_transaction.cpp">
+      <Filter>Source Files\net\sockets\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_http_batch_buffer.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_http_buffer.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_link_in_socket.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_link_out_socket.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_trace_logger.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_brush.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_dib.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_font.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_graphics.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_object.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_palette.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_path.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_pen.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_region.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_job.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_interaction.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_address.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_draw_interface.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_stream2.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_email.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_email_address.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_transfer_buffer.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_timeout_buffer.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -2027,6 +2711,18 @@
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base\base_live_object.h">
+      <Filter>Header Files\base</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

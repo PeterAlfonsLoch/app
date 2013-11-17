@@ -9,7 +9,7 @@ namespace sockets
    class base_socket;
 
 
-   class logger :
+   class CLASS_DECL_BASE logger :
       virtual public ::object
    {
    public:
