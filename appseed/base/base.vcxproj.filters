@@ -1775,6 +1775,18 @@
     <ClInclude Include="net\net_url_domain.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
+    <ClInclude Include="file\file_application.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_dir_application.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_dir_system.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_system.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_c.c">
@@ -2826,6 +2838,18 @@
     </ClCompile>
     <ClCompile Include="user\fontopus\fontopus_validate.cpp">
       <Filter>Source Files\user\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_application.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_dir_application.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_dir_system.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_system.cpp">
+      <Filter>Source Files\file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -46,8 +46,6 @@ namespace plane
       FT_Library                                   m_ftlibrary;
       mutex                                        m_mutexDelete;
       application_ptra                       m_appptra;
-      ::file::system_sp                         m_spfile;
-      ::file::dir::system_sp                         m_spdir;
       class ::core::stra                             m_stra;
       class ::core::service                          m_service;
       class ::core::install                          m_install;

@@ -224,6 +224,8 @@ public:
    static class id                              idEmpty;
    class ::str::base64                          m_base64;
 
+   ::file::system_sp                         m_spfile;
+   ::file::dir::system_sp                         m_spdir;
 
 
    base_system(sp(base_application) papp);

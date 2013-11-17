@@ -1091,9 +1091,12 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base_trace.h" />
     <ClInclude Include="base\base_types.h" />
     <ClInclude Include="exception\exception_system.h" />
+    <ClInclude Include="file\file_application.h" />
     <ClInclude Include="file\file_byte_stream_memory_buffer.h" />
     <ClInclude Include="file\file_buffer.h" />
     <ClInclude Include="file\file_circular_buffer.h" />
+    <ClInclude Include="file\file_dir_application.h" />
+    <ClInclude Include="file\file_dir_system.h" />
     <ClInclude Include="file\file_plain_text_stream_memory_buffer.h" />
     <ClInclude Include="file\file_stream2.h" />
     <ClInclude Include="file\file_stream_buffer.h" />
@@ -1113,6 +1116,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="file\file_plain_text_stream_string_buffer.h" />
     <ClInclude Include="file\file_simple_binary_buffer.h" />
     <ClInclude Include="file\file_stream_buffer_base.h" />
+    <ClInclude Include="file\file_system.h" />
     <ClInclude Include="file\file_timeout_buffer.h" />
     <ClInclude Include="file\file_transfer_buffer.h" />
     <ClInclude Include="file\file_writer_flush.h" />
@@ -1621,7 +1625,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="exception\exception_todo.cpp" />
     <ClCompile Include="exception\exception_user.cpp" />
     <ClCompile Include="exception\exception_void_implementation.cpp" />
+    <ClCompile Include="file\file_application.cpp" />
     <ClCompile Include="file\file_byte_stream_memory_buffer.cpp" />
+    <ClCompile Include="file\file_dir_application.cpp" />
+    <ClCompile Include="file\file_dir_system.cpp" />
     <ClCompile Include="file\file_stream2.cpp" />
     <ClCompile Include="file\file_stream_buffer.cpp" />
     <ClCompile Include="file\file_byte_input_stream.cpp" />
@@ -1651,6 +1658,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="file\file_stream_base.cpp" />
     <ClCompile Include="file\file_stream_buffer_base.cpp" />
     <ClCompile Include="file\file_string_buffer.cpp" />
+    <ClCompile Include="file\file_system.cpp" />
     <ClCompile Include="file\file_timeout_buffer.cpp" />
     <ClCompile Include="file\file_transfer_buffer.cpp" />
     <ClCompile Include="file\file_writer.cpp" />

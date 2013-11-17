@@ -11,22 +11,22 @@ namespace file
 
    void application::copy(const char * pszNew, const char * pszOld, bool bFailIfExists, e_extract eextract)
    {
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->copy(pszNew, pszOld, bFailIfExists, eextract, m_pbaseapp);
+      return m_pbaseapp->m_pbasesystem->m_spfile->copy(pszNew, pszOld, bFailIfExists, eextract, m_pbaseapp);
    }
 
    void application::trash_that_is_not_trash(const char * psz)
    {
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->trash_that_is_not_trash(psz, m_pbaseapp);
+      return m_pbaseapp->m_pbasesystem->m_spfile->trash_that_is_not_trash(psz, m_pbaseapp);
    }
 
    void application::trash_that_is_not_trash(stringa & stra)
    {
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->trash_that_is_not_trash(stra, m_pbaseapp);
+      return m_pbaseapp->m_pbasesystem->m_spfile->trash_that_is_not_trash(stra, m_pbaseapp);
    }
 
    void application::replace(const char * pszContext, const char * pszFind, const char * pszReplace)
    {
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->replace(pszContext, pszFind, pszReplace, m_pbaseapp);
+      return m_pbaseapp->m_pbasesystem->m_spfile->replace(pszContext, pszFind, pszReplace, m_pbaseapp);
    }
 
    bool application::exists(const char * pszPath)
@@ -37,7 +37,7 @@ namespace file
          return AppUser(m_pbaseapp).m_pifs->file_exists(pszPath);
       }
 
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->exists(pszPath, m_pbaseapp);
+      return m_pbaseapp->m_pbasesystem->m_spfile->exists(pszPath, m_pbaseapp);
 
    }
 
@@ -51,7 +51,7 @@ namespace file
          return user.m_pifs->file_exists(strPath);
       }
 
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->exists(strPath, m_pbaseapp);
+      return m_pbaseapp->m_pbasesystem->m_spfile->exists(strPath, m_pbaseapp);
 
    }
 
@@ -65,83 +65,83 @@ namespace file
          return AppUser(m_pbaseapp).m_pifs->file_exists(strPath);
       }
 
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->exists(strPath, m_pbaseapp);
+      return m_pbaseapp->m_pbasesystem->m_spfile->exists(strPath, m_pbaseapp);
 
    }
 
    string application::time(const char * pszBasePath, int32_t iDepth, const char * pszPrefix, const char * pszSuffix)
    {
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->time(m_pbaseapp, pszBasePath, iDepth, pszPrefix, pszSuffix);
+      return m_pbaseapp->m_pbasesystem->m_spfile->time(m_pbaseapp, pszBasePath, iDepth, pszPrefix, pszSuffix);
    }
 
    string application::time_square(const char * pszPrefix, const char * pszSuffix)
    {
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->time_square(m_pbaseapp, pszPrefix, pszSuffix);
+      return m_pbaseapp->m_pbasesystem->m_spfile->time_square(m_pbaseapp, pszPrefix, pszSuffix);
    }
 
    string application::time_log(const char * pszId)
    {
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->time_log(m_pbaseapp, pszId);
+      return m_pbaseapp->m_pbasesystem->m_spfile->time_log(m_pbaseapp, pszId);
    }
 
    ::file::buffer_sp application::time_square_file(const char * pszPrefix, const char * pszSuffix)
    {
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->time_square_file(m_pbaseapp, pszPrefix, pszSuffix);
+      return m_pbaseapp->m_pbasesystem->m_spfile->time_square_file(m_pbaseapp, pszPrefix, pszSuffix);
    }
 
    ::file::buffer_sp application::get(const char * name)
    {
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->get(name, m_pbaseapp);
+      return m_pbaseapp->m_pbasesystem->m_spfile->get(name, m_pbaseapp);
    }
 
    string application::as_string(var varFile)
    {
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->as_string(varFile, m_pbaseapp);
+      return m_pbaseapp->m_pbasesystem->m_spfile->as_string(varFile, m_pbaseapp);
    }
 
    string application::as_string(var varFile, var & varQuery)
    {
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->as_string(varFile, varQuery, m_pbaseapp);
+      return m_pbaseapp->m_pbasesystem->m_spfile->as_string(varFile, varQuery, m_pbaseapp);
    }
 
    void application::as_memory(var varFile, primitive::memory & mem)
    {
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->as_memory(varFile, mem, m_pbaseapp);
+      return m_pbaseapp->m_pbasesystem->m_spfile->as_memory(varFile, mem, m_pbaseapp);
    }
 
    void application::lines(stringa & stra, var varFile)
    {
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->lines(stra, varFile, m_pbaseapp);
+      return m_pbaseapp->m_pbasesystem->m_spfile->lines(stra, varFile, m_pbaseapp);
    }
 
    bool application::put_contents(var varFile, const void * pvoidContents, ::count count)
    {
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->put_contents(varFile, pvoidContents, count, m_pbaseapp);
+      return m_pbaseapp->m_pbasesystem->m_spfile->put_contents(varFile, pvoidContents, count, m_pbaseapp);
    }
 
    bool application::put_contents(var varFile, const char * lpcszContents)
    {
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->put_contents(varFile, lpcszContents, m_pbaseapp);
+      return m_pbaseapp->m_pbasesystem->m_spfile->put_contents(varFile, lpcszContents, m_pbaseapp);
    }
 
    bool application::put_contents(var varFile, ::file::reader & reader)
    {
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->put_contents(varFile, reader, m_pbaseapp);
+      return m_pbaseapp->m_pbasesystem->m_spfile->put_contents(varFile, reader, m_pbaseapp);
    }
 
    bool application::put_contents(var varFile, primitive::memory & mem)
    {
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->put_contents(varFile, mem, m_pbaseapp);
+      return m_pbaseapp->m_pbasesystem->m_spfile->put_contents(varFile, mem, m_pbaseapp);
    }
 
    bool application::put_contents_utf8(var varFile, const char * lpcszContents)
    {
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->put_contents_utf8(varFile, lpcszContents, m_pbaseapp);
+      return m_pbaseapp->m_pbasesystem->m_spfile->put_contents_utf8(varFile, lpcszContents, m_pbaseapp);
    }
 
    string application::sys_temp(const char * pszName, const char * pszExtension)
    {
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->sys_temp(pszName, pszExtension, m_pbaseapp);
+      return m_pbaseapp->m_pbasesystem->m_spfile->sys_temp(pszName, pszExtension, m_pbaseapp);
    }
 
 

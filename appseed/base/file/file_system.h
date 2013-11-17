@@ -5,13 +5,13 @@ namespace file
 {
 
 
-   class CLASS_DECL_CORE system :
+   class CLASS_DECL_BASE system :
       public object
    {
    public:
 
 
-      class CLASS_DECL_CORE path :
+      class CLASS_DECL_BASE path :
          virtual public object
       {
       public:
@@ -172,11 +172,11 @@ namespace file
       void is_valid_fileset(const char * pszFile, sp(base_application) papp);
 
       // 'n' (natural) terminated ascii number, example: 245765487n
-      static void write_n_number(::file::buffer_sp  pfile, ::crypto::md5::context * pctx, int64_t iNumber);
-      static void read_n_number(::file::buffer_sp  pfile, ::crypto::md5::context * pctx, int64_t & iNumber);
+      static void write_n_number(::file::buffer_sp  pfile, ::md5::md5 * pctx, int64_t iNumber);
+      static void read_n_number(::file::buffer_sp  pfile, ::md5::md5 * pctx, int64_t & iNumber);
 
-      static void write_gen_string(::file::buffer_sp  pfile, ::crypto::md5::context * pctx, string & str);
-      static void read_gen_string(::file::buffer_sp  pfile, ::crypto::md5::context * pctx, string & str);
+      static void write_gen_string(::file::buffer_sp  pfile, ::md5::md5 * pctx, string & str);
+      static void read_gen_string(::file::buffer_sp  pfile, ::md5::md5 * pctx, string & str);
 
 
 

@@ -427,7 +427,6 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base/primitive/primitive_command_thread.h"
 
 
-#include "base_system.h"
 
 
 
@@ -442,6 +441,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
+#include "base_system.h"
 
 
 
