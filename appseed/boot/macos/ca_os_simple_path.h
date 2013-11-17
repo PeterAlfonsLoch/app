@@ -6,15 +6,9 @@ class CLASS_DECL_BOOT os_simple_path
 public:
 
    
-#ifdef __MM
+   CGMutablePathRef        m_path;
+   bool                    m_bBegin;
 
-   NSBezierPath *          m_nspath;
-   
-#else
-   
-   void *                  m_ppath;
-   
-#endif
    
    
    bool                       m_bFill;
@@ -38,8 +32,16 @@ public:
    bool add_rect(const RECT & rect);
 
    //bool get_arc(D2D1_POINT_2F & pt, D2D1_ARC_SEGMENT & arcseg, const RECT & rect, int iStart, int iAngle);
+   
+   void * detach();
 
-   //ID2D1PathGeometry * get_os_data();
+   void * get_os_data() const;
+   
+   bool add_move(int x, int y);
+   
+   bool create();
+   
+   bool destroy();
 
 
 };

@@ -14,21 +14,37 @@ class CLASS_DECL_BOOT simple_pen
 public:
    
    
-   enum e_style
+   enum e_type
    {
-      style_stock,
-      style_solid,
+      type_null,
+      type_solid,
+   };
+   
+   enum e_end_cap
+   {
+      end_cap_flat,
+      end_cap_round,
    };
    
    
-   int                  m_iStock;
-   e_style              m_estyle;
-   int                  m_iWidth;
-   COLORREF             m_cr;
+   enum e_line_join
+   {
+      line_join_miter,
+      line_join_bevel,
+      line_join_round,
+      line_join_miter_clipped,
+   };
    
+   e_type            m_etype;
+   e_end_cap         m_eendcap;
+   e_line_join       m_elinejoin;
+   double            m_dWidth;
+   COLORREF          m_cr;
    
+
    simple_pen();
    ~simple_pen();
+   
    
    bool create_solid(simple_graphics & g, COLORREF cr, int iWidth = 1);
    bool from_stock(int iId);

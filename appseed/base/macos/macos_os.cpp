@@ -58,3 +58,23 @@ void output_debug_string(const char * psz)
    OutputDebugString(psz);
    
 }
+
+
+WINBOOL GetCursorPos(LPPOINT lpptCursor)
+{
+   
+   HIPoint point;
+   
+   HICoordinateSpace space = kHICoordSpaceScreenPixel;
+   
+   HIGetMousePosition(space, NULL, &point);
+   
+   
+   lpptCursor->x = point.x;
+   lpptCursor->y = point.y;
+   
+   
+   return TRUE;
+   
+}
+

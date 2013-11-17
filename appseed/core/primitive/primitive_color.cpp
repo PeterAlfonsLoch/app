@@ -1,5 +1,6 @@
 #include "framework.h"
 
+double primitive_color_round(double d);
 
 color::color()
 {

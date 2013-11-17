@@ -13,12 +13,9 @@
 os_simple_font::os_simple_font()
 {
    
-   strcpy(m_szFamily, "helvetica");
-   m_iWeight      = 400;
-   m_iSize        = 10;
-   m_bUpdated     = false;
-//   m_fontset      = 0;
-   m_nsfont = NULL;
+   m_strFontFamilyName = "helvetica";
+   m_iFontWeight      = 400;
+   m_dFontSize        = 10;
 }
 
 os_simple_font::~os_simple_font()
@@ -142,74 +139,18 @@ vsstring os_simple_font::get_name(int i)
 */
 
 
-bool os_simple_font::update()
-{
-   
-   if(m_bUpdated)
-   {
-      
-      m_bUpdated = false;
-      
-   }
-
-   NSFontManager * fontmanager = [NSFontManager sharedFontManager];
-   
-   m_nsfont = [fontmanager fontWithFamily: [[NSString alloc] initWithUTF8String: m_szFamily]
-                                       traits: 0
-                                             weight: m_iWeight
-                                             size: m_iSize / 10.0];
-   
-   if(m_nsfont == NULL)
-   {
-      m_nsfont = [NSFont controlContentFontOfSize: m_iSize / 10.f];
-      
-   }
-   
-   
-   m_bUpdated = true;
-   
-   
-	m_iAscent = 0;
-   
-	m_iDescent = 0;
-   
-   
-   return true;
-}
-
-bool os_simple_font::destroy()
-{
-   
-   if(m_bUpdated)
-   {
-      
-      [m_nsfont release];
-      
-      
-   }
-   
-   strcpy(m_szFamily, "");
-   
-   m_iWeight      = 400;
-   
-   m_iSize        = 0;
-   
-   return true;
-   
-}
-
 
 bool os_simple_font::create_point(simple_graphics & g, int nPointSize, const char * lpszFaceName, bool bBold)
 {  
    
    
-   strcpy(m_szFamily, lpszFaceName);
+   m_strFontFamilyName = lpszFaceName;
    
-   m_iSize = nPointSize;
+   m_dFontSize = nPointSize;
    
-   m_iWeight = bBold ? 800 : 400;
+   m_iFontWeight = bBold ? 800 : 400;
    
-   return update();
+   return true;
    
 }
 

@@ -11,9 +11,8 @@
 simple_pen::simple_pen()
 {
    
-   m_iStock = -1;
-   m_estyle = style_solid;
-   m_iWidth = 0;
+   m_etype = type_solid;
+   m_dWidth = 0;
    m_cr = 0;
    
 }
@@ -26,11 +25,9 @@ simple_pen::~simple_pen()
 bool simple_pen::create_solid(simple_graphics & g, COLORREF cr, int iWidth)
 {
    
-   m_iStock = -1;
+   m_etype    = type_solid;
    
-   m_estyle    = style_solid;
-   
-   m_iWidth    = iWidth;
+   m_dWidth    = iWidth;
    
    m_cr = cr;
    
@@ -45,7 +42,7 @@ bool simple_pen::from_stock(int iId)
    if(iId != NULL_PEN)
       return false;
    
-   m_iStock = iId;
+   m_etype = type_null;
    
    return true;
    
@@ -55,9 +52,8 @@ bool simple_pen::from_stock(int iId)
 bool simple_pen::destroy()
 {
    
-   m_iStock = -1;
-   m_estyle = style_solid;
-   m_iWidth = 0;
+   m_etype = type_solid;
+   m_dWidth = 0;
    m_cr = 0;
    
    
@@ -70,11 +66,9 @@ bool simple_pen::destroy()
 simple_pen & simple_pen::operator = (const simple_pen & pen)
 {
    
-   m_iStock    = pen.m_iStock;
+   m_etype    = pen.m_etype;
    
-   m_estyle    = pen.m_estyle;
-   
-   m_iWidth    = pen.m_iWidth;
+   m_dWidth    = pen.m_dWidth;
    
    m_cr  = pen.m_cr;
    

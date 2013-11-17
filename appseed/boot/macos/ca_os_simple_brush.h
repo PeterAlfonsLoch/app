@@ -12,22 +12,24 @@ class CLASS_DECL_BOOT simple_brush
 {
 public:
    
-   enum e_style
+   enum e_type
    {
-      style_stock,
-      style_solid,
-      style_linear_gradient,
+      type_null,
+      type_solid,
+      type_linear_gradient_point_color,
       
    };
    
    
-   int                  m_estyle;
-   COLORREF             m_cr;
-   int                  m_iStock;
-   POINT                m_p1;
-   POINT                m_p2;
-   COLORREF             m_cr1;
-   COLORREF             m_cr2;
+   e_type                  m_etype;
+   COLORREF                m_cr;
+   POINT                   m_pt1;
+   POINT                   m_pt2;
+   COLORREF                m_cr1;
+   COLORREF                m_cr2;
+   CGGradientRef           m_gradient;
+   CGColorRef              m_color;
+   CGColorSpaceRef         m_colorspace;
    
    
    simple_brush();
@@ -43,5 +45,6 @@ public:
    // platform-specific
    bool from_stock(int iId);
    
+   virtual void * get_os_data() const;
    
 };

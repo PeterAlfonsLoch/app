@@ -424,7 +424,6 @@ void spa_login::layout()
 
    int32_t x1 = 49;
    int32_t x2 = m_rect.width() - 49;
-   int32_t x6 = m_rect.width() * 6 / 10;
    int32_t h1 = 23;
    int32_t pad = 5;
 

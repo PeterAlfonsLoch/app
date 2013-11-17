@@ -11,9 +11,7 @@
 simple_brush::simple_brush()
 {
    
-   m_iStock = -1;
-   
-   m_estyle = style_solid;
+   m_etype = type_solid;
    
    m_cr = 0;
    
@@ -29,9 +27,7 @@ simple_brush::~simple_brush()
 bool simple_brush::create_solid(simple_graphics & g, COLORREF cr)
 {
    
-   m_iStock = -1;
-   
-   m_estyle = style_solid;
+   m_etype = type_solid;
    
    m_cr = cr;
    
@@ -42,10 +38,10 @@ bool simple_brush::create_solid(simple_graphics & g, COLORREF cr)
 bool simple_brush::create_linear_gradient(simple_graphics & g, POINT p1, POINT p2, COLORREF cr1, COLORREF cr2)
 {
    
-   m_estyle = style_linear_gradient;
+   m_etype = type_linear_gradient_point_color;
    
-   m_p1 = p1;
-   m_p2 = p2;
+   m_pt1 = p1;
+   m_pt2 = p2;
    m_cr1 = cr1;
    m_cr2 = cr2;
    
@@ -60,7 +56,7 @@ bool simple_brush::from_stock(int iId)
    if(iId != NULL_BRUSH)
       return false;
    
-   m_iStock = iId;
+   m_etype = type_null;
    
    return true;
    
@@ -71,9 +67,7 @@ bool simple_brush::from_stock(int iId)
 bool simple_brush::destroy()
 {
    
-   m_iStock = -1;
-   
-   m_estyle = style_solid;
+   m_etype = type_solid;
    
    m_cr = 0;
    
@@ -81,3 +75,27 @@ bool simple_brush::destroy()
    
 }
 
+
+
+void * simple_brush::get_os_data() const
+{
+   
+   if(m_etype == type_null)
+   {
+      return NULL;
+   }
+   else if(m_etype == type_linear_gradient_point_color)
+   {
+      return m_gradient;
+   }
+   else if(m_etype == type_solid)
+   {
+      return m_color;
+   }
+   else
+   {
+      return NULL;
+   }
+   
+   
+}

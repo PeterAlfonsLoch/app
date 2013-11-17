@@ -293,6 +293,8 @@ tiny_http::http_retcode tiny_http::t_get(char ** pdata, int32_t * plength, void 
   if (!pdata) return ERRNULL; else *pdata=NULL;
   if (plength) *plength=0;
   m_strContentType = "";
+   
+   
 
   ret=t_query("GET",m_strFileName,"",KEEP_OPEN, NULL, 0, &fd);
   if (ret==200) {

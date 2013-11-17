@@ -222,24 +222,6 @@ WINBOOL EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
 }
 
 
-WINBOOL GetCursorPos(LPPOINT lpptCursor)
-{
-   
-   HIPoint point;
-   
-   HICoordinateSpace space = kHICoordSpaceScreenPixel;
-   
-   HIGetMousePosition(space, NULL, &point);
-   
-   
-   lpptCursor->x = point.x;
-   lpptCursor->y = point.y;
-
-
-   return TRUE;
-
-}
-
 
 
 

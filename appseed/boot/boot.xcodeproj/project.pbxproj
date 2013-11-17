@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		073EDDE2164E968100818801 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073EDDE1164E968100818801 /* Security.framework */; };
+		0759C1AA183834FF009E94B0 /* macos_fontopus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0759C1A9183834FF009E94B0 /* macos_fontopus.cpp */; };
+		0759C1B1183836B1009E94B0 /* macos_mm_window_frame_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 0759C1AB183836B1009E94B0 /* macos_mm_window_frame_view.h */; };
+		0759C1B2183836B1009E94B0 /* macos_mm_window_frame_view.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0759C1AC183836B1009E94B0 /* macos_mm_window_frame_view.mm */; };
+		0759C1B3183836B1009E94B0 /* macos_mm_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 0759C1AD183836B1009E94B0 /* macos_mm_window.h */; };
+		0759C1B4183836B1009E94B0 /* macos_mm_window.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0759C1AE183836B1009E94B0 /* macos_mm_window.mm */; };
+		0759C1B5183836B1009E94B0 /* macos_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 0759C1AF183836B1009E94B0 /* macos_window.h */; };
+		0759C1B6183836B1009E94B0 /* macos_window.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0759C1B0183836B1009E94B0 /* macos_window.mm */; };
+		0759C1C018386BC1009E94B0 /* fontopus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0759C1BB18386BC1009E94B0 /* fontopus.cpp */; };
+		0759C1C118386BC1009E94B0 /* fontopus.h in Headers */ = {isa = PBXBuildFile; fileRef = 0759C1BC18386BC1009E94B0 /* fontopus.h */; };
+		0759C1C218386BC1009E94B0 /* fontopus_authentication_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0759C1BD18386BC1009E94B0 /* fontopus_authentication_map.cpp */; };
+		0759C1C318386BC1009E94B0 /* fontopus_authentication_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 0759C1BE18386BC1009E94B0 /* fontopus_authentication_map.h */; };
+		0759C1C418386BC1009E94B0 /* fontopus_user_authentication.h in Headers */ = {isa = PBXBuildFile; fileRef = 0759C1BF18386BC1009E94B0 /* fontopus_user_authentication.h */; };
 		07BD556D16210BD4008E31F0 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A8897A614C24736006B4023 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9AE7278717E83F20003E47F9 /* ansios_crypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE7260217E83F1E003E47F9 /* ansios_crypt.cpp */; };
@@ -108,15 +120,15 @@
 		9AE7281A17E83F20003E47F9 /* ca_os_process.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE726C217E83F1F003E47F9 /* ca_os_process.h */; };
 		9AE7281B17E83F20003E47F9 /* ca_os_process_pid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE726C317E83F1F003E47F9 /* ca_os_process_pid.cpp */; };
 		9AE7281C17E83F20003E47F9 /* ca_os_simple_bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE726C417E83F1F003E47F9 /* ca_os_simple_bitmap.h */; };
-		9AE7281D17E83F20003E47F9 /* ca_os_simple_bitmap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9AE726C517E83F1F003E47F9 /* ca_os_simple_bitmap.mm */; };
+		9AE7281D17E83F20003E47F9 /* ca_os_simple_bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE726C517E83F1F003E47F9 /* ca_os_simple_bitmap.cpp */; };
 		9AE7281E17E83F20003E47F9 /* ca_os_simple_brush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE726C617E83F1F003E47F9 /* ca_os_simple_brush.cpp */; };
 		9AE7281F17E83F20003E47F9 /* ca_os_simple_brush.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE726C717E83F1F003E47F9 /* ca_os_simple_brush.h */; };
 		9AE7282017E83F20003E47F9 /* ca_os_simple_font.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE726C817E83F1F003E47F9 /* ca_os_simple_font.h */; };
-		9AE7282117E83F20003E47F9 /* ca_os_simple_font.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9AE726C917E83F1F003E47F9 /* ca_os_simple_font.mm */; };
+		9AE7282117E83F20003E47F9 /* ca_os_simple_font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE726C917E83F1F003E47F9 /* ca_os_simple_font.cpp */; };
 		9AE7282217E83F20003E47F9 /* ca_os_simple_graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE726CA17E83F1F003E47F9 /* ca_os_simple_graphics.h */; };
-		9AE7282317E83F20003E47F9 /* ca_os_simple_graphics.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9AE726CB17E83F1F003E47F9 /* ca_os_simple_graphics.mm */; };
+		9AE7282317E83F20003E47F9 /* ca_os_simple_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE726CB17E83F1F003E47F9 /* ca_os_simple_graphics.cpp */; };
 		9AE7282417E83F20003E47F9 /* ca_os_simple_path.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE726CC17E83F1F003E47F9 /* ca_os_simple_path.h */; };
-		9AE7282517E83F20003E47F9 /* ca_os_simple_path.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9AE726CD17E83F1F003E47F9 /* ca_os_simple_path.mm */; };
+		9AE7282517E83F20003E47F9 /* ca_os_simple_path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE726CD17E83F1F003E47F9 /* ca_os_simple_path.cpp */; };
 		9AE7282617E83F20003E47F9 /* ca_os_simple_pen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE726CE17E83F1F003E47F9 /* ca_os_simple_pen.cpp */; };
 		9AE7282717E83F20003E47F9 /* ca_os_simple_pen.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE726CF17E83F1F003E47F9 /* ca_os_simple_pen.h */; };
 		9AE7282817E83F20003E47F9 /* ca_os_simple_shell_launcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE726D017E83F1F003E47F9 /* ca_os_simple_shell_launcher.cpp */; };
@@ -201,6 +213,19 @@
 /* Begin PBXFileReference section */
 		073EDDE1164E968100818801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		073EDDE4164E96DA00818801 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
+		0759C1A9183834FF009E94B0 /* macos_fontopus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_fontopus.cpp; sourceTree = "<group>"; };
+		0759C1AB183836B1009E94B0 /* macos_mm_window_frame_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_mm_window_frame_view.h; sourceTree = "<group>"; };
+		0759C1AC183836B1009E94B0 /* macos_mm_window_frame_view.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_mm_window_frame_view.mm; sourceTree = "<group>"; };
+		0759C1AD183836B1009E94B0 /* macos_mm_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_mm_window.h; sourceTree = "<group>"; };
+		0759C1AE183836B1009E94B0 /* macos_mm_window.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_mm_window.mm; sourceTree = "<group>"; };
+		0759C1AF183836B1009E94B0 /* macos_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_window.h; sourceTree = "<group>"; };
+		0759C1B0183836B1009E94B0 /* macos_window.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_window.mm; sourceTree = "<group>"; };
+		0759C1B818383B0D009E94B0 /* macos_mm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macos_mm.h; sourceTree = "<group>"; };
+		0759C1BB18386BC1009E94B0 /* fontopus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fontopus.cpp; sourceTree = "<group>"; };
+		0759C1BC18386BC1009E94B0 /* fontopus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fontopus.h; sourceTree = "<group>"; };
+		0759C1BD18386BC1009E94B0 /* fontopus_authentication_map.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fontopus_authentication_map.cpp; sourceTree = "<group>"; };
+		0759C1BE18386BC1009E94B0 /* fontopus_authentication_map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fontopus_authentication_map.h; sourceTree = "<group>"; };
+		0759C1BF18386BC1009E94B0 /* fontopus_user_authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fontopus_user_authentication.h; sourceTree = "<group>"; };
 		07BD556C16210BD4008E31F0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A88B4F514C2CBF8006B4023 /* libboot.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libboot.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -303,15 +328,15 @@
 		9AE726C217E83F1F003E47F9 /* ca_os_process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca_os_process.h; sourceTree = "<group>"; };
 		9AE726C317E83F1F003E47F9 /* ca_os_process_pid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca_os_process_pid.cpp; sourceTree = "<group>"; };
 		9AE726C417E83F1F003E47F9 /* ca_os_simple_bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca_os_simple_bitmap.h; sourceTree = "<group>"; };
-		9AE726C517E83F1F003E47F9 /* ca_os_simple_bitmap.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ca_os_simple_bitmap.mm; sourceTree = "<group>"; };
+		9AE726C517E83F1F003E47F9 /* ca_os_simple_bitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca_os_simple_bitmap.cpp; sourceTree = "<group>"; };
 		9AE726C617E83F1F003E47F9 /* ca_os_simple_brush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca_os_simple_brush.cpp; sourceTree = "<group>"; };
 		9AE726C717E83F1F003E47F9 /* ca_os_simple_brush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca_os_simple_brush.h; sourceTree = "<group>"; };
 		9AE726C817E83F1F003E47F9 /* ca_os_simple_font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca_os_simple_font.h; sourceTree = "<group>"; };
-		9AE726C917E83F1F003E47F9 /* ca_os_simple_font.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ca_os_simple_font.mm; sourceTree = "<group>"; };
+		9AE726C917E83F1F003E47F9 /* ca_os_simple_font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca_os_simple_font.cpp; sourceTree = "<group>"; };
 		9AE726CA17E83F1F003E47F9 /* ca_os_simple_graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca_os_simple_graphics.h; sourceTree = "<group>"; };
-		9AE726CB17E83F1F003E47F9 /* ca_os_simple_graphics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ca_os_simple_graphics.mm; sourceTree = "<group>"; };
+		9AE726CB17E83F1F003E47F9 /* ca_os_simple_graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca_os_simple_graphics.cpp; sourceTree = "<group>"; };
 		9AE726CC17E83F1F003E47F9 /* ca_os_simple_path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca_os_simple_path.h; sourceTree = "<group>"; };
-		9AE726CD17E83F1F003E47F9 /* ca_os_simple_path.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ca_os_simple_path.mm; sourceTree = "<group>"; };
+		9AE726CD17E83F1F003E47F9 /* ca_os_simple_path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca_os_simple_path.cpp; sourceTree = "<group>"; };
 		9AE726CE17E83F1F003E47F9 /* ca_os_simple_pen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca_os_simple_pen.cpp; sourceTree = "<group>"; };
 		9AE726CF17E83F1F003E47F9 /* ca_os_simple_pen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca_os_simple_pen.h; sourceTree = "<group>"; };
 		9AE726D017E83F1F003E47F9 /* ca_os_simple_shell_launcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca_os_simple_shell_launcher.cpp; sourceTree = "<group>"; };
@@ -411,6 +436,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0759C1BA18386BC1009E94B0 /* fontopus */ = {
+			isa = PBXGroup;
+			children = (
+				0759C1BB18386BC1009E94B0 /* fontopus.cpp */,
+				0759C1BC18386BC1009E94B0 /* fontopus.h */,
+				0759C1BD18386BC1009E94B0 /* fontopus_authentication_map.cpp */,
+				0759C1BE18386BC1009E94B0 /* fontopus_authentication_map.h */,
+				0759C1BF18386BC1009E94B0 /* fontopus_user_authentication.h */,
+			);
+			path = fontopus;
+			sourceTree = "<group>";
+		};
 		07740C7F16AD57A20065CE47 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -564,15 +601,15 @@
 				9AE726C217E83F1F003E47F9 /* ca_os_process.h */,
 				9AE726C317E83F1F003E47F9 /* ca_os_process_pid.cpp */,
 				9AE726C417E83F1F003E47F9 /* ca_os_simple_bitmap.h */,
-				9AE726C517E83F1F003E47F9 /* ca_os_simple_bitmap.mm */,
+				9AE726C517E83F1F003E47F9 /* ca_os_simple_bitmap.cpp */,
 				9AE726C617E83F1F003E47F9 /* ca_os_simple_brush.cpp */,
 				9AE726C717E83F1F003E47F9 /* ca_os_simple_brush.h */,
 				9AE726C817E83F1F003E47F9 /* ca_os_simple_font.h */,
-				9AE726C917E83F1F003E47F9 /* ca_os_simple_font.mm */,
+				9AE726C917E83F1F003E47F9 /* ca_os_simple_font.cpp */,
 				9AE726CA17E83F1F003E47F9 /* ca_os_simple_graphics.h */,
-				9AE726CB17E83F1F003E47F9 /* ca_os_simple_graphics.mm */,
+				9AE726CB17E83F1F003E47F9 /* ca_os_simple_graphics.cpp */,
 				9AE726CC17E83F1F003E47F9 /* ca_os_simple_path.h */,
-				9AE726CD17E83F1F003E47F9 /* ca_os_simple_path.mm */,
+				9AE726CD17E83F1F003E47F9 /* ca_os_simple_path.cpp */,
 				9AE726CE17E83F1F003E47F9 /* ca_os_simple_pen.cpp */,
 				9AE726CF17E83F1F003E47F9 /* ca_os_simple_pen.h */,
 				9AE726D017E83F1F003E47F9 /* ca_os_simple_shell_launcher.cpp */,
@@ -580,6 +617,14 @@
 				9AE726D317E83F1F003E47F9 /* ca_os_thread.h */,
 				9AE726D417E83F1F003E47F9 /* ca_os_user.cpp */,
 				9AE726D517E83F1F003E47F9 /* ca_os_win_base.cpp */,
+				0759C1A9183834FF009E94B0 /* macos_fontopus.cpp */,
+				0759C1B818383B0D009E94B0 /* macos_mm.h */,
+				0759C1AB183836B1009E94B0 /* macos_mm_window_frame_view.h */,
+				0759C1AC183836B1009E94B0 /* macos_mm_window_frame_view.mm */,
+				0759C1AD183836B1009E94B0 /* macos_mm_window.h */,
+				0759C1AE183836B1009E94B0 /* macos_mm_window.mm */,
+				0759C1AF183836B1009E94B0 /* macos_window.h */,
+				0759C1B0183836B1009E94B0 /* macos_window.mm */,
 			);
 			path = macos;
 			sourceTree = "<group>";
@@ -716,6 +761,7 @@
 				9AE7260317E83F1E003E47F9 /* boot */,
 				9AE7264E17E83F1E003E47F9 /* bsdiff */,
 				9AE7266417E83F1F003E47F9 /* crypt */,
+				0759C1BA18386BC1009E94B0 /* fontopus */,
 				9AE7266B17E83F1F003E47F9 /* hotplugin */,
 				9AE726A517E83F1F003E47F9 /* macos */,
 				9AE7270917E83F1F003E47F9 /* os */,
@@ -737,6 +783,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0759C1B5183836B1009E94B0 /* macos_window.h in Headers */,
 				CE4BB210156B8B2600DD13ED /* framework.h in Headers */,
 				9AE7278917E83F20003E47F9 /* boot.h in Headers */,
 				9AE7278A17E83F20003E47F9 /* boot_2.h in Headers */,
@@ -753,6 +800,7 @@
 				9AE7279E17E83F20003E47F9 /* boot_launcher.h in Headers */,
 				9AE7279F17E83F20003E47F9 /* boot_libc.h in Headers */,
 				9AE727A017E83F20003E47F9 /* boot_library.h in Headers */,
+				0759C1C418386BC1009E94B0 /* fontopus_user_authentication.h in Headers */,
 				9AE727A117E83F20003E47F9 /* boot_logic.h in Headers */,
 				9AE727A317E83F20003E47F9 /* boot_math.h in Headers */,
 				9AE727A417E83F20003E47F9 /* boot_message_loop.h in Headers */,
@@ -798,6 +846,7 @@
 				9AE7286217E83F20003E47F9 /* simple_graphics_first_phase.h in Headers */,
 				9AE7286317E83F20003E47F9 /* simple_graphics_second_phase.h in Headers */,
 				9AE7286417E83F20003E47F9 /* simple_linear_gradient_brush.h in Headers */,
+				0759C1C118386BC1009E94B0 /* fontopus.h in Headers */,
 				9AE7286617E83F20003E47F9 /* simple_path.h in Headers */,
 				9AE7286717E83F20003E47F9 /* simple_pixel_font.h in Headers */,
 				9AE7286817E83F20003E47F9 /* simple_solid_brush.h in Headers */,
@@ -809,6 +858,7 @@
 				9AE7287317E83F20003E47F9 /* simple_ui.h in Headers */,
 				9AE728A317E83F20003E47F9 /* resource.h in Headers */,
 				9AE728A517E83F20003E47F9 /* spa.h in Headers */,
+				0759C1B1183836B1009E94B0 /* macos_mm_window_frame_view.h in Headers */,
 				9AE728A717E83F20003E47F9 /* spa_boot.h in Headers */,
 				9AE728AA17E83F20003E47F9 /* spa_canvas.h in Headers */,
 				9AE728AC17E83F20003E47F9 /* spa_cube_run.h in Headers */,
@@ -816,6 +866,7 @@
 				9AE728B017E83F20003E47F9 /* spa_http.h in Headers */,
 				9AE728B217E83F20003E47F9 /* spa_install_ca2.h in Headers */,
 				9AE728B417E83F20003E47F9 /* spa_installer.h in Headers */,
+				0759C1C318386BC1009E94B0 /* fontopus_authentication_map.h in Headers */,
 				9AE728B617E83F20003E47F9 /* spa_installer_square.h in Headers */,
 				9AE728B817E83F20003E47F9 /* spa_login.h in Headers */,
 				9AE728BA17E83F20003E47F9 /* spa_machine_event.h in Headers */,
@@ -826,6 +877,7 @@
 				9AE728C517E83F20003E47F9 /* spa_starter_start.h in Headers */,
 				9AE728C617E83F20003E47F9 /* spa_trace.h in Headers */,
 				9AE728C817E83F20003E47F9 /* spa_window.h in Headers */,
+				0759C1B3183836B1009E94B0 /* macos_mm_window.h in Headers */,
 				9AE728CC17E83F20003E47F9 /* veriwell_musical_studio.h in Headers */,
 				9AE728CD17E83F20003E47F9 /* vms.h in Headers */,
 				9AE728CE17E83F20003E47F9 /* vms_2.h in Headers */,
@@ -902,6 +954,7 @@
 				9AE727AE17E83F20003E47F9 /* boot_small_ipca_channel.cpp in Sources */,
 				9AE727B017E83F20003E47F9 /* boot_sprintf.cpp in Sources */,
 				9AE727B217E83F20003E47F9 /* boot_std_file.cpp in Sources */,
+				0759C1C218386BC1009E94B0 /* fontopus_authentication_map.cpp in Sources */,
 				9AE727B317E83F20003E47F9 /* boot_url.cpp in Sources */,
 				9AE727B517E83F20003E47F9 /* boot_window_graphics.cpp in Sources */,
 				9AE727B917E83F20003E47F9 /* blocksort.cpp in Sources */,
@@ -930,17 +983,19 @@
 				9AE7280D17E83F20003E47F9 /* ca_os_graphics.cpp in Sources */,
 				9AE7281517E83F20003E47F9 /* ca_os_launcher.cpp in Sources */,
 				9AE7281617E83F20003E47F9 /* ca_os_library.cpp in Sources */,
+				0759C1B4183836B1009E94B0 /* macos_mm_window.mm in Sources */,
 				9AE7281717E83F20003E47F9 /* ca_os_lock.cpp in Sources */,
 				9AE7281817E83F20003E47F9 /* ca_os_message_loop.cpp in Sources */,
 				9AE7281917E83F20003E47F9 /* ca_os_process.cpp in Sources */,
 				9AE7281B17E83F20003E47F9 /* ca_os_process_pid.cpp in Sources */,
-				9AE7281D17E83F20003E47F9 /* ca_os_simple_bitmap.mm in Sources */,
+				9AE7281D17E83F20003E47F9 /* ca_os_simple_bitmap.cpp in Sources */,
 				9AE7281E17E83F20003E47F9 /* ca_os_simple_brush.cpp in Sources */,
-				9AE7282117E83F20003E47F9 /* ca_os_simple_font.mm in Sources */,
-				9AE7282317E83F20003E47F9 /* ca_os_simple_graphics.mm in Sources */,
-				9AE7282517E83F20003E47F9 /* ca_os_simple_path.mm in Sources */,
+				9AE7282117E83F20003E47F9 /* ca_os_simple_font.cpp in Sources */,
+				9AE7282317E83F20003E47F9 /* ca_os_simple_graphics.cpp in Sources */,
+				9AE7282517E83F20003E47F9 /* ca_os_simple_path.cpp in Sources */,
 				9AE7282617E83F20003E47F9 /* ca_os_simple_pen.cpp in Sources */,
 				9AE7282817E83F20003E47F9 /* ca_os_simple_shell_launcher.cpp in Sources */,
+				0759C1C018386BC1009E94B0 /* fontopus.cpp in Sources */,
 				9AE7282917E83F20003E47F9 /* ca_os_small_ipca_channel.cpp in Sources */,
 				9AE7282C17E83F20003E47F9 /* ca_os_user.cpp in Sources */,
 				9AE7282D17E83F20003E47F9 /* ca_os_win_base.cpp in Sources */,
@@ -954,6 +1009,7 @@
 				9AE7287217E83F20003E47F9 /* simple_ui.cpp in Sources */,
 				9AE728A417E83F20003E47F9 /* spa.cpp in Sources */,
 				9AE728A617E83F20003E47F9 /* spa_boot.cpp in Sources */,
+				0759C1AA183834FF009E94B0 /* macos_fontopus.cpp in Sources */,
 				9AE728A817E83F20003E47F9 /* spa_bz.cpp in Sources */,
 				9AE728A917E83F20003E47F9 /* spa_canvas.cpp in Sources */,
 				9AE728AB17E83F20003E47F9 /* spa_cube_run.cpp in Sources */,
@@ -967,11 +1023,13 @@
 				9AE728BB17E83F20003E47F9 /* spa_machine_event_data.cpp in Sources */,
 				9AE728BD17E83F20003E47F9 /* spa_main.cpp in Sources */,
 				9AE728BE17E83F20003E47F9 /* spa_plugin.cpp in Sources */,
+				0759C1B6183836B1009E94B0 /* macos_window.mm in Sources */,
 				9AE728C017E83F20003E47F9 /* spa_small_bell.cpp in Sources */,
 				9AE728C217E83F20003E47F9 /* spa_spa.cpp in Sources */,
 				9AE728C417E83F20003E47F9 /* spa_starter_start.cpp in Sources */,
 				9AE728C717E83F20003E47F9 /* spa_window.cpp in Sources */,
 				9AE728C917E83F20003E47F9 /* spa_windows_boot.cpp in Sources */,
+				0759C1B2183836B1009E94B0 /* macos_mm_window_frame_view.mm in Sources */,
 				9AE728CA17E83F20003E47F9 /* spa_windows_service.cpp in Sources */,
 				9AE728CB17E83F20003E47F9 /* spa_windows_win.cpp in Sources */,
 			);

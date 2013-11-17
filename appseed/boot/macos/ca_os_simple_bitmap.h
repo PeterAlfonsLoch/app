@@ -18,21 +18,10 @@ class CLASS_DECL_BOOT simple_bitmap
 public:
    
    
-   //Display *               m_pdisplay;
-   //Pixmap                  m_pixmap;
-   COLORREF *                 m_pmem;
-   SIZE                       m_size;
-#ifdef __MM
-   
-   NSBitmapImageRep *         m_nsbitmap;
-   NSImage *                  m_nsimage;
-   
-#else
-   
-   void *                     m_pnsbitmap;
-   void *                     m_pnsimage;
-   
-#endif
+   COLORREF *              m_pdata;
+   ::size                  m_size;
+   CGContextRef            m_context;
+   int32_t                 scan;
    
    
    simple_bitmap();

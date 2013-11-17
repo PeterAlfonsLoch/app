@@ -264,6 +264,10 @@ namespace file
 #include "base_thread.h"
 
 
+#include "base_draw2d.h"
+
+
+#include "base/user/user_key_enum.h"
 #include "base/user/user_base_document.h"
 #include "base/user/user_base_document_template.h"
 #include "base/user/user_base_interaction.h"

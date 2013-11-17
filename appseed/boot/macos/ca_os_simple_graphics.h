@@ -15,12 +15,10 @@ class CLASS_DECL_BOOT os_simple_graphics
 {
 public:
    
-#ifdef __MM
-   NSGraphicsContext *     m_nsgc;
-#else
-   void *                  m_pnsgc;
+   CGContextRef               m_pdc;
    
-#endif
+   ::draw2d::e_alpha_mode                  m_ealphamode;
+   
    
    //Display *               m_pdisplay;
    int                     m_iScreen;
@@ -41,16 +39,12 @@ public:
    int                     m_iType;
    bool                    m_bForeColor;
    bool                    m_bBackColor;
-#ifdef __MM
-   NSColor *               m_nscolorFore;
-   NSColor *               m_nscolorBack;
-#else
-   void *                  m_pnscolorFore;
-   void *                  m_pnscolorBack;
-#endif
+   CGColorRef               m_cgcolorFore;
+   CGColorRef               m_cgcolorBack;
    COLORREF                m_crTextColor;
    bool                    m_bGotOriginalClipPath;
    NSRect                  m_rectOriginalClip;
+   CGAffineTransform          m_affine;
    
    
    os_simple_graphics();
@@ -76,7 +70,8 @@ public:
    bool set_alpha_mode(::draw2d::e_alpha_mode emode);
 
    
-   
+   virtual bool internal_show_text(double x, double y, const char * lpszString, int32_t nCount, CGTextDrawingMode emode, bool bDraw = true, CGFloat * pascent = NULL, CGFloat * pdescent = NULL, CGFloat * pleading = NULL, CGFloat * pwidth = NULL);
+
    
    bool rectangle(LPCRECT lpcrect);
    bool draw_line(int x1, int y1, int x2, int y2, simple_pen & pen);
@@ -86,6 +81,7 @@ public:
 
 
    bool fill_polygon(POINT * p, int iCount, ::draw2d::e_fill_mode);
+   bool draw_polygon(POINT * p, int iCount, ::draw2d::e_fill_mode);
    
    
    bool draw_path(simple_path & path, simple_pen & pen);
@@ -112,19 +108,17 @@ public:
    bool from_window(oswindow hwnd);
    bool from_window_paint(oswindow hwnd, LPRECT lprectPaint = NULL);
    bool reference_os_data(HDC hdc);
-//   XFontStruct * get_font(simple_font & font);
-//   XFontStruct * get_font();
-   void set(simple_brush & brush);
-   void set(simple_pen & pen);
-#ifdef __MM
-   NSColor * alloc_color(COLORREF cr);
-   bool free_color(NSColor * nscolor);
-#else
-   void * alloc_color(COLORREF cr);
-   bool free_color(void * pnscolor);
-#endif
-   void set_foreground(COLORREF cr);
-   void set_background(COLORREF cr);
+
    void defer_get_original_clip_path();
+   
+   void internal_set_fill_color(COLORREF cr);
+   void internal_set_stroke_color(COLORREF cr);
+   
+   
+   bool fill();
+   bool fill(simple_brush * pbrush);
+   bool draw();
+   bool draw(simple_pen * ppen);
+
 
 };

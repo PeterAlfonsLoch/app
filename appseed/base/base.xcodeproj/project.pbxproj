@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0759C1A818383450009E94B0 /* metrowin_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0759C1A718383450009E94B0 /* metrowin_user.cpp */; };
 		07A84FF6181145D50030A38C /* macos_ns_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A84FF4181145D50030A38C /* macos_ns_exception.cpp */; };
 		07A84FF7181145D50030A38C /* macos_ns_exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A84FF5181145D50030A38C /* macos_ns_exception.h */; };
 		9A01C8C417FCA0B000DC8E64 /* UncaughtExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A01C8C217FCA0B000DC8E64 /* UncaughtExceptionHandler.h */; };
@@ -619,6 +620,9 @@
 /* Begin PBXFileReference section */
 		073EDDE1164E968100818801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		073EDDE4164E96DA00818801 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
+		0759C1A718383450009E94B0 /* metrowin_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = metrowin_user.cpp; path = metrowin/metrowin_user.cpp; sourceTree = "<group>"; };
+		0759C1B71838376F009E94B0 /* user_key_enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = user_key_enum.h; sourceTree = "<group>"; };
+		0759C1B91838460C009E94B0 /* base_draw2d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = base_draw2d.h; sourceTree = "<group>"; };
 		07A84FF4181145D50030A38C /* macos_ns_exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_ns_exception.cpp; sourceTree = "<group>"; };
 		07A84FF5181145D50030A38C /* macos_ns_exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_ns_exception.h; sourceTree = "<group>"; };
 		07BD556C16210BD4008E31F0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -1260,6 +1264,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0759C1A61838343D009E94B0 /* metrowin */ = {
+			isa = PBXGroup;
+			children = (
+				0759C1A718383450009E94B0 /* metrowin_user.cpp */,
+			);
+			name = metrowin;
+			sourceTree = "<group>";
+		};
 		9AE720BD17E83B68003E47F9 /* ansios */ = {
 			isa = PBXGroup;
 			children = (
@@ -1316,6 +1328,7 @@
 				9AE720E017E83B68003E47F9 /* base_departament.h */,
 				9AE720E117E83B68003E47F9 /* base_departament_container.cpp */,
 				9AE720E217E83B68003E47F9 /* base_departament_container.h */,
+				0759C1B91838460C009E94B0 /* base_draw2d.h */,
 				9AE720E317E83B68003E47F9 /* base_element.cpp */,
 				9AE720E417E83B68003E47F9 /* base_element.h */,
 				9AE720E517E83B68003E47F9 /* base_enum.h */,
@@ -1781,6 +1794,7 @@
 		9AE722A017E83B69003E47F9 /* cross */ = {
 			isa = PBXGroup;
 			children = (
+				0759C1A61838343D009E94B0 /* metrowin */,
 				9AE722A217E83B69003E47F9 /* windows */,
 				9AE722A117E83B69003E47F9 /* cross.h */,
 			);
@@ -1955,6 +1969,7 @@
 				9AE7233817E83B69003E47F9 /* user_base_interaction.h */,
 				9AE7233917E83B69003E47F9 /* user_create_context.cpp */,
 				9AE7233A17E83B69003E47F9 /* user_create_context.h */,
+				0759C1B71838376F009E94B0 /* user_key_enum.h */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -2623,6 +2638,7 @@
 				9AE7251B17E83B69003E47F9 /* multithreading_socket_event.cpp in Sources */,
 				9AE7251D17E83B69003E47F9 /* multithreading_sync_object.cpp in Sources */,
 				9AE7251F17E83B69003E47F9 /* multithreading_synch_lock.cpp in Sources */,
+				0759C1A818383450009E94B0 /* metrowin_user.cpp in Sources */,
 				9AE7252317E83B69003E47F9 /* multithreading_wait_result.cpp in Sources */,
 				9AE7252517E83B69003E47F9 /* multithreading_waitable.cpp in Sources */,
 				9AE7252917E83B69003E47F9 /* net_net.cpp in Sources */,

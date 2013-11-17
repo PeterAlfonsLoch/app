@@ -951,7 +951,6 @@
 		07A6E122173C27EC009E6FB8 /* user_interaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D7A5173C27EA009E6FB8 /* user_interaction.h */; };
 		07A6E123173C27EC009E6FB8 /* user_job.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D7A7173C27EA009E6FB8 /* user_job.cpp */; };
 		07A6E124173C27EC009E6FB8 /* user_job.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D7A8173C27EA009E6FB8 /* user_job.h */; };
-		07A6E125173C27EC009E6FB8 /* user_key_enum.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D7A9173C27EA009E6FB8 /* user_key_enum.h */; };
 		07A6E126173C27EC009E6FB8 /* user_keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D7AA173C27EA009E6FB8 /* user_keyboard.cpp */; };
 		07A6E127173C27EC009E6FB8 /* user_keyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D7AB173C27EA009E6FB8 /* user_keyboard.h */; };
 		07A6E128173C27EC009E6FB8 /* user_keyboard_focus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D7AC173C27EA009E6FB8 /* user_keyboard_focus.cpp */; };
@@ -2697,7 +2696,6 @@
 		07A6D7A6173C27EA009E6FB8 /* user_interaction.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = user_interaction.inl; sourceTree = "<group>"; };
 		07A6D7A7173C27EA009E6FB8 /* user_job.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_job.cpp; sourceTree = "<group>"; };
 		07A6D7A8173C27EA009E6FB8 /* user_job.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_job.h; sourceTree = "<group>"; };
-		07A6D7A9173C27EA009E6FB8 /* user_key_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_key_enum.h; sourceTree = "<group>"; };
 		07A6D7AA173C27EA009E6FB8 /* user_keyboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_keyboard.cpp; sourceTree = "<group>"; };
 		07A6D7AB173C27EA009E6FB8 /* user_keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_keyboard.h; sourceTree = "<group>"; };
 		07A6D7AC173C27EA009E6FB8 /* user_keyboard_focus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_keyboard_focus.cpp; sourceTree = "<group>"; };
@@ -4694,7 +4692,6 @@
 				07A6D7A6173C27EA009E6FB8 /* user_interaction.inl */,
 				07A6D7A7173C27EA009E6FB8 /* user_job.cpp */,
 				07A6D7A8173C27EA009E6FB8 /* user_job.h */,
-				07A6D7A9173C27EA009E6FB8 /* user_key_enum.h */,
 				07A6D7AA173C27EA009E6FB8 /* user_keyboard.cpp */,
 				07A6D7AB173C27EA009E6FB8 /* user_keyboard.h */,
 				07A6D7AC173C27EA009E6FB8 /* user_keyboard_focus.cpp */,
@@ -6522,7 +6519,6 @@
 				07A6E120173C27EC009E6FB8 /* user_inline.h in Headers */,
 				07A6E122173C27EC009E6FB8 /* user_interaction.h in Headers */,
 				07A6E124173C27EC009E6FB8 /* user_job.h in Headers */,
-				07A6E125173C27EC009E6FB8 /* user_key_enum.h in Headers */,
 				07A6E127173C27EC009E6FB8 /* user_keyboard.h in Headers */,
 				07A6E129173C27EC009E6FB8 /* user_keyboard_focus.h in Headers */,
 				07A6E12B173C27EC009E6FB8 /* user_keyboard_layout.h in Headers */,

@@ -56,7 +56,7 @@ public:
    inline bool fill_rect(const RECT & rect, simple_brush & brush);
 
    using ::os_simple_graphics::fill_solid_rect;
-   inline bool fill_solid_rect(const RECT & rect, COLORREF clr);
+   bool fill_solid_rect(const RECT & rect, COLORREF clr);
 
 
 	//=============================================================================

@@ -39,6 +39,25 @@ bool oswindow_data::show_window(int32_t nCmdShow)
 }
 
 
+bool oswindow_data::client_to_screen(POINT *lppoint)
+{
+   RECT rect;
+   get_nswindow_rect(this, &rect);
+   lppoint->x += rect.left;
+   lppoint->y += rect.top;
+   return true;
+}
+
+bool oswindow_data::screen_to_client(POINT *lppoint)
+{
+   RECT rect;
+   get_nswindow_rect(this, &rect);
+   lppoint->x -= rect.left;
+   lppoint->y -= rect.top;
+   return true;
+}
+
+
 
 WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT lpcrect, int iDisplay)
 {

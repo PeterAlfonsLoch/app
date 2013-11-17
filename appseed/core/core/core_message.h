@@ -65,7 +65,6 @@ namespace user
 } // namespace user
 
 
-#include "user/user_key_enum.h"
 
 #define CN_UPDATE_COMMAND_UI 23
 #define WM_REFLECT_BASE 2048
