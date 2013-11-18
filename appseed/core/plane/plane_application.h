@@ -27,8 +27,7 @@ namespace plane
 
       bool                                m_bIfs;
       bool                                m_bUpdateMatterOnInstall;
-      sp(user::user)                      m_spuser;
-      sp(::userfs::userfs)                        m_spuserfs;
+      sp(::userfs::userfs)                m_spuserfs;
       sp(::html::html)                    m_phtml;
       ::simpledb::simpledb                m_simpledb;
 
@@ -72,7 +71,6 @@ namespace plane
 
       inline class ::fontopus::license          & license()    { return *m_splicense    ; }
       inline sp(class ::fs::data)               fs()           { return m_spfsdata     ; }
-      inline sp(class ::user::user)             user()         { return m_spuser       ; }
       inline sp(::html::html)                   html()         { return m_phtml        ; }
       inline class ::simpledb::simpledb         & simpledb()   { return m_simpledb     ; }
 

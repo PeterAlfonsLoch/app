@@ -1666,12 +1666,12 @@ retry:
       strUserNameFile = System.dir().appdata(strSection + "_1");
       strPasswordFile = System.dir().appdata(strSection + "_2");
       bool bOk = true;
-      if(!System.crypt().file_get(strUserNameFile, strUserName, NULL, get_app())
+      if(!System.crypto().file_get(strUserNameFile, strUserName, NULL, get_app())
       || strUserName.is_empty())
       {
          bOk = false;
       }
-      if(!System.crypt().file_get(strPasswordFile, strPassword, NULL, get_app())
+      if(!System.crypto().file_get(strPasswordFile, strPassword, NULL, get_app())
       || strPassword.is_empty())
       {
          bOk = false;
@@ -1686,8 +1686,8 @@ retry:
          //SPECIFY AUTHENTICATION USERNAME
          if(System.get_auth("system\\::fontopus::user\\proxy_authenticate.xhtml", strUserName, strPassword))
          {
-            System.crypt().file_set(strUserNameFile, strUserName, NULL, get_app());
-            System.crypt().file_set(strPasswordFile, strPassword, NULL, get_app());
+            System.crypto().file_set(strUserNameFile, strUserName, NULL, get_app());
+            System.crypto().file_set(strPasswordFile, strPassword, NULL, get_app());
             psocket->m_strUserNameFile = strUserNameFile;
             psocket->m_strPasswordFile = strPasswordFile;
          }

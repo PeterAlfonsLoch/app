@@ -2003,14 +2003,29 @@
     <ClInclude Include="graphics\visual\visual_cursor.h">
       <Filter>Header Files\graphics\visual</Filter>
     </ClInclude>
-    <ClInclude Include="crypto\crypto.h">
-      <Filter>Header Files\base\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\crypto_crypto.h">
-      <Filter>Header Files\base\crypto</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_user.h">
       <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_keyboard.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_keyboard_layout.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_window_map.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto_nessie.h">
+      <Filter>Header Files\base\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto.h">
+      <Filter>Header Files\base\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto_crypto.h">
+      <Filter>Header Files\base\crypto</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

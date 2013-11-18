@@ -403,6 +403,15 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base/primitive/math/math_math.h"
 #include "base/primitive/geometry/geometry_geometry.h"
 
+
+#include "base/xml/xml.h"
+
+#include "user/user_window_map.h"
+
+#include "user/user_keyboard_layout.h"
+#include "user/user_keyboard.h"
+#include "user/user_user.h"
+
 #include "base_application.h"
 
 
@@ -413,7 +422,6 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
-#include "base/xml/xml.h"
 
 #include "base/primitive/primitive_application_bias.h"
 #include "base/exception/exception_engine.h"
@@ -655,6 +663,9 @@ namespace numeric_info
 
 #include "base/net/http/http.h"
 #include "base_microtimer.h"
+
+
+#include "user/user.h"
 
 
 

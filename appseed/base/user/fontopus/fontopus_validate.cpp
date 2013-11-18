@@ -37,9 +37,9 @@ namespace fontopus
 
    validate::validate(sp(base_application) papp, const char * pszForm, bool bAuth, bool bInteractive) :
       element(papp),
-      m_loginthread(papp),
-      m_netcfg(papp)
+      m_loginthread(papp)
    {
+
       m_bInteractive          = bInteractive;
       m_bAuth          = bAuth;
       m_strForm               = pszForm;
@@ -49,27 +49,17 @@ namespace fontopus
       {
          try
          {
-            pgenapp->m_pplaneapp->keep_alive();
+            pgenapp->keep_alive();
          }
          catch(...)
          {
          }
       }
       //Sleep(15 * 1000);
-      m_ptemplatePane   = new ::user::single_document_template(
-         papp,
-         "system/auth",
-         System.type_info < form_document > (),
-         System.type_info < simple_main_frame > (),
-         System.type_info < userex::pane_tab_view > ());
       m_pauth           = NULL;
-      m_pviewAuth       = NULL;
-      m_pdocAuth        = NULL;
-      m_pdoc            = NULL;
-      m_ptabview        = NULL;
       m_pvOldWindow     = NULL;
       m_bInteractive    = bInteractive;
-      m_bAuth    = bAuth;
+      m_bAuth           = bAuth;
       m_strForm         = pszForm;
       m_puser           = NULL;
       m_pauth           = NULL;
@@ -131,7 +121,7 @@ namespace fontopus
       string strUsername;
       string strPasshash;
       //System.crypt().file_get(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsername, "", get_app());
-      crypt_file_get(::dir::userappdata("license_auth/00001.data"), strUsername, "");
+      crypto_file_get(::dir::userappdata("license_auth/00001.data"), strUsername, "");
       m_loginthread.m_strUsername = strUsername;
       string strHost(pszRequestingParty);
 
@@ -194,7 +184,7 @@ namespace fontopus
       }
 
       m_loginthread.m_strRequestingServer = strHost;
-      crypt_file_get(::dir::userappdata("license_auth/00002.data"), strPasshash, calc_key_hash());
+      crypto_file_get(::dir::userappdata("license_auth/00002.data"), strPasshash, calc_key_hash());
       if(strUsername.has_char() && strPasshash.has_char())
       {
 
@@ -385,9 +375,9 @@ namespace fontopus
       string strDir;
       string strUsername;
       string strPasshash;
-      crypt_file_get(::dir::userappdata("license_auth/00001.data"), strUsername, "");
+      crypto_file_get(::dir::userappdata("license_auth/00001.data"), strUsername, "");
       m_loginthread.m_strUsername = strUsername;
-      crypt_file_get(::dir::userappdata("license_auth/00002.data"), strPasshash, calc_key_hash());
+      crypto_file_get(::dir::userappdata("license_auth/00002.data"), strPasshash, calc_key_hash());
       if(strUsername.has_char() && strPasshash.has_char())
       {
 
@@ -442,16 +432,25 @@ namespace fontopus
       straSource.remove_all();
    }
 
+
    string validate::calc_mod_hash()
    {
+
       if(m_loginthread.m_strModHash.has_char())
          return m_loginthread.m_strModHash;
+
       stringa straHash;
+
       stringa straSource;
+
       get_mod(straHash, straSource);
-      m_loginthread.m_strModHash = System.crypt().md5(straHash.implode(";"));
+
+      m_loginthread.m_strModHash = System.crypto().md5(straHash.implode(";"));
+
       return m_loginthread.m_strModHash;
+
    }
+
 
    string validate::calc_key_hash()
    {

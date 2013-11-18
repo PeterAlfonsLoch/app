@@ -1151,8 +1151,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="cross\windows\windows_thread.h" />
     <ClInclude Include="cross\windows\windows_types.h" />
     <ClInclude Include="cross\windows\windows_user.h" />
-    <ClInclude Include="crypt\crypt.h" />
-    <ClInclude Include="crypt\nessie.h" />
     <ClInclude Include="c_natural.h" />
     <ClInclude Include="fontopus\fontopus_authentication_map.h" />
     <ClInclude Include="fontopus\fontopus.h" />

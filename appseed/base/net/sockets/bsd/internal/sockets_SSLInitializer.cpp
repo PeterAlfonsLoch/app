@@ -53,7 +53,7 @@ void ssl_sigpipe_handle( int x ) {
 
    RAND_METHOD rand_meth;
 
-   ::plane::system * g_psystem = NULL;
+   ::base_system * g_psystem = NULL;
 
    void rand_seed(const void * buf, int32_t num)
    {
@@ -101,7 +101,7 @@ void ssl_sigpipe_handle( int x ) {
       bio_err = NULL;
       m_rand_size = 1024;
 
-      g_psystem = &Sys(papp->m_pplaneapp->m_psystem);
+      g_psystem = &Sys(papp->m_pbasesystem);
 
       /* An error write context */
       bio_err = BIO_new_fp(stderr, BIO_NOCLOSE);

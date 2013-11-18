@@ -238,10 +238,6 @@ namespace user
    };
 
 
-   CLASS_DECL_CORE sp(::user::interaction) get_parent_owner(sp(::user::interaction) pui);
-   CLASS_DECL_CORE bool is_descendant(sp(::user::interaction) puiParent, sp(::user::interaction) puiChild);
-
-
 } // namespace user
 
 

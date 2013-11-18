@@ -5,14 +5,14 @@ template <>
 inline UINT HashKey(int_ptr key)
 {
    // default identity hash - works for most primitive values
-   return (uint32_t)(((uint_ptr)key)>>32);
+   return (uint32_t)(((uint_ptr)key) >> 32);
 }
 #else
 template <>
 inline UINT HashKey(int_ptr key)
 {
    // default identity hash - works for most primitive values
-   return (uint32_t)(((uint_ptr)key)>>16);
+   return (uint32_t)(((uint_ptr)key) >> 16);
 }
 #endif
 
@@ -23,7 +23,7 @@ namespace user
    class window_interface;
 
 
-   class CLASS_DECL_CORE window_map :
+   class CLASS_DECL_BASE window_map :
       virtual public object
    {
    public:

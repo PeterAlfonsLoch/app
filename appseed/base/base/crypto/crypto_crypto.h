@@ -81,3 +81,17 @@ namespace crypto
 
 
 
+
+
+#pragma once
+
+
+CLASS_DECL_BASE bool crypto_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memory & storageEncrypt, const char * pszSalt);
+CLASS_DECL_BASE bool crypto_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memory & storageDecrypt, const char * pszSalt);
+
+CLASS_DECL_BASE bool crypto_file_get(const char * pszFile, string & str, const char * pszSalt);
+CLASS_DECL_BASE bool crypto_file_set(const char * pszFile, const char * pszData, const char * pszSalt);
+
+CLASS_DECL_BASE string spa_login_crypto(const char * psz, const char * pszRsa);
+
+#include "crypto_nessie.h"

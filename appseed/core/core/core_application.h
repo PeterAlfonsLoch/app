@@ -533,8 +533,6 @@ public:
    bool load_cached_string_by_id(string & str, id id, const string & pszFallbackValue, bool bLoadStringTable);
    void load_string_table(const string & pszApp, const string & pszId);
 
-   virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword);
-
    virtual bool base_support();
 
    virtual string message_box(const string & pszMatter, property_set & propertyset);
@@ -630,20 +628,7 @@ public:
    virtual bool release_exclusive();
 
 
-   // Sets and initializes usage of HtmlHelp instead of WinHelp.
    void EnableHtmlHelp();
-
-   // Sets and initializes usage of HtmlHelp instead of WinHelp.
-   //      void SetHelpMode( __HELP_TYPE eHelpType );
-   //    __HELP_TYPE GetHelpMode();
-
-   // Initialization Operations - should be done in initialize_instance
-
-   sp(::user::interaction) get_active_guie();
-   sp(::user::interaction) get_focus_guie();
-   //      virtual sp(::user::interaction) get_place_holder_container();
-
-
 
 
    virtual int32_t simple_message_box_timeout(sp(::user::interaction) puiOwner, const char * pszMessage, ::duration durationTimeout, UINT fuStyle = MB_OK);
@@ -1009,10 +994,6 @@ public:
 
    sp(base_application) get_system();
 
-   virtual ::count get_monitor_count();
-   virtual bool  get_monitor_rect(index i, LPRECT lprect);
-   virtual ::count get_desk_monitor_count();
-   virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
 
 
    //      virtual void defer_add_document_template(sp(::user::document_template) ptemplate);

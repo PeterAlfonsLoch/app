@@ -323,3 +323,11 @@ void base_application::remove_frame(sp(::user::interaction) pwnd)
       }
    }
 }
+
+
+thread * base_application::GetThread()
+{
+
+   return NULL;
+
+}

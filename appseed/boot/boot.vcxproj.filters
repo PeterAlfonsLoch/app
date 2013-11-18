@@ -164,12 +164,6 @@
     <ClInclude Include="simple_ui\simple_ui.h">
       <Filter>Header Files\simple_ui</Filter>
     </ClInclude>
-    <ClInclude Include="crypt\crypt.h">
-      <Filter>Header Files\crypt</Filter>
-    </ClInclude>
-    <ClInclude Include="crypt\nessie.h">
-      <Filter>Header Files\crypt</Filter>
-    </ClInclude>
     <ClInclude Include="version\version.config.h">
       <Filter>Header Files\version</Filter>
     </ClInclude>

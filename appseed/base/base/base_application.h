@@ -61,6 +61,7 @@ public:
    string                                          m_strLibraryName;
    string                                          m_strAppId;
    sp(::user::interaction_ptr_array)               m_pframea;
+   sp(::user::user)                                m_spuser;
 
 
 
@@ -84,13 +85,14 @@ public:
    virtual bool is_session();
    virtual bool is_serviceable();
 
-   inline class ::http::application      & http()       { return m_http; }
-   inline class ::file::dir::application       & dir()        { return m_dir; }
-   inline class ::file::application       & file()       { return m_file; }
-   math::math & math();
-   geometry::geometry & geometry();
+   inline class ::http::application &        http()         { return m_http; }
+   inline class ::file::dir::application &   dir()          { return m_dir; }
+   inline class ::file::application &        file()         { return m_file; }
    inline sp(::fontopus::fontopus)           fontopus()     { return m_pfontopus; }
-   inline ::sockets::sockets                 & sockets() { return *m_psockets; }
+   inline ::sockets::sockets &               sockets()      { return *m_psockets; }
+   inline sp(class ::user::user)             user()         { return m_spuser; }
+   math::math &                              math();
+   geometry::geometry &                      geometry();
 
 
    ::user::str_context * str_context();
@@ -191,6 +193,18 @@ public:
 
 
 
+   virtual thread * GetThread();
+
+   virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword);
+
+
+   sp(::user::interaction) get_active_guie();
+   sp(::user::interaction) get_focus_guie();
+
+   virtual ::count get_monitor_count();
+   virtual bool  get_monitor_rect(index i, LPRECT lprect);
+   virtual ::count get_desk_monitor_count();
+   virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
 
 
 };

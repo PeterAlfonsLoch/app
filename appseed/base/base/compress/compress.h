@@ -1,12 +1,11 @@
 #pragma once
 
-
+#define ZLIB_INTERNAL
 #include "zlib/zconf.h"
 #include "zlib/zlib.h"
-#include "bsdiff/bsdiff.h"
-#define ZLIB_INTERNAL
-#include "zip/zip.h"
 #undef ZLIB_INTERNAL
+#include "bsdiff/bsdiff.h"
+#include "zip/zip.h"
 
 
 #include "compress_gzip_stream.h"
