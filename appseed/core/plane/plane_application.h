@@ -98,20 +98,9 @@ namespace plane
       virtual sp(base_application) create_application(const char * pszType, const char * pszId, bool bSynch, application_bias * pbias);
 
 
-      virtual bool is_licensed(const char * pszId, bool bInteractive = true);
-
-      //virtual sp(::user::interaction) get_request_parent_ui(sp(command_line) pline);
-
       virtual bool initial_check_directrix();
 
-
-
-
-
       virtual void set_title(const char * pszTitle);
-
-
-
 
 
       //////////////////////////////////////////////////////////////////////////////////////////////////

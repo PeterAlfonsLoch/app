@@ -5,7 +5,7 @@ namespace fontopus
 {
 
 
-   class CLASS_DECL_BOOT user_authentication :
+   class CLASS_DECL_BASE user_authentication :
       public object
    {
    public:

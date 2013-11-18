@@ -450,3 +450,10 @@ class ::crypto::crypto & base_system::crypto()
 {
    return *m_spcrypto;
 }
+
+
+
+::datetime::departament & base_system::datetime()
+{
+   return *m_pdatetime;
+}

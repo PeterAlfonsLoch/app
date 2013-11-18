@@ -128,13 +128,13 @@ namespace user
       virtual sp(::user::interaction) GetDescendantWindow(id id);
       // like get_child_by_id but recursive
       void SendMessageToDescendants(UINT message, WPARAM wParam = 0, lparam lParam = NULL, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
-      virtual sp(::user::frame_window) GetParentFrame();
-      virtual sp(::user::frame_window) EnsureParentFrame();
+      virtual sp(::user::interaction) GetParentFrame();
+      virtual sp(::user::interaction) EnsureParentFrame();
       virtual sp(::user::interaction) GetTopLevelParent();
       virtual sp(::user::interaction) EnsureTopLevelParent();
       virtual sp(::user::interaction) GetTopLevelOwner();
       virtual sp(::user::interaction) GetParentOwner();
-      virtual sp(::user::frame_window) GetTopLevelFrame();
+      virtual sp(::user::interaction) GetTopLevelFrame();
 
       virtual bool IsWindow();
 

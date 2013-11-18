@@ -232,6 +232,8 @@ public:
    class machine_event_central *                m_pmachineeventcentral;
    class ::fontopus::user_set                   m_userset;
    ::crypto::crypto_sp                          m_spcrypto;
+   sp(class ::datetime::departament)            m_pdatetime;
+
 
 
 
@@ -256,6 +258,8 @@ public:
    class ::machine_event_central                & machine_event_central();
    ::fontopus::user_set                         & userset();
 
+   class ::crypto::crypto                       & crypto();
+   ::datetime::departament                      & datetime();
 
 
 
@@ -321,7 +325,6 @@ public:
 
    virtual bool assert_failed_line(const char * lpszFileName, int32_t iLine);
    virtual bool on_assert_failed_line(const char * pszFileName, int32_t iLine);
-   class ::crypto::crypto                    & crypto();
 
 
 };

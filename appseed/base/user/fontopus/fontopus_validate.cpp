@@ -780,7 +780,7 @@ namespace fontopus
       string strPass;
       if(m_strPasshash.is_empty())
       {
-         strPass = System.crypt().nessie(m_strPassword);
+         strPass = System.crypto().nessie(m_strPassword);
       }
       else
       {
@@ -1024,7 +1024,7 @@ namespace fontopus
       primitive::memory memory;
       primitive::memory memIn;
 
-      Application.hex_to_memory(memIn, strPass);
+      hex_to_memory(memIn, strPass);
 
       memory.allocate(2048);
 
@@ -1037,7 +1037,8 @@ namespace fontopus
       memory.allocate(i);
 
       string strHex;
-      Application.memory_to_hex(strHex, memory);
+
+      memory_to_hex(strHex, memory);
 
       RSA_free(rsa);
 
@@ -1128,20 +1129,20 @@ namespace fontopus
 
       string strUsernamePrevious;
       string strPasshashPrevious;
-      crypt_file_get(::dir::userappdata("license_auth/00001.data"), strUsernamePrevious, "");
-      crypt_file_get(::dir::userappdata("license_auth/00002.data"), strPasshashPrevious, calc_key_hash());
+      crypto_file_get(::dir::userappdata("license_auth/00001.data"), strUsernamePrevious, "");
+      crypto_file_get(::dir::userappdata("license_auth/00002.data"), strPasshashPrevious, calc_key_hash());
 
       if((strUsername.has_char() && strPasshash.has_char())
          && (strUsernamePrevious != strUsername || strPasshashPrevious != strPasshash))
       {
-         crypt_file_set(::dir::userappdata("license_auth/00001.data"), strUsername, "");
-         crypt_file_set(::dir::userappdata("license_auth/00002.data"), strPasshash, calc_key_hash());
+         crypto_file_set(::dir::userappdata("license_auth/00001.data"), strUsername, "");
+         crypto_file_set(::dir::userappdata("license_auth/00002.data"), strPasshash, calc_key_hash());
          if(strPassword.has_char())
          {
-            string strSalt = System.crypt().v5_get_password_salt();
-            crypt_file_set(::dir::userappdata("license_auth/00005.data"), strSalt, calc_key_hash());
-            string strPasshash2 = System.crypt().v5_get_password_hash(strSalt, strPassword);
-            crypt_file_set(::dir::userappdata("license_auth/00010.data"), strPasshash2, calc_key_hash());
+            string strSalt = System.crypto().v5_get_password_salt();
+            crypto_file_set(::dir::userappdata("license_auth/00005.data"), strSalt, calc_key_hash());
+            string strPasshash2 = System.crypto().v5_get_password_hash(strSalt, strPassword);
+            crypto_file_set(::dir::userappdata("license_auth/00010.data"), strPasshash2, calc_key_hash());
          }
       }
       if(m_loginthread.m_strLicense.has_char())
@@ -1149,7 +1150,7 @@ namespace fontopus
          stringa straLicense;
          straLicense.add(m_loginthread.m_strValidUntil);
          straLicense.add(System.datetime().international().get_gmt_date_time());
-         crypt_file_set(::dir::userappdata("license_auth/" + m_loginthread.m_strLicense + ".data"), straLicense.implode(";"), calc_ca2_hash());
+         crypto_file_set(::dir::userappdata("license_auth/" + m_loginthread.m_strLicense + ".data"), straLicense.implode(";"), calc_ca2_hash());
       }
       m_bLicense = true;
       m_puser = m_loginthread.m_puser;
@@ -1159,6 +1160,7 @@ namespace fontopus
    void validate::close_all()
    {
 
+      /*
       if(m_ptabview != NULL)
       {
          m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
@@ -1168,6 +1170,7 @@ namespace fontopus
       {
          m_ptemplatePane->close_all_documents(FALSE);
       }
+      */
 
    }
 
@@ -1184,6 +1187,7 @@ namespace fontopus
    void validate::show_and_request_auth()
    {
 
+      /*
       if(m_loginthread.m_strLicense.is_empty())
       {
          m_pviewAuth->SetTimer(1984, 484, NULL);
@@ -1192,6 +1196,7 @@ namespace fontopus
       livesignal.keep(get_app()->m_pplaneapp);
       m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
       m_ptemplatePane->close_all_documents(FALSE);
+      */
 
    }
 
@@ -1199,7 +1204,7 @@ namespace fontopus
 
    void validate::ensure_main_document()
    {
-      return;  
+/*      return;  
       if(m_pdoc != NULL)
          return;
 
@@ -1217,7 +1222,7 @@ namespace fontopus
       pview->set_tab("network", 2);
       pview->set_image_tab("", Application.dir().matter("image/keyboard-h21.png"), 3);
       pview->set_cur_tab_by_id(1);
-
+      */
    }
 
    void validate::page1(const stringa & straMatter)
@@ -1291,6 +1296,7 @@ namespace fontopus
    void validate::display_main_frame()
    {
 
+      /*
       rect rectOpen;
       if(m_ptabview->GetParentFrame()->get_parent() == NULL)
       {
@@ -1327,7 +1333,7 @@ namespace fontopus
       System.m_puiInitialPlaceHolderContainer->GetTopLevelParent()->ShowWindow(SW_SHOW);
       }
       else*/
-      {
+/*      {
          //            m_ptabview->GetTopLevelFrame()->ShowWindow(SW_SHOW);
       }
       //       m_ptabview->GetTopLevelFrame()->SetActiveWindow();
@@ -1350,7 +1356,7 @@ namespace fontopus
       else
       {
       }*/
-      if(m_ptabview->GetTopLevelFrame()->SetForegroundWindow())
+  /*    if(m_ptabview->GetTopLevelFrame()->SetForegroundWindow())
       {
          TRACE("fontopus_validate tab_view top_level_frame set_foreground_window OK");
          if(m_ptabview->GetTopLevelFrame()->BringWindowToTop())
@@ -1369,11 +1375,12 @@ namespace fontopus
 
       //m_pviewAuth->GetTopLevelParent()->SetForegroundWindow();
       //m_pviewAuth->GetTopLevelParent()->BringWindowToTop();
-
+      */
    }
 
    void validate::pageMessage(const stringa & straMatter, property_set & set)
    {
+      /*
       ensure_main_document();
       m_pdocAuth->get_html_data()->m_propertyset = set;
       page1(straMatter);
@@ -1384,8 +1391,10 @@ namespace fontopus
          m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
          m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
       }
+      */
    }
 
+   /*
    void validate::on_create_view(::user::view_creator_data * pcreatordata)
    {
       switch(pcreatordata->m_id)
@@ -1428,9 +1437,13 @@ namespace fontopus
       }
 
    }
+
+   */
+
+
    void validate::on_show_view()
    {
-      switch(m_ptabview->get_view_id())
+/*      switch(m_ptabview->get_view_id())
       {
       case 1:
          {
@@ -1441,7 +1454,7 @@ namespace fontopus
             m_netcfg.on_show();
          }
          break;
-      }
+      }*/
    }
 
 
@@ -1452,7 +1465,7 @@ namespace fontopus
 
 
 
-
+   /*
    bool validate::BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent)
    {
       UNREFERENCED_PARAMETER(pview);
@@ -1544,6 +1557,7 @@ namespace fontopus
       }
       return false;
    }
+   */
 
    void validate::authentication_failed(::fontopus::e_result iAuth, const char * pszResponse)
    {
@@ -1557,12 +1571,12 @@ namespace fontopus
       m_bLicense = false;
       m_puser = NULL;
 
-      if(m_pdocAuth != NULL)
+/*      if(m_pdocAuth != NULL)
       {
 
          m_pdocAuth->get_html_data()->m_puser = NULL;
 
-      }
+      }*/
 
       if(m_strLicense.has_char())
       {
@@ -1664,10 +1678,10 @@ namespace fontopus
 
       save_authentication_info();
 
-      if(m_ptabview != NULL)
+      /*if(m_ptabview != NULL)
       {
          m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
-      }
+      }*/
 
    }
 
@@ -1675,7 +1689,7 @@ namespace fontopus
    {
       sp(::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = true;
-      sp(::form_document) pdoc = (m_ptemplatePane->open_document_file(createcontext));
+/*      sp(::form_document) pdoc = (m_ptemplatePane->open_document_file(createcontext));
       sp(userex::pane_tab_view) pview = pdoc->get_typed_view < userex::pane_tab_view > ();
       pview->set_view_creator(this);
       rect rectOpen;
@@ -1694,7 +1708,8 @@ namespace fontopus
       ::core::live_signal livesignal;
       livesignal.keep(get_app()->m_pplaneapp);
       pview->GetTopLevelFrame()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
-      return m_pauth;
+      return m_pauth;*/
+      return NULL;
    }
 
 

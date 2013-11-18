@@ -1194,7 +1194,7 @@ namespace user
          return m_pimpl->IsWindowEnabled();
    }
 
-   sp(::user::frame_window) interaction::GetTopLevelFrame()
+   sp(::user::interaction) interaction::GetTopLevelFrame()
    {
       if (m_pimpl == NULL)
          return NULL;
@@ -1873,7 +1873,7 @@ namespace user
       return oswindow_Parent;
    }
 
-   sp(::user::frame_window) interaction::EnsureParentFrame()
+   sp(::user::interaction) interaction::EnsureParentFrame()
    {
       if (m_pimpl == NULL)
          return NULL;
@@ -1953,7 +1953,7 @@ namespace user
 
 
 
-   sp(::user::frame_window) interaction::GetParentFrame()
+   sp(::user::interaction) interaction::GetParentFrame()
    {
       ASSERT_VALID(this);
 
@@ -3543,13 +3543,6 @@ namespace user
       UNREFERENCED_PARAMETER(pitem);
 
       return false;
-
-   }
-
-   sp(image_list) interaction::get_image_list()
-   {
-
-      return NULL;
 
    }
 

@@ -619,8 +619,8 @@ public:
    virtual string get_local_mutex_id();
    virtual string get_global_mutex_id();
 
-   virtual bool hex_to_memory(primitive::memory & memory, const char * pszHex);
-   virtual void memory_to_hex(string & strHex, primitive::memory & memory);
+//   virtual bool hex_to_memory(primitive::memory & memory, const char * pszHex);
+  // virtual void memory_to_hex(string & strHex, primitive::memory & memory);
 
 
 

@@ -874,10 +874,6 @@ namespace plane
 
 #endif
 
-   ::core::datetime & system::datetime()
-   {
-      return *m_pdatetime;
-   }
 
    ::user::str & system::str()
    {

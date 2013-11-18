@@ -464,6 +464,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 #include "crypto/crypto.h"
 
+#include "primitive/datetime/datetime_departament.h"
+
 #include "base_system.h"
 
 

@@ -100,6 +100,7 @@ public:
 
    virtual ::fontopus::user * safe_get_user();
    virtual ::fontopus::user * get_user();
+   virtual bool is_licensed(const char * pszId, bool bInteractive = true);
 
    
 
@@ -156,6 +157,10 @@ public:
    sp(::command_thread) directrix();
    sp(::command_thread) axiom();
    sp(::command_thread) creation();
+
+
+
+
 
    //virtual void on_allocation_error(const sp(type) info);
    //virtual sp(element) on_alloc(const sp(type) info);

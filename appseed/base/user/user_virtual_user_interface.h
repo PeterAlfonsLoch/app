@@ -42,7 +42,7 @@ public:
    // Advanced: virtual AdjustWindowRect
    enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
    virtual void CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder);
-   virtual sp(::user::frame_window) GetParentFrame();
+   virtual sp(::user::interaction) GetParentFrame();
 
    virtual sp(::user::interaction) SetFocus();
 
@@ -101,10 +101,10 @@ public:
       LPVOID lpParam = NULL);
 
 
-   virtual sp(::user::frame_window) EnsureParentFrame();
+   virtual sp(::user::interaction) EnsureParentFrame();
    virtual sp(::user::interaction) GetTopLevelParent();
    virtual sp(::user::interaction) EnsureTopLevelParent();
-   virtual sp(::user::frame_window) GetTopLevelFrame();
+   virtual sp(::user::interaction) GetTopLevelFrame();
 
    using ::user::interaction::GetWindowText;
    strsize GetWindowText(LPTSTR lpszStringBuf, int32_t nMaxCount);

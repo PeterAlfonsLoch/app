@@ -52,7 +52,6 @@ namespace plane
 #ifndef METROWIN
       class ::core::process_departament              m_processsection;
 #endif
-      sp(class ::core::datetime)                     m_pdatetime;
 
       class ::core::compress                         m_compress;
       class ::core::patch                            m_patch;
@@ -206,7 +205,6 @@ namespace plane
       FT_Library                             & ftlibrary();
 
       application_ptra                       & appptra();
-      ::core::datetime                       & datetime();
 
       ::core::stra                           & stra();
       ::core::install                        & install();
