@@ -192,8 +192,6 @@ application::application() :
 
    m_eexclusiveinstance       = ExclusiveInstanceNone;
    m_peventReady              = NULL;
-   m_pmapKeyPressed           = NULL;
-   m_bLicense                 = true;
    m_strLocale                = "_std";
    m_strSchema                = "_std";
 
@@ -5286,97 +5284,6 @@ bool application::on_run_uninstall()
 }
 
 
-bool application::is_key_pressed(::user::e_key ekey)
-{
-
-   if(is_session())
-   {
-      if(m_pmapKeyPressed  == NULL)
-      {
-         m_pmapKeyPressed = new ::map < ::user::e_key, ::user::e_key, bool, bool >;
-      }
-      bool bPressed = false;
-      if(ekey == ::user::key_shift)
-      {
-         m_pmapKeyPressed->Lookup(::user::key_shift, bPressed);
-         if(bPressed)
-            goto ret;
-         m_pmapKeyPressed->Lookup(::user::key_lshift, bPressed);
-         if(bPressed)
-            goto ret;
-         m_pmapKeyPressed->Lookup(::user::key_rshift, bPressed);
-         if(bPressed)
-            goto ret;
-      }
-      else if(ekey == ::user::key_control)
-      {
-         m_pmapKeyPressed->Lookup(::user::key_control, bPressed);
-         if(bPressed)
-            goto ret;
-         m_pmapKeyPressed->Lookup(::user::key_lcontrol, bPressed);
-         if(bPressed)
-            goto ret;
-         m_pmapKeyPressed->Lookup(::user::key_rcontrol, bPressed);
-         if(bPressed)
-            goto ret;
-      }
-      else if(ekey == ::user::key_alt)
-      {
-         m_pmapKeyPressed->Lookup(::user::key_alt, bPressed);
-         if(bPressed)
-            goto ret;
-         m_pmapKeyPressed->Lookup(::user::key_lalt, bPressed);
-         if(bPressed)
-            goto ret;
-         m_pmapKeyPressed->Lookup(::user::key_ralt, bPressed);
-         if(bPressed)
-            goto ret;
-      }
-      else
-      {
-         m_pmapKeyPressed->Lookup(ekey, bPressed);
-      }
-ret:
-      return bPressed;
-   }
-   else if(m_psession != NULL)
-   {
-      return Sess(this).is_key_pressed(ekey);
-   }
-   else if(m_psystem != NULL)
-   {
-      return Sys(this).is_key_pressed(ekey);
-   }
-   else
-   {
-      throw "not expected";
-   }
-
-}
-
-void application::set_key_pressed(::user::e_key ekey, bool bPressed)
-{
-   if(is_session())
-   {
-      if(m_pmapKeyPressed  == NULL)
-      {
-         m_pmapKeyPressed = new ::map < ::user::e_key, ::user::e_key, bool, bool >;
-      }
-      (*m_pmapKeyPressed)[ekey] = bPressed;
-   }
-   else if(m_psession != NULL)
-   {
-      return Sess(this).set_key_pressed(ekey, bPressed);
-   }
-   else if(m_psystem != NULL)
-   {
-      return Sys(this).set_key_pressed(ekey, bPressed);
-   }
-   else
-   {
-      throw "not expected";
-   }
-}
 
 bool application::start_application(bool bSynch, application_bias * pbias)
 {

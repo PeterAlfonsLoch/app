@@ -412,7 +412,7 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
-   sp(::user::frame_window) window::GetParentFrame()
+   sp(::user::interaction) window::GetParentFrame()
    {
       throw interface_only_exception(get_app());
    }
@@ -442,7 +442,7 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
-   sp(::user::frame_window) window::GetTopLevelFrame()
+   sp(::user::interaction) window::GetTopLevelFrame()
    {
       throw interface_only_exception(get_app());
    }
@@ -1027,7 +1027,7 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
-   sp(::user::frame_window) window::EnsureParentFrame()
+   sp(::user::interaction) window::EnsureParentFrame()
    {
       throw interface_only_exception(get_app());
    }

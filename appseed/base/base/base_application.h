@@ -62,6 +62,14 @@ public:
    string                                          m_strAppId;
    sp(::user::interaction_ptr_array)               m_pframea;
    sp(::user::user)                                m_spuser;
+#ifdef WINDOWS
+   HINSTANCE                                       m_hInstance;
+#endif
+   map < ::user::e_key, ::user::e_key, bool, bool > *                            m_pmapKeyPressed;
+   bool                                            m_bLicense;
+   string                                          m_strBaseSupportId;
+   sp(class ::fontopus::license)                   m_splicense;
+
 
 
 
@@ -93,14 +101,20 @@ public:
    inline sp(class ::user::user)             user()         { return m_spuser; }
    math::math &                              math();
    geometry::geometry &                      geometry();
+   inline class ::fontopus::license &        license()      { return *m_splicense; }
 
 
-   ::user::str_context * str_context();
+   ::user::str_context *                     str_context();
 
 
    virtual ::fontopus::user * safe_get_user();
    virtual ::fontopus::user * get_user();
+   virtual ::fontopus::user * create_current_user();
+
+
    virtual bool is_licensed(const char * pszId, bool bInteractive = true);
+   virtual string get_license_id();
+
 
    
 
@@ -133,6 +147,15 @@ public:
    virtual string get_locale_schema_dir(const string & strLocale, const string & strSchema);
    virtual string get_locale_schema_dir(const string & strLocale);
    virtual string get_locale_schema_dir();
+
+
+
+   virtual void set_locale(const string & lpcsz, bool bUser);
+   virtual void set_schema(const string & lpcsz, bool bUser);
+   virtual void on_set_locale(const string & lpcsz, bool bUser);
+   virtual void on_set_schema(const string & lpcsz, bool bUser);
+
+
 
 
 //   virtual string matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);
@@ -210,6 +233,10 @@ public:
    virtual bool  get_monitor_rect(index i, LPRECT lprect);
    virtual ::count get_desk_monitor_count();
    virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
+
+
+   virtual bool is_key_pressed(::user::e_key ekey);
+   virtual void set_key_pressed(::user::e_key ekey, bool bPressed);
 
 
 };

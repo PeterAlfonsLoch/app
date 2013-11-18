@@ -1,6 +1,10 @@
 #pragma once
 
 
+#define WM_SIZEPARENT       0x0361  // lParam = &__SIZEPARENTPARAMS
+
+
+
 namespace user
 {
 

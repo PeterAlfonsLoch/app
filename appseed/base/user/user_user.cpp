@@ -12,10 +12,10 @@ namespace user
       
       
       m_pkeyboardfocus  = NULL;
-      m_pshellimageset  = NULL;
+//      m_pshellimageset  = NULL;
       m_pkeyboard       = NULL;
-      m_pufeschema      = NULL;
-      m_pufe            = NULL;
+  //    m_pufeschema      = NULL;
+    //  m_pufe            = NULL;
 
 
       //::core::user * papp = dynamic_cast <::core::user *>(System.GetThread()->m_pAppThread);
@@ -59,7 +59,7 @@ namespace user
          System.factory().creatable_small < keyboard_layout > ();
       }
 
-      m_pshellimageset = new filemanager::_shell::ImageSet(m_pbaseapp);
+//      m_pshellimageset = new filemanager::_shell::ImageSet(m_pbaseapp);
 
       if(!base_departament::initialize1())
          return false;
@@ -76,9 +76,6 @@ namespace user
 
       if(!base_departament::initialize())
          return false;
-
-
-      Application.simpledb().get_data_server()->add_client(this);
 
 
       TRACE("::user::application::initialize");
@@ -149,16 +146,19 @@ retry_license:
 
       }
 
-      set_data_server(Application.simpledb().get_data_server());
+// xxx      set_data_server(Application.simpledb().get_data_server());
 
 
-      if(!Application.is_system())
+      /* xxx if(!Application.is_system())
       {
 
          m_pufeschema      = new ::user::front_end_schema(get_app());
          m_pufe            = new ::user::front_end();
 
-      }
+      }*/
+
+
+      /* xxx 
 
       if(Application.is_system())
       {
@@ -216,11 +216,13 @@ retry_license:
       }
 
 
+      */
+
       //if(Application.m_pdocmanager != NULL)
         // Application.m_pdocmanager->add_document_template(NULL);
 
-      if(!BaseMenuCentralContainer::initialize_central_container(get_app()))
-         return false;
+//  xxx    if(!BaseMenuCentralContainer::initialize_central_container(get_app()))
+  //       return false;
 
 
       if(!base_departament::initialize())
@@ -239,6 +241,8 @@ retry_license:
 
       if(!base_departament::initialize2())
          return false;
+
+/* xxx
 
       m_ptemplateForm = new ::user::multiple_document_template(
          get_app(),
@@ -261,6 +265,7 @@ retry_license:
          System.type_info < simple_frame_window > (),
          System.type_info < ::user::place_holder > ());
 
+*/
 
       return true;
 
@@ -278,7 +283,7 @@ retry_license:
       {
       }
 
-      try
+/* xxx      try
       {
          if(m_pufeschema != NULL)
          {
@@ -288,9 +293,9 @@ retry_license:
       }
       catch(...)
       {
-      }
+      } */
 
-      try
+      /* xxx try
       {
          if(m_pufe != NULL)
          {
@@ -300,9 +305,9 @@ retry_license:
       }
       catch(...)
       {
-      }
+      } */
 
-      try
+/* xxx      try
       {
          if(!BaseMenuCentralContainer::finalize_central_container())
          {
@@ -311,17 +316,20 @@ retry_license:
       }
       catch(...)
       {
-      }
+      } */
 
       return true;
 
    }
 
 
-   filemanager::_shell::ImageSet & user::shellimageset()
+/* xxx   filemanager::_shell::ImageSet & user::shellimageset()
    {
       return *m_pshellimageset;
    }
+   */
+
+   /* xxx
 
    string user::message_box(const char * pszMatter, property_set & propertyset)
    { 
@@ -511,7 +519,7 @@ retry_license:
          }
       }
    }
-
+   */
 
    sp(::user::keyboard_focus) user::get_keyboard_focus()
    {
@@ -533,11 +541,11 @@ retry_license:
       {
          return m_pkeyboardfocus;
       }
-      else if(Application.m_psession != NULL)
+      else if(Application.m_pbasesession != NULL)
       {
          return Sess(get_app()).user()->get_keyboard_focus();
       }
-      else if(Application.m_psystem != NULL)
+      else if(Application.m_pbasesystem != NULL)
       {
          return Sys(get_app()).user()->get_keyboard_focus();
       }
@@ -555,7 +563,7 @@ retry_license:
          {
             m_pkeyboardfocus = pkeyboardfocus;
          }
-         if(Application.m_psystem != NULL)
+         if(Application.m_pbasesystem != NULL)
          {
             return Sys(get_app()).user()->set_keyboard_focus(pkeyboardfocus);
          }
@@ -567,11 +575,11 @@ retry_license:
             m_pkeyboardfocus = pkeyboardfocus;
          }
       }
-      else if(Application.m_psession != NULL)
+      else if(Application.m_pbasesession != NULL)
       {
          return Sess(get_app()).user()->set_keyboard_focus(pkeyboardfocus);
       }
-      else if(Application.m_psystem != NULL)
+      else if(Application.m_pbasesystem != NULL)
       {
          return Sys(get_app()).user()->set_keyboard_focus(pkeyboardfocus);
       }
@@ -611,7 +619,7 @@ retry_license:
                && Application.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
             {
 
-               data_set("keyboard_layout", keyboard().layout().m_strPath);
+               // xxx data_set("keyboard_layout", keyboard().layout().m_strPath);
 
             }
 
@@ -628,7 +636,7 @@ retry_license:
             && Application.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
          {
 
-            data_set("keyboard_layout", keyboard().layout().m_strPath);
+// xxx            data_set("keyboard_layout", keyboard().layout().m_strPath);
 
          }
 
@@ -638,7 +646,7 @@ retry_license:
       if(!System.user()->keyboard().load_layout(pszPath, bUser))
          return false;
 
-      Application.simpledb().on_set_keyboard_layout(pszPath, bUser);
+      // xxx Application.simpledb().on_set_keyboard_layout(pszPath, bUser);
 
       return true;
    }
@@ -660,12 +668,12 @@ retry_license:
    }
 
 
-   sp(type) user::controltype_to_typeinfo(::user::control::e_type e_type)
+/* xxx    sp(type) user::controltype_to_typeinfo(::user::control::e_type e_type)
    {
 
       return sp(type)();
 
-   }
+   } */
 
    void user::SendMessageToWindows(UINT message, WPARAM wparam, LPARAM lparam)
    {
@@ -684,7 +692,7 @@ retry_license:
 
 
 
-
+   /* xxx
 
    void user::add_document_template(sp(::user::document_template) ptemplate)
    {
@@ -748,7 +756,9 @@ retry_license:
       return App(papp).user()->GetUfe();
    }
 
+   */
 
+   /* xxx
    void user::_001OnFileNew()
    {
       Application.m_pdocmanager->_001OnFileNew();
@@ -775,11 +785,11 @@ retry_license:
                m_pwindowmap = NULL;
             }
          }*/
-         return 0;
+         /* xxx return 0;
       }
+      */
 
-
-
+/* xxx
 
       int32_t user::GetVisibleFrameCountExcept(sp(::user::interaction) pwndExcept)
       {
@@ -838,7 +848,6 @@ retry_license:
       {
          SendMessageToWindows(application::APPM_LANGUAGE, 0, (LPARAM) pobject);
       }
-
 
    sp(::form_document) user::create_form(sp(form_view) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
    {
@@ -929,6 +938,8 @@ retry_license:
    }
 
 
+
+
    sp(::user::document) user::hold(sp(::user::interaction) pui)
    {
 
@@ -946,6 +957,7 @@ retry_license:
       return pdoc;
    }
 
+   */
 
 } //namespace user
 

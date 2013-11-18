@@ -810,14 +810,6 @@ namespace plane
    }
 
 
-   sp(::user::window_draw) system::get_twf()
-   {
-
-      return m_ptwf;
-
-   }
-
-
    ::core::history & system::hist()
    {
       return *m_phistory;

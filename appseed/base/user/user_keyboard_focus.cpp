@@ -69,7 +69,7 @@ namespace user
       sp(interaction) puiThis = (this);
       if(puiThis == NULL)
          return NULL;
-      single_lock (&puiThis->m_pthread->m_pthread->m_mutex, TRUE);
+      single_lock (&puiThis->m_pthread->m_mutex, TRUE);
       sp(interaction) pui = puiThis->above_sibling();
       while(pui != NULL)
       {

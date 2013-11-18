@@ -853,7 +853,6 @@ class CDockContext;                     // for dragging control bars
 // Internal _ Windows messages (see Technical note TN024 for more details)
 // (0x0360 - 0x037F are reserved for core API)
 
-#define WM_SIZEPARENT       0x0361  // lParam = &__SIZEPARENTPARAMS
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
                            // lParam = lpszOther (or NULL)
 #define WM_IDLEUPDATECMDUI  0x0363  // wParam == bDisableIfNoHandler
@@ -939,14 +938,6 @@ typedef void * HDWP;
 #endif
 
 
-// special struct for WM_SIZEPARENT
-struct __SIZEPARENTPARAMS
-{
-   HDWP hDWP;       // handle for DeferWindowPos
-   RECT rect;       // parent client rectangle (trim as appropriate)
-   SIZE sizeTotal;  // total size on each side as layout proceeds
-   bool bStretch;   // should stretch to fill all space
-};
 
 // flags for wParam in the WM_FLOATSTATUS message
 enum {  FS_SHOW = 0x01, FS_HIDE = 0x02,

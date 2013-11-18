@@ -302,9 +302,6 @@ public:
 
 
    //string                                                                                  m_strLicense;
-   bool                                                                                      m_bLicense;
-   string                                                                                    m_strBaseSupportId;
-   map < ::user::e_key, ::user::e_key, bool, bool > *                            m_pmapKeyPressed;
 
 
    string                                                                                    m_strRoot;
@@ -364,9 +361,6 @@ public:
    sp(::mutex)                     m_pmutexGlobal;
    sp(::mutex)                     m_pmutexGlobalId;
    // This module's hInstance.
-#ifdef WINDOWS
-   HINSTANCE                     m_hInstance;
-#endif
    // Pointer to the command-line.
    string                        m_strCmdLine;
    // Initial state of the application's ::user::window; normally,
@@ -501,14 +495,6 @@ public:
    virtual void EnableShellOpen();
 
 
-   virtual void set_locale(const string & lpcsz, bool bUser);
-   virtual void set_schema(const string & lpcsz, bool bUser);
-   virtual void on_set_locale(const string & lpcsz, bool bUser);
-   virtual void on_set_schema(const string & lpcsz, bool bUser);
-
-
-   virtual ::fontopus::user * create_current_user();
-
 
 
    virtual void _001CloseApplication();
@@ -547,8 +533,6 @@ public:
    ::mutex * get_local_mutex();
    ::mutex * get_global_mutex();
 
-   virtual string get_license_id();
-
    virtual void set_env_var(const string & var,const string & value);
    virtual uint32_t get_thread_id();
 
@@ -561,8 +545,6 @@ public:
 
    DECL_GEN_SIGNAL(_001OnApplicationRequest)
 
-      virtual bool is_key_pressed(::user::e_key ekey);
-   virtual void set_key_pressed(::user::e_key ekey, bool bPressed);
 
 
    virtual bool is_running();

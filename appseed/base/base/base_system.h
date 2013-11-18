@@ -233,6 +233,11 @@ public:
    class ::fontopus::user_set                   m_userset;
    ::crypto::crypto_sp                          m_spcrypto;
    sp(class ::datetime::departament)            m_pdatetime;
+   string_map < int_to_string >                 m_mapEnumToName;
+   string_map < string_to_int >                 m_mapNameToEnum;
+   sp(::user::window_draw)                      m_ptwf;
+
+
 
 
 
@@ -306,6 +311,7 @@ public:
 
    virtual bool is_system();
 
+   sp(::user::window_draw)               get_twf();
 
 
    virtual void on_allocation_error(sp(base_application) papp, sp(type) info);
@@ -325,6 +331,82 @@ public:
 
    virtual bool assert_failed_line(const char * lpszFileName, int32_t iLine);
    virtual bool on_assert_failed_line(const char * pszFileName, int32_t iLine);
+
+
+   void set_enum_name(sp(type) etype, int32_t i, const char * psz)
+   {
+      m_mapEnumToName[etype->name()][i] = psz;
+      m_mapNameToEnum[etype->name()][psz] = i;
+   }
+   string get_enum_name(sp(type) info, int32_t i)
+   {
+      return m_mapEnumToName[info->name()].get(i, "");
+   }
+
+   template < class E, E edefault>
+   void from_name(base_enum < E, edefault > & b, const char * psz, E iDefault = edefault)
+   {
+      b = enum_from_name(System.type_info < E >(), psz, iDefault);
+   }
+
+   template < class E, E edefault>
+   string get_name(const base_enum < E, edefault > & b)
+   {
+      return get_enum_name(System.type_info < E >(), (int32_t)(E)b);
+   }
+
+   template < class ENUM >
+   ENUM enum_from_name(sp(type) info, const char * psz, int32_t iDefault = 0)
+   {
+      return (ENUM)m_mapNameToEnum[info->name()].get(psz, iDefault);
+   }
+   int32_t enum_from_name(sp(type) info, const char * psz, int32_t iDefault = 0)
+   {
+      return m_mapNameToEnum[info->name()].get(psz, iDefault);
+   }
+   int32_t enum_from_name(const std_type_info & info, const char * psz, int32_t iDefault = 0)
+   {
+#ifdef WINDOWS
+      return m_mapNameToEnum[info.name()].get(psz, iDefault);
+#else
+      return m_mapNameToEnum[info.name()].get(psz, iDefault);
+#endif
+   }
+
+   template < class TYPE >
+   void set_enum_name(sp(type) etype, TYPE e, const char * psz)
+   {
+      set_enum_name(etype, (int32_t)e, psz);
+   }
+   template < class TYPE >
+   string get_enum_name(sp(type) etype, TYPE e)
+   {
+      return get_enum_name(etype, (int32_t)e);
+   }
+
+   template < class TYPE >
+   void set_enum_name(const std_type_info & info, TYPE e, const char * psz)
+   {
+      set_enum_name(get_type_info(info), (int32_t)e, psz);
+   }
+   template < class TYPE >
+   string get_enum_name(const std_type_info & info, TYPE e)
+   {
+      return get_enum_name(get_type_info(info), (int32_t)e);
+   }
+
+   template < class TYPE >
+   void set_enum_name(TYPE e, const char * psz)
+   {
+      set_enum_name(System.type_info < TYPE >(), (int32_t)e, psz);
+   }
+   template < class TYPE >
+   string get_enum_name(TYPE e)
+   {
+      return get_enum_name(System.type_info < TYPE >(), (int32_t)e);
+   }
+
+
 
 
 };

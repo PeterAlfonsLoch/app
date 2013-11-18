@@ -466,6 +466,10 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 #include "primitive/datetime/datetime_departament.h"
 
+
+#include "user/user_window_draw.h"
+
+
 #include "base_system.h"
 
 
@@ -668,6 +672,7 @@ namespace numeric_info
 
 
 #include "user/user.h"
+#include "user/user_control_event.h"
 
 
 

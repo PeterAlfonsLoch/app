@@ -22,7 +22,6 @@ namespace plane
 
       sp(service_base)                    m_pservice;
 
-      sp(class ::fontopus::license)       m_splicense;
       sp(class ::fs::data)                m_spfsdata;
 
       bool                                m_bIfs;
@@ -69,7 +68,6 @@ namespace plane
       virtual int32_t exit_instance();
 
 
-      inline class ::fontopus::license          & license()    { return *m_splicense    ; }
       inline sp(class ::fs::data)               fs()           { return m_spfsdata     ; }
       inline sp(::html::html)                   html()         { return m_phtml        ; }
       inline class ::simpledb::simpledb         & simpledb()   { return m_simpledb     ; }

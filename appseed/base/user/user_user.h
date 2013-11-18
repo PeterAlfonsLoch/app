@@ -59,9 +59,9 @@ namespace user
 
       virtual bool finalize();
 
-      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
+      //virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
-      virtual void _001OnFileNew();
+      //virtual void _001OnFileNew();
 
       virtual int32_t exit_instance();
 

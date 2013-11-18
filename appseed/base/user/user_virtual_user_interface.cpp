@@ -131,7 +131,7 @@ bool virtual_user_interface::SetWindowPos(int32_t z, int32_t x, int32_t y, int32
       {
          if(z == ZORDER_TOP || z == ZORDER_TOPMOST)
          {
-            single_lock sl(m_pthread == NULL ? NULL : &m_mutex);
+            single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex);
             if(sl.lock(millis(84)))
             {
                index iFind = get_parent()->m_uiptraChild.find_first(m_pguie);
@@ -210,11 +210,11 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
    if(m_pthread == NULL)
       return false;
    
-   add(this);
+   m_pthread->add(this);
 
    m_pguie->m_pthread = m_pthread;
    
-   m_pguie->add(m_pguie);
+   m_pguie->m_pthread->add(m_pguie);
 
    m_bCreate = true;
    
@@ -356,11 +356,11 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
    if(!create_message_queue())
       return FALSE;
    
-   add(this);
+   m_pthread->add(this);
    
    m_pguie->m_pthread = m_pthread;
    
-   m_pguie->add(m_pguie);
+   m_pguie->m_pthread->add(m_pguie);
    
    m_bVisible = (dwStyle & WS_VISIBLE) != 0;
    
@@ -494,11 +494,11 @@ bool virtual_user_interface::create(sp(::user::interaction) pparent, id id)
    
    m_bCreate = true;
    
-   add(this);
+   m_pthread->add(this);
    
    m_pguie->m_pthread = m_pthread;
    
-   m_pguie->add(m_pguie);
+   m_pguie->m_pthread->add(m_pguie);
    
    m_bVisible = true;
    
@@ -654,7 +654,7 @@ void virtual_user_interface::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustTyp
 }
 
 
-sp(::user::frame_window) virtual_user_interface::GetParentFrame()
+sp(::user::interaction) virtual_user_interface::GetParentFrame()
 {
 
    ASSERT_VALID(this);
@@ -774,9 +774,9 @@ bool virtual_user_interface::IsWindowEnabled()
    return m_bEnabled && ((m_pguie == NULL || m_pguie->get_parent() == NULL) ? true : m_pguie->get_parent()->IsWindowEnabled());
 }
 
-sp(::user::frame_window) virtual_user_interface::EnsureParentFrame()
+sp(::user::interaction) virtual_user_interface::EnsureParentFrame()
 {
-    sp(::user::frame_window)pFrameWnd = GetParentFrame();
+    sp(::user::interaction) pFrameWnd = GetParentFrame();
     ENSURE_VALID(pFrameWnd);
     return pFrameWnd;
 }
@@ -1155,12 +1155,12 @@ bool virtual_user_interface::DestroyWindow()
 
    try
    {
-      single_lock sl(m_pthread == NULL ? NULL : &m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
       try
       {
          if(m_pthread != NULL)
          {
-            remove(m_pguie);
+            m_pthread->remove(m_pguie);
          }
       }
       catch(...)
@@ -1170,7 +1170,7 @@ bool virtual_user_interface::DestroyWindow()
       {
          if(m_pthread != NULL)
          {
-            remove(this);
+            m_pthread->remove(this);
          }
       }
       catch(...)
@@ -1377,7 +1377,7 @@ uint_ptr virtual_user_interface::SetTimer(uint_ptr nIDEvent, UINT nElapse, void 
 
    UNREFERENCED_PARAMETER(lpfnTimer);
 
-   m_pguie->set_timer(m_pguie, nIDEvent, nElapse);
+   m_pguie->m_pthread->set_timer(m_pguie, nIDEvent, nElapse);
 
    return nIDEvent;
 
@@ -1387,7 +1387,7 @@ uint_ptr virtual_user_interface::SetTimer(uint_ptr nIDEvent, UINT nElapse, void 
 bool virtual_user_interface::KillTimer(uint_ptr nIDEvent)
 {
 
-   m_pguie->unset_timer(m_pguie, nIDEvent);
+   m_pguie->m_pthread->unset_timer(m_pguie, nIDEvent);
 
    return true;
 
@@ -1396,7 +1396,7 @@ bool virtual_user_interface::KillTimer(uint_ptr nIDEvent)
 
 sp(::user::interaction) virtual_user_interface::GetDescendantWindow(id id)
 {
-   single_lock sl(&m_mutex, TRUE);
+   single_lock sl(&m_pthread->m_mutex, TRUE);
    for(int32_t i = 0; i < m_pguie->m_uiptraChild.get_count(); i++)
    {
       if(m_pguie->m_uiptraChild[i].GetDlgCtrlId() == id)
@@ -1425,11 +1425,11 @@ id virtual_user_interface::GetDlgCtrlId()
 }
 
 
-sp(::user::frame_window) virtual_user_interface::GetTopLevelFrame()
+sp(::user::interaction) virtual_user_interface::GetTopLevelFrame()
 {
    ASSERT_VALID(this);
 
-   sp(::user::frame_window) pFrameWnd = NULL;
+   sp(::user::interaction) pFrameWnd = NULL;
    if(m_pguie != this)
       pFrameWnd = m_pguie;
    else
@@ -1439,7 +1439,7 @@ sp(::user::frame_window) virtual_user_interface::GetTopLevelFrame()
 
    if (pFrameWnd != NULL)
    {
-      sp(::user::frame_window) pTemp;
+      sp(::user::interaction) pTemp;
       while ((pTemp = pFrameWnd->GetParentFrame()) != NULL)
          pFrameWnd = pTemp;
    }
@@ -1555,7 +1555,7 @@ bool virtual_user_interface::post_message(UINT uiMessage, WPARAM wparam, lparam 
 
    if(m_pthread != NULL)
    {
-      return post_message(m_pguie, uiMessage, wparam, lparam);
+      return m_pthread->post_message(m_pguie, uiMessage, wparam, lparam);
    }
    else
    {

@@ -8,6 +8,16 @@ class image_list;
 class base_session;
 
 
+// special struct for WM_SIZEPARENT
+struct __SIZEPARENTPARAMS
+{
+   HDWP hDWP;       // handle for DeferWindowPos
+   RECT rect;       // parent client rectangle (trim as appropriate)
+   SIZE sizeTotal;  // total size on each side as layout proceeds
+   bool bStretch;   // should stretch to fill all space
+};
+
+
 namespace core
 {
 

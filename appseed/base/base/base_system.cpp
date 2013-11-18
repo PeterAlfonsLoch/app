@@ -457,3 +457,14 @@ class ::crypto::crypto & base_system::crypto()
 {
    return *m_pdatetime;
 }
+
+
+
+sp(::user::window_draw) base_system::get_twf()
+{
+
+   return m_ptwf;
+
+}
+
+
