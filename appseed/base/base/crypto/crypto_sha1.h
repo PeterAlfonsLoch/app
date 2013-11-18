@@ -1,51 +1,51 @@
 /*
- *  sha1.h
- *
- *  Copyright (C) 1998, 2009
- *  Paul E. Jones <paulej@packetizer.com>
- *  All Rights Reserved
- *
- *****************************************************************************
- *  $Id: sha1.h 12 2009-06-22 19:34:25Z paulej $
- *****************************************************************************
- *
- *  Description:
- *      This class implements the Secure Hashing Standard as defined
- *      in FIPS PUB 180-1 published April 17, 1995.
- *
- *      Many of the variable names in the SHA1Context, especially the
- *      single character names, were used because those were the names
- *      used in the publication.
- *
- *      Please read the file sha1.ca for more information.
- *
- */
+*  sha1.h
+*
+*  Copyright (C) 1998, 2009
+*  Paul E. Jones <paulej@packetizer.com>
+*  All Rights Reserved
+*
+*****************************************************************************
+*  $Id: sha1.h 12 2009-06-22 19:34:25Z paulej $
+*****************************************************************************
+*
+*  Description:
+*      This class implements the Secure Hashing Standard as defined
+*      in FIPS PUB 180-1 published April 17, 1995.
+*
+*      Many of the variable names in the SHA1Context, especially the
+*      single character names, were used because those were the names
+*      used in the publication.
+*
+*      Please read the file sha1.ca for more information.
+*
+*/
 #pragma once
 
 
 BEGIN_EXTERN_C
 
 /*
- *  This structure will hold context information for the hashing
- *  operation
- */
+*  This structure will hold context information for the hashing
+*  operation
+*/
 typedef struct SHA1Context
 {
-    uint32_t Message_Digest[5]; /* Message Digest (output)          */
+   uint32_t Message_Digest[5]; /* Message Digest (output)          */
 
-    uint32_t Length_Low;        /* Message length in bits           */
-    uint32_t Length_High;       /* Message length in bits           */
+   uint32_t Length_Low;        /* Message length in bits           */
+   uint32_t Length_High;       /* Message length in bits           */
 
-    uchar Message_Block[64]; /* 512-bit message blocks      */
-    int32_t Message_Block_Index;    /* Index into message block array   */
+   uchar Message_Block[64]; /* 512-bit message blocks      */
+   int32_t Message_Block_Index;    /* Index into message block array   */
 
-    int32_t Computed;               /* Is the digest computed?          */
-    int32_t Corrupted;              /* Is the message digest corruped?  */
+   int32_t Computed;               /* Is the digest computed?          */
+   int32_t Corrupted;              /* Is the message digest corruped?  */
 } sha1_ctx_t;
 
 /*
- *  Function Prototypes
- */
+*  Function Prototypes
+*/
 void __sha1_init(sha1_ctx_t *);
 void __sha1_update(sha1_ctx_t *, const void *, size_t);
 int32_t  __sha1_final(sha1_ctx_t *, void *);
@@ -66,7 +66,7 @@ END_EXTERN_C
 namespace crypto
 {
 
-   namespace sha1 
+   namespace sha1
    {
 
       const uint32_t kBlockSize = 64;
@@ -96,11 +96,11 @@ namespace crypto
          void GetBlockDigest(void * blockData, uint32_t *destDigest, bool returnRes);
          //void
          // PrepareBlock can be used only when size <= 13. size in Words
-//         void PrepareBlock(uint32_t *block, uint32_t size) const;
+         //         void PrepareBlock(uint32_t *block, uint32_t size) const;
          void update(const void * msg, int32_t iSize);
       };
 
-      class CLASS_DECL_BASE CContextBase2: public CContextBase
+      class CLASS_DECL_BASE CContextBase2 : public CContextBase
       {
       protected:
          uint32_t _count2;
@@ -110,7 +110,7 @@ namespace crypto
          void Init() { CContextBase::Init(); _count2 = 0; }
       };
 
-      class CLASS_DECL_BASE CContext: public CContextBase2
+      class CLASS_DECL_BASE CContext : public CContextBase2
       {
       public:
          void Update(const void * data, size_t size);
@@ -118,7 +118,7 @@ namespace crypto
          void Final(void * digest);
       };
 
-      class CLASS_DECL_BASE CContext32: public CContextBase2
+      class CLASS_DECL_BASE CContext32 : public CContextBase2
       {
       public:
          void Update(const uint32_t *data, size_t size);

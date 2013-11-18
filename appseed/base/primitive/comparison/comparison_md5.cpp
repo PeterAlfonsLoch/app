@@ -390,6 +390,16 @@ namespace md5
 
    }
 
+
+   void md5::get(::primitive::memory & mem)
+   {
+
+      mem.assign(m_uchaDigest, 16);
+
+   }
+
+
+
 } // namespace md5
 
 

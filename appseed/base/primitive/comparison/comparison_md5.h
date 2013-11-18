@@ -92,9 +92,12 @@ namespace md5
 		void	            initialize();
 		void	            update(const void * pdata, size_t nInputLen);
 		void	            finalize();
-		const unsigned char *   digest();
+		const unsigned char *   
+                        digest();
 		string			   to_string();
-		const void *				body(const void *data, uint32_t size);
+		const void *		body(const void *data, uint32_t size);
+      void              get(::primitive::memory & mem);
+
 
 	};
 

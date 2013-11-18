@@ -1,6 +1,11 @@
 #pragma once
 
 
+#include "crypto_sha1.h"
+#include "crypto_nessie.h"
+#include "crypto_hmac_sha1.h"
+
+
 #include "crypto_crypto.h"
 
 

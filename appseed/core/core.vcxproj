@@ -1036,7 +1036,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\crypto\crypto_err.h" />
     <ClInclude Include="core\crypto\crypto_gf2_8.h" />
     <ClInclude Include="core\crypto\crypto_hmac.h" />
-    <ClInclude Include="core\crypto\crypto_hmac_sha1.h" />
     <ClInclude Include="core\crypto\crypto_integers.h" />
     <ClInclude Include="core\crypto\crypto_kernel.h" />
     <ClInclude Include="core\crypto\crypto_kernel_compat.h" />
@@ -1049,7 +1048,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\crypto\crypto_rand_source.h" />
     <ClInclude Include="core\crypto\crypto_rdb.h" />
     <ClInclude Include="core\crypto\crypto_rdbx.h" />
-    <ClInclude Include="core\crypto\crypto_sha1.h" />
     <ClInclude Include="core\crypto\crypto_stat.h" />
     <ClInclude Include="core\crypto\crypto_types.h" />
     <ClInclude Include="core\crypto\crypto_ut_sim.h" />

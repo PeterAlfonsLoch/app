@@ -1805,9 +1805,6 @@
     <ClInclude Include="core\crypto\crypto_hmac.h">
       <Filter>Header Files\core\crypto</Filter>
     </ClInclude>
-    <ClInclude Include="core\crypto\crypto_hmac_sha1.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
     <ClInclude Include="core\crypto\crypto_integers.h">
       <Filter>Header Files\core\crypto</Filter>
     </ClInclude>
@@ -1842,9 +1839,6 @@
       <Filter>Header Files\core\crypto</Filter>
     </ClInclude>
     <ClInclude Include="core\crypto\crypto_rdbx.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_sha1.h">
       <Filter>Header Files\core\crypto</Filter>
     </ClInclude>
     <ClInclude Include="core\crypto\crypto_stat.h">

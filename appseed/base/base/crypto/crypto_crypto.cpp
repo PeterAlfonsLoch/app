@@ -8,21 +8,21 @@
 #define CA4_CRYPT_V5_SALT_BYTES (CA4_CRYPT_V5_FINAL_HASH_BYTES - NESSIE_DIGESTBYTES)
 
 
-namespace core
+namespace crypto
 {
 
 
-   crypt::crypt(sp(base_application) papp) :
+   crypto::crypto(sp(base_application) papp) :
       element(papp)
    {
    }
 
-   crypt::~crypt()
+   crypto::~crypto()
    {
    }
 
 
-   bool crypt::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
+   bool crypto::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
    {
 
       // default implementation - OS may implement its own HOME/UserDir encryption
@@ -42,7 +42,7 @@ namespace core
 
    }
 
-   bool crypt::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt)
+   bool crypto::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt)
    {
 
       // default implementation - OS may implement its own HOME/UserDir encryption
@@ -64,7 +64,7 @@ namespace core
 
 
 
-   int32_t crypt::key(primitive::memory & storage)
+   int32_t crypto::key(primitive::memory & storage)
    {
       storage.allocate(16);
       for(primitive::memory_position i = 0; i < storage.get_size(); i++)
@@ -84,7 +84,7 @@ namespace core
    **/
    //http://stackoverflow.com/questions/10366950/openssl-using-evp-vs-algorithm-api-for-symmetric-crypto
 
-   bool crypt::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const primitive::memory & memKeyData)
+   bool crypto::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const primitive::memory & memKeyData)
    {
 
       primitive::memory memSha1(get_app());
@@ -314,7 +314,7 @@ namespace core
    }
 
 
-   bool crypt::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const primitive::memory & memKeyData)
+   bool crypto::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const primitive::memory & memKeyData)
    {
 
       primitive::memory memSha1;
@@ -542,14 +542,14 @@ namespace core
 
    }
 
-   string crypt::strkey()
+   string crypto::strkey()
    {
       primitive::memory storage;
       key(storage);
       return System.base64().encode(storage);
    }
 
-   int32_t crypt::encrypt(string & strEncrypt, const char * pszDecrypt, const char * pszKey)
+   int32_t crypto::encrypt(string & strEncrypt, const char * pszDecrypt, const char * pszKey)
    {
       primitive::memory storageDecrypt;
       primitive::memory storageEncrypt;
@@ -566,7 +566,7 @@ namespace core
       return cipherlen;
    }
 
-   int32_t crypt::decrypt(string & strDecrypt, const char * pszEncrypt, const char * pszKey)
+   int32_t crypto::decrypt(string & strDecrypt, const char * pszEncrypt, const char * pszKey)
    {
       primitive::memory storageEncrypt;
       primitive::memory storageDecrypt;
@@ -579,21 +579,25 @@ namespace core
    }
 
 
-   string crypt::md5(const char * psz)
+   string crypto::md5(const char * psz)
    {
 
       primitive::memory buf;
 
-      ::crypto::md5::context ctx(get_app());
+      ::md5::md5 md5;
 
-      ctx.update(psz, strlen(psz));
+      md5.initialize();
 
-      return ctx.to_hex();
+      md5.update(psz, strlen(psz));
+
+      md5.finalize();
+
+      return md5.to_string();
 
    }
 
 
-   string crypt::md5(const primitive::memory & mem)
+   string crypto::md5(const primitive::memory & mem)
    {
 
       primitive::memory memMd5;
@@ -605,18 +609,22 @@ namespace core
 
    }
 
-   void crypt::md5(primitive::memory & memMd5, const primitive::memory & mem)
+   void crypto::md5(primitive::memory & memMd5, const primitive::memory & mem)
    {
 
-      ::crypto::md5::context ctx(get_app());
+      ::md5::md5 md5;
 
-      ctx.update(mem, mem.get_size());
+      md5.initialize();
 
-      ctx.get(memMd5);
+      md5.update(mem, mem.get_size());
+
+      md5.finalize();
+
+      md5.get(memMd5);
 
    }
 
-   string crypt::sha1(const primitive::memory & mem)
+   string crypto::sha1(const primitive::memory & mem)
    {
 
       primitive::memory memSha1;
@@ -627,12 +635,12 @@ namespace core
 
    }
 
-   void crypt::sha1(primitive::memory & memSha1, const primitive::memory & mem)
+   void crypto::sha1(primitive::memory & memSha1, const primitive::memory & mem)
    {
 
       memSha1.allocate(32);
 
-      crypto::sha1::CContext ctx;
+      ::crypto::sha1::CContext ctx;
 
       ctx.Init();
 
@@ -643,7 +651,7 @@ namespace core
    }
 
 
-   bool crypt::file_set(var varFile, const char * pszData, const char * pszSalt, sp(base_application) papp)
+   bool crypto::file_set(var varFile, const char * pszData, const char * pszSalt, sp(base_application) papp)
    {
       primitive::memory memoryEncrypt;
       encrypt(memoryEncrypt, pszData, pszSalt);
@@ -651,7 +659,7 @@ namespace core
       return true;
    }
 
-   bool crypt::file_get(var varFile, string & str, const char * pszSalt, sp(base_application) papp)
+   bool crypto::file_get(var varFile, string & str, const char * pszSalt, sp(base_application) papp)
    {
       primitive::memory memoryEncrypt;
       App(papp).file().as_memory(varFile, memoryEncrypt);
@@ -659,14 +667,14 @@ namespace core
       return true;
    }
 
-   bool crypt::encrypt(primitive::memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt)
+   bool crypto::encrypt(primitive::memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt)
    {
       primitive::memory memoryDecrypt;
       memoryDecrypt.from_asc(pszDecrypt);
       return encrypt(storageEncrypt, memoryDecrypt, pszSalt);
    }
 
-   bool crypt::decrypt(string & strDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
+   bool crypto::decrypt(string & strDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
    {
       primitive::memory memoryDecrypt;
       if(!decrypt(memoryDecrypt, storageEncrypt, pszSalt))
@@ -680,7 +688,7 @@ namespace core
    // current PHP installations should not exceed 8 characters
    // on dechex( mt_rand() )
    // but we future proof it anyway with substr()
-   string crypt::v5_get_password_salt()
+   string crypto::v5_get_password_salt()
    {
       string strSalt;
       string strFormat;
@@ -695,7 +703,7 @@ namespace core
 
    // calculate the hash from a salt and a password
    // slow hash is more secure for personal attack possibility (strong fast hashs are only good for single transactional operations and not for a possibly lifetime password)
-   string crypt::v5_get_password_hash(const char * pszSalt, const char * pszPassword, int32_t iOrder)
+   string crypto::v5_get_password_hash(const char * pszSalt, const char * pszPassword, int32_t iOrder)
    {
       string strHash(pszPassword);
       string strSalt(pszSalt);
@@ -708,7 +716,7 @@ namespace core
       return strSalt + strHash;
    }
 
-   string crypt::v5_get_passhash(const char * pszSalt, const char * pszPassword, int32_t iMaxOrder)
+   string crypto::v5_get_passhash(const char * pszSalt, const char * pszPassword, int32_t iMaxOrder)
    {
       string strHash(pszPassword);
       string strSalt(pszSalt);
@@ -721,14 +729,14 @@ namespace core
       return strSalt + strHash;
    }
 
-   bool crypt::v5_compare_password(const char * pszPassword, const char * pszHash, int32_t iOrder)
+   bool crypto::v5_compare_password(const char * pszPassword, const char * pszHash, int32_t iOrder)
    {
       string strHash(pszHash);
       string strSalt = strHash.Left(CA4_CRYPT_V5_SALT_BYTES);
       return strHash == v5_get_password_hash(strSalt, pszPassword, iOrder);
    }
 
-   bool crypt::v5_validate_plain_password(const char * pszPassword)
+   bool crypto::v5_validate_plain_password(const char * pszPassword)
    {
       string str(pszPassword);
       if(str.get_length() < 6)
@@ -736,35 +744,35 @@ namespace core
       return ::str::has_all_v1(pszPassword);
    }
 
-   string crypt::v5_get_password_hash(const char * pszPassword, int32_t iOrder)
+   string crypto::v5_get_password_hash(const char * pszPassword, int32_t iOrder)
    {
       return v5_get_password_hash(v5_get_password_salt(), pszPassword, iOrder);
    }
 
-   uint32_t crypt::crc32(uint32_t dwPrevious, const char * psz)
+   uint32_t crypto::crc32(uint32_t dwPrevious, const char * psz)
    {
       return (uint32_t) ::crc32(dwPrevious, (const byte *) psz, (uInt) strlen(psz));
    }
 
-   void crypt::hmac(void * result, const primitive::memory & memMessage, const primitive::memory & memKey)
+   void crypto::hmac(void * result, const primitive::memory & memMessage, const primitive::memory & memKey)
    {
 
-      crypto::hmac_sha1::context context;
+      ::crypto::hmac_sha1::context context;
 
       context.digest(result, memMessage.get_data(), (int32_t) memMessage.get_size(), memKey.get_data(), (int32_t) memKey.get_size());
 
    }
 
-   void crypt::hmac(void * result, const string & strMessage, const string & strKey)
+   void crypto::hmac(void * result, const string & strMessage, const string & strKey)
    {
 
-      crypto::hmac_sha1::context context;
+      ::crypto::hmac_sha1::context context;
 
       context.digest(result, strMessage, (int32_t) strMessage.get_length(), strKey, (int32_t) strKey.get_length());
 
    }
 
-   string crypt::get_crypt_key_file_path()
+   string crypto::get_crypt_key_file_path()
    {
 
       throw interface_only_exception(get_app());
@@ -772,7 +780,7 @@ namespace core
    }
 
 
-   string crypt::defer_get_cryptkey()
+   string crypto::defer_get_cryptkey()
    {
 
       string strPath = get_crypt_key_file_path();
@@ -806,7 +814,7 @@ namespace core
    }
 
 
-} // namespace core
+} // namespace crypto
 
 
 

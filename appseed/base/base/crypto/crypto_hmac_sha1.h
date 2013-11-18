@@ -15,7 +15,7 @@ namespace crypto
 
          // digest is 20-byte digest
          void digest(void * digest, const void * text, int32_t text_len, const void * key, int32_t key_len);
-   
+
       };
 
 
