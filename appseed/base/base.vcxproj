@@ -2162,6 +2162,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\user_create_context.cpp" />
     <ClCompile Include="user\user_draw_interface.cpp" />
     <ClCompile Include="user\user_interaction.cpp" />
+    <ClCompile Include="user\user_virtual_user_interface.cpp" />
+    <ClCompile Include="user\user_window.cpp" />
     <ClCompile Include="version.cpp" />
     <ClCompile Include="xml\xml_attr.cpp" />
     <ClCompile Include="xml\xml_base_array.cpp" />

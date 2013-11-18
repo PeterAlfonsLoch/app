@@ -3235,6 +3235,12 @@
     <ClCompile Include="base\crypto\crypto.cpp">
       <Filter>Source Files\base\crypto</Filter>
     </ClCompile>
+    <ClCompile Include="user\user_virtual_user_interface.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_window.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
