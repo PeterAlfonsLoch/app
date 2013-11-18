@@ -1586,9 +1586,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ProjectReference Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus.vcxproj">
       <Project>{9a5fbfb1-76e6-4f7e-933a-328c1eec95af}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\thirdparty\appseed\openssl\openssl.vcxproj">
-      <Project>{ac98b756-e84c-4a70-9cdb-e9812fef9b98}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\base\base.vcxproj">
       <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
     </ProjectReference>

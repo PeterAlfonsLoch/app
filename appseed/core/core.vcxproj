@@ -2600,9 +2600,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ProjectReference Include="..\..\thirdparty\appseed\mysql\mysql.vcxproj">
       <Project>{2652c96f-6e86-4ed1-b3b6-ac977dfb0593}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\thirdparty\appseed\openssl\openssl.vcxproj">
-      <Project>{ac98b756-e84c-4a70-9cdb-e9812fef9b98}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\base\base.vcxproj">
       <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
     </ProjectReference>
