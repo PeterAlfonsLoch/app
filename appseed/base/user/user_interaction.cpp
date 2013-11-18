@@ -239,10 +239,10 @@ namespace user
             }
             smart_pointer_array < timer_item > timera;
             if (pimplOld->m_pthread != NULL
-               && pimplOld->m_p != NULL
-               && pimplOld->m_p->m_ptimera != NULL)
+               && pimplOld->m_pthread->m_p != NULL
+               && pimplOld->m_pthread->m_p->m_ptimera != NULL)
             {
-               pimplOld->m_p->m_ptimera->detach(timera, this);
+               pimplOld->m_pthread->m_p->m_ptimera->detach(timera, this);
             }
             if (!pimplNew->CreateEx(0, NULL, strName, iStyle, rect(0, 0, 0, 0), NULL, GetDlgCtrlId()))
             {
@@ -260,7 +260,7 @@ namespace user
                   {
                      pimplOld->filter_target(pimplOld);
                      //pimplOld->filter_target(this);
-                     remove(pimplOld);
+                     m_pthread->remove(pimplOld);
                      pimplOld->m_pguie = NULL;
                      pimplOld->DestroyWindow();
                      pimplOld.release();
@@ -448,7 +448,7 @@ namespace user
 
       try
       {
-         if (m_pbaseapp != NULL && m_pbaseapp->m_pplaneapp != NULL)
+         if (m_pbaseapp != NULL)
          {
             Application.remove_frame(this);
          }
@@ -459,7 +459,7 @@ namespace user
 
       try
       {
-         if (m_pbaseapp != NULL && m_pbaseapp->m_pplaneapp->m_psession != NULL && &Session != NULL)
+         if (m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && &Session != NULL)
          {
             Session.remove_frame(this);
          }
@@ -470,7 +470,7 @@ namespace user
 
       try
       {
-         if (m_pbaseapp != NULL && m_pbaseapp->m_pplaneapp->m_psystem != NULL && &System != NULL)
+         if (m_pbaseapp != NULL && m_pbaseapp->m_pbasesystem != NULL && &System != NULL)
          {
             System.remove_frame(this);
          }
@@ -482,7 +482,7 @@ namespace user
 
 
       array < ::user::interaction  * > uiptra;
-      single_lock sl(m_pthread == NULL ? NULL : &m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
       if (get_parent() != NULL)
       {
          try { get_parent()->m_uiptraChild.remove(this); }
@@ -704,8 +704,9 @@ namespace user
       }
       else if (_001IsTranslucent())
       {
-         class imaging & imaging = System.visual().imaging();
-         imaging.color_blend(pdc, rectClient, get_background_color() & 0xffffff, (get_background_color() >> 24) & 0xff);
+         pdc->SelectClipRgn(NULL);
+         pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pdc->FillSolidRect(rectClient, get_background_color());
       }
       else
       {

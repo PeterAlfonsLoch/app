@@ -326,7 +326,7 @@ namespace file
 
                      ::file::input_stream is(spfile);
 
-                     System.file().output(m_pbaseapp, strFile, &System, &::base_system::null_compressor, is);
+                     System.file().output(m_pbaseapp, strFile, &System.compress(), &::core::compress::null, is);
 
                   }
                   catch(...)

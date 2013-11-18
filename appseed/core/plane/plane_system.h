@@ -56,15 +56,11 @@ namespace plane
 
       class ::core::compress                         m_compress;
       class ::core::patch                            m_patch;
-      ::core::crypt_sp                               m_spcrypt;
       ::net::email_departament                        m_emaildepartament;
       ::core::copydesk_sp                            m_spcopydesk;
       sp(colorertake5::ParserFactory)              m_pparserfactory;
 
       ::net::port_forward_sp                        m_spportforward;
-
-      class ::fontopus::user_set                   m_userset;
-
 
       sp(::plane::session::run_start_installer)      m_prunstartinstaller;
       sp(::plane::session::map)                      m_pbergedgemap;
@@ -222,13 +218,10 @@ namespace plane
       ::core::history                        & hist();
 
       class ::core::patch                    & patch();
-      class ::core::crypt                    & crypt();
       class ::core::copydesk                 & copydesk();
 
       ::http::system                         & http();
       ::net::email_departament               & email();
-
-      ::fontopus::user_set                   & userset();
 
       ::user::str                            & str();
 

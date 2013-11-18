@@ -816,7 +816,7 @@ retry:
 
          if(papp != NULL)
          {
-            keeplive.keep(papp->m_pplaneapp);
+            keeplive.keep(papp);
             keeplive.keep(&Sess(papp));
             keeplive.keep(&Sys(papp));
          }
@@ -1277,7 +1277,7 @@ retry:
 
       if(papp != NULL)
       {
-         keeplive.keep(papp->m_pplaneapp);
+         keeplive.keep(papp);
          keeplive.keep(&Sess(papp));
          keeplive.keep(&Sys(papp));
       }

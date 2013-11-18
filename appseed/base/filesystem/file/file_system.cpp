@@ -1005,7 +1005,7 @@ restart:
       }
       else if(::str::begins_ci_iws(pszPath, "http://") || ::str::begins_ci_iws(pszPath, "https://"))
       {
-         return App(papp).http().exists(pszPath, pvarQuery, papp->get_safe_user());
+         return App(papp).http().exists(pszPath, pvarQuery, papp->safe_get_user());
       }
 
       if(papp->m_bZipIsDir)
@@ -1063,7 +1063,7 @@ restart:
       if(::str::begins_ci_iws(strPath, "http://")
          || ::str::begins_ci_iws(strPath, "https://"))
       {
-         return App(papp).http().exists(strPath, pvarQuery, papp->get_safe_user());
+         return App(papp).http().exists(strPath, pvarQuery, papp->safe_get_user());
       }
 
 
@@ -1087,7 +1087,7 @@ restart:
 
       }
 
-      if(!papp->m_psystem->dir().name_is(strPath, papp))
+      if(!papp->m_pbasesystem->dir().name_is(strPath, papp))
          return false;
 
 #ifdef WINDOWS
@@ -1201,7 +1201,7 @@ restart:
       }
       if(strFail.has_char())
       {
-         Application.simple_message_box(NULL, strFail);
+         Application.simple_message_box(strFail, MB_ICONEXCLAMATION);
       }
    }
 
@@ -1375,18 +1375,22 @@ restart:
 
       buf.allocate(1024 * 256);
 
-      ::crypto::md5::context ctx(get_app());
+      ::md5::md5 md5;
+
+      md5.initialize();
 
       int32_t iRead;
 
       while((iRead = (int32_t) spfile->read(buf, iBufSize)) > 0)
       {
 
-         ctx.update(buf.get_data(), iRead);
+         md5.update(buf.get_data(), iRead);
 
       }
 
-      return ctx.to_hex();
+      md5.finalize();
+
+      return md5.to_string();
 
    }
 
@@ -1411,7 +1415,7 @@ restart:
 
       strVersion = "fileset v1";
 
-      ::crypto::md5::context ctx(get_app());
+      ::md5::md5 md5;
 
       write_gen_string(spfile, NULL, strVersion);
 
@@ -1439,18 +1443,19 @@ restart:
          write_n_number(spfile, NULL, 1);
          iPos = spfile->get_position();
          write_gen_string(spfile, NULL, strMd5);
-         ctx.reset();
-         write_gen_string(spfile, &ctx, straRelative[i]);
+         md5.initialize();
+         write_gen_string(spfile, &md5, straRelative[i]);
          if(!file2->open(stra[i], ::file::mode_read | ::file::type_binary))
             throw "failed";
-         write_n_number(spfile, &ctx, (int32_t) file2->get_length());
+         write_n_number(spfile, &md5, (int32_t) file2->get_length());
          while((uiRead = file2->read(buf, iBufSize)) > 0)
          {
             spfile->write(buf, uiRead);
-            ctx.update(buf, uiRead);
+            md5.update(buf, uiRead);
          }
          spfile->seek(iPos, ::file::seek_begin);
-         strMd5 = ctx.to_hex();
+         md5.finalize();
+         strMd5 = md5.to_string();
          write_gen_string(spfile, NULL, strMd5);
          spfile->seek_to_end();
 
@@ -1473,7 +1478,7 @@ restart:
       primitive::memory buf;
       buf.allocate(iBufSize);
       int64_t iLen;
-      ::crypto::md5::context ctx(get_app());
+      ::md5::md5 md5;
       ::file::binary_buffer_sp file2(get_app());
       ::primitive::memory_size uiRead;
       if(strVersion == "fileset v1")
@@ -1484,31 +1489,32 @@ restart:
             if(n == 2)
                break;
             read_gen_string(spfile, NULL, strMd5);
-            ctx.reset();
-            read_gen_string(spfile, &ctx, strRelative);
+            md5.initialize();
+            read_gen_string(spfile, &md5, strRelative);
             string strPath = System.dir().path(pszDir, strRelative);
             App(papp).dir().mk(System.dir().name(strPath));
             if(!file2->open(strPath, ::file::mode_create | ::file::type_binary | ::file::mode_write))
                throw "failed";
-            read_n_number(spfile, &ctx, iLen);
+            read_n_number(spfile, &md5, iLen);
             while(iLen > 0)
             {
                uiRead = spfile->read(buf, (UINT)  (min(iBufSize, iLen )));
                if(uiRead == 0)
                   break;
                file2->write(buf, uiRead);
-               ctx.update(buf, uiRead);
+               md5.update(buf, uiRead);
                iLen -= uiRead;
             }
             file2->close();
-            strMd5New = ctx.to_hex();
+            md5.finalize();
+            strMd5New = md5.to_string();
             if(strMd5 != strMd5New)
                throw "failed";
          }
       }
    }
 
-   void system::write_n_number(::file::buffer_sp  pfile, ::crypto::md5::context * pctx, int64_t iNumber)
+   void system::write_n_number(::file::buffer_sp  pfile, ::md5::md5 * pctx, int64_t iNumber)
    {
 
       string str;
@@ -1526,7 +1532,7 @@ restart:
 
    }
 
-   void system::read_n_number(::file::buffer_sp  pfile, ::crypto::md5::context * pctx, int64_t & iNumber)
+   void system::read_n_number(::file::buffer_sp  pfile, ::md5::md5 * pctx, int64_t & iNumber)
    {
 
       uint64_t uiRead;
@@ -1562,7 +1568,7 @@ restart:
 
    }
 
-   void system::write_gen_string(::file::buffer_sp  pfile, ::crypto::md5::context * pctx, string & str)
+   void system::write_gen_string(::file::buffer_sp  pfile, ::md5::md5 * pctx, string & str)
    {
       ::count iLen = str.get_length();
       write_n_number(pfile, pctx, iLen);
@@ -1573,7 +1579,7 @@ restart:
       }
    }
 
-   void system::read_gen_string(::file::buffer_sp  pfile, ::crypto::md5::context * pctx, string & str)
+   void system::read_gen_string(::file::buffer_sp  pfile, ::md5::md5 * pctx, string & str)
    {
       int64_t iLen;
       read_n_number(pfile, pctx, iLen);

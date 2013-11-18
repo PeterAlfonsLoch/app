@@ -258,9 +258,6 @@
     <Filter Include="Header Files\os\windows\builtin_draw2d_gdiplus">
       <UniqueIdentifier>{6ea73a7e-f176-4d5a-a82b-5ff48ddf036f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\graphics\visual\NewFilter1">
-      <UniqueIdentifier>{e1918c5d-ee64-4625-97b7-3b4dbb92f175}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user\fontopus">
       <UniqueIdentifier>{52423014-d461-4259-bfeb-967df0f4f8af}</UniqueIdentifier>
     </Filter>
@@ -302,6 +299,15 @@
     </Filter>
     <Filter Include="Header Files\filesystem\file">
       <UniqueIdentifier>{3a2d58e0-3564-457f-ad53-2b26fdc8b2f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\compress\bsdiff">
+      <UniqueIdentifier>{947fc611-80aa-4333-afb9-5718aa778672}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\compress\bsdiff">
+      <UniqueIdentifier>{d36617c6-420d-494e-b90d-062e519f1bc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\crypto">
+      <UniqueIdentifier>{827d6b98-e29f-4ba3-9835-3a7b78877deb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1970,6 +1976,39 @@
     <ClInclude Include="filesystem\file\file_writer_flush.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
+    <ClInclude Include="base\compress\bsdiff\bsdiff.h">
+      <Filter>Header Files\base\compress\bsdiff</Filter>
+    </ClInclude>
+    <ClInclude Include="base\compress\bsdiff\bsdiff_private.h">
+      <Filter>Header Files\base\compress\bsdiff</Filter>
+    </ClInclude>
+    <ClInclude Include="base\compress\bsdiff\bzlib.h">
+      <Filter>Header Files\base\compress\bsdiff</Filter>
+    </ClInclude>
+    <ClInclude Include="base\compress\bsdiff\bzlib_private.h">
+      <Filter>Header Files\base\compress\bsdiff</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_signal_thread.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_microtimer.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_virtual_user_interface.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_live_signal.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_cursor.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto.h">
+      <Filter>Header Files\base\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_crypto.h">
+      <Filter>Header Files\base\crypto</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_c.c">
@@ -2833,9 +2872,6 @@
     <ClCompile Include="programming\javascript\javascript_functions.cpp">
       <Filter>Source Files\programming\javascript</Filter>
     </ClCompile>
-    <ClCompile Include="programming\javascript\javascript_script.cpp">
-      <Filter>Source Files\programming\javascript</Filter>
-    </ClCompile>
     <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp">
       <Filter>Source Files\programming\javascript</Filter>
     </ClCompile>
@@ -3123,6 +3159,39 @@
     </ClCompile>
     <ClCompile Include="base\compress\compress_compress.cpp">
       <Filter>Source Files\base\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\bsdiff\blocksort.cpp">
+      <Filter>Source Files\base\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\bsdiff\bsdiff.cpp">
+      <Filter>Source Files\base\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\bsdiff\bspatch.cpp">
+      <Filter>Source Files\base\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\bsdiff\bzlib.cpp">
+      <Filter>Source Files\base\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\bsdiff\compress.cpp">
+      <Filter>Source Files\base\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\bsdiff\crctable.cpp">
+      <Filter>Source Files\base\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\bsdiff\decompress.cpp">
+      <Filter>Source Files\base\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\bsdiff\huffman.cpp">
+      <Filter>Source Files\base\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\bsdiff\randtable.cpp">
+      <Filter>Source Files\base\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_microtimer.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_session.cpp">
+      <Filter>Source Files\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

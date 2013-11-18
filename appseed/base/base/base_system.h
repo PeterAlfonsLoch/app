@@ -230,11 +230,12 @@ public:
    ::http::system                               m_httpsystem;
    ::string_to_string                           m_mapAppLibrary;
    class machine_event_central *                m_pmachineeventcentral;
+   class ::fontopus::user_set                   m_userset;
+   ::crypto::crypto_sp                          m_spcrypto;
+
 
 
    base_system(sp(base_application) papp);
-
-
 
 
    virtual bool initialize_instance();
@@ -253,6 +254,8 @@ public:
    class ::sockets::net                         & net();
    class ::core::compress                       & compress();
    class ::machine_event_central                & machine_event_central();
+   ::fontopus::user_set                         & userset();
+
 
 
 
@@ -318,6 +321,7 @@ public:
 
    virtual bool assert_failed_line(const char * lpszFileName, int32_t iLine);
    virtual bool on_assert_failed_line(const char * pszFileName, int32_t iLine);
+   class ::crypto::crypto                    & crypto();
 
 
 };

@@ -621,18 +621,6 @@ bool application::initialize3()
 
 
 
-::fontopus::user * application::get_safe_user()
-{
-
-   if(m_psession == NULL)
-      return NULL;
-
-   if(m_psession->m_pplanesession->m_pfontopus == NULL)
-      return NULL;
-
-   return m_psession->m_pplanesession->m_pfontopus->m_puser;
-
-}
 
 
 
@@ -2586,31 +2574,6 @@ void application::on_exclusive_instance_local_conflict()
 }
 
 
-::user::interaction_ptr_array & application::frames()
-{
-   return *m_pframea;
-}
-
-void application::add_frame(sp(::user::interaction) pwnd)
-{
-   m_pframea->add_unique(pwnd);
-}
-
-void application::remove_frame(sp(::user::interaction) pwnd)
-{
-   m_pframea->remove(pwnd);
-   if(GetMainWnd() == pwnd)
-   {
-      if(m_pframea->get_size() > 0)
-      {
-         SetMainWnd(m_pframea->element_at(0));
-      }
-      else
-      {
-         SetMainWnd(NULL);
-      }
-   }
-}
 
 
 void application::delete_temp()
@@ -5244,45 +5207,6 @@ void openURL(const string &url_str) {
 }
 #endif
 
-bool application::open_link(const string & strLink, const string & pszTarget)
-{
-   if(is_system())
-   {
-#ifdef WINDOWSEX
-      string strUrl = strLink;
-      if(!::str::begins_ci(strUrl, "http://")
-         && !::str::begins_ci(strUrl, "https://"))
-      {
-         strUrl = "http://" + strUrl;
-      }
-      ::ShellExecuteA(NULL, "open", strUrl, NULL, NULL, SW_SHOW);
-      return true;
-#elif defined METROWIN
-#pragma push_macro("System")
-#undef System
-      ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(strLink);
-      ::Windows::System::LauncherOptions ^ options = ref new ::Windows::System::LauncherOptions();
-      options->TreatAsUntrusted = false;
-      bool success = ::wait(::Windows::System::Launcher::LaunchUriAsync(uri, options));
-#pragma pop_macro("System")
-#elif defined(LINUX)
-      ::system("xdg-open " + strLink);
-      return true;
-#elif defined(MACOS)
-      openURL(strLink);
-      return true;
-#else
-      throw not_implemented(get_app());
-#endif
-   }
-   else
-   {
-      return System.open_link(strLink, pszTarget);
-   }
-
-   return false;
-
-}
 
 sp(::user::interaction) application::uie_from_point(point pt)
 {

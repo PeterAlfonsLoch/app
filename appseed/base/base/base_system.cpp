@@ -444,3 +444,9 @@ class ::str::base64 & base_system::base64()
    return m_net;
 }
 
+
+
+class ::crypto::crypto & base_system::crypto()
+{
+   return *m_spcrypto;
+}

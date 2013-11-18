@@ -21,11 +21,13 @@ namespace fontopus
          delete m_phttpcookies;
    }
 
+   /*
    void user::start_veiev_synch()
    {
       signal_details * psignal = new signal_details();
       ::emit(get_app(), this, &user::on_end_veiev_synch, this, &user::veiev_synch, psignal);
    }
+   */
 
 
    bool user::initialize()
@@ -64,6 +66,7 @@ namespace fontopus
 
    }
 
+   /*
    void user::veiev_synch(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
@@ -124,6 +127,8 @@ restart:
    {
       UNREFERENCED_PARAMETER(pobj);
    }
+   */
+
 
    string user::get_sessid(const char * pszText, bool bInteractive)
    {

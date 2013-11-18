@@ -60,6 +60,7 @@ public:
    sp(::user::str_context)                         m_puserstrcontext;
    string                                          m_strLibraryName;
    string                                          m_strAppId;
+   sp(::user::interaction_ptr_array)               m_pframea;
 
 
 
@@ -73,12 +74,15 @@ public:
 
 
    int32_t simple_message_box(const char * pszMessage, UINT fuStyle);
+   virtual string message_box(const string & pszMatter, property_set & propertyset);
+
 
 
    virtual bool load_string(string & str, id id);
 
    virtual bool is_system();
    virtual bool is_session();
+   virtual bool is_serviceable();
 
    inline class ::http::application      & http()       { return m_http; }
    inline class ::file::dir::application       & dir()        { return m_dir; }
@@ -91,6 +95,28 @@ public:
 
    ::user::str_context * str_context();
 
+
+   virtual ::fontopus::user * safe_get_user();
+   virtual ::fontopus::user * get_user();
+
+   
+
+   virtual void get_cursor_pos(LPPOINT lppoint);
+
+   virtual sp(::user::interaction) release_capture_uie();
+   virtual sp(::user::interaction) get_capture_uie();
+
+
+
+
+   virtual bool open_link(const string & strLink, const string & pszTarget = "");
+
+
+
+
+   ::user::interaction_ptr_array & frames();
+   virtual void add_frame(sp(::user::interaction) pwnd);
+   virtual void remove_frame(sp(::user::interaction) pwnd);
 
 
 

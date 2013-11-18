@@ -54,17 +54,8 @@ namespace plane
       var                                                   m_varTopicFile;
       var                                                   m_varCurrentViewFile;
 
-      bool                                                  m_bDrawCursor;
-
-      sp(::ifs)                                                 m_pifs;
-      sp(::fs::remote_native)                                   m_prfs;
-      sp(::userpresence::userpresence)                        m_puserpresence;
 
 
-
-
-      ::visual::e_cursor m_ecursor;
-      ::visual::e_cursor m_ecursorDefault;
 
 
       sp(::user::single_document_template)                         m_ptemplate_bergedge;
@@ -171,13 +162,6 @@ namespace plane
 
       virtual bool finalize();
 
-      inline ::userpresence::userpresence & userpresence() { return *m_puserpresence; }
-
-
-      virtual ::visual::cursor * get_cursor();
-      virtual void set_cursor(::visual::e_cursor ecursor);
-      virtual void set_default_cursor(::visual::e_cursor ecursor);
-      virtual ::visual::cursor * get_default_cursor();
 
       virtual bool open_by_file_extension(const char * pszPathName, application_bias * pbiasCreate = NULL);
       virtual bool open_by_file_extension(create_context * pcc);

@@ -64,6 +64,16 @@ int32_t base_application::simple_message_box(const char * pszMessage, UINT fuSty
 
 }
 
+string base_application::message_box(const string & pszMatter, property_set & propertyset)
+{
+
+   simple_message_box(pszMatter, 0);
+
+   return "";
+
+}
+
+
 
 bool base_application::load_string(string & str, id id)
 {
@@ -86,17 +96,24 @@ sp(element) base_application::alloc(const  id & idType)
 bool base_application::is_system()
 {
 
-   return true;
+   return false;
 
 }
 
 bool base_application::is_session()
 {
 
-   return true;
+   return false;
 
 }
 
+
+bool base_application::is_serviceable()
+{
+
+   return false;
+
+}
 
 //string base_application::matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);
 //string base_application::dir_matter(const char * pszMatter, const char * pszMatter2 = NULL);
@@ -229,3 +246,80 @@ application_signal_details::application_signal_details(sp(base_application) papp
 
 
 
+::fontopus::user * base_application::safe_get_user()
+{
+
+   if (m_pfontopus == NULL)
+      return NULL;
+
+   return m_pfontopus->m_puser;
+
+}
+
+
+bool base_application::open_link(const string & strLink, const string & pszTarget)
+{
+   if (is_system())
+   {
+#ifdef WINDOWSEX
+      string strUrl = strLink;
+      if (!::str::begins_ci(strUrl, "http://")
+         && !::str::begins_ci(strUrl, "https://"))
+      {
+         strUrl = "http://" + strUrl;
+      }
+      ::ShellExecuteA(NULL, "open", strUrl, NULL, NULL, SW_SHOW);
+      return true;
+#elif defined METROWIN
+#pragma push_macro("System")
+#undef System
+      ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(strLink);
+      ::Windows::System::LauncherOptions ^ options = ref new ::Windows::System::LauncherOptions();
+      options->TreatAsUntrusted = false;
+      bool success = ::wait(::Windows::System::Launcher::LaunchUriAsync(uri, options));
+#pragma pop_macro("System")
+#elif defined(LINUX)
+      ::system("xdg-open " + strLink);
+      return true;
+#elif defined(MACOS)
+      openURL(strLink);
+      return true;
+#else
+      throw not_implemented(get_app());
+#endif
+   }
+   else
+   {
+      return System.open_link(strLink, pszTarget);
+   }
+
+   return false;
+
+}
+
+
+::user::interaction_ptr_array & base_application::frames()
+{
+   return *m_pframea;
+}
+
+void base_application::add_frame(sp(::user::interaction) pwnd)
+{
+   m_pframea->add_unique(pwnd);
+}
+
+void base_application::remove_frame(sp(::user::interaction) pwnd)
+{
+   m_pframea->remove(pwnd);
+   if (GetMainWnd() == pwnd)
+   {
+      if (m_pframea->get_size() > 0)
+      {
+         SetMainWnd(m_pframea->element_at(0));
+      }
+      else
+      {
+         SetMainWnd(NULL);
+      }
+   }
+}

@@ -24,12 +24,6 @@
     <Filter Include="Header Files\windows">
       <UniqueIdentifier>{ad978b40-9de8-4303-900d-8ddbb7990312}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\bsdiff">
-      <UniqueIdentifier>{0c59ef3d-595c-4dfa-bd9a-848d8b417db6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\bsdiff">
-      <UniqueIdentifier>{254aa1d9-6362-42f9-af93-f43b19cc8e40}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\simple_ui">
       <UniqueIdentifier>{cb9e03a3-6ef2-49c7-a402-e772ca8c08d8}</UniqueIdentifier>
     </Filter>
@@ -160,18 +154,6 @@
     </ClInclude>
     <ClInclude Include="spa\resource.h">
       <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
-    <ClInclude Include="bsdiff\bsdiff.h">
-      <Filter>Header Files\bsdiff</Filter>
-    </ClInclude>
-    <ClInclude Include="bsdiff\bzlib.h">
-      <Filter>Header Files\bsdiff</Filter>
-    </ClInclude>
-    <ClInclude Include="bsdiff\bzlib_private.h">
-      <Filter>Header Files\bsdiff</Filter>
-    </ClInclude>
-    <ClInclude Include="bsdiff\bsdiff_private.h">
-      <Filter>Header Files\bsdiff</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
@@ -416,9 +398,6 @@
     <ClInclude Include="boot\boot_library.h">
       <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="boot\boot_logic.h">
-      <Filter>Header Files\boot</Filter>
-    </ClInclude>
     <ClInclude Include="boot\boot_math.h">
       <Filter>Header Files\boot</Filter>
     </ClInclude>
@@ -576,33 +555,6 @@
     </ClCompile>
     <ClCompile Include="simple_graphics\simple_path.cpp">
       <Filter>Source Files\simple_graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="bsdiff\blocksort.cpp">
-      <Filter>Source Files\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="bsdiff\bsdiff.cpp">
-      <Filter>Source Files\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="bsdiff\bspatch.cpp">
-      <Filter>Source Files\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="bsdiff\bzlib.cpp">
-      <Filter>Source Files\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="bsdiff\compress.cpp">
-      <Filter>Source Files\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="bsdiff\crctable.cpp">
-      <Filter>Source Files\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="bsdiff\decompress.cpp">
-      <Filter>Source Files\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="bsdiff\huffman.cpp">
-      <Filter>Source Files\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="bsdiff\randtable.cpp">
-      <Filter>Source Files\bsdiff</Filter>
     </ClCompile>
     <ClCompile Include="windows\ca_os_ca_dll.cpp">
       <Filter>Source Files\windows</Filter>

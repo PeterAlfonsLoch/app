@@ -2459,7 +2459,7 @@ namespace draw2d
       m_pui->ReleaseDC(m_p);
    }*/
 
-   window_graphics::window_graphics(sp(::user::window) pwindow)
+/*   window_graphics::window_graphics(sp(::user::window) pwindow)
    {
       m_pwindow = pwindow;
       create(pwindow->get_app()->allocer());
@@ -2490,7 +2490,7 @@ namespace draw2d
       throw todo(get_thread_app());
 #endif
    }
-
+   */
 
    double graphics::get_dpix() const
    {
@@ -2504,7 +2504,7 @@ namespace draw2d
    }
 
 
-   bool graphics::create_client_dc(::user::window * pwnd)
+   /*bool graphics::create_client_dc(::user::window * pwnd)
    {
 
       UNREFERENCED_PARAMETER(pwnd);
@@ -2520,7 +2520,7 @@ namespace draw2d
       throw interface_only_exception(get_app());
 
    }
-
+   
 
    bool graphics::release_dc(::user::window * pwnd)
    {
@@ -2529,7 +2529,7 @@ namespace draw2d
       throw interface_only_exception(get_app());
 
    }
-
+   */
 
 } // namespace draw2d
 

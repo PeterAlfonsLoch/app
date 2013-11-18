@@ -9,7 +9,9 @@ namespace sockets
       element(papp),
       transfer_buffer(papp, pmutex)
    {
+
    }
+
 
    // it is not currently designed to call open.
    //
@@ -17,12 +19,15 @@ namespace sockets
       element(papp),
       transfer_buffer(papp, pmemoryfileIn)
    {
+
    }
+
 
    http_buffer::~http_buffer()
    {
 
    }
+
       
    bool http_buffer::open(const char * lpszFileName, UINT nOpenFlags)
    {
@@ -49,15 +54,23 @@ namespace sockets
       }
 
       ::emit(get_app(), this, &http_buffer::on_http_request_response, &Application.http(), &::http::application::get, psignal);
+
       return TRUE;
+
    }
+
 
    void http_buffer::on_http_request_response(signal_details * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
+
    }
 
 
-
 } // namespace sockets
+
+
+
+
 

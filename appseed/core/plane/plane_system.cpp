@@ -1501,10 +1501,6 @@ namespace plane
       return m_patch;
    }
 
-   class ::core::crypt & system::crypt()
-   {
-      return *m_spcrypt;
-   }
 
    ::net::email_departament & system::email()
    {

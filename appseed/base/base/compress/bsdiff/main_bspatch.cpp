@@ -95,7 +95,8 @@ static off_t offtin(u_char *buf)
 
 int main(int argc,char * argv[])
 {
-	FILE * f, * cpf, * dpf, * epf;
+
+	_FILE * f, * cpf, * dpf, * epf;
 	BZFILE * cpfbz2, * dpfbz2, * epfbz2;
 	int cbz2err, dbz2err, ebz2err;
 	int fd;
@@ -111,7 +112,7 @@ int main(int argc,char * argv[])
 	if(argc!=4) errx(1,"usage: %s oldfile newfile patchfile\n",argv[0]);
 
 	/* Open patch file */
-	if ((f = fopen(argv[3], "rb")) == NULL)
+	if ((f = fopen_dup(argv[3], "rb")) == NULL)
 		err(1, "fopen(%s)", argv[3]);
 
 	/*

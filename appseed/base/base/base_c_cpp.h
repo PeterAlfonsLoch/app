@@ -337,11 +337,14 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "core/core/core_keeper.h"
 #include "base/filesystem/file/file_stream2.h"
 #include "user/user_interaction.h"
+#include "user/user_virtual_user_interface.h"
 #include "user/user_window.h"
 #include "base_live_object.h"
+#include "base_live_signal.h"
 #include "multithreading/multithreading_thread.h"
 #include "multithreading/multithreading_simple_thread.h"
 #include "multithreading/multithreading_go_thread.h"
+#include "multithreading/multithreading_signal_thread.h"
 
 
 #include "base/base_log.h"
@@ -451,6 +454,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_machine_event.h"
 #include "base_machine_event_central.h"
 
+#include "crypto/crypto.h"
 
 #include "base_system.h"
 
@@ -650,6 +654,7 @@ namespace numeric_info
 
 
 #include "base/net/http/http.h"
+#include "base_microtimer.h"
 
 
 

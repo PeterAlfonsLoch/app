@@ -39,11 +39,11 @@ namespace fontopus
       user(sp(base_application) papp);
       virtual ~user();
 
-      virtual void start_veiev_synch();
+      //virtual void start_veiev_synch();
 
 
-      DECL_GEN_SIGNAL(veiev_synch);
-      DECL_GEN_VSIGNAL(on_end_veiev_synch);
+      //DECL_GEN_SIGNAL(veiev_synch);
+      //DECL_GEN_VSIGNAL(on_end_veiev_synch);
 
 
       // if interactive flag is true, the function may interact with the user to authenticate her/him,

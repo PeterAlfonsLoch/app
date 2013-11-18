@@ -1130,7 +1130,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="boot\boot_launcher.h" />
     <ClInclude Include="boot\boot_libc.h" />
     <ClInclude Include="boot\boot_library.h" />
-    <ClInclude Include="boot\boot_logic.h" />
     <ClInclude Include="boot\boot_math.h" />
     <ClInclude Include="boot\boot_message_loop.h" />
     <ClInclude Include="boot\boot_number.h" />
@@ -1144,10 +1143,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="boot\boot_url.h" />
     <ClInclude Include="boot\boot_user.h" />
     <ClInclude Include="boot\boot_window_graphics.h" />
-    <ClInclude Include="bsdiff\bsdiff.h" />
-    <ClInclude Include="bsdiff\bsdiff_private.h" />
-    <ClInclude Include="bsdiff\bzlib.h" />
-    <ClInclude Include="bsdiff\bzlib_private.h" />
     <ClInclude Include="cpu_architecture.h" />
     <ClInclude Include="cross\cross.h" />
     <ClInclude Include="cross\windows\windows.h" />
@@ -1464,15 +1459,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="boot\boot_url.cpp" />
     <ClCompile Include="boot\boot_window_graphics.cpp" />
     <ClCompile Include="boot\_initterm.cpp" />
-    <ClCompile Include="bsdiff\blocksort.cpp" />
-    <ClCompile Include="bsdiff\bsdiff.cpp" />
-    <ClCompile Include="bsdiff\bspatch.cpp" />
-    <ClCompile Include="bsdiff\bzlib.cpp" />
-    <ClCompile Include="bsdiff\compress.cpp" />
-    <ClCompile Include="bsdiff\crctable.cpp" />
-    <ClCompile Include="bsdiff\decompress.cpp" />
-    <ClCompile Include="bsdiff\huffman.cpp" />
-    <ClCompile Include="bsdiff\randtable.cpp" />
     <ClCompile Include="crypt\crypt.cpp" />
     <ClCompile Include="crypt\nessie.cpp" />
     <ClCompile Include="crypt\whirpool.cpp" />

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#include "base/x/x_charcategory_names.h"
+#include "x/x_charcategory_names.h"
 
 
 namespace str

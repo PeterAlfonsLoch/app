@@ -49,12 +49,12 @@ int32_t err(int32_t i, const char* str)
     
 #endif
     
-   printf_dup("%s", string(lastErrorTxt).c_str());
+   printf("%s", string(lastErrorTxt).c_str());
     
    if (str!=NULL)
    {
        
-      printf_dup("%s",str);
+      printf("%s",str);
        
    }
     
@@ -64,8 +64,11 @@ int32_t err(int32_t i, const char* str)
 
 int32_t errx(int32_t i, const char* str)
 {
-   printf_dup("%s",str);
-   return (i);
+   
+   printf("%s",str);
+   
+   return i;
+
 }
 
 

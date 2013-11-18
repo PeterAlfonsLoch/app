@@ -3141,11 +3141,6 @@ fill_last:
       return true;
    }
 
-   bool dib::from(::draw2d::graphics * pgraphics, FIBITMAP * pfibitmap, bool bUnloadFI)
-   {
-      throw interface_only_exception(get_app());
-      return false;
-   }
 
    bool dib::pixelate(int32_t iSize)
    {
@@ -3451,31 +3446,6 @@ fill_last:
    {
 
    }
-
-    void dib::draw_bitmap(int32_t dx, int32_t dy, FT_Bitmap * bitmap, FT_Int x, FT_Int y)
-    {
-
-        FT_Int  i, j, p, q;
-        FT_Int  x_max = x + bitmap->width;
-        FT_Int  y_max = y + bitmap->rows;
-
-        map();
-
-        for ( i = x, p = 0; i < x_max; i++, p++ )
-        {
-            for ( j = y, q = 0; j < y_max; j++, q++ )
-            {
-                if(i < 0 || j < 0 || i >= cx || j >= cy)
-                    continue;
-
-                int32_t a = bitmap->buffer[q * bitmap->width + p];
-
-                *((COLORREF *)&((byte *)get_data())[(dy + j) * scan + (dx + i) * 4]) = ARGB(a, 0, 0, 0);
-
-            }
-        }
-
-    }
 
 
    bool dib::update_window(::user::window * pwnd, signal_details * pobj)

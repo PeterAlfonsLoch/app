@@ -401,9 +401,6 @@ public:
    // help mode used by the cast
    //      __HELP_TYPE m_eHelpType;
 
-   sp(::user::interaction_ptr_array) m_pframea;
-
-
    //CCommandLineInfo* m_pCmdInfo;
 
    ATOM m_atomApp, m_atomSystemTopic;   // for DDE open
@@ -496,21 +493,12 @@ public:
    virtual void pre_translate_message(signal_details * pobj);
 
 
-   virtual ::fontopus::user * get_safe_user();
-
-
-
-
    virtual void install_message_handling(::message::dispatch * pdispatch);
 
    //virtual int32_t run();
 
 
    virtual void EnableShellOpen();
-
-   virtual bool open_link(const string & strLink, const string & pszTarget = "");
-
-
 
 
    virtual void set_locale(const string & lpcsz, bool bUser);
@@ -656,9 +644,6 @@ public:
    //      virtual sp(::user::interaction) get_place_holder_container();
 
 
-   ::user::interaction_ptr_array & frames();
-   virtual void add_frame(sp(::user::interaction) pwnd);
-   virtual void remove_frame(sp(::user::interaction) pwnd);
 
 
    virtual int32_t simple_message_box_timeout(sp(::user::interaction) puiOwner, const char * pszMessage, ::duration durationTimeout, UINT fuStyle = MB_OK);
@@ -877,11 +862,8 @@ public:
    virtual oswindow get_ca2_app_wnd(const char * psz);
 
 
-   virtual void get_cursor_pos(LPPOINT lppoint);
    virtual void get_screen_rect(LPRECT lprect);
 
-   virtual sp(::user::interaction) release_capture_uie();
-   virtual sp(::user::interaction) get_capture_uie();
 
 
    virtual int32_t get_document_count();
@@ -932,8 +914,6 @@ public:
    virtual bool initialize_instance();
 
 
-
-   //      virtual bool open_link(const char * pszLink, const char * pszTarget = NULL);
 
    // Temporary map management (locks temp map on current thread)
    virtual void LockTempMaps();

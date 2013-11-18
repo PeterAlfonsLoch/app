@@ -164,9 +164,9 @@ namespace md5
     * This processes one or more 64-byte data blocks, but does NOT update
     * the bit counters.  There are no alignment requirements.
     */
-   void * md5::body(void *data, uint32_t size)
+   const void * md5::body(const void *data, uint32_t size)
    {
-	   uchar *ptr;
+	   const uchar *ptr;
 	   uint32_t a, b, c, d;
 	   uint32_t saved_a, saved_b, saved_c, saved_d;
 
@@ -282,7 +282,7 @@ namespace md5
 	   m_ctx.hi = 0;
    }
 
-   void md5::update(void *data, size_t size)
+   void md5::update(const void *data, size_t size)
    {
 	   size_t saved_lo;
 	   uint_ptr used, free;
@@ -369,7 +369,7 @@ namespace md5
    }
 
 
-   uchar * md5::digest()
+   const uchar * md5::digest()
    {
 
       return m_uchaDigest;

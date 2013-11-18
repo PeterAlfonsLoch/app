@@ -2555,12 +2555,6 @@
     <ClInclude Include="core\core_listener.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core_live_object.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core_live_signal.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core_log.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
@@ -2577,9 +2571,6 @@
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core_match.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core_microtimer.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core_muldiv32.h">
