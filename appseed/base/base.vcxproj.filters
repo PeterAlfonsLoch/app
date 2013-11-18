@@ -2009,6 +2009,9 @@
     <ClInclude Include="crypto\crypto_crypto.h">
       <Filter>Header Files\base\crypto</Filter>
     </ClInclude>
+    <ClInclude Include="user\user_user.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_c.c">
@@ -3308,6 +3311,9 @@
     </None>
     <None Include="base\base_live_object.h">
       <Filter>Header Files\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

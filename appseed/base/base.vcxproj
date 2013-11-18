@@ -1570,6 +1570,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user_mouse_focus.h" />
     <ClInclude Include="user\user_str.h" />
     <ClInclude Include="user\user_text_interface.h" />
+    <ClInclude Include="user\user_user.h" />
     <ClInclude Include="user\user_virtual_user_interface.h" />
     <ClInclude Include="user\user_window.h" />
     <ClInclude Include="user\user_window_interface.h" />
