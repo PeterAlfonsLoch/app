@@ -340,7 +340,7 @@ restart:
       else
       {
          string strFilePath(varFile);
-         if(papp->m_pplaneapp->m_bZipIsDir && (::str::find_ci(".zip:", strFilePath) >= 0))
+         if(papp->m_bZipIsDir && (::str::find_ci(".zip:", strFilePath) >= 0))
          {
             if(!exists(strFilePath, papp))
                return "";
@@ -704,7 +704,7 @@ restart:
          string strSrc;
          string strDirSrc(psz);
          string strDirDst(pszNew);
-         if(papp->m_pplaneapp->m_bZipIsDir && (::str::ends(strDirSrc, ".zip")))
+         if(papp->m_bZipIsDir && (::str::ends(strDirSrc, ".zip")))
          {
             strDirSrc += ":";
          }
@@ -1005,10 +1005,10 @@ restart:
       }
       else if(::str::begins_ci_iws(pszPath, "http://") || ::str::begins_ci_iws(pszPath, "https://"))
       {
-         return App(papp).http().exists(pszPath, pvarQuery, papp->m_pplaneapp->get_safe_user());
+         return App(papp).http().exists(pszPath, pvarQuery, papp->get_safe_user());
       }
 
-      if(papp->m_pplaneapp->m_bZipIsDir)
+      if(papp->m_bZipIsDir)
       {
 
          strsize iFind = ::str::find_ci(".zip:", pszPath);
@@ -1063,11 +1063,11 @@ restart:
       if(::str::begins_ci_iws(strPath, "http://")
          || ::str::begins_ci_iws(strPath, "https://"))
       {
-         return App(papp).http().exists(strPath, pvarQuery, papp->m_pplaneapp->get_safe_user());
+         return App(papp).http().exists(strPath, pvarQuery, papp->get_safe_user());
       }
 
 
-      if(papp->m_pplaneapp->m_bZipIsDir)
+      if(papp->m_bZipIsDir)
       {
 
          strsize iFind = ::str::find_ci(".zip:", strPath);
@@ -1087,7 +1087,7 @@ restart:
 
       }
 
-      if(!papp->m_pplaneapp->m_psystem->dir().name_is(strPath, papp))
+      if(!papp->m_psystem->dir().name_is(strPath, papp))
          return false;
 
 #ifdef WINDOWS

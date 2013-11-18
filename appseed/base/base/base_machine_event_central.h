@@ -1,15 +1,19 @@
 #pragma once
 
 
-class CLASS_DECL_CORE machine_event_central :
+class CLASS_DECL_BASE machine_event_central :
    public simple_thread
 {
 public:
+
+
+   machine_event     m_machineevent;
+   bool              m_bInitialized;
+
+
    machine_event_central(sp(base_application) papp);
    virtual ~machine_event_central();
 
-   machine_event  m_machineevent;
-   bool     m_bInitialized;
 
    void read(machine_event_data * pdata);
    void write(machine_event_data * pdata);
@@ -22,3 +26,5 @@ public:
    void command(sp(::xml::node) pnodeCommand);
 
 };
+
+

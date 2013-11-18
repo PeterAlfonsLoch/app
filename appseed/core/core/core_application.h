@@ -118,8 +118,6 @@ public:
    // Human-redable name of the application. Normally set in
    // constructor or retreived from __IDS_APP_TITLE.
    smart_pointer < application_base >  m_p;
-   string                                          m_strAppId;
-   string                                          m_strLibraryName;
    //::plane::application *         m_pappCube;
 
 
@@ -391,7 +389,6 @@ public:
    bool                          m_bHelpMode;
 
    mutex                         m_mutexMatterLocator;
-   string                        m_strMatterLocator;
 
    // set in constructor to override default
 
@@ -427,7 +424,6 @@ public:
    //typedef map < object *, object *, property_set, property_set > oset;
    //oset                             m_mapObjectSet;
 
-   sp(::user::str_context)      m_puserstrcontext;
    bool                             m_bShouldInitializeGTwf;
    point                            m_ptCursor;
    bool                             m_bSessionSynchronizedCursor;
@@ -936,8 +932,6 @@ public:
    virtual bool initialize_instance();
 
 
-
-   ::user::str_context * str_context();
 
    //      virtual bool open_link(const char * pszLink, const char * pszTarget = NULL);
 

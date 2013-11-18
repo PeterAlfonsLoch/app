@@ -56,6 +56,11 @@ public:
    geometry::geometry *                            m_pgeometry;
    ::sockets::sockets *                            m_psockets;
    bool                                            m_bZipIsDir;
+   string                                          m_strMatterLocator;
+   sp(::user::str_context)                         m_puserstrcontext;
+   string                                          m_strLibraryName;
+   string                                          m_strAppId;
+
 
 
 
@@ -83,6 +88,8 @@ public:
    inline sp(::fontopus::fontopus)           fontopus()     { return m_pfontopus; }
    inline ::sockets::sockets                 & sockets() { return *m_psockets; }
 
+
+   ::user::str_context * str_context();
 
 
 

@@ -462,7 +462,7 @@ local uint_ptr ziplocal_SearchCentralDir(
 #endif /* !NO_ADDFILEINEXISTINGZIP*/
 
 /************************************************************/
-extern zipFile CLASS_DECL_CORE zipOpen2 (
+extern zipFile CLASS_DECL_BASE zipOpen2 (
     const char *pathname,
     int32_t append,
     zipcharpc* globalcomment,
@@ -627,14 +627,14 @@ extern zipFile CLASS_DECL_CORE zipOpen2 (
     }
 }
 
-extern zipFile CLASS_DECL_CORE zipOpen (
+extern zipFile CLASS_DECL_BASE zipOpen (
     const char *pathname,
     int32_t append)
 {
     return zipOpen2(pathname,append,NULL,NULL);
 }
 
-extern int32_t CLASS_DECL_CORE zipOpenNewFileInZip3 (
+extern int32_t CLASS_DECL_BASE zipOpenNewFileInZip3 (
     zipFile file,
     const char* filename,
     const zip_fileinfo* zipfi,
@@ -838,7 +838,7 @@ extern int32_t CLASS_DECL_CORE zipOpenNewFileInZip3 (
     return err;
 }
 
-extern int32_t CLASS_DECL_CORE zipOpenNewFileInZip2(
+extern int32_t CLASS_DECL_BASE zipOpenNewFileInZip2(
     zipFile file,
     const char* filename,
     const zip_fileinfo* zipfi,
@@ -859,7 +859,7 @@ extern int32_t CLASS_DECL_CORE zipOpenNewFileInZip2(
                                  NULL, 0);
 }
 
-extern int32_t CLASS_DECL_CORE zipOpenNewFileInZip (
+extern int32_t CLASS_DECL_BASE zipOpenNewFileInZip (
     zipFile file,
     const char* filename,
     const zip_fileinfo* zipfi,
@@ -899,7 +899,7 @@ local int32_t zipFlushWriteBuffer(
     return err;
 }
 
-extern int32_t CLASS_DECL_CORE zipWriteInFileInZip (
+extern int32_t CLASS_DECL_BASE zipWriteInFileInZip (
     zipFile file,
     const void * buf,
     uint32_t len)
@@ -964,7 +964,7 @@ extern int32_t CLASS_DECL_CORE zipWriteInFileInZip (
     return err;
 }
 
-extern int32_t CLASS_DECL_CORE zipCloseFileInZipRaw (
+extern int32_t CLASS_DECL_BASE zipCloseFileInZipRaw (
     zipFile file,
     uint_ptr uncompressed_size,
     uint_ptr crc32)
@@ -1060,13 +1060,13 @@ extern int32_t CLASS_DECL_CORE zipCloseFileInZipRaw (
     return err;
 }
 
-extern int32_t CLASS_DECL_CORE zipCloseFileInZip (
+extern int32_t CLASS_DECL_BASE zipCloseFileInZip (
     zipFile file)
 {
     return zipCloseFileInZipRaw (file,0,0);
 }
 
-extern int32_t CLASS_DECL_CORE zipClose (
+extern int32_t CLASS_DECL_BASE zipClose (
     zipFile file,
     const char* global_comment)
 {

@@ -224,9 +224,12 @@ public:
    static class id                              idEmpty;
    class ::str::base64                          m_base64;
 
-   ::file::system_sp                         m_spfile;
-   ::file::dir::system_sp                         m_spdir;
+   ::file::system_sp                            m_spfile;
+   ::file::dir::system_sp                       m_spdir;
    class ::sockets::net                         m_net;
+   ::http::system                               m_httpsystem;
+   ::string_to_string                           m_mapAppLibrary;
+   class machine_event_central *                m_pmachineeventcentral;
 
 
    base_system(sp(base_application) papp);
@@ -236,21 +239,20 @@ public:
 
    virtual bool initialize_instance();
 
-   bool null_compressor(::file::output_stream & ostream, ::file::input_stream & istream);
-
 
    class base_factory                           & factory();
    inline ::url::departament                    & url()     { return m_urldepartament; }
    ::xml::departament                           & xml();
    class ::str::base64                          & base64();
 
-   class ::core::log                     & log();
+   class ::core::log                            & log();
 
-   using ::base_application::file;
-   inline ::file::system            & file()    { return *m_spfile; }
-   using ::base_application::dir;
-   inline ::file::dir::system            & dir()     { return *m_spdir; }
-   class ::sockets::net                & net();
+   inline class ::http::system                  & http()    { return m_httpsystem; }
+   inline ::file::system                        & file()    { return *m_spfile; }
+   inline ::file::dir::system                   & dir()     { return *m_spdir; }
+   class ::sockets::net                         & net();
+   class ::core::compress                       & compress();
+   class ::machine_event_central                & machine_event_central();
 
 
 

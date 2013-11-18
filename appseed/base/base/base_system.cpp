@@ -8,7 +8,7 @@ class ::id_space * base_system::s_pidspace = NULL;
 base_system::base_system(sp(base_application) papp) :
    m_urldepartament(this),
    //m_mutexDelete(this),
-   //m_http(this),
+   m_httpsystem(this),
    m_net(this)
    //m_mutex(this),
 #ifndef METROWIN
@@ -437,19 +437,6 @@ class ::str::base64 & base_system::base64()
 
 
 
-
-
-bool base_system::null_compressor(::file::output_stream & ostream, ::file::input_stream & istream)
-{
-   class primitive::memory memory;
-   memory.allocate(1024 * 256);
-   ::primitive::memory_size  uiRead;
-   while ((uiRead = istream.read(memory, memory.get_size())) > 0)
-   {
-      ostream.write(memory, uiRead);
-   }
-   return true;
-}
 
 
 ::sockets::net & base_system::net()

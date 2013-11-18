@@ -29,7 +29,6 @@ namespace plane
       //plane::session::run_start_installer *        m_prunstartinstaller;
       //plane::session::map *                        m_pbergedgemap;
       index                                        m_iNewEdge;
-      class machine_event_central *                m_pmachineeventcentral;
 
       mutex                                        m_mutex;
 #ifdef METROWIN
@@ -58,10 +57,8 @@ namespace plane
       class ::core::compress                         m_compress;
       class ::core::patch                            m_patch;
       ::core::crypt_sp                               m_spcrypt;
-      ::http::system                                  m_httpsystem;
       ::net::email_departament                        m_emaildepartament;
       ::core::copydesk_sp                            m_spcopydesk;
-      ::string_to_string                       m_mapAppLibrary;
       sp(colorertake5::ParserFactory)              m_pparserfactory;
 
       ::net::port_forward_sp                        m_spportforward;
@@ -208,41 +205,39 @@ namespace plane
       virtual string file_title(const char * psz);
       virtual string file_name(const char * psz);
 
-      sp(::user::window_draw )              get_twf();
+      sp(::user::window_draw )               get_twf();
 
-      FT_Library                          & ftlibrary();
+      FT_Library                             & ftlibrary();
 
-      application_ptra              & appptra();
-      ::core::datetime                      & datetime();
+      application_ptra                       & appptra();
+      ::core::datetime                       & datetime();
 
-      ::core::stra                          & stra();
-      ::core::install                       & install();
-      ::core::service                       & service();
-      class ::machine_event_central       & machine_event_central();
-      class ::core::os                      & os();
+      ::core::stra                           & stra();
+      ::core::install                        & install();
+      ::core::service                        & service();
+      class ::core::os                       & os();
 #ifndef METROWIN
-      ::core::process_departament           & process();
+      ::core::process_departament            & process();
 #endif
-      ::core::history                    & hist();
+      ::core::history                        & hist();
 
-      class ::core::compress            & compress();
-      class ::core::patch               & patch();
-      class ::core::crypt               & crypt();
-      class ::core::copydesk            & copydesk();
+      class ::core::patch                    & patch();
+      class ::core::crypt                    & crypt();
+      class ::core::copydesk                 & copydesk();
 
-      ::http::system                   & http();
-      ::net::email_departament         & email();
+      ::http::system                         & http();
+      ::net::email_departament               & email();
 
-      ::fontopus::user_set             & userset();
+      ::fontopus::user_set                   & userset();
 
-      ::user::str                      & str();
+      ::user::str                            & str();
 
-      ::filehandler::handler           & filehandler();
+      ::filehandler::handler                 & filehandler();
 
-      ::colorertake5::ParserFactory    & parser_factory();
+      ::colorertake5::ParserFactory          & parser_factory();
 
-      static ::exception::engine       & eengine();
-      inline class ::visual::visual             & visual()     { return m_visual       ; }
+      static ::exception::engine             & eengine();
+      inline class ::visual::visual          & visual()     { return m_visual       ; }
 
 
 

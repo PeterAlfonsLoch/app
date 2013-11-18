@@ -22,7 +22,6 @@ class type;
 class ptra;
 class factory_item_base;
 class fixed_alloc_no_sync;
-class base_system;
 class critical_section;
 class allocatorsp;
 class application_signal_details;
@@ -240,7 +239,7 @@ namespace file
 
 
 
-#include "base/file/file.h"
+#include "base/filesystem/filesystem.h"
 
 
 
@@ -254,7 +253,7 @@ namespace file
 #include "base/primitive/collection/collection.h"
 
 
-#include "base/file/file_string_buffer.h"
+#include "base/filesystem/file/file_string_buffer.h"
 
 
 #include "base/primitive/primitive_var2.h"
@@ -336,7 +335,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "user/user_window_interface.h"
 #include "user/user_buffer.h"
 #include "core/core/core_keeper.h"
-#include "file/file_stream2.h"
+#include "base/filesystem/file/file_stream2.h"
 #include "user/user_interaction.h"
 #include "user/user_window.h"
 #include "base_live_object.h"
@@ -358,13 +357,12 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base/primitive/primitive_virtual_memory.h"
 #include "base/primitive/primitive_memory_container.h"
 
-#include "base/file/file_memory_buffer.h"
 
-#include "base/file/file_byte_stream_memory_buffer.h"
+#include "base/filesystem/file/file_memory_buffer.h"
+#include "base/filesystem/file/file_byte_stream_memory_buffer.h"
+#include "base/filesystem/file/file_plain_text_stream_memory_buffer.h"
+#include "base/filesystem/file/file_circular_buffer.h"
 
-#include "base/file/file_plain_text_stream_memory_buffer.h"
-
-#include "base/file/file_circular_buffer.h"
 
 #include "base/str/str_international2.h"
 
@@ -392,11 +390,11 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base/primitive/primitive_data_listener.h"
 #include "base/primitive/primitive_data_container.h"
 #include "base/primitive/primitive_edit.h"
-#include "base/file/fs/fs.h"
+#include "base/filesystem/fs/fs.h"
 #include "base/user/fontopus/fontopus.h"
 
-#include "base/file/file_application.h"
-#include "base/file/file_dir_application.h"
+#include "base/filesystem/file/file_application.h"
+#include "base/filesystem/file/file_dir_application.h"
 
 #include "base/primitive/math/math_math_rng.h"
 #include "base/primitive/math/math_math.h"
@@ -440,13 +438,24 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base/graphics/visual/visual.h"
 
 
-#include "base/file/file_system.h"
-#include "base/file/file_dir_system.h"
+#include "base/filesystem/file/file_system.h"
+#include "base/filesystem/file/file_dir_system.h"
+
+#include "base/filesystem/file/file_buffered_buffer.h"
 
 
+#include "compress/compress.h"
+
+
+#include "base_machine_event_data.h"
+#include "base_machine_event.h"
+#include "base_machine_event_central.h"
 
 
 #include "base_system.h"
+
+
+#include "base_system_str.h"
 
 
 
@@ -456,8 +465,10 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base/os/os_process.h"
 
 
+#include "base/str/str_international_locale_schema.h"
 
 
+#include "base/user/user_str.h"
 
 
 
@@ -636,4 +647,10 @@ namespace numeric_info
 #define Sess(pbaseapp) (*pbaseapp->m_pbasesession)
 #define Session (Sess(this->m_pbaseapp))
 
-#include "compress/compress.h"
+
+
+#include "base/net/http/http.h"
+
+
+
+

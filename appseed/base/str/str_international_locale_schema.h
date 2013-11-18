@@ -9,7 +9,7 @@ namespace str
    {
 
 
-      class CLASS_DECL_CORE locale_schema : 
+      class CLASS_DECL_BASE locale_schema :
          virtual public object
       {
       public:

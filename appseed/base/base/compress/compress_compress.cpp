@@ -60,7 +60,7 @@ namespace core
       class primitive::memory memory;
       memory.allocate(1024 * 256);
       int_ptr uncomprLen;
-      while((uncomprLen = gzread(file, memory, (uint32_t) memory.get_size())) > 0)
+      while ((uncomprLen = gzread(file, memory, (uint32_t)memory.get_size())) > 0)
       {
          ostreamUncompressed.write(memory, uncomprLen);
       }
@@ -90,37 +90,37 @@ namespace core
       ASSERT(memory.get_size() <= UINT_MAX);
 
       // inflateInit2 knows how to deal with gzip format
-      if (inflateInit2(&strm, (15+32)) != Z_OK)
+      if (inflateInit2(&strm, (15 + 32)) != Z_OK)
       {
-	      return false;
+         return false;
       }
 
       while (!done)
       {
 
-	      strm.next_out = memory.get_data();
-	      strm.avail_out = (uint32_t) memory.get_size();
+         strm.next_out = memory.get_data();
+         strm.avail_out = (uint32_t)memory.get_size();
 
-	      // Inflate another chunk.
-	      status = inflate (&strm, Z_SYNC_FLUSH);
+         // Inflate another chunk.
+         status = inflate(&strm, Z_SYNC_FLUSH);
 
          memoryfileOut.write(memory.get_data(), memory.get_size() - strm.avail_out);
 
-	      if (status == Z_STREAM_END)
-	      {
-		      done = true;
-	      }
-	      else if (status != Z_OK)
-	      {
-		      break;
-	      }
+         if (status == Z_STREAM_END)
+         {
+            done = true;
+         }
+         else if (status != Z_OK)
+         {
+            break;
+         }
       }
 
       memoryfile = memoryfileOut;
 
-      if (inflateEnd (&strm) != Z_OK || !done)
+      if (inflateEnd(&strm) != Z_OK || !done)
       {
-	      return true;
+         return true;
       }
 
       return true;
@@ -143,7 +143,7 @@ namespace core
       class primitive::memory memory;
       memory.allocate(1024 * 256);
       ::primitive::memory_size uncomprLen;
-      while((uncomprLen = (::primitive::memory_size) fread(memory, 1, (size_t) memory.get_size(), fileUn)) > 0)
+      while ((uncomprLen = (::primitive::memory_size) fread(memory, 1, (size_t)memory.get_size(), fileUn)) > 0)
       {
          gz.write(memory, uncomprLen);
       }
@@ -174,7 +174,7 @@ namespace core
       primitive::memory memory;
       memory.allocate(1024 * 16 * 1024);
       int32_t uncomprLen;
-      while((uncomprLen = BZ2_bzread(file, memory, (int32_t) memory.get_size())) > 0)
+      while ((uncomprLen = BZ2_bzread(file, memory, (int32_t)memory.get_size())) > 0)
       {
          ostreamUncompressed.write(memory, uncomprLen);
       }
@@ -185,7 +185,7 @@ namespace core
    bool compress::bz(::file::output_stream & ostreamBzFileCompressed, const char * lpcszUncompressed)
    {
       ::file::binary_buffer_sp file = Application.file().get_file(lpcszUncompressed, ::file::mode_read | ::file::type_binary);
-      if(file.is_null())
+      if (file.is_null())
       {
          return false;
       }
@@ -199,7 +199,7 @@ namespace core
       class primitive::memory memory;
       memory.allocate(1024 * 256);
       ::primitive::memory_size uncomprLen;
-      while((uncomprLen = istreamFileUncompressed.read(memory, memory.get_size())) > 0)
+      while ((uncomprLen = istreamFileUncompressed.read(memory, memory.get_size())) > 0)
       {
          bz.write(memory, uncomprLen);
       }
@@ -219,9 +219,9 @@ namespace core
 
    bool compress::_compress(class primitive::memory & memory, void * pdata, ::primitive::memory_size ulSize)
    {
-      memory.allocate(compressBound((uLong) ulSize) * 2);
-      uLongf ulDestSize = (uLongf) memory.get_size();
-      int32_t i = ::compress(memory.get_data(), &ulDestSize, (BYTE *) pdata, (uLongf) ulSize);
+      memory.allocate(compressBound((uLong)ulSize) * 2);
+      uLongf ulDestSize = (uLongf)memory.get_size();
+      int32_t i = ::compress(memory.get_data(), &ulDestSize, (BYTE *)pdata, (uLongf)ulSize);
       memory.allocate(ulDestSize);
       return i == Z_OK;
    }
@@ -229,8 +229,8 @@ namespace core
    bool compress::_uncompress(primitive::memory & memoryUncompressed, primitive::memory & memoryCompressed, ::primitive::memory_size sizeUncompressed)
    {
       memoryUncompressed.allocate(sizeUncompressed);
-      uLongf ulSizeUncompressed =(uLongf) sizeUncompressed;
-      int32_t i = ::uncompress(memoryUncompressed.get_data(), &ulSizeUncompressed, memoryCompressed.get_data(), (uLong) memoryCompressed.get_size());
+      uLongf ulSizeUncompressed = (uLongf)sizeUncompressed;
+      int32_t i = ::uncompress(memoryUncompressed.get_data(), &ulSizeUncompressed, memoryCompressed.get_data(), (uLong)memoryCompressed.get_size());
       return i == Z_OK;
    }
 
@@ -246,23 +246,23 @@ namespace core
    {
       zip::InFile infile(papp);
 
-      if(!infile.zip_open(pszZip, 0))
+      if (!infile.zip_open(pszZip, 0))
       {
          throw "Could not open zip file";
          return;
       }
 
-      if(System.dir().is(psz, papp))
+      if (System.dir().is(psz, papp))
       {
          stringa straPath;
          stringa straRelative;
          string strPath;
          ::file::binary_buffer_sp file;
          System.dir().rls(papp, psz, &straPath, NULL, &straRelative);
-         for(int32_t i = 0; i < straPath.get_size(); i++)
+         for (int32_t i = 0; i < straPath.get_size(); i++)
          {
             strPath = straPath[i];
-            if(!System.dir().is(strPath, papp))
+            if (!System.dir().is(strPath, papp))
             {
                infile.add_file(psz, straRelative[i]);
 
@@ -272,8 +272,30 @@ namespace core
 
    }
 
+
    void compress::zip(const char * psz, sp(base_application) papp)
    {
+
    }
 
+   bool compress::null(::file::output_stream & ostream, ::file::input_stream & istream)
+   {
+      class primitive::memory memory;
+      memory.allocate(1024 * 256);
+      ::primitive::memory_size  uiRead;
+      while ((uiRead = istream.read(memory, memory.get_size())) > 0)
+      {
+         ostream.write(memory, uiRead);
+      }
+      return true;
+   }
+
+
+
+
 } // namespace core
+
+
+
+
+

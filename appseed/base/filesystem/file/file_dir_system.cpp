@@ -1056,10 +1056,10 @@ namespace file
          }
 
 
-         if(papp->m_psession != NULL && papp->m_psession != papp &&
-            (sp(base_application)) papp->m_psystem != (sp(base_application)) papp)
+         if(papp->m_pbasesession != NULL && papp->m_pbasesession != papp &&
+            (sp(base_application)) papp->m_pbasesystem != (sp(base_application)) papp)
          {
-            strPath = matter(papp->m_psession, stra, bDir);
+            strPath = matter(papp->m_pbasesession, stra, bDir);
             if(bDir)
             {
                if(System.dir().is(strPath, get_app()))
@@ -1072,10 +1072,10 @@ namespace file
             }
          }
 
-         if(papp->m_psystem != NULL && papp->m_psystem != papp &&
-            (sp(base_application)) papp->m_psystem != (sp(base_application)) papp->m_psession)
+         if(papp->m_pbasesystem != NULL && papp->m_pbasesystem != papp &&
+            (sp(base_application)) papp->m_pbasesystem != (sp(base_application)) papp->m_pbasesession)
          {
-            strPath = matter(papp->m_psystem, stra, bDir);
+            strPath = matter(papp->m_pbasesystem, stra, bDir);
             if(bDir)
             {
                if(System.dir().is(strPath, get_app()))
@@ -1248,10 +1248,10 @@ ret:
             }
 
 
-            if(papp->m_psession != NULL && papp->m_psession != papp &&
-               (sp(base_application)) papp->m_psystem != (sp(base_application)) papp)
+            if(papp->m_pbasesession != NULL && papp->m_pbasesession != papp &&
+               (sp(base_application)) papp->m_pbasesystem != (sp(base_application)) papp)
             {
-               strPath = matter(papp->m_psession, str, str2);
+               strPath = matter(papp->m_pbasesession, str, str2);
                if(bDir)
                {
                   if(System.dir().is(strPath, papp))
@@ -1269,10 +1269,10 @@ ret:
 #endif
 
 
-         if(papp->m_psystem != NULL && papp->m_psystem != papp &&
-            (sp(base_application)) papp->m_psystem != (sp(base_application)) papp->m_psession)
+         if(papp->m_pbasesystem != NULL && papp->m_pbasesystem != papp &&
+            (sp(base_application)) papp->m_pbasesystem != (sp(base_application)) papp->m_pbasesession)
          {
-            strPath = matter(papp->m_psystem, str, str2);
+            strPath = matter(papp->m_pbasesystem, str, str2);
             if(bDir)
             {
                if(System.dir().is(strPath, get_app()))

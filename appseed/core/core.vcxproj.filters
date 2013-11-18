@@ -2432,9 +2432,6 @@
     <ClInclude Include="filesystem\file\file_stream_binder.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\file_text_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_wait_cursor.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -2540,9 +2537,6 @@
     <ClInclude Include="core\core_insert_iterator.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core_international_locale_schema.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core_ip_enum.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
@@ -2571,9 +2565,6 @@
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core_logic.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core_machine_event_central.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core_main.h">
@@ -2719,9 +2710,6 @@
     </ClInclude>
     <ClInclude Include="compress\zip\memory_buffer.h">
       <Filter>Header Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_buffered_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="..\filesystem\file\file_transfer_stream.h">
       <Filter>Header Files\filesystem\file</Filter>
@@ -4520,9 +4508,6 @@
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core_composite.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_compress.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core_constraint.cpp">

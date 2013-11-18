@@ -92,7 +92,7 @@ namespace file
                else
                   return "";
             }
-            if (System.file().output(get_app(), strFile, &System, &::base_system::null_compressor, strPath))
+            if (System.file().output(get_app(), strFile, &System.compress(), &::core::compress::null, strPath))
             {
                Application.file().put_contents(strFileExists, "yes");
                return strFile;
