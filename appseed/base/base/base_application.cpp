@@ -428,3 +428,35 @@ void base_application::set_key_pressed(::user::e_key ekey, bool bPressed)
       throw "not expected";
    }
 }
+
+
+
+#ifdef METROWIN
+sp(::user::interaction) base_application::window_from_os_data(void * pdata)
+{
+
+   return NULL;
+
+}
+
+sp(::user::interaction) base_application::window_from_os_data_permanent(void * pdata)
+{
+
+   return NULL;
+
+}
+#else
+sp(::user::window) base_application::window_from_os_data(void * pdata)
+{
+
+   return NULL;
+
+}
+
+sp(::user::window) base_application::window_from_os_data_permanent(void * pdata)
+{
+   
+   return NULL;
+
+}
+#endif

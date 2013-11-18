@@ -889,13 +889,6 @@ public:
 
    //virtual ::draw2d::graphics * graphics_from_os_data(void * pdata);
 
-#ifdef METROWIN
-   virtual sp(::user::interaction) window_from_os_data(void * pdata);
-   virtual sp(::user::interaction) window_from_os_data_permanent(void * pdata);
-#else
-   virtual sp(::user::window) window_from_os_data(void * pdata);
-   virtual sp(::user::window) window_from_os_data_permanent(void * pdata);
-#endif
 
    virtual sp(::user::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
    virtual sp(::user::window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);

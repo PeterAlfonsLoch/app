@@ -685,7 +685,7 @@ namespace message
    {
       try
       {
-         if(m_ecursor != ::visual::cursor_unmodified && m_pbaseapp != NULL && m_pbaseapp->m_pplaneapp->m_psession != NULL)
+         if(m_ecursor != ::visual::cursor_unmodified && m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL)
          {
             Session.set_cursor(m_ecursor);
          }

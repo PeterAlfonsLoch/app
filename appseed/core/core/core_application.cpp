@@ -4152,32 +4152,6 @@ UNREFERENCED_PARAMETER(pdata);
 return NULL;
 }*/
 
-#ifdef METROWIN
-sp(::user::interaction) application::window_from_os_data(void * pdata)
-{
-   return ::application_base::m_p->window_from_os_data(pdata);
-}
-
-sp(::user::interaction) application::window_from_os_data_permanent(void * pdata)
-{
-   return ::application_base::m_p->window_from_os_data_permanent(pdata);
-}
-#else
-sp(::user::window) application::window_from_os_data(void * pdata)
-{
-
-   if(::application_base::m_p == NULL)
-      return NULL;
-
-   return ::application_base::m_p->window_from_os_data(pdata);
-
-}
-
-sp(::user::window) application::window_from_os_data_permanent(void * pdata)
-{
-   return ::application_base::m_p->window_from_os_data_permanent(pdata);
-}
-#endif
 
 
 sp(::user::window) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
