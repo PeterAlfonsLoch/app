@@ -6049,6 +6049,12 @@
     <ClCompile Include="str\str_international_locale_schema.cpp">
       <Filter>Source Files\str</Filter>
     </ClCompile>
+    <ClCompile Include="os\windows\windows_crypto.cpp">
+      <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\windows_fontopus.cpp">
+      <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">

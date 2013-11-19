@@ -4109,8 +4109,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="os\os_process.cpp" />
     <ClCompile Include="os\os_thread.cpp" />
     <ClCompile Include="os\windows\windows.cpp" />
+    <ClCompile Include="os\windows\windows_crypto.cpp" />
     <ClCompile Include="os\windows\windows_file.cpp" />
     <ClCompile Include="os\windows\windows_file_std.cpp" />
+    <ClCompile Include="os\windows\windows_fontopus.cpp" />
     <ClCompile Include="os\windows\windows_http.cpp" />
     <ClCompile Include="os\windows\windows_internal.cpp" />
     <ClCompile Include="os\windows\windows_process.cpp" />
