@@ -4595,22 +4595,6 @@ void application::load_string_table()
    load_string_table("", "");
 }
 
-/*::fontopus::user * application::create_user(const string & pszLogin)
-{
-return NULL;
-}*/
-
-::fontopus::user * application::create_current_user()
-{
-   return NULL;
-   /*   string str = get_current_user_login();
-   return create_user(str);*/
-}
-
-/*string application::get_current_user_login()
-{
-return "";
-}*/
 
 
 bool application::get_auth(const string & pszForm, string & strUsername, string & strPassword)

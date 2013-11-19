@@ -765,3 +765,29 @@ string base_application::veriwell_multimedia_music_midi_get_default_library_name
 }
 
 
+
+::fontopus::user * base_application::get_user()
+{
+
+   return m_pfontopus->get_user();
+
+}
+
+
+
+/*::fontopus::user * application::create_user(const string & pszLogin)
+{
+return NULL;
+}*/
+
+::fontopus::user * base_application::create_current_user()
+{
+   return NULL;
+   /*   string str = get_current_user_login();
+   return create_user(str);*/
+}
+
+/*string application::get_current_user_login()
+{
+return "";
+}*/

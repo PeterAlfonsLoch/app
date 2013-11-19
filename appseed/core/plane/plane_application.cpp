@@ -1627,14 +1627,6 @@ exit_application:
    }
 
 
-   ::fontopus::user * application::get_user()
-   {
-
-      return m_pfontopus->get_user();
-
-   }
-
-
    count g_iCountProgress;
    index g_iStepProgress;
 
