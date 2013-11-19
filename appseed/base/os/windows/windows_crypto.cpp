@@ -3,7 +3,7 @@
 
 
 
-int32_t crypt_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memory & storageEncrypt, ::primitive::memory & memorySalt)
+int32_t crypto_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memory & storageEncrypt, ::primitive::memory & memorySalt)
 {
 
    DATA_BLOB DataIn;
@@ -53,7 +53,7 @@ int32_t crypt_decrypt(::primitive::memory & storageDecrypt, const ::primitive::m
    }
 }
 
-int32_t crypt_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memory & storageDecrypt, ::primitive::memory & memorySalt)
+int32_t crypto_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memory & storageDecrypt, ::primitive::memory & memorySalt)
 {
    DATA_BLOB DataIn;
    DATA_BLOB DataOut;

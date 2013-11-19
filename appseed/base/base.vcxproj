@@ -1052,6 +1052,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base_element.h" />
     <ClInclude Include="base\base_enum.h" />
     <ClInclude Include="base\base_flags.h" />
+    <ClInclude Include="base\base_id_pool.h" />
     <ClInclude Include="base\base_live_signal.h" />
     <ClInclude Include="base\base_log.h" />
     <ClInclude Include="base\base_machine_event.h" />
@@ -1784,6 +1785,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\base_cregexp.cpp" />
     <ClCompile Include="base\base_cregexp_util.cpp" />
     <ClCompile Include="base\base_element.cpp" />
+    <ClCompile Include="base\base_geometry.cpp" />
     <ClCompile Include="base\base_live_object.cpp" />
     <ClCompile Include="base\base_live_signal.cpp" />
     <ClCompile Include="base\base_log.cpp" />
@@ -1994,7 +1996,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </ClCompile>
     <ClCompile Include="base\crypto\crypto.cpp" />
     <ClCompile Include="base\crypto\crypto_crypto.cpp" />
+    <ClCompile Include="base\crypto\crypto_hash_sha1.cpp" />
     <ClCompile Include="base\crypto\crypto_nessie.cpp" />
+    <ClCompile Include="base\crypto\crypto_sha1.cpp" />
     <ClCompile Include="base\crypto\crypto_whirpool.cpp" />
     <ClCompile Include="base\openssl\crypto\aes\aes_cbc.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</ExcludedFromBuild>
@@ -2551,9 +2555,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\openssl\crypto\conf\conf_mod.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="base\openssl\crypto\conf\conf_sap.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="base\openssl\crypto\cpt_err.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -2825,9 +2826,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="base\openssl\crypto\ec\ec_print.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="base\openssl\crypto\engine\eng_all.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="base\openssl\crypto\engine\eng_cnf.c">
@@ -4045,6 +4043,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="net\net_email_address.cpp" />
     <ClCompile Include="net\net_net.cpp" />
     <ClCompile Include="net\net_url_departament.cpp" />
+    <ClCompile Include="net\net_url_domain.cpp" />
     <ClCompile Include="net\sockets\base\sockets_base_socket.cpp" />
     <ClCompile Include="net\sockets\base\sockets_base_socket_handler.cpp" />
     <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_server.cpp" />

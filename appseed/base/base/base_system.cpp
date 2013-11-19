@@ -480,3 +480,10 @@ sp(::user::window_draw) base_system::get_twf()
    return m_userset;
 }
 
+
+
+::core::compress & base_system::compress()
+{
+   return m_compress;
+}
+

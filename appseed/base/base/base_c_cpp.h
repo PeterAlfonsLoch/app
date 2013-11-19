@@ -478,6 +478,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 #include "base/user/user_str.h"
 
+#include "base_id_pool.h"
+
 #include "base_system.h"
 
 

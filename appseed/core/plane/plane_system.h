@@ -53,7 +53,6 @@ namespace plane
       class ::core::process_departament              m_processsection;
 #endif
 
-      class ::core::compress                         m_compress;
       class ::core::patch                            m_patch;
       ::net::email_departament                        m_emaildepartament;
       ::core::copydesk_sp                            m_spcopydesk;

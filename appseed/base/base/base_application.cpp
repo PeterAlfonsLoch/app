@@ -846,3 +846,147 @@ void base_application::_001CloseApplication()
 
 
 
+
+
+sp(::user::interaction) base_application::release_capture_uie()
+{
+
+#if defined(LINUX)
+
+   oswindow oswindowCapture = ::GetCapture();
+   if (oswindowCapture == NULL)
+      return NULL;
+   return oswindowCapture->get_user_interaction()->release_capture();
+
+#elif defined(WINDOWS)
+
+   oswindow oswindowCapture = ::GetCapture();
+   if (oswindowCapture == NULL)
+      return NULL;
+   return System.window_from_os_data(oswindowCapture)->release_capture();
+
+#elif defined(MACOS)
+
+   oswindow oswindowCapture = ::GetCapture();
+   if (oswindowCapture == NULL)
+      return NULL;
+   return oswindowCapture->get_user_interaction()->release_capture();
+
+#else
+
+   throw not_implemented(get_app());
+
+#endif
+
+}
+
+
+sp(::user::interaction) base_application::get_capture_uie()
+{
+
+#ifdef METROWIN
+
+   oswindow oswindowCapture = ::GetCapture();
+
+   if (oswindowCapture == NULL)
+      return NULL;
+
+   ::user::interaction * pui = oswindowCapture->window();
+
+   if (pui == NULL)
+      return NULL;
+
+   return pui->get_capture();
+
+#elif defined(WINDOWS)
+
+   oswindow oswindowCapture = ::GetCapture();
+
+   if (oswindowCapture == NULL)
+      return NULL;
+
+   return System.window_from_os_data(oswindowCapture).cast < ::user::window >()->get_capture();
+
+#else
+
+   //      throw not_implemented(get_app());
+
+   oswindow oswindowCapture = ::GetCapture();
+
+   if (oswindowCapture == NULL)
+      return NULL;
+
+   return ::GetCapture()->get_user_interaction()->m_pimpl.cast < ::user::window >()->get_capture();
+
+#endif
+
+}
+
+
+
+math::math & base_application::math()
+{
+   return *m_pmath;
+}
+
+
+
+
+::count base_application::get_monitor_count()
+{
+
+   return System.get_monitor_count();
+
+}
+
+
+bool base_application::get_monitor_rect(index iMonitor, LPRECT lprect)
+{
+
+   return System.get_monitor_rect(iMonitor, lprect);
+
+}
+
+
+::count base_application::get_desk_monitor_count()
+{
+
+   return System.get_desk_monitor_count();
+
+}
+
+
+
+bool base_application::get_desk_monitor_rect(index iMonitor, LPRECT lprect)
+{
+
+   return System.get_desk_monitor_rect(iMonitor, lprect);
+
+}
+
+
+
+bool base_application::is_licensed(const char * pszId, bool bInteractive)
+{
+
+   if (directrix()->m_varTopicQuery.has_property("install"))
+      return true;
+
+   if (directrix()->m_varTopicQuery.has_property("uninstall"))
+      return true;
+
+   return license().has(pszId, bInteractive);
+
+}
+
+
+
+string base_application::get_locale()
+{
+   return m_strLocale;
+}
+
+string base_application::get_schema()
+{
+   return m_strSchema;
+}

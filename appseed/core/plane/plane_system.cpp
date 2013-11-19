@@ -1469,11 +1469,6 @@ namespace plane
       return bOk;*/
    }
 
-   ::core::compress & system::compress()
-   {
-      return m_compress;
-   }
-
    ::core::patch & system::patch()
    {
       return m_patch;

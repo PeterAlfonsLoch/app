@@ -2855,6 +2855,9 @@
     <ClInclude Include="os\windows\windows_simple_ui.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
+    <ClInclude Include="base\base_id_pool.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_c.c">
@@ -5167,9 +5170,6 @@
     <ClCompile Include="base\openssl\crypto\rsa\rsa_x931.c">
       <Filter>Source Files\base\openssl\crypto\rsa</Filter>
     </ClCompile>
-    <ClCompile Include="base\openssl\crypto\engine\eng_all.c">
-      <Filter>Source Files\base\openssl\crypto\engine</Filter>
-    </ClCompile>
     <ClCompile Include="base\openssl\crypto\engine\eng_cnf.c">
       <Filter>Source Files\base\openssl\crypto\engine</Filter>
     </ClCompile>
@@ -5378,9 +5378,6 @@
       <Filter>Source Files\base\openssl\crypto\conf</Filter>
     </ClCompile>
     <ClCompile Include="base\openssl\crypto\conf\conf_mod.c">
-      <Filter>Source Files\base\openssl\crypto\conf</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\crypto\conf\conf_sap.c">
       <Filter>Source Files\base\openssl\crypto\conf</Filter>
     </ClCompile>
     <ClCompile Include="base\openssl\crypto\camellia\camellia.c">
@@ -6114,6 +6111,18 @@
     </ClCompile>
     <ClCompile Include="user\user_str.cpp">
       <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_url_domain.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_geometry.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto_hash_sha1.cpp">
+      <Filter>Source Files\base\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto_sha1.cpp">
+      <Filter>Source Files\base\crypto</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

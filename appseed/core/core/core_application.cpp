@@ -682,11 +682,6 @@ void application::on_request(sp(::create_context) pcreatecontext)
 
 
 
-math::math & application::math()
-{
-   return *m_pmath;
-}
-
 
 geometry::geometry & application::geometry()
 {
@@ -3920,79 +3915,6 @@ oswindow application::get_ca2_app_wnd(const char * psz)
 }
 
 
-sp(::user::interaction) application::release_capture_uie()
-{
-
-#if defined(LINUX)
-
-   oswindow oswindowCapture = ::GetCapture();
-   if(oswindowCapture == NULL)
-      return NULL;
-   return oswindowCapture->get_user_interaction()->release_capture();
-
-#elif defined(WINDOWS)
-
-   oswindow oswindowCapture = ::GetCapture();
-   if(oswindowCapture == NULL)
-      return NULL;
-   return System.window_from_os_data(oswindowCapture)->release_capture();
-
-#elif defined(MACOS)
-
-   oswindow oswindowCapture = ::GetCapture();
-   if(oswindowCapture == NULL)
-      return NULL;
-   return oswindowCapture->get_user_interaction()->release_capture();
-
-#else
-
-   throw not_implemented(get_app());
-
-#endif
-
-}
-
-
-sp(::user::interaction) application::get_capture_uie()
-{
-
-#ifdef METROWIN
-
-   oswindow oswindowCapture = ::GetCapture();
-
-   if(oswindowCapture == NULL)
-      return NULL;
-
-   ::user::interaction * pui = oswindowCapture->window();
-
-   if(pui == NULL)
-      return NULL;
-
-   return pui->get_capture();
-
-#elif defined(WINDOWS)
-
-   oswindow oswindowCapture = ::GetCapture();
-
-   if(oswindowCapture == NULL)
-      return NULL;
-
-   return System.window_from_os_data(oswindowCapture).cast < ::user::window >()->get_capture();
-
-#else
-
-   //      throw not_implemented(get_app());
-
-   oswindow oswindowCapture = ::GetCapture();
-
-   if(oswindowCapture == NULL)
-      return NULL;
-
-   return ::GetCapture()->get_user_interaction()->m_pimpl.cast < ::user::window >()->get_capture();
-
-#endif
-
-}
 
 
 ::user::str_context * application::str_context()
@@ -4486,15 +4408,6 @@ void application::install_message_handling(::message::dispatch * pdispatch)
 }
 
 
-string application::get_locale()
-{
-   return m_strLocale;
-}
-
-string application::get_schema()
-{
-   return m_strSchema;
-}
 
 string application::get_locale_schema_dir()
 {
@@ -5265,38 +5178,6 @@ void application::defer_add_document_template(sp(::user::document_template) ptem
 {
 
    return ::application_base::m_p->get_printer(pszDeviceName);
-
-}
-
-::count application::get_monitor_count()
-{
-
-   return System.get_monitor_count();
-
-}
-
-
-bool application::get_monitor_rect(index iMonitor, LPRECT lprect)
-{
-
-   return System.get_monitor_rect(iMonitor, lprect);
-
-}
-
-
-::count application::get_desk_monitor_count()
-{
-
-   return System.get_desk_monitor_count();
-
-}
-
-
-
-bool application::get_desk_monitor_rect(index iMonitor, LPRECT lprect)
-{
-
-   return System.get_desk_monitor_rect(iMonitor, lprect);
 
 }
 
