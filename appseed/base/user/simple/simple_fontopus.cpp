@@ -1,15 +1,6 @@
 #include "framework.h"
-#include "base/spa/spa_style.h"
-#include "user/simple/simple_ui.h"
+#include "simple_fontopus.h"
 
-#include "base/spa/spa_style.h"
-#include "base/spa/spa_login.h"
-#include "windows_window_gdi.h"
-
-#undef new
-#include <gdiplus.h>
-
-#define MAX_LOADSTRING 100
 
 
 
@@ -17,92 +8,6 @@ namespace fontopus
 {
 
 
-   class fontopus_login :
-      virtual public ::spa::style,
-      virtual public ::simple_ui,
-      virtual public ::spa::login::callback
-   {
-   public:
-
-      static fontopus_login      s_fontopus;
-
-      ::spa::login::e_result     m_eresult;
-
-      HINSTANCE                  m_hinstance;
-      string                     m_strTitle;
-      string                     m_strWindowClass;
-
-      int                        m_w;
-      int                        m_h;
-      ::spa::login               m_login;
-      //::draw2d::graphics_sp      m_dib->get_graphics();
-      //::draw2d::bitmap     m_bitmap;
-      ::draw2d::dib_sp           m_dib;
-      SIZE                       m_size;
-      POINT                      m_pt;
-      bool                       m_bLButtonDown;
-      POINT                      m_ptLButtonDown;
-      POINT                      m_ptLButtonDownPos;
-      window_gdi                 m_gdi;
-
-      bool                       m_bShiftKey;
-
-      HWND                       m_hwnd;
-      bool                       m_bDrag;
-      rect                       m_rectDesktop;
-
-
-      fontopus_login();
-
-      virtual ~fontopus_login();
-
-      static LRESULT CALLBACK s_window_prodecure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-
-
-      virtual string show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
-
-      virtual ATOM register_window_class(HINSTANCE hInstance);
-
-      virtual BOOL prepare_window(HINSTANCE hInstance, int nCmdShow);
-
-
-      virtual void client_to_screen(POINT * ppt);
-
-      virtual void screen_to_client(POINT * ppt);
-
-      virtual LRESULT window_procedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-
-      virtual void GetWindowRect(RECT * prect);
-      virtual void get_client_rect(RECT * prect);
-
-      virtual void draw_dark_glass(::draw2d::graphics * pgraphics);
-      virtual void draw_pestana(::draw2d::graphics * pgraphics);
-      virtual void draw_auth_box(::draw2d::graphics * pgraphics);
-
-
-      virtual void draw(::draw2d::graphics * pgraphics);
-
-
-      virtual void draw_fuzzy_color_spread(::draw2d::graphics * pgraphics);
-
-      virtual bool on_lbutton_down(int32_t x, int32_t y);
-      virtual bool on_lbutton_up(int32_t x, int32_t y);
-      virtual bool on_mouse_move(int32_t x, int32_t y);
-
-
-      virtual bool on_windows_key_down(WPARAM wparam, LPARAM lparam);
-      virtual bool on_windows_key_up(WPARAM wparam, LPARAM lparam);
-
-      virtual void on_windows_gdi_draw_framebuffer();
-
-      virtual bool on_windows_move(int32_t x, int32_t y);
-      virtual bool on_windows_size(int32_t cx, int32_t cy);
-
-      virtual bool on_action(const char * pszId);
-
-      virtual void login_result(::spa::login::e_result eresult);
-
-   };
 
 
 
@@ -115,7 +20,7 @@ namespace fontopus
       return (byte)(dRate * (dMax - dMin) + dMin);
    }
 
-   void fontopus_login::draw_auth_box(::draw2d::graphics * pgraphics)
+   void simple_ui::draw_auth_box(::draw2d::graphics * pgraphics)
    {
 
       rect rect;
@@ -316,7 +221,7 @@ namespace fontopus
    }
 
 
-   void fontopus_login::draw_pestana(::draw2d::graphics * pgraphics)
+   void simple_ui::draw_pestana(::draw2d::graphics * pgraphics)
    {
 
       rect rectWindow;
@@ -352,7 +257,7 @@ namespace fontopus
 
 
 
-   fontopus_login::fontopus_login() :
+   simple_ui::simple_ui() :
       m_login(0, 0)
    {
       m_eschema = schema_normal;
@@ -367,11 +272,11 @@ namespace fontopus
       m_eresult = ::spa::login::result_fail;
    }
 
-   fontopus_login::~fontopus_login()
+   simple_ui::~simple_ui()
    {
    }
 
-   string fontopus_login::show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
+   string simple_ui::show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
    {
 
       if (lprect == NULL)
@@ -437,7 +342,7 @@ namespace fontopus
    //
    //  PURPOSE: Registers the window class.
    //
-   ATOM fontopus_login::register_window_class(HINSTANCE hInstance)
+   ATOM simple_ui::register_window_class(HINSTANCE hInstance)
    {
       WNDCLASSEX wcex;
 
@@ -471,7 +376,7 @@ namespace fontopus
    //        In this function, we save the instance handle in a global variable and
    //        create and display the main program window.
    //
-   BOOL fontopus_login::prepare_window(HINSTANCE hInstance, int nCmdShow)
+   BOOL simple_ui::prepare_window(HINSTANCE hInstance, int nCmdShow)
    {
 
       HWND hWnd;
@@ -528,23 +433,23 @@ namespace fontopus
    }
 
 
-   LRESULT CALLBACK fontopus_login::s_window_prodecure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+   LRESULT CALLBACK simple_ui::s_window_prodecure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
    {
       return s_fontopus.window_procedure(hWnd, message, wParam, lParam);
    }
 
 
-   void fontopus_login::client_to_screen(POINT * ppt)
+   void simple_ui::client_to_screen(POINT * ppt)
    {
       ::ClientToScreen(m_hwnd, ppt);
    }
 
-   void fontopus_login::screen_to_client(POINT * ppt)
+   void simple_ui::screen_to_client(POINT * ppt)
    {
       ::ScreenToClient(m_hwnd, ppt);
    }
 
-   bool fontopus_login::on_lbutton_down(int32_t x, int32_t y)
+   bool simple_ui::on_lbutton_down(int32_t x, int32_t y)
    {
 
       ::ClientToScreen(m_hwnd, &m_ptLButtonDown);
@@ -561,7 +466,7 @@ namespace fontopus
       return true;
    }
 
-   bool fontopus_login::on_lbutton_up(int32_t x, int32_t y)
+   bool simple_ui::on_lbutton_up(int32_t x, int32_t y)
    {
 
       m_bLButtonDown = false;
@@ -597,7 +502,7 @@ namespace fontopus
 
    }
 
-   bool fontopus_login::on_mouse_move(int32_t x, int32_t y)
+   bool simple_ui::on_mouse_move(int32_t x, int32_t y)
    {
 
       if (m_bLButtonDown)
@@ -622,7 +527,7 @@ namespace fontopus
 
    }
 
-   bool fontopus_login::on_windows_key_down(WPARAM wparam, LPARAM lparam)
+   bool simple_ui::on_windows_key_down(WPARAM wparam, LPARAM lparam)
    {
       if (wparam == VK_SHIFT)
       {
@@ -637,7 +542,7 @@ namespace fontopus
 
    }
 
-   bool fontopus_login::on_windows_key_up(WPARAM wparam, LPARAM lparam)
+   bool simple_ui::on_windows_key_up(WPARAM wparam, LPARAM lparam)
    {
 
       string str;
@@ -678,7 +583,7 @@ namespace fontopus
    }
 
 
-   LRESULT fontopus_login::window_procedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+   LRESULT simple_ui::window_procedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
    {
 
       switch (message)
@@ -726,18 +631,18 @@ namespace fontopus
 
    }
 
-   void fontopus_login::GetWindowRect(RECT * prect)
+   void simple_ui::GetWindowRect(RECT * prect)
    {
       ::GetWindowRect(m_hwnd, prect);
    }
-   void fontopus_login::get_client_rect(RECT * prect)
+   void simple_ui::get_client_rect(RECT * prect)
    {
 
       ::GetClientRect(m_hwnd, prect);
 
    }
 
-   void fontopus_login::draw_dark_glass(::draw2d::graphics * pgraphics)
+   void simple_ui::draw_dark_glass(::draw2d::graphics * pgraphics)
    {
 
       rect rectWindow;
@@ -750,7 +655,7 @@ namespace fontopus
    }
 
 
-   void fontopus_login::draw(::draw2d::graphics * pgraphics)
+   void simple_ui::draw(::draw2d::graphics * pgraphics)
    {
 
       //draw_pestana(g);
@@ -762,7 +667,7 @@ namespace fontopus
    }
 
 
-   void fontopus_login::draw_fuzzy_color_spread(::draw2d::graphics * pgraphics)
+   void simple_ui::draw_fuzzy_color_spread(::draw2d::graphics * pgraphics)
    {
 
       rect rectWindow;
@@ -774,7 +679,7 @@ namespace fontopus
       int iCount = rectWindow.width();
       int jCount = rectWindow.height();
 
-      BYTE * p = (BYTE *) m_dib->get_data();
+      BYTE * p = (BYTE *)m_dib->get_data();
 
       for (i = 0; i < iCount; i++)
       {
@@ -843,7 +748,7 @@ namespace fontopus
    }
 
 
-   void fontopus_login::on_windows_gdi_draw_framebuffer()
+   void simple_ui::on_windows_gdi_draw_framebuffer()
    {
       if (m_dib->get_graphics() != NULL)
       {
@@ -920,7 +825,7 @@ namespace fontopus
 
    }
 
-   bool fontopus_login::on_windows_move(int32_t x, int32_t y)
+   bool simple_ui::on_windows_move(int32_t x, int32_t y)
    {
 
       m_pt.x = x;
@@ -930,7 +835,7 @@ namespace fontopus
 
    }
 
-   bool fontopus_login::on_windows_size(int32_t cx, int32_t cy)
+   bool simple_ui::on_windows_size(int32_t cx, int32_t cy)
    {
 
       m_size.cx = cx;
@@ -945,7 +850,7 @@ namespace fontopus
 
    }
 
-   bool fontopus_login::on_action(const char * pszId)
+   bool simple_ui::on_action(const char * pszId)
    {
 
       if (!strcmp(pszId, "submit"))
@@ -979,7 +884,7 @@ namespace fontopus
    }
 
 
-   void fontopus_login::login_result(::spa::login::e_result eresult)
+   void simple_ui::login_result(::spa::login::e_result eresult)
    {
 
       m_eresult = eresult;
@@ -988,12 +893,12 @@ namespace fontopus
 
 
 
-   fontopus_login fontopus_login::s_fontopus;
+   simple_ui simple_ui::s_fontopus;
 
    string CLASS_DECL_BASE show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
    {
 
-      return ::fontopus::fontopus_login::s_fontopus.show_auth_window(lprect, strUsername, strSessId, strServerId, strLoginUrl, strFontopusServer);
+      return ::fontopus::simple_ui::s_fontopus.show_auth_window(lprect, strUsername, strSessId, strServerId, strLoginUrl, strFontopusServer);
 
    }
 

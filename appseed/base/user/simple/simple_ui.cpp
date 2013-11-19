@@ -15,159 +15,159 @@ simple_ui::~simple_ui()
 }
 
 
-//void simple_ui::set_parent(simple_ui * puiParent)
-//{
-//
-//   if(m_puiParent != NULL && m_puiParent != puiParent)
-//   {
-//
-//      for(int32_t i = 0; i < m_puiParent->m_uiptra.get_count(); i++)
-//      {
-//
-//         if(m_puiParent->m_uiptra[i] == this)
-//         {
-//
-//            m_puiParent->m_uiptra.remove_at(i);
-//            break;
-//
-//         }
-//
-//      }
-//
-//   }
-//
-//   m_puiParent = puiParent;
-//
-//   if(m_puiParent != NULL)
-//   {
-//
-//      m_puiParent->m_uiptra.add(this);
-//
-//   }
-//
-//}
+void simple_ui::set_parent(simple_ui * puiParent)
+{
+
+   if(m_puiParent != NULL && m_puiParent != puiParent)
+   {
+
+      for(int32_t i = 0; i < m_puiParent->m_uiptra.get_count(); i++)
+      {
+
+         if(m_puiParent->m_uiptra[i] == this)
+         {
+
+            m_puiParent->m_uiptra.remove_at(i);
+            break;
+
+         }
+
+      }
+
+   }
+
+   m_puiParent = puiParent;
+
+   if(m_puiParent != NULL)
+   {
+
+      m_puiParent->m_uiptra.add(this);
+
+   }
+
+}
 
 
-//void simple_ui::draw(::draw2d::graphics * pgraphics)
-//{
-//
-//   if(m_bVisible)
-//   {
-//
-//      rect rectWindow;
-//
-//      get_window_rect(rectWindow);
-//
-//      pgraphics->set_offset(rectWindow.left, rectWindow.top);
-//
-//      draw_this(g);
-//
-//      draw_children(g);
-//
-//   }
-//
-//}
-//
-//
-//void simple_ui::draw_children(::draw2d::graphics * pgraphics)
-//{
-//
-//   for(int32_t i = 0; i < m_uiptra.get_count(); i++)
-//   {
-//
-//      try
-//      {
-//
-//         m_uiptra[i]->draw(g);
-//
-//      }
-//      catch(...)
-//      {
-//
-//      }
-//
-//   }
-//
-//}
-//
-//bool simple_ui::on_char(int32_t iKey, const string & strChar)
-//{
-//
-//   return get_focus()->on_char(iKey, strChar);
-//
-//}
-//
-//
-//bool simple_ui::on_lbutton_down(int32_t x, int32_t y)
-//{
-//
-//   for(int32_t i = 0; i < m_uiptra.get_count(); i++)
-//   {
-//
-//      if(x >= m_uiptra[i]->m_rect.left
-//      && x <= m_uiptra[i]->m_rect.right
-//      && y >= m_uiptra[i]->m_rect.top
-//      && y <= m_uiptra[i]->m_rect.bottom)
-//      {
-//
-//         if (m_uiptra[i]->on_lbutton_down(x - m_uiptra[i]->m_rect.left, y - m_uiptra[i]->m_rect.top))
-//            return true;
-//
-//      }
-//
-//   }
-//
-//   return false;
-//
-//}
-//
-//bool simple_ui::on_lbutton_up(int32_t x, int32_t y)
-//{
-//
-//   for(int32_t i = 0; i < m_uiptra.get_count(); i++)
-//   {
-//
-//      if(x >= m_uiptra[i]->m_rect.left
-//      && x <= m_uiptra[i]->m_rect.right
-//      && y >= m_uiptra[i]->m_rect.top
-//      && y <= m_uiptra[i]->m_rect.bottom)
-//      {
-//
-//         if (m_uiptra[i]->on_lbutton_up(x - m_uiptra[i]->m_rect.left, y - m_uiptra[i]->m_rect.top))
-//            return true;
-//
-//      }
-//
-//   }
-//
-//   return false;
-//
-//}
-//
-//
-//bool simple_ui::on_mouse_move(int32_t x, int32_t y)
-//{
-//
-//   for(int32_t i = 0; i < m_uiptra.get_count(); i++)
-//   {
-//
-//      if(x >= m_uiptra[i]->m_rect.left
-//      && x <= m_uiptra[i]->m_rect.right
-//      && y >= m_uiptra[i]->m_rect.top
-//      && y <= m_uiptra[i]->m_rect.bottom)
-//      {
-//
-//         if (m_uiptra[i]->on_mouse_move(x - m_uiptra[i]->m_rect.left, y - m_uiptra[i]->m_rect.top))
-//            return true;
-//
-//      }
-//
-//   }
-//
-//   return false;
-//
-//}
-//
+void simple_ui::draw(::draw2d::graphics * pgraphics)
+{
+
+   if(m_bVisible)
+   {
+
+      rect rectWindow;
+
+      get_window_rect(rectWindow);
+
+      pgraphics->SetViewportOrg(rectWindow.left, rectWindow.top);
+
+      draw_this(pgraphics);
+
+      draw_children(pgraphics);
+
+   }
+
+}
+
+
+void simple_ui::draw_children(::draw2d::graphics * pgraphics)
+{
+
+   for(int32_t i = 0; i < m_uiptra.get_count(); i++)
+   {
+
+      try
+      {
+
+         m_uiptra[i]->draw(pgraphics);
+
+      }
+      catch(...)
+      {
+
+      }
+
+   }
+
+}
+
+bool simple_ui::on_char(int32_t iKey, const string & strChar)
+{
+
+   return get_focus()->on_char(iKey, strChar);
+
+}
+
+
+bool simple_ui::on_lbutton_down(int32_t x, int32_t y)
+{
+
+   for(int32_t i = 0; i < m_uiptra.get_count(); i++)
+   {
+
+      if(x >= m_uiptra[i]->m_rect.left
+      && x <= m_uiptra[i]->m_rect.right
+      && y >= m_uiptra[i]->m_rect.top
+      && y <= m_uiptra[i]->m_rect.bottom)
+      {
+
+         if (m_uiptra[i]->on_lbutton_down(x - m_uiptra[i]->m_rect.left, y - m_uiptra[i]->m_rect.top))
+            return true;
+
+      }
+
+   }
+
+   return false;
+
+}
+
+bool simple_ui::on_lbutton_up(int32_t x, int32_t y)
+{
+
+   for(int32_t i = 0; i < m_uiptra.get_count(); i++)
+   {
+
+      if(x >= m_uiptra[i]->m_rect.left
+      && x <= m_uiptra[i]->m_rect.right
+      && y >= m_uiptra[i]->m_rect.top
+      && y <= m_uiptra[i]->m_rect.bottom)
+      {
+
+         if (m_uiptra[i]->on_lbutton_up(x - m_uiptra[i]->m_rect.left, y - m_uiptra[i]->m_rect.top))
+            return true;
+
+      }
+
+   }
+
+   return false;
+
+}
+
+
+bool simple_ui::on_mouse_move(int32_t x, int32_t y)
+{
+
+   for(int32_t i = 0; i < m_uiptra.get_count(); i++)
+   {
+
+      if(x >= m_uiptra[i]->m_rect.left
+      && x <= m_uiptra[i]->m_rect.right
+      && y >= m_uiptra[i]->m_rect.top
+      && y <= m_uiptra[i]->m_rect.bottom)
+      {
+
+         if (m_uiptra[i]->on_mouse_move(x - m_uiptra[i]->m_rect.left, y - m_uiptra[i]->m_rect.top))
+            return true;
+
+      }
+
+   }
+
+   return false;
+
+}
+
 
 
 bool simple_ui::on_action(const char * pszId)
@@ -187,108 +187,108 @@ bool simple_ui::on_action(const char * pszId)
 
 
 
-//bool simple_ui::is_focusable()
-//{
-//   return false;
-//}
-//
-//
-//
-//void simple_ui::focus_next()
-//{
-//
-//   ::count iFind = m_puiParent->m_uiptra.get_count() - 1;
-//
-//   for(int32_t i = 0; i < m_puiParent->m_uiptra.get_count(); i++)
-//   {
-//
-//      if(m_puiParent->m_uiptra[i] == this)
-//      {
-//
-//         iFind = i;
-//
-//         break;
-//
-//      }
-//
-//   }
-//
-//   for(::index i = iFind + 1; i < m_puiParent->m_uiptra.get_count(); i++)
-//   {
-//
-//      if(m_puiParent->m_uiptra[i]->is_focusable())
-//      {
-//
-//         m_puiParent->set_focus(m_puiParent->m_uiptra[i]);
-//
-//         return;
-//
-//      }
-//
-//   }
-//
-//   for(int32_t i = 0; i <= iFind; i++)
-//   {
-//
-//      if(m_puiParent->m_uiptra[i]->is_focusable())
-//      {
-//
-//         m_puiParent->set_focus(m_puiParent->m_uiptra[i]);
-//
-//         return;
-//
-//      }
-//
-//   }
-//
-//}
-//
-//
-//void simple_ui::set_focus(simple_ui * pui)
-//{
-//
-//   if(m_puiParent == NULL)
-//   {
-//
-//      m_puiFocus = pui;
-//
-//   }
-//   else
-//   {
-//
-//      m_puiParent->set_focus(pui);
-//
-//   }
-//
-//}
-//
-//
-//simple_ui * simple_ui::get_focus()
-//{
-//
-//   if(m_puiParent == NULL)
-//   {
-//
-//      return m_puiFocus;
-//
-//   }
-//   else
-//   {
-//
-//      return m_puiParent->get_focus();
-//
-//   }
-//
-//
-//}
-//
+bool simple_ui::is_focusable()
+{
+   return false;
+}
 
-//bool simple_ui::is_visible()
-//{
-//
-//   return m_bVisible && (m_puiParent == NULL || m_puiParent->is_visible());
-//
-//}
+
+
+void simple_ui::focus_next()
+{
+
+   ::count iFind = m_puiParent->m_uiptra.get_count() - 1;
+
+   for(int32_t i = 0; i < m_puiParent->m_uiptra.get_count(); i++)
+   {
+
+      if(m_puiParent->m_uiptra[i] == this)
+      {
+
+         iFind = i;
+
+         break;
+
+      }
+
+   }
+
+   for(::index i = iFind + 1; i < m_puiParent->m_uiptra.get_count(); i++)
+   {
+
+      if(m_puiParent->m_uiptra[i]->is_focusable())
+      {
+
+         m_puiParent->set_focus(m_puiParent->m_uiptra[i]);
+
+         return;
+
+      }
+
+   }
+
+   for(int32_t i = 0; i <= iFind; i++)
+   {
+
+      if(m_puiParent->m_uiptra[i]->is_focusable())
+      {
+
+         m_puiParent->set_focus(m_puiParent->m_uiptra[i]);
+
+         return;
+
+      }
+
+   }
+
+}
+
+
+void simple_ui::set_focus(simple_ui * pui)
+{
+
+   if(m_puiParent == NULL)
+   {
+
+      m_puiFocus = pui;
+
+   }
+   else
+   {
+
+      m_puiParent->set_focus(pui);
+
+   }
+
+}
+
+
+simple_ui * simple_ui::get_focus()
+{
+
+   if(m_puiParent == NULL)
+   {
+
+      return m_puiFocus;
+
+   }
+   else
+   {
+
+      return m_puiParent->get_focus();
+
+   }
+
+
+}
+
+
+bool simple_ui::is_visible()
+{
+
+   return m_bVisible && (m_puiParent == NULL || m_puiParent->is_visible());
+
+}
 
 
 ::spa::style * simple_ui::get_style()
@@ -309,10 +309,6 @@ void simple_ui::draw_back_01_old(::spa::style::e_schema eschema, rect m_rect, ::
 {
    
    pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-
-   //Gdiplus::Color crOut(0, 255, 255, 233);
-
-   //Gdiplus::Color crIn(84 + 49, 255, 255, 233);
 
    COLORREF crOut;
 
@@ -372,15 +368,15 @@ void draw_back_01_new(rect m_rect, ::draw2d::graphics * pgraphics)
 
 }
 
-//void simple_ui::draw_this(::draw2d::graphics * pgraphics)
-//{
-//
-//   pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
-//
-//   draw_back_01_new(m_rect, g);
-//
-//}
-//
+void simple_ui::draw_this(::draw2d::graphics * pgraphics)
+{
+
+   pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+
+   draw_back_01_new(m_rect, pgraphics);
+
+}
+
 
 void simple_ui::draw_focus_rect(::draw2d::graphics * pgraphics)
 {

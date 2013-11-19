@@ -37,3 +37,21 @@ sp(::base_application) base_session::start_application(const char * pszType, con
    return NULL;
 }
 
+
+
+void base_session::set_cursor(::visual::e_cursor ecursor)
+{
+   m_ecursor = ecursor;
+}
+
+void base_session::set_default_cursor(::visual::e_cursor ecursor)
+{
+   if (ecursor == ::visual::cursor_default)
+   {
+      m_ecursorDefault = ::visual::cursor_arrow;
+   }
+   else
+   {
+      m_ecursorDefault = ecursor;
+   }
+}

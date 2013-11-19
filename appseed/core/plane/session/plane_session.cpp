@@ -1289,22 +1289,6 @@ alt1:
 
    }
 
-   void session::set_cursor(::visual::e_cursor ecursor)
-   {
-      m_ecursor = ecursor;
-   }
-
-   void session::set_default_cursor(::visual::e_cursor ecursor)
-   {
-      if(ecursor == ::visual::cursor_default)
-      {
-         m_ecursorDefault = ::visual::cursor_arrow;
-      }
-      else
-      {
-         m_ecursorDefault = ecursor;
-      }
-   }
 
 
 
