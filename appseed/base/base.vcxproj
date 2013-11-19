@@ -4127,6 +4127,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\datetime\datetime_departament.cpp" />
     <ClCompile Include="primitive\datetime\datetime_duration.cpp" />
     <ClCompile Include="primitive\datetime\datetime_time.cpp" />
+    <ClCompile Include="primitive\datetime\datetime_value.cpp" />
     <ClCompile Include="primitive\geometry\geometry_point.cpp" />
     <ClCompile Include="primitive\geometry\geometry_rect.cpp" />
     <ClCompile Include="primitive\geometry\geometry_size.cpp" />
