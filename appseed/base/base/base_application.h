@@ -85,6 +85,8 @@ public:
    string                                          m_strLocale;
    string                                          m_strSchema;
 
+   bool                                            m_bSessionSynchronizedCursor;
+   point                                           m_ptCursor;
 
 
    base_application();

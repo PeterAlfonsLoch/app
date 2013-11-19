@@ -80,8 +80,6 @@ namespace plane
 
       bool                                         m_bLibCharGuess;
 
-      sp(::user::str)                              m_puserstr;
-
        ::boot::library m_libraryDraw2d;
 
 

@@ -329,8 +329,6 @@ public:
    //oset                             m_mapObjectSet;
 
    bool                             m_bShouldInitializeGTwf;
-   point                            m_ptCursor;
-   bool                             m_bSessionSynchronizedCursor;
    rect                             m_rectScreen;
    bool                             m_bSessionSynchronizedScreen;
    sp(::user::interaction)          m_pwndMain;

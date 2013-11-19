@@ -51,6 +51,8 @@ public:
    string_map < string_to_int >                 m_mapNameToEnum;
    sp(::user::window_draw)                      m_ptwf;
    class ::core::compress                       m_compress;
+   sp(::user::str)                              m_puserstr;
+
 
 
 

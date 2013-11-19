@@ -857,11 +857,6 @@ namespace plane
 #endif
 
 
-   ::user::str & system::str()
-   {
-      return *m_puserstr;
-   }
-
    /*   ::core::filehandler::handler & system::filehandler()
    {
    return *m_spfilehandler;
@@ -935,11 +930,6 @@ namespace plane
 
    }
 
-
-   machine_event_central & system::machine_event_central()
-   {
-      return *m_pmachineeventcentral;
-   }
 
 
    bool system::assert_running_global(const char * pszAppName, const char * pszId)

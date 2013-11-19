@@ -3917,43 +3917,6 @@ oswindow application::get_ca2_app_wnd(const char * psz)
 
 
 
-::user::str_context * application::str_context()
-{
-
-   return m_puserstrcontext;
-
-}
-
-
-void application::get_cursor_pos(LPPOINT lppoint)
-{
-   if(is_system())
-   {
-      if(m_bSessionSynchronizedCursor)
-      {
-         ::GetCursorPos(&m_ptCursor);
-      }
-      if(lppoint != NULL)
-      {
-         *lppoint = m_ptCursor;
-      }
-   }
-   else if(is_session())
-   {
-      if(m_bSessionSynchronizedCursor)
-      {
-         System.get_cursor_pos(&m_ptCursor);
-      }
-      if(lppoint != NULL)
-      {
-         *lppoint = m_ptCursor;
-      }
-   }
-   else
-   {
-      Session.get_cursor_pos(lppoint);
-   }
-}
 
 void application::get_screen_rect(LPRECT lprect)
 {
@@ -4409,41 +4372,6 @@ void application::install_message_handling(::message::dispatch * pdispatch)
 
 
 
-string application::get_locale_schema_dir()
-{
-
-   return System.dir().simple_path(get_locale(), get_schema());
-
-}
-
-string application::get_locale_schema_dir(const string & strLocale)
-{
-
-   if(strLocale.is_empty())
-      return System.dir().simple_path(get_locale(), get_schema());
-   else
-      return System.dir().simple_path(strLocale, get_schema());
-
-}
-
-string application::get_locale_schema_dir(const string & strLocale, const string & strSchema)
-{
-   if(strLocale.is_empty())
-   {
-      if(strSchema.is_empty())
-         return System.dir().simple_path(get_locale(), get_schema());
-      else
-         return System.dir().simple_path(get_locale(), strSchema);
-   }
-   else
-   {
-      if(strSchema.is_empty())
-         return System.dir().simple_path(strLocale, get_schema());
-      else
-         return System.dir().simple_path(strLocale, strSchema);
-   }
-}
-
 
 bool application::base_support()
 {
@@ -4755,13 +4683,6 @@ void application::_001CloseApplication()
    post_thread_message(WM_QUIT);
 }
 
-
-string application::get_license_id()
-{
-
-   return m_strAppId;
-
-}
 
 
 

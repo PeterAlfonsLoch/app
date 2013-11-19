@@ -979,6 +979,14 @@ bool base_application::is_licensed(const char * pszId, bool bInteractive)
 
 }
 
+string base_application::get_license_id()
+{
+
+   return m_strAppId;
+
+}
+
+
 
 
 string base_application::get_locale()
@@ -989,4 +997,80 @@ string base_application::get_locale()
 string base_application::get_schema()
 {
    return m_strSchema;
+}
+
+
+::user::str_context * base_application::str_context()
+{
+
+   return m_puserstrcontext;
+
+}
+
+
+string base_application::get_locale_schema_dir()
+{
+
+   return System.dir().simple_path(get_locale(), get_schema());
+
+}
+
+string base_application::get_locale_schema_dir(const string & strLocale)
+{
+
+   if (strLocale.is_empty())
+      return System.dir().simple_path(get_locale(), get_schema());
+   else
+      return System.dir().simple_path(strLocale, get_schema());
+
+}
+
+string base_application::get_locale_schema_dir(const string & strLocale, const string & strSchema)
+{
+   if (strLocale.is_empty())
+   {
+      if (strSchema.is_empty())
+         return System.dir().simple_path(get_locale(), get_schema());
+      else
+         return System.dir().simple_path(get_locale(), strSchema);
+   }
+   else
+   {
+      if (strSchema.is_empty())
+         return System.dir().simple_path(strLocale, get_schema());
+      else
+         return System.dir().simple_path(strLocale, strSchema);
+   }
+}
+
+
+
+void base_application::get_cursor_pos(LPPOINT lppoint)
+{
+   if (is_system())
+   {
+      if (m_bSessionSynchronizedCursor)
+      {
+         ::GetCursorPos(&m_ptCursor);
+      }
+      if (lppoint != NULL)
+      {
+         *lppoint = m_ptCursor;
+      }
+   }
+   else if (is_session())
+   {
+      if (m_bSessionSynchronizedCursor)
+      {
+         System.get_cursor_pos(&m_ptCursor);
+      }
+      if (lppoint != NULL)
+      {
+         *lppoint = m_ptCursor;
+      }
+   }
+   else
+   {
+      Session.get_cursor_pos(lppoint);
+   }
 }

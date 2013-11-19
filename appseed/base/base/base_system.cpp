@@ -487,3 +487,16 @@ sp(::user::window_draw) base_system::get_twf()
    return m_compress;
 }
 
+
+
+machine_event_central & base_system::machine_event_central()
+{
+   return *m_pmachineeventcentral;
+}
+
+
+::user::str & base_system::str()
+{
+   return *m_puserstr;
+}
+
