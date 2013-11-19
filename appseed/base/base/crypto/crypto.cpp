@@ -73,35 +73,35 @@ void memory_to_hex(string & strHex, primitive::memory & memory)
 #endif
 
 
-CLASS_DECL_BASE int32_t crypt_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memory & storageDecrypt, ::primitive::memory & key);
+CLASS_DECL_BASE int32_t crypto_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memory & storageDecrypt, ::primitive::memory & key);
 
-CLASS_DECL_BASE int32_t crypt_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memory & storageEncrypt, ::primitive::memory & key);
+CLASS_DECL_BASE int32_t crypto_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memory & storageEncrypt, ::primitive::memory & key);
 
-bool crypt_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memory & storageDecrypt, const char * pszSalt)
+bool crypto_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memory & storageDecrypt, const char * pszSalt)
 {
 
    ::primitive::memory key;
 
    key.from_string(get_md5(pszSalt));
 
-   return crypt_encrypt(storageEncrypt, storageDecrypt, key) > 0;
+   return crypto_encrypt(storageEncrypt, storageDecrypt, key) > 0;
 
 }
 
 
-bool crypt_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memory & storageEncrypt, const char * pszSalt)
+bool crypto_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memory & storageEncrypt, const char * pszSalt)
 {
 
    ::primitive::memory key;
 
    key.from_string(get_md5(pszSalt));
 
-   return crypt_decrypt(storageDecrypt, storageEncrypt, key) > 0;
+   return crypto_decrypt(storageDecrypt, storageEncrypt, key) > 0;
 
 }
 
 
-int32_t crypt_encrypt(string & strEncrypt, const char * pszDecrypt, const char * pszKey)
+int32_t crypto_encrypt(string & strEncrypt, const char * pszDecrypt, const char * pszKey)
 {
    ::primitive::memory storageDecrypt;
    ::primitive::memory storageEncrypt;
@@ -113,43 +113,43 @@ int32_t crypt_encrypt(string & strEncrypt, const char * pszDecrypt, const char *
    }
    storageDecrypt.from_string(pszDecrypt);
    threadSystem.base64().decode(storageKey, pszKey);
-   int32_t cipherlen = crypt_encrypt(storageEncrypt, storageDecrypt, storageKey);
+   int32_t cipherlen = crypto_encrypt(storageEncrypt, storageDecrypt, storageKey);
    strEncrypt = threadSystem.base64().encode(storageEncrypt);
    return cipherlen;
 }
 
 
-bool crypt_decrypt(string & strDecrypt, const ::primitive::memory & storageEncrypt, const char * pszSalt)
+bool crypto_decrypt(string & strDecrypt, const ::primitive::memory & storageEncrypt, const char * pszSalt)
 {
    ::primitive::memory memoryDecrypt;
-   if (!crypt_decrypt(memoryDecrypt, storageEncrypt, pszSalt))
+   if (!crypto_decrypt(memoryDecrypt, storageEncrypt, pszSalt))
       return false;
    memoryDecrypt.to_asc(strDecrypt);
    return true;
 }
 
-bool crypt_encrypt(::primitive::memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt)
+bool crypto_encrypt(::primitive::memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt)
 {
    ::primitive::memory memoryDecrypt;
    memoryDecrypt.from_asc(pszDecrypt);
-   return crypt_encrypt(storageEncrypt, memoryDecrypt, pszSalt);
+   return crypto_encrypt(storageEncrypt, memoryDecrypt, pszSalt);
 }
 
-bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt)
+bool crypto_file_get(const char * pszFile, string & str, const char * pszSalt)
 {
    ::primitive::memory memoryEncrypt;
    if (!file_get_memory_dup(memoryEncrypt, pszFile))
       return false;
    if (memoryEncrypt.get_size() <= 0)
       return false;
-   crypt_decrypt(str, memoryEncrypt, pszSalt);
+   crypto_decrypt(str, memoryEncrypt, pszSalt);
    return true;
 }
 
-bool crypt_file_set(const char * pszFile, const char * pszData, const char * pszSalt)
+bool crypto_file_set(const char * pszFile, const char * pszData, const char * pszSalt)
 {
    ::primitive::memory memoryEncrypt;
-   crypt_encrypt(memoryEncrypt, pszData, pszSalt);
+   crypto_encrypt(memoryEncrypt, pszData, pszSalt);
    file_put_contents_dup(pszFile, memoryEncrypt);
    return true;
 }

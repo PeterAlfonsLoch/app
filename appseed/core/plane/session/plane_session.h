@@ -178,6 +178,10 @@ namespace plane
 
       virtual COLORREF get_default_color(uint64_t ui);
 
+      virtual ::visual::cursor * get_cursor();
+      virtual void set_cursor(::visual::e_cursor ecursor);
+      virtual void set_default_cursor(::visual::e_cursor ecursor);
+      virtual ::visual::cursor * get_default_cursor();
 
    };
 

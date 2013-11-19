@@ -1775,7 +1775,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\base_cregexp.cpp" />
     <ClCompile Include="base\base_cregexp_util.cpp" />
     <ClCompile Include="base\base_element.cpp" />
+    <ClCompile Include="base\base_live_object.cpp" />
+    <ClCompile Include="base\base_live_signal.cpp" />
     <ClCompile Include="base\base_log.cpp" />
+    <ClCompile Include="base\base_machine_event_central.cpp" />
     <ClCompile Include="base\base_message.cpp" />
     <ClCompile Include="base\base_message_queue.cpp" />
     <ClCompile Include="base\base_microtimer.cpp" />
@@ -1809,6 +1812,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\base_system.cpp" />
     <ClCompile Include="base\base_template.cpp" />
     <ClCompile Include="base\base_thread.cpp" />
+    <ClCompile Include="base\base_trace.cpp" />
     <ClCompile Include="base\compress\bsdiff\blocksort.cpp" />
     <ClCompile Include="base\compress\bsdiff\bsdiff.cpp" />
     <ClCompile Include="base\compress\bsdiff\bspatch.cpp" />
@@ -4186,6 +4190,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="spa\spa_trace.cpp" />
     <ClCompile Include="str\str_base64.cpp" />
     <ClCompile Include="str\str_c.cpp" />
+    <ClCompile Include="str\str_international_locale_schema.cpp" />
     <ClCompile Include="str\str_istring.cpp" />
     <ClCompile Include="str\str_parse.cpp" />
     <ClCompile Include="str\str_simple.cpp" />

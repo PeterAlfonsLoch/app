@@ -16,6 +16,9 @@ enum e_application_signal
 };
 
 
+class machine_event_data;
+
+
 class CLASS_DECL_BASE application_signal_details :
    public signal_details
 {
@@ -134,6 +137,8 @@ public:
    virtual sp(::user::interaction) get_capture_uie();
 
 
+   void process(machine_event_data * pdata);
+
 
 
    virtual bool open_link(const string & strLink, const string & pszTarget = "");
@@ -231,6 +236,7 @@ public:
       return (*(APP *) papp);
    }
 
+   virtual void _001CloseApplication();
 
 
    virtual thread * GetThread();

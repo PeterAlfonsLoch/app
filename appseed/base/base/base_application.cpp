@@ -826,3 +826,23 @@ void base_application::on_set_schema(const string & lpcsz, bool bUser)
    //System.appa_load_string_table();
 }
 
+
+
+void base_application::process(machine_event_data * pdata)
+{
+   if (pdata->m_fixed.m_bRequestCloseApplication)
+   {
+      _001CloseApplication();
+   }
+}
+
+
+void base_application::_001CloseApplication()
+{
+
+   throw todo(get_app());
+
+}
+
+
+

@@ -441,8 +441,6 @@ public:
 
    virtual sp(::user::interaction) uie_from_point(point pt);
 
-   void process(machine_event_data * pdata);
-
    ::mutex * get_local_mutex();
    ::mutex * get_global_mutex();
 
