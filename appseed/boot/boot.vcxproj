@@ -1577,7 +1577,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="windows\crypt\ca_os_crypt.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="windows\windows_fontopus.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="boot.def" />

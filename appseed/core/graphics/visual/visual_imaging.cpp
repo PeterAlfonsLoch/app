@@ -6934,4 +6934,61 @@ void imaging::AlphaTextOut(::draw2d::graphics *pdc, int32_t left, int32_t top, c
    pdc->TextOut(left, top, str);
 }
 
+bool imaging::load_from_file(::draw2d::dib & dib, const char * psz)
+{
 
+   throw todo(get_app());
+
+
+}
+
+
+bool load_from_matter(::draw2d::dib & dib, const char * pszMatter)
+{
+   throw todo(get_app());
+
+}
+
+bool imaging::load_cursor_from_file(::visual::cursor_sp spcursor, const char * psz)
+{
+   string str(psz);
+   if (!::str::ends_eat_ci(str, ".png"))
+      return false;
+   if (!load_from_file(spcursor->m_dib, psz))
+      return false;
+   str += ".xml";
+   string strNode = Application.file().as_string(str);
+   ::xml::document doc(get_app());
+   if (doc.load(strNode))
+   {
+      spcursor->m_ptHotspot.x = doc.get_root()->attr("x");
+      spcursor->m_ptHotspot.y = doc.get_root()->attr("y");
+   }
+   return true;
+}
+
+bool imaging::load_cursor_from_matter(::visual::cursor_sp spcursor, const char * pszMatter)
+{
+
+   return load_from_file(spcursor, Application.dir().matter(pszMatter));
+
+}
+
+::visual::cursor_sp imaging::load_cursor_from_file(const char * psz)
+{
+
+   ::visual::cursor_sp spcursor spcursor(canew(::visual::cursor()));
+
+   if (!load_from_file(spcursor, psz))
+      return NULL;
+
+   return spcursor;
+
+}
+
+::visual::cursor_sp imaging::load_cursor_from_matter(const char * pszMatter)
+{
+
+   return load_cursor_from_file(Application.dir().matter(pszMatter));
+
+}

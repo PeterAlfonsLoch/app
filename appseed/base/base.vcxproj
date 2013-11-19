@@ -1770,6 +1770,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\base_command_target.cpp" />
     <ClCompile Include="base\base_conv.cpp" />
     <ClCompile Include="base\base_element.cpp" />
+    <ClCompile Include="base\base_log.cpp" />
     <ClCompile Include="base\base_message.cpp" />
     <ClCompile Include="base\base_message_queue.cpp" />
     <ClCompile Include="base\base_microtimer.cpp" />
@@ -3980,6 +3981,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="graphics\draw2d\draw2d_path.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_pen.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_region.cpp" />
+    <ClCompile Include="graphics\visual\visual_cursor.cpp" />
+    <ClCompile Include="graphics\visual\visual_icon.cpp" />
     <ClCompile Include="multithreading\multithreading_condition.cpp" />
     <ClCompile Include="multithreading\multithreading_core.cpp" />
     <ClCompile Include="multithreading\multithreading_critical_section.cpp" />
@@ -3987,6 +3990,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="multithreading\multithreading_event_base.cpp" />
     <ClCompile Include="multithreading\multithreading_event_collection.cpp" />
     <ClCompile Include="multithreading\multithreading_file_change_event.cpp" />
+    <ClCompile Include="multithreading\multithreading_go_thread.cpp" />
     <ClCompile Include="multithreading\multithreading_manual_reset_event.cpp" />
     <ClCompile Include="multithreading\multithreading_multi_lock.cpp" />
     <ClCompile Include="multithreading\multithreading_mutex.cpp" />
@@ -3994,6 +3998,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="multithreading\multithreading_retry_single_lock.cpp" />
     <ClCompile Include="multithreading\multithreading_semaphore.cpp" />
     <ClCompile Include="multithreading\multithreading_service_base.cpp" />
+    <ClCompile Include="multithreading\multithreading_signal_thread.cpp" />
+    <ClCompile Include="multithreading\multithreading_simple_thread.cpp" />
     <ClCompile Include="multithreading\multithreading_single_lock.cpp" />
     <ClCompile Include="multithreading\multithreading_socket_event.cpp" />
     <ClCompile Include="multithreading\multithreading_synch_lock.cpp" />

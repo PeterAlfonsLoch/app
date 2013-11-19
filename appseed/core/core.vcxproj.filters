@@ -3370,9 +3370,6 @@
     <ClCompile Include="graphics\visual\visual_image_list.cpp">
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\visual\visual_icon.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\visual\visual_graphics_extension.cpp">
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
@@ -3395,9 +3392,6 @@
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
     <ClCompile Include="graphics\visual\visual_dib.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_cursor.cpp">
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
     <ClCompile Include="graphics\visual\visual_buffered_graphics.cpp">

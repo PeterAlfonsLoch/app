@@ -2282,7 +2282,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="graphics\optca_fastblur.cpp" />
     <ClCompile Include="graphics\visual\visual_api.cpp" />
     <ClCompile Include="graphics\visual\visual_buffered_graphics.cpp" />
-    <ClCompile Include="graphics\visual\visual_cursor.cpp" />
     <ClCompile Include="graphics\visual\visual_dib.cpp" />
     <ClCompile Include="graphics\visual\visual_fastblur.cpp" />
     <ClCompile Include="graphics\visual\visual_font.cpp" />
@@ -2291,7 +2290,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="graphics\visual\visual_glyph.cpp" />
     <ClCompile Include="graphics\visual\visual_glyph_set.cpp" />
     <ClCompile Include="graphics\visual\visual_graphics_extension.cpp" />
-    <ClCompile Include="graphics\visual\visual_icon.cpp" />
     <ClCompile Include="graphics\visual\visual_image_list.cpp" />
     <ClCompile Include="graphics\visual\visual_imaging.cpp" />
     <ClCompile Include="graphics\visual\visual_rgb_quad_array.cpp" />

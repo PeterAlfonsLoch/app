@@ -669,6 +669,9 @@
     <Filter Include="Source Files\filesystem\file">
       <UniqueIdentifier>{7164038b-3f76-4ce1-96d5-cc885cbf7871}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\graphics\visual">
+      <UniqueIdentifier>{279c4f0b-7469-485f-a720-40edf81d3278}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework_c.h">
@@ -5949,6 +5952,24 @@
     </ClCompile>
     <ClCompile Include="base\base_cmdtarg.cpp">
       <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_log.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_simple_thread.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_signal_thread.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_go_thread.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_icon.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_cursor.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -760,9 +760,6 @@
     <ClCompile Include="android\android_window_android.cpp">
       <Filter>Source Files\android</Filter>
     </ClCompile>
-    <ClCompile Include="windows\windows_fontopus.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
     <ClCompile Include="fontopus\fontopus_authentication_map.cpp">
       <Filter>Source Files\fontopus</Filter>
     </ClCompile>

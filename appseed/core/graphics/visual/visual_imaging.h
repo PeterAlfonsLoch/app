@@ -314,6 +314,18 @@ public:
    virtual void SavePng(const char * lpcszFile, FIBITMAP * pfi, bool bUnload);
 
    virtual void free(FIBITMAP * pfibitmap);
+
+
+   bool load_from_file(::draw2d::dib & dib, const char * psz);
+   bool load_from_matter(::draw2d::dib & dib, const char * pszMatter);
+
+   bool load_cursor_from_file(::visual::cursor_sp spcursor, const char * psz);
+   bool load_cursor_from_matter(::visual::cursor_sp spcursor, const char * pszMatter);
+
+   ::visual::cursor_sp load_cursor_from_file(const char * psz);
+   ::visual::cursor_sp load_cursor_from_matter(const char * pszMatter);
+
+
 };
 
 void EmbossedTextOut(
