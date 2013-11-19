@@ -1074,3 +1074,79 @@ void base_application::get_cursor_pos(LPPOINT lppoint)
       Session.get_cursor_pos(lppoint);
    }
 }
+
+
+
+sp(::user::interaction) base_application::get_focus_guie()
+{
+
+#ifdef METROWIN
+
+   return GetFocus()->window();
+
+#elif defined(WINDOWSEX) || defined(LINUX)
+
+   sp(::user::window) pwnd = System.window_from_os_data_permanent(::GetFocus());
+   if (pwnd != NULL)
+   {
+      if (System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
+         || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(), pwnd->get_safe_handle()))
+      {
+         return pwnd;
+      }
+      else
+      {
+         return NULL;
+      }
+   }
+   pwnd = System.window_from_os_data(::GetFocus());
+   if (pwnd != NULL)
+   {
+      if (System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
+         || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(), pwnd->get_safe_handle()))
+      {
+         return pwnd;
+      }
+      else
+      {
+         return NULL;
+      }
+   }
+   return NULL;
+
+#else
+
+   return System.get_active_guie();
+
+#endif
+
+}
+
+
+
+uint32_t base_application::get_thread_id()
+{
+   return m_pimpl->get_thread_id();
+}
+
+
+
+
+sp(::user::interaction) base_application::get_active_guie()
+{
+
+#if defined(WINDOWSEX) || defined(LINUX) || defined(MACOS)
+
+   return window_from_os_data(::GetActiveWindow());
+
+#else
+
+   if (frames().get_size() <= 0)
+      return NULL;
+
+   return frames()(0);
+
+#endif
+
+}
+

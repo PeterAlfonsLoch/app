@@ -453,3 +453,9 @@ uint64_t fsize_dup(HANDLE h)
    return dwLo | (((DWORD64) dwHi) << 32);
 
 }
+
+
+
+
+
+

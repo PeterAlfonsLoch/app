@@ -678,6 +678,12 @@
     <Filter Include="Source Files\user\simple">
       <UniqueIdentifier>{b9ff5070-0942-458c-8d35-e0f4e463f2ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\base\openssl\engines">
+      <UniqueIdentifier>{f355e97e-3b31-4109-bddd-4d52f301696b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\openssl\engines\ccgost">
+      <UniqueIdentifier>{753ce398-7e8c-4737-8bf6-f2fac3e33a13}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework_c.h">
@@ -3706,9 +3712,6 @@
     <ClCompile Include="os\windows\windows_file_std.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\windows_http.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows\windows_internal.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
@@ -4026,33 +4029,6 @@
     </ClCompile>
     <ClCompile Include="base\compress\compress_compress.cpp">
       <Filter>Source Files\base\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\bsdiff\blocksort.cpp">
-      <Filter>Source Files\base\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\bsdiff\bsdiff.cpp">
-      <Filter>Source Files\base\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\bsdiff\bspatch.cpp">
-      <Filter>Source Files\base\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\bsdiff\bzlib.cpp">
-      <Filter>Source Files\base\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\bsdiff\compress.cpp">
-      <Filter>Source Files\base\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\bsdiff\crctable.cpp">
-      <Filter>Source Files\base\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\bsdiff\decompress.cpp">
-      <Filter>Source Files\base\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\bsdiff\huffman.cpp">
-      <Filter>Source Files\base\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\bsdiff\randtable.cpp">
-      <Filter>Source Files\base\compress\bsdiff</Filter>
     </ClCompile>
     <ClCompile Include="base\base_microtimer.cpp">
       <Filter>Source Files\base</Filter>
@@ -6157,11 +6133,164 @@
     <ClCompile Include="base\crypto\crypto_kernel_alloc.cpp">
       <Filter>Source Files\base\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="base\crypto\crypto_kernel_crypto_kernel.cpp">
-      <Filter>Source Files\base\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="base\crypto\crypto_kernel_err.cpp">
       <Filter>Source Files\base\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_machine_event_data.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_machine_event.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_flags.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\windows_std_file.cpp">
+      <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\crypto\conf\conf_sap.c">
+      <Filter>Source Files\base\openssl\crypto\conf</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\crypto\engine\eng_all.c">
+      <Filter>Source Files\base\openssl\crypto\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_4758cca.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_4758cca_err.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_aep.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_aep_err.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_atalla.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_atalla_err.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_capi.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_capi_err.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_chil.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_chil_err.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_cswift.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_cswift_err.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_gmp.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_gmp_err.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_nuron.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_nuron_err.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_padlock.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_sureware.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_sureware_err.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_ubsec.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_ubsec_err.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\e_gost_err.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost_ameth.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost_asn1.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost_crypt.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost_ctl.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost_eng.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost_keywrap.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost_md.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost_params.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost_pmeth.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost_sign.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost89.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost94_keyx.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost2001.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost2001_keyx.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gosthash.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\bsdiff\bsdiff_blocksort.cpp">
+      <Filter>Source Files\base\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\bsdiff\bsdiff_bsdiff.cpp">
+      <Filter>Source Files\base\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\bsdiff\bsdiff_bspatch.cpp">
+      <Filter>Source Files\base\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\bsdiff\bsdiff_bzlib.cpp">
+      <Filter>Source Files\base\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\bsdiff\bsdiff_compress.cpp">
+      <Filter>Source Files\base\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\bsdiff\bsdiff_crctable.cpp">
+      <Filter>Source Files\base\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\bsdiff\bsdiff_decompress.cpp">
+      <Filter>Source Files\base\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\bsdiff\bsdiff_huffman.cpp">
+      <Filter>Source Files\base\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\bsdiff\bsdiff_randtable.cpp">
+      <Filter>Source Files\base\compress\bsdiff</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -6278,6 +6407,9 @@
     </None>
     <None Include="base\base_live_object.h">
       <Filter>Header Files\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

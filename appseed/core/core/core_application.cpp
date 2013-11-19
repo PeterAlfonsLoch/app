@@ -3121,51 +3121,6 @@ sp(::user::interaction) application::get_active_guie()
 }
 
 
-sp(::user::interaction) application::get_focus_guie()
-{
-
-#ifdef METROWIN
-
-   return GetFocus()->window();
-
-#elif defined(WINDOWSEX) || defined(LINUX)
-
-   sp(::user::window) pwnd = System.window_from_os_data_permanent(::GetFocus());
-   if(pwnd != NULL)
-   {
-      if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-         || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(), pwnd->get_safe_handle()))
-      {
-         return pwnd;
-      }
-      else
-      {
-         return NULL;
-      }
-   }
-   pwnd = System.window_from_os_data(::GetFocus());
-   if(pwnd != NULL)
-   {
-      if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-         || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(), pwnd->get_safe_handle()))
-      {
-         return pwnd;
-      }
-      else
-      {
-         return NULL;
-      }
-   }
-   return NULL;
-
-#else
-
-   return System.get_active_guie();
-
-#endif
-
-}
-
 
 
 
@@ -4269,10 +4224,6 @@ void application::set_env_var(const string & var,const string & value)
    ::application_base::m_p->set_env_var(var, value);
 }
 
-uint32_t application::get_thread_id()
-{
-   return ::application_base::m_p->get_thread_id();
-}
 
 bool application::set_main_init_data(::core::main_init_data * pdata)
 {
@@ -4348,20 +4299,6 @@ void application::dump(dump_context & dumpcontext) const
 
 
 
-void __post_quit_message(int32_t nExitCode)
-{
-
-#ifdef WINDOWSEX
-
-   ::PostQuitMessage(nExitCode);
-
-#else
-
-   throw not_implemented(get_thread_app());
-
-#endif
-
-}
 
 
 void application::install_message_handling(::message::dispatch * pdispatch)
