@@ -223,10 +223,6 @@ public:
    //string                                                                                  m_strLicense;
 
 
-   string                                                                                    m_strRoot;
-   string                                                                                    m_strDomain;
-   string                                                                                    m_strLocale;
-   string                                                                                    m_strSchema;
 
 
 

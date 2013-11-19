@@ -52,6 +52,8 @@
 
 #include "base/primitive/datetime/datetime_c.h"
 
+#include "base_number.h"
+
 #include "base/os/os.h"
 
 

@@ -467,4 +467,16 @@ sp(::user::window_draw) base_system::get_twf()
 
 }
 
+::core::log & base_system::log()
+{
+   return *m_plog;
+}
+
+
+
+
+::fontopus::user_set & base_system::userset()
+{
+   return m_userset;
+}
 

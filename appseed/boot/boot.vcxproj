@@ -1142,7 +1142,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="boot\boot_sprintf.h" />
     <ClInclude Include="boot\boot_url.h" />
     <ClInclude Include="boot\boot_user.h" />
-    <ClInclude Include="boot\boot_window_graphics.h" />
     <ClInclude Include="cpu_architecture.h" />
     <ClInclude Include="cross\cross.h" />
     <ClInclude Include="cross\windows\windows.h" />
@@ -1243,7 +1242,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="windows\ca_os_simple_pen.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="windows\ca_os_window_gdi.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="android\android.cpp">
@@ -1455,7 +1453,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="boot\boot_sprintf.cpp" />
     <ClCompile Include="boot\boot_std_file.cpp" />
     <ClCompile Include="boot\boot_url.cpp" />
-    <ClCompile Include="boot\boot_window_graphics.cpp" />
     <ClCompile Include="boot\_initterm.cpp" />
     <ClCompile Include="crypt\crypt.cpp" />
     <ClCompile Include="crypt\nessie.cpp" />

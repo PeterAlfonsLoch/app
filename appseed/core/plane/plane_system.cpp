@@ -822,11 +822,6 @@ namespace plane
       return true;
    }
 
-   ::core::log & system::log()
-   {
-      return *m_plog;
-   }
-
    application_ptra & system::appptra()
    {
       return m_appptra;
@@ -835,11 +830,6 @@ namespace plane
    ::core::stra & system::stra()
    {
       return m_stra;
-   }
-
-   ::fontopus::user_set & system::userset()
-   {
-      return m_userset;
    }
 
    ::core::service & system::service()

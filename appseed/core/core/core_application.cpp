@@ -4531,32 +4531,6 @@ string application::get_locale_schema_dir(const string & strLocale, const string
    }
 }
 
-void application::set_locale(const string & lpcsz, bool bUser)
-{
-   m_strLocale = lpcsz;
-   on_set_locale(lpcsz, bUser);
-}
-
-void application::set_schema(const string & lpcsz, bool bUser)
-{
-   m_strSchema = lpcsz;
-   on_set_schema(lpcsz, bUser);
-}
-
-void application::on_set_locale(const string & lpcsz, bool bUser)
-{
-   UNREFERENCED_PARAMETER(bUser);
-   UNREFERENCED_PARAMETER(lpcsz);
-   //System.appa_load_string_table();
-}
-
-void application::on_set_schema(const string & lpcsz, bool bUser)
-{
-   UNREFERENCED_PARAMETER(bUser);
-   UNREFERENCED_PARAMETER(lpcsz);
-   //System.appa_load_string_table();
-}
-
 
 bool application::base_support()
 {
@@ -4597,13 +4571,6 @@ void application::load_string_table()
 
 
 
-bool application::get_auth(const string & pszForm, string & strUsername, string & strPassword)
-{
-   UNREFERENCED_PARAMETER(pszForm);
-   UNREFERENCED_PARAMETER(strUsername);
-   UNREFERENCED_PARAMETER(strPassword);
-   return false;
-}
 
 
 

@@ -218,6 +218,7 @@ public:
    ::url::departament                           m_urldepartament;
    sp(class ::xml::departament)                 m_pxml;
    const id_pool                                m_cidpool;
+   sp(class ::core::log)                        m_plog;
 
 
    static id_space *                            s_pidspace;

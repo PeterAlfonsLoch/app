@@ -1046,6 +1046,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base_auto_pointer.h" />
     <ClInclude Include="base\base_command.h" />
     <ClInclude Include="base\base_command_target.h" />
+    <ClInclude Include="base\base_cregexp.h" />
+    <ClInclude Include="base\base_cregexp_util.h" />
     <ClInclude Include="base\base_definition.h" />
     <ClInclude Include="base\base_element.h" />
     <ClInclude Include="base\base_enum.h" />
@@ -1061,6 +1063,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base_message_queue_listener.h" />
     <ClInclude Include="base\base_microtimer.h" />
     <ClInclude Include="base\base_new.h" />
+    <ClInclude Include="base\base_number.h" />
     <ClInclude Include="base\base_root.h" />
     <ClInclude Include="base\base_c.h" />
     <ClInclude Include="base\base_common.h" />
@@ -1769,6 +1772,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\base_cmdtarg.cpp" />
     <ClCompile Include="base\base_command_target.cpp" />
     <ClCompile Include="base\base_conv.cpp" />
+    <ClCompile Include="base\base_cregexp.cpp" />
+    <ClCompile Include="base\base_cregexp_util.cpp" />
     <ClCompile Include="base\base_element.cpp" />
     <ClCompile Include="base\base_log.cpp" />
     <ClCompile Include="base\base_message.cpp" />
@@ -1813,7 +1818,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\compress\bsdiff\decompress.cpp" />
     <ClCompile Include="base\compress\bsdiff\huffman.cpp" />
     <ClCompile Include="base\compress\bsdiff\randtable.cpp" />
+    <ClCompile Include="base\compress\compress_bzip_stream.cpp" />
     <ClCompile Include="base\compress\compress_compress.cpp" />
+    <ClCompile Include="base\compress\compress_gzip_stream.cpp" />
     <ClCompile Include="base\compress\zip\zip_api.cpp" />
     <ClCompile Include="base\compress\zip\zip_file.cpp" />
     <ClCompile Include="base\compress\zip\zip_in_file.cpp" />
@@ -1974,6 +1981,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </ClCompile>
     <ClCompile Include="base\crypto\crypto.cpp" />
     <ClCompile Include="base\crypto\crypto_crypto.cpp" />
+    <ClCompile Include="base\crypto\crypto_nessie.cpp" />
+    <ClCompile Include="base\crypto\crypto_whirpool.cpp" />
     <ClCompile Include="base\openssl\crypto\aes\aes_cbc.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</ExcludedFromBuild>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
@@ -3902,6 +3911,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="exception\exception_void_implementation.cpp" />
     <ClCompile Include="filesystem\file\file_application.cpp" />
     <ClCompile Include="filesystem\file\file_binary_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_buffered_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_byte_input_stream.cpp" />
     <ClCompile Include="filesystem\file\file_byte_input_stream_binary_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_byte_output_stream.cpp" />
@@ -3909,6 +3919,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="filesystem\file\file_byte_stream.cpp" />
     <ClCompile Include="filesystem\file\file_byte_stream_memory_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_c.cpp" />
+    <ClCompile Include="filesystem\file\file_circular_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_composite.cpp" />
     <ClCompile Include="filesystem\file\file_dir.cpp" />
     <ClCompile Include="filesystem\file\file_dir2.cpp" />
@@ -3981,6 +3992,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="graphics\draw2d\draw2d_path.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_pen.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_region.cpp" />
+    <ClCompile Include="graphics\graphics_window_graphics.cpp" />
     <ClCompile Include="graphics\visual\visual_cursor.cpp" />
     <ClCompile Include="graphics\visual\visual_icon.cpp" />
     <ClCompile Include="multithreading\multithreading_condition.cpp" />
@@ -4101,6 +4113,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="os\windows\windows_thread.cpp" />
     <ClCompile Include="os\windows\windows_time.cpp" />
     <ClCompile Include="os\windows\windows_utils.cpp" />
+    <ClCompile Include="os\windows\windows_window_gdi.cpp" />
     <ClCompile Include="primitive\collection\collection_2d_array.cpp" />
     <ClCompile Include="primitive\collection\collection_array.cpp" />
     <ClCompile Include="primitive\collection\collection_bit_array.cpp" />
@@ -4134,6 +4147,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\geometry\geometry_types.cpp" />
     <ClCompile Include="primitive\math\math.cpp" />
     <ClCompile Include="primitive\math\math_math.cpp" />
+    <ClCompile Include="primitive\math\math_math_rng.cpp" />
     <ClCompile Include="primitive\primitive_application_bias.cpp" />
     <ClCompile Include="primitive\primitive_bit.cpp" />
     <ClCompile Include="primitive\primitive_color.cpp" />
@@ -4173,6 +4187,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="str\str_base64.cpp" />
     <ClCompile Include="str\str_c.cpp" />
     <ClCompile Include="str\str_istring.cpp" />
+    <ClCompile Include="str\str_parse.cpp" />
     <ClCompile Include="str\str_simple.cpp" />
     <ClCompile Include="str\str_string.cpp" />
     <ClCompile Include="str\str_core.cpp" />
@@ -4201,10 +4216,12 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\fontopus\fontopus_usera.cpp" />
     <ClCompile Include="user\fontopus\fontopus_user_set.cpp" />
     <ClCompile Include="user\fontopus\fontopus_validate.cpp" />
+    <ClCompile Include="user\user.cpp" />
     <ClCompile Include="user\userpresence\userpresence_userpresence.cpp" />
     <ClCompile Include="user\userpresence\userpresence_user_presence.cpp" />
     <ClCompile Include="user\user_base_interaction.cpp" />
     <ClCompile Include="user\user_check_interface.cpp" />
+    <ClCompile Include="user\user_control_event.cpp" />
     <ClCompile Include="user\user_create_context.cpp" />
     <ClCompile Include="user\user_draw_context.cpp" />
     <ClCompile Include="user\user_draw_interface.cpp" />
@@ -4218,7 +4235,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\user_user.cpp" />
     <ClCompile Include="user\user_virtual_user_interface.cpp" />
     <ClCompile Include="user\user_window.cpp" />
+    <ClCompile Include="user\user_window_draw.cpp" />
     <ClCompile Include="user\user_window_interface.cpp" />
+    <ClCompile Include="user\user_window_map.cpp" />
+    <ClCompile Include="user\user_window_util.cpp" />
     <ClCompile Include="version.cpp" />
     <ClCompile Include="xml\xml_attr.cpp" />
     <ClCompile Include="xml\xml_base_array.cpp" />

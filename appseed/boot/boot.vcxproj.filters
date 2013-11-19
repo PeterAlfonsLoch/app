@@ -269,9 +269,6 @@
     <ClInclude Include="android\ca_os_simple_pen.h">
       <Filter>Header Files\android</Filter>
     </ClInclude>
-    <ClInclude Include="windows\ca_os_window_gdi.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
     <ClInclude Include="android\ca_os_graphics.h">
       <Filter>Header Files\android</Filter>
     </ClInclude>
@@ -426,9 +423,6 @@
       <Filter>Header Files\boot</Filter>
     </ClInclude>
     <ClInclude Include="boot\boot_user.h">
-      <Filter>Header Files\boot</Filter>
-    </ClInclude>
-    <ClInclude Include="boot\boot_window_graphics.h">
       <Filter>Header Files\boot</Filter>
     </ClInclude>
     <ClInclude Include="fontopus\fontopus_user_authentication.h">
@@ -677,9 +671,6 @@
       <Filter>Source Files\boot</Filter>
     </ClCompile>
     <ClCompile Include="boot\boot_url.cpp">
-      <Filter>Source Files\boot</Filter>
-    </ClCompile>
-    <ClCompile Include="boot\boot_window_graphics.cpp">
       <Filter>Source Files\boot</Filter>
     </ClCompile>
     <ClCompile Include="android\android.cpp">

@@ -77,6 +77,10 @@ public:
    HCURSOR                                         m_hcurWaitCursorRestore; // old cursor to restore after wait cursor
 
 
+   string                                          m_strRoot;
+   string                                          m_strDomain;
+   string                                          m_strLocale;
+   string                                          m_strSchema;
 
 
 

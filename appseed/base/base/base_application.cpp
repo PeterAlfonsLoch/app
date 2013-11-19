@@ -773,6 +773,13 @@ string base_application::veriwell_multimedia_music_midi_get_default_library_name
 
 }
 
+bool base_application::get_auth(const string & pszForm, string & strUsername, string & strPassword)
+{
+   UNREFERENCED_PARAMETER(pszForm);
+   UNREFERENCED_PARAMETER(strUsername);
+   UNREFERENCED_PARAMETER(strPassword);
+   return false;
+}
 
 
 /*::fontopus::user * application::create_user(const string & pszLogin)
@@ -791,3 +798,31 @@ return NULL;
 {
 return "";
 }*/
+
+
+void base_application::set_locale(const string & lpcsz, bool bUser)
+{
+   m_strLocale = lpcsz;
+   on_set_locale(lpcsz, bUser);
+}
+
+void base_application::set_schema(const string & lpcsz, bool bUser)
+{
+   m_strSchema = lpcsz;
+   on_set_schema(lpcsz, bUser);
+}
+
+void base_application::on_set_locale(const string & lpcsz, bool bUser)
+{
+   UNREFERENCED_PARAMETER(bUser);
+   UNREFERENCED_PARAMETER(lpcsz);
+   //System.appa_load_string_table();
+}
+
+void base_application::on_set_schema(const string & lpcsz, bool bUser)
+{
+   UNREFERENCED_PARAMETER(bUser);
+   UNREFERENCED_PARAMETER(lpcsz);
+   //System.appa_load_string_table();
+}
+

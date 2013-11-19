@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "windows_window_gdi.h"
 
 
 window_gdi::window_gdi()

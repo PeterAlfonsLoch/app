@@ -65,7 +65,6 @@ namespace plane
       sp(::plane::session::map)                      m_pbergedgemap;
 
 
-      sp(class ::core::log)                          m_plog;
       sp(class ::core::history)                      m_phistory;
       //      ::sockets::net                               m_net;
       //      sp(::core::filehandler::handler)  m_spfilehandler;
