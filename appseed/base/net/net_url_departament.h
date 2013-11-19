@@ -2,6 +2,8 @@
 
 
 CLASS_DECL_BASE string url_encode_dup(const char * psz);
+CLASS_DECL_BASE bool url_query_get_param_dup(string & strParam, const char * pszKey, const char * pszUrl);
+
 
 namespace url
 {

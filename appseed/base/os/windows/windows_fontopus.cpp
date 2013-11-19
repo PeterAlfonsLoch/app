@@ -1,4 +1,8 @@
 #include "framework.h"
+
+#include "base/spa/spa_style.h"
+#include "base/spa/spa_login.h"
+
 #undef new
 #include <gdiplus.h>
 
@@ -10,38 +14,35 @@ namespace fontopus
 {
 
 
-   class fontopus :
+   class fontopus_login :
       virtual public ::spa::style,
-      virtual public ::simple_ui,
-      virtual public ::spa_login::callback
+      virtual public ::user::interaction,
+      virtual public ::spa::login::callback
    {
    public:
 
-      static fontopus s_fontopus;
+      static fontopus_login      s_fontopus;
 
-      spa_login::e_result          m_eresult;
+      ::spa::login::e_result     m_eresult;
 
-      HINSTANCE         m_hinstance;
-      string            m_strTitle;
-      string            m_strWindowClass;
+      HINSTANCE                  m_hinstance;
+      string                     m_strTitle;
+      string                     m_strWindowClass;
 
-      int               m_w;
-      int               m_h;
-      spa_login         m_login;
-      simple_graphics   m_graphics;
-      simple_bitmap     m_bitmap;
-      SIZE              m_size;
-      POINT             m_pt;
-      window_gdi        m_gdi;
-      bool              m_bLButtonDown;
-      POINT             m_ptLButtonDown;
-      POINT             m_ptLButtonDownPos;
+      int                        m_w;
+      int                        m_h;
+      ::spa::login               m_login;
+      SIZE                       m_size;
+      POINT                      m_pt;
+      bool                       m_bLButtonDown;
+      POINT                      m_ptLButtonDown;
+      POINT                      m_ptLButtonDownPos;
 
-      bool              m_bShiftKey;
+      bool                       m_bShiftKey;
 
-      HWND              m_hwnd;
-      bool              m_bDrag;
-      rect              m_rectDesktop;
+      HWND                       m_hwnd;
+      bool                       m_bDrag;
+      rect                       m_rectDesktop;
 
 
       fontopus();
@@ -985,7 +986,7 @@ namespace fontopus
 
    fontopus fontopus::s_fontopus;
 
-   string CLASS_DECL_BOOT show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
+   string CLASS_DECL_BASE show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
    {
 
       return ::fontopus::fontopus::s_fontopus.show_auth_window(lprect, strUsername, strSessId, strServerId, strLoginUrl, strFontopusServer);

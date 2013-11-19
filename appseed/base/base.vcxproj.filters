@@ -2822,6 +2822,12 @@
     <ClInclude Include="base\base_number.h">
       <Filter>Header Files\base</Filter>
     </ClInclude>
+    <ClInclude Include="spa\spa_style.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_login.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_c.c">
@@ -6054,6 +6060,9 @@
     </ClCompile>
     <ClCompile Include="os\windows\windows_fontopus.cpp">
       <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_style.cpp">
+      <Filter>Source Files\spa</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
