@@ -679,6 +679,8 @@ namespace numeric_info
 
 #include "user/user.h"
 #include "user/user_control_event.h"
+#include "base_cregexp.h"
+#include "base_cregexp_util.h"
 
 
 
