@@ -1132,8 +1132,14 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\compress\zlib\zlib.h" />
     <ClInclude Include="base\compress\zlib\zutil.h" />
     <ClInclude Include="base\crypto\crypto.h" />
+    <ClInclude Include="base\crypto\crypto_alloc.h" />
+    <ClInclude Include="base\crypto\crypto_auth.h" />
     <ClInclude Include="base\crypto\crypto_crypto.h" />
+    <ClInclude Include="base\crypto\crypto_datatypes.h" />
+    <ClInclude Include="base\crypto\crypto_err.h" />
+    <ClInclude Include="base\crypto\crypto_hmac.h" />
     <ClInclude Include="base\crypto\crypto_hmac_sha1.h" />
+    <ClInclude Include="base\crypto\crypto_math.h" />
     <ClInclude Include="base\crypto\crypto_nessie.h" />
     <ClInclude Include="base\crypto\crypto_sha1.h" />
     <ClInclude Include="base\openssl\crypto\aes\aes.h" />
@@ -1996,7 +2002,13 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </ClCompile>
     <ClCompile Include="base\crypto\crypto.cpp" />
     <ClCompile Include="base\crypto\crypto_crypto.cpp" />
+    <ClCompile Include="base\crypto\crypto_hash_hmac.cpp" />
     <ClCompile Include="base\crypto\crypto_hash_sha1.cpp" />
+    <ClCompile Include="base\crypto\crypto_hmac_sha1.cpp" />
+    <ClCompile Include="base\crypto\crypto_kernel_alloc.cpp" />
+    <ClCompile Include="base\crypto\crypto_kernel_crypto_kernel.cpp" />
+    <ClCompile Include="base\crypto\crypto_kernel_err.cpp" />
+    <ClCompile Include="base\crypto\crypto_math.cpp" />
     <ClCompile Include="base\crypto\crypto_nessie.cpp" />
     <ClCompile Include="base\crypto\crypto_sha1.cpp" />
     <ClCompile Include="base\crypto\crypto_whirpool.cpp" />
@@ -4243,6 +4255,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\userpresence\userpresence_userpresence.cpp" />
     <ClCompile Include="user\userpresence\userpresence_user_presence.cpp" />
     <ClCompile Include="user\user_base_interaction.cpp" />
+    <ClCompile Include="user\user_buffer.cpp" />
     <ClCompile Include="user\user_check_interface.cpp" />
     <ClCompile Include="user\user_control_event.cpp" />
     <ClCompile Include="user\user_create_context.cpp" />

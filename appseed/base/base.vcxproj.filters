@@ -2858,6 +2858,24 @@
     <ClInclude Include="base\base_id_pool.h">
       <Filter>Header Files\base</Filter>
     </ClInclude>
+    <ClInclude Include="base\crypto\crypto_hmac.h">
+      <Filter>Header Files\base\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto_err.h">
+      <Filter>Header Files\base\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto_auth.h">
+      <Filter>Header Files\base\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto_alloc.h">
+      <Filter>Header Files\base\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto_math.h">
+      <Filter>Header Files\base\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto_datatypes.h">
+      <Filter>Header Files\base\crypto</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_c.c">
@@ -6118,10 +6136,31 @@
     <ClCompile Include="base\base_geometry.cpp">
       <Filter>Source Files\base</Filter>
     </ClCompile>
+    <ClCompile Include="base\crypto\crypto_sha1.cpp">
+      <Filter>Source Files\base\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto_hmac_sha1.cpp">
+      <Filter>Source Files\base\crypto</Filter>
+    </ClCompile>
     <ClCompile Include="base\crypto\crypto_hash_sha1.cpp">
       <Filter>Source Files\base\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="base\crypto\crypto_sha1.cpp">
+    <ClCompile Include="user\user_buffer.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto_hash_hmac.cpp">
+      <Filter>Source Files\base\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto_math.cpp">
+      <Filter>Source Files\base\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto_kernel_alloc.cpp">
+      <Filter>Source Files\base\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto_kernel_crypto_kernel.cpp">
+      <Filter>Source Files\base\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto_kernel_err.cpp">
       <Filter>Source Files\base\crypto</Filter>
     </ClCompile>
   </ItemGroup>
