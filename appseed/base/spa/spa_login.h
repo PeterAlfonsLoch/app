@@ -1,6 +1,12 @@
 #pragma once
 
 
+#include "base/user/simple/simple_label.h"
+#include "base/user/simple/simple_edit_box.h"
+#include "base/user/simple/simple_password.h"
+#include "base/user/simple/simple_tap.h"
+
+
 namespace spa
 {
 
@@ -10,7 +16,7 @@ namespace spa
 
 
    class CLASS_DECL_BASE login :
-      public ::user::interaction
+      public ::simple_ui
    {
    public:
 
@@ -51,8 +57,8 @@ namespace spa
       string               m_strRequestingServer;
 
 
-      spa_login(int left, int top);
-      virtual ~spa_login();
+      login(int left, int top);
+      virtual ~login();
 
 
       virtual bool on_action(const char * pszId);
@@ -65,7 +71,7 @@ namespace spa
 
       static uint32_t thread_proc_login(void * lpParam);
 
-      e_result login();
+      e_result perform_login();
 
       string calc_key_hash();
 
@@ -78,7 +84,7 @@ namespace spa
 
       virtual void layout();
 
-      virtual spa_login::e_result process_response(string strResponse);
+      virtual spa::login::e_result process_response(string strResponse);
 
    };
 

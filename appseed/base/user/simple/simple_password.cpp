@@ -1,4 +1,8 @@
 #include "framework.h"
+#include "base/spa/spa_style.h"
+#include "simple_ui.h"
+#include "simple_edit_box.h"
+#include "simple_password.h"
 
 
 
@@ -15,38 +19,38 @@ simple_password::~simple_password()
 
 
 
-void simple_password::draw_this(simple_graphics & g)
+void simple_password::_001OnDraw(::draw2d::graphics * pgraphics)
 {
 
    rect rectClient;
 
    get_client_rect(rectClient);
 
-   g.set_alpha_mode(::draw2d::alpha_mode_blend);
+   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-   simple_brush br;
+   ::draw2d::brush_sp br(allocer());
    
-   br.create_solid(g, ARGB(184, 255, 255, 240));
+   br->create_solid(ARGB(184, 255, 255, 240));
 
-   g.fill_rect(rectClient, br);
+   pgraphics->FillRect(rectClient, br);
 
-   draw_focus_rect(g);
+   draw_focus_rect(pgraphics);
 
-   simple_brush b;
+   br->create_solid(ARGB(223, 49, 49, 23));
+
+   pgraphics->SelectObject(br);
+
+   ::draw2d::font_sp f(allocer());
    
-   b.create_solid(g, ARGB(223, 49, 49, 23));
+   f->create_pixel_font("Geneva", (int32_t)height(rectClient) * 10);
 
-   g.select(b);
-
-   simple_pixel_font f(g, (int32_t)height(rectClient) * 10, "Geneva");
-
-   g.select(f);
+   pgraphics->SelectObject(f);
 
    string str;
 
    str.append(m_strText.get_length(), '*');
 
-   g.text_out(rectClient.left + 2, rectClient.top, str);
+   pgraphics->TextOut(rectClient.left + 2, rectClient.top, str);
 
 }
 

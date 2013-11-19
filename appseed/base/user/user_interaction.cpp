@@ -1808,6 +1808,13 @@ namespace user
          return m_pimpl->GetWindowText(lpszStringBuf, nMaxCount);
    }
 
+   string interaction::get_window_text()
+   {
+      string str;
+      GetWindowText(str);
+      return str;
+   }
+
    void interaction::GetWindowText(string & rString)
    {
       if (m_pimpl == NULL)

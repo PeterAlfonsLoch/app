@@ -35,23 +35,6 @@ class CLASS_DECL_BOOT simple_path :
 {
 public:
 
-	//=============================================================================
-	//
-	// get_round_rect()
-	//
-	// Purpose:     Defines a Rounded Rectangle and places it in the GraphicsPath
-	//
-	// Parameters:  pPath		- [out] pointer to GraphicsPath that will recieve the
-	//									path data
-	//				r			- [in]	Rect that defines the round rectangle boundaries
-	//				dia			- [in]	diameter of the rounded corners (2*radius)
-	//
-	// Returns:     None
-	//
-	bool add_round_rect(const RECT & rect, int32_t dia);
-   bool add_round_top_left(const RECT & rect, int32_t dia);
-   bool add_round_bottom_right(const RECT & rect, int32_t dia);
-
 
    using os_simple_path::add_line;
    inline bool add_line(POINT p1, POINT p2);

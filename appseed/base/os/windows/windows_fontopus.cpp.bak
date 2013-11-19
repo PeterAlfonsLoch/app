@@ -4,7 +4,6 @@
 
 #include "base/spa/spa_style.h"
 #include "base/spa/spa_login.h"
-#include "windows_window_gdi.h"
 
 #undef new
 #include <gdiplus.h>
@@ -35,15 +34,11 @@ namespace fontopus
       int                        m_w;
       int                        m_h;
       ::spa::login               m_login;
-      //::draw2d::graphics_sp      m_dib->get_graphics();
-      //::draw2d::bitmap     m_bitmap;
-      ::draw2d::dib_sp           m_dib;
       SIZE                       m_size;
       POINT                      m_pt;
       bool                       m_bLButtonDown;
       POINT                      m_ptLButtonDown;
       POINT                      m_ptLButtonDownPos;
-      window_gdi                 m_gdi;
 
       bool                       m_bShiftKey;
 
@@ -774,7 +769,7 @@ namespace fontopus
       int iCount = rectWindow.width();
       int jCount = rectWindow.height();
 
-      BYTE * p = (BYTE *) m_dib->get_data();
+      BYTE * p = m_bitmap.m_memory.get_data();
 
       for (i = 0; i < iCount; i++)
       {
@@ -845,16 +840,16 @@ namespace fontopus
 
    void fontopus_login::on_windows_gdi_draw_framebuffer()
    {
-      if (m_dib->get_graphics() != NULL)
+      if (m_graphics.m_pgraphics != NULL)
       {
          RECT rectClient;
          rectClient.left = 0;
          rectClient.top = 0;
          rectClient.right = m_size.cx;
          rectClient.bottom = m_size.cy;
-         m_dib->get_graphics()->set_alpha_mode(draw2d::alpha_mode_set);
-         m_dib->get_graphics()->FillSolidRect(&rectClient, ARGB(0, 0, 0, 0));
-         draw(m_dib->get_graphics());
+         m_graphics.set_alpha_mode(draw2d::alpha_mode_set);
+         m_graphics.fill_solid_rect(&rectClient, ARGB(0, 0, 0, 0));
+         draw(m_graphics);
          RECT rect;
          rect.left = m_pt.x;
          rect.top = m_pt.y;
@@ -862,7 +857,7 @@ namespace fontopus
          rect.right = m_pt.x + m_size.cx;
          rect.bottom = m_pt.y + m_size.cy;
 
-         BYTE *dst = (BYTE*)m_dib->get_data();
+         BYTE *dst = (BYTE*)m_bitmap.m_memory.get_data();
          int64_t size = m_size.cx * m_size.cy;
 
 
@@ -914,7 +909,7 @@ namespace fontopus
             dst += 4;
          }
 
-         m_gdi.update_window(m_hwnd, (COLORREF *)m_dib->get_data(), &rect);
+         m_gdi.update_window(m_hwnd, (COLORREF *)m_bitmap.m_memory.get_data(), &rect);
 
       }
 
@@ -936,8 +931,12 @@ namespace fontopus
       m_size.cx = cx;
       m_size.cy = cy;
 
-      m_dib.create(::get_thread_app()->allocer());
-      m_dib->create(m_size.cx, m_size.cy);
+      HDC hdc = ::CreateCompatibleDC(NULL);
+      m_graphics.create();
+      m_bitmap.create(m_size.cx, m_size.cy, m_graphics);
+      m_gdi.create(m_hwnd, m_size.cx, m_size.cy);
+      m_graphics.create_from_bitmap(m_bitmap);
+      ::DeleteDC(hdc);
 
       layout();
 
@@ -954,9 +953,9 @@ namespace fontopus
 
          ::ShowWindow(m_hwnd, SW_HIDE);
 
-         m_login.login_result(m_login.perform_login());
+         m_login.login_result(m_login.login());
 
-         if (m_eresult == ::spa::login::result_fail)
+         if (m_eresult == ::spa_login::result_fail)
          {
             ::ShowWindow(m_hwnd, SW_SHOW);
          }
@@ -979,7 +978,7 @@ namespace fontopus
    }
 
 
-   void fontopus_login::login_result(::spa::login::e_result eresult)
+   void fontopus_login::login_result(::spa_login::e_result eresult)
    {
 
       m_eresult = eresult;
@@ -988,12 +987,12 @@ namespace fontopus
 
 
 
-   fontopus_login fontopus_login::s_fontopus;
+   fontopus fontopus_login::s_fontopus;
 
    string CLASS_DECL_BASE show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
    {
 
-      return ::fontopus::fontopus_login::s_fontopus.show_auth_window(lprect, strUsername, strSessId, strServerId, strLoginUrl, strFontopusServer);
+      return ::fontopus_login::fontopus_login::s_fontopus.show_auth_window(lprect, strUsername, strSessId, strServerId, strLoginUrl, strFontopusServer);
 
    }
 

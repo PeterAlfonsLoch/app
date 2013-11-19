@@ -254,6 +254,10 @@ namespace draw2d
       virtual bool drawRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool draw_rect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
 
+      virtual bool DrawRect(LPCRECT lpcrect, ::draw2d::pen * ppen);
+      virtual bool drawRect(LPCRECT lpcrect, ::draw2d::pen * ppen);
+      virtual bool draw_rect(LPCRECT lpcrect, ::draw2d::pen * ppen);
+
 
       virtual point GetCurrentPosition() const;
       virtual point MoveTo(int32_t x, int32_t y);
@@ -323,6 +327,7 @@ namespace draw2d
       virtual bool Pie(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
       virtual bool fill_polygon(const POINTD * lpPoints, int32_t nCount);
       virtual bool fill_polygon(const POINT* lpPoints, int32_t nCount);
+      virtual bool draw_polygon(const POINT* lpPoints, int32_t nCount);
       virtual bool Polygon(point_array & pta);
       virtual bool Polygon(const POINT* lpPoints, int32_t nCount);
       virtual bool PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int32_t nCount);

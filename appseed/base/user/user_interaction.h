@@ -28,7 +28,7 @@ namespace core
 
    interface class system_window
    {
-      virtual Windows::Foundation::Rect get_window_rect() = 0;
+      virtual Windows::Foundation::Rect GetWindowRect() = 0;
       virtual Windows::Foundation::Point get_cursor_pos() = 0;
    };
 
@@ -417,6 +417,7 @@ namespace user
 
       virtual void SetWindowText(const char * lpszString);
       virtual strsize GetWindowText(LPTSTR lpszStringBuf, int32_t nMaxCount);
+      virtual string get_window_text();
       virtual void GetWindowText(string & rString);
       virtual strsize GetWindowTextLength();
       virtual void SetFont(::draw2d::font* pFont, bool bRedraw = TRUE);

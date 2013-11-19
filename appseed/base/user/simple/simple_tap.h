@@ -1,8 +1,8 @@
-#pragma
+#pragma once
 
 
-class CLASS_DECL_BOOT simple_tap :
-   public simple_ui
+class CLASS_DECL_BASE simple_tap :
+   virtual public ::simple_ui
 {
 public:
 
@@ -15,12 +15,12 @@ public:
    virtual ~simple_tap();
    
    
-   virtual void draw_this(simple_graphics & g);
+   virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
-   virtual void draw_simple(simple_graphics & g);
-   virtual void draw_volume(simple_graphics & g);
+   virtual void draw_simple(::draw2d::graphics * pgraphics);
+   virtual void draw_volume(::draw2d::graphics * pgraphics);
 
-   virtual void draw_text(simple_graphics & g);
+   virtual void draw_text(::draw2d::graphics * pgraphics);
 
 
    virtual bool on_char(int32_t iKey, const string & strChar);

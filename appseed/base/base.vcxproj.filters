@@ -672,6 +672,12 @@
     <Filter Include="Source Files\graphics\visual">
       <UniqueIdentifier>{279c4f0b-7469-485f-a720-40edf81d3278}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user\simple">
+      <UniqueIdentifier>{7bdaa2c9-1de1-4163-8aba-35a5dcab23ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\simple">
+      <UniqueIdentifier>{b9ff5070-0942-458c-8d35-e0f4e463f2ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework_c.h">
@@ -2827,6 +2833,21 @@
     </ClInclude>
     <ClInclude Include="spa\spa_login.h">
       <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_edit_box.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_label.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_password.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_tap.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_ui.h">
+      <Filter>Header Files\user\simple</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -6062,6 +6083,24 @@
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_style.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_edit_box.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_label.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_password.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_tap.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_ui.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_login.cpp">
       <Filter>Source Files\spa</Filter>
     </ClCompile>
   </ItemGroup>

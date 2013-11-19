@@ -4,7 +4,7 @@
 class simple_ui;
 
 
-class CLASS_DECL_BOOT simple_ui_ptra : 
+class CLASS_DECL_BASE simple_ui_ptra : 
    public array < simple_ui * >
 {
 public:
@@ -13,7 +13,8 @@ public:
 };
 
 
-class CLASS_DECL_BOOT simple_ui
+class CLASS_DECL_BASE simple_ui :
+   virtual public object
 {
 public:
 
@@ -35,11 +36,11 @@ public:
    virtual void set_parent(simple_ui * puiParent);
 
 
-   virtual void draw(simple_graphics & hdc);
-   virtual void draw_this(simple_graphics & hdc);
-   virtual void draw_children(simple_graphics & hdc);
+   virtual void draw(::draw2d::graphics * pgraphics);
+   virtual void draw_this(::draw2d::graphics * pgraphics);
+   virtual void draw_children(::draw2d::graphics * pgraphics);
 
-   virtual void draw_focus_rect(simple_graphics & hdc);
+   virtual void draw_focus_rect(::draw2d::graphics * pgraphics);
 
 
    virtual bool on_char(int32_t iKey, const string & strChar);
@@ -68,6 +69,8 @@ public:
 
    virtual void get_window_rect(RECT * prect);
    virtual void get_client_rect(RECT * prect);
+
+   void draw_back_01_old(::spa::style::e_schema eschema, rect m_rect, ::draw2d::graphics * pgraphics);
    
    virtual void layout();
 };

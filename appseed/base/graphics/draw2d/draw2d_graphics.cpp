@@ -732,6 +732,13 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
+   bool graphics::draw_polygon(const POINT* lpPoints, int32_t nCount)
+   {
+      UNREFERENCED_PARAMETER(lpPoints);
+      UNREFERENCED_PARAMETER(nCount);
+      throw interface_only_exception(get_app());
+   }
+
    bool graphics::Polygon(const POINT* lpPoints, int32_t nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
@@ -2414,6 +2421,31 @@ namespace draw2d
       return drawRect(x1, y1, x2, y2);
 
    }
+
+
+
+   bool graphics::DrawRect(LPCRECT lpcrect, ::draw2d::pen * ppen)
+   {
+
+      return draw_rect(lpcrect, ppen);
+
+   }
+
+   bool graphics::drawRect(LPCRECT lpcrect, ::draw2d::pen * ppen)
+   {
+
+      return DrawRect(lpcrect, ppen);
+
+   }
+
+   bool graphics::draw_rect(LPCRECT lpcrect, ::draw2d::pen * ppen)
+   {
+
+      return drawRect(lpcrect, ppen);
+
+   }
+
+
 
    pointd graphics::MoveTo(double x, double y)
    {

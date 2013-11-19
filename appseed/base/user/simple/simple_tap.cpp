@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "base/spa/spa_style.h"
+#include "simple_ui.h"
+#include "simple_tap.h"
 
 
 
@@ -17,12 +20,12 @@ simple_tap::~simple_tap()
 }
 
 
-void simple_tap::draw_this(simple_graphics & g)
+void simple_tap::_001OnDraw(::draw2d::graphics * pgraphics)
 {
 
    //draw_simple(hdc);
 
-   draw_volume(g);
+   draw_volume(pgraphics);
 
 }
 
@@ -94,16 +97,16 @@ bool simple_tap::is_hover()
 
 
 
-void simple_tap::draw_simple(simple_graphics & g)
+void simple_tap::draw_simple(::draw2d::graphics * pgraphics)
 {
 
    {
 
-      g.set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      simple_solid_brush br(g, ARGB(184, 255, 184, 240));
+      ::draw2d::brush_sp br(allocer(), ARGB(184, 255, 184, 240));
 
 #else
 
@@ -115,26 +118,26 @@ void simple_tap::draw_simple(simple_graphics & g)
 
       get_client_rect(rectClient);
 
-      g.fill_rect(rectClient, br);
+      pgraphics->FillRect(rectClient, br);
 
-      draw_focus_rect(g);
+      draw_focus_rect(pgraphics);
 
 
    }
 
-   draw_text(g);
+   draw_text(pgraphics);
 
 }
 
 
-void simple_tap::draw_volume(simple_graphics & g)
+void simple_tap::draw_volume(::draw2d::graphics * pgraphics)
 {
 
    {
 
       
 
-      g.set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       COLORREF crOut;
 
@@ -204,43 +207,45 @@ void simple_tap::draw_volume(simple_graphics & g)
 
       int32_t iBorderH = height(&rectClient) / 2;
 
-      simple_linear_gradient_brush br1(g, rectClient.left, rectClient.top - 1, rectClient.left, rectClient.top + iBorderH + 2, crOut, crIn);
+      ::draw2d::brush_sp br(allocer());
 
-      g.fill_rect(rect_dim(rectClient.left, rectClient.top, (int32_t)width(&rectClient), iBorderH), br1);
+      br->CreateLinearGradientBrush(point(rectClient.left, rectClient.top - 1), point(rectClient.left, rectClient.top + iBorderH + 2), crOut, crIn);
 
-      simple_linear_gradient_brush br2(g, rectClient.left, rectClient.top + iBorderH - 1, rectClient.left, rectClient.top + iBorderH * 2 + 2, crIn, crOut);
+      pgraphics->FillRect(rect(rectClient.left, rectClient.top, (int32_t)width(&rectClient), iBorderH), br);
 
-      g.fill_rect(rect_dim(rectClient.left, rectClient.top + iBorderH, (int32_t)width(&rectClient), iBorderH), br2);
+      br->CreateLinearGradientBrush(point(rectClient.left, rectClient.top + iBorderH - 1), point(rectClient.left, rectClient.top + iBorderH * 2 + 2), crIn, crOut);
+
+      pgraphics->FillRect(rect(rectClient.left, rectClient.top + iBorderH, (int32_t)width(&rectClient), iBorderH), br);
 
       /*Gdiplus::Pen pen1(crBorderOut);
 
       graphics2.DrawRectangle(&pen1, rectClient.left, rectClient.top, width(&rectClient), iBorderH * 2);*/
 
-      draw_focus_rect(g);
+      draw_focus_rect(pgraphics);
 
-      simple_solid_pen pen(g, crBorderIn);
+      ::draw2d::pen_sp pen(pgraphics, 1.0, crBorderIn);
 
-      g.draw_rect(rect_dim(rectClient.left + 1, rectClient.top + 1, (int32_t)width(&rectClient) - 2, iBorderH * 2 - 2), pen);
+      pgraphics->DrawRect(rect(rectClient.left + 1, rectClient.top + 1, (int32_t)width(&rectClient) - 2, iBorderH * 2 - 2), pen);
 
    }
 
-   draw_text(g);
+   draw_text(pgraphics);
 
 }
 
 
-void simple_tap::draw_text(simple_graphics & g)
+void simple_tap::draw_text(::draw2d::graphics * pgraphics)
 {
 
    rect rectClient;
 
    get_client_rect(rectClient);
 
-   g.set_alpha_mode(::draw2d::alpha_mode_blend);
+   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
    
-   simple_solid_brush b(g, ARGB(223, 84, 49, 77));
+   ::draw2d::brush_sp b(allocer(), ARGB(223, 84, 49, 77));
 
 #else
 
@@ -248,15 +253,17 @@ void simple_tap::draw_text(simple_graphics & g)
 
 #endif
 
-   g.select(b);
+   pgraphics->SelectObject(b);
 
-   simple_pixel_font f(g, (int32_t)height(rectClient) * 10, "Geneva");
+   ::draw2d::font_sp f(allocer());
+   
+   f->create_pixel_font("Geneva", (int32_t)height(rectClient) * 10);
 
-   g.select(f);
+   pgraphics->SelectObject(f);
 
    float fMargin = (height(&rectClient) * ((1.0f - 0.7f) / 2.0f));
 
-   g.text_out((int32_t)(rectClient.left + fMargin), (int32_t)(rectClient.top + fMargin), m_strText);
+   pgraphics->TextOut((int32_t)(rectClient.left + fMargin), (int32_t)(rectClient.top + fMargin), m_strText);
 
 }
 

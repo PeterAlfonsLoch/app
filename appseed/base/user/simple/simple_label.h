@@ -1,8 +1,8 @@
-#pragma
+#pragma once
 
 
-class CLASS_DECL_BOOT simple_label :
-   public simple_ui
+class CLASS_DECL_BASE simple_label :
+   virtual public ::simple_ui
 {
 public:
 
@@ -11,7 +11,7 @@ public:
    virtual ~simple_label();
 
    
-   virtual void draw_this(simple_graphics & g);
+   virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
 
 

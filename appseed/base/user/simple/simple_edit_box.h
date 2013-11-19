@@ -1,8 +1,8 @@
-#pragma
+#pragma once
 
 
-class CLASS_DECL_BOOT simple_edit_box :
-   public simple_ui
+class CLASS_DECL_BASE simple_edit_box :
+   virtual public ::simple_ui
 {
 public:
 
@@ -14,7 +14,7 @@ public:
    virtual ~simple_edit_box();
    
    
-   virtual void draw_this(simple_graphics & g);
+   virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
 
    virtual bool on_char(int32_t iKey, const string & strChar);

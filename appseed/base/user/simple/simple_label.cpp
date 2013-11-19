@@ -1,4 +1,8 @@
 #include "framework.h"
+#include "base/spa/spa_style.h"
+#include "simple_ui.h"
+#include "simple_label.h"
+
 
 simple_label::simple_label()
 {
@@ -12,16 +16,16 @@ simple_label::~simple_label()
 
 
 
-void simple_label::draw_this(simple_graphics & g)
+void simple_label::_001OnDraw(::draw2d::graphics * pgraphics)
 {
 
 
-   g.set_alpha_mode(::draw2d::alpha_mode_blend);
+   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
 
    COLORREF c;
 
-   if(get_style()->m_eschema == ::hotplugin::plugin::schema_darker)
+   //if(get_style()->m_eschema == ::hotplugin::plugin::schema_darker)
    {
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
@@ -31,7 +35,7 @@ void simple_label::draw_this(simple_graphics & g)
 #endif
 
    }
-   else
+   //else
    {
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
@@ -46,21 +50,21 @@ void simple_label::draw_this(simple_graphics & g)
 
    get_client_rect(rectClient);
 
-   simple_brush b;
+   ::draw2d::brush_sp b(allocer());
 
-   b.create_solid(g, c);
+   b->create_solid(c);
 
-   simple_font f;
+   ::draw2d::font_sp f(allocer());
 
-   f.create_pixel(g, (int32_t)height(rectClient) * 10, "Geneva");
+   f->create_pixel_font("Geneva", (int32_t)height(rectClient) * 10);
 
    float fMargin = (height(rectClient) * ((1.0f - 0.7f) / 2.0f));
 
-   g.select(f);
+   pgraphics->SelectObject(f);
 
-   g.select(b);
+   pgraphics->SelectObject(b);
 
-   g.text_out(rectClient.left, (int32_t)(rectClient.top + fMargin), m_strText);
+   pgraphics->TextOut(rectClient.left, (int32_t)(rectClient.top + fMargin), m_strText);
 
 }
 
