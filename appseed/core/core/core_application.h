@@ -107,87 +107,6 @@ public:
 };
 
 
-class CLASS_DECL_CORE application_base :
-   virtual public base_application,
-   virtual public ::core::live_object,
-   virtual public thread
-{
-public:
-
-   // Running args (can be changed in initialize_instance)
-   // Human-redable name of the application. Normally set in
-   // constructor or retreived from __IDS_APP_TITLE.
-   smart_pointer < application_base >  m_p;
-   //::plane::application *         m_pappCube;
-
-
-   virtual void construct() = 0;
-
-
-   virtual bool process_initialize() = 0;
-
-   virtual bool initialize1() = 0;
-   virtual bool initialize2() = 0;
-   virtual bool initialize3() = 0;
-
-   virtual bool initialize() = 0;
-
-   virtual void LockTempMaps() = 0;
-   virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE) = 0;
-   virtual void TermThread(HINSTANCE hInstTerm) = 0;
-
-
-#ifdef METROWIN
-   virtual sp(::user::interaction) window_from_os_data(void * pdata) = 0;
-   virtual sp(::user::interaction) window_from_os_data_permanent(void * pdata) = 0;
-#else
-   virtual sp(::user::window) window_from_os_data(void * pdata) = 0;
-   virtual sp(::user::window) window_from_os_data_permanent(void * pdata) = 0;
-#endif
-
-   virtual sp(::user::window) FindWindow(const char * lpszClassName, const char * lpszWindowName) = 0;
-   virtual sp(::user::window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow) = 0;
-
-   virtual string get_version() = 0;
-
-   virtual thread * GetThread() = 0;
-   virtual void set_thread(thread * pthread) = 0;
-
-   virtual void SetCurrentHandles() = 0;
-
-#ifndef METROWIN
-   virtual void get_time(timeval *p) = 0;
-#endif
-   virtual void set_env_var(const string & var,const string & value) = 0;
-   virtual uint32_t get_thread_id() = 0;
-
-
-   virtual bool set_main_init_data(::core::main_init_data * pdata) = 0;
-
-   virtual bool is_session() = 0;
-   virtual bool is_system() = 0;
-
-   virtual bool is_serviceable() = 0;
-
-   virtual bool _001OnDDECommand(const char * lpcsz) = 0;
-   virtual void _001EnableShellOpen() = 0;
-   virtual sp(::user::document_interface) _001OpenDocumentFile(var varFile) = 0;
-   virtual void _001OnFileNew(signal_details * pobj) = 0;
-
-   virtual void ShowWaitCursor(bool bShow = true) = 0;
-
-
-   virtual ::user::printer * get_printer(const char * pszDeviceName) = 0;
-
-
-   virtual bool update_module_paths() = 0;
-
-   virtual string draw2d_get_default_library_name() = 0;
-   virtual string multimedia_audio_get_default_library_name() = 0;
-   virtual string multimedia_audio_mixer_get_default_library_name() = 0;
-   virtual string veriwell_multimedia_music_midi_get_default_library_name() = 0;
-
-};
 
 
 class CLASS_DECL_CORE application :
@@ -349,8 +268,6 @@ public:
    // LKG
    //   uint32_t m_dwPolicies;      // block for storing boolean system policies
 
-   int32_t                       m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
-   HCURSOR                       m_hcurWaitCursorRestore; // old cursor to restore after wait cursor
 
    uint32_t                      m_dwPolicies;            // block for storing boolean system policies
 
@@ -746,8 +663,6 @@ public:
 
    // Advanced: to override message boxes and other hooks
    virtual int32_t DoMessageBox(const char * lpszPrompt, UINT nType, UINT nIDPrompt);
-   virtual void DoWaitCursor(int32_t nCode); // 0 => restore, 1=> begin, -1=> end
-   virtual void ShowWaitCursor(bool bShow = true);
 
    // Advanced: process async DDE request
    virtual bool OnDDECommand(LPTSTR lpszCommand);

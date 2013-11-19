@@ -1055,6 +1055,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base_machine_event.h" />
     <ClInclude Include="base\base_machine_event_central.h" />
     <ClInclude Include="base\base_machine_event_data.h" />
+    <ClInclude Include="base\base_main_init_data.h" />
     <ClInclude Include="base\base_message.h" />
     <ClInclude Include="base\base_message_queue.h" />
     <ClInclude Include="base\base_message_queue_listener.h" />
@@ -1522,6 +1523,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\datetime\datetime_departament.h" />
     <ClInclude Include="primitive\datetime\datetime_duration.h" />
     <ClInclude Include="primitive\datetime\datetime_time.h" />
+    <ClInclude Include="primitive\datetime\datetime_value.h" />
     <ClInclude Include="primitive\geometry\geometry.h" />
     <ClInclude Include="primitive\geometry\geometry_align.h" />
     <ClInclude Include="primitive\geometry\geometry_geometry.h" />
@@ -1764,6 +1766,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\base_application.cpp" />
     <ClCompile Include="base\base_assert.cpp" />
     <ClCompile Include="base\base_checked.cpp" />
+    <ClCompile Include="base\base_cmdtarg.cpp" />
+    <ClCompile Include="base\base_command_target.cpp" />
     <ClCompile Include="base\base_conv.cpp" />
     <ClCompile Include="base\base_element.cpp" />
     <ClCompile Include="base\base_message.cpp" />
@@ -3930,6 +3934,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="filesystem\file\file_stream_buffer_base.cpp" />
     <ClCompile Include="filesystem\file\file_string_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_system.cpp" />
+    <ClCompile Include="filesystem\file\file_text_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_timeout_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_transfer_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_writer.cpp" />
@@ -4113,6 +4118,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\collection\collection_var_array.cpp" />
     <ClCompile Include="primitive\comparison\comparison_md5.cpp" />
     <ClCompile Include="primitive\comparison\comparison_var_strict.cpp" />
+    <ClCompile Include="primitive\datetime\datetime_departament.cpp" />
     <ClCompile Include="primitive\datetime\datetime_duration.cpp" />
     <ClCompile Include="primitive\datetime\datetime_time.cpp" />
     <ClCompile Include="primitive\geometry\geometry_point.cpp" />
@@ -4123,6 +4129,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\math\math_math.cpp" />
     <ClCompile Include="primitive\primitive_application_bias.cpp" />
     <ClCompile Include="primitive\primitive_bit.cpp" />
+    <ClCompile Include="primitive\primitive_color.cpp" />
     <ClCompile Include="primitive\primitive_command.cpp" />
     <ClCompile Include="primitive\primitive_command_line.cpp" />
     <ClCompile Include="primitive\primitive_command_thread.cpp" />

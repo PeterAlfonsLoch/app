@@ -35,9 +35,13 @@ public:
 
 
 class CLASS_DECL_BASE base_application :
-   virtual public thread
+   virtual public thread,
+   virtual public ::core::live_object
 {
 public:
+
+
+   smart_pointer < base_application >              m_pimpl;
 
 
    base_system *                                   m_pbasesystem;
@@ -69,6 +73,8 @@ public:
    bool                                            m_bLicense;
    string                                          m_strBaseSupportId;
    sp(class ::fontopus::license)                   m_splicense;
+   int32_t                                         m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
+   HCURSOR                                         m_hcurWaitCursorRestore; // old cursor to restore after wait cursor
 
 
 
@@ -135,6 +141,8 @@ public:
    virtual void add_frame(sp(::user::interaction) pwnd);
    virtual void remove_frame(sp(::user::interaction) pwnd);
 
+   virtual void DoWaitCursor(int32_t nCode); // 0 => restore, 1=> begin, -1=> end
+   virtual void ShowWaitCursor(bool bShow = true);
 
 
 #ifndef METROWIN
@@ -245,6 +253,55 @@ public:
    virtual sp(::user::window) window_from_os_data(void * pdata);
    virtual sp(::user::window) window_from_os_data_permanent(void * pdata);
 #endif
+
+
+      virtual void construct();
+
+
+      virtual bool process_initialize();
+
+      virtual bool initialize1();
+      virtual bool initialize2();
+      virtual bool initialize3();
+
+      virtual bool initialize();
+
+      virtual void LockTempMaps();
+      virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
+      virtual void TermThread(HINSTANCE hInstTerm);
+
+
+
+      virtual sp(::user::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
+      virtual sp(::user::window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
+
+      virtual string get_version();
+
+      virtual void set_thread(thread * pthread);
+
+      virtual void SetCurrentHandles();
+
+      virtual void set_env_var(const string & var, const string & value);
+      virtual uint32_t get_thread_id();
+
+
+      virtual bool set_main_init_data(::core::main_init_data * pdata);
+
+
+      virtual bool _001OnDDECommand(const char * lpcsz);
+      virtual void _001EnableShellOpen();
+      virtual sp(::user::document_interface) _001OpenDocumentFile(var varFile);
+      virtual void _001OnFileNew(signal_details * pobj);
+
+      virtual ::user::printer * get_printer(const char * pszDeviceName);
+
+
+      virtual bool update_module_paths();
+
+      virtual string draw2d_get_default_library_name();
+      virtual string multimedia_audio_get_default_library_name();
+      virtual string multimedia_audio_mixer_get_default_library_name();
+      virtual string veriwell_multimedia_music_midi_get_default_library_name();
 
 };
 

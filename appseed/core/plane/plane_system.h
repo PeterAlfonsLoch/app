@@ -211,8 +211,6 @@ namespace plane
       ::http::system                         & http();
       ::net::email_departament               & email();
 
-      ::user::str                            & str();
-
       ::filehandler::handler                 & filehandler();
 
       ::colorertake5::ParserFactory          & parser_factory();

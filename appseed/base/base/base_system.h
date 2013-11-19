@@ -265,6 +265,8 @@ public:
 
    class ::crypto::crypto                       & crypto();
    ::datetime::departament                      & datetime();
+   ::user::str                                  & str();
+
 
 
 

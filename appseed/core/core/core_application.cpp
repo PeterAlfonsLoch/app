@@ -199,9 +199,6 @@ application::application() :
    m_pcolorertake5            = NULL;
    m_psockets                 = NULL;
 
-   // initialize wait cursor state
-   m_iWaitCursorCount = 0;
-   m_hcurWaitCursorRestore = NULL;
 
 
 }
@@ -2852,62 +2849,6 @@ void application::HideApplication()
 }
 
 
-void application::DoWaitCursor(int32_t nCode)
-{
-
-   if(nCode < 0)
-   {
-
-      m_iWaitCursorCount = 0;
-      ShowWaitCursor(false);
-
-   }
-   else if(nCode == 0)
-   {
-
-      if(m_iWaitCursorCount > 0)
-      {
-         m_iWaitCursorCount--;
-      }
-
-      if(m_iWaitCursorCount > 0)
-      {
-
-         ShowWaitCursor(true);
-
-      }
-
-      m_iWaitCursorCount = 0;
-      ShowWaitCursor(false);
-
-   }
-   else
-   {
-
-      if(m_iWaitCursorCount < 0)
-      {
-         m_iWaitCursorCount = 0;
-      }
-
-      m_iWaitCursorCount++;
-
-      ShowWaitCursor(true);
-
-   }
-
-
-
-}
-
-void application::ShowWaitCursor(bool bShow)
-{
-
-   if(::application_base::m_p == NULL)
-      return;
-
-   ::application_base::m_p->ShowWaitCursor(bShow);
-
-}
 
 
 

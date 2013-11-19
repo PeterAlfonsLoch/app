@@ -36,9 +36,6 @@
     <Filter Include="Source Files\exception">
       <UniqueIdentifier>{934af833-4170-42f6-9310-7447b5d7edea}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\file">
-      <UniqueIdentifier>{22c285dd-ad96-4ecc-8b5f-c3b809e98645}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\os">
       <UniqueIdentifier>{9e92b674-0ae7-4e1e-bd86-d513ccacb6a8}</UniqueIdentifier>
     </Filter>
@@ -267,9 +264,6 @@
     <Filter Include="Header Files\user\userpresence">
       <UniqueIdentifier>{5f8d1e2a-7a7d-40d2-b25c-52033b755438}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\file\fs">
-      <UniqueIdentifier>{b19eccb3-0ff3-4b9c-b6de-ab7724054f1c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\base\compress">
       <UniqueIdentifier>{81b4689d-269d-4f05-8d03-9fd0d7fb0783}</UniqueIdentifier>
     </Filter>
@@ -287,9 +281,6 @@
     </Filter>
     <Filter Include="Source Files\base\compress\zip">
       <UniqueIdentifier>{487ab119-db2e-4fdd-b0b1-3d12dad9dd07}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\file\file">
-      <UniqueIdentifier>{7164038b-3f76-4ce1-96d5-cc885cbf7871}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\filesystem">
       <UniqueIdentifier>{e735cbc7-6be2-44c9-b19a-0c3d6ee00183}</UniqueIdentifier>
@@ -668,6 +659,15 @@
     </Filter>
     <Filter Include="Source Files\base\openssl\ssl">
       <UniqueIdentifier>{fb1b742b-89d0-4feb-a138-c024a19518c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem">
+      <UniqueIdentifier>{22c285dd-ad96-4ecc-8b5f-c3b809e98645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\fs">
+      <UniqueIdentifier>{b19eccb3-0ff3-4b9c-b6de-ab7724054f1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\file">
+      <UniqueIdentifier>{7164038b-3f76-4ce1-96d5-cc885cbf7871}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -2804,6 +2804,12 @@
     <ClInclude Include="base\crypto\crypto_hmac_sha1.h">
       <Filter>Header Files\base\crypto</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\datetime\datetime_value.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_main_init_data.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_c.c">
@@ -3803,151 +3809,151 @@
       <Filter>Source Files\base\compress\zlib</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_application.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_binary_buffer.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_byte_input_stream.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_byte_input_stream_binary_buffer.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_byte_output_stream.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_byte_output_stream_binary_buffer.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_byte_stream.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_byte_stream_memory_buffer.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_c.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_composite.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_dir.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_dir_application.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_dir_system.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_dir2.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_exception.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_input_stream.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_memory_buffer.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_output_stream.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_plain_text_input_stream.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_plain_text_output_stream.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_plain_text_output_stream_string_buffer.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_plain_text_stream.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_plain_text_stream_base.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_plain_text_stream_memory_buffer.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_plain_text_stream_string_buffer.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_reader.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_seekable.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_simple_binary_buffer.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_stream.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_stream_base.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_stream_buffer.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_stream_buffer_base.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_stream2.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_string_buffer.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_system.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_timeout_buffer.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_transfer_buffer.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_writer.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_writer_flush.cpp">
-      <Filter>Source Files\file\file</Filter>
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\fs_data.cpp">
-      <Filter>Source Files\file\fs</Filter>
+      <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\fs_fs.cpp">
-      <Filter>Source Files\file\fs</Filter>
+      <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\fs_ifs.cpp">
-      <Filter>Source Files\file\fs</Filter>
+      <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\fs_ifs_file.cpp">
-      <Filter>Source Files\file\fs</Filter>
+      <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\fs_item.cpp">
-      <Filter>Source Files\file\fs</Filter>
+      <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\fs_item_array.cpp">
-      <Filter>Source Files\file\fs</Filter>
+      <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\fs_native_fs.cpp">
-      <Filter>Source Files\file\fs</Filter>
+      <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\fs_remote_native_file.cpp">
-      <Filter>Source Files\file\fs</Filter>
+      <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\fs_remote_native_fs.cpp">
-      <Filter>Source Files\file\fs</Filter>
+      <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\fs_set.cpp">
-      <Filter>Source Files\file\fs</Filter>
+      <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
     <ClCompile Include="net\http\http.cpp">
       <Filter>Source Files\net\http</Filter>
@@ -5928,6 +5934,21 @@
     </ClCompile>
     <ClCompile Include="base\openssl\ssl\d1_clnt.c">
       <Filter>Source Files\base\openssl\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_text_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_color.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_departament.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_command_target.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_cmdtarg.cpp">
+      <Filter>Source Files\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

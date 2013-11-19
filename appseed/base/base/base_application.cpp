@@ -40,6 +40,10 @@ base_application::base_application() :
 
    m_bLicense = true;
 
+   // initialize wait cursor state
+   m_iWaitCursorCount = 0;
+   m_hcurWaitCursorRestore = NULL;
+
 }
 
 base_application::~base_application()
@@ -460,3 +464,304 @@ sp(::user::window) base_application::window_from_os_data_permanent(void * pdata)
 
 }
 #endif
+
+
+
+void base_application::DoWaitCursor(int32_t nCode)
+{
+
+   if (nCode < 0)
+   {
+
+      m_iWaitCursorCount = 0;
+      ShowWaitCursor(false);
+
+   }
+   else if (nCode == 0)
+   {
+
+      if (m_iWaitCursorCount > 0)
+      {
+         m_iWaitCursorCount--;
+      }
+
+      if (m_iWaitCursorCount > 0)
+      {
+
+         ShowWaitCursor(true);
+
+      }
+
+      m_iWaitCursorCount = 0;
+      ShowWaitCursor(false);
+
+   }
+   else
+   {
+
+      if (m_iWaitCursorCount < 0)
+      {
+         m_iWaitCursorCount = 0;
+      }
+
+      m_iWaitCursorCount++;
+
+      ShowWaitCursor(true);
+
+   }
+
+
+
+}
+
+void base_application::ShowWaitCursor(bool bShow)
+{
+
+   if (m_pimpl == NULL)
+      return;
+
+   m_pimpl->ShowWaitCursor(bShow);
+
+}
+
+
+
+void base_application::construct()
+{
+   
+   throw interface_only_exception(this);
+
+}
+
+
+bool base_application::process_initialize()
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+bool base_application::initialize1()
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+bool base_application::initialize2()
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+bool base_application::initialize3()
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+bool base_application::initialize()
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+void base_application::LockTempMaps()
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+bool base_application::UnlockTempMaps(bool bDeleteTemps)
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+void base_application::TermThread(HINSTANCE hInstTerm)
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+#ifdef METROWIN
+sp(::user::interaction) base_application::window_from_os_data(void * pdata)
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+sp(::user::interaction) base_application::window_from_os_data_permanent(void * pdata)
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+#endif
+
+sp(::user::window) base_application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+sp(::user::window) base_application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+string base_application::get_version()
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+void base_application::set_thread(thread * pthread)
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+void base_application::SetCurrentHandles()
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+#ifndef METROWIN
+void base_application::get_time(timeval *p)
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+#endif
+void base_application::set_env_var(const string & var, const string & value)
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+bool base_application::set_main_init_data(::core::main_init_data * pdata)
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+
+
+bool base_application::_001OnDDECommand(const char * lpcsz)
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+void base_application::_001EnableShellOpen()
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+sp(::user::document_interface) base_application::_001OpenDocumentFile(var varFile)
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+void base_application::_001OnFileNew(signal_details * pobj)
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+::user::printer * base_application::get_printer(const char * pszDeviceName)
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+bool base_application::update_module_paths()
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+string base_application::draw2d_get_default_library_name()
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+string base_application::multimedia_audio_get_default_library_name()
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+string base_application::multimedia_audio_mixer_get_default_library_name()
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+string base_application::veriwell_multimedia_music_midi_get_default_library_name()
+{
+
+   throw interface_only_exception(this);
+
+}
+
+

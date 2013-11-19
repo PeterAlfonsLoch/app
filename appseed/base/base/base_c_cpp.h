@@ -84,6 +84,7 @@ namespace user
    class base_interaction;
    class create_context;
    class view;
+   class printer;
 
 
 } // namespace user
@@ -412,6 +413,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "user/user_keyboard.h"
 #include "user/user_user.h"
 
+#include "base_main_init_data.h"
+
 #include "base_application.h"
 
 
@@ -464,11 +467,16 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 #include "crypto/crypto.h"
 
+
+#include "primitive/datetime/datetime_value.h"
 #include "primitive/datetime/datetime_departament.h"
 
 
 #include "user/user_window_draw.h"
 
+#include "base/str/str_international_locale_schema.h"
+
+#include "base/user/user_str.h"
 
 #include "base_system.h"
 
@@ -483,10 +491,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base/os/os_process.h"
 
 
-#include "base/str/str_international_locale_schema.h"
 
 
-#include "base/user/user_str.h"
 
 
 
