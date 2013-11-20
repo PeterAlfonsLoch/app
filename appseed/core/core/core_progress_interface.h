@@ -16,7 +16,7 @@ namespace core
 {
 
    class CLASS_DECL_CORE progress_interface :
-      virtual public object
+      virtual public ::object
    {
    public:
       CA2_EX1_progress_interface(= 0)

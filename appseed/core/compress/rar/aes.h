@@ -15,7 +15,7 @@ namespace crypto
       class decoder:
         public aes_cbc_decoder,
         public ::libcompress::set_decoder_properties2_interface,
-        public crypto::set_password_interface
+        public ::crypto::set_password_interface
       {
       public:
 

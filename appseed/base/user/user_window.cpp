@@ -412,7 +412,7 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
-   sp(::user::interaction) window::GetParentFrame()
+   sp(::user::frame_window) window::GetParentFrame()
    {
       throw interface_only_exception(get_app());
    }
@@ -442,7 +442,7 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
-   sp(::user::interaction) window::GetTopLevelFrame()
+   sp(::user::frame_window) window::GetTopLevelFrame()
    {
       throw interface_only_exception(get_app());
    }
@@ -458,7 +458,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Scroll bar helpers
    //  hook for window functions
-   //    only works for derived class (eg: ::user::view) that override 'GetScrollBarCtrl'
+   //    only works for derived class (eg: ::user::impact) that override 'GetScrollBarCtrl'
    // if the window doesn't have a _visible_ windows scrollbar - then
    //   look for a sibling with the appropriate ID
 
@@ -1027,7 +1027,7 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
-   sp(::user::interaction) window::EnsureParentFrame()
+   sp(::user::frame_window) window::EnsureParentFrame()
    {
       throw interface_only_exception(get_app());
    }

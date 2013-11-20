@@ -7,7 +7,7 @@ namespace colorertake5
     @ingroup colorer_handlers
 */
 class RegionMapperImpl : public RegionMapper,
-   virtual public object
+   virtual public ::object
 {
 public:
   RegionMapperImpl(sp(base_application) papp) : element(papp){};

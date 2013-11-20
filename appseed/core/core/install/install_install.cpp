@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "app/appseed/boot/spa/spa_install_ca2.h"
 
 
 namespace core

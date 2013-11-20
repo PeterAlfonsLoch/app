@@ -45,8 +45,8 @@ namespace libcompress
 
 
 
-   class CLASS_DECL_BASE set_coder_properties_interface :
-      virtual public object
+   class CLASS_DECL_CORE set_coder_properties_interface :
+      virtual public ::object
    {
    public:
       virtual HRes SetCoderProperties(const int32_t * propIDs, const var * props, uint32_t numProps) = 0;

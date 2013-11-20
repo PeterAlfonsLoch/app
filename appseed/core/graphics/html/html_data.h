@@ -16,7 +16,7 @@ namespace html
 
 
       class CLASS_DECL_CORE image :
-         virtual public object
+         virtual public ::object
       {
       public:
          index      m_iIndex;

@@ -246,9 +246,17 @@ namespace draw2d
       virtual bool drawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool draw_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
 
+      virtual bool DrawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2, ::draw2d::pen * ppen);
+      virtual bool drawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2, ::draw2d::pen * ppen);
+      virtual bool draw_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2, ::draw2d::pen * ppen);
+
       virtual bool DrawLine(float x1, float y1, float x2, float y2);
       virtual bool drawLine(float x1, float y1, float x2, float y2);
       virtual bool draw_line(float x1, float y1, float x2, float y2);
+
+      virtual bool DrawLine(float x1, float y1, float x2, float y2, ::draw2d::pen * ppen);
+      virtual bool drawLine(float x1, float y1, float x2, float y2, ::draw2d::pen * ppen);
+      virtual bool draw_line(float x1, float y1, float x2, float y2, ::draw2d::pen * ppen);
 
       virtual bool DrawRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool drawRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);

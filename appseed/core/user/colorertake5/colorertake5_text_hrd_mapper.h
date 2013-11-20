@@ -15,7 +15,7 @@ namespace colorertake5
    */
    class TextHRDMapper : 
       public RegionMapperImpl,
-      virtual public object
+      virtual public ::object
    {
    public:
    

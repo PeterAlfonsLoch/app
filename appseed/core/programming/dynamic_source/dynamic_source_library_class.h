@@ -25,7 +25,7 @@ namespace dynamic_source
 
 
    class CLASS_DECL_CORE library_class :
-      virtual public object
+      virtual public ::object
    {
    public:
 

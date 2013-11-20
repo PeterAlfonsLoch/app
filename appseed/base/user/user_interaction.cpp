@@ -30,7 +30,6 @@ namespace user
 
       m_crDefaultBackgroundColor = ARGB(0xcc, 0xcc, 0xcc, 0xcc);
 
-      m_pui = this;
       m_psession = NULL;
       m_bMessageWindow = false;
 
@@ -56,7 +55,6 @@ namespace user
 
          m_crDefaultBackgroundColor = ARGB(0xcc, 0xcc, 0xcc, 0xcc);
 
-         m_pui = this;
          m_psession = NULL;
          m_bMessageWindow = false;
 
@@ -184,7 +182,13 @@ namespace user
 
    }
 
-   sp(base_interaction) interaction::get_parent_base() const
+   bool interaction::hold(sp(::user::interaction) pui)
+   {
+      UNREFERENCED_PARAMETER(pui);
+      return false;
+   }
+
+   sp(interaction) interaction::get_parent_base() const
    {
       return get_parent();
    }
@@ -197,7 +201,7 @@ namespace user
       }
    }
 
-   sp(base_interaction) interaction::set_parent_base(sp(base_interaction) pguieParent)
+   sp(interaction) interaction::set_parent_base(sp(interaction) pguieParent)
    {
       return set_parent(pguieParent);
    }
@@ -1194,7 +1198,7 @@ namespace user
          return m_pimpl->IsWindowEnabled();
    }
 
-   sp(::user::interaction) interaction::GetTopLevelFrame()
+   sp(::user::frame_window) interaction::GetTopLevelFrame()
    {
       if (m_pimpl == NULL)
          return NULL;
@@ -1880,7 +1884,7 @@ namespace user
       return oswindow_Parent;
    }
 
-   sp(::user::interaction) interaction::EnsureParentFrame()
+   sp(::user::frame_window) interaction::EnsureParentFrame()
    {
       if (m_pimpl == NULL)
          return NULL;
@@ -1960,7 +1964,7 @@ namespace user
 
 
 
-   sp(::user::interaction) interaction::GetParentFrame()
+   sp(::user::frame_window) interaction::GetParentFrame()
    {
       ASSERT_VALID(this);
 
@@ -2848,6 +2852,11 @@ namespace user
 
    void interaction::on_select()
    {
+   }
+
+   bool interaction::is_place_holder()
+   {
+      return false;
    }
 
    ::visual::e_cursor interaction::get_cursor()

@@ -14,7 +14,7 @@ namespace core
    };
 
    class CLASS_DECL_CORE savings :
-      virtual public object
+      virtual public ::object
    {
    public:
       savings(sp(base_application) papp);

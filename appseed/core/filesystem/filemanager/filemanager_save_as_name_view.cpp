@@ -13,7 +13,7 @@ FileManagerSaveAsView::FileManagerSaveAsView(sp(base_application) papp) :
 
 }
 
-void FileManagerSaveAsView::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint)
+void FileManagerSaveAsView::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
 {
    ::filemanager::data_interface::on_update(pSender, lHint, phint);
    if(phint != NULL)

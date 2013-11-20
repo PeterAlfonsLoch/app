@@ -44,7 +44,7 @@ namespace simpledb
 
       if(!m_pserver->initialize())
       {
-         Application.user()->simple_message_box(NULL, "Could not initialize simpledb.", MB_OK);
+         Application.userex()->simple_message_box(NULL, "Could not initialize simpledb.", MB_OK);
          return false;
       }
 
@@ -216,7 +216,7 @@ namespace simpledb
       if(bUser)
       {
 
-         if(App(m_pbaseapp).get_safe_user() != NULL)
+         if(App(m_pbaseapp).safe_get_user() != NULL)
          {
 
             data_set("keyboard_layout", pszPath);

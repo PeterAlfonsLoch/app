@@ -29,6 +29,7 @@ namespace plane
       sp(::userfs::userfs)                m_spuserfs;
       sp(::html::html)                    m_phtml;
       ::simpledb::simpledb                m_simpledb;
+      sp(::userex::userex)                m_spuserex;
 
 
       application();
@@ -71,6 +72,7 @@ namespace plane
       inline sp(class ::fs::data)               fs()           { return m_spfsdata     ; }
       inline sp(::html::html)                   html()         { return m_phtml        ; }
       inline class ::simpledb::simpledb         & simpledb()   { return m_simpledb     ; }
+      inline sp(::userex::userex)               userex()       { return m_spuserex; }
 
 
       virtual bool process_initialize();
@@ -104,7 +106,7 @@ namespace plane
       //////////////////////////////////////////////////////////////////////////////////////////////////
       // System/System
       //
-      sp(::user::document) hold(sp(::user::interaction) pui);
+      sp(::user::object) hold(sp(::user::interaction) pui);
 
       virtual ::count get_monitor_count();
       virtual bool  get_monitor_rect(index i, LPRECT lprect);
@@ -150,7 +152,7 @@ namespace plane
 
       virtual void on_request(sp(::create_context) pcreatecontext);
 
-      sp(::user::document_interface) _001OpenDocumentFile(var varFile);
+      sp(::user::object) _001OpenDocumentFile(var varFile);
 
       sp(base_application) get_system();
 

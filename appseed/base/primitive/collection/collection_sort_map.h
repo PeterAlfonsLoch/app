@@ -6,7 +6,7 @@
 
 template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE = ::comparison::binary < KEY > >
 class sort_map :
-   virtual public object
+   virtual public ::object
 {
 public:
 

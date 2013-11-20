@@ -24,7 +24,7 @@ namespace user
 
 
    class CLASS_DECL_BASE window_map :
-      virtual public object
+      virtual public ::object
    {
    public:
 

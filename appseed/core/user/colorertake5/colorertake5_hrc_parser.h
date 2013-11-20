@@ -42,7 +42,7 @@ namespace colorertake5
    @ingroup colorer
    */
    class CLASS_DECL_CORE HRCParser :
-      virtual public object
+      virtual public ::object
    {
    public:
       /** Error Handler, used to inform application about different error conditions

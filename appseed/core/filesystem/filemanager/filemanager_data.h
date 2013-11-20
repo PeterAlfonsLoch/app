@@ -11,7 +11,7 @@ namespace filemanager
    public:
 
 
-      sp(::user::document_interface)      m_pdocumentSave;
+      sp(::user::object)      m_pdocumentSave;
       callback   *                        m_pfilemanager;
       sp(manager)                         m_pmanager;
       sp(manager)                         m_pmanagerMain;

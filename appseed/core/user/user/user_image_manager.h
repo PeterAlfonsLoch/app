@@ -8,7 +8,7 @@ namespace user
    class tool_bar;
 
    class CLASS_DECL_CORE image_manager :
-      virtual public object
+      virtual public ::object
    {
    public:
       //void LoadToolbar(tool_bar & toolbar, UINT * user);

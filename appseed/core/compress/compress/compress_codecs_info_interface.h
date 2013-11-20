@@ -3,8 +3,8 @@
 namespace libcompress
 {
 
-   class CLASS_DECL_BASE codecs_info_interface :
-      virtual public object
+   class CLASS_DECL_CORE codecs_info_interface :
+      virtual public ::object
    {
    public:
       virtual HRes GetNumberOfMethods(uint32_t *numMethods) = 0;

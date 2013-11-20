@@ -9,7 +9,7 @@ namespace zip
 {
 
    class CLASS_DECL_BASE File : 
-      virtual public object
+      virtual public ::object
    {
    public:
       ::file::binary_buffer_sp              m_pfile;

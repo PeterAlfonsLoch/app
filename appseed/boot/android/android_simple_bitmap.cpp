@@ -19,7 +19,7 @@ simple_bitmap::~simple_bitmap()
 
 }
 
-bool simple_bitmap::create(int32_t cx, int32_t cy, simple_graphics & g,  COLORREF ** ppdata)
+bool simple_bitmap::create(int32_t cx, int32_t cy, ::draw2d::graphics * pgraphics,  COLORREF ** ppdata)
 {
 
    /*BITMAPINFO m_Info;
@@ -57,7 +57,7 @@ bool simple_bitmap::create(int32_t cx, int32_t cy, simple_graphics & g,  COLORRE
 }
 
 
-bool simple_bitmap::create_from_data(int32_t cx, int32_t cy, COLORREF * pdata, simple_graphics & g)
+bool simple_bitmap::create_from_data(int32_t cx, int32_t cy, COLORREF * pdata, ::draw2d::graphics * pgraphics)
 {
 
    if(m_psurface != NULL)

@@ -23,7 +23,7 @@ namespace datetime
    {
    public:
       class CLASS_DECL_BASE international :
-         virtual public object
+         virtual public ::object
       {
       public:
          international(sp(base_application) papp);
@@ -35,7 +35,7 @@ namespace datetime
       };
 
       class CLASS_DECL_BASE str :
-         virtual public object
+         virtual public ::object
       {
       public:
          str(sp(base_application) papp);

@@ -7,6 +7,7 @@
 
 #define ID_MP3_SMALL_BELL			40000
 
+void play_small_bell();
 
 uint32_t g_dwPrepareSmallBell = 0;
 

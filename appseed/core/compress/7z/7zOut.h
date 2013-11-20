@@ -52,7 +52,7 @@ namespace n7z
    };
 
    class COutArchive :
-      virtual public object
+      virtual public ::object
    {
    public:
       uint64_t _prefixHeaderPos;

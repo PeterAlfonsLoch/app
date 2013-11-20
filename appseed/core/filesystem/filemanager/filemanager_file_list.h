@@ -12,7 +12,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE file_list :
-      virtual public ::user::view,
+      virtual public ::user::impact,
       virtual public ::userfs::list,
       virtual public data_interface
 
@@ -79,7 +79,7 @@ namespace filemanager
       void FileSize();
 
       virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
-      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
       bool _001OnUpdateCmdUi(cmd_ui * pcmdui);

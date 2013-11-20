@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "spa_installer.h"
+
 
 CLASS_DECL_BOOT bool send_short_message_to_installer(const char * psz, bool bLaunch);
 CLASS_DECL_BOOT void installer_call_sync(const char * path, const char * param);

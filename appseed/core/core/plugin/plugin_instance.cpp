@@ -8,7 +8,10 @@ namespace plugin
 {
 
 
-   instance::instance()
+   instance::instance(sp(base_application) papp) :
+      element(papp),
+      hotplugin::plugin(papp),
+      plugin(papp)
    {
 
       m_pfile           = NULL;
@@ -87,10 +90,10 @@ namespace plugin
 } // namespace plugin
 
 
-::hotplugin::plugin * new_hotplugin()
+::hotplugin::plugin * new_hotplugin(sp(base_application) papp)
 {
 
-   return new ::plugin::instance();
+   return new ::plugin::instance(papp);
 
 }
 

@@ -9,7 +9,7 @@ namespace user
 
 
    class tool_tip_tool :
-      virtual public object
+      virtual public ::object
    {
    public:
       tool_tip_tool();

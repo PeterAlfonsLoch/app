@@ -4,7 +4,7 @@ namespace sip
 {
 
    class CLASS_DECL_BASE transaction :
-      virtual public object
+      virtual public ::object
    {
    public:
       transaction(sp(base_application) papp);

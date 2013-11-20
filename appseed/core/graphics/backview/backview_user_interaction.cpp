@@ -155,7 +155,7 @@ namespace backview
       void interaction::install_message_handling(::message::dispatch * pdispatch)
       {
          Interface::install_message_handling(pdispatch);
-         ::user::view::install_message_handling(pdispatch);
+         ::user::impact::install_message_handling(pdispatch);
 
       }
 

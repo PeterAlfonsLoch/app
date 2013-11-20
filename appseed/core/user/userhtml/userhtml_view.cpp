@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 
-//   // BEGIN_MESSAGE_MAP(html_view, ::user::view)
+//   // BEGIN_MESSAGE_MAP(html_view, ::user::impact)
 //{{__MSG_MAP(html_view)
 /*
 ON_WM_DESTROY()
@@ -14,9 +14,9 @@ ON_WM_ERASEBKGND()
 // Standard printing commands
 ON_MESSAGE(WM_USER + 177, OnTabClick)
 ON_MESSAGE(WM_APP + 119, OnWavePlayerEvent)
-ON_COMMAND(ID_FILE_PRINT, ::user::view::OnFilePrint)
-ON_COMMAND(ID_FILE_PRINT_DIRECT, ::user::view::OnFilePrint)
-ON_COMMAND(ID_FILE_PRINT_PREVIEW, ::user::view::OnFilePrintPreview)
+ON_COMMAND(ID_FILE_PRINT, ::user::impact::OnFilePrint)
+ON_COMMAND(ID_FILE_PRINT_DIRECT, ::user::impact::OnFilePrint)
+ON_COMMAND(ID_FILE_PRINT_PREVIEW, ::user::impact::OnFilePrintPreview)
 */
 // // END_MESSAGE_MAP()
 
@@ -36,7 +36,7 @@ html_view::~html_view()
 
 void html_view::install_message_handling(::message::dispatch * pinterface)
 {
-   ::user::view::install_message_handling(pinterface);
+   ::user::impact::install_message_handling(pinterface);
 
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &html_view::_001OnDestroy);
    IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &html_view::_001OnSize);
@@ -45,9 +45,9 @@ void html_view::install_message_handling(::message::dispatch * pinterface)
    IGUI_WIN_MSG_LINK(WM_SETCURSOR, pinterface, this, &html_view::_001OnSetCursor);
 
    //   IGUI_WIN_MSG_LINK(WM_USER + 177     , this, this, &html_view::_001OnTabClick);
-   //connect_command(ID_FILE_PRINT, ::user::view::OnFilePrint)
-   //connect_command(ID_FILE_PRINT_DIRECT, ::user::view::OnFilePrint)
-   //connect_command(ID_FILE_PRINT_PREVIEW, ::user::view::OnFilePrintPreview)
+   //connect_command(ID_FILE_PRINT, ::user::impact::OnFilePrint)
+   //connect_command(ID_FILE_PRINT_DIRECT, ::user::impact::OnFilePrint)
+   //connect_command(ID_FILE_PRINT_PREVIEW, ::user::impact::OnFilePrintPreview)
    //   IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &::user::interaction::_001OnLButtonDown);
    //   IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &::user::interaction::_001OnLButtonUp);
    IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &::user::interaction::_001OnKeyDown);
@@ -66,12 +66,12 @@ void html_view::install_message_handling(::message::dispatch * pinterface)
 #ifdef DEBUG
 void html_view::assert_valid() const
 {
-   ::user::view::assert_valid();
+   ::user::impact::assert_valid();
 }
 
 void html_view::dump(dump_context & dumpcontext) const
 {
-   ::user::view::dump(dumpcontext);
+   ::user::impact::dump(dumpcontext);
 }
 #endif //DEBUG
 
@@ -79,16 +79,16 @@ void html_view::dump(dump_context & dumpcontext) const
 bool html_view::pre_create_window(CREATESTRUCT& cs)
 {
    cs.style &= ~WS_EX_CLIENTEDGE;
-   return ::user::view::pre_create_window(cs);
+   return ::user::impact::pre_create_window(cs);
 }
 void html_view::_001OnInitialUpdate(signal_details * pobj) 
 {
 
-   ::user::view::_001OnInitialUpdate(pobj);
+   ::user::impact::_001OnInitialUpdate(pobj);
 
 }
 
-void html_view::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint) 
+void html_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint) 
 {
    UNREFERENCED_PARAMETER(pSender);
    UNREFERENCED_PARAMETER(lHint);
@@ -116,7 +116,7 @@ void html_view::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint)
 
 void html_view::_001OnDestroy(signal_details * pobj) 
 {
-   ::user::view::_001OnDestroy(pobj);
+   ::user::impact::_001OnDestroy(pobj);
 
 }
 
@@ -158,7 +158,7 @@ void html_view::_001OnSetCursor(signal_details * pobj)
 
 sp(html_document) html_view::get_document()
 {
-   return  (::user::view::get_document());
+   return  (::user::impact::get_document());
 }
 
 string html_view::GetLocationURL()

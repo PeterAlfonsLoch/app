@@ -10,7 +10,7 @@ namespace str
 
 
       class CLASS_DECL_BASE locale_schema :
-         virtual public object
+         virtual public ::object
       {
       public:
 

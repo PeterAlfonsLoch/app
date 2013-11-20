@@ -9,66 +9,67 @@
 namespace user
 {
 
-   document_template::document_template(sp(base_application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass) :
+   impact_system::impact_system(sp(base_application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass) :
       element(papp)
    {
 
-      m_bQueueDocumentOpening    = true;
-      m_strMatter                = pszMatter;
-      m_typeinfoDocument         = pDocClass;
-      m_typeinfoFrame            = pFrameClass;
-      m_typeinfoView             = pViewClass;
-      m_pAttachedFactory         = NULL;
-      m_bAutoDelete              = TRUE;   // usually allocated on the heap
+      m_bQueueDocumentOpening = true;
+      m_strMatter = pszMatter;
+      m_typeinfoDocument = pDocClass;
+      m_typeinfoFrame = pFrameClass;
+      m_typeinfoView = pViewClass;
+      m_pAttachedFactory = NULL;
+      m_bAutoDelete = TRUE;   // usually allocated on the heap
 
       load_template();
 
    }
 
-   void document_template::load_template()
+   void impact_system::load_template()
    {
-      if (m_strDocStrings.is_empty() && System.matter_as_string(get_app(), m_strMatter, "full_string.txt").is_empty())
+/*      if (m_strDocStrings.is_empty() && System.matter_as_string(get_app(), m_strMatter, "full_string.txt").is_empty())
       {
-         TRACE(::core::trace::category_AppMsg, 0, "Warning: no ::user::document_interface names in string for template #%d.\n", m_strMatter);
-      }
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: no ::user::object names in string for template #%d.\n", m_strMatter);
+      }*/
    }
 
 
-   document_template::~document_template()
+   impact_system::~impact_system()
    {
    }
 
-   bool document_template::GetDocString(string & rString, enum DocStringIndex i) const
+   bool impact_system::GetDocString(string & rString, enum DocStringIndex i) const
    {
-      return ::core::extract_sub_string(rString, m_strDocStrings, (int32_t)i);
+      //xxx return ::core::extract_sub_string(rString, m_strDocStrings, (int32_t)i);
+      return false;
    }
 
-   void document_template::add_document(sp(::user::document_interface) pdocument)
+   void impact_system::add_document(sp(::user::object) pdocument)
    {
       ASSERT(pdocument->m_pdocumentemplate == NULL);   // no template attached yet
-      Application.defer_add_document_template(this);
+//      Application.defer_add_document_template(this);
       pdocument->m_pdocumentemplate = this;
       pdocument->install_message_handling(pdocument);
    }
 
-   void document_template::remove_document(sp(::user::document_interface) pdocument)
+   void impact_system::remove_document(sp(::user::object) pdocument)
    {
       ASSERT(pdocument->m_pdocumentemplate == this);   // must be attached to us
       pdocument->m_pdocumentemplate = NULL;
    }
 
-   document_template::Confidence document_template::MatchDocType(const char * lpszPathName,
-      sp(::user::document_interface)& rpDocMatch)
+   impact_system::Confidence impact_system::MatchDocType(const char * lpszPathName,
+      sp(::user::object)& rpDocMatch)
    {
       ASSERT(lpszPathName != NULL);
       rpDocMatch = NULL;
 
       // go through all documents
       ::count count = get_document_count();
-      for(index index = 0; index < count; index++)
+      for (index index = 0; index < count; index++)
       {
-         sp(::user::document_interface) pdocument = get_document(index);
-         if(System.file().path().is_equal(pdocument->get_path_name(), lpszPathName))
+         sp(::user::object) pdocument = get_document(index);
+         if (System.file().path().is_equal(pdocument->get_path_name(), lpszPathName))
          {
             // already open
             rpDocMatch = pdocument;
@@ -78,15 +79,15 @@ namespace user
 
       // see if it matches our default suffix
       string strFilterExt;
-      if (GetDocString(strFilterExt, document_template::filterExt) &&
+      if (GetDocString(strFilterExt, impact_system::filterExt) &&
          !strFilterExt.is_empty())
       {
          // see if extension matches
          ASSERT(strFilterExt[0] == '.');
          string strExtension = System.file().extension(lpszPathName);
-         if(strExtension.has_char())
+         if (strExtension.has_char())
          {
-            if(strExtension.CompareNoCase(strFilterExt) == 0)
+            if (strExtension.CompareNoCase(strFilterExt) == 0)
             {
                return yesAttemptNative; // extension matches, looks like ours
             }
@@ -97,24 +98,24 @@ namespace user
       return yesAttemptForeign;
    }
 
-   sp(::user::document_interface) document_template::create_new_document()
+   sp(::user::object) impact_system::create_new_document()
    {
       // default implementation constructs one from sp(type)
-      if(!m_typeinfoDocument)
+      if (!m_typeinfoDocument)
       {
-         TRACE(::core::trace::category_AppMsg, 0, "Error: you must override document_template::create_new_document.\n");
+         TRACE(::core::trace::category_AppMsg, 0, "Error: you must override impact_system::create_new_document.\n");
          ASSERT(FALSE);
          return NULL;
       }
-      sp(::user::document_interface) pdocument = Application.alloc(m_typeinfoDocument);
+      sp(::user::object) pdocument = Application.alloc(m_typeinfoDocument);
       if (pdocument == NULL)
       {
-         TRACE(::core::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::document_interface type %hs failed.\n",
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::object type %hs failed.\n",
             m_typeinfoDocument->name());
          return NULL;
       }
       pdocument->on_alloc(get_app());
-      ASSERT_KINDOF(::user::document_interface, pdocument);
+      ASSERT_KINDOF(::user::object, pdocument);
       add_document(pdocument);
       return pdocument;
    }
@@ -122,28 +123,28 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Default frame creation
 
-   sp(::user::frame_window) document_template::create_new_frame(sp(::user::document_interface) pdocument, sp(::user::frame_window) pOther, sp(::create_context) pcreatecontext)
+   sp(::user::frame_window) impact_system::create_new_frame(sp(::user::object) pdocument, sp(::user::frame_window) pOther, sp(::create_context) pcreatecontext)
    {
 
-      // create a frame wired to the specified ::user::document_interface
+      // create a frame wired to the specified ::user::object
 
       ASSERT(m_strMatter.get_length() > 0); // must have a resource ID to load from
       stacker < ::user::create_context > context(pcreatecontext->m_user);
-      context->m_pCurrentFrame    = pOther;
-      context->m_pCurrentDoc      = pdocument;
-      if(pcreatecontext->m_puiAlloc != NULL)
+      context->m_pCurrentFrame = pOther;
+      context->m_pCurrentDoc = pdocument;
+      if (pcreatecontext->m_puiAlloc != NULL)
       {
-         context->m_puiNew           = pcreatecontext->m_puiAlloc;
+         context->m_puiNew = pcreatecontext->m_puiAlloc;
       }
       else
       {
-         context->m_typeinfoNewView  = m_typeinfoView;
+         context->m_typeinfoNewView = m_typeinfoView;
       }
-      context->m_pNewDocTemplate  = this;
+      context->m_pNewDocTemplate = this;
 
       if (!m_typeinfoFrame)
       {
-         TRACE(::core::trace::category_AppMsg, 0, "Error: you must override document_template::create_new_frame.\n");
+         TRACE(::core::trace::category_AppMsg, 0, "Error: you must override impact_system::create_new_frame.\n");
          ASSERT(FALSE);
          return NULL;
       }
@@ -157,15 +158,15 @@ namespace user
       ASSERT_KINDOF(frame_window, pFrame);
       pFrame->m_pdocumenttemplate = this;
 
-      if(!context->m_typeinfoNewView)
-         TRACE(::core::trace::category_AppMsg, 0, "Warning: creating frame with no default ::user::view.\n");
+      if (!context->m_typeinfoNewView)
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: creating frame with no default ::user::impact.\n");
 
       // create new from resource
       if (!pFrame->LoadFrame(m_strMatter,
          WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,   // default frame styles
          pcreatecontext->m_puiParent, pcreatecontext))
       {
-         TRACE(::core::trace::category_AppMsg, 0, "Warning: document_template couldn't create a frame.\n");
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: impact_system couldn't create a frame.\n");
          // frame will be deleted in PostNcDestroy cleanup
          return NULL;
       }
@@ -175,7 +176,7 @@ namespace user
    }
 
    /*
-   sp(::user::frame_window) document_template::CreateOleFrame(sp(::user::window) pParentWnd, sp(::user::document_interface) pdocument,
+   sp(::user::frame_window) impact_system::CreateOleFrame(sp(::user::window) pParentWnd, sp(::user::object) pdocument,
    bool bCreateView)
    {
    create_context context;
@@ -203,7 +204,7 @@ namespace user
    if (!pFrame->LoadFrame(m_strServerMatter,
    WS_CHILD|WS_CLIPSIBLINGS, pParentWnd, &context))
    {
-   TRACE(::core::trace::category_AppMsg, 0, "Warning: document_template couldn't create an OLE frame.\n");
+   TRACE(::core::trace::category_AppMsg, 0, "Warning: impact_system couldn't create an OLE frame.\n");
    // frame will be deleted in PostNcDestroy cleanup
    return NULL;
    }
@@ -213,7 +214,7 @@ namespace user
    }
    */
 
-   void document_template::InitialUpdateFrame(sp(::user::frame_window) pFrame, sp(::user::document_interface) pdocument,
+   void impact_system::InitialUpdateFrame(sp(::user::frame_window) pFrame, sp(::user::object) pdocument,
       bool bMakeVisible)
    {
       // just delagate to implementation in frame_window
@@ -221,14 +222,14 @@ namespace user
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // document_template commands and command helpers
+   // impact_system commands and command helpers
 
-   bool document_template::save_all_modified()
+   bool impact_system::save_all_modified()
    {
       ::count count = get_document_count();
-      for(index index = 0; index < count; index++)
+      for (index index = 0; index < count; index++)
       {
-         sp(::user::document_interface) pdocument = get_document(index);
+         sp(::user::object) pdocument = get_document(index);
          if (!pdocument->save_modified())
             return FALSE;
       }
@@ -236,41 +237,41 @@ namespace user
    }
 
 
-   void document_template::close_all_documents(bool)
+   void impact_system::close_all_documents(bool)
    {
-      for(index index = 0; index < get_document_count(); index++)
+      for (index index = 0; index < get_document_count(); index++)
       {
          try
          {
-            sp(::user::document_interface) pdocument = get_document(index);
+            sp(::user::object) pdocument = get_document(index);
             pdocument->on_close_document();
             remove_document(pdocument);
             pdocument.release();
          }
-         catch(...)
+         catch (...)
          {
          }
       }
    }
 
-   void document_template::on_idle()
+   void impact_system::on_idle()
    {
       ::count count = get_document_count();
-      for(index index = 0; index < count; index++)
+      for (index index = 0; index < count; index++)
       {
-         sp(::user::document_interface) pdocument = get_document(index);
-         ASSERT_KINDOF(::user::document_interface, pdocument);
+         sp(::user::object) pdocument = get_document(index);
+         ASSERT_KINDOF(::user::object, pdocument);
          pdocument->on_idle();
       }
    }
 
-   bool document_template::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
+   bool impact_system::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
    {
       return command_target::_001OnCmdMsg(pcmdmsg);
    }
 
 
-   void document_template::dump(dump_context & dumpcontext) const
+   void impact_system::dump(dump_context & dumpcontext) const
    {
       command_target::dump(dumpcontext);
 
@@ -286,10 +287,10 @@ namespace user
       {
          dumpcontext << "\ndocument list = {";
          ::count count = get_document_count();
-         for(index index = 0; index < count; index++)
+         for (index index = 0; index < count; index++)
          {
-            sp(::user::document_interface) pdocument = get_document(index);
-            dumpcontext << (int_ptr) pdocument.m_p;
+            sp(::user::object) pdocument = get_document(index);
+            dumpcontext << (int_ptr)pdocument.m_p;
          }
          dumpcontext << "\n}";
       }
@@ -297,43 +298,43 @@ namespace user
       dumpcontext << "\n";
    }
 
-   void document_template::assert_valid() const
+   void impact_system::assert_valid() const
    {
       command_target::assert_valid();
 
       ::count count = get_document_count();
-      for(index index = 0; index < count; index++)
+      for (index index = 0; index < count; index++)
       {
-         sp(::user::document_interface) pdocument = get_document(index);
+         sp(::user::object) pdocument = get_document(index);
          pdocument->assert_valid();
       }
    }
 
 
 
-   void document_template::update_all_views(sp(::user::view) pviewSender, LPARAM lhint, object * puh)
+   void impact_system::update_all_views(sp(::user::impact) pviewSender, LPARAM lhint, ::object * puh)
    {
       ::count count = get_document_count();
-      for(index index = 0; index < count; index++)
+      for (index index = 0; index < count; index++)
       {
-         sp(::user::document_interface) pdoc = get_document(index);
+         sp(::user::object) pdoc = get_document(index);
          pdoc->update_all_views(pviewSender, lhint, puh);
       }
    }
 
-   bool document_template::on_open_document(sp(::user::document_interface) pdocument, var varFile)
+   bool impact_system::on_open_document(sp(::user::object) pdocument, var varFile)
    {
 
-      if(m_bQueueDocumentOpening)
+      if (m_bQueueDocumentOpening)
       {
 
          class on_open_document * ponopendocument = new class on_open_document();
 
-         ponopendocument->m_pschema     = this;
-         ponopendocument->m_pdocument     = pdocument;
-         ponopendocument->m_varFile       = varFile;
+         ponopendocument->m_pschema = this;
+         ponopendocument->m_pdocument = pdocument;
+         ponopendocument->m_varFile = varFile;
 
-         __begin_thread(get_app(), &document_template::s_on_open_document, ponopendocument);
+         __begin_thread(get_app(), &impact_system::s_on_open_document, ponopendocument);
 
          return true;
 
@@ -349,10 +350,10 @@ namespace user
 
    }
 
-   bool document_template::do_open_document(sp(::user::document_interface) pdocument, var varFile)
+   bool impact_system::do_open_document(sp(::user::object) pdocument, var varFile)
    {
 
-      if(!pdocument->on_open_document(varFile))
+      if (!pdocument->on_open_document(varFile))
       {
          return false;
       }
@@ -361,7 +362,7 @@ namespace user
 
    }
 
-   UINT document_template::s_on_open_document(LPVOID lpvoid)
+   UINT impact_system::s_on_open_document(LPVOID lpvoid)
    {
 
       class on_open_document * ponopendocument = (class on_open_document *) lpvoid;
@@ -373,15 +374,16 @@ namespace user
    }
 
 
-   void document_template::reload_template()
+   void impact_system::reload_template()
    {
-      m_strDocStrings = System.matter_as_string(get_app(),m_strMatter, "full_string.txt");
-      if(m_strDocStrings.is_empty())
+      /*
+      m_strDocStrings = System.matter_as_string(get_app(), m_strMatter, "full_string.txt");
+      if (m_strDocStrings.is_empty())
       {
          TRACE1("Warning: no document names in string for template #%s.\n",
             m_strMatter);
       }
-
+      */
    }
 
 

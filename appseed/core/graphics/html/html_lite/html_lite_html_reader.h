@@ -100,7 +100,7 @@ public:
         there is only one.
  */
 class CLASS_DECL_CORE lite_html_reader :
-   virtual public object
+   virtual public ::object
 {
 public:
 

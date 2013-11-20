@@ -1,7 +1,7 @@
 #pragma once
 
 class CLASS_DECL_CORE image_list :
-   virtual public object
+   virtual public ::object
 {
 public:
 

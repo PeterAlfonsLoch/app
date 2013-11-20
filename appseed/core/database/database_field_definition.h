@@ -4,7 +4,7 @@ namespace database
 {
 
    class CLASS_DECL_CORE field_definition_item : 
-      virtual public object
+      virtual public ::object
    {
    public:
 

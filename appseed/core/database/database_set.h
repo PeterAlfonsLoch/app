@@ -9,7 +9,7 @@ namespace database
 
 
    class CLASS_DECL_CORE set :
-      virtual public object
+      virtual public ::object
    {
    protected:
    /*  char *Host     = ""; //WORK_HOST;

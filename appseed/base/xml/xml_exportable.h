@@ -9,7 +9,7 @@ namespace xml
 
 
    class CLASS_DECL_BASE exportable :
-      virtual public object
+      virtual public ::object
    {
    public:
 

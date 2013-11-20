@@ -6,7 +6,7 @@ namespace html
 
 
    class CLASS_DECL_CORE html_ex :
-      virtual public object
+      virtual public ::object
    {
    public:
 

@@ -588,9 +588,9 @@ namespace plane
             strType = "application";
             //            create_bergedge(pcreatecontext);
             //          throw not_implemented(get_app());
-            /*if(get_document() != NULL && get_document()->get_typed_view < ::session::user::view >() != NULL)
+            /*if(get_document() != NULL && get_document()->get_typed_view < ::session::user::impact >() != NULL)
             {
-            sp(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::session::user::view >()->GetParentFrame());
+            sp(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::session::user::impact >()->GetParentFrame());
             if(pframe != NULL)
             {
             pframe->ShowWindow(SW_SHOW);
@@ -725,7 +725,7 @@ namespace plane
    return m_pbergedgedocument;
    }
 
-   ::sessionsp(::user::view) session::get_view()
+   ::sessionsp(::user::impact) session::get_view()
    {
    if(get_document() == NULL)
    return NULL;
@@ -894,7 +894,7 @@ namespace plane
                get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
             }
             App(m_pappCurrent).request_create(pcreatecontext);
-            if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::user::document_interface > () == NULL)
+            if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::user::object > () == NULL)
             {
                goto alt1;
             }
@@ -1152,7 +1152,7 @@ alt1:
    //            else
    //            {
    //
-   //               puiParent = get_document()->get_typed_view < ::session::user::view >();
+   //               puiParent = get_document()->get_typed_view < ::session::user::impact >();
    //
    //            }
    //
@@ -1187,7 +1187,7 @@ alt1:
    else
    {
 
-   holderptra.add(get_document()->get_typed_view < ::session::user::view >());
+   holderptra.add(get_document()->get_typed_view < ::session::user::impact >());
 
    }
 

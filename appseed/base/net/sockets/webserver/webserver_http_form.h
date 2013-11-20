@@ -8,7 +8,7 @@ namespace http
    /** Parse/store a http query_string/form-data body.
       \ingroup webserver */
    class CLASS_DECL_BASE form :
-      virtual public object
+      virtual public ::object
    {
    public:
       form(sp(base_application) papp);

@@ -512,15 +512,12 @@ namespace user
       //pdc->IntersectClipRect(rectWindow);
       //SendMessage(WM_ERASEBKGND, (WPARAM)spgraphics->get_handle1());
       pdc->SelectClipRgn(NULL);
-      class imaging & imaging = System.visual().imaging();
-      imaging.color_blend(
-         pdc,
+      pdc->FillSolidRect(
          0,
          0,
          rectWindow.width(),
          rectWindow.height(),
-         RGB(192, 192, 187),
-         128);
+         ARGB(128, 192, 192, 187));
 
 
       // draw gripper in non-client area

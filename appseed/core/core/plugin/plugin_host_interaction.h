@@ -10,7 +10,7 @@ namespace plugin
    class plugin;
 
 
-   class CLASS_DECL_BASE host_interaction :
+   class CLASS_DECL_CORE host_interaction :
       public ::user::interaction
    {
    public:

@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_BASE string_list :
-   virtual public object
+   virtual public ::object
 {
 public:
 

@@ -52,7 +52,7 @@ namespace filemanager
 
    void file_list::install_message_handling(::message::dispatch * pinterface)
    {
-      ::user::view::install_message_handling(pinterface);
+      ::user::impact::install_message_handling(pinterface);
       ::user::form_list::install_message_handling(pinterface);
       ::userfs::list::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(MessageMainPost, pinterface, this, &file_list::_001OnMainPostMessage);
@@ -72,17 +72,17 @@ namespace filemanager
    #ifdef DEBUG
    void file_list::assert_valid() const
    {
-      ::user::view::assert_valid();
+      ::user::impact::assert_valid();
    }
 
    void file_list::dump(dump_context & dumpcontext) const
    {
-      ::user::view::dump(dumpcontext);
+      ::user::impact::dump(dumpcontext);
    }
    #endif //DEBUG
 
 
-   void file_list::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint)
+   void file_list::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
 
       data_interface::on_update(pSender, lHint, phint);
@@ -449,7 +449,7 @@ namespace filemanager
 
       cs.style |= WS_CLIPCHILDREN;
 
-      return ::user::view::pre_create_window(cs);
+      return ::user::impact::pre_create_window(cs);
    }
 
    UINT c_cdecl file_list::ThreadProcFileSize(LPVOID lpparam)
@@ -602,7 +602,7 @@ namespace filemanager
       GetSelected(itema);
       if(GetFileManagerDoc()->HandleDefaultFileManagerItemCmdMsg(pcmdmsg, itema))
          return TRUE;
-      return ::user::view::_001OnCmdMsg(pcmdmsg);
+      return ::user::impact::_001OnCmdMsg(pcmdmsg);
    }
 
    void file_list::_001OnShellCommand(signal_details * pobj)
@@ -897,7 +897,7 @@ namespace filemanager
       }
       else
       {
-         return ::user::view::_001OnUpdateCmdUi(pcmdui);
+         return ::user::impact::_001OnUpdateCmdUi(pcmdui);
       }
    }
 
@@ -941,7 +941,7 @@ namespace filemanager
       }
       else
       {
-         return ::user::view::_001OnCommand(id);
+         return ::user::impact::_001OnCommand(id);
       }
 
    }
@@ -1513,7 +1513,7 @@ namespace filemanager
          ::userfs::list_item & item = get_fs_list_data()->m_itema.get_item((int32_t)m_iCreateImageListStep);
 
          ///IShellFolder * lpsf = m_pshellfolder;
-         item.m_iImage = System.user()->shellimageset().GetImage(
+         item.m_iImage = System.userex()->shellimageset().GetImage(
             _GetWnd()->GetTopLevelParent()->get_handle(),
             item.m_strPath,
             NULL,
@@ -1585,11 +1585,11 @@ namespace filemanager
          column.m_bEditOnSecondClick = false;
          if (GetFileManager()->get_filemanager_data()->m_iIconSize >= 48)
          {
-            column.m_pil = System.user()->shellimageset().GetImageList48();
+            column.m_pil = System.userex()->shellimageset().GetImageList48();
          }
          else
          {
-            column.m_pil = System.user()->shellimageset().GetImageList16();
+            column.m_pil = System.userex()->shellimageset().GetImageList16();
          }
          _001AddColumn(column);
          m_iSelectionSubItem = i;
@@ -1635,12 +1635,12 @@ namespace filemanager
       column.m_bEditOnSecondClick = true;
       if (GetFileManager()->get_filemanager_data()->m_iIconSize >= 48)
       {
-         column.m_pilHover = System.user()->shellimageset().GetImageList48Hover();
-         column.m_pil = System.user()->shellimageset().GetImageList48();
+         column.m_pilHover = System.userex()->shellimageset().GetImageList48Hover();
+         column.m_pil = System.userex()->shellimageset().GetImageList48();
       }
       else
       {
-         column.m_pil = System.user()->shellimageset().GetImageList16();
+         column.m_pil = System.userex()->shellimageset().GetImageList16();
       }
       _001AddColumn(column);
 
@@ -2214,7 +2214,7 @@ namespace filemanager
    {
       if (i == 0)
       {
-         return System.user()->shellimageset().GetImageList16();
+         return System.userex()->shellimageset().GetImageList16();
       }
       return NULL;
    }

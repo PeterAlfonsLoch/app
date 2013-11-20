@@ -6,7 +6,7 @@ namespace net
 
 
    class CLASS_DECL_BASE email :
-      virtual public object
+      virtual public ::object
    {
    public:
 

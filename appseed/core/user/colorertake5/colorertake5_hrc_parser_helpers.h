@@ -81,7 +81,7 @@ typedef array<VirtualEntry*> VirtualEntryVector;
     @ingroup colorer_parsers
 */
 class SchemeNode :
-   virtual public object
+   virtual public ::object
 {
 public:
   SchemeNodeType type;

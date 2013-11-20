@@ -1,6 +1,10 @@
 #pragma once
 
 
+#define WM_VIEW (WM_USER + 1023)
+
+
+
 namespace user
 {
 
@@ -11,7 +15,7 @@ namespace user
    class view_update_hint;
 
 
-   class frame_window_interface;
+   class frame_window;
    class document;
    class frame_window;
 
@@ -28,12 +32,8 @@ namespace user
    class COleDataObject;   // forward reference (see afxole.h)
 
 
-
-
-
-
-   class CLASS_DECL_CORE view :
-      virtual public database::user::interaction
+   class CLASS_DECL_BASE impact :
+      virtual public ::user::interaction
    {
    public:
 
@@ -50,12 +50,12 @@ namespace user
 
 
 
-      sp(::user::document_interface)    m_spdocument;
+      sp(::user::object)    m_spdocument;
 
-      view();
-      virtual ~view();
+      impact();
+      virtual ~impact();
 
-      sp(::user::document_interface) get_document() const;
+      sp(::user::object) get_document() const;
 
       template < class DOCUMENT >
       ::data::data * get_data();
@@ -91,23 +91,23 @@ namespace user
 
 
          // Activation
-         virtual void OnActivateView(bool bActivate, sp(view) pActivateView,
-         sp(view) pDeactiveView);
+         virtual void OnActivateView(bool bActivate, sp(impact) pActivateView,
+         sp(impact) pDeactiveView);
       virtual void OnActivateFrame(UINT nState, sp(::user::frame_window) pFrameWnd);
 
       // General drawing/updating
-      virtual void on_update(sp(view) pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(sp(impact) pSender, LPARAM lHint, ::object* pHint);
       virtual void _001OnDraw(::draw2d::graphics * pgraphics);
-      virtual void OnViewUpdateHint(sp(view) pSender, LPARAM lHint, ::user::view_update_hint * pHint);
+      virtual void OnViewUpdateHint(sp(impact) pSender, LPARAM lHint, ::user::view_update_hint * pHint);
 
 
 
-      sp(::user::interaction) create_view(type * info, sp(::user::document_interface) pdoc = NULL, sp(::user::interaction) pwndParent = NULL, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
-      static sp(::user::interaction) s_create_view(type * info, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast = NULL);
+      sp(::user::interaction) create_view(type * info, sp(::user::object) pdoc = NULL, sp(::user::interaction) pwndParent = NULL, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
+      static sp(::user::interaction) s_create_view(type * info, sp(::user::object) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast = NULL);
       static sp(::user::interaction) s_create_view(::create_context * pContext, sp(::user::interaction) pwndParent, id id);
 
       template < class VIEW >
-      sp(VIEW) create_view(::user::document_interface * pdoc = NULL, sp(::user::interaction) pwndParent = NULL, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
+      sp(VIEW) create_view(::user::object * pdoc = NULL, sp(::user::interaction) pwndParent = NULL, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
 
       template < class VIEW >
       sp(VIEW) create_view(::user::interaction * pwndParent, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
@@ -116,7 +116,7 @@ namespace user
       sp(VIEW) create_view(::user::view_creator_data * pcreatordata, sp(::user::interaction) pviewLast = NULL);
 
 
-      static sp(::user::document_interface) get_document(sp(::user::interaction) pguie);
+      static sp(::user::object) get_document(sp(::user::interaction) pguie);
 
       virtual void dump(dump_context &) const;
       virtual void assert_valid() const;
@@ -127,7 +127,7 @@ namespace user
 
       virtual void CalcWindowRect(LPRECT lpClientRect,
          UINT nAdjustType = adjustBorder);
-      virtual CScrollBar* GetScrollBarCtrl(int32_t nBar) const;
+//      virtual CScrollBar* GetScrollBarCtrl(int32_t nBar) const;
 
 
       virtual void on_draw_view_nc(::draw2d::graphics * pdc);
@@ -165,20 +165,20 @@ namespace user
 
          virtual ::user::interaction::e_type get_window_type();
 
-      virtual void on_simple_view_update_hint(sp(::user::view) pviewSender, e_hint ehint, object * phint);
+      virtual void on_simple_view_update_hint(sp(::user::impact) pviewSender, e_hint ehint, object * phint);
 
 
 
       virtual void on_select();
 
       // each view can display one or more documents but has only one document interface
-      //sp(::user::document) get_document() const;
+      //sp(::user::object) get_document() const;
 
-//      virtual bool IsSelected(const object* pDocItem) const; // support for OLE
+      //      virtual bool IsSelected(const object* pDocItem) const; // support for OLE
 
       // OLE scrolling support (used for drag/drop as well)
-//      virtual bool OnScroll(UINT nScrollCode, UINT nPos, bool bDoScroll = TRUE);
-  //    virtual bool OnScrollBy(size sizeScroll, bool bDoScroll = TRUE);
+      //      virtual bool OnScroll(UINT nScrollCode, UINT nPos, bool bDoScroll = TRUE);
+      //    virtual bool OnScrollBy(size sizeScroll, bool bDoScroll = TRUE);
 
       // OLE drag/drop support
       virtual DROPEFFECT OnDragEnter(COleDataObject* pDataObject,
@@ -194,19 +194,19 @@ namespace user
 
 
 
-      //virtual void OnActivateView(bool bActivate, sp(::user::view) pActivateView, sp(::user::view) pDeactiveView);
+      //virtual void OnActivateView(bool bActivate, sp(::user::impact) pActivateView, sp(::user::impact) pDeactiveView);
       //virtual void OnActivateFrame(UINT nState, sp(::user::frame_window) pFrameWnd);
 
-      //virtual void on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint);
+      //virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
 
-//      virtual void dump(dump_context &) const;
-  //    virtual void assert_valid() const;
+      //      virtual void dump(dump_context &) const;
+      //    virtual void assert_valid() const;
 
 
 
-//      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
+      //      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
-//      virtual bool pre_create_window(CREATESTRUCT& cs);
+      //      virtual bool pre_create_window(CREATESTRUCT& cs);
 
       DECL_GEN_SIGNAL(_001OnMouseActivate)
          DECL_GEN_SIGNAL(_001OnUpdateSplitCmd)
@@ -219,10 +219,10 @@ namespace user
 
 
          DECL_GEN_SIGNAL(_001OnRButtonDown)
-//         DECL_GEN_SIGNAL(_001OnLButtonDown)
+         //         DECL_GEN_SIGNAL(_001OnLButtonDown)
          DECL_GEN_SIGNAL(_001OnMButtonDown)
 
-//         virtual void install_message_handling(::message::dispatch * pinterface);
+         //         virtual void install_message_handling(::message::dispatch * pinterface);
    };
 
 
@@ -230,3 +230,6 @@ namespace user
 
 
 } // namespace user
+
+
+

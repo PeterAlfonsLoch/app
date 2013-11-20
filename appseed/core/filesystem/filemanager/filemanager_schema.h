@@ -7,7 +7,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE schema :
-      virtual public object
+      virtual public ::object
    {
    public:
 

@@ -107,7 +107,7 @@ void file_manager_operation_info_view::OnFileOperationStep(int32_t iOperation, b
 
 sp(file_manager_operation_document) file_manager_operation_info_view::get_document()
 {
-   return  (::user::view::get_document());
+   return  (::user::impact::get_document());
 }
 
 void file_manager_operation_info_view::_001OnTimer(signal_details * pobj)
@@ -126,17 +126,17 @@ void file_manager_operation_info_view::_001OnCreate(signal_details * pobj)
 
 void file_manager_operation_info_view::install_message_handling(::message::dispatch * pinterface)
 {
-   ::user::view::install_message_handling(pinterface);
+   ::user::impact::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &file_manager_operation_info_view::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &file_manager_operation_info_view::_001OnTimer);
 }
 
 void file_manager_operation_info_view::assert_valid() const
 {
-   ::user::view::assert_valid();
+   ::user::impact::assert_valid();
 }
 void file_manager_operation_info_view::dump(dump_context & context) const
 {
-   ::user::view::dump(context);
+   ::user::impact::dump(context);
 }
 

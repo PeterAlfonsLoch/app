@@ -211,7 +211,7 @@ public:
     @ingroup cregexp
 */
 class CLASS_DECL_BASE cregexp :
-   virtual public object
+   virtual public ::object
 {
 public:
   /**

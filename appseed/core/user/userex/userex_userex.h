@@ -5,20 +5,20 @@ class form_document;
 class form_view;
 
 
-namespace user
+namespace userex
 {
 
 
    class keyboard;
    class front_end_schema;
    class document_manager;
-   class document_template;
+   class impact_system;
    class document;
 
 
    class CLASS_DECL_CORE userex :
       virtual public ::base_departament,
-      virtual public ::user::document_request_interface,
+      virtual public ::user::server,
       virtual public BaseMenuCentralContainer,
       virtual public ::database::client
    {
@@ -39,8 +39,8 @@ namespace user
 
 
 
-      user(base_application * papp);
-      virtual ~user();
+      userex(base_application * papp);
+      virtual ~userex();
 
       virtual bool set_keyboard_layout(const char * pszPath, bool bUser);
 
@@ -91,8 +91,8 @@ namespace user
       virtual bool finalize();
 
       virtual void _001CloseAllDocuments(bool bEndSession);
-      void add_document_template(sp(::user::document_template) ptemplate);
-      virtual sp(::user::document) _vmsguserbaseOpenDocumentFile(const char * lpszFileName);
+      void add_document_template(sp(::user::impact_system) ptemplate);
+      virtual sp(::user::object) _vmsguserbaseOpenDocumentFile(const char * lpszFileName);
 
       virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
@@ -100,7 +100,7 @@ namespace user
       virtual void _001OnFileNew();
 
 
-      void defer_add_document_template(sp(::user::document_template) ptemplate);
+      void defer_add_document_template(sp(::user::impact_system) ptemplate);
 
 
       stringa                       m_straEscape;
@@ -138,9 +138,9 @@ namespace user
 
       // Running Operations - to be done on a running user
       // Dealing with document templates
-      //         void add_document_template(sp(document_template) ptemplate);
+      //         void add_document_template(sp(impact_system) ptemplate);
       ::count get_template_count() const;
-      sp(document_template) get_template(index index) const;
+      sp(impact_system) get_template(index index) const;
 
 
       //       virtual bool set_keyboard_layout(const char * pszPath, bool bUser);
@@ -153,13 +153,13 @@ namespace user
 
       // Running Operations - to be done on a running user
       // Dealing with document templates
-      /*   void add_document_template(sp(document_template) ptemplate);
+      /*   void add_document_template(sp(impact_system) ptemplate);
       POSITION get_template_count() const;
-      sp(document_template) get_template(POSITION& pos) const;
+      sp(impact_system) get_template(POSITION& pos) const;
 
       // open named file, trying to match a regsitered
       // document template to it.
-      virtual sp(::user::document) open_document_file(var var);
+      virtual sp(::user::object) open_document_file(var var);
 
       // add a string to the recent file list. remove oldest string,
       // if no space left.
@@ -182,7 +182,7 @@ namespace user
 
       // helpers for standard commdlg dialogs
       bool do_prompt_file_name(var & varFile, UINT nIDSTitle,
-      uint32_t lFlags, bool bOpenFileDialog, sp(document_template) ptemplate);
+      uint32_t lFlags, bool bOpenFileDialog, sp(impact_system) ptemplate);
       int_ptr DoPrintDialog(CPrintDialog* pPD);
       // Implementation
       // Server object for document creation
@@ -210,7 +210,7 @@ namespace user
       sp(::form_document)   create_form(sp(form_view) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
       sp(::form_document)   create_child_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
       sp(::form_document)   create_child_form(sp(form_view) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
-      sp(::user::document) hold(sp(::user::interaction) pui);
+      sp(::user::object) hold(sp(::user::interaction) pui);
 
    };
 

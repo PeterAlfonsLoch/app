@@ -17,7 +17,7 @@ namespace nature
       m_pdoctemplateAppearance = new ::user::single_document_template(
          get_app(),
          "nature/appearance",
-         System.type_info < ::user::document > (),
+         System.type_info < ::user::object > (),
          System.type_info < simple_child_frame > (),
          System.type_info < appearance_view > ());
 
@@ -123,10 +123,10 @@ namespace nature
          break;
       case PaneViewAppearance:
          {
-            sp(::user::document) pdoc = (m_pdoctemplateAppearance->open_new_document());
+            sp(::user::object) pdoc = (m_pdoctemplateAppearance->open_new_document());
             if(pdoc != NULL)
             {
-               sp(::user::view) pview = pdoc->get_view();
+               sp(::user::impact) pview = pdoc->get_view();
                if(pview != NULL)
                {
                   sp(::user::frame_window) pframe = (pview->GetParentFrame());
@@ -177,7 +177,7 @@ namespace nature
       }
    }
 
-   void pane_view::on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint)
+   void pane_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);

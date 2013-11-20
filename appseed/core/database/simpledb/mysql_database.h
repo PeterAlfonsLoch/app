@@ -13,7 +13,7 @@ namespace mysql
 
 
    class CLASS_DECL_CORE database :
-      virtual public object
+      virtual public ::object
    {
       friend class result;
    public:

@@ -31,8 +31,8 @@ public:
 
 
    // aim to be all-platoform - but if there is no equivalent because no op : create empty method
-   bool create_solid(simple_graphics & g, COLORREF cr);
-   bool create_linear_gradient(simple_graphics & g, POINT np1, POINT np2, COLORREF cr1, COLORREF cr2);
+   bool create_solid(::draw2d::graphics * pgraphics, COLORREF cr);
+   bool create_linear_gradient(::draw2d::graphics * pgraphics, POINT np1, POINT np2, COLORREF cr1, COLORREF cr2);
    bool destroy();
 
 

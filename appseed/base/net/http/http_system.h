@@ -24,7 +24,7 @@ namespace http
 
 
       class CLASS_DECL_BASE pac :
-         virtual public object
+         virtual public ::object
       {
       public:
 
@@ -42,7 +42,7 @@ namespace http
 
 
       class CLASS_DECL_BASE proxy :
-         virtual public object
+         virtual public ::object
       {
       public:
 

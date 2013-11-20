@@ -11,35 +11,35 @@
 
 
 
-   // like ON_MESSAGE but no return value
-   /*#define ON_MESSAGE_VOID(message, memberFxn) \
-   { message, 0, 0, 0, ::core::Sig_vv, \
-   (__PMSG)(__PMSGW)(void (__MSG_CALL ::user::interaction::*)())&memberFxn },*/
-   // IMPLEMENT_DYNAMIC(::user::view, ::user::interaction)
+// like ON_MESSAGE but no return value
+/*#define ON_MESSAGE_VOID(message, memberFxn) \
+{ message, 0, 0, 0, ::core::Sig_vv, \
+(__PMSG)(__PMSGW)(void (__MSG_CALL ::user::interaction::*)())&memberFxn },*/
+// IMPLEMENT_DYNAMIC(::user::impact, ::user::interaction)
 
-   /////////////////////////////////////////////////////////////////////////////
-   // ::user::view
+/////////////////////////////////////////////////////////////////////////////
+// ::user::impact
 
-   // BEGIN_MESSAGE_MAP(::user::view, ::user::interaction)
-   //{{__MSG_MAP(::user::view)
-   /*   ON_WM_PAINT()
-   ON_WM_MOUSEACTIVATE()
+// BEGIN_MESSAGE_MAP(::user::impact, ::user::interaction)
+//{{__MSG_MAP(::user::impact)
+/*   ON_WM_PAINT()
+ON_WM_MOUSEACTIVATE()
 
-   ON_WM_DESTROY()
+ON_WM_DESTROY()
 
-   // Standard commands for split pane
-   ON_COMMAND_EX(ID_WINDOW_SPLIT, OnSplitCmd)
-   ON_UPDATE_COMMAND_UI(ID_WINDOW_SPLIT, OnUpdateSplitCmd)
+// Standard commands for split pane
+ON_COMMAND_EX(ID_WINDOW_SPLIT, OnSplitCmd)
+ON_UPDATE_COMMAND_UI(ID_WINDOW_SPLIT, OnUpdateSplitCmd)
 
-   // Standard commands for next pane
-   ON_UPDATE_COMMAND_UI(ID_NEXT_PANE, OnUpdateNextPaneMenu)
-   ON_COMMAND_EX(ID_NEXT_PANE, OnNextPaneCmd)
-   ON_UPDATE_COMMAND_UI(ID_PREV_PANE, OnUpdateNextPaneMenu)
-   ON_COMMAND_EX(ID_PREV_PANE, OnNextPaneCmd)
-   //}}__MSG_MAP
-   // special command for Initial Update
-   ON_MESSAGE_VOID(WM_INITIALUPDATE, OnInitialUpdate)*/
-   // END_MESSAGE_MAP()
+// Standard commands for next pane
+ON_UPDATE_COMMAND_UI(ID_NEXT_PANE, OnUpdateNextPaneMenu)
+ON_COMMAND_EX(ID_NEXT_PANE, OnNextPaneCmd)
+ON_UPDATE_COMMAND_UI(ID_PREV_PANE, OnUpdateNextPaneMenu)
+ON_COMMAND_EX(ID_PREV_PANE, OnNextPaneCmd)
+//}}__MSG_MAP
+// special command for Initial Update
+ON_MESSAGE_VOID(WM_INITIALUPDATE, OnInitialUpdate)*/
+// END_MESSAGE_MAP()
 #include "framework.h"
 
 
@@ -50,49 +50,49 @@ namespace user
 {
 
 
-   view::view()
+   impact::impact()
    {
 
-      m_ulFlags         |= element::flag_auto_delete;
+      m_ulFlags |= element::flag_auto_delete;
 
    }
 
 
-   view::~view()
+   impact::~impact()
    {
-      if(m_spdocument.is_set())
+      if (m_spdocument.is_set())
          m_spdocument->remove_view(this);
    }
 
-   void view::install_message_handling(::message::dispatch * pinterface)
+   void impact::install_message_handling(::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
-      IGUI_WIN_MSG_LINK(WM_VIEW, pinterface, this, &view::_001OnView);
-      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &view::_001OnLButtonDown);
-      IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &view::_001OnLButtonUp);
-      IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &view::_001OnMouseMove);
-      IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &view::_001OnCreate);
-      IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &view::_001OnDestroy);
-      IGUI_WIN_MSG_LINK(WM_INITIALUPDATE  , pinterface, this, &view::_001OnInitialUpdate);
+      IGUI_WIN_MSG_LINK(WM_VIEW, pinterface, this, &impact::_001OnView);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &impact::_001OnLButtonDown);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &impact::_001OnLButtonUp);
+      IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &impact::_001OnMouseMove);
+      IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &impact::_001OnCreate);
+      IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &impact::_001OnDestroy);
+      IGUI_WIN_MSG_LINK(WM_INITIALUPDATE, pinterface, this, &impact::_001OnInitialUpdate);
 
-//      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN    , pinterface, this, &view::_001OnRButtonDown);
-      IGUI_WIN_MSG_LINK(WM_MBUTTONDOWN    , pinterface, this, &view::_001OnMButtonDown);
-      IGUI_WIN_MSG_LINK(WM_RBUTTONDOWN    , pinterface, this, &view::_001OnRButtonDown);
+      //      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN    , pinterface, this, &impact::_001OnRButtonDown);
+      IGUI_WIN_MSG_LINK(WM_MBUTTONDOWN, pinterface, this, &impact::_001OnMButtonDown);
+      IGUI_WIN_MSG_LINK(WM_RBUTTONDOWN, pinterface, this, &impact::_001OnRButtonDown);
 
 
-      IGUI_WIN_MSG_LINK(WM_MOUSEACTIVATE  , pinterface, this, &view::_001OnMouseActivate);
-//      IGUI_WIN_MSG_LINK(WM_DESTROY        , pinterface, this, &view::_001OnDestroy);
-  //    IGUI_WIN_MSG_LINK(WM_CREATE        , pinterface, this, &view::_001OnCreate);
+      IGUI_WIN_MSG_LINK(WM_MOUSEACTIVATE, pinterface, this, &impact::_001OnMouseActivate);
+      //      IGUI_WIN_MSG_LINK(WM_DESTROY        , pinterface, this, &impact::_001OnDestroy);
+      //    IGUI_WIN_MSG_LINK(WM_CREATE        , pinterface, this, &impact::_001OnCreate);
 
       // Standard commands for split pane
-//  //      connect_command(ID_WINDOW_SPLIT , &view::_001OnSplitCmd);
-      //    connect_update_cmd_ui(ID_WINDOW_SPLIT ,  &view::_001OnUpdateSplitCmd);
+      //  //      connect_command(ID_WINDOW_SPLIT , &impact::_001OnSplitCmd);
+      //    connect_update_cmd_ui(ID_WINDOW_SPLIT ,  &impact::_001OnUpdateSplitCmd);
 
       // Standard commands for next pane
-      //  connect_update_cmd_ui(ID_NEXT_PANE    , &view::_001OnUpdateNextPaneMenu);
-      //connect_command(ID_NEXT_PANE   , &view::_001OnNextPaneCmd);
-      //      connect_update_cmd_ui(ID_PREV_PANE    , &view::_001OnUpdateNextPaneMenu);
-      //    connect_command(ID_PREV_PANE    , &view::_001OnNextPaneCmd);
+      //  connect_update_cmd_ui(ID_NEXT_PANE    , &impact::_001OnUpdateNextPaneMenu);
+      //connect_command(ID_NEXT_PANE   , &impact::_001OnNextPaneCmd);
+      //      connect_update_cmd_ui(ID_PREV_PANE    , &impact::_001OnUpdateNextPaneMenu);
+      //    connect_command(ID_PREV_PANE    , &impact::_001OnNextPaneCmd);
 
       //}}__MSG_MAP
       // special command for Initial Update
@@ -101,25 +101,25 @@ namespace user
       /* ON_WM_MOUSEACTIVATE()
 
       // Standard commands for split pane
-      ON_COMMAND_EX(ID_WINDOW_SPLIT, &view::OnSplitCmd)
-      ON_UPDATE_COMMAND_UI(ID_WINDOW_SPLIT, &view::OnUpdateSplitCmd)
+      ON_COMMAND_EX(ID_WINDOW_SPLIT, &impact::OnSplitCmd)
+      ON_UPDATE_COMMAND_UI(ID_WINDOW_SPLIT, &impact::OnUpdateSplitCmd)
 
       // Standard commands for next pane
-      ON_UPDATE_COMMAND_UI(ID_NEXT_PANE, &view::OnUpdateNextPaneMenu)
-      ON_COMMAND_EX(ID_NEXT_PANE, &view::OnNextPaneCmd)
-      ON_UPDATE_COMMAND_UI(ID_PREV_PANE, &view::OnUpdateNextPaneMenu)
-      ON_COMMAND_EX(ID_PREV_PANE, &view::OnNextPaneCmd)
+      ON_UPDATE_COMMAND_UI(ID_NEXT_PANE, &impact::OnUpdateNextPaneMenu)
+      ON_COMMAND_EX(ID_NEXT_PANE, &impact::OnNextPaneCmd)
+      ON_UPDATE_COMMAND_UI(ID_PREV_PANE, &impact::OnUpdateNextPaneMenu)
+      ON_COMMAND_EX(ID_PREV_PANE, &impact::OnNextPaneCmd)
       //}}__MSG_MAP
       // special command for Initial Update
-      ON_MESSAGE_VOID(WM_INITIALUPDATE, view::OnInitialUpdate) */
+      ON_MESSAGE_VOID(WM_INITIALUPDATE, impact::OnInitialUpdate) */
 
    }
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::view second phase construction - bind to ::user::document_interface
+   // ::user::impact second phase construction - bind to ::user::object
 
-   bool view::pre_create_window(CREATESTRUCT & cs)
+   bool impact::pre_create_window(CREATESTRUCT & cs)
    {
 
       ASSERT(cs.style & WS_CHILD);
@@ -137,32 +137,32 @@ namespace user
    }
 
 
-   void view::_001OnCreate(signal_details * pobj)
+   void impact::_001OnCreate(signal_details * pobj)
    {
       SCAST_PTR(::message::create, pcreate, pobj);
 
-      if(pcreate->previous())
+      if (pcreate->previous())
          return;
 
-      // if ok, wire in the current ::user::document_interface
-      ASSERT(::user::view::get_document() == NULL);
+      // if ok, wire in the current ::user::object
+      ASSERT(::user::impact::get_document() == NULL);
       sp(::create_context) pContext = pcreate->m_lpcreatestruct->lpCreateParams;
 
-      // A ::user::view should be created in a given context!
+      // A ::user::impact should be created in a given context!
       if (pContext != NULL && pContext->m_user->m_pCurrentDoc != NULL)
       {
-         pContext->m_user->m_pCurrentDoc->m_pdoc->add_view(this);
-         ASSERT(::user::view::get_document() != NULL);
+         pContext->m_user->m_pCurrentDoc->add_view(this);
+         ASSERT(::user::impact::get_document() != NULL);
       }
       else
       {
-         TRACE(::core::trace::category_AppMsg, 0, "Warning: Creating a pane with no ::user::document_interface.\n");
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: Creating a pane with no ::user::object.\n");
       }
 
       pcreate->set_lresult(0);
    }
 
-   void view::_001OnDestroy(signal_details * pobj)
+   void impact::_001OnDestroy(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       sp(::user::frame_window) pFrame = GetParentFrame();
@@ -172,19 +172,19 @@ namespace user
    }
 
    // self destruction
-   void view::PostNcDestroy()
+   void impact::PostNcDestroy()
    {
       ::user::interaction::PostNcDestroy();
-      if(is_set_ca_flag(element::flag_auto_delete))
+      if (is_set_ca_flag(element::flag_auto_delete))
       {
          // default for views is to allocate them on the heap
          //  the default post-cleanup is to 'delete this'.
-         //  never explicitly call 'delete' on a ::user::view
+         //  never explicitly call 'delete' on a ::user::impact
          delete_this();
       }
    }
 
-   void view::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType)
+   void impact::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType)
    {
       /* trans   ENSURE_ARG(lpClientRect != NULL);
       if (nAdjustType != 0)
@@ -218,7 +218,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Command routing
 
-   bool view::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
+   bool impact::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
 
    {
 
@@ -226,10 +226,10 @@ namespace user
       if (::user::interaction::_001OnCmdMsg(pcmdmsg))
          return TRUE;
       sp(::user::interaction) pwndex;
-      if(base < ::user::view > ::bases(get_parent()))
+      if (base < ::user::impact > ::bases(get_parent()))
       {
          pwndex = (get_parent().m_p);
-         if(pwndex != NULL)
+         if (pwndex != NULL)
          {
             if (pwndex->_001OnCmdMsg(pcmdmsg))
                return TRUE;
@@ -237,19 +237,19 @@ namespace user
       }
 
       // then pump through document
-      if (::user::view::get_document() != NULL)
+      if (::user::impact::get_document() != NULL)
       {
-         if(::user::view::get_document()->_001OnCmdMsg(pcmdmsg))
+         if (::user::impact::get_document()->_001OnCmdMsg(pcmdmsg))
             return TRUE;
-         sp(::user::view) pview = ::user::view::get_document()->get_view(0);
+         sp(::user::impact) pview = ::user::impact::get_document()->get_view(0);
          ASSERT_VALID(pview);
          if (pview != this
             && pview != get_parent())
          {
             pwndex = (pview);
-            if(pwndex != NULL)
+            if (pwndex != NULL)
             {
-               if(pwndex->::user::interaction::_001OnCmdMsg(pcmdmsg))
+               if (pwndex->::user::interaction::_001OnCmdMsg(pcmdmsg))
                   return TRUE;
             }
          }
@@ -261,9 +261,9 @@ namespace user
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::view drawing support
+   // ::user::impact drawing support
 
-   void view::OnPaint()
+   void impact::OnPaint()
    {
       // standard paint routine
       // trans   CPaintDC spgraphics(this);
@@ -271,33 +271,33 @@ namespace user
       //   trans OnDraw(&spgraphics);
    }
 
-   sp(::user::document_interface) view::get_document(sp(::user::interaction) pguie)
+   sp(::user::object) impact::get_document(sp(::user::interaction) pguie)
    {
-      sp(::user::view) pview =  (pguie.m_p);
-      if(pview != NULL)
+      sp(::user::impact) pview = (pguie.m_p);
+      if (pview != NULL)
          return NULL;
       return pview->get_document();
    }
 
-   void view::_001OnInitialUpdate(signal_details * pobj)
+   void impact::_001OnInitialUpdate(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       on_update(NULL, 0, NULL);        // initial update
    }
 
-   void view::on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint)
+   void impact::on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint)
    {
-      if(pHint != NULL)
+      if (pHint != NULL)
       {
-         if(base < ::user::view_update_hint > ::bases(pHint))
+         if (base < ::user::view_update_hint > ::bases(pHint))
          {
             ::user::view_update_hint * puh = dynamic_cast < ::user::view_update_hint * > (pHint);
             OnViewUpdateHint(pSender, lHint, puh);
          }
       }
-      if(lHint >= hint_begin && lHint < hint_end)
+      if (lHint >= hint_begin && lHint < hint_end)
       {
-         on_simple_view_update_hint(pSender, (e_hint) lHint, pHint);
+         on_simple_view_update_hint(pSender, (e_hint)lHint, pHint);
       }
       ASSERT(pSender != this);
       UNUSED(pSender);     // unused in release builds
@@ -306,15 +306,15 @@ namespace user
       //Invalidate(TRUE);
    }
 
-   void view::on_simple_view_update_hint(sp(::user::view) pviewSender, e_hint ehint, object * phint)
+   void impact::on_simple_view_update_hint(sp(::user::impact) pviewSender, e_hint ehint, object * phint)
    {
 
-      switch(ehint)
+      switch (ehint)
       {
       case hint_set_edit_file:
-         {
-            post_simple_command(simple_command_set_edit_file, (LPARAM) phint);
-         }
+      {
+                                post_simple_command(simple_command_set_edit_file, (LPARAM)phint);
+      }
          break;
       default:
          break;
@@ -322,7 +322,7 @@ namespace user
 
    }
 
-   void view::OnViewUpdateHint(sp(::user::view) pSender, LPARAM lHint, ::user::view_update_hint * pHint)
+   void impact::OnViewUpdateHint(sp(::user::impact) pSender, LPARAM lHint, ::user::view_update_hint * pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -331,9 +331,9 @@ namespace user
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::view selection support
+   // ::user::impact selection support
 
-   bool view::IsSelected(const object* pDocItem) const
+   bool impact::IsSelected(const object* pDocItem) const
    {
       ASSERT_VALID(pDocItem);
       UNUSED(pDocItem);    // unused in release builds
@@ -341,7 +341,7 @@ namespace user
       return FALSE;   // not implemented, so not selected
    }
 
-   void view::OnActivateView(bool bActivate, sp(::user::view) pActivateView, sp(::user::view))
+   void impact::OnActivateView(bool bActivate, sp(::user::impact) pActivateView, sp(::user::impact))
    {
       UNUSED(pActivateView);   // unused in release builds
 
@@ -349,18 +349,18 @@ namespace user
       {
          ASSERT(pActivateView == this);
 
-         // take the focus if this frame/::user::view/pane is now active
+         // take the focus if this frame/::user::impact/pane is now active
          // trans      if (IsTopParentActive())
          //trans   SetFocus();
       }
    }
 
-   void view::OnActivateFrame(UINT /*nState*/, sp(::user::frame_window) /*pFrameWnd*/)
+   void impact::OnActivateFrame(UINT /*nState*/, sp(::user::frame_window) /*pFrameWnd*/)
    {
    }
 
    /* trans
-   int32_t view::OnMouseActivate(sp(::user::window) pDesktopWnd, UINT nHitTest, UINT message)
+   int32_t impact::OnMouseActivate(sp(::user::window) pDesktopWnd, UINT nHitTest, UINT message)
    {
    int32_t nResult = ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
@@ -372,18 +372,18 @@ namespace user
    // eat it if this will cause activation
    ASSERT(pParentFrame == pDesktopWnd || pDesktopWnd->IsChild(pParentFrame));
 
-   // either re-activate the current ::user::view, or set this ::user::view to be active
-   sp(::user::view) pview = pParentFrame->GetActiveView();
+   // either re-activate the current ::user::impact, or set this ::user::impact to be active
+   sp(::user::impact) pview = pParentFrame->GetActiveView();
    oswindow oswindow_Focus = ::GetFocus();
    if (pview == this &&
    get_handle() != oswindow_Focus && !::IsChild(get_handle(), oswindow_Focus))
    {
-   // re-activate this ::user::view
+   // re-activate this ::user::impact
    OnActivateView(TRUE, this, this);
    }
    else
    {
-   // activate this ::user::view
+   // activate this ::user::impact
    pParentFrame->SetActiveView(this);
    }
    }
@@ -392,22 +392,22 @@ namespace user
    */
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::view scrolling support
+   // ::user::impact scrolling support
 
-   bool view::OnScroll(UINT /*nScrollCode*/, UINT /*nPos*/, bool /*bDoScroll*/)
+   bool impact::OnScroll(UINT /*nScrollCode*/, UINT /*nPos*/, bool /*bDoScroll*/)
    {
       return FALSE;
    }
 
-   bool view::OnScrollBy(size /*sizeScroll*/, bool /*bDoScroll*/)
+   bool impact::OnScrollBy(size /*sizeScroll*/, bool /*bDoScroll*/)
    {
       return FALSE;
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::view drag/drop support
+   // ::user::impact drag/drop support
 
-   ///*DROPEFFECT view::OnDragScroll(uint32_t /*dwKeyState*/, point /*point*/)
+   ///*DROPEFFECT impact::OnDragScroll(uint32_t /*dwKeyState*/, point /*point*/)
    //{
    //#ifndef ___NO_OLE_SUPPORT
    // return DROPEFFECT_SCROLL; // this means do the default
@@ -416,39 +416,39 @@ namespace user
    //#endif
    //}
 
-   //DROPEFFECT view::OnDragEnter(COleDataObject* /*pDataObject*/,
+   //DROPEFFECT impact::OnDragEnter(COleDataObject* /*pDataObject*/,
    // uint32_t /*dwKeyState*/, point /*point*/)
    //{
    // return 0;   // DROPEFFECT_NONE
    //}
 
-   //DROPEFFECT view::OnDragOver(COleDataObject* /*pDataObject*/,
+   //DROPEFFECT impact::OnDragOver(COleDataObject* /*pDataObject*/,
    //uint32_t /*dwKeyState*/, point /*point*/)
    //{
    //return 0;   // DROPEFFECT_NONE
    //}
 
-   //bool view::OnDrop(COleDataObject* /*pDataObject*/,
+   //bool impact::OnDrop(COleDataObject* /*pDataObject*/,
    //DROPEFFECT /*dropEffect*/, point /*point*/)
    //{
    // return FALSE;
    //}
 
-   //DROPEFFECT view::OnDropEx(COleDataObject* /*pDataObject*/,
+   //DROPEFFECT impact::OnDropEx(COleDataObject* /*pDataObject*/,
    // DROPEFFECT /*dropEffect*/, DROPEFFECT /*dropEffectList*/, point /*point*/)
    //{
    // return (DROPEFFECT)-1;  // not implemented
    //}
 
-   //void view::OnDragLeave()
+   //void impact::OnDragLeave()
    //{
    //}
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::view splitting commands
+   // ::user::impact splitting commands
 
 
-   CScrollBar* view::GetScrollBarCtrl(int32_t nBar) const
+/*   CScrollBar* impact::GetScrollBarCtrl(int32_t nBar) const
    {
 
       ///ASSERT(nBar == SB_HORZ || nBar == SB_VERT);
@@ -460,10 +460,10 @@ namespace user
 
 
       return NULL;
-   }
+   }*/
 
 
-   void view::OnUpdateSplitCmd(cmd_ui* pCmdUI)
+   void impact::OnUpdateSplitCmd(cmd_ui* pCmdUI)
    {
       UNREFERENCED_PARAMETER(pCmdUI);
       /*ENSURE_ARG(pCmdUI != NULL);
@@ -471,7 +471,7 @@ namespace user
       pCmdUI->Enable(pSplitter != NULL && !pSplitter->IsTracking());*/
    }
 
-   bool view::OnSplitCmd(UINT)
+   bool impact::OnSplitCmd(UINT)
    {
       /*   CSplitterWnd* pSplitter = GetParentSplitter(this, FALSE);
       if (pSplitter == NULL)
@@ -482,7 +482,7 @@ namespace user
       return TRUE;    // attempted at least
    }
 
-   void view::OnUpdateNextPaneMenu(cmd_ui* pCmdUI)
+   void impact::OnUpdateNextPaneMenu(cmd_ui* pCmdUI)
    {
       UNREFERENCED_PARAMETER(pCmdUI);
       /*ASSERT(pCmdUI->m_nID == ID_NEXT_PANE ||
@@ -492,7 +492,7 @@ namespace user
       pSplitter->CanActivateNext(pCmdUI->m_nID == ID_PREV_PANE));*/
    }
 
-   bool view::OnNextPaneCmd(UINT nID)
+   bool impact::OnNextPaneCmd(UINT nID)
    {
       UNREFERENCED_PARAMETER(nID);
       /*   CSplitterWnd* pSplitter = GetParentSplitter(this, FALSE);
@@ -507,7 +507,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Printing support virtual functions (others in viewpr.cpp)
 
-   void view::OnPrepareDC(::draw2d::graphics * pgraphics, CPrintInfo* pInfo)
+   void impact::OnPrepareDC(::draw2d::graphics * pgraphics, CPrintInfo* pInfo)
    {
       UNREFERENCED_PARAMETER(pInfo);
       ASSERT_VALID(pgraphics);
@@ -520,20 +520,20 @@ namespace user
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::view diagnostics
+   // ::user::impact diagnostics
 
 
-   void view::dump(dump_context & dumpcontext) const
+   void impact::dump(dump_context & dumpcontext) const
    {
       ::user::interaction::dump(dumpcontext);
 
-      if (((view *) this)->::user::view::get_document() != NULL)
-         dumpcontext << "with ::user::document_interface: ";
+      if (((impact *) this)->::user::impact::get_document() != NULL)
+         dumpcontext << "with ::user::object: ";
       else
-         dumpcontext << "with no ::user::document_interface\n";
+         dumpcontext << "with no ::user::object\n";
    }
 
-   void view::assert_valid() const
+   void impact::assert_valid() const
    {
       ::user::interaction::assert_valid();
    }
@@ -541,18 +541,18 @@ namespace user
 
 
 
-   void view::_001OnView(signal_details * pobj)
+   void impact::_001OnView(signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj)
-         if(pbase->m_wparam == 0)
-         {
-            ::user::document_interface::update * pupdate = (::user::document_interface::update *) pbase->m_lparam.m_lparam;
-            on_update(pupdate->m_pSender, pupdate->m_lHint, pupdate->m_pHint);
-         }
+      if (pbase->m_wparam == 0)
+      {
+         ::user::object::update * pupdate = (::user::object::update *) pbase->m_lparam.m_lparam;
+         on_update(pupdate->m_pSender, pupdate->m_lHint, pupdate->m_pHint);
+      }
    }
 
 
-   sp(::user::interaction) view::create_view(type * pinfo, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
+   sp(::user::interaction) impact::create_view(type * pinfo, sp(::user::object) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
    {
 
       sp(type) info(pinfo);
@@ -561,25 +561,25 @@ namespace user
 
       stacker < ::user::create_context > cc(cacc->m_user);
 
-      cc->m_typeinfoNewView    = info;
+      cc->m_typeinfoNewView = info;
 
-      cc->m_pLastView          = pviewLast;
+      cc->m_pLastView = pviewLast;
 
-      if(pdoc == NULL)
+      if (pdoc == NULL)
       {
-         cc->m_pCurrentDoc        = get_document();
+         cc->m_pCurrentDoc = get_document();
       }
       else
       {
          cc->m_pCurrentDoc = pdoc;
       }
 
-      if(pwndParent == NULL)
+      if (pwndParent == NULL)
       {
          pwndParent = this;
       }
 
-      if(id.is_empty())
+      if (id.is_empty())
       {
 
          id = (const ::id &) cc->m_typeinfoNewView->name();
@@ -591,7 +591,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) view::s_create_view(type * pinfo, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
+   sp(::user::interaction) impact::s_create_view(type * pinfo, sp(::user::object) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
    {
 
       sp(type) info(pinfo);
@@ -600,17 +600,17 @@ namespace user
 
       stacker < ::user::create_context > cc(cacc->m_user);
 
-      cc->m_typeinfoNewView    = info;
+      cc->m_typeinfoNewView = info;
 
-      cc->m_pLastView          = pviewLast;
+      cc->m_pLastView = pviewLast;
 
-      cc->m_pCurrentDoc        = pdoc;
+      cc->m_pCurrentDoc = pdoc;
 
       return s_create_view(cacc, pwndParent, id);
 
    }
 
-   sp(::user::interaction) view::s_create_view(::create_context * pContext, sp(::user::interaction) pwndParent, id id)
+   sp(::user::interaction) impact::s_create_view(::create_context * pContext, sp(::user::interaction) pwndParent, id id)
    {
 
       // trans   ASSERT(pwndParent->get_handle() != NULL);
@@ -625,10 +625,10 @@ namespace user
 
       sp(::user::interaction) pguie;
 
-      if(pContext->m_user->m_puiNew != NULL)
+      if (pContext->m_user->m_puiNew != NULL)
       {
 
-         pguie =  pContext->m_user->m_puiNew;
+         pguie = pContext->m_user->m_puiNew;
 
       }
       else
@@ -638,7 +638,7 @@ namespace user
          pguie = App(papp).alloc(pContext->m_user->m_typeinfoNewView);
          if (pguie == NULL)
          {
-            //         TRACE1("Warning: Dynamic create of ::user::view type %hs failed.\n", pContext->m_typeinfoNewView.name());
+            //         TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n", pContext->m_typeinfoNewView.name());
             return NULL;
          }
 
@@ -647,41 +647,41 @@ namespace user
       ASSERT_KINDOF(::user::interaction, pguie);
 
       // views are always created with a border!
-      if (!pguie->create(NULL, NULL, WS_VISIBLE | WS_CHILD, rect(0,0,0,0), pwndParent, id, pContext))
+      if (!pguie->create(NULL, NULL, WS_VISIBLE | WS_CHILD, rect(0, 0, 0, 0), pwndParent, id, pContext))
       {
 
-         //TRACE0("Warning: could not create ::user::view for frame.\n");
-         return NULL;        // can't continue without a ::user::view
+         //TRACE0("Warning: could not create ::user::impact for frame.\n");
+         return NULL;        // can't continue without a ::user::impact
 
       }
 
 
-      sp(::user::view) pview =  pguie;
-      if(pview != NULL)
+      sp(::user::impact) pview = pguie;
+      if (pview != NULL)
       {
          pview->_001OnInitialUpdate(NULL);
       }
       /*   if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
       {
-      // remove the 3d style from the frame, since the ::user::view is
+      // remove the 3d style from the frame, since the ::user::impact is
       //  providing it.
       // make sure to recalc the non-client area
       ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED);
       }*/
 
 
-      if(pguie != NULL)
+      if (pguie != NULL)
       {
 
-         if(pguie->get_parent() != NULL)
+         if (pguie->get_parent() != NULL)
          {
 
-            sp(::user::place_holder) pholder = pguie->get_parent();
+            
 
-            if(pholder != NULL)
+            if (pguie->get_parent()->is_place_holder())
             {
 
-               pholder->hold(pguie);
+               pguie->get_parent()->hold(pguie);
 
             }
 
@@ -694,12 +694,12 @@ namespace user
    }
 
 
-   void view::_001OnLButtonDown(signal_details * pobj)
+   void impact::_001OnLButtonDown(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //   SCAST_PTR(::message::mouse, pmouse, pobj);
 
-      if(GetParentFrame() != NULL)
+      if (GetParentFrame() != NULL)
       {
 
          GetParentFrame()->SetActiveView(this);
@@ -708,31 +708,31 @@ namespace user
 
    }
 
-   void view::_001OnLButtonUp(signal_details * pobj)
+   void impact::_001OnLButtonUp(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //SCAST_PTR(::message::mouse, pmouse, pobj);
    }
 
-   void view::_001OnMouseMove(signal_details * pobj)
+   void impact::_001OnMouseMove(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //   SCAST_PTR(::message::mouse, pmouse, pobj);
    }
 
 
-   sp(::user::document_interface) view::get_document() const
+   sp(::user::object) impact::get_document() const
    {
       ASSERT(this != NULL);
-      return ((::user::view *) this)->m_spdocument;
+      return ((::user::impact *) this)->m_spdocument;
    }
 
 
-   void view::collaborate(::job * pjob)
+   void impact::collaborate(::job * pjob)
    {
       {
          ::user::job * puserjob = (dynamic_cast < ::user::job * > (pjob));
-         if(puserjob != NULL)
+         if (puserjob != NULL)
          {
             puserjob->m_pview = this;
          }
@@ -741,27 +741,27 @@ namespace user
 
 
 
-   int32_t view::get_total_page_count(::job * pjob)
+   int32_t impact::get_total_page_count(::job * pjob)
    {
       UNREFERENCED_PARAMETER(pjob);
       return 1;
    }
 
 
-   ::user::interaction::e_type view::get_window_type()
+   ::user::interaction::e_type impact::get_window_type()
    {
       return type_view;
    }
 
 
-   void view::on_draw_view_nc(::draw2d::graphics * pdc)
+   void impact::on_draw_view_nc(::draw2d::graphics * pdc)
    {
 
       UNREFERENCED_PARAMETER(pdc);
 
    }
 
-   void view::on_draw_view(::draw2d::graphics * pdc, spa(::data::data) spadata)
+   void impact::on_draw_view(::draw2d::graphics * pdc, spa(::data::data) spadata)
    {
 
       UNREFERENCED_PARAMETER(pdc);
@@ -769,19 +769,19 @@ namespace user
 
    }
 
-   void view::defer_draw_view(::draw2d::graphics * pdc)
+   void impact::defer_draw_view(::draw2d::graphics * pdc)
    {
 
-      if(get_document() == NULL)
+      if (get_document() == NULL)
          return;
 
       spa(::data::data) spadata;
 
-      spadata.add(get_document()->m_spadata);
+      spadata.add(get_document()->m_spdata);
 
       sync_object_ptra sync;
 
-      for(index i = 0; i < spadata.get_count(); i++)
+      for (index i = 0; i < spadata.get_count(); i++)
       {
 
          sync.add(spadata[i].data_mutex());
@@ -794,13 +794,13 @@ namespace user
       {
          on_draw_view(pdc, spadata);
       }
-      catch(...)
+      catch (...)
       {
       }
 
    }
 
-   void view::_001OnDraw(::draw2d::graphics * pdc)
+   void impact::_001OnDraw(::draw2d::graphics * pdc)
    {
 
       on_draw_view_nc(pdc);
@@ -809,7 +809,7 @@ namespace user
 
       bool bOk;
 
-retry:
+   retry:
 
       bOk = true;
 
@@ -817,20 +817,20 @@ retry:
       {
          defer_draw_view(pdc);
       }
-      catch(...)
+      catch (...)
       {
          bOk = false;
       }
 
       iTry++;
-      if(!bOk && iTry < 9)
+      if (!bOk && iTry < 9)
          goto retry;
 
    }
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::view second phase construction - bind to document
+   // ::user::impact second phase construction - bind to document
 
    //const CHAR _vfxWndFrameOrView[] = __WNDFRAMEORVIEW;
 
@@ -838,32 +838,32 @@ retry:
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::view drawing support
+   // ::user::impact drawing support
 
 
-   /*void view::_001OnInitialUpdate(signal_details * pobj)
+   /*void impact::_001OnInitialUpdate(signal_details * pobj)
    {
    on_update(NULL, 0, NULL);        // initial update
    }*/
 
-/*   void view::on_update(sp(::user::view) pSender, LPARAM lHint, object * pHint)
+   /*   void impact::on_update(sp(::user::impact) pSender, LPARAM lHint, object * pHint)
    {
-      ::user::view::on_update(pSender, lHint, pHint);
+   ::user::impact::on_update(pSender, lHint, pHint);
    }
    */
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::view selection support
+   // ::user::impact selection support
 
-/*   bool view::IsSelected(const object* pDocItem) const
+   /*   bool impact::IsSelected(const object* pDocItem) const
    {
-      ASSERT_VALID(pDocItem);
-      //      UNUSED(pDocItem);    // unused in release builds
+   ASSERT_VALID(pDocItem);
+   //      UNUSED(pDocItem);    // unused in release builds
 
-      return FALSE;   // not implemented, so not selected
+   return FALSE;   // not implemented, so not selected
    }*/
 
 
-   void view::_001OnMouseActivate(signal_details * pobj)
+   void impact::_001OnMouseActivate(signal_details * pobj)
    {
       SCAST_PTR(::message::mouse_activate, pmouseactivate, pobj);
       pobj->previous();
@@ -883,18 +883,18 @@ retry:
          ASSERT(pParentFrame == pmouseactivate->GetDesktopWindow()
             || pmouseactivate->GetDesktopWindow()->IsChild(pParentFrame));
 
-         // either re-activate the current ::user::view, or set this ::user::view to be active
-         sp(::user::view) pview = pParentFrame->GetActiveView();
+         // either re-activate the current ::user::impact, or set this ::user::impact to be active
+         sp(::user::impact) pview = pParentFrame->GetActiveView();
          sp(::user::interaction) oswindow_Focus = System.get_focus_guie();
          if (pview == this &&
             this != oswindow_Focus && !IsChild(oswindow_Focus))
          {
-            // re-activate this ::user::view
+            // re-activate this ::user::impact
             OnActivateView(TRUE, this, this);
          }
          else
          {
-            // activate this ::user::view
+            // activate this ::user::impact
             pParentFrame->SetActiveView(this);
          }
       }
@@ -902,7 +902,7 @@ retry:
       pmouseactivate->m_bRet = true;
    }
 
-   void view::on_select()
+   void impact::on_select()
    {
       sp(::user::frame_window) pParentFrame = (GetParentFrame());
       if (pParentFrame != NULL)
@@ -911,18 +911,18 @@ retry:
          /*      ASSERT(pParentFrame == pmouseactivate->GetDesktopWindow()
          || pmouseactivate->GetDesktopWindow()->IsChild(pParentFrame));*/
 
-         // either re-activate the current ::user::view, or set this ::user::view to be active
-         sp(::user::view) pview = pParentFrame->GetActiveView();
+         // either re-activate the current ::user::impact, or set this ::user::impact to be active
+         sp(::user::impact) pview = pParentFrame->GetActiveView();
          sp(::user::interaction) oswindow_Focus = System.get_focus_guie();
          if (pview == this &&
             this != oswindow_Focus && !IsChild(oswindow_Focus))
          {
-            // re-activate this ::user::view
+            // re-activate this ::user::impact
             OnActivateView(TRUE, this, this);
          }
          else
          {
-            // activate this ::user::view
+            // activate this ::user::impact
             pParentFrame->SetActiveView(this);
          }
       }
@@ -930,9 +930,9 @@ retry:
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::view drag/drop support
+   // ::user::impact drag/drop support
 
-   DROPEFFECT view::OnDragScroll(uint32_t /*dwKeyState*/, point /*point*/)
+   DROPEFFECT impact::OnDragScroll(uint32_t /*dwKeyState*/, point /*point*/)
    {
 #if !defined(___NO_OLE_SUPPORT) && !defined(METROWIN) && !defined(LINUX) && !defined(MACOS)
       return DROPEFFECT_SCROLL; // this means do the default
@@ -941,75 +941,75 @@ retry:
 #endif
    }
 
-   DROPEFFECT view::OnDragEnter(COleDataObject* /*pDataObject*/,
+   DROPEFFECT impact::OnDragEnter(COleDataObject* /*pDataObject*/,
       uint32_t /*dwKeyState*/, point /*point*/)
    {
       return 0;   // DROPEFFECT_NONE
    }
 
-   DROPEFFECT view::OnDragOver(COleDataObject* /*pDataObject*/,
+   DROPEFFECT impact::OnDragOver(COleDataObject* /*pDataObject*/,
       uint32_t /*dwKeyState*/, point /*point*/)
    {
       return 0;   // DROPEFFECT_NONE
    }
 
-   bool view::OnDrop(COleDataObject* /*pDataObject*/,
+   bool impact::OnDrop(COleDataObject* /*pDataObject*/,
       DROPEFFECT /*dropEffect*/, point /*point*/)
    {
       return FALSE;
    }
 
-   DROPEFFECT view::OnDropEx(COleDataObject* /*pDataObject*/,
+   DROPEFFECT impact::OnDropEx(COleDataObject* /*pDataObject*/,
       DROPEFFECT /*dropEffect*/, DROPEFFECT /*dropEffectList*/, point /*point*/)
    {
       return (DROPEFFECT)-1;  // not implemented
    }
 
-   void view::OnDragLeave()
+   void impact::OnDragLeave()
    {
    }
 
 
 
-   void view::_001OnUpdateSplitCmd(signal_details * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
-   }
-
-   void view::_001OnSplitCmd(signal_details * pobj)
+   void impact::_001OnUpdateSplitCmd(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void view::_001OnUpdateNextPaneMenu(signal_details * pobj)
+   void impact::_001OnSplitCmd(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void view::_001OnNextPaneCmd(signal_details * pobj)
+   void impact::_001OnUpdateNextPaneMenu(signal_details * pobj)
+   {
+      UNREFERENCED_PARAMETER(pobj);
+   }
+
+   void impact::_001OnNextPaneCmd(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
 
-   // // IMPLEMENT_DYNAMIC for ::user::view is in wincore.cpp for .OBJ granularity reasons
+   // // IMPLEMENT_DYNAMIC for ::user::impact is in wincore.cpp for .OBJ granularity reasons
 
    //// IMPLEMENT_DYNAMIC(CSplitterWnd, ::user::interaction)   // for swap tuning
-   //// IMPLEMENT_DYNAMIC(CCtrlView, ::user::view)
+   //// IMPLEMENT_DYNAMIC(CCtrlView, ::user::impact)
 
    /////////////////////////////////////////////////////////////////////////////
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::view's OnPrintPreview.  Here to force linkage
+   // ::user::impact's OnPrintPreview.  Here to force linkage
 
-   void view::_001OnFilePrintPreview(signal_details * pobj)
+   void impact::_001OnFilePrintPreview(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
 
-   void view::_001OnFilePrint(signal_details * pobj)
+   void impact::_001OnFilePrint(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -1017,7 +1017,7 @@ retry:
 
 
    /*
-   sp(::user::interaction) view::CreateView(sp(::create_context) pContext, UINT nID)
+   sp(::user::interaction) impact::CreateView(sp(::create_context) pContext, UINT nID)
    {
    ASSERT(IsWindow());
    ASSERT(pContext != NULL);
@@ -1027,7 +1027,7 @@ retry:
    sp(::user::interaction) pview =  (System.alloc(pContext->m_typeinfoNewView));
    if (pview == NULL)
    {
-   TRACE1("Warning: Dynamic create of ::user::view type %hs failed.\n",
+   TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n",
    pContext->m_typeinfoNewView.name());
    return NULL;
    }
@@ -1037,15 +1037,15 @@ retry:
    if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
    rect(0,0,0,0), this, nID, (sp(::create_context)) pContext))
    {
-   TRACE0("Warning: could not create ::user::view for frame.\n");
-   return NULL;        // can't continue without a ::user::view
+   TRACE0("Warning: could not create ::user::impact for frame.\n");
+   return NULL;        // can't continue without a ::user::impact
    }
 
-   sp(::user::view) pview =  (pview);
+   sp(::user::impact) pview =  (pview);
    pview->_001OnInitialUpdate(NULL);
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
-   // remove the 3d style from the frame, since the ::user::view is
+   // remove the 3d style from the frame, since the ::user::impact is
    //  providing it.
    // make sure to recalc the non-client area
    ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED);
@@ -1054,7 +1054,7 @@ retry:
    }*/
 
 
-   /*sp(::user::interaction) view::CreateView(sp(::create_context) pContext, UINT nID, ::user::interaction  * pwndParent)
+   /*sp(::user::interaction) impact::CreateView(sp(::create_context) pContext, UINT nID, ::user::interaction  * pwndParent)
    {
    ASSERT(pwndParent->IsWindow());
    ASSERT(pContext != NULL);
@@ -1064,7 +1064,7 @@ retry:
    sp(::user::window) pview = (pwndParent->System.alloc(pContext->m_typeinfoNewView));
    if (pview == NULL)
    {
-   TRACE1("Warning: Dynamic create of ::user::view type %hs failed.\n",
+   TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n",
    pContext->m_typeinfoNewView.name());
    return NULL;
    }
@@ -1074,14 +1074,14 @@ retry:
    if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
    rect(0,0,0,0), pwndParent, nID, (sp(::create_context)) pContext))
    {
-   TRACE0("Warning: could not create ::user::view for frame.\n");
-   return NULL;        // can't continue without a ::user::view
+   TRACE0("Warning: could not create ::user::impact for frame.\n");
+   return NULL;        // can't continue without a ::user::impact
    }
 
    ( (pview))->_001OnInitialUpdate(NULL);
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
-   // remove the 3d style from the frame, since the ::user::view is
+   // remove the 3d style from the frame, since the ::user::impact is
    //  providing it.
    // make sure to recalc the non-client area
    ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED);
@@ -1090,20 +1090,20 @@ retry:
    //}
 
 
-   void view::_001OnRButtonDown(signal_details * pobj)
+   void impact::_001OnRButtonDown(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //SCAST_PTR(::message::mouse, pmouse, pobj);
 
-      GetParentFrame()->SetActiveView( (this));
+      GetParentFrame()->SetActiveView((this));
    }
 
-   void view::_001OnMButtonDown(signal_details * pobj)
+   void impact::_001OnMButtonDown(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //      SCAST_PTR(::message::mouse, pmouse, pobj);
 
-      GetParentFrame()->SetActiveView( (this));
+      GetParentFrame()->SetActiveView((this));
    }
 
 } // namespace user

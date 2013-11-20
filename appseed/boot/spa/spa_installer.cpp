@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "spa_installer.h"
+#include "spa2.h"
 
 
 #ifdef WINDOWS

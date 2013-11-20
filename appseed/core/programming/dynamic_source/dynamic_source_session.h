@@ -6,7 +6,7 @@ namespace dynamic_source
 
 
    class CLASS_DECL_CORE session :
-      virtual public object
+      virtual public ::object
    {
    public:
 

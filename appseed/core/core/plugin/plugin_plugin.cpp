@@ -29,7 +29,9 @@ namespace plugin
    void my_se_translator_function(uint32_t, struct _EXCEPTION_POINTERS* );
 
 
-   plugin::plugin()
+   plugin::plugin(sp(base_application) papp) :
+      element(papp),
+      hotplugin::plugin(papp)
    {
 
       m_pbaseapp                  = NULL;
@@ -218,7 +220,7 @@ namespace plugin
    }
 
 
-   void plugin::on_paint(simple_graphics & gWindow, LPCRECT lprectOut)
+   void plugin::on_paint(::draw2d::graphics * pgraphics, LPCRECT lprectOut)
    {
 
       //class rect rect = m_phost->m_rect;

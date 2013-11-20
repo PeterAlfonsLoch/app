@@ -43,8 +43,8 @@ public:
    bool                                   m_bClientOnly;
    bool                                   m_bOuterPopupAlertLike;
    bool                                   m_bHold;
-   sp(::user::base_interaction)           m_puiParent;
-   sp(::user::base_interaction)           m_puiAlloc;
+   sp(::user::interaction)           m_puiParent;
+   sp(::user::interaction)           m_puiAlloc;
    sp(application_bias)                   m_spApplicationBias;
    command_line_sp                        m_spCommandLine;
    stack < ::user::create_context >       m_user; 
@@ -54,7 +54,7 @@ public:
 
    create_context(sp(base_application) papp);
    create_context(sp(::command_thread) pthreadParent);
-   create_context(sp(::command_thread) pthreadParent, var varFile, bool bMakeVisible = true, sp(::user::base_interaction) puiParent = NULL);
+   create_context(sp(::command_thread) pthreadParent, var varFile, bool bMakeVisible = true, sp(::user::interaction) puiParent = NULL);
    create_context(const create_context & createcontext);
    virtual ~create_context();
 

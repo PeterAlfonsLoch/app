@@ -38,7 +38,7 @@ namespace bergedge
 
    void view::install_message_handling(::message::dispatch * pinterface)
    {
-      ::user::view::install_message_handling(pinterface);
+      ::user::impact::install_message_handling(pinterface);
       ::user::place_holder::install_message_handling(pinterface);
       ::backview::Interface::install_message_handling(pinterface);
 
@@ -53,7 +53,7 @@ namespace bergedge
 
    }
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::view drawing
+   // ::user::impact drawing
 
    void view::OnDraw(::draw2d::graphics * pdcScreen)
    {
@@ -61,45 +61,45 @@ namespace bergedge
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::view diagnostics
+   // ::user::impact diagnostics
 
    #ifdef DEBUG
    void view::assert_valid() const
    {
-      ::user::view::assert_valid();
+      ::user::impact::assert_valid();
    }
 
    void view::dump(dump_context & dumpcontext) const
    {
-      ::user::view::dump(dumpcontext);
+      ::user::impact::dump(dumpcontext);
    }
    #endif //DEBUG
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::view message handlers
+   // ::user::impact message handlers
 
-   // vmpLightView.cpp : implementation of the ::user::view class
+   // vmpLightView.cpp : implementation of the ::user::impact class
    //
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::view
+   // ::user::impact
 
 
    bool view::pre_create_window(CREATESTRUCT& cs)
    {
       cs.style &= ~WS_EX_CLIENTEDGE;
-      return ::user::view::pre_create_window(cs);
+      return ::user::impact::pre_create_window(cs);
    }
    void view::_001OnInitialUpdate(signal_details * pobj)
    {
-      ::user::view::_001OnInitialUpdate(pobj);
+      ::user::impact::_001OnInitialUpdate(pobj);
 
 
 
    }
 
-   void view::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint)
+   void view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -109,7 +109,7 @@ namespace bergedge
 
    void view::_001OnDestroy(signal_details * pobj)
    {
-      ::user::view::_001OnDestroy(pobj);
+      ::user::impact::_001OnDestroy(pobj);
 
    }
 
@@ -237,10 +237,10 @@ namespace bergedge
 
    void view::pre_translate_message(signal_details * pobj)
    {
-      ::user::view::pre_translate_message(pobj);
+      ::user::impact::pre_translate_message(pobj);
    }
 
-   sp(::user::document) view::get_document()
+   sp(::user::object) view::get_document()
    {
       return  (::user::scroll_view::get_document());
    }

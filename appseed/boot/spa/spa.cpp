@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "spa_window.h"
+#include "spa_installer.h"
+#include "spa2.h"
 
 
 #ifdef LINUX
@@ -34,7 +37,7 @@ double g_dPi = asin_dup(1.0) * 4;
 namespace spa_install
 {
 
-   window g_window;
+//   window g_window;
 
 } // namespace spa_install
 

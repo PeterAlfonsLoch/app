@@ -1,4 +1,8 @@
 #include "framework.h"
+#include "spa_starter_start.h"
+#include "spa_spa.h"
+#include "spa2.h"
+
 
 UINT g_nCa2StarterStartThreadID;
 bool g_bCa2Installed = false;

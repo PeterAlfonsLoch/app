@@ -36,7 +36,7 @@ namespace filemanager
       virtual void GetActiveViewSelection(::fs::item_array & itema);
 
 
-      virtual void FileManagerSaveAs(sp(::user::document_interface) pdocument);
+      virtual void FileManagerSaveAs(sp(::user::object) pdocument);
       virtual void FileManagerSaveOK();
       virtual void FileManagerSaveCancel();
 

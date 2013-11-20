@@ -36,7 +36,7 @@ namespace filemanager
    bool document::on_new_document()
    {
 
-      if (!::user::document::on_new_document())
+      if (!::user::object::on_new_document())
          return FALSE;
 
 
@@ -58,12 +58,12 @@ namespace filemanager
    #ifdef DEBUG
    void document::assert_valid() const
    {
-      ::user::document::assert_valid();
+      ::user::object::assert_valid();
    }
 
    void document::dump(dump_context & dumpcontext) const
    {
-      ::user::document::dump(dumpcontext);
+      ::user::object::dump(dumpcontext);
    }
    #endif //DEBUG
 
@@ -123,7 +123,7 @@ namespace filemanager
             return true;
          }
       }
-      return ::user::document::_001OnCommand(id);
+      return ::user::object::_001OnCommand(id);
    }
 
    bool document::_001OnUpdateCmdUi(cmd_ui * pcmdui)
@@ -133,7 +133,7 @@ namespace filemanager
       FileManagerOnUpdateLevelUp(pcmdui);
       return true;
       }*/
-      return ::user::document::_001OnUpdateCmdUi(pcmdui);
+      return ::user::object::_001OnUpdateCmdUi(pcmdui);
    }
 
 
@@ -166,7 +166,7 @@ namespace filemanager
    }
    }
    }*/
-   /*   return ::user::document::_001OnCmdMsg(pcmdmsg);
+   /*   return ::user::object::_001OnCmdMsg(pcmdmsg);
    }
    */
 
@@ -206,7 +206,7 @@ namespace filemanager
    void document::_001OnAddLocation(signal_details * pobj)
    {
 
-      update_all_views(NULL, ::user::view::hint_add_location, NULL);
+      update_all_views(NULL, ::user::impact::hint_add_location, NULL);
 
       pobj->m_bRet = true;
 
@@ -431,7 +431,7 @@ namespace filemanager
    }
 
 
-   void document::FileManagerSaveAs(sp(::user::document_interface) pdocument)
+   void document::FileManagerSaveAs(sp(::user::object) pdocument)
    {
       
       manager::FileManagerSaveAs(pdocument);

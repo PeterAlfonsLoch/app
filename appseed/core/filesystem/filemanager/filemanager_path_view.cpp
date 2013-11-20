@@ -19,7 +19,7 @@ namespace filemanager
 
       }
 
-   void path_view::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint)
+   void path_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
       data_interface::on_update(pSender, lHint, phint);
       if (phint != NULL)

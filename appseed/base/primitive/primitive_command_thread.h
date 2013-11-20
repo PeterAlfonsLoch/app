@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_BASE command_thread :
-   virtual public object
+   virtual public ::object
 {
 public:
 

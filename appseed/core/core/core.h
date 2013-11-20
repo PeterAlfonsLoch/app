@@ -10,13 +10,13 @@
 
 
 #ifdef _CORE_LIBRARY
-   #define CLASS_DECL_BASE  CLASS_DECL_EXPORT
+   #define CLASS_DECL_CORE  CLASS_DECL_EXPORT
 #else
-   #define CLASS_DECL_BASE  CLASS_DECL_IMPORT
+#define CLASS_DECL_CORE  CLASS_DECL_IMPORT
 #endif
 
 
-extern CLASS_DECL_BASE string g_strNote;
+extern CLASS_DECL_CORE string g_strNote;
 
 
 namespace plane
@@ -49,7 +49,7 @@ namespace user
 #define Mathematics(papp) (Sys(papp).math())
 #define Math (Mathematics(this->m_pbaseapp))
 
-
+#undef Sess
 #define Sess(pbaseapp) (*pbaseapp->m_pplaneapp->m_psession->m_pplanesession->m_pplanesession->m_pplanesession)
 #define Session (Sess(this->m_pbaseapp))
 
@@ -63,8 +63,6 @@ class job;
 
 
 #include "core_enum.h"
-#include "core_live_object.h"
-#include "core_log.h"
 
 
 #include "core_main_init_data.h"
@@ -264,17 +262,12 @@ struct memory_state;
 
 
 #undef __DATA
-#define __DATA CLASS_DECL_BASE
+#define __DATA CLASS_DECL_CORE
 
 
 #ifdef ___ALL_WARNINGS
 #pragma warning( pop )
 #endif
-
-
-
-#include "core_international_locale_schema.h"
-#include "core/user/user_str.h"
 
 
 /*typedef struct tagVMSNMHDR {
@@ -367,7 +360,6 @@ typedef struct tag_TimerCallbackCreateTimer
 
 
 
-#define WM_VIEW (WM_USER + 1023)
 
 
 #include "core_constraint.h"
@@ -384,7 +376,7 @@ namespace user
 {
 
 
-   class document_interface;
+   class document;
 
 
 } // namespace user
@@ -458,8 +450,8 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
       class menu;                 // a menu
       class interaction;
       class edit_plain_text;            // Edit control
-      class view;            // a ::user::view on a document
-      class document_manager;      // document_template manager object
+      class view;            // a ::user::impact on a document
+      class document_manager;      // impact_system manager object
       class frame_window;        // standard SDI frame
    } // namespace user
 
@@ -481,11 +473,11 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
             class CMiniFrameWnd;// half-height caption frame wnd
 
          // views on a document
-            class CScrollView;  // a scrolling ::user::view
+            class CScrollView;  // a scrolling ::user::impact
 
                class thread;           // thread base class
 
-//      class document_template;         // template for document creation
+//      class impact_system;         // template for document creation
          class single_document_template;// SDI support
          class multiple_document_template; // MDI support
 
@@ -507,18 +499,18 @@ enum __HELP_TYPE
 
 #ifdef DEBUG
 // Diagnostic Output
-CLASS_DECL_BASE dump_context & operator<<(dump_context & dumpcontext, SIZE size);
-CLASS_DECL_BASE dump_context & operator<<(dump_context & dumpcontext, POINT point);
-CLASS_DECL_BASE dump_context & operator<<(dump_context & dumpcontext, const RECT& rect);
+CLASS_DECL_CORE dump_context & operator<<(dump_context & dumpcontext, SIZE size);
+CLASS_DECL_CORE dump_context & operator<<(dump_context & dumpcontext, POINT point);
+CLASS_DECL_CORE dump_context & operator<<(dump_context & dumpcontext, const RECT& rect);
 #endif //DEBUG
 
 // Serialization
-/*CLASS_DECL_BASE CArchive& operator<<(CArchive& ar, SIZE size);
-CLASS_DECL_BASE CArchive& operator<<(CArchive& ar, POINT point);
-CLASS_DECL_BASE CArchive& operator<<(CArchive& ar, const RECT& rect);
-CLASS_DECL_BASE CArchive& operator>>(CArchive& ar, SIZE& size);
-CLASS_DECL_BASE CArchive& operator>>(CArchive& ar, POINT& point);
-CLASS_DECL_BASE CArchive& operator>>(CArchive& ar, RECT& rect);
+/*CLASS_DECL_CORE CArchive& operator<<(CArchive& ar, SIZE size);
+CLASS_DECL_CORE CArchive& operator<<(CArchive& ar, POINT point);
+CLASS_DECL_CORE CArchive& operator<<(CArchive& ar, const RECT& rect);
+CLASS_DECL_CORE CArchive& operator>>(CArchive& ar, SIZE& size);
+CLASS_DECL_CORE CArchive& operator>>(CArchive& ar, POINT& point);
+CLASS_DECL_CORE CArchive& operator>>(CArchive& ar, RECT& rect);
 */
 
 
@@ -526,29 +518,19 @@ CLASS_DECL_BASE CArchive& operator>>(CArchive& ar, RECT& rect);
 
 
 
-CLASS_DECL_BASE void __get_gray_bitmap(sp(base_application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF crBackground);
-CLASS_DECL_BASE void __draw_gray_bitmap(sp(base_application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF crBackground);
-CLASS_DECL_BASE void __get_dithered_bitmap(sp(base_application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF cr1, COLORREF cr2);
-CLASS_DECL_BASE void __draw_dithered_bitmap(sp(base_application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_CORE void __get_gray_bitmap(sp(base_application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF crBackground);
+CLASS_DECL_CORE void __draw_gray_bitmap(sp(base_application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF crBackground);
+CLASS_DECL_CORE void __get_dithered_bitmap(sp(base_application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_CORE void __draw_dithered_bitmap(sp(base_application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
 
 
 #include "graphics/visual/visual_const.h"
 
 
-
-
-#include "core_command.h"
-#include "core_command_target.h"
-
-
-
-
-
-
 class CRecentFileList;          // forward reference (see afxadv.h)
 
 
-/*class CLASS_DECL_BASE CCommandLineInfo : public ::core::object
+/*class CLASS_DECL_CORE CCommandLineInfo : public ::core::object
 {
 public:
    // Sets default values
@@ -589,11 +571,11 @@ protected:
 // ::user::document_manager
 
 
-/*CLASS_DECL_BASE bool __delete_reg_key(const char * lpszKey);
+/*CLASS_DECL_CORE bool __delete_reg_key(const char * lpszKey);
 
 
 
-CLASS_DECL_BASE bool _API
+CLASS_DECL_CORE bool _API
 __set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszValueName = NULL);
 
 */
@@ -641,21 +623,8 @@ namespace user
 
 
 //#include "user_element_2d.h"
-#include "user/user_draw_interface.h"
-#include "user/user_mouse_focus.h"
-#include "user/user_keyboard_focus.h"
-#include "user/user_elemental.h"
-#include "user/user_window_util.h"
-#include "user/user_text_interface.h"
-#include "user/user_check_interface.h"
-#include "user/user_window_interface.h"
-#include "user/user_text_interface.h"
-#include "user/user_check_interface.h"
-#include "user/user_control_event.h"
-#include "user/user_control_property.h"
-#include "user/user_window_id.h"
-#include "user/user_interaction.h"
-#include "user/user_virtual_user_interface.h"
+#include "user/user/user_control_property.h"
+#include "user/user/user_window_id.h"
 
 
 #include "database/database_id.h"
@@ -666,16 +635,6 @@ namespace user
 #include "database/database_update_hint.h"
 
 
-#include "user/user_window.h"
-#include "core/core_message_queue_listener.h"
-#include "core/core_message_queue.h"
-
-
-
-
-
-
-
 
 
 #include "core_profiler.h"
@@ -683,11 +642,8 @@ namespace user
 #include "core_timer_callback.h"
 #include "core_timer_window.h"
 #include "core_timer_listener.h"
-#include "core_live_signal.h"
-#include "core_thread.h"
 #include "user/user_window_draw.h"
 #include "core_history.h"
-#include "core_job.h"
 #include "core_print_job.h"
 
 
@@ -715,24 +671,15 @@ namespace windows
 
 
 
-#include "core_international_locale_schema.h"
-
-
-#include "user/user_wait_cursor.h"
-
-
-
-
-
 /////////////////////////////////////////////////////////////////////////////
 // Extra diagnostic tracing options
 
 #ifdef DEBUG
-extern CLASS_DECL_BASE UINT g_uiTraceFlags;
+extern CLASS_DECL_CORE UINT g_uiTraceFlags;
 #endif // DEBUG
 
 #ifdef DEBUG
-#define DECLARE___TRACE_CATEGORY( name ) extern CLASS_DECL_BASE ::core::trace::category name;
+#define DECLARE___TRACE_CATEGORY( name ) extern CLASS_DECL_CORE ::core::trace::category name;
 #else
 #define DECLARE___TRACE_CATEGORY( name ) const uint_ptr name = 0;
 #endif
@@ -741,22 +688,22 @@ extern CLASS_DECL_BASE UINT g_uiTraceFlags;
 //////////////////////////////////////////////////////////////////////////////
 // MessageBox helpers
 
-//CLASS_DECL_BASE void ::core::FormatString1(string & rString, UINT nIDS, const char * lpsz1);
-//CLASS_DECL_BASE void ::core::FormatString2(string & rString, UINT nIDS,
+//CLASS_DECL_CORE void ::core::FormatString1(string & rString, UINT nIDS, const char * lpsz1);
+//CLASS_DECL_CORE void ::core::FormatString2(string & rString, UINT nIDS,
 //            const char * lpsz1, const char * lpsz2);
-/*CLASS_DECL_BASE int32_t System.simple_message_box(const char * lpszText, UINT nType = MB_OK,
+/*CLASS_DECL_CORE int32_t System.simple_message_box(const char * lpszText, UINT nType = MB_OK,
             UINT nIDHelp = 0);*/
-/*CLASS_DECL_BASE int32_t System.simple_message_box(UINT nIDPrompt, UINT nType = MB_OK,
+/*CLASS_DECL_CORE int32_t System.simple_message_box(UINT nIDPrompt, UINT nType = MB_OK,
             UINT nIDHelp = (UINT)-1);*/
 
 // Implementation string helpers
-//CLASS_DECL_BASE void __format_strings(string & rString, UINT nIDS,
+//CLASS_DECL_CORE void __format_strings(string & rString, UINT nIDS,
 //            const char * const* rglpsz, int32_t nString);
 namespace core
 {
 
-   CLASS_DECL_BASE void format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int32_t nString);
-   CLASS_DECL_BASE bool extract_sub_string(string & rString, const char * lpszFullString, int32_t iSubString, char chSep = '\n');
+   CLASS_DECL_CORE void format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int32_t nString);
+   CLASS_DECL_CORE bool extract_sub_string(string & rString, const char * lpszFullString, int32_t iSubString, char chSep = '\n');
 
 }
 
@@ -786,7 +733,7 @@ namespace core
 
 
 
-#include "zlib/zlib.h"
+#include "include/zlib.h"
 #include "database/sqlite/sqlite.h"
 
 
@@ -795,338 +742,6 @@ namespace core
 
 
 
-
-
-// Implementation structures
-struct __SIZEPARENTPARAMS;    // control bar implementationproperca2_property.h
-
-// Classes declared in this file
-
-   //::draw2d::graphics_sp
-      class preview_dc;               // Virtual DC for print preview
-
-   //command_target
-      //::user::window
-         //::user::view
-            class CPreviewView;     // Print preview ::user::view
-      //frame_window
-         class COleCntrFrameWnd;
-         //CMiniFrameWnd
-            class mini_dock_frame_window;
-
-class CDockContext;                     // for dragging control bars
-
-/////////////////////////////////////////////////////////////////////////////
-// Global ID ranges (see Technical note TN020 for more details)
-
-// 8000 -> FFFF command IDs (used for menu items, accelerators and controls)
-#define IS_COMMAND_ID(nID)  ((nID) & 0x8000)
-
-// 8000 -> DFFF : ::fontopus::user commands
-// E000 -> EFFF : _ commands and other things
-// F000 -> FFFF : standard windows commands and other things etc
-   // E000 -> E7FF standard commands
-   // E800 -> E8FF control bars (first 32 are special)
-   // E900 -> EEFF standard ::user::window controls/components
-   // EF00 -> EFFF SC_ menu help
-   // F000 -> FFFF standard strings
-#define ID_COMMAND_FROM_SC(sc)  (((sc - 0xF000) >> 4) + __IDS_SCFIRST)
-
-// 0000 -> 7FFF IDR range
-// 0000 -> 6FFF : ::fontopus::user resources
-// 7000 -> 7FFF : _ (and standard windows) resources
-// IDR ranges (NOTE: IDR_ values must be <32768)
-#define ASSERT_VALID_IDR(nIDR) ASSERT((nIDR) != 0 && (nIDR) < 0x8000)
-
-/////////////////////////////////////////////////////////////////////////////
-// Context sensitive help support (see Technical note TN028 for more details)
-
-// Help ID bases
-#define HID_BASE_COMMAND    0x00010000UL        // ID and IDM
-#define HID_BASE_RESOURCE   0x00020000UL        // IDR and IDD
-#define HID_BASE_PROMPT     0x00030000UL        // IDP
-#define HID_BASE_NCAREAS    0x00040000UL
-#define HID_BASE_CONTROL    0x00050000UL        // IDC
-#define HID_BASE_DISPATCH   0x00060000UL        // IDispatch help codes
-
-/////////////////////////////////////////////////////////////////////////////
-// Internal _ Windows messages (see Technical note TN024 for more details)
-// (0x0360 - 0x037F are reserved for core API)
-
-#define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
-                           // lParam = lpszOther (or NULL)
-#define WM_IDLEUPDATECMDUI  0x0363  // wParam == bDisableIfNoHandler
-#define WM_INITIALUPDATE    0x0364  // (params unused) - sent to children
-#define WM_COMMANDHELP      0x0365  // lResult = TRUE/FALSE,
-                           // lParam = dwContext
-#define WM_HELPHITTEST      0x0366  // lResult = dwContext,
-                           // lParam = MAKELONG(x,y)
-#define WM_EXITHELPMODE     0x0367  // (params unused)
-#define WM_RECALCPARENT     0x0368  // force layout on frame ::user::window
-                           //  (only for inplace frame windows)
-#define WM_SIZECHILD        0x0369  // special notify from COleResizeBar
-                           // wParam = ID of child ::user::window
-                           // lParam = lpRectNew (new position/size)
-#define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
-#define WM_QUERYCENTERWND   0x036B  // lParam = oswindow to use as centering parent
-#define WM_DISABLEMODAL     0x036C  // lResult = 0, disable during modal state
-                           // lResult = 1, don't disable
-#define WM_FLOATSTATUS      0x036D  // wParam combination of FS_* flags below
-
-// WM_ACTIVATETOPLEVEL is like WM_ACTIVATEAPP but works with hierarchies
-//   of mixed processes (as is the case with OLE in-place activation)
-#define WM_ACTIVATETOPLEVEL 0x036E  // wParam = nState (like WM_ACTIVATE)
-                           // lParam = pointer to oswindow[2]
-                           //  lParam[0] = oswindow getting WM_ACTIVATE
-                           //  lParam[1] = oswindow_Other
-
-#define WM_RESERVED_036F   0x036F  // was WM_QUERY3DCONTROLS (now not used)
-
-// Note: Messages 0x0370, 0x0371, and 0x372 were incorrectly used by
-//  some versions of Windows.  To remain compatible, core API does not
-//  use messages in that range.
-#define WM_RESERVED_0370    0x0370
-#define WM_RESERVED_0371    0x0371
-#define WM_RESERVED_0372    0x0372
-
-// WM_SOCKET_NOTIFY and WM_SOCKET_DEAD are used internally by core API's
-// Windows sockets implementation.  For more information, see sockcore.cpp
-#define WM_SOCKET_NOTIFY    0x0373
-#define WM_SOCKET_DEAD      0x0374
-
-// same as WM_SETMESSAGESTRING except not popped if IsTracking()
-#define WM_POPMESSAGESTRING 0x0375
-
-// WM_HELPPROMPTADDR is used internally to get the address of
-//   m_dwPromptContext from the associated frame ::user::window. This is used
-//   during message boxes to setup for F1 help while that msg box is
-//   displayed. lResult is the address of m_dwPromptContext.
-#define WM_HELPPROMPTADDR   0x0376
-
-// Constants used in DLGINIT resources for OLE control containers
-// NOTE: These are NOT real Windows messages they are simply tags
-// used in the control resource and are never used as 'messages'
-#define WM_OCC_LOADFROMSTREAM           0x0376
-#define WM_OCC_LOADFROMSTORAGE          0x0377
-#define WM_OCC_INITNEW                  0x0378
-#define WM_OCC_LOADFROMSTREAM_EX        0x037A
-#define WM_OCC_LOADFROMSTORAGE_EX       0x037B
-
-// Marker used while rearranging the message queue
-#define WM_QUEUE_SENTINEL   0x0379
-
-// Note: Messages 0x037C - 0x37E reserved for future core API use.
-#define WM_RESERVED_037C    0x037C
-#define WM_RESERVED_037D    0x037D
-#define WM_RESERVED_037E    0x037E
-
-// WM_FORWARDMSG - used by core to forward a message to another ::user::window for processing
-//   WPARAM - uint32_t dwUserData - defined by ::fontopus::user
-//   LPARAM - LPMESSAGE pMsg - a pointer to the MESSAGE structure
-//   return value - 0 if the message was not processed, nonzero if it was
-#define WM_FORWARDMSG      0x037F
-
-// like ON_MESSAGE but no return value
-#define ON_MESSAGE_VOID(message, memberFxn) \
-   { message, 0, 0, 0, ::core::Sig_vv, \
-      (__PMSG)(__PMSGW)(void (__MSG_CALL ::user::window::*)())&memberFxn },
-
-#if defined(LINUX) || defined(MACOS) || defined(METROWIN) || defined(ANDROID)
-
-typedef void * HDWP;
-
-#endif
-
-
-
-// flags for wParam in the WM_FLOATSTATUS message
-enum {  FS_SHOW = 0x01, FS_HIDE = 0x02,
-      FS_ACTIVATE = 0x04, FS_DEACTIVATE = 0x08,
-      FS_ENABLE = 0x10, FS_DISABLE = 0x20,
-      FS_SYNCACTIVE = 0x40 };
-
-CLASS_DECL_BASE void __reposition_window(__SIZEPARENTPARAMS* lpLayout, sp(::user::interaction) oswindow, LPCRECT lpRect);
-
-#ifndef LAYOUT_LTR
-#define LAYOUT_LTR                         0x00000000
-#endif
-
-
-#if defined(LINUX) || defined(MACOS)
-struct NMHDR
-{
-
-    int32_t nId;
-};
-
-
-#endif
-
-
-
-#pragma once
-
-// General OLE features
-
-#if (!defined ___NO_OLE_SUPPORT) && (defined _OBJBASE_H_)
-
-// Implementation structures
-struct __EVENT;               // Event sink implementation
-
-// Classes declared in this file
-class COleControlLock;
-
-#endif
-
-// OLE Automation features
-
-#ifdef __AFXDISP_H__
-// Classes declared in this file
-
-//IStream
-   class CArchiveStream;
-
-// Functions declared in this file
-
-// ::core::BSTR2ABTSR
-// ::core::TaskStringA2W
-// ::core::TaskStringW2A
-
-#endif
-
-/////////////////////////////////////////////////////////////////////////////
-// General OLE features
-
-#if (!defined ___NO_OLE_SUPPORT) && (defined _OBJBASE_H_)
-#ifndef __AFXPRIV2_H__OLE__
-#define __AFXPRIV2_H__OLE__
-
-/////////////////////////////////////////////////////////////////////////////
-// Implementation of event sink handling
-
-struct __EVENT
-{
-   enum
-   {
-      event,
-      propRequest, propChanged,
-      propDSCNotify
-   };
-
-   __EVENT(int32_t eventKind);
-
-   __EVENT(int32_t eventKind, DISPID dispid, DISPPARAMS* pDispParams = NULL,
-      EXCEPINFO* pExcepInfo = NULL, UINT* puArgError = NULL);
-
-   int32_t m_eventKind;
-   DISPID m_dispid;
-   DISPPARAMS* m_pDispParams;
-   EXCEPINFO* m_pExcepInfo;
-   UINT* m_puArgError;
-   bool m_bPropChanged;
-   HRESULT m_hResult;
-   DSCSTATE m_nDSCState;
-   DSCREASON m_nDSCReason;
-};
-
-inline __EVENT::__EVENT(int32_t eventKind)
-{
-   m_eventKind = eventKind;
-   m_dispid = DISPID_UNKNOWN;
-   m_pDispParams = NULL;
-   m_pExcepInfo = NULL;
-   m_puArgError = NULL;
-   m_hResult = NOERROR;
-   m_nDSCState = dscNoState;
-   m_nDSCReason = dscNoReason;
-}
-
-inline __EVENT::__EVENT(int32_t eventKind, DISPID dispid,
-   DISPPARAMS* pDispParams, EXCEPINFO* pExcepInfo, UINT* puArgError)
-{
-   m_eventKind = eventKind;
-   m_dispid = dispid;
-   m_pDispParams = pDispParams;
-   m_pExcepInfo = pExcepInfo;
-   m_puArgError = puArgError;
-   m_hResult = NOERROR;
-   m_nDSCState = dscNoState;
-   m_nDSCReason = dscNoReason;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-// COleControlLock
-
-class COleControlLock
-{
-// Constructors
-public:
-   explicit COleControlLock(REFCLSID clsid);
-
-// Attributes
-   CLSID m_clsid;
-   LPCLASSFACTORY m_pClassFactory;
-   COleControlLock* m_pNextLock;
-
-// Implementation
-public:
-   virtual ~COleControlLock();
-};
-
-#endif // __AFXPRIV2_H__OLE__
-#endif //(!defined ___NO_OLE_SUPPORT) && (defined _OBJBASE_H_)
-
-/////////////////////////////////////////////////////////////////////////////
-// OLE Automation features
-
-#ifdef __AFXDISP_H__
-#ifndef __AFXPRIV2_H__DISP__
-#define __AFXPRIV2_H__DISP__
-
-/////////////////////////////////////////////////////////////////////////////
-// CArchiveStream
-/*
-class CLASS_DECL_BASE CArchiveStream : public IStream
-{
-public:
-   CArchiveStream(CArchive* pArchive);
-
-// Implementation
-   CArchive* m_pArchive;
-
-   STDMETHOD_(ULONG, AddRef)();
-   STDMETHOD_(ULONG, Release)();
-   HRes QueryInterface)(REFIID, LPVOID*);
-
-   HRes read)(void *, ULONG, ULONG*);
-   HRes write)(const void *, ::primitive::memory_size cb, ::primitive::memory_size*);
-   HRes seek)(LARGE_INTEGER, uint32_t, ULARGE_INTEGER*);
-   HRes set_size)(ULARGE_INTEGER);
-   HRes CopyTo)(LPSTREAM, ULARGE_INTEGER, ULARGE_INTEGER*,
-      ULARGE_INTEGER*);
-   HRes Commit)(uint32_t);
-   HRes Revert)();
-   HRes LockRegion)(ULARGE_INTEGER, ULARGE_INTEGER,uint32_t);
-   HRes UnlockRegion)(ULARGE_INTEGER, ULARGE_INTEGER, uint32_t);
-   HRes Stat)(STATSTG*, uint32_t);
-   HRes Clone)(LPSTREAM*);
-};
-*/
-/////////////////////////////////////////////////////////////////////////////
-// Global UNICODE<>ANSI translation helpers
-
-CLASS_DECL_BASE void ::core::BSTR2String(string* pStr, BSTR bstr);
-
-#if !defined(_UNICODE)
-CLASS_DECL_BASE BSTR ::core::BSTR2ABSTR(BSTR bstrW);
-CLASS_DECL_BASE wchar_t * ::core::TaskStringA2W(const char * lpa);
-CLASS_DECL_BASE char * ::core::TaskStringW2A(const wchar_t * lpw);
-#endif
-
-#endif // __AFXPRIV2_H__DISP__
-#endif // __AFXDISP_H__
-
-/////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -1179,11 +794,6 @@ CLASS_DECL_BASE char * ::core::TaskStringW2A(const wchar_t * lpw);
 
 #include "math/math_math.h"
 
-#include "core_math_rng.h"
-#include "core_math.h"
-#include "core_geometry.h"
-
-//#include "core_equals.h"
 
 #include "core_iterator.h"
 #include "core_insert_iterator.h"
@@ -1193,15 +803,10 @@ CLASS_DECL_BASE char * ::core::TaskStringW2A(const wchar_t * lpw);
 
 #include "core_muldiv32.h"
 
+
 #define EX1ASSERT_VALID(pobj) ASSERT(pobj->Ex1IsObjValid())
 
 
-#include "core_simple_thread.h"
-#include "core_go_thread.h"
-
-
-
-//#include "core_scoped_ptr.h"
 #include "core_logic.h"
 
 
@@ -1211,16 +816,11 @@ CLASS_DECL_BASE char * ::core::TaskStringW2A(const wchar_t * lpw);
 
 #include "core_savings.h"
 
-#include "core_command.h"
-
 #include "core_base64.h"
 
 #include "core_util1.h"
 
 #include "primitive/primitive_int_biunique.h"
-
-#include "core_microtimer.h"
-
 
 template <class TYPE>
 inline bool is_null(const TYPE & ref)
@@ -1231,29 +831,15 @@ inline bool is_null(const TYPE & ref)
 #define NULL_REF(class) (*((class *) NULL))
 
 
-//CLASS_DECL_BASE ::core::byte_input_stream &  operator >>(::core::byte_input_stream & istream, string & string);
-//CLASS_DECL_BASE ::core::byte_output_stream &  operator <<(::core::byte_output_stream & ostream, const string & string);
+//CLASS_DECL_CORE ::core::byte_input_stream &  operator >>(::core::byte_input_stream & istream, string & string);
+//CLASS_DECL_CORE ::core::byte_output_stream &  operator <<(::core::byte_output_stream & ostream, const string & string);
 
 //#ifdef WIN32
 //#include "core_file_association.h"
 //#endif
 
 
-#include "core_signal_thread.h"
-
-#include "core_international_locale_schema.h"
-
 #include "core_timer.h"
-
-//#include "core_istring.h"
-
-
-#include "core_cregexp.h"
-#include "core_cregexp_util.h"
-
-
-
-
 
 #include "filesystem/file/file_set.h"
 
@@ -1262,7 +848,7 @@ inline bool is_null(const TYPE & ref)
 #include "filesystem/file/file_transfer_buffer.h"
 
 
-class document_interface;
+class document;
 
 
 class main_frame;
@@ -1328,10 +914,6 @@ class Ex1FactoryImpl;
 
 
 
-#include "core_trace.h"
-
-
-
 #include "math/calculator/calculator.h"
 
 
@@ -1365,11 +947,9 @@ class Ex1FactoryImpl;
 #include "filesystem/file/file_edit_buffer.h"
 #include "core_stra.h"
 #include "net/net_url_domain.h"
-//#include "core_url.h"
 
 
 #include "core_service.h"
-#include "core_machine_event_central.h"
 
 
 #include "core/install/install.h"
@@ -1378,18 +958,7 @@ class Ex1FactoryImpl;
 #include "core_os.h"
 
 
-
-
-
-#include "core_datetime.h"
-
-
-
-
 #include "core_library.h"
-
-
-//#include "core/xml/xml_data.h"
 
 
 #include "filesystem/filehandler/filehandler.h"
@@ -1414,10 +983,8 @@ class Ex1FactoryImpl;
 
 
 
-#include "core_compress.h"
 #include "core_patch.h"
 #include "core_copydesk.h"
-#include "core_crypt.h"
 
 
 #include "net/net_email_departament.h"
@@ -1439,7 +1006,14 @@ class Ex1FactoryImpl;
 #include "programming/dynamic_source/dynamic_source.h"
 
 
-#include "core_parse.h"
+#include "graphics/visual/visual.h"
+
+
+#include "database/database.h"
+
+
+#include "user/user/user.h"
+
 
 
 

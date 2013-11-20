@@ -17,7 +17,7 @@ namespace geometry
    };
 
    class CLASS_DECL_BASE geometry :
-      virtual public object
+      virtual public ::object
    {
    public:
       double rotate_y(double x, double y, double phi);

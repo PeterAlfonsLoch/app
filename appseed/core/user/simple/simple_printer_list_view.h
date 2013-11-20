@@ -8,7 +8,7 @@ public:
 
       
    ::user::simple_list_data   m_listdata;
-   sp(::user::view)                   m_pview;
+   sp(::user::impact)                   m_pview;
 
 
    simple_printer_list_view(sp(base_application) papp);

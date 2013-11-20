@@ -10,7 +10,7 @@ namespace file
 {
 
    class CLASS_DECL_CORE stream_binder :
-      virtual public object
+      virtual public ::object
    {
    public:
       

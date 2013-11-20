@@ -22,7 +22,7 @@ namespace draw2d
 
 
    class CLASS_DECL_BASE dib :
-      virtual public object,
+      virtual public ::object,
       virtual public ::file::serializable
    {
    public:

@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class context_menu  :
-      virtual public object
+      virtual public ::object
    {
    public:
 

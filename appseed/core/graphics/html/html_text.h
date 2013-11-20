@@ -11,7 +11,7 @@ namespace html
 
       class text : 
          virtual public elemental,
-         virtual public user::edit_plain_text
+         virtual public ::user::edit_plain_text
       {
       public:
 

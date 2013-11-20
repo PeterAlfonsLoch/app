@@ -7,7 +7,7 @@ namespace simpledb
    class server;
 
    class CLASS_DECL_CORE session :
-      virtual public object
+      virtual public ::object
    {
    public:
 

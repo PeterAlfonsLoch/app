@@ -97,11 +97,12 @@ public:
    virtual sp(element) alloc(const id & idType);
 
 
+   virtual int32_t simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
    int32_t simple_message_box(const char * pszMessage, UINT fuStyle);
    virtual string message_box(const string & pszMatter, property_set & propertyset);
 
 
-
+   virtual string load_string(id id);
    virtual bool load_string(string & str, id id);
 
    virtual bool is_system();
@@ -131,7 +132,8 @@ public:
    virtual string get_license_id();
 
 
-   
+   virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::object) pdocument);
+
 
    virtual void get_cursor_pos(LPPOINT lppoint);
 
@@ -302,7 +304,7 @@ public:
 
       virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual sp(::user::document_interface) _001OpenDocumentFile(var varFile);
+      virtual sp(::user::object) _001OpenDocumentFile(var varFile);
       virtual void _001OnFileNew(signal_details * pobj);
 
       virtual ::user::printer * get_printer(const char * pszDeviceName);

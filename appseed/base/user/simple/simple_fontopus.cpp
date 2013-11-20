@@ -662,7 +662,7 @@ namespace fontopus
 
       draw_auth_box(pgraphics);
 
-      simple_ui::draw(pgraphics);
+      ::simple_ui::draw(pgraphics);
 
    }
 

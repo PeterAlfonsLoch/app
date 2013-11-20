@@ -18,7 +18,7 @@ namespace user
 
 
       class CLASS_DECL_CORE pane :
-         virtual public object
+         virtual public ::object
       {
       public:
 

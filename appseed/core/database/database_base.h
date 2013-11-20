@@ -12,7 +12,7 @@ namespace database
 
    ******************************************************************/
    class CLASS_DECL_CORE base :
-      virtual public object
+      virtual public ::object
    {
    public:
       bool     active;

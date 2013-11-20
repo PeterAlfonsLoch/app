@@ -1661,7 +1661,7 @@ namespace plane
    //////////////////////////////////////////////////////////////////////////////////////////////////
    // System/System
    //
-   sp(::user::document) system::hold(sp(::user::interaction) pui)
+   sp(::user::object) system::hold(sp(::user::interaction) pui)
    {
 
 

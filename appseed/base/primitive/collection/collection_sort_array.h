@@ -33,7 +33,7 @@ public:
 
 
    class sort_index :
-      virtual public object
+      virtual public ::object
    {
    public:
 

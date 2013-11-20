@@ -23,7 +23,7 @@ namespace file
 
 
    class CLASS_DECL_BASE path :
-      virtual public object
+      virtual public ::object
 
    {
    public:
@@ -36,7 +36,7 @@ namespace file
 
 
       class CLASS_DECL_BASE system :
-         virtual public object
+         virtual public ::object
       {
       public:
 

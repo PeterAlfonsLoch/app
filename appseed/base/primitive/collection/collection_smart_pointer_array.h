@@ -106,7 +106,7 @@ public:
       for (index i = 0; i < a.get_count(); i++)
       {
 
-         if (add_unique(a(i)))
+         if (add_unique((T *) &a[i]))
             c++;
 
       }

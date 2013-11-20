@@ -4,7 +4,7 @@ namespace visual
 {
 
    class CLASS_DECL_CORE font :
-      virtual public object
+      virtual public ::object
    {
    public:
 

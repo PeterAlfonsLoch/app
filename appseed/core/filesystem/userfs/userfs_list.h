@@ -85,7 +85,7 @@ namespace userfs
       void _001OnClick(UINT uiFlags, point point);
 
       
-      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
       DECL_GEN_SIGNAL(_001OnCreate)

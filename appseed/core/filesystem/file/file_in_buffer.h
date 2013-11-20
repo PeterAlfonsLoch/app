@@ -26,7 +26,7 @@ namespace file
    };
 
    class CLASS_DECL_CORE in_buffer :
-      virtual public object
+      virtual public ::object
    {
      byte *_buffer;
      byte *_bufferLimit;

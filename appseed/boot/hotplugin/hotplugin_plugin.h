@@ -1,7 +1,7 @@
 #pragma once
 
 
-
+#include "base/spa/spa_style.h"
 
 
 namespace hotplugin
@@ -12,6 +12,7 @@ namespace hotplugin
 
 
    class CLASS_DECL_BOOT plugin :
+      virtual public ::object,
       virtual public ::spa::style
 #ifndef METROWIN
       , virtual public ::small_ipc_channel
@@ -64,7 +65,7 @@ namespace hotplugin
 
 
 
-      plugin();
+      plugin(sp(base_application) papp);
       virtual ~plugin();
 
 
@@ -109,7 +110,7 @@ namespace hotplugin
 
       virtual int32_t  start_ca2_system();
 
-      virtual void on_paint(simple_graphics & gWindow, LPCRECT lprect);
+      virtual void on_paint(::draw2d::graphics * pgraphics, LPCRECT lprect);
 
       virtual void deferred_prodevian_redraw();
 
@@ -121,7 +122,7 @@ namespace hotplugin
       virtual int32_t message_handler(XEvent * pevent);
 #endif
 
-      virtual void on_bare_paint(simple_graphics & g, LPCRECT lprect);
+      virtual void on_bare_paint(::draw2d::graphics * pgraphics, LPCRECT lprect);
 
       virtual void start_ca2();
 
@@ -129,7 +130,7 @@ namespace hotplugin
 
       virtual double get_progress_rate();
 
-      virtual void on_paint_progress(simple_graphics & g, LPCRECT lprect);
+      virtual void on_paint_progress(::draw2d::graphics * pgraphics, LPCRECT lprect);
 
       virtual void set_ca2_installation_ready(bool bReady = true);
 

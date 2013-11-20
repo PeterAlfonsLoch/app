@@ -17,7 +17,7 @@ namespace colorertake5
    */
    class CLASS_DECL_CORE base_editor :
       public RegionHandler,
-      virtual public object
+      virtual public ::object
    {
    public:
       /**

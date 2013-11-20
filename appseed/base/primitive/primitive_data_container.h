@@ -6,7 +6,7 @@ namespace data
 
 
    class CLASS_DECL_BASE data_container :
-      virtual public object
+      virtual public ::object
    {
    public:
 
@@ -28,7 +28,7 @@ namespace data
    };
 
    class CLASS_DECL_BASE data_container_base :
-      virtual public object
+      virtual public ::object
    {
    public:
 

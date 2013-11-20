@@ -9,7 +9,7 @@ namespace crypto
    namespace rar20
    {
 
-      class CLASS_DECL_BASE data
+      class CLASS_DECL_CORE data
       {
       public:
 
@@ -33,7 +33,7 @@ namespace crypto
          void SetPassword(const byte *password, uint32_t passwordLen);
       };
 
-      class CLASS_DECL_BASE decoder:
+      class CLASS_DECL_CORE decoder:
          public ::libcompress::filter_interface,
          public set_password_interface
       {

@@ -5,12 +5,12 @@ namespace user
 {
 
 
-   class CLASS_DECL_CORE view_update_hint :
-      virtual public object
+   class CLASS_DECL_BASE view_update_hint :
+      virtual public ::object
    {
    public:
 
-      
+
       enum e_hint
       {
 
@@ -20,14 +20,14 @@ namespace user
 
       };
 
-      
+
       e_hint         m_ehint;
       bool           m_bOk;
 
 
       bool is_type_of(e_hint ehint) const;
 
-   
+
       view_update_hint(sp(base_application) papp);
       virtual ~view_update_hint();
 

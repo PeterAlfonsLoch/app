@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_CORE Ex1FormInterfaceComboBox :
-   virtual public object
+   virtual public ::object
 {
 public:
 
@@ -264,7 +264,7 @@ namespace user
    };
 
    class control_view_impl :
-      virtual public object
+      virtual public ::object
    {
    public:
 

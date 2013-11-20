@@ -15,7 +15,7 @@ namespace mysql
 
 
    class CLASS_DECL_CORE result :
-      virtual public object
+      virtual public ::object
    {
    public:
 

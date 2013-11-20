@@ -10,7 +10,7 @@ namespace nature
 
 
    class CLASS_DECL_CORE document :
-      public ::user::document
+      public ::user::object
    {
    public:
 
@@ -18,7 +18,7 @@ namespace nature
       document(sp(base_application) papp);
       virtual ~document();
 
-      sp(::user::view)     get_nature_view();
+      sp(::user::impact)     get_nature_view();
       sp(frame)    get_nature_frame();
       
 

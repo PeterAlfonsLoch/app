@@ -7,7 +7,7 @@ namespace user
    class menu_item_ptra;
 
    class CLASS_DECL_CORE menu_item :
-      virtual public object
+      virtual public ::object
    {
    public:
 

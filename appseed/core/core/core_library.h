@@ -43,7 +43,7 @@ namespace core
 
    class CLASS_DECL_CORE library :
       virtual public ::boot::library,
-      virtual public object
+      virtual public ::object
    {
    public:
 

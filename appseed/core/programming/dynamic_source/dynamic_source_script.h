@@ -12,7 +12,7 @@ namespace dynamic_source
 
 
    class CLASS_DECL_CORE script :
-      virtual public object
+      virtual public ::object
    {
    public:
 

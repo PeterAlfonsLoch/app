@@ -27,7 +27,7 @@ template<size_t _Bits>
 			: _Bits <= 16 ? 2
 			: _Bits <= 32 ? 4
 			: 8>,
-virtual public object
+virtual public ::object
 {	// store fixed-length sequence of Boolean elements
 public:
 

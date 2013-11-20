@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "app/appseed/boot/spa/spa_plugin.h"
+#include "app/appseed/boot/spa/spa_starter_start.h"
 #undef new
 #ifdef WINDOWS
 #include <gdiplus.h>
@@ -13,7 +15,9 @@ namespace hotplugin
 {
 
 
-   host::host()
+   host::host(sp(base_application) papp) :
+      element(papp),
+      hotplugin::plugin(papp)
    {
 
       m_pplugin                  = NULL;
@@ -193,7 +197,7 @@ namespace hotplugin
       return -1;
    }
 
-   void host::on_paint(simple_graphics & gWindow, LPCRECT lprect)
+   void host::on_paint(::draw2d::graphics * pgraphics, LPCRECT lprect)
    {
 
       if(m_pplugin != NULL)
@@ -203,7 +207,7 @@ namespace hotplugin
          {
 
 
-            m_pplugin->on_paint(gWindow, lprect);
+            m_pplugin->on_paint(pgraphics, lprect);
 
          }
          catch(...)
@@ -214,7 +218,7 @@ namespace hotplugin
       else
       {
 
-         plugin::on_paint(gWindow, lprect);
+         plugin::on_paint(pgraphics, lprect);
 
       }
 
@@ -323,7 +327,7 @@ namespace hotplugin
       delete pmutex;
 
 
-      m_pplugin = new spa_install::plugin();
+      m_pplugin = new spa_install::plugin(get_app());
       m_pplugin->m_phost = this;
 
 
@@ -457,7 +461,7 @@ namespace hotplugin
    }
 
 
-   void host::set_bitmap(simple_graphics & gWindow, LPCRECT lprect)
+   void host::set_bitmap(::draw2d::graphics * pgraphics, LPCRECT lprect)
    {
 
       ensure_bitmap_data((int32_t)width(lprect), (int32_t)height(lprect), false);
@@ -474,15 +478,17 @@ namespace hotplugin
       try
       {
 
-         simple_bitmap b;
+         throw todo(get_app());
 
-         b.create_from_data(m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref, gWindow);
+         //::draw2d::bitmap_sp b(allocer());
 
-         simple_graphics g;
+         //b->create_from_data(m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref, pgraphics);
 
-         g.create_from_bitmap(b);
+         //::draw2d::graphics_sp g(allocer());
 
-         g.bit_blt(0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy, gWindow, lprect->left, lprect->top, SRCCOPY);
+         //g->create_from_bitmap(b);
+
+         //g.bit_blt(0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy, pgraphics, lprect->left, lprect->top, SRCCOPY);
 
       }
       catch(...)
@@ -493,7 +499,7 @@ namespace hotplugin
 
    }
 
-   void host::paint_bitmap(simple_graphics & gWindow, LPCRECT lprect)
+   void host::paint_bitmap(::draw2d::graphics * pgraphics, LPCRECT lprect)
    {
 
       ensure_bitmap_data((int32_t)width(lprect), (int32_t)height(lprect), false);
@@ -510,15 +516,17 @@ namespace hotplugin
       try
       {
 
-         simple_bitmap b;
+         throw todo(get_app());
 
-         b.create_from_data(m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref, gWindow);
+         //simple_bitmap b;
 
-         simple_graphics g;
+         //b.create_from_data(m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref, pgraphics);
 
-         g.create_from_bitmap(b);
+         //simple_graphics g;
 
-         gWindow.bit_blt(lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, g, 0, 0, SRCCOPY);
+         //g.create_from_bitmap(b);
+
+         //pgraphics.bit_blt(lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, g, 0, 0, SRCCOPY);
 
       }
       catch(...)
@@ -530,7 +538,7 @@ namespace hotplugin
    }
 
 
-   void host::blend_bitmap(simple_graphics & gWindow, LPCRECT lprectOut)
+   void host::blend_bitmap(::draw2d::graphics * pgraphics, LPCRECT lprectOut)
    {
 
       LPCRECT lprect = &m_pplugin->m_rect;
@@ -546,7 +554,8 @@ namespace hotplugin
 
       synch_lock ml(m_pmutexBitmap);
 
-      gWindow.blend_bitmap_data(lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref);
+      throw todo(get_app());
+//      pgraphics.blend_bitmap_data(lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref);
 
    }
 

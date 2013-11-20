@@ -4,8 +4,8 @@
 namespace libcompress
 {
 
-   class CLASS_DECL_BASE set_input_stream_interface :
-      virtual public object
+   class CLASS_DECL_CORE set_input_stream_interface :
+      virtual public ::object
    {
    public:
       virtual HRes SetInStream(::file::reader * inStream) = 0;

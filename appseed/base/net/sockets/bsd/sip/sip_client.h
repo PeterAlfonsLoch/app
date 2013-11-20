@@ -6,7 +6,7 @@ namespace sockets
 
 
    class CLASS_DECL_BASE sip_client :
-      virtual public object
+      virtual public ::object
    {
    public:
 

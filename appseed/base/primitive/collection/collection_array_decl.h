@@ -94,7 +94,7 @@ namespace constructor
  
 template < class TYPE, class ARG_TYPE = const TYPE &, class DEFCONSTRUCTOR = ::constructor::def < TYPE > >
 class array :
-   virtual public object
+   virtual public ::object
 {
 public:
 

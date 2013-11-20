@@ -17,7 +17,7 @@ public:
    bool m_bVoidSync;
 
    void _017Synchronize();
-   void on_update(sp(::user::view) pSender, LPARAM lHint, object* phint);
+   void on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint);
 
 
 };

@@ -21,7 +21,7 @@ namespace user
       return ::core::system::idEmpty;
    }
 
-   sp(::user::document_interface) view_container::get_view_document()
+   sp(::user::object) view_container::get_view_document()
    {
       return view::get_document(get_view());
    }

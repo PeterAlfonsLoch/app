@@ -4,7 +4,7 @@ namespace xml
 {
 
    class CLASS_DECL_BASE tree_base :
-      virtual public object
+      virtual public ::object
    {
    protected:
 

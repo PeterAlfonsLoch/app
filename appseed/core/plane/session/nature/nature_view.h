@@ -7,7 +7,7 @@ namespace nature
 
 
    class CLASS_DECL_CORE view :
-      virtual public ::user::view
+      virtual public ::user::impact
    {
    public:
 
@@ -32,9 +32,9 @@ namespace nature
 
       virtual void install_message_handling(::message::dispatch * pinterface);
       virtual bool pre_create_window(CREATESTRUCT& cs);
-      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
 
-      sp(::user::document) get_document();
+      sp(::user::object) get_document();
 
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
 

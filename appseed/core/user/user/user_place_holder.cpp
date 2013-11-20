@@ -179,5 +179,11 @@ namespace user
 
    }
 
+   bool place_holder::is_place_holder()
+   {
+      return true;
+   }
+
+
 
 } // namespace user

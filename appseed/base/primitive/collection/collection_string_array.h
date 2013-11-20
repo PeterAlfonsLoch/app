@@ -12,7 +12,7 @@ namespace core
 
 
 class CLASS_DECL_BASE string_array :
-   virtual public object
+   virtual public ::object
 {
 public:
    string_array();

@@ -73,7 +73,7 @@ namespace filemanager
 
 
       class CLASS_DECL_CORE ImageSet :
-         virtual public object
+         virtual public ::object
       {
       protected:
 

@@ -23,7 +23,7 @@ namespace uinteraction
          virtual ~appearance();
 
          class CTool001 :
-            virtual public object
+            virtual public ::object
          {
          public:
 

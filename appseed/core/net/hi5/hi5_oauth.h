@@ -20,7 +20,7 @@ namespace hi5
    typedef property_set oAuthKeyValuePairs;
 
    class CLASS_DECL_CORE oauth :
-      virtual public object
+      virtual public ::object
    {
    public:
        oauth(sp(base_application) papp);

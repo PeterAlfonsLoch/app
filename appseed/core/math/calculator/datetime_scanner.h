@@ -35,7 +35,7 @@ namespace datetime
 
 
    class CLASS_DECL_CORE scanner :
-      virtual public object
+      virtual public ::object
    {
    public:
       

@@ -12,7 +12,7 @@ namespace file
    {
 
       class CLASS_DECL_BASE application :
-         virtual public object
+         virtual public ::object
       {
       public:
 

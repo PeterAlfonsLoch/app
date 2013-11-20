@@ -46,20 +46,11 @@ namespace libcompress
 #include "compress_coder_mixer2.h"
 #include "compress_coder_mixer2mt.h"
 
-// zlib
-#include "compress_gzip_stream.h"
-
 // 7z
 #include "7z/7z.h"
 
-// bzip
-#include "compress_bzip_stream.h"
-
 // rar
 #include "rar/rar.h"
-
-// zip
-#include "zip/zip.h"
 
 
 #include "compress_register_codec.h"

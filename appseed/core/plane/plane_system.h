@@ -261,7 +261,7 @@ namespace plane
       //////////////////////////////////////////////////////////////////////////////////////////////////
       // System/System
       //
-      sp(::user::document) hold(sp(::user::interaction) pui);
+      sp(::user::object) hold(sp(::user::interaction) pui);
 
       virtual ::count get_monitor_count();
       virtual bool  get_monitor_rect(index i, LPRECT lprect);
@@ -443,7 +443,7 @@ namespace user
 
 
    template < class VIEW >
-   inline sp(VIEW) view::create_view(::user::document_interface * pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
+   inline sp(VIEW) view::create_view(::user::object * pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
    {
       return create_view(System.type_info < VIEW > (), pdoc, pwndParent, id, pviewLast);
    }

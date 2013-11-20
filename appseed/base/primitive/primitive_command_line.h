@@ -15,7 +15,7 @@ class command_thread;
 
 
 class CLASS_DECL_BASE command_line :
-   virtual public object
+   virtual public ::object
 {
 public:
 
@@ -52,7 +52,7 @@ public:
    sp(base_application)             m_pappFork;
    string                        m_strApp;
    string                        m_strAppType;
-   sp(::user::base_interaction)  m_puiParent;
+   sp(::user::interaction)  m_puiParent;
    index                         m_iEdge;
    manual_reset_event            m_eventReady;
    application_bias *            m_pbiasCreate;

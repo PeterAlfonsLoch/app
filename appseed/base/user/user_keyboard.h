@@ -7,7 +7,7 @@ namespace user
    class keyboard_layout;
 
    class CLASS_DECL_BASE keyboard :
-      virtual public object
+      virtual public ::object
    {
    public:
 

@@ -31,9 +31,9 @@ namespace plugin
    class host_interaction;
    class system;
 
-   class CLASS_DECL_BASE plugin :
+   class CLASS_DECL_CORE plugin :
       virtual public hotplugin::plugin,
-      virtual public object
+      virtual public ::object
    {
    public:
 
@@ -48,7 +48,7 @@ namespace plugin
       ::visual::dib_sp              m_dib;
       
 
-      plugin();
+      plugin(sp(base_application) papp);
 
 
       virtual host_interaction * create_host_interaction() = 0;
@@ -63,7 +63,7 @@ namespace plugin
 
       virtual bool os_native_bergedge_start();
 
-      virtual void on_paint(simple_graphics & gWindow, LPCRECT lprect);
+      virtual void on_paint(::draw2d::graphics * pgraphics, LPCRECT lprect);
 
       virtual int32_t  start_ca2_system();
 

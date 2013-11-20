@@ -12,7 +12,7 @@ struct FIBITMAP;
 class image_list;
 
 class CLASS_DECL_CORE imaging :
-   virtual public object
+   virtual public ::object
 {
 public:
    class CSysColorMap

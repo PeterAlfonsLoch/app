@@ -35,6 +35,8 @@ namespace user
 
       sp(::user::interaction) get_ui();
 
+      virtual bool is_place_holder();
+
 
    };
 

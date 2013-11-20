@@ -10,7 +10,7 @@ namespace file
 
 
    class CLASS_DECL_BASE writer_flush :
-      virtual public object
+      virtual public ::object
    {
    public:
       

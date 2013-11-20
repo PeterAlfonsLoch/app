@@ -6,7 +6,7 @@ namespace uinteraction
 
 
    class CLASS_DECL_CORE interaction :
-      virtual public object
+      virtual public ::object
    {
    public:
 

@@ -87,7 +87,7 @@ namespace userfs
 
       void RenameFile(int32_t iLine, string & str);
 
-      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
     
       DECL_GEN_SIGNAL(_001OnLButtonDblClk)
       DECL_GEN_SIGNAL(_001OnContextMenu)

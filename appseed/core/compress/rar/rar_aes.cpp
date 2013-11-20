@@ -97,7 +97,7 @@ namespace crypto
             rawLength += kSaltSize;
          }
 
-         crypto::sha1::CContext sha;
+         ::crypto::sha1::CContext sha;
          sha.Init();
 
          // rar reverts hash for sha.
@@ -112,7 +112,7 @@ namespace crypto
             sha.update(pswNum, 3);
             if (i % (kNumRounds / 16) == 0)
             {
-               crypto::sha1::CContext shaTemp = sha;
+               ::crypto::sha1::CContext shaTemp = sha;
                byte digest[20];
                shaTemp.Final(digest);
                _aesInit[i / (kNumRounds / 16)] = (byte)digest[4 * 4 + 3];

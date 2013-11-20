@@ -22,7 +22,7 @@ namespace filemanager
 } // namespace filemanager
 
 class file_operation :
-   virtual public object
+   virtual public ::object
 {
 public:
    file_operation(sp(base_application) papp);

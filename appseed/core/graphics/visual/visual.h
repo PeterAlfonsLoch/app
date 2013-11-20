@@ -22,7 +22,6 @@ CLASS_DECL_CORE int32_t  DrawTextU(HDC hdc, const char * lpchText, int32_t cchTe
 #include "visual_imaging.h"
 #include "visual_image_list.h"
 #include "visual_water_routine.h"
-#include "visual_cursor.h"
 
 #include "visual_api.h"
 #include "visual_graphics_extension.h"
@@ -31,7 +30,6 @@ CLASS_DECL_CORE int32_t  DrawTextU(HDC hdc, const char * lpchText, int32_t cchTe
 #include "visual_font.h"
 #include "visual_font_central.h"
 #include "visual_dib_pal.h"
-#include "visual_icon.h"
 
 #include "visual_buffered_graphics.h"
 

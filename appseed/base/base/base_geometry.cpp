@@ -69,8 +69,8 @@ namespace geometry
    // of the width from left to right.
    //
    // Output:
-   // -1 if the creation of the ::user::view failed.
-   // 0 if the creation of the ::user::view succeeded.
+   // -1 if the creation of the ::user::impact failed.
+   // 0 if the creation of the ::user::impact succeeded.
    //
    // Author:
    // Vanessa Testoni

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "spa_installer.h"
 
 
 namespace spa_install

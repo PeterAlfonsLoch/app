@@ -6,12 +6,12 @@ namespace user
 
 
    class CLASS_DECL_CORE document_manager :
-      virtual public ::user::document_request_interface
+      virtual public ::user::server
    {
    public:
 
 
-      comparable_array < sp(::user::document_template) >  m_templateptra;
+      comparable_array < sp(::user::impact_system) >  m_templateptra;
 
 
       static const char gen_ShellOpenFmt[];
@@ -46,9 +46,9 @@ namespace user
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
 
-      virtual void add_document_template(sp(::user::document_template) ptemplate);
+      virtual void add_document_template(sp(::user::impact_system) ptemplate);
       virtual ::count get_template_count() const;
-      virtual sp(::user::document_template) get_template(index index) const;
+      virtual sp(::user::impact_system) get_template(index index) const;
       virtual void RegisterShellFileTypes(bool bCompat);
       void UnregisterShellFileTypes();
       virtual void request(sp(::create_context) pcreatecontext); // open named file
@@ -56,7 +56,7 @@ namespace user
       virtual void close_all_documents(bool bEndSession); // close documents before exiting
       virtual ::count get_open_document_count();
 
-      virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::document_template) ptemplate, sp(::user::document) pdocument);
+      virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::object) pdocument);
 
       virtual bool OnDDECommand(LPTSTR lpszCommand);
       virtual void _001OnFileNew();

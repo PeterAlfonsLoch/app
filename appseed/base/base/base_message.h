@@ -148,7 +148,7 @@ namespace message
    */
 
    class CLASS_DECL_BASE dispatch :
-      virtual public object
+      virtual public ::object
    {
    public:
 

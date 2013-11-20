@@ -17,7 +17,7 @@ file_manager_operation_list_view::file_manager_operation_list_view(sp(base_appli
 
 void file_manager_operation_list_view::install_message_handling(::message::dispatch * pinterface)
 {
-   ::user::view::install_message_handling(pinterface);
+   ::user::impact::install_message_handling(pinterface);
    ::user::list::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &file_manager_operation_list_view::_001OnTimer);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &file_manager_operation_list_view::_001OnCreate);
@@ -37,7 +37,7 @@ void file_manager_operation_list_view::OnDraw(::draw2d::graphics * pdc)
 
 sp(file_manager_operation_document) file_manager_operation_list_view::get_document()
 {
-   return  (::user::view::get_document());
+   return  (::user::impact::get_document());
 }
 
 void file_manager_operation_list_view::_001GetItemText(::user::list_item * pitem)
@@ -79,7 +79,7 @@ void file_manager_operation_list_view::_001OnInitialUpdate(signal_details * pobj
 }
 
 
-void file_manager_operation_list_view::on_update(sp(::user::view) pSender, LPARAM lHint, object * pHint)
+void file_manager_operation_list_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object * pHint)
 {
    UNREFERENCED_PARAMETER(pSender);
    UNREFERENCED_PARAMETER(pHint);

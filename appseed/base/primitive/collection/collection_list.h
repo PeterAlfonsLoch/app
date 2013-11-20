@@ -113,7 +113,7 @@ inline list_data < TYPE, ARG_TYPE > list_data < TYPE, ARG_TYPE >::from(node * p)
 
    template < class TYPE, class ARG_TYPE >
    class list :
-      virtual public object,
+      virtual public ::object,
       public list_data < TYPE, ARG_TYPE >
    {
    public:

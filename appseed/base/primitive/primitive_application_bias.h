@@ -6,7 +6,7 @@
 // passed as application_bias to bergedge that can later pass or use this information as application_bias
 // for further actions.
 class CLASS_DECL_BASE application_bias :
-   virtual public object
+   virtual public ::object
 {
 public:
 

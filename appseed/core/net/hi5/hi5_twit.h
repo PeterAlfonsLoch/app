@@ -6,7 +6,7 @@ namespace hi5
 
    /* twitCurl class */
    class CLASS_DECL_CORE twit :
-      virtual public object
+      virtual public ::object
    {
    public:
 

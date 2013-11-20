@@ -4,7 +4,8 @@
 namespace user
 {
 
-   class CLASS_DECL_CORE job :
+
+   class CLASS_DECL_BASE job :
       virtual public ::job
    {
    public:
@@ -14,7 +15,8 @@ namespace user
       // cascading ph - pointer holder - references would avoid this view
       // and other ph's referenced directly or indirectly by m_pview
       // to be deleted while the job is not finished or canceled.
-      sp(::user::view)        m_pview;
+      sp(::user::impact)        m_pview;
+
 
       job(sp(base_application) papp);
       virtual ~job();
@@ -24,4 +26,9 @@ namespace user
 
    };
 
+
 } // namespace user
+
+
+
+

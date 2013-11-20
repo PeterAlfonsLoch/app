@@ -36,7 +36,7 @@ namespace user
 
 
    class CLASS_DECL_CORE notification_area :
-      virtual public object
+      virtual public ::object
    {
    public:
 

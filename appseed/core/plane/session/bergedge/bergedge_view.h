@@ -69,9 +69,9 @@ namespace bergedge
       virtual void install_message_handling(::message::dispatch * pinterface);
       virtual bool pre_create_window(CREATESTRUCT& cs);
       virtual void OnDraw(::draw2d::graphics * pgraphics);
-      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
 
-      sp(::user::document) get_document();
+      sp(::user::object) get_document();
 
       void GetAreaThumbRect(LPRECT lprect, int32_t iArea);
 

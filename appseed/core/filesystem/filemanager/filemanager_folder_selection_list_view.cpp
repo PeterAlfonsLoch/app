@@ -65,7 +65,7 @@ void folder_selection_list_view::CreateViews()
 
    if(m_ptreeview == NULL)
    {
-      System.simple_message_box(NULL, "Could not create folder tree ::user::view");
+      System.simple_message_box(NULL, "Could not create folder tree ::user::impact");
    }
 
    m_ptreeview->m_pfilemanagerinterface = this;
@@ -76,7 +76,7 @@ void folder_selection_list_view::CreateViews()
 
    if(m_plistview == NULL)
    {
-      System.simple_message_box(NULL, "Could not create file list ::user::view");
+      System.simple_message_box(NULL, "Could not create file list ::user::impact");
    }
 
    m_plistview->m_pfilemanagerinterface = this;

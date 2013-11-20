@@ -22,7 +22,7 @@ public:
    simple_pen();
    ~simple_pen();
 
-   bool create_solid(simple_graphics & g, COLORREF cr, int32_t iWidth = 1);
+   bool create_solid(::draw2d::graphics * pgraphics, COLORREF cr, int32_t iWidth = 1);
    bool from_stock(int32_t iId);
 
    bool destroy();

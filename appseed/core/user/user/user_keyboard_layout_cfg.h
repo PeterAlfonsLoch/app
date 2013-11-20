@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_CORE keyboard_layout_cfg :
-      virtual public object
+      virtual public ::object
    {
    public:
 

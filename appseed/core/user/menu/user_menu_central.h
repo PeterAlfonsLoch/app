@@ -4,7 +4,7 @@ class SimpleMenu;
 class image_list;
 
 class CLASS_DECL_CORE BaseMenuCentral :
-   virtual public object
+   virtual public ::object
 {
 public:
    static BaseMenuCentral * GetMenuCentral(sp(base_application) papp);

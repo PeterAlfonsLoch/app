@@ -22,7 +22,7 @@ namespace nature
 
    void view::install_message_handling(::message::dispatch * pinterface)
    {
-      ::user::view::install_message_handling(pinterface);
+      ::user::impact::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &view::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &view::_001OnSize);
@@ -34,9 +34,9 @@ namespace nature
 
       //   IGUI_WIN_MSG_LINK(WM_USER + 177     , this, this, &view::_001OnTabClick);
       IGUI_WIN_MSG_LINK(WM_APP + 119      , this, this, &view::_001OnWavePlayerEvent);
-      //connect_command(ID_FILE_PRINT, ::user::view::OnFilePrint)
-      //connect_command(ID_FILE_PRINT_DIRECT, ::user::view::OnFilePrint)
-      //connect_command(ID_FILE_PRINT_PREVIEW, ::user::view::OnFilePrintPreview)
+      //connect_command(ID_FILE_PRINT, ::user::impact::OnFilePrint)
+      //connect_command(ID_FILE_PRINT_DIRECT, ::user::impact::OnFilePrint)
+      //connect_command(ID_FILE_PRINT_PREVIEW, ::user::impact::OnFilePrintPreview)
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &::user::interaction::_001OnKeyDown);
       IGUI_WIN_MSG_LINK(WM_KEYUP, pinterface, this, &::user::interaction::_001OnKeyUp);
 
@@ -46,12 +46,12 @@ namespace nature
 #ifdef DEBUG
    void view::assert_valid() const
    {
-      ::user::view::assert_valid();
+      ::user::impact::assert_valid();
    }
 
    void view::dump(dump_context & dumpcontext) const
    {
-      ::user::view::dump(dumpcontext);
+      ::user::impact::dump(dumpcontext);
    }
 #endif //DEBUG
 
@@ -59,11 +59,11 @@ namespace nature
    bool view::pre_create_window(CREATESTRUCT& cs)
    {
       cs.style &= ~WS_EX_CLIENTEDGE;
-      return ::user::view::pre_create_window(cs);
+      return ::user::impact::pre_create_window(cs);
    }
    void view::_001OnInitialUpdate(signal_details * pobj)
    {
-      ::user::view::_001OnInitialUpdate(pobj);
+      ::user::impact::_001OnInitialUpdate(pobj);
 
 
    }
@@ -74,7 +74,7 @@ namespace nature
       return this;
    }
 
-   void view::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint)
+   void view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(phint);
@@ -91,7 +91,7 @@ namespace nature
 
    void view::_001OnDestroy(signal_details * pobj)
    {
-      ::user::view::_001OnDestroy(pobj);
+      ::user::impact::_001OnDestroy(pobj);
 
    }
 
@@ -210,9 +210,9 @@ namespace nature
 
 
 
-   sp(::user::document) view::get_document()
+   sp(::user::object) view::get_document()
    {
-      return  (::user::view::get_document());
+      return  (::user::impact::get_document());
    }
 
 

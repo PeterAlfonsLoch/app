@@ -180,7 +180,7 @@ retry_license:
          System.factory().cloneable_small < simple_child_frame >();
          System.factory().cloneable_small < simple_main_frame >();
          System.factory().creatable_small < simple_button >();
-         System.factory().cloneable_small < ::user::document >();
+         System.factory().cloneable_small < ::user::object >();
          System.factory().cloneable_small < ::user::split_view >();
          System.factory().cloneable_small < ::user::edit_plain_text_view >();
          System.factory().creatable_small < simple_list_view >();
@@ -686,7 +686,7 @@ retry_license:
 
 
 
-   void user::add_document_template(sp(::user::document_template) ptemplate)
+   void user::add_document_template(sp(::user::impact_system) ptemplate)
    {
       if(Application.m_pdocmanager == NULL)
          Application.m_pdocmanager = new ::user::document_manager(get_app());
@@ -694,9 +694,9 @@ retry_license:
    }
 
 
-   void user::defer_add_document_template(sp(::user::document_template) ptemplate)
+   void user::defer_add_document_template(sp(::user::impact_system) ptemplate)
    {
-      sp(::user::document_template) puserbasetemplate =  (ptemplate);
+      sp(::user::impact_system) puserbasetemplate =  (ptemplate);
 
       if(puserbasetemplate == NULL)
          throw "should add user base document template";
@@ -705,7 +705,7 @@ retry_license:
 
    }
 
-   sp(::user::document) user::_vmsguserbaseOpenDocumentFile(const char * lpszFileName)
+   sp(::user::object) user::_vmsguserbaseOpenDocumentFile(const char * lpszFileName)
    {
       ASSERT(Application.m_pdocmanager != NULL);
       sp(::create_context) cc(allocer());
@@ -866,7 +866,7 @@ retry_license:
    {
       if(pwndParent != NULL && pwndParent->m_pbaseapp != get_app())
       {
-         return App(pwndParent->m_pbaseapp).user()->create_form(pcallback, pwndParent, var);
+         return App(pwndParent->m_pbaseapp).userex()->create_form(pcallback, pwndParent, var);
       }
       sp(::form_document) pdoc;
       if(m_ptemplateForm == NULL)
@@ -880,7 +880,7 @@ retry_license:
       }
 
       pdoc = (m_ptemplateForm->open_document_file(createcontext));
-      sp(::user::view) pview = pdoc->get_view(0);
+      sp(::user::impact) pview = pdoc->get_view(0);
       pdoc->get_html_data()->m_pform =  (pview);
       pdoc->get_html_data()->m_pform->m_pcallback = pcallback;
       return pdoc;
@@ -922,14 +922,14 @@ retry_license:
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       pdoc = (m_ptemplateChildForm->open_document_file(createcontext));
-      sp(::user::view) pview = pdoc->get_view(0);
+      sp(::user::impact) pview = pdoc->get_view(0);
       pdoc->get_html_data()->m_pform =  (pview);
       pdoc->get_html_data()->m_pform->m_pcallback = pcallback;
       return pdoc;
    }
 
 
-   sp(::user::document) user::hold(sp(::user::interaction) pui)
+   sp(::user::object) user::hold(sp(::user::interaction) pui)
    {
 
       sp(::create_context) createcontext(allocer());

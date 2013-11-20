@@ -15,7 +15,7 @@ namespace net
 
 
    class CLASS_DECL_CORE ip_enum :
-      virtual public object
+      virtual public ::object
    {
    public:
 

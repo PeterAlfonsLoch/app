@@ -11,7 +11,7 @@ namespace backview
 
       class CLASS_DECL_CORE interaction :
          virtual public Interface,
-         virtual public ::user::view
+         virtual public ::user::impact
       {
       public:
 

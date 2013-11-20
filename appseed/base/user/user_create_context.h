@@ -9,8 +9,8 @@ namespace user
 {
 
 
-   class document;
-   class document_template;
+   class object;
+   class impact_system;
    class interaction;
 
 
@@ -19,16 +19,16 @@ namespace user
    {
    public:
       // for creating new views
-      sp(type)                               m_typeinfoNewView; // runtime class of ::user::view to create or NULL
-      sp(::user::base_document)              m_pCurrentDoc;
-      sp(::user::base_interaction)           m_puiNew;
+      sp(type)                               m_typeinfoNewView; // runtime class of ::user::impact to create or NULL
+      sp(::user::object)              m_pCurrentDoc;
+      sp(::user::interaction)           m_puiNew;
 
       // for creating MDI children (CMDIChildWnd::LoadFrame)
-      sp(::user::base_document_template)     m_pNewDocTemplate;
+      sp(::user::impact_system)     m_pNewDocTemplate;
 
-      // for sharing ::user::view/frame state from the original ::user::view/frame
-      sp(::user::base_interaction)           m_pLastView;
-      sp(::user::base_interaction)           m_pCurrentFrame;
+      // for sharing ::user::impact/frame state from the original ::user::impact/frame
+      sp(::user::interaction)           m_pLastView;
+      sp(::user::interaction)           m_pCurrentFrame;
 
    // Implementation
       create_context();

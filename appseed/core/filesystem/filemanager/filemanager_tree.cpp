@@ -400,7 +400,7 @@ namespace filemanager
 
 #ifdef WINDOWSEX
 
-         pitemChild->m_iImage = System.user()->shellimageset().GetImage(
+         pitemChild->m_iImage = System.userex()->shellimageset().GetImage(
             NULL,
             pitemChild->m_strPath,
             NULL,
@@ -604,13 +604,13 @@ namespace filemanager
 #ifdef WINDOWSEX
          try
          {
-            pitemChild->m_iImage = System.user()->shellimageset().GetImage(
+            pitemChild->m_iImage = System.userex()->shellimageset().GetImage(
                NULL,
                pitemChild->m_strPath,
                NULL,
                _shell::IconNormal,
                true);
-            pitemChild->m_iImageSelected = System.user()->shellimageset().GetImage(
+            pitemChild->m_iImageSelected = System.userex()->shellimageset().GetImage(
                NULL,
                pitemChild->m_strPath,
                NULL,
@@ -925,14 +925,14 @@ namespace filemanager
       if(m_pimagelist == NULL)
       {
 
-         m_pimagelist = System.user()->shellimageset().GetImageList16();
+         m_pimagelist = System.userex()->shellimageset().GetImageList16();
 
-         m_iDefaultImage = System.user()->shellimageset().GetImage(
+         m_iDefaultImage = System.userex()->shellimageset().GetImage(
             "foo",
             _shell::FileAttributeDirectory,
             _shell::IconNormal);
 
-         m_iDefaultImageSelected = System.user()->shellimageset().GetImage(
+         m_iDefaultImageSelected = System.userex()->shellimageset().GetImage(
             "foo",
             _shell::FileAttributeDirectory,
             _shell::IconOpen);
@@ -1093,7 +1093,7 @@ namespace filemanager
 #endif //DEBUG
 
 
-      void tree::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint)
+      void tree::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
       {
          data_interface::on_update(pSender, lHint, phint);
          if (phint != NULL)

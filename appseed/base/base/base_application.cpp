@@ -50,6 +50,29 @@ base_application::~base_application()
 {
 }
 
+int32_t base_application::simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle)
+{
+
+#if defined(WINDOWSEX)
+
+   return MessageBoxW(puiOwner->get_safe_handle(), wstring(pszMessage), wstring(m_strAppName), fuStyle);
+   //return MessageBoxW((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())),
+   //   wstring(pszMessage), wstring(m_strAppName), fuStyle);
+
+#elif  defined(LINUX) || defined(MACOS) || defined(ANDROID)
+
+   return MessageBox(puiOwner->get_safe_handle(), pszMessage, m_strAppName, fuStyle);
+   //   return MessageBox((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
+
+#else
+
+   return MessageBox(puiOwner->get_safe_handle(), pszMessage, m_strAppName, fuStyle);
+
+#endif
+
+}
+
+
 int32_t base_application::simple_message_box(const char * pszMessage, UINT fuStyle)
 {
 
@@ -81,7 +104,15 @@ string base_application::message_box(const string & pszMatter, property_set & pr
 
 }
 
-
+string base_application::load_string(id id)
+{
+   string str;
+   if (!load_string(str, id))
+   {
+      return (const string &)id;
+   }
+   return str;
+}
 
 bool base_application::load_string(string & str, id id)
 {
@@ -657,16 +688,6 @@ void base_application::SetCurrentHandles()
 }
 
 
-#ifndef METROWIN
-void base_application::get_time(timeval *p)
-{
-
-   throw interface_only_exception(this);
-
-}
-
-
-#endif
 void base_application::set_env_var(const string & var, const string & value)
 {
 
@@ -701,7 +722,7 @@ void base_application::_001EnableShellOpen()
 }
 
 
-sp(::user::document_interface) base_application::_001OpenDocumentFile(var varFile)
+sp(::user::object) base_application::_001OpenDocumentFile(var varFile)
 {
 
    throw interface_only_exception(this);
@@ -1150,3 +1171,31 @@ sp(::user::interaction) base_application::get_active_guie()
 
 }
 
+
+geometry::geometry & base_application::geometry()
+{
+
+   return *m_pgeometry;
+
+}
+
+
+#ifndef METROWIN
+
+void base_application::get_time(timeval *p)
+{
+   m_pimpl->get_time(p);
+}
+
+#endif
+
+
+bool base_application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::object) pdocument)
+{
+
+   UNREFERENCED_PARAMETER(varFile);
+   UNREFERENCED_PARAMETER(nIDSTitle);
+
+   return false;
+
+}

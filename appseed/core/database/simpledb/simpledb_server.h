@@ -5,7 +5,7 @@ namespace simpledb
 {
 
    class CLASS_DECL_CORE server :
-      virtual public object
+      virtual public ::object
    {
    public:
 

@@ -494,10 +494,10 @@ namespace user
 
 
       if(get_document() != NULL
-      && ::user::view::get_data < document > () != NULL
-      && dynamic_cast < plain_text_tree * > (::user::view::get_data < document >()) != NULL)
+      && ::user::impact::get_data < document > () != NULL
+      && dynamic_cast < plain_text_tree * > (::user::impact::get_data < document >()) != NULL)
       {
-         set_root(dynamic_cast < plain_text_tree * > (::user::view::get_data < document > ()), false);
+         set_root(dynamic_cast < plain_text_tree * > (::user::impact::get_data < document > ()), false);
       }
       else
       {
@@ -2189,10 +2189,10 @@ namespace user
     }
   }*/
 //  if (typeDescription == NULL || type == NULL){
-      sp(::user::view) pview =  (this);
+      sp(::user::impact) pview =  (this);
    if (pview!= NULL)
    {
-      sp(::user::document_interface) pdoc = pview->get_document();
+      sp(::user::object) pdoc = pview->get_document();
       if(type == NULL)
       {
          string textStart;

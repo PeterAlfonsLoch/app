@@ -1,6 +1,11 @@
 #pragma once
 
 
+#include "app/appseed/base/user/simple/simple_ui.h"
+#include "app/appseed/base/spa/spa_login.h"
+#include "spa_canvas.h"
+
+
 int32_t spaboot_start(const char * pszVersion, const char * pszId);
 
 
@@ -20,7 +25,7 @@ namespace spa_install
       virtual public ::spa::style,
       virtual public ::hotplugin::plugin,
       virtual public ::simple_ui,
-      virtual public ::spa_login::callback
+      virtual public ::spa::login::callback
    {
    public:
 
@@ -38,25 +43,25 @@ namespace spa_install
 
       } ;
 
-      thread_start_ca2  m_startca2;
-      spa_login      m_login;
-      canvas         m_canvas;
-      uint32_t          m_dwLastInstallingCheck;
-      uint32_t          m_dwLastRestart;
+      thread_start_ca2     m_startca2;
+      spa::login           m_login;
+      canvas               m_canvas;
+      uint32_t             m_dwLastInstallingCheck;
+      uint32_t             m_dwLastRestart;
       // logged in ? alarm comments
-      bool           m_bLogged;
+      bool                 m_bLogged;
       // in login process, login screen should be shown
-      bool           m_bLogin;
-      bool           m_bRestartCa2;
-      bool           m_bPendingStream;
-      uint32_t          m_dwLastOk;
+      bool                 m_bLogin;
+      bool                 m_bRestartCa2;
+      bool                 m_bPendingStream;
+      uint32_t             m_dwLastOk;
 
-      bool              m_bPluginShiftKey;
-
-
+      bool                 m_bPluginShiftKey;
 
 
-      plugin();
+
+
+      plugin(sp(base_application) papp);
       virtual ~plugin();
 
 
@@ -75,11 +80,11 @@ namespace spa_install
       virtual bool initialize();
 
       //virtual void on_bare_paint(HDC hdc, LPCRECT lprect);
-      virtual void on_paint(simple_graphics & gWindow, LPCRECT lprect);
+      virtual void on_paint(::draw2d::graphics * pgraphics, LPCRECT lprect);
 
       virtual void on_prepare_memory();
 
-      virtual void login_result(spa_login::e_result eresult);
+      virtual void login_result(::spa::login::e_result eresult);
 
 #ifdef WINDOWS
 
@@ -91,7 +96,7 @@ namespace spa_install
 
 #endif
 
-      virtual void on_paint_progress(simple_graphics & g, LPCRECT lprect);
+      virtual void on_paint_progress(::draw2d::graphics * pgraphics, LPCRECT lprect);
 
       virtual double extract_spa_progress_rate();
 

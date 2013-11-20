@@ -199,7 +199,7 @@ namespace plane
    }
 
 
-   sp(::user::document_interface) application::_001OpenDocumentFile(var varFile)
+   sp(::user::object) application::_001OpenDocumentFile(var varFile)
    {
       string strId = m_strId;
       char chFirst = '\0';
@@ -1316,7 +1316,7 @@ exit_application:
    //////////////////////////////////////////////////////////////////////////////////////////////////
    // System/System
    //
-   sp(::user::document) application::hold(sp(::user::interaction) pui)
+   sp(::user::object) application::hold(sp(::user::interaction) pui)
    {
 
       return NULL;

@@ -32,12 +32,12 @@ namespace nature
 #ifdef DEBUG
    void appearance_view::assert_valid() const
    {
-      ::user::view::assert_valid();
+      ::user::impact::assert_valid();
    }
 
    void appearance_view::dump(dump_context & dumpcontext) const
    {
-      ::user::view::dump(dumpcontext);
+      ::user::impact::dump(dumpcontext);
    }
 #endif //DEBUG
 
@@ -54,7 +54,7 @@ namespace nature
    }
 
 
-   void appearance_view::on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint)
+   void appearance_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint)
    {
       
       UNREFERENCED_PARAMETER(pSender);
@@ -92,7 +92,7 @@ namespace nature
    {
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 
-      return ::user::view::pre_create_window(cs);
+      return ::user::impact::pre_create_window(cs);
    }
 
    void appearance_view::on_show_view()
@@ -117,7 +117,7 @@ namespace nature
    {
       filemanager::filemanager & filemanager = System.filemanager();
       sp(folder_selection_list_view) pview;
-      pview =  (::user::view::create_view(
+      pview =  (::user::impact::create_view(
          System.type_info < folder_selection_list_view > (),
          get_document(),
          this,

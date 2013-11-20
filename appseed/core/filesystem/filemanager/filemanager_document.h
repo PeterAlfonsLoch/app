@@ -57,7 +57,7 @@ namespace filemanager
       virtual void dump(dump_context & dumpcontext) const;
    #endif
 
-      virtual void FileManagerSaveAs(sp(::user::document_interface) pdocument);
+      virtual void FileManagerSaveAs(sp(::user::object) pdocument);
 
       bool set_filemanager_data(::filemanager::data * pdata);
 

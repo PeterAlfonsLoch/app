@@ -64,7 +64,7 @@ namespace backview
 //         ::draw2d::bitmap            m_bmpBack;
 //         ::draw2d::bitmap            m_bmpBackOld;
 
-      // Back tools keep the final ::user::view background snapshot
+      // Back tools keep the final ::user::impact background snapshot
 //         ::draw2d::graphics_sp               m_dcBuffer;
 //         ::draw2d::bitmap            m_bmpBuffer;
 //         ::draw2d::bitmap            m_bmpBufferOld;

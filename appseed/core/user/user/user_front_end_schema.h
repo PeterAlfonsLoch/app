@@ -6,7 +6,7 @@ namespace user
    class button;
 
    class CLASS_DECL_CORE front_end_schema :
-      virtual public object
+      virtual public ::object
    {
    public:
 

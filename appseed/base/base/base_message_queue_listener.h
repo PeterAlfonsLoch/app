@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_BASE message_queue_listener :
-   virtual public object
+   virtual public ::object
 {
 public:
 

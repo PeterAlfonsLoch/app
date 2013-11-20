@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_CORE simple_tree_view :
-   virtual public ::user::view,
+   virtual public ::user::impact,
    virtual public ::user::tree
 {
 public:

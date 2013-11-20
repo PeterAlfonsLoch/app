@@ -32,7 +32,7 @@ void file_manager_operation_view::_001OnCreate(signal_details * pobj)
    m_plistview = create_view < file_manager_operation_list_view > ();
    if(m_plistview == NULL)
    {
-      System.simple_message_box(NULL, "Could not create transfer list ::user::view");
+      System.simple_message_box(NULL, "Could not create transfer list ::user::impact");
    }
    SetPane(0, m_plistview, false);
 
@@ -40,7 +40,7 @@ void file_manager_operation_view::_001OnCreate(signal_details * pobj)
    m_pinfoview = create_view < file_manager_operation_info_view > ();
    if(m_pinfoview == NULL)
    {
-      System.simple_message_box(NULL, "Could not create transfer information ::user::view");
+      System.simple_message_box(NULL, "Could not create transfer information ::user::impact");
    }
    SetPane(1, m_pinfoview, false);
 
@@ -56,7 +56,7 @@ void file_manager_operation_view::install_message_handling(::message::dispatch *
 
 sp(file_manager_operation_document) file_manager_operation_view::get_document()
 {
-   return  (::user::view::get_document());
+   return  (::user::impact::get_document());
 }
 
 void file_manager_operation_view::_001OnMainPostMessage(signal_details * pobj)

@@ -56,8 +56,7 @@ namespace user
 
 
    class CLASS_DECL_BASE interaction :
-      virtual public window_interface,
-      virtual public ::user::base_interaction
+      virtual public window_interface
    {
    public:
 
@@ -180,6 +179,7 @@ namespace user
 
       id                                  m_idModalResult; // for return values from ::user::window::RunModalLoop
       COLORREF                            m_crDefaultBackgroundColor;
+      sp(::thread)                        m_pthread;
 
 
 
@@ -190,6 +190,7 @@ namespace user
 
       virtual void on_select();
 
+      virtual bool is_place_holder();
 
       ::visual::e_cursor get_cursor();
       void set_cursor(::visual::e_cursor ecursor);
@@ -313,7 +314,7 @@ namespace user
          LPVOID lpParam = NULL);
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
       virtual void CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder);
-      virtual sp(::user::interaction) GetParentFrame();
+      virtual sp(::user::frame_window) GetParentFrame();
 
       virtual bool IsTopParentActive();
       virtual void ActivateTopParent();
@@ -393,8 +394,8 @@ namespace user
       virtual sp(::user::interaction) get_parent() const;
       virtual sp(::user::interaction) set_parent(sp(::user::interaction) pguieParent);
       virtual oswindow get_parent_handle() const;
-      virtual sp(::user::base_interaction) get_parent_base() const;
-      virtual sp(::user::base_interaction) set_parent_base(sp(::user::base_interaction) pguieParent);
+      virtual sp(::user::interaction) get_parent_base() const;
+      virtual sp(::user::interaction) set_parent_base(sp(::user::interaction) pguieParent);
 
       virtual id GetDlgCtrlId();
       virtual id SetDlgCtrlId(class id id);
@@ -465,10 +466,10 @@ namespace user
       sp(interaction) get_child_by_name(const char * pszName, int32_t iLevel = -1);
       sp(interaction) get_child_by_id(id id, int32_t iLevel = -1);
 
-      virtual sp(::user::interaction) EnsureParentFrame();
+      virtual sp(::user::frame_window) EnsureParentFrame();
       virtual sp(interaction) GetTopLevelParent();
       virtual sp(interaction) EnsureTopLevelParent();
-      virtual sp(::user::interaction) GetTopLevelFrame();
+      virtual sp(::user::frame_window) GetTopLevelFrame();
       virtual void SendMessageToDescendants(UINT message, WPARAM wParam = 0, lparam lParam = NULL, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
       virtual void pre_translate_message(signal_details * pobj);
 
@@ -580,6 +581,8 @@ namespace user
 
 
       virtual bool is_selected(::data::item * pitem);
+
+      virtual bool hold(sp(::user::interaction) pui);
 
    };
 

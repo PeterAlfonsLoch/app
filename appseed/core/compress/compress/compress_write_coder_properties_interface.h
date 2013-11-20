@@ -5,8 +5,8 @@
 namespace libcompress
 {
 
-   class CLASS_DECL_BASE write_coder_properties_interface :
-      virtual public object
+   class CLASS_DECL_CORE write_coder_properties_interface :
+      virtual public ::object
    {
    public:
       virtual HRes WriteCoderProperties(::file::writer * outStream) = 0;

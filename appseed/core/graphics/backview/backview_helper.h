@@ -6,7 +6,7 @@ namespace backview
 
 
    class CLASS_DECL_CORE Helper :
-      virtual public object
+      virtual public ::object
    {
    public:
 

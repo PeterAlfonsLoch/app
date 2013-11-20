@@ -122,9 +122,9 @@ namespace platform
 #endif //DEBUG
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::view message handlers
+   // ::user::impact message handlers
 
-   // vmpLightView.cpp : implementation of the ::user::view class
+   // vmpLightView.cpp : implementation of the ::user::impact class
    //
 
 
@@ -135,7 +135,7 @@ namespace platform
       return form_view::pre_create_window(cs);
    }
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::view printing
+   // ::user::impact printing
 
    void view::_001OnInitialUpdate(signal_details * pobj)
    {
@@ -158,7 +158,7 @@ namespace platform
       return this;
    }
 
-   void view::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint)
+   void view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(phint);
@@ -263,7 +263,7 @@ namespace platform
 
    }
 
-   sp(::user::document) view::get_document()
+   sp(::user::object) view::get_document()
    {
       return  (form_view::get_document());
    }
@@ -327,7 +327,7 @@ namespace platform
    void view:: _001OnDraw(::draw2d::graphics * pdc)
    {
       form_view::_001OnDraw(pdc);
-      //      sp(::user::document) pdoc = get_document();
+      //      sp(::user::object) pdoc = get_document();
       class imaging & imaging = System.visual().imaging();
 
 

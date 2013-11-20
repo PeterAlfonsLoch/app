@@ -24,7 +24,7 @@ namespace user
       virtual void dump(dump_context & dumpcontext) const;
    #endif
 
-      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
       virtual bool create_views();
       virtual void on_create_views();
 

@@ -2,12 +2,14 @@
 // from 7-zip
 #pragma once
 
+
 namespace crypto
 {
 
+   
    class aes_cbc_coder:
       public ::libcompress::filter_interface,
-      public crypto::properties_interface
+      public ::crypto::properties_interface
    {
    public:
 

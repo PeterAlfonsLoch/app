@@ -279,7 +279,7 @@ protected:
 };
 
 class tinyjs :
-   virtual public object{
+   virtual public ::object{
 public:
     tinyjs(sp(base_application) papp);
     ~tinyjs();

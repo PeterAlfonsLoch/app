@@ -1,7 +1,7 @@
 #pragma once
 
 class CLASS_DECL_CORE clock_interface :
-   virtual public object
+   virtual public ::object
 {
 protected:
 

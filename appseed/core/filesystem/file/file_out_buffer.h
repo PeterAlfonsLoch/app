@@ -25,7 +25,7 @@ namespace file
    };
 
    class CLASS_DECL_CORE out_buffer :
-      virtual public object
+      virtual public ::object
    {
    public:
       ::primitive::virtual_memory      m_memory;

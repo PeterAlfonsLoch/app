@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "spa_window.h"
+#include "spa2.h"
 
 
 #ifdef LINUX
@@ -21,19 +23,26 @@ CHAR szWindowClassSpaAdmin[1024];			// the main window class name
 namespace spa_install
 {
 
+
    window_map window::s_windowmap;
 
-   window::window()
+
+   window::window(sp(base_application) papp) :
+      element(papp),
+      m_canvas(papp)
    {
+
       m_bDrag = false;
       m_oswindow = NULL;
+
    }
+
 
    window::~window()
    {
    }
 
-   void window::PaintOpaqueBk(simple_graphics & g)
+   void window::PaintOpaqueBk(::draw2d::graphics * pgraphics)
    {
       RECT rectClient;
 
@@ -54,11 +63,11 @@ namespace spa_install
       rectClient.top += 22;
       rectClient.bottom -= 22;
       rectClient.right -= 22;*/
-      g.fill_rect(&rectClient, m_sbrushBk);
+      pgraphics->FillRect(&rectClient, m_sbrushBk);
    }
 
 
-   void window::PaintTransparentBk(simple_graphics & g)
+   void window::PaintTransparentBk(::draw2d::graphics * pgraphics)
    {
 
 #ifdef WINDOWSEX
@@ -68,12 +77,14 @@ namespace spa_install
 
       ::GetWindowRect(m_oswindow, &rectWindow);
 
-      simple_graphics gScreen;
+      ::draw2d::graphics_sp gScreen(allocer());
 
-      if(!gScreen.create_from_screen())
-         return;
+      throw todo(get_app());
 
-      g.bit_blt(0, 0, 800, 584, gScreen, rectWindow.left, rectWindow.top, SRCCOPY);
+//      if(!gScreen.create_from_screen())
+  //       return;
+
+    //  pgraphics->bit_blt(0, 0, 800, 584, gScreen, rectWindow.left, rectWindow.top, SRCCOPY);
 
 /*      BLENDFUNCTION bf;
 
@@ -84,7 +95,9 @@ namespace spa_install
 
       gScreen.alpha_blend(0, 0, 800, 584, m_sgraphicsAlpha, 0, 0, 800, 584, bf);*/
 
-      gScreen.bit_blt(0, 0, 800, 584, m_sgraphicsAlpha, 0, 0, SRCCOPY);
+      throw todo(get_app());
+
+      //gScreen.bit_blt(0, 0, 800, 584, m_sgraphicsAlpha, 0, 0, SRCCOPY);
 
 #else
 
@@ -95,20 +108,20 @@ namespace spa_install
 
 
 
-   void window::PaintBk(simple_graphics & g)
+   void window::PaintBk(::draw2d::graphics * pgraphics)
    {
       if(m_iStyle == 0)
       {
-         PaintOpaqueBk(g);
+         PaintOpaqueBk(pgraphics);
       }
       else
       {
-         PaintTransparentBk(g);
+         PaintTransparentBk(pgraphics);
       }
    }
 
 
-   void window::OnPaint(simple_graphics & gWindow, LPRECT lprect)
+   void window::OnPaint(::draw2d::graphics * pgraphics, LPRECT lprect)
    {
 
 #ifdef WINDOWSEX
@@ -130,27 +143,29 @@ namespace spa_install
          lprect = &rect;
       }
 
-      simple_bitmap b;
+      throw todo(get_app());
 
-      if(!b.create(cx, cy, gWindow))
+/*      ::draw2d::bitmap_sp b;
+
+      if(!b.create(cx, cy, pgraphics))
          return;
 
       simple_graphics g;
 
-      if(!g.create_from_bitmap(b))
-         return;
+      if(!pgraphics->create_from_bitmap(b))
+         return;*/
 
-      PaintBk(g);
+      PaintBk(pgraphics);
 
 //      HFONT hfontOld = NULL;
 //      HFONT hfont = NULL;
 
-      m_canvas.on_paint(g, &rect);
+//      m_canvas.on_paint(g, &rect);
 
 
-      g.set_offset(0, 0);
+      pgraphics->SetViewportOrg(0, 0);
 
-      gWindow.bit_blt(lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top, g, lprect->left, lprect->top, SRCCOPY);
+      //pgraphics.bit_blt(lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top, g, lprect->left, lprect->top, SRCCOPY);
 #else
       throw "todo";
 #endif
@@ -161,14 +176,14 @@ namespace spa_install
    {
       #ifdef WINDOWSEX
 
-      simple_graphics gWindow;
+  //    ::draw2d::graphics_sp pgraphics(allocer());
 
-      RECT rcPaint;
+//      RECT rcPaint;
 
-      if(!gWindow.from_window_paint(m_oswindow, &rcPaint))
-         return;
+//      if(!pgraphics.from_window_paint(m_oswindow, &rcPaint))
+  //       return;
 
-      OnPaint(gWindow, &rcPaint);
+    //  OnPaint(pgraphics, &rcPaint);
 
 #else
 
@@ -186,11 +201,11 @@ namespace spa_install
       {
 
 #ifdef WINDOWSEX
-         simple_graphics gWindow;
+/*         simple_graphics pgraphics;
 
-         gWindow.from_entire_window(m_oswindow);
+         pgraphics.from_entire_window(m_oswindow);
 
-         OnPaint(gWindow, NULL);
+         OnPaint(pgraphics, NULL);*/
 #else
          throw "todo";
 

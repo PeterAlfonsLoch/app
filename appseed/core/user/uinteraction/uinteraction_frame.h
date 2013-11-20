@@ -41,7 +41,7 @@ namespace uinteraction
 
       class CLASS_DECL_CORE frame : 
          virtual public signalizable,
-         virtual public object
+         virtual public ::object
       {
       public:
 

@@ -33,7 +33,7 @@ namespace filemanager
    }
 
 
-   void data_interface::on_update(sp(::user::view) psender, LPARAM lhint, object * phint)
+   void data_interface::on_update(sp(::user::impact) psender, LPARAM lhint, object * phint)
    {
       UNREFERENCED_PARAMETER(psender);
       UNREFERENCED_PARAMETER(lhint);

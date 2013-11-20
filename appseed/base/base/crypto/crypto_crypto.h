@@ -9,7 +9,7 @@ namespace crypto
 
 
    class CLASS_DECL_BASE crypto :
-      virtual public object
+      virtual public ::object
    {
    public:
 

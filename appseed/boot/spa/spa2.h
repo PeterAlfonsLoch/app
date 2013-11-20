@@ -10,8 +10,8 @@
 #include "spa_install_ca2.h"
 #include "spa_canvas.h"
 #include "spa_window.h"
-#include "spa_machine_event_data.h"
-#include "spa_machine_event.h"
+#include "base/base/base_machine_event_data.h"
+#include "base/base/base_machine_event.h"
 #include "spa_installer.h"
 
 
@@ -29,7 +29,7 @@
 
 #include "spa_focus.h"
 #include "spa_http.h"
-#include "spa_login.h"
+#include "app/appseed/base/spa/spa_login.h"
 #include "spa_plugin.h"
 
 

@@ -12,7 +12,7 @@
 #pragma once
 
 class CLASS_DECL_BASE service_base :
-   virtual public object
+   virtual public ::object
 {
 public:
 

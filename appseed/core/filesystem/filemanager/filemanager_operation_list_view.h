@@ -3,7 +3,7 @@
 
 
 class CLASS_DECL_CORE file_manager_operation_list_view :
-   virtual public ::user::view,
+   virtual public ::user::impact,
    virtual public ::user::list
 {
 public:
@@ -33,7 +33,7 @@ public:
 
    
 
-   void on_update(sp(::user::view) pSender, LPARAM lHint, object * pHint);
+   void on_update(sp(::user::impact) pSender, LPARAM lHint, object * pHint);
    sp(file_manager_operation_document) get_document();
 };
       

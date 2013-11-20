@@ -113,7 +113,7 @@ namespace userfs
    }
 #endif //DEBUG
 
-   void list::on_update(sp(::user::view) pSender, LPARAM lHint, object * phint)
+   void list::on_update(sp(::user::impact) pSender, LPARAM lHint, object * phint)
    {
       
 
@@ -162,7 +162,7 @@ namespace userfs
    void list::_001OnCancelMode(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-   // trans   ::user::view::OnCancelMode();
+   // trans   ::user::impact::OnCancelMode();
 
       // TODO: add your message handler code here
 
@@ -724,7 +724,7 @@ namespace userfs
    {
       if (i == 0)
       {
-         return System.user()->shellimageset().GetImageList16();
+         return System.userex()->shellimageset().GetImageList16();
       }
       return NULL;
    }
@@ -959,7 +959,7 @@ namespace userfs
    Item & item = m_itema.get_item((int32_t) m_iCreateImageListStep);
 
    ///IShellFolder * lpsf = m_pshellfolder;
-   item.m_iImage = System.user()->shellimageset().GetImage(
+   item.m_iImage = System.userex()->shellimageset().GetImage(
    _GetWnd()->GetTopLevelParent()->get_handle(),
    item.m_strPath,
    ::str::international::utf8_to_unicode(item.m_strExtra),

@@ -7,7 +7,7 @@
    {
 
       class CLASS_DECL_BASE sync_socket_handler : 
-         virtual public object,
+         virtual public ::object,
          public socket::callback
       {
       public:

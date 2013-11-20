@@ -22,7 +22,7 @@ namespace net
 
 
    class CLASS_DECL_CORE port_forward   :
-      virtual public object
+      virtual public ::object
    {
    public:
 

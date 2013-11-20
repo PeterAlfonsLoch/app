@@ -19,7 +19,7 @@ namespace filemanager
       void FileManagerBrowse(const char * lpcwstr);
 
 
-      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
       virtual ~left_view();
 #ifdef DEBUG
       virtual void assert_valid() const;

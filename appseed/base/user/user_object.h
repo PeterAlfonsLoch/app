@@ -1,6 +1,11 @@
 #pragma once
 
 
+namespace data
+{
+   class data;
+}
+
 namespace user
 {
 
@@ -8,28 +13,30 @@ namespace user
    class document;
 
 
-   class CLASS_DECL_CORE document_interface :
-      virtual public ::user::base_document,
+   class CLASS_DECL_BASE object :
       virtual public command_target,
-      virtual public ::data::data_container_base,
-      virtual public ::file::serializable
+      virtual public ::data::data_container,
+      virtual public ::file::serializable,
+      virtual public ::user::server
    {
    public:
 
+
       mutex                            m_mutex;
-      spa(document)                    m_documentptra;
+      spa(object)                      m_documentptra;
       string                           m_strTitle;
       string                           m_strPathName;
-      sp(document_template)            m_pdocumentemplate;
-      spa(::user::view)                m_viewptra;
+      sp(impact_system)                m_pdocumentemplate;
+      spa(::user::impact)              m_viewptra;
       bool                             m_bModified;
       bool                             m_bNew;
       bool                             m_bAutoDelete;     // TRUE => delete document when no more views
       bool                             m_bEmbedded;       // TRUE => document is being created by OLE
 
 
-      document_interface();
-      virtual ~document_interface() = 0;
+      object(sp(base_application) papp);
+      virtual ~object();
+
 
 
 
@@ -42,28 +49,28 @@ namespace user
       const string & get_path_name() const;
       virtual void set_path_name(var varFile, bool bAddToMRU = TRUE);
 
-      sp(document_template) get_document_template() const;
+      sp(impact_system) get_document_template() const;
       virtual bool is_modified();
       virtual void set_modified_flag(bool bModified = TRUE);
       virtual void set_new(bool bNew = true);
 
       virtual bool is_new_document();
 
-   // Operations
-      void add_view(sp(::user::view) pview);
-      void remove_view(sp(::user::view) pview);
+      // Operations
+      void add_view(sp(::user::impact) pview);
+      void remove_view(sp(::user::impact) pview);
       virtual ::count get_view_count() const;
-      virtual sp(::user::view) get_view(index index = 0) const;
+      virtual sp(::user::impact) get_view(index index = 0) const;
 
 
       template < class T >
       T * get_typed_view_count() const
       {
          ::count count = 0;
-         for(index index = 0; index < m_viewptra.get_count(); index++)
+         for (index index = 0; index < m_viewptra.get_count(); index++)
          {
-            T * pt = dynamic_cast < T * > (m_viewptra[index]);
-            if(pt != NULL)
+            T * pt = dynamic_cast <T *> (m_viewptra[index]);
+            if (pt != NULL)
                count++;
          }
          return count;
@@ -72,15 +79,15 @@ namespace user
       template < class T >
       T * get_typed_view(index indexFind = 0) const
       {
-         if(indexFind < 0 || indexFind >= m_viewptra.get_count())
+         if (indexFind < 0 || indexFind >= m_viewptra.get_count())
             return NULL;
          ::count count = 0;
-         for(index index = 0; index < m_viewptra.get_count(); index++)
+         for (index index = 0; index < m_viewptra.get_count(); index++)
          {
-            T * pt = dynamic_cast < T * > (m_viewptra(index).m_p);
-            if(pt != NULL)
+            T * pt = dynamic_cast <T *> (m_viewptra(index).m_p);
+            if (pt != NULL)
             {
-               if(indexFind == count)
+               if (indexFind == count)
                   return pt;
                else
                   count++;
@@ -89,7 +96,7 @@ namespace user
          return NULL;
       }
 
-      virtual sp(::user::view) get_typed_view(sp(type) info, index indexFind = 0);
+      virtual sp(::user::impact) get_typed_view(sp(type) info, index indexFind = 0);
 
       virtual void show_all_frames(UINT nCmdShow);
 
@@ -97,21 +104,21 @@ namespace user
       class update
       {
       public:
-         sp(::user::view)         m_pSender;
+         sp(::user::impact)         m_pSender;
          LPARAM         m_lHint;
-         object *  m_pHint;
+         ::object *  m_pHint;
       };
 
       // Update Views (simple update - DAG only)
-      void update_all_views(sp(::user::view) pSender, LPARAM lHint = 0L,
-         object* pHint = NULL);
+      void update_all_views(sp(::user::impact) pSender, LPARAM lHint = 0L,
+         ::object* pHint = NULL);
 
-      void send_update(sp(::user::view) pSender, LPARAM lHint = 0L,
-         object* pHint = NULL);
+      void send_update(sp(::user::impact) pSender, LPARAM lHint = 0L,
+         ::object* pHint = NULL);
 
-   // Overridables
+      // Overridables
       // Special notifications
-      virtual void on_changed_view_list(single_lock * psl = NULL); // after add or remove ::user::view
+      virtual void on_changed_view_list(single_lock * psl = NULL); // after add or remove ::user::impact
       virtual void delete_contents(); // delete doc items etc
 
       // File helpers
@@ -145,7 +152,7 @@ namespace user
 
       virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
-      friend class document_template;
+      friend class impact_system;
 
       virtual void write(::file::output_stream & ostream);
       virtual void read(::file::input_stream & istream);
@@ -160,8 +167,29 @@ namespace user
 
 
 
+
+      virtual bool set_data(::data::data * pdata);
+
+
+
+
+
+
+//      virtual void on_alloc(sp(base_application) papp);
+
+//      virtual void dump(dump_context &) const;
+  //    virtual void assert_valid() const;
+
+//      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
+
+
+
+
    };
 
 
 } // namespace user
+
+
+
 

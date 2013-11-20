@@ -28,13 +28,13 @@ namespace filemanager
 
    void folder_list::install_message_handling(::message::dispatch * pinterface)
    {
-      ::user::view::install_message_handling(pinterface);
+      ::user::impact::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &folder_list::_001OnLButtonDblClk);
       IGUI_WIN_MSG_LINK(WM_CANCELMODE, pinterface, this, &folder_list::_001OnCancelMode);
    }
 
 
-   // BEGIN_MESSAGE_MAP(folder_list, ::user::view)
+   // BEGIN_MESSAGE_MAP(folder_list, ::user::impact)
    //{{__MSG_MAP(folder_list)
    /*
    ON_WM_LBUTTONDBLCLK()
@@ -49,7 +49,7 @@ namespace filemanager
    void folder_list::OnDraw(::draw2d::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
-      //sp(::user::document) pDoc = get_document();
+      //sp(::user::object) pDoc = get_document();
       // TODO: add draw code here
    }
 
@@ -59,16 +59,16 @@ namespace filemanager
 #ifdef DEBUG
    void folder_list::assert_valid() const
    {
-      ::user::view::assert_valid();
+      ::user::impact::assert_valid();
    }
 
    void folder_list::dump(dump_context & dumpcontext) const
    {
-      ::user::view::dump(dumpcontext);
+      ::user::impact::dump(dumpcontext);
    }
 #endif //DEBUG
 
-   void folder_list::on_update(sp(::user::view) pSender, LPARAM lHint, object * phint) 
+   void folder_list::on_update(sp(::user::impact) pSender, LPARAM lHint, object * phint) 
    {
       data_interface::on_update(pSender, lHint, phint);  
       if(phint != NULL)
@@ -112,7 +112,7 @@ namespace filemanager
    void folder_list::_001OnCancelMode(signal_details * pobj) 
    {
       UNREFERENCED_PARAMETER(pobj);
-      // trans   ::user::view::OnCancelMode();
+      // trans   ::user::impact::OnCancelMode();
 
       // TODO: add your message handler code here
 
@@ -123,7 +123,7 @@ namespace filemanager
 
       cs.style |= WS_CLIPCHILDREN;
 
-      return ::user::view::pre_create_window(cs);
+      return ::user::impact::pre_create_window(cs);
    }
 
    void folder_list::_001InsertColumns()

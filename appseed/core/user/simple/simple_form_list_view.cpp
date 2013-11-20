@@ -22,7 +22,7 @@ simple_form_list_view::~simple_form_list_view()
 
 void simple_form_list_view::install_message_handling(::message::dispatch * pinterface)
 {
-   ::user::view::install_message_handling(pinterface);
+   ::user::impact::install_message_handling(pinterface);
    ::user::form_list::install_message_handling(pinterface);
 }
 
@@ -31,12 +31,12 @@ void simple_form_list_view::install_message_handling(::message::dispatch * pinte
 #ifdef DEBUG
 void simple_form_list_view::assert_valid() const
 {
-   ::user::view::assert_valid();
+   ::user::impact::assert_valid();
 }
 
 void simple_form_list_view::dump(dump_context & dumpcontext) const
 {
-   ::user::view::dump(dumpcontext);
+   ::user::impact::dump(dumpcontext);
 }
 #endif //DEBUG
 
@@ -45,6 +45,6 @@ bool simple_form_list_view::pre_create_window(CREATESTRUCT& cs)
    
    cs.style |= WS_CLIPCHILDREN;
    
-   return ::user::view::pre_create_window(cs);
+   return ::user::impact::pre_create_window(cs);
 }
 

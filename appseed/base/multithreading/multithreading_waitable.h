@@ -22,7 +22,7 @@ Thank you Thomas Hoefer!!
 /// This class represents an item which can be waited for. Items can be threads, events, sockets,
 /// files, semaphores and so on.
 class CLASS_DECL_BASE waitable :
-   virtual public object
+   virtual public ::object
 {
 public:
 	///  \brief		destructor

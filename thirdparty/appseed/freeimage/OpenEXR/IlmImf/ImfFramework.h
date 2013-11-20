@@ -186,7 +186,7 @@
 #include <ImathFun.h>
 #include <Iex.h>
 #include <half.h>
-#include <zlib/zlib.h>
+#include <include/zlib.h>
 #include <assert.h>
 
 #include <ImfRational.h>
@@ -313,7 +313,7 @@
 #include <ImfZipCompressor.h>
 #include <ImfCheckedArithmetic.h>
 #include "Iex.h"
-#include <zlib/zlib.h>
+#include <include/zlib.h>
 
 
 using namespace std;

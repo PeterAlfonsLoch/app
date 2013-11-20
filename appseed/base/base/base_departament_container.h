@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_BASE departament_container_base :
-   virtual public object
+   virtual public ::object
 {
 public:
 

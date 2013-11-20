@@ -6,7 +6,7 @@ namespace exception
 
 
    class CLASS_DECL_BASE exception :
-      virtual public object
+      virtual public ::object
    {
    public:
 

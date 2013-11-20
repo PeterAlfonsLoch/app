@@ -186,7 +186,7 @@ namespace user
    void control::install_message_handling(::message::dispatch * pdispatch)
    {
 
-      ::user::view::install_message_handling(pdispatch);
+      ::user::impact::install_message_handling(pdispatch);
       IGUI_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &::user::control::_001OnMouseMove);
 
 #ifdef WINDOWS

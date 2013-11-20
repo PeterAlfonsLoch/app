@@ -6,7 +6,7 @@ namespace userex
 
 
    class CLASS_DECL_CORE pane_view :
-      virtual public ::user::view,
+      virtual public ::user::impact,
       virtual public ::user::view_creator
    {
    public:

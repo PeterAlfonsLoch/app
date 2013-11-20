@@ -109,7 +109,7 @@ namespace user
 
 
    class CLASS_DECL_BASE str_context :
-      virtual public object
+      virtual public ::object
    {
    public:
 

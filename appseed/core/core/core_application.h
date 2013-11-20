@@ -94,11 +94,11 @@ enum EExclusiveInstance
 
 
 
-class application_base;
+class base_application;
 
 
 class CLASS_DECL_CORE application_ptra :
-   virtual public spa(application_base)
+   virtual public spa(base_application)
 {
 public:
 
@@ -110,7 +110,7 @@ public:
 
 
 class CLASS_DECL_CORE application :
-   virtual public application_base,
+   virtual public base_application,
    virtual public command_target_interface,
    virtual public request_interface,
    virtual public message_queue
@@ -470,7 +470,7 @@ public:
 
    core::savings & savings();
 
-   virtual void defer_add_document_template(sp(::user::document_template) ptemplate);
+   virtual void defer_add_document_template(sp(::user::impact_system) ptemplate);
 
    // overrides for implementation
    virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
@@ -695,8 +695,7 @@ public:
    // registered with the doc manager.
    int32_t get_open_document_count();
 
-   // helpers for standard commdlg dialogs
-   bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::document_template) ptemplate, sp(::user::document_interface) pdocument);
+   bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::object) pdocument);
 
    void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
@@ -829,7 +828,7 @@ public:
    //      virtual ::core::file_system & file_system();
    virtual bool _001OnDDECommand(const char * lpcsz);
    virtual void _001EnableShellOpen();
-   virtual sp(::user::document_interface) _001OpenDocumentFile(var varFile);
+   virtual sp(::user::object) _001OpenDocumentFile(var varFile);
    DECL_GEN_SIGNAL(_001OnFileNew);
 
 
@@ -872,13 +871,13 @@ public:
 
    //      virtual void on_request(sp(::create_context) pcreatecontext);
 
-   //      sp(::user::document_interface) _001OpenDocumentFile(var varFile);
+   //      sp(::user::object) _001OpenDocumentFile(var varFile);
 
    sp(base_application) get_system();
 
 
 
-   //      virtual void defer_add_document_template(sp(::user::document_template) ptemplate);
+   //      virtual void defer_add_document_template(sp(::user::impact_system) ptemplate);
 
    void enum_display_monitors();
 

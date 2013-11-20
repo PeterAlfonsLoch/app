@@ -7,7 +7,7 @@ namespace user
 
    multiple_document_template::multiple_document_template(sp(base_application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass) :
       element(papp),
-      ::user::document_template(papp, pszMatter, pDocClass, pFrameClass, pViewClass)
+      ::user::impact_system(papp, pszMatter, pDocClass, pFrameClass, pViewClass)
    {
       ASSERT(m_docptra.is_empty());
 
@@ -17,7 +17,7 @@ namespace user
 
    void multiple_document_template::load_template()
    {
-      document_template::load_template();
+      impact_system::load_template();
 
    }
 
@@ -34,27 +34,27 @@ namespace user
       return m_docptra.get_count();
    }
 
-   sp(::user::document_interface) multiple_document_template::get_document(index index) const
+   sp(::user::object) multiple_document_template::get_document(index index) const
    {
       if(index < 0 || index >= m_docptra.get_count())
          return NULL;
       return m_docptra.element_at(index);
    }
 
-   void multiple_document_template::add_document(sp(::user::document_interface) pdocument)
+   void multiple_document_template::add_document(sp(::user::object) pdocument)
    {
       if(m_docptra.add_unique(pdocument))
       {
-         document_template::add_document(pdocument);
+         impact_system::add_document(pdocument);
       }
    }
 
 
-   void multiple_document_template::remove_document(sp(::user::document_interface) pdocument)
+   void multiple_document_template::remove_document(sp(::user::object) pdocument)
    {
       if(m_docptra.remove(pdocument) > 0)
       {
-         document_template::remove_document(pdocument);
+         impact_system::remove_document(pdocument);
       }
    }
 
@@ -65,13 +65,13 @@ namespace user
       pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(element)) NULL;
       bool bMakeVisible = pcreatecontext->m_bMakeVisible;
       //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
-      //   sp(::user::view) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].cast < ::user::view > ();
-      sp(::user::document_interface) pdocument = create_new_document();
+      //   sp(::user::impact) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].cast < ::user::impact > ();
+      sp(::user::object) pdocument = create_new_document();
       if (pdocument == NULL)
       {
-         TRACE(::core::trace::category_AppMsg, 0, "document_template::create_new_document returned NULL.\n");
+         TRACE(::core::trace::category_AppMsg, 0, "impact_system::create_new_document returned NULL.\n");
          // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
-         System.simple_message_box(NULL, "failed to create user::document_interface");
+         System.simple_message_box(NULL, "failed to create ::user::object");
          return;
       }
 
@@ -82,7 +82,7 @@ namespace user
       if (pFrame == NULL)
       {
          // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
-         System.simple_message_box(NULL, "Failed to create user::document_interface");
+         System.simple_message_box(NULL, "Failed to create ::user::object");
          pdocument.release();       // explicit delete on error
          return;
       }
@@ -90,7 +90,7 @@ namespace user
 
       if(pcreatecontext->m_spCommandLine->m_varFile.is_empty())
       {
-         // create a new user::document_interface - with default user::document_interface name
+         // create a new ::user::object - with default ::user::object name
          set_default_title(pdocument);
 
          // avoid creating temporary compound file when starting up invisible
@@ -100,7 +100,7 @@ namespace user
          if (!pdocument->on_new_document())
          {
             // ::fontopus::user has be alerted to what failed in on_new_document
-            TRACE(::core::trace::category_AppMsg, 0, "user::document_interface::on_new_document returned FALSE.\n");
+            TRACE(::core::trace::category_AppMsg, 0, "::user::object::on_new_document returned FALSE.\n");
             pFrame->DestroyWindow();
             return;
          }
@@ -110,14 +110,14 @@ namespace user
       }
       else
       {
-         // open an existing user::document_interface
+         // open an existing ::user::object
          if(!on_open_document(pdocument, pcreatecontext->m_spCommandLine->m_varFile))
          {
             // failed to open or just failed to queue to open
             // if m_bQueueDocumentOpening flag is set, document opening is queued, and failure would be reported in a unknown way
             // prepare core for async operations and also async failures
             // ::fontopus::user has be alerted to what failed in on_open_document
-            TRACE(::core::trace::category_AppMsg, 0, "user::document_interface::on_open_document returned FALSE.\n");
+            TRACE(::core::trace::category_AppMsg, 0, "::user::object::on_open_document returned FALSE.\n");
             pFrame->DestroyWindow();
             return;
          }
@@ -139,10 +139,10 @@ namespace user
 
    }
 
-   void multiple_document_template::set_default_title(sp(::user::document_interface) pdocument)
+   void multiple_document_template::set_default_title(sp(::user::object) pdocument)
    {
       string strDocName;
-      if (GetDocString(strDocName, document_template::docName) &&
+      if (GetDocString(strDocName, impact_system::docName) &&
          !strDocName.is_empty())
       {
 
@@ -166,15 +166,15 @@ namespace user
 
    void multiple_document_template::dump(dump_context & dumpcontext) const
    {
-      document_template::dump(dumpcontext);
+      impact_system::dump(dumpcontext);
 
       dumpcontext << "\nm_nUntitledCount = " << m_nUntitledCount;
       dumpcontext << "\nwith " << m_docptra.get_count() << " open documents";
       ::count count = get_document_count();
       for(index index = 0; index < count; index++)
       {
-         sp(::user::document_interface) pdocument = get_document(index);
-         dumpcontext << "\nwith user::document_interface " << (void *)pdocument;
+         sp(::user::object) pdocument = get_document(index);
+         dumpcontext << "\nwith ::user::object " << (void *)pdocument;
       }
 
       dumpcontext << "\n";
@@ -182,12 +182,12 @@ namespace user
 
    void multiple_document_template::assert_valid() const
    {
-      document_template::assert_valid();
+      impact_system::assert_valid();
 
       ::count count = get_document_count();
       for(index index = 0; index < count; index++)
       {
-         sp(::user::document_interface) pdocument = get_document(index);
+         sp(::user::object) pdocument = get_document(index);
          pdocument->assert_valid();
       }
 

@@ -5,7 +5,7 @@ namespace plugin
 {
 
 
-   class CLASS_DECL_BASE instance :
+   class CLASS_DECL_CORE instance :
       public ::plugin::plugin
    {
    public:
@@ -17,7 +17,7 @@ namespace plugin
 
 
 
-      instance();
+      instance(sp(base_application) papp);
       virtual ~instance();
 
 

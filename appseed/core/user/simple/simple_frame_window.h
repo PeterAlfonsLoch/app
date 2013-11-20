@@ -27,12 +27,16 @@ class BaseMiniDockFrameWnd;
 
 class CLASS_DECL_CORE simple_frame_window :
    virtual public ::user::frame_window,
+   virtual public database::user::interaction,
+   virtual public ::uinteraction::frame::WorkSetClientInterface,
+   virtual public ::uinteraction::frame::WorkSetListener,
    virtual public ::uinteraction::frame::CWorkSetDownUpInterface
 {
 public:
 
 
 
+   ::database::id          m_datakeyFrame;
 
    sp(::uinteraction::frame::frame)       m_pframeschema;
 
@@ -79,7 +83,7 @@ public:
    void SetCustomFrame(bool bCustom);
    void SetBorderRect(LPCRECT lpcrect);
    virtual void GetBorderRect(LPRECT lprect);
-   void ViewOnActivateFrame(sp(::user::view) pview, UINT user, sp(::user::interaction) pframe);
+   void ViewOnActivateFrame(sp(::user::impact) pview, UINT user, sp(::user::interaction) pframe);
 
    virtual void ToggleFullScreen();
    virtual bool IsFullScreen();
@@ -151,7 +155,47 @@ public:
    virtual bool WndFrameworkDownUpGetUpEnable();
    virtual bool WndFrameworkDownUpGetDownEnable();
 
+   using ::uinteraction::frame::WorkSetListener::attach;
+   DECL_GEN_VSIGNAL(guserbaseOnInitialUpdate);
+
+   virtual class mini_dock_frame_window* CreateFloatingFrame(uint32_t dwStyle);
+   virtual void NotifyFloatingWindows(uint32_t dwFlags);
+
+
+   virtual void on_set_parent(sp(::user::interaction) pguieParent);
+
+
+
    virtual void WfiOnDown();
    virtual void WfiOnUp();
 
+   virtual bool calc_layered();
+
+
+   virtual string get_window_default_matter();
+
+   virtual void assert_valid() const;
+   virtual void dump(dump_context & dumpcontext) const;
+   void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+   void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+   virtual bool on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult);
+
+   virtual void OnDropFiles(HDROP hDropInfo);
+   virtual bool OnQueryEndSession();
+   virtual void OnEndSession(bool bEnding);
+
+   LRESULT OnDDEInitiate(WPARAM wParam, LPARAM lParam);
+   LRESULT OnDDEExecute(WPARAM wParam, LPARAM lParam);
+   LRESULT OnDDETerminate(WPARAM wParam, LPARAM lParam);
+
+   void _001OnQueryEndSession(signal_details * pobj);
+
+   virtual bool BaseOnControlEvent(::user::control_event * pevent);
+
+   virtual string simple_frame_window::get_window_default_matter();
+
+
 };
+
+
+

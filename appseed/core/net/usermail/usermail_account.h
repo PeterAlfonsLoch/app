@@ -6,7 +6,7 @@ namespace usermail
 
 
    class CLASS_DECL_CORE account :
-      virtual public object
+      virtual public ::object
    {
    public:
       

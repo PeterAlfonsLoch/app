@@ -3,7 +3,7 @@
 class form_view;
 
 class CLASS_DECL_CORE form_update_hint :
-   virtual public object
+   virtual public ::object
 {
 public:
 

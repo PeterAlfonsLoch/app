@@ -12,7 +12,7 @@ namespace file
 {
 
    class temp_io_buffer : 
-      virtual public object
+      virtual public ::object
 
    {
    public:

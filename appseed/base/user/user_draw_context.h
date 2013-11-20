@@ -15,7 +15,7 @@ namespace core
 
    template < class TYPE >
    class simple_chain :
-      virtual public object
+      virtual public ::object
    {
    public:
 

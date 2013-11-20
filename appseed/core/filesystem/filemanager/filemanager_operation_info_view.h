@@ -1,7 +1,7 @@
 #pragma once
 
 class CLASS_DECL_CORE file_manager_operation_info_view :
-   virtual public ::user::view
+   virtual public ::user::impact
    
 {
 public:

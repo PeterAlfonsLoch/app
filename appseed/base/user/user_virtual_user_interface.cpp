@@ -654,7 +654,7 @@ void virtual_user_interface::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustTyp
 }
 
 
-sp(::user::interaction) virtual_user_interface::GetParentFrame()
+sp(::user::frame_window) virtual_user_interface::GetParentFrame()
 {
 
    ASSERT_VALID(this);
@@ -774,7 +774,7 @@ bool virtual_user_interface::IsWindowEnabled()
    return m_bEnabled && ((m_pguie == NULL || m_pguie->get_parent() == NULL) ? true : m_pguie->get_parent()->IsWindowEnabled());
 }
 
-sp(::user::interaction) virtual_user_interface::EnsureParentFrame()
+sp(::user::frame_window) virtual_user_interface::EnsureParentFrame()
 {
     sp(::user::interaction) pFrameWnd = GetParentFrame();
     ENSURE_VALID(pFrameWnd);
@@ -1425,7 +1425,7 @@ id virtual_user_interface::GetDlgCtrlId()
 }
 
 
-sp(::user::interaction) virtual_user_interface::GetTopLevelFrame()
+sp(::user::frame_window) virtual_user_interface::GetTopLevelFrame()
 {
    ASSERT_VALID(this);
 

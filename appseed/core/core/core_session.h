@@ -17,6 +17,7 @@ namespace core
 
 
       virtual bool is_remote_session();
+      virtual bool is_session();
 
 
    };

@@ -45,7 +45,7 @@ namespace user
 
 
    class CLASS_DECL_BASE keyboard_layout :
-      virtual public object,
+      virtual public ::object,
       virtual public keyboard_layout_id
    {
    public:

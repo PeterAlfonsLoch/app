@@ -20,7 +20,7 @@ namespace fontopus
    };
 
    class CLASS_DECL_BASE login_thread_callback :
-      virtual public object
+      virtual public ::object
    {
    public:
       virtual void on_login_thread_response(e_result iAuth, const char * pszResponse);

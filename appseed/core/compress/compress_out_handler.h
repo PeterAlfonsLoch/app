@@ -15,8 +15,8 @@ namespace libcompress
       bool IsLzma() const;
    };
 
-   class CLASS_DECL_BASE out_handler :
-      virtual public object
+   class CLASS_DECL_CORE out_handler :
+      virtual public ::object
    {
    public:
 

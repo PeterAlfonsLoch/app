@@ -7,7 +7,7 @@ namespace database
    class server;
 
    class CLASS_DECL_CORE update_hint  :
-      virtual public object
+      virtual public ::object
    {
    public:
 

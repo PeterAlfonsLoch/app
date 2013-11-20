@@ -5,7 +5,7 @@
 // is destroyed, raw_pointer just hold the pointer.
 
 class CLASS_DECL_CORE raw_pointer :
-   virtual public object
+   virtual public ::object
 {
 public:
 

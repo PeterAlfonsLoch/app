@@ -14,7 +14,7 @@ typedef struct ssl_session_st SSL_SESSION;
 
 
       class CLASS_DECL_BASE ssl_client_context :
-         virtual public object
+         virtual public ::object
       {
       public:
 

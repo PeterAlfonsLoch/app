@@ -14,8 +14,8 @@ namespace crypto
 
    #define PASSWORD_INTERFACE(i, x) DECL_INTERFACE(i, 5, x)*/
 
-   class CLASS_DECL_BASE get_text_password_interface :
-      virtual public object
+   class CLASS_DECL_CORE get_text_password_interface :
+      virtual public ::object
    {
    public:
       virtual HRes CryptoGetTextPassword(string & str) = 0;

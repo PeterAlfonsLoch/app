@@ -6,7 +6,7 @@ namespace file
 
 
    class CLASS_DECL_CORE folder_watch :
-      virtual public object
+      virtual public ::object
    {
    public:
 

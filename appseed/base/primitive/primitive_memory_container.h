@@ -10,7 +10,7 @@ namespace primitive
 
 
    class CLASS_DECL_BASE memory_container :
-      virtual public object
+      virtual public ::object
    {
    protected:
 

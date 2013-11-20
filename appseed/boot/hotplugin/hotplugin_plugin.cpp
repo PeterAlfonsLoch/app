@@ -29,7 +29,8 @@ namespace hotplugin
 {
 
 
-   plugin::plugin()
+   plugin::plugin(sp(base_application) papp) :
+      element(papp)
    {
 
       m_phost           = NULL;
@@ -179,10 +180,10 @@ namespace hotplugin
    {
    }
 
-   void plugin::on_paint(simple_graphics & gWindow, LPCRECT lprect)
+   void plugin::on_paint(::draw2d::graphics * pgraphics, LPCRECT lprect)
    {
 
-      on_bare_paint(gWindow, lprect);
+      on_bare_paint(pgraphics, lprect);
 
    }
 
@@ -476,10 +477,10 @@ namespace hotplugin
    }
 
 
-   void plugin::on_bare_paint(simple_graphics & g, LPCRECT lprect)
+   void plugin::on_bare_paint(::draw2d::graphics * pgraphics, LPCRECT lprect)
    {
 
-      if(g.is_null())
+      if(pgraphics == NULL)
          return;
 
 
@@ -495,21 +496,21 @@ namespace hotplugin
       rect.bottom    = cy;
       rect.right     = cx;
 
-      simple_pen pen;
+      ::draw2d::pen_sp pen(allocer());
 
-      pen.create_solid(g, 1, RGB(84, 84, 77));
+      pen->create_solid(pgraphics, 1.0, RGB(84, 84, 77));
 
-      simple_brush brush;
+      ::draw2d::brush_sp brush(allocer());
 
-      brush.from_stock(NULL_BRUSH);
+      brush->m_etype = ::draw2d::brush::type_null;
 
-      g.select(pen);
+      pgraphics->SelectObject(pen);
 
-      g.select(brush);
+      pgraphics->SelectObject(brush);
 
-      g.rectangle(&m_rect);
+      pgraphics->Rectangle(&m_rect);
 
-      on_paint_progress(g, lprect);
+      on_paint_progress(pgraphics, lprect);
 
       double dRate = get_progress_rate();
 
@@ -584,7 +585,7 @@ namespace hotplugin
 
       int32_t iBorder1 = max(cx / iRate1, cy / iRate1);
 
-      simple_path pathClip1;
+      ::draw2d::path_sp pathClip1(allocer());
 
       RECT rectClip1;
 
@@ -593,13 +594,13 @@ namespace hotplugin
       rectClip1.right   = rectClip1.left + cx - iBorder1 * 2;
       rectClip1.bottom  = rectClip1.top + cy - iBorder1 * 2;
 
-      pathClip1.begin_figure(true, ::draw2d::fill_mode_winding);
+      pathClip1->begin_figure(true, ::draw2d::fill_mode_winding);
 
-      pathClip1.add_round_rect(rectClip1, iBorder1 * 2);
+      pathClip1->add_round_rect(rectClip1, iBorder1 * 2);
 
-      pathClip1.end_figure(true);
+      pathClip1->end_figure(true);
 
-      g.replace_clip(pathClip1);
+//      pgraphics->replace_clip(pathClip1);
 
 
 
@@ -626,7 +627,7 @@ namespace hotplugin
 
       int32_t iBorder = 16;
 
-      simple_path pathClip;
+      ::draw2d::path_sp pathClip(allocer());
 
       RECT rectClip;
 
@@ -636,13 +637,13 @@ namespace hotplugin
       rectClip.bottom   = rectClip.top + iBarHeight + iBorder * 2;
 
 
-      pathClip.begin_figure(true, ::draw2d::fill_mode_winding);
+      pathClip->begin_figure(true, ::draw2d::fill_mode_winding);
 
-      pathClip.add_round_rect(rectClip, iBorder);
+      pathClip->add_round_rect(rectClip, iBorder);
 
-      pathClip.end_figure(true);
+      pathClip->end_figure(true);
 
-      g.exclude_clip(pathClip);
+      //pgraphics->exclude_clip(pathClip);
 
 
       POINT pa[4];
@@ -651,16 +652,16 @@ namespace hotplugin
       //graphics2.FillRectangle(pbr, lprect->left , lprect->top, lprect->left + cx, lprect->top + cy);
       //delete pbr;
 
-      simple_brush br;
+      ::draw2d::brush_sp br(allocer());
 
-      br.create_solid(g, ARGB(49, 184 + 23, 184 + 23, 184 + 19));
+      br->create_solid(ARGB(49, 184 + 23, 184 + 23, 184 + 19));
 
       int32_t mcy = cy / 2;
 
       if(m_iHealingSurface == 1)
       {
 
-         g.select(br);
+         pgraphics->SelectObject(br);
 
          for(int32_t x = 0; x < (cx + cy); x += 46)
          {
@@ -677,7 +678,7 @@ namespace hotplugin
             pa[3].x = lprect->left + x - mcy;
             pa[3].y = lprect->top + mcy;
 
-            g.fill_polygon(pa, 4, ::draw2d::fill_mode_winding);
+            pgraphics->fill_polygon(pa, 4);
 
             pa[0].x = lprect->left + x - mcy - iBarHeight;
             pa[0].y = lprect->top + mcy;
@@ -691,7 +692,7 @@ namespace hotplugin
             pa[3].x = lprect->left + x - cy - iBarHeight;
             pa[3].y = lprect->top + cy;
 
-            g.fill_polygon(pa, 4, ::draw2d::fill_mode_winding);
+            pgraphics->fill_polygon(pa, 4);
 
 
          }
@@ -701,9 +702,9 @@ namespace hotplugin
 
       inflate_rect(rectClip, 3);
 
-      g.replace_clip(rectClip);
+      //pgraphics->replace_clip(rectClip);
 
-      br.create_solid(g, ARGB(84, 84, 84, 77));
+      br->create_solid(ARGB(84, 84, 84, 77));
 
       RECT r1;
 
@@ -712,7 +713,7 @@ namespace hotplugin
       r1.right = r1.left + iRowCount + 2;
       r1.bottom = r1.top + iBarHeight + 2;
 
-      g.fill_rect(&r1, br);
+      pgraphics->FillRect(&r1, br);
 
       /*for(iRow = 0; iRow < iProgressCount; iRow++)
       {
@@ -737,47 +738,49 @@ namespace hotplugin
       }*/
       {
          get_progress_color(uchR, uchG, uchB, 0.0, 0);
-         br.create_solid(g, ARGB(bA, uchR, uchG, uchB));
-         g.fill_rect(rect_dim(lprect->left + cx / iRate , lprect->top + (cy - iBarHeight) / 2, iProgressCount, 5), br);
+         br->create_solid(ARGB(bA, uchR, uchG, uchB));
+         pgraphics->FillRect(::rect(lprect->left + cx / iRate, lprect->top + (cy - iBarHeight) / 2, iProgressCount, 5), br);
       }
       {
          get_progress_color(uchR, uchG, uchB, 0.0, 1);
-         br.create_solid(g, ARGB(bA, uchR, uchG, uchB));
-         g.fill_rect(rect_dim(lprect->left + cx / iRate , lprect->top + (cy - iBarHeight) / 2 + 5, iProgressCount, 5), br);
+         br->create_solid(ARGB(bA, uchR, uchG, uchB));
+         pgraphics->FillRect(::rect(lprect->left + cx / iRate, lprect->top + (cy - iBarHeight) / 2 + 5, iProgressCount, 5), br);
       }
       {
          get_progress_color(uchR, uchG, uchB, 0.0, 2);
-         br.create_solid(g, ARGB(bA, uchR, uchG, uchB));
-         g.fill_rect(rect_dim(lprect->left + cx / iRate , lprect->top + (cy - iBarHeight) / 2 + 10, iProgressCount, 13), br);
+         br->create_solid(ARGB(bA, uchR, uchG, uchB));
+         pgraphics->FillRect(::rect(lprect->left + cx / iRate, lprect->top + (cy - iBarHeight) / 2 + 10, iProgressCount, 13), br);
       }
 
       int32_t iOffset = 3;
 
-      pen.create_solid(g, ARGB(220, 180, 180, 180));
-      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, pen);
-      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
+      pen->create_solid(pgraphics, 1.0, ARGB(220, 180, 180, 180));
+      pgraphics->draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, pen);
+      pgraphics->draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
 
-      pen.create_solid(g, ARGB(220, 77, 77, 77));
-      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
-      g.draw_line(lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
+      pen->create_solid(pgraphics, 1.0, ARGB(220, 77, 77, 77));
+      pgraphics->draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
+      pgraphics->draw_line(lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
 
       iOffset = 2;
-      pen.create_solid(g, ARGB(220, 84, 84, 84));
-      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, pen);
-      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
+      pen->create_solid(pgraphics, 1.0, ARGB(220, 84, 84, 84));
+      pgraphics->draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, pen);
+      pgraphics->draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
 
-      pen.create_solid(g, ARGB(220, 170, 170, 170));
-      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
-      g.draw_line(lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
+      pen->create_solid(pgraphics, 1.0, ARGB(220, 170, 170, 170));
+      pgraphics->draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
+      pgraphics->draw_line(lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
 
 
-      br.create_solid(g, ARGB(127, 255, 255, 255));
+      br->create_solid(ARGB(127, 255, 255, 255));
 
-      g.select(br);
+      pgraphics->SelectObject(br);
 
-      simple_pixel_font f(g, iBarHeight * 10, "Calibri");
+      ::draw2d::font_sp f(allocer());
 
-      g.select(f);
+      f->create_pixel_font("Calibri", iBarHeight * 10);
+
+      pgraphics->SelectObject(f);
 
       wstring wstrStatus;
 
@@ -785,7 +788,7 @@ namespace hotplugin
       wstrStatus     = wstrStatus + L" : ";
       wstrStatus     = wstrStatus + wstrProgress;
 
-      g.text_out(lprect->left + cx / iRate - 1 + 18, lprect->top + (cy - iBarHeight) / 2 - 1 + 1, string(wstrStatus));
+      pgraphics->TextOut(lprect->left + cx / iRate - 1 + 18, lprect->top + (cy - iBarHeight) / 2 - 1 + 1, string(wstrStatus));
 
    }
 
@@ -815,7 +818,7 @@ namespace hotplugin
       return 0.0;
    }
 
-   void plugin::on_paint_progress(simple_graphics & g, LPCRECT lprect)
+   void plugin::on_paint_progress(::draw2d::graphics * pgraphics, LPCRECT lprect)
    {
 
       if(m_phost != NULL && !m_phost->m_bShowProgress)
@@ -850,7 +853,7 @@ namespace hotplugin
             rectP.bottom   = y + pcy;
             rectP.left     = x;
             rectP.right    = pcx;
-            g.fill_solid_rect(&rectP, RGB(84, 84, 77));
+            pgraphics->FillSolidRect(&rectP, ARGB(84, 84, 84, 77));
          }
          y = y + pcy;
       }

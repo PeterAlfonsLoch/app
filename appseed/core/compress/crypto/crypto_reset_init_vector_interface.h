@@ -5,8 +5,8 @@
 namespace crypto
 {
 
-   class CLASS_DECL_BASE reset_init_vector_interface :
-      virtual public object
+   class CLASS_DECL_CORE reset_init_vector_interface :
+      virtual public ::object
    {
    public:
       virtual HRes ResetInitVector() = 0;

@@ -8,7 +8,7 @@ namespace n7z
 {
 
    class CEncoder :
-      virtual public object
+      virtual public ::object
    {
       ::libcompress::coder_mixer::CCoderMixer2MT *                 _mixerCoderSpec;
       smart_pointer < ::libcompress::coder2_interface >      _mixerCoder;

@@ -103,7 +103,7 @@ namespace filemanager
 
 
       m_ptemplateStd = new schema(this);
-      Application.user()->shellimageset().initialize();
+      Application.userex()->shellimageset().initialize();
       m_ptemplateStd->Initialize(0, pszMatter);
 
       m_ptemplateFs = new schema(this);
@@ -145,7 +145,7 @@ namespace filemanager
 
 
 
-   bool filemanager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::document_template) ptemplate, sp(::user::document_interface) pdocument)
+   bool filemanager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::object) pdocument)
    {
 
       sp(::userex::pane_tab_view) ppanetabview = NULL;

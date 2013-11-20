@@ -1,9 +1,6 @@
 #pragma once
 
 
-#include "graphics/visual/visual.h"
-
-
 namespace html
 {
 
@@ -60,9 +57,6 @@ namespace user
       line_hit_link,
    };
 }
-
-
-#include "user_window_map.h"
 
 
 #include "user_view.h"
@@ -122,14 +116,6 @@ namespace user
 
 
 
-/////////////////////////////////////////////////////////////////////////////
-// frame_window - base class for SDI and other frame windows
-
-// Frame ::user::window styles
-#define FWS_ADDTOTITLE  0x00008000L // modify title based on content
-#define FWS_PREFIXTITLE 0x00004000L // show document name before cast name
-#define FWS_SNAPTOBARS  0x00002000L // snap size to size of contained bars
-
 struct CPrintPreviewState;  // forward reference (see afxext.h)
 namespace user
 {
@@ -142,11 +128,10 @@ class mini_dock_frame_window;    // forward reference (see afxpriv.h)
 class CDockState;           // forward reference (see afxpriv.h)
 
 
-#include "uinteraction/uinteraction.h"
+#include "user/uinteraction/uinteraction.h"
 
 
 
-#include "user_frame_window_interface.h"
 #include "user_frame_window.h"
 
 
@@ -220,7 +205,7 @@ namespace user
 
 
    class CLASS_DECL_CORE message :
-      virtual public object
+      virtual public ::object
    {
    public:
 
@@ -241,13 +226,8 @@ namespace user
 } // namespace user
 
 
-#include "user_window_util.h"
-
-
 #include "user_network_configuration.h"
 #include "user_shell.h"
-#include "user_keyboard_layout.h"
-#include "user_keyboard.h"
 #include "user_keyboard_layout_cfg.h"
 
 
@@ -269,7 +249,7 @@ namespace user
 #include "user_job.h"
 
 
-#include "menu/user_menu_central.h"
+#include "user/menu/user_menu_central.h"
 
 
 
@@ -331,7 +311,6 @@ namespace user
 
 #include "user_button_control.h"
 
-#include "user_frame_window_interface.h"
 #include "user_frame_window.h"
 //#include "user_mdi_frame_window.h"
 //#include "user_mdi_child_window.h"
@@ -358,7 +337,7 @@ namespace user
 #include "user_split_window.h"
 #include "user_split_view.h"
 
-#include "user_edit_plain_text.h"
+
 #include "user_edit_plain_text_view.h"
 
 
@@ -378,19 +357,19 @@ namespace user
 #include "user_single_document_template.h"
 #include "user_multiple_document_template.h"
 
-#include "menu/user_menu_button.h"
-#include "menu/user_menu_item.h"
-#include "menu/user_menu_base.h"
-#include "menu/user_menu.h"
-#include "menu/user_menu_list_window.h"
-#include "menu/user_menu_list_view.h"
+#include "user/menu/user_menu_button.h"
+#include "user/menu/user_menu_item.h"
+#include "user/menu/user_menu_base.h"
+#include "user/menu/user_menu.h"
+#include "user/menu/user_menu_list_window.h"
+#include "user/menu/user_menu_list_view.h"
 
 #include "user_step_slider.h"
 #include "user_elastic_slider.h"
 
 
 // user simple
-#include "simple/simple.h"
+#include "user/simple/simple.h"
 
 
 // user after simple

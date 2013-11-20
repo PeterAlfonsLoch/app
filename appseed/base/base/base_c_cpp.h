@@ -277,9 +277,6 @@ namespace file
 
 
 
-#include "base/user/user_base_document.h"
-#include "base/user/user_base_document_template.h"
-#include "base/user/user_base_interaction.h"
 #include "base/user/user_create_context.h"
 
 
@@ -340,6 +337,18 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "user/user_interaction.h"
 #include "user/user_virtual_user_interface.h"
 #include "user/user_window.h"
+#include "user/user_control_bar.h"
+#include "user/user_wait_cursor.h"
+#include "user/user_frame_window.h"
+#include "user/user_server.h"
+#include "user/user_impact_system.h"
+#include "primitive/primitive_interlocked_long.h"
+#include "primitive/primitive_interlocked_long_pulse.h"
+#include "primitive/primitive_data.h"
+#include "primitive/primitive_data_listener.h"
+#include "primitive/primitive_data_container.h"
+#include "user/user_object.h"
+#include "user/user_impact.h"
 #include "base_live_object.h"
 #include "base_live_signal.h"
 #include "multithreading/multithreading_thread.h"
@@ -387,12 +396,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_message_queue_listener.h"
 #include "base_message_queue.h"
 #include "base/user/userpresence/userpresence.h"
-#include "base/primitive/primitive_interlocked_long.h"
-#include "base/primitive/primitive_interlocked_long_pulse.h"
 #include "base/primitive/primitive_factory.h"
-#include "base/primitive/primitive_data.h"
-#include "base/primitive/primitive_data_listener.h"
-#include "base/primitive/primitive_data_container.h"
 #include "base/primitive/primitive_edit.h"
 #include "base/filesystem/fs/fs.h"
 #include "base/user/fontopus/fontopus.h"

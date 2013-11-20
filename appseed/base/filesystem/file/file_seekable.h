@@ -6,7 +6,7 @@ namespace file
 
 
    class CLASS_DECL_BASE stream_get_size :
-      virtual public object
+      virtual public ::object
    {
    public:
       virtual int32_t GetSize(uint64_t * psize) const = 0;
@@ -21,7 +21,7 @@ namespace file
 
 
    class CLASS_DECL_BASE seekable :
-      virtual public object
+      virtual public ::object
    {
    public:
 

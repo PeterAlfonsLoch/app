@@ -6,7 +6,7 @@ class mutex;
 
 
 class CLASS_DECL_BASE factory_allocator :
-   virtual public object
+   virtual public ::object
 {
 public:
 
@@ -101,7 +101,7 @@ public:
 
 
 class CLASS_DECL_BASE factory_item_base :
-   virtual public object
+   virtual public ::object
 {
 public:
 
@@ -144,7 +144,7 @@ public:
 
 
 class CLASS_DECL_BASE base_factory :
-   virtual public object
+   virtual public ::object
 {
 public:
 

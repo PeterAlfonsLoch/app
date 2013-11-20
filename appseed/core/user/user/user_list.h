@@ -147,7 +147,7 @@ namespace user
 
 
    class CLASS_DECL_CORE list_item :
-      virtual public object
+      virtual public ::object
    {
    public:
 

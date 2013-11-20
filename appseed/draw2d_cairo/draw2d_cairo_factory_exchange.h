@@ -5,7 +5,7 @@ namespace draw2d_cairo
 {
 
    class CLASS_DECL_DRAW2D_CAIRO factory_exchange :
-      virtual public object
+      virtual public ::object
    {
    public:
       factory_exchange(sp(base_application) papp);

@@ -7,7 +7,7 @@
     @ingroup colorer_handlers
 */
 class ErrorHandlerWriter : public ErrorHandler,
-   virtual public object
+   virtual public ::object
 {
 public:
   /** Creates ErrorHandler instance.

@@ -5,7 +5,7 @@ namespace filemanager
 {
 
    class CLASS_DECL_CORE iconoverlayer :
-      virtual public object
+      virtual public ::object
    {
    public:
       iconoverlayer(sp(base_application) papp);

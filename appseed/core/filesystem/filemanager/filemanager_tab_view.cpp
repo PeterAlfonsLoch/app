@@ -44,7 +44,7 @@ namespace filemanager
    }
 
 
-   void tab_view::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint)
+   void tab_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
 
       data_interface::on_update(pSender, lHint, phint);
@@ -105,9 +105,16 @@ namespace filemanager
                }
                else
                {
-                  GetParentFrame()->InitialUpdateFrame(NULL, TRUE);
-                  GetParentFrame()->ShowWindow(SW_SHOW);
-                  GetParentFrame()->ActivateFrame(SW_SHOW);
+
+                  sp(::user::frame_window) spframewindow = GetParentFrame();
+
+                  if (spframewindow.is_set())
+                  {
+                     spframewindow->InitialUpdateFrame(NULL, TRUE);
+                     spframewindow->ShowWindow(SW_SHOW);
+                     spframewindow->ActivateFrame(SW_SHOW);
+                  }
+
                }
                OnActivateView(TRUE, this, this);
                RedrawWindow();
@@ -174,7 +181,7 @@ namespace filemanager
          sp(file_manager_operation_document) pdoc = (Application.filemanager().m_ptemplateOperation->open_document_file(createcontext));
          if (pdoc == NULL)
             return;
-         sp(::user::view) pview = pdoc->get_view(0);
+         sp(::user::impact) pview = pdoc->get_view(0);
          //file_manager_form_view * poperationview = dynamic_cast < file_manager_form_view * > (pview);
          pcreatordata->m_pwnd = (pview->GetParentFrame());
          //      file_manager_operation_child_frame * pframe = dynamic_cast < file_manager_operation_child_frame * >(pcreatordata->m_pwnd);
@@ -216,7 +223,7 @@ namespace filemanager
 
 
 
-            sp(::user::view) pview = pdoc->get_view(0);
+            sp(::user::impact) pview = pdoc->get_view(0);
 
             sp(simple_frame_window) pwnd = (pview->GetParentFrame());
 
@@ -251,7 +258,7 @@ namespace filemanager
          }
          if (pdoc == NULL)
             return;
-         //      sp(::user::view) pview = pdoc->get_view(0);
+         //      sp(::user::impact) pview = pdoc->get_view(0);
          //pcreatordata->m_pwnd = (pview->GetParentFrame());
          //      sp(child_frame) pframe = (pcreatordata->m_pwnd);
          //pframe->m_iTabId = iId;

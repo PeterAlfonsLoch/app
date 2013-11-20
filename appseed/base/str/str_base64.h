@@ -6,7 +6,7 @@ namespace str
 
 
    class CLASS_DECL_BASE base64 :
-      virtual public object
+      virtual public ::object
    {
    protected:
 

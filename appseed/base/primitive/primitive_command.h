@@ -6,7 +6,7 @@ namespace primitive
 
 
    class CLASS_DECL_BASE command :
-      virtual public object
+      virtual public ::object
    {
    public:
 

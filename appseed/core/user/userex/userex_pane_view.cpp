@@ -50,7 +50,7 @@ namespace userex
             return true;
          }
       }
-      return ::user::view::_001OnCommand(id);
+      return ::user::impact::_001OnCommand(id);
    }
 
 
@@ -64,7 +64,7 @@ namespace userex
             //cc.m_pCurrentDoc = get_document();
             //cc.m_typeinfoNewView = System.type_info < ::user::menu_list_view > ();
 
-            sp(::user::view) pview = create_view < user::view > ();
+            sp(::user::impact) pview = create_view < ::user::impact > ();
             if(pview != NULL)
             {
 //               sp(::user::menu_list_view) pmenuview = (sp(::user::menu_list_view)) pview;

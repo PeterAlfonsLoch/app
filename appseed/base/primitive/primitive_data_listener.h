@@ -8,7 +8,7 @@ namespace data
 
 
    class CLASS_DECL_BASE data_listener :
-      virtual public object
+      virtual public ::object
    {
    public:
 

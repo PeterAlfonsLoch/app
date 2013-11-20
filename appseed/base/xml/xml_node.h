@@ -9,7 +9,7 @@ namespace xml
 
 
    class CLASS_DECL_BASE node :
-      virtual public object,
+      virtual public ::object,
       virtual public ::file::serializable
    {
    public:

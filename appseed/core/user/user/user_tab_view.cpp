@@ -40,7 +40,7 @@ namespace user
    }
 
 
-   void tab_view::on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint)
+   void tab_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint)
    {
 
       if(m_pviewcreator != NULL)
@@ -419,7 +419,7 @@ namespace user
       return NULL;
    }
 
-   sp(::user::document_interface) tab_view::get_view_document()
+   sp(::user::object) tab_view::get_view_document()
    {
       if(m_pviewdata == NULL)
          return NULL;

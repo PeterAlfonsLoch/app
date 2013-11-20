@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "spa_plugin.h"
+#include "spa2.h"
 #undef new
 #if defined(WINDOWS)
 #include <gdiplus.h>
@@ -35,8 +37,10 @@ void simple_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers)
 namespace spa_install
 {
 
-   plugin::plugin() :
-      m_login(49, 49)
+   plugin::plugin(sp(base_application) papp) :
+      m_login(49, 49),
+      hotplugin::plugin(papp),
+      m_canvas(papp)
    {
 
       m_login.set_parent(this);
@@ -389,7 +393,7 @@ install:
 
    }
 
-   void plugin::on_paint(simple_graphics & g, LPCRECT lprect)
+   void plugin::on_paint(::draw2d::graphics * pgraphics, LPCRECT lprect)
    {
 
 #ifdef METROWIN
@@ -404,7 +408,7 @@ install:
          if(ensure_tx(::hotplugin::message_paint, (void *) lprect, sizeof(*lprect)))
          {
 
-            m_phost->blend_bitmap(g, lprect);
+            m_phost->blend_bitmap(pgraphics, lprect);
 
             return;
 
@@ -430,26 +434,26 @@ install:
 
       //simple_bitmap b;
 
-      g.offset(::hotplugin::plugin::m_rect.left, ::hotplugin::plugin::m_rect.top);
+      pgraphics->OffsetViewportOrg(::hotplugin::plugin::m_rect.left, ::hotplugin::plugin::m_rect.top);
 
-      //b.create(cx, cy, gWindow);
+      //b.create(cx, cy, pgraphics);
 
-      //simple_graphics g;
+      //simple_graphics pgraphics;
 
-      //g.create_from_bitmap(b);
+      //pgraphics->create_from_bitmap(b);
 
-      //g.bit_blt(0, 0, cx, cy, gWindow, ::hotplugin::plugin::m_rect.left, ::hotplugin::plugin::m_rect.top, SRCCOPY);
+      //pgraphics->bit_blt(0, 0, cx, cy, pgraphics, ::hotplugin::plugin::m_rect.left, ::hotplugin::plugin::m_rect.top, SRCCOPY);
 
 //      HFONT hfontOld = NULL;
 //      HFONT hfont = NULL;
 
       if(m_bLogin)
       {
-         m_login.draw(g);
+         m_login.draw(pgraphics);
       }
       else if(is_installing_ca2())
       {
-         m_canvas.on_paint(g, &rect);
+         m_canvas.on_paint(pgraphics, &rect);
       }
       else if(!is_ca2_installed())
       {
@@ -479,9 +483,9 @@ install:
 
 #ifdef WINDOWS
 
-      g.set_offset(0, 0);
-      //gWindow.bit_blt(lprect->left                , lprect->top                 , lprect->right - lprect->left, lprect->bottom - lprect->top,
-        //     g         , lprect->left - ::hotplugin::plugin::m_rect.left  , lprect->top - ::hotplugin::plugin::m_rect.top    , SRCCOPY);
+      pgraphics->SetViewportOrg(0, 0);
+      //pgraphics.bit_blt(lprect->left                , lprect->top                 , lprect->right - lprect->left, lprect->bottom - lprect->top,
+        //     pgraphics         , lprect->left - ::hotplugin::plugin::m_rect.left  , lprect->top - ::hotplugin::plugin::m_rect.top    , SRCCOPY);
 
       /*string strx = itoa_dup(lprect->left);
       string stry = itoa_dup(lprect->top);
@@ -500,7 +504,7 @@ install:
       if(!m_bLogin || !m_login.m_bVisible)
       {
 
-         on_bare_paint(g, lprect);
+         on_bare_paint(pgraphics, lprect);
 
       }
 
@@ -664,10 +668,10 @@ install:
    }
 
 
-   void plugin::on_paint_progress(simple_graphics & g, LPCRECT lprect)
+   void plugin::on_paint_progress(::draw2d::graphics * pgraphics, LPCRECT lprect)
    {
       set_progress_rate(extract_spa_progress_rate());
-      ::hotplugin::plugin::on_paint_progress(g, lprect);
+      ::hotplugin::plugin::on_paint_progress(pgraphics, lprect);
    }
 
    double plugin::extract_spa_progress_rate()
@@ -945,10 +949,10 @@ install:
 
    }
 
-   void plugin::login_result(spa_login::e_result eresult)
+   void plugin::login_result(::spa::login::e_result eresult)
    {
 
-      if(eresult == spa_login::result_ok)
+      if(eresult == ::spa::login::result_ok)
       {
 
          m_bLogged   = true;
@@ -1028,9 +1032,9 @@ restart:
 } // namespace spa_install
 
 
-::hotplugin::plugin * new_hotplugin()
+::hotplugin::plugin * new_hotplugin(sp(base_application) papp)
 {
-   return new ::spa_install::plugin();
+   return new ::spa_install::plugin(papp);
 }
 
 

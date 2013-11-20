@@ -3,8 +3,8 @@
 namespace libcompress
 {
 
-   class CLASS_DECL_BASE get_input_stream_processed_size_interface :
-      virtual public object
+   class CLASS_DECL_CORE get_input_stream_processed_size_interface :
+      virtual public ::object
    {
    public:
       virtual HRes GetInStreamProcessedSize(uint64_t *value) = 0;

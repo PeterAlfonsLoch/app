@@ -7,7 +7,7 @@ namespace user
 
    single_document_template::single_document_template(sp(base_application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass) :
       element(papp),
-      ::user::document_template(papp, pszMatter, pDocClass, pFrameClass, pViewClass)
+      ::user::impact_system(papp, pszMatter, pDocClass, pFrameClass, pViewClass)
    {
       m_pdocument = NULL;
    }
@@ -16,7 +16,7 @@ namespace user
    {
 #ifdef DEBUG
       if (m_pdocument != NULL)
-         TRACE(::core::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live ::user::document_interface.\n");
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live ::user::object.\n");
 #endif
    }
 
@@ -25,7 +25,7 @@ namespace user
       return (m_pdocument == NULL) ? 0 : 1;
    }
 
-   sp(::user::document_interface) single_document_template::get_document(index index) const
+   sp(::user::object) single_document_template::get_document(index index) const
    {
       if(index == 0)
          return m_pdocument;
@@ -33,20 +33,20 @@ namespace user
          return NULL;
    }
 
-   void single_document_template::add_document(sp(::user::document_interface) pdocument)
+   void single_document_template::add_document(sp(::user::object) pdocument)
    {
       if(m_pdocument == NULL)
       {
          m_pdocument = pdocument;
-         document_template::add_document(pdocument);
+         impact_system::add_document(pdocument);
       }
    }
 
-   void single_document_template::remove_document(sp(::user::document_interface) pdocument)
+   void single_document_template::remove_document(sp(::user::object) pdocument)
    {
       if(m_pdocument == pdocument)
       {
-         document_template::remove_document(pdocument);
+         impact_system::remove_document(pdocument);
          m_pdocument = NULL;
       }
    }
@@ -60,16 +60,16 @@ namespace user
       pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(element)) NULL;
       bool bMakeVisible = pcreatecontext->m_spCommandLine->m_varQuery["make_visible_boolean"] || pcreatecontext->m_bMakeVisible;
       //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
-      //   sp(::user::view) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].cast < ::user::view > ();
+      //   sp(::user::impact) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].cast < ::user::impact > ();
 
-      sp(::user::document_interface) pdocument = NULL;
+      sp(::user::object) pdocument = NULL;
       sp(::user::frame_window) pFrame = NULL;
       bool bCreated = FALSE;      // => doc and frame created
       bool bWasModified = FALSE;
 
       if (m_pdocument != NULL)
       {
-         // already have a ::user::document_interface - reinit it
+         // already have a ::user::object - reinit it
          pdocument = m_pdocument;
          if (!pdocument->save_modified())
             return;        // leave the original one
@@ -81,7 +81,7 @@ namespace user
       }
       else
       {
-         // create a new ::user::document_interface
+         // create a new ::user::object
          pdocument = create_new_document();
          ASSERT(pFrame == NULL);     // will be created below
          bCreated = TRUE;
@@ -99,7 +99,7 @@ namespace user
       {
          ASSERT(bCreated);
 
-         // create frame - set as main ::user::document_interface frame
+         // create frame - set as main ::user::object frame
          bool bAutoDelete = pdocument->m_bAutoDelete;
          pdocument->m_bAutoDelete = FALSE;
          // don't destroy if something goes wrong
@@ -108,7 +108,7 @@ namespace user
          if (pFrame == NULL)
          {
             // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
-            System.simple_message_box(NULL, "Failed to create ::user::document_interface");
+            System.simple_message_box(NULL, "Failed to create ::user::object");
             pdocument.release();       // explicit delete on error
             return;
          }
@@ -116,7 +116,7 @@ namespace user
 
       if (pcreatecontext->m_spCommandLine->m_varFile.is_empty())
       {
-         // create a new ::user::document_interface
+         // create a new ::user::object
          set_default_title(pdocument);
 
          // avoid creating temporary compound file when starting up invisible
@@ -126,9 +126,9 @@ namespace user
          if (!pdocument->on_new_document())
          {
             // user has been alerted to what failed in on_new_document
-            TRACE(::core::trace::category_AppMsg, 0, "::user::document_interface::on_new_document returned FALSE.\n");
+            TRACE(::core::trace::category_AppMsg, 0, "::user::object::on_new_document returned FALSE.\n");
             if (bCreated)
-               pFrame->DestroyWindow();    // will destroy ::user::document_interface
+               pFrame->DestroyWindow();    // will destroy ::user::object
             return;
          }
       }
@@ -136,32 +136,32 @@ namespace user
       {
          wait_cursor wait(get_app());
 
-         // open an existing ::user::document_interface
+         // open an existing ::user::object
          bWasModified = pdocument->is_modified();
          pdocument->set_modified_flag(FALSE);  // not dirty for open
 
          if (!pdocument->on_open_document(pcreatecontext->m_spCommandLine->m_varFile))
          {
             // user has been alerted to what failed in on_open_document
-            TRACE(::core::trace::category_AppMsg, 0, "::user::document_interface::on_open_document returned FALSE.\n");
+            TRACE(::core::trace::category_AppMsg, 0, "::user::object::on_open_document returned FALSE.\n");
             if (bCreated)
             {
-               pFrame->DestroyWindow();    // will destroy ::user::document_interface
+               pFrame->DestroyWindow();    // will destroy ::user::object
             }
             else if (!pdocument->is_modified())
             {
-               // original ::user::document_interface is untouched
+               // original ::user::object is untouched
                pdocument->set_modified_flag(bWasModified);
             }
             else
             {
-               // we corrupted the original ::user::document_interface
+               // we corrupted the original ::user::object
                set_default_title(pdocument);
 
                if (!pdocument->on_new_document())
                {
                   TRACE(::core::trace::category_AppMsg, 0, "Error: on_new_document failed after trying "
-                     "to open a ::user::document_interface - trying to continue.\n");
+                     "to open a ::user::object - trying to continue.\n");
                   // assume we can continue
                }
             }
@@ -214,10 +214,10 @@ namespace user
 
    }
 
-   void single_document_template::set_default_title(sp(::user::document_interface) pdocument)
+   void single_document_template::set_default_title(sp(::user::object) pdocument)
    {
       string strDocName;
-      if (!GetDocString(strDocName, document_template::docName) ||
+      if (!GetDocString(strDocName, impact_system::docName) ||
          strDocName.is_empty())
       {
          strDocName = System.load_string("untitled");
@@ -231,19 +231,19 @@ namespace user
 
    void single_document_template::dump(dump_context & dumpcontext) const
    {
-      document_template::dump(dumpcontext);
+      impact_system::dump(dumpcontext);
 
       if (m_pdocument)
-         dumpcontext << "with ::user::document_interface: " << (void *)m_pdocument;
+         dumpcontext << "with ::user::object: " << (void *)m_pdocument;
       else
-         dumpcontext << "with no ::user::document_interface";
+         dumpcontext << "with no ::user::object";
 
       dumpcontext << "\n";
    }
 
    void single_document_template::assert_valid() const
    {
-      document_template::assert_valid();
+      impact_system::assert_valid();
    }
 
 

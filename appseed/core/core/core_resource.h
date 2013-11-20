@@ -19,7 +19,7 @@ namespace core
 {
 
    class CLASS_DECL_CORE resource :
-      virtual public object
+      virtual public ::object
    {
    public:
       resource();

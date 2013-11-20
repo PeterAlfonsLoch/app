@@ -4,15 +4,15 @@
 #pragma once
 
 
-CLASS_DECL_BASE extern uint32_t * g_pCrcTable;
+CLASS_DECL_CORE extern uint32_t * g_pCrcTable;
 
 /* Call CrcGenerateTable one time before other CRC functions */
-CLASS_DECL_BASE void CrcGenerateTable();
+CLASS_DECL_CORE void CrcGenerateTable();
 
 #define CRC_INIT_VAL 0xFFFFFFFF
 #define CRC_GET_DIGEST(crc) ((crc) ^ CRC_INIT_VAL)
 #define CRC_UPDATE_BYTE(crc, b) (g_pCrcTable[((crc) ^ (b)) & 0xFF] ^ ((crc) >> 8))
 
-CLASS_DECL_BASE uint32_t crc_update(uint32_t crc, const void * data, ::primitive::memory_size size);
-CLASS_DECL_BASE uint32_t crc_calc(const void * data, ::primitive::memory_size size);
+CLASS_DECL_CORE uint32_t crc_update(uint32_t crc, const void * data, ::primitive::memory_size size);
+CLASS_DECL_CORE uint32_t crc_calc(const void * data, ::primitive::memory_size size);
 

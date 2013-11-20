@@ -11,7 +11,7 @@ namespace frame
 
 
    class CLASS_DECL_CORE UpDownTarget :
-      virtual public object
+      virtual public ::object
    {
    public:
 

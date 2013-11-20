@@ -127,7 +127,7 @@ namespace filemanager
    {
    }
 
-   void manager::FileManagerSaveAs(sp(::user::document_interface) pdocument)
+   void manager::FileManagerSaveAs(sp(::user::object) pdocument)
    {
       get_filemanager_data()->m_pdocumentSave = pdocument;
    }

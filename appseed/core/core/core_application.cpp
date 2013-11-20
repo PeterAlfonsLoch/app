@@ -319,9 +319,9 @@ bool application::process_initialize()
 
    }
 
-   ::application_base::m_p.create(allocer());
-   ::application_base::m_p->construct();
-   ::application_base::m_p->::application_base::m_p = this;
+   m_pimpl.create(allocer());
+   m_pimpl->construct();
+   m_pimpl->m_pimpl = this;
 
    if(::get_thread() == NULL)
    {
@@ -350,7 +350,7 @@ bool application::process_initialize()
       draw2d_factory_exchange();
    }
 
-   if(!::application_base::m_p->process_initialize())
+   if(!m_pimpl->process_initialize())
       return false;
 
    return true;
@@ -364,10 +364,10 @@ bool application::update_module_paths()
    if(is_system())
    {
 
-      if(!::application_base::m_p->update_module_paths())
+      if(!m_pimpl->update_module_paths())
          return false;
 
-      application * pappOs = dynamic_cast < application * > (::application_base::m_p.m_p);
+      application * pappOs = dynamic_cast < application * > (m_pimpl.m_p);
 
       if(pappOs->m_strCa2ModuleFolder.is_empty())
          pappOs->m_strCa2ModuleFolder = pappOs->m_strModuleFolder;
@@ -578,7 +578,7 @@ bool application::initialize1()
 
 
 
-   if(!::application_base::m_p->initialize1())
+   if(!m_pimpl->initialize1())
       return false;
 
    return true;
@@ -589,7 +589,7 @@ bool application::initialize1()
 bool application::initialize2()
 {
 
-   if(!::application_base::m_p->initialize2())
+   if(!m_pimpl->initialize2())
       return false;
 
    application_signal_details signal(this, m_psignal, application_signal_initialize2);
@@ -607,7 +607,7 @@ bool application::initialize3()
    if(!signal.m_bOk)
       return false;
 
-   if(!::application_base::m_p->initialize3())
+   if(!m_pimpl->initialize3())
       return false;
 
    return true;
@@ -683,14 +683,6 @@ void application::on_request(sp(::create_context) pcreatecontext)
 
 
 
-geometry::geometry & application::geometry()
-{
-
-   return *m_pgeometry;
-
-}
-
-
 ::core::savings & application::savings()
 {
 
@@ -764,7 +756,7 @@ bool application::initialize_instance()
       return false;
    }
 
-   if(!::application_base::m_p->initialize2())
+   if(!m_pimpl->initialize2())
       return false;
 
    return application::initialize2();
@@ -939,7 +931,7 @@ int32_t application::exit_instance()
    try
    {
 
-      ::application_base   * papp         = ::application_base::m_p.detach();
+      ::base_application   * papp         = m_pimpl.detach();
 
       if(papp != NULL && papp != this && !papp->is_system())
       {
@@ -1378,15 +1370,15 @@ void application::EnableModelessEx(bool bEnable)
    UNUSED(bEnable);
 #endif
 
-   // no-op if main ::user::window is NULL or not a frame_window_interface
+   // no-op if main ::user::window is NULL or not a frame_window
    /*      sp(::user::interaction) pMainWnd = System.GetMainWnd();
    if (pMainWnd == NULL || !pMainWnd->is_frame_window())
    return;*/
 
 #ifndef ___NO_OLE_SUPPORT
    // check if notify hook installed
-   /*   ::core::frame_window_interface* pFrameWnd =
-   dynamic_cast < ::core::frame_window_interface * > (pMainWnd);
+   /*   ::core::frame_window* pFrameWnd =
+   dynamic_cast < ::core::frame_window * > (pMainWnd);
    ASSERT(pFrameWnd != NULL);
    if (pFrameWnd->GetNotifyHook() != NULL)
    pFrameWnd->GetNotifyHook()->OnEnableModeless(bEnable);*/
@@ -1444,8 +1436,8 @@ bool application::on_idle(LONG lCount)
 
    for(index index = 0; index < count; index++)
    {
-   sp(document_template) ptemplate = m_pdocmanager->get_template(index);
-   ASSERT_KINDOF(document_template, ptemplate);
+   sp(impact_system) ptemplate = m_pdocmanager->get_template(index);
+   ASSERT_KINDOF(impact_system, ptemplate);
    ptemplate->on_idle();
    }
    }
@@ -1523,6 +1515,7 @@ string application::get_global_mutex_id()
    return command()->m_varTopicQuery["global_mutex_id"];
 }
 
+/*
 bool application::hex_to_memory(primitive::memory & memory, const char * pszHex)
 {
    ::count len = strlen(pszHex);
@@ -1584,7 +1577,7 @@ void application::memory_to_hex(string & strHex, primitive::memory & memory)
    }
    strHex.ReleaseBuffer(count * 2);
 }
-
+*/
 
 
 
@@ -2595,7 +2588,7 @@ void application::on_file_open()
 }
 
 // prompt for file name - used for open and save as
-bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::document_template) ptemplate, sp(::user::document_interface) pdocument)
+bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::object) pdocument)
    // if ptemplate==NULL => all document templates
 {
    if(m_pfilemanager != NULL)
@@ -3099,28 +3092,6 @@ return System.simple_message_box(string, nType, nIDHelp);
 
 
 
-/////////////////////////////////////////////////////////////////////////////
-
-
-sp(::user::interaction) application::get_active_guie()
-{
-
-#if defined(WINDOWSEX) || defined(LINUX) || defined(MACOS)
-
-   return window_from_os_data(::GetActiveWindow());
-
-#else
-
-   if(frames().get_size() <= 0)
-      return NULL;
-
-   return frames()(0);
-
-#endif
-
-}
-
-
 
 
 
@@ -3248,7 +3219,7 @@ bool    bRet = TRUE;
 /*xxx POSITION pos = get_template_count();
 while (pos != NULL)
 {
-sp(document_template) pTempl = get_template(pos);
+sp(impact_system) pTempl = get_template(pos);
 if (pTempl != NULL)
 pTempl->_001OnCommand(0, CN_OLE_UNREGISTER, NULL, NULL);
 }*/
@@ -3914,12 +3885,12 @@ int32_t application::get_document_count()
 // Temporary map management (locks temp map on current thread)
 void application::LockTempMaps()
 {
-   ::application_base::m_p->LockTempMaps();
+   m_pimpl->LockTempMaps();
 }
 
 bool application::UnlockTempMaps(bool bDeleteTemp)
 {
-   return ::application_base::m_p->UnlockTempMaps(bDeleteTemp);
+   return m_pimpl->UnlockTempMaps(bDeleteTemp);
 }
 
 void application::TermThread(HINSTANCE hInstTerm)
@@ -3937,12 +3908,12 @@ return NULL;
 
 sp(::user::window) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
 {
-   return ::application_base::m_p->FindWindow(lpszClassName, lpszWindowName);
+   return m_pimpl->FindWindow(lpszClassName, lpszWindowName);
 }
 
 sp(::user::window) application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
 {
-   return ::application_base::m_p->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
+   return m_pimpl->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
 }
 
 string application::get_local_mutex_name(const char * pszAppName)
@@ -4107,14 +4078,14 @@ void application::_001OnFileNew(signal_details * pobj)
 
    request_file_query(varFile, varQuery);
 
-   //::application_base::m_p->_001OnFileNew();
+   //m_pimpl->_001OnFileNew();
 }
 
 
-sp(::user::document_interface) application::_001OpenDocumentFile(var varFile)
+sp(::user::object) application::_001OpenDocumentFile(var varFile)
 {
 
-   return ::application_base::m_p->_001OpenDocumentFile(varFile);
+   return m_pimpl->_001OpenDocumentFile(varFile);
 
 }
 
@@ -4122,7 +4093,7 @@ sp(::user::document_interface) application::_001OpenDocumentFile(var varFile)
 void application::_001EnableShellOpen()
 {
 
-   ::application_base::m_p->_001EnableShellOpen();
+   m_pimpl->_001EnableShellOpen();
 
 }
 
@@ -4130,7 +4101,7 @@ void application::_001EnableShellOpen()
 bool application::_001OnDDECommand(const char * lpcsz)
 {
    throw not_implemented(get_app());
-   //return ::application_base::m_p->_001OnDDECommand(lpcsz);
+   //return m_pimpl->_001OnDDECommand(lpcsz);
 }
 
 //   ::core::file_system & application::file_system()
@@ -4144,7 +4115,7 @@ bool application::_001OnDDECommand(const char * lpcsz)
 
 string application::get_version()
 {
-   return ::application_base::m_p->get_version();
+   return m_pimpl->get_version();
 }
 
 
@@ -4162,22 +4133,22 @@ bool application::Ex2OnAppUninstall()
 thread * application::GetThread()
 {
 
-   if(::application_base::m_p == NULL)
+   if(m_pimpl == NULL)
       return NULL;
 
-   return ::application_base::m_p->GetThread();
+   return m_pimpl->GetThread();
 
 }
 
 
 void application::set_thread(thread * pthread)
 {
-   ::application_base::m_p->set_thread(pthread);
+   m_pimpl->set_thread(pthread);
 }
 
 /*   ::draw2d::graphics * application::graphics_from_os_data(void * pdata)
 {
-return ::application_base::m_p->graphics_from_os_data(pdata);
+return m_pimpl->graphics_from_os_data(pdata);
 }*/
 
 
@@ -4206,28 +4177,20 @@ sp(::user::window) application::get_desktop_window()
 
 void application::SetCurrentHandles()
 {
-   ::application_base::m_p->SetCurrentHandles();
+   m_pimpl->SetCurrentHandles();
 }
 
 
-#ifndef METROWIN
-
-void application::get_time(timeval *p)
-{
-   ::application_base::m_p->get_time(p);
-}
-
-#endif
 
 void application::set_env_var(const string & var,const string & value)
 {
-   ::application_base::m_p->set_env_var(var, value);
+   m_pimpl->set_env_var(var, value);
 }
 
 
 bool application::set_main_init_data(::core::main_init_data * pdata)
 {
-   return ::application_base::m_p->set_main_init_data(pdata);
+   return m_pimpl->set_main_init_data(pdata);
 }
 
 
@@ -5024,10 +4987,10 @@ void application::on_application_signal(signal_details * pobj)
    }*/
 }
 
-void application::defer_add_document_template(sp(::user::document_template) ptemplate)
+void application::defer_add_document_template(sp(::user::impact_system) ptemplate)
 {
 
-   Application.user()->defer_add_document_template(ptemplate);
+   Application.userex()->defer_add_document_template(ptemplate);
 
 }
 
@@ -5035,7 +4998,7 @@ void application::defer_add_document_template(sp(::user::document_template) ptem
 ::user::printer * application::get_printer(const char * pszDeviceName)
 {
 
-   return ::application_base::m_p->get_printer(pszDeviceName);
+   return m_pimpl->get_printer(pszDeviceName);
 
 }
 
@@ -5214,10 +5177,10 @@ void application::ensure_app_interest()
 string application::veriwell_multimedia_music_midi_get_default_library_name()
 {
 
-   if(::application_base::m_p == NULL)
+   if(m_pimpl == NULL)
       return "";
 
-   return ::application_base::m_p->veriwell_multimedia_music_midi_get_default_library_name();
+   return m_pimpl->veriwell_multimedia_music_midi_get_default_library_name();
 
 }
 
@@ -5226,10 +5189,10 @@ string application::veriwell_multimedia_music_midi_get_default_library_name()
 string application::multimedia_audio_mixer_get_default_library_name()
 {
 
-   if(::application_base::m_p == NULL)
+   if(m_pimpl == NULL)
       return "";
 
-   return ::application_base::m_p->multimedia_audio_mixer_get_default_library_name();
+   return m_pimpl->multimedia_audio_mixer_get_default_library_name();
 
 }
 
@@ -5238,10 +5201,10 @@ string application::multimedia_audio_mixer_get_default_library_name()
 string application::multimedia_audio_get_default_library_name()
 {
 
-   if(::application_base::m_p == NULL)
+   if(m_pimpl == NULL)
       return "";
 
-   return ::application_base::m_p->multimedia_audio_get_default_library_name();
+   return m_pimpl->multimedia_audio_get_default_library_name();
 
 }
 
@@ -5250,10 +5213,10 @@ string application::multimedia_audio_get_default_library_name()
 string application::draw2d_get_default_library_name()
 {
 
-   if(::application_base::m_p == NULL)
+   if(m_pimpl == NULL)
       return "draw2d_cairo";
 
-   return ::application_base::m_p->draw2d_get_default_library_name();
+   return m_pimpl->draw2d_get_default_library_name();
 
 }
 

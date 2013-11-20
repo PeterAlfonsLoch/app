@@ -11,7 +11,7 @@ namespace database
 
 
    class CLASS_DECL_CORE client :
-      virtual public object
+      virtual public ::object
    {
    public:
 

@@ -21,7 +21,7 @@ namespace filemanager
 
       DECL_GEN_SIGNAL(_001OnCreate)
       
-      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
       virtual ~tab_view();
 #ifdef DEBUG
       virtual void assert_valid() const;

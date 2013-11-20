@@ -178,7 +178,7 @@ namespace userex
          sp(::filemanager::document) pdoc = Application.filemanager().std().open_child(true, true, pcreatordata->m_pholder, pfilemanagerdata);
          if(pdoc != NULL)
          {
-            sp(::user::view) pview = pdoc->get_view();
+            sp(::user::impact) pview = pdoc->get_view();
             if(pview != NULL)
             {
                sp(::user::frame_window) pframe = (sp(::user::frame_window)) pview->GetParentFrame();
@@ -201,7 +201,7 @@ namespace userex
 
          if(pdoc != NULL)
          {
-            sp(::user::view) pview = pdoc->get_view();
+            sp(::user::impact) pview = pdoc->get_view();
             if(pview != NULL)
             {
                sp(::user::frame_window) pframe = (sp(::user::frame_window)) pview->GetParentFrame();

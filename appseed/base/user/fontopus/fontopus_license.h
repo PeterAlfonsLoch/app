@@ -6,7 +6,7 @@ namespace fontopus
 
 
    class CLASS_DECL_BASE license :
-      virtual public object
+      virtual public ::object
    {
    public:
 

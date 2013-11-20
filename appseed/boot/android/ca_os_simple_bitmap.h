@@ -14,8 +14,8 @@ public:
    ~simple_bitmap();
 
 
-   bool create(int32_t cx, int32_t cy, simple_graphics & g, COLORREF ** ppdata = NULL);
-   bool create_from_data(int32_t cx, int32_t cy, COLORREF * pdata, simple_graphics & g);
+   bool create(int32_t cx, int32_t cy, ::draw2d::graphics * pgraphics, COLORREF ** ppdata = NULL);
+   bool create_from_data(int32_t cx, int32_t cy, COLORREF * pdata, ::draw2d::graphics * pgraphics);
    bool destroy();
 
 

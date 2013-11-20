@@ -218,7 +218,7 @@ namespace user
    }
 
 
-   void view_creator::on_update(sp(::user::document_interface) pdocument, sp(::user::view) pSender, LPARAM lHint, object* pHint)
+   void view_creator::on_update(sp(::user::object) pdocument, sp(::user::impact) pSender, LPARAM lHint, object* pHint)
    {
       
       POSITION pos = m_viewmap.get_start_position();

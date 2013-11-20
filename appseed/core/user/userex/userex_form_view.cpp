@@ -12,7 +12,7 @@ form_view::form_view(sp(base_application) papp) :
 }
 
 
-void form_view::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint)
+void form_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
 {
 
    html_form_view::on_update(pSender, lHint, phint);

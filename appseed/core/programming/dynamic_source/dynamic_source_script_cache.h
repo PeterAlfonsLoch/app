@@ -7,7 +7,7 @@ namespace dynamic_source
    class script;
 
    class CLASS_DECL_CORE script_cache :
-      virtual public object
+      virtual public ::object
    {
    public:
 

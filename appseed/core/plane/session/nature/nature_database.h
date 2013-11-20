@@ -7,7 +7,7 @@ namespace nature
 
 
    class CLASS_DECL_CORE database :
-      virtual public object
+      virtual public ::object
    {
    public:
       database(sp(base_application) papp);

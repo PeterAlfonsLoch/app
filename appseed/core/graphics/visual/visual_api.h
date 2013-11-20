@@ -6,7 +6,7 @@ namespace visual
 
 
    class CLASS_DECL_CORE api :
-      virtual public object
+      virtual public ::object
    {
    public:
 

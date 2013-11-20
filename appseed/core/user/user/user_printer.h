@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_CORE printer :
-      virtual public object
+      virtual public ::object
    {
    public:
 

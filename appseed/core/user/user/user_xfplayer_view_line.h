@@ -8,7 +8,7 @@ class XfplayerViewLines;
 
 
 class CLASS_DECL_CORE XfplayerViewLine  :
-   virtual public object
+   virtual public ::object
 {
 public:
 

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "spa_canvas.h"
 
 
 #ifdef LINUX
@@ -12,7 +13,8 @@
 namespace spa_install
 {
 
-   canvas::canvas()
+   canvas::canvas(sp(base_application) papp) :
+      element(papp)
    {
 
       m_iMode = 0;
@@ -55,7 +57,7 @@ public:
    COLORREF * m_pdataZero;
    canvas_zero();
    void prepare(HDC hdc, LPCRECT lpcrect);
-   void on_paint(simple_graphics & g, LPCRECT lpcrect);
+   void on_paint(::draw2d::graphics * pgraphics, LPCRECT lpcrect);
    virtual void zero(HDC hdc, POINT pt, int32_t iSize, int32_t iStep);
 };
 
@@ -73,7 +75,7 @@ int32_t canvas::increment_mode()
 
 }
 
-void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
+void canvas::on_paint(::draw2d::graphics * pgraphics, LPCRECT lpcrect)
 {
    int32_t iMode = m_iMode;
 #ifdef SUPORTA_TELA_AVANCADA
@@ -86,42 +88,44 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
 //   int32_t cy = lpcrect->bottom - lpcrect->top;
 //   int32_t iThankYouHeight = 30;
 
-   simple_font font;
+   ::draw2d::font_sp font(allocer());
 
-   font.create_point(g, 100, "Lucida Sans Unicode");
+   font->create_point_font("Lucida Sans Unicode", 100);
 
-   simple_font fontBold;
+   ::draw2d::font_sp fontBold(allocer());
 
-   fontBold.create_point_bold(g, 100, "Lucida Sans Unicode");
+   fontBold->create_point_font("Lucida Sans Unicode", 100);
 
-   g.select(font);
+   fontBold->m_iFontWeight = FW_BOLD;
 
-   simple_brush brush;
+   pgraphics->SelectObject(font);
+
+   ::draw2d::brush_sp brush(allocer());
 
    if(iMode == 0 || iMode == 1 || iMode == 2 || iMode == 3)
    {
 
-      simple_pen pen;
+      ::draw2d::pen_sp pen(allocer());
 
-      pen.create_solid(g, ARGB(255, 84, 84, 77));
+      pen->create_solid(pgraphics, 1.0, ARGB(255, 84, 84, 77));
 
       if(iMode == 0 || iMode == 1)
       {
-         brush.from_stock(NULL_BRUSH);
+         brush->m_etype = ::draw2d::brush::type_null;
       }
       else
       {
-         brush.create_solid(g, ARGB(255, 84, 84, 84));
+         brush->create_solid(ARGB(255, 84, 84, 84));
       }
 
-      g.select(pen);
+      pgraphics->SelectObject(pen);
 
-      g.select(brush);
+      pgraphics->SelectObject(brush);
 
-      g.rectangle(lpcrect);
+      pgraphics->Rectangle(lpcrect);
 
    }
-   SIZE size = g.get_text_extent("CCpp");
+   SIZE size = pgraphics->GetTextExtent("CCpp");
 //   int32_t iLineCount = (rect.bottom - 30 - iThankYouHeight) / size.cy;
    if(iMode == 5) // if(m_bHealingSurface)
    {
@@ -206,14 +210,14 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
    else if(iMode == 2) // else // !m_bHealingSurface => "Surgery Internals"
    {
 
-      brush.create_solid(g, ARGB(255, 0xCC, 0xCC, 0xCC));
+      brush->create_solid(ARGB(255, 0xCC, 0xCC, 0xCC));
 
-      g.select(brush);
+      pgraphics->SelectObject(brush);
 
       size_t iRefresh = 884;
       size_t iEat = 8;
       const char * psz = "development message so international english file \"C:\\core\\install.log\" excerpt  ::::::::";
-      g.text_out(10, 10 + size.cy * 2, psz, (int32_t) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
+      pgraphics->TextOut(10, 10 + size.cy * 2, psz, (int32_t) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
       DWORD dwRead;
 //      int32_t iLineMin = 5;
   //    int32_t iLine = ((rect.bottom - 10) / size.cy) - 1;
@@ -263,14 +267,14 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
                   {
                      bBold = true;
                      strLine = strLine.substr(3);
-                     g.select(fontBold);
-                     g.text_out(10, 10 + size.cy * 3, strLine);
+                     pgraphics->SelectObject(fontBold);
+                     pgraphics->TextOut(10, 10 + size.cy * 3, strLine);
                   }
                   else if(!strLine.begins_ci("***") && strLine.length() > 0 && !bNormal && !bBold && bPreNormal)
                   {
                      bNormal = true;
-                     g.select(font);
-                     g.text_out(10, 10 + size.cy * 4, strLine);
+                     pgraphics->SelectObject(font);
+                     pgraphics->TextOut(10, 10 + size.cy * 4, strLine);
                   }
                   else if(strLine.length() > 0 && !bPreNormal && !bBold && !bNormal)
                   {
@@ -293,16 +297,16 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
    else if(iMode == 3) // else // !m_bHealingSurface => "Surgery Internals"
    {
 
-      brush.create_solid(g, ARGB(255, 0xCC, 0xCC, 0xCC));
+      brush->create_solid(ARGB(255, 0xCC, 0xCC, 0xCC));
 
-      g.select(brush);
+      pgraphics->SelectObject(brush);
 
       size_t iRefresh = 884;
       size_t iEat = 8;
       const char * psz = "development message so international english last lines of file \"C:\\core\\install.log\" ::::::::";
-      g.text_out(10, 10 + size.cy * 2, psz, (int32_t) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
-      g.select(fontBold);
-      g.text_out( 10, 10 + size.cy * 3, s_strLastStatus);
+      pgraphics->TextOut(10, 10 + size.cy * 2, psz, (int32_t) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
+      pgraphics->SelectObject(fontBold);
+      pgraphics->TextOut( 10, 10 + size.cy * 3, s_strLastStatus);
       DWORD dwRead;
       int32_t iLineMin = 5;
       int32_t iLine = ((rect.bottom - 10) / size.cy) - 1;
@@ -352,7 +356,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
                         goto skip_text_out1;
                      }
                      s_strLastStatus = strLine;
-                     g.select(fontBold);
+                     pgraphics->SelectObject(fontBold);
                   }
                   else
                   {
@@ -361,10 +365,10 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
                      {
                         strLine = strLine.substr(iFind + 1);
                      }
-                     g.select(font);
+                     pgraphics->SelectObject(font);
                   }
                   iLine--;
-                  g.text_out(10, 10 + iLine * size.cy, strLine);
+                  pgraphics->TextOut(10, 10 + iLine * size.cy, strLine);
                   skip_text_out1:
                   strLine = ch;
                }
@@ -378,7 +382,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
             if(iLine >= iLineMin && strLine.length() > 0)
             {
                iLine--;
-               g.text_out(10, 10 + iLine * size.cy, strLine);
+               pgraphics->TextOut(10, 10 + iLine * size.cy, strLine);
             }
          }
       }

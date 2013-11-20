@@ -40,9 +40,6 @@ class application;
 #include "boot/vms/vms.h"
 
 
-#include "boot_logic.h"
-
-
 #include "boot_cpu_architecture.h"
 
 
@@ -61,13 +58,7 @@ class application;
 
 
 
-#include "boot/simple_graphics/simple_graphics_first_phase.h"
-
 #include "boot_math.h"
-
-#include "boot_geometric_types.h"
-
-
 
 
 #include "boot_launcher.h"
@@ -100,16 +91,12 @@ class application;
 #define VK_DELETE 6
 #define VK_SPACE 9
 #endif*/
-#include "boot_window_graphics.h"
 
 #include "boot_os.h"
 
 //#include "boot/cross/cross.h"
 
 
-
-
-#include "boot/simple_graphics/simple_graphics_second_phase.h"
 
 
 #include "boot_simple_shell_launcher.h"
@@ -122,11 +109,6 @@ class application;
 
 
 #include "boot/hotplugin/hotplugin.h"
-#include "boot/simple_ui/simple_ui.h"
-#include "boot/crypt/crypt.h"
-#include "boot/spa/spa.h"
-
-#include "boot/bsdiff/bsdiff.h"
 
 
 
@@ -158,17 +140,6 @@ CLASS_DECL_BOOT string _ca_get_file_name(const char * psz, bool bCreate = false,
 
 CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
-//#ifndef METROWIN
-//#include <openssl/ssl.h>
-//#endif
-
-
-
-//#include "boot_user.h"
-
-#include "zlib/zlib.h"
-
-#include "app/appseed/boot/fontopus/fontopus.h"
 
 #include "boot_simple_app.h"
 

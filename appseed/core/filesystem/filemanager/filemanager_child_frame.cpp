@@ -92,7 +92,7 @@ namespace filemanager
    void child_frame::OnChangeEditSearch()
    {
 
-      sp(::user::document_interface) pdoc = GetActiveDocument();
+      sp(::user::object) pdoc = GetActiveDocument();
 
       if (pdoc != NULL)
       {

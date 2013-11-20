@@ -27,7 +27,7 @@ namespace platform
          IDR_ALBUM,
          System.type_info < MediaLibraryDoc > (),
          System.type_info < MediaLibraryChildFrame > (),
-         System.type_info < ::mplite::library::user::view > ());
+         System.type_info < ::mplite::library::user::impact > ());
       m_pdoctemplateAlbum = pdoctemplate;
 
       pdoctemplate = new ::user::single_document_template(
@@ -63,12 +63,12 @@ namespace platform
    #ifdef DEBUG
    void pane_view::assert_valid() const
    {
-      ::user::view::assert_valid();
+      ::user::impact::assert_valid();
    }
 
    void pane_view::dump(dump_context & dumpcontext) const
    {
-      ::user::view::dump(dumpcontext);
+      ::user::impact::dump(dumpcontext);
    }
    #endif //DEBUG
 
@@ -108,7 +108,7 @@ namespace platform
   //          cc.m_pCurrentDoc = get_document();
     //        cc.m_typeinfoNewView =  System.type_info < ::user::menu_list_view > ();
 
-            sp(::user::view) pview = (view::create_view(System.type_info < ::user::menu_list_view > (), get_document(), this, 101).m_p);
+            sp(::user::impact) pview = (view::create_view(System.type_info < ::user::menu_list_view > (), get_document(), this, 101).m_p);
             if(pview != NULL)
             {
                sp(::user::menu_list_view) pmenuview = (sp(::user::menu_list_view)) pview;
@@ -124,7 +124,7 @@ namespace platform
             cc.m_pCurrentDoc = get_document();
             cc.m_typeinfoNewView =  System.type_info < ::user::menu_list_view > ();
 
-            sp(::user::view) pview = (CreateView(&cc, 101, this));
+            sp(::user::impact) pview = (CreateView(&cc, 101, this));
             if(pview != NULL)
             {
                sp(::user::menu_list_view) pmenuview = (sp(::user::menu_list_view)) pview;
@@ -137,7 +137,7 @@ namespace platform
             }*/
       case platform::PaneViewDevEdge:
          {
-            sp(::user::view) pview = create_view < ::platform::view > ();
+            sp(::user::impact) pview = create_view < ::platform::view > ();
             if(pview != NULL)
             {
                pcreatordata->m_pdoc = get_document();
@@ -150,7 +150,7 @@ namespace platform
             sp(::filemanager::document) pdoc = papp->m_pplaneapp->filemanager().std().open_child(false, true);
             if(pdoc != NULL)
             {
-               sp(::user::view) pview = pdoc->get_view();
+               sp(::user::impact) pview = pdoc->get_view();
                if(pview != NULL)
                {
                   sp(::user::frame_window) pframe = (pview->GetParentFrame());

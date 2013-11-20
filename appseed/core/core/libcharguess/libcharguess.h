@@ -11,9 +11,9 @@
 #ifdef LINUX
 #define LIBCHARGUESS_API
 #elif LIBCHARGUESS_EXPORTS
-#define LIBCHARGUESS_API CLASS_DECL_BASE
+#define LIBCHARGUESS_API CLASS_DECL_CORE
 #else
-#define LIBCHARGUESS_API CLASS_DECL_BASE
+#define LIBCHARGUESS_API CLASS_DECL_CORE
 #endif
 
 // This class is exported from the libcharguess.dll

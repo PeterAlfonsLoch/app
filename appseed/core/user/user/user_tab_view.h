@@ -7,7 +7,7 @@ namespace user
    class single_document_template;
 
    class CLASS_DECL_CORE tab_view : 
-      virtual public ::user::view,
+      virtual public ::user::impact,
       virtual public ::user::tab,
       virtual public ::user::tab_callback,
       virtual public ::user::view_container
@@ -30,7 +30,7 @@ namespace user
 
       virtual sp(::user::interaction) get_view_uie();
       virtual ::user::view_creator_data * get_view_creator_data();
-      virtual sp(::user::document_interface) get_view_document();
+      virtual sp(::user::object) get_view_document();
 
 
       void _000OnDraw(::draw2d::graphics * pdc);
@@ -62,7 +62,7 @@ namespace user
       void _001OnTabClick(int32_t iTab);
 
 
-      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
       DECL_GEN_SIGNAL(_001OnMenuMessage)

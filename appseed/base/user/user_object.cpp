@@ -5,32 +5,35 @@ namespace user
 {
 
 
-   document_interface::document_interface() :
-      ::data::data_container_base(NULL),
+   object::object(sp(base_application) papp) :
+      element(papp),
       m_mutex(NULL)
    {
 
+         m_pdocumentemplate = NULL;
+         m_bModified = FALSE;
+         m_bAutoDelete = TRUE;       // default to auto delete object
+         m_bEmbedded = FALSE;        // default to file-based object
+         ASSERT(m_viewptra.is_empty());
 
-      m_pdoc                  = this;
+         m_documentptra.add(this);
 
+         m_pdocumentemplate = NULL;
+         m_bModified = FALSE;
+         m_bAutoDelete = TRUE;       // default to auto delete object
+         m_bEmbedded = FALSE;        // default to file-based object
+         m_bNew = false;
 
-      m_pdocumentemplate      = NULL;
-      m_bModified             = FALSE;
-      m_bAutoDelete           = TRUE;       // default to auto delete document_interface
-      m_bEmbedded             = FALSE;        // default to file-based document_interface
-      m_bNew                  = false;
-
-      ASSERT(m_viewptra.is_empty());
-
+         ASSERT(m_viewptra.is_empty());
 
    }
 
-   document_interface::~document_interface()
+   object::~object()
    {
       // do not call delete_contents here !
 #ifdef DEBUG
       if (is_modified())
-         TRACE(::core::trace::category_AppMsg, 0, "Warning: destroying an unsaved document_interface.\n");
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: destroying an unsaved object.\n");
 #endif
 
       // there should be no views left!
@@ -40,10 +43,99 @@ namespace user
       if (m_pdocumentemplate != NULL)
          m_pdocumentemplate->remove_document(this);
       ASSERT(m_pdocumentemplate == NULL);     // must be detached
+   }
+
+
+
+   bool object::set_data(::data::data * pdata)
+   {
+
+/*      if (m_spdata.is_set())
+      {
+
+         remove_data(m_spdata);
+
+      }*/
+
+      ::data::data_container::set_data(pdata);
+
+/*      if (pdata != NULL)
+      {
+
+         add_data(pdata);
+
+      }*/
+
+      return true;
 
    }
 
-   void document_interface::update_title()
+
+
+
+
+   bool object::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
+
+   {
+      if (command_target::_001OnCmdMsg(pcmdmsg))
+         return TRUE;
+
+      // otherwise check template
+      if (m_pdocumentemplate != NULL &&
+         m_pdocumentemplate->_001OnCmdMsg(pcmdmsg))
+         return TRUE;
+
+      return FALSE;
+   }
+
+
+   void object::dump(dump_context & dumpcontext) const
+   {
+      object::dump(dumpcontext);
+
+      dumpcontext << "m_wstrTitle = " << m_strTitle;
+      dumpcontext << "\nm_wstrPathName = " << m_strPathName;
+      dumpcontext << "\nm_bModified = " << m_bModified;
+      dumpcontext << "\nm_pDocTemplate = " << (void *)m_pdocumentemplate;
+
+      if (dumpcontext.GetDepth() > 0)
+      {
+         ::count count = get_view_count();
+         for (index index = 0; index < count; index++)
+         {
+            sp(::user::impact) pview = get_view(index);
+            dumpcontext << "\nwith ::user::impact " << (void *)pview;
+         }
+      }
+
+      dumpcontext << "\n";
+
+
+   }
+
+   void object::assert_valid() const
+   {
+      ::object::assert_valid();
+
+      ::count count = get_view_count();
+      for (index index = 0; index < count; index++)
+      {
+         sp(::user::impact) pview = get_view(index);
+         ASSERT_VALID(pview);
+      }
+   }
+
+
+   void object::on_alloc(sp(base_application) papp)
+   {
+
+      //::user::object::on_alloc(papp);
+//      ::database::client::initialize_data_client(App(papp).simpledb().get_data_server());
+
+   }
+
+
+   void object::update_title()
    {
 
    }
@@ -52,55 +144,55 @@ namespace user
 
 
 
-   void document_interface::on_final_release()
+   void object::on_final_release()
    {
       on_close_document();  // may 'delete this'
    }
 
-   void document_interface::disconnect_views()
+   void object::disconnect_views()
    {
       single_lock sl(&m_mutex, true);
-      for(index index = 0; index < m_viewptra.get_count(); index++)
+      for (index index = 0; index < m_viewptra.get_count(); index++)
       {
-         sp(::user::view) pview = m_viewptra(index);
+         sp(::user::impact) pview = m_viewptra(index);
          ASSERT_VALID(pview);
-         ASSERT_KINDOF(::user::view, pview);
+         ASSERT_KINDOF(::user::impact, pview);
          pview->m_spdocument->release();
       }
       m_viewptra.remove_all();
    }
 
-   void document_interface::on_alloc(sp(base_application) papp)
+   /*void object::on_alloc(sp(base_application) papp)
    {
       set_app(papp);
-   }
+   }*/
 
    /////////////////////////////////////////////////////////////////////////////
-   // document_interface attributes, general services
+   // object attributes, general services
 
 
 
-   void document_interface::set_title(const char * lpszTitle)
+   void object::set_title(const char * lpszTitle)
    {
       m_strTitle = lpszTitle;
       update_frame_counts();        // will cause name change in views
    }
 
-   void document_interface::delete_contents()
+   void object::delete_contents()
    {
    }
 
    /////////////////////////////////////////////////////////////////////////////
    // Closing documents or views
 
-   void document_interface::on_changed_view_list(single_lock * psl)
+   void object::on_changed_view_list(single_lock * psl)
    {
       single_lock sl(&m_mutex, false);
-      if(psl == NULL || psl->m_psyncobject != &m_mutex)
+      if (psl == NULL || psl->m_psyncobject != &m_mutex)
          psl = &sl;
       psl->lock();
-      // if no more views on the document_interface, delete ourself
-      // not called if directly closing the document_interface or terminating the cast
+      // if no more views on the object, delete ourself
+      // not called if directly closing the object or terminating the cast
       if (m_viewptra.is_empty() && m_bAutoDelete)
       {
          on_close_document(psl);
@@ -111,19 +203,19 @@ namespace user
       update_frame_counts(psl);
    }
 
-   void document_interface::update_frame_counts(single_lock * psl)
+   void object::update_frame_counts(single_lock * psl)
       // assumes 1 doc per frame
    {
       single_lock sl(&m_mutex, false);
-      if(psl == NULL || psl->m_psyncobject != &m_mutex)
+      if (psl == NULL || psl->m_psyncobject != &m_mutex)
          psl = &sl;
       psl->lock();
       // walk all frames of views (mark and sweep approach)
       ::count count = get_view_count();
       index index;
-      for(index = 0; index < count; index++)
+      for (index = 0; index < count; index++)
       {
-         sp(::user::view) pview = get_view(index);
+         sp(::user::impact) pview = get_view(index);
          ASSERT_VALID(pview);
          // trans      ASSERT(::IsWindow(pview->get_handle()));
          if (pview->IsWindowVisible())   // Do not ::count invisible windows.
@@ -137,9 +229,9 @@ namespace user
       // now do it again counting the unique ones
       int32_t nFrames = 0;
       count = get_view_count();
-      for(index = 0; index < count; index++)
+      for (index = 0; index < count; index++)
       {
-         sp(::user::view) pview = get_view(index);
+         sp(::user::impact) pview = get_view(index);
          ASSERT_VALID(pview);
          // trans      ASSERT(::IsWindow(pview->get_handle()));
          if (pview->IsWindowVisible())   // Do not ::count invisible windows.
@@ -158,9 +250,9 @@ namespace user
       // go through frames updating the appropriate one
       int32_t iFrame = 1;
       count = get_view_count();
-      for(index = 0; index < count; index++)
+      for (index = 0; index < count; index++)
       {
-         sp(::user::view) pview = get_view(index);
+         sp(::user::impact) pview = get_view(index);
          ASSERT_VALID(pview);
          // trans      ASSERT(::IsWindow(pview->get_handle()));
          if (pview->IsWindowVisible())   // Do not ::count invisible windows.
@@ -178,7 +270,7 @@ namespace user
       }
    }
 
-   bool document_interface::can_close_frame(sp(::user::frame_window) pFrameArg)
+   bool object::can_close_frame(sp(::user::frame_window) pFrameArg)
       // permission to close all views using this frame
       //  (at least one of our views must be in this frame)
    {
@@ -187,15 +279,15 @@ namespace user
       UNUSED(pFrameArg);   // unused in release builds
 
       ::count count = get_view_count();
-      for(index index = 0; index < count; index++)
+      for (index index = 0; index < count; index++)
       {
-         sp(::user::view) pview = get_view(index);
+         sp(::user::impact) pview = get_view(index);
          ASSERT_VALID(pview);
          sp(::user::frame_window) pFrame = pview->GetParentFrame();
          // assume frameless views are ok to close
          if (pFrame != NULL)
          {
-            // assumes 1 document_interface per frame
+            // assumes 1 object per frame
             ASSERT_VALID(pFrame);
             if (pFrame->m_nWindow > 0)
                return TRUE;        // more than one frame refering to us
@@ -206,7 +298,7 @@ namespace user
       return save_modified();
    }
 
-   void document_interface::pre_close_frame(sp(::user::frame_window) /*pFrameArg*/)
+   void object::pre_close_frame(sp(::user::frame_window) /*pFrameArg*/)
    {
       // default does nothing
    }
@@ -214,15 +306,15 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // File/Path commands
 
-   void document_interface::set_path_name(var varFile, bool bAddToMRU)
+   void object::set_path_name(var varFile, bool bAddToMRU)
    {
       UNREFERENCED_PARAMETER(bAddToMRU);
       string strPathName;
-      if(varFile.get_type() == var::type_propset && varFile.propset()["url"].get_string().has_char())
+      if (varFile.get_type() == var::type_propset && varFile.propset()["url"].get_string().has_char())
       {
          strPathName = varFile.propset()["url"];
       }
-      else if(varFile.cast < ::file::binary_buffer > () != NULL)
+      else if (varFile.cast < ::file::binary_buffer >() != NULL)
       {
          strPathName = System.datetime().international().get_gmt_date_time() + "." + get_document_template()->m_set["default_extension"];
       }
@@ -256,7 +348,7 @@ namespace user
       //!m_strPathName.is_empty());       // must be set to something
       m_bEmbedded = FALSE;
 
-      // set the document_interface title based on path name
+      // set the object title based on path name
       string strTitle;
       strTitle = System.file().name_(strFullPath);
       set_title(strTitle);
@@ -276,7 +368,7 @@ namespace user
       m_bEmbedded = FALSE;
       ASSERT_VALID(this);
 
-      // set the document_interface title based on path name
+      // set the object title based on path name
       string strTitle = System.file().title_(m_strPathName);
       set_title(strTitle);
 
@@ -289,25 +381,25 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Standard file menu commands
 
-   void document_interface::on_file_close()
+   void object::on_file_close()
    {
       if (!save_modified())
          return;
 
       // shut it down
       on_close_document();
-      // this should destroy the document_interface
+      // this should destroy the object
    }
 
-   void document_interface::on_file_save()
+   void object::on_file_save()
    {
       do_file_save();
    }
 
-   void document_interface::on_file_save_as()
+   void object::on_file_save_as()
    {
 
-      if(!do_save(var(var::type_empty)))
+      if (!do_save(var(var::type_empty)))
       {
 
          TRACE(::core::trace::category_AppMsg, 0, "Warning: File save-as failed.\n");
@@ -317,15 +409,15 @@ namespace user
 
    }
 
-   bool document_interface::do_file_save()
+   bool object::do_file_save()
    {
 
-      if(is_new_document() || System.file_is_read_only(m_strPathName))
+      if (is_new_document() || System.file_is_read_only(m_strPathName))
       {
 
          // we do not have read-write access or the file does not (now) exist
 
-         if(!do_save(var(var::type_empty)))
+         if (!do_save(var(var::type_empty)))
          {
 
             TRACE(::core::trace::category_AppMsg, 0, "Warning: File save with new name failed.\n");
@@ -338,7 +430,7 @@ namespace user
       else
       {
 
-         if(!do_save(m_strPathName))
+         if (!do_save(m_strPathName))
          {
 
             TRACE(::core::trace::category_AppMsg, 0, "Warning: File save failed.\n");
@@ -353,9 +445,9 @@ namespace user
 
    }
 
-   bool document_interface::do_save(var varFile, bool bReplace)
-      // Save the document_interface data to a file
-      // lpszPathName = path name where to save document_interface file
+   bool object::do_save(var varFile, bool bReplace)
+      // Save the object data to a file
+      // lpszPathName = path name where to save object file
       // if lpszPathName is NULL then the ::fontopus::user will be prompted (SaveAs)
       // note: lpszPathName can be different than 'm_strPathName'
       // if 'bReplace' is TRUE will change file name if successful (SaveAs)
@@ -364,9 +456,9 @@ namespace user
 
       var newName = varFile;
 
-      if(newName.is_empty() || is_new_document())
+      if (newName.is_empty() || is_new_document())
       {
-         sp(document_template) ptemplate = get_document_template();
+         sp(impact_system) ptemplate = get_document_template();
          ASSERT(ptemplate != NULL);
 
          newName = m_strPathName;
@@ -380,7 +472,7 @@ namespace user
 
             // append the default suffix if there is one
             string strExt;
-            if (ptemplate->GetDocString(strExt, document_template::filterExt) &&
+            if (ptemplate->GetDocString(strExt, impact_system::filterExt) &&
                !strExt.is_empty())
             {
                ASSERT(strExt[0] == '.');
@@ -396,16 +488,16 @@ namespace user
 
       wait_cursor wait(get_app());
 
-      if(!on_save_document(newName))
+      if (!on_save_document(newName))
       {
-         if(varFile.is_empty())
+         if (varFile.is_empty())
          {
             // be sure to delete the file
             try
             {
                System.file().del(newName);
             }
-            catch(::exception::base * pe)
+            catch (::exception::base * pe)
             {
                TRACE(::core::trace::category_AppMsg, 0, "Warning: failed to delete file after failed SaveAs.\n");
                pe->Delete();
@@ -415,24 +507,24 @@ namespace user
          return FALSE;
       }
 
-      // reset the title and change the document_interface name
+      // reset the title and change the object name
       if (bReplace)
          set_path_name(newName);
 
       return TRUE;        // success
    }
 
-   bool document_interface::save_modified()
+   bool object::save_modified()
    {
       if (!is_modified())
          return TRUE;        // ok to continue
 
-      // get name/title of document_interface
+      // get name/title of object
       string name;
       if (m_strPathName.is_empty())
       {
          name = m_strTitle;
-         if(name.is_empty())
+         if (name.is_empty())
          {
             name = System.load_string("Untitled");
          }
@@ -458,7 +550,7 @@ namespace user
          break;
 
       case IDNO:
-         // If not saving changes, revert the document_interface
+         // If not saving changes, revert the object
          break;
 
       default:
@@ -468,17 +560,17 @@ namespace user
       return TRUE;    // keep going
    }
 
-   HMENU document_interface::GetDefaultMenu()
+   HMENU object::GetDefaultMenu()
    {
       return NULL;    // just use original default
    }
 
-   HACCEL document_interface::GetDefaultAccelerator()
+   HACCEL object::GetDefaultAccelerator()
    {
       return NULL;    // just use original default
    }
 
-   void document_interface::report_save_load_exception(const char * lpszPathName, ::exception::base* e, bool bSaving, const char * nIDPDefault)
+   void object::report_save_load_exception(const char * lpszPathName, ::exception::base* e, bool bSaving, const char * nIDPDefault)
    {
 
       try
@@ -511,7 +603,7 @@ namespace user
             }
             else*/ if (base < ::file::exception >::bases(e))
             {
-               ::file::exception * pfe = dynamic_cast < ::file::exception * > (e);
+               ::file::exception * pfe = dynamic_cast <::file::exception *> (e);
                // throw not_implemented(get_app());
                TRACE(::core::trace::category_AppMsg, 0, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
                   pfe->m_lOsError);
@@ -564,7 +656,7 @@ namespace user
          System.simple_message_box(NULL, prompt, MB_ICONEXCLAMATION);
 
       }
-      catch(...)
+      catch (...)
       {
 
       }
@@ -572,11 +664,11 @@ namespace user
    }
 
 
-   bool document_interface::on_new_document()
+   bool object::on_new_document()
    {
 #ifdef DEBUG
-      if(is_modified())
-         TRACE(::core::trace::category_AppMsg, 0, "Warning: on_new_document replaces an unsaved document_interface.\n");
+      if (is_modified())
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: on_new_document replaces an unsaved object.\n");
 #endif
 
       delete_contents();
@@ -586,11 +678,11 @@ namespace user
       return true;
    }
 
-   bool document_interface::on_open_document(var varFile)
+   bool object::on_open_document(var varFile)
    {
 #ifdef DEBUG
       if (is_modified())
-         TRACE(::core::trace::category_AppMsg, 0, "Warning: on_open_document replaces an unsaved document_interface.\n");
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: on_open_document replaces an unsaved object.\n");
 #endif
 
       ::file::buffer_sp spfile;
@@ -609,7 +701,7 @@ namespace user
          spfile = System.fs()->get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary, &fe);
          }*/
       }
-      catch(::exception::base & e)
+      catch (::exception::base & e)
       {
          report_save_load_exception(varFile, &e, FALSE, "__IDP_FAILED_TO_OPEN_DOC");
          return FALSE;
@@ -624,7 +716,7 @@ namespace user
          read(is);     // load me
          spfile->close();
       }
-      catch(::exception::base & e)
+      catch (::exception::base & e)
       {
          spfile->close();
          delete_contents();   // remove failed contents
@@ -633,7 +725,7 @@ namespace user
          {
             report_save_load_exception(varFile, &e, FALSE, "__IDP_FAILED_TO_OPEN_DOC");
          }
-         catch(...)
+         catch (...)
          {
          }
          return FALSE;
@@ -644,7 +736,7 @@ namespace user
       return TRUE;
    }
 
-   bool document_interface::on_save_document(var varFile)
+   bool object::on_save_document(var varFile)
    {
 
       ::file::buffer_sp spfile;
@@ -655,7 +747,7 @@ namespace user
          spfile = Application.file().get_file(varFile, ::file::defer_create_directory | ::file::mode_create | ::file::mode_write | ::file::share_exclusive);
 
       }
-      catch(::exception::base & e)
+      catch (::exception::base & e)
       {
 
          report_save_load_exception(varFile, &e, TRUE, "__IDP_INVALID_FILENAME");
@@ -664,15 +756,15 @@ namespace user
 
       }
 
-      if(spfile.is_null())
+      if (spfile.is_null())
       {
-         
+
          report_save_load_exception(varFile, NULL, TRUE, "__IDP_FAILED_TO_SAVE_DOC");
-      
+
          return false;
-         
+
       }
-      
+
 
       ::file::output_stream os(spfile);
 
@@ -681,7 +773,7 @@ namespace user
 
          wait_cursor wait(get_app());
 
-         if(varFile["xmledit"].cast < ::file::memory_buffer > () != NULL)
+         if (varFile["xmledit"].cast < ::file::memory_buffer >() != NULL)
          {
 
          }
@@ -695,7 +787,7 @@ namespace user
          spfile->close();
 
       }
-      catch(::exception::base & e)
+      catch (::exception::base & e)
       {
 
          report_save_load_exception(varFile, &e, TRUE, "__IDP_FAILED_TO_SAVE_DOC");
@@ -703,13 +795,13 @@ namespace user
          return false;
 
       }
-      catch(...)
+      catch (...)
       {
 
          report_save_load_exception(varFile, NULL, TRUE, "__IDP_FAILED_TO_SAVE_DOC");
-         
+
          return false;
-         
+
       }
 
 
@@ -718,106 +810,106 @@ namespace user
       return true;        // success
    }
 
-   void document_interface::on_close_document(single_lock * psl)
+   void object::on_close_document(single_lock * psl)
       // must close all views now (no prompting) - usually destroys this
    {
       single_lock sl(&m_mutex, false);
-      if(psl == NULL || psl->m_psyncobject != &m_mutex)
+      if (psl == NULL || psl->m_psyncobject != &m_mutex)
          psl = &sl;
       psl->lock();
-      // destroy all frames viewing this document_interface
+      // destroy all frames viewing this object
       // the last destroy may destroy us
       bool bAutoDelete = m_bAutoDelete;
-      m_bAutoDelete = FALSE;  // don't destroy document_interface while closing views
-      for(index index = 0; index < m_viewptra.get_count(); index++)
+      m_bAutoDelete = FALSE;  // don't destroy object while closing views
+      for (index index = 0; index < m_viewptra.get_count(); index++)
       {
-         // get frame attached to the ::user::view
-         sp(::user::view) pview = m_viewptra(index);
+         // get frame attached to the ::user::impact
+         sp(::user::impact) pview = m_viewptra(index);
          ASSERT_VALID(pview);
          sp(::user::frame_window) pFrame = pview->GetParentFrame();
 
-         if(pFrame != NULL)
+         if (pFrame != NULL)
          {
             // and close it
             pre_close_frame(pFrame);
             pFrame->DestroyWindow();
-            // will destroy the ::user::view as well
+            // will destroy the ::user::impact as well
          }
       }
       m_viewptra.remove_all();
       m_bAutoDelete = bAutoDelete;
       psl->unlock();
 
-      // clean up contents of document_interface before destroying the document_interface itself
+      // clean up contents of object before destroying the object itself
       delete_contents();
 
       release();
    }
 
-   void document_interface::on_idle()
+   void object::on_idle()
    {
       // default does nothing
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::view operations
+   // ::user::impact operations
 
-   void document_interface::add_view(sp(::user::view) pview)
+   void object::add_view(sp(::user::impact) pview)
    {
       single_lock sl(&m_mutex, true);
       ASSERT_VALID(pview);
-      ASSERT(pview->::user::view::get_document() == NULL); // must not be already attached
-      if(m_viewptra.add_unique(pview))
+      ASSERT(pview->::user::impact::get_document() == NULL); // must not be already attached
+      if (m_viewptra.add_unique(pview))
       {
          pview->m_spdocument = this;
-         on_changed_view_list();    // must be the last thing done to the document_interface
+         on_changed_view_list();    // must be the last thing done to the object
       }
    }
 
-   void document_interface::remove_view(sp(::user::view) pview)
+   void object::remove_view(sp(::user::impact) pview)
    {
       single_lock sl(&m_mutex, true);
       ASSERT_VALID(pview);
-      ASSERT(pview->::user::view::get_document() == this); // must be attached to us
-      if(m_viewptra.remove(pview) > 0)
+      ASSERT(pview->::user::impact::get_document() == this); // must be attached to us
+      if (m_viewptra.remove(pview) > 0)
       {
          pview->m_spdocument = NULL;
-         on_changed_view_list();    // must be the last thing done to the document_interface
+         on_changed_view_list();    // must be the last thing done to the object
       }
    }
 
-   ::count document_interface::get_view_count() const
+   ::count object::get_view_count() const
    {
       return m_viewptra.get_count();
    }
 
-   sp(::user::view) document_interface::get_view(index index) const
+   sp(::user::impact) object::get_view(index index) const
    {
-      single_lock sl(&((document_interface *) this)->m_mutex, true);
-      if(index < 0 || index >= m_viewptra.get_count())
+      single_lock sl(&((object *) this)->m_mutex, true);
+      if (index < 0 || index >= m_viewptra.get_count())
          return NULL;
-      sp(::user::view) pview = m_viewptra(index);
-      ASSERT_KINDOF(::user::view, pview);
+      sp(::user::impact) pview = m_viewptra(index);
+      ASSERT_KINDOF(::user::impact, pview);
       return pview;
    }
 
-   void document_interface::update_all_views(sp(::user::view) pSender, LPARAM lHint, object* pHint)
+   void object::update_all_views(sp(::user::impact) pSender, LPARAM lHint, ::object* pHint)
       // walk through all views
    {
       ASSERT(pSender == NULL || !m_viewptra.is_empty());
       // must have views if sent by one of them
 
       ::count count = get_view_count();
-      for(index index = 0; index < count; index++)
+      for (index index = 0; index < count; index++)
       {
-         sp(::user::view) pview = get_view(index);
+         sp(::user::impact) pview = get_view(index);
          ASSERT_VALID(pview);
          if (pview != pSender)
             pview->on_update(pSender, lHint, pHint);
       }
    }
 
-   void document_interface::send_update(sp(::user::view) pSender, LPARAM lHint, object* pHint)
+   void object::send_update(sp(::user::impact) pSender, LPARAM lHint, ::object* pHint)
       // walk through all views
    {
       ASSERT(pSender == NULL || !m_viewptra.is_empty());
@@ -825,113 +917,59 @@ namespace user
 
       update * pupdate;
       ::count count = get_view_count();
-      for(index index = 0; index < count; index++)
+      for (index index = 0; index < count; index++)
       {
-         sp(::user::view) pview = get_view(index);
+         sp(::user::impact) pview = get_view(index);
 
          pupdate = new update;
          pupdate->m_pSender = pSender;
          pupdate->m_lHint = lHint;
          pupdate->m_pHint = pHint;
          if (pview != pSender)
-            pview->send_message(WM_VIEW, 0, (LPARAM) pupdate);
+            pview->send_message(WM_VIEW, 0, (LPARAM)pupdate);
       }
    }
 
-   void document_interface::send_initial_update()
+   void object::send_initial_update()
       // walk through all views and call OnInitialUpdate
    {
       ::count count = get_view_count();
-      for(index index = 0; index < count; index++)
+      for (index index = 0; index < count; index++)
       {
-         sp(::user::view) pview = get_view(index);
+         sp(::user::impact) pview = get_view(index);
          ASSERT_VALID(pview);
          pview->_001OnInitialUpdate(NULL);
       }
    }
 
-   /////////////////////////////////////////////////////////////////////////////
-   // command routing
-
-   bool document_interface::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
-   {
-      if (command_target::_001OnCmdMsg(pcmdmsg))
-         return TRUE;
-
-      // otherwise check template
-      if (m_pdocumentemplate != NULL &&
-         m_pdocumentemplate->_001OnCmdMsg(pcmdmsg))
-         return TRUE;
-
-      return FALSE;
-   }
-
-   /////////////////////////////////////////////////////////////////////////////
-   // document_interface diagnostics
-
-   void document_interface::dump(dump_context & dumpcontext) const
-   {
-      object::dump(dumpcontext);
-
-      dumpcontext << "m_strTitle = " << m_strTitle;
-      dumpcontext << "\nm_strPathName = " << m_strPathName;
-      dumpcontext << "\nm_bModified = " << m_bModified;
-      dumpcontext << "\nm_pDocTemplate = " << (void *)m_pdocumentemplate;
-
-      if (dumpcontext.GetDepth() > 0)
-      {
-         ::count count = get_view_count();
-         for(index index = 0; index < count; index++)
-         {
-            sp(::user::view) pview = get_view(index);
-            dumpcontext << "\nwith ::user::view " << (void *)pview;
-         }
-      }
-
-      dumpcontext << "\n";
-   }
-
-   void document_interface::assert_valid() const
-   {
-      object::assert_valid();
-
-      ::count count = get_view_count();
-      for(index index = 0; index < count; index++)
-      {
-         sp(::user::view) pview = get_view(index);
-         ASSERT_VALID(pview);
-      }
-   }
-
-
-   bool document_interface::is_new_document()
+   bool object::is_new_document()
    {
       return m_bNew;
    }
 
-   void document_interface::write(::file::output_stream & ostream)
+   void object::write(::file::output_stream & ostream)
    {
       UNREFERENCED_PARAMETER(ostream);
    }
 
-   void document_interface::read(::file::input_stream & istream)
+   void object::read(::file::input_stream & istream)
    {
       UNREFERENCED_PARAMETER(istream);
    }
 
 
-   sp(::user::view) document_interface::get_typed_view(sp(type) info, index indexFind)
+   sp(::user::impact) object::get_typed_view(sp(type) info, index indexFind)
    {
       single_lock sl(&m_mutex, true);
       ::count countView = get_view_count();
       ::count countFind = 0;
-      sp(::user::view) pview;
-      for(index index = 0; index < countView; index++)
+      sp(::user::impact) pview;
+      for (index index = 0; index < countView; index++)
       {
          pview = get_view(index);
-         if(*info == typeid(*pview))
+         if (*info == typeid(*pview))
          {
-            if(indexFind == countFind)
+            if (indexFind == countFind)
                return pview;
             else
                countFind++;
@@ -941,29 +979,39 @@ namespace user
    }
 
 
-   void document_interface::show_all_frames(UINT nCmdShow)
+   void object::show_all_frames(UINT nCmdShow)
    {
       ::count count = get_view_count();
-      for(index index = 0; index < count; index++)
+      for (index index = 0; index < count; index++)
       {
-         sp(::user::view) pview = get_view(index);
+         sp(::user::impact) pview = get_view(index);
          pview->GetParentFrame()->ShowWindow(nCmdShow);
       }
    }
 
 
-   // document_interface
-   const string & document_interface::get_title() const
-   { ASSERT(this != NULL); return m_strTitle; }
-   const string & document_interface::get_path_name() const
-   { ASSERT(this != NULL); return m_strPathName; }
-   sp(document_template) document_interface::get_document_template() const
-   { ASSERT(this != NULL); return m_pdocumentemplate; }
-   bool document_interface::is_modified()
-   { ASSERT(this != NULL); return m_bModified; }
-   void document_interface::set_modified_flag(bool bModified)
-   { ASSERT(this != NULL); m_bModified = bModified; }
-   void document_interface::set_new(bool bNew)
+   // object
+   const string & object::get_title() const
+   {
+      ASSERT(this != NULL); return m_strTitle;
+   }
+   const string & object::get_path_name() const
+   {
+      ASSERT(this != NULL); return m_strPathName;
+   }
+   sp(impact_system) object::get_document_template() const
+   {
+      ASSERT(this != NULL); return m_pdocumentemplate;
+   }
+   bool object::is_modified()
+   {
+      ASSERT(this != NULL); return m_bModified;
+   }
+   void object::set_modified_flag(bool bModified)
+   {
+      ASSERT(this != NULL); m_bModified = bModified;
+   }
+   void object::set_new(bool bNew)
    {
       ASSERT(this != NULL);
       m_bNew = bNew;
@@ -972,3 +1020,8 @@ namespace user
 
 
 } // namespace user
+
+
+
+
+

@@ -197,15 +197,15 @@ namespace user
       POSITION pos = m_templateptra.get_head_position();
       for (int32_t nTemplateIndex = 1; pos != NULL; nTemplateIndex++)
       {
-      sp(document_template) ptemplate = (sp(document_template))m_templateptra.get_next(pos);
+      sp(impact_system) ptemplate = (sp(impact_system))m_templateptra.get_next(pos);
 
       string strFilterExt, strFileTypeId, strFileTypeName;
       if (ptemplate->GetDocString(strFileTypeId,
-      document_template::regFileTypeId) && !strFileTypeId.is_empty())
+      impact_system::regFileTypeId) && !strFileTypeId.is_empty())
       {
       // enough info to register it
       if (!ptemplate->GetDocString(strFileTypeName,
-      document_template::regFileTypeName))
+      impact_system::regFileTypeName))
       strFileTypeName = strFileTypeId;    // use id name
 
       ASSERT(strFileTypeId.find(' ') == -1);  // no spaces allowed
@@ -214,7 +214,7 @@ namespace user
       __delete_reg_key(strTemp);
 
       // If MDI System
-      if (!ptemplate->GetDocString(strTemp, document_template::windowTitle) ||
+      if (!ptemplate->GetDocString(strTemp, impact_system::windowTitle) ||
       strTemp.is_empty())
       {
       // path\shell\open\ddeexec = [open("%1")]
@@ -248,7 +248,7 @@ namespace user
       (const char *)gen_Command);
       __delete_reg_key(strTemp);
 
-      ptemplate->GetDocString(strFilterExt, document_template::filterExt);
+      ptemplate->GetDocString(strFilterExt, impact_system::filterExt);
       if (!strFilterExt.is_empty())
       {
       ASSERT(strFilterExt[0] == '.');
@@ -287,7 +287,7 @@ namespace user
       POSITION pos = m_templateptra.get_head_position();
       for (int32_t nTemplateIndex = 1; pos != NULL; nTemplateIndex++)
       {
-      sp(document_template) ptemplate = (sp(document_template))m_templateptra.get_next(pos);
+      sp(impact_system) ptemplate = (sp(impact_system))m_templateptra.get_next(pos);
 
       string strOpenCommandLine = strPathName;
       string strPrintCommandLine = strPathName;
@@ -312,11 +312,11 @@ namespace user
 
       string strFilterExt, strFileTypeId, strFileTypeName;
       if (ptemplate->GetDocString(strFileTypeId,
-      document_template::regFileTypeId) && !strFileTypeId.is_empty())
+      impact_system::regFileTypeId) && !strFileTypeId.is_empty())
       {
       // enough info to register it
       if (!ptemplate->GetDocString(strFileTypeName,
-      document_template::regFileTypeName))
+      impact_system::regFileTypeName))
       strFileTypeName = strFileTypeId;    // use id name
 
       ASSERT(strFileTypeId.find(' ') == -1);  // no spaces allowed
@@ -334,7 +334,7 @@ namespace user
       }
 
       // If MDI System
-      if (!ptemplate->GetDocString(strTemp, document_template::windowTitle) ||
+      if (!ptemplate->GetDocString(strTemp, impact_system::windowTitle) ||
       strTemp.is_empty())
       {
       // path\shell\open\ddeexec = [open("%1")]
@@ -403,7 +403,7 @@ namespace user
       continue;       // just skip it
       }
 
-      ptemplate->GetDocString(strFilterExt, document_template::filterExt);
+      ptemplate->GetDocString(strFilterExt, impact_system::filterExt);
       if (!strFilterExt.is_empty())
       {
       ASSERT(strFilterExt[0] == '.');
@@ -433,15 +433,15 @@ namespace user
 
    /*
    __STATIC void _::core::AppendFilterSuffix(string & filter, OPENFILENAME& ofn,
-   sp(document_template) ptemplate, string* pstrDefaultExt)
+   sp(impact_system) ptemplate, string* pstrDefaultExt)
    {
    ENSURE_VALID(ptemplate);
-   ASSERT_KINDOF(document_template, ptemplate);
+   ASSERT_KINDOF(impact_system, ptemplate);
 
    string strFilterExt, strFilterName;
-   if (ptemplate->GetDocString(strFilterExt, document_template::filterExt) &&
+   if (ptemplate->GetDocString(strFilterExt, impact_system::filterExt) &&
    !strFilterExt.is_empty() &&
-   ptemplate->GetDocString(strFilterName, document_template::filterName) &&
+   ptemplate->GetDocString(strFilterName, impact_system::filterName) &&
    !strFilterName.is_empty())
    {
    if (pstrDefaultExt != NULL)
@@ -491,7 +491,7 @@ namespace user
    }
    */
 
-   void document_manager::add_document_template(sp(document_template) ptemplate)
+   void document_manager::add_document_template(sp(impact_system) ptemplate)
    {
       ASSERT_VALID(ptemplate);
       if(m_templateptra.add_unique(ptemplate))
@@ -505,7 +505,7 @@ namespace user
       return m_templateptra.get_count();
    }
 
-   sp(document_template) document_manager::get_template(index index) const
+   sp(impact_system) document_manager::get_template(index index) const
    {
       if(index < 0 || index >= m_templateptra.get_count())
          return NULL;
@@ -517,8 +517,8 @@ namespace user
       ::count count = m_templateptra.get_count();
       for(index index = 0; index < count; index++)
       {
-         sp(document_template) ptemplate = m_templateptra[index];
-         ASSERT_KINDOF(document_template, ptemplate);
+         sp(impact_system) ptemplate = m_templateptra[index];
+         ASSERT_KINDOF(impact_system, ptemplate);
          if (!ptemplate->save_all_modified())
             return FALSE;
       }
@@ -530,13 +530,13 @@ namespace user
       ::count count = m_templateptra.get_count();
       for(index index = 0; index < count; index++)
       {
-         sp(document_template) ptemplate = m_templateptra[index];
-         ASSERT_KINDOF(document_template, ptemplate);
+         sp(impact_system) ptemplate = m_templateptra[index];
+         ASSERT_KINDOF(impact_system, ptemplate);
          ptemplate->close_all_documents(bEndSession);
       }
    }
 
-   bool document_manager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::document_template) ptemplate, sp(::user::document) pdocument)
+   bool document_manager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::object) pdocument)
    {
       return System.do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
    }
@@ -548,7 +548,7 @@ namespace user
       ::count count = m_templateptra.get_count();
       for(index index = 0; index < count; index++)
       {
-         sp(document_template) ptemplate = m_templateptra[index];
+         sp(impact_system) ptemplate = m_templateptra[index];
          nCount += ptemplate->get_document_count();
       }
       return nCount;
@@ -558,7 +558,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(lpszCommand);
       /*string strCommand = lpszCommand;
-      sp(::user::document) pDoc = NULL;
+      sp(::user::object) pDoc = NULL;
 
       // open format is "[open("%s")]" - no whitespace allowed, one per line
       // print format is "[print("%s")]" - no whitespace allowed, one per line
@@ -721,7 +721,7 @@ namespace user
    return;
    }
 
-   sp(document_template) ptemplate = (sp(document_template))m_templateptra.first_element();
+   sp(impact_system) ptemplate = (sp(impact_system))m_templateptra.first_element();
    if (m_templateptra.get_count() > 1)
    {
    // more than one document template to choose from
@@ -730,7 +730,7 @@ namespace user
    }
 
    ASSERT(ptemplate != NULL);
-   ASSERT_KINDOF(document_template, ptemplate);
+   ASSERT_KINDOF(impact_system, ptemplate);
 
    ptemplate->open_document_file(NULL, TRUE, System.m_puiInitialPlaceHolderContainer);
    // if returns NULL, the ::fontopus::user has already been alerted*/
@@ -760,7 +760,7 @@ namespace user
       ::count count = m_templateptra.get_count();
       for(index index = 0; index < count; index++)
       {
-         sp(document_template) ptemplate = (sp(document_template)) m_templateptra[index];
+         sp(impact_system) ptemplate = (sp(impact_system)) m_templateptra[index];
          ASSERT_VALID(ptemplate);
       }
    }
@@ -775,7 +775,7 @@ namespace user
          ::count count = m_templateptra.get_count();
          for(index index = 0; index < count; index++)
          {
-            sp(document_template) ptemplate = m_templateptra[index];
+            sp(impact_system) ptemplate = m_templateptra[index];
             dumpcontext << "\ntemplate " << ptemplate.m_p;
          }
          dumpcontext << "}";
@@ -796,9 +796,9 @@ namespace user
 
       // find the highest confidence
       ::count count = m_templateptra.get_count();
-      document_template::Confidence bestMatch = document_template::noAttempt;
-      sp(document_template) pBestTemplate = NULL;
-      sp(::user::document_interface) pOpenDocument = NULL;
+      impact_system::Confidence bestMatch = impact_system::noAttempt;
+      sp(impact_system) pBestTemplate = NULL;
+      sp(::user::object) pOpenDocument = NULL;
 
       /*char szPath[_MAX_PATH];
       ASSERT(lstrlen(varFileName) < _countof(szPath));
@@ -824,10 +824,10 @@ namespace user
 
       for(index index = 0; index < count; index++)
       {
-         sp(document_template) ptemplate = m_templateptra[index];
-         ASSERT_KINDOF(document_template, ptemplate);
+         sp(impact_system) ptemplate = m_templateptra[index];
+         ASSERT_KINDOF(impact_system, ptemplate);
 
-         document_template::Confidence match;
+         impact_system::Confidence match;
          ASSERT(pOpenDocument == NULL);
          match = ptemplate->MatchDocType(pcreatecontext->m_spCommandLine->m_varFile, pOpenDocument);
          if (match > bestMatch)
@@ -835,13 +835,13 @@ namespace user
             bestMatch = match;
             pBestTemplate = ptemplate;
          }
-         if (match == document_template::yesAlreadyOpen)
+         if (match == impact_system::yesAlreadyOpen)
             break;      // stop here
       }
 
       if (pOpenDocument != NULL)
       {
-         sp(::user::view) pview = pOpenDocument->get_view(0); // get first one
+         sp(::user::impact) pview = pOpenDocument->get_view(0); // get first one
          if(pview != NULL)
          {
             ASSERT_VALID(pview);
@@ -865,7 +865,7 @@ namespace user
             }
          }
          else
-            TRACE(::core::trace::category_AppMsg, 0, "Error: Can not find a ::user::view for document to activate.\n");
+            TRACE(::core::trace::category_AppMsg, 0, "Error: Can not find a ::user::impact for document to activate.\n");
 
          pcreatecontext->m_spCommandLine->m_varQuery["document"] = pOpenDocument;
       }
@@ -886,7 +886,7 @@ namespace user
       ::count count = m_templateptra.get_count();
       for(index index = 0; index < count; index++)
       {
-         sp(document_template) ptemplate = m_templateptra[index];
+         sp(impact_system) ptemplate = m_templateptra[index];
          nOpen += ptemplate->get_document_count();
       }
       return nOpen;
@@ -899,7 +899,7 @@ namespace user
       ::count count = m_templateptra.get_count();
       for(index index = 0; index < count; index++)
       {
-         sp(document_template) ptemplate = m_templateptra[index];
+         sp(impact_system) ptemplate = m_templateptra[index];
          if (ptemplate->m_bAutoDelete)
          {
             ptemplate.release();

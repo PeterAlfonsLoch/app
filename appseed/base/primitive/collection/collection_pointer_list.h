@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_BASE pointer_list :
-   virtual public object
+   virtual public ::object
 {
 public:
 	struct node

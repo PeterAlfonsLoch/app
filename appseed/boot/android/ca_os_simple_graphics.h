@@ -52,7 +52,7 @@ public:
 //   bool set_text_color(COLORREF cr);
 
    // may be multi-platform
-   //bool create(simple_graphics & g);
+   //bool create(::draw2d::graphics * pgraphics);
    //bool create_from_screen();
    bool set_offset(int32_t x, int32_t y);
    bool offset(int32_t x, int32_t y);

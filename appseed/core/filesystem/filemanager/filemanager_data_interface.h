@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE data_interface :
-      virtual public object
+      virtual public ::object
    {
    public:
       
@@ -23,7 +23,7 @@ namespace filemanager
       virtual sp(::filemanager::manager) GetFileManager();
       virtual sp(::filemanager::document) GetFileManagerDoc();
 
-      void on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint);
+      void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
 
 
    };

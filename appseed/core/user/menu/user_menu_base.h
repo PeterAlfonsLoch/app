@@ -6,7 +6,7 @@ namespace user
    class menu_item;
 
    class CLASS_DECL_CORE menu_base :
-      virtual public object
+      virtual public ::object
    {
    public:
 

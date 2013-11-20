@@ -6,7 +6,7 @@ namespace userpresence
 
 
    class CLASS_DECL_BASE presence :
-      virtual public object
+      virtual public ::object
    {
    public:
 

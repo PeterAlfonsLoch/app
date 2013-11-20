@@ -1,6 +1,11 @@
 #pragma once
 
 
+#include "spa_canvas.h"
+#ifdef WINDOWSEX
+#include "app/appseed/base/os/windows/windows_simple_ui.h"
+#endif
+
 namespace spa_install
 {
 
@@ -16,36 +21,37 @@ namespace spa_install
 
    };
 
-   class CLASS_DECL_BOOT window
+   class CLASS_DECL_BOOT window :
+      virtual public ::os::simple_ui
    {
    public:
 
 
-      HINSTANCE            m_hinstance;
-      canvas               m_canvas;
+      HINSTANCE               m_hinstance;
+      canvas                  m_canvas;
 
-      oswindow                 m_oswindow;
-      simple_brush         m_sbrushBk;
-      simple_bitmap        m_sbitmapAlpha;
-      simple_graphics      m_sgraphicsAlpha;
-      static window_map    s_windowmap;
-      int32_t                  m_iStyle;
-      installer *          m_pinstaller;
+      oswindow                m_oswindow;
+      ::draw2d::brush_sp      m_sbrushBk;
+      ::draw2d::bitmap_sp     m_sbitmapAlpha;
+      ::draw2d::graphics_sp   m_sgraphicsAlpha;
+      static window_map       s_windowmap;
+      int32_t                 m_iStyle;
+      installer *             m_pinstaller;
 
-      bool m_bDrag;
-      POINT m_ptDragStart;
-      RECT m_rectWindowDragStart;
+      bool                    m_bDrag;
+      POINT                   m_ptDragStart;
+      RECT                    m_rectWindowDragStart;
 
 
-      window();
+      window(sp(base_application) papp);
       ~window();
 
 
-      void PaintOpaqueBk(simple_graphics & g);
-      void PaintTransparentBk(simple_graphics & g);
-      void OnPaint(simple_graphics & g, LPRECT lprect = NULL);
+      void PaintOpaqueBk(::draw2d::graphics * pgraphics);
+      void PaintTransparentBk(::draw2d::graphics * pgraphics);
+      void OnPaint(::draw2d::graphics * pgraphics, LPRECT lprect = NULL);
       void OnPaint();
-      void PaintBk(simple_graphics & g);
+      void PaintBk(::draw2d::graphics * pgraphics);
 
       void drag();
 

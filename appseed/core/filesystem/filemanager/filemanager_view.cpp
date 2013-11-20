@@ -32,7 +32,7 @@ namespace filemanager
 #endif //DEBUG
 
 
-   void a_view::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint)
+   void a_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
       data_interface::on_update(pSender, lHint, phint);
       ::user::split_view::on_update(pSender, lHint, phint);
@@ -55,10 +55,22 @@ namespace filemanager
                }
                else if (puh->is_type_of(update_hint::TypePop))
                {
+                  
                   OnActivateFrame(WA_INACTIVE, ((GetParentFrame())));
-                  GetParentFrame()->ActivateFrame(SW_SHOW);
+                  
+                  sp(::user::frame_window) spframewindow = GetParentFrame();
+
+                  if (spframewindow.is_set())
+                  {
+
+                     spframewindow->ActivateFrame(SW_SHOW);
+
+                  }
+                  
                   OnActivateView(TRUE, this, this);
+
                   RedrawWindow();
+
                }
                else if (puh->is_type_of(update_hint::TypeCreateBars))
                {
@@ -98,7 +110,7 @@ namespace filemanager
                      FileManagerSaveAsView * ptopview = create_view < FileManagerSaveAsView >();
                      if (ptopview == NULL)
                      {
-                        System.simple_message_box(NULL, "Could not create folder tree ::user::view");
+                        System.simple_message_box(NULL, "Could not create folder tree ::user::impact");
                      }
                      ptopview->m_pfilemanagerinterface = GetFileManager();
                      InsertPaneAt(0, ptopview, true);
@@ -230,7 +242,7 @@ namespace filemanager
       if (pmediaview == NULL)
       {
 
-         System.simple_message_box(NULL, "Could not create file list ::user::view");
+         System.simple_message_box(NULL, "Could not create file list ::user::impact");
 
       }
 
@@ -282,7 +294,7 @@ namespace filemanager
 
 
 
-   void main_view::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint)
+   void main_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
       data_interface::on_update(pSender, lHint, phint);
       ::user::split_view::on_update(pSender, lHint, phint);
@@ -370,7 +382,7 @@ namespace filemanager
 
       if (pleftview == NULL)
       {
-         System.simple_message_box(NULL, "Could not create folder tree ::user::view");
+         System.simple_message_box(NULL, "Could not create folder tree ::user::impact");
       }
       SetPane(0, pleftview, false);
       pleftview->create_views();
@@ -379,7 +391,7 @@ namespace filemanager
 
       if (m_pfilelist == NULL)
       {
-         System.simple_message_box(NULL, "Could not create file list ::user::view");
+         System.simple_message_box(NULL, "Could not create file list ::user::impact");
       }
       SetPane(1, m_pfilelist, false);
 

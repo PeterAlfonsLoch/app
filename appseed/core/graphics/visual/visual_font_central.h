@@ -10,7 +10,7 @@ namespace visual
 typedef primitive_array < visual::font * > CVmsGdiFontPtrArray;
 
 class CLASS_DECL_CORE font_central :
-   virtual public object
+   virtual public ::object
 {
 public:
    font_central(sp(base_application) papp);

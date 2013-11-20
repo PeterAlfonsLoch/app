@@ -6,7 +6,7 @@ namespace core
 
 
    class CLASS_DECL_CORE history :
-      virtual public object
+      virtual public ::object
    {
    public:
 

@@ -1,18 +1,14 @@
 #pragma once
 
 
-#include "user_document_request_interface.h"
-
-
 namespace user
 {
 
 
-   class CLASS_DECL_CORE document_template :
-      virtual public ::user::base_document_template,
+   class CLASS_DECL_BASE impact_system :
+      virtual public ::object,
       virtual public command_target,
-      virtual public ::user::document_request_interface,
-      virtual public ::user::document_template_interface
+      virtual public ::user::server
    {
    public:
 
@@ -22,8 +18,8 @@ namespace user
       public:
 
 
-         sp(document_template)                 m_pschema;
-         sp(::user::document_interface)        m_pdocument;
+         sp(impact_system)                 m_pschema;
+         sp(::user::object)        m_pdocument;
          var                                 m_varFile;
 
 
@@ -34,7 +30,7 @@ namespace user
       enum DocStringIndex
       {
          windowTitle,        // default ::user::window title
-         docName,            // ::fontopus::user visible name for default ::user::document_interface
+         docName,            // ::fontopus::user visible name for default ::user::object
          fileNewName,        // ::fontopus::user visible name for FileNew
          // for file based documents:
          filterName,         // ::fontopus::user visible name for FileOpen
@@ -82,40 +78,40 @@ namespace user
       sp(type)         m_typeinfoFrame;       // class for creating new frames
       sp(type)         m_typeinfoView;        // class for creating new views
       //sp(type)       m_pOleFrameClass;    // class for creating in-place frame
-      //sp(type)       m_pOleViewClass;     // class for creating in-place ::user::view
+      //sp(type)       m_pOleViewClass;     // class for creating in-place ::user::impact
 
       string                  m_strDocStrings;    // '\n' separated names
-      // The ::user::document_interface names sub-strings are represented as _one_ string:
+      // The ::user::object names sub-strings are represented as _one_ string:
       // windowTitle\ndocName\n ... (see DocStringIndex enum)
 
-      document_template(sp(base_application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass);
+      impact_system(sp(base_application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass);
 
       virtual void load_template();
 
       virtual ::count get_document_count() const = 0;
-      virtual sp(::user::document_interface) get_document(index index = 0) const = 0;
+      virtual sp(::user::object) get_document(index index = 0) const = 0;
 
-      virtual void add_document(sp(::user::document_interface) pDoc);      // must override
-      virtual void remove_document(sp(::user::document_interface) pDoc);   // must override
+      virtual void add_document(sp(::user::object) pDoc);      // must override
+      virtual void remove_document(sp(::user::object) pDoc);   // must override
 
       virtual bool GetDocString(string & rString, enum DocStringIndex index) const; // get one of the info strings
-      //sp(::user::frame_window) CreateOleFrame(sp(::user::window) pParentWnd, sp(::user::document_interface) pDoc,
+      //sp(::user::frame_window) CreateOleFrame(sp(::user::window) pParentWnd, sp(::user::object) pDoc,
       //   bool bCreateView);
 
-      void update_all_views(sp(::user::view) pviewSender, LPARAM lhint, object * puh);
+      void update_all_views(sp(::user::impact) pviewSender, LPARAM lhint, ::object * puh);
 
-      virtual Confidence MatchDocType(const char * lpszPathName, sp(::user::document_interface)& rpDocMatch);
-      virtual sp(::user::document_interface) create_new_document();
-      virtual sp(::user::frame_window) create_new_frame(sp(::user::document_interface) pDoc, sp(::user::frame_window) pOther, sp(::create_context) pcreatecontext);
-      virtual void InitialUpdateFrame(sp(::user::frame_window) pFrame, sp(::user::document_interface) pDoc, bool bMakeVisible = TRUE);
+      virtual Confidence MatchDocType(const char * lpszPathName, sp(::user::object)& rpDocMatch);
+      virtual sp(::user::object) create_new_document();
+      virtual sp(::user::frame_window) create_new_frame(sp(::user::object) pDoc, sp(::user::frame_window) pOther, sp(::create_context) pcreatecontext);
+      virtual void InitialUpdateFrame(sp(::user::frame_window) pFrame, sp(::user::object) pDoc, bool bMakeVisible = TRUE);
       virtual bool save_all_modified();     // for all documents
       virtual void close_all_documents(bool bEndSession);
       virtual void request_create(sp(::create_context) pcreatecontext) = 0;
       // open named file
       // if lpszPathName == NULL => create new file with this type
-      virtual void set_default_title(sp(::user::document_interface) pdocument) = 0;
+      virtual void set_default_title(sp(::user::object) pdocument) = 0;
 
-      virtual ~document_template() = 0;
+      virtual ~impact_system() = 0;
 
 
       virtual void dump(dump_context &) const;
@@ -125,9 +121,9 @@ namespace user
       virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
 
-      bool on_open_document(sp(::user::document_interface) pdoc, var varFile);
+      bool on_open_document(sp(::user::object) pdoc, var varFile);
 
-      bool do_open_document(sp(::user::document_interface) pdoc, var varFile);
+      bool do_open_document(sp(::user::object) pdoc, var varFile);
 
       static UINT s_on_open_document(LPVOID lpvoid);
 

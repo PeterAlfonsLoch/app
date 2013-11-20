@@ -16,7 +16,7 @@ namespace user
 
 
    class CLASS_DECL_BASE check_interface :
-      virtual public object
+      virtual public ::object
    {
    public:
 

@@ -44,7 +44,7 @@ public:
 
 
 class CLASS_DECL_BASE signalizable :
-   virtual public object
+   virtual public ::object
 {
 public:
 
@@ -275,7 +275,7 @@ public:
 
 
    class CLASS_DECL_BASE signal_item :
-      virtual public object
+      virtual public ::object
    {
    public:
 

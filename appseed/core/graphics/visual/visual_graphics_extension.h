@@ -6,7 +6,7 @@ namespace visual
 
 
    class CLASS_DECL_CORE graphics_extension :
-      virtual public object
+      virtual public ::object
    {
    public:
       

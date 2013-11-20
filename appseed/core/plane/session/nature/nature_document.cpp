@@ -9,14 +9,14 @@ namespace nature
       element(papp),
       ::data::data_container_base(papp),
       
-      ::user::document(papp)
+      ::user::object(papp)
    {
 
    }
 
    bool document::on_new_document()
    {
-      if (!::user::document::on_new_document())
+      if (!::user::object::on_new_document())
          return FALSE;
 
 
@@ -33,12 +33,12 @@ namespace nature
    #ifdef DEBUG
    void document::assert_valid() const
    {
-      ::user::document::assert_valid();
+      ::user::object::assert_valid();
    }
 
    void document::dump(dump_context & dumpcontext) const
    {
-      ::user::document::dump(dumpcontext);
+      ::user::object::dump(dumpcontext);
    }
    #endif //DEBUG
 
@@ -77,15 +77,15 @@ namespace nature
 
 
 
-   sp(::user::view) document::get_nature_view()
+   sp(::user::impact) document::get_nature_view()
    {
-      return get_typed_view < ::user::view > ();
+      return get_typed_view < ::user::impact > ();
    }
 
 
    sp(frame) document::get_nature_frame()
    {
-      sp(::user::view) pview = get_nature_view();
+      sp(::user::impact) pview = get_nature_view();
       return (pview->GetTypedParent < frame >());
    }
 

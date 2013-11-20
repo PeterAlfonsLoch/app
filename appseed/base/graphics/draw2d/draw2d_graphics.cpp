@@ -1209,7 +1209,7 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
-   // ::user::document handling functions
+   // ::user::object handling functions
    int32_t graphics::StartDoc(LPDOCINFO lpDocInfo)
    {
       UNREFERENCED_PARAMETER(lpDocInfo);
@@ -2358,6 +2358,37 @@ namespace draw2d
    }
 
 
+   bool graphics::DrawLine(float x1, float y1, float x2, float y2, ::draw2d::pen * ppen)
+   {
+
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
+      return draw_line(x1, y1, x2, y2, ppen);
+
+   }
+
+   bool graphics::drawLine(float x1, float y1, float x2, float y2, ::draw2d::pen * ppen)
+   {
+
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
+      return DrawLine(x1, y1, x2, y2, ppen);
+
+   }
+
+   bool graphics::draw_line(float x1, float y1, float x2, float y2, ::draw2d::pen * ppen)
+   {
+
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
+      return drawLine(x1, y1, x2, y2, ppen);
+
+   }
+
+
 
    bool graphics::DrawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
@@ -2387,6 +2418,37 @@ namespace draw2d
       // OASOWO - otherwise a stack overflow will occur
       // BTAIOM - because these are interface only methods
       return drawLine(x1, y1, x2, y2);
+
+   }
+
+
+   bool graphics::DrawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2, ::draw2d::pen * ppen)
+   {
+
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
+      return draw_line(x1, y1, x2, y2, ppen);
+
+   }
+
+   bool graphics::drawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2, ::draw2d::pen * ppen)
+   {
+
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
+      return DrawLine(x1, y1, x2, y2, ppen);
+
+   }
+
+   bool graphics::draw_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2, ::draw2d::pen * ppen)
+   {
+
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
+      return drawLine(x1, y1, x2, y2, ppen);
 
    }
 

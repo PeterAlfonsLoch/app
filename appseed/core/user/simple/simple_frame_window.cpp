@@ -29,7 +29,7 @@ simple_frame_window::~simple_frame_window()
 }
 
 
-// // BEGIN_MESSAGE_MAP(simple_frame_window, ::user::frame_window)
+// // BEGIN_MESSAGE_MAP(simple_frame_window, ::user::simple_frame_window)
    //{{__MSG_MAP(simple_frame_window)
 /* xxx   ON_WM_DESTROY()
    ON_WM_SIZE()
@@ -49,7 +49,7 @@ simple_frame_window::~simple_frame_window()
 
 void simple_frame_window::install_message_handling(::message::dispatch * pinterface)
 {
-   ::user::frame_window::install_message_handling(pinterface);
+   ::user::simple_frame_window::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE         , pinterface, this, &simple_frame_window::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_NCACTIVATE     , pinterface, this, &simple_frame_window::_001OnNcActivate);
 #ifdef WINDOWSEX
@@ -333,13 +333,13 @@ void simple_frame_window::_001OnMove(signal_details * pobj)
 bool simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, sp(::create_context) pContext)
 {
 // trans   HICON hicon = GetIcon(false);
-   return ::user::frame_window::OnCreateClient(lpcs, pContext);
+   return ::user::simple_frame_window::OnCreateClient(lpcs, pContext);
 }
 
 bool simple_frame_window::pre_create_window(CREATESTRUCT& cs)
 {
 
-   if(!::user::frame_window::pre_create_window(cs))
+   if(!::user::simple_frame_window::pre_create_window(cs))
       return FALSE;
 
 
@@ -359,18 +359,18 @@ void simple_frame_window::layout()
    }
    else
    {
-      ::user::frame_window::layout();
+      ::user::simple_frame_window::layout();
    }
 
 }
 
-void simple_frame_window::ViewOnActivateFrame(sp(::user::view) pview, UINT user, sp(::user::interaction) pframe)
+void simple_frame_window::ViewOnActivateFrame(sp(::user::impact) pview, UINT user, sp(::user::interaction) pframe)
 {
    UNREFERENCED_PARAMETER(pview);
    UNREFERENCED_PARAMETER(user);
    UNREFERENCED_PARAMETER(pframe);
 //   if(pview != NULL)
-//      pview->OnActivateFrame(WA_INACTIVE, (sp(::user::frame_window)) pframe);
+//      pview->OnActivateFrame(WA_INACTIVE, (sp(::user::simple_frame_window)) pframe);
 }
 
 void simple_frame_window::_001OnGetMinMaxInfo(signal_details * pobj)
@@ -569,7 +569,7 @@ void simple_frame_window::_001OnUpdateToggleCustomFrame(signal_details * pobj)
 void simple_frame_window::ActivateFrame(int32_t nCmdShow)
 {
 
-   ::user::frame_window::ActivateFrame(nCmdShow);
+   ::user::simple_frame_window::ActivateFrame(nCmdShow);
 }
 
 void simple_frame_window::GetBorderRect(LPRECT lprect)
@@ -637,7 +637,7 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
 
    pobj->m_bRet = true;
    // Note: only queries the active document
-   sp(::user::document_interface) pdocument = GetActiveDocument();
+   sp(::user::object) pdocument = GetActiveDocument();
    if (pdocument != NULL && !pdocument->can_close_frame(this))
    {
       // document can't close right now -- don't close it
@@ -688,7 +688,7 @@ void simple_frame_window::OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS F
    }
    else
    {
-// trans      ::user::frame_window::OnNcCalcSize(bCalcValidRects, lpncsp);
+// trans      ::user::simple_frame_window::OnNcCalcSize(bCalcValidRects, lpncsp);
    }
 
 }
@@ -825,7 +825,7 @@ void simple_frame_window::pre_translate_message(signal_details * pobj)
          }
       }
    }
-   return ::user::frame_window::pre_translate_message(pobj);
+   return ::user::simple_frame_window::pre_translate_message(pobj);
 }
 
 
@@ -846,7 +846,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
    }
 
-   ::user::frame_window::InitialFramePosition(bForceRestore);
+   ::user::simple_frame_window::InitialFramePosition(bForceRestore);
 
    if(m_workset.GetAppearance() != NULL && m_workset.GetAppearanceMode() == ::uinteraction::frame::AppearanceModeIconic)
    {
@@ -870,7 +870,7 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
    else
    {
 
-      ::user::frame_window::_001OnDeferPaintLayeredWindowBackground(pdc);
+      ::user::simple_frame_window::_001OnDeferPaintLayeredWindowBackground(pdc);
    }
 }
 
@@ -896,7 +896,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdc)
       pdc->FillSolidRect(60, 10, 50, 50, ARGB(128, 184, 177, 84));
       #endif
 
-      ::user::frame_window::_000OnDraw(pdc);
+      ::user::simple_frame_window::_000OnDraw(pdc);
       #if TEST
 
       pdc->FillSolidRect(10, 60, 50, 50, ARGB(128, 255, 248, 84));
@@ -974,14 +974,14 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
 
 #endif
 
-   ::user::frame_window::_001OnDraw(pdc);
+   ::user::simple_frame_window::_001OnDraw(pdc);
 
 }
 
 
 void simple_frame_window::on_set_parent(sp(::user::interaction) pguieParent)
 {
-   ::user::frame_window::on_set_parent(pguieParent);
+   ::user::simple_frame_window::on_set_parent(pguieParent);
    if(m_pupdowntarget != NULL && m_pupdowntarget->is_up_down_target())
    {
       // an updowntarget always show the frame for upping/downing
@@ -1021,7 +1021,7 @@ void simple_frame_window::GetClientRect(LPRECT lprect)
    }
    else
    {
-      ::user::frame_window::GetClientRect(lprect);
+      ::user::simple_frame_window::GetClientRect(lprect);
    }
 }
 
@@ -1103,10 +1103,807 @@ bool simple_frame_window::create(const char * lpszClassName,
          uint32_t dwExStyle,
          sp(::create_context) pContext)
 {
-   return ::user::frame_window::create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, lpszMenuName, dwExStyle, pContext);
+   return ::user::simple_frame_window::create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, lpszMenuName, dwExStyle, pContext);
 }
 
 
 
 
+
+bool simple_frame_window::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
+{
+
+   if (m_workset._001OnCmdMsg(pcmdmsg))
+      return true;
+
+   // pump through current ::user::impact FIRST
+   sp(::user::impact) pview = GetActiveView();
+   if (pview != NULL && pview->_001OnCmdMsg(pcmdmsg))
+      return TRUE;
+
+   pview = get_child_by_id("pane_first");
+   if (pview != NULL && pview->_001OnCmdMsg(pcmdmsg))
+      return TRUE;
+
+   // then pump through frame
+   if (::user::simple_frame_window::_001OnCmdMsg(pcmdmsg))
+      return TRUE;
+
+   // then pump through parent
+   sp(::user::interaction) puiParent = get_parent();
+   if (puiParent != NULL && puiParent->_001OnCmdMsg(pcmdmsg))
+      return TRUE;
+
+   // last but not least, pump through cast
+   application* pApp = get_app()->m_pplaneapp;
+   if (pApp != NULL && pApp->_001OnCmdMsg(pcmdmsg))
+      return TRUE;
+
+   sp(command_target_interface) pcommandtargetinterface = Application.user()->get_keyboard_focus();
+
+   if (pcommandtargetinterface != NULL)
+   {
+      if (pcommandtargetinterface->_001OnCmdMsg(pcmdmsg))
+         return TRUE;
+   }
+
+   return FALSE;
+}
+
+
+#ifdef WINDOWSEX
+
+
+
+void simple_frame_window::OnDropFiles(HDROP hDropInfo)
+{
+
+   SetActiveWindow();      // activate us first !
+   UINT nFiles = ::DragQueryFile(hDropInfo, (UINT)-1, NULL, 0);
+
+   ::user::user* puser = System.user();
+   ASSERT(puser != NULL);
+   for (UINT iFile = 0; iFile < nFiles; iFile++)
+   {
+      char szFileName[_MAX_PATH];
+      ::DragQueryFile(hDropInfo, iFile, szFileName, _MAX_PATH);
+
+      sp(::create_context) createcontext(allocer());
+      createcontext->m_spCommandLine->m_varFile = szFileName;
+
+      puser->open_document_file(createcontext);
+   }
+   ::DragFinish(hDropInfo);
+
+
+}
+
+
+
+#endif
+
+
+
+
+// query end session for main frame will attempt to close it all down
+bool simple_frame_window::OnQueryEndSession()
+{
+   application* pApp = &System;
+   if (pApp != NULL && pApp->GetMainWnd() == this)
+      return pApp->save_all_modified();
+
+   return TRUE;
+}
+
+
+
+// when Windows session ends, close all documents
+void simple_frame_window::OnEndSession(bool bEnding)
+{
+   if (!bEnding)
+      return;
+
+   application* pApp = &System;
+   if (pApp != NULL && pApp->GetMainWnd() == this)
+   {
+      pApp->close_all_documents(TRUE);
+
+      // allow application to save settings, etc.
+      pApp->exit_instance();
+   }
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Support for Shell DDE Execute messages
+
+LRESULT simple_frame_window::OnDDEInitiate(WPARAM wParam, LPARAM lParam)
+{
+
+
+#ifdef WINDOWSEX
+
+   application* pApp = &System;
+   if (pApp != NULL &&
+      LOWORD(lParam) != 0 && HIWORD(lParam) != 0 &&
+      (ATOM)LOWORD(lParam) == pApp->m_atomApp &&
+      (ATOM)HIWORD(lParam) == pApp->m_atomSystemTopic)
+   {
+      // make duplicates of the incoming atoms (really adding a reference)
+      char szAtomName[_MAX_PATH];
+      VERIFY(GlobalGetAtomName(pApp->m_atomApp,
+         szAtomName, _MAX_PATH - 1) != 0);
+      VERIFY(GlobalAddAtom(szAtomName) == pApp->m_atomApp);
+      VERIFY(GlobalGetAtomName(pApp->m_atomSystemTopic,
+         szAtomName, _MAX_PATH - 1) != 0);
+      VERIFY(GlobalAddAtom(szAtomName) == pApp->m_atomSystemTopic);
+
+      // send the WM_DDE_ACK (caller will delete duplicate atoms)
+      ::SendMessage((oswindow)wParam, WM_DDE_ACK, (WPARAM)get_handle(),
+         MAKELPARAM(pApp->m_atomApp, pApp->m_atomSystemTopic));
+   }
+
+#else
+
+   throw not_implemented(get_app());
+
+#endif
+
+   return 0L;
+}
+
+
+// always ACK the execute command - even if we do nothing
+LRESULT simple_frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
+{
+
+
+#ifdef WINDOWSEX
+
+   // unpack the DDE message
+   uint_ptr unused;
+   HGLOBAL hData;
+   //IA64: Assume DDE LPARAMs are still 32-bit
+   VERIFY(UnpackDDElParam(WM_DDE_EXECUTE, lParam, &unused, (uint_ptr*)&hData));
+
+   // get the command string
+   const char * lpsz = (const char *)GlobalLock(hData);
+   string strCommand;
+   try
+   {
+      strCommand = lpsz;
+      GlobalUnlock(hData);
+   }
+   catch (memory_exception * pe)
+   {
+      GlobalUnlock(hData);
+      pe->Delete();
+   }
+
+
+   // acknowledge now - before attempting to execute
+   ::PostMessage((oswindow)wParam, WM_DDE_ACK, (WPARAM)get_handle(),
+      //IA64: Assume DDE LPARAMs are still 32-bit
+      ReuseDDElParam(lParam, WM_DDE_EXECUTE, WM_DDE_ACK,
+      (UINT)0x8000, (uint_ptr)hData));
+
+   // don't execute the command when the ::user::window is disabled
+   if (!IsWindowEnabled())
+   {
+      TRACE(::core::trace::category_AppMsg, 0, "Warning: DDE command '%s' ignored because ::user::window is disabled.\n",
+         strCommand.GetString());
+      return 0;
+   }
+
+   // execute the command
+   LPTSTR lpszCommand = strCommand.GetBuffer();
+   if (!System.OnDDECommand(lpszCommand))
+      TRACE(::core::trace::category_AppMsg, 0, "Error: failed to execute DDE command '%s'.\n", lpszCommand);
+   strCommand.ReleaseBuffer();
+
+#else
+
+   throw not_implemented(get_app());
+
+#endif
+
+   return 0L;
+
+}
+
+LRESULT simple_frame_window::OnDDETerminate(WPARAM wParam, LPARAM lParam)
+{
+
+#ifdef WINDOWSEX
+
+   ::PostMessage((oswindow)wParam, WM_DDE_TERMINATE, (WPARAM)get_handle(), lParam);
+
+#else
+
+   throw not_implemented(get_app());
+
+#endif
+
+   return 0L;
+
+}
+
+
+void simple_frame_window::NotifyFloatingWindows(uint32_t dwFlags)
+{
+   ASSERT_VALID(this);
+   // trans   ASSERT(get_handle() != NULL);
+
+   // get top level parent frame ::user::window first unless this is a child ::user::window
+   sp(::user::simple_frame_window) pParent = (GetStyle() & WS_CHILD) ? this : (GetTopLevelFrame().m_p);
+   ASSERT(pParent != NULL);
+   if (dwFlags & (FS_DEACTIVATE | FS_ACTIVATE))
+   {
+      // update parent ::user::window activation state
+      bool bActivate = !(dwFlags & FS_DEACTIVATE);
+      bool bEnabled = pParent->IsWindowEnabled();
+
+      if (bActivate && bEnabled && pParent != this)
+      {
+         // Excel will try to Activate itself when it receives a
+         // WM_NCACTIVATE so we need to keep it from doing that here.
+         m_nFlags |= WF_KEEPMINIACTIVE;
+         pParent->send_message(WM_NCACTIVATE, TRUE);
+         m_nFlags &= ~WF_KEEPMINIACTIVE;
+      }
+      else
+      {
+         pParent->send_message(WM_NCACTIVATE, FALSE);
+      }
+   }
+
+   // then update the state of all floating windows owned by the parent
+#ifdef WINDOWSEX
+   sp(::user::interaction) oswindow = System.get_desktop_window()->GetWindow(GW_CHILD);
+   while (oswindow != NULL)
+   {
+      if (::user::is_descendant(pParent, oswindow))
+         oswindow->send_message(WM_FLOATSTATUS, dwFlags);
+      oswindow = oswindow->GetWindow(GW_HWNDNEXT);
+   }
+#else
+   throw todo(get_app());
+#endif
+}
+
+
+
+// query end session for main frame will attempt to close it all down
+void simple_frame_window::_001OnQueryEndSession(signal_details * pobj)
+{
+   SCAST_PTR(::message::base, pbase, pobj);
+   if (&System != NULL && System.GetMainWnd() == this)
+   {
+      pbase->set_lresult(System.save_all_modified());
+      pbase->m_bRet = true;
+      return;
+   }
+   pbase->set_lresult(TRUE);
+   return;
+}
+
+bool simple_frame_window::BaseOnControlEvent(::user::control_event * pevent)
+{
+   if (m_workset.BaseOnControlEvent(pevent))
+      return true;
+   return ::user::simple_frame_window::BaseOnControlEvent(pevent);
+}
+
+
+string simple_frame_window::get_window_default_matter()
+{
+
+   if (m_pdocumenttemplate == NULL)
+   {
+
+      return simple_frame_window::get_window_default_matter();
+
+   }
+
+   return m_pdocumenttemplate->m_strMatter;
+
+}
+
+
+void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
+{
+   SCAST_PTR(::message::base, pbase, pobj)
+      FrameInitialUpdate * pfiu = (FrameInitialUpdate *)pbase->m_lparam.m_lparam;
+   if (pfiu != NULL)
+   {
+      sp(::user::simple_frame_window) pframe = (this);
+      // if the frame does not have an active ::user::impact, set to first pane
+      sp(::user::impact) pview = NULL;
+      if (pframe->GetActiveView() == NULL)
+      {
+         sp(::user::interaction) pWnd = pframe->GetDescendantWindow("pane_first");
+         if (pWnd != NULL && base < ::user::impact >::bases(pWnd))
+         {
+            pview = (pWnd.m_p);
+            pframe->SetActiveView(pview, FALSE);
+         }
+      }
+
+      if (pfiu->m_bMakeVisible)
+      {
+         // send initial update to all views (and other controls) in the frame
+         pframe->SendMessageToDescendants(WM_INITIALUPDATE, 0, (LPARAM)0, TRUE, TRUE);
+
+         // give ::user::impact a chance to save the focus (CFormView needs this)
+         if (pview != NULL)
+            pview->OnActivateFrame(WA_INACTIVE, pframe);
+
+         // finally, activate the frame
+         // (send the default show command unless the main desktop ::user::window)
+         int32_t nCmdShow = -1;      // default
+         application* pApp = &System;
+         if (pApp != NULL && pApp->GetMainWnd() == pframe)
+         {
+            nCmdShow = pApp->m_nCmdShow; // use the parameter from WinMain
+            pApp->m_nCmdShow = -1; // set to default after first time
+         }
+         bool bFullScreen;
+         data_get("FullScreen", ::core::system::idEmpty, bFullScreen);
+         if (bFullScreen)
+         {
+            WfiFullScreen(bFullScreen, false);
+         }
+         else
+         {
+            pframe->ActivateFrame(nCmdShow);
+         }
+         if (pview != NULL)
+            pview->OnActivateView(TRUE, pview, pview);
+
+      }
+
+      sp(::user::object) pdoc = pfiu->m_pdoc;
+      // update frame counts and frame title (may already have been visible)
+      if (pdoc != NULL)
+         pdoc->update_frame_counts();
+      pframe->on_update_frame_title(TRUE);
+
+      _001RedrawWindow();
+   }
+   pbase->set_lresult(0);
+}
+
+
+void simple_frame_window::_000OnDraw(::draw2d::graphics * pdc)
+{
+   if (!m_bVisible)
+      return;
+   if (GetExStyle() & WS_EX_LAYERED
+      || m_etranslucency == TranslucencyTotal
+      || m_etranslucency == TranslucencyPresent)
+   {
+      sp(::user::interaction) pui;
+      if (m_pguie != NULL)
+         pui = m_pguie->get_bottom_child();
+      else
+         pui = get_bottom_child();
+
+      while (pui != NULL)
+      {
+         if (pui->IsWindowVisible() && !base < MetaButton > ::bases(pui))
+         {
+            pui->_000OnDraw(pdc);
+         }
+         pui = pui->above_sibling();
+      }
+      _001DrawThis(pdc);
+      if (m_pguie != NULL)
+         pui = m_pguie->get_bottom_child();
+      else
+         pui = get_bottom_child();
+      while (pui != NULL)
+      {
+         if (pui->IsWindowVisible() && base < MetaButton > ::bases(pui))
+         {
+            pui->_000OnDraw(pdc);
+         }
+         pui = pui->above_sibling();
+      }
+   }
+   else
+   {
+      _001DrawThis(pdc);
+      _001DrawChildren(pdc);
+   }
+}
+
+void simple_frame_window::_001OnDraw(::draw2d::graphics *pdc)
+{
+   if ((m_bWindowFrame
+      || m_etranslucency == TranslucencyTotal
+      || m_etranslucency == TranslucencyPresent) &&
+      !Session.savings().is_trying_to_save(::core::resource_display_bandwidth))
+   {
+      ::uinteraction::frame::WorkSetClientInterface::_001OnDraw(pdc);
+   }
+   else
+   {
+      rect rect;
+      sp(::user::interaction) pwnd = get_guie();
+      pwnd->GetClientRect(rect);
+      pdc->FillSolidRect(rect, ARGB(184 + 49 + 21 + 1, 184 + 49, 184 + 49, 177 + 49));
+      //m_workset.OnDraw(pdc);
+   }
+}
+
+bool simple_frame_window::WfiOnMove(bool bTracking)
+{
+   if (!bTracking)
+   {
+      WindowDataSaveWindowRect();
+   }
+   return true;
+}
+
+
+bool simple_frame_window::WfiOnSize(bool bTracking)
+{
+
+   if (!bTracking)
+   {
+
+      WindowDataSaveWindowRect();
+
+   }
+
+   return true;
+
+}
+
+
+void simple_frame_window::WfiOnClose()
+{
+
+   post_message(WM_CLOSE);
+
+}
+
+
+void simple_frame_window::WfiOnMaximize()
+{
+
+   _001WindowMaximize();
+
+}
+
+
+void simple_frame_window::WfiOnMinimize()
+{
+
+   ShowWindow(SW_MINIMIZE);
+
+}
+
+
+void simple_frame_window::WfiOnRestore()
+{
+
+   _001WindowRestore();
+
+   class rect rectWindow;
+
+   GetWindowRect(rectWindow);
+
+   bool bOk;
+
+   if (rectWindow.area() <= 0)
+   {
+
+      bOk = false;
+
+   }
+   else
+   {
+
+      bOk = false;
+
+      class rect rectSession;
+
+      for (int32_t i = 0; i < Session.get_monitor_count(); i++)
+      {
+
+         Session.get_monitor_rect(i, rectSession);
+
+         if (rectSession.contains(rectWindow))
+         {
+            bOk = true;
+            break;
+         }
+
+      }
+
+   }
+
+   if (!bOk)
+   {
+      SetWindowPos(ZORDER_TOP, 0, 0, 500, 400, SWP_SHOWWINDOW);
+   }
+
+}
+
+
+bool simple_frame_window::DeferFullScreen(bool bFullScreen, bool bRestore)
+{
+   if (bFullScreen)
+   {
+      sp(::user::interaction) pwndParentFrame = GetParentFrame();
+      if (pwndParentFrame == NULL)
+      {
+         if (!WfiIsFullScreen())
+         {
+            WfiFullScreen(true, false);
+            return true;
+         }
+         else
+         {
+            return false;
+         }
+      }
+      simple_frame_window * pframe = dynamic_cast <simple_frame_window *> (pwndParentFrame.m_p);
+      if (pframe == NULL)
+      {
+         if (!WfiIsFullScreen())
+         {
+            WfiFullScreen(true, false);
+            return true;
+         }
+         else
+         {
+            return false;
+         }
+      }
+
+      if (pframe->DeferFullScreen(bFullScreen, bRestore))
+         return true;
+
+      if (!WfiIsFullScreen())
+      {
+         WfiFullScreen(true, false);
+         return true;
+      }
+      else
+      {
+         return false;
+      }
+   }
+   else
+   {
+      if (WfiIsFullScreen())
+      {
+         WfiFullScreen(false, bRestore);
+         return true;
+      }
+      sp(::user::interaction) pwndParentFrame = GetParentFrame();
+      if (pwndParentFrame == NULL)
+      {
+         return false;
+      }
+      simple_frame_window * pframe = dynamic_cast <simple_frame_window *> (pwndParentFrame.m_p);
+      if (pframe == NULL)
+      {
+         return false;
+      }
+      return pframe->DeferFullScreen(bFullScreen, bRestore);
+   }
+}
+
+/*
+const char * simple_frame_window::GetIconWndClass(uint32_t dwDefaultStyle, const char * pszMatter)
+{
+HICON hIcon = ::ExtractIcon(
+System.m_hInstance,
+System.dir().path(Application.dir().matter(pszMatter), "icon.ico"),
+1);
+if (hIcon != NULL)
+{
+CREATESTRUCT cs;
+memset(&cs, 0, sizeof(CREATESTRUCT));
+cs.style = dwDefaultStyle;
+pre_create_window(cs);
+// will fill lpszClassName with default WNDCLASS name
+// ignore instance handle from pre_create_window.
+
+WNDCLASS wndcls;
+if (cs.lpszClass != NULL &&
+GetClassInfo(System.m_hInstance, cs.lpszClass, &wndcls) &&
+wndcls.hIcon != hIcon)
+{
+// register a very similar WNDCLASS
+return System.RegisterWndClass(wndcls.style,
+wndcls.hCursor, wndcls.hbrBackground, hIcon);
+}
+}
+return NULL;        // just use the default
+}
+*/
+
+bool simple_frame_window::calc_layered()
+{
+   return true;
+   if (m_bLayered)
+   {
+      return !Session.savings().is_trying_to_save(::core::resource_processing)
+         && !Session.savings().is_trying_to_save(::core::resource_display_bandwidth);
+   }
+   else
+   {
+      return false;
+   }
+}
+
+void simple_frame_window::data_on_after_change(signal_details * pobj)
+{
+   database::user::interaction::data_on_after_change(pobj);
+   SCAST_PTR(database::change_event, phint, pobj);
+   if (phint->m_key.m_idKey == "ca2"
+      && phint->m_key.m_idIndex == "savings")
+   {
+      defer_synch_layered();
+   }
+}
+
+
+bool simple_frame_window::IsFullScreen()
+{
+
+   return WfiIsFullScreen();
+
+}
+
+
+bool simple_frame_window::ShowWindowFullScreen(bool bFullScreen, bool bRestore)
+{
+
+   return WfiFullScreen(bFullScreen, bRestore);
+
+}
+
+void simple_frame_window::on_set_parent(sp(::user::interaction) pguieParent)
+{
+
+   UNREFERENCED_PARAMETER(pguieParent);
+   m_workset.m_pwndEvent = m_pimpl->m_pguie;
+
+   if (m_bAutoWindowFrame)
+   {
+      if (pguieParent == NULL)
+      {
+         m_bWindowFrame = true;
+         m_workset.Enable(true);
+      }
+      else
+      {
+         m_bWindowFrame = false;
+         m_workset.Enable(false);
+      }
+   }
+}
+
+
+
+   bool object::do_save(var varFile, bool bReplace)
+      // Save the object data to a file
+      // lpszPathName = path name where to save object file
+      // if lpszPathName is NULL then the ::fontopus::user will be prompted (SaveAs)
+      // note: lpszPathName can be different than 'm_strPathName'
+      // if 'bReplace' is TRUE will change file name if successful (SaveAs)
+      // if 'bReplace' is FALSE will not change path name (SaveCopyAs)
+   {
+
+      var newName = varFile;
+
+      if (newName.is_empty() || is_new_document())
+      {
+         sp(impact_system) ptemplate = get_document_template();
+         ASSERT(ptemplate != NULL);
+
+         newName = m_strPathName;
+         if (bReplace && (newName.is_empty() || is_new_document()))
+         {
+            newName = m_strTitle;
+            // check for dubious filename
+            strsize iBad = newName.get_string().FindOneOf(":/\\");
+            if (iBad != -1)
+               newName = newName.get_string().Left(iBad);
+
+            // append the default suffix if there is one
+            string strExt;
+            if (ptemplate->GetDocString(strExt, impact_system::filterExt) &&
+               !strExt.is_empty())
+            {
+               ASSERT(strExt[0] == '.');
+               strsize iStart = 0;
+               newName += strExt.Tokenize(";", iStart);
+            }
+         }
+
+         if (!System.do_prompt_file_name(newName, 0 /*bReplace ? __IDS_SAVEFILE : __IDS_SAVEFILECOPY*/, 0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, FALSE, ptemplate, this))
+            return FALSE;       // don't even attempt to save
+
+      }
+
+      wait_cursor wait(get_app());
+
+      if (!on_save_document(newName))
+      {
+         if (varFile.is_empty())
+         {
+            // be sure to delete the file
+            try
+            {
+               System.file().del(newName);
+            }
+            catch (::exception::base * pe)
+            {
+               TRACE(::core::trace::category_AppMsg, 0, "Warning: failed to delete file after failed SaveAs.\n");
+               pe->Delete();
+            }
+
+         }
+         return FALSE;
+      }
+
+      // reset the title and change the object name
+      if (bReplace)
+         set_path_name(newName);
+
+      return TRUE;        // success
+   }
+
+   bool object::save_modified()
+   {
+      if (!is_modified())
+         return TRUE;        // ok to continue
+
+      // get name/title of object
+      string name;
+      if (m_strPathName.is_empty())
+      {
+         name = m_strTitle;
+         if (name.is_empty())
+         {
+            name = System.load_string("Untitled");
+         }
+      }
+      else
+      {
+         // get name based on file title of path name
+         name = System.file().name_(m_strPathName);
+      }
+
+      string prompt;
+      prompt = System.load_string("MessageBoxChangedFileAskToSave");
+      prompt.replace("%1", name);
+      switch (Application.simple_message_box(NULL, prompt, MB_YESNOCANCEL))
+      {
+      case IDCANCEL:
+         return FALSE;       // don't continue
+
+      case IDYES:
+         // If so, either Save or Update, as appropriate
+         if (!do_file_save())
+            return FALSE;       // don't continue
+         break;
+
+      case IDNO:
+         // If not saving changes, revert the object
+         break;
+
+      default:
+         ASSERT(FALSE);
+         break;
+      }
+      return TRUE;    // keep going
+   }
 

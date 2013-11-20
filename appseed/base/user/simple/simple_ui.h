@@ -14,7 +14,7 @@ public:
 
 
 class CLASS_DECL_BASE simple_ui :
-   virtual public object
+   virtual public ::object
 {
 public:
 

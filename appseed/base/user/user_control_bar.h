@@ -53,9 +53,9 @@ class BaseDockState;
 
 // layout Modes for CalcDynamicLayout
 #define LM_STRETCH  0x01    // same meaning as bStretch in CalcFixedLayout.  If set, ignores nLength
-                     // and returns dimensions based on LM_HORZ state, otherwise LM_HORZ is used
-                     // to determine if nLength is the desired horizontal or vertical length
-                     // and dimensions are returned based on nLength
+// and returns dimensions based on LM_HORZ state, otherwise LM_HORZ is used
+// to determine if nLength is the desired horizontal or vertical length
+// and dimensions are returned based on nLength
 #define LM_HORZ     0x02    // same as bHorz in CalcFixedLayout
 #define LM_MRUWIDTH 0x04    // Most Recently Used Dynamic width
 #define LM_HORZDOCK 0x08    // Horizontal Docked Dimensions
@@ -70,10 +70,10 @@ class BaseDockState;
 class BaseControlBarInfo
 {
 public:
-// Implementation
+   // Implementation
    BaseControlBarInfo();
 
-// Attributes
+   // Attributes
    UINT m_nBarID;      // ID of this bar
    bool m_bVisible;    // visibility of this bar
    bool m_bFloating;   // whether floating or not
@@ -91,7 +91,7 @@ public:
    primitive_array < void * > m_arrBarID;   // bar IDs for bars contained within this one
    ::user::control_bar * m_pBar;    // bar which this refers to (transient)
 
-//   void Serialize(CArchive& ar, BaseDockState* pDockState);
+   //   void Serialize(CArchive& ar, BaseDockState* pDockState);
    bool LoadState(const char * lpszProfileName, int32_t nIndex, BaseDockState* pDockState);
    bool SaveState(const char * lpszProfileName, int32_t nIndex);
 };
@@ -99,13 +99,13 @@ public:
 namespace user
 {
 
-   class CLASS_DECL_CORE control_bar :
+   class CLASS_DECL_BASE control_bar :
       virtual public ::user::interaction
    {
    public:
       control_bar();
 
-   // Attributes
+      // Attributes
    public:
       //int32_t get_count();
 
@@ -125,21 +125,21 @@ namespace user
       virtual size CalcFixedLayout(bool bStretch, bool bHorz);
       virtual size CalcDynamicLayout(int32_t nLength, uint32_t nMode);
 
-   // Operations
+      // Operations
       void EnableDocking(uint32_t dwDockStyle);
 
-   // Overridables
+      // Overridables
       virtual void OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler) = 0;
 
-   // Implementation
+      // Implementation
    public:
       virtual void _001OnDraw(::draw2d::graphics * pdc);
       virtual void message_handler(signal_details * pobj);
       virtual ~control_bar();
-   #ifdef DEBUG
+#ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
-   #endif
+#endif
       virtual void DelayShow(bool bShow);
       virtual bool IsVisible();
       virtual uint32_t RecalcDelayShow(__SIZEPARENTPARAMS* lpLayout);
@@ -161,7 +161,9 @@ namespace user
 
       // support for delayed hide/show
       enum StateFlags
-         { delayHide = 1, delayShow = 2, tempHide = 4, statusSet = 8 };
+      {
+         delayHide = 1, delayShow = 2, tempHide = 4, statusSet = 8
+      };
       UINT m_nStateFlags;
 
       // support for docking
@@ -192,26 +194,26 @@ namespace user
       void SetBarInfo(BaseControlBarInfo* pInfo, sp(::user::frame_window) pFrameWnd);
 
       DECL_GEN_SIGNAL(_001OnTimer)
-      DECL_GEN_SIGNAL(_001OnCreate)
-      DECL_GEN_SIGNAL(_001OnDestroy)
-      DECL_GEN_SIGNAL(_001OnCtlColor)
-      DECL_GEN_SIGNAL(_001OnWindowPosChanging)
-      DECL_GEN_SIGNAL(_001OnSizeParent)
-      DECL_GEN_SIGNAL(_001OnHelpHitTest)
-      DECL_GEN_SIGNAL(_001OnInitialUpdate)
-      DECL_GEN_SIGNAL(_001OnIdleUpdateCmdUI)
-      DECL_GEN_SIGNAL(_001OnLButtonDown)
-      DECL_GEN_SIGNAL(_001OnLButtonDblClk)
-      DECL_GEN_SIGNAL(_001OnMouseActivate)
-      DECL_GEN_SIGNAL(_001OnMouseMove)
-      DECL_GEN_SIGNAL(_001OnLButtonUp)
-      //DECL_GEN_SIGNAL(_001OnShowWindow)
-      //DECL_GEN_SIGNAL(_001OnCancelMode)
+         DECL_GEN_SIGNAL(_001OnCreate)
+         DECL_GEN_SIGNAL(_001OnDestroy)
+         DECL_GEN_SIGNAL(_001OnCtlColor)
+         DECL_GEN_SIGNAL(_001OnWindowPosChanging)
+         DECL_GEN_SIGNAL(_001OnSizeParent)
+         DECL_GEN_SIGNAL(_001OnHelpHitTest)
+         DECL_GEN_SIGNAL(_001OnInitialUpdate)
+         DECL_GEN_SIGNAL(_001OnIdleUpdateCmdUI)
+         DECL_GEN_SIGNAL(_001OnLButtonDown)
+         DECL_GEN_SIGNAL(_001OnLButtonDblClk)
+         DECL_GEN_SIGNAL(_001OnMouseActivate)
+         DECL_GEN_SIGNAL(_001OnMouseMove)
+         DECL_GEN_SIGNAL(_001OnLButtonUp)
+         //DECL_GEN_SIGNAL(_001OnShowWindow)
+         //DECL_GEN_SIGNAL(_001OnCancelMode)
 
-   //   DECL_GEN_SIGNAL(_001OnPaint)
-   //   virtual void _001OnDraw(::draw2d::graphics * pdc);
+         //   DECL_GEN_SIGNAL(_001OnPaint)
+         //   virtual void _001OnDraw(::draw2d::graphics * pdc);
 
-      virtual void install_message_handling(::message::dispatch * pinterface);
+         virtual void install_message_handling(::message::dispatch * pinterface);
 
       friend class ::user::frame_window;
       friend class BaseDockBar;
@@ -220,3 +222,8 @@ namespace user
 
 
 } // namespace user
+
+
+
+
+

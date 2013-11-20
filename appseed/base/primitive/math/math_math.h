@@ -6,7 +6,7 @@ namespace math
 
 
    class CLASS_DECL_BASE math :
-      virtual public object
+      virtual public ::object
    {
    private:
 

@@ -22,7 +22,7 @@ namespace user
       id                               m_id;
       sp(::user::interaction)            m_pwnd;
       sp(::user::place_holder)           m_pholder;
-      sp(::user::document_interface)     m_pdoc;
+      sp(::user::object)     m_pdoc;
       id                               m_idSplit;
       bool                             m_bTabSplitSwap;
       int32_t                              m_iExtendOnParent;
@@ -82,7 +82,7 @@ namespace user
       virtual void on_create_view(::user::view_creator_data * pcreatordata);
       virtual void on_show_view();
 
-      virtual void on_update(sp(::user::document_interface) pdocument, sp(::user::view) pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(sp(::user::object) pdocument, sp(::user::impact) pSender, LPARAM lHint, object* pHint);
 
       virtual sp(::user::interaction) get_view();
 

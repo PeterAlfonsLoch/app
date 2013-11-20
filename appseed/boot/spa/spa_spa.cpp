@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "spa_spa.h"
 
 
 bool g_bAdmin = false;

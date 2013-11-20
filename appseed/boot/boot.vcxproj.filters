@@ -24,29 +24,8 @@
     <Filter Include="Header Files\windows">
       <UniqueIdentifier>{ad978b40-9de8-4303-900d-8ddbb7990312}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\simple_ui">
-      <UniqueIdentifier>{cb9e03a3-6ef2-49c7-a402-e772ca8c08d8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\simple_ui">
-      <UniqueIdentifier>{db1f71e5-d06e-4312-b2d5-677876a4d6e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\crypt">
-      <UniqueIdentifier>{39f08259-f2df-47a9-8c7a-804b9c7c25a4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\crypt">
-      <UniqueIdentifier>{c44bd52a-2c96-440b-8774-b38222f876ca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\windows\crypt">
-      <UniqueIdentifier>{85093e31-9485-4dbf-95c5-47f6d8d86729}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\version">
       <UniqueIdentifier>{57916618-2bfd-4c8a-96c9-934717a6dd58}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\simple_graphics">
-      <UniqueIdentifier>{c9a6d8e9-3c7a-430d-b940-af9949f0f726}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\simple_graphics">
-      <UniqueIdentifier>{c14f6fb5-2f4a-4c34-805b-f5467b6ff11d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\android">
       <UniqueIdentifier>{3317aa86-fa14-40ae-a177-fcd3712f6093}</UniqueIdentifier>
@@ -75,20 +54,11 @@
     <Filter Include="Source Files\spa_install">
       <UniqueIdentifier>{6bf137f8-a742-466c-bf79-11663e2ace1b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\simple_ui\NewFilter1">
-      <UniqueIdentifier>{e950dcfe-db47-4937-b8e1-fd2a487ebef6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\boot">
       <UniqueIdentifier>{c884c593-8d0f-465b-8314-98944d5dac4f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\boot">
       <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\fontopus">
-      <UniqueIdentifier>{316fb895-d334-4338-9d8b-1afb1c381f55}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\fontopus">
-      <UniqueIdentifier>{df0faa69-64d3-44d7-89b6-7c8321bbd705}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -109,12 +79,6 @@
     </ClInclude>
     <ClInclude Include="cpu_architecture.h">
       <Filter>Header Files\C Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\spa_machine_event.h">
-      <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\spa_machine_event_data.h">
-      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="spa\spa_boot.h">
       <Filter>Header Files\spa_install</Filter>
@@ -158,44 +122,11 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_ui\simple_button.h">
-      <Filter>Header Files\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_ui\simple_ui.h">
-      <Filter>Header Files\simple_ui</Filter>
-    </ClInclude>
     <ClInclude Include="version\version.config.h">
       <Filter>Header Files\version</Filter>
     </ClInclude>
     <ClInclude Include="version\version.h">
       <Filter>Header Files\version</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_graphics\simple_graphics.h">
-      <Filter>Header Files\simple_graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_graphics\simple_graphics_first_phase.h">
-      <Filter>Header Files\simple_graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_graphics\simple_graphics_second_phase.h">
-      <Filter>Header Files\simple_graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_graphics\simple_linear_gradient_brush.h">
-      <Filter>Header Files\simple_graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_graphics\simple_pixel_font.h">
-      <Filter>Header Files\simple_graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_graphics\simple_solid_brush.h">
-      <Filter>Header Files\simple_graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_graphics\simple_solid_pen.h">
-      <Filter>Header Files\simple_graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_graphics\simple_font.h">
-      <Filter>Header Files\simple_graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_graphics\simple_path.h">
-      <Filter>Header Files\simple_graphics</Filter>
     </ClInclude>
     <ClInclude Include="windows\ca_os.h">
       <Filter>Header Files\windows</Filter>
@@ -204,12 +135,6 @@
       <Filter>Header Files\windows</Filter>
     </ClInclude>
     <ClInclude Include="windows\ca_os_file_watcher.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\ca_os_gdi.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\ca_os_graphics_round_rect.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
     <ClInclude Include="windows\ca_os_internal.h">
@@ -221,25 +146,7 @@
     <ClInclude Include="windows\ca_os_registry.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
-    <ClInclude Include="windows\ca_os_simple_bitmap.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\ca_os_simple_brush.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\ca_os_simple_font.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\ca_os_simple_graphics.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
     <ClInclude Include="windows\ca_os_simple_hold_handle.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\ca_os_simple_path.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\ca_os_simple_pen.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
     <ClInclude Include="spa\spa_window.h">
@@ -329,23 +236,8 @@
     <ClInclude Include="spa\spa_canvas.h">
       <Filter>Header Files\spa_install</Filter>
     </ClInclude>
-    <ClInclude Include="spa\spa_login.h">
-      <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
     <ClInclude Include="hotplugin\hotplugin_container_launcher.h">
       <Filter>Header Files\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_ui\simple_edit_box.h">
-      <Filter>Header Files\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_ui\simple_label.h">
-      <Filter>Header Files\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_ui\simple_password.h">
-      <Filter>Header Files\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_ui\simple_tap.h">
-      <Filter>Header Files\simple_ui</Filter>
     </ClInclude>
     <ClInclude Include="boot\boot_2.h">
       <Filter>Header Files\boot</Filter>
@@ -369,9 +261,6 @@
       <Filter>Header Files\boot</Filter>
     </ClInclude>
     <ClInclude Include="boot\boot_file_watcher_thread.h">
-      <Filter>Header Files\boot</Filter>
-    </ClInclude>
-    <ClInclude Include="boot\boot_geometric_types.h">
       <Filter>Header Files\boot</Filter>
     </ClInclude>
     <ClInclude Include="boot\boot_international.h">
@@ -425,23 +314,14 @@
     <ClInclude Include="boot\boot_user.h">
       <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="fontopus\fontopus_user_authentication.h">
-      <Filter>Header Files\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="fontopus\fontopus_authentication_map.h">
-      <Filter>Header Files\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="fontopus\fontopus.h">
-      <Filter>Header Files\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\spa_installer2.h">
-      <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
     <ClInclude Include="spa\spa2.h">
       <Filter>Header Files\spa_install</Filter>
     </ClInclude>
-    <ClInclude Include="boot\boot2.h">
+    <ClInclude Include="boot\boot.h">
       <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_installer.h">
+      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -450,12 +330,6 @@
     </ClCompile>
     <ClCompile Include="hotplugin\hotplugin_plugin.cpp">
       <Filter>Source Files\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_machine_event.cpp">
-      <Filter>Source Files\spa_install</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_machine_event_data.cpp">
-      <Filter>Source Files\spa_install</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa.cpp">
       <Filter>Source Files\spa_install</Filter>
@@ -511,39 +385,6 @@
     <ClCompile Include="hotplugin\hotplugin_container_launcher.cpp">
       <Filter>Source Files\hotplugin</Filter>
     </ClCompile>
-    <ClCompile Include="simple_ui\simple_edit_box.cpp">
-      <Filter>Source Files\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_ui\simple_label.cpp">
-      <Filter>Source Files\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_ui\simple_password.cpp">
-      <Filter>Source Files\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_ui\simple_tap.cpp">
-      <Filter>Source Files\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_ui\simple_ui.cpp">
-      <Filter>Source Files\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_login.cpp">
-      <Filter>Source Files\spa_install</Filter>
-    </ClCompile>
-    <ClCompile Include="crypt\crypt.cpp">
-      <Filter>Source Files\crypt</Filter>
-    </ClCompile>
-    <ClCompile Include="crypt\nessie.cpp">
-      <Filter>Source Files\crypt</Filter>
-    </ClCompile>
-    <ClCompile Include="crypt\whirpool.cpp">
-      <Filter>Source Files\crypt</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_graphics\simple_graphics.cpp">
-      <Filter>Source Files\simple_graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_graphics\simple_path.cpp">
-      <Filter>Source Files\simple_graphics</Filter>
-    </ClCompile>
     <ClCompile Include="windows\ca_os_ca_dll.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
@@ -568,24 +409,6 @@
     <ClCompile Include="windows\ca_os_simple_app.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
-    <ClCompile Include="windows\ca_os_simple_bitmap.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\ca_os_simple_brush.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\ca_os_simple_font.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\ca_os_simple_graphics.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\ca_os_simple_path.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\ca_os_simple_pen.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
     <ClCompile Include="windows\ca_os_simple_shell_launcher.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
@@ -593,12 +416,6 @@
       <Filter>Source Files\windows</Filter>
     </ClCompile>
     <ClCompile Include="windows\ca_os_time.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\crypt\ca_os_crypt.cpp">
-      <Filter>Source Files\windows\crypt</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\ca_os_window_gdi.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
     <ClCompile Include="ansios\ansios_cross_win.cpp">
@@ -643,9 +460,6 @@
     <ClCompile Include="boot\boot_file_watcher_thread.cpp">
       <Filter>Source Files\boot</Filter>
     </ClCompile>
-    <ClCompile Include="boot\boot_geometric_types.cpp">
-      <Filter>Source Files\boot</Filter>
-    </ClCompile>
     <ClCompile Include="boot\boot_international.cpp">
       <Filter>Source Files\boot</Filter>
     </ClCompile>
@@ -665,12 +479,6 @@
       <Filter>Source Files\boot</Filter>
     </ClCompile>
     <ClCompile Include="boot\boot_sprintf.cpp">
-      <Filter>Source Files\boot</Filter>
-    </ClCompile>
-    <ClCompile Include="boot\boot_std_file.cpp">
-      <Filter>Source Files\boot</Filter>
-    </ClCompile>
-    <ClCompile Include="boot\boot_url.cpp">
       <Filter>Source Files\boot</Filter>
     </ClCompile>
     <ClCompile Include="android\android.cpp">
@@ -750,12 +558,6 @@
     </ClCompile>
     <ClCompile Include="android\android_window_android.cpp">
       <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="fontopus\fontopus_authentication_map.cpp">
-      <Filter>Source Files\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="fontopus\fontopus.cpp">
-      <Filter>Source Files\fontopus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

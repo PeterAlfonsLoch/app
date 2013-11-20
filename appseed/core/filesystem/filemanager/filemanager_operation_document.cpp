@@ -6,7 +6,7 @@ file_manager_operation_document::file_manager_operation_document(sp(base_applica
    m_thread(papp),
    ::data::data_container_base(papp),
    
-   ::user::document(papp)
+   ::user::object(papp)
 {
    
 }

@@ -6,7 +6,7 @@ namespace visual
 
 
    class CLASS_DECL_BASE cursor :
-      virtual public object
+      virtual public ::object
    {
    public:
 

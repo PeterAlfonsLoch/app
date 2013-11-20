@@ -6,7 +6,7 @@ namespace user
 
 
    class interaction;
-   class frame_window_interface;
+   class frame_window;
 
 
    class CLASS_DECL_BASE window_interface :
@@ -74,7 +74,7 @@ namespace user
 
       //window_interface * _001GetParent() const;
       //virtual bool _001IsFrameWnd();
-      //user::frame_window_interface * _001GetParentFrame() const;
+      //user::frame_window * _001GetParentFrame() const;
       //bool attach(oswindow oswindow);
 
       virtual void PreSubClassWindow();

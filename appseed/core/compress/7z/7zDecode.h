@@ -17,7 +17,7 @@ namespace n7z
    };
 
    class CDecoder :
-      virtual public object
+      virtual public ::object
    {
       bool _bindInfoExPrevIsDefined;
       CBindInfoEx _bindInfoExPrev;
