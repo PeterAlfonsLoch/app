@@ -3997,15 +3997,12 @@
     <ClCompile Include="net\net_port_forward.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
-<<<<<<< .mine
-=======
     <ClCompile Include="primitive\datetime\datetime_value.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="net\mail\mail_simple_pop3.cpp">
       <Filter>Source Files\net\mail</Filter>
     </ClCompile>
->>>>>>> .r7014
     <ClCompile Include="graphics\backview\backview_graphics.cpp">
       <Filter>Source Files\graphics\backview</Filter>
     </ClCompile>
@@ -4186,12 +4183,9 @@
     <ClCompile Include="user\user\user_form_list.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-<<<<<<< .mine
-=======
     <ClCompile Include="user\user\user_frame_window.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
->>>>>>> .r7014
     <ClCompile Include="user\user\user_front_end.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>

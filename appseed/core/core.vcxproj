@@ -1416,13 +1416,10 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="net\hi5\hi5.h" />
     <ClInclude Include="net\hi5\hi5_oauth.h" />
     <ClInclude Include="net\hi5\hi5_twitter_authorization.h" />
-<<<<<<< .mine
-=======
     <ClInclude Include="net\mail\mail.h" />
     <ClInclude Include="net\mail\mail_pop3.h" />
     <ClInclude Include="net\mail\pop3_socket.h" />
     <ClInclude Include="net\mail\simple_pop3.h" />
->>>>>>> .r7014
     <ClInclude Include="net\net_email_departament.h" />
     <ClInclude Include="net\net_ip_enum.h" />
     <ClInclude Include="net\net_port_forward.h" />
@@ -1929,10 +1926,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="compress\rar\rar_input_file.cpp" />
     <ClCompile Include="compress\rar\rar_item.cpp" />
     <ClCompile Include="compress\rar\rar_volume_input_stream.cpp" />
-<<<<<<< .mine
     <ClCompile Include="crypto_kernel_crypto_kernel.cpp" />
-=======
->>>>>>> .r7014
     <ClCompile Include="database\databaseuser\database_key_list_data.cpp" />
     <ClCompile Include="database\databaseuser\database_list_data.cpp" />
     <ClCompile Include="database\database_application.cpp">
@@ -2310,10 +2304,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\user\user_form.cpp" />
     <ClCompile Include="user\user\user_form_callback.cpp" />
     <ClCompile Include="user\user\user_form_list.cpp" />
-<<<<<<< .mine
-=======
     <ClCompile Include="user\user\user_frame_window.cpp" />
->>>>>>> .r7014
     <ClCompile Include="user\user\user_front_end.cpp" />
     <ClCompile Include="user\user\user_front_end_schema.cpp" />
     <ClCompile Include="user\user\user_image_manager.cpp" />
