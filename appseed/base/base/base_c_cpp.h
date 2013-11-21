@@ -422,8 +422,6 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 #include "base_main_init_data.h"
 
-#include "spa/spa.h"
-
 #include "base_application.h"
 
 
@@ -488,6 +486,10 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base/user/user_str.h"
 
 #include "base_id_pool.h"
+
+
+#include "install/install.h"
+
 
 #include "base_system.h"
 

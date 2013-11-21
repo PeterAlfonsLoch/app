@@ -39,12 +39,6 @@
     <Filter Include="Header Files\os">
       <UniqueIdentifier>{9e92b674-0ae7-4e1e-bd86-d513ccacb6a8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\spa">
-      <UniqueIdentifier>{9faab802-b503-4ed8-888b-b85ace9bc090}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\spa">
-      <UniqueIdentifier>{4b14bab0-dd46-49b3-9fce-8c6ba58b28b1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\str">
       <UniqueIdentifier>{ccf3d663-d7b0-497e-a749-89d495cf7b95}</UniqueIdentifier>
     </Filter>
@@ -690,6 +684,12 @@
     <Filter Include="Source Files\net\mail">
       <UniqueIdentifier>{680a0322-4659-4b9e-9c33-fd5c55060730}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\install">
+      <UniqueIdentifier>{9faab802-b503-4ed8-888b-b85ace9bc090}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\install">
+      <UniqueIdentifier>{4b14bab0-dd46-49b3-9fce-8c6ba58b28b1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework_c.h">
@@ -937,9 +937,6 @@
     </ClInclude>
     <ClInclude Include="primitive\primitive_virtual_memory.h">
       <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\spa_trace.h">
-      <Filter>Header Files\spa</Filter>
     </ClInclude>
     <ClInclude Include="str\str.h">
       <Filter>Header Files\str</Filter>
@@ -2804,12 +2801,6 @@
     <ClInclude Include="base\base_number.h">
       <Filter>Header Files\base</Filter>
     </ClInclude>
-    <ClInclude Include="spa\spa_style.h">
-      <Filter>Header Files\spa</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\spa_login.h">
-      <Filter>Header Files\spa</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple\simple_edit_box.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
@@ -2987,11 +2978,77 @@
     <ClInclude Include="base\crypto\crypto\crypto_internal_data_types.h">
       <Filter>Header Files\base\crypto\crypto</Filter>
     </ClInclude>
-    <ClInclude Include="spa\spa_spa.h">
-      <Filter>Header Files\spa</Filter>
+    <ClInclude Include="install\resource.h">
+      <Filter>Header Files\install</Filter>
     </ClInclude>
-    <ClInclude Include="spa\spa.h">
-      <Filter>Header Files\spa</Filter>
+    <ClInclude Include="install\spa.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\spa_boot.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\spa_canvas.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\spa_cube_run.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\spa_focus.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\spa_http.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\spa_install_ca2.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\spa_installer.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\spa_installer_square.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\spa_login.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\spa_plugin.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\spa_small_bell.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\spa_spa.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\spa_spa_spa.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\spa_starter_start.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\spa_style.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\spa_trace.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\spa_window.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\spa2.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\install_hotplugin.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\install_hotplugin_container_launcher.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\install_hotplugin_host.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\install_hotplugin_plugin.h">
+      <Filter>Header Files\install</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3189,9 +3246,6 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive_virtual_memory.cpp">
       <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_trace.cpp">
-      <Filter>Source Files\spa</Filter>
     </ClCompile>
     <ClCompile Include="str\str_ch.cpp">
       <Filter>Source Files\str</Filter>
@@ -6154,9 +6208,6 @@
     <ClCompile Include="os\windows\windows_crypto.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="spa\spa_style.cpp">
-      <Filter>Source Files\spa</Filter>
-    </ClCompile>
     <ClCompile Include="user\simple\simple_edit_box.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
@@ -6171,9 +6222,6 @@
     </ClCompile>
     <ClCompile Include="user\simple\simple_ui.cpp">
       <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_login.cpp">
-      <Filter>Source Files\spa</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\simple_fontopus.cpp">
       <Filter>Source Files\user\simple</Filter>
@@ -6484,8 +6532,74 @@
     <ClCompile Include="base\crypto\crypto\crypto_framework.c">
       <Filter>Source Files\base\crypto\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="spa\spa_spa.cpp">
-      <Filter>Source Files\spa</Filter>
+    <ClCompile Include="install\hotplugin_container_launcher.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\hotplugin_host.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\hotplugin_plugin.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\spa.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\spa_boot.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\spa_bz.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\spa_canvas.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\spa_cube_run.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\spa_focus.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\spa_http.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\spa_install_ca2.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\spa_installer.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\spa_installer_square.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\spa_login.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\spa_main.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\spa_plugin.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\spa_small_bell.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\spa_spa.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\spa_spa_spa.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\spa_starter_start.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\spa_style.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\spa_trace.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="install\spa_window.cpp">
+      <Filter>Source Files\install</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -6602,6 +6716,9 @@
     </None>
     <None Include="base\base_live_object.h">
       <Filter>Header Files\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
