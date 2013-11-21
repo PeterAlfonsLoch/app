@@ -584,6 +584,24 @@ namespace user
 
       virtual bool hold(sp(::user::interaction) pui);
 
+#if defined(METROWIN) && defined(__cplusplus_winrt)
+      static Platform::Agile<Windows::UI::Core::CoreWindow>(*s_get_os_window)(interaction * pui);
+      Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window()
+      {
+         return get_os_window(this);
+      }
+      static Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window(interaction * pui)
+      {
+         return (*s_get_os_window)(pui);
+      }
+      static Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window_default(interaction * pui)
+      {
+         UNREFERENCED_PARAMETER(pui);
+         return nullptr;
+      }
+#endif
+
+
    };
 
    inline oswindow interaction::get_safe_handle() const

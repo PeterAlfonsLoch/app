@@ -41,7 +41,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#include "framework.h"
+#include "crypto_framework.h"
 
 BEGIN_EXTERN_C
 

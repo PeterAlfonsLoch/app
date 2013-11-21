@@ -42,7 +42,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#include "framework.h"
+#include "crypto_framework.h"
 
 
 #define ALIGN_32 0
@@ -286,7 +286,7 @@ aes_icm_set_iv(aes_icm_ctx_t *ca, void *iv) {
  * this is an internal, hopefully inlined function
  */
   
-inline void
+void
 aes_icm_advance_ismacryp(aes_icm_ctx_t *ca, uint8_t forIsmacryp) {
   /* fill buffer with new keystream */
   v128_copy(&ca->keystream_buffer, &ca->counter);
@@ -311,7 +311,7 @@ aes_icm_advance_ismacryp(aes_icm_ctx_t *ca, uint8_t forIsmacryp) {
   }
 }
 
-inline void aes_icm_advance(aes_icm_ctx_t *ca) {
+void aes_icm_advance(aes_icm_ctx_t *ca) {
   aes_icm_advance_ismacryp(ca, 0);
 }
 

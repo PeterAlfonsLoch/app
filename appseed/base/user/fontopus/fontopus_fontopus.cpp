@@ -340,6 +340,41 @@ namespace fontopus
 
    }
 
+   string fontopus::get_server(const char * pszUrl, int32_t iRetry)
+   {
+
+      string strFontopusServer;
+
+      if (m_mapFontopusServer.Lookup(pszUrl, strFontopusServer) && strFontopusServer.has_char())
+      {
+         return strFontopusServer;
+      }
+
+   retry:
+
+      if (iRetry < 0)
+         return ""; // should not retry or lookup is valid and strFontopusServer is really empty
+
+      string strGetFontopus("http://" + url_get_server(pszUrl) + "/get_fontopus");
+      try
+      {
+         strFontopusServer = Application.http().get(strGetFontopus);
+      }
+      catch (...)
+      {
+      }
+
+      m_mapFontopusServer.set_at(pszUrl, strFontopusServer);
+
+      iRetry--;
+
+      if (strFontopusServer.is_empty())
+         goto retry;
+
+      return strFontopusServer;
+
+   }
+
 
 
 } // namespace fontopus

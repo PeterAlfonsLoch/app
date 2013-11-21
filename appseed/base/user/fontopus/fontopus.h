@@ -13,9 +13,7 @@ namespace fontopus
 {
 
 
-   string CLASS_DECL_BASE get_server(const char * pszUrl, int32_t iRetry);
-
-   string CLASS_DECL_BASE show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer);
+   string CLASS_DECL_BASE show_auth_window(base_application * papp, LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer);
 
 
 } // namespace fontopus

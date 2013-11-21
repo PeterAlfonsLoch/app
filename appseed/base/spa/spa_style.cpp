@@ -5,7 +5,8 @@
 namespace spa
 {
 
-   style::style()
+   style::style(sp(base_application) papp) :
+      element(papp)
    {
 
       m_eschema = schema_darker;
@@ -157,7 +158,7 @@ namespace spa
          m_strSchema = calc_schema();
       }
 
-      str = http_defer_locale_schema_get(pszUrl, m_strLocale, m_strSchema);
+      str = Application.http().defer_locale_schema_get(pszUrl, m_strLocale, m_strSchema);
 
       return str;
 

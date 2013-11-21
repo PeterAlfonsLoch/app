@@ -56,7 +56,9 @@
 /* #undef HAVE_STDINT_H */
 
 /* Define to 1 if you have the <strings.h> header spfile-> */
+#ifdef LINUX
 #define HAVE_STRINGS_H 1
+#endif
 
 
 /* Define to 1 if you have the <syslog.h> header spfile-> */
@@ -99,16 +101,16 @@
 /* #undef HAVE_X86 */
 
 /* Define to the address where bug reports for this package should be sent. */
-#define PACKAGE_BUGREPORT ""
+//#define PACKAGE_BUGREPORT "crypto_inside_base_is_base" 
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING ""
+//#define PACKAGE_STRING "crypto_inside_base_is_base"
 
 /* Define to the one symbol int16_t name of this package. */
-#define PACKAGE_TARNAME ""
+//#define PACKAGE_TARNAME "crypto_inside_base_is_base"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION ""
+//#define PACKAGE_VERSION "crypto_inside_base_is_base"
 
 /* The size of a `unsigned long', as computed by sizeof. */
 #define SIZEOF_UNSIGNED_LONG 4

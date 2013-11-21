@@ -41,7 +41,8 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#include "framework.h"
+#include "crypto_framework.h"
+#include <time.h>
 
 
 /* single, global prng structure */

@@ -6,7 +6,8 @@
 namespace spa
 {
 
-   class CLASS_DECL_BASE style
+   class CLASS_DECL_BASE style :
+      virtual public object
    {
    public:
 
@@ -24,7 +25,7 @@ namespace spa
       string                        m_strRuri;
 
 
-      style();
+      style(sp(base_application) papp);
 
       virtual ~style();
 

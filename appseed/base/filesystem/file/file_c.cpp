@@ -22,13 +22,6 @@ bool file_put_contents_dup(const char * path, const ::primitive::memory_base & m
 }
 
 
-int_bool get_temp_file_name_dup(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension)
-{
-
-   return get_temp_file_name_template(szRet, iBufferSize, pszName, pszExtension, NULL);
-
-}
-
 
 
 

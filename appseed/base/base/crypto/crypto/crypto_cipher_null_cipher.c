@@ -43,7 +43,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#include "framework.h"
+#include "crypto_framework.h"
 
 
 /* the null_cipher uses the cipher debug module  */

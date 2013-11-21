@@ -212,7 +212,7 @@ namespace fontopus
 
          System.get_monitor_rect(0, rectDesktop);
 
-         if (show_auth_window(rectDesktop, strUsername, strSessId, strSecureId, m_loginthread.m_strLoginUrl, m_loginthread.m_strRequestingServer) != "ok")
+         if (::fontopus::show_auth_window(get_app(), rectDesktop, strUsername, strSessId, strSecureId, m_loginthread.m_strLoginUrl, m_loginthread.m_strRequestingServer) != "ok")
          {
             delete m_puser;
             return NULL;
@@ -677,7 +677,7 @@ namespace fontopus
 
       url_domain domainFontopus;
 
-      m_strFontopusServer = ::fontopus::get_server(strGetFontopus, 8);
+      m_strFontopusServer = Application.fontopus()->get_server(strGetFontopus, 8);
 
       domainFontopus.create(m_strFontopusServer);
 

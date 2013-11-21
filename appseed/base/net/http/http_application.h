@@ -63,6 +63,8 @@ namespace http
       bool put(string & strResponse, const char * pszUrl, primitive::memory & memory, ::fontopus::user * puser = NULL);
       bool put(string & strResponse, const char * pszUrl, ::file::buffer_sp  pfile, ::fontopus::user * puser = NULL);
 
+      virtual string defer_locale_schema_get(const char * pszUrl, const char * pszLocale, const char * pszSchema);
+
    };
 
 

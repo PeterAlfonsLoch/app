@@ -42,7 +42,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#include "framework.h"
+#include "crypto_framework.h"
 
 
 #define rdbx_high_bit_in_bitmask 127

@@ -37,7 +37,7 @@
  *      multiple of the size of an 8-bit character.
  *
  */
-#include "framework.h"
+#include "crypto_framework.h"
 
 
 /*

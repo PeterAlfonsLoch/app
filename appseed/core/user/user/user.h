@@ -59,13 +59,6 @@ namespace user
 }
 
 
-<<<<<<< .mine
-//#include "user_view.h"
-//#include "user_view_update_hint.h"
-
-
-=======
->>>>>>> .r7014
 #include "user_control.h"
 
 

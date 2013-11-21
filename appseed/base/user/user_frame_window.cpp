@@ -130,10 +130,7 @@ namespace user
    {
 
       ::user::interaction::install_message_handling(pinterface);
-
       IGUI_MSG_LINK(::message::message_frame_initial_update, pinterface, this, &frame_window::_guserbaseOnInitialUpdate);
-      ::user::interaction::install_message_handling(pinterface);
-      frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &frame_window::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_SYSCOMMAND, pinterface, this, &frame_window::_001OnSysCommand);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &frame_window::_001OnCreate);
@@ -331,7 +328,7 @@ namespace user
       //   __cancel_modes(pMsg->oswindow);    // filter clicks
 
       // allow tooltip messages to be filtered
-      ::user::frame_window::pre_translate_message(pobj);
+      ::user::interaction::pre_translate_message(pobj);
       if (pobj->m_bRet)
          return;
 

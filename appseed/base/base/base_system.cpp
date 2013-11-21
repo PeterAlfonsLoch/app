@@ -34,6 +34,8 @@ base_system::base_system(sp(base_application) papp) :
 
    }
 
+   m_pbasesystem = this;
+
 
    //::ca::application::m_file.set_app(this);
    //::ca::application::m_dir.set_app(this);
@@ -78,6 +80,8 @@ base_system::base_system(sp(base_application) papp) :
 
    m_pfactory = new class base_factory(this);
    m_pfactory->set_app(this);
+
+   m_spinstall = new ::install::install(this);
 
 
 }
@@ -499,4 +503,7 @@ machine_event_central & base_system::machine_event_central()
 {
    return *m_puserstr;
 }
+
+
+
 

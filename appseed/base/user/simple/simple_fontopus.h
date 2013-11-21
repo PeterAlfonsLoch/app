@@ -39,16 +39,13 @@ namespace fontopus
       rect                       m_rectDesktop;
 
 
-      simple_ui();
+      simple_ui(sp(base_application) papp);
 
       virtual ~simple_ui();
 
-      static LRESULT CALLBACK s_window_prodecure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-
-
       virtual string show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
 
-      virtual ATOM register_window_class(HINSTANCE hInstance);
+      //virtual ATOM register_window_class(HINSTANCE hInstance);
 
       virtual BOOL prepare_window(HINSTANCE hInstance, int nCmdShow);
 

@@ -44,7 +44,7 @@
  *
  */
 
-#include "framework.h"
+#include "crypto_framework.h"
 
 
 /* null_auth uses the auth debug module */

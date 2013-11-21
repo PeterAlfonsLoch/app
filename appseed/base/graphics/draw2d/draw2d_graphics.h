@@ -708,3 +708,7 @@ namespace draw2d
 } // namespace core
 
 
+
+CLASS_DECL_BASE dump_context & operator<<(dump_context & dumpcontext, SIZE size);
+CLASS_DECL_BASE dump_context & operator<<(dump_context & dumpcontext, POINT point);
+CLASS_DECL_BASE dump_context & operator<<(dump_context & dumpcontext, const RECT& rect);

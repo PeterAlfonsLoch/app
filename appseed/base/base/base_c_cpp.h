@@ -81,7 +81,7 @@ namespace user
 {
 
 
-   class base_interaction;
+   class interaction;
    class create_context;
    class impact;
    class printer;
@@ -422,6 +422,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 #include "base_main_init_data.h"
 
+#include "spa/spa.h"
+
 #include "base_application.h"
 
 
@@ -669,9 +671,10 @@ namespace numeric_info
 
 
 #ifdef WINDOWSEX
-#define _DRAW2D_GDIPLUS_STATIC
+#ifdef _BASE_LIBRARY
+#define _DRAW2D_GDIPLUS_LIBRARY
+#endif
 #include "nodeapp/appseed/draw2d_gdiplus/draw2d_gdiplus.h"
-#undef _DRAW2D_GDIPLUS_STATIC
 #endif
 
 

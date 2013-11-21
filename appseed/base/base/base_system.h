@@ -52,6 +52,7 @@ public:
    sp(::user::window_draw)                      m_ptwf;
    class ::core::compress                       m_compress;
    sp(::user::str)                              m_puserstr;
+   sp(::install::install)                          m_spinstall;
 
 
 
@@ -83,6 +84,7 @@ public:
    class ::crypto::crypto                       & crypto();
    ::datetime::departament                      & datetime();
    ::user::str                                  & str();
+   ::install::install                           & install()  { return *m_spinstall; }
 
 
 

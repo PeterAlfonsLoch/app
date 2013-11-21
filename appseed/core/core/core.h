@@ -499,9 +499,9 @@ enum __HELP_TYPE
 
 #ifdef DEBUG
 // Diagnostic Output
-CLASS_DECL_CORE dump_context & operator<<(dump_context & dumpcontext, SIZE size);
-CLASS_DECL_CORE dump_context & operator<<(dump_context & dumpcontext, POINT point);
-CLASS_DECL_CORE dump_context & operator<<(dump_context & dumpcontext, const RECT& rect);
+//CLASS_DECL_CORE dump_context & operator<<(dump_context & dumpcontext, SIZE size);
+//CLASS_DECL_CORE dump_context & operator<<(dump_context & dumpcontext, POINT point);
+//CLASS_DECL_CORE dump_context & operator<<(dump_context & dumpcontext, const RECT& rect);
 #endif //DEBUG
 
 // Serialization
@@ -935,9 +935,6 @@ class Ex1FactoryImpl;
 
 
 
-
-
-#include "core/crypto/crypto.h"
 
 
 #include "filesystem/file/file_application.h"

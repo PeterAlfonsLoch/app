@@ -1199,3 +1199,123 @@ bool base_application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32
    return false;
 
 }
+
+string CLASS_DECL_BASE base_application::show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
+{
+
+   return ::fontopus::show_auth_window(this, lprect, strUsername, strSessId, strServerId, strLoginUrl, strFontopusServer);
+
+}
+
+
+
+
+int_bool base_application::get_temp_file_name_template(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension, const char * pszTemplate)
+{
+
+   char lpPathBuffer[MAX_PATH * 4];
+
+   uint32_t dwRetVal = GetTempPath(sizeof(lpPathBuffer), lpPathBuffer);
+
+   if (dwRetVal > sizeof(lpPathBuffer) || (dwRetVal == 0))
+   {
+
+      return FALSE;
+
+   }
+
+   char bufTime[30];
+
+   char bufItem[30];
+
+   //   char buf[30];
+
+   size_t iLen = strlen_dup(lpPathBuffer);
+
+   if (!(lpPathBuffer[iLen - 1] == '/' || lpPathBuffer[iLen - 1] == '\\'))
+   {
+
+      lpPathBuffer[iLen] = '\\';
+
+      lpPathBuffer[iLen + 1] = '\0';
+
+   }
+
+   SYSTEMTIME st;
+
+   memset_dup(&st, 0, sizeof(st));
+
+   GetSystemTime(&st);
+
+   itoa_dup(bufItem, st.wYear, 10);
+   zero_pad(bufItem, 4);
+   strcpy_dup(bufTime, bufItem);
+
+   itoa_dup(bufItem, st.wMonth, 10);
+   zero_pad(bufItem, 2);
+   strcat_dup(bufTime, "-");
+   strcat_dup(bufTime, bufItem);
+
+   itoa_dup(bufItem, st.wDay, 10);
+   zero_pad(bufItem, 2);
+   strcat_dup(bufTime, "-");
+   strcat_dup(bufTime, bufItem);
+
+   itoa_dup(bufItem, st.wHour, 10);
+   zero_pad(bufItem, 2);
+   strcat_dup(bufTime, " ");
+   strcat_dup(bufTime, bufItem);
+
+   itoa_dup(bufItem, st.wMinute, 10);
+   zero_pad(bufItem, 2);
+   strcat_dup(bufTime, "-");
+   strcat_dup(bufTime, bufItem);
+
+   itoa_dup(bufItem, st.wSecond, 10);
+   zero_pad(bufItem, 2);
+   strcat_dup(bufTime, "-");
+   strcat_dup(bufTime, bufItem);
+
+   for (int32_t i = 0; i < (1024 * 1024); i++)
+   {
+      strcpy_dup(szRet, lpPathBuffer);
+      {
+         strcat_dup(szRet, bufTime);
+         strcat_dup(szRet, "-");
+      }
+      {
+         strcat_dup(szRet, hex::lower_from(i + 1));
+         strcat_dup(szRet, "\\");
+      }
+      strcat_dup(szRet, pszName);
+      //if(i >= 0)
+      //if(i > 0)
+      strcat_dup(szRet, ".");
+      strcat_dup(szRet, pszExtension);
+      if (pszTemplate != NULL)
+      {
+         if (System.install().is_file_ok(szRet, pszTemplate))
+            return true;
+      }
+      if (file_exists_dup(szRet))
+      {
+         if (DeleteFileA(szRet))
+            return true;
+      }
+      else
+      {
+         return true;
+      }
+   }
+   return FALSE;
+
+}
+
+
+int_bool base_application::get_temp_file_name(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension)
+{
+
+   return get_temp_file_name_template(szRet, iBufferSize, pszName, pszExtension, NULL);
+
+}
+

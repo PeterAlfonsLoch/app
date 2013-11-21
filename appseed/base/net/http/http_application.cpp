@@ -337,6 +337,41 @@ namespace http
       return System.http().put(strResponse, pszUrl, pfile, puser);
    }
 
+   string application::defer_locale_schema_get(const char * pszUrl, const char * pszLocale, const char * pszSchema)
+   {
+
+      string str;
+
+      int32_t iAttempt = 0;
+
+      string strUrl(pszUrl);
+
+      if (strUrl.find("?") >= 0)
+      {
+
+         strUrl += "&";
+
+      }
+      else
+      {
+
+         strUrl += "?";
+
+      }
+
+      strUrl += "lang=" + string(pszLocale) + "&styl=" + string(pszSchema);
+
+      while ((str = get(strUrl)).is_empty())
+      {
+         iAttempt++;
+         if (iAttempt > 11)
+            return "";
+         Sleep(iAttempt * 840);
+      }
+
+      return str;
+
+   }
 
 
 } // namespace http

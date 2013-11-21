@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "spa_install_ca2.h"
 
 
 HANDLE g_hmutexBoot = NULL;

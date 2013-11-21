@@ -317,6 +317,11 @@ public:
       virtual string multimedia_audio_mixer_get_default_library_name();
       virtual string veriwell_multimedia_music_midi_get_default_library_name();
 
+      virtual string show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
+      virtual int_bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension, const char * pszTemplate);
+
+      virtual int_bool get_temp_file_name(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension);
+
 };
 
 

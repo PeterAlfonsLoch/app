@@ -46,8 +46,9 @@
 
 
 
-#ifndef ERR_H
-#define ERR_H
+#ifndef CRYPTO_CRYPTO_ERR_H
+#define CRYPTO_CRYPTO_ERR_H
+
 
 /**
  * @defgroup Error Error Codes
@@ -172,4 +173,4 @@ typedef struct {
 
 #endif
 
-#endif /* ERR_H */
+#endif /* CRYPTO_CRYPTO_ERR_H */

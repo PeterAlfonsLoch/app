@@ -257,8 +257,10 @@ namespace fontopus
 
 
 
-   simple_ui::simple_ui() :
-      m_login(0, 0)
+   simple_ui::simple_ui(sp(base_application) papp) :
+      element(papp),
+      m_login(0, 0),
+      ::spa::style(papp)
    {
       m_eschema = schema_normal;
       m_login.set_parent(this);
@@ -337,7 +339,7 @@ namespace fontopus
 
 
 
-   //
+/*   //
    //  FUNCTION: register_window_class()
    //
    //  PURPOSE: Registers the window class.
@@ -364,7 +366,7 @@ namespace fontopus
       wcex.hIconSm = NULL;
 
       return RegisterClassEx(&wcex);
-   }
+   }*/
 
    //
    //   FUNCTION: prepare_window(HINSTANCE, int)
@@ -432,11 +434,6 @@ namespace fontopus
 
    }
 
-
-   LRESULT CALLBACK simple_ui::s_window_prodecure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-   {
-      return s_fontopus.window_procedure(hWnd, message, wParam, lParam);
-   }
 
 
    void simple_ui::client_to_screen(POINT * ppt)
@@ -893,12 +890,12 @@ namespace fontopus
 
 
 
-   simple_ui simple_ui::s_fontopus;
-
-   string CLASS_DECL_BASE show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
+   string CLASS_DECL_BASE show_auth_window(base_application * papp, LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
    {
 
-      return ::fontopus::simple_ui::s_fontopus.show_auth_window(lprect, strUsername, strSessId, strServerId, strLoginUrl, strFontopusServer);
+      ::fontopus::simple_ui ui(papp);
+
+      return ui.show_auth_window(lprect, strUsername, strSessId, strServerId, strLoginUrl, strFontopusServer);
 
    }
 

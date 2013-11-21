@@ -258,9 +258,6 @@
     <Filter Include="Header Files\core\libcharguess">
       <UniqueIdentifier>{7b7c2c1f-7213-497e-9a3f-2adb146b5724}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\core\crypto">
-      <UniqueIdentifier>{81c963f7-21d5-4e58-bba6-655bf65b63d0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\core\geoip">
       <UniqueIdentifier>{b869cccd-625d-4d1b-b005-8270ac4d15a7}</UniqueIdentifier>
     </Filter>
@@ -275,9 +272,6 @@
     </Filter>
     <Filter Include="Source Files\core\geoip">
       <UniqueIdentifier>{5fcdf9f7-4a55-4f09-92cd-be40278095ff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\core\crypto">
-      <UniqueIdentifier>{a598dcc2-b5e3-42ec-ba57-f3c3febc03db}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\core\install">
       <UniqueIdentifier>{b8258c88-5f05-479d-ae79-9b6deadc4f4f}</UniqueIdentifier>
@@ -711,9 +705,6 @@
       <Filter>Header Files\compress\crypto</Filter>
     </ClInclude>
     <ClInclude Include="compress\crypto\crypto_rar20.h">
-      <Filter>Header Files\compress\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\crypto\crypto_aes_cbc_coder.h">
       <Filter>Header Files\compress\crypto</Filter>
     </ClInclude>
     <ClInclude Include=".\primitive\primitive_fixed_string.h">
@@ -1670,96 +1661,6 @@
     <ClInclude Include="core\libcharguess\UTF8Prober.h">
       <Filter>Header Files\core\libcharguess</Filter>
     </ClInclude>
-    <ClInclude Include="core\crypto\crypto.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_aes.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_aes_cbc.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_aes_icm.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_alg.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_alloc.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_auth.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_c_crypto.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_cipher.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_config.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_datatypes.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_err.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_gf2_8.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_hmac.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_integers.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_kernel.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_kernel_compat.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_key.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_math.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_md5.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_null_auth.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_null_cipher.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_prng.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_rand_source.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_rdb.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_rdbx.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_stat.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_types.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_ut_sim.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="core\crypto\crypto_xfm.h">
-      <Filter>Header Files\core\crypto</Filter>
-    </ClInclude>
     <ClInclude Include="core\geoip\geoip.h">
       <Filter>Header Files\core\geoip</Filter>
     </ClInclude>
@@ -2644,6 +2545,21 @@
     </ClInclude>
     <ClInclude Include="database\database.h">
       <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="net\mail\mail.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="net\mail\mail_pop3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="net\mail\pop3_socket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="net\mail\simple_pop3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\crypto\crypto_aes_cbc_coder.h">
+      <Filter>Header Files\compress\crypto</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3634,63 +3550,6 @@
     <ClCompile Include="core\geoip\geoip_update.cpp">
       <Filter>Source Files\core\geoip</Filter>
     </ClCompile>
-    <ClCompile Include="core\crypto\crypto_ae_xfm.cpp">
-      <Filter>Source Files\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="core\crypto\crypto_cipher_aes.cpp">
-      <Filter>Source Files\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="core\crypto\crypto_cipher_aes_cbc.cpp">
-      <Filter>Source Files\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="core\crypto\crypto_cipher_aes_icm.cpp">
-      <Filter>Source Files\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="core\crypto\crypto_cipher_cipher.cpp">
-      <Filter>Source Files\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="core\crypto\crypto_cipher_null_cipher.cpp">
-      <Filter>Source Files\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="core\crypto\crypto_gf2_8.cpp">
-      <Filter>Source Files\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="core\crypto\crypto_hash_auth.cpp">
-      <Filter>Source Files\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="core\crypto\crypto_hash_null_auth.cpp">
-      <Filter>Source Files\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="core\crypto\crypto_kernel_key.cpp">
-      <Filter>Source Files\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="core\crypto\crypto_math_stat.cpp">
-      <Filter>Source Files\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="core\crypto\crypto_md5.cpp">
-      <Filter>Source Files\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="core\crypto\crypto_my_aes.cpp">
-      <Filter>Source Files\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="core\crypto\crypto_replay_rdb.cpp">
-      <Filter>Source Files\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="core\crypto\crypto_replay_rdbx.cpp">
-      <Filter>Source Files\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="core\crypto\crypto_replay_ut_sim.cpp">
-      <Filter>Source Files\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="core\crypto\crypto_rng_ctr_prng.cpp">
-      <Filter>Source Files\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="core\crypto\crypto_rng_prng.cpp">
-      <Filter>Source Files\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="core\crypto\crypto_rng_rand_source.cpp">
-      <Filter>Source Files\core\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="core\install\install_install.cpp">
       <Filter>Source Files\core\install</Filter>
     </ClCompile>
@@ -3997,12 +3856,6 @@
     <ClCompile Include="net\net_port_forward.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_value.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="net\mail\mail_simple_pop3.cpp">
-      <Filter>Source Files\net\mail</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\backview\backview_graphics.cpp">
       <Filter>Source Files\graphics\backview</Filter>
     </ClCompile>
@@ -4183,9 +4036,6 @@
     <ClCompile Include="user\user\user_form_list.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_frame_window.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_front_end.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -4336,9 +4186,6 @@
     <ClCompile Include="user\user\user_xfplayer_view_line.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="crypto_kernel_crypto_kernel.cpp">
-      <Filter>Source Files\core\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="user\userex\userex_userex.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
@@ -4347,6 +4194,9 @@
     </ClCompile>
     <ClCompile Include="user\user\user_xfplayer_view_lines.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\crypto\crypto_my_aes.cpp">
+      <Filter>Source Files\compress\crypto</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

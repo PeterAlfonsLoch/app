@@ -41,7 +41,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#include "framework.h"
+#include "crypto_framework.h"
 
 int32_t
 v32_low_bit(v32_t *w);
@@ -174,7 +174,7 @@ v32_weight(v32_t a) {
   return wt;
 }
 
-inline uchar
+uchar
 v32_distance(v32_t x, v32_t y) {
   x.value ^= y.value;
   return v32_weight(x);
@@ -525,13 +525,13 @@ A_times_x_plus_b(uint8_t A[8], uint8_t x, uint8_t b) {
   return b;
 }
 
-inline void
+void
 v16_copy_octet_string(v16_t *x, const uint8_t s[2]) {
   x->v8[0]  = s[0];
   x->v8[1]  = s[1];
 }
 
-inline void
+void
 v32_copy_octet_string(v32_t *x, const uint8_t s[4]) {
   x->v8[0]  = s[0];
   x->v8[1]  = s[1];
@@ -539,7 +539,7 @@ v32_copy_octet_string(v32_t *x, const uint8_t s[4]) {
   x->v8[3]  = s[3];
 }
 
-inline void
+void
 v64_copy_octet_string(v64_t *x, const uint8_t s[8]) {
   x->v8[0]  = s[0];
   x->v8[1]  = s[1];
@@ -633,7 +633,7 @@ v128_set_bit_to(v128_t *x, int32_t i, int32_t y){
 #endif /** DATATYPES_USE_MACROS */
 
 
-inline void
+void
 v128_left_shift2(v128_t *x, int32_t num_bits) {
   int32_t i;
   int32_t word_shift = num_bits >> 5;

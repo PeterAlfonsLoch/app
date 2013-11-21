@@ -14,7 +14,7 @@ namespace crypto
 
    HRes aes_cbc_coder::Init()
    {
-      return S_OK; 
+      return S_OK;
    }
 
    uint32_t aes_cbc_coder::Filter(byte *data, uint32_t size)
@@ -32,7 +32,7 @@ namespace crypto
    {
       if ((size & 0x7) != 0 || size < 16 || size > 32)
          return E_INVALIDARG;
-      _setKeyFunc(&m_ctx, data, _codeFunc == (cipher_crypt_func_t) &::aes_cbc_nist_encrypt ? direction_encrypt : direction_decrypt);
+      _setKeyFunc(&m_ctx, data, _codeFunc == (cipher_crypt_func_t)&::aes_cbc_nist_encrypt ? direction_encrypt : direction_decrypt);
       return S_OK;
    }
 
@@ -40,18 +40,18 @@ namespace crypto
    {
       if (size != AES_BLOCK_SIZE)
          return E_INVALIDARG;
-      aes_cbc_set_iv(&m_ctx, (void *) data);
+      aes_cbc_set_iv(&m_ctx, (void *)data);
       return S_OK;
    }
 
    aes_cbc_encoder::aes_cbc_encoder()
-   { 
-      _codeFunc = (cipher_crypt_func_t) &::aes_cbc_nist_encrypt; _setKeyFunc = (cipher_init_func_t) &::aes_cbc_context_init; 
+   {
+      _codeFunc = (cipher_crypt_func_t)&::aes_cbc_nist_encrypt; _setKeyFunc = (cipher_init_func_t)&::aes_cbc_context_init;
    }
 
    aes_cbc_decoder::aes_cbc_decoder()
-   { 
-      _codeFunc = (cipher_crypt_func_t) &::aes_cbc_nist_decrypt; _setKeyFunc = (cipher_init_func_t) &::aes_cbc_context_init; 
+   {
+      _codeFunc = (cipher_crypt_func_t)&::aes_cbc_nist_decrypt; _setKeyFunc = (cipher_init_func_t)&::aes_cbc_context_init;
    }
 
 } // namespace crypto

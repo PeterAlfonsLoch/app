@@ -14,9 +14,9 @@ CLASS_DECL_BASE int_bool file_exists_dup(const char * path1);
 #ifdef WINDOWS
 CLASS_DECL_BASE int_bool read_resource_as_file_dup(const char * pszFile, HINSTANCE hinst, UINT nID, LPCTSTR lpcszType);
 #endif
-CLASS_DECL_BASE int_bool is_file_ok(const char * path1, const char * pszTemplate);
+//CLASS_DECL_BASE int_bool is_file_ok(const char * path1, const char * pszTemplate);
 CLASS_DECL_BASE int_bool file_put_contents_dup(const char * path, const char * contents, count len);
-CLASS_DECL_BASE int_bool get_temp_file_name_dup(char * szRet, count iBufferSize, const char * pszName, const char * pszExtension);
+//CLASS_DECL_BASE int_bool get_temp_file_name_dup(char * szRet, count iBufferSize, const char * pszName, const char * pszExtension);
 CLASS_DECL_BASE int_bool get_temp_file_name_template(char * szRet, count iBufferSize, const char * pszName, const char * pszExtension, const char * pszTemplate);
 CLASS_DECL_BASE uint64_t file_length_dup(const char * path);
 
@@ -147,9 +147,9 @@ CLASS_DECL_BASE int_bool file_exists_dup(const char * path1);
 CLASS_DECL_BASE int_bool read_resource_as_file_dup(const char * pszFile, HINSTANCE hinst, UINT nID, LPCTSTR lpcszType);
 #endif
 
-CLASS_DECL_BASE int_bool is_file_ok(const char * path1, const char * pszTemplate);
+//CLASS_DECL_BASE int_bool is_file_ok(const char * path1, const char * pszTemplate);
 CLASS_DECL_BASE int_bool file_put_contents_dup(const char * path, const char * contents, count len);
-CLASS_DECL_BASE int_bool get_temp_file_name_dup(char * szRet, count iBufferSize, const char * pszName, const char * pszExtension);
+//CLASS_DECL_BASE int_bool get_temp_file_name_dup(char * szRet, count iBufferSize, const char * pszName, const char * pszExtension);
 CLASS_DECL_BASE int_bool get_temp_file_name_template(char * szRet, count iBufferSize, const char * pszName, const char * pszExtension, const char * pszTemplate);
 CLASS_DECL_BASE uint64_t file_length_dup(const char * path);
 

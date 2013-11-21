@@ -43,7 +43,7 @@
  *
  */
 
-#include "framework.h"
+#include "crypto_framework.h"
 
 
 /* 
@@ -1500,7 +1500,7 @@ aes_expand_decryption_key(const v128_t *key,
 #ifdef CPU_CISC
 
 
-static inline void
+static void
 aes_round(v128_t *state, const v128_t *round_key) {
   uint32_t column0, column1, column2, column3;
 
@@ -1527,7 +1527,7 @@ aes_round(v128_t *state, const v128_t *round_key) {
 }
 
 
-static inline void
+static void
 aes_inv_round(v128_t *state, const v128_t *round_key) {
   uint32_t column0, column1, column2, column3;
 
@@ -1553,7 +1553,7 @@ aes_inv_round(v128_t *state, const v128_t *round_key) {
 
 }
 
-static inline void
+static void
 aes_final_round(v128_t *state, const v128_t *round_key) {
   uint8_t tmp;
 
@@ -1589,7 +1589,7 @@ aes_final_round(v128_t *state, const v128_t *round_key) {
   v128_xor_eq(state, round_key);
 }
 
-static inline void
+static void
 aes_inv_final_round(v128_t *state, const v128_t *round_key) {
   uint8_t tmp;
 
@@ -1628,7 +1628,7 @@ aes_inv_final_round(v128_t *state, const v128_t *round_key) {
 
 #elif CPU_RISC
 
-static inline void
+static void
 aes_round(v128_t *state, const v128_t *round_key) {
   uint32_t column0, column1, column2, column3;
 
@@ -1667,7 +1667,7 @@ aes_round(v128_t *state, const v128_t *round_key) {
 
 }
 
-static inline void
+static void
 aes_inv_round(v128_t *state, const v128_t *round_key) {
   uint32_t column0, column1, column2, column3;
 
@@ -1708,7 +1708,7 @@ aes_inv_round(v128_t *state, const v128_t *round_key) {
 
 }
 
-static inline void
+static void
 aes_final_round(v128_t *state, const v128_t *round_key) {
   uint32_t tmp0, tmp1, tmp2, tmp3;
 
@@ -1743,7 +1743,7 @@ aes_final_round(v128_t *state, const v128_t *round_key) {
 
 }
 
-static inline void
+static void
 aes_inv_final_round(v128_t *state, const v128_t *round_key) {
   uint32_t tmp0, tmp1, tmp2, tmp3;
 
@@ -1780,7 +1780,7 @@ aes_inv_final_round(v128_t *state, const v128_t *round_key) {
 
 #elif CPU_16  /* assume 16-bit uint16_t size on processor */
 
-static inline void
+static void
 aes_round(v128_t *state, const v128_t *round_key) {
   uint32_t column0, column1, column2, column3;
   uint16_t ca
@@ -1807,7 +1807,7 @@ aes_round(v128_t *state, const v128_t *round_key) {
 }
 
 
-static inline void
+static void
 aes_inv_round(v128_t *state, const v128_t *round_key) {
   uint32_t column0, column1, column2, column3;
 
@@ -1833,7 +1833,7 @@ aes_inv_round(v128_t *state, const v128_t *round_key) {
 
 }
 
-static inline void
+static void
 aes_final_round(v128_t *state, const v128_t *round_key) {
   uint8_t tmp;
 
@@ -1869,7 +1869,7 @@ aes_final_round(v128_t *state, const v128_t *round_key) {
   v128_xor_eq(state, round_key);
 }
 
-static inline void
+static void
 aes_inv_final_round(v128_t *state, const v128_t *round_key) {
   uint8_t tmp;
 

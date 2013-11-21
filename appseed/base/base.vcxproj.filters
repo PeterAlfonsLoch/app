@@ -690,9 +690,6 @@
     <Filter Include="Source Files\net\mail">
       <UniqueIdentifier>{680a0322-4659-4b9e-9c33-fd5c55060730}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\base\crypto\NewFilter1">
-      <UniqueIdentifier>{eec51caa-1960-47ce-8842-e903889c988f}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework_c.h">
@@ -1251,9 +1248,6 @@
       <Filter>Header Files\base</Filter>
     </ClInclude>
     <ClInclude Include="user\user_create_context.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_base_interaction.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="str\str_istring.h">
@@ -2984,6 +2978,21 @@
     <ClInclude Include="net\mail\simple_pop3.h">
       <Filter>Header Files\net\mail</Filter>
     </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_sha1_digest.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_framework.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_internal_data_types.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_spa.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_c.c">
@@ -3423,9 +3432,6 @@
     </ClCompile>
     <ClCompile Include="base\base_muldiv64.cpp">
       <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_file.cpp">
-      <Filter>Source Files\spa</Filter>
     </ClCompile>
     <ClCompile Include="base\base_conv.cpp">
       <Filter>Source Files\base</Filter>
@@ -4145,9 +4151,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_window.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_base_interaction.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_check_interface.cpp">
@@ -6388,9 +6391,6 @@
     <ClCompile Include="base\crypto\crypto_md5.cpp">
       <Filter>Source Files\base\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="base\crypto\crypto_my_aes.cpp">
-      <Filter>Source Files\base\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="base\crypto\crypto_nessie.cpp">
       <Filter>Source Files\base\crypto</Filter>
     </ClCompile>
@@ -6477,6 +6477,15 @@
     </ClCompile>
     <ClCompile Include="net\mail\mail_simple_pop3.cpp">
       <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_kernel_crypto_kernel.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_framework.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_spa.cpp">
+      <Filter>Source Files\spa</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -6593,6 +6602,9 @@
     </None>
     <None Include="base\base_live_object.h">
       <Filter>Header Files\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

@@ -181,7 +181,7 @@ namespace spa
 
       string strGetFontopus("http://" + m_strRequestingServer + "/get_fontopus");
 
-      m_strFontopusServer = ::fontopus::get_server(strGetFontopus, 8);
+      m_strFontopusServer = Application.fontopus()->get_server(strGetFontopus, 8);
 
       if (!str::ends(m_strFontopusServer, ".ca2.cc"))
          return ::spa::login::result_fail;
@@ -221,7 +221,7 @@ namespace spa
          {
 
 
-            strLogin = http_get_dup(m_strLoginUrl);
+            strLogin = Application.http().get(m_strLoginUrl);
 
          }
          catch (...)
@@ -293,7 +293,7 @@ namespace spa
 
          strAuthUrl += "&sessid=" + strSessId;
 
-         strResponse = http_get_dup(strAuthUrl);
+         strResponse = Application.http().get(strAuthUrl);
 
       }
 

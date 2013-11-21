@@ -4,6 +4,17 @@
 namespace user
 {
 
+#ifdef METROWIN
+
+
+
+   Platform::Agile<Windows::UI::Core::CoreWindow>(*interaction::s_get_os_window)(interaction * pui) = &interaction::get_os_window_default;
+
+
+
+#endif
+
+
    sp(interaction) interaction::g_pguieMouseMoveCapture = NULL;
 
    interaction::interaction()
@@ -3563,7 +3574,9 @@ namespace user
    }
 
 
+
+
+
+
+
 } // namespace user
-
-
-

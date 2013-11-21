@@ -11,8 +11,9 @@ namespace fontopus
    public:
 
 
-      thread * m_pthreadCreatingUser;
-      user *         m_puser;
+      thread *                               m_pthreadCreatingUser;
+      user *                                 m_puser;
+      string_to_string                       m_mapFontopusServer;
 
 
       fontopus(base_application * papp);
@@ -42,6 +43,9 @@ namespace fontopus
       virtual void on_user_login(::fontopus::user * puser);
 
       virtual void on_request(sp(::create_context) pcreatecontext);
+
+
+      virtual string get_server(const char * pszUrl, int32_t iRetry);
 
    };
 
