@@ -1,7 +1,5 @@
 #include "framework.h"
-#include "base/spa/spa_style.h"
-#include "simple_ui.h"
-#include "simple_edit_box.h"
+
 
 
 simple_edit_box::simple_edit_box()
