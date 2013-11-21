@@ -44,7 +44,7 @@
 
 #include "base_heap.h"
 
-#include "base/str/str_c.h"
+#include "base/primitive/str/str_c.h"
 
 #include "base/filesystem/file/file_c.h"
 

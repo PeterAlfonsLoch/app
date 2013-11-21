@@ -230,7 +230,7 @@ namespace file
 #include "base/primitive/primitive_id.h"
 
 
-#include "base/str/str.h"
+#include "base/primitive/str/str.h"
 #include "base/exception/exception.h"
 #include "base_common.h"
 
@@ -380,7 +380,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base/filesystem/file/file_circular_buffer.h"
 
 
-#include "base/str/str_international2.h"
+#include "base/primitive/str/str_international2.h"
 
 #include "net/http/http_output_stream.h"
 
@@ -481,7 +481,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 #include "user/user_window_draw.h"
 
-#include "base/str/str_international_locale_schema.h"
+#include "base/primitive/str/str_international_locale_schema.h"
 
 #include "base/user/user_str.h"
 
@@ -524,7 +524,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base/multithreading/multithreading.inl"
 
 
-#include "base/str/str.inl"
+#include "base/primitive/str/str.inl"
 
 #include "base/base/base.inl"
 

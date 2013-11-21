@@ -36,21 +36,6 @@
     <Filter Include="Source Files\exception">
       <UniqueIdentifier>{934af833-4170-42f6-9310-7447b5d7edea}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\os">
-      <UniqueIdentifier>{9e92b674-0ae7-4e1e-bd86-d513ccacb6a8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\str">
-      <UniqueIdentifier>{ccf3d663-d7b0-497e-a749-89d495cf7b95}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\str">
-      <UniqueIdentifier>{bc376aac-e84d-4512-8b6b-fc52197d90f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\xml">
-      <UniqueIdentifier>{42770ef4-1efe-40e5-864d-38ad28249a78}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\xml">
-      <UniqueIdentifier>{c4dba712-4a23-4904-b3c1-25fa6f1b24e8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\net">
       <UniqueIdentifier>{ab3329cf-9ecc-4590-a567-9f22556c4d8f}</UniqueIdentifier>
     </Filter>
@@ -62,9 +47,6 @@
     </Filter>
     <Filter Include="Source Files\net">
       <UniqueIdentifier>{116e3076-c458-43fe-92e9-72e6aae3c491}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os">
-      <UniqueIdentifier>{245e3241-db5a-4886-814d-9434580575d9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\user">
       <UniqueIdentifier>{dc109c06-f55b-48ea-ac46-06302b3262f3}</UniqueIdentifier>
@@ -80,12 +62,6 @@
     </Filter>
     <Filter Include="Binary Files\x86">
       <UniqueIdentifier>{8bedbbf7-bbee-4bec-b9ca-3e59352115ef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\cross">
-      <UniqueIdentifier>{f22e1b28-50e1-41b7-ab05-fbf12e97db6e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\cross\metrowin">
-      <UniqueIdentifier>{e16bae98-9b4b-4f16-8aea-c1eeeb80d1d7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\net\http">
       <UniqueIdentifier>{87154103-1603-4ede-93b7-a339452693d9}</UniqueIdentifier>
@@ -210,21 +186,6 @@
     <Filter Include="Source Files\primitive\collection">
       <UniqueIdentifier>{b3a683c8-c4bd-46a0-9eab-beb79650277e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\os\android">
-      <UniqueIdentifier>{1d998585-d816-43da-8e2f-dd16e84dde53}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\windows">
-      <UniqueIdentifier>{719bbac6-b1e2-43be-9042-48cec85915ad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\android">
-      <UniqueIdentifier>{58b6201f-03a2-4896-ae5a-477d9ea6a138}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\windows">
-      <UniqueIdentifier>{a9fa6c5c-4118-45a3-a636-0a71e98bcdb4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\str\x">
-      <UniqueIdentifier>{22a0a391-7eae-4bd1-b977-ca94795740fc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\programming">
       <UniqueIdentifier>{d0b4c014-e341-4901-87ae-635655fd469d}</UniqueIdentifier>
     </Filter>
@@ -236,12 +197,6 @@
     </Filter>
     <Filter Include="Header Files\programming\javascript">
       <UniqueIdentifier>{1523f2fe-95c5-4ef8-aeb6-44864f6d2cc6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\windows\builtin_draw2d_gdiplus">
-      <UniqueIdentifier>{e52501eb-5d02-44a1-9ba6-2eb7748ab202}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\windows\builtin_draw2d_gdiplus">
-      <UniqueIdentifier>{6ea73a7e-f176-4d5a-a82b-5ff48ddf036f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\user\fontopus">
       <UniqueIdentifier>{52423014-d461-4259-bfeb-967df0f4f8af}</UniqueIdentifier>
@@ -690,6 +645,57 @@
     <Filter Include="Source Files\install">
       <UniqueIdentifier>{4b14bab0-dd46-49b3-9fce-8c6ba58b28b1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\primitive\str">
+      <UniqueIdentifier>{d5ea5447-e463-4542-852d-3dad51cf8c42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\str\x">
+      <UniqueIdentifier>{edfaa98d-6860-4c70-a837-aa8ee4641806}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\str">
+      <UniqueIdentifier>{48b842bb-d6ab-4f7c-9d21-8c8541d95a90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\xml">
+      <UniqueIdentifier>{c4dba712-4a23-4904-b3c1-25fa6f1b24e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\xml">
+      <UniqueIdentifier>{42770ef4-1efe-40e5-864d-38ad28249a78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\os">
+      <UniqueIdentifier>{9e92b674-0ae7-4e1e-bd86-d513ccacb6a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\os\android">
+      <UniqueIdentifier>{1d998585-d816-43da-8e2f-dd16e84dde53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\os\windows">
+      <UniqueIdentifier>{719bbac6-b1e2-43be-9042-48cec85915ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\os\windows\builtin_draw2d_gdiplus">
+      <UniqueIdentifier>{6ea73a7e-f176-4d5a-a82b-5ff48ddf036f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\os">
+      <UniqueIdentifier>{245e3241-db5a-4886-814d-9434580575d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\os\cross">
+      <UniqueIdentifier>{f22e1b28-50e1-41b7-ab05-fbf12e97db6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\os\cross\metrowin">
+      <UniqueIdentifier>{e16bae98-9b4b-4f16-8aea-c1eeeb80d1d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\os\android">
+      <UniqueIdentifier>{58b6201f-03a2-4896-ae5a-477d9ea6a138}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\os\windows">
+      <UniqueIdentifier>{a9fa6c5c-4118-45a3-a636-0a71e98bcdb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\os\windows\builtin_draw2d_gdiplus">
+      <UniqueIdentifier>{e52501eb-5d02-44a1-9ba6-2eb7748ab202}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\os\cross">
+      <UniqueIdentifier>{e9b106f1-4ddd-4521-b7c1-6461c701be4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\install">
+      <UniqueIdentifier>{90021ec4-d01a-4f04-a062-a622ecf9d870}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework_c.h">
@@ -929,50 +935,11 @@
     <ClInclude Include="multithreading\multithreading_thread_os.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="os\os_process.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_shared_memory.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive_virtual_memory.h">
       <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_tokenizer.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_string.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_str2.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_str.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_ch.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_ch_class.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_international2.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_international.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_hex.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_to_integer.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_from_integer.h">
-      <Filter>Header Files\str</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive_var2.h">
       <Filter>Header Files\primitive</Filter>
@@ -998,66 +965,6 @@
     <ClInclude Include="primitive\primitive_request_interface.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="xml\xml.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xml_attr.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xml_base_array.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xml_data.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xml_disp_option.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xml_document.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xml_edit.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xml_entity.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xml_enum.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xml_exportable.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xml_importable.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xml_input_tree.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xml_node.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xml_output_tree.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xml_parse_info.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xml_property_exchange.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xml_tree_base.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xml_tree_schema.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xml_var_exchange.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\xml_xmlite.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_data_listener.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
@@ -1076,26 +983,11 @@
     <ClInclude Include="primitive\primitive_edit.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="xml\xml_departament.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_create_context.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include="net\net.h">
       <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_format.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_interface.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_simple.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_composite.h">
-      <Filter>Header Files\str</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive_command.h">
       <Filter>Header Files\primitive</Filter>
@@ -1184,9 +1076,6 @@
     <ClInclude Include="base\base_types.h">
       <Filter>Header Files\base</Filter>
     </ClInclude>
-    <ClInclude Include="str\str_c.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
     <ClInclude Include="net\net_net.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
@@ -1205,20 +1094,8 @@
     <ClInclude Include="base\base_root.h">
       <Filter>Header Files\base</Filter>
     </ClInclude>
-    <ClInclude Include="str\str_str1.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
     <ClInclude Include="base\base_auto_pointer.h">
       <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_wstring.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_stringtow.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_wtostring.h">
-      <Filter>Header Files\str</Filter>
     </ClInclude>
     <ClInclude Include="base\base_definition.h">
       <Filter>Header Files\base</Filter>
@@ -1238,20 +1115,11 @@
     <ClInclude Include="primitive\primitive_bit.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="str\str_base64.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
     <ClInclude Include="base\base_enum.h">
       <Filter>Header Files\base</Filter>
     </ClInclude>
     <ClInclude Include="user\user_create_context.h">
       <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_istring.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="os\os.h">
-      <Filter>Header Files\os</Filter>
     </ClInclude>
     <ClInclude Include="base\base_element.h">
       <Filter>Header Files\base</Filter>
@@ -1889,53 +1757,11 @@
     <ClInclude Include="primitive\comparison\comparison_var_strict.h">
       <Filter>Header Files\primitive\comparison</Filter>
     </ClInclude>
-    <ClInclude Include="os\android\android.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\android_window_impl.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="str\x\x_charcategory.h">
-      <Filter>Header Files\str\x</Filter>
-    </ClInclude>
-    <ClInclude Include="str\x\x_charcategory_names.h">
-      <Filter>Header Files\str\x</Filter>
-    </ClInclude>
-    <ClInclude Include="str\x\x_charcategory2.h">
-      <Filter>Header Files\str\x</Filter>
-    </ClInclude>
-    <ClInclude Include="str\x\x_defines.h">
-      <Filter>Header Files\str\x</Filter>
-    </ClInclude>
-    <ClInclude Include="str\x\x_encodings.h">
-      <Filter>Header Files\str\x</Filter>
-    </ClInclude>
-    <ClInclude Include="str\x\x_tables.h">
-      <Filter>Header Files\str\x</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_window.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="graphics\graphics_window_graphics.h">
       <Filter>Header Files\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\windows_window_gdi.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\windows.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\windows_file.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\windows_internal.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\windows_thread.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\windows_utils.h">
-      <Filter>Header Files\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="programming\javascript\javascript.h">
       <Filter>Header Files\programming\javascript</Filter>
@@ -1957,42 +1783,6 @@
     </ClInclude>
     <ClInclude Include="primitive\geometry\geometry_types.h">
       <Filter>Header Files\primitive\geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus.h">
-      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_bitmap.h">
-      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_brush.h">
-      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_dib.h">
-      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_factory_exchange.h">
-      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_font.h">
-      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_graphics.h">
-      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_object.h">
-      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_palette.h">
-      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_path.h">
-      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_pen.h">
-      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_region.h">
-      <Filter>Header Files\os\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="graphics\visual\visual_icon.h">
       <Filter>Header Files\graphics\visual</Filter>
@@ -2053,9 +1843,6 @@
     </ClInclude>
     <ClInclude Include="primitive\math\math_math_rng.h">
       <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_parse.h">
-      <Filter>Header Files\str</Filter>
     </ClInclude>
     <ClInclude Include="base\compress\zlib\crc32.h">
       <Filter>Header Files\base\compress\zlib</Filter>
@@ -2164,9 +1951,6 @@
     </ClInclude>
     <ClInclude Include="user\user_str.h">
       <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_international_locale_schema.h">
-      <Filter>Header Files\str</Filter>
     </ClInclude>
     <ClInclude Include="base\compress\compress_bzip_stream.h">
       <Filter>Header Files\base\compress</Filter>
@@ -2819,9 +2603,6 @@
     <ClInclude Include="user\simple\simple_fontopus.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows\windows_simple_ui.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="base\base_id_pool.h">
       <Filter>Header Files\base</Filter>
     </ClInclude>
@@ -3050,6 +2831,237 @@
     <ClInclude Include="install\install_hotplugin_plugin.h">
       <Filter>Header Files\install</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\str\str.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_base64.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_c.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_ch.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_ch_class.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_composite.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_format.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_from_integer.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_hex.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_interface.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_international.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_international_locale_schema.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_international2.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_istring.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_parse.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_simple.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_str.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_str1.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_str2.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_string.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_stringtow.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_to_integer.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_tokenizer.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_wstring.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_wtostring.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\x\x_charcategory.h">
+      <Filter>Header Files\primitive\str\x</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\x\x_charcategory_names.h">
+      <Filter>Header Files\primitive\str\x</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\x\x_charcategory2.h">
+      <Filter>Header Files\primitive\str\x</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\x\x_defines.h">
+      <Filter>Header Files\primitive\str\x</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\x\x_encodings.h">
+      <Filter>Header Files\primitive\str\x</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\x\x_tables.h">
+      <Filter>Header Files\primitive\str\x</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml_attr.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml_base_array.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml_data.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml_departament.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml_disp_option.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml_document.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml_edit.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml_entity.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml_enum.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml_exportable.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml_importable.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml_input_tree.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml_node.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml_output_tree.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml_parse_info.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml_property_exchange.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml_tree_base.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml_tree_schema.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml_var_exchange.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\xml\xml_xmlite.h">
+      <Filter>Header Files\base\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross.h">
+      <Filter>Header Files\base\os</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\os.h">
+      <Filter>Header Files\base\os</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\os_process.h">
+      <Filter>Header Files\base\os</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\cross.h">
+      <Filter>Header Files\base\os\cross</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_window_impl.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\windows\windows.h">
+      <Filter>Header Files\base\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\windows\windows_file.h">
+      <Filter>Header Files\base\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\windows\windows_internal.h">
+      <Filter>Header Files\base\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\windows\windows_simple_ui.h">
+      <Filter>Header Files\base\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\windows\windows_thread.h">
+      <Filter>Header Files\base\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\windows\windows_utils.h">
+      <Filter>Header Files\base\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\windows\windows_window_gdi.h">
+      <Filter>Header Files\base\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus.h">
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_bitmap.h">
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_brush.h">
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_dib.h">
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_factory_exchange.h">
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_font.h">
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_graphics.h">
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_object.h">
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_palette.h">
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_path.h">
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_pen.h">
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_region.h">
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_c.c">
@@ -3247,36 +3259,6 @@
     <ClCompile Include="primitive\primitive_virtual_memory.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="str\str_ch.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
-    <ClCompile Include="str\str_ch_class.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
-    <ClCompile Include="str\str_hex.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
-    <ClCompile Include="str\str_international.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
-    <ClCompile Include="str\str_str.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
-    <ClCompile Include="str\str_verisimple_wstring.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
-    <ClCompile Include="str\str_from_integer.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
-    <ClCompile Include="str\str_to_integer.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
-    <ClCompile Include="str\str_strx.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
-    <ClCompile Include="str\str_strw.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive_property.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
@@ -3285,63 +3267,6 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive_factory.cpp">
       <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_attr.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_base_array.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_data.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_disp_option.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_document.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_edit.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_entity.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_exportable.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_importable.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_input_tree.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_node.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_output_tree.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_parse_info.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_property_exchange.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_tree_base.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_tree_schema.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_var_exchange.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_xml.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_xmlite.cpp">
-      <Filter>Source Files\xml</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_data_listener.cpp">
       <Filter>Source Files\primitive</Filter>
@@ -3364,26 +3289,8 @@
     <ClCompile Include="primitive\primitive_type.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="str\str_dup.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive_var.cpp">
       <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="str\str_simple.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
-    <ClCompile Include="str\str_string.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
-    <ClCompile Include="str\str_core.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
-    <ClCompile Include="str\str_format.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
-    <ClCompile Include="str\str_manager.cpp">
-      <Filter>Source Files\str</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_property_set.cpp">
       <Filter>Source Files\primitive</Filter>
@@ -3439,9 +3346,6 @@
     <ClCompile Include="net\net_url_departament.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
-    <ClCompile Include="str\str_c.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive_application_bias.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
@@ -3481,38 +3385,14 @@
     <ClCompile Include="base\base_allocate_system_heap.cpp">
       <Filter>Source Files\base</Filter>
     </ClCompile>
-    <ClCompile Include="str\str_tokenizer.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
     <ClCompile Include="base\base_muldiv64.cpp">
       <Filter>Source Files\base</Filter>
     </ClCompile>
     <ClCompile Include="base\base_conv.cpp">
       <Filter>Source Files\base</Filter>
     </ClCompile>
-    <ClCompile Include="str\str_stringtow.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
-    <ClCompile Include="str\str_wtostring.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
     <ClCompile Include="base\base_template.cpp">
       <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="os\os_process.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\os_http.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\os_thread.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\os_file.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="str\str_base64.cpp">
-      <Filter>Source Files\str</Filter>
     </ClCompile>
     <ClCompile Include="version.cpp">
       <Filter>Source Files</Filter>
@@ -3523,14 +3403,8 @@
     <ClCompile Include="user\user_create_context.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="str\str_istring.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
     <ClCompile Include="base\base_element.cpp">
       <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="os\cross\metrowin\metrowin_user.cpp">
-      <Filter>Source Files\os\cross\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="net\http\http_application.cpp">
       <Filter>Source Files\net\http</Filter>
@@ -3856,39 +3730,6 @@
     <ClCompile Include="primitive\collection\collection_var_array.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
-    <ClCompile Include="os\android\android.c">
-      <Filter>Source Files\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="os\android\android_locale.c">
-      <Filter>Source Files\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="os\android\android_window_impl.cpp">
-      <Filter>Source Files\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\windows.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\windows_file.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\windows_file_std.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\windows_internal.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\windows_process.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\windows_thread.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\windows_time.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\windows_utils.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="programming\javascript\javascript.cpp">
       <Filter>Source Files\programming\javascript</Filter>
     </ClCompile>
@@ -3897,42 +3738,6 @@
     </ClCompile>
     <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp">
       <Filter>Source Files\programming\javascript</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_bitmap.cpp">
-      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_brush.cpp">
-      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_dib.cpp">
-      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_factory_exchange.cpp">
-      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_font.cpp">
-      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_graphics.cpp">
-      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_object.cpp">
-      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_palette.cpp">
-      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_path.cpp">
-      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_pen.cpp">
-      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_preview_dc.cpp">
-      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_region.cpp">
-      <Filter>Source Files\os\windows\builtin_draw2d_gdiplus</Filter>
     </ClCompile>
     <ClCompile Include="user\fontopus\fontopus_contact_list.cpp">
       <Filter>Source Files\user\fontopus</Filter>
@@ -6157,9 +5962,6 @@
     <ClCompile Include="base\base_cregexp.cpp">
       <Filter>Source Files\base</Filter>
     </ClCompile>
-    <ClCompile Include="str\str_parse.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\math\math_math_rng.cpp">
       <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
@@ -6177,9 +5979,6 @@
     </ClCompile>
     <ClCompile Include="user\user.cpp">
       <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\windows_window_gdi.cpp">
-      <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="graphics\graphics_window_graphics.cpp">
       <Filter>Source Files\graphics</Filter>
@@ -6202,12 +6001,6 @@
     <ClCompile Include="base\base_live_object.cpp">
       <Filter>Source Files\base</Filter>
     </ClCompile>
-    <ClCompile Include="str\str_international_locale_schema.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\windows_crypto.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="user\simple\simple_edit_box.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
@@ -6225,9 +6018,6 @@
     </ClCompile>
     <ClCompile Include="user\simple\simple_fontopus.cpp">
       <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\windows_simple_ui.cpp">
-      <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="user\user_str.cpp">
       <Filter>Source Files\user</Filter>
@@ -6249,9 +6039,6 @@
     </ClCompile>
     <ClCompile Include="base\base_flags.cpp">
       <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\windows_std_file.cpp">
-      <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="base\openssl\crypto\conf\conf_sap.c">
       <Filter>Source Files\base\openssl\crypto\conf</Filter>
@@ -6601,13 +6388,235 @@
     <ClCompile Include="install\spa_window.cpp">
       <Filter>Source Files\install</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\str\str_base64.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_c.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_ch.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_ch_class.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_core.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_dup.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_format.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_from_integer.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_hex.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_international.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_international_locale_schema.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_istring.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_manager.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_parse.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_simple.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_str.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_string.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_stringtow.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_strw.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_strx.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_to_integer.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_tokenizer.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_verisimple_wstring.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_wtostring.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="base\xml\xml_attr.cpp">
+      <Filter>Source Files\base\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="base\xml\xml_base_array.cpp">
+      <Filter>Source Files\base\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="base\xml\xml_data.cpp">
+      <Filter>Source Files\base\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="base\xml\xml_disp_option.cpp">
+      <Filter>Source Files\base\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="base\xml\xml_document.cpp">
+      <Filter>Source Files\base\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="base\xml\xml_edit.cpp">
+      <Filter>Source Files\base\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="base\xml\xml_entity.cpp">
+      <Filter>Source Files\base\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="base\xml\xml_exportable.cpp">
+      <Filter>Source Files\base\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="base\xml\xml_importable.cpp">
+      <Filter>Source Files\base\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="base\xml\xml_input_tree.cpp">
+      <Filter>Source Files\base\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="base\xml\xml_node.cpp">
+      <Filter>Source Files\base\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="base\xml\xml_output_tree.cpp">
+      <Filter>Source Files\base\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="base\xml\xml_parse_info.cpp">
+      <Filter>Source Files\base\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="base\xml\xml_property_exchange.cpp">
+      <Filter>Source Files\base\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="base\xml\xml_tree_base.cpp">
+      <Filter>Source Files\base\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="base\xml\xml_tree_schema.cpp">
+      <Filter>Source Files\base\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="base\xml\xml_var_exchange.cpp">
+      <Filter>Source Files\base\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="base\xml\xml_xml.cpp">
+      <Filter>Source Files\base\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="base\xml\xml_xmlite.cpp">
+      <Filter>Source Files\base\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\cross\metrowin\metrowin_user.cpp">
+      <Filter>Source Files\base\os\cross\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_window_gdi.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_utils.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_time.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_thread.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_std_file.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_simple_ui.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_process.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_internal.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_file_std.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_file.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_crypto.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_bitmap.cpp">
+      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_brush.cpp">
+      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_dib.cpp">
+      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_factory_exchange.cpp">
+      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_font.cpp">
+      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_graphics.cpp">
+      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_object.cpp">
+      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_palette.cpp">
+      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_path.cpp">
+      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_pen.cpp">
+      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_preview_dc.cpp">
+      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_region.cpp">
+      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\os_file.cpp">
+      <Filter>Source Files\base\os</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\os_http.cpp">
+      <Filter>Source Files\base\os</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\os_process.cpp">
+      <Filter>Source Files\base\os</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\os_thread.cpp">
+      <Filter>Source Files\base\os</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android.c">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_locale.c">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_window_impl.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
       <Filter>Header Files\multithreading</Filter>
-    </None>
-    <None Include="str\str.inl">
-      <Filter>Header Files\str</Filter>
     </None>
     <None Include="base\base.inl">
       <Filter>Header Files\base</Filter>
@@ -6755,6 +6764,12 @@
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="primitive\str\str.inl">
+      <Filter>Header Files\primitive\str</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
