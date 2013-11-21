@@ -639,12 +639,6 @@
     <Filter Include="Source Files\net\mail">
       <UniqueIdentifier>{680a0322-4659-4b9e-9c33-fd5c55060730}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\install">
-      <UniqueIdentifier>{9faab802-b503-4ed8-888b-b85ace9bc090}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\install">
-      <UniqueIdentifier>{4b14bab0-dd46-49b3-9fce-8c6ba58b28b1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\primitive\str">
       <UniqueIdentifier>{d5ea5447-e463-4542-852d-3dad51cf8c42}</UniqueIdentifier>
     </Filter>
@@ -695,6 +689,18 @@
     </Filter>
     <Filter Include="Header Files\base\install">
       <UniqueIdentifier>{90021ec4-d01a-4f04-a062-a622ecf9d870}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\hotplugin">
+      <UniqueIdentifier>{4e7f61cf-cc47-428d-8f33-b8f921606eb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\install">
+      <UniqueIdentifier>{3199e756-cf18-4f55-8ef4-e1ef783b0fda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\install\windows">
+      <UniqueIdentifier>{754bf363-6d72-4e59-a58c-2692948bf105}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\hotplugin">
+      <UniqueIdentifier>{f616a747-70f4-495b-a334-8a945ffeca0d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -2759,78 +2765,6 @@
     <ClInclude Include="base\crypto\crypto\crypto_internal_data_types.h">
       <Filter>Header Files\base\crypto\crypto</Filter>
     </ClInclude>
-    <ClInclude Include="install\resource.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\spa.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\spa_boot.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\spa_canvas.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\spa_cube_run.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\spa_focus.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\spa_http.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\spa_install_ca2.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\spa_installer.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\spa_installer_square.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\spa_login.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\spa_plugin.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\spa_small_bell.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\spa_spa.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\spa_spa_spa.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\spa_starter_start.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\spa_style.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\spa_trace.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\spa_window.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\spa2.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\install_hotplugin.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\install_hotplugin_container_launcher.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\install_hotplugin_host.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
-    <ClInclude Include="install\install_hotplugin_plugin.h">
-      <Filter>Header Files\install</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\str\str.h">
       <Filter>Header Files\primitive\str</Filter>
     </ClInclude>
@@ -3061,6 +2995,75 @@
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_region.h">
       <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+    </ClInclude>
+    <ClInclude Include="base\hotplugin\hotplugin.h">
+      <Filter>Header Files\base\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\hotplugin\hotplugin_container_launcher.h">
+      <Filter>Header Files\base\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\hotplugin\hotplugin_host.h">
+      <Filter>Header Files\base\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\hotplugin\hotplugin_plugin.h">
+      <Filter>Header Files\base\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_boot.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_canvas.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_cube_run.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_focus.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_http.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_install.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_install_ca2.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_install_install.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_installer.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_installer_square.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_login.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_plugin.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_small_bell.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_starter_start.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_style.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_trace.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_window.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install2.h">
+      <Filter>Header Files\base\install</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -6319,75 +6322,6 @@
     <ClCompile Include="base\crypto\crypto\crypto_framework.c">
       <Filter>Source Files\base\crypto\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="install\hotplugin_container_launcher.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\hotplugin_host.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\hotplugin_plugin.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\spa.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\spa_boot.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\spa_bz.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\spa_canvas.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\spa_cube_run.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\spa_focus.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\spa_http.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\spa_install_ca2.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\spa_installer.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\spa_installer_square.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\spa_login.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\spa_main.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\spa_plugin.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\spa_small_bell.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\spa_spa.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\spa_spa_spa.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\spa_starter_start.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\spa_style.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\spa_trace.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
-    <ClCompile Include="install\spa_window.cpp">
-      <Filter>Source Files\install</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\str\str_base64.cpp">
       <Filter>Source Files\primitive\str</Filter>
     </ClCompile>
@@ -6613,6 +6547,84 @@
     <ClCompile Include="base\os\android\android_window_impl.cpp">
       <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_container_launcher.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_host.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_plugin.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\windows\install_windows_boot.cpp">
+      <Filter>Source Files\base\install\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\windows\install_windows_service.cpp">
+      <Filter>Source Files\base\install\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\windows\install_windows_win.cpp">
+      <Filter>Source Files\base\install\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_boot.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_bz.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_canvas.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_cube_run.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_focus.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_http.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_install.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_install_ca2.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_install_install.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_installer.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_installer_square.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_login.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_main.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_plugin.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_small_bell.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_starter_start.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_style.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_trace.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_window.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -6771,6 +6783,9 @@
     <None Include="primitive\str\str.inl">
       <Filter>Header Files\primitive\str</Filter>
     </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="exception\_exception.txt">
@@ -6790,5 +6805,10 @@
     <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x64\msvcr120d.dll">
       <Filter>Binary Files\x64</Filter>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="base\install\install.rc">
+      <Filter>Source Files\base\install</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

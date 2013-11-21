@@ -1169,6 +1169,29 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\crypto\crypto_md5.h" />
     <ClInclude Include="base\crypto\crypto_nessie.h" />
     <ClInclude Include="base\crypto\crypto_sha1.h" />
+    <ClInclude Include="base\hotplugin\hotplugin.h" />
+    <ClInclude Include="base\hotplugin\hotplugin_container_launcher.h" />
+    <ClInclude Include="base\hotplugin\hotplugin_host.h" />
+    <ClInclude Include="base\hotplugin\hotplugin_plugin.h" />
+    <ClInclude Include="base\install\install.h" />
+    <ClInclude Include="base\install\install2.h" />
+    <ClInclude Include="base\install\install_boot.h" />
+    <ClInclude Include="base\install\install_canvas.h" />
+    <ClInclude Include="base\install\install_cube_run.h" />
+    <ClInclude Include="base\install\install_focus.h" />
+    <ClInclude Include="base\install\install_http.h" />
+    <ClInclude Include="base\install\install_install.h" />
+    <ClInclude Include="base\install\install_installer.h" />
+    <ClInclude Include="base\install\install_installer_square.h" />
+    <ClInclude Include="base\install\install_install_ca2.h" />
+    <ClInclude Include="base\install\install_install_install.h" />
+    <ClInclude Include="base\install\install_login.h" />
+    <ClInclude Include="base\install\install_plugin.h" />
+    <ClInclude Include="base\install\install_small_bell.h" />
+    <ClInclude Include="base\install\install_starter_start.h" />
+    <ClInclude Include="base\install\install_style.h" />
+    <ClInclude Include="base\install\install_trace.h" />
+    <ClInclude Include="base\install\install_window.h" />
     <ClInclude Include="base\openssl\crypto\aes\aes.h" />
     <ClInclude Include="base\openssl\crypto\aes\aes_locl.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</ExcludedFromBuild>
@@ -1421,30 +1444,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="graphics\visual\visual_const.h" />
     <ClInclude Include="graphics\visual\visual_cursor.h" />
     <ClInclude Include="graphics\visual\visual_icon.h" />
-    <ClInclude Include="install\install_hotplugin.h" />
-    <ClInclude Include="install\install_hotplugin_container_launcher.h" />
-    <ClInclude Include="install\install_hotplugin_host.h" />
-    <ClInclude Include="install\install_hotplugin_plugin.h" />
-    <ClInclude Include="install\resource.h" />
-    <ClInclude Include="install\spa.h" />
-    <ClInclude Include="install\spa2.h" />
-    <ClInclude Include="install\spa_boot.h" />
-    <ClInclude Include="install\spa_canvas.h" />
-    <ClInclude Include="install\spa_cube_run.h" />
-    <ClInclude Include="install\spa_focus.h" />
-    <ClInclude Include="install\spa_http.h" />
-    <ClInclude Include="install\spa_installer.h" />
-    <ClInclude Include="install\spa_installer_square.h" />
-    <ClInclude Include="install\spa_install_ca2.h" />
-    <ClInclude Include="install\spa_login.h" />
-    <ClInclude Include="install\spa_plugin.h" />
-    <ClInclude Include="install\spa_small_bell.h" />
-    <ClInclude Include="install\spa_spa.h" />
-    <ClInclude Include="install\spa_spa_spa.h" />
-    <ClInclude Include="install\spa_starter_start.h" />
-    <ClInclude Include="install\spa_style.h" />
-    <ClInclude Include="install\spa_trace.h" />
-    <ClInclude Include="install\spa_window.h" />
     <ClInclude Include="multithreading\multithreading_go_thread.h" />
     <ClInclude Include="multithreading\multithreading_set_event_on_exit.h" />
     <ClInclude Include="multithreading\multithreading_signal_thread.h" />
@@ -2201,6 +2200,32 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\crypto\crypto_nessie.cpp" />
     <ClCompile Include="base\crypto\crypto_sha1.cpp" />
     <ClCompile Include="base\crypto\crypto_whirpool.cpp" />
+    <ClCompile Include="base\hotplugin\hotplugin_container_launcher.cpp" />
+    <ClCompile Include="base\hotplugin\hotplugin_host.cpp" />
+    <ClCompile Include="base\hotplugin\hotplugin_plugin.cpp" />
+    <ClCompile Include="base\install\install.cpp" />
+    <ClCompile Include="base\install\install_boot.cpp" />
+    <ClCompile Include="base\install\install_bz.cpp" />
+    <ClCompile Include="base\install\install_canvas.cpp" />
+    <ClCompile Include="base\install\install_cube_run.cpp" />
+    <ClCompile Include="base\install\install_focus.cpp" />
+    <ClCompile Include="base\install\install_http.cpp" />
+    <ClCompile Include="base\install\install_install.cpp" />
+    <ClCompile Include="base\install\install_installer.cpp" />
+    <ClCompile Include="base\install\install_installer_square.cpp" />
+    <ClCompile Include="base\install\install_install_ca2.cpp" />
+    <ClCompile Include="base\install\install_install_install.cpp" />
+    <ClCompile Include="base\install\install_login.cpp" />
+    <ClCompile Include="base\install\install_main.cpp" />
+    <ClCompile Include="base\install\install_plugin.cpp" />
+    <ClCompile Include="base\install\install_small_bell.cpp" />
+    <ClCompile Include="base\install\install_starter_start.cpp" />
+    <ClCompile Include="base\install\install_style.cpp" />
+    <ClCompile Include="base\install\install_trace.cpp" />
+    <ClCompile Include="base\install\install_window.cpp" />
+    <ClCompile Include="base\install\windows\install_windows_boot.cpp" />
+    <ClCompile Include="base\install\windows\install_windows_service.cpp" />
+    <ClCompile Include="base\install\windows\install_windows_win.cpp" />
     <ClCompile Include="base\openssl\crypto\aes\aes_cbc.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</ExcludedFromBuild>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
@@ -4406,29 +4431,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="graphics\graphics_window_graphics.cpp" />
     <ClCompile Include="graphics\visual\visual_cursor.cpp" />
     <ClCompile Include="graphics\visual\visual_icon.cpp" />
-    <ClCompile Include="install\hotplugin_container_launcher.cpp" />
-    <ClCompile Include="install\hotplugin_host.cpp" />
-    <ClCompile Include="install\hotplugin_plugin.cpp" />
-    <ClCompile Include="install\spa.cpp" />
-    <ClCompile Include="install\spa_boot.cpp" />
-    <ClCompile Include="install\spa_bz.cpp" />
-    <ClCompile Include="install\spa_canvas.cpp" />
-    <ClCompile Include="install\spa_cube_run.cpp" />
-    <ClCompile Include="install\spa_focus.cpp" />
-    <ClCompile Include="install\spa_http.cpp" />
-    <ClCompile Include="install\spa_installer.cpp" />
-    <ClCompile Include="install\spa_installer_square.cpp" />
-    <ClCompile Include="install\spa_install_ca2.cpp" />
-    <ClCompile Include="install\spa_login.cpp" />
-    <ClCompile Include="install\spa_main.cpp" />
-    <ClCompile Include="install\spa_plugin.cpp" />
-    <ClCompile Include="install\spa_small_bell.cpp" />
-    <ClCompile Include="install\spa_spa.cpp" />
-    <ClCompile Include="install\spa_spa_spa.cpp" />
-    <ClCompile Include="install\spa_starter_start.cpp" />
-    <ClCompile Include="install\spa_style.cpp" />
-    <ClCompile Include="install\spa_trace.cpp" />
-    <ClCompile Include="install\spa_window.cpp" />
     <ClCompile Include="multithreading\multithreading_condition.cpp" />
     <ClCompile Include="multithreading\multithreading_core.cpp" />
     <ClCompile Include="multithreading\multithreading_critical_section.cpp" />
@@ -4726,6 +4728,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
   </ItemGroup>
   <ItemGroup>
     <Text Include="exception\_exception.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="base\install\install.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
