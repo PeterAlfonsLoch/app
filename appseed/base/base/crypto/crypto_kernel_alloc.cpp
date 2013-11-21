@@ -43,6 +43,8 @@
  */
 #include "framework.h"
 
+BEGIN_EXTERN_C
+
 /* the debug module for primitive::memory allocation */
 
 debug_module_t mod_alloc = {
@@ -115,3 +117,5 @@ crypto_free(void *ptr) {
 #error no primitive::memory allocation defined yet
 
 #endif
+
+END_EXTERN_C

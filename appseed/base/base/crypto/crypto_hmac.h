@@ -56,6 +56,8 @@ by Chien-Chung, Chung (Jim Chung) <jimchung1221@gmail.com>
 #ifndef HMAC_H
 #define HMAC_H
 
+BEGIN_EXTERN_C
+
 
 typedef struct
 {
@@ -83,5 +85,7 @@ err_status_t
 hmac_compute(hmac_ctx_t *state, const void *message,
         int32_t msg_octets, int32_t tag_len, uint8_t *result);
 
+
+END_EXTERN_C
 
 #endif /* HMAC_H */

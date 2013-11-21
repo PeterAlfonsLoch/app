@@ -12,7 +12,7 @@ namespace user
 
       
       sp(printer)       m_phprinter;
-      view *            m_pview;
+      impact *            m_pview;
 
 
       print_job(sp(base_application) papp);

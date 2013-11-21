@@ -1850,6 +1850,25 @@ alt1:
    }
 
 
+   ::visual::cursor * session::get_cursor()
+   {
+      
+      if (m_ecursor == ::visual::cursor_none)
+         return NULL;
+      else if (m_ecursor == ::visual::cursor_default)
+         return System.visual().get_cursor(m_ecursorDefault);
+      else
+         return System.visual().get_cursor(m_ecursor);
+
+   }
+
+   ::visual::cursor * session::get_default_cursor()
+   {
+      return System.visual().get_cursor(m_ecursorDefault);
+   }
+
+
+
 } // namespace plane
 
 

@@ -45,6 +45,8 @@
 #include "framework.h"
 
 
+BEGIN_EXTERN_C
+
 /* the debug module for authentiation */
 
 debug_module_t mod_auth = {
@@ -171,3 +173,4 @@ auth_type_self_test(const auth_type_t *at) {
 }
 
 
+END_EXTERN_C

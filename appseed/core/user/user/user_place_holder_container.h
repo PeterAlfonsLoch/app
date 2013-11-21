@@ -27,8 +27,8 @@ namespace user
       virtual bool remove_place_holder(sp(place_holder) pholder);
 
 
-      virtual sp(place_holder) hold(sp(::user::interaction) pui);
-      virtual bool unhold(sp(::user::interaction) pui);
+      virtual sp(place_holder) place(sp(::user::interaction) pui);
+      virtual bool unplace(sp(::user::interaction) pui);
 
       virtual bool on_hold(sp(::user::interaction) pui, sp(place_holder) pholder);
       virtual bool on_unhold(sp(::user::interaction) pui, sp(place_holder) pholder);

@@ -4432,11 +4432,20 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\user.cpp" />
     <ClCompile Include="user\userpresence\userpresence_userpresence.cpp" />
     <ClCompile Include="user\userpresence\userpresence_user_presence.cpp" />
+<<<<<<< .mine
+    <ClCompile Include="user\user_control_bar.cpp" />
+    <ClCompile Include="user\user_impact_system.cpp" />
+    <ClCompile Include="user\user_impact_update_hint.cpp" />
+    <ClCompile Include="user\user_job.cpp" />
+    <ClCompile Include="user\user_object.cpp" />
+    <ClCompile Include="user\user_frame_window.cpp" />
+=======
     <ClCompile Include="user\user_control_bar.cpp" />
     <ClCompile Include="user\user_impact_system.cpp" />
     <ClCompile Include="user\user_impact_update_hint.cpp" />
     <ClCompile Include="user\user_object.cpp" />
     <ClCompile Include="user\user_frame_window.cpp" />
+>>>>>>> .r7014
     <ClCompile Include="user\user_base_interaction.cpp" />
     <ClCompile Include="user\user_buffer.cpp" />
     <ClCompile Include="user\user_check_interface.cpp" />

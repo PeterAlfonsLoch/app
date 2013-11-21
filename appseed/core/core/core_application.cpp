@@ -5099,14 +5099,14 @@ bool application::_001CloseApplicationByUser(sp(::user::interaction) pwndExcept)
    close_all_documents(FALSE);
 
 
-   Application.user()->_001CloseAllDocuments(FALSE);
+   Application.userex()->_001CloseAllDocuments(FALSE);
 
 
    // there are cases where destroying the documents may destroy the
    //  main ::user::window of the application.
    //bool b::core::ContextIsDll = afxContextIsDLL;
    //if (!b::core::ContextIsDll && papp->m_pplaneapp->GetVisibleFrameCount() <= 0)
-   if(Application.user()->GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
+   if(Application.userex()->GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
    {
 
       post_thread_message(WM_QUIT);

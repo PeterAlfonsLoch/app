@@ -49,7 +49,7 @@
 #ifndef CRYPTO_KERNEL
 #define CRYPTO_KERNEL
 
-
+BEGIN_EXTERN_C
 /*
  * crypto_kernel_state_t defines the possible states:
  *
@@ -247,5 +247,7 @@ crypto_kernel_set_debug_module(char *mod_name, int32_t v);
  */
 err_status_t
 crypto_get_random(uchar *buffer, uint32_t length);
-     
+
+END_EXTERN_C
+
 #endif /* CRYPTO_KERNEL */

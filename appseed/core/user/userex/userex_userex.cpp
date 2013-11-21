@@ -1,52 +1,36 @@
 #include "framework.h"
 
 
-namespace user
+namespace userex
 {
 
 
-   user::user(base_application * papp) :
+   userex::userex(base_application * papp) :
       element(papp),
       ::base_departament(papp)
    {
       
       
-      m_pkeyboardfocus  = NULL;
       m_pshellimageset  = NULL;
-      m_pkeyboard       = NULL;
       m_pufeschema      = NULL;
       m_pufe            = NULL;
 
 
       //::core::user * papp = dynamic_cast <::core::user *>(System.GetThread()->m_pAppThread);
-      //::core::connect(papp->m_pplaneapp->m_signalAppLanguageChange, this, &user::VmsGuiiOnAppLanguage);
+      //::core::connect(papp->m_pplaneapp->m_signalAppLanguageChange, this, &userex::VmsGuiiOnAppLanguage);
 
-      m_pkeyboard = NULL;
       //m_pwindowmap = NULL;
 
    }
 
-   user::~user()
+   userex::~userex()
    {
    }
 
 
-   bool user::initialize1()
+   bool userex::initialize1()
    {
 
-      if(m_pbaseapp->is_system())
-      {
-         m_pwindowmap = new class ::user::window_map(get_app());
-      }
-      else
-      {
-         m_pwindowmap = System.user()->m_pwindowmap;
-      }
-
-      m_pkeyboard = new ::user::keyboard(m_pbaseapp);
-
-      if(m_pkeyboard == NULL)
-         return false;
 
 
 
@@ -68,7 +52,7 @@ namespace user
 
    }
 
-   bool user::initialize()
+   bool userex::initialize()
    {
 
 
@@ -81,7 +65,7 @@ namespace user
       Application.simpledb().get_data_server()->add_client(this);
 
 
-      TRACE("::user::application::initialize");
+      TRACE("::userex::application::initialize");
 
       xml::document docUser(get_app());
       string strUser = Application.file().as_string(Application.dir().userappdata("langstyle_settings.xml"));
@@ -233,7 +217,7 @@ retry_license:
 
 
 
-   bool user::initialize2()
+   bool userex::initialize2()
    {
 
 
@@ -268,7 +252,7 @@ retry_license:
    }
 
 
-   bool user::finalize()
+   bool userex::finalize()
    {
       try
       {
@@ -318,12 +302,12 @@ retry_license:
    }
 
 
-   filemanager::_shell::ImageSet & user::shellimageset()
+   filemanager::_shell::ImageSet & userex::shellimageset()
    {
       return *m_pshellimageset;
    }
 
-   string user::message_box(const char * pszMatter, property_set & propertyset)
+   string userex::message_box(const char * pszMatter, property_set & propertyset)
    { 
          class ::userex::message_box box(get_app());
 
@@ -333,7 +317,7 @@ retry_license:
 
    }
 
-   int32_t user::simple_message_box(sp(::user::interaction) pwndOwner, const char * pszMessage, UINT fuStyle)
+   int32_t userex::simple_message_box(sp(::user::interaction) pwndOwner, const char * pszMessage, UINT fuStyle)
    {
 
       //if(m_pbaseapp->m_pplaneapp->m_psession != NULL)
@@ -396,7 +380,7 @@ retry_license:
       }
    }
 
-   int32_t user::simple_message_box_timeout(sp(::user::interaction) puiOwner, const char * pszMessage, ::duration durationTimeout, UINT fuStyle)
+   int32_t userex::simple_message_box_timeout(sp(::user::interaction) puiOwner, const char * pszMessage, ::duration durationTimeout, UINT fuStyle)
    {
 
       UNREFERENCED_PARAMETER(puiOwner);
@@ -445,7 +429,7 @@ retry_license:
       }
    }
 
-   int32_t user::track_popup_menu(const char * pszMatter, point pt, sp(::user::interaction) puie)
+   int32_t userex::track_popup_menu(const char * pszMatter, point pt, sp(::user::interaction) puie)
    {
       UNREFERENCED_PARAMETER(pszMatter);
       UNREFERENCED_PARAMETER(pt);
@@ -454,7 +438,7 @@ retry_license:
    }
 
 
-   bool user::get_fs_size(string & strSize, const char * pszPath, bool & bPending)
+   bool userex::get_fs_size(string & strSize, const char * pszPath, bool & bPending)
    {
       int64_t i64Size;
       if(!get_fs_size(i64Size, pszPath, bPending))
@@ -492,7 +476,7 @@ retry_license:
       return true;
    }
 
-   bool user::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending)
+   bool userex::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending)
    {
       db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
       if(pcentral == NULL)
@@ -500,7 +484,7 @@ retry_license:
       return pcentral->m_pfilesystemsizeset->get_cache_fs_size(i64Size, pszPath, bPending);
    }
 
-   void user::data_on_after_change(signal_details * pobj)
+   void userex::data_on_after_change(signal_details * pobj)
    {
       SCAST_PTR(::database::change_event, pchange, pobj);
       if(pchange->m_key.m_idKey == "ca2")
@@ -513,161 +497,14 @@ retry_license:
    }
 
 
-   sp(::user::keyboard_focus) user::get_keyboard_focus()
-   {
-      if(Application.is_session())
-      {
-         sp(::user::interaction) puieFocus = Application.get_focus_guie();
-         if(m_pkeyboardfocus != NULL && puieFocus != NULL)
-         {
-            if((bool)oprop("NativeWindowFocus") && puieFocus != m_pkeyboardfocus->get_wnd())
-               return NULL;
-            return m_pkeyboardfocus;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      else if(Application.is_system())
-      {
-         return m_pkeyboardfocus;
-      }
-      else if(Application.m_psession != NULL)
-      {
-         return Sess(get_app()).user()->get_keyboard_focus();
-      }
-      else if(Application.m_psystem != NULL)
-      {
-         return Sys(get_app()).user()->get_keyboard_focus();
-      }
-      else
-      {
-         return NULL;
-      }
-   }
-
-   void user::set_keyboard_focus(sp(::user::keyboard_focus) pkeyboardfocus)
-   {
-      if(Application.is_session())
-      {
-         if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
-         {
-            m_pkeyboardfocus = pkeyboardfocus;
-         }
-         if(Application.m_psystem != NULL)
-         {
-            return Sys(get_app()).user()->set_keyboard_focus(pkeyboardfocus);
-         }
-      }
-      else if(Application.is_system())
-      {
-         if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
-         {
-            m_pkeyboardfocus = pkeyboardfocus;
-         }
-      }
-      else if(Application.m_psession != NULL)
-      {
-         return Sess(get_app()).user()->set_keyboard_focus(pkeyboardfocus);
-      }
-      else if(Application.m_psystem != NULL)
-      {
-         return Sys(get_app()).user()->set_keyboard_focus(pkeyboardfocus);
-      }
-   }
-
-   ::user::mouse_focus * user::get_mouse_focus_LButtonDown()
-   {
-      return m_pmousefocusLButtonDown;
-   }
-
-   void user::set_mouse_focus_LButtonDown(::user::mouse_focus * pmousefocus)
-   {
-      m_pmousefocusLButtonDown = pmousefocus;
-   }
-
-   ::user::mouse_focus * user::get_mouse_focus_RButtonDown()
-   {
-      return m_pmousefocusRButtonDown;
-   }
-
-   void user::set_mouse_focus_RButtonDown(::user::mouse_focus * pmousefocus)
-   {
-      m_pmousefocusRButtonDown = pmousefocus;
-   }
-
-
-   bool user::set_keyboard_layout(const char * pszPath, bool bUser)
-   {
-
-      if(pszPath == NULL)
-      {
-
-         if(&keyboard().layout() != NULL)
-         {
-
-            if(Application.fontopus()->m_puser != NULL
-               && Application.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
-            {
-
-               data_set("keyboard_layout", keyboard().layout().m_strPath);
-
-            }
-
-            return true;
-         }
-
-         if(keyboard().get_current_system_layout().is_empty())
-            return false;
-
-         if(!set_keyboard_layout(keyboard().get_current_system_layout(), false))
-            return false;
-
-         if(Application.fontopus()->m_puser != NULL
-            && Application.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
-         {
-
-            data_set("keyboard_layout", keyboard().layout().m_strPath);
-
-         }
-
-         return true;
-      }
-
-      if(!System.user()->keyboard().load_layout(pszPath, bUser))
-         return false;
-
-      Application.simpledb().on_set_keyboard_layout(pszPath, bUser);
-
-      return true;
-   }
-
-
-   ::user::keyboard & user::keyboard()
-   {
-      if(!Application.is_system())
-      {
-         return System.user()->keyboard();
-      }
-      return *m_pkeyboard;
-   }
-
-
-   class window_map & user::window_map()
-   {
-      return *m_pwindowmap;
-   }
-
-
-   sp(type) user::controltype_to_typeinfo(::user::control::e_type e_type)
+   sp(type) userex::controltype_to_typeinfo(::user::control::e_type e_type)
    {
 
       return sp(type)();
 
    }
 
-   void user::SendMessageToWindows(UINT message, WPARAM wparam, LPARAM lparam)
+   void userex::SendMessageToWindows(UINT message, WPARAM wparam, LPARAM lparam)
    {
       ::user::interaction_ptr_array wnda = Application.frames();
       for(int32_t i = 0; i < wnda.get_size(); i++)
@@ -686,7 +523,7 @@ retry_license:
 
 
 
-   void user::add_document_template(sp(::user::impact_system) ptemplate)
+   void userex::add_document_template(sp(::user::impact_system) ptemplate)
    {
       if(Application.m_pdocmanager == NULL)
          Application.m_pdocmanager = new ::user::document_manager(get_app());
@@ -694,9 +531,9 @@ retry_license:
    }
 
 
-   void user::defer_add_document_template(sp(::user::impact_system) ptemplate)
+   void userex::defer_add_document_template(sp(::user::impact_system) ptemplate)
    {
-      sp(::user::impact_system) puserbasetemplate =  (ptemplate);
+      sp(::user::impact_system) puserbasetemplate = (ptemplate);
 
       if(puserbasetemplate == NULL)
          throw "should add user base document template";
@@ -705,7 +542,7 @@ retry_license:
 
    }
 
-   sp(::user::object) user::_vmsguserbaseOpenDocumentFile(const char * lpszFileName)
+   sp(::user::object) userex::_vmsguserbaseOpenDocumentFile(const char * lpszFileName)
    {
       ASSERT(Application.m_pdocmanager != NULL);
       sp(::create_context) cc(allocer());
@@ -714,22 +551,14 @@ retry_license:
    }
 
 
-   bool user::_001OnCmdMsg(base_cmd_msg * pcmdmsg)  
+   void  userex::AddToRecentFileList(const char * lpszPathName)
    {
-      UNREFERENCED_PARAMETER(pcmdmsg);
-      return false;
-   }
 
-
-
-
-
-   void  user::AddToRecentFileList(const char * lpszPathName)
-   {
       UNREFERENCED_PARAMETER(lpszPathName);
+
    }
 
-   void  user::_001CloseAllDocuments(bool bEndSession)
+   void  userex::_001CloseAllDocuments(bool bEndSession)
    {
       if(Application.m_pdocmanager != NULL)
       {
@@ -740,32 +569,34 @@ retry_license:
 
    ::user::front_end_schema * GetUfeSchema(sp(base_application) papp)
    {
-      return App(papp).user()->GetUfeSchema();
+      
+      return App(papp).userex()->GetUfeSchema();
+
    }
 
    ::user::front_end * GetUfe(sp(base_application) papp)
    {
-      return App(papp).user()->GetUfe();
+      return App(papp).userex()->GetUfe();
    }
 
 
-   void user::_001OnFileNew()
+   void userex::_001OnFileNew()
    {
       Application.m_pdocmanager->_001OnFileNew();
    }
 
-   ::user::front_end_schema * user::GetUfeSchema()
+   ::user::front_end_schema * userex::GetUfeSchema()
    {
       return m_pufeschema;
    }
 
-   ::user::front_end * user::GetUfe()
+   ::user::front_end * userex::GetUfe()
    {
       return m_pufe;
    }
 
 
-      int32_t user::exit_instance()
+      int32_t userex::exit_instance()
       {
 /*         if(Application.is_system())
          {
@@ -781,7 +612,7 @@ retry_license:
 
 
 
-      int32_t user::GetVisibleFrameCountExcept(sp(::user::interaction) pwndExcept)
+      int32_t userex::GetVisibleFrameCountExcept(sp(::user::interaction) pwndExcept)
       {
          ::user::interaction_ptr_array wnda = Application.frames();
          int32_t iCount = 0;
@@ -798,7 +629,7 @@ retry_license:
           return iCount;
       }
 
-      int32_t user::GetVisibleTopLevelFrameCountExcept(sp(::user::interaction) pwndExcept)
+      int32_t userex::GetVisibleTopLevelFrameCountExcept(sp(::user::interaction) pwndExcept)
       {
          ::user::interaction_ptr_array wnda = Application.frames();
          int32_t iCount = 0;
@@ -817,7 +648,7 @@ retry_license:
          return iCount;
       }
 
-      int32_t user::GetVisibleFrameCount()
+      int32_t userex::GetVisibleFrameCount()
       {
          ::user::interaction_ptr_array wnda = Application.frames();
          int32_t iCount = 0;
@@ -834,13 +665,13 @@ retry_license:
          return iCount;
       }
 
-      void user::VmsGuiiOnAppLanguage(signal_details * pobject)
+      void userex::VmsGuiiOnAppLanguage(signal_details * pobject)
       {
          SendMessageToWindows(application::APPM_LANGUAGE, 0, (LPARAM) pobject);
       }
 
 
-   sp(::form_document) user::create_form(sp(form_view) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
+   sp(::form_document) userex::create_form(sp(form_view) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
    {
       sp(::form_document) pdoc;
       if(m_ptemplateForm == NULL)
@@ -862,7 +693,7 @@ retry_license:
       return pdoc;
    }
 
-   sp(::form_document) user::create_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
+   sp(::form_document) userex::create_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
    {
       if(pwndParent != NULL && pwndParent->m_pbaseapp != get_app())
       {
@@ -887,7 +718,7 @@ retry_license:
    }
 
 
-   sp(::form_document) user::create_child_form(sp(form_view) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
+   sp(::form_document) userex::create_child_form(sp(form_view) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
    {
       sp(::form_document) pdoc;
       if(m_ptemplateChildForm == NULL)
@@ -909,11 +740,11 @@ retry_license:
       return pdoc;
    }
 
-   sp(::form_document) user::create_child_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
+   sp(::form_document) userex::create_child_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
    {
       if(pwndParent != NULL && pwndParent->m_pbaseapp != get_app())
       {
-         return App(pwndParent->m_pbaseapp).user()->create_child_form(pcallback, pwndParent, var);
+         return App(pwndParent->m_pbaseapp).userex()->create_child_form(pcallback, pwndParent, var);
       }
       if(m_ptemplateChildForm == NULL)
          return NULL;
@@ -929,7 +760,7 @@ retry_license:
    }
 
 
-   sp(::user::object) user::hold(sp(::user::interaction) pui)
+   sp(::user::object) userex::hold(sp(::user::interaction) pui)
    {
 
       sp(::create_context) createcontext(allocer());
@@ -947,7 +778,7 @@ retry_license:
    }
 
 
-} //namespace user
+} //namespace userex
 
 
 

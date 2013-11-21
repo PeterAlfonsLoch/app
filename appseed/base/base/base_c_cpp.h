@@ -83,7 +83,7 @@ namespace user
 
    class base_interaction;
    class create_context;
-   class view;
+   class impact;
    class printer;
 
 
@@ -355,6 +355,9 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "multithreading/multithreading_simple_thread.h"
 #include "multithreading/multithreading_go_thread.h"
 #include "multithreading/multithreading_signal_thread.h"
+
+
+#include "primitive/primitive_job.h"
 
 
 #include "base/base_log.h"

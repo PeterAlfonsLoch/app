@@ -49,6 +49,7 @@
 #ifndef AUTH_H
 #define AUTH_H
 
+BEGIN_EXTERN_C
 
 typedef struct auth_type_t *auth_type_pointer;
 typedef struct auth_t      *auth_pointer_t;
@@ -156,5 +157,7 @@ auth_type_self_test(const auth_type_t *at);
 
 int32_t
 auth_type_get_ref_count(const auth_type_t *at);
+
+END_EXTERN_C
 
 #endif /* AUTH_H */

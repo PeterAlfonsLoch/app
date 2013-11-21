@@ -414,6 +414,14 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
    }
 
 
+   ::userex::userex * application::create_userex()
+   {
+
+      return canew(::userex::userex(this));
+
+   }
+
+
    ::userfs::userfs * application::create_userfs()
    {
 
@@ -1703,7 +1711,10 @@ exit_application:
       if(!m_spuser->initialize())
          return false;
 
-      if(!m_phtml->initialize())
+      if (!m_spuserex->initialize())
+         return false;
+
+      if (!m_phtml->initialize())
          return false;
 
       if(!is_system() && !is_session() &&  !is_installing() && !is_uninstalling())
@@ -1839,6 +1850,13 @@ exit_application:
 
       m_spuser->construct(this);
 
+      m_spuserex = create_userex();
+
+      if (m_spuserex == NULL)
+         return false;
+
+      m_spuserex->construct(this);
+
       m_spuserfs = create_userfs();
 
       if(m_spuserfs == NULL)
@@ -1893,6 +1911,11 @@ exit_application:
       if(!m_spuser->initialize1())
          return false;
       if(!m_spuser->initialize2())
+         return false;
+
+      if (!m_spuserex->initialize1())
+         return false;
+      if (!m_spuserex->initialize2())
          return false;
 
       m_simpledb.construct(this);
@@ -2031,7 +2054,7 @@ exit_application:
       if (!user().is_set())
          return ::application::simple_message_box(puiOwner, pszMessage, fuStyle);
 
-      return user()->simple_message_box(puiOwner, pszMessage, fuStyle);
+      return userex()->simple_message_box(puiOwner, pszMessage, fuStyle);
 
    }
 
@@ -2042,7 +2065,7 @@ exit_application:
       if (!user().is_set())
          return ::application::simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
 
-      return user()->simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
+      return userex()->simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
 
    }
 

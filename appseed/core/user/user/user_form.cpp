@@ -1169,7 +1169,7 @@ namespace user
 
       }
 
-      pdescriptor->m_typeinfo = System.user()->controltype_to_typeinfo(pdescriptor->get_type());
+      pdescriptor->m_typeinfo = System.userex()->controltype_to_typeinfo(pdescriptor->get_type());
 
       if(pdescriptor->m_typeinfo)
       {

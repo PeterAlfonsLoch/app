@@ -175,7 +175,7 @@ namespace visual
    cursor * visual::set_cursor_file(e_cursor ecursor, const char * psz)
    {
       cursor * pcursor = get_cursor(ecursor);
-      if(pcursor->load_from_file(psz))
+      if (System.visual().imaging().load_from_file(pcursor, psz))
       {
          return pcursor;
       }
@@ -188,7 +188,7 @@ namespace visual
    cursor * visual::set_cursor_matter(e_cursor ecursor, const char * pszMatter)
    {
       cursor * pcursor = get_cursor(ecursor);
-      if(pcursor->load_from_matter(pszMatter))
+      if(System.visual().imaging().load_from_matter(pcursor, pszMatter))
       {
          return pcursor;
       }

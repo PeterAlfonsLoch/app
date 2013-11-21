@@ -477,7 +477,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::message::create, pcreate, pobj);
-      m_pschema            = &::user::GetUfeSchema(get_app())->m_menu;
+      m_pschema            = &::userex::GetUfeSchema(get_app())->m_menu;
       return;
    }
 

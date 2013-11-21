@@ -27,13 +27,13 @@ namespace user
 #ifdef DEBUG
    void menu_list_view::assert_valid() const
    {
-      view::assert_valid();
+      impact::assert_valid();
    }
 
    #ifndef _WIN32_WCE
    void menu_list_view::dump(dump_context & dumpcontext) const
    {
-      view::dump(dumpcontext);
+      impact::dump(dumpcontext);
    }
    #endif
 
@@ -55,7 +55,7 @@ namespace user
          pbase->m_bRet = true;
          return;
       }
-      return view::GuieProc(pobj);
+      return impact::GuieProc(pobj);
    }
 
    bool menu_list_view::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
@@ -65,7 +65,7 @@ namespace user
          if(m_pguieNotify->_001OnCmdMsg(pcmdmsg))
             return TRUE;
       }
-      return view::_001OnCmdMsg(pcmdmsg);
+      return impact::_001OnCmdMsg(pcmdmsg);
    }
 
    bool menu_list_view::LoadMenu(sp(::xml::node) pnode, sp(::user::interaction) pguieNotify, UINT uiCallbackMessage)

@@ -84,7 +84,7 @@ imaging::~imaging()
 
 ::draw2d::bitmap_sp imaging::CreateBitmap(::draw2d::graphics * pdc, FIBITMAP * pFreeImage)
 {
-   ::draw2d::dib_sp dib(allocer());
+   ::visual::dib_sp dib(allocer());
 
 #ifdef METROWIN
 
@@ -96,7 +96,7 @@ imaging::~imaging()
 
 
 
-   dib->from(pdc, pFreeImage, false);
+   dib.from(pdc, pFreeImage, false);
 
 
    return dib->detach_bitmap();
@@ -174,12 +174,82 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib, var varFile, sp(base_applicati
 
    spgraphics->CreateCompatibleDC(NULL);
 
-   if(!pdib->from(spgraphics, pfi, true))
+   if (!from(pdib, spgraphics, pfi, true))
       return false;
 
    return true;
 
 }
+
+
+bool imaging::from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI)
+{
+
+   if (pfibitmap == NULL)
+      return false;
+
+   BITMAPINFO * pbi = FreeImage_GetInfo(pfibitmap);
+   void * pdata = FreeImage_GetBits(pfibitmap);
+
+   if (!pdib->create(pbi->bmiHeader.biWidth, pbi->bmiHeader.biHeight))
+      return false;
+
+
+   COLORREF * pcolorref = NULL;
+
+   HBITMAP hbitmap = ::CreateDIBSection(NULL, &pdib->m_info, DIB_RGB_COLORS, (void **)&pcolorref, NULL, 0);
+
+   if (hbitmap == NULL)
+   {
+      pdib->Destroy();
+      return false;
+   }
+
+   HDC hdc = ::CreateCompatibleDC(NULL);
+
+   if (pbi->bmiHeader.biHeight != SetDIBits(
+      hdc,
+      hbitmap,
+      0,
+      pbi->bmiHeader.biHeight,
+      pdata,
+      pbi,
+      DIB_RGB_COLORS))
+   {
+      pdib->Destroy();
+      if (bUnloadFI)
+      {
+         FreeImage_Unload(pfibitmap);
+      }
+      return false;
+   }
+
+   memcpy(pdib->m_pcolorref, pcolorref, (size_t)(pdib->area() * sizeof(COLORREF)));
+
+
+   RGBQUAD bkcolor;
+
+   if (pbi->bmiHeader.biBitCount == 32)
+   {
+   }
+   else if (pbi->bmiHeader.biBitCount <= 24 && FreeImage_GetTransparencyCount(pfibitmap) <= 0)
+   {
+      pdib->fill_channel(0xff, ::visual::rgba::channel_alpha);
+   }
+   else if (FreeImage_GetBackgroundColor(pfibitmap, &bkcolor))
+   {
+      pdib->transparent_color(bkcolor);
+   }
+
+   if (bUnloadFI)
+   {
+      FreeImage_Unload(pfibitmap);
+   }
+
+
+   return true;
+}
+
 
 /*FIBITMAP * imaging::LoadImageFile(CArchive & ar)
 {
@@ -2085,7 +2155,7 @@ return true;
 }
 
 */
-bool imaging::bitmap_blend(
+/*bool imaging::bitmap_blend(
    ::draw2d::graphics * pdcDst, // destination device
    point pt,
    size size,
@@ -2093,7 +2163,7 @@ bool imaging::bitmap_blend(
    point ptSrc)
 {
    return color_blend(pdcDst, pt, size, pdcSrcWithAlpha, ptSrc);
-}
+}*/
 
 bool imaging::BitmapDivBlend(
    ::draw2d::graphics * pdcDst, // destination device
@@ -2112,7 +2182,7 @@ bool imaging::BitmapDivBlend(
 
    spdib->DivideRGB(bAlpha);
 
-   return bitmap_blend(pdcDst, ptDst, size, spdib->get_graphics(), ptSrc);
+   return pdcDst->BitBlt(ptDst.x, ptDst.y, size.cx, size.cy, spdib->get_graphics(), ptSrc.x, ptSrc.y, SRCCOPY);
 
 }
 
@@ -2520,8 +2590,8 @@ FIBITMAP * imaging::HBITMAPtoFI(::draw2d::bitmap_sp pbitmap)
    ::draw2d::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(NULL);
 
-   dib->from(spgraphics, pfibitmap, false);
-
+   if (!from(dib, spgraphics, pfibitmap, false))
+      return NULL;
 
    return dib->detach_bitmap();
 
@@ -4649,24 +4719,21 @@ bool imaging::channel_gray_blur_32CC(::draw2d::dib * pdibDst, ::draw2d::dib * pd
 bool imaging::color_blend(::draw2d::graphics * pdc, LPCRECT lpcrect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork)
 {
 
-   class rect rect(lpcrect);
-
-   return color_blend(pdc, rect.top_left(), rect.size(), pdcColorAlpha, ptAlpha, pdibWork);
+   return pdc->BitBlt(lpcrect->left, lpcrect->top, width(lpcrect), height(lpcrect), pdcColorAlpha, ptAlpha.x, ptAlpha.y, SRCCOPY);
 
 }
+
 
 bool imaging::true_blend(::draw2d::graphics * pdc, LPCRECT lpcrect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork, ::draw2d::dib * pdibWork2, ::draw2d::dib * pdibWork3)
 {
 
-   class rect rect(lpcrect);
-
-   return true_blend(pdc, rect.top_left(), rect.size(), pdcColorAlpha, ptAlpha, pdibWork, pdibWork2, pdibWork3);
+   return pdc->BitBlt(lpcrect->left, lpcrect->top, width(lpcrect), height(lpcrect), pdcColorAlpha, ptAlpha.x, ptAlpha.y, SRCCOPY);
 
 }
 
 // COLOR_DEST = SRC_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA) * COLOR_DST
 
-
+/*
 bool imaging::color_blend(::draw2d::graphics * pdc, point pt, size size, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork, ::draw2d::dib * pdibWork2)
 {
 
@@ -4676,6 +4743,7 @@ bool imaging::color_blend(::draw2d::graphics * pdc, point pt, size size, ::draw2
 
 
 }
+*/
 
 bool imaging::color_blend(::draw2d::graphics * pdc, point pt, size size, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, double dBlend)
 {
@@ -6934,61 +7002,147 @@ void imaging::AlphaTextOut(::draw2d::graphics *pdc, int32_t left, int32_t top, c
    pdc->TextOut(left, top, str);
 }
 
-bool imaging::load_from_file(::draw2d::dib & dib, const char * psz)
+
+bool imaging::load_from_file(::draw2d::dib * pdib, var varFile)
 {
 
-   throw todo(get_app());
+   // image cache load
+   // cache of decompression time
+   string strFile;
+   if (varFile.get_type() == var::type_string)
+      //if(false)
+   {
+      strFile = varFile;
+      strFile.replace(":/", "\\_");
+      strFile.replace(":\\", "\\_\\");
+      strFile.replace("/", "\\");
+      strFile = System.dir().time("cache", strFile);
+      strFile += ".dib";
+      if (Application.file().exists(strFile))
+      {
+         try
+         {
+            ::file::byte_input_stream istream(Application.file().get_file(strFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary));
+            istream >> *pdib;
+            return true;
+         }
+         catch (...)
+         {
+         }
+      }
+   }
 
+
+   try
+   {
+
+      if (!read_from_file(pdib, Application.file().get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary)))
+         return false;
+
+   }
+   catch (...)
+   {
+
+      return false;
+
+   }
+
+
+   // image cache write
+   if (strFile.has_char())
+   {
+      try
+      {
+         ::file::byte_output_stream ostream(Application.file().get_file(strFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory));
+         ostream << *pdib;
+      }
+      catch (...)
+      {
+      }
+   }
+
+   return true;
+
+}
+
+bool imaging::read_from_file(::draw2d::dib * pdib, ::file::buffer_sp  pfile)
+{
+
+
+   FIBITMAP * pfi = LoadImageFile(pfile);
+
+   if (pfi == NULL)
+      return false;
+
+   synch_lock ml(&user_mutex());
+
+#if !defined(LINUX) && !defined(MACOS)
+
+   single_lock slDc(System.m_pmutexDc, true);
+
+#endif
+
+   ::draw2d::graphics_sp spgraphics(allocer());
+
+   spgraphics->CreateCompatibleDC(NULL);
+
+   if (!from(pdib, spgraphics, pfi, true))
+      return false;
+
+   return true;
 
 }
 
 
-bool load_from_matter(::draw2d::dib & dib, const char * pszMatter)
+
+bool imaging::load_from_matter(::draw2d::dib * pdib, var varFile)
 {
-   throw todo(get_app());
+   
+   return load_from_file(pdib, Application.dir().matter((const string &) varFile));
 
 }
 
-bool imaging::load_cursor_from_file(::visual::cursor_sp spcursor, const char * psz)
+
+bool imaging::load_from_file(::visual::cursor * pcursor, var varFile)
 {
-   string str(psz);
+   string str(varFile);
    if (!::str::ends_eat_ci(str, ".png"))
       return false;
-   if (!load_from_file(spcursor->m_dib, psz))
+   if (!load_from_file(pcursor->m_dib, varFile))
       return false;
    str += ".xml";
    string strNode = Application.file().as_string(str);
    ::xml::document doc(get_app());
    if (doc.load(strNode))
    {
-      spcursor->m_ptHotspot.x = doc.get_root()->attr("x");
-      spcursor->m_ptHotspot.y = doc.get_root()->attr("y");
+      pcursor->m_ptHotspot.x = doc.get_root()->attr("x");
+      pcursor->m_ptHotspot.y = doc.get_root()->attr("y");
    }
    return true;
 }
 
-bool imaging::load_cursor_from_matter(::visual::cursor_sp spcursor, const char * pszMatter)
+bool imaging::load_from_matter(::visual::cursor * pcursor, var varFile)
 {
 
-   return load_from_file(spcursor, Application.dir().matter(pszMatter));
+   return load_from_file(pcursor, Application.dir().matter((const string &) varFile));
 
 }
 
-::visual::cursor_sp imaging::load_cursor_from_file(const char * psz)
+::visual::cursor_sp imaging::load_cursor_from_file(var varFile)
 {
 
-   ::visual::cursor_sp spcursor spcursor(canew(::visual::cursor()));
+   ::visual::cursor_sp spcursor(canew(::visual::cursor(get_app())));
 
-   if (!load_from_file(spcursor, psz))
+   if (!load_from_file(spcursor, varFile))
       return NULL;
 
    return spcursor;
 
 }
 
-::visual::cursor_sp imaging::load_cursor_from_matter(const char * pszMatter)
+::visual::cursor_sp imaging::load_cursor_from_matter(var varFile)
 {
 
-   return load_cursor_from_file(Application.dir().matter(pszMatter));
+   return load_cursor_from_file(Application.dir().matter((const string &) varFile));
 
 }

@@ -19,7 +19,7 @@ namespace user
       
       
       ::user::edit_plain_text::install_message_handling(pinterface);
-      view::install_message_handling(pinterface);
+      impact::install_message_handling(pinterface);
       //IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &edit_plain_text_view::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &::user::edit_plain_text::_002OnMouseMove);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &::user::edit_plain_text::_002OnLButtonDown);

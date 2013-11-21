@@ -22,12 +22,12 @@ namespace user
    #ifdef DEBUG
    void tab_view::assert_valid() const
    {
-      view::assert_valid();
+      impact::assert_valid();
    }
 
    void tab_view::dump(dump_context & dumpcontext) const
    {
-      view::dump(dumpcontext);
+      impact::dump(dumpcontext);
    }
    #endif //DEBUG
 
@@ -50,7 +50,7 @@ namespace user
 
       }
 
-      view::on_update(pSender, lHint, pHint);
+      impact::on_update(pSender, lHint, pHint);
 
    }
 
@@ -70,7 +70,7 @@ namespace user
    {
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 
-      return view::pre_create_window(cs);
+      return impact::pre_create_window(cs);
    }
 
    void tab_view::rotate()
@@ -103,7 +103,7 @@ namespace user
 
    void tab_view::install_message_handling(::message::dispatch * pinterface)
    {
-      view::install_message_handling(pinterface);
+      impact::install_message_handling(pinterface);
       ::user::tab::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &tab_view::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_USER + 1122  , pinterface, this, &tab_view::_001OnMenuMessage);
@@ -122,7 +122,7 @@ namespace user
    {
       sp(::user::interaction) pwnd1 = ensure(::user::tab::get_id_by_tab(::user::tab::_001GetSel()))->m_pwnd;
       sp(::user::interaction) pwnd2 = ensure(::user::tab::get_id_by_tab(iPane))->m_pwnd;
-      ::user::split_view * psplitview = dynamic_cast < ::user::split_view * > (view::create_view(System.type_info < ::user::split_view > (), get_document(), this, 100).m_p);
+      ::user::split_view * psplitview = dynamic_cast < ::user::split_view * > (impact::create_view(System.type_info < ::user::split_view > (), get_document(), this, 100).m_p);
       if(eposition == position_top || eposition == position_bottom)
       {
          psplitview->SetSplitOrientation(::user::split_layout::orientation_horizontal);
@@ -441,7 +441,7 @@ namespace user
       if(get_view_uie() != NULL)
          if(get_view_uie()->_001OnCmdMsg(pcmdmsg))
             return true;
-      return view::_001OnCmdMsg(pcmdmsg);
+      return impact::_001OnCmdMsg(pcmdmsg);
    }
 
    void tab_view::set_view_creator(::user::view_creator * pviewcreator)

@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_CORE edit_plain_text_view :
-      virtual public view,
+      virtual public impact,
       public edit_plain_text
    {
    public:

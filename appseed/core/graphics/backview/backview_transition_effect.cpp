@@ -1681,12 +1681,7 @@ true);
 
                dcBack->set_alpha_mode(::draw2d::alpha_mode_set);
 
-               imaging.bitmap_blend(
-                  dcBack,
-                  point(x1, y1),
-                  size(wWindow, hWindow),
-                  pdib2->get_graphics(),
-                  null_point());
+               dcBack->BitBlt(x1, y1, wWindow, hWindow, pdib2->get_graphics(), 0, 0, SRCCOPY);
 
 
                /*drawdib.draw(

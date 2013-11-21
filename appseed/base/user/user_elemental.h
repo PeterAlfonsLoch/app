@@ -1,10 +1,17 @@
 #pragma once
 
 
+namespace draw2d
+{
+
+   class graphics;
+
+} // namespace draw2d
 
 
 namespace user
 {
+
 
    class CLASS_DECL_BASE elemental :
       virtual public keyboard_focus,
@@ -20,4 +27,9 @@ namespace user
       virtual void pre_translate_message(signal_details * pobj);
    };
 
+
 } // namespace user
+
+
+
+

@@ -462,7 +462,7 @@ namespace platform
    {
       try
       {
-         Session.user()->open_document_file(pcreatecontext);
+         Session.userex()->open_document_file(pcreatecontext);
       }
       catch(...)
       {

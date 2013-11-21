@@ -121,8 +121,10 @@ public:
    virtual void pre_translate_message(signal_details * pobj);
 
    virtual void _000OnDraw(::draw2d::graphics * pdc);
-   virtual void _001OnDraw(::draw2d::graphics * pdc);
+   virtual void _010OnDraw(::draw2d::graphics * pdc);
 
+   virtual void _001OnDraw(::draw2d::graphics * pdc);
+   virtual void _011OnDraw(::draw2d::graphics * pdc);
 
 
 
@@ -155,6 +157,15 @@ public:
    virtual bool WndFrameworkDownUpGetUpEnable();
    virtual bool WndFrameworkDownUpGetDownEnable();
 
+<<<<<<< .mine
+   using ::uinteraction::frame::WorkSetListener::attach;
+   DECL_GEN_VSIGNAL(guserbaseOnInitialUpdate);
+
+   virtual class mini_dock_frame_window* CreateFloatingFrame(uint32_t dwStyle);
+   virtual void NotifyFloatingWindows(uint32_t dwFlags);
+
+
+=======
    using ::uinteraction::frame::WorkSetListener::attach;
    DECL_GEN_VSIGNAL(guserbaseOnInitialUpdate);
 
@@ -166,9 +177,50 @@ public:
 
 
 
+>>>>>>> .r7014
    virtual void WfiOnDown();
    virtual void WfiOnUp();
 
+<<<<<<< .mine
+   virtual bool calc_layered();
+
+
+   virtual string get_window_default_matter();
+
+   virtual void assert_valid() const;
+   virtual void dump(dump_context & dumpcontext) const;
+   void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+   void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+   virtual bool on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult);
+
+   virtual void OnDropFiles(HDROP hDropInfo);
+   virtual bool OnQueryEndSession();
+   virtual void OnEndSession(bool bEnding);
+
+   LRESULT OnDDEInitiate(WPARAM wParam, LPARAM lParam);
+   LRESULT OnDDEExecute(WPARAM wParam, LPARAM lParam);
+   LRESULT OnDDETerminate(WPARAM wParam, LPARAM lParam);
+
+   void _001OnQueryEndSession(signal_details * pobj);
+
+   virtual bool BaseOnControlEvent(::user::control_event * pevent);
+
+   virtual bool WfiOnMove(bool bTracking);
+   virtual bool WfiOnSize(bool bTracking);
+
+   virtual void WfiOnClose();
+   virtual void WfiOnMaximize();
+   virtual void WfiOnMinimize();
+   virtual void WfiOnRestore();
+
+   virtual bool DeferFullScreen(bool bFullScreen, bool bRestore);
+   virtual bool ShowWindowFullScreen(bool bFullScreen = true, bool bRestore = true);
+
+   virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
+
+   virtual void data_on_after_change(signal_details * pobj);
+
+=======
    virtual bool calc_layered();
 
 
@@ -195,6 +247,7 @@ public:
    virtual string simple_frame_window::get_window_default_matter();
 
 
+>>>>>>> .r7014
 };
 
 

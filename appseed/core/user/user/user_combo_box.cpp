@@ -193,10 +193,6 @@ namespace user
 
       int32_t iColorRate = 6;
 
-      simple_graphics g;
-
-      g.reference_os_data((Gdiplus::Graphics *) pdc->get_os_data());
-
       for(int32_t radius = iMargin * 2 / 3; radius >= 1; radius--)
       {
 
@@ -205,34 +201,34 @@ namespace user
             if(i == 0)
             {
                COLORREF ca(ARGB(230, 130, 130, 120));
-               g.draw_round_top_left(r, ca, radius, 1);
+               pdc->draw_round_top_left(r, ca, radius, 1);
             }
             else if(i == 1)
             {
                COLORREF ca(ARGB(230, 210, 210, 200));
-               g.draw_round_top_left(r, ca, radius, 1);
+               pdc->draw_round_top_left(r, ca, radius, 1);
             }
             else
             {
                COLORREF ca(ARGB(230, 230 - iColorRate, 230 - iColorRate, 220 - iColorRate));
-               g.draw_round_top_left(r, ca, radius, 1);
+               pdc->draw_round_top_left(r, ca, radius, 1);
             }
          }
          {
             if(i == 0)
             {
                COLORREF ca(ARGB(230, 130, 130, 120));
-               g.draw_round_bottom_right(r, ca, radius, 1);
+               pdc->draw_round_bottom_right(r, ca, radius, 1);
             }
             else if(i == 1)
             {
                COLORREF ca(ARGB(230, 210, 210, 200));
-               g.draw_round_bottom_right(r, ca, radius, 1);
+               pdc->draw_round_bottom_right(r, ca, radius, 1);
             }
             else
             {
                COLORREF ca(ARGB(230, 190 + iColorRate, 190 + iColorRate, 180 + iColorRate));
-               g.draw_round_bottom_right(r, ca, radius, 1);
+               pdc->draw_round_bottom_right(r, ca, radius, 1);
             }
          }
 

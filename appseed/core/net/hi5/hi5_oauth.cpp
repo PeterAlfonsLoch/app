@@ -987,7 +987,7 @@ void CSHA1::GetHash(UINT_8 *puDest)
       memHmac.allocate(1024 * 16);
 
       //hmac_context context;
-      System.crypt().hmac(memHmac, sigBase, secretSigningKey);
+      System.crypto().hmac(memHmac, sigBase, secretSigningKey);
       //context.digest(memHmac.get_data(), sigBase, secretSigningKey);
 
 

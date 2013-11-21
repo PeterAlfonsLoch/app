@@ -330,7 +330,7 @@ namespace user
          }
          if(pframewindow->m_workset.m_pframeschema == NULL)
          {
-            m_pschema = &Application.user()->GetUfeSchema()->m_button;
+            m_pschema = &Application.userex()->GetUfeSchema()->m_button;
          }
          else
          {
@@ -544,7 +544,7 @@ namespace user
    void button::_001OnCreate(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      m_pschema   = &::user::GetUfeSchema(get_app())->m_button;
+      m_pschema   = &::userex::GetUfeSchema(get_app())->m_button;
    }
 
 

@@ -11,7 +11,12 @@ namespace backview
 
       class CLASS_DECL_CORE interaction :
          virtual public Interface,
+<<<<<<< .mine
+         virtual public ::user::impact,
+         virtual public ::database::user::interaction
+=======
          virtual public ::user::impact
+>>>>>>> .r7014
       {
       public:
 

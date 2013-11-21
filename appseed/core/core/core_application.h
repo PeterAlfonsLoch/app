@@ -443,7 +443,7 @@ public:
    ::mutex * get_global_mutex();
 
    virtual void set_env_var(const string & var,const string & value);
-   virtual uint32_t get_thread_id();
+   //virtual uint32_t get_thread_id();
 
    virtual void message_queue_message_handler(signal_details * pobj);
 

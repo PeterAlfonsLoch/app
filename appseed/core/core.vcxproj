@@ -1416,14 +1416,16 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="net\hi5\hi5.h" />
     <ClInclude Include="net\hi5\hi5_oauth.h" />
     <ClInclude Include="net\hi5\hi5_twitter_authorization.h" />
+<<<<<<< .mine
+=======
     <ClInclude Include="net\mail\mail.h" />
     <ClInclude Include="net\mail\mail_pop3.h" />
     <ClInclude Include="net\mail\pop3_socket.h" />
     <ClInclude Include="net\mail\simple_pop3.h" />
+>>>>>>> .r7014
     <ClInclude Include="net\net_email_departament.h" />
     <ClInclude Include="net\net_ip_enum.h" />
     <ClInclude Include="net\net_port_forward.h" />
-    <ClInclude Include="net\net_url_domain.h" />
     <ClInclude Include="net\usermail\usermail.h" />
     <ClInclude Include="net\usermail\usermail_account.h" />
     <ClInclude Include="net\usermail\usermail_db_pop3.h" />
@@ -1476,7 +1478,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="primitive\datetime\datetime_clock.h" />
     <ClInclude Include="primitive\datetime\datetime_clock_interface.h" />
     <ClInclude Include="primitive\datetime\datetime_float_time.h" />
-    <ClInclude Include="primitive\datetime\datetime_value.h" />
     <ClInclude Include="primitive\datetime\datetime_windows_file_time.h" />
     <ClInclude Include=".\primitive\primitive_fixed_string.h" />
     <ClInclude Include=".\primitive\primitive_int_biunique.h" />
@@ -1494,10 +1495,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="programming\dynamic_source\dynamic_source_script_interface.h" />
     <ClInclude Include="programming\dynamic_source\dynamic_source_script_manager.h" />
     <ClInclude Include="programming\dynamic_source\dynamic_source_session.h" />
-    <ClInclude Include="programming\javascript\javascript.h" />
-    <ClInclude Include="programming\javascript\javascript_functions.h" />
-    <ClInclude Include="programming\javascript\javascript_tinyjs.h" />
-    <ClInclude Include="programming\javascript\javascript_tinyjs_functions.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="user\colorertake5\colorertake5.h" />
     <ClInclude Include="user\colorertake5\colorertake5_base_editor.h" />
@@ -1602,9 +1599,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\userex\userex_message_box.h" />
     <ClInclude Include="user\userex\userex_userex.h" />
     <ClInclude Include="user\userex\userex_wait_message_dialog.h" />
-    <ClInclude Include="user\userpresence\userpresence.h" />
-    <ClInclude Include="user\userpresence\userpresence_userpresence.h" />
-    <ClInclude Include="user\userpresence\userpresence_user_presence.h" />
     <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\user1.h" />
     <ClInclude Include="user\user\user_00.h" />
@@ -1935,6 +1929,10 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="compress\rar\rar_input_file.cpp" />
     <ClCompile Include="compress\rar\rar_item.cpp" />
     <ClCompile Include="compress\rar\rar_volume_input_stream.cpp" />
+<<<<<<< .mine
+    <ClCompile Include="crypto_kernel_crypto_kernel.cpp" />
+=======
+>>>>>>> .r7014
     <ClCompile Include="database\databaseuser\database_key_list_data.cpp" />
     <ClCompile Include="database\databaseuser\database_list_data.cpp" />
     <ClCompile Include="database\database_application.cpp">
@@ -2160,13 +2158,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="net\hi5\hi5_twit.cpp" />
     <ClCompile Include="net\hi5\hi5_oauth.cpp" />
     <ClCompile Include="net\hi5\hi5_twitter_authorization.cpp" />
-    <ClCompile Include="net\mail\mail_pop3.cpp" />
-    <ClCompile Include="net\mail\mail_pop3_socket.cpp" />
-    <ClCompile Include="net\mail\mail_simple_pop3.cpp" />
     <ClCompile Include="net\net_email_departament.cpp" />
     <ClCompile Include="net\net_ip_enum.cpp" />
     <ClCompile Include="net\net_port_forward.cpp" />
-    <ClCompile Include="net\net_url_domain.cpp" />
     <ClCompile Include="net\usermail\usermail_account.cpp" />
     <ClCompile Include="net\usermail\usermail_db_pop3.cpp" />
     <ClCompile Include="net\usermail\usermail_list_interface.cpp" />
@@ -2198,8 +2192,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="plane\session\platform\platform_pane_view_update_hint.cpp" />
     <ClCompile Include="plane\session\platform\platform_view.cpp" />
     <ClCompile Include="primitive\datetime\datetime_float_time.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_value.cpp" />
-    <ClCompile Include="primitive\primitive_color.cpp" />
     <ClCompile Include="primitive\datetime\datetime_calendar.cpp" />
     <ClCompile Include="primitive\datetime\datetime_calendar_interface.cpp" />
     <ClCompile Include="primitive\datetime\datetime_clock.cpp" />
@@ -2219,9 +2211,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="programming\dynamic_source\dynamic_source_script_interface.cpp" />
     <ClCompile Include="programming\dynamic_source\dynamic_source_script_manager.cpp" />
     <ClCompile Include="programming\dynamic_source\dynamic_source_session.cpp" />
-    <ClCompile Include="programming\javascript\javascript.cpp" />
-    <ClCompile Include="programming\javascript\javascript_functions.cpp" />
-    <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompiledHeader>
@@ -2303,17 +2292,15 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\uinteraction\uinteraction_frame.cpp" />
     <ClCompile Include="user\uinteraction\uinteraction_interaction.cpp" />
     <ClCompile Include="user\uinteraction\uinteraction_uinteraction.cpp" />
+    <ClCompile Include="user\userex\userex_userex.cpp" />
     <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="user\user\user_bitmap_button.cpp" />
-    <ClCompile Include="user\user\user_buffer.cpp" />
     <ClCompile Include="user\user\user_button.cpp" />
     <ClCompile Include="user\user\user_button_control.cpp" />
     <ClCompile Include="user\user\user_check_box.cpp" />
     <ClCompile Include="user\user\user_combo_box.cpp" />
     <ClCompile Include="user\user\user_combo_list.cpp" />
     <ClCompile Include="user\user\user_control.cpp" />
-    <ClCompile Include="user\user\user_control_bar.cpp" />
-    <ClCompile Include="user\user\user_control_event.cpp" />
     <ClCompile Include="user\user\user_control_property.cpp" />
     <ClCompile Include="user\user\user_data_exchange.cpp" />
     <ClCompile Include="user\user\user_document_manager.cpp" />
@@ -2323,14 +2310,13 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\user\user_form.cpp" />
     <ClCompile Include="user\user\user_form_callback.cpp" />
     <ClCompile Include="user\user\user_form_list.cpp" />
+<<<<<<< .mine
+=======
     <ClCompile Include="user\user\user_frame_window.cpp" />
+>>>>>>> .r7014
     <ClCompile Include="user\user\user_front_end.cpp" />
     <ClCompile Include="user\user\user_front_end_schema.cpp" />
     <ClCompile Include="user\user\user_image_manager.cpp" />
-    <ClCompile Include="user\user\user_interaction.cpp" />
-    <ClCompile Include="user\user\user_job.cpp" />
-    <ClCompile Include="user\user\user_keyboard.cpp" />
-    <ClCompile Include="user\user\user_keyboard_layout.cpp" />
     <ClCompile Include="user\user\user_keyboard_layout_cfg.cpp" />
     <ClCompile Include="user\user\user_list.cpp" />
     <ClCompile Include="user\user\user_list_cache.cpp" />
@@ -2363,7 +2349,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\user\user_static_control.cpp" />
     <ClCompile Include="user\user\user_statusbar.cpp" />
     <ClCompile Include="user\user\user_step_slider.cpp" />
-    <ClCompile Include="user\user\user_str.cpp" />
     <ClCompile Include="user\user\user_tab.cpp" />
     <ClCompile Include="user\user\user_tab_callback.cpp" />
     <ClCompile Include="user\user\user_tab_view.cpp" />
@@ -2375,18 +2360,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\user\user_tool_tip_window.cpp" />
     <ClCompile Include="user\user\user_tree.cpp" />
     <ClCompile Include="user\user\user_tree_window.cpp" />
-    <ClCompile Include="user\user\user_user.cpp" />
     <ClCompile Include="user\user\user_util.cpp" />
-    <ClCompile Include="user\user\user_view.cpp" />
     <ClCompile Include="user\user\user_view_container.cpp" />
     <ClCompile Include="user\user\user_view_creator.cpp" />
-    <ClCompile Include="user\user\user_view_update_hint.cpp" />
-    <ClCompile Include="user\user\user_virtual_user_interface.cpp" />
-    <ClCompile Include="user\user\user_wait_cursor.cpp" />
-    <ClCompile Include="user\user\user_window.cpp" />
-    <ClCompile Include="user\user\user_window_draw.cpp" />
-    <ClCompile Include="user\user\user_window_map.cpp" />
-    <ClCompile Include="user\user\user_window_util.cpp" />
     <ClCompile Include="user\user\user_xfplayer_view_line.cpp" />
     <ClCompile Include="user\userex\userex_dialog.cpp" />
     <ClCompile Include="user\userex\userex_form_child_frame.cpp" />
@@ -2417,8 +2393,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\userhtml\userhtml_frame.cpp" />
     <ClCompile Include="user\userhtml\userhtml_view.cpp" />
     <ClCompile Include="user\userhtml\userhtml_view_update_hint.cpp" />
-    <ClCompile Include="user\userpresence\userpresence_userpresence.cpp" />
-    <ClCompile Include="user\userpresence\userpresence_user_presence.cpp" />
+    <ClCompile Include="user\user\user_xfplayer_view_lines.cpp" />
+    <ClCompile Include="user\user\user_xfplayer_view_line_selection.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="core\core.inl" />

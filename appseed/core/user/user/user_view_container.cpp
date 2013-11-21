@@ -23,7 +23,7 @@ namespace user
 
    sp(::user::object) view_container::get_view_document()
    {
-      return view::get_document(get_view());
+      return impact::get_document(get_view());
    }
 
    void view_container::on_new_view_creator_data(view_creator_data * pcreatordata)

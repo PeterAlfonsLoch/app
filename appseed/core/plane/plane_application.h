@@ -135,6 +135,7 @@ namespace plane
 
       virtual ::fontopus::fontopus * create_fontopus();
       virtual ::user::user * create_user();
+      virtual ::userex::userex * create_userex();
       virtual ::userfs::userfs * create_userfs();
       virtual ::html::html * create_html();
 

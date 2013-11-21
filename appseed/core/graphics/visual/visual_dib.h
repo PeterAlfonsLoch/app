@@ -63,13 +63,11 @@ namespace visual
       virtual void draw_bitmap(int32_t dx, int32_t dy, FT_Bitmap * bitmap, FT_Int x, FT_Int y);
 
 
-      virtual bool update_window(::user::window * pwnd, signal_details * pobj);
-      virtual bool print_window(::user::window * pwnd, signal_details * pobj);
-
-
-
-
-
    };
 
+
 } // namespace visual
+
+
+
+

@@ -159,9 +159,6 @@
     <Filter Include="Header Files\net">
       <UniqueIdentifier>{9513e7e7-9f17-4f12-af08-cdee98c981ca}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\net\mail">
-      <UniqueIdentifier>{9721fc36-6bfd-43d3-91ad-e009d9968e9f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\net\usermail">
       <UniqueIdentifier>{1e5a524a-5fca-4e2b-81bf-977d8c45604a}</UniqueIdentifier>
     </Filter>
@@ -195,9 +192,6 @@
     <Filter Include="Source Files\plane\session\platform\NewFilter1">
       <UniqueIdentifier>{64241a18-b0f2-4524-aa99-e205b37b14d5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\net\mail">
-      <UniqueIdentifier>{fe61676c-0d0a-4d8f-9602-4968a54f1023}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\net\usermail">
       <UniqueIdentifier>{500e317b-ba38-45a5-9cbf-40d7c3effa13}</UniqueIdentifier>
     </Filter>
@@ -216,17 +210,11 @@
     <Filter Include="Header Files\programming\dynamic_source">
       <UniqueIdentifier>{bed0b41b-327e-4bbe-b146-10a009199798}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\programming\javascript">
-      <UniqueIdentifier>{0607b27e-f608-4221-bdb6-e7f7182781d2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\programming">
       <UniqueIdentifier>{cfd5fe12-0f39-4b56-a3db-8fa8689e58b4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\programming\dynamic_source">
       <UniqueIdentifier>{30cb9173-9abd-434e-a22b-cf6712f5c90d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\programming\javascript">
-      <UniqueIdentifier>{f515e346-96ba-4a76-8b4f-96786a4c5571}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\net\hi5">
       <UniqueIdentifier>{393478fc-0a93-4485-a7e2-ec71d7aed97d}</UniqueIdentifier>
@@ -236,9 +224,6 @@
     </Filter>
     <Filter Include="Source Files\database\sqlite">
       <UniqueIdentifier>{394e5bd0-2fd5-4c28-a5bb-7a8199a45834}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\userpresence">
-      <UniqueIdentifier>{84d321d5-017c-4ee8-8104-5366899ae216}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\database\sqlite">
       <UniqueIdentifier>{5c24f7cb-6f41-4b5c-ad00-a2ec3b4ff316}</UniqueIdentifier>
@@ -320,9 +305,6 @@
     </Filter>
     <Filter Include="Source Files\database\databaseuser">
       <UniqueIdentifier>{2467bbde-3b59-4994-9184-a1de9d6951e9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\user\userpresence">
-      <UniqueIdentifier>{11236973-bf1e-4f8f-a721-e87bfab1dad0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\core\plugin">
       <UniqueIdentifier>{c992cd0f-dbc2-4bfc-9672-d60f6c877d6f}</UniqueIdentifier>
@@ -531,9 +513,6 @@
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_clock_interface.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_value.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="plane\plane_system_primitive_var.h">
@@ -1310,18 +1289,6 @@
     <ClInclude Include="plane\session\platform\platform_view.h">
       <Filter>Header Files\plane\session\platform</Filter>
     </ClInclude>
-    <ClInclude Include="net\mail\mail.h">
-      <Filter>Header Files\net\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\mail\mail_pop3.h">
-      <Filter>Header Files\net\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\mail\pop3_socket.h">
-      <Filter>Header Files\net\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\mail\simple_pop3.h">
-      <Filter>Header Files\net\mail</Filter>
-    </ClInclude>
     <ClInclude Include="math\calculator\calculator.h">
       <Filter>Header Files\math\calculator</Filter>
     </ClInclude>
@@ -1531,18 +1498,6 @@
     </ClInclude>
     <ClInclude Include="programming\dynamic_source\dynamic_source_script_manager.h">
       <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\javascript\javascript.h">
-      <Filter>Header Files\programming\javascript</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\javascript\javascript_functions.h">
-      <Filter>Header Files\programming\javascript</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\javascript\javascript_tinyjs.h">
-      <Filter>Header Files\programming\javascript</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\javascript\javascript_tinyjs_functions.h">
-      <Filter>Header Files\programming\javascript</Filter>
     </ClInclude>
     <ClInclude Include="database\simpledb\db_long_set.h">
       <Filter>Header Files\database\simpledb</Filter>
@@ -1934,15 +1889,6 @@
     <ClInclude Include="filesystem\userfs\userfs_tree.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
-    <ClInclude Include="user\userpresence\userpresence.h">
-      <Filter>Header Files\user\userpresence</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userpresence\userpresence_user_presence.h">
-      <Filter>Header Files\user\userpresence</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userpresence\userpresence_userpresence.h">
-      <Filter>Header Files\user\userpresence</Filter>
-    </ClInclude>
     <ClInclude Include="plane\plane_system_ca2_factory.h">
       <Filter>Header Files\plane</Filter>
     </ClInclude>
@@ -2032,9 +1978,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\file\file_stream_binder.h">
       <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_url_domain.h">
-      <Filter>Header Files\net</Filter>
     </ClInclude>
     <ClInclude Include="os\os.h">
       <Filter>Header Files\core\os</Filter>
@@ -2908,9 +2851,6 @@
     <ClCompile Include="primitive\datetime\datetime_windows_file_time.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive_color.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive_fixed_string.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
@@ -3439,12 +3379,6 @@
     <ClCompile Include="plane\session\nature\nature_view.cpp">
       <Filter>Source Files\plane\session\nature</Filter>
     </ClCompile>
-    <ClCompile Include="net\mail\mail_pop3.cpp">
-      <Filter>Source Files\net\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\mail\mail_pop3_socket.cpp">
-      <Filter>Source Files\net\mail</Filter>
-    </ClCompile>
     <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp">
       <Filter>Source Files\user\colorertake5</Filter>
     </ClCompile>
@@ -3507,15 +3441,6 @@
     </ClCompile>
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp">
       <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp">
-      <Filter>Source Files\programming\javascript</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\javascript\javascript_functions.cpp">
-      <Filter>Source Files\programming\javascript</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\javascript\javascript.cpp">
-      <Filter>Source Files\programming\javascript</Filter>
     </ClCompile>
     <ClCompile Include="programming\dynamic_source\dynamic_source_exit_exception.cpp">
       <Filter>Source Files\programming\dynamic_source</Filter>
@@ -3841,12 +3766,6 @@
     <ClCompile Include="filesystem\filehandler\filehandler_tree_interface.cpp">
       <Filter>Source Files\filesystem\filehandler</Filter>
     </ClCompile>
-    <ClCompile Include="user\userpresence\userpresence_user_presence.cpp">
-      <Filter>Source Files\user\userpresence</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userpresence\userpresence_userpresence.cpp">
-      <Filter>Source Files\user\userpresence</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_document.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
@@ -4036,9 +3955,6 @@
     <ClCompile Include="filesystem\file\file_limited_writer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="net\net_url_domain.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_stream_binder.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -4081,12 +3997,15 @@
     <ClCompile Include="net\net_port_forward.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
+<<<<<<< .mine
+=======
     <ClCompile Include="primitive\datetime\datetime_value.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="net\mail\mail_simple_pop3.cpp">
       <Filter>Source Files\net\mail</Filter>
     </ClCompile>
+>>>>>>> .r7014
     <ClCompile Include="graphics\backview\backview_graphics.cpp">
       <Filter>Source Files\graphics\backview</Filter>
     </ClCompile>
@@ -4222,9 +4141,6 @@
     <ClCompile Include="user\user\user_bitmap_button.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_buffer.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_button.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -4241,12 +4157,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_control.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_control_bar.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_control_event.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_control_property.cpp">
@@ -4276,9 +4186,12 @@
     <ClCompile Include="user\user\user_form_list.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+<<<<<<< .mine
+=======
     <ClCompile Include="user\user\user_frame_window.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+>>>>>>> .r7014
     <ClCompile Include="user\user\user_front_end.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -4286,18 +4199,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_image_manager.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_interaction.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_job.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_keyboard.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_keyboard_layout.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_keyboard_layout_cfg.cpp">
@@ -4396,9 +4297,6 @@
     <ClCompile Include="user\user\user_step_slider.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_str.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_tab.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -4432,13 +4330,7 @@
     <ClCompile Include="user\user\user_tree_window.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_user.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_util.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_view.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_view_container.cpp">
@@ -4447,28 +4339,19 @@
     <ClCompile Include="user\user\user_view_creator.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_view_update_hint.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_virtual_user_interface.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_wait_cursor.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_window.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_window_draw.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_window_map.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_window_util.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_xfplayer_view_line.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto_kernel_crypto_kernel.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_userex.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_xfplayer_view_line_selection.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_xfplayer_view_lines.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>

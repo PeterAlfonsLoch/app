@@ -59,10 +59,13 @@ namespace user
 }
 
 
-#include "user_view.h"
-#include "user_view_update_hint.h"
+<<<<<<< .mine
+//#include "user_view.h"
+//#include "user_view_update_hint.h"
 
 
+=======
+>>>>>>> .r7014
 #include "user_control.h"
 
 
@@ -87,8 +90,8 @@ namespace user
 #include "user_check_box.h"
 
 
-#include "user_document_interface.h"
-#include "user_document.h"
+//#include "user_document_interface.h"
+//#include "user_document.h"
 
 
 
@@ -231,8 +234,8 @@ namespace user
 #include "user_keyboard_layout_cfg.h"
 
 
-#include "user_document_template_interface.h"
-#include "user_document_template.h"
+//#include "user_document_template_interface.h"
+//#include "user_document_template.h"
 #include "user_single_document_template.h"
 #include "user_multiple_document_template.h"
 
@@ -246,7 +249,7 @@ namespace user
 #include "user_view_container.h"
 #include "user_view_creator.h"
 
-#include "user_job.h"
+//#include "user_job.h"
 
 
 #include "user/menu/user_menu_central.h"
@@ -321,13 +324,13 @@ namespace user
 
 #include "user_toolbar_control.h"
 
-#include "user_control_bar.h"
+//#include "user_control_bar.h"
 #include "user_toolbar.h"
 #include "user_statusbar.h"
 
-#include "user_view.h"
-#include "user_document.h"
-#include "user_document_template.h"
+//#include "user_view.h"
+//#include "user_document.h"
+//#include "user_document_template.h"
 
 #include "user_split_bar.h"
 #include "user_split_layout.h"

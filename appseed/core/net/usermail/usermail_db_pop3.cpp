@@ -28,7 +28,7 @@ namespace usermail
    string db_pop3::get_pass()
    {
       string strPass;
-      crypt_file_get(::dir::userappdata("mail_license_auth/" + m_paccount->m_strEmail + "00001.data"), strPass, "user_vault");
+      crypto_file_get(::dir::userappdata("mail_license_auth/" + m_paccount->m_strEmail + "00001.data"), strPass, "user_vault");
       return strPass;
    }
 

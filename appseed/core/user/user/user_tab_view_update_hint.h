@@ -4,7 +4,7 @@ namespace user
 {
 
    class CLASS_DECL_CORE tab_view_update_hint :
-      public object  
+      public ::object  
    {
    public:
       enum e_type

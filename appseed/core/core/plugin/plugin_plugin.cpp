@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "app/appseed/boot/spa/spa2.h"
 
 
 #ifdef WINDOWS

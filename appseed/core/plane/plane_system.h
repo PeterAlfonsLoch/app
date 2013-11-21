@@ -435,6 +435,8 @@ bool ::file::system::output(sp(base_application) papp, const char * pszOutput, T
 
 
 
+<<<<<<< .mine
+=======
 //#include "core/collection/collection_array.h"
 
 
@@ -493,3 +495,4 @@ namespace user
 
 } //   namespace user
 
+>>>>>>> .r7014

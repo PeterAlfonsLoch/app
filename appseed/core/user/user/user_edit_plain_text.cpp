@@ -494,10 +494,19 @@ namespace user
 
 
       if(get_document() != NULL
+<<<<<<< .mine
+      && ::user::impact::get_data < ::user::object > () != NULL
+      && dynamic_cast < plain_text_tree * > (::user::impact::get_data < ::user::object >()) != NULL)
+=======
       && ::user::impact::get_data < document > () != NULL
       && dynamic_cast < plain_text_tree * > (::user::impact::get_data < document >()) != NULL)
+>>>>>>> .r7014
       {
+<<<<<<< .mine
+         set_root(dynamic_cast < plain_text_tree * > (::user::impact::get_data < ::user::object >()), false);
+=======
          set_root(dynamic_cast < plain_text_tree * > (::user::impact::get_data < document > ()), false);
+>>>>>>> .r7014
       }
       else
       {

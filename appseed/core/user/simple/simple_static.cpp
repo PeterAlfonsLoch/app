@@ -32,7 +32,7 @@ void simple_static::_001OnDraw(::draw2d::graphics *pdc)
 
       pdc->SelectFont(GetFont());
 
-      ::draw2d::brush_sp brush(allocer(), Application.user()->GetUfeSchema()->m_crTextNormal);
+      ::draw2d::brush_sp brush(allocer(), Application.userex()->GetUfeSchema()->m_crTextNormal);
 
       pdc->SelectObject(brush);
 

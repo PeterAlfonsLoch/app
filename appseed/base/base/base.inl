@@ -196,3 +196,63 @@ inline void __cdecl operator delete[](void * p, int32_t nType, const char * lpsz
 
 
 
+
+
+//#include "core/collection/collection_array.h"
+
+
+namespace user
+{
+
+
+   template < class VIEW >
+   inline sp(VIEW) impact::create_view(::user::object * pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
+   {
+      return create_view(System.type_info < VIEW >(), pdoc, pwndParent, id, pviewLast);
+   }
+
+
+   template < class VIEW >
+   inline sp(VIEW) impact::create_view(::user::interaction * pwndParent, id id, sp(::user::interaction) pviewLast)
+   {
+      return create_view < VIEW >(NULL, pwndParent, id, pviewLast);
+   }
+
+   template < class VIEW >
+   inline sp(VIEW) impact::create_view(::user::view_creator_data * pcreatordata, sp(::user::interaction) pviewLast)
+   {
+
+      VIEW * pview = create_view < VIEW >(pcreatordata->m_pholder, pcreatordata->m_id, pviewLast);
+
+      if (pview != NULL)
+      {
+         pcreatordata->m_pdoc = get_document();
+      }
+
+      return pview;
+
+   }
+
+
+
+   template < class DOCUMENT >
+   ::data::data * impact::get_data()
+   {
+      ASSERT(this != NULL);
+      DOCUMENT * pdocument = get_typed_document < DOCUMENT >();
+      if (pdocument == NULL)
+         return NULL;
+      return pdocument->get_data();
+   }
+
+   template < class DOCUMENT >
+   DOCUMENT * impact::get_typed_document()
+   {
+      if (m_spdocument.is_null())
+         return NULL;
+      return dynamic_cast < DOCUMENT * > (m_spdocument.m_p);
+   }
+
+
+} //   namespace user
+

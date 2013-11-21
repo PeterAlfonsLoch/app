@@ -1,6 +1,9 @@
 #pragma once
 
 
+class job;
+
+
 namespace draw2d
 {
 
@@ -59,7 +62,6 @@ namespace user
 
 
 #include "user/user_draw_context.h"
-#include "primitive/primitive_job.h"
 #include "draw2d_graphics.h"
 
 

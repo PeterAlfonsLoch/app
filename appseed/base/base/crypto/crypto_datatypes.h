@@ -50,7 +50,7 @@
 #ifndef _DATATYPES_H
 #define _DATATYPES_H
 
-
+BEGIN_EXTERN_C
 
 #ifndef SRTP_KERNEL
 # if defined(LINUX) || defined(MACOS)
@@ -418,5 +418,7 @@ static inline uint64_t be64_to_cpu(uint64_t v) {
 #endif /* ! SRTP_KERNEL_LINUX */
 
 #endif /* WORDS_BIGENDIAN */
+
+END_EXTERN_C
 
 #endif /* _DATATYPES_H */

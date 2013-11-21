@@ -51,16 +51,6 @@ namespace userex
       virtual bool initialize();
 
 
-      class window_map & window_map();
-
-
-      virtual sp(::user::keyboard_focus) get_keyboard_focus();
-      virtual void set_keyboard_focus(sp(::user::keyboard_focus) pkeyboardfocus);
-      virtual ::user::mouse_focus * get_mouse_focus_LButtonDown();
-      virtual void set_mouse_focus_LButtonDown(::user::mouse_focus * pmousefocus);
-      virtual ::user::mouse_focus * get_mouse_focus_RButtonDown();
-      virtual void set_mouse_focus_RButtonDown(::user::mouse_focus * pmousefocus);
-
 
       string message_box(const char * pszMatter, property_set & propertyset);
       virtual int32_t simple_message_box_timeout(sp(::user::interaction) puiOwner, const char * pszMessage, ::duration durationTimeout, UINT fuStyle = MB_OK);

@@ -71,7 +71,7 @@ namespace draw2d
 
       };
 
-
+      BITMAPINFO           m_info;
       COLORREF *        m_pcolorref;
       int32_t           cx;
       int32_t           cy;

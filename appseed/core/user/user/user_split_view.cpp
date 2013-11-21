@@ -1,7 +1,9 @@
 #include "framework.h"
 
+
 namespace user
 {
+
 
    split_view::split_view(sp(base_application) papp) :
       element(papp),
@@ -17,7 +19,7 @@ namespace user
 
    void split_view::install_message_handling(::message::dispatch * pinterface)
    {
-      view::install_message_handling(pinterface);
+      impact::install_message_handling(pinterface);
       USER_MESSAGE_LINK(message_create, pinterface, this, &split_view::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &split_view::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &split_view::_001OnShowWindow);
@@ -31,12 +33,12 @@ namespace user
    #ifdef DEBUG
    void split_view::assert_valid() const
    {
-      view::assert_valid();
+      impact::assert_valid();
    }
 
    void split_view::dump(dump_context & dumpcontext) const
    {
-      view::dump(dumpcontext);
+      impact::dump(dumpcontext);
    }
    #endif //DEBUG
 
@@ -122,7 +124,7 @@ namespace user
    {
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 
-      return view::pre_create_window(cs);
+      return impact::pre_create_window(cs);
    }
 
 
@@ -189,4 +191,9 @@ namespace user
       layout();
    }
 
+
 } // namespace user
+
+
+
+

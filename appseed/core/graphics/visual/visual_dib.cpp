@@ -25,93 +25,24 @@ namespace visual
 
    bool dib_sp::load_from_file(var varFile)
    {
-      // image cache load
-      // cache of decompression time
-      string strFile;
-      if(varFile.get_type() == var::type_string)
-      //if(false)
-      {
-         strFile = varFile;
-         strFile.replace(":/", "\\_");
-         strFile.replace(":\\", "\\_\\");
-         strFile.replace("/", "\\");
-         strFile = Sys(m_p->m_pbaseapp).dir().time("cache", strFile);
-         strFile += ".dib";
-         if(App(m_p->m_pbaseapp).file().exists(strFile))
-         {
-            try
-            {
-               ::file::byte_input_stream istream(App(m_p->m_pbaseapp).file().get_file(strFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary));
-               istream >> *m_p;
-               return true;
-            }
-            catch(...)
-            {
-            }
-         }
-      }
+      
+      return Sys(m_p->m_pbaseapp).visual().imaging().load_from_file(m_p, varFile);
 
-
-      try
-      {
-
-         if(!read_from_file(App(m_p->m_pbaseapp).file().get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary)))
-            return false;
-
-      }
-      catch(...)
-      {
-
-         return false;
-
-      }
-
-
-      // image cache write
-      if(strFile.has_char())
-      {
-         try
-         {
-            ::file::byte_output_stream ostream(App(m_p->m_pbaseapp).file().get_file(strFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory));
-            ostream << *m_p;
-         }
-         catch(...)
-         {
-         }
-      }
-      return true;
    }
+
 
    bool dib_sp::load_from_matter(const char * pszMatter)
    {
+
       return load_from_file(App(m_p->m_pbaseapp).dir().matter(pszMatter));
+
    }
 
 
-   bool dib_sp::read_from_file(::file::buffer_sp  pfile)
+   bool dib_sp::read_from_file(::file::buffer_sp spfile)
    {
 
-      FIBITMAP * pfi = Sys(m_p->m_pbaseapp).visual().imaging().LoadImageFile(pfile);
-
-      if(pfi == NULL)
-         return false;
-
-      synch_lock ml(&user_mutex());
-
-#if !defined(LINUX) && !defined(MACOS)
-
-      single_lock slDc(Sys(m_p->get_app()).m_pmutexDc, true);
-
-#endif
-
-      ::draw2d::graphics_sp spgraphics(m_p->m_pbaseapp->allocer());
-
-      spgraphics->CreateCompatibleDC(NULL);
-
-      if(!m_p->from(spgraphics, pfi, true))
-         return false;
-
-      return true;
+      return Sys(m_p->m_pbaseapp).visual().imaging().read_from_file(m_p, spfile);
 
    }
 
@@ -215,6 +146,14 @@ namespace visual
    }
 
 
+   bool dib_sp::from(class draw2d::graphics * pgraphics, struct FIBITMAP * pfi, bool bUnload)
+   {
+      
+      return Sys(m_p->m_pbaseapp).visual().imaging().from(m_p, pgraphics, pfi, bUnload);
+
+   }
+
+
    save_image::save_image()
    {
       m_eformat = ::visual::image::format_png;
@@ -228,18 +167,18 @@ namespace visual
       FT_Int  x_max = x + bitmap->width;
       FT_Int  y_max = y + bitmap->rows;
 
-      map();
+      m_p->map();
 
       for (i = x, p = 0; i < x_max; i++, p++)
       {
          for (j = y, q = 0; j < y_max; j++, q++)
          {
-            if (i < 0 || j < 0 || i >= cx || j >= cy)
+            if (i < 0 || j < 0 || i >= m_p->cx || j >= m_p->cy)
                continue;
 
             int32_t a = bitmap->buffer[q * bitmap->width + p];
 
-            *((COLORREF *)&((byte *)get_data())[(dy + j) * scan + (dx + i) * 4]) = ARGB(a, 0, 0, 0);
+            *((COLORREF *)&((byte *)m_p->get_data())[(dy + j) * m_p->scan + (dx + i) * 4]) = ARGB(a, 0, 0, 0);
 
          }
       }

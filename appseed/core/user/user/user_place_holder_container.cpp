@@ -38,7 +38,7 @@ namespace user
       return bRemove;
    }
 
-   sp(place_holder) place_holder_container::hold(sp(::user::interaction) pui)
+   sp(place_holder) place_holder_container::place(sp(::user::interaction) pui)
    {
       sp(place_holder) pholder = get_new_place_holder();
       if(!on_hold(pui, pholder))
@@ -50,7 +50,7 @@ namespace user
    }
 
 
-   bool place_holder_container::unhold(sp(::user::interaction) pui)
+   bool place_holder_container::unplace(sp(::user::interaction) pui)
    {
       for(int32_t i = 0; i < m_holdera.get_count(); i++)
       {
@@ -110,7 +110,7 @@ namespace user
       int32_t count = 0;
       for(int32_t i = 0; i < this->get_count(); i++)
       {
-         if(this->element_at(i)->unhold(pui))
+         if(this->element_at(i)->unplace(pui))
          {
             count++;
          }

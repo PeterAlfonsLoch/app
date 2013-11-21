@@ -3,9 +3,13 @@
 
 html_document::html_document(sp(base_application) papp) :
    element(papp),
+<<<<<<< .mine
+   ::user::object(papp)
+=======
    ::data::data_container_base(papp),
    
    ::user::object(papp)
+>>>>>>> .r7014
 {
 
 

@@ -15,7 +15,7 @@ namespace draw2d
       ::user::draw_context *        m_pdrawcontext;
       ::draw2d::dib *               m_pdibAlphaBlend;
       point                         m_ptAlphaBlend;
-      ::job *                  m_pjob;
+      ::job *                       m_pjob;
 
 
       ::draw2d::dib *               m_pdib;
@@ -544,8 +544,9 @@ namespace draw2d
       virtual int32_t GetPath(LPPOINT lpPoints, LPBYTE lpTypes, int32_t nCount) const;
       virtual bool SelectClipPath(int32_t nMode);
 
-
+      virtual bool draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen);
       virtual bool draw_path(::draw2d::path * ppath);
+      virtual bool fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush);
       virtual bool fill_path(::draw2d::path * ppath);
       virtual bool path(::draw2d::path * ppath);
 
@@ -575,6 +576,67 @@ namespace draw2d
 //      virtual bool create_client_dc(::user::window * pwnd);
   //    virtual bool create_window_dc(::user::window * pwnd);
     //  virtual bool release_dc(::user::window * pwnd);
+
+
+      //=============================================================================
+      //
+      // draw_round_rect()
+      //
+      // Purpose:     Draws a rounded rectangle with a solid pen
+      //
+      // Parameters:  pGraphics	- [in]	pointer to the Graphics device
+      //				r			- [in]	Rect that defines the round rectangle boundaries
+      //				color		- [in]	Color value for the brush
+      //				radius		- [in]  radius of the rounded corner
+      //				width		- [in]  width of the border
+      //
+      // Returns:     None
+      //
+      bool draw_round_rect(const RECT & r, ::draw2d::pen * ppen, int32_t radius);
+      bool draw_round_top_left(const RECT & r, ::draw2d::pen * ppen, int32_t radius);
+      bool draw_round_bottom_right(const RECT & r, ::draw2d::pen * ppen, int32_t radius);
+
+      bool draw_round_rect(const RECT & r, COLORREF color, int32_t radius, int32_t width);
+      bool draw_round_top_left(const RECT & r, COLORREF color, int32_t radius, int32_t width);
+      bool draw_round_bottom_right(const RECT & r, COLORREF color, int32_t radius, int32_t width);
+
+      //=============================================================================
+      //
+      // fill_round_rect()
+      //
+      // Purpose:     Fills a rounded rectangle with a solid brush.  Draws the border
+      //				first then fills in the rectangle.
+      //
+      // Parameters:  pGraphics	- [in]	pointer to the Graphics device
+      //				r			- [in]	Rect that defines the round rectangle boundaries
+      //				color		- [in]	Color value for the brush
+      //				radius		- [in]  radius of the rounded corner
+      //
+      // Returns:     None
+      //
+      bool fill_round_rect(const RECT & r, COLORREF color, int32_t radius);
+
+      //=============================================================================
+      //
+      // fill_round_rect()
+      //
+      // Purpose:     Fills a rounded rectangle with a solid brush.  Draws the border
+      //				first then fills in the rectangle.
+      //
+      // Parameters:  pGraphics	- [in]	pointer to the Graphics device
+      //				pBrush		- [in]  pointer to a Brush
+      //				r			- [in]	Rect that defines the round rectangle boundaries
+      //				color		- [in]	Color value for the border (needed in case the
+      //									brush is a type other than solid)
+      //				radius		- [in]  radius of the rounded corner
+      //
+      // Returns:     None
+      //
+      bool fill_round_rect(const RECT & r, ::draw2d::brush * pbrush, int32_t radius);
+
+
+      bool round_rect(const RECT & r, int32_t radius);
+
 
    };
 

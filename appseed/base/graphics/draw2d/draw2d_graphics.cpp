@@ -1476,12 +1476,29 @@ namespace draw2d
    }
 
 
+   bool graphics::draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen)
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+
    bool graphics::fill_path(::draw2d::path * ppath)
    {
 
       throw interface_only_exception(get_app());
 
    }
+
+
+   bool graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
 
    bool graphics::path(::draw2d::path * ppath)
    {
@@ -2624,6 +2641,260 @@ namespace draw2d
 
    }
    */
+
+
+   //=============================================================================
+   //
+   // draw_round_rect()
+   //
+   // Purpose:     Draws a rounded rectangle with a solid pen
+   //
+   // Parameters:  pGraphics	- [in]	pointer to the Graphics device
+   //				r			- [in]	Rect that defines the round rectangle boundaries
+   //				color		- [in]	Color value for the brush
+   //				radius		- [in]  radius of the rounded corner
+   //				width		- [in]  width of the border
+   //
+   // Returns:     None
+   //
+   bool graphics::draw_round_rect(const RECT & rect, ::draw2d::pen * ppen, int32_t radius)
+   {
+
+      ::draw2d::path_sp path(allocer());
+
+      path->begin_figure(true, ::draw2d::fill_mode_winding);
+
+      path->add_round_rect(rect, 2 * radius);
+
+      path->end_figure(true);
+
+      draw_path(path, ppen);
+
+      return true;
+
+   }
+
+
+   //=============================================================================
+   //
+   // draw_round_rect()
+   //
+   // Purpose:     Draws a rounded rectangle with a solid pen
+   //
+   // Parameters:  pGraphics	- [in]	pointer to the Graphics device
+   //				r			- [in]	Rect that defines the round rectangle boundaries
+   //				color		- [in]	Color value for the brush
+   //				radius		- [in]  radius of the rounded corner
+   //				width		- [in]  width of the border
+   //
+   // Returns:     None
+   //
+   bool graphics::draw_round_rect(const RECT & rect, COLORREF cr, int32_t radius, int32_t width)
+   {
+
+      RECT r = rect;
+
+      int32_t dia = 2 * radius;
+
+      ::draw2d::pen_sp pen(this, 1.0, cr);
+
+      draw_round_rect(r, pen, radius);
+
+
+      for (int32_t i = 1; i<width; i++)
+      {
+         dia++;
+
+         // left stroke
+         deflate_rect(r, 1, 0);
+
+         draw_round_rect(r, pen, dia / 2);
+
+         // up stroke
+         deflate_rect(r, 0, 1);
+
+         draw_round_rect(r, pen, dia / 2);
+
+      }
+
+      return true;
+
+   }
+
+
+   bool graphics::draw_round_top_left(const RECT & rect, ::draw2d::pen  * ppen, int32_t radius)
+   {
+
+      ::draw2d::path_sp path(allocer());
+
+      path->begin_figure(false, ::draw2d::fill_mode_winding);
+
+      path->add_round_top_left(rect, 2 * radius);
+
+      path->end_figure(false);
+
+      draw_path(path, ppen);
+
+      return true;
+
+   }
+
+
+   bool graphics::draw_round_top_left(const RECT & rect, COLORREF cr, int32_t radius, int32_t width)
+   {
+
+      RECT r = rect;
+
+      int32_t dia = 2 * radius;
+
+      ::draw2d::pen_sp pen(this, 1.0, cr);
+
+      draw_round_top_left(r, pen, radius);
+
+
+      for (int32_t i = 1; i<width; i++)
+      {
+         dia++;
+
+         // left stroke
+         deflate_rect(r, 1, 0);
+
+         draw_round_top_left(r, pen, dia / 2);
+
+         // up stroke
+         deflate_rect(r, 0, 1);
+
+         draw_round_top_left(r, pen, dia / 2);
+
+      }
+
+      return true;
+
+   }
+
+
+   bool graphics::draw_round_bottom_right(const RECT & rect, ::draw2d::pen  * ppen, int32_t radius)
+   {
+
+      ::draw2d::path_sp path(allocer());
+
+      path->begin_figure(false, ::draw2d::fill_mode_winding);
+
+      path->add_round_bottom_right(rect, 2 * radius);
+
+      path->end_figure(false);
+
+      draw_path(path, ppen);
+
+      return true;
+
+   }
+
+
+   bool graphics::draw_round_bottom_right(const RECT & rect, COLORREF cr, int32_t radius, int32_t width)
+   {
+
+      RECT r = rect;
+
+      int32_t dia = 2 * radius;
+
+      ::draw2d::pen_sp pen(this, 1.0, cr);
+
+      draw_round_bottom_right(r, pen, radius);
+
+      for (int32_t i = 1; i<width; i++)
+      {
+
+         dia++;
+
+         // left stroke
+         deflate_rect(r, 1, 0);
+
+         draw_round_bottom_right(r, pen, dia / 2);
+
+         // up stroke
+         deflate_rect(r, 0, 1);
+
+         draw_round_bottom_right(r, pen, dia / 2);
+
+      }
+
+      return true;
+
+   }
+
+   //=============================================================================
+   //
+   // fill_round_rect()
+   //
+   // Purpose:     Fills a rounded rectangle with a solid brush.  Draws the border
+   //				first then fills in the rectangle.
+   //
+   // Parameters:  pGraphics	- [in]	pointer to the Graphics device
+   //				r			- [in]	Rect that defines the round rectangle boundaries
+   //				color		- [in]	Color value for the brush
+   //				radius		- [in]  radius of the rounded corner
+   //
+   // Returns:     None
+   //
+   bool graphics::fill_round_rect(const RECT & r, COLORREF cr, int32_t radius)
+   {
+
+      ::draw2d::brush_sp br(allocer(), cr);
+
+      return fill_round_rect(r, br, radius);
+
+   }
+
+   //=============================================================================
+   //
+   // fill_round_rect()
+   //
+   // Purpose:     Fills a rounded rectangle with a solid brush.  Draws the border
+   //				first then fills in the rectangle.
+   //
+   // Parameters:  pGraphics	- [in]	pointer to the Graphics device
+   //				pBrush		- [in]  pointer to a Brush
+   //				r			- [in]	Rect that defines the round rectangle boundaries
+   //				color		- [in]	Color value for the border (needed in case the
+   //									brush is a type other than solid)
+   //				radius		- [in]  radius of the rounded corner
+   //
+   // Returns:     None
+   //
+   bool graphics::fill_round_rect(const RECT & rect, ::draw2d::brush * pbr, int32_t radius)
+   {
+
+      ::draw2d::path_sp path(allocer());
+
+      path->begin_figure(true, ::draw2d::fill_mode_winding);
+
+      path->add_round_rect(rect, 2 * radius);
+
+      path->end_figure(true);
+
+      fill_path(path, pbr);
+
+      return true;
+
+   }
+
+   bool graphics::round_rect(const RECT & r, int32_t radius)
+   {
+
+      bool bOk1 = fill_round_rect(r, m_spbrush, radius);
+
+      bool bOk2 = draw_round_rect(r, m_sppen, radius);
+
+      return bOk1 && bOk2;
+
+   }
+
+
+
+
+
+
 
 } // namespace draw2d
 

@@ -49,10 +49,14 @@
 #ifndef CRYPTO_ALLOC_H
 #define CRYPTO_ALLOC_H
 
+BEGIN_EXTERN_C
+
 void *
 crypto_alloc(size_t size);
 
 void
 crypto_free(void *ptr);
+
+END_EXTERN_C
 
 #endif /* CRYPTO_ALLOC_H */

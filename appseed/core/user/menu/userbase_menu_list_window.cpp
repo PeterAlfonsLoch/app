@@ -56,7 +56,7 @@ namespace user
    void menu_list_window::_001OnCreate(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      m_pschema            = &::user::GetUfeSchema(get_app())->m_menu;
+      m_pschema            = &::userex::GetUfeSchema(get_app())->m_menu;
    }
 
    void menu_list_window::_001OnDestroy(signal_details * pobj)

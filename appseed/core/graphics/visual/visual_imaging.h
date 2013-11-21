@@ -316,15 +316,17 @@ public:
    virtual void free(FIBITMAP * pfibitmap);
 
 
-   bool load_from_file(::draw2d::dib & dib, const char * psz);
-   bool load_from_matter(::draw2d::dib & dib, const char * pszMatter);
+   bool load_from_file(::draw2d::dib * pdib, var varFile);
+   bool load_from_matter(::draw2d::dib * pdib, var varFile);
+   bool read_from_file(::draw2d::dib * pdib, ::file::buffer_sp buffer);
 
-   bool load_cursor_from_file(::visual::cursor_sp spcursor, const char * psz);
-   bool load_cursor_from_matter(::visual::cursor_sp spcursor, const char * pszMatter);
+   bool load_from_file(::visual::cursor * pcursor, var varFile);
+   bool load_from_matter(::visual::cursor * pcursor, var varFile);
 
-   ::visual::cursor_sp load_cursor_from_file(const char * psz);
-   ::visual::cursor_sp load_cursor_from_matter(const char * pszMatter);
+   ::visual::cursor_sp load_cursor_from_file(var varFile);
+   ::visual::cursor_sp load_cursor_from_matter(var varFile);
 
+   virtual bool from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI);
 
 };
 

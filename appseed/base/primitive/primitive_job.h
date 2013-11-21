@@ -2,7 +2,11 @@
 
 
 class CLASS_DECL_BASE job :
+<<<<<<< .mine
+   virtual public ::thread
+=======
    virtual public ::object
+>>>>>>> .r7014
 {
 public:
 
@@ -13,8 +17,6 @@ public:
    job(sp(base_application) papp);
    virtual ~job();
 
-
-   virtual int32_t run() = 0;
 
 
 };
