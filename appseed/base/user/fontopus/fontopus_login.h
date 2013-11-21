@@ -1,13 +1,9 @@
 #pragma once
 
 
-#include "base/user/simple/simple_label.h"
-#include "base/user/simple/simple_edit_box.h"
-#include "base/user/simple/simple_password.h"
-#include "base/user/simple/simple_tap.h"
 
 
-namespace spa
+namespace fontopus
 {
 
 
@@ -93,7 +89,7 @@ namespace spa
 
 
 
-} // namespace spa
+} // namespace fontopus
 
 
 

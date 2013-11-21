@@ -491,6 +491,9 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "install/install.h"
 
 
+#include "hotplugin/hotplugin.h"
+
+
 #include "base_system.h"
 
 
@@ -512,7 +515,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
-#include "base/spa/spa_trace.h"
+#include "install/install_trace.h"
 
 
 #define new BASE_NEW

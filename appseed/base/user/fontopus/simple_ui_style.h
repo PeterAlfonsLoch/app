@@ -3,10 +3,10 @@
 
 
 
-namespace spa
+namespace 
 {
 
-   class CLASS_DECL_BASE style :
+   class CLASS_DECL_BASE simple_ui_style :
       virtual public object
    {
    public:

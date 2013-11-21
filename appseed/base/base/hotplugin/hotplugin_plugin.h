@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/spa/spa_style.h"
+#include "install_style.h"
 
 
 namespace hotplugin
