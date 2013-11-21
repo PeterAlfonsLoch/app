@@ -678,6 +678,12 @@
     <Filter Include="Source Files\base\openssl\engines\ccgost">
       <UniqueIdentifier>{753ce398-7e8c-4737-8bf6-f2fac3e33a13}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\base\crypto\crypto">
+      <UniqueIdentifier>{20c88a33-e98c-4710-a7c2-fbaf3e3b8766}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\crypto\crypto">
+      <UniqueIdentifier>{8a0af4d6-01ab-43f0-8402-9b330e6a65c2}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\net\mail">
       <UniqueIdentifier>{18e5190d-031e-4ad6-a338-9a3c09365a81}</UniqueIdentifier>
     </Filter>
@@ -2378,15 +2384,6 @@
     <ClInclude Include="user\user.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="base\crypto\crypto_nessie.h">
-      <Filter>Header Files\base\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto.h">
-      <Filter>Header Files\base\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto_crypto.h">
-      <Filter>Header Files\base\crypto</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_departament.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
@@ -2798,12 +2795,6 @@
     <ClInclude Include="base\openssl\crypto\conf\conf_def.h">
       <Filter>Source Files\base\openssl\crypto\conf</Filter>
     </ClInclude>
-    <ClInclude Include="base\crypto\crypto_sha1.h">
-      <Filter>Header Files\base\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto_hmac_sha1.h">
-      <Filter>Header Files\base\crypto</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_value.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
@@ -2849,25 +2840,6 @@
     <ClInclude Include="base\base_id_pool.h">
       <Filter>Header Files\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\crypto\crypto_hmac.h">
-      <Filter>Header Files\base\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto_err.h">
-      <Filter>Header Files\base\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto_auth.h">
-      <Filter>Header Files\base\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto_alloc.h">
-      <Filter>Header Files\base\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto_math.h">
-      <Filter>Header Files\base\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto_datatypes.h">
-      <Filter>Header Files\base\crypto</Filter>
-    </ClInclude>
-<<<<<<< .mine
     <ClInclude Include="user\user_frame_window.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -2894,6 +2866,111 @@
     </ClInclude>
     <ClInclude Include="user\user_wait_cursor.h">
       <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto.h">
+      <Filter>Header Files\base\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto_crypto.h">
+      <Filter>Header Files\base\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto_hmac_sha1.h">
+      <Filter>Header Files\base\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto_md5.h">
+      <Filter>Header Files\base\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto_nessie.h">
+      <Filter>Header Files\base\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto_sha1.h">
+      <Filter>Header Files\base\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_aes.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_aes_cbc.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_aes_icm.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_alg.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_alloc.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_auth.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_c_crypto.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_cipher.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_config.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_datatypes.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_err.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_gf2_8.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_hmac.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_integers.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_kernel.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_kernel_compat.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_key.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_math.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_null_auth.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_null_cipher.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_prng.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_rand_source.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_rdb.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_rdbx.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_stat.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_types.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_ut_sim.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_xfm.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
     </ClInclude>
     <ClInclude Include="net\mail\mail.h">
       <Filter>Header Files\net\mail</Filter>
@@ -2907,35 +2984,6 @@
     <ClInclude Include="net\mail\simple_pop3.h">
       <Filter>Header Files\net\mail</Filter>
     </ClInclude>
-=======
-    <ClInclude Include="user\user_frame_window.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_control_bar.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_server.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_impact.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_impact_system.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_object.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_impact_update_hint.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_job.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_wait_cursor.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
->>>>>>> .r7014
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_c.c">
@@ -4093,9 +4141,6 @@
     <ClCompile Include="user\userpresence\userpresence_userpresence.cpp">
       <Filter>Source Files\user\userpresence</Filter>
     </ClCompile>
-    <ClCompile Include="base\crypto\crypto.cpp">
-      <Filter>Source Files\base\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_virtual_user_interface.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -4140,9 +4185,6 @@
     </ClCompile>
     <ClCompile Include="base\base_message_queue.cpp">
       <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto_crypto.cpp">
-      <Filter>Source Files\base\crypto</Filter>
     </ClCompile>
     <ClCompile Include="base\openssl\crypto\cpt_err.c">
       <Filter>Source Files\base\openssl\crypto</Filter>
@@ -6079,20 +6121,8 @@
     <ClCompile Include="user\user.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="base\compress\compress_bzip_stream.cpp">
-      <Filter>Source Files\base\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\compress_gzip_stream.cpp">
-      <Filter>Source Files\base\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows\windows_window_gdi.cpp">
       <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto_nessie.cpp">
-      <Filter>Source Files\base\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto_whirpool.cpp">
-      <Filter>Source Files\base\crypto</Filter>
     </ClCompile>
     <ClCompile Include="graphics\graphics_window_graphics.cpp">
       <Filter>Source Files\graphics</Filter>
@@ -6157,29 +6187,8 @@
     <ClCompile Include="base\base_geometry.cpp">
       <Filter>Source Files\base</Filter>
     </ClCompile>
-    <ClCompile Include="base\crypto\crypto_sha1.cpp">
-      <Filter>Source Files\base\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto_hmac_sha1.cpp">
-      <Filter>Source Files\base\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto_hash_sha1.cpp">
-      <Filter>Source Files\base\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_buffer.cpp">
       <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto_hash_hmac.cpp">
-      <Filter>Source Files\base\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto_math.cpp">
-      <Filter>Source Files\base\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto_kernel_alloc.cpp">
-      <Filter>Source Files\base\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto_kernel_err.cpp">
-      <Filter>Source Files\base\crypto</Filter>
     </ClCompile>
     <ClCompile Include="base\base_machine_event_data.cpp">
       <Filter>Source Files\base</Filter>
@@ -6337,7 +6346,6 @@
     <ClCompile Include="base\compress\bsdiff\bsdiff_randtable.cpp">
       <Filter>Source Files\base\compress\bsdiff</Filter>
     </ClCompile>
-<<<<<<< .mine
     <ClCompile Include="user\user_frame_window.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -6361,6 +6369,102 @@
     </ClCompile>
     <ClCompile Include="user\user_impact_update_hint.cpp">
       <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\compress_bzip_stream.cpp">
+      <Filter>Source Files\base\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\compress_gzip_stream.cpp">
+      <Filter>Source Files\base\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto.cpp">
+      <Filter>Source Files\base\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto_crypto.cpp">
+      <Filter>Source Files\base\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto_hmac_sha1.cpp">
+      <Filter>Source Files\base\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto_md5.cpp">
+      <Filter>Source Files\base\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto_my_aes.cpp">
+      <Filter>Source Files\base\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto_nessie.cpp">
+      <Filter>Source Files\base\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto_sha1.cpp">
+      <Filter>Source Files\base\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto_whirpool.cpp">
+      <Filter>Source Files\base\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_ae_xfm.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_cipher_aes.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_cipher_aes_cbc.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_cipher_aes_icm.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_cipher_cipher.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_cipher_null_cipher.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_gf2_8.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_hash_auth.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_hash_hmac.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_hash_null_auth.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_hash_sha1.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_kernel_alloc.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_kernel_err.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_kernel_key.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_math.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_rng_rand_source.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_rng_prng.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_rng_ctr_prng.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_replay_ut_sim.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_replay_rdbx.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_replay_rdb.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_math_stat.c">
+      <Filter>Source Files\base\crypto\crypto</Filter>
     </ClCompile>
     <ClCompile Include="user\user_job.cpp">
       <Filter>Source Files\user</Filter>
@@ -6374,32 +6478,6 @@
     <ClCompile Include="net\mail\mail_simple_pop3.cpp">
       <Filter>Source Files\net\mail</Filter>
     </ClCompile>
-=======
-    <ClCompile Include="user\user_frame_window.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_object.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_impact.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_server.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_impact_system.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_control_bar.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_wait_cursor.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_impact_update_hint.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
->>>>>>> .r7014
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -6515,6 +6593,9 @@
     </None>
     <None Include="base\base_live_object.h">
       <Filter>Header Files\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

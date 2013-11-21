@@ -42,7 +42,6 @@ namespace userex
       userex(base_application * papp);
       virtual ~userex();
 
-      virtual bool set_keyboard_layout(const char * pszPath, bool bUser);
 
       filemanager::_shell::ImageSet & shellimageset();
 

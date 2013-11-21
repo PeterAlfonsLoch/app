@@ -775,6 +775,17 @@ retry_license:
       pholder->hold(pui);
 
       return pdoc;
+
+   }
+
+
+   bool userex::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
+   {
+
+      UNREFERENCED_PARAMETER(pcmdmsg);
+
+      return false;
+
    }
 
 

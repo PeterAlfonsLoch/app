@@ -1132,14 +1132,38 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\compress\zlib\zlib.h" />
     <ClInclude Include="base\compress\zlib\zutil.h" />
     <ClInclude Include="base\crypto\crypto.h" />
-    <ClInclude Include="base\crypto\crypto_alloc.h" />
-    <ClInclude Include="base\crypto\crypto_auth.h" />
+    <ClInclude Include="base\crypto\crypto\crypto.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_aes.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_aes_cbc.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_aes_icm.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_alg.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_alloc.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_auth.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_cipher.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_config.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_c_crypto.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_datatypes.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_err.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_gf2_8.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_hmac.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_integers.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_kernel.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_kernel_compat.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_key.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_math.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_null_auth.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_null_cipher.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_prng.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_rand_source.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_rdb.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_rdbx.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_stat.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_types.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_ut_sim.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_xfm.h" />
     <ClInclude Include="base\crypto\crypto_crypto.h" />
-    <ClInclude Include="base\crypto\crypto_datatypes.h" />
-    <ClInclude Include="base\crypto\crypto_err.h" />
-    <ClInclude Include="base\crypto\crypto_hmac.h" />
     <ClInclude Include="base\crypto\crypto_hmac_sha1.h" />
-    <ClInclude Include="base\crypto\crypto_math.h" />
+    <ClInclude Include="base\crypto\crypto_md5.h" />
     <ClInclude Include="base\crypto\crypto_nessie.h" />
     <ClInclude Include="base\crypto\crypto_sha1.h" />
     <ClInclude Include="base\openssl\crypto\aes\aes.h" />
@@ -2026,13 +2050,76 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto.cpp" />
+    <ClCompile Include="base\crypto\crypto\crypto_ae_xfm.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_cipher_aes.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_cipher_aes_cbc.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_cipher_aes_icm.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_cipher_cipher.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_cipher_null_cipher.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_gf2_8.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_hash_auth.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_hash_hmac.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_hash_null_auth.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_hash_sha1.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_kernel_alloc.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_kernel_err.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_kernel_key.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_math.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_math_stat.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_replay_rdb.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_replay_rdbx.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_replay_ut_sim.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_rng_ctr_prng.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_rng_prng.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="base\crypto\crypto\crypto_rng_rand_source.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="base\crypto\crypto_crypto.cpp" />
-    <ClCompile Include="base\crypto\crypto_hash_hmac.cpp" />
-    <ClCompile Include="base\crypto\crypto_hash_sha1.cpp" />
     <ClCompile Include="base\crypto\crypto_hmac_sha1.cpp" />
-    <ClCompile Include="base\crypto\crypto_kernel_alloc.cpp" />
-    <ClCompile Include="base\crypto\crypto_kernel_err.cpp" />
-    <ClCompile Include="base\crypto\crypto_math.cpp" />
+    <ClCompile Include="base\crypto\crypto_md5.cpp" />
+    <ClCompile Include="base\crypto\crypto_my_aes.cpp" />
     <ClCompile Include="base\crypto\crypto_nessie.cpp" />
     <ClCompile Include="base\crypto\crypto_sha1.cpp" />
     <ClCompile Include="base\crypto\crypto_whirpool.cpp" />
