@@ -717,3 +717,112 @@ namespace numeric_info
 
 
 
+
+
+
+
+#include "base/vms/vms.h"
+
+
+#include "base_cpu_architecture.h"
+
+
+#include "base_libc.h"
+
+
+#include "base_number.h"
+
+
+#include "base_debug.h"
+
+
+#include "base_printf.h"
+#include "base_sprintf.h"
+
+
+
+#include "base_math.h"
+
+
+
+
+#ifdef METROWIN
+
+#define BYESHYTOULA_STYLE_SOCKS
+
+#else
+
+#define BSD_STYLE_SOCKETS
+   //#include "base_small_ipc_channel.h"
+
+#endif
+
+
+
+   //#include "base_library.h"
+
+#include "base_file_watcher.h"
+#include "base_file_watcher_impl.h"
+
+
+
+   /*#ifndef WINDOWS
+   #define VK_TAB 1
+   #define VK_RETURN 2
+   #define VK_BACK 3
+   #define VK_DELETE 6
+   #define VK_SPACE 9
+   #endif*/
+
+#include "base_os.h"
+
+   //#include "base/cross/cross.h"
+
+
+
+
+#include "base_simple_shell_launcher.h"
+
+
+
+#include "base_file_watcher_thread.h"
+#include "base_file_watcher_listener_thread.h"
+#include "base_async.h"
+
+
+   //#include "base/hotplugin/hotplugin.h"
+
+
+
+
+#include "base_message_loop.h"
+
+#include "base_url.h"
+
+#include "base_international.h"
+
+
+
+#define return_(y, x) {y = x; return;}
+
+
+   extern "C"
+   {
+
+
+      int32_t _c_lock_is_active(const char * pszName);
+      int32_t _c_lock(const char * pszName, void ** pdata);
+      int32_t _c_unlock(void ** pdata);
+
+
+   }
+
+
+   CLASS_DECL_BASE string _ca_get_file_name(const char * psz, bool bCreate = false, int32_t * pfd = NULL);
+
+   CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
+
+
+#include "base_simple_app.h"
+
+

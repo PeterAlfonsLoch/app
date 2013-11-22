@@ -37,7 +37,7 @@
  *      Keith Packard <keithp@keithp.com>
  *      Carl Worth <cworth@cworth.org>
  */
-#include "base/base/base.h"
+#include "base/base/base/base.h"
 #define _BSD_SOURCE /* for strdup() */
 #include "cairoint.h"
 

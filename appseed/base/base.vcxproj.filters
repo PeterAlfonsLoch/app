@@ -636,18 +636,6 @@
     <Filter Include="Header Files\base\xml">
       <UniqueIdentifier>{42770ef4-1efe-40e5-864d-38ad28249a78}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\base\os">
-      <UniqueIdentifier>{9e92b674-0ae7-4e1e-bd86-d513ccacb6a8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\os\android">
-      <UniqueIdentifier>{1d998585-d816-43da-8e2f-dd16e84dde53}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\os\windows">
-      <UniqueIdentifier>{719bbac6-b1e2-43be-9042-48cec85915ad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\os\windows\builtin_draw2d_gdiplus">
-      <UniqueIdentifier>{6ea73a7e-f176-4d5a-a82b-5ff48ddf036f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\base\os">
       <UniqueIdentifier>{245e3241-db5a-4886-814d-9434580575d9}</UniqueIdentifier>
     </Filter>
@@ -665,9 +653,6 @@
     </Filter>
     <Filter Include="Source Files\base\os\windows\builtin_draw2d_gdiplus">
       <UniqueIdentifier>{e52501eb-5d02-44a1-9ba6-2eb7748ab202}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\os\cross">
-      <UniqueIdentifier>{e9b106f1-4ddd-4521-b7c1-6461c701be4f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\base\install">
       <UniqueIdentifier>{90021ec4-d01a-4f04-a062-a622ecf9d870}</UniqueIdentifier>
@@ -695,6 +680,27 @@
     </Filter>
     <Filter Include="Source Files\base\exception">
       <UniqueIdentifier>{376f71e3-e41a-4d8d-8e53-daad53a7e29d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\base">
+      <UniqueIdentifier>{5dc0d2bc-fc5d-4202-9b04-2343b93cccb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\base">
+      <UniqueIdentifier>{b15f9423-6971-4587-b04f-ca13192a9bcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\baseos">
+      <UniqueIdentifier>{9e92b674-0ae7-4e1e-bd86-d513ccacb6a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\baseos\android">
+      <UniqueIdentifier>{1d998585-d816-43da-8e2f-dd16e84dde53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\baseos\windows">
+      <UniqueIdentifier>{719bbac6-b1e2-43be-9042-48cec85915ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\baseos\windows\builtin_draw2d_gdiplus">
+      <UniqueIdentifier>{6ea73a7e-f176-4d5a-a82b-5ff48ddf036f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\baseos\cross">
+      <UniqueIdentifier>{e9b106f1-4ddd-4521-b7c1-6461c701be4f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -869,107 +875,14 @@
     <ClInclude Include="primitive\primitive_command_thread.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="base\base.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_allocate.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_application.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_c.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_c_cpp.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_c_objc.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_common.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_conv.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_core.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_count.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_debug.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_departament.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_departament_container.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_fixed_alloc.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_fixed_alloc_impl.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_heap.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_index.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_lparam.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_plex.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_plex_heap.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_plex_heap_impl.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_smart_pointer1.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_smart_pointer2.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_system.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_template.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_types.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
     <ClInclude Include="net\net_net.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
     <ClInclude Include="net\net_url_departament.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
-    <ClInclude Include="base\base_thread.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_request_signal.h">
       <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_muldiv64.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_root.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_auto_pointer.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_definition.h">
-      <Filter>Header Files\base</Filter>
     </ClInclude>
     <ClInclude Include="product.version.config.h">
       <Filter>Header Files</Filter>
@@ -983,17 +896,8 @@
     <ClInclude Include="primitive\primitive_bit.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="base\base_enum.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_create_context.h">
       <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_element.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_session.h">
-      <Filter>Header Files\base</Filter>
     </ClInclude>
     <ClInclude Include="android\c_os_internal.h">
       <Filter>Header Files</Filter>
@@ -1003,27 +907,6 @@
     </ClInclude>
     <ClInclude Include="primitive\primitive_memory_c.h">
       <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_new.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_system_object.inl">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_system_primitive_var.inl">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_system_smart_pointer.inl">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_system_id.inl">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_system_factory.inl">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_system_xml.inl">
-      <Filter>Header Files\base</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_set_event_on_exit.h">
       <Filter>Header Files\multithreading</Filter>
@@ -1289,12 +1172,6 @@
     <ClInclude Include="primitive\primitive_job.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="base\base_log.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_message.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_interaction.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -1319,17 +1196,8 @@
     <ClInclude Include="graphics\visual\visual.h">
       <Filter>Header Files\graphics\visual</Filter>
     </ClInclude>
-    <ClInclude Include="base\base_command.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
     <ClInclude Include="net\net_address.h">
       <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_command_target.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_flags.h">
-      <Filter>Header Files\base</Filter>
     </ClInclude>
     <ClInclude Include="user\user_check_interface.h">
       <Filter>Header Files\user</Filter>
@@ -1643,12 +1511,6 @@
     <ClInclude Include="programming\javascript\javascript_tinyjs_functions.h">
       <Filter>Header Files\programming\javascript</Filter>
     </ClInclude>
-    <ClInclude Include="base\base_trace.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_system_trace.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\geometry\geometry_types.h">
       <Filter>Header Files\primitive\geometry</Filter>
     </ClInclude>
@@ -1693,12 +1555,6 @@
     </ClInclude>
     <ClInclude Include="user\userpresence\userpresence_userpresence.h">
       <Filter>Header Files\user\userpresence</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_message_queue.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_message_queue_listener.h">
-      <Filter>Header Files\base</Filter>
     </ClInclude>
     <ClInclude Include="net\net_url_domain.h">
       <Filter>Header Files\net</Filter>
@@ -1828,18 +1684,6 @@
     </ClInclude>
     <ClInclude Include="base\compress\compress_compress.h">
       <Filter>Header Files\base\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_machine_event_central.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_machine_event.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_machine_event_data.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_system_str.h">
-      <Filter>Header Files\base</Filter>
     </ClInclude>
     <ClInclude Include="net\http\http.h">
       <Filter>Header Files\net\http</Filter>
@@ -2000,14 +1844,8 @@
     <ClInclude Include="multithreading\multithreading_signal_thread.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="base\base_microtimer.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_virtual_user_interface.h">
       <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_live_signal.h">
-      <Filter>Header Files\base</Filter>
     </ClInclude>
     <ClInclude Include="graphics\visual\visual_cursor.h">
       <Filter>Header Files\graphics\visual</Filter>
@@ -2441,21 +2279,6 @@
     <ClInclude Include="primitive\datetime\datetime_value.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="base\base_main_init_data.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_cregexp_util.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_cregexp.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_number.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_id_pool.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_frame_window.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -2766,79 +2589,79 @@
       <Filter>Header Files\base\xml</Filter>
     </ClInclude>
     <ClInclude Include="base\os\cross.h">
-      <Filter>Header Files\base\os</Filter>
+      <Filter>Header Files\base\baseos</Filter>
     </ClInclude>
     <ClInclude Include="base\os\os.h">
-      <Filter>Header Files\base\os</Filter>
+      <Filter>Header Files\base\baseos</Filter>
     </ClInclude>
     <ClInclude Include="base\os\os_process.h">
-      <Filter>Header Files\base\os</Filter>
+      <Filter>Header Files\base\baseos</Filter>
     </ClInclude>
     <ClInclude Include="base\os\cross\cross.h">
-      <Filter>Header Files\base\os\cross</Filter>
+      <Filter>Header Files\base\baseos\cross</Filter>
     </ClInclude>
     <ClInclude Include="base\os\android\android_window_impl.h">
-      <Filter>Header Files\base\os\android</Filter>
+      <Filter>Header Files\base\baseos\android</Filter>
     </ClInclude>
     <ClInclude Include="base\os\android\android.h">
-      <Filter>Header Files\base\os\android</Filter>
+      <Filter>Header Files\base\baseos\android</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows.h">
-      <Filter>Header Files\base\os\windows</Filter>
+      <Filter>Header Files\base\baseos\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_file.h">
-      <Filter>Header Files\base\os\windows</Filter>
+      <Filter>Header Files\base\baseos\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_internal.h">
-      <Filter>Header Files\base\os\windows</Filter>
+      <Filter>Header Files\base\baseos\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_simple_ui.h">
-      <Filter>Header Files\base\os\windows</Filter>
+      <Filter>Header Files\base\baseos\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_thread.h">
-      <Filter>Header Files\base\os\windows</Filter>
+      <Filter>Header Files\base\baseos\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_utils.h">
-      <Filter>Header Files\base\os\windows</Filter>
+      <Filter>Header Files\base\baseos\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_window_gdi.h">
-      <Filter>Header Files\base\os\windows</Filter>
+      <Filter>Header Files\base\baseos\windows</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_bitmap.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_brush.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_dib.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_factory_exchange.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_font.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_graphics.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_object.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_palette.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_path.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_pen.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_region.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="base\hotplugin\hotplugin.h">
       <Filter>Header Files\base\hotplugin</Filter>
@@ -2911,12 +2734,6 @@
     </ClInclude>
     <ClInclude Include="user\simple_ui\simple_ui_tap.h">
       <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_small_ipc_channel.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_launcher.h">
-      <Filter>Header Files\base</Filter>
     </ClInclude>
     <ClInclude Include="base\exception\exception.h">
       <Filter>Header Files\base\exception</Filter>
@@ -3050,9 +2867,6 @@
     <ClInclude Include="base\exception\exception2.h">
       <Filter>Header Files\base\exception</Filter>
     </ClInclude>
-    <ClInclude Include="base\base_keep_true.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
     <ClInclude Include="base\install\install_installation_lock_file_lock.h">
       <Filter>Header Files\base\install</Filter>
     </ClInclude>
@@ -3062,11 +2876,257 @@
     <ClInclude Include="base\install\aaa_want_to_remove_install2.h">
       <Filter>Header Files\base\install</Filter>
     </ClInclude>
-    <ClInclude Include="base\base_library.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple_ui\simple_ui_style.h">
       <Filter>Header Files\user\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_2.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_allocate.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_application.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_async.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_auto_pointer.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_c.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_c_cpp.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_c_objc.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_c_winrt.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_command.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_command_target.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_common.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_conv.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_core.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_cpu_architecture.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_cregexp.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_cregexp_util.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_debug.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_definition.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_departament.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_departament_container.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_draw2d.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_element.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_enum.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_file_watcher.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_file_watcher_impl.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_file_watcher_listener_thread.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_file_watcher_thread.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_fixed_alloc.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_fixed_alloc_impl.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_flags.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_heap.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_id_pool.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_international.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_keep_true.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_launcher.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_libc.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_library.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_live_object.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_live_signal.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_log.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_lparam.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_machine_event.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_machine_event_central.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_machine_event_data.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_main_init_data.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_math.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_message.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_message_loop.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_message_queue.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_message_queue_listener.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_microtimer.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_muldiv64.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_new.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_number.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_os.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_plex.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_plex_heap.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_plex_heap_impl.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_printf.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_root.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_session.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_simple_app.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_simple_pixel_font.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_simple_shell_launcher.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_small_ipc_channel.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_smart_pointer1.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_smart_pointer2.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_sprintf.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_system.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_system_str.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_system_trace.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_template.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_thread.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_trace.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_types.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_url.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\windows\windows_simple_hold_handle.h">
+      <Filter>Header Files\base\baseos\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\windows\windows_registry.h">
+      <Filter>Header Files\base\baseos\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\windows\windows_process.h">
+      <Filter>Header Files\base\baseos\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\windows\windows_file_watcher.h">
+      <Filter>Header Files\base\baseos\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\windows\windows_windows.h">
+      <Filter>Header Files\base\baseos\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3202,36 +3262,6 @@
     <ClCompile Include="primitive\primitive_command_thread.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="base\base_c.c">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_allocate_mid_big.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_application.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_departament.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_departament_container.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_fixed_alloc.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_heap.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_system.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_root.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
     <ClCompile Include="net\net_net.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
@@ -3256,44 +3286,14 @@
     <ClCompile Include="primitive\primitive_memory_c.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="base\base_plex_heap.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_plex.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive_bit.cpp">
       <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_thread.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_assert.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_allocate_system_heap.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_muldiv64.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_conv.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_template.cpp">
-      <Filter>Source Files\base</Filter>
     </ClCompile>
     <ClCompile Include="version.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="base\base_checked.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_create_context.cpp">
       <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_element.cpp">
-      <Filter>Source Files\base</Filter>
     </ClCompile>
     <ClCompile Include="net\http\http_application.cpp">
       <Filter>Source Files\net\http</Filter>
@@ -3877,12 +3877,6 @@
     <ClCompile Include="base\compress\compress_compress.cpp">
       <Filter>Source Files\base\compress</Filter>
     </ClCompile>
-    <ClCompile Include="base\base_microtimer.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_session.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
     <ClCompile Include="user\fontopus\fontopus.cpp">
       <Filter>Source Files\user\fontopus</Filter>
     </ClCompile>
@@ -3930,12 +3924,6 @@
     </ClCompile>
     <ClCompile Include="user\user_window_interface.cpp">
       <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_message.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_message_queue.cpp">
-      <Filter>Source Files\base</Filter>
     </ClCompile>
     <ClCompile Include="base\openssl\crypto\cpt_err.c">
       <Filter>Source Files\base\openssl\crypto</Filter>
@@ -5818,15 +5806,6 @@
     <ClCompile Include="primitive\datetime\datetime_departament.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="base\base_command_target.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_cmdtarg.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_log.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
     <ClCompile Include="multithreading\multithreading_simple_thread.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
@@ -5844,12 +5823,6 @@
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_value.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_cregexp_util.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_cregexp.cpp">
-      <Filter>Source Files\base</Filter>
     </ClCompile>
     <ClCompile Include="primitive\math\math_math_rng.cpp">
       <Filter>Source Files\primitive\math</Filter>
@@ -5878,38 +5851,14 @@
     <ClCompile Include="filesystem\file\file_buffered_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="base\base_trace.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_machine_event_central.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_live_signal.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_live_object.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_str.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="net\net_url_domain.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
-    <ClCompile Include="base\base_geometry.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_buffer.cpp">
       <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_machine_event_data.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_machine_event.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_flags.cpp">
-      <Filter>Source Files\base</Filter>
     </ClCompile>
     <ClCompile Include="base\openssl\crypto\conf\conf_sap.c">
       <Filter>Source Files\base\openssl\crypto\conf</Filter>
@@ -6493,9 +6442,6 @@
     <ClCompile Include="user\simple_ui\simple_ui_tap.cpp">
       <Filter>Source Files\user\simple_ui</Filter>
     </ClCompile>
-    <ClCompile Include="base\base_small_ipc_channel.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
     <ClCompile Include="user\fontopus\fontopus_login.cpp">
       <Filter>Source Files\user\fontopus</Filter>
     </ClCompile>
@@ -6631,13 +6577,178 @@
     <ClCompile Include="base\os\windows\windows_launcher.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
+    <ClCompile Include="base\base\base.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_allocate_mid_big.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_allocate_system_heap.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_application.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_argcargv.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_assert.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_checked.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_cmdtarg.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_command_target.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_conv.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_cpu_architecture.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_cregexp.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_cregexp_util.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_debug.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_departament.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_departament_container.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_element.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_file_watcher.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_file_watcher_impl.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_file_watcher_listener_thread.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_file_watcher_thread.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_fixed_alloc.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_flags.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_geometry.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_heap.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_international.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_live_object.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_live_signal.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_log.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_machine_event.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_machine_event_central.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_machine_event_data.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_math.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_message.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_message_queue.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_microtimer.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_mktime.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_muldiv64.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_plex.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_plex_heap.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_printf.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_root.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_session.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_simple_shell_launcher.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_small_ipc_channel.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_sprintf.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_system.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_template.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_thread.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_trace.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_simple_shell_launcher.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_simple_app.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_registry.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_message_loop.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_lock.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_file_watcher.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
       <Filter>Header Files\multithreading</Filter>
-    </None>
-    <None Include="base\base.inl">
-      <Filter>Header Files\base</Filter>
     </None>
     <None Include="base.def">
       <Filter>Header Files</Filter>
@@ -6741,9 +6852,6 @@
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="base\base_live_object.h">
-      <Filter>Header Files\base</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
@@ -6800,6 +6908,30 @@
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base\base\base.inl">
+      <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base\base\base_system_factory.inl">
+      <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base\base\base_system_id.inl">
+      <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base\base\base_system_object.inl">
+      <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base\base\base_system_primitive_var.inl">
+      <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base\base\base_system_smart_pointer.inl">
+      <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base\base\base_system_xml.inl">
+      <Filter>Header Files\base\base</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

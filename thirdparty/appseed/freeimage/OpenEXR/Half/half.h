@@ -85,7 +85,7 @@
 #ifndef _HALF_H_
 #define _HALF_H_
 
-#include "base/base/base.h"
+#include "base/base/base/base.h"
 
 #if defined(OPENEXR_DLL)
     #if defined(HALF_EXPORTS)

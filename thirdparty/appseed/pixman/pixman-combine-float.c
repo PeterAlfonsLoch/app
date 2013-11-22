@@ -25,7 +25,7 @@
  * Author: Soren Sandmann Pedersen (sandmann@cs.au.dk)
  */
 
-#include "base/base/base.h"
+#include "base/base/base/base.h"
 
 
 #ifdef HAVE_CONFIG_H

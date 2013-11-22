@@ -28,3 +28,8 @@ HANDLE ExtractAndInstallDrv();
 
 int ftruncate(int file, file_size len);
 
+
+
+
+CLASS_DECL_BASE int_bool ensure_file_size(HANDLE h, uint64_t iSize);
+CLASS_DECL_BASE int_bool get_file_time(HANDLE hFile, LPFILETIME lpCreationTime, LPFILETIME lpLastAccessTime, LPFILETIME lpLastWriteTime);

@@ -1,5 +1,5 @@
 
-#include "base/base/base.h"
+#include "base/base/base/base.h"
 
 
 /* FreeImage libtiff config */
@@ -8,7 +8,7 @@
 #define _TIFFCONF_
 
 
-#include "base/base/base.h"
+#include "base/base/base/base.h"
 
 
 /* Define as 0 or 1 according to the floating point format suported by the

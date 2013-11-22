@@ -21,4 +21,14 @@ dword get_tick_count()
 
 
 
+
 END_EXTERN_C
+
+
+
+CLASS_DECL_BASE int_bool get_file_time(HANDLE hFile, LPFILETIME lpCreationTime, LPFILETIME lpLastAccessTime, LPFILETIME lpLastWriteTime)
+{
+
+   return GetFileTime(hFile, lpCreationTime, lpLastAccessTime, lpLastWriteTime) != FALSE;
+
+}

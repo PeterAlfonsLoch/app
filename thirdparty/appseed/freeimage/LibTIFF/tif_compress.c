@@ -29,7 +29,7 @@
  *
  * Compression Scheme Configuration Support.
  */
- #include "base/base/base.h"
+ #include "base/base/base/base.h"
 #include "tiffiop.h"
 
 static int

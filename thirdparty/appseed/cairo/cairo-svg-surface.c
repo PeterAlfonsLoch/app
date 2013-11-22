@@ -38,7 +38,7 @@
  *	Emmanuel Pacaud <emmanuel.pacaud@free.fr>
  *	Carl Worth <cworth@cworth.org>
  */
-#include "base/base/base.h"
+#include "base/base/base/base.h"
 #define _BSD_SOURCE /* for snprintf() */
 #include "cairoint.h"
 

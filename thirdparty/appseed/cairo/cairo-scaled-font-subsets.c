@@ -39,7 +39,7 @@
  *	Keith Packard <keithp@keithp.com>
  *	Adrian Johnson <ajohnson@redneon.com>
  */
-#include "base/base/base.h"
+#include "base/base/base/base.h"
 #define _BSD_SOURCE /* for snprintf(), strdup() */
 #include "cairoint.h"
 #include "cairo-error-private.h"

@@ -26,9 +26,9 @@ void _term_args();
 typedef void (__cdecl *_PVFV)();
 extern _PVFV __xc_a[], __xc_z[];    /* C++ initializers */
 
-CLASS_DECL_BOOT void _initterm(_PVFV *pfbegin, _PVFV *pfend);
-CLASS_DECL_BOOT void _init_atexit();
-CLASS_DECL_BOOT void _doexit();
+CLASS_DECL_BASE void _initterm(_PVFV *pfbegin, _PVFV *pfend);
+CLASS_DECL_BASE void _init_atexit();
+CLASS_DECL_BASE void _doexit();
 
 END_EXTERN_C
 

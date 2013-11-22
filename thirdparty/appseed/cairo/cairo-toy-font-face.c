@@ -38,7 +38,7 @@
  *      Owen Taylor <otaylor@redhat.com>
  *      Behdad Esfahbod <behdad@behdad.org>
  */
-#include "base/base/base.h"
+#include "base/base/base/base.h"
 #define _BSD_SOURCE /* for strdup() */
 #include "cairoint.h"
 #include "cairo-error-private.h"

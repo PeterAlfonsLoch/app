@@ -5,7 +5,7 @@ namespace file_watcher
 {
 
 
-   class CLASS_DECL_BOOT thread :
+   class CLASS_DECL_BASE thread :
       public file_watcher,
       public thread_layer
    {

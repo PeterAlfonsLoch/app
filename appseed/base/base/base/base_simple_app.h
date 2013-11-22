@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BOOT simple_app
+class CLASS_DECL_BASE simple_app
 {
 public:
 

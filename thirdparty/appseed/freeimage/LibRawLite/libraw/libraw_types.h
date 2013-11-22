@@ -23,7 +23,7 @@ it under the terms of the one of three licenses as you choose:
 #ifndef _LIBRAW_TYPES_H
 #define _LIBRAW_TYPES_H
 
-#include "base/base/base.h"
+#include "base/base/base/base.h"
 
 #include <sys/types.h>
 #ifndef WIN32
