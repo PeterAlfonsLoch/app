@@ -409,7 +409,7 @@ namespace fontopus
          string strSalt = System.crypto().v5_get_password_salt();
          System.crypto().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00005.data"), strSalt, calc_key_hash(), get_app());
          string strPasshash2 = System.crypto().v5_get_password_hash(strSalt, strPassword);
-         crypt_file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00010.data"), strPasshash2, calc_key_hash(), get_app());
+         crypto_file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00010.data"), strPasshash2, calc_key_hash(), get_app());
          }*/
       }
       /*if(m_loginthread.m_strLicense.has_char())
@@ -417,7 +417,7 @@ namespace fontopus
       stringa straLicense;
       straLicense.add(m_loginthread.m_strValidUntil);
       straLicense.add(System.datetime().international().get_gmt_date_time());
-      crypt_file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/" + m_loginthread.m_strLicense + ".data"), straLicense.implode(";"), calc_ca2_hash(), get_app());
+      crypto_file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/" + m_loginthread.m_strLicense + ".data"), straLicense.implode(";"), calc_ca2_hash(), get_app());
       }*/
 
    }
