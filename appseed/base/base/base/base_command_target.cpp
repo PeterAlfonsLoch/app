@@ -7,7 +7,7 @@ base_cmd_ui::base_cmd_ui(class ::signal * psignal) :
 }
 
 
-base_cmd::base_cmd(class ::signal * psignal) :
+base_command::base_command(class ::signal * psignal) :
    signal_details(psignal)
 {
 }
@@ -129,7 +129,7 @@ bool command_target_interface::_001OnCommand(id id)
    bool bOk = false;
    for(int32_t i = 0; i < signalptra.get_size(); i++)
    {
-      base_cmd command(signalptra[i]->m_psignal);
+      base_command command(signalptra[i]->m_psignal);
       command.m_id = id;
       signalptra[i]->m_psignal->emit(&command);
       if(command.m_bRet)

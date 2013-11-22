@@ -320,7 +320,7 @@ namespace message
 #endif
 
    //bool dispatch::_iguimessageDispatchCommandMessage(
-   // base_cmd * pcommand,
+   // base_command * pcommand,
    //bool & b)
    //{
    /*int32_t & i = m_iHandling;

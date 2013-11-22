@@ -19,7 +19,7 @@ public:
 };
 
 
-class CLASS_DECL_BASE base_cmd :
+class CLASS_DECL_BASE base_command :
    public signal_details
 {
 public:
@@ -28,7 +28,7 @@ public:
    id   m_id;
 
 
-   base_cmd(class ::signal * psignal);
+   base_command(class ::signal * psignal);
 
 
 };

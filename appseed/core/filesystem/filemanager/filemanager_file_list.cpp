@@ -613,7 +613,7 @@ namespace filemanager
 
    void file_list::_001OnFileManagerItemCommand(signal_details * pobj)
    {
-      SCAST_PTR(base_cmd, pcommand, pobj)
+      SCAST_PTR(base_command, pcommand, pobj)
       ::fs::item_array itema;
       index iItemRange, iItem;
       range range;

@@ -839,6 +839,23 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
+
+   bool graphics::BitBlt(POINT ptDst, SIZE size, ::draw2d::graphics * pgraphicsSrc, POINT ptSrc, uint32_t dwRop)
+   {
+
+      return BitBlt(ptDst.x, ptDst.y, size.cx, size.cy, pgraphicsSrc, ptSrc.x, ptSrc.y, dwRop);
+
+   }
+
+
+   bool graphics::BitBlt(LPCRECT lpcrect, ::draw2d::graphics * pgraphicsSrc, POINT ptSrc, uint32_t dwRop)
+   {
+
+      return BitBlt(lpcrect->left, lpcrect->top, width(lpcrect), height(lpcrect), pgraphicsSrc, ptSrc.x, ptSrc.y, dwRop);
+
+   }
+
+
    bool graphics::BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, uint32_t dwRop)
    {
       UNREFERENCED_PARAMETER(x);
@@ -851,6 +868,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(dwRop);
       throw interface_only_exception(get_app());
    }
+
 
    bool graphics::StretchBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, uint32_t dwRop)
    {

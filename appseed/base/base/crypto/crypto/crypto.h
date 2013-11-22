@@ -8,6 +8,7 @@ BEGIN_EXTERN_C
 #include "crypto_datatypes.h"
 #include "crypto_err.h"
 #include "crypto_alloc.h"
+#include "crypto_math.h"
 #include "crypto_rand_source.h"       
 #include "crypto_gf2_8.h"
 #include "crypto_aes.h"

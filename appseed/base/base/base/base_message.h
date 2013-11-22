@@ -76,7 +76,7 @@ namespace user
 // message
 #define MX_APPLANGUAGE 1000
 
-class base_cmd;
+class base_command;
 
 #define USER_MESSAGE 1024
 
@@ -298,7 +298,7 @@ namespace message
       void (dispatch::*m_pfnDispatchWindowProc)(signal_details * pobj);
 
       virtual void _user_message_handler(signal_details * pobj);
-      //bool _iguimessageDispatchCommandMessage(base_cmd * pcommand, bool & b);
+      //bool _iguimessageDispatchCommandMessage(base_command * pcommand, bool & b);
       // return TRUE to stop routing
 #ifdef WINDOWS
       virtual bool igui_RelayEvent(LPMESSAGE lpmsg);
