@@ -1205,6 +1205,7 @@ exit_application:
             return NULL;
 
          papp->m_pplaneapp->m_psession                          = m_psession;
+         papp->m_pplaneapp->m_pbasesession                      = m_psession;
 
          /*if(pbaseapp->m_bService)
          {
@@ -1280,7 +1281,7 @@ exit_application:
          strCommandLine    += " style=" + string(Application.str_context()->m_plocaleschema->m_idSchema);
          strCommandLine    += " install";
 
-         System.install().start(strCommandLine);
+         System.installex().start(strCommandLine);
 
          throw installing_exception(get_app());
 
@@ -1403,7 +1404,7 @@ exit_application:
          if(!on_uninstall())
             return false;
 
-         System.install().remove_spa_start(m_strInstallType, m_strInstallToken);
+         System.installex().remove_spa_start(m_strInstallType, m_strInstallToken);
 
       }
 
@@ -1648,13 +1649,13 @@ exit_application:
       string strLocale = command()->m_varTopicQuery["locale"];
       string strSchema = command()->m_varTopicQuery["schema"];
 
-      System.install().remove_spa_start(m_strInstallType, strId);
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strSystemLocale, m_strSchema);
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strSystemLocale, strSystemSchema);
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, m_strSchema);
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, strSchema);
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strLocale, m_strSchema);
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strLocale, strSchema);
+      System.installex().remove_spa_start(m_strInstallType, strId);
+      System.installex().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strSystemLocale, m_strSchema);
+      System.installex().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strSystemLocale, strSystemSchema);
+      System.installex().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, m_strSchema);
+      System.installex().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, strSchema);
+      System.installex().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strLocale, m_strSchema);
+      System.installex().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strLocale, strSchema);
 
       return true;
 

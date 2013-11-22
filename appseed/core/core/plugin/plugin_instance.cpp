@@ -11,6 +11,7 @@ namespace plugin
    instance::instance(sp(base_application) papp) :
       element(papp),
       hotplugin::plugin(papp),
+      simple_ui::style(papp),
       plugin(papp)
    {
 

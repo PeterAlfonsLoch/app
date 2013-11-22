@@ -1,18 +1,12 @@
 #pragma once
 
 
-
-
 namespace fontopus
 {
 
 
-   class style;
-
-
-
    class CLASS_DECL_BASE login :
-      public ::simple_ui
+      public ::simple_ui::interaction
    {
    public:
 
@@ -36,21 +30,21 @@ namespace fontopus
 
       };
 
-      simple_label         m_labelUser;
-      simple_edit_box      m_editUser;
-      simple_label         m_labelPassword;
-      simple_password      m_password;
-      simple_tap           m_tap;
+      ::simple_ui::label            m_labelUser;
+      ::simple_ui::edit_box         m_editUser;
+      ::simple_ui::label            m_labelPassword;
+      ::simple_ui::password         m_password;
+      ::simple_ui::tap              m_tap;
 
-      string               m_strPasshash;
+      string                        m_strPasshash;
 
-      callback *           m_pcallback;
-      string               m_strKeyHash;
-      string               m_strSessId;
-      string               m_strSecureId;
-      string               m_strLoginUrl;
-      string               m_strFontopusServer;
-      string               m_strRequestingServer;
+      callback *                    m_pcallback;
+      string                        m_strKeyHash;
+      string                        m_strSessId;
+      string                        m_strSecureId;
+      string                        m_strLoginUrl;
+      string                        m_strFontopusServer;
+      string                        m_strRequestingServer;
 
 
       login(int left, int top);
@@ -61,7 +55,7 @@ namespace fontopus
 
       void initialize();
 
-      void defer_translate(::spa::style * pstyle);
+      void defer_translate(::simple_ui::style * pstyle);
 
       void start_login();
 
@@ -80,13 +74,9 @@ namespace fontopus
 
       virtual void layout();
 
-      virtual spa::login::e_result process_response(string strResponse);
+      virtual ::fontopus::login::e_result process_response(string strResponse);
 
    };
-
-
-
-
 
 
 } // namespace fontopus

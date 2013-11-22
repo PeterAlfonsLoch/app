@@ -47,7 +47,7 @@ namespace plane
       application_ptra                       m_appptra;
       class ::core::stra                             m_stra;
       class ::core::service                          m_service;
-      class ::core::install                          m_install;
+      class ::core::install                          m_installex;
       ::core::os_sp                                  m_spos;
 #ifndef METROWIN
       class ::core::process_departament              m_processsection;
@@ -80,7 +80,7 @@ namespace plane
 
       bool                                         m_bLibCharGuess;
 
-       ::boot::library m_libraryDraw2d;
+       base_library m_libraryDraw2d;
 
 
 
@@ -193,7 +193,7 @@ namespace plane
       application_ptra                       & appptra();
 
       ::core::stra                           & stra();
-      ::core::install                        & install();
+      ::core::install                        & installex();
       ::core::service                        & service();
       class ::core::os                       & os();
 #ifndef METROWIN

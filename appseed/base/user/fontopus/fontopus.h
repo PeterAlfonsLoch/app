@@ -34,20 +34,11 @@ namespace fontopus
 
 
 
-#include "base/base/simple/simple_ui_style.h"
-#include "base/user/simple/simple_ui.h"
-#include "base/user/simple/simple_label.h"
-#include "base/user/simple/simple_edit_box.h"
-#include "base/user/simple/simple_password.h"
-#include "base/user/simple/simple_tap.h"
+#include "base/user/simple_ui/simple_ui.h"
 
 
 
 #include "fontopus_login.h"
 
 
-
-#ifdef WINDOWSEX
-#include "base/os/windows/windows_simple_ui.h"
-#endif
-
+#include "fontopus_simple_ui.h"

@@ -1,12 +1,8 @@
 #pragma once
 
 
-#include "spa_canvas.h"
-#ifdef WINDOWSEX
-#include "app/appseed/base/os/windows/windows_simple_ui.h"
-#endif
 
-namespace spa_install
+namespace install
 {
 
 
@@ -14,14 +10,7 @@ namespace spa_install
    class window;
 
 
-   class CLASS_DECL_BOOT window_map :
-      public ::map < oswindow, oswindow, window *, window * >
-   {
-
-
-   };
-
-   class CLASS_DECL_BOOT window :
+   class CLASS_DECL_BASE window :
       virtual public ::os::simple_ui
    {
    public:
@@ -77,4 +66,4 @@ namespace spa_install
    };
 
 
-} // namespace spa_install
+} // namespace install

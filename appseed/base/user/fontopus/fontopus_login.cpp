@@ -1,12 +1,10 @@
 #include "framework.h"
-#include "spa_style.h"
-#include "base/user/simple/simple_ui.h"
-#include "spa_login.h"
 
 
 CLASS_DECL_BASE string spa_login_crypt(const char * psz, const char * pszRsa);
 
-namespace spa
+
+namespace fontopus
 {
 
 
@@ -35,7 +33,7 @@ namespace spa
    }
 
 
-   void login::defer_translate(::spa::style * pstyle)
+   void login::defer_translate(::simple_ui::style * pstyle)
    {
 
       xxdebug_box("defer_translate", "login", 0);
@@ -103,17 +101,17 @@ namespace spa
       if (m_strKeyHash.has_char())
          return m_strKeyHash;
       /*#if !core_level_1 && !core_level_2
-         ::SetDllDirectoryA(System.get_ca2_module_folder());
-         #endif
-         HMODULE hmoduleSalt = ::LoadLibraryA("salt.dll");
-         SALT salt = (SALT) ::GetProcAddress(hmoduleSalt, "salt");
-         stringa straSource;
-         if(m_loginthread.m_strUsername.has_char())
-         {
-         m_loginthread.m_strKeyHash = salt(get_app(), m_loginthread.m_strUsername, straSource);
-         return m_loginthread.m_strKeyHash;
-         }
-         else */
+      ::SetDllDirectoryA(System.get_ca2_module_folder());
+      #endif
+      HMODULE hmoduleSalt = ::LoadLibraryA("salt.dll");
+      SALT salt = (SALT) ::GetProcAddress(hmoduleSalt, "salt");
+      stringa straSource;
+      if(m_loginthread.m_strUsername.has_char())
+      {
+      m_loginthread.m_strKeyHash = salt(get_app(), m_loginthread.m_strUsername, straSource);
+      return m_loginthread.m_strKeyHash;
+      }
+      else */
       {
          m_strKeyHash = "ca2_12n";
          return "ca2_12n";
@@ -184,7 +182,7 @@ namespace spa
       m_strFontopusServer = Application.fontopus()->get_server(strGetFontopus, 8);
 
       if (!str::ends(m_strFontopusServer, ".ca2.cc"))
-         return ::spa::login::result_fail;
+         return ::fontopus::login::result_fail;
 
       if (::fontopus::authentication_map::m_authmap[strUsername].m_mapFontopus[m_strFontopusServer].get_length() > 32)
       {
@@ -471,7 +469,7 @@ namespace spa
 
 
 
-} // namespace spa
+} // namespace fontopus
 
 
 

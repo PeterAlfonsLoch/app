@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "app/appseed/boot/spa/spa_install_ca2.h"
 
 
 namespace core
@@ -317,13 +316,13 @@ namespace core
 
    int32_t install::start(const char * pszCommandLine)
    {
-      return ::start_ca2_cube_install(pszCommandLine);
+      return System.install().asynch_install(pszCommandLine);
    }
 
 
    int32_t install::synch(const char * pszCommandLine)
    {
-      return ::ca2_cube_install(pszCommandLine);
+      return System.install().synch_install(pszCommandLine);
    }
 
 

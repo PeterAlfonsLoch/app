@@ -1,10 +1,10 @@
 #pragma once
 
 
-namespace spa_install
+namespace install
 {
 
-   class CLASS_DECL_BOOT canvas :
+   class CLASS_DECL_BASE canvas :
       virtual public ::object
    {
    public:
@@ -24,7 +24,7 @@ namespace spa_install
    };
 
 
-} // namespace spa_install
+} // namespace install
 
 
 

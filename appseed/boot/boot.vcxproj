@@ -1125,10 +1125,8 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="boot\boot_file_watcher_listener_thread.h" />
     <ClInclude Include="boot\boot_file_watcher_thread.h" />
     <ClInclude Include="boot\boot_international.h" />
-    <ClInclude Include="boot\boot_keep_true.h" />
     <ClInclude Include="boot\boot_launcher.h" />
     <ClInclude Include="boot\boot_libc.h" />
-    <ClInclude Include="boot\boot_library.h" />
     <ClInclude Include="boot\boot_math.h" />
     <ClInclude Include="boot\boot_message_loop.h" />
     <ClInclude Include="boot\boot_number.h" />
@@ -1151,28 +1149,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="cross\windows\windows_user.h" />
     <ClInclude Include="c_natural.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="hotplugin\hotplugin_container_launcher.h" />
-    <ClInclude Include="hotplugin\hotplugin_host.h" />
-    <ClInclude Include="hotplugin\hotplugin.h" />
-    <ClInclude Include="hotplugin\hotplugin_plugin.h" />
-    <ClInclude Include="spa\resource.h" />
-    <ClInclude Include="spa\spa2.h" />
-    <ClInclude Include="spa\spa_boot.h" />
-    <ClInclude Include="spa\spa_ca2_install_canvas.h" />
-    <ClInclude Include="spa\spa_canvas.h" />
-    <ClInclude Include="spa\spa_command_start.h" />
-    <ClInclude Include="spa\spa_cube_run.h" />
-    <ClInclude Include="spa\spa_focus.h" />
-    <ClInclude Include="spa\spa_http.h" />
-    <ClInclude Include="spa\spa_installer.h" />
-    <ClInclude Include="spa\spa_install_ca2.h" />
-    <ClInclude Include="spa\spa_plugin.h" />
-    <ClInclude Include="spa\spa_small_bell.h" />
-    <ClInclude Include="spa\spa_spa.h" />
-    <ClInclude Include="spa\spa_starter_start.h" />
-    <ClInclude Include="spa\spa_trace.h" />
     <ClInclude Include="c_types.h" />
-    <ClInclude Include="spa\spa_window.h" />
     <ClInclude Include="version\version.config.h" />
     <ClInclude Include="version\version.h" />
     <ClInclude Include="windows\ca_os.h">
@@ -1402,7 +1379,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="boot\boot_mktime.cpp" />
     <ClCompile Include="boot\boot_printf.cpp" />
     <ClCompile Include="boot\boot_simple_shell_launcher.cpp" />
-    <ClCompile Include="boot\boot_small_ipca_channel.cpp" />
     <ClCompile Include="boot\boot_sprintf.cpp" />
     <ClCompile Include="boot\_initterm.cpp" />
     <ClCompile Include="framework.cpp">
@@ -1416,53 +1392,10 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="hotplugin\hotplugin_container_launcher.cpp" />
-    <ClCompile Include="hotplugin\hotplugin_host.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="hotplugin\hotplugin_plugin.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="spa\spa.cpp" />
-    <ClCompile Include="spa\spa_boot.cpp" />
-    <ClCompile Include="spa\spa_bz.cpp" />
-    <ClCompile Include="spa\spa_canvas.cpp" />
-    <ClCompile Include="spa\spa_cube_run.cpp" />
-    <ClCompile Include="spa\spa_focus.cpp" />
-    <ClCompile Include="spa\spa_http.cpp" />
-    <ClCompile Include="spa\spa_installer.cpp" />
-    <ClCompile Include="spa\spa_installer_square.cpp" />
-    <ClCompile Include="spa\spa_install_ca2.cpp" />
-    <ClCompile Include="spa\spa_main.cpp" />
-    <ClCompile Include="spa\spa_plugin.cpp" />
-    <ClCompile Include="spa\spa_small_bell.cpp" />
-    <ClCompile Include="spa\spa_spa.cpp" />
-    <ClCompile Include="spa\spa_starter_start.cpp" />
-    <ClCompile Include="spa\spa_window.cpp" />
     <ClCompile Include="windows\ca_os_ca_dll.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="windows\ca_os_file_watcher.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="windows\ca_os_launcher.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="windows\ca_os_library.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="windows\ca_os_lock.cpp">
@@ -1478,9 +1411,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="windows\ca_os_simple_shell_launcher.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="windows\ca_os_small_ipca_channel.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="windows\ca_os_time.cpp">

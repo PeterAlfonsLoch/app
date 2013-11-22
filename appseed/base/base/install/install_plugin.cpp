@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "spa_plugin.h"
-#include "spa2.h"
+
+
 #undef new
 #if defined(WINDOWS)
 #include <gdiplus.h>
@@ -34,13 +34,16 @@ void simple_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers)
 #endif // defined WINDOWS
 
 
-namespace spa_install
+namespace install
 {
 
    plugin::plugin(sp(base_application) papp) :
-      m_login(49, 49),
+      element(papp),
+      ::simple_ui::style(papp),
       hotplugin::plugin(papp),
+      m_login(49, 49),
       m_canvas(papp)
+
    {
 
       m_login.set_parent(this);
@@ -122,7 +125,7 @@ namespace spa_install
             try
             {
 
-               m_phost->m_bInstalling = is_installation_lock_file_locked();
+               m_phost->m_bInstalling = System.install().is_lock_file_locked();
 
             }
             catch(...)
@@ -140,7 +143,7 @@ namespace spa_install
          try
          {
 
-            m_phost->m_bInstalling = is_installation_lock_file_locked();
+            m_phost->m_bInstalling = System.install().is_lock_file_locked();
 
          }
          catch(...)
@@ -285,10 +288,10 @@ namespace spa_install
 
       }
 
-      if(is_installation_lock_file_locked())
+      if(System.install().is_lock_file_locked())
       {
 
-         set_installing_ca2();
+         System.install().set_installing_ca2();
 
          if(!m_phost->m_bInstalling)
          {
@@ -306,9 +309,9 @@ namespace spa_install
 
       }
 
-      update_ca2_installed(true);
+      System.install().update_ca2_installed(true);
 
-      if(is_ca2_installed())
+      if(System.install().is_ca2_installed())
       {
 
          m_bRestartCa2        = true;
@@ -346,8 +349,8 @@ namespace spa_install
 
          // remove install tag : should be turned into a function dependant of spalib at maximum
 
-         if(!node.load(file_as_string_dup(dir::appdata("spa_install.xml"))))
-            goto install;
+         if(!node.load(file_as_string_dup(dir::appdata("install.xml"))))
+            goto run_install;
 
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
@@ -361,32 +364,32 @@ namespace spa_install
 #endif
 
          if(lpnodeVersion == NULL)
-            goto install;
+            goto run_install;
 
-         string strBuild = get_latest_build_number(NULL);
+         string strBuild = System.install().get_latest_build_number(NULL);
 
          ::xml::node * lpnodeInstalled = node.GetChildByAttr("installed", "build", strBuild);
 
          if(lpnodeInstalled == NULL)
-            goto install;
+            goto run_install;
 
          ::xml::node * lpnodeType = lpnodeInstalled->get_child(pszType);
 
          if(lpnodeType == NULL)
-            goto install;
+            goto run_install;
 
          ::xml::node * pnode = lpnodeType->GetChildByAttr(pszType, "id", pszInstall);
 
          if(pnode == NULL)
-            goto install;
+            goto run_install;
 
          lpnodeType->remove_child(pnode);
 
-         file_put_contents_dup(dir::appdata("spa_install.xml"), node.get_xml(NULL));
+         file_put_contents_dup(dir::appdata("install.xml"), node.get_xml(NULL));
 
       }
 
-install:
+   run_install:
 
       m_phost->starter_start(pszInstall);
 
@@ -402,7 +405,7 @@ install:
 
 #else
 
-      if(!is_installing() && is_ca2_installed())
+      if (!is_installing() && System.install().is_ca2_installed())
       {
 
          if(ensure_tx(::hotplugin::message_paint, (void *) lprect, sizeof(*lprect)))
@@ -451,11 +454,11 @@ install:
       {
          m_login.draw(pgraphics);
       }
-      else if(is_installing_ca2())
+      else if (System.install().is_installing_ca2())
       {
          m_canvas.on_paint(pgraphics, &rect);
       }
-      else if(!is_ca2_installed())
+      else if (!System.install().is_ca2_installed())
       {
          /* HPEN hpen = (HPEN) ::create_solid(1, RGB(0, 0, 0));
          HPEN hpenOld = (HPEN) ::SelectObject(hdc, hpen);
@@ -521,7 +524,7 @@ install:
    LRESULT plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
 
-      if(!is_installing() && is_ca2_installed())
+      if (!is_installing() && System.install().is_ca2_installed())
       {
 
          MESSAGE msg;
@@ -632,7 +635,7 @@ install:
          else if((uiMessage == WM_LBUTTONUP
             || uiMessage == WM_RBUTTONUP
             || uiMessage == WM_MBUTTONUP) &&
-            is_installing_ca2())
+            System.install().is_installing_ca2())
          {
 
             m_iHealingSurface = m_canvas.increment_mode();
@@ -765,12 +768,13 @@ install:
       // this enables spaadmin to install ca files to ca folder, because npca2 would not use any ca shared libraries.
       if(m_phost->m_bRunningSpaAdmin)
       {
-         if(!_c_lock_is_active("Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"))
+         throw todo(get_app());
+         /*if(!_c_lock_is_active("Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"))
          {
             m_phost->m_bRunningSpaAdmin = false;
             m_phost->start_plugin();
             return;
-         }
+         }*/
       }
 
 
@@ -847,7 +851,7 @@ install:
 
       ::hotplugin::plugin::set_window_rect(lpcrect);
 
-      if(!is_installing() && is_ca2_installed())
+      if (!is_installing() && System.install().is_ca2_installed())
       {
 
 #ifdef METROWIN
@@ -868,7 +872,7 @@ install:
    void plugin::on_ready()
    {
 
-      if(!m_bInstalling && is_ca2_installed())
+      if (!m_bInstalling && System.install().is_ca2_installed())
       {
 
          xxdebug_box("on_ready", "on_ready", 0);
@@ -896,7 +900,7 @@ install:
 
             retry_get_prompt:
 
-            strPrompt = http_get_dup(m_phost->m_strPluginUrl);
+            strPrompt = Application.http().get(m_phost->m_strPluginUrl);
 
             if(strPrompt.is_empty())
             {
@@ -918,16 +922,18 @@ install:
 
          string strLocale;
 
-         if(strPrompt.is_empty() || !url_query_get_param_dup(strLocale, "locale", strPrompt) || strLocale.is_empty())
-            strLocale = str_get_system_default_locale_dup();
+         throw todo(get_app());
+//         if(strPrompt.is_empty() || !url_query_get_param_dup(strLocale, "locale", strPrompt) || strLocale.is_empty())
+         //          strLocale = str_get_system_default_locale_dup();
 
          if(strLocale.is_empty())
             strLocale = "en";
 
          string strSchema;
 
-         if(strPrompt.is_empty() || !url_query_get_param_dup(strSchema, "schema", strPrompt) || strSchema.is_empty())
-            strSchema = str_get_system_default_schema_dup();
+         throw todo(get_app());
+//         if (strPrompt.is_empty() || !url_query_get_param_dup(strSchema, "schema", strPrompt) || strSchema.is_empty())
+  //          strSchema = str_get_system_default_schema_dup();
 
          if(strSchema.is_empty())
             strSchema = "en";
@@ -949,10 +955,10 @@ install:
 
    }
 
-   void plugin::login_result(::spa::login::e_result eresult)
+   void plugin::login_result(::fontopus::login::e_result eresult)
    {
 
-      if(eresult == ::spa::login::result_ok)
+      if(eresult == ::fontopus::login::result_ok)
       {
 
          m_bLogged   = true;
@@ -1009,7 +1015,7 @@ restart:
          Sleep(iAttemptUrl * 84);
       }
 
-      while((str = http_get_dup(m_phost->m_strPluginUrl)).is_empty())
+      while((str = Application.http().get(m_phost->m_strPluginUrl)).is_empty())
       {
          if(!m_phost->m_bStream)
          {
@@ -1029,12 +1035,12 @@ restart:
 
 
 
-} // namespace spa_install
+} // namespace install
 
 
 ::hotplugin::plugin * new_hotplugin(sp(base_application) papp)
 {
-   return new ::spa_install::plugin(papp);
+   return new ::install::plugin(papp);
 }
 
 

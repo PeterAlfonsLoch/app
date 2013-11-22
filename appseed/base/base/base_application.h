@@ -87,6 +87,8 @@ public:
 
    bool                                            m_bSessionSynchronizedCursor;
    point                                           m_ptCursor;
+   rect                                            m_rectScreen;
+   bool                                            m_bSessionSynchronizedScreen;
 
 
    base_application();
@@ -321,6 +323,10 @@ public:
       virtual int_bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension, const char * pszTemplate);
 
       virtual int_bool get_temp_file_name(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension);
+
+
+      virtual void get_screen_rect(LPRECT lprect);
+
 
 };
 

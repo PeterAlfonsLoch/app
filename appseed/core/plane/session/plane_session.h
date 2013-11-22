@@ -173,7 +173,7 @@ namespace plane
       virtual bool is_remote_session();
 
       using ::plane::application::start_application;
-      sp(::plane::application) start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext);
+      sp(::base_application) start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext);
 
 
       virtual COLORREF get_default_color(uint64_t ui);

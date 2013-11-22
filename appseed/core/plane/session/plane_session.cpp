@@ -11,6 +11,8 @@ namespace plane
 
       m_pplanesession            = this;
 
+      m_pbasesession             = this;
+
       m_bDrawCursor              = true;
       m_pnaturedocument          = NULL;
       m_pplatformdocument        = NULL;
@@ -666,7 +668,7 @@ namespace plane
    }
 
 
-   sp(::plane::application) session::start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext)
+   sp(::base_application) session::start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext)
    {
 
       string strApp(pszAppId);

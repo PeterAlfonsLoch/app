@@ -40,7 +40,7 @@ namespace dynamic_source
       string                                    m_strDynamicSourceConfiguration;
                                                 
                                                 
-      ::boot::library                             m_libraryLib;
+      base_library                             m_libraryLib;
 
 
       raw_array < __time_t >                    m_ftaLibCreation;

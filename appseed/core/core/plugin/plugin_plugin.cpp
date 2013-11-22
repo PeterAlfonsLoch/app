@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "app/appseed/boot/spa/spa2.h"
 
 
 #ifdef WINDOWS
@@ -32,6 +31,7 @@ namespace plugin
 
    plugin::plugin(sp(base_application) papp) :
       element(papp),
+      ::simple_ui::style(papp),
       hotplugin::plugin(papp)
    {
 
@@ -306,7 +306,7 @@ namespace plugin
       try
       {
 
-         if(is_installation_lock_file_locked())
+         if(System.install().is_lock_file_locked())
          {
 
             reload_plugin();
@@ -434,8 +434,8 @@ namespace plugin
       if(i == -3)
       {
          int32_t * pi = (int32_t *) p;
-         simple_http_status * ps = (simple_http_status *) dw;
-         *pi = ps->m_dwStatusCode;
+//         simple_http_status * ps = (simple_http_status *) dw;
+  //       *pi = ps->m_dwStatusCode;
       }
 
    }
@@ -629,7 +629,7 @@ namespace plugin
             if(str1 == "ca2login")
             {
                // graphical - 2 - user interface for login - fontopus - through the plugin
-               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/core/fontopus", strLocale, strSchema))
+               if(!m_psystem->installex().is(NULL, strBuildNumber, "application", "app/core/fontopus", strLocale, strSchema))
                {
 /*                  Sys(m_psystem).install().start(": app=session session_start=app/core/fontopus app_type=application install");
 #ifdef WINDOWS
@@ -647,7 +647,7 @@ namespace plugin
 #else
                   throw not_implemented(get_app());
 #endif
-                  Sys(m_psystem).install().start(strCommandLine);
+                  Sys(m_psystem).installex().start(strCommandLine);
 
                   m_phost->m_bReload = true;
 
@@ -669,7 +669,7 @@ namespace plugin
             else if(str1 == "ca2logout")
             {
                // graphical - 2 - user interface for logout - fontopus - through the plugin
-               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/core/fontopus", strLocale, strSchema))
+               if(!m_psystem->installex().is(NULL, strBuildNumber, "application", "app/core/fontopus", strLocale, strSchema))
                {
                   /*
                   Sys(m_psystem).install().start(": app=session session_start=app/core/fontopus app_type=application install");
@@ -688,7 +688,7 @@ namespace plugin
                   throw not_implemented(get_app());
 #endif
 
-                  Sys(m_psystem).install().start(strCommandLine);
+                  Sys(m_psystem).installex().start(strCommandLine);
 
                   m_phost->m_bReload = true;
 
@@ -736,7 +736,7 @@ namespace plugin
                      if(strType.is_empty())
                         strType = "application";
 
-                     if(strId.has_char() && !m_psystem->install().is(NULL, strBuildNumber, strType, strId, strLocale, strSchema))
+                     if(strId.has_char() && !m_psystem->installex().is(NULL, strBuildNumber, strType, strId, strLocale, strSchema))
                      {
 
                         string strCommandLine;
@@ -787,7 +787,7 @@ namespace plugin
                         throw not_implemented(get_app());
 #endif
 
-                        Sys(m_psystem).install().start(strCommandLine);
+                        Sys(m_psystem).installex().start(strCommandLine);
 
                         m_phost->m_bReload = true;
 

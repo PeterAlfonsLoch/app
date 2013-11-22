@@ -625,7 +625,7 @@ void application::Ex1OnFactoryExchange()
 
    System.factory().creatable_large < ::file::exception > ();
 
-   ::boot::library library;
+   base_library library;
 
    if(!library.open("os"))
       throw "failed to do factory exchange";
@@ -645,7 +645,7 @@ void application::draw2d_factory_exchange()
    if(strLibrary.is_empty())
       strLibrary = "draw2d_cairo";
 
-   ::boot::library & library = System.m_libraryDraw2d;
+   base_library & library = System.m_libraryDraw2d;
 
    if(library.is_opened())
       return;
@@ -3844,35 +3844,7 @@ oswindow application::get_ca2_app_wnd(const char * psz)
 
 
 
-void application::get_screen_rect(LPRECT lprect)
-{
-#ifdef METROWIN
-   if(m_bSessionSynchronizedScreen)
-   {
-      System.get_window_rect(m_rectScreen);
-   }
-#elif defined(LINUX)
-   if(m_bSessionSynchronizedScreen)
-   {
-      System.get_monitor_rect(0, m_rectScreen);
-   }
-#elif defined(MACOS)
-   if(m_bSessionSynchronizedScreen)
-   {
-      System.get_monitor_rect(0, m_rectScreen);
-   }
-#else
-   if(m_bSessionSynchronizedScreen)
-   {
-      oswindow oswindowDesktop = ::GetDesktopWindow();
-      ::GetWindowRect(oswindowDesktop, &m_rectScreen);
-   }
-#endif
-   if(lprect != NULL)
-   {
-      *lprect = m_rectScreen;
-   }
-}
+
 
 int32_t application::get_document_count()
 {

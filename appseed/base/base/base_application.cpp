@@ -484,14 +484,14 @@ sp(::user::interaction) base_application::window_from_os_data_permanent(void * p
 sp(::user::window) base_application::window_from_os_data(void * pdata)
 {
 
-   return NULL;
+   return m_pimpl->window_from_os_data(pdata);
 
 }
 
 sp(::user::window) base_application::window_from_os_data_permanent(void * pdata)
 {
    
-   return NULL;
+   return m_pimpl->window_from_os_data_permanent(pdata);
 
 }
 #endif
@@ -926,7 +926,12 @@ sp(::user::interaction) base_application::get_capture_uie()
    if (oswindowCapture == NULL)
       return NULL;
 
-   return System.window_from_os_data(oswindowCapture).cast < ::user::window >()->get_capture();
+   ::user::window * pwindow = System.window_from_os_data(oswindowCapture).cast < ::user::window >();
+
+   if(pwindow == NULL)
+      return NULL;
+
+   return pwindow->get_capture();
 
 #else
 
@@ -1319,3 +1324,34 @@ int_bool base_application::get_temp_file_name(char * szRet, ::count iBufferSize,
 
 }
 
+
+
+void base_application::get_screen_rect(LPRECT lprect)
+{
+#ifdef METROWIN
+   if (m_bSessionSynchronizedScreen)
+   {
+      System.get_window_rect(m_rectScreen);
+   }
+#elif defined(LINUX)
+   if (m_bSessionSynchronizedScreen)
+   {
+      System.get_monitor_rect(0, m_rectScreen);
+   }
+#elif defined(MACOS)
+   if (m_bSessionSynchronizedScreen)
+   {
+      System.get_monitor_rect(0, m_rectScreen);
+   }
+#else
+   if (m_bSessionSynchronizedScreen)
+   {
+      oswindow oswindowDesktop = ::GetDesktopWindow();
+      ::GetWindowRect(oswindowDesktop, &m_rectScreen);
+   }
+#endif
+   if (lprect != NULL)
+   {
+      *lprect = m_rectScreen;
+   }
+}

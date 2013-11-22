@@ -1,6 +1,4 @@
 #include "framework.h"
-#include "spa_installer.h"
-#include "spa2.h"
 
 
 #ifdef WINDOWS
@@ -14,11 +12,11 @@
 #endif
 
 
-extern CHAR szTitle[1024];					// The title bar text
-extern CHAR szWindowClassSpaAdmin[1024];			// the main window class name
+CHAR szTitle[1024];					// The title bar text
+CHAR szWindowClassSpaAdmin[1024];			// the main window class name
 
 //void ensure_trace_file();
-CLASS_DECL_BOOT bool g_bInstalling = false;
+CLASS_DECL_BASE bool g_bInstalling = false;
 
 typedef PVOID * PPVOID;
 
@@ -110,12 +108,13 @@ int32_t run_file(const char * pszFile, int32_t nCmdShow);
 
 
 
-namespace spa_install
+namespace install
 {
 
 
 
-   installer::installer()
+   installer::installer(sp(base_application) papp) :
+      element(papp)
    {
 
       m_bMsDownload              = false;
@@ -214,7 +213,7 @@ namespace spa_install
 
       keep_true keeptrueInstalling(g_bInstalling);
 
-      installation_lock_file_lock installationlockfilelock;
+      installation_lock_file_lock installationlockfilelock(get_app());
 
       m_dwInstallStartTime = ::get_tick_count();
 
@@ -286,13 +285,13 @@ RetryHost:
 
 
          strUrl = m_strSpaIgnitionBaseUrl + "/install_filter_list";
-         string strInstallFilterList = http_get_dup(strUrl);
+         string strInstallFilterList = Application.http().get(strUrl);
          ::xml::document nodeInstallFilter;
          nodeInstallFilter.load(strInstallFilterList);
          strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
          strUrl += m_strApplicationId;
          strUrl += "&key=install_filter";
-         string strInstallFilter = http_get_dup(strUrl);
+         string strInstallFilter = Application.http().get(strUrl);
          for(int32_t ui = 0; ui < nodeInstallFilter.get_root()->get_children_count(); ui++)
          {
             ::xml::node * lpchild = nodeInstallFilter.child_at(ui);
@@ -359,7 +358,7 @@ RetryHost:
 
          ::xml::document nodeInstall;
 
-         nodeInstall.load(file_as_string_dup(dir::appdata("spa_install.xml")));
+         nodeInstall.load(file_as_string_dup(dir::appdata("install.xml")));
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
          ::xml::node * lpnodeVersion = nodeInstall.get_child("basis");
@@ -381,7 +380,7 @@ RetryHost:
             goto RetryHost;
          }
          strUrl = "http://" + strSpaHost + "/stage/app/stage/metastage/index-"+strBuild+".md5";
-         string strCgclIndexMd5 = http_get_dup(strUrl, false);
+         string strCgclIndexMd5 = Application.http().get(strUrl, false);
          if(strCgclIndexMd5.length() != 32
             || stricmp_dup(get_file_md5(strIndexPath), strCgclIndexMd5) != 0)
          {
@@ -697,7 +696,7 @@ RetryHost:
 
 
 
-         set_ca2_updated(m_strBuild);
+         System.install().set_ca2_updated(m_strBuild);
 
          //new_progress_end(0.8);
          //CopyFileList(straFileList, mapFlag);
@@ -1052,7 +1051,8 @@ RetryHost:
       if(m_pwindow != NULL)
       {
 
-         m_pwindow->redraw();
+         throw todo(get_app());
+//         m_pwindow->redraw();
 
       }
 
@@ -1134,7 +1134,8 @@ RetryHost:
 
       keep_true keepDownloadTrue(m_bMsDownload);
 
-      return http_download_dup(url_in, (dir + file), false, false, NULL, &::ms_download_callback, (void *) this);
+      throw todo(get_thread_app());
+//      return http_download_dup(url_in, (dir + file), false, false, NULL, &::ms_download_callback, (void *) this);
 
    }
 
@@ -1313,7 +1314,8 @@ RetryHost:
 
             string strBsPatch = dir + file + "." + strOldMd5 + "." + strNewMd5 + ".bspatch";
 
-            bOk = http_download_dup(strUrl, strBsPatch, false, false, &iStatus, &::ms_download_callback, (void *) this);
+            throw todo(get_thread_app());
+            //bOk = http_download_dup(strUrl, strBsPatch, false, false, &iStatus, &::ms_download_callback, (void *) this);
 
             if(iStatus == 404)
                break;
@@ -1359,9 +1361,9 @@ RetryHost:
                   uint64_t iActualLength = file_length_dup((dir3 + file2));
                   bOk = iLength == iActualLength;
                   //trace("Patch Length Verification : ");
-                  /*sprintf_dup(sz, "correct length : %d bytes", iLength);
+                  /*sprintf(sz, "correct length : %d bytes", iLength);
                   trace(sz);
-                  sprintf_dup(sz, "actual  length : %d bytes", iActualLength);
+                  sprintf(sz, "actual  length : %d bytes", iActualLength);
                   trace(sz);*/
                   if(bOk)
                   {
@@ -1385,9 +1387,9 @@ RetryHost:
                   strMd5 = get_file_md5((dir3 + file2));
                   bOk = stricmp_dup(strMd5, pszMd5) == 0;
                   //trace("Patch MD5 Hash Verification");
-                  /*sprintf_dup(sz, "correct MD5 Hash : %s", pszMd5);
+                  /*sprintf(sz, "correct MD5 Hash : %s", pszMd5);
                   trace(sz);
-                  sprintf_dup(sz, "actual  MD5 Hash : %str", strMd5);
+                  sprintf(sz, "actual  MD5 Hash : %str", strMd5);
                   trace(sz);*/
                   if(bOk)
                   {
@@ -1410,7 +1412,7 @@ RetryHost:
                break;
             }
             iRetry++;
-            //sprintf_dup(sz, "An error ocurred. Retrying... Attempt %d of %d.", iRetry, iMaxRetry);
+            //sprintf(sz, "An error ocurred. Retrying... Attempt %d of %d.", iRetry, iMaxRetry);
             //trace(sz);
             //trace("Patch may fail due timeout if the patched file is large and it is the first");
             //trace("time the patch is requested for the older-newer-pair patch combination.");
@@ -1424,7 +1426,7 @@ RetryHost:
          {
             if(iRetry > 0)
             {
-               // sprintf_dup(sz, unitext("Patch succeeded with %d retries %0.2fkbytes compressed ✓"), (iBsLen / 1000.0), iRetry);
+               // sprintf(sz, unitext("Patch succeeded with %d retries %0.2fkbytes compressed ✓"), (iBsLen / 1000.0), iRetry);
                trace_add(unitext(" c"));
             }
             else
@@ -1432,7 +1434,7 @@ RetryHost:
                // this trace is added and signalized like that because it
                // should be one of the most common cases and one of the most
                // normal cases.
-               //sprintf_dup(sz, unitext(" patched %0.2fkbytes compressed ✓"), (iBsLen / 1000.0));
+               //sprintf(sz, unitext(" patched %0.2fkbytes compressed ✓"), (iBsLen / 1000.0));
                //trace_add(sz);
                trace_add(unitext(" c"));
             }
@@ -1457,7 +1459,8 @@ RetryHost:
          iRetry = 0;
          while(true)
          {
-            bOk = http_download_dup((url_in + "." + pszMd5), (dir + file + "." + pszMd5), true, true, &iStatus, &::ms_download_callback, (void *) this);
+            throw todo(get_thread_app());
+            //bOk = http_download_dup((url_in + "." + pszMd5), (dir + file + "." + pszMd5), true, true, &iStatus, &::ms_download_callback, (void *) this);
             if(iStatus == 404)
                break;
             if(bOk)
@@ -1465,7 +1468,8 @@ RetryHost:
                //if(iLength != -1)
                {
                   dir::mk(dir::name(inplace));
-                  bzuncompress(inplace, (dir + file + "." + pszMd5));
+                  throw todo(get_thread_app());
+                  //bzuncompress(inplace, (dir + file + "." + pszMd5));
 //                  int32_t iResult = bzuncompress(inplace, (dir + file + "." + pszMd5));
                   /*if(iResult == -1)
                   {
@@ -1487,14 +1491,15 @@ RetryHost:
                }
             }
             iRetry++;
-            //sprintf_dup(sz, "An error ocurred. Retrying... Attempt %d of %d.", iRetry, iMaxRetry);
+            //sprintf(sz, "An error ocurred. Retrying... Attempt %d of %d.", iRetry, iMaxRetry);
             //trace(sz);
             if(iRetry >= iMaxRetry)
                break;
          }
          if(bOk)
          {
-            sprintf_dup(sz, unitext("%0.2fkbytes compressed c"), (iGzLen / 1000.0));
+            throw todo(get_thread_app());
+            //sprintf(sz, unitext("%0.2fkbytes compressed c"), (iGzLen / 1000.0));
             trace(sz);
          }
          else
@@ -1504,7 +1509,7 @@ RetryHost:
       }
       if(!bOk)
       {
-         //sprintf_dup(sz, unitext("General failure to retrieve file \"%s\" ¡X!"), file2);
+         //sprintf(sz, unitext("General failure to retrieve file \"%s\" ¡X!"), file2);
          //trace(sz);
       }
       return bOk;
@@ -1849,7 +1854,8 @@ RetryHost:
       {
          if (!get(m_strInstall + lpcszPath, bExist, iLength, pszMd5, iGzLen))
          {
-            printf_dup("Failed: %s\n", (const char *) strUrl);
+            throw todo(get_thread_app());
+            //printf_dup("Failed: %s\n", (const char *) strUrl);
             return false;
          }
          if(m_bOfflineInstall)
@@ -1866,7 +1872,8 @@ RetryHost:
       {
          if (!get(m_strInstall + lpcszPath + "." + pszMd5, bExist, iLength, pszMd5, iGzLen))
          {
-            printf_dup("Failed: %s\n", (const char *) strUrl);
+            throw todo(get_thread_app());
+            //printf_dup("Failed: %s\n", (const char *) strUrl);
             return false;
          }
          if(m_bOfflineInstall)
@@ -1881,7 +1888,8 @@ RetryHost:
       }
       strStage = ca2_get_dir(strUrl) + ca2_get_file(strUrl);
       dir::mk(dir::name(strStage));
-      bzuncompress(strStage, strStageGz);
+      throw todo(get_thread_app());
+      //bzuncompress(strStage, strStageGz);
       str = strStage;
       return true;
    }
@@ -1891,9 +1899,10 @@ RetryHost:
    int32_t installer::GetFileListEx(stringa & stringa, class stringa  & straPath, string_to_intptr & mapLen, string_to_intptr & mapGzLen, string_to_string & mapMd5, string_to_intptr & mapFlag)
    {
 
-      int32_t iCurrent;
+//      int32_t iCurrent;
 
-      string strPlatform = spa_get_platform();
+      throw todo(get_thread_app());
+      /*string strPlatform = spa_get_platform();
 
       for(int32_t i = 0; i < straPath.get_count(); i++)
       {
@@ -1929,7 +1938,7 @@ RetryHost:
 
          }
 
-      }
+      }*/
 
       return 1;
 
@@ -1957,9 +1966,9 @@ RetryHost:
          return -1;
       }
       trace(str::replace("\\", "/", strUrl));
-      char buf[2048];
+//      char buf[2048];
       int32_t iCount = 0;
-      int32_t iCurrent;
+//      int32_t iCurrent;
       strUrl += ".bz";
       string str;
       string strMd5 = mapMd5[strPath];
@@ -1967,7 +1976,8 @@ RetryHost:
       if(!ca2_fy_url(str, strUrl, false, -1, strMd5, -1))
          return -2;
       _FILE * f = fopen_dup(str, "rb");
-      string strPlatform = spa_get_platform();
+      throw todo(get_thread_app());
+      /*string strPlatform = spa_get_platform();
       while(fgets_dup(buf, sizeof(buf), f))
       {
          buf[sizeof(buf) - 1] = '\0';
@@ -1998,7 +2008,7 @@ RetryHost:
             iCount += iCurrent;
          }
       }
-      fclose_dup(f);
+      fclose_dup(f);*/
       return 1;
    }
 
@@ -2079,14 +2089,16 @@ RetryHost:
          strStageGz = dir::path(m_strInstallGz, ca2bz_get_file(str, strmapMd5[stringa[i]]));
          strStage = ca2_get_dir(str) + ca2_get_file(str);
          dir::mk(dir::name(strStage));
-         bzuncompress(strStage, strStageGz);
+         throw todo(get_thread_app());
+         //bzuncompress(strStage, strStageGz);
          d += 1.0;
          m_dProgress = d / ((double) stringa.get_count());
       }
       m_dProgress = 1.0;
       if(m_pwindow != NULL)
       {
-         m_pwindow->redraw();
+         throw todo(get_thread_app());
+         //m_pwindow->redraw();
       }
       return stringa.get_count();
    }
@@ -2129,7 +2141,8 @@ RetryHost:
       m_dProgress = 1.0;
       if(m_pwindow != NULL)
       {
-         m_pwindow->redraw();
+         throw todo(get_thread_app());
+         //m_pwindow->redraw();
       }
       return stringa.get_count();
    }
@@ -2314,14 +2327,15 @@ RetryHost:
 
 #else
 
-         simple_shell_launcher launcher1(m_pwindow == NULL ? NULL : m_pwindow->m_oswindow, "open", strStage, " : remove usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
+         throw todo(get_thread_app());
+         /*simple_shell_launcher launcher1(m_pwindow == NULL ? NULL : m_pwindow->m_oswindow, "open", strStage, " : remove usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
 
          launcher1.execute();
 
          simple_shell_launcher launcher2(m_pwindow == NULL ? NULL : m_pwindow->m_oswindow, "open", strStage, " : install usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
 
          launcher2.execute();
-
+         */
 #endif
 
       }
@@ -2339,10 +2353,10 @@ RetryHost:
          throw "todo";
 
 #else
+         throw todo(get_thread_app());
+         //simple_shell_launcher launcher(m_pwindow == NULL ? NULL : m_pwindow->m_oswindow, "open", strStage, (" : " + str2.substr(0, iPos) + " usehostlogin"), dir::name(strStage), SW_SHOWNORMAL);
 
-         simple_shell_launcher launcher(m_pwindow == NULL ? NULL : m_pwindow->m_oswindow, "open", strStage, (" : " + str2.substr(0, iPos) + " usehostlogin"), dir::name(strStage), SW_SHOWNORMAL);
-
-         launcher.execute();
+//         launcher.execute();
 
 #endif
 
@@ -2351,7 +2365,7 @@ RetryHost:
    }
 
 
-   CLASS_DECL_BOOT void send_spaboot_install_post(int32_t a, int32_t b)
+   CLASS_DECL_BASE void send_spaboot_install_post(int32_t a, int32_t b)
    {
 
 #ifdef METROWIN
@@ -2390,7 +2404,7 @@ RetryHost:
       strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
       strUrl += m_strApplicationId;
       strUrl += "&key=post_install_count";
-      string strCount = http_get_dup(strUrl);
+      string strCount = Application.http().get(strUrl);
       int32_t iCount = atoi_dup(strCount);
       //set_progress(0.2);
       for(int32_t i = 0; i < iCount; i++)
@@ -2398,13 +2412,13 @@ RetryHost:
          strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
          strUrl += m_strApplicationId;
          strUrl += "&key=post_install";
-         sprintf_dup(szFormat, "[%d]", i);
+         sprintf(szFormat, "[%d]", i);
          strUrl += szFormat;
-         string strExec = http_get_dup(strUrl);
+         string strExec = Application.http().get(strUrl);
          if(!spa_exec(strExec))
          {
             #ifdef WINDOWSEX
-            ::MessageBox(m_pwindow == NULL ? NULL :m_pwindow->m_oswindow, "Error", "Error", MB_OK);
+            ::MessageBox(m_pwindow == NULL ? NULL :m_pwindow->m_hwnd, "Error", "Error", MB_OK);
             #endif
          }
          set_progress(((double) i * (0.5 - 0.2) / (double) iCount) + 0.2);
@@ -2434,11 +2448,11 @@ RetryHost:
       }*/
       trace(".");
       //set_progress(0.9);
-      string strPlatform = spa_get_platform();
+      string strPlatform = System.install().get_platform();
       if(i == 0)
       {
-         set_updated(m_strBuild);
-         installation_file_lock(false);
+         System.install().set_updated(m_strBuild);
+         System.install().installation_file_lock(false);
          //       // keeps g_bInstalling for a while
          //         Sleep((1984 + 1977) * 5);
          //::PostMessage(g_oswindow, WM_CLOSE, 0, 0);
@@ -2653,7 +2667,7 @@ RetryHost:
 
       m_strInstall               = "http://ca2os.com/stage/";
 
-      m_strInstallStatusTemplate = http_defer_locale_schema_get("http://account.ca2.cc/defer_ls_get?id=spa_install::InstallStatusTemplate", m_strInstallLocale, m_strInstallSchema);
+      m_strInstallStatusTemplate = Application.http().defer_locale_schema_get("http://account.ca2.cc/defer_ls_get?id=install::InstallStatusTemplate", m_strInstallLocale, m_strInstallSchema);
 
       m_bForceUpdatedBuild       = true;
 
@@ -2676,7 +2690,7 @@ RetryHost:
       int32_t iRetry = 0;
       while(true)
       {
-         strName = http_defer_locale_schema_get(strUrl, m_strInstallLocale, m_strInstallSchema);
+         strName = Application.http().defer_locale_schema_get(strUrl, m_strInstallLocale, m_strInstallSchema);
          if(strName.length() > 0)
             break;
          else if(iRetry < 84)
@@ -2736,7 +2750,7 @@ RetryHost:
       int32_t iRetry = 0;
       while(true)
       {
-         str = http_get_dup(strUrl);
+         str = Application.http().get(strUrl);
          if(str.length() > 0)
             break;
          else if(iRetry < 84)
@@ -2778,7 +2792,9 @@ RetryBuildNumber:
             return -1;
          }
          iRetry++;
-         m_strBuild = http_get_dup(m_strSpaIgnitionBaseUrl + "/query?node=build", false, &::ms_get_callback, (void *) this);
+         throw todo(get_app());
+//         m_strBuild = Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build", false, &::ms_get_callback, (void *) this);
+         m_strBuild = Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build");
          m_strBuild.trim();
          if(m_strBuild.length() != 19)
          {
@@ -2828,7 +2844,9 @@ RetryHost:
       trace(".");
       while(iGuessRetry < 30)
       {
-         strSpaHost = http_get_dup(strUrl, false, &::ms_get_callback, (void *) this);
+         throw get_app();
+//         strSpaHost = Application.http().get(strUrl, false, &::ms_get_callback, (void *) this);
+         strSpaHost = Application.http().get(strUrl);
          if(strSpaHost.is_empty())
          {
             if(m_strLastHost.is_empty())
@@ -2914,13 +2932,13 @@ RetryHost:
 
       if(nCmdShow != SW_HIDE)
       {
-         //m_pwindow = new spa_install::window;
+         //m_pwindow = new install::window;
       }
 
 #if defined(WINDOWS)
       if(m_pwindow != NULL)
       {
-         m_pwindow->register_class(m_hinstance);
+         m_pwindow->register_window_class(m_hinstance);
       }
 #endif
 
@@ -3004,7 +3022,7 @@ RetryHost:
 
    int32_t installer::spaadmin_main(const char * pszCommandLine)
    {
-      ::srand_dup(::get_tick_count());
+      ::srand(::get_tick_count());
 
       ensure_trace_file();
 
@@ -3038,7 +3056,7 @@ RetryHost:
          || str.ends_ci(" spa") || strExe.find(" in spa ") >= 0
          || strExe.ends_ci(" in spa"))
       {
-         spa_install::installer::do_spa();
+         ::install::installer::do_spa();
          return 0;
       }
 
@@ -3266,11 +3284,11 @@ RetryHost:
    void installer::do_spa()
    {
 
-      installer * pinstaller = new installer;
+      ::install::installer * pinstaller = new ::install::installer(get_thread_app());
 
       pinstaller->m_bStarterStart = false;
 
-      ::create_thread(NULL, 0, spa_install::installer::thread_proc_run, (LPVOID) pinstaller, 0, 0);
+      ::create_thread(NULL, 0, ::install::installer::thread_proc_run, (LPVOID) pinstaller, 0, 0);
 
    }
 
@@ -3290,7 +3308,7 @@ RetryHost:
 
       m_bStarterStart = true;
 
-      ::create_thread(NULL, 0, spa_install::installer::thread_proc_run, (LPVOID) this, 0, 0);
+      ::create_thread(NULL, 0, ::install::installer::thread_proc_run, (LPVOID) this, 0, 0);
 
    }
 
@@ -3422,19 +3440,20 @@ RetryHost:
       throw "TODO";
 #endif
 
-      if(!file_exists_dup(m_strPath) || !is_file_ok(m_strPath, "app-install.exe"))
+      if(!file_exists_dup(m_strPath) || !System.install().is_file_ok(m_strPath, "app-install.exe"))
       {
          int32_t iRetry = 0;
          while(iRetry < 8)
          {
             LPSTR psz = m_strPath.GetBufferSetLength(iSpabootInstallStrSize);
-            if(!get_temp_file_name_dup(psz, iSpabootInstallStrSize, "app-install", "exe"))
+            throw todo(get_thread_app());
+/*            if (!System.install().get_temp_file_name(psz, iSpabootInstallStrSize, "app-install", "exe"))
             {
                m_strPath.ReleaseBuffer();
                return false;
-            }
+            }*/
             m_strPath.ReleaseBuffer();
-            if(is_file_ok(m_strPath, "app-install.exe"))
+            if (System.install().is_file_ok(m_strPath, "app-install.exe"))
                break;
             string strUrl;
 #if CA2_PLATFORM_VERSION == CA2_BASIS
@@ -3442,22 +3461,24 @@ RetryHost:
 #else
             strUrl = "http://store.ca2.cc/spa?download=app-install.exe&authnone";
 #endif
-            if(http_download_dup(strUrl, m_strPath, false))
+            throw todo(get_thread_app());
+/*            if(http_download_dup(strUrl, m_strPath, false))
             {
                if(is_file_ok(m_strPath, "app-install.exe"))
                {
                   break;
                }
-            }
+            }*/
             iRetry++;
          }
       }
       m_strPath.ReleaseBuffer();
-      if(!is_file_ok(m_strPath, "app-install.exe"))
+      throw todo(get_thread_app());
+/*      if (!is_file_ok(m_strPath, "app-install.exe"))
       {
 
          return false;
-      }
+      }*/
       return true;
    }
 
@@ -3507,39 +3528,42 @@ RetryHost:
 
    int32_t ca2_app_install_run(const char * pszCommandLine, uint32_t & dwStartError, bool bSynch)
    {
-#if defined(METROWIN)
-      throw "todo";
-#else
-      string strPlatform = spa_get_platform();
+      throw todo(get_thread_app());
 
-#ifdef WINDOWS
-      ::SetDllDirectory(dir::path(dir::element(), "stage\\" + strPlatform));
-#endif
-
-      ::boot::library libraryOs;
-
-      libraryOs.open(dir::path(dir::element(), "stage\\" + strPlatform + "\\os"));
-
-      CA2MAIN pfn_ca2_main = (CA2MAIN) libraryOs.raw_get("ca2_main");
-
-      string strFullCommandLine;
-
-      strFullCommandLine = dir::path(dir::element(), ("stage\\" + strPlatform + "\\app.exe"));
-
-      strFullCommandLine = "\"" + strFullCommandLine + "\" ";
-
-      strFullCommandLine = strFullCommandLine + pszCommandLine;
-
-#ifdef WINDOWS
-      pfn_ca2_main(::GetModuleHandleA(NULL), NULL, strFullCommandLine, SW_HIDE);
-#else
-      pfn_ca2_main(strFullCommandLine, SW_HIDE);
-#endif
-#endif
+//#if defined(METROWIN)
+//      throw "todo";
+//#else
+//
+//      string strPlatform = spa_get_platform();
+//
+//#ifdef WINDOWS
+//      ::SetDllDirectory(dir::path(dir::element(), "stage\\" + strPlatform));
+//#endif
+//
+//      base_library libraryOs;
+//
+//      libraryOs.open(dir::path(dir::element(), "stage\\" + strPlatform + "\\os"));
+//
+//      CA2MAIN pfn_ca2_main = (CA2MAIN) libraryOs.raw_get("ca2_main");
+//
+//      string strFullCommandLine;
+//
+//      strFullCommandLine = dir::path(dir::element(), ("stage\\" + strPlatform + "\\app.exe"));
+//
+//      strFullCommandLine = "\"" + strFullCommandLine + "\" ";
+//
+//      strFullCommandLine = strFullCommandLine + pszCommandLine;
+//
+//#ifdef WINDOWS
+//      pfn_ca2_main(::GetModuleHandleA(NULL), NULL, strFullCommandLine, SW_HIDE);
+//#else
+//      pfn_ca2_main(strFullCommandLine, SW_HIDE);
+//#endif
+//#endif
       return 0;
    }
 
-} // namespace spa_install
+} // namespace install
 
 
 

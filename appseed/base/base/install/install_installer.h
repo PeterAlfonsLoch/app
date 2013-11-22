@@ -1,23 +1,24 @@
 #pragma once
 
 
-CLASS_DECL_BOOT extern bool g_bInstalling;
+CLASS_DECL_BASE extern bool g_bInstalling;
 
 #define SPA_FILE_FLAG_VOID_COPY 1
 
-namespace spa_install
+namespace install
 {
 
 
    class window;
 
 
-   class CLASS_DECL_BOOT installer
+   class CLASS_DECL_BASE installer :
+      virtual public object
    {
    public:
 
 
-      class CLASS_DECL_BOOT launcher :
+      class CLASS_DECL_BASE launcher :
          virtual public ::launcher
       {
       public:
@@ -65,7 +66,7 @@ namespace spa_install
 
 
 
-      window *       m_pwindow;
+      ::os::simple_ui *       m_pwindow;
 
       string       m_strBuild;
       string       m_strBuildResource;
@@ -136,7 +137,7 @@ namespace spa_install
       bool           m_bSynch;
 
 
-      installer();
+      installer(sp(base_application) papp);
       ~installer();
 
       uint32_t run();
@@ -257,9 +258,9 @@ namespace spa_install
    };
 
 
-   CLASS_DECL_BOOT int32_t ca2_app_install_run(const char * pszCommandLine, uint32_t & dwStartError, bool bSynch);
+   CLASS_DECL_BASE int32_t ca2_app_install_run(const char * pszCommandLine, uint32_t & dwStartError, bool bSynch);
 
 
-} // namespace spa_install
+} // namespace install
 
 

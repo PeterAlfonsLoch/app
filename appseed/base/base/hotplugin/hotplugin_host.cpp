@@ -1,6 +1,4 @@
 #include "framework.h"
-#include "app/appseed/boot/spa/spa_plugin.h"
-#include "app/appseed/boot/spa/spa_starter_start.h"
 #undef new
 #ifdef WINDOWS
 #include <gdiplus.h>
@@ -17,7 +15,8 @@ namespace hotplugin
 
    host::host(sp(base_application) papp) :
       element(papp),
-      hotplugin::plugin(papp)
+      hotplugin::plugin(papp),
+      ::simple_ui::style(papp)
    {
 
       m_pplugin                  = NULL;
@@ -327,7 +326,7 @@ namespace hotplugin
       delete pmutex;
 
 
-      m_pplugin = new spa_install::plugin(get_app());
+      m_pplugin = new install::plugin(get_app());
       m_pplugin->m_phost = this;
 
 
@@ -381,13 +380,20 @@ namespace hotplugin
 
    int32_t host::starter_start(const char * pszCommandLine, plugin * pplugin)
    {
-      set_installing_ca2();
-      spa_starter_start * pstart    = new spa_starter_start;
+
+      throw todo(::get_thread_app());
+
+      //System.install().set_installing_ca2();
+
+      ::install::starter_start * pstart    = new ::install::starter_start;
+
       pstart->m_pplugin             = pplugin;
+
       pstart->m_strCommandLine      = pszCommandLine;
+
 #ifdef WINDOWS
 
-      ::create_thread(NULL, 0, &::_ca2_starter_start, pstart, 0, pplugin == NULL ? NULL : &pplugin->m_nCa2StarterStartThreadID);
+      ::create_thread(NULL, 0, &::install::_ca2_starter_start, pstart, 0, pplugin == NULL ? NULL : &pplugin->m_nCa2StarterStartThreadID);
 
 #else
       pthread_t threadId;
@@ -409,7 +415,9 @@ namespace hotplugin
    int32_t host::starter_start_sync(const char * pszCommandLine, plugin * pplugin)
    {
 
-      set_installing_ca2();
+      throw todo(get_thread_app());
+
+/*      System.install().set_installing_ca2();
 
       spa_starter_start * pstart    = new spa_starter_start;
 
@@ -420,6 +428,7 @@ namespace hotplugin
       ::_ca2_starter_start(pstart);
 
       return 0;
+      */
 
    }
 
@@ -471,9 +480,9 @@ namespace hotplugin
 
       synch_lock ml(m_pmutexBitmap);
 
-      m_sizeBitmap.cx = abs_dup(lprect->right - lprect->left);
+      m_sizeBitmap.cx = abs(lprect->right - lprect->left);
 
-      m_sizeBitmap.cy = abs_dup(lprect->bottom - lprect->top);
+      m_sizeBitmap.cy = abs(lprect->bottom - lprect->top);
 
       try
       {
@@ -509,9 +518,9 @@ namespace hotplugin
 
       synch_lock ml(m_pmutexBitmap);
 
-      m_sizeBitmap.cx = abs_dup(lprect->right - lprect->left);
+      m_sizeBitmap.cx = abs(lprect->right - lprect->left);
 
-      m_sizeBitmap.cy = abs_dup(lprect->bottom - lprect->top);
+      m_sizeBitmap.cy = abs(lprect->bottom - lprect->top);
 
       try
       {
@@ -543,9 +552,9 @@ namespace hotplugin
 
       LPCRECT lprect = &m_pplugin->m_rect;
 
-      m_sizeBitmap.cx = abs_dup((int32_t)width(lprect));
+      m_sizeBitmap.cx = abs((int32_t)width(lprect));
 
-      m_sizeBitmap.cy = abs_dup((int32_t)height(lprect));
+      m_sizeBitmap.cy = abs((int32_t)height(lprect));
 
       ensure_bitmap_data(m_sizeBitmap.cx, m_sizeBitmap.cy, false);
 

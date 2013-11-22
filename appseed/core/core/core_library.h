@@ -42,7 +42,7 @@ namespace core
 
 
    class CLASS_DECL_CORE library :
-      virtual public ::boot::library,
+      virtual public base_library,
       virtual public ::object
    {
    public:
@@ -94,7 +94,7 @@ namespace core
 
    private:
 
-      using ::boot::library::open;
+      using base_library::open;
 
    };
 

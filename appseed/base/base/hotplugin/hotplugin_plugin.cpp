@@ -30,7 +30,8 @@ namespace hotplugin
 
 
    plugin::plugin(sp(base_application) papp) :
-      element(papp)
+      element(papp),
+      ::simple_ui::style(papp)
    {
 
       m_phost           = NULL;
@@ -846,7 +847,7 @@ namespace hotplugin
             if(dRate < dStart)
                x = rectWindow.left;
             else
-               x = rectWindow.left + (ftol(((dRate - dStart) * (double) pcx) / (dEnd - dStart)));
+               x = rectWindow.left + ((((dRate - dStart) * (double) pcx) / (dEnd - dStart)));
             if(iLine >= (iLineCount - 1))
                pcy = rectWindow.bottom - y;
             rectP.top      = y;

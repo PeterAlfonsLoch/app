@@ -8,17 +8,15 @@ namespace fontopus
 
    class simple_ui :
       virtual public ::os::simple_ui,
-      virtual public ::spa::style,
-      virtual public ::spa::login::callback
+      virtual public ::simple_ui::style,
+      virtual public login::callback
    {
    public:
 
-      static simple_ui      s_fontopus;
-
-      ::spa::login::e_result     m_eresult;
+      login::e_result            m_eresult;
 
 
-      ::spa::login               m_login;
+      login                      m_login;
       POINT                      m_pt;
       bool                       m_bLButtonDown;
       POINT                      m_ptLButtonDown;
@@ -30,8 +28,8 @@ namespace fontopus
 
 
       simple_ui(sp(base_application) papp);
-
       virtual ~simple_ui();
+
 
       virtual string show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
 
@@ -74,7 +72,7 @@ namespace fontopus
 
       virtual bool on_action(const char * pszId);
 
-      virtual void login_result(::spa::login::e_result eresult);
+      virtual void login_result(login::e_result eresult);
 
    };
 

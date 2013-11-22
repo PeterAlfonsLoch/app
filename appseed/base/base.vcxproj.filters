@@ -9,17 +9,11 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files\exception">
-      <UniqueIdentifier>{77140af8-d51a-425d-a8e7-b383c3475af9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\primitive">
       <UniqueIdentifier>{e747dff7-0cdb-45ea-9b6c-6ba1abfa384b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\primitive">
       <UniqueIdentifier>{73b6eb83-847b-4f04-a3de-daf20e5f9a48}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\exception\NewFilter1">
-      <UniqueIdentifier>{215c546b-d479-4652-a485-e5d8480854c8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\multithreading">
       <UniqueIdentifier>{262b60e3-e795-4339-b4cc-f4ca20348991}</UniqueIdentifier>
@@ -29,12 +23,6 @@
     </Filter>
     <Filter Include="Header Files\primitive\datetime">
       <UniqueIdentifier>{0510e3ff-0079-4cb1-b9e8-2cca759dcb0a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\exception\NewFilter2">
-      <UniqueIdentifier>{f371a338-f622-4cff-a352-b9784eecce1b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\exception">
-      <UniqueIdentifier>{934af833-4170-42f6-9310-7447b5d7edea}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\net">
       <UniqueIdentifier>{ab3329cf-9ecc-4590-a567-9f22556c4d8f}</UniqueIdentifier>
@@ -702,43 +690,16 @@
     <Filter Include="Source Files\user\simple_ui">
       <UniqueIdentifier>{b9ff5070-0942-458c-8d35-e0f4e463f2ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\base\exception">
+      <UniqueIdentifier>{3057931a-c1e2-4b6c-9059-d0ece06cdca4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\exception">
+      <UniqueIdentifier>{376f71e3-e41a-4d8d-8e53-daad53a7e29d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework_c.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_dump_context.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_assert.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_simple.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_base.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_exception.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_call_stack.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_debug.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_invalid_argument.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_hresult.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_error.h">
-      <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive_wstringtou.h">
       <Filter>Header Files\primitive</Filter>
@@ -818,104 +779,8 @@
     <ClInclude Include="multithreading\multithreading_waitable.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="exception\exception_range_error.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_var.h">
       <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_memory.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception2.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_debug_stream.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_engine.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_exit.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_installing.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_interface_only.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_invalid_character.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_invalid_handle.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_invalid_index.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_io.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_last_error.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_memory_state.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_misc.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_not_implemented.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_not_installed.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_not_licensed.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_not_supported.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_operation_canceled.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_os.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_overflow_error.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_resource.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_runtime_error.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_standard.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_standard_translator.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_temporary.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_todo.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_trap.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_unhandled_report.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_user.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_void_implementation.h">
-      <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
@@ -1105,9 +970,6 @@
     </ClInclude>
     <ClInclude Include="base\base_definition.h">
       <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_system.h">
-      <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="product.version.config.h">
       <Filter>Header Files</Filter>
@@ -2993,9 +2855,6 @@
     <ClInclude Include="base\install\install.h">
       <Filter>Header Files\base\install</Filter>
     </ClInclude>
-    <ClInclude Include="base\install\install_boot.h">
-      <Filter>Header Files\base\install</Filter>
-    </ClInclude>
     <ClInclude Include="base\install\install_canvas.h">
       <Filter>Header Files\base\install</Filter>
     </ClInclude>
@@ -3009,12 +2868,6 @@
       <Filter>Header Files\base\install</Filter>
     </ClInclude>
     <ClInclude Include="base\install\install_install.h">
-      <Filter>Header Files\base\install</Filter>
-    </ClInclude>
-    <ClInclude Include="base\install\install_install_ca2.h">
-      <Filter>Header Files\base\install</Filter>
-    </ClInclude>
-    <ClInclude Include="base\install\install_install_install.h">
       <Filter>Header Files\base\install</Filter>
     </ClInclude>
     <ClInclude Include="base\install\install_installer.h">
@@ -3033,12 +2886,6 @@
       <Filter>Header Files\base\install</Filter>
     </ClInclude>
     <ClInclude Include="base\install\install_trace.h">
-      <Filter>Header Files\base\install</Filter>
-    </ClInclude>
-    <ClInclude Include="base\install\install_window.h">
-      <Filter>Header Files\base\install</Filter>
-    </ClInclude>
-    <ClInclude Include="base\install\install2.h">
       <Filter>Header Files\base\install</Filter>
     </ClInclude>
     <ClInclude Include="user\fontopus\fontopus_login.h">
@@ -3064,6 +2911,162 @@
     </ClInclude>
     <ClInclude Include="user\simple_ui\simple_ui_tap.h">
       <Filter>Header Files\user\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\simple_ui_style.h">
+      <Filter>Header Files\user\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_small_ipc_channel.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_launcher.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_assert.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_base.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_call_stack.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_debug.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_debug_stream.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_dump_context.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_engine.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_error.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_exception.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_exit.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_hresult.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_installing.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_interface_only.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_invalid_argument.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_invalid_character.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_invalid_handle.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_invalid_index.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_io.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_last_error.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_memory.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_memory_state.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_misc.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_not_implemented.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_not_installed.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_not_licensed.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_not_supported.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_operation_canceled.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_os.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_overflow_error.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_range_error.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_resource.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_runtime_error.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_simple.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_standard.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_standard_translator.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_system.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_temporary.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_todo.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_trap.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_unhandled_report.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_user.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception_void_implementation.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\exception\exception2.h">
+      <Filter>Header Files\base\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_keep_true.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_installation_lock_file_lock.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\aaa_want_to_remove_install_window.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\aaa_want_to_remove_install2.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_library.h">
+      <Filter>Header Files\base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3129,120 +3132,6 @@
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_waitable.cpp">
       <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_archive.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_archive_exception.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_base.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_call_stack.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_debug.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_dump.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_dump_context.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_dump_floating_point.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_dump_output.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_engine.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_error.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_exit.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_hresult.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_installing.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_interface_only.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_invalid_argument.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_invalid_character.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_invalid_handle.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_invalid_index.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_io.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_last_error.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_memory.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_not_implemented.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_not_installed.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_not_licensed.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_not_supported.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_operation_canceled.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_os.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_overflow_error.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_range_error.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_resource.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_runtime_error.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_simple.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_standard_translator.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_temporary.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_todo.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_user.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_void_implementation.cpp">
-      <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
@@ -3363,9 +3252,6 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive_id_space.cpp">
       <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception.cpp">
-      <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_memory_c.cpp">
       <Filter>Source Files\primitive</Filter>
@@ -6559,9 +6445,6 @@
     <ClCompile Include="base\install\install_canvas.cpp">
       <Filter>Source Files\base\install</Filter>
     </ClCompile>
-    <ClCompile Include="base\install\install_cube_run.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
     <ClCompile Include="base\install\install_focus.cpp">
       <Filter>Source Files\base\install</Filter>
     </ClCompile>
@@ -6571,22 +6454,10 @@
     <ClCompile Include="base\install\install_install.cpp">
       <Filter>Source Files\base\install</Filter>
     </ClCompile>
-    <ClCompile Include="base\install\install_install_ca2.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
-    <ClCompile Include="base\install\install_install_install.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
     <ClCompile Include="base\install\install_installer.cpp">
       <Filter>Source Files\base\install</Filter>
     </ClCompile>
     <ClCompile Include="base\install\install_installer_square.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
-    <ClCompile Include="base\install\install_login.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
-    <ClCompile Include="base\install\install_main.cpp">
       <Filter>Source Files\base\install</Filter>
     </ClCompile>
     <ClCompile Include="base\install\install_plugin.cpp">
@@ -6598,13 +6469,7 @@
     <ClCompile Include="base\install\install_starter_start.cpp">
       <Filter>Source Files\base\install</Filter>
     </ClCompile>
-    <ClCompile Include="base\install\install_style.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
     <ClCompile Include="base\install\install_trace.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
-    <ClCompile Include="base\install\install_window.cpp">
       <Filter>Source Files\base\install</Filter>
     </ClCompile>
     <ClCompile Include="user\fontopus\fontopus_simple_ui.cpp">
@@ -6627,6 +6492,144 @@
     </ClCompile>
     <ClCompile Include="user\simple_ui\simple_ui_tap.cpp">
       <Filter>Source Files\user\simple_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_small_ipc_channel.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="user\fontopus\fontopus_login.cpp">
+      <Filter>Source Files\user\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_archive.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_archive_exception.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_base.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_call_stack.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_debug.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_dump.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_dump_context.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_dump_floating_point.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_dump_output.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_engine.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_error.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_exit.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_hresult.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_installing.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_interface_only.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_invalid_argument.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_invalid_character.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_invalid_handle.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_invalid_index.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_io.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_last_error.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_memory.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_not_implemented.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_not_installed.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_not_licensed.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_not_supported.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_operation_canceled.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_os.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_overflow_error.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_range_error.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_resource.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_runtime_error.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_simple.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_standard_translator.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_temporary.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_todo.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_user.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\exception\exception_void_implementation.cpp">
+      <Filter>Source Files\base\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_installation_lock_file_lock.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\aaa_want_to_remove_install_window.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_small_ipc_channel.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_library.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_launcher.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -6792,11 +6795,9 @@
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="exception\_exception.txt">
-      <Filter>Header Files\exception</Filter>
-    </Text>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\msvcr120d.dll">
@@ -6811,10 +6812,5 @@
     <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x64\msvcr120d.dll">
       <Filter>Binary Files\x64</Filter>
     </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="base\install\install.rc">
-      <Filter>Source Files\base\install</Filter>
-    </ResourceCompile>
   </ItemGroup>
 </Project>

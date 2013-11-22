@@ -329,8 +329,6 @@ public:
    //oset                             m_mapObjectSet;
 
    bool                             m_bShouldInitializeGTwf;
-   rect                             m_rectScreen;
-   bool                             m_bSessionSynchronizedScreen;
    sp(::user::interaction)          m_pwndMain;
 
 
@@ -735,7 +733,7 @@ public:
    virtual oswindow get_ca2_app_wnd(const char * psz);
 
 
-   virtual void get_screen_rect(LPRECT lprect);
+//   virtual void get_screen_rect(LPRECT lprect);
 
 
 

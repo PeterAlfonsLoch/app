@@ -1,7 +1,8 @@
+#pragma once
+
+
 #undef new
 
-#include "base/spa/spa_style.h"
-#include "user/simple/simple_ui.h"
 
 #include <gdiplus.h>
 
@@ -15,7 +16,7 @@ namespace os
 
 
    class CLASS_DECL_BASE simple_ui :
-      virtual public ::simple_ui
+      virtual public ::simple_ui::interaction
    {
    public:
 

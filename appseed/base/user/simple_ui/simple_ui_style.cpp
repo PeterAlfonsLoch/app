@@ -1,9 +1,9 @@
 #include "framework.h"
-#include "spa_style.h"
 
 
-namespace spa
+namespace simple_ui
 {
+
 
    style::style(sp(base_application) papp) :
       element(papp)
@@ -165,6 +165,6 @@ namespace spa
    }
 
 
-} // namespace spa
+} // namespace simple_ui
 
 

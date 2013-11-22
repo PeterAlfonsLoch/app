@@ -2824,7 +2824,9 @@ namespace user
          return false;
       }
 
+      m_pimpl->m_pthread = System.GetThread();
 
+      m_pthread = System.GetThread();
 
       return true;
 

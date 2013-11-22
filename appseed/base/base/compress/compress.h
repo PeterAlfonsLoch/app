@@ -18,3 +18,5 @@
 
 
 
+
+CLASS_DECL_BASE int32_t bzuncompress(LPCSTR lpcszUncompressed, LPCSTR lpcszGzFileCompressed);

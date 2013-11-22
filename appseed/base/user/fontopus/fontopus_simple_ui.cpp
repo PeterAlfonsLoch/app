@@ -1,18 +1,8 @@
 #include "framework.h"
-#include "simple_fontopus.h"
-
-
 
 
 namespace fontopus
 {
-
-
-
-
-
-
-
 
 
    byte brate(double dRate, double dMin, double dMax)
@@ -260,7 +250,7 @@ namespace fontopus
    simple_ui::simple_ui(sp(base_application) papp) :
       element(papp),
       m_login(0, 0),
-      ::spa::style(papp)
+      ::simple_ui::style(papp)
    {
          m_eschema = schema_normal;
          m_login.set_parent(this);
@@ -271,7 +261,7 @@ namespace fontopus
          m_h = 284;
          m_hwnd = NULL;
 
-         m_eresult = ::spa::login::result_fail;
+         m_eresult = login::result_fail;
       }
 
    simple_ui::~simple_ui()
@@ -320,7 +310,7 @@ namespace fontopus
          DispatchMessage(&msg);
       }
 
-      if (m_eresult == ::spa::login::result_ok)
+      if (m_eresult == login::result_ok)
       {
 
          strUsername = m_login.m_editUser.m_strText;
@@ -338,35 +328,6 @@ namespace fontopus
    }
 
 
-
-   /*   //
-   //  FUNCTION: register_window_class()
-   //
-   //  PURPOSE: Registers the window class.
-   //
-   ATOM simple_ui::register_window_class(HINSTANCE hInstance)
-   {
-   WNDCLASSEX wcex;
-
-   wcex.cbSize = sizeof(WNDCLASSEX);
-
-   wcex.style = CS_HREDRAW | CS_VREDRAW;
-   wcex.lpfnWndProc = s_window_prodecure;
-   wcex.cbClsExtra = 0;
-   wcex.cbWndExtra = 0;
-   wcex.hInstance = hInstance;
-   //   wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_WIN32PROJECT1));
-   wcex.hIcon = NULL;
-   wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
-   wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-   //wcex.lpszMenuName = MAKEINTRESOURCE(IDC_WIN32PROJECT1);
-   wcex.lpszMenuName = NULL;
-   wcex.lpszClassName = m_strWindowClass;
-   //wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
-   wcex.hIconSm = NULL;
-
-   return RegisterClassEx(&wcex);
-   }*/
 
    //
    //   FUNCTION: prepare_window(HINSTANCE, int)
@@ -659,7 +620,7 @@ namespace fontopus
 
       draw_auth_box(pgraphics);
 
-      ::simple_ui::draw(pgraphics);
+      ::simple_ui::interaction::draw(pgraphics);
 
    }
 
@@ -858,7 +819,7 @@ namespace fontopus
 
          m_login.login_result(m_login.perform_login());
 
-         if (m_eresult == ::spa::login::result_fail)
+         if (m_eresult == ::fontopus::login::result_fail)
          {
             ::ShowWindow(m_hwnd, SW_SHOW);
          }
@@ -881,7 +842,7 @@ namespace fontopus
    }
 
 
-   void simple_ui::login_result(::spa::login::e_result eresult)
+   void simple_ui::login_result(login::e_result eresult)
    {
 
       m_eresult = eresult;

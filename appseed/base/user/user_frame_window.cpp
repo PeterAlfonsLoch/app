@@ -92,8 +92,8 @@ namespace user
    bool frame_window::on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult)
    {
 
-      if (::user::frame_window::on_simple_command(ecommand, lparam, lresult))
-         return true;
+      //if (::user::frame_window::on_simple_command(ecommand, lparam, lresult))
+        // return true;
 
       switch (ecommand)
       {
@@ -827,7 +827,7 @@ namespace user
       if (bMakeVisible)
       {
 
-         if (!get_parent()->is_place_holder())
+         if (get_parent() == NULL || !get_parent()->is_place_holder())
          {
 
             InitialFramePosition();
@@ -860,7 +860,8 @@ namespace user
          pDoc->update_frame_counts();
       on_update_frame_title(TRUE);
 
-      if (get_parent()->is_place_holder()
+      if (get_parent() != NULL
+         && get_parent()->is_place_holder()
          && (!oprop("should_not_be_automatically_holded_on_initial_update_frame").is_set()
          || !oprop("should_not_be_automatically_holded_on_initial_update_frame")))
       {
@@ -886,7 +887,7 @@ namespace user
          }
          else
          {
-//            System.get_screen_rect(rectDesktop);
+            System.get_screen_rect(rectDesktop);
          }
          if (!rectDesktop.contains(rectWindow)
             || rectWindow.width() < 100

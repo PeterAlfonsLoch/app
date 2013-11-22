@@ -3,6 +3,7 @@
 
 #ifdef WINDOWSEX
 
+/*
 int32_t spaboot_registry_register(const char * lpszFile)
 {
    reg_delete_tree_dup(HKEY_CLASSES_ROOT, ".spaboot");
@@ -74,7 +75,7 @@ int32_t spaboot_registry_register(const char * lpszFile)
       return 1;
    return 0;
 }
-
+*/
 
 
 

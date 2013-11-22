@@ -1,15 +1,12 @@
 #pragma once
 
 
-#include "app/appseed/base/user/simple/simple_ui.h"
-#include "app/appseed/base/spa/spa_login.h"
-#include "spa_canvas.h"
 
 
 int32_t spaboot_start(const char * pszVersion, const char * pszId);
 
 
-namespace spa_install
+namespace install
 {
 
    enum e_check
@@ -21,16 +18,16 @@ namespace spa_install
    };
 
 
-   class CLASS_DECL_BOOT plugin :
-      virtual public ::spa::style,
+   class CLASS_DECL_BASE plugin :
+      virtual public ::simple_ui::style,
       virtual public ::hotplugin::plugin,
-      virtual public ::simple_ui,
-      virtual public ::spa::login::callback
+      virtual public ::simple_ui::interaction,
+      virtual public ::fontopus::login::callback
    {
    public:
 
 
-      class CLASS_DECL_BOOT thread_start_ca2 :
+      class CLASS_DECL_BASE thread_start_ca2 :
          public thread_layer
       {
       public:
@@ -44,7 +41,7 @@ namespace spa_install
       } ;
 
       thread_start_ca2     m_startca2;
-      spa::login           m_login;
+      ::fontopus::login           m_login;
       canvas               m_canvas;
       uint32_t             m_dwLastInstallingCheck;
       uint32_t             m_dwLastRestart;
@@ -84,7 +81,7 @@ namespace spa_install
 
       virtual void on_prepare_memory();
 
-      virtual void login_result(::spa::login::e_result eresult);
+      virtual void login_result(::fontopus::login::e_result eresult);
 
 #ifdef WINDOWS
 
@@ -127,7 +124,7 @@ namespace spa_install
    };
 
 
-} // namespace spa_install
+} // namespace install
 
 
 

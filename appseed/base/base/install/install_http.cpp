@@ -1,8 +1,8 @@
 #include "framework.h"
-#include "spa_installer.h"
 
 
-namespace spa_install
+
+namespace install
 {
 
 
@@ -67,19 +67,19 @@ namespace spa_install
       if(i == -3)
       {
   //       uint32_t dwBufferLen = 1024 + 256;
-         simple_http_status * pstatus = (simple_http_status *) reinterpret_cast < void * > (dwLen);
-         trace("http_get_dup failed : status : " + itoa_dup(pstatus->m_dwStatusCode) + " - " + pstatus->m_pszStatus);
+//         simple_http_status * pstatus = (simple_http_status *) reinterpret_cast < void * > (dwLen);
+  //       trace("Application.http().get failed : status : " + itoa_dup(pstatus->m_dwStatusCode) + " - " + pstatus->m_pszStatus);
       }
       else if(i == -2)
       {
-         trace("http_get_dup failed");
+         trace("Application.http().get failed");
 #ifdef WINDOWS
          uint32_t dw = ::GetLastError();
 	      wchar_t lastErrorTxt[1024];
          memset_dup(lastErrorTxt, 0, sizeof(lastErrorTxt));
 	      FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, dw, 0, lastErrorTxt, 1024, NULL);
          trace(string(lastErrorTxt));
-         trace("http_get_dup failed : GetLastErrorCode : " + itoa_dup(dw));
+         trace("Application.http().get failed : GetLastErrorCode : " + itoa_dup(dw));
 #endif
       }
       else
@@ -89,12 +89,12 @@ namespace spa_install
    }
 
 
-} // namespace spa_install
+} // namespace install
 
 
 void ms_download_callback(void * param, int32_t i, uint_ptr dwLen)
 {
-   spa_install::installer * pinstaller = ((spa_install::installer *) param);
+   install::installer * pinstaller = ((install::installer *) param);
    pinstaller->ms_download_callback(i, dwLen);
 }
 
@@ -103,6 +103,6 @@ void ms_download_callback(void * param, int32_t i, uint_ptr dwLen)
 
 void ms_get_callback(void * param, int32_t i, uint_ptr dwLen)
 {
-   spa_install::installer * pinstaller = ((spa_install::installer *) param);
+   install::installer * pinstaller = ((install::installer *) param);
    pinstaller->ms_get_callback(i, dwLen);
 }

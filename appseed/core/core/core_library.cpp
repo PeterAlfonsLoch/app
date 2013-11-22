@@ -49,7 +49,7 @@ namespace core
          try
          {
 
-            if(!::boot::library::open(strCa2Name))
+            if(!base_library::open(strCa2Name))
                return false;
 
          }
@@ -196,7 +196,7 @@ namespace core
          try
          {
 
-            if(!::boot::library::close())
+            if(!base_library::close())
                bOk = false;
 
          }

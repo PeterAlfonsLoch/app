@@ -9,12 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Source Files\hotplugin">
-      <UniqueIdentifier>{9d8bb5d1-8473-4205-8d1b-cc3fc13881a6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\hotplugin">
-      <UniqueIdentifier>{2c2e6da8-9ea3-4fe5-9edc-6f1255f2efb7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\C Header Files">
       <UniqueIdentifier>{8ede97ef-076e-466c-b7e2-5ae91573513a}</UniqueIdentifier>
     </Filter>
@@ -48,12 +42,6 @@
     <Filter Include="Header Files\cross\windows">
       <UniqueIdentifier>{74b66e4f-6a41-4c39-ab8a-e401f575bd54}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\spa_install">
-      <UniqueIdentifier>{50051563-f9fc-42ae-8ed5-686f5775ffd6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\spa_install">
-      <UniqueIdentifier>{6bf137f8-a742-466c-bf79-11663e2ace1b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\boot">
       <UniqueIdentifier>{c884c593-8d0f-465b-8314-98944d5dac4f}</UniqueIdentifier>
     </Filter>
@@ -62,15 +50,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="hotplugin\hotplugin.h">
-      <Filter>Header Files\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="hotplugin\hotplugin_host.h">
-      <Filter>Header Files\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="hotplugin\hotplugin_plugin.h">
-      <Filter>Header Files\hotplugin</Filter>
-    </ClInclude>
     <ClInclude Include="c_natural.h">
       <Filter>Header Files\C Header Files</Filter>
     </ClInclude>
@@ -79,45 +58,6 @@
     </ClInclude>
     <ClInclude Include="cpu_architecture.h">
       <Filter>Header Files\C Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\spa_boot.h">
-      <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\spa_ca2_install_canvas.h">
-      <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\spa_command_start.h">
-      <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\spa_cube_run.h">
-      <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\spa_focus.h">
-      <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\spa_http.h">
-      <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\spa_install_ca2.h">
-      <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\spa_plugin.h">
-      <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\spa_small_bell.h">
-      <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\spa_spa.h">
-      <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\spa_starter_start.h">
-      <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\spa_trace.h">
-      <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\resource.h">
-      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
@@ -148,9 +88,6 @@
     </ClInclude>
     <ClInclude Include="windows\ca_os_simple_hold_handle.h">
       <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\spa_window.h">
-      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="android\ca_os_internal.h">
       <Filter>Header Files\android</Filter>
@@ -233,12 +170,6 @@
     <ClInclude Include="cross\windows\windows_user.h">
       <Filter>Header Files\cross\windows</Filter>
     </ClInclude>
-    <ClInclude Include="spa\spa_canvas.h">
-      <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
-    <ClInclude Include="hotplugin\hotplugin_container_launcher.h">
-      <Filter>Header Files\hotplugin</Filter>
-    </ClInclude>
     <ClInclude Include="boot\boot_2.h">
       <Filter>Header Files\boot</Filter>
     </ClInclude>
@@ -266,16 +197,10 @@
     <ClInclude Include="boot\boot_international.h">
       <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="boot\boot_keep_true.h">
-      <Filter>Header Files\boot</Filter>
-    </ClInclude>
     <ClInclude Include="boot\boot_launcher.h">
       <Filter>Header Files\boot</Filter>
     </ClInclude>
     <ClInclude Include="boot\boot_libc.h">
-      <Filter>Header Files\boot</Filter>
-    </ClInclude>
-    <ClInclude Include="boot\boot_library.h">
       <Filter>Header Files\boot</Filter>
     </ClInclude>
     <ClInclude Include="boot\boot_math.h">
@@ -314,87 +239,18 @@
     <ClInclude Include="boot\boot_user.h">
       <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="spa\spa2.h">
-      <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
     <ClInclude Include="boot\boot.h">
       <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="spa\spa_installer.h">
-      <Filter>Header Files\spa_install</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="hotplugin\hotplugin_host.cpp">
-      <Filter>Source Files\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="hotplugin\hotplugin_plugin.cpp">
-      <Filter>Source Files\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa.cpp">
-      <Filter>Source Files\spa_install</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_boot.cpp">
-      <Filter>Source Files\spa_install</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_bz.cpp">
-      <Filter>Source Files\spa_install</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_cube_run.cpp">
-      <Filter>Source Files\spa_install</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_focus.cpp">
-      <Filter>Source Files\spa_install</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_http.cpp">
-      <Filter>Source Files\spa_install</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_install_ca2.cpp">
-      <Filter>Source Files\spa_install</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_installer.cpp">
-      <Filter>Source Files\spa_install</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_spa.cpp">
-      <Filter>Source Files\spa_install</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_starter_start.cpp">
-      <Filter>Source Files\spa_install</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_small_bell.cpp">
-      <Filter>Source Files\spa_install</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_plugin.cpp">
-      <Filter>Source Files\spa_install</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_main.cpp">
-      <Filter>Source Files\spa_install</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_installer_square.cpp">
-      <Filter>Source Files\spa_install</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_canvas.cpp">
-      <Filter>Source Files\spa_install</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_window.cpp">
-      <Filter>Source Files\spa_install</Filter>
-    </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="hotplugin\hotplugin_container_launcher.cpp">
-      <Filter>Source Files\hotplugin</Filter>
     </ClCompile>
     <ClCompile Include="windows\ca_os_ca_dll.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
     <ClCompile Include="windows\ca_os_file_watcher.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\ca_os_launcher.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\ca_os_library.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
     <ClCompile Include="windows\ca_os_lock.cpp">
@@ -410,9 +266,6 @@
       <Filter>Source Files\windows</Filter>
     </ClCompile>
     <ClCompile Include="windows\ca_os_simple_shell_launcher.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\ca_os_small_ipca_channel.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
     <ClCompile Include="windows\ca_os_time.cpp">
@@ -473,9 +326,6 @@
       <Filter>Source Files\boot</Filter>
     </ClCompile>
     <ClCompile Include="boot\boot_simple_shell_launcher.cpp">
-      <Filter>Source Files\boot</Filter>
-    </ClCompile>
-    <ClCompile Include="boot\boot_small_ipca_channel.cpp">
       <Filter>Source Files\boot</Filter>
     </ClCompile>
     <ClCompile Include="boot\boot_sprintf.cpp">

@@ -179,7 +179,7 @@
 
 
 #include "ca/hotplugin/hotplugin.h"
-#include "ca/simple_ui/simple_ui.h"
+#include "ca/::simple_ui::interaction/::simple_ui::interaction.h"
 #include "ca/crypt/crypt.h"
 #include "ca/spa/spa.h"
 

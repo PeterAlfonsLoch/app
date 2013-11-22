@@ -1,23 +1,24 @@
 #include "framework.h"
-#include "spa_installer.h"
 
 
-CLASS_DECL_BOOT bool send_short_message_to_installer(const char * psz, bool bLaunch);
-CLASS_DECL_BOOT void installer_call_sync(const char * path, const char * param);
+CLASS_DECL_BASE bool send_short_message_to_installer(const char * psz, bool bLaunch);
+CLASS_DECL_BASE void installer_call_sync(const char * path, const char * param);
 
-CLASS_DECL_BOOT char * szSpabootInstall = NULL;
+CLASS_DECL_BASE char * szSpabootInstall = NULL;
 
-
-int32_t installer(const char * param)
+namespace install
 {
 
-   installer_call_sync(szSpabootInstall, param);
+   int32_t installer(const char * param)
+   {
 
-   return 0;
+      installer_call_sync(szSpabootInstall, param);
+
+      return 0;
+   }
+
+
 }
-
-
-
 
 void installer_call_sync(const char * path, const char * param)
 {
@@ -42,7 +43,7 @@ void installer_call_sync(const char * path, const char * param)
 
 
 
-CLASS_DECL_BOOT bool send_short_message_to_installer(const char * psz, bool bLaunch)
+CLASS_DECL_BASE bool send_short_message_to_installer(const char * psz, bool bLaunch)
 {
 
    
@@ -55,7 +56,7 @@ CLASS_DECL_BOOT bool send_short_message_to_installer(const char * psz, bool bLau
    
    small_ipc_tx_channel txchannel;
    
-   spa_install::installer::launcher launcher;
+   install::installer::launcher launcher;
 
    if(!txchannel.open("core/spaboot_install", bLaunch ? &launcher : NULL)) 
       return false;
@@ -80,7 +81,7 @@ void send_spaboot_install_response(const char * param)
 
    small_ipc_tx_channel txchannel;
    
-   spa_install::installer::launcher launcher;
+   install::installer::launcher launcher;
 
    if(!txchannel.open("core/spaboot_install_callback")) 
       return;

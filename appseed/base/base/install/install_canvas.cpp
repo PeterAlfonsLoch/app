@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "spa_canvas.h"
 
 
 #ifdef LINUX
@@ -10,7 +9,7 @@
 #include <math.h>
 
 
-namespace spa_install
+namespace install
 {
 
    canvas::canvas(sp(base_application) papp) :
@@ -612,4 +611,4 @@ void canvas_zero::zero(HDC hdc, POINT pt, int32_t iSize, int32_t iStep)
 #endif
 
 
-} // namespace spa_install
+} // namespace install

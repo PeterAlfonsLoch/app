@@ -98,7 +98,7 @@ namespace plane
 //      m_url.set_app(this);
       m_userset.set_app(this);
       m_service.set_app(this);
-      m_install.set_app(this);
+      m_installex.set_app(this);
 #ifndef METROWIN
       m_processsection.set_app(this);
 #endif
@@ -836,9 +836,9 @@ namespace plane
       return m_service;
    }
 
-   ::core::install & system::install()
+   ::core::install & system::installex()
    {
-      return m_install;
+      return m_installex;
    }
 
    ::core::os & system::os()
@@ -1562,7 +1562,7 @@ namespace plane
       if(!System.directrix()->m_varTopicQuery.has_property("install")
          && !System.directrix()->m_varTopicQuery.has_property("uninstall")
          && strId.has_char()
-         && !install().is(NULL, strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema))
+         && !installex().is(NULL, strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema))
       {
 
          throw not_installed(get_app(), NULL, strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema);

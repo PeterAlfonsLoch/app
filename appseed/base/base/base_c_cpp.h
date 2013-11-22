@@ -158,6 +158,9 @@ CLASS_DECL_BASE base_application * get_thread_app();
 #include "base_smart_pointer2.h"
 
 
+#include "base_keep_true.h"
+
+
 namespace file
 {
 
@@ -201,6 +204,10 @@ namespace file
 
 
 #include "base_core.h"
+
+
+#include "base_library.h"
+
 
 #include "base/primitive/primitive_request_interface.h"
 
@@ -488,10 +495,18 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_id_pool.h"
 
 
+#include "base_launcher.h"
+#include "base_small_ipc_channel.h"
+#include "hotplugin/hotplugin.h"
+
+
 #include "install/install.h"
 
 
-#include "hotplugin/hotplugin.h"
+
+
+
+
 
 
 #include "base_system.h"

@@ -1,12 +1,11 @@
 #pragma once
 
 
-
-
-namespace 
+namespace simple_ui
 {
 
-   class CLASS_DECL_BASE simple_ui_style :
+
+   class CLASS_DECL_BASE style :
       virtual public object
    {
    public:
@@ -40,7 +39,7 @@ namespace
    };
 
 
-} // namespace spa
+} // namespace simple_ui
 
 
 

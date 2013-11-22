@@ -358,7 +358,15 @@ namespace fontopus
       string strGetFontopus("http://" + url_get_server(pszUrl) + "/get_fontopus");
       try
       {
-         strFontopusServer = Application.http().get(strGetFontopus);
+         
+         ::property_set post(get_app());
+         ::property_set headers(get_app());
+         ::property_set set(get_app());
+         
+         set["disable_ca2_sessid"] = true;
+
+         if(!Application.http().get(strGetFontopus, strFontopusServer, post, headers, set))
+            strFontopusServer.Empty();
       }
       catch (...)
       {

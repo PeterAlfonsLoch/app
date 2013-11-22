@@ -1,7 +1,8 @@
 #pragma once
 
 
-class CLASS_DECL_BOOT launcher
+class CLASS_DECL_BASE launcher :
+   virtual public object
 {
 public:
 

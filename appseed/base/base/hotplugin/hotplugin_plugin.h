@@ -1,9 +1,6 @@
 #pragma once
 
 
-#include "install_style.h"
-
-
 namespace hotplugin
 {
 
@@ -11,9 +8,9 @@ namespace hotplugin
    class host;
 
 
-   class CLASS_DECL_BOOT plugin :
+   class CLASS_DECL_BASE plugin :
       virtual public ::object,
-      virtual public ::spa::style
+      virtual public ::simple_ui::style
 #ifndef METROWIN
       , virtual public ::small_ipc_channel
 #endif

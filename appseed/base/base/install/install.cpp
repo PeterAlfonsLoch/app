@@ -1,7 +1,4 @@
 #include "framework.h"
-#include "spa_window.h"
-#include "spa_installer.h"
-#include "spa2.h"
 
 
 #ifdef LINUX
@@ -34,12 +31,12 @@ double g_dPi = asin_dup(1.0) * 4;
 #endif
 
 
-namespace spa_install
+namespace install
 {
 
 //   window g_window;
 
-} // namespace spa_install
+} // namespace install
 
 
 
@@ -177,159 +174,11 @@ string url_query_param(int32_t & iParam, const char * pszParam)
 
 
 
-
-
-
-
-int32_t synch_spaadmin(const char * pszCommandLine)
+namespace install
 {
 
-   ::spa_install::installer * pinstaller    = new ::spa_install::installer();
-
-   pinstaller->m_bStarterStart      = true;
-
-   pinstaller->m_bSynch             = true;
-
-   return pinstaller->spaadmin_main(pszCommandLine);
-
-}
 
 
-int32_t start_spaadmin(const char * pszCommandLine)
-{
 
-   ::spa_install::installer * pinstaller    = new ::spa_install::installer();
-
-   pinstaller->m_bStarterStart      = true;
-
-   pinstaller->m_bSynch             = false;
-
-   return pinstaller->spaadmin_main(pszCommandLine);
-
-}
-
-
-string get_installation_lock_file_path()
-{
-
-   string strPath;
-
-   strPath = dir::path(dir::afterca2(), "install.lock");
-
-   return strPath;
-
-}
-
-
-void installation_file_lock(bool bLock)
-{
-
-   string strPath;
-
-   strPath = get_installation_lock_file_path();
-
-   int32_t iRetry = 84;
-
-   if(bLock)
-   {
-      while(!file_exists_dup(strPath) && iRetry > 0)
-      {
-         file_put_contents_dup(strPath, "installing...");
-         Sleep(184);
-         iRetry--;
-      }
-   }
-   else
-   {
-      while(file_exists_dup(strPath) && iRetry > 0)
-      {
-#ifdef WINDOWS
-         ::DeleteFileW(wstring(strPath));
-#else
-         unlink(strPath);
-#endif
-         Sleep(184);
-         iRetry--;
-      }
-   }
-
-}
-
-bool is_installation_lock_file_locked()
-{
-
-#ifdef WINDOWS
-
-   // more deterministic, with process lifetime determined by process hold mutex
-
-   try
-   {
-
-      simple_hold_handle hold_handle(::OpenMutexW(SYNCHRONIZE, FALSE, L"Global\\::ca::fontopus::ca2_spaboot_install::7807e510-5579-11dd-ae16-0800200c7784"));
-
-      if(hold_handle.m_handle == NULL)
-      {
-
-         return false;
-
-      }
-
-   }
-   catch(...)
-   {
-
-      return false;
-
-   }
-
-#else
-
-   // more heuristical, and if there is a process with the same name
-
-   try
-   {
-
-      if(get_process_pid("app-install") < 0)
-      {
-
-         return false;
-
-      }
-
-   }
-   catch(...)
-   {
-
-      return false;
-
-   }
-
-
-#endif
-
-   string strPath;
-
-   strPath = get_installation_lock_file_path();
-
-   if(file_exists_dup(strPath))
-      return true;
-
-   return false;
-
-}
-
-
-installation_lock_file_lock::installation_lock_file_lock()
-{
-
-   installation_file_lock(true);
-
-}
-
-installation_lock_file_lock::~installation_lock_file_lock()
-{
-
-   installation_file_lock(false);
-
-}
+} // namespace install
 

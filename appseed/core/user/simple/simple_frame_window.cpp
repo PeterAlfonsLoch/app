@@ -1393,13 +1393,24 @@ void simple_frame_window::NotifyFloatingWindows(uint32_t dwFlags)
 
    // then update the state of all floating windows owned by the parent
 #ifdef WINDOWSEX
-   sp(::user::interaction) oswindow = System.get_desktop_window()->GetWindow(GW_CHILD);
+   
+   sp(::user::interaction) oswindowDesktop = System.get_desktop_window();
+   
+   if (oswindowDesktop.is_null())
+      return;
+
+   sp(::user::interaction) oswindow = oswindowDesktop->GetWindow(GW_CHILD);
+
    while (oswindow != NULL)
    {
+
       if (::user::is_descendant(pParent, oswindow))
          oswindow->send_message(WM_FLOATSTATUS, dwFlags);
+
       oswindow = oswindow->GetWindow(GW_HWNDNEXT);
+
    }
+
 #else
    throw todo(get_app());
 #endif

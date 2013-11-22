@@ -1,25 +1,20 @@
 #include "framework.h"
-#include <windows.h>
 
 
-namespace boot
-{
-
-
-   library::library()
+   base_library::base_library()
    {
       m_bAutoClose = true;
       m_plibrary = NULL;
    }
 
-   library::library(const char * pszOpen)
+   base_library::base_library(const char * pszOpen)
    {
       m_bAutoClose = true;
       m_plibrary = NULL;
       open(pszOpen);
    }
 
-   library::~library()
+   base_library::~base_library()
    {
       if(m_bAutoClose)
       {
@@ -27,18 +22,18 @@ namespace boot
       }
    }
 
-   bool library::is_opened()
+   bool base_library::is_opened()
    {
       return m_plibrary != NULL;
    }
 
-   bool library::is_closed()
+   bool base_library::is_closed()
    {
       return !is_opened();
    }
 
 
-   bool library::open(const char * pszPath)
+   bool base_library::open(const char * pszPath)
    {
 
       if(stricmp_dup(pszPath, "app_c") == 0)
@@ -111,7 +106,7 @@ namespace boot
 
    }
 
-   bool library::close()
+   bool base_library::close()
    {
       if(m_plibrary != NULL)
       {
@@ -130,7 +125,7 @@ namespace boot
    }
 
 
-   void * library::raw_get(const char * pszElement)
+   void * base_library::raw_get(const char * pszElement)
    {
       return ::GetProcAddress((HINSTANCE) m_plibrary, pszElement);
    }
@@ -140,7 +135,7 @@ namespace boot
    }
 
    ca2_library::ca2_library(const char * pszOpen) :
-      library(pszOpen)
+      base_library(pszOpen)
    {
 
    }
@@ -159,38 +154,34 @@ namespace boot
 
 
 
-} // namespace boot
 
 
-namespace core
-{
-
-   void * open_ca2_library(const char * psz)
+   namespace core
    {
-/*      string str(psz);
-      if(str.find("..") >= 0)
-         return FALSE;
-      if(str.find(":") >= 0)
-         return FALSE;
-      if(str.find("\\\\") >= 0)
-         return FALSE;
-      if(str[0] == '\\')
-         return FALSE;
-      if(str[0] == '/')
-         return FALSE;
-   #ifdef _M_X64
-      ::SetDllDirectory(dir::element("stage\\x64") + "\\");
-   #else
-      ::SetDllDirectory(dir::element("stage\\x86") + "\\");
-   #endif*/
 
-      return LoadLibrary(psz);
+      void * open_ca2_library(const char * psz)
+      {
+         /*      string str(psz);
+               if(str.find("..") >= 0)
+               return FALSE;
+               if(str.find(":") >= 0)
+               return FALSE;
+               if(str.find("\\\\") >= 0)
+               return FALSE;
+               if(str[0] == '\\')
+               return FALSE;
+               if(str[0] == '/')
+               return FALSE;
+               #ifdef _M_X64
+               ::SetDllDirectory(dir::element("stage\\x64") + "\\");
+               #else
+               ::SetDllDirectory(dir::element("stage\\x86") + "\\");
+               #endif*/
 
-   }
+         return LoadLibrary(psz);
 
+      }
 
-} // namespace core
-
-
+   } // namespace core
 
 
