@@ -45,7 +45,7 @@ namespace userstack
 
       void _001OnFileNew();
 
-      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
+      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
       virtual ::application * get_app() const;
 

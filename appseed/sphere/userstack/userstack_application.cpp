@@ -103,7 +103,7 @@ namespace userstack
    }
 
 
-   bool application::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
+   bool application::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
 
    {
       return ::application::_001OnCmdMsg(pcmdmsg);
