@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include "core.h"
+#include "app/appseed/base/base/base/base.h"
+
 #include "cairo/cairo.h"
 
 

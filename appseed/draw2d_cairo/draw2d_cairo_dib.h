@@ -155,9 +155,6 @@ namespace draw2d_cairo
       int32_t height();
       double pi();
 
-      virtual bool from(::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI);
-
-
       bool update_window(::user::window * pwnd, signal_details * pobj);
 #if defined(WINDOWS)
       bool print_window(::user::window * pwnd, signal_details * pobj);

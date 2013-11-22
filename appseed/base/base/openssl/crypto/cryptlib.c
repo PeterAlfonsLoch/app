@@ -737,7 +737,7 @@ void OPENSSL_cpuid_setup(void) {}
 /* All we really need to do is remove the 'error' state when a thread
  * detaches */
 
-BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason,
+BOOL WINAPI openssl_DllMain(HINSTANCE hinstDLL, DWORD fdwReason,
 	     LPVOID lpvReserved)
 	{
 	switch(fdwReason)

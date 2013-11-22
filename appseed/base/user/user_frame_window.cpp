@@ -2105,7 +2105,6 @@ namespace user
 
    void frame_window::_000OnDraw(::draw2d::graphics * pdc)
    {
-      frame_window::_000OnDraw(pdc);
    }
 
 

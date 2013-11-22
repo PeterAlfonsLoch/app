@@ -239,7 +239,7 @@ namespace user
                rect.right = rectClient.right;
                rect.bottom = LONG(y - m_scrollinfo.m_ptScroll.y);
 
-               m_dcextension._DrawText(pdc, m_strTopText.Mid(iStart, i - iStart), rect, DT_LEFT);
+               pdc->_DrawText(m_strTopText.Mid(iStart, i - iStart), rect, DT_LEFT);
                iStart = iNewStart;
             }
          }
@@ -5356,7 +5356,7 @@ namespace user
             rectCache.right = rectCache.left + (int32_t)m_rectText.width();
             rectCache.bottom = rectCache.top + (int32_t)m_rectText.height();
             dib->get_graphics()->SelectObject(m_pfont);
-            m_plist->m_dcextension._DrawText(dib->get_graphics(), m_strText, rectCache, m_iDrawTextFlags);
+            dib->get_graphics()->_DrawText(m_strText, rectCache, m_iDrawTextFlags);
 
             Sys(m_plist->get_app()).visual().imaging().channel_spread_set_color(dib2->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), 0, 2, ARGB(184, 184, 184, 184));
             dib->Fill(0, 0, 0, 0);
@@ -5372,14 +5372,14 @@ namespace user
             brushText->create_solid(ARGB(255, 255, 255, 255));
             m_pgraphics->SelectObject(brushText);
             m_pgraphics->SelectObject(m_pfont);
-            m_plist->m_dcextension._DrawText(m_pgraphics, m_strText, m_rectText, m_iDrawTextFlags);
+            m_pgraphics->_DrawText(m_strText, m_rectText, m_iDrawTextFlags);
          }
          else
          {
             ::draw2d::brush_sp brushText(allocer());
             brushText->create_solid(m_cr);
             m_pgraphics->SelectObject(brushText);
-            m_plist->m_dcextension._DrawText(m_pgraphics, m_strText, m_rectText, m_iDrawTextFlags);
+            m_pgraphics->_DrawText(m_strText, m_rectText, m_iDrawTextFlags);
          }
       }
    }

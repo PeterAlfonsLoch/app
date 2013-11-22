@@ -1,6 +1,4 @@
 #include "framework.h"
-#include <math.h>
-#include "freeimage/FreeImage.h"
 
 
 namespace draw2d_direct2d
@@ -2686,85 +2684,6 @@ fill_last:
 
 #undef new
 
-   bool dib::from(::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI)
-   {
-
-      if(pfibitmap == NULL)
-         return false;
-
-
-
-
-      FIBITMAP * pfiNew = FreeImage_ConvertTo32Bits(pfibitmap);
-      BITMAPINFO * pbi = FreeImage_GetInfo(pfiNew);
-      if(!create(pbi->bmiHeader.biWidth, pbi->bmiHeader.biHeight))
-         return false;
-      COLORREF * pdata = (COLORREF *) FreeImage_GetBits(pfiNew);
-
-      COLORREF * pcolorref = NULL;
-
-      /*HBITMAP hbitmap = ::CreateDIBSection(NULL, &m_info, DIB_RGB_COLORS, (void **) &pcolorref, NULL, NULL);
-
-      if(hbitmap == NULL)
-      {
-      Destroy();
-      return false;
-      }
-
-      HDC hdc = ::CreateCompatibleDC(NULL);
-
-      if(pbi->bmiHeader.biHeight != SetDIBits(
-      hdc,
-      hbitmap,
-      0,
-      pbi->bmiHeader.biHeight,
-      pdata,
-      pbi,
-      DIB_RGB_COLORS))
-      {
-      Destroy();
-      if(bUnloadFI)
-      {
-      FreeImage_Unload(pfibitmap);
-      }
-      return false;
-      }*/
-
-      map();
-
-
-      for(int i = 0; i < cy; i++)
-      {
-         memcpy(&((byte *) m_pcolorref)[scan * i], &pdata[(cy - i - 1) * cx], scan);
-      }
-
-      //memcpy(m_pcolorref, pdata, (size_t) (area() * sizeof(COLORREF)));
-
-
-      //      RGBQUAD bkcolor;
-
-      /*if(pbi->bmiHeader.biBitCount == 32)
-      {
-      }
-      else if(pbi->bmiHeader.biBitCount <= 24 && FreeImage_GetTransparencyCount(pfibitmap) <= 0)
-      {
-      fill_channel(0xff, ::visual::rgba::channel_alpha);
-      }
-      else if(FreeImage_GetBackgroundColor(pfibitmap, &bkcolor))
-      {
-      transparent_color(bkcolor);
-      }*/
-
-      FreeImage_Unload(pfiNew);
-
-      if(bUnloadFI)
-      {
-         FreeImage_Unload(pfibitmap);
-      }
-
-
-      return true;
-   }
 
 
 #define new BASE_NEW

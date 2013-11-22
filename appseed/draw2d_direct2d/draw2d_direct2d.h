@@ -1,14 +1,14 @@
 #pragma once
 
 
-#include "core.h"
+#include "app/appseed/base/base/base/base.h"
+
 
 
 #include <winapifamily.h>
 #include <windows.h>
 #include <shlwapi.h>
 #include <wrl/client.h>
-#include <D2d1_1.h>
 #include <DXGI1_2.h>
 #include <Dwrite.h>
 #include <D3D11.h>
@@ -59,7 +59,7 @@ namespace draw2d_direct2d
 #include "draw2d_direct2d_region.h"
 #include "draw2d_direct2d_dib.h"
 #include "draw2d_direct2d_path.h"
-#include "draw2d_direct2d_printer.h"
+//#include "draw2d_direct2d_printer.h"
 
 
 #include "draw2d_direct2d_graphics.h"

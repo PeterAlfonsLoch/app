@@ -149,11 +149,8 @@ namespace draw2d_direct2d
       void xor_dib_frame2(void * lpdata, int iFrame, int iFrameCount);
 
 
-      //int width();
-      //int height();
       double pi();
 
-      virtual bool from(::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI);
 
 #if !defined(METROWIN)
       bool update_window(::user::window * pwnd, signal_details * pobj);

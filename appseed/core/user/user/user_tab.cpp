@@ -470,7 +470,7 @@ namespace user
 
             pdc->SelectObject(brushText);
 
-            get_data()->m_dcextension._DrawText(pdc, pane.get_title(), rectText, DT_LEFT | DT_BOTTOM);
+            pdc->_DrawText(pane.get_title(), pane.get_title().get_length(), rectText, DT_LEFT | DT_BOTTOM);
 
          }
 
@@ -822,7 +822,7 @@ namespace user
 
             pdc->SelectObject(brushText);
 
-            get_data()->m_dcextension._DrawText(pdc, pane.get_title(), rectText, DT_LEFT | DT_BOTTOM);
+            pdc->_DrawText(pane.get_title(), rectText, DT_LEFT | DT_BOTTOM);
 
          }
 

@@ -367,8 +367,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "primitive/primitive_job.h"
 
 
-#include "base/base_log.h"
-#include "base/base_trace.h"
+#include "base_log.h"
+#include "base_trace.h"
 
 
 #include "base/net/net.h"
@@ -472,14 +472,14 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base/filesystem/file/file_buffered_buffer.h"
 
 
-#include "compress/compress.h"
+#include "base/compress/compress.h"
 
 
 #include "base_machine_event_data.h"
 #include "base_machine_event.h"
 #include "base_machine_event_central.h"
 
-#include "crypto/crypto.h"
+#include "base/crypto/crypto.h"
 
 
 #include "primitive/datetime/datetime_value.h"
@@ -497,10 +497,10 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 #include "base_launcher.h"
 #include "base_small_ipc_channel.h"
-#include "hotplugin/hotplugin.h"
+#include "base/hotplugin/hotplugin.h"
 
 
-#include "install/install.h"
+#include "base/install/install.h"
 
 
 
@@ -516,9 +516,6 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
-#include "base/os/os.h"
-
-
 #include "base/os/os_process.h"
 
 
@@ -530,7 +527,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
-#include "install/install_trace.h"
+#include "base/install/install_trace.h"
 
 
 #define new BASE_NEW

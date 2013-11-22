@@ -6,23 +6,12 @@
 
 
 
-//#include "openssl/ssl.h"
-
-/*#include "ca/os/os.h"
-#include "ca_os_gdi.h"
-#include "ca_os_http.h"
-#include "ca_os_registry.h"
-#include "ca_os_process.h"
-#include "ca_os_simple_hold_handle.h"*/
 #include "windows_file.h"
-/*#include "ca_os_file_watcher.h"
-#include "ca_os_graphics_round_rect.h"*/
 #include "windows_thread.h"
 #include "windows_utils.h"
 
 
 #define GetAValue(rgb)      (LOBYTE((rgb)>>24))
-//#define ARGB(a, r,g,b)          ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((uint32_t)(BYTE)(b))<<16)|(((uint32_t)(BYTE)(a))<<24)))
 
 
 CLASS_DECL_BASE int_bool os_initialize();

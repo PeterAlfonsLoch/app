@@ -54,7 +54,7 @@ namespace draw2d_direct2d
    }
 
 
-   object * object_allocator(application * papp, HANDLE h)
+   object * object_allocator(base_application * papp, HANDLE h)
    {
       /*switch(::GetObjectType(h))
       {

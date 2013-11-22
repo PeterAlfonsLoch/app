@@ -671,7 +671,13 @@ public:
 
       g_pmutexTrace = new mutex();
 
+#if defined(WINDOWSEX)
 
+      os_thread::s_pmutex = new mutex();
+
+      os_thread::s_pptra = new comparable_raw_array < os_thread * > ();
+
+#endif
 
 #if defined(LINUX) || defined(MACOS) || defined(METROWIN)
 

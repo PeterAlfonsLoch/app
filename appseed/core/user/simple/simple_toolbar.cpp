@@ -783,7 +783,7 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
 
       if(_001GetItemRect(iItem, rectText, ElementText) && rectText.right > 0)
       {
-         visual::graphics_extension(get_app())._DrawText(pdc, item.m_str, rectText, DT_BOTTOM | DT_LEFT);
+         pdc->_DrawText(item.m_str, item.m_str.get_length(), rectText, DT_BOTTOM | DT_LEFT);
       }
    }
 

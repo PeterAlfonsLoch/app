@@ -2882,9 +2882,6 @@
     <ClInclude Include="base\base\base.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\base_2.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
     <ClInclude Include="base\base\base_allocate.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
@@ -6745,6 +6742,9 @@
     <ClCompile Include="base\os\windows\windows_file_watcher.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
+    <ClCompile Include="base\os\windows\windows_dll.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -6932,6 +6932,9 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

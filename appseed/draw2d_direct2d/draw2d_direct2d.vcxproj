@@ -946,7 +946,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="draw2d_direct2d_palette.h" />
     <ClInclude Include="draw2d_direct2d_path.h" />
     <ClInclude Include="draw2d_direct2d_pen.h" />
-    <ClInclude Include="draw2d_direct2d_printer.h" />
     <ClInclude Include="draw2d_direct2d_region.h" />
     <ClInclude Include="draw2d_direct2d_win_tls.h" />
     <ClInclude Include="framework.h" />
@@ -964,7 +963,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="draw2d_direct2d_path.cpp" />
     <ClCompile Include="draw2d_direct2d_pen.cpp" />
     <ClCompile Include="draw2d_direct2d_preview_dc.cpp" />
-    <ClCompile Include="draw2d_direct2d_printer.cpp" />
     <ClCompile Include="draw2d_direct2d_region.cpp" />
     <ClCompile Include="draw2d_direct2d_win_tls.cpp" />
     <ClCompile Include="framework.cpp">
@@ -977,14 +975,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <None Include="draw2d_direct2d.def" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\thirdparty\appseed\FreeImage\FreeImage.vcxproj">
-      <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\base\base.vcxproj">
       <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\core\core.vcxproj">
-      <Project>{afc48570-75e4-46bd-b8ab-4590b257e1c8}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

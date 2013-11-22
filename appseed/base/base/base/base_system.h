@@ -56,6 +56,12 @@ public:
 
 
 
+#ifdef WINDOWS
+   ID2D1DeviceContext *                         m_pdevicecontext;
+   sp(mutex)                                    m_pmutexDc;
+#endif
+
+
 
 
 

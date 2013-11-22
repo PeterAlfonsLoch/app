@@ -479,9 +479,8 @@ bool XfplayerViewLine::to(
          GetPlacement(rectTextOut);
          if(bDraw)
          {
-            m_dcextension._DrawText(
-               pdc,
-               strFinal,
+            pdc->_DrawText(
+               strFinal, strFinal.get_length(),
                rectTextOut,
                DT_LEFT | DT_BOTTOM);
          }
@@ -521,9 +520,8 @@ bool XfplayerViewLine::to(
          rectTextOut.left += iLeftOffset;
          if(bDraw)
          {
-            m_dcextension._DrawText(
-               pdc,
-               wstrLeft,
+            pdc->_DrawText(
+               wstrLeft, wstrLeft.get_length(),
                rectTextOut,
                DT_LEFT | DT_BOTTOM);
          }
@@ -558,9 +556,9 @@ bool XfplayerViewLine::to(
             rectTextOut.left = iRight;
          if(bDraw)
          {
-            m_dcextension._DrawText(
-               pdc,
-               wstrRight,
+
+            pdc->_DrawText(
+               wstrRight, wstrRight.get_length(),
                rectTextOut,
                DT_LEFT | DT_BOTTOM);
          }

@@ -26,10 +26,6 @@ namespace plane
 #ifdef METROWIN
       m_window                                  = nullptr;
 #endif
-#ifdef WINDOWS
-      m_pmutexDc                                = NULL;
-      m_pdevicecontext                          = NULL;
-#endif
 
       m_psystem                                 = this;
       set_app(this);

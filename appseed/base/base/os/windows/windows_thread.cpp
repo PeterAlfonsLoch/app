@@ -16,6 +16,7 @@ os_thread::os_thread(uint32_t ( * pfn)(void *), void * pv)
    m_bRun   = true;
 
 
+
    synch_lock ml(&*s_pmutex);
 
    s_pptra->add(this);

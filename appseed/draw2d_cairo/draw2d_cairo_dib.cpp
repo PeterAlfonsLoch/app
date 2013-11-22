@@ -1,6 +1,5 @@
 #include "framework.h"
 #include <math.h>
-#include "freeimage/freeimage.h"
 
 
 namespace draw2d_cairo
@@ -2565,96 +2564,6 @@ namespace draw2d_cairo
       return cy;
    }
 
-#undef new
-
-   bool dib::from(::draw2d::graphics * pgraphics, FIBITMAP * pfibitmap, bool bUnloadFI)
-   {
-
-      if(pfibitmap == NULL)
-           return false;
-
-
-      FIBITMAP * pfi = FreeImage_ConvertTo32Bits(pfibitmap);
-
-      BITMAPINFO * pbi = FreeImage_GetInfo(pfi);
-      void * pdata = FreeImage_GetBits(pfi);
-
-      if(!create(pbi->bmiHeader.biWidth, pbi->bmiHeader.biHeight))
-         return false;
-
-
-      map();
-
-      int bx = cx * sizeof(COLORREF); // byte width - band width
-
-
-      //if(pbi->bmiHeader.biHeight < 0)
-      {
-
-         for(int i = 0; i < cy; i++)
-         {
-            memcpy((COLORREF *)&(((byte *)m_pcolorref)[scan * i]), &(((byte *) pdata)[bx * (cy - i - 1)]),  bx);
-         }
-
-      }
-      /*else
-      {
-         for(int i = 0; i < cy; i++)
-         {
-            memcpy((COLORREF *)&(((byte *)m_pcolorref)[scan * i]), &(((byte *) pdata)[bx * i]),  bx);
-         }
-
-      }
-
-
-      //memset(m_pcolorref, 0x7f, cy * bx);
-      /*cairo_surface_t * surface = dynamic_cast < ::draw2d_cairo::bitmap * > (m_spbitmap.m_p)->m_psurface;
-
-     cairo_surface_flush (surface);
-
-     // modify the image
-     void * data = cairo_image_surface_get_data (surface);
-     int width = cairo_image_surface_get_width (surface);
-     int height = cairo_image_surface_get_height (surface);
-     int stride = cairo_image_surface_get_stride (surface);
-     memcpy(data, m_pcolorref, height * stride);
-
-     // mark the image dirty so cairo clears its caches.
-     cairo_surface_mark_dirty (surface);*/
-
-
-
-      pfi = NULL;
-
-
-      RGBQUAD bkcolor;
-
-      if(pbi->bmiHeader.biBitCount == 32)
-      {
-      }
-      else if(pbi->bmiHeader.biBitCount <= 24 && FreeImage_GetTransparencyCount(pfibitmap) <= 0)
-      {
-         fill_channel(0xff, ::visual::rgba::channel_alpha);
-      }
-      else if(FreeImage_GetBackgroundColor(pfibitmap, &bkcolor))
-      {
-         transparent_color(bkcolor);
-      }
-
-      FreeImage_Unload (pfi);
-
-
-      if(bUnloadFI)
-      {
-         FreeImage_Unload(pfibitmap);
-      }
-
-
-      return true;
-   }
-
-
-#define new BASE_NEW
 
 #if defined(WINDOWS)
 

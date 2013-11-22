@@ -637,6 +637,9 @@ namespace draw2d
 
       bool round_rect(const RECT & r, int32_t radius);
 
+      virtual int32_t _DrawText(const char * lpcsz, strsize iCount, LPCRECT lpcrect, UINT uiFormat, ::draw2d::font * pfontUnderline = NULL);
+      virtual int32_t _DrawText(const string & str, LPCRECT lpcrect, UINT uiFormat, ::draw2d::font * pfontUnderline = NULL);
+
 
    };
 
@@ -704,6 +707,8 @@ namespace draw2d
       virtual ~paint_graphics();
 
    };*/
+
+
 
 } // namespace core
 

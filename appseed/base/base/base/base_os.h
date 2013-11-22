@@ -4,16 +4,16 @@
 #if defined(MACOS)
 
 //#include "os/ansios/ansios.h"
-#include "os/os/os_binreloc.h"
-#include "os/macos/ca_os.h"
+#include "base/os/os/os_binreloc.h"
+#include "base/os/macos/ca_os.h"
 
 
 
 #elif defined(LINUX)
 
 //#include "os/ansios/ansios.h"
-#include "os/os/os_binreloc.h"
-#include "os/linux/ca_os.h"
+#include "base/os/os/os_binreloc.h"
+#include "base/os/linux/ca_os.h"
 
 #define BSD_STYLE_SOCKETS
 #define HAVE_MYSQL
@@ -21,13 +21,13 @@
 
 #elif defined(METROWIN)
 
-#include "os/metrowin/ca_os.h"
+#include "base/os/metrowin/ca_os.h"
 
 #define BYESHYTOULA_STYLE_SOCKS
 
 #elif defined(WINDOWSEX)
 
-#include "os/windows/windows_windows.h"
+#include "base/os/windows/windows_windows.h"
 
 #define BSD_STYLE_SOCKETS
 #define HAVE_MYSQL
@@ -35,9 +35,9 @@
 
 #elif defined(ANDROID)
 
-#include "os/ansios/ansios.h"
-#include "os_binreloc.h"
-#include "os/android/ca_os.h"
+#include "base/os/ansios/ansios.h"
+#include "base/os_binreloc.h"
+#include "base/os/android/ca_os.h"
 
 #define BSD_STYLE_SOCKETS
 #define HAVE_MYSQL
@@ -45,9 +45,9 @@
 
 #elif defined(SOLARIS)
 
-#include "os/ansios/ansios.h"
-#include "os_binreloc.h"
-#include "os/solaris/ca_os.h"
+#include "base/os/ansios/ansios.h"
+#include "base/os_binreloc.h"
+#include "base/os/solaris/ca_os.h"
 
 #define BSD_STYLE_SOCKETS
 #define HAVE_MYSQL

@@ -1044,7 +1044,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="base\base\base.h" />
-    <ClInclude Include="base\base\base_2.h" />
     <ClInclude Include="base\base\base_allocate.h" />
     <ClInclude Include="base\base\base_application.h" />
     <ClInclude Include="base\base\base_async.h" />
@@ -4331,6 +4330,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\os\os_thread.cpp" />
     <ClCompile Include="base\os\windows\windows.cpp" />
     <ClCompile Include="base\os\windows\windows_crypto.cpp" />
+    <ClCompile Include="base\os\windows\windows_dll.cpp" />
     <ClCompile Include="base\os\windows\windows_file.cpp" />
     <ClCompile Include="base\os\windows\windows_file_std.cpp" />
     <ClCompile Include="base\os\windows\windows_file_watcher.cpp" />

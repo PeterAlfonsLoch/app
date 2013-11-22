@@ -84,6 +84,12 @@ base_system::base_system(sp(base_application) papp) :
    m_spinstall = new ::install::install(this);
 
 
+#ifdef WINDOWS
+   m_pmutexDc = NULL;
+   m_pdevicecontext = NULL;
+#endif
+
+
 }
 
 base_factory & base_system::factory()

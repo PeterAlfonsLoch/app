@@ -35,10 +35,6 @@ namespace plane
       sp(::user::interaction)                      m_pui;
       ::core::system_window ^                       m_pwindow;
 #endif
-#ifdef WINDOWS
-      ID2D1DeviceContext *                         m_pdevicecontext;
-      sp(mutex)                                    m_pmutexDc;
-#endif
       sp(::filehandler::handler)                   m_spfilehandler;
 
 

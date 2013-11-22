@@ -847,7 +847,7 @@ namespace hotplugin
             if(dRate < dStart)
                x = rectWindow.left;
             else
-               x = rectWindow.left + ((((dRate - dStart) * (double) pcx) / (dEnd - dStart)));
+               x = (int32_t) (rectWindow.left + ((((dRate - dStart) * (double) pcx) / (dEnd - dStart))));
             if(iLine >= (iLineCount - 1))
                pcy = rectWindow.bottom - y;
             rectP.top      = y;
