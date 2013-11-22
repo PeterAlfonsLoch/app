@@ -16,7 +16,7 @@ CHAR szTitle[1024];					// The title bar text
 CHAR szWindowClassSpaAdmin[1024];			// the main window class name
 
 //void ensure_trace_file();
-CLASS_DECL_BASE bool g_bInstalling = false;
+//CLASS_DECL_BASE bool g_bInstalling = false;
 
 typedef PVOID * PPVOID;
 
@@ -119,7 +119,7 @@ namespace install
 
       m_bMsDownload              = false;
       m_dAnime                   = 0.0;
-      g_bInstalling              = false;
+//      g_bInstalling              = false;
       m_pwindow                  = NULL;
       m_dProgressStart           = 0.0;
       m_dProgressEnd             = 0.0;
@@ -205,13 +205,15 @@ namespace install
       }*/
 
       //Sleep(584);
+      throw todo(get_thread_app());
 
-      if(g_bInstalling)
-         return -1;
+//      if(g_bInstalling)
+  //       return -1;
 
       // ::MessageBox(g_oswindow, "Start", "Start", MB_OK);
 
-      keep_true keeptrueInstalling(g_bInstalling);
+      throw todo(get_thread_app());
+//      keep_true keeptrueInstalling(g_bInstalling);
 
       installation_lock_file_lock installationlockfilelock(get_app());
 
