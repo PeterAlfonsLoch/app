@@ -21,6 +21,7 @@ namespace usermail
 
 #include "usermail_item.h"
 #include "usermail_list_interface.h"
+#include "usermail_tree.h"
 
 
 #include "usermail_usermail.h"
