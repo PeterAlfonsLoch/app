@@ -42,7 +42,7 @@ namespace command
 		      System.type_info < command::document > (),
 		      System.type_info < command::frame > (),
 		      System.type_info < command::pane_view > ());
-         user()->add_document_template(pDocTemplate);
+         userex()->add_document_template(pDocTemplate);
          m_ptemplateCommandMain = pDocTemplate;
 
 
