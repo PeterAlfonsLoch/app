@@ -33,7 +33,7 @@ namespace simple_ui
       style *                          m_pstyle;
 
 
-      interaction();
+      interaction(sp(base_application) papp);
       virtual ~interaction();
 
 
@@ -78,6 +78,10 @@ namespace simple_ui
 
       virtual void layout();
 
+      interaction * get_top_level_parent();
+
+      virtual void set_capture();
+      virtual void release_capture();
 
    };
 

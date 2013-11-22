@@ -5,7 +5,9 @@ namespace simple_ui
 {
 
 
-   edit_box::edit_box()
+   edit_box::edit_box(sp(base_application) papp) :
+      element(papp),
+      interaction(papp)
    {
 
       m_iPos = 0;
@@ -78,7 +80,7 @@ namespace simple_ui
    */
 
 
-   void edit_box::_001OnDraw(::draw2d::graphics * pgraphics)
+   void edit_box::draw_this(::draw2d::graphics * pgraphics)
    {
 
       rect rectClient;
@@ -99,7 +101,7 @@ namespace simple_ui
 
       ::draw2d::font_sp f(allocer());
 
-      f->create_pixel_font("Geneva", (int32_t)height(&rectClient) * 10);
+      f->create_pixel_font("Geneva", (int32_t)height(&rectClient)* 0.7);
 
       pgraphics->SelectObject(br);
 

@@ -2418,7 +2418,7 @@ RetryHost:
          if(!spa_exec(strExec))
          {
             #ifdef WINDOWSEX
-            ::MessageBox(m_pwindow == NULL ? NULL :m_pwindow->m_hwnd, "Error", "Error", MB_OK);
+            ::MessageBox(m_pwindow == NULL ? NULL :m_pwindow->m_window, "Error", "Error", MB_OK);
             #endif
          }
          set_progress(((double) i * (0.5 - 0.2) / (double) iCount) + 0.2);

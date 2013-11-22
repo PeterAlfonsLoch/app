@@ -5,10 +5,12 @@ namespace simple_ui
 {
 
 
-   interaction::interaction()
+   interaction::interaction(sp(base_application) papp) :
+      element(papp)
    {
 
       m_pstyle = NULL;
+      m_puiParent = NULL;
 
    }
 
@@ -49,6 +51,16 @@ namespace simple_ui
 
    }
 
+   interaction * interaction::get_top_level_parent()
+   {
+
+      if (m_puiParent == NULL)
+         return this;
+
+      return m_puiParent->get_top_level_parent();
+
+   }
+
 
    void interaction::draw(::draw2d::graphics * pgraphics)
    {
@@ -59,6 +71,8 @@ namespace simple_ui
          rect rectWindow;
 
          get_window_rect(rectWindow);
+
+         get_top_level_parent()->screen_to_client(rectWindow);
 
          pgraphics->SetViewportOrg(rectWindow.left, rectWindow.top);
 
@@ -95,6 +109,12 @@ namespace simple_ui
    bool interaction::on_char(int32_t iKey, const string & strChar)
    {
 
+      if (get_focus() == NULL)
+         focus_next();
+
+      if (get_focus() == NULL)
+         return false;
+
       return get_focus()->on_char(iKey, strChar);
 
    }
@@ -103,13 +123,12 @@ namespace simple_ui
    bool interaction::on_lbutton_down(int32_t x, int32_t y)
    {
 
+      point pt(x, y);
+
       for (int32_t i = 0; i < m_uiptra.get_count(); i++)
       {
 
-         if (x >= m_uiptra[i]->m_rect.left
-            && x <= m_uiptra[i]->m_rect.right
-            && y >= m_uiptra[i]->m_rect.top
-            && y <= m_uiptra[i]->m_rect.bottom)
+         if (m_uiptra[i]->m_rect.contains(pt))
          {
 
             if (m_uiptra[i]->on_lbutton_down(x - m_uiptra[i]->m_rect.left, y - m_uiptra[i]->m_rect.top))
@@ -391,7 +410,7 @@ namespace simple_ui
 
       int32_t iStyle = 1;
 
-      if (System.get_focus_guie() == this)
+      if (get_focus() == this)
       {
 
          if (iStyle == 1)
@@ -649,6 +668,22 @@ namespace simple_ui
    {
 
 
+
+   }
+
+
+   void interaction::set_capture()
+   {
+
+      get_top_level_parent()->set_capture();
+
+   }
+
+
+   void interaction::release_capture()
+   {
+
+      get_top_level_parent()->release_capture();
 
    }
 

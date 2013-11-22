@@ -11,11 +11,11 @@ namespace simple_ui
    public:
 
 
-      label();
+      label(sp(base_application) papp);
       virtual ~label();
 
 
-      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
+      virtual void draw_this(::draw2d::graphics * pgraphics);
 
 
 

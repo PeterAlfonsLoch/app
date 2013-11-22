@@ -5,7 +5,9 @@ namespace simple_ui
 {
 
 
-   label::label()
+   label::label(sp(base_application) papp) :
+      element(papp),
+      interaction(papp)
    {
 
    }
@@ -17,7 +19,7 @@ namespace simple_ui
 
 
 
-   void label::_001OnDraw(::draw2d::graphics * pgraphics)
+   void label::draw_this(::draw2d::graphics * pgraphics)
    {
 
 
@@ -57,7 +59,7 @@ namespace simple_ui
 
       ::draw2d::font_sp f(allocer());
 
-      f->create_pixel_font("Geneva", (int32_t)height(rectClient) * 10);
+      f->create_pixel_font("Geneva", (int32_t)height(rectClient) * 0.7);
 
       float fMargin = (height(rectClient) * ((1.0f - 0.7f) / 2.0f));
 

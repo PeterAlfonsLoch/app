@@ -2912,9 +2912,6 @@
     <ClInclude Include="user\simple_ui\simple_ui_tap.h">
       <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_style.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
     <ClInclude Include="base\base_small_ipc_channel.h">
       <Filter>Header Files\base</Filter>
     </ClInclude>
@@ -3067,6 +3064,9 @@
     </ClInclude>
     <ClInclude Include="base\base_library.h">
       <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\simple_ui_style.h">
+      <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -6788,6 +6788,9 @@
     </None>
     <None Include="primitive\str\str.inl">
       <Filter>Header Files\primitive\str</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

@@ -7,11 +7,16 @@ namespace os
 
    map < HWND, HWND, simple_ui *, simple_ui * > m_windowmap;
 
-   simple_ui::simple_ui()
+   simple_ui::simple_ui(sp(base_application) papp) :
+      element(papp),
+      interaction(papp)
    {
+
       m_w = 840;
       m_h = 284;
-      m_hwnd = NULL;
+      m_window = NULL;
+      m_bShiftKey = false;
+
 
    }
 
@@ -54,14 +59,14 @@ namespace os
          lpcrect->top,
          width(lpcrect),
          height(lpcrect),
-         NULL, NULL, m_hinstance, NULL);
+         NULL, NULL, m_hinstance, this);
 
       if (!hWnd)
       {
          return FALSE;
       }
 
-      m_hwnd = hWnd;
+      m_window = hWnd;
 
       SetTimer(hWnd, 123, 23, NULL);
 
@@ -94,6 +99,8 @@ namespace os
 
          m_windowmap[hWnd] = pui;
 
+         pui->m_window = hWnd;
+
       }
 
       pui = m_windowmap[hWnd];
@@ -108,12 +115,12 @@ namespace os
 
    void simple_ui::client_to_screen(POINT * ppt)
    {
-      ::ClientToScreen(m_hwnd, ppt);
+      ::ClientToScreen(m_window, ppt);
    }
 
    void simple_ui::screen_to_client(POINT * ppt)
    {
-      ::ScreenToClient(m_hwnd, ppt);
+      ::ScreenToClient(m_window, ppt);
    }
 
    bool simple_ui::on_windows_key_down(WPARAM wparam, LPARAM lparam)
@@ -222,12 +229,12 @@ namespace os
 
    void simple_ui::GetWindowRect(RECT * prect)
    {
-      ::GetWindowRect(m_hwnd, prect);
+      ::GetWindowRect(m_window, prect);
    }
    void simple_ui::get_client_rect(RECT * prect)
    {
 
-      ::GetClientRect(m_hwnd, prect);
+      ::GetClientRect(m_window, prect);
 
    }
 
@@ -242,6 +249,7 @@ namespace os
          rectClient.right = m_size.cx;
          rectClient.bottom = m_size.cy;
          m_dib->get_graphics()->set_alpha_mode(draw2d::alpha_mode_set);
+         m_dib->get_graphics()->SetViewportOrg(0, 0);
          m_dib->get_graphics()->FillSolidRect(&rectClient, ARGB(0, 0, 0, 0));
          draw(m_dib->get_graphics());
          RECT rect;
@@ -303,7 +311,7 @@ namespace os
             dst += 4;
          }
 
-         m_gdi.update_window(m_hwnd, (COLORREF *)m_dib->get_data(), &rect);
+         m_gdi.update_window(m_window, (COLORREF *)m_dib->get_data(), &rect);
 
       }
 
@@ -328,6 +336,8 @@ namespace os
       m_dib.create(::get_thread_app()->allocer());
       m_dib->create(m_size.cx, m_size.cy);
 
+      m_gdi.create(m_window, cx, cy);
+
       layout();
 
       return true;
@@ -335,7 +345,20 @@ namespace os
    }
 
 
+   void simple_ui::set_capture()
+   {
 
+      ::SetCapture(m_window);
+
+   }
+
+
+   void simple_ui::release_capture()
+   {
+      
+      ::ReleaseCapture();
+
+   }
 
 } // namespace os
 

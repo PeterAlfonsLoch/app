@@ -32,13 +32,14 @@ namespace os
       window_gdi                 m_gdi;
 
 
-      HWND                       m_hwnd;
+      oswindow                   m_window;
       bool                       m_bShiftKey;
+      rect                       m_rectDesktop;
 
 
 
 
-      simple_ui();
+      simple_ui(sp(base_application) papp);
 
       virtual ~simple_ui();
 
@@ -69,6 +70,8 @@ namespace os
       virtual bool on_windows_move(int32_t x, int32_t y);
       virtual bool on_windows_size(int32_t cx, int32_t cy);
 
+      virtual void set_capture();
+      virtual void release_capture();
 
 
    };

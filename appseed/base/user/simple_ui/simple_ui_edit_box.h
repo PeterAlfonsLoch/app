@@ -14,11 +14,11 @@ namespace simple_ui
       int_ptr         m_iPos;
 
 
-      edit_box();
+      edit_box(sp(base_application) papp);
       virtual ~edit_box();
 
 
-      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
+      virtual void draw_this(::draw2d::graphics * pgraphics);
 
 
       virtual bool on_char(int32_t iKey, const string & strChar);

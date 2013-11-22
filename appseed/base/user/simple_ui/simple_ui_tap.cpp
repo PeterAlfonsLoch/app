@@ -5,7 +5,9 @@ namespace simple_ui
 {
 
 
-   tap::tap()
+   tap::tap(sp(base_application) papp) :
+      element(papp),
+      interaction(papp)
    {
 
       m_strId = "submit";
@@ -20,7 +22,7 @@ namespace simple_ui
    }
 
 
-   void tap::_001OnDraw(::draw2d::graphics * pgraphics)
+   void tap::draw_this(::draw2d::graphics * pgraphics)
    {
 
       //draw_simple(hdc);
@@ -215,7 +217,7 @@ namespace simple_ui
 
          br->CreateLinearGradientBrush(point(rectClient.left, rectClient.top + iBorderH - 1), point(rectClient.left, rectClient.top + iBorderH * 2 + 2), crIn, crOut);
 
-         pgraphics->FillRect(rect(rectClient.left, rectClient.top + iBorderH, (int32_t)width(&rectClient), iBorderH), br);
+         pgraphics->FillRect(rect(rectClient.left, rectClient.top + iBorderH, rectClient.left + (int32_t)width(&rectClient), rectClient.top + iBorderH + iBorderH), br);
 
          /*Gdiplus::Pen pen1(crBorderOut);
 
@@ -225,7 +227,7 @@ namespace simple_ui
 
          ::draw2d::pen_sp pen(pgraphics, 1.0, crBorderIn);
 
-         pgraphics->DrawRect(rect(rectClient.left + 1, rectClient.top + 1, (int32_t)width(&rectClient) - 2, iBorderH * 2 - 2), pen);
+         pgraphics->DrawRect(rect(rectClient.left + 1, rectClient.top + 1, rectClient.left + (int32_t)width(&rectClient) - 2, rectClient.top + iBorderH * 2 - 2), pen);
 
       }
 
@@ -257,7 +259,7 @@ namespace simple_ui
 
       ::draw2d::font_sp f(allocer());
 
-      f->create_pixel_font("Geneva", (int32_t)height(rectClient) * 10);
+      f->create_pixel_font("Geneva", (int32_t)height(rectClient)* 0.7);
 
       pgraphics->SelectObject(f);
 

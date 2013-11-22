@@ -5,6 +5,29 @@ namespace fontopus
 {
 
 
+   simple_ui::simple_ui(sp(base_application) papp) :
+      element(papp),
+      ::simple_ui::style(papp),
+      interaction(papp),
+      ::os::simple_ui(papp),
+      m_login(papp, 0, 0)
+   {
+         m_eschema = schema_normal;
+         m_login.set_parent(this);
+         m_login.m_pstyle = this;
+         m_login.m_pcallback = this;
+         m_bLButtonDown = false;
+         m_w = 840;
+         m_h = 284;
+
+         m_eresult = login::result_fail;
+      }
+
+   simple_ui::~simple_ui()
+   {
+   }
+
+
    byte brate(double dRate, double dMin, double dMax)
    {
       return (byte)(dRate * (dMax - dMin) + dMin);
@@ -20,7 +43,8 @@ namespace fontopus
       pgraphics->set_alpha_mode(draw2d::alpha_mode_blend);
 
       // front
-      point pa[4];  //  0       1
+      point pa[4];  
+      //  0       1
       //   
       //   
       //  3       2
@@ -247,27 +271,6 @@ namespace fontopus
 
 
 
-   simple_ui::simple_ui(sp(base_application) papp) :
-      element(papp),
-      m_login(0, 0),
-      ::simple_ui::style(papp)
-   {
-         m_eschema = schema_normal;
-         m_login.set_parent(this);
-         m_login.m_pstyle = this;
-         m_login.m_pcallback = this;
-         m_bLButtonDown = false;
-         m_w = 840;
-         m_h = 284;
-         m_hwnd = NULL;
-
-         m_eresult = login::result_fail;
-      }
-
-   simple_ui::~simple_ui()
-   {
-   }
-
    string simple_ui::show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
    {
 
@@ -342,8 +345,6 @@ namespace fontopus
    BOOL simple_ui::prepare_window(HINSTANCE hInstance, int nCmdShow)
    {
 
-      HWND hWnd;
-
       m_hinstance = hInstance; // Store instance handle in our global variable
 
       rect & rectDesktop = m_rectDesktop;
@@ -366,29 +367,16 @@ namespace fontopus
 
       m_login.defer_translate(this);
 
-      hWnd = CreateWindowEx(WS_EX_LAYERED, m_strWindowClass, m_strTitle, 0,
-         rectFontopus.left,
-         rectFontopus.top,
-         rectFontopus.width(),
-         rectFontopus.height(),
-         NULL, NULL, hInstance, NULL);
+      if (!::os::simple_ui::prepare_window(rectFontopus))
+         return false;
 
-      m_login.layout();
+      SetTimer(m_window, 123, 23, NULL);
 
-      if (!hWnd)
-      {
-         return FALSE;
-      }
+      ShowWindow(m_window, nCmdShow);
 
-      m_hwnd = hWnd;
+      UpdateWindow(m_window);
 
-      SetTimer(hWnd, 123, 23, NULL);
-
-      ShowWindow(hWnd, nCmdShow);
-
-      UpdateWindow(hWnd);
-
-      ::SetWindowLong(hWnd, GWL_STYLE, WS_VISIBLE);
+      ::SetWindowLong(m_window, GWL_STYLE, WS_VISIBLE);
 
 
       return TRUE;
@@ -396,23 +384,22 @@ namespace fontopus
    }
 
 
-
+   /*
    void simple_ui::client_to_screen(POINT * ppt)
    {
-      ::ClientToScreen(m_hwnd, ppt);
+      ::ClientToScreen(m_window, ppt);
    }
 
    void simple_ui::screen_to_client(POINT * ppt)
    {
-      ::ScreenToClient(m_hwnd, ppt);
+      ::ScreenToClient(m_window, ppt);
    }
+   */
 
    bool simple_ui::on_lbutton_down(int32_t x, int32_t y)
    {
 
-      ::ClientToScreen(m_hwnd, &m_ptLButtonDown);
-
-      if (m_login.on_lbutton_down(x, y))
+      if (m_login.on_lbutton_down(x - m_login.m_rect.left, y - m_login.m_rect.top))
          return true;
 
       m_bLButtonDown = true;
@@ -420,6 +407,7 @@ namespace fontopus
 
       m_ptLButtonDownPos = m_pt;
       ::GetCursorPos(&m_ptLButtonDown);
+      set_capture();
 
       return true;
    }
@@ -429,7 +417,7 @@ namespace fontopus
 
       m_bLButtonDown = false;
 
-      if (m_login.on_lbutton_up(x, y))
+      if (m_login.on_lbutton_up(x - m_login.m_rect.left, y - m_login.m_rect.top))
          return true;
 
       /*
@@ -442,7 +430,7 @@ namespace fontopus
       if (!rectLogin.contains(pt))
       {
       ReleaseCapture();
-      DestroyWindow(m_hwnd);
+      DestroyWindow(m_window);
       }
       */
 
@@ -472,20 +460,20 @@ namespace fontopus
             ::GetCursorPos(&ptNow);
             m_pt.x = ptNow.x - m_ptLButtonDown.x + m_ptLButtonDownPos.x;
             m_pt.y = ptNow.y - m_ptLButtonDown.y + m_ptLButtonDownPos.y;
-            SetWindowPos(m_hwnd, NULL, m_pt.x, m_pt.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+            SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
             m_bDrag = false;
          }
          return true;
       }
 
-      if (m_login.on_mouse_move(x, y))
+      if (m_login.on_mouse_move(x - m_login.m_rect.left, y - m_login.m_rect.top))
          return true;
 
       return true;
 
    }
 
-   bool simple_ui::on_windows_key_down(WPARAM wparam, LPARAM lparam)
+/*   bool simple_ui::on_windows_key_down(WPARAM wparam, LPARAM lparam)
    {
       if (wparam == VK_SHIFT)
       {
@@ -521,7 +509,7 @@ namespace fontopus
       baState[::user::key_shift] |= 0x80;
       }
       */
-      if (m_bShiftKey)
+/*      if (m_bShiftKey)
       {
          baState[VK_SHIFT] |= 0x80;
       }
@@ -539,9 +527,9 @@ namespace fontopus
       return false;
 
    }
+   */
 
-
-   LRESULT simple_ui::window_procedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+   /*LRESULT simple_ui::window_procedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
    {
 
       switch (message)
@@ -587,18 +575,18 @@ namespace fontopus
 
       return DefWindowProc(hWnd, message, wParam, lParam);
 
-   }
+   }*/
 
-   void simple_ui::GetWindowRect(RECT * prect)
+/*   void simple_ui::GetWindowRect(RECT * prect)
    {
-      ::GetWindowRect(m_hwnd, prect);
+      ::GetWindowRect(m_window, prect);
    }
    void simple_ui::get_client_rect(RECT * prect)
    {
 
-      ::GetClientRect(m_hwnd, prect);
+      ::GetClientRect(m_window, prect);
 
-   }
+   }*/
 
    void simple_ui::draw_dark_glass(::draw2d::graphics * pgraphics)
    {
@@ -613,14 +601,10 @@ namespace fontopus
    }
 
 
-   void simple_ui::draw(::draw2d::graphics * pgraphics)
+   void simple_ui::draw_this(::draw2d::graphics * pgraphics)
    {
 
-      //draw_pestana(g);
-
       draw_auth_box(pgraphics);
-
-      ::simple_ui::interaction::draw(pgraphics);
 
    }
 
@@ -706,7 +690,7 @@ namespace fontopus
    }
 
 
-   void simple_ui::on_windows_gdi_draw_framebuffer()
+   /*void simple_ui::on_windows_gdi_draw_framebuffer()
    {
       if (m_dib->get_graphics() != NULL)
       {
@@ -777,13 +761,13 @@ namespace fontopus
             dst += 4;
          }
 
-         m_gdi.update_window(m_hwnd, (COLORREF *)m_dib->get_data(), &rect);
+         m_gdi.update_window(m_window, (COLORREF *)m_dib->get_data(), &rect);
 
       }
 
-   }
+   }*/
 
-   bool simple_ui::on_windows_move(int32_t x, int32_t y)
+   /*bool simple_ui::on_windows_move(int32_t x, int32_t y)
    {
 
       m_pt.x = x;
@@ -807,7 +791,7 @@ namespace fontopus
       return true;
 
    }
-
+   */
    bool simple_ui::on_action(const char * pszId)
    {
 
@@ -815,17 +799,17 @@ namespace fontopus
       {
 
 
-         ::ShowWindow(m_hwnd, SW_HIDE);
+         ::ShowWindow(m_window, SW_HIDE);
 
          m_login.login_result(m_login.perform_login());
 
          if (m_eresult == ::fontopus::login::result_fail)
          {
-            ::ShowWindow(m_hwnd, SW_SHOW);
+            ::ShowWindow(m_window, SW_SHOW);
          }
          else
          {
-            ::DestroyWindow(m_hwnd);
+            ::DestroyWindow(m_window);
          }
 
          return true;
@@ -833,7 +817,7 @@ namespace fontopus
       }
       else if (!strcmp(pszId, "escape"))
       {
-         ::DestroyWindow(m_hwnd);
+         ::DestroyWindow(m_window);
       }
 
       return false;

@@ -15,11 +15,11 @@ namespace simple_ui
       bool m_bMouseMove;
 
 
-      tap();
+      tap(sp(base_application) papp);
       virtual ~tap();
 
 
-      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
+      virtual void draw_this(::draw2d::graphics * pgraphics);
 
       virtual void draw_simple(::draw2d::graphics * pgraphics);
       virtual void draw_volume(::draw2d::graphics * pgraphics);

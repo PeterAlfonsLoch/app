@@ -47,7 +47,7 @@ namespace fontopus
       string                        m_strRequestingServer;
 
 
-      login(int left, int top);
+      login(sp(base_application) papp, int left, int top);
       virtual ~login();
 
 

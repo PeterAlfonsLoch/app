@@ -8,7 +8,14 @@ namespace fontopus
 {
 
 
-   login::login(int left, int top)
+   login::login(sp(base_application) papp, int left, int top) :
+      element(papp),
+      interaction(papp),
+      m_labelUser(papp),
+      m_editUser(papp),
+      m_labelPassword(papp),
+      m_password(papp),
+      m_tap(papp)
    {
       m_pcallback = NULL;
 

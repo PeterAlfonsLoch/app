@@ -40,8 +40,9 @@ namespace install
    plugin::plugin(sp(base_application) papp) :
       element(papp),
       ::simple_ui::style(papp),
+      ::simple_ui::interaction(papp),
       hotplugin::plugin(papp),
-      m_login(49, 49),
+      m_login(papp, 49, 49),
       m_canvas(papp)
 
    {
