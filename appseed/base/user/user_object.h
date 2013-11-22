@@ -158,7 +158,6 @@ namespace user
       virtual void read(::file::input_stream & istream);
 
 
-   protected:
       void on_file_close();
       void on_file_save();
       void on_file_save_as();
