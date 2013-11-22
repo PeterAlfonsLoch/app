@@ -17,7 +17,7 @@
 #ifndef _OGG_H
 #define _OGG_H
 
-#include "boot/boot/boot.h"
+#include "base/base/base/base.h"
 
 #include <string.h>
 #include <stdlib.h>

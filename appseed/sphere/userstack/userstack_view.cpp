@@ -209,7 +209,7 @@ namespace userstack
       ::user::view::pre_translate_message(pobj);
    }
 
-   sp(::user::document) view::get_document()
+   sp(::user::object) view::get_document()
    {
       return  (::user::scroll_view::get_document());
    }
