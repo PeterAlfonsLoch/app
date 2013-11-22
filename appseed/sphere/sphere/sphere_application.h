@@ -39,7 +39,7 @@ namespace sphere
 
       virtual void on_request(sp(::create_context) pcreatecontext);
 
-      sp(::user::document_interface) _001OpenDocumentFile(var varFile);
+      sp(::user::object) _001OpenDocumentFile(var varFile);
 
       sp(base_application) get_system();
 

@@ -210,7 +210,7 @@ namespace userstack
             get_document()->get_typed_view < pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
          }
          App(m_pappCurrent).request(pcreatecontext);
-         if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::user::document_interface > () == NULL)
+         if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::user::object > () == NULL)
          {
             goto alt1;
          }
