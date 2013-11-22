@@ -986,6 +986,10 @@ namespace user
    }
 
 
+   void object::on_file_save()
+   {
+      do_file_save();
+   }
 
 } // namespace user
 

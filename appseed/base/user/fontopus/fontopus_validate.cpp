@@ -1004,14 +1004,14 @@ namespace fontopus
 
       primitive::memory memIn;
 
-      Application.hex_to_memory(memIn, strPass);
+      ::hex_to_memory(memIn, strPass);
 
       primitive::memory memory;
 
       memory.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(cipherkey, memIn.get_os_crypt_buffer(), nullptr));
 
       string strHex;
-      Application.memory_to_hex(strHex, memory);
+      ::memory_to_hex(strHex, memory);
 
 #else
 
