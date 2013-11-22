@@ -120,7 +120,7 @@ namespace fontopus
       string strDir;
       string strUsername;
       string strPasshash;
-      //System.crypt().file_get(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsername, "", get_app());
+      //System.crypto().file_get(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsername, "", get_app());
       crypto_file_get(::dir::userappdata("license_auth/00001.data"), strUsername, "");
       m_loginthread.m_strUsername = strUsername;
       string strHost(pszRequestingParty);
@@ -1539,10 +1539,10 @@ namespace fontopus
          if(!Application.file().exists(strPathUsername) || !Application.file().exists(strPathPasshash))
             return true;
 
-         System.crypt().file_get(strPathUsername, strUsername, "", get_app());
+         System.crypto().file_get(strPathUsername, strUsername, "", get_app());
          m_loginthread.m_strUsername = strUsername;
 
-         System.crypt().file_get(strPathPasshash, strPasshash, calc_key_hash(), get_app());
+         System.crypto().file_get(strPathPasshash, strPasshash, calc_key_hash(), get_app());
 
          if(strUsername.is_empty() || strPasshash.is_empty())
             return true;

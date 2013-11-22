@@ -406,9 +406,9 @@ namespace fontopus
          crypto_file_set(::dir::userappdata("license_auth/00002.data"), strPasshash, calc_key_hash());
          /*if(strPassword.has_char())
          {
-         string strSalt = System.crypt().v5_get_password_salt();
-         System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00005.data"), strSalt, calc_key_hash(), get_app());
-         string strPasshash2 = System.crypt().v5_get_password_hash(strSalt, strPassword);
+         string strSalt = System.crypto().v5_get_password_salt();
+         System.crypto().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00005.data"), strSalt, calc_key_hash(), get_app());
+         string strPasshash2 = System.crypto().v5_get_password_hash(strSalt, strPassword);
          crypt_file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00010.data"), strPasshash2, calc_key_hash(), get_app());
          }*/
       }
