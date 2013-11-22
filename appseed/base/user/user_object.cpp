@@ -572,7 +572,7 @@ namespace user
       m_bAutoDelete = FALSE;  // don't destroy document_interface while closing views
       for (index index = 0; index < m_viewptra.get_count(); index++)
       {
-         // get frame attached to the ::user::view
+         // get frame attached to the ::user::impact
          sp(::user::impact) pview = m_viewptra(index);
          ASSERT_VALID(pview);
          sp(::user::frame_window) pFrame = pview->GetParentFrame();
@@ -582,7 +582,7 @@ namespace user
             // and close it
             pre_close_frame(pFrame);
             pFrame->DestroyWindow();
-            // will destroy the ::user::view as well
+            // will destroy the ::user::impact as well
          }
       }
       m_viewptra.remove_all();
@@ -959,7 +959,7 @@ namespace user
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::view operations
+   // ::user::impact operations
 
    void object::add_view(sp(::user::impact) pview)
    {

@@ -23,7 +23,7 @@ namespace command
 
    }
 
-   void primary_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::object* phint)
+   void primary_view::on_update(sp(::user::impact) pSender, LPARAM lHint, ::object* phint)
    {
 
       UNREFERENCED_PARAMETER(pSender);

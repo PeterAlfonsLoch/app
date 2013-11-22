@@ -61,12 +61,12 @@ namespace filehandler
 #ifdef DEBUG
    void pane_view::assert_valid() const
    {
-      ::user::view::assert_valid();
+      ::user::impact::assert_valid();
    }
 
    void pane_view::dump(dump_context & dumpcontext) const
    {
-      ::user::view::dump(dumpcontext);
+      ::user::impact::dump(dumpcontext);
    }
 #endif //DEBUG
 
@@ -87,7 +87,7 @@ namespace filehandler
    }
 
 
-   void pane_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::object* pHint)
+   void pane_view::on_update(sp(::user::impact) pSender, LPARAM lHint, ::object* pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -138,7 +138,7 @@ namespace filehandler
    {
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 
-      return ::user::view::pre_create_window(cs);
+      return ::user::impact::pre_create_window(cs);
    }
 
    void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
@@ -172,7 +172,7 @@ namespace filehandler
             rtprxsp(::document) pdoc = dynamic_cast < rtprxsp(::document) > (papp->m_ptemplateVideo->open_document_file(createcontext));
             if(pdoc != NULL)
             {
-            sp(::user::view) pview = pdoc->get_view();
+            sp(::user::impact) pview = pdoc->get_view();
             pview->on_update(NULL, 0, NULL);
             if(pview != NULL)
             {
@@ -190,7 +190,7 @@ namespace filehandler
             cc.m_pCurrentDoc = get_document();
             cc.m_typeinfoNewView =  System.type_info < rtprx::view > ();
 
-            sp(::user::view) pview = (CreateView(&cc, 101, this));
+            sp(::user::impact) pview = (CreateView(&cc, 101, this));
             if(pview != NULL)
             {
             pcreatordata = new ViewData();

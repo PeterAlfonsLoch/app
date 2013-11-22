@@ -28,12 +28,12 @@ namespace command
    #ifdef DEBUG
    void pane_view::assert_valid() const
    {
-	   ::user::view::assert_valid();
+	   ::user::impact::assert_valid();
    }
 
    void pane_view::dump(dump_context & dumpcontext) const
    {
-	   ::user::view::dump(dumpcontext);
+	   ::user::impact::dump(dumpcontext);
    }
    #endif //DEBUG
 
@@ -56,7 +56,7 @@ namespace command
 
    }
 
-   void pane_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::object* pHint)
+   void pane_view::on_update(sp(::user::impact) pSender, LPARAM lHint, ::object* pHint)
    {
       ::user::tab_view::on_update(pSender, lHint, pHint);
       if(lHint == 543218)
@@ -130,7 +130,7 @@ namespace command
    {
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 
-	   return ::user::view::pre_create_window(cs);
+	   return ::user::impact::pre_create_window(cs);
    }
 
 
@@ -153,7 +153,7 @@ namespace command
                pdoc->Initialize(true);
                pdoc->update_all_views(NULL, 1234);
                pdoc->update_all_views(NULL, 123458);
-               sp(::user::view) pview = pdoc->get_view();
+               sp(::user::impact) pview = pdoc->get_view();
                pdoc->FileManagerBrowse(Application.dir().userappdata("command\\menu"));
                if(pview != NULL)
                {
@@ -173,7 +173,7 @@ namespace command
          break;
       case PaneViewPrimaryCommand:
          {
-            sp(::user::view) pview = create_view < primary_view > ();
+            sp(::user::impact) pview = create_view < primary_view > ();
             if(pview != NULL)
             {
                pcreatordata->m_pdoc = get_document();
@@ -191,7 +191,7 @@ namespace command
                pdoc->Initialize(true);
                pdoc->update_all_views(NULL, 1234);
                pdoc->update_all_views(NULL, 123458);
-               sp(::user::view) pview = pdoc->get_view();
+               sp(::user::impact) pview = pdoc->get_view();
                if(pview != NULL)
                {
                   sp(::user::frame_window) pframe =  (pview->GetParentFrame());
@@ -223,7 +223,7 @@ namespace command
                pdoc->Initialize(true);
                pdoc->update_all_views(NULL, 1234);
                pdoc->update_all_views(NULL, 123458);
-               sp(::user::view) pview = pdoc->get_view();
+               sp(::user::impact) pview = pdoc->get_view();
                pdoc->FileManagerBrowse(Application.dir().userappdata("command\\3-action-launch"));
                if(pview != NULL)
                {
@@ -249,7 +249,7 @@ namespace command
          if(pdoc == NULL)
             return;
          ::user::view_creator_data * pcreatordata = new ::user::view_creator_data;
-         sp(::user::view) pview = pdoc->get_typed_view < ::user::view > ();
+         sp(::user::impact) pview = pdoc->get_typed_view < ::user::impact > ();
          form_update_hint uh;
          uh.m_etype = form_update_hint::type_browse;
          uh.m_strForm = "filemanager\\replace_name_in_file_system.xhtml";
@@ -282,7 +282,7 @@ namespace command
 
    void pane_view::install_message_handling(::message::dispatch * pinterface)
    {
-      ::user::view::install_message_handling(pinterface);
+      ::user::impact::install_message_handling(pinterface);
 
 	   IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &pane_view::_001OnCreate);
 	   IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &pane_view::_001OnSize);
