@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "app/appseed/boot/boot/boot.h"
+#include "app/appseed/base/base/base.h"
 
 
 #include "nodeapp/operational_system/operational_system.h"
@@ -611,7 +611,7 @@ struct __system_policies
 
 //#include "core_file_manager_interface.h"
 
-
+class application;
 
 namespace user
 {
