@@ -1631,7 +1631,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
                keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
 
-               return BitBlt(x, y, rectText.width(), rectText.height(), dib1->get_graphics(), 0, 0, SRCCOPY);
+               return BitBlt((int32_t) x, (int32_t) y, rectText.width(), rectText.height(), dib1->get_graphics(), 0, 0, SRCCOPY);
 
                /*BLENDFUNCTION bf;
                bf.BlendOp     = AC_SRC_OVER;
