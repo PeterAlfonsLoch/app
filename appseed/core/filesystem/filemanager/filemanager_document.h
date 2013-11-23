@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE document :
-      public ::userfs::document,
+      virtual public ::userfs::document,
       virtual public ::filemanager::manager
    {
    public:

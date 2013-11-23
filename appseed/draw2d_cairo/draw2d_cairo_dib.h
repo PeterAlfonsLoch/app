@@ -157,6 +157,9 @@ namespace draw2d_cairo
       //double pi();
 
 
+      virtual void read(::file::input_stream & istream);
+
+
    };
 
 

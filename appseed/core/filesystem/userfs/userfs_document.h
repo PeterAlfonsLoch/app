@@ -6,7 +6,7 @@ namespace userfs
 
 
    class CLASS_DECL_CORE document :
-      public ::user::object
+      virtual public ::user::object
    {
    public:
 

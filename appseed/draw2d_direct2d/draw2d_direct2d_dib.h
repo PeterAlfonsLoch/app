@@ -151,6 +151,14 @@ namespace draw2d_direct2d
 
       //double pi();
 
+      virtual bool defer_realize(::draw2d::graphics * pgraphics);
+      virtual bool realize(::draw2d::graphics * pgraphics);
+      virtual bool unrealize();
+      virtual bool is_realized();
+      virtual bool update_window(::user::window * pwnd, signal_details * pobj);
+      virtual bool print_window(::user::window * pwnd, signal_details * pobj);
+
+
    };
 
 

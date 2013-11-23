@@ -8,6 +8,7 @@ namespace filemanager
    document::document(sp(base_application) papp) :
       element(papp),
       ::data::data_container_base(papp),
+      ::user::object(papp),
       ::userfs::document(papp)
    {
 
