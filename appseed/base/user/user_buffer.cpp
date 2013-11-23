@@ -58,27 +58,22 @@ namespace user
       UNREFERENCED_PARAMETER(pinterface);
    }
 
+
    void buffer::BitBlt(::draw2d::graphics * pdc)
    {
-      pdc->BitBlt(
-         0, 0, 
-         m_spdib->cx,
-         m_spdib->cy,
-         GetBuffer(),
-         0, 0, 
-         SRCCOPY);
+
+      pdc->BitBlt(null_point(), m_spdib->size(), GetBuffer());
+
    }
+
 
    void buffer::BitBlt(LPRECT lprect, ::draw2d::graphics * pdc)
    {
-      pdc->BitBlt(
-         lprect->left, lprect->top, 
-         lprect->right - lprect->left,
-         lprect->bottom - lprect->top,
-         GetBuffer(),
-         lprect->left, lprect->top, 
-         SRCCOPY);
+
+      pdc->BitBlt(lprect, GetBuffer(), top_left(lprect));
+
    }
+
 
 } // namespace user
 

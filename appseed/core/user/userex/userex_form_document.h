@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_CORE form_document :
-   public html_document
+   virtual public html_document
 {
 public:
    form_document(sp(base_application) papp);

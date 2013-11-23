@@ -39,11 +39,11 @@ namespace draw2d
    dib::dib()
    {
 
-      cx      = 0;
+      m_size.cx      = 0;
 
-      cy      = 0;
+      m_size.cy      = 0;
 
-      scan    = 0;
+      m_iScan    = 0;
 
    }
 
@@ -269,9 +269,9 @@ namespace draw2d
       if(size.cy < 0)
          return true;
 
-      int xEnd = min(size.cx, min(pdib->cx - ptSrc.x, cx - ptDst.x));
+      int xEnd = min(size.cx, min(pdib->m_size.cx - ptSrc.x, m_size.cx - ptDst.x));
 
-      int yEnd = min(size.cy, min(pdib->cy - ptSrc.y, cy - ptDst.y));
+      int yEnd = min(size.cy, min(pdib->m_size.cy - ptSrc.y, m_size.cy - ptDst.y));
 
       if(xEnd < 0)
          return false;
@@ -279,9 +279,9 @@ namespace draw2d
       if(yEnd < 0)
          return false;
 
-      int32_t s1 = scan / sizeof(COLORREF);
+      int32_t s1 = m_iScan / sizeof(COLORREF);
 
-      int32_t s2 = pdib->scan / sizeof(COLORREF);
+      int32_t s2 = pdib->m_iScan / sizeof(COLORREF);
 
       COLORREF * pdst = &m_pcolorref[s1 * ptDst.y] + ptDst.x;
 
@@ -336,9 +336,9 @@ namespace draw2d
       if(size.cy < 0)
          return true;
 
-      int xEnd = min(size.cx, min(pdib->cx - ptSrc.x, cx - ptDst.x));
+      int xEnd = min(size.cx, min(pdib->m_size.cx - ptSrc.x, m_size.cx - ptDst.x));
 
-      int yEnd = min(size.cy, min(pdib->cy - ptSrc.y, cy - ptDst.y));
+      int yEnd = min(size.cy, min(pdib->m_size.cy - ptSrc.y, m_size.cy - ptDst.y));
 
       if(xEnd < 0)
          return false;
@@ -346,9 +346,9 @@ namespace draw2d
       if(yEnd < 0)
          return false;
 
-      int32_t s1 = scan / sizeof(COLORREF);
+      int32_t s1 = m_iScan / sizeof(COLORREF);
 
-      int32_t s2 = pdib->scan / sizeof(COLORREF);
+      int32_t s2 = pdib->m_iScan / sizeof(COLORREF);
 
       COLORREF * pdst = &m_pcolorref[s1 * ptDst.y] + ptDst.x;
 
@@ -393,7 +393,7 @@ namespace draw2d
 
    void dib::set( int32_t R, int32_t G, int32_t B )
    {
-      int32_t size=cx*cy;
+      int64_t size = area();
 
       COLORREF * pcr = get_data();
 
@@ -410,11 +410,11 @@ namespace draw2d
 /*   void dib::Fill ( int32_t R, int32_t G, int32_t B )
    {
       COLORREF color=RGB ( B, G, R );
-      int32_t size=cx*cy;
+      int64_t size = area();
 
       COLORREF * pcr;
 
-      int32_t iSize32 = size / 32;
+      int64_t iSize32 = size / 32;
       int32_t i;
       for (i=0; i < iSize32; i+=32 )
       {
@@ -464,7 +464,7 @@ namespace draw2d
    void dib::ToAlpha(int32_t i)
    {
       BYTE *dst=(BYTE*)get_data();
-      int32_t size=cx*cy;
+      int64_t size = area();
 
       while ( size-- )
       {
@@ -673,7 +673,7 @@ namespace draw2d
    void dib::Map(int32_t ToRgb, int32_t FromRgb)
    {
       byte * dst= (byte *) get_data();
-      int32_t size=cx*cy;
+      int64_t size = area();
 
       while ( size-- )
       {
@@ -686,7 +686,7 @@ namespace draw2d
    void dib::ToAlphaAndFill(int32_t i, COLORREF cr)
    {
       BYTE *dst=(BYTE*)get_data();
-      int32_t size=cx*cy;
+      int64_t size = area();
 
       BYTE uchB = rgba_get_b(cr);
       BYTE uchG = rgba_get_g(cr);
@@ -705,7 +705,7 @@ namespace draw2d
    void dib::GrayToARGB(COLORREF cr)
    {
       BYTE *dst=(BYTE*)get_data();
-      int32_t size=cx*cy;
+      int64_t size = area();
 
       uint32_t dwB = rgba_get_b(cr);
       uint32_t dwG = rgba_get_g(cr);
@@ -737,49 +737,13 @@ namespace draw2d
          colorrefaN[0] = _colorrefN;
 
          colorrefaN[1] = _colorrefN;
-#ifdef AMD64
 
-         //x64
-#else
-
-         int32_t isize=cx*cy;
+         int64_t isize = area();
          LPDWORD lpbitsSrc= (LPDWORD) pdib->get_data();
          LPDWORD lpbitsDest= (LPDWORD) get_data();
 
-    #ifdef WINDOWS
-         _asm
-         {
-            emms
-               mov      eax, isize
-               mov      ebx, lpbitsDest
-               mov      ecx, lpbitsSrc
-               movq     mm0, colorrefa
-               movq     mm7, colorrefaN
-fill_loop:
-            cmp      eax, 1
-               jle      fill_last
-               movq     mm1, [ebx]
-            movq     mm2, [ecx]
-            pandn    mm1, mm0
-               pand     mm2, mm7
-               por      mm1, mm2
-               movq     [ebx], mm1
+         memcpy(lpbitsDest, lpbitsSrc, (size_t) (isize * sizeof(COLORREF)));
 
-               sub      eax, 2
-               add      ebx, 8
-               add      ecx, 8
-
-               jmp      fill_loop
-
-fill_last:
-            emms
-         }
-#else
-
-         memcpy(lpbitsDest, lpbitsSrc, isize * 4);
-
-         #endif
-#endif
       }
 
    }
@@ -787,7 +751,7 @@ fill_last:
 
    void dib::Invert()
    {
-      int32_t size=cx*cy;
+      int64_t size = area();
       LPBYTE lpb = (LPBYTE) get_data();
       for ( int32_t i=0; i<size; i++ )
       {
@@ -968,7 +932,7 @@ fill_last:
    void dib::FillGlass ( int32_t R, int32_t G, int32_t B, int32_t A )
    {
       BYTE *dst=(BYTE*)get_data();
-      int32_t size=cx*cy;
+      int64_t size = area();
 
       while ( size-- )
       {
@@ -981,9 +945,9 @@ fill_last:
 
    void dib::FillStippledGlass ( int32_t R, int32_t G, int32_t B )
    {
-      COLORREF color=RGB ( B, G, R );
-      int32_t w=cx;
-      int32_t h=cy;
+      COLORREF color = RGB ( B, G, R );
+      int32_t w = m_size.cx;
+      int32_t h = m_size.cy;
 
       for ( int32_t j=0; j<w; j++ )
       {
@@ -1013,7 +977,7 @@ fill_last:
       if (get_data() == NULL || dib->get_data() == NULL)
          return;
 
-      memcpy ( dib->get_data(), get_data(), cx*cy*4 );
+      memcpy ( dib->get_data(), get_data(), (size_t) area() * sizeof(COLORREF) );
 
 
    }
@@ -1032,7 +996,7 @@ fill_last:
       dib->map();
       // If DibSize Wrong Re-create dib
       // do Paste
-      memcpy ( get_data(), dib->get_data(), cx*cy*4 );
+      memcpy ( get_data(), dib->get_data(), (size_t) area() * sizeof(COLORREF) );
 
    }
 
@@ -1050,7 +1014,7 @@ fill_last:
    {
 
       BYTE *dst=(BYTE*)get_data();
-      int32_t size=cx*cy;
+      int64_t size = area();
 
       uint32_t dwB = rgba_get_b(cr);
       uint32_t dwG = rgba_get_g(cr);
@@ -1078,7 +1042,7 @@ fill_last:
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int32_t size=cx*cy;
+      int64_t size = area();
 
       while ( size-- )
       {
@@ -1099,7 +1063,7 @@ fill_last:
       BYTE *src=(BYTE*)pDib->get_data();
       BYTE *dst=(BYTE*)get_data();
       BYTE *alf=(BYTE*)DibA->get_data();
-      int32_t size=cx*cy;
+      int64_t size = area();
 
       A = 2 - A;
 
@@ -1125,7 +1089,7 @@ fill_last:
       BYTE *src=(BYTE*)pdib->get_data();
       BYTE *dst=(BYTE*)get_data();
       BYTE *alf=(BYTE*)pdibRate->get_data();
-      int32_t size=cx*cy;
+      int64_t size = area();
 
       while(size >= 2)
       {
@@ -1164,7 +1128,7 @@ fill_last:
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int32_t size=cx*cy;
+      int64_t size = area();
 
       while ( size-- )
       {
@@ -1183,7 +1147,7 @@ fill_last:
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int32_t size=cx*cy;
+      int64_t size = area();
 
       while ( size-- )
       {
@@ -1206,7 +1170,7 @@ fill_last:
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int32_t size=cx*cy;
+      int64_t size = area();
 
       while ( size-- )
       {
@@ -1225,7 +1189,7 @@ fill_last:
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int32_t size=cx*cy;
+      int64_t size = area();
 
       while ( size-- )
       {
@@ -1244,7 +1208,7 @@ fill_last:
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int32_t size=cx*cy;
+      int64_t size = area();
 
       while ( size-- )
       {
@@ -1265,8 +1229,8 @@ fill_last:
       // Clip Rect
       int32_t px=(x>=0) ? x : 0;
       int32_t py=(y>=0) ? y : 0;
-      int32_t dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
-      int32_t dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
+      int32_t dx = ((x + dib->m_size.cx)<m_size.cx) ? dib->m_size.cx : m_size.cx - x;
+      int32_t dy = ((y + dib->m_size.cy)<m_size.cy) ? dib->m_size.cy : m_size.cy - y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1274,14 +1238,14 @@ fill_last:
       if ( (dx<=0) || (dy<=0) )
          return;
       // If DibSize Wrong Re-create dib
-      if ( (dx!=dib->cx) || (dy!=dib->cy) )
+      if ((dx != dib->m_size.cx) || (dy != dib->m_size.cy))
          dib->create(dx, dy);
 
       map();
       dib->map();
 
       // Prepare buffer Addresses
-      COLORREF *src=get_data()+(py*cx)+px;
+      COLORREF *src = get_data() + (py*m_size.cx) + px;
       COLORREF *dst=dib->get_data();
 
       // Do copy
@@ -1289,8 +1253,8 @@ fill_last:
       {
          for ( int32_t i=0; i<dx; i++ )
             dst[i]=src[i];
-         src+=cx;
-         dst+=dib->cx;
+         src += m_size.cx;
+         dst += dib->m_size.cx;
       }
 
    }
@@ -1300,8 +1264,8 @@ fill_last:
       // Clip Rect
       int32_t px=(x>=0) ? x : 0;
       int32_t py=(y>=0) ? y : 0;
-      int32_t dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
-      int32_t dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
+      int32_t dx = ((x + dib->m_size.cx)<m_size.cx) ? dib->m_size.cx : m_size.cx - x;
+      int32_t dy = ((y + dib->m_size.cy)<m_size.cy) ? dib->m_size.cy : m_size.cy - y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1310,16 +1274,16 @@ fill_last:
          return;
 
       // Prepare buffer Addresses
-      COLORREF *src=dib->get_data()+((py-y)*dib->cx)+px-x;
-      COLORREF *dst=get_data()+(py*cx)+px;
+      COLORREF *src = dib->get_data() + ((py - y)*dib->m_size.cx) + px - x;
+      COLORREF *dst = get_data() + (py*m_size.cx) + px;
 
       // Do Paste
       while ( dy-- )
       {
          for ( int32_t i=0; i<dx; i++ )
             dst[i]=src[i];
-         src+=dib->cx;
-         dst+=cx;
+         src += dib->m_size.cx;
+         dst += m_size.cx;
       }
    }
 
@@ -1328,8 +1292,8 @@ fill_last:
       // Clip Rect
       int32_t px=(x>=0) ? x : 0;
       int32_t py=(y>=0) ? y : 0;
-      int32_t dx=((x+w)<cx) ? w : cx-x;
-      int32_t dy=((y+h)<cy) ? h : cy-y;
+      int32_t dx = ((x + w)<m_size.cx) ? w : m_size.cx - x;
+      int32_t dy = ((y + h)<m_size.cy) ? h : m_size.cy - y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1338,7 +1302,7 @@ fill_last:
          return;
 
       // Prepare buffer Address
-      COLORREF *dst=get_data()+(py*cx)+px;
+      COLORREF *dst = get_data() + (py*m_size.cx) + px;
       COLORREF color=RGB ( B, G, R );
 
       // Do Fill
@@ -1348,7 +1312,7 @@ fill_last:
          {
             dst[i]=color;
          }
-         dst+=cx;
+         dst += m_size.cx;
       }
    }
 
@@ -1371,9 +1335,9 @@ fill_last:
       }
       py = (py>=0) ? py : 0;
       int32_t dx;
-      dx =((px+w)<cx) ? w : cx-px;
+      dx = ((px + w)<m_size.cx) ? w : m_size.cx - px;
       int32_t dy;
-      dy =((py+h)<cy) ? h : cy-py;
+      dy = ((py + h)<m_size.cy) ? h : m_size.cy - py;
       dx=(px>=0) ? dx : dx + x;
       dy=(py>=0) ? dy : dy + y;
 
@@ -1382,7 +1346,7 @@ fill_last:
          return;
 
       // Prepare buffer Address
-      COLORREF *dst=get_data()+(py*cx)+px;
+      COLORREF *dst = get_data() + (py*m_size.cx) + px;
       COLORREF color=ARGB (A, B, G, R );
 
       // Do Fill
@@ -1392,7 +1356,7 @@ fill_last:
          {
             dst[i]=color;
          }
-         dst+=cx;
+         dst += m_size.cx;
       }
    }
 
@@ -1401,8 +1365,8 @@ fill_last:
       // Clip Rect
       int32_t px=(x>=0) ? x : 0;
       int32_t py=(y>=0) ? y : 0;
-      int32_t dx=((x+w)<cx) ? w : cx-x;
-      int32_t dy=((y+h)<cy) ? h : cy-y;
+      int32_t dx = ((x + w)<m_size.cx) ? w : m_size.cx - x;
+      int32_t dy = ((y + h)<m_size.cy) ? h : m_size.cy - y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1411,7 +1375,7 @@ fill_last:
          return;
 
       // Prepare buffer Address
-      BYTE *dst=(BYTE *)get_data()+((py*cx)+px)*4;
+      BYTE *dst = (BYTE *)get_data() + ((py*m_size.cx) + px) * 4;
 
       // Do FillGlass
       while ( dy-- )
@@ -1423,7 +1387,7 @@ fill_last:
             dst[2]=(BYTE)(((R-dst[2])*A+(dst[2]<<8))>>8);
             dst+=4;
          }
-         dst+=(cx-dx)<<2;
+         dst+=(m_size.cx-dx)<<2;
       }
    }
 
@@ -1432,8 +1396,8 @@ fill_last:
       // Clip Rect
       int32_t px=(x>=0) ? x : 0;
       int32_t py=(y>=0) ? y : 0;
-      int32_t dx=((x+w)<cx) ? w : cx-x;
-      int32_t dy=((y+h)<cy) ? h : cy-y;
+      int32_t dx=((x+w)<m_size.cx) ? w : m_size.cx-x;
+      int32_t dy=((y+h)<m_size.cy) ? h : m_size.cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1442,7 +1406,7 @@ fill_last:
          return;
 
       // Prepare buffer Address
-      COLORREF *dst=get_data()+(py*cx)+px;
+      COLORREF *dst=get_data()+(py*m_size.cx)+px;
       COLORREF color=RGB ( B, G, R );
 
       // Do FillStippledGlass
@@ -1452,7 +1416,7 @@ fill_last:
          {
             dst[i]=((i+j)&0x1) ? dst[i] : color;
          }
-         dst+=cx;
+         dst+=m_size.cx;
       }
    }
 
@@ -1461,8 +1425,8 @@ fill_last:
       // Clip Rect
       int32_t px=(x>=0) ? x : 0;
       int32_t py=(y>=0) ? y : 0;
-      int32_t dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
-      int32_t dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
+      int32_t dx=((x+dib->m_size.cx)<m_size.cx) ? dib->m_size.cx : m_size.cx-x;
+      int32_t dy=((y+dib->m_size.cy)<m_size.cy) ? dib->m_size.cy : m_size.cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1471,8 +1435,8 @@ fill_last:
          return;
 
       // Prepare buffer Addresses
-      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->cx)+px-x)*4;
-      BYTE *dst=(BYTE *)get_data()+((py*cx)+px)*4;
+      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->m_size.cx)+px-x)*4;
+      BYTE *dst=(BYTE *)get_data()+((py*m_size.cx)+px)*4;
 
       // Do Blend
       while ( dy-- )
@@ -1485,8 +1449,8 @@ fill_last:
             dst+=4;
             src+=4;
          }
-         dst+=(cx-dx)<<2;
-         src+=(dib->cx-dx)<<2;
+         dst+=(m_size.cx-dx)<<2;
+         src+=(dib->m_size.cx-dx)<<2;
       }
    }
 
@@ -1495,8 +1459,8 @@ fill_last:
       // Clip Rect
       int32_t px=(x>=0) ? x : 0;
       int32_t py=(y>=0) ? y : 0;
-      int32_t dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
-      int32_t dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
+      int32_t dx=((x+dib->m_size.cx)<m_size.cx) ? dib->m_size.cx : m_size.cx-x;
+      int32_t dy=((y+dib->m_size.cy)<m_size.cy) ? dib->m_size.cy : m_size.cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1505,8 +1469,8 @@ fill_last:
          return;
 
       // Prepare buffer Addresses
-      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->cx)+px-x)*4;
-      BYTE *dst=(BYTE *)get_data()+((py*cx)+px)*4;
+      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->m_size.cx)+px-x)*4;
+      BYTE *dst=(BYTE *)get_data()+((py*m_size.cx)+px)*4;
 
       // Do Darken
       while ( dy-- )
@@ -1519,8 +1483,8 @@ fill_last:
             dst+=4;
             src+=4;
          }
-         dst+=(cx-dx)<<2;
-         src+=(dib->cx-dx)<<2;
+         dst+=(m_size.cx-dx)<<2;
+         src+=(dib->m_size.cx-dx)<<2;
       }
    }
 
@@ -1529,8 +1493,8 @@ fill_last:
       // Clip Rect
       int32_t px=(x>=0) ? x : 0;
       int32_t py=(y>=0) ? y : 0;
-      int32_t dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
-      int32_t dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
+      int32_t dx=((x+dib->m_size.cx)<m_size.cx) ? dib->m_size.cx : m_size.cx-x;
+      int32_t dy=((y+dib->m_size.cy)<m_size.cy) ? dib->m_size.cy : m_size.cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1539,8 +1503,8 @@ fill_last:
          return;
 
       // Prepare buffer Addresses
-      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->cx)+px-x)*4;
-      BYTE *dst=(BYTE *)get_data()+((py*cx)+px)*4;
+      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->m_size.cx)+px-x)*4;
+      BYTE *dst=(BYTE *)get_data()+((py*m_size.cx)+px)*4;
 
       // Do Difference
       while ( dy-- )
@@ -1557,8 +1521,8 @@ fill_last:
             dst+=4;
             src+=4;
          }
-         dst+=(cx-dx)<<2;
-         src+=(dib->cx-dx)<<2;
+         dst+=(m_size.cx-dx)<<2;
+         src+=(dib->m_size.cx-dx)<<2;
       }
    }
 
@@ -1567,8 +1531,8 @@ fill_last:
       // Clip Rect
       int32_t px=(x>=0) ? x : 0;
       int32_t py=(y>=0) ? y : 0;
-      int32_t dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
-      int32_t dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
+      int32_t dx=((x+dib->m_size.cx)<m_size.cx) ? dib->m_size.cx : m_size.cx-x;
+      int32_t dy=((y+dib->m_size.cy)<m_size.cy) ? dib->m_size.cy : m_size.cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1577,8 +1541,8 @@ fill_last:
          return;
 
       // Prepare buffer Addresses
-      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->cx)+px-x)*4;
-      BYTE *dst=(BYTE *)get_data()+((py*cx)+px)*4;
+      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->m_size.cx)+px-x)*4;
+      BYTE *dst=(BYTE *)get_data()+((py*m_size.cx)+px)*4;
 
       // Do Lighten
       while ( dy-- )
@@ -1591,8 +1555,8 @@ fill_last:
             dst+=4;
             src+=4;
          }
-         dst+=(cx-dx)<<2;
-         src+=(dib->cx-dx)<<2;
+         dst+=(m_size.cx-dx)<<2;
+         src+=(dib->m_size.cx-dx)<<2;
       }
    }
 
@@ -1601,8 +1565,8 @@ fill_last:
       // Clip Rect
       int32_t px=(x>=0) ? x : 0;
       int32_t py=(y>=0) ? y : 0;
-      int32_t dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
-      int32_t dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
+      int32_t dx=((x+dib->m_size.cx)<m_size.cx) ? dib->m_size.cx : m_size.cx-x;
+      int32_t dy=((y+dib->m_size.cy)<m_size.cy) ? dib->m_size.cy : m_size.cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1611,8 +1575,8 @@ fill_last:
          return;
 
       // Prepare buffer Addresses
-      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->cx)+px-x)*4;
-      BYTE *dst=(BYTE *)get_data()+((py*cx)+px)*4;
+      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->m_size.cx)+px-x)*4;
+      BYTE *dst=(BYTE *)get_data()+((py*m_size.cx)+px)*4;
 
       // Do Multiply
       while ( dy-- )
@@ -1625,8 +1589,8 @@ fill_last:
             dst+=4;
             src+=4;
          }
-         dst+=(cx-dx)<<2;
-         src+=(dib->cx-dx)<<2;
+         dst+=(m_size.cx-dx)<<2;
+         src+=(dib->m_size.cx-dx)<<2;
       }
    }
 
@@ -1635,8 +1599,8 @@ fill_last:
       // Clip Rect
       int32_t px=(x>=0) ? x : 0;
       int32_t py=(y>=0) ? y : 0;
-      int32_t dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
-      int32_t dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
+      int32_t dx=((x+dib->m_size.cx)<m_size.cx) ? dib->m_size.cx : m_size.cx-x;
+      int32_t dy=((y+dib->m_size.cy)<m_size.cy) ? dib->m_size.cy : m_size.cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1645,8 +1609,8 @@ fill_last:
          return;
 
       // Prepare buffer Addresses
-      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->cx)+px-x)*4;
-      BYTE *dst=(BYTE *)get_data()+((py*cx)+px)*4;
+      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->m_size.cx)+px-x)*4;
+      BYTE *dst=(BYTE *)get_data()+((py*m_size.cx)+px)*4;
 
       // Do Screen
       while ( dy-- )
@@ -1659,8 +1623,8 @@ fill_last:
             dst+=4;
             src+=4;
          }
-         dst+=(cx-dx)<<2;
-         src+=(dib->cx-dx)<<2;
+         dst+=(m_size.cx-dx)<<2;
+         src+=(dib->m_size.cx-dx)<<2;
       }
    }
 
@@ -1681,7 +1645,7 @@ fill_last:
    x=x1;
    y=y1;
 
-   get_data()[y*cx+x]=color;
+   get_data()[y*m_size.cx+x]=color;
    while (x<dx)
    {
    if (d<=0)
@@ -1695,23 +1659,23 @@ fill_last:
    x++;
    y++;
    }
-   get_data()[y*cx+x]=color;
+   get_data()[y*m_size.cx+x]=color;
    }
    }*/
 
 
    void dib::horizontal_line(int32_t y, int32_t R, int32_t G, int32_t B, int32_t A, int32_t x1, int32_t x2)
    {
-      if(cx == 0)
+      if(m_size.cx == 0)
          return;
-      x1 %= cx;
-      x2 %= cx;
+      x1 %= m_size.cx;
+      x2 %= m_size.cx;
       if(x2 < 0)
-         x2 += cx;
+         x2 += m_size.cx;
       if(x1 < 0)
-         x1 += cx;
+         x1 += m_size.cx;
       COLORREF color=RGB ( B, G, R ) | (A << 24);
-      COLORREF * pdata = get_data() + y * cx;
+      COLORREF * pdata = get_data() + y * m_size.cx;
       for(int32_t x = x1; x <= x2; x++)
       {
          *pdata = color;
@@ -1738,7 +1702,7 @@ fill_last:
          d=ay-(core>>1);
          while ( x!=x2 )
          {
-            get_data()[y*cx+x]=color;
+            get_data()[y*m_size.cx+x]=color;
             if ( d>=0 )
             {
                y+=sy;
@@ -1753,7 +1717,7 @@ fill_last:
          d=core-(ay>>1);
          while ( y!=y2 )
          {
-            get_data()[y*cx+x]=color;
+            get_data()[y*m_size.cx+x]=color;
             if ( d>=0 )
             {
                x+=sx;
@@ -1785,9 +1749,9 @@ fill_last:
          d=ay-(core>>1);
          while ( x!=x2 )
          {
-            dst[(y*cx+x)<<2]=(BYTE)(((B-dst[(y*cx+x)<<2])*A+(dst[(y*cx+x)<<2]<<8))>>8);
-            dst[((y*cx+x)<<2)+1]=(BYTE)(((G-dst[((y*cx+x)<<2)+1])*A+(dst[((y*cx+x)<<2)+1]<<8))>>8);
-            dst[((y*cx+x)<<2)+2]=(BYTE)(((R-dst[((y*cx+x)<<2)+2])*A+(dst[((y*cx+x)<<2)+2]<<8))>>8);
+            dst[(y*m_size.cx+x)<<2]=(BYTE)(((B-dst[(y*m_size.cx+x)<<2])*A+(dst[(y*m_size.cx+x)<<2]<<8))>>8);
+            dst[((y*m_size.cx+x)<<2)+1]=(BYTE)(((G-dst[((y*m_size.cx+x)<<2)+1])*A+(dst[((y*m_size.cx+x)<<2)+1]<<8))>>8);
+            dst[((y*m_size.cx+x)<<2)+2]=(BYTE)(((R-dst[((y*m_size.cx+x)<<2)+2])*A+(dst[((y*m_size.cx+x)<<2)+2]<<8))>>8);
             if ( d>=0 )
             {
                y+=sy;
@@ -1802,9 +1766,9 @@ fill_last:
          d=core-(ay>>1);
          while ( y!=y2 )
          {
-            dst[(y*cx+x)<<2]=(BYTE)(((B-dst[(y*cx+x)<<2])*A+(dst[(y*cx+x)<<2]<<8))>>8);
-            dst[((y*cx+x)<<2)+1]=(BYTE)(((G-dst[((y*cx+x)<<2)+1])*A+(dst[((y*cx+x)<<2)+1]<<8))>>8);
-            dst[((y*cx+x)<<2)+2]=(BYTE)(((R-dst[((y*cx+x)<<2)+2])*A+(dst[((y*cx+x)<<2)+2]<<8))>>8);
+            dst[(y*m_size.cx+x)<<2]=(BYTE)(((B-dst[(y*m_size.cx+x)<<2])*A+(dst[(y*m_size.cx+x)<<2]<<8))>>8);
+            dst[((y*m_size.cx+x)<<2)+1]=(BYTE)(((G-dst[((y*m_size.cx+x)<<2)+1])*A+(dst[((y*m_size.cx+x)<<2)+1]<<8))>>8);
+            dst[((y*m_size.cx+x)<<2)+2]=(BYTE)(((R-dst[((y*m_size.cx+x)<<2)+2])*A+(dst[((y*m_size.cx+x)<<2)+2]<<8))>>8);
             if ( d>=0 )
             {
                x+=sx;
@@ -1822,7 +1786,7 @@ fill_last:
       COLORREF crSet = RGB(rgba_get_b(crInMask), rgba_get_g(crInMask), rgba_get_r(crInMask));
       COLORREF crUnset  = RGB(rgba_get_b(crOutMask), rgba_get_g(crOutMask), rgba_get_r(crOutMask));
 
-      int32_t size=cx*cy;
+      int64_t size = area();
 
       for ( int32_t i=0; i<size; i++ )
          if(get_data()[i]== crFind)
@@ -1846,7 +1810,7 @@ fill_last:
 
    void dib::channel_mask(uchar uchFind, uchar uchSet, uchar uchUnset, visual::rgba::echannel echannel)
    {
-      int32_t size = cx * cy;
+      int32_t size = m_size.cx * m_size.cy;
       uchar * puch = (uchar * ) get_data();
       puch += ((int32_t) echannel) % 4;
 
@@ -1862,7 +1826,7 @@ fill_last:
 
    uint32_t dib::GetPixel(int32_t x, int32_t y)
    {
-      uint32_t dw = *(get_data() + x + (cy - y - 1) * cx);
+      uint32_t dw = *(get_data() + x + (m_size.cy - y - 1) * m_size.cx);
       return RGB(rgba_get_b(dw), rgba_get_g(dw), rgba_get_r(dw));
    }
 
@@ -1887,14 +1851,14 @@ fill_last:
 
 
       if(xL < 0) xL = 0;
-      if(xU >= m_Size.cx) xU = m_Size.cx - 1;
+      if(xU >= m_Size.m_size.cx) xU = m_Size.m_size.cx - 1;
       if(yL < 0) yL = 0;
-      if(yU >= m_Size.cy) yU = m_Size.cy - 1;
+      if(yU >= m_Size.m_size.cy) yU = m_Size.m_size.cy - 1;
 
 
-      BYTE *dst = ((BYTE*)(get_data() + xL + yL * m_Size.cx));
-      uint32_t dwAdd = ((m_Size.cx - 1 - xU) + xL) * 4;
-      int32_t size=m_Size.cx*m_Size.cy;
+      BYTE *dst = ((BYTE*)(get_data() + xL + yL * m_Size.m_size.cx));
+      uint32_t dwAdd = ((m_Size.m_size.cx - 1 - xU) + xL) * 4;
+      int32_t size=m_Size.m_size.cx*m_Size.m_size.cy;
       double iLevel;
 
       int32_t dx, dy;
@@ -1994,14 +1958,14 @@ fill_last:
 
 
          if(xL < 0) xL = 0;
-         if(xU >= cx) xU = cx - 1;
+         if(xU >= m_size.cx) xU = m_size.cx - 1;
          if(yL < 0) yL = 0;
-         if(yU >= cy) yU = cy - 1;
+         if(yU >= m_size.cy) yU = m_size.cy - 1;
 
 
-         BYTE *dst = ((BYTE*)(get_data() + xL + yL * cx));
-         uint32_t dwAdd = ((cx - 1 - xU) + xL) * 4;
-//         int32_t size=cx*cy;
+         BYTE *dst = ((BYTE*)(get_data() + xL + yL * m_size.cx));
+         uint32_t dwAdd = ((m_size.cx - 1 - xU) + xL) * 4;
+//         int64_t size = area();
 
          int32_t dx, dy;
 
@@ -2047,14 +2011,14 @@ fill_last:
 
 
       if(xL < 0) xL = 0;
-      if(xU >= m_Size.cx) xU = m_Size.cx - 1;
+      if(xU >= m_Size.m_size.cx) xU = m_Size.m_size.cx - 1;
       if(yL < 0) yL = 0;
-      if(yU >= m_Size.cy) yU = m_Size.cy - 1;
+      if(yU >= m_Size.m_size.cy) yU = m_Size.m_size.cy - 1;
 
 
-      BYTE *dst = ((BYTE*)(get_data() + xL + yL * m_Size.cx));
-      uint32_t dwAdd = ((m_Size.cx - 1 - xU) + xL) * 4;
-      int32_t size=m_Size.cx*m_Size.cy;
+      BYTE *dst = ((BYTE*)(get_data() + xL + yL * m_Size.m_size.cx));
+      uint32_t dwAdd = ((m_Size.m_size.cx - 1 - xU) + xL) * 4;
+      int32_t size=m_Size.m_size.cx*m_Size.m_size.cy;
       double iLevel;
 
       int32_t dx, dy;
@@ -2154,14 +2118,14 @@ fill_last:
 
 
          if(xL < 0) xL = 0;
-         if(xU >= cx) xU = cx - 1;
+         if(xU >= m_size.cx) xU = m_size.cx - 1;
          if(yL < 0) yL = 0;
-         if(yU >= cy) yU = cy - 1;
+         if(yU >= m_size.cy) yU = m_size.cy - 1;
 
 
-         BYTE *dst = ((BYTE*)(get_data() + xL + yL * cx));
-         uint32_t dwAdd = ((cx - 1 - xU) + xL) * 4;
-//         int32_t size=cx*cy;
+         BYTE *dst = ((BYTE*)(get_data() + xL + yL * m_size.cx));
+         uint32_t dwAdd = ((m_size.cx - 1 - xU) + xL) * 4;
+//         int64_t size = area();
 
          int32_t dx, dy;
 
@@ -2197,9 +2161,9 @@ fill_last:
 
       throw todo(get_app());
 
-      // xxx todo create(cx, cy);
+      // xxx todo create(m_size.cx, m_size.cy);
 
-      if(cx <= 0 || cy <= 0)
+      if(m_size.cx <= 0 || m_size.cy <= 0)
          return;
 
 
@@ -2210,7 +2174,7 @@ fill_last:
 
       throw todo(get_app());
 
-      // xxx todo dib1.create(cx, cy);
+      // xxx todo dib1.create(m_size.cx, m_size.cy);
 
       dib1.Fill(0, 255, 255, 255);
 
@@ -2223,7 +2187,7 @@ fill_last:
       dib1.get_graphics()->DrawIcon(
          0, 0,
          picon,
-         cx, cy,
+         m_size.cx, m_size.cy,
          0,
          NULL,
          DI_IMAGE | DI_MASK);
@@ -2236,7 +2200,7 @@ fill_last:
 
       throw todo(get_app());
 
-      // xxx todo spdib2->create(cx, cy);
+      // xxx todo spdib2->create(m_size.cx, m_size.cy);
       spdib2->Fill(0, 0, 0, 0);
 
 #ifdef METROWIN
@@ -2248,7 +2212,7 @@ fill_last:
       spdib2->get_graphics()->DrawIcon(
          0, 0,
          picon,
-         cx, cy,
+         m_size.cx, m_size.cy,
          0,
          NULL,
          DI_IMAGE | DI_MASK);
@@ -2259,7 +2223,7 @@ fill_last:
       dib dibM;
       throw todo(get_app());
 
-      // xxx todo dibM.create(cx, cy);
+      // xxx todo dibM.create(m_size.cx, m_size.cy);
 
 #ifdef METROWIN
 
@@ -2270,7 +2234,7 @@ fill_last:
       dibM.get_graphics()->DrawIcon(
          0, 0,
          picon,
-         cx, cy,
+         m_size.cx, m_size.cy,
          0,
          NULL,
          DI_MASK);
@@ -2281,7 +2245,7 @@ fill_last:
       BYTE * r2=(BYTE*)spdib2->get_data();
       BYTE * srcM=(BYTE*)dibM.get_data();
       BYTE * dest=(BYTE*)get_data();
-      int32_t iSize = cx*cy;
+      int32_t iSize = m_size.cx*m_size.cy;
 
       BYTE b;
       BYTE bMax;
@@ -2320,17 +2284,17 @@ fill_last:
       // ::draw2d::dib_sp spdib(allocer());
       //   spdib->Paste(this);
 
-      int32_t l = max(cx, cy);
+      int32_t l = max(m_size.cx, m_size.cy);
 
 
-      int32_t jmax = min(l, cy / 2);
+      int32_t jmax = min(l, m_size.cy / 2);
       int32_t jmin = - jmax;
-      int32_t imax = min(l, cx / 2);
+      int32_t imax = min(l, m_size.cx / 2);
       int32_t imin = - imax;
 
 
-      int32_t joff = cy / 2;
-      int32_t ioff = cx / 2;
+      int32_t joff = m_size.cy / 2;
+      int32_t ioff = m_size.cx / 2;
 
       //int32_t iAngle = iStep % 360;
       //int32_t iAngle = iStep;
@@ -2346,18 +2310,18 @@ fill_last:
       // A Combination of a 2d Translation/rotation/Scale Matrix
       x=int32_t(cos10(i, iAngle) - sin10(j, iAngle)) + ioff;
       y=int32_t(sin10(i, iAngle) + cos10(j, iAngle)) + joff;
-      get_data()[(j+joff)*cx+(i+ioff)]=
-      spdib->get_data()[abs(y%cy)*cx+abs(x%cx)];
+      get_data()[(j+joff)*m_size.cx+(i+ioff)]=
+      spdib->get_data()[abs(y%m_size.cy)*m_size.cx+abs(x%m_size.cx)];
       //k++;
       }
-      (j+joff)*cx+(i+ioff)
+      (j+joff)*m_size.cx+(i+ioff)
       }*/
 
       int32_t k = 0;
       double dCos = ::cos(dAngle * pi() / 180.0) * dScale;
       double dSin = ::sin(dAngle * pi() / 180.0) * dScale;
-      int32_t cx1 = cx - 1;
-      int32_t cy1 = cy - 1;
+      int32_t cx1 = m_size.cx - 1;
+      int32_t cy1 = m_size.cy - 1;
       for ( int32_t j=jmin; j<jmax; j++ )
       {
          for ( int32_t i=imin; i<imax; i++ )
@@ -2365,34 +2329,34 @@ fill_last:
             int32_t x, y;
 
             // A Combination of a 2d Translation/rotation/Scale Matrix
-            //x=abs((int32_t(dCos * i - dSin * j) + ioff) % cx);
-            //y=abs((int32_t(dSin * i + dCos * j) + joff) % cy);
+            //x=abs((int32_t(dCos * i - dSin * j) + ioff) % m_size.cx);
+            //y=abs((int32_t(dSin * i + dCos * j) + joff) % m_size.cy);
 
             x = (int32_t) abs((dCos * i - dSin * j) + ioff);
             y = (int32_t) abs((dSin * i + dCos * j) + joff);
 
-            if((x / cx) % 2 == 0)
+            if((x / m_size.cx) % 2 == 0)
             {
-               x %= cx;
+               x %= m_size.cx;
             }
             else
             {
-               x = cx1 - (x % cx);
+               x = cx1 - (x % m_size.cx);
             }
 
-            if((y / cy) % 2 == 0)
+            if((y / m_size.cy) % 2 == 0)
             {
-               y %= cy;
+               y %= m_size.cy;
             }
             else
             {
-               y = cy1 - (y % cy);
+               y = cy1 - (y % m_size.cy);
             }
 
 
 
-            get_data()[(j+joff)*cx+(i+ioff)]=
-               pdib->get_data()[y * cx + x];
+            get_data()[(j+joff)*m_size.cx+(i+ioff)]=
+               pdib->get_data()[y * m_size.cx + x];
             k++;
          }
       }
@@ -2402,30 +2366,30 @@ fill_last:
    void dib::Rotate034(dib * pdib, double dAngle, double dScale)
    {
 
-      int32_t l = max(cx, cy);
+      int32_t l = max(m_size.cx, m_size.cy);
 
 
-      int32_t jmax = min(l, cy / 2);
+      int32_t jmax = min(l, m_size.cy / 2);
       int32_t jmin = - jmax;
-      int32_t imax = min(l, cx / 2);
+      int32_t imax = min(l, m_size.cx / 2);
       int32_t imin = - imax;
 
 
-      if((cy % 2) == 1)
+      if((m_size.cy % 2) == 1)
          jmax++;
 
-      if((cx % 2) == 1)
+      if((m_size.cx % 2) == 1)
          imax++;
 
-      int32_t joff = cy / 2;
-      int32_t ioff = cx / 2;
+      int32_t joff = m_size.cy / 2;
+      int32_t ioff = m_size.cx / 2;
 
 
       int32_t k = 0;
       double dCos = ::cos(dAngle * pi() / 180.0) * dScale;
       double dSin = ::sin(dAngle * pi() / 180.0) * dScale;
-      int32_t cx1 = cx - 1;
-      int32_t cy1 = cy - 1;
+      int32_t cx1 = m_size.cx - 1;
+      int32_t cy1 = m_size.cy - 1;
       for ( int32_t j=jmin; j<jmax; j++ )
       {
          for ( int32_t i=imin; i<imax; i++ )
@@ -2433,34 +2397,34 @@ fill_last:
             int32_t x, y;
 
             // A Combination of a 2d Translation/rotation/Scale Matrix
-            //x=abs((int32_t(dCos * i - dSin * j) + ioff) % cx);
-            //y=abs((int32_t(dSin * i + dCos * j) + joff) % cy);
+            //x=abs((int32_t(dCos * i - dSin * j) + ioff) % m_size.cx);
+            //y=abs((int32_t(dSin * i + dCos * j) + joff) % m_size.cy);
 
             x = (int32_t) abs((dCos * i - dSin * j) + ioff);
             y = (int32_t) abs((dSin * i + dCos * j) + joff);
 
-            if((x / cx) % 2 == 0)
+            if((x / m_size.cx) % 2 == 0)
             {
-               x %= cx;
+               x %= m_size.cx;
             }
             else
             {
-               x = cx1 - (x % cx);
+               x = cx1 - (x % m_size.cx);
             }
 
-            if((y / cy) % 2 == 0)
+            if((y / m_size.cy) % 2 == 0)
             {
-               y %= cy;
+               y %= m_size.cy;
             }
             else
             {
-               y = cy1 - (y % cy);
+               y = cy1 - (y % m_size.cy);
             }
 
 
 
-            get_data()[(j+joff)*cx+(i+ioff)]=
-               pdib->get_data()[y * cx + x];
+            get_data()[(j+joff)*m_size.cx+(i+ioff)]=
+               pdib->get_data()[y * m_size.cx + x];
             k++;
          }
       }
@@ -2478,16 +2442,16 @@ fill_last:
       int32_t cx = rect.width();
       int32_t cy = rect.height();
 
-      int32_t l = max(cx, cy);
+      int32_t l = max(m_size.cx, m_size.cy);
 
-      int32_t jmax = min(l, cy / 2);
+      int32_t jmax = min(l, m_size.cy / 2);
       int32_t jmin = - jmax;
-      int32_t imax = min(l, cx / 2);
+      int32_t imax = min(l, m_size.cx / 2);
       int32_t imin = - imax;
 
 
-      int32_t joff = cy / 2 + rect.left;
-      int32_t ioff = cx / 2 + rect.top;
+      int32_t joff = m_size.cy / 2 + rect.left;
+      int32_t ioff = m_size.cx / 2 + rect.top;
 
       //int32_t iAngle = iStep % 360;
       //int32_t iAngle = iStep;
@@ -2503,18 +2467,18 @@ fill_last:
       // A Combination of a 2d Translation/rotation/Scale Matrix
       x=int32_t(cos10(i, iAngle) - sin10(j, iAngle)) + ioff;
       y=int32_t(sin10(i, iAngle) + cos10(j, iAngle)) + joff;
-      get_data()[(j+joff)*cx+(i+ioff)]=
-      spdib->get_data()[abs(y%cy)*cx+abs(x%cx)];
+      get_data()[(j+joff)*m_size.cx+(i+ioff)]=
+      spdib->get_data()[abs(y%m_size.cy)*m_size.cx+abs(x%m_size.cx)];
       //k++;
       }
-      (j+joff)*cx+(i+ioff)
+      (j+joff)*m_size.cx+(i+ioff)
       }*/
 
       int32_t k = 0;
       double dCos = ::cos(dAngle * pi() / 180.0) * dScale;
       double dSin = ::sin(dAngle * pi() / 180.0) * dScale;
-      int32_t cx1 = cx - 1;
-      int32_t cy1 = cy - 1;
+      int32_t cx1 = m_size.cx - 1;
+      int32_t cy1 = m_size.cy - 1;
       for ( int32_t j=jmin; j<jmax; j++ )
       {
          for ( int32_t i=imin; i<imax; i++ )
@@ -2522,34 +2486,34 @@ fill_last:
             int32_t x, y;
 
             // A Combination of a 2d Translation/rotation/Scale Matrix
-            //x=abs((int32_t(dCos * i - dSin * j) + ioff) % cx);
-            //y=abs((int32_t(dSin * i + dCos * j) + joff) % cy);
+            //x=abs((int32_t(dCos * i - dSin * j) + ioff) % m_size.cx);
+            //y=abs((int32_t(dSin * i + dCos * j) + joff) % m_size.cy);
 
             x = (int32_t) abs((dCos * i - dSin * j) + ioff);
             y = (int32_t) abs((dSin * i + dCos * j) + joff);
 
-            if((x / cx) % 2 == 0)
+            if((x / m_size.cx) % 2 == 0)
             {
-               x %= cx;
+               x %= m_size.cx;
             }
             else
             {
-               x = cx1 - (x % cx);
+               x = cx1 - (x % m_size.cx);
             }
 
-            if((y / cy) % 2 == 0)
+            if((y / m_size.cy) % 2 == 0)
             {
-               y %= cy;
+               y %= m_size.cy;
             }
             else
             {
-               y = cy1 - (y % cy);
+               y = cy1 - (y % m_size.cy);
             }
 
 
 
-            get_data()[(j+joff)*cx+(i+ioff)]=
-               pdib->get_data()[y * cx + x];
+            get_data()[(j+joff)*m_size.cx+(i+ioff)]=
+               pdib->get_data()[y * m_size.cx + x];
             k++;
          }
       }
@@ -2605,11 +2569,11 @@ fill_last:
    void dib::Fill (int32_t A, int32_t R, int32_t G, int32_t B )
    {
       COLORREF color = RGB ( B, G, R ) | (A << 24);
-      int32_t size=cx*cy;
+      int64_t size = area();
 
       COLORREF * pcr;
 
-      int32_t iSize32 = size / 32;
+      int64_t iSize32 = size / 32;
       int32_t i;
       for (i=0; i < iSize32; i+=32 )
       {
@@ -2663,16 +2627,16 @@ fill_last:
       int32_t iRLine;
       int32_t iGLine;
       int32_t iBLine;
-      double dDiv = cx * cy;
+      double dDiv = m_size.cx * m_size.cy;
       if(dDiv > 0)
       {
          LPBYTE lpb = (LPBYTE) get_data();
-         for (int32_t y = 0; y < cy; y++)
+         for (int32_t y = 0; y < m_size.cy; y++)
          {
             iRLine = 0;
             iGLine = 0;
             iBLine = 0;
-            for (int32_t x = 0; x < cx; x++)
+            for (int32_t x = 0; x < m_size.cx; x++)
             {
                iRLine += lpb[2];
                iGLine += lpb[1];
@@ -2698,12 +2662,12 @@ fill_last:
 
    void dib::do_xor(dib * pdib)
    {
-      if(cx != pdib->cx
-         || cy != pdib->cy)
+      if(m_size.cx != pdib->m_size.cx
+         || m_size.cy != pdib->m_size.cy)
       {
          return;
       }
-      int32_t iCount = cx * cy;
+      int32_t iCount = m_size.cx * m_size.cy;
       LPDWORD lpd1 = (LPDWORD) get_data();
       LPDWORD lpd2 = (LPDWORD) pdib->get_data();
       for(int32_t i = 0; i < iCount; i++)
@@ -2727,16 +2691,16 @@ fill_last:
       int32_t iSliceCount = (int32_t) sqrt((double) iFrameCount);
       if(iSliceCount == 0)
          iSliceCount = 1;
-      int32_t iFrameWidth = cx / iSliceCount;
-      int32_t iFrameHeight = cy / iSliceCount;
+      int32_t iFrameWidth = m_size.cx / iSliceCount;
+      int32_t iFrameHeight = m_size.cy / iSliceCount;
       int32_t iX = iFrame % iSliceCount;
       int32_t iY = iFrame / iSliceCount;
-      COLORREF * lpDest = &get_data()[iFrameWidth * iX + iY * iFrameHeight * cx];
+      COLORREF * lpDest = &get_data()[iFrameWidth * iX + iY * iFrameHeight * m_size.cx];
       COLORREF * lpSrc = (COLORREF *) lpdata;
       COLORREF * lpDestLine;
       for(int32_t y = 0; y < iFrameHeight; y++)
       {
-         lpDestLine = &lpDest[y * cx];
+         lpDestLine = &lpDest[y * m_size.cx];
          for(int32_t x = 0; x < iFrameWidth; x++)
          {
             *lpDestLine = *lpSrc;
@@ -2751,16 +2715,16 @@ fill_last:
       int32_t iSliceCount = (int32_t) sqrt((double) iFrameCount);
       if(iSliceCount == 0)
          iSliceCount = 1;
-      int32_t iFrameWidth = cx / iSliceCount;
-      int32_t iFrameHeight = cy / iSliceCount;
+      int32_t iFrameWidth = m_size.cx / iSliceCount;
+      int32_t iFrameHeight = m_size.cy / iSliceCount;
       int32_t iX = iFrame % iSliceCount;
       int32_t iY = iFrame / iSliceCount;
-      COLORREF * lpDest = &get_data()[iFrameWidth * iX + iY * iFrameHeight * cx];
+      COLORREF * lpDest = &get_data()[iFrameWidth * iX + iY * iFrameHeight * m_size.cx];
       COLORREF * lpSrc = (COLORREF *) lpdata;
       COLORREF * lpDestLine;
       for(int32_t y = iFrameHeight - 1; y >= 0; y--)
       {
-         lpDestLine = &lpDest[y * cx];
+         lpDestLine = &lpDest[y * m_size.cx];
          for(int32_t x = 0; x < iFrameWidth; x++)
          {
             *lpDestLine = *lpSrc;
@@ -2775,16 +2739,16 @@ fill_last:
       int32_t iSliceCount = (int32_t) sqrt((double) iFrameCount);
       if(iSliceCount == 0)
          iSliceCount = 1;
-      int32_t iFrameWidth = cx / iSliceCount;
-      int32_t iFrameHeight = cy / iSliceCount;
+      int32_t iFrameWidth = m_size.cx / iSliceCount;
+      int32_t iFrameHeight = m_size.cy / iSliceCount;
       int32_t iX = iFrame % iSliceCount;
       int32_t iY = iFrame / iSliceCount;
-      COLORREF * lpDest = &get_data()[iFrameWidth * iX + iY * iFrameHeight * cx];
+      COLORREF * lpDest = &get_data()[iFrameWidth * iX + iY * iFrameHeight * m_size.cx];
       COLORREF * lpSrc = (COLORREF *) lpdata;
       COLORREF * lpDestLine;
       for(int32_t y = iFrameHeight - 1; y >= 0; y--)
       {
-         lpDestLine = &lpDest[y * cx];
+         lpDestLine = &lpDest[y * m_size.cx];
          for(int32_t x = 0; x < iFrameWidth; x++)
          {
             *lpDestLine ^= *lpSrc;
@@ -2797,16 +2761,16 @@ fill_last:
    void dib::get_frame(void * lpdata, int32_t iFrame, int32_t iFrameCount)
    {
       int32_t iSliceCount = (int32_t) sqrt((double) iFrameCount);
-      int32_t iFrameWidth = cx / iSliceCount;
-      int32_t iFrameHeight = cy / iSliceCount;
+      int32_t iFrameWidth = m_size.cx / iSliceCount;
+      int32_t iFrameHeight = m_size.cy / iSliceCount;
       int32_t iX = iFrame % iSliceCount;
       int32_t iY = iFrame / iSliceCount;
-      COLORREF * lpSrc = &get_data()[iFrameWidth * iX + iY * iFrameHeight *  cx];
+      COLORREF * lpSrc = &get_data()[iFrameWidth * iX + iY * iFrameHeight *  m_size.cx];
       COLORREF * lpDest = (COLORREF *) lpdata;
       COLORREF * lpSrcLine;
       for(int32_t y = 0; y < iFrameHeight; y++)
       {
-         lpSrcLine = &lpSrc[y * cx];
+         lpSrcLine = &lpSrc[y * m_size.cx];
          for(int32_t x = 0; x < iFrameWidth; x++)
          {
             *lpDest = *lpSrcLine;
@@ -2818,7 +2782,7 @@ fill_last:
 
    bool dib::is_rgb_black()
    {
-      int32_t iSize = cx * cy;
+      int32_t iSize = m_size.cx * m_size.cy;
       COLORREF * lp = get_data();
       for(int32_t i = 0; i < iSize; i++)
       {
@@ -2835,7 +2799,7 @@ fill_last:
       {
          return;
       }
-      int32_t iCount = cx * cy;
+      int32_t iCount = m_size.cx * m_size.cy;
       LPBYTE lp = ((LPBYTE) get_data());
       int32_t i = 0;
       int32_t iCount1 = iCount - iCount % 8;
@@ -2890,7 +2854,7 @@ fill_last:
       {
          return;
       }
-      int32_t iCount = cx * cy;
+      int32_t iCount = m_size.cx * m_size.cy;
       LPBYTE lp = ((LPBYTE) get_data());
       for(int32_t i = 0; i < iCount; i++)
       {
@@ -2908,7 +2872,7 @@ fill_last:
       {
          return;
       }
-      int32_t iCount = cx * cy;
+      int32_t iCount = m_size.cx * m_size.cy;
       LPBYTE lp = ((LPBYTE) get_data());
       for(int32_t i = 0; i < iCount; i++)
       {
@@ -2952,24 +2916,24 @@ fill_last:
       throw interface_only_exception(get_app());
    }
 
-/*   int32_t dib::cx
+/*   int32_t dib::m_size.cx
    {
       throw interface_only_exception(get_app());
    }
 
-   int32_t dib::cy
+   int32_t dib::m_size.cy
    {
       throw interface_only_exception(get_app());
    }
 
    int64_t dib::area()
    {
-      return ((int64_t) cx) * ((int64_t)cy);
+      return ((int64_t) m_size.cx) * ((int64_t)m_size.cy);
    }
 
    size dib::size()
    {
-      return size64(cx, cy);
+      return size64(m_size.cx, m_size.cy);
    }*/
 
    double dib::pi()
@@ -3001,14 +2965,14 @@ fill_last:
 
       byte * pdataSrc = (byte *) get_data() + ((int32_t)echannelSrc);
 
-      for(int32_t y = 0; y < cy; y++)
+      for(int32_t y = 0; y < m_size.cy; y++)
       {
 
-         byte * pdst = &pdataDst[scan * y];
+         byte * pdst = &pdataDst[m_iScan * y];
 
-         byte * psrc = &pdataSrc[scan * y];
+         byte * psrc = &pdataSrc[m_iScan * y];
 
-         for(int32_t x = 0; x < cx; x++)
+         for(int32_t x = 0; x < m_size.cx; x++)
          {
 
             *pdst = *psrc;
@@ -3044,14 +3008,14 @@ fill_last:
 
       byte * pdataSrc = (byte *) pdib->get_data() + ((int32_t)echannelDst);
 
-      for(int32_t y = 0; y < cy; y++)
+      for(int32_t y = 0; y < m_size.cy; y++)
       {
 
-         byte * pdst = &pdataDst[scan * y];
+         byte * pdst = &pdataDst[m_iScan * y];
 
-         byte * psrc = &pdataSrc[pdib->scan * y];
+         byte * psrc = &pdataSrc[pdib->m_iScan * y];
 
-         for(int32_t x = 0; x < cx; x++)
+         for(int32_t x = 0; x < m_size.cx; x++)
          {
 
             *pdst = *psrc;
@@ -3069,15 +3033,15 @@ fill_last:
 
       synch_lock ml(&user_mutex());
 
-      ostream << (int32_t) cx;
-      ostream << (int32_t) cy;
+      ostream << (int32_t) m_size.cx;
+      ostream << (int32_t) m_size.cy;
       if(area() <= 0)
          return;
       map();
-      int wc = cx * sizeof(COLORREF);
-      for(int32_t i = 0; i < cy; i++)
+      int wc = m_size.cx * sizeof(COLORREF);
+      for(int32_t i = 0; i < m_size.cy; i++)
       {
-         ostream.write(&((byte *) get_data())[scan * i], wc);
+         ostream.write(&((byte *) get_data())[m_iScan * i], wc);
       }
 
    }
@@ -3101,9 +3065,9 @@ fill_last:
          throw 0;
       map();
       int wc = width * sizeof(COLORREF);
-      for(int32_t i = 0; i < cy; i++)
+      for(int32_t i = 0; i < m_size.cy; i++)
       {
-         istream.read(&((byte *) get_data())[scan * i], wc);
+         istream.read(&((byte *) get_data())[m_iScan * i], wc);
       }
    }
 
@@ -3150,8 +3114,8 @@ fill_last:
 
 
 
-      int32_t w = cx;
-      int32_t h = cy;
+      int32_t w = m_size.cx;
+      int32_t h = m_size.cy;
 
       int32_t xCount = w / iSize;
       int32_t yCount = h / iSize;
@@ -3514,11 +3478,11 @@ fill_last:
 //
   //       int left = x1;
 //
-  //       int right = cx - x2;
+  //       int right = m_size.cx - x2;
           //
-       //  int bottom = cy - y2;
+       //  int bottom = m_size.cy - y2;
 
-         int dim = max(cx, cy);
+         int dim = max(m_size.cx, m_size.cy);
 
          double angle = atan2(dy, dx);
 
@@ -3563,15 +3527,15 @@ fill_last:
          ::sort::swap(&clr1, &clr2);
       }
 
-      end = min(end, cy - 1);
+      end = min(end, m_size.cy - 1);
       COLORREF clr = clr1;
       byte * pb = (byte *) m_pcolorref;
       COLORREF * pdata;
       int line = 0;
       for(; line < start; line++)
       {
-         pdata = (COLORREF *) &pb[scan * line];
-         for(int row = 0; row < cx; row++)
+         pdata = (COLORREF *) &pb[m_iScan * line];
+         for(int row = 0; row < m_size.cx; row++)
          {
             *pdata = clr;
             pdata++;
@@ -3589,18 +3553,18 @@ fill_last:
                   byte_clip(GetGValue(clr1) * (1.0 - d) + GetGValue(clr2) * d),
                   byte_clip(GetBValue(clr1) * (1.0 - d) + GetBValue(clr2) * d));
 
-         pdata = (COLORREF *) &pb[scan * line];
-         for(int row = 0; row < cx; row++)
+         pdata = (COLORREF *) &pb[m_iScan * line];
+         for(int row = 0; row < m_size.cx; row++)
          {
             *pdata = clr;
             pdata++;
          }
       }
       clr = clr2;
-      for(; line < cy; line++)
+      for(; line < m_size.cy; line++)
       {
-         pdata = (COLORREF *) &pb[scan * line];
-         for(int row = 0; row < cx; row++)
+         pdata = (COLORREF *) &pb[m_iScan * line];
+         for(int row = 0; row < m_size.cx; row++)
          {
             *pdata = clr;
             pdata++;
@@ -3617,7 +3581,7 @@ fill_last:
          ::sort::swap(&clr1, &clr2);
       }
 
-      end = min(end, cx - 1);
+      end = min(end, m_size.cx - 1);
       COLORREF clr = clr1;
       byte * pb = (byte *) m_pcolorref;
       COLORREF * pdata;
@@ -3625,10 +3589,10 @@ fill_last:
       for(; row < start; row++)
       {
          pdata = (COLORREF *) &pb[sizeof(COLORREF) * row];
-         for(int line = 0; line < cy; line++)
+         for(int line = 0; line < m_size.cy; line++)
          {
             *pdata = clr;
-            pdata+=scan;
+            pdata+=m_iScan;
          }
       }
       double d;
@@ -3644,32 +3608,32 @@ fill_last:
                   byte_clip(GetBValue(clr1) * (1.0 - d) + GetBValue(clr2) * d));
 
          pdata = (COLORREF *) &pb[sizeof(COLORREF) * row];
-         for(int line = 0; line < cx; line++)
+         for(int line = 0; line < m_size.cx; line++)
          {
             *pdata = clr;
-            pdata+=scan;
+            pdata+=m_iScan;
          }
       }
       clr = clr2;
-      for(; row < cx; row++)
+      for(; row < m_size.cx; row++)
       {
          pdata = (COLORREF *) &pb[sizeof(COLORREF) * row];
-         for(int line = 0; line < cx; line++)
+         for(int line = 0; line < m_size.cx; line++)
          {
             *pdata = clr;
-            pdata+=scan;
+            pdata+=m_iScan;
          }
       }
    }
 
    void dib::gradient_horizontal_fill(COLORREF clr1, COLORREF clr2)
    {
-      gradient_horizontal_fill(clr1, clr2, 0, cy - 1);
+      gradient_horizontal_fill(clr1, clr2, 0, m_size.cy - 1);
    }
 
    void dib::gradient_vertical_fill(COLORREF clr1, COLORREF clr2)
    {
-      gradient_vertical_fill(clr1, clr2, 0, cx - 1);
+      gradient_vertical_fill(clr1, clr2, 0, m_size.cx - 1);
    }
 
 

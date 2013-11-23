@@ -900,8 +900,8 @@ namespace user
 
             if(pane.m_dib.is_set())
             {
-               size.cx += pane.m_dib->cx+ 2;
-               size.cy = max(size.cy, pane.m_dib->cy);
+               size.cx += pane.m_dib->m_size.cx+ 2;
+               size.cy = max(size.cy, pane.m_dib->m_size.cy);
             }
             cx = size.cx + 2;
 
@@ -1191,8 +1191,8 @@ namespace user
             return false;
          if(!get_element_rect(iTabParam, lprect, element_client))
             return false;
-         lprect->right = lprect->left + get_data()->m_panea[iTabParam].m_dib->cx;
-         lprect->bottom = lprect->top + get_data()->m_panea[iTabParam].m_dib->cy;
+         lprect->right = lprect->left + get_data()->m_panea[iTabParam].m_dib->m_size.cx;
+         lprect->bottom = lprect->top + get_data()->m_panea[iTabParam].m_dib->m_size.cy;
          return true;
       }
       else if(eelement == element_text)
@@ -1201,7 +1201,7 @@ namespace user
             return false;
          if(get_data()->m_panea[iTabParam].m_dib.is_set())
          {
-            lprect->left += get_data()->m_panea[iTabParam].m_dib->cx + 2;
+            lprect->left += get_data()->m_panea[iTabParam].m_dib->m_size.cx + 2;
          }
          if(!get_data()->m_panea[iTabParam].m_bPermanent)
          {
@@ -1289,7 +1289,7 @@ namespace user
             if(pane.m_dib.is_set())
             {
                //::image_list::info ii;
-               ixAdd += pane.m_dib->cx + 2;
+               ixAdd += pane.m_dib->m_size.cx + 2;
             }
 
             if(!pane.m_bPermanent)

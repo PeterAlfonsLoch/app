@@ -11,19 +11,12 @@ namespace visual
    }
 
 
-   bool cursor::to(::draw2d::graphics * pgraphics, int32_t x, int32_t y)
+   bool cursor::to(::draw2d::graphics * pgraphics, point pt)
    {
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      return pgraphics->BitBlt(x - m_ptHotspot.x, y - m_ptHotspot.y, m_dib->cx, m_dib->cy, m_dib->get_graphics(), 0, 0, SRCCOPY);
-
-   }
-
-   bool cursor::to(::draw2d::graphics * pgraphics, point pt)
-   {
-
-      return to(pgraphics, pt.x, pt.y); 
+      return pgraphics->BitBlt(pt - m_szHotspotOffset, m_dib->m_size, m_dib->get_graphics());
 
    }
 

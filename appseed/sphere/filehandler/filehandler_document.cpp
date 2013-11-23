@@ -7,7 +7,7 @@ namespace filehandler
 
    document::document(sp(base_application) papp) :
       element(papp),
-      
+      ::user::object(papp),
       html_document(papp)
    {
    }

@@ -45,6 +45,8 @@ namespace data
       data * get_data(index i);
       ::count get_count() const;
 
+      bool is_empty() const;
+
 
       template < class TYPE >
       bool replace_data(TYPE * pdata)

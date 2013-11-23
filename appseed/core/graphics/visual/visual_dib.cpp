@@ -173,12 +173,12 @@ namespace visual
       {
          for (j = y, q = 0; j < y_max; j++, q++)
          {
-            if (i < 0 || j < 0 || i >= m_p->cx || j >= m_p->cy)
+            if (i < 0 || j < 0 || i >= m_p->m_size.cx || j >= m_p->m_size.cy)
                continue;
 
             int32_t a = bitmap->buffer[q * bitmap->width + p];
 
-            *((COLORREF *)&((byte *)m_p->get_data())[(dy + j) * m_p->scan + (dx + i) * 4]) = ARGB(a, 0, 0, 0);
+            *((COLORREF *)&((byte *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = ARGB(a, 0, 0, 0);
 
          }
       }

@@ -493,11 +493,9 @@ namespace user
       SCAST_PTR(::message::create, pcreate, pobj);
 
 
-      if(get_document() != NULL
-      && ::user::impact::get_data < ::user::object > () != NULL
-      && dynamic_cast < plain_text_tree * > (::user::impact::get_data < ::user::object >()) != NULL)
+      if(get_document() != NULL && get_typed_data < plain_text_tree >() != NULL)
       {
-         set_root(dynamic_cast < plain_text_tree * > (::user::impact::get_data < ::user::object >()), false);
+         set_root(get_typed_data < plain_text_tree >(), false);
       }
       else
       {

@@ -34,8 +34,8 @@ namespace html
          {
             m_iImage = pdata->get_image_index(pelemental->m_propertyset["src"]);
             synch_lock lockImage(Sys(pdata->m_pbaseapp).get_twf());
-            m_cxMax = (float) pdata->m_imagea[m_iImage].m_spdib->cx;
-            m_cxMin = (float) pdata->m_imagea[m_iImage].m_spdib->cy;
+            m_cxMax = (float) pdata->m_imagea[m_iImage].m_spdib->m_size.cx;
+            m_cxMin = (float) pdata->m_imagea[m_iImage].m_spdib->m_size.cy;
          }
       }
 
@@ -47,10 +47,10 @@ namespace html
 
             if(lockImage.lock(duration::zero()))
             {
-               pdata->m_layoutstate.m_cx = (float) pdata->m_imagea[m_iImage].m_spdib->cx;
-               if(pdata->m_imagea[m_iImage].m_spdib->cy > pdata->m_layoutstate.m_cy)
+               pdata->m_layoutstate.m_cx = (float) pdata->m_imagea[m_iImage].m_spdib->m_size.cx;
+               if(pdata->m_imagea[m_iImage].m_spdib->m_size.cy > pdata->m_layoutstate.m_cy)
                {
-                  pdata->m_layoutstate.m_cy = (float) pdata->m_imagea[m_iImage].m_spdib->cy;
+                  pdata->m_layoutstate.m_cy = (float) pdata->m_imagea[m_iImage].m_spdib->m_size.cy;
                }
             }
             else

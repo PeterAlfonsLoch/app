@@ -495,16 +495,16 @@ namespace user
 //      string str = ::str::international::utf8_to_unicode(str);
       if(m_dib.is_set())
       {
-         if(m_dib->cx > 0 &&
-            m_dib->cy > 0)
+         if(m_dib->m_size.cx > 0 &&
+            m_dib->m_size.cy > 0)
          {
             rect rectDib;
             rectDib = m_rectText;
-            rectDib.bottom = min(rectText.top + m_dib->cx, rectText.bottom);
-            rectDib.right = min(rectText.left + m_dib->cx, rectText.right);
+            rectDib.bottom = min(rectText.top + m_dib->m_size.cy, rectText.bottom);
+            rectDib.right = min(rectText.left + m_dib->m_size.cx, rectText.right);
             //m_dib->to(pdc, rectDib);
             m_dib->bitmap_blend(pdc, rectDib);
-            rectText.left += m_dib->cx;
+            rectText.left += m_dib->m_size.cx;
          }
       }
 

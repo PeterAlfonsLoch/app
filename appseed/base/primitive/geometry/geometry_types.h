@@ -180,5 +180,14 @@ inline CLASS_DECL_BASE POINT & offset(POINT & pt, LONG x, LONG y)
 CLASS_DECL_BASE bool polygon_contains(LPPOINT lppt, LPPOINT lpptPolygon, int iCount);
 
 
+inline CLASS_DECL_BASE POINT & top_left(LPRECT lpcrect)
+{
+   return *(POINT *) lpcrect;
+}
+
+inline CLASS_DECL_BASE const POINT & top_left(LPCRECT lpcrect)
+{
+   return *(const POINT *)lpcrect;
+}
 
 

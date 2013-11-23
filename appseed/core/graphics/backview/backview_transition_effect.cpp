@@ -1588,10 +1588,10 @@ true);
                int32_t xOff = 0;
                int32_t yOff = 0;
                if(r > xm)
-                  xOff = pdibT2->cx * (r - xm) / d;
+                  xOff = pdibT2->m_size.cx * (r - xm) / d;
 
                if(r > ym)
-                  yOff = pdibT2->cy * (r - ym) / d;
+                  yOff = pdibT2->m_size.cy * (r - ym) / d;
 
                int32_t wWindow = min(cx, d);
                int32_t hWindow = min(cy, d);
@@ -1616,8 +1616,8 @@ true);
                   pdibT2->get_graphics(),
                   xOff,
                   yOff,
-                  pdibT2->cx - xOff * 2,
-                  pdibT2->cy - yOff * 2,
+                  pdibT2->m_size.cx - xOff * 2,
+                  pdibT2->m_size.cy - yOff * 2,
                   SRCCOPY);
 
                pdib2->get_graphics()->BitBlt(

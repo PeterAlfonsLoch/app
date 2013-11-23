@@ -57,12 +57,14 @@ namespace user
 
       sp(::user::object) get_document() const;
 
-      template < class DOCUMENT >
-      ::data::data * get_data();
+      template < class DATA >
+      DATA * get_typed_data();
 
       template < class DOCUMENT >
       DOCUMENT * get_typed_document();
 
+      template < class DOCUMENT >
+      ::data::data * get_typed_document_data();
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 

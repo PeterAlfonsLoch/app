@@ -1482,7 +1482,7 @@ void XfplayerViewLine::EmbossedTextOut(
 
       pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      System.visual().imaging().color_blend(pdc, point(iLeft - 1, iTop - 1), ::size(m_dibMain->cx, m_dibMain->cy), m_dibMain->get_graphics(), point(iLeft, 0), dBlend);
+      System.visual().imaging().color_blend(pdc, point(iLeft - 1, iTop - 1), ::size(m_dibMain->m_size.cx, m_dibMain->m_size.cy), m_dibMain->get_graphics(), point(iLeft, 0), dBlend);
 
       System.visual().imaging().AlphaTextOut(pdc, iLeft, iTop, lpcsz, (int32_t) iLen, cr, dBlend);
 

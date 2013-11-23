@@ -69,14 +69,14 @@ namespace visual
       synch_lock ml(&user_mutex());
 
       m_p->map();
-      m_ucha.allocate(m_p->scan * m_p->cy);
+      m_ucha.allocate(m_p->m_iScan * m_p->m_size.cy);
 
       bool b = false;
 
       try
       {
 
-         b = optca_fastblur((uint32_t *) m_p->get_data(), m_size.cx, m_size.cy, m_iRadius, (uint32_t *) m_ucha.get_data(), m_uchaDiv.get_data(), m_p->scan);
+         b = optca_fastblur((uint32_t *) m_p->get_data(), m_size.cx, m_size.cy, m_iRadius, (uint32_t *) m_ucha.get_data(), m_uchaDiv.get_data(), m_p->m_iScan);
 
       }
       catch(...)

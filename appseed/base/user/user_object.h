@@ -10,12 +10,20 @@ namespace user
 {
 
 
-   class document;
+   class object;
+
+
+   class CLASS_DECL_BASE object_data :
+      virtual public map < void *, void *, ::data::data *, ::data::data * >
+   {
+   public:
+      
+   };
 
 
    class CLASS_DECL_BASE object :
       virtual public command_target,
-      virtual public ::data::data_container,
+      virtual public ::data::data_container_base,
       virtual public ::file::serializable,
       virtual public ::user::server
    {
@@ -32,6 +40,7 @@ namespace user
       bool                             m_bNew;
       bool                             m_bAutoDelete;     // TRUE => delete document when no more views
       bool                             m_bEmbedded;       // TRUE => document is being created by OLE
+      object_data                      m_datamap;
 
 
       object(sp(base_application) papp);
@@ -167,8 +176,6 @@ namespace user
 
 
 
-      virtual bool set_data(::data::data * pdata);
-
 
 
 
@@ -181,8 +188,52 @@ namespace user
 
 //      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
+      template < class DOCUMENT >
+      DOCUMENT * get_typed_document()
+      {
+         ASSERT(this != NULL);
+         return dynamic_cast < DOCUMENT * >(this);
+      }
 
+      template < class DATA >
+      DATA * get_typed_data()
+      {
+         ASSERT(this != NULL);
+         return m_spadata.get < DATA >();
+      }
 
+      template < class DOCUMENT >
+      ::data::data * get_typed_document_data()
+      {
+         ASSERT(this != NULL);
+         return get_data(get_typed_document < DOCUMENT > ());
+      }
+
+      template < class DOCUMENT >
+      ::data::data * get_data(DOCUMENT * pthis)
+      {
+         ASSERT(this == pthis);
+         if (this != pthis)
+            return NULL;
+         return m_datamap[pthis];
+      }
+
+      template < class DOCUMENT >
+      void set_typed_document_data(::data::data * pdata)
+      {
+         ASSERT(this != NULL);
+         set_data(get_typed_document < DOCUMENT >(), pdata);
+      }
+
+      template < class DOCUMENT >
+      void set_data(DOCUMENT * pthis, ::data::data * pdata)
+      {
+         ASSERT(this == pthis);
+         if (this != pthis)
+            return;
+         m_spadata.remove_type(pdata);
+         m_datamap[pthis] = pdata;
+      }
 
    };
 

@@ -205,6 +205,31 @@ public:
 
    }
 
+
+   template < typename T >
+   ::count remove_type(T *)
+   {
+
+      ::count c = 0;
+
+      for (index i = get_upper_bound(); i >= 0; i--)
+      {
+
+         if (typeid(*element_at(i).m_p) == typeid(T))
+         {
+
+            remove_at(i);
+
+            c++;
+
+         }
+
+      }
+
+      return c;
+
+   }
+
    // overloaded operator helpers
    const T & operator[](index nIndex) const
    {

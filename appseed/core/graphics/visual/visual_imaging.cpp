@@ -3441,8 +3441,8 @@ void fastblur(::draw2d::dib * pimg, int32_t radius)
    {
       return;
    }
-   int32_t w=pimg->cx;
-   int32_t h=pimg->cy;
+   int32_t w=pimg->m_size.cx;
+   int32_t h=pimg->m_size.cy;
    int32_t wm=w-1;
    int32_t hm=h-1;
    int32_t wh=w*h;
@@ -3608,8 +3608,8 @@ void imaging::blur_32CC(::draw2d::dib * pdibDst, ::draw2d::dib * pdibSrc, int32_
 
    LPBYTE lpbSrc = (LPBYTE) pdibSrc->get_data();
    LPBYTE lpbDst = (LPBYTE) pdibDst->get_data();
-   int32_t cx = pdibSrc->cx;
-   int32_t cy = pdibSrc->cy;
+   int32_t cx = pdibSrc->m_size.cx;
+   int32_t cy = pdibSrc->m_size.cy;
    int32_t wSrc = cx * 4;
    int32_t wDest = cx * 4;
    int32_t maxx1 = cx;
@@ -3823,8 +3823,8 @@ void imaging::blur_32CC_r2(::draw2d::dib * pdibDst, ::draw2d::dib * pdibSrc)
 {
    LPBYTE lpbSrc = (LPBYTE) pdibSrc->get_data();
    LPBYTE lpbDst = (LPBYTE) pdibDst->get_data();
-   int32_t cx = pdibSrc->cx;
-   int32_t cy = pdibSrc->cy;
+   int32_t cx = pdibSrc->m_size.cx;
+   int32_t cy = pdibSrc->m_size.cy;
    int32_t wSrc = cx * 4;
    int32_t wDest = cx * 4;
 
@@ -4015,11 +4015,11 @@ bool imaging::channel_gray_blur_32CC(::draw2d::dib * pdibDst, ::draw2d::dib * pd
    if(iRadius <= 0)
       return true;
 
-   int32_t cx = pdibDst->cx;
-   int32_t cy = pdibDst->cy;
+   int32_t cx = pdibDst->m_size.cx;
+   int32_t cy = pdibDst->m_size.cy;
 
-   if(cx != pdibSrc->cx
-   || cy != pdibSrc->cy)
+   if(cx != pdibSrc->m_size.cx
+   || cy != pdibSrc->m_size.cy)
       return false;
 
    LPBYTE lpbDst = (LPBYTE) pdibDst->get_data();
@@ -4217,11 +4217,11 @@ bool imaging::channel_alpha_gray_blur_32CC(::draw2d::dib * pdibDst, ::draw2d::di
    if(iRadius <= 0)
       return true;
 
-   int32_t cx = pdibDst->cx;
-   int32_t cy = pdibDst->cy;
+   int32_t cx = pdibDst->m_size.cx;
+   int32_t cy = pdibDst->m_size.cy;
 
-   if(cx != pdibSrc->cx
-   || cy != pdibSrc->cy)
+   if(cx != pdibSrc->m_size.cx
+   || cy != pdibSrc->m_size.cy)
       return false;
 
    LPBYTE lpbDst = (LPBYTE) pdibDst->get_data();
@@ -4470,11 +4470,11 @@ bool imaging::channel_gray_blur_32CC(::draw2d::dib * pdibDst, ::draw2d::dib * pd
                                      LPBYTE lpbFilter)
 {
 
-   int32_t cx = pdibDst->cx;
-   int32_t cy = pdibDst->cy;
+   int32_t cx = pdibDst->m_size.cx;
+   int32_t cy = pdibDst->m_size.cy;
 
-   if(cx != pdibSrc->cx
-   || cy != pdibSrc->cy)
+   if(cx != pdibSrc->m_size.cx
+   || cy != pdibSrc->m_size.cy)
       return false;
 
    LPBYTE lpbDst = (LPBYTE) pdibDst->get_data();
@@ -5705,11 +5705,11 @@ bool imaging::channel_spread__32CC(::draw2d::dib * pdibDst, ::draw2d::dib * pdib
       }
    }
 
-   int32_t cx = pdibDst->cx;
-   int32_t cy = pdibDst->cy;
+   int32_t cx = pdibDst->m_size.cx;
+   int32_t cy = pdibDst->m_size.cy;
 
-   if(cx != pdibSrc->cx
-   || cy != pdibSrc->cy)
+   if(cx != pdibSrc->m_size.cx
+   || cy != pdibSrc->m_size.cy)
       return false;
 
    LPBYTE lpbDst = (LPBYTE) pdibDst->get_data();
@@ -7115,8 +7115,8 @@ bool imaging::load_from_file(::visual::cursor * pcursor, var varFile)
    ::xml::document doc(get_app());
    if (doc.load(strNode))
    {
-      pcursor->m_ptHotspot.x = doc.get_root()->attr("x");
-      pcursor->m_ptHotspot.y = doc.get_root()->attr("y");
+      pcursor->m_szHotspotOffset.cx = doc.get_root()->attr("x");
+      pcursor->m_szHotspotOffset.cy = doc.get_root()->attr("y");
    }
    return true;
 }

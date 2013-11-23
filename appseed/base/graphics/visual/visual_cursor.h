@@ -15,12 +15,11 @@ namespace visual
       ::draw2d::dib_sp        m_dib;
       //::draw2d::dib_sp        m_dibWork;
       //::draw2d::dib_sp        m_dibWork2;
-      point                   m_ptHotspot;
+      size                    m_szHotspotOffset;
 
 
       cursor(sp(base_application) papp);
 
-      bool to(::draw2d::graphics * pgraphics, int32_t x, int32_t y);
       bool to(::draw2d::graphics * pgraphics, point pt);
 
 

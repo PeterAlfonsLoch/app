@@ -233,24 +233,25 @@ namespace user
 
    }
 
-
-
-   template < class DOCUMENT >
-   ::data::data * impact::get_data()
+   template < class DATA >
+   DATA * impact::get_typed_data()
    {
       ASSERT(this != NULL);
-      DOCUMENT * pdocument = get_typed_document < DOCUMENT >();
-      if (pdocument == NULL)
-         return NULL;
-      return pdocument->get_data();
+      return m_spdocument->get_typed_data < DATA >();
+   }
+
+   template < class DOCUMENT >
+   ::data::data * impact::get_typed_document_data()
+   {
+      ASSERT(this != NULL);
+      return m_spdocument->get_typed_document_data < DOCUMENT >();
    }
 
    template < class DOCUMENT >
    DOCUMENT * impact::get_typed_document()
    {
-      if (m_spdocument.is_null())
-         return NULL;
-      return dynamic_cast < DOCUMENT * > (m_spdocument.m_p);
+      ASSERT(this != NULL);
+      return m_spdocument->get_type_document < DOCUMENT >();
    }
 
 

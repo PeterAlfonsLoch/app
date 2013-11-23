@@ -99,6 +99,13 @@ namespace data
 
    }
 
+   bool data_container_base::is_empty() const
+   {
+
+      return m_spadata.is_empty();
+
+   }
+
    sync_object_ptra data_container_base::get_sync()
    {
 

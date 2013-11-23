@@ -26,6 +26,7 @@ public:
    operator SIZE *() throw();
    operator const SIZE *() const throw();
 
+
 // Operations
    bool operator==(SIZE size) const throw();
    bool operator!=(SIZE size) const throw();
@@ -52,6 +53,8 @@ public:
    uint32_t    ui32() const throw();
    uint64_t    ui64() const throw();
    LPARAM    lparam() const throw();
+   POINT &        pt() throw() { return (POINT &)*this; }
+   const POINT &  pt() const throw() { return (const POINT &)*this; }
 
 };
 

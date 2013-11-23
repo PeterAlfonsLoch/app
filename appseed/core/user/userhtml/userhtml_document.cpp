@@ -3,6 +3,7 @@
 
 html_document::html_document(sp(base_application) papp) :
    element(papp),
+   ::data::data_container_base(papp),
    ::user::object(papp)
 {
 
@@ -135,13 +136,13 @@ void html_document::soft_reload()
 ::html::data * html_document::get_html_data()
 {
    sp(::user::object) pdoc = (this);
-   if(pdoc->get_data() == NULL)
+   if(pdoc->get_data(this) == NULL)
    {
-      set_data(get_typed_view < html_form > ()->get_html_data());
+      set_data(this, get_typed_view < html_form > ()->get_html_data());
       get_html_data()->m_pcallback = this;
       get_html_data()->m_propset["bReplaceEx1"] = true;
    }
-   return dynamic_cast < ::html::data * > (pdoc->get_data());
+   return pdoc->m_spadata.get < ::html::data >();
 }
 
 bool html_document::_001OnUpdateCmdUi(cmd_ui * pcmdui)

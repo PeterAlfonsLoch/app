@@ -295,7 +295,7 @@ int32_t image_list::_get_alloc_count()
    if(m_size.cx == 0)
       return 0;
    else
-      return m_spdib->cx / m_size.cx;
+      return m_spdib->m_size.cx / m_size.cx;
 }
 
 bool image_list::_grow()

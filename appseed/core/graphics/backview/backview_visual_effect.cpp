@@ -163,8 +163,8 @@ namespace backview
       ::draw2d::dib_sp pdib3 = graphics.GetDib(_graphics::DibTemp3);
       ::draw2d::dib_sp pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
-      int32_t cx1 = pdib1->cx;
-      int32_t cy1 = pdib1->cy;
+      int32_t cx1 = pdib1->m_size.cx;
+      int32_t cy1 = pdib1->m_size.cy;
 
       if(transitioneffect.m_tool001.m_iStep == 1)
       {
@@ -261,8 +261,8 @@ namespace backview
       ::draw2d::dib_sp pdib2 = graphics.GetDib(_graphics::DibTemp2);
       ::draw2d::dib_sp pdib3 = graphics.GetDib(_graphics::DibTemp3);
 
-      int32_t cx1 = pdib1->cx;
-      int32_t cy1 = pdib1->cy;
+      int32_t cx1 = pdib1->m_size.cx;
+      int32_t cy1 = pdib1->m_size.cy;
       int32_t cxm = cx1 / 2;
       int32_t cym = cy1 / 2;
 
@@ -381,8 +381,8 @@ namespace backview
       ::draw2d::dib_sp pdib2 = graphics.GetDib(_graphics::DibTemp2);
       ::draw2d::dib_sp pdib3 = graphics.GetDib(_graphics::DibTemp3);
 
-      int32_t cx1 = pdib1->cx;
-      int32_t cy1 = pdib1->cy;
+      int32_t cx1 = pdib1->m_size.cx;
+      int32_t cy1 = pdib1->m_size.cy;
       int32_t cxm = cx1 / 2;
       int32_t cym = cy1 / 2;
 
@@ -503,8 +503,8 @@ namespace backview
       ::draw2d::dib_sp pdib2 = graphics.GetDib(_graphics::DibTemp2);
       ::draw2d::dib_sp pdib3 = graphics.GetDib(_graphics::DibTemp3);
 
-      int32_t cx1 = pdib1->cx;
-      int32_t cy1 = pdib1->cy;
+      int32_t cx1 = pdib1->m_size.cx;
+      int32_t cy1 = pdib1->m_size.cy;
       int32_t cxm = cx1 / 2;
       int32_t cym = cy1 / 2;
 
@@ -1027,8 +1027,8 @@ namespace backview
       ::draw2d::dib_sp pdib2 = graphics.GetDib(_graphics::DibTemp2);
       ::draw2d::dib_sp pdib3 = graphics.GetDib(_graphics::DibTemp3);
 
-      int32_t cx1 = pdib1->cx;
-      int32_t cy1 = pdib1->cy;
+      int32_t cx1 = pdib1->m_size.cx;
+      int32_t cy1 = pdib1->m_size.cy;
       int32_t cxm = cx1 / 2;
       int32_t cym = cy1 / 2;
 
@@ -1218,8 +1218,8 @@ namespace backview
       {
          ::draw2d::dib_sp pdib1 = graphics.GetDib(_graphics::DibTemp1);
          m_color.set_rgb(pdib1->GetPixel(
-            pdib1->cx / 2,
-            pdib1->cy / 2));
+            pdib1->m_size.cx / 2,
+            pdib1->m_size.cy / 2));
       }
 
 
@@ -1235,8 +1235,8 @@ namespace backview
       ::draw2d::dib_sp pdib2 = graphics.GetDib(_graphics::DibTemp2);
       ::draw2d::dib_sp pdib3 = graphics.GetDib(_graphics::DibTemp3);
 
-      int32_t cx1 = pdib1->cx;
-      int32_t cy1 = pdib1->cy;
+      int32_t cx1 = pdib1->m_size.cx;
+      int32_t cy1 = pdib1->m_size.cy;
 
       if(transitioneffect.m_tool001.m_iStep == 1)
       {
@@ -1548,8 +1548,8 @@ namespace backview
       {
          ::draw2d::dib_sp pdib1 = graphics.GetDib(_graphics::DibTemp1);
          m_color.set_rgb(pdib1->GetPixel(
-            pdib1->cx / 2,
-            pdib1->cy / 2));
+            pdib1->m_size.cx / 2,
+            pdib1->m_size.cy / 2));
       }
 
 
@@ -1567,8 +1567,8 @@ namespace backview
       ::draw2d::dib_sp pdib2 = graphics.GetDib(_graphics::DibTemp2);
       ::draw2d::dib_sp pdib3 = graphics.GetDib(_graphics::DibTemp3);
 
-      int32_t cx1 = pdib1->cx;
-      int32_t cy1 = pdib1->cy;
+      int32_t cx1 = pdib1->m_size.cx;
+      int32_t cy1 = pdib1->m_size.cy;
 
       if(transitioneffect.m_tool001.m_iStep == 1)
       {
@@ -1948,8 +1948,8 @@ namespace backview
       {
          ::draw2d::dib_sp pdib1 = graphics.GetDib(_graphics::DibTemp1);
          m_color.set_rgb(pdib1->GetPixel(
-            pdib1->cx / 2,
-            pdib1->cy / 2));
+            pdib1->m_size.cx / 2,
+            pdib1->m_size.cy / 2));
       }
 
 
@@ -1967,8 +1967,8 @@ namespace backview
       ::draw2d::dib_sp pdib2 = graphics.GetDib(_graphics::DibTemp2);
       ::draw2d::dib_sp pdib3 = graphics.GetDib(_graphics::DibTemp3);
 
-      int32_t cx1 = pdib1->cx;
-      int32_t cy1 = pdib1->cy;
+      int32_t cx1 = pdib1->m_size.cx;
+      int32_t cy1 = pdib1->m_size.cy;
 
       if(transitioneffect.m_tool001.m_iStep == 1)
       {
@@ -2431,8 +2431,8 @@ namespace backview
          pdib3->get_graphics()->SetStretchBltMode(HALFTONE);
          pdib3->stretch_dib(pdibBuffer);
       }
-      int32_t cx1 = pdib1->cx;
-      int32_t cy1 = pdib1->cy;
+      int32_t cx1 = pdib1->m_size.cx;
+      int32_t cy1 = pdib1->m_size.cy;
 
 
 
@@ -2511,8 +2511,8 @@ namespace backview
       {
          ::draw2d::dib_sp pdib1 = graphics.GetDib(_graphics::DibTemp1);
          m_color.set_rgb(pdib1->GetPixel(
-            pdib1->cx / 2,
-            pdib1->cy / 2));
+            pdib1->m_size.cx / 2,
+            pdib1->m_size.cy / 2));
       }
 
       rect rectClient = tool1.rectClient;
@@ -2529,8 +2529,8 @@ namespace backview
       ::draw2d::dib_sp pdib3 = graphics.GetDib(_graphics::DibTemp3);
       ::draw2d::dib_sp pdib4 = graphics.GetDib(_graphics::DibTemp4);
 
-      int32_t cx1 = pdib1->cx;
-      int32_t cy1 = pdib1->cy;
+      int32_t cx1 = pdib1->m_size.cx;
+      int32_t cy1 = pdib1->m_size.cy;
 
       if(transitioneffect.m_tool001.m_iStep == 1)
       {
@@ -2726,8 +2726,8 @@ namespace backview
       {
          ::draw2d::dib_sp pdib1 = graphics.GetDib(_graphics::DibTemp1);
          m_color.set_rgb(pdib1->GetPixel(
-            pdib1->cx / 2,
-            pdib1->cy / 2));
+            pdib1->m_size.cx / 2,
+            pdib1->m_size.cy / 2));
       }
 
 
@@ -2745,8 +2745,8 @@ namespace backview
       ::draw2d::dib_sp pdib2 = graphics.GetDib(_graphics::DibTemp2);
       ::draw2d::dib_sp pdib3 = graphics.GetDib(_graphics::DibTemp3);
 
-      int32_t cx1 = pdib1->cx;
-      int32_t cy1 = pdib1->cy;
+      int32_t cx1 = pdib1->m_size.cx;
+      int32_t cy1 = pdib1->m_size.cy;
 
       if(transitioneffect.m_tool001.m_iStep == 1)
       {
@@ -3316,8 +3316,8 @@ namespace backview
          pdib4->get_graphics()->BitBlt(0, 0, cx1, cy1, dcBuffer, 0, 0, SRCCOPY);
       }
 
-      int32_t cx1 = pdib1->cx;
-      int32_t cy1 = pdib1->cy;
+      int32_t cx1 = pdib1->m_size.cx;
+      int32_t cy1 = pdib1->m_size.cy;
 
 
 
@@ -3512,8 +3512,8 @@ namespace backview
          pdib3->get_graphics()->SetStretchBltMode(HALFTONE);
          pdib3->stretch_dib(pdibFrame1);
       }
-      int32_t cx1 = pdib1->cx;
-      int32_t cy1 = pdib1->cy;
+      int32_t cx1 = pdib1->m_size.cx;
+      int32_t cy1 = pdib1->m_size.cy;
 
       pdib3->Fill(0, 0, 0, 0);
 
@@ -3588,8 +3588,8 @@ namespace backview
       {
          ::draw2d::dib_sp pdib1 = graphics.GetDib(_graphics::DibTemp1);
          m_color.set_rgb(pdib1->GetPixel(
-            pdib1->cx / 2,
-            pdib1->cy / 2));
+            pdib1->m_size.cx / 2,
+            pdib1->m_size.cy / 2));
       }
 
 
@@ -3607,8 +3607,8 @@ namespace backview
       ::draw2d::dib_sp pdib2 = graphics.GetDib(_graphics::DibTemp2);
       ::draw2d::dib_sp pdib3 = graphics.GetDib(_graphics::DibTemp3);
 
-      int32_t cx1 = pdib1->cx;
-      int32_t cy1 = pdib1->cy;
+      int32_t cx1 = pdib1->m_size.cx;
+      int32_t cy1 = pdib1->m_size.cy;
 
       if(transitioneffect.m_tool001.m_iStep == 1)
       {
@@ -4037,8 +4037,8 @@ namespace backview
       {
          ::draw2d::dib_sp pdib1 = graphics.GetDib(_graphics::DibTemp1);
          m_color.set_rgb(pdib1->GetPixel(
-            pdib1->cx / 2,
-            pdib1->cy / 2));
+            pdib1->m_size.cx / 2,
+            pdib1->m_size.cy / 2));
       }
 
 
@@ -4056,8 +4056,8 @@ namespace backview
       ::draw2d::dib_sp pdib2 = graphics.GetDib(_graphics::DibTemp2);
       ::draw2d::dib_sp pdib3 = graphics.GetDib(_graphics::DibTemp3);
 
-      int32_t cx1 = pdib1->cx;
-      int32_t cy1 = pdib1->cy;
+      int32_t cx1 = pdib1->m_size.cx;
+      int32_t cy1 = pdib1->m_size.cy;
 
       if(transitioneffect.m_tool001.m_iStep == 1)
       {
@@ -4496,8 +4496,8 @@ namespace backview
       {
          ::draw2d::dib_sp pdib1 = graphics.GetDib(_graphics::DibTemp1);
          m_color.set_rgb(pdib1->GetPixel(
-            pdib1->cx / 2,
-            pdib1->cy / 2));
+            pdib1->m_size.cx / 2,
+            pdib1->m_size.cy / 2));
       }
 
       rect rectClient = tool1.rectClient;
@@ -4514,8 +4514,8 @@ namespace backview
       ::draw2d::dib_sp pdib3 = graphics.GetDib(_graphics::DibTemp3);
       ::draw2d::dib_sp pdib4 = graphics.GetDib(_graphics::DibTemp4);
 
-      int32_t cx1 = pdib1->cx;
-      int32_t cy1 = pdib1->cy;
+      int32_t cx1 = pdib1->m_size.cx;
+      int32_t cy1 = pdib1->m_size.cy;
 
       if(transitioneffect.m_tool001.m_iStep == 1)
       {
@@ -4715,8 +4715,8 @@ namespace backview
       {
          ::draw2d::dib_sp pdib1 = graphics.GetDib(_graphics::DibTemp1);
          m_color.set_rgb(pdib1->GetPixel(
-            pdib1->cx / 2,
-            pdib1->cy / 2));
+            pdib1->m_size.cx / 2,
+            pdib1->m_size.cy / 2));
       }
 
 
@@ -4734,8 +4734,8 @@ namespace backview
       ::draw2d::dib_sp pdib2 = graphics.GetDib(_graphics::DibTemp2);
       ::draw2d::dib_sp pdib3 = graphics.GetDib(_graphics::DibTemp3);
 
-      int32_t cx1 = pdib1->cx;
-      int32_t cy1 = pdib1->cy;
+      int32_t cx1 = pdib1->m_size.cx;
+      int32_t cy1 = pdib1->m_size.cy;
 
       if(transitioneffect.m_tool001.m_iStep == 1)
       {
@@ -5273,8 +5273,8 @@ namespace backview
       {
          ::draw2d::dib_sp pdib1 = graphics.GetDib(_graphics::DibTemp1);
          m_color.set_rgb(pdib1->GetPixel(
-            pdib1->cx / 2,
-            pdib1->cy / 2));
+            pdib1->m_size.cx / 2,
+            pdib1->m_size.cy / 2));
       }
 
 
@@ -5292,8 +5292,8 @@ namespace backview
       ::draw2d::dib_sp pdib2 = graphics.GetDib(_graphics::DibTemp2);
       ::draw2d::dib_sp pdib3 = graphics.GetDib(_graphics::DibTemp3);
 
-      int32_t cx1 = pdib1->cx;
-      int32_t cy1 = pdib1->cy;
+      int32_t cx1 = pdib1->m_size.cx;
+      int32_t cy1 = pdib1->m_size.cy;
 
       if(transitioneffect.m_tool001.m_iStep == 1)
       {

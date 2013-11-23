@@ -411,11 +411,11 @@ size simple_toolbar::CalcSize(int32_t nCount)
       cySep = cySep * 2 / 3;*/
       if (item.m_spdib.is_set())
       {
-         buttonx =  item.m_spdib->cx
+         buttonx =  item.m_spdib->m_size.cx
             + max(ITEMCX, max(ITEMHOVERCX, ITEMPRESSCX))
             - min(ITEMCX, min(ITEMHOVERCX, ITEMPRESSCX))
             + ITEMPADLEFT + ITEMPADRIGHT;
-         buttony = item.m_spdib->cy
+         buttony = item.m_spdib->m_size.cy
             + max(ITEMCY, max(ITEMHOVERCY, ITEMPRESSCY))
             - min(ITEMCY, min(ITEMHOVERCY, ITEMPRESSCY))
             + ITEMPADTOP + ITEMPADBOTTOM;
@@ -957,7 +957,7 @@ bool simple_toolbar::_001GetItemRect(int32_t iItem, LPRECT lprect, EElement eele
          rect.right  = rect.left + item.m_rect.width();
          if(item.m_spdib.is_set())
          {
-            rect.bottom = rect.top + item.m_spdib->cy + ITEMPADTOP + ITEMPADBOTTOM;
+            rect.bottom = rect.top + item.m_spdib->m_size.cy + ITEMPADTOP + ITEMPADBOTTOM;
          }
          else if(uiImage != 0xffffffff)
          {
@@ -975,8 +975,8 @@ bool simple_toolbar::_001GetItemRect(int32_t iItem, LPRECT lprect, EElement eele
          {
             rect.left   = item.m_rect.left + ITEMPADLEFT;
             rect.top    = item.m_rect.top + ITEMPADTOP;
-            rect.right  = rect.left + item.m_spdib->cx;
-            rect.bottom = rect.top + item.m_spdib->cy;
+            rect.right  = rect.left + item.m_spdib->m_size.cx;
+            rect.bottom = rect.top + item.m_spdib->m_size.cy;
             break;
          }
          if(uiImage == 0xffffffff)
@@ -999,7 +999,7 @@ bool simple_toolbar::_001GetItemRect(int32_t iItem, LPRECT lprect, EElement eele
             rect.left   = item.m_rect.left;
             if(item.m_spdib.is_set())
             {
-               rect.left   += ITEMPADLEFT + item.m_spdib->cx;
+               rect.left   += ITEMPADLEFT + item.m_spdib->m_size.cx;
             }
             else if(uiImage != 0xffffffff)
             {
@@ -1258,8 +1258,8 @@ void simple_toolbar::layout()
          }
          else if(item.m_spdib.is_set())
          {
-            cx = buttonx2 + sizeText.cx + item.m_spdib->cx;
-            cy = max(buttony, item.m_spdib->cy);
+            cx = buttonx2 + sizeText.cx + item.m_spdib->m_size.cx;
+            cy = max(buttony, item.m_spdib->m_size.cy);
          }
          else if(item.m_iImage >= 0)
          {
@@ -1281,8 +1281,8 @@ void simple_toolbar::layout()
          }
          else if(item.m_spdib.is_set())
          {
-            cx = buttonx2 + sizeText.cx + item.m_spdib->cx;
-            cy = max(buttony, item.m_spdib->cy);
+            cx = buttonx2 + sizeText.cx + item.m_spdib->m_size.cx;
+            cy = max(buttony, item.m_spdib->m_size.cy);
          }
          else if(uiImage != 0xffffffff)
          {

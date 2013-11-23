@@ -775,9 +775,9 @@ namespace user
       if (get_document() == NULL)
          return;
 
-/*      spa(::data::data) spadata;
+      spa(::data::data) spadata = get_document()->m_spadata;
 
-      spadata.add(get_document()->m_spdata);
+      //spadata.add(get_document()->m_spdata);
 
       sync_object_ptra sync;
 
@@ -787,16 +787,8 @@ namespace user
          sync.add(spadata[i].data_mutex());
 
       }
-      */
 
-      if (get_document()->m_spdata.is_null())
-         return;
-
-      retry_single_lock sl(get_document()->m_spdata->data_mutex(), millis(1), millis(1));
-
-      spa(::data::data) spadata;
-
-      spadata.add(get_document()->m_spdata);
+      retry_multi_lock sl(sync, millis(1), millis(1));
 
       try
       {

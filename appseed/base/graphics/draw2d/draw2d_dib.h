@@ -71,14 +71,13 @@ namespace draw2d
 
       };
 
-      BITMAPINFO           m_info;
+      BITMAPINFO        m_info;
       COLORREF *        m_pcolorref;
-      int32_t           cx;
-      int32_t           cy;
-      int32_t           scan;
+      size              m_size;
+      int32_t           m_iScan;
       bool              m_bMapped; // optionally used by implementation
-
       descriptor        m_descriptor;
+
 
       static float Cosines[360];
       static float Sines[360];
@@ -258,9 +257,9 @@ namespace draw2d
 
       //virtual int32_t width();
       //virtual int32_t height();
-      inline int64_t area() { return cx * cy; }
+      inline int64_t area() { return m_size.area(); }
       virtual double pi();
-      inline class size size() { return ::size(cx, cy); }
+      inline class size size() { return m_size; }
 
       virtual void write(::file::output_stream & ostream);
       virtual void read(::file::input_stream & istream);

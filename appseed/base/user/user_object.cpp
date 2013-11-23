@@ -7,6 +7,7 @@ namespace user
 
    object::object(sp(base_application) papp) :
       element(papp),
+      ::data::data_container_base(papp),
       m_mutex(NULL)
    {
 
@@ -39,35 +40,7 @@ namespace user
 
 
 
-   bool object::set_data(::data::data * pdata)
-   {
-
-/*      if (m_spdata.is_set())
-      {
-
-         remove_data(m_spdata);
-
-      }*/
-
-      ::data::data_container::set_data(pdata);
-
-/*      if (pdata != NULL)
-      {
-
-         add_data(pdata);
-
-      }*/
-
-      return true;
-
-   }
-
-
-
-
-
    bool object::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
-
    {
       if (command_target::_001OnCmdMsg(pcmdmsg))
          return TRUE;

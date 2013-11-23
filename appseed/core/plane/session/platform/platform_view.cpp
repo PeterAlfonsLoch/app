@@ -392,7 +392,7 @@ namespace platform
             double dRate = 184.0 / rectThumb.width();
             dibThumb->create((int32_t) (dRate * rectThumb.width()), (int32_t) (dRate * rectThumb.height()));
             dibThumb->get_graphics()->SetStretchBltMode(HALFTONE);
-            dibThumb->get_graphics()->StretchBlt(0, 0, dibThumb->cx, dibThumb->cy, dib->get_graphics(), rectThumb.left, rectThumb.top, rectThumb.width(), rectThumb.height(), SRCCOPY);
+            dibThumb->get_graphics()->StretchBlt(0, 0, dibThumb->m_size.cx, dibThumb->m_size.cy, dib->get_graphics(), rectThumb.left, rectThumb.top, rectThumb.width(), rectThumb.height(), SRCCOPY);
 
             imaging.bitmap_blend(pdc, point(10, 10), dibThumb->size(), dibThumb->get_graphics(), null_point(), (byte) (255.0 * 0.67));
          }
