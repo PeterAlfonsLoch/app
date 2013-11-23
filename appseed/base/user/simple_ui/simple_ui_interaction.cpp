@@ -9,8 +9,9 @@ namespace simple_ui
       element(papp)
    {
 
-      m_pstyle = NULL;
-      m_puiParent = NULL;
+      m_pstyle       = NULL;
+      m_puiParent    = NULL;
+      m_puiFocus     = NULL;
 
    }
 
@@ -108,9 +109,6 @@ namespace simple_ui
 
    bool interaction::on_char(int32_t iKey, const string & strChar)
    {
-
-      if (get_focus() == NULL)
-         focus_next();
 
       if (get_focus() == NULL)
          return false;
@@ -218,45 +216,59 @@ namespace simple_ui
    void interaction::focus_next()
    {
 
-      ::count iFind = m_puiParent->m_uiptra.get_count() - 1;
-
-      for (int32_t i = 0; i < m_puiParent->m_uiptra.get_count(); i++)
+      if (m_uiptra.get_count() > 0)
       {
 
-         if (m_puiParent->m_uiptra[i] == this)
+         set_focus(m_uiptra[0]);
+
+         return;
+
+      }
+      
+      if (m_puiParent != NULL)
+      {
+
+         ::count iFind = m_puiParent->m_uiptra.get_count() - 1;
+
+         for (int32_t i = 0; i < m_puiParent->m_uiptra.get_count(); i++)
          {
 
-            iFind = i;
+            if (m_puiParent->m_uiptra[i] == this)
+            {
 
-            break;
+               iFind = i;
+
+               break;
+
+            }
 
          }
 
-      }
-
-      for (::index i = iFind + 1; i < m_puiParent->m_uiptra.get_count(); i++)
-      {
-
-         if (m_puiParent->m_uiptra[i]->is_focusable())
+         for (::index i = iFind + 1; i < m_puiParent->m_uiptra.get_count(); i++)
          {
 
-            m_puiParent->set_focus(m_puiParent->m_uiptra[i]);
+            if (m_puiParent->m_uiptra[i]->is_focusable())
+            {
 
-            return;
+               m_puiParent->set_focus(m_puiParent->m_uiptra[i]);
+
+               return;
+
+            }
 
          }
 
-      }
-
-      for (int32_t i = 0; i <= iFind; i++)
-      {
-
-         if (m_puiParent->m_uiptra[i]->is_focusable())
+         for (int32_t i = 0; i <= iFind; i++)
          {
 
-            m_puiParent->set_focus(m_puiParent->m_uiptra[i]);
+            if (m_puiParent->m_uiptra[i]->is_focusable())
+            {
 
-            return;
+               m_puiParent->set_focus(m_puiParent->m_uiptra[i]);
+
+               return;
+
+            }
 
          }
 

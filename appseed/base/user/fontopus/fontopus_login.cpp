@@ -17,6 +17,7 @@ namespace fontopus
       m_password(papp),
       m_tap(papp)
    {
+
       m_pcallback = NULL;
 
       m_labelUser.set_parent(this);

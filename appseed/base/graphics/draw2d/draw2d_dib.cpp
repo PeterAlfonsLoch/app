@@ -2568,6 +2568,9 @@ namespace draw2d
 
    void dib::Fill (int32_t A, int32_t R, int32_t G, int32_t B )
    {
+
+      map();
+
       COLORREF color = RGB ( B, G, R ) | (A << 24);
       int64_t size = area();
 
@@ -2577,7 +2580,7 @@ namespace draw2d
       int32_t i;
       for (i=0; i < iSize32; i+=32 )
       {
-         pcr = &get_data()[i];
+         pcr = &m_pcolorref[i];
          pcr[0] = color;
          pcr[1] = color;
          pcr[2] = color;
@@ -2614,7 +2617,7 @@ namespace draw2d
 
       for (i=0; i<size; i++ )
       {
-         get_data()[i]=color;
+         m_pcolorref[i]=color;
       }
 
    }
@@ -3073,10 +3076,78 @@ namespace draw2d
 
    void dib::set_rgb ( int32_t R, int32_t G, int32_t B )
    {
-      UNREFERENCED_PARAMETER(R);
-      UNREFERENCED_PARAMETER(G);
-      UNREFERENCED_PARAMETER(B);
-      throw not_implemented(get_app());
+
+      map();
+
+      BYTE *dst=(BYTE*)m_pcolorref;
+      int64_t size = area();
+
+      BYTE uchB = (byte) R;
+      BYTE uchG = (byte) G;
+      BYTE uchR = (byte) B;
+
+      int32_t i = 0;;
+ 
+
+      while ( size-- )
+      {
+         dst[3] = dst[i];
+         dst[0] = uchB;
+         dst[1] = uchG;
+         dst[2] = uchR;
+         dst+=4;
+      }
+
+
+/*      COLORREF color = RGB(B, G, R);
+      int64_t size = area();
+
+      COLORREF * pcr;
+
+      int64_t iSize32 = size / 32;
+      int32_t i;
+      for (i = 0; i < iSize32; i += 32)
+      {
+         pcr = &m_pcolorref[i];
+         pcr[0] = color;
+         pcr[1] = color;
+         pcr[2] = color;
+         pcr[3] = color;
+         pcr[4] = color;
+         pcr[5] = color;
+         pcr[6] = color;
+         pcr[7] = color;
+         pcr[8] = color;
+         pcr[9] = color;
+         pcr[10] = color;
+         pcr[11] = color;
+         pcr[12] = color;
+         pcr[13] = color;
+         pcr[14] = color;
+         pcr[15] = color;
+         pcr[16] = color;
+         pcr[17] = color;
+         pcr[18] = color;
+         pcr[19] = color;
+         pcr[20] = color;
+         pcr[21] = color;
+         pcr[22] = color;
+         pcr[23] = color;
+         pcr[24] = color;
+         pcr[25] = color;
+         pcr[26] = color;
+         pcr[27] = color;
+         pcr[28] = color;
+         pcr[29] = color;
+         pcr[30] = color;
+         pcr[31] = color;
+      }
+
+      for (i = 0; i<size; i++)
+      {
+         m_pcolorref[i] = color;
+      }*/
+
    }
 
    bool dib::rgb_from(::draw2d::dib * pdib)

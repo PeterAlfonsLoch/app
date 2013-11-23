@@ -27,9 +27,12 @@ namespace visual
 
    bool fastblur::initialize(int32_t cx, int32_t cy, int32_t radius)
    {
-      
+
       if(is_null())
          return false;
+
+      if (m_p->m_size == size(cx, cy))
+         return true;
       
       if(!m_p->create(cx, cy))
          return false;
@@ -50,6 +53,9 @@ namespace visual
          dv[i]= min(255, i/div);
       }
 
+      m_p->map();
+      m_ucha.allocate(m_p->m_iScan * m_p->m_size.cy);
+
       return true;
       
    }
@@ -69,7 +75,6 @@ namespace visual
       synch_lock ml(&user_mutex());
 
       m_p->map();
-      m_ucha.allocate(m_p->m_iScan * m_p->m_size.cy);
 
       bool b = false;
 

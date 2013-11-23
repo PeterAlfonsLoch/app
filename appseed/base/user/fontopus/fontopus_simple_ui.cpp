@@ -295,6 +295,8 @@ namespace fontopus
 
       m_hinstance = ::GetModuleHandle(NULL);
 
+      set_focus(&m_login.m_editUser);
+
       // Initialize global strings
       register_window_class(m_hinstance);
 
