@@ -182,11 +182,14 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib, var varFile, sp(base_applicati
 }
 
 
-bool imaging::from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI)
+bool imaging::from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI, base_application * papp)
 {
 
    if (pfibitmap == NULL)
       return false;
+
+   if (papp == NULL)
+      papp = get_app();
 
    BITMAPINFO * pbi = FreeImage_GetInfo(pfibitmap);
    void * pdata = FreeImage_GetBits(pfibitmap);
@@ -7003,8 +7006,11 @@ void imaging::AlphaTextOut(::draw2d::graphics *pdc, int32_t left, int32_t top, c
 }
 
 
-bool imaging::load_from_file(::draw2d::dib * pdib, var varFile)
+bool imaging::load_from_file(::draw2d::dib * pdib, var varFile, base_application * papp)
 {
+
+   if (papp == NULL)
+      papp = get_app();
 
    // image cache load
    // cache of decompression time
@@ -7018,11 +7024,11 @@ bool imaging::load_from_file(::draw2d::dib * pdib, var varFile)
       strFile.replace("/", "\\");
       strFile = System.dir().time("cache", strFile);
       strFile += ".dib";
-      if (Application.file().exists(strFile))
+      if (App(papp).file().exists(strFile))
       {
          try
          {
-            ::file::byte_input_stream istream(Application.file().get_file(strFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary));
+            ::file::byte_input_stream istream(App(papp).file().get_file(strFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary));
             istream >> *pdib;
             return true;
          }
@@ -7036,7 +7042,7 @@ bool imaging::load_from_file(::draw2d::dib * pdib, var varFile)
    try
    {
 
-      if (!read_from_file(pdib, Application.file().get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary)))
+      if (!read_from_file(pdib, App(papp).file().get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary), papp))
          return false;
 
    }
@@ -7053,7 +7059,7 @@ bool imaging::load_from_file(::draw2d::dib * pdib, var varFile)
    {
       try
       {
-         ::file::byte_output_stream ostream(Application.file().get_file(strFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory));
+         ::file::byte_output_stream ostream(App(papp).file().get_file(strFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory));
          ostream << *pdib;
       }
       catch (...)
@@ -7065,11 +7071,14 @@ bool imaging::load_from_file(::draw2d::dib * pdib, var varFile)
 
 }
 
-bool imaging::read_from_file(::draw2d::dib * pdib, ::file::buffer_sp  pfile)
+bool imaging::read_from_file(::draw2d::dib * pdib, ::file::buffer_sp  pfile, base_application * papp)
 {
 
+   if (papp == NULL)
+      papp = get_app();
 
-   FIBITMAP * pfi = LoadImageFile(pfile);
+
+   FIBITMAP * pfi = LoadImageFile(pfile, papp);
 
    if (pfi == NULL)
       return false;
@@ -7086,7 +7095,7 @@ bool imaging::read_from_file(::draw2d::dib * pdib, ::file::buffer_sp  pfile)
 
    spgraphics->CreateCompatibleDC(NULL);
 
-   if (!from(pdib, spgraphics, pfi, true))
+   if (!from(pdib, spgraphics, pfi, true, papp))
       return false;
 
    return true;
@@ -7095,23 +7104,31 @@ bool imaging::read_from_file(::draw2d::dib * pdib, ::file::buffer_sp  pfile)
 
 
 
-bool imaging::load_from_matter(::draw2d::dib * pdib, var varFile)
+bool imaging::load_from_matter(::draw2d::dib * pdib, var varFile, base_application * papp)
 {
+
+   if (papp == NULL)
+      papp = get_app();
+
    
-   return load_from_file(pdib, Application.dir().matter((const string &) varFile));
+   return load_from_file(pdib, App(papp).dir().matter((const string &) varFile), papp);
 
 }
 
 
-bool imaging::load_from_file(::visual::cursor * pcursor, var varFile)
+bool imaging::load_from_file(::visual::cursor * pcursor, var varFile, base_application * papp)
 {
    string str(varFile);
    if (!::str::ends_eat_ci(str, ".png"))
       return false;
-   if (!load_from_file(pcursor->m_dib, varFile))
+   if (!load_from_file(pcursor->m_dib, varFile, papp))
       return false;
+
+   if (papp == NULL)
+      papp = get_app();
+
    str += ".xml";
-   string strNode = Application.file().as_string(str);
+   string strNode = App(papp).file().as_string(str);
    ::xml::document doc(get_app());
    if (doc.load(strNode))
    {
@@ -7121,28 +7138,35 @@ bool imaging::load_from_file(::visual::cursor * pcursor, var varFile)
    return true;
 }
 
-bool imaging::load_from_matter(::visual::cursor * pcursor, var varFile)
+bool imaging::load_from_matter(::visual::cursor * pcursor, var varFile, base_application * papp)
 {
+   if (papp == NULL)
+      papp = get_app();
 
-   return load_from_file(pcursor, Application.dir().matter((const string &) varFile));
+   return load_from_file(pcursor, App(papp).dir().matter((const string &) varFile), papp);
 
 }
 
-::visual::cursor_sp imaging::load_cursor_from_file(var varFile)
+::visual::cursor_sp imaging::load_cursor_from_file(var varFile, base_application * papp)
 {
+   if (papp == NULL)
+      papp = get_app();
 
-   ::visual::cursor_sp spcursor(canew(::visual::cursor(get_app())));
+   ::visual::cursor_sp spcursor(canew(::visual::cursor(papp)));
 
-   if (!load_from_file(spcursor, varFile))
+   if (!load_from_file(spcursor, varFile, papp))
       return NULL;
 
    return spcursor;
 
 }
 
-::visual::cursor_sp imaging::load_cursor_from_matter(var varFile)
+::visual::cursor_sp imaging::load_cursor_from_matter(var varFile, base_application * papp)
 {
 
-   return load_cursor_from_file(Application.dir().matter((const string &) varFile));
+   if (papp == NULL)
+      papp = get_app();
+
+   return load_cursor_from_file(App(papp).dir().matter((const string &) varFile));
 
 }

@@ -2,16 +2,18 @@
 
 wait_cursor::wait_cursor(sp(base_application) papp) :
    element(papp)
-   { System.BeginWaitCursor(); }
+   { Application.BeginWaitCursor(); }
  wait_cursor::~wait_cursor()
 {
    //__BEGIN_DESTRUCTOR
 
-   System.EndWaitCursor();
+    Application.EndWaitCursor();
 
    //__END_DESTRUCTOR
 }
  void wait_cursor::Restore()
-   { System.RestoreWaitCursor(); }
+ {
+    Application.RestoreWaitCursor();
+ }
 
 

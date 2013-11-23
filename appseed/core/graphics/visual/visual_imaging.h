@@ -316,17 +316,17 @@ public:
    virtual void free(FIBITMAP * pfibitmap);
 
 
-   bool load_from_file(::draw2d::dib * pdib, var varFile);
-   bool load_from_matter(::draw2d::dib * pdib, var varFile);
-   bool read_from_file(::draw2d::dib * pdib, ::file::buffer_sp buffer);
+   bool load_from_file(::draw2d::dib * pdib, var varFile, base_application * papp = NULL);
+   bool load_from_matter(::draw2d::dib * pdib, var varFile, base_application * papp = NULL);
+   bool read_from_file(::draw2d::dib * pdib, ::file::buffer_sp buffer, base_application * papp = NULL);
 
-   bool load_from_file(::visual::cursor * pcursor, var varFile);
-   bool load_from_matter(::visual::cursor * pcursor, var varFile);
+   bool load_from_file(::visual::cursor * pcursor, var varFile, base_application * papp = NULL);
+   bool load_from_matter(::visual::cursor * pcursor, var varFile, base_application * papp = NULL);
 
-   ::visual::cursor_sp load_cursor_from_file(var varFile);
-   ::visual::cursor_sp load_cursor_from_matter(var varFile);
+   ::visual::cursor_sp load_cursor_from_file(var varFile, base_application * papp = NULL);
+   ::visual::cursor_sp load_cursor_from_matter(var varFile, base_application * papp = NULL);
 
-   virtual bool from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI);
+   virtual bool from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI, base_application * papp = NULL);
 
 };
 

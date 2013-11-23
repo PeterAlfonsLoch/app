@@ -2945,11 +2945,59 @@ namespace draw2d
    }
 
 
-   void dib::fill_channel(int32_t C, visual::rgba::echannel echannel)
+   void dib::fill_channel(int32_t intensity, visual::rgba::echannel echannel)
    {
-      UNREFERENCED_PARAMETER(C);
-      UNREFERENCED_PARAMETER(echannel);
-      throw interface_only_exception(get_app());
+      map();
+           int32_t offset = ((int32_t)echannel) % 4;
+          int64_t size=area();
+
+          COLORREF * pcr = (COLORREF *) &((byte *)m_pcolorref)[offset];
+
+          BYTE * pb;
+
+          int64_t iSize32 = size / 32;
+          int32_t i;
+          for (i=0; i < iSize32; i+=32 )
+          {
+             pb = (byte *) &pcr[i];
+             pb[0 * 4] = (byte) intensity;
+             pb[1 * 4] = (byte) intensity;
+             pb[2 * 4] = (byte) intensity;
+             pb[3 * 4] = (byte) intensity;
+             pb[4 * 4] = (byte) intensity;
+             pb[5 * 4] = (byte) intensity;
+             pb[6 * 4] = (byte) intensity;
+             pb[7 * 4] = (byte) intensity;
+             pb[8 * 4] = (byte) intensity;
+             pb[9 * 4] = (byte) intensity;
+             pb[10 * 4] = (byte) intensity;
+             pb[11 * 4] = (byte) intensity;
+             pb[12 * 4] = (byte) intensity;
+             pb[13 * 4] = (byte) intensity;
+             pb[14 * 4] = (byte) intensity;
+             pb[15 * 4] = (byte) intensity;
+             pb[16 * 4] = (byte) intensity;
+             pb[17 * 4] = (byte) intensity;
+             pb[18 * 4] = (byte) intensity;
+             pb[19 * 4] = (byte) intensity;
+             pb[20 * 4] = (byte) intensity;
+             pb[21 * 4] = (byte) intensity;
+             pb[22 * 4] = (byte) intensity;
+             pb[23 * 4] = (byte) intensity;
+             pb[24 * 4] = (byte) intensity;
+             pb[25 * 4] = (byte) intensity;
+             pb[26 * 4] = (byte) intensity;
+             pb[27 * 4] = (byte) intensity;
+             pb[28 * 4] = (byte) intensity;
+             pb[29 * 4] = (byte) intensity;
+             pb[30 * 4] = (byte) intensity;
+             pb[31 * 4] = (byte) intensity;
+          }
+
+          for (i=0; i<size; i++ )
+          {
+             *((BYTE * ) &pcr[i]) = (byte) intensity;
+          }
    }
 
 

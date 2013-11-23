@@ -164,7 +164,16 @@ namespace file
 
       string strPath;
 
-      if(varFile.get_type() == var::type_string)
+      if (varFile.get_type() == var::type_element)
+      {
+         
+         spfile = varFile.cast < ::file::stream_buffer >();
+
+         if (spfile.is_set())
+            return spfile;
+
+      }
+      else if(varFile.get_type() == var::type_string)
       {
 
          strPath = varFile;

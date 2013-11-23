@@ -26,7 +26,7 @@ namespace visual
    bool dib_sp::load_from_file(var varFile)
    {
       
-      return Sys(m_p->m_pbaseapp).visual().imaging().load_from_file(m_p, varFile);
+      return Sys(m_p->m_pbaseapp).visual().imaging().load_from_file(m_p, varFile, m_p->m_pbaseapp);
 
    }
 
@@ -34,7 +34,7 @@ namespace visual
    bool dib_sp::load_from_matter(const char * pszMatter)
    {
 
-      return load_from_file(App(m_p->m_pbaseapp).dir().matter(pszMatter));
+      return Sys(m_p->m_pbaseapp).visual().imaging().load_from_file(m_p, App(m_p->m_pbaseapp).dir().matter(pszMatter), m_p->m_pbaseapp);
 
    }
 
@@ -42,7 +42,7 @@ namespace visual
    bool dib_sp::read_from_file(::file::buffer_sp spfile)
    {
 
-      return Sys(m_p->m_pbaseapp).visual().imaging().read_from_file(m_p, spfile);
+      return Sys(m_p->m_pbaseapp).visual().imaging().read_from_file(m_p, spfile, m_p->m_pbaseapp);
 
    }
 
