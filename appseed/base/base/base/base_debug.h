@@ -334,13 +334,13 @@ typedef void (__clrcall * _CRT_DUMP_CLIENT_M)(void *, size_t);
 //    void
 //    );
 //#endif
-//CLASS_DECL_BASE int _CrtDbgReportW( 
+//CLASS_DECL_BASE int _CrtDbgReportW(
 //   int reportType,
 //   const wchar_t *filename,
 //   int linenumber,
 //   const wchar_t *moduleName,
 //   const wchar_t *format,
-//   ... 
+//   ...
 //   );
 /* _CrtSetReportHook[[W]2]:
  * For IJW, we need 2 versions: 1 for clrcall and one for cdecl.
@@ -354,15 +354,15 @@ CLASS_DECL_BASE _CRT_REPORT_HOOK DECL_C _CrtSetReportHook(_CRT_REPORT_HOOK _PFnN
 //CLASS_DECL_BASE _HFILE DECL_C _CrtSetReportFile(int32_t _ReportType, _HFILE _ReportFile);
 //CLASS_DECL_BASE int32_t DECL_C _CrtDbgReport(int32_t _ReportType, const char * _Filename, int32_t _Linenumber, const char * _ModuleName, const char * _Format, ...);
 //CLASS_DECL_BASE size_t DECL_C _CrtSetDebugFillThreshold(size_t _NewDebugFillThreshold);
-//struct _CrtMemBlockHeader;
-//typedef struct _CrtMemState
-//{
-//        struct _CrtMemBlockHeader * pBlockHeader;
-//        size_t lCounts[_MAX_BLOCKS];
-//        size_t lSizes[_MAX_BLOCKS];
-//        size_t lHighWaterCount;
-//        size_t lTotalCount;
-//} _CrtMemState;
+struct _CrtMemBlockHeader;
+typedef struct _CrtMemState
+{
+        struct _CrtMemBlockHeader * pBlockHeader;
+        size_t lCounts[_MAX_BLOCKS];
+        size_t lSizes[_MAX_BLOCKS];
+        size_t lHighWaterCount;
+        size_t lTotalCount;
+} _CrtMemState;
 CLASS_DECL_BASE int32_t DECL_C _CrtDbgReportW(int32_t _ReportType, const wchar_t * _Filename, int32_t _LineNumber, const wchar_t * _ModuleName, const wchar_t * _Format, ...);
 
 /* Asserts */

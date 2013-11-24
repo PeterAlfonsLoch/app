@@ -259,7 +259,6 @@ namespace draw2d
       //virtual int32_t height();
       inline int64_t area() { return m_size.area(); }
       virtual double pi();
-      inline class size size() { return m_size; }
 
       virtual void write(::file::output_stream & ostream);
       virtual void read(::file::input_stream & istream);

@@ -1,6 +1,10 @@
+#pragma once
 
 
-class CLASS_DECL_BOOT window_cairo :
+#include "cairo/cairo.h"
+
+
+class CLASS_DECL_BASE window_cairo :
    public window_graphics
 {
 public:

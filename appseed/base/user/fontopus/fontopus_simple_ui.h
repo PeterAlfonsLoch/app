@@ -30,7 +30,7 @@ namespace fontopus
 
       virtual string show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
 
-      virtual BOOL prepare_window(HINSTANCE hInstance, int nCmdShow);
+      virtual bool prepare_window(LPCRECT lpcrect);
 
 
       virtual void draw_dark_glass(::draw2d::graphics * pgraphics);

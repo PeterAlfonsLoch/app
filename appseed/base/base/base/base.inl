@@ -251,7 +251,7 @@ namespace user
    DOCUMENT * impact::get_typed_document()
    {
       ASSERT(this != NULL);
-      return m_spdocument->get_type_document < DOCUMENT >();
+      return m_spdocument->get_typed_document < DOCUMENT >();
    }
 
 

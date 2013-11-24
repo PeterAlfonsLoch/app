@@ -146,7 +146,7 @@ public:
 
 
    ::index find_first(const T & t, index (* lpfnCompare)(const T *, const T *), index iStart = 0, ::count nCount = -1) const
-   { 
+   {
 
       return this->find_first(&t, lpfnCompare, iStart, nCount);
 
@@ -206,19 +206,19 @@ public:
    }
 
 
-   template < typename T >
-   ::count remove_type(T *)
+   template < typename TYPE >
+   ::count remove_type(TYPE *)
    {
 
       ::count c = 0;
 
-      for (index i = get_upper_bound(); i >= 0; i--)
+      for (index i = this->get_upper_bound(); i >= 0; i--)
       {
 
-         if (typeid(*element_at(i).m_p) == typeid(T))
+         if (typeid(*this->element_at(i).m_p) == typeid(TYPE))
          {
 
-            remove_at(i);
+            this->remove_at(i);
 
             c++;
 

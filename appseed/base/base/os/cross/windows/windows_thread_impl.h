@@ -7,7 +7,7 @@ struct hthread :
 
 
    event               * m_pevent;
-   base_thread          * m_pthread;
+   ::thread          * m_pthread;
    os_thread                  * m_posthread;
 
 

@@ -490,7 +490,7 @@ sp(::user::window) base_application::window_from_os_data(void * pdata)
 
 sp(::user::window) base_application::window_from_os_data_permanent(void * pdata)
 {
-   
+
    return m_pimpl->window_from_os_data_permanent(pdata);
 
 }
@@ -559,7 +559,7 @@ void base_application::ShowWaitCursor(bool bShow)
 
 void base_application::construct()
 {
-   
+
    throw interface_only_exception(this);
 
 }
@@ -1304,7 +1304,7 @@ int_bool base_application::get_temp_file_name_template(char * szRet, ::count iBu
       }
       if (file_exists_dup(szRet))
       {
-         if (DeleteFileA(szRet))
+         if (DeleteFile(szRet))
             return true;
       }
       else

@@ -139,6 +139,11 @@ class random_access_iterator { public: };
 #endif
 
 
+#if defined(LINUX) || defined(MACOS) || defined(METROWIN) || defined(ANDROID)
+
+typedef void * HDWP;
+
+#endif
 
 
 
@@ -289,8 +294,8 @@ namespace file
 
 #if defined(LINUX)
 
-#include "base/ansios/ansios.h"
-#include "base/linux/linux_user_impl.h"
+#include "base/os/ansios/ansios.h"
+#include "base/os/linux/linux_user_impl.h"
 
 #elif defined(METROWIN)
 
@@ -536,6 +541,13 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_system_trace.h"
 
 
+#include "user/user_place_holder.h"
+#include "user/user_place_holder_container.h"
+#include "user/user_view_creator_data.h"
+#include "user/user_view_container.h"
+#include "user/user_view_creator.h"
+
+
 #include "base/multithreading/multithreading.inl"
 
 
@@ -639,7 +651,7 @@ namespace numeric_info
       }
 
       (m_pprinter->*m_pfnPrinter)(m_pvoidPrinter, m_pszBuffer);
-      
+
    }
 
 #endif
@@ -653,11 +665,11 @@ namespace numeric_info
 #include "base/os/cross/windows/windows_thread_impl.h"
 
 #endif
-   
-   
-   
-   
-   
+
+
+
+
+
 #include "base/primitive/collection/collection_array_impl.inl"
 #include "base/primitive/collection/collection_raw_array_impl.inl"
 #include "base/primitive/collection/collection_sort_array_impl.inl"

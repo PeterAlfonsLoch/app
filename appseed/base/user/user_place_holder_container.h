@@ -4,12 +4,12 @@
 namespace user
 {
 
-   class CLASS_DECL_CORE place_holder_container : 
-      virtual public control
+   class CLASS_DECL_BASE place_holder_container :
+      virtual public interaction
    {
    public:
 
-      
+
       spa(place_holder) m_holdera;
 
 
@@ -22,7 +22,7 @@ namespace user
 
       virtual bool create(sp(::user::interaction) puiParent, id id);
 
-      
+
       virtual sp(place_holder) get_new_place_holder();
       virtual bool remove_place_holder(sp(place_holder) pholder);
 
@@ -36,12 +36,12 @@ namespace user
    };
 
 
-   class CLASS_DECL_CORE place_holder_container_ptra :
+   class CLASS_DECL_BASE place_holder_container_ptra :
       virtual public spa(place_holder_container)
    {
    public:
 
-      virtual place_holder_ptra hold(sp(::user::interaction) pui);   
+      virtual place_holder_ptra hold(sp(::user::interaction) pui);
       virtual int32_t unhold(sp(::user::interaction) pui);
 
    };

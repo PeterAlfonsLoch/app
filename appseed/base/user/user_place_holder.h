@@ -4,10 +4,12 @@
 namespace user
 {
 
+
    class place_holder_container;
 
-   class CLASS_DECL_CORE place_holder :
-      virtual public control
+
+   class CLASS_DECL_BASE place_holder :
+      virtual public interaction
    {
    public:
 
@@ -19,7 +21,7 @@ namespace user
       virtual ~place_holder();
 
 
-      using ::user::control::create;
+      using ::user::interaction::create;
       virtual bool create(sp(::user::place_holder_container) pcontainer, id id);
 
       virtual void install_message_handling(::message::dispatch * pdispatch);
@@ -40,7 +42,7 @@ namespace user
 
    };
 
-   class CLASS_DECL_CORE place_holder_ptra :
+   class CLASS_DECL_BASE place_holder_ptra :
       virtual public spa(place_holder)
    {
    public:

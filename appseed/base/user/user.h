@@ -157,11 +157,6 @@ class CDockContext;                     // for dragging control bars
 { message, 0, 0, 0, ::core::Sig_vv, \
    (__PMSG)(__PMSGW)(void (__MSG_CALL::user::window::*)())&memberFxn },
 
-#if defined(LINUX) || defined(MACOS) || defined(METROWIN) || defined(ANDROID)
-
-typedef void * HDWP;
-
-#endif
 
 
 
