@@ -1,6 +1,12 @@
 #include "framework.h"
 
 
+#if defined(LINUX)
+
+   #include <unistd.h>
+
+#endif
+
 namespace install
 {
 
@@ -527,7 +533,7 @@ namespace install
 
    }
 
-   
+
 
    uint32_t _ca2_starter_start(void * pvoid);
 

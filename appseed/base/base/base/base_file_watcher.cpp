@@ -23,13 +23,13 @@
 
 
 #if defined(WINDOWSEX)
-#include "os/windows/windows_file_watcher.h"
+#include "base/os/windows/windows_file_watcher.h"
 #elif defined(MACOS)
-#include "os/macos/macos_file_watcher.h"
+#include "base/os/macos/macos_file_watcher.h"
 #elif defined(LINUX) || defined(ANDROID)
-#include "os/linux/linux_file_watcher.h"
+#include "base/os/linux/linux_file_watcher.h"
 #elif defined(METROWIN)
-#include "os/metrowin/metrowin_file_watcher.h"
+#include "base/os/metrowin/metrowin_file_watcher.h"
 #endif
 
 
@@ -49,7 +49,7 @@ namespace file_watcher
 
 	file_watcher::~file_watcher()
 	{
-      
+
       if(m_pimpl != NULL)
       {
 
@@ -58,7 +58,7 @@ namespace file_watcher
          m_pimpl = NULL;
 
       }
-      
+
 	}
 
 
@@ -91,7 +91,7 @@ namespace file_watcher
 
 	}
 
-   
+
 } //namespace file_watcher
 
 

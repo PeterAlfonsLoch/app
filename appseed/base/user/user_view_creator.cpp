@@ -81,13 +81,13 @@ namespace user
          }
          catch(::exit_exception & e)
          {
-            
+
             throw e;
 
          }
          catch(::exception::exception & e)
          {
-            
+
             if(!Application.on_run_exception(e))
                throw exit_exception(get_app());
 
@@ -104,13 +104,13 @@ namespace user
          }
          catch(::exit_exception & e)
          {
-            
+
             throw e;
 
          }
          catch(::exception::exception & e)
          {
-            
+
             if(!Application.on_run_exception(e))
                throw exit_exception(get_app());
 
@@ -134,13 +134,13 @@ namespace user
       }
       catch(::exit_exception & e)
       {
-            
+
          throw e;
 
       }
       catch(::exception::exception & e)
       {
-            
+
          if(!Application.on_run_exception(e))
             throw exit_exception(get_app());
 
@@ -175,7 +175,8 @@ namespace user
       {
          return m_pviewcontainer->get_view_id();
       }
-      return ::core::system::idEmpty;
+      //return ::core::system::idEmpty;
+      return id();
    }
 
    void view_creator::hide_all_except(id id)
@@ -220,7 +221,7 @@ namespace user
 
    void view_creator::on_update(sp(::user::object) pdocument, sp(::user::impact) pSender, LPARAM lHint, object* pHint)
    {
-      
+
       POSITION pos = m_viewmap.get_start_position();
 
       ::user::view_creator_data * pcreatordata;
@@ -229,7 +230,7 @@ namespace user
 
       while(pos != NULL)
       {
-      
+
          m_viewmap.get_next_assoc(pos, id, pcreatordata);
 
          if(pcreatordata->m_pdoc != NULL && pcreatordata->m_pdoc != pdocument && (pSender == NULL || pSender->get_document() != pcreatordata->m_pdoc))

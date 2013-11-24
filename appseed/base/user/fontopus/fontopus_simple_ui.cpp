@@ -12,19 +12,23 @@ namespace fontopus
       ::os::simple_ui(papp),
       m_login(papp, 0, 0)
    {
-         m_eschema = schema_normal;
-         m_login.set_parent(this);
-         m_login.m_pstyle = this;
-         m_login.m_pcallback = this;
-         m_bLButtonDown = false;
-         m_w = 840;
-         m_h = 284;
 
-         m_eresult = login::result_fail;
-      }
+      m_eschema = schema_normal;
+      m_login.set_parent(this);
+      m_login.m_pstyle = this;
+      m_login.m_pcallback = this;
+      m_bLButtonDown = false;
+      m_w = 840;
+      m_h = 284;
+
+      m_eresult = login::result_fail;
+
+   }
+
 
    simple_ui::~simple_ui()
    {
+
    }
 
 
@@ -43,10 +47,10 @@ namespace fontopus
       pgraphics->set_alpha_mode(draw2d::alpha_mode_blend);
 
       // front
-      point pa[4];  
+      point pa[4];
       //  0       1
-      //   
-      //   
+      //
+      //
       //  3       2
 
       // back
@@ -288,32 +292,45 @@ namespace fontopus
       }
 
       // TODO: Place code here.
-      MSG msg;
-
       m_strTitle = "fontopus Auth Windows";
       m_strWindowClass = "fontopus Auth Windows";
 
-      m_hinstance = ::GetModuleHandle(NULL);
-
       set_focus(&m_login.m_editUser);
 
-      // Initialize global strings
-      register_window_class(m_hinstance);
+
+      show_window();
 
       // Perform application initialization:
-      if (!prepare_window(m_hinstance, SW_SHOW))
-      {
-         return "";
-      }
+
 
       m_login.m_strRequestingServer = strRequestingServer;
 
-      // Main message loop:
-      while (GetMessage(&msg, NULL, 0, 0))
+
+      #if defined(WINDOWSEX)
+
+         pass block below to run loop in windows ::os::simple_ui
+         // Main message loop:
+         m_hinstance = ::GetModuleHandle(NULL);
+
+      if (!prepare_window(m_hinstance, SW_SHOW))
       {
-         TranslateMessage(&msg);
-         DispatchMessage(&msg);
-      }
+         return "";
+      }         // Initialize global strings
+         register_window_class(m_hinstance);
+
+
+         MSG msg;
+         while (GetMessage(&msg, NULL, 0, 0))
+         {
+            TranslateMessage(&msg);
+            DispatchMessage(&msg);
+         }
+
+      #else
+
+      run_loop();
+
+      #endif
 
       if (m_eresult == login::result_ok)
       {
@@ -344,10 +361,8 @@ namespace fontopus
    //        In this function, we save the instance handle in a global variable and
    //        create and display the main program window.
    //
-   BOOL simple_ui::prepare_window(HINSTANCE hInstance, int nCmdShow)
+   bool simple_ui::show_window()
    {
-
-      m_hinstance = hInstance; // Store instance handle in our global variable
 
       rect & rectDesktop = m_rectDesktop;
 
@@ -372,13 +387,13 @@ namespace fontopus
       if (!::os::simple_ui::prepare_window(rectFontopus))
          return false;
 
-      SetTimer(m_window, 123, 23, NULL);
+/*      SetTimer(m_window, 123, 23, NULL);
 
       ShowWindow(m_window, nCmdShow);
 
       UpdateWindow(m_window);
 
-      ::SetWindowLong(m_window, GWL_STYLE, WS_VISIBLE);
+      ::SetWindowLong(m_window, GWL_STYLE, WS_VISIBLE);*/
 
 
       return TRUE;

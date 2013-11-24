@@ -25,7 +25,7 @@ namespace user
 {
 
 
-   class base_interaction;
+   class interaction;
    class interaction;
 
 
@@ -53,7 +53,7 @@ public:
    Window                        m_window;
    Visual *                      m_pvisual;
    bool                          m_bMessageOnlyWindow;
-   ::user::base_interaction *    m_pui;
+   ::user::interaction *    m_pui;
    HTHREAD                       m_hthread;
    int_to_int *                  m_plongmap;
    bool                          m_bDestroying;
@@ -72,7 +72,7 @@ public:
 
 
    oswindow_data();
-   oswindow_data(::user::base_interaction * puibaseMessageOnlyWindow);
+   oswindow_data(::user::interaction * puibaseMessageOnlyWindow);
    oswindow_data(const void * p);
    oswindow_data(const LPARAM & lparam);
    oswindow_data(const WPARAM & wparam);
@@ -140,9 +140,9 @@ public:
    int32_t select_all_input();
    int32_t map_window();
 
-   void set_user_interaction(::user::base_interaction * pui);
-   ::user::base_interaction * get_user_interaction_base();
-   ::user::base_interaction * get_user_interaction_base() const;
+   void set_user_interaction(::user::interaction * pui);
+   ::user::interaction * get_user_interaction_base();
+   ::user::interaction * get_user_interaction_base() const;
    ::user::interaction * get_user_interaction();
    ::user::interaction * get_user_interaction() const;
 
@@ -176,15 +176,15 @@ public:
 };
 
 
-CLASS_DECL_BASE int32_t oswindow_find_message_only_window(::user::base_interaction * puibaseMessageWindow);
+CLASS_DECL_BASE int32_t oswindow_find_message_only_window(::user::interaction * puibaseMessageWindow);
 CLASS_DECL_BASE int32_t oswindow_find(Display * pdisplay, Window window);
 CLASS_DECL_BASE int32_t oswindow_find(Window window);
-CLASS_DECL_BASE oswindow_data * oswindow_get_message_only_window(::user::base_interaction * puibaseMessageWindow);
+CLASS_DECL_BASE oswindow_data * oswindow_get_message_only_window(::user::interaction * puibaseMessageWindow);
 //CLASS_DECL_BASE oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = NULL);
 CLASS_DECL_BASE oswindow_data * oswindow_get(Window window);
 CLASS_DECL_BASE oswindow oswindow_defer_get(Window w);
 CLASS_DECL_BASE bool oswindow_remove(Display * pdisplay, Window window);
-CLASS_DECL_BASE bool oswindow_remove_message_only_window(::user::base_interaction * puibaseMessageOnlyWindow);
+CLASS_DECL_BASE bool oswindow_remove_message_only_window(::user::interaction * puibaseMessageOnlyWindow);
 
 
 

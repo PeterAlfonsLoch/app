@@ -965,7 +965,7 @@ namespace draw2d
          return;
 
       // If DibSize Wrong Re-create dib
-      if(dib->size() != size())
+      if(dib->m_size != size())
          dib->create(size());
 
       // do copy
@@ -986,7 +986,7 @@ namespace draw2d
    void dib::Paste(dib * dib)
    {
 
-      if(dib->size() != size())
+      if(dib->m_size != size())
          dib->create(size());
 
       dib->defer_realize(get_graphics());
@@ -1037,7 +1037,7 @@ namespace draw2d
 
    void dib::Blend(dib * dib, int32_t A)
    {
-      if(size() != dib->size() )
+      if(m_size != dib->m_size )
          return;
 
       BYTE *src=(BYTE*)dib->get_data();
@@ -1056,8 +1056,8 @@ namespace draw2d
 
    bool dib::Blend(dib *pDib, dib *DibA, int32_t A)
    {
-      if(size() != pDib->size() ||
-         size() != DibA->size())
+      if(m_size != pDib->m_size ||
+         m_size != DibA->size())
          return false;
 
       BYTE *src=(BYTE*)pDib->get_data();
@@ -1082,8 +1082,8 @@ namespace draw2d
 
    bool dib::blend(dib * pdib, dib * pdibRate)
    {
-      if(size() != pdib->size() ||
-         size() != pdibRate->size())
+      if(m_size != pdib->m_size ||
+         m_size != pdibRate->size())
          return false;
 
       BYTE *src=(BYTE*)pdib->get_data();
@@ -1123,7 +1123,7 @@ namespace draw2d
 
    void dib::Darken ( dib *dib )
    {
-      if ( size()!=dib->size() )
+      if ( size()!=dib->m_size )
          return;
 
       BYTE *src=(BYTE*)dib->get_data();
@@ -1142,7 +1142,7 @@ namespace draw2d
 
    void dib::Difference ( dib *dib )
    {
-      if ( size()!=dib->size() )
+      if ( size()!=dib->m_size )
          return;
 
       BYTE *src=(BYTE*)dib->get_data();
@@ -1165,7 +1165,7 @@ namespace draw2d
 
    void dib::Lighten ( dib *dib )
    {
-      if ( size()!=dib->size() )
+      if ( size()!=dib->m_size )
          return;
 
       BYTE *src=(BYTE*)dib->get_data();
@@ -1184,7 +1184,7 @@ namespace draw2d
 
    void dib::Multiply ( dib *dib )
    {
-      if ( size()!=dib->size() )
+      if ( size()!=dib->m_size )
          return;
 
       BYTE *src=(BYTE*)dib->get_data();
@@ -1203,7 +1203,7 @@ namespace draw2d
 
    void dib::Screen ( dib *dib )
    {
-      if ( size()!=dib->size() )
+      if ( size()!=dib->m_size )
          return;
 
       BYTE *src=(BYTE*)dib->get_data();
@@ -2934,7 +2934,7 @@ namespace draw2d
       return ((int64_t) m_size.cx) * ((int64_t)m_size.cy);
    }
 
-   size dib::size()
+   size dib::m_size
    {
       return size64(m_size.cx, m_size.cy);
    }*/
@@ -3039,7 +3039,7 @@ namespace draw2d
    void dib::channel_copy(visual::rgba::echannel echannelDst, visual::rgba::echannel echannelSrc, draw2d::dib * pdib)
    {
 
-      if(size() != pdib->size())
+      if(m_size != pdib->size())
          return;
 
       map();
@@ -3135,7 +3135,7 @@ namespace draw2d
       BYTE uchR = (byte) B;
 
       int32_t i = 0;;
- 
+
 
       while ( size-- )
       {

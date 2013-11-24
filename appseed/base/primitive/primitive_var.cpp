@@ -180,7 +180,7 @@ var::var(const id & id)
 
 var::var(const ::duration & duration)
 {
-   
+
    m_etype = type_duration;
    m_duration = duration;
 
@@ -730,9 +730,9 @@ var::operator string & ()
 class var & var::operator = (const ::duration & duration)
 {
 
-   
+
    set_type(type_duration);
-   
+
    m_duration = duration;
 
    return *this;
@@ -1888,9 +1888,9 @@ duration & var::duration()
    }
    else
    {
-      
+
       set_type(type_duration);
-      
+
       m_duration.set_null();
 
       return m_duration;

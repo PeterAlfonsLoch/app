@@ -80,8 +80,8 @@ typedef unsigned __int64 UINT64;
 #include <unistd.h>
 #include <utime.h>
 #include <netinet/in.h>
-typedef long long INT64;
-typedef unsigned long long UINT64;
+//typedef long long INT64;
+//typedef unsigned long long UINT64;
 #endif
 
 #ifdef LJPEG_DECODE

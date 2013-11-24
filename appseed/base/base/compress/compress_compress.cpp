@@ -155,7 +155,7 @@ namespace core
 
    bool compress::ungz(sp(base_application) papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
    {
-      return System.file().output(papp, lpcszUncompressed, this, &compress::ungz, lpcszGzFileCompressed);
+     return System.file().output(papp, lpcszUncompressed, this, &compress::ungz, lpcszGzFileCompressed);
    }
 
    bool compress::gz(sp(base_application) papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed)

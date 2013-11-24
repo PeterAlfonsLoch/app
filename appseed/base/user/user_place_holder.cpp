@@ -17,7 +17,7 @@ namespace user
 
    void place_holder::install_message_handling(::message::dispatch * pdispatch)
    {
-      ::user::control::install_message_handling(pdispatch);
+      ::user::interaction::install_message_handling(pdispatch);
    }
 
    bool place_holder::can_merge(sp(::user::interaction) pui)
@@ -69,7 +69,8 @@ namespace user
 
       for(index i = m_uiptraHold.get_upper_bound(); i >= 0; i--)
       {
-         System.hold(m_uiptraHold(i));
+      throw todo(get_app());
+//         System.place_hold(m_uiptraHold(i));
       }
 
       m_uiptraHold.remove_all();
@@ -123,7 +124,7 @@ namespace user
 
    bool place_holder::create(sp(::user::place_holder_container) pcontainer, id id)
    {
-      return ::database::user::interaction::create(NULL, NULL, WS_VISIBLE | WS_CHILD /*__WS_DEFAULT_VIEW*/, rect(0,0,0,0), pcontainer, id) != FALSE;
+      return ::user::interaction::create(NULL, NULL, WS_VISIBLE | WS_CHILD /*__WS_DEFAULT_VIEW*/, rect(0,0,0,0), pcontainer, id) != FALSE;
    }
 
    sp(interaction) place_holder::get_ui()

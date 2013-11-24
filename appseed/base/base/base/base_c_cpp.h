@@ -835,3 +835,107 @@ namespace numeric_info
 #include "base_simple_app.h"
 
 
+#include "app/appseed/base/base/os/linux/linux_cpp.h"
+
+
+
+#if defined(LINUX) || defined(MACOS)
+
+
+template < class T >
+bool ::file::system::output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, const char *), const char * lpszSource)
+{
+
+   App(papp).dir().mk(System.dir().name(pszOutput));
+
+   ::file::binary_buffer_sp fileOut = App(papp).file().get_file(pszOutput, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+
+   if(fileOut.is_null())
+      return false;
+
+   ::file::output_stream ostream(fileOut);
+
+   return (p->*lpfnOuput)(ostream, lpszSource);
+
+}
+
+
+template < class T >
+bool ::file::system::output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), const char * lpszInput)
+{
+
+   App(papp).dir().mk(System.dir().name(pszOutput));
+
+   string strDownloading = pszOutput;
+
+   strDownloading += ".downloading";
+
+   ::file::binary_buffer_sp fileOut = App(papp).file().get_file(strDownloading, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+
+   if(fileOut.is_null())
+      return false;
+
+   ::file::binary_buffer_sp fileIn = App(papp).file().get_file(lpszInput, ::file::type_binary | ::file::mode_read);
+
+   if(fileIn.is_null())
+      return false;
+
+   {
+
+      ::file::output_stream ostream(fileOut);
+
+      ::file::input_stream istream(fileIn);
+
+      if(!(p->*lpfnOuput)(ostream, istream))
+         return false;
+
+   }
+
+   try
+   {
+
+      fileOut->close();
+
+   }
+   catch(...)
+   {
+
+   }
+
+
+   try
+   {
+
+      fileIn->close();
+
+   }
+   catch(...)
+   {
+
+   }
+
+   if(::rename(strDownloading, pszOutput) != 0)
+   {
+      del(strDownloading);
+      return false;
+   }
+
+   return true;
+
+}
+
+#endif // defined LINUX
+
+
+
+
+
+
+
+
+
+
+
+
+
+

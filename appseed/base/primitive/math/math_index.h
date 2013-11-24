@@ -1,5 +1,5 @@
 #pragma once
 
-#ifndef __USE_BSD
+#if !defined(__USE_BSD)
 typedef int_ptr index;
 #endif

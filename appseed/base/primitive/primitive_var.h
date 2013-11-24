@@ -194,7 +194,7 @@ public:
    int_array &                      inta();
    int64_array &                    int64a();
    var_array &                      vara();
-   ::duration &                     dur();
+   ::duration &                     duration();
    property_set &                   propset(sp(base_application) papp = NULL);
    property &                       prop();
    const class primitive::memory &  memory() const;
@@ -204,7 +204,7 @@ public:
    var_array                        vara()  const;
    property_set                     propset() const;
    property                         prop() const;
-   ::duration                       dur() const;
+   ::duration                       duration() const;
 
    bool is_scalar() const;
    inline bool is_array() const;

@@ -1304,8 +1304,21 @@ int_bool base_application::get_temp_file_name_template(char * szRet, ::count iBu
       }
       if (file_exists_dup(szRet))
       {
-         if (DeleteFile(szRet))
-            return true;
+         try
+         {
+
+            m_pbasesystem->file().del(szRet);
+
+         }
+         catch(...)
+         {
+
+            return false;
+
+         }
+
+         return true;
+
       }
       else
       {

@@ -1,11 +1,21 @@
 #include "framework.h"
-#include "windows_simple_ui.h"
 
+#include <X11/Xatom.h>
+
+ /* MWM decorations values */
+ #define MWM_DECOR_NONE          0
+ #define MWM_DECOR_ALL           (1L << 0)
+ #define MWM_DECOR_BORDER        (1L << 1)
+ #define MWM_DECOR_RESIZEH       (1L << 2)
+ #define MWM_DECOR_TITLE         (1L << 3)
+ #define MWM_DECOR_MENU          (1L << 4)
+ #define MWM_DECOR_MINIMIZE      (1L << 5)
+ #define MWM_DECOR_MAXIMIZE      (1L << 6)
 
 namespace os
 {
 
-   map < HWND, HWND, simple_ui *, simple_ui * > m_windowmap;
+   map < oswindow, oswindow, simple_ui *, simple_ui * > m_windowmap;
 
    simple_ui::simple_ui(sp(base_application) papp) :
       element(papp),
@@ -24,91 +34,390 @@ namespace os
    {
    }
 
-   ATOM simple_ui::register_window_class(HINSTANCE hInstance)
-   {
-      WNDCLASSEX wcex;
-
-      wcex.cbSize = sizeof(WNDCLASSEX);
-
-      wcex.style = CS_HREDRAW | CS_VREDRAW;
-      wcex.lpfnWndProc = s_window_prodecure;
-      wcex.cbClsExtra = 0;
-      wcex.cbWndExtra = 0;
-      wcex.hInstance = hInstance;
-      //   wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_WIN32PROJECT1));
-      wcex.hIcon = NULL;
-      wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
-      wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-      //wcex.lpszMenuName = MAKEINTRESOURCE(IDC_WIN32PROJECT1);
-      wcex.lpszMenuName = NULL;
-      wcex.lpszClassName = m_strWindowClass;
-      //wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
-      wcex.hIconSm = NULL;
-
-      return RegisterClassEx(&wcex);
-   }
 
    bool simple_ui::prepare_window(LPCRECT lpcrect)
    {
 
-      HWND hWnd;
+      oswindow hWnd;
 
 
-      hWnd = CreateWindowEx(WS_EX_LAYERED, m_strWindowClass, m_strTitle, 0,
-         lpcrect->left,
-         lpcrect->top,
-         width(lpcrect),
-         height(lpcrect),
-         NULL, NULL, m_hinstance, this);
+      single_lock ml(&user_mutex());
 
-      if (!hWnd)
+      Display *display;
+      Window rootwin;
+
+      XEvent e;
+      int32_t scr;
+//      cairo_surface_t *cs;
+
+
+
+
+
+      //single_lock sl(user_mutex(), true);
+
+
+      if(!(display=XOpenDisplay(NULL)))
       {
-         return FALSE;
+         fprintf(stderr, "ERROR: Could not open display\n");
+//            exit(1);
+         return false;
       }
 
-      m_window = hWnd;
+     xdisplay d(display);
 
-      SetTimer(hWnd, 123, 23, NULL);
+      scr      =  DefaultScreen(display);
+      rootwin  =  RootWindow(display, scr);
 
-      ShowWindow(hWnd, SW_SHOW);
+      //if(cs.cx <= 256)
+        // cs.cx = 256;
+      //if(cs.cy <= 256)
+        // cs.cy = 256;
 
-      UpdateWindow(hWnd);
+//      Window window = XCreateSimpleWindow(dpy, rootwin, 256, 256, cs.cx, cs.cy, 0, BlackPixel(dpy, scr), BlackPixel(dpy, scr));
 
-      ::SetWindowLong(hWnd, GWL_STYLE, WS_VISIBLE);
+      const char * xserver = getenv( "DISPLAY" ) ;
 
 
-      return TRUE;
+
+      if (display == 0)
+
+      {
+
+      printf("Could not establish a connection to X-server '%s'\n", xserver ) ;
+
+      return false;
+
+      }
+
+
+
+      // query Visual for "TrueColor" and 32 bits depth (RGBA)
+      Visual * vis = DefaultVisual(display, DefaultScreen(display));
+      int depth = 0;
+      {
+
+
+
+         if(XMatchVisualInfo(display, DefaultScreen(display), 32, TrueColor, &m_visualinfo))
+         {
+             vis = m_visualinfo.visual;
+             depth = m_visualinfo.depth;
+         }
+         else
+         {
+            memset(&m_visualinfo, 0, sizeof(m_visualinfo));
+         }
+
+
+      }
+      // create window
+
+      XSetWindowAttributes attr;
+
+      ZERO(attr);
+
+      attr.colormap = XCreateColormap( display, rootwin, vis, AllocNone);
+
+      attr.event_mask = ExposureMask | ButtonPressMask | ButtonReleaseMask | KeyPressMask | KeyReleaseMask | PointerMotionMask | StructureNotifyMask;
+
+      attr.background_pixmap = None ;
+
+      attr.border_pixmap = None;
+
+      attr.border_pixel = 0 ;
+
+      attr.override_redirect = True;
+
+      Window window = XCreateWindow(
+                           display,
+                           DefaultRootWindow(display),
+                           lpcrect->left,
+                           lpcrect->top,
+                           width(lpcrect),
+                           height(lpcrect),
+                           0,
+                           depth,
+                           InputOutput,
+                           vis,
+                           CWColormap | CWEventMask | CWBackPixmap | CWBorderPixel,
+                           &attr);
+
+
+
+
+      /*oswindow hWnd = ::CreateWindowEx(cs.dwExStyle, cs.lpszClass,
+         cs.lpszName, cs.style, cs.x, cs.y, cs.cx, cs.cy,
+         cs.hwndParent, cs.hMenu, cs.hInstance, cs.lpCreateParams);*/
+
+#ifdef DEBUG
+      if (window == 0)
+      {
+         DWORD dwLastError = GetLastError();
+/*         string strLastError = FormatMessageFromSystem(dwLastError);
+         string strMessage;
+         strMessage.Format("%s\n\nSystem Error Code: %d", strLastError, dwLastError);
+
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: oswindow creation failed: GetLastError returned:\n");
+         TRACE(::core::trace::category_AppMsg, 0, "%s\n", strMessage);
+         try
+         {
+            if(dwLastError == 0x0000057e)
+            {
+               System.simple_message_box(NULL, "cannot create a top-level child window.");
+            }
+            else
+            {
+               System.simple_message_box(NULL, strMessage);
+            }
+         }
+         catch(...)
+         {
+         }*/
+         return false;
+      }
+#endif
+
+      m_window = oswindow_get(display, window, vis);
+
+      //m_window->set_user_interaction(m_pguie);
+
+      XGetWindowAttributes(m_window->display(), m_window->window(), &m_attr);
+
+
+      m_pgraphics = new window_cairo();
+
+      m_iDepth = depth;
+
+      int event_base, error_base, major_version, minor_version;
+
+      //m_bComposite = XCompositeQueryExtension(m_oswindow->display(), &event_base, &error_base) != False
+      //            && XCompositeQueryVersion(m_oswindow->display(), &major_version, &minor_version) != 0
+      //            && (major_version > 0 || minor_version >= 3);
+
+      m_bComposite = XGetSelectionOwner(m_window->display(), XInternAtom(m_window->display(), "_NET_WM_CM_S0", True));
+
+
+      if(m_strText.get_length() > 0)
+      {
+         XStoreName(m_window->display(), m_window->window(), m_strText);
+      }
+
+      wm_nodecorations(m_window, 0);
+
+      //XSelectInput(m_oswindow->display(), m_oswindow->window(), ExposureMask | ButtonPressMask | ButtonReleaseMask | PointerMotionMask | KeyPressMask);
+
+      bool bShow = true;
+
+      if(bShow)
+      {
+         XMapWindow(m_window->display(), m_window->window());
+      }
+
+      m_pmutexGraphics = new mutex(get_app());
+
+d.unlock();
+      ml.unlock();
+
+   //if (!unhook_window_create())
+     // PostNcDestroy();        // cleanup if CreateWindowEx fails too soon
+
+
+      //send_message(WM_CREATE, 0, (LPARAM) &cs);
+//      ::PostMessage(m_window, WM_CREATE, 0, 0);
+
+//      m_pguie->SetWindowPos(0, 256, 256, cs.cx, cs.cy, 0);
+
+  //    ::PostMessage(m_window, WM_SIZE, 0, 0);
+
+      //LNX_THREAD(m_pthread->m_pthread->m_p.m_p)->m_oswindowa.add(m_oswindow);
+
+
+//      m_window = hWnd;
+
+  //    SetTimer(hWnd, 123, 23, NULL);
+
+    //  ShowWindow(hWnd, SW_SHOW);
+
+      //UpdateWindow(hWnd);
+
+      //::SetWindowLong(hWnd, GWL_STYLE, WS_VISIBLE);
+
+
+      return true;
 
    }
 
 
-   LRESULT CALLBACK simple_ui::s_window_prodecure(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam)
+
+
+   void simple_ui::run_loop()
    {
 
-      simple_ui * pui = NULL;
+      m_bRunLoop = true;
 
-      if (message == WM_CREATE)
+      XEvent e;
+
+      while(m_bRunLoop)
       {
 
-         LPCREATESTRUCT lpcreatestruct = (LPCREATESTRUCT)lparam;
+         if(XPending(m_window->display()) > 0)
+         {
 
-         pui = (simple_ui *) lpcreatestruct->lpCreateParams;
+            if(XNextEvent(m_window->display(), &e))
+            {
 
-         if (pui == NULL)
-            return DefWindowProc(hWnd, message, wparam, lparam);
+               if(e.xany.window == m_window->window())
+               {
 
-         m_windowmap[hWnd] = pui;
+                  if(e.type==Expose && e.xexpose.count < 1)
+                  {
+                     on_draw_framebuffer();
+                  }
+                  else if(e.type == ButtonPress || e.type == ButtonRelease)
+                  {
 
-         pui->m_window = hWnd;
+//                     bRet                 = true;
+//                     if(bRet)
+                     {
+
+        //                lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
+      //                  lpMsg->wParam        = 0;
+          //              lpMsg->lParam        = MAKELONG(e.xbutton.x_root, e.xbutton.y_root);
+
+                     }
+
+                     if(e.xbutton.type == ButtonPress)
+                     {
+                        if(e.xbutton.button == Button1)
+                        {
+                           on_lbutton_down(e.xbutton.x_root, e.xbutton.y_root);
+                        }
+                        else if(e.xbutton.button == Button2)
+                        {
+                  //         lpMsg->message = WM_MBUTTONDOWN;
+                        }
+                        else if(e.xbutton.button == Button3)
+                        {
+                    //       lpMsg->message = WM_RBUTTONDOWN;
+                        }
+                        else
+                        {
+                      //     bRet = false;
+                        }
+
+                     }
+                     else if(e.xbutton.type == ButtonRelease)
+                     {
+                        if(e.xbutton.button == Button1)
+                        {
+                           on_lbutton_up(e.xbutton.x_root, e.xbutton.y_root);
+                        }
+                        else if(e.xbutton.button == Button2)
+                        {
+                           //lpMsg->message = WM_MBUTTONUP;
+                        }
+                        else if(e.xbutton.button == Button3)
+                        {
+                           //lpMsg->message = WM_RBUTTONUP;
+                        }
+                        else
+                        {
+                           //bRet = false;
+                        }
+
+                     }
+                     else
+                     {
+
+                        //bRet = false;
+
+                     }
+
+
+
+                  }
+                  else if(e.type == KeyPress || e.type == KeyRelease)
+                  {
+
+                     //oswindow w = oswindow_get(display, e.xexpose.window);
+
+//                     bRet                 = true;
+
+                     if(e.xkey.type == KeyPress)
+                     {
+
+                        on_key_down(e.xkey.keycode);
+                       // lpMsg->message = WM_KEYDOWN;
+
+                     }
+                     else if(e.xkey.type == KeyRelease)
+                     {
+
+                        //lpMsg->message = WM_KEYUP;
+                        on_key_up(e.xkey.keycode);
+
+                     }
+                     else
+                     {
+
+//                        bRet = false;
+
+                     }
+
+                     //lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
+                     //lpMsg->wParam        = e.xkey.keycode;
+                     //lpMsg->lParam        = MAKELONG(0, e.xkey.keycode);
+
+
+
+                  }
+                  else if(e.type == MotionNotify)
+                  {
+
+                     //lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
+                     //lpMsg->message       = WM_MOUSEMOVE;
+                     //lpMsg->wParam        = 0;
+                     //lpMsg->lParam        = MAKELONG(e.xmotion.x_root, e.xmotion.y_root);
+
+                     on_mouse_move(e.xmotion.x_root, e.xmotion.y_root);
+
+                     //bRet                 = true;
+
+                  }
+                  else if(e.type == DestroyNotify)
+                  {
+
+                     //lpMsg->hwnd          = oswindow_get(display, e.xdestroywindow.window);
+                     //lpMsg->message       = WM_DESTROY;
+
+                     m_bRunLoop = false;
+
+                     //bRet                 = true;
+
+                  }
+
+                  //if(bPeek && bRet)
+                    // XPutBackEvent(display, &e);
+
+
+
+               }
+
+
+            }
+
+         }
+         else
+         {
+
+            on_draw_framebuffer();
+
+            Sleep(84);
+
+         }
 
       }
-
-      pui = m_windowmap[hWnd];
-
-      if (pui != NULL)
-         return pui->window_procedure(hWnd, message, wparam, lparam);
-
-      return DefWindowProc(hWnd, message, wparam, lparam);
 
    }
 
@@ -123,13 +432,13 @@ namespace os
       ::ScreenToClient(m_window, ppt);
    }
 
-   bool simple_ui::on_windows_key_down(WPARAM wparam, LPARAM lparam)
+   bool simple_ui::on_key_down(uint32_t uiKey)
    {
-      if (wparam == VK_SHIFT)
+      if (uiKey == 12) // VKSHIFT
       {
          m_bShiftKey = true;
       }
-      else if (wparam == VK_ESCAPE)
+      else if (uiKey == 13) // VK_ESCAPE)
       {
          on_action("escape");
       }
@@ -138,21 +447,21 @@ namespace os
 
    }
 
-   bool simple_ui::on_windows_key_up(WPARAM wparam, LPARAM lparam)
+   bool simple_ui::on_key_up(uint32_t uiKey)
    {
 
       string str;
-      wchar_t wsz[32];
+      //wchar_t wsz[32];
 
       BYTE baState[256];
 
       ZERO(baState);
       for (int i = 0; i < 256; i++)
       {
-         baState[i] = (BYTE)GetAsyncKeyState(i);
+//         baState[i] = (BYTE)GetAsyncKeyState(i);
       }
 
-      baState[wparam & 0xff] = 0x80;
+      baState[uiKey & 0xff] = 0x80;
 
       /*if((GetAsyncKeyState(::user::key_shift) & 0x80000000) != 0)
       {
@@ -164,11 +473,17 @@ namespace os
          baState[VK_SHIFT] |= 0x80;
       }
 
-      int32_t iRet = ToUnicodeEx((UINT)wparam, 0, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
-      str = wsz;
-      on_char(static_cast<UINT>(wparam), str);
+      char sz[2];
 
-      if (m_bShiftKey && wparam == VK_SHIFT)
+
+      sz[0] = uiKey;
+      sz[1]  = '\0';
+
+      //int32_t iRet = ToUnicodeEx((UINT)wparam, 0, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
+      str = sz;
+      on_char(static_cast<UINT>(uiKey), str);
+
+      if (m_bShiftKey && uiKey == VK_SHIFT)
       {
          m_bShiftKey = false;
       }
@@ -179,53 +494,6 @@ namespace os
    }
 
 
-   LRESULT simple_ui::window_procedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-   {
-
-      switch (message)
-      {
-      case WM_DESTROY:
-         PostQuitMessage(0);
-         break;
-      case WM_LBUTTONDOWN:
-         on_lbutton_down(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-         break;
-      case WM_LBUTTONUP:
-         on_lbutton_up(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-         break;
-      case WM_MOUSEMOVE:
-         on_mouse_move(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-         break;
-      case WM_KEYDOWN:
-         if (!on_windows_key_down(wParam, lParam))
-            goto default_window_procedure;
-         break;
-      case WM_KEYUP:
-         if (!on_windows_key_up(wParam, lParam))
-            goto default_window_procedure;
-         break;
-      case WM_TIMER:
-         on_windows_gdi_draw_framebuffer();
-         goto default_window_procedure;
-      case WM_MOVE:
-         if (!on_windows_move(LOWORD(lParam), HIWORD(lParam)))
-            goto default_window_procedure;
-         break;
-      case WM_SIZE:
-         if (!on_windows_size(LOWORD(lParam), HIWORD(lParam)))
-            goto default_window_procedure;
-         break;
-      default:
-         goto default_window_procedure;
-      }
-
-      return 0;
-
-   default_window_procedure:
-
-      return DefWindowProc(hWnd, message, wParam, lParam);
-
-   }
 
    void simple_ui::GetWindowRect(RECT * prect)
    {
@@ -239,8 +507,24 @@ namespace os
    }
 
 
-   void simple_ui::on_windows_gdi_draw_framebuffer()
+   void simple_ui::on_draw_framebuffer()
    {
+
+      rect rectWindow;
+
+      GetWindowRect(rectWindow);
+
+      if(rectWindow.size() != m_size)
+      {
+         on_size(rectWindow.width(), rectWindow.height());
+      }
+
+      if(rectWindow.top_left() != m_pt)
+      {
+         on_move(rectWindow.left, rectWindow.top);
+      }
+
+
       if (m_dib->get_graphics() != NULL)
       {
          RECT rectClient;
@@ -317,7 +601,7 @@ namespace os
 
    }
 
-   bool simple_ui::on_windows_move(int32_t x, int32_t y)
+   bool simple_ui::on_move(int32_t x, int32_t y)
    {
 
       m_pt.x = x;
@@ -327,7 +611,7 @@ namespace os
 
    }
 
-   bool simple_ui::on_windows_size(int32_t cx, int32_t cy)
+   bool simple_ui::on_size(int32_t cx, int32_t cy)
    {
 
       m_size.cx = cx;
@@ -355,7 +639,7 @@ namespace os
 
    void simple_ui::release_capture()
    {
-      
+
       ::ReleaseCapture();
 
    }
@@ -367,3 +651,66 @@ namespace os
 
 
 
+void wm_nodecorations(oswindow w, int map)
+{
+    Atom WM_HINTS;
+    int set;
+
+
+   single_lock sl(&user_mutex(), true);
+
+xdisplay d(w->display());
+    Display * dpy = w->display();
+    Window window = w->window();
+
+   int scr=DefaultScreen(dpy);
+   Window rootw=RootWindow(dpy, scr);
+
+    WM_HINTS = XInternAtom(dpy, "_MOTIF_WM_HINTS", True);
+    if ( WM_HINTS != None ) {
+        #define MWM_HINTS_DECORATIONS   (1L << 1)
+        struct {
+          unsigned long flags;
+          unsigned long functions;
+          unsigned long decorations;
+                   long input_mode;
+          unsigned long status;
+        } MWMHints = { MWM_HINTS_DECORATIONS, 0,
+            MWM_DECOR_NONE, 0, 0 };
+        XChangeProperty(dpy, window, WM_HINTS, WM_HINTS, 32,
+                        PropModeReplace, (unsigned char *)&MWMHints,
+                        sizeof(MWMHints)/4);
+    }
+    WM_HINTS = XInternAtom(dpy, "KWM_WIN_DECORATION", True);
+    if ( WM_HINTS != None ) {
+        long KWMHints = KDE_tinyDecoration;
+        XChangeProperty(dpy, window, WM_HINTS, WM_HINTS, 32,
+                        PropModeReplace, (unsigned char *)&KWMHints,
+                        sizeof(KWMHints)/4);
+    }
+
+    WM_HINTS = XInternAtom(dpy, "_WIN_HINTS", True);
+    if ( WM_HINTS != None ) {
+        long GNOMEHints = 0;
+        XChangeProperty(dpy, window, WM_HINTS, WM_HINTS, 32,
+                        PropModeReplace, (unsigned char *)&GNOMEHints,
+                        sizeof(GNOMEHints)/4);
+    }
+    WM_HINTS = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE", True);
+    if ( WM_HINTS != None ) {
+        Atom NET_WMHints[2];
+        NET_WMHints[0] = XInternAtom(dpy,
+            "_KDE_NET_WM_WINDOW_TYPE_OVERRIDE", True);
+        NET_WMHints[1] = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE_NORMAL", True);
+        XChangeProperty(dpy, window,
+                        WM_HINTS, XA_ATOM, 32, PropModeReplace,
+                        (unsigned char *)&NET_WMHints, 2);
+    }
+    XSetTransientForHint(dpy, window, rootw);
+    if(map)
+    {
+    XUnmapWindow(dpy, window);
+    XMapWindow(dpy, window);
+
+    }
+ }

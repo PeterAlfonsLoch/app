@@ -406,8 +406,10 @@ namespace hotplugin
       if((rc = pthread_attr_setstacksize(&attr, 1024 * 1024)))
          return -1;
 
-      if((rc = pthread_create(&threadId, &attr, (void*(*)(void*))&::_ca2_starter_start,  pstart)))
-         return -1;
+throw todo(get_thread_app());
+
+//      if((rc = pthread_create(&threadId, &attr, (void*(*)(void*))&::_ca2_starter_start,  pstart)))
+  //       return -1;
 #endif
       return 0;
    }

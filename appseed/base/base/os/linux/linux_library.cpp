@@ -2,135 +2,129 @@
 #include <dlfcn.h>
 
 
-namespace boot
+base_library::base_library()
 {
 
+   m_plibrary = NULL;
 
-   library::library()
+}
+
+
+base_library::base_library(const char * pszOpen)
+{
+
+   m_plibrary = NULL;
+
+   open(pszOpen);
+
+}
+
+
+base_library::~base_library()
+{
+
+   close();
+
+}
+
+
+bool base_library::open(const char * pszPath)
+{
+
+   string strPath(pszPath);
+
+   if(strPath == "os")
    {
 
-      m_plibrary = NULL;
+      strPath = "ca2os";
+
+   }
+   else if(strPath == "app_sphere")
+   {
+
+      strPath = "basesphere";
 
    }
 
+   if(strstr_dup(strPath, ".") == NULL)
+      strPath += ".so";
 
-   library::library(const char * pszOpen)
+   if(strstr((const char *) strPath, "/") == NULL && !str_begins_dup(strPath, "lib"))
+      strPath = "lib" + strPath;
+
+   m_plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
+   int iError = errno;
+
+   const char * psz = strerror(iError);
+
+   if(psz != NULL)
    {
 
-      m_plibrary = NULL;
-
-      open(pszOpen);
+      fprintf(stderr, "%s\n", psz);
 
    }
 
+   const char * psz2 = dlerror();
 
-   library::~library()
+   if(psz2 != NULL)
    {
 
-      close();
+      fprintf(stderr, "%s\n", psz2);
 
    }
 
+   return m_plibrary != NULL;
 
-   bool library::open(const char * pszPath)
+}
+
+
+bool base_library::close()
+{
+   if(m_plibrary != NULL)
    {
-
-      string strPath(pszPath);
-
-      if(strPath == "os")
-      {
-
-         strPath = "ca2os";
-
-      }
-      else if(strPath == "app_sphere")
-      {
-
-         strPath = "basesphere";
-
-      }
-
-      if(strstr_dup(strPath, ".") == NULL)
-         strPath += ".so";
-
-      if(strstr((const char *) strPath, "/") == NULL && !str_begins_dup(strPath, "lib"))
-         strPath = "lib" + strPath;
-
-      m_plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
-      int iError = errno;
-
-      const char * psz = strerror(iError);
-
-      if(psz != NULL)
-      {
-
-         fprintf(stderr, "%s\n", psz);
-
-      }
-
-      const char * psz2 = dlerror();
-
-      if(psz2 != NULL)
-      {
-
-         fprintf(stderr, "%s\n", psz2);
-
-      }
-
-      return m_plibrary != NULL;
-
+      dlclose(m_plibrary);
    }
+}
 
 
-   bool library::close()
-   {
-      if(m_plibrary != NULL)
-      {
-         dlclose(m_plibrary);
-      }
-   }
+void * base_library::raw_get(const char * pszElement)
+{
+   return dlsym(m_plibrary, pszElement);
+}
 
+ca2_library::ca2_library()
+{
+}
 
-   void * library::raw_get(const char * pszElement)
-   {
-      return dlsym(m_plibrary, pszElement);
-   }
+ca2_library::ca2_library(const char * pszOpen) :
+   base_library(pszOpen)
+{
 
-   ca2_library::ca2_library()
-   {
-   }
+}
 
-   ca2_library::ca2_library(const char * pszOpen) :
-      library(pszOpen)
-   {
+ca2_library::~ca2_library()
+{
 
-   }
+}
 
-   ca2_library::~ca2_library()
-   {
+bool ca2_library::open(const char * pszPath)
+{
+   return base_library::open(pszPath);
+}
 
-   }
+bool base_library::is_opened()
+{
 
-   bool ca2_library::open(const char * pszPath)
-   {
-      return library::open(pszPath);
-   }
+   return m_plibrary != NULL;
 
-   bool library::is_opened()
-   {
+}
 
-      return m_plibrary != NULL;
+bool base_library::is_closed()
+{
 
-   }
+   return !is_opened();
 
-   bool library::is_closed()
-   {
-
-      return !is_opened();
-
-   }
-
-} // namespace boot
+}
 
 
 

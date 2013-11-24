@@ -1287,7 +1287,6 @@
 		<Unit filename="plane/plane_system_gen_str.cpp" />
 		<Unit filename="plane/plane_system_primitive_string_format_spec.h" />
 		<Unit filename="plane/plane_system_primitive_var.h" />
-		<Unit filename="plane/plane_system_template_trace.h" />
 		<Unit filename="plane/session/bergedge/bergedge.h" />
 		<Unit filename="plane/session/bergedge/bergedge_document.cpp" />
 		<Unit filename="plane/session/bergedge/bergedge_document.h" />

@@ -43,6 +43,7 @@
 		<Compiler>
 			<Add option="-std=c++0x" />
 			<Add option="-fexceptions" />
+			<Add option="-fpermissive" />
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-pie" />
 			<Add option="-fno-stack-protector" />
@@ -51,6 +52,7 @@
 			<Add option="-Winvalid-pch" />
 			<Add option="-Wno-conversion-null" />
 			<Add option="-fPIC" />
+			<Add option="-DNO_LCMS" />
 			<Add directory="../../thirdparty/appseed" />
 			<Add directory="../../thirdparty/include" />
 			<Add directory="." />
@@ -61,6 +63,20 @@
 			<Add directory="../../nodeapp/linux/include" />
 			<Add directory="../../.." />
 			<Add directory="../base" />
+			<Add directory="base/openssl" />
+			<Add directory="base/openssl/crypto" />
+			<Add directory="base/openssl/ssl" />
+			<Add directory="graphics/cairo" />
+			<Add directory="graphics/freeimage/FreeImage" />
+			<Add directory="graphics/freeimage" />
+			<Add directory="graphics/freeimage/LibRawLite" />
+			<Add directory="graphics/freeimage/LibRawLite/libraw" />
+			<Add directory="graphics/freeimage/LibJPEG" />
+			<Add directory="graphics/freeimage/OpenEXR/Half" />
+			<Add directory="graphics/freeimage/OpenEXR/IlmImf" />
+			<Add directory="graphics/freeimage/OpenEXR/Iex" />
+			<Add directory="graphics/freeimage/OpenEXR/IlmThread" />
+			<Add directory="graphics/freeimage/OpenEXR/Imath" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -218,8 +234,6 @@
 		<Unit filename="base/compress/bsdiff/bsdiff_randtable.cpp" />
 		<Unit filename="base/compress/bsdiff/bzlib.h" />
 		<Unit filename="base/compress/bsdiff/bzlib_private.h" />
-		<Unit filename="base/compress/bsdiff/main_bsdiff.cpp" />
-		<Unit filename="base/compress/bsdiff/main_bspatch.cpp" />
 		<Unit filename="base/compress/compress.h" />
 		<Unit filename="base/compress/compress_bzip_stream.cpp" />
 		<Unit filename="base/compress/compress_bzip_stream.h" />
@@ -253,74 +267,21 @@
 		<Unit filename="base/compress/zlib/compress.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/compress/zlib/contrib/blast/blast.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/contrib/blast/blast.h" />
-		<Unit filename="base/compress/zlib/contrib/infback9/infback9.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/contrib/infback9/infback9.h" />
 		<Unit filename="base/compress/zlib/contrib/infback9/inffix9.h" />
 		<Unit filename="base/compress/zlib/contrib/infback9/inflate9.h" />
-		<Unit filename="base/compress/zlib/contrib/infback9/inftree9.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/contrib/infback9/inftree9.h" />
-		<Unit filename="base/compress/zlib/contrib/inflate86/inffas86.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/compress/zlib/contrib/iostream/test.cpp" />
-		<Unit filename="base/compress/zlib/contrib/iostream/zfstream.cpp" />
 		<Unit filename="base/compress/zlib/contrib/iostream/zfstream.h" />
 		<Unit filename="base/compress/zlib/contrib/iostream2/zstream.h" />
-		<Unit filename="base/compress/zlib/contrib/iostream2/zstream_test.cpp" />
-		<Unit filename="base/compress/zlib/contrib/iostream3/test.cc" />
-		<Unit filename="base/compress/zlib/contrib/iostream3/zfstream.cc" />
 		<Unit filename="base/compress/zlib/contrib/iostream3/zfstream.h" />
-		<Unit filename="base/compress/zlib/contrib/masmx64/inffas8664.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/contrib/minizip/crypt.h" />
-		<Unit filename="base/compress/zlib/contrib/minizip/ioapi.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/contrib/minizip/ioapi.h" />
-		<Unit filename="base/compress/zlib/contrib/minizip/iowin32.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/contrib/minizip/iowin32.h" />
-		<Unit filename="base/compress/zlib/contrib/minizip/miniunz.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/compress/zlib/contrib/minizip/minizip.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/compress/zlib/contrib/minizip/mztools.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/contrib/minizip/mztools.h" />
-		<Unit filename="base/compress/zlib/contrib/minizip/unzip.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/contrib/minizip/unzip.h" />
-		<Unit filename="base/compress/zlib/contrib/minizip/zip.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/contrib/minizip/zip.h" />
-		<Unit filename="base/compress/zlib/contrib/puff/puff.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/contrib/puff/puff.h" />
-		<Unit filename="base/compress/zlib/contrib/puff/pufftest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/compress/zlib/contrib/testzlib/testzlib.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/compress/zlib/contrib/untgz/untgz.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/crc32.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -329,32 +290,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/compress/zlib/deflate.h" />
-		<Unit filename="base/compress/zlib/dll_main.cpp" />
-		<Unit filename="base/compress/zlib/examples/enough.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/compress/zlib/examples/fitblk.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/compress/zlib/examples/gun.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/compress/zlib/examples/gzappend.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/compress/zlib/examples/gzjoin.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/compress/zlib/examples/gzlog.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/examples/gzlog.h" />
-		<Unit filename="base/compress/zlib/examples/zpipe.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/compress/zlib/examples/zran.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/gzclose.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -384,15 +320,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/compress/zlib/inftrees.h" />
-		<Unit filename="base/compress/zlib/test/example.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/compress/zlib/test/infcover.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/compress/zlib/test/minigzip.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/trees.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -651,229 +578,25 @@
 		<Unit filename="base/install/windows/install_windows_boot.cpp" />
 		<Unit filename="base/install/windows/install_windows_service.cpp" />
 		<Unit filename="base/install/windows/install_windows_win.cpp" />
-		<Unit filename="base/openssl/MacOS/GUSI_Init.cpp" />
-		<Unit filename="base/openssl/MacOS/GetHTTPS.src/CPStringUtils.cpp" />
 		<Unit filename="base/openssl/MacOS/GetHTTPS.src/CPStringUtils.hpp" />
-		<Unit filename="base/openssl/MacOS/GetHTTPS.src/ErrorHandling.cpp" />
 		<Unit filename="base/openssl/MacOS/GetHTTPS.src/ErrorHandling.hpp" />
-		<Unit filename="base/openssl/MacOS/GetHTTPS.src/GetHTTPS.cpp" />
-		<Unit filename="base/openssl/MacOS/GetHTTPS.src/MacSocket.cpp" />
 		<Unit filename="base/openssl/MacOS/GetHTTPS.src/MacSocket.h" />
-		<Unit filename="base/openssl/MacOS/Randomizer.cpp" />
 		<Unit filename="base/openssl/MacOS/Randomizer.h" />
 		<Unit filename="base/openssl/MacOS/_MWERKS_GUSI_prefix.h" />
 		<Unit filename="base/openssl/MacOS/_MWERKS_prefix.h" />
 		<Unit filename="base/openssl/MacOS/buildinf.h" />
 		<Unit filename="base/openssl/MacOS/opensslconf.h" />
-		<Unit filename="base/openssl/apps/app_rand.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/apps.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/apps/apps.h" />
-		<Unit filename="base/openssl/apps/asn1pars.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/ca.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/ciphers.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/cms.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/crl.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/crl2p7.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/dgst.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/dh.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/dhparam.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/dsa.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/dsaparam.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/ec.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/ecparam.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/enc.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/engine.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/errstr.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/gendh.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/gendsa.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/genpkey.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/genrsa.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/md4.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/nseq.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/ocsp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/openssl.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/passwd.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/pkcs12.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/pkcs7.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/pkcs8.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/pkey.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/pkeyparam.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/pkeyutl.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/prime.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/apps/progs.h" />
-		<Unit filename="base/openssl/apps/rand.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/req.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/rsa.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/rsautl.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/apps/s_apps.h" />
-		<Unit filename="base/openssl/apps/s_cb.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/s_client.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/s_server.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/s_socket.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/s_time.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/sess_id.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/smime.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/speed.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/spkac.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/srp.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/apps/testdsa.h" />
 		<Unit filename="base/openssl/apps/testrsa.h" />
 		<Unit filename="base/openssl/apps/timeouts.h" />
-		<Unit filename="base/openssl/apps/ts.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/verify.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/version.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/vms_decc_init.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/winrand.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/apps/x509.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/bugs/alpha.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/bugs/dggccbug.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/bugs/sgiccbug.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/bugs/stream.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/bugs/ultrixcc.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/LPdir_nyi.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/LPdir_unix.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/LPdir_vms.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/LPdir_win.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/LPdir_win32.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/LPdir_wince.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/aes/aes.h" />
 		<Unit filename="base/openssl/crypto/aes/aes_cbc.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/aes/aes_cfb.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/aes/aes_core.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/aes/aes_ctr.c">
@@ -886,9 +609,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/aes/aes_locl.h" />
-		<Unit filename="base/openssl/crypto/aes/aes_misc.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/aes/aes_ofb.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -899,9 +619,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/arm_arch.h" />
-		<Unit filename="base/openssl/crypto/armcap.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/asn1/a_bitstr.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1138,9 +855,6 @@
 		<Unit filename="base/openssl/crypto/asn1/x_x509a.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/bf/bf_cbc.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/bf/bf_cfb64.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1154,18 +868,8 @@
 		<Unit filename="base/openssl/crypto/bf/bf_ofb64.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/bf/bf_opts.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/bf/bf_pi.h" />
 		<Unit filename="base/openssl/crypto/bf/bf_skey.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/bf/bfs.cpp" />
-		<Unit filename="base/openssl/crypto/bf/bfspeed.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/bf/bftest.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/bf/blowfish.h" />
@@ -1228,13 +932,7 @@
 		<Unit filename="base/openssl/crypto/bio/bss_null.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/bio/bss_rtcp.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/bio/bss_sock.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/bn/asm/x86_64-gcc.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/bn/bn.h" />
@@ -1324,27 +1022,6 @@
 		<Unit filename="base/openssl/crypto/bn/bn_x931p.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/bn/bnspeed.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/bn/bntest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/bn/divtest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/bn/exp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/bn/expspeed.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/bn/exptest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/bn/vms-helper.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/buffer/buf_err.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1399,16 +1076,6 @@
 		<Unit filename="base/openssl/crypto/cast/cast.h" />
 		<Unit filename="base/openssl/crypto/cast/cast_lcl.h" />
 		<Unit filename="base/openssl/crypto/cast/cast_s.h" />
-		<Unit filename="base/openssl/crypto/cast/cast_spd.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/cast/castopts.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/cast/casts.cpp" />
-		<Unit filename="base/openssl/crypto/cast/casttest.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/cmac/cm_ameth.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1473,9 +1140,6 @@
 		<Unit filename="base/openssl/crypto/comp/comp_lib.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/conf/cnf_save.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/conf/conf.h" />
 		<Unit filename="base/openssl/crypto/conf/conf_api.c">
 			<Option compilerVar="CC" />
@@ -1500,9 +1164,6 @@
 		<Unit filename="base/openssl/crypto/conf/conf_sap.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/conf/test.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/cpt_err.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1511,9 +1172,6 @@
 		</Unit>
 		<Unit filename="base/openssl/crypto/cryptlib.h" />
 		<Unit filename="base/openssl/crypto/crypto.h" />
-		<Unit filename="base/openssl/crypto/cversion.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/des/cbc3_enc.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1532,11 +1190,7 @@
 		<Unit filename="base/openssl/crypto/des/cfb_enc.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/des/des.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/des/des.h" />
-		<Unit filename="base/openssl/crypto/des/des3s.cpp" />
 		<Unit filename="base/openssl/crypto/des/des_enc.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1548,14 +1202,7 @@
 		<Unit filename="base/openssl/crypto/des/des_old2.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/des/des_opts.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/des/des_ver.h" />
-		<Unit filename="base/openssl/crypto/des/dess.cpp" />
-		<Unit filename="base/openssl/crypto/des/destest.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/des/ecb3_enc.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1575,9 +1222,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/des/fcrypt_b.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/des/ncbc_enc.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/des/ofb64ede.c">
@@ -1601,30 +1245,17 @@
 		<Unit filename="base/openssl/crypto/des/read2pwd.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/des/read_pwd.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/des/rpc_des.h" />
 		<Unit filename="base/openssl/crypto/des/rpc_enc.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/des/rpw.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/des/set_key.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/des/speed.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/des/spr.h" />
 		<Unit filename="base/openssl/crypto/des/str2key.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/des/times/aix.cc" />
-		<Unit filename="base/openssl/crypto/des/times/alpha.cc" />
-		<Unit filename="base/openssl/crypto/des/times/hpux.cc" />
-		<Unit filename="base/openssl/crypto/des/times/usparc.cc" />
 		<Unit filename="base/openssl/crypto/des/xcbc_enc.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1657,18 +1288,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/dh/dh_prn.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/dh/dhtest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/dh/p1024.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/dh/p192.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/dh/p512.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/dsa/dsa.h" />
@@ -1709,16 +1328,7 @@
 		<Unit filename="base/openssl/crypto/dsa/dsa_vrf.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/dsa/dsagen.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/dsa/dsatest.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/dso/dso.h" />
-		<Unit filename="base/openssl/crypto/dso/dso_beos.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/dso/dso_dl.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1735,12 +1345,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/dso/dso_openssl.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/dso/dso_vms.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/dso/dso_win32.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/ebcdic.c">
@@ -1821,13 +1425,7 @@
 		<Unit filename="base/openssl/crypto/ec/ecp_smpl.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/ec/ectest.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/ecdh/ecdh.h" />
-		<Unit filename="base/openssl/crypto/ecdh/ecdhtest.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/ecdh/ech_err.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1842,9 +1440,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/ecdsa/ecdsa.h" />
-		<Unit filename="base/openssl/crypto/ecdsa/ecdsatest.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/ecdsa/ecs_asn1.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1911,9 +1506,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/engine/engine.h" />
-		<Unit filename="base/openssl/crypto/engine/enginetest.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/engine/tb_asnmth.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -2000,9 +1592,6 @@
 		<Unit filename="base/openssl/crypto/evp/e_des3.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/evp/e_dsa.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/evp/e_idea.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -2057,9 +1646,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/evp/evp_pkey.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/evp/evp_test.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/evp/m_dss.c">
@@ -2160,9 +1746,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/hmac/hmac.h" />
-		<Unit filename="base/openssl/crypto/hmac/hmactest.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/idea/i_cbc.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -2180,22 +1763,7 @@
 		</Unit>
 		<Unit filename="base/openssl/crypto/idea/idea.h" />
 		<Unit filename="base/openssl/crypto/idea/idea_lcl.h" />
-		<Unit filename="base/openssl/crypto/idea/idea_spd.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/idea/ideatest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/jpake/jpake.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/jpake/jpake.h" />
-		<Unit filename="base/openssl/crypto/jpake/jpake_err.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/jpake/jpaketest.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/krb5/krb5_asn.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -2203,43 +1771,18 @@
 		<Unit filename="base/openssl/crypto/lhash/lh_stats.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/lhash/lh_test.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/lhash/lhash.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/lhash/lhash.h" />
-		<Unit filename="base/openssl/crypto/md2/md2.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/md2/md2.h" />
-		<Unit filename="base/openssl/crypto/md2/md2_dgst.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/md2/md2_one.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/md2/md2test.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/md32_common.h" />
-		<Unit filename="base/openssl/crypto/md4/md4.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/md4/md4.h" />
 		<Unit filename="base/openssl/crypto/md4/md4_dgst.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/md4/md4_locl.h" />
 		<Unit filename="base/openssl/crypto/md4/md4_one.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/md4/md4s.cpp" />
-		<Unit filename="base/openssl/crypto/md4/md4test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/md5/md5.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/md5/md5.h" />
@@ -2250,18 +1793,11 @@
 		<Unit filename="base/openssl/crypto/md5/md5_one.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/md5/md5s.cpp" />
-		<Unit filename="base/openssl/crypto/md5/md5test.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/mdc2/mdc2.h" />
 		<Unit filename="base/openssl/crypto/mdc2/mdc2_one.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/mdc2/mdc2dgst.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/mdc2/mdc2test.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/mem.c">
@@ -2303,9 +1839,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/o_dir.h" />
-		<Unit filename="base/openssl/crypto/o_dir_test.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/o_fips.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -2454,19 +1987,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/pkcs12/pkcs12.h" />
-		<Unit filename="base/openssl/crypto/pkcs7/bio_ber.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/pkcs7/bio_pk7.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/pkcs7/dec.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/pkcs7/enc.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/pkcs7/example.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/pkcs7/example.h" />
@@ -2496,18 +2017,6 @@
 		</Unit>
 		<Unit filename="base/openssl/crypto/pkcs7/pkcs7.h" />
 		<Unit filename="base/openssl/crypto/pkcs7/pkcs7err.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/pkcs7/sign.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/pkcs7/verify.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/ppccap.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/pqueue/pq_test.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/pqueue/pqueue.c">
@@ -2546,9 +2055,6 @@
 		<Unit filename="base/openssl/crypto/rand/randfile.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/rand/randtest.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/rc2/rc2.h" />
 		<Unit filename="base/openssl/crypto/rc2/rc2_cbc.c">
 			<Option compilerVar="CC" />
@@ -2566,18 +2072,6 @@
 		<Unit filename="base/openssl/crypto/rc2/rc2ofb64.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/rc2/rc2speed.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/rc2/rc2test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/rc2/tab.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/rc4/rc4.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/rc4/rc4.h" />
 		<Unit filename="base/openssl/crypto/rc4/rc4_enc.c">
 			<Option compilerVar="CC" />
@@ -2589,42 +2083,9 @@
 		<Unit filename="base/openssl/crypto/rc4/rc4_utl.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/rc4/rc4s.cpp" />
-		<Unit filename="base/openssl/crypto/rc4/rc4speed.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/rc4/rc4test.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/rc5/rc5.h" />
-		<Unit filename="base/openssl/crypto/rc5/rc5_ecb.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/rc5/rc5_enc.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/rc5/rc5_locl.h" />
-		<Unit filename="base/openssl/crypto/rc5/rc5_skey.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/rc5/rc5cfb64.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/rc5/rc5ofb64.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/rc5/rc5s.cpp" />
-		<Unit filename="base/openssl/crypto/rc5/rc5speed.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/rc5/rc5test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/ripemd/asm/rips.cpp" />
 		<Unit filename="base/openssl/crypto/ripemd/ripemd.h" />
-		<Unit filename="base/openssl/crypto/ripemd/rmd160.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/ripemd/rmd_dgst.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -2633,9 +2094,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/ripemd/rmdconst.h" />
-		<Unit filename="base/openssl/crypto/ripemd/rmdtest.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/rsa/rsa.h" />
 		<Unit filename="base/openssl/crypto/rsa/rsa_ameth.c">
 			<Option compilerVar="CC" />
@@ -2695,13 +2153,7 @@
 		<Unit filename="base/openssl/crypto/rsa/rsa_ssl.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/rsa/rsa_test.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/rsa/rsa_x931.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/s390xcap.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/seed/seed.c">
@@ -2721,32 +2173,17 @@
 		<Unit filename="base/openssl/crypto/seed/seed_ofb.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/sha/sha.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/sha/sha.h" />
-		<Unit filename="base/openssl/crypto/sha/sha1.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/sha/sha1_one.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/sha/sha1dgst.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/sha/sha1test.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/sha/sha256.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/sha/sha256t.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/sha/sha512.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/sha/sha512t.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/sha/sha_dgst.c">
@@ -2754,12 +2191,6 @@
 		</Unit>
 		<Unit filename="base/openssl/crypto/sha/sha_locl.h" />
 		<Unit filename="base/openssl/crypto/sha/sha_one.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/sha/shatest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/sparcv9cap.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/srp/srp.h" />
@@ -2771,32 +2202,14 @@
 		<Unit filename="base/openssl/crypto/srp/srp_vfy.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/srp/srptest.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/stack/safestack.h" />
 		<Unit filename="base/openssl/crypto/stack/stack.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/stack/stack.h" />
 		<Unit filename="base/openssl/crypto/store/store.h" />
-		<Unit filename="base/openssl/crypto/store/str_err.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/store/str_lib.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/store/str_locl.h" />
-		<Unit filename="base/openssl/crypto/store/str_mem.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/store/str_meth.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/symhacks.h" />
-		<Unit filename="base/openssl/crypto/threads/mttest.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/threads/th-lock.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -2868,9 +2281,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/whrlpool/wp_locl.h" />
-		<Unit filename="base/openssl/crypto/whrlpool/wp_test.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/x509/by_dir.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -3055,183 +2465,21 @@
 		<Unit filename="base/openssl/crypto/x509v3/v3_utl.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/x509v3/v3conf.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/x509v3/v3err.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/x509v3/v3prin.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/x509v3/x509v3.h" />
-		<Unit filename="base/openssl/demos/asn1/ocsp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/b64.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/bio/saccept.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/bio/sconnect.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/cms/cms_comp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/cms/cms_ddec.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/cms/cms_dec.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/cms/cms_denc.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/cms/cms_enc.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/cms/cms_sign.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/cms/cms_sign2.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/cms/cms_uncomp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/cms/cms_ver.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/easy_tls/easy-tls.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/demos/easy_tls/easy-tls.h" />
-		<Unit filename="base/openssl/demos/easy_tls/test.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/demos/easy_tls/test.h" />
-		<Unit filename="base/openssl/demos/eay/base64.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/eay/conn.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/eay/loadrsa.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/demos/engines/cluster_labs/cluster_labs.h" />
-		<Unit filename="base/openssl/demos/engines/cluster_labs/hw_cluster_labs.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/engines/cluster_labs/hw_cluster_labs_err.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/demos/engines/cluster_labs/hw_cluster_labs_err.h" />
-		<Unit filename="base/openssl/demos/engines/ibmca/hw_ibmca.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/engines/ibmca/hw_ibmca_err.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/demos/engines/ibmca/hw_ibmca_err.h" />
 		<Unit filename="base/openssl/demos/engines/ibmca/ica_openssl_api.h" />
-		<Unit filename="base/openssl/demos/engines/rsaref/rsaref.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/engines/rsaref/rsaref_err.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/demos/engines/rsaref/rsaref_err.h" />
-		<Unit filename="base/openssl/demos/engines/zencod/hw_zencod.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/demos/engines/zencod/hw_zencod.h" />
-		<Unit filename="base/openssl/demos/engines/zencod/hw_zencod_err.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/demos/engines/zencod/hw_zencod_err.h" />
-		<Unit filename="base/openssl/demos/maurice/example1.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/maurice/example2.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/maurice/example3.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/maurice/example4.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/maurice/loadkeys.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/demos/maurice/loadkeys.h" />
-		<Unit filename="base/openssl/demos/pkcs12/pkread.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/pkcs12/pkwrite.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/prime/prime.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/selfsign.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/sign/sign.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/smime/smdec.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/smime/smenc.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/smime/smsign.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/smime/smsign2.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/smime/smver.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/spkigen.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/ssl/cli.cpp" />
-		<Unit filename="base/openssl/demos/ssl/inetdsrv.cpp" />
-		<Unit filename="base/openssl/demos/ssl/serv.cpp" />
-		<Unit filename="base/openssl/demos/state_machine/state_machine.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/tunala/breakage.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/tunala/buffer.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/tunala/cb.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/tunala/ip.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/tunala/sm.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/tunala/tunala.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/demos/tunala/tunala.h" />
-		<Unit filename="base/openssl/demos/x509/mkcert.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/demos/x509/mkreq.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/e_os.h" />
 		<Unit filename="base/openssl/e_os2.orig.h" />
 		<Unit filename="base/openssl/engines/ccgost/e_gost_err.c">
@@ -3289,9 +2537,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/engines/ccgost/gosthash.h" />
-		<Unit filename="base/openssl/engines/ccgost/gostsum.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/engines/e_4758cca.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -3372,13 +2617,7 @@
 		<Unit filename="base/openssl/engines/vendor_defns/hw_ubsec.h" />
 		<Unit filename="base/openssl/engines/vendor_defns/hwcryptohook.h" />
 		<Unit filename="base/openssl/engines/vendor_defns/sureware.h" />
-		<Unit filename="base/openssl/ms/applink.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/ms/tlhelp32.h" />
-		<Unit filename="base/openssl/ms/uplink.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/ms/uplink.h" />
 		<Unit filename="base/openssl/ssl/bio_ssl.c">
 			<Option compilerVar="CC" />
@@ -3503,13 +2742,7 @@
 		<Unit filename="base/openssl/ssl/ssl_stat.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/ssl/ssl_task.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/ssl/ssl_txt.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/ssl/ssltest.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/ssl/t1_clnt.c">
@@ -3534,125 +2767,6 @@
 		<Unit filename="base/openssl/ssl/tls_srp.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/test/asn1test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/bftest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/bntest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/casttest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/destest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/dhtest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/dsatest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/dummytest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/ecdhtest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/ecdsatest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/ectest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/enginetest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/evp_test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/exptest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/hmactest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/ideatest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/igetest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/jpaketest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/md2test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/md4test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/md5test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/mdc2test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/methtest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/r160test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/randtest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/rc2test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/rc4test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/rc5test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/rmdtest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/rsa_test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/sha1test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/sha256t.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/sha512t.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/shatest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/srptest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/ssltest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/test/wp_test.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/times/x86/bfs.cpp" />
-		<Unit filename="base/openssl/times/x86/casts.cpp" />
-		<Unit filename="base/openssl/times/x86/des3s.cpp" />
-		<Unit filename="base/openssl/times/x86/dess.cpp" />
-		<Unit filename="base/openssl/times/x86/md4s.cpp" />
-		<Unit filename="base/openssl/times/x86/md5s.cpp" />
-		<Unit filename="base/openssl/times/x86/rc4s.cpp" />
-		<Unit filename="base/openssl/times/x86/sha1s.cpp" />
 		<Unit filename="base/os/ansios/ansios.h" />
 		<Unit filename="base/os/ansios/ansios_cross_win.cpp" />
 		<Unit filename="base/os/ansios/ansios_cross_win_file.cpp" />
@@ -3660,9 +2774,7 @@
 		<Unit filename="base/os/ansios/ansios_file.cpp" />
 		<Unit filename="base/os/ansios/ansios_file.h" />
 		<Unit filename="base/os/ansios/ansios_file_std.cpp" />
-		<Unit filename="base/os/ansios/ansios_http.cpp" />
 		<Unit filename="base/os/ansios/ansios_http.h" />
-		<Unit filename="base/os/ansios/ansios_http_lib.cpp" />
 		<Unit filename="base/os/ansios/ansios_http_lib.h" />
 		<Unit filename="base/os/ansios/ansios_multithreading.cpp" />
 		<Unit filename="base/os/ansios/ansios_multithreading.h" />
@@ -3697,12 +2809,7 @@
 		<Unit filename="base/os/cross/windows/windows_user.h" />
 		<Unit filename="base/os/cross/windows/windows_winnt.h" />
 		<Unit filename="base/os/linux/ca_os.h" />
-		<Unit filename="base/os/linux/ca_os_cross_win_file.cpp" />
 		<Unit filename="base/os/linux/ca_os_internal.h" />
-		<Unit filename="base/os/linux/ca_os_process.cpp" />
-		<Unit filename="base/os/linux/ca_os_thread.cpp" />
-		<Unit filename="base/os/linux/ca_os_window.cpp" />
-		<Unit filename="base/os/linux/linux.cpp" />
 		<Unit filename="base/os/linux/linux.h" />
 		<Unit filename="base/os/linux/linux_c.c">
 			<Option compilerVar="CC" />
@@ -3916,6 +3023,566 @@
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
+		<Unit filename="graphics/cairo/cairo-analysis-surface-private.h" />
+		<Unit filename="graphics/cairo/cairo-analysis-surface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-arc-private.h" />
+		<Unit filename="graphics/cairo/cairo-arc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-array-private.h" />
+		<Unit filename="graphics/cairo/cairo-array.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-atomic-private.h" />
+		<Unit filename="graphics/cairo/cairo-atomic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-backend-private.h" />
+		<Unit filename="graphics/cairo/cairo-base64-stream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-base85-stream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-bentley-ottmann-rectangular.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-bentley-ottmann-rectilinear.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-bentley-ottmann.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-beos.h" />
+		<Unit filename="graphics/cairo/cairo-botor-scan-converter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-box-inline.h" />
+		<Unit filename="graphics/cairo/cairo-boxes-intersect.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-boxes-private.h" />
+		<Unit filename="graphics/cairo/cairo-boxes.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-cache-private.h" />
+		<Unit filename="graphics/cairo/cairo-cache.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-cff-subset.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-clip-boxes.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-clip-inline.h" />
+		<Unit filename="graphics/cairo/cairo-clip-polygon.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-clip-private.h" />
+		<Unit filename="graphics/cairo/cairo-clip-region.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-clip-surface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-clip-tor-scan-converter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-clip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-cogl-context-private.h" />
+		<Unit filename="graphics/cairo/cairo-cogl-gradient-private.h" />
+		<Unit filename="graphics/cairo/cairo-cogl-private.h" />
+		<Unit filename="graphics/cairo/cairo-cogl-utils-private.h" />
+		<Unit filename="graphics/cairo/cairo-cogl.h" />
+		<Unit filename="graphics/cairo/cairo-color.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-combsort-inline.h" />
+		<Unit filename="graphics/cairo/cairo-compiler-private.h" />
+		<Unit filename="graphics/cairo/cairo-composite-rectangles-private.h" />
+		<Unit filename="graphics/cairo/cairo-composite-rectangles.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-compositor-private.h" />
+		<Unit filename="graphics/cairo/cairo-compositor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-contour-inline.h" />
+		<Unit filename="graphics/cairo/cairo-contour-private.h" />
+		<Unit filename="graphics/cairo/cairo-contour.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-damage-private.h" />
+		<Unit filename="graphics/cairo/cairo-damage.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-debug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-default-context-private.h" />
+		<Unit filename="graphics/cairo/cairo-default-context.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-deflate-stream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-deprecated.h" />
+		<Unit filename="graphics/cairo/cairo-device-private.h" />
+		<Unit filename="graphics/cairo/cairo-device.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-directfb.h" />
+		<Unit filename="graphics/cairo/cairo-drm.h" />
+		<Unit filename="graphics/cairo/cairo-error-inline.h" />
+		<Unit filename="graphics/cairo/cairo-error-private.h" />
+		<Unit filename="graphics/cairo/cairo-errorcairo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-fallback-compositor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-features.h" />
+		<Unit filename="graphics/cairo/cairo-fixed-private.h" />
+		<Unit filename="graphics/cairo/cairo-fixed-type-private.h" />
+		<Unit filename="graphics/cairo/cairo-fixed.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-font-face-twin-data.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-font-face-twin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-font-face.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-font-options.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-fontconfig-private.h" />
+		<Unit filename="graphics/cairo/cairo-freed-pool-private.h" />
+		<Unit filename="graphics/cairo/cairo-freed-pool.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-freelist-private.h" />
+		<Unit filename="graphics/cairo/cairo-freelist-type-private.h" />
+		<Unit filename="graphics/cairo/cairo-freelist.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-ft-font.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-ft-private.h" />
+		<Unit filename="graphics/cairo/cairo-ft.h" />
+		<Unit filename="graphics/cairo/cairo-gl-dispatch-private.h" />
+		<Unit filename="graphics/cairo/cairo-gl-ext-def-private.h" />
+		<Unit filename="graphics/cairo/cairo-gl-gradient-private.h" />
+		<Unit filename="graphics/cairo/cairo-gl-private.h" />
+		<Unit filename="graphics/cairo/cairo-gl.h" />
+		<Unit filename="graphics/cairo/cairo-gstate-private.h" />
+		<Unit filename="graphics/cairo/cairo-gstate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-hash-private.h" />
+		<Unit filename="graphics/cairo/cairo-hash.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-hull.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-image-compositor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-image-info-private.h" />
+		<Unit filename="graphics/cairo/cairo-image-info.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-image-source.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-image-surface-inline.h" />
+		<Unit filename="graphics/cairo/cairo-image-surface-private.h" />
+		<Unit filename="graphics/cairo/cairo-image-surface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-list-inline.h" />
+		<Unit filename="graphics/cairo/cairo-list-private.h" />
+		<Unit filename="graphics/cairo/cairo-lzw.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-malloc-private.h" />
+		<Unit filename="graphics/cairo/cairo-mask-compositor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-matrix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-mempool-private.h" />
+		<Unit filename="graphics/cairo/cairo-mempool.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-mesh-pattern-rasterizer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-misc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-mono-scan-converter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-mutex-impl-private.h" />
+		<Unit filename="graphics/cairo/cairo-mutex-list-private.h" />
+		<Unit filename="graphics/cairo/cairo-mutex-private.h" />
+		<Unit filename="graphics/cairo/cairo-mutex-type-private.h" />
+		<Unit filename="graphics/cairo/cairo-mutex.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-no-compositor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-observer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-os2-private.h" />
+		<Unit filename="graphics/cairo/cairo-os2.h" />
+		<Unit filename="graphics/cairo/cairo-output-stream-private.h" />
+		<Unit filename="graphics/cairo/cairo-output-stream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-paginated-private.h" />
+		<Unit filename="graphics/cairo/cairo-paginated-surface-private.h" />
+		<Unit filename="graphics/cairo/cairo-paginated-surface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-path-bounds.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-path-fill.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-path-fixed-private.h" />
+		<Unit filename="graphics/cairo/cairo-path-fixed.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-path-in-fill.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-path-private.h" />
+		<Unit filename="graphics/cairo/cairo-path-stroke-boxes.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-path-stroke-polygon.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-path-stroke-traps.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-path-stroke-tristrip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-path-stroke.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-path.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-pattern-inline.h" />
+		<Unit filename="graphics/cairo/cairo-pattern-private.h" />
+		<Unit filename="graphics/cairo/cairo-pattern.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-pdf-operators-private.h" />
+		<Unit filename="graphics/cairo/cairo-pdf-operators.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-pdf-shading-private.h" />
+		<Unit filename="graphics/cairo/cairo-pdf-shading.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-pdf-surface-private.h" />
+		<Unit filename="graphics/cairo/cairo-pdf-surface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-pdf.h" />
+		<Unit filename="graphics/cairo/cairo-pen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-png.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-polygon-intersect.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-polygon-reduce.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-polygon.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-private.h" />
+		<Unit filename="graphics/cairo/cairo-ps-surface-private.h" />
+		<Unit filename="graphics/cairo/cairo-ps-surface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-ps.h" />
+		<Unit filename="graphics/cairo/cairo-qt.h" />
+		<Unit filename="graphics/cairo/cairo-quartz-image.h" />
+		<Unit filename="graphics/cairo/cairo-quartz-private.h" />
+		<Unit filename="graphics/cairo/cairo-quartz.h" />
+		<Unit filename="graphics/cairo/cairo-raster-source-pattern.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-recording-surface-inline.h" />
+		<Unit filename="graphics/cairo/cairo-recording-surface-private.h" />
+		<Unit filename="graphics/cairo/cairo-recording-surface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-rectangle.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-rectangular-scan-converter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-reference-count-private.h" />
+		<Unit filename="graphics/cairo/cairo-region-private.h" />
+		<Unit filename="graphics/cairo/cairo-region.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-rtree-private.h" />
+		<Unit filename="graphics/cairo/cairo-rtree.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-scaled-font-private.h" />
+		<Unit filename="graphics/cairo/cairo-scaled-font-subsets-private.h" />
+		<Unit filename="graphics/cairo/cairo-scaled-font-subsets.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-scaled-font.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-script-private.h" />
+		<Unit filename="graphics/cairo/cairo-script-surface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-script.h" />
+		<Unit filename="graphics/cairo/cairo-shape-mask-compositor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-skia.h" />
+		<Unit filename="graphics/cairo/cairo-slope-private.h" />
+		<Unit filename="graphics/cairo/cairo-slope.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-spans-compositor-private.h" />
+		<Unit filename="graphics/cairo/cairo-spans-compositor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-spans-private.h" />
+		<Unit filename="graphics/cairo/cairo-spans.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-spline.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-stroke-dash-private.h" />
+		<Unit filename="graphics/cairo/cairo-stroke-dash.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-stroke-style.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-surface-backend-private.h" />
+		<Unit filename="graphics/cairo/cairo-surface-clipper-private.h" />
+		<Unit filename="graphics/cairo/cairo-surface-clipper.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-surface-fallback-private.h" />
+		<Unit filename="graphics/cairo/cairo-surface-fallback.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-surface-inline.h" />
+		<Unit filename="graphics/cairo/cairo-surface-observer-inline.h" />
+		<Unit filename="graphics/cairo/cairo-surface-observer-private.h" />
+		<Unit filename="graphics/cairo/cairo-surface-observer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-surface-offset-private.h" />
+		<Unit filename="graphics/cairo/cairo-surface-offset.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-surface-private.h" />
+		<Unit filename="graphics/cairo/cairo-surface-snapshot-inline.h" />
+		<Unit filename="graphics/cairo/cairo-surface-snapshot-private.h" />
+		<Unit filename="graphics/cairo/cairo-surface-snapshot.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-surface-subsurface-inline.h" />
+		<Unit filename="graphics/cairo/cairo-surface-subsurface-private.h" />
+		<Unit filename="graphics/cairo/cairo-surface-subsurface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-surface-wrapper-private.h" />
+		<Unit filename="graphics/cairo/cairo-surface-wrapper.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-surface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-svg-surface-private.h" />
+		<Unit filename="graphics/cairo/cairo-svg-surface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-svg.h" />
+		<Unit filename="graphics/cairo/cairo-tee-surface-private.h" />
+		<Unit filename="graphics/cairo/cairo-tee-surface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-tee.h" />
+		<Unit filename="graphics/cairo/cairo-time-private.h" />
+		<Unit filename="graphics/cairo/cairo-time.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-tor-scan-converter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-tor22-scan-converter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-toy-font-face.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-traps-compositor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-traps-private.h" />
+		<Unit filename="graphics/cairo/cairo-traps.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-tristrip-private.h" />
+		<Unit filename="graphics/cairo/cairo-tristrip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-truetype-subset-private.h" />
+		<Unit filename="graphics/cairo/cairo-truetype-subset.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-type1-fallback.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-type1-glyph-names.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-type1-private.h" />
+		<Unit filename="graphics/cairo/cairo-type1-subset.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-type3-glyph-surface-private.h" />
+		<Unit filename="graphics/cairo/cairo-type3-glyph-surface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-types-private.h" />
+		<Unit filename="graphics/cairo/cairo-unicode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-user-font-private.h" />
+		<Unit filename="graphics/cairo/cairo-user-font.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-version.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-version.h" />
+		<Unit filename="graphics/cairo/cairo-vg.h" />
+		<Unit filename="graphics/cairo/cairo-wideint-private.h" />
+		<Unit filename="graphics/cairo/cairo-wideint-type-private.h" />
+		<Unit filename="graphics/cairo/cairo-wideint.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-win32.h" />
+		<Unit filename="graphics/cairo/cairo-xcb-private.h" />
+		<Unit filename="graphics/cairo/cairo-xcb.h" />
+		<Unit filename="graphics/cairo/cairo-xlib-core-compositor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-xlib-display.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-xlib-fallback-compositor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-xlib-private.h" />
+		<Unit filename="graphics/cairo/cairo-xlib-render-compositor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-xlib-screen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-xlib-source.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-xlib-surface-private.h" />
+		<Unit filename="graphics/cairo/cairo-xlib-surface-shm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-xlib-surface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-xlib-visual.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-xlib-xcb-surface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-xlib-xrender-private.h" />
+		<Unit filename="graphics/cairo/cairo-xlib-xrender.h" />
+		<Unit filename="graphics/cairo/cairo-xlib.h" />
+		<Unit filename="graphics/cairo/cairo-xml-surface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo-xml.h" />
+		<Unit filename="graphics/cairo/cairo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/cairo.h" />
+		<Unit filename="graphics/cairo/cairoint.h" />
+		<Unit filename="graphics/cairo/check-has-hidden-symbols.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/config.h" />
+		<Unit filename="graphics/cairo/drm/cairo-drm-i915-private.h" />
+		<Unit filename="graphics/cairo/drm/cairo-drm-i965-private.h" />
+		<Unit filename="graphics/cairo/drm/cairo-drm-intel-brw-defines.h" />
+		<Unit filename="graphics/cairo/drm/cairo-drm-intel-brw-eu.h" />
+		<Unit filename="graphics/cairo/drm/cairo-drm-intel-brw-structs.h" />
+		<Unit filename="graphics/cairo/drm/cairo-drm-intel-command-private.h" />
+		<Unit filename="graphics/cairo/drm/cairo-drm-intel-ioctl-private.h" />
+		<Unit filename="graphics/cairo/drm/cairo-drm-intel-private.h" />
+		<Unit filename="graphics/cairo/drm/cairo-drm-ioctl-private.h" />
+		<Unit filename="graphics/cairo/drm/cairo-drm-private.h" />
+		<Unit filename="graphics/cairo/drm/cairo-drm-radeon-private.h" />
+		<Unit filename="graphics/cairo/skia/cairo-skia-private.h" />
+		<Unit filename="graphics/cairo/test-base-compositor-surface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/test-compositor-surface-private.h" />
+		<Unit filename="graphics/cairo/test-compositor-surface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/test-compositor-surface.h" />
+		<Unit filename="graphics/cairo/test-null-compositor-surface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/test-null-compositor-surface.h" />
+		<Unit filename="graphics/cairo/test-paginated-surface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/cairo/test-paginated-surface.h" />
+		<Unit filename="graphics/cairo/win32/cairo-win32-private.h" />
 		<Unit filename="graphics/draw2d/draw2d.h" />
 		<Unit filename="graphics/draw2d/draw2d_bitmap.cpp" />
 		<Unit filename="graphics/draw2d/draw2d_bitmap.h" />
@@ -3938,16 +3605,1951 @@
 		<Unit filename="graphics/draw2d/draw2d_pen.h" />
 		<Unit filename="graphics/draw2d/draw2d_region.cpp" />
 		<Unit filename="graphics/draw2d/draw2d_region.h" />
+		<Unit filename="graphics/freeimage/CacheFile.h" />
+		<Unit filename="graphics/freeimage/DeprecationManager/DeprecationMgr.h" />
+		<Unit filename="graphics/freeimage/FreeImage/BitmapAccess.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/CacheFile.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/ColorLookup.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/Conversion.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/Conversion16_555.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/Conversion16_565.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/Conversion24.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/Conversion32.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/Conversion4.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/Conversion8.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/ConversionFloat.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/ConversionRGBF.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/ConversionType.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/ConversionUINT16.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/FreeImage.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/FreeImageFramework.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/FreeImageFramework.h" />
+		<Unit filename="graphics/freeimage/FreeImage/FreeImageIO.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/GetType.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/Halftoning.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/J2KHelper.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/MemoryIO.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/MultiPage.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/NNQuantizer.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PSDParser.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PSDParser.h" />
+		<Unit filename="graphics/freeimage/FreeImage/PixelAccess.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/Plugin.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginBMP.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginCUT.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginDDS.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginEXR.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginG3.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginGIF.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginHDR.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginICO.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginIFF.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginJ2K.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginJP2.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginJPEG.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginKOALA.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginMNG.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginPCD.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginPCX.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginPFM.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginPICT.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginPNG.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginPNM.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginPSD.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginRAS.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginRAW.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginSGI.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginTARGA.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginTIFF.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginWBMP.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginXBM.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/PluginXPM.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/TIFFLogLuv.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/ToneMapping.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/Utilities.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/WuQuantizer.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/ZLibInterface.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/tmoColorConvert.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/tmoDrago03.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/tmoFattal02.cpp" />
+		<Unit filename="graphics/freeimage/FreeImage/tmoReinhard05.cpp" />
+		<Unit filename="graphics/freeimage/FreeImageIO.h" />
+		<Unit filename="graphics/freeimage/FreeImageToolkit/BSplineRotate.cpp" />
+		<Unit filename="graphics/freeimage/FreeImageToolkit/Background.cpp" />
+		<Unit filename="graphics/freeimage/FreeImageToolkit/Channels.cpp" />
+		<Unit filename="graphics/freeimage/FreeImageToolkit/ClassicRotate.cpp" />
+		<Unit filename="graphics/freeimage/FreeImageToolkit/Colors.cpp" />
+		<Unit filename="graphics/freeimage/FreeImageToolkit/CopyPaste.cpp" />
+		<Unit filename="graphics/freeimage/FreeImageToolkit/Display.cpp" />
+		<Unit filename="graphics/freeimage/FreeImageToolkit/Filters.h" />
+		<Unit filename="graphics/freeimage/FreeImageToolkit/Flip.cpp" />
+		<Unit filename="graphics/freeimage/FreeImageToolkit/JPEGTransform.cpp" />
+		<Unit filename="graphics/freeimage/FreeImageToolkit/MultigridPoissonSolver.cpp" />
+		<Unit filename="graphics/freeimage/FreeImageToolkit/Rescale.cpp" />
+		<Unit filename="graphics/freeimage/FreeImageToolkit/Resize.cpp" />
+		<Unit filename="graphics/freeimage/FreeImageToolkit/Resize.h" />
+		<Unit filename="graphics/freeimage/LibJPEG/ansi2knr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/cderror.h" />
+		<Unit filename="graphics/freeimage/LibJPEG/cdjpeg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/cdjpeg.h" />
+		<Unit filename="graphics/freeimage/LibJPEG/cjpeg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/ckconfig.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/djpeg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jaricom.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jcapimin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jcapistd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jcarith.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jccoefct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jccolor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jcdctmgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jchuff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jcinit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jcmainct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jcmarker.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jcmaster.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jcomapi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jconfig.h" />
+		<Unit filename="graphics/freeimage/LibJPEG/jcparam.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jcprepct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jcsample.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jctrans.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jdapimin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jdapistd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jdarith.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jdatadst.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jdatasrc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jdcoefct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jdcolor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jdct.h" />
+		<Unit filename="graphics/freeimage/LibJPEG/jddctmgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jdhuff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jdinput.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jdmainct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jdmarker.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jdmaster.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jdmerge.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jdpostct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jdsample.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jdtrans.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jerror.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jerror.h" />
+		<Unit filename="graphics/freeimage/LibJPEG/jfdctflt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jfdctfst.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jfdctint.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jidctflt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jidctfst.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jidctint.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jinclude.h" />
+		<Unit filename="graphics/freeimage/LibJPEG/jmemansi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jmemmgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jmemname.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jmemnobs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jmemsys.h" />
+		<Unit filename="graphics/freeimage/LibJPEG/jmorecfg.h" />
+		<Unit filename="graphics/freeimage/LibJPEG/jpegint.h" />
+		<Unit filename="graphics/freeimage/LibJPEG/jpeglib.h" />
+		<Unit filename="graphics/freeimage/LibJPEG/jpegtran.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jquant1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jquant2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jutils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/jversion.h" />
+		<Unit filename="graphics/freeimage/LibJPEG/rdbmp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/rdcolmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/rdgif.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/rdjpgcom.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/rdppm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/rdrle.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/rdswitch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/rdtarga.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/transupp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/transupp.h" />
+		<Unit filename="graphics/freeimage/LibJPEG/wrbmp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/wrgif.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/wrjpgcom.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/wrppm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/wrrle.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibJPEG/wrtarga.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibMNG/libmng.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_callback_xs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibMNG/libmng_chunk_descr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibMNG/libmng_chunk_descr.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_chunk_io.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibMNG/libmng_chunk_io.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_chunk_prc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibMNG/libmng_chunk_prc.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_chunk_xs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibMNG/libmng_chunks.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_cms.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibMNG/libmng_cms.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_conf.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_data.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_display.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibMNG/libmng_display.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_dither.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibMNG/libmng_dither.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_error.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibMNG/libmng_error.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_filter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibMNG/libmng_filter.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_hlapi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibMNG/libmng_jpeg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibMNG/libmng_jpeg.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_memory.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_object_prc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibMNG/libmng_object_prc.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_objects.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_pixels.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibMNG/libmng_pixels.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_prop_xs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibMNG/libmng_read.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibMNG/libmng_read.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_trace.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibMNG/libmng_trace.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_types.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_write.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibMNG/libmng_write.h" />
+		<Unit filename="graphics/freeimage/LibMNG/libmng_zlib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibMNG/libmng_zlib.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/bio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibOpenJPEG/bio.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/cio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibOpenJPEG/cio.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/dwt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibOpenJPEG/dwt.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/event.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibOpenJPEG/event.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/fix.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/image.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibOpenJPEG/image.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/int.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/j2k.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibOpenJPEG/j2k.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/j2k_lib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibOpenJPEG/j2k_lib.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/jp2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibOpenJPEG/jp2.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/jpt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibOpenJPEG/jpt.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/mct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibOpenJPEG/mct.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/mqc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibOpenJPEG/mqc.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/openjpeg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibOpenJPEG/openjpeg.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/opj_config.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/opj_includes.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/opj_malloc.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/pi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibOpenJPEG/pi.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/raw.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibOpenJPEG/raw.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/t1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibOpenJPEG/t1.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/t1_generate_luts.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibOpenJPEG/t1_luts.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/t2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibOpenJPEG/t2.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/tcd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibOpenJPEG/tcd.h" />
+		<Unit filename="graphics/freeimage/LibOpenJPEG/tgt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibOpenJPEG/tgt.h" />
+		<Unit filename="graphics/freeimage/LibPNG/png.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibPNG/png_framework.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibPNG/png_framework.h" />
+		<Unit filename="graphics/freeimage/LibPNG/pngerror.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibPNG/pngget.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibPNG/pngmem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibPNG/pngpread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibPNG/pngpriv.h" />
+		<Unit filename="graphics/freeimage/LibPNG/pngread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibPNG/pngrio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibPNG/pngrtran.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibPNG/pngrutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibPNG/pngset.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibPNG/pngtest.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibPNG/pngtrans.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibPNG/pngwio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibPNG/pngwrite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibPNG/pngwtran.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibPNG/pngwutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibRawLite/dcraw.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibRawLite/dcraw/dcraw.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibRawLite/internal/dcraw_common.cpp" />
+		<Unit filename="graphics/freeimage/LibRawLite/internal/dcraw_fileio.cpp" />
+		<Unit filename="graphics/freeimage/LibRawLite/internal/defines.h" />
+		<Unit filename="graphics/freeimage/LibRawLite/internal/demosaic_packs.cpp" />
+		<Unit filename="graphics/freeimage/LibRawLite/internal/libraw_internal_funcs.h" />
+		<Unit filename="graphics/freeimage/LibRawLite/internal/var_defines.h" />
+		<Unit filename="graphics/freeimage/LibRawLite/libraw/internal/defines.h" />
+		<Unit filename="graphics/freeimage/LibRawLite/libraw/internal/libraw_internal_funcs.h" />
+		<Unit filename="graphics/freeimage/LibRawLite/libraw/internal/var_defines.h" />
+		<Unit filename="graphics/freeimage/LibRawLite/libraw/libraw.h" />
+		<Unit filename="graphics/freeimage/LibRawLite/libraw/libraw_alloc.h" />
+		<Unit filename="graphics/freeimage/LibRawLite/libraw/libraw_const.h" />
+		<Unit filename="graphics/freeimage/LibRawLite/libraw/libraw_datastream.h" />
+		<Unit filename="graphics/freeimage/LibRawLite/libraw/libraw_internal.h" />
+		<Unit filename="graphics/freeimage/LibRawLite/libraw/libraw_types.h" />
+		<Unit filename="graphics/freeimage/LibRawLite/libraw/libraw_version.h" />
+		<Unit filename="graphics/freeimage/LibRawLite/libraw_c_api.cpp" />
+		<Unit filename="graphics/freeimage/LibRawLite/libraw_cxx.cpp" />
+		<Unit filename="graphics/freeimage/LibTIFF/mkg3states.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/mkspans.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/t4.h" />
+		<Unit filename="graphics/freeimage/LibTIFF/tif_close.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_codec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_color.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_compress.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_config.h" />
+		<Unit filename="graphics/freeimage/LibTIFF/tif_config.vc.h" />
+		<Unit filename="graphics/freeimage/LibTIFF/tif_config.wince.h" />
+		<Unit filename="graphics/freeimage/LibTIFF/tif_dir.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_dir.h" />
+		<Unit filename="graphics/freeimage/LibTIFF/tif_dirinfo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_dirread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_dirwrite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_dumpmode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_error.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_extension.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_fax3.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_fax3.h" />
+		<Unit filename="graphics/freeimage/LibTIFF/tif_fax3sm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_flush.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_getimage.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_jbig.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_jpeg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_luv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_lzw.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_next.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_ojpeg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_open.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_packbits.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_pixarlog.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_predict.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_predict.h" />
+		<Unit filename="graphics/freeimage/LibTIFF/tif_print.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_read.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_stream.cxx" />
+		<Unit filename="graphics/freeimage/LibTIFF/tif_strip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_swab.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_thunder.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_tile.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_unix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_version.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_warning.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_write.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tif_zip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/LibTIFF/tiff.h" />
+		<Unit filename="graphics/freeimage/LibTIFF/tiffconf.vc.h" />
+		<Unit filename="graphics/freeimage/LibTIFF/tiffconf.wince.h" />
+		<Unit filename="graphics/freeimage/LibTIFF/tiffio.h" />
+		<Unit filename="graphics/freeimage/LibTIFF/tiffio.hxx" />
+		<Unit filename="graphics/freeimage/LibTIFF/tiffiop.h" />
+		<Unit filename="graphics/freeimage/LibTIFF/tiffvers.h" />
+		<Unit filename="graphics/freeimage/LibTIFF/uvcode.h" />
+		<Unit filename="graphics/freeimage/Metadata/Exif.cpp" />
+		<Unit filename="graphics/freeimage/Metadata/FIRational.cpp" />
+		<Unit filename="graphics/freeimage/Metadata/FIRational.h" />
+		<Unit filename="graphics/freeimage/Metadata/FreeImageTag.cpp" />
+		<Unit filename="graphics/freeimage/Metadata/FreeImageTag.h" />
+		<Unit filename="graphics/freeimage/Metadata/IPTC.cpp" />
+		<Unit filename="graphics/freeimage/Metadata/TagConversion.cpp" />
+		<Unit filename="graphics/freeimage/Metadata/TagLib.cpp" />
+		<Unit filename="graphics/freeimage/Metadata/XTIFF.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/Half/eLut.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/Half/eLut.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Half/half.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/Half/half.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Half/halfFunction.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Half/halfLimits.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Half/toFloat.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/Half/toFloat.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Iex/Iex.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Iex/IexBaseExc.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/Iex/IexBaseExc.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Iex/IexErrnoExc.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Iex/IexMacros.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Iex/IexMathExc.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Iex/IexThrowErrnoExc.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/Iex/IexThrowErrnoExc.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmBaseConfig.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfAcesFile.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfAcesFile.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfArray.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfAttribute.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfAttribute.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfAutoArray.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfB44Compressor.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfB44Compressor.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfBoxAttribute.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfBoxAttribute.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfCRgbaFile.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfCRgbaFile.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfChannelList.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfChannelList.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfChannelListAttribute.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfChannelListAttribute.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfCheckedArithmetic.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfChromaticities.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfChromaticities.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfChromaticitiesAttribute.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfChromaticitiesAttribute.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfCompression.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfCompressionAttribute.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfCompressionAttribute.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfCompressor.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfCompressor.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfConvert.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfConvert.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfDoubleAttribute.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfDoubleAttribute.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfEnvmap.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfEnvmap.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfEnvmapAttribute.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfEnvmapAttribute.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfFloatAttribute.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfFloatAttribute.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfFrameBuffer.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfFrameBuffer.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfFramesPerSecond.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfFramesPerSecond.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfFramework.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfFramework.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfHeader.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfHeader.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfHuf.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfHuf.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfIO.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfIO.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfInputFile.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfInputFile.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfIntAttribute.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfIntAttribute.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfKeyCode.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfKeyCode.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfKeyCodeAttribute.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfKeyCodeAttribute.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfLineOrder.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfLineOrderAttribute.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfLineOrderAttribute.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfLut.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfLut.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfMatrixAttribute.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfMatrixAttribute.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfMisc.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfMisc.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfMultiView.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfMultiView.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfName.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfOpaqueAttribute.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfOpaqueAttribute.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfOutputFile.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfOutputFile.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfPixelType.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfPizCompressor.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfPizCompressor.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfPreviewImage.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfPreviewImage.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfPreviewImageAttribute.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfPreviewImageAttribute.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfPxr24Compressor.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfPxr24Compressor.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfRational.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfRational.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfRationalAttribute.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfRationalAttribute.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfRgba.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfRgbaFile.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfRgbaFile.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfRgbaYca.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfRgbaYca.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfRleCompressor.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfRleCompressor.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfScanLineInputFile.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfScanLineInputFile.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfStandardAttributes.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfStandardAttributes.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfStdIO.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfStdIO.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfStringAttribute.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfStringAttribute.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfStringVectorAttribute.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfStringVectorAttribute.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfTestFile.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfTestFile.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfThreading.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfThreading.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfTileDescription.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfTileDescriptionAttribute.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfTileDescriptionAttribute.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfTileOffsets.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfTileOffsets.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfTiledInputFile.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfTiledInputFile.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfTiledMisc.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfTiledMisc.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfTiledOutputFile.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfTiledOutputFile.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfTiledRgbaFile.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfTiledRgbaFile.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfTimeCode.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfTimeCode.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfTimeCodeAttribute.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfTimeCodeAttribute.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfVecAttribute.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfVecAttribute.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfVersion.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfVersion.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfWav.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfWav.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfXdr.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfZipCompressor.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/ImfZipCompressor.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/b44ExpLogTable.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmImf/b44ExpLogTable.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmThread/IlmThread.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmThread/IlmThread.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmThread/IlmThreadMutex.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmThread/IlmThreadMutex.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmThread/IlmThreadMutexPosix.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmThread/IlmThreadMutexWin32.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmThread/IlmThreadPool.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmThread/IlmThreadPool.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmThread/IlmThreadPosix.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmThread/IlmThreadSemaphore.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmThread/IlmThreadSemaphore.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmThread/IlmThreadSemaphorePosix.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmThread/IlmThreadSemaphorePosixCompat.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmThread/IlmThreadSemaphoreWin32.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/IlmThread/IlmThreadWin32.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathBox.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathBox.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathBoxAlgo.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathColor.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathColorAlgo.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathColorAlgo.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathEuler.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathExc.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathFrame.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathFrustum.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathFun.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathFun.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathGL.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathGLU.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathHalfLimits.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathInterval.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathLimits.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathLine.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathLineAlgo.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathMath.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathMatrix.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathMatrixAlgo.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathMatrixAlgo.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathPlane.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathPlatform.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathQuat.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathRandom.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathRandom.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathRoots.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathShear.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathShear.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathSphere.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathVec.cpp" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathVec.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/Imath/ImathVecAlgo.h" />
+		<Unit filename="graphics/freeimage/OpenEXR/OpenEXRConfig.h" />
+		<Unit filename="graphics/freeimage/Plugin.h" />
+		<Unit filename="graphics/freeimage/Quantizers.h" />
+		<Unit filename="graphics/freeimage/Root/Examples/Generic/BatchLoad.cpp" />
+		<Unit filename="graphics/freeimage/Root/Examples/Generic/CloneMultiPage.cpp" />
+		<Unit filename="graphics/freeimage/Root/Examples/Generic/CreateAlpha.cpp" />
+		<Unit filename="graphics/freeimage/Root/Examples/Generic/FIFImportExport.cpp" />
+		<Unit filename="graphics/freeimage/Root/Examples/Generic/FIIO_Mem.cpp" />
+		<Unit filename="graphics/freeimage/Root/Examples/Generic/FIIO_Mem.h" />
+		<Unit filename="graphics/freeimage/Root/Examples/Generic/LoadFromHandle.cpp" />
+		<Unit filename="graphics/freeimage/Root/Examples/Generic/LoadFromMemory-classified.cpp" />
+		<Unit filename="graphics/freeimage/Root/Examples/Generic/LoadFromMemory.cpp" />
+		<Unit filename="graphics/freeimage/Root/Examples/Generic/ShowMetadata.cpp" />
+		<Unit filename="graphics/freeimage/Root/Examples/Linux/linux-gtk.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/Root/Examples/Linux/linux-svgalib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freeimage/Root/Examples/OpenGL/TextureManager/TextureManager.cpp" />
+		<Unit filename="graphics/freeimage/Root/Examples/OpenGL/TextureManager/TextureManager.h" />
+		<Unit filename="graphics/freeimage/Root/Examples/Plugin/PluginCradle.cpp" />
+		<Unit filename="graphics/freeimage/Root/Examples/Plugin/PluginCradle.h" />
+		<Unit filename="graphics/freeimage/Root/TestAPI/MainTestSuite.cpp" />
+		<Unit filename="graphics/freeimage/Root/TestAPI/TestSuite.h" />
+		<Unit filename="graphics/freeimage/Root/TestAPI/testChannels.cpp" />
+		<Unit filename="graphics/freeimage/Root/TestAPI/testHeaderOnly.cpp" />
+		<Unit filename="graphics/freeimage/Root/TestAPI/testImageType.cpp" />
+		<Unit filename="graphics/freeimage/Root/TestAPI/testJPEG.cpp" />
+		<Unit filename="graphics/freeimage/Root/TestAPI/testMPage.cpp" />
+		<Unit filename="graphics/freeimage/Root/TestAPI/testMPageMemory.cpp" />
+		<Unit filename="graphics/freeimage/Root/TestAPI/testMPageStream.cpp" />
+		<Unit filename="graphics/freeimage/Root/TestAPI/testMemIO.cpp" />
+		<Unit filename="graphics/freeimage/Root/TestAPI/testPlugins.cpp" />
+		<Unit filename="graphics/freeimage/Root/TestAPI/testTools.cpp" />
+		<Unit filename="graphics/freeimage/Root/Wrapper/FreeImage.NET/cpp/FreeImageIO/AssemblyInfo.cpp" />
+		<Unit filename="graphics/freeimage/Root/Wrapper/FreeImage.NET/cpp/FreeImageIO/FreeImageIO.Net.cpp" />
+		<Unit filename="graphics/freeimage/Root/Wrapper/FreeImage.NET/cpp/FreeImageIO/FreeImageIO.Net.h" />
+		<Unit filename="graphics/freeimage/Root/Wrapper/FreeImage.NET/cpp/FreeImageIO/Stdafx.cpp" />
+		<Unit filename="graphics/freeimage/Root/Wrapper/FreeImage.NET/cpp/FreeImageIO/Stdafx.h" />
+		<Unit filename="graphics/freeimage/Root/Wrapper/FreeImage.NET/cpp/FreeImageIO/resource.h" />
+		<Unit filename="graphics/freeimage/Root/Wrapper/FreeImagePlus/FreeImagePlus.h" />
+		<Unit filename="graphics/freeimage/Root/Wrapper/FreeImagePlus/src/FreeImagePlus.cpp" />
+		<Unit filename="graphics/freeimage/Root/Wrapper/FreeImagePlus/src/fipImage.cpp" />
+		<Unit filename="graphics/freeimage/Root/Wrapper/FreeImagePlus/src/fipMemoryIO.cpp" />
+		<Unit filename="graphics/freeimage/Root/Wrapper/FreeImagePlus/src/fipMetadataFind.cpp" />
+		<Unit filename="graphics/freeimage/Root/Wrapper/FreeImagePlus/src/fipMultiPage.cpp" />
+		<Unit filename="graphics/freeimage/Root/Wrapper/FreeImagePlus/src/fipTag.cpp" />
+		<Unit filename="graphics/freeimage/Root/Wrapper/FreeImagePlus/src/fipWinImage.cpp" />
+		<Unit filename="graphics/freeimage/Root/Wrapper/FreeImagePlus/test/fipTest.cpp" />
+		<Unit filename="graphics/freeimage/Root/Wrapper/FreeImagePlus/test/fipTest.h" />
+		<Unit filename="graphics/freeimage/Root/Wrapper/FreeImagePlus/test/fipTestMPage.cpp" />
+		<Unit filename="graphics/freeimage/Root/Wrapper/FreeImagePlus/test/fipTestMPageMemory.cpp" />
+		<Unit filename="graphics/freeimage/Root/Wrapper/FreeImagePlus/test/fipTestMPageStream.cpp" />
+		<Unit filename="graphics/freeimage/Root/Wrapper/FreeImagePlus/test/fipTestMemIO.cpp" />
+		<Unit filename="graphics/freeimage/ToneMapping.h" />
+		<Unit filename="graphics/freeimage/Utilities.h" />
+		<Unit filename="graphics/freeimage/freeimage.h" />
+		<Unit filename="graphics/freetype/builds/amiga/include/freetype/config/ftconfig.h" />
+		<Unit filename="graphics/freetype/builds/amiga/include/freetype/config/ftmodule.h" />
+		<Unit filename="graphics/freetype/builds/amiga/src/base/ftdebug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/builds/amiga/src/base/ftsystem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/builds/atari/ATARI.H" />
+		<Unit filename="graphics/freetype/builds/mac/ftmac.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/builds/unix/ft2unix.h" />
+		<Unit filename="graphics/freetype/builds/unix/ftsystem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/builds/vms/ftconfig.h" />
+		<Unit filename="graphics/freetype/builds/vms/ftsystem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/builds/win32/ftdebug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/builds/wince/ftdebug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/devel/ft2build.h" />
+		<Unit filename="graphics/freetype/devel/ftoption.h" />
+		<Unit filename="graphics/freetype/dll_main.cpp" />
+		<Unit filename="graphics/freetype/src/autofit/afangles.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/autofit/afangles.h" />
+		<Unit filename="graphics/freetype/src/autofit/afcjk.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/autofit/afcjk.h" />
+		<Unit filename="graphics/freetype/src/autofit/afdummy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/autofit/afdummy.h" />
+		<Unit filename="graphics/freetype/src/autofit/aferrors.h" />
+		<Unit filename="graphics/freetype/src/autofit/afglobal.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/autofit/afglobal.h" />
+		<Unit filename="graphics/freetype/src/autofit/afhints.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/autofit/afhints.h" />
+		<Unit filename="graphics/freetype/src/autofit/afindic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/autofit/afindic.h" />
+		<Unit filename="graphics/freetype/src/autofit/aflatin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/autofit/aflatin.h" />
+		<Unit filename="graphics/freetype/src/autofit/aflatin2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/autofit/aflatin2.h" />
+		<Unit filename="graphics/freetype/src/autofit/afloader.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/autofit/afloader.h" />
+		<Unit filename="graphics/freetype/src/autofit/afmodule.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/autofit/afmodule.h" />
+		<Unit filename="graphics/freetype/src/autofit/afpic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/autofit/afpic.h" />
+		<Unit filename="graphics/freetype/src/autofit/aftypes.h" />
+		<Unit filename="graphics/freetype/src/autofit/afwarp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/autofit/afwarp.h" />
+		<Unit filename="graphics/freetype/src/autofit/autofit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/basepic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/basepic.h" />
+		<Unit filename="graphics/freetype/src/base/ftadvanc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftapi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftbase.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftbase.h" />
+		<Unit filename="graphics/freetype/src/base/ftbbox.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftbdf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftbitmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftcalc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftcid.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftdbgmem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftdebug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftfstype.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftgasp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftgloadr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftglyph.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftgxval.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftinit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftlcdfil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftmac.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftmm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftobjs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftotval.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftoutln.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftpatent.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftpfr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftpic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftrfork.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftsnames.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftstream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftstroke.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftsynth.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftsystem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/fttrigon.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/fttype1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftwinfnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/base/ftxf86.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/bdf/bdf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/bdf/bdf.h" />
+		<Unit filename="graphics/freetype/src/bdf/bdfdrivr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/bdf/bdfdrivr.h" />
+		<Unit filename="graphics/freetype/src/bdf/bdferror.h" />
+		<Unit filename="graphics/freetype/src/bdf/bdflib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/bzip2/ftbzip2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cache/ftcache.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cache/ftcbasic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cache/ftccache.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cache/ftccache.h" />
+		<Unit filename="graphics/freetype/src/cache/ftccback.h" />
+		<Unit filename="graphics/freetype/src/cache/ftccmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cache/ftcerror.h" />
+		<Unit filename="graphics/freetype/src/cache/ftcglyph.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cache/ftcglyph.h" />
+		<Unit filename="graphics/freetype/src/cache/ftcimage.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cache/ftcimage.h" />
+		<Unit filename="graphics/freetype/src/cache/ftcmanag.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cache/ftcmanag.h" />
+		<Unit filename="graphics/freetype/src/cache/ftcmru.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cache/ftcmru.h" />
+		<Unit filename="graphics/freetype/src/cache/ftcsbits.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cache/ftcsbits.h" />
+		<Unit filename="graphics/freetype/src/cff/cff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cff/cffcmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cff/cffcmap.h" />
+		<Unit filename="graphics/freetype/src/cff/cffdrivr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cff/cffdrivr.h" />
+		<Unit filename="graphics/freetype/src/cff/cfferrs.h" />
+		<Unit filename="graphics/freetype/src/cff/cffgload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cff/cffgload.h" />
+		<Unit filename="graphics/freetype/src/cff/cffload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cff/cffload.h" />
+		<Unit filename="graphics/freetype/src/cff/cffobjs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cff/cffobjs.h" />
+		<Unit filename="graphics/freetype/src/cff/cffparse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cff/cffparse.h" />
+		<Unit filename="graphics/freetype/src/cff/cffpic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cff/cffpic.h" />
+		<Unit filename="graphics/freetype/src/cff/cfftoken.h" />
+		<Unit filename="graphics/freetype/src/cff/cfftypes.h" />
+		<Unit filename="graphics/freetype/src/cid/ciderrs.h" />
+		<Unit filename="graphics/freetype/src/cid/cidgload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cid/cidgload.h" />
+		<Unit filename="graphics/freetype/src/cid/cidload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cid/cidload.h" />
+		<Unit filename="graphics/freetype/src/cid/cidobjs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cid/cidobjs.h" />
+		<Unit filename="graphics/freetype/src/cid/cidparse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cid/cidparse.h" />
+		<Unit filename="graphics/freetype/src/cid/cidriver.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/cid/cidriver.h" />
+		<Unit filename="graphics/freetype/src/cid/cidtoken.h" />
+		<Unit filename="graphics/freetype/src/cid/type1cid.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvalid.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvalid.h" />
+		<Unit filename="graphics/freetype/src/gxvalid/gxvbsln.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvcommn.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvcommn.h" />
+		<Unit filename="graphics/freetype/src/gxvalid/gxverror.h" />
+		<Unit filename="graphics/freetype/src/gxvalid/gxvfeat.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvfeat.h" />
+		<Unit filename="graphics/freetype/src/gxvalid/gxvfgen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvjust.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvkern.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvlcar.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvmod.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvmod.h" />
+		<Unit filename="graphics/freetype/src/gxvalid/gxvmort.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvmort.h" />
+		<Unit filename="graphics/freetype/src/gxvalid/gxvmort0.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvmort1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvmort2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvmort4.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvmort5.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvmorx.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvmorx.h" />
+		<Unit filename="graphics/freetype/src/gxvalid/gxvmorx0.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvmorx1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvmorx2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvmorx4.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvmorx5.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvopbd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvprop.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gxvalid/gxvtrak.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/gzip/ftgzip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/lzw/ftlzw.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/lzw/ftzopen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/lzw/ftzopen.h" />
+		<Unit filename="graphics/freetype/src/otvalid/otvalid.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/otvalid/otvalid.h" />
+		<Unit filename="graphics/freetype/src/otvalid/otvbase.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/otvalid/otvcommn.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/otvalid/otvcommn.h" />
+		<Unit filename="graphics/freetype/src/otvalid/otverror.h" />
+		<Unit filename="graphics/freetype/src/otvalid/otvgdef.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/otvalid/otvgpos.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/otvalid/otvgpos.h" />
+		<Unit filename="graphics/freetype/src/otvalid/otvgsub.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/otvalid/otvjstf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/otvalid/otvmath.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/otvalid/otvmod.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/otvalid/otvmod.h" />
+		<Unit filename="graphics/freetype/src/pcf/pcf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/pcf/pcf.h" />
+		<Unit filename="graphics/freetype/src/pcf/pcfdrivr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/pcf/pcfdrivr.h" />
+		<Unit filename="graphics/freetype/src/pcf/pcferror.h" />
+		<Unit filename="graphics/freetype/src/pcf/pcfread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/pcf/pcfread.h" />
+		<Unit filename="graphics/freetype/src/pcf/pcfutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/pcf/pcfutil.h" />
+		<Unit filename="graphics/freetype/src/pfr/pfr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/pfr/pfrcmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/pfr/pfrcmap.h" />
+		<Unit filename="graphics/freetype/src/pfr/pfrdrivr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/pfr/pfrdrivr.h" />
+		<Unit filename="graphics/freetype/src/pfr/pfrerror.h" />
+		<Unit filename="graphics/freetype/src/pfr/pfrgload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/pfr/pfrgload.h" />
+		<Unit filename="graphics/freetype/src/pfr/pfrload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/pfr/pfrload.h" />
+		<Unit filename="graphics/freetype/src/pfr/pfrobjs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/pfr/pfrobjs.h" />
+		<Unit filename="graphics/freetype/src/pfr/pfrsbit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/pfr/pfrsbit.h" />
+		<Unit filename="graphics/freetype/src/pfr/pfrtypes.h" />
+		<Unit filename="graphics/freetype/src/psaux/afmparse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/psaux/afmparse.h" />
+		<Unit filename="graphics/freetype/src/psaux/psaux.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/psaux/psauxerr.h" />
+		<Unit filename="graphics/freetype/src/psaux/psauxmod.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/psaux/psauxmod.h" />
+		<Unit filename="graphics/freetype/src/psaux/psconv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/psaux/psconv.h" />
+		<Unit filename="graphics/freetype/src/psaux/psobjs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/psaux/psobjs.h" />
+		<Unit filename="graphics/freetype/src/psaux/t1cmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/psaux/t1cmap.h" />
+		<Unit filename="graphics/freetype/src/psaux/t1decode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/psaux/t1decode.h" />
+		<Unit filename="graphics/freetype/src/pshinter/pshalgo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/pshinter/pshalgo.h" />
+		<Unit filename="graphics/freetype/src/pshinter/pshglob.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/pshinter/pshglob.h" />
+		<Unit filename="graphics/freetype/src/pshinter/pshinter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/pshinter/pshmod.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/pshinter/pshmod.h" />
+		<Unit filename="graphics/freetype/src/pshinter/pshnterr.h" />
+		<Unit filename="graphics/freetype/src/pshinter/pshpic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/pshinter/pshpic.h" />
+		<Unit filename="graphics/freetype/src/pshinter/pshrec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/pshinter/pshrec.h" />
+		<Unit filename="graphics/freetype/src/psnames/psmodule.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/psnames/psmodule.h" />
+		<Unit filename="graphics/freetype/src/psnames/psnamerr.h" />
+		<Unit filename="graphics/freetype/src/psnames/psnames.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/psnames/pspic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/psnames/pspic.h" />
+		<Unit filename="graphics/freetype/src/psnames/pstables.h" />
+		<Unit filename="graphics/freetype/src/raster/ftmisc.h" />
+		<Unit filename="graphics/freetype/src/raster/ftraster.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/raster/ftraster.h" />
+		<Unit filename="graphics/freetype/src/raster/ftrend1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/raster/ftrend1.h" />
+		<Unit filename="graphics/freetype/src/raster/raster.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/raster/rasterrs.h" />
+		<Unit filename="graphics/freetype/src/raster/rastpic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/raster/rastpic.h" />
+		<Unit filename="graphics/freetype/src/sfnt/sfdriver.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/sfnt/sfdriver.h" />
+		<Unit filename="graphics/freetype/src/sfnt/sferrors.h" />
+		<Unit filename="graphics/freetype/src/sfnt/sfnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/sfnt/sfntpic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/sfnt/sfntpic.h" />
+		<Unit filename="graphics/freetype/src/sfnt/sfobjs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/sfnt/sfobjs.h" />
+		<Unit filename="graphics/freetype/src/sfnt/ttbdf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/sfnt/ttbdf.h" />
+		<Unit filename="graphics/freetype/src/sfnt/ttcmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/sfnt/ttcmap.h" />
+		<Unit filename="graphics/freetype/src/sfnt/ttcmapc.h" />
+		<Unit filename="graphics/freetype/src/sfnt/ttkern.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/sfnt/ttkern.h" />
+		<Unit filename="graphics/freetype/src/sfnt/ttload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/sfnt/ttload.h" />
+		<Unit filename="graphics/freetype/src/sfnt/ttmtx.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/sfnt/ttmtx.h" />
+		<Unit filename="graphics/freetype/src/sfnt/ttpost.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/sfnt/ttpost.h" />
+		<Unit filename="graphics/freetype/src/sfnt/ttsbit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/sfnt/ttsbit.h" />
+		<Unit filename="graphics/freetype/src/sfnt/ttsbit0.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/smooth/ftgrays.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/smooth/ftgrays.h" />
+		<Unit filename="graphics/freetype/src/smooth/ftsmerrs.h" />
+		<Unit filename="graphics/freetype/src/smooth/ftsmooth.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/smooth/ftsmooth.h" />
+		<Unit filename="graphics/freetype/src/smooth/ftspic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/smooth/ftspic.h" />
+		<Unit filename="graphics/freetype/src/smooth/smooth.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/tools/apinames.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/tools/ftrandom/ftrandom.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/tools/test_afm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/tools/test_bbox.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/tools/test_trig.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/truetype/truetype.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/truetype/ttdriver.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/truetype/ttdriver.h" />
+		<Unit filename="graphics/freetype/src/truetype/tterrors.h" />
+		<Unit filename="graphics/freetype/src/truetype/ttgload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/truetype/ttgload.h" />
+		<Unit filename="graphics/freetype/src/truetype/ttgxvar.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/truetype/ttgxvar.h" />
+		<Unit filename="graphics/freetype/src/truetype/ttinterp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/truetype/ttinterp.h" />
+		<Unit filename="graphics/freetype/src/truetype/ttobjs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/truetype/ttobjs.h" />
+		<Unit filename="graphics/freetype/src/truetype/ttpic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/truetype/ttpic.h" />
+		<Unit filename="graphics/freetype/src/truetype/ttpload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/truetype/ttpload.h" />
+		<Unit filename="graphics/freetype/src/truetype/ttsubpix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/truetype/ttsubpix.h" />
+		<Unit filename="graphics/freetype/src/type1/t1afm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/type1/t1afm.h" />
+		<Unit filename="graphics/freetype/src/type1/t1driver.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/type1/t1driver.h" />
+		<Unit filename="graphics/freetype/src/type1/t1errors.h" />
+		<Unit filename="graphics/freetype/src/type1/t1gload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/type1/t1gload.h" />
+		<Unit filename="graphics/freetype/src/type1/t1load.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/type1/t1load.h" />
+		<Unit filename="graphics/freetype/src/type1/t1objs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/type1/t1objs.h" />
+		<Unit filename="graphics/freetype/src/type1/t1parse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/type1/t1parse.h" />
+		<Unit filename="graphics/freetype/src/type1/t1tokens.h" />
+		<Unit filename="graphics/freetype/src/type1/type1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/type42/t42drivr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/type42/t42drivr.h" />
+		<Unit filename="graphics/freetype/src/type42/t42error.h" />
+		<Unit filename="graphics/freetype/src/type42/t42objs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/type42/t42objs.h" />
+		<Unit filename="graphics/freetype/src/type42/t42parse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/type42/t42parse.h" />
+		<Unit filename="graphics/freetype/src/type42/t42types.h" />
+		<Unit filename="graphics/freetype/src/type42/type42.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/winfonts/fnterrs.h" />
+		<Unit filename="graphics/freetype/src/winfonts/winfnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/freetype/src/winfonts/winfnt.h" />
 		<Unit filename="graphics/graphics.h" />
 		<Unit filename="graphics/graphics_window_graphics.cpp" />
 		<Unit filename="graphics/graphics_window_graphics.h" />
+		<Unit filename="graphics/pixman/config.h" />
+		<Unit filename="graphics/pixman/demos/alpha-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/demos/checkerboard.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/demos/clip-in.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/demos/clip-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/demos/composite-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/demos/conical-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/demos/convolution-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/demos/gradient-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/demos/gtk-utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/demos/gtk-utils.h" />
+		<Unit filename="graphics/pixman/demos/linear-gradient.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/demos/parrot.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/demos/quad2quad.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/demos/radial-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/demos/scale.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/demos/screen-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/demos/srgb-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/demos/srgb-trap-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/demos/trap-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/demos/tri-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/loongson-mmintrin.h" />
+		<Unit filename="graphics/pixman/pixman-access-accessors.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-access.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-accessor.h" />
+		<Unit filename="graphics/pixman/pixman-arm-common.h" />
+		<Unit filename="graphics/pixman/pixman-arm-neon-asm.h" />
+		<Unit filename="graphics/pixman/pixman-arm-neon.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-arm-simd-asm.h" />
+		<Unit filename="graphics/pixman/pixman-arm-simd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-arm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-bits-image.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-combine-float.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-combine32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-combine32.h" />
+		<Unit filename="graphics/pixman/pixman-compiler.h" />
+		<Unit filename="graphics/pixman/pixman-conical-gradient.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-edge-accessors.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-edge-imp.h" />
+		<Unit filename="graphics/pixman/pixman-edge.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-fast-path.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-filter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-general.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-glyph.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-gradient-walker.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-image.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-implementation.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-inlines.h" />
+		<Unit filename="graphics/pixman/pixman-linear-gradient.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-matrix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-mips-dspr2-asm.h" />
+		<Unit filename="graphics/pixman/pixman-mips-dspr2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-mips-dspr2.h" />
+		<Unit filename="graphics/pixman/pixman-mips.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-mmx.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-noop.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-ppc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-private.h" />
+		<Unit filename="graphics/pixman/pixman-radial-gradient.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-region.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-region16.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-region32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-solid-fill.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-sse2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-timer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-trap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-version-out.h" />
+		<Unit filename="graphics/pixman/pixman-version.h" />
+		<Unit filename="graphics/pixman/pixman-vmx.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman-x86.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/pixman.h" />
+		<Unit filename="graphics/pixman/test/a1-trap-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/affine-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/alpha-loop.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/alphamap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/blitters-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/check-formats.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/combiner-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/composite-traps-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/composite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/fetch-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/glyph-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/gradient-crash-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/infinite-loop.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/lowlevel-blt-bench.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/matrix-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/oob-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/pdf-op-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/pixel-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/prng-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/radial-perf-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/region-contains-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/region-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/region-translate-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/rotate-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/scaling-crash-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/scaling-helpers-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/scaling-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/stress-test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/trap-crasher.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/utils-prng.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/utils-prng.h" />
+		<Unit filename="graphics/pixman/test/utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="graphics/pixman/test/utils.h" />
 		<Unit filename="graphics/visual/visual.h" />
 		<Unit filename="graphics/visual/visual_const.h" />
 		<Unit filename="graphics/visual/visual_cursor.cpp" />
 		<Unit filename="graphics/visual/visual_cursor.h" />
 		<Unit filename="graphics/visual/visual_icon.cpp" />
 		<Unit filename="graphics/visual/visual_icon.h" />
-		<Unit filename="metrowin_user.cpp" />
 		<Unit filename="multithreading/multithreading.h" />
 		<Unit filename="multithreading/multithreading_condition.cpp" />
 		<Unit filename="multithreading/multithreading_condition.h" />
@@ -4016,12 +5618,6 @@
 		<Unit filename="net/mail/mail_pop3.h" />
 		<Unit filename="net/mail/mail_pop3_socket.cpp" />
 		<Unit filename="net/mail/mail_simple_pop3.cpp" />
-		<Unit filename="net/mail/pop3_format.cpp" />
-		<Unit filename="net/mail/pop3_objects.cpp" />
-		<Unit filename="net/mail/pop3_parsing.cpp" />
-		<Unit filename="net/mail/pop3_queries.cpp" />
-		<Unit filename="net/mail/pop3_session.cpp" />
-		<Unit filename="net/mail/pop3_socket.cpp" />
 		<Unit filename="net/mail/pop3_socket.h" />
 		<Unit filename="net/mail/simple_pop3.h" />
 		<Unit filename="net/net.h" />
@@ -4120,28 +5716,6 @@
 		<Unit filename="net/sockets/bsd/webserver/sockets_AjpBaseSocket.cpp" />
 		<Unit filename="net/sockets/bsd/webserver/sockets_http_base_socket.cpp" />
 		<Unit filename="net/sockets/bsd/webserver/sockets_httpd_socket.cpp" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_http/sockets_http_client_socket.cpp" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_http/sockets_http_client_socket.h" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_http/sockets_http_debug_socket.cpp" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_http/sockets_http_debug_socket.h" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_http/sockets_http_get_socket.cpp" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_http/sockets_http_get_socket.h" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_http/sockets_http_post_socket.cpp" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_http/sockets_http_post_socket.h" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_http/sockets_http_put_socket.cpp" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_http/sockets_http_put_socket.h" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_http/sockets_http_request_socket.cpp" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_http/sockets_http_request_socket.h" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_http/sockets_http_session.cpp" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_http/sockets_http_session.h" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_http/sockets_http_socket.cpp" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_http/sockets_http_socket.h" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_http/sockets_http_tunnel.cpp" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_http/sockets_http_tunnel.h" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_sockets_link_in_socket.cpp" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_sockets_link_in_socket.h" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_sockets_link_out_socket.cpp" />
-		<Unit filename="net/sockets/bsd/zzz_want_to_remove_sockets_link_out_socket.h" />
 		<Unit filename="net/sockets/http/sockets_http.h" />
 		<Unit filename="net/sockets/http/sockets_http_client_socket.cpp" />
 		<Unit filename="net/sockets/http/sockets_http_client_socket.h" />
@@ -4183,28 +5757,17 @@
 		<Unit filename="net/sockets/webserver/webserver_http_request.h" />
 		<Unit filename="net/sockets/webserver/webserver_http_response.h" />
 		<Unit filename="net/sockets/webserver/webserver_http_transaction.h" />
-		<Unit filename="net/sockets/winrt/asynch_dns/sockets_resolv_server.cpp" />
 		<Unit filename="net/sockets/winrt/asynch_dns/sockets_resolv_server.h" />
-		<Unit filename="net/sockets/winrt/asynch_dns/sockets_resolv_socket.cpp" />
 		<Unit filename="net/sockets/winrt/asynch_dns/sockets_resolv_socket.h" />
-		<Unit filename="net/sockets/winrt/basic/sockets_Socket.cpp" />
 		<Unit filename="net/sockets/winrt/basic/sockets_listen_socket.h" />
-		<Unit filename="net/sockets/winrt/basic/sockets_net.cpp" />
 		<Unit filename="net/sockets/winrt/basic/sockets_net.h" />
-		<Unit filename="net/sockets/winrt/basic/sockets_sctp_socket.cpp" />
 		<Unit filename="net/sockets/winrt/basic/sockets_sctp_socket.h" />
 		<Unit filename="net/sockets/winrt/basic/sockets_socket.h" />
-		<Unit filename="net/sockets/winrt/basic/sockets_socket_handler.cpp" />
 		<Unit filename="net/sockets/winrt/basic/sockets_socket_handler.h" />
-		<Unit filename="net/sockets/winrt/basic/sockets_stream_socket.cpp" />
 		<Unit filename="net/sockets/winrt/basic/sockets_stream_socket.h" />
-		<Unit filename="net/sockets/winrt/basic/sockets_sync_socket_handler.cpp" />
 		<Unit filename="net/sockets/winrt/basic/sockets_sync_socket_handler.h" />
-		<Unit filename="net/sockets/winrt/basic/sockets_tcp_socket.cpp" />
 		<Unit filename="net/sockets/winrt/basic/sockets_tcp_socket.h" />
-		<Unit filename="net/sockets/winrt/basic/sockets_tls_socket.cpp" />
 		<Unit filename="net/sockets/winrt/basic/sockets_tls_socket.h" />
-		<Unit filename="net/sockets/winrt/basic/sockets_udp_socket.cpp" />
 		<Unit filename="net/sockets/winrt/basic/sockets_udp_socket.h" />
 		<Unit filename="net/sockets/winrt/basic/zzz_want_to_remove_socket_handler.h" />
 		<Unit filename="net/sockets/winrt/basic/zzz_want_to_remove_socket_handler_base.h" />
@@ -4220,44 +5783,21 @@
 		<Unit filename="net/sockets/winrt/sip/sip_tcp_client_socket.h" />
 		<Unit filename="net/sockets/winrt/sip/sip_transaction.h" />
 		<Unit filename="net/sockets/winrt/sip/sip_udp_client_socket.h" />
-		<Unit filename="net/sockets/winrt/sip/sockets_sip_base.cpp" />
-		<Unit filename="net/sockets/winrt/sip/sockets_sip_base_client_socket.cpp" />
-		<Unit filename="net/sockets/winrt/sip/sockets_sip_callback.cpp" />
-		<Unit filename="net/sockets/winrt/sip/sockets_sip_client.cpp" />
-		<Unit filename="net/sockets/winrt/sip/sockets_sip_request.cpp" />
-		<Unit filename="net/sockets/winrt/sip/sockets_sip_response.cpp" />
-		<Unit filename="net/sockets/winrt/sip/sockets_sip_server.cpp" />
-		<Unit filename="net/sockets/winrt/sip/sockets_sip_tcp_client_socket.cpp" />
-		<Unit filename="net/sockets/winrt/sip/sockets_sip_transaction.cpp" />
-		<Unit filename="net/sockets/winrt/sip/sockets_sip_udp_client_socket.cpp" />
 		<Unit filename="net/sockets/winrt/smtp/smtp_socket.h" />
 		<Unit filename="net/sockets/winrt/smtp/smtpd_socket.h" />
-		<Unit filename="net/sockets/winrt/smtp/sockets_smtp_socket.cpp" />
-		<Unit filename="net/sockets/winrt/smtp/sockets_smtpd_socket.cpp" />
 		<Unit filename="net/sockets/winrt/sockets.h" />
 		<Unit filename="net/sockets/winrt/sockets_config.h" />
-		<Unit filename="net/sockets/winrt/sockets_include.cpp" />
-		<Unit filename="net/sockets/winrt/sockets_sockets.cpp" />
 		<Unit filename="net/sockets/winrt/sockets_sockets.h" />
-		<Unit filename="net/sockets/winrt/timer/sockets_Event.cpp" />
-		<Unit filename="net/sockets/winrt/timer/sockets_EventHandler.cpp" />
-		<Unit filename="net/sockets/winrt/timer/sockets_EventTime.cpp" />
-		<Unit filename="net/sockets/winrt/timer/sockets_IEventOwner.cpp" />
 		<Unit filename="net/sockets/winrt/timer/sockets_event.h" />
 		<Unit filename="net/sockets/winrt/timer/sockets_event_handler.h" />
 		<Unit filename="net/sockets/winrt/timer/sockets_event_time.h" />
 		<Unit filename="net/sockets/winrt/timer/sockets_ievent_handler.h" />
 		<Unit filename="net/sockets/winrt/timer/sockets_ievent_owner.h" />
-		<Unit filename="net/sockets/winrt/webserver/sockets_Ajp13Socket.cpp" />
-		<Unit filename="net/sockets/winrt/webserver/sockets_AjpBaseSocket.cpp" />
-		<Unit filename="net/sockets/winrt/webserver/sockets_http_base_socket.cpp" />
-		<Unit filename="net/sockets/winrt/webserver/sockets_httpd_socket.cpp" />
 		<Unit filename="net/sockets/winrt/webserver/webserver_ajp13.h" />
 		<Unit filename="net/sockets/winrt/webserver/webserver_ajp13_socket.h" />
 		<Unit filename="net/sockets/winrt/webserver/webserver_ajp_base_socket.h" />
 		<Unit filename="net/sockets/winrt/webserver/webserver_http_base_socket.h" />
 		<Unit filename="net/sockets/winrt/webserver/webserver_httpd_socket.h" />
-		<Unit filename="net/sockets/winrt/zzz_want_to_remove_sockets_application_interface.cpp" />
 		<Unit filename="primitive/collection/collection.h" />
 		<Unit filename="primitive/collection/collection_2d_array.cpp" />
 		<Unit filename="primitive/collection/collection_array.cpp" />
@@ -4511,11 +6051,9 @@
 		<Unit filename="programming/javascript/javascript.h" />
 		<Unit filename="programming/javascript/javascript_functions.cpp" />
 		<Unit filename="programming/javascript/javascript_functions.h" />
-		<Unit filename="programming/javascript/javascript_script.cpp" />
 		<Unit filename="programming/javascript/javascript_tinyjs.h" />
 		<Unit filename="programming/javascript/javascript_tinyjs_functions.cpp" />
 		<Unit filename="programming/javascript/javascript_tinyjs_functions.h" />
-		<Unit filename="user/Untitled1" />
 		<Unit filename="user/fontopus/fontopus.cpp" />
 		<Unit filename="user/fontopus/fontopus.h" />
 		<Unit filename="user/fontopus/fontopus_authentication_map.cpp" />

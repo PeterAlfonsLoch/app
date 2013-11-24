@@ -1,9 +1,6 @@
 #include "framework.h"
 
 
-#ifdef LINUX
-#include "boot/linux/ca_os_cross_win_gdi_internal.h"
-#endif
 
 
 #include <math.h>

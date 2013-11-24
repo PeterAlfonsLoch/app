@@ -76,7 +76,7 @@ voidpf ZCALLBACK fopen_file_func (voidpf opaque, const char * filename, int32_t 
 
 
     if ((filename!=NULL) && (mode_fopen != NULL))
-#ifdef MACOS
+#if defined(MACOS) || defined(LINUX)
     {
        file = fopen(filename, mode_fopen);
        if(file == NULL)

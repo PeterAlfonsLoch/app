@@ -29,17 +29,25 @@ namespace os
       bool                       m_bShiftKey;
       rect                       m_rectDesktop;
 
+      XWindowAttributes          m_attr;
+      int32_t                    m_iDepth;
+      XVisualInfo                m_visualinfo;
 
+
+      window_graphics *          m_pgraphics;
+
+
+      bool                       m_bComposite;
+
+      mutex *                    m_pmutexGraphics;
+      mutex *                    m_pmutexDisplay;
+
+      bool                       m_bRunLoop;
 
 
       simple_ui(sp(base_application) papp);
 
       virtual ~simple_ui();
-
-      static LRESULT CALLBACK s_window_prodecure(oswindow hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-
-
-      virtual ATOM register_window_class(HINSTANCE hInstance);
 
       virtual bool prepare_window(LPCRECT lprect);
 
@@ -48,20 +56,23 @@ namespace os
 
       virtual void screen_to_client(POINT * ppt);
 
-      virtual LRESULT window_procedure(oswindow hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-
       virtual void GetWindowRect(RECT * prect);
       virtual void get_client_rect(RECT * prect);
 
 
 
-      virtual bool on_windows_key_down(WPARAM wparam, LPARAM lparam);
-      virtual bool on_windows_key_up(WPARAM wparam, LPARAM lparam);
+      virtual bool on_key_down(uint32_t uiKey);
+      virtual bool on_key_up(uint32_t uiKey);
 
-      virtual void on_windows_gdi_draw_framebuffer();
 
-      virtual bool on_windows_move(int32_t x, int32_t y);
-      virtual bool on_windows_size(int32_t cx, int32_t cy);
+      virtual bool on_move(int32_t x, int32_t y);
+      virtual bool on_size(int32_t cx, int32_t cy);
+
+
+      virtual void run_loop();
+
+
+      virtual void on_draw_framebuffer();
 
       virtual void set_capture();
       virtual void release_capture();
@@ -78,3 +89,27 @@ namespace os
 
 
 
+CLASS_DECL_BASE void wm_nodecorations(oswindow w, int map);
+
+
+
+/* MWM decorations values */
+ #define MWM_DECOR_NONE          0
+ #define MWM_DECOR_ALL           (1L << 0)
+ #define MWM_DECOR_BORDER        (1L << 1)
+ #define MWM_DECOR_RESIZEH       (1L << 2)
+ #define MWM_DECOR_TITLE         (1L << 3)
+ #define MWM_DECOR_MENU          (1L << 4)
+ #define MWM_DECOR_MINIMIZE      (1L << 5)
+ #define MWM_DECOR_MAXIMIZE      (1L << 6)
+
+ /* KDE decoration values */
+ enum {
+  KDE_noDecoration = 0,
+  KDE_normalDecoration = 1,
+  KDE_tinyDecoration = 2,
+  KDE_noFocus = 256,
+  KDE_standaloneMenuBar = 512,
+  KDE_desktopIcon = 1024 ,
+  KDE_staysOnTop = 2048
+ };

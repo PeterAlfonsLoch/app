@@ -106,7 +106,7 @@ struct heap_memory
       return heap_get(pmemory)->m_size;
 
    }
-   
+
 
 };
 
@@ -174,16 +174,16 @@ void * aligned_memory_alloc(size_t size)
 {
 
    void * pbase = g_pheap->alloc(heap_memory::aligned_provision_get_size(size));
-   
+
    if (pbase == NULL)
    {
-      
+
       throw memory_exception(get_thread_app());
-      
+
    }
-   
+
    return heap_memory::aligned(pbase, size, 0);
-   
+
 }
 
 void * unaligned_memory_alloc(size_t size)
@@ -192,45 +192,45 @@ void * unaligned_memory_alloc(size_t size)
 #ifdef MACOS
 
    return aligned_memory_alloc(size);
-   
+
 #else
-   
+
    void * pbase = g_pheap->alloc(heap_memory::unaligned_provision_get_size(size));
-   
+
    if (pbase == NULL)
    {
-      
+
       throw memory_exception(get_thread_app());
-      
+
    }
-   
+
    return heap_memory::unaligned(pbase, size, 2);
-   
+
 #endif
-   
+
 }
 
 
 void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
-   
+
    UNREFERENCED_PARAMETER(nBlockUse);
    UNREFERENCED_PARAMETER(szFileName);
    UNREFERENCED_PARAMETER(nLine);
-   
+
    //TODO: to do the dbg version
    //byte * p = (byte *) _malloc_dbg(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
    void * pbase = g_pheap->alloc_dbg(heap_memory::aligned_provision_get_size(size), nBlockUse, szFileName, nLine);
-   
+
    if (pbase == NULL)
    {
-      
+
       throw memory_exception(get_thread_app());
-      
+
    }
-   
+
    return heap_memory::aligned(pbase, size, 1);
-   
+
 }
 
 void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
@@ -239,28 +239,28 @@ void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * s
 #ifdef MACOS
 
    return aligned_memory_alloc(size);
-   
+
 #else
-   
+
    UNREFERENCED_PARAMETER(nBlockUse);
    UNREFERENCED_PARAMETER(szFileName);
    UNREFERENCED_PARAMETER(nLine);
-   
+
    //TODO: to do the dbg version
    //byte * p = (byte *) _malloc_dbg(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
    void * pbase = g_pheap->alloc_dbg(heap_memory::unaligned_provision_get_size(size), nBlockUse, szFileName, nLine);
-   
+
    if (pbase == NULL)
    {
-      
+
       throw memory_exception(get_thread_app());
-      
+
    }
-   
+
    return heap_memory::unaligned(pbase, size, 3);
-   
+
 #endif
-   
+
 }
 
 
@@ -272,11 +272,11 @@ void * memory_alloc(size_t size)
 #if defined(MACOS)
 
    return aligned_memory_alloc(size);
-   
+
 #else
 
    return unaligned_memory_alloc(size);
-   
+
 #endif
 
 }
@@ -313,7 +313,7 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
       return memory_alloc_dbg(size, nBlockUse, szFileName, nLine);
 
    byte blockuse = heap_memory::heap_get_block_use(pmemory);
-   
+
    size_t sizeOld = heap_memory::heap_get_size(pmemory);
 
    void * pbase = NULL;
@@ -373,7 +373,7 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
 
    }
 
-   
+
 
 
 }
@@ -382,7 +382,7 @@ void memory_free(void * pmemory)
 {
 
    return memory_free_dbg(pmemory, 0);
-   
+
 }
 
 
@@ -390,7 +390,7 @@ size_t memory_size(void * pmemory)
 {
 
    return memory_size_dbg(pmemory, 0);
-   
+
 }
 
 
@@ -398,60 +398,60 @@ size_t memory_size(void * pmemory)
 
 void memory_free_dbg(void * pmemory, int32_t iBlockType)
 {
-   
+
    if (pmemory == NULL)
       return;
-   
+
    byte blockuse = heap_memory::heap_get_block_use(pmemory);
-   
+
    size_t sizeOld = heap_memory::heap_get_size(pmemory);
-   
+
    if (blockuse == 0)
    {
-      
+
       g_pheap->free(heap_memory::base_get(pmemory), heap_memory::aligned_provision_get_size(sizeOld));
-      
+
    }
    else if (blockuse == 1)
    {
-      
+
       //TODO: to do the dbg version
-      
+
       g_pheap->free_dbg(heap_memory::base_get(pmemory), heap_memory::aligned_provision_get_size(sizeOld));
-      
+
    }
    else if (blockuse == 2)
    {
-      
+
       g_pheap->free(heap_memory::base_get(pmemory), heap_memory::unaligned_provision_get_size(sizeOld));
-      
+
    }
    else if (blockuse == 3)
    {
-      
+
       //TODO: to do the dbg version
-      
+
       g_pheap->free_dbg(heap_memory::base_get(pmemory), heap_memory::unaligned_provision_get_size(sizeOld));
-      
+
    }
    else
    {
-   
+
       ::OutputDebugStringW(L"wrong free");
-      
+
    }
-   
+
 }
 
 
 size_t memory_size_dbg(void * pmemory, int32_t iBlockType)
 {
-   
+
    if (pmemory == NULL)
       return 0;
-   
+
    return heap_memory::heap_get_size(pmemory);
-   
+
 }
 
 
@@ -461,31 +461,31 @@ size_t memory_size_dbg(void * pmemory, int32_t iBlockType)
 
 void * aligned_memory_alloc(size_t size)
 {
-   
+
    return malloc(size);
-   
+
 }
 
 void * unaligned_memory_alloc(size_t size)
 {
-   
+
    return malloc(size);
-   
+
 }
 
 
 void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
-   
+
    return malloc(size);
-   
+
 }
 
 void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
-   
+
    return malloc(size);
-   
+
 }
 
 
@@ -493,44 +493,44 @@ void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * s
 
 void * memory_alloc(size_t size)
 {
-   
+
    return malloc(size);
-   
+
 }
 
 
 void * memory_calloc(size_t size, size_t bytes)
 {
-   
+
    return calloc(size, bytes);
-   
+
 }
 
 
 void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
-   
+
    return malloc(nSize);
-   
+
 }
 
 
 void * memory_realloc(void * pvoid, size_t nSize)
 {
-   
+
    return realloc(pvoid, nSize);
-   
+
 }
 
 
 void * memory_realloc_dbg(void * pvoid, size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
-   
-   
+
+
    return realloc(pvoid, size);
-   
-   
-   
+
+
+
 }
 
 void memory_free(void * pvoid)
@@ -551,9 +551,9 @@ size_t memory_size(void * pvoid)
 
 void memory_free_dbg(void * pvoid, int32_t iBlockType)
 {
-   
+
    memory_free(pvoid);
-   
+
 }
 
 
@@ -592,8 +592,6 @@ extern mutex * g_pmutexTlsData;
 #if defined(LINUX) || defined(MACOS)
 
 extern mutex * g_pmutexTz;
-
-extern tiny_http * g_ptinyhttp;
 
 extern map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo > * g_ppendingThreads;
 
@@ -656,7 +654,7 @@ public:
       */
 
       new plex_heap_alloc_array();
-      
+
       s_pstringmanager = new string_manager();
 
       create_id_space();
@@ -698,8 +696,6 @@ public:
 #if defined(LINUX) || defined(MACOS)
 
       g_pmutexTz = new mutex();
-
-      g_ptinyhttp = new tiny_http;
 
       g_ppendingThreads = new map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo >();
 
@@ -856,9 +852,9 @@ public:
       g_pstrLastStatus = NULL;
 
       destroy_id_space();
-      
+
       delete s_pstringmanager;
-      
+
       s_pstringmanager = NULL;
 
       delete g_pheap;

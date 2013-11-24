@@ -16,7 +16,7 @@ namespace user
 
    void place_holder_container::install_message_handling(::message::dispatch * pdispatch)
    {
-      ::user::control::install_message_handling(pdispatch);
+      ::user::interaction::install_message_handling(pdispatch);
    }
 
    sp(place_holder)place_holder_container::get_new_place_holder()
@@ -87,7 +87,7 @@ namespace user
 
    bool place_holder_container::create(sp(::user::interaction) puiParent, id id)
    {
-      return ::database::user::interaction::create(NULL, NULL, 0 /*__WS_DEFAULT_VIEW*/, rect(0,0,0,0), puiParent, id) != FALSE;
+      return ::user::interaction::create(NULL, NULL, 0 /*__WS_DEFAULT_VIEW*/, rect(0,0,0,0), puiParent, id) != FALSE;
    }
 
    place_holder_ptra place_holder_container_ptra::hold(sp(::user::interaction) pui)

@@ -1,3 +1,3 @@
 #include "cairoint.h"
 
-CAIRO_HAS_HIDDEN_SYMBOLS
+#define CAIRO_HAS_HIDDEN_SYMBOLS 1

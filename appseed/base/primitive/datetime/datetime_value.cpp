@@ -172,7 +172,7 @@ namespace datetime
 #ifdef WINDOWS
                time = ::datetime::time(_mkgmtime64(&atm));
 #else
-               time = ::datetime::time(mkgmtime_dup(&atm));
+               time = ::datetime::time(timegm(&atm));
 #endif
             }
             else
