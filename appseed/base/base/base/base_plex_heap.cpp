@@ -589,7 +589,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld
    if(pallocOld == NULL && pallocNew == NULL)
    {
    
-      pblock = (memdleak_block *) ::system_heap_realloc(pblock, nNewAllocSize + sizeof(memdleak_block));
+      pblock = (memdleak_block *) ::system_heap_realloc(pblock, size + sizeof(memdleak_block));
       
       psizeNew = (size_t *) &pblock[1];
       
@@ -605,7 +605,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld
    else
    {
       
-      memory_block * pblockNew = NULL;
+      memdleak_block * pblockNew = NULL;
 
       if(pallocNew != NULL)
       {
@@ -660,9 +660,9 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld
 
    return &psizeNew[1];
    
-   size_t * psize = (size_t *) g_pheap->realloc_dbg(&((size_t *)pvoidOld)[-1], ((size_t *)pvoidOld)[-1], size + sizeof(size_t), nBlockUse, szFileName, iLine);
-   psize[0] = size + sizeof(size_t);
-   return &psize[1];
+//   size_t * psize = (size_t *) g_pheap->realloc_dbg(&((size_t *)pvoidOld)[-1], ((size_t *)pvoidOld)[-1], size + sizeof(size_t), nBlockUse, szFileName, iLine);
+  // psize[0] = size + sizeof(size_t);
+   //return &psize[1];
 #else
 #if LAST_MEM_FILE_AND_LINE
    string str;
