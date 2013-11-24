@@ -411,7 +411,7 @@ static EVP_PKEY *ibm_4758_load_privkey(ENGINE* e, const char* key_id,
 	unsigned char exitData[8];
 	unsigned char ruleArray[8];
 	unsigned char keyLabel[64];
-	unsigned long keyLabelLength = strlen(key_id);
+	unsigned long keyLabelLength = (unsigned long) strlen(key_id);
 	unsigned char modulus[256];
 	long modulusFieldLength = sizeof(modulus);
 	long modulusLength = 0;
@@ -499,7 +499,7 @@ static EVP_PKEY *ibm_4758_load_pubkey(ENGINE* e, const char* key_id,
 	unsigned char exitData[8];
 	unsigned char ruleArray[8];
 	unsigned char keyLabel[64];
-	unsigned long keyLabelLength = strlen(key_id);
+	unsigned long keyLabelLength = (unsigned long) strlen(key_id);
 	unsigned char modulus[512];
 	long modulusFieldLength = sizeof(modulus);
 	long modulusLength = 0;
