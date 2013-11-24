@@ -24,8 +24,8 @@
  */
 
 #define VERSION "9.05"
-
-#ifndef _GNU_SOURCE
+#include "base/base/base/base.h"
+/*#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
 #endif
 #define _USE_MATH_DEFINES
@@ -40,7 +40,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include <sys/types.h>
+#include <sys/types.h>*/
 /*
    NO_JPEG disables decoding of compressed Kodak DC120 files.
    NO_LCMS disables the "-p" option.
