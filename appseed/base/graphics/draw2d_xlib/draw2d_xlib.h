@@ -1,0 +1,37 @@
+#pragma once
+
+
+#include "app/appseed/base/base/base/base.h"
+
+#include "cairo/cairo.h"
+
+
+#ifdef _DRAW2D_CAIRO_LIBRARY
+    #define CLASS_DECL_DRAW2D_CAIRO  CLASS_DECL_EXPORT
+#else
+    #define CLASS_DECL_DRAW2D_CAIRO  CLASS_DECL_IMPORT
+#endif
+
+
+
+#include "draw2d_cairo_factory_exchange.h"
+#include "draw2d_cairo_keep.h"
+
+
+#include "draw2d_cairo_object.h"
+#include "draw2d_cairo_pen.h"
+#include "draw2d_cairo_bitmap.h"
+#include "draw2d_cairo_brush.h"
+#include "draw2d_cairo_font.h"
+#include "draw2d_cairo_palette.h"
+#include "draw2d_cairo_region.h"
+#include "draw2d_cairo_dib.h"
+#include "draw2d_cairo_path.h"
+
+
+#include "draw2d_cairo_graphics.h"
+
+
+#pragma comment(lib, "Msimg32.lib")
+
+
