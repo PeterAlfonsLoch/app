@@ -303,7 +303,8 @@ CLASS_DECL_BASE void file_read_gen_string_dup(FILE * hfile, ::md5::md5 * pctx, s
 #endif
 
 
-class uint_array;
+template < typename N > class numeric_array;
+typedef CLASS_DECL_BASE numeric_array < uint32_t > uint_array;
 class stringa;
 
 #ifndef METROWIN

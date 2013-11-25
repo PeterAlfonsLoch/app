@@ -35,30 +35,6 @@
 #endif
 
    template < class T >
-   inline smart_pointer < T > ::smart_pointer(int32_t i)
-   {
-      m_p = (T *) (int_ptr) i;
-   }
-
-   template < class T >
-   inline smart_pointer < T > ::smart_pointer(int64_t i)
-   {
-      m_p = (T *) i;
-   }
-
-#ifdef MACOS
-#ifdef OS64BIT
-   
-   template < class T >
-   inline smart_pointer < T > ::smart_pointer(long l)
-   {
-      m_p = (T *) l;
-   }
-   
-#endif
-#endif
-   
-   template < class T >
    inline smart_pointer < T > ::smart_pointer(T * p)
    {
       m_p = p;
@@ -66,18 +42,10 @@
    }
 
    template < class T >
-   inline smart_pointer < T > ::smart_pointer(lparam lparam)
+   inline smart_pointer < T > ::smart_pointer(const lparam & lparam)
    {
       m_p = (T *) lparam.m_lparam;
    }
-
-   template < class T >
-   inline smart_pointer < T > ::smart_pointer(void * p)
-   {
-      m_p = (T *) p;
-      ::add_ref(m_p);
-   }
-
 
    template < class T >
    smart_pointer < T > ::smart_pointer(const allocatorsp & a)
@@ -234,67 +202,12 @@
 #endif
 
    template < class T >
-   inline smart_pointer < T > & smart_pointer < T > ::operator = (lparam lparam)
+   inline smart_pointer < T > & smart_pointer < T > ::operator = (const lparam & lparam)
    {
 
       release();
 
       m_p = (T *) lparam;
-
-      return * this;
-
-   }
-
-   template < class T >
-   inline smart_pointer < T > & smart_pointer < T > ::operator = (int32_t i)
-   {
-
-      release();
-
-      m_p = (T *) i;
-
-      return * this;
-
-   }
-
-   template < class T >
-   inline smart_pointer < T > & smart_pointer < T > ::operator = (int64_t i)
-   {
-
-      release();
-
-      m_p = (T *) i;
-
-      return * this;
-
-   }
-   
-#ifdef MACOS
-#ifdef OS64BIT
-   
-   template < class T >
-   inline smart_pointer < T > & smart_pointer < T > ::operator = (long l)
-   {
-      
-      release();
-      
-      m_p = (T *) l;
-      
-      return * this;
-      
-   }
-   
-#endif
-#endif
-   
-
-   template < class T >
-   inline smart_pointer < T > & smart_pointer < T > ::operator = (void * p)
-   {
-
-      release();
-
-      m_p = (T *) p;
 
       return * this;
 
@@ -333,37 +246,37 @@
 
     }
 
-template < class T1, class T2 >
-bool operator ==(const T1  * t1, const smart_pointer < T2 > & t2)
-{
-   T1 * pt1 = dynamic_cast < T1 * > (t2.m_p);
-   if(pt1 != NULL)
+   template < class T1, class T2 >
+   bool operator ==(const T1  * t1, const smart_pointer < T2 > & t2)
    {
-      return pt1 == t1;
+      T1 * pt1 = dynamic_cast < T1 * > (t2.m_p);
+      if(pt1 != NULL)
+      {
+         return pt1 == t1;
+      }
+      T2 * pt2 = dynamic_cast < T2 * > ((T1 *) t1);
+      if(pt2 != NULL)
+      {
+         return pt2 == t2.m_p;
+      }
+      return false;
    }
-   T2 * pt2 = dynamic_cast < T2 * > ((T1 *) t1);
-   if(pt2 != NULL)
-   {
-      return pt2 == t2.m_p;
-   }
-   return false;
-}
 
-template < class T1, class T2 >
-bool operator ==(const smart_pointer < T1 > & t1, const T2 * t2)
-{
-   T1 * pt1 = dynamic_cast < T1 * > ((T2 *) t2);
-   if(pt1 != NULL)
+   template < class T1, class T2 >
+   bool operator ==(const smart_pointer < T1 > & t1, const T2 * t2)
    {
-      return pt1 == t1.m_p;
+      T1 * pt1 = dynamic_cast < T1 * > ((T2 *) t2);
+      if(pt1 != NULL)
+      {
+         return pt1 == t1.m_p;
+      }
+      T2 * pt2 = dynamic_cast < T2 * > (t1.m_p);
+      if(pt2 != NULL)
+      {
+         return pt2 == t2;
+      }
+      return false;
    }
-   T2 * pt2 = dynamic_cast < T2 * > (t1.m_p);
-   if(pt2 != NULL)
-   {
-      return pt2 == t2;
-   }
-   return false;
-}
 
 
 template < class T1, class T2 >

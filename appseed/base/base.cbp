@@ -43,14 +43,12 @@
 		<Compiler>
 			<Add option="-std=c++0x" />
 			<Add option="-fexceptions" />
-			<Add option="-fpermissive" />
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-pie" />
 			<Add option="-fno-stack-protector" />
 			<Add option="-Wno-pointer-arith" />
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
-			<Add option="-Wno-conversion-null" />
 			<Add option="-fPIC" />
 			<Add option="-DNO_LCMS" />
 			<Add directory="../../thirdparty/appseed" />
@@ -66,17 +64,9 @@
 			<Add directory="base/openssl" />
 			<Add directory="base/openssl/crypto" />
 			<Add directory="base/openssl/ssl" />
-			<Add directory="graphics/cairo" />
-			<Add directory="graphics/freeimage/FreeImage" />
-			<Add directory="graphics/freeimage" />
-			<Add directory="graphics/freeimage/LibRawLite" />
-			<Add directory="graphics/freeimage/LibRawLite/libraw" />
-			<Add directory="graphics/freeimage/LibJPEG" />
-			<Add directory="graphics/freeimage/OpenEXR/Half" />
-			<Add directory="graphics/freeimage/OpenEXR/IlmImf" />
-			<Add directory="graphics/freeimage/OpenEXR/Iex" />
-			<Add directory="graphics/freeimage/OpenEXR/IlmThread" />
-			<Add directory="graphics/freeimage/OpenEXR/Imath" />
+			<Add directory="base/openssl/crypto/asn1" />
+			<Add directory="base/openssl/crypto/evp" />
+			<Add directory="base/openssl/crypto/modes" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -5799,9 +5789,11 @@
 		<Unit filename="net/sockets/winrt/webserver/webserver_http_base_socket.h" />
 		<Unit filename="net/sockets/winrt/webserver/webserver_httpd_socket.h" />
 		<Unit filename="primitive/collection/collection.h" />
+		<Unit filename="primitive/collection/collection.inl" />
 		<Unit filename="primitive/collection/collection_2d_array.cpp" />
 		<Unit filename="primitive/collection/collection_array.cpp" />
 		<Unit filename="primitive/collection/collection_array_decl.h" />
+		<Unit filename="primitive/collection/collection_array_impl.inl" />
 		<Unit filename="primitive/collection/collection_attrib_map.h" />
 		<Unit filename="primitive/collection/collection_base_2array.h" />
 		<Unit filename="primitive/collection/collection_base_enum.h" />
@@ -5820,6 +5812,7 @@
 		<Unit filename="primitive/collection/collection_deque.h" />
 		<Unit filename="primitive/collection/collection_elements.h" />
 		<Unit filename="primitive/collection/collection_fifo_map.h" />
+		<Unit filename="primitive/collection/collection_fifo_map_impl.inl" />
 		<Unit filename="primitive/collection/collection_id_array.cpp" />
 		<Unit filename="primitive/collection/collection_id_array.h" />
 		<Unit filename="primitive/collection/collection_int_map.h" />
@@ -5828,7 +5821,9 @@
 		<Unit filename="primitive/collection/collection_key_sort_array.h" />
 		<Unit filename="primitive/collection/collection_lemon_array.h" />
 		<Unit filename="primitive/collection/collection_lemon_array_decl.h" />
+		<Unit filename="primitive/collection/collection_lemon_array_impl.inl" />
 		<Unit filename="primitive/collection/collection_list.h" />
+		<Unit filename="primitive/collection/collection_list_impl.inl" />
 		<Unit filename="primitive/collection/collection_logic_array.h" />
 		<Unit filename="primitive/collection/collection_map.h" />
 		<Unit filename="primitive/collection/collection_map_association.h" />
@@ -5848,6 +5843,7 @@
 		<Unit filename="primitive/collection/collection_priority_queue.h" />
 		<Unit filename="primitive/collection/collection_queue.h" />
 		<Unit filename="primitive/collection/collection_raw_array_decl.h" />
+		<Unit filename="primitive/collection/collection_raw_array_impl.inl" />
 		<Unit filename="primitive/collection/collection_rect_array.cpp" />
 		<Unit filename="primitive/collection/collection_rect_array.h" />
 		<Unit filename="primitive/collection/collection_simple_eq_array.h" />
@@ -5859,7 +5855,9 @@
 		<Unit filename="primitive/collection/collection_sort.cpp" />
 		<Unit filename="primitive/collection/collection_sort.h" />
 		<Unit filename="primitive/collection/collection_sort_array.h" />
+		<Unit filename="primitive/collection/collection_sort_array_impl.inl" />
 		<Unit filename="primitive/collection/collection_sort_map.h" />
+		<Unit filename="primitive/collection/collection_sort_map_impl.inl" />
 		<Unit filename="primitive/collection/collection_spreadset.h" />
 		<Unit filename="primitive/collection/collection_stack.h" />
 		<Unit filename="primitive/collection/collection_strid_map.h" />

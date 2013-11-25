@@ -5,6 +5,7 @@ class CLASS_DECL_BASE dump_context :
    virtual public element
 {
 public:
+
    dump_context(::file::buffer_sp  pFile = NULL);
 
 // Attributes

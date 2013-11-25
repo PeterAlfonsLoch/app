@@ -43,7 +43,7 @@ namespace draw2d
 
          e_type            m_etype;
          COLORREF          m_cr;
-         size              m_size;
+         class size        m_size;
 
          bool operator == (const descriptor & d) const
          {
@@ -73,7 +73,7 @@ namespace draw2d
 
       BITMAPINFO        m_info;
       COLORREF *        m_pcolorref;
-      size              m_size;
+      class size        m_size;
       int32_t           m_iScan;
       bool              m_bMapped; // optionally used by implementation
       descriptor        m_descriptor;
@@ -166,7 +166,7 @@ namespace draw2d
       virtual void transparent_color(color color);
 
 
-      virtual bool create(size);
+      virtual bool create(class size);
       virtual bool create(int32_t iWidth, int32_t iHeight);
       virtual bool create(::draw2d::graphics * pdc);
       virtual bool Destroy();
@@ -183,16 +183,16 @@ namespace draw2d
 
       virtual bool from(::draw2d::dib * pdib);
       virtual bool from(::draw2d::graphics * pdc);
-      virtual bool from(point ptDst, ::draw2d::graphics * pdc, point ptSrc, size size);
-      virtual bool from(point ptDst, ::draw2d::dib * pdc, point ptSrc, size size);
-      virtual bool from_ignore_alpha(point ptDst, ::draw2d::dib * pdc, point ptSrc, size size);
+      virtual bool from(point ptDst, ::draw2d::graphics * pdc, point ptSrc, class size size);
+      virtual bool from(point ptDst, ::draw2d::dib * pdc, point ptSrc, class size size);
+      virtual bool from_ignore_alpha(point ptDst, ::draw2d::dib * pdc, point ptSrc, class size size);
 
       virtual bool to(::draw2d::graphics * pgraphics);
       virtual bool to(::draw2d::graphics * pgraphics, point pt);
-      virtual bool to(::draw2d::graphics * pgraphics, size size);
-      virtual bool to(::draw2d::graphics * pgraphics, point pt, size size);
+      virtual bool to(::draw2d::graphics * pgraphics, class size size);
+      virtual bool to(::draw2d::graphics * pgraphics, point pt, class size size);
       virtual bool to(::draw2d::graphics * pgraphics, LPCRECT lpcrect);
-      virtual bool to(::draw2d::graphics * pgraphics, point pt, size size, point ptSrc);
+      virtual bool to(::draw2d::graphics * pgraphics, point pt, class size size, point ptSrc);
 
 
       virtual bool pixelate(int32_t iSize);
@@ -248,7 +248,7 @@ namespace draw2d
       virtual void Line ( int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t R, int32_t G, int32_t B );
       virtual void LineGlass ( int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t R, int32_t G, int32_t B, int32_t A );
 
-      virtual void create_frame(size size, int32_t iFrameCount);
+      virtual void create_frame(class size size, int32_t iFrameCount);
       virtual void set_frame2(void * lpdata, int32_t iFrame, int32_t iFrameCount);
       virtual void set_frame1(void * lpdata, int32_t iFrame, int32_t iFrameCount);
       virtual void get_frame(void * lpdata, int32_t iFrame, int32_t iFrameCount);
@@ -259,7 +259,7 @@ namespace draw2d
       //virtual int32_t height();
       inline int64_t area() { return m_size.area(); }
       virtual double pi();
-      inline ::size size() { return m_size; }
+      inline class size size() { return m_size; }
 
       virtual void write(::file::output_stream & ostream);
       virtual void read(::file::input_stream & istream);
@@ -303,7 +303,7 @@ namespace draw2d
    };
 
    class CLASS_DECL_BASE dibmap :
-      virtual public map < size, size, ::draw2d::dib_sp, ::draw2d::dib_sp >
+      virtual public map < class size, class size, ::draw2d::dib_sp, ::draw2d::dib_sp >
    {
    public:
 

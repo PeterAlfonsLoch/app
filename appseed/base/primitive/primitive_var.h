@@ -94,8 +94,8 @@ public:
       property *           m_pprop;
       uchar                m_uch;
       char                 m_ch;
-      duration             m_duration;
-      duration *           m_pduration;
+      class duration       m_duration;
+      class duration *     m_pduration;
    };
 
 
@@ -145,8 +145,8 @@ public:
    var(const pair_set_interface & set);
    var(const str_str_interface & set);
    var(const string_composite & composite);
-   var(const duration & duration);
-   var(duration * pduration);
+   var(const class duration & duration);
+   var(class duration * pduration);
 //#if defined(MOVE_SEMANTICS)
   // inline var(var && v);
 //#endif
@@ -194,7 +194,7 @@ public:
    int_array &                      inta();
    int64_array &                    int64a();
    var_array &                      vara();
-   ::duration &                     duration();
+   class duration &                 duration();
    property_set &                   propset(sp(base_application) papp = NULL);
    property &                       prop();
    const class primitive::memory &  memory() const;
@@ -204,7 +204,7 @@ public:
    var_array                        vara()  const;
    property_set                     propset() const;
    property                         prop() const;
-   ::duration                       duration() const;
+   class duration                   duration() const;
 
    bool is_scalar() const;
    inline bool is_array() const;
@@ -255,7 +255,7 @@ public:
    operator uint32_t() const;
    operator int64_t() const;
    operator uint64_t() const;
-   operator ::duration() const;
+   operator class duration() const;
 
    //operator string & ();
    //operator id &();
@@ -341,8 +341,8 @@ public:
    var & operator = (const string_composite & composite);
    var & operator = (const id & id);
    var & operator = (id * pid);
-   var & operator = (const ::duration & pid);
-   var & operator = (::duration * pduration);
+   var & operator = (const class duration & pid);
+   var & operator = (class duration * pduration);
 //#ifdef MOVE_SEMANTICS
    //inline var & operator = (var && v);
 //#endif
@@ -656,7 +656,7 @@ inline var::operator uint64_t() const
    return uint64();
 }
 
-inline var::operator ::duration() const
+inline var::operator class duration() const
 {
    return duration();
 }

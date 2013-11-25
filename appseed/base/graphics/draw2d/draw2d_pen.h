@@ -62,7 +62,7 @@ namespace draw2d
 
 
    class CLASS_DECL_BASE pen_sp :
-      virtual public smart_pointer < pen >
+      public smart_pointer < pen >
    {
    public:
 
@@ -95,12 +95,12 @@ namespace draw2d
       {
 
          smart_pointer < pen >::operator = (ppen);
-         
+
          return *this;
-         
+
       }
-      
-      
+
+
    };
 
 

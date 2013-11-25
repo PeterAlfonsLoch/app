@@ -148,7 +148,7 @@ void cookies::add(const char * psz)
       bRun = pszEnd != NULL;
       if(!bRun)
          pszEnd = psz + strlen(psz);
-      
+
       const char * pszEqual = strchr(psz, '=');
       if(pszEqual > pszEnd)
          pszEqual = NULL;
@@ -306,7 +306,7 @@ string cookies::expire(time_t t)
 
 void cookies::parse_header(const char * psz)
 {
-   
+
    if(psz == NULL)
       return;
 
@@ -372,6 +372,19 @@ http::cookie & cookies::operator [](const char * name)
 {
    return cookie(name);
 }
+      cookies & cookies::operator = (const cookies & cookies)
+      {
+
+         if(this != &cookies)
+         {
+
+            smart_pointer_array < ::http::cookie >::operator =((smart_pointer_array < ::http::cookie > &) cookies);
+
+         }
+
+         return *this;
+
+      }
 
 
 } // namespace http

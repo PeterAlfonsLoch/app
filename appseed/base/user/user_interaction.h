@@ -355,7 +355,7 @@ namespace user
 
       virtual LRESULT send(::message::base * pbase);
       virtual bool post(::message::base * pbase);
-      virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = NULL);
+      virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = 0);
 
 #ifdef LINUX
 
@@ -363,8 +363,8 @@ namespace user
 
 #endif
 
-      virtual bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = NULL);
-      virtual bool post_simple_command(e_simple_command ecommand, lparam lParam = NULL);
+      virtual bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = 0);
+      virtual bool post_simple_command(e_simple_command ecommand, lparam lParam = 0);
 
       virtual bool ModifyStyle(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);
       virtual bool ModifyStyleEx(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);
@@ -470,7 +470,7 @@ namespace user
       virtual sp(interaction) GetTopLevelParent();
       virtual sp(interaction) EnsureTopLevelParent();
       virtual sp(::user::frame_window) GetTopLevelFrame();
-      virtual void SendMessageToDescendants(UINT message, WPARAM wParam = 0, lparam lParam = NULL, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
+      virtual void SendMessageToDescendants(UINT message, WPARAM wParam = 0, lparam lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
       virtual void pre_translate_message(signal_details * pobj);
 
 

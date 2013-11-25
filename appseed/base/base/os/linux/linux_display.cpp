@@ -15,7 +15,7 @@ osdisplay_data::osdisplay_data()
    m_pdisplay           = NULL;
    m_atomLongType       = None;
    m_atomLongStyle      = None;
-   m_atomLongStyleEx    = NULL;
+   m_atomLongStyleEx    = 0;
 
 }
 

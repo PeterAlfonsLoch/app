@@ -220,6 +220,23 @@ namespace sip
       return m_cookies;
    }
 
+   transaction & transaction::operator = (const transaction & transaction)
+   {
+
+      if(this != &transaction)
+      {
+
+         m_propertysetHeader     = transaction.m_propertysetHeader;
+         m_propertysetAttribute  = transaction.m_propertysetAttribute;
+         m_cookies               = transaction.m_cookies;
+         m_null                  = transaction.m_null;
+
+      }
+
+      return *this;
+
+   }
+
 
 } // namespace sip
 

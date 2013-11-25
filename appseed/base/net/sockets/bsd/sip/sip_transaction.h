@@ -7,6 +7,14 @@ namespace sip
       virtual public ::object
    {
    public:
+
+
+      property_set m_propertysetHeader;
+      property_set m_propertysetAttribute;
+      http::cookies m_cookies;
+      string m_null;
+
+
       transaction(sp(base_application) papp);
       transaction(const transaction & src);
       virtual ~transaction();
@@ -55,11 +63,15 @@ namespace sip
 
       virtual void clear();
 
-      property_set m_propertysetHeader;
-      property_set m_propertysetAttribute;
-      http::cookies m_cookies;
-      string m_null;
+
+      transaction & operator = (const transaction & transaction);
+
 
    }; // end of class
 
+
 } // namespace sip
+
+
+
+

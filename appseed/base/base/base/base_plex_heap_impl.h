@@ -151,9 +151,9 @@ inline void * plex_heap_alloc::Alloc()
    // but very important is extremely fast
 
    int32_t i = m_i % m_iShareCount;
-   
+
    m_i++;
-   
+
    int32_t * pi = (int32_t *) element_at(i)->Alloc();
 
    *pi = i;
@@ -169,20 +169,20 @@ inline void plex_heap_alloc::Free(void * p)
       return;
 
    int32_t i = ((int32_t *)p)[-1];
-   
+
    if(i >= 0 && i < m_iShareCount)
    {
-   
+
       element_at(i)->Free(&((int32_t *)p)[-1]);
-      
+
    }
    else
    {
-   
+
       ::OutputDebugStringW(L"plex_heap_alloc::Free error");
-      
+
    }
-      
+
 
 }
 
@@ -221,7 +221,7 @@ public:
 
 
    inline void * alloc(size_t nAllocSize);
-   inline void * realloc(void * p, size_t nAllocSize, size_t nOldAllocSize, int align);
+   void * realloc(void * p, size_t nAllocSize, size_t nOldAllocSize, int align);
    inline void free(void * p, size_t nAllocSize);
 
    void pre_finalize();
@@ -248,20 +248,20 @@ public:
 
 inline void * plex_heap_alloc_array::alloc(size_t size)
 {
-   
+
    plex_heap_alloc * palloc = find(size);
 
    if(palloc != NULL)
    {
-      
+
       return palloc->Alloc();
-      
+
    }
    else
    {
-      
+
       return ::system_heap_alloc(size);
-      
+
    }
 
 }
@@ -269,20 +269,20 @@ inline void * plex_heap_alloc_array::alloc(size_t size)
 
 void plex_heap_alloc_array::free(void * p, size_t size)
 {
-   
+
    plex_heap_alloc * palloc = find(size);
 
    if(palloc != NULL)
    {
-      
+
       return palloc->Free(p);
-      
+
    }
    else
    {
-      
+
       return ::system_heap_free(p);
-      
+
    }
 
 }
@@ -295,18 +295,18 @@ inline plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
 
    for(int32_t i = 0; i < m_iWorkingSize; i++)
    {
-   
+
       if(this->element_at(i)->GetAllocSize() >= nAllocSize)
       {
-      
+
          return this->element_at(i);
-         
+
       }
-      
+
    }
-   
+
    return NULL;
-   
+
 }
 
 

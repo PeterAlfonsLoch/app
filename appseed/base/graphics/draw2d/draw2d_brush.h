@@ -57,8 +57,9 @@ namespace draw2d
       virtual void dump(dump_context & dumpcontext) const;
    };
 
+
    class CLASS_DECL_BASE brush_sp :
-      virtual public smart_pointer < brush >
+      public smart_pointer < brush >
    {
    public:
 
@@ -99,17 +100,17 @@ namespace draw2d
       }
 */
 
-      
+
       brush_sp & operator = (::draw2d::brush * pbrush)
       {
 
          smart_pointer < brush >::operator = (pbrush);
-         
+
          return *this;
-         
+
       }
-      
-      
+
+
    };
 
 

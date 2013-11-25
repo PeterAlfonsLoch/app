@@ -7,9 +7,42 @@ class smart_pointer_array :
 {
 public:
 
-   smart_pointer_array()
+   smart_pointer_array() { }
+
+#if defined(MOVE_SEMANTICS)
+
+   smart_pointer_array(smart_pointer_array && a) :
+      array < smart_pointer < T > >(a)
    {
+
    }
+
+   inline smart_pointer_array & operator = (smart_pointer_array && a)
+   {
+
+      array < smart_pointer < T > >::operator = (a);
+
+      return *this;
+
+   }
+
+#endif
+
+   smart_pointer_array(const smart_pointer_array & a) :
+      array < smart_pointer < T > >(a)
+   {
+
+   }
+
+   inline smart_pointer_array & operator = (smart_pointer_array & a)
+   {
+
+      copy(a);
+
+      return *this;
+
+   }
+
 
    smart_pointer_array(sp(base_application) papp) :
       element(papp),

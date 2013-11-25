@@ -4,8 +4,8 @@
 hthread::hthread()
 {
 
-   m_pevent = new event(false, true);
-   
+   m_pevent = new event(NULL, false, true);
+
    m_pthread = NULL;
 
 }
@@ -20,8 +20,8 @@ hthread::~hthread()
 
 void hthread::wait()
 {
-   
+
    m_pevent->wait();
-   
+
 }
 

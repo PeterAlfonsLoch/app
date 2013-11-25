@@ -28,6 +28,28 @@ namespace file
       virtual public serializable
    {
    public:
+
+
+   serializable_array() { }
+
+#if defined(MOVE_SEMANTICS)
+   serializable_array(serializable_array && a) :
+      type_array(a)
+   {
+
+   }
+
+   inline serializable_array & operator = (serializable_array && a)
+   {
+
+      type_array::operator = (a);
+
+      return *this;
+
+   }
+
+#endif
+
       virtual void write(output_stream & ostream);
       virtual void read(input_stream & istream);
       virtual void on_after_read();
@@ -39,6 +61,28 @@ namespace file
       virtual public serializable
    {
    public:
+
+
+      byte_serializable_pointer_array() { }
+
+#if defined(MOVE_SEMANTICS)
+      byte_serializable_pointer_array(byte_serializable_pointer_array && a) :
+         type_pointer_array(a)
+      {
+
+      }
+
+      inline byte_serializable_pointer_array & operator = (byte_serializable_pointer_array && a)
+      {
+
+         type_pointer_array::operator = (a);
+
+         return *this;
+
+      }
+
+#endif
+
       virtual void write(output_stream & ostream);
       virtual void read(input_stream & istream);
       virtual void on_after_read();

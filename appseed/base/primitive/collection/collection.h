@@ -50,13 +50,6 @@
 // Classes declared in this file
 
 //object
-   // Arrays
-   class byte_array;           // array of BYTE
-   class uint16_array;           // array of WORD
-   class uint32_array;          // array of uint32_t
-   class CUIntArray;           // array of UINT
-   class CPtrArray;            // array of void *
-   class CObArray;             // array of object*
 
    // Lists
    class pointer_list;             // list of void *
@@ -169,17 +162,9 @@ public:
 #include "collection.inl"
 
 
-class CLASS_DECL_BASE dword_2darray :
-   public spa(uint32_array)
-{
-public:
-};
 
-class CLASS_DECL_BASE index_2darray :
-   public spa(index_array)
-{
-public:
-};
+typedef CLASS_DECL_BASE spa(uint_array) dword_2darray;
+typedef CLASS_DECL_BASE spa(index_array) index_2darray;
 
 
 

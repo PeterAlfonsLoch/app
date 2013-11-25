@@ -152,6 +152,12 @@ public:
    string surround_and_implode(const char * lpcszSeparator = NULL, const char * pszPrefix = NULL, const char * pszSuffix = NULL, index iStart = 0, ::count iCount = -1);
 
 
+   numeric_array operator - (const numeric_array & a) const;
+   numeric_array operator + (const numeric_array & a) const;
+   numeric_array & operator -= (const numeric_array & a);
+   numeric_array & operator += (const numeric_array & a);
+
+
 };
 
 template < class TYPE >
@@ -540,6 +546,51 @@ void numeric_array < TYPE >::divide(TYPE div)
 }
 
 template < class TYPE >
+numeric_array < TYPE >  numeric_array < TYPE >::operator - (const numeric_array < TYPE > & a) const
+{
+
+   numeric_array < TYPE > aRet(*this);
+
+   aRet.remove(a);
+
+   return *this;
+
+}
+
+template < class TYPE >
+numeric_array < TYPE >  numeric_array < TYPE >::operator + (const numeric_array < TYPE >  & a) const
+{
+
+   numeric_array < TYPE > aRet(*this);
+
+   aRet.add(a);
+
+   return *this;
+
+}
+
+template < class TYPE >
+numeric_array < TYPE >  & numeric_array < TYPE >::operator -= (const numeric_array < TYPE >  & a)
+{
+
+   remove(a);
+
+   return *this;
+
+}
+
+template < class TYPE >
+numeric_array < TYPE >  & numeric_array < TYPE >::operator += (const numeric_array < TYPE >  & a)
+{
+
+   add(a);
+
+   return *this;
+
+}
+
+
+template < class TYPE >
 unique_number_sort_array < TYPE >::
    unique_number_sort_array(sp(base_application) papp) :
    element(papp)
@@ -555,166 +606,101 @@ unique_number_sort_array < TYPE >::
 }
 
 
-class CLASS_DECL_BASE index_array :
-   virtual public numeric_array < index >
-{
-public:
-   index_array(sp(base_application) papp = NULL);
-   index_array(const index_array & array);
-   virtual ~index_array();
-
-   index_array operator - (const index_array & inta) const;
-   index_array operator + (const index_array & inta) const;
-};
-
-
-class CLASS_DECL_BASE count_array :
-   virtual public numeric_array < count >
-{
-public:
-   count_array(sp(base_application) papp = NULL);
-   count_array(const count_array & array);
-   virtual ~count_array();
-
-   count_array operator - (const count_array & inta) const;
-   count_array operator + (const count_array & inta) const;
-};
-
-
-class CLASS_DECL_BASE int_array :
-   virtual public numeric_array < int32_t >
-{
-public:
-   int_array(sp(base_application) papp = NULL);
-   int_array(const int_array & array);
-   virtual ~int_array();
-
-   int_array operator - (const int_array & inta) const;
-   int_array operator + (const int_array & inta) const;
-};
-
-
-class CLASS_DECL_BASE int64_array :
-   virtual public numeric_array < int64_t >
-{
-public:
-   int64_array(sp(base_application) papp = NULL);
-   int64_array(const int64_array & array);
-   virtual ~int64_array();
-
-   int64_array operator - (const int64_array & inta) const;
-   int64_array operator + (const int64_array & inta) const;
-};
-
-class CLASS_DECL_BASE uint64_array :
-   virtual public numeric_array < uint64_t >
-{
-public:
-   uint64_array(sp(base_application) papp = NULL);
-   uint64_array(const uint64_array & array);
-   virtual ~uint64_array();
-
-   uint64_array operator - (const uint64_array & inta) const;
-   uint64_array operator + (const uint64_array & inta) const;
-};
-
-class CLASS_DECL_BASE unique_int_sort_array :
-   virtual public unique_number_sort_array < int32_t >
-{
-public:
-   unique_int_sort_array(sp(base_application) papp = NULL);
-   unique_int_sort_array(const unique_int_sort_array & array);
-   virtual ~unique_int_sort_array();
-
-   unique_int_sort_array operator - (const unique_int_sort_array & inta) const;
-   unique_int_sort_array operator + (const unique_int_sort_array & inta) const;
-};
-
-
-class CLASS_DECL_BASE unique_index_sort_array :
-   virtual public unique_number_sort_array < index >
-{
-public:
-   unique_index_sort_array(sp(base_application) papp = NULL);
-   unique_index_sort_array(const unique_index_sort_array & array);
-   virtual ~unique_index_sort_array();
-
-   unique_index_sort_array operator - (const unique_index_sort_array & inta) const;
-   unique_index_sort_array operator + (const unique_index_sort_array & inta) const;
-};
-class CLASS_DECL_BASE float_array :
-   virtual public numeric_array < float >
-{
-public:
-   float_array();
-   float_array(const float_array & array);
-   virtual ~float_array();
-};
-
-class CLASS_DECL_BASE double_array :
-   virtual public numeric_array < double >
-{
-public:
-   double_array();
-   double_array(const double_array & array);
-   virtual ~double_array();
-
-   virtual int64_t add_ref();
-   virtual int64_t release();
-
-};
-
-class CLASS_DECL_BASE byte_array :
-   virtual public numeric_array < byte >
-{
-public:
-   byte_array();
-};
-
-
-class CLASS_DECL_BASE uint16_array :
-   virtual public numeric_array < uint16_t >
-{
-public:
-   uint16_array();
-};
 
 
 
-class CLASS_DECL_BASE uint32_array :
-   virtual public numeric_array < uint32_t >
-{
-public:
-
-   uint32_array();
-   uint32_array(const uint32_array & array);
-   virtual ~uint32_array();
-
-};
 
 
 
-class CLASS_DECL_BASE uint_ptr_array :
-   virtual public numeric_array < uint_ptr >
-{
-public:
-
-   uint_ptr_array();
-   uint_ptr_array(const uint_ptr_array & array);
-   virtual ~uint_ptr_array();
-
-};
 
 
 
-class CLASS_DECL_BASE uint_array :
-   public numeric_array < uint32_t >
-{
-public:
-   uint_array();
-   uint_array(const uint_array & array);
-   virtual ~uint_array();
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+typedef CLASS_DECL_BASE numeric_array < index > index_array;
+typedef CLASS_DECL_BASE numeric_array < count > count_array;
+typedef CLASS_DECL_BASE numeric_array < int32_t > int_array;
+typedef CLASS_DECL_BASE numeric_array < int64_t > int64_array;
+typedef CLASS_DECL_BASE numeric_array < uint64_t > uint64_array;
+typedef CLASS_DECL_BASE numeric_array < float > float_array;
+typedef CLASS_DECL_BASE numeric_array < double > double_array;
+typedef CLASS_DECL_BASE numeric_array < byte > byte_array;
+typedef CLASS_DECL_BASE numeric_array < uint16_t > uint16_array;
+typedef CLASS_DECL_BASE numeric_array < uint32_t > uint_array;
+typedef CLASS_DECL_BASE numeric_array < uint_ptr > uint_ptr_array;
+
+
+
+
+typedef CLASS_DECL_BASE unique_number_sort_array < int32_t > unique_int_sort_array;
+typedef CLASS_DECL_BASE unique_number_sort_array < index > unique_index_sort_array;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

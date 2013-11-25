@@ -87,7 +87,7 @@ namespace http
          const char * pszKey,
          var var,
          int32_t iExpire = 0,
-         const char * pszDomain = NULL, 
+         const char * pszDomain = NULL,
          const char * pszPath = NULL,
          bool bSecure = false);
       static string expire(time_t iExpire = 0);
@@ -95,6 +95,9 @@ namespace http
 
       using spa(class http::cookie)::operator [];
       http::cookie & operator [](const char * name);
+
+
+      cookies & operator = (const cookies & cookies);
 
    };
 

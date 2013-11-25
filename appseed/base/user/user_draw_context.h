@@ -14,12 +14,13 @@ namespace core
 {
 
    template < class TYPE >
-   class simple_chain :
-      virtual public ::object
+   class simple_chain
    {
    public:
 
+
       TYPE * m_pnext;
+
 
       simple_chain()
       {
@@ -72,18 +73,18 @@ namespace user
 {
 
    class CLASS_DECL_BASE draw_context :
-      virtual public ::core::simple_chain < draw_context >
+      public ::core::simple_chain < draw_context >
    {
    public:
 
 
-      ::draw2d::graphics *     m_pgraphics;
-      rect                 m_rectClient;
-      bool                 m_bListItemHover;
-      bool                 m_bListSubItemHover;
-      bool                 m_bListItemSelected;
-      bool                 m_bFocus;
-      draw_context *       m_pdrawcontextNext;
+      ::draw2d::graphics *    m_pgraphics;
+      rect                    m_rectClient;
+      bool                    m_bListItemHover;
+      bool                    m_bListSubItemHover;
+      bool                    m_bListItemSelected;
+      bool                    m_bFocus;
+      draw_context *          m_pdrawcontextNext;
 
 
       draw_context();

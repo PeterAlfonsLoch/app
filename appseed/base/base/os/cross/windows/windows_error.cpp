@@ -64,7 +64,7 @@ struct error_table
 {
     DWORD       start;
     DWORD       end;
-    const DWORD *table;
+    const int *table;
 };
 
 
@@ -162,7 +162,7 @@ void WINAPI RtlSetLastWin32ErrorAndNtStatusFromNtStatus( NTSTATUS status )
 
 /* conversion tables */
 
-static const DWORD table_00000102[32] =
+static const int table_00000102[32] =
 {
    ERROR_TIMEOUT,                          /* 00000102 (STATUS_TIMEOUT) */
    ERROR_IO_PENDING,                       /* 00000103 (STATUS_PENDING) */
@@ -198,7 +198,7 @@ static const DWORD table_00000102[32] =
    ERROR_DS_MEMBERSHIP_EVALUATED_LOCALLY   /* 00000121 (STATUS_DS_MEMBERSHIP_EVALUATED_LOCALLY) */
 };
 
-static const DWORD table_40000002[36] =
+static const int table_40000002[36] =
 {
    ERROR_INVALID_PARAMETER,                /* 40000002 (STATUS_WORKING_SET_LIMIT_RANGE) */
    ERROR_IMAGE_NOT_AT_BASE,                /* 40000003 (STATUS_IMAGE_NOT_AT_BASE) */
@@ -238,22 +238,22 @@ static const DWORD table_40000002[36] =
    ERROR_TIMER_RESUME_IGNORED              /* 40000025 (STATUS_TIMER_RESUME_IGNORED) */
 };
 
-static const DWORD table_40000370[1] =
+static const int table_40000370[1] =
 {
    ERROR_DS_SHUTTING_DOWN                  /* 40000370 (STATUS_DS_SHUTTING_DOWN) */
 };
 
-static const DWORD table_40020056[1] =
+static const int table_40020056[1] =
 {
    RPC_S_UUID_LOCAL_ONLY                   /* 40020056 (RPC_NT_UUID_LOCAL_ONLY) */
 };
 
-static const DWORD table_400200af[1] =
+static const int table_400200af[1] =
 {
    RPC_S_SEND_INCOMPLETE                   /* 400200af (RPC_NT_SEND_INCOMPLETE) */
 };
 
-static const DWORD table_80000001[39] =
+static const int table_80000001[39] =
 {
    STATUS_GUARD_PAGE_VIOLATION,            /* 80000001 (STATUS_GUARD_PAGE_VIOLATION) */
    ERROR_NOACCESS,                         /* 80000002 (STATUS_DATATYPE_MISALIGNMENT) */
@@ -296,13 +296,13 @@ static const DWORD table_80000001[39] =
    ERROR_CLEANER_CARTRIDGE_INSTALLED       /* 80000027 (STATUS_CLEANER_CARTRIDGE_INSTALLED) */
 };
 
-static const DWORD table_80000288[2] =
+static const int table_80000288[2] =
 {
    ERROR_DEVICE_REQUIRES_CLEANING,         /* 80000288 (STATUS_DEVICE_REQUIRES_CLEANING) */
    ERROR_DEVICE_DOOR_OPEN                  /* 80000289 (STATUS_DEVICE_DOOR_OPEN) */
 };
 
-static const DWORD table_80090300[72] =
+static const int table_80090300[72] =
 {
    ERROR_NO_SYSTEM_RESOURCES,              /* 80090300 (SEC_E_INSUFFICIENT_MEMORY) */
    ERROR_INVALID_HANDLE,                   /* 80090301 (SEC_E_INVALID_HANDLE) */
@@ -378,7 +378,7 @@ static const DWORD table_80090300[72] =
    ERROR_CANNOT_IMPERSONATE                /* 80090347 (SEC_E_MULTIPLE_ACCOUNTS) */
 };
 
-static const DWORD table_80092010[4] =
+static const int table_80092010[4] =
 {
     ERROR_MUTUAL_AUTH_FAILED,              /* 80092010 (CRYPT_E_REVOKED) */
     0,                                     /* 80092011 (CRYPT_E_NO_REVOCATION_DLL) */
@@ -386,12 +386,12 @@ static const DWORD table_80092010[4] =
     ERROR_MUTUAL_AUTH_FAILED               /* 80092013 (CRYPT_E_REVOCATION_OFFLINE) */
 };
 
-static const DWORD table_80096004[1] =
+static const int table_80096004[1] =
 {
    ERROR_MUTUAL_AUTH_FAILED                /* 80096004 (TRUST_E_CERT_SIGNATURE) */
 };
 
-static const DWORD table_80130001[5] =
+static const int table_80130001[5] =
 {
     ERROR_CLUSTER_NODE_ALREADY_UP,         /* 80130001 (STATUS_CLUSTER_NODE_ALREADY_UP) */
     ERROR_CLUSTER_NODE_ALREADY_DOWN,       /* 80130002 (STATUS_CLUSTER_NODE_ALREADY_DOWN) */
@@ -400,7 +400,7 @@ static const DWORD table_80130001[5] =
     ERROR_CLUSTER_NODE_ALREADY_MEMBER      /* 80130005 (STATUS_CLUSTER_NODE_ALREADY_MEMBER) */
 };
 
-static const DWORD table_c0000001[411] =
+static const int table_c0000001[411] =
 {
    ERROR_GEN_FAILURE,                      /* c0000001 (STATUS_UNSUCCESSFUL) */
    ERROR_INVALID_FUNCTION,                 /* c0000002 (STATUS_NOT_IMPLEMENTED) */
@@ -819,7 +819,7 @@ static const DWORD table_c0000001[411] =
    ERROR_DOMAIN_TRUST_INCONSISTENT         /* c000019b (STATUS_DOMAIN_TRUST_INCONSISTENT) */
 };
 
-static const DWORD table_c0000202[396] =
+static const int table_c0000202[396] =
 {
    ERROR_NO_USER_SESSION_KEY,              /* c0000202 (STATUS_NO_USER_SESSION_KEY) */
    ERROR_UNEXP_NET_ERR,                    /* c0000203 (STATUS_USER_SESSION_DELETED) */
@@ -1219,7 +1219,7 @@ static const DWORD table_c0000202[396] =
    SEC_E_SMARTCARD_CERT_EXPIRED            /* c000038d (STATUS_SMARTCARD_CERT_EXPIRED) */
 };
 
-static const DWORD table_c0020001[99] =
+static const int table_c0020001[99] =
 {
    RPC_S_INVALID_STRING_BINDING,           /* c0020001 (RPC_NT_INVALID_STRING_BINDING) */
    RPC_S_WRONG_KIND_OF_BINDING,            /* c0020002 (RPC_NT_WRONG_KIND_OF_BINDING) */
@@ -1322,7 +1322,7 @@ static const DWORD table_c0020001[99] =
    RPC_S_INVALID_ASYNC_CALL                /* c0020063 (RPC_NT_INVALID_ASYNC_CALL) */
 };
 
-static const DWORD table_c0030001[12] =
+static const int table_c0030001[12] =
 {
    RPC_X_NO_MORE_ENTRIES,                  /* c0030001 (RPC_NT_NO_MORE_ENTRIES) */
    RPC_X_SS_CHAR_TRANS_OPEN_FAIL,          /* c0030002 (RPC_NT_SS_CHAR_TRANS_OPEN_FAIL) */
@@ -1338,7 +1338,7 @@ static const DWORD table_c0030001[12] =
    RPC_X_BAD_STUB_DATA                     /* c003000c (RPC_NT_BAD_STUB_DATA) */
 };
 
-static const DWORD table_c0030059[9] =
+static const int table_c0030059[9] =
 {
    RPC_X_INVALID_ES_ACTION,                /* c0030059 (RPC_NT_INVALID_ES_ACTION) */
    RPC_X_WRONG_ES_VERSION,                 /* c003005a (RPC_NT_WRONG_ES_VERSION) */
@@ -1351,7 +1351,7 @@ static const DWORD table_c0030059[9] =
    RPC_X_PIPE_EMPTY                        /* c0030061 (RPC_NT_PIPE_EMPTY) */
 };
 
-static const DWORD table_c00a0001[54] =
+static const int table_c00a0001[54] =
 {
    ERROR_CTX_WINSTATION_NAME_INVALID,      /* c00a0001 (STATUS_CTX_WINSTATION_NAME_INVALID) */
    ERROR_CTX_INVALID_PD,                   /* c00a0002 (STATUS_CTX_INVALID_PD) */
@@ -1409,7 +1409,7 @@ static const DWORD table_c00a0001[54] =
    ERROR_CTX_SHADOW_NOT_RUNNING            /* c00a0036 (STATUS_CTX_SHADOW_NOT_RUNNING) */
 };
 
-static const DWORD table_c0130001[22] =
+static const int table_c0130001[22] =
 {
    ERROR_CLUSTER_INVALID_NODE,             /* c0130001 (STATUS_CLUSTER_INVALID_NODE) */
    ERROR_CLUSTER_NODE_EXISTS,              /* c0130002 (STATUS_CLUSTER_NODE_EXISTS) */
@@ -1435,7 +1435,7 @@ static const DWORD table_c0130001[22] =
    ERROR_CLUSTER_NETWORK_NOT_INTERNAL      /* c0130016 (STATUS_CLUSTER_NETWORK_NOT_INTERNAL) */
 };
 
-static const DWORD table_c0150001[39] =
+static const int table_c0150001[39] =
 {
    ERROR_SXS_SECTION_NOT_FOUND,            /* c0150001 (STATUS_SXS_SECTION_NOT_FOUND) */
    ERROR_SXS_CANT_GEN_ACTCTX,              /* c0150002 (STATUS_SXS_CANT_GEN_ACTCTX) */
@@ -1529,7 +1529,7 @@ ULONG WINAPI RtlNtStatusToDosErrorNoTeb( NTSTATUS status )
       if (natural(status) < table->start) break;
       if (natural(status) < table->end)
       {
-         DWORD ret = table->table[status - table->start];
+         int ret = table->table[status - table->start];
          /* unknown entries are 0 */
          if (!ret) goto no_mapping;
          return ret;

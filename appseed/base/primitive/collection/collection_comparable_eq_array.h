@@ -118,7 +118,7 @@ bool comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::add_unique(ARG_TYPE t)
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 ::count comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::add_unique(const ARRAY_TYPE & a)
 {
-      
+
    ::count ca = 0;
 
    ::count cAdd = a.get_count();
@@ -264,12 +264,29 @@ template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 index comparable_eq_array < TYPE, ARG_TYPE , ARRAY_TYPE >::
 remove(const comparable_eq_array & a)
 {
+
    ::count count = 0;
-   for(index i = 0; i < a.get_count(); i++)
+
+   if(this == &a)
    {
-      count += remove(a[i]);
+
+      count = this->get_size();
+
+      this->remove_all();
+
    }
+   else
+   {
+
+      for(index i = 0; i < a.get_count(); i++)
+      {
+         count += remove(a[i]);
+      }
+
+   }
+
    return count;
+
 }
 
 

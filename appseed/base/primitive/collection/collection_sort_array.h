@@ -19,11 +19,11 @@ inline index BaseNullCompare(T * p1, T * p2)
    return 0;
 }
 
-class index_array;
+
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class BASE_ARRAY_TYPE = array < TYPE, ARG_TYPE >, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) = &BaseNullCompare < TYPE > >
 class sort_array :
-   protected BASE_ARRAY_TYPE
+   virtual protected BASE_ARRAY_TYPE
 {
 public:
 
@@ -71,6 +71,34 @@ public:
 
 
    sort_index_map    m_indexmap;
+
+   sort_array() { }
+
+#if defined(MOVE_SEMANTICS)
+
+   sort_array(sort_array && a) :
+      BASE_ARRAY_TYPE(a)
+   {
+
+   }
+
+   inline sort_array & operator = (sort_array && a)
+   {
+
+      BASE_ARRAY_TYPE::operator = (a);
+
+      return *this;
+
+   }
+
+#endif
+
+   sort_array(const sort_array & a) :
+      BASE_ARRAY_TYPE(a)
+   {
+
+   }
+
 
    index_array & defer_update(index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
 

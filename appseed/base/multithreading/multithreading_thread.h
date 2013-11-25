@@ -471,8 +471,8 @@ public:
 
    //      virtual uint32_t SuspendThread();
    virtual uint32_t ResumeThread();
-   virtual bool post_thread_message(UINT message, WPARAM wParam = 0, lparam lParam = NULL);
-   virtual bool post_message(sp(::user::interaction) pguie, UINT message, WPARAM wParam = 0, lparam lParam = NULL);
+   virtual bool post_thread_message(UINT message, WPARAM wParam = 0, lparam lParam = 0);
+   virtual bool post_message(sp(::user::interaction) pguie, UINT message, WPARAM wParam = 0, lparam lParam = 0);
 
    virtual bool PreInitInstance();
 
@@ -550,7 +550,7 @@ public:
    virtual bool verb();
 
 
-   
+
 };
 
 CLASS_DECL_BASE void thread_alloc_ready(bool bReady);

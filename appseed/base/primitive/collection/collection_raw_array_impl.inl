@@ -507,19 +507,23 @@ template<class TYPE, class ARG_TYPE>
 }
 
 template<class TYPE, class ARG_TYPE>
-index raw_array<TYPE, ARG_TYPE>::append(const raw_array& src)
+index raw_array<TYPE, ARG_TYPE>::append(const raw_array & src)
 {
-   ASSERT_VALID(this);
-   ASSERT(this != &src);   // cannot append to itself
 
-   if(this == &src)
-      throw invalid_argument_exception(get_app());
+   ASSERT_VALID(this);
 
    ::count nOldSize = m_nSize;
-   allocate(m_nSize + src.m_nSize);
-   memcpy(m_pData + nOldSize, src.m_pData, src.m_nSize * sizeof(TYPE));
+
+   ::count nSrcSize = src.m_nSize;   // to enable to append to itself
+
+   allocate(m_nSize + nSrcSize);
+
+   memcpy(m_pData + nOldSize, src.m_pData, nSrcSize * sizeof(TYPE));
+
    return nOldSize;
+
 }
+
 
 template<class TYPE, class ARG_TYPE>
 void raw_array<TYPE, ARG_TYPE>::copy(const raw_array& src)

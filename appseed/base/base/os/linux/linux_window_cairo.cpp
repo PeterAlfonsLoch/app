@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "graphics/cairo/cairo-xlib.h"
+#include "cairo/cairo-xlib.h"
 
 
 window_cairo::window_cairo()

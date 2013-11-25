@@ -61,7 +61,7 @@ public:
    virtual void SetFont(::draw2d::font* pFont, bool bRedraw = TRUE);
    virtual ::draw2d::font* GetFont();
 
-   virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = NULL);
+   virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = 0);
 
 #ifdef LINUX
 
@@ -118,7 +118,7 @@ public:
       DECL_GEN_SIGNAL(_001OnDestroy)
       DECL_GEN_SIGNAL(_001OnNcDestroy)
 
-      void SendMessageToDescendants(UINT message, WPARAM wParam = 0, lparam lParam = NULL, bool bDeep = true, bool bOnlyPerm = 0);
+      void SendMessageToDescendants(UINT message, WPARAM wParam = 0, lparam lParam = 0, bool bDeep = true, bool bOnlyPerm = 0);
 
    virtual bool post_message(UINT uiMessage, WPARAM wparam, lparam lparam);
 

@@ -382,7 +382,7 @@ RetryHost:
             goto RetryHost;
          }
          strUrl = "http://" + strSpaHost + "/stage/app/stage/metastage/index-"+strBuild+".md5";
-         string strCgclIndexMd5 = Application.http().get(strUrl, false);
+         string strCgclIndexMd5 = Application.http().get(strUrl);
          if(strCgclIndexMd5.length() != 32
             || stricmp_dup(get_file_md5(strIndexPath), strCgclIndexMd5) != 0)
          {

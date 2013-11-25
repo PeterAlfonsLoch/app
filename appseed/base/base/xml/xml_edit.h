@@ -20,7 +20,7 @@ namespace xml
    {
    public:
 
-      
+
       e_action       m_eaction;
       index_array    m_iaPath;
       string         m_strName;
@@ -39,7 +39,7 @@ namespace xml
       virtual void write(::file::output_stream & ostream);
       virtual void read(::file::input_stream & istream);
 
-      
+
    };
 
    class CLASS_DECL_BASE edit :
@@ -61,15 +61,6 @@ namespace xml
       void set_value(const sp(::xml::node) pnode);
       void set_attr(const sp(::xml::node) pnode, const attr * pattr);
       void add_attr(const sp(::xml::node) pnode, const attr * pattr);
-
-
-   private:
-
-
-      edit(const edit &) :
-         ::edit < ::xml::document >(NULL)
-      {
-      }
 
 
    };

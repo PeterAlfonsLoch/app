@@ -1,11 +1,39 @@
 #pragma once
 
-typedef sort_array < int_ptr, int_ptr, array < int_ptr, int_ptr >, &numeric_compare < int_ptr > > sort_int_ptr_array;
+
+class CLASS_DECL_BASE sort_int_ptr_array
+{
+public:
+
+   typedef sort_array < int_ptr, int_ptr, array < int_ptr, int_ptr >, &numeric_compare < int_ptr > > type;
+
+};
 
 class CLASS_DECL_BASE base_sort_serializable_int_ptr_array :
-   virtual public ::file::serializable_array < sort_int_ptr_array >
+   virtual public ::file::serializable_array < typename sort_int_ptr_array::type >
 {
+public:
 
+   base_sort_serializable_int_ptr_array() { }
+
+#if defined(MOVE_SEMANTICS)
+
+   base_sort_serializable_int_ptr_array(base_sort_serializable_int_ptr_array && a) :
+      array < int_ptr, int_ptr >(a)
+   {
+
+   }
+
+   inline base_sort_serializable_int_ptr_array & operator = (base_sort_serializable_int_ptr_array && a)
+   {
+
+      array < int_ptr, int_ptr >::operator = (a);
+
+      return *this;
+
+   }
+
+#endif
 
    virtual void on_after_read();
 
@@ -118,20 +146,20 @@ bool flags < ENUM > ::unsignalize_all()
 template < class ENUM >
 flags < ENUM > & flags < ENUM > ::operator = (const flags < ENUM > & f)
 {
-   sort_int_ptr_array::copy(f);
+   sort_int_ptr_array::type::copy(f);
    return *this;
 }
 
 template < class ENUM >
 bool flags < ENUM > ::operator == (const flags < ENUM > & f)
 {
-   return sort_int_ptr_array::operator == (f);
+   return sort_int_ptr_array::type::operator == (f);
 }
 
 template < class ENUM >
 bool flags < ENUM > ::operator != (const flags < ENUM > & f)
 {
-   return sort_int_ptr_array::operator != (f);
+   return sort_int_ptr_array::type::operator != (f);
 }
 
 template < class ENUM >

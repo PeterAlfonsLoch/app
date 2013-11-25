@@ -27,14 +27,7 @@ public:
 
 
    smart_pointer();
-   smart_pointer(int32_t i);
-   smart_pointer(int64_t i);
-#ifdef MACOS
-#ifdef OS64BIT
-   smart_pointer(long l);
-#endif
-#endif
-   smart_pointer(lparam lparam);
+   smart_pointer(const lparam & lparam);
    smart_pointer(const smart_pointer < T > & t);
 #ifdef MOVE_SEMANTICS
    smart_pointer(smart_pointer < T > && t);
@@ -43,14 +36,13 @@ public:
 #ifdef MOVE_SEMANTICS
    smart_pointer(allocatorsp && t);
 #endif
-   smart_pointer(T * p);
-   smart_pointer(void * p);
    template < class T2 >
    smart_pointer(T2 * p)
    {
       m_p = dynamic_cast < T * > (p);
       if(m_p != NULL) ::add_ref(p);
    }
+   smart_pointer(T * p);
 
    template < class T2 >
    smart_pointer(const T2 * p)
@@ -105,21 +97,20 @@ public:
    inline bool is_null() const;
    inline bool is_set() const;
 
-   inline smart_pointer & operator = (T * p);
    inline smart_pointer & operator = (const smart_pointer < T > & t);
 #ifdef MOVE_SEMANTICS
    inline smart_pointer & operator = (smart_pointer < T > && t);
 #endif
-   inline smart_pointer & operator = (lparam);
-   inline smart_pointer & operator = (void *);
-   inline smart_pointer & operator = (int32_t i);
-   inline smart_pointer & operator = (int64_t i);
-#ifdef MACOS
-#ifdef OS64BIT
-   inline smart_pointer & operator = (long l);
-#endif
-#endif
+   inline smart_pointer & operator = (const lparam & lparam);
 
+   template < class T2 >
+   inline smart_pointer & operator = (T2 * p)
+   {
+      return operator = (dynamic_cast < T * > (p));
+   }
+
+
+   inline smart_pointer & operator = (T * p);
 
    template < class T2 >
    inline smart_pointer & operator = (const smart_pointer < T2 > & t)
@@ -173,8 +164,12 @@ public:
 //      bool operator !=(const smart_pointer & p) const { return m_p != p.m_p; }
 //      bool operator ==(const T * p) const { return m_p == p; }
 //      bool operator !=(const T * p) const { return m_p != p; }
-   bool operator ==(LPARAM l) const { return m_p == (T *) l; }
-   bool operator !=(LPARAM l) const { return m_p != (T *) l; }
+   template < typename T2 >
+   inline bool operator ==(const T2 * p) const { return m_p == p; }
+   template < typename T2 >
+   inline bool operator !=(const T2 * p) const { return m_p != p; }
+   inline bool operator ==(const T * p) const { return m_p == p; }
+   inline bool operator !=(const T * p) const { return m_p != p; }
    //bool operator ==(void * p) const { return m_p == (T *) p; }
    //bool operator !=(void * p) const { return m_p != (T *) p; }
 

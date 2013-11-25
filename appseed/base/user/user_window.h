@@ -127,7 +127,7 @@ namespace user
       // as above, but returns oswindow
       virtual sp(::user::interaction) GetDescendantWindow(id id);
       // like get_child_by_id but recursive
-      void SendMessageToDescendants(UINT message, WPARAM wParam = 0, lparam lParam = NULL, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
+      void SendMessageToDescendants(UINT message, WPARAM wParam = 0, lparam lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
       virtual sp(::user::frame_window) GetParentFrame();
       virtual sp(::user::frame_window) EnsureParentFrame();
       virtual sp(::user::interaction) GetTopLevelParent();
@@ -144,7 +144,7 @@ namespace user
 
 #endif   // WINVER >= 0x0500
 
-      virtual LRESULT send_message(UINT message, WPARAM wParam = 0, lparam lParam = NULL);
+      virtual LRESULT send_message(UINT message, WPARAM wParam = 0, lparam lParam = 0);
 
 #ifdef LINUX
 
@@ -153,7 +153,7 @@ namespace user
 #endif
 
 
-      virtual bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = NULL);
+      virtual bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = 0);
 
       virtual bool SendNotifyMessage(UINT message, WPARAM wParam, lparam lParam);
       virtual bool SendChildNotifyLastMsg(LRESULT* pResult = NULL);

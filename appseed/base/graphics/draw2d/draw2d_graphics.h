@@ -6,7 +6,8 @@ namespace draw2d
 
 
    class CLASS_DECL_BASE graphics :
-      virtual public ::core::simple_chain < ::user::draw_context >
+      virtual public ::object,
+      public ::core::simple_chain < ::user::draw_context >
    {
    public:
 
@@ -353,7 +354,7 @@ namespace draw2d
       virtual bool from(size size, ::draw2d::graphics * pgraphicsSrc, point ptSrc, uint32_t dwRop);
       virtual bool from(size size, ::draw2d::graphics * pgraphicsSrc, uint32_t dwRop);
       virtual bool PatBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, uint32_t dwRop);
-      
+
       virtual bool BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc = 0, int32_t ySrc = 0, uint32_t dwRop = SRCCOPY);
       virtual bool BitBlt(LPCRECT lpcrect, ::draw2d::graphics * pgraphicsSrc, POINT ptSrc = ::null_point(), uint32_t dwRop = SRCCOPY);
       virtual bool BitBlt(POINT ptDst, SIZE size, ::draw2d::graphics * pgraphicsSrc, POINT ptSrc = ::null_point(), uint32_t dwRop = SRCCOPY);

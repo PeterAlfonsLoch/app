@@ -34,7 +34,7 @@ namespace sip
    {
       m_memfileBody        = src.m_memfileBody;
 
-      transaction::operator=(src);
+      ::sip::transaction::operator=(src);
 
       return *this;
    }
@@ -54,6 +54,6 @@ namespace sip
    //   m_file = smart_pointer<IFile>(new MemFile);
    }
 
-} // namespace sip 
+} // namespace sip
 
 

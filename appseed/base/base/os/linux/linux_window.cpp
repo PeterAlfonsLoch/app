@@ -1054,7 +1054,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 */
 
 
-#include "graphics/cairo/cairo-xlib.h"
+#include "cairo/cairo-xlib.h"
 #include <X11/Xlib.h>
 
 
