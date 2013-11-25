@@ -719,7 +719,7 @@ namespace user
 
          ENSURE_ARG(pcreate->m_lpcreatestruct != NULL);
 
-      sp(::create_context) pContext = pcreate->m_lpcreatestruct->lpCreateParams;
+      sp(::create_context) pContext = (::create_context *) pcreate->m_lpcreatestruct->lpCreateParams;
 
       pcreate->set_lresult(OnCreateHelper(pcreate->m_lpcreatestruct, pContext));
 
@@ -1971,7 +1971,7 @@ namespace user
    // query end session for main frame will attempt to close it all down
    void frame_window::_001OnQueryEndSession(signal_details * pobj)
    {
-      
+
       UNREFERENCED_PARAMETER(pobj);
 
    }

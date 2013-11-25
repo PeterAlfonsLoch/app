@@ -146,7 +146,7 @@ namespace user
 
       // if ok, wire in the current ::user::object
       ASSERT(::user::impact::get_document() == NULL);
-      sp(::create_context) pContext = pcreate->m_lpcreatestruct->lpCreateParams;
+      sp(::create_context) pContext = (::create_context *) pcreate->m_lpcreatestruct->lpCreateParams;
 
       // A ::user::impact should be created in a given context!
       if (pContext != NULL && pContext->m_user->m_pCurrentDoc != NULL)
@@ -676,7 +676,7 @@ namespace user
          if (pguie->get_parent() != NULL)
          {
 
-            
+
 
             if (pguie->get_parent()->is_place_holder())
             {

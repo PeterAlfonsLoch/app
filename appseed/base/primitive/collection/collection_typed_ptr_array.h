@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_BASE ptr_array :
-   virtual public comparable_raw_array < void * >
+   virtual public comparable_raw_array < void * >::type
 {
 public:
 
@@ -167,7 +167,7 @@ public:
 // CTypedPtrArray<BASE_CLASS, POINTER>
 
 template < class POINTER, class BASE_CLASS = ptr_array>
-class typed_ptr_array : 
+class typed_ptr_array :
    public BASE_CLASS
 {
 public:

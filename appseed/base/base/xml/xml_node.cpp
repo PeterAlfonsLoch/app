@@ -18,13 +18,6 @@ namespace xml
    static const CHAR szXMLCDATAOpen[] = "<![CDATA[";
    static const CHAR szXMLCDATAClose[] = "]]>";
 
-   node::array::array(sp(base_application) papp) :
-      element(papp)
-   {
-   }
-
-
-
    node::node(::base_application * papp) :
       element(papp),
       m_nodea(papp),
@@ -67,13 +60,17 @@ namespace xml
 
    node & node::operator = (const node & node)
    {
+
       if(&node == this)
          return *this;
-      m_strName = node.m_strName;
-      m_strValue = node.m_strValue;
-      m_nodea = node.m_nodea;
-      m_attra = node.m_attra;
+
+      m_strName   = node.m_strName;
+      m_strValue  = node.m_strValue;
+      m_nodea     = node.m_nodea;
+      m_attra     = node.m_attra;
+
       return *this;
+
    }
 
 

@@ -15,16 +15,7 @@ namespace xml
    public:
 
 
-      class CLASS_DECL_BASE array :
-         virtual public spa(node)
-      {
-      public:
-
-
-         array(sp(base_application) papp);
-
-
-      };
+      typedef CLASS_DECL_BASE spa(node) array;
 
 
    protected:
@@ -81,7 +72,7 @@ namespace xml
 
 
       /*
-      
+
       virtual node & AddChildNode(const char * lpcszName);
       virtual node & AddChildNode(const char * lpcszName, const char * lpcszValue);
       virtual node & AddChildNode(node & node);
@@ -92,7 +83,7 @@ namespace xml
 
       virtual bool GetAttributeValue(const char * lpcszName, string & strValue);
       virtual bool GetAttributeValue(const char * lpcszName, int32_t & iValue);
-      
+
       */
 
 

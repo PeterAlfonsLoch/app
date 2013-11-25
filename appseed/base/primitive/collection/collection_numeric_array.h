@@ -28,7 +28,7 @@ namespace str
 
 template < typename TYPE >
 class numeric_array :
-   virtual public ::file::serializable_array < comparable_primitive_array < TYPE > >
+   virtual public ::file::serializable_array < typename comparable_primitive_array < TYPE >::type::type >
 {
 public:
    numeric_array();
@@ -154,6 +154,8 @@ public:
 
    numeric_array operator - (const numeric_array & a) const;
    numeric_array operator + (const numeric_array & a) const;
+
+   numeric_array & operator = (const numeric_array & a);
    numeric_array & operator -= (const numeric_array & a);
    numeric_array & operator += (const numeric_array & a);
 
@@ -568,6 +570,17 @@ numeric_array < TYPE >  numeric_array < TYPE >::operator + (const numeric_array 
    return *this;
 
 }
+
+template < class TYPE >
+numeric_array < TYPE >  & numeric_array < TYPE >::operator = (const numeric_array < TYPE >  & a)
+{
+
+   raw_array < TYPE, const TYPE & >::copy(a);
+
+   return *this;
+
+}
+
 
 template < class TYPE >
 numeric_array < TYPE >  & numeric_array < TYPE >::operator -= (const numeric_array < TYPE >  & a)

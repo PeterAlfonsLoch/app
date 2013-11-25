@@ -526,17 +526,20 @@ index raw_array<TYPE, ARG_TYPE>::append(const raw_array & src)
 
 
 template<class TYPE, class ARG_TYPE>
-void raw_array<TYPE, ARG_TYPE>::copy(const raw_array& src)
+void raw_array<TYPE, ARG_TYPE>::copy(const raw_array & src)
 {
-   ASSERT_VALID(this);
-   ASSERT(this != &src);   // cannot append to itself
 
-   if(this != &src)
-   {
-      allocate(src.m_nSize);
-      memcpy(m_pData, src.m_pData, src.m_nSize * sizeof(TYPE));
-   }
+   ASSERT_VALID(this);
+
+   if(this == &src)
+      return;
+
+   allocate(src.m_nSize);
+
+   memcpy(m_pData, src.m_pData, src.m_nSize * sizeof(TYPE));
+
 }
+
 
 template<class TYPE, class ARG_TYPE>
 void raw_array<TYPE, ARG_TYPE>::free_extra()

@@ -34,7 +34,7 @@ public:
 
    }
 
-   inline smart_pointer_array & operator = (smart_pointer_array & a)
+   inline smart_pointer_array & operator = (const smart_pointer_array & a)
    {
 
       copy(a);
@@ -438,13 +438,12 @@ public:
 
 
    template < class ARRAY >
-   smart_pointer_array & copy(ARRAY * pa)
+   smart_pointer_array & append(const ARRAY * pa)
    {
 
-      if(pa == dynamic_cast < ARRAY * > (this))
-         return *this;
+      ::count c = pa->get_count(); // allow to append to itself one time
 
-      for(int i = 0; i < pa->get_count(); i++)
+      for(index i = 0; i < c; i++)
       {
          this->add(pa->element_at(i));
       }
@@ -454,16 +453,89 @@ public:
    }
 
    template < class ARRAY >
-   smart_pointer_array & copy(sp(ARRAY) pa)
+   smart_pointer_array & append(const sp(ARRAY) & pa)
+   {
+
+      ::count c = pa->get_count(); // allow to append to itself one time
+
+      for(index i = 0; i < c; i++)
+      {
+         this->add(pa->operator[](i));
+      }
+
+      return *this;
+
+   }
+
+   template < class ARRAY >
+   smart_pointer_array & append(const ARRAY & a)
+   {
+
+      ::count c = a.get_count(); // allow to append to itself one time
+
+      for(index i = 0; i < c; i++)
+      {
+         this->add(a.operator[](i));
+      }
+
+      return *this;
+
+   }
+
+   smart_pointer_array & append(const smart_pointer_array & a)
+   {
+
+      ::count c = a.get_count(); // allow to append to itself one time
+
+      for(index i = 0; i < c; i++)
+      {
+         this->add(a(i));
+      }
+
+      return *this;
+
+   }
+
+   template < class ARRAY >
+   smart_pointer_array & append_ptra(const ARRAY * pptra)
+   {
+
+      ::count c = pptra->get_count(); // allow to append to itself one time
+
+      for(index i = 0; i < c; i++)
+      {
+         this->add(*pptra->operator[](i));
+      }
+
+      return *this;
+
+   }
+
+   template < class ARRAY >
+   smart_pointer_array & copy(const ARRAY * pa)
    {
 
       if(pa == dynamic_cast < ARRAY * > (this))
          return *this;
 
-      for(int i = 0; i < pa->get_count(); i++)
-      {
-         this->add(pa->operator[](i));
-      }
+      this->remove_all();
+
+      this->append(pa);
+
+      return *this;
+
+   }
+
+   template < class ARRAY >
+   smart_pointer_array & copy(const sp(ARRAY) & pa)
+   {
+
+      if(pa == dynamic_cast < ARRAY * > (this))
+         return *this;
+
+      this->remove_all();
+
+      this->append(pa);
 
       return *this;
 
@@ -476,10 +548,9 @@ public:
       if(&a == dynamic_cast < ARRAY * > (this))
          return *this;
 
-      for(int i = 0; i < a.get_count(); i++)
-      {
-         this->add(a.operator[](i));
-      }
+      this->remove_all();
+
+      this->append(a);
 
       return *this;
 
@@ -491,27 +562,30 @@ public:
       if(&a == this)
          return *this;
 
-      for(int i = 0; i < a.get_count(); i++)
-      {
-         this->add(a(i));
-      }
+      this->remove_all();
+
+      this->append(a);
 
       return *this;
 
    }
 
    template < class ARRAY >
-   smart_pointer_array & copy_ptra(ARRAY * pptra)
+   smart_pointer_array & copy_ptra(const ARRAY * pptra)
    {
 
-      for(int i = 0; i < pptra->get_count(); i++)
-      {
-         this->add(*pptra->operator[](i));
-      }
+      if(pptra == dynamic_cast < ARRAY * > (this))
+         return *this;
+
+      this->remove_all();
+
+      this->append(pptra);
 
       return *this;
 
    }
+
+
 
 };
 
