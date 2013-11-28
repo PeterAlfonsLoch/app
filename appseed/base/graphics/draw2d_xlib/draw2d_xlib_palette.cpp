@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace draw2d_cairo
+namespace draw2d_xlib
 {
 
 
@@ -18,7 +18,7 @@ namespace draw2d_cairo
    }
 
 
-   // palette
+/*   // palette
    palette::operator HPALETTE() const
    {
 
@@ -28,7 +28,7 @@ namespace draw2d_cairo
 
    }
 
-
+*/
 /*
 
    palette* PASCAL palette::from_handle(sp(base_application) papp, HPALETTE hPalette)
@@ -73,7 +73,7 @@ namespace draw2d_cairo
 */
 
 
-   UINT palette::GetPaletteEntries(UINT nStartIndex, UINT nNumEntries, LPPALETTEENTRY lpPaletteColors) const
+/*   UINT palette::GetPaletteEntries(UINT nStartIndex, UINT nNumEntries, LPPALETTEENTRY lpPaletteColors) const
    {
 
       //ASSERT(get_os_data() != NULL);
@@ -114,7 +114,7 @@ namespace draw2d_cairo
 
       return 0;
 
-   }
+   }*/
 
 
 /*
@@ -132,7 +132,7 @@ namespace draw2d_cairo
 
 */
 
-
+/*
    int32_t palette::GetEntryCount()
    {
 
@@ -145,7 +145,7 @@ namespace draw2d_cairo
       return 0;
 
    }
-
+*/
 
 } // namespace mac
 

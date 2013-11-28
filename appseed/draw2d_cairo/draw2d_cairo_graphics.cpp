@@ -6,6 +6,8 @@ namespace draw2d_cairo
 {
 
 
+   FT_Face g_ft = NULL;
+
    graphics::graphics(sp(base_application) papp) :
       element(papp)
    {
@@ -629,8 +631,20 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    void graphics::FillRect(LPCRECT lpRect, ::draw2d::brush* pBrush)
    {
 
-      throw not_implemented(get_app());
-      return;
+      synch_lock ml(&user_mutex());
+
+      //g.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
+      //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+      //g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
+
+      if(lpRect->right <= lpRect->left || lpRect->bottom <= lpRect->top)
+         return;
+
+      set(pBrush);
+
+      cairo_rectangle(m_pdc, lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
+
+      cairo_fill(m_pdc);
 
 //      ASSERT(get_handle1() != NULL); ::FillRect(get_handle1(), lpRect, (HBRUSH)pBrush->get_os_data());
 
@@ -644,6 +658,28 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 //       ASSERT(get_handle1() != NULL); ::FrameRect(get_handle1(), lpRect, (HBRUSH)pBrush->get_os_data());
 
    }
+
+   bool graphics::DrawRect(LPCRECT lpcrect, ::draw2d::pen * ppen)
+   {
+      synch_lock ml(&user_mutex());
+
+      //g.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
+      //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+      //g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
+
+      if(lpcrect->right <= lpcrect->left || lpcrect->bottom <= lpcrect->top)
+         return false;
+
+      set(ppen);
+
+      cairo_rectangle(m_pdc, lpcrect->left, lpcrect->top, lpcrect->right - lpcrect->left, lpcrect->bottom - lpcrect->top);
+
+      cairo_stroke(m_pdc);
+
+      return true;
+
+   }
+
 
    void graphics::InvertRect(LPCRECT lpRect)
    {
@@ -817,6 +853,9 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    }
 
+
+/*
+
    bool graphics::DrawState(point pt, size size, HICON hIcon, UINT nFlags, HBRUSH hBrush)
    {
 
@@ -837,6 +876,9 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 //      return ::DrawState(get_handle1(), (HBRUSH)pBrush->get_os_data(), NULL, (LPARAM)hIcon, 0, pt.x, pt.y, size.cx, size.cy, nFlags|DST_ICON) != FALSE;
 
    }
+
+*/
+
 
    bool graphics::DrawState(point pt, size size, const char * lpszText, UINT nFlags, bool bPrefixText, int32_t nTextLen, HBRUSH hBrush)
    {
@@ -5870,17 +5912,110 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
       cairo_set_source_rgba(m_pdc, GetRValue(ppen->m_cr) / 255.0, GetGValue(ppen->m_cr) / 255.0, GetBValue(ppen->m_cr) / 255.0, GetAValue(ppen->m_cr) / 255.0);
 
-      cairo_set_line_width(m_pdc, ppen->m_dWidth);
+      cairo_set_line_width(m_pdc, ppen->m_dWidth - 0.5);
 
       return true;
 
    }
 
 
-   bool graphics::set(const ::draw2d::font * pfont)
+   bool graphics::set(const ::draw2d::font * pfontParam)
    {
 
-      cairo_select_font_face(m_pdc, pfont->m_strFontFamilyName, pfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
+      //cairo_select_font_face(m_pdc, pfont->m_strFontFamilyName, pfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
+
+      if(pfontParam == NULL)
+      {
+
+         return false;
+
+      }
+
+     ::draw2d_cairo::font * pfont = dynamic_cast < ::draw2d_cairo::font * > ((::draw2d::font *) pfontParam);
+
+      if(pfont == NULL)
+      {
+
+         return NULL;
+
+      }
+
+      synch_lock sl(&user_mutex());
+
+      pfont->destroy();
+
+      int status;
+
+      int iError = 0;
+
+      string strPath = Sys(get_app()).dir().element("app/appmatter/main/_std/_std/font/truetype/arialuni.ttf");
+
+      if(g_ft == NULL)
+      {
+
+         iError = FT_New_Face( Sys(get_app()).ftlibrary(), strPath, 0, &g_ft);
+
+         iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICODE ); /* encoding */
+
+      }
+
+      pfont->m_ft = g_ft;
+
+      if(iError != 0 || pfont->m_ft == NULL)
+      {
+
+fallback:
+
+         cairo_select_font_face(m_pdc, "helvetica", pfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
+
+
+      }
+      else
+      {
+
+
+
+
+         pfont->m_pface = cairo_ft_font_face_create_for_ft_face (pfont->m_ft, 0);
+
+         /*status = cairo_font_face_set_user_data (pfont->m_pface, &pfont->m_keyDone, pfont->m_ft, (cairo_destroy_func_t) FT_Done_Face);
+
+         if (status)
+         {
+
+            cairo_font_face_destroy (pfont->m_pface);
+
+            pfont->m_pface = NULL;
+
+            FT_Done_Face (pfont->m_ft);
+
+            pfont->m_ft = NULL;
+
+            goto fallback;
+
+         }*/
+
+         /*
+         cairo_font_options_t * poptions = cairo_font_options_create ();
+
+         cairo_matrix_t m;
+
+         cairo_matrix_init_identity(&m);
+
+         cairo_matrix_t m2;
+
+         cairo_matrix_init_identity(&m2);
+
+         pfont->m_pfont = cairo_scaled_font_create(pfont->m_pface, &m, &m2, poptions);
+
+         cairo_set_scaled_font(m_pdc, pfont->m_pfont);
+
+         cairo_font_options_destroy(poptions);
+         */
+
+         cairo_set_font_face(m_pdc, pfont->m_pface);
+
+      }
 
       if(pfont->m_eunitFontSize == ::draw2d::unit_pixel)
       {

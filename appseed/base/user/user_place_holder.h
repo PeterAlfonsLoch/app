@@ -39,6 +39,8 @@ namespace user
 
       virtual bool is_place_holder();
 
+      virtual bool _001IsBackgroundBypass();
+
 
    };
 

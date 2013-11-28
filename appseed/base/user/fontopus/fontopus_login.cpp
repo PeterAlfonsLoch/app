@@ -4,6 +4,8 @@
 CLASS_DECL_BASE string spa_login_crypt(const char * psz, const char * pszRsa);
 
 
+
+
 namespace fontopus
 {
 
@@ -30,8 +32,6 @@ namespace fontopus
       m_rect.top = top;
       m_rect.right = m_rect.left + 840;
       m_rect.bottom = m_rect.top + 284;
-
-      layout();
 
       m_labelUser.m_strText = "e-mail:";
       m_labelPassword.m_strText = "password:";
@@ -433,10 +433,15 @@ namespace fontopus
    void login::layout()
    {
 
+      m_labelUser.m_bVisible = true;
+      m_labelPassword.m_bVisible = true;
+      m_editUser.m_bVisible = true;
+      m_password.m_bVisible = true;
+      m_tap.m_bVisible = true;
 
 
-      int32_t x1 = 49;
-      int32_t x2 = m_rect.width() - 49;
+      int32_t x1 = 0;
+      int32_t x2 = m_rect.width();
       int32_t h1 = 23;
       int32_t pad = 5;
 
@@ -451,7 +456,7 @@ namespace fontopus
       m_tap.m_rect.left = x1;
       m_tap.m_rect.right = x2;
 
-      int32_t y = 5;
+      int32_t y = 0;
       m_labelUser.m_rect.top = y;
       y += h1;
       m_labelUser.m_rect.bottom = y;

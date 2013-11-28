@@ -13,8 +13,8 @@ namespace colorertake5
    protected:
 
 
-      comparable_raw_array < LineRegion * > lineRegions;
-      comparable_raw_array < LineRegion * > schemeStack;
+      comparable_raw_array < LineRegion * >::type lineRegions;
+      comparable_raw_array < LineRegion * >::type schemeStack;
 
       RegionMapper *regionMapper;
       LineRegion *flowBackground;

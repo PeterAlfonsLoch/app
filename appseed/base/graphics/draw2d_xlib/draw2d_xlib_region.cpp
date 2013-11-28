@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace draw2d_cairo
+namespace draw2d_xlib
 {
 
 
@@ -75,12 +75,12 @@ namespace draw2d_cairo
    int_bool region::RectInRegion(LPCRECT lpRect) const
    { ASSERT(get_os_data() != NULL); return ::RectInRegion((HRGN)get_os_data(), lpRect); }*/
 
-   bool region::get(cairo_t * pdc)
+/*   bool region::get(xlib_t * pdc)
    {
 
-      cairo_set_source_rgba(pdc, 0.0, 0.0, 0.0, 0.0);
+      xlib_set_source_rgba(pdc, 0.0, 0.0, 0.0, 0.0);
 
-      cairo_set_operator(pdc, CAIRO_OPERATOR_SOURCE);
+      xlib_set_operator(pdc, CAIRO_OPERATOR_SOURCE);
 
       switch(m_etype)
       {
@@ -104,18 +104,18 @@ namespace draw2d_cairo
 
    }
 
-   bool region::get_rect(cairo_t * pdc)
+   bool region::get_rect(xlib_t * pdc)
    {
 
-      cairo_rectangle(pdc, m_x1, m_y1, m_x2, m_y2);
+      xlib_rectangle(pdc, m_x1, m_y1, m_x2, m_y2);
 
-      cairo_fill(pdc);
+      xlib_fill(pdc);
 
       return true;
 
    }
 
-   bool region::get_oval(cairo_t * pdc)
+   bool region::get_oval(xlib_t * pdc)
    {
 
       double centerx    = (m_x2 + m_x1) / 2.0;
@@ -127,44 +127,44 @@ namespace draw2d_cairo
       if(radiusx == 0.0 || radiusy == 0.0)
          return false;
 
-      cairo_translate(pdc, centerx, centery);
+      xlib_translate(pdc, centerx, centery);
 
-      cairo_scale(pdc, radiusx, radiusy);
+      xlib_scale(pdc, radiusx, radiusy);
 
-      cairo_arc(pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
+      xlib_arc(pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
 
-      cairo_fill(pdc);
+      xlib_fill(pdc);
 
-      cairo_scale(pdc, 1.0 / radiusx, 1.0 / radiusy);
+      xlib_scale(pdc, 1.0 / radiusx, 1.0 / radiusy);
 
-      cairo_translate(pdc, -centerx,  -centery);
+      xlib_translate(pdc, -centerx,  -centery);
 
       return true;
 
    }
 
-   bool region::get_polygon(cairo_t * pdc)
+   bool region::get_polygon(xlib_t * pdc)
    {
 
       if(m_nCount <= 0)
          return true;
 
 
-      cairo_move_to(pdc, m_lppoints[0].x, m_lppoints[0].y);
+      xlib_move_to(pdc, m_lppoints[0].x, m_lppoints[0].y);
 
       for(int32_t i = 1; i < m_nCount; i++)
       {
 
-         cairo_line_to(pdc, m_lppoints[i].x, m_lppoints[i].y);
+         xlib_line_to(pdc, m_lppoints[i].x, m_lppoints[i].y);
 
       }
-      cairo_fill(pdc);
+      xlib_fill(pdc);
 
       return true;
 
    }
 
-   bool region::get_poly_polygon(cairo_t * pdc)
+   bool region::get_poly_polygon(xlib_t * pdc)
    {
 
       int32_t n = 0;
@@ -174,57 +174,57 @@ namespace draw2d_cairo
          int32_t jCount = m_lppolycounts[i];
          if(jCount > 0)
          {
-            cairo_move_to(pdc, m_lppoints[n].x, m_lppoints[n].y);
+            xlib_move_to(pdc, m_lppoints[n].x, m_lppoints[n].y);
             n++;
             for(int32_t j = 1; i < jCount; j++)
             {
-               cairo_line_to(pdc, m_lppoints[n].x, m_lppoints[n].y);
+               xlib_line_to(pdc, m_lppoints[n].x, m_lppoints[n].y);
                n++;
             }
          }
 
       }
-      cairo_fill(pdc);
+      xlib_fill(pdc);
 
       return true;
 
    }
 
-   bool region::get_combine(cairo_t * pdc)
+   bool region::get_combine(xlib_t * pdc)
    {
 
-      cairo_push_group( pdc);
+      xlib_push_group( pdc);
 
-      dynamic_cast < ::draw2d_cairo::region * >(m_pregion1)->get( pdc);
+      dynamic_cast < ::draw2d_xlib::region * >(m_pregion1)->get( pdc);
 
-      cairo_pop_group_to_source(pdc);
+      xlib_pop_group_to_source(pdc);
 
-      cairo_paint(pdc);
+      xlib_paint(pdc);
 
-      cairo_push_group(pdc);
+      xlib_push_group(pdc);
 
-      dynamic_cast < ::draw2d_cairo::region * >(m_pregion2)->get( pdc);
+      dynamic_cast < ::draw2d_xlib::region * >(m_pregion2)->get( pdc);
 
-      cairo_pop_group_to_source(pdc);
+      xlib_pop_group_to_source(pdc);
 
       if(m_ecombine == ::draw2d::region::combine_add)
       {
-         cairo_set_operator(pdc, CAIRO_OPERATOR_SOURCE);
+         xlib_set_operator(pdc, CAIRO_OPERATOR_SOURCE);
       }
       else if(m_ecombine == ::draw2d::region::combine_exclude)
       {
-         cairo_set_operator(pdc, CAIRO_OPERATOR_CLEAR);
+         xlib_set_operator(pdc, CAIRO_OPERATOR_CLEAR);
       }
       else if(m_ecombine == ::draw2d::region::combine_intersect)
       {
-         cairo_set_operator(pdc, CAIRO_OPERATOR_IN);
+         xlib_set_operator(pdc, CAIRO_OPERATOR_IN);
       }
       else
       {
-         cairo_set_operator(pdc, CAIRO_OPERATOR_SOURCE);
+         xlib_set_operator(pdc, CAIRO_OPERATOR_SOURCE);
       }
 
-      cairo_paint(pdc);
+      xlib_paint(pdc);
 
       return true;
 
@@ -241,9 +241,9 @@ namespace draw2d_cairo
 
       return (void *) this;
 
-   }
+   }*/
 
-} // namespace draw2d_cairo
+} // namespace draw2d_xlib
 
 
 

@@ -1,22 +1,22 @@
 #include "framework.h"
 
 
-namespace draw2d_cairo
+namespace draw2d_xlib
 {
 
-
    bitmap::bitmap(sp(base_application) papp) :
-      element(papp)
+      element(papp),
+      m_ui(papp)
    {
 
-      m_psurface = NULL;
+      m_pixmap = None;
 
    }
 
    bitmap::~bitmap()
    {
 
-      if(m_psurface != NULL)
+      if(m_pixmap != NULL)
       {
 
          destroy();
@@ -38,14 +38,14 @@ namespace draw2d_cairo
 
       }
 
-      if(m_psurface != NULL)
+      if(m_pixmap != NULL)
       {
 
          destroy();
 
       }
 
-      int32_t iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, cx);
+      int32_t iStride = cx * 4;
 
       m_mem.allocate(iStride * cy);
 
@@ -67,27 +67,47 @@ namespace draw2d_cairo
          memcpy(m_mem.get_data(), pdata, iStride * cy);
       }
 
+      if(m_ui.m_window == NULL)
+      {
 
-      m_psurface = cairo_image_surface_create_for_data((unsigned char *) m_mem.get_data(), CAIRO_FORMAT_ARGB32, cx, cy, iStride);
+         rect r(100, 100, 200, 200);
 
-      if(m_psurface == NULL)
+         m_ui.create_window(r);
+
+      }
+
+      if(m_ui.m_window == NULL)
       {
 
          return false;
 
       }
 
+      ::oswindow window = m_ui.m_window;
+
+      m_pixmap = XCreatePixmap(window->display(), window->window(), cx, cy, window->m_iDepth);
+
+      if(m_pixmap == None)
+      {
+
+         return false;
+
+      }
 
       m_size.cx = cx;
+
       m_size.cy = cy;
 
       return true;
 
    }
 
+
    bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pdc, LPBITMAP lpBitmap)
    {
-      return FALSE;
+
+      return false;
+
    }
 
 
@@ -95,6 +115,7 @@ namespace draw2d_cairo
    {
 
       int cy = abs(lpbmi->bmiHeader.biHeight);
+
       int cx = abs(lpbmi->bmiHeader.biWidth);
 
       if(lpbmi->bmiHeader.biPlanes != 1 || lpbmi->bmiHeader.biBitCount != 32)
@@ -104,14 +125,14 @@ namespace draw2d_cairo
 
       }
 
-      if(m_psurface != NULL)
+      if(m_pixmap != NULL)
       {
 
          destroy();
 
       }
 
-      int32_t iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, cx);
+      int32_t iStride = cx * 4;
 
       m_mem.allocate(iStride * cy);
 
@@ -138,10 +159,27 @@ namespace draw2d_cairo
 
       }
 
+      if(m_ui.m_window == NULL)
+      {
 
-      m_psurface = cairo_image_surface_create_for_data((unsigned char *) m_mem.get_data(), CAIRO_FORMAT_ARGB32, cx, cy, iStride);
+         rect r(100, 100, 200, 200);
 
-      if(m_psurface == NULL)
+         m_ui.create_window(r);
+
+      }
+
+      if(m_ui.m_window == NULL)
+      {
+
+         return false;
+
+      }
+
+      ::oswindow window = m_ui.m_window;
+
+      m_pixmap = XCreatePixmap(window->display(), window->window(), cx, cy, window->m_iDepth);
+
+      if(m_pixmap == None)
       {
 
          return false;
@@ -215,7 +253,7 @@ namespace draw2d_cairo
    size bitmap::GetBitmapDimension() const
    {
 
-      if(m_psurface == NULL)
+      if(m_pixmap == NULL)
          return ::size(0, 0);
 
       return m_size;
@@ -321,46 +359,47 @@ namespace draw2d_cairo
    void * bitmap::get_os_data() const
    {
 
-      return (void *) m_psurface;
+      return (void *) m_pixmap;
 
    }
 
-   void get_surface_size (cairo_surface_t * psurface, LONG * plongWidth, LONG * plongHeight)
+/*
+   void get_surface_size (xlib_surface_t * psurface, LONG * plongWidth, LONG * plongHeight)
 	{
 
       if(plongWidth != NULL)
       {
 
-         *plongWidth = cairo_image_surface_get_width(psurface);
+         *plongWidth = xlib_image_surface_get_width(psurface);
 
       }
 
       if(plongHeight != NULL)
       {
 
-         *plongHeight = cairo_image_surface_get_height(psurface);
+         *plongHeight = xlib_image_surface_get_height(psurface);
 
       }
 
 
-	}
+	}*/
 
 
    bool bitmap::attach(void * psurface)
    {
 
-      if(m_psurface != 0)
+      if(m_pixmap != 0)
       {
 
          destroy();
 
-         m_psurface = NULL;
+         m_pixmap = None;
 
       }
 
-      m_psurface = (cairo_surface_t *) psurface;
+//      m_pixmap = (xlib_surface_t *) psurface;
 
-      get_surface_size((cairo_surface_t *) psurface, &m_size.cx, &m_size.cy);
+  //    get_surface_size((xlib_surface_t *) psurface, &m_size.cx, &m_size.cy);
 
       return true;
 
@@ -370,24 +409,26 @@ namespace draw2d_cairo
    bool bitmap::destroy()
    {
 
-      if(m_psurface == NULL)
+      if(m_pixmap == NULL)
          return true;
 
-      if(m_psurface == cairo_keep::g_cairosurface)
-      {
-         printf("123");
-      }
+//      if(m_pixmap == xlib_keep::g_xlibsurface)
+  //    {
+    //     printf("123");
+      //}
 
-      cairo_surface_destroy(m_psurface);
+//      xlib_surface_destroy(m_pixmap);
 
-      m_psurface = NULL;
+      XFreePixmap(m_ui.m_window->display(), m_pixmap);
+
+      m_pixmap = NULL;
 
       return true;
 
    }
 
 
-} // namespace draw2d_cairo
+} // namespace draw2d_xlib
 
 
 

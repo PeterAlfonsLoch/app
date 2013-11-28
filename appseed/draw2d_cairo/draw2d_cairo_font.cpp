@@ -9,11 +9,52 @@ namespace draw2d_cairo
    element(papp)
    {
 
+      m_pfont = NULL;
+      m_ft = NULL;
+      m_pface = NULL;
+
    }
 
 
    font::~font()
    {
+
+      destroy();
+
+   }
+
+
+   bool font::destroy()
+   {
+
+      if(m_pfont != NULL)
+      {
+
+         cairo_scaled_font_destroy(m_pfont);
+
+         m_pfont = NULL;
+
+      }
+
+      if(m_pface != NULL)
+      {
+
+         cairo_font_face_destroy(m_pface);
+
+         m_pface = NULL;
+
+      }
+
+      if(m_ft != NULL)
+      {
+
+         //FT_Done_Face (m_ft);
+
+         m_ft = NULL;
+
+      }
+
+      return true;
 
    }
 

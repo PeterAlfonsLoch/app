@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace draw2d_cairo
+namespace draw2d_xlib
 {
 
 
@@ -113,8 +113,12 @@ namespace draw2d_cairo
       // Standard exception processing
 
 
+   void * pen::get_os_data() const
+   {
+   return NULL;
+   }
 
-} // namespace draw2d_cairo
+} // namespace draw2d_xlib
 
 
 

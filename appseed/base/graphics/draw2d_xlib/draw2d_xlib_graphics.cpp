@@ -1,13 +1,18 @@
 #include "framework.h"
+#include <X11/Xft/Xft.h>
 #include <math.h>
 
+HDC CreateCompatibleDC(HDC hdc);
 
-namespace draw2d_cairo
+array < XChar2b > utf8toXChar2b(const char *input, int inlen);
+
+namespace draw2d_xlib
 {
 
 
    graphics::graphics(sp(base_application) papp) :
-      element(papp)
+      element(papp),
+      m_ui(papp)
    {
 
       m_bPrinting       = FALSE;
@@ -28,7 +33,8 @@ namespace draw2d_cairo
 
    }
 
-   graphics::graphics()
+   graphics::graphics() :
+      m_ui(NULL)
    {
 
       m_bPrinting       = FALSE;
@@ -80,12 +86,12 @@ namespace draw2d_cairo
 
       if(m_pdc != NULL)
       {
-	if(m_pdc ==  cairo_keep::g_cairo)
-	{
-         printf("123");
+//	if(m_pdc ==  xlib_keep::g_xlib)
+	//{
+     //    printf("123");
 
-	}
-         cairo_destroy(m_pdc);
+	//}
+     //    xlib_destroy(m_pdc);
          m_pdc = NULL;
       }
 
@@ -134,13 +140,13 @@ namespace draw2d_cairo
 
       if(m_pdc != NULL)
       {
-	if(m_pdc ==  cairo_keep::g_cairo)
-	{
-         printf("123");
+//	if(m_pdc ==  xlib_keep::g_xlib)
+	//{
+     ///    printf("123");
 
-	}
+	//}
 
-         cairo_destroy(m_pdc);
+         DeleteDC();
 
          m_pdc = NULL;
 
@@ -149,17 +155,24 @@ namespace draw2d_cairo
       if(pgraphics == NULL)
       {
 
-         cairo_surface_t * psurface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, 1, 1);
+//         xlib_surface_t * psurface = xlib_image_surface_create(CAIRO_FORMAT_ARGB32, 1, 1);
 
-         if(psurface == NULL)
-            return false;
+//         if(psurface == NULL)
+  //          return false;
 
-         m_pdc = cairo_create(psurface);
+    //     m_pdc = xlib_create(psurface);
 
-if(psurface == cairo_keep::g_cairosurface)
-{
-   printf("123");
-}         cairo_surface_destroy(psurface);
+//if(psurface == xlib_keep::g_xlibsurface)
+//{
+  // printf("123");
+//}         xlib_surface_destroy(psurface);
+
+
+         m_spbitmap.create(allocer());
+
+         m_spbitmap->CreateCompatibleBitmap(this, 256, 256);
+
+         SelectObject(m_spbitmap);
 
          return m_pdc != NULL;
 
@@ -167,22 +180,24 @@ if(psurface == cairo_keep::g_cairosurface)
       else
       {
 
-         cairo_surface_t * psurface = cairo_get_target((cairo_t *) pgraphics->get_os_data());
+         m_pdc = ::CreateCompatibleDC((HDC) pgraphics->get_os_data());
 
-         if(cairo_surface_status(psurface) != CAIRO_STATUS_SUCCESS)
+  /*       xlib_surface_t * psurface = xlib_get_target((xlib_t *) pgraphics->get_os_data());
+
+         if(xlib_surface_status(psurface) != CAIRO_STATUS_SUCCESS)
             return false;
 
-         cairo_surface_t * psurfaceNew = cairo_surface_create_similar(psurface, cairo_surface_get_content(psurface), 1, 1);
+         xlib_surface_t * psurfaceNew = xlib_surface_create_similar(psurface, xlib_surface_get_content(psurface), 1, 1);
 
          if(psurfaceNew == NULL)
             return false;
-if(psurfaceNew == cairo_keep::g_cairosurface)
+if(psurfaceNew == xlib_keep::g_xlibsurface)
 {
    printf("123");
 }
-         m_pdc = cairo_create(psurfaceNew);
+         m_pdc = xlib_create(psurfaceNew);
 
-         cairo_surface_destroy(psurfaceNew);
+         xlib_surface_destroy(psurfaceNew);*/
 
          return m_pdc != NULL;
 
@@ -267,9 +282,13 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    }
 
-   ::draw2d::bitmap* graphics::SelectObject(::draw2d::bitmap* pbitmap)
+   ::draw2d::bitmap* graphics::SelectObject(::draw2d::bitmap * pbitmapParam)
    {
 
+      if(pbitmapParam == NULL)
+         return NULL;
+
+      ::draw2d_xlib::bitmap * pbitmap = dynamic_cast < ::draw2d_xlib::bitmap * > (pbitmapParam);
 
       if(pbitmap == NULL)
          return NULL;
@@ -281,15 +300,28 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
       return dynamic_cast < ::draw2d::bitmap* > (SelectGdiObject(get_app(), get_handle1(), pbitmap->get_os_data()));*/
       if(m_pdc != NULL)
       {
-	if(m_pdc ==  cairo_keep::g_cairo)
-	{
-         printf("123");
 
-	}
-         cairo_destroy(m_pdc);
+         DeleteDC();
+
       }
 
-      m_pdc = cairo_create((cairo_surface_t *) pbitmap->get_os_data());
+      //m_pdc = xlib_create((xlib_surface_t *) pbitmap->get_os_data());
+
+      m_pdc                = new device_context();
+
+      m_pdc->m_pdisplay    = pbitmap->m_ui.m_window->display();
+
+      m_pdc->m_pixmap      = pbitmap->m_pixmap;
+
+      m_pdc->m_drawable    = m_pdc->m_pixmap;
+
+      ::XGCValues values;
+
+      values.background    = 1;
+
+      values.fill_rule     = WindingRule;
+
+      m_pdc->m_gc          = ::XCreateGC(m_pdc->m_pdisplay, m_pdc->m_drawable, GCBackground | GCFillRule, &values);
 
       set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
 
@@ -299,7 +331,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    }
 
 
-   ::draw2d_cairo::object* graphics::SelectObject(draw2d_cairo::object* pObject)
+   ::draw2d_xlib::object* graphics::SelectObject(draw2d_xlib::object* pObject)
    {
    /*      ASSERT(get_handle1() != NULL);
       if(pObject == NULL)
@@ -366,7 +398,8 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    int32_t graphics::GetPolyFillMode() const
    {
       //return ::GetPolyFillMode(get_handle2());
-      return cairo_get_fill_rule(m_pdc) == CAIRO_FILL_RULE_WINDING ? ::draw2d::fill_mode_winding : ::draw2d::fill_mode_alternate;
+//      return xlib_get_fill_rule(m_pdc) == CAIRO_FILL_RULE_WINDING ? ::draw2d::fill_mode_winding : ::draw2d::fill_mode_alternate;
+      return ::draw2d::fill_mode_winding;
    }
 
    int32_t graphics::GetROP2() const
@@ -429,22 +462,13 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    // non-virtual helpers calling virtual mapping functions
    point graphics::SetViewportOrg(POINT point)
    {
-      if(abs(point.x) > 900 || abs(point.y) > 800)
-      {
 
-         printf("123");
-      }
+      m_pdc->m_pt = point;
 
-      //return SetViewportOrg(point.x, point.y);
-      cairo_matrix_t m;
-      cairo_get_matrix(m_pdc, &m);
-      int xOld = (int) m.x0;
-      int yOld = (int) m.y0;
-      m.x0 = point.x;
-      m.y0 = point.y;
-      cairo_set_matrix(m_pdc, &m);
-      return ::point(xOld, yOld);
+      return m_pdc->m_pt;
+
    }
+
 
    size graphics::SetViewportExt(SIZE size)
    {
@@ -587,13 +611,13 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
       double end        = atan2(y4 - centery, x4 - centerx);
 
 
-      cairo_keep keep(m_pdc);
+/*      xlib_keep keep(m_pdc);
 
-      cairo_translate(m_pdc, centerx, centery);
+      xlib_translate(m_pdc, centerx, centery);
 
-      cairo_scale(m_pdc, radiusx, radiusy);
+      xlib_scale(m_pdc, radiusx, radiusy);
 
-      cairo_arc(m_pdc, 0.0, 0.0, 1.0, start, end);
+      xlib_arc(m_pdc, 0.0, 0.0, 1.0, start, end);*/
 
       return true;
 
@@ -629,8 +653,13 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    void graphics::FillRect(LPCRECT lpRect, ::draw2d::brush* pBrush)
    {
 
-      throw not_implemented(get_app());
-      return;
+      set(pBrush);
+
+      XFillRectangle(m_pdc->m_pdisplay, m_pdc->m_drawable, m_pdc->m_gc,
+         lpRect->left + m_pdc->m_ptOffset.x, lpRect->top + m_pdc->m_ptOffset.y,
+         width(lpRect), height(lpRect));
+//      throw not_implemented(get_app());
+  //    return;
 
 //      ASSERT(get_handle1() != NULL); ::FillRect(get_handle1(), lpRect, (HBRUSH)pBrush->get_os_data());
 
@@ -644,6 +673,29 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 //       ASSERT(get_handle1() != NULL); ::FrameRect(get_handle1(), lpRect, (HBRUSH)pBrush->get_os_data());
 
    }
+
+
+   bool graphics::DrawRect(LPCRECT lpRect, ::draw2d::pen * ppen)
+   {
+
+      return DrawRect(lpRect->left, lpRect->top, lpRect->right, lpRect->bottom, ppen);
+
+   }
+
+
+   bool graphics::DrawRect(int x1, int y1, int x2, int y2, ::draw2d::pen * ppen)
+   {
+
+      set(ppen);
+
+      XDrawRectangle(m_pdc->m_pdisplay, m_pdc->m_drawable, m_pdc->m_gc,
+         x1 + m_pdc->m_ptOffset.x, y1 + m_pdc->m_ptOffset.y,
+         x2 - x1 - 1, y2 - y1 -1);
+
+      return true;
+
+   }
+
 
    void graphics::InvertRect(LPCRECT lpRect)
    {
@@ -739,41 +791,41 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
                b->CreateBitmap(this, cx, cy, 1, 32, pcolorref, cx * sizeof(COLORREF));
 
-               cairo_surface_t * psurface = (cairo_surface_t *) b->get_os_data();
+               xlib_surface_t * psurface = (xlib_surface_t *) b->get_os_data();
 
                if(psurface == NULL)
                   return false;
 
-               cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
+               xlib_pattern_t * ppattern = xlib_pattern_create_for_surface(psurface);
 
                if(ppattern == NULL)
                   return false;
 
-               cairo_matrix_t matrix;
+               xlib_matrix_t matrix;
 
-               cairo_matrix_t matrixOld;
+               xlib_matrix_t matrixOld;
 
-               cairo_keep keep(m_pdc);
+               xlib_keep keep(m_pdc);
 
-               cairo_translate(m_pdc, x, y);
+               xlib_translate(m_pdc, x, y);
 
-               cairo_pattern_get_matrix(ppattern, &matrixOld);
+               xlib_pattern_get_matrix(ppattern, &matrixOld);
 
-               cairo_matrix_init_translate(&matrix, 0, 0);
+               xlib_matrix_init_translate(&matrix, 0, 0);
 
-               cairo_pattern_set_matrix(ppattern, &matrix);
+               xlib_pattern_set_matrix(ppattern, &matrix);
 
-               cairo_rectangle(m_pdc, 0, 0, cx, cy);
+               xlib_rectangle(m_pdc, 0, 0, cx, cy);
 
-               cairo_clip(m_pdc);
+               xlib_clip(m_pdc);
 
-               cairo_set_source(m_pdc, ppattern);
+               xlib_set_source(m_pdc, ppattern);
 
-               cairo_paint(m_pdc);
+               xlib_paint(m_pdc);
 
-               cairo_pattern_set_matrix(ppattern, &matrixOld);
+               xlib_pattern_set_matrix(ppattern, &matrixOld);
 
-               cairo_pattern_destroy(ppattern);
+               xlib_pattern_destroy(ppattern);
             }
             catch(...)
             {
@@ -817,7 +869,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    }
 
-   bool graphics::DrawState(point pt, size size, HICON hIcon, UINT nFlags, HBRUSH hBrush)
+/*   bool graphics::DrawState(point pt, size size, HICON hIcon, UINT nFlags, HBRUSH hBrush)
    {
 
       throw not_implemented(get_app());
@@ -836,7 +888,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 //      ASSERT(get_handle1() != NULL);
 //      return ::DrawState(get_handle1(), (HBRUSH)pBrush->get_os_data(), NULL, (LPARAM)hIcon, 0, pt.x, pt.y, size.cx, size.cy, nFlags|DST_ICON) != FALSE;
 
-   }
+   }*/
 
    bool graphics::DrawState(point pt, size size, const char * lpszText, UINT nFlags, bool bPrefixText, int32_t nTextLen, HBRUSH hBrush)
    {
@@ -937,7 +989,9 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    bool graphics::DrawEllipse(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
 
-      double centerx    = (x2 + x1) / 2.0;
+      ::XDrawArc(m_pdc->m_pdisplay, m_pdc->m_drawable, m_pdc->m_gc, x1, y1, x2 - x1, y2 - y1, 0, 360 * 64);
+
+/*      double centerx    = (x2 + x1) / 2.0;
       double centery    = (y2 + y1) / 2.0;
 
       double radiusx    = abs(x2 - x1) / 2.0;
@@ -946,21 +1000,21 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
       if(radiusx == 0.0 || radiusy == 0.0)
          return false;
 
-      cairo_keep keep(m_pdc);
+      xlib_keep keep(m_pdc);
 
-      cairo_new_sub_path(m_pdc);
+      xlib_new_sub_path(m_pdc);
 
-      cairo_translate(m_pdc, centerx, centery);
+      xlib_translate(m_pdc, centerx, centery);
 
-      cairo_scale(m_pdc, radiusx, radiusy);
+      xlib_scale(m_pdc, radiusx, radiusy);
 
-      cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
+      xlib_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
 
       keep.pulse();
 
       set(m_sppen);
 
-      cairo_stroke(m_pdc);
+      xlib_stroke(m_pdc);*/
 
       return true;
 
@@ -980,7 +1034,9 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    bool graphics::FillEllipse(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
 
-      double centerx    = (x2 + x1) / 2.0;
+      ::XFillArc(m_pdc->m_pdisplay, m_pdc->m_drawable, m_pdc->m_gc, x1, y1, x2 - x1, y2 - y1, 0, 360 * 64);
+
+      /*double centerx    = (x2 + x1) / 2.0;
 
       double centery    = (y2 + y1) / 2.0;
 
@@ -992,19 +1048,19 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
          return false;
 
 
-      cairo_keep keep(m_pdc);
+      xlib_keep keep(m_pdc);
 
-      cairo_new_sub_path(m_pdc);
+      xlib_new_sub_path(m_pdc);
 
-      cairo_translate(m_pdc, centerx, centery);
+      xlib_translate(m_pdc, centerx, centery);
 
-      cairo_scale(m_pdc, radiusx, radiusy);
+      xlib_scale(m_pdc, radiusx, radiusy);
 
-      cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
+      xlib_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
 
       keep.restore();
 
-      fill();
+      fill();*/
 
 
       return true;
@@ -1045,67 +1101,144 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    }
 
-   bool graphics::fill_polygon(const POINTD * pa, int32_t nCount)
+   bool graphics::fill_polygon(const POINTD * pa, int32_t iCount)
    {
 
-      if(nCount <= 0)
-         return TRUE;
+      if(iCount <= 0)
+         return true;
 
+      XPoint * xpa = new XPoint[iCount];
 
-      cairo_move_to(m_pdc, pa[0].x, pa[0].y);
-
-      for(int32_t i = 1; i < nCount; i++)
+      for(int32_t i = 0; i < iCount; i++)
       {
-         cairo_line_to(m_pdc, pa[i].x, pa[i].y);
+
+         xpa[i].x = pa[i].x + m_pdc->m_ptOffset.x;
+         xpa[i].y = pa[i].y + m_pdc->m_ptOffset.y;
+
       }
 
-      fill();
+      //set(m_sppen);
+
+      set(m_spbrush);
+
+      XFillPolygon(m_pdc->m_pdisplay, m_pdc->m_drawable, m_pdc->m_gc, xpa, iCount, Complex, CoordModeOrigin);
+
+      delete xpa;
 
       return true;
 
    }
 
-   bool graphics::fill_polygon(const POINT* pa, int32_t nCount)
+   bool graphics::fill_polygon(const POINT* pa, int32_t iCount)
    {
 
-      if(nCount <= 0)
-         return TRUE;
+      if(iCount <= 0)
+         return true;
 
+      XPoint * xpa = new XPoint[iCount];
 
-      cairo_move_to(m_pdc, pa[0].x, pa[0].y);
-
-      for(int32_t i = 1; i < nCount; i++)
+      for(int32_t i = 0; i < iCount; i++)
       {
-         cairo_line_to(m_pdc, pa[i].x, pa[i].y);
+
+         xpa[i].x = pa[i].x + m_pdc->m_ptOffset.x;
+         xpa[i].y = pa[i].y + m_pdc->m_ptOffset.y;
+
       }
 
-      fill();
+      //set(m_sppen);
+
+      set(m_spbrush);
+
+      XFillPolygon(m_pdc->m_pdisplay, m_pdc->m_drawable, m_pdc->m_gc, xpa, iCount, Complex, CoordModeOrigin);
+
+      delete xpa;
 
       return true;
 
    }
 
 
-   bool graphics::Polygon(const POINT* pa, int32_t nCount)
+   bool graphics::draw_polygon(const POINTD * pa, int32_t iCount)
    {
 
+      if(iCount <= 0)
+         return true;
 
-      if(nCount <= 0)
-         return TRUE;
+      XPoint * xpa = new XPoint[iCount];
 
-
-      cairo_move_to(m_pdc, pa[0].x, pa[0].y);
-
-      for(int32_t i = 1; i < nCount; i++)
+      for(int32_t i = 0; i < iCount; i++)
       {
 
-         cairo_line_to(m_pdc, pa[i].x, pa[i].y);
+         xpa[i].x = pa[i].x + m_pdc->m_ptOffset.x;
+         xpa[i].y = pa[i].y + m_pdc->m_ptOffset.y;
 
       }
 
-      return fill_and_draw();
+      set(m_sppen);
+
+      XDrawLines(m_pdc->m_pdisplay, m_pdc->m_drawable, m_pdc->m_gc, xpa, iCount, CoordModeOrigin);
+
+      delete xpa;
+
+      return true;
+
+   }
 
 
+   bool graphics::draw_polygon(const POINT* pa, int32_t iCount)
+   {
+
+      if(iCount <= 0)
+         return true;
+
+      XPoint * xpa = new XPoint[iCount];
+
+      for(int32_t i = 0; i < iCount; i++)
+      {
+
+         xpa[i].x = pa[i].x + m_pdc->m_ptOffset.x;
+         xpa[i].y = pa[i].y + m_pdc->m_ptOffset.y;
+
+      }
+
+      set(m_sppen);
+
+      XDrawLines(m_pdc->m_pdisplay, m_pdc->m_drawable, m_pdc->m_gc, xpa, iCount, CoordModeOrigin);
+
+      delete xpa;
+
+      return true;
+
+   }
+
+
+   bool graphics::Polygon(const POINT* pa, int32_t iCount)
+   {
+
+      if(iCount <= 0)
+         return true;
+
+      XPoint * xpa = new XPoint[iCount];
+
+      for(int32_t i = 0; i < iCount; i++)
+      {
+
+         xpa[i].x = pa[i].x + m_pdc->m_ptOffset.x;
+         xpa[i].y = pa[i].y + m_pdc->m_ptOffset.y;
+
+      }
+
+      set(m_sppen);
+
+      set(m_spbrush);
+
+      XFillPolygon(m_pdc->m_pdisplay, m_pdc->m_drawable, m_pdc->m_gc, xpa, iCount, Complex, CoordModeOrigin);
+
+      XDrawLines(m_pdc->m_pdisplay, m_pdc->m_drawable, m_pdc->m_gc, xpa, iCount, CoordModeOrigin);
+
+      delete xpa;
+
+      return true;
 
    }
 
@@ -1130,11 +1263,15 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
       return bOk1 && bOk2;*/
 
+      set(m_spbrush);
 
-      cairo_rectangle(m_pdc, x1, y1, x2, y2);
+      ::XFillRectangle(m_pdc->m_pdisplay, m_pdc->m_drawable, m_pdc->m_gc, x1 + m_pdc->m_ptOffset.x, y1 + m_pdc->m_ptOffset.y, x2 - x1, y2 - y1);
 
+      set(m_sppen);
 
-      return fill_and_draw();
+      ::XDrawRectangle(m_pdc->m_pdisplay, m_pdc->m_drawable, m_pdc->m_gc, x1 + m_pdc->m_ptOffset.x, y1 + m_pdc->m_ptOffset.y, x2 - x1 - 1, y2 - y1 - 1);
+
+      return true;
 
 
 
@@ -1151,9 +1288,13 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    bool graphics::DrawRectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
 
-      cairo_rectangle(m_pdc, x1, y1, x2, y2);
+      set(m_sppen);
 
-      return draw();
+      set(m_spbrush);
+
+      ::XDrawRectangle(m_pdc->m_pdisplay, m_pdc->m_drawable, m_pdc->m_gc, x1, y1, x2 - x1, y2 - y1);
+
+      return true;
 
    }
 
@@ -1167,9 +1308,13 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    bool graphics::FillRectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
 
-      cairo_rectangle(m_pdc, x1, y1, x2, y2);
+      set(m_sppen);
 
-      return fill();
+      set(m_spbrush);
+
+      ::XFillRectangle(m_pdc->m_pdisplay, m_pdc->m_drawable, m_pdc->m_gc, x1, y1, x2 - x1, y2 - y1);
+
+      return true;
 
    }
 
@@ -1326,51 +1471,21 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
          if(nWidth <= 0 || nHeight <= 0)
             return false;
 
-         cairo_surface_t * psurface = cairo_get_target((cairo_t *) pgraphicsSrc->get_os_data());
+         ::draw2d_xlib::graphics * psrc = dynamic_cast < ::draw2d_xlib::graphics * > (pgraphicsSrc);
 
-         if(psurface == NULL)
+         if(psrc == NULL)
             return false;
 
-         cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
-
-         if(ppattern == NULL)
+         if(psrc->m_spbitmap.is_null())
             return false;
 
-         cairo_matrix_t matrix;
-
-         cairo_matrix_t matrixOld;
-
-         cairo_keep keep(m_pdc);
-
-         cairo_translate(m_pdc, x, y);
-
-         cairo_pattern_get_matrix(ppattern, &matrixOld);
-
-         cairo_matrix_init_translate(&matrix, xSrc, ySrc);
-
-         cairo_pattern_set_matrix(ppattern, &matrix);
-
-         cairo_rectangle(m_pdc, 0, 0, nWidth, nHeight);
-
-         cairo_clip(m_pdc);
-
-         cairo_set_source(m_pdc, ppattern);
-
-         if(m_ealphamode == ::draw2d::alpha_mode_blend)
-         {
-            cairo_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
-         }
-         else if(m_ealphamode == ::draw2d::alpha_mode_set)
-         {
-            cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
-         }
-
-
-         cairo_paint(m_pdc);
-
-         cairo_pattern_set_matrix(ppattern, &matrixOld);
-
-         cairo_pattern_destroy(ppattern);
+         XCopyArea(m_pdc->m_pdisplay, psrc->m_pdc->m_drawable, m_pdc->m_drawable, m_pdc->m_gc,
+            xSrc + m_pdc->m_ptOffset.x,
+            ySrc + m_pdc->m_ptOffset.y,
+            nWidth,
+            nHeight,
+            x + m_pdc->m_ptOffset.x,
+            y + m_pdc->m_ptOffset.y);
 
          return true;
 
@@ -1390,7 +1505,9 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    bool graphics::StretchBlt(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, uint32_t dwRop)
    {
 
-      synch_lock ml(&user_mutex());
+      return false;
+
+/*      synch_lock ml(&user_mutex());
 
       if(pgraphicsSrc == NULL)
          return false;
@@ -1401,59 +1518,59 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
          if(pgraphicsSrc == NULL)
             return false;
 
-         cairo_surface_t * psurface = cairo_get_target((cairo_t *) pgraphicsSrc->get_os_data());
+         xlib_surface_t * psurface = xlib_get_target((xlib_t *) pgraphicsSrc->get_os_data());
 
          if(psurface == NULL)
             return false;
 
-         cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
+         xlib_pattern_t * ppattern = xlib_pattern_create_for_surface(psurface);
 
          if(ppattern == NULL)
             return false;
 
-         cairo_matrix_t matrix;
+         xlib_matrix_t matrix;
 
-         cairo_matrix_t matrixOld;
+         xlib_matrix_t matrixOld;
 
-         cairo_pattern_get_matrix(ppattern, &matrixOld);
+         xlib_pattern_get_matrix(ppattern, &matrixOld);
 
-         cairo_keep keep(m_pdc);
+         xlib_keep keep(m_pdc);
 
-         cairo_translate(m_pdc, xDst, yDst);
+         xlib_translate(m_pdc, xDst, yDst);
 
-         cairo_matrix_init_translate(&matrix, -xSrc, -ySrc);
+         xlib_matrix_init_translate(&matrix, -xSrc, -ySrc);
 
-         cairo_matrix_scale(&matrix, (double) nSrcWidth / (double) nDstWidth, (double) nSrcHeight / (double) nDstHeight);
+         xlib_matrix_scale(&matrix, (double) nSrcWidth / (double) nDstWidth, (double) nSrcHeight / (double) nDstHeight);
 
-         cairo_pattern_set_matrix(ppattern, &matrix);
+         xlib_pattern_set_matrix(ppattern, &matrix);
 
-         cairo_rectangle(m_pdc, 0, 0, nDstWidth, nDstHeight);
+         xlib_rectangle(m_pdc, 0, 0, nDstWidth, nDstHeight);
 
-         cairo_clip(m_pdc);
+         xlib_clip(m_pdc);
 
-         cairo_set_source(m_pdc, ppattern);
+         xlib_set_source(m_pdc, ppattern);
 
          if(m_nStretchBltMode == 0)
          {
-            cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_NEAREST);
+            xlib_pattern_set_filter(xlib_get_source(m_pdc), CAIRO_FILTER_NEAREST);
          }
          else if(m_nStretchBltMode == HALFTONE)
          {
-            cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_GOOD);
+            xlib_pattern_set_filter(xlib_get_source(m_pdc), CAIRO_FILTER_GOOD);
          }
          else
          {
-            cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_FAST);
+            xlib_pattern_set_filter(xlib_get_source(m_pdc), CAIRO_FILTER_FAST);
          }
 
-         cairo_paint(m_pdc);
+         xlib_paint(m_pdc);
 
-         cairo_pattern_set_matrix(ppattern, &matrixOld);
+         xlib_pattern_set_matrix(ppattern, &matrixOld);
 
-         cairo_pattern_destroy(ppattern);
+         xlib_pattern_destroy(ppattern);
 
 
-      return true;
+      return true;*/
 
       //return ::StretchBlt(get_handle1(), x, y, nWidth, nHeight, WIN_HDC(pgraphicsSrc), xSrc, ySrc, nSrcWidth, nSrcHeight, dwRop);
 
@@ -1788,72 +1905,57 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    bool graphics::get_text_metrics(LPTEXTMETRICW lpMetrics) const
    {
       //ASSERT(get_handle2() != NULL); return ::GetTextMetrics(get_handle2(), lpMetrics);
-      /*wstring wstr(L"123AWZwmc");
+
+      /*
+      str = L"123AWZwmc";
       Gdiplus::RectF rect;
       Gdiplus::RectF rect2;
       Gdiplus::PointF origin(0, 0);
       m_pgraphics->MeasureString(wstr.m_pwsz, -1, (Gdiplus::Font *) m_font->get_os_data(), origin, &rect);
 
       wstr = L"123AWZwmcpQçg";
-      m_pgraphics->MeasureString(wstr.m_pwsz, -1, (Gdiplus::Font *) m_font->get_os_data(), origin, &rect2);
+      m_pgraphics->MeasureString(wstr.m_pwsz, -1, (Gdiplus::Font *) m_font->get_os_data(), origin, &rect2);*/
 
-      lpMetrics->tmAveCharWidth = rect.width / (double) wstr.get_length();
-      lpMetrics->tmAscent = rect.height;
-      lpMetrics->tmDescent = rect2.height - rect.height;*/
+      string str1;
+      str1 = L"WM123AWZwmciItf";
+      string str2;
+      str2 = L"WWÜ123AWZwmcpQçgÁiItf";
+
+      size sz1 = GetTextExtent(str1);
+      size sz2 = GetTextExtent(str2);
+
+      lpMetrics->tmAveCharWidth = sz2.cx / (double) str2.get_length();
+      lpMetrics->tmAscent = sz1.cy;
+      lpMetrics->tmDescent = sz2.cy - sz1.cy;
 
 
       //retry_single_lock slGdiplus(&System.s_mutexGdiplus, millis(1), millis(1));
 
-      ((::draw2d_cairo::graphics *) this)->set(m_spfont);
+      /*((::draw2d_xlib::graphics *) this)->set(m_spfont);
 
-      cairo_font_extents_t e;
+      // Get the font from GC.
+      ::XFontStruct *font = ::XQueryFont(m_pdc->m_pdisplay, ::XGContextFromGC(m_pdc->m_gc));
 
-      cairo_font_extents(m_pdc, &e);
+      // Compute and return the line height.
+      if(NULL == font)
+      {
 
-      //Gdiplus::FontFamily family;
+         return false;
+      }
 
-
-      //if(((graphics * )this)->gdiplus_font() == NULL)
-      //   return FALSE;
-
-      //((graphics * )this)->gdiplus_font()->GetFamily(&family);
-
-      //double dHeight = family.GetEmHeight(((graphics * )this)->gdiplus_font()->GetStyle());
-
-      //lpMetrics->tmAscent              = (LONG) (((graphics * )this)->gdiplus_font()->GetSize() * family.GetCellAscent(((graphics * )this)->gdiplus_font()->GetStyle()) / dHeight);
-      //lpMetrics->tmDescent             = (LONG) (((graphics * )this)->gdiplus_font()->GetSize() * family.GetCellDescent(((graphics * )this)->gdiplus_font()->GetStyle()) / dHeight);
-      //lpMetrics->tmHeight              = (LONG) (((graphics * )this)->gdiplus_font()->GetSize());
-      lpMetrics->tmAscent              = (LONG) e.ascent;
-      lpMetrics->tmDescent             = (LONG) e.descent;
-      lpMetrics->tmHeight              = (LONG) e.height;
+      lpMetrics->tmAscent              = (LONG) font->max_bounds.ascent;
+      lpMetrics->tmDescent             = (LONG) font->max_bounds.descent;
+      lpMetrics->tmHeight              = (LONG) font->ascent + font->descent;*/
 
       lpMetrics->tmInternalLeading     = (LONG) lpMetrics->tmAscent + lpMetrics->tmDescent - lpMetrics->tmHeight;
-      lpMetrics->tmExternalLeading     = (LONG) (e.height * 0.25);
-//                                                (e.family.GetLineSpacing(((graphics * )this)->gdiplus_font()->GetStyle())
-  //                                              - family.GetCellAscent(((graphics * )this)->gdiplus_font()->GetStyle())
-    //                                            - family.GetCellDescent(((graphics * )this)->gdiplus_font()->GetStyle())) / dHeight);
+      lpMetrics->tmExternalLeading     = (LONG) (lpMetrics->tmHeight * 0.25);
 
-//      m_spfont->
+//      lpMetrics->tmAveCharWidth        = (LONG) (font->max_bounds.width + font->min_bounds.width) / 2; // fast calculation
 
- //     ::Gdiplus::Font font2(pfamilyMono, pfamilyMono->GetEmHeight(((graphics * )this)->gdiplus_font()->GetStyle()));
-//
-      string str(L"123AWZwmc123AWZwmcpQçg");
-/*      Gdiplus::RectF rect;
-      Gdiplus::RectF rect2;
-      Gdiplus::PointF origin(0, 0);
+      //::XFreeFontInfo(NULL, font, 0);
 
-      m_pgraphics->MeasureString(wstr, (INT) wstr.get_length(), ((graphics * )this)->gdiplus_font(), origin, &rect);*/
+      return true;
 
-      ::size size = GetTextExtent(str);
-
-
-      /*wstr = L"";
-      m_pgraphics->MeasureString(wstr.m_pwsz, -1, (Gdiplus::Font *) m_font->get_os_data(), origin, &rect2);*/
-
-      lpMetrics->tmAveCharWidth        = (LONG) (size.cx * m_spfont->m_dFontWidth / (double) str.get_length());
-
-
-      return TRUE;
    }
 
 
@@ -2604,6 +2706,8 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    bool graphics::alpha_blend(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dRate)
    {
 
+   return this->BitBlt(xDst, yDst, nDstWidth, nDstHeight, pgraphicsSrc, xSrc, ySrc, SRCCOPY);
+
       synch_lock ml(&user_mutex());
 
       if(m_pdibAlphaBlend != NULL)
@@ -2679,53 +2783,53 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 */
       }
 
-      if(pgraphicsSrc == NULL)
+      /*if(pgraphicsSrc == NULL)
          return false;
 
 
       if(nSrcWidth == 0 || nSrcHeight == 0 || nDstWidth == 0 || nDstHeight == 0)
          return false;
 
-      cairo_pattern_t * ppattern = cairo_get_source((cairo_t *) pgraphicsSrc->get_os_data());
+      xlib_pattern_t * ppattern = xlib_get_source((xlib_t *) pgraphicsSrc->get_os_data());
 
       if(ppattern == NULL)
          return false;
 
-      if(cairo_pattern_status(ppattern) != CAIRO_STATUS_SUCCESS)
+      if(xlib_pattern_status(ppattern) != CAIRO_STATUS_SUCCESS)
          return false;
 
       if(m_pdc == NULL)
          return false;
 
-      cairo_keep keep(m_pdc);
+      xlib_keep keep(m_pdc);
 
-      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+      if(xlib_status(m_pdc) != CAIRO_STATUS_SUCCESS)
          return false;
 
-      cairo_translate(m_pdc, xDst, yDst);
+      xlib_translate(m_pdc, xDst, yDst);
 
-      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+      if(xlib_status(m_pdc) != CAIRO_STATUS_SUCCESS)
          return false;
 
-      cairo_scale(m_pdc, (double) nDstWidth / (double) nSrcWidth, (double) nDstHeight / (double) nSrcHeight);
+      xlib_scale(m_pdc, (double) nDstWidth / (double) nSrcWidth, (double) nDstHeight / (double) nSrcHeight);
 
-      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+      if(xlib_status(m_pdc) != CAIRO_STATUS_SUCCESS)
          return false;
 
-      cairo_set_source(m_pdc, ppattern);
+      xlib_set_source(m_pdc, ppattern);
 
-      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+      if(xlib_status(m_pdc) != CAIRO_STATUS_SUCCESS)
          return false;
 
-      cairo_paint_with_alpha(m_pdc, dRate);
+      xlib_paint_with_alpha(m_pdc, dRate);
 
-      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+      if(xlib_status(m_pdc) != CAIRO_STATUS_SUCCESS)
          return false;
 
-      cairo_pattern_destroy(ppattern);
+      xlib_pattern_destroy(ppattern);
 
-      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
-         return false;
+      if(xlib_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+         return false;*/
 
       return true;
 
@@ -3281,16 +3385,14 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
       synch_lock ml(&user_mutex());
 
+      m_spbitmap.release();
+
       if(m_pdc == NULL)
          return true;
 
-	if(m_pdc ==  cairo_keep::g_cairo)
-	{
-         printf("123");
+      XFreeGC(m_pdc->m_pdisplay, m_pdc->m_gc);
 
-	}
-
-      cairo_destroy(m_pdc);
+      delete m_pdc;
 
       m_pdc = NULL;
 
@@ -3622,69 +3724,35 @@ return 1;
 
    }
 
+
    point graphics::GetViewportOrg() const
    {
 
-      synch_lock ml(&user_mutex());
-      //POINT point;
-      //::GetViewportOrgEx(get_handle2(), &point);
-
-      cairo_matrix_t m;
-
-      cairo_get_matrix(m_pdc, &m);
-
-      return point((int64_t) m.x0, (int64_t) m.y0);
+      return m_pdc->m_ptOffset;
 
    }
-
 
 
    point graphics::SetViewportOrg(int32_t x, int32_t y)
    {
 
-      synch_lock ml(&user_mutex());
-      /*point point(0, 0);
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         ::SetViewportOrgEx(get_handle1(), x, y, &point);
-      if(get_handle2() != NULL)
-         ::SetViewportOrgEx(get_handle2(), x, y, &point);*/
+      m_pdc->m_ptOffset.x = x;
 
-      cairo_matrix_t m;
+      m_pdc->m_ptOffset.y = y;
 
-      cairo_get_matrix(m_pdc, &m);
-
-      m.x0  = x;
-
-      m.y0 = y;
-
-      cairo_set_matrix(m_pdc, &m);
-
-      //return point;
-      return point(x, y);
+      return m_pdc->m_ptOffset;
 
    }
+
 
    point graphics::OffsetViewportOrg(int32_t nWidth, int32_t nHeight)
    {
 
-      synch_lock ml(&user_mutex());
-      point point = GetViewportOrg();
+      m_pdc->m_ptOffset.x += nWidth;
 
+      m_pdc->m_ptOffset.y += nHeight;
 
-      if(abs(nWidth) > 800|| abs(nHeight) >800)
-      {
-
-         printf("123");
-      }
-
-      cairo_translate(m_pdc, nWidth, nHeight);
-      if(abs(point.x + nWidth) > 800 || abs(point.y + nHeight) > 800)
-      {
-
-         printf("123");
-      }
-
-      return ::point(point.x + nWidth, point.y + nHeight);
+      return m_pdc->m_ptOffset;
 
    }
 
@@ -3800,11 +3868,11 @@ return 1;
    int32_t graphics::SelectClipRgn(::draw2d::region * pregion)
    {
 
-      synch_lock ml(&user_mutex());
+      /*synch_lock ml(&user_mutex());
       if(pregion == NULL)
       {
 
-         cairo_reset_clip(m_pdc);
+         xlib_reset_clip(m_pdc);
 
       }
       else
@@ -3815,9 +3883,9 @@ return 1;
 
          *m_spregion.m_p = *pregion;
 
-         //cairo_clip(m_pdc);
+         //xlib_clip(m_pdc);
 
-      }
+      }*/
 
       return 0;
 
@@ -3934,63 +4002,28 @@ return 1;
 */
    }
 
+
    point graphics::MoveTo(int32_t x, int32_t y)
    {
 
-      synch_lock ml(&user_mutex());
+      m_pdc->m_pt.x = x;
 
-      point point(0, 0);
+      m_pdc->m_pt.y = y;
 
-      if(cairo_has_current_point(m_pdc))
-      {
+      return m_pdc->m_pt;
 
-         double dx = 0.;
-         double dy = 0.;
-
-         cairo_get_current_point(m_pdc, &dx, &dy);
-
-         point.x = (LONG) dx;
-         point.y = (LONG) dy;
-
-      }
-
-      cairo_move_to(m_pdc, x, y);
-
-      m_x = x;
-
-      m_y = y;
-
-      return point;
    }
+
 
    pointd graphics::MoveTo(double x, double y)
    {
 
-      synch_lock ml(&user_mutex());
+      m_pdc->m_pt.x = x;
 
-      pointd point(0., 0.);
+      m_pdc->m_pt.y = y;
 
-      if(cairo_has_current_point(m_pdc))
-      {
+      return pointd(x, y);
 
-         double dx = 0.;
-         double dy = 0.;
-
-         cairo_get_current_point(m_pdc, &dx, &dy);
-
-         point.x = dx;
-         point.y = dy;
-
-      }
-
-      cairo_move_to(m_pdc, x, y);
-
-      m_x = x;
-
-      m_y = y;
-
-
-      return point;
    }
 
    UINT graphics::SetTextAlign(UINT nFlags)
@@ -4481,120 +4514,29 @@ return 1;
 
    }
 
+
    int32_t graphics::draw_text(const string & str, LPRECT lpRect, UINT nFormat)
    {
 
       synch_lock ml(&user_mutex());
 
-      /*if(get_handle1() == NULL)
-         return -1;
-      // these flags would modify the string
-      ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
-      ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
-      wstring wstr = ::str::international::utf8_to_unicode(str);
-      return ::DrawTextW(get_handle1(), (const wchar_t *)wstr, (int32_t)wcslen(wstr), lpRect, nFormat); */
+      if(m_spfont.is_null())
+         return 0;
 
-/*
-      try
-      {
+      set(m_spfont);
 
-         if(m_pgraphics == NULL)
-            return FALSE;
+/*      XGCValues v;
 
-         switch(m_etextrendering)
-         {
-         case ::draw2d::text_rendering_anti_alias:
-            m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-            m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAlias);
-            break;
-         case ::draw2d::text_rendering_anti_alias_grid_fit:
-            m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-            m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAliasGridFit);
-            break;
-         case ::draw2d::text_rendering_single_bit_per_pixel:
-            m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-            m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintSingleBitPerPixel);
-            break;
-         case ::draw2d::text_rendering_clear_type_grid_fit:
-            m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-            m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintClearTypeGridFit);
-            break;
-         }
+      XGetGCValues(m_pdc->m_pdisplay, m_pdc->m_gc, GCFont, &v);
 
-      }
-      catch(...)
-      {
-      }
-*/
+      if(v.font == -1)
+         return 0;*/
 
-/*
-
-      Gdiplus::StringFormat format(Gdiplus::StringFormat::GenericTypographic());
-
-
-      format.SetFormatFlags(format.GetFormatFlags()
-                             | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-                             | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
-
-      if(nFormat & DT_LEFT)
-      {
-         format.SetAlignment(Gdiplus::StringAlignmentNear);
-      }
-      else if(nFormat & DT_RIGHT)
-      {
-         format.SetAlignment(Gdiplus::StringAlignmentFar);
-      }
-      else if(nFormat & DT_CENTER)
-      {
-         format.SetAlignment(Gdiplus::StringAlignmentCenter);
-      }
-      else
-      {
-         format.SetAlignment(Gdiplus::StringAlignmentNear);
-      }
-
-      if(nFormat & DT_BOTTOM)
-      {
-         format.SetLineAlignment(Gdiplus::StringAlignmentFar);
-      }
-      else if(nFormat & DT_TOP)
-      {
-         format.SetLineAlignment(Gdiplus::StringAlignmentNear);
-      }
-      else if(nFormat & DT_VCENTER)
-      {
-         format.SetLineAlignment(Gdiplus::StringAlignmentCenter);
-      }
-      else
-      {
-         format.SetLineAlignment(Gdiplus::StringAlignmentNear);
-      }
-
-      //m_dFontSize             = fontSrc.m_dFontSize;
-
-      Gdiplus::Matrix m;
-      m_pgraphics->GetTransform(&m);
-
-      Gdiplus::Matrix * pmNew = m.Clone();
-
-      pmNew->Translate((Gdiplus::REAL) lpRect->left, (Gdiplus::REAL) lpRect->top);
-      pmNew->Scale((Gdiplus::REAL) m_spfont->m_dFontWidth, (Gdiplus::REAL) 1.0, Gdiplus::MatrixOrderAppend);
-
-      Gdiplus::RectF rectf(0, 0, (Gdiplus::REAL) ((lpRect->right - lpRect->left) * m_spfont->m_dFontWidth), (Gdiplus::REAL) (lpRect->bottom - lpRect->top));
-
-      m_pgraphics->SetTransform(pmNew);
-
-      m_pgraphics->DrawString(::str::international::utf8_to_unicode(str), -1, gdiplus_font(), rectf, &format, gdiplus_brush());
-
-      m_pgraphics->SetTransform(&m);
-
-      delete pmNew;*/
-
-      size szBase = GetTextExtent("P");
+      int h = compute_line_height();
 
       size sz = GetTextExtent(str);
 
-      cairo_keep keep(m_pdc);
+      xlib_keep keep(this);
 
       double dx;
 
@@ -4626,17 +4568,48 @@ return 1;
          dy = 0.;
       }
 
-      cairo_translate(m_pdc, lpRect->left + dx, lpRect->top + szBase.cy + dy);
+/*      array < XChar2b > xa = utf8toXChar2b(str, str.get_length());
 
-      cairo_scale(m_pdc, m_spfont->m_dFontWidth, 1.0);
+      ::XDrawString16(
+         m_pdc->m_pdisplay,
+         m_pdc->m_drawable,
+         m_pdc->m_gc,
+         lpRect->left + dx + m_pdc->m_ptOffset.x,
+         lpRect->top + h + dy + m_pdc->m_ptOffset.y,
+         xa.get_data(),
+         xa.get_count());*/
 
-      set(m_spfont);
+      ::draw2d_xlib::bitmap * pbitmap = dynamic_cast < ::draw2d_xlib::bitmap * > (m_spbitmap.m_p);
 
-      set_os_color(m_spbrush->m_cr);
+      if(pbitmap == NULL)
+         return false;
 
-      cairo_show_text(m_pdc, str);
+      ::draw2d_xlib::font * pfont = dynamic_cast < ::draw2d_xlib::font * > ((::draw2d::font *) m_spfont.m_p);
 
-      return 1;
+      if(pfont == NULL)
+         return false;
+
+      XftDraw * pdraw = XftDrawCreateAlpha (m_pdc->m_pdisplay, m_pdc->m_drawable, m_pdc->m_iDepth);
+
+      XRenderColor c;
+
+      c.red = GetRValue(m_spbrush->m_cr) * 255;
+      c.green = GetGValue(m_spbrush->m_cr) * 255;
+      c.blue = GetBValue(m_spbrush->m_cr) * 255;
+      c.alpha = GetAValue(m_spbrush->m_cr) * 255;
+
+      XftColor ftc;
+      XftColorAllocValue(m_pdc->m_pdisplay, pbitmap->m_ui.m_window->visual(), pbitmap->m_ui.m_window->m_colormap, &c, &ftc);
+
+      XftDrawStringUtf8(pdraw, &ftc, pfont->m_pft,
+      lpRect->left + dx + m_pdc->m_ptOffset.x,
+      lpRect->top + h + dy + m_pdc->m_ptOffset.y, (const FcChar8 *) (const char *) str, str.get_length());
+
+      XftColorFree(m_pdc->m_pdisplay, pbitmap->m_ui.m_window->visual(), pbitmap->m_ui.m_window->m_colormap, &ftc);
+
+      XftDrawDestroy(pdraw);
+
+      return true;
 
    }
 
@@ -4674,219 +4647,70 @@ return 1;
 
    }
 
+/**
+ * Computes the text rectangle.
+ * \return CUInt2dRectangle.
+ */
    size graphics::GetTextExtent(const char * lpszString, strsize nCount, int32_t iIndex) const
    {
 
       synch_lock ml(&user_mutex());
 
-   string str(&lpszString[iIndex], nCount);
+      //int direction = 0, fontAscent = 0, fontDescent = 0;
 
-   cairo_keep keep(m_pdc);
-
-   ((graphics *) this)->set(m_spfont);
-
-   cairo_text_extents_t ex;
-
-   cairo_text_extents(m_pdc, str, &ex);
-
-	SIZE size;
-
-	size.cx = (LONG) ex.width;
-
-	size.cy = (LONG) ex.height;
-
-   return size;
-
-
-/*      if(lpszString == NULL || *lpszString == '\0')
+      if(m_spfont.is_null())
          return size(0, 0);
 
-      if(nCount < 0)
-         nCount = strlen(lpszString);
+      ((graphics *) this)->set(m_spfont);
 
-      if(iIndex > nCount)
+      ::draw2d_xlib::font * pfont = dynamic_cast < ::draw2d_xlib::font * > ((::draw2d::font *) m_spfont.m_p);
+
+      if(pfont == NULL)
          return size(0, 0);
 
-      if(iIndex < 0)
-         return size(0, 0);
+      XGlyphInfo extents;
 
-      wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
+      ZERO(extents);
 
-      strsize iRange = 0;
-      strsize i = 0;
-      strsize iLen;
-      const char * psz = lpszString;
-      while(i < iIndex)
-      {
-         iLen = ::str::get_utf8_char(psz).length();
-         iRange++;
-         i += iLen;
-         psz = ::str::utf8_inc(psz);
-         if(psz == NULL)
-            break;
-         if(*psz == '\0')
-            break;
-      }
+//      wstring wstr(lpszString, nCount);
 
-      Gdiplus::CharacterRange charRanges[1] = { Gdiplus::CharacterRange(0, (INT) iRange) };
+      XftTextExtentsUtf8 (m_pdc->m_pdisplay, pfont->m_pft, (const FcChar8 *) (const char *) lpszString, nCount, &extents);
 
-      Gdiplus::StringFormat strFormat(Gdiplus::StringFormat::GenericTypographic());
-      //Gdiplus::StringFormat strFormat;
+      //XGCValues v;
 
-      strFormat.SetMeasurableCharacterRanges(1, charRanges);
+      //XGetGCValues(m_pdc->m_pdisplay, m_pdc->m_gc, GCFont, &v);
 
-      strFormat.SetFormatFlags(strFormat.GetFormatFlags()
-                             | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-                             | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
+      //if(v.font == -1)
+        // return size(0, 0);
 
-      int32_t count = strFormat.GetMeasurableCharacterRangeCount();
+      //array < XChar2b > x = utf8toXChar2b(&lpszString[iIndex], nCount - iIndex);
 
-      Gdiplus::Region * pCharRangeRegions = new Gdiplus::Region[count];
+      //::XCharStruct charStruct;
 
-      Gdiplus::RectF box(0.0f, 0.0f, 128.0f * 1024.0f, 128.0f * 1024.0f);
+      //::XQueryTextExtents16(m_pdc->m_pdisplay, ::XGContextFromGC(m_pdc->m_gc), x.get_data(), x.get_count(), &direction, &fontAscent, &fontDescent, &charStruct);
 
-      Gdiplus::PointF origin(0, 0);
+      //return ::size(charStruct.rbearing - charStruct.lbearing, fontAscent + fontDescent);
 
-      //m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), ((graphics *)this)->gdiplus_font(), origin, Gdiplus::StringFormat::GenericTypographic(), &box);
+      return size(extents.width, extents.height);
 
-      ((graphics *)this)->m_pgraphics->MeasureCharacterRanges(wstr, (INT) wstr.get_length(), ((graphics *)this)->gdiplus_font(), box, &strFormat, (INT) count, pCharRangeRegions);
-
-      Gdiplus::Region * pregion = NULL;
-
-
-      if(count > 0)
-      {
-
-          pregion = pCharRangeRegions[0].Clone();
-
-      }
-
-
-
-      for(i = 1; i < count; i++)
-      {
-         pregion->Union(&pCharRangeRegions[i]);
-      }
-
-
-      if(pregion == NULL)
-         return size(0, 0);
-
-      delete [] pCharRangeRegions;
-
-
-      Gdiplus::RectF rectBound;
-
-      pregion->GetBounds(&rectBound, m_pgraphics);
-
-      delete pregion;
-
-
-
-      Gdiplus::SizeF size;
-
-      rectBound.GetSize(&size);
-
-      return class ::size((int64_t) (size.Width * m_spfont->m_dFontWidth), (int64_t) (size.Height));
-*/
    }
+
 
    size graphics::GetTextExtent(const char * lpszString, strsize nCount) const
    {
-      synch_lock ml(&user_mutex());
-      //retry_single_lock slGdiplus(&System.s_mutexGdiplus, millis(1), millis(1));
 
-   string str(lpszString, nCount);
+      return GetTextExtent(lpszString, nCount, 0);
 
-
-   ((graphics *) this)->set(m_spfont);
-
-   cairo_text_extents_t ex;
-
-   cairo_text_extents(m_pdc, str, &ex);
-
-	SIZE size;
-
-	size.cx = (LONG) ex.width;
-
-	size.cy = (LONG) ex.height;
-
-   return size;
-
-      /*wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
-
-      Gdiplus::RectF box;
-
-      Gdiplus::PointF origin(0, 0);
-
-      Gdiplus::StringFormat strFormat(Gdiplus::StringFormat::GenericTypographic());
-
-      strFormat.SetFormatFlags(strFormat.GetFormatFlags()
-                             | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-                             | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
-
-      m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), ((graphics *)this)->gdiplus_font(), origin, &strFormat,  &box);
-
-      return size((int64_t) (box.Width * m_spfont->m_dFontWidth), (int64_t) (box.Height));*/
-
-      /*if(get_handle2() == NULL)
-         return size(0, 0);
-      SIZE size;
-      string str(lpszString, nCount);
-      wstring wstr = ::str::international::utf8_to_unicode(str);
-      if(!::GetTextExtentPoint32W(get_handle2(), wstr, (int32_t)wstr.get_length(), &size))
-      {
-         return class size(0, 0);
-      }
-      return size;*/
    }
+
 
    size graphics::GetTextExtent(const string & str) const
    {
 
-      synch_lock ml(&user_mutex());
-/*      if(get_handle2() == NULL)
-         return size(0, 0);
-      SIZE size;
-      wstring wstr = ::str::international::utf8_to_unicode(str);
-      if(!::GetTextExtentPoint32W(get_handle2(), wstr, (int32_t)wstr.get_length(), &size))
-      {
-         return class size(0, 0);
-      }
-      return size;*/
-
-      class sized size;
-
-      if(!GetTextExtent(size, str, str.get_length(), 0))
-         return ::size(0, 0);
-
-      return ::size((long) size.cx, (long) size.cy);
-
-      /*if(m_pgraphics == NULL)
-         return size(0, 0);
-
-      wstring wstr = ::str::international::utf8_to_unicode(str);
-
-      Gdiplus::RectF box;
-
-      Gdiplus::PointF origin(0, 0);
-
-
-      if(m_pgraphics == NULL)
-         return size(0, 0);
-
-      try
-      {
-         m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), ((graphics *)this)->gdiplus_font(), origin, &box);
-      }
-      catch(...)
-      {
-         return size(0, 0);
-      }
-
-      return size((int64_t) (box.Width * m_spfont->m_dFontWidth), (int64_t) box.Height);*/
+      return GetTextExtent(str, str.get_length());
 
    }
+
 
    size graphics::GetOutputTextExtent(const char * lpszString, strsize nCount) const
    {
@@ -4920,207 +4744,35 @@ return 1;
 */
    }
 
+
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, int32_t iIndex) const
    {
+
       synch_lock ml(&user_mutex());
 
-      string str(&lpszString[iIndex], nCount);
+      class ::size  sz = GetTextExtent(lpszString, nCount, iIndex);
 
-      ((graphics *) this)->set(m_spfont);
+      size.cx = sz.cx;
 
-      cairo_text_extents_t ex;
-
-      cairo_text_extents(m_pdc, str, &ex);
-
-      size.cx = ex.width;
-
-      size.cy = ex.height;
+      size.cy = sz.cy;
 
       return true;
 
-
-
-      //retry_single_lock slGdiplus(&System.s_mutexGdiplus, millis(1), millis(1));
-
-/*      if(lpszString == NULL || *lpszString == '\0')
-         return false;
-
-      if(nCount < 0)
-         nCount = strlen(lpszString);
-
-      if(iIndex > nCount)
-         return false;
-
-      if(iIndex < 0)
-         return false;
-
-      wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
-
-      strsize iRange = 0;
-      strsize i = 0;
-      strsize iLen;
-      const char * psz = lpszString;
-      while(i < iIndex)
-      {
-         try
-         {
-            iLen = ::str::get_utf8_char(psz).length();
-         }
-         catch(...)
-         {
-            break;
-         }
-         iRange++;
-         i += iLen;
-         try
-         {
-            psz = ::str::utf8_inc(psz);
-         }
-         catch(...)
-         {
-            break;
-         }
-         if(psz == NULL)
-            break;
-         if(*psz == '\0')
-            break;
-      }
-
-      Gdiplus::CharacterRange charRanges[1] = { Gdiplus::CharacterRange(0, (INT) iRange) };
-
-      Gdiplus::StringFormat strFormat(Gdiplus::StringFormat::GenericTypographic());
-      //Gdiplus::StringFormat strFormat;
-
-      strFormat.SetMeasurableCharacterRanges(1, charRanges);
-
-      strFormat.SetFormatFlags(strFormat.GetFormatFlags()
-                             | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-                             | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
-
-      int32_t count = strFormat.GetMeasurableCharacterRangeCount();
-
-      Gdiplus::Region * pCharRangeRegions = new Gdiplus::Region[count];
-
-      //Gdiplus::RectF box(0.0f, 0.0f, 128.0f * 1024.0f, 128.0f * 1024.0f);
-
-      Gdiplus::PointF origin(0, 0);
-
-
-      // Generate a layout rect for the text
-
-      Gdiplus::RectF layoutRect;
-      Gdiplus::Status status = ((graphics *)this)->m_pgraphics->MeasureString( wstr, (INT) nCount, ((graphics *)this)->gdiplus_font(), origin, &layoutRect );
-
-
-      // Prevent clipping
-
-      //StringFormat strFormat( StringFormat::GenericTypographic() );
-      //status = ((graphics *)this)->m_pgraphics->SetFormatFlags( StringFormatFlagsNoWrap | StringFormatFlagsNoClip );
-
-
-
-      //m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), ((graphics *)this)->gdiplus_font(), origin, Gdiplus::StringFormat::GenericTypographic(), &box);
-
-      ((graphics *)this)->m_pgraphics->MeasureCharacterRanges(wstr, (INT) nCount, ((graphics *)this)->gdiplus_font(), layoutRect, &strFormat, (INT) count, pCharRangeRegions);
-
-      Gdiplus::Region * pregion = NULL;
-
-
-      if(count > 0)
-      {
-
-          pregion = pCharRangeRegions[0].Clone();
-
-      }
-
-      for(i = 1; i < count; i++)
-      {
-         pregion->Union(&pCharRangeRegions[i]);
-      }
-
-      delete [] pCharRangeRegions;
-
-      if(pregion == NULL)
-         return false;
-
-      Gdiplus::RectF rectBound;
-
-      pregion->GetBounds(&rectBound, m_pgraphics);
-
-      delete pregion;
-
-      Gdiplus::SizeF sizef;
-
-      rectBound.GetSize(&sizef);
-
-      size.cx = sizef.Width * m_spfont->m_dFontWidth;
-
-      size.cy = sizef.Height;
-
-      return true;*/
    }
+
 
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount) const
    {
 
-      //retry_single_lock slGdiplus(&System.s_mutexGdiplus, millis(1), millis(1));
+      return GetTextExtent(size, lpszString, nCount, 0);
 
-      synch_lock ml(&user_mutex());
-
-   string str(lpszString, nCount);
-
-
-   ((graphics *) this)->set(m_spfont);
-
-   cairo_text_extents_t ex;
-
-   cairo_text_extents(m_pdc, str, &ex);
-
-	size.cx = ex.width;
-
-	size.cy = ex.height;
-
-   return true;
-
-
-/*      wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
-
-      Gdiplus::RectF box;
-
-      Gdiplus::PointF origin(0, 0);
-
-      Gdiplus::StringFormat strFormat(Gdiplus::StringFormat::GenericTypographic());
-
-      strFormat.SetFormatFlags(strFormat.GetFormatFlags()
-                             | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-                             | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
-      bool bOk = true;
-
-      try
-      {
-         if(m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), ((graphics *)this)->gdiplus_font(), origin, &strFormat,  &box) != Gdiplus::Status::Ok)
-            bOk = false;
-      }
-      catch(...)
-      {
-         bOk = false;
-      }
-
-      if(!bOk)
-         return false;
-
-      size.cx = box.Width * m_spfont->m_dFontWidth;
-
-      size.cy = box.Height;
-
-      return true;
-*/
    }
+
 
    bool graphics::GetTextExtent(sized & size, const string & str) const
    {
 
-      return GetTextExtent(size, str, str.get_length());
+      return GetTextExtent(size, str, str.get_length(), 0);
 
    }
 
@@ -5260,32 +4912,13 @@ return 1;
    void graphics::FillSolidRect(LPCRECT lpRect, COLORREF clr)
    {
 
-      synch_lock ml(&user_mutex());
+      FillSolidRect(lpRect->left, lpRect->top, width(lpRect), height(lpRect), clr);
 
-      //g.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
-      //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-      //g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
-
-      if(lpRect->right <= lpRect->left || lpRect->bottom <= lpRect->top)
-         return;
-
-      set_os_color(clr);
-
-      cairo_rectangle(m_pdc, lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
-
-      cairo_fill(m_pdc);
-
-//      m_pgraphics->FillRectangle(gdiplus_brush(), lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
-
-      //::SetBkColor(get_handle1(), clr);
-      //::ExtTextOut(get_handle1(), 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
    }
+
 
    void graphics::FillSolidRect(int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF clr)
    {
-      //g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-      //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-      //g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
 
       if(cx <= 0 || cy <= 0)
          return;
@@ -5294,9 +4927,7 @@ return 1;
 
       set_os_color(clr);
 
-      cairo_rectangle(m_pdc, x, y, cx, cy);
-
-      cairo_fill(m_pdc);
+      XFillRectangle(m_pdc->m_pdisplay, m_pdc->m_drawable, m_pdc->m_gc, x, y, cx, cy);
 
    }
 
@@ -5306,271 +4937,77 @@ return 1;
 
       synch_lock ml(&user_mutex());
 
-      if(m_spbrush.is_null())
-         return true;
+      if(m_spfont.is_null())
+         return false;
 
-      if(m_spbrush->m_cr == 0)
-         return true;
+      set(m_spfont);
 
-      string str(lpszString, nCount);
+/*      XGCValues v;
 
-      size sz = GetTextExtent("Pqgy");
+      XGetGCValues(m_pdc->m_pdisplay, m_pdc->m_gc, GCFont, &v);
 
-      cairo_keep keep(m_pdc);
+      if(v.font == -1)
+         return false;*/
 
-      ((graphics *) this)->set(m_spfont);
+      int h = compute_line_height();
 
-      set_os_color(m_spbrush->m_cr);
+      /*set(m_spbrush);
 
-      cairo_move_to(m_pdc, x, y + sz.cy);
+      array < XChar2b > xa = utf8toXChar2b(lpszString, nCount);
 
-      cairo_show_text(m_pdc, str);
-
-      /*::Gdiplus::PointF origin(0, 0);
-
-      string str(lpszString, nCount);
-
-      wstring wstr = ::str::international::utf8_to_unicode(str);
-
-
-      try
-      {
-
-         if(m_pgraphics == NULL)
-            return FALSE;
-
-         switch(m_etextrendering)
-         {
-         case ::draw2d::text_rendering_anti_alias:
-            m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-            m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAlias);
-            break;
-         case ::draw2d::text_rendering_anti_alias_grid_fit:
-            m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-            m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAliasGridFit);
-            break;
-         case ::draw2d::text_rendering_single_bit_per_pixel:
-            m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-            m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintSingleBitPerPixel);
-            break;
-         case ::draw2d::text_rendering_clear_type_grid_fit:
-            m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-            m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintClearTypeGridFit);
-            break;
-         }
-
-      }
-      catch(...)
-      {
-      }
+      ::XDrawString16(
+         m_pdc->m_pdisplay,
+         m_pdc->m_drawable,
+         m_pdc->m_gc,
+         x + m_pdc->m_ptOffset.x,
+         h + y + m_pdc->m_ptOffset.y,
+         xa.get_data(),
+         xa.get_count());*/
 
 
-      //
-      //m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-      //m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAliasGridFit);
-      //m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintClearTypeGridFit);
-      //m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAlias);
+      ::draw2d_xlib::bitmap * pbitmap = dynamic_cast < ::draw2d_xlib::bitmap * > (m_spbitmap.m_p);
 
-      Gdiplus::Matrix m;
-      m_pgraphics->GetTransform(&m);
+      if(pbitmap == NULL)
+         return false;
 
-      Gdiplus::Matrix * pmNew;
+      ::draw2d_xlib::font * pfont = dynamic_cast < ::draw2d_xlib::font * > ((::draw2d::font *) m_spfont.m_p);
 
-      if(m_ppath != NULL)
-      {
-         pmNew = new Gdiplus::Matrix();
-      }
-      else
-      {
-         pmNew = m.Clone();
-      }
+      if(pfont == NULL)
+         return false;
 
-      pmNew->Translate((Gdiplus::REAL)  (x / m_spfont->m_dFontWidth), (Gdiplus::REAL) y);
-      pmNew->Scale((Gdiplus::REAL) m_spfont->m_dFontWidth, (Gdiplus::REAL) 1.0, Gdiplus::MatrixOrderAppend);
+      XftDraw * pdraw = XftDrawCreateAlpha (m_pdc->m_pdisplay, m_pdc->m_drawable, m_pdc->m_iDepth);
 
-      Gdiplus::Status status;
+      XRenderColor c;
 
-      Gdiplus::StringFormat format(Gdiplus::StringFormat::GenericTypographic());
+      c.red = GetRValue(m_spbrush->m_cr) * 255;
+      c.green = GetGValue(m_spbrush->m_cr) * 255;
+      c.blue = GetBValue(m_spbrush->m_cr) * 255;
+      c.alpha = 0xffff;
 
-      format.SetFormatFlags(format.GetFormatFlags()
-                        | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-                        | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap
-                        | Gdiplus::StringFormatFlagsNoFitBlackBox);
+      XftColor ftc;
+      XftColorAllocValue(m_pdc->m_pdisplay, pbitmap->m_ui.m_window->visual(), pbitmap->m_ui.m_window->m_colormap, &c, &ftc);
 
+//      wstring wstr(lpszString, nCount);
 
-      format.SetLineAlignment(Gdiplus::StringAlignmentNear);
+      XftDrawStringUtf8(pdraw, &ftc, pfont->m_pft,
+      x + m_pdc->m_ptOffset.x,
+      y + h + m_pdc->m_ptOffset.y, (const FcChar8 *) (const char *) lpszString, nCount);
 
-      if(m_ppath != NULL)
-      {
+      XftColorFree(m_pdc->m_pdisplay, pbitmap->m_ui.m_window->visual(), pbitmap->m_ui.m_window->m_colormap, &ftc);
 
-         Gdiplus::GraphicsPath path;
-
-         Gdiplus::FontFamily fontfamily;
-
-         gdiplus_font()->GetFamily(&fontfamily);
-
-         double d1 = gdiplus_font()->GetSize() * m_pgraphics->GetDpiX() / 72.0;
-         double d2 = fontfamily.GetEmHeight(gdiplus_font()->GetStyle());
-         double d3 = d1 * d2;
-
-         status = path.AddString(::str::international::utf8_to_unicode(str), -1, &fontfamily, gdiplus_font()->GetStyle(), (Gdiplus::REAL) d1, origin, &format);
-
-         path.Transform(pmNew);
+      XftDrawDestroy(pdraw);
 
 
-         m_ppath->AddPath(&path, FALSE);
+      return true;
 
-      }
-      else
-      {
-
-         m_pgraphics->SetTransform(pmNew);
-
-         status = m_pgraphics->DrawString(::str::international::utf8_to_unicode(str), -1, gdiplus_font(), origin, &format, gdiplus_brush());
-
-         m_pgraphics->SetTransform(&m);
-
-      }
-
-      delete pmNew;
-
-      return status  == Gdiplus::Status::Ok;
-*/
-return true;
    }
+
 
    bool graphics::TextOut(double x, double y, const char * lpszString, int32_t nCount)
    {
 
-      synch_lock ml(&user_mutex());
+      return TextOut(int32_t(x), int32_t(y), lpszString, nCount);
 
-      string str(lpszString, nCount);
-
-      sized sz;
-
-      GetTextExtent(sz, "Pqgy", 1);
-
-      cairo_keep keep(m_pdc);
-
-      ((graphics *) this)->set(m_spfont);
-
-      set_os_color(m_spbrush->m_cr);
-
-      cairo_move_to(m_pdc, x, y + sz.cy);
-
-      cairo_show_text(m_pdc, str);
-
-      return true;
-
-   /*
-
-      ::Gdiplus::PointF origin(0, 0);
-
-      string str(lpszString, nCount);
-
-      wstring wstr = ::str::international::utf8_to_unicode(str);
-
-
-      try
-      {
-
-         if(m_pgraphics == NULL)
-            return FALSE;
-
-         switch(m_etextrendering)
-         {
-         case ::draw2d::text_rendering_anti_alias:
-            m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAlias);
-            break;
-         case ::draw2d::text_rendering_anti_alias_grid_fit:
-            m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAliasGridFit);
-            break;
-         case ::draw2d::text_rendering_single_bit_per_pixel:
-            m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintSingleBitPerPixel);
-            break;
-         case ::draw2d::text_rendering_clear_type_grid_fit:
-            m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-            m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintClearTypeGridFit);
-            break;
-         }
-
-      }
-      catch(...)
-      {
-      }
-
-
-      //
-      //m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-      //m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAliasGridFit);
-      //m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintClearTypeGridFit);
-      //m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAlias);
-
-      Gdiplus::Matrix m;
-      m_pgraphics->GetTransform(&m);
-
-      Gdiplus::Matrix * pmNew;
-
-      if(m_ppath != NULL)
-      {
-         pmNew = new Gdiplus::Matrix();
-      }
-      else
-      {
-         pmNew = m.Clone();
-      }
-
-      pmNew->Translate((Gdiplus::REAL)  (x / m_spfont->m_dFontWidth), (Gdiplus::REAL) y);
-      pmNew->Scale((Gdiplus::REAL) m_spfont->m_dFontWidth, (Gdiplus::REAL) 1.0, Gdiplus::MatrixOrderAppend);
-
-      Gdiplus::Status status;
-
-      Gdiplus::StringFormat format(Gdiplus::StringFormat::GenericTypographic());
-
-      format.SetFormatFlags(format.GetFormatFlags()
-                        | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-                        | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap
-                        | Gdiplus::StringFormatFlagsNoFitBlackBox);
-
-
-      format.SetLineAlignment(Gdiplus::StringAlignmentNear);
-
-      if(m_ppath != NULL)
-      {
-
-         Gdiplus::GraphicsPath path;
-
-         Gdiplus::FontFamily fontfamily;
-
-         gdiplus_font()->GetFamily(&fontfamily);
-
-         double d1 = gdiplus_font()->GetSize() * m_pgraphics->GetDpiX() / 72.0;
-         double d2 = fontfamily.GetEmHeight(gdiplus_font()->GetStyle());
-         double d3 = d1 * d2;
-
-         status = path.AddString(::str::international::utf8_to_unicode(str), -1, &fontfamily, gdiplus_font()->GetStyle(), (Gdiplus::REAL) d1, origin, &format);
-
-         path.Transform(pmNew);
-
-
-         m_ppath->AddPath(&path, FALSE);
-
-      }
-      else
-      {
-
-         m_pgraphics->SetTransform(pmNew);
-
-         status = m_pgraphics->DrawString(::str::international::utf8_to_unicode(str), -1, gdiplus_font(), origin, &format, gdiplus_brush());
-
-         m_pgraphics->SetTransform(&m);
-
-      }
-
-      delete pmNew;
-
-      return status  == Gdiplus::Status::Ok;
-*/
    }
 
 
@@ -5580,25 +5017,19 @@ return true;
 
       synch_lock ml(&user_mutex());
 
-//      ::Gdiplus::Pen pen(::Gdiplus::Color(GetAValue(m_crColor), GetRValue(m_crColor), GetGValue(m_crColor), GetBValue(m_crColor)), m_dPenWidth);
+      set(m_sppen);
 
-      //gdiplus_pen()->SetAlignment(Gdiplus::PenAlignment::PenAlignmentCenter);
+      XDrawLine(m_pdc->m_pdisplay, m_pdc->m_drawable, m_pdc->m_gc,
+         m_pdc->m_pt.x + m_pdc->m_ptOffset.x,
+         m_pdc->m_pt.y + m_pdc->m_ptOffset.y,
+         x + m_pdc->m_ptOffset.x,
+         y + m_pdc->m_ptOffset.y);
 
-      //m_pgraphics->DrawLine(gdiplus_pen(), Gdiplus::Point((FLOAT) m_x, (FLOAT) m_y), Gdiplus::Point((FLOAT) x,(FLOAT) y));
-      //string str(lpszString, nCount);
+      m_pdc->m_pt.x = x;
 
+      m_pdc->m_pt.y = y;
 
-      cairo_move_to(m_pdc, m_x, m_y);
-
-      cairo_line_to(m_pdc, x, y);
-
-      draw();
-
-
-      m_x = x;
-      m_y = y;
-
-      return TRUE;
+      return true;
 
    }
 
@@ -5614,16 +5045,17 @@ return true;
          if(m_pdc == NULL)
             return;
 
+/*
          ::draw2d::graphics::set_alpha_mode(ealphamode);
          if(m_ealphamode == ::draw2d::alpha_mode_blend)
          {
-            cairo_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
+            xlib_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
          }
          else if(m_ealphamode == ::draw2d::alpha_mode_set)
          {
-            cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
+            xlib_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
          }
-
+*/
       }
       catch(...)
       {
@@ -5668,17 +5100,17 @@ return true;
 
       if(m_pdc != NULL)
       {
-	if(m_pdc ==  cairo_keep::g_cairo)
+/*	if(m_pdc ==  xlib_keep::g_xlib)
 	{
          printf("123");
 
 	}
 
-         cairo_destroy(m_pdc);
+         xlib_destroy(m_pdc);*/
 
       }
 
-      m_pdc = (cairo_t *) pdata;
+      m_pdc = (device_context *) pdata;
 
       return true;
 
@@ -5736,18 +5168,18 @@ return true;
 //      return ::draw2d::fill_mode_winding;
   // }
 
-void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
+/*void xlib_image_surface_blur( xlib_surface_t* surface, double radius )
 {
     // Steve Hanov, 2009
     // Released into the public domain.
 
     // get width, height
-    int32_t width = cairo_image_surface_get_width( surface );
-    int32_t height = cairo_image_surface_get_height( surface );
+    int32_t width = xlib_image_surface_get_width( surface );
+    int32_t height = xlib_image_surface_get_height( surface );
     unsigned char* dst = (unsigned char*)malloc(width*height*4);
     unsigned* precalc =
         (unsigned*)malloc(width*height*sizeof(unsigned));
-    unsigned char* src = cairo_image_surface_get_data( surface );
+    unsigned char* src = xlib_image_surface_get_data( surface );
     double mul=1.f/((radius*2)*(radius*2));
     int32_t channel;
 
@@ -5799,26 +5231,26 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
     free( dst );
     free( precalc );
-}
+}*/
 
 
    bool graphics::blur(bool bExpand, double dRadius, LPCRECT lpcrect)
    {
 
-      cairo_pattern_t * ppattern = cairo_get_source(m_pdc);
+/*      xlib_pattern_t * ppattern = xlib_get_source(m_pdc);
 
       if(ppattern == NULL)
          return false;
 
-      cairo_surface_t * psurfaceSrc = NULL;
+      xlib_surface_t * psurfaceSrc = NULL;
 
-      cairo_pattern_get_surface(ppattern, &psurfaceSrc);
+      xlib_pattern_get_surface(ppattern, &psurfaceSrc);*/
 
       /*
 
-      cairo_surface_t * psurface = cairo_surface_create_for_rectangle(psurfaceSrc, lpcrect->left, lpcrect->top, width(lpcrect), height(lpcrect));
+      xlib_surface_t * psurface = xlib_surface_create_for_rectangle(psurfaceSrc, lpcrect->left, lpcrect->top, width(lpcrect), height(lpcrect));
 
-      cairo_image_surface_blur(psurface, dRadius);
+      xlib_image_surface_blur(psurface, dRadius);
 
       */
 
@@ -5836,27 +5268,57 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
    }
 
 
-   bool graphics::set(const ::draw2d::brush * pbrush)
+   bool graphics::set(const ::draw2d::brush * pbrushParam)
    {
+
+      if(pbrushParam == NULL)
+         return false;
+
+      ::draw2d_xlib::brush * pbrush = dynamic_cast < ::draw2d_xlib::brush * > ((::draw2d::brush *) pbrushParam);
+
+      if(pbrush == NULL)
+         return false;
 
       if(pbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
       {
 
-         cairo_pattern_t * ppattern = cairo_pattern_create_linear(pbrush->m_pt1.x, pbrush->m_pt1.y, pbrush->m_pt2.x, pbrush->m_pt2.y);
+         //xlib_pattern_t * ppattern = xlib_pattern_create_linear(pbrush->m_pt1.x, pbrush->m_pt1.y, pbrush->m_pt2.x, pbrush->m_pt2.y);
 
-         cairo_pattern_add_color_stop_rgba(ppattern, 0., GetRValue(pbrush->m_cr1) / 255.0, GetGValue(pbrush->m_cr1) / 255.0, GetBValue(pbrush->m_cr1) / 255.0, GetAValue(pbrush->m_cr1) / 255.0);
+         //xlib_pattern_add_color_stop_rgba(ppattern, 0., GetRValue(pbrush->m_cr1) / 255.0, GetGValue(pbrush->m_cr1) / 255.0, GetBValue(pbrush->m_cr1) / 255.0, GetAValue(pbrush->m_cr1) / 255.0);
 
-         cairo_pattern_add_color_stop_rgba(ppattern, 1., GetRValue(pbrush->m_cr2) / 255.0, GetGValue(pbrush->m_cr2) / 255.0, GetBValue(pbrush->m_cr2) / 255.0, GetAValue(pbrush->m_cr2) / 255.0);
+         //xlib_pattern_add_color_stop_rgba(ppattern, 1., GetRValue(pbrush->m_cr2) / 255.0, GetGValue(pbrush->m_cr2) / 255.0, GetBValue(pbrush->m_cr2) / 255.0, GetAValue(pbrush->m_cr2) / 255.0);
 
-         cairo_set_source(m_pdc, ppattern);
+         //xlib_set_source(m_pdc, ppattern);
 
-         cairo_pattern_destroy(ppattern);
+         //xlib_pattern_destroy(ppattern);
+
+         //pbrush->get_os_data();
+
+         pbrush->m_color.create(
+            m_pdc->m_pdisplay,
+            m_pdc->m_iScreen,
+            (GetRValue(pbrush->m_cr1) + GetRValue(pbrush->m_cr2)) / 2,
+            (GetGValue(pbrush->m_cr1) + GetGValue(pbrush->m_cr2)) / 2,
+            (GetBValue(pbrush->m_cr1) + GetBValue(pbrush->m_cr2)) / 2,
+            (GetAValue(pbrush->m_cr1) + GetAValue(pbrush->m_cr2)) / 2);
+
+         XSetForeground(m_pdc->m_pdisplay, m_pdc->m_gc, pbrush->m_color.m_color.pixel);
 
       }
       else
       {
 
-         cairo_set_source_rgba(m_pdc, GetRValue(pbrush->m_cr) / 255.0, GetGValue(pbrush->m_cr) / 255.0, GetBValue(pbrush->m_cr) / 255.0, GetAValue(pbrush->m_cr) / 255.0);
+         //pbrush->get_os_data();
+
+         pbrush->m_color.create(
+            m_pdc->m_pdisplay,
+            m_pdc->m_iScreen,
+            GetRValue(pbrush->m_cr),
+            GetGValue(pbrush->m_cr),
+            GetBValue(pbrush->m_cr),
+            GetAValue(pbrush->m_cr));
+
+         XSetForeground(m_pdc->m_pdisplay, m_pdc->m_gc, pbrush->m_color.m_color.pixel);
 
       }
 
@@ -5865,35 +5327,129 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
    }
 
 
-   bool graphics::set(const ::draw2d::pen * ppen)
+   bool graphics::set(const ::draw2d::pen * ppenParam)
    {
 
-      cairo_set_source_rgba(m_pdc, GetRValue(ppen->m_cr) / 255.0, GetGValue(ppen->m_cr) / 255.0, GetBValue(ppen->m_cr) / 255.0, GetAValue(ppen->m_cr) / 255.0);
+      if(ppenParam == NULL)
+         return false;
 
-      cairo_set_line_width(m_pdc, ppen->m_dWidth);
+      ::draw2d_xlib::pen * ppen = dynamic_cast < ::draw2d_xlib::pen * > ((::draw2d::pen *) ppenParam);
+
+      if(ppen == NULL)
+         return false;
+
+      ppen->m_color.create(
+         m_pdc->m_pdisplay,
+         m_pdc->m_iScreen,
+         GetRValue(ppen->m_cr),
+         GetGValue(ppen->m_cr),
+         GetBValue(ppen->m_cr),
+         GetAValue(ppen->m_cr));
+
+      XSetForeground(m_pdc->m_pdisplay, m_pdc->m_gc, ppen->m_color.m_color.pixel);
+
+      XSetLineAttributes(m_pdc->m_pdisplay, m_pdc->m_gc, ppen->m_dWidth, LineSolid, CapNotLast, JoinMiter);
 
       return true;
 
    }
 
 
-   bool graphics::set(const ::draw2d::font * pfont)
+   bool graphics::set(const ::draw2d::font * pfontParam)
    {
 
-      cairo_select_font_face(m_pdc, pfont->m_strFontFamilyName, pfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
+      if(pfontParam == NULL)
+         return false;
 
-      if(pfont->m_eunitFontSize == ::draw2d::unit_pixel)
+      string strFont;
+
+      ::draw2d_xlib::font * pfont = dynamic_cast < ::draw2d_xlib::font * > ((::draw2d::font *) pfontParam);
+
+      if(pfont == NULL)
+         return false;
+
+      int iPoint = pfont->m_dFontSize;
+
+      /*if(pfont->m_pfont != NULL)
       {
 
-         cairo_set_font_size(m_pdc, pfont->m_dFontSize);
+         XFreeFont(pfont->m_pdisplay, pfont->m_pfont);
 
-      }
-      else
+         pfont->m_pfont = NULL;
+
+      }*/
+
+      if(pfont->m_pft != NULL)
       {
 
-         cairo_set_font_size(m_pdc, pfont->m_dFontSize * 96.0 / 72.0);
+         XftFontClose(pfont->m_pdisplay, pfont->m_pft);
+
+         pfont->m_pft = NULL;
 
       }
+
+
+      //strFont.Format("-*-helvetica-*-r-*-*-%d-*-*-*-*-*-iso10646-1", iPoint);
+
+      char ** szMissing;
+      int i;
+      char * szmf;
+
+      pfont->m_pft = XftFontOpen (m_pdc->m_pdisplay, m_pdc->m_iScreen,
+                    XFT_FAMILY, XftTypeString, "helvetica",
+                    pfont->m_eunitFontSize == ::draw2d::unit_point ? XFT_SIZE : XFT_PIXEL_SIZE, XftTypeDouble, pfont->m_dFontSize,
+                    NULL);
+
+      //pfont->m_pfont = XLoadQueryFont(m_pdc->m_pdisplay, strFont);
+
+      if (pfont->m_pft != NULL)
+         goto ok;
+
+      fprintf (stderr, "unable to load font %s: using fixed\n", strFont.c_str());
+
+//      strFont.Format("-*-sans-*-r-*-*-%d-*-*-*-*-*-iso10646-1", iPoint);
+      pfont->m_pft = XftFontOpen (m_pdc->m_pdisplay, m_pdc->m_iScreen,
+                    XFT_FAMILY, XftTypeString, "sans",
+                    pfont->m_eunitFontSize == ::draw2d::unit_point ? XFT_SIZE : XFT_PIXEL_SIZE, XftTypeDouble, pfont->m_dFontSize,
+                    NULL);
+
+//      pfont->m_pfont = XLoadQueryFont(m_pdc->m_pdisplay, strFont);
+
+      if (pfont->m_pft != NULL)
+         goto ok;
+
+      fprintf (stderr, "unable to load font %s: using fixed\n", strFont.c_str());
+
+  //    strFont.Format("-*-fixed-*-r-*-*-%d-*-*-*-*-*-iso10646-1", iPoint);
+
+      pfont->m_pft = XftFontOpen (m_pdc->m_pdisplay, m_pdc->m_iScreen,
+                    XFT_FAMILY, XftTypeString, "sans",
+                    pfont->m_eunitFontSize == ::draw2d::unit_point ? XFT_SIZE : XFT_PIXEL_SIZE, XftTypeDouble, pfont->m_dFontSize,
+                    NULL);
+//      pfont->m_pfont = XLoadQueryFont(m_pdc->m_pdisplay, strFont);
+
+
+      if (pfont->m_pft != NULL)
+         goto ok;
+
+      fprintf (stderr, "unable to load font %s: using fixed\n", strFont.c_str());
+
+//      strFont = "fixed";
+      pfont->m_pft = XftFontOpen (m_pdc->m_pdisplay, m_pdc->m_iScreen,
+                    XFT_FAMILY, XftTypeString, "charter",
+                    pfont->m_eunitFontSize == ::draw2d::unit_point ? XFT_SIZE : XFT_PIXEL_SIZE, XftTypeDouble, pfont->m_dFontSize,
+                    NULL);
+
+  //    pfont->m_pfont = XLoadQueryFont(m_pdc->m_pdisplay, strFont);
+
+      if (pfont->m_pft == NULL)
+         return false;
+
+ok:
+
+      pfont->m_pdisplay = m_pdc->m_pdisplay;
+
+      //XSetFont (m_pdc->m_pdisplay, m_pdc->m_gc, pfont->m_pfont->fid);
 
       return true;
 
@@ -5903,9 +5459,9 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
    bool graphics::fill_and_draw()
    {
 
-      bool bPen = m_sppen->m_etype != ::draw2d::pen::type_null;
+      /*bool bPen = m_sppen->m_etype != ::draw2d::pen::type_null;
 
-      cairo_keep keep(m_pdc);
+      xlib_keep keep(this);
 
       if(m_spbrush->m_etype != ::draw2d::brush::type_null)
       {
@@ -5917,13 +5473,13 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
          if(bPen)
          {
 
-            cairo_fill_preserve(m_pdc);
+            xlib_fill_preserve(m_pdc);
 
          }
          else
          {
 
-            cairo_fill(m_pdc);
+            xlib_fill(m_pdc);
 
          }
 
@@ -5938,12 +5494,12 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
          set_alpha_mode(m_ealphamode);
 
-         cairo_stroke(m_pdc);
+         xlib_stroke(m_pdc);
 
 
-      }
+      }*/
 
-      return true;
+      return false;
 
    }
 
@@ -5951,16 +5507,16 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
    bool graphics::fill(::draw2d::brush * pbrush)
    {
 
-      if(pbrush == NULL || pbrush->m_etype == ::draw2d::brush::type_null)
+      /*if(pbrush == NULL || pbrush->m_etype == ::draw2d::brush::type_null)
          return true;
 
-      cairo_keep keep(m_pdc);
+      xlib_keep keep(m_pdc);
 
       set(pbrush);
 
-      cairo_fill(m_pdc);
+      xlib_fill(m_pdc);*/
 
-      return true;
+      return false;
 
    }
 
@@ -5968,16 +5524,16 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
    bool graphics::draw(::draw2d::pen * ppen)
    {
 
-      if(ppen == NULL || ppen->m_etype == ::draw2d::pen::type_null)
+      /*if(ppen == NULL || ppen->m_etype == ::draw2d::pen::type_null)
          return true;
 
-      cairo_keep keep(m_pdc);
+      xlib_keep keep(m_pdc);
 
       set(ppen);
 
-      cairo_stroke(m_pdc);
+      xlib_stroke(m_pdc);*/
 
-      return true;
+      return false;
 
    }
 
@@ -5985,11 +5541,11 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
    bool graphics::set(const ::draw2d::path * ppathParam)
    {
 
-      cairo_keep keep(m_pdc);
+      /*xlib_keep keep(m_pdc);
 
-      cairo_new_sub_path(m_pdc);
+      xlib_new_sub_path(m_pdc);
 
-      ::draw2d_cairo::path * ppath = dynamic_cast < ::draw2d_cairo::path * > ((::draw2d::path *) ppathParam);
+      ::draw2d_xlib::path * ppath = dynamic_cast < ::draw2d_xlib::path * > ((::draw2d::path *) ppathParam);
 
       for(int32_t i = 0; i < ppath->m_elementa.get_count(); i++)
       {
@@ -6001,25 +5557,25 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
       if(ppath->m_efillmode == ::draw2d::fill_mode_alternate)
       {
 
-         cairo_set_fill_rule(m_pdc, CAIRO_FILL_RULE_EVEN_ODD);
+         xlib_set_fill_rule(m_pdc, CAIRO_FILL_RULE_EVEN_ODD);
 
       }
       else
       {
 
-         cairo_set_fill_rule(m_pdc, CAIRO_FILL_RULE_WINDING);
+         xlib_set_fill_rule(m_pdc, CAIRO_FILL_RULE_WINDING);
 
-      }
+      }*/
 
-      return true;
+      return false;
 
    }
 
 
-   bool graphics::set(const ::draw2d_cairo::path::element & e)
+   bool graphics::set(const ::draw2d_xlib::path::element & e)
    {
 
-      switch(e.m_etype)
+/*      switch(e.m_etype)
       {
       case ::draw2d::path::element::type_arc:
          set(e.m_arc);
@@ -6035,58 +5591,58 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
             if(e.m_end.m_bClose)
             {
-            cairo_close_path(m_pdc);
+            xlib_close_path(m_pdc);
             }
          }
          break;
       default:
          throw "unexpected simple os graphics element type";
-      }
+      }*/
 
       return false;
 
    }
 
-   bool graphics::set(const ::draw2d_cairo::path::arc & a)
+   bool graphics::set(const ::draw2d_xlib::path::arc & a)
    {
 
-      cairo_keep keep(m_pdc);
+/*      xlib_keep keep(m_pdc);
 
-      cairo_translate(m_pdc, a.m_xCenter, a.m_yCenter);
+      xlib_translate(m_pdc, a.m_xCenter, a.m_yCenter);
 
-      cairo_scale(m_pdc, 1.0, a.m_dRadiusY / a.m_dRadiusX);
+      xlib_scale(m_pdc, 1.0, a.m_dRadiusY / a.m_dRadiusX);
 
-      cairo_arc(m_pdc, 0.0, 0.0, a.m_dRadiusX, a.m_dAngle1, a.m_dAngle2);
+      xlib_arc(m_pdc, 0.0, 0.0, a.m_dRadiusX, a.m_dAngle1, a.m_dAngle2);*/
 
       return true;
 
    }
 
-   bool graphics::set(const ::draw2d_cairo::path::line & l)
+   bool graphics::set(const ::draw2d_xlib::path::line & l)
    {
 
-      if(!cairo_has_current_point(m_pdc))
+      /*if(!xlib_has_current_point(m_pdc))
       {
 
-         cairo_move_to(m_pdc, l.m_x + 0.5, l.m_y + 0.5);
+         xlib_move_to(m_pdc, l.m_x + 0.5, l.m_y + 0.5);
 
       }
       else
       {
 
-         cairo_line_to(m_pdc, l.m_x + 0.5, l.m_y + 0.5);
+         xlib_line_to(m_pdc, l.m_x + 0.5, l.m_y + 0.5);
 
-      }
+      }*/
 
       return true;
 
    }
 
 
-   bool graphics::set(const ::draw2d_cairo::path::move & p)
+   bool graphics::set(const ::draw2d_xlib::path::move & p)
    {
 
-      cairo_move_to(m_pdc, p.m_x + 0.5, p.m_y + 0.5);
+      //xlib_move_to(m_pdc, p.m_x + 0.5, p.m_y + 0.5);
 
       return true;
 
@@ -6098,6 +5654,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
    {
 
       return fill(m_spbrush);
+
 
    }
 
@@ -6111,7 +5668,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
     void * graphics::detach()
     {
 
-       cairo_t * p = m_pdc;
+       device_context * p = m_pdc;
 
        m_pdc = NULL;
 
@@ -6121,13 +5678,142 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
     bool graphics::set_os_color(COLORREF cr)
     {
 
-       cairo_set_source_rgba(m_pdc, GetRValue(cr) / 255.0, GetGValue(cr) / 255.0, GetBValue(cr) / 255.0, GetAValue(cr) / 255.0);
+       //xlib_set_source_rgba(m_pdc, GetRValue(cr) / 255.0, GetGValue(cr) / 255.0, GetBValue(cr) / 255.0, GetAValue(cr) / 255.0);
 
       return true;
 
     }
 
-} // namespace draw2d_cairo
 
 
+
+/**
+ * Computes text line height.
+ * \return Text line height.
+ */
+   unsigned int graphics::compute_line_height()
+   {
+
+   size sz = GetTextExtent(L"Ac");
+      return sz.cy;
+/*
+      ::draw2d_xlib::bitmap * pbitmap = dynamic_cast < ::draw2d_xlib::bitmap * > (m_spbitmap.m_p);
+
+      if(pbitmap == NULL)
+         return false;
+
+      ::draw2d_xlib::font * pfont = dynamic_cast < ::draw2d_xlib::font * > ((::draw2d::font *) m_spfont.m_p);
+
+      if(pfont == NULL)
+         return false;
+
+      XftDraw * pdraw = XftDrawCreate (m_pdc->m_pdisplay, m_pdc->m_drawable, pbitmap->m_ui.m_window->visual(), pbitmap->m_ui.m_window->m_colormap);
+
+      XRenderColor c;
+
+      c.red = GetRValue(m_spbrush->m_cr);
+      c.green = GetGValue(m_spbrush->m_cr);
+      c.blue = GetBValue(m_spbrush->m_cr);
+      c.alpha = GetAValue(m_spbrush->m_cr);
+
+      XftColor ftc;
+      XftColorAllocValue(m_pdc->m_pdisplay, pbitmap->m_ui.m_window->visual(), pbitmap->m_ui.m_window->m_colormap, &c, &ftc);
+
+      XftDrawString8(pdraw, &ftc, pfont->m_pft,
+      lpRect->left + dx + m_pdc->m_ptOffset.x,
+      lpRect->top + h + dy + m_pdc->m_ptOffset.y, (FcChar8 *) (const char *) str, str.get_length());
+
+      XftColorFree(m_pdc->m_pdisplay, pbitmap->m_ui.m_window->visual(), pbitmap->m_ui.m_window->m_colormap, &ftc);
+
+      XftDrawDestroy(pdraw);*/
+
+/*      if(m_spfont.is_null())
+         return 0;
+
+      set(m_spfont);
+
+      XGCValues v;
+
+      XGetGCValues(m_pdc->m_pdisplay, m_pdc->m_gc, GCFont, &v);
+
+      if(v.font == -1)
+         return 0;
+
+      ::draw2d_xlib::font * pfont = m_spfont.cast < ::draw2d_xlib::font >();
+
+      if(pfont == NULL)
+         return 0;
+
+      return pfont->m_pfont->max_bounds.ascent + pfont->m_pfont->max_bounds.descent;*/
+
+
+   }
+
+} // namespace draw2d_xlib
+
+
+
+
+
+
+
+
+array < XChar2b > utf8toXChar2b(const char *input, int inlen)
+{
+
+   array < XChar2b > output_r;
+
+	int j, k;
+
+	for(j = 0, k = 0; j < inlen; j++)
+	{
+
+		unsigned char c = input[j];
+
+		if (c < 128)
+		{
+			output_r.element_at_grow(k).byte1 = 0;
+			output_r.element_at_grow(k).byte2 = c;
+			k++;
+		}
+		else if (c < 0xC0)
+		{
+			/* we're inside a character we don't know  */
+			continue;
+		}
+		else switch(c & 0xF0)
+		{
+		case 0xC0:
+		case 0xD0: /* two bytes 5+6 = 11 bits */
+			if (inlen < j + 1)
+			{
+            return output_r;
+         }
+			output_r.element_at_grow(k).byte1 = (c & 0x1C) >> 2;
+			j++;
+			output_r.element_at_grow(k).byte2 = ((c & 0x3) << 6) + (input[j] & 0x3F);
+			k++;
+			break;
+		case 0xE0: /* three bytes 4+6+6 = 16 bits */
+			if (inlen < j + 2)
+			{
+            return output_r;
+         }
+			j++;
+			output_r.element_at_grow(k).byte1 = ((c & 0xF) << 4) + ((input[j] & 0x3C) >> 2);
+			c = input[j];
+			j++;
+			output_r.element_at_grow(k).byte2 = ((c & 0x3) << 6) + (input[j] & 0x3F);
+			k++;
+			break;
+		case 0xFF:
+			/* the character uses more than 16 bits */
+			continue;
+		}
+
+	}
+
+	return output_r;
+
+}
 

@@ -45,16 +45,17 @@
 			<Add option="-Winvalid-pch" />
 			<Add option="-Wno-conversion-null" />
 			<Add option="-fPIC" />
-			<Add directory="../../../app/appseed/core" />
-			<Add directory="../../../app/thirdparty/appseed" />
 			<Add directory="." />
 			<Add directory=".." />
+			<Add directory="../../../app/thirdparty/appseed" />
+			<Add directory="../../../app/appseed/core" />
 			<Add directory="../.." />
 			<Add directory="../../.." />
 			<Add directory="../../../app/appseed/boot" />
 			<Add directory="../../../app/appseed" />
 			<Add directory="../../../app" />
 			<Add directory="../../../app/thirdparty/include" />
+			<Add directory="../base" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -65,8 +66,8 @@
 			<Add option="-lXmu" />
 			<Add option="-lbase" />
 			<Add option="-lbasefreeimage" />
+			<Add option="-lbasefreetype" />
 			<Add option="-lbasecairo" />
-			<Add option="-lboot" />
 			<Add option="-lcore" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />

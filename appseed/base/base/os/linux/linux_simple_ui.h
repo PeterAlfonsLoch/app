@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "linux_window_cairo.h"
+#include "base/os/linux/linux_window_xlib.h"
 
 
 namespace os
@@ -22,7 +22,7 @@ namespace os
       ::draw2d::dib_sp           m_dib;
       SIZE                       m_size;
       POINT                      m_pt;
-      window_cairo               m_gdi;
+      window_xlib                m_xlib;
 
 
       oswindow                   m_window;
@@ -32,6 +32,7 @@ namespace os
       XWindowAttributes          m_attr;
       int32_t                    m_iDepth;
       XVisualInfo                m_visualinfo;
+      int                        m_iScreen;
 
 
       window_graphics *          m_pgraphics;
@@ -44,10 +45,16 @@ namespace os
 
       bool                       m_bRunLoop;
 
+      rect                       m_rectWindow;
+
+      bool                       m_bNoDecorations;
+
 
       simple_ui(sp(base_application) papp);
 
       virtual ~simple_ui();
+
+      virtual bool create_window(LPCRECT lprect);
 
       virtual bool prepare_window(LPCRECT lprect);
 

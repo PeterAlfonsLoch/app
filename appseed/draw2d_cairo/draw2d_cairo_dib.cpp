@@ -2677,6 +2677,12 @@ namespace draw2d_cairo
 
 
 
+   bool dib::print_window(::user::window * pwnd, signal_details * pobj)
+   {
+
+      return true;
+
+   }
 
 
 
@@ -2706,7 +2712,7 @@ namespace draw2d_cairo
 
       rect rect(rectWindow);
 
-      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rect, scan);
+      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rect, m_iScan);
 
       return true;
 

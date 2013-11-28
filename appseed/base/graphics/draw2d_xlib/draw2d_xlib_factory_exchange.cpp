@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace draw2d_cairo
+namespace draw2d_xlib
 {
 
 
@@ -34,7 +34,7 @@ namespace draw2d_cairo
 extern "C"
 void ca2_factory_exchange(sp(base_application) papp)
 {
-   draw2d_cairo::factory_exchange factoryexchange(papp);
+   draw2d_xlib::factory_exchange factoryexchange(papp);
 }
 
 

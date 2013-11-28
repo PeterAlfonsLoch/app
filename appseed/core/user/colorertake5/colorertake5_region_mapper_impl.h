@@ -33,7 +33,7 @@ public:
   RegionDefine *getRegionDefine(const char * name);
 
   string_map< RegionDefine *> regionDefines;
-  comparable_raw_array< RegionDefine *> regionDefinesVector;
+  comparable_raw_array< RegionDefine *>::type regionDefinesVector;
 
   RegionMapperImpl(const RegionMapperImpl&);
   void operator=(const RegionMapperImpl&);
@@ -59,7 +59,7 @@ public:
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

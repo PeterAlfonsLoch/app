@@ -31,7 +31,9 @@ class numeric_array :
    virtual public ::file::serializable_array < typename comparable_primitive_array < TYPE >::type::type >
 {
 public:
+
    numeric_array();
+   numeric_array(sp(base_application) papp);
    numeric_array(const numeric_array & array);
 
    index find_first_maximum_value();
@@ -144,6 +146,25 @@ public:
       return false;
 
    }
+
+
+#if defined(MOVE_SEMANTICS)
+      numeric_array(numeric_array && a) :
+         raw_array < TYPE, const TYPE & > (a)
+      {
+
+      }
+
+      inline numeric_array & operator = (numeric_array && a)
+      {
+
+         raw_array < TYPE, const TYPE & >::operator = (a);
+
+         return *this;
+
+      }
+
+#endif
 
    void implode(string & rwstr, const char * lpcszSeparator = NULL, index iStart = 0, ::count iCount = -1) const;
    string implode(const char * lpcszSeparator = NULL, index iStart = 0, ::count iCount = -1) const;
@@ -265,6 +286,14 @@ numeric_array < TYPE >::
    numeric_array()
 {
 }
+
+template < class TYPE >
+numeric_array < TYPE >::
+   numeric_array(sp(base_application) papp) :
+   element(papp)
+{
+}
+
 template < class TYPE >
 numeric_array < TYPE >::
    numeric_array(const numeric_array < TYPE > & a)

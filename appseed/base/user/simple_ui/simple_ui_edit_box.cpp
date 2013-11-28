@@ -14,14 +14,11 @@ namespace simple_ui
 
    }
 
+
    edit_box::~edit_box()
    {
+
    }
-
-
-
-
-
 
 
    bool edit_box::on_lbutton_down(int32_t x, int32_t y)
@@ -32,6 +29,7 @@ namespace simple_ui
       return true;
 
    }
+
 
    bool edit_box::on_lbutton_up(int32_t x, int32_t y)
    {

@@ -78,6 +78,9 @@
 		<Unit filename="pixman-arm-common.h" />
 		<Unit filename="pixman-arm-neon-asm.h" />
 		<Unit filename="pixman-arm-simd-asm.h" />
+		<Unit filename="pixman-arm.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="pixman-bits-image.c">
 			<Option compilerVar="CC" />
 		</Unit>

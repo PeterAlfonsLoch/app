@@ -28,7 +28,7 @@
 #define __USE_GNU				/* We want to use stpcpy */
 #endif
 #if defined(HAVE_STRINGS_H)
-#include <strings.h>
+//#include <strings.h>
 #endif
 //#include <string.h>
 

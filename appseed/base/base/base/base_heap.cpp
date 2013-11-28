@@ -673,7 +673,7 @@ public:
 
       os_thread::s_pmutex = new mutex();
 
-      os_thread::s_pptra = new comparable_raw_array < os_thread * > ();
+      os_thread::s_pptra = new comparable_raw_array < os_thread * >::type ();
 
 #endif
 

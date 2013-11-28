@@ -7,7 +7,7 @@ namespace user
 
    split_view::split_view(sp(base_application) papp) :
       element(papp),
-      
+
       split_layout(papp),
       place_holder_container(papp)
    {
@@ -51,7 +51,7 @@ namespace user
 
    }
 
-   
+
    bool split_view::create_views()
    {
 
@@ -70,7 +70,7 @@ namespace user
          bOk = false;
 
          string strMessage;
-#ifdef MACOS
+#if defined(MACOS) || defined(LINUX)
          strMessage.Format("split_view::on_create_views failed to create views for split view %s", typeid(this).name());
 #else
          strMessage.Format("split_view::on_create_views failed to create views for split view %s", typeid(this).raw_name());

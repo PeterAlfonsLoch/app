@@ -1,9 +1,16 @@
 #pragma once
 
 
-#include "app/appseed/base/base/base/base.h"
+#include "app/appseed/core/core.h"
 
-#include "cairo/cairo.h"
+
+#include "ft2build.h"
+#include FT_FREETYPE_H
+
+#include "app/thirdparty/appseed/cairo/cairo.h"
+#include "app/thirdparty/appseed/cairo/cairo-ft.h"
+
+
 
 
 #ifdef _DRAW2D_CAIRO_LIBRARY

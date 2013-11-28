@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace draw2d_cairo
+namespace draw2d_xlib
 {
 
 
-   class CLASS_DECL_DRAW2D_CAIRO brush :
+   class CLASS_DECL_DRAW2D_XLIB brush :
       virtual public ::draw2d::brush
    {
    public:
@@ -13,6 +13,8 @@ namespace draw2d_cairo
 
 
 //xxx      Gdiplus::Brush * m_pbrush;
+
+      color    m_color;
 
 
       brush(sp(base_application) papp);
@@ -39,5 +41,5 @@ namespace draw2d_cairo
    };
 
 
-} // namespace draw2d_cairo
+} // namespace draw2d_xlib
 

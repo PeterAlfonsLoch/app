@@ -2,12 +2,12 @@
 
 
 
-namespace draw2d_cairo
+namespace draw2d_xlib
 {
 
 
-   class CLASS_DECL_DRAW2D_CAIRO pen :
-      virtual public ::draw2d_cairo::object,
+   class CLASS_DECL_DRAW2D_XLIB pen :
+      virtual public ::draw2d_xlib::object,
       virtual public ::draw2d::pen
    {
    public:
@@ -18,6 +18,7 @@ namespace draw2d_cairo
       //int32_t                  m_iStyle;
       //int32_t                  m_iWidth;
       //COLORREF             m_cr;
+      color                   m_color;
 
 
       pen(sp(base_application) papp);
@@ -28,7 +29,7 @@ namespace draw2d_cairo
       bool CreatePen(int32_t nPenStyle, double nWidth, const LOGBRUSH* pLogBrush, int32_t nStyleCount = 0, const DWORD* lpStyle = NULL);*/
 
 
-//      virtual void * get_os_data() const;
+      virtual void * get_os_data() const;
 
 
       virtual void dump(dump_context & dumpcontext) const;
@@ -36,7 +37,7 @@ namespace draw2d_cairo
    };
 
 
-} // namespace draw2d_cairo
+} // namespace draw2d_xlib
 
 
 

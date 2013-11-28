@@ -66,7 +66,7 @@ namespace user
       COLORREF                      m_crTextSelected;
       COLORREF                      m_crTextHighlight;
       COLORREF                      m_crTextSelectedHighlight;
-      uint32_array                  m_dwaItemState;
+      uint_array                  m_dwaItemState;
       sp(image_list)                m_pimagelist;
       index                         m_iImageCollapse;
       index                         m_iImageExpand;
@@ -79,7 +79,7 @@ namespace user
       DWORD                         m_dwHoverEnd;
       BYTE                          m_uchHoverAlpha;
       BYTE                          m_uchHoverAlphaInit;
-      
+
 
 
 
@@ -116,8 +116,8 @@ namespace user
       virtual void install_message_handling(::message::dispatch * pdispatch);
       int32_t _001GetItemHeight();
       virtual index _001GetIndentation();
-      
-      
+
+
 
       sp(::data::tree_item) _001HitTest(POINT pt, ::user::e_tree_element & eelement);
       void _001OnClick(UINT uiFlags, point point);

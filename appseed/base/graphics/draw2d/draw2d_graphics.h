@@ -645,6 +645,8 @@ namespace draw2d
       virtual int32_t _DrawText(const string & str, LPCRECT lpcrect, UINT uiFormat, ::draw2d::font * pfontUnderline = NULL);
 
 
+
+
    };
 
    class CLASS_DECL_BASE graphics_sp :

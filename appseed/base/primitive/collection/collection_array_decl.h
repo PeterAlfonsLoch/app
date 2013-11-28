@@ -558,6 +558,8 @@ public:
       m_nMaxSize     = a.m_nMaxSize;
 
       a.m_pData      = NULL;
+      a.m_nSize      = 0;
+      a.m_nMaxSize   = 0;
 
    }
 
@@ -575,6 +577,8 @@ public:
          m_nMaxSize     = a.m_nMaxSize;
 
          a.m_pData      = NULL;
+         a.m_nSize      = 0;
+         a.m_nMaxSize   = 0;
 
       }
 

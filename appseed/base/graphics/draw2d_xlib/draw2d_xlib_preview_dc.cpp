@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // Helper functions
 
-__STATIC long CLASS_DECL_DRAW2D_CAIRO _AfxMultMultDivDiv(
+__STATIC long CLASS_DECL_DRAW2D_XLIB _AfxMultMultDivDiv(
    int32_t factor, int32_t num1, int32_t num2,
    int32_t den1, int32_t den2)
 {
@@ -254,7 +254,7 @@ object* preview_dc::SelectStockObject(int32_t nIndex)
    case DEFAULT_GUI_FONT:
       // Handle the stock fonts correctly
       {
-         object* pObject = ::draw2d_cairo::object::from_handle(
+         object* pObject = ::draw2d_xlib::object::from_handle(
                      ::SelectObject(get_handle2(), hObj));
 
          // Don't re-mirror screen font if this is the same font.
@@ -272,7 +272,7 @@ object* preview_dc::SelectStockObject(int32_t nIndex)
    default:
       if (get_os_data() != NULL)
          ::SelectObject(get_os_data(), hObj);
-      return ::draw2d_cairo::object::from_handle(::SelectObject(get_handle2(), hObj));
+      return ::draw2d_xlib::object::from_handle(::SelectObject(get_handle2(), hObj));
    }
 }
 
@@ -374,7 +374,7 @@ void preview_dc::MirrorFont()
    ASSERT(get_handle2() != NULL);
    ASSERT_VALID(pFont);
 
-   ::draw2d::font* pOldFont = (::draw2d::font*) ::draw2d_cairo::object::from_handle(
+   ::draw2d::font* pOldFont = (::draw2d::font*) ::draw2d_xlib::object::from_handle(
             ::SelectObject(get_handle2(), pFont->get_handle()));
 
    // If same as already selected, don't re-mirror screen font
@@ -475,7 +475,7 @@ size preview_dc::ScaleWindowExt(int32_t xNum, int32_t xDenom, int32_t yNum, int3
 
 // private helpers for TextOut functions
 
-__STATIC int32_t CLASS_DECL_DRAW2D_CAIRO _AfxComputeNextTab(int32_t x, UINT nTabStops, LPINT lpnTabStops, int32_t nTabOrigin, int32_t nTabWidth)
+__STATIC int32_t CLASS_DECL_DRAW2D_XLIB _AfxComputeNextTab(int32_t x, UINT nTabStops, LPINT lpnTabStops, int32_t nTabOrigin, int32_t nTabWidth)
 {
    ENSURE(nTabWidth!=0);
    x -= nTabOrigin;        // normalize position to tab origin
@@ -986,7 +986,7 @@ void preview_dc::PrinterDPtoScreenDP(LPPOINT lpPoint) const
 ////////////////////////////////////////////////////////////////////////////
 // AfxCreateDC
 
-HDC CLASS_DECL_DRAW2D_CAIRO AfxCreateDC(HGLOBAL hDevNames, HGLOBAL hDevMode)
+HDC CLASS_DECL_DRAW2D_XLIB AfxCreateDC(HGLOBAL hDevNames, HGLOBAL hDevMode)
 {
    if (hDevNames == NULL)
       return NULL;

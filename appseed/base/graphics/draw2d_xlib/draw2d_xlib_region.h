@@ -1,16 +1,16 @@
 #pragma once
 
 
-namespace draw2d_cairo
+namespace draw2d_xlib
 {
 
 
-   class CLASS_DECL_DRAW2D_CAIRO region :
+   class CLASS_DECL_DRAW2D_XLIB region :
       virtual public ::draw2d::region
    {
    public:
 
-      cairo_surface_t *       m_psurface;
+//      xlib_surface_t *       m_psurface;
       rect                    m_rectBoundingBoxInternal;
 
 
@@ -52,21 +52,21 @@ namespace draw2d_cairo
       //bool RectInRegion(LPCRECT lpRect) const;
 // xxx      int32_t GetRegionData(LPRGNDATA lpRgnData, int32_t nCount) const;
 
-      bool get(cairo_t * pdc);
-      bool get_rect(cairo_t * pdc);
-      bool get_oval(cairo_t * pdc);
-      bool get_polygon(cairo_t * pdc);
-      bool get_poly_polygon(cairo_t * pdc);
-      bool get_combine(cairo_t * pdc);
+/*      bool get(xlib_t * pdc);
+      bool get_rect(xlib_t * pdc);
+      bool get_oval(xlib_t * pdc);
+      bool get_polygon(xlib_t * pdc);
+      bool get_poly_polygon(xlib_t * pdc);
+      bool get_combine(xlib_t * pdc);
 
 
-      virtual void * get_os_data() const;
+      virtual void * get_os_data() const;*/
 
 
 
    };
 
 
-} // namespace draw2d_cairo
+} // namespace draw2d_xlib
 
 

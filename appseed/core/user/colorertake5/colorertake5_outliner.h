@@ -12,8 +12,8 @@ namespace colorertake5
     *
     * @ingroup colorer_editor
     */
-   class Outliner : 
-      public RegionHandler, 
+   class Outliner :
+      public RegionHandler,
       public EditorListener
    {
    public:
@@ -69,7 +69,7 @@ namespace colorertake5
 
      base_editor *baseEditor;
      class region *searchRegion;
-     comparable_raw_array<OutlineItem*> outline;
+     comparable_raw_array < OutlineItem * >::type outline;
      bool lineIsEmpty;
      index curLevel;
      index modifiedLine;
@@ -97,7 +97,7 @@ namespace colorertake5
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

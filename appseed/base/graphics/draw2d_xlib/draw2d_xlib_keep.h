@@ -1,20 +1,20 @@
 #pragma once
 
 
-class CLASS_DECL_DRAW2D_CAIRO cairo_keep
+class CLASS_DECL_DRAW2D_XLIB xlib_keep
 {
 public:
 
 
-   cairo_t *         m_pdc;
+   ::draw2d::graphics *         m_pdc;
    bool              m_bSave;
 
-   static cairo_surface_t * g_cairosurface;
-   static cairo_t *  g_cairo;
+   //static xlib_surface_t * g_xlibsurface;
+   //static xlib_t *  g_xlib;
 
 
-   cairo_keep(cairo_t * pdc, bool bSave = true);
-   ~cairo_keep();
+   xlib_keep(::draw2d::graphics * pdc, bool bSave = true);
+   ~xlib_keep();
 
 
    void save();

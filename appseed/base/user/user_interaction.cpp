@@ -710,24 +710,36 @@ namespace user
    void interaction::draw_control_background(::draw2d::graphics *pdc)
    {
 
-      rect rectClient;
-
-      GetClientRect(rectClient);
-
       if (_001IsBackgroundBypass())
       {
       }
       else if (_001IsTranslucent())
       {
+
+         rect rectClient;
+
+         GetClientRect(rectClient);
+
          pdc->SelectClipRgn(NULL);
+
          pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+
          pdc->FillSolidRect(rectClient, get_background_color());
+
       }
       else
       {
+
+         rect rectClient;
+
+         GetClientRect(rectClient);
+
          pdc->SelectClipRgn(NULL);
+
          pdc->set_alpha_mode(::draw2d::alpha_mode_set);
+
          pdc->FillSolidRect(rectClient, (255 << 24) | (get_background_color() & 0xffffff));
+
       }
 
    }
@@ -2722,7 +2734,7 @@ namespace user
       m_eappearance = appearance_zoomed;
 
       rect rectDesktop;
-      
+
       System.get_monitor_rect(0, rectDesktop);
 
       SetWindowPos(ZORDER_TOP, 0, 0, rectDesktop.width(), rectDesktop.height(), SWP_SHOWWINDOW);

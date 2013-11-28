@@ -243,6 +243,10 @@ namespace draw2d_cairo
    // Simple Drawing Functions
       void FillRect(LPCRECT lpRect, ::draw2d::brush* pBrush);
       void FrameRect(LPCRECT lpRect, ::draw2d::brush* pBrush);
+
+
+      bool DrawRect(LPCRECT lpcrect, ::draw2d::pen * ppen);
+
       void InvertRect(LPCRECT lpRect);
       bool DrawIcon(int32_t x, int32_t y, ::visual::icon * picon);
       bool DrawIcon(POINT point, ::visual::icon * picon);
@@ -251,10 +255,10 @@ namespace draw2d_cairo
          HBRUSH hBrush = NULL);
       bool DrawState(point pt, size size, ::draw2d::bitmap* pBitmap, UINT nFlags,
          ::draw2d::brush* pBrush = NULL);
-      bool DrawState(point pt, size size, HICON hIcon, UINT nFlags,
+/*      bool DrawState(point pt, size size, HICON hIcon, UINT nFlags,
          HBRUSH hBrush = NULL);
       bool DrawState(point pt, size size, HICON hIcon, UINT nFlags,
-         ::draw2d::brush* pBrush = NULL);
+         ::draw2d::brush* pBrush = NULL);*/
       bool DrawState(point pt, size size, const char * lpszText, UINT nFlags,
          bool bPrefixText = TRUE, int32_t nTextLen = 0, HBRUSH hBrush = NULL);
       bool DrawState(point pt, size size, const char * lpszText, UINT nFlags,

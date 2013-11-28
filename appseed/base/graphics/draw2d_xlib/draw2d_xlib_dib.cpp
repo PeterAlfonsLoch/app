@@ -2,7 +2,7 @@
 #include <math.h>
 
 
-namespace draw2d_cairo
+namespace draw2d_xlib
 {
 
 
@@ -22,6 +22,7 @@ namespace draw2d_cairo
 
       m_pcolorref          = NULL;
       m_bMapped            = false;
+      m_pimage             = NULL;
 
    }
 
@@ -45,9 +46,9 @@ namespace draw2d_cairo
 
       ::draw2d::dib::read(istream);
 
-      cairo_surface_t * surface = dynamic_cast < ::draw2d_cairo::bitmap * > (m_spbitmap.m_p)->m_psurface;
+//      xlib_surface_t * surface = dynamic_cast < ::draw2d_xlib::bitmap * > (m_spbitmap.m_p)->m_psurface;
 
-      cairo_surface_mark_dirty (surface);
+  //    xlib_surface_mark_dirty (surface);
 
    }
 
@@ -97,6 +98,8 @@ namespace draw2d_cairo
       m_info.bmiHeader.biCompression   = BI_RGB;
       m_info.bmiHeader.biSizeImage     = width * height * 4;
 
+      m_bMapped = false;
+
       m_spbitmap.create(allocer());
       m_spgraphics.create(allocer());
 
@@ -115,6 +118,7 @@ namespace draw2d_cairo
          m_iScan = 0;
          return FALSE;
       }
+
 
       if(m_spbitmap->get_os_data() != NULL)
       {
@@ -153,7 +157,7 @@ namespace draw2d_cairo
 
    bool dib::create(::draw2d::graphics * pdc)
    {
-      ::draw2d::bitmap * pbitmap = (dynamic_cast < ::draw2d_cairo::graphics * > (pdc))->get_current_bitmap();
+      ::draw2d::bitmap * pbitmap = (dynamic_cast < ::draw2d_xlib::graphics * > (pdc))->get_current_bitmap();
       if(pbitmap == NULL)
          return FALSE;
       ::size size = pbitmap->get_size();
@@ -168,14 +172,22 @@ namespace draw2d_cairo
    bool dib::Destroy ()
    {
 
-    m_spbitmap.release();
+      if(m_pimage != NULL)
+      {
+         m_pimage->data = NULL;
+         XDestroyImage(m_pimage);
+         m_pimage = NULL;
+      }
+
+      m_spbitmap.release();
 
 
-    m_spgraphics.release();
+      m_spgraphics.release();
 
-      m_size.cx             = 0;
-      m_size.cy             = 0;
-      m_pcolorref    = NULL;
+      m_size.cx               = 0;
+      m_size.cy               = 0;
+      m_pcolorref             = NULL;
+      m_bMapped               = false;
 
       return TRUE;
    }
@@ -383,42 +395,20 @@ namespace draw2d_cairo
       if(m_pcolorref == NULL)
          return;
 
-     if(m_spbitmap.m_p == NULL)
+      if(m_spbitmap.m_p == NULL)
          return;
 
-     cairo_surface_t * surface = dynamic_cast < ::draw2d_cairo::bitmap * > (m_spbitmap.m_p)->m_psurface;
+      ::draw2d_xlib::bitmap * pb = m_spbitmap.cast < ::draw2d_xlib::bitmap >();
 
-     if(surface == NULL)
-         return;
+      m_pimage = XGetImage(
+                     pb->m_ui.m_window->display(),
+                     pb->m_pixmap,
+                     0, 0,
+                     m_size.cx, m_size.cy,
+                     -1,
+                     ZPixmap);
 
-     cairo_surface_flush (surface);
-
-
-     byte  * pdata = (byte *) cairo_image_surface_get_data(surface);
-
-     if(pdata != (byte *) m_pcolorref && pdata != NULL)
-     {
-         memcpy(m_pcolorref, pdata, m_size.cy * m_iScan);
-     }
-
-
-      pdata = (byte *) m_pcolorref;
-
-      if(!bApplyAlphaTransform)
-      {
-         int size = m_iScan * m_size.cy / sizeof(COLORREF);
-         while(size > 0)
-         {
-            if(pdata[3] != 0)
-            {
-               pdata[0] = pdata[0] * 255 / pdata[3];
-               pdata[1] = pdata[1] * 255 / pdata[3];
-               pdata[2] = pdata[2] * 255 / pdata[3];
-            }
-            pdata += 4;
-            size--;
-         }
-      }
+      memcpy(m_pcolorref, m_pimage->data, m_iScan * m_size.cy);
 
       m_bMapped = true;
 
@@ -436,32 +426,24 @@ namespace draw2d_cairo
       if(m_spbitmap.m_p == NULL)
          return;
 
-      cairo_surface_t * surface = dynamic_cast < ::draw2d_cairo::bitmap * > (m_spbitmap.m_p)->m_psurface;
+      ::draw2d_xlib::bitmap * pb = m_spbitmap.cast < ::draw2d_xlib::bitmap >();
 
-      if(surface == NULL)
-         return;
+      ::draw2d_xlib::graphics * pg = m_spgraphics.cast < ::draw2d_xlib::graphics >();
 
-      byte * pdata =  (byte *) m_pcolorref;
-      int size = m_iScan * m_size.cy / sizeof(COLORREF);
-      while(size > 0)
-      {
-         pdata[0] = pdata[0] * pdata[3] / 255;
-         pdata[1] = pdata[1] * pdata[3] / 255;
-         pdata[2] = pdata[2] * pdata[3] / 255;
-         pdata += 4;
-         size--;
-      }
+      memcpy(m_pimage->data, m_pcolorref, m_iScan * m_size.cy);
 
-      pdata =  (byte *) cairo_image_surface_get_data(surface);
+      XPutImage(
+                     pb->m_ui.m_window->display(),
+                     pb->m_pixmap,
+                     pg->m_pdc->m_gc,
+                     m_pimage,
+                     0, 0,
+                     0, 0,
+                     m_size.cx, m_size.cy);
 
-      if(pdata != (byte *) m_pcolorref && pdata != NULL)
-      {
-         memcpy(pdata, m_pcolorref, m_size.cy * m_iScan);
-      }
+      XDestroyImage(m_pimage);
 
-      cairo_surface_mark_dirty (surface);
-
-      m_spgraphics->SelectObject(m_spbitmap);
+      m_pimage = NULL;
 
       m_bMapped = false;
 
@@ -2565,7 +2547,10 @@ namespace draw2d_cairo
    //{
    //   return cy;
    //}
-
+   bool dib::print_window(::user::window * pwnd, signal_details * pobj)
+   {
+   return true;
+   }
 
 #if defined(WINDOWS)
 
@@ -2706,7 +2691,7 @@ namespace draw2d_cairo
 
       rect rect(rectWindow);
 
-      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rect, scan);
+      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rect, m_iScan);
 
       return true;
 
@@ -2717,4 +2702,4 @@ namespace draw2d_cairo
 #endif
 
 
-} // namespace draw2d_cairo
+} // namespace draw2d_xlib

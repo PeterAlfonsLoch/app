@@ -1,6 +1,10 @@
 #include "framework.h"
 
 
+CLASS_DECL_BASE void draw_ca2(::draw2d::graphics * pdc, int x, int y, int z, COLORREF crBk, COLORREF cr);
+CLASS_DECL_BASE void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y, int z, int b, COLORREF crBk, COLORREF cr, COLORREF crOut);
+CLASS_DECL_BASE void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
+
 namespace fontopus
 {
 
@@ -21,6 +25,8 @@ namespace fontopus
       m_w = 840;
       m_h = 284;
 
+      m_bNoDecorations = true;
+
       m_eresult = login::result_fail;
 
    }
@@ -35,6 +41,26 @@ namespace fontopus
    byte brate(double dRate, double dMin, double dMax)
    {
       return (byte)(dRate * (dMax - dMin) + dMin);
+   }
+
+   bool simple_ui::on_char(int iKeyCode, const string & strChar)
+   {
+
+      if(iKeyCode == VK_RETURN)
+      {
+
+         on_action("submit");
+
+         return true;
+
+      }
+      else
+      {
+
+         return ::os::simple_ui::on_char(iKeyCode, strChar);
+
+      }
+
    }
 
    void simple_ui::draw_auth_box(::draw2d::graphics * pgraphics)
@@ -302,9 +328,9 @@ namespace fontopus
 
       // Perform application initialization:
 
-
       m_login.m_strRequestingServer = strRequestingServer;
 
+      m_login.m_bVisible = true;
 
       #if defined(WINDOWSEX)
 
@@ -327,6 +353,7 @@ namespace fontopus
          }
 
       #else
+
 
       run_loop();
 
@@ -368,8 +395,19 @@ namespace fontopus
 
       rect rectFontopus;
 
-      int w = m_w + 184;
-      int h = m_h + 284;
+      int w = rectDesktop.width() * 2.0 / 5.0;
+      int h = rectDesktop.height() * 2.0 / 5.0;
+
+      int minW = 400;
+      int minH = 320;
+      int maxW = 1024;
+      int maxH = 800;
+
+      w = min(maxW, max(minW, w));
+      h = 184 + 23 + 184;
+
+      m_w = w - 49 * 2;
+      m_h = h - 49 * 3;
 
       rectFontopus.left = rectDesktop.left + (width(rectDesktop) - w) / 2;
       rectFontopus.top = rectDesktop.top + (height(rectDesktop) - h) / 3;
@@ -377,12 +415,20 @@ namespace fontopus
       rectFontopus.bottom = rectFontopus.top + h;
 
 
-      m_login.m_rect.left = (w - m_w) / 2;
-      m_login.m_rect.top = (h - m_h) / 2;
-      m_login.m_rect.right = m_w;
-      m_login.m_rect.bottom = m_h;
+      m_login.m_rect.left = 49;
+      m_login.m_rect.top = 49 + 86;
+      m_login.m_rect.right = m_login.m_rect.left + m_w;
+      m_login.m_rect.bottom = m_login.m_rect.top + m_h;
 
       m_login.defer_translate(this);
+
+
+      if (!::os::simple_ui::create_window(rectFontopus))
+         return false;
+
+
+      m_login.layout();
+
 
       if (!::os::simple_ui::prepare_window(rectFontopus))
          return false;
@@ -395,6 +441,8 @@ namespace fontopus
 
       ::SetWindowLong(m_window, GWL_STYLE, WS_VISIBLE);*/
 
+
+      SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, m_size.cx, m_size.cy, SWP_SHOWWINDOW | SWP_NOZORDER);
 
       return TRUE;
 
@@ -436,6 +484,9 @@ namespace fontopus
 
       if (m_login.on_lbutton_up(x - m_login.m_rect.left, y - m_login.m_rect.top))
          return true;
+
+
+         release_capture();
 
       /*
       rect rectLogin;
@@ -612,7 +663,6 @@ namespace fontopus
 
       GetWindowRect(rectWindow);
 
-
       pgraphics->FillSolidRect(rectWindow, ARGB(84, 127, 127, 127));
 
    }
@@ -621,9 +671,109 @@ namespace fontopus
    void simple_ui::draw_this(::draw2d::graphics * pgraphics)
    {
 
-      draw_auth_box(pgraphics);
+      draw_auth_rect(pgraphics);
+
+      COLORREF crOut, crIn, crBorderOut, crBorderIn, cr, crBk;
+
+//       if (is_hover() || m_bDown || m_bMouseMove)
+/*       {
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+            crOut = ARGB(184 + 49, 255, 230, 255);
+
+            crIn = ARGB(255, 255, 84 + 49, 255);
+
+            crBorderOut = ARGB(184, 150, 100, 150);
+
+            crBorderIn = ARGB(184, 255, 240, 255);
+
+#else
+
+            crOut = ARGB(184 + 49, 230, 255, 225);
+
+            crIn = ARGB(255, 84 + 49, 255, 77 + 49);
+
+            crBorderOut = ARGB(184, 100, 150, 100);
+
+            crBorderIn = ARGB(184, 240, 255, 235);
+
+#endif
+
+         }
+         else*/
+         {
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+            crOut = ARGB(184, 255, 210, 255);
+
+            crIn = ARGB(255, 255, 184 + 49, 255);
+
+            crBorderOut = ARGB(184, 90, 20, 90);
+
+            crBorderIn = ARGB(184, 255, 240, 255);
+
+#else
+
+            crOut = ARGB(184, 210, 255, 205);
+
+            crIn = ARGB(255, 84 + 49, 255, 77 + 49);
+
+            crBorderOut = ARGB(184, 20, 90, 20);
+
+            crBorderIn = ARGB(184, 240, 255, 235);
+
+#endif
+
+         }
+
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+      cr = ARGB(223, 84, 49, 77);
+
+#else
+
+      cr = ARGB(223, 49, 84, 23);
+
+#endif
+
+      crBk = ARGB(
+               (GetAValue(crOut) + GetAValue(crIn)) / 2,
+               (GetRValue(crOut) + GetRValue(crIn)) / 2,
+               (GetGValue(crOut) + GetGValue(crIn)) / 2,
+               (GetBValue(crOut) + GetBValue(crIn)) / 2);
+
+      draw_ca2_with_border2(pgraphics, 49, 49, 84 + 1 + 1, 1, 1, crBk, cr, crBorderOut, crBorderIn);
+
 
    }
+
+
+   void simple_ui::draw_auth_rect(::draw2d::graphics * pgraphics)
+   {
+
+      rect rectClient;
+
+      get_client_rect(rectClient);
+
+      ::draw2d::brush_sp b(allocer());
+
+      b->create_solid(ARGB(255, 255, 255, 255));
+
+      pgraphics->SelectObject(b);
+
+      ::draw2d::pen_sp p(allocer());
+
+      p->create_solid(pgraphics, 1.0, ARGB(255, 0, 0, 0));
+
+      pgraphics->SelectObject(p);
+
+      pgraphics->Rectangle(rectClient);
+
+   }
+
 
 
    void simple_ui::draw_fuzzy_color_spread(::draw2d::graphics * pgraphics)
@@ -815,6 +965,7 @@ namespace fontopus
       if (!strcmp(pszId, "submit"))
       {
 
+         m_bVisible = false;
 
          ::ShowWindow(m_window, SW_HIDE);
 
@@ -822,7 +973,11 @@ namespace fontopus
 
          if (m_eresult == ::fontopus::login::result_fail)
          {
-            ::ShowWindow(m_window, SW_SHOW);
+
+            SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, m_size.cx, m_size.cy, SWP_SHOWWINDOW);
+
+            m_bVisible = true;
+
          }
          else
          {
@@ -866,4 +1021,241 @@ namespace fontopus
 
 } // namespace fontopus
 
+
+CLASS_DECL_BASE void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crOut, COLORREF crIn)
+{
+
+   draw_ca2(pdc, x + bIn + bOut, y + bIn + bOut, z, crBk, cr);
+
+   int w = z / 19;
+
+   if (w < 1)
+      w = 1;
+
+   z = w * 19;
+
+   rect r(x + bIn + bOut, y + bIn + bOut, x + bIn + bOut + z, y + bIn + bOut + z);
+
+   ::draw2d::pen_sp p(pdc->allocer());
+
+   p->create_solid(pdc, 1.0, crIn);
+
+   for(int i = 0; i < bIn; i++)
+   {
+
+      r.inflate(1, 1);
+
+      pdc->DrawRect(r, p);
+
+   }
+
+   p->create_solid(pdc, 1.0, crOut);
+
+   for(int i = 0; i < bOut; i++)
+   {
+
+      r.inflate(1, 1);
+
+      pdc->DrawRect(r, p);
+
+   }
+
+
+}
+
+
+CLASS_DECL_BASE void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y, int z, int b, COLORREF crBk, COLORREF cr, COLORREF crBorder)
+{
+
+   draw_ca2(pdc, x + b, y + b, z, crBk, cr);
+
+   int w = z / 19;
+
+   if (w < 1)
+      w = 1;
+
+   z = w * 19;
+
+   rect r(x + b, y + b, x + b + z, y + b + z);
+
+   ::draw2d::pen_sp p(pdc->allocer());
+
+   p->create_solid(pdc, 1.0, crBorder);
+
+   for(int i = 0; i < b; i++)
+   {
+
+      r.inflate(1, 1);
+
+      pdc->DrawRect(r, p);
+
+   }
+
+
+
+}
+
+
+CLASS_DECL_BASE void draw_ca2(::draw2d::graphics * pdc, int x, int y, int z, COLORREF crBk, COLORREF cr)
+{
+
+   ::draw2d::brush_sp b(pdc->allocer());
+
+   // black rectangle
+
+   int w = z / 19;
+
+   if (w < 1)
+      w = 1;
+
+   z = w * 19;
+
+   b->create_solid(crBk);
+
+   rect r(x, y, x + z, y + z);
+
+   pdc->FillRect(r, b);
+
+
+
+
+
+
+
+
+   // bottom line
+
+   b->create_solid(cr);
+
+   r.top += w * 13;
+   r.bottom -= w;
+
+
+
+
+
+
+
+
+
+   // c
+
+   r.left += w;
+   r.right = r.left + w * 5;
+
+   rect c = r;
+
+   c.right = c.left + w;
+
+   pdc->FillRect(c, b);
+
+   c = r;
+
+   c.bottom = c.top + w;
+
+   pdc->FillRect(c, b);
+
+   c = r;
+
+   c.top = c.bottom - w;
+
+   pdc->FillRect(c, b);
+
+
+
+
+
+
+
+
+   // a
+
+   r.left += w * 6;
+   r.right = r.left + w * 5;
+
+   c = r;
+
+   c.bottom = c.top + w;
+
+   pdc->FillRect(c, b);
+
+   c = r;
+
+   c.top = c.bottom - w;
+
+   pdc->FillRect(c, b);
+
+   c = r;
+
+   c.right = c.left + w * 2;
+   c.top += w * 2;
+   c.bottom = c.top + w;
+
+   pdc->FillRect(c, b);
+
+   c = r;
+
+   c.left += w * 5 / 2;
+   c.right = c.left + w;
+   c.top += w * 2;
+   c.bottom = c.top + w;
+
+   pdc->FillRect(c, b);
+
+   c = r;
+
+   c.left = c.right - w;
+
+   pdc->FillRect(c, b);
+
+   c = r;
+
+   c.right = c.left + w;
+   c.top += w * 2;
+
+   pdc->FillRect(c, b);
+
+
+
+
+
+   // 2
+
+   r.left += w * 6;
+   r.right = r.left + w * 5;
+
+   c = r;
+
+   c.bottom = c.top + w;
+
+   pdc->FillRect(c, b);
+
+   c = r;
+
+   c.top = c.bottom - w;
+
+   pdc->FillRect(c, b);
+
+   c = r;
+
+   c.top += w * 2;
+   c.bottom = c.top + w;
+
+   pdc->FillRect(c, b);
+
+   c = r;
+
+   c.right = c.left + w;
+   c.top += w * 2;
+
+   pdc->FillRect(c, b);
+
+   c = r;
+
+   c.left = c.right - w;
+   c.bottom -= w * 2;
+
+   pdc->FillRect(c, b);
+
+}
 

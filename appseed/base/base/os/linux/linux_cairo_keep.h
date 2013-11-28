@@ -6,14 +6,15 @@ class CLASS_DECL_BASE ca_cairo_keep
 public:
 
 
-   cairo_t *         m_pdc;
+/*   cairo_t *         m_pdc;*/
    bool              m_bSave;
 
-   static cairo_surface_t * g_cairosurface;
-   static cairo_t *  g_cairo;
+   //static cairo_surface_t * g_cairosurface;
+   //static cairo_t *  g_cairo;
 
 
-   ca_cairo_keep(cairo_t * pdc, bool bSave = true);
+//   ca_cairo_keep(cairo_t * pdc, bool bSave = true);
+   ca_cairo_keep(::draw2d::graphics * pdc, bool bSave = true);
    ~ca_cairo_keep();
 
 

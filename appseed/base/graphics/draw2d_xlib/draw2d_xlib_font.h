@@ -1,15 +1,22 @@
 #pragma once
 
+typedef struct _XftFont XftFont;
 
-namespace draw2d_cairo
+
+
+namespace draw2d_xlib
 {
 
 
-   class CLASS_DECL_DRAW2D_CAIRO font :
+   class CLASS_DECL_DRAW2D_XLIB font :
       virtual public ::draw2d::font
    {
    public:
 
+      Display * m_pdisplay;
+      XFontStruct * m_pfont;
+      XFontSet m_fontset;
+      XftFont *      m_pft;
 
       font(sp(base_application) papp);
       virtual ~font();
@@ -23,7 +30,7 @@ namespace draw2d_cairo
    };
 
 
-} // namespace draw2d_cairo
+} // namespace draw2d_xlib
 
 
 

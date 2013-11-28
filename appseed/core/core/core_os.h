@@ -25,7 +25,7 @@ namespace core
 #endif
       virtual bool get_pid_by_path(const char * pszName, uint32_t & dwPid);
       virtual bool get_pid_by_title(const char * pszName, uint32_t & dwPid);
-      virtual void get_all_processes(uint32_array & dwa);
+      virtual void get_all_processes(uint_array & dwa);
       virtual string get_process_path(uint32_t dwPid);
 
 
@@ -57,7 +57,7 @@ namespace core
 
       virtual bool create_service(sp(::plane::application) papp);
       virtual bool remove_service(sp(::plane::application) papp);
-      
+
       virtual bool start_service(sp(::plane::application) papp);
       virtual bool stop_service(sp(::plane::application) papp);
 

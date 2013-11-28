@@ -160,6 +160,8 @@ public:
    virtual bool on_assert_failed_line(const char * pszFileName, int32_t iLine);
 
 
+
+
    void set_enum_name(sp(type) etype, int32_t i, const char * psz)
    {
       m_mapEnumToName[etype->name()][i] = psz;
@@ -233,6 +235,7 @@ public:
       return get_enum_name(System.type_info < TYPE >(), (int32_t)e);
    }
 
+   sp(::user::object) place_hold(sp(::user::interaction) pui);
 
 
 

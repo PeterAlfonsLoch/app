@@ -21,6 +21,14 @@ oswindow_data::oswindow_data()
 
    m_osdisplay             = NULL;
 
+   ZERO(m_visual);
+
+   m_iDepth                = -1;
+
+   m_iScreen               = -1;
+
+   m_colormap              = None;
+
 }
 
 oswindow_data::~oswindow_data()
@@ -117,7 +125,6 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction * pui)
    pdata->m_window                  = None;
    pdata->m_pui                     = pui;
    pdata->m_osdisplay               = NULL;
-   pdata->m_pvisual                 = NULL;
 
    ::oswindow_data::s_pdataptra->add(pdata);
 
@@ -126,7 +133,7 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction * pui)
 }
 
 
-oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual)
+oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual, int iDepth, int iScreen, Colormap colormap)
 {
 
    single_lock slOsWindow(::oswindow_data::s_pmutex, true);
@@ -141,7 +148,18 @@ oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual
    pdata->m_bMessageOnlyWindow      = false;
    pdata->m_osdisplay               = osdisplay_get(pdisplay);
    pdata->m_window                  = window;
-   pdata->m_pvisual                 = pvisual;
+
+   if(pvisual != NULL)
+   {
+
+      pdata->m_visual               = *pvisual;
+
+   }
+
+   pdata->m_iDepth                  = iDepth;
+   pdata->m_iScreen                 = iScreen;
+   pdata->m_colormap                = colormap;
+
 
    ::oswindow_data::s_pdataptra->add(pdata);
 
@@ -501,6 +519,8 @@ bool oswindow_data::show_window(int32_t nCmdShow)
       XMapWindow(display(), window());
 
    }
+
+   XSync(display(), False);
 
 }
 
@@ -931,7 +951,8 @@ bool oswindow_data::is_destroying()
 
 bool IsWindow(oswindow oswindow)
 {
-   return oswindow->get_user_interaction() != NULL && !oswindow->is_destroying();
+   return (oswindow->get_user_interaction() == NULL && oswindow->display() != NULL && oswindow->window() != None)
+   || (oswindow->get_user_interaction() != NULL && !oswindow->is_destroying());
 }
 
 
@@ -966,8 +987,8 @@ return g_oswindowDesktop;
 #include <X11/Xatom.h>
 
 
-extern cairo_surface_t *  g_cairosurface;
-extern cairo_t *  g_cairo;
+//extern cairo_surface_t *  g_cairosurface;
+//extern cairo_t *  g_cairo;
 
 
 
@@ -1054,7 +1075,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 */
 
 
-#include "cairo/cairo-xlib.h"
+//#include "cairo/cairo-xlib.h"
 #include <X11/Xlib.h>
 
 
@@ -1062,151 +1083,177 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 #define SIZEY  50
 
 
-void message_box_paint(cairo_surface_t * cs, stringa & stra, bool_array  & baTab, int_array  & ya,SIZE * psize)
+void message_box_paint(::draw2d::graphics * pdc, stringa & stra, bool_array  & baTab, int_array  & ya,SIZE * psize)
 {
-	cairo_t *c;
 
-	c=cairo_create(cs);
-	cairo_rectangle(c, 0.0, 0.0, psize->cx, psize->cy);
-	cairo_set_source_rgb(c, 0.84, 0.84, 0.77);
-	cairo_fill(c);
+	pdc->FillSolidRect(0, 0, psize->cx, psize->cy, RGB(84, 84, 77));
 
-	cairo_set_source_rgb(c, 0.0, 0.0, 0.0);
+   draw2d::brush_sp pen(pdc->allocer());
+
+	pen->create_solid(0);
 
 	for(index i = 0; i < stra.get_count(); i++)
 	{
-      cairo_move_to(c, 10.0 + 50.0 + (baTab[i] ? 25.0 : 0), 10.0 + 50.0 + ya[i]);
-      cairo_show_text(c, stra[i]);
+      pdc->TextOut(10.0 + 50.0 + (baTab[i] ? 25.0 : 0), 10.0 + 50.0 + ya[i], stra[i]);
 	}
 
 
-	cairo_show_page(c);
-
-
-	if(c ==  ::ca_cairo_keep::g_cairo)
-	{
-         printf("123");
-
-	}
-
-	cairo_destroy(c);
 
 }
 
-void message_box_show_xlib(base_application * papp, const char * lpText, const char * lpCaption)
+
+class xlib_simple_message_box :
+   virtual public ::os::simple_ui
 {
-
-	Window rootwin;
-	Window win;
-	XEvent e;
-	int32_t scr;
-	cairo_surface_t *cs;
+public:
 
 
-	xdisplay dpy;
+   spa(::simple_ui::label) m_labela;
 
-	dpy.open(NULL);
+   rect m_rectDesktop;
 
-	if(dpy== NULL)
-	{
-		fprintf(stderr, "ERROR: Could not open display\n");
-		return ;
-//		exit(1);
-	}
-
-	scr         = dpy.default_screen();
-	rootwin     = RootWindow(dpy.m_pdisplay, scr);
-
-
-	::draw2d::graphics_sp g(papp->allocer());
-
-	g->CreateCompatibleDC(NULL);
-
-	SIZE sz;
-
-	sz.cx = 0;
-	sz.cy = 0;
-
-
-	stringa stra;
-
-	stra.add_tokens(lpText, "\n");
-
-	bool_array baTab;
-
-	int_array ya;
-
-	for(index i = 0; i < stra.get_count(); i++)
-	{
-
-	   string str = stra[i];
-
-	   bool bTab = str_begins_dup(str, "\t");
-
-	   str.trim();
-
-	   bool bEmpty = str.is_empty();
-
-	   if(bEmpty)
-         str = "L";
-
-	   SIZE sizeItem = g->GetTextExtent(str);
-
-	   int x = bTab ? 25 : 0;
-
-	   if(sizeItem.cx + x > sz.cx)
-	   {
-
-	       sz.cx = sizeItem.cx + x;
-
-	   }
-
-	   baTab.add(bTab);
-
-	   ya.add( sz.cy);
-
-      sz.cy += sizeItem.cy;
-
-      if(bEmpty)
-      {
-         stra[i] = "";
-      }
-      else
-      {
-         stra[i] = str;
-      }
-
-	}
-
-	sz.cx += 100;
-	sz.cy += 100;
-
-
-	win=XCreateSimpleWindow(dpy.m_pdisplay, rootwin, 1, 1, sz.cx, sz.cy, 0, BlackPixel(dpy.m_pdisplay, scr), BlackPixel(dpy.m_pdisplay, scr));
-
-	XStoreName(dpy, win, lpCaption);
-	XSelectInput(dpy, win, ExposureMask|ButtonPressMask);
-	XMapWindow(dpy, win);
-
-	cs = cairo_xlib_surface_create(dpy.m_pdisplay, win, DefaultVisual(dpy.m_pdisplay, 0), sz.cx, sz.cy);
-
-	while(1) {
-		XNextEvent(dpy, &e);
-		if(e.type==Expose && e.xexpose.count<1) {
-			message_box_paint(cs, stra, baTab, ya, &sz);
-		} else if(e.type==ButtonPress) break;
-	}
-
-   if(cs == ::ca_cairo_keep::g_cairosurface)
+   xlib_simple_message_box(sp(base_application) papp) : element(papp), ::os::simple_ui(papp), ::simple_ui::interaction(papp)
    {
-
-      printf("123");
-
    }
 
-	cairo_surface_destroy(cs);
 
-	XCloseDisplay(dpy);
+   void draw_this(::draw2d::graphics *  pdc)
+   {
+         rect rect;
+
+         get_client_rect(rect);
+
+         pdc->FillSolidRect(rect, ARGB(255, 240, 240, 240));
+   }
+
+      int32_t show_window(const char * lpText, const char * lpCaption)
+      {
+
+         ::GetWindowRect(::GetDesktopWindow(), &m_rectDesktop);
+
+
+         rect rect(100, 100, 200, 200);
+
+         if(!create_window(rect))
+            return 0;
+
+
+         draw2d::graphics_sp g(allocer());
+
+         g->CreateCompatibleDC(NULL);
+
+         ::draw2d::font_sp font(allocer());
+
+         font->create_point_font("helvetica", 12.0);
+
+         g->selectFont(font);
+
+         stringa stra;
+
+         stra.add_tokens(lpText, "\n");
+
+         bool_array baTab;
+
+         int_array ya;
+
+         size sz;
+
+         sz.cx = 0;
+         sz.cy = 0;
+
+         for(index i = 0; i < stra.get_count(); i++)
+         {
+
+            string str = stra[i];
+
+            bool bTab = str_begins_dup(str, "\t");
+
+            str.trim();
+
+            bool bEmpty = str.is_empty();
+
+            if(bEmpty)
+               str = "L";
+
+            SIZE sizeItem = g->GetTextExtent(str);
+
+            int x = bTab ? 25 : 0;
+
+            if(sizeItem.cx + x > sz.cx)
+            {
+
+                sz.cx = sizeItem.cx + x;
+
+            }
+
+            baTab.add(bTab);
+
+            ya.add( sz.cy);
+
+            sz.cy += sizeItem.cy;
+
+            if(bEmpty)
+            {
+               stra[i] = "";
+            }
+            else
+            {
+               stra[i] = str;
+            }
+
+         }
+
+         for(index i = 0; i < stra.get_count(); i++)
+         {
+
+            m_labela.add(canew(::simple_ui::label(get_app())));
+
+            ::simple_ui::label & label = *m_labela.last_element();
+
+            label.set_parent(this);
+
+            label.m_strText = stra[i];
+
+            label.m_bVisible = true;
+
+            label.m_rect.left = 10;
+            label.m_rect.top = 10 + (sz.cy / stra.get_count()) * i;
+            label.m_rect.right = label.m_rect.left+sz.cx - 20;
+            label.m_rect.bottom = label.m_rect.top+ (sz.cy / stra.get_count());
+
+         }
+
+         sz.cx += 20;
+         sz.cy += 20;
+
+         rect.left = m_rectDesktop.left + ((m_rectDesktop.width() - sz.cx) / 2);
+         rect.top = m_rectDesktop.top + ((m_rectDesktop.height() - sz.cy) / 4);
+         rect.right = rect.left + sz.cx;
+         rect.bottom = rect.top + sz.cy;
+
+
+         if(!prepare_window(rect))
+            return 0;
+
+
+
+         SetWindowPos(m_window, NULL, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW);
+
+         run_loop();
+
+         return 0;
+
+      }
+
+};
+
+int32_t message_box_show_xlib(base_application * papp, const char * lpText, const char * lpCaption)
+{
+
+   xlib_simple_message_box box(papp);
+
+   return box.show_window(lpText, lpCaption);
+
 
 }
 
@@ -1215,9 +1262,22 @@ void message_box_show_xlib(base_application * papp, const char * lpText, const c
 int32_t WINAPI MessageBoxA_x11(oswindow hWnd, const char * lpText, const char * lpCaption, UINT uType)
 {
 
-   message_box_show_xlib(hWnd->get_user_interaction()->get_app(), lpText, lpCaption);
+   base_application * papp = NULL;
 
-   return 0;
+   if(hWnd == NULL || hWnd->get_user_interaction() == NULL || hWnd->get_user_interaction()->get_app() == NULL)
+   {
+
+      papp = get_thread_app();
+
+   }
+   else
+   {
+
+      papp = hWnd->get_user_interaction()->get_app();
+
+   }
+
+   return message_box_show_xlib(get_thread_app(), lpText, lpCaption);
 
 }
 
@@ -1242,8 +1302,8 @@ static void initialize_x11_message_box()
 #include <X11/Xatom.h>
 
 
-extern cairo_surface_t *  g_cairosurface;
-extern cairo_t *  g_cairo;
+//extern cairo_surface_t *  g_cairosurface;
+//extern cairo_t *  g_cairo;
 
 
 

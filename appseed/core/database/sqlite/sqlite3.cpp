@@ -10648,7 +10648,7 @@ zulu_time:
       }
       return 1;
    }
-   
+
 #endif
 
 #endif /* SQLITE_OMIT_FAULTINJECTOR */
@@ -22415,7 +22415,7 @@ afp_end_lock:
       for(i=(int32_t) strlen(zTempPath); i>0 && zTempPath[i-1]=='\\'; i--){}
       zTempPath[i] = 0;
       sqlite3_snprintf(nBuf-30, zBuf,
-         "%s\\"SQLITE_TEMP_FILE_PREFIX, zTempPath);
+     "%s\\"SQLITE_TEMP_FILE_PREFIX, zTempPath);
       j = (int32_t) strlen(zBuf);
       sqlite3Randomness(20, &zBuf[j]);
       for(i=0; i<20; i++, j++){

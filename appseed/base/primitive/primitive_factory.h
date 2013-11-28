@@ -160,64 +160,64 @@ public:
 
 
    template < class T >
-   void creatable_small(bool bOverwrite = false, bool bAligned = false)
+   void creatable_small(bool bOverwrite = true, bool bAligned = false)
    {
       creatable < T > (32, bOverwrite, bAligned);
    }
 
    template < class T >
-   void cloneable_small(bool bOverwrite = false, bool bAligned = false)
+   void cloneable_small(bool bOverwrite = true, bool bAligned = false)
    {
       cloneable < T > (32, bOverwrite, bAligned);
    }
 
    template < class T >
-   void creatable_large(bool bOverwrite = false, bool bAligned = false)
+   void creatable_large(bool bOverwrite = true, bool bAligned = false)
    {
       creatable < T > (1024, bOverwrite, bAligned);
    }
 
    template < class T >
-   void cloneable_large(bool bOverwrite = false, bool bAligned = false)
+   void cloneable_large(bool bOverwrite = true, bool bAligned = false)
    {
       cloneable < T > (1024, bOverwrite, bAligned);
    }
 
    template < class T >
-   void creatable_small(sp(type) info, bool bOverwrite = false, bool bAligned = false)
+   void creatable_small(sp(type) info, bool bOverwrite = true, bool bAligned = false)
    {
       creatable < T > (info, 32, bOverwrite, bAligned);
    }
 
    template < class T >
-   void cloneable_small(sp(type) info, bool bOverwrite = false, bool bAligned = false)
+   void cloneable_small(sp(type) info, bool bOverwrite = true, bool bAligned = false)
    {
       cloneable < T > (info, 32, bOverwrite, bAligned);
    }
 
    template < class T >
-   void creatable_large(sp(type) info, bool bOverwrite = false, bool bAligned = false)
+   void creatable_large(sp(type) info, bool bOverwrite = true, bool bAligned = false)
    {
       creatable < T > (info, 1024, bOverwrite, bAligned);
    }
 
    template < class T >
-   void cloneable_large(sp(type) info, bool bOverwrite = false, bool bAligned = false)
+   void cloneable_large(sp(type) info, bool bOverwrite = true, bool bAligned = false)
    {
       cloneable < T > (info, 1024, bOverwrite, bAligned);
    }
 
    template < class T >
-   void creatable(int32_t iCount, bool bOverwrite = false, bool bAligned = false);
+   void creatable(int32_t iCount, bool bOverwrite = true, bool bAligned = false);
 
    template < class T >
-   void cloneable(int32_t iCount, bool bOverwrite = false, bool bAligned = false);
+   void cloneable(int32_t iCount, bool bOverwrite = true, bool bAligned = false);
 
    template < class T >
-   void creatable(sp(type) info, int32_t iCount, bool bOverwrite = false, bool bAligned = false);
+   void creatable(sp(type) info, int32_t iCount, bool bOverwrite = true, bool bAligned = false);
 
    template < class T >
-   void cloneable(sp(type)  info, int32_t iCount, bool bOverwrite = false, bool bAligned = false);
+   void cloneable(sp(type)  info, int32_t iCount, bool bOverwrite = true, bool bAligned = false);
 
    virtual sp(element) create(sp(base_application) papp, sp(type) info);
    virtual sp(element) base_clone(sp(element) pobject);

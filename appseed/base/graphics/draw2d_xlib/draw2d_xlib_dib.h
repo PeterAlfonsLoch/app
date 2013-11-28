@@ -1,6 +1,6 @@
 #pragma once
 
-namespace draw2d_cairo
+namespace draw2d_xlib
 {
 
    //////////////////////////////////////////////////////////////////////
@@ -9,7 +9,7 @@ namespace draw2d_cairo
    //   Date : 09-04-98
    //////////////////////////////////////////////////////////////////////
 
-   class CLASS_DECL_DRAW2D_CAIRO dib :
+   class CLASS_DECL_DRAW2D_XLIB dib :
       virtual public ::draw2d::dib
    {
    public:
@@ -22,9 +22,10 @@ namespace draw2d_cairo
       ::draw2d::graphics_sp   m_spgraphics;
       bool                    m_bMapped;
       //HBITMAP               m_hbitmapOriginal;
-      HBITMAP                    m_hbitmap;
-      class size64                       m_sizeWnd;
-      BITMAPINFO           m_bitmapinfo;
+      HBITMAP                 m_hbitmap;
+      class size64            m_sizeWnd;
+      BITMAPINFO              m_bitmapinfo;
+      XImage *                m_pimage;
 
 
 
@@ -163,7 +164,7 @@ namespace draw2d_cairo
    };
 
 
-} // namespace draw2d_cairo
+} // namespace draw2d_xlib
 
 
 

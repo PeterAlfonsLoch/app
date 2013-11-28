@@ -1313,7 +1313,7 @@ namespace plane
 
    void system::on_allocation_error(sp(base_application) papp, sp(type) info)
    {
-      
+
       UNREFERENCED_PARAMETER(papp);
 
       simple_message_box(NULL, MB_ICONINFORMATION, "Implement \"%s\" allocation\n", info->friendly_name());
@@ -1656,7 +1656,7 @@ namespace plane
    //////////////////////////////////////////////////////////////////////////////////////////////////
    // System/System
    //
-   sp(::user::object) system::hold(sp(::user::interaction) pui)
+   sp(::user::object) system::place_hold(sp(::user::interaction) pui)
    {
 
 

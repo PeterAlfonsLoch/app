@@ -19,7 +19,7 @@ namespace draw2d_cairo
 
 
    // palette
-   palette::operator HPALETTE() const
+/*   palette::operator HPALETTE() const
    {
 
       //return (HPALETTE)(this == NULL ? NULL : get_os_data());
@@ -27,7 +27,7 @@ namespace draw2d_cairo
       return NULL;
 
    }
-
+*/
 
 /*
 
@@ -72,7 +72,7 @@ namespace draw2d_cairo
 
 */
 
-
+/*
    UINT palette::GetPaletteEntries(UINT nStartIndex, UINT nNumEntries, LPPALETTEENTRY lpPaletteColors) const
    {
 
@@ -115,7 +115,7 @@ namespace draw2d_cairo
       return 0;
 
    }
-
+*/
 
 /*
 
@@ -132,7 +132,7 @@ namespace draw2d_cairo
 
 */
 
-
+/*
    int32_t palette::GetEntryCount()
    {
 
@@ -145,6 +145,7 @@ namespace draw2d_cairo
       return 0;
 
    }
+*/
 
 
 } // namespace mac

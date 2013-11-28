@@ -1,17 +1,20 @@
 #pragma once
 
 
-namespace draw2d_cairo
+namespace draw2d_xlib
 {
 
-   class CLASS_DECL_DRAW2D_CAIRO factory_exchange :
+
+   class CLASS_DECL_DRAW2D_XLIB factory_exchange :
       virtual public ::object
    {
    public:
+
       factory_exchange(sp(base_application) papp);
       virtual ~factory_exchange();
+
    };
 
 
-} // namespace draw2d_cairo
+} // namespace draw2d_xlib
 

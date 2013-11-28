@@ -507,9 +507,21 @@ machine_event_central & base_system::machine_event_central()
 
 ::user::str & base_system::str()
 {
+
    return *m_puserstr;
+
 }
 
 
+sp(::user::object) base_system::place_hold(sp(::user::interaction) pui)
+{
 
 
+   //if(m_pcubeInterface != NULL)
+   //{
+     // return m_pcubeInterface->hold(pui);
+   //}
+
+   return NULL;
+
+}

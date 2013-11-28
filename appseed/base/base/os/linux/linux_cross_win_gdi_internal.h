@@ -35,21 +35,6 @@ struct tag_WINDOW
 
 };
 
-class CLASS_DECL_BASE device_context
-{
-public:
-
-
-   Display *   m_display;
-   Drawable    m_d;
-   GC          m_gc;
-   oswindow        m_hwnd;
-
-
-   device_context();
-
-
-};
 
 
 

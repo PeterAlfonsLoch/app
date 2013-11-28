@@ -1,18 +1,19 @@
 #pragma once
 
 
-namespace draw2d_cairo
+namespace draw2d_xlib
 {
 
 
-   class CLASS_DECL_DRAW2D_CAIRO bitmap :
+   class CLASS_DECL_DRAW2D_XLIB bitmap :
       virtual public ::draw2d::bitmap
    {
    public:
 
 
-      cairo_surface_t *       m_psurface;
-      ::primitive::memory           m_mem;
+      ::os::simple_ui         m_ui;
+      ::Pixmap                m_pixmap;
+      ::primitive::memory     m_mem;
       ::size                  m_size;
 
 
@@ -57,6 +58,6 @@ namespace draw2d_cairo
    };
 
 
-} // namespace draw2d_cairo
+} // namespace draw2d_xlib
 
 

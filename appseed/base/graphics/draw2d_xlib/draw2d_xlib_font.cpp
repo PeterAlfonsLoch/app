@@ -1,7 +1,12 @@
 #include "framework.h"
+#include <X11/Xft/Xft.h>
 
 
-namespace draw2d_cairo
+
+
+
+
+namespace draw2d_xlib
 {
 
 
@@ -9,11 +14,36 @@ namespace draw2d_cairo
    element(papp)
    {
 
+      m_pdisplay = NULL;
+      m_pfont = NULL;
+      m_fontset = None;
+      m_pft = NULL;
+
    }
 
 
    font::~font()
    {
+
+      if(m_fontset != None && m_pdisplay != NULL)
+      {
+         XFreeFontSet(m_pdisplay, m_fontset);
+         m_fontset = NULL;
+      }
+
+      if(m_pfont != NULL && m_pdisplay != NULL)
+      {
+         XFreeFont(m_pdisplay, m_pfont);
+         m_pfont = NULL;
+      }
+
+      if(m_pft != NULL && m_pdisplay != NULL)
+      {
+         XftFontClose(m_pdisplay, m_pft);
+         m_pft = NULL;
+      }
+
+      m_pdisplay = NULL;
 
    }
 
@@ -29,14 +59,12 @@ namespace draw2d_cairo
    void * font::get_os_data() const
    {
 
-      throw interface_only_exception(get_app());
-
-      return NULL;
+      return (void *) m_fontset;
 
    }
 
 
-} // namespace draw2d_cairo
+} // namespace draw2d_xlib
 
 
 

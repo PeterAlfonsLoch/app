@@ -30,9 +30,9 @@ simple_frame_window::~simple_frame_window()
 
 void simple_frame_window::assert_valid() const
 {
-   
+
    ::user::frame_window::assert_valid();
-   
+
 }
 
 void simple_frame_window::dump(dump_context & dumpcontext) const
@@ -284,7 +284,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 uint32_t simple_frame_window_save_window_rect(void * pvoidParam)
 {
 
-   sp(simple_frame_window) pframe = (sp(::simple_frame_window)) pvoidParam;
+   sp(simple_frame_window) pframe = (::simple_frame_window *) pvoidParam;
 
    pframe->WindowDataSaveWindowRect();
 
@@ -894,15 +894,12 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdc)
 {
    if(!m_bVisible)
       return;
-#if !defined(LINUX) && !defined(MACOS)
    if(m_bblur_Background)
    {
       _001DrawThis(pdc);
       _001DrawChildren(pdc);
    }
-   else
-#endif
-   if(!Session.savings().is_trying_to_save(::core::resource_processing)
+   else if(!Session.savings().is_trying_to_save(::core::resource_processing)
    && !Session.savings().is_trying_to_save(::core::resource_display_bandwidth)
    && !Session.savings().is_trying_to_save(::core::resource_memory))
    //&& (get_parent() != NULL || (this->GetExStyle() & WS_EX_LAYERED) != 0))
@@ -937,10 +934,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdc)
 
 void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
 {
-
    single_lock sl(m_pmutex, true);
-
-#if !defined(LINUX) && !defined(MACOS)
 
    if(m_bblur_Background)
    {
@@ -987,8 +981,6 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
       }
       pdc->SelectClipRgn(NULL);
    }
-
-#endif
 
    _011OnDraw(pdc);
 
@@ -1211,6 +1203,15 @@ void simple_frame_window::OnDropFiles(HDROP hDropInfo)
 
 }
 
+#else
+
+void simple_frame_window::OnDropFiles(HDROP hDropInfo)
+{
+
+   UNREFERENCED_PARAMETER(hDropInfo);
+
+}
+
 
 
 #endif
@@ -1393,9 +1394,9 @@ void simple_frame_window::NotifyFloatingWindows(uint32_t dwFlags)
 
    // then update the state of all floating windows owned by the parent
 #ifdef WINDOWSEX
-   
+
    sp(::user::interaction) oswindowDesktop = System.get_desktop_window();
-   
+
    if (oswindowDesktop.is_null())
       return;
 
@@ -1576,7 +1577,8 @@ void simple_frame_window::_011OnDraw(::draw2d::graphics *pdc)
       rect rect;
       sp(::user::interaction) pwnd = get_guie();
       pwnd->GetClientRect(rect);
-      pdc->FillSolidRect(rect, ARGB(184 + 49 + 21 + 1, 184 + 49, 184 + 49, 177 + 49));
+      //pdc->FillSolidRect(rect, ARGB(184 + 49 + 21 + 1, 184 + 49, 184 + 49, 177 + 49));
+      pdc->FillSolidRect(rect, get_background_color());
       //m_workset.OnDraw(pdc);
    }
 }

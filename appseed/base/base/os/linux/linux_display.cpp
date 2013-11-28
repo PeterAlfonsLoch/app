@@ -25,7 +25,7 @@ osdisplay_data::osdisplay_data()
 int32_t osdisplay_find(Display * pdisplay)
 {
 
-   single_lock sl(&user_mutex(), true);
+   single_lock slOsWindow(::osdisplay_data::s_pmutex, true);
 
    for(int32_t i = 0; i < osdisplay_data::s_pdataptra->get_count(); i++)
    {
@@ -42,7 +42,7 @@ int32_t osdisplay_find(Display * pdisplay)
 osdisplay_data * osdisplay_get(Display * pdisplay)
 {
 
-   single_lock sl(&user_mutex(), true);
+   single_lock slOsWindow(::osdisplay_data::s_pmutex, true);
 
    int_ptr iFind = osdisplay_find(pdisplay);
 
@@ -67,7 +67,7 @@ osdisplay_data * osdisplay_get(Display * pdisplay)
 bool osdisplay_remove(Display * pdisplay)
 {
 
-   single_lock sl(&user_mutex(), true);
+   single_lock slOsWindow(::osdisplay_data::s_pmutex, true);
 
    int_ptr iFind = osdisplay_find(pdisplay);
 

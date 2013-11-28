@@ -62,6 +62,7 @@
 			<Add directory="../../.." />
 			<Add directory="../../../.." />
 			<Add directory="../../../../app" />
+			<Add directory="../../../appseed/base" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -69,8 +70,6 @@
 			<Add option="-lpthread" />
 			<Add option="-ldl" />
 			<Add option="-lbase" />
-			<Add option="-lbaseopenssl" />
-			<Add option="-lbasezlib" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../stage/x86" />
 		</Linker>

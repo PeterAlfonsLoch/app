@@ -6,6 +6,9 @@
 #include <X11/Xutil.h>
 // Ubuntu apt-get install libcairo2-dev
 
+#include "linux_cross_win_gdi.h"
+
+#include "graphics/draw2d_xlib/draw2d_xlib.h"
 
 
 void set(XColor & color, COLORREF cr);

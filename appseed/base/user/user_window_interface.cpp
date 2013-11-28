@@ -704,5 +704,8 @@ namespace user
       }
    }
 
-
+   /*LRESULT window_interface::_001BaseWndGetProperty(EProperty eproperty, LPARAM lparam)
+   {
+      return 0;
+   }*/
 } // namespace user

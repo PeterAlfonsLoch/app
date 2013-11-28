@@ -83,6 +83,7 @@
 			<Add directory="../../appseed" />
 			<Add directory="FreeImage" />
 			<Add directory="../../include" />
+			<Add directory="../../../appseed/base" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -92,7 +93,6 @@
 			<Add option="-lXrender" />
 			<Add option="-lXext" />
 			<Add option="-lbase" />
-			<Add option="-lbasezlib" />
 			<Add option="-lbasefreetype" />
 			<Add option="-lbasepixman" />
 			<Add option="-lbasefreeimage" />

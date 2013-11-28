@@ -102,8 +102,8 @@ namespace user
 #include "user_form_callback.h"
 
 
-#include "user_place_holder.h"
-#include "user_place_holder_container.h"
+//#include "user_place_holder.h"
+//#include "user_place_holder_container.h"
 
 
 #include "user_tab_callback.h"
@@ -239,8 +239,8 @@ namespace user
 #include "user_data_exchange.h"
 
 
-#include "user_view_container.h"
-#include "user_view_creator.h"
+//#include "user_view_container.h"
+//#include "user_view_creator.h"
 
 //#include "user_job.h"
 

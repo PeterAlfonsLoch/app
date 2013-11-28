@@ -27,91 +27,82 @@ namespace os
       m_window = NULL;
       m_bShiftKey = false;
 
+      m_bNoDecorations = false;
+
+      ZERO(m_size);
+      ZERO(m_pt);
+
 
    }
 
    simple_ui::~simple_ui()
    {
+
+      ::DestroyWindow(m_window);
+
    }
 
 
-   bool simple_ui::prepare_window(LPCRECT lpcrect)
+   bool simple_ui::create_window(LPCRECT lpcrect)
    {
-
-      oswindow hWnd;
-
 
       single_lock ml(&user_mutex());
 
       Display *display;
+
       Window rootwin;
 
       XEvent e;
-      int32_t scr;
-//      cairo_surface_t *cs;
 
-
-
-
-
-      //single_lock sl(user_mutex(), true);
-
-
-      if(!(display=XOpenDisplay(NULL)))
+      if(!(display = XOpenDisplay(NULL)))
       {
+
          fprintf(stderr, "ERROR: Could not open display\n");
-//            exit(1);
+
          return false;
+
       }
 
-     xdisplay d(display);
+      xdisplay d(display);
 
-      scr      =  DefaultScreen(display);
-      rootwin  =  RootWindow(display, scr);
+      m_iScreen            =  DefaultScreen(display);
 
-      //if(cs.cx <= 256)
-        // cs.cx = 256;
-      //if(cs.cy <= 256)
-        // cs.cy = 256;
-
-//      Window window = XCreateSimpleWindow(dpy, rootwin, 256, 256, cs.cx, cs.cy, 0, BlackPixel(dpy, scr), BlackPixel(dpy, scr));
+      rootwin              =  RootWindow(display, m_iScreen);
 
       const char * xserver = getenv( "DISPLAY" ) ;
 
-
-
       if (display == 0)
-
       {
 
-      printf("Could not establish a connection to X-server '%s'\n", xserver ) ;
+         printf("Could not establish a connection to X-server '%s'\n", xserver ) ;
 
-      return false;
+         return false;
 
       }
 
-
-
       // query Visual for "TrueColor" and 32 bits depth (RGBA)
-      Visual * vis = DefaultVisual(display, DefaultScreen(display));
-      int depth = 0;
+      Visual * vis = DefaultVisual(display, m_iScreen);
+
+      m_iDepth = 0;
+
       {
 
-
-
-         if(XMatchVisualInfo(display, DefaultScreen(display), 32, TrueColor, &m_visualinfo))
+         if(XMatchVisualInfo(display, m_iScreen, 32, TrueColor, &m_visualinfo))
          {
+
              vis = m_visualinfo.visual;
-             depth = m_visualinfo.depth;
+
          }
          else
          {
+
             memset(&m_visualinfo, 0, sizeof(m_visualinfo));
+
          }
 
-
       }
-      // create window
+
+      m_iDepth = m_visualinfo.depth;
 
       XSetWindowAttributes attr;
 
@@ -137,7 +128,7 @@ namespace os
                            width(lpcrect),
                            height(lpcrect),
                            0,
-                           depth,
+                           m_iDepth,
                            InputOutput,
                            vis,
                            CWColormap | CWEventMask | CWBackPixmap | CWBorderPixel,
@@ -145,104 +136,22 @@ namespace os
 
 
 
-
-      /*oswindow hWnd = ::CreateWindowEx(cs.dwExStyle, cs.lpszClass,
-         cs.lpszName, cs.style, cs.x, cs.y, cs.cx, cs.cy,
-         cs.hwndParent, cs.hMenu, cs.hInstance, cs.lpCreateParams);*/
-
-#ifdef DEBUG
       if (window == 0)
       {
-         DWORD dwLastError = GetLastError();
-/*         string strLastError = FormatMessageFromSystem(dwLastError);
-         string strMessage;
-         strMessage.Format("%s\n\nSystem Error Code: %d", strLastError, dwLastError);
 
-         TRACE(::core::trace::category_AppMsg, 0, "Warning: oswindow creation failed: GetLastError returned:\n");
-         TRACE(::core::trace::category_AppMsg, 0, "%s\n", strMessage);
-         try
-         {
-            if(dwLastError == 0x0000057e)
-            {
-               System.simple_message_box(NULL, "cannot create a top-level child window.");
-            }
-            else
-            {
-               System.simple_message_box(NULL, strMessage);
-            }
-         }
-         catch(...)
-         {
-         }*/
          return false;
-      }
-#endif
 
-      m_window = oswindow_get(display, window, vis);
-
-      //m_window->set_user_interaction(m_pguie);
-
-      XGetWindowAttributes(m_window->display(), m_window->window(), &m_attr);
-
-
-      m_pgraphics = new window_cairo();
-
-      m_iDepth = depth;
-
-      int event_base, error_base, major_version, minor_version;
-
-      //m_bComposite = XCompositeQueryExtension(m_oswindow->display(), &event_base, &error_base) != False
-      //            && XCompositeQueryVersion(m_oswindow->display(), &major_version, &minor_version) != 0
-      //            && (major_version > 0 || minor_version >= 3);
-
-      m_bComposite = XGetSelectionOwner(m_window->display(), XInternAtom(m_window->display(), "_NET_WM_CM_S0", True));
-
-
-      if(m_strText.get_length() > 0)
-      {
-         XStoreName(m_window->display(), m_window->window(), m_strText);
       }
 
-      wm_nodecorations(m_window, 0);
+      m_pt.x = lpcrect->left;
+      m_pt.y = lpcrect->top;
+      m_size.cx = width(lpcrect);
+      m_size.cy = height(lpcrect);
 
-      //XSelectInput(m_oswindow->display(), m_oswindow->window(), ExposureMask | ButtonPressMask | ButtonReleaseMask | PointerMotionMask | KeyPressMask);
+      m_rectWindow = *lpcrect;
+      m_rectWindow.deflate(1, 1); // make intentionally different from actual rect to trigger simple_ui on_move and on_size events
 
-      bool bShow = true;
-
-      if(bShow)
-      {
-         XMapWindow(m_window->display(), m_window->window());
-      }
-
-      m_pmutexGraphics = new mutex(get_app());
-
-d.unlock();
-      ml.unlock();
-
-   //if (!unhook_window_create())
-     // PostNcDestroy();        // cleanup if CreateWindowEx fails too soon
-
-
-      //send_message(WM_CREATE, 0, (LPARAM) &cs);
-//      ::PostMessage(m_window, WM_CREATE, 0, 0);
-
-//      m_pguie->SetWindowPos(0, 256, 256, cs.cx, cs.cy, 0);
-
-  //    ::PostMessage(m_window, WM_SIZE, 0, 0);
-
-      //LNX_THREAD(m_pthread->m_pthread->m_p.m_p)->m_oswindowa.add(m_oswindow);
-
-
-//      m_window = hWnd;
-
-  //    SetTimer(hWnd, 123, 23, NULL);
-
-    //  ShowWindow(hWnd, SW_SHOW);
-
-      //UpdateWindow(hWnd);
-
-      //::SetWindowLong(hWnd, GWL_STYLE, WS_VISIBLE);
-
+      m_window = oswindow_get(display, window, vis, m_iDepth, m_iScreen, attr.colormap);
 
       return true;
 
@@ -250,6 +159,67 @@ d.unlock();
 
 
 
+   bool simple_ui::prepare_window(LPCRECT lpcrect)
+   {
+
+      single_lock ml(&user_mutex());
+
+      XGetWindowAttributes(m_window->display(), m_window->window(), &m_attr);
+
+      m_pgraphics = new window_xlib();
+
+      m_bComposite = XGetSelectionOwner(m_window->display(), XInternAtom(m_window->display(), "_NET_WM_CM_S0", True));
+
+      if(m_strText.get_length() > 0)
+      {
+         XStoreName(m_window->display(), m_window->window(), m_strText);
+      }
+
+      m_pmutexGraphics = new mutex(get_app());
+
+      //on_size(width(lpcrect), height(lpcrect));
+
+      //on_move(lpcrect->left, lpcrect->top);
+
+      xdisplay d(m_window->display());
+
+      XGetWindowAttributes(m_window->display(), m_window->window(), &m_attr);
+
+      m_pgraphics = new window_xlib();
+
+      if(m_bNoDecorations)
+      {
+
+         wm_nodecorations(m_window, 0);
+
+      }
+
+      //bool bShow = true;
+
+//      XMoveResizeWindow(m_window->display(), m_window->window(), m_rectDesktop.right-m_pt.x, m_rectDesktop.bottom-m_pt.y, m_size.cx, m_size.cy);
+
+      //XMoveResizeWindow(m_window->display(), m_window->window(), 500, 0, 200, 200);
+
+
+      //if(bShow)
+      //{
+
+        // XMapWindow(m_window->display(), m_window->window());
+
+      //}
+
+      d.unlock();
+
+      ml.unlock();
+
+      m_bVisible = true;
+
+      return true;
+
+   }
+
+
+#define MAX_MAPPED_STRING_LENGTH 500
 
    void simple_ui::run_loop()
    {
@@ -258,162 +228,242 @@ d.unlock();
 
       XEvent e;
 
+      char buffer[MAX_MAPPED_STRING_LENGTH];
+      int bufsize=MAX_MAPPED_STRING_LENGTH;
+      KeySym keysym;
+      XComposeStatus compose;
+
+      single_lock sl(&user_mutex(), false);
+
+      xdisplay x(m_window->display(), false);
+
+      bool bEnableFB = false;
+
       while(m_bRunLoop)
       {
 
-         if(XPending(m_window->display()) > 0)
          {
 
-            if(XNextEvent(m_window->display(), &e))
+            sl.lock();
+
+            x.lock();
+
+            if(XPending(m_window->display()) > 0)
             {
 
-               if(e.xany.window == m_window->window())
+               if(XNextEvent(m_window->display(), &e) == Success)
                {
 
-                  if(e.type==Expose && e.xexpose.count < 1)
-                  {
-                     on_draw_framebuffer();
-                  }
-                  else if(e.type == ButtonPress || e.type == ButtonRelease)
+                  x.unlock();
+
+                  sl.unlock();
+
+                  if(e.xany.window == m_window->window())
                   {
 
-//                     bRet                 = true;
-//                     if(bRet)
+                     if(e.type==Expose && e.xexpose.count < 1)
                      {
 
-        //                lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
-      //                  lpMsg->wParam        = 0;
-          //              lpMsg->lParam        = MAKELONG(e.xbutton.x_root, e.xbutton.y_root);
+                        bEnableFB = true;
 
+                     //   on_draw_framebuffer();
                      }
-
-                     if(e.xbutton.type == ButtonPress)
+                     else if(e.type == ButtonPress || e.type == ButtonRelease)
                      {
-                        if(e.xbutton.button == Button1)
+
+   //                     bRet                 = true;
+   //                     if(bRet)
                         {
-                           on_lbutton_down(e.xbutton.x_root, e.xbutton.y_root);
+
+           //                lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
+         //                  lpMsg->wParam        = 0;
+             //              lpMsg->lParam        = MAKELONG(e.xbutton.x_root, e.xbutton.y_root);
+
                         }
-                        else if(e.xbutton.button == Button2)
+
+                        if(e.xbutton.type == ButtonPress)
                         {
-                  //         lpMsg->message = WM_MBUTTONDOWN;
+                           if(e.xbutton.button == Button1)
+                           {
+                              on_lbutton_down(e.xbutton.x, e.xbutton.y);
+                           }
+                           else if(e.xbutton.button == Button2)
+                           {
+                     //         lpMsg->message = WM_MBUTTONDOWN;
+                           }
+                           else if(e.xbutton.button == Button3)
+                           {
+                       //       lpMsg->message = WM_RBUTTONDOWN;
+                           }
+                           else
+                           {
+                         //     bRet = false;
+                           }
+
                         }
-                        else if(e.xbutton.button == Button3)
+                        else if(e.xbutton.type == ButtonRelease)
                         {
-                    //       lpMsg->message = WM_RBUTTONDOWN;
+                           if(e.xbutton.button == Button1)
+                           {
+                              on_lbutton_up(e.xbutton.x, e.xbutton.y);
+                           }
+                           else if(e.xbutton.button == Button2)
+                           {
+                              //lpMsg->message = WM_MBUTTONUP;
+                           }
+                           else if(e.xbutton.button == Button3)
+                           {
+                              //lpMsg->message = WM_RBUTTONUP;
+                           }
+                           else
+                           {
+                              //bRet = false;
+                           }
+
                         }
                         else
                         {
-                      //     bRet = false;
-                        }
 
-                     }
-                     else if(e.xbutton.type == ButtonRelease)
-                     {
-                        if(e.xbutton.button == Button1)
-                        {
-                           on_lbutton_up(e.xbutton.x_root, e.xbutton.y_root);
-                        }
-                        else if(e.xbutton.button == Button2)
-                        {
-                           //lpMsg->message = WM_MBUTTONUP;
-                        }
-                        else if(e.xbutton.button == Button3)
-                        {
-                           //lpMsg->message = WM_RBUTTONUP;
-                        }
-                        else
-                        {
                            //bRet = false;
+
                         }
 
+
+
                      }
-                     else
+                     else if(e.type == KeyPress || e.type == KeyRelease)
                      {
 
-                        //bRet = false;
+                        //oswindow w = oswindow_get(display, e.xexpose.window);
+
+   //                     bRet                 = true;
+
+                        if(e.xkey.type == KeyPress)
+                        {
+
+                           int count = XLookupString(&e.xkey, buffer, bufsize, &keysym, &compose);
+                           if(keysym == XK_Tab)
+                           {
+                              //on_key_down(VK_TAB);
+                              on_char(VK_TAB, "");
+
+                           }
+                           else if(keysym == XK_Return)
+                           {
+                              //on_key_down(VK_RETURN);
+                              on_char(VK_RETURN, "");
+                           }
+                           else if(keysym == XK_BackSpace)
+                           {
+                              //on_key_down(VK_RETURN);
+                              on_char(VK_BACK, "");
+                           }
+                           else if(keysym == XK_Delete)
+                           {
+                              //on_key_down(VK_RETURN);
+                              on_char(VK_DELETE, "");
+                           }
+                           else if(keysym == XK_Shift_L || keysym == XK_Shift_R)
+                           {
+                              on_key_down(VK_SHIFT);
+                           }
+                           else
+                           {
+                              if(strlen(buffer) > 0)
+                              {
+                                 on_char(0, buffer);
+                                 buffer[0] = '\0';
+                              }
+                           }
+                          // lpMsg->message = WM_KEYDOWN;
+
+                        }
+                        else if(e.xkey.type == KeyRelease)
+                        {
+
+                           //lpMsg->message = WM_KEYUP;
+                           if(keysym == XK_Tab)
+                           {
+                              //on_key_up(VK_TAB);
+
+                           }
+                           else if(keysym == XK_Return)
+                           {
+                              //on_key_up(VK_RETURN);
+                           }
+                           else if(keysym == XK_Shift_L || keysym == XK_Shift_R)
+                           {
+                              on_key_up(VK_SHIFT);
+                           }
+
+                        }
+                        else
+                        {
+
+   //                        bRet = false;
+
+                        }
+
+                        //lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
+                        //lpMsg->wParam        = e.xkey.keycode;
+                        //lpMsg->lParam        = MAKELONG(0, e.xkey.keycode);
+
+
 
                      }
+                     else if(e.type == MotionNotify)
+                     {
+
+                        //lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
+                        //lpMsg->message       = WM_MOUSEMOVE;
+                        //lpMsg->wParam        = 0;
+                        //lpMsg->lParam        = MAKELONG(e.xmotion.x_root, e.xmotion.y_root);
+
+                        on_mouse_move(e.xmotion.x, e.xmotion.y);
+
+                        //bRet                 = true;
+
+                     }
+                     else if(e.type == DestroyNotify)
+                     {
+
+                        //lpMsg->hwnd          = oswindow_get(display, e.xdestroywindow.window);
+                        //lpMsg->message       = WM_DESTROY;
+
+                        m_bRunLoop = false;
+
+                        //bRet                 = true;
+
+                     }
+
+                     //if(bPeek && bRet)
+                       // XPutBackEvent(display, &e);
 
 
 
                   }
-                  else if(e.type == KeyPress || e.type == KeyRelease)
-                  {
-
-                     //oswindow w = oswindow_get(display, e.xexpose.window);
-
-//                     bRet                 = true;
-
-                     if(e.xkey.type == KeyPress)
-                     {
-
-                        on_key_down(e.xkey.keycode);
-                       // lpMsg->message = WM_KEYDOWN;
-
-                     }
-                     else if(e.xkey.type == KeyRelease)
-                     {
-
-                        //lpMsg->message = WM_KEYUP;
-                        on_key_up(e.xkey.keycode);
-
-                     }
-                     else
-                     {
-
-//                        bRet = false;
-
-                     }
-
-                     //lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
-                     //lpMsg->wParam        = e.xkey.keycode;
-                     //lpMsg->lParam        = MAKELONG(0, e.xkey.keycode);
-
-
-
-                  }
-                  else if(e.type == MotionNotify)
-                  {
-
-                     //lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
-                     //lpMsg->message       = WM_MOUSEMOVE;
-                     //lpMsg->wParam        = 0;
-                     //lpMsg->lParam        = MAKELONG(e.xmotion.x_root, e.xmotion.y_root);
-
-                     on_mouse_move(e.xmotion.x_root, e.xmotion.y_root);
-
-                     //bRet                 = true;
-
-                  }
-                  else if(e.type == DestroyNotify)
-                  {
-
-                     //lpMsg->hwnd          = oswindow_get(display, e.xdestroywindow.window);
-                     //lpMsg->message       = WM_DESTROY;
-
-                     m_bRunLoop = false;
-
-                     //bRet                 = true;
-
-                  }
-
-                  //if(bPeek && bRet)
-                    // XPutBackEvent(display, &e);
-
 
 
                }
 
+            }
+            else
+            {
+
+               x.unlock();
+
+               sl.unlock();
+
+               if(bEnableFB && m_bVisible)
+               {
+
+                  on_draw_framebuffer();
+
+               }
+
+               Sleep(5);
 
             }
-
-         }
-         else
-         {
-
-            on_draw_framebuffer();
-
-            Sleep(84);
 
          }
 
@@ -424,12 +474,14 @@ d.unlock();
 
    void simple_ui::client_to_screen(POINT * ppt)
    {
-      ::ClientToScreen(m_window, ppt);
+      //::ClientToScreen(m_window, ppt);
+      ::simple_ui::interaction::client_to_screen(ppt);
    }
 
    void simple_ui::screen_to_client(POINT * ppt)
    {
-      ::ScreenToClient(m_window, ppt);
+      //::ScreenToClient(m_window, ppt);
+      ::simple_ui::interaction::screen_to_client(ppt);
    }
 
    bool simple_ui::on_key_down(uint32_t uiKey)
@@ -497,12 +549,19 @@ d.unlock();
 
    void simple_ui::GetWindowRect(RECT * prect)
    {
-      ::GetWindowRect(m_window, prect);
+
+      *prect = m_rectWindow;
+
    }
    void simple_ui::get_client_rect(RECT * prect)
    {
 
-      ::GetClientRect(m_window, prect);
+      *prect = m_rectWindow;
+
+      prect->right -= prect->left;
+      prect->bottom -= prect->top;
+      prect->left = 0;
+      prect->top = 0;
 
    }
 
@@ -512,38 +571,52 @@ d.unlock();
 
       rect rectWindow;
 
-      GetWindowRect(rectWindow);
+      ::GetWindowRect(m_window, rectWindow);
 
-      if(rectWindow.size() != m_size)
+      if(rectWindow.size() != m_rectWindow.size())
       {
+
          on_size(rectWindow.width(), rectWindow.height());
+
       }
 
-      if(rectWindow.top_left() != m_pt)
+      if(rectWindow.top_left() != m_rectWindow.top_left())
       {
+
          on_move(rectWindow.left, rectWindow.top);
+
       }
 
+      m_rectWindow = rectWindow;
 
-      if (m_dib->get_graphics() != NULL)
+
+      if (m_dib.is_set() && m_dib->get_graphics() != NULL)
       {
-         RECT rectClient;
-         rectClient.left = 0;
-         rectClient.top = 0;
-         rectClient.right = m_size.cx;
-         rectClient.bottom = m_size.cy;
+
+         rect rectClient = rectWindow;
+
+         rectClient -= rectWindow.top_left();
+
+         rect rect;
+
+         rect = rectWindow;
+
          m_dib->get_graphics()->set_alpha_mode(draw2d::alpha_mode_set);
+
          m_dib->get_graphics()->SetViewportOrg(0, 0);
-         m_dib->get_graphics()->FillSolidRect(&rectClient, ARGB(0, 0, 0, 0));
+
+         m_dib->get_graphics()->FillSolidRect(&rectClient, ARGB(255, 255, 255, 255));
+
          draw(m_dib->get_graphics());
-         RECT rect;
-         rect.left = m_pt.x;
-         rect.top = m_pt.y;
 
-         rect.right = m_pt.x + m_size.cx;
-         rect.bottom = m_pt.y + m_size.cy;
+         //m_dib->map();
 
-         BYTE *dst = (BYTE*)m_dib->get_data();
+         m_dib->fill_channel(255, ::visual::rgba::channel_alpha);
+
+         //m_dib->Fill(255, 184, 184, 177);
+
+         BYTE *dst = (BYTE*) m_dib->get_data();
+
          int64_t size = m_size.cx * m_size.cy;
 
 
@@ -595,7 +668,7 @@ d.unlock();
             dst += 4;
          }
 
-         m_gdi.update_window(m_window, (COLORREF *)m_dib->get_data(), &rect);
+         m_xlib.update_window(m_window, (COLORREF *)m_dib->get_data(), &rect, m_dib->m_iScan);
 
       }
 
@@ -607,6 +680,11 @@ d.unlock();
       m_pt.x = x;
       m_pt.y = y;
 
+      m_rect.left = m_pt.x;
+      m_rect.right = m_pt.x + m_size.cx;
+      m_rect.top = m_pt.y;
+      m_rect.bottom = m_pt.y + m_size.cy;
+
       return true;
 
    }
@@ -617,10 +695,15 @@ d.unlock();
       m_size.cx = cx;
       m_size.cy = cy;
 
+      m_rect.left = m_pt.x;
+      m_rect.right = m_pt.x + m_size.cx;
+      m_rect.top = m_pt.y;
+      m_rect.bottom = m_pt.y + m_size.cy;
+
       m_dib.create(::get_thread_app()->allocer());
       m_dib->create(m_size.cx, m_size.cy);
 
-      m_gdi.create(m_window, cx, cy);
+      m_xlib.create(m_window, cx, cy);
 
       layout();
 

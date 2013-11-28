@@ -191,14 +191,25 @@ bool imaging::from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMA
    if (papp == NULL)
       papp = get_app();
 
-   BITMAPINFO * pbi = FreeImage_GetInfo(pfibitmap);
-   void * pdata = FreeImage_GetBits(pfibitmap);
+
+   FIBITMAP * pimage32 = FreeImage_ConvertTo32Bits(pfibitmap);
+
+   if(pimage32 == NULL)
+   {
+
+      return false;
+
+   }
+
+   BITMAPINFO * pbi = FreeImage_GetInfo(pimage32);
+
+   void * pdata = FreeImage_GetBits(pimage32);
 
    if (!pdib->create(pbi->bmiHeader.biWidth, pbi->bmiHeader.biHeight))
       return false;
 
 
-   COLORREF * pcolorref = NULL;
+/*   COLORREF * pcolorref = NULL;
 
    HBITMAP hbitmap = ::CreateDIBSection(NULL, &pdib->m_info, DIB_RGB_COLORS, (void **)&pcolorref, NULL, 0);
 
@@ -226,31 +237,25 @@ bool imaging::from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMA
       }
       return false;
    }
+   */
 
-   memcpy(pdib->m_pcolorref, pcolorref, (size_t)(pdib->area() * sizeof(COLORREF)));
+   pdib->map();
 
+   memcpy(pdib->m_pcolorref, pdata, (size_t)(pdib->area() * sizeof(COLORREF)));
 
    RGBQUAD bkcolor;
 
-   if (pbi->bmiHeader.biBitCount == 32)
-   {
-   }
-   else if (pbi->bmiHeader.biBitCount <= 24 && FreeImage_GetTransparencyCount(pfibitmap) <= 0)
-   {
-      pdib->fill_channel(0xff, ::visual::rgba::channel_alpha);
-   }
-   else if (FreeImage_GetBackgroundColor(pfibitmap, &bkcolor))
-   {
-      pdib->transparent_color(bkcolor);
-   }
+   FreeImage_Unload(pimage32);
 
    if (bUnloadFI)
    {
+
       FreeImage_Unload(pfibitmap);
+
    }
 
-
    return true;
+
 }
 
 
@@ -1668,7 +1673,7 @@ void imaging::BitmapBlend24CC(
          lpbA+=3;
          lpbB+=3;
          lpbC+=3;
-         
+
       }
    }
 
@@ -4742,7 +4747,7 @@ bool imaging::color_blend(::draw2d::graphics * pdc, point pt, size size, ::draw2
 
 
 
-   
+
 
 
 }
@@ -7110,7 +7115,7 @@ bool imaging::load_from_matter(::draw2d::dib * pdib, var varFile, base_applicati
    if (papp == NULL)
       papp = get_app();
 
-   
+
    return load_from_file(pdib, App(papp).dir().matter((const string &) varFile), papp);
 
 }

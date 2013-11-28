@@ -224,7 +224,7 @@ namespace simple_ui
          return;
 
       }
-      
+
       if (m_puiParent != NULL)
       {
 
@@ -430,7 +430,32 @@ namespace simple_ui
 
             {
 
-               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 108, 149, 255));
+               //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 108, 149, 255));
+               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 120, 190, 255));
+
+               pgraphics->DrawRect(rectClient, pen);
+
+            }
+
+            rectClient.left--;
+            rectClient.right++;
+            rectClient.top--;
+            rectClient.bottom++;
+
+            {
+
+               /*::draw2d::path_sp pathRound(allocer());
+
+               pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
+
+               pathRound->add_round_rect(rectClient, 1 * 2);
+
+               pathRound->end_figure(true);*/
+
+               //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(84, 108, 149, 255));
+               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 140, 200, 255));
+
+               pgraphics->SelectObject(pen);
 
                pgraphics->DrawRect(rectClient, pen);
 
@@ -451,11 +476,12 @@ namespace simple_ui
 
                pathRound->end_figure(true);
 
-               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(84, 108, 149, 255));
+               //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(72, 108, 149, 255));
+               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 160, 210, 255));
 
                pgraphics->SelectObject(pen);
 
-               pgraphics->draw_path(pathRound);
+               pgraphics->DrawRect(rectClient, pen);
 
             }
 
@@ -474,34 +500,12 @@ namespace simple_ui
 
                pathRound->end_figure(true);
 
-               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(72, 108, 149, 255));
+               //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(60, 108, 149, 255));
+               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 180, 220, 255));
 
                pgraphics->SelectObject(pen);
 
-               pgraphics->draw_path(pathRound);
-
-            }
-
-            rectClient.left--;
-            rectClient.right++;
-            rectClient.top--;
-            rectClient.bottom++;
-
-            {
-
-               ::draw2d::path_sp pathRound(allocer());
-
-               pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
-
-               pathRound->add_round_rect(rectClient, 1 * 2);
-
-               pathRound->end_figure(true);
-
-               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(60, 108, 149, 255));
-
-               pgraphics->SelectObject(pen);
-
-               pgraphics->draw_path(pathRound);
+               pgraphics->DrawRect(rectClient, pen);
 
             }
 
@@ -521,11 +525,12 @@ namespace simple_ui
 
                pathRound->end_figure(true);
 
-               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(48, 108, 149, 255));
+               //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(48, 108, 149, 255));
+               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 200, 230, 255));
 
                pgraphics->SelectObject(pen);
 
-               pgraphics->draw_path(pathRound);
+               pgraphics->DrawRect(rectClient, pen);
 
             }
 
@@ -546,11 +551,12 @@ namespace simple_ui
 
                pathRound->end_figure(true);
 
-               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(36, 108, 149, 255));
+               //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(36, 108, 149, 255));
+               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 220, 240, 255));
 
                pgraphics->SelectObject(pen);
 
-               pgraphics->draw_path(pathRound);
+               pgraphics->DrawRect(rectClient, pen);
 
             }
 
@@ -573,11 +579,13 @@ namespace simple_ui
 
                pathRound->end_figure(true);
 
-               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(24, 108, 149, 255));
+               //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(24, 108, 149, 255));
+
+               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 240, 250, 255));
 
                pgraphics->SelectObject(pen);
 
-               pgraphics->draw_path(pathRound);
+               pgraphics->DrawRect(rectClient, pen);
 
             }
 

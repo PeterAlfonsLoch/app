@@ -5,10 +5,18 @@ device_context::device_context()
 {
 
 
-   m_display   = NULL;
-   m_d         = 0;
-   m_gc        = NULL;
-   m_hwnd      = NULL;
+   m_pdisplay     = NULL;
+   m_drawable     = None;
+   m_gc           = None;
+   m_pixmap       = None;
+   m_window       = None;
+   m_pt.x         = 0;
+   m_pt.y         = 0;
+   m_ptOffset.x   = 0;
+   m_ptOffset.y   = 0;
+   m_iScreen      = 0;
+   m_iDepth       = 0;
+   m_fontset      = None;
 
 
 
@@ -22,10 +30,20 @@ HDC GetDC(oswindow hwnd)
 
    HDC hdc = new device_context;
 
-   hdc->m_display    = XOpenDisplay(NULL);
-   hdc->m_hwnd       = hwnd;
-   hdc->m_d          = (Drawable) (hwnd == NULL || hwnd->window() == NULL ? DefaultRootWindow(hdc->m_display) : hwnd->window());
-   hdc->m_gc         = XCreateGC(hdc->m_display, hdc->m_d, 0, 0);
+   hdc->m_pdisplay      = hwnd->display();
+   hdc->m_window        = hwnd->window();
+   hdc->m_drawable      = (Drawable) (hwnd == NULL || hwnd->window() == NULL ? DefaultRootWindow(hdc->m_pdisplay) : hwnd->window());
+   hdc->m_gc            = XCreateGC(hdc->m_pdisplay, hdc->m_drawable, 0, 0);
+
+   return hdc;
+
+}
+
+
+HDC CreateCompatibleDC(HDC hdcParam)
+{
+
+   HDC hdc = new device_context;
 
    return hdc;
 
@@ -49,8 +67,8 @@ WINBOOL ReleaseDC(oswindow hwnd, HDC hdc)
    if(hdc == NULL)
       return FALSE;
 
-   XFreeGC(hdc->m_display, hdc->m_gc);
-   XCloseDisplay(hdc->m_display);
+   XFreeGC(hdc->m_pdisplay, hdc->m_gc);
+   XCloseDisplay(hdc->m_pdisplay);
 
    delete hdc;
    return TRUE;
@@ -91,7 +109,9 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
 
    single_lock sl(&user_mutex(), true);
 
-   if(!IsWindow(hwnd))
+   xdisplay xlock(hwnd->display());
+
+   if(!IsWindow(hwnd) || !IsWindowVisible(hwnd))
       return FALSE;
 
 
@@ -106,7 +126,6 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
    XWindowAttributes attrs;
 
 
-   XSync(hwnd->display(), False);
 
    /* Fill attribute structure with information about root window */
 
@@ -141,7 +160,7 @@ int32_t FillRect(HDC hdc, const RECT * lprc, HBRUSH hbr)
    single_lock sl(&user_mutex(), true);
 
 
-   XFillRectangle(hdc->m_display, hdc->m_d, hdc->m_gc, lprc->left, lprc->top, lprc->right - lprc->left, lprc->bottom - lprc->top);
+   XFillRectangle(hdc->m_pdisplay, hdc->m_drawable, hdc->m_gc, lprc->left, lprc->top, lprc->right - lprc->left, lprc->bottom - lprc->top);
    return 1;
 }
 
@@ -220,19 +239,20 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int32_t x, int32_t
       values.height = cy;
    }
 
-   if(!(uFlags & SWP_NOZORDER) && hwndInsertAfter >= 0)
+   if(!(uFlags & SWP_NOZORDER) && hwndInsertAfter > 0)
    {
       value_mask |= CWSibling;
       values.sibling = hwndInsertAfter->window();
       values.stack_mode = Above;
    }
 
-   XConfigureWindow(hwnd->display(), hwnd->window(), value_mask, &values);
-
    if(uFlags & SWP_SHOWWINDOW)
    {
       XMapWindow(hwnd->display(), hwnd->window());
    }
+
+   XConfigureWindow(hwnd->display(), hwnd->window(), value_mask, &values);
+
 
    if(!(uFlags & SWP_NOZORDER) && hwndInsertAfter < 0)
    {

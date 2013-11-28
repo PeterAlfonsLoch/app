@@ -32,6 +32,21 @@ namespace file
 
    serializable_array() { }
 
+   serializable_array(serializable_array & a) :
+      type_array(a)
+   {
+
+   }
+
+   inline serializable_array & operator = (const serializable_array & a)
+   {
+
+      type_array::operator = (a);
+
+      return *this;
+
+   }
+
 #if defined(MOVE_SEMANTICS)
    serializable_array(serializable_array && a) :
       type_array(a)

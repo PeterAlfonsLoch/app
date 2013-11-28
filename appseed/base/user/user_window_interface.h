@@ -141,12 +141,12 @@ namespace user
       sp(::user::window) SetFocus();*/
 
 
-      bool RedrawOptimize(LPRECT lprectOut, LPCRECT lpcrect1, LPCRECT lpcrect2);
-      void RedrawOptimize(rect_array & array);
-      bool _001IsBackgroundBypass();
-      bool _001IsTransparent();
-      bool _001IsTranslucent();
-      bool _001HasTranslucency();
+      virtual bool RedrawOptimize(LPRECT lprectOut, LPCRECT lpcrect1, LPCRECT lpcrect2);
+      virtual void RedrawOptimize(rect_array & array);
+      virtual bool _001IsBackgroundBypass();
+      virtual bool _001IsTransparent();
+      virtual bool _001IsTranslucent();
+      virtual bool _001HasTranslucency();
 
       /*
       virtual void _001SetWindowPos(const sp(::user::window) pWndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
@@ -155,7 +155,7 @@ namespace user
       virtual void _001ScreenToClient(LPPOINT lppoint);
       */
 
-      ETranslucency _001GetTranslucency();
+      virtual ETranslucency _001GetTranslucency();
 
 
 

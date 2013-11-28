@@ -69,8 +69,9 @@ namespace user
 
       for(index i = m_uiptraHold.get_upper_bound(); i >= 0; i--)
       {
-      throw todo(get_app());
-//         System.place_hold(m_uiptraHold(i));
+
+         System.place_hold(m_uiptraHold(i));
+
       }
 
       m_uiptraHold.remove_all();
@@ -185,6 +186,11 @@ namespace user
       return true;
    }
 
+   bool place_holder::_001IsBackgroundBypass()
+   {
 
+      return true;
+
+   }
 
 } // namespace user

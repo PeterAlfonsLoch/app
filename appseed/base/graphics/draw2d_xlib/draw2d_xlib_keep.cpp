@@ -1,14 +1,13 @@
 #include "framework.h"
 
 
-cairo_surface_t *  cairo_keep::g_cairosurface = NULL;
-cairo_t *  cairo_keep::g_cairo = NULL;
 
 
-cairo_keep::cairo_keep(cairo_t * pdc, bool bSave)
+xlib_keep::xlib_keep(::draw2d::graphics * pdc, bool bSave)
 {
 
    m_pdc = pdc;
+
 
    m_bSave = false;
 
@@ -19,7 +18,7 @@ cairo_keep::cairo_keep(cairo_t * pdc, bool bSave)
 }
 
 
-cairo_keep::~cairo_keep()
+xlib_keep::~xlib_keep()
 {
 
    if(m_bSave)
@@ -33,33 +32,33 @@ cairo_keep::~cairo_keep()
 
 
 
-void cairo_keep::save()
+void xlib_keep::save()
 {
 
    if(m_bSave)
       return;
 
-   cairo_save(m_pdc);
+   //xlib_save(m_pdc);
 
    m_bSave = true;
 
 }
 
 
-void cairo_keep::restore()
+void xlib_keep::restore()
 {
 
    if(!m_bSave)
       return;
 
-   cairo_restore(m_pdc);
+   //xlib_restore(m_pdc);
 
    m_bSave = false;
 
 }
 
 
-void cairo_keep::pulse()
+void xlib_keep::pulse()
 {
 
    save();

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace draw2d_cairo
+namespace draw2d_xlib
 {
 
 
@@ -11,15 +11,19 @@ namespace draw2d_cairo
    class object;
 
 
-   class CLASS_DECL_DRAW2D_CAIRO graphics :
+
+
+
+   class CLASS_DECL_DRAW2D_XLIB graphics :
       virtual public ::draw2d::graphics
    {
       // // DECLARE_DYNCREATE(::draw2d::graphics_sp)
    public:
 
 
-      cairo_t *               m_pdc; // cairo drawing context
-      int32_t                     m_iType;
+      ::os::simple_ui         m_ui;
+      device_context *        m_pdc;
+      int32_t                 m_iType;
       //bool                    m_bForeColor;
       //bool                    m_bBackColor;
       //uint64_t                m_uiForeColor;
@@ -114,8 +118,8 @@ namespace draw2d_cairo
       virtual ::draw2d::font* SelectObject(::draw2d::font* pFont);
       ::draw2d::bitmap* SelectObject(::draw2d::bitmap* pBitmap);
       int32_t SelectObject(::draw2d::region* pRgn);       // special return for regions
-      ::draw2d_cairo::object* SelectObject(::draw2d_cairo::object* pObject);
-         // ::draw2d_cairo::object* provided so compiler doesn't use SelectObject(HGDIOBJ)
+      ::draw2d_xlib::object* SelectObject(::draw2d_xlib::object* pObject);
+         // ::draw2d_xlib::object* provided so compiler doesn't use SelectObject(HGDIOBJ)
 
    // color and color Palette Functions
       COLORREF GetNearestColor(COLORREF crColor) const;
@@ -243,6 +247,10 @@ namespace draw2d_cairo
    // Simple Drawing Functions
       void FillRect(LPCRECT lpRect, ::draw2d::brush* pBrush);
       void FrameRect(LPCRECT lpRect, ::draw2d::brush* pBrush);
+
+      bool DrawRect(LPCRECT lpRect, ::draw2d::pen * pBrush);
+      bool DrawRect(int x1, int y1, int x2, int y2, ::draw2d::pen * pBrush);
+
       void InvertRect(LPCRECT lpRect);
       bool DrawIcon(int32_t x, int32_t y, ::visual::icon * picon);
       bool DrawIcon(POINT point, ::visual::icon * picon);
@@ -251,10 +259,10 @@ namespace draw2d_cairo
          HBRUSH hBrush = NULL);
       bool DrawState(point pt, size size, ::draw2d::bitmap* pBitmap, UINT nFlags,
          ::draw2d::brush* pBrush = NULL);
-      bool DrawState(point pt, size size, HICON hIcon, UINT nFlags,
+/*      bool DrawState(point pt, size size, HICON hIcon, UINT nFlags,
          HBRUSH hBrush = NULL);
       bool DrawState(point pt, size size, HICON hIcon, UINT nFlags,
-         ::draw2d::brush* pBrush = NULL);
+         ::draw2d::brush* pBrush = NULL);*/
       bool DrawState(point pt, size size, const char * lpszText, UINT nFlags,
          bool bPrefixText = TRUE, int32_t nTextLen = 0, HBRUSH hBrush = NULL);
       bool DrawState(point pt, size size, const char * lpszText, UINT nFlags,
@@ -275,8 +283,14 @@ namespace draw2d_cairo
       bool FillEllipse(LPCRECT lpRect);
       bool Pie(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4);
       bool Pie(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
+
       virtual bool fill_polygon(const POINTD * lpPoints, int32_t nCount);
       virtual bool fill_polygon(const POINT* lpPoints, int32_t nCount);
+
+      virtual bool draw_polygon(const POINTD * lpPoints, int32_t nCount);
+      virtual bool draw_polygon(const POINT* lpPoints, int32_t nCount);
+
+
       bool Polygon(const POINT* lpPoints, int32_t nCount);
       bool PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int32_t nCount);
       bool Rectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
@@ -491,7 +505,7 @@ namespace draw2d_cairo
 
    //protected:
       // used for implementation of non-virtual SelectObject calls
-      //static ::draw2d_cairo::object* PASCAL SelectGdiObject(sp(base_application) papp, HDC hDC, HGDIOBJ h);
+      //static ::draw2d_xlib::object* PASCAL SelectGdiObject(sp(base_application) papp, HDC hDC, HGDIOBJ h);
 
 
       // platform-specific or platform-internals
@@ -510,6 +524,9 @@ namespace draw2d_cairo
       bool fill_and_draw();
       bool fill();
       bool draw();
+
+
+      unsigned int compute_line_height();
 
    };
 

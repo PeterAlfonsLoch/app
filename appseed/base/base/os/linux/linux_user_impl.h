@@ -51,12 +51,15 @@ public:
 
    osdisplay                     m_osdisplay;
    Window                        m_window;
-   Visual *                      m_pvisual;
+   Visual                        m_visual;
+   int                           m_iDepth;
+   int                           m_iScreen;
    bool                          m_bMessageOnlyWindow;
-   ::user::interaction *    m_pui;
+   ::user::interaction *         m_pui;
    HTHREAD                       m_hthread;
    int_to_int *                  m_plongmap;
    bool                          m_bDestroying;
+   Colormap                      m_colormap;
 
 
    static oswindow_dataptra * s_pdataptra;
@@ -126,12 +129,12 @@ public:
 
    Visual * visual()
    {
-      return this == NULL ? NULL : m_pvisual;
+      return this == NULL ? NULL : &m_visual;
    }
 
    Visual * visual() const
    {
-      return this == NULL ? NULL : m_pvisual;
+      return this == NULL ? NULL : (Visual *) &m_visual;
    }
 
 

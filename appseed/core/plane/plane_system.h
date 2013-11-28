@@ -257,7 +257,7 @@ namespace plane
       //////////////////////////////////////////////////////////////////////////////////////////////////
       // System/System
       //
-      sp(::user::object) hold(sp(::user::interaction) pui);
+      sp(::user::object) place_hold(sp(::user::interaction) pui);
 
       virtual ::count get_monitor_count();
       virtual bool  get_monitor_rect(index i, LPRECT lprect);

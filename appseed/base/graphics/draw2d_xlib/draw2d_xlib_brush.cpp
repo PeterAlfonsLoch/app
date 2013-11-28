@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace draw2d_cairo
+namespace draw2d_xlib
 {
 
 
@@ -156,7 +156,7 @@ namespace draw2d_cairo
    }
 
 
-} // namespace draw2d_cairo
+} // namespace draw2d_xlib
 
 
 

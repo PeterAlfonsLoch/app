@@ -9,7 +9,7 @@ namespace fontopus
       element(papp),
       base_departament(papp)
    {
-   
+
       m_puser                    = NULL;
       m_pthreadCreatingUser      = NULL;
 
@@ -18,7 +18,7 @@ namespace fontopus
 
    fontopus::~fontopus()
    {
-      
+
    }
 
 
@@ -72,7 +72,7 @@ namespace fontopus
          System.userset().add(m_puser);
 
 
-         if(m_puser != NULL 
+         if(m_puser != NULL
             && !::str::begins(m_puser->m_strLogin, "system")
             && m_pbaseapp->m_strAppId != "app-core/deepfish"
             && !::str::begins(m_pbaseapp->m_strAppName, "app-core/deepfish_")
@@ -217,7 +217,7 @@ namespace fontopus
 
    user * fontopus::get_user()
    {
-      if(m_pbaseapp->is_session())
+     if(m_pbaseapp->is_session())
       {
          if(m_puser == NULL)
          {
@@ -358,11 +358,11 @@ namespace fontopus
       string strGetFontopus("http://" + url_get_server(pszUrl) + "/get_fontopus");
       try
       {
-         
+
          ::property_set post(get_app());
          ::property_set headers(get_app());
          ::property_set set(get_app());
-         
+
          set["disable_ca2_sessid"] = true;
 
          if(!Application.http().get(strGetFontopus, strFontopusServer, post, headers, set))
