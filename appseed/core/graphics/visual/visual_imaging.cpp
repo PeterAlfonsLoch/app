@@ -241,7 +241,16 @@ bool imaging::from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMA
 
    pdib->map();
 
-   memcpy(pdib->m_pcolorref, pdata, (size_t)(pdib->area() * sizeof(COLORREF)));
+
+   for(int i = 0; i < pdib->m_size.cy; i++)
+   {
+
+      memcpy(
+         &((byte *) pdib->m_pcolorref)[pdib->m_iScan * (pdib->m_size.cy - i - 1)],
+        &((byte *) pdata)[pbi->bmiHeader.biWidth * sizeof(COLORREF) * i],
+        pdib->m_iScan);
+
+   }
 
    RGBQUAD bkcolor;
 
