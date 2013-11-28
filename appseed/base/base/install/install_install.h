@@ -29,6 +29,8 @@ namespace install
       char * g_pszCa2Build ;
       oswindow g_oswindowMessage;
 
+      mutex m_mutex;
+
 
       install(sp(base_application) papp);
       virtual ~install();

@@ -520,8 +520,16 @@ namespace core
    }
 
 
-         void log::trace(const char * pszFormat, ...)
+   void log::trace(const char * pszFormat, ...)
    {
+      if(this == NULL)
+      {
+         va_list ptr;
+         va_start(ptr, pszFormat);
+         vprintf(pszFormat, ptr);
+         va_end(ptr);
+         return;
+      }
       if(!m_bTrace)
          return;
       va_list ptr;

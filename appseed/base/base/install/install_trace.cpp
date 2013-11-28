@@ -157,7 +157,7 @@ void trace_progress(double dRate)
 
 bool initialize_primitive_trace()
 {
-   
+
    g_pstraTrace = new stringa();
 
    if(g_pstraTrace == NULL)
@@ -174,7 +174,10 @@ void finalize_primitive_trace()
    if(g_pstraTrace != NULL)
    {
 
-      delete g_pstraTrace;
+      //g_pstraTrace->m_pbaseapp.m_p = NULL;
+      //g_pstraTrace->m_pbasesystem.m_p = NULL;
+
+      //delete g_pstraTrace;
 
    }
 

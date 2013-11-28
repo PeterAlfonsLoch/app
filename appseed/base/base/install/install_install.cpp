@@ -13,7 +13,8 @@ namespace install
 
    install::install(sp(base_application) papp) :
       element(papp),
-      ::base_departament(papp)
+      ::base_departament(papp),
+      m_mutex(papp, false, "Global\\spa_boot_install")
    {
 
       m_bAdmin                         = false;
@@ -194,7 +195,7 @@ namespace install
 
       ::xml::document nodeInstall;
 
-      nodeInstall.load(file_as_string_dup(dir::appdata("install.xml")));
+      nodeInstall.load(file_as_string_dup(dir::appdata("spa_install.xml")));
 
       ::xml::node * lpnodeVersion = nodeInstall.get_child(pszVersion);
 

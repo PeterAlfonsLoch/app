@@ -20,7 +20,8 @@ namespace plane
 #endif
       m_visual(this),
       base_system(papp),
-      m_emaildepartament(this)
+      m_emaildepartament(this),
+      m_installex(this)
    {
 
 #ifdef METROWIN

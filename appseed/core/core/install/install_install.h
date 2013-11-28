@@ -10,13 +10,13 @@ namespace core
    {
    public:
 
-      
-      HANDLE                  m_hmutexBoot;
+
+      mutex m_mutex;
 
       ::string_to_string  m_strmapLatestBuildNumber;
 
 
-      install();
+      install(sp(base_application) papp);
       virtual ~install();
 
 

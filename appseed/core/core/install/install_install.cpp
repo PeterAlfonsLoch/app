@@ -5,9 +5,10 @@ namespace core
 {
 
 
-   install::install()
+   install::install(sp(base_application) papp) :
+      element(papp),
+      m_mutex(papp, false, "Global\\spa_boot_install")
    {
-      m_hmutexBoot = NULL;
    }
 
    install::~install()
@@ -16,7 +17,7 @@ namespace core
 
    void install::add_spa_start(const char * pszType, const char * pszId)
    {
-      
+
       string strPath;
 
       strPath = System.dir().appdata("spa_start.xml");
@@ -99,6 +100,8 @@ namespace core
    void install::add_app_install(const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema)
    {
 
+      synch_lock sl(&m_mutex);
+
       string strPath;
 
       strPath = System.dir().appdata("spa_install.xml");
@@ -123,7 +126,7 @@ namespace core
       sp(::xml::node) lpnodeVersion = doc.get_root()->get_child("basis");
 
 #else
-         
+
       sp(::xml::node) lpnodeVersion = doc.get_root()->get_child("stage");
 
 #endif
@@ -136,11 +139,11 @@ namespace core
          lpnodeVersion = doc.get_root()->add_child("basis");
 
 #else
-         
+
          lpnodeVersion = doc.get_root()->add_child("stage");
 
 #endif
-         
+
       }
 
       sp(::xml::node) lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", strBuild);
@@ -208,14 +211,16 @@ namespace core
    bool install::is(const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema)
    {
 
+      synch_lock sl(&m_mutex);
+
       string strPath;
-      
+
       strPath = System.dir().appdata("spa_install.xml");
-      
+
       string strContents;
-      
+
       strContents = Application.file().as_string(strPath);
-      
+
       ::xml::document doc(get_app());
 
       if(strContents.is_empty())
@@ -223,7 +228,7 @@ namespace core
 
       try
       {
-      
+
          if(!doc.load(strContents))
             return false;
 
@@ -248,7 +253,7 @@ namespace core
 
 
 #else
-         
+
          pszVersion = "basis";
 
 #endif
@@ -273,12 +278,12 @@ namespace core
 
       if(lpnodeInstalled == NULL)
          return false;
-      
+
       sp(::xml::node) lpnodeType = lpnodeInstalled->get_child(pszType);
-      
+
       if(lpnodeType == NULL)
          return false;
-      
+
       sp(::xml::node) lpnode = lpnodeType->GetChildByAttr(pszType, "id", pszId);
 
       if(lpnode == NULL)
@@ -362,7 +367,7 @@ namespace core
           strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
 
       }
-      else 
+      else
       {
 
    #if CA2_PLATFORM_VERSION == CA2_BASIS
@@ -370,7 +375,7 @@ namespace core
          strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
 
    #else
-         
+
          strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
 
    #endif

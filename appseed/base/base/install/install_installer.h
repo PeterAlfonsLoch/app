@@ -32,7 +32,7 @@ namespace install
       };
 
 
-      HANDLE         m_hmutexInstall;
+      mutex         m_mutex;
 
       stringa       m_straTerminateProcesses;
       stringa       m_straRestartCommandLine;

@@ -55,7 +55,19 @@ mutex::mutex(sp(base_application) papp, bool bInitiallyOwn, const char * pstrNam
    if(pstrName != NULL && *pstrName != '\0')
    {
 
-      m_strName = pstrName;
+
+      if(str::begins_ci(pstrName, "Global"))
+      {
+         m_strName = ::dir::path("/var/tmp", pstrName);
+      }
+      else
+      {
+         m_strName = ::dir::path(getenv("HOME"), pstrName);
+      }
+
+      ::dir::mk(::dir::name(m_strName));
+
+      ::file_put_contents_dup(m_strName, m_strName);
 
       m_key = ftok(m_strName, 0); //Generate a unique key or supply a value
 
@@ -195,7 +207,7 @@ wait_result mutex::wait(const duration & duration)
          if(ret < 0)
          {
             /* check whether somebody else has the mutex */
-            if (ret == EPERM )
+            if (errno == EPERM || errno == EAGAIN)
             {
                /* sleep for delay time */
                nanosleep(&delay, NULL);
@@ -317,7 +329,11 @@ bool mutex::unlock()
       //Release semaphore
       semop(m_semid, operation, 1);
 
-      return !is_locked();
+     union semun sem_union;
+
+     sem_union.val = 0;
+
+     return semctl(m_semid, 0, GETVAL, sem_union) != 0; // notlocked
 
    }
    else

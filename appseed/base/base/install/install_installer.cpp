@@ -114,7 +114,8 @@ namespace install
 
 
    installer::installer(sp(base_application) papp) :
-      element(papp)
+      element(papp),
+      m_mutex(papp)
    {
 
       m_bMsDownload              = false;
@@ -133,7 +134,6 @@ namespace install
       m_oswindow                 = NULL;
       m_bForceUpdatedBuild       = false;
       m_bSynch                   = true;
-      m_hmutexInstall            = NULL;
       m_bStarterStart            = false;
       m_strPlatform              = "";
 
@@ -157,7 +157,6 @@ namespace install
 
       new_progress_end(0.1);
 
-      m_hmutexInstall = NULL;
 
       //SECURITY_ATTRIBUTES MutexAttributes;
       //ZeroMemory( &MutexAttributes, sizeof(MutexAttributes) );
