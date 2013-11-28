@@ -28,10 +28,7 @@ namespace fontopus
       virtual ~simple_ui();
 
 
-      virtual string show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
-
-
-      virtual bool show_window();
+      virtual string interactive_auth(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
 
 
       virtual void draw_dark_glass(::draw2d::graphics * pgraphics);

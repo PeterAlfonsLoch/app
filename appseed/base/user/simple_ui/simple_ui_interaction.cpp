@@ -707,5 +707,25 @@ namespace simple_ui
 
    }
 
+   bool interaction::show_window(bool bShow)
+   {
+
+      if (bShow)
+      {
+
+         m_bVisible = true;
+
+      }
+      else
+      {
+
+         m_bVisible = false;
+
+      }
+
+      return true;
+
+   }
+
 
 } // namespace simple_ui

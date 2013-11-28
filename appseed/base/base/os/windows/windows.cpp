@@ -33,7 +33,7 @@ int_bool os_initialize()
 
    ::os_thread::s_pmutex = new mutex();
 
-   ::os_thread::s_pptra = new comparable_raw_array < os_thread * > ();
+   ::os_thread::s_pptra = new comparable_raw_array < os_thread * >::type ();
 
    //Sleep(15 * 1000);
 

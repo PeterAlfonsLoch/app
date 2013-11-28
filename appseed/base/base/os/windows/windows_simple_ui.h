@@ -20,6 +20,7 @@ namespace os
    {
    public:
 
+
       HINSTANCE                  m_hinstance;
       string                     m_strTitle;
       string                     m_strWindowClass;
@@ -36,6 +37,8 @@ namespace os
       bool                       m_bShiftKey;
       rect                       m_rectDesktop;
 
+      bool                       m_bNoDecorations;
+
 
 
 
@@ -46,10 +49,13 @@ namespace os
       static LRESULT CALLBACK s_window_prodecure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 
+      virtual bool create_window(LPCRECT lprect);
+
       virtual ATOM register_window_class(HINSTANCE hInstance);
 
       virtual bool prepare_window(LPCRECT lprect);
 
+      virtual bool show_window(bool bShow = true);
 
       virtual void client_to_screen(POINT * ppt);
 
@@ -72,6 +78,9 @@ namespace os
 
       virtual void set_capture();
       virtual void release_capture();
+
+
+      virtual bool run_loop();
 
 
    };

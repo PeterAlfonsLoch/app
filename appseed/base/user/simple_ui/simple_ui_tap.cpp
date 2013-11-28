@@ -257,13 +257,15 @@ namespace simple_ui
 
       pgraphics->SelectObject(b);
 
-      float fMargin = (height(&rectClient) * ((1.0f - 0.7f) / 2.0f));
+      //float fMargin = (height(&rectClient) * ((1.0f - 0.7f) / 2.0f));
+
+      float fMargin = (height(&rectClient) * ((1.0f - 0.84f) / 2.0f));
 
       rectClient.deflate(fMargin, fMargin);
 
       ::draw2d::font_sp f(allocer());
 
-      f->create_pixel_font("Geneva", (int32_t)height(rectClient)* 0.5);
+      f->create_pixel_font("Geneva", (int32_t)height(rectClient)* 0.7);
 
       pgraphics->SelectObject(f);
 

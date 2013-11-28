@@ -301,7 +301,7 @@ namespace fontopus
 
 
 
-   string simple_ui::show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
+   string simple_ui::interactive_auth(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
    {
 
       if (lprect == NULL)
@@ -317,86 +317,17 @@ namespace fontopus
 
       }
 
-      // TODO: Place code here.
       m_strTitle = "fontopus Auth Windows";
       m_strWindowClass = "fontopus Auth Windows";
 
       set_focus(&m_login.m_editUser);
 
-
-      show_window();
-
-      // Perform application initialization:
-
-      m_login.m_strRequestingServer = strRequestingServer;
-
-      m_login.m_bVisible = true;
-
-      #if defined(WINDOWSEX)
-
-         pass block below to run loop in windows ::os::simple_ui
-         // Main message loop:
-         m_hinstance = ::GetModuleHandle(NULL);
-
-      if (!prepare_window(m_hinstance, SW_SHOW))
-      {
-         return "";
-      }         // Initialize global strings
-         register_window_class(m_hinstance);
-
-
-         MSG msg;
-         while (GetMessage(&msg, NULL, 0, 0))
-         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-         }
-
-      #else
-
-
-      run_loop();
-
-      #endif
-
-      if (m_eresult == login::result_ok)
-      {
-
-         strUsername = m_login.m_editUser.m_strText;
-         strSessId = m_login.m_strSessId;
-         strServerId = m_login.m_strSecureId;
-         strLoginUrl = m_login.m_strLoginUrl;
-         return "ok";
-      }
-      else
-      {
-         return "fail";
-      }
-
-
-   }
-
-
-
-   //
-   //   FUNCTION: prepare_window(HINSTANCE, int)
-   //
-   //   PURPOSE: Saves instance handle and creates main window
-   //
-   //   COMMENTS:
-   //
-   //        In this function, we save the instance handle in a global variable and
-   //        create and display the main program window.
-   //
-   bool simple_ui::show_window()
-   {
-
       rect & rectDesktop = m_rectDesktop;
 
       rect rectFontopus;
 
-      int w = rectDesktop.width() * 2.0 / 5.0;
-      int h = rectDesktop.height() * 2.0 / 5.0;
+      int w = (int)(rectDesktop.width() * 2.0 / 5.0);
+      int h = (int)(rectDesktop.height() * 2.0 / 5.0);
 
       int minW = 400;
       int minH = 320;
@@ -414,7 +345,6 @@ namespace fontopus
       rectFontopus.right = rectFontopus.left + w;
       rectFontopus.bottom = rectFontopus.top + h;
 
-
       m_login.m_rect.left = 49;
       m_login.m_rect.top = 49 + 86;
       m_login.m_rect.right = m_login.m_rect.left + m_w;
@@ -422,31 +352,48 @@ namespace fontopus
 
       m_login.defer_translate(this);
 
-
       if (!::os::simple_ui::create_window(rectFontopus))
-         return false;
-
+         return "";
 
       m_login.layout();
 
-
       if (!::os::simple_ui::prepare_window(rectFontopus))
-         return false;
+         return "";
 
-/*      SetTimer(m_window, 123, 23, NULL);
+      SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, m_size.cx, m_size.cy, SWP_NOZORDER);
 
-      ShowWindow(m_window, nCmdShow);
+      if (!show_window())
+         return "";
 
-      UpdateWindow(m_window);
+      m_login.m_strRequestingServer = strRequestingServer;
 
-      ::SetWindowLong(m_window, GWL_STYLE, WS_VISIBLE);*/
+      m_login.m_bVisible = true;
 
+      run_loop();
 
-      SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, m_size.cx, m_size.cy, SWP_SHOWWINDOW | SWP_NOZORDER);
+      if (m_eresult == login::result_ok)
+      {
 
-      return TRUE;
+         strUsername = m_login.m_editUser.m_strText;
+         strSessId = m_login.m_strSessId;
+         strServerId = m_login.m_strSecureId;
+         strLoginUrl = m_login.m_strLoginUrl;
+
+         return "ok";
+
+      }
+      else
+      {
+
+         return "fail";
+
+      }
+
 
    }
+
+
+
 
 
    /*
@@ -706,13 +653,21 @@ namespace fontopus
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-            crOut = ARGB(184, 255, 210, 255);
+            /*crOut = ARGB(184, 255, 210, 255);
 
             crIn = ARGB(255, 255, 184 + 49, 255);
 
             crBorderOut = ARGB(184, 90, 20, 90);
 
-            crBorderIn = ARGB(184, 255, 240, 255);
+            crBorderIn = ARGB(184, 255, 240, 255);*/
+
+            crOut = ARGB(255, 255, 210, 255);
+
+            crIn = ARGB(255, 255, 184 + 49, 255);
+
+            crBorderOut = ARGB(255, 90, 20, 90);
+
+            crBorderIn = ARGB(255, 255, 240, 255);
 
 #else
 
@@ -731,11 +686,13 @@ namespace fontopus
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      cr = ARGB(223, 84, 49, 77);
+      //cr = ARGB(223, 84, 49, 77);
+      cr = ARGB(255, 84, 49, 77);
 
 #else
 
-      cr = ARGB(223, 49, 84, 23);
+      //cr = ARGB(223, 49, 84, 23);
+      cr = ARGB(255, 49, 84, 23);
 
 #endif
 
@@ -1012,7 +969,7 @@ namespace fontopus
 
       ::fontopus::simple_ui ui(papp);
 
-      return ui.show_auth_window(lprect, strUsername, strSessId, strServerId, strLoginUrl, strFontopusServer);
+      return ui.interactive_auth(lprect, strUsername, strSessId, strServerId, strLoginUrl, strFontopusServer);
 
    }
 

@@ -15,7 +15,7 @@ namespace xml
    public:
 
 
-      typedef CLASS_DECL_BASE spa(node) array;
+      typedef spa(node) array;
 
 
    protected:

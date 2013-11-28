@@ -1613,8 +1613,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user\user_notification_area.h" />
     <ClInclude Include="user\user\user_notify_icon.h" />
     <ClInclude Include="user\user\user_notify_icon_listener.h" />
-    <ClInclude Include="user\user\user_place_holder.h" />
-    <ClInclude Include="user\user\user_place_holder_container.h" />
     <ClInclude Include="user\user\user_plain_text_data.h" />
     <ClInclude Include="user\user\user_printer.h" />
     <ClInclude Include="user\user\user_print_job.h" />
@@ -1644,8 +1642,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user\user_tool_tip_window.h" />
     <ClInclude Include="user\user\user_tree.h" />
     <ClInclude Include="user\user\user_user.h" />
-    <ClInclude Include="user\user\user_view_container.h" />
-    <ClInclude Include="user\user\user_view_creator.h" />
     <ClInclude Include="user\user\user_view_update_hint.h" />
     <ClInclude Include="user\user\user_virtual_user_interface.h" />
     <ClInclude Include="user\user\user_window_draw.h" />
@@ -2276,8 +2272,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\user\user_notification_area.cpp" />
     <ClCompile Include="user\user\user_notify_icon.cpp" />
     <ClCompile Include="user\user\user_notify_icon_listener.cpp" />
-    <ClCompile Include="user\user\user_place_holder.cpp" />
-    <ClCompile Include="user\user\user_place_holder_container.cpp" />
     <ClCompile Include="user\user\user_plain_text_data.cpp" />
     <ClCompile Include="user\user\user_printer.cpp" />
     <ClCompile Include="user\user\user_print_job.cpp" />
@@ -2304,8 +2298,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\user\user_tree.cpp" />
     <ClCompile Include="user\user\user_tree_window.cpp" />
     <ClCompile Include="user\user\user_util.cpp" />
-    <ClCompile Include="user\user\user_view_container.cpp" />
-    <ClCompile Include="user\user\user_view_creator.cpp" />
     <ClCompile Include="user\user\user_xfplayer_view_line.cpp" />
     <ClCompile Include="user\userex\userex_dialog.cpp" />
     <ClCompile Include="user\userex\userex_form_child_frame.cpp" />

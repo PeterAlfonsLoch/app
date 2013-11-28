@@ -687,19 +687,19 @@
     <Filter Include="Source Files\base\base">
       <UniqueIdentifier>{b15f9423-6971-4587-b04f-ca13192a9bcf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\base\baseos">
+    <Filter Include="Header Files\base\os">
       <UniqueIdentifier>{9e92b674-0ae7-4e1e-bd86-d513ccacb6a8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\base\baseos\android">
+    <Filter Include="Header Files\base\os\android">
       <UniqueIdentifier>{1d998585-d816-43da-8e2f-dd16e84dde53}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\base\baseos\windows">
+    <Filter Include="Header Files\base\os\windows">
       <UniqueIdentifier>{719bbac6-b1e2-43be-9042-48cec85915ad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\base\baseos\windows\builtin_draw2d_gdiplus">
+    <Filter Include="Header Files\base\os\windows\builtin_draw2d_gdiplus">
       <UniqueIdentifier>{6ea73a7e-f176-4d5a-a82b-5ff48ddf036f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\base\baseos\cross">
+    <Filter Include="Header Files\base\os\cross">
       <UniqueIdentifier>{e9b106f1-4ddd-4521-b7c1-6461c701be4f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -2589,79 +2589,79 @@
       <Filter>Header Files\base\xml</Filter>
     </ClInclude>
     <ClInclude Include="base\os\cross.h">
-      <Filter>Header Files\base\baseos</Filter>
+      <Filter>Header Files\base\os</Filter>
     </ClInclude>
     <ClInclude Include="base\os\os.h">
-      <Filter>Header Files\base\baseos</Filter>
+      <Filter>Header Files\base\os</Filter>
     </ClInclude>
     <ClInclude Include="base\os\os_process.h">
-      <Filter>Header Files\base\baseos</Filter>
+      <Filter>Header Files\base\os</Filter>
     </ClInclude>
     <ClInclude Include="base\os\cross\cross.h">
-      <Filter>Header Files\base\baseos\cross</Filter>
+      <Filter>Header Files\base\os\cross</Filter>
     </ClInclude>
     <ClInclude Include="base\os\android\android_window_impl.h">
-      <Filter>Header Files\base\baseos\android</Filter>
+      <Filter>Header Files\base\os\android</Filter>
     </ClInclude>
     <ClInclude Include="base\os\android\android.h">
-      <Filter>Header Files\base\baseos\android</Filter>
+      <Filter>Header Files\base\os\android</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows.h">
-      <Filter>Header Files\base\baseos\windows</Filter>
+      <Filter>Header Files\base\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_file.h">
-      <Filter>Header Files\base\baseos\windows</Filter>
+      <Filter>Header Files\base\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_internal.h">
-      <Filter>Header Files\base\baseos\windows</Filter>
+      <Filter>Header Files\base\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_simple_ui.h">
-      <Filter>Header Files\base\baseos\windows</Filter>
+      <Filter>Header Files\base\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_thread.h">
-      <Filter>Header Files\base\baseos\windows</Filter>
+      <Filter>Header Files\base\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_utils.h">
-      <Filter>Header Files\base\baseos\windows</Filter>
+      <Filter>Header Files\base\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_window_gdi.h">
-      <Filter>Header Files\base\baseos\windows</Filter>
+      <Filter>Header Files\base\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus.h">
-      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_bitmap.h">
-      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_brush.h">
-      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_dib.h">
-      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_factory_exchange.h">
-      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_font.h">
-      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_graphics.h">
-      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_object.h">
-      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_palette.h">
-      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_path.h">
-      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_pen.h">
-      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_region.h">
-      <Filter>Header Files\base\baseos\windows\builtin_draw2d_gdiplus</Filter>
+      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
     </ClInclude>
     <ClInclude Include="base\hotplugin\hotplugin.h">
       <Filter>Header Files\base\hotplugin</Filter>
@@ -3111,19 +3111,37 @@
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_simple_hold_handle.h">
-      <Filter>Header Files\base\baseos\windows</Filter>
+      <Filter>Header Files\base\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_registry.h">
-      <Filter>Header Files\base\baseos\windows</Filter>
+      <Filter>Header Files\base\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_process.h">
-      <Filter>Header Files\base\baseos\windows</Filter>
+      <Filter>Header Files\base\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_file_watcher.h">
-      <Filter>Header Files\base\baseos\windows</Filter>
+      <Filter>Header Files\base\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_windows.h">
-      <Filter>Header Files\base\baseos\windows</Filter>
+      <Filter>Header Files\base\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\os_binreloc.h">
+      <Filter>Header Files\base\os</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_view_creator_data.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_view_creator.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_view_container.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_place_holder_container.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_place_holder.h">
+      <Filter>Header Files\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -6745,6 +6763,18 @@
     <ClCompile Include="base\os\windows\windows_dll.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
+    <ClCompile Include="user\user_view_creator.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_view_container.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_place_holder_container.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_place_holder.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -6932,6 +6962,9 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

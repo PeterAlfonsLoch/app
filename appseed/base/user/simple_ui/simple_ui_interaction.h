@@ -83,6 +83,8 @@ namespace simple_ui
       virtual void set_capture();
       virtual void release_capture();
 
+      virtual bool show_window(bool bShow = true);
+
    };
 
 

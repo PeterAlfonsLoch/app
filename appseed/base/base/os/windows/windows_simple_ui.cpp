@@ -16,6 +16,7 @@ namespace os
       m_h = 284;
       m_window = NULL;
       m_bShiftKey = false;
+      m_bNoDecorations = false;
 
 
    }
@@ -24,8 +25,40 @@ namespace os
    {
    }
 
+   bool simple_ui::create_window(LPCRECT lpcrect)
+   {
+
+      HINSTANCE hinstance = ::GetModuleHandle(NULL);
+
+      register_window_class(hinstance);
+
+      HWND hWnd;
+
+      hWnd = CreateWindowEx(WS_EX_LAYERED, m_strWindowClass, m_strTitle, 0,
+         lpcrect->left,
+         lpcrect->top,
+         width(lpcrect),
+         height(lpcrect),
+         NULL, NULL, m_hinstance, this);
+
+      if (!hWnd)
+      {
+
+         return FALSE;
+
+      }
+
+      m_window = hWnd;
+
+      return true;
+
+   }
+
    ATOM simple_ui::register_window_class(HINSTANCE hInstance)
    {
+
+      m_hinstance = hInstance;
+
       WNDCLASSEX wcex;
 
       wcex.cbSize = sizeof(WNDCLASSEX);
@@ -51,35 +84,44 @@ namespace os
    bool simple_ui::prepare_window(LPCRECT lpcrect)
    {
 
-      HWND hWnd;
+      m_pt.x = lpcrect->left;
+      m_pt.y = lpcrect->top;
+      m_size.cx = width(lpcrect);
+      m_size.cy = height(lpcrect);
 
+      SetTimer(m_window, 123, 23, NULL);
 
-      hWnd = CreateWindowEx(WS_EX_LAYERED, m_strWindowClass, m_strTitle, 0,
-         lpcrect->left,
-         lpcrect->top,
-         width(lpcrect),
-         height(lpcrect),
-         NULL, NULL, m_hinstance, this);
-
-      if (!hWnd)
-      {
-         return FALSE;
-      }
-
-      m_window = hWnd;
-
-      SetTimer(hWnd, 123, 23, NULL);
-
-      ShowWindow(hWnd, SW_SHOW);
-
-      UpdateWindow(hWnd);
-
-      ::SetWindowLong(hWnd, GWL_STYLE, WS_VISIBLE);
-
-
-      return TRUE;
+      return true;
 
    }
+
+
+   bool simple_ui::show_window(bool bShow)
+   {
+
+      if (bShow)
+      {
+
+         ShowWindow(m_window, SW_SHOW);
+
+         UpdateWindow(m_window);
+
+         ::SetWindowLong(m_window, GWL_STYLE, WS_VISIBLE);
+
+         return true;
+
+      }
+      else
+      {
+
+         ShowWindow(m_window, SW_HIDE);
+
+         return true;
+
+      }
+
+   }
+
 
 
    LRESULT CALLBACK simple_ui::s_window_prodecure(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam)
@@ -321,6 +363,7 @@ namespace os
    {
 
       m_pt.x = x;
+
       m_pt.y = y;
 
       return true;
@@ -331,9 +374,11 @@ namespace os
    {
 
       m_size.cx = cx;
+
       m_size.cy = cy;
 
       m_dib.create(::get_thread_app()->allocer());
+
       m_dib->create(m_size.cx, m_size.cy);
 
       m_gdi.create(m_window, cx, cy);
@@ -359,6 +404,27 @@ namespace os
       ::ReleaseCapture();
 
    }
+
+
+   bool simple_ui::run_loop()
+   {
+
+      MSG msg;
+
+      while (GetMessage(&msg, NULL, 0, 0))
+      {
+         
+         TranslateMessage(&msg);
+         
+         DispatchMessage(&msg);
+
+      }
+
+
+      return true;
+
+   }
+
 
 } // namespace os
 
