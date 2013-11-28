@@ -88,6 +88,7 @@ mutex::mutex(sp(base_application) papp, bool bInitiallyOwn, const char * pstrNam
 
       semctl(m_semid, 0, SETVAL, semctl_arg);
 
+
    }
    else
    {
@@ -190,7 +191,7 @@ wait_result mutex::wait(const duration & duration)
       struct sembuf operation[1] ;
 
 
-      while((dwTimeout == (uint32_t) INFINITE && ::get_tick_count() - start < dwTimeout) || bFirst)
+      while((dwTimeout == (uint32_t) INFINITE || ::get_tick_count() - start < dwTimeout) || bFirst)
       {
 
          bFirst = false;
@@ -328,12 +329,9 @@ bool mutex::unlock()
 
       //Release semaphore
       semop(m_semid, operation, 1);
-
-     union semun sem_union;
-
-     sem_union.val = 0;
-
-     return semctl(m_semid, 0, GETVAL, sem_union) != 0; // notlocked
+       union semun sem_union;
+        sem_union.val = 0;
+        return semctl(m_semid, 0, GETVAL, sem_union);
 
    }
    else

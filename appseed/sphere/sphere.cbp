@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/libca2sphere.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libsphere.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
 				<Option object_output="../../../time/intermediate/app/ca2sphere" />
 				<Option type="3" />
@@ -23,7 +23,7 @@
 				</Compiler>
 			</Target>
 			<Target title="memdleak">
-				<Option output="../../../stage/x86/libca2sphere.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libsphere.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
 				<Option object_output="../../../time/intermediate/app/ca2sphere" />
 				<Option type="3" />
@@ -52,24 +52,24 @@
 			<Add option="-Wno-conversion-null" />
 			<Add option="-fPIC" />
 			<Add directory="." />
-			<Add directory="../../.." />
 			<Add directory=".." />
-			<Add directory="../ca2" />
+			<Add directory="../../.." />
 			<Add directory="../../../app" />
-			<Add directory="../../appseedcore" />
-			<Add directory="../../nodeapp/linux" />
+			<Add directory="../../../../ca2" />
+			<Add directory="../core" />
+			<Add directory="../base" />
 			<Add directory="../../thirdparty" />
 			<Add directory="../../thirdparty/appseed" />
 			<Add directory="../../../app/thirdparty/include" />
 			<Add directory="../../../app/thirdparty/appseed" />
+			<Add directory="../../../nodeapp" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath,\\$$ORIGIN" />
 			<Add option="-Wl,-E" />
-			<Add option="-l_ca2freeimage" />
-			<Add option="-l_ca2c" />
-			<Add option="-lca2ca" />
-			<Add option="-lca2" />
+			<Add option="-lbase" />
+			<Add option="-lbasefreeimage" />
+			<Add option="-lcore" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
