@@ -55,14 +55,13 @@
 			<Add directory="../../thirdparty/appseed" />
 			<Add directory="../../../app/thirdparty/include" />
 			<Add directory="../../../app/thirdparty/appseed" />
-			<Add directory="../boot" />
 			<Add directory="../core" />
+			<Add directory="../base" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
 			<Add option="-lbase" />
-			<Add option="-lboot" />
 			<Add option="-lcore" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
