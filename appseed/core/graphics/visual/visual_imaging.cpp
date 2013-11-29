@@ -252,7 +252,7 @@ bool imaging::from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMA
 
    }
 
-   RGBQUAD bkcolor;
+//   RGBQUAD bkcolor;
 
    FreeImage_Unload(pimage32);
 

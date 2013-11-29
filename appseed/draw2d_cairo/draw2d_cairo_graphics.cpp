@@ -5944,7 +5944,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
       pfont->destroy();
 
-      int status;
+//      int status;
 
       int iError = 0;
 
@@ -5964,7 +5964,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
       if(iError != 0 || pfont->m_ft == NULL)
       {
 
-fallback:
+//fallback:
 
          cairo_select_font_face(m_pdc, "helvetica", pfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
 

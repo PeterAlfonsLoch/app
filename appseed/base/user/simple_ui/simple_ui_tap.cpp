@@ -261,7 +261,7 @@ namespace simple_ui
 
       float fMargin = (height(&rectClient) * ((1.0f - 0.84f) / 2.0f));
 
-      rectClient.deflate(fMargin, fMargin);
+      rectClient.deflate((int32_t) fMargin, (int32_t) fMargin);
 
       ::draw2d::font_sp f(allocer());
 
