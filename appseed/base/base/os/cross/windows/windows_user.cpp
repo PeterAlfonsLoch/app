@@ -35,6 +35,10 @@ CLASS_DECL_BASE int32_t WINAPI GetSystemMetrics(int32_t nIndex)
       return 16;
    case SM_CYHSCROLL:
       return 16;
+   case SM_CYVSCROLL:
+      return 16;
+   case SM_CXVSCROLL:
+      return 16;
    }
 
    return 0;

@@ -158,6 +158,24 @@ namespace os
    }
 
 
+   bool simple_ui::show_window(bool bShow)
+   {
+
+      if(!::simple_ui::interaction::show_window(bShow))
+         return false;
+
+      if(bShow)
+      {
+
+         SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, m_size.cx, m_size.cy, SWP_SHOWWINDOW | SWP_NOZORDER);
+
+      }
+
+      return true;
+
+   }
+
+
 
    bool simple_ui::prepare_window(LPCRECT lpcrect)
    {

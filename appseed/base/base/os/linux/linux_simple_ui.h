@@ -67,6 +67,8 @@ namespace os
       virtual void get_client_rect(RECT * prect);
 
 
+      virtual bool show_window(bool bShow = true);
+
 
       virtual bool on_key_down(uint32_t uiKey);
       virtual bool on_key_up(uint32_t uiKey);

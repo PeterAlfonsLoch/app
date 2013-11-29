@@ -360,8 +360,6 @@ namespace fontopus
       if (!::os::simple_ui::prepare_window(rectFontopus))
          return "";
 
-      SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, m_size.cx, m_size.cy, SWP_NOZORDER);
-
       if (!show_window())
          return "";
 

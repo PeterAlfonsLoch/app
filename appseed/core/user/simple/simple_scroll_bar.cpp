@@ -444,12 +444,12 @@ void simple_scroll_bar::_001OnSize(signal_details * pobj)
 {
 
    //SCAST_PTR(::message::size, psize, pobj)
-      pobj->previous();
+   pobj->previous();
    // trans   ::user::interaction::OnSize(psize->m_wparam, size.cx, size.cy);
 
-      rect rectClient;
-      GetClientRect(rectClient);
-      class size size = rectClient.size();
+   rect rectClient;
+   GetClientRect(rectClient);
+   class size size = rectClient.size();
 
    if(m_eorientation == orientation_horizontal)
    {
