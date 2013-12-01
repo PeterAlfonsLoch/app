@@ -36,14 +36,27 @@ namespace sockets
 
    /** socket implementation for UDP.
    \ingroup basic */
-   class udp_socket : 
+   class CLASS_DECL_BASE udp_socket : 
       virtual public socket
    {
    private:
 
+#if defined(__cplusplus_winrt)
 
-      ::Windows::Networking::Sockets::DatagramSocket ^      m_datagramsocket;
+      class os_data
+      {
+      public:
 
+         ::Windows::Networking::Sockets::DatagramSocket ^      m_datagramsocket;
+
+      };
+#else
+
+      class os_data;
+
+#endif
+
+      os_data * m_posdata;
       char *m_ibuf; ///< Input buffer
       int m_ibufsz; ///< size of input buffer
       bool m_bind_ok; ///< Bind completed successfully

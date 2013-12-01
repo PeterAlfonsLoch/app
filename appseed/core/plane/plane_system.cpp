@@ -1888,7 +1888,7 @@ sp(::command_thread) system::command_thread()
    {
 #ifdef METROWIN
       Windows::Foundation::Point p;
-      p = m_pwindow->get_cursor_pos();
+      p = m_posdata->m_pwindow->get_cursor_pos();
       lppoint->x = (LONG) p.X;
       lppoint->y = (LONG) p.Y;
 #else
@@ -1957,7 +1957,7 @@ sp(::command_thread) system::command_thread()
          Windows::Foundation::Rect rect;
          try
          {
-            rect = m_pwindow->get_window_rect();
+            rect = m_posdata->m_pwindow->get_window_rect();
          }
          catch(...)
          {

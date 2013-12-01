@@ -302,10 +302,10 @@ namespace sockets
             stream_socket * pstreamsocket = psocket.cast < stream_socket >();
             if(pstreamsocket != NULL)
             {
-               if(pstreamsocket->m_writer != nullptr)
+               if(pstreamsocket->m_posdata->m_writer != nullptr)
                {
 
-                  auto writer = pstreamsocket->m_writer;
+                  auto writer = pstreamsocket->m_posdata->m_writer;
                   
                   psocket->m_event.ResetEvent();
 
@@ -316,7 +316,7 @@ namespace sockets
                      psocket->m_event.SetEvent();
                   });
 
-                  pstreamsocket->m_writer = nullptr;
+                  pstreamsocket->m_posdata->m_writer = nullptr;
 
                }
             }

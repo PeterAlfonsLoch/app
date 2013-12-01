@@ -24,11 +24,11 @@ namespace core
 
    class live_object;
 
-#ifdef METROWIN
+#if defined METROWIN && defined(__cplusplus_winrt)
 
    interface class system_window
    {
-      virtual Windows::Foundation::Rect GetWindowRect() = 0;
+      virtual Windows::Foundation::Rect get_window_rect() = 0;
       virtual Windows::Foundation::Point get_cursor_pos() = 0;
    };
 
@@ -50,6 +50,28 @@ namespace data
 namespace user
 {
 
+
+
+#if defined METROWIN && defined(__cplusplus_winrt)
+
+   
+   class CLASS_DECL_BASE native_window_initialize
+   {
+   public:
+
+
+      Platform::Agile<Windows::UI::Core::CoreWindow> window;
+      ::core::system_window ^ pwindow;
+
+
+   };
+
+
+#else
+
+   class native_window_initialize;
+
+#endif
 
    class control_event;
    class frame_window;
@@ -138,7 +160,7 @@ namespace user
 
       virtual bool create_message_queue(const char * pszName, ::message_queue_listener * pcallback = NULL);
 #ifdef METROWIN
-      virtual bool initialize(Windows::UI::Core::CoreWindow ^ window, ::core::system_window ^ pwindow);
+      virtual bool initialize(::user::native_window_initialize * pinitialize);
 #endif
 
 
@@ -564,9 +586,9 @@ namespace user
 
       virtual void _001OnTriggerMouseInside();
 
-#ifdef METROWIN
-      Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window();
-#endif
+//#ifdef METROWIN
+//      Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window();
+//#endif
 
 
       void offset_view_port_org(LPRECT lprect);

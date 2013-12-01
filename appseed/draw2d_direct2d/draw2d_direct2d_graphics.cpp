@@ -692,12 +692,53 @@ namespace draw2d_direct2d
 
    }
 
-   void graphics::FillRect(LPCRECT lpRect, ::draw2d::brush* pBrush)
+   void graphics::FillRect(LPCRECT lpRect, ::draw2d::brush* pbrush)
    { 
-      throw todo(get_app());      //ASSERT(get_handle1() != NULL); 
-      //::FillRect(get_handle1(), lpRect, (HBRUSH)pBrush->get_os_data()); 
+      //g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+      //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+      //g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
+
+      if (m_prendertarget == NULL)
+         return;
+
+      D2D1_RECT_F r;
+
+      r.left = (FLOAT)lpRect->left;
+      r.top = (FLOAT)lpRect->top;
+      r.right = (FLOAT)lpRect->right;
+      r.bottom = (FLOAT)lpRect->bottom;
+
+      m_prendertarget->FillRectangle(&r, (dynamic_cast < ::draw2d_direct2d::brush * > (pbrush))->get_os_brush((graphics *) this));
+
 
    }
+
+
+   bool graphics::DrawRect(LPCRECT lpRect, ::draw2d::pen* ppen)
+   {
+      //g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+      //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+      //g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
+
+      if (m_prendertarget == NULL)
+         return false;
+
+      SelectObject(m_spbrush);
+
+      D2D1_RECT_F r;
+
+      r.left = (FLOAT)lpRect->left;
+      r.top = (FLOAT)lpRect->top;
+      r.right = (FLOAT)lpRect->right;
+      r.bottom = (FLOAT)lpRect->bottom;
+
+      m_prendertarget->DrawRectangle(&r, (dynamic_cast < ::draw2d_direct2d::pen * > (ppen))->get_os_pen_brush((graphics *) this), (FLOAT)ppen->m_dWidth);
+
+      return true;
+
+   }
+
+
    void graphics::FrameRect(LPCRECT lpRect, ::draw2d::brush* pBrush)
    { 
       throw todo(get_app());
@@ -1130,7 +1171,7 @@ namespace draw2d_direct2d
 
       bool bOk1 = true;
 
-      if(m_spbrush->get_os_data() != NULL)
+      //if(m_spbrush->get_os_data() != NULL)
       {
 
          bOk1 = FillRectangle(x1, y1, x2, y2);
@@ -1139,7 +1180,7 @@ namespace draw2d_direct2d
 
       bool bOk2 = true;
 
-      if(m_sppen->get_os_data() != NULL)
+      //if(m_sppen->get_os_data() != NULL)
       {
 
          bOk2 = DrawRectangle(x1, y1, x2, y2);
@@ -1160,7 +1201,7 @@ namespace draw2d_direct2d
    bool graphics::DrawRectangle(int x1, int y1, int x2, int y2)
    { 
 
-      if(m_sppen->get_os_data() == NULL)
+      if (m_sppen->m_etype == ::draw2d::pen::type_null)
          return true;
 
       D2D1_RECT_F r;
@@ -1170,7 +1211,7 @@ namespace draw2d_direct2d
       r.right     = (FLOAT) x2;
       r.bottom    = (FLOAT) y2;
 
-      m_prendertarget->DrawRectangle(&r, (ID2D1Brush *) m_sppen->get_os_data(), (FLOAT) m_sppen->m_dWidth);
+      m_prendertarget->DrawRectangle(&r, (dynamic_cast < ::draw2d_direct2d::pen * > (m_sppen.m_p))->get_os_pen_brush((graphics *) this), (FLOAT)m_sppen->m_dWidth);
 
       return true;
 

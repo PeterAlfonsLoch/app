@@ -66,6 +66,11 @@ namespace simple_ui
       virtual style * get_style();
 
 
+      virtual void viewport_client_to_screen(POINT * ppt);
+      virtual void viewport_screen_to_client(POINT * ppt);
+      virtual void viewport_client_to_screen(RECT * ppt);
+      virtual void viewport_screen_to_client(RECT * ppt);
+
       virtual void client_to_screen(POINT * ppt);
       virtual void client_to_screen(RECT * prect);
       virtual void screen_to_client(POINT * ppt);
@@ -87,6 +92,8 @@ namespace simple_ui
       
       
       virtual void redraw_window();
+
+      virtual void get_cursor_pos(POINT * ppt);
 
    };
 

@@ -461,7 +461,16 @@ void base_application::set_key_pressed(::user::e_key ekey, bool bPressed)
    }
    else if (m_pbasesystem != NULL)
    {
+      
+      if (m_pbasesystem == this)
+      {
+
+         return;
+
+      }
+
       return Sys(this).set_key_pressed(ekey, bPressed);
+
    }
    else
    {
@@ -634,7 +643,7 @@ void base_application::TermThread(HINSTANCE hInstTerm)
 }
 
 
-#ifdef METROWIN
+/*#ifdef METROWIN
 sp(::user::interaction) base_application::window_from_os_data(void * pdata)
 {
 
@@ -651,7 +660,7 @@ sp(::user::interaction) base_application::window_from_os_data_permanent(void * p
 }
 
 
-#endif
+#endif*/
 
 sp(::user::window) base_application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
 {
@@ -1223,6 +1232,12 @@ string CLASS_DECL_BASE base_application::show_auth_window(LPRECT lprect, string 
 int_bool base_application::get_temp_file_name_template(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension, const char * pszTemplate)
 {
 
+#ifdef METROWIN
+
+   string str(::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path);
+
+#else
+
    char lpPathBuffer[MAX_PATH * 4];
 
    uint32_t dwRetVal = GetTempPath(sizeof(lpPathBuffer), lpPathBuffer);
@@ -1234,22 +1249,13 @@ int_bool base_application::get_temp_file_name_template(char * szRet, ::count iBu
 
    }
 
-   char bufTime[30];
+   string str(lpPathBuffer);
 
-   char bufItem[30];
+#endif
 
-   //   char buf[30];
+   char bufItem[64];
 
-   size_t iLen = strlen_dup(lpPathBuffer);
-
-   if (!(lpPathBuffer[iLen - 1] == '/' || lpPathBuffer[iLen - 1] == '\\'))
-   {
-
-      lpPathBuffer[iLen] = '\\';
-
-      lpPathBuffer[iLen + 1] = '\0';
-
-   }
+   string strRelative;
 
    SYSTEMTIME st;
 
@@ -1259,49 +1265,38 @@ int_bool base_application::get_temp_file_name_template(char * szRet, ::count iBu
 
    itoa_dup(bufItem, st.wYear, 10);
    zero_pad(bufItem, 4);
-   strcpy_dup(bufTime, bufItem);
+   strRelative += bufItem;
 
    itoa_dup(bufItem, st.wMonth, 10);
    zero_pad(bufItem, 2);
-   strcat_dup(bufTime, "-");
-   strcat_dup(bufTime, bufItem);
+   strRelative += "-";
+   strRelative += bufItem;
 
    itoa_dup(bufItem, st.wDay, 10);
    zero_pad(bufItem, 2);
-   strcat_dup(bufTime, "-");
-   strcat_dup(bufTime, bufItem);
+   strRelative += "-";
+   strRelative += bufItem;
 
    itoa_dup(bufItem, st.wHour, 10);
    zero_pad(bufItem, 2);
-   strcat_dup(bufTime, " ");
-   strcat_dup(bufTime, bufItem);
+   strRelative += " ";
+   strRelative += bufItem;
 
    itoa_dup(bufItem, st.wMinute, 10);
    zero_pad(bufItem, 2);
-   strcat_dup(bufTime, "-");
-   strcat_dup(bufTime, bufItem);
+   strRelative += "-";
+   strRelative += bufItem;
 
    itoa_dup(bufItem, st.wSecond, 10);
    zero_pad(bufItem, 2);
-   strcat_dup(bufTime, "-");
-   strcat_dup(bufTime, bufItem);
+   strRelative += "-";
+   strRelative += bufItem;
+
+   string strRet;
 
    for (int32_t i = 0; i < (1024 * 1024); i++)
    {
-      strcpy_dup(szRet, lpPathBuffer);
-      {
-         strcat_dup(szRet, bufTime);
-         strcat_dup(szRet, "-");
-      }
-      {
-         strcat_dup(szRet, hex::lower_from(i + 1));
-         strcat_dup(szRet, "\\");
-      }
-      strcat_dup(szRet, pszName);
-      //if(i >= 0)
-      //if(i > 0)
-      strcat_dup(szRet, ".");
-      strcat_dup(szRet, pszExtension);
+      strRet = System.dir().path(str, strRelative + "-" + hex::lower_from(i + 1), string(pszName) + string(".") + pszExtension);
       if (pszTemplate != NULL)
       {
          if (System.install().is_file_ok(szRet, pszTemplate))
@@ -1332,6 +1327,7 @@ int_bool base_application::get_temp_file_name_template(char * szRet, ::count iBu
    }
    return FALSE;
 
+
 }
 
 
@@ -1349,7 +1345,7 @@ void base_application::get_screen_rect(LPRECT lprect)
 #ifdef METROWIN
    if (m_bSessionSynchronizedScreen)
    {
-      System.get_window_rect(m_rectScreen);
+      System.get_monitor_rect(0, m_rectScreen);
    }
 #elif defined(LINUX)
    if (m_bSessionSynchronizedScreen)

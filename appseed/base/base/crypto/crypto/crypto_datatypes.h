@@ -45,6 +45,7 @@
 #pragma once
 
 
+#include "app/appseed/base/net/net_byte_order.h"
 
 
 #ifndef _DATATYPES_H
@@ -415,7 +416,7 @@ static inline uint32_t be32_to_cpu(uint32_t v) {
 #  elif defined HAVE_WINSOCK2_H
 #   include <winsock2.h>
 #  endif
-#  define be32_to_cpu(x)   ntohl((x))
+#  define be32_to_cpu(x)   NTOHL((x))
 # endif /* HAVE_X86 */
 
 #ifdef WINDOWS

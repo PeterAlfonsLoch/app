@@ -31,10 +31,6 @@ namespace plane
       index                                        m_iNewEdge;
 
       mutex                                        m_mutex;
-#ifdef METROWIN
-      sp(::user::interaction)                      m_pui;
-      ::core::system_window ^                       m_pwindow;
-#endif
       sp(::filehandler::handler)                   m_spfilehandler;
 
 

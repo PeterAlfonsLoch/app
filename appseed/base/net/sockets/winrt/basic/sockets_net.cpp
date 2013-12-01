@@ -714,7 +714,7 @@ namespace sockets
    string net::canonical_name(const ::net::address & address)
    {
 
-      return address.m_hostname->CanonicalName;
+      return address.m_posdata->m_hostname->CanonicalName;
 
    }
 

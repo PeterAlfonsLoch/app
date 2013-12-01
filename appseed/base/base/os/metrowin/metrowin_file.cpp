@@ -419,6 +419,7 @@ bool file_get_memory_dup(::primitive::memory_base & memory, const char * path)
 
 }
 
+/*
 
 int_bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension, const char * pszTemplate)
 {
@@ -506,7 +507,7 @@ int_bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const ch
 
 }
 
-
+*/
 
 
 

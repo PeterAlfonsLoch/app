@@ -9,6 +9,23 @@ namespace net
    {
    public:
 
+#if defined METROWIN && defined(__cplusplus_winrt)
+
+      class CLASS_DECL_BASE os_data
+      {
+      public:
+
+         ::Windows::Networking::HostName ^      m_hostname;
+         ::Platform::String ^                   m_strService;
+
+      };
+
+#else
+
+      class os_data;
+
+
+#endif
 
       union
       {
@@ -35,8 +52,7 @@ namespace net
 
 #ifdef METROWIN
 
-      ::Windows::Networking::HostName ^      m_hostname;
-      ::Platform::String ^                   m_strService;
+      os_data * m_posdata;
 
 #endif
 
@@ -52,7 +68,7 @@ namespace net
       address(const sockaddr_in6 & a);
       address(const sockaddr & sa);
       address(const address & address);
-
+      ~address();
 
 
       address & operator = (const address & address);
@@ -159,8 +175,8 @@ namespace net
    {
 
       return is_ipv6() || is_ipv4()
-#ifdef METROWIN
-         || m_hostname != nullptr
+#if defined METROWIN && defined(__cplusplus_winrt)
+         || (m_posdata != NULL && m_posdata->m_hostname != nullptr)
 #endif
          ;
 

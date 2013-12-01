@@ -208,6 +208,8 @@ bool thread::begin(int32_t epriority, uint_ptr nStackSize, uint32_t dwCreateFlag
    if (m_p == NULL)
       return false;
 
+   m_p->m_p = this;
+
    return m_p->begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
 
 }
@@ -483,8 +485,7 @@ throw interface_only_exception(get_app());
 */
 void thread::set_os_data(void * pvoidOsData)
 {
-   UNREFERENCED_PARAMETER(pvoidOsData);
-   throw interface_only_exception(get_app());
+   m_p->set_os_data(pvoidOsData);
 }
 
 void thread::set_os_int(int_ptr iData)

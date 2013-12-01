@@ -30,10 +30,19 @@
 namespace file_watcher
 {
 
-#ifdef METROWIN   
+#if defined METROWIN &&  defined(__cplusplus_winrt)
    ref class watch_struct;
+   struct watch_holder
+   {
+      watch_struct ^ w;
+   };
+
 #else
    struct watch_struct;
+   struct watch_holder
+   {
+      watch_struct * w;
+   };
 #endif
 
 
@@ -41,7 +50,31 @@ namespace file_watcher
 	{
 	public:
 
-      
+#if defined METROWIN &&  defined(__cplusplus_winrt)
+
+      class action
+      {
+      public:
+
+         watch_struct ^ watch;
+         ::Windows::Storage::Search::IStorageQueryResultBase ^ r;
+
+      };
+
+#else
+      class action
+      {
+      public:
+
+         watch_struct * watch;
+         const char * filename;
+         uint32_t ulOsAction;
+
+      };
+
+#endif
+
+        
       file_watcher_impl();
 		virtual ~file_watcher_impl();
 
@@ -59,11 +92,7 @@ namespace file_watcher
 		virtual void update() = 0;
 
 		/// Handles the action
-#ifdef METROWIN
-		virtual void handle_action(watch_struct ^ watch, ::Windows::Storage::Search::IStorageQueryResultBase ^ r) = 0;
-#else
-      virtual void handle_action(watch_struct * watch, const char * filename, uint32_t ulOsAction) = 0;
-#endif
+		virtual void handle_action(action * paction) = 0;
 
 	};
 

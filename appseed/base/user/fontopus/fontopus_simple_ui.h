@@ -9,7 +9,8 @@ namespace fontopus
    class simple_ui :
       virtual public ::os::simple_ui,
       virtual public ::simple_ui::style,
-      virtual public login::callback
+      virtual public login::callback,
+      virtual public thread
    {
    public:
 
@@ -29,6 +30,9 @@ namespace fontopus
 
 
       virtual string interactive_auth(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
+
+
+      virtual void GetWindowRect(LPRECT lprect);
 
 
       virtual void draw_dark_glass(::draw2d::graphics * pgraphics);
@@ -54,6 +58,7 @@ namespace fontopus
       virtual void login_result(login::e_result eresult);
       
       
+      virtual int32_t run();
 
    };
 

@@ -134,15 +134,19 @@ namespace sockets
 
       m_bConnecting = true;
 
-      m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket;
+      m_posdata->m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket;
+
+      ::sockets::socket::os_data data;
+
+      data.o = m_posdata->m_streamsocket;
       
-      attach(m_streamsocket);
+      attach(data);
 
       m_event.ResetEvent();
 
       Platform::String ^ strService = ::str::from(ad.get_service_number());
 
-      m_streamsocket->ConnectAsync(ad.m_hostname, strService)->Completed = 
+      m_posdata->m_streamsocket->ConnectAsync(ad.m_posdata->m_hostname, strService)->Completed = 
          ref new ::Windows::Foundation::AsyncActionCompletedHandler
          ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
@@ -190,13 +194,14 @@ namespace sockets
       }*/
 
 
-      m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket;
+      m_posdata->m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket;
       
-      ::Windows::Networking::EndpointPair ^ pair = ref new ::Windows::Networking::EndpointPair(bind_ad.m_hostname,  itoa_dup(bind_ad.get_service_number()), ad.m_hostname, itoa_dup(ad.get_service_number()));
+      ::Windows::Networking::EndpointPair ^ pair = ref new ::Windows::Networking::EndpointPair(bind_ad.m_posdata->m_hostname,  itoa_dup(bind_ad.get_service_number()), ad.m_posdata->m_hostname, itoa_dup(ad.get_service_number()));
+      ::sockets::socket::os_data data;
+      data.o = m_posdata->m_streamsocket;
+      attach(data);
 
-      attach(m_streamsocket);
-
-      m_streamsocket->ConnectAsync(pair)->Completed = 
+      m_posdata->m_streamsocket->ConnectAsync(pair)->Completed =
          ref new ::Windows::Foundation::AsyncActionCompletedHandler
             ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
@@ -211,9 +216,9 @@ namespace sockets
       });
 
 
-      m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket();
-
-      attach(m_streamsocket);
+      m_posdata->m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket();
+      data.o = m_posdata->m_streamsocket;
+      attach(data);
 
       SetConnecting(false);
       SetSocks4(false);
@@ -427,7 +432,7 @@ namespace sockets
       m_bExpectRequest = false;
       m_bExpectResponse = false;
 
-      ::Windows::Storage::Streams::DataReader ^ reader = ref new ::Windows::Storage::Streams::DataReader(m_streamsocket->InputStream);
+      ::Windows::Storage::Streams::DataReader ^ reader = ref new ::Windows::Storage::Streams::DataReader(m_posdata->m_streamsocket->InputStream);
 
       if(reader->UnconsumedBufferLength > 0)
       {
@@ -699,14 +704,14 @@ namespace sockets
 
       //m_event.wait();
 
-      if(m_writer == nullptr)
+      if (m_posdata->m_writer == nullptr)
       {
        
-         m_writer = ref new ::Windows::Storage::Streams::DataWriter(m_streamsocket->OutputStream);
+         m_posdata->m_writer = ref new ::Windows::Storage::Streams::DataWriter(m_posdata->m_streamsocket->OutputStream);
 
       }
 
-      m_writer->WriteBytes(ref new Platform::Array < unsigned char, 1U >((unsigned char *) buf, len));
+      m_posdata->m_writer->WriteBytes(ref new Platform::Array < unsigned char, 1U >((unsigned char *)buf, len));
 
 
       //int n = reader->UnconsumedBufferLength;
@@ -938,7 +943,7 @@ namespace sockets
 
    void tcp_socket::OnSSLConnect()
    {
-      ::wait(m_streamsocket->UpgradeToSslAsync(::Windows::Networking::Sockets::SocketProtectionLevel::Tls10, m_addressRemote.m_hostname));
+      ::wait(m_posdata->m_streamsocket->UpgradeToSslAsync(::Windows::Networking::Sockets::SocketProtectionLevel::Tls10, m_addressRemote.m_posdata->m_hostname));
 /*      SetNonblocking(true);
       {
          if (m_ssl_ctx)

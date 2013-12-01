@@ -14,7 +14,7 @@ namespace user
 
 
 class oswindow_dataptra :
-   public comparable_raw_array < oswindow_data * >
+   public comparable_raw_array < oswindow_data * >::type
 {
 public:
 
@@ -35,15 +35,12 @@ oswindow_dataptra * g_oswindow_dataptra()
    if(this == NULL)
       return NULL;
    
-   if(m_pui == NULL)
-      return NULL;
-
-   return m_pui->m_pui;
+   return m_pui;
 
 }
 
 
-int oswindow_find(::user::base_interaction * pui)
+int oswindow_find(::user::interaction * pui)
 {
 
    for(int i = 0; i < g_oswindow_dataptra()->get_count(); i++)
@@ -59,7 +56,7 @@ int oswindow_find(::user::base_interaction * pui)
 }
 
 
-oswindow oswindow_get(::user::base_interaction * pui)
+oswindow oswindow_get(::user::interaction * pui)
 {
 
    int_ptr iFind = oswindow_find(pui);
@@ -80,7 +77,7 @@ oswindow oswindow_get(::user::base_interaction * pui)
 
 
 
-int_bool oswindow_remove(::user::base_interaction * pui)
+int_bool oswindow_remove(::user::interaction * pui)
 {
 
    int_ptr iFind = oswindow_find(pui);

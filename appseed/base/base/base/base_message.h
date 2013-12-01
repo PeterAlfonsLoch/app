@@ -2,7 +2,9 @@
 
 #ifdef METROWIN
 
+#if defined(__cplusplus_winrt)
 #include <agile.h>
+#endif
 
 typedef struct tagCREATESTRUCTA {
    LPVOID      lpCreateParams;

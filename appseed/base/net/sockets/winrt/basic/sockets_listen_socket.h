@@ -27,8 +27,33 @@
       {
       public:
 
+#if defined(__cplusplus_winrt)
 
-         ::Windows::Networking::Sockets::StreamSocketListener  ^ m_listener;
+         class os_data
+         {
+         public:
+
+            ::Windows::Networking::Sockets::StreamSocketListener  ^ m_listener;
+
+         };
+
+         class on_listener_accept_data
+         {
+         public:
+
+            ::Windows::Networking::Sockets::StreamSocketListener ^ listener;
+            ::Windows::Networking::Sockets::StreamSocketListenerConnectionReceivedEventArgs ^ args;
+
+         };
+
+#else
+
+         class os_data;
+         class on_listener_accept_data;
+
+#endif
+
+         os_data * m_posdata;
          bool m_bDetach;
 
 
@@ -38,6 +63,7 @@
          listen_socket(base_socket_handler& h,bool use_creator = true) : element(h.get_app()), base_socket(h), socket(h), m_depth(0), m_creator(NULL)
             ,m_bHasCreate(false), m_bDetach(false)
          {
+            m_posdata = new os_data;
             if (use_creator)
             {
                m_creator = new X(h);
@@ -57,15 +83,16 @@
             {
                delete m_creator;
             }
+            delete m_posdata;
          }
 
          /** close file descriptor. */
          void close()
          {
 
-            if(m_listener != nullptr)
+            if(m_posdata->m_listener != nullptr)
             {
-               delete m_listener;
+               delete m_posdata->m_listener;
             }
 /*            if (GetSocket() != INVALID_SOCKET)
             {
@@ -116,13 +143,17 @@
          int Bind(port_t port, const string & protocol, int depth = 20)
          {
 
-            m_listener = ref new ::Windows::Networking::Sockets::StreamSocketListener;
+            m_posdata->m_listener = ref new ::Windows::Networking::Sockets::StreamSocketListener;
 
-            m_listener->BindServiceName(rtstr(::ca::str::from(port)));
+            m_posdata->m_listener->BindServiceName(rtstr(::ca::str::from(port)));
 
             m_depth = depth;
 
-            attach(m_listener);
+            ::sockets::socket::os_data data;
+
+            data.o = m_posdata->m_listener;
+
+            attach(data);
 
             return 0;
 
@@ -145,11 +176,11 @@
          {
 
 
-            m_listener = ref new ::Windows::Networking::Sockets::StreamSocketListener;
+            m_posdata->m_listener = ref new ::Windows::Networking::Sockets::StreamSocketListener;
 
             //SOCKET s;
             //m_iBindPort = ad.GetPort();
-            m_listener->BindEndpointAsync(ad.m_hostname, ::str::from(ad.get_service_number()));
+            m_posdata->m_listener->BindEndpointAsync(ad.m_posdata->m_hostname, ::str::from(ad.get_service_number()));
 /*            {
                return -1;
             }
@@ -167,7 +198,9 @@
                return -1;
             }*/
             m_depth = depth;
-            attach(m_listener);
+            ::sockets::socket::os_data data;
+            data.o = m_posdata->m_listener;
+            attach(data);
             return 0;
          }
 
@@ -184,7 +217,7 @@
          }
 
          /** OnRead on a listen_socket receives an incoming connection. */
-         void on_listener_accept(::Windows::Networking::Sockets::StreamSocketListener ^ listener, ::Windows::Networking::Sockets::StreamSocketListenerConnectionReceivedEventArgs ^ args)
+         void on_listener_accept(on_listener_accept_data & data)
          {
 
             struct sockaddr sa;
@@ -213,7 +246,7 @@
             tmp -> EnableSSL(IsSSL()); // SSL Enabled socket
             tmp -> SetIpv6( IsIpv6() );
             tmp -> set_parent(this);
-            tmp->m_tcpsocket = args->Socket;
+            tmp->m_tcpsocket = data.args->Socket;
             tmp -> attach(args->Socket);
             tmp -> SetNonblocking(true);
             {

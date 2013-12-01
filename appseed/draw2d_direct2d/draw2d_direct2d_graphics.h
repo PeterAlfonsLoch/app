@@ -1,12 +1,6 @@
 #pragma once
 
 
-#undef new
-
-
-#include <GdiPlus.h>
-
-
 namespace draw2d_direct2d
 {
 
@@ -253,8 +247,11 @@ namespace draw2d_direct2d
       bool PolyBezierTo(const POINT* lpPoints, int nCount);
 
    // Simple Drawing Functions
-      void FillRect(LPCRECT lpRect, ::draw2d::brush* pBrush);
-      void FrameRect(LPCRECT lpRect, ::draw2d::brush* pBrush);
+      virtual void FillRect(LPCRECT lpRect, ::draw2d::brush* pBrush);
+      virtual void FrameRect(LPCRECT lpRect, ::draw2d::brush* pBrush);
+      virtual bool DrawRect(LPCRECT lpRect, ::draw2d::pen* ppen);
+
+
       void InvertRect(LPCRECT lpRect);
       bool DrawIcon(int x, int y, ::visual::icon * picon);
       bool DrawIcon(POINT point, ::visual::icon * picon);

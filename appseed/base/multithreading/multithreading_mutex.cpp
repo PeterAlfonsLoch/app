@@ -41,9 +41,9 @@ mutex::mutex(sp(base_application) papp, bool bInitiallyOwn, const char * pstrNam
 
          if(m_object == NULL)
          {
-
+#ifndef METROWIN
             throw resource_exception(papp);
-
+#endif
          }
 
       }

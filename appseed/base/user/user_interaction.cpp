@@ -1380,7 +1380,7 @@ namespace user
 
 #ifdef METROWIN
 
-   bool interaction::initialize(Windows::UI::Core::CoreWindow ^ window, ::core::system_window ^ pwindow)
+   bool interaction::initialize(::user::native_window_initialize * pinitialize)
    {
       if (IsWindow())
       {
@@ -1390,7 +1390,7 @@ namespace user
       m_pimpl = (Application.alloc(System.type_info < ::user::window >()));
       m_pimpl->m_pguie = this;
       m_pguie = this;
-      if (!m_pimpl->initialize(window, pwindow))
+      if (!m_pimpl->initialize(pinitialize))
       {
          delete m_pimpl;
          m_pimpl = NULL;
@@ -1606,7 +1606,7 @@ namespace user
       {
 #ifdef METROWIN
          if (pParentWnd == NULL)
-            pParentWnd = System.m_pui;
+            pParentWnd = System.m_posdata->m_pui;
 #endif
          m_pimpl = new virtual_user_interface(get_app());
          m_pimpl->m_pguie = this;
@@ -3478,7 +3478,7 @@ namespace user
       DestroyWindow();
 
    }
-
+   /*
 #ifdef METROWIN
 
 #ifdef METROWIN
@@ -3496,7 +3496,7 @@ namespace user
 #endif
 
 #endif
-
+   */
    void interaction::offset_view_port_org(LPRECT lprect)
    {
       if (m_pimpl == NULL)

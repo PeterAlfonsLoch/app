@@ -2917,7 +2917,7 @@ int32_t application::simple_message_box(sp(::user::interaction) puiOwner, const 
 
 #else
 
-   return MessageBox(m_psystem->m_pui->get_handle(), pszMessage, m_strAppName, fuStyle);
+   return MessageBox(m_psystem->m_posdata->m_pui->get_handle(), pszMessage, m_strAppName, fuStyle);
 
 #endif
 

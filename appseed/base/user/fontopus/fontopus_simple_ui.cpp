@@ -14,6 +14,7 @@ namespace fontopus
       ::simple_ui::style(papp),
       interaction(papp),
       ::os::simple_ui(papp),
+      ::thread(papp),
       m_login(papp, 0, 0)
    {
 
@@ -264,6 +265,13 @@ namespace fontopus
 
    }
 
+   void simple_ui::GetWindowRect(LPRECT lprect)
+   {
+      
+      *lprect = m_rect;
+
+   }
+
 
    void simple_ui::draw_pestana(::draw2d::graphics * pgraphics)
    {
@@ -477,7 +485,8 @@ namespace fontopus
             ::GetCursorPos(&ptNow);
             m_pt.x = ptNow.x - m_ptLButtonDown.x + m_ptLButtonDownPos.x;
             m_pt.y = ptNow.y - m_ptLButtonDown.y + m_ptLButtonDownPos.y;
-            SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+            move_window(m_pt.x, m_pt.y);
+//            SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
             m_bDrag = false;
          }
          return true;
@@ -737,7 +746,7 @@ namespace fontopus
 
    void simple_ui::draw_fuzzy_color_spread(::draw2d::graphics * pgraphics)
    {
-
+      /*
       rect rectWindow;
 
       GetWindowRect(rectWindow);
@@ -810,7 +819,7 @@ namespace fontopus
 
          }
       }
-
+      */
 
 
    }
@@ -926,24 +935,12 @@ namespace fontopus
       if (!strcmp(pszId, "submit"))
       {
 
-         m_bVisible = false;
-
-         show_window(false);
-
-         m_login.login_result(m_login.perform_login());
-
-         if (m_eresult == ::fontopus::login::result_fail)
+         if (get_os_data() == NULL)
          {
+            
+            ::thread::create(allocer());
 
-            show_window();
-
-            m_bVisible = true;
-
-         }
-         else
-         {
-
-            destroy_window();
+            begin();
 
          }
 
@@ -970,7 +967,42 @@ namespace fontopus
 
    }
 
+   int32_t simple_ui::run()
+   {
 
+      try
+      {
+
+         m_bVisible = false;
+
+         show_window(false);
+
+         m_login.login_result(m_login.perform_login());
+
+         if (m_eresult == ::fontopus::login::result_fail)
+         {
+
+            show_window();
+
+            m_bVisible = true;
+
+         }
+         else
+         {
+
+            destroy_window();
+
+         }
+      }
+      catch (...)
+      {
+      }
+
+      set_os_data(NULL);
+
+      return 0;
+
+   }
 
    string CLASS_DECL_BASE show_auth_window(base_application * papp, LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
    {

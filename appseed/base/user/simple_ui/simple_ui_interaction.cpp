@@ -73,7 +73,7 @@ namespace simple_ui
 
          get_window_rect(rectWindow);
 
-         get_top_level_parent()->screen_to_client(rectWindow);
+         get_top_level_parent()->viewport_screen_to_client(rectWindow);
 
          pgraphics->SetViewportOrg(rectWindow.left, rectWindow.top);
 
@@ -614,6 +614,40 @@ namespace simple_ui
    }
 
 
+
+   void interaction::viewport_client_to_screen(POINT * ppt)
+   {
+
+      client_to_screen(ppt);
+
+   }
+
+
+   void interaction::viewport_screen_to_client(POINT * ppt)
+   {
+
+      screen_to_client(ppt);
+
+   }
+
+
+   void interaction::viewport_client_to_screen(RECT * prect)
+   {
+
+      viewport_client_to_screen((POINT *)&prect->left);
+      viewport_client_to_screen((POINT *)&prect->right);
+
+   }
+
+
+   void interaction::viewport_screen_to_client(RECT * prect)
+   {
+
+      viewport_screen_to_client((POINT *)&prect->left);
+      viewport_screen_to_client((POINT *)&prect->right);
+
+   }
+
    void interaction::client_to_screen(POINT * ppt)
    {
 
@@ -737,6 +771,15 @@ namespace simple_ui
    
    }
 
+   void interaction::get_cursor_pos(POINT * ppt)
+   {
+
+      ui_get_cursor_pos(ppt);
+
+   }
 
 
 } // namespace simple_ui
+
+
+

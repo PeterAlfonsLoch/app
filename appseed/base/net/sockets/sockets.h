@@ -23,12 +23,12 @@ namespace net
 
    inline int32_t family_len(int32_t family)
    {
-      
-      if(family == AF_INET)
+
+      if (family == AF_INET)
          return sizeof(sockaddr_in);
-      else if(family == AF_INET6)
+      else if (family == AF_INET6)
          return sizeof(sockaddr_in6);
-      else 
+      else
          return 0;
 
    }
@@ -64,6 +64,8 @@ namespace net
 #else
 #error "Unknown Sockets Type?"
 #endif
+
+
 
 #include "base/filesystem/file/file_timeout_buffer.h"
 #include "base/filesystem/file/file_transfer_buffer.h"

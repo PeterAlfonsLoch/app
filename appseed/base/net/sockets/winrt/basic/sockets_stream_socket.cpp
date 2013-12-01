@@ -17,12 +17,14 @@ namespace sockets
       ,m_b_retry_connect(false)
       ,m_shutdown(0)
    {
+      m_posdata = new os_data;
    }
 
 
    stream_socket::~stream_socket()
    {
-      if(m_streamsocket != nullptr)
+      delete m_posdata;
+      //if(m_streamsocket != nullptr)
       {
          //m_streamsocket->Close();
 
@@ -158,7 +160,7 @@ namespace sockets
    port_t stream_socket::GetRemotePort()
    {
 
-      return System.net().service_port(m_streamsocket->Information->RemotePort);
+      return System.net().service_port(m_posdata->m_streamsocket->Information->RemotePort);
 
    }
    
@@ -166,7 +168,7 @@ namespace sockets
    ::net::address stream_socket::GetRemoteAddress()
    {
 
-      return ::net::address(m_streamsocket->Information->RemoteAddress->CanonicalName, m_streamsocket->Information->RemotePort);
+      return ::net::address(m_posdata->m_streamsocket->Information->RemoteAddress->CanonicalName, m_posdata->m_streamsocket->Information->RemotePort);
 
    }
 
@@ -174,7 +176,7 @@ namespace sockets
    port_t stream_socket::GetLocalPort()
    {
 
-      return System.net().service_port(m_streamsocket->Information->LocalPort);
+      return System.net().service_port(m_posdata->m_streamsocket->Information->LocalPort);
 
    }
      
@@ -182,7 +184,7 @@ namespace sockets
    ::net::address stream_socket::GetLocalAddress()
    {
 
-      return ::net::address(m_streamsocket->Information->LocalAddress->CanonicalName, m_streamsocket->Information->LocalPort);
+      return ::net::address(m_posdata->m_streamsocket->Information->LocalAddress->CanonicalName, m_posdata->m_streamsocket->Information->LocalPort);
 
    }
 

@@ -1,7 +1,5 @@
 #pragma once
 
-#include "core/core/core_log.h"
-
 
 #include "basic/sockets_socket.h"
 #include "basic/sockets_stream_socket.h"
@@ -12,12 +10,12 @@
 #include "basic/sockets_tls_socket.h"
 
 
-#include "core/net/sockets/base/sockets_base_socket_handler.h"
+#include "base/net/sockets/base/sockets_base_socket_handler.h"
 #include "basic/sockets_socket_handler.h"
 #include "basic/sockets_listen_socket.h"
 
 
-#include "core/net/sockets/http/sockets_http.h"
+#include "base/net/sockets/http/sockets_http.h"
 
 
 #include "webserver/webserver_ajp_base_socket.h"
@@ -37,6 +35,10 @@
 #include "sip/sip_udp_client_socket.h"
 #include "sip/sip_client.h"
 #include "sip/sip_server.h"
+
+
+#include "base/net/net_email_address.h"
+#include "base/net/net_email.h"
 
 #include "smtp/smtp_socket.h"
 #include "smtp/smtpd_socket.h"

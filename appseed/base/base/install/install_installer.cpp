@@ -2936,7 +2936,7 @@ RetryHost:
          //m_pwindow = new install::window;
       }
 
-#if defined(WINDOWS)
+#if defined(WINDOWSEX)
       if(m_pwindow != NULL)
       {
          m_pwindow->register_window_class(m_hinstance);

@@ -77,3 +77,5 @@ CLASS_DECL_BASE oswindow WINAPI ReleaseCapture();
 
 
 CLASS_DECL_BASE int_bool IsWindow(oswindow oswindow);
+
+

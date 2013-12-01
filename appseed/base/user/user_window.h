@@ -10,7 +10,25 @@
 namespace user
 {
 
+#if defined METROWIN && defined(__cplusplus_winrt)
 
+
+   class CLASS_DECL_BASE native_window
+   {
+   public:
+
+
+      ::core::system_window ^ m_pwindow;
+
+
+   };
+
+
+#else
+
+   class native_window;
+
+#endif
 
    class CLASS_DECL_BASE window :
       virtual public ::user::interaction
@@ -31,9 +49,7 @@ namespace user
 
       //UINT m_nFlags;      // see WF_ flags above
 
-#ifdef METROWIN
-      ::core::system_window ^       m_pwindow;
-#endif
+      native_window *               m_pwindow;
 
 
       ::draw2d::font * m_pfont;
@@ -48,7 +64,7 @@ namespace user
 
       virtual bool create_message_queue(const char * pszName, ::message_queue_listener * pcallback = NULL);
 #ifdef METROWIN
-      virtual bool initialize(Windows::UI::Core::CoreWindow ^ window, ::core::system_window ^ pwindow) = 0;
+      virtual bool initialize(::user::native_window_initialize * pinitialize) = 0;
 #endif
 
 

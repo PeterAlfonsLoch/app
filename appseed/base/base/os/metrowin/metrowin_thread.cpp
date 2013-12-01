@@ -83,7 +83,7 @@ map < HTHREAD, HTHREAD, ThreadLocalData* ,  ThreadLocalData * > & all_thread_dat
 }
 
 DWORD nextTlsIndex = 0;
-uint32_array freeTlsIndices;
+uint_array freeTlsIndices;
 
 
 // Converts a Win32 thread priority to WinRT format.
@@ -517,7 +517,7 @@ int WINAPI GetThreadPriority(_In_ HTHREAD hThread)
 
 
 mutex * os_thread::s_pmutex = NULL;
-comparable_raw_array < os_thread * > * os_thread::s_pptra = NULL;
+comparable_raw_array < os_thread * >::type * os_thread::s_pptra = NULL;
 __declspec(thread) os_thread * t_posthread = NULL;
 
 os_thread::os_thread(uint32_t ( * pfn)(void *), void * pv)

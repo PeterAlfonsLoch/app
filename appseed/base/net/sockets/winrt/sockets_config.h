@@ -19,6 +19,7 @@
 #endif // _RUN_DP
 
 
+typedef int32_t SOCKET;
 
 
 /* Ipv6 support. */

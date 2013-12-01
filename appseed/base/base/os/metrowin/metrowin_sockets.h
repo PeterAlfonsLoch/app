@@ -21,7 +21,9 @@ typedef unsigned long   u_long;
 typedef unsigned __int64 u_int64;
 #endif //(_WIN32_WINNT >= 0x0501)
 
+#ifdef __cplusplus
 }
+#endif
 
 #ifndef s_addr
 /*

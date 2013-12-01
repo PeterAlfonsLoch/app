@@ -21,14 +21,31 @@ namespace crypto
       {
       public:
 
+#if defined METROWIN && defined(__cplusplus_winrt)
+
+         class os_data
+         {
+         public:
+            
+            ::Windows::Security::Cryptography::Core::CryptographicHash ^ m_hash;
+
+
+         };
+         
+
+#else
+
+         class os_data;
+
+#endif
 
          bool                    m_bEnd;
 
          ::primitive::memory     m_memoryDigest;
 
-#ifdef METROWIN
+#if defined METROWIN
 
-         ::Windows::Security::Cryptography::Core::CryptographicHash ^ m_hash;
+         os_data * m_posdata;
 
 #else
          MD5_CTX                 m_ctx;

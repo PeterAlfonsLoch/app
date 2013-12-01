@@ -299,7 +299,8 @@ namespace file
 
 #elif defined(METROWIN)
 
-#include "base/metrowin/metrowin.h"
+#include "base/os/metrowin/metrowin.h"
+#include "base/os/metrowin/metrowin_user_impl.h"
 
 #elif defined(MACOS)
 
@@ -398,6 +399,13 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 #include "base_departament.h"
 #include "base_departament_container.h"
+
+#if defined(METROWIN)
+
+#include "app/appseed/base/base/os/metrowin/metrowin_sockets.h"
+
+#endif
+
 
 #include "base/net/sockets/sockets.h"
 
@@ -501,7 +509,9 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 #include "base_launcher.h"
+#ifndef METROWIN
 #include "base_small_ipc_channel.h"
+#endif
 #include "base/hotplugin/hotplugin.h"
 
 
@@ -704,6 +714,11 @@ namespace numeric_info
 #define _DRAW2D_GDIPLUS_LIBRARY
 #endif
 #include "nodeapp/appseed/draw2d_gdiplus/draw2d_gdiplus.h"
+#elif defined(METROWIN)
+#ifdef _BASE_LIBRARY
+#define _DRAW2D_DIRECT2D_LIBRARY
+#endif
+#include "app/appseed/draw2d_direct2d/draw2d_direct2d.h"
 #endif
 
 
@@ -840,7 +855,6 @@ namespace numeric_info
 #include "app/appseed/base/base/os/linux/linux_cpp.h"
 
 #endif
-
 
 
 #if defined(LINUX) || defined(MACOS)

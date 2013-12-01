@@ -9612,7 +9612,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\geometry\geometry_types.cpp" />
     <ClCompile Include="primitive\math\math_math.cpp" />
     <ClCompile Include="primitive\math\math_math_rng.cpp" />
-    <ClCompile Include="primitive\math\_math.cpp" />
     <ClCompile Include="primitive\primitive_application_bias.cpp" />
     <ClCompile Include="primitive\primitive_bit.cpp" />
     <ClCompile Include="primitive\primitive_color.cpp" />

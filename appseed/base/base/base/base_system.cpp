@@ -18,6 +18,11 @@ base_system::base_system(sp(base_application) papp) :
 {
 
 
+   m_psimpleui = NULL;
+
+
+   m_posdata = new os_data();
+
    set_app(this);
 
 

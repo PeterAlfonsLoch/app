@@ -53,7 +53,10 @@ namespace file_watcher
 
       void ContentsChanged(::Windows::Storage::Search::IStorageQueryResultBase ^ r, ::Platform::Object ^ o)
       {
-         ((file_watcher_impl *) m_pwatcher)->handle_action(this, r);
+         file_watcher_impl::action action;
+         action.watch = this;
+         action.r = r;
+         ((file_watcher_impl *) m_pwatcher)->handle_action(&action);
       }
 
 	};
@@ -171,7 +174,7 @@ namespace file_watcher
       watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
 		for(; ppair != NULL; m_watchmap.PGetNextAssoc(ppair))
 		{
-         DestroyWatch(ppair->m_element2);
+         DestroyWatch(ppair->m_element2.w);
 		}
 		m_watchmap.remove_all();
 	}
@@ -190,8 +193,12 @@ namespace file_watcher
 		pwatch->m_pwatcher      = (size_t) (int_ptr) (file_watcher_impl *) this;
 		pwatch->m_plistener     = (size_t) (int_ptr) (file_watch_listener *) watcher;
 		pwatch->m_strDirName    = directory;
+
+      watch_holder holder;
+
+      holder.w = pwatch;
       
-		m_watchmap.set_at(watchid, pwatch);
+		m_watchmap.set_at(watchid, holder);
 
 		return watchid;
 
@@ -204,7 +211,7 @@ namespace file_watcher
       Platform::String ^ strDir = directory;
       for(; ppair != NULL; m_watchmap.PGetNextAssoc(ppair))
 		{
-         if(strDir == ppair->m_element2->m_strDirName)
+         if(strDir == ppair->m_element2.w->m_strDirName)
 			{
 				remove_watch(ppair->m_element1);
 				return;
@@ -219,7 +226,7 @@ namespace file_watcher
 		if(ppair == NULL)
 			return;
 
-      watch_struct ^ pwatch = ppair->m_element2;
+      watch_struct ^ pwatch = ppair->m_element2.w;
       m_watchmap.remove_key(ppair->m_element1);
 
 		DestroyWatch(pwatch);
@@ -227,7 +234,7 @@ namespace file_watcher
 
    string os_file_watcher::watch_path(id watchid)
    {
-      return begin(m_watchmap[watchid]->m_strDirName);
+      return begin(m_watchmap[watchid].w->m_strDirName);
    }
 
 	void os_file_watcher::update()
@@ -235,7 +242,7 @@ namespace file_watcher
 		//MsgWaitForMultipleObjectsEx(0, NULL, 0, QS_ALLINPUT, MWMO_ALERTABLE);
 	}
 
-	void os_file_watcher::handle_action(watch_struct ^ watch, ::Windows::Storage::Search::IStorageQueryResultBase ^ r)
+	void os_file_watcher::handle_action(action * paction)
 	{
 		/*Action fwAction;
 

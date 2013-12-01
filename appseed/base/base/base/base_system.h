@@ -24,6 +24,28 @@ class CLASS_DECL_BASE base_system :
 {
 public:
 
+#if defined METROWIN && defined(__cplusplus_winrt)
+
+   class os_data
+   {
+   public:
+
+      sp(::user::interaction)                      m_pui;
+      ::core::system_window ^                      m_pwindow;
+
+
+   };
+
+
+#else
+
+   class os_data;
+
+#endif
+
+   ::os::simple_ui *                            m_psimpleui;
+   os_data *                                    m_posdata;
+
 
    stridsp(type)                                m_typemap;
    spa(service_base)                            m_serviceptra;

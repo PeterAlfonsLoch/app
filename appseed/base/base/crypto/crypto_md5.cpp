@@ -16,15 +16,21 @@ namespace crypto
 
          m_bEnd = false;
 
+         
+
 #ifdef METROWIN
+
+         m_posdata = new os_data;
 
          ::Windows::Security::Cryptography::Core::HashAlgorithmProvider ^ provider = 
             ::Windows::Security::Cryptography::Core::HashAlgorithmProvider::OpenAlgorithm(
                ::Windows::Security::Cryptography::Core::HashAlgorithmNames::Md5);
 
-         m_hash = provider->CreateHash();
+         m_posdata->m_hash = provider->CreateHash();
 
 #else
+
+         m_posdata = NULL.
          
          MD5_Init(&m_ctx);
 
@@ -35,6 +41,14 @@ namespace crypto
 
       context::~context()
       {
+
+         if (m_posdata != NULL)
+         {
+
+            delete m_posdata;
+            m_posdata = NULL;
+
+         }
 
       }
 
@@ -51,7 +65,7 @@ namespace crypto
 #ifdef METROWIN
 
 
-         m_hash->Append(::Windows::Security::Cryptography::CryptographicBuffer::CreateFromByteArray(ref new Platform::Array < uchar, 1U > ((uchar *) data, size)));
+         m_posdata->m_hash->Append(::Windows::Security::Cryptography::CryptographicBuffer::CreateFromByteArray(ref new Platform::Array < uchar, 1U > ((uchar *) data, size)));
 
 #else
 
@@ -101,7 +115,7 @@ namespace crypto
 
 #ifdef METROWIN
 
-            m_memoryDigest.set_os_buffer(m_hash->GetValueAndReset());
+            m_memoryDigest.set_os_buffer(m_posdata->m_hash->GetValueAndReset());
 
 #else
          
@@ -125,7 +139,7 @@ namespace crypto
 
 #ifdef METROWIN
 
-            m_hash->GetValueAndReset();
+            m_posdata->m_hash->GetValueAndReset();
 
 #endif
 

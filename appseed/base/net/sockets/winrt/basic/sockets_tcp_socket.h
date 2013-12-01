@@ -44,6 +44,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       class CLASS_DECL_BASE tcp_socket :
          virtual public stream_socket
       {
+      public:
+#if defined(__cplusplus_winrt)
+
+
+         class on_connected
+         {
+         public:
+            ::Windows::Foundation::IAsyncAction ^ action;
+            ::Windows::Foundation::AsyncStatus status;
+
+         };
+#else
+
+         class on_connected;
+
+#endif
          /** \defgroup internal Internal utility */
       protected:
          /** Output buffer struct.
@@ -278,7 +294,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          const string & GetPassword();
 
 
-         void OnConnected(::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status);
+         void OnConnected(on_connected & connected);
 
          ::file::circular_buffer ibuf; ///< Circular input buffer
       public:
