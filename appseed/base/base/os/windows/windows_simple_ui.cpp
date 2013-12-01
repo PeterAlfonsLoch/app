@@ -5,6 +5,61 @@
 namespace os
 {
 
+   bool simple_translate_key(::user::e_key & ekey, WPARAM wparam)
+   {
+
+      switch (wparam)
+      {
+      case VK_LSHIFT:
+         ekey = ::user::key_lshift;
+         break;
+      case VK_RSHIFT:
+         ekey =  ::user::key_rshift;
+         break;
+      case VK_SHIFT:
+         ekey =  ::user::key_shift;
+         break;
+      case VK_LCONTROL:
+         ekey =  ::user::key_lcontrol;
+         break;
+      case VK_RCONTROL:
+         ekey =  ::user::key_rcontrol;
+         break;
+      case VK_CONTROL:
+         ekey =  ::user::key_control;
+         break;
+      case VK_LMENU:
+         ekey =  ::user::key_lalt;
+         break;
+      case VK_RMENU:
+         ekey =  ::user::key_ralt;
+         break;
+      case VK_MENU:
+         ekey =  ::user::key_alt;
+         break;
+      case VK_DELETE:
+         ekey =  ::user::key_delete;
+         break;
+      case VK_BACK:
+         ekey =  ::user::key_back;
+         break;
+      case VK_RETURN:
+         ekey =  ::user::key_return;
+         break;
+      case VK_TAB:
+         ekey =  ::user::key_tab;
+         break;
+      case VK_SPACE:
+         ekey =  ::user::key_space;
+         break;
+      default:
+         return false;
+      }
+
+      return true;
+
+   }
+
    map < HWND, HWND, simple_ui *, simple_ui * > m_windowmap;
 
    simple_ui::simple_ui(sp(base_application) papp) :
@@ -122,6 +177,13 @@ namespace os
 
    }
 
+   
+   void simple_ui::destroy_window()
+   {
+
+      ::DestroyWindow(m_window);
+
+   }
 
 
    LRESULT CALLBACK simple_ui::s_window_prodecure(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam)
@@ -207,8 +269,24 @@ namespace os
       }
 
       int32_t iRet = ToUnicodeEx((UINT)wparam, 0, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
+      
       str = wsz;
-      on_char(static_cast<UINT>(wparam), str);
+
+      ::user::e_key ekey;
+
+      if (simple_translate_key(ekey, wparam))
+      {
+
+         on_char(ekey, "");
+
+      }
+      else
+      {
+
+         on_char(0, str);
+
+      }
+      
 
       if (m_bShiftKey && wparam == VK_SHIFT)
       {

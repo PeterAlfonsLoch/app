@@ -918,6 +918,8 @@ namespace fontopus
 
    }
    */
+
+
    bool simple_ui::on_action(const char * pszId)
    {
 
@@ -940,8 +942,9 @@ namespace fontopus
          }
          else
          {
+
             destroy_window();
-            //::DestroyWindow(m_window);
+
          }
 
          return true;
@@ -949,8 +952,9 @@ namespace fontopus
       }
       else if (!strcmp(pszId, "escape"))
       {
+
          destroy_window();
-         //::DestroyWindow(m_window);
+
       }
 
       return false;
