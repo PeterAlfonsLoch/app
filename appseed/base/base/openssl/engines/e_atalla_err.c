@@ -105,7 +105,7 @@ static ERR_STRING_DATA ATALLA_lib_name[]=
 static int ATALLA_lib_error_code=0;
 static int ATALLA_error_init=1;
 
-static void ERR_load_ATALLA_strings(void)
+void ERR_load_ATALLA_strings(void)
 	{
 	if (ATALLA_lib_error_code == 0)
 		ATALLA_lib_error_code=ERR_get_next_error_library();
@@ -125,7 +125,7 @@ static void ERR_load_ATALLA_strings(void)
 		}
 	}
 
-static void ERR_unload_ATALLA_strings(void)
+void ERR_unload_ATALLA_strings(void)
 	{
 	if (ATALLA_error_init == 0)
 		{
@@ -141,7 +141,7 @@ static void ERR_unload_ATALLA_strings(void)
 		}
 	}
 
-static void ERR_ATALLA_error(int function, int reason, char *file, int line)
+void ERR_ATALLA_error(int function, int reason, char *file, int line)
 	{
 	if (ATALLA_lib_error_code == 0)
 		ATALLA_lib_error_code=ERR_get_next_error_library();

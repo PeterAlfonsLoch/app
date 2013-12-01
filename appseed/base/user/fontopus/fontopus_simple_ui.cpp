@@ -46,7 +46,7 @@ namespace fontopus
    bool simple_ui::on_char(int iKeyCode, const string & strChar)
    {
 
-      if(iKeyCode == VK_RETURN)
+      if(iKeyCode == ::user::key_return)
       {
 
          on_action("submit");
@@ -307,8 +307,9 @@ namespace fontopus
       if (lprect == NULL)
       {
 
-         ::GetWindowRect(::GetDesktopWindow(), &m_rectDesktop);
-
+//         ::GetWindowRect(::GetDesktopWindow(), &m_rectDesktop);
+         System.get_monitor_rect(0, &m_rectDesktop);
+         
       }
       else
       {
@@ -330,9 +331,9 @@ namespace fontopus
       int h = (int)(rectDesktop.height() * 2.0 / 5.0);
 
       int minW = 400;
-      int minH = 320;
+//      int minH = 320;
       int maxW = 1024;
-      int maxH = 800;
+  //    int maxH = 800;
 
       w = min(maxW, max(minW, w));
       h = 184 + 23 + 184;
@@ -431,7 +432,10 @@ namespace fontopus
          return true;
 
 
+
          release_capture();
+      
+         m_bDrag = false;
 
       /*
       rect rectLogin;
@@ -922,21 +926,22 @@ namespace fontopus
 
          m_bVisible = false;
 
-         ::ShowWindow(m_window, SW_HIDE);
+         show_window(false);
 
          m_login.login_result(m_login.perform_login());
 
          if (m_eresult == ::fontopus::login::result_fail)
          {
 
-            SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, m_size.cx, m_size.cy, SWP_SHOWWINDOW);
+            show_window();
 
             m_bVisible = true;
 
          }
          else
          {
-            ::DestroyWindow(m_window);
+            destroy_window();
+            //::DestroyWindow(m_window);
          }
 
          return true;
@@ -944,7 +949,8 @@ namespace fontopus
       }
       else if (!strcmp(pszId, "escape"))
       {
-         ::DestroyWindow(m_window);
+         destroy_window();
+         //::DestroyWindow(m_window);
       }
 
       return false;

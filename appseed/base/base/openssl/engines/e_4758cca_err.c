@@ -109,7 +109,7 @@ static ERR_STRING_DATA CCA4758_lib_name[]=
 static int CCA4758_lib_error_code=0;
 static int CCA4758_error_init=1;
 
-static void ERR_load_CCA4758_strings(void)
+void ERR_load_CCA4758_strings(void)
 	{
 	if (CCA4758_lib_error_code == 0)
 		CCA4758_lib_error_code=ERR_get_next_error_library();
@@ -129,7 +129,7 @@ static void ERR_load_CCA4758_strings(void)
 		}
 	}
 
-static void ERR_unload_CCA4758_strings(void)
+void ERR_unload_CCA4758_strings(void)
 	{
 	if (CCA4758_error_init == 0)
 		{
@@ -145,7 +145,7 @@ static void ERR_unload_CCA4758_strings(void)
 		}
 	}
 
-static void ERR_CCA4758_error(int function, int reason, char *file, int line)
+void ERR_CCA4758_error(int function, int reason, char *file, int line)
 	{
 	if (CCA4758_lib_error_code == 0)
 		CCA4758_lib_error_code=ERR_get_next_error_library();

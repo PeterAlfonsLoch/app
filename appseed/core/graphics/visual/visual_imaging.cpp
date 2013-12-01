@@ -241,7 +241,64 @@ bool imaging::from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMA
 
    pdib->map();
 
+#if defined(MACOS)
 
+   byte * pbDst = (byte *) pdib->m_pcolorref;
+   
+   byte * pbSrc = (byte *) pdata;
+   
+   ::count c = pdib->area();
+
+   while(c-- > 0)
+   {
+      
+         pbDst[0] = pbSrc[2];
+         
+         pbDst[1] = pbSrc[1];
+         
+         pbDst[2] = pbSrc[0];
+         
+         pbDst[3] = pbSrc[3];
+         
+         pbDst += 4;
+         
+         pbSrc += 4;
+         
+   }
+   
+/*
+   
+   byte * pbDst;
+   
+   byte * pbSrc;
+   
+   for(int i = 0; i < pdib->m_size.cy; i++)
+   {
+   
+      pbDst = &((byte *) pdib->m_pcolorref)[pdib->m_iScan * (pdib->m_size.cy - i - 1)];
+      
+      pbSrc = &((byte *) pdata)[pbi->bmiHeader.biWidth * sizeof(COLORREF) * i];
+      
+      for(int j = 0; j < pdib->m_size.cx; j++)
+      {
+      
+         pbDst[0] = pbSrc[2];
+         
+         pbDst[1] = pbSrc[1];
+         
+         pbDst[2] = pbSrc[0];
+         
+         pbDst[3] = pbSrc[3];
+      
+         pbDst += 4;
+         
+         pbSrc += 4;
+      
+      }
+      
+   }*/
+   
+#else
    for(int i = 0; i < pdib->m_size.cy; i++)
    {
 
@@ -251,6 +308,7 @@ bool imaging::from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMA
         pdib->m_iScan);
 
    }
+#endif
 
 //   RGBQUAD bkcolor;
 

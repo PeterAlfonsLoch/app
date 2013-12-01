@@ -41,7 +41,7 @@ namespace sockets
 {
 
 
-   mutex base_socket::s_mutex;
+   mutex * base_socket::s_pmutex = NULL;
 
 
    base_socket::base_socket(base_socket_handler & h) :

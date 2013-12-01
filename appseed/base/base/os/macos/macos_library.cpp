@@ -2,11 +2,7 @@
 #include <dlfcn.h>
 
 
-namespace boot
-{
-
-
-   library::library()
+   base_library::base_library()
    {
       
       m_plibrary = NULL;
@@ -14,7 +10,7 @@ namespace boot
    }
 
    
-   library::library(const char * pszOpen)
+   base_library::base_library(const char * pszOpen)
    {
       
       m_plibrary = NULL;
@@ -24,7 +20,7 @@ namespace boot
    }
    
 
-   library::~library()
+   base_library::~base_library()
    {
       
       if(m_bAutoClose)
@@ -37,7 +33,7 @@ namespace boot
    }
    
 
-   bool library::open(const char * pszPath)
+   bool base_library::open(const char * pszPath)
    {
       
       string strPath(pszPath);
@@ -64,7 +60,7 @@ namespace boot
    }
    
 
-   bool library::close()
+   bool base_library::close()
    {
       
       if(m_plibrary != NULL)
@@ -79,7 +75,7 @@ namespace boot
    }
 
 
-   void * library::raw_get(const char * pszElement)
+   void * base_library::raw_get(const char * pszElement)
    {
       
       return dlsym(m_plibrary, pszElement);
@@ -87,7 +83,7 @@ namespace boot
    }
    
    
-   bool library::is_opened()
+   bool base_library::is_opened()
    {
       
       return m_plibrary != NULL;
@@ -95,7 +91,7 @@ namespace boot
    }
    
    
-   bool library::is_closed()
+   bool base_library::is_closed()
    {
       
       return m_plibrary == NULL;
@@ -110,7 +106,7 @@ namespace boot
 
    
    ca2_library::ca2_library(const char * pszOpen) :
-      library(pszOpen)
+      base_library(pszOpen)
    {
 
    }
@@ -124,11 +120,7 @@ namespace boot
    
    bool ca2_library::open(const char * pszPath)
    {
-      return library::open(pszPath);
+      return base_library::open(pszPath);
    }
    
    
-} // namespace boot
-
-
-

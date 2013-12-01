@@ -50,6 +50,27 @@
    
 }
 
+- (void) unsafe_boot_window_has_focus : (bool *) pbool
+{
+
+   NSWindow * pkeywindow = [NSApp keyWindow];
+   
+   NSWindow * pwindow = self;
+   
+   if(pkeywindow != NULL)
+   {
+
+      *pbool = pkeywindow == pwindow;
+      
+   
+   }
+   else
+   {
+      *pbool = false;
+   }
+}
+
+
 //
 // dealloc
 //
@@ -110,6 +131,8 @@
    frameView->m_bControl = false;
    frameView->m_bAlt = false;
    
+   childContentView = frameView;
+   
 		
 	[super setContentView : frameView];
 
@@ -169,6 +192,21 @@
 + (NSRect)frameRectForContentRect:(NSRect)windowContentRect styleMask:(NSUInteger)windowStyle
 {
 	return NSInsetRect(windowContentRect, -NS_ROUND_WINDOW_FRAME_PADDING, -NS_ROUND_WINDOW_FRAME_PADDING);
+}
+
+- (void) on_destroy;
+{
+   
+   m_pwindow = NULL;
+   
+   childContentView->m_roundwindow = nil;
+   
+   childContentView = nil;
+   
+   closeButton = nil;
+   
+   [m_controller release];
+   
 }
 
 

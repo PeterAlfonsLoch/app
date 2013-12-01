@@ -61,7 +61,7 @@ namespace datetime
    {
    public:
 
-#if defined(ANDROID)
+#if defined(ANDROID) || defined(MACOS)
       time_t         m_time;
 #else
       __time64_t m_time;

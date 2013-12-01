@@ -277,7 +277,7 @@ namespace simple_ui
    bool tap::on_char(int32_t iKey, const string & strChar)
    {
 
-      if (iKey == VK_RETURN || iKey == VK_SPACE)
+      if (iKey == ::user::key_return || iKey == ::user::key_space)
       {
 
          on_action(m_strId);
@@ -285,7 +285,7 @@ namespace simple_ui
          return true;
 
       }
-      else if (iKey == VK_TAB)
+      else if (iKey == ::user::key_tab)
       {
 
          focus_next();

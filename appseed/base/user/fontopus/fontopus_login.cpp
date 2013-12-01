@@ -209,7 +209,7 @@ namespace fontopus
 
       m_strLoginUrl = "https://" + strApiServer + "/account/login";
 
-      ::xml::document doc;
+      ::xml::document doc(get_app());
 
       string strSessId;
 
@@ -222,12 +222,19 @@ namespace fontopus
          {
             Sleep(iRetry * 584);
          }
+         
+         strLogin.empty_string();
 
          try
          {
 
+            ::property_set post(get_app());
+            ::property_set headers(get_app());
+            ::property_set set(get_app());
+            
+            set["disable_ca2_sessid"] = true;
 
-            strLogin = Application.http().get(m_strLoginUrl);
+            Application.http().get(m_strLoginUrl, strLogin, post, headers, set);
 
          }
          catch (...)
@@ -279,7 +286,7 @@ namespace fontopus
 
       {
 
-         string strAuthUrl("https://api.ca2.cc/account/auth?defer_registration&ruri=" + m_pstyle->m_strRuri);
+         string strAuthUrl("https://" + strApiServer + "/account/auth?defer_registration&ruri=" + m_pstyle->m_strRuri);
 
          if (m_strPasshash.is_empty())
          {
@@ -298,8 +305,16 @@ namespace fontopus
          }*/
 
          strAuthUrl += "&sessid=" + strSessId;
+         
+         ::property_set post(get_app());
+         ::property_set headers(get_app());
+         ::property_set set(get_app());
+         
+         set["disable_ca2_sessid"] = true;
+         
+         strResponse.empty_string();
 
-         strResponse = Application.http().get(strAuthUrl);
+         Application.http().get(strAuthUrl, strResponse, post, headers, set);
 
       }
 
@@ -312,7 +327,7 @@ namespace fontopus
 
       e_result eresult;
 
-      ::xml::document doc;
+      ::xml::document doc(get_app());
 
       if (doc.load(strResponse))
       {

@@ -1968,7 +1968,7 @@ RetryHost:
       }
       trace(str::replace("\\", "/", strUrl));
 //      char buf[2048];
-      int32_t iCount = 0;
+//      int32_t iCount = 0;
 //      int32_t iCurrent;
       strUrl += ".bz";
       string str;
@@ -1976,7 +1976,7 @@ RetryHost:
       strUrl.replace_ci("\\", "/");
       if(!ca2_fy_url(str, strUrl, false, -1, strMd5, -1))
          return -2;
-      _FILE * f = fopen_dup(str, "rb");
+  //    _FILE * f = fopen_dup(str, "rb");
       throw todo(get_thread_app());
       /*string strPlatform = spa_get_platform();
       while(fgets_dup(buf, sizeof(buf), f))
@@ -3415,11 +3415,11 @@ RetryHost:
    bool installer::launcher::ensure_executable()
    {
 
-      int32_t iSpabootInstallStrSize = MAX_PATH * 16;
 
 
 
 #ifdef WINDOWSEX
+      int32_t iSpabootInstallStrSize = MAX_PATH * 16;
 
       HINSTANCE hinstancePlugin = (HINSTANCE) ::GetModuleHandleA("npca2.dll");
       if(hinstancePlugin == NULL)
@@ -3446,7 +3446,7 @@ RetryHost:
          int32_t iRetry = 0;
          while(iRetry < 8)
          {
-            LPSTR psz = m_strPath.GetBufferSetLength(iSpabootInstallStrSize);
+//            LPSTR psz = m_strPath.GetBufferSetLength(iSpabootInstallStrSize);
             throw todo(get_thread_app());
 /*            if (!System.install().get_temp_file_name(psz, iSpabootInstallStrSize, "app-install", "exe"))
             {

@@ -55,7 +55,7 @@ namespace zip
 
 
 
-      operator HFILE() const;
+//      operator HFILE() const;
 
       virtual file_position get_position() const;
 

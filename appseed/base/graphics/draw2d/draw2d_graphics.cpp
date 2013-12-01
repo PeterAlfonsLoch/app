@@ -2211,21 +2211,58 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
+
    int32_t graphics::draw_text(const char * lpszString, strsize nCount, LPRECT lpRect, UINT nFormat)
    {
-      UNREFERENCED_PARAMETER(lpszString);
-      UNREFERENCED_PARAMETER(nCount);
-      UNREFERENCED_PARAMETER(lpRect);
-      UNREFERENCED_PARAMETER(nFormat);
-      throw interface_only_exception(get_app());
+      
+      return draw_text(string(lpszString, nCount), lpRect, nFormat);
+      
    }
+   
 
    int32_t graphics::draw_text(const string & str, LPRECT lpRect, UINT nFormat)
    {
-      UNREFERENCED_PARAMETER(str);
-      UNREFERENCED_PARAMETER(lpRect);
-      UNREFERENCED_PARAMETER(nFormat);
-      throw interface_only_exception(get_app());
+      
+      synch_lock ml(&user_mutex());
+      
+//      size szBase = GetTextExtent("P");
+      
+      size sz = GetTextExtent(str);
+      
+      double dx;
+      
+      double dy;
+      
+      if(nFormat & DT_RIGHT)
+      {
+         dx = lpRect->right - lpRect->left - sz.cx;
+      }
+      else if(nFormat & DT_CENTER)
+      {
+         dx = ((lpRect->right - lpRect->left) - (sz.cx)) / 2.0;
+      }
+      else
+      {
+         dx = 0.;
+      }
+      
+      if(nFormat & DT_BOTTOM)
+      {
+         dy = lpRect->bottom - lpRect->top - sz.cy;
+      }
+      else if(nFormat & DT_VCENTER)
+      {
+         dy = ((lpRect->bottom - lpRect->top) - (sz.cy)) / 2.0;
+      }
+      else
+      {
+         dy = 0.;
+      }
+      
+      TextOut(lpRect->left + dx, lpRect->top + dy, str);
+      
+      return 1;
+      
    }
 
 #ifndef METROWIN

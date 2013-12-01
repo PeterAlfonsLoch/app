@@ -824,8 +824,9 @@ namespace n7z
                throw 1;
 
             WriteID(NID::kEncodedHeader);
+            bool_array ba;
             WritePackInfo(headerOffset, packSizes,
-               bool_array(), array<uint32_t>());
+               ba, array<uint32_t>());
             WriteUnpackInfo(folders);
             WriteByte(NID::kEnd);
             for (int32_t i = 0; i < packSizes.get_count(); i++)

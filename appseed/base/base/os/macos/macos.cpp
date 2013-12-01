@@ -1,32 +1,31 @@
 #include "framework.h"
-#include <sys/time.h>
 
-
-DWORD get_tick_count()
+string & get_command_line_string()
 {
-   timeval ts;
-   gettimeofday(&ts,0);
-   return (ts.tv_sec * 1000 + (ts.tv_usec / 1000)) % 0xffffffffu;
-
+   static string g_strCommandLine;
+   return g_strCommandLine;
 }
 
-string g_strCommandLine;
-wstring g_wstrCommandLine;
+wstring & get_command_line_wstring()
+{
+   static wstring g_wstrCommandLine;
+   return g_wstrCommandLine;
+}
 
 
 void SetCommandLineA(const char * psz)
 {
 
-   g_strCommandLine     = psz;
-   g_wstrCommandLine    = psz;
+   get_command_line_string()     = psz;
+   get_command_line_wstring()    = psz;
 
 }
 
 void SetCommandLineW(const wchar_t * pwsz)
 {
 
-   g_strCommandLine     = pwsz;
-   g_wstrCommandLine    = pwsz;
+   get_command_line_string()     = pwsz;
+      get_command_line_wstring()     = pwsz;
 
 }
 
@@ -34,16 +33,18 @@ void SetCommandLineW(const wchar_t * pwsz)
 LPSTR GetCommandLineA()
 {
 
-   return (LPSTR) (LPCSTR) g_strCommandLine;
+   return (LPSTR) (LPCSTR) get_command_line_string();
 
 }
 
 LPWSTR GetCommandLineW()
 {
 
-   return (LPWSTR) (LPCWSTR) g_wstrCommandLine;
+   return (LPWSTR) (LPCWSTR)    get_command_line_wstring() ;
 
 }
+
+
 
 
 /*

@@ -97,7 +97,7 @@ static ERR_STRING_DATA GMP_lib_name[]=
 static int GMP_lib_error_code=0;
 static int GMP_error_init=1;
 
-static void ERR_load_GMP_strings(void)
+void ERR_load_GMP_strings(void)
 	{
 	if (GMP_lib_error_code == 0)
 		GMP_lib_error_code=ERR_get_next_error_library();
@@ -117,7 +117,7 @@ static void ERR_load_GMP_strings(void)
 		}
 	}
 
-static void ERR_unload_GMP_strings(void)
+void ERR_unload_GMP_strings(void)
 	{
 	if (GMP_error_init == 0)
 		{
@@ -133,7 +133,7 @@ static void ERR_unload_GMP_strings(void)
 		}
 	}
 
-static void ERR_GMP_error(int function, int reason, char *file, int line)
+void ERR_GMP_error(int function, int reason, char *file, int line)
 	{
 	if (GMP_lib_error_code == 0)
 		GMP_lib_error_code=ERR_get_next_error_library();

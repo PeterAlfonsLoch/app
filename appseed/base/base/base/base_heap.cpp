@@ -613,7 +613,7 @@ extern mutex * g_pmutexThreadHandleLock;
 
 #if defined(MACOS)
 
-#include "base/macos/macos_window_impl.h"
+#include "base/os/macos/macos_window_impl.h"
 
 extern oswindow_dataptra * g_poswindowdataptra;
 
@@ -668,6 +668,12 @@ public:
       g_pmutgen = new mutex();
 
       g_pmutexTrace = new mutex();
+      
+#ifdef BSD_STYLE_SOCKETS
+
+     ::sockets::base_socket::s_pmutex = new mutex();
+     
+#endif
 
 #if defined(WINDOWSEX)
 
@@ -827,6 +833,13 @@ public:
 
 #endif // defined(MACOS)
 
+#ifdef BSD_STYLE_SOCKETS
+      
+      delete ::sockets::base_socket::s_pmutex;
+      
+      ::sockets::base_socket::s_pmutex = NULL;
+      
+#endif
 
 
 

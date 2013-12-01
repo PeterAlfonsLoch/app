@@ -83,7 +83,7 @@ namespace sockets
       base_socket_handler &   m_handler; ///< Reference of base_socket_handler in control of this socket
       SOCKET                  m_socket; ///< File descriptor
 
-      static mutex            s_mutex;
+      static mutex *           s_pmutex;
 
       ::net::address          m_addressRemote; ///< Remote end ::net::address
       ::net::address          m_addressRemoteClient; ///< Address of last connect()

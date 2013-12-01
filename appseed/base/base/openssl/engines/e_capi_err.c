@@ -140,7 +140,7 @@ static ERR_STRING_DATA CAPI_lib_name[]=
 static int CAPI_lib_error_code=0;
 static int CAPI_error_init=1;
 
-static void ERR_load_CAPI_strings(void)
+void ERR_load_CAPI_strings(void)
 	{
 	if (CAPI_lib_error_code == 0)
 		CAPI_lib_error_code=ERR_get_next_error_library();
@@ -160,7 +160,7 @@ static void ERR_load_CAPI_strings(void)
 		}
 	}
 
-static void ERR_unload_CAPI_strings(void)
+void ERR_unload_CAPI_strings(void)
 	{
 	if (CAPI_error_init == 0)
 		{
@@ -176,7 +176,7 @@ static void ERR_unload_CAPI_strings(void)
 		}
 	}
 
-static void ERR_CAPI_error(int function, int reason, char *file, int line)
+void ERR_CAPI_error(int function, int reason, char *file, int line)
 	{
 	if (CAPI_lib_error_code == 0)
 		CAPI_lib_error_code=ERR_get_next_error_library();

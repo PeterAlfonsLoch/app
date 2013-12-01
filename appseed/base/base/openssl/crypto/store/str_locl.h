@@ -60,7 +60,7 @@
 #define HEADER_STORE_LOCL_H
 
 #include <openssl/crypto.h>
-#include <openssl/store.h>
+#include "store.h"
 
 #ifdef  __cplusplus
 extern "C" {

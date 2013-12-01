@@ -26,6 +26,8 @@ NSWindow * new_boot_window(boot_window * pwindow, CGRect rect)
 }
 
 
+
+
 void ns_shared_application()
 {
 
@@ -63,4 +65,24 @@ void boot_window::boot_window_invalidate()
    
 //   [[m_proundwindow->m_controller dd_invokeOnMainThread] setViewsNeedDisplay : TRUE];
    
+}
+
+
+bool boot_window::boot_window_has_focus()
+{
+
+   bool b = false;
+
+   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] unsafe_boot_window_has_focus : &b ];
+
+   return b;
+   
+}
+
+
+void boot_window::boot_window_destroy()
+{
+
+   [m_proundwindow on_destroy];
+
 }

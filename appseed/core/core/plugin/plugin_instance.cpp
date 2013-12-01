@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "plugin_instance.h"
 
-::hotplugin::plugin * new_hotplugin();
+::hotplugin::plugin * new_hotplugin(sp(base_application) papp);
 
 
 namespace plugin

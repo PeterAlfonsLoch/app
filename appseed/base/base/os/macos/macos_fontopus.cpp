@@ -4,7 +4,7 @@
 
 #define MAX_LOADSTRING 100
 
-
+/*
 namespace fontopus
 {
 
@@ -92,13 +92,6 @@ namespace fontopus
       virtual void login_result(::spa_login::e_result eresult);
       
       
-      virtual void boot_window_draw(CGContextRef cgc);
-      virtual void boot_window_mouse_down(double x, double y);
-      virtual void boot_window_mouse_up(double x, double y);
-      virtual void boot_window_mouse_moved(double x, double y);
-      virtual void boot_window_mouse_dragged(double x, double y);
-      virtual bool boot_window_key_down(::user::e_key ekey);
-      virtual bool boot_window_key_up(::user::e_key ekey);
       
 
    };
@@ -599,7 +592,7 @@ namespace fontopus
       if (!rectWindow.contains(ptCursor))
       DestroyWindow(hWnd);
       }*/
-
+/*
       return true;
 
 
@@ -806,4 +799,6 @@ namespace fontopus
 
 } // namespace fontopus
 
+
+*/
 

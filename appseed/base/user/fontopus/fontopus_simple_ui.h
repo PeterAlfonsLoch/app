@@ -52,6 +52,8 @@ namespace fontopus
       virtual bool on_action(const char * pszId);
 
       virtual void login_result(login::e_result eresult);
+      
+      
 
    };
 

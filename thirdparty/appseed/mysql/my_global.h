@@ -505,6 +505,7 @@ typedef SOCKET_SIZE_TYPE size_socket;
 /* Some defines of functions for portability */
 
 #ifndef _WIN32
+#undef closesocket
 #define closesocket(A)	close(A)
 #endif
 

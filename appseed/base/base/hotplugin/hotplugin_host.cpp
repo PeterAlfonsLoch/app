@@ -396,7 +396,7 @@ namespace hotplugin
       ::create_thread(NULL, 0, &::install::_ca2_starter_start, pstart, 0, pplugin == NULL ? NULL : &pplugin->m_nCa2StarterStartThreadID);
 
 #else
-      pthread_t threadId;
+//      pthread_t threadId;
       pthread_attr_t  attr;
       int32_t rc = 0;
 

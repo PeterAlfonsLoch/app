@@ -1095,7 +1095,7 @@ CLASS_DECL_BASE int_bool WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPA
 CLASS_DECL_BASE int_bool WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
 
-   HTHREAD  h = oswindow->get_user_interaction_base()->m_pthread->get_os_handle();
+   HTHREAD  h = oswindow->get_user_interaction()->m_pthread->get_os_handle();
 
    if(h == NULL)
       return FALSE;

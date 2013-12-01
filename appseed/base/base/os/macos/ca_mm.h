@@ -34,7 +34,7 @@ namespace ca
 #include "base/base/base.h"
 
 
-#include "boot/vms/vms.h"
+#include "base/vms/vms.h"
 
 
 #define GetAValue(rgb)      (LOBYTE((rgb)>>24))
@@ -45,31 +45,31 @@ namespace ca
 extern "C"
 {
    
-   #include "boot/boot_cpu_architecture.h"
+   #include "base/base_cpu_architecture.h"
    
 }
 
 
 
-#include "boot/boot_libc.h"
+#include "base/base_libc.h"
 
 
-#include "boot/boot_keep_true.h"
+#include "base/base_keep_true.h"
 
 
-#include "boot/boot_debug.h"
-
-
-
-
-#include "boot/boot_printf.h"
-#include "boot/boot_sprintf.h"
+#include "base/base_debug.h"
 
 
 
-#include "boot/boot_math.h"
 
-#include "boot/boot_geometric_types.h"
+#include "base/base_printf.h"
+#include "base/base_sprintf.h"
+
+
+
+#include "base/base_math.h"
+
+#include "primitive/geometry/geometry_types.h"
 
 
 

@@ -2439,8 +2439,8 @@ namespace draw2d
 
       rect rect(lpcrect);
 
-      int32_t cx = rect.width();
-      int32_t cy = rect.height();
+//      int32_t cx = rect.width();
+  //    int32_t cy = rect.height();
 
       int32_t l = max(m_size.cx, m_size.cy);
 

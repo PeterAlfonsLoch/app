@@ -965,8 +965,10 @@ dump_context & operator <<(dump_context & dumpcontext, ::datetime::time time)
    char psz[32];
    psz[0] = '\0';
 
-   __time64_t tmp = time.get_time();
-   errno_t err = _ctime64_s(psz, sizeof(psz), &tmp);
+//   __time64_t tmp = time.get_time();
+//   errno_t err = _ctime64_s(psz, sizeof(psz), &tmp);
+
+   errno_t err = 0;
 
    if ((err != 0) || (psz[0] == '\0') || (time.get_time() == 0))
    {

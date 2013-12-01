@@ -153,7 +153,7 @@ namespace datetime
 #if !defined(MACOS)
       float_time(__time32_t timeSrc) RELEASENOTHROW;
 #endif
-      float_time(__time64_t timeSrc) RELEASENOTHROW;
+      float_time(time_t timeSrc) RELEASENOTHROW;
 #endif
 
       float_time(const SYSTEMTIME& systimeSrc) RELEASENOTHROW;
@@ -206,7 +206,7 @@ namespace datetime
 #ifndef MACOS
       float_time& operator=(const __time32_t& timeSrc) RELEASENOTHROW;
 #endif
-      float_time& operator=(const __time64_t& timeSrc) RELEASENOTHROW;
+      float_time& operator=(const time_t& timeSrc) RELEASENOTHROW;
 #endif
 
       float_time& operator=(const SYSTEMTIME& systimeSrc) RELEASENOTHROW;
@@ -565,7 +565,7 @@ namespace datetime
    }
 #endif
 
-   inline float_time::float_time(__time64_t timeSrc) RELEASENOTHROW :
+   inline float_time::float_time(time_t timeSrc) RELEASENOTHROW :
    m_dt( 0 ), m_status(valid)
    {
       *this = timeSrc;
@@ -758,7 +758,7 @@ valid : invalid;
       return operator=(static_cast<__time64_t>(timeSrc));
    }
 #endif
-   inline float_time& float_time::operator=(const __time64_t& timeSrc) RELEASENOTHROW
+   inline float_time& float_time::operator=(const time_t& timeSrc) RELEASENOTHROW
    {
 
 #ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
@@ -780,7 +780,11 @@ valid : invalid;
 
    }
 #ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
+#ifdef MACOS
+   inline bool GetAsSystemTimeHelper(const time_t& timeSrc, SYSTEMTIME& timeDest)
+#else
    inline bool GetAsSystemTimeHelper(const __time64_t& timeSrc, SYSTEMTIME& timeDest)
+#endif
    {
       struct tm ttm;
 

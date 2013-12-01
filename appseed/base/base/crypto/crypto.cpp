@@ -160,7 +160,7 @@ bool crypto_file_set(const char * pszFile, const char * pszData, const char * ps
 CLASS_DECL_BASE string spa_login_crypt(const char * psz, const char * pszRsa)
 {
 
-#ifdef MACOS
+#if 0 // MACOS
 
    CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
 

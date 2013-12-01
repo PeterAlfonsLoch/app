@@ -117,7 +117,7 @@ static ERR_STRING_DATA AEPHK_lib_name[]=
 static int AEPHK_lib_error_code=0;
 static int AEPHK_error_init=1;
 
-static void ERR_load_AEPHK_strings(void)
+void ERR_load_AEPHK_strings(void)
 	{
 	if (AEPHK_lib_error_code == 0)
 		AEPHK_lib_error_code=ERR_get_next_error_library();
@@ -137,7 +137,7 @@ static void ERR_load_AEPHK_strings(void)
 		}
 	}
 
-static void ERR_unload_AEPHK_strings(void)
+void ERR_unload_AEPHK_strings(void)
 	{
 	if (AEPHK_error_init == 0)
 		{
@@ -153,7 +153,7 @@ static void ERR_unload_AEPHK_strings(void)
 		}
 	}
 
-static void ERR_AEPHK_error(int function, int reason, char *file, int line)
+void ERR_AEPHK_error(int function, int reason, char *file, int line)
 	{
 	if (AEPHK_lib_error_code == 0)
 		AEPHK_lib_error_code=ERR_get_next_error_library();

@@ -726,6 +726,17 @@ namespace simple_ui
       return true;
 
    }
+   
+   void interaction::redraw_window()
+   {
+   
+      if(m_puiParent == NULL)
+         return;
+      
+      m_puiParent->redraw_window();
+   
+   }
+
 
 
 } // namespace simple_ui

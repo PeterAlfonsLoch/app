@@ -1,6 +1,11 @@
 #include "framework.h"
 
 
+#if defined(MACOS)
+
+void openURL(const string &url_str);
+
+#endif
 
 base_application::base_application() :
    m_allocer(this)
@@ -1368,3 +1373,24 @@ void base_application::get_screen_rect(LPRECT lprect)
       *lprect = m_rectScreen;
    }
 }
+
+
+
+
+#if defined(MACOS)
+
+void openURL(const string &url_str);
+
+
+void openURL(const string &url_str) {
+   CFURLRef url = CFURLCreateWithBytes (
+                                        NULL,                        // allocator
+                                        (UInt8*)url_str.c_str(),     // URLBytes
+                                        url_str.length(),            // length
+                                        kCFStringEncodingASCII,      // encoding
+                                        NULL                         // baseURL
+                                        );
+   LSOpenCFURLRef(url,0);
+   CFRelease(url);
+}
+#endif

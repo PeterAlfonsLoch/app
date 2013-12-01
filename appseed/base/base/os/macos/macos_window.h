@@ -26,7 +26,7 @@ namespace user
 {
    
    
-   class base_interaction;
+   class interaction;
    class interaction;
    
    
@@ -39,7 +39,7 @@ public:
    
    
    nswindow                      m_nswindow;
-   ::user::base_interaction *    m_pui;
+   ::user::interaction *    m_pui;
    
    
    int_to_int *                  m_plongmap;
@@ -91,9 +91,9 @@ public:
    }
    
    
-   void set_user_interaction(::user::base_interaction * pui);
-   ::user::base_interaction * get_user_interaction_base();
-   ::user::base_interaction * get_user_interaction_base() const;
+   void set_user_interaction(::user::interaction * pui);
+   ::user::interaction * get_user_interaction_base();
+   ::user::interaction * get_user_interaction_base() const;
    ::user::interaction * get_user_interaction();
    ::user::interaction * get_user_interaction() const;
    

@@ -433,7 +433,7 @@ namespace plugin
 
       if(i == -3)
       {
-         int32_t * pi = (int32_t *) p;
+//         int32_t * pi = (int32_t *) p;
 //         simple_http_status * ps = (simple_http_status *) dw;
   //       *pi = ps->m_dwStatusCode;
       }

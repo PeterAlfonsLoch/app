@@ -18,6 +18,7 @@
 
 
 class boot_window;
+@class mm_window_frame_view;
 
 
 @interface mm_window : NSWindow
@@ -25,14 +26,16 @@ class boot_window;
 @public
    
    
-   boot_window         * m_pwindow;
+   boot_window             * m_pwindow;
    
    
-	NSView               * childContentView;
-	NSButton             * closeButton;
-   NSWindowController   * m_controller;
-   
+	mm_window_frame_view    * childContentView;
+	NSButton                * closeButton;
+   NSWindowController      * m_controller;
    
 }
+
+- (void) unsafe_boot_window_has_focus : (bool *) pbool;
+- (void) on_destroy;
 
 @end

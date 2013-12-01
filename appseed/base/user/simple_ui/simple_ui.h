@@ -21,4 +21,10 @@
 #include "base/os/linux/linux_simple_ui.h"
 
 
+#elif defined(MACOS)
+
+
+#include "base/os/macos/macos_simple_ui.h"
+
+
 #endif

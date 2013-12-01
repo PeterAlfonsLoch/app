@@ -117,7 +117,7 @@ bool oswindow_remove(nswindow window)
 }
 
 
-void oswindow_data::set_user_interaction(::user::base_interaction * pui)
+void oswindow_data::set_user_interaction(::user::interaction * pui)
 {
    
    if(this == NULL)
@@ -128,7 +128,7 @@ void oswindow_data::set_user_interaction(::user::base_interaction * pui)
 }
 
 
-::user::base_interaction * oswindow_data::get_user_interaction_base()
+::user::interaction * oswindow_data::get_user_interaction_base()
 {
    
    if(this == NULL)
@@ -138,7 +138,7 @@ void oswindow_data::set_user_interaction(::user::base_interaction * pui)
    
 }
 
-::user::base_interaction * oswindow_data::get_user_interaction_base() const
+::user::interaction * oswindow_data::get_user_interaction_base() const
 {
    
    if(this == NULL)
@@ -157,7 +157,7 @@ void oswindow_data::set_user_interaction(::user::base_interaction * pui)
    if(m_pui == NULL)
       return NULL;
    
-   return m_pui->m_pui;
+   return m_pui;
    
 }
 
@@ -170,7 +170,7 @@ void oswindow_data::set_user_interaction(::user::base_interaction * pui)
    if(m_pui == NULL)
       return NULL;
    
-   return m_pui->m_pui;
+   return m_pui;
    
 }
 
@@ -195,8 +195,7 @@ oswindow oswindow_data::set_parent(oswindow oswindow)
    ::oswindow oswindowOldParent = get_parent();
    
    if(oswindow == NULL
-      || oswindow->m_pui == NULL
-      || oswindow->m_pui->m_pui == NULL)
+      || oswindow->m_pui == NULL)
    {
       
       m_pui->set_parent_base(NULL);
@@ -286,7 +285,7 @@ WINBOOL ReleaseCapture()
    
    //  WINBOOL bRet = XUngrabPointer(GetCapture().display(), CurrentTime) != FALSE;
    
-   WINBOOL bRet = FALSE;
+   WINBOOL bRet = TRUE;
    
    if(bRet)
       g_oswindowCapture = NULL;

@@ -4752,23 +4752,6 @@ void application::load_string_table(const string & pszApp, const string & pszId)
    ASSERT(m_stringtablemap[strTableId] == pmapNew);
 }
 
-#if defined(MACOS)
-
-void openURL(const string &url_str);
-
-
-void openURL(const string &url_str) {
-   CFURLRef url = CFURLCreateWithBytes (
-      NULL,                        // allocator
-      (UInt8*)url_str.c_str(),     // URLBytes
-      url_str.length(),            // length
-      kCFStringEncodingASCII,      // encoding
-      NULL                         // baseURL
-      );
-   LSOpenCFURLRef(url,0);
-   CFRelease(url);
-}
-#endif
 
 
 sp(::user::interaction) application::uie_from_point(point pt)

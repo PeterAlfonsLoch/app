@@ -102,7 +102,7 @@ static ERR_STRING_DATA NURON_lib_name[]=
 static int NURON_lib_error_code=0;
 static int NURON_error_init=1;
 
-static void ERR_load_NURON_strings(void)
+void ERR_load_NURON_strings(void)
 	{
 	if (NURON_lib_error_code == 0)
 		NURON_lib_error_code=ERR_get_next_error_library();
@@ -122,7 +122,7 @@ static void ERR_load_NURON_strings(void)
 		}
 	}
 
-static void ERR_unload_NURON_strings(void)
+void ERR_unload_NURON_strings(void)
 	{
 	if (NURON_error_init == 0)
 		{
@@ -138,7 +138,7 @@ static void ERR_unload_NURON_strings(void)
 		}
 	}
 
-static void ERR_NURON_error(int function, int reason, char *file, int line)
+void ERR_NURON_error(int function, int reason, char *file, int line)
 	{
 	if (NURON_lib_error_code == 0)
 		NURON_lib_error_code=ERR_get_next_error_library();

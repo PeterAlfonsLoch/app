@@ -46,7 +46,7 @@ namespace userfs
             schedule_file_size(m_itema.get_item(iItem).m_strPath);
             m_bPendingSize = true;
          }*/
-         pitem->m_bOk = true;
+         pitem->m_bOk = false;
          return;
       }
       //else if(m_bStatic)

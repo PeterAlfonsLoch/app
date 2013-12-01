@@ -114,29 +114,29 @@ namespace simple_ui
    bool edit_box::on_char(int32_t iKey, const string & strChar)
    {
 
-      if (iKey == VK_CONTROL)
+      if (iKey == ::user::key_control || iKey == ::user::key_lcontrol || iKey == ::user::key_rcontrol)
       {
 
       }
-      else    if (iKey == VK_MENU)
+      else    if (iKey == ::user::key_alt || iKey == ::user::key_ralt || iKey == ::user::key_lalt)
       {
 
       }
-      else    if (iKey == VK_SHIFT)
+      else    if (iKey == ::user::key_shift || iKey == ::user::key_rshift || iKey == ::user::key_lshift)
       {
 
       }
-      else if (iKey == VK_TAB)
+      else if (iKey == ::user::key_tab)
       {
          focus_next();
          return true;
       }
-      else if (iKey == VK_RETURN)
+      else if (iKey == ::user::key_return)
       {
          on_action("submit");
          return true;
       }
-      else if (iKey == VK_BACK)
+      else if (iKey == ::user::key_back)
       {
          if (m_iPos > m_strText.get_length())
          {
@@ -153,7 +153,7 @@ namespace simple_ui
          }
          return true;
       }
-      else if (iKey == VK_DELETE)
+      else if (iKey == ::user::key_delete)
       {
          if (m_iPos < 0)
          {

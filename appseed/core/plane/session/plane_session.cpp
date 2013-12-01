@@ -12,7 +12,13 @@ namespace plane
       m_pplanesession            = this;
 
       m_pbasesession             = this;
-
+      
+      m_pbasesystem              = papp->m_pbasesystem;
+      
+      m_pbaseapp                 = this;
+      
+      m_pplaneapp                = this;
+      
       m_bDrawCursor              = true;
       m_pnaturedocument          = NULL;
       m_pplatformdocument        = NULL;

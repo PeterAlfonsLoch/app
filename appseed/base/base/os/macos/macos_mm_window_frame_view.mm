@@ -270,6 +270,8 @@
 			nil]];
  */
    
+   if(m_roundwindow == nil)
+      return;
   
    boot_window * p = m_roundwindow->m_pwindow;
    
@@ -308,7 +310,7 @@
    
    boot_window * p = m_roundwindow->m_pwindow;
    
-   if(p->boot_window_key_down(ekey))
+   if(p->boot_window_key_down(ekey, event.characters.UTF8String))
       return;
    
    [super keyDown:event];
@@ -322,7 +324,7 @@
    
    boot_window * p = m_roundwindow->m_pwindow;
    
-   if(p->boot_window_key_up(ekey))
+   if(p->boot_window_key_up(ekey, event.characters.UTF8String))
       return;
    
    [super keyUp:event];
@@ -339,7 +341,7 @@
       if(!m_bShift)
       {
          m_bShift = true;
-         if(p->boot_window_key_down(::user::key_shift))
+         if(p->boot_window_key_down(::user::key_shift, ""))
             return;
       }
    }
@@ -348,7 +350,7 @@
       if(m_bShift)
       {
          m_bShift = false;
-         if(p->boot_window_key_up(::user::key_shift))
+         if(p->boot_window_key_up(::user::key_shift, ""))
             return;
       }
    }
@@ -358,7 +360,7 @@
       if(!m_bControl)
       {
          m_bControl = true;
-         if(p->boot_window_key_down(::user::key_control))
+         if(p->boot_window_key_down(::user::key_control, ""))
             return;
       }
    }
@@ -367,7 +369,7 @@
       if(m_bControl)
       {
          m_bControl = false;
-         if(p->boot_window_key_up(::user::key_control))
+         if(p->boot_window_key_up(::user::key_control, ""))
             return;
       }
    }
@@ -377,7 +379,7 @@
       if(!m_bAlt)
       {
          m_bAlt = true;
-         if(p->boot_window_key_down(::user::key_alt))
+         if(p->boot_window_key_down(::user::key_alt, ""))
             return;
       }
    }
@@ -386,7 +388,7 @@
       if(m_bAlt)
       {
          m_bAlt = false;
-         if(p->boot_window_key_up(::user::key_alt))
+         if(p->boot_window_key_up(::user::key_alt, ""))
             return;
       }
    }

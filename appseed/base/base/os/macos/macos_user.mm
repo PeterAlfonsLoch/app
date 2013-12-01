@@ -32,8 +32,22 @@ bool oswindow_data::is_iconic()
 
 bool oswindow_data::show_window(int32_t nCmdShow)
 {
+
+   if(nCmdShow == SW_HIDE)
+   {
+
+      [m_nswindow orderOut : nil];
+      
+   }
+   else
+   {
    
-   [m_nswindow orderFrontRegardless];
+      [m_nswindow makeKeyAndOrderFront : nil];
+      
+      [m_nswindow display];
+      
+   }
+   
    return 1;
    
 }
@@ -88,14 +102,14 @@ WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT lpcrect, int iDisplay)
 WINBOOL move_nswindow(oswindow hwnd, int x, int y)
 {
    
-   RECT rect;
+//   RECT rect;
    
-   get_nswindow_rect(hwnd, &rect);
+//   get_nswindow_rect(hwnd, &rect);
    
    NSPoint point;
    
    point.x = x;
-   point.y = [[NSScreen mainScreen] frame].size.height - rect.top;
+   point.y = [[NSScreen mainScreen] frame].size.height - y;
    
    [hwnd->window() setFrameTopLeftPoint : point];
    
