@@ -1188,21 +1188,16 @@ bool virtual_user_interface::DestroyWindow()
    {
    }
 
-#ifdef WINDOWS
-
    try
    {
+   
       send_message(WM_NCDESTROY);
+      
    }
    catch(...)
    {
+   
    }
-
-#else
-
-   throw todo(get_app());
-
-#endif
 
    return TRUE;
 
@@ -1465,16 +1460,24 @@ void virtual_user_interface::_001OnDestroy(signal_details * pobj)
 
 void virtual_user_interface::_001OnNcDestroy(signal_details * pobj)
 {
+
    UNREFERENCED_PARAMETER(pobj);
 
-   sp(::user::interaction) puie = m_pguie;
+   ::user::interaction * puie = m_pguie;
+   
    m_pguie = NULL;
+   
    PostNcDestroy();
+   
    if(puie != NULL)
    {
+   
       puie->PostNcDestroy();
+      
    }
+   
    pobj->m_bRet = true;
+   
 }
 
 

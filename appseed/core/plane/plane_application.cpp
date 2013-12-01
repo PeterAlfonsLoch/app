@@ -791,30 +791,22 @@ run:
       thread * pthread = System.GetThread();
 
       install_message_handling(pthread->m_p);
-#if !defined(DEBUG) || defined(WINDOWS)
       try
       {
          try
          {
-#endif
             m_bReady = true;
             if(m_peventReady != NULL)
                m_peventReady->SetEvent();
-#if !defined(DEBUG) || defined(WINDOWS)
          }
          catch(...)
          {
          }
-#endif
-#if !defined(DEBUG) || defined(WINDOWS)
 run:
-#endif
-#if !defined(DEBUG) || defined(WINDOWS)
          try
          {
-#endif
             m_iReturnCode = run();
-#if !defined(DEBUG) || defined(WINDOWS)
+
          }
          catch(::exit_exception & e)
          {
@@ -943,10 +935,7 @@ run:
          // - ...
 
       }
-#endif
-#if !defined(DEBUG) || defined(WINDOWS)
 InitFailure:
-#endif
       try
       {
          if(m_peventReady != NULL)

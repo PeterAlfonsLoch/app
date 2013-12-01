@@ -407,23 +407,43 @@ LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
    }
 }
 
+
 LPVOID WINAPI TlsGetValue(HTHREAD hthread, DWORD dwTlsIndex)
 {
 
-    synch_lock lock(g_pmutexTlsData);
-
-   ThreadLocalData * threadData = allthreaddata[hthread];
-
-   if (threadData && threadData->get_count() > dwTlsIndex)
+   try
    {
-      // Return the value of an allocated TLS slot.
-      return threadData->element_at(dwTlsIndex);
+      
+      synch_lock lock(g_pmutexTlsData);
+   
+      if(allthreaddata.is_empty())
+         return NULL;
+
+      ThreadLocalData * threadData = allthreaddata[hthread];
+
+      if (threadData && threadData->get_count() > dwTlsIndex)
+      {
+         
+         // Return the value of an allocated TLS slot.
+         return threadData->element_at(dwTlsIndex);
+   
+      }
+      else
+      {
+      
+         // Default value for unallocated slots.
+         return NULL;
+         
+      }
+      
    }
-   else
+   catch (...)
    {
-      // Default value for unallocated slots.
+      
       return NULL;
+      
    }
+   
 }
 
 

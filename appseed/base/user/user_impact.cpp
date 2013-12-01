@@ -175,13 +175,13 @@ namespace user
    void impact::PostNcDestroy()
    {
       ::user::interaction::PostNcDestroy();
-      if (is_set_ca_flag(element::flag_auto_delete))
+/*      if (is_set_ca_flag(element::flag_auto_delete))
       {
          // default for views is to allocate them on the heap
          //  the default post-cleanup is to 'delete this'.
          //  never explicitly call 'delete' on a ::user::impact
          delete_this();
-      }
+      }*/
    }
 
    void impact::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType)
