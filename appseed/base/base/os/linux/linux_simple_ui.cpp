@@ -170,6 +170,12 @@ namespace os
          SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, m_size.cx, m_size.cy, SWP_SHOWWINDOW | SWP_NOZORDER);
 
       }
+      else
+      {
+
+         ShowWindow(m_window, SW_HIDE);
+
+      }
 
       return true;
 
@@ -363,27 +369,27 @@ namespace os
                            if(keysym == XK_Tab)
                            {
                               //on_key_down(VK_TAB);
-                              on_char(VK_TAB, "");
+                              on_char(::user::key_tab, "");
 
                            }
                            else if(keysym == XK_Return)
                            {
                               //on_key_down(VK_RETURN);
-                              on_char(VK_RETURN, "");
+                              on_char(::user::key_return, "");
                            }
                            else if(keysym == XK_BackSpace)
                            {
                               //on_key_down(VK_RETURN);
-                              on_char(VK_BACK, "");
+                              on_char(::user::key_back, "");
                            }
                            else if(keysym == XK_Delete)
                            {
                               //on_key_down(VK_RETURN);
-                              on_char(VK_DELETE, "");
+                              on_char(::user::key_delete, "");
                            }
                            else if(keysym == XK_Shift_L || keysym == XK_Shift_R)
                            {
-                              on_key_down(VK_SHIFT);
+                              on_key_down(::user::key_shift);
                            }
                            else
                            {
@@ -411,7 +417,7 @@ namespace os
                            }
                            else if(keysym == XK_Shift_L || keysym == XK_Shift_R)
                            {
-                              on_key_up(VK_SHIFT);
+                              on_key_up(::user::key_shift);
                            }
 
                         }
@@ -744,6 +750,16 @@ namespace os
       ::ReleaseCapture();
 
    }
+
+   void simple_ui::destroy_window()
+   {
+
+      ::DestroyWindow(m_window);
+
+      m_window = NULL;
+
+   }
+
 
 } // namespace os
 
