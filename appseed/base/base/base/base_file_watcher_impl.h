@@ -52,16 +52,20 @@ namespace file_watcher
 
 #if defined METROWIN &&  defined(__cplusplus_winrt)
 
+      
       class action
       {
       public:
 
+         
          watch_struct ^ watch;
          ::Windows::Storage::Search::IStorageQueryResultBase ^ r;
+
 
       };
 
 #else
+      
       class action
       {
       public:
