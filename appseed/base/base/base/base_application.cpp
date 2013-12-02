@@ -484,14 +484,14 @@ void base_application::set_key_pressed(::user::e_key ekey, bool bPressed)
 sp(::user::interaction) base_application::window_from_os_data(void * pdata)
 {
 
-   return NULL;
+   return m_pimpl->window_from_os_data(pdata);
 
 }
 
 sp(::user::interaction) base_application::window_from_os_data_permanent(void * pdata)
 {
 
-   return NULL;
+   return m_pimpl->window_from_os_data_permanent(pdata);
 
 }
 #else
