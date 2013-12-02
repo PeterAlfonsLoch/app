@@ -30,8 +30,6 @@ namespace crypto
 
 #else
 
-         m_posdata = NULL.
-         
          MD5_Init(&m_ctx);
 
 #endif
@@ -42,6 +40,8 @@ namespace crypto
       context::~context()
       {
 
+#ifdef METROWIN
+
          if (m_posdata != NULL)
          {
 
@@ -49,6 +49,8 @@ namespace crypto
             m_posdata = NULL;
 
          }
+
+#endif
 
       }
 

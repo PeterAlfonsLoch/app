@@ -78,7 +78,13 @@ namespace file_watcher
 				}
 #			endif
 
-				pWatch->m_pwatcher->handle_action(pWatch, szFile, pNotify->Action);
+            ::file_watcher::file_watcher_impl::action action;
+
+            action.watch = pWatch;
+            action.filename = szFile;
+            action.ulOsAction = pNotify->Action;
+
+				pWatch->m_pwatcher->handle_action(&action);
 
 			} while (pNotify->NextEntryOffset != 0);
 		}
@@ -249,8 +255,12 @@ namespace file_watcher
 	}
 
 
-	void os_file_watcher::handle_action(watch_struct* watch, const char * filename, uint32_t action)
+	void os_file_watcher::handle_action(action * paction)
 	{
+
+      watch_struct* watch = paction->watch;
+      const char * filename = paction->filename;
+      uint32_t action = paction->ulOsAction;
 		e_action eaction;
 
 		switch(action)

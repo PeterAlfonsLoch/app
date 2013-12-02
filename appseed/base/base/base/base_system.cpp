@@ -20,8 +20,9 @@ base_system::base_system(sp(base_application) papp) :
 
    m_psimpleui = NULL;
 
-
+#ifdef METROWIN
    m_posdata = new os_data();
+#endif
 
    set_app(this);
 

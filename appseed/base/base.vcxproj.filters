@@ -1559,9 +1559,6 @@
     <ClInclude Include="net\net_url_domain.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\math.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\geometry\geometry_geometry.h">
       <Filter>Header Files\primitive\geometry</Filter>
     </ClInclude>
@@ -3143,6 +3140,9 @@
     <ClInclude Include="user\user_place_holder.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\math\_math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_c.c">
@@ -3663,9 +3663,6 @@
     </ClCompile>
     <ClCompile Include="user\fontopus\fontopus_validate.cpp">
       <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\math.cpp">
-      <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
     <ClCompile Include="primitive\math\math_math.cpp">
       <Filter>Source Files\primitive\math</Filter>
@@ -5884,49 +5881,25 @@
     <ClCompile Include="base\openssl\engines\e_4758cca.c">
       <Filter>Source Files\base\openssl\engines</Filter>
     </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_4758cca_err.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
     <ClCompile Include="base\openssl\engines\e_aep.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_aep_err.c">
       <Filter>Source Files\base\openssl\engines</Filter>
     </ClCompile>
     <ClCompile Include="base\openssl\engines\e_atalla.c">
       <Filter>Source Files\base\openssl\engines</Filter>
     </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_atalla_err.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
     <ClCompile Include="base\openssl\engines\e_capi.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_capi_err.c">
       <Filter>Source Files\base\openssl\engines</Filter>
     </ClCompile>
     <ClCompile Include="base\openssl\engines\e_chil.c">
       <Filter>Source Files\base\openssl\engines</Filter>
     </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_chil_err.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
     <ClCompile Include="base\openssl\engines\e_cswift.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_cswift_err.c">
       <Filter>Source Files\base\openssl\engines</Filter>
     </ClCompile>
     <ClCompile Include="base\openssl\engines\e_gmp.c">
       <Filter>Source Files\base\openssl\engines</Filter>
     </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_gmp_err.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
     <ClCompile Include="base\openssl\engines\e_nuron.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_nuron_err.c">
       <Filter>Source Files\base\openssl\engines</Filter>
     </ClCompile>
     <ClCompile Include="base\openssl\engines\e_padlock.c">
@@ -5935,13 +5908,7 @@
     <ClCompile Include="base\openssl\engines\e_sureware.c">
       <Filter>Source Files\base\openssl\engines</Filter>
     </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_sureware_err.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
     <ClCompile Include="base\openssl\engines\e_ubsec.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_ubsec_err.c">
       <Filter>Source Files\base\openssl\engines</Filter>
     </ClCompile>
     <ClCompile Include="base\openssl\engines\ccgost\e_gost_err.c">
@@ -6775,6 +6742,9 @@
     <ClCompile Include="user\user_place_holder.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\math\_math.cpp">
+      <Filter>Source Files\primitive\math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -6962,6 +6932,9 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
