@@ -233,6 +233,7 @@ namespace user
             return;
          m_spadata.remove_type(pdata);
          m_datamap[pthis] = pdata;
+         m_spadata.add(pdata);
       }
 
    };
