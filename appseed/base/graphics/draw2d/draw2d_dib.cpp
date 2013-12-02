@@ -986,8 +986,8 @@ namespace draw2d
    void dib::Paste(dib * dib)
    {
 
-      if(dib->m_size != size())
-         dib->create(size());
+      if (size() != dib->m_size)
+         create(dib->size());
 
       dib->defer_realize(get_graphics());
       defer_realize(dib->get_graphics());

@@ -130,7 +130,7 @@ namespace user
 
    COLORREF tree::get_background_color()
    {
-      return RGB(200, 255, 255);
+      return ::user::scroll_view::get_background_color();
    }
 
    void tree::_001OnDraw(::draw2d::graphics *pdc)
