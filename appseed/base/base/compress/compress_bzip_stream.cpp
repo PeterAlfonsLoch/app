@@ -160,7 +160,7 @@ void bzip_stream::finish()
             {
                bWriteOk = false;
             }
-            if (n != n2 || !bWriteOk)
+            if (!bWriteOk || n != n2)
             {
                BZ_SETERR(BZ_IO_ERROR);
                return;
