@@ -1654,7 +1654,7 @@ exit_application:
    {
 
 
-      if(!is_installing() && !is_uninstalling())
+      if(!is_installing() && !is_uninstalling() && !is_system())
       {
 
          if(!user()->keyboard().initialize())

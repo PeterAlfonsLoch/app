@@ -436,6 +436,11 @@ bool base_application::is_key_pressed(::user::e_key ekey)
    }
    else if (m_pbasesystem != NULL)
    {
+      if (m_pbasesystem == this)
+      {
+         throw "not expected";
+         return false;
+      }
       return Sys(this).is_key_pressed(ekey);
    }
    else

@@ -643,7 +643,7 @@ retry_license:
          return true;
       }
 
-      if(!System.user()->keyboard().load_layout(pszPath, bUser))
+      if(!Session.user()->keyboard().load_layout(pszPath, bUser))
          return false;
 
       // xxx Application.simpledb().on_set_keyboard_layout(pszPath, bUser);
@@ -654,9 +654,9 @@ retry_license:
 
    ::user::keyboard & user::keyboard()
    {
-      if(!Application.is_system())
+      if(!Application.is_session())
       {
-         return System.user()->keyboard();
+         return Session.user()->keyboard();
       }
       return *m_pkeyboard;
    }

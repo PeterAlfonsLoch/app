@@ -138,7 +138,7 @@ namespace simpledb
       m_pbaseapp->m_pplaneapp->fill_locale_schema(*m_pbaseapp->m_pplaneapp->str_context()->m_plocaleschema);
 
 
-      if(!m_pbaseapp->m_pplaneapp->is_installing() && !m_pbaseapp->m_pplaneapp->is_uninstalling())
+      if(!m_pbaseapp->m_pplaneapp->is_installing() && !m_pbaseapp->m_pplaneapp->is_uninstalling() && !m_pbaseapp->m_pplaneapp->is_system())
       {
 
          set_keyboard_layout(NULL, false);
