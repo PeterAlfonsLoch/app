@@ -2837,6 +2837,8 @@ namespace draw2d_direct2d
 
 #if defined(WINDOWSEX)
 
+   /*
+
    bool dib::update_window(::user::window * pwnd, signal_details * pobj)
    {
 
@@ -2855,6 +2857,11 @@ namespace draw2d_direct2d
       return true;
 
    }
+
+   */
+
+
+   /*
 
    bool dib::print_window(::user::window * pwnd, signal_details * pobj)
    {
@@ -2937,6 +2944,8 @@ namespace draw2d_direct2d
 
       return true;
    }
+
+   */
 
 
 #endif
