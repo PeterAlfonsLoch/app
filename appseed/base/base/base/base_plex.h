@@ -5,7 +5,6 @@
 struct CLASS_DECL_BASE plex     // warning var length structure
 {
    plex*                            pNext;
-   ::primitive::memory_size         size;
    // BYTE data[maxNum*elementSize];
 
    void * data() { return ((byte*)(this+1)) + CA2_PALACE_SAFE_ZONE_BORDER_SIZE; }

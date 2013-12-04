@@ -178,14 +178,19 @@ namespace dynamic_source
 
    void script_compiler::compile(ds_script * pscript)
    {
+      
       single_lock slScript(&pscript->m_mutex, TRUE);
+      
       TRACE("Compiling script \"%s\"\n", pscript->m_strName.c_str());
+      
       string strName(pscript->m_strName);
+      
       pscript->on_start_build();
 
-
 #ifdef WINDOWS
+
       strName.replace("/", "\\");
+
 #endif
 
       //strName.replace("/", "\\");
@@ -389,6 +394,11 @@ namespace dynamic_source
       }
       catch(...)
       {
+
+         pscript->m_bHasTempOsError = true;
+
+         return;
+
       }
 
 
@@ -462,7 +472,7 @@ namespace dynamic_source
 #endif
       str.replace("%TARGET_PATH%", strTargetPath);
       strBuildCmd = pscript->m_strBuildBat;
-      Application.file().put_contents(strBuildCmd, str);
+      Application.file().put_contents_utf8(strBuildCmd, str);
 
       //Application.file().put_contents(strLinkCmd, str);
 
@@ -759,7 +769,7 @@ namespace dynamic_source
       strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
 
       //Application.file().put_contents_utf8(pscript->m_strCppPath, strDest);
-      Application.file().put_contents(pscript->m_strCppPath, strDest);
+      Application.file().put_contents_utf8(pscript->m_strCppPath, strDest);
 
    }
 
@@ -800,7 +810,7 @@ namespace dynamic_source
       // strCmd = System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false);
       //#endif
       Application.dir().mk(System.dir().name(strCmd));
-      Application.file().put_contents(strCmd, str);
+      Application.file().put_contents_utf8(strCmd, str);
       Application.dir().mk(System.dir().path(m_strTime, "dynamic_source\\", false));
    }
 
@@ -991,7 +1001,7 @@ namespace dynamic_source
          }
 #endif
 
-         Application.file().put_contents(strCmd, str);
+         Application.file().put_contents_utf8(strCmd, str);
 
 #ifndef METROWIN
          ::core::process process;
@@ -1065,7 +1075,7 @@ namespace dynamic_source
 #else
       strCmd = System.dir().element("stage\\front\\libl1.bat");
 #endif
-      Application.file().put_contents(strCmd, str);
+      Application.file().put_contents_utf8(strCmd, str);
 
 #ifndef METROWIN
 
@@ -1167,7 +1177,7 @@ namespace dynamic_source
       strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
 
       //Application.file().put_contents_utf8(lpcszDest, strDest);
-      Application.file().put_contents(lpcszDest, strDest);
+      Application.file().put_contents_utf8(lpcszDest, strDest);
 
 
    }
@@ -1873,7 +1883,7 @@ ch_else:
          }
       }
       //Application.file().put_contents_utf8(strCat, strBody);
-      Application.file().put_contents(strCat, strBody);
+      Application.file().put_contents_utf8(strCat, strBody);
       string strInclude = strCat;
       //   defer_run_persistent(str);
       ::str::begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);

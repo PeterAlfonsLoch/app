@@ -66,8 +66,7 @@ namespace dynamic_source
       bool                             m_bShouldBuild;
       bool                             m_bCalcHasTempError;
       bool                             m_bHasTempError;
-
-      
+      bool                             m_bHasTempOsError;
 
 
 

@@ -10,9 +10,8 @@ plex* plex::create(plex*& pHead, uint_ptr nMax, uint_ptr cbElement)
 {
 
    ::primitive::memory_size size = sizeof(plex) + nMax * cbElement + CA2_PALACE_SAFE_ZONE_BORDER_SIZE * 2;
-   plex* p = (plex*) g_pheap->alloc(size);
-   p->size = size;
-         // may throw exception
+   plex* p = (plex*) memory_alloc(size);
+   // may throw exception
    p->pNext = pHead;
    pHead = p;  // change head (adds in reverse order for simplicity)
    return p;
@@ -28,7 +27,7 @@ void plex::FreeDataChain()     // free this one and links
       {
          BYTE* bytes = (BYTE*) p;
          plex* pNext = p->pNext;
-         g_pheap->free(bytes, size);
+         memory_free(bytes);
          pPrevious = p;
          p = pNext;
       }

@@ -128,6 +128,9 @@ void calendar::_001GetHtml(sp(::html::file) pfile)
       ::datetime::time timeNow = ::datetime::time::get_current_time();
       int32_t iMonth = m_iMonth;
       int32_t iYear = m_iYear;
+   
+      if (iYear > (timeNow.GetYear() + 100))
+         return;
 
       int32_t iWeekDay;
 

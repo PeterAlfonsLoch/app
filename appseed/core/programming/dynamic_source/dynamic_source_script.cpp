@@ -153,13 +153,23 @@ namespace dynamic_source
 
    void ds_script::on_start_build()
    {
+      
       single_lock sl(&m_mutex, TRUE);
+      
       // Unload library in the context of manager thread
+      
       //m_pmanager->m_pmessagewindow->SendMessage(WM_APP + 13, 13, (LPARAM) this);
+      
       Unload(false);
-      m_bCalcHasTempError = false;
-      m_bShouldBuild = false;
+      
+      m_bCalcHasTempError  = false;
+      
+      m_bShouldBuild       = false;
+      
+      m_bHasTempOsError    = false;
+
       m_memfileError.m_spbuffer->set_length(0);
+
    }
 
    bool ds_script::HasTimedOutLastBuild()
@@ -198,6 +208,10 @@ namespace dynamic_source
    bool ds_script::CalcHasTempError(bool bLock)
    {
       single_lock sl(&m_mutex, bLock ? TRUE : FALSE);
+
+      if (m_bHasTempOsError)
+         return true;
+
       string str;
       m_memfileError.seek_to_begin();
       str = m_memfileError.to_string();
@@ -434,9 +448,20 @@ namespace dynamic_source
          int32_t iRetry = 0;
          do
          {
+
+            if (iRetry > 0)
+            {
+
+               Sleep(884);
+
+            }
+
             m_pmanager->m_pcompiler->compile(this);
+
             m_memfileError.seek_to_begin();
+
             str = m_memfileError.to_string();
+
             if(iRetry == 0)
             {
                TRACE("Build: %s\n%s\n", m_strName.c_str(), str.c_str());
@@ -445,7 +470,9 @@ namespace dynamic_source
             {
                TRACE("Retry(%d): %s\nError: %s\n", iRetry, m_strName.c_str(), str.c_str());
             }
+
             iRetry++;
+
          } while(HasTempError() && iRetry < 8);
 
          Load(false);
