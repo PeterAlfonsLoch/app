@@ -1317,7 +1317,7 @@ namespace plane
 
       UNREFERENCED_PARAMETER(papp);
 
-      simple_message_box(NULL, MB_ICONINFORMATION, "Implement \"%s\" allocation\n", info->friendly_name());
+      App(papp).simple_message_box(NULL, MB_ICONINFORMATION, "Implement \"%s\" allocation\n", info->friendly_name());
 
    }
 

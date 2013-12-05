@@ -80,6 +80,11 @@ db_str_set::sync_queue::sync_queue(sp(base_application) papp) :
 {
    m_phttpsession = NULL;
 
+   if (papp->m_pbasesession == NULL)
+   {
+      throw simple_exception(papp, "dbstr_set should have session because it needs a user to indicate the user database");
+   }
+
 
 }
 
