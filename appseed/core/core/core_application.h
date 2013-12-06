@@ -254,10 +254,6 @@ public:
    ATOM m_atomApp, m_atomSystemTopic;   // for DDE open
    UINT m_nNumPreviewPages;        // number of default printed pages
 
-   size_t  m_nSafetyPoolSize;      // ideal size
-
-
-
    string                           m_strId;
 
    //mutex                            m_mutexObjectLock;

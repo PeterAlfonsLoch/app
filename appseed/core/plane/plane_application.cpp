@@ -21,9 +21,6 @@ namespace plane
       m_pbaseapp      = this;
       m_pplaneapp  = this;
 
-      m_dir.set_app(this);
-      m_file.set_app(this);
-      m_http.set_app(this);
 
       m_bIfs            = true;
 
@@ -398,12 +395,6 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
    }
 
 
-   ::fontopus::fontopus * application::create_fontopus()
-   {
-
-      return canew(::fontopus::fontopus(this));
-
-   }
 
 
    ::user::user * application::create_user()
@@ -1824,11 +1815,6 @@ exit_application:
    {
 
       if(!::application::process_initialize())
-         return false;
-
-      m_pfontopus = create_fontopus();
-
-      if(m_pfontopus == NULL)
          return false;
 
       m_pfontopus->construct(this);

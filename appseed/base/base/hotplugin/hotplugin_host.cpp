@@ -26,7 +26,7 @@ namespace hotplugin
       m_puchMemory               = NULL;
       m_countMemory              = 0;
       m_dProgressRate            = 0.0;
-      m_bShowProgress            = false;
+      m_bShowProgress            = true;
       m_bCa2InstallationReady    = false;
       m_bStream                  = false;
       m_pvoidSystem              = NULL;
@@ -43,6 +43,8 @@ namespace hotplugin
 
       m_pbitmap                  = NULL;
       m_pmutexBitmap             = NULL;
+
+      construct();
 
    }
 
@@ -330,7 +332,9 @@ namespace hotplugin
 
 
       m_pplugin = new install::plugin(get_app());
-      m_pplugin->m_phost = this;
+      m_pplugin->set_host(this);
+      
+
 
 
    }
@@ -384,11 +388,9 @@ namespace hotplugin
    int32_t host::starter_start(const char * pszCommandLine, plugin * pplugin)
    {
 
-      throw todo(::get_thread_app());
+      Sys(pplugin->m_pbaseapp).install().set_installing_ca2();
 
-      //System.install().set_installing_ca2();
-
-      ::install::starter_start * pstart    = new ::install::starter_start;
+      ::install::starter_start * pstart    = new ::install::starter_start(pplugin->m_pbaseapp);
 
       pstart->m_pplugin             = pplugin;
 

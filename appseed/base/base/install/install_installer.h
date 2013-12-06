@@ -25,6 +25,9 @@ namespace install
 
          string m_strPath;
 
+
+         launcher(sp(base_application) papp);
+
          virtual bool ensure_executable();
 
          virtual string get_executable_path();
@@ -135,6 +138,7 @@ namespace install
 
       string       m_strFile;
       bool           m_bSynch;
+      bool m_bInstalling;
 
 
       installer(sp(base_application) papp);
@@ -254,6 +258,11 @@ namespace install
 
 
       int32_t run_ca2_application_installer(const char * id);
+
+      virtual int32_t install_synch(const char * pszCommandLine);
+      virtual int32_t install_asynch(const char * pszCommandLine);
+
+      virtual int32_t ca2_app_install_run(const char * pszCommandLine, uint32_t & dwStartError, bool bSynch);
 
    };
 

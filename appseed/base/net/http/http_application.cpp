@@ -141,7 +141,8 @@ namespace http
 
    string application::get(const char * pszUrl, ::fontopus::user * puser)
    {
-      if(puser == NULL && ::str::find_ci("/matter.ca2.cc/", pszUrl) < 0 && ::str::find_ci("-matter.ca2.cc/", pszUrl) < 0)
+      if(puser == NULL && ::str::find_ci("/matter.ca2.cc/", pszUrl) < 0 && ::str::find_ci("-matter.ca2.cc/", pszUrl) < 0
+         && ::str::find_ci("sessid=noauth", pszUrl) < 0)
       {
          if(get_thread() != NULL)
          {

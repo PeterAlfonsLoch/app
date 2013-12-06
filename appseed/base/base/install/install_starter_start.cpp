@@ -5,6 +5,13 @@ namespace install
 {
 
 
+   starter_start::starter_start(sp(base_application) papp) :
+      element(papp)
+   {
+
+   }
+
+
    UINT starter_start::start()
    {
 
@@ -111,8 +118,8 @@ namespace install
          return uiRet;
 
 
-      throw todo(get_thread_app());
-//      _c_simple_message_loop();
+      //throw todo(get_thread_app());
+      _c_simple_message_loop();
 
 
       delete pstart;

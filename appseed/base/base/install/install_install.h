@@ -54,9 +54,6 @@ namespace install
       virtual string get_latest_build_number(const char * pszVersion);
       virtual string fetch_latest_build_number(const char * pszVersion);
 
-      virtual int32_t synch_spaadmin(const char * pszCommandLine);
-      virtual int32_t asynch_spaadmin(const char * pszCommandLine);
-
       int32_t spalib_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int32_t nCmdShow);
 
 
@@ -93,6 +90,9 @@ namespace install
       const char * get_version();
       const char * get_ca2_version();
 
+      virtual void app_install_call_sync(const char * szParameters);
+      virtual bool app_install_send_short_message(const char * psz, bool bLaunch);
+      virtual void app_install_send_response(const char * param);
 
 
    };

@@ -116,3 +116,4 @@ string dir::userappdata(const char * lpcsz)
    return path(str, lpcsz);
 
 }
+

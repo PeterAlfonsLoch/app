@@ -26,6 +26,7 @@ base_system::base_system(sp(base_application) papp) :
 
    set_app(this);
 
+   m_pbasesystem = this;
 
    if(papp == NULL)
    {
@@ -40,7 +41,6 @@ base_system::base_system(sp(base_application) papp) :
 
    }
 
-   m_pbasesystem = this;
 
 
    //::ca::application::m_file.set_app(this);
@@ -54,7 +54,7 @@ base_system::base_system(sp(base_application) papp) :
 
    strId = "ca2log";
 
-   /*
+   
    xxdebug_box("Going to start Log", "Just before initialize log", 0);
 
    // log starts here
@@ -64,7 +64,7 @@ base_system::base_system(sp(base_application) papp) :
    throw "failed to initialize log";
    }
 
-   */
+   
    /*
    if(psystemParent == NULL)
    {
@@ -99,7 +99,6 @@ base_system::base_system(sp(base_application) papp) :
    Ex1OnFactoryExchange();
 
    //m_spfilesystem.create(allocer());
-   m_spos.create(allocer());
 
 
    {
@@ -108,9 +107,36 @@ base_system::base_system(sp(base_application) papp) :
 
    }
 
+   m_pxml = canew(::xml::departament(this));
+
+   m_pxml->construct(this);
+
+   if (!m_pxml->initialize1())
+      throw simple_exception(this, "failed to construct base_system");
+
+   if (!m_pxml->initialize())
+      throw simple_exception(this, "failed to construct base_system");
 
 }
 
+
+void base_system::construct()
+{
+
+   ::base_application::construct();
+
+   m_spos.create(allocer());
+
+   m_spfile.create(allocer());
+   m_spdir.create(allocer());
+
+
+   if (!m_spdir->initialize())
+      throw simple_exception(this, "failed to construct base_system");
+
+
+
+}
 base_factory & base_system::factory()
 {
    return *m_pfactory;
@@ -140,15 +166,6 @@ bool base_system::process_initialize()
    m_pfactory->creatable_large < ::file::string_buffer > ();
 
 
-   m_pxml = canew(::xml::departament(this));
-
-   m_pxml->construct(this);
-
-   if(!m_pxml->initialize1())
-      return false;
-
-   if(!m_pxml->initialize())
-      return false;
 
 
    return true;
@@ -543,4 +560,39 @@ sp(::user::object) base_system::place_hold(sp(::user::interaction) pui)
 
    return NULL;
 
+}
+
+
+sp(::base_session) base_system::query_session(index iEdge)
+{
+
+   return NULL;
+
+}
+
+
+::core::os & base_system::os()
+{
+
+   return *m_spos;
+
+}
+
+
+
+
+bool base_system::initialize_log(const char * pszId)
+{
+   if (m_plog != NULL)
+      return true;
+   m_plog = new ::core::log(this);
+   m_plog->set_extended_log();
+   m_plog->set_app(this);
+   if (!m_plog->initialize(pszId))
+   {
+      m_plog.release();
+      return false;
+   }
+   //      ::core::trace_v = &::core::system_log_trace_v;
+   return true;
 }

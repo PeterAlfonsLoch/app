@@ -63,9 +63,9 @@ bool __win_file_find_is_dots(WIN32_FIND_DATA & data)
 #endif
 
 
-bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
+string dir::get_ca2_module_folder()
 {
-
+   char lpszModuleFolder[MAX_PATH * 8];
 #if defined(METROWIN)
 
    return "";
@@ -157,7 +157,7 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
       {
          lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] = '\0';
       }
-      strcat_dup(lpszModuleFilePath, "\\core\\");
+      strcat_dup(lpszModuleFilePath, "\\ca2\\");
 #ifdef X86
       strcat_dup(lpszModuleFilePath, "stage\\x86\\");
 #else
@@ -166,17 +166,17 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 
       strcpy_dup(lpszModuleFolder, lpszModuleFilePath);
 
-      return true;
+      return lpszModuleFolder;
 
    }
 
    if (!GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath)))
-      return false;
+      return "";
 
    LPTSTR lpszModuleFileName;
 
    if (!GetFullPathName(lpszModuleFilePath, sizeof(lpszModuleFilePath), lpszModuleFolder, &lpszModuleFileName))
-      return false;
+      return "";
 
    lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';
 
@@ -195,15 +195,200 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 
 #else
 
+   strcpy_dup(lpszModuleFolder, "/ca2/");
+
+
+
+#endif
+
+   return lpszModuleFolder;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+string dir::get_base_module_folder()
+{
+   char lpszModuleFolder[MAX_PATH * 8];
+#if defined(METROWIN)
+
+   return "";
+
+   char lpszModuleFilePath[MAX_PATH * 8];
+
+   HMODULE hmodule = ::LoadPackagedLibrary(L"ca.dll", 0);
+
+   if (hmodule == NULL)
+      hmodule = ::LoadPackagedLibrary(L"spalib.dll", 0);
+
+   if (hmodule == NULL)
+   {
+
+      string buf;
+
+      throw metrowin_todo();
+      //HRESULT hr = SHGetKnownFolderPath(FOLDERID_ProgramFiles, KF_FLAG_NO_ALIAS, NULL, wtostring(buf, 4096));
+      //if(FAILED(hr))
+      // throw "dir::get_ca2_module_folder_dup : SHGetKnownFolderPath failed";
+
+      strcpy(lpszModuleFilePath, buf.c_str());
+
+      if (lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '\\'
+         || lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '/')
+      {
+         lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] = '\0';
+      }
+      strcat_dup(lpszModuleFilePath, "\\ca2\\");
+#ifdef X86
+      strcat_dup(lpszModuleFilePath, "stage\\x86\\");
+#else
+      strcat_dup(lpszModuleFilePath, "stage\\x64\\");
+#endif
+
+      strcpy_dup(lpszModuleFolder, lpszModuleFilePath);
+
+      return lpszModuleFolder;
+
+   }
+
+   throw metrowin_todo();
+   //GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath));
+
+   // xxx   LPTSTR lpszModuleFileName;
+
+   throw metrowin_todo();
+   //GetFullPathName(lpszModuleFilePath, sizeof(lpszModuleFilePath), lpszModuleFolder, &lpszModuleFileName);
+
+   throw metrowin_todo();
+   //lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';
+
+   throw metrowin_todo();
+   /*
+   if(strlen_dup(lpszModuleFolder) > 0)
+   {
+
+   if(lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '\\' || lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '/')
+   {
+
+   lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] = '\0';
+
+   }
+
+   }
+   */
+
+   return true;
+
+#elif defined(WINDOWS)
+
+   char lpszModuleFilePath[MAX_PATH * 8];
+
+   HMODULE hmodule = ::GetModuleHandleA("base.dll");
+
+   if (hmodule == NULL)
+      hmodule = ::GetModuleHandleA("spalib.dll");
+
+   if (hmodule == NULL)
+   {
+
+      SHGetSpecialFolderPath(
+         NULL,
+         lpszModuleFilePath,
+         CSIDL_PROGRAM_FILES,
+         FALSE);
+      if (lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '\\'
+         || lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '/')
+      {
+         lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] = '\0';
+      }
+      strcat_dup(lpszModuleFilePath, "\\ca2\\");
+#ifdef X86
+      strcat_dup(lpszModuleFilePath, "stage\\x86\\");
+#else
+      strcat_dup(lpszModuleFilePath, "stage\\x64\\");
+#endif
+
+      strcpy_dup(lpszModuleFolder, lpszModuleFilePath);
+
+      return lpszModuleFolder;
+
+   }
+
+   if (!GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath)))
+      return "";
+
+   LPTSTR lpszModuleFileName;
+
+   if (!GetFullPathName(lpszModuleFilePath, sizeof(lpszModuleFilePath), lpszModuleFolder, &lpszModuleFileName))
+      return "";
+
+   lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';
+
+   if (strlen_dup(lpszModuleFolder) > 0)
+   {
+
+      if (lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '\\' || lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '/')
+      {
+
+         lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] = '\0';
+
+      }
+
+   }
+
+
+#else
+
    strcpy_dup(lpszModuleFolder, "/core/");
 
 
 
 #endif
 
-   return true;
+   return lpszModuleFolder;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 bool eat_end_level_dup(string & str, int32_t iLevelCount, const char * lpSeparator)
 {
@@ -313,9 +498,8 @@ string dir::element(const char * path1, const char * path2, const char * path3, 
 
       string str;
 
-      char lpszModuleFilePath[MAX_PATH * 10];
-      get_ca2_module_folder_dup(lpszModuleFilePath);
-      str = lpszModuleFilePath;
+      
+      str = get_ca2_module_folder();
       stringa stra;
 
       str.replace("/", "\\");

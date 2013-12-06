@@ -781,7 +781,7 @@ namespace hotplugin
 
       ::draw2d::font_sp f(allocer());
 
-      f->create_pixel_font("Calibri", iBarHeight * 10);
+      f->create_pixel_font("Calibri", iBarHeight);
 
       pgraphics->SelectObject(f);
 
@@ -1199,6 +1199,17 @@ namespace hotplugin
          m_phost->destroy_window();
 
       }
+
+   }
+
+
+   bool plugin::set_host(::hotplugin::host * phost)
+   {
+
+      m_phost = phost;
+
+      return true;
+
 
    }
 

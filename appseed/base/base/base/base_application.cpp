@@ -35,11 +35,21 @@ base_application::base_application() :
 
    m_pbasesession = NULL;
 
+   m_nSafetyPoolSize = 512;        // default size
+
+
+   m_dir.set_app(this);
+   m_file.set_app(this);
+   m_http.set_app(this);
+
+
    m_psignal = new class signal();
 
    m_pcommandthread           = new ::command_thread(this);
 
    m_psavings = new class ::core::savings(this);
+   m_pmath = new math::math(this);
+   m_pgeometry = new geometry::geometry(this);
 
    m_bZipIsDir = true;
 
@@ -645,7 +655,27 @@ void base_application::ShowWaitCursor(bool bShow)
 void base_application::construct()
 {
 
-   throw interface_only_exception(this);
+   ::thread::m_p.create(allocer());
+
+   m_pimpl.create(allocer());
+
+   m_pfontopus = create_fontopus();
+
+   if (m_pfontopus == NULL)
+      throw simple_exception(this, "could not create fontopus for base_application (base_application::construct)");
+
+
+   m_psockets = canew(::sockets::sockets(this));
+
+   m_psockets->construct(this);
+
+   if (!m_psockets->initialize1())
+      throw simple_exception(this, "could not initialize (1) sockets for base_application (base_application::construct)");
+
+
+   if (!m_psockets->initialize())
+      throw simple_exception(this, "could not initialize sockets for base_application (base_application::construct)");
+
 
 }
 
@@ -1468,7 +1498,7 @@ void base_application::Ex1OnFactoryExchange()
 
    System.factory().creatable_large < ::file::exception >();
 
-   base_library library;
+   static base_library library(this);
 
    if (!library.open("os"))
       throw "failed to do factory exchange";
@@ -1666,3 +1696,30 @@ string base_application::get_module_name()
 
 }
 
+
+
+bool base_application::final_handle_exception(::exception::exception & e)
+{
+   UNREFERENCED_PARAMETER(e);
+   //linux      exit(-1);
+
+   if (!is_system())
+   {
+
+      // get_app() may be it self, it is ok...
+      if (Sys(get_app()).final_handle_exception((::exception::exception &) e))
+         return true;
+
+
+   }
+
+   return false;
+}
+
+
+::fontopus::fontopus * base_application::create_fontopus()
+{
+
+   return canew(::fontopus::fontopus(this));
+
+}

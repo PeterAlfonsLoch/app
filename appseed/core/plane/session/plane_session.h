@@ -176,8 +176,6 @@ namespace plane
       sp(::base_application) start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext);
 
 
-      virtual COLORREF get_default_color(uint64_t ui);
-
       virtual ::visual::cursor * get_cursor();
       virtual ::visual::cursor * get_default_cursor();
 

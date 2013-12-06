@@ -28,7 +28,8 @@ public:
    static CLASS_DECL_BASE void ls_dir(stringa & stra, const char *psz);
    static CLASS_DECL_BASE void rls(stringa & stra, const char *psz);
    static CLASS_DECL_BASE void rls_dir(stringa & stra, const char *psz);
-   static CLASS_DECL_BASE bool get_ca2_module_folder_dup(char * lpszModuleFolder);
+   static CLASS_DECL_BASE string get_ca2_module_folder();
+   static CLASS_DECL_BASE string get_base_module_folder();
    static CLASS_DECL_BASE string default_os_user_path_prefix();
    static CLASS_DECL_BASE string usersystemappdata(const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2);
    static CLASS_DECL_BASE string default_userappdata(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath);

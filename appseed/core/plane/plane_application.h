@@ -133,7 +133,6 @@ namespace plane
 
       virtual bool system_add_app_install(const char * pszId);
 
-      virtual ::fontopus::fontopus * create_fontopus();
       virtual ::user::user * create_user();
       virtual ::userex::userex * create_userex();
       virtual ::userfs::userfs * create_userfs();

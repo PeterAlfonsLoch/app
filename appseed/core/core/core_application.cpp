@@ -157,8 +157,6 @@ application::application() :
 
    //      m_plemonarray              = new ::lemon::array(this);
    //    m_base64.set_app(this);
-   m_pmath                    = new math::math(this);
-   m_pgeometry                = new geometry::geometry(this);
    //m_pidspace = new id_space("veribell-{E856818A-2447-4a4e-B9CC-4400C803EE7A}", NULL);
    m_iResourceId              = 8001;
 //   m_pcommandthread           = new command_thread(this);
@@ -170,8 +168,6 @@ application::application() :
    m_pszProfileName              = NULL;
    m_pframea                     = NULL;
 
-
-   m_nSafetyPoolSize             = 512;        // default size
 
    m_pwndMain                    = NULL;
    m_puserstrcontext             = NULL;
@@ -394,13 +390,7 @@ bool application::initialize1()
 {
 
 
-   m_psockets = canew(::sockets::sockets(this));
-
-   m_psockets->construct(this);
-
-   if(!m_psockets->initialize1())
-      return false;
-
+   
 
    m_puinteraction = canew(::uinteraction::uinteraction(this));
 
@@ -4183,8 +4173,6 @@ bool application::initialize()
    if(!m_pcolorertake5->initialize())
       return false;
 
-   if(!m_psockets->initialize())
-      return false;
 
 
 

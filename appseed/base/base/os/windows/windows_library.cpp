@@ -1,13 +1,15 @@
 #include "framework.h"
 
 
-   base_library::base_library()
+   base_library::base_library(sp(base_application) papp) :
+      element(papp)
    {
       m_bAutoClose = true;
       m_plibrary = NULL;
    }
 
-   base_library::base_library(const char * pszOpen)
+   base_library::base_library(sp(base_application) papp, const char * pszOpen) :
+      element(papp)
    {
       m_bAutoClose = true;
       m_plibrary = NULL;
@@ -87,12 +89,10 @@
       if(m_plibrary == NULL)
       {
 
-         strPath = "\\\\?\\" + strPath;
-
          try
          {
 
-            m_plibrary = ::LoadLibraryW(gen_utf8_to_16(strPath));
+            m_plibrary = ::LoadLibraryW(gen_utf8_to_16("\\\\?\\" + strPath));
 
          }
          catch(...)
@@ -101,7 +101,71 @@
          }
 
       }
-   
+
+      if (m_plibrary == NULL)
+      {
+
+         try
+         {
+
+            m_plibrary = ::LoadLibraryW(gen_utf8_to_16(::dir::path(::dir::get_ca2_module_folder(), strPath)));
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+      if (m_plibrary == NULL)
+      {
+
+         try
+         {
+
+            m_plibrary = ::LoadLibraryW(gen_utf8_to_16("\\\\?\\" + ::dir::path(::dir::get_ca2_module_folder(), strPath)));
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+      if (m_plibrary == NULL)
+      {
+
+         try
+         {
+
+            m_plibrary = ::LoadLibraryW(gen_utf8_to_16(::dir::path(::dir::get_base_module_folder(), strPath)));
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+      if (m_plibrary == NULL)
+      {
+
+         try
+         {
+
+            m_plibrary = ::LoadLibraryW(gen_utf8_to_16("\\\\?\\" + ::dir::path(::dir::get_base_module_folder(), strPath)));
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
       return m_plibrary != NULL;
 
    }
@@ -130,12 +194,15 @@
       return ::GetProcAddress((HINSTANCE) m_plibrary, pszElement);
    }
 
-   ca2_library::ca2_library()
+   ca2_library::ca2_library(sp(base_application) papp) :
+      element(papp),
+      base_library(papp)
    {
    }
 
-   ca2_library::ca2_library(const char * pszOpen) :
-      base_library(pszOpen)
+   ca2_library::ca2_library(sp(base_application) papp, const char * pszOpen) :
+      element(papp),
+      base_library(papp, pszOpen)
    {
 
    }

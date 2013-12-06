@@ -151,8 +151,6 @@ namespace plane
       virtual bool assert_running_global(const char * pszAppName, const char * pszId = NULL);
       virtual bool assert_running_local(const char * pszAppName, const char * pszId = NULL);
 
-      virtual bool initialize_log(const char * pszId);
-
       virtual int32_t _001OnDebugReport(int32_t i1, const char * psz1, int32_t i2, const char * psz2, const char * psz3, va_list args);
 
       virtual int32_t __ca2_logging_report(
@@ -226,7 +224,7 @@ namespace plane
 
 
       //      sp(::plane::session) get_session(index iEdge, application_bias * pbiasCreation = NULL);
-      sp(::plane::session) query_session(index iEdge);
+      sp(::base_session) query_session(index iEdge);
 
 
       //static void register_delete(sp(element) plistened, sp(element) plistener);

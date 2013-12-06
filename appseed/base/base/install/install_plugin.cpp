@@ -56,6 +56,7 @@ namespace install
       m_bAppStarted           = false;
       m_pbReady               = NULL;
 
+
 #ifdef METROWIN
 
       throw "todo"; // small_ipc_channel
@@ -83,6 +84,20 @@ namespace install
    plugin::~plugin()
    {
    }
+
+
+   bool plugin::set_host(::hotplugin::host * phost)
+   {
+      
+      if (!::hotplugin::plugin::set_host(phost))
+         return false;
+
+      m_login.m_strRequestingServer = System.url().get_server(m_phost->m_strHostPluginLocation);
+
+      return true;
+
+   }
+    
 
    void plugin::on_prepare_memory()
    {
@@ -513,7 +528,17 @@ namespace install
    }
 
 
+   bool plugin::on_lbutton_up(int x, int y)
+   {
 
+      if (m_login.m_bVisible && ::os::simple_ui::on_lbutton_up(x, y))
+         return true;
+
+      m_iHealingSurface = m_canvas.increment_mode();
+
+      return false;
+
+   }
 
 
 
@@ -923,18 +948,16 @@ namespace install
 
          string strLocale;
 
-         throw todo(get_app());
-//         if(strPrompt.is_empty() || !url_query_get_param_dup(strLocale, "locale", strPrompt) || strLocale.is_empty())
-         //          strLocale = str_get_system_default_locale_dup();
+         if(strPrompt.is_empty() || !url_query_get_param_dup(strLocale, "locale", strPrompt) || strLocale.is_empty())
+            strLocale = str_get_system_default_locale_dup();
 
          if(strLocale.is_empty())
             strLocale = "en";
 
          string strSchema;
 
-         throw todo(get_app());
-//         if (strPrompt.is_empty() || !url_query_get_param_dup(strSchema, "schema", strPrompt) || strSchema.is_empty())
-  //          strSchema = str_get_system_default_schema_dup();
+         if (strPrompt.is_empty() || !url_query_get_param_dup(strSchema, "schema", strPrompt) || strSchema.is_empty())
+            strSchema = str_get_system_default_schema_dup();
 
          if(strSchema.is_empty())
             strSchema = "en";

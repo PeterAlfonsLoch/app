@@ -70,31 +70,100 @@ namespace install
    }
 
 
-   int32_t installer(const char * param);
-
-
    int32_t install::synch_install(const char * pszCommandLine, bool bBackground)
    {
 
       wait_until_mutex_does_not_exist("Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
 
+      string strCommand;
 
-      char * szParameters = (char *)memory_alloc(strlen_dup(pszCommandLine) + 256);
-      strcpy_dup(szParameters, "synch_spaadmin:");
-      strcat_dup(szParameters, "starter_start:");
-      strcat_dup(szParameters, pszCommandLine);
+      strCommand = "synch_spaadmin:";
+      
+      strCommand += "starter_start:";
+      
+      strCommand += pszCommandLine;
+
       if (bBackground)
       {
-         strcat_dup(szParameters, " background");
+
+         strCommand += " background";
+
       }
 
-      installer(szParameters);
-
-      memory_free_dbg(szParameters, 0);
+      app_install_call_sync(strCommand);
 
       return 0;
+
    }
 
+
+   void install::app_install_call_sync(const char * szParameters)
+   {
+      bool bLaunch;
+
+      if (stricmp_dup(szParameters, "exit") == 0
+         || stricmp_dup(szParameters, "quit") == 0)
+      {
+         bLaunch = false;
+      }
+      else
+      {
+         bLaunch = true;
+      }
+
+      app_install_send_short_message(szParameters, bLaunch);
+
+   }
+
+
+   CLASS_DECL_BASE bool install::app_install_send_short_message(const char * psz, bool bLaunch)
+   {
+
+
+
+#ifdef METROWIN
+
+      throw "todo";
+
+#else
+
+      small_ipc_tx_channel txchannel;
+
+      installer::launcher launcher(get_app());
+
+      if (!txchannel.open("core/spaboot_install", bLaunch ? &launcher : NULL))
+         return false;
+
+      txchannel.send(psz, false);
+
+#endif
+
+      return true;
+
+   }
+
+
+   void install::app_install_send_response(const char * param)
+   {
+
+#ifdef METROWIN
+
+      throw "todo";
+
+#else
+
+      small_ipc_tx_channel txchannel;
+
+      installer::launcher launcher(get_app());
+
+      if (!txchannel.open("core/spaboot_install_callback"))
+         return;
+
+      txchannel.send(param, false);
+
+#endif
+
+   }
 
 
 
@@ -103,18 +172,20 @@ namespace install
 
       wait_until_mutex_does_not_exist("Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
 
-      char * szParameters = (char *)memory_alloc(strlen_dup(pszCommandLine) + 256);
-      strcpy_dup(szParameters, "spaadmin:");
-      strcat_dup(szParameters, "starter_start:");
-      strcat_dup(szParameters, pszCommandLine);
+      string strCommand;
+
+      strCommand = "spaadmin:";
+      
+      strCommand += "starter_start:";
+      
+      strCommand += pszCommandLine;
+      
       if (bBackground)
       {
-         strcat_dup(szParameters, " background");
+         strCommand += " background";
       }
 
-      installer(szParameters);
-
-      memory_free_dbg(szParameters, 0);
+      app_install_call_sync(strCommand);
 
       return 0;
 
@@ -383,38 +454,7 @@ namespace install
    }
 
 
-   int32_t install::synch_spaadmin(const char * pszCommandLine)
-   {
-
-
-      throw todo(get_app());
-
-/*      ::install::installer * pinstaller = new ::install::installer(papp);
-
-      pinstaller->m_bStarterStart = true;
-
-      pinstaller->m_bSynch = true;
-
-      return pinstaller->spaadmin_main(pszCommandLine);*/
-
-   }
-
-
-   int32_t install::asynch_spaadmin(const char * pszCommandLine)
-   {
-
-
-      throw todo(get_app());
-      /*::install::installer * pinstaller = new ::install::installer(papp);
-
-      pinstaller->m_bStarterStart = true;
-
-      pinstaller->m_bSynch = false;
-
-      return pinstaller->spaadmin_main(pszCommandLine);*/
-
-   }
-
+ 
 
 
 
@@ -574,11 +614,11 @@ namespace install
       g_bCa2Installed = true;
       if (g_bCa2Installed)
       {
-         base_library libraryOs;
+         base_library libraryOs(get_app());
          g_bCa2Installed = libraryOs.open(dir::path(strStage, "os"));
          if (g_bCa2Installed)
          {
-            base_library libraryCa2;
+            base_library libraryCa2(get_app());
             g_bCa2Installed = libraryCa2.open(dir::path(strStage, "ca"));
             if (!bUnloadIfNotInstalled && g_bCa2Installed)
             {
@@ -689,6 +729,8 @@ namespace install
       dir::mk(dir::element() + "\\appdata\\" + get_platform());
       file_put_contents_dup(dir::element() + "\\appdata\\" + get_platform() + "\\build.txt", pszBuild);
    }
+
+
 
 
 } // namespace install

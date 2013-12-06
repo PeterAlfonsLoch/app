@@ -57,16 +57,6 @@ namespace plane
       //strId += ::str::has_char(m_strBaseSupportId, ".");
 
 
-      strId = "ca2log";
-
-      xxdebug_box("Going to start Log", "Just before initialize log", 0);
-
-      // log starts here
-      if(!initialize_log(strId))
-      {
-         xxdebug_box("Could not initialize log", "Failed to initialize log", 0);
-         throw "failed to initialize log";
-      }
 
 
 /*
@@ -90,7 +80,6 @@ namespace plane
 
 
       m_net.set_app(this);
-      m_file.set_app(this);
       m_stra.set_app(this);
 //      m_url.set_app(this);
       m_userset.set_app(this);
@@ -101,9 +90,7 @@ namespace plane
 #endif
       m_pdatetime = new class ::datetime::departament(this);
 //      m_email.set_app(this);
-      m_http.set_app(this);
       m_compress.set_app(this);
-      m_file.set_app(this);
 
       m_pmachineeventcentral     = NULL;
 
@@ -184,12 +171,6 @@ namespace plane
          return false;
       }*/
 
-      m_spfile.create(allocer());
-      m_spdir.create(allocer());
-
-
-      if(!m_spdir->initialize())
-         return false;
 
       if(!set_main_init_data(m_pinitmaindata))
          return false;
@@ -767,7 +748,7 @@ namespace plane
    */
 
 
-   sp(::plane::session) system::query_session(index iEdge)
+   sp(::base_session) system::query_session(index iEdge)
    {
       sp(::plane::session) pbergedge = NULL;
       if(m_pbergedgemap == NULL)
@@ -836,10 +817,6 @@ namespace plane
       return m_installex;
    }
 
-   ::core::os & system::os()
-   {
-      return *m_spos;
-   }
 
 #ifndef METROWIN
 
@@ -1063,21 +1040,6 @@ namespace plane
       }
    }
 
-   bool system::initialize_log(const char * pszId)
-   {
-      if(m_plog != NULL)
-         return true;
-      m_plog = new ::core::log(this);
-      m_plog->set_extended_log();
-      m_plog->set_app(this);
-      if(!m_plog->initialize(pszId))
-      {
-         m_plog.release();
-         return false;
-      }
-      //      ::core::trace_v = &::core::system_log_trace_v;
-      return true;
-   }
 
    bool system::finalize()
    {

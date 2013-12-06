@@ -59,7 +59,7 @@ namespace fontopus
       if (strForm.is_empty())
          return;
 
-      ::xml::document doc;
+      ::xml::document doc(get_app());
 
       if (!doc.load(strForm))
 
@@ -192,6 +192,9 @@ namespace fontopus
          return process_response(::fontopus::authentication_map::m_authmap[strUsername].m_mapServer[m_strRequestingServer]);
 
       }
+
+      if (m_strRequestingServer.is_empty())
+         m_strRequestingServer = "https://account.ca2.cc";
 
       string strGetFontopus("http://" + m_strRequestingServer + "/get_fontopus");
 

@@ -1,12 +1,13 @@
 #pragma once
 
 
-class CLASS_DECL_BASE simple_app
+class CLASS_DECL_BASE simple_app :
+   virtual public base_system
 {
 public:
 
 
-   HINSTANCE                  m_hinstance;
+   //HINSTANCE                  m_hinstance;
    int32_t                        __argc;
    TCHAR **                   __targv;
 

@@ -1248,7 +1248,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\install\install_install.h" />
     <ClInclude Include="base\install\install_installation_lock_file_lock.h" />
     <ClInclude Include="base\install\install_installer.h" />
-    <ClInclude Include="base\install\install_installer_square.h" />
     <ClInclude Include="base\install\install_plugin.h" />
     <ClInclude Include="base\install\install_small_bell.h" />
     <ClInclude Include="base\install\install_starter_start.h" />
@@ -1819,6 +1818,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\userpresence\userpresence_user_presence.h" />
     <ClInclude Include="user\user_impact_update_hint.h" />
     <ClInclude Include="user\user_job.h" />
+    <ClInclude Include="user\user_message.h" />
     <ClInclude Include="user\user_object.h" />
     <ClInclude Include="user\user_control_bar.h" />
     <ClInclude Include="user\user_impact.h" />
@@ -2733,7 +2733,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\install\install_install.cpp" />
     <ClCompile Include="base\install\install_installation_lock_file_lock.cpp" />
     <ClCompile Include="base\install\install_installer.cpp" />
-    <ClCompile Include="base\install\install_installer_square.cpp" />
     <ClCompile Include="base\install\install_plugin.cpp" />
     <ClCompile Include="base\install\install_small_bell.cpp" />
     <ClCompile Include="base\install\install_starter_start.cpp" />
@@ -9708,6 +9707,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\user_impact_system.cpp" />
     <ClCompile Include="user\user_impact_update_hint.cpp" />
     <ClCompile Include="user\user_job.cpp" />
+    <ClCompile Include="user\user_message.cpp" />
     <ClCompile Include="user\user_object.cpp" />
     <ClCompile Include="user\user_frame_window.cpp" />
     <ClCompile Include="user\user_buffer.cpp" />

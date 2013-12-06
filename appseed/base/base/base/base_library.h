@@ -1,7 +1,8 @@
 #pragma once
 
 
-class CLASS_DECL_BASE base_library
+class CLASS_DECL_BASE base_library :
+   virtual public ::element
 {
 public:
 
@@ -10,8 +11,8 @@ public:
    bool                          m_bAutoClose;
 
 
-   base_library();
-   base_library(const char * pszOpen);
+   base_library(sp(base_application) papp);
+   base_library(sp(base_application) papp, const char * pszOpen);
    virtual ~base_library();
 
    virtual bool open(const char * pszPath);
@@ -36,8 +37,8 @@ class CLASS_DECL_BASE ca2_library :
 {
 public:
 
-   ca2_library();
-   ca2_library(const char * pszOpen);
+   ca2_library(sp(base_application) papp);
+   ca2_library(sp(base_application) papp, const char * pszOpen);
    virtual ~ca2_library();
 
    virtual bool open(const char * pszPath);

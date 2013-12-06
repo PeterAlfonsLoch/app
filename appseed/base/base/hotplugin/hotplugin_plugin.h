@@ -145,6 +145,8 @@ namespace hotplugin
 
       virtual void ensure_bitmap_data(int32_t cx, int32_t cy, bool bCreateFile);
 
+      virtual bool set_host(::hotplugin::host * phost);
+
    };
 
 

@@ -35,5 +35,8 @@ public:
    virtual void set_default_cursor(::visual::e_cursor ecursor);
    virtual ::visual::cursor * get_default_cursor();
 
+   virtual COLORREF get_default_color(uint64_t ui);
+
+
 
 };

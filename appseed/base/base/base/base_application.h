@@ -100,6 +100,11 @@ public:
    // Initial state of the application's ::user::window; normally,
    // this is an argument to ShowWindow().
    int32_t                                         m_nCmdShow;
+   size_t                                          m_nSafetyPoolSize;      // ideal size
+
+
+
+
 
 
    base_application();
@@ -357,6 +362,9 @@ public:
       virtual ::visual::icon * set_icon(object * pobject, ::visual::icon * picon, bool bBigIcon);
       virtual ::visual::icon * get_icon(object * pobject, bool bBigIcon) const;
 
+      virtual bool final_handle_exception(::exception::exception & e);
+
+      virtual ::fontopus::fontopus * create_fontopus();
 
 };
 

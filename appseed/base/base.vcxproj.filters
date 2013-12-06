@@ -2693,9 +2693,6 @@
     <ClInclude Include="base\install\install_installer.h">
       <Filter>Header Files\base\install</Filter>
     </ClInclude>
-    <ClInclude Include="base\install\install_installer_square.h">
-      <Filter>Header Files\base\install</Filter>
-    </ClInclude>
     <ClInclude Include="base\install\install_plugin.h">
       <Filter>Header Files\base\install</Filter>
     </ClInclude>
@@ -3160,6 +3157,9 @@
     </ClInclude>
     <ClInclude Include="base\base\base_savings.h">
       <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_message.h">
+      <Filter>Header Files\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -6406,9 +6406,6 @@
     <ClCompile Include="base\install\install_installer.cpp">
       <Filter>Source Files\base\install</Filter>
     </ClCompile>
-    <ClCompile Include="base\install\install_installer_square.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
     <ClCompile Include="base\install\install_plugin.cpp">
       <Filter>Source Files\base\install</Filter>
     </ClCompile>
@@ -6783,6 +6780,9 @@
     </ClCompile>
     <ClCompile Include="base\base\base_savings.cpp">
       <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_message.cpp">
+      <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

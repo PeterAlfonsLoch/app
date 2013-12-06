@@ -86,11 +86,11 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, LPCRECT lpcrect)
 
    ::draw2d::font_sp font(allocer());
 
-   font->create_point_font("Lucida Sans Unicode", 100);
+   font->create_point_font("Lucida Sans Unicode", 10);
 
    ::draw2d::font_sp fontBold(allocer());
 
-   fontBold->create_point_font("Lucida Sans Unicode", 100);
+   fontBold->create_point_font("Lucida Sans Unicode", 10);
 
    fontBold->m_iFontWeight = FW_BOLD;
 

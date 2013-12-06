@@ -1,7 +1,9 @@
 #include "framework.h"
 
 
-simple_app::simple_app()
+simple_app::simple_app() :
+   element(this),
+   base_system(this)
 {
    
    m_iError = 0;
