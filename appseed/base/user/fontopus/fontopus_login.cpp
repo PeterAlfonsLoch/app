@@ -4,6 +4,9 @@
 CLASS_DECL_BASE string spa_login_crypt(const char * psz, const char * pszRsa);
 
 
+CLASS_DECL_BASE void draw_ca2(::draw2d::graphics * pdc, int x, int y, int z, COLORREF crBk, COLORREF cr);
+CLASS_DECL_BASE void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y, int z, int b, COLORREF crBk, COLORREF cr, COLORREF crOut);
+CLASS_DECL_BASE void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
 
 
 namespace fontopus
@@ -13,6 +16,7 @@ namespace fontopus
    login::login(sp(base_application) papp, int left, int top) :
       element(papp),
       interaction(papp),
+      ::thread(papp),
       m_labelUser(papp),
       m_editUser(papp),
       m_labelPassword(papp),
@@ -28,15 +32,19 @@ namespace fontopus
       m_password.set_parent(this);
       m_tap.set_parent(this);
 
+      int w = 884;
+      int h = 184 + 23 + 184;
+
       m_rect.left = left;
       m_rect.top = top;
-      m_rect.right = m_rect.left + 840;
-      m_rect.bottom = m_rect.top + 284;
+      m_rect.right = m_rect.left + w;
+      m_rect.bottom = m_rect.top + h;
 
       m_labelUser.m_strText = "e-mail:";
       m_labelPassword.m_strText = "password:";
       m_tap.m_strText = "open";
 
+      m_eresult = login::result_fail;
 
    }
 
@@ -127,7 +135,7 @@ namespace fontopus
    }
 
 
-   bool login::on_action(const char * pszId)
+   /*bool login::on_action(const char * pszId)
    {
 
       if (m_puiParent != NULL && m_puiParent->on_action(pszId))
@@ -144,7 +152,7 @@ namespace fontopus
 
       return false;
 
-   }
+   }*/
 
    void login::start_login()
    {
@@ -378,6 +386,8 @@ namespace fontopus
    void login::login_result(e_result eresult)
    {
 
+      m_eresult = eresult;
+
       if (eresult == result_ok)
       {
 
@@ -441,6 +451,10 @@ namespace fontopus
    void login::authentication_failed()
    {
 
+      layout();
+
+      show_window();
+
    }
 
 
@@ -455,8 +469,8 @@ namespace fontopus
       m_tap.m_bVisible = true;
 
 
-      int32_t x1 = 0;
-      int32_t x2 = m_rect.width();
+      int32_t x1 = 49;
+      int32_t x2 = m_rect.width() - 49 * 2;
       int32_t h1 = 23;
       int32_t pad = 5;
 
@@ -471,7 +485,7 @@ namespace fontopus
       m_tap.m_rect.left = x1;
       m_tap.m_rect.right = x2;
 
-      int32_t y = 0;
+      int32_t y = 49 + 86;
       m_labelUser.m_rect.top = y;
       y += h1;
       m_labelUser.m_rect.bottom = y;
@@ -496,6 +510,166 @@ namespace fontopus
    }
 
 
+
+   void login::draw_this(::draw2d::graphics * pgraphics)
+   {
+
+      draw_frame_window_rect(pgraphics);
+
+      COLORREF crOut, crIn, crBorderOut, crBorderIn, cr, crBk;
+
+      //       if (is_hover() || m_bDown || m_bMouseMove)
+      /*       {
+
+      #if CA2_PLATFORM_VERSION == CA2_BASIS
+
+      crOut = ARGB(184 + 49, 255, 230, 255);
+
+      crIn = ARGB(255, 255, 84 + 49, 255);
+
+      crBorderOut = ARGB(184, 150, 100, 150);
+
+      crBorderIn = ARGB(184, 255, 240, 255);
+
+      #else
+
+      crOut = ARGB(184 + 49, 230, 255, 225);
+
+      crIn = ARGB(255, 84 + 49, 255, 77 + 49);
+
+      crBorderOut = ARGB(184, 100, 150, 100);
+
+      crBorderIn = ARGB(184, 240, 255, 235);
+
+      #endif
+
+      }
+      else*/
+      {
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+         /*crOut = ARGB(184, 255, 210, 255);
+
+         crIn = ARGB(255, 255, 184 + 49, 255);
+
+         crBorderOut = ARGB(184, 90, 20, 90);
+
+         crBorderIn = ARGB(184, 255, 240, 255);*/
+
+         crOut = ARGB(255, 255, 210, 255);
+
+         crIn = ARGB(255, 255, 184 + 49, 255);
+
+         crBorderOut = ARGB(255, 90, 20, 90);
+
+         crBorderIn = ARGB(255, 255, 240, 255);
+
+#else
+
+         crOut = ARGB(184, 210, 255, 205);
+
+         crIn = ARGB(255, 84 + 49, 255, 77 + 49);
+
+         crBorderOut = ARGB(184, 20, 90, 20);
+
+         crBorderIn = ARGB(184, 240, 255, 235);
+
+#endif
+
+      }
+
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+      //cr = ARGB(223, 84, 49, 77);
+      cr = ARGB(255, 84, 49, 77);
+
+#else
+
+      //cr = ARGB(223, 49, 84, 23);
+      cr = ARGB(255, 49, 84, 23);
+
+#endif
+
+      crBk = ARGB(
+         (GetAValue(crOut) + GetAValue(crIn)) / 2,
+         (GetRValue(crOut) + GetRValue(crIn)) / 2,
+         (GetGValue(crOut) + GetGValue(crIn)) / 2,
+         (GetBValue(crOut) + GetBValue(crIn)) / 2);
+
+      draw_ca2_with_border2(pgraphics, 49, 49, 84 + 1 + 1, 1, 1, crBk, cr, crBorderOut, crBorderIn);
+
+   }
+
+   bool login::on_action(const char * pszId)
+   {
+
+      if (!strcmp(pszId, "submit"))
+      {
+
+         if (get_os_data() == NULL)
+         {
+
+            m_bVisible = false;
+
+            get_top_level_parent()->show_window(false);
+
+            ::thread::m_p.create(allocer());
+
+            begin();
+
+         }
+
+         return true;
+
+      }
+      else if (!strcmp(pszId, "escape"))
+      {
+
+         get_top_level_parent()->destroy_window();
+
+      }
+
+      return false;
+
+
+   }
+
+
+
+   int32_t login::run()
+   {
+
+      try
+      {
+
+         login_result(perform_login());
+
+         if (m_eresult == ::fontopus::login::result_fail)
+         {
+
+            get_top_level_parent()->show_window();
+
+            m_bVisible = true;
+
+         }
+         else
+         {
+
+            get_top_level_parent()->destroy_window();
+
+         }
+      }
+      catch (...)
+      {
+      }
+
+      set_os_data(NULL);
+
+      return 0;
+
+   }
 
 } // namespace fontopus
 

@@ -2129,12 +2129,6 @@
     <ClInclude Include="net\net_email_departament.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
-    <ClInclude Include="net\net_ip_enum.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_port_forward.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\backview\backview.h">
       <Filter>Header Files\graphics\backview</Filter>
     </ClInclude>
@@ -3839,12 +3833,6 @@
       <Filter>Source Files\core\service</Filter>
     </ClCompile>
     <ClCompile Include="net\net_email_departament.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\net_ip_enum.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\net_port_forward.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
     <ClCompile Include="graphics\backview\backview_graphics.cpp">

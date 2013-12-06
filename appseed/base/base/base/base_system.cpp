@@ -96,6 +96,16 @@ base_system::base_system(sp(base_application) papp) :
 #endif
 
 
+   Ex1OnFactoryExchange();
+
+
+   {
+
+      draw2d_gdiplus::factory_exchange factoryexchange(this);
+
+   }
+
+
 }
 
 base_factory & base_system::factory()

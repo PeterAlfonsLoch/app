@@ -79,3 +79,7 @@ namespace net
 
 
 
+#include "base/net/net_ip_enum.h"
+#include "base/net/net_port_forward.h"
+
+

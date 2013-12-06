@@ -38,10 +38,10 @@ namespace install
       element(papp),
       ::simple_ui::style(papp),
       ::simple_ui::interaction(papp),
+      ::os::simple_ui(papp),
       hotplugin::plugin(papp),
-      m_login(papp, 49, 49),
+      m_login(papp, 49, 23),
       m_canvas(papp)
-
    {
 
       m_login.set_parent(this);
@@ -552,28 +552,31 @@ namespace install
 
             if(uiMessage == WM_LBUTTONDOWN)
             {
-               m_login.on_lbutton_down((int16_t)GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left, (int16_t)GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top);
+               point pt((::lparam)lparam);
+               m_login.screen_to_client(pt);
+               m_login.on_lbutton_down(pt.x, pt.y);
             }
             else if(uiMessage == WM_LBUTTONUP)
             {
-               m_login.on_lbutton_up((int16_t)GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left, (int16_t)GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top);
+               point pt((::lparam)lparam);
+               m_login.screen_to_client(pt);
+               m_login.on_lbutton_up(pt.x, pt.y);
             }
             else if(uiMessage == WM_MOUSEMOVE)
             {
 
-               int32_t x = (int16_t) GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left;
-
-               int32_t y = (int16_t) GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top;
+               point pt((::lparam)lparam);
+               m_login.screen_to_client(pt);
 
                POINT ptCursor;
 
                ::GetCursorPos(&ptCursor);
 
-               m_ptCursorPhase.x = (int16_t) GET_X_LPARAM(lparam) - ptCursor.x;
+               m_ptCursorPhase.x = (int16_t) pt.x - ptCursor.x;
 
-               m_ptCursorPhase.y = (int16_t) GET_Y_LPARAM(lparam) - ptCursor.y;
+               m_ptCursorPhase.y = (int16_t) pt.y - ptCursor.y;
 
-               m_login.on_mouse_move(x, y);
+               m_login.on_mouse_move(pt.x, pt.y);
 
             }
             else if(uiMessage == WM_KEYDOWN)
@@ -1030,7 +1033,17 @@ restart:
 
    }
 
+   void plugin::viewport_screen_to_client(POINT * ppt)
+   {
+      //::simple_ui::interaction::viewport_screen_to_client(ppt);
+   }
 
+
+   void plugin::viewport_client_to_screen(POINT * ppt)
+   {
+      //::simple_ui::interaction::viewport_client_to_screen(ppt);
+
+   }
 
 
 } // namespace install

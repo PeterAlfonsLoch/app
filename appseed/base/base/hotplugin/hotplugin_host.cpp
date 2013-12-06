@@ -13,10 +13,13 @@ namespace hotplugin
 {
 
 
-   host::host(sp(base_application) papp) :
-      element(papp),
-      hotplugin::plugin(papp),
-      ::simple_ui::style(papp)
+   host::host() :
+      element(this),
+      ::base_system(this),
+      hotplugin::plugin(this),
+      ::simple_ui::style(this),
+      ::simple_ui::interaction(this),
+      ::os::simple_ui(this)
    {
 
       m_pplugin                  = NULL;
@@ -230,7 +233,7 @@ namespace hotplugin
    {
       if(m_pplugin != NULL)
       {
-         return m_pplugin->message_handler(uiMessage, wparam, lparam);
+         return m_pplugin->window_procedure(NULL, uiMessage, wparam, lparam);
       }
       return 0;
    }
@@ -567,6 +570,27 @@ throw todo(get_thread_app());
 
       throw todo(get_app());
 //      pgraphics.blend_bitmap_data(lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref);
+
+   }
+
+   void host::translate_mouse_message(int * px, int * py)
+   {
+
+   }
+
+
+   bool host::show_window(bool bShow)
+   {
+
+      return ::simple_ui::interaction::show_window(bShow);
+
+   }
+
+
+   void host::destroy_window()
+   {
+
+      ::simple_ui::interaction::destroy_window();
 
    }
 

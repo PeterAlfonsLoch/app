@@ -1,36 +1,12 @@
 #pragma once
 
 
-namespace core
-{
-
-
-   class signal_details;
-   class signal;
-
-
-} // namespace core
-
-
-namespace user
-{
-
-
-   class interaction;
-
-
-}
-
-
 namespace uinteraction
 {
 
    class uinteraction;
 
 }
-
-
-typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
 
 
 namespace plane
@@ -41,32 +17,6 @@ namespace plane
 
 
 }
-
-
-namespace fontopus
-{
-
-
-   class user;
-
-
-} // namespace fontopus
-
-
-namespace fontopus
-{
-
-
-   class user;
-
-
-} // namespace fontopus
-
-
-
-
-
-
 
 
 CLASS_DECL_CORE UINT c_cdecl application_thread_procedure(LPVOID pvoid);
@@ -459,7 +409,6 @@ public:
    DECL_GEN_SIGNAL(on_application_signal);
 
 
-   virtual void Ex1OnFactoryExchange();
    virtual void draw2d_factory_exchange();
 
    // open named file, trying to match a regsitered

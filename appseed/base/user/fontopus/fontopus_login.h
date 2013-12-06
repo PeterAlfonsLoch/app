@@ -6,7 +6,8 @@ namespace fontopus
 
 
    class CLASS_DECL_BASE login :
-      public ::simple_ui::interaction
+      virtual public ::simple_ui::interaction,
+      virtual public thread
    {
    public:
 
@@ -30,6 +31,10 @@ namespace fontopus
 
       };
 
+
+      login::e_result            m_eresult;
+
+
       ::simple_ui::label            m_labelUser;
       ::simple_ui::edit_box         m_editUser;
       ::simple_ui::label            m_labelPassword;
@@ -50,6 +55,8 @@ namespace fontopus
       login(sp(base_application) papp, int left, int top);
       virtual ~login();
 
+
+      virtual void draw_this(::draw2d::graphics * pgraphics);
 
       virtual bool on_action(const char * pszId);
 
@@ -75,6 +82,9 @@ namespace fontopus
       virtual void layout();
 
       virtual ::fontopus::login::e_result process_response(string strResponse);
+
+      virtual int32_t run();
+
 
    };
 

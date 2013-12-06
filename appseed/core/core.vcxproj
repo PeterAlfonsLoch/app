@@ -51,7 +51,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E000FFAF-392F-4E32-BF51-FD7ED638991F}</ProjectGuid>
+    <ProjectGuid>{AFC48570-75E4-46BD-B8AB-4590B257E1C8}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>ca</RootNamespace>
@@ -1391,8 +1391,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="net\mail\pop3_socket.h" />
     <ClInclude Include="net\mail\simple_pop3.h" />
     <ClInclude Include="net\net_email_departament.h" />
-    <ClInclude Include="net\net_ip_enum.h" />
-    <ClInclude Include="net\net_port_forward.h" />
     <ClInclude Include="net\usermail\usermail.h" />
     <ClInclude Include="net\usermail\usermail_account.h" />
     <ClInclude Include="net\usermail\usermail_db_pop3.h" />
@@ -2101,8 +2099,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="net\hi5\hi5_oauth.cpp" />
     <ClCompile Include="net\hi5\hi5_twitter_authorization.cpp" />
     <ClCompile Include="net\net_email_departament.cpp" />
-    <ClCompile Include="net\net_ip_enum.cpp" />
-    <ClCompile Include="net\net_port_forward.cpp" />
     <ClCompile Include="net\usermail\usermail_account.cpp" />
     <ClCompile Include="net\usermail\usermail_db_pop3.cpp" />
     <ClCompile Include="net\usermail\usermail_list_interface.cpp" />

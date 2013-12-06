@@ -47,6 +47,14 @@ namespace simple_ui
       virtual void draw_focus_rect(::draw2d::graphics * pgraphics);
 
 
+      virtual void draw_auth_box(::draw2d::graphics * pgraphics);
+      virtual void draw_frame_window_rect(::draw2d::graphics * pgraphics);
+      virtual void draw_dark_glass(::draw2d::graphics * pgraphics);
+      virtual void draw_pestana(::draw2d::graphics * pgraphics);
+      virtual void draw_fuzzy_color_spread(::draw2d::graphics * pgraphics);
+
+
+
       virtual bool on_char(int32_t iKey, const string & strChar);
       virtual bool on_lbutton_down(int32_t x, int32_t y);
       virtual bool on_lbutton_up(int32_t x, int32_t y);
@@ -94,6 +102,11 @@ namespace simple_ui
       virtual void redraw_window();
 
       virtual void get_cursor_pos(POINT * ppt);
+
+      virtual void translate_mouse_message(int * px, int * py);
+
+
+      virtual void destroy_window();
 
    };
 

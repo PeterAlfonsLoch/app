@@ -347,10 +347,14 @@ namespace os
 
    }
 
-   void simple_ui::GetWindowRect(RECT * prect)
+
+   void simple_ui::get_window_rect(RECT * prect)
    {
+
       ::GetWindowRect(m_window, prect);
+
    }
+
    void simple_ui::get_client_rect(RECT * prect)
    {
 

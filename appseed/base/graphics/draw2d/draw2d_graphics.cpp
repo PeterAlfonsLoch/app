@@ -3310,6 +3310,33 @@ namespace draw2d
       return -1;
    }
 
+
+#ifdef WINDOWSEX
+
+   
+   bool graphics::Attach(HDC hdc)
+   {
+
+      throw not_implemented(get_app());
+
+      return false;
+
+   }
+
+   
+   HDC graphics::Detach()
+   {
+
+      throw not_implemented(get_app());
+
+      return NULL;
+
+   }
+
+
+#endif
+
+
 } // namespace draw2d
 
 

@@ -620,21 +620,7 @@ bool application::initialize3()
 
 
 
-void application::Ex1OnFactoryExchange()
-{
 
-   System.factory().creatable_large < ::file::exception > ();
-
-   base_library library;
-
-   if(!library.open("os"))
-      throw "failed to do factory exchange";
-
-   PFN_ca2_factory_exchange pfn_ca2_factory_exchange = library.get < PFN_ca2_factory_exchange > ("ca2_factory_exchange");
-
-   pfn_ca2_factory_exchange(this);
-
-}
 
 
 void application::draw2d_factory_exchange()

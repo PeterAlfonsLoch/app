@@ -31,7 +31,9 @@ namespace hotplugin
 
    plugin::plugin(sp(base_application) papp) :
       element(papp),
-      ::simple_ui::style(papp)
+      ::simple_ui::style(papp),
+      ::simple_ui::interaction(papp),
+      ::os::simple_ui(papp)
    {
 
       m_phost           = NULL;
@@ -191,10 +193,10 @@ namespace hotplugin
 
 #ifdef WINDOWS
 
-   LRESULT plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+/*   LRESULT plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
       return 0;
-   }
+   }*/
 
 #else
 
@@ -1142,6 +1144,61 @@ namespace hotplugin
 
       }
 
+
+   }
+
+   void plugin::client_to_screen(POINT * ppt)
+   {
+
+      ::simple_ui::interaction::client_to_screen(ppt);
+
+   }
+
+   void plugin::screen_to_client(POINT * ppt)
+   {
+
+      ::simple_ui::interaction::screen_to_client(ppt);
+
+   }
+
+
+   void plugin::translate_mouse_message(int * px, int * py)
+   {
+
+      if (m_phost != NULL)
+      {
+
+         m_phost->translate_mouse_message(px, py);
+
+      }
+
+   }
+
+
+   bool plugin::show_window(bool bShow)
+   {
+
+      if (m_phost != NULL)
+      {
+
+         return m_phost->show_window(bShow);
+
+      }
+
+      return false;
+
+   }
+
+
+   void plugin::destroy_window()
+   {
+
+      if (m_phost != NULL)
+      {
+
+         m_phost->destroy_window();
+
+      }
 
    }
 

@@ -6,7 +6,8 @@ namespace hotplugin
 
 
    class CLASS_DECL_BASE host :
-      virtual public plugin
+      virtual public plugin,
+      virtual public base_system
    {
    public:
 
@@ -33,7 +34,7 @@ namespace hotplugin
 
 
 
-      host(sp(base_application) papp);
+      host();
       virtual ~host();
 
 
@@ -113,6 +114,13 @@ namespace hotplugin
       virtual void paint_bitmap(::draw2d::graphics * pgraphics, LPCRECT lprect);
 
       virtual void blend_bitmap(::draw2d::graphics * pgraphics, LPCRECT lprect);
+
+
+      virtual void translate_mouse_message(int * px, int * py);
+
+      virtual bool show_window(bool bShow = true);
+      virtual void destroy_window();
+
 
    };
 

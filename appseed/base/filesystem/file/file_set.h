@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_CORE set :
+   class CLASS_DECL_BASE set :
       virtual public ::object
    {
    public:

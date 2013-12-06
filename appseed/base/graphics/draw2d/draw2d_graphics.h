@@ -644,7 +644,12 @@ namespace draw2d
       virtual int32_t _DrawText(const char * lpcsz, strsize iCount, LPCRECT lpcrect, UINT uiFormat, ::draw2d::font * pfontUnderline = NULL);
       virtual int32_t _DrawText(const string & str, LPCRECT lpcrect, UINT uiFormat, ::draw2d::font * pfontUnderline = NULL);
 
+#ifdef WINDOWSEX
 
+      virtual bool Attach(HDC hdc);
+      virtual HDC Detach();
+
+#endif
 
 
    };

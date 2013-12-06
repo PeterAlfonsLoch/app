@@ -327,6 +327,7 @@ public:
 
       virtual void get_screen_rect(LPRECT lprect);
 
+      virtual void Ex1OnFactoryExchange();
 
 };
 

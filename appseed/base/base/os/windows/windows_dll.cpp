@@ -12,6 +12,9 @@ END_EXTERN_C
 BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 {
    
+   //Sleep(30000);
+
+   //debug_box("base.dll DllMain (0)", "box", MB_OK);
 
    UNREFERENCED_PARAMETER(hInstance);
    UNREFERENCED_PARAMETER(lpReserved);
@@ -25,6 +28,8 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 
 
       OutputDebugStringW(L"base.dll initializing!\n");
+
+      //debug_box("base.dll DllMain", "box", MB_OK);
       
 
    }

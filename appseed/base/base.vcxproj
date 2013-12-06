@@ -1465,6 +1465,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="filesystem\file\file_reader.h" />
     <ClInclude Include="filesystem\file\file_seekable.h" />
     <ClInclude Include="filesystem\file\file_serializable.h" />
+    <ClInclude Include="filesystem\file\file_set.h" />
     <ClInclude Include="filesystem\file\file_simple_binary_buffer.h" />
     <ClInclude Include="filesystem\file\file_status.h" />
     <ClInclude Include="filesystem\file\file_stream.h" />
@@ -1526,7 +1527,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="net\net_address.h" />
     <ClInclude Include="net\net_email.h" />
     <ClInclude Include="net\net_email_address.h" />
+    <ClInclude Include="net\net_ip_enum.h" />
     <ClInclude Include="net\net_net.h" />
+    <ClInclude Include="net\net_port_forward.h" />
     <ClInclude Include="net\net_url_departament.h" />
     <ClInclude Include="net\net_url_domain.h" />
     <ClInclude Include="net\sockets\base\sockets_base_socket.h" />
@@ -9414,6 +9417,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="filesystem\file\file_dir_application.cpp" />
     <ClCompile Include="filesystem\file\file_dir_system.cpp" />
     <ClCompile Include="filesystem\file\file_exception.cpp" />
+    <ClCompile Include="filesystem\file\file_folder_watch.cpp" />
     <ClCompile Include="filesystem\file\file_input_stream.cpp" />
     <ClCompile Include="filesystem\file\file_memory_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_output_stream.cpp" />
@@ -9426,6 +9430,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="filesystem\file\file_plain_text_stream_string_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_reader.cpp" />
     <ClCompile Include="filesystem\file\file_seekable.cpp" />
+    <ClCompile Include="filesystem\file\file_set.cpp" />
     <ClCompile Include="filesystem\file\file_simple_binary_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_stream.cpp" />
     <ClCompile Include="filesystem\file\file_stream2.cpp" />
@@ -9518,7 +9523,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="net\net_address.cpp" />
     <ClCompile Include="net\net_email.cpp" />
     <ClCompile Include="net\net_email_address.cpp" />
+    <ClCompile Include="net\net_ip_enum.cpp" />
     <ClCompile Include="net\net_net.cpp" />
+    <ClCompile Include="net\net_port_forward.cpp" />
     <ClCompile Include="net\net_url_departament.cpp" />
     <ClCompile Include="net\net_url_domain.cpp" />
     <ClCompile Include="net\sockets\base\sockets_base_socket.cpp" />

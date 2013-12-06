@@ -90,6 +90,13 @@ namespace user
 } // namespace user
 
 
+namespace install
+{
+
+   class install;
+
+} // namespace install
+
 enum e_extract
 {
    extract_none,
@@ -100,6 +107,8 @@ enum e_extract
 
 
 class random_access_iterator { public: };
+
+
 
 
 
@@ -145,6 +154,10 @@ typedef void * HDWP;
 
 #endif
 
+template < class T >
+class smart_pointer;
+
+typedef  void(*PFN_ca2_factory_exchange)(sp(base_application) papp);
 
 
 CLASS_DECL_BASE base_application * get_thread_app();
@@ -512,10 +525,6 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #ifndef METROWIN
 #include "base_small_ipc_channel.h"
 #endif
-#include "base/hotplugin/hotplugin.h"
-
-
-#include "base/install/install.h"
 
 
 
@@ -525,6 +534,11 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 #include "base_system.h"
+
+#include "base/hotplugin/hotplugin.h"
+
+#include "base/install/install.h"
+
 
 
 #include "base_system_str.h"

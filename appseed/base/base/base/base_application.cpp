@@ -1395,3 +1395,20 @@ void openURL(const string &url_str) {
    CFRelease(url);
 }
 #endif
+
+
+void base_application::Ex1OnFactoryExchange()
+{
+
+   System.factory().creatable_large < ::file::exception >();
+
+   base_library library;
+
+   if (!library.open("os"))
+      throw "failed to do factory exchange";
+
+   PFN_ca2_factory_exchange pfn_ca2_factory_exchange = library.get < PFN_ca2_factory_exchange >("ca2_factory_exchange");
+
+   pfn_ca2_factory_exchange(this);
+
+}

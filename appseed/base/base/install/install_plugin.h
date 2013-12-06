@@ -19,9 +19,7 @@ namespace install
 
 
    class CLASS_DECL_BASE plugin :
-      virtual public ::simple_ui::style,
       virtual public ::hotplugin::plugin,
-      virtual public ::simple_ui::interaction,
       virtual public ::fontopus::login::callback
    {
    public:
@@ -119,7 +117,8 @@ namespace install
 
       virtual string defer_get_plugin();
 
-
+      virtual void viewport_screen_to_client(POINT * ppt);
+      virtual void viewport_client_to_screen(POINT * ppt);
 
    };
 

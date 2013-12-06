@@ -10,7 +10,8 @@ namespace hotplugin
 
    class CLASS_DECL_BASE plugin :
       virtual public ::object,
-      virtual public ::simple_ui::style
+      virtual public ::simple_ui::style,
+      virtual public ::os::simple_ui
 #ifndef METROWIN
       , virtual public ::small_ipc_channel
 #endif
@@ -23,7 +24,7 @@ namespace hotplugin
       BYTE *                        m_lpbMemory;
       int32_t                           m_iMemory;
       bool                          m_bOnPaint;
-      RECT                          m_rect;
+      //RECT                          m_rect;
       bool                          m_bInitialized;
       FILE *                        m_pfile;
       bool                          m_bPreCheck;
@@ -82,10 +83,17 @@ namespace hotplugin
       virtual oswindow         get_host_window();
       virtual void         get_window_rect(LPRECT lprect);
 
+      virtual void client_to_screen(POINT * ppt);
+      virtual void screen_to_client(POINT * ppt);
 
       // client should implement
       virtual void   set_window_rect(LPCRECT lpcrect);
 
+
+      virtual void translate_mouse_message(int * px, int * py);
+
+      virtual bool show_window(bool bShow = true);
+      virtual void destroy_window();
 
       // call host memory
       virtual void   set_memory(void * puchMemory, ::count c);
@@ -114,7 +122,7 @@ namespace hotplugin
       virtual void plugin_system_redraw();
 
 #ifdef WINDOWS
-      virtual LRESULT message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam);
+      //virtual LRESULT message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam);
 #else
       virtual int32_t message_handler(XEvent * pevent);
 #endif

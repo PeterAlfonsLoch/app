@@ -65,7 +65,7 @@ namespace os
 
       virtual LRESULT window_procedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-      virtual void GetWindowRect(RECT * prect);
+      virtual void get_window_rect(RECT * prect);
       virtual void get_client_rect(RECT * prect);
 
 

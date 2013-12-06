@@ -9,12 +9,9 @@ namespace fontopus
    class simple_ui :
       virtual public ::os::simple_ui,
       virtual public ::simple_ui::style,
-      virtual public login::callback,
-      virtual public thread
+      virtual public login::callback
    {
    public:
-
-      login::e_result            m_eresult;
 
 
       login                      m_login;
@@ -32,19 +29,9 @@ namespace fontopus
       virtual string interactive_auth(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
 
 
-      virtual void GetWindowRect(LPRECT lprect);
+      virtual void get_window_rect(LPRECT lprect);
 
 
-      virtual void draw_dark_glass(::draw2d::graphics * pgraphics);
-      virtual void draw_pestana(::draw2d::graphics * pgraphics);
-      virtual void draw_auth_box(::draw2d::graphics * pgraphics);
-      virtual void draw_auth_rect(::draw2d::graphics * pgraphics);
-
-
-      virtual void draw_this(::draw2d::graphics * pgraphics);
-
-
-      virtual void draw_fuzzy_color_spread(::draw2d::graphics * pgraphics);
 
 
       virtual bool on_char(int iKeyCode, const string & strChar);
@@ -53,12 +40,6 @@ namespace fontopus
       virtual bool on_mouse_move(int32_t x, int32_t y);
 
 
-      virtual bool on_action(const char * pszId);
-
-      virtual void login_result(login::e_result eresult);
-      
-      
-      virtual int32_t run();
 
    };
 
