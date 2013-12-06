@@ -40,7 +40,6 @@ namespace plane
       class ::core::stra                             m_stra;
       class ::core::service                          m_service;
       class ::core::install                          m_installex;
-      ::core::os_sp                                  m_spos;
 #ifndef METROWIN
       class ::core::process_departament              m_processsection;
 #endif
@@ -187,7 +186,6 @@ namespace plane
       ::core::stra                           & stra();
       ::core::install                        & installex();
       ::core::service                        & service();
-      class ::core::os                       & os();
 #ifndef METROWIN
       ::core::process_departament            & process();
 #endif

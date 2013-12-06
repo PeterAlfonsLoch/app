@@ -260,12 +260,15 @@ namespace file
 #include "base_common.h"
 
 
+
+
 #include "base/primitive/datetime/datetime_time.h"
 
 
 
 
 #include "base/filesystem/filesystem.h"
+
 
 
 
@@ -459,6 +462,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 #include "base_main_init_data.h"
 
+#include "base_savings.h"
+
 #include "base_application.h"
 
 
@@ -534,7 +539,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
-
+#include "base_core_os.h"
 
 
 #include "base_system.h"

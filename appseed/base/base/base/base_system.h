@@ -74,7 +74,8 @@ public:
    sp(::user::window_draw)                      m_ptwf;
    class ::core::compress                       m_compress;
    sp(::user::str)                              m_puserstr;
-   sp(::install::install)                          m_spinstall;
+   sp(::install::install)                       m_spinstall;
+   ::core::os_sp                                m_spos;
 
 
 
@@ -94,6 +95,7 @@ public:
    virtual bool initialize_instance();
 
 
+   class ::core::os                             & os();
    class base_factory                           & factory();
    inline ::url::departament                    & url()     { return m_urldepartament; }
    ::xml::departament                           & xml();

@@ -918,3 +918,16 @@ inline int32_t FUNCTION_XXDEBUGBOX(const char * pszMessage, const char * pszTitl
 
 
 
+
+
+#ifdef DEBUG
+void CLASS_DECL_BASE TRACELASTERROR();
+#else
+#define TRACELASTERROR() ((void)0)
+#endif
+
+
+
+CLASS_DECL_BASE string FormatMessageFromSystem(uint32_t dwError);
+
+

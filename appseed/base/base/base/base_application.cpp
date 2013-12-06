@@ -39,6 +39,8 @@ base_application::base_application() :
 
    m_pcommandthread           = new ::command_thread(this);
 
+   m_psavings = new class ::core::savings(this);
+
    m_bZipIsDir = true;
 
    m_pmapKeyPressed = NULL;
@@ -49,11 +51,75 @@ base_application::base_application() :
    m_iWaitCursorCount = 0;
    m_hcurWaitCursorRestore = NULL;
 
+
+
 }
 
 base_application::~base_application()
 {
 }
+
+
+void base_application::assert_valid() const
+{
+   thread::assert_valid();
+
+
+   if (System.GetThread() != (thread*)this)
+      return;     // only do subset if called from different thread
+
+   ASSERT(System.GetThread() == this);
+   //ASSERT(afxCurrentInstanceHandle == m_hInstance);
+
+   /*      if (m_pdocmanager != NULL)
+   ASSERT_VALID(m_pdocmanager);*/
+}
+
+void base_application::dump(dump_context & dumpcontext) const
+{
+
+   thread::dump(dumpcontext);
+
+#ifdef WINDOWS
+   dumpcontext << "m_hInstance = " << (void *)m_hInstance;
+#endif
+
+   dumpcontext << "\nm_lpCmdLine = " << m_strCmdLine;
+   dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
+   dumpcontext << "\nm_pszAppName = " << m_strAppName;
+//   dumpcontext << "\nm_bHelpMode = " << m_bHelpMode;
+  // dumpcontext << "\nm_pszHelpFilePath = " << m_pszHelpFilePath;
+   //dumpcontext << "\nm_pszProfileName = " << m_pszProfileName;
+
+#ifdef WINDOWS
+//   dumpcontext << "\nm_hDevMode = " << (void *)m_hDevMode;
+  // dumpcontext << "\nm_hDevNames = " << (void *)m_hDevNames;
+#endif
+
+   //dumpcontext << "\nm_dwPromptContext = " << (UINT)m_dwPromptContext;
+   //      dumpcontext << "\nm_eHelpType = " << m_eHelpType;
+
+
+   /*      if (m_pdocmanager != NULL)
+   m_pdocmanager->dump(dumpcontext);*/
+
+   //dumpcontext << "\nm_nWaitCursorCount = " << m_iWaitCursorCount;
+   dumpcontext << "\nm_hcurWaitCursorRestore = " << (void *)m_hcurWaitCursorRestore;
+   //dumpcontext << "\nm_nNumPreviewPages = " << m_nNumPreviewPages;
+
+   /*   ___THREAD_STATE* pState = __get_thread_state();
+   dumpcontext << "\nm_msgCur = {";
+   dumpcontext << "\n\toswindow = " << (void *)pState->m_msgCur.oswindow;
+   dumpcontext << "\n\tmessage = " << (UINT)pState->m_msgCur.message;
+   dumpcontext << "\n\twParam = " << (UINT)pState->m_msgCur.wParam;
+   dumpcontext << "\n\tlParam = " << (void *)pState->m_msgCur.lParam;
+   dumpcontext << "\n\ttime = " << pState->m_msgCur.time;
+   dumpcontext << "\n\tpt = " << point(pState->m_msgCur.pt);
+   dumpcontext << "\n}";
+   */
+   dumpcontext << "\n";
+}
+
 
 int32_t base_application::simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle)
 {
@@ -1412,3 +1478,191 @@ void base_application::Ex1OnFactoryExchange()
    pfn_ca2_factory_exchange(this);
 
 }
+
+::core::savings & base_application::savings()
+{
+
+   return *m_psavings;
+
+}
+
+
+string base_application::get_ca2_module_folder()
+{
+   single_lock sl(&m_mutex, true);
+   return m_strCa2ModuleFolder;
+}
+
+string base_application::get_ca2_module_file_path()
+{
+
+   string strModuleFileName;
+
+#ifdef WINDOWSEX
+
+   char lpszModuleFilePath[MAX_PATH + 1];
+
+   if (GetModuleFileName(::GetModuleHandleA("core.dll"), lpszModuleFilePath, MAX_PATH + 1))
+   {
+
+      strModuleFileName = lpszModuleFilePath;
+
+   }
+
+#elif defined(METROWIN)
+
+   throw todo(this);
+
+#else
+
+#ifdef RTLD_DI_LINKMAP
+
+   {
+
+      void * handle = dlopen("core.so", 0);
+
+      if (handle == NULL)
+         return false;
+
+      link_map * plm;
+
+      dlinfo(handle, RTLD_DI_LINKMAP, &plm);
+
+      strModuleFileName = plm->l_name;
+
+      dlclose(handle);
+
+      //         m_strCa2ModuleFolder = dir::name(strModuleFileName);
+
+   }
+
+#else
+
+   {
+
+      char * pszCurDir = getcwd(NULL, 0);
+
+      string strCurDir = pszCurDir;
+
+      free(pszCurDir);
+
+      if (App(this).file().exists(System.dir().path(strCurDir, "core.dylib")))
+      {
+         m_strCa2ModuleFolder = strCurDir;
+         goto finishedCa2Module;
+      }
+
+
+      if (App(this).file().exists(System.dir().path(m_strModuleFolder, "core.dylib")))
+      {
+         m_strCa2ModuleFolder = m_strModuleFolder;
+         goto finishedCa2Module;
+      }
+
+      strModuleFileName = App(this).dir().pathfind(getenv("LD_LIBRARY_PATH"), "core.dylib", "rfs"); // readable - normal file - non zero sized
+
+   }
+
+finishedCa2Module:;
+
+#endif
+
+#endif
+
+   return strModuleFileName;
+
+
+}
+
+string base_application::get_module_folder()
+{
+   return m_strModuleFolder;
+}
+
+string base_application::get_module_file_path()
+{
+
+#ifdef WINDOWSEX
+
+   char lpszModuleFilePath[MAX_PATH + 1];
+
+   GetModuleFileName(NULL, lpszModuleFilePath, MAX_PATH + 1);
+
+   string strModuleFileName(lpszModuleFilePath);
+
+   return strModuleFileName;
+
+#elif defined(METROWIN)
+
+   return "m_app.exe";
+
+#else
+
+   char * lpszModuleFilePath = br_find_exe_dir("app");
+
+   if (lpszModuleFilePath == NULL)
+      return "";
+
+   string strModuleFileName(lpszModuleFilePath);
+
+   free(lpszModuleFilePath);
+
+   return strModuleFileName;
+
+#endif
+
+}
+
+
+string base_application::get_module_title()
+{
+   return file_title(get_module_file_path());
+}
+
+string base_application::get_module_name()
+{
+   return file_name(get_module_file_path());
+}
+
+
+::visual::icon * base_application::set_icon(object * pobject, ::visual::icon * picon, bool bBigIcon)
+{
+
+   ::visual::icon * piconOld = get_icon(pobject, bBigIcon);
+
+   if (bBigIcon)
+   {
+
+      pobject->oprop("big_icon").operator =((sp(element)) picon);
+
+   }
+   else
+   {
+
+      pobject->oprop("small_icon").operator =((sp(element)) picon);
+
+   }
+
+   return piconOld;
+
+}
+
+
+::visual::icon * base_application::get_icon(object * pobject, bool bBigIcon) const
+{
+
+   if (bBigIcon)
+   {
+
+      return const_cast < object * > (pobject)->oprop("big_icon").cast < ::visual::icon >();
+
+   }
+   else
+   {
+
+      return const_cast < object * > (pobject)->oprop("small_icon").cast < ::visual::icon >();
+
+   }
+
+}
+

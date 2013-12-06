@@ -186,11 +186,6 @@ public:
    sp(base_session)                    m_psession;
 
    class signal                        m_signalAppLanguageChange;
-   core::savings *                     m_psavings;
-   string                              m_strCa2ModulePath;
-   string                              m_strCa2ModuleFolder;
-   string                              m_strModulePath;
-   string                              m_strModuleFolder;
    string                              m_strHelpFilePath;
    mutex                               m_mutex;
 
@@ -225,10 +220,6 @@ public:
    sp(::mutex)                     m_pmutexGlobalId;
    // This module's hInstance.
    // Pointer to the command-line.
-   string                        m_strCmdLine;
-   // Initial state of the application's ::user::window; normally,
-   // this is an argument to ShowWindow().
-   int32_t                           m_nCmdShow;
 
    //      sp(file_manager_interface)      m_pfilemanager;
 
@@ -415,8 +406,6 @@ public:
    // document template to it.
    virtual void on_request(sp(::create_context) pline);
 
-   core::savings & savings();
-
    virtual void defer_add_document_template(sp(::user::impact_system) ptemplate);
 
    // overrides for implementation
@@ -429,12 +418,6 @@ public:
    HENHMETAFILE LoadEnhMetaFile(UINT uiResource);
 #endif
    bool GetResourceData(UINT nID, const char * lcszType, primitive::memory & storage);
-   virtual string get_ca2_module_folder();
-   virtual string get_ca2_module_file_path();
-   virtual string get_module_folder();
-   virtual string get_module_file_path();
-   virtual string get_module_title();
-   virtual string get_module_name();
 
    static UINT   APPM_LANGUAGE;
    static WPARAM WPARAM_LANGUAGE_UPDATE;
@@ -897,8 +880,6 @@ public:
    virtual void assert_valid() const;
    virtual void dump(dump_context & dumpcontext) const;
 
-   virtual ::visual::icon * set_icon(object * pobject, ::visual::icon * picon, bool bBigIcon);
-   virtual ::visual::icon * get_icon(object * pobject, bool bBigIcon) const;
 
 
 };

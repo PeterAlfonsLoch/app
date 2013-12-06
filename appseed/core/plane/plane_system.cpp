@@ -260,8 +260,6 @@ namespace plane
       m_spfilehandler = new ::filehandler::handler(this);
 
 
-      //m_spfilesystem.create(allocer());
-      m_spos.create(allocer());
 
       m_spcrypto.create(allocer());
 

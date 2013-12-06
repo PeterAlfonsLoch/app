@@ -161,7 +161,6 @@ application::application() :
    m_pgeometry                = new geometry::geometry(this);
    //m_pidspace = new id_space("veribell-{E856818A-2447-4a4e-B9CC-4400C803EE7A}", NULL);
    m_iResourceId              = 8001;
-   m_psavings                 = new class ::core::savings(this);
 //   m_pcommandthread           = new command_thread(this);
 
    ::core::profiler::initialize();
@@ -669,12 +668,6 @@ void application::on_request(sp(::create_context) pcreatecontext)
 
 
 
-::core::savings & application::savings()
-{
-
-   return *m_psavings;
-
-}
 
 
 /*   ::lemon::array & application::array()
@@ -1045,131 +1038,6 @@ void application::OnAppLanguage(signal_details * pobj)
    m_signalAppLanguageChange.emit();
 }
 
-string application::get_ca2_module_folder()
-{
-   single_lock sl(&m_mutex, true);
-   return m_strCa2ModuleFolder;
-}
-
-string application::get_ca2_module_file_path()
-{
-
-   string strModuleFileName;
-
-#ifdef WINDOWSEX
-
-   char lpszModuleFilePath[MAX_PATH + 1];
-
-   if(GetModuleFileName(::GetModuleHandleA("core.dll"), lpszModuleFilePath, MAX_PATH + 1))
-   {
-
-      strModuleFileName = lpszModuleFilePath;
-
-   }
-
-#elif defined(METROWIN)
-
-   throw todo(this);
-
-#else
-
-#ifdef RTLD_DI_LINKMAP
-
-   {
-
-      void * handle = dlopen("core.so", 0);
-
-      if(handle == NULL)
-         return false;
-
-      link_map * plm;
-
-      dlinfo(handle, RTLD_DI_LINKMAP, &plm);
-
-      strModuleFileName = plm->l_name;
-
-      dlclose(handle);
-
-      //         m_strCa2ModuleFolder = dir::name(strModuleFileName);
-
-   }
-
-#else
-
-   {
-
-      char * pszCurDir = getcwd(NULL, 0);
-
-      string strCurDir = pszCurDir;
-
-      free(pszCurDir);
-
-      if(App(this).file().exists(System.dir().path(strCurDir, "core.dylib")))
-      {
-         m_strCa2ModuleFolder = strCurDir;
-         goto finishedCa2Module;
-      }
-
-
-      if(App(this).file().exists(System.dir().path(m_strModuleFolder, "core.dylib")))
-      {
-         m_strCa2ModuleFolder = m_strModuleFolder;
-         goto finishedCa2Module;
-      }
-
-      strModuleFileName = App(this).dir().pathfind(getenv("LD_LIBRARY_PATH"), "core.dylib", "rfs"); // readable - normal file - non zero sized
-
-   }
-
-finishedCa2Module:;
-
-#endif
-
-#endif
-
-   return strModuleFileName;
-
-
-}
-
-string application::get_module_folder()
-{
-   return m_strModuleFolder;
-}
-
-string application::get_module_file_path()
-{
-
-#ifdef WINDOWSEX
-
-   char lpszModuleFilePath[MAX_PATH + 1];
-
-   GetModuleFileName(NULL, lpszModuleFilePath, MAX_PATH + 1);
-
-   string strModuleFileName(lpszModuleFilePath);
-
-   return strModuleFileName;
-
-#elif defined(METROWIN)
-
-   return "m_app.exe";
-
-#else
-
-   char * lpszModuleFilePath = br_find_exe_dir("app");
-
-   if(lpszModuleFilePath == NULL)
-      return "";
-
-   string strModuleFileName(lpszModuleFilePath);
-
-   free(lpszModuleFilePath);
-
-   return strModuleFileName;
-
-#endif
-
-}
 
 
 void application::OnUpdateRecentFileMenu(cmd_ui * pcmdui)
@@ -1481,15 +1349,6 @@ bool application::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
    return 0;
 }
 
-string application::get_module_title()
-{
-   return file_title(get_module_file_path());
-}
-
-string application::get_module_name()
-{
-   return file_name(get_module_file_path());
-}
 
 string application::get_local_mutex_id()
 {
@@ -4152,9 +4011,6 @@ bool application::set_main_init_data(::core::main_init_data * pdata)
 }
 
 
-///////////////////////////////////////////////////////////////////////////
-// application diagnostics
-
 void application::assert_valid() const
 {
    thread::assert_valid();
@@ -4173,15 +4029,15 @@ void application::assert_valid() const
 void application::dump(dump_context & dumpcontext) const
 {
 
-   thread::dump(dumpcontext);
+   base_application::dump(dumpcontext);
 
 #ifdef WINDOWS
    dumpcontext << "m_hInstance = " << (void *)m_hInstance;
 #endif
 
-   dumpcontext << "\nm_lpCmdLine = " << m_strCmdLine;
-   dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
-   dumpcontext << "\nm_pszAppName = " << m_strAppName;
+   //dumpcontext << "\nm_lpCmdLine = " << m_strCmdLine;
+   //dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
+   //dumpcontext << "\nm_pszAppName = " << m_strAppName;
    dumpcontext << "\nm_bHelpMode = " << m_bHelpMode;
    dumpcontext << "\nm_pszHelpFilePath = " << m_pszHelpFilePath;
    dumpcontext << "\nm_pszProfileName = " << m_pszProfileName;
@@ -5161,47 +5017,6 @@ string application::draw2d_get_default_library_name()
 
 }
 
-
-::visual::icon * application::set_icon(object * pobject, ::visual::icon * picon, bool bBigIcon)
-{
-
-   ::visual::icon * piconOld = get_icon(pobject, bBigIcon);
-
-   if(bBigIcon)
-   {
-
-      pobject->oprop("big_icon").operator =((sp(element)) picon);
-
-   }
-   else
-   {
-
-      pobject->oprop("small_icon").operator =((sp(element)) picon);
-
-   }
-
-   return piconOld;
-
-}
-
-
-::visual::icon * application::get_icon(object * pobject, bool bBigIcon) const
-{
-
-   if(bBigIcon)
-   {
-
-      return const_cast < object * > (pobject)->oprop("big_icon").cast < ::visual::icon >();
-
-   }
-   else
-   {
-
-      return const_cast < object * > (pobject)->oprop("small_icon").cast < ::visual::icon >();
-
-   }
-
-}
 
 
 string application::file_as_string(var varFile)

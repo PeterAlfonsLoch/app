@@ -98,6 +98,9 @@ base_system::base_system(sp(base_application) papp) :
 
    Ex1OnFactoryExchange();
 
+   //m_spfilesystem.create(allocer());
+   m_spos.create(allocer());
+
 
    {
 

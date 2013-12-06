@@ -3158,6 +3158,9 @@
     <ClInclude Include="base\base\base_core_os.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
+    <ClInclude Include="base\base\base_savings.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_c.c">
@@ -6778,6 +6781,9 @@
     <ClCompile Include="base\base\base_core_os.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
+    <ClCompile Include="base\base\base_savings.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -6965,6 +6971,9 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

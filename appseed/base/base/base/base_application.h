@@ -89,6 +89,17 @@ public:
    point                                           m_ptCursor;
    rect                                            m_rectScreen;
    bool                                            m_bSessionSynchronizedScreen;
+   core::savings *                                 m_psavings;
+
+   string                                          m_strCa2ModulePath;
+   string                                          m_strCa2ModuleFolder;
+   string                                          m_strModulePath;
+   string                                          m_strModuleFolder;
+
+   string                                          m_strCmdLine;
+   // Initial state of the application's ::user::window; normally,
+   // this is an argument to ShowWindow().
+   int32_t                                         m_nCmdShow;
 
 
    base_application();
@@ -111,6 +122,8 @@ public:
    virtual bool is_session();
    virtual bool is_serviceable();
 
+
+   ::core::savings & savings();
    inline class ::http::application &        http()         { return m_http; }
    inline class ::file::dir::application &   dir()          { return m_dir; }
    inline class ::file::application &        file()         { return m_file; }
@@ -328,6 +341,22 @@ public:
       virtual void get_screen_rect(LPRECT lprect);
 
       virtual void Ex1OnFactoryExchange();
+
+      virtual string get_ca2_module_folder();
+      virtual string get_ca2_module_file_path();
+      virtual string get_module_folder();
+      virtual string get_module_file_path();
+      virtual string get_module_title();
+      virtual string get_module_name();
+
+
+
+      virtual void assert_valid() const;
+      virtual void dump(dump_context & dumpcontext) const;
+
+      virtual ::visual::icon * set_icon(object * pobject, ::visual::icon * picon, bool bBigIcon);
+      virtual ::visual::icon * get_icon(object * pobject, bool bBigIcon) const;
+
 
 };
 

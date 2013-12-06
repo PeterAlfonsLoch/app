@@ -13,7 +13,7 @@ namespace core
       resource_translucent_background,
    };
 
-   class CLASS_DECL_CORE savings :
+   class CLASS_DECL_BASE savings :
       virtual public ::object
    {
    public:

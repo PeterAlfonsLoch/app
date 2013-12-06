@@ -1106,6 +1106,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base\base_plex_heap_impl.h" />
     <ClInclude Include="base\base\base_printf.h" />
     <ClInclude Include="base\base\base_root.h" />
+    <ClInclude Include="base\base\base_savings.h" />
     <ClInclude Include="base\base\base_session.h" />
     <ClInclude Include="base\base\base_simple_app.h" />
     <ClInclude Include="base\base\base_simple_pixel_font.h" />
@@ -1912,6 +1913,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\base\base_plex_heap.cpp" />
     <ClCompile Include="base\base\base_printf.cpp" />
     <ClCompile Include="base\base\base_root.cpp" />
+    <ClCompile Include="base\base\base_savings.cpp" />
     <ClCompile Include="base\base\base_session.cpp" />
     <ClCompile Include="base\base\base_simple_shell_launcher.cpp" />
     <ClCompile Include="base\base\base_small_ipc_channel.cpp" />
