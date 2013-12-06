@@ -1054,6 +1054,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base\base_common.h" />
     <ClInclude Include="base\base\base_conv.h" />
     <ClInclude Include="base\base\base_core.h" />
+    <ClInclude Include="base\base\base_core_copydesk.h" />
+    <ClInclude Include="base\base\base_core_os.h" />
     <ClInclude Include="base\base\base_cpu_architecture.h" />
     <ClInclude Include="base\base\base_cregexp.h" />
     <ClInclude Include="base\base\base_cregexp_util.h" />
@@ -1876,6 +1878,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\base\base_cmdtarg.cpp" />
     <ClCompile Include="base\base\base_command_target.cpp" />
     <ClCompile Include="base\base\base_conv.cpp" />
+    <ClCompile Include="base\base\base_core_copydesk.cpp" />
+    <ClCompile Include="base\base\base_core_os.cpp" />
     <ClCompile Include="base\base\base_cpu_architecture.cpp" />
     <ClCompile Include="base\base\base_cregexp.cpp" />
     <ClCompile Include="base\base\base_cregexp_util.cpp" />

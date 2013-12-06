@@ -3152,6 +3152,12 @@
     <ClInclude Include="filesystem\file\file_set.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
+    <ClInclude Include="base\base\base_core_copydesk.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_core_os.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_c.c">
@@ -6765,6 +6771,12 @@
     </ClCompile>
     <ClCompile Include="filesystem\file\file_set.cpp">
       <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_core_copydesk.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_core_os.cpp">
+      <Filter>Source Files\base\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

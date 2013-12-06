@@ -203,7 +203,7 @@ namespace core
 #endif
 
 
-   bool os::create_service(sp(::plane::application) papp)
+   bool os::create_service(sp(base_application) papp)
    {
 
 
@@ -216,7 +216,7 @@ namespace core
    }
 
 
-   bool os::remove_service(sp(::plane::application) papp)
+   bool os::remove_service(sp(base_application) papp)
    {
 
 
@@ -229,7 +229,7 @@ namespace core
    }
 
 
-   bool os::start_service(sp(::plane::application) papp)
+   bool os::start_service(sp(base_application) papp)
    {
 
 
@@ -242,7 +242,7 @@ namespace core
    }
 
 
-   bool os::stop_service(sp(::plane::application) papp)
+   bool os::stop_service(sp(base_application) papp)
    {
 
 

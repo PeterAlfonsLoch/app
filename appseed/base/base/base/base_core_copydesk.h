@@ -5,7 +5,7 @@ namespace core
 {
 
 
-   class CLASS_DECL_CORE copydesk :
+   class CLASS_DECL_BASE copydesk :
       virtual public ::object
    {
    public:

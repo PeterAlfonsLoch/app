@@ -6,7 +6,7 @@ namespace core
 {
 
 
-   class CLASS_DECL_CORE os :
+   class CLASS_DECL_BASE os :
       public object
    {
    public:
@@ -55,11 +55,11 @@ namespace core
 #endif
 
 
-      virtual bool create_service(sp(::plane::application) papp);
-      virtual bool remove_service(sp(::plane::application) papp);
+      virtual bool create_service(sp(::base_application) papp);
+      virtual bool remove_service(sp(::base_application) papp);
 
-      virtual bool start_service(sp(::plane::application) papp);
-      virtual bool stop_service(sp(::plane::application) papp);
+      virtual bool start_service(sp(::base_application) papp);
+      virtual bool stop_service(sp(::base_application) papp);
 
 
       virtual bool resolve_link(string & strTarget, const char * pszSource, sp(::user::interaction) puiMessageParentOptional = NULL);

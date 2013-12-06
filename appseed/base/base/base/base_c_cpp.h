@@ -282,11 +282,13 @@ namespace file
 #include "base/filesystem/file/file_string_buffer.h"
 
 
+#include "base/filesystem/file/file_set.h"
+
+
 #include "base/primitive/primitive_var2.h"
 
 
 #include "base/primitive/primitive_id_space.h"
-
 
 
 #include "base_enum.h"
@@ -296,6 +298,8 @@ namespace file
 
 
 #include "base_draw2d.h"
+
+
 
 
 
@@ -734,6 +738,11 @@ namespace numeric_info
 #endif
 #include "app/appseed/draw2d_direct2d/draw2d_direct2d.h"
 #endif
+
+#include "base_core_copydesk.h"
+
+
+#include "base_core_os.h"
 
 
 #define AppUser(pbaseapp) (*App(pbaseapp).m_pfontopus->get_user())
