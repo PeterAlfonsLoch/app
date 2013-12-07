@@ -38,12 +38,11 @@ namespace core
 {
 
 
-   typedef class library * (* PFN_GET_NEW_LIBRARY)();
+   typedef class library * ( * PFN_GET_NEW_LIBRARY)(sp(base_application) papp);
 
 
    class CLASS_DECL_CORE library :
-      virtual public base_library,
-      virtual public ::object
+      virtual public base_library
    {
    public:
 
@@ -54,10 +53,10 @@ namespace core
       string            m_strRoot;
 
 
-      library(const char * pszRoot);
+      library(sp(base_application) papp, const char * pszRoot);
       virtual ~library();
 
-      virtual bool open(sp(base_application) papp, const char * pszPath, bool bAutoClose = true);
+      virtual bool open(const char * pszPath, bool bAutoClose = true);
       virtual bool close();
 
 
@@ -105,7 +104,7 @@ namespace core
    {
    public:
 
-      single_application_library(const char * pszRoot) : ::core::library(pszRoot) {}
+      single_application_library(sp(base_application) papp, const char * pszRoot) : element(papp), ::base_library(papp), ::core::library(papp, pszRoot) {}
 
       // impl
       virtual sp(base_application) get_new_app(const char * pszAppId);

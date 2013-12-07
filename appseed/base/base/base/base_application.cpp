@@ -11,6 +11,12 @@ base_application::base_application() :
    m_allocer(this)
 {
 
+#ifdef WINDOWS
+
+   m_hinstance = NULL;
+
+#endif
+
    if(m_pbaseapp == NULL)
    {
 
@@ -43,13 +49,13 @@ base_application::base_application() :
    m_http.set_app(this);
 
 
-   m_psignal = new class signal();
+   m_psignal                  = canew(class signal());
 
-   m_pcommandthread           = new ::command_thread(this);
+   m_pcommandthread           = canew(::command_thread(this));
 
-   m_psavings = new class ::core::savings(this);
-   m_pmath = new math::math(this);
-   m_pgeometry = new geometry::geometry(this);
+   m_psavings                 = canew(class ::core::savings(this));
+   m_pmath                    = canew(math::math(this));
+   m_pgeometry                = canew(geometry::geometry(this));
 
    m_bZipIsDir = true;
 
@@ -60,7 +66,6 @@ base_application::base_application() :
    // initialize wait cursor state
    m_iWaitCursorCount = 0;
    m_hcurWaitCursorRestore = NULL;
-
 
 
 }
@@ -91,12 +96,14 @@ void base_application::dump(dump_context & dumpcontext) const
    thread::dump(dumpcontext);
 
 #ifdef WINDOWS
-   dumpcontext << "m_hInstance = " << (void *)m_hInstance;
+
+   dumpcontext << "m_hinstance = " << (void *)m_hinstance;
+
 #endif
 
-   dumpcontext << "\nm_lpCmdLine = " << m_strCmdLine;
+   dumpcontext << "\nm_strCmdLine = " << m_strCmdLine;
    dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
-   dumpcontext << "\nm_pszAppName = " << m_strAppName;
+   dumpcontext << "\nm_bHelpMode = " << m_strAppName;
 //   dumpcontext << "\nm_bHelpMode = " << m_bHelpMode;
   // dumpcontext << "\nm_pszHelpFilePath = " << m_pszHelpFilePath;
    //dumpcontext << "\nm_pszProfileName = " << m_pszProfileName;
@@ -655,27 +662,45 @@ void base_application::ShowWaitCursor(bool bShow)
 void base_application::construct()
 {
 
-   ::thread::m_p.create(allocer());
+   if (::thread::m_p.is_null())
+   {
 
-   m_pimpl.create(allocer());
+      ::thread::m_p.create(allocer());
 
-   m_pfontopus = create_fontopus();
+   }
 
-   if (m_pfontopus == NULL)
-      throw simple_exception(this, "could not create fontopus for base_application (base_application::construct)");
+   if (m_pimpl.is_null())
+   {
+
+      m_pimpl.create(allocer());
+
+   }
+
+   if (m_pfontopus.is_null())
+   {
+
+      m_pfontopus = create_fontopus();
+
+      if (m_pfontopus == NULL)
+         throw simple_exception(this, "could not create fontopus for base_application (base_application::construct)");
+
+   }
+
+   if (m_psockets.is_null())
+   {
+
+      m_psockets = canew(::sockets::sockets(this));
+
+      m_psockets->construct(this);
+
+      if (!m_psockets->initialize1())
+         throw simple_exception(this, "could not initialize (1) sockets for base_application (base_application::construct)");
 
 
-   m_psockets = canew(::sockets::sockets(this));
+      if (!m_psockets->initialize())
+         throw simple_exception(this, "could not initialize sockets for base_application (base_application::construct)");
 
-   m_psockets->construct(this);
-
-   if (!m_psockets->initialize1())
-      throw simple_exception(this, "could not initialize (1) sockets for base_application (base_application::construct)");
-
-
-   if (!m_psockets->initialize())
-      throw simple_exception(this, "could not initialize sockets for base_application (base_application::construct)");
-
+   }
 
 }
 
@@ -1721,5 +1746,13 @@ bool base_application::final_handle_exception(::exception::exception & e)
 {
 
    return canew(::fontopus::fontopus(this));
+
+}
+
+
+bool base_application::init_main_data(::core::main_init_data * pdata)
+{
+
+   return false;
 
 }

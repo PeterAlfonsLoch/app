@@ -5,8 +5,11 @@ namespace filehandler
 {
 
 
-   menu_library::menu_library() :
-      ::core::library("app")
+   menu_library::menu_library(sp(base_application) papp) :
+      element(papp),
+      ::base_library(papp),
+      ::core::library(papp, "app"),
+      ::filehandler::library(papp)
    {
    }
 

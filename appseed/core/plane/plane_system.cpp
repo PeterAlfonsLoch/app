@@ -21,7 +21,8 @@ namespace plane
       m_visual(this),
       base_system(papp),
       m_emaildepartament(this),
-      m_installex(this)
+      m_installex(this),
+      m_libraryDraw2d(this)
    {
 
 #ifdef METROWIN
@@ -124,6 +125,16 @@ namespace plane
 
    system::~system()
    {
+
+   }
+
+
+   void system::construct()
+   {
+
+      ::plane::application::construct();
+
+      ::core::system::construct();
 
    }
 
@@ -392,9 +403,9 @@ namespace plane
    bool system::map_application_library(const char * pszLibrary)
    {
 
-      ::core::library library(NULL);
+      ::core::library library(this, NULL);
 
-      if(!library.open(this, pszLibrary))
+      if(!library.open(pszLibrary, true))
          return false;
 
       m_spfilehandler->defer_add_library(library.m_pca2library);
@@ -1528,7 +1539,7 @@ namespace plane
 
 #endif
 
-      ::core::library library(NULL);
+      ::core::library library(pappNewApplicationParent, NULL);
 
       string strLibrary = m_mapAppLibrary[pszAppId];
 
@@ -1541,7 +1552,7 @@ namespace plane
 
       sp(base_application) papp = NULL;
 
-      if(!library.open(pappNewApplicationParent, strLibrary, false))
+      if(!library.open(strLibrary, false))
          return NULL;
 
       papp = library.get_new_app(pszAppId);
@@ -2322,7 +2333,6 @@ sp(::command_thread) system::command_thread()
       return s_eengine;
 
    }
-
 
 
 } // namespace plane

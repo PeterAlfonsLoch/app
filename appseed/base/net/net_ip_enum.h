@@ -8,7 +8,7 @@ Copyright (ca) 1998 by PJ Naughter.
 
 
 */
-
+#pragma once
 
 namespace net
 {

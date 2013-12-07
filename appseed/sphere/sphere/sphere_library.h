@@ -12,7 +12,7 @@ namespace sphere
    public:
 
 
-      library();
+      library(sp(base_application) papp);
       
 
       virtual void get_app_list(stringa & stra);

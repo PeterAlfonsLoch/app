@@ -51,7 +51,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{AFC48570-75E4-46BD-B8AB-4590B257E1C8}</ProjectGuid>
+    <ProjectGuid>{E000FFAF-392F-4E32-BF51-FD7ED638991F}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>ca</RootNamespace>
@@ -963,7 +963,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core_compress.h" />
     <ClInclude Include="core\core_constraint.h" />
     <ClInclude Include="core\core_contact_list.h" />
-    <ClInclude Include="core\core_copydesk.h" />
     <ClInclude Include="core\core_debug.h" />
     <ClInclude Include="core\core_email.h" />
     <ClInclude Include="core\core_enum.h" />
@@ -985,7 +984,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core_match.h" />
     <ClInclude Include="core\core_muldiv32.h" />
     <ClInclude Include="core\core_oauth.h" />
-    <ClInclude Include="core\core_os.h" />
     <ClInclude Include="core\core_os_history.h" />
     <ClInclude Include="core\core_os_implementation.h" />
     <ClInclude Include="core\core_parse.h" />
@@ -1001,7 +999,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core_raw_pointer.h" />
     <ClInclude Include="core\core_reference.h" />
     <ClInclude Include="core\core_resource.h" />
-    <ClInclude Include="core\core_savings.h" />
     <ClInclude Include="core\core_service.h" />
     <ClInclude Include="core\core_session.h" />
     <ClInclude Include="core\core_signal_thread.h" />
@@ -1254,7 +1251,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="filesystem\filemanager\filemanager_folder_list.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_tree.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_preview.h" />
-    <ClInclude Include="filesystem\file\file_folder_watch.h" />
     <ClInclude Include="filesystem\file\file_bitl_decoder.h" />
     <ClInclude Include="filesystem\file\file_bitl_encoder.h" />
     <ClInclude Include="filesystem\file\file_bitm_decoder.h" />
@@ -1272,7 +1268,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="filesystem\file\file_limited_writer.h" />
     <ClInclude Include="filesystem\file\file_locked_in_stream.h" />
     <ClInclude Include="filesystem\file\file_out_buffer.h" />
-    <ClInclude Include="filesystem\file\file_set.h" />
     <ClInclude Include="filesystem\file\file_size_count_writer.h" />
     <ClInclude Include="filesystem\file\file_stream_binder.h" />
     <ClInclude Include="filesystem\userfs\userfs.h" />
@@ -1706,7 +1701,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="core\core_application.cpp" />
     <ClCompile Include="core\core_composite.cpp" />
     <ClCompile Include="core\core_constraint.cpp" />
-    <ClCompile Include="core\core_copydesk.cpp" />
     <ClCompile Include="core\core_Debug.cpp" />
     <ClCompile Include="core\core_fs_interface.cpp" />
     <ClCompile Include="core\core_history.cpp" />
@@ -1715,7 +1709,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="core\core_logic.cpp" />
     <ClCompile Include="core\core_match.cpp" />
     <ClCompile Include="core\core_memory.cpp" />
-    <ClCompile Include="core\core_os.cpp" />
     <ClCompile Include="core\core_os_history.cpp" />
     <ClCompile Include="core\core_patch.cpp" />
     <ClCompile Include="core\core_pipe.cpp" />
@@ -1724,7 +1717,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="core\core_process_section.cpp" />
     <ClCompile Include="core\core_profiler.cpp" />
     <ClCompile Include="core\core_resource.cpp" />
-    <ClCompile Include="core\core_savings.cpp" />
     <ClCompile Include="core\core_section.cpp" />
     <ClCompile Include="core\core_service.cpp" />
     <ClCompile Include="core\core_session.cpp" />
@@ -1993,7 +1985,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="filesystem\filemanager\filemanager_folder_list.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_tree.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_preview.cpp" />
-    <ClCompile Include="filesystem\file\file_folder_watch.cpp" />
     <ClCompile Include="filesystem\file\file_edit_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_clustered_input_stream.cpp" />
     <ClCompile Include="filesystem\file\file_dynamic_buffered_writer.cpp" />
@@ -2004,7 +1995,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="filesystem\file\file_limited_writer.cpp" />
     <ClCompile Include="filesystem\file\file_locked_in_stream.cpp" />
     <ClCompile Include="filesystem\file\file_out_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_set.cpp" />
     <ClCompile Include="filesystem\file\file_size_count_writer.cpp" />
     <ClCompile Include="filesystem\file\file_sssociation.cpp" />
     <ClCompile Include="filesystem\file\file_stream.cpp" />
@@ -2261,7 +2251,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\user\user_list_header.cpp" />
     <ClCompile Include="user\user\user_main_frame.cpp" />
     <ClCompile Include="user\user\user_menu_list_view.cpp" />
-    <ClCompile Include="user\user\user_message.cpp" />
     <ClCompile Include="user\user\user_meta_button.cpp" />
     <ClCompile Include="user\user\user_multiple_document_template.cpp" />
     <ClCompile Include="user\user\user_network_configuration.cpp" />

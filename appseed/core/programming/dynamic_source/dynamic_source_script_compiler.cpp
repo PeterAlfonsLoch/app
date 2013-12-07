@@ -18,7 +18,8 @@ namespace dynamic_source
    script_compiler::script_compiler(sp(base_application) papp) :
       element(papp),
       m_memfileLibError(papp),
-      m_mutexLibrary(papp)
+      m_mutexLibrary(papp),
+      m_libraryLib(papp)
    {
 
 #if defined(MEMDLEAK)

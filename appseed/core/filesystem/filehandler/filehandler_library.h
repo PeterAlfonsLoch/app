@@ -11,7 +11,7 @@ namespace filehandler
    public:
 
 
-      library();
+      library(sp(base_application) papp);
       virtual ~library();
 
 

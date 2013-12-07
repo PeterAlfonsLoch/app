@@ -293,7 +293,7 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
 
 #ifdef WINDOWS
 
-   cs.hInstance = System.m_hInstance;
+   cs.hInstance = System.m_hinstance;
 
 #else
 
@@ -428,7 +428,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
 
 #ifdef WINDOWSEX
 
-   cs.hInstance = System.m_hInstance;
+   cs.hInstance = System.m_hinstance;
 
 #else
 
@@ -564,7 +564,7 @@ bool virtual_user_interface::create(sp(::user::interaction) pparent, id id)
 
 #ifdef WINDOWS
 
-   cs.hInstance = System.m_hInstance;
+   cs.hInstance = System.m_hinstance;
 
 #else
 

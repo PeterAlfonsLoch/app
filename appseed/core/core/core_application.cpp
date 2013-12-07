@@ -3870,6 +3870,9 @@ sp(::user::interaction) application::get_request_parent_ui(sp(::user::interactio
 
 void application::construct()
 {
+
+   ::base_application::construct();
+
 }
 
 
@@ -4020,10 +4023,6 @@ void application::dump(dump_context & dumpcontext) const
 {
 
    base_application::dump(dumpcontext);
-
-#ifdef WINDOWS
-   dumpcontext << "m_hInstance = " << (void *)m_hInstance;
-#endif
 
    //dumpcontext << "\nm_lpCmdLine = " << m_strCmdLine;
    //dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;

@@ -46,22 +46,21 @@ public:
 
    smart_pointer < base_application >              m_pimpl;
 
-
    base_system *                                   m_pbasesystem;
    base_session *                                  m_pbasesession;
-   class signal *                                  m_psignal;
-   string                                          m_strAppName;
-   sp(::command_thread)                            m_pcommandthread;
-   allocatorsp                                     m_allocer;
    ::plane::application *                          m_pplaneapp; // can be used only from core and upper
    string_to_ptr                                   m_appmap;
+   string                                          m_strAppName;
+   allocatorsp                                     m_allocer;
+   sp(::command_thread)                            m_pcommandthread;
+   sp(class signal)                                m_psignal;
    class ::http::application                       m_http;
    sp(::fontopus::fontopus)                        m_pfontopus;
    class ::file::dir::application                  m_dir;
    class ::file::application                       m_file;
-   math::math *                                    m_pmath;
-   geometry::geometry *                            m_pgeometry;
-   ::sockets::sockets *                            m_psockets;
+   sp(math::math)                                  m_pmath;
+   sp(geometry::geometry)                          m_pgeometry;
+   sp(::sockets::sockets)                          m_psockets;
    bool                                            m_bZipIsDir;
    string                                          m_strMatterLocator;
    sp(::user::str_context)                         m_puserstrcontext;
@@ -70,7 +69,7 @@ public:
    sp(::user::interaction_ptr_array)               m_pframea;
    sp(::user::user)                                m_spuser;
 #ifdef WINDOWS
-   HINSTANCE                                       m_hInstance;
+   HINSTANCE                                       m_hinstance;
 #endif
    map < ::user::e_key, ::user::e_key, bool, bool > *                            m_pmapKeyPressed;
    bool                                            m_bLicense;
@@ -89,7 +88,7 @@ public:
    point                                           m_ptCursor;
    rect                                            m_rectScreen;
    bool                                            m_bSessionSynchronizedScreen;
-   core::savings *                                 m_psavings;
+   sp(core::savings)                               m_psavings;
 
    string                                          m_strCa2ModulePath;
    string                                          m_strCa2ModuleFolder;
@@ -126,6 +125,9 @@ public:
    virtual bool is_system();
    virtual bool is_session();
    virtual bool is_serviceable();
+
+
+   virtual bool init_main_data(::core::main_init_data * pdata);
 
 
    ::core::savings & savings();

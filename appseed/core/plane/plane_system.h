@@ -92,6 +92,10 @@ namespace plane
       system(sp(base_application) papp = NULL);
       virtual ~system();
 
+
+      virtual void construct();
+
+
       //virtual int32_t main();
       virtual bool InitApplication();
 

@@ -1,8 +1,6 @@
 #pragma once
 
 
-extern HINSTANCE g_hinstance;
-
 int32_t spaboot_start(const char * pszVersion, const char * pszId);
 
 /*BSTR BSTRFromCStr_dup(UINT codePage, LPCSTR s);

@@ -42,7 +42,8 @@ namespace dynamic_source
    ds_script::ds_script(sp(base_application) papp) :
       element(papp),
       script(papp),
-      m_evCreationEnabled(papp)
+      m_evCreationEnabled(papp),
+      m_library(papp)
    {
       m_lpfnCreateInstance    = NULL;
       m_bShouldBuild          = true;

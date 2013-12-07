@@ -14,7 +14,9 @@ namespace dynamic_source
    } LOADPARMS32;
 
    library_class::library_class(sp(base_application) papp)
-      : m_memfileError(papp), element(papp)
+      :  element(papp),
+      m_memfileError(papp),
+      m_library(papp)
    {
    }
 

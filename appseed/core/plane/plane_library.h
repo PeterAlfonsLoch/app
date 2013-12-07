@@ -12,7 +12,7 @@ namespace plane
    public:
 
 
-      library();
+      library(sp(base_application) papp);
       
 
       // impl

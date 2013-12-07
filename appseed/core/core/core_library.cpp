@@ -9,7 +9,9 @@ namespace core
 
    const char * psz_empty_app_id = "";
 
-   library::library(const char * pszRoot)
+   library::library(sp(base_application) papp, const char * pszRoot) :
+      element(papp),
+      base_library(papp)
    {
 
       m_pca2library     = NULL;
@@ -33,13 +35,11 @@ namespace core
 
    }
 
-   bool library::open(sp(base_application) papp, const char * pszPath, bool bAutoClose)
+   bool library::open(const char * pszPath, bool bAutoClose)
    {
 
       try
       {
-
-         set_app(papp);
 
          m_bAutoClose      = bAutoClose;
 
@@ -86,7 +86,7 @@ namespace core
 
          }
 
-         m_pca2library = pfn_get_new_library();
+         m_pca2library = pfn_get_new_library(get_app());
 
          if(m_pca2library == NULL)
          {

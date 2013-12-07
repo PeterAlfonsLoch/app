@@ -2927,26 +2927,29 @@ RetryHost:
       }
 
 #if defined(WINDOWSEX)
+
       if(m_pwindow != NULL)
       {
-         m_pwindow->register_window_class(m_hinstance);
+
+         m_pwindow->register_window_class(Application.m_hinstance);
+
       }
+
 #endif
 
-      if(!init_instance(m_hinstance, nCmdShow))
+      if (!init_instance(nCmdShow))
       {
-         return FALSE;
-      }
 
+         return FALSE;
+
+      }
 
       return 0;
 
    }
 
-   bool installer::init_instance(HINSTANCE hinstance, int32_t nCmdShow)
+   bool installer::init_instance(int32_t nCmdShow)
    {
-
-      m_hinstance = hinstance; // Store instance handle in our global variable
 
       m_strInstallGz = dir::module_folder("core\\bz\\stage\\");
       m_strInstall = dir::module_folder("core\\stage\\");

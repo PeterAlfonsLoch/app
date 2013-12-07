@@ -104,6 +104,9 @@ namespace plane
       {
          chFirst = strId[0];
       }
+
+      ::application::construct();
+
    }
 
 

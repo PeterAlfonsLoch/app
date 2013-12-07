@@ -19,7 +19,7 @@ namespace user
 
       //WPARAM                        m_dwLastKeyWparam;
       //LPARAM                        m_dwLastKeyLparam;
-      message::key                  m_keymessageLast;
+      ::message::key                m_keymessageLast;
 
 
 

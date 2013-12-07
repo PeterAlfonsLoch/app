@@ -23,6 +23,16 @@ namespace core
    }
 
 
+   void system::construct()
+   {
+
+      ::application::construct();
+
+      ::base_system::construct();
+
+   }
+
+
 
    void system::discard_to_factory(sp(element) pca)
    {

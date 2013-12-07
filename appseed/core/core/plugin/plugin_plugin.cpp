@@ -32,6 +32,8 @@ namespace plugin
    plugin::plugin(sp(base_application) papp) :
       element(papp),
       ::simple_ui::style(papp),
+      ::simple_ui::interaction(papp),
+      ::os::simple_ui(papp),
       hotplugin::plugin(papp)
    {
 
@@ -122,7 +124,9 @@ namespace plugin
          psystem->init_main_data(pinitmaindata);*/
 
 #ifdef WINDOWS
-         psystem->m_hInstance = ::GetModuleHandle("core.dll");
+
+         psystem->m_hinstance = ::GetModuleHandle("core.dll");
+
 #endif
 
          if(!psystem->InitApplication())
@@ -149,7 +153,9 @@ namespace plugin
          m_psystem->m_pplugin = this;
 
 #ifdef WINDOWS
-         m_psystem->m_hInstance = ::GetModuleHandle("core.dll");
+
+         m_psystem->m_hinstance = ::GetModuleHandle("core.dll");
+
 #endif
 
          if(!m_psystem->InitApplication())

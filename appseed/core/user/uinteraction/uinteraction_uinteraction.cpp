@@ -45,7 +45,7 @@ namespace uinteraction
 
 #endif
 
-      ::core::library library(NULL);
+      ::core::library library(get_app(), NULL);
 
       string strLibrary(strId);
 
@@ -64,7 +64,7 @@ namespace uinteraction
 
 #endif
 
-      if(!library.open(get_app(), strLibrary, false))
+      if(!library.open(strLibrary, false))
          return NULL;
 
       stringa stra;

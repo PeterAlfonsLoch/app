@@ -35,110 +35,110 @@ namespace install
       };
 
 
-      mutex         m_mutex;
+      mutex             m_mutex;
 
-      stringa       m_straTerminateProcesses;
-      stringa       m_straRestartCommandLine;
-      stringa       m_straRestartProcess;
-      string       m_strLastHost;
-      string       m_strCurrentHost;
-      bool           m_bStarterStart;
+      stringa           m_straTerminateProcesses;
+      stringa           m_straRestartCommandLine;
+      stringa           m_straRestartProcess;
+      string            m_strLastHost;
+      string            m_strCurrentHost;
+      bool              m_bStarterStart;
 #ifdef WINDOWS
-      MESSAGE            m_msg;
+      MESSAGE           m_msg;
 #endif
-      string       m_strPlatform;
+      string            m_strPlatform;
 
-      string       m_strInstallLocale;
-      string       m_strInstallSchema;
+      string            m_strInstallLocale;
+      string            m_strInstallSchema;
 
-      string       m_strAppMatterList;
+      string            m_strAppMatterList;
 
       uint32_t          m_dwDownloadCallbackLast100k;
       uint32_t          m_iDownloadCallbackColumn;
-      uint64_t       m_dwDownloadLen;
-      int32_t            m_cx;
-      int32_t            m_cy;
-      string       m_strHost;
+      uint64_t          m_dwDownloadLen;
+      int32_t           m_cx;
+      int32_t           m_cy;
+      string            m_strHost;
       uint32_t          m_dwInstallStartTime;
 
-      HINSTANCE      m_hinstance;
+      
 #ifdef WINDOWS
-      MESSAGE            m_msgSpaAdminWindow;
+      MESSAGE           m_msgSpaAdminWindow;
 #endif
-      bool           m_bShowPercentage;
+      bool              m_bShowPercentage;
 
 
 
-      ::os::simple_ui *       m_pwindow;
+      ::os::simple_ui * m_pwindow;
 
-      string       m_strBuild;
-      string       m_strBuildResource;
-      string       m_strApplicationId;
-      string       m_strApplicationType;
-      string       m_strCommandLine;
+      string            m_strBuild;
+      string            m_strBuildResource;
+      string            m_strApplicationId;
+      string            m_strApplicationType;
+      string            m_strCommandLine;
 
-      machine_event  m_machineevent;
+      machine_event     m_machineevent;
 
-      double         m_dProgress;
-      double         m_dProgress1;
-      double         m_dProgress2;
-      ::xml::document          m_xmldocStringTable;
-      int32_t            m_iStart;
-      double_array m_daDownloadRate;
+      double            m_dProgress;
+      double            m_dProgress1;
+      double            m_dProgress2;
+      ::xml::document   m_xmldocStringTable;
+      int32_t           m_iStart;
+      double_array      m_daDownloadRate;
       uint32_t          m_dwDownloadTick;
       uint64_t          m_dwDownload;
-      int32_t            m_iDownloadRate;
-      double         m_dDownloadRate;
+      int32_t           m_iDownloadRate;
+      double            m_dDownloadRate;
       uint32_t          m_dwDownloadZeroRateTick;
       uint32_t          m_dwDownloadZeroRateRemain;
       uint32_t          m_dwDownloadRemain;
-      bool           m_bForceUpdatedBuild;
+      bool              m_bForceUpdatedBuild;
 
-      bool           m_bOfflineInstall;
-      bool           m_bInternetInstall;
-      string       m_strIndex;
-      string       m_strIndexGz;
-      string       m_strInstall;
-      string       m_strInstallGz;
-      string       m_strInstallStatusTemplate;
+      bool              m_bOfflineInstall;
+      bool              m_bInternetInstall;
+      string            m_strIndex;
+      string            m_strIndexGz;
+      string            m_strInstall;
+      string            m_strInstallGz;
+      string            m_strInstallStatusTemplate;
 
-      bool           m_bInstallSet;
+      bool              m_bInstallSet;
 
-      double         m_dProgressStart;
-      double         m_dProgressEnd;
-      stringa       m_strSpa;
-      stringa       m_straHost;
-      double         m_dAnime;
+      double            m_dProgressStart;
+      double            m_dProgressEnd;
+      stringa           m_strSpa;
+      stringa           m_straHost;
+      double            m_dAnime;
 
-      bool           m_NeedRestartBecauseOfReservedFile;
-      bool           m_NeedRestartFatalError;
-      bool           m_bLoginStartup;
-      bool           m_bMsDownload;
-      string       m_strTitle;
-      string       m_strSpaIgnitionBaseUrl;
-      uint64_t       m_dwCurFileLen;
+      bool              m_NeedRestartBecauseOfReservedFile;
+      bool              m_NeedRestartFatalError;
+      bool              m_bLoginStartup;
+      bool              m_bMsDownload;
+      string            m_strTitle;
+      string            m_strSpaIgnitionBaseUrl;
+      uint64_t          m_dwCurFileLen;
 
 
-      int32_t            m_nCmdShow;
+      int32_t           m_nCmdShow;
 
-      bool           m_bShow;
+      bool              m_bShow;
 
-      int32_t            m_iScreen;
-      int32_t            m_iProgressMode;
-      int64_t        m_iTotalGzLen;
-      int64_t        m_iProgressTotalGzLen;
-      int64_t        m_iGzLen;
-      int32_t            m_iStyle;
-      string       m_strLogin;
-      string       m_strSessid;
-      string       m_strInstallFilter;
-      string       m_strLocale;
-      string       m_strLoginFailed;
-      oswindow           m_oswindow;
+      int32_t           m_iScreen;
+      int32_t           m_iProgressMode;
+      int64_t           m_iTotalGzLen;
+      int64_t           m_iProgressTotalGzLen;
+      int64_t           m_iGzLen;
+      int32_t           m_iStyle;
+      string            m_strLogin;
+      string            m_strSessid;
+      string            m_strInstallFilter;
+      string            m_strLocale;
+      string            m_strLoginFailed;
+      oswindow          m_oswindow;
 
-      string       m_strFile;
-      bool           m_bSynch;
-      bool m_bInstalling;
+      string            m_strFile;
+      bool              m_bSynch;
+      bool              m_bInstalling;
 
 
       installer(sp(base_application) papp);
@@ -216,7 +216,7 @@ namespace install
 
       int32_t run_starter_start(int32_t nCmdShow);
 
-      bool init_instance(HINSTANCE hinstance, int32_t nCmdShow);
+      bool init_instance(int32_t nCmdShow);
 
       int32_t spaadmin_main(const char * pszCommandLine);
 
