@@ -181,7 +181,7 @@ namespace os
    void simple_ui::destroy_window()
    {
 
-      ::DestroyWindow(m_window);
+      ::PostMessage(m_window, WM_CLOSE, 0, 0);
 
    }
 
@@ -306,7 +306,7 @@ namespace os
       {
       case WM_DESTROY:
          PostQuitMessage(0);
-         break;
+         goto default_window_procedure;
       case WM_LBUTTONDOWN:
          on_lbutton_down(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
          break;
@@ -501,6 +501,8 @@ namespace os
          DispatchMessage(&msg);
 
       }
+
+      m_window = NULL;
 
 
       return true;

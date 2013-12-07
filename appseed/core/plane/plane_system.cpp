@@ -21,7 +21,6 @@ namespace plane
       m_visual(this),
       base_system(papp),
       m_emaildepartament(this),
-      m_installex(this),
       m_libraryDraw2d(this)
    {
 
@@ -85,7 +84,6 @@ namespace plane
 //      m_url.set_app(this);
       m_userset.set_app(this);
       m_service.set_app(this);
-      m_installex.set_app(this);
 #ifndef METROWIN
       m_processsection.set_app(this);
 #endif
@@ -808,11 +806,6 @@ namespace plane
       return true;
    }
 
-   application_ptra & system::appptra()
-   {
-      return m_appptra;
-   }
-
    ::core::stra & system::stra()
    {
       return m_stra;
@@ -821,11 +814,6 @@ namespace plane
    ::core::service & system::service()
    {
       return m_service;
-   }
-
-   ::core::install & system::installex()
-   {
-      return m_installex;
    }
 
 
@@ -1530,7 +1518,7 @@ namespace plane
       if(!System.directrix()->m_varTopicQuery.has_property("install")
          && !System.directrix()->m_varTopicQuery.has_property("uninstall")
          && strId.has_char()
-         && !installex().is(NULL, strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema))
+         && !install().is(NULL, strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema))
       {
 
          throw not_installed(get_app(), NULL, strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema);
@@ -1563,6 +1551,16 @@ namespace plane
       sp(base_application) pgenapp = (papp);
 
       pgenapp->m_pplaneapp->m_strAppId = pszAppId;
+
+      pgenapp->m_pbasesystem = this;
+
+      pgenapp->m_pplaneapp->m_psystem = this;
+
+      pgenapp->m_hinstance = m_hinstance;
+
+      pgenapp->::base_application::construct();
+
+      pgenapp->construct();
 
       return papp;
 

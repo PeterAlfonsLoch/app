@@ -43,6 +43,9 @@ public:
 
 #endif
 
+   application_ptra                             m_appptra;
+
+
    ::os::simple_ui *                            m_psimpleui;
    os_data *                                    m_posdata;
 
@@ -95,6 +98,8 @@ public:
    virtual void construct();
 
    virtual bool initialize_instance();
+
+   application_ptra                             & appptra();
 
 
    class ::core::os                             & os();

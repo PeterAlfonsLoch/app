@@ -596,3 +596,10 @@ bool base_system::initialize_log(const char * pszId)
    //      ::core::trace_v = &::core::system_log_trace_v;
    return true;
 }
+
+
+application_ptra & base_system::appptra()
+{
+   return m_appptra;
+}
+

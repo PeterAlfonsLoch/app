@@ -31,39 +31,14 @@ class system;
 class window_draw;
 
 
-enum EExclusiveInstance
-{
-   ExclusiveInstanceNone,
-   ExclusiveInstanceLocal,
-   ExclusiveInstanceLocalId,
-   ExclusiveInstanceGlobal,
-   ExclusiveInstanceGlobalId,
-   ExclusiveInstanceLicense,
-};
 
 
-
-
-class base_application;
-
-
-class CLASS_DECL_CORE application_ptra :
-   virtual public spa(base_application)
-{
-public:
-
-
-
-};
 
 
 
 
 class CLASS_DECL_CORE application :
-   virtual public base_application,
-   virtual public command_target_interface,
-   virtual public request_interface,
-   virtual public message_queue
+   virtual public base_application
 {
 public:
 
@@ -167,7 +142,6 @@ public:
 
    string_map < string_to_string *, string_to_string * >               m_stringtablemap;
    string_map < string_to_string *, string_to_string * >               m_stringtablemapStd;
-   manual_reset_event *                                                                      m_peventReady;
 
 
    //string                                                                                  m_strLicense;
@@ -189,8 +163,6 @@ public:
    string                              m_strHelpFilePath;
    mutex                               m_mutex;
 
-   string                        m_strInstallType;
-   string                        m_strInstallToken;
    //sp(::user::interaction)         m_puiInitialPlaceHolderContainer;
    application_bias        m_biasCalling;
 
@@ -212,12 +184,6 @@ public:
 
    uint32_t                      m_dwPolicies;            // block for storing boolean system policies
 
-   EExclusiveInstance            m_eexclusiveinstance;
-
-   sp(::mutex)                    m_pmutexLocal;
-   sp(::mutex)                    m_pmutexLocalId;
-   sp(::mutex)                     m_pmutexGlobal;
-   sp(::mutex)                     m_pmutexGlobalId;
    // This module's hInstance.
    // Pointer to the command-line.
 
@@ -374,8 +340,6 @@ public:
 
    virtual sp(::user::interaction) uie_from_point(point pt);
 
-   ::mutex * get_local_mutex();
-   ::mutex * get_global_mutex();
 
    virtual void set_env_var(const string & var,const string & value);
    //virtual uint32_t get_thread_id();
@@ -391,7 +355,6 @@ public:
 
 
 
-   virtual bool is_running();
 
    DECL_GEN_SIGNAL(on_application_signal);
 
@@ -433,16 +396,6 @@ public:
       virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
 
-   virtual string get_local_mutex_id();
-   virtual string get_global_mutex_id();
-
-//   virtual bool hex_to_memory(primitive::memory & memory, const char * pszHex);
-  // virtual void memory_to_hex(string & strHex, primitive::memory & memory);
-
-
-
-   virtual bool check_exclusive();
-   virtual bool release_exclusive();
 
 
    void EnableHtmlHelp();
@@ -646,10 +599,6 @@ public:
    static const char gen_PreviewSection[];
    static const char gen_PreviewEntry[];
 
-   virtual string get_mutex_name_gen();
-
-   virtual void on_exclusive_instance_conflict(EExclusiveInstance eexclusive);
-   virtual void on_exclusive_instance_local_conflict();
 
 
    virtual void delete_temp();
@@ -725,23 +674,10 @@ public:
    virtual sp(::user::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
    virtual sp(::user::window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
 
-   virtual string get_local_mutex_name(const char * pszAppName);
-   virtual string get_local_id_mutex_name(const char * pszAppName, const char * pszId);
-   virtual string get_global_mutex_name(const char * pszAppName);
-   virtual string get_global_id_mutex_name(const char * pszAppName, const char * pszId);
-
-   virtual string get_local_mutex_name();
-   virtual string get_local_id_mutex_name();
-   virtual string get_global_mutex_name();
-   virtual string get_global_id_mutex_name();
 
 
    virtual bool final_handle_exception(::exception::exception &);
 
-   bool ca_process_initialize();
-   bool ca_initialize1();
-
-   bool ca_finalize();
 
 
 

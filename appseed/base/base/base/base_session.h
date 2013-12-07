@@ -19,6 +19,8 @@ public:
 
    ::visual::e_cursor                                       m_ecursor;
    ::visual::e_cursor                                       m_ecursorDefault;
+   ::core::copydesk_sp                                      m_spcopydesk;
+
 
 
 

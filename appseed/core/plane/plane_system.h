@@ -36,17 +36,14 @@ namespace plane
 
       FT_Library                                   m_ftlibrary;
       mutex                                        m_mutexDelete;
-      application_ptra                       m_appptra;
       class ::core::stra                             m_stra;
       class ::core::service                          m_service;
-      class ::core::install                          m_installex;
 #ifndef METROWIN
       class ::core::process_departament              m_processsection;
 #endif
 
       class ::core::patch                            m_patch;
       ::net::email_departament                        m_emaildepartament;
-      ::core::copydesk_sp                            m_spcopydesk;
       sp(colorertake5::ParserFactory)              m_pparserfactory;
 
       ::net::port_forward_sp                        m_spportforward;
@@ -183,10 +180,7 @@ namespace plane
 
       FT_Library                             & ftlibrary();
 
-      application_ptra                       & appptra();
-
       ::core::stra                           & stra();
-      ::core::install                        & installex();
       ::core::service                        & service();
 #ifndef METROWIN
       ::core::process_departament            & process();

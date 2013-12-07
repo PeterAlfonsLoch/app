@@ -635,7 +635,7 @@ namespace plugin
             if(str1 == "ca2login")
             {
                // graphical - 2 - user interface for login - fontopus - through the plugin
-               if(!m_psystem->installex().is(NULL, strBuildNumber, "application", "app/core/fontopus", strLocale, strSchema))
+               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/core/fontopus", strLocale, strSchema))
                {
 /*                  Sys(m_psystem).install().start(": app=session session_start=app/core/fontopus app_type=application install");
 #ifdef WINDOWS
@@ -653,7 +653,7 @@ namespace plugin
 #else
                   throw not_implemented(get_app());
 #endif
-                  Sys(m_psystem).installex().start(strCommandLine);
+                  Sys(m_psystem).install().start(strCommandLine);
 
                   m_phost->m_bReload = true;
 
@@ -675,7 +675,7 @@ namespace plugin
             else if(str1 == "ca2logout")
             {
                // graphical - 2 - user interface for logout - fontopus - through the plugin
-               if(!m_psystem->installex().is(NULL, strBuildNumber, "application", "app/core/fontopus", strLocale, strSchema))
+               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/core/fontopus", strLocale, strSchema))
                {
                   /*
                   Sys(m_psystem).install().start(": app=session session_start=app/core/fontopus app_type=application install");
@@ -694,7 +694,7 @@ namespace plugin
                   throw not_implemented(get_app());
 #endif
 
-                  Sys(m_psystem).installex().start(strCommandLine);
+                  Sys(m_psystem).install().start(strCommandLine);
 
                   m_phost->m_bReload = true;
 
@@ -742,7 +742,7 @@ namespace plugin
                      if(strType.is_empty())
                         strType = "application";
 
-                     if(strId.has_char() && !m_psystem->installex().is(NULL, strBuildNumber, strType, strId, strLocale, strSchema))
+                     if(strId.has_char() && !m_psystem->install().is(NULL, strBuildNumber, strType, strId, strLocale, strSchema))
                      {
 
                         string strCommandLine;
@@ -793,7 +793,7 @@ namespace plugin
                         throw not_implemented(get_app());
 #endif
 
-                        Sys(m_psystem).installex().start(strCommandLine);
+                        Sys(m_psystem).install().start(strCommandLine);
 
                         m_phost->m_bReload = true;
 

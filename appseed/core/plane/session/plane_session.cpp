@@ -126,6 +126,8 @@ namespace plane
    void session::construct()
    {
 
+      ::plane::application::construct();
+
       m_strAppName         = "session";
       m_strBaseSupportId   = "ca2_bergedge";
       m_strInstallToken    = "session";

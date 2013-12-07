@@ -136,11 +136,6 @@ namespace plane
    }
 
 
-   bool application::os_native_bergedge_start()
-   {
-      return true;
-   }
-
 
    bool application::on_install()
    {
@@ -191,12 +186,6 @@ namespace plane
       return ::application::is_serviceable();
    }
 
-   service_base * application::allocate_new_service()
-   {
-
-      return NULL;
-
-   }
 
 
    sp(::user::object) application::_001OpenDocumentFile(var varFile)
@@ -531,605 +520,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
    }
 
 
-      int32_t application::pre_run()
-   {
 
-//      m_dir.m_psystem      = m_psystem;
-  //    m_file.m_psystem     = m_psystem;
-
-#ifdef WINDOWSEX
-
-      MESSAGE msg;
-
-      // Create Windows Message Queue
-      ::PeekMessageA(&msg, NULL, 0, 0xffff, 0);
-
-      if(!is_system() && (bool)oprop("SessionSynchronizedInput"))
-      {
-         ::AttachThreadInput(GetCurrentThreadId(), (uint32_t) System.thread::m_p->get_os_int(), TRUE);
-      }
-
-#endif
-/*
-
-      if(is_system())
-      {
-         translator::attach();
-      }
-*/
-      m_iReturnCode            = 0;
-
-      m_dwAlive = ::get_tick_count();
-
-      // App global initializations (rare)
-      if (!InitApplication())
-         goto InitFailure;
-
-      m_dwAlive = ::get_tick_count();
-      // Perform specific initializations
-//#if !defined(DEBUG) || defined(WINDOWS)
-      try
-      {
-         try
-         {
-//#endif
-            if(!process_initialize())
-            {
-               if (GetMainWnd() != NULL)
-               {
-                  TRACE(::core::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
-                  GetMainWnd()->DestroyWindow();
-               }
-               goto InitFailure;
-            }
-//#if !defined(DEBUG) || defined(WINDOWS)
-         }
-         catch(::exit_exception & e)
-         {
-
-            throw e;
-
-         }
-         catch(const ::exception::exception &)
-         {
-            if (GetMainWnd() != NULL)
-            {
-               GetMainWnd()->DestroyWindow();
-               SetMainWnd(NULL);
-            }
-            goto InitFailure;
-         }
-//#endif
-         m_dwAlive = ::get_tick_count();
-//#if !defined(DEBUG) || defined(WINDOWS)
-         try
-         {
-//#endif
-            if(!initialize_instance())
-            {
-               if (GetMainWnd() != NULL)
-               {
-                  TRACE(::core::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
-                  GetMainWnd()->DestroyWindow();
-               }
-
-//#if !defined(DEBUG) || defined(WINDOWS)
-               try
-               {
-//#endif
-                  exit();
-//#if !defined(DEBUG) || defined(WINDOWS)
-               }
-               catch(...)
-               {
-               }
-//#endif
-               goto InitFailure;
-            }
-//#if !defined(DEBUG) || defined(WINDOWS)
-         }
-         catch(::exit_exception & e)
-         {
-
-            throw e;
-
-         }
-         catch(const ::exception::exception & e)
-         {
-            if(on_run_exception((::exception::exception &) e))
-               goto run;
-            if(GetMainWnd() != NULL)
-            {
-               TRACE(::core::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
-               try
-               {
-                  GetMainWnd()->DestroyWindow();
-               }
-               catch(::exit_exception & e)
-               {
-
-                  throw e;
-
-               }
-               catch(::exception::exception &)
-               {
-               }
-               SetMainWnd(NULL);
-            }
-            if(final_handle_exception((::exception::exception &) e))
-               goto run;
-            if(GetMainWnd() != NULL)
-            {
-               TRACE(::core::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
-               try
-               {
-                  GetMainWnd()->DestroyWindow();
-               }
-               catch(::exit_exception & e)
-               {
-
-                  throw e;
-
-               }
-               catch(::exception::exception &)
-               {
-               }
-               SetMainWnd(NULL);
-            }
-            try
-            {
-               m_iReturnCode = exit();
-            }
-            catch(...)
-            {
-               m_iReturnCode = -1;
-            }
-            if(m_iReturnCode == 0)
-               m_iReturnCode = -1;
-            goto InitFailure;
-         }
-      }
-      catch(::exit_exception & e)
-      {
-
-         throw e;
-
-      }
-      catch(...)
-      {
-         // linux-like exit style on crash, differently from general windows error message approach
-         // to prevent or correct from crash, should:
-         // - look at dumps - to do;
-         // - look at trace and log - always doing;
-         // - look at debugger with the visual or other tool atashed - to doing;
-         // - fill other possibilities;
-         // - restart and send information in the holy back, and stateful or self-heal as feedback from below;
-         // - ...
-         // - ..
-         // - .
-         // - .
-         // - .
-         // - .
-         // -  .
-         // - ...
-         // - ...
-         // - ...
-         // to pro-activia and overall benefits workaround:
-         // - stateful applications:
-         //      - browser urls, tabs, entire history, in the ca2computing cloud;
-         //      - uint16_t - html document to simplify here - with all history of undo and redos per document optimized by cvs, svn, syllomatter;
-         //           - not directly related but use date and title to name document;
-         //      - save forms after every key press in .undo.redo.form file parallel to appmatter / form/undo.redo.file parity;
-         //      - last ::ikaraoke::karaoke song and scoring, a little less motivated at time of writing;
-         //
-         // - ex-new-revolut-dynamic-news-self-healing
-         //      - pre-history, antecendentes
-         //            - sometimes we can't recover from the last state
-         //            - to start from the beggining can be too heavy, waity, worky, bory(ing)
-         //      - try to creativetily under-auto-domain with constrained-learning, or heuristcally recover from restart, shutdown, login, logoff;
-         //           - reification :
-         //           - if the document is corrupted, try to open the most of it
-         //           - if can only detect that the document cannot be opened or damaged, should creatively workarounds as it comes, as could it be
-         //              done, for example search in the web for a proper solution?
-         //           - ::ikaraoke::karaoke file does not open? can open next? do it... may animate with a temporary icon...
-         //           - import a little as pepper for the meal, prodevian technology into estamira, so gaming experience relativity can open ligh
-         //               speed into cartesian dimensions of
-         //               core, estamira and prodevian. Take care not to flood prodevian brand black ink over the floor of the estamira office...
-         //               black letters, or colorful and pink are accepted and sometimes desired, for example, hello kity prodevian, pirarucu games,
-         //               I think no one likes to be boring, but a entire background in black... I don't know... only for your personal office, may be...
-         //           - could an online colaborator investigate crashes promptly in a funny way, and make news and jokes? Like terra and UOL for the real world?
-         //               - new crash, two documents lost, weathers fault, too hot, can't think, my mother was angry with me, lead to buggy code;
-         //               - new version with bug fixes;
-         //      - new versions
-         //      - automatic updates
-         //      - upgrades
-         //      - rearrangemntes
-         //      - downgrade in the form of retro
-         // - ...
-         // - ..
-         // - .
-         // - .
-         // - .
-         // - .
-         // -  .
-         // - ...
-         // - ...
-         // - ...
-
-      }
-//#endif
-      goto run;
-InitFailure:
-      if(m_iReturnCode == 0)
-         m_iReturnCode = -1;
-run:
-      return m_iReturnCode;
-   }
-
-
-
-
-      int32_t application::on_run()
-   {
-      int32_t m_iReturnCode = 0;
-
-      try
-      {
-         application_signal_details signal(this, m_psignal, application_signal_start);
-         m_psignal->emit(&signal);
-      }
-      catch(...)
-      {
-      }
-
-      thread * pthread = System.GetThread();
-
-      install_message_handling(pthread->m_p);
-      try
-      {
-         try
-         {
-            m_bReady = true;
-            if(m_peventReady != NULL)
-               m_peventReady->SetEvent();
-         }
-         catch(...)
-         {
-         }
-run:
-         try
-         {
-            m_iReturnCode = run();
-
-         }
-         catch(::exit_exception & e)
-         {
-
-            throw e;
-
-         }
-         catch(const ::exception::exception & e)
-         {
-            if(on_run_exception((::exception::exception &) e))
-               goto run;
-            if (GetMainWnd() != NULL)
-            {
-               TRACE(::core::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
-               try
-               {
-                  GetMainWnd()->DestroyWindow();
-               }
-               catch(::exception::exception &)
-               {
-               }
-               SetMainWnd(NULL);
-            }
-            if(final_handle_exception((::exception::exception &) e))
-               goto run;
-            if (GetMainWnd() != NULL)
-            {
-               TRACE(::core::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
-               try
-               {
-                  GetMainWnd()->DestroyWindow();
-               }
-               catch(::exit_exception & e)
-               {
-
-                  throw e;
-
-               }
-               catch(::exception::exception &)
-               {
-               }
-               SetMainWnd(NULL);
-            }
-            try
-            {
-               m_iReturnCode = exit();
-            }
-            catch(::exit_exception & e)
-            {
-
-               throw e;
-
-            }
-            catch(...)
-            {
-               m_iReturnCode = -1;
-            }
-            goto InitFailure;
-         }
-      }
-      catch(::exit_exception & e)
-      {
-
-         throw e;
-
-      }
-      catch(...)
-      {
-         // linux-like exit style on crash, differently from general windows error message approach
-         // to prevent or correct from crash, should:
-         // - look at dumps - to do;
-         // - look at trace and log - always doing;
-         // - look at debugger with the visual or other tool atashed - to doing;
-         // - fill other possibilities;
-         // - restart and send information in the holy back, and stateful or self-heal as feedback from below;
-         // - ...
-         // - ..
-         // - .
-         // - .
-         // - .
-         // - .
-         // -  .
-         // - ...
-         // - ...
-         // - ...
-         // to pro-activia and overall benefits workaround:
-         // - stateful applications:
-         //      - browser urls, tabs, entire history, in the ca2computing cloud;
-         //      - uint16_t - html document to simplify here - with all history of undo and redos per document optimized by cvs, svn, syllomatter;
-         //           - not directly related but use date and title to name document;
-         //      - save forms after every key press in .undo.redo.form file parallel to appmatter / form/undo.redo.file parity;
-         //      - last ::ikaraoke::karaoke song and scoring, a little less motivated at time of writing;
-         //
-         // - ex-new-revolut-dynamic-news-self-healing
-         //      - pre-history, antecendentes
-         //            - sometimes we can't recover from the last state
-         //            - to start from the beggining can be too heavy, waity, worky, bory(ing)
-         //      - try to creativetily under-auto-domain with constrained-learning, or heuristcally recover from restart, shutdown, login, logoff;
-         //           - reification :
-         //           - if the document is corrupted, try to open the most of it
-         //           - if can only detect that the document cannot be opened or damaged, should creatively workarounds as it comes, as could it be
-         //              done, for example search in the web for a proper solution?
-         //           - ::ikaraoke::karaoke file does not open? can open next? do it... may animate with a temporary icon...
-         //           - import a little as pepper for the meal, prodevian technology into estamira, so gaming experience relativity can open ligh
-         //               speed into cartesian dimensions of
-         //               core, estamira and prodevian. Take care not to flood prodevian brand black ink over the floor of the estamira office...
-         //               black letters, or colorful and pink are accepted and sometimes desired, for example, hello kity prodevian, pirarucu games,
-         //               I think no one likes to be boring, but a entire background in black... I don't know... only for your personal office, may be...
-         //           - could an online colaborator investigate crashes promptly in a funny way, and make news and jokes? Like terra and UOL for the real world?
-         //               - new crash, two documents lost, weathers fault, too hot, can't think, my mother was angry with me, lead to buggy code;
-         //               - new version with bug fixes;
-         //      - new versions
-         //      - automatic updates
-         //      - upgrades
-         //      - rearrangemntes
-         //      - downgrade in the form of retro
-         // - ...
-         // - ..
-         // - .
-         // - .
-         // - .
-         // - .
-         // -  .
-         // - ...
-         // - ...
-         // - ...
-
-      }
-InitFailure:
-      try
-      {
-         if(m_peventReady != NULL)
-            m_peventReady->SetEvent();
-      }
-      catch(...)
-      {
-      }
-      try
-      {
-         thread * pthread = thread::m_p;
-         if(pthread != NULL && pthread->m_pbReady != NULL)
-         {
-            *pthread->m_pbReady = true;
-         }
-      }
-      catch(...)
-      {
-      }
-      /*try
-      {
-         thread * pthread = dynamic_cast < thread * > (this);
-         ::SetEvent((HANDLE) pthread->m_peventReady);
-      }
-      catch(...)
-      {
-      }*/
-
-      // let translator run undefinetely
-      /*if(is_system())
-      {
-         translator::detach();
-      }*/
-
-      return m_iReturnCode;
-   }
-
-   bool application::main_start()
-   {
-
-      TRACE(string(typeid(*this).name()) + " main_start");;
-      try
-      {
-
-         m_dwAlive = ::get_tick_count();
-         TRACE(string(typeid(*this).name()) + "pre_run");;
-         int32_t m_iReturnCode = pre_run();
-         if(m_iReturnCode != 0)
-         {
-            m_bReady = true;
-            TRACE("application::main pre_run failure");
-            return false;
-         }
-
-         TRACE(string(typeid(*this).name()) + " initial_check_directrix");;
-         if(!initial_check_directrix())
-         {
-            exit();
-            m_iReturnCode = -1;
-            m_bReady = true;
-            ::OutputDebugStringW(L"exiting on check directrix");
-            return false;
-         }
-
-
-         TRACE(string(typeid(*this).name()) + " os_native_bergedge_start");;
-         m_dwAlive = ::get_tick_count();
-         if(!os_native_bergedge_start())
-         {
-            exit();
-            m_iReturnCode = -1;
-            m_bReady = true;
-            ::OutputDebugStringW(L"application::main os_native_bergedge_start failure");
-            return false;
-         }
-
-         return true;
-      }
-      catch(::exit_exception &)
-      {
-
-         System.os().post_to_all_threads(WM_QUIT, 0, 0);
-
-      }
-
-      return false;
-
-   }
-
-   int32_t application::main()
-   {
-
-      TRACE(string(typeid(*this).name()) + " main");;
-
-      try
-      {
-
-         if(!main_start())
-         {
-            m_bReady = true;
-            TRACE("application::start failure");
-            return m_iReturnCode;
-         }
-
-      }
-      catch(::exit_exception &)
-      {
-
-         System.os().post_to_all_threads(WM_QUIT, 0, 0);
-
-         goto exit_application;
-
-      }
-      catch(...)
-      {
-
-         goto exit_application;
-
-      }
-
-
-      try
-      {
-
-         TRACE(string(typeid(*this).name()) + " on_run");;
-         m_iReturnCode = 0;
-         m_bReady = true;
-         m_p->m_bReady = true;
-         thread::m_bReady = true;
-         thread::m_p->m_bReady = true;
-         m_bRun = true;
-         m_p->m_bRun = true;
-         thread::m_bRun = true;
-         thread::m_p->m_bRun = true;
-         m_iReturnCode = on_run();
-         if(m_iReturnCode != 0)
-         {
-            ::OutputDebugStringW(L"application::main on_run termination failure");
-         }
-
-      }
-      catch(::exit_exception &)
-      {
-
-         System.os().post_to_all_threads(WM_QUIT, 0, 0);
-
-         goto exit_application;
-
-      }
-      catch(...)
-      {
-
-         goto exit_application;
-
-      }
-
-      try
-      {
-
-         if(is_system())
-         {
-
-            System.os().post_to_all_threads(WM_QUIT, 0, 0);
-
-            Sleep(1984 + 1977);
-
-         }
-
-      }
-      catch(...)
-      {
-
-      }
-
-exit_application:
-
-      try
-      {
-
-         m_iReturnCode = exit();
-
-      }
-      catch(::exit_exception &)
-      {
-
-         System.os().post_to_all_threads(WM_QUIT, 0, 0);
-
-         m_iReturnCode = -1;
-
-      }
-      catch(...)
-      {
-
-         m_iReturnCode = -1;
-
-      }
-
-      return m_iReturnCode;
-
-   }
 
 
    sp(base_application) application::instantiate_application(const char * pszType, const char * pszId, application_bias * pbias)
@@ -1264,7 +655,7 @@ exit_application:
          strCommandLine    += " style=" + string(Application.str_context()->m_plocaleschema->m_idSchema);
          strCommandLine    += " install";
 
-         System.installex().start(strCommandLine);
+         System.install().start(strCommandLine);
 
          throw installing_exception(get_app());
 
@@ -1308,7 +699,7 @@ exit_application:
    //////////////////////////////////////////////////////////////////////////////////////////////////
    // System/System
    //
-   sp(::user::object) application::hold(sp(::user::interaction) pui)
+   sp(::user::object) application::place_hold(sp(::user::interaction) pui)
    {
 
       return NULL;
@@ -1345,55 +736,6 @@ exit_application:
    }
 
 
-   bool application::initial_check_directrix()
-   {
-
-      if(directrix()->m_varTopicQuery.has_property("install"))
-      {
-
-         if(!on_install())
-            return false;
-
-         string strId = m_strAppId;
-
-         xxdebug_box("on_install1", strId, 0);
-
-         if(strId.is_empty())
-            strId = m_strAppName;
-
-         if(strId.has_char() && command()->m_varTopicQuery.has_property("app") && strId == command()->m_varTopicQuery["app"])
-         {
-
-            system_add_app_install(strId);
-
-         }
-         else if(strId.has_char() && command()->m_varTopicQuery.has_property("session_start") && strId == command()->m_varTopicQuery["session_start"])
-         {
-
-            system_add_app_install(strId);
-
-         }
-         else if(m_strInstallToken.has_char())
-         {
-
-            system_add_app_install(m_strInstallToken);
-
-         }
-
-      }
-      else if(directrix()->m_varTopicQuery.has_property("uninstall"))
-      {
-
-         if(!on_uninstall())
-            return false;
-
-         System.installex().remove_spa_start(m_strInstallType, m_strInstallToken);
-
-      }
-
-      return true;
-
-   }
 
       void application::set_title(const char * pszTitle)
    {
@@ -1421,76 +763,6 @@ exit_application:
    }
 
 
-   void application::fill_locale_schema(::str::international::locale_schema & localeschema, const char * pszLocale, const char * pszSchema)
-   {
-
-
-      localeschema.m_idaLocale.remove_all();
-      localeschema.m_idaSchema.remove_all();
-
-
-      string strLocale(pszLocale);
-      string strSchema(pszSchema);
-
-
-      localeschema.m_idLocale     = pszLocale;
-      localeschema.m_idSchema     = pszSchema;
-
-
-      localeschema.add_locale_variant(strLocale    , strSchema);
-      localeschema.add_locale_variant(get_locale() , strSchema);
-      localeschema.add_locale_variant(__id(std)    , strSchema);
-      localeschema.add_locale_variant(__id(en)     , strSchema);
-
-
-      localeschema.finalize();
-
-
-   }
-
-
-   void application::fill_locale_schema(::str::international::locale_schema & localeschema)
-   {
-
-
-      localeschema.m_idaLocale.remove_all();
-      localeschema.m_idaSchema.remove_all();
-
-
-      //localeschema.m_bAddAlternateStyle = true;
-
-
-      string strLocale;
-      string strSchema;
-
-      strLocale  = get_locale();
-      strSchema  = get_schema();
-
-      if(Application.directrix()->m_varTopicQuery["locale"].has_char() && Application.directrix()->m_varTopicQuery["locale"].get_string().CompareNoCase("_std") != 0)
-      {
-         strLocale = Application.directrix()->m_varTopicQuery["locale"];
-      }
-
-      if(Application.directrix()->m_varTopicQuery["schema"].has_char() && Application.directrix()->m_varTopicQuery["schema"].get_string().CompareNoCase("_std") != 0)
-      {
-         strSchema = Application.directrix()->m_varTopicQuery["schema"];
-      }
-
-
-      localeschema.m_idLocale     = strLocale;
-      localeschema.m_idSchema     = strSchema;
-
-
-      localeschema.add_locale_variant(strLocale    , strSchema);
-      localeschema.add_locale_variant(get_locale() , strSchema);
-      localeschema.add_locale_variant(__id(std)    , strSchema);
-      localeschema.add_locale_variant(__id(en)     , strSchema);
-
-
-      localeschema.finalize();
-
-
-   }
 
    bool application::update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession,const char * pszRoot, const char * pszRelative)
    {
@@ -1623,43 +895,22 @@ exit_application:
    }
 
 
-   bool application::system_add_app_install(const char * pszId)
-   {
-
-      string strId(pszId);
-      string strSystemLocale = System.m_strLocale;
-      string strSystemSchema = System.m_strSchema;
-      string strLocale = command()->m_varTopicQuery["locale"];
-      string strSchema = command()->m_varTopicQuery["schema"];
-
-      System.installex().remove_spa_start(m_strInstallType, strId);
-      System.installex().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strSystemLocale, m_strSchema);
-      System.installex().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strSystemLocale, strSystemSchema);
-      System.installex().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, m_strSchema);
-      System.installex().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, strSchema);
-      System.installex().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strLocale, m_strSchema);
-      System.installex().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strLocale, strSchema);
-
-      return true;
-
-   }
 
    bool application::initialize()
    {
 
+      if (!::application::initialize())
+         return false;
 
       if(!is_installing() && !is_uninstalling() && !is_system())
       {
-
-         if(!user()->keyboard().initialize())
-            return false;
 
          simpledb().set_keyboard_layout(NULL, false);
 
       }
 
 
-      if(m_bIfs)
+/*      if(m_bIfs)
       {
 		  if(m_psession != NULL && &Session != NULL)
          {
@@ -1671,7 +922,7 @@ exit_application:
             stringa stra;
             pset->root_ones(stra);
          }
-      }
+      }*/
 
       m_dwAlive = ::get_tick_count();
 
@@ -1681,8 +932,6 @@ exit_application:
       }
 
 
-      if(!::application::initialize())
-         return false;
 
 
       if(!m_spuserfs->initialize())
@@ -1692,8 +941,6 @@ exit_application:
       if(!m_simpledb.initialize())
          return false;
 
-      if(!m_spuser->initialize())
-         return false;
 
       if (!m_spuserex->initialize())
          return false;
@@ -1820,15 +1067,6 @@ exit_application:
       if(!::application::process_initialize())
          return false;
 
-      m_pfontopus->construct(this);
-
-      m_spuser = create_user();
-
-      if(m_spuser == NULL)
-         return false;
-
-      m_spuser->construct(this);
-
       m_spuserex = create_userex();
 
       if (m_spuserex == NULL)
@@ -1863,7 +1101,7 @@ exit_application:
 
 
 
-      if(!is_system())
+      /*if(!is_system())
       {
          if(m_spfsdata.is_null())
             m_spfsdata = new ::fs::set(this);
@@ -1871,10 +1109,10 @@ exit_application:
          pset->m_spafsdata.add(new ::fs::native(this));
          stringa stra;
          pset->root_ones(stra);
-      }
+      }*/
 
 
-      if(fontopus()->m_puser == NULL &&
+/*      if(fontopus()->m_puser == NULL &&
         (Application.directrix()->m_varTopicQuery.has_property("install")
       || Application.directrix()->m_varTopicQuery.has_property("uninstall")))
       {
@@ -1882,15 +1120,15 @@ exit_application:
          if(fontopus()->create_system_user("system") == NULL)
             return false;
 
-      }
+      }*/
 
       if(!::application::initialize1())
          return false;
 
-      if(!m_spuser->initialize1())
+      /*if(!m_spuser->initialize1())
          return false;
       if(!m_spuser->initialize2())
-         return false;
+         return false;*/
 
       if (!m_spuserex->initialize1())
          return false;
@@ -1933,8 +1171,8 @@ exit_application:
       if(!::application::initialize_instance())
          return false;
 
-      if(!m_pfontopus->initialize_instance())
-         return false;
+      //if(!m_pfontopus->initialize_instance())
+        // return false;
 
 
       return true;

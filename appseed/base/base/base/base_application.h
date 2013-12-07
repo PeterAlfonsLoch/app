@@ -1,5 +1,15 @@
 #pragma once
 
+enum EExclusiveInstance
+{
+   ExclusiveInstanceNone,
+   ExclusiveInstanceLocal,
+   ExclusiveInstanceLocalId,
+   ExclusiveInstanceGlobal,
+   ExclusiveInstanceGlobalId,
+   ExclusiveInstanceLicense,
+};
+
 
 enum e_application_signal
 {
@@ -39,12 +49,18 @@ public:
 
 class CLASS_DECL_BASE base_application :
    virtual public thread,
-   virtual public ::core::live_object
+   virtual public ::core::live_object,
+   virtual public command_target_interface,
+   virtual public request_interface,
+   virtual public message_queue
 {
 public:
 
 
    smart_pointer < base_application >              m_pimpl;
+   sp(service_base)                                m_pservice;
+
+
 
    base_system *                                   m_pbasesystem;
    base_session *                                  m_pbasesession;
@@ -54,6 +70,16 @@ public:
    allocatorsp                                     m_allocer;
    sp(::command_thread)                            m_pcommandthread;
    sp(class signal)                                m_psignal;
+
+
+   EExclusiveInstance                              m_eexclusiveinstance;
+
+   sp(::mutex)                                     m_pmutexLocal;
+   sp(::mutex)                                     m_pmutexLocalId;
+   sp(::mutex)                                     m_pmutexGlobal;
+   sp(::mutex)                                     m_pmutexGlobalId;
+
+
    class ::http::application                       m_http;
    sp(::fontopus::fontopus)                        m_pfontopus;
    class ::file::dir::application                  m_dir;
@@ -61,6 +87,7 @@ public:
    sp(math::math)                                  m_pmath;
    sp(geometry::geometry)                          m_pgeometry;
    sp(::sockets::sockets)                          m_psockets;
+   sp(class ::fs::data)                            m_spfsdata;
    bool                                            m_bZipIsDir;
    string                                          m_strMatterLocator;
    sp(::user::str_context)                         m_puserstrcontext;
@@ -100,6 +127,11 @@ public:
    // this is an argument to ShowWindow().
    int32_t                                         m_nCmdShow;
    size_t                                          m_nSafetyPoolSize;      // ideal size
+   manual_reset_event *                            m_peventReady;
+   string                                          m_strInstallToken;
+   string                                          m_strInstallType;
+   bool                                            m_bIfs;
+
 
 
 
@@ -140,6 +172,7 @@ public:
    math::math &                              math();
    geometry::geometry &                      geometry();
    inline class ::fontopus::license &        license()      { return *m_splicense; }
+   inline sp(class ::fs::data)               fs()           { return m_spfsdata; }
 
 
    ::user::str_context *                     str_context();
@@ -201,8 +234,8 @@ public:
 
 
 
-//   virtual string matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);
-//   virtual string dir_matter(const char * pszMatter, const char * pszMatter2 = NULL);
+   //   virtual string matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);
+   //   virtual string dir_matter(const char * pszMatter, const char * pszMatter2 = NULL);
    virtual bool is_inside_time_dir(const char * pszPath);
    virtual bool file_is_read_only(const char * pszPath);
    virtual string file_as_string(var varFile);
@@ -238,28 +271,30 @@ public:
    virtual bool app_map_lookup(const char * psz, void * &);
    virtual void app_map_set(const char * psz, void *);
 
+   virtual bool Ex2OnAppInstall();
+   virtual bool Ex2OnAppUninstall();
 
 
    template < class APP >
    APP & cast_app()
    {
-      if(this == NULL)
-         return (*(APP *) NULL);
+      if (this == NULL)
+         return (*(APP *)NULL);
       void * papp;
 #ifdef WINDOWS
-      if(!app_map_lookup(typeid(APP).name(), papp))
+      if (!app_map_lookup(typeid(APP).name(), papp))
 #else
       if(!app_map_lookup(typeid(APP).name(), papp))
 #endif
       {
-         papp = dynamic_cast < APP * > (this);
+         papp = dynamic_cast <APP *> (this);
 #ifdef WINDOWS
          app_map_set(typeid(APP).name(), papp);
 #else
          app_map_set(typeid(APP).name(), papp);
 #endif
       }
-      return (*(APP *) papp);
+      return (*(APP *)papp);
    }
 
    virtual void _001CloseApplication();
@@ -291,84 +326,164 @@ public:
 #endif
 
 
-      virtual void construct();
+   virtual void construct();
 
 
-      virtual bool process_initialize();
+   virtual bool process_initialize();
 
-      virtual bool initialize1();
-      virtual bool initialize2();
-      virtual bool initialize3();
+   virtual bool initialize1();
+   virtual bool initialize2();
+   virtual bool initialize3();
 
-      virtual bool initialize();
+   virtual bool initialize_instance();
+   virtual int32_t exit_instance();
 
-      virtual void LockTempMaps();
-      virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
-      virtual void TermThread(HINSTANCE hInstTerm);
+   virtual bool initialize();
 
+   bool ca_process_initialize();
+   bool ca_initialize1();
+   bool ca_initialize2();
+   bool ca_initialize3();
 
+   bool ca_finalize();
 
-      virtual sp(::user::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      virtual sp(::user::window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
-
-      virtual string get_version();
-
-      virtual void set_thread(thread * pthread);
-
-      virtual void SetCurrentHandles();
-
-      virtual void set_env_var(const string & var, const string & value);
-      virtual uint32_t get_thread_id();
+   virtual bool is_installing();
+   virtual bool is_uninstalling();
 
 
-      virtual bool set_main_init_data(::core::main_init_data * pdata);
+   virtual int32_t run();
+
+   virtual int32_t main();
+   virtual bool main_start();
+   virtual int32_t on_run();
+   virtual int32_t pre_run();
+   virtual bool initial_check_directrix();
+   virtual bool os_native_bergedge_start();
+
+   virtual bool InitApplication();
+
+   virtual bool on_install();
+   virtual bool on_uninstall();
 
 
-      virtual bool _001OnDDECommand(const char * lpcsz);
-      virtual void _001EnableShellOpen();
-      virtual sp(::user::object) _001OpenDocumentFile(var varFile);
-      virtual void _001OnFileNew(signal_details * pobj);
+   virtual bool system_add_app_install(const char * pszId);
 
-      virtual ::user::printer * get_printer(const char * pszDeviceName);
+   virtual void fill_locale_schema(::str::international::locale_schema & localeschema);
+   virtual void fill_locale_schema(::str::international::locale_schema & localeschema, const char * pszLocale, const char * pszSchema);
 
-
-      virtual bool update_module_paths();
-
-      virtual string draw2d_get_default_library_name();
-      virtual string multimedia_audio_get_default_library_name();
-      virtual string multimedia_audio_mixer_get_default_library_name();
-      virtual string veriwell_multimedia_music_midi_get_default_library_name();
-
-      virtual string show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
-      virtual int_bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension, const char * pszTemplate);
-
-      virtual int_bool get_temp_file_name(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension);
-
-
-      virtual void get_screen_rect(LPRECT lprect);
-
-      virtual void Ex1OnFactoryExchange();
-
-      virtual string get_ca2_module_folder();
-      virtual string get_ca2_module_file_path();
-      virtual string get_module_folder();
-      virtual string get_module_file_path();
-      virtual string get_module_title();
-      virtual string get_module_name();
+   virtual void LockTempMaps();
+   virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
+   virtual void TermThread(HINSTANCE hInstTerm);
 
 
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+   virtual sp(::user::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
+   virtual sp(::user::window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
 
-      virtual ::visual::icon * set_icon(object * pobject, ::visual::icon * picon, bool bBigIcon);
-      virtual ::visual::icon * get_icon(object * pobject, bool bBigIcon) const;
+   virtual string get_version();
 
-      virtual bool final_handle_exception(::exception::exception & e);
+   virtual void set_thread(thread * pthread);
 
-      virtual ::fontopus::fontopus * create_fontopus();
+   virtual void SetCurrentHandles();
+
+   virtual void set_env_var(const string & var, const string & value);
+   virtual uint32_t get_thread_id();
+
+
+   virtual bool set_main_init_data(::core::main_init_data * pdata);
+
+
+   virtual bool _001OnDDECommand(const char * lpcsz);
+   virtual void _001EnableShellOpen();
+   virtual sp(::user::object) _001OpenDocumentFile(var varFile);
+   virtual void _001OnFileNew(signal_details * pobj);
+
+   virtual ::user::printer * get_printer(const char * pszDeviceName);
+
+
+   virtual bool update_module_paths();
+
+   virtual string draw2d_get_default_library_name();
+   virtual string multimedia_audio_get_default_library_name();
+   virtual string multimedia_audio_mixer_get_default_library_name();
+   virtual string veriwell_multimedia_music_midi_get_default_library_name();
+
+   virtual string show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
+   virtual int_bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension, const char * pszTemplate);
+
+   virtual int_bool get_temp_file_name(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension);
+
+
+   virtual void get_screen_rect(LPRECT lprect);
+
+   virtual void Ex1OnFactoryExchange();
+
+   virtual string get_ca2_module_folder();
+   virtual string get_ca2_module_file_path();
+   virtual string get_module_folder();
+   virtual string get_module_file_path();
+   virtual string get_module_title();
+   virtual string get_module_name();
+
+
+
+   virtual void assert_valid() const;
+   virtual void dump(dump_context & dumpcontext) const;
+
+   virtual ::visual::icon * set_icon(object * pobject, ::visual::icon * picon, bool bBigIcon);
+   virtual ::visual::icon * get_icon(object * pobject, bool bBigIcon) const;
+
+   virtual bool final_handle_exception(::exception::exception & e);
+
+   virtual ::fontopus::fontopus * create_fontopus();
+   virtual ::user::user * create_user();
+
+
+   service_base * get_service();
+   virtual service_base * allocate_new_service();
+   virtual bool create_new_service();
+
+
+   virtual bool create_service();
+   virtual bool remove_service();
+
+   virtual bool start_service();
+   virtual bool stop_service();
+
+
+   virtual void on_service_request(sp(::create_context) pcreatecontext);
+
+   virtual sp(::base_application) assert_running(const char * pszAppId);
+
+   virtual bool is_running();
+
+   virtual string get_mutex_name_gen();
+
+   virtual void on_exclusive_instance_conflict(EExclusiveInstance eexclusive);
+   virtual void on_exclusive_instance_local_conflict();
+
+   virtual string get_local_mutex_id();
+   virtual string get_global_mutex_id();
+
+   virtual ::mutex * get_local_mutex();
+   virtual ::mutex * get_global_mutex();
+
+   virtual string get_local_mutex_name(const char * pszAppName);
+   virtual string get_local_id_mutex_name(const char * pszAppName, const char * pszId);
+   virtual string get_global_mutex_name(const char * pszAppName);
+   virtual string get_global_id_mutex_name(const char * pszAppName, const char * pszId);
+
+   virtual string get_local_mutex_name();
+   virtual string get_local_id_mutex_name();
+   virtual string get_global_mutex_name();
+   virtual string get_global_id_mutex_name();
+
+   virtual bool check_exclusive();
+   virtual bool release_exclusive();
 
 };
+
+
 
 
 inline allocatorsp element::allocer()
@@ -384,3 +499,15 @@ inline sp(::command_thread) object::command_thread()
    return m_pbaseapp->command_thread();
 
 }
+
+
+
+class CLASS_DECL_BASE application_ptra :
+   virtual public spa(base_application)
+{
+public:
+
+
+
+};
+

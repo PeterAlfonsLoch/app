@@ -32,6 +32,8 @@ namespace install
       mutex m_mutex;
 
 
+
+
       install(sp(base_application) papp);
       virtual ~install();
 
@@ -49,7 +51,6 @@ namespace install
       virtual void set_id(const char * psz);
       virtual string get_platform();
 
-      virtual bool is_installed(const char * pszVersion, const char * pszBuild, const char * pszType, const char * psz, const char * pszLocale, const char * pszSchema);
 
       virtual string get_latest_build_number(const char * pszVersion);
       virtual string fetch_latest_build_number(const char * pszVersion);
@@ -93,6 +94,16 @@ namespace install
       virtual void app_install_call_sync(const char * szParameters);
       virtual bool app_install_send_short_message(const char * psz, bool bLaunch);
       virtual void app_install_send_response(const char * param);
+
+
+
+      virtual void add_spa_start(const char * pszType, const char * pszId);
+      virtual void remove_spa_start(const char * pszType, const char * pszId);
+      virtual void add_app_install(const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema);
+virtual bool is_installed(const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema);
+          virtual bool is(const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema);
+      virtual int32_t  start(const char * pszCommandLine);
+      virtual int32_t  synch(const char * pszCommandLine);
 
 
    };

@@ -20,11 +20,6 @@ namespace plane
    {
    public:
 
-      sp(service_base)                    m_pservice;
-
-      sp(class ::fs::data)                m_spfsdata;
-
-      bool                                m_bIfs;
       bool                                m_bUpdateMatterOnInstall;
       sp(::userfs::userfs)                m_spuserfs;
       sp(::html::html)                    m_phtml;
@@ -42,26 +37,10 @@ namespace plane
 
 
       virtual bool is_serviceable();
-      virtual bool is_installing();
-      virtual bool is_uninstalling();
 
 
       virtual int32_t run();
 
-
-      service_base * get_service();
-      virtual service_base * allocate_new_service();
-      virtual bool create_new_service();
-
-
-      virtual bool create_service();
-      virtual bool remove_service();
-
-      virtual bool start_service();
-      virtual bool stop_service();
-
-
-      virtual void on_service_request(sp(::create_context) pcreatecontext);
 
 
 
@@ -69,7 +48,6 @@ namespace plane
       virtual int32_t exit_instance();
 
 
-      inline sp(class ::fs::data)               fs()           { return m_spfsdata     ; }
       inline sp(::html::html)                   html()         { return m_phtml        ; }
       inline class ::simpledb::simpledb         & simpledb()   { return m_simpledb     ; }
       inline sp(::userex::userex)               userex()       { return m_spuserex; }
@@ -85,20 +63,12 @@ namespace plane
 
       virtual void defer_initialize_twf();
 
-      virtual int32_t pre_run();
-      virtual int32_t on_run();
-
-      virtual bool main_start();
-      virtual int32_t main();
       virtual bool bergedge_start();
-      virtual bool os_native_bergedge_start();
 
 
       virtual sp(base_application) instantiate_application(const char * pszType, const char * pszId, application_bias * pbias);
       virtual sp(base_application) create_application(const char * pszType, const char * pszId, bool bSynch, application_bias * pbias);
 
-
-      virtual bool initial_check_directrix();
 
       virtual void set_title(const char * pszTitle);
 
@@ -106,7 +76,7 @@ namespace plane
       //////////////////////////////////////////////////////////////////////////////////////////////////
       // System/System
       //
-      sp(::user::object) hold(sp(::user::interaction) pui);
+      sp(::user::object) place_hold(sp(::user::interaction) pui);
 
       virtual ::count get_monitor_count();
       virtual bool  get_monitor_rect(index i, LPRECT lprect);
@@ -131,8 +101,6 @@ namespace plane
 
       virtual bool add_library(::core::library * plibrary);
 
-      virtual bool system_add_app_install(const char * pszId);
-
       virtual ::user::user * create_user();
       virtual ::userex::userex * create_userex();
       virtual ::userfs::userfs * create_userfs();
@@ -156,7 +124,7 @@ namespace plane
 
       sp(base_application) get_system();
 
-      virtual sp(::plane::application) assert_running(const char * pszAppdId);
+      //virtual sp(::plane::application) assert_running(const char * pszAppdId);
 
 
 

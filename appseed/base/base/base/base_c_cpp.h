@@ -105,6 +105,24 @@ enum e_extract
 };
 
 
+namespace str
+{
+
+
+   namespace international
+   {
+
+
+      class locale_schema;
+
+
+   } // namespace international
+
+
+} // namespace str
+
+
+
 
 class random_access_iterator { public: };
 
@@ -159,6 +177,15 @@ class smart_pointer;
 
 typedef  void(*PFN_ca2_factory_exchange)(sp(base_application) papp);
 
+namespace core
+{
+
+   class copydesk;
+
+   typedef smart_pointer < copydesk > copydesk_sp;
+
+
+} // namespace core
 
 CLASS_DECL_BASE base_application * get_thread_app();
 

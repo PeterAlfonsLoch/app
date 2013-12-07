@@ -51,7 +51,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E000FFAF-392F-4E32-BF51-FD7ED638991F}</ProjectGuid>
+    <ProjectGuid>{AFC48570-75E4-46BD-B8AB-4590B257E1C8}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>ca</RootNamespace>
@@ -1024,8 +1024,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\geoip\geoip_internal.h" />
     <ClInclude Include="core\geoip\geoip_update.h" />
     <ClInclude Include="core\geoip\global.h" />
-    <ClInclude Include="core\install\install.h" />
-    <ClInclude Include="core\install\install_install.h" />
     <ClInclude Include="core\libcharguess\big5Prober.h" />
     <ClInclude Include="core\libcharguess\charDistribution.h" />
     <ClInclude Include="core\libcharguess\charguess.h" />
@@ -1736,7 +1734,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="core\geoip\geoip_region_name.cpp" />
     <ClCompile Include="core\geoip\geoip_time_zone.cpp" />
     <ClCompile Include="core\geoip\geoip_update.cpp" />
-    <ClCompile Include="core\install\install_install.cpp" />
     <ClCompile Include="core\libcharguess\libcharguess.cpp" />
     <ClCompile Include="core\libcharguess\libcharguess_big5Prober.cpp" />
     <ClCompile Include="core\libcharguess\libcharguess_charDistribution.cpp" />

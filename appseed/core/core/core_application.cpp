@@ -299,10 +299,10 @@ bool application::process_initialize()
 
    m_pframea = new ::user::interaction_ptr_array(this);
 
-   if(is_system())
-   {
-      Ex1OnFactoryExchange();
-   }
+   //if(is_system())
+   //{
+     // Ex1OnFactoryExchange();
+   //}
 
    thread::s_bAllocReady = true;
 
@@ -362,15 +362,13 @@ bool application::update_module_paths()
       if(!m_pimpl->update_module_paths())
          return false;
 
-      application * pappOs = dynamic_cast < application * > (m_pimpl.m_p);
+      if(m_pimpl->m_strCa2ModuleFolder.is_empty())
+         m_pimpl->m_strCa2ModuleFolder = m_pimpl->m_strModuleFolder;
 
-      if(pappOs->m_strCa2ModuleFolder.is_empty())
-         pappOs->m_strCa2ModuleFolder = pappOs->m_strModuleFolder;
-
-      m_strModulePath       = pappOs->m_strModulePath;
-      m_strModuleFolder     = pappOs->m_strModuleFolder;
-      m_strCa2ModulePath    = pappOs->m_strCa2ModulePath;
-      m_strCa2ModuleFolder  = pappOs->m_strCa2ModuleFolder;
+      m_strModulePath         = m_pimpl->m_strModulePath;
+      m_strModuleFolder       = m_pimpl->m_strModuleFolder;
+      m_strCa2ModulePath      = m_pimpl->m_strCa2ModulePath;
+      m_strCa2ModuleFolder    = m_pimpl->m_strCa2ModuleFolder;
 
    }
    else
@@ -389,7 +387,8 @@ bool application::update_module_paths()
 bool application::initialize1()
 {
 
-
+   if (!base_application::initialize())
+      return false;
    
 
    m_puinteraction = canew(::uinteraction::uinteraction(this));
@@ -421,7 +420,7 @@ bool application::initialize1()
    */
 
 
-   m_dwAlive = ::get_tick_count();
+/*   m_dwAlive = ::get_tick_count();
 
 
    m_strMatterLocator = System.dir().appmatter_locator(this);
@@ -568,7 +567,7 @@ bool application::initialize1()
 
 
    if(!m_pimpl->initialize1())
-      return false;
+      return false;*/
 
    return true;
 
@@ -738,19 +737,28 @@ int32_t application::exit_instance()
 
    try
    {
-      if(is_system())
-      {
-         if(System.m_spcopydesk.is_set())
-         {
-            System.m_spcopydesk->finalize();
-            System.m_spcopydesk.release();
-         }
-         System.m_splicense.release();
-      }
+      base_application::exit_instance();
    }
    catch(...)
    {
    }
+
+
+   //try
+   //{
+   //   if(is_system())
+   //   {
+   //      if(System.m_spcopydesk.is_set())
+   //      {
+   //         System.m_spcopydesk->finalize();
+   //         System.m_spcopydesk.release();
+   //      }
+   //      System.m_splicense.release();
+   //   }
+   //}
+   //catch(...)
+   //{
+   //}
 
 
    /*      try
@@ -767,64 +775,64 @@ int32_t application::exit_instance()
    */
 
 
-   try
-   {
-      if(m_pmath != NULL)
-      {
-         delete m_pmath;
-      }
-   }
-   catch(...)
-   {
-   }
-   m_pmath = NULL;
+   //try
+   //{
+   //   if(m_pmath != NULL)
+   //   {
+   //      delete m_pmath;
+   //   }
+   //}
+   //catch(...)
+   //{
+   //}
+   //m_pmath = NULL;
 
 
 
-   try
-   {
-      if(m_pgeometry != NULL)
-      {
-         delete m_pgeometry;
-      }
-   }
-   catch(...)
-   {
-   }
-   m_pgeometry = NULL;
+   //try
+   //{
+   //   if(m_pgeometry != NULL)
+   //   {
+   //      delete m_pgeometry;
+   //   }
+   //}
+   //catch(...)
+   //{
+   //}
+   //m_pgeometry = NULL;
 
 
 
-   try
-   {
-      if(m_psavings != NULL)
-      {
-         delete m_psavings;
-      }
-   }
-   catch(...)
-   {
-   }
-   m_psavings = NULL;
+   //try
+   //{
+   //   if(m_psavings != NULL)
+   //   {
+   //      delete m_psavings;
+   //   }
+   //}
+   //catch(...)
+   //{
+   //}
+   //m_psavings = NULL;
 
 
-   m_pcommandthread.release();
+   //m_pcommandthread.release();
 
-   release_exclusive();
+   //release_exclusive();
 
-   if(!destroy_message_queue())
-   {
-      TRACE("Could not finalize message window");
-   }
+   //if(!destroy_message_queue())
+   //{
+   //   TRACE("Could not finalize message window");
+   //}
 
-   application_signal_details signal(this, m_psignal, application_signal_exit_instance);
-   try
-   {
-      m_psignal->emit(&signal);
-   }
-   catch(...)
-   {
-   }
+   //application_signal_details signal(this, m_psignal, application_signal_exit_instance);
+   //try
+   //{
+   //   m_psignal->emit(&signal);
+   //}
+   //catch(...)
+   //{
+   //}
 
    try
    {
@@ -1340,15 +1348,6 @@ bool application::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
 }
 
 
-string application::get_local_mutex_id()
-{
-   return command()->m_varTopicQuery["local_mutex_id"];
-}
-
-string application::get_global_mutex_id()
-{
-   return command()->m_varTopicQuery["global_mutex_id"];
-}
 
 /*
 bool application::hex_to_memory(primitive::memory & memory, const char * pszHex)
@@ -2119,38 +2118,6 @@ HCURSOR application::LoadStandardCursor(const char * lpszCursorName) const
 }
 
 
-bool application::ca_process_initialize()
-{
-   application_signal_details signal(this, m_psignal, application_signal_process_initialize);
-   m_psignal->emit(&signal);
-   return true;
-}
-
-bool application::ca_initialize1()
-{
-   application_signal_details signal(this, m_psignal, application_signal_initialize1);
-   m_psignal->emit(&signal);
-   return signal.m_bOk;
-}
-
-
-
-bool application::ca_finalize()
-{
-   application_signal_details signal(this, m_psignal, application_signal_finalize);
-   try
-   {
-      m_psignal->emit(&signal);
-   }
-   catch(...)
-   {
-   }
-
-
-
-
-   return signal.m_bOk;
-}
 
 
 
@@ -2183,213 +2150,8 @@ return false;
 
 
 
-bool application::check_exclusive()
-{
-
-#ifdef METROWIN
-
-   return true;
-
-#endif
-
-   bool bSetOk;
-
-   LPSECURITY_ATTRIBUTES lpsa = NULL;
-
-   bool bResourceException = false;
-
-#ifdef WINDOWSEX
-
-   bSetOk = false;
-
-   SECURITY_ATTRIBUTES MutexAttributes;
-   ZeroMemory( &MutexAttributes, sizeof(MutexAttributes) );
-   MutexAttributes.nLength = sizeof( MutexAttributes );
-   MutexAttributes.bInheritHandle = FALSE; // object uninheritable
-   // declare and initialize a security descriptor
-   SECURITY_DESCRIPTOR SD;
-   bool bInitOk = InitializeSecurityDescriptor(&SD, SECURITY_DESCRIPTOR_REVISION) != FALSE;
-   if ( bInitOk )
-   {
-      // give the security descriptor a Null Dacl
-      // done using the  "TRUE, (PACL)NULL" here
-      bSetOk = SetSecurityDescriptorDacl( &SD,
-         TRUE,
-         (PACL)NULL,
-         FALSE ) != FALSE;
-   }
-
-   if(bSetOk)
-   {
-
-      MutexAttributes.lpSecurityDescriptor = &SD;
-
-      lpsa = &MutexAttributes;
-
-   }
-
-#else
-
-   bSetOk = true;
-
-#endif
-
-   if ( bSetOk )
-   {
-      // Make the security attributes point
-      // to the security descriptor
-      bResourceException = false;
-      try
-      {
-         m_pmutexGlobal = new mutex(this, FALSE, get_global_mutex_name(), lpsa);
-      }
-      catch(resource_exception &)
-      {
-         try
-         {
-            m_pmutexGlobal = new mutex(this, FALSE, get_global_mutex_name());
-         }
-         catch(resource_exception &)
-         {
-            bResourceException = true;
-         }
-      }
-
-      if(m_eexclusiveinstance == ExclusiveInstanceGlobal
-         && (::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException))
-      {
-         // Should in some way activate the other instance, but this is global, what to do? do not know yet.
-         //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
-         TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
-         on_exclusive_instance_conflict(ExclusiveInstanceGlobal);
-         return false;
-      }
-      if(m_eexclusiveinstance == ExclusiveInstanceGlobalId)
-      {
-         bResourceException = false;
-         try
-         {
-            m_pmutexGlobalId = new mutex(this, FALSE, get_global_id_mutex_name(), lpsa);
-         }
-         catch(resource_exception &)
-         {
-            try
-            {
-               m_pmutexGlobalId = new mutex(this, FALSE, get_global_id_mutex_name());
-            }
-            catch(resource_exception &)
-            {
-               bResourceException = true;
-            }
-         }
-         if(::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException)
-         {
-            // Should in some way activate the other instance
-            //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-            TRACE("A instance of the application:<br><br>           - " + string(m_strAppName)+ "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
-            on_exclusive_instance_conflict(ExclusiveInstanceGlobalId);
-            return false;
-         }
-      }
-      bResourceException = false;
-      try
-      {
-         m_pmutexLocal = new mutex(this, FALSE, get_local_mutex_name(), lpsa);
-      }
-      catch(resource_exception &)
-      {
-         try
-         {
-            m_pmutexLocal = new mutex(this, FALSE, get_local_mutex_name());
-         }
-         catch(resource_exception & )
-         {
-            bResourceException = true;
-         }
-      }
-      if(m_eexclusiveinstance == ExclusiveInstanceLocal && (::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException))
-      {
-         // Should in some way activate the other instance
-         //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-         TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-         on_exclusive_instance_conflict(ExclusiveInstanceLocal);
-         return false;
-      }
-      if(m_eexclusiveinstance == ExclusiveInstanceLocalId)
-      {
-         bResourceException = false;
-         try
-         {
-            m_pmutexLocalId = new mutex(this, FALSE, get_local_id_mutex_name(), lpsa);
-         }
-         catch(resource_exception &)
-         {
-            try
-            {
-               m_pmutexLocalId = new mutex(this, FALSE, get_local_id_mutex_name());
-            }
-            catch(resource_exception &)
-            {
-               bResourceException = true;
-            }
-         }
-         if(::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException)
-         {
-            // Should in some way activate the other instance
-            //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-            TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
-            on_exclusive_instance_conflict(ExclusiveInstanceLocalId);
-            return false;
-         }
-      }
-   }
-   else
-   {
-      return false;
-   }
-
-   return true;
-
-}
-
-bool application::release_exclusive()
-{
-   if(m_pmutexGlobal.is_set())
-   {
-      m_pmutexGlobal.release();
-   }
-   if(m_pmutexGlobalId.is_set())
-   {
-      m_pmutexGlobalId.release();
-   }
-   if(m_pmutexLocal.is_set())
-   {
-      m_pmutexLocal.release();
-   }
-   if(m_pmutexLocalId.is_set())
-   {
-      m_pmutexLocalId.release();
-   }
-   return true;
-}
-
-string application::get_mutex_name_gen()
-{
-   return m_strAppName;
-}
 
 
-void application::on_exclusive_instance_conflict(EExclusiveInstance eexclusive)
-{
-   if(eexclusive == ExclusiveInstanceLocal)
-   {
-      on_exclusive_instance_local_conflict();
-   }
-}
-
-void application::on_exclusive_instance_local_conflict()
-{
-}
 
 
 
@@ -3723,57 +3485,6 @@ sp(::user::window) application::FindWindowEx(oswindow oswindowParent, oswindow o
    return m_pimpl->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
 }
 
-string application::get_local_mutex_name(const char * pszAppName)
-{
-   string strMutex;
-   strMutex.Format("Local\\ca2_application_local_mutex:%s", pszAppName);
-   return strMutex;
-}
-
-string application::get_local_id_mutex_name(const char * pszAppName, const char * pszId)
-{
-   string strId(pszId);
-   string strMutex;
-   strMutex.Format("Local\\ca2_application_local_mutex:%s, id:%s", pszAppName, strId);
-   return strMutex;
-}
-
-string application::get_global_mutex_name(const char * pszAppName)
-{
-   string strMutex;
-   strMutex.Format("Global\\ca2_application_global_mutex:%s", pszAppName);
-   return strMutex;
-}
-
-string application::get_global_id_mutex_name(const char * pszAppName, const char * pszId)
-{
-   string strId(pszId);
-   string strMutex;
-   strMutex.Format("Global\\ca2_application_global_mutex:%s, id:%s", pszAppName,  strId);
-   return strMutex;
-}
-
-string application::get_local_mutex_name()
-{
-   return get_local_mutex_name(get_mutex_name_gen());
-}
-
-string application::get_local_id_mutex_name()
-{
-   return get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id());
-}
-
-string application::get_global_mutex_name()
-{
-   return get_global_mutex_name(get_mutex_name_gen());
-}
-
-string application::get_global_id_mutex_name()
-{
-   return get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_id());
-}
-
-
 /*
 application_signal_details::application_signal_details(sp(base_application) papp, ::signal * psignal, e_application_signal esignal) :
 element(papp),
@@ -4155,6 +3866,8 @@ bool Is_Vista_or_Later ()
 bool application::initialize()
 {
 
+   if (!base_application::initialize())
+      return false;
 
 
    m_pcalculator = new ::calculator::calculator(this);
@@ -4177,80 +3890,27 @@ bool application::initialize()
 
    m_dwAlive = ::get_tick_count();
 
-   if(is_system())
-   {
-      if(guideline()->m_varTopicQuery.propset().has_property("save_processing"))
-      {
-         System.savings().save(::core::resource_processing);
-      }
-      if(guideline()->m_varTopicQuery.propset().has_property("save_blur_back"))
-      {
-         System.savings().save(::core::resource_blur_background);
-      }
-      if(guideline()->m_varTopicQuery.propset().has_property("save_transparent_back"))
-      {
-         System.savings().save(::core::resource_translucent_background);
-      }
-   }
 
-   if(directrix()->m_varTopicQuery.propset().has_property("install"))
-   {
-      // core level app install
-      if(!Ex2OnAppInstall())
-         return false;
-   }
-   else if(directrix()->m_varTopicQuery.propset().has_property("uninstall"))
-   {
-      // core level app uninstall
-      if(!Ex2OnAppUninstall())
-         return false;
-   }
-   else
-   {
-#ifdef WINDOWSEX
-      // when this process is started in the context of a system account,
-      // for example, this code ensure that the process will
-      // impersonate a loggen on ::fontopus::user
-      HANDLE hprocess;
-      HANDLE htoken;
+   //m_dwAlive = ::get_tick_count();
 
-      hprocess = ::GetCurrentProcess();
+   //if(is_system())
+   //{
 
-      if(!OpenProcessToken(
-         hprocess,
-         TOKEN_ALL_ACCESS,
-         &htoken))
-         return false;
+   //   System.m_spcopydesk.create(allocer());
 
-      if(!ImpersonateLoggedOnUser(htoken))
-      {
-         TRACELASTERROR();
-         return false;
-      }
-#endif
-   }
+   //   if(!System.m_spcopydesk->initialize())
+   //      return false;
 
+   //}
 
-   m_dwAlive = ::get_tick_count();
-
-   if(is_system())
-   {
-
-      System.m_spcopydesk.create(allocer());
-
-      if(!System.m_spcopydesk->initialize())
-         return false;
-
-   }
-
-   if(is_system()
-      && command_thread()->m_varTopicQuery["app"] != "core_netnodelite"
-      && command_thread()->m_varTopicQuery["app"] != "app-core/netnode_dynamic_web_server"
-      && command_thread()->m_varTopicQuery["app"] != "app-gtech/alarm"
-      && command_thread()->m_varTopicQuery["app"] != "app-gtech/sensible_service")
-   {
-      System.http().defer_auto_initialize_proxy_configuration();
-   }
+   //if(is_system()
+   //   && command_thread()->m_varTopicQuery["app"] != "core_netnodelite"
+   //   && command_thread()->m_varTopicQuery["app"] != "app-core/netnode_dynamic_web_server"
+   //   && command_thread()->m_varTopicQuery["app"] != "app-gtech/alarm"
+   //   && command_thread()->m_varTopicQuery["app"] != "app-gtech/sensible_service")
+   //{
+   //   System.http().defer_auto_initialize_proxy_configuration();
+   //}
 
 
 
@@ -4309,11 +3969,8 @@ bool application::initialize()
 
    ensure_app_interest();
 
-   application_signal_details signal(this, m_psignal, application_signal_initialize);
-   m_psignal->emit(&signal);
-   if(!signal.m_bOk)
-      return false;
    return true;
+
 }
 
 void application::pre_translate_message(signal_details * pobj)
@@ -4367,16 +4024,6 @@ void application::_001OnApplicationRequest(signal_details * pobj)
    }
 }
 
-
-::mutex * application::get_local_mutex()
-{
-   return m_pmutexLocal;
-}
-
-::mutex * application::get_global_mutex()
-{
-   return m_pmutexGlobal;
-}
 
 void application::_001CloseApplication()
 {
@@ -4747,11 +4394,6 @@ ok:;
 
    return true;
 
-}
-
-bool application::is_running()
-{
-   return is_alive();
 }
 
 

@@ -3,7 +3,7 @@
 
 #if defined(LINUX)
 
-   #include <unistd.h>
+#include <unistd.h>
 
 #endif
 
@@ -17,20 +17,20 @@ namespace install
       m_mutex(papp, false, "Global\\spa_boot_install")
    {
 
-      m_bAdmin                         = false;
-      m_dwLatestBuildNumberLastFetch   = 0;
-      m_hmutexBoot                     = NULL;
+         m_bAdmin = false;
+         m_dwLatestBuildNumberLastFetch = 0;
+         m_hmutexBoot = NULL;
 
-      g_bCa2Installed = false;
-      g_bCa2Updated = false;
-      g_bInstallingCa2 = false;
-      g_bSpaInstalled = false;
-      g_bSpaUpdated = false;
-      g_bUpdated = false;
-      g_pszCa2Build = NULL;
+         g_bCa2Installed = false;
+         g_bCa2Updated = false;
+         g_bInstallingCa2 = false;
+         g_bSpaInstalled = false;
+         g_bSpaUpdated = false;
+         g_bUpdated = false;
+         g_pszCa2Build = NULL;
 
 
-   }
+      }
 
    install::~install()
    {
@@ -57,13 +57,13 @@ namespace install
 
       throw todo(get_app());
 
-/*      install::installer installer(get_app());
+      /*      install::installer installer(get_app());
 
-      installer.m_hinstance = hInstance;
+            installer.m_hinstance = hInstance;
 
-      installer.m_nCmdShow = nCmdShow;
+            installer.m_nCmdShow = nCmdShow;
 
-      return installer.spaadmin_main(lpCmdLine);*/
+            return installer.spaadmin_main(lpCmdLine);*/
 
 
 
@@ -78,9 +78,9 @@ namespace install
       string strCommand;
 
       strCommand = "synch_spaadmin:";
-      
+
       strCommand += "starter_start:";
-      
+
       strCommand += pszCommandLine;
 
       if (bBackground)
@@ -175,11 +175,11 @@ namespace install
       string strCommand;
 
       strCommand = "spaadmin:";
-      
+
       strCommand += "starter_start:";
-      
+
       strCommand += pszCommandLine;
-      
+
       if (bBackground)
       {
          strCommand += " background";
@@ -223,10 +223,12 @@ namespace install
    }
 
 
-   bool install::is_installed(const char * pszVersion, const char * pszBuild, const char * pszType, const char * psz, const char * pszLocale, const char * pszSchema)
+   bool install::is_installed(const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema)
    {
 
-      if (psz == NULL)
+      return is(pszVersion, pszBuild, pszType, pszId, pszLocale, pszSchema);
+
+/*      if (psz == NULL)
          return true;
 
       if (*psz == '\0')
@@ -324,7 +326,7 @@ namespace install
 
       }
 
-      return false;
+      return false;*/
 
    }
 
@@ -336,7 +338,13 @@ namespace install
       if (!strLatestBuildNumber.is_empty() && (get_tick_count() - m_dwLatestBuildNumberLastFetch) < ((1984 + 1977) * 3))
          return strLatestBuildNumber;
 
-      return fetch_latest_build_number(pszVersion);
+      strLatestBuildNumber = fetch_latest_build_number(pszVersion);
+
+      m_strmapLatestBuildNumber.set_at(pszVersion, strLatestBuildNumber);
+
+      m_dwLatestBuildNumberLastFetch = get_tick_count();
+
+      return strLatestBuildNumber;
 
    }
 
@@ -381,10 +389,6 @@ namespace install
       if (iRetry > 10)
       {
 
-         m_dwLatestBuildNumberLastFetch = get_tick_count();
-
-         m_strmapLatestBuildNumber.set_at(pszVersion, "");
-
          return "";
 
       }
@@ -404,16 +408,9 @@ namespace install
 
       }
 
-      m_dwLatestBuildNumberLastFetch = get_tick_count();
-
-      m_strmapLatestBuildNumber.set_at(pszVersion, strBuildNumber);
-
       return strBuildNumber;
 
    }
-
-#include "framework.h"
-
 
    int32_t install::start_app(const char * id)
    {
@@ -454,7 +451,7 @@ namespace install
    }
 
 
- 
+
 
 
 
@@ -729,6 +726,326 @@ namespace install
       dir::mk(dir::element() + "\\appdata\\" + get_platform());
       file_put_contents_dup(dir::element() + "\\appdata\\" + get_platform() + "\\build.txt", pszBuild);
    }
+
+
+
+   void install::add_spa_start(const char * pszType, const char * pszId)
+   {
+
+      string strPath;
+
+      strPath = System.dir().appdata("spa_start.xml");
+
+      string strContents;
+
+      strContents = Application.file().as_string(strPath);
+
+      ::xml::document doc(get_app());
+
+      doc.load(strContents);
+
+      doc.get_root()->set_name("spa");
+
+      stringa straName;
+      stringa straValue;
+
+      straName.add("type");
+      straValue.add(pszType);
+
+      straName.add("id");
+      straValue.add(pszId);
+
+      sp(::xml::node) lpnode = doc.get_root()->GetChildByAllAttr("start", straName, straValue);
+
+      if (lpnode == NULL)
+      {
+
+         lpnode = doc.get_root()->add_child("start");
+
+         lpnode->add_attr("type", pszType);
+
+         lpnode->add_attr("id", pszId);
+
+         Application.file().put_contents(strPath, doc.get_xml());
+
+      }
+
+   }
+
+   void install::remove_spa_start(const char * pszType, const char * pszId)
+   {
+
+      string strPath;
+
+      strPath = System.dir().appdata("spa_start.xml");
+
+      string strContents;
+
+      strContents = Application.file().as_string(strPath);
+
+      ::xml::document doc(get_app());
+
+      doc.load(strContents);
+
+      doc.get_root()->set_name("spa");
+
+      stringa straName;
+      stringa straValue;
+
+      straName.add("type");
+      straValue.add(pszType);
+
+      straName.add("id");
+      straValue.add(pszId);
+
+      sp(::xml::node) lpnode = doc.get_root()->GetChildByAllAttr("start", straName, straValue);
+
+      if (lpnode != NULL)
+      {
+
+         doc.get_root()->remove_child(lpnode);
+
+         Application.file().put_contents(strPath, doc.get_xml());
+
+      }
+
+   }
+
+   void install::add_app_install(const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema)
+   {
+
+      synch_lock sl(&m_mutex);
+
+      string strPath;
+
+      strPath = System.dir().appdata("spa_install.xml");
+
+      System.dir().mk(System.dir().name(strPath), get_app());
+
+      ::xml::document doc(get_app());
+
+      doc.load(Application.file().as_string(strPath));
+
+      if (doc.get_root()->get_name().is_empty())
+      {
+
+         doc.get_root()->set_name("install");
+
+      }
+
+      string strBuild(pszBuild);
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+      sp(::xml::node) lpnodeVersion = doc.get_root()->get_child("basis");
+
+#else
+
+      sp(::xml::node) lpnodeVersion = doc.get_root()->get_child("stage");
+
+#endif
+
+      if (lpnodeVersion == NULL)
+      {
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+         lpnodeVersion = doc.get_root()->add_child("basis");
+
+#else
+
+         lpnodeVersion = doc.get_root()->add_child("stage");
+
+#endif
+
+      }
+
+      sp(::xml::node) lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", strBuild);
+
+      if (lpnodeInstalled == NULL)
+      {
+
+         lpnodeInstalled = lpnodeVersion->add_child("installed");
+
+         lpnodeInstalled->add_attr("build", pszBuild);
+
+      }
+
+      sp(::xml::node) lpnodeType = lpnodeInstalled->get_child(pszType);
+
+      if (lpnodeType == NULL)
+      {
+
+         lpnodeType = lpnodeInstalled->add_child(pszType);
+
+      }
+
+      sp(::xml::node) lpnode = lpnodeType->GetChildByAttr(pszType, "id", pszId);
+
+      if (lpnode == NULL)
+      {
+
+         lpnode = lpnodeType->add_child(pszType);
+
+         lpnode->add_attr("id", pszId);
+
+      }
+
+      stringa straName;
+      stringa straValue;
+
+      straName.add("locale");
+      straValue.add(pszLocale);
+
+
+      straName.add("schema");
+      straValue.add(pszSchema);
+
+      sp(::xml::node) lpnodeLocalization = lpnode->GetChildByAllAttr("localization", straName, straValue);
+
+      if (lpnodeLocalization == NULL)
+      {
+
+         lpnodeLocalization = lpnode->add_child("localization");
+
+         lpnodeLocalization->add_attr("locale", pszLocale);
+
+         lpnodeLocalization->add_attr("schema", pszSchema);
+
+      }
+
+      ::xml::disp_option opt = *System.xml().m_poptionDefault;
+
+      opt.newline = true;
+
+      Application.file().put_contents(strPath, doc.get_xml(&opt));
+
+   }
+
+   bool install::is(const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema)
+   {
+
+      synch_lock sl(&m_mutex);
+
+      string strPath;
+
+      strPath = System.dir().appdata("spa_install.xml");
+
+      string strContents;
+
+      strContents = Application.file().as_string(strPath);
+
+      ::xml::document doc(get_app());
+
+      if (strContents.is_empty())
+         return false;
+
+      try
+      {
+
+         if (!doc.load(strContents))
+            return false;
+
+      }
+      catch (...)
+      {
+
+         return false;
+
+      }
+
+      if (doc.get_root() == NULL)
+         return false;
+
+
+      if (string(pszVersion).is_empty())
+      {
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+         pszVersion = "basis";
+
+
+#else
+
+         pszVersion = "basis";
+
+#endif
+
+      }
+
+      sp(::xml::node) lpnodeVersion = doc.get_root()->get_child(pszVersion);
+
+      if (lpnodeVersion == NULL)
+         return false;
+
+      string strBuildNumber(pszBuild);
+
+      if (strBuildNumber == "latest")
+      {
+
+         strBuildNumber = get_latest_build_number(pszVersion);
+
+      }
+
+      sp(::xml::node) lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", strBuildNumber);
+
+      if (lpnodeInstalled == NULL)
+         return false;
+
+      sp(::xml::node) lpnodeType = lpnodeInstalled->get_child(pszType);
+
+      if (lpnodeType == NULL)
+         return false;
+
+      sp(::xml::node) lpnode = lpnodeType->GetChildByAttr(pszType, "id", pszId);
+
+      if (lpnode == NULL)
+         return false;
+
+      stringa straName;
+      stringa straValue;
+
+      straName.add("locale");
+      straValue.add(pszLocale);
+
+
+      straName.add("schema");
+      straValue.add(pszSchema);
+
+      sp(::xml::node) lpnodeLocalization = lpnode->GetChildByAllAttr("localization", straName, straValue);
+
+      if (lpnodeLocalization == NULL)
+         return false;
+
+      return true;
+
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+   int32_t install::start(const char * pszCommandLine)
+   {
+      return System.install().asynch_install(pszCommandLine);
+   }
+
+
+   int32_t install::synch(const char * pszCommandLine)
+   {
+
+      return System.install().synch_install(pszCommandLine);
+
+   }
+
 
 
 
