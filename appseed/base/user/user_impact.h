@@ -33,7 +33,7 @@ namespace user
 
 
    class CLASS_DECL_BASE impact :
-      virtual public ::user::interaction
+      virtual public ::database::user::interaction
    {
    public:
 

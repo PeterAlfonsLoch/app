@@ -9,7 +9,7 @@ namespace database
    {
 
 
-      class CLASS_DECL_CORE interaction :
+      class CLASS_DECL_BASE interaction :
          virtual public ::user::interaction,
          virtual public client
       {

@@ -99,6 +99,7 @@ public:
    string                                          m_strAppId;
    sp(::user::interaction_ptr_array)               m_pframea;
    sp(::user::user)                                m_spuser;
+   sp(::database::server)                          m_spdataserver;
 #ifdef WINDOWS
    HINSTANCE                                       m_hinstance;
 #endif
@@ -202,6 +203,7 @@ public:
    geometry::geometry &                      geometry();
    inline class ::fontopus::license &        license()      { return *m_splicense; }
    inline sp(class ::fs::data)               fs()           { return m_spfsdata; }
+   inline ::database::server &               dataserver()   { return *m_spdataserver;  }
 
 
    ::user::str_context *                     str_context();
@@ -410,7 +412,7 @@ public:
    virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
    virtual void TermThread(HINSTANCE hInstTerm);
 
-
+   
 
    virtual sp(::user::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
    virtual sp(::user::window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);

@@ -434,58 +434,7 @@
     <ClInclude Include="compress\rar\rar3_vm.h">
       <Filter>Header Files\compress\rar</Filter>
     </ClInclude>
-    <ClInclude Include="database\database_application.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_base.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_change_event.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_client.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_definition.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_field_definition.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_id.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_key.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_selection.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_selection_item.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_server.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_set.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_stringhelper.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_template.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_update_hint.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_user_interaction.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
     <ClInclude Include="plane\plane.h">
-      <Filter>Header Files\plane</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\plane_application.h">
       <Filter>Header Files\plane</Filter>
     </ClInclude>
     <ClInclude Include="plane\plane_system.h">
@@ -713,17 +662,11 @@
     <ClInclude Include=".\primitive\primitive_int_biunique.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include=".\primitive\primitive_scalar.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
     <ClInclude Include=".\primitive\primitive_shared_file.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_float_time.h">
       <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_database.h">
-      <Filter>Header Files\database</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\simple_button.h">
       <Filter>Header Files\user\simple</Filter>
@@ -1676,12 +1619,6 @@
     <ClInclude Include="core\geoip\global.h">
       <Filter>Header Files\core\geoip</Filter>
     </ClInclude>
-    <ClInclude Include="core\install\install.h">
-      <Filter>Header Files\core\install</Filter>
-    </ClInclude>
-    <ClInclude Include="core\install\install_install.h">
-      <Filter>Header Files\core\install</Filter>
-    </ClInclude>
     <ClInclude Include="core\api\api.h">
       <Filter>Header Files\core\api</Filter>
     </ClInclude>
@@ -1871,9 +1808,6 @@
     <ClInclude Include="filesystem\file\file_clustered_input_stream.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\file_set.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\file_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
@@ -1935,9 +1869,6 @@
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core_contact_list.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core_copydesk.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core_debug.h">
@@ -2003,9 +1934,6 @@
     <ClInclude Include="core\core_oauth.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core_os.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core_os_history.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
@@ -2046,9 +1974,6 @@
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core_resource.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core_savings.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core_service.h">
@@ -2113,9 +2038,6 @@
     </ClInclude>
     <ClInclude Include="net\hi5\hi5_twit.h">
       <Filter>Header Files\net\hi5</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_folder_watch.h">
-      <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="..\filesystem\file\file_transfer_stream.h">
       <Filter>Header Files\filesystem\file</Filter>
@@ -2525,9 +2447,6 @@
     <ClInclude Include="core\core.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="database\database.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
     <ClInclude Include="net\mail\mail.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2548,9 +2467,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="primitive\primitive_scalar.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="compress\compress_archive.cpp">
       <Filter>Source Files\compress</Filter>
     </ClCompile>
@@ -2683,59 +2599,11 @@
     <ClCompile Include="compress\rar\rar3_vm.cpp">
       <Filter>Source Files\compress\rar</Filter>
     </ClCompile>
-    <ClCompile Include="plane\plane_application.cpp">
-      <Filter>Source Files\plane</Filter>
-    </ClCompile>
     <ClCompile Include="plane\plane_system.cpp">
       <Filter>Source Files\plane</Filter>
     </ClCompile>
     <ClCompile Include="plane\plane_library.cpp">
       <Filter>Source Files\plane</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_application.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_base.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_client.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_definition.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_event_change.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_field_definition.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_id.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_key.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_selection.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_selection_item.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_server.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_set.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_stringhelper.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_update_hint.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_user_interaction.cpp">
-      <Filter>Source Files\database</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_calendar.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
@@ -3535,9 +3403,6 @@
     <ClCompile Include="core\geoip\geoip_update.cpp">
       <Filter>Source Files\core\geoip</Filter>
     </ClCompile>
-    <ClCompile Include="core\install\install_install.cpp">
-      <Filter>Source Files\core\install</Filter>
-    </ClCompile>
     <ClCompile Include="core\plugin\plugin_history.cpp">
       <Filter>Source Files\core\plugin</Filter>
     </ClCompile>
@@ -3679,9 +3544,6 @@
     <ClCompile Include="filesystem\file\file_dynamic_buffered_writer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_set.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_sssociation.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -3698,9 +3560,6 @@
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core_constraint.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_copydesk.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core_Debug.cpp">
@@ -3727,9 +3586,6 @@
     <ClCompile Include="core\core_memory.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core_os.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core_os_history.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
@@ -3752,9 +3608,6 @@
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core_resource.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_savings.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core_section.cpp">
@@ -3783,9 +3636,6 @@
     </ClCompile>
     <ClCompile Include="net\hi5\hi5_twit.cpp">
       <Filter>Source Files\net\hi5</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_folder_watch.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_io_temp_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
@@ -4049,9 +3899,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_menu_list_view.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_message.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_meta_button.cpp">

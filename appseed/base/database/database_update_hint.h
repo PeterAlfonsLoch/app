@@ -6,7 +6,7 @@ namespace database
    class client;
    class server;
 
-   class CLASS_DECL_CORE update_hint  :
+   class CLASS_DECL_BASE update_hint  :
       virtual public ::object
    {
    public:

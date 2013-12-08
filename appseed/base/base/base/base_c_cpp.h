@@ -415,6 +415,11 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "primitive/primitive_data.h"
 #include "primitive/primitive_data_listener.h"
 #include "primitive/primitive_data_container.h"
+#include "base/primitive/primitive_edit.h"
+#include "base_departament.h"
+#include "base_departament_container.h"
+#include "base/xml/xml.h"
+#include "base/database/database.h"
 #include "user/user_object.h"
 #include "user/user_impact.h"
 #include "base_live_object.h"
@@ -452,8 +457,6 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 #include "net/http/http_output_stream.h"
 
-#include "base_departament.h"
-#include "base_departament_container.h"
 
 #if defined(METROWIN)
 
@@ -475,7 +478,6 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_message_queue.h"
 #include "base/user/userpresence/userpresence.h"
 #include "base/primitive/primitive_factory.h"
-#include "base/primitive/primitive_edit.h"
 #include "base/filesystem/fs/fs.h"
 #include "base/user/fontopus/fontopus.h"
 
@@ -487,7 +489,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base/primitive/geometry/geometry_geometry.h"
 
 
-#include "base/xml/xml.h"
+
 
 #include "user/user_window_map.h"
 
@@ -498,6 +500,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_main_init_data.h"
 
 #include "base_savings.h"
+
+
 
 #include "base_application.h"
 
@@ -817,6 +821,9 @@ namespace numeric_info
 
 
 #include "base_math.h"
+
+
+
 
 
 

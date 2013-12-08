@@ -66,7 +66,7 @@ namespace user
 
    void impact::install_message_handling(::message::dispatch * pinterface)
    {
-      ::user::interaction::install_message_handling(pinterface);
+      ::database::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_VIEW, pinterface, this, &impact::_001OnView);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &impact::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &impact::_001OnLButtonUp);

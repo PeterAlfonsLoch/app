@@ -1,61 +1,87 @@
 #include "framework.h"
 
+
 namespace database
 {
+
 
    namespace user
    {
 
+
       interaction::interaction()
       {
+
          m_bEnableSaveWindowRect = false;
+
       }
+
 
       interaction::~interaction()
       {
+
       }
+
 
       void interaction::install_message_handling(::message::dispatch * pinterface)
       {
+
          ::user::interaction::install_message_handling(pinterface);
+
          IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &interaction::_001OnCreate);
          IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &interaction::_001OnSize);
          IGUI_WIN_MSG_LINK(WM_MOVE, pinterface, this, &interaction::_001OnMove);
          IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &interaction::_001OnShowWindow);
+
       }
+
 
       void interaction::_001OnCreate(signal_details * pobj)
       {
+         
          UNREFERENCED_PARAMETER(pobj);
 
          if(pobj->previous())
             return;
 
-         set_data_server(Application.m_simpledb.get_data_server());
+         set_data_server(&Application.dataserver());
+
          if(m_dataidWindow.is_null())
          {
+
             m_dataidWindow = "window";
+
          }
+
          if(m_dataid.is_null())
          {
-            m_dataid = m_dataidWindow;
-         }
-      }
 
+            m_dataid = m_dataidWindow;
+
+         }
+
+      }
 
 
       void interaction::_001OnMove(signal_details * pobj)
       {
+
          UNREFERENCED_PARAMETER(pobj);
+
       }
+
 
       void interaction::_001OnSize(signal_details * pobj)
       {
+
          UNREFERENCED_PARAMETER(pobj);
+
       }
+
 
       void interaction::_001OnShowWindow(signal_details * pobj)
       {
+
          UNREFERENCED_PARAMETER(pobj);
          //         SCAST_PTR(::message::show_window, pshowwindow, pobj)
          if(get_parent() == NULL)

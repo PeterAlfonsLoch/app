@@ -1495,7 +1495,7 @@ void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
             pApp->m_nCmdShow = -1; // set to default after first time
          }
          bool bFullScreen;
-         data_get("FullScreen", ::core::system::idEmpty, bFullScreen);
+         data_get("FullScreen", ::base_system::idEmpty, bFullScreen);
          if (bFullScreen)
          {
             WfiFullScreen(bFullScreen, false);

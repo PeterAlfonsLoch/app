@@ -25,7 +25,8 @@ namespace user
       virtual public command_target,
       virtual public ::data::data_container_base,
       virtual public ::file::serializable,
-      virtual public ::user::server
+      virtual public ::user::server,
+      virtual public ::database::client
    {
    public:
 

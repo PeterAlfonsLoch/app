@@ -7,7 +7,7 @@
 namespace database
 {
 
-   class CLASS_DECL_CORE selection
+   class CLASS_DECL_BASE selection
    {
    public:
 

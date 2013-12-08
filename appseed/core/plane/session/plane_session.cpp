@@ -15,6 +15,19 @@ namespace plane
       
       m_pbasesystem              = papp->m_pbasesystem;
       
+
+      if (m_pbasesystem != NULL)
+      {
+
+         if (m_pbasesystem->m_pbasesession == NULL)
+         {
+
+            m_pbasesystem->m_pbasesession = this;
+
+         }
+
+      }
+
       m_pbaseapp                 = this;
       
       m_pplaneapp                = this;

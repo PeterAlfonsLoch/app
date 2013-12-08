@@ -92,7 +92,7 @@ namespace filemanager
 
          stringa stra;
 
-         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_pschema->m_dataidStatic, ::core::system::idEmpty, stra);
+         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_pschema->m_dataidStatic, ::base_system::idEmpty, stra);
 
          string strPath = GetFileManager()->get_item().m_strPath;
 
@@ -104,7 +104,7 @@ namespace filemanager
             if(stra.add_unique(strPath) >= 0)
             {
 
-               GetFileManager()->data_set(GetFileManager()->get_filemanager_data()->m_pschema->m_dataidStatic, ::core::system::idEmpty, stra);
+               GetFileManager()->data_set(GetFileManager()->get_filemanager_data()->m_pschema->m_dataidStatic, ::base_system::idEmpty, stra);
 
                add_item(GetFileManager()->get_item().m_strPath, System.file().name_(GetFileManager()->get_item().m_strPath));
             
@@ -188,7 +188,7 @@ namespace filemanager
                data_get_DisplayToStrict();
                _001OnUpdateItemCount();
                /*string str;
-               if(data_get("sort-" + GetFileManager()->get_item().m_strPath, ::core::system::idEmpty, str))
+               if(data_get("sort-" + GetFileManager()->get_item().m_strPath, ::base_system::idEmpty, str))
                {
                   stringa stra;
                   stra.add_tokens(str, ";", true);
@@ -1804,7 +1804,7 @@ namespace filemanager
 
          stringa stra;
 
-         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_pschema->m_dataidStatic, ::core::system::idEmpty, stra);
+         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_pschema->m_dataidStatic, ::base_system::idEmpty, stra);
 
          for (int32_t i = 0; i < stra.get_size(); i++)
          {

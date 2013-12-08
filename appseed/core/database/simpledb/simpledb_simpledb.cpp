@@ -132,6 +132,14 @@ namespace simpledb
 
       ::database::client::initialize_data_client(m_pserver);
 
+      if (Application.m_spdataserver.is_null())
+      {
+
+         Application.m_spdataserver = m_pserver;
+
+      }
+      
+
 //      ::core::application_request * prequest = System.get_application_request();
 
 

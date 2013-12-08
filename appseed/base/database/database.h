@@ -1,7 +1,11 @@
 #pragma once
 
 
-#include "core/core/core.h"
+#include "database_id.h"
+
+#include "database_update_hint.h"
+
+#include "database_selection.h"
 
 #include "database_client.h"
 

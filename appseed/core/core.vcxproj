@@ -1150,27 +1150,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="compress\compress_reader_with_crc.h" />
     <ClInclude Include="compress\compress_register_codec.h" />
     <ClInclude Include="compress\compress_writer_with_crc.h" />
-    <ClInclude Include="database\database.h" />
     <ClInclude Include="database\databaseuser\databaseuser.h" />
     <ClInclude Include="database\databaseuser\data_key_list_data.h" />
     <ClInclude Include="database\databaseuser\list_data.h" />
-    <ClInclude Include="database\database_application.h" />
-    <ClInclude Include="database\database_base.h" />
-    <ClInclude Include="database\database_change_event.h" />
-    <ClInclude Include="database\database_client.h" />
-    <ClInclude Include="database\database_database.h" />
-    <ClInclude Include="database\database_definition.h" />
-    <ClInclude Include="database\database_field_definition.h" />
-    <ClInclude Include="database\database_id.h" />
-    <ClInclude Include="database\database_key.h" />
-    <ClInclude Include="database\database_selection.h" />
-    <ClInclude Include="database\database_selection_item.h" />
-    <ClInclude Include="database\database_server.h" />
-    <ClInclude Include="database\database_set.h" />
-    <ClInclude Include="database\database_stringhelper.h" />
-    <ClInclude Include="database\database_template.h" />
-    <ClInclude Include="database\database_update_hint.h" />
-    <ClInclude Include="database\database_user_interaction.h" />
     <ClInclude Include="database\simpledb\DBFileSystemSize.h" />
     <ClInclude Include="database\simpledb\db_long_set.h" />
     <ClInclude Include="database\simpledb\db_server.h" />
@@ -1862,51 +1844,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="compress\rar\rar_volume_input_stream.cpp" />
     <ClCompile Include="database\databaseuser\database_key_list_data.cpp" />
     <ClCompile Include="database\databaseuser\database_list_data.cpp" />
-    <ClCompile Include="database\database_application.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="database\database_base.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="database\database_client.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="database\database_definition.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="database\database_event_change.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="database\database_field_definition.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="database\database_id.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="database\database_key.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="database\database_selection.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="database\database_selection_item.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="database\database_server.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="database\database_set.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="database\database_stringhelper.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="database\database_update_hint.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="database\database_user_interaction.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="database\simpledb\simpledb_database.cpp" />
     <ClCompile Include="database\simpledb\simpledb_dataset.cpp" />
     <ClCompile Include="database\simpledb\simpledb_db_server.cpp" />
