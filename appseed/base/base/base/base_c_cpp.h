@@ -30,7 +30,7 @@ class pair_set_interface;
 class str_str_interface;
 class command_thread;
 class thread;
-
+class application;
 
 
 
@@ -54,7 +54,6 @@ namespace primitive
 namespace plane
 {
 
-   class application;
    class session;
    class system;
    //class cube;
@@ -319,6 +318,15 @@ namespace file
 
 
 #include "base/primitive/primitive_id_space.h"
+
+
+#include "base/primitive/math/math_scalar_enum.h"
+
+
+#include "base/primitive/math/math_scalar.h"
+
+
+#include "base_progress.h"
 
 
 #include "base_enum.h"
@@ -758,18 +766,6 @@ namespace numeric_info
 #include "base_system_xml.inl"
 
 
-
-#ifdef WINDOWSEX
-#ifdef _BASE_LIBRARY
-#define _DRAW2D_GDIPLUS_LIBRARY
-#endif
-#include "nodeapp/appseed/draw2d_gdiplus/draw2d_gdiplus.h"
-#elif defined(METROWIN)
-#ifdef _BASE_LIBRARY
-#define _DRAW2D_DIRECT2D_LIBRARY
-#endif
-#include "app/appseed/draw2d_direct2d/draw2d_direct2d.h"
-#endif
 
 #include "base_core_copydesk.h"
 

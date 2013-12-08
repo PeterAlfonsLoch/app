@@ -27,7 +27,7 @@ LPFN_RegGetValueW g_pfnRegGetValueW = NULL;
 
 
 
-int_bool os_initialize()
+int_bool os_initialize(base_system * psystem)
 {
 
 
@@ -37,7 +37,7 @@ int_bool os_initialize()
 
    //Sleep(15 * 1000);
 
-   if(!initialize_primitive_trace())
+   if(!psystem->install().trace().initialize())
       return FALSE;
 
 
@@ -54,10 +54,10 @@ int_bool os_initialize()
 } 
 
 
-int_bool os_finalize()
+int_bool os_finalize(base_system * psystem)
 {
 
-   finalize_primitive_trace();
+   psystem->install().trace().finalize();
 
    return TRUE;
 

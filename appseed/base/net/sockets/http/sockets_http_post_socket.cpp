@@ -17,6 +17,9 @@ namespace sockets
       m_fields(h.get_app()),
       m_bMultipart(false)
    {
+
+      m_strMethod = "POST";
+
    }
 
 
@@ -32,6 +35,9 @@ namespace sockets
       m_fields(h.get_app()),
       m_bMultipart(false)
    {
+
+      m_strMethod = "POST";
+
       single_lock lock(&System.sockets().m_mutexHttpPostBoundary, true);
 
       m_boundary = "----";
@@ -81,6 +87,9 @@ namespace sockets
 
    void http_post_socket::step()
    {
+
+
+
       if (m_bMultipart)
       {
          DoMultipartPost();

@@ -620,17 +620,7 @@ namespace http
 
 
 
-   ::sockets::http_session * system::request(
-                  ::sockets::socket_handler & handler,
-                  ::sockets::http_session * psession,
-                  const char * pszRequest,
-                  property_set & post,
-                  property_set & headers,
-                  property_set & set,
-                  ::http::cookies * pcookies,
-                  ::fontopus::user * puser,
-                  const char * pszVersion,
-                  e_status * pestatus)
+   ::sockets::http_session * system::request(::sockets::socket_handler & handler, ::sockets::http_session * psession, const char * pszRequest, property_set & set)
    {
 
       uint32_t dw1;
@@ -667,8 +657,7 @@ retry:
       {
          try
          {
-            psession = open(handler, System.url().get_server(pszRequest), System.url().get_protocol(pszRequest),
-               set, puser, pszVersion);
+            psession = open(handler, System.url().get_server(pszRequest), System.url().get_protocol(pszRequest), set, set["user"].cast < ::fontopus::user > (), set["http_protocol_version"]);
             if(psession == NULL)
                return NULL;
          }
@@ -731,8 +720,9 @@ retry:
 
                if(domainFontopus.m_strRadix == "ca2")
                {
-                  puser = &AppUser(papp);
-                  if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
+                  set["user"] = &AppUser(papp);
+                  if (set["user"].cast < ::fontopus::user >() != NULL && (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new() &&
+                     (bool)set["interactive_user"])).has_char() &&
                      if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
                   {
                      System.url().string_set(strUrl, "sessid", strSessId);
@@ -742,7 +732,8 @@ retry:
             }
 
          }
-         if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
+         if (set["user"].cast < ::fontopus::user >() != NULL && 
+            (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
             if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
          {
             System.url().string_set(strUrl, "sessid", strSessId);
@@ -761,10 +752,11 @@ retry:
          psession->inheaders().clear();
          psession->outheaders().clear();
          psession->inattrs().clear();
+         psession->outattrs().clear();
          psession->m_memoryfile.Truncate(0);
 
 
-         psession->inheaders().add(headers);
+         psession->inheaders().add(set["headers"]);
          if(set.has_property("minimal_headers") && (bool)set["minimal_headers"])
          {
             psession->m_request.attrs()["minimal_headers"] = true;
@@ -773,13 +765,13 @@ retry:
          {
             psession->m_pfile = set["file"].cast < ::file::binary_buffer >();
          }
-         if(pcookies != NULL && pcookies->get_size() > 0)
+         if (set["cookies"].cast < ::http::cookies >() != NULL && set["cookies"].cast < ::http::cookies >()->get_size() > 0)
          {
-            psession->request().header(__id(cookie)) = pcookies->get_cookie_header();
+            psession->request().header(__id(cookie)) = set["cookies"].cast < ::http::cookies >()->get_cookie_header();
          }
-         if(puser != NULL && puser->m_phttpcookies != NULL && !(bool)set["disable_ca2_user_cookies"])
+         if (set["user"].cast < ::fontopus::user >() != NULL && set["user"].cast < ::fontopus::user >()->m_phttpcookies != NULL && !(bool)set["disable_ca2_user_cookies"])
          {
-            psession->request().header(__id(cookie)) = puser->m_phttpcookies->get_cookie_header();
+            psession->request().header(__id(cookie)) = set["user"].cast < ::fontopus::user >()->m_phttpcookies->get_cookie_header();
          }
          if(set.has_property(__id(cookie)) && set[__id(cookie)].get_string().has_char())
          {
@@ -788,19 +780,19 @@ retry:
 
          bool bPost;
          bool bPut;
-         if(set["put"].cast < ::file::binary_buffer >() != NULL || set["http_request"] == "PUT")
+         if (set["put"].cast < ::file::binary_buffer >() != NULL || set.lookup(__id(http_method)) == "PUT")
          {
             bPost = false;
             bPut = true;
             psession->request("PUT", strRequest);
             dynamic_cast < ::sockets::http_put_socket * > (psession)->m_file = set["put"].cast < ::file::binary_buffer >();
          }
-         else if(post.m_propertya.get_count() > 0 || set["http_request"] == "POST")
+         else if (set["post"].propset().m_propertya.get_count() > 0 || set.lookup(__id(http_method)) == "POST")
          {
             bPost = true;
             bPut = false;
             psession->request("POST", strRequest);
-            dynamic_cast < ::sockets::http_post_socket * > (psession)->m_fields = post;
+            dynamic_cast < ::sockets::http_post_socket * > (psession)->m_fields = set["post"].propset();
          }
          else
          {
@@ -808,6 +800,7 @@ retry:
             bPut = false;
             psession->request("GET", strRequest);
          }
+
 
          handler.add(psession);
 
@@ -860,7 +853,8 @@ retry:
          oprop("dw") = ::get_tick_count();
 
 
-         headers = psession->outheaders();
+         
+         set["get_headers"] = psession->outheaders();
 
 //            string strSessId;
 
@@ -890,43 +884,44 @@ retry:
             }
          }
 
-         if(pestatus != NULL)
+         e_status estatus = status_ok;
+
+         if(iStatusCode == 0)
          {
-            if(iStatusCode == 0)
-            {
 #if defined(BSD_STYLE_SOCKETS)
-               if(psession->m_spsslclientcontext.is_set() && psession->m_spsslclientcontext->m_iRetry == 1)
-               {
-                  goto retry;
-               }
+            if(psession->m_spsslclientcontext.is_set() && psession->m_spsslclientcontext->m_iRetry == 1)
+            {
+               goto retry;
+            }
 #endif
-            }
-            if(iStatusCode == 200 || psession->outattr("http_status_code").is_empty())
+         }
+         if(iStatusCode == 200 || psession->outattr("http_status_code").is_empty())
+         {
+            estatus = status_ok;
+         }
+         else if(psession->m_estatus == ::sockets::socket::status_connection_timed_out)
+         {
+            estatus = status_connection_timed_out;
+         }
+         else if(iStatusCode >= 300 && iStatusCode <= 399)
+         {
+            string strCa2Realm = psession->outheader("ca2realm-x");
+            if(::str::begins_ci(strCa2Realm, "not licensed: "))
             {
-               *pestatus = status_ok;
-            }
-            else if(psession->m_estatus == ::sockets::socket::status_connection_timed_out)
-            {
-               *pestatus = status_connection_timed_out;
-            }
-            else if(iStatusCode >= 300 && iStatusCode <= 399)
-            {
-               string strCa2Realm = psession->outheader("ca2realm-x");
-               if(::str::begins_ci(strCa2Realm, "not licensed: "))
-               {
-                  uint32_t dwTimeProfile2 = get_tick_count();
-                  TRACE0("Not Licensed Result Total time ::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
-                  string strLocation = psession->outheader("Location");
-                  delete psession;
-                  throw not_licensed(get_app(), strCa2Realm, strLocation);
-                  return NULL;
-               }
-            }
-            else
-            {
-               *pestatus = status_failed;
+               uint32_t dwTimeProfile2 = get_tick_count();
+               TRACE0("Not Licensed Result Total time ::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+               string strLocation = psession->outheader("Location");
+               delete psession;
+               throw not_licensed(get_app(), strCa2Realm, strLocation);
+               return NULL;
             }
          }
+         else
+         {
+            estatus = status_fail;
+         }
+
+         set["get_status"] = (int64_t)estatus;
 
          uint32_t dwTimeProfile2 = get_tick_count();
          TRACE0("Total time ::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
@@ -939,6 +934,34 @@ retry:
          goto retry;
       }
 
+      if (set.has_property("get_response"))
+      {
+
+         set["get_response"] = string((const char *)psession->GetDataPtr(), psession->GetContentLength());
+
+      }
+
+      if (set.has_property("get_memory"))
+      {
+
+         ::primitive::memory_base * pbase = set.cast < ::primitive::memory_base >("get_memory");
+
+         if (pbase != NULL)
+         {
+
+            pbase->assign(::primitive::memory(psession->GetDataPtr(), psession->GetContentLength()));
+
+         }
+         else
+         {
+          
+            set["get_memory"] = canew(::primitive::memory(psession->GetDataPtr(), psession->GetContentLength()));
+
+         }
+
+      }
+
+
       return psession;
 
    }
@@ -948,27 +971,15 @@ retry:
 
 
 
-   ::sockets::http_session * system::get(::sockets::socket_handler & handler, ::sockets::http_session * psession, const char * pszRequest, primitive::memory_base & memory, ::fontopus::user * puser)
-   {
 
-      property_set post(get_app());
 
-      property_set headers(get_app());
 
-      property_set set(get_app());
 
-      psession = request(handler, psession, pszRequest, post, headers, set, NULL, puser, NULL, NULL);
 
-      if(psession == NULL)
-         return NULL;
 
-      memory.allocate(psession->GetDataLength());
 
-      memcpy(memory.get_data(), psession->GetDataPtr(), memory.get_size());
 
-      return psession;
 
-   }
 
 
 
@@ -1063,25 +1074,7 @@ retry:
 
 
 
-
-
-
-
-
-
-
-
-
-   ::sockets::http_client_socket * system::get(
-                  ::sockets::socket_handler & handler,
-                  const char * pszUrl,
-                  property_set & post,
-                  property_set & headers,
-                  property_set & set,
-                  ::http::cookies * pcookies,
-                  ::fontopus::user * puser,
-                  const char * pszVersion,
-                  e_status * pestatus)
+   ::sockets::http_client_socket * system::get(::sockets::socket_handler & handler, const char * pszUrl, property_set & set)
    {
 #ifdef BSD_STYLE_SOCKETS
 retry:
@@ -1089,7 +1082,6 @@ retry:
 
       uint32_t dwTimeProfile1 = get_tick_count();
 
-      UNREFERENCED_PARAMETER(pszVersion);
       string strServer = System.url().get_root(pszUrl);
       string strProtocol = System.url().get_protocol(pszUrl);
       string strObject = System.url().get_object(pszUrl);
@@ -1104,9 +1096,11 @@ retry:
          iPort = 80;
       }
 
-      if(pszVersion == NULL || pszVersion[0] == '\0')
+
+      string strVersion = set["http_protocol_version"];
+      if (strVersion.is_empty())
       {
-         pszVersion = "HTTP/1.1";
+         strVersion = "HTTP/1.1";
       }
 
       string strUrl(pszUrl);
@@ -1143,8 +1137,9 @@ retry:
 
                if(domainFontopus.m_strRadix == "ca2")
                {
-                  puser = &AppUser(papp);
-                  if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
+                  set["user"] = &AppUser(papp);
+                  if (set["user"].cast < ::fontopus::user >() != NULL && (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new()
+                     && (bool)set["interactive_user"])).has_char() &&
                      if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
                   {
                      System.url().string_set(strUrl, "sessid", strSessId);
@@ -1154,7 +1149,8 @@ retry:
             }
 
          }
-         if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
+         if (set["user"].cast < ::fontopus::user >() != NULL && 
+            (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
             if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
          {
             System.url().string_set(strUrl, "sessid", strSessId);
@@ -1172,28 +1168,45 @@ retry:
 
       bool bPost;
       bool bPut;
-      if(set["put"].cast < ::file::binary_buffer >() != NULL || set["http_request"] == "PUT")
+      if (set["put"].cast < ::file::binary_buffer >() != NULL || set.lookup(__id(http_method)) == "PUT")
       {
          bPost = false;
          bPut = true;
          psocket = new ::sockets::http_put_socket(handler, strUrl);
          dynamic_cast < ::sockets::http_put_socket * > (psocket)->m_file = set["put"].cast < ::file::binary_buffer >();
+         psocket->m_strMethod = "PUT";
       }
-      else if(post.get_count() > 0 || set["http_request"] == "POST")
+      else if (set["post"].propset().m_propertya.get_count() > 0 || set.lookup(__id(http_method)) == "POST")
       {
          bPost = true;
          bPut = false;
          psocket = new ::sockets::http_post_socket(handler, strUrl);
-         dynamic_cast < ::sockets::http_post_socket * > (psocket)->m_fields = post;
+         dynamic_cast < ::sockets::http_post_socket * > (psocket)->m_fields = set["post"].propset();
+         psocket->m_strMethod = "POST";
       }
       else
       {
          bPost = false;
          bPut = false;
          psocket = new ::http::get_socket(handler, strUrl);
+         psocket->m_strMethod = set.lookup(__id(http_method), "GET");
       }
-      psocket->inheaders().add(headers);
-      if(set.has_property("minimal_headers") && (bool)set["minimal_headers"])
+
+
+      if (set["http_listener"].cast < ::sockets::http_listener >() != NULL)
+      {
+         psocket->::sockets::http_socket::m_plistener = set["http_listener"].cast < ::sockets::http_listener >();
+      }
+      psocket->inheaders().add(set["headers"]);
+      if (set.has_property("progress_listener"))
+      {
+         psocket->m_progress.m_plistener = set["progress_listener"].cast < progress_listener >();
+      }
+      if (set.has_property("int_scalar_source_listener"))
+      {
+         psocket->::int_scalar_source::m_plistener = set["int_scalar_source_listener"].cast < int_scalar_source::listener >();
+      }
+      if (set.has_property("minimal_headers") && (bool)set["minimal_headers"])
       {
          psocket->m_request.attrs()["minimal_headers"] = true;
       }
@@ -1209,13 +1222,13 @@ retry:
       {
          psocket->m_pfile = set["file"].cast < ::file::stream_buffer >();
       }
-      if(pcookies != NULL && pcookies->get_size() > 0)
+      if (set["cookies"].cast < ::http::cookies >() != NULL && set["cookies"].cast < ::http::cookies >()->get_size() > 0)
       {
-         psocket->request().header(__id(cookie)) = pcookies->get_cookie_header();
+         psocket->request().header(__id(cookie)) = set["cookies"].cast < ::http::cookies >()->get_cookie_header();
       }
-      if(puser != NULL && puser->m_phttpcookies != NULL && !(bool)set["disable_ca2_user_cookies"])
+      if (set["user"].cast < ::fontopus::user >() != NULL && set["user"].cast < ::fontopus::user >()->m_phttpcookies != NULL && !(bool)set["disable_ca2_user_cookies"])
       {
-         psocket->request().header(__id(cookie)) = puser->m_phttpcookies->get_cookie_header();
+         psocket->request().header(__id(cookie)) = set["user"].cast < ::fontopus::user >()->m_phttpcookies->get_cookie_header();
       }
       if(set.has_property(__id(cookie)) && set[__id(cookie)].get_string().has_char())
       {
@@ -1256,10 +1269,7 @@ retry:
 
       if(!psocket->open(bConfigProxy))
       {
-         if(pestatus != NULL)
-         {
-            *pestatus = status_failed;
-         }
+         set["get_status"] = (int64_t) status_failed;
          delete psocket;
          uint32_t dwTimeProfile2 = get_tick_count();
          TRACE0("Not Opened/Connected Result Total time ::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
@@ -1306,7 +1316,7 @@ retry:
       }
       keeplive.keep_alive();
 
-      headers = psocket->outheaders();
+      set["get_headers"] = psocket->outheaders();
 
 #ifdef BSD_STYLE_SOCKETS
       if(psocket->IsSSL())
@@ -1322,43 +1332,78 @@ retry:
       string strCookie = psocket->response().cookies().get_cookie_header();
       set[__id(cookie)] = strCookie;
 
-      if(pestatus != NULL)
-      {
-         int32_t iStatusCode = psocket->outattr("http_status_code");
+      e_status estatus;
+
+      int32_t iStatusCode = psocket->outattr("http_status_code");
 #ifdef BSD_STYLE_SOCKETS
-         if(iStatusCode == 0)
+      if(iStatusCode == 0)
+      {
+         if(psocket->m_spsslclientcontext.is_set() && psocket->m_spsslclientcontext->m_iRetry == 1)
          {
-            if(psocket->m_spsslclientcontext.is_set() && psocket->m_spsslclientcontext->m_iRetry == 1)
-            {
-               goto retry;
-            }
+            goto retry;
          }
+      }
 #endif
-         if(iStatusCode == 200 || psocket->outattr("http_status_code").is_empty())
+      if(iStatusCode == 200 || psocket->outattr("http_status_code").is_empty())
+      {
+         estatus = status_ok;
+      }
+      else if(psocket->m_estatus == ::sockets::socket::status_connection_timed_out)
+      {
+         estatus = status_connection_timed_out;
+      }
+      else if(iStatusCode >= 300 && iStatusCode <= 399)
+      {
+         string strCa2Realm = psocket->outheader("ca2realm-x");
+         if(::str::begins_ci(strCa2Realm, "not licensed: "))
          {
-            *pestatus = status_ok;
+            uint32_t dwTimeProfile2 = get_tick_count();
+            TRACE0("Not Licensed Result Total time ::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+            string strLocation = psocket->outheader("Location");
+            delete psocket;
+            throw not_licensed(get_app(), strCa2Realm, strLocation);
+            return NULL;
          }
-         else if(psocket->m_estatus == ::sockets::socket::status_connection_timed_out)
+      }
+      else
+      {
+         estatus = status_fail;
+      }
+
+      set["get_status"] = (int64_t)estatus;
+
+      if (set["http_listener"].cast < ::sockets::http_listener >() != NULL)
+      {
+
+         set["http_listener"].cast < ::sockets::http_listener >()->on_http_complete(psocket, estatus);
+
+      }
+
+      if (set.has_property("get_response"))
+      {
+         
+         set["get_response"] = string((const char *) psocket->GetDataPtr(), psocket->GetContentLength());
+
+      }
+
+      if (set.has_property("get_memory"))
+      {
+
+         ::primitive::memory_base * pbase = set.cast < ::primitive::memory_base >("get_memory");
+
+         if (pbase != NULL)
          {
-            *pestatus = status_connection_timed_out;
-         }
-         else if(iStatusCode >= 300 && iStatusCode <= 399)
-         {
-            string strCa2Realm = psocket->outheader("ca2realm-x");
-            if(::str::begins_ci(strCa2Realm, "not licensed: "))
-            {
-               uint32_t dwTimeProfile2 = get_tick_count();
-               TRACE0("Not Licensed Result Total time ::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
-               string strLocation = psocket->outheader("Location");
-               delete psocket;
-               throw not_licensed(get_app(), strCa2Realm, strLocation);
-               return NULL;
-            }
+
+            pbase->assign(::primitive::memory(psocket->GetDataPtr(), psocket->GetContentLength()));
+
          }
          else
          {
-            *pestatus = status_failed;
+
+            set["get_memory"] = canew(::primitive::memory(psocket->GetDataPtr(), psocket->GetContentLength()));
+
          }
+
       }
 
       uint32_t dwTimeProfile2 = get_tick_count();
@@ -1396,7 +1441,19 @@ retry:
          return;
       }
       ::sockets::socket_handler handler(get_app());
-      sp(::sockets::http_client_socket) psocket = get(handler, psignal->m_strUrl, psignal->m_setPost, psignal->m_setHeaders, psignal->m_set, psignal->m_pcookies, psignal->m_puser, psignal->m_strVersion, &psignal->m_estatusRet);
+      property_set set;
+
+      set = psignal->m_set;
+      set["post"] = psignal->m_setPost;
+      set["headers"] = psignal->m_setHeaders;
+      set["cookies"] = psignal->m_pcookies;
+      set["user"] = psignal->m_puser;
+      set["http_protocol_version"] = psignal->m_strVersion;
+
+      sp(::sockets::http_client_socket) psocket = get(handler, psignal->m_strUrl, set);
+
+      psignal->m_estatusRet = (::http::e_status) set["get_status"].int64();
+
       if(psocket == NULL)
       {
          psignal->m_bRet = false;
@@ -1417,142 +1474,36 @@ retry:
    }
 
 
-   bool system::download(
-                  const char * pszUrl,
-                  const char * pszFile,
-                  property_set & post,
-                  property_set & headers,
-                  property_set & set,
-                  ::http::cookies * pcookies,
-                  ::fontopus::user * puser,
-                  const char * pszVersion)
+   bool system::download(const char * pszUrl, const char * pszFile, property_set & set)
    {
+      
       ::sockets::socket_handler handler(get_app());
-      sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion);
+
+      sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, set);
+
       if(psocket == NULL)
          return false;
 
-      ::file::binary_buffer_sp spfile(allocer());
-      if(!spfile->open(pszFile, ::file::type_binary | ::file::mode_create | ::file::mode_read_write
-         | ::file::defer_create_directory))
+      ::file::buffer_sp spfile = App(set.cast < base_application >("app", get_app())).file().get_file(pszFile,
+            ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
+
+      if(spfile.is_null())
       {
          return false;
       }
+
       spfile->write(psocket->GetDataPtr(), psocket->GetContentLength());
-      headers = psocket->outheaders();
-      return true;
-   }
-
-   bool system::download(
-                  const char * pszUrl,
-                  const char * pszFile,
-                  const char * pszPost,
-                  property_set & headers,
-                  ::http::cookies * pcookies,
-                  ::fontopus::user * puser,
-                  const char * pszVersion)
-   {
-      property_set post;
-      post.parse_url_query(pszPost);
-      property_set set;
-      if(!download(pszUrl, pszFile, post, headers, set, pcookies, puser, pszVersion))
-         return false;
-      return true;
-   }
-
-   bool system::download(const char * pszUrl, const char * pszFile, ::fontopus::user * puser)
-   {
-      property_set post;
-      property_set headers;
-      property_set set;
-
-      if(puser == NULL)
-      {
-         if(!download(pszUrl, pszFile, post, headers, set))
-            return false;
-      }
-      else
-      {
-         if(!download(pszUrl, pszFile, post, headers, set, puser->m_phttpcookies, puser))
-            return false;
-      }
 
       return true;
+
    }
-   bool system::get(
-                  const char * pszUrl,
-                  primitive::memory_base & memory,
-                  property_set & post,
-                  property_set & headers,
-                  property_set & set,
-                  ::http::cookies * pcookies,
-                  ::fontopus::user * puser,
-                  const char * pszVersion,
-                  e_status * pestatus)
+
+
+   bool system::exists(const char * pszUrl, ::property_set & set)
    {
+
       ::sockets::socket_handler handler(get_app());
-      sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion, pestatus);
-      if(psocket == NULL)
-         return false;
-      memory.allocate(psocket->GetContentLength());
-      memcpy(memory.get_data(), psocket->GetDataPtr(), memory.get_size());
-      headers = psocket->outheaders();
-      return true;
-   }
 
-   bool system::get(
-                  const char * pszUrl,
-                  string & str,
-                  property_set & post,
-                  property_set & headers,
-                  property_set & set,
-                  ::http::cookies * pcookies,
-                  ::fontopus::user * puser,
-                  const char * pszVersion,
-                  e_status * pestatus)
-   {
-      ::sockets::socket_handler handler(get_app());
-      sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion, pestatus);
-      if(psocket == NULL)
-         return false;
-      str = string((const char *) psocket->GetDataPtr(), psocket->GetDataLength());
-      headers = psocket->outheaders();
-      return true;
-   }
-
-   bool system::get(const char * pszUrl, primitive::memory_base & storage, ::fontopus::user * puser)
-   {
-      class signal signal;
-      signal.m_strUrl = pszUrl;
-      signal.m_puser = puser;
-      get(&signal);
-      storage = signal.m_memoryRet;
-      return signal.m_bRet;
-   }
-
-
-   bool system::get(const char * pszUrl, string & str, ::fontopus::user * puser)
-   {
-      property_set setPost;
-      property_set setHeaders;
-      property_set set;
-      return get(pszUrl, str, setPost, setHeaders, set, NULL, puser);
-   }
-
-   string system::get(const char * pszUrl, ::fontopus::user * puser)
-   {
-      string str;
-      if(!get(pszUrl, str, puser))
-         str.Empty();
-      return str;
-   }
-
-   bool system::exists(const char * pszUrl, ::fontopus::user * puser)
-   {
-      ::sockets::socket_handler handler(get_app());
-      property_set post;
-      property_set headers;
-      property_set set;
       set["only_headers"] = true;
 
       ::url_domain domain;
@@ -1566,63 +1517,17 @@ retry:
 
       }
 
-      sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, post, headers, set, NULL, puser);
+      sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, set);
+
       if(psocket == NULL)
          return false;
+
       int32_t iStatusCode = psocket->outattr("http_status_code");
+
       return iStatusCode == 200;
    }
 
 
-   bool system::request(
-                  const char * pszRequest,
-                  const char * pszUrl,
-                  string & str,
-                  property_set & post,
-                  property_set & headers,
-                  property_set & set,
-                  ::http::cookies * pcookies,
-                  ::fontopus::user * puser,
-                  const char * pszVersion,
-                  e_status * pestatus)
-   {
-      ::sockets::socket_handler handler(get_app());
-      set["http_request"] = pszRequest;
-      sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion, pestatus);
-      if(psocket == NULL)
-         return false;
-      str = string((const char *) psocket->GetDataPtr(), psocket->GetContentLength());
-      headers = psocket->outheaders();
-      return true;
-   }
-
-   bool system::request(const char * pszRequest, const char * pszUrl, primitive::memory_base & storage, ::fontopus::user * puser)
-   {
-      class signal signal;
-      signal.m_strUrl = pszUrl;
-      signal.m_puser = puser;
-      signal.m_set["http_request"] = pszRequest;
-      get(&signal);
-      storage = signal.m_memoryRet;
-      return signal.m_bRet;
-   }
-
-
-   bool system::request(const char * pszRequest, const char * pszUrl, string & str, ::fontopus::user * puser)
-   {
-      property_set setPost;
-      property_set setHeaders;
-      property_set set;
-      return request(pszRequest, pszUrl, str, setPost, setHeaders, set, NULL, puser);
-   }
-
-   string system::request(const char * pszRequest, const char * pszUrl, ::fontopus::user * puser)
-   {
-      string str;
-      if(!request(pszRequest, pszUrl, str, puser))
-         str.Empty();
-      return str;
-   }
 
 
    string system::gmdate(time_t t)
@@ -1702,54 +1607,48 @@ retry:
       System.file().del(System.dir().appdata(strSection + "_2"));
    }
 
-   bool system::put(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser)
+
+   bool system::put(const char * pszUrl, primitive::memory_base & memory, property_set & set)
    {
+      
       ::file::memory_buffer file(get_app(), &memory);
-      return put(pszUrl, &file, puser);
+
+      return put(pszUrl, &file, set);
+
    }
 
-   bool system::put(const char * pszUrl, ::file::buffer_sp  pfile, ::fontopus::user * puser)
+
+   bool system::put(const char * pszUrl, ::file::buffer_sp  pfile, property_set & set)
    {
-      if(puser == NULL)
-      {
-         puser = &ApplicationUser;
-      }
-      string str;
-      property_set post;
-      property_set headers;
-      property_set set;
+
       set["put"] = pfile;
+
       set["noclose"] = false;
-      return System.http().get(pszUrl, str, post, headers, set, NULL, puser);
+
+      return System.http().get(pszUrl, set);
+
    }
 
-
-   bool system::put(string & strResponse, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser)
+   bool system::get(const char * pszUrl, property_set & set)
    {
 
-      ::file::memory_buffer file(get_app(), &memory);
+      sockets::socket_handler h(set.cast < base_application >("app", get_app()));
 
-      return put(strResponse, pszUrl, &file, puser);
+      sp(::sockets::http_client_socket) psocket = System.http().get(h, pszUrl, set);
+
+      return status_succeeded(set["get_status"]);
 
    }
 
-
-   bool system::put(string & strResponse, const char * pszUrl, ::file::buffer_sp  pfile, ::fontopus::user * puser)
+   bool system::request(const char * pszMethod, const char * pszUrl, property_set & set)
    {
 
-      if(puser == NULL)
-      {
-         puser = &ApplicationUser;
-      }
+      set[__id(http_method)] = pszMethod;
 
-      property_set post;
-      property_set headers;
-      property_set set;
-      set["put"] = pfile;
-
-      return get(pszUrl, strResponse, post, headers, set, NULL, puser);
+      return System.http().get(pszUrl, set);
 
    }
+
 
 
 } // namespace http

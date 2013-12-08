@@ -1,15 +1,32 @@
 #pragma once
 
+
 namespace user
 {
+
 
    class CLASS_DECL_CORE elastic_slider :
       public ::user::interaction
 
    {
    public:
+
+
+
+      double_scalar  m_scalarVelocity;
+      double_scalar  m_scalarPosition;
+
+      e_scalar       m_escalar;
+
+      uint32_t       m_dwLastTime;
+
+      double         m_dPosition;// 0.0 = min 1.0 = max
+      double         m_dTensionPosition;// 0.0 = min 1.0 = max
+      bool           m_bSlide;
+      index          m_iScalar;
+      double_array   m_daScalar;
+
       elastic_slider(sp(base_application) papp);
-   public:
       virtual ~elastic_slider();
 
 
@@ -25,21 +42,10 @@ namespace user
       void Slide();
 
 
-      enum EScalar
-      {
-         ScalarStreamingVelocity, 
-         // to the right accelerates, to left certain range,
-         // slow down, to left pass certain range, rewinds.
-
-      };
 
 
-      void SetStreamingVelocityMode(DoubleScalar * pscalarVelocity, int32_t iVelocity, DoubleScalar * pscalarPosition, int32_t iPosition);
+      void SetStreamingVelocityMode(double_scalar & scalarVelocity, double_scalar & scalarPosition);
 
-      DoubleScalar * m_pscalarVelocity;
-      int32_t m_iVelocity;
-      DoubleScalar * m_pscalarPosition;
-      int32_t m_iPosition;
 
       void UpdatePosition();
       void CalcTension(point & pt);
@@ -51,16 +57,6 @@ namespace user
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);
 
-   protected:
-      EScalar m_escalar;
-
-      uint32_t m_dwLastTime;
-
-      double m_dPos;// 0.0 = min 1.0 = max
-      double m_dTensionPos;// 0.0 = min 1.0 = max
-      bool m_bSlide;
-      int32_t m_iScalar;
-      double_array m_daScalar;
       double GetForce();
 
       void GetSliderRect(rect & rect);

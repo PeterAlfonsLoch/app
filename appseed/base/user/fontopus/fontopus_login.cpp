@@ -239,13 +239,11 @@ namespace fontopus
          try
          {
 
-            ::property_set post(get_app());
-            ::property_set headers(get_app());
             ::property_set set(get_app());
             
             set["disable_ca2_sessid"] = true;
 
-            Application.http().get(m_strLoginUrl, strLogin, post, headers, set);
+            Application.http().get(m_strLoginUrl, strLogin, set);
 
          }
          catch (...)
@@ -317,15 +315,13 @@ namespace fontopus
 
          strAuthUrl += "&sessid=" + strSessId;
          
-         ::property_set post(get_app());
-         ::property_set headers(get_app());
          ::property_set set(get_app());
          
          set["disable_ca2_sessid"] = true;
          
          strResponse.empty_string();
 
-         Application.http().get(strAuthUrl, strResponse, post, headers, set);
+         Application.http().get(strAuthUrl, strResponse, set);
 
       }
 

@@ -9,7 +9,77 @@ namespace hi5
       virtual public ::object
    {
    public:
+      /* Constants */
+      const string TWIT_COLON;
+      const char TWIT_EOS;
 
+      /* Miscellaneous data used to build twitter URLs*/
+      const string TWIT_SEARCHQUERYSTRING;
+      const string TWIT_SCREENNAME;
+      const string TWIT_USERID;
+      const string TWIT_EXTENSIONFORMAT;
+      const string TWIT_TARGETSCREENNAME;
+      const string TWIT_TARGETUSERID;
+
+      /* Search URLs */
+      const string TWIT_SEARCH_URL;
+
+      /* Status URLs */
+      const string TWIT_STATUSUPDATE_URL;
+      const string TWIT_STATUSSHOW_URL;
+      const string TWIT_STATUDESTROY_URL;
+
+      /* Timeline URLs */
+      const string TWIT_PUBLIC_TIMELINE_URL;
+      const string TWIT_FEATURED_USERS_URL;
+      const string TWIT_FRIENDS_TIMELINE_URL;
+      const string TWIT_MENTIONS_URL;
+      const string TWIT_USERTIMELINE_URL;
+
+      /* Users URLs */
+      const string TWIT_SHOWUSERS_URL;
+      const string TWIT_SHOWFRIENDS_URL;
+      const string TWIT_SHOWFOLLOWERS_URL;
+
+      /* Direct messages URLs */
+      const string TWIT_DIRECTMESSAGES_URL;
+      const string TWIT_DIRECTMESSAGENEW_URL;
+      const string TWIT_DIRECTMESSAGESSENT_URL;
+      const string TWIT_DIRECTMESSAGEDESTROY_URL;
+
+      /* Friendships URLs */
+      const string TWIT_FRIENDSHIPSCREATE_URL;
+      const string TWIT_FRIENDSHIPSDESTROY_URL;
+      const string TWIT_FRIENDSHIPSSHOW_URL;
+
+      /* Social graphs URLs */
+      const string TWIT_FRIENDSIDS_URL;
+      const string TWIT_FOLLOWERSIDS_URL;
+
+      /* Ac::count URLs */
+      const string TWIT_ACCOUNTRATELIMIT_URL;
+
+      /* Favorites URLs */
+      const string TWIT_FAVORITESGET_URL;
+      const string TWIT_FAVORITECREATE_URL;
+      const string TWIT_FAVORITEDESTROY_URL;
+
+      /* Block URLs */
+      const string TWIT_BLOCKSCREATE_URL;
+      const string TWIT_BLOCKSDESTROY_URL;
+
+      /* Saved Search URLs */
+      const string TWIT_SAVEDSEARCHGET_URL;
+      const string TWIT_SAVEDSEARCHSHOW_URL;
+      const string TWIT_SAVEDSEARCHCREATE_URL;
+      const string TWIT_SAVEDSEARCHDESTROY_URL;
+
+      /* Trends URLs */
+      const string TWIT_TRENDS_URL;
+      const string TWIT_TRENDSDAILY_URL;
+      const string TWIT_TRENDSCURRENT_URL;
+      const string TWIT_TRENDSWEEKLY_URL;
+      const string TWIT_TRENDSAVAILABLE_URL;
 
          public:
        /* cURL data */
@@ -119,11 +189,11 @@ namespace hi5
        bool performPost( const string & postUrl, property_set & headers, property_set & post );
 
        string build_url(const char * baseUrl, const char * userInfo, bool isUserId );
+
+       string prepare_basic_authentication(const char * inParam1, const char * inParam2);
    };
 
 
-   /* Private functions */
-   string prepare_basic_authentication(const char * inParam1, const char * inParam2 );
    
 
 

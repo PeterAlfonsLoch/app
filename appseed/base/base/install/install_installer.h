@@ -13,7 +13,9 @@ namespace install
 
 
    class CLASS_DECL_BASE installer :
-      virtual public object
+      virtual public object,
+      virtual public ::sockets::http_listener,
+      virtual public int_scalar_source::listener
    {
    public:
 
@@ -140,6 +142,7 @@ namespace install
       bool              m_bSynch;
       bool              m_bInstalling;
 
+      stringa           m_straHttpFailure;
 
       installer(sp(base_application) papp);
       ~installer();
@@ -248,8 +251,13 @@ namespace install
 
 
       void remove_spa_start(const char * pszId);
-      void ms_download_callback( int32_t i, uint_ptr dwLen);
-      void ms_get_callback( int32_t i, uint_ptr dwLen);
+
+
+      virtual void on_http_complete(::sockets::http_socket * psocket, ::http::e_status estatus);
+
+
+      //void ms_download_callback( int32_t i, uint_ptr dwLen);
+      //void ms_get_callback( int32_t i, uint_ptr dwLen);
 
       // download rate
       void dlr(uint64_t dwDownload);
@@ -263,6 +271,8 @@ namespace install
       virtual int32_t install_asynch(const char * pszCommandLine);
 
       virtual int32_t ca2_app_install_run(const char * pszCommandLine, uint32_t & dwStartError, bool bSynch);
+
+      virtual void on_set_value(int_scalar_source * psource, e_scalar escalar, int64_t iValue);
 
    };
 

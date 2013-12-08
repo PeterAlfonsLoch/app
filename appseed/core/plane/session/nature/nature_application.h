@@ -9,7 +9,7 @@ namespace nature
 
 
    class CLASS_DECL_CORE application :
-      virtual public ::plane::application
+      virtual public ::application
    {
    public:
 

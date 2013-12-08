@@ -126,7 +126,7 @@ extern mutex * g_pmutexSystemHeap;
 extern plex_heap_alloc_array * g_pheap;
 
 
-extern mutex * g_pmutexTrace;
+//extern mutex * g_pmutexTrace;
 
 
 extern mutex * g_pmutgen;
@@ -138,10 +138,10 @@ void create_id_space();
 void destroy_id_space();
 
 
-extern string * g_pstrLastStatus;
+//extern string * g_pstrLastStatus;
 
 
-extern string * g_pstrLastGlsStatus;
+//extern string * g_pstrLastGlsStatus;
 
 
 c_class c_class::s_cclass;
@@ -659,15 +659,15 @@ public:
 
       create_id_space();
 
-      g_pstrLastStatus = new string();
+      //g_pstrLastStatus = new string();
 
-      g_pstrLastGlsStatus = new string();
+      //g_pstrLastGlsStatus = new string();
 
       g_pmutexSystemHeap = new mutex();
 
       g_pmutgen = new mutex();
 
-      g_pmutexTrace = new mutex();
+      //g_pmutexTrace = new mutex();
       
 #ifdef BSD_STYLE_SOCKETS
 
@@ -844,9 +844,9 @@ public:
 
 
 
-      delete g_pmutexTrace;
+      //delete g_pmutexTrace;
 
-      g_pmutexTrace = NULL;
+      //g_pmutexTrace = NULL;
 
       delete g_pmutgen;
 
@@ -856,13 +856,13 @@ public:
 
       g_pmutexSystemHeap = NULL;
 
-      delete g_pstrLastGlsStatus;
+      //delete g_pstrLastGlsStatus;
 
-      g_pstrLastGlsStatus = NULL;
+      //g_pstrLastGlsStatus = NULL;
 
-      delete g_pstrLastStatus;
+      //delete g_pstrLastStatus;
 
-      g_pstrLastStatus = NULL;
+      //g_pstrLastStatus = NULL;
 
       destroy_id_space();
 

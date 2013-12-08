@@ -54,23 +54,27 @@ namespace user
 
    void step_slider::_001OnLButtonDown(signal_details * pobj)
    {
+      
       SCAST_PTR(::message::mouse, pmouse, pobj);
+      
       m_iLButtonDown = hit_test(pmouse->m_pt);
+
    }
 
    void step_slider::_001OnLButtonUp(signal_details * pobj)
    {
+      
       SCAST_PTR(::message::mouse, pmouse, pobj);
-      int32_t iLButtonUp = hit_test(pmouse->m_pt);
-      int32_t iMin, iMax;
-      m_pscalar->GetMinScalar(m_iScalar, iMin);
-      m_pscalar->GetMaxScalar(m_iScalar, iMax);
-      if(iLButtonUp == m_iLButtonDown &&
-         iLButtonUp >= iMin
-       && iLButtonUp <= iMax)
+      
+      int64_t iLButtonUp = hit_test(pmouse->m_pt);
+
+      if(iLButtonUp == m_iLButtonDown)
       {
-         m_pscalar->SetScalar(m_iScalar, iLButtonUp);
+
+         m_scalar = iLButtonUp;
+
       }
+
    }
 
    void step_slider::_001OnMouseMove(signal_details * pobj)
@@ -86,7 +90,7 @@ namespace user
    void step_slider::_001OnDraw(::draw2d::graphics * pdc)
    {
       
-      if(m_pscalar == NULL)
+      if(m_scalar.is_null())
          return;
 
       rect rectClient;
@@ -99,16 +103,15 @@ namespace user
          RGB(150, 200, 255),
          127);
       
-      int32_t iMin, iMax, iValue;
-      m_pscalar->GetMinScalar(m_iScalar, iMin);
-      m_pscalar->GetMaxScalar(m_iScalar, iMax);
-      m_pscalar->GetScalar(m_iScalar, iValue);
+      int64_t iMin = m_scalar.minimum();
+      int64_t iMax = m_scalar.maximum();
+      int64_t iVal = m_scalar;
 
       rect rect;
-      for(int32_t i = iMin; i <= iMax; i++)
+      for(int64_t i = iMin; i <= iMax; i++)
       {
-         GetStepRect(i, rect);
-         if(i == iValue)
+         GetStepRect(rect, i, iMin, iMax, rectClient);
+         if(i == iVal)
          {
             if(i == m_iHover)
             {
@@ -150,49 +153,55 @@ namespace user
    }
 
 
-   void step_slider::GetStepHoverRect(int32_t iStep, LPRECT lprect)
+   void step_slider::GetStepHoverRect(LPRECT lprect, int64_t iStep, int64_t iMin, int64_t iMax, LPCRECT lpcrectClient)
    {
-      int32_t iMin, iMax;
-      m_pscalar->GetMinScalar(m_iScalar, iMin);
-      m_pscalar->GetMaxScalar(m_iScalar, iMax);
-      if((iMax - iMin) == 0)
-         return;
-      rect rectClient;
-      GetClientRect(rectClient);
-      lprect->top = rectClient.top;
-      lprect->bottom = rectClient.bottom;
-      double dWidth = ((double) rectClient.width()) / (iMax - iMin);
-      lprect->left = (LONG) (dWidth * (iStep - iMin));
-      lprect->right = (LONG) (dWidth * (iStep - iMin + 1));
-   }
-   void step_slider::GetStepRect(int32_t iStep, LPRECT lprect)
-   {
-      int32_t iMin, iMax;
-      m_pscalar->GetMinScalar(m_iScalar, iMin);
-      m_pscalar->GetMaxScalar(m_iScalar, iMax);
 
       if((iMax - iMin) == 0)
          return;
-      GetStepHoverRect(iStep, lprect);
+
+      lprect->top = lpcrectClient->top;
+      lprect->bottom = lpcrectClient->bottom;
+      double dWidth = ((double)width(lpcrectClient)) / (iMax - iMin);
+      lprect->left = (LONG) (dWidth * (iStep - iMin));
+      lprect->right = (LONG) (dWidth * (iStep - iMin + 1));
+
+
+   }
+
+
+   void step_slider::GetStepRect(LPRECT lprect, int64_t iStep, int64_t iMin, int64_t iMax, LPCRECT lpcrectClient)
+   {
+
+      if((iMax - iMin) == 0)
+         return;
+
+      GetStepHoverRect(lprect, iStep, iMin, iMax, lpcrectClient);
       int32_t halfm = (lprect->right - lprect->left - 2) / 2;
       lprect->left +=  halfm;
       lprect->right -=  halfm;
+
    }
 
-   int32_t step_slider::hit_test(point point)
+   int64_t step_slider::hit_test(point point)
    {
-      rect rect;
-      int32_t iMin, iMax;
-      m_pscalar->GetMinScalar(m_iScalar, iMin);
-      m_pscalar->GetMaxScalar(m_iScalar, iMax);
-      for(int32_t i = iMin; i <= iMax; i++)
-      {
-         GetStepHoverRect(i, rect);
-         if(rect.contains(point))
-            return i;
-      }
-      return iMin - 1;
+      
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      if (rectClient.width() == 0)
+         return -1;
+
+      int64_t iMin, iMax;
+
+      iMin = m_scalar.minimum();
+
+      iMax = m_scalar.maximum();
+
+      return iMin + (((point.x - rectClient.left) * (iMax - iMin)) / rectClient.width());
+
    }
+
 
    void step_slider::UpdateHover()
    {

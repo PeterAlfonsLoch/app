@@ -82,9 +82,13 @@ void ifs_file::set_file_data()
 
       strUrl = "http://file.veriwell.net/ifs/xmledit?path=" + System.url().url_encode(m_varFile["url"]);
 
-      string strResponse;
+      property_set setRequest;
 
-      Application.http().put(strResponse, strUrl, m_varFile["xmledit"].cast < ::file::memory_buffer >());
+      setRequest["get_response"] = "";  // touch/create property to get_response
+
+      Application.http().put(strUrl, m_varFile["xmledit"].cast < ::file::memory_buffer >(), setRequest);
+
+      string strResponse(setRequest["get_response"]);
 
       property_set set(get_app());
 

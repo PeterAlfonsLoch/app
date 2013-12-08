@@ -39,10 +39,85 @@ namespace hi5
    *--*/
    twit::twit(sp(base_application) papp) :
       element(papp),
+
+      /* Constants */
+      TWIT_COLON(":"),
+      TWIT_EOS('\0'),
+
+      /* Miscellaneous data used to build twitter URLs*/
+      TWIT_SEARCHQUERYSTRING("?q("),
+      TWIT_SCREENNAME("?screen_name("),
+      TWIT_USERID("?user_id("),
+      TWIT_EXTENSIONFORMAT(".xml"),
+      TWIT_TARGETSCREENNAME("?target_screen_name("),
+      TWIT_TARGETUSERID("?target_id("),
+
+      /* Search URLs */
+      TWIT_SEARCH_URL("http://search.twitter.com/search.atom"),
+
+      /* Status URLs */
+      TWIT_STATUSUPDATE_URL("http://twitter.com/statuses/update.xml"),
+      TWIT_STATUSSHOW_URL("http://twitter.com/statuses/show/"),
+      TWIT_STATUDESTROY_URL("http://twitter.com/statuses/destroy/"),
+
+      /* Timeline URLs */
+      TWIT_PUBLIC_TIMELINE_URL("http://twitter.com/statuses/public_timeline.xml"),
+      TWIT_FEATURED_USERS_URL("http://twitter.com/statuses/featured.xml"),
+      TWIT_FRIENDS_TIMELINE_URL("http://twitter.com/statuses/friends_timeline.xml"),
+      TWIT_MENTIONS_URL("http://twitter.com/statuses/mentions.xml"),
+      TWIT_USERTIMELINE_URL("http://twitter.com/statuses/user_timeline.xml"),
+
+      /* Users URLs */
+      TWIT_SHOWUSERS_URL("http://twitter.com/users/show.xml"),
+      TWIT_SHOWFRIENDS_URL("http://twitter.com/statuses/friends.xml"),
+      TWIT_SHOWFOLLOWERS_URL("http://twitter.com/statuses/followers.xml"),
+
+      /* Direct messages URLs */
+      TWIT_DIRECTMESSAGES_URL("http://twitter.com/direct_messages.xml"),
+      TWIT_DIRECTMESSAGENEW_URL("http://twitter.com/direct_messages/new.xml"),
+      TWIT_DIRECTMESSAGESSENT_URL("http://twitter.com/direct_messages/sent.xml"),
+      TWIT_DIRECTMESSAGEDESTROY_URL("http://twitter.com/direct_messages/destroy/"),
+
+      /* Friendships URLs */
+      TWIT_FRIENDSHIPSCREATE_URL("http://twitter.com/friendships/create.xml"),
+      TWIT_FRIENDSHIPSDESTROY_URL("http://twitter.com/friendships/destroy.xml"),
+      TWIT_FRIENDSHIPSSHOW_URL("http://twitter.com/friendships/show.xml"),
+
+      /* Social graphs URLs */
+      TWIT_FRIENDSIDS_URL("http://twitter.com/friends/ids.xml"),
+      TWIT_FOLLOWERSIDS_URL("http://twitter.com/followers/ids.xml"),
+
+      /* Ac::count URLs */
+      TWIT_ACCOUNTRATELIMIT_URL("http://twitter.com/account/rate_limit_status.xml"),
+
+      /* Favorites URLs */
+      TWIT_FAVORITESGET_URL("http://twitter.com/favorites.xml"),
+      TWIT_FAVORITECREATE_URL("http://twitter.com/favorites/create/"),
+      TWIT_FAVORITEDESTROY_URL("http://twitter.com/favorites/destroy/"),
+
+      /* Block URLs */
+      TWIT_BLOCKSCREATE_URL("http://twitter.com/blocks/create/"),
+      TWIT_BLOCKSDESTROY_URL("http://twitter.com/blocks/destroy/"),
+
+      /* Saved Search URLs */
+      TWIT_SAVEDSEARCHGET_URL("http://twitter.com/saved_searches.xml"),
+      TWIT_SAVEDSEARCHSHOW_URL("http://twitter.com/saved_searches/show/"),
+      TWIT_SAVEDSEARCHCREATE_URL("http://twitter.com/saved_searches/create.xml"),
+      TWIT_SAVEDSEARCHDESTROY_URL("http://twitter.com/saved_searches/destroy/"),
+
+      /* Trends URLs */
+      TWIT_TRENDS_URL("http://api.twitter.com/1/trends.json"),
+      TWIT_TRENDSDAILY_URL("http://api.twitter.com/1/trends/daily.json"),
+      TWIT_TRENDSCURRENT_URL("http://api.twitter.com/1/trends/current.json"),
+      TWIT_TRENDSWEEKLY_URL("http://api.twitter.com/1/trends/weekly.json"),
+      TWIT_TRENDSAVAILABLE_URL("http://api.twitter.com/1/trends/available.json"),
       m_oauth(papp)
    {
+
       m_setHttp["disable_ca2_sessid"] = true;
+
       m_curlLoginParamsSet = false ;
+
    }
 
    /*++
@@ -144,8 +219,8 @@ namespace hi5
       bool retVal = false;
       /* Prepare URL */
       string strUrl( "" );
-      strUrl = Application.TWIT_SEARCH_URL;
-      strUrl.append( Application.TWIT_SEARCHQUERYSTRING );
+      strUrl = TWIT_SEARCH_URL;
+      strUrl.append( TWIT_SEARCHQUERYSTRING );
       strUrl.append( query );
 
       /* Perform GET */
@@ -197,9 +272,9 @@ namespace hi5
       {
          /* Prepare URL */
          string strUrl( "" );
-         strUrl = Application.TWIT_STATUSSHOW_URL;
+         strUrl = TWIT_STATUSSHOW_URL;
          strUrl.append( statusId );
-         strUrl.append( Application.TWIT_EXTENSIONFORMAT );
+         strUrl.append( TWIT_EXTENSIONFORMAT );
 
          /* Perform GET */
          retVal = performGet( strUrl );
@@ -225,9 +300,9 @@ namespace hi5
       {
          /* Prepare URL */
          string strUrl( "" );
-         strUrl = Application.TWIT_STATUDESTROY_URL;
+         strUrl = TWIT_STATUDESTROY_URL;
          strUrl.append( statusId );
-         strUrl.append( Application.TWIT_EXTENSIONFORMAT );
+         strUrl.append( TWIT_EXTENSIONFORMAT );
 
          /* Perform DELETE */
          retVal = performDelete( strUrl );
@@ -252,7 +327,7 @@ namespace hi5
       if( true )
       {
          /* Perform GET */
-         retVal = performGet( Application.TWIT_PUBLIC_TIMELINE_URL );
+         retVal = performGet( TWIT_PUBLIC_TIMELINE_URL );
       }
       return retVal;
    }
@@ -274,7 +349,7 @@ namespace hi5
       if( true )
       {
          /* Perform GET */
-         retVal = performGet( Application.TWIT_FEATURED_USERS_URL );
+         retVal = performGet( TWIT_FEATURED_USERS_URL );
       }
       return retVal;
    }
@@ -296,7 +371,7 @@ namespace hi5
       if( true )
       {
          /* Perform GET */
-         retVal = performGet( Application.TWIT_FRIENDS_TIMELINE_URL );
+         retVal = performGet( TWIT_FRIENDS_TIMELINE_URL );
       }
       return retVal;
    }
@@ -318,7 +393,7 @@ namespace hi5
       if( true )
       {
          /* Perform GET */
-         retVal = performGet( Application.TWIT_MENTIONS_URL );
+         retVal = performGet( TWIT_MENTIONS_URL );
       }
       return retVal;
    }
@@ -342,7 +417,7 @@ namespace hi5
       {
          /* Prepare URL */
          string strUrl( "" );
-         strUrl = build_url(Application.TWIT_USERTIMELINE_URL, userInfo, isUserId );
+         strUrl = build_url(TWIT_USERTIMELINE_URL, userInfo, isUserId );
 
          /* Perform GET */
          retVal = performGet( strUrl );
@@ -369,7 +444,7 @@ namespace hi5
       {
          /* set URL */
          string strUrl( "" );
-         strUrl = build_url(Application.TWIT_SHOWUSERS_URL, userInfo, isUserId );
+         strUrl = build_url(TWIT_SHOWUSERS_URL, userInfo, isUserId );
 
          /* Perform GET */
          retVal = performGet( strUrl );
@@ -396,7 +471,7 @@ namespace hi5
       {
          /* set URL */
          string strUrl( "" );
-         strUrl = build_url(Application.TWIT_SHOWFRIENDS_URL, userInfo, isUserId );
+         strUrl = build_url(TWIT_SHOWFRIENDS_URL, userInfo, isUserId );
 
          /* Perform GET */
          retVal = performGet( strUrl );
@@ -423,7 +498,7 @@ namespace hi5
       {
          /* Prepare URL */
          string strUrl( "" );
-         strUrl = build_url(Application.TWIT_SHOWFOLLOWERS_URL, userInfo, isUserId );
+         strUrl = build_url(TWIT_SHOWFOLLOWERS_URL, userInfo, isUserId );
 
          /* Perform GET */
          retVal = performGet( strUrl );
@@ -448,7 +523,7 @@ namespace hi5
       if( true )
       {
          /* Perform GET */
-         retVal = performGet( Application.TWIT_DIRECTMESSAGES_URL );
+         retVal = performGet( TWIT_DIRECTMESSAGES_URL );
       }
       return retVal;
    }
@@ -477,7 +552,7 @@ namespace hi5
 
          /* Prepare URL */
          string strUrl( "" );
-         strUrl = build_url(Application.TWIT_DIRECTMESSAGENEW_URL, userInfo, isUserId );
+         strUrl = build_url(TWIT_DIRECTMESSAGENEW_URL, userInfo, isUserId );
 
          /* Perform POST */
          retVal = performPost( strUrl, post );
@@ -502,7 +577,7 @@ namespace hi5
       if( true )
       {
          /* Perform GET */
-         retVal = performGet( Application.TWIT_DIRECTMESSAGESSENT_URL );
+         retVal = performGet( TWIT_DIRECTMESSAGESSENT_URL );
       }
       return retVal;
    }
@@ -525,9 +600,9 @@ namespace hi5
       {
          /* Prepare URL */
          string strUrl( "" );
-         strUrl = Application.TWIT_DIRECTMESSAGEDESTROY_URL;
+         strUrl = TWIT_DIRECTMESSAGEDESTROY_URL;
          strUrl.append( dMsgId );
-         strUrl.append( Application.TWIT_EXTENSIONFORMAT );
+         strUrl.append( TWIT_EXTENSIONFORMAT );
 
          /* Perform DELETE */
          retVal = performDelete( strUrl );
@@ -554,7 +629,7 @@ namespace hi5
       {
          /* Prepare URL */
          string strUrl( "" );
-         strUrl = build_url(Application.TWIT_FRIENDSHIPSCREATE_URL, userInfo, isUserId );
+         strUrl = build_url(TWIT_FRIENDSHIPSCREATE_URL, userInfo, isUserId );
 
          /* Send some dummy data in POST */
          property_set post(get_app());
@@ -585,7 +660,7 @@ namespace hi5
       {
          /* Prepare URL */
          string strUrl( "" );
-         strUrl = build_url(Application.TWIT_FRIENDSHIPSDESTROY_URL, userInfo, isUserId );
+         strUrl = build_url(TWIT_FRIENDSHIPSDESTROY_URL, userInfo, isUserId );
 
          /* Perform DELETE */
          retVal = performDelete( strUrl );
@@ -612,17 +687,17 @@ namespace hi5
       {
          /* Prepare URL */
          string strUrl( "" );
-         strUrl = Application.TWIT_FRIENDSHIPSSHOW_URL;
+         strUrl = TWIT_FRIENDSHIPSSHOW_URL;
          if( userInfo.get_length() )
          {
             /* Append username to the URL */
             if( isUserId )
             {
-               strUrl.append( Application.TWIT_TARGETUSERID );
+               strUrl.append( TWIT_TARGETUSERID );
             }
             else
             {
-               strUrl.append( Application.TWIT_TARGETSCREENNAME );
+               strUrl.append( TWIT_TARGETSCREENNAME );
             }
             strUrl.append( userInfo );
          }
@@ -652,7 +727,7 @@ namespace hi5
       {
          /* Prepare URL */
          string strUrl( "" );
-         strUrl = build_url(Application.TWIT_FRIENDSIDS_URL, userInfo, isUserId );
+         strUrl = build_url(TWIT_FRIENDSIDS_URL, userInfo, isUserId );
 
          /* Perform GET */
          retVal = performGet( strUrl );
@@ -679,7 +754,7 @@ namespace hi5
       {
          /* Prepare URL */
          string strUrl( "" );
-         strUrl = build_url(Application.TWIT_FOLLOWERSIDS_URL, userInfo, isUserId );
+         strUrl = build_url(TWIT_FOLLOWERSIDS_URL, userInfo, isUserId );
 
          /* Perform GET */
          retVal = performGet( strUrl );
@@ -704,7 +779,7 @@ namespace hi5
       if( true )
       {
          /* Perform GET */
-         retVal = performGet( Application.TWIT_ACCOUNTRATELIMIT_URL );
+         retVal = performGet( TWIT_ACCOUNTRATELIMIT_URL );
       }
       return retVal;
    }
@@ -726,7 +801,7 @@ namespace hi5
       if( true )
       {
          /* Perform GET */
-         retVal = performGet( Application.TWIT_FAVORITESGET_URL );
+         retVal = performGet( TWIT_FAVORITESGET_URL );
       }
       return retVal;
    }
@@ -749,9 +824,9 @@ namespace hi5
       {
          /* Prepare URL */
          string strUrl( "" );
-         strUrl = Application.TWIT_FAVORITECREATE_URL;
+         strUrl = TWIT_FAVORITECREATE_URL;
          strUrl.append( statusId );
-         strUrl.append( Application.TWIT_EXTENSIONFORMAT );
+         strUrl.append( TWIT_EXTENSIONFORMAT );
 
          /* Send some dummy data in POST */
          property_set post(get_app());
@@ -781,9 +856,9 @@ namespace hi5
       {
          /* Prepare URL */
          string strUrl( "" );
-         strUrl = Application.TWIT_FAVORITEDESTROY_URL;
+         strUrl = TWIT_FAVORITEDESTROY_URL;
          strUrl.append( statusId );
-         strUrl.append( Application.TWIT_EXTENSIONFORMAT );
+         strUrl.append( TWIT_EXTENSIONFORMAT );
 
          /* Perform DELETE */
          retVal = performDelete( strUrl );
@@ -809,9 +884,9 @@ namespace hi5
       {
          /* Prepare URL */
          string strUrl( "" );
-         strUrl = Application.TWIT_BLOCKSCREATE_URL;
+         strUrl = TWIT_BLOCKSCREATE_URL;
          strUrl.append( userInfo );
-         strUrl.append( Application.TWIT_EXTENSIONFORMAT );
+         strUrl.append( TWIT_EXTENSIONFORMAT );
 
          /* Send some dummy data in POST */
          property_set post(get_app());
@@ -841,9 +916,9 @@ namespace hi5
       {
          /* Prepare URL */
          string strUrl( "" );
-         strUrl = Application.TWIT_BLOCKSDESTROY_URL;
+         strUrl = TWIT_BLOCKSDESTROY_URL;
          strUrl.append( userInfo );
-         strUrl.append( Application.TWIT_EXTENSIONFORMAT );
+         strUrl.append( TWIT_EXTENSIONFORMAT );
 
          /* Perform DELETE */
          retVal = performDelete( strUrl );
@@ -868,7 +943,7 @@ namespace hi5
       if( true )
       {
          /* Perform GET */
-         retVal = performGet( Application.TWIT_SAVEDSEARCHGET_URL );
+         retVal = performGet( TWIT_SAVEDSEARCHGET_URL );
       }
       return retVal;
    }
@@ -892,9 +967,9 @@ namespace hi5
       {
          /* Prepare URL */
          string strUrl( "" );
-         strUrl = Application.TWIT_SAVEDSEARCHSHOW_URL;
+         strUrl = TWIT_SAVEDSEARCHSHOW_URL;
          strUrl.append( searchId );
-         strUrl.append( Application.TWIT_EXTENSIONFORMAT );
+         strUrl.append( TWIT_EXTENSIONFORMAT );
 
          /* Perform GET */
          retVal = performGet( strUrl );
@@ -920,7 +995,7 @@ namespace hi5
       {
          /* Prepare URL */
          string strUrl( "" );
-         strUrl = Application.TWIT_SAVEDSEARCHCREATE_URL;
+         strUrl = TWIT_SAVEDSEARCHCREATE_URL;
 
          /* Send some dummy data in POST */
          property_set post(get_app());
@@ -952,9 +1027,9 @@ namespace hi5
       {
          /* Prepare URL */
          string strUrl( "" );
-         strUrl = Application.TWIT_SAVEDSEARCHDESTROY_URL;
+         strUrl = TWIT_SAVEDSEARCHDESTROY_URL;
          strUrl.append( searchId );
-         strUrl.append( Application.TWIT_EXTENSIONFORMAT );
+         strUrl.append( TWIT_EXTENSIONFORMAT );
 
          /* Perform DELETE */
          retVal = performDelete( strUrl );
@@ -980,7 +1055,7 @@ namespace hi5
       if( true )
       {
          /* Perform GET */
-         retVal = performGet( Application.TWIT_TRENDS_URL );
+         retVal = performGet( TWIT_TRENDS_URL );
       }
       return retVal;
    }
@@ -1003,7 +1078,7 @@ namespace hi5
       if( true )
       {
          /* Perform GET */
-         retVal = performGet( Application.TWIT_TRENDSDAILY_URL );
+         retVal = performGet( TWIT_TRENDSDAILY_URL );
       }
       return retVal;
    }
@@ -1025,7 +1100,7 @@ namespace hi5
       if( true )
       {
          /* Perform GET */
-         retVal = performGet( Application.TWIT_TRENDSWEEKLY_URL );
+         retVal = performGet( TWIT_TRENDSWEEKLY_URL );
       }
       return retVal;
    }
@@ -1047,7 +1122,7 @@ namespace hi5
       if( true )
       {
          /* Perform GET */
-         retVal = performGet( Application.TWIT_TRENDSCURRENT_URL );
+         retVal = performGet( TWIT_TRENDSCURRENT_URL );
       }
       return retVal;
    }
@@ -1069,7 +1144,7 @@ namespace hi5
       if( true )
       {
          /* Perform GET */
-         retVal = performGet( Application.TWIT_TRENDSAVAILABLE_URL );
+         retVal = performGet( TWIT_TRENDSAVAILABLE_URL );
       }
       return retVal;
    }
@@ -1109,14 +1184,18 @@ namespace hi5
    *--*/
    void twit::prepareCurlUserPass()
    {
+      
       if( !m_curlLoginParamsSet )
       {
+
          /* set username and password */
-         m_setHttp["basic_authentication"] = prepare_basic_authentication(get_app(), getTwitterUsername(), getTwitterPassword());
+         m_setHttp["basic_authentication"] = prepare_basic_authentication(getTwitterUsername(), getTwitterPassword());
 
          /* set the flag to true indicating that twitter credentials are set in cURL */
          m_curlLoginParamsSet = true;
+
       }
+
    }
 
    /*++
@@ -1157,15 +1236,17 @@ namespace hi5
    *--*/
    bool twit::performGet( const string & getUrl )
    {
-      property_set headers;
-      property_set post;
+      
       property_set set(get_app());
 
       /* set OAuth header */
-      m_oauth.getOAuthHeader(eOAuthHttpGet, getUrl, set, headers);
+      m_oauth.getOAuthHeader(eOAuthHttpGet, getUrl, set);
+
+      set.merge(m_setHttp);
 
       /* Send http request */
-      return Application.http().get(getUrl, m_strResponse, post, headers, m_setHttp);
+      return Application.http().get(getUrl, m_strResponse, set);
+
    }
 
 
@@ -1184,11 +1265,15 @@ namespace hi5
    *--*/
    bool twit::performGet( const string & getUrl, property_set & headers)
    {
+
       string dataStrDummy( "" );
-      property_set post;
+
+      property_set set(m_setHttp);
+
+      set["headers"] = headers;
 
       /* Send http request */
-      return Application.http().get(getUrl, m_strResponse, post, headers, m_setHttp);
+      return Application.http().get(getUrl, m_strResponse, set);
 
    }
 
@@ -1197,13 +1282,16 @@ namespace hi5
 
       string dataStrDummy( "" );
 
-      property_set set;
-      set = m_setHttp;
+      property_set set(m_setHttp);
 
-      set["http_request"] = "POST";
+      set["headers"] = headers;
+
+      set["post"] = post;
+
+      set["http_method"] = "POST";
 
       /* Send http request */
-      return Application.http().get(getUrl, m_strResponse, post, headers, set);
+      return Application.http().get(getUrl, m_strResponse, set);
 
    }
 
@@ -1222,15 +1310,19 @@ namespace hi5
    *--*/
    bool twit::performDelete( const string & deleteUrl )
    {
-      property_set headers;
-      property_set post;
+
       property_set set(get_app());
 
       /* set OAuth header */
-      m_oauth.getOAuthHeader( eOAuthHttpDelete, deleteUrl, set, headers);
+      m_oauth.getOAuthHeader(eOAuthHttpDelete, deleteUrl, set);
+
+      set.merge(m_setHttp);
+
+      set["http_method"] = "DELETE";
 
       /* Send http request */
-      return Application.http().request("DELETE", deleteUrl, m_strResponse, post, headers, m_setHttp);
+      return Application.http().get(deleteUrl, m_strResponse, set);
+
    }
 
    /*++
@@ -1247,14 +1339,22 @@ namespace hi5
    * @remarks: internal method
    *
    *--*/
-   bool twit::performPost( const string & postUrl, property_set & post )
+   bool twit::performPost( const string & postUrl, property_set & post)
    {
-      property_set headers(get_app());
+
+      property_set set(get_app());
+
+      set["post"] = post;
 
       /* set OAuth header */
-      m_oauth.getOAuthHeader( eOAuthHttpPost, postUrl, post, headers );
+      m_oauth.getOAuthHeader( eOAuthHttpPost, postUrl, set);
 
-      return Application.http().get(postUrl, m_strResponse, post, headers, m_setHttp);
+      set.merge(m_setHttp);
+
+      set["http_method"] = "POST";
+
+      return Application.http().get(postUrl, m_strResponse, set);
+
    }
 
    /*++
@@ -1272,10 +1372,10 @@ namespace hi5
    * @remarks: internal method
    *
    *--*/
-   string prepare_basic_authentication(sp(base_application) papp, const char * inParam1, const char * inParam2 )
+   string twit::prepare_basic_authentication(const char * inParam1, const char * inParam2)
    {
       string outStr = inParam1;
-      outStr += App(papp).TWIT_COLON;
+      outStr += TWIT_COLON;
       outStr += inParam2;
       return outStr;
    }
@@ -1305,11 +1405,11 @@ namespace hi5
          /* Append username to the URL */
          if( isUserId )
          {
-            outUrl +=  Application.TWIT_USERID ;
+            outUrl +=  TWIT_USERID ;
          }
          else
          {
-            outUrl +=  Application.TWIT_SCREENNAME ;
+            outUrl +=  TWIT_SCREENNAME ;
          }
          outUrl +=  userInfo ;
       }
@@ -1352,16 +1452,14 @@ namespace hi5
       if( true )
       {
          /* Get OAuth header for request token */
-         property_set headers;
-         property_set post;
          property_set set(get_app());
          int64_t iTime = ::time(NULL);
-         if( m_oauth.getOAuthHeader( eOAuthHttpPost,"https://twitter.com/oauth/request_token", set, headers ) )
+         if (m_oauth.getOAuthHeader(eOAuthHttpPost, "https://twitter.com/oauth/request_token", set))
          {
-            if( performPost( "https://twitter.com/oauth/request_token", headers, post ) )
+            if (performPost("https://twitter.com/oauth/request_token", set))
             {
-               string strAuth = headers["Authorization"];
-               string strDate = headers["date"];
+               string strAuth = set["get_headers"]["Authorization"];
+               string strDate = set["get_headers"]["date"];
                ::datetime::time time(iTime);
                string strDateHere = System.datetime().international().get_gmt_date_time(time);
                /* Tell OAuth object to save access token and secret from web response */
@@ -1372,7 +1470,7 @@ namespace hi5
                m_oauth.getOAuthTokenKey( oAuthTokenKey );
 
                /* Build authorize url so that user can visit in browser and get PIN */
-               authorizeUrl = Application.OAUTHLIB_TWITTER_AUTHORIZE_URL;
+               authorizeUrl = m_oauth.OAUTHLIB_TWITTER_AUTHORIZE_URL;
                authorizeUrl += oAuthTokenKey;
 
                retVal = true;
@@ -1399,11 +1497,10 @@ namespace hi5
       if( true )
       {
          /* Get OAuth header for access token */
-         property_set headers;
          property_set set(get_app());
-         if( m_oauth.getOAuthHeader( eOAuthHttpGet, Application.OAUTHLIB_TWITTER_ACCESS_TOKEN_URL, set, headers, true ) )
+         if(m_oauth.getOAuthHeader( eOAuthHttpGet, m_oauth.OAUTHLIB_TWITTER_ACCESS_TOKEN_URL, set, true))
          {
-            if( performGet( Application.OAUTHLIB_TWITTER_ACCESS_TOKEN_URL, headers ) )
+            if (performGet(m_oauth.OAUTHLIB_TWITTER_ACCESS_TOKEN_URL, set))
             {
                /* Tell OAuth object to save access token and secret from web response */
                string twitterResp( "" );

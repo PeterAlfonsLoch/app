@@ -187,21 +187,21 @@ namespace install
       /*g_hmutexInstall = ::CreateMutex(NULL, FALSE, "Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
       if(::GetLastError() == ERROR_ALREADY_EXISTS)
       {
-      trace("another instance of spa is already running");
+      System.install().trace().rich_trace("another instance of spa is already running");
 //      exit(-202);
       return -202;
       }*/
       /* }
       else
       {
-      trace("error when trying to analyze if another instance of spa is already running");
+      System.install().trace().rich_trace("error when trying to analyze if another instance of spa is already running");
 //      exit(-200);
       return -200;
       }
       }
       else
       {
-      trace("error when trying to analyze if another instance of spa is already running");
+      System.install().trace().rich_trace("error when trying to analyze if another instance of spa is already running");
 //      exit(-201);
       return -201;
       }*/
@@ -260,10 +260,10 @@ RetryHost:
          if(iRet < 0)
             return iRet;
          m_strCurrentHost = strSpaHost;
-         trace(("got server: " + strSpaHost));
+         System.install().trace().rich_trace(("got server: " + strSpaHost));
          m_strInstall = "http://" + strSpaHost + "/stage/";
          m_strInstallGz = m_strInstall;
-         trace(strSpaHost);
+         System.install().trace().rich_trace(strSpaHost);
 
          dir::mk("C:\\ca");
          dir::mk("C:\\core\\time");
@@ -368,7 +368,7 @@ RetryHost:
          ::xml::node * lpnodeVersion = nodeInstall.get_child("stage");
 #endif
 
-         trace("***Downloading file list.");
+         System.install().trace().rich_trace("***Downloading file list.");
 
          string strBuild(m_strBuild);
          strBuild.replace(" ", "_");
@@ -376,8 +376,8 @@ RetryHost:
          string strIndexPath;
          if(!ca2_fy_url(strIndexPath, ("app/stage/metastage/index-"+strBuild+".spa.bz"), false, -1, NULL, -1, true))
          {
-            trace("Failed to download file list!");
-            trace("Going to retry host...");
+            System.install().trace().rich_trace("Failed to download file list!");
+            System.install().trace().rich_trace("Going to retry host...");
             Sleep(184);
             goto RetryHost;
          }
@@ -386,8 +386,8 @@ RetryHost:
          if(strCgclIndexMd5.length() != 32
             || stricmp_dup(get_file_md5(strIndexPath), strCgclIndexMd5) != 0)
          {
-            trace("Invalid file list!");
-            trace("Going to retry host...");
+            System.install().trace().rich_trace("Invalid file list!");
+            System.install().trace().rich_trace("Going to retry host...");
             Sleep(184);
             goto RetryHost;
          }
@@ -402,8 +402,8 @@ RetryHost:
 
          if(!GetFileList(straFileList, ("app/stage/metastage/" + m_strApplicationId + ".spa"), mapLen, mapGzLen, mapMd5, mapFlag))
          {
-            trace("Failed to download file list!");
-            trace("Going to retry host...");
+            System.install().trace().rich_trace("Failed to download file list!");
+            System.install().trace().rich_trace("Going to retry host...");
             Sleep(584);
             goto RetryHost;
          }
@@ -462,12 +462,11 @@ RetryHost:
 
             straPath.add_tokens(m_strAppMatterList, "\n");
 
-            trace("***appmatter");
+            System.install().trace().rich_trace("***appmatter");
 
             for(int32_t i = 0; i < straPath.get_count(); i++)
             {
-               const char * psz = straPath[i];
-               ::trace(psz);
+               System.install().trace().rich_trace(straPath[i]);
             }
 
             GetFileListEx(straFileList, straPath, mapLen, mapGzLen, mapMd5, mapFlag);
@@ -685,7 +684,7 @@ RetryHost:
 #endif
 
          new_progress_end(0.49);
-         trace("***Downloading files.");
+         System.install().trace().rich_trace("***Downloading files.");
          if(m_bInternetInstall)
          {
             download_file_list(straFileList, mapLen, mapMd5, mapGzLen, mapFlag);
@@ -710,20 +709,20 @@ RetryHost:
          {
             if(iRetry == 0)
             {
-               trace("Enabling applications to run.");
+               System.install().trace().rich_trace("Enabling applications to run.");
             }
             iRetry++;
             Sleep(184);
             if((iRetry % 33) == 0)
             {
-               trace(".");
+               System.install().trace().rich_trace(".");
             }
             else
             {
-               trace_add(".");
+               System.install().trace().trace_add(".");
             }
          }
-         trace("***executing app-install.exe.");
+         System.install().trace().rich_trace("***executing app-install.exe.");
 
          if(m_NeedRestartBecauseOfReservedFile
             || m_NeedRestartFatalError)
@@ -740,7 +739,7 @@ RetryHost:
          {
             if(!ignit_phase2())
             {
-               trace("***Going to ebing!!");
+               System.install().trace().rich_trace("***Going to ebing!!");
                Sleep(1984);
                goto install_begin;
             }
@@ -771,7 +770,7 @@ RetryHost:
          dProgress = 1.0;
 
       dProgress = m_dProgressStart + (m_dProgressEnd - m_dProgressStart) * dProgress;
-      trace_progress(dProgress);
+      System.install().trace().trace_progress(dProgress);
    }
 
 
@@ -886,7 +885,7 @@ RetryHost:
 
          bDownload = true;
 
-         trace(str::replace("\\", "/", file_title_dup((str2 + str))));
+         System.install().trace().rich_trace(str::replace("\\", "/", file_title_dup((str2 + str))));
 
          strStageInplace = ca2bz_get_dir(strCurrent) + strStageInplaceFile;
 
@@ -998,7 +997,7 @@ RetryHost:
 
          strStageInplace = ca2inplace_get_dir(strCurrent) + ca2inplace_get_file(strCurrent);
 
-         trace(str::replace(file_title_dup((str2 + str)), "\\", "/"));
+         System.install().trace().rich_trace(str::replace(file_title_dup((str2 + str)), "\\", "/"));
 
          if(file_exists_dup(strStageInplace)
          && (iLen != -1) && file_length_dup(strStageInplace) == iLen
@@ -1038,7 +1037,7 @@ RetryHost:
          else
          {
 
-            trace_add(" ok");
+            System.install().trace().trace_add(" ok");
 
          }
 
@@ -1254,7 +1253,7 @@ RetryHost:
                if(pszMd5 != NULL && strlen_dup(pszMd5) > 0 && stricmp_dup(get_file_md5(inplace), pszMd5) == 0)
                {
 
-                  trace_add(unitext(" up-to-date c"));
+                  System.install().trace().trace_add(unitext(" up-to-date c"));
 
                   iFlag |= SPA_FILE_FLAG_VOID_COPY;
 
@@ -1329,7 +1328,7 @@ RetryHost:
 
                bPossible = true;
 
-               ///trace_add(" patching may be possible");
+               ///System.install().trace().trace_add(" patching may be possible");
 
             }
             if(bOk)
@@ -1341,14 +1340,14 @@ RetryHost:
                   iResult = bspatch(inplace, (dir3 + file2), strBsPatch);
                   if(iResult != 0)
                   {
-                     //   trace("");
-                     // trace("Patch failed : files may be corrupted):");
-                     /*                  trace("old   file : ");
-                     trace_add((dir2 + file2));
-                     trace("new   file :");
-                     trace_add((dir3 + file2));
-                     trace("patch file :");
-                     trace_add(strBsPatch);*/
+                     //   System.install().trace().rich_trace("");
+                     // System.install().trace().rich_trace("Patch failed : files may be corrupted):");
+                     /*                  System.install().trace().rich_trace("old   file : ");
+                     System.install().trace().trace_add((dir2 + file2));
+                     System.install().trace().rich_trace("new   file :");
+                     System.install().trace().trace_add((dir3 + file2));
+                     System.install().trace().rich_trace("patch file :");
+                     System.install().trace().trace_add(strBsPatch);*/
                      bOk = false;
                      break;
                   }
@@ -1358,24 +1357,24 @@ RetryHost:
             {
                if(iLength == -1)
                {
-                  //  trace("Patch Length Check : There is no length information to check.");
+                  //  System.install().trace().rich_trace("Patch Length Check : There is no length information to check.");
                }
                else
                {
                   uint64_t iActualLength = file_length_dup((dir3 + file2));
                   bOk = iLength == iActualLength;
-                  //trace("Patch Length Verification : ");
+                  //System.install().trace().rich_trace("Patch Length Verification : ");
                   /*sprintf(sz, "correct length : %d bytes", iLength);
-                  trace(sz);
+                  System.install().trace().rich_trace(sz);
                   sprintf(sz, "actual  length : %d bytes", iActualLength);
-                  trace(sz);*/
+                  System.install().trace().rich_trace(sz);*/
                   if(bOk)
                   {
-                     //   trace_add("Length match!");
+                     //   System.install().trace().trace_add("Length match!");
                   }
                   else
                   {
-                     // trace_add(unitext("Length mismatch ¡X!"));
+                     // System.install().trace().trace_add(unitext("Length mismatch ¡X!"));
                   }
                }
             }
@@ -1383,25 +1382,25 @@ RetryHost:
             {
                if(pszMd5 == NULL || strlen_dup(pszMd5) == 0)
                {
-                  //trace("Patch MD5 Hash Verification : there is no MD5 Hash information to verify.");
+                  //System.install().trace().rich_trace("Patch MD5 Hash Verification : there is no MD5 Hash information to verify.");
                }
                else
                {
                   string strMd5;
                   strMd5 = get_file_md5((dir3 + file2));
                   bOk = stricmp_dup(strMd5, pszMd5) == 0;
-                  //trace("Patch MD5 Hash Verification");
+                  //System.install().trace().rich_trace("Patch MD5 Hash Verification");
                   /*sprintf(sz, "correct MD5 Hash : %s", pszMd5);
-                  trace(sz);
+                  System.install().trace().rich_trace(sz);
                   sprintf(sz, "actual  MD5 Hash : %str", strMd5);
-                  trace(sz);*/
+                  System.install().trace().rich_trace(sz);*/
                   if(bOk)
                   {
-                     // trace_add("MD5 Hash match!");
+                     // System.install().trace().trace_add("MD5 Hash match!");
                   }
                   else
                   {
-                     //trace_add(unitext("MD5 Hash mismatch ¡X!"));
+                     //System.install().trace().trace_add(unitext("MD5 Hash mismatch ¡X!"));
                   }
                }
             }
@@ -1409,7 +1408,7 @@ RetryHost:
             {
                if(!file_copy_dup(inplace, dir3 + file2))
                {
-                  trace("Failed to copy patched file: Need Restart Because Of Reserved File");
+                  System.install().trace().rich_trace("Failed to copy patched file: Need Restart Because Of Reserved File");
                   m_NeedRestartBecauseOfReservedFile = true;
                }
                iBsLen = file_length_dup(strBsPatch);
@@ -1417,11 +1416,11 @@ RetryHost:
             }
             iRetry++;
             //sprintf(sz, "An error ocurred. Retrying... Attempt %d of %d.", iRetry, iMaxRetry);
-            //trace(sz);
-            //trace("Patch may fail due timeout if the patched file is large and it is the first");
-            //trace("time the patch is requested for the older-newer-pair patch combination.");
-            //trace("Other users later requesting the same older-newer-pair patch combination will");
-            //trace("benefit from the cached patch.");
+            //System.install().trace().rich_trace(sz);
+            //System.install().trace().rich_trace("Patch may fail due timeout if the patched file is large and it is the first");
+            //System.install().trace().rich_trace("time the patch is requested for the older-newer-pair patch combination.");
+            //System.install().trace().rich_trace("Other users later requesting the same older-newer-pair patch combination will");
+            //System.install().trace().rich_trace("benefit from the cached patch.");
             Sleep((1984 + 1977) * 5);
             if(iRetry >= iMaxRetry)
                break;
@@ -1431,21 +1430,21 @@ RetryHost:
             if(iRetry > 0)
             {
                // sprintf(sz, unitext("Patch succeeded with %d retries %0.2fkbytes compressed ✓"), (iBsLen / 1000.0), iRetry);
-               trace_add(unitext(" c"));
+               System.install().trace().trace_add(unitext(" c"));
             }
             else
             {
-               // this trace is added and signalized like that because it
+               // this System.install().rich_trace is added and signalized like that because it
                // should be one of the most common cases and one of the most
                // normal cases.
                //sprintf(sz, unitext(" patched %0.2fkbytes compressed ✓"), (iBsLen / 1000.0));
-               //trace_add(sz);
-               trace_add(unitext(" c"));
+               //System.install().trace().trace_add(sz);
+               System.install().trace().trace_add(unitext(" c"));
             }
          }
          else
          {
-            //trace(unitext("Patch failed ¡X!"));
+            //System.install().trace().rich_trace(unitext("Patch failed ¡X!"));
          }
       }
       // then finally try to download the entire file
@@ -1457,9 +1456,9 @@ RetryHost:
          keep_true keepDownloadTrue(m_bMsDownload);
          if(iRetry > 0)
          {
-            //trace(("Going to download " + file_title_dup(file2) + " entirely"));
+            //System.install().trace().rich_trace(("Going to download " + file_title_dup(file2) + " entirely"));
          }
-         trace(file2);
+         System.install().trace().rich_trace(file2);
          iRetry = 0;
          while(true)
          {
@@ -1495,24 +1494,24 @@ RetryHost:
             }
             iRetry++;
             //sprintf(sz, "An error ocurred. Retrying... Attempt %d of %d.", iRetry, iMaxRetry);
-            //trace(sz);
+            //System.install().trace().rich_trace(sz);
             if(iRetry >= iMaxRetry)
                break;
          }
          if(bOk)
          {
             sprintf(sz, unitext("%0.2fkbytes compressed c"), (iGzLen / 1000.0));
-            trace(sz);
+            System.install().trace().rich_trace(sz);
          }
          else
          {
-            //trace((unitext("Failed to download file ") + file2 + unitext("¡X!")));
+            //System.install().trace().rich_trace((unitext("Failed to download file ") + file2 + unitext("¡X!")));
          }
       }
       if(!bOk)
       {
          //sprintf(sz, unitext("General failure to retrieve file \"%s\" ¡X!"), file2);
-         //trace(sz);
+         //System.install().trace().rich_trace(sz);
       }
       return bOk;
    }
@@ -1962,7 +1961,7 @@ RetryHost:
       {
          return -1;
       }
-      trace(str::replace("\\", "/", strUrl));
+      System.install().trace().rich_trace(str::replace("\\", "/", strUrl));
       char buf[2048];
       int32_t iCount = 0;
       int32_t iCurrent;
@@ -2012,7 +2011,7 @@ RetryHost:
    {
 
       string strUrl(lpcszUrl);
-      trace(strUrl);
+      System.install().trace().rich_trace(strUrl);
       //MainWindowRedraw();
       if(strUrl.substr(strUrl.size() - 4, 4) != ".spa")
       {
@@ -2081,7 +2080,7 @@ RetryHost:
          //m_dProgress2 = d / ((double) stringa.size());
          str = stringa[i];
          str += ".bz";
-         trace(str);
+         System.install().trace().rich_trace(str);
          strStageGz = dir::path(m_strInstallGz, ca2bz_get_file(str, strmapMd5[stringa[i]]));
          strStage = ca2_get_dir(str) + ca2_get_file(str);
          dir::mk(dir::name(strStage));
@@ -2117,7 +2116,7 @@ RetryHost:
          //d += 1.0;
          //m_dProgress2 = d / ((double) stringa.size());
          str += ".bz";
-         trace(str);
+         System.install().trace().rich_trace(str);
          strStageUnbz = ca2unbz_get_dir(str) + ca2unbz_get_file(str);
          strStage = ca2_get_dir(str) + ca2_get_file(str);
          if(strStage.length() > strlen_dup(".expand_fileset") && stricmp_dup(strStage.substr(strStage.length() - strlen_dup(".expand_fileset"), strlen_dup(".expand_fileset")), ".expand_fileset") == 0)
@@ -2418,7 +2417,7 @@ RetryHost:
       }
       //set_progress(0.5);
       //      uint32_t dwStartError;
-      trace("starting app-install.exe...");
+      System.install().trace().rich_trace("starting app-install.exe...");
 
 
       string strCommandLine = m_strCommandLine;
@@ -2435,11 +2434,11 @@ RetryHost:
       /*if(m_strStart != "_set_windesk" && is_installed("application", "_set_windesk"))
       {
       //uint32_t dwStartError2;
-      trace("starting windeskPackage...");
+      System.install().trace().rich_trace("starting windeskPackage...");
       int32_t i2 = run_ca2_application_installer("_set_windesk");
-      trace("started windeskPackage");
+      System.install().trace().rich_trace("started windeskPackage");
       }*/
-      trace(".");
+      System.install().trace().rich_trace(".");
       //set_progress(0.9);
       string strPlatform = System.install().get_platform();
       if(i == 0)
@@ -2500,23 +2499,23 @@ RetryHost:
       else
       {
          //uint32_t dwError = dwStartError;
-         trace("");
-         trace("");
-         trace("");
-         trace("");
-         trace("");
-         trace("Failed to install");
-         trace("Manually contact mailto:support.veriwell@ca2mail.com");
-         trace("or Manually go to http://ca2os.com/");
-         trace("");
-         trace("In ca2os.com you can try to");
-         trace("download the most recent release version for installation");
-         trace("(Automatic links not availabe by now)");
-         trace("");
-         trace("");
-         trace("");
-         trace("");
-         trace("");
+         System.install().trace().rich_trace("");
+         System.install().trace().rich_trace("");
+         System.install().trace().rich_trace("");
+         System.install().trace().rich_trace("");
+         System.install().trace().rich_trace("");
+         System.install().trace().rich_trace("Failed to install");
+         System.install().trace().rich_trace("Manually contact mailto:support.veriwell@ca2mail.com");
+         System.install().trace().rich_trace("or Manually go to http://ca2os.com/");
+         System.install().trace().rich_trace("");
+         System.install().trace().rich_trace("In ca2os.com you can try to");
+         System.install().trace().rich_trace("download the most recent release version for installation");
+         System.install().trace().rich_trace("(Automatic links not availabe by now)");
+         System.install().trace().rich_trace("");
+         System.install().trace().rich_trace("");
+         System.install().trace().rich_trace("");
+         System.install().trace().rich_trace("");
+         System.install().trace().rich_trace("");
          return false;
       }
    }
@@ -2674,7 +2673,7 @@ RetryHost:
    int32_t installer::application_name()
    {
       string strUrl;
-      trace(("get application name from server http://spaignition.api.server.ca2.cc/ using application id \"" + m_strApplicationId + "\" "));
+      System.install().trace().rich_trace(("get application name from server http://spaignition.api.server.ca2.cc/ using application id \"" + m_strApplicationId + "\" "));
       strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
       strUrl += m_strApplicationId;
       strUrl += "&key=name";
@@ -2690,11 +2689,11 @@ RetryHost:
             iRetry++;
          else
          {
-            trace("main server seems to be unavailable. could not get application name");
+            System.install().trace().rich_trace("main server seems to be unavailable. could not get application name");
 /////////            exit(-1);
             return -1;
          }
-         trace_add(".");
+         System.install().trace().trace_add(".");
          Sleep(184);
       }
 
@@ -2715,11 +2714,11 @@ RetryHost:
       strName = strName + " " + m_strBuild;
       strName = strName + " \"" + get_command_line_param(m_strCommandLine, "locale");
       strName = strName + "\" \"" + get_command_line_param(m_strCommandLine, "schema") + "\"";
-      trace((":::::" + strName));
+      System.install().trace().rich_trace((":::::" + strName));
 
       m_strTitle = strName;
 
-      trace(("***" + strName));
+      System.install().trace().rich_trace(("***" + strName));
       return 0;
    }
 
@@ -2728,9 +2727,9 @@ RetryHost:
 
       string strUrl;
 
-      trace(("get appmatter list for application with id : \"" + m_strApplicationId + "\" "));
-      trace(("locale : \"" + m_strInstallLocale + "\" "));
-      trace(("schema : \"" + m_strInstallSchema + "\" "));
+      System.install().trace().rich_trace(("get appmatter list for application with id : \"" + m_strApplicationId + "\" "));
+      System.install().trace().rich_trace(("locale : \"" + m_strInstallLocale + "\" "));
+      System.install().trace().rich_trace(("schema : \"" + m_strInstallSchema + "\" "));
 
       strUrl = m_strSpaIgnitionBaseUrl + "/appmatter_spa_list?app=";
       strUrl += m_strApplicationId;
@@ -2750,17 +2749,17 @@ RetryHost:
             iRetry++;
          else
          {
-            trace("main server seems to be unavailable. could not get appmatter list");
+            System.install().trace().rich_trace("main server seems to be unavailable. could not get appmatter list");
 //            exit(-1);
             return -1;
          }
-         trace_add(".");
+         System.install().trace().trace_add(".");
          Sleep(184);
       }
 
       m_strAppMatterList = str;
 
-      trace("got appmatter list");
+      System.install().trace().rich_trace("got appmatter list");
 
       return 0;
 
@@ -2772,21 +2771,29 @@ RetryHost:
 RetryBuildNumber:
       if(m_strBuildResource.length() == 19) // heuristically valid
       {
-         trace("***Internal build number");
+         System.install().trace().rich_trace("***Internal build number");
          m_strBuild = m_strBuildResource;
       }
       else
       {
-         trace("***Getting build number");
+         System.install().trace().rich_trace("***Getting build number");
          if(iRetry > 10)
          {
-            trace("could not get build number. exiting");
+            System.install().trace().rich_trace("could not get build number. exiting");
 //            exit(-1);
             return -1;
          }
          iRetry++;
 //         m_strBuild = Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build", false, &::ms_get_callback, (void *) this);
-         m_strBuild = Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build&sessid=noauth");
+
+         ::property_set post;
+         ::property_set headers;
+         ::property_set set;
+
+         set["int_scalar_source_listener"] = this;
+
+
+         Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build&sessid=noauth", m_strBuild, set);
          m_strBuild.trim();
          if(m_strBuild.length() != 19)
          {
@@ -2794,7 +2801,7 @@ RetryBuildNumber:
             goto RetryBuildNumber;
          }
       }
-      trace(m_strBuild);
+      System.install().trace().rich_trace(m_strBuild);
       return 0;
    }
 
@@ -2808,7 +2815,7 @@ RetryHost:
       }
       else if(iHostRetry > 0)
       {
-         trace("Retrying to guess host...");
+         System.install().trace().rich_trace("Retrying to guess host...");
       }
       iHostRetry = 1;
       if(m_strLastHost.is_empty())
@@ -2832,9 +2839,9 @@ RetryHost:
          strUrl += "&last_host=" + m_strLastHost;
       }
       strUrl += "&sessid=noauth";
-      trace("***Guessing fastest mirror");
+      System.install().trace().rich_trace("***Guessing fastest mirror");
       int32_t iGuessRetry = 0;
-      trace(".");
+      System.install().trace().rich_trace(".");
       while(iGuessRetry < 30)
       {
          strSpaHost = Application.http().get(strUrl);
@@ -2842,7 +2849,7 @@ RetryHost:
          {
             if(m_strLastHost.is_empty())
             {
-               trace_add(".");
+               System.install().trace().trace_add(".");
                Sleep(184);
                iGuessRetry++;
             }
@@ -3016,9 +3023,10 @@ RetryHost:
 
    int32_t installer::spaadmin_main(const char * pszCommandLine)
    {
+
       ::srand(::get_tick_count());
 
-      ensure_trace_file();
+      System.install().trace().ensure_trace_file();
 
       if(!m_machineevent.initialize())
       {
@@ -3210,15 +3218,15 @@ RetryHost:
          string strMessage;
          strMessage = psz;
          strMessage += "app.exe is still opened!";
-         trace(strMessage);
-         trace("You may finalize the process by:");
-         trace("   1. Pressing CTRL+ALT+DEL;");
-         trace("   2. Opening Task Manager, and;");
+         System.install().trace().rich_trace(strMessage);
+         System.install().trace().rich_trace("You may finalize the process by:");
+         System.install().trace().rich_trace("   1. Pressing CTRL+ALT+DEL;");
+         System.install().trace().rich_trace("   2. Opening Task Manager, and;");
          strMessage = "   4. Closing the process ";
          strMessage += psz;
          strMessage += "app.exe.";
-         trace(strMessage);
-         trace(".");
+         System.install().trace().rich_trace(strMessage);
+         System.install().trace().rich_trace(".");
       }
       return bOpened;
       /*      }
@@ -3585,6 +3593,120 @@ RetryHost:
       return spaadmin_main(pszCommandLine);
 
    }
+
+
+   void installer::on_http_complete(::sockets::http_socket * psocket, ::http::e_status estatus)
+   {
+
+      if (estatus != ::http::status_ok)
+      {
+         
+         m_straHttpFailure.add(psocket->m_strUrl);
+
+         System.install().trace().rich_trace("Failure downloading : " + psocket->m_strUrl);
+
+      }
+
+   }
+
+   void installer::on_set_value(int_scalar_source * psource, e_scalar escalar, int64_t iValue)
+   {
+
+      if (escalar == scalar_download_size)
+      {
+
+         dlr(m_iGzLen + iValue);
+         set_progress((double)(m_iGzLen + iValue) / (double)m_iProgressTotalGzLen);
+
+      }
+
+   }
+
+   /*
+   void installer::ms_download_callback(int32_t i, uint_ptr dwLen)
+   {
+      bool bProgress = true;
+      if (i == -1)
+      {
+         m_dwDownloadLen = 0;
+
+         if (bProgress)
+         {
+            //System.install().trace().rich_trace("...");
+         }
+
+      }
+      else if (i == 0)
+      {
+         m_dwDownloadCallbackLast100k = 0;
+         m_iDownloadCallbackColumn = 0;
+      }
+      else if (i == 1)
+      {
+         m_dwDownloadLen = dwLen;
+         /*if(bProgress)
+         {
+         for(int32_t i = 0; i < ((dwLen - m_dwDownloadCallbackLast100k) / (100 * 1024)); i++)
+         {
+         if(m_iDownloadCallbackColumn >= 84)
+         {
+         System.install().trace().rich_trace(".");
+         m_iDownloadCallbackColumn = 1;
+         }
+         else
+         {
+         m_iDownloadCallbackColumn++;
+         System.install().trace().trace_add(".");
+         }
+         }
+         }
+         m_dwDownloadCallbackLast100k += ((dwLen - m_dwDownloadCallbackLast100k) / (100 * 1024) )*(100 / 1024);*/
+   /*      if (m_iProgressTotalGzLen > 0)
+         {
+            dlr(m_iGzLen + dwLen);
+            set_progress((double)(m_iGzLen + dwLen) / (double)m_iProgressTotalGzLen);
+         }
+      }
+      else if (i == 2)
+      {
+         while (bProgress && m_iDownloadCallbackColumn < 84)
+         {
+            //System.install().trace().trace_add(".");
+            m_iDownloadCallbackColumn++;
+         }
+
+      }
+   }
+   */
+
+//   void installer::ms_get_callback(int32_t i, uint_ptr dwLen)
+//   {
+//      //      bool bProgress = true;
+//      if (i == -3)
+//      {
+//         //       uint32_t dwBufferLen = 1024 + 256;
+//         //         simple_http_status * pstatus = (simple_http_status *) reinterpret_cast < void * > (dwLen);
+//         //       System.install().trace().rich_trace("Application.http().get failed : status : " + itoa_dup(pstatus->m_dwStatusCode) + " - " + pstatus->m_pszStatus);
+//      }
+//      else if (i == -2)
+//      {
+//         System.install().trace().rich_trace("Application.http().get failed");
+//#ifdef WINDOWS
+//         uint32_t dw = ::GetLastError();
+//         wchar_t lastErrorTxt[1024];
+//         memset_dup(lastErrorTxt, 0, sizeof(lastErrorTxt));
+//         FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, dw, 0, lastErrorTxt, 1024, NULL);
+//         System.install().trace().rich_trace().print_ln(string(lastErrorTxt));
+//         System.install().trace().rich_trace().print_ln("Application.http().get failed : GetLastErrorCode : " + itoa_dup(dw));
+//#endif
+//      }
+//      else
+//      {
+//         ms_download_callback(i, dwLen);
+//      }
+//   }
+//
+//
 
 
 } // namespace install

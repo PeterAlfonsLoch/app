@@ -30,6 +30,9 @@ public:
    virtual bool is_session();
 
 
+   
+   ::core::copydesk & copydesk();
+
    virtual sp(::base_application) start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext);
 
    virtual ::visual::cursor * get_cursor();

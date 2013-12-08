@@ -14,13 +14,14 @@
 #define GetAValue(rgb)      (LOBYTE((rgb)>>24))
 
 
-CLASS_DECL_BASE int_bool os_initialize();
-CLASS_DECL_BASE int_bool os_finalize();
+/*
+CLASS_DECL_BASE int_bool os_initialize(base_system * psystem);
+CLASS_DECL_BASE int_bool os_finalize(base_system * psystem);
 
 
-CLASS_DECL_BASE int_bool main_initialize();
-CLASS_DECL_BASE int_bool main_finalize();
-
+CLASS_DECL_BASE int_bool main_initialize(base_system * psystem);
+CLASS_DECL_BASE int_bool main_finalize(base_system * psystem);
+*/
 
 CLASS_DECL_BASE void set_main_thread(HANDLE hThread);
 CLASS_DECL_BASE void set_main_thread_id(UINT uiThread);

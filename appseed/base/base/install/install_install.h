@@ -6,7 +6,8 @@ namespace install
 
 
    class CLASS_DECL_BASE install :
-      virtual public ::base_departament
+      virtual public ::base_departament,
+      virtual public int_scalar_source
    {
    public:
 
@@ -32,10 +33,22 @@ namespace install
       mutex m_mutex;
 
 
+      class trace m_trace;
+
+
+      int_progress         m_progressApp;
+      int64_t              m_iProgressCountApp;
+      int64_t              m_iProgressStepApp;
+
+
 
 
       install(sp(base_application) papp);
       virtual ~install();
+
+
+
+      inline class trace & trace() { return m_trace; }
 
 
       virtual bool is_file_ok(const char * path1, const char * pszTemplate);
@@ -104,6 +117,11 @@ virtual bool is_installed(const char * pszVersion, const char * pszBuild, const 
           virtual bool is(const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema);
       virtual int32_t  start(const char * pszCommandLine);
       virtual int32_t  synch(const char * pszCommandLine);
+
+      virtual void on_set_scalar(e_scalar escalar, int64_t iValue);
+      virtual int64_t get_scalar_minimum(e_scalar escalar);
+      virtual int64_t get_scalar(e_scalar escalar);
+      virtual int64_t get_scalar_maximum(e_scalar escalar);
 
 
    };

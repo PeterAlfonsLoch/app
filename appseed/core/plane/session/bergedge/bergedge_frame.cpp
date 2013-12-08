@@ -173,8 +173,8 @@ namespace bergedge
    void frame::_000OnMouse(::message::mouse * pmouse)
    {
       Session.m_ptCursor = pmouse->m_pt;
-//      sp(::plane::application) pappParent = &App(Application.m_pbaseapp);
-//      sp(::plane::application) papp = &Application;
+//      sp(::application) pappParent = &App(Application.m_pbaseapp);
+//      sp(::application) papp = &Application;
       if(pmouse->m_uiMessage == WM_MOUSEMOVE
       && m_pdocument != NULL
       && m_pdocument->m_pplatformdocument != NULL

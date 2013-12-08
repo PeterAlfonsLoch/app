@@ -440,47 +440,41 @@ restart:
          ::fontopus::user * puser = m_puser != NULL ? m_puser : &ApplicationUser;
          ASSERT(puser != NULL);
          string data;
-         property_set post;
-         property_set headers;
          property_set set = m_propset["http_propset"].propset();
 
-         post["entered_login"] = m_strUser;
-         post["entered_password"] = m_strPassword;
+         set["post"]["entered_login"] = m_strUser;
+         set["post"]["entered_password"] = m_strPassword;
          if(!m_strLicense.is_empty())
          {
-            post["entered_license"] = m_strLicense;
+            set["post"]["entered_license"] = m_strLicense;
          }
 
          puser->m_strLogin = m_strUser;
 
+         set["user"] = puser;
+         set["cookies"] = puser->m_phttpcookies;
+
          string filename;
          filename = System.file().time_square(get_app());
-         System.http().download(
-            "https://api.ca2.cc/auth",
-            filename,
-            post,
-            headers,
-            set,
-            puser->m_phttpcookies,
-            puser);
+         System.http().download("https://api.ca2.cc/auth", filename, set);
          string strResponse = Application.file().as_string(filename);
       }
 
       var varQuery = m_propset["http_propset"].propset();
       varQuery.propset()["app"] = get_app();
 
-      //varQuery.propset()["in_headers"].propset()[__id(accept)] = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
-      varQuery.propset()["in_headers"].propset()[__id(accept)] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-//      varQuery.propset()["in_headers"].propset()["Accept-Language"] = "en-us,en;q=0.5";
-      //varQuery.propset()["in_headers"].propset()["Accept-Encoding"] = "gzip,deflate";
-//      varQuery.propset()["in_headers"].propset()["Accept-Charset"] = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
-      varQuery.propset()["in_headers"].propset()["Cache-Control"] = "max-age=0";
+      //varQuery.propset()["headers"].propset()[__id(accept)] = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
+      varQuery.propset()["headers"].propset()[__id(accept)] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+//      varQuery.propset()["headers"].propset()["Accept-Language"] = "en-us,en;q=0.5";
+      //varQuery.propset()["headers"].propset()["Accept-Encoding"] = "gzip,deflate";
+//      varQuery.propset()["headers"].propset()["Accept-Charset"] = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
+      varQuery.propset()["headers"].propset()["Cache-Control"] = "max-age=0";
 
       string str = Application.file().as_string(varFile, varQuery);
 
-      if(!varQuery.propset()["out_headers"].propset()["Location"].is_empty())
+      if(!varQuery.propset()["get_headers"].propset()["Location"].is_empty())
       {
-         string strLocation = varQuery.propset()["out_headers"].propset()["Location"];
+         string strLocation = varQuery.propset()["get_headers"].propset()["Location"];
          iRetry++;
          if(iRetry > 8)
          {
@@ -494,7 +488,7 @@ restart:
          }
          else
          {
-            varFile = System.url().override_if_set_at_source(varFile, varQuery["out_headers"].propset()["Location"]);
+            varFile = System.url().override_if_set_at_source(varFile, varQuery["get_headers"].propset()["Location"]);
             goto restart;
          }
       }

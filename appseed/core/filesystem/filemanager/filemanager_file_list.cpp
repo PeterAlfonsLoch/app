@@ -768,14 +768,14 @@ namespace filemanager
    */
 
 
-      System.copydesk().set_filea(stra);
+      Session.copydesk().set_filea(stra);
 
    }
 
    void file_list::_001OnUpdateEditPaste(signal_details * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
-      pcmdui->m_pcmdui->Enable(System.copydesk().get_file_count() > 0);
+      pcmdui->m_pcmdui->Enable(Session.copydesk().get_file_count() > 0);
       pobj->m_bRet = true;
    }
 
@@ -785,7 +785,7 @@ namespace filemanager
       UNREFERENCED_PARAMETER(pobj);
       stringa stra;
 
-      System.copydesk().get_filea(stra);
+      Session.copydesk().get_filea(stra);
       string strDir;
       strDir = GetFileManagerItem().m_strPath;
 

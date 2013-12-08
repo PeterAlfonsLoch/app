@@ -105,17 +105,24 @@ namespace user
    {
 
       UpdatePosition();
-      m_pscalarVelocity->SetScalar(m_iVelocity, CalcScalar());
+
+      m_scalarVelocity = CalcScalar();
+
    }
+
+
    void elastic_slider::CalcTension(point & pt)
    {
       rect rectClient;
       GetClientRect(rectClient);
-      if(rectClient.width() == 0)
-         m_dTensionPos = 1.0;
+      if (rectClient.width() == 0)
+      {
+         m_dTensionPosition = 1.0;
+      }
+         
       else
       {
-         m_dTensionPos = ((double) pt.x / (double) rectClient.width());
+         m_dTensionPosition = ((double) pt.x / (double) rectClient.width());
       }
    }
 
@@ -128,7 +135,7 @@ namespace user
    }
    double elastic_slider::GetForce()
    {
-      return m_dTensionPos - m_dPos;
+      return m_dTensionPosition - m_dPosition;
    }
 
    double elastic_slider::CalcScalar()
@@ -156,32 +163,22 @@ namespace user
       return m_daScalar.GetMean(); // Low Pass Filter
    }
 
-   void elastic_slider::SetStreamingVelocityMode(DoubleScalar * pscalarVelocity, int32_t iVelocity, DoubleScalar * pscalarPosition, int32_t iPosition)
+   void elastic_slider::SetStreamingVelocityMode(double_scalar & scalarVelocity, double_scalar & scalarPosition)
    {
-      m_escalar = ScalarStreamingVelocity;
+      
+      m_escalar = scalar_streaming_velocity;
 
-      m_pscalarVelocity = pscalarVelocity;
-      m_iVelocity = iVelocity;
-
-      m_pscalarPosition = pscalarPosition;
-      m_iPosition = iPosition;
+      m_scalarVelocity = scalarVelocity;
+      
+      m_scalarPosition = scalarPosition;
+      
    }
 
    void elastic_slider::UpdatePosition()
    {
 
-      double dMin = m_pscalarPosition->GetMinScalar(m_iPosition);
-      double dCur = m_pscalarPosition->GetScalar(m_iPosition);
-      double dMax = m_pscalarPosition->GetMaxScalar(m_iPosition);
+      SetSliderPos(m_scalarPosition.rate(0.0));
 
-      if(dMax - dMin == 0.0)
-      {
-         SetSliderPos(0.0);
-      }
-      else
-      {
-         SetSliderPos((dCur - dMin) / (dMax - dMin));
-      }
    }
 
 
@@ -191,7 +188,7 @@ namespace user
          dPos = 0.0;
       else if(dPos > 1.0)
          dPos = 1.0;
-      m_dPos = dPos;
+      m_dPosition = dPos;
       RedrawWindow();
    }
 
@@ -236,8 +233,8 @@ namespace user
       int32_t iWidth = 16;
       rect.top = rectClient.top;
       rect.bottom = rectClient.bottom;
-      rect.left = (LONG) min(rectClient.right, m_dPos * (rectClient.width() - iWidth));
-      rect.right = (LONG) min(rectClient.right, m_dPos * ((rectClient.width() - iWidth)) + iWidth);
+      rect.left = (LONG) min(rectClient.right, m_dPosition * (rectClient.width() - iWidth));
+      rect.right = (LONG) min(rectClient.right, m_dPosition * ((rectClient.width() - iWidth)) + iWidth);
    }
 
 } // namespace user

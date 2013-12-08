@@ -145,11 +145,7 @@ repeat:;
           {
 
 
-             property_set post(get_app());
-             property_set headers(get_app());
              property_set set(get_app());
-
-             ::http::e_status estatus;
 
              string strUrl;
 
@@ -175,10 +171,11 @@ repeat:;
 
              sl.unlock();
 
+             set["user"] = &ApplicationUser;
 
-             m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
+             m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, set);
 
-             if(m_phttpsession == NULL || estatus != ::http::status_ok)
+             if(m_phttpsession == NULL || ::http::status_failed(set["get_status"]))
              {
                 Sleep(1984);
                 strApiServer = "";
@@ -247,11 +244,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
       single_lock slDatabase(db()->GetImplCriticalSection(), true);
 
 
-      property_set post(get_app());
-      property_set headers(get_app());
       property_set set(get_app());
-
-      ::http::e_status estatus;
 
       set["interactive_user"] = true;
 
@@ -260,16 +253,16 @@ bool db_str_set::load(const char * lpKey, string & strValue)
       strUrl = "https://api.ca2.cc/account/str_set_load?key=";
       strUrl += System.url().url_encode(lpKey);
 
-      m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
+      set["user"] = &ApplicationUser;
 
-      if(m_phttpsession == NULL || estatus != ::http::status_ok)
+      set["get_response"].m_var = &strValue;
+
+      m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, set);
+
+      if(m_phttpsession == NULL || ::http::status_failed(set["get_status"]))
       {
          return false;
       }
-
-      strValue = string((const char *) m_phttpsession->m_memoryfile.get_memory()->get_data(),
-         m_phttpsession->m_memoryfile.get_memory()->get_size());
-
 
       stritem.m_dwTimeout = get_tick_count() + 23 * (1984 + 1977);
       stritem.m_str = strValue;

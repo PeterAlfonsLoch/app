@@ -359,13 +359,11 @@ namespace fontopus
       try
       {
 
-         ::property_set post(get_app());
-         ::property_set headers(get_app());
          ::property_set set(get_app());
 
          set["disable_ca2_sessid"] = true;
 
-         if(!Application.http().get(strGetFontopus, strFontopusServer, post, headers, set))
+         if(!Application.http().get(strGetFontopus, strFontopusServer, set))
             strFontopusServer.Empty();
       }
       catch (...)

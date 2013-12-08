@@ -1025,18 +1025,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus.h" />
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_bitmap.h" />
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_brush.h" />
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_dib.h" />
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_factory_exchange.h" />
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_font.h" />
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_graphics.h" />
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_object.h" />
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_palette.h" />
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_path.h" />
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_pen.h" />
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_region.h" />
     <ClInclude Include="android\c_os_internal.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
@@ -1079,6 +1067,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base\base_heap.h" />
     <ClInclude Include="base\base\base_id_pool.h" />
     <ClInclude Include="base\base\base_international.h" />
+    <ClInclude Include="base\base\base_progress.h" />
     <ClInclude Include="base\base\base_keep_true.h" />
     <ClInclude Include="base\base\base_launcher.h" />
     <ClInclude Include="base\base\base_libc.h" />
@@ -1244,7 +1233,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\install\install_canvas.h" />
     <ClInclude Include="base\install\install_cube_run.h" />
     <ClInclude Include="base\install\install_focus.h" />
-    <ClInclude Include="base\install\install_http.h" />
     <ClInclude Include="base\install\install_install.h" />
     <ClInclude Include="base\install\install_installation_lock_file_lock.h" />
     <ClInclude Include="base\install\install_installer.h" />
@@ -1520,6 +1508,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="net\http\http_get_socket.h" />
     <ClInclude Include="net\http\http_http.h" />
     <ClInclude Include="net\http\http_output_stream.h" />
+    <ClInclude Include="net\http\http_signal.h" />
+    <ClInclude Include="net\http\http_status.h" />
     <ClInclude Include="net\http\http_system.h" />
     <ClInclude Include="net\mail\mail.h" />
     <ClInclude Include="net\mail\mail_pop3.h" />
@@ -1578,13 +1568,13 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="net\sockets\bsd\webserver\AjpBaseSocket.h" />
     <ClInclude Include="net\sockets\bsd\webserver\httpd_socket.h" />
     <ClInclude Include="net\sockets\bsd\webserver\http_base_socket.h" />
+    <ClInclude Include="net\sockets\http\sockets_http_listener.h" />
     <ClInclude Include="net\sockets\http\sockets_http.h" />
     <ClInclude Include="net\sockets\http\sockets_http_client_socket.h" />
     <ClInclude Include="net\sockets\http\sockets_http_debug_socket.h" />
     <ClInclude Include="net\sockets\http\sockets_http_get_socket.h" />
     <ClInclude Include="net\sockets\http\sockets_http_post_socket.h" />
     <ClInclude Include="net\sockets\http\sockets_http_put_socket.h" />
-    <ClInclude Include="net\sockets\http\sockets_http_request_socket.h" />
     <ClInclude Include="net\sockets\http\sockets_http_session.h" />
     <ClInclude Include="net\sockets\http\sockets_http_socket.h" />
     <ClInclude Include="net\sockets\http\sockets_http_tunnel.h" />
@@ -1692,6 +1682,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\math\math_natural.h" />
     <ClInclude Include="primitive\math\math_number.h" />
     <ClInclude Include="primitive\math\math_numeric_info.h" />
+    <ClInclude Include="primitive\math\math_scalar.h" />
+    <ClInclude Include="primitive\math\math_scalar_enum.h" />
     <ClInclude Include="primitive\math\math_static_numeric_info.h" />
     <ClInclude Include="primitive\math\_math.h" />
     <ClInclude Include="primitive\primitive_application_bias.h" />
@@ -1857,18 +1849,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="version.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_bitmap.cpp" />
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_brush.cpp" />
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_dib.cpp" />
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_factory_exchange.cpp" />
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_font.cpp" />
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_graphics.cpp" />
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_object.cpp" />
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_palette.cpp" />
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_path.cpp" />
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_pen.cpp" />
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_preview_dc.cpp" />
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_region.cpp" />
     <ClCompile Include="base\base\base.cpp" />
     <ClCompile Include="base\base\base_allocate_mid_big.cpp" />
     <ClCompile Include="base\base\base_allocate_system_heap.cpp" />
@@ -1897,6 +1877,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\base\base_geometry.cpp" />
     <ClCompile Include="base\base\base_heap.cpp" />
     <ClCompile Include="base\base\base_international.cpp" />
+    <ClCompile Include="base\base\base_progress.cpp" />
     <ClCompile Include="base\base\base_live_object.cpp" />
     <ClCompile Include="base\base\base_live_signal.cpp" />
     <ClCompile Include="base\base\base_log.cpp" />
@@ -2729,7 +2710,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\install\install_bz.cpp" />
     <ClCompile Include="base\install\install_canvas.cpp" />
     <ClCompile Include="base\install\install_focus.cpp" />
-    <ClCompile Include="base\install\install_http.cpp" />
     <ClCompile Include="base\install\install_install.cpp" />
     <ClCompile Include="base\install\install_installation_lock_file_lock.cpp" />
     <ClCompile Include="base\install\install_installer.cpp" />
@@ -9521,6 +9501,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="net\http\http_get_socket.cpp" />
     <ClCompile Include="net\http\http_output_stream.cpp" />
     <ClCompile Include="net\http\http_signal.cpp" />
+    <ClCompile Include="net\http\http_status.cpp" />
     <ClCompile Include="net\http\http_system.cpp" />
     <ClCompile Include="net\mail\mail_pop3.cpp" />
     <ClCompile Include="net\mail\mail_pop3_socket.cpp" />
@@ -9575,9 +9556,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="net\sockets\http\sockets_http_client_socket.cpp" />
     <ClCompile Include="net\sockets\http\sockets_http_debug_socket.cpp" />
     <ClCompile Include="net\sockets\http\sockets_http_get_socket.cpp" />
+    <ClCompile Include="net\sockets\http\sockets_http_listener.cpp" />
     <ClCompile Include="net\sockets\http\sockets_http_post_socket.cpp" />
     <ClCompile Include="net\sockets\http\sockets_http_put_socket.cpp" />
-    <ClCompile Include="net\sockets\http\sockets_http_request_socket.cpp" />
     <ClCompile Include="net\sockets\http\sockets_http_session.cpp" />
     <ClCompile Include="net\sockets\http\sockets_http_socket.cpp" />
     <ClCompile Include="net\sockets\http\sockets_http_tunnel.cpp" />
@@ -9624,6 +9605,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\geometry\geometry_types.cpp" />
     <ClCompile Include="primitive\math\math_math.cpp" />
     <ClCompile Include="primitive\math\math_math_rng.cpp" />
+    <ClCompile Include="primitive\math\math_scalar.cpp" />
     <ClCompile Include="primitive\math\_math.cpp" />
     <ClCompile Include="primitive\primitive_application_bias.cpp" />
     <ClCompile Include="primitive\primitive_bit.cpp" />

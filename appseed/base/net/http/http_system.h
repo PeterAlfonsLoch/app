@@ -47,10 +47,10 @@ namespace http
       public:
 
 
-         string      m_strUrl;
-         bool        m_bDirect;
-         string      m_strProxy;
-         int32_t         m_iPort;
+         string         m_strUrl;
+         bool           m_bDirect;
+         string         m_strProxy;
+         int32_t        m_iPort;
          uint32_t       m_dwLastChecked;
 
 
@@ -81,48 +81,31 @@ namespace http
          ::fontopus::user * puser,
          const char * pszVersion);
 
-      ::sockets::http_session * request(::sockets::socket_handler & handler, ::sockets::http_session * psession, const char * pszRequest, property_set & post, property_set & headers, property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
-
-      ::sockets::http_session * get(::sockets::socket_handler & handler, ::sockets::http_session * psession, const char * pszRequest, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
+      ::sockets::http_session * request(::sockets::socket_handler & handler, ::sockets::http_session * psession, const char * pszUrl, property_set & set = property_set());
 
 
 
 
-      ::sockets::http_client_socket * get(::sockets::socket_handler & handler, const char * pszUrl, property_set & post, property_set & headers, property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
+
+      ::sockets::http_client_socket * get(::sockets::socket_handler & handler, const char * pszUrl, property_set & set = property_set());
 
 
 
       DECL_GEN_SIGNAL(get);
 
 
-      bool get(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
-      bool get(const char * pszUrl, primitive::memory_base & memory, property_set & post, property_set & headers, property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
-      bool get(const char * pszUrl, string & str, ::fontopus::user * puser = NULL);
-      bool get(const char * pszUrl, string & str, property_set & post, property_set & headers, property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
+      bool exists(const char * pszUrl, property_set & set = property_set());
 
-      bool exists(const char * pszUrl, ::fontopus::user * puser = NULL);
+      bool get(const char * pszUrl, property_set & set = property_set());
 
-      string get(const char * pszUrl, ::fontopus::user * puser = NULL);
-
-      bool request(const char * pszRequest, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
-      bool request(const char * pszRequest, const char * pszUrl, string & str, property_set & post, property_set & headers, property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
-      bool request(const char * pszRequest, const char * pszUrl, string & str, ::fontopus::user * puser = NULL);
+      bool request(const char * pszMethod, const char * pszUrl, property_set & set = property_set());
 
 
-      string request(const char * pszRequest, const char * pszUrl, ::fontopus::user * puser = NULL);
+      bool download(const char * pszUrl, const char * pszFile, property_set & set = property_set());
 
 
-      bool download(const char * pszUrl, const char * pszFile, property_set & post, property_set & headers, property_set & set, ::http::cookies * pcookies = NULL,  ::fontopus::user * puser = NULL, const char * pszVersion = "HTTP/1.1");
-      bool download(const char * pszUrl, const char * pszFile, const char * pszPost, property_set & headers, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = "HTTP/1.1");
-      bool download(const char * pszUrl, const char * pszFile, ::fontopus::user * puser = NULL);
-
-
-      bool put(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
-      bool put(const char * pszUrl, ::file::buffer_sp  pfile, ::fontopus::user * puser = NULL);
-
-      bool put(string & strResponse, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
-      bool put(string & strResponse, const char * pszUrl, ::file::buffer_sp  pfile, ::fontopus::user * puser = NULL);
-
+      bool put(const char * pszUrl, primitive::memory_base & memory, property_set & set = property_set());
+      bool put(const char * pszUrl, ::file::buffer_sp  pfile, property_set & set = property_set());
 
       void defer_auto_initialize_proxy_configuration();
       void auto_config_proxy(int32_t i);

@@ -9,19 +9,19 @@ namespace uinteraction
 }
 
 
-namespace plane
+namespace user
 {
 
+   class printer;
 
-   class system;
 
+} // namespace user
 
-}
 
 
 CLASS_DECL_CORE UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
-typedef sp(base_application) (* LPFN_instantiate_application)(sp(base_application) pappParent, const char * pszId);
+typedef sp(base_application) (*LPFN_instantiate_application)(sp(base_application) pappParent, const char * pszId);
 
 extern CLASS_DECL_CORE LPFN_instantiate_application g_lpfn_instantiate_application;
 
@@ -36,122 +36,22 @@ class window_draw;
 
 
 
-
 class CLASS_DECL_CORE application :
-   virtual public base_application
+   virtual public base_application,
+   virtual public ::database::client
 {
 public:
 
+   ::calculator::calculator *          m_pcalculator;
+   ::colorertake5::colorertake5 *      m_pcolorertake5;
 
 
-   const string OAUTHLIB_CONSUMERKEY_KEY;
-   const string OAUTHLIB_CALLBACK_KEY;
-   const string OAUTHLIB_VERSION_KEY;
-   const string OAUTHLIB_SIGNATUREMETHOD_KEY;
-   const string OAUTHLIB_SIGNATURE_KEY;
-   const string OAUTHLIB_TIMESTAMP_KEY;
-   const string OAUTHLIB_NONCE_KEY;
-   const string OAUTHLIB_TOKEN_KEY;
-   const string OAUTHLIB_TOKENSECRET_KEY;
-   const string OAUTHLIB_VERIFIER_KEY;
-   const string OAUTHLIB_SCREENNAME_KEY;
+   sp(::userfs::userfs)                m_spuserfs;
+   sp(::html::html)                    m_phtml;
+   ::simpledb::simpledb                m_simpledb;
+   sp(::userex::userex)                m_spuserex;
 
 
-   const string OAUTHLIB_TWITTER_REQUEST_TOKEN_URL;
-   const string OAUTHLIB_TWITTER_AUTHORIZE_URL;
-   const string OAUTHLIB_TWITTER_ACCESS_TOKEN_URL;
-
-   /* Constants */
-   const string TWIT_COLON;
-   const char TWIT_EOS;
-
-   /* Miscellaneous data used to build twitter URLs*/
-   const string TWIT_SEARCHQUERYSTRING;
-   const string TWIT_SCREENNAME;
-   const string TWIT_USERID;
-   const string TWIT_EXTENSIONFORMAT;
-   const string TWIT_TARGETSCREENNAME;
-   const string TWIT_TARGETUSERID;
-
-   /* Search URLs */
-   const string TWIT_SEARCH_URL;
-
-   /* Status URLs */
-   const string TWIT_STATUSUPDATE_URL;
-   const string TWIT_STATUSSHOW_URL;
-   const string TWIT_STATUDESTROY_URL;
-
-   /* Timeline URLs */
-   const string TWIT_PUBLIC_TIMELINE_URL;
-   const string TWIT_FEATURED_USERS_URL;
-   const string TWIT_FRIENDS_TIMELINE_URL;
-   const string TWIT_MENTIONS_URL;
-   const string TWIT_USERTIMELINE_URL;
-
-   /* Users URLs */
-   const string TWIT_SHOWUSERS_URL;
-   const string TWIT_SHOWFRIENDS_URL;
-   const string TWIT_SHOWFOLLOWERS_URL;
-
-   /* Direct messages URLs */
-   const string TWIT_DIRECTMESSAGES_URL;
-   const string TWIT_DIRECTMESSAGENEW_URL;
-   const string TWIT_DIRECTMESSAGESSENT_URL;
-   const string TWIT_DIRECTMESSAGEDESTROY_URL;
-
-   /* Friendships URLs */
-   const string TWIT_FRIENDSHIPSCREATE_URL;
-   const string TWIT_FRIENDSHIPSDESTROY_URL;
-   const string TWIT_FRIENDSHIPSSHOW_URL;
-
-   /* Social graphs URLs */
-   const string TWIT_FRIENDSIDS_URL;
-   const string TWIT_FOLLOWERSIDS_URL;
-
-   /* Ac::count URLs */
-   const string TWIT_ACCOUNTRATELIMIT_URL;
-
-   /* Favorites URLs */
-   const string TWIT_FAVORITESGET_URL;
-   const string TWIT_FAVORITECREATE_URL;
-   const string TWIT_FAVORITEDESTROY_URL;
-
-   /* Block URLs */
-   const string TWIT_BLOCKSCREATE_URL;
-   const string TWIT_BLOCKSDESTROY_URL;
-
-   /* Saved Search URLs */
-   const string TWIT_SAVEDSEARCHGET_URL;
-   const string TWIT_SAVEDSEARCHSHOW_URL;
-   const string TWIT_SAVEDSEARCHCREATE_URL;
-   const string TWIT_SAVEDSEARCHDESTROY_URL;
-
-   /* Trends URLs */
-   const string TWIT_TRENDS_URL;
-   const string TWIT_TRENDSDAILY_URL;
-   const string TWIT_TRENDSCURRENT_URL;
-   const string TWIT_TRENDSWEEKLY_URL;
-   const string TWIT_TRENDSAVAILABLE_URL;
-
-
-   ::calculator::calculator                                                                * m_pcalculator;
-   ::colorertake5::colorertake5                                                            * m_pcolorertake5;
-   //string                                                                                    m_strFontopusServer;
-   //string                                                                                    m_strMatterUrl;
-   //string                                                                                    m_strMatterSecureUrl;
-
-   string_map < string_to_string *, string_to_string * >               m_stringtablemap;
-   string_map < string_to_string *, string_to_string * >               m_stringtablemapStd;
-
-
-   //string                                                                                  m_strLicense;
-
-
-
-
-
-
-   sp(::fs::fs)                        m_spfs;
 
    bool                                m_bInitializeProDevianMode;
    ::core::main_init_data *            m_pinitmaindata;
@@ -163,46 +63,33 @@ public:
    string                              m_strHelpFilePath;
    mutex                               m_mutex;
 
-   //sp(::user::interaction)         m_puiInitialPlaceHolderContainer;
-   application_bias        m_biasCalling;
+   application_bias                    m_biasCalling;
 
 
 #ifdef WINDOWS
 
 
-   HGLOBAL                       m_hDevMode;             // printer Dev Mode
-   HGLOBAL                       m_hDevNames;            // printer Device Names
+   HGLOBAL                             m_hDevMode;             // printer Dev Mode
+   HGLOBAL                             m_hDevNames;            // printer Device Names
 
 
 #endif
 
-
-   uint32_t                      m_dwPromptContext;        // help context override for message box
+   uint32_t                            m_dwPromptContext;        // help context override for message box
    // LKG
-   //   uint32_t m_dwPolicies;      // block for storing boolean system policies
-
-
-   uint32_t                      m_dwPolicies;            // block for storing boolean system policies
-
-   // This module's hInstance.
-   // Pointer to the command-line.
-
-   //      sp(file_manager_interface)      m_pfilemanager;
+   uint32_t                            m_dwPolicies;            // block for storing boolean system policies
 
    // Name of registry key for this application. See
    // SetRegistryKey() member function.
-   const char *                  m_pszRegistryKey;
+   const char *                        m_pszRegistryKey;
 
    // Pointer to ::user::document_manager used to manage document templates
    // for this application instance.
-   sp(::user::document_manager)            m_pdocmanager;
+   sp(::user::document_manager)        m_pdocmanager;
 
    // Support for Shift+F1 help mode.
-
    // TRUE if we're in SHIFT+F1 mode.
-   bool                          m_bHelpMode;
-
-   mutex                         m_mutexMatterLocator;
+   bool                                m_bHelpMode;
 
    // set in constructor to override default
 
@@ -319,32 +206,25 @@ public:
    virtual bool update_module_paths();
 
 
-   inline ::calculator::calculator           & calculator      () { return *m_pcalculator    ; }
-   inline ::colorertake5::colorertake5       & colorertake5    () { return *m_pcolorertake5  ; }
+   inline ::calculator::calculator           & calculator() { return *m_pcalculator; }
+   inline ::colorertake5::colorertake5       & colorertake5() { return *m_pcolorertake5; }
+
+   inline sp(::html::html)                   html()         { return m_phtml; }
+   inline class ::simpledb::simpledb         & simpledb()   { return m_simpledb; }
+   inline sp(::userex::userex)               userex()       { return m_spuserex; }
 
 
-   //virtual string get_current_user_login();
-
-   virtual string load_string(id id);
-   virtual bool load_string(string & str, id id);
-   bool load_cached_string(string & str, id id, bool bLoadStringTable);
-   bool load_cached_string_by_id(string & str, id id, const string & pszFallbackValue, bool bLoadStringTable);
-   void load_string_table(const string & pszApp, const string & pszId);
 
    virtual bool base_support();
 
    virtual string message_box(const string & pszMatter, property_set & propertyset);
 
 
-   virtual void load_string_table();
-
    virtual sp(::user::interaction) uie_from_point(point pt);
 
 
-   virtual void set_env_var(const string & var,const string & value);
+   virtual void set_env_var(const string & var, const string & value);
    //virtual uint32_t get_thread_id();
-
-   virtual void message_queue_message_handler(signal_details * pobj);
 
    virtual bool on_install();
    virtual bool on_uninstall();
@@ -356,10 +236,8 @@ public:
 
 
 
-   DECL_GEN_SIGNAL(on_application_signal);
+      DECL_GEN_SIGNAL(on_application_signal);
 
-
-   virtual void draw2d_factory_exchange();
 
    // open named file, trying to match a regsitered
    // document template to it.
@@ -378,8 +256,6 @@ public:
 #endif
    bool GetResourceData(UINT nID, const char * lcszType, primitive::memory & storage);
 
-   static UINT   APPM_LANGUAGE;
-   static WPARAM WPARAM_LANGUAGE_UPDATE;
 #ifdef WINDOWS
    virtual bool OnMessageWindowMessage(LPMESSAGE lpmsg);
 #elif defined(LINUX)
@@ -390,7 +266,7 @@ public:
    virtual LRESULT GetPaintMsgProc(int32_t nCode, WPARAM wParam, LPARAM lParam);
 
 
-   void OnUpdateRecentFileMenu(cmd_ui * pcmdui) ;
+   void OnUpdateRecentFileMenu(cmd_ui * pcmdui);
 
    virtual DECL_GEN_SIGNAL(OnAppLanguage)
       virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
@@ -610,7 +486,7 @@ public:
    virtual oswindow get_ca2_app_wnd(const char * psz);
 
 
-//   virtual void get_screen_rect(LPRECT lprect);
+   //   virtual void get_screen_rect(LPRECT lprect);
 
 
 
@@ -758,11 +634,11 @@ public:
    virtual bool set_keyboard_layout(const char * pszPath, bool bUser);
 
 
-   inline ::uinteraction::uinteraction          & uinteraction () { return *m_puinteraction  ; }
+   inline ::uinteraction::uinteraction          & uinteraction() { return *m_puinteraction; }
    ///inline ::user::user                  & user     () { return *m_puserbase      ; }
    //      inline ::userex::userex                      & userex       () { return *m_puserex        ; }
-   inline ::filemanager::filemanager            & filemanager  () { return *m_pfilemanager   ; }
-   inline ::usermail::usermail                          & usermail         () { return *m_pusermail          ; }
+   inline ::filemanager::filemanager            & filemanager() { return *m_pfilemanager; }
+   inline ::usermail::usermail                          & usermail() { return *m_pusermail; }
 
 
    string message_box(const char * pszMatter, property_set & propertyset);
@@ -802,11 +678,12 @@ public:
 
    virtual ::user::printer * get_printer(const char * pszDeviceName);
 
+   /*
    virtual string draw2d_get_default_library_name();
    virtual string multimedia_audio_get_default_library_name();
    virtual string multimedia_audio_mixer_get_default_library_name();
    virtual string veriwell_multimedia_music_midi_get_default_library_name();
-
+   */
 
 
    virtual void assert_valid() const;
@@ -814,7 +691,151 @@ public:
 
 
 
+
+
+
+
+
+
+
+   virtual void defer_initialize_twf();
+
+
+
+   virtual sp(base_application) instantiate_application(const char * pszType, const char * pszId, application_bias * pbias);
+   virtual sp(base_application) create_application(const char * pszType, const char * pszId, bool bSynch, application_bias * pbias);
+
+
+
+
+   //////////////////////////////////////////////////////////////////////////////////////////////////
+   // System/System
+   //
+   sp(::user::object) place_hold(sp(::user::interaction) pui);
+
+   virtual ::count get_monitor_count();
+   virtual bool  get_monitor_rect(index i, LPRECT lprect);
+   virtual ::count get_desk_monitor_count();
+   virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
+
+
+
+   //////////////////////////////////////////////////////////////////////////////////////////////////
+   // Session/Session
+   //
+   //         virtual sp(::bergedge::view) get_view();
+   //       virtual sp(::bergedge::document) get_document();
+
+
+   virtual bool add_library(::core::library * plibrary);
+
+   virtual ::userex::userex * create_userex();
+   virtual ::userfs::userfs * create_userfs();
+   virtual ::html::html * create_html();
+
+
+   //virtual void assert_valid() const;
+   //virtual void dump(dump_context & context) const;
+
+
+   //virtual void construct();
+   //virtual void construct(const char * pszId);
+
+
+   //virtual void _001OnFileNew();
+
+
+   //virtual void on_request(sp(::create_context) pcreatecontext);
+
+   //sp(::user::object) _001OpenDocumentFile(var varFile);
+
+   //sp(base_application) get_system();
+
+   //virtual sp(::application) assert_running(const char * pszAppdId);
+
+
+
+
+
+
+
+
+
+   // smart_pointer < ::cubebase::application >::oattrib
+   // or any function needing it
+   application & operator = (const application & app)
+   {
+
+      UNREFERENCED_PARAMETER(app);
+
+      // do nothing
+
+      return *this;
+
+   }
+
+   // get a file and if there are exceptions, should show end user friendly messages
+   virtual ::file::binary_buffer_sp friendly_get_file(var varFile, UINT nOpenFlags);
+
+
+   virtual void data_on_after_change(signal_details * pobj);
+
+//   virtual int32_t simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
+//   virtual int32_t simple_message_box_timeout(sp(::user::interaction) pwndOwner, const char * pszMessage, ::duration durationTimeOut, UINT fuStyle = MB_OK);
+
+
 };
+
+
+CLASS_DECL_CORE UINT c_cdecl application_thread_procedure(LPVOID pvoid);
+
+typedef sp(base_application) (*LPFN_instantiate_application)(sp(base_application) pappParent, const char * pszId);
+
+extern CLASS_DECL_CORE LPFN_instantiate_application g_lpfn_instantiate_application;
+
+
+namespace core
+{
+
+   // impl
+   template < class APP >
+   sp(base_application) single_application_library < APP > ::get_new_app(const char * pszAppId)
+   {
+
+      if (!contains_app(pszAppId))
+         return NULL;
+
+      sp(application) papp = canew(APP());
+
+      if (papp == NULL)
+         return NULL;
+
+      try
+      {
+         papp->m_pplaneapp->construct(pszAppId);
+      }
+      catch (...)
+      {
+         try
+         {
+            papp.release();
+         }
+         catch (...)
+         {
+         }
+         return NULL;
+      }
+
+      return papp;
+
+   }
+
+
+} // namespace core
+
+
+
+
 
 
 

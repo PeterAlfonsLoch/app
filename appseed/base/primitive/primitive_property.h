@@ -222,7 +222,7 @@ public:
       return get_value().int64(iDefault);
    }
 
-   uint64_t int64(uint64_t uiDefault = 0) const
+   uint64_t uint64(uint64_t uiDefault = 0) const
    {
       return get_value().uint64(uiDefault);
    }
@@ -362,15 +362,15 @@ public:
 #endif
 
    template < class T >
-   T * cast()
+   sp(T) cast(T * pDefault = NULL)
    {
-      return get_value().cast < T >();
+      return get_value().cast < T >(pDefault);
    }
 
    template < class T >
-   const T * cast() const
+   sp(T) cast(T * pDefault = NULL) const
    {
-      return ((property *) this)->get_value().cast < T >();
+      return ((property *) this)->get_value().cast < T >(pDefault);
    }
 
    operator const char *() const

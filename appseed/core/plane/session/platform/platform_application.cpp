@@ -18,7 +18,7 @@ namespace platform
    bool application::initialize_instance()
    {
 
-      if(!::plane::application::initialize_instance())
+      if(!::application::initialize_instance())
          return false;
 
       filemanager().std().m_strLevelUp = "levelup";

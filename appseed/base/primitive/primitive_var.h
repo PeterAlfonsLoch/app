@@ -347,27 +347,44 @@ public:
    //inline var & operator = (var && v);
 //#endif
 
+
    template < class T >
    var & operator = (const sp(T) & sp)
    {
+
       return this->operator = (sp.m_p);
+
    }
 
+
    template < class T >
-   sp(T) cast()
+   sp(T) cast(T * pDefault = NULL)
    {
+      
       if(m_etype == type_pvar && m_pvar != NULL)
-         return m_pvar->cast < T > ();
+         return m_pvar->cast < T > (pDefault);
+      
       if(m_etype != type_element)
          return NULL;
-      return m_sp;
+      
+      sp(T) p = m_sp;
+      
+      if (p.is_null())
+         return pDefault;
+
+      return p;
+
    }
 
+
    template < class T >
-   const sp(T) cast() const
+   sp(T) cast(T * pDefault = NULL) const
    {
-      return ((var *) this)->cast < T > ();
+
+      return ((var *) this)->cast < T > (pDefault);
+
    }
+
 
    bool strict_equal(const var & var) const;
    bool strict_equal(const char * psz) const;

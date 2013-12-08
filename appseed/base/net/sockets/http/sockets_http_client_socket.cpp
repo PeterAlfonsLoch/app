@@ -21,6 +21,8 @@ namespace sockets
       m_mutexData(h.get_app())
    {
 
+      m_progress.m_scalar.m_psource = this;
+      m_progress.m_scalar.m_escalar = scalar_download_size;
 
       m_pfile           = NULL;
       m_iFinalSize      = -1;
@@ -63,6 +65,16 @@ namespace sockets
 
    http_client_socket::~http_client_socket()
    {
+   }
+
+
+   void http_client_socket::OnConnect()
+   {
+
+      m_request.attr(__id(http_method)) = "GET";
+
+      http_tunnel::OnConnect();
+
    }
 
 
@@ -170,7 +182,7 @@ namespace sockets
 
       OnDataArrived(buf, len);
 
-      m_content_ptr += len;
+      increment_scalar(scalar_download_size, len);
 
       if(m_pfile != NULL )
       {
@@ -354,6 +366,80 @@ namespace sockets
 
       m_pfile = NULL;
    }
+
+   void http_client_socket::on_set_scalar(e_scalar escalar, int64_t iValue)
+   {
+
+      if (escalar == scalar_download_size)
+      {
+
+         m_content_ptr = (::primitive::memory_position) iValue;
+
+      }
+      else
+      {
+
+         return ::int_scalar_source::on_set_scalar(escalar, iValue);
+
+      }
+
+   }
+
+
+   int64_t http_client_socket::get_scalar_minimum(e_scalar escalar)
+   {
+
+      if (escalar == scalar_download_size)
+      {
+
+         return 0;
+
+      }
+      else
+      {
+
+         return ::int_scalar_source::get_scalar_minimum(escalar);
+
+      }
+
+   }
+
+   int64_t http_client_socket::get_scalar(e_scalar escalar)
+   {
+
+      if (escalar == scalar_download_size)
+      {
+
+         return m_content_ptr;
+
+      }
+      else
+      {
+
+         return ::int_scalar_source::get_scalar(escalar);
+
+      }
+
+   }
+
+   int64_t http_client_socket::get_scalar_maximum(e_scalar escalar)
+   {
+
+      if (escalar == scalar_download_size)
+      {
+
+         return m_content_length;
+
+      }
+      else
+      {
+
+         return ::int_scalar_source::get_scalar_minimum(escalar);
+
+      }
+
+   }
+
 
 } // namespace sockets
 

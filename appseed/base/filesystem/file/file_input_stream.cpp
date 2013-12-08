@@ -269,18 +269,33 @@ namespace file
    void input_stream::read_to_hex(string & str, file_position dwStart, file_position dwEnd)
    {
       primitive::memory memory(get_app());
-      if(dwStart == (::primitive::memory_position) -1)
-	  {
-		  dwStart = tellg();
-	  }
-	  else
+      if(dwStart == (file_position) -1)
+      {
+		   dwStart = tellg();
+	   }
+	   else
       {
          seek_from_begin(dwStart);
       }
       ::primitive::memory_position uiPos = 0;
       ::primitive::memory_size uiRead;
       memory.allocate(1024);
-      strsize nCount = (strsize) (dwEnd - dwStart);
+
+      strsize nCount;
+      
+      if (dwEnd == (file_position)-1)
+      {
+
+         nCount = ::numeric_info::get_maximum_value < strsize >();
+
+      }
+      else
+      {
+
+         nCount = (strsize)(dwEnd - dwStart);
+
+      }
+       
       while((uiRead = read(&memory.get_data()[uiPos], min(memory.get_size() - uiPos, (::primitive::memory_size) nCount))) > 0)
       {
          uiPos += uiRead;

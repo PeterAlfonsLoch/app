@@ -20,8 +20,7 @@ namespace plane
 #endif
       m_visual(this),
       base_system(papp),
-      m_emaildepartament(this),
-      m_libraryDraw2d(this)
+      m_emaildepartament(this)
    {
 
 #ifdef METROWIN
@@ -46,8 +45,8 @@ namespace plane
       }
 
 
-      ::plane::application::m_file.set_app(this);
-      ::plane::application::m_dir.set_app(this);
+      ::application::m_file.set_app(this);
+      ::application::m_dir.set_app(this);
 
       m_bDoNotExitIfNoApplications              = true;
 
@@ -130,7 +129,7 @@ namespace plane
    void system::construct()
    {
 
-      ::plane::application::construct();
+      ::application::construct();
 
       ::core::system::construct();
 
@@ -146,7 +145,7 @@ namespace plane
       m_bInitApplicationResult      = FALSE;
       m_bInitApplication            = true;
 
-      m_bInitApplicationResult = plane::application::InitApplication();
+      m_bInitApplicationResult = ::application::InitApplication();
 
       return m_bInitApplicationResult;
    }
@@ -161,13 +160,13 @@ namespace plane
       m_bProcessInitializeResult    = false;
       m_bProcessInitialize          = true;
 
+      if (!::application::process_initialize())
+         return false;
 
       if(!::core::system::process_initialize())
          return false;
 
 
-      if(!::plane::application::process_initialize())
-         return false;
 
 
       ::core::profiler::initialize();
@@ -175,7 +174,7 @@ namespace plane
 
 //      System.factory().creatable < ::core::log >(System.type_info < ::core::log > (), 1);
 
-/*      if(!::plane::application::process_initialize())
+/*      if(!::application::process_initialize())
       {
          return false;
       }*/
@@ -227,7 +226,7 @@ namespace plane
 #endif
 
 
-      if(!::plane::application::initialize())
+      if(!::application::initialize())
          return false;
 
       return true;
@@ -257,7 +256,7 @@ namespace plane
          return false;
 
 
-      if(!::plane::application::initialize1())
+      if(!::application::initialize1())
          return false;
 
 
@@ -473,7 +472,7 @@ namespace plane
    bool system::initialize3()
    {
 
-      if(!::plane::application::initialize3())
+      if(!::application::initialize3())
          return false;
 
       if(m_phistory == NULL)
@@ -503,7 +502,7 @@ namespace plane
 
 
 
-      if(!::plane::application::initialize_instance())
+      if(!::application::initialize_instance())
          return false;
 
       m_pbergedgemap = new ::plane::session::map;
@@ -525,7 +524,7 @@ namespace plane
 
       static uint32_t dwStart = ::get_tick_count();
 
-      ::plane::application::verb();
+      ::application::verb();
 
       if(directrix()->m_varTopicQuery.has_property("install") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
          return false;
@@ -653,7 +652,7 @@ namespace plane
       int32_t iRet = 0;
       try
       {
-         iRet = ::plane::application::exit_instance();
+         iRet = ::application::exit_instance();
       }
       catch(...)
       {
@@ -861,183 +860,6 @@ namespace plane
 
    }
 
-   void system::appa_load_string_table()
-   {
-
-      retry_single_lock rsl(&m_mutex, millis(84), millis(84));
-
-      for(int32_t i = 0; i < appptra().get_size(); i++)
-      {
-         sp(base_application) papp = appptra()(i);
-         papp->m_pplaneapp->load_string_table();
-      }
-
-   }
-
-   void system::appa_set_locale(const char * pszLocale, bool bUser)
-   {
-
-      retry_single_lock rsl(&m_mutex, millis(84), millis(84));
-
-      for(int32_t i = 0; i < appptra().get_size(); i++)
-      {
-         sp(base_application) papp = appptra()(i);
-         papp->m_pplaneapp->set_locale(pszLocale, bUser);
-      }
-
-   }
-
-   void system::appa_set_schema(const char * pszStyle, bool bUser)
-   {
-
-      retry_single_lock rsl(&m_mutex, millis(84), millis(84));
-
-      for(int32_t i = 0; i < appptra().get_size(); i++)
-      {
-         sp(base_application) papp = appptra()(i);
-         papp->m_pplaneapp->set_schema(pszStyle, bUser);
-      }
-
-   }
-
-
-
-   bool system::assert_running_global(const char * pszAppName, const char * pszId)
-   {
-      if(string(pszId).has_char())
-      {
-         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_global_id_mutex_name(pszAppName, pszId));
-         ::mutex * pmutex = mutex::open_mutex(this, get_global_id_mutex_name(pszAppName, pszId));
-         if(pmutex == NULL)
-         {
-
-            string strApp = pszAppName;
-            strApp += "app.exe";
-
-            string strParameters;
-            strParameters = ": global_mutex_id=\"" + string(pszId) + "\"";
-
-#if defined(WINDOWSEX) || defined(LINUX) || defined(MACOS)
-
-            simple_shell_launcher launcher(NULL, NULL, dir().path(get_module_folder(), strApp), strParameters, NULL, SW_SHOW);
-
-            launcher.execute();
-
-#else
-
-            throw todo(get_app());
-
-#endif
-
-            return false;
-         }
-         else
-         {
-            delete pmutex;
-         }
-         return true;
-      }
-      else
-      {
-         //HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_global_mutex_name(pszAppName));
-         ::mutex * pmutex = mutex::open_mutex(this, get_global_mutex_name(pszAppName));
-         if(pmutex == NULL)
-         {
-            string strApp = pszAppName;
-            strApp += "app.exe";
-
-#ifdef METROWIN
-
-            throw todo(get_app());
-
-#else
-
-            simple_shell_launcher launcher(NULL, NULL, dir().path(get_module_folder(), strApp), NULL, NULL, SW_SHOW);
-
-            launcher.execute();
-
-#endif
-
-            return false;
-         }
-         else
-         {
-            //::CloseHandle(h);
-            delete pmutex;
-         }
-         return true;
-      }
-   }
-
-   bool system::assert_running_local(const char * pszAppName, const char * pszId)
-   {
-      string strAppName(pszAppName);
-      string strId(pszId);
-      if(strId.has_char())
-      {
-         //HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_local_id_mutex_name(pszAppName, strId));
-         ::mutex * pmutex = mutex::open_mutex(this, get_local_id_mutex_name(pszAppName, strId));
-         if(pmutex == NULL)
-         {
-            string strApp;
-            strApp = "app.exe";
-            string strParameters;
-            strParameters = ": app=" + strAppName + " local_mutex_id=\"" + strId + "\"";
-
-#ifdef METROWIN
-
-            throw todo(get_app());
-
-#else
-
-            simple_shell_launcher launcher(NULL, NULL, dir().path(get_ca2_module_folder(), strApp), strParameters, NULL, SW_SHOW);
-
-            launcher.execute();
-
-#endif
-
-            return false;
-         }
-         else
-         {
-            //::CloseHandle(h);
-            delete pmutex;
-         }
-         return true;
-      }
-      else
-      {
-         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_local_mutex_name(pszAppName));
-         ::mutex * pmutex = mutex::open_mutex(this, get_local_mutex_name(pszAppName));
-         if(pmutex == NULL)
-         {
-            string strApp;
-            strApp = "app.exe";
-            string strParameters;
-            strParameters = ": app=" + strAppName;
-
-#ifdef METROWIN
-
-            throw todo(get_app());
-
-#else
-
-            simple_shell_launcher launcher(NULL, NULL, dir().path(get_ca2_module_folder(), strApp), strParameters, NULL, SW_SHOW);
-
-            launcher.execute();
-
-#endif
-
-            return false;
-         }
-         else
-         {
-            //::CloseHandle(h);
-            delete pmutex;
-         }
-         return true;
-      }
-   }
 
 
    bool system::finalize()
@@ -1054,7 +876,7 @@ namespace plane
       {
       }
 
-      ::plane::application::finalize();
+      ::application::finalize();
 
       try
       {
@@ -1321,19 +1143,31 @@ namespace plane
    bool system::sync_load_url(string & str, const char * lpszUrl, ::fontopus::user * puser, ::http::cookies * pcookies)
    {
       string filename = System.file().time_square(get_app());
-      property_set headers;
-      property_set post;
       property_set set;
-      if(!http().download(lpszUrl, filename, post, headers, set, pcookies, puser))
+      set["user"] = puser;
+      set["cookies"] = pcookies;
+      if(!http().download(lpszUrl, filename, set))
          return false;
-      if(headers["Location"].get_string().has_char())
+      
+      string strLocation = set["get_headers"]["Location"];
+
+      if(strLocation.has_char())
       {
-         post.clear();
-         headers.clear();
+
+         property_set set;
+
+         set["user"] = puser;
+
+         set["cookies"] = pcookies;
+
          file().del(filename);
-         return http().download(str, headers["Location"], post, headers, set, pcookies, puser);
+
+         return http().download(str, strLocation, set);
+
       }
+
       str = Application.file().as_string(filename);
+
       return true;
 
       /*   Parse pa(lpszUrl,":/");
@@ -1431,10 +1265,6 @@ namespace plane
    }
 
 
-   ::core::copydesk & system::copydesk()
-   {
-      return *m_spcopydesk;
-   }
 
    bool system::base_support()
    {
@@ -1572,7 +1402,7 @@ namespace plane
 
       if(pdata == NULL)
       {
-         if(!::plane::application::set_main_init_data(pdata))
+         if(!::application::set_main_init_data(pdata))
             return false;
          return true;
       }
@@ -1611,7 +1441,7 @@ namespace plane
          command()->add_line(strCommandLine);
       }
 
-      if(!::plane::application::set_main_init_data(pdata))
+      if(!::application::set_main_init_data(pdata))
          return false;
 
       return true;
@@ -1820,7 +1650,7 @@ sp(::command_thread) system::command_thread()
       try
       {
 
-         if(!plane::application::on_install())
+         if(!::application::on_install())
             return false;
 
       }
@@ -1949,7 +1779,7 @@ sp(::command_thread) system::command_thread()
    /*bool system::InitApplication()
    {
 
-      if(!::plane::application::InitApplication())
+      if(!::application::InitApplication())
          return FALSE;
 
       return TRUE;
@@ -1960,7 +1790,7 @@ sp(::command_thread) system::command_thread()
    bool system::process_initialize()
    {
 
-      if(!::plane::application::process_initialize())
+      if(!::application::process_initialize())
          return false;
 
       return true;
@@ -1972,7 +1802,7 @@ sp(::command_thread) system::command_thread()
    {
 
 
-      if(!::plane::application::initialize())
+      if(!::application::initialize())
          return false;
 
       return true;
@@ -1984,7 +1814,7 @@ sp(::command_thread) system::command_thread()
    bool system::initialize1()
    {
 
-      if(!::plane::application::initialize1())
+      if(!::application::initialize1())
          return false;
 
       return true;
@@ -1996,7 +1826,7 @@ sp(::command_thread) system::command_thread()
    bool system::initialize3()
    {
 
-      if(!::plane::application::initialize3())
+      if(!::application::initialize3())
          return false;
 
       return true;
@@ -2006,7 +1836,7 @@ sp(::command_thread) system::command_thread()
    bool system::initialize_instance()
    {
 
-      if(!::plane::application::initialize_instance())
+      if(!::application::initialize_instance())
          return false;
 
       return true;
@@ -2017,7 +1847,7 @@ sp(::command_thread) system::command_thread()
    bool system::bergedge_start()
    {
 
-      if(!::plane::application::bergedge_start())
+      if(!::application::bergedge_start())
          return false;
 
       return true;
@@ -2031,7 +1861,7 @@ sp(::command_thread) system::command_thread()
 
       try
       {
-         iRet = ::plane::application::exit_instance();
+         iRet = ::application::exit_instance();
       }
       catch(...)
       {
@@ -2188,7 +2018,7 @@ sp(::command_thread) system::command_thread()
 
       if(pdata == NULL)
       {
-         if(!::plane::application::set_main_init_data(pdata))
+         if(!::application::set_main_init_data(pdata))
             return false;
          return true;
       }
@@ -2226,7 +2056,7 @@ sp(::command_thread) system::command_thread()
          command()->add_line(strCommandLine);
       }
 
-      if(!::plane::application::set_main_init_data(pdata))
+      if(!::application::set_main_init_data(pdata))
          return false;
 
       return true;

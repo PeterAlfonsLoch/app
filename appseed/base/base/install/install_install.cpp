@@ -14,7 +14,8 @@ namespace install
    install::install(sp(base_application) papp) :
       element(papp),
       ::base_departament(papp),
-      m_mutex(papp, false, "Global\\spa_boot_install")
+      m_mutex(papp, false, "Global\\spa_boot_install"),
+      m_trace(papp)
    {
 
          m_bAdmin = false;
@@ -1047,6 +1048,102 @@ namespace install
    }
 
 
+   void install::on_set_scalar(e_scalar escalar, int64_t iValue)
+   {
+
+      if (escalar == scalar_app_install_progress)
+      {
+
+         m_iProgressStepApp = iValue;
+
+      }
+      else if (escalar == scalar_app_install_progress_max)
+      {
+
+         m_iProgressCountApp = iValue;
+
+      }
+      else
+      {
+
+         return ::int_scalar_source::on_set_scalar(escalar, iValue);
+
+      }
+
+   }
+
+
+   int64_t install::get_scalar_minimum(e_scalar escalar)
+   {
+
+      if (escalar == scalar_app_install_progress)
+      {
+
+         return 0;
+
+      }
+      else if (escalar == scalar_app_install_progress_max)
+      {
+
+         return m_iProgressCountApp;
+
+      }
+      else
+      {
+
+         return ::int_scalar_source::get_scalar_minimum(escalar);
+
+      }
+
+   }
+
+   int64_t install::get_scalar(e_scalar escalar)
+   {
+
+      if (escalar == scalar_app_install_progress)
+      {
+
+         return m_iProgressStepApp;
+
+      }
+      else if (escalar == scalar_app_install_progress_max)
+      {
+
+         return m_iProgressCountApp;
+
+      }
+      else
+      {
+
+         return ::int_scalar_source::get_scalar(escalar);
+
+      }
+
+   }
+
+   int64_t install::get_scalar_maximum(e_scalar escalar)
+   {
+
+      if (escalar == scalar_app_install_progress)
+      {
+
+         return m_iProgressCountApp;
+
+      }
+      else if (escalar == scalar_app_install_progress_max)
+      {
+
+         return m_iProgressStepApp;
+
+      }
+      else
+      {
+
+         return ::int_scalar_source::get_scalar_minimum(escalar);
+
+      }
+
+   }
 
 
 

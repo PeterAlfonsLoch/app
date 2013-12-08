@@ -483,29 +483,27 @@ namespace plugin
             // in core library normally System or Application.http() is used
             string strPluginData;
 
-            ::http::e_status estatus = ::http::status_failed;
+            ::http::e_status estatus = ::http::status_fail;
 
             string strUrl = strPluginUrl;
 
             strUrl = System.url().string_set(strUrl, "authnone", 1);
 
-            for(int32_t iAttempt = 0; iAttempt < 3; iAttempt++)
+            property_set set(get_app());
+
+            for (int32_t iAttempt = 0; iAttempt < 3; iAttempt++)
             {
 
                //strPluginData = http_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
 
-               property_set post(get_app());
-               property_set headers(get_app());
-               property_set set(get_app());
+               Application.http().get(strUrl, strPluginData, set);
 
-               Application.http().get(strUrl, strPluginData, post, headers, set, NULL, NULL, NULL, &estatus);
-
-               if(estatus == ::http::status_ok)
+               if(::http::status_succeeded(set["get_status"]))
                   break;
 
             }
 
-            if(estatus == ::http::status_ok)
+            if (::http::status_succeeded(set["get_status"]))
             {
 
                open_ca2_string(strPluginData);

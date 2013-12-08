@@ -18,3 +18,17 @@ public:
    string_to_string & operator = (const string_to_string & map);
 
 };
+
+
+class CLASS_DECL_BASE string_table :
+   virtual public string_map < string_to_string *, string_to_string * >
+{
+public:
+
+
+};
+
+
+
+
+

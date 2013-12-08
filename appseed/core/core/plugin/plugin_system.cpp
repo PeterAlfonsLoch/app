@@ -41,7 +41,7 @@ namespace plugin
    bool system::verb()
    {
 
-      return ::plane::application::verb();
+      return ::application::verb();
 
    }
 

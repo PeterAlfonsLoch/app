@@ -25,7 +25,7 @@ namespace nature
       System.factory().creatable_small < nature::frame > ();
       System.factory().creatable_small < nature::appearance_view > ();
 
-      if(!plane::application::initialize_instance())
+      if(!::application::initialize_instance())
          return false;
 
       filemanager().std().m_strLevelUp = "levelup";
@@ -57,7 +57,7 @@ namespace nature
    {
       try
       {
-         ::plane::application::exit_instance();
+         ::application::exit_instance();
       }
       catch(...)
       {

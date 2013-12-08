@@ -43,7 +43,6 @@ class form_view;
 
 
 #include "plane_library.h"
-#include "plane_application.h"
 
 
 #include "session/bergedge/bergedge.h"

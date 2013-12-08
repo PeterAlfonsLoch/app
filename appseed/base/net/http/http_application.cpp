@@ -13,23 +13,38 @@ namespace http
    {
    }
 
-   ::sockets::http_client_socket * application::get(
-      ::sockets::socket_handler & handler, 
-      const char * pszUrl, 
-      property_set & post, 
-      property_set & headers, 
-      property_set & set, 
-      ::http::cookies * pcookies, 
-      ::fontopus::user * puser, 
-      const char * pszVersion, 
-      http::e_status * pestatus)
+   property_set & application::process_set(property_set & set, const char * pszUrl)
    {
-      if(puser == NULL)
+      
+      if (!(bool)set["disable_ca2_sessid"] && set["user"].cast < ::fontopus::user >() == NULL && ::str::find_ci("/matter.ca2.cc/", pszUrl) < 0 && ::str::find_ci("-matter.ca2.cc/", pszUrl) < 0
+         && ::str::find_ci("sessid=noauth", pszUrl) < 0)
       {
-         puser = &ApplicationUser;
+
+         string strWorkUrl;
+
+         keeper < string > keepWorkUrl(get_thread() == NULL ? &strWorkUrl : &get_thread()->m_strWorkUrl, pszUrl, get_thread()->m_strWorkUrl, true);
+
+         if ((bool)set["optional_ca2_sessid"])
+         {
+            if (Application.fontopus()->m_puser != NULL)
+               set["user"] = &ApplicationUser;
+         }
+         else
+         {
+            set["user"] = &ApplicationUser;
+         }
          set["app"] = get_app();
       }
-      return System.http().get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion, pestatus);
+
+      return set;
+
+   }
+
+   ::sockets::http_client_socket * application::get(::sockets::socket_handler & handler,  const char * pszUrl, property_set & set)
+   {
+      
+      return System.http().get(handler, pszUrl, process_set(set, pszUrl));
+
    }
 
    void application::get(signal_details * pobj)
@@ -55,7 +70,7 @@ namespace http
          if(!Application.file().exists(strFileDownloading) && !exists(psignal->m_strUrl))
          {
 
-            psignal->m_estatusRet = status_failed;
+            psignal->m_estatusRet = status_fail;
 
             psignal->m_bRet = false;
 
@@ -73,99 +88,46 @@ namespace http
    }
 
 
-   bool application::get(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser)
+   bool application::get(const char * pszUrl, primitive::memory_base & memory, property_set & set)
    {
-      if(puser == NULL)
-      {
-         puser = &ApplicationUser;
-      }
-      return System.http().get(pszUrl, memory, puser);         
+
+      set["get_memory"] = &memory;
+
+      return System.http().get(pszUrl, process_set(set, pszUrl));
+
    }
 
-   bool application::get(
-      const char * pszUrl,
-      string & str, 
-      property_set & post, 
-      property_set & headers,
-      property_set & set, 
-      ::http::cookies * pcookies, 
-      ::fontopus::user * puser, 
-      const char * pszVersion,
-      e_status * pestatus)
-   {
-      if(puser == NULL && !(bool)set["disable_ca2_sessid"])
-      {
-         if((bool)set["optional_ca2_sessid"])
-         {
-            if(Application.fontopus()->m_puser != NULL)
-               puser = &ApplicationUser;
-         }
-         else
-         {
-            puser = &ApplicationUser;
-         }
-         set["app"] = get_app();
-      }
-      return System.http().get(pszUrl, str, post, headers, set, pcookies, puser, pszVersion, pestatus);
-   }
-
-
-   bool application::get(
-      const char * pszUrl,
-      primitive::memory_base & memory, 
-      property_set & post, 
-      property_set & headers,
-      property_set & set, 
-      ::http::cookies * pcookies, 
-      ::fontopus::user * puser, 
-      const char * pszVersion,
-      e_status * pestatus)
-   {
-      if(puser == NULL && !(bool)set["disable_ca2_sessid"] && !(bool)set["optional_ca2_sessid"])
-      {
-         puser = &ApplicationUser;
-      }
-      set["app"] = get_app();
-      return System.http().get(pszUrl, memory, post, headers, set, pcookies, puser, pszVersion, pestatus);
-   }
-
-   bool application::get(const char * pszUrl, string & str, ::fontopus::user * puser)
-   {
-      if(puser == NULL)
-      {
-         puser = &ApplicationUser;
-      }
-      return System.http().get(pszUrl, str, puser);
-   }
-
-
-   string application::get(const char * pszUrl, ::fontopus::user * puser)
-   {
-      if(puser == NULL && ::str::find_ci("/matter.ca2.cc/", pszUrl) < 0 && ::str::find_ci("-matter.ca2.cc/", pszUrl) < 0
-         && ::str::find_ci("sessid=noauth", pszUrl) < 0)
-      {
-         if(get_thread() != NULL)
-         {
-            keeper < string > keepWorkUrl(&get_thread()->m_strWorkUrl, pszUrl, get_thread()->m_strWorkUrl, true);
-            puser = &ApplicationUser;
-         }
-         else
-         {
-            puser = &ApplicationUser;
-         }
-      }
-      return System.http().get(pszUrl, puser);
-   }
-
-   bool application::exists(const char * pszUrl, ::fontopus::user * puser)
+   bool application::get(const char * pszUrl, string & str, property_set & set)
    {
 
-      return exists(pszUrl, NULL, puser);
+      set["get_response"].get_value() = &str;
+
+      return System.http().get(pszUrl, process_set(set, pszUrl));
 
    }
 
 
-   bool application::exists(const char * pszUrl, var * pvarQuery, ::fontopus::user * puser)
+   string application::get(const char * pszUrl, property_set & set)
+   {
+
+      set["get_response"] = "";
+
+      if (!System.http().get(pszUrl, process_set(set, pszUrl)))
+         return "";
+
+      return set["get_response"].get_string();
+
+   }
+
+   bool application::exists(const char * pszUrl, property_set & set)
+   {
+
+      return exists(pszUrl, NULL, set);
+
+   }
+
+
+   bool application::exists(const char * pszUrl, var * pvarQuery, property_set & set)
    {
 
       string strUrl(pszUrl);
@@ -191,14 +153,7 @@ namespace http
          }
       }
 
-      if(puser == NULL && !get_app()->is_system() 
-         && (!get_app()->is_session() || get_app()->m_pfontopus->m_puser != NULL)
-         && (pvarQuery == NULL || (!(bool)pvarQuery->operator[]("disable_ca2_sessid") && !(bool)pvarQuery->operator[]("optional_ca2_sessid")))) 
-      {
-         puser = &ApplicationUser;
-      }
-      //       set["app"] = get_app();
-      bool bExists = System.http().exists(strUrl, puser);
+      bool bExists = System.http().exists(strUrl, process_set(set, pszUrl));
 
       if(bExists)
          strCache = "yes";
@@ -210,133 +165,29 @@ namespace http
 
 
 
-   bool application::request(
-      const char * pszRequest,
-      const char * pszUrl,
-      string & str, 
-      property_set & post, 
-      property_set & headers,
-      property_set & set, 
-      ::http::cookies * pcookies, 
-      ::fontopus::user * puser, 
-      const char * pszVersion,
-      e_status * pestatus)
+   bool application::request(const char * pszRequest, const char * pszUrl, property_set & set)
    {
-      if(puser == NULL)
-      {
-         puser = &ApplicationUser;
-         set["app"] = get_app();
-      }
-      return System.http().request(pszRequest, pszUrl, str, post, headers, set, pcookies, puser, pszVersion, pestatus);
+      return System.http().request(pszRequest, pszUrl, process_set(set, pszUrl));
    }
 
 
-   bool application::request(const char * pszRequest, const char * pszUrl, string & str, ::fontopus::user * puser)
+   bool application::download(const char * pszUrl, const char * pszFile, property_set & set)
    {
-      if(puser == NULL)
-      {
-         puser = &ApplicationUser;
-      }
-      return System.http().request(pszRequest, pszUrl, str, puser);
+      return System.http().download(pszUrl, pszFile, process_set(set, pszUrl));
    }
 
-   string application::request(const char * pszRequest, const char * pszUrl, ::fontopus::user * puser)
+   bool application::put(const char * pszUrl, primitive::memory & memory, property_set & set)
    {
-      if(puser == NULL)
-      {
-         puser = &ApplicationUser;
-      }
-      return System.http().request(pszRequest, pszUrl, puser);
+
+      return System.http().put(pszUrl, memory, process_set(set, pszUrl));
    }
 
-   bool application::request(const char * pszRequest, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser)
+   bool application::put(const char * pszUrl, ::file::buffer_sp  pfile, property_set & set)
    {
-      if(puser == NULL)
-      {
-         puser = &ApplicationUser;
-      }
-      return System.http().request(pszRequest, pszUrl, memory, puser);         
-   }
-
-   bool application::download(
-      const char * pszUrl,
-      const char * pszFile, 
-      property_set & post, 
-      property_set & headers, 
-      property_set & set,
-      ::http::cookies * pcookies, 
-      ::fontopus::user * puser, 
-      const char * pszVersion)
-   {
-      if(puser == NULL)
-      {
-         puser = &ApplicationUser;
-      }
-      return System.http().download(pszUrl, pszFile, post, headers, set, pcookies, puser, pszVersion);
-   }
-
-   bool application::download(
-      const char * pszUrl,
-      const char * pszFile, 
-      const char * pszPost, 
-      property_set & headers,
-      ::http::cookies * pcookies,
-      ::fontopus::user * puser,
-      const char * pszVersion)
-   {
-      if(puser == NULL)
-      {
-         puser = &ApplicationUser;
-      }
-      return System.http().download(pszUrl, pszFile, pszPost, headers, pcookies, puser, pszVersion);
+      return System.http().put(pszUrl, pfile, process_set(set, pszUrl));
    }
 
 
-   bool application::download(const char * pszUrl, const char * pszFile, ::fontopus::user * puser)
-   {
-      if(puser == NULL)
-      {
-         puser = &ApplicationUser;
-      }
-      return System.http().download(pszUrl, pszFile, puser);
-   }
-
-   bool application::put(const char * pszUrl, primitive::memory & memory, ::fontopus::user * puser)
-   {
-      if(puser == NULL)
-      {
-         puser = &ApplicationUser;
-      }
-      return System.http().put(pszUrl, memory, puser);
-   }
-
-   bool application::put(const char * pszUrl, ::file::buffer_sp  pfile, ::fontopus::user * puser)
-   {
-      if(puser == NULL)
-      {
-         puser = &ApplicationUser;
-      }
-      return System.http().put(pszUrl, pfile, puser);
-   }
-
-
-   bool application::put(string & strResponse, const char * pszUrl, primitive::memory & memory, ::fontopus::user * puser)
-   {
-      if(puser == NULL)
-      {
-         puser = &ApplicationUser;
-      }
-      return System.http().put(strResponse, pszUrl, memory, puser);
-   }
-
-   bool application::put(string & strResponse, const char * pszUrl, ::file::buffer_sp  pfile, ::fontopus::user * puser)
-   {
-      if(puser == NULL)
-      {
-         puser = &ApplicationUser;
-      }
-      return System.http().put(strResponse, pszUrl, pfile, puser);
-   }
 
    string application::defer_locale_schema_get(const char * pszUrl, const char * pszLocale, const char * pszSchema)
    {

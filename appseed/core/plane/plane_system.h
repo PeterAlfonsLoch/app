@@ -20,7 +20,7 @@ namespace plane
 
 
    class CLASS_DECL_CORE system :
-      virtual public ::plane::application,
+      virtual public ::application,
       virtual public ::core::system
    {
    public:
@@ -67,10 +67,6 @@ namespace plane
 
 
       bool                                         m_bLibCharGuess;
-
-       base_library m_libraryDraw2d;
-
-
 
 
 
@@ -121,7 +117,7 @@ namespace plane
       DECL_GEN_SIGNAL(on_application_signal);
 
 
-      using ::plane::application::process;
+      using ::application::process;
       bool set_history(::core::history * phistory);
 
 
@@ -145,12 +141,6 @@ namespace plane
 
 
 
-      virtual void appa_load_string_table();
-      virtual void appa_set_locale(const char * pszLocale, bool bUser);
-      virtual void appa_set_schema(const char * pszStyle, bool bUser);
-
-      virtual bool assert_running_global(const char * pszAppName, const char * pszId = NULL);
-      virtual bool assert_running_local(const char * pszAppName, const char * pszId = NULL);
 
       virtual int32_t _001OnDebugReport(int32_t i1, const char * psz1, int32_t i2, const char * psz2, const char * psz3, va_list args);
 
@@ -188,7 +178,6 @@ namespace plane
       ::core::history                        & hist();
 
       class ::core::patch                    & patch();
-      class ::core::copydesk                 & copydesk();
 
       ::http::system                         & http();
       ::net::email_departament               & email();

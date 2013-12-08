@@ -601,7 +601,24 @@ void CSHA1::GetHash(UINT_8 *puDest)
    *--*/
    oauth::oauth(sp(base_application) papp) :
    element(papp),
-      m_consumerKey( "" ),
+   OAUTHLIB_CONSUMERKEY_KEY("oauth_consumer_key"),
+   OAUTHLIB_CALLBACK_KEY("oauth_callback"),
+   OAUTHLIB_VERSION_KEY("oauth_version"),
+   OAUTHLIB_SIGNATUREMETHOD_KEY("oauth_signature_method"),
+   OAUTHLIB_SIGNATURE_KEY("oauth_signature"),
+   OAUTHLIB_TIMESTAMP_KEY("oauth_timestamp"),
+   OAUTHLIB_NONCE_KEY("oauth_nonce"),
+   OAUTHLIB_TOKEN_KEY("oauth_token"),
+   OAUTHLIB_TOKENSECRET_KEY("oauth_token_secret"),
+   OAUTHLIB_VERIFIER_KEY("oauth_verifier"),
+   OAUTHLIB_SCREENNAME_KEY("screen_name"),
+
+
+   OAUTHLIB_TWITTER_REQUEST_TOKEN_URL("http://twitter.com/oauth/request_token"),
+   OAUTHLIB_TWITTER_AUTHORIZE_URL("http://twitter.com/oauth/authorize?oauth_token="),
+   OAUTHLIB_TWITTER_ACCESS_TOKEN_URL("http://twitter.com/oauth/access_token"),
+
+   m_consumerKey(""),
       m_consumerSecret( "" ),
       m_oAuthTokenKey( "" ),
       m_oAuthTokenSecret( "" ),
@@ -866,37 +883,37 @@ void CSHA1::GetHash(UINT_8 *puDest)
       generateNonceTimeStamp();
 
       /* Nonce key and its value */
-      keyValueMap[Application.OAUTHLIB_NONCE_KEY] = m_nonce;
+      keyValueMap[OAUTHLIB_NONCE_KEY] = m_nonce;
 
       /* Signature method, only HMAC-SHA1 as of now */
-      keyValueMap[Application.OAUTHLIB_SIGNATUREMETHOD_KEY] = string( "HMAC-SHA1" );
+      keyValueMap[OAUTHLIB_SIGNATUREMETHOD_KEY] = string( "HMAC-SHA1" );
 
       /* Timestamp */
-      keyValueMap[Application.OAUTHLIB_TIMESTAMP_KEY] = m_timeStamp;
+      keyValueMap[OAUTHLIB_TIMESTAMP_KEY] = m_timeStamp;
 
       /* Consumer key and its value */
-      keyValueMap[Application.OAUTHLIB_CONSUMERKEY_KEY] = m_consumerKey;
+      keyValueMap[OAUTHLIB_CONSUMERKEY_KEY] = m_consumerKey;
 
       /* Signature if supplied */
       if( oauthSignature.get_length() > 0 )
       {
-         keyValueMap[Application.OAUTHLIB_SIGNATURE_KEY] = oauthSignature;
+         keyValueMap[OAUTHLIB_SIGNATURE_KEY] = oauthSignature;
       }
 
       /* Token */
       if( m_oAuthTokenKey.get_length() > 0 )
       {
-         keyValueMap[Application.OAUTHLIB_TOKEN_KEY] = m_oAuthTokenKey;
+         keyValueMap[OAUTHLIB_TOKEN_KEY] = m_oAuthTokenKey;
       }
 
       /* Verifier */
       if( includeOAuthVerifierPin && ( m_oAuthPin.get_length() > 0 ) )
       {
-         keyValueMap[Application.OAUTHLIB_VERIFIER_KEY] = m_oAuthPin;
+         keyValueMap[OAUTHLIB_VERIFIER_KEY] = m_oAuthPin;
       }
 
       /* Version */
-      keyValueMap[Application.OAUTHLIB_VERSION_KEY] = string( "1.0" );
+      keyValueMap[OAUTHLIB_VERSION_KEY] = string( "1.0" );
 
       //keyValueMap |= rawData;
 
@@ -1017,12 +1034,7 @@ void CSHA1::GetHash(UINT_8 *puDest)
    * @output: oAuthHttpHeader - OAuth header
    *
    *--*/
-   bool oauth::getOAuthHeader(
-      const eOAuthHttpRequestType eType,
-      const string & rawUrl,
-      property_set & rawData,
-      property_set & headers,
-      const bool includeOAuthVerifierPin)
+   bool oauth::getOAuthHeader(const eOAuthHttpRequestType eType, const string & rawUrl, property_set & set, const bool includeOAuthVerifierPin)
    {
       property_set setHeader;
       property_set setSignature;
@@ -1054,10 +1066,10 @@ void CSHA1::GetHash(UINT_8 *puDest)
       }
 
       /* Build key-value pairs needed for OAuth request token, without signature */
-      buildOAuthTokenKeyValuePairs(includeOAuthVerifierPin, rawData, string( "" ), setSignature);
+      buildOAuthTokenKeyValuePairs(includeOAuthVerifierPin, set["post"].propset(), string( "" ), setSignature);
 
 
-      setSignature.merge(rawData);
+      setSignature.merge(set["post"].propset());
 
       /* Get url encoded base64 signature using request type, url and parameters */
       getSignature(eType, pureUrl, setSignature, oauthSignature);
@@ -1072,10 +1084,10 @@ void CSHA1::GetHash(UINT_8 *puDest)
 
       //const string OAUTHLIB_AUTHHEADER_STRING = "Authorization: OAuth ";
       /* Build authorization header */
-      headers["Authorization"] = "OAuth " + rawParams;
+      set["headers"]["Authorization"] = "OAuth " + rawParams;
 
 
-      return headers.m_propertya.get_count() > 0 ? true : false;
+      return set["headers"].propset().m_propertya.get_count() > 0 ? true : false;
    }
 
    /*++
@@ -1165,10 +1177,10 @@ void CSHA1::GetHash(UINT_8 *puDest)
          string strDummy( "" );
 
          /* Get oauth_token key */
-         nPos = requestTokenResponse.find(Application.OAUTHLIB_TOKEN_KEY);
+         nPos = requestTokenResponse.find(OAUTHLIB_TOKEN_KEY);
          if(nPos >=0)
          {
-            nPos = nPos + Application.OAUTHLIB_TOKEN_KEY.get_length() + strlen( "=" );
+            nPos = nPos + OAUTHLIB_TOKEN_KEY.get_length() + strlen( "=" );
             strDummy = requestTokenResponse.Mid( nPos );
             nPos = strDummy.find( "&" );
             if( nPos >= 0)
@@ -1178,10 +1190,10 @@ void CSHA1::GetHash(UINT_8 *puDest)
          }
 
          /* Get oauth_token_secret */
-         nPos = requestTokenResponse.find(Application.OAUTHLIB_TOKENSECRET_KEY );
+         nPos = requestTokenResponse.find(OAUTHLIB_TOKENSECRET_KEY );
          if( nPos >= 0 )
          {
-            nPos = nPos + Application.OAUTHLIB_TOKENSECRET_KEY.get_length() + strlen( "=" );
+            nPos = nPos + OAUTHLIB_TOKENSECRET_KEY.get_length() + strlen( "=" );
             strDummy = requestTokenResponse.Mid( nPos );
             nPos = strDummy.find( "&" );
             if( nPos >= 0 )
@@ -1191,10 +1203,10 @@ void CSHA1::GetHash(UINT_8 *puDest)
          }
 
          /* Get screen_name */
-         nPos = requestTokenResponse.find(Application.OAUTHLIB_SCREENNAME_KEY );
+         nPos = requestTokenResponse.find(OAUTHLIB_SCREENNAME_KEY );
          if( nPos >= 0 )
          {
-            nPos = nPos + Application.OAUTHLIB_SCREENNAME_KEY.get_length() + strlen( "=" );
+            nPos = nPos + OAUTHLIB_SCREENNAME_KEY.get_length() + strlen( "=" );
             strDummy = requestTokenResponse.Mid( nPos );
             m_oAuthScreenName = strDummy;
          }

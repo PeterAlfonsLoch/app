@@ -24,7 +24,7 @@ namespace sockets
 
 
 
-      void http_tunnel::OnConnect()
+   void http_tunnel::OnConnect()
    {
       if(m_bDirect)
       {

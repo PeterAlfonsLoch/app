@@ -14,7 +14,8 @@ base_system::base_system(sp(base_application) papp) :
 #ifndef METROWIN
    //m_processsection(this),
 #endif
-   //m_visual(this)
+   //m_visual(this),
+   ,m_libraryDraw2d(this)
 {
 
 
@@ -96,16 +97,16 @@ base_system::base_system(sp(base_application) papp) :
 #endif
 
 
-   Ex1OnFactoryExchange();
+   //Ex1OnFactoryExchange();
 
    //m_spfilesystem.create(allocer());
 
 
-   {
+/*   {
 
       draw2d_gdiplus::factory_exchange factoryexchange(this);
 
-   }
+   }*/
 
    m_pxml = canew(::xml::departament(this));
 
@@ -125,14 +126,6 @@ void base_system::construct()
 
    ::base_application::construct();
 
-   m_spos.create(allocer());
-
-   m_spfile.create(allocer());
-   m_spdir.create(allocer());
-
-
-   if (!m_spdir->initialize())
-      throw simple_exception(this, "failed to construct base_system");
 
 
 
@@ -165,8 +158,16 @@ bool base_system::process_initialize()
    m_pfactory->creatable_large < ::file::simple_binary_buffer > (type_info < ::file::binary_buffer >());
    m_pfactory->creatable_large < ::file::string_buffer > ();
 
+   //Ex1OnFactoryExchange();
+
+   m_spos.create(allocer());
+
+   m_spfile.create(allocer());
+   m_spdir.create(allocer());
 
 
+   if (!m_spdir->initialize())
+      throw simple_exception(this, "failed to construct base_system");
 
    return true;
 
@@ -603,3 +604,183 @@ application_ptra & base_system::appptra()
    return m_appptra;
 }
 
+
+
+
+void base_system::appa_load_string_table()
+{
+
+   retry_single_lock rsl(&m_mutex, millis(84), millis(84));
+
+   for (int32_t i = 0; i < appptra().get_size(); i++)
+   {
+      sp(base_application) papp = appptra()(i);
+      papp->load_string_table();
+   }
+
+}
+
+void base_system::appa_set_locale(const char * pszLocale, bool bUser)
+{
+
+   retry_single_lock rsl(&m_mutex, millis(84), millis(84));
+
+   for (int32_t i = 0; i < appptra().get_size(); i++)
+   {
+      sp(base_application) papp = appptra()(i);
+      papp->set_locale(pszLocale, bUser);
+   }
+
+}
+
+void base_system::appa_set_schema(const char * pszStyle, bool bUser)
+{
+
+   retry_single_lock rsl(&m_mutex, millis(84), millis(84));
+
+   for (int32_t i = 0; i < appptra().get_size(); i++)
+   {
+      sp(base_application) papp = appptra()(i);
+      papp->set_schema(pszStyle, bUser);
+   }
+
+}
+
+
+
+bool base_system::assert_running_global(const char * pszAppName, const char * pszId)
+{
+   if (string(pszId).has_char())
+   {
+      //         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_global_id_mutex_name(pszAppName, pszId));
+      ::mutex * pmutex = mutex::open_mutex(this, get_global_id_mutex_name(pszAppName, pszId));
+      if (pmutex == NULL)
+      {
+
+         string strApp = pszAppName;
+         strApp += "app.exe";
+
+         string strParameters;
+         strParameters = ": global_mutex_id=\"" + string(pszId) + "\"";
+
+#if defined(WINDOWSEX) || defined(LINUX) || defined(MACOS)
+
+         simple_shell_launcher launcher(NULL, NULL, dir().path(get_module_folder(), strApp), strParameters, NULL, SW_SHOW);
+
+         launcher.execute();
+
+#else
+
+         throw todo(get_app());
+
+#endif
+
+         return false;
+      }
+      else
+      {
+         delete pmutex;
+      }
+      return true;
+   }
+   else
+   {
+      //HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_global_mutex_name(pszAppName));
+      ::mutex * pmutex = mutex::open_mutex(this, get_global_mutex_name(pszAppName));
+      if (pmutex == NULL)
+      {
+         string strApp = pszAppName;
+         strApp += "app.exe";
+
+#ifdef METROWIN
+
+         throw todo(get_app());
+
+#else
+
+         simple_shell_launcher launcher(NULL, NULL, dir().path(get_module_folder(), strApp), NULL, NULL, SW_SHOW);
+
+         launcher.execute();
+
+#endif
+
+         return false;
+      }
+      else
+      {
+         //::CloseHandle(h);
+         delete pmutex;
+      }
+      return true;
+   }
+}
+
+bool base_system::assert_running_local(const char * pszAppName, const char * pszId)
+{
+   string strAppName(pszAppName);
+   string strId(pszId);
+   if (strId.has_char())
+   {
+      //HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_local_id_mutex_name(pszAppName, strId));
+      ::mutex * pmutex = mutex::open_mutex(this, get_local_id_mutex_name(pszAppName, strId));
+      if (pmutex == NULL)
+      {
+         string strApp;
+         strApp = "app.exe";
+         string strParameters;
+         strParameters = ": app=" + strAppName + " local_mutex_id=\"" + strId + "\"";
+
+#ifdef METROWIN
+
+         throw todo(get_app());
+
+#else
+
+         simple_shell_launcher launcher(NULL, NULL, dir().path(get_ca2_module_folder(), strApp), strParameters, NULL, SW_SHOW);
+
+         launcher.execute();
+
+#endif
+
+         return false;
+      }
+      else
+      {
+         //::CloseHandle(h);
+         delete pmutex;
+      }
+      return true;
+   }
+   else
+   {
+      //         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_local_mutex_name(pszAppName));
+      ::mutex * pmutex = mutex::open_mutex(this, get_local_mutex_name(pszAppName));
+      if (pmutex == NULL)
+      {
+         string strApp;
+         strApp = "app.exe";
+         string strParameters;
+         strParameters = ": app=" + strAppName;
+
+#ifdef METROWIN
+
+         throw todo(get_app());
+
+#else
+
+         simple_shell_launcher launcher(NULL, NULL, dir().path(get_ca2_module_folder(), strApp), strParameters, NULL, SW_SHOW);
+
+         launcher.execute();
+
+#endif
+
+         return false;
+      }
+      else
+      {
+         //::CloseHandle(h);
+         delete pmutex;
+      }
+      return true;
+   }
+}

@@ -651,9 +651,6 @@
     <Filter Include="Source Files\base\os\windows">
       <UniqueIdentifier>{a9fa6c5c-4118-45a3-a636-0a71e98bcdb4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\base\os\windows\builtin_draw2d_gdiplus">
-      <UniqueIdentifier>{e52501eb-5d02-44a1-9ba6-2eb7748ab202}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\base\install">
       <UniqueIdentifier>{90021ec4-d01a-4f04-a062-a622ecf9d870}</UniqueIdentifier>
     </Filter>
@@ -695,9 +692,6 @@
     </Filter>
     <Filter Include="Header Files\base\os\windows">
       <UniqueIdentifier>{719bbac6-b1e2-43be-9042-48cec85915ad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\os\windows\builtin_draw2d_gdiplus">
-      <UniqueIdentifier>{6ea73a7e-f176-4d5a-a82b-5ff48ddf036f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\base\os\cross">
       <UniqueIdentifier>{e9b106f1-4ddd-4521-b7c1-6461c701be4f}</UniqueIdentifier>
@@ -957,9 +951,6 @@
       <Filter>Header Files\net\sockets\http</Filter>
     </ClInclude>
     <ClInclude Include="net\sockets\http\sockets_http_put_socket.h">
-      <Filter>Header Files\net\sockets\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http_request_socket.h">
       <Filter>Header Files\net\sockets\http</Filter>
     </ClInclude>
     <ClInclude Include="net\sockets\http\sockets_http_session.h">
@@ -2624,42 +2615,6 @@
     <ClInclude Include="base\os\windows\windows_window_gdi.h">
       <Filter>Header Files\base\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_bitmap.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_brush.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_dib.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_factory_exchange.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_font.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_graphics.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_object.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_palette.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_path.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_pen.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_region.h">
-      <Filter>Header Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClInclude>
     <ClInclude Include="base\hotplugin\hotplugin.h">
       <Filter>Header Files\base\hotplugin</Filter>
     </ClInclude>
@@ -2682,9 +2637,6 @@
       <Filter>Header Files\base\install</Filter>
     </ClInclude>
     <ClInclude Include="base\install\install_focus.h">
-      <Filter>Header Files\base\install</Filter>
-    </ClInclude>
-    <ClInclude Include="base\install\install_http.h">
       <Filter>Header Files\base\install</Filter>
     </ClInclude>
     <ClInclude Include="base\install\install_install.h">
@@ -3161,6 +3113,24 @@
     <ClInclude Include="user\user_message.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="base\base\base_progress.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\math_scalar.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\math_scalar_enum.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_listener.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_status.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_signal.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_c.c">
@@ -3473,9 +3443,6 @@
       <Filter>Source Files\net\sockets\http</Filter>
     </ClCompile>
     <ClCompile Include="net\sockets\http\sockets_http_put_socket.cpp">
-      <Filter>Source Files\net\sockets\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http\sockets_http_request_socket.cpp">
       <Filter>Source Files\net\sockets\http</Filter>
     </ClCompile>
     <ClCompile Include="net\sockets\http\sockets_http_session.cpp">
@@ -6307,42 +6274,6 @@
     <ClCompile Include="base\os\windows\windows.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_bitmap.cpp">
-      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_brush.cpp">
-      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_dib.cpp">
-      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_factory_exchange.cpp">
-      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_font.cpp">
-      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_graphics.cpp">
-      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_object.cpp">
-      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_palette.cpp">
-      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_path.cpp">
-      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_pen.cpp">
-      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_preview_dc.cpp">
-      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\nodeapp\appseed\draw2d_gdiplus\draw2d_gdiplus_region.cpp">
-      <Filter>Source Files\base\os\windows\builtin_draw2d_gdiplus</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\os_file.cpp">
       <Filter>Source Files\base\os</Filter>
     </ClCompile>
@@ -6395,9 +6326,6 @@
       <Filter>Source Files\base\install</Filter>
     </ClCompile>
     <ClCompile Include="base\install\install_focus.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
-    <ClCompile Include="base\install\install_http.cpp">
       <Filter>Source Files\base\install</Filter>
     </ClCompile>
     <ClCompile Include="base\install\install_install.cpp">
@@ -6784,6 +6712,18 @@
     <ClCompile Include="user\user_message.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
+    <ClCompile Include="base\base\base_progress.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_scalar.cpp">
+      <Filter>Source Files\primitive\math</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_listener.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_status.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -6971,6 +6911,12 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

@@ -23,6 +23,25 @@ namespace hi5
       virtual public ::object
    {
    public:
+
+      const string OAUTHLIB_CONSUMERKEY_KEY;
+      const string OAUTHLIB_CALLBACK_KEY;
+      const string OAUTHLIB_VERSION_KEY;
+      const string OAUTHLIB_SIGNATUREMETHOD_KEY;
+      const string OAUTHLIB_SIGNATURE_KEY;
+      const string OAUTHLIB_TIMESTAMP_KEY;
+      const string OAUTHLIB_NONCE_KEY;
+      const string OAUTHLIB_TOKEN_KEY;
+      const string OAUTHLIB_TOKENSECRET_KEY;
+      const string OAUTHLIB_VERIFIER_KEY;
+      const string OAUTHLIB_SCREENNAME_KEY;
+
+
+      const string OAUTHLIB_TWITTER_REQUEST_TOKEN_URL;
+      const string OAUTHLIB_TWITTER_AUTHORIZE_URL;
+      const string OAUTHLIB_TWITTER_ACCESS_TOKEN_URL;
+
+
        oauth(sp(base_application) papp);
        virtual ~oauth();
 
@@ -46,9 +65,8 @@ namespace hi5
        void setOAuthPin( const string& oAuthPin /* in */ );
 
        bool getOAuthHeader(const eOAuthHttpRequestType eType, /* in */
-                           const string& rawUrl, /* in */
-                           property_set & rawData, /* in */
-                           property_set & headers, /* out */
+                           const string & rawUrl, /* in */
+                           property_set & set, /* in(set["post"])/out(set["headers"]) */
                            const bool includeOAuthVerifierPin = false /* in */ );
 
        bool extractOAuthTokenKeySecret( const string& requestTokenResponse /* in */ );

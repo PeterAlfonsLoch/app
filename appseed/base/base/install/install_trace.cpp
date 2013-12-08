@@ -1,184 +1,183 @@
 #include "framework.h"
 
-//extern oswindow g_oswindow;
 
-
-mutex * g_pmutexTrace = NULL;
-stringa * g_pstraTrace = NULL;
-HANDLE g_ftrace = INVALID_HANDLE_VALUE;
-string * g_pstrLastStatus = NULL;
-string * g_pstrLastGlsStatus = NULL;
-int32_t g_iLastStatus = 0;
-int32_t g_iLastGlsStatus = 0;
-
-
-void on_trace(string & str, string & str2);
-
-
-
-
-void ensure_trace_file()
+namespace install
 {
-   dir::mk(dir::element());
-   if(g_ftrace != INVALID_HANDLE_VALUE)
-   {
-      // best really determination that g_ftrace is valid, if it is valid, it is not necessary to create or open it
-      string str2 = "ensure_trace_file";
-      DWORD dwWritten;
-      if(WriteFile(g_ftrace, str2, (uint32_t) str2.length(), &dwWritten, NULL))
-      {
-         ::FlushFileBuffers(g_ftrace);
-         return;
-      }
-   }
-   g_ftrace = ::create_file(dir::element("install.log"), GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-   ::SetFilePointer(g_ftrace, 0, NULL, FILE_END);
-}
 
 
-void trace(const char * psz)
-{
-   if(str_begins_ci_dup(psz, "***"))
+   trace::trace(sp(base_application) papp) :
+      element(papp),
+      m_mutex(papp)
    {
-      g_iLastStatus = 0;
-      if((*g_pstrLastStatus) != psz)
-      {
-         (*g_pstrLastStatus) = psz;
-      }
+
+      m_hfile           = INVALID_HANDLE_VALUE;
+      m_iLastStatus     = 0;
+      m_iLastGlsStatus  = 0;
+
+
    }
-   else if(str_begins_ci_dup(psz, ":::::"))
+
+
+
+   trace::~trace()
    {
-      g_iLastGlsStatus = 0;
-      if((*g_pstrLastGlsStatus) != psz)
-      {
-         (*g_pstrLastGlsStatus) = psz;
-      }
+
+      finalize();
+
    }
-   else
+
+
+
+
+   void trace::ensure_trace_file()
    {
-		if((*g_pstrLastStatus).begins_ci("***"))
+      dir::mk(dir::element());
+      if (m_hfile != INVALID_HANDLE_VALUE)
       {
-         g_iLastStatus++;
-         if(g_iLastStatus >= 23)
+         // best really determination that m_hfile is valid, if it is valid, it is not necessary to create or open it
+         string str2 = "ensure_trace_file";
+         DWORD dwWritten;
+         if (WriteFile(m_hfile, str2, (uint32_t)str2.length(), &dwWritten, NULL))
          {
-            trace((*g_pstrLastStatus));
+            ::FlushFileBuffers(m_hfile);
+            return;
          }
       }
-		if((*g_pstrLastGlsStatus).begins_ci(":::::"))
+      m_hfile = ::create_file(dir::element("install.log"), GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+      ::SetFilePointer(m_hfile, 0, NULL, FILE_END);
+   }
+
+
+   void trace::rich_trace(const char * psz)
+   {
+      if (str_begins_ci_dup(psz, "***"))
       {
-         g_iLastGlsStatus++;
-         if(g_iLastGlsStatus >= 23)
+         m_iLastStatus = 0;
+         if (m_strLastStatus != psz)
          {
-            trace((*g_pstrLastGlsStatus));
+            m_strLastStatus = psz;
          }
       }
-   }
-   string str;
-   {
-      synch_lock lockTrace(g_pmutexTrace);
-      g_pstraTrace->add(psz);
-      str = g_pstraTrace->element_at(g_pstraTrace->get_count() - 1);
-   }
-   string str2(str);
-   str2 = "\r\n" + str2;
-   on_trace(str, str2);
-}
-
-void trace_add(const char * psz)
-{
-   string str;
-   {
-      synch_lock lockTrace(g_pmutexTrace);
-      if(g_pstraTrace->get_count() == 0)
-         g_pstraTrace->add(psz);
+      else if (str_begins_ci_dup(psz, ":::::"))
+      {
+         m_iLastGlsStatus = 0;
+         if (m_strLastGlsStatus != psz)
+         {
+            m_strLastGlsStatus = psz;
+         }
+      }
       else
-         g_pstraTrace->element_at(g_pstraTrace->get_count() - 1) += psz;
-      str = g_pstraTrace->element_at(g_pstraTrace->get_count() - 1);
-   }
-   string str2(psz);
-   on_trace(str, str2);
-}
-
-bool isspace_dup(char ch)
-{
-   if(ch=='\t')
-      return true;
-   if(ch==' ')
-      return true;
-   if(ch=='\r')
-      return true;
-   if(ch=='\n')
-      return true;
-   return false;
-}
-
-void on_trace(string & str, string & str2)
-{
-/*   if(::IsWindowVisible(g_oswindow))
-   {
-      if(str.length() > 3 && str.substr(0, 3) == "***")
       {
-         SetWindowText(g_oswindow, str.substr(3));
+         if (m_strLastStatus.begins_ci("***"))
+         {
+            m_iLastStatus++;
+            if (m_iLastStatus >= 23)
+            {
+               rich_trace(m_strLastStatus);
+            }
+         }
+         if (m_strLastGlsStatus.begins_ci(":::::"))
+         {
+            m_iLastGlsStatus++;
+            if (m_iLastGlsStatus >= 23)
+            {
+               rich_trace(m_strLastGlsStatus);
+            }
+         }
       }
-      else if(str.length() > 0 && str.substr(0, 1) != ".")
+      string str;
       {
-         SetWindowText(g_oswindow, str);
+         synch_lock lockTrace(&m_mutex);
+         m_stra.add(psz);
+         str = m_stra.last_element();
       }
-   }*/
-   if(g_ftrace != NULL && str2.length() > 0)
-   {
-      DWORD dwWritten;
-      ::SetFilePointer(g_ftrace, 0, NULL, SEEK_END);
-      WriteFile(g_ftrace, str2, (uint32_t) str2.length(), &dwWritten, NULL);
-      ::FlushFileBuffers(g_ftrace);
+      string str2(str);
+      str2 = "\r\n" + str2;
+      on_trace(str, str2);
    }
 
-}
+   void trace::trace_add(const char * psz)
+   {
+      string str;
+      {
+         synch_lock lockTrace(&m_mutex);
+         if (m_stra.is_empty())
+            m_stra.add(psz);
+         else
+            m_stra.element_at(m_stra.get_count() - 1) += psz;
+         str = m_stra.element_at(m_stra.get_count() - 1);
+      }
+      string str2(psz);
+      on_trace(str, str2);
+   }
 
-
-
-void trace_progress(double dRate)
-{
-   if(dRate < 0.0)
-      dRate = 1.0;
-   if(dRate > 1.0)
-      dRate = 1.0;
-   dRate = dRate * 1000.0 * 1000.0 * 1000.0;
-   //int32_t i = ftol(dRate);
-   int32_t i = (int32_t) dRate;
-   string str;
-   str = "|||";
-   str += itoa_dup(i);
-   trace(str);
-}
-
-
-
-
-bool initialize_primitive_trace()
-{
-
-   g_pstraTrace = new stringa();
-
-   if(g_pstraTrace == NULL)
+   bool trace::isspace_dup(char ch)
+   {
+      if (ch == '\t')
+         return true;
+      if (ch == ' ')
+         return true;
+      if (ch == '\r')
+         return true;
+      if (ch == '\n')
+         return true;
       return false;
+   }
 
-   return true;
-
-}
-
-
-void finalize_primitive_trace()
-{
-
-   if(g_pstraTrace != NULL)
+   void trace::on_trace(string & str, string & str2)
    {
 
-      //g_pstraTrace->m_pbaseapp.m_p = NULL;
-      //g_pstraTrace->m_pbasesystem.m_p = NULL;
+      if (m_hfile != NULL && str2.length() > 0)
+      {
 
-      //delete g_pstraTrace;
+         DWORD dwWritten;
+         ::SetFilePointer(m_hfile, 0, NULL, SEEK_END);
+         WriteFile(m_hfile, str2, (uint32_t)str2.length(), &dwWritten, NULL);
+         ::FlushFileBuffers(m_hfile);
+
+      }
 
    }
 
-}
+
+
+   void trace::trace_progress(double dRate)
+   {
+      if (dRate < 0.0)
+         dRate = 1.0;
+      if (dRate > 1.0)
+         dRate = 1.0;
+      dRate = dRate * 1000.0 * 1000.0 * 1000.0;
+      //int32_t i = ftol(dRate);
+      int32_t i = (int32_t)dRate;
+      string str;
+      str = "|||";
+      str += itoa_dup(i);
+      rich_trace(str);
+   }
+
+
+
+
+   bool trace::initialize()
+   {
+
+      ensure_trace_file();
+
+      return true;
+
+   }
+
+
+   void trace::finalize()
+   {
+
+   }
+
+
+
+} // namespace install
+
+
+
+

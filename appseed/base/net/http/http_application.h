@@ -26,42 +26,32 @@ namespace http
       virtual ~application();
 
 
-      ::sockets::http_client_socket * get(::sockets::socket_handler & handler, const char * pszUrl, property_set & post, property_set & headers, property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
+      ::sockets::http_client_socket * get(::sockets::socket_handler & handler, const char * pszUrl, property_set & set);
 
 
       DECL_GEN_SIGNAL(get);
 
-
-      bool get(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
-      bool get(const char * pszUrl, primitive::memory_base & memory, property_set & post, property_set & headers, property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
-      bool get(const char * pszUrl, string & str, ::fontopus::user * puser = NULL);
-      bool get(const char * pszUrl, string & str, property_set & post, property_set & headers, property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
-
-      bool exists(const char * pszUrl, ::fontopus::user * puser = NULL);
-
-      bool exists(const char * pszUrl, var * pvarQuery, ::fontopus::user * puser = NULL);
-
-      string get(const char * pszUrl, ::fontopus::user * puser = NULL);
+      property_set & process_set(property_set & set, const char * pszUrl);
 
 
-      bool request(const char * pszRequest, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
-      bool request(const char * pszRequest, const char * pszUrl, string & str, property_set & post, property_set & headers, property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
-      bool request(const char * pszRequest, const char * pszUrl, string & str, ::fontopus::user * puser = NULL);
+      bool get(const char * pszUrl, primitive::memory_base & memory, property_set & set = property_set());
+      bool get(const char * pszUrl, string & str, property_set & set = property_set());
+
+      bool exists(const char * pszUrl, property_set & set = property_set());
+      bool exists(const char * pszUrl, var * pvarQuery, property_set & set = property_set());
+
+      string get(const char * pszUrl, property_set & set = property_set());
+
+      //bool request(const char * pszRequest, const char * pszUrl, primitive::memory_base & memory, property_set & set = property_set());
+      //bool request(const char * pszRequest, const char * pszUrl, string & str, property_set & set = property_set());
+
+      bool request(const char * pszRequest, const char * pszUrl, property_set & set = property_set());
+
+      bool download(const char * pszUrl, const char * pszFile, property_set & set = property_set());
 
 
-      string request(const char * pszRequest, const char * pszUrl, ::fontopus::user * puser = NULL);
-
-
-      bool download(const char * pszUrl, const char * pszFile, property_set & post, property_set & headers, property_set & set, ::http::cookies * pcookies = NULL,  ::fontopus::user * puser = NULL, const char * pszVersion = "HTTP/1.1");
-      bool download(const char * pszUrl, const char * pszFile, const char * pszPost, property_set & headers, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = "HTTP/1.1");
-      bool download(const char * pszUrl, const char * pszFile, ::fontopus::user * puser = NULL);
-
-
-      bool put(const char * pszUrl, primitive::memory & memory, ::fontopus::user * puser = NULL);
-      bool put(const char * pszUrl, ::file::buffer_sp  pfile, ::fontopus::user * puser = NULL);
-
-      bool put(string & strResponse, const char * pszUrl, primitive::memory & memory, ::fontopus::user * puser = NULL);
-      bool put(string & strResponse, const char * pszUrl, ::file::buffer_sp  pfile, ::fontopus::user * puser = NULL);
+      bool put(const char * pszUrl, primitive::memory & memory, property_set & set = property_set());
+      bool put(const char * pszUrl, ::file::buffer_sp  pfile, property_set & set = property_set());
 
       virtual string defer_locale_schema_get(const char * pszUrl, const char * pszLocale, const char * pszSchema);
 

@@ -86,3 +86,10 @@ COLORREF base_session::get_default_color(uint64_t ui)
 
 
 
+
+::core::copydesk & base_session::copydesk()
+{
+
+   return *m_spcopydesk;
+
+}

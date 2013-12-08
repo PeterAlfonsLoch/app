@@ -439,13 +439,13 @@ namespace file
 
          if(strPath.is_empty())
          {
-            TRACE("plane::application::get_file file with empty name!!");
+            TRACE("::application::get_file file with empty name!!");
             return spfile;
          }
 
          if((nOpenFlags & ::file::mode_create) == 0 && !exists(strPath))
          {
-            TRACE("plane::application::file does not exist!!");
+            TRACE("::application::file does not exist!!");
             return spfile;
          }
 

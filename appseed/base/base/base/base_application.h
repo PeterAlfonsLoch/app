@@ -52,9 +52,12 @@ class CLASS_DECL_BASE base_application :
    virtual public ::core::live_object,
    virtual public command_target_interface,
    virtual public request_interface,
-   virtual public message_queue
+   virtual public message_queue,
+   virtual public int_scalar_source
 {
 public:
+
+
 
 
    smart_pointer < base_application >              m_pimpl;
@@ -64,7 +67,7 @@ public:
 
    base_system *                                   m_pbasesystem;
    base_session *                                  m_pbasesession;
-   ::plane::application *                          m_pplaneapp; // can be used only from core and upper
+   ::application *                                 m_pplaneapp; // can be used only from core and upper
    string_to_ptr                                   m_appmap;
    string                                          m_strAppName;
    allocatorsp                                     m_allocer;
@@ -80,6 +83,7 @@ public:
    sp(::mutex)                                     m_pmutexGlobalId;
 
 
+   sp(::fs::fs)                                    m_spfs;
    class ::http::application                       m_http;
    sp(::fontopus::fontopus)                        m_pfontopus;
    class ::file::dir::application                  m_dir;
@@ -99,6 +103,11 @@ public:
    HINSTANCE                                       m_hinstance;
 #endif
    map < ::user::e_key, ::user::e_key, bool, bool > *                            m_pmapKeyPressed;
+
+
+   bool                                            m_bUpdateMatterOnInstall;
+
+
    bool                                            m_bLicense;
    string                                          m_strBaseSupportId;
    sp(class ::fontopus::license)                   m_splicense;
@@ -131,8 +140,17 @@ public:
    string                                          m_strInstallToken;
    string                                          m_strInstallType;
    bool                                            m_bIfs;
+   mutex                                           m_mutexMatterLocator;
+   
 
 
+   mutex                                           m_mutexStr;
+   string_table                                    m_stringtable;
+   string_table                                    m_stringtableStd;
+
+
+   static UINT                                     APPM_LANGUAGE;
+   static WPARAM                                   WPARAM_LANGUAGE_UPDATE;
 
 
 
@@ -147,12 +165,21 @@ public:
 
 
    virtual int32_t simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
+   virtual int32_t simple_message_box_timeout(sp(::user::interaction) pwndOwner, const char * pszMessage, ::duration durationTimeOut, UINT fuStyle);
    int32_t simple_message_box(const char * pszMessage, UINT fuStyle);
    virtual string message_box(const string & pszMatter, property_set & propertyset);
 
 
    virtual string load_string(id id);
    virtual bool load_string(string & str, id id);
+   virtual void load_string_table();
+//   virtual string load_string(id id);
+  // virtual bool load_string(string & str, id id);
+   bool load_cached_string(string & str, id id, bool bLoadStringTable);
+   bool load_cached_string_by_id(string & str, id id, const string & pszFallbackValue, bool bLoadStringTable);
+   void load_string_table(const string & pszApp, const string & pszId);
+
+
 
    virtual bool is_system();
    virtual bool is_session();
@@ -162,7 +189,9 @@ public:
    virtual bool init_main_data(::core::main_init_data * pdata);
 
 
-   ::core::savings & savings();
+
+
+   ::core::savings &                         savings();
    inline class ::http::application &        http()         { return m_http; }
    inline class ::file::dir::application &   dir()          { return m_dir; }
    inline class ::file::application &        file()         { return m_file; }
@@ -368,8 +397,14 @@ public:
 
    virtual bool system_add_app_install(const char * pszId);
 
+
    virtual void fill_locale_schema(::str::international::locale_schema & localeschema);
    virtual void fill_locale_schema(::str::international::locale_schema & localeschema, const char * pszLocale, const char * pszSchema);
+
+
+   virtual bool update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession, const char * pszRoot, const char * pszRelative);
+   virtual bool update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession, const char * pszRoot, const char * pszRelative, const char * pszLocale, const char * pszStyle);
+
 
    virtual void LockTempMaps();
    virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
@@ -443,7 +478,6 @@ public:
    virtual service_base * allocate_new_service();
    virtual bool create_new_service();
 
-
    virtual bool create_service();
    virtual bool remove_service();
 
@@ -480,6 +514,19 @@ public:
 
    virtual bool check_exclusive();
    virtual bool release_exclusive();
+
+   virtual void draw2d_factory_exchange();
+
+
+   virtual void on_set_scalar(e_scalar escalar, int64_t iValue);
+   virtual int64_t get_scalar_minimum(e_scalar escalar);
+   virtual int64_t get_scalar(e_scalar escalar);
+   virtual int64_t get_scalar_maximum(e_scalar escalar);
+
+   virtual void message_queue_message_handler(signal_details * pobj);
+
+
+
 
 };
 

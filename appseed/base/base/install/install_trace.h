@@ -1,13 +1,54 @@
 #pragma once
 
-CLASS_DECL_BASE void ensure_trace_file();
 
-CLASS_DECL_BASE void trace(const char * psz);
 
-CLASS_DECL_BASE void trace_add(const char * psz);
+namespace install
+{
 
-CLASS_DECL_BASE void trace_progress(double dRate);
 
-CLASS_DECL_BASE bool initialize_primitive_trace();
+   class CLASS_DECL_BASE trace :
+      virtual public object,
+      virtual public progress_listener
+   {
+   public:
 
-CLASS_DECL_BASE void finalize_primitive_trace();
+
+
+      mutex                m_mutex;
+      stringa              m_stra;
+      HANDLE               m_hfile;
+      string               m_strLastStatus;
+      string               m_strLastGlsStatus;
+      int32_t              m_iLastStatus;
+      int32_t              m_iLastGlsStatus;
+      
+      
+      trace(sp(base_application) papp);
+      virtual ~trace();
+
+      
+      bool initialize();
+
+      void finalize();
+
+      void ensure_trace_file();
+
+      virtual void on_trace(string & str, string & str2);
+
+      virtual void rich_trace(const char * psz);
+
+      virtual void trace_add(const char * psz);
+
+      virtual void trace_progress(double dRate);
+
+      virtual bool isspace_dup(char ch);
+
+
+   };
+
+
+} // namespace trace
+
+
+
+

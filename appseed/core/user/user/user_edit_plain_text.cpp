@@ -2074,14 +2074,14 @@ namespace user
    {
       string str;
       _001GetSelText(str);
-      System.copydesk().set_plain_text(str);
+      Session.copydesk().set_plain_text(str);
    }
 
    void edit_plain_text::clipboard_paste()
    {
 
       string str;
-      str = System.copydesk().get_plain_text();
+      str = Session.copydesk().get_plain_text();
       str.replace("\r\n", "\n");
       _001SetSelText(str);
       MacroBegin();
@@ -2293,7 +2293,7 @@ namespace user
    void edit_plain_text::_001OnUpdateEditFocusPaste(signal_details * pobj)
    {
       SCAST_PTR(base_cmd_ui, pupdatecmdui, pobj)
-      pupdatecmdui->m_pcmdui->Enable(System.copydesk().get_plain_text().has_char());
+      pupdatecmdui->m_pcmdui->Enable(Session.copydesk().get_plain_text().has_char());
    }
 
    void edit_plain_text::_001OnEditFocusPaste(signal_details * pobj)

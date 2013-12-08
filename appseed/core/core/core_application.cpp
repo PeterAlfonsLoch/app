@@ -17,13 +17,9 @@
 
 
 
-mutex g_mutexStr(NULL);
-
 //int32_t nibble_to_low_hex(byte nibble);
 
 
-UINT application::APPM_LANGUAGE = WM_APP + 117;
-WPARAM application::WPARAM_LANGUAGE_UPDATE = 1;
 
 CLASS_DECL_CORE HMODULE g_hmoduleOs = NULL;
 
@@ -33,108 +29,23 @@ const char application::gen_PreviewSection[] = "Settings";
 const char application::gen_PreviewEntry[] = "PreviewPages";
 
 
+//namespace _001ca1api00001 + [core = (//namespace cube // ca8 + cube)]
 
 
 application::application() :
-   element(this), // start m_pbaseapp as this for constructor referencing this app
-   m_mutex(this),
-   thread(NULL),
-   m_mutexMatterLocator(this),
-   //m_allocer(this),
-   OAUTHLIB_CONSUMERKEY_KEY      ("oauth_consumer_key"),
-   OAUTHLIB_CALLBACK_KEY         ("oauth_callback"),
-   OAUTHLIB_VERSION_KEY          ("oauth_version"),
-   OAUTHLIB_SIGNATUREMETHOD_KEY  ("oauth_signature_method"),
-   OAUTHLIB_SIGNATURE_KEY        ("oauth_signature"),
-   OAUTHLIB_TIMESTAMP_KEY        ("oauth_timestamp"),
-   OAUTHLIB_NONCE_KEY            ("oauth_nonce"),
-   OAUTHLIB_TOKEN_KEY            ("oauth_token"),
-   OAUTHLIB_TOKENSECRET_KEY      ("oauth_token_secret"),
-   OAUTHLIB_VERIFIER_KEY         ("oauth_verifier"),
-   OAUTHLIB_SCREENNAME_KEY       ("screen_name"),
+element(this), // start m_pbaseapp as this for constructor referencing this app
+m_mutex(this),
+thread(NULL),
+m_simpledb(this)
 
-
-   OAUTHLIB_TWITTER_REQUEST_TOKEN_URL  ("http://twitter.com/oauth/request_token"),
-   OAUTHLIB_TWITTER_AUTHORIZE_URL      ("http://twitter.com/oauth/authorize?oauth_token="),
-   OAUTHLIB_TWITTER_ACCESS_TOKEN_URL   ("http://twitter.com/oauth/access_token"),
-
-
-   /* Constants */
-   TWIT_COLON ( ":"),
-   TWIT_EOS ( '\0'),
-
-   /* Miscellaneous data used to build twitter URLs*/
-   TWIT_SEARCHQUERYSTRING ( "?q("),
-   TWIT_SCREENNAME ( "?screen_name("),
-   TWIT_USERID ( "?user_id("),
-   TWIT_EXTENSIONFORMAT ( ".xml"),
-   TWIT_TARGETSCREENNAME ( "?target_screen_name("),
-   TWIT_TARGETUSERID ( "?target_id("),
-
-   /* Search URLs */
-   TWIT_SEARCH_URL ( "http://search.twitter.com/search.atom"),
-
-   /* Status URLs */
-   TWIT_STATUSUPDATE_URL ( "http://twitter.com/statuses/update.xml"),
-   TWIT_STATUSSHOW_URL ( "http://twitter.com/statuses/show/"),
-   TWIT_STATUDESTROY_URL ( "http://twitter.com/statuses/destroy/"),
-
-   /* Timeline URLs */
-   TWIT_PUBLIC_TIMELINE_URL ( "http://twitter.com/statuses/public_timeline.xml"),
-   TWIT_FEATURED_USERS_URL ( "http://twitter.com/statuses/featured.xml"),
-   TWIT_FRIENDS_TIMELINE_URL ( "http://twitter.com/statuses/friends_timeline.xml"),
-   TWIT_MENTIONS_URL ( "http://twitter.com/statuses/mentions.xml"),
-   TWIT_USERTIMELINE_URL ( "http://twitter.com/statuses/user_timeline.xml"),
-
-   /* Users URLs */
-   TWIT_SHOWUSERS_URL ( "http://twitter.com/users/show.xml"),
-   TWIT_SHOWFRIENDS_URL ( "http://twitter.com/statuses/friends.xml"),
-   TWIT_SHOWFOLLOWERS_URL ( "http://twitter.com/statuses/followers.xml"),
-
-   /* Direct messages URLs */
-   TWIT_DIRECTMESSAGES_URL ( "http://twitter.com/direct_messages.xml"),
-   TWIT_DIRECTMESSAGENEW_URL ( "http://twitter.com/direct_messages/new.xml"),
-   TWIT_DIRECTMESSAGESSENT_URL ( "http://twitter.com/direct_messages/sent.xml"),
-   TWIT_DIRECTMESSAGEDESTROY_URL ( "http://twitter.com/direct_messages/destroy/"),
-
-   /* Friendships URLs */
-   TWIT_FRIENDSHIPSCREATE_URL ( "http://twitter.com/friendships/create.xml"),
-   TWIT_FRIENDSHIPSDESTROY_URL ( "http://twitter.com/friendships/destroy.xml"),
-   TWIT_FRIENDSHIPSSHOW_URL ( "http://twitter.com/friendships/show.xml"),
-
-   /* Social graphs URLs */
-   TWIT_FRIENDSIDS_URL ( "http://twitter.com/friends/ids.xml"),
-   TWIT_FOLLOWERSIDS_URL ( "http://twitter.com/followers/ids.xml"),
-
-   /* Ac::count URLs */
-   TWIT_ACCOUNTRATELIMIT_URL ( "http://twitter.com/account/rate_limit_status.xml"),
-
-   /* Favorites URLs */
-   TWIT_FAVORITESGET_URL ( "http://twitter.com/favorites.xml"),
-   TWIT_FAVORITECREATE_URL ( "http://twitter.com/favorites/create/"),
-   TWIT_FAVORITEDESTROY_URL ( "http://twitter.com/favorites/destroy/"),
-
-   /* Block URLs */
-   TWIT_BLOCKSCREATE_URL ( "http://twitter.com/blocks/create/"),
-   TWIT_BLOCKSDESTROY_URL ( "http://twitter.com/blocks/destroy/"),
-
-   /* Saved Search URLs */
-   TWIT_SAVEDSEARCHGET_URL ( "http://twitter.com/saved_searches.xml"),
-   TWIT_SAVEDSEARCHSHOW_URL ( "http://twitter.com/saved_searches/show/"),
-   TWIT_SAVEDSEARCHCREATE_URL ( "http://twitter.com/saved_searches/create.xml"),
-   TWIT_SAVEDSEARCHDESTROY_URL ( "http://twitter.com/saved_searches/destroy/"),
-
-   /* Trends URLs */
-   TWIT_TRENDS_URL ( "http://api.twitter.com/1/trends.json"),
-   TWIT_TRENDSDAILY_URL ( "http://api.twitter.com/1/trends/daily.json"),
-   TWIT_TRENDSCURRENT_URL ( "http://api.twitter.com/1/trends/current.json"),
-   TWIT_TRENDSWEEKLY_URL ( "http://api.twitter.com/1/trends/weekly.json"),
-   TWIT_TRENDSAVAILABLE_URL ( "http://api.twitter.com/1/trends/available.json")
 
 {
 
 
-   if(m_pbaseapp.is_null())
+
+
+
+   if (m_pbaseapp.is_null())
    {
       set_app(this);
    }
@@ -148,51 +59,52 @@ application::application() :
    //      uint32_t dw = ::_getmbcp();
    srand(::get_tick_count());
 
-   m_pinitmaindata      = NULL;
-   m_bService           = false;
+   m_pinitmaindata = NULL;
+   m_bService = false;
 
-   m_psession           = NULL;
-   m_psystem            = NULL;
+   m_psession = NULL;
+   m_psystem = NULL;
 
 
    //      m_plemonarray              = new ::lemon::array(this);
    //    m_base64.set_app(this);
    //m_pidspace = new id_space("veribell-{E856818A-2447-4a4e-B9CC-4400C803EE7A}", NULL);
-   m_iResourceId              = 8001;
-//   m_pcommandthread           = new command_thread(this);
+   m_iResourceId = 8001;
+   //   m_pcommandthread           = new command_thread(this);
 
    ::core::profiler::initialize();
 
-   m_pszRegistryKey              = NULL;
-   m_pszHelpFilePath             = NULL;
-   m_pszProfileName              = NULL;
-   m_pframea                     = NULL;
+   m_pszRegistryKey = NULL;
+   m_pszHelpFilePath = NULL;
+   m_pszProfileName = NULL;
+   m_pframea = NULL;
 
+   m_pplaneapp = this;
 
-   m_pwndMain                    = NULL;
-   m_puserstrcontext             = NULL;
-   m_bShouldInitializeGTwf       = true;
-   m_bSessionSynchronizedCursor  = true;
-   m_bSessionSynchronizedScreen  = true;
+   m_pwndMain = NULL;
+   m_puserstrcontext = NULL;
+   m_bShouldInitializeGTwf = true;
+   m_bSessionSynchronizedCursor = true;
+   m_bSessionSynchronizedScreen = true;
 
-   m_pdocmanager                 = NULL;
+   m_pdocmanager = NULL;
 
-   m_nCmdShow                    = -1;
+   m_nCmdShow = -1;
 
-   m_strInstallType              = "application";
+   m_strInstallType = "application";
 
    m_pinitmaindata = NULL;
 
    m_psignal->connect(this, &application::on_application_signal);
 
-   m_eexclusiveinstance       = ExclusiveInstanceNone;
-   m_peventReady              = NULL;
-   m_strLocale                = "_std";
-   m_strSchema                = "_std";
+   m_eexclusiveinstance = ExclusiveInstanceNone;
+   m_peventReady = NULL;
+   m_strLocale = "_std";
+   m_strSchema = "_std";
 
-   m_pcalculator              = NULL;
-   m_pcolorertake5            = NULL;
-   m_psockets                 = NULL;
+   m_pcalculator = NULL;
+   m_pcolorertake5 = NULL;
+   m_psockets = NULL;
 
 
 
@@ -206,7 +118,51 @@ application::~application()
 
 void application::construct(const char * pszId)
 {
-   UNREFERENCED_PARAMETER(pszId);
+   //if(m_strAppName.has_char())
+   //   return;
+   //m_strAppName.Empty();
+   //m_strId.Empty();
+   if (pszId == NULL)
+   {
+#ifdef WINDOWSEX
+      wstring wstr = ::GetCommandLineW();
+      string str = ::str::international::unicode_to_utf8(wstr);
+      strsize iFind = str.find(" : ");
+      if (iFind >= 0)
+      {
+         iFind = str.find("app=", iFind);
+         if (iFind >= 0)
+         {
+            strsize iEnd = str.find(" ", iFind);
+            if (iEnd < 0)
+            {
+               m_strId = str.Mid(iFind + 4);
+            }
+            else
+            {
+               m_strId = str.Mid(iFind + 4, iEnd - iFind - 4);
+            }
+            ::str::begins_eat(m_strId, "\"");
+            ::str::ends_eat(m_strId, "\"");
+         }
+      }
+#endif
+   }
+   else
+   {
+      m_strId = pszId;
+   }
+   if (m_strId.is_empty())
+      m_strId = "mplite";
+   construct();
+   if (m_strAppName.is_empty())
+   {
+      if (m_strAppId.has_char())
+         m_strAppName = m_strAppId;
+      else if (m_strInstallToken.has_char())
+         m_strAppName = m_strInstallToken;
+   }
+
 }
 
 application * application::get_app() const
@@ -224,7 +180,7 @@ int32_t application::exit()
    {
       thread::exit();
    }
-   catch(...)
+   catch (...)
    {
    }
 
@@ -235,49 +191,61 @@ int32_t application::exit()
 
 bool application::is_system()
 {
+
    return false;
+
 }
+
 
 bool application::is_session()
 {
+
    return false;
+
 }
+
 
 bool application::is_installing()
 {
-   return false;
+
+   return base_application::is_installing();
+
 }
+
 
 bool application::is_uninstalling()
 {
-   return false;
+
+   return base_application::is_uninstalling();
+
 }
+
 
 bool application::is_serviceable()
 {
-   return false;
+
+   return base_application::is_serviceable();
+
 }
+
 
 bool application::init_main_data(::core::main_init_data * pdata)
 {
+
    m_pinitmaindata = pdata;
+
    return true;
+
 }
 
-/*   bool application::set_main_init_data(main_init_data * pdata)
-{
-return true;
-}*/
 
 int32_t application::main()
 {
-   return 0;
+
+   return base_application::main();
+
 }
 
-/*   bool application::bergedge_start()
-{
-return true;
-}*/
 
 bool application::os_native_bergedge_start()
 {
@@ -289,64 +257,91 @@ bool application::process_initialize()
 
 
 
-   if(is_system())
-   {
-      System.factory().cloneable_large < stringa > ();
-      System.factory().cloneable_large < ::primitive::memory > ();
-      System.factory().cloneable_large < int_array > ();
-      //System.factory().cloneable_large < property > ();
-   }
+   //if(is_system())
+   //{
+   //   System.factory().cloneable_large < stringa > ();
+   //   System.factory().cloneable_large < ::primitive::memory > ();
+   //   System.factory().cloneable_large < int_array > ();
+   //   //System.factory().cloneable_large < property > ();
+   //}
 
-   m_pframea = new ::user::interaction_ptr_array(this);
+   //m_pframea = new ::user::interaction_ptr_array(this);
+
+   ////if(is_system())
+   ////{
+   //  // Ex1OnFactoryExchange();
+   ////}
+
+   //thread::s_bAllocReady = true;
+
+   //if(thread::m_p == NULL)
+   //{
+
+   //   thread::m_p.create(allocer());
+   //   thread::m_p->m_p = this;
+
+   //}
+
+   //m_pimpl.create(allocer());
+   //m_pimpl->construct();
+   //m_pimpl->m_pimpl = this;
+
+   //if(::get_thread() == NULL)
+   //{
+   //   set_thread(dynamic_cast < thread * > (this));
+   //}
+
+   //if(!update_module_paths())
+   //   return false;
+
+   //m_spfs = canew(::fs::fs(this));
+
+   //if(m_spfs == NULL)
+   //   return false;
+
+   //m_spfs->construct(this);
+
+
+   //if(!m_spfs->initialize())
+   //   return false;
+
+   //if(!ca_process_initialize())
+   //   return false;
 
    //if(is_system())
    //{
-     // Ex1OnFactoryExchange();
+   //   draw2d_factory_exchange();
    //}
 
-   thread::s_bAllocReady = true;
+   //if(!m_pimpl->process_initialize())
+   //   return false;
 
-   if(thread::m_p == NULL)
-   {
+   //return true;
 
-      thread::m_p.create(allocer());
-      thread::m_p->m_p = this;
 
-   }
-
-   m_pimpl.create(allocer());
-   m_pimpl->construct();
-   m_pimpl->m_pimpl = this;
-
-   if(::get_thread() == NULL)
-   {
-      set_thread(dynamic_cast < thread * > (this));
-   }
-
-   if(!update_module_paths())
+   if (!::base_application::process_initialize())
       return false;
 
-   m_spfs = canew(::fs::fs(this));
+   m_spuserex = create_userex();
 
-   if(m_spfs == NULL)
+   if (m_spuserex == NULL)
       return false;
 
-   m_spfs->construct(this);
+   m_spuserex->construct(this);
 
+   m_spuserfs = create_userfs();
 
-   if(!m_spfs->initialize())
+   if (m_spuserfs == NULL)
       return false;
 
-   if(!ca_process_initialize())
+   m_spuserfs->construct(this);
+
+   m_phtml = create_html();
+
+   if (m_phtml == NULL)
       return false;
 
-   if(is_system())
-   {
-      draw2d_factory_exchange();
-   }
-
-   if(!m_pimpl->process_initialize())
-      return false;
+   m_phtml->construct(this);
 
    return true;
 
@@ -356,25 +351,25 @@ bool application::process_initialize()
 bool application::update_module_paths()
 {
 
-   if(is_system())
+   if (is_system())
    {
 
-      if(!m_pimpl->update_module_paths())
+      if (!m_pimpl->update_module_paths())
          return false;
 
-      if(m_pimpl->m_strCa2ModuleFolder.is_empty())
+      if (m_pimpl->m_strCa2ModuleFolder.is_empty())
          m_pimpl->m_strCa2ModuleFolder = m_pimpl->m_strModuleFolder;
 
-      m_strModulePath         = m_pimpl->m_strModulePath;
-      m_strModuleFolder       = m_pimpl->m_strModuleFolder;
-      m_strCa2ModulePath      = m_pimpl->m_strCa2ModulePath;
-      m_strCa2ModuleFolder    = m_pimpl->m_strCa2ModuleFolder;
+      m_strModulePath = m_pimpl->m_strModulePath;
+      m_strModuleFolder = m_pimpl->m_strModuleFolder;
+      m_strCa2ModulePath = m_pimpl->m_strCa2ModulePath;
+      m_strCa2ModuleFolder = m_pimpl->m_strCa2ModuleFolder;
 
    }
    else
    {
 
-      m_strModulePath   = System.m_strModulePath;
+      m_strModulePath = System.m_strModulePath;
       m_strModuleFolder = System.m_strModuleFolder;
 
    }
@@ -384,18 +379,45 @@ bool application::update_module_paths()
 }
 
 
+
+
 bool application::initialize1()
 {
+   m_splicense = new class ::fontopus::license(this);
 
-   if (!base_application::initialize())
+
+
+   /*if(!is_system())
+   {
+   if(m_spfsdata.is_null())
+   m_spfsdata = new ::fs::set(this);
+   ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
+   pset->m_spafsdata.add(new ::fs::native(this));
+   stringa stra;
+   pset->root_ones(stra);
+   }*/
+
+
+   /*      if(fontopus()->m_puser == NULL &&
+   (Application.directrix()->m_varTopicQuery.has_property("install")
+   || Application.directrix()->m_varTopicQuery.has_property("uninstall")))
+   {
+
+   if(fontopus()->create_system_user("system") == NULL)
+   return false;
+
+   }*/
+
+
+   if (!base_application::initialize1())
       return false;
-   
+
 
    m_puinteraction = canew(::uinteraction::uinteraction(this));
 
    m_puinteraction->construct(this);
 
-   if(!m_puinteraction->initialize())
+   if (!m_puinteraction->initialize())
       return false;
 
    /*
@@ -420,28 +442,28 @@ bool application::initialize1()
    */
 
 
-/*   m_dwAlive = ::get_tick_count();
+   /*   m_dwAlive = ::get_tick_count();
 
 
-   m_strMatterLocator = System.dir().appmatter_locator(this);
+      m_strMatterLocator = System.dir().appmatter_locator(this);
 
 
-   m_puserstrcontext = canew(::user::str_context(this));
-   if(m_puserstrcontext == NULL)
+      m_puserstrcontext = canew(::user::str_context(this));
+      if(m_puserstrcontext == NULL)
       return false;
 
 
-   if(!ca_initialize1())
+      if(!ca_initialize1())
       return false;
 
-   string strLocaleSystem;
+      string strLocaleSystem;
 
-   string strSchemaSystem;
+      string strSchemaSystem;
 
-   string strPath = System.dir().appdata("langstyle_settings.xml");
+      string strPath = System.dir().appdata("langstyle_settings.xml");
 
-   if(Application.file().exists(strPath))
-   {
+      if(Application.file().exists(strPath))
+      {
 
       string strSystem = Application.file().as_string(strPath);
 
@@ -450,124 +472,295 @@ bool application::initialize1()
       if(docSystem.load(strSystem))
       {
 
-         if(docSystem.get_child("lang") != NULL)
-         {
+      if(docSystem.get_child("lang") != NULL)
+      {
 
-            strLocaleSystem = docSystem.get_child("lang")->get_value();
-
-         }
-
-         if(docSystem.get_child("style") != NULL)
-         {
-
-            strSchemaSystem = docSystem.get_child("style")->get_value();
-
-         }
+      strLocaleSystem = docSystem.get_child("lang")->get_value();
 
       }
 
-   }
+      if(docSystem.get_child("style") != NULL)
+      {
+
+      strSchemaSystem = docSystem.get_child("style")->get_value();
+
+      }
+
+      }
+
+      }
 
 
 
-   string strLocale;
+      string strLocale;
 
-   string strSchema;
+      string strSchema;
 
-#ifdef METROWIN
+      #ifdef METROWIN
 
-   stringa stra;
+      stringa stra;
 
-   try
-   {
+      try
+      {
 
       stra.explode("-", ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
 
-   }
-   catch (long)
-   {
+      }
+      catch (long)
+      {
 
 
-   }
+      }
 
-   strLocale = stra[0];
+      strLocale = stra[0];
 
-   strSchema = stra[0];
+      strSchema = stra[0];
 
-#elif defined(WINDOWS)
-   LANGID langid = ::GetUserDefaultLangID();
-#define SPR_DEUTSCH LANG_GERMAN
-   if(langid == LANG_SWEDISH)
-   {
+      #elif defined(WINDOWS)
+      LANGID langid = ::GetUserDefaultLangID();
+      #define SPR_DEUTSCH LANG_GERMAN
+      if(langid == LANG_SWEDISH)
+      {
       strLocale = "se";
       strSchema = "se";
-   }
-   else if(langid == MAKELANGID(LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN))
-   {
+      }
+      else if(langid == MAKELANGID(LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN))
+      {
       strLocale = "pt-br";
       strSchema = "pt-br";
-   }
-   else if(PRIMARYLANGID(langid) == SPR_DEUTSCH)
-   {
+      }
+      else if(PRIMARYLANGID(langid) == SPR_DEUTSCH)
+      {
       strLocale = "de";
       strSchema = "de";
-   }
-   else if(PRIMARYLANGID(langid) == LANG_ENGLISH)
-   {
+      }
+      else if(PRIMARYLANGID(langid) == LANG_ENGLISH)
+      {
       strLocale = "en";
       strSchema = "en";
-   }
-   else if(PRIMARYLANGID(langid) == LANG_JAPANESE)
-   {
+      }
+      else if(PRIMARYLANGID(langid) == LANG_JAPANESE)
+      {
       strLocale = "jp";
       strSchema = "jp";
-   }
-   else if(PRIMARYLANGID(langid) == LANG_POLISH)
-   {
+      }
+      else if(PRIMARYLANGID(langid) == LANG_POLISH)
+      {
       strLocale = "pl";
       strSchema = "pl";
-   }
-#endif
+      }
+      #endif
 
-   if(strLocale.is_empty())
+      if(strLocale.is_empty())
       strLocale = "se";
 
-   if(strSchema.is_empty())
+      if(strSchema.is_empty())
       strSchema = "se";
 
-   if(strLocaleSystem.has_char())
+      if(strLocaleSystem.has_char())
       strLocale = strLocaleSystem;
 
-   if(strSchemaSystem.has_char())
+      if(strSchemaSystem.has_char())
       strSchema = strSchemaSystem;
 
-   if(Sys(this).directrix()->m_varTopicQuery["locale"].get_string().has_char())
+      if(Sys(this).directrix()->m_varTopicQuery["locale"].get_string().has_char())
       strLocale = Sys(this).directrix()->m_varTopicQuery["locale"];
 
-   if(Sys(this).directrix()->m_varTopicQuery["schema"].get_string().has_char())
+      if(Sys(this).directrix()->m_varTopicQuery["schema"].get_string().has_char())
       strSchema = Sys(this).directrix()->m_varTopicQuery["schema"];
 
-   if(App(this).directrix()->m_varTopicQuery["locale"].get_string().has_char())
+      if(App(this).directrix()->m_varTopicQuery["locale"].get_string().has_char())
       strLocale = App(this).directrix()->m_varTopicQuery["locale"];
 
-   if(App(this).directrix()->m_varTopicQuery["schema"].get_string().has_char())
+      if(App(this).directrix()->m_varTopicQuery["schema"].get_string().has_char())
       strSchema = App(this).directrix()->m_varTopicQuery["schema"];
 
 
 
-   set_locale(strLocale, false);
-   set_schema(strSchema, false);
+      set_locale(strLocale, false);
+      set_schema(strSchema, false);
 
 
-   str_context()->localeschema().m_idaLocale.add(strLocale);
-   str_context()->localeschema().m_idaSchema.add(strSchema);
+      str_context()->localeschema().m_idaLocale.add(strLocale);
+      str_context()->localeschema().m_idaSchema.add(strSchema);
 
-   //Sleep(15 * 1000);
+      //Sleep(15 * 1000);
 
 
 
-   if(!m_pimpl->initialize1())
+      if(!m_pimpl->initialize1())
       return false;*/
+
+   if (!is_installing() && !is_uninstalling() && !is_system())
+   {
+
+      simpledb().set_keyboard_layout(NULL, false);
+
+   }
+
+
+   /*      if(m_bIfs)
+   {
+   if(m_psession != NULL && &Session != NULL)
+   {
+   if(m_spfsdata.is_null())
+   m_spfsdata = new ::fs::set(this);
+   ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
+   pset->m_spafsdata.add(Session.m_pifs);
+   pset->m_spafsdata.add(Session.m_prfs);
+   stringa stra;
+   pset->root_ones(stra);
+   }
+   }*/
+
+   m_dwAlive = ::get_tick_count();
+
+   if (!is_system())
+   {
+      System.register_bergedge_application(this);
+   }
+
+
+
+
+   if (!m_spuserfs->initialize())
+      return false;
+
+   m_simpledb.construct(this);
+
+   if (!m_simpledb.initialize())
+      return false;
+
+   if (!m_simpledb.initialize2())
+      return false;
+
+
+   if (!m_spuserex->initialize())
+      return false;
+
+   if (!m_phtml->initialize())
+      return false;
+
+   if (!is_system() && !is_session() && !is_installing() && !is_uninstalling())
+   {
+
+      string str;
+      // if system locale has changed (compared to last recorded one by core)
+      // use the system locale
+      if (data_get("system_locale", str))
+      {
+         if (str.has_char())
+         {
+            if (str != get_locale())
+            {
+               try
+               {
+                  data_set("system_locale", get_locale());
+                  data_set("locale", get_locale());
+               }
+               catch (...)
+               {
+               }
+            }
+         }
+      }
+      else
+      {
+         data_set("system_locale", get_locale());
+      }
+
+      if (command()->m_varTopicQuery["locale"].get_string().has_char())
+      {
+         str = command()->m_varTopicQuery["locale"];
+         data_set("system_locale", str);
+         data_set("locale", str);
+         set_locale(str, false);
+      }
+      else if (command()->m_varTopicQuery["lang"].get_string().has_char())
+      {
+         str = command()->m_varTopicQuery["lang"];
+         data_set("system_locale", str);
+         data_set("locale", str);
+         set_locale(str, false);
+      }
+      else if (data_get("locale", str))
+      {
+         if (str.has_char())
+         {
+            set_locale(str, false);
+         }
+      }
+      // if system schema has changed (compared to last recorded one by core)
+      // use the system schema
+      if (data_get("system_schema", str))
+      {
+         if (str.has_char())
+         {
+            if (str != get_schema())
+            {
+               try
+               {
+                  data_set("system_schema", get_schema());
+                  data_set("schema", get_schema());
+               }
+               catch (...)
+               {
+               }
+            }
+         }
+      }
+      else
+      {
+         data_set("system_schema", get_schema());
+      }
+
+      if (command()->m_varTopicQuery["schema"].get_string().has_char())
+      {
+         str = command()->m_varTopicQuery["schema"];
+         data_set("system_schema", str);
+         data_set("schema", str);
+         set_schema(str, false);
+      }
+      else if (data_get("schema", str))
+      {
+         if (str.has_char())
+         {
+            set_schema(str, false);
+         }
+      }
+
+      // keyboard layout
+      if (data_get("keyboard_layout", str) && str.has_char())
+      {
+         user()->set_keyboard_layout(str, false);
+      }
+      else
+      {
+         user()->set_keyboard_layout(NULL, false);
+      }
+
+      data_pulse_change("ca2", "savings", NULL);
+
+
+      App(this).fill_locale_schema(*str_context()->m_plocaleschema);
+
+
+      Sys(this).appa_load_string_table();
+
+   }
+
+
+   /*if(!m_spuser->initialize1())
+   return false;
+   if(!m_spuser->initialize2())
+   return false;*/
+
+   if (!m_spuserex->initialize1())
+      return false;
+   if (!m_spuserex->initialize2())
+      return false;
+
+
 
    return true;
 
@@ -577,12 +770,10 @@ bool application::initialize1()
 bool application::initialize2()
 {
 
-   if(!m_pimpl->initialize2())
+   if (!::base_application::initialize2())
       return false;
 
-   application_signal_details signal(this, m_psignal, application_signal_initialize2);
-   m_psignal->emit(&signal);
-   return signal.m_bOk;
+   return true;
 
 }
 
@@ -590,12 +781,7 @@ bool application::initialize2()
 bool application::initialize3()
 {
 
-   application_signal_details signal(this, m_psignal, application_signal_initialize3);
-   m_psignal->emit(&signal);
-   if(!signal.m_bOk)
-      return false;
-
-   if(!m_pimpl->initialize3())
+   if (!::base_application::initialize3())
       return false;
 
    return true;
@@ -611,43 +797,15 @@ bool application::initialize3()
 
 
 
-void application::draw2d_factory_exchange()
-{
-
-   string strLibrary = draw2d_get_default_library_name();
-
-   if(strLibrary.is_empty())
-      strLibrary = "draw2d_cairo";
-
-   base_library & library = System.m_libraryDraw2d;
-
-   if(library.is_opened())
-      return;
-
-   if(!library.open(strLibrary))
-   {
-      if(strLibrary != "draw2d_cairo")
-      {
-         if(!library.open("draw2d_cairo"))
-         {
-            throw "failed to do draw2d factory exchange";
-         }
-      }
-      else
-      {
-         throw "failed to do draw2d factory exchange";
-      }
-   }
-
-
-   PFN_ca2_factory_exchange pfn_ca2_factory_exchange = library.get < PFN_ca2_factory_exchange > ("ca2_factory_exchange");
-
-   pfn_ca2_factory_exchange(this);
-
-}
 
 void application::on_request(sp(::create_context) pcreatecontext)
 {
+   string strId = m_strId;
+   char chFirst = '\0';
+   if (strId.get_length() > 0)
+   {
+      chFirst = strId[0];
+   }
 
    ::request_interface::on_request(pcreatecontext);
 
@@ -670,64 +828,10 @@ return *m_plemonarray;
 bool application::initialize_instance()
 {
 
-   if(!is_system())
-   {
-      if(!check_exclusive())
-         return false;
-   }
-
-   m_dwAlive = ::get_tick_count();
-
-
-   if(!initialize1())
+   if (!::base_application::initialize_instance())
       return false;
-
-   string strWindow;
-   if(m_strAppName.has_char())
-      strWindow = m_strAppName;
-   else
-      strWindow = typeid(*this).name();
-
-#ifndef METROWIN
-
-   if(!create_message_queue(this, strWindow))
-   {
-      TRACE("Fatal error: could not initialize application message window (name=\"%s\").", strWindow);
-      return false;
-   }
-
-#endif
-
-   m_dwAlive = ::get_tick_count();
-
-   if(!initialize2())
-      return false;
-
-   m_dwAlive = ::get_tick_count();
-
-   if(!initialize3())
-      return false;
-
-   m_dwAlive = ::get_tick_count();
-
-   try
-   {
-      if(!initialize())
-         return false;
-   }
-   catch(const char * psz)
-   {
-      if(!strcmp(psz, "You have not logged in! Exiting!"))
-      {
-         return false;
-      }
-      return false;
-   }
-
-   if(!m_pimpl->initialize2())
-      return false;
-
-   return application::initialize2();
+   
+   return true;
 
 }
 
@@ -735,13 +839,6 @@ bool application::initialize_instance()
 int32_t application::exit_instance()
 {
 
-   try
-   {
-      base_application::exit_instance();
-   }
-   catch(...)
-   {
-   }
 
 
    //try
@@ -836,12 +933,12 @@ int32_t application::exit_instance()
 
    try
    {
-      if(!is_system())
+      if (!is_system())
       {
          System.unregister_bergedge_application(this);
       }
    }
-   catch(...)
+   catch (...)
    {
    }
 
@@ -854,7 +951,7 @@ int32_t application::exit_instance()
    }*/
 
 
-   if(is_system())
+   if (is_system())
    {
 
       //         try
@@ -874,9 +971,9 @@ int32_t application::exit_instance()
    try
    {
 
-      thread         * pthread      = thread::m_p.detach();
+      thread         * pthread = thread::m_p.detach();
 
-      if(pthread != NULL)
+      if (pthread != NULL)
       {
 
          try
@@ -892,7 +989,7 @@ int32_t application::exit_instance()
             pthread->set_run(false);
 
          }
-         catch(...)
+         catch (...)
          {
 
          }
@@ -900,7 +997,7 @@ int32_t application::exit_instance()
       }
 
    }
-   catch(...)
+   catch (...)
    {
 
    }
@@ -908,9 +1005,9 @@ int32_t application::exit_instance()
    try
    {
 
-      ::base_application   * papp         = m_pimpl.detach();
+      ::base_application   * papp = m_pimpl.detach();
 
-      if(papp != NULL && papp != this && !papp->is_system())
+      if (papp != NULL && papp != this && !papp->is_system())
       {
 
          try
@@ -919,7 +1016,7 @@ int32_t application::exit_instance()
             papp->exit_instance();
 
          }
-         catch(...)
+         catch (...)
          {
 
          }
@@ -927,9 +1024,53 @@ int32_t application::exit_instance()
       }
 
    }
-   catch(...)
+   catch (...)
    {
 
+   }
+/*   try
+   {
+
+      System.unregister_bergedge_application(this);
+
+   }
+   catch (...)
+   {
+
+      m_iReturnCode = -1;
+
+   }*/
+
+   try
+   {
+
+      if (System.appptra().get_count() <= 1)
+      {
+
+         if (System.thread::get_os_data() != NULL)
+         {
+            System.post_thread_message(WM_QUIT);
+
+         }
+
+      }
+
+   }
+   catch (...)
+   {
+
+      m_iReturnCode = -1;
+
+   }
+
+   return m_iReturnCode;
+
+   try
+   {
+      base_application::exit_instance();
+   }
+   catch (...)
+   {
    }
 
    return 0;
@@ -1203,11 +1344,11 @@ bool application::GetResourceData(UINT nID, const char * lpcszType, primitive::m
 HENHMETAFILE application::LoadEnhMetaFile(UINT uiResource)
 {
    primitive::memory storage;
-   if(!GetResourceData(uiResource, "EnhMetaFile", storage))
+   if (!GetResourceData(uiResource, "EnhMetaFile", storage))
    {
       return NULL;
    }
-   return SetEnhMetaFileBits((UINT) storage.get_size(), storage.get_data());
+   return SetEnhMetaFileBits((UINT)storage.get_size(), storage.get_data());
 }
 
 #endif
@@ -1269,7 +1410,8 @@ int32_t application::run()
    __post_quit_message(0);
    }*/
    //      return application::run();
-   return thread::run();
+   return base_application::run();
+
 }
 
 
@@ -1325,12 +1467,12 @@ void application::ProcessWndProcException(::exception::base* e, signal_details *
    {
       if (pbase->m_lparam == 0)
          //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
-            nIDP = "Command Failure";
+         nIDP = "Command Failure";
       pbase->set_lresult((LRESULT)TRUE);        // pretend the command was handled
    }
    if (base < memory_exception >::bases(e))
    {
-      e->ReportError(MB_ICONEXCLAMATION|MB_SYSTEMMODAL, nIDP);
+      e->ReportError(MB_ICONEXCLAMATION | MB_SYSTEMMODAL, nIDP);
    }
    else if (base < user_exception >::bases(e))
    {
@@ -1342,7 +1484,7 @@ void application::ProcessWndProcException(::exception::base* e, signal_details *
 bool application::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
 
 {
-   if(command_target_interface::_001OnCmdMsg(pcmdmsg))
+   if (command_target_interface::_001OnCmdMsg(pcmdmsg))
       return TRUE;
    return 0;
 }
@@ -1352,64 +1494,64 @@ bool application::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
 /*
 bool application::hex_to_memory(primitive::memory & memory, const char * pszHex)
 {
-   ::count len = strlen(pszHex);
-   ::count count = (len + 1) / 2;
-   memory.allocate(count);
-   index i = 0;
-   byte b;
-   while(*pszHex != '\0')
-   {
-      char ch = (char) tolower(*pszHex);
-      if(ch >= '0' && ch <= '9')
-      {
-         b = ch - '0';
-      }
-      else if(ch >= 'a' && ch <= 'f')
-      {
-         b = ch - 'a' + 10;
-      }
-      else
-      {
-         return false;
-      }
-      pszHex++;
-      if(*pszHex == '\0')
-      {
-         memory.get_data()[i] = b;
-         return true;
-      }
-      b = b << 4;
-      ch = (char) tolower(*pszHex);
-      if(ch >= '0' && ch <= '9')
-      {
-         b |= (ch - '0');
-      }
-      else if(ch >= 'a' && ch <= 'f')
-      {
-         b |= (ch - 'a' + 10);
-      }
-      else
-      {
-         return false;
-      }
-      pszHex++;
-      memory.get_data()[i] = b;
-      i++;
-   }
-   return true;
+::count len = strlen(pszHex);
+::count count = (len + 1) / 2;
+memory.allocate(count);
+index i = 0;
+byte b;
+while(*pszHex != '\0')
+{
+char ch = (char) tolower(*pszHex);
+if(ch >= '0' && ch <= '9')
+{
+b = ch - '0';
+}
+else if(ch >= 'a' && ch <= 'f')
+{
+b = ch - 'a' + 10;
+}
+else
+{
+return false;
+}
+pszHex++;
+if(*pszHex == '\0')
+{
+memory.get_data()[i] = b;
+return true;
+}
+b = b << 4;
+ch = (char) tolower(*pszHex);
+if(ch >= '0' && ch <= '9')
+{
+b |= (ch - '0');
+}
+else if(ch >= 'a' && ch <= 'f')
+{
+b |= (ch - 'a' + 10);
+}
+else
+{
+return false;
+}
+pszHex++;
+memory.get_data()[i] = b;
+i++;
+}
+return true;
 }
 
 
 void application::memory_to_hex(string & strHex, primitive::memory & memory)
 {
-   ::count count = memory.get_size();
-   LPSTR lpsz = strHex.GetBufferSetLength(count * 2);
-   for(index i = 0; i < count; i++)
-   {
-      *lpsz++ = ::hex::lower_from((byte) ((memory.get_data()[i] >> 4) & 0xf));
-      *lpsz++ = ::hex::lower_from((byte) (memory.get_data()[i] & 0xf));
-   }
-   strHex.ReleaseBuffer(count * 2);
+::count count = memory.get_size();
+LPSTR lpsz = strHex.GetBufferSetLength(count * 2);
+for(index i = 0; i < count; i++)
+{
+*lpsz++ = ::hex::lower_from((byte) ((memory.get_data()[i] >> 4) & 0xf));
+*lpsz++ = ::hex::lower_from((byte) (memory.get_data()[i] & 0xf));
+}
+strHex.ReleaseBuffer(count * 2);
 }
 */
 
@@ -1625,38 +1767,38 @@ bool application::_LoadSysPolicies() throw()
 
    static __system_policy_data rgExplorerData[] =
    {
-      {"NoRun", ___SYSPOLICY_NORUN},
-      {"NoDrives", ___SYSPOLICY_NODRIVES},
-      {"RestrictRun", ___SYSPOLICY_RESTRICTRUN},
-      {"NoNetConnectDisconnect", ___SYSPOLICY_NONETCONNECTDISCONNECTD},
-      {"NoRecentDocsHistory", ___SYSPOLICY_NORECENTDOCHISTORY},
-      {"NoClose", ___SYSPOLICY_NOCLOSE},
-      {NULL, 0}
+      { "NoRun", ___SYSPOLICY_NORUN },
+      { "NoDrives", ___SYSPOLICY_NODRIVES },
+      { "RestrictRun", ___SYSPOLICY_RESTRICTRUN },
+      { "NoNetConnectDisconnect", ___SYSPOLICY_NONETCONNECTDISCONNECTD },
+      { "NoRecentDocsHistory", ___SYSPOLICY_NORECENTDOCHISTORY },
+      { "NoClose", ___SYSPOLICY_NOCLOSE },
+      { NULL, 0 }
    };
 
    static __system_policy_data rgNetworkData[] =
    {
-      {"NoEntireNetwork", ___SYSPOLICY_NOENTIRENETWORK},
-      {NULL, 0}
+      { "NoEntireNetwork", ___SYSPOLICY_NOENTIRENETWORK },
+      { NULL, 0 }
    };
 
    static __system_policy_data rgComDlgData[] =
    {
-      {"NoPlacesBar", ___SYSPOLICY_NOPLACESBAR},
-      {"NoBackButton", ___SYSPOLICY_NOBACKBUTTON},
-      {"NoFileMru", ___SYSPOLICY_NOFILEMRU},
-      {NULL, 0}
+      { "NoPlacesBar", ___SYSPOLICY_NOPLACESBAR },
+      { "NoBackButton", ___SYSPOLICY_NOBACKBUTTON },
+      { "NoFileMru", ___SYSPOLICY_NOFILEMRU },
+      { NULL, 0 }
    };
 
    static __system_policies rgPolicies[] =
    {
-      {"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
-      rgExplorerData},
-      {"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Network",
-      rgNetworkData},
-      {"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Comdlg32",
-      rgComDlgData},
-      {NULL, 0}
+      { "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
+      rgExplorerData },
+      { "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Network",
+      rgNetworkData },
+      { "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Comdlg32",
+      rgComDlgData },
+      { NULL, 0 }
    };
 
    __system_policies *pPolicies = rgPolicies;
@@ -2056,18 +2198,18 @@ bool application::on_run_exception(::exception::exception & e)
 
    TRACE("An unexpected error has occurred and no special exception handling is available.");
 
-   if(typeid(e) == typeid(not_installed))
+   if (typeid(e) == typeid(not_installed))
    {
 
-      not_installed & notinstalled = dynamic_cast < not_installed & > (e);
+      not_installed & notinstalled = dynamic_cast <not_installed &> (e);
 
-      if(::is_debugger_attached())
+      if (::is_debugger_attached())
       {
 
          try
          {
 
-            if(!(bool)System.oprop("not_installed_message_already_shown"))
+            if (!(bool)System.oprop("not_installed_message_already_shown"))
             {
 
                MessageBox(NULL, "Debug only message, please install:\n\n\n\t" + notinstalled.m_strId + "\n\ttype = " + notinstalled.m_strType + "\n\tlocale = " + notinstalled.m_strLocale + "\n\tschema = " + notinstalled.m_strSchema + "\n\tbuild number = " + notinstalled.m_strBuild + "\n\n\nThere are helper scripts under <solution directory>/nodeapp/stage/install/", "Debug only message, please install.", MB_ICONINFORMATION | MB_OK);
@@ -2077,7 +2219,7 @@ bool application::on_run_exception(::exception::exception & e)
             }
 
          }
-         catch(...)
+         catch (...)
          {
 
          }
@@ -2126,11 +2268,11 @@ bool application::final_handle_exception(::exception::exception & e)
    UNREFERENCED_PARAMETER(e);
    //linux      exit(-1);
 
-   if(!is_system())
+   if (!is_system())
    {
 
       // get_app() may be it self, it is ok...
-      if(Sys(get_app()).final_handle_exception((::exception::exception & ) e))
+      if (Sys(get_app()).final_handle_exception((::exception::exception &) e))
          return true;
 
 
@@ -2174,6 +2316,12 @@ void application::delete_temp()
 
 void application::_001OnFileNew()
 {
+   string strId = m_strId;
+   char chFirst = '\0';
+   if (strId.get_length() > 0)
+   {
+      chFirst = strId[0];
+   }
    /*      if (m_pdocmanager != NULL)
    m_pdocmanager->_001OnFileNew();*/
 }
@@ -2186,9 +2334,9 @@ void application::on_file_open()
 
 // prompt for file name - used for open and save as
 bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::object) pdocument)
-   // if ptemplate==NULL => all document templates
+// if ptemplate==NULL => all document templates
 {
-   if(m_pfilemanager != NULL)
+   if (m_pfilemanager != NULL)
    {
       return m_pfilemanager->do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
    }
@@ -2416,7 +2564,7 @@ void application::HideApplication()
 {
    try
    {
-      if(GetMainWnd() == NULL)
+      if (GetMainWnd() == NULL)
          return;
 
       // hide the application's windows before closing all the documents
@@ -2425,9 +2573,9 @@ void application::HideApplication()
 
       // put the ::user::window at the bottom of zorder, so it isn't activated
       GetMainWnd()->SetWindowPos(ZORDER_BOTTOM, 0, 0, 0, 0,
-         SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE);
+         SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
    }
-   catch(...)
+   catch (...)
    {
    }
 
@@ -2494,35 +2642,11 @@ int32_t application::DoMessageBox(const char * lpszPrompt, UINT nType, UINT nIDP
    return ShowAppMessageBox(this, lpszPrompt, nType, nIDPrompt);
 }
 
-int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwner, const char * pszMessage, ::duration durationTimeOut,  UINT fuStyle)
-{
-   UNREFERENCED_PARAMETER(durationTimeOut);
-   return simple_message_box(pwndOwner, pszMessage, fuStyle);
-}
 
-int32_t application::simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle)
-{
-
-#if defined(WINDOWSEX)
-
-   return MessageBoxW((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())),
-      wstring(pszMessage), wstring(m_strAppName), fuStyle);
-
-#elif  defined(LINUX) || defined(MACOS) || defined(ANDROID)
-
-   return MessageBox((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
-
-#else
-
-   return MessageBox(m_psystem->m_posdata->m_pui->get_handle(), pszMessage, m_strAppName, fuStyle);
-
-#endif
-
-}
 
 #ifdef WINDOWS
 
-int32_t application::simple_message_box(sp(::user::interaction) pwndOwner,  UINT fuStyle, const char * pszFormat, ...)
+int32_t application::simple_message_box(sp(::user::interaction) pwndOwner, UINT fuStyle, const char * pszFormat, ...)
 {
    va_list va;
    va_start(va, pszFormat);
@@ -2996,16 +3120,16 @@ HKEY application::GetAppRegistryKey()
    HKEY hAppKey = NULL;
    HKEY hSoftKey = NULL;
    HKEY hCompanyKey = NULL;
-   if (RegOpenKeyEx(HKEY_CURRENT_USER, "software", 0, KEY_WRITE|KEY_READ,
+   if (RegOpenKeyEx(HKEY_CURRENT_USER, "software", 0, KEY_WRITE | KEY_READ,
       &hSoftKey) == ERROR_SUCCESS)
    {
       DWORD dw;
       if (RegCreateKeyEx(hSoftKey, m_pszRegistryKey, 0, REG_NONE,
-         REG_OPTION_NON_VOLATILE, KEY_WRITE|KEY_READ, NULL,
+         REG_OPTION_NON_VOLATILE, KEY_WRITE | KEY_READ, NULL,
          &hCompanyKey, &dw) == ERROR_SUCCESS)
       {
          RegCreateKeyEx(hCompanyKey, m_pszProfileName, 0, REG_NONE,
-            REG_OPTION_NON_VOLATILE, KEY_WRITE|KEY_READ, NULL,
+            REG_OPTION_NON_VOLATILE, KEY_WRITE | KEY_READ, NULL,
             &hAppKey, &dw);
       }
    }
@@ -3031,7 +3155,7 @@ HKEY application::GetSectionKey(const char * lpszSection)
       return NULL;
 
    DWORD dw;
-   RegCreateKeyEx(hAppKey, lpszSection, 0, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE|KEY_READ, NULL, &hSectionKey, &dw);
+   RegCreateKeyEx(hAppKey, lpszSection, 0, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE | KEY_READ, NULL, &hSectionKey, &dw);
    RegCloseKey(hAppKey);
    return hSectionKey;
 }
@@ -3311,7 +3435,7 @@ bool application::does_launch_window_on_startup()
 
 bool application::activate_app()
 {
-   if(GetMainWnd() != NULL)
+   if (GetMainWnd() != NULL)
    {
       GetMainWnd()->ShowWindow(SW_SHOWNORMAL);
    }
@@ -3485,20 +3609,6 @@ sp(::user::window) application::FindWindowEx(oswindow oswindowParent, oswindow o
    return m_pimpl->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
 }
 
-/*
-application_signal_details::application_signal_details(sp(base_application) papp, ::signal * psignal, e_application_signal esignal) :
-element(papp),
-signal_details(psignal)
-{
-
-m_esignal         = esignal;
-m_bOk             = true;
-
-}
-
-*/
-
-
 
 bool application::finalize()
 {
@@ -3509,7 +3619,7 @@ bool application::finalize()
    {
       thread::finalize();
    }
-   catch(...)
+   catch (...)
    {
       bFinalize = false;
    }
@@ -3555,17 +3665,17 @@ sp(::user::interaction) application::get_request_parent_ui(sp(::user::interactio
 
    sp(::user::interaction) puiParent = NULL;
 
-   if(puiParent == NULL)
+   if (puiParent == NULL)
    {
       puiParent = pcreatecontext->m_puiParent;
    }
 
-   if(puiParent == NULL && pcreatecontext->m_spApplicationBias.is_set())
+   if (puiParent == NULL && pcreatecontext->m_spApplicationBias.is_set())
    {
       puiParent = pcreatecontext->m_spApplicationBias->m_puiParent;
    }
 
-   if(puiParent == NULL && m_psession != NULL && !pcreatecontext->m_bClientOnly
+   if (puiParent == NULL && m_psession != NULL && !pcreatecontext->m_bClientOnly
       && !pcreatecontext->m_bOuterPopupAlertLike && m_psession != this)
    {
       puiParent = Sess(this).get_request_parent_ui(pinteraction, pcreatecontext);
@@ -3581,6 +3691,13 @@ sp(::user::interaction) application::get_request_parent_ui(sp(::user::interactio
 
 void application::construct()
 {
+   string strId = m_strId;
+   char chFirst = '\0';
+   if (strId.get_length() > 0)
+   {
+      chFirst = strId[0];
+   }
+
 
    ::base_application::construct();
 
@@ -3605,6 +3722,12 @@ void application::_001OnFileNew(signal_details * pobj)
 
 sp(::user::object) application::_001OpenDocumentFile(var varFile)
 {
+   string strId = m_strId;
+   char chFirst = '\0';
+   if (strId.get_length() > 0)
+   {
+      chFirst = strId[0];
+   }
 
    return m_pimpl->_001OpenDocumentFile(varFile);
 
@@ -3654,7 +3777,7 @@ bool application::Ex2OnAppUninstall()
 thread * application::GetThread()
 {
 
-   if(m_pimpl == NULL)
+   if (m_pimpl == NULL)
       return NULL;
 
    return m_pimpl->GetThread();
@@ -3703,7 +3826,7 @@ void application::SetCurrentHandles()
 
 
 
-void application::set_env_var(const string & var,const string & value)
+void application::set_env_var(const string & var, const string & value)
 {
    m_pimpl->set_env_var(var, value);
 }
@@ -3747,7 +3870,7 @@ void application::dump(dump_context & dumpcontext) const
    dumpcontext << "\nm_hDevNames = " << (void *)m_hDevNames;
 #endif
 
-   dumpcontext << "\nm_dwPromptContext = " << (UINT) m_dwPromptContext;
+   dumpcontext << "\nm_dwPromptContext = " << (UINT)m_dwPromptContext;
    //      dumpcontext << "\nm_eHelpType = " << m_eHelpType;
 
 
@@ -3793,7 +3916,7 @@ bool application::base_support()
    //if(!application::base_support())
    // return false;
 
-   if(m_strBaseSupportId.is_empty())
+   if (m_strBaseSupportId.is_empty())
    {
 
       property_set propertyset;
@@ -3816,13 +3939,16 @@ string application::message_box(const string & pszMatter, property_set & propert
 
 bool application::bergedge_start()
 {
+   string strId = m_strId;
+   char chFirst = '\0';
+   if (strId.get_length() > 0)
+   {
+      chFirst = strId[0];
+   }
+
    return true;
 }
 
-void application::load_string_table()
-{
-   load_string_table("", "");
-}
 
 
 
@@ -3831,11 +3957,11 @@ void application::load_string_table()
 
 
 #ifdef WINDOWSEX
-bool Is_Vista_or_Later ()
+bool Is_Vista_or_Later()
 {
    OSVERSIONINFOEX osvi;
    DWORDLONG dwlConditionMask = 0;
-   byte op=VER_GREATER_EQUAL;
+   byte op = VER_GREATER_EQUAL;
 
    // Initialize the OSVERSIONINFOEX structure.
 
@@ -3848,7 +3974,7 @@ bool Is_Vista_or_Later ()
 
    // Initialize the condition mask.
 
-   VER_SET_CONDITION( dwlConditionMask, VER_MAJORVERSION, op );
+   VER_SET_CONDITION(dwlConditionMask, VER_MAJORVERSION, op);
    //VER_SET_CONDITION( dwlConditionMask, VER_MINORVERSION, op );
    //VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMAJOR, op );
    //VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMINOR, op );
@@ -3874,7 +4000,7 @@ bool application::initialize()
 
    m_pcalculator->construct(this);
 
-   if(!m_pcalculator->initialize())
+   if (!m_pcalculator->initialize())
       return false;
 
 
@@ -3882,7 +4008,7 @@ bool application::initialize()
 
    m_pcolorertake5->construct(this);
 
-   if(!m_pcolorertake5->initialize())
+   if (!m_pcolorertake5->initialize())
       return false;
 
 
@@ -3916,9 +4042,9 @@ bool application::initialize()
 
    m_dwAlive = ::get_tick_count();
 
-   if(is_system())
+   if (is_system())
    {
-      System.factory().creatable_small < ::userex::keyboard_layout > ();
+      System.factory().creatable_small < ::userex::keyboard_layout >();
    }
 
    //      if(!::cubebase::application::initialize())
@@ -3932,20 +4058,20 @@ bool application::initialize()
    //  if(!m_puserbase->initialize())
    //return false;
 
-   m_pfilemanager =canew(::filemanager::filemanager(this));
+   m_pfilemanager = canew(::filemanager::filemanager(this));
 
    application::m_pfilemanager = m_pfilemanager;
 
    m_pfilemanager->construct(this);
 
-   if(!m_pfilemanager->initialize())
+   if (!m_pfilemanager->initialize())
       return false;
 
    m_pusermail = canew(::usermail::usermail(this));
 
    m_pusermail->construct(this);
 
-   if(!m_pusermail->initialize())
+   if (!m_pusermail->initialize())
       return false;
 
    m_dwAlive = ::get_tick_count();
@@ -3959,7 +4085,7 @@ bool application::initialize()
    //m_splicense(new class ::fontopus::license(this));
 
 
-   if(!is_system())
+   if (!is_system())
    {
       System.register_bergedge_application(this);
    }
@@ -3976,7 +4102,7 @@ bool application::initialize()
 void application::pre_translate_message(signal_details * pobj)
 {
    SCAST_PTR(::message::base, pbase, pobj);
-   if(pbase->m_uiMessage == WM_USER + 124 && pbase->m_pwnd == NULL)
+   if (pbase->m_uiMessage == WM_USER + 124 && pbase->m_pwnd == NULL)
    {
       /*      OnMachineEvent((flags < machine_event::e_flag> *) pmsg->lParam);
       delete (flags < machine_event::e_flag> *) pmsg->lParam;*/
@@ -3989,7 +4115,7 @@ void application::pre_translate_message(signal_details * pobj)
 void application::_001OnApplicationRequest(signal_details * pobj)
 {
    SCAST_PTR(::message::base, pbase, pobj);
-   if(pbase->m_wparam == 2)
+   if (pbase->m_wparam == 2)
    {
       // when wparam == 2 lparam is a pointer to a ::core::command_fork
       // that should be treated as command_line on request, i.e.,
@@ -4000,17 +4126,17 @@ void application::_001OnApplicationRequest(signal_details * pobj)
       {
          on_request(pcreatecontext);
       }
-      catch(not_installed & e)
+      catch (not_installed & e)
       {
 
          throw e;
 
       }
-      catch(exit_exception & e)
+      catch (exit_exception & e)
       {
          throw e;
       }
-      catch(...)
+      catch (...)
       {
       }
       sp(::plane::session) pbergedge = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"].cast < ::plane::session >();
@@ -4060,175 +4186,6 @@ void application::EnableShellOpen()
 }
 
 
-string application::load_string(id id)
-{
-   string str;
-   if(!load_string(str, id))
-   {
-      return (const string &) id;
-   }
-   return str;
-}
-
-bool application::load_string(string & str, id id)
-{
-   if(!load_cached_string(str, id, true))
-   {
-      return false;
-   }
-   return true;
-}
-
-bool application::load_cached_string(string & str, id id, bool bLoadStringTable)
-{
-   ::xml::document doc(this);
-   if(!doc.load(id))
-   {
-      return load_cached_string_by_id(str, id, "", bLoadStringTable);
-   }
-   sp(::xml::node) pnodeRoot = doc.get_root();
-   if(pnodeRoot->get_name() == "string")
-   {
-      string strId = pnodeRoot->attr("id");
-      string strValue = pnodeRoot->get_value();
-      return load_cached_string_by_id(str, strId, strValue, bLoadStringTable);
-   }
-   str = doc.get_name();
-   return true;
-}
-
-bool application::load_cached_string_by_id(string & str, id id, const string & pszFallbackValue, bool bLoadStringTable)
-{
-
-   single_lock sl(&g_mutexStr, true);
-
-   string strId(*id.m_pstr);
-   string strTable;
-   string strString;
-   string_to_string * pmap = NULL;
-   index iFind = 0;
-   if((iFind = strId.find(':')) <= 0)
-   {
-      strTable = "";
-      strString = strId;
-   }
-   else
-   {
-      strTable = strId.Mid(0, iFind);
-      strString = strId.Mid(iFind + 1);
-   }
-   if(m_stringtablemapStd.Lookup(strTable, pmap))
-   {
-      if(pmap->Lookup(strString, str))
-      {
-         return true;
-      }
-   }
-   else if(m_stringtablemap.Lookup(strTable, pmap))
-   {
-      if(pmap->Lookup(strString, str))
-      {
-         return true;
-      }
-   }
-   else if(bLoadStringTable)
-   {
-      load_string_table(strTable, "");
-      return load_cached_string_by_id(str, id, pszFallbackValue, false);
-   }
-   if(pszFallbackValue.is_empty())
-      str = strId;
-   else
-      str = pszFallbackValue;
-   return true;
-}
-
-void application::load_string_table(const string & pszApp, const string & pszId)
-{
-
-   single_lock sl(&g_mutexStr, true);
-
-   string strApp(pszApp);
-   string strMatter;
-   string strLocator;
-
-   if(strApp.is_empty())
-   {
-      strLocator = System.dir().appmatter_locator(this);
-   }
-   else
-   {
-      strLocator = System.dir().appmatter_locator(strApp);
-   }
-
-   if(strMatter.is_empty())
-   {
-      strMatter = "stringtable.xml";
-   }
-   else if(System.file().extension(strMatter) != "xml")
-   {
-      strMatter += ".xml";
-   }
-
-   string strTableId = strApp;
-
-   if(pszId.has_char() && *pszId != '\0')
-   {
-      strTableId += "\\";
-      strTableId += pszId;
-   }
-
-   ::xml::document doc(get_app());
-   string strFilePath = System.dir().matter_from_locator(App(this).str_context(), strLocator, strMatter);
-   if(!System.file().exists(strFilePath, this))
-   {
-      try
-      {
-         if(m_stringtablemap[pszId] != NULL)
-            delete m_stringtablemap[pszId];
-      }
-      catch(...)
-      {
-      }
-      m_stringtablemap.set_at(pszId, new string_to_string);
-      return;
-   }
-   string strFile = Application.file().as_string(strFilePath);
-   if(!doc.load(strFile))
-      return;
-   string_to_string * pmapNew = new string_to_string;
-   for(int32_t i = 0; i < doc.get_root()->children().get_count(); i++)
-   {
-      string strId      = doc.get_root()->child_at(i)->attr("id");
-      string strValue   = doc.get_root()->child_at(i)->get_value();
-      pmapNew->set_at(strId, strValue);
-   }
-
-   string_to_string * pmapOld = m_stringtablemap[strTableId];
-
-   m_stringtablemap[strTableId] = NULL;
-
-   if(pmapOld != NULL)
-   {
-
-      try
-      {
-
-         delete pmapOld;
-
-      }
-      catch(...)
-      {
-
-      }
-
-   }
-
-   m_stringtablemap[strTableId] = pmapNew;
-   ASSERT(m_stringtablemap[strTableId] == pmapNew);
-}
-
-
 
 sp(::user::interaction) application::uie_from_point(point pt)
 {
@@ -4236,41 +4193,34 @@ sp(::user::interaction) application::uie_from_point(point pt)
    user::oswindow_array oswindowa;
    wnda.get_wnda(oswindowa);
    user::window_util::SortByZOrder(oswindowa);
-   for(int32_t i = 0; i < oswindowa.get_count(); i++)
+   for (int32_t i = 0; i < oswindowa.get_count(); i++)
    {
       sp(::user::interaction) puieWindow = wnda.find_first(oswindowa[i]);
       sp(::user::interaction) puie = puieWindow->_001FromPoint(pt);
-      if(puie != NULL)
+      if (puie != NULL)
          return puie;
    }
    return NULL;
 }
 
-void application::message_queue_message_handler(signal_details * pobj)
-{
-   SCAST_PTR(::message::base, pbase, pobj);
-   if(pbase->m_uiMessage == WM_TIMER)
-   {
-      SCAST_PTR(::message::timer, ptimer, pobj);
-      if(ptimer->m_nIDEvent == 123)
-      {
-         m_spuiMessage->KillTimer(ptimer->m_nIDEvent);
-         frames().send_message_to_descendants(application::APPM_LANGUAGE);
-         System.appa_load_string_table();
-      }
-   }
-}
 
 bool application::on_install()
 {
+   string strId = m_strId;
+   char chFirst = '\0';
+   if (strId.get_length() > 0)
+   {
+      chFirst = strId[0];
+   }
+
    return true;
 }
 
 bool application::on_run_install()
 {
-   if(m_strId == "session" || m_strAppName == "session")
+   if (m_strId == "session" || m_strAppName == "session")
    {
-      if(!directrix()->m_varTopicQuery.has_property("session_start"))
+      if (!directrix()->m_varTopicQuery.has_property("session_start"))
       {
          System.post_thread_message(WM_QUIT);
       }
@@ -4286,15 +4236,22 @@ bool application::on_run_install()
 
 bool application::on_uninstall()
 {
+   string strId = m_strId;
+   char chFirst = '\0';
+   if (strId.get_length() > 0)
+   {
+      chFirst = strId[0];
+   }
+
    return true;
 }
 
 bool application::on_run_uninstall()
 {
 
-   if(m_strId == "session")
+   if (m_strId == "session")
    {
-      if(!directrix()->m_varTopicQuery.has_property("session_start"))
+      if (!directrix()->m_varTopicQuery.has_property("session_start"))
       {
          System.post_thread_message(WM_QUIT);
       }
@@ -4323,21 +4280,21 @@ bool application::start_application(bool bSynch, application_bias * pbias)
    }*/
    try
    {
-      if(pbias != NULL)
+      if (pbias != NULL)
       {
-         if(pbias->m_pcallback != NULL)
+         if (pbias->m_pcallback != NULL)
          {
             pbias->m_pcallback->connect_to(this);
          }
       }
    }
-   catch(...)
+   catch (...)
    {
    }
 
    manual_reset_event * peventReady = NULL;
 
-   if(bSynch)
+   if (bSynch)
    {
       peventReady = new manual_reset_event(get_app());
       m_peventReady = peventReady;
@@ -4347,36 +4304,36 @@ bool application::start_application(bool bSynch, application_bias * pbias)
    thread::m_p.create(allocer());
    //dynamic_cast < thread * > (papp->m_pplaneapp->thread::m_p)->m_p = papp->m_pplaneapp->thread::m_p;
    thread::m_p->m_p = this;
-   if(pbias != NULL)
+   if (pbias != NULL)
    {
       m_biasCalling = *pbias;
    }
    begin();
 
-   if(bSynch)
+   if (bSynch)
    {
       try
       {
          keep_alive();
       }
-      catch(...)
+      catch (...)
       {
       }
       try
       {
          //            MESSAGE msg;
-         while(get_run())
+         while (get_run())
          {
             // phase1: check to see if we can do idle work
             while (!has_message())
             {
-               if(!is_alive())
+               if (!is_alive())
                {
                   return false;
                }
-               if(m_bReady)
+               if (m_bReady)
                {
-                  if(m_iReturnCode == 0)
+                  if (m_iReturnCode == 0)
                      goto ok;
                   return false;
                }
@@ -4385,11 +4342,11 @@ bool application::start_application(bool bSynch, application_bias * pbias)
             pump_message();
          }
       }
-      catch(...)
+      catch (...)
       {
          return false;
       }
-ok:;
+   ok:;
    }
 
    return true;
@@ -4459,27 +4416,27 @@ int32_t application::track_popup_menu(const char * pszMatter, point pt, sp(::use
 bool application::get_fs_size(string & strSize, const char * pszPath, bool & bPending)
 {
    int64_t i64Size;
-   if(!get_fs_size(i64Size, pszPath, bPending))
+   if (!get_fs_size(i64Size, pszPath, bPending))
    {
       strSize.Empty();
       return false;
    }
-   if(i64Size > 1024 * 1024 * 1024)
+   if (i64Size > 1024 * 1024 * 1024)
    {
-      double d = (double) i64Size / (1024.0 * 1024.0 * 1024.0);
+      double d = (double)i64Size / (1024.0 * 1024.0 * 1024.0);
       strSize.Format("%0.2f GB", d);
    }
-   else if(i64Size > 1024 * 1024)
+   else if (i64Size > 1024 * 1024)
    {
-      double d = (double) i64Size / (1024.0 * 1024.0);
+      double d = (double)i64Size / (1024.0 * 1024.0);
       strSize.Format("%0.1f MB", d);
    }
-   else if(i64Size > 1024)
+   else if (i64Size > 1024)
    {
-      double d = (double) i64Size / (1024.0);
+      double d = (double)i64Size / (1024.0);
       strSize.Format("%0.0f KB", d);
    }
-   else if(i64Size > 0)
+   else if (i64Size > 0)
    {
       strSize.Format("1 KB");
    }
@@ -4487,7 +4444,7 @@ bool application::get_fs_size(string & strSize, const char * pszPath, bool & bPe
    {
       strSize.Format("0 KB");
    }
-   if(bPending)
+   if (bPending)
    {
       strSize = "~" + strSize;
    }
@@ -4496,8 +4453,8 @@ bool application::get_fs_size(string & strSize, const char * pszPath, bool & bPe
 
 bool application::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending)
 {
-   db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
-   if(pcentral == NULL)
+   db_server * pcentral = dynamic_cast <db_server *> (&System.m_simpledb.db());
+   if (pcentral == NULL)
       return false;
    return pcentral->m_pfilesystemsizeset->get_cache_fs_size(i64Size, pszPath, bPending);
 }
@@ -4515,7 +4472,7 @@ bool application::_001CloseApplicationByUser(sp(::user::interaction) pwndExcept)
 {
 
    // attempt to save all documents
-   if(!save_all_modified())
+   if (!save_all_modified())
       return false;     // don't close it
 
    // hide the application's windows before closing all the documents
@@ -4532,7 +4489,7 @@ bool application::_001CloseApplicationByUser(sp(::user::interaction) pwndExcept)
    //  main ::user::window of the application.
    //bool b::core::ContextIsDll = afxContextIsDLL;
    //if (!b::core::ContextIsDll && papp->m_pplaneapp->GetVisibleFrameCount() <= 0)
-   if(Application.userex()->GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
+   if (Application.userex()->GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
    {
 
       post_thread_message(WM_QUIT);
@@ -4548,13 +4505,13 @@ int32_t application::send_simple_command(const char * psz, void * osdataSender)
    string strApp;
    stringa stra;
    stra.add_tokens(psz, "::", true);
-   if(stra.get_size() > 0)
+   if (stra.get_size() > 0)
    {
       strApp = stra[0];
       oswindow oswindow = get_ca2_app_wnd(strApp);
-      if(oswindow != NULL)
+      if (oswindow != NULL)
       {
-         return send_simple_command((void *) oswindow, psz, osdataSender);
+         return send_simple_command((void *)oswindow, psz, osdataSender);
       }
    }
    return -1;
@@ -4564,14 +4521,14 @@ int32_t application::send_simple_command(void * osdata, const char * psz, void *
 {
 #ifdef WINDOWSEX
    ::oswindow oswindow = (::oswindow) osdata;
-   if(!::IsWindow(oswindow))
+   if (!::IsWindow(oswindow))
       return -1;
    COPYDATASTRUCT cds;
    memset(&cds, 0, sizeof(cds));
    cds.dwData = 198477;
-   cds.cbData = (uint32_t) strlen(psz);
-   cds.lpData = (PVOID) psz;
-   return (int32_t) SendMessage(oswindow, WM_COPYDATA, (WPARAM) osdataSender, (LPARAM) &cds);
+   cds.cbData = (uint32_t)strlen(psz);
+   cds.lpData = (PVOID)psz;
+   return (int32_t)SendMessage(oswindow, WM_COPYDATA, (WPARAM)osdataSender, (LPARAM)&cds);
 #else
    throw todo(get_app());
 #endif
@@ -4583,9 +4540,9 @@ void application::ensure_app_interest()
 
 #ifndef METROWIN
 
-   for(int32_t i = 0; i < m_straAppInterest.get_count(); i++)
+   for (int32_t i = 0; i < m_straAppInterest.get_count(); i++)
    {
-      if(m_straAppInterest[i] != m_strAppName && !::IsWindow(m_mapAppInterest[m_straAppInterest[i]]))
+      if (m_straAppInterest[i] != m_strAppName && !::IsWindow(m_mapAppInterest[m_straAppInterest[i]]))
       {
          System.assert_running_local(m_straAppInterest[i]);
       }
@@ -4600,53 +4557,6 @@ void application::ensure_app_interest()
 }
 
 
-string application::veriwell_multimedia_music_midi_get_default_library_name()
-{
-
-   if(m_pimpl == NULL)
-      return "";
-
-   return m_pimpl->veriwell_multimedia_music_midi_get_default_library_name();
-
-}
-
-
-
-string application::multimedia_audio_mixer_get_default_library_name()
-{
-
-   if(m_pimpl == NULL)
-      return "";
-
-   return m_pimpl->multimedia_audio_mixer_get_default_library_name();
-
-}
-
-
-
-string application::multimedia_audio_get_default_library_name()
-{
-
-   if(m_pimpl == NULL)
-      return "";
-
-   return m_pimpl->multimedia_audio_get_default_library_name();
-
-}
-
-
-
-string application::draw2d_get_default_library_name()
-{
-
-   if(m_pimpl == NULL)
-      return "draw2d_cairo";
-
-   return m_pimpl->draw2d_get_default_library_name();
-
-}
-
-
 
 string application::file_as_string(var varFile)
 {
@@ -4656,8 +4566,472 @@ string application::file_as_string(var varFile)
 }
 
 
-//namespace _001ca1api00001 + [core = (//namespace cube // ca8 + cube)]
+
+
+sp(base_application) application::get_system()
+{
+   return new application();
+}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+sp(::application) application::assert_running(const char * pszAppId)
+{
+
+
+sp(::application) papp = NULL;
+
+
+try
+{
+
+bool bFound = false;
+
+for(int32_t i  = 0; i < System.m_appptra.get_count(); i++)
+{
+try
+{
+
+papp = System.m_appptra(i);
+
+if(papp->m_pplaneapp->m_strAppName == pszAppId)
+{
+bFound = true;
+break;
+}
+
+}
+catch(...)
+{
+}
+
+}
+
+bool bCreate = !bFound;
+
+if(bFound)
+{
+
+bool bRunning = false;
+
+try
+{
+if(papp->m_pplaneapp->is_running())
+{
+bRunning = true;
+}
+}
+catch(...)
+{
+}
+
+if(!bRunning)
+{
+
+try
+{
+papp->m_pplaneapp->post_thread_message(WM_QUIT);
+}
+catch(...)
+{
+}
+try
+{
+papp.release();
+}
+catch(...)
+{
+}
+
+bCreate = true;
+
+}
+
+
+}
+
+if(bCreate)
+{
+
+sp(::create_context) spcreatecontext(allocer());
+
+papp = Session.start_application("application", pszAppId, spcreatecontext);
+
+}
+
+}
+catch(const ::exit_exception & e)
+{
+
+throw e;
+
+}
+catch(const ::exception::exception & e)
+{
+
+if(!Application.on_run_exception((::exception::exception &) e))
+throw exit_exception(get_app());
+
+}
+catch(...)
+{
+
+papp = NULL;
+
+}
+
+
+return papp;
+
+}
+*/
+
+
+
+
+
+//typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
+
+
+
+
+::file::binary_buffer_sp application::friendly_get_file(var varFile, UINT nOpenFlags)
+{
+
+   try
+   {
+
+      return m_file.get_file(varFile, nOpenFlags);
+
+   }
+   catch (::file::exception & e)
+   {
+
+      string strMessage = e.get_message();
+
+      App(this).simple_message_box(NULL, strMessage, MB_OK);
+
+      return NULL;
+
+   }
+
+}
+
+
+
+
+::userex::userex * application::create_userex()
+{
+
+   return canew(::userex::userex(this));
+
+}
+
+
+::userfs::userfs * application::create_userfs()
+{
+
+   return canew(::userfs::userfs(this));
+
+}
+
+
+::html::html * application::create_html()
+{
+
+   return canew(::html::html(this));
+
+}
+
+
+
+
+
+void application::defer_initialize_twf()
+{
+   if (System.m_ptwf == NULL && (System.m_bShouldInitializeGTwf && m_bShouldInitializeGTwf && m_bInitializeProDevianMode))
+   {
+      System.create_twf();
+   }
+}
+
+
+
+
+
+sp(base_application) application::instantiate_application(const char * pszType, const char * pszId, application_bias * pbias)
+{
+
+   sp(base_application) papp = NULL;
+
+   string strId(pszId);
+
+   if (strId.CompareNoCase("session") == 0)
+   {
+
+      ::plane::session * psession = new ::plane::session(this);
+
+      papp = psession;
+
+      psession->construct();
+
+      if (m_psystem != NULL && m_psystem->m_psession == NULL)
+      {
+
+         m_psystem->m_psession = psession;
+
+      }
+
+      psession->m_strAppId = "session";
+
+   }
+   else
+   {
+
+      string strNewId;
+
+      if (strId == "bergedge")
+      {
+
+         strNewId = "app/core/bergedge";
+
+      }
+      else if (strId == "cube")
+      {
+
+         strNewId = "app/core/cube";
+
+      }
+      else
+      {
+
+         strNewId = strId;
+
+      }
+
+      papp = System.get_new_app(this, pszType, strNewId);
+
+      if (papp == NULL)
+         return NULL;
+
+      papp->m_pplaneapp->m_psession = m_psession;
+      papp->m_pplaneapp->m_pbasesession = m_psession;
+
+      /*if(pbaseapp->m_bService)
+      {
+
+      App(pbaseapp).m_puiInitialPlaceHolderContainer  = NULL;
+
+      }*/
+
+      if (m_psystem != NULL && m_psystem->m_psession == NULL)
+      {
+
+         m_psystem->m_psession = m_psession;
+
+      }
+
+      if (papp != NULL)
+      {
+
+         if (strId == "bergedge"
+            || strId == "cube")
+         {
+
+            papp->m_pplaneapp->m_strAppId = strId;
+
+         }
+
+         if (papp->m_pplaneapp->m_strInstallToken.is_empty())
+         {
+
+            papp->m_pplaneapp->m_strInstallToken = papp->m_pplaneapp->m_strAppId;
+
+         }
+
+      }
+
+   }
+
+   //pbaseapp->m_pbaseapp                               = this;
+   papp->m_pplaneapp->m_psystem = m_psystem;
+
+   papp->m_pbasesystem = m_pbasesystem;
+
+   papp->m_pplaneapp->command_central()->consolidate(command_central());
+
+   papp->m_pplaneapp->m_bSessionSynchronizedCursor = m_bSessionSynchronizedCursor;
+
+   if (pbias != NULL)
+   {
+
+      papp->m_pplaneapp->propset().merge(pbias->m_set);
+
+   }
+   else
+   {
+
+      papp->m_pplaneapp->oprop("SessionSynchronizedInput") = true;
+      papp->m_pplaneapp->oprop("NativeWindowFocus") = true;
+
+   }
+
+   if ((papp == NULL || papp->m_pplaneapp->m_strAppId != strId)
+      &&
+      (!Application.command()->m_varTopicQuery.has_property("install")
+      && !Application.command()->m_varTopicQuery.has_property("uninstall")))
+   {
+
+      TRACE("Failed to instantiate %s, going to try installation through ca2_cube_install", strId);
+
+      string strCommandLine;
+
+      strCommandLine = " : app=" + strId;
+      strCommandLine += " locale=" + string(Application.str_context()->m_plocaleschema->m_idLocale);
+      strCommandLine += " style=" + string(Application.str_context()->m_plocaleschema->m_idSchema);
+      strCommandLine += " install";
+
+      System.install().start(strCommandLine);
+
+      throw installing_exception(get_app());
+
+      return NULL;
+
+   }
+
+   return papp;
+
+}
+
+
+sp(base_application) application::create_application(const char * pszType, const char * pszId, bool bSynch, application_bias * pbias)
+{
+
+   sp(base_application) pbaseapp = instantiate_application(pszType, pszId, pbias);
+
+   if (pbaseapp == NULL)
+      return NULL;
+
+   sp(base_application) papp = (pbaseapp);
+
+   if (!papp->m_pplaneapp->start_application(bSynch, pbias))
+   {
+      try
+      {
+         pbaseapp.release();
+      }
+      catch (...)
+      {
+      }
+      return NULL;
+   }
+
+
+   return pbaseapp;
+
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// System/System
+//
+sp(::user::object) application::place_hold(sp(::user::interaction) pui)
+{
+
+   return NULL;
+
+}
+
+
+count application::get_monitor_count()
+{
+
+   return 0;
+
+}
+
+bool application::get_monitor_rect(index i, LPRECT lprect)
+{
+
+   return false;
+
+}
+
+count application::get_desk_monitor_count()
+{
+
+   return 0;
+
+}
+
+bool application::get_desk_monitor_rect(index i, LPRECT lprect)
+{
+
+   return false;
+
+}
+
+
+
+bool application::add_library(::core::library * plibrary)
+{
+
+   plibrary->set_app(this);
+
+   System.add_library(plibrary);
+
+   return true;
+
+}
+
+
+void application::data_on_after_change(signal_details * pobj)
+{
+   SCAST_PTR(::database::change_event, pchange, pobj);
+   if (pchange->m_key.m_idKey == "ca2")
+   {
+      if (pchange->m_key.m_idIndex == "savings")
+      {
+         pchange->data_get(savings().m_eresourceflagsShouldSave);
+      }
+   }
+}
+
+
+int32_t application::simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle)
+{
+
+   if (!user().is_set())
+      return ::base_application::simple_message_box(puiOwner, pszMessage, fuStyle);
+
+   return userex()->simple_message_box(puiOwner, pszMessage, fuStyle);
+
+}
+
+
+int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwner, const char * pszMessage, ::duration durationTimeOut, UINT fuStyle)
+{
+
+   if (!user().is_set())
+      return ::base_application::simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
+
+   return userex()->simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
+
+}
 

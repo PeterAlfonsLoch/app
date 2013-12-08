@@ -56,7 +56,3 @@ typedef CLASS_DECL_BASE string_map < void *, void * > string_to_ptr;
 
 
 
-
-
-
-

@@ -88,9 +88,13 @@ namespace fs
          strUrl = "http://fs.veriwell.net/fs/xmledit?path=" + System.url().url_encode(System.url().get_script(m_varFile["url"]))
             + "&server=" + System.url().url_encode(System.url().get_server(m_varFile["url"]));
 
-         string strResponse;
+         property_set setRequest(get_app());
 
-         Application.http().put(strResponse, strUrl, m_varFile["xmledit"].cast < ::file::memory_buffer >());
+         setRequest["get_response"] = ""; // touch/create property to get_response
+
+         Application.http().put(strUrl, m_varFile["xmledit"].cast < ::file::memory_buffer >(), setRequest);
+
+         string strResponse(setRequest["get_response"]);
 
          property_set set(get_app());
 

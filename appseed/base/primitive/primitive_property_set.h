@@ -51,6 +51,9 @@ public:
    property & operator[](id id);
    property operator[](id id) const;
 
+   var lookup(id id) const;
+   var lookup(id id, var varDefault) const;
+
    property & at(index iId);
    property at(index iId) const;
 
@@ -155,6 +158,28 @@ public:
 
    property_set & add(const property_set & set);
    property_set & merge(const property_set & set);
+
+
+   template < class T >
+   sp(T) cast(id idName, T * pDefault = NULL)
+   {
+
+      if (!has_property(idName))
+         return pDefault;
+
+      return operator[](idName).cast < T > (pDefault);
+
+   }
+
+
+   template < class T >
+   sp(T) cast(id idName, T * pDefault = NULL) const
+   {
+
+      return ((property_set *) this)->cast < T >(idName, pDefault);
+
+   }
+
 
 };
 
@@ -398,7 +423,21 @@ inline property & property_set::operator[](id idName)
    return defer_auto_add(idName);
 }
 
+inline var property_set::lookup(id idName) const
+{
+   property * pproperty = find(idName);
+   if (pproperty == NULL)
+      return var(var::type_new);
+   return pproperty->m_var;
+}
 
+inline var property_set::lookup(id idName, var varDefault) const
+{
+   property * pproperty = find(idName);
+   if (pproperty == NULL)
+      return varDefault;
+   return pproperty->m_var;
+}
 
 
 

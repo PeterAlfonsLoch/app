@@ -368,31 +368,12 @@ restart:
          {
             if(!exists(strFilePath, &varQuery, papp))
                return "";
-            property_set post;
-            property_set headers;
 
             ::url_domain domain;
 
             domain.create(System.url().get_server(strFilePath));
 
-
-            if(varQuery.has_property("post"))
-            {
-               post = varQuery["post"].propset();
-            }
-            if(varQuery.has_property("in_headers"))
-            {
-               headers = varQuery["in_headers"].propset();
-            }
-            if(varQuery.propset()["disable_ca2_sessid"])
-            {
-               App(papp).http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, NULL);
-            }
-            else if(varQuery.propset()["optional_ca2_sessid"])
-            {
-               App(papp).http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, NULL);
-            }
-            else if(domain.m_strRadix == "ca2" && strFilePath.contains("/matter/"))
+            if(domain.m_strRadix == "ca2" && strFilePath.contains("/matter/"))
             {
                try
                {
@@ -405,9 +386,11 @@ restart:
             }
             else
             {
-               App(papp).http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, &AppUser(papp));
+               varQuery["user"] = &AppUser(papp);
+
+               App(papp).http().get(strFilePath, storage, varQuery.propset());
+
             }
-            varQuery["out_headers"] = headers;
          }
          else
          {
@@ -460,7 +443,11 @@ restart:
          if((::str::begins(strPath, "http://") || ::str::begins(strPath, "https://")))
          {
 
-            App(papp).http().get(strPath, mem, &AppUser(papp));
+            property_set set(get_app());
+
+            set["user"] = &AppUser(papp);
+
+            App(papp).http().get(strPath, mem, set);
 
             return;
 
@@ -1005,7 +992,9 @@ restart:
       }
       else if(::str::begins_ci_iws(pszPath, "http://") || ::str::begins_ci_iws(pszPath, "https://"))
       {
-         return App(papp).http().exists(pszPath, pvarQuery, papp->safe_get_user());
+         property_set set(papp);
+         set["user"] = papp->safe_get_user();
+         return App(papp).http().exists(pszPath, pvarQuery, set);
       }
 
       if(papp->m_bZipIsDir)
@@ -1063,7 +1052,9 @@ restart:
       if(::str::begins_ci_iws(strPath, "http://")
          || ::str::begins_ci_iws(strPath, "https://"))
       {
-         return App(papp).http().exists(strPath, pvarQuery, papp->safe_get_user());
+         property_set set(papp);
+         set["user"] = papp->safe_get_user();
+         return App(papp).http().exists(strPath, pvarQuery, set);
       }
 
 

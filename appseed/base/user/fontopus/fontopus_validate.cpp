@@ -165,7 +165,11 @@ namespace fontopus
 
          strApiServer.replace("account", "api");
 
-         if(documentBasicInfo.load(Application.http().get("https://" + strApiServer + "/account/get_basic_info", m_loginthread.m_puser)))
+         property_set set(get_app());
+
+         set["user"] = m_loginthread.m_puser;
+
+         if(documentBasicInfo.load(Application.http().get("https://" + strApiServer + "/account/get_basic_info", set)))
          {
             string strLogin;
             if(documentBasicInfo.get_root()->get_attr("login", strLogin) && strLogin.find("@") > 0)
@@ -337,18 +341,16 @@ namespace fontopus
 
       strAuthUrl = "https://" + strApiHost + "/account/auth";
 
-      property_set post;
-      property_set headers;
       property_set set;
 
       string strAuth;
-      post["entered_license"] = m_strLicense;
+      set["post"]["entered_license"] = m_strLicense;
       //m_puser->set_sessid(ApplicationUser.m_str, strAuthUrl);
       //      uint32_t dwTimeProfile1 = get_tick_count();
 
-      post["entered_license"] = m_strLicense;
+      set["post"]["entered_license"] = m_strLicense;
 
-      Application.http().get(strAuthUrl, strAuth, post, headers, set);
+      Application.http().get(strAuthUrl, strAuth, set);
 
       m_loginthread.m_strFontopusServer = strHost;
 
@@ -466,8 +468,6 @@ namespace fontopus
    bool validate::check_ca2_hash()
    {
       string strUrl("https://api.ca2.cc/account/check_hash");
-      property_set post;
-      property_set headers;
       property_set set;
       string strResponse;
       stringa straHash;
@@ -476,11 +476,11 @@ namespace fontopus
       straHash.insert_at(0, m_loginthread.m_strPasshash);
       straHash.insert_at(0, m_loginthread.m_strUsername);
 
-      post["hash"] = straHash.implode(";");
-      post["source"] = straHash.implode(";");
+      set["post"]["hash"] = straHash.implode(";");
+      set["post"]["source"] = straHash.implode(";");
       for(int32_t i = 0; i < 3; i++)
       {
-         if(Application.http().get(strUrl, strResponse, post, headers, set))
+         if(Application.http().get(strUrl, strResponse, set))
             break;
       }
       if(strResponse == "OK")
@@ -720,8 +720,6 @@ namespace fontopus
          {
 
 
-            property_set post;
-            property_set headers;
             property_set set;
 
             //Sleep(15 * 1000);
@@ -743,7 +741,7 @@ namespace fontopus
 
             set["app"] = papp;
 
-            Application.http().get(m_strLoginUrl, strLogin, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
+            Application.http().get(m_strLoginUrl, strLogin, set);
 
          }
          catch(...)
@@ -1053,32 +1051,33 @@ namespace fontopus
          string strAuthUrl("https://" + strApiServer + "/account/auth?" + m_pcallback->oprop("defer_registration").get_string()
             +"&ruri=" + System.url().url_encode((m_pcallback->oprop("ruri").get_string())));
 
-         property_set post;
-         property_set headers;
          property_set set;
 
          if(m_strPasshash.is_empty())
          {
-            post["entered_password"] = strHex;
+            set["post"]["entered_password"] = strHex;
          }
          else
          {
-            post["entered_passhash"] = strHex;
+            set["post"]["entered_passhash"] = strHex;
          }
          string strCrypt;
 
          string strUsername = m_strUsername;
 
-         post["entered_login"] = m_strUsername;
+         set["post"]["entered_login"] = m_strUsername;
          if(m_strLicense.has_char())
          {
-            post["entered_license"] = m_strLicense;
+            set["post"]["entered_license"] = m_strLicense;
          }
 
          m_puser->set_sessid(strSessId, strAuthUrl);
          set["app"] = papp;
+         set["user"] = m_puser;
+         set["cookies"] = m_puser->m_phttpcookies;
          uint32_t dwTimeProfile1 = get_tick_count();
-         Application.http().get(strAuthUrl, strAuth, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
+         Application.http().get(strAuthUrl, strAuth, set);
+         *pestatus = (::http::e_status) set["get_status"].int64();
          uint32_t dwTimeProfile2 = get_tick_count();
 
          TRACE0("login_thread::NetLogin Total time Application.http().get(\"" + strAuthUrl + "\") : " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
@@ -1095,15 +1094,16 @@ namespace fontopus
       property_set set;
       for(int32_t i = 0; i < m_httpexecutea.get_size(); i++)
       {
+         
          strFilename = System.file().time_square(get_app());
-         System.http().download(
-            m_httpexecutea[i].m_strUrl,
-            strFilename,
-            m_httpexecutea[i].m_propertysetPost,
-            m_httpexecutea[i].m_propertysetHeaders,
-            set,
-            m_puser->m_phttpcookies,
-            m_puser);
+         
+         set["post"] = m_httpexecutea[i].m_propertysetPost;
+         set["headers"] = m_httpexecutea[i].m_propertysetHeaders;
+         set["cookies"] = m_puser->m_phttpcookies;
+         set["user"] = m_puser;
+         
+         System.http().download(m_httpexecutea[i].m_strUrl, strFilename, set);
+
          strResponse = Application.file().as_string(strFilename);
          TRACE0(strResponse);
          m_httpexecutea[i].m_strResponse = strResponse;

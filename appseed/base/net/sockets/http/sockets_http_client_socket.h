@@ -8,14 +8,18 @@
       /** get http response to file or primitive::memory.
       \ingroup http */
       class CLASS_DECL_BASE http_client_socket :
-         virtual public http_tunnel
+         virtual public http_tunnel,
+         virtual public int_scalar_source
       {
       public:
 
+
          mutex                         m_mutexData;
-         ::file::memory_buffer      m_memoryfile;
-         ::file::stream_buffer *                 m_pfile;
+         ::file::memory_buffer         m_memoryfile;
+         ::file::stream_buffer *       m_pfile;
          int64_t                       m_iFinalSize;
+         int_progress                  m_progress;
+         string                        m_strMethod;
 
 
          //primitive::memory    m_memoryData; ///< Ptr to buffer where to store response
@@ -35,6 +39,9 @@
          http_client_socket(base_socket_handler&);
          http_client_socket(base_socket_handler&,const string & url_in);
          ~http_client_socket();
+
+
+         virtual void OnConnect();
 
          /** Parse url to protocol,host,port,url and spfile-> */
          void Url(const string & url_in,string & host,port_t& port);
@@ -87,6 +94,13 @@
 
 
          virtual void request_url(string strUrlParam);
+
+
+         virtual void on_set_scalar(e_scalar escalar, int64_t iValue);
+         virtual int64_t get_scalar_minimum(e_scalar escalar);
+         virtual int64_t get_scalar(e_scalar escalar);
+         virtual int64_t get_scalar_maximum(e_scalar escalar);
+
 
       };
 

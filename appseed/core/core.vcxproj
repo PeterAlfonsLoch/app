@@ -1398,7 +1398,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="os\os_cross_windows.h" />
     <ClInclude Include="os\os_windows_defs.h" />
     <ClInclude Include="plane\plane.h" />
-    <ClInclude Include="plane\plane_application.h" />
     <ClInclude Include="plane\plane_library.h" />
     <ClInclude Include="plane\plane_system_ca2_factory.h" />
     <ClInclude Include="plane\plane_system_ca2_str.h" />
@@ -1441,7 +1440,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include=".\primitive\primitive_fixed_string.h" />
     <ClInclude Include=".\primitive\primitive_int_biunique.h" />
     <ClInclude Include="primitive\primitive.h" />
-    <ClInclude Include=".\primitive\primitive_scalar.h" />
     <ClInclude Include=".\primitive\primitive_shared_file.h" />
     <ClInclude Include="programming\dynamic_source\dynamic_source.h" />
     <ClInclude Include="programming\dynamic_source\dynamic_source_exit_exception.h" />
@@ -2093,7 +2091,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="net\usermail\usermail_usermail.cpp" />
     <ClCompile Include="net\usermail\usermail_item.cpp" />
     <ClCompile Include="net\usernet\usernet_network_configuration.cpp" />
-    <ClCompile Include="plane\plane_application.cpp" />
     <ClCompile Include="plane\plane_library.cpp" />
     <ClCompile Include="plane\plane_system.cpp" />
     <ClCompile Include="plane\session\bergedge\bergedge_document.cpp" />
@@ -2125,7 +2122,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="primitive\datetime\datetime_windows_file_time.cpp" />
     <ClCompile Include="primitive\primitive_fixed_string.cpp" />
     <ClCompile Include="primitive\primitive_int_biunique.cpp" />
-    <ClCompile Include="primitive\primitive_scalar.cpp" />
     <ClCompile Include="primitive\primitive_shared_file.cpp" />
     <ClCompile Include="programming\dynamic_source\dynamic_source_exit_exception.cpp" />
     <ClCompile Include="programming\dynamic_source\dynamic_source_httpd_socket.cpp" />

@@ -19,15 +19,8 @@
 extern CLASS_DECL_CORE string g_strNote;
 
 
-namespace plane
-{
-
-   class application;
-
-
-} // namespace plane
-
 class image_list;
+
 
 namespace user
 {

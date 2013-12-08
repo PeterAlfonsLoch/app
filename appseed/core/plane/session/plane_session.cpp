@@ -126,7 +126,7 @@ namespace plane
    void session::construct()
    {
 
-      ::plane::application::construct();
+      ::application::construct();
 
       m_strAppName         = "session";
       m_strBaseSupportId   = "ca2_bergedge";
@@ -139,7 +139,7 @@ namespace plane
    bool session::initialize()
    {
 
-      if(!::plane::application::initialize())
+      if(!::application::initialize())
          return false;
 
 
@@ -151,7 +151,7 @@ namespace plane
    bool session::initialize_instance()
    {
 
-      if(!::plane::application::initialize_instance())
+      if(!::application::initialize_instance())
          return false;
 
       initialize_bergedge_application_interface();
@@ -231,7 +231,7 @@ namespace plane
       try
       {
 
-         bOk = ::plane::application::finalize();
+         bOk = ::application::finalize();
 
       }
       catch(...)
@@ -248,7 +248,7 @@ namespace plane
    {
       try
       {
-         ::plane::application::exit_instance();
+         ::application::exit_instance();
       }
       catch(...)
       {
@@ -278,7 +278,7 @@ namespace plane
    /*
    application * session::get_app() const
    {
-      return ::plane::application::get_app();
+      return ::application::get_app();
    }
    */
 
@@ -681,7 +681,7 @@ namespace plane
 
       string strApp(pszAppId);
 
-      sp(::plane::application) papp = application_get(pszType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      sp(::application) papp = application_get(pszType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
       if(papp == NULL)
          return NULL;
 
@@ -832,7 +832,7 @@ namespace plane
 
       }
 
-      sp(::plane::application) papp = application_get("application", strId, true, true, pcreatecontext->m_spApplicationBias);
+      sp(::application) papp = application_get("application", strId, true, true, pcreatecontext->m_spApplicationBias);
 
       if(papp == NULL)
          return false;
@@ -1141,7 +1141,7 @@ alt1:
    //
    //
    //
-   ///*      plane::application & app = App(pinteraction->get_app());
+   ///*      ::application & app = App(pinteraction->get_app());
    //
    //      string strAppName = app.m_strAppName;
    //
@@ -1182,7 +1182,7 @@ alt1:
    ::user::place_holder_ptra holderptra;
 
 
-   plane::application & app = App(pmainframe->get_app());
+   ::application & app = App(pmainframe->get_app());
 
    string strAppName = app.m_strAppName;
 
@@ -1234,7 +1234,7 @@ alt1:
 
 
 
-      return ::plane::application::on_install();
+      return ::application::on_install();
    }
 
 
@@ -1601,7 +1601,7 @@ alt1:
 
 
 
-      plane::application & app = App(pinteraction->get_app());
+      ::application & app = App(pinteraction->get_app());
 
       string strAppName = app.m_strAppName;
 
@@ -1642,7 +1642,7 @@ alt1:
       ::user::place_holder_ptra holderptra;
 
 
-      plane::application & app = App(pmainframe->get_app());
+      ::application & app = App(pmainframe->get_app());
 
       string strAppName = app.m_strAppName;
 
@@ -1849,6 +1849,15 @@ alt1:
       return System.visual().get_cursor(m_ecursorDefault);
    }
 
+
+   int32_t session::main()
+   {
+
+
+      return ::platform::application::main();
+
+
+   }
 
 
 } // namespace plane

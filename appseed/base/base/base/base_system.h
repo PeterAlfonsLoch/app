@@ -87,7 +87,7 @@ public:
    sp(mutex)                                    m_pmutexDc;
 #endif
 
-
+   base_library                                 m_libraryDraw2d;
 
 
 
@@ -122,6 +122,9 @@ public:
    ::datetime::departament                      & datetime();
    ::user::str                                  & str();
    ::install::install                           & install()  { return *m_spinstall; }
+
+
+
 
 
 
@@ -272,6 +275,13 @@ public:
 
    virtual bool initialize_log(const char * pszId);
 
+
+   virtual void appa_load_string_table();
+   virtual void appa_set_locale(const char * pszLocale, bool bUser);
+   virtual void appa_set_schema(const char * pszStyle, bool bUser);
+
+   virtual bool assert_running_global(const char * pszAppName, const char * pszId = NULL);
+   virtual bool assert_running_local(const char * pszAppName, const char * pszId = NULL);
 
 
 };

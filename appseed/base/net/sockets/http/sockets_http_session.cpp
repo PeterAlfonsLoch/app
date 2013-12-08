@@ -16,8 +16,7 @@ namespace sockets
       http_client_socket(h),
       http_get_socket(h),
       http_post_socket(h),
-      http_put_socket(h),
-      http_request_socket(h)
+      http_put_socket(h)
    {
 
       m_strProtocol                 = protocol,
@@ -65,7 +64,8 @@ namespace sockets
    void http_session::step()
    {
       inheader(__id(connection)) = "Keep-Alive";
-      if(m_strMethod.CompareNoCase("GET") == 0)
+      inattr(__id(http_method)) = m_strMethod;
+      if (m_strMethod.CompareNoCase("GET") == 0)
       {
          http_get_socket::step();
       }
@@ -79,7 +79,7 @@ namespace sockets
       }
       else
       {
-         http_request_socket::step();
+         http_get_socket::step();
       }
    }
 

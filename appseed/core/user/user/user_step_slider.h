@@ -10,19 +10,13 @@ namespace user
    public:
 
 
-      int32_t            m_iScalar;
-      IntScalar *    m_pscalar;
+      int_scalar              m_scalar;
+
+      bool                    m_bHover;
+      int64_t                 m_iHover;
+      int64_t                 m_iLButtonDown;
 
 
-   protected:
-      
-      
-      bool        m_bHover;
-      int32_t         m_iHover;
-      int32_t         m_iLButtonDown;
-
-
-   public:
       step_slider(sp(base_application) papp);
       virtual ~step_slider();
 
@@ -31,10 +25,10 @@ namespace user
       virtual void install_message_handling(::message::dispatch * pdispatch);
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);
-      void GetStepHoverRect(int32_t iStep, LPRECT lprect);
-      void GetStepRect(int32_t iStep, LPRECT lprect);
+      void GetStepHoverRect(LPRECT lprect, int64_t iVal, int64_t iMin, int64_t iMax, LPCRECT lpcrectClient);
+      void GetStepRect(LPRECT lprect, int64_t iVal, int64_t iMin, int64_t iMax, LPCRECT lpcrectClient);
 
-      int32_t hit_test(point point);
+      int64_t hit_test(point point);
 
       void UpdateHover();
 
