@@ -724,19 +724,20 @@ namespace fontopus
 
             //Sleep(15 * 1000);
 
-            string strSessid = System.url().get_param(System.directrix()->m_varTopicQuery["ruri"], "sessid");
+            //string strSessid = System.url().get_param(System.directrix()->m_varTopicQuery["ruri"], "sessid");
 
-            if(strSessid.has_char())
+            //if(strSessid.has_char())
+            //{
+              // m_puser->set_sessid(strSessid, m_strLoginUrl);
+            //}
+            //else if(m_puser->m_sessionidmap[m_strRequestingServer].get_length() > 16)
+            //{
+              // m_puser->set_sessid(m_puser->m_sessionidmap[m_strRequestingServer], m_strLoginUrl);
+            //}
+            //else
             {
-               m_puser->set_sessid(strSessid, m_strLoginUrl);
-            }
-            else if(m_puser->m_sessionidmap[m_strRequestingServer].get_length() > 16)
-            {
-               m_puser->set_sessid(m_puser->m_sessionidmap[m_strRequestingServer], m_strLoginUrl);
-            }
-            else
-            {
-               m_puser->set_sessid("not_auth", m_strLoginUrl);
+               //m_puser->set_sessid("not_auth", m_strLoginUrl);
+               set["disable_ca2_sessid"] = true;
             }
 
             set["app"] = papp;

@@ -1149,13 +1149,13 @@ retry:
             }
 
          }
-         if (set["user"].cast < ::fontopus::user >() != NULL && 
+         else if (set["user"].cast < ::fontopus::user >() != NULL &&
             (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
             if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
          {
             System.url().string_set(strUrl, "sessid", strSessId);
          }
-         else if(if_then(set.has_property("optional_ca2_login"), (bool)set["optional_ca2_login"]))
+         else if (if_then(set.has_property("optional_ca2_login"), (bool)set["optional_ca2_login"]))
          {
          }
          else
@@ -1163,6 +1163,11 @@ retry:
             System.url().string_set(strUrl, "authnone", 1);
          }
       }
+      else
+      {
+         System.url().string_set(strUrl, "authnone", 1);
+      }
+
 
       ::sockets::http_client_socket * psocket;
 
