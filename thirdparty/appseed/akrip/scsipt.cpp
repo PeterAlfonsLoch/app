@@ -218,23 +218,30 @@ HANDLE GetFileHandle( BYTE i )
 {
   char buf[12];
   HANDLE fh;
-  OSVERSIONINFO osver;
+  //OSVERSIONINFO osver;
   uint32_t dwFlags;
 
-  ZeroMemory( &osver, sizeof(osver) );
+  /*ZeroMemory( &osver, sizeof(osver) );
   osver.dwOSVersionInfoSize = sizeof(osver);
-  GetVersionEx( &osver );
+  GetVersionEx( &osver );*/
 
   // if Win2K map greater, add GENERIC_WRITE
   dwFlags = GENERIC_READ;
-  if ( (osver.dwPlatformId == VER_PLATFORM_WIN32_NT) &&
+  if (is_windows_2000_or_greater())
+  {
+     dwFlags |= GENERIC_WRITE;
+#ifdef _DEBUG_SCSIPT
+     dbprintf( "AKRip32: SCSIPT: GetFileHandle(): Setting for Win2K" );
+#endif
+  }
+/*  if ( (osver.dwPlatformId == VER_PLATFORM_WIN32_NT) &&
        (osver.dwMajorVersion > 4) )
     {
       dwFlags |= GENERIC_WRITE;
 #ifdef _DEBUG_SCSIPT
       dbprintf( "AKRip32: SCSIPT: GetFileHandle(): Setting for Win2K" );
 #endif
-    }
+    }*/
 
   wsprintf( buf, "\\\\.\\%c:", (char)('A'+i) );
   fh = CreateFile( buf, dwFlags, FILE_SHARE_READ, NULL,
