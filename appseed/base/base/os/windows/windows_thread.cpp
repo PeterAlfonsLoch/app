@@ -15,6 +15,7 @@ os_thread::os_thread(uint32_t ( * pfn)(void *), void * pv)
    m_pfn    = pfn;
    m_pv     = pv;
    m_bRun   = true;
+   m_hthread = NULL;
 
 
 
@@ -42,7 +43,14 @@ os_thread::~os_thread()
 
    }
 
-   ::CloseHandle(m_hthread);
+   if (m_hthread != NULL)
+   {
+      
+      ::CloseHandle(m_hthread);
+
+   }
+
+   
 
 }
 
