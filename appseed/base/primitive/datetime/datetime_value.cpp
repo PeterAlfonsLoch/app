@@ -223,7 +223,16 @@ namespace datetime
          time += ::datetime::time_span(1, 0, 0, 0);
          bBaseTime = true;
       }
-      if(!bBaseTime &&(
+      if (!bBaseTime && (
+         ::str::begins_eat(str, "yesterday") ||
+         (pcontext != NULL && pcontext->begins_eat(str, "calendar:yesterday"))))
+      {
+         time = ::datetime::time::get_current_time();
+         time = ::datetime::time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
+         time -= ::datetime::time_span(1, 0, 0, 0);
+         bBaseTime = true;
+      }
+      if (!bBaseTime && (
          ::str::begins_eat(str, "now") ||
          (pcontext != NULL && pcontext->begins_eat(str, "calendar:now"))))
       {

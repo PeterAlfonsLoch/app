@@ -93,6 +93,7 @@ namespace user
       string get(str_context * pcontext, const ::id & id);
       string get(str_context * pcontext, const ::id & id, const ::id & idLocale, const ::id & idSchema);
       void get(stringa & stra, str_context * pcontext, const ::id & id);
+      void _get(stringa & stra, str_context * pcontext, const ::id & id);
 
       bool load(const char * pszBaseDir);
       bool load_uistr_file(const ::id & idLocale, const ::id & idSchema, const char * pszFile);

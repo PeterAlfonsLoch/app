@@ -312,8 +312,37 @@ namespace user
       return get(pcontext, id);
    }
 
-
    void str::get(stringa & stra, str_context * pcontext, const ::id & id)
+   {
+
+      _get(stra, pcontext, id);
+
+      ::id id2;
+
+      index i = 0;
+
+      stringa stra2;
+
+      do
+      {
+
+         stra2.remove_all();
+
+         id2 = *id.m_pstr + "[" + ::str::from(i) + "]";
+
+         _get(stra2, pcontext, id2);
+
+         stra.add(stra2);
+
+         i++;
+
+      } while (stra2.get_count() > 0);
+
+      
+   }
+
+
+   void str::_get(stringa & stra, str_context * pcontext, const ::id & id)
    {
 
       static ::id idEn("en");

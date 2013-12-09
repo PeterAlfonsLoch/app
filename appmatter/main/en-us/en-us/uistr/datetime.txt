@@ -45,6 +45,7 @@
 "calendar:now" = "now"
 "calendar:today" = "today"
 "calendar:tomorrow" = "tomorrow"
+"calendar:yesterday" = "yesterday"
 "calendar:second" = "second"
 "calendar:seconds" = "seconds"
 "calendar:minute" = "minute"

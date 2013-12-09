@@ -31,6 +31,7 @@ bool cregexp_util::match(::user::str_context * pcontext, string_array & stra, co
    return false;
 }
 
+
 index cregexp_util::match(string_array & stra, const char * lpcsz, cregexp * re, strsize iSize)
 {
    stra.remove_all();
