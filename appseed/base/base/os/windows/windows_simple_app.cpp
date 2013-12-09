@@ -58,17 +58,17 @@ int32_t simple_app::main()
 
    //initialize_primitive_trace();
 
-/*   if(!os_initialize())
+   if(!os_initialize())
       return -1;
        
    if(!main_initialize()) 
-      return -1;*/
+      return -1;
 
    body();
    
-/*   main_finalize();
+   main_finalize();
     
-   os_finalize(); */
+   os_finalize(); 
     
    //finalize_primitive_heap(); 
 

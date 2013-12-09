@@ -55,6 +55,8 @@ namespace userstack
       pframe->m_ppaneview = this;
 
 
+      Application.::userstack::application::m_ppaneview = this;
+
 
 
       add_tab("menu", ::userstack::PaneViewContextMenu);

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include <VersionHelpers.h>
 #undef new
 #include <gdiplus.h>
 #include <winternl.h>
@@ -27,7 +28,7 @@ LPFN_RegGetValueW g_pfnRegGetValueW = NULL;
 
 
 
-int_bool os_initialize(base_system * psystem)
+int_bool os_initialize()
 {
 
 
@@ -37,8 +38,8 @@ int_bool os_initialize(base_system * psystem)
 
    //Sleep(15 * 1000);
 
-   if(!psystem->install().trace().initialize())
-      return FALSE;
+   //if(!psystem->install().trace().initialize())
+     // return FALSE;
 
 
    HMODULE hmoduleUser32 = ::LoadLibrary("User32");
@@ -54,10 +55,10 @@ int_bool os_initialize(base_system * psystem)
 } 
 
 
-int_bool os_finalize(base_system * psystem)
+int_bool os_finalize()
 {
 
-   psystem->install().trace().finalize();
+   //psystem->install().trace().finalize();
 
    return TRUE;
 
@@ -278,6 +279,217 @@ void output_debug_string(const char * psz)
 }
 
 
+
+
+
+/*
+
+// This example checks if the operating system is of "NT-type"
+// (which means Windows NT, 2000, XP).
+int GetVersion_ex1()
+{
+   DWORD    dwVersion = GetVersion();
+   // Get major and minor version numbers of Windows
+   WORD loword = LOWORD(dwVersion);
+   int lowbyte = LOBYTE(loword);
+   int hibyte = HIBYTE(loword);
+
+   printf("Window major version = %d and minor version = %d\n", lowbyte, hibyte);
+
+   if (!(dwVersion & 0x80000000))                // Windows NT, 2000, XP
+      return 1;
+   else         // Windows 95, 98, ME
+      return 0;
+}
+
+
+*/
+
+
+BEGIN_EXTERN_C
+
+
+int_bool is_windows_98_or_lesser()
+{
+
+#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WIN7) // Windows 7 or greater
+
+   return FALSE;
+
+#else
+
+   OSVERSIONINFO osversioninfo;
+
+   osversioninfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+
+   if (!GetVersionEx(&osversioninfo))
+      return 0;
+
+   return
+      osversioninfo.dwPlatformId == VER_PLATFORM_WIN32s
+      || (osversioninfo.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS && ((osversioninfo.dwMajorVersion == 4 && osversioninfo.dwMinorVersion <= 10) || osversioninfo.dwMajorVersion < 4));
+
+#endif
+
+}
+
+int_bool is_windows_nt()
+{
+
+#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
+
+   return IsWindowsXPOrGreater();
+
+#else
+
+   return !(GetVersion() & 0x80000000);
+
+#endif
+
+}
+
+
+int_bool is_windows_vista_or_greater()
+{
+
+#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
+
+   return IsWindowsVistaOrGreater();
+
+#else
+
+   OSVERSIONINFO osversioninfo;
+
+   osversioninfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+
+   if (!GetVersionEx(&osversioninfo))
+      return 0;
+
+   return osversioninfo.dwPlatformId == VER_PLATFORM_WIN32_NT && osversioninfo.dwMajorVersion >= 6;
+
+#endif
+
+}
+
+
+int_bool is_windows_xp_or_greater()
+{
+
+#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
+
+   return IsWindowsXPOrGreater();
+
+#else
+
+   OSVERSIONINFO osversioninfo;
+
+   osversioninfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+
+   if (!GetVersionEx(&osversioninfo))
+      return 0;
+
+   return osversioninfo.dwPlatformId == VER_PLATFORM_WIN32_NT && (osversioninfo.dwMajorVersion > 5 || (osversioninfo.dwMajorVersion == 5 && osversioninfo.dwMinorVersion >= 1);
+
+#endif
+
+}
+
+
+int_bool is_windows_2000_or_greater()
+{
+
+#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
+
+   return IsWindowsXPOrGreater();
+
+#else
+
+   OSVERSIONINFO osversioninfo;
+
+   osversioninfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+
+   if (!GetVersionEx(&osversioninfo))
+      return 0;
+
+   return osversioninfo.dwPlatformId == VER_PLATFORM_WIN32_NT && osversioninfo.dwMajorVersion >= 5;
+
+#endif
+
+}
+
+
+int_bool is_windows_nt_lesser_than_2000()
+{
+
+#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
+
+   return FALSE;
+
+#else
+
+   OSVERSIONINFO osversioninfo;
+   
+   osversioninfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+
+   if (!GetVersionEx(&osversioninfo))
+      return 0;
+
+   return osversioninfo.dwPlatformId == VER_PLATFORM_WIN32_NT && osversioninfo.dwMajorVersion < 5;
+
+#endif
+
+}
+
+int_bool is_windows_native_unicode()
+{
+
+#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
+
+   return TRUE;
+
+#else
+
+   static int_bool s_bNativeUnicode = -1;
+
+   if (bNativeUnicode == -1)
+   {
+
+      DWORD dwVersion = GetVersion();
+
+      // get the Windows version.
+
+      DWORD dwWindowsMajorVersion = (DWORD)(LOBYTE(LOWORD(dwVersion)));
+      DWORD dwWindowsMinorVersion = (DWORD)(HIBYTE(LOWORD(dwVersion)));
+
+      // get the build number.
+
+      DWORD dwBuild;
+
+      if (dwVersion < 0x80000000)              // Windows NT
+         dwBuild = (DWORD)(HIWORD(dwVersion));
+      else if (dwWindowsMajorVersion < 4)      // Win32s
+         dwBuild = (DWORD)(HIWORD(dwVersion) & ~0x8000);
+      else                                     // Windows Me/98/95
+         dwBuild = 0;
+
+      if (dwVersion < 0x80000000)              // Windows NT
+         s_bNativeUnicode = TRUE;
+      else if (dwWindowsMajorVersion < 4)      // Win32s
+         s_bNativeUnicode = FALSE;
+      else                                     // Windows Me/98/95
+         s_bNativeUnicode = FALSE;
+
+   }
+
+   return bNativeUnicode;
+
+#endif
+
+}
+
+
+
+END_EXTERN_C
 
 
 

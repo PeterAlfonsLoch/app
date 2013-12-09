@@ -13241,10 +13241,11 @@ zulu_time:
    static int32_t mutexIsNT(){
       static int32_t osType = 0;
       if( osType==0 ){
-         OSVERSIONINFO sInfo;
+         osType = is_windows_nt() ? 2 : 1;
+/*         OSVERSIONINFO sInfo;
          sInfo.dwOSVersionInfoSize = sizeof(sInfo);
          GetVersionEx(&sInfo);
-         osType = sInfo.dwPlatformId==VER_PLATFORM_WIN32_NT ? 2 : 1;
+         osType = sInfo.dwPlatformId==VER_PLATFORM_WIN32_NT ? 2 : 1;*/
       }
       return osType==2;
    }
@@ -21231,10 +21232,12 @@ afp_end_lock:
 #else
    static int32_t isNT(){
       if( sqlite3_os_type==0 ){
+         /*
          OSVERSIONINFO sInfo;
          sInfo.dwOSVersionInfoSize = sizeof(sInfo);
          GetVersionEx(&sInfo);
-         sqlite3_os_type = sInfo.dwPlatformId==VER_PLATFORM_WIN32_NT ? 2 : 1;
+         sqlite3_os_type = sInfo.dwPlatformId==VER_PLATFORM_WIN32_NT ? 2 : 1;*/
+         sqlite3_os_type = is_windows_nt() ? 2 : 1; 
       }
       return sqlite3_os_type==2;
    }

@@ -24,6 +24,8 @@ namespace userstack
       
       sp(::user::single_document_template)                         m_ptemplate_main;
       sp(::user::single_document_template)                         m_ptemplate_pane;
+
+      pane_view *                                                    m_ppaneview;
                                                                      
                                                                      
       var                                                            m_varTopicFile;

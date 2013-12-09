@@ -172,11 +172,7 @@ int32_t CPU_Is_InOrder()
 #if !defined(MY_CPU_AMD64) && defined(_WIN32) && !defined(METROWIN)
 static int32_t CPU_Sys_Is_SSE_Supported()
 {
-  OSVERSIONINFO vi;
-  vi.dwOSVersionInfoSize = sizeof(vi);
-  if (!GetVersionEx(&vi))
-    return 0;
-  return (vi.dwMajorVersion >= 5);
+   return is_windows_2000_or_greater();
 }
 #define CHECK_SYS_SSE_SUPPORT if (!CPU_Sys_Is_SSE_Supported()) return 0;
 #else

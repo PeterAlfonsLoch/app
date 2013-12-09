@@ -43,7 +43,11 @@ bool double_scalar_source::constrain_scalar(e_scalar escalar, double & dValue)
    if ((bConstrain = constrain(escalar, dValue)))
    {
 
-      if (dValue == get_scalar(escalar))
+      double d = 0.0;
+
+      get_scalar(escalar, d);
+
+      if (dValue == d)
          return true;
 
    }
@@ -58,12 +62,24 @@ bool double_scalar_source::constrain_scalar(e_scalar escalar, double & dValue)
 double double_scalar_source::get_rate(e_scalar escalar, double dDefault)
 {
 
-   double dDenominator = get_scalar_maximum(escalar) - get_scalar_minimum(escalar);
+   double dMax = 0.0;
+
+   get_scalar_maximum(escalar, dMax);
+
+   double dMin = 0.0;
+
+   get_scalar_minimum(escalar, dMin);
+
+   double dDenominator = dMax - dMin;
 
    if (dDenominator == 0)
       return dDefault;
 
-   double dNumerator = get_scalar(escalar) - get_scalar_minimum(escalar);
+   double dVal = 0.0;
+
+   get_scalar(escalar, dVal);
+
+   double dNumerator = dVal - dMin;
 
    return dNumerator / dDenominator; // aproximate value along iDenominator and iNumerator evaluation
 
@@ -73,10 +89,18 @@ double double_scalar_source::get_rate(e_scalar escalar, double dDefault)
 bool double_scalar_source::contains(e_scalar escalar, double dValue)
 {
 
-   if (dValue < get_scalar_minimum(escalar))
+   double dMin = 0.0;
+
+   get_scalar_minimum(escalar, dMin);
+
+   if (dValue < dMin)
       return false;
 
-   if (dValue > get_scalar_maximum(escalar))
+   double dMax = 0.0;
+
+   get_scalar_maximum(escalar, dMax);
+
+   if (dValue > dMax)
       return false;
 
    return true;
@@ -86,23 +110,27 @@ bool double_scalar_source::contains(e_scalar escalar, double dValue)
 bool double_scalar_source::constrain(e_scalar escalar, double & dValue)
 {
 
-   double dLimit = get_scalar_minimum(escalar);
+   double dMin = 0.0;
+   
+   get_scalar_minimum(escalar, dMin);
 
-   if (dValue < dLimit)
+   if (dValue < dMin)
    {
 
-      dValue = dLimit;
+      dValue = dMin;
 
       return true;
 
    }
 
-   dLimit = get_scalar_maximum(escalar);
+   double dMax = 0.0;
 
-   if (dValue > dLimit)
+   get_scalar_maximum(escalar, dMax);
+
+   if (dValue > dMax)
    {
 
-      dValue = dLimit;
+      dValue = dMax;
 
       return true;
 
@@ -125,30 +153,30 @@ void double_scalar_source::on_set_scalar(e_scalar escalar, double d)
 
 }
 
-double double_scalar_source::get_scalar_minimum(e_scalar escalar)
+void double_scalar_source::get_scalar_minimum(e_scalar escalar, double & d)
 {
 
    UNREFERENCED_PARAMETER(escalar);
 
-   return 1.0; // by default
+   d = 1.0; // by default
 
 }
 
-double double_scalar_source::get_scalar(e_scalar escalar)
+void double_scalar_source::get_scalar(e_scalar escalar, double & d)
 {
 
    UNREFERENCED_PARAMETER(escalar);
 
-   return 1.0; // by default
+   d = 1.0; // by default
 
 }
 
-double double_scalar_source::get_scalar_maximum(e_scalar escalar)
+void double_scalar_source::get_scalar_maximum(e_scalar escalar, double & d)
 {
 
    UNREFERENCED_PARAMETER(escalar);
 
-   return 1.0; // by default
+   d = 1.0; // by default
 
 }
 
@@ -224,7 +252,11 @@ bool int_scalar_source::constrain_scalar(e_scalar escalar, int64_t & iValue)
    if((bConstrain = constrain(escalar, iValue)))
    {
 
-      if (iValue == get_scalar(escalar))
+      int64_t i = 0;
+
+      get_scalar(escalar, i);
+
+      if (iValue == i)
          return true;
 
    }
@@ -237,18 +269,30 @@ bool int_scalar_source::constrain_scalar(e_scalar escalar, int64_t & iValue)
 
 void int_scalar_source::increment_scalar(e_scalar escalar, int64_t iIncrement)
 {
+
+   int64_t i = 0;
+
+   get_scalar(escalar, i);
    
-   set_scalar(escalar, get_scalar(escalar) + iIncrement);
+   set_scalar(escalar, i + iIncrement);
 
 }
 
 bool int_scalar_source::contains(e_scalar escalar, int64_t iValue)
 {
 
-   if (iValue < get_scalar_minimum(escalar))
+   int64_t iMin = 0;
+
+   get_scalar_minimum(escalar, iMin);
+
+   if (iValue < iMin)
       return false;
 
-   if (iValue > get_scalar_maximum(escalar))
+   int64_t iMax = 0;
+
+   get_scalar_maximum(escalar, iMax);
+
+   if (iValue > iMax)
       return false;
 
    return true;
@@ -258,23 +302,27 @@ bool int_scalar_source::contains(e_scalar escalar, int64_t iValue)
 bool int_scalar_source::constrain(e_scalar escalar, int64_t & iValue)
 {
 
-   int64_t iLimit = get_scalar_minimum(escalar);
+   int64_t iMin = 0;
 
-   if (iValue < iLimit)
+   get_scalar_minimum(escalar, iMin);
+
+   if (iValue < iMin)
    {
 
-      iValue = iLimit;
+      iValue = iMin;
 
       return true;
 
    }
 
-   iLimit = get_scalar_maximum(escalar);
+   int64_t iMax = 0;
 
-   if (iValue > iLimit)
+   get_scalar_maximum(escalar, iMax);
+
+   if (iValue > iMax)
    {
 
-      iValue = iLimit;
+      iValue = iMax;
 
       return true;
 
@@ -297,42 +345,54 @@ void int_scalar_source::on_set_scalar(e_scalar escalar, int64_t iValue)
 
 }
 
-int64_t int_scalar_source::get_scalar_minimum(e_scalar escalar)
+void int_scalar_source::get_scalar_minimum(e_scalar escalar, int64_t & i)
 {
    
    UNREFERENCED_PARAMETER(escalar);
 
-   return 0; // by default
+   i = 0; // by default
 
 }
 
-int64_t int_scalar_source::get_scalar(e_scalar escalar)
+void int_scalar_source::get_scalar(e_scalar escalar, int64_t & i)
 {
    
    UNREFERENCED_PARAMETER(escalar);
    
-   return 1; // by default
+   i = 1; // by default
 
 }
 
-int64_t int_scalar_source::get_scalar_maximum(e_scalar escalar)
+void int_scalar_source::get_scalar_maximum(e_scalar escalar, int64_t & i)
 {
    
    UNREFERENCED_PARAMETER(escalar);
    
-   return 1; // by default
+   i = 1; // by default
 
 }
 
 double int_scalar_source::get_rate(e_scalar escalar, double dDefault)
 {
 
-   int64_t iDenominator = get_scalar_maximum(escalar) - get_scalar_minimum(escalar);
+   int64_t iMax = 0;
+
+   get_scalar_maximum(escalar, iMax);
+
+   int64_t iMin = 0;
+
+   get_scalar_minimum(escalar, iMin);
+
+   int64_t iDenominator = iMax - iMin;
 
    if (iDenominator == 0)
       return dDefault;
 
-   int64_t iNumerator = get_scalar(escalar) - get_scalar_minimum(escalar);
+   int64_t iVal = 0;
+
+   get_scalar(escalar, iVal);
+
+   int64_t iNumerator = iVal - iMin;
 
    return (double) iNumerator / (double) iDenominator; // aproximate value along iDenominator and iNumerator evaluation
 
@@ -346,6 +406,15 @@ double_scalar::double_scalar()
 
    m_psource   = NULL;
    m_escalar   = scalar_none;
+
+}
+
+
+double_scalar::double_scalar(double_scalar_source * psource, e_scalar escalar)
+{
+
+   m_psource = psource;
+   m_escalar = escalar;
 
 }
 
@@ -367,7 +436,11 @@ double double_scalar::get()
    if (m_psource == NULL || m_escalar == scalar_none)
       return 0.0;
 
-   return m_psource->get_scalar(m_escalar);
+   double d = 0.0;
+
+   m_psource->get_scalar(m_escalar, d);
+
+   return d;
 
 }
 
@@ -387,9 +460,13 @@ double double_scalar::minimum()
 {
 
    if (is_null())
-      return 0;
+      return 0.0;
 
-   return m_psource->get_scalar_minimum(m_escalar);
+   double d = 0.0;
+
+   m_psource->get_scalar_minimum(m_escalar, d);
+
+   return d;
 
 }
 
@@ -398,9 +475,13 @@ double double_scalar::maximum()
 {
 
    if (is_null())
-      return 0;
+      return 0.0;
 
-   return m_psource->get_scalar_maximum(m_escalar);
+   double d = 0.0;
+
+   m_psource->get_scalar_maximum(m_escalar, d);
+
+   return d;
 
 }
 
@@ -409,6 +490,15 @@ int_scalar::int_scalar()
 
    m_psource = NULL;
    m_escalar = scalar_none;
+
+}
+
+
+int_scalar::int_scalar(int_scalar_source * psource, e_scalar escalar)
+{
+
+   m_psource = psource;
+   m_escalar = escalar;
 
 }
 
@@ -430,7 +520,11 @@ int64_t int_scalar::get()
    if (m_psource == NULL || m_escalar == scalar_none)
       return 0;
 
-   return m_psource->get_scalar(m_escalar);
+   int64_t i = 0;
+
+   m_psource->get_scalar(m_escalar, i);
+
+   return i;
 
 }
 
@@ -451,7 +545,11 @@ int64_t int_scalar::minimum()
    if (is_null())
       return 0;
 
-   return m_psource->get_scalar_minimum(m_escalar);
+   int64_t i = 0;
+
+   m_psource->get_scalar_minimum(m_escalar, i);
+
+   return i;
 
 }
 
@@ -462,7 +560,11 @@ int64_t int_scalar::maximum()
    if (is_null())
       return 0;
 
-   return m_psource->get_scalar_maximum(m_escalar);
+   int64_t i = 0;
+
+   m_psource->get_scalar_maximum(m_escalar, i);
+
+   return i;
 
 }
 

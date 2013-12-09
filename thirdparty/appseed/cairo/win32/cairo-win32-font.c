@@ -264,18 +264,21 @@ _compute_transform (cairo_win32_scaled_font_t *scaled_font,
 static cairo_bool_t
 _have_cleartype_quality (void)
 {
-    OSVERSIONINFO version_info;
 
-    version_info.dwOSVersionInfoSize = sizeof (OSVERSIONINFO);
+   return is_windows_xp_or_greater() ? 1 : 0;
 
-    if (!GetVersionEx (&version_info)) {
-	_cairo_win32_print_gdi_error ("_have_cleartype_quality");
-	return FALSE;
-    }
+//    OSVERSIONINFO version_info;
 
-    return (version_info.dwMajorVersion > 5 ||
-	    (version_info.dwMajorVersion == 5 &&
-	     version_info.dwMinorVersion >= 1));	/* XP or newer */
+//    version_info.dwOSVersionInfoSize = sizeof (OSVERSIONINFO);
+
+//    if (!GetVersionEx (&version_info)) {
+//	_cairo_win32_print_gdi_error ("_have_cleartype_quality");
+//	return FALSE;
+//    }
+
+//    return (version_info.dwMajorVersion > 5 ||
+//	    (version_info.dwMajorVersion == 5 &&
+//	     version_info.dwMinorVersion >= 1));	/* XP or newer */
 }
 
 static BYTE

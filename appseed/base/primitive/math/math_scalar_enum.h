@@ -14,6 +14,9 @@ enum e_scalar
    // to the right accelerates, to left certain range,
    // slow down, to left pass certain range, rewinds.
 
+   scalar_tempo,
+   scalar_position,
+   scalar_key_shift,
 
 
 };

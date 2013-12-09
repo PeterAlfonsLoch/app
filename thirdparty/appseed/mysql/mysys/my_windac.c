@@ -29,7 +29,7 @@
 
 static my_bool is_nt()
 {
-  return GetVersion() < 0x80000000;
+  return is_windows_nt() ? 1 : 0;
 }
 
 /*

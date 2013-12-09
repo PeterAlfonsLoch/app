@@ -521,9 +521,9 @@ public:
 
 
    virtual void on_set_scalar(e_scalar escalar, int64_t iValue);
-   virtual int64_t get_scalar_minimum(e_scalar escalar);
-   virtual int64_t get_scalar(e_scalar escalar);
-   virtual int64_t get_scalar_maximum(e_scalar escalar);
+   virtual void get_scalar_minimum(e_scalar escalar, int64_t & i);
+   virtual void get_scalar(e_scalar escalar, int64_t & i);
+   virtual void get_scalar_maximum(e_scalar escalar, int64_t & i);
 
    virtual void message_queue_message_handler(signal_details * pobj);
 

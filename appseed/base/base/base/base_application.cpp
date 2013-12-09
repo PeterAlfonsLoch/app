@@ -4986,55 +4986,55 @@ void base_application::on_set_scalar(e_scalar escalar, int64_t iValue)
 }
 
 
-int64_t base_application::get_scalar_minimum(e_scalar escalar)
+void base_application::get_scalar_minimum(e_scalar escalar, int64_t & i)
 {
 
    if (escalar == scalar_download_size)
    {
 
-      return 0;
+      i = 0;
 
    }
    else
    {
 
-      return ::int_scalar_source::get_scalar_minimum(escalar);
+      ::int_scalar_source::get_scalar_minimum(escalar, i);
 
    }
 
 }
 
-int64_t base_application::get_scalar(e_scalar escalar)
+void base_application::get_scalar(e_scalar escalar, int64_t & i)
 {
 
    if (escalar == scalar_download_size)
    {
 
-      return 0;
+      i = 0;
 
    }
    else
    {
 
-      return ::int_scalar_source::get_scalar(escalar);
+      ::int_scalar_source::get_scalar(escalar, i);
 
    }
 
 }
 
-int64_t base_application::get_scalar_maximum(e_scalar escalar)
+void base_application::get_scalar_maximum(e_scalar escalar, int64_t & i)
 {
 
    if (escalar == scalar_download_size)
    {
 
-      return 0;
+      i = 0;
 
    }
    else
    {
 
-      return ::int_scalar_source::get_scalar_minimum(escalar);
+      ::int_scalar_source::get_scalar_minimum(escalar, i);
 
    }
 

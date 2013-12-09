@@ -14,6 +14,8 @@ namespace userstack
       m_pappCurrent              = NULL;
       m_bLicense				      = false;
 
+      m_ppaneview = NULL;
+
       m_strAppName               = "userstack";
 
    }
@@ -446,11 +448,11 @@ namespace userstack
 
    void application::get_screen_rect(LPRECT lprect)
    {
-      if(get_document() != NULL && get_view() != NULL)
-      {
-         get_view()->GetWindowRect(lprect);
-      }
-      else
+      //if(get_document() != NULL && get_view() != NULL)
+      //{
+         //get_view()->GetWindowRect(lprect);
+      //}
+      //else
       {
          System.get_screen_rect(lprect);
       }
@@ -479,7 +481,7 @@ namespace userstack
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
       {
 
-         sp(pane_view) ppaneview = get_document()->get_typed_view < pane_view >();
+         sp(pane_view) ppaneview = m_ppaneview;
 
          if(ppaneview != NULL)
          {

@@ -818,15 +818,17 @@ uint32_t ThreadProc(void * lParam)
 void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pUserContext, HANDLE hDriver,
 						   GetFinalPathNameByHandleDef pGetFinalPathNameByHandle )
 {
-	int32_t nFileType = XP_FILETYPE;
-	OSVERSIONINFO info = { 0 };
-	info.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
-	GetVersionEx(&info);
-	if( info.dwMajorVersion == 6 &&
-		info.dwMinorVersion == 0 )
+   int32_t nFileType;
+
+   if(is_windows_vista_or_greater())
 	{
 		nFileType = VISTA_FILETYPE;
 	}
+   else
+   {
+      nFileType = XP_FILETYPE;
+   }
+
 	LPCTSTR lpPath = csPath;
 	string csShortName;
 	GetShortPathName( csPath, csShortName.GetBuffer( MAX_PATH), MAX_PATH );

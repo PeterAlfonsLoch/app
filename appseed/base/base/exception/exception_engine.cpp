@@ -64,7 +64,6 @@ It is provided "as is" without express or implied warranty.
 
 ///////////////////////////////////////////////////////////////////////
 
-bool IsNT();
 HANDLE SymGetProcessHandle();
 int_bool __stdcall My_ReadProcessMemory(HANDLE      hProcess,
 DWORD64     qwBaseAddress,
@@ -74,21 +73,11 @@ LPDWORD     lpNumberOfBytesRead
                                        );
 
 
-bool IsNT()
-{
-#if defined(WINDOWSEX)
-   OSVERSIONINFO vi = { sizeof(vi)};
-   ::GetVersionEx(&vi);
-   return vi.dwPlatformId == VER_PLATFORM_WIN32_NT;
-#else
-   return false;
-#endif
-}
 
 HANDLE SymGetProcessHandle()
 {
 #ifdef WINDOWS
-   if (IsNT())
+   if (is_windows_nt())
       //   if (0)
          return GetCurrentProcess();
    else
@@ -550,7 +539,7 @@ retry_get_base:
       uint32_t  dwPid = GetCurrentProcessId();
 
       // enumerate modules
-      if (IsNT())
+      if (is_windows_nt())
       {
          typedef bool (WINAPI *ENUMPROCESSMODULES)(HANDLE, HMODULE*, uint32_t, LPDWORD);
 

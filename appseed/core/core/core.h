@@ -986,9 +986,6 @@ class Ex1FactoryImpl;
 #include "graphics/visual/visual.h"
 
 
-#include "database/database.h"
-
-
 #include "user/user/user.h"
 
 

@@ -15,7 +15,7 @@ namespace asphere
 
 
    class CLASS_DECL_sphere application : 
-      virtual public ::plane::application
+      virtual public ::application
    {
    public:
 

@@ -1073,73 +1073,73 @@ namespace install
    }
 
 
-   int64_t install::get_scalar_minimum(e_scalar escalar)
+   void install::get_scalar_minimum(e_scalar escalar, int64_t & i)
    {
 
       if (escalar == scalar_app_install_progress)
       {
 
-         return 0;
+         i = 0;
 
       }
       else if (escalar == scalar_app_install_progress_max)
       {
 
-         return m_iProgressCountApp;
+         i = m_iProgressCountApp;
 
       }
       else
       {
 
-         return ::int_scalar_source::get_scalar_minimum(escalar);
+         ::int_scalar_source::get_scalar_minimum(escalar, i);
 
       }
 
    }
 
-   int64_t install::get_scalar(e_scalar escalar)
+   void install::get_scalar(e_scalar escalar, int64_t & i)
    {
 
       if (escalar == scalar_app_install_progress)
       {
 
-         return m_iProgressStepApp;
+         i = m_iProgressStepApp;
 
       }
       else if (escalar == scalar_app_install_progress_max)
       {
 
-         return m_iProgressCountApp;
+         i = m_iProgressCountApp;
 
       }
       else
       {
 
-         return ::int_scalar_source::get_scalar(escalar);
+         ::int_scalar_source::get_scalar(escalar, i);
 
       }
 
    }
 
-   int64_t install::get_scalar_maximum(e_scalar escalar)
+   void install::get_scalar_maximum(e_scalar escalar, int64_t & i)
    {
 
       if (escalar == scalar_app_install_progress)
       {
 
-         return m_iProgressCountApp;
+         i = m_iProgressCountApp;
 
       }
       else if (escalar == scalar_app_install_progress_max)
       {
 
-         return m_iProgressStepApp;
+         i = m_iProgressStepApp;
 
       }
       else
       {
 
-         return ::int_scalar_source::get_scalar_minimum(escalar);
+         ::int_scalar_source::get_scalar_minimum(escalar, i);
 
       }
 

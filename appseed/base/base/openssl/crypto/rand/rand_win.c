@@ -200,9 +200,9 @@ int RAND_poll(void)
 	 * that do not work properly.
 	 */
 #ifndef METROWIN
-        OSVERSIONINFO osverinfo ;
+        /*OSVERSIONINFO osverinfo ;
         osverinfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFO) ;
-        GetVersionEx( &osverinfo ) ;
+        GetVersionEx( &osverinfo ) ;*/
 #endif
 
 #if defined(OPENSSL_SYS_WINCE)
@@ -385,7 +385,8 @@ int RAND_poll(void)
         if (advapi)
 		FreeLibrary(advapi);
 
-	if ((osverinfo.dwPlatformId != VER_PLATFORM_WIN32_NT ||
+//	if ((osverinfo.dwPlatformId != VER_PLATFORM_WIN32_NT ||
+   if ((!is_windows_nt() ||
 	     !OPENSSL_isservice()) &&
 	    (user = LoadLibrary(TEXT("USER32.DLL"))))
 		{
@@ -403,16 +404,23 @@ int RAND_poll(void)
 			HWND h = win();
 			RAND_add(&h, sizeof(h), 0);
 			}
-		if (cursor)
-			{
+		
+      if (cursor)
+		{
+
 			/* unfortunately, its not safe to call GetCursorInfo()
 			 * on NT4 even though it exists in SP3 (or SP6) and
 			 * higher.
-			 */
-			if ( osverinfo.dwPlatformId == VER_PLATFORM_WIN32_NT &&
-				osverinfo.dwMajorVersion < 5)
-				cursor = 0;
-			}
+          */
+         if (is_windows_nt_lesser_than_2000())
+         {
+
+            cursor = 0;
+
+         }
+
+		}
+
 		if (cursor)
 			{
 			/* cursor position */
@@ -754,7 +762,7 @@ static void readscreen(void)
   int		y;		/* y-coordinate of screen lines to grab */
   int		n = 16;		/* number of screen lines to grab at a time */
 
-  if (GetVersion() < 0x80000000 && OPENSSL_isservice()>0)
+  if (is_windows_nt() && OPENSSL_isservice()>0)
     return;
 
   /* Create a screen DC and a memory DC compatible to screen DC */

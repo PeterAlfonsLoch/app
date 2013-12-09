@@ -386,55 +386,55 @@ namespace sockets
    }
 
 
-   int64_t http_client_socket::get_scalar_minimum(e_scalar escalar)
+   void http_client_socket::get_scalar_minimum(e_scalar escalar, int64_t & i)
    {
 
       if (escalar == scalar_download_size)
       {
 
-         return 0;
+         i = 0;
 
       }
       else
       {
 
-         return ::int_scalar_source::get_scalar_minimum(escalar);
+         ::int_scalar_source::get_scalar_minimum(escalar, i);
 
       }
 
    }
 
-   int64_t http_client_socket::get_scalar(e_scalar escalar)
+   void http_client_socket::get_scalar(e_scalar escalar, int64_t & i)
    {
 
       if (escalar == scalar_download_size)
       {
 
-         return m_content_ptr;
+         i = m_content_ptr;
 
       }
       else
       {
 
-         return ::int_scalar_source::get_scalar(escalar);
+         ::int_scalar_source::get_scalar(escalar, i);
 
       }
 
    }
 
-   int64_t http_client_socket::get_scalar_maximum(e_scalar escalar)
+   void http_client_socket::get_scalar_maximum(e_scalar escalar, int64_t & i)
    {
 
       if (escalar == scalar_download_size)
       {
 
-         return m_content_length;
+         i = m_content_length;
 
       }
       else
       {
 
-         return ::int_scalar_source::get_scalar_minimum(escalar);
+         ::int_scalar_source::get_scalar_minimum(escalar, i);
 
       }
 

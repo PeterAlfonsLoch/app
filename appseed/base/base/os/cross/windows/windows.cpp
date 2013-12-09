@@ -144,3 +144,28 @@ BOOL WINAPI UnlockFile(HANDLE hfile, uint32_t dwLo, uint32_t dwHi, uint32_t dwCo
 
 VARIANT_BOOL BoolToVARIANT_BOOL(int_bool v) { return (v ? VARIANT_TRUE: VARIANT_FALSE); }
 int_bool VARIANT_BOOLToBool(VARIANT_BOOL v) { return (v != VARIANT_FALSE); }
+
+
+
+CLASS_DECL_BASE int_bool is_windows_nt()
+{
+
+   return false;
+
+}
+
+
+CLASS_DECL_BASE int_bool is_windows_2000_or_greater()
+{
+
+   return false;
+
+}
+
+
+CLASS_DECL_BASE int_bool is_windows_nt_lesser_than_2000()
+{
+
+   return false;
+
+}
