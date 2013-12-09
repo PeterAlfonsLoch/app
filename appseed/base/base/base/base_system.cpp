@@ -88,6 +88,9 @@ base_system::base_system(sp(base_application) papp) :
    m_pfactory = new class base_factory(this);
    m_pfactory->set_app(this);
 
+   m_pfactory->creatable_large < ::file::simple_binary_buffer >(type_info < ::file::binary_buffer >());
+   m_pfactory->creatable_large < ::file::string_buffer >();
+
    m_spinstall = new ::install::install(this);
 
 
@@ -155,8 +158,6 @@ bool base_system::process_initialize()
    m_pfactory->cloneable_large < manual_reset_event > ();
    m_pfactory->cloneable_large < mutex > ();
    m_pfactory->cloneable_large < event > ();
-   m_pfactory->creatable_large < ::file::simple_binary_buffer > (type_info < ::file::binary_buffer >());
-   m_pfactory->creatable_large < ::file::string_buffer > ();
 
    //Ex1OnFactoryExchange();
 

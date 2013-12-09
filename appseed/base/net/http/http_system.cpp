@@ -1173,12 +1173,12 @@ retry:
 
       bool bPost;
       bool bPut;
-      if (set["put"].cast < ::file::binary_buffer >() != NULL || set.lookup(__id(http_method)) == "PUT")
+      if (set["put"].cast < ::file::stream_buffer >() != NULL || set.lookup(__id(http_method)) == "PUT")
       {
          bPost = false;
          bPut = true;
          psocket = new ::sockets::http_put_socket(handler, strUrl);
-         dynamic_cast < ::sockets::http_put_socket * > (psocket)->m_file = set["put"].cast < ::file::binary_buffer >();
+         dynamic_cast < ::sockets::http_put_socket * > (psocket)->m_file = set["put"].cast < ::file::stream_buffer >();
          psocket->m_strMethod = "PUT";
       }
       else if (set["post"].propset().m_propertya.get_count() > 0 || set.lookup(__id(http_method)) == "POST")
@@ -1299,6 +1299,8 @@ retry:
 
       psocket->m_bEnablePool = false;
 
+      ::file::timeout_buffer * ptimeoutbuffer = set["file_out"].cast < ::file::timeout_buffer >();
+
       while(handler.get_count() > 0)
       {
          dw1 = ::get_tick_count();
@@ -1308,11 +1310,11 @@ retry:
          {
             break;
          }
-         if(set["file_out"].cast < ::file::timeout_buffer >() != NULL)
+         if (ptimeoutbuffer != NULL)
          {
-            if(psocket->m_iFinalSize != -1 && set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize != psocket->m_iFinalSize)
+            if (psocket->m_iFinalSize != -1 && ptimeoutbuffer->m_uiExpectedSize != psocket->m_iFinalSize)
             {
-               set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize = psocket->m_iFinalSize;
+               ptimeoutbuffer->m_uiExpectedSize = psocket->m_iFinalSize;
             }
          }
          dw2 = ::get_tick_count();
@@ -1440,20 +1442,55 @@ retry:
 
    void system::get(signal_details * pobj)
    {
+      
       SCAST_PTR(signal, psignal, pobj);
+      
       if(psignal == NULL)
       {
          return;
       }
+
       ::sockets::socket_handler handler(get_app());
+
       property_set set;
 
       set = psignal->m_set;
-      set["post"] = psignal->m_setPost;
-      set["headers"] = psignal->m_setHeaders;
-      set["cookies"] = psignal->m_pcookies;
-      set["user"] = psignal->m_puser;
-      set["http_protocol_version"] = psignal->m_strVersion;
+
+      if (psignal->m_setPost.m_propertya.get_count() > 0)
+      {
+
+         set["post"] = psignal->m_setPost;
+
+      }
+
+      if (psignal->m_setHeaders.m_propertya.get_count() > 0)
+      {
+
+         set["headers"] = psignal->m_setHeaders;
+
+      }
+
+      if (psignal->m_pcookies != NULL && psignal->m_pcookies->get_count() > 0)
+      {
+
+         set["cookies"] = psignal->m_pcookies;
+
+      }
+
+      if (psignal->m_puser != NULL)
+      {
+
+         set["user"] = psignal->m_puser;
+
+      }
+
+      if (psignal->m_strVersion.has_char())
+      {
+
+         set["http_protocol_version"] = psignal->m_strVersion;
+
+      }
+
 
       sp(::sockets::http_client_socket) psocket = get(handler, psignal->m_strUrl, set);
 
@@ -1461,21 +1498,34 @@ retry:
 
       if(psocket == NULL)
       {
+
          psignal->m_bRet = false;
+
          return;
+
       }
+
       if(psocket->GetDataPtr() != NULL && psocket->GetContentLength() > 0)
       {
+
          psignal->m_memoryRet.set_data((void *) psocket->GetDataPtr(), psocket->GetContentLength());
+
       }
       else
       {
+
          psignal->m_memoryRet.allocate(0);
+
       }
+
       psignal->m_setHeaders = psocket->outheaders();
+
       int32_t iStatusCode = psocket->outattr("http_status_code");
+
       psignal->m_bRet = iStatusCode == 200;
+
       return;
+
    }
 
 
