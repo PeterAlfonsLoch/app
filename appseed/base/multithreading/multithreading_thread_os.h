@@ -99,7 +99,7 @@ public:
 
 #else
 
-   static unsigned int __cdecl thread_proc(void * pparam);
+   static unsigned int WINAPI thread_proc(void * pparam);
 
 #endif
 

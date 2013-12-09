@@ -105,7 +105,7 @@ void os_thread::stop_all(uint32_t millisMaxWait)
 
 }
 
-unsigned int __cdecl os_thread::thread_proc(void * lpparameter)
+unsigned int WINAPI os_thread::thread_proc(void * lpparameter)
 {
 
    os_thread * posthread = (os_thread *) lpparameter;
