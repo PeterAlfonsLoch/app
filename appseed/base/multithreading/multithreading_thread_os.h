@@ -68,7 +68,8 @@ inline int32_t get_scheduling_priority_normal()
 
 
 
-class CLASS_DECL_BASE os_thread
+class CLASS_DECL_BASE os_thread :
+   virtual public object
 {
 public:
 
@@ -76,10 +77,10 @@ public:
    uint32_t (*                            m_pfn)(void *);
    LPVOID                                 m_pv;
    bool                                   m_bRun;
+   HTHREAD                                m_hthread;
 
 #if defined(LINUX) || defined(MACOS) || defined(ANDROID)
 
-   HTHREAD                                m_hthread;
    pthread_t                              m_pthread;
 
 #endif
@@ -98,7 +99,7 @@ public:
 
 #else
 
-   static DWORD WINAPI thread_proc(LPVOID pparam);
+   static unsigned int __cdecl thread_proc(void * pparam);
 
 #endif
 

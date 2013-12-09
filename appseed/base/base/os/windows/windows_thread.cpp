@@ -1,4 +1,5 @@
 #include "framework.h"
+#include <process.h>    // for _beginthreadex and _endthreadex
 #undef new
 #include <gdiplus.h>
 
@@ -29,10 +30,10 @@ os_thread::~os_thread()
 
    synch_lock ml(&*s_pmutex);
 
-   for(index i = s_pptra->get_count() - 1; i >= 0; i--)
+   for (index i = s_pptra->get_count() - 1; i >= 0; i--)
    {
 
-      if(s_pptra->element_at(i) == this)
+      if (s_pptra->element_at(i) == this)
       {
 
          s_pptra->remove_at(i);
@@ -40,6 +41,8 @@ os_thread::~os_thread()
       }
 
    }
+
+   ::CloseHandle(m_hthread);
 
 }
 
@@ -102,7 +105,7 @@ void os_thread::stop_all(uint32_t millisMaxWait)
 
 }
 
-DWORD WINAPI os_thread::thread_proc(LPVOID lpparameter)
+unsigned int WINAPI os_thread::thread_proc(void * lpparameter)
 {
 
    os_thread * posthread = (os_thread *) lpparameter;
@@ -113,7 +116,16 @@ DWORD WINAPI os_thread::thread_proc(LPVOID lpparameter)
 
    t_posthread = NULL;
 
-   delete posthread;
+   posthread->release();
+
+   // allow C-runtime to cleanup, and exit the thread
+   try
+   {
+      _endthreadex(uiRet);
+   }
+   catch (...)
+   {
+   }
 
    return uiRet;
 
@@ -170,7 +182,11 @@ HANDLE start_thread(uint32_t (* pfn)(void *), void * pv, int32_t iPriority)
 HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, uint_ptr cbStack, uint32_t (* pfn)(void *), void * pv, uint32_t f, uint32_t * lpui)
 {
 
-   return ::CreateThread(lpsa, cbStack, &::os_thread::thread_proc, (LPVOID) new os_thread(pfn, pv), f, (LPDWORD) lpui);
+   sp(os_thread) posthread = canew(os_thread(pfn, pv));
+
+   posthread->add_ref();
+
+   return posthread->m_hthread = (HANDLE) _beginthreadex(lpsa, (unsigned int) cbStack, &::os_thread::thread_proc, (void *) posthread, f, lpui);
 
 }
 
