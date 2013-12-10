@@ -1133,9 +1133,13 @@ RetryHost:
 
       keep_true keepDownloadTrue(m_bMsDownload);
 
-      string strUrl = url_in + "&sessid=noauth";
+      string strUrl = url_in;
 
-      return Application.http().download(strUrl, (dir + file));
+      property_set set;
+
+      set["disable_ca2_sessid"] = true;
+
+      return Application.http().download(strUrl, (dir + file), set);
 
    }
 
