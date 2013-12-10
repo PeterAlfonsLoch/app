@@ -789,3 +789,23 @@ bool base_system::assert_running_local(const char * pszAppName, const char * psz
       return true;
    }
 }
+
+
+
+uint32_t _thread_proc_start_system(void * p)
+{
+
+   base_system * psystem = (base_system *)p;
+
+   return psystem->main();
+
+}
+
+void __start_system(base_system * psystem)
+{
+
+   ::create_thread(NULL, 0, &_thread_proc_start_system, (LPVOID)psystem, 0, 0);
+
+}
+
+

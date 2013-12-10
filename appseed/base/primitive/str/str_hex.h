@@ -113,7 +113,7 @@ namespace hex
    template < typename INT >
    inline string lower_from(INT iValue)
    {
-      count c = sizeof(INT);
+      count c = sizeof(INT) * 2;
       string str;
       LPSTR sz = str.GetBufferSetLength(c);
       for(index i = 0; i < c; i++)
@@ -128,7 +128,7 @@ namespace hex
    template < typename INT >
    inline string upper_from(INT iValue)
    {
-      count c = sizeof(INT);
+      count c = sizeof(INT) * 2;
       string str;
       LPSTR sz = str.GetBufferSetLength(c);
       for(index i = 0; i < c; i++)

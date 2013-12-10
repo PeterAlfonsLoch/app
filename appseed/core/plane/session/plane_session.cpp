@@ -510,10 +510,12 @@ namespace plane
                strType = pcreatecontext->m_spCommandLine->m_strAppType;
             }
 
-            if(pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count() <= 0)
+
+            if (pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().find_first_ci(strApp) < 0)
             {
 
-               pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().add(strApp);
+               pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().insert_at(0, strApp);
+               pcreatecontext->m_spCommandLine->m_varQuery["app_type"].stra().insert_at(0, strType);
 
             }
 
@@ -521,13 +523,26 @@ namespace plane
             {
 
                strApp = pcreatecontext->m_spCommandLine->m_varQuery["app"].stra()[i];
+               if (i < pcreatecontext->m_spCommandLine->m_varQuery["app_type"].stra().get_count())
+                  strType = pcreatecontext->m_spCommandLine->m_varQuery["app_type"].stra()[i];
+               else
+                  strType.Empty();
 
 
                //MessageBox(NULL, "create", strApp, MB_ICONEXCLAMATION);
 
                if(strApp.is_empty() || strApp == "bergedge")
                {
+                  
                   return;
+
+               }
+
+               if (strApp == "session")
+               {
+                  
+                  continue;
+
                }
 
                if(strType.is_empty())

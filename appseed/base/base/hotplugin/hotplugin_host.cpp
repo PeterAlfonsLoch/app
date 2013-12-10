@@ -366,17 +366,17 @@ namespace hotplugin
    int32_t host::starter_start(const char * pszCommandLine)
    {
 
-      return starter_start(pszCommandLine, this);
+      return starter_start(pszCommandLine, get_app(), this);
 
    }
 
 
-   int32_t host::starter_start(const char * pszCommandLine, plugin * pplugin)
+   int32_t host::starter_start(const char * pszCommandLine, base_application * papp, plugin * pplugin)
    {
 
-      Sys(pplugin->m_pbaseapp).install().set_installing_ca2();
+      Sys(papp).install().set_installing_ca2();
 
-      ::install::starter_start * pstart    = new ::install::starter_start(pplugin->m_pbaseapp);
+      ::install::starter_start * pstart    = new ::install::starter_start(papp);
 
       pstart->m_pplugin             = pplugin;
 
@@ -405,23 +405,21 @@ throw todo(get_thread_app());
       return 0;
    }
 
-   int32_t host::starter_start_sync(const char * pszCommandLine, plugin * pplugin)
+   int32_t host::starter_start_sync(const char * pszCommandLine, base_application * papp, plugin * pplugin)
    {
 
-      throw todo(get_thread_app());
+      Sys(papp).install().set_installing_ca2();
 
-/*      System.install().set_installing_ca2();
-
-      spa_starter_start * pstart    = new spa_starter_start;
+      ::install::starter_start * pstart = new ::install::starter_start(papp);
 
       pstart->m_pplugin             = pplugin;
 
       pstart->m_strCommandLine      = pszCommandLine;
 
-      ::_ca2_starter_start(pstart);
+      ::install::_ca2_starter_start(pstart);
 
       return 0;
-      */
+      
 
    }
 

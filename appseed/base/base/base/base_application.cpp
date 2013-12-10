@@ -3586,7 +3586,7 @@ bool base_application::initialize()
    //return true;
 
 
-   if (!is_installing() && !is_uninstalling() && !is_system())
+   if (!is_installing() && !is_uninstalling() && !is_system() && m_pbasesession != NULL)
    {
 
       if (!user()->keyboard().initialize())

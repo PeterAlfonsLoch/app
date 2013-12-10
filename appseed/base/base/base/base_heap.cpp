@@ -628,7 +628,7 @@ public:
 
    base_static_start()
    {
-      //debug_box("base.dll base_static_start (0)", "box", MB_OK);
+      xxdebug_box("base.dll base_static_start (0)", "box", MB_OK);
       /*
       if(g_pfnca2_alloc == NULL)
       {

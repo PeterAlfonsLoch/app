@@ -1009,7 +1009,7 @@ namespace hotplugin
 #endif
          }
 
-         dir::mk(dir::path(dir::userappdata("time"), "ca2"));
+         dir::mk(dir::path(dir::userappdata("time"), "core"));
 
          int32_t iOpen;
 

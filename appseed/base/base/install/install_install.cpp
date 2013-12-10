@@ -618,7 +618,7 @@ namespace install
          if (g_bCa2Installed)
          {
             base_library libraryCa2(get_app());
-            g_bCa2Installed = libraryCa2.open(dir::path(strStage, "ca"));
+            g_bCa2Installed = libraryCa2.open(dir::path(strStage, "core"));
             if (!bUnloadIfNotInstalled && g_bCa2Installed)
             {
                libraryCa2.m_bAutoClose = false;

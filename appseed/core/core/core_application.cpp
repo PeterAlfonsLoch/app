@@ -2172,7 +2172,7 @@ bool application::on_run_exception(::exception::exception & e)
 
       not_installed & notinstalled = dynamic_cast <not_installed &> (e);
 
-      if (::is_debugger_attached())
+      if (false && ::is_debugger_attached())
       {
 
          try
@@ -2197,7 +2197,7 @@ bool application::on_run_exception(::exception::exception & e)
       else
       {
 
-         hotplugin::host::starter_start_sync(": app=session session_start=" + notinstalled.m_strId + " app_type=" + notinstalled.m_strType + " install locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema, NULL);
+         hotplugin::host::starter_start_sync(": app=session session_start=" + notinstalled.m_strId + " app_type=" + notinstalled.m_strType + " install locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema, get_app(), NULL);
 
       }
 
@@ -4170,15 +4170,25 @@ sp(::user::interaction) application::uie_from_point(point pt)
 
 bool application::on_install()
 {
+
+   if (!base_application::on_install())
+      return false;
+
    string strId = m_strId;
+
    char chFirst = '\0';
+
    if (strId.get_length() > 0)
    {
+
       chFirst = strId[0];
+
    }
 
    return true;
+
 }
+
 
 bool application::on_run_install()
 {

@@ -3500,11 +3500,14 @@ RetryHost:
          strcat_dup(psz, "app-install.exe");
          m_strPath.ReleaseBuffer();
       }
+      else
+      {
+         string strPlatform = System.install().get_platform();
+         m_strPath = ::dir::element("stage\\" + strPlatform + "\\app-install.exe");
+      }
 #else
       throw "TODO";
 #endif
-
-      return true;
 
       if(!file_exists_dup(m_strPath) || !System.install().is_file_ok(m_strPath, "app-install.exe"))
       {

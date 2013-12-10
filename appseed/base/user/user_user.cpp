@@ -609,6 +609,9 @@ retry_license:
    bool user::set_keyboard_layout(const char * pszPath, bool bUser)
    {
 
+      if (get_app()->m_pbasesession == NULL)
+         return false;
+
       if(pszPath == NULL)
       {
 
