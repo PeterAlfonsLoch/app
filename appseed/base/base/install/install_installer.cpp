@@ -287,13 +287,24 @@ RetryHost:
 
 
          strUrl = m_strSpaIgnitionBaseUrl + "/install_filter_list";
-         string strInstallFilterList = Application.http().get(strUrl);
+
+         property_set set1;
+
+         set1["disable_ca2_sessid"] = true;
+
+         string strInstallFilterList = Application.http().get(strUrl, set1);
          ::xml::document nodeInstallFilter(get_app());
          nodeInstallFilter.load(strInstallFilterList);
          strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
          strUrl += m_strApplicationId;
          strUrl += "&key=install_filter";
-         string strInstallFilter = Application.http().get(strUrl);
+
+
+         property_set set2;
+
+         set2["disable_ca2_sessid"] = true;
+
+         string strInstallFilter = Application.http().get(strUrl, set2);
          for(int32_t ui = 0; ui < nodeInstallFilter.get_root()->get_children_count(); ui++)
          {
             ::xml::node * lpchild = nodeInstallFilter.get_root()->child_at(ui);
@@ -382,7 +393,12 @@ RetryHost:
             goto RetryHost;
          }
          strUrl = "http://" + strSpaHost + "/stage/app/stage/metastage/index-"+strBuild+".md5";
-         string strCgclIndexMd5 = Application.http().get(strUrl);
+
+         property_set set;
+
+         set["disable_ca2_sessid"] = true;
+
+         string strCgclIndexMd5 = Application.http().get(strUrl, set);
          if(strCgclIndexMd5.length() != 32
             || stricmp_dup(get_file_md5(strIndexPath), strCgclIndexMd5) != 0)
          {
@@ -1318,8 +1334,13 @@ RetryHost:
 
             string strBsPatch = dir + file + "." + strOldMd5 + "." + strNewMd5 + ".bspatch";
 
-            strUrl += "&sessid=noauth";
-            bOk = Application.http().download(strUrl, strBsPatch);
+            property_set set;
+
+            set["int_scalar_source_listener"] = this;
+
+            set["disable_ca2_sessid"] = true;
+
+            bOk = Application.http().download(strUrl, strBsPatch, set);
 
 //            if(iStatus == 404)
   //             break;
@@ -1466,7 +1487,14 @@ RetryHost:
          iRetry = 0;
          while(true)
          {
-            bOk = Application.http().download((url_in + "." + pszMd5) + "&sessid=noauth", (dir + file + "." + pszMd5));
+
+            property_set set;
+
+            set["int_scalar_source_listener"] = this;
+
+            set["disable_ca2_sessid"] = true;
+
+            bOk = Application.http().download((url_in + "." + pszMd5), (dir + file + "." + pszMd5), set);
 //            if(iStatus == 404)
   //             break;
             if (!bOk)
@@ -2400,7 +2428,12 @@ RetryHost:
       strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
       strUrl += m_strApplicationId;
       strUrl += "&key=post_install_count";
-      string strCount = Application.http().get(strUrl);
+
+      property_set set;
+
+      set["disable_ca2_sessid"] = true;
+
+      string strCount = Application.http().get(strUrl, set);
       int32_t iCount = atoi_dup(strCount);
       //set_progress(0.2);
       for(int32_t i = 0; i < iCount; i++)
@@ -2410,7 +2443,13 @@ RetryHost:
          strUrl += "&key=post_install";
          sprintf(szFormat, "[%d]", i);
          strUrl += szFormat;
-         string strExec = Application.http().get(strUrl);
+
+         property_set set;
+
+         set["disable_ca2_sessid"] = true;
+
+         string strExec = Application.http().get(strUrl, set);
+
          if(!spa_exec(strExec))
          {
             #ifdef WINDOWSEX
@@ -2746,7 +2785,13 @@ RetryHost:
       int32_t iRetry = 0;
       while(true)
       {
-         str = Application.http().get(strUrl);
+
+         property_set set;
+
+         set["disable_ca2_sessid"] = true;
+
+         str = Application.http().get(strUrl, set);
+
          if(str.length() > 0)
             break;
          else if(iRetry < 84)
@@ -2790,14 +2835,14 @@ RetryBuildNumber:
          iRetry++;
 //         m_strBuild = Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build", false, &::ms_get_callback, (void *) this);
 
-         ::property_set post;
-         ::property_set headers;
          ::property_set set;
 
          set["int_scalar_source_listener"] = this;
 
+         set["disable_ca2_sessid"] = true;
 
          Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build&sessid=noauth", m_strBuild, set);
+
          m_strBuild.trim();
          if(m_strBuild.length() != 19)
          {
@@ -2848,7 +2893,13 @@ RetryHost:
       System.install().trace().rich_trace(".");
       while(iGuessRetry < 30)
       {
-         strSpaHost = Application.http().get(strUrl);
+
+         property_set set;
+
+         set["disable_ca2_sessid"] = true;
+
+         strSpaHost = Application.http().get(strUrl, set);
+
          if(strSpaHost.is_empty())
          {
             if(m_strLastHost.is_empty())
@@ -3471,11 +3522,16 @@ RetryHost:
                break;
             string strUrl;
 #if CA2_PLATFORM_VERSION == CA2_BASIS
-            strUrl = "http://warehouse.ca2.cc/spa?download=app-install.exe&authnone";
+            strUrl = "http://warehouse.ca2.cc/spa?download=app-install.exe";
 #else
-            strUrl = "http://store.ca2.cc/spa?download=app-install.exe&authnone";
+            strUrl = "http://store.ca2.cc/spa?download=app-install.exe";
 #endif
-            if(Application.http().download(strUrl, m_strPath))
+
+            property_set set;
+
+            set["disable_ca2_sessid"] = true;
+
+            if(Application.http().download(strUrl, m_strPath, set))
             {
                if (System.install().is_file_ok(m_strPath, "app-install.exe"))
                {
@@ -3613,7 +3669,7 @@ RetryHost:
 
    }
 
-   void installer::on_set_value(int_scalar_source * psource, e_scalar escalar, int64_t iValue)
+   void installer::on_set_scalar(int_scalar_source * psource, e_scalar escalar, int64_t iValue)
    {
 
       if (escalar == scalar_download_size)

@@ -10,6 +10,13 @@ void double_scalar_source::listener::on_set_scalar(double_scalar_source * psourc
 
 }
 
+double_scalar_source::double_scalar_source()
+{
+
+   m_plistener = NULL;
+
+}
+
 
 bool double_scalar_source::set_scalar(e_scalar escalar, double d, bool bForce)
 {
@@ -218,6 +225,14 @@ void int_scalar_source::listener::on_set_scalar(int_scalar_source * psource, e_s
    UNREFERENCED_PARAMETER(psource);
    UNREFERENCED_PARAMETER(escalar);
    UNREFERENCED_PARAMETER(iValue);
+
+}
+
+
+int_scalar_source::int_scalar_source()
+{
+
+   m_plistener = NULL;
 
 }
 

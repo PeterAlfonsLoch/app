@@ -14,13 +14,15 @@ public:
    public:
 
 
-      void on_set_scalar(double_scalar_source * psource, e_scalar escalar, double d);
+      virtual void on_set_scalar(double_scalar_source * psource, e_scalar escalar, double d);
 
 
    };
 
 
    listener *        m_plistener;
+
+   double_scalar_source();
 
 
    bool set_scalar(e_scalar escalar, double d, bool bForce = false);
@@ -50,13 +52,16 @@ public:
    public:
 
 
-      void on_set_scalar(int_scalar_source * psource, e_scalar escalar, int64_t i);
+      virtual void on_set_scalar(int_scalar_source * psource, e_scalar escalar, int64_t i);
 
 
    };
 
 
    listener *        m_plistener;
+
+
+   int_scalar_source();
 
 
    bool set_scalar(e_scalar escalar, int64_t iValue, bool bForce = false);

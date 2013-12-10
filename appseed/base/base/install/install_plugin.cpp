@@ -998,8 +998,8 @@ namespace install
 
          m_bLogin    = true;
          set_focus(&m_login.m_editUser);
-         m_login.m_editUser.m_strText = "";
-         m_login.m_password.m_strText = "";
+         //m_login.m_editUser.m_strText = "";
+         //m_login.m_password.m_strText = "";
          m_login.m_bVisible = true;
 
       }
