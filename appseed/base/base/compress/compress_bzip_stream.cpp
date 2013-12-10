@@ -74,7 +74,7 @@ void bzip_stream::write(const void * buf, ::primitive::memory_size len)
          bool bWriteOk = true;
          try
          {
-            write (m_memory.get_data(), n);
+            ::file::output_stream::write (m_memory.get_data(), n);
             n2 = n;
          }
          catch(...)
@@ -153,7 +153,7 @@ void bzip_stream::finish()
             bool bWriteOk = true;
             try
             {
-               write(m_memory.get_data(), n);
+               ::file::output_stream::write(m_memory.get_data(), n);
                n2 = n;
             }
             catch(...)

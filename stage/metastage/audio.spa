@@ -4,7 +4,10 @@ stage\basis\audio_decode_libmpg123.dll
 stage\basis\audio_decode_vorbis.dll
 stage\basis\audio_decode_wave.dll
 stage\basis\audio_decode_windows_media.dll
-stage\basis\libmpg123.dll
+stage\basis\audio_mmsystem.dll
+stage\basis\multimedia_mmsystem.dll
+stage\basis\music_midi_mmsystem.dll
+stage\basis\basempg123.dll
 stage\basis\libmp3lame.dll
 stage\basis\math.dll
 stage\basis\multimedia.dll
