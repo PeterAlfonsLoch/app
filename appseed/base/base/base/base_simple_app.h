@@ -22,9 +22,9 @@ public:
 
    virtual void body();
 
-   virtual bool initialize();
-   virtual int32_t run();
-   virtual bool finalize();
+   virtual bool intro();
+   virtual int32_t refrain();
+   virtual bool end();
 
    template < class APP >
    static int32_t s_main()

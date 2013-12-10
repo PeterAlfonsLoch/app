@@ -6,18 +6,16 @@ namespace hotplugin
 
 
    class CLASS_DECL_BASE host :
-      virtual public plugin,
-      virtual public base_system
+      virtual public plugin
    {
    public:
 
 
       plugin *                      m_pplugin;
-      byte *                        m_puchMemory;
-      ::count m_countMemory;
+      primitive::memory             m_memory;
       double                        m_dProgressRate;
       bool                          m_bShowProgress;
-      string                      m_strHostPluginLocation;
+      string                        m_strHostPluginLocation;
 
 
       bool                          m_bCa2InstallationReady;
@@ -27,9 +25,7 @@ namespace hotplugin
       bool                          m_bRunningSpaAdmin;
 
 
-      void *                        m_pvoidSystem;
-
-      mutex                  m_mutexSystem;
+      mutex                         m_mutexSystem;
 
 
 
@@ -39,7 +35,7 @@ namespace hotplugin
 
 
       virtual void * get_system();
-      virtual void set_system(void * pvoidSystem);
+      //virtual void set_system(void * pvoidSystem);
 
 
       virtual void   redraw();
@@ -66,7 +62,7 @@ namespace hotplugin
       virtual ::count get_memory_length();
       virtual ::count read_memory(void * puchMemory, ::count c);
       virtual void   free_memory();
-      static  void   free_memory(byte ** ppuchMemory);
+      //static  void   free_memory(byte ** ppuchMemory);
 
 
       virtual void set_ready();

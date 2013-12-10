@@ -107,7 +107,7 @@ namespace plugin
 
          psystem->m_bDoNotExitIfNoApplications = true;
 
-         m_phost->set_system((void *) (::plane::system *) psystem);
+         m_phost->m_pbaseapp = psystem;
 
          mlSystem.unlock();
 

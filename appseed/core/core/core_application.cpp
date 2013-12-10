@@ -348,37 +348,6 @@ bool application::process_initialize()
 }
 
 
-bool application::update_module_paths()
-{
-
-   if (is_system())
-   {
-
-      if (!m_pimpl->update_module_paths())
-         return false;
-
-      if (m_pimpl->m_strCa2ModuleFolder.is_empty())
-         m_pimpl->m_strCa2ModuleFolder = m_pimpl->m_strModuleFolder;
-
-      m_strModulePath = m_pimpl->m_strModulePath;
-      m_strModuleFolder = m_pimpl->m_strModuleFolder;
-      m_strCa2ModulePath = m_pimpl->m_strCa2ModulePath;
-      m_strCa2ModuleFolder = m_pimpl->m_strCa2ModuleFolder;
-
-   }
-   else
-   {
-
-      m_strModulePath = System.m_strModulePath;
-      m_strModuleFolder = System.m_strModuleFolder;
-
-   }
-
-   return true;
-
-}
-
-
 
 
 bool application::initialize1()
@@ -3774,21 +3743,21 @@ bool application::Ex2OnAppUninstall()
 }
 
 
-thread * application::GetThread()
-{
+//thread * application::GetThread()
+//{
+//
+//   if (m_pimpl == NULL)
+//      return NULL;
+//
+//   return m_pimpl->GetThread();
+//
+//}
 
-   if (m_pimpl == NULL)
-      return NULL;
 
-   return m_pimpl->GetThread();
-
-}
-
-
-void application::set_thread(thread * pthread)
-{
-   m_pimpl->set_thread(pthread);
-}
+//void application::set_thread(thread * pthread)
+//{
+  // m_pimpl->set_thread(pthread);
+//}
 
 /*   ::draw2d::graphics * application::graphics_from_os_data(void * pdata)
 {
@@ -3817,11 +3786,6 @@ sp(::user::window) application::get_desktop_window()
 #else
    return window_from_os_data(::GetDesktopWindow());
 #endif
-}
-
-void application::SetCurrentHandles()
-{
-   m_pimpl->SetCurrentHandles();
 }
 
 

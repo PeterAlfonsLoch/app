@@ -203,7 +203,7 @@ public:
    virtual bool start_application(bool bSynch, application_bias * pbias);
 
 
-   virtual bool update_module_paths();
+   //virtual bool update_module_paths();
 
 
    inline ::calculator::calculator           & calculator() { return *m_pcalculator; }
@@ -444,7 +444,6 @@ public:
 
 
    void DevModeChange(LPTSTR lpDeviceName);
-   virtual void SetCurrentHandles();
 
    // Finds number of opened document items owned by templates
    // registered with the doc manager.
@@ -575,8 +574,8 @@ public:
    virtual bool Ex2OnAppInstall();
    virtual bool Ex2OnAppUninstall();
 
-   virtual thread * GetThread();
-   virtual void set_thread(thread * pthread);
+   //virtual thread * GetThread();
+   //virtual void set_thread(thread * pthread);
 
 
    virtual sp(::user::window) get_desktop_window();

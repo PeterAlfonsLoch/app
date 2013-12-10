@@ -251,7 +251,7 @@ namespace install
 
                ensure_tx(::hotplugin::message_set_plugin_url, (void *) (const char*) m_phost->m_strPluginUrl, (int32_t) m_phost->m_strPluginUrl.length());
 
-               ensure_tx(::hotplugin::message_set_ready, m_phost->m_puchMemory, (int32_t) m_phost->m_countMemory);
+               ensure_tx(::hotplugin::message_set_ready, m_phost->m_memory.get_data(), (int32_t)m_phost->m_memory.get_size());
 
             }
             catch(...)
@@ -913,10 +913,10 @@ namespace install
 
          string strPrompt;
 
-         if(m_phost->m_puchMemory != NULL)
+         if (m_phost->m_memory.get_data() != NULL && m_phost->m_memory.get_size() > 0)
          {
 
-            strPrompt = string((const char *) m_phost->m_puchMemory, m_phost->m_countMemory);
+            strPrompt = string((const char *)m_phost->m_memory.get_data(), m_phost->m_memory.get_size());
 
          }
          else

@@ -21,8 +21,15 @@ namespace http
       {
 
          string strWorkUrl;
+         
+         if (get_thread() != NULL)
+         {
 
-         keeper < string > keepWorkUrl(get_thread() == NULL ? &strWorkUrl : &get_thread()->m_strWorkUrl, pszUrl, get_thread()->m_strWorkUrl, true);
+            strWorkUrl = get_thread()->m_strWorkUrl;
+
+         }
+
+         keeper < string > keepWorkUrl(get_thread() == NULL ? &strWorkUrl : &get_thread()->m_strWorkUrl, pszUrl, strWorkUrl, true);
 
          if ((bool)set["optional_ca2_sessid"])
          {

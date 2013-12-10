@@ -152,6 +152,9 @@ public:
 
    static UINT                                     APPM_LANGUAGE;
    static WPARAM                                   WPARAM_LANGUAGE_UPDATE;
+   
+   bool                                            m_bBaseProcessInitialize;
+   bool                                            m_bBaseInitializeInstance;
 
 
 

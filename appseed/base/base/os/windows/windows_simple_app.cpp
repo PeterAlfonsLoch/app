@@ -83,11 +83,41 @@ int32_t simple_app::main()
 void simple_app::body()
 {
 
+   try
+   {
+
+      set_main_thread(GetCurrentThread());
+
+      set_main_thread_id(GetCurrentThreadId());
+
+      if ((m_iError = pre_run()) != 0)
+      {
+
+         if (m_iError != 0)
+            m_iError = -1;
+
+         return;
+
+      }
+
+      SetCurrentHandles();
+
+   }
+   catch (...)
+   {
+
+      if (m_iError > 0)
+         m_iError = -1;
+
+      return;
+
+   }
+
 
    try
    {
 
-      if(!initialize())
+      if(!intro())
       {
          
          if(m_iError > 0)
@@ -127,7 +157,7 @@ void simple_app::body()
    try
    {
 
-      finalize();
+      end();
 
    }
    catch(...)
@@ -136,12 +166,12 @@ void simple_app::body()
 
 }
 
-bool simple_app::initialize()
+bool simple_app::intro()
 {
    return true;
 }
 
-int32_t simple_app::run()
+int32_t simple_app::refrain()
 {
 
 	while(true)
@@ -154,7 +184,7 @@ int32_t simple_app::run()
    return 0;
 }
 
-bool simple_app::finalize()
+bool simple_app::end()
 {
    return true;
 }

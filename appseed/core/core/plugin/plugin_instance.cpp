@@ -19,9 +19,9 @@ namespace plugin
 
       m_pfile           = NULL;
 
-      m_lpbMemory       = NULL;
+//      m_lpbMemory       = NULL;
 
-      m_iMemory         = -1;
+  //    m_iMemory         = -1;
 
       m_puiHost         = NULL;
 

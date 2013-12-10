@@ -159,13 +159,14 @@ bool base_system::process_initialize()
    m_pfactory->cloneable_large < mutex > ();
    m_pfactory->cloneable_large < event > ();
 
-   //Ex1OnFactoryExchange();
-
+   if (!base_application::process_initialize())
+      return false;
+   
    m_spos.create(allocer());
 
    m_spfile.create(allocer());
-   m_spdir.create(allocer());
 
+   m_spdir.create(allocer());
 
    if (!m_spdir->initialize())
       throw simple_exception(this, "failed to construct base_system");
@@ -181,6 +182,9 @@ bool base_system::initialize_instance()
 {
 
    m_pfactory->enable_simple_factory_request();
+
+   if (!::base_application::initialize_instance())
+      return false;
 
    return true;
 

@@ -799,10 +799,10 @@ namespace hotplugin
    {
    }
 
-   void plugin::free_memory(byte ** ppuchMemory)
+   /*void plugin::free_memory(byte ** ppuchMemory)
    {
       host::free_memory(ppuchMemory);
-   }
+   }*/
 
    void plugin::set_progress_rate(double dRate)
    {

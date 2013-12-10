@@ -15,7 +15,6 @@ namespace hotplugin
 
    host::host() :
       element(this),
-      ::base_system(this),
       hotplugin::plugin(this),
       ::simple_ui::style(this),
       ::simple_ui::interaction(this),
@@ -23,13 +22,10 @@ namespace hotplugin
    {
 
       m_pplugin                  = NULL;
-      m_puchMemory               = NULL;
-      m_countMemory              = 0;
       m_dProgressRate            = 0.0;
       m_bShowProgress            = true;
       m_bCa2InstallationReady    = false;
       m_bStream                  = false;
-      m_pvoidSystem              = NULL;
 
 
 #ifdef WINDOWS
@@ -43,8 +39,6 @@ namespace hotplugin
 
       m_pbitmap                  = NULL;
       m_pmutexBitmap             = NULL;
-
-      construct();
 
    }
 
@@ -132,55 +126,47 @@ namespace hotplugin
 
    void host::set_memory(void * puchMemory, ::count c)
    {
-      free_memory();
-      m_puchMemory = (byte *) memory_alloc(c);
-      memcpy_dup(m_puchMemory, puchMemory, c);
-      m_countMemory = c;
+
+      m_memory.assign(puchMemory, c);
+
    }
 
    void host::append_memory(void * puchMemory, ::count c)
    {
-      if(c <= 0)
-         return;
-      if(m_puchMemory == NULL)
-      {
-         set_memory(puchMemory, c);
-      }
-      else
-      {
-         byte * puchMemoryNew = (byte *) memory_realloc_dbg(m_puchMemory, m_countMemory + c, 0, NULL, 0);
-         memcpy_dup(&puchMemoryNew[m_countMemory], puchMemory, c);
-         m_countMemory += c;
-         m_puchMemory = puchMemoryNew;
-      }
+
+      m_memory.append(puchMemory, c);
+
    }
 
    ::count host::get_memory_length()
    {
-      return m_countMemory;
+      
+      return m_memory.get_size();
+
    }
 
    ::count host::read_memory(void * puchMemory, ::count c)
    {
-      if(c > m_countMemory)
-         c = m_countMemory;
-      memcpy_dup(puchMemory, m_puchMemory, c);
+
+      if (natural(c) > m_memory.get_size())
+         c = m_memory.get_size();
+
+      memcpy_dup(puchMemory, m_memory.get_data(), c);
+
       return c;
+
    }
 
    void host::free_memory()
    {
-      free_memory(&m_puchMemory);
+      
+      m_memory.allocate(0);
+
    }
 
-   void host::free_memory(byte ** ppuchMemory)
+   /*void host::free_memory(byte ** ppuchMemory)
    {
-      if(*ppuchMemory != NULL)
-      {
-         memory_free_dbg(*ppuchMemory, 0);
-      }
-      *ppuchMemory = NULL;
-   }
+   }*/
 
 
    //void host::start_ca2();
@@ -453,16 +439,16 @@ throw todo(get_thread_app());
    void * host::get_system()
    {
 
-      return m_pvoidSystem;
+      return this;
 
    }
 
-   void host::set_system(void * pvoidSystem)
+   /*void host::set_system(void * pvoidSystem)
    {
 
       m_pvoidSystem = pvoidSystem;
 
-   }
+   }*/
 
    void host::set_status(const char * pszStatus)
    {

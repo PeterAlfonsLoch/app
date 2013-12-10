@@ -24,62 +24,65 @@ m_mutexStr(this)
 
 #ifdef WINDOWS
 
-   m_hinstance = NULL;
+   m_hinstance                = NULL;
 
 #endif
 
    if (m_pbaseapp == NULL)
    {
 
-      m_pbaseapp = this;
+      m_pbaseapp              = this;
 
    }
 
    if (m_pbaseapp != NULL)
    {
 
-      m_pbasesystem = m_pbaseapp->m_pbasesystem;
+      m_pbasesystem           = m_pbaseapp->m_pbasesystem;
 
-      m_hinstance = m_pbaseapp->m_hinstance;
+      m_hinstance             = m_pbaseapp->m_hinstance;
 
    }
    else
    {
 
-      m_pbasesystem = NULL;
+      m_pbasesystem           = NULL;
 
    }
 
-   m_pplaneapp = NULL;
+   m_pplaneapp                = NULL;
 
-   m_pbasesession = NULL;
+   m_pbasesession             = NULL;
 
-   m_nSafetyPoolSize = 512;        // default size
+   m_nSafetyPoolSize          = 512;        // default size
 
-   m_bIfs = true;
+   m_bIfs                     = true;
 
    m_dir.set_app(this);
    m_file.set_app(this);
    m_http.set_app(this);
 
 
-   m_psignal = canew(class signal());
+   m_psignal                  = canew(class signal());
 
-   m_pcommandthread = canew(::command_thread(this));
+   m_pcommandthread           = canew(::command_thread(this));
 
-   m_psavings = canew(class ::core::savings(this));
-   m_pmath = canew(math::math(this));
-   m_pgeometry = canew(geometry::geometry(this));
+   m_psavings                 = canew(class ::core::savings(this));
+   m_pmath                    = canew(math::math(this));
+   m_pgeometry                = canew(geometry::geometry(this));
 
-   m_bZipIsDir = true;
+   m_bZipIsDir                = true;
 
-   m_pmapKeyPressed = NULL;
+   m_pmapKeyPressed           = NULL;
 
-   m_bLicense = true;
+   m_bLicense                 = true;
 
    // initialize wait cursor state
-   m_iWaitCursorCount = 0;
-   m_hcurWaitCursorRestore = NULL;
+   m_iWaitCursorCount         = 0;
+   m_hcurWaitCursorRestore    = NULL;
+
+   m_bBaseProcessInitialize   = false;
+   m_bBaseInitializeInstance  = false;
 
 
 }
@@ -649,7 +652,10 @@ void base_application::remove_frame(sp(::user::interaction) pwnd)
 thread * base_application::GetThread()
 {
 
-   return NULL;
+   if (m_pimpl == NULL)
+      return NULL;
+
+   return m_pimpl->GetThread();
 
 }
 
@@ -937,7 +943,7 @@ string base_application::get_version()
 void base_application::set_thread(thread * pthread)
 {
 
-   throw interface_only_exception(this);
+   m_pimpl->set_thread(pthread);
 
 }
 
@@ -945,7 +951,7 @@ void base_application::set_thread(thread * pthread)
 void base_application::SetCurrentHandles()
 {
 
-   throw interface_only_exception(this);
+   m_pimpl->SetCurrentHandles();
 
 }
 
@@ -1011,7 +1017,32 @@ void base_application::_001OnFileNew(signal_details * pobj)
 bool base_application::update_module_paths()
 {
 
-   throw interface_only_exception(this);
+
+   if (is_system())
+   {
+
+      if (!m_pimpl->update_module_paths())
+         return false;
+
+      if (m_pimpl->m_strCa2ModuleFolder.is_empty())
+         m_pimpl->m_strCa2ModuleFolder = m_pimpl->m_strModuleFolder;
+
+      m_strModulePath = m_pimpl->m_strModulePath;
+      m_strModuleFolder = m_pimpl->m_strModuleFolder;
+      m_strCa2ModulePath = m_pimpl->m_strCa2ModulePath;
+      m_strCa2ModuleFolder = m_pimpl->m_strCa2ModuleFolder;
+
+   }
+   else
+   {
+
+      m_strModulePath = System.m_strModulePath;
+      m_strModuleFolder = System.m_strModuleFolder;
+
+   }
+
+   return true;
+
 
 }
 
@@ -3719,6 +3750,11 @@ bool base_application::initialize()
 bool base_application::process_initialize()
 {
 
+   if (m_bBaseProcessInitialize)
+      return true;
+
+   m_bBaseProcessInitialize = true;
+
    if (is_installing() || is_uninstalling())
    {
 
@@ -4129,6 +4165,11 @@ bool base_application::initialize3()
 
 bool base_application::initialize_instance()
 {
+
+   if (m_bBaseInitializeInstance)
+      return true;
+
+   m_bBaseInitializeInstance = true;
 
    if (!is_system())
    {

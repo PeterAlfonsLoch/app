@@ -19,18 +19,16 @@ namespace hotplugin
    public:
 
 
-      string                      m_strPluginUrl;
-      string                      m_strPluginHeaders;
-      BYTE *                        m_lpbMemory;
-      int32_t                           m_iMemory;
+      string                        m_strPluginUrl;
+      string                        m_strPluginHeaders;
+      //primitive::memory             m_memoryPlugin;
       bool                          m_bOnPaint;
-      //RECT                          m_rect;
       bool                          m_bInitialized;
       FILE *                        m_pfile;
       bool                          m_bPreCheck;
-      int32_t                           m_iHealingSurface;
-      uint32_t                         m_last_redraw;
-      int32_t                           m_iEdge;
+      int32_t                       m_iHealingSurface;
+      uint32_t                      m_last_redraw;
+      int32_t                       m_iEdge;
       bool                          m_bAppStarted;
       bool *                        m_pbReady;
       bool                          m_bApp;
@@ -43,9 +41,9 @@ namespace hotplugin
       COLORREF *                    m_pcolorref;
       SIZE                          m_sizeBitmap;
 
-      string                      m_strStatus;
+      string                        m_strStatus;
 
-      uint32_t                         m_nCa2StarterStartThreadID;
+      uint32_t                      m_nCa2StarterStartThreadID;
       bool                          m_bReload;
       bool                          m_bInstalling;
       const char *                  m_pszReloadCommandLine;
@@ -54,11 +52,11 @@ namespace hotplugin
       HANDLE                        m_hfileBitmap;
       HANDLE                        m_hfilemapBitmap;
 #else
-      int32_t                           m_hfileBitmap;
+      int32_t                       m_hfileBitmap;
 #endif
-      mutex *                m_pmutexBitmap;
+      mutex *                       m_pmutexBitmap;
       SIZE                          m_sizeBitmapData;
-      string                      m_strBitmapChannel;
+      string                        m_strBitmapChannel;
       POINT                         m_ptCursorPhase;
 
 
@@ -101,7 +99,7 @@ namespace hotplugin
       virtual ::count get_memory_length();
       virtual ::count read_memory(void * puchMemory, ::count c);
       virtual void   free_memory();
-      static  void   free_memory(byte ** ppuchMemory);
+      //static  void   free_memory(byte ** ppuchMemory);
 
 
       virtual bool is_ok();
