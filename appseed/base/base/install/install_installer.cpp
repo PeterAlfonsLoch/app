@@ -3608,9 +3608,9 @@ RetryHost:
 
       base_library libraryOs(get_app());
 
-      libraryOs.open(dir::path(dir::element(), "stage\\" + strPlatform + "\\os"));
+      libraryOs.open(dir::path(dir::element(), "stage\\" + strPlatform + "\\app_core"));
 
-      CA2MAIN pfn_ca2_main = (CA2MAIN) libraryOs.raw_get("ca2_main");
+      CA2MAIN pfn_ca2_main = (CA2MAIN) libraryOs.raw_get("app_core_main");
 
       string strFullCommandLine;
 
