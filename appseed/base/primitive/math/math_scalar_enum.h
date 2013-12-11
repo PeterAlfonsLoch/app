@@ -8,6 +8,7 @@ enum e_scalar
    scalar_default,
    scalar_download_size,
    scalar_app_install_progress,
+   scalar_app_install_progress_min,
    scalar_app_install_progress_max,
 
    scalar_streaming_velocity,

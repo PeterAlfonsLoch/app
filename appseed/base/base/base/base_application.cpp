@@ -959,8 +959,23 @@ void base_application::SetCurrentHandles()
       if (is_system())
       {
 
-
          System.install().trace().initialize();
+
+         System.install().m_progressApp.m_scalar                           = int_scalar(&System.install(), scalar_app_install_progress);
+
+         System.install().::int_scalar_source::m_plistener                 = &System.install().m_progressApp;
+
+         System.install().m_progressApp.m_plistener                        = &System.install().trace();
+
+         System.install().m_progressApp.m_dProgressStart                   = 0.84;
+
+         System.install().m_progressApp.m_dProgressEnd                     = 0.98;
+
+         System.install().m_iProgressAppInstallStart                       = 0;
+
+         System.install().m_iProgressAppInstallEnd                         = 3 * 5;
+
+
       }
 
    }
@@ -2380,6 +2395,7 @@ int32_t base_application::pre_run()
          }
          goto InitFailure;
       }
+      System.install().m_progressApp()++; // 1
       //#endif
       m_dwAlive = ::get_tick_count();
       //#if !defined(DEBUG) || defined(WINDOWS)
@@ -4187,6 +4203,8 @@ bool base_application::initialize_instance()
    if (!initialize1())
       return false;
 
+   System.install().m_progressApp()++; // 2
+
    xxdebug_box("initialize1 ok", "initialize1 ok", MB_ICONINFORMATION);
 
    string strWindow;
@@ -4210,12 +4228,16 @@ bool base_application::initialize_instance()
    if (!initialize2())
       return false;
 
+   System.install().m_progressApp()++; // 3
+
    xxdebug_box("initialize2 ok", "initialize2 ok", MB_ICONINFORMATION);
 
    m_dwAlive = ::get_tick_count();
 
    if (!initialize3())
       return false;
+
+   System.install().m_progressApp()++; // 4
 
    xxdebug_box("initialize3 ok", "initialize3 ok", MB_ICONINFORMATION);
 
@@ -4237,6 +4259,8 @@ bool base_application::initialize_instance()
 
    if (!m_pfontopus->initialize_instance())
       return false;
+
+   System.install().m_progressApp()++; // 5
 
    return true;
 
@@ -4919,7 +4943,9 @@ bool base_application::update_appmatter(::sockets::socket_handler & h, ::sockets
 
    //update_appmatter(h, psession, pszRoot, pszRelative, localeschema.m_idLocale, localeschema.m_idSchema);
 
-   for (int32_t i = 0; i < localeschema.m_idaLocale.get_count(); i++)
+   int iCount = localeschema.m_idaLocale.get_count();
+
+   for (int32_t i = 0; i < iCount; i++)
    {
       if (localeschema.m_idaLocale[i] == __id(std) && localeschema.m_idaSchema[i] == __id(std) && bIgnoreStdStd)
          continue;
@@ -5021,13 +5047,25 @@ bool base_application::update_appmatter(::sockets::socket_handler & h, ::sockets
 void base_application::on_set_scalar(e_scalar escalar, int64_t iValue)
 {
 
-   if (escalar == scalar_download_size)
-   {
+   //if (escalar == scalar_app_install_progress)
+   //{
 
-//      m_content_ptr = iValue;
+   //   m_iProgressInstallStep = iValue;
 
-   }
-   else
+   //}
+   //else if (escalar == scalar_app_install_progress_min)
+   //{
+
+   //   m_iProgressInstallStart = iValue;
+
+   //}
+   //else if (escalar == scalar_app_install_progress_max)
+   //{
+
+   //   m_iProgressInstallEnd = iValue;
+
+   //}
+   //else
    {
 
       return ::int_scalar_source::on_set_scalar(escalar, iValue);
@@ -5040,13 +5078,25 @@ void base_application::on_set_scalar(e_scalar escalar, int64_t iValue)
 void base_application::get_scalar_minimum(e_scalar escalar, int64_t & i)
 {
 
-   if (escalar == scalar_download_size)
-   {
+   //if (escalar == scalar_app_install_progress)
+   //{
 
-      i = 0;
+   //   i = m_iProgressInstallStart;
 
-   }
-   else
+   //}
+   //else if (escalar == scalar_app_install_progress_min)
+   //{
+
+   //   i = 0;
+
+   //}
+   //else if (escalar == scalar_app_install_progress_max)
+   //{
+
+   //   i = 0;
+
+   //}
+   //else
    {
 
       ::int_scalar_source::get_scalar_minimum(escalar, i);
@@ -5058,13 +5108,25 @@ void base_application::get_scalar_minimum(e_scalar escalar, int64_t & i)
 void base_application::get_scalar(e_scalar escalar, int64_t & i)
 {
 
-   if (escalar == scalar_download_size)
-   {
+   //if (escalar == scalar_app_install_progress)
+   //{
 
-      i = 0;
+   //   i = m_iProgressInstallStep;
 
-   }
-   else
+   //}
+   //else if (escalar == scalar_app_install_progress_min)
+   //{
+
+   //   i = m_iProgressInstallStart;
+
+   //}
+   //else if (escalar == scalar_app_install_progress_max)
+   //{
+
+   //   i = m_iProgressInstallEnd;
+
+   //}
+   //else
    {
 
       ::int_scalar_source::get_scalar(escalar, i);
@@ -5076,13 +5138,25 @@ void base_application::get_scalar(e_scalar escalar, int64_t & i)
 void base_application::get_scalar_maximum(e_scalar escalar, int64_t & i)
 {
 
-   if (escalar == scalar_download_size)
-   {
+   //if (escalar == scalar_download_size)
+   //{
 
-      i = 0;
+   //   i = m_iProgressInstallEnd;
 
-   }
-   else
+   //}
+   //else if (escalar == scalar_app_install_progress_min)
+   //{
+
+   //   i = 0x7fffffff;
+
+   //}
+   //else if (escalar == scalar_app_install_progress_max)
+   //{
+
+   //   i = 0x7fffffff;
+
+   //}
+   //else
    {
 
       ::int_scalar_source::get_scalar_minimum(escalar, i);

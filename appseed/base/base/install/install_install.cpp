@@ -1059,13 +1059,19 @@ namespace install
       if (escalar == scalar_app_install_progress)
       {
 
-         m_iProgressStepApp = iValue;
+         m_iProgressAppInstallStep = iValue;
+
+      }
+      else if (escalar == scalar_app_install_progress_min)
+      {
+
+         m_iProgressAppInstallStart = iValue;
 
       }
       else if (escalar == scalar_app_install_progress_max)
       {
 
-         m_iProgressCountApp = iValue;
+         m_iProgressAppInstallEnd = iValue;
 
       }
       else
@@ -1084,13 +1090,19 @@ namespace install
       if (escalar == scalar_app_install_progress)
       {
 
+         i = m_iProgressAppInstallStart;
+
+      }
+      else if (escalar == scalar_app_install_progress_min)
+      {
+
          i = 0;
 
       }
       else if (escalar == scalar_app_install_progress_max)
       {
 
-         i = m_iProgressCountApp;
+         i = 0;
 
       }
       else
@@ -1108,13 +1120,19 @@ namespace install
       if (escalar == scalar_app_install_progress)
       {
 
-         i = m_iProgressStepApp;
+         i = m_iProgressAppInstallStep;
+
+      }
+      else if (escalar == scalar_app_install_progress_min)
+      {
+
+         i = m_iProgressAppInstallStart;
 
       }
       else if (escalar == scalar_app_install_progress_max)
       {
 
-         i = m_iProgressCountApp;
+         i = m_iProgressAppInstallEnd;
 
       }
       else
@@ -1132,13 +1150,19 @@ namespace install
       if (escalar == scalar_app_install_progress)
       {
 
-         i = m_iProgressCountApp;
+         i = m_iProgressAppInstallEnd;
+
+      }
+      else if (escalar == scalar_app_install_progress_min)
+      {
+
+         i = 0x7fffffff;
 
       }
       else if (escalar == scalar_app_install_progress_max)
       {
 
-         i = m_iProgressStepApp;
+         i = 0x7fffffff;
 
       }
       else
@@ -1149,6 +1173,7 @@ namespace install
       }
 
    }
+
 
 
    bool install::app_install_ensure_executable(string & strPath)

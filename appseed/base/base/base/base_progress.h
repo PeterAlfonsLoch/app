@@ -18,8 +18,8 @@ class CLASS_DECL_BASE int_progress :
 public:
 
 
-   double               m_dProgressStart;
-   double               m_dProgressEnd;
+   int64_t              m_dProgressStart;
+   int64_t              m_dProgressEnd;
    int_scalar           m_scalar;
    progress_listener *  m_plistener;
 
@@ -33,7 +33,7 @@ public:
 
    virtual void progress_step();
 
-   virtual void on_set_value(int_scalar_source * psource, e_scalar escalar, int64_t iValue);
+   virtual void on_set_scalar(int_scalar_source * psource, e_scalar escalar, int64_t iValue);
 
    int_scalar & operator ()(){ return m_scalar;  }
 

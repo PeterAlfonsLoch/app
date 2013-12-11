@@ -140,6 +140,13 @@ namespace install
    }
 
 
+   void trace::on_progress(double dRate)
+   {
+
+      trace_progress(dRate);
+
+   }
+
 
    void trace::trace_progress(double dRate)
    {

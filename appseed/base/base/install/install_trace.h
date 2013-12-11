@@ -41,6 +41,8 @@ namespace install
 
       virtual void trace_progress(double dRate);
 
+      virtual void on_progress(double dRate);
+
       virtual bool isspace_dup(char ch);
 
 

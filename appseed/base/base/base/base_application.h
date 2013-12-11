@@ -157,7 +157,9 @@ public:
    bool                                            m_bBaseInitializeInstance;
 
 
-
+   //int64_t                                         m_iProgressInstallStart;
+   //int64_t                                         m_iProgressInstallStep;
+   //int64_t                                         m_iProgressInstallEnd;
 
 
    base_application();

@@ -37,9 +37,10 @@ namespace install
 
 
       int_progress         m_progressApp;
-      int64_t              m_iProgressCountApp;
-      int64_t              m_iProgressStepApp;
 
+      int64_t              m_iProgressAppInstallStart;
+      int64_t              m_iProgressAppInstallStep;
+      int64_t              m_iProgressAppInstallEnd;
 
 
 
