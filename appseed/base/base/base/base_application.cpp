@@ -2062,6 +2062,8 @@ bool base_application::main_start()
          return false;
       }
 
+      xxdebug_box("pre_runnned", "pre_runnned", MB_ICONINFORMATION);
+
       TRACE(string(typeid(*this).name()) + " initial_check_directrix");;
       if (!initial_check_directrix())
       {
@@ -4171,17 +4173,23 @@ bool base_application::initialize_instance()
 
    m_bBaseInitializeInstance = true;
 
+   xxdebug_box("check_exclusive", "check_exclusive", MB_ICONINFORMATION);
+
    if (!is_system())
    {
       if (!check_exclusive())
          return false;
    }
 
+   xxdebug_box("check_exclusive ok", "check_exclusive ok", MB_ICONINFORMATION);
+
    m_dwAlive = ::get_tick_count();
 
 
    if (!initialize1())
       return false;
+
+   xxdebug_box("initialize1 ok", "initialize1 ok", MB_ICONINFORMATION);
 
    string strWindow;
    if (m_strAppName.has_char())
@@ -4204,10 +4212,14 @@ bool base_application::initialize_instance()
    if (!initialize2())
       return false;
 
+   xxdebug_box("initialize2 ok", "initialize2 ok", MB_ICONINFORMATION);
+
    m_dwAlive = ::get_tick_count();
 
    if (!initialize3())
       return false;
+
+   xxdebug_box("initialize3 ok", "initialize3 ok", MB_ICONINFORMATION);
 
    m_dwAlive = ::get_tick_count();
 

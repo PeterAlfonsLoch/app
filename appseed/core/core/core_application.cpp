@@ -3959,6 +3959,7 @@ bool application::initialize()
    if (!base_application::initialize())
       return false;
 
+   xxdebug_box("base_application::initialize ok", "base_application::initialize ok", MB_ICONINFORMATION);
 
    m_pcalculator = new ::calculator::calculator(this);
 
@@ -3966,7 +3967,7 @@ bool application::initialize()
 
    if (!m_pcalculator->initialize())
       return false;
-
+   xxdebug_box("m_pcalculator::initialize ok", "m_pcalculator::initialize ok", MB_ICONINFORMATION);
 
    m_pcolorertake5 = new ::colorertake5::colorertake5(this);
 
@@ -3976,7 +3977,7 @@ bool application::initialize()
       return false;
 
 
-
+   xxdebug_box("m_pcolorertake5::initialize ok", "m_pcolorertake5::initialize ok", MB_ICONINFORMATION);
 
    m_dwAlive = ::get_tick_count();
 
@@ -4031,12 +4032,16 @@ bool application::initialize()
    if (!m_pfilemanager->initialize())
       return false;
 
+   xxdebug_box("m_pfilemanager::initialize ok", "m_pfilemanager::initialize ok", MB_ICONINFORMATION);
+
    m_pusermail = canew(::usermail::usermail(this));
 
    m_pusermail->construct(this);
 
    if (!m_pusermail->initialize())
       return false;
+
+   xxdebug_box("m_pusermail::initialize ok", "m_pusermail::initialize ok", MB_ICONINFORMATION);
 
    m_dwAlive = ::get_tick_count();
 
@@ -4054,11 +4059,14 @@ bool application::initialize()
       System.register_bergedge_application(this);
    }
 
+   xxdebug_box("register_bergedge_application ok", "register_bergedge_application ok", MB_ICONINFORMATION);
 
    m_dwAlive = ::get_tick_count();
 
    ensure_app_interest();
 
+
+   xxdebug_box("ensure_app_interest ok", "ensure_app_interest ok", MB_ICONINFORMATION);
    return true;
 
 }

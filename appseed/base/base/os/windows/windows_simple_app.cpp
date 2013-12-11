@@ -85,6 +85,29 @@ void simple_app::body()
 
    try
    {
+      if ((m_iError = simple_app_pre_run()) != 0)
+      {
+
+         if (m_iError != 0)
+            m_iError = -1;
+
+         return;
+
+      }
+   }
+   catch (...)
+   {
+
+      if (m_iError > 0)
+         m_iError = -1;
+
+      return;
+
+   }
+
+
+   try
+   {
 
       set_main_thread(GetCurrentThread());
 
@@ -187,4 +210,10 @@ int32_t simple_app::refrain()
 bool simple_app::end()
 {
    return true;
+}
+
+
+int32_t simple_app::simple_app_pre_run()
+{
+   return 0;
 }

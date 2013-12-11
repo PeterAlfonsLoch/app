@@ -41,7 +41,7 @@ namespace install
 
    bool install::is_file_ok(const char * path1, const char * pszTemplate)
    {
-      return true;
+      
       string strUrl;
 #if CA2_PLATFORM_VERSION == CA2_BASIS
       strUrl = "http://basis.spaignition.api.server.ca2.cc/md5?authnone&version=basis&stage=";
@@ -1157,7 +1157,7 @@ namespace install
 
    #ifdef WINDOWSEX
 
-      debug_box("installer::launcher::ensure_executable", "installer::launcher::ensure_executable", 0);
+      xxdebug_box("installer::launcher::ensure_executable", "installer::launcher::ensure_executable", 0);
 
       HINSTANCE hinstanceAppInstall = (HINSTANCE) ::GetModuleHandleA("app-install.exe");
 

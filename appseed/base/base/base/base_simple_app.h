@@ -22,6 +22,8 @@ public:
 
    virtual void body();
 
+   virtual int32_t simple_app_pre_run();
+
    virtual bool intro();
    virtual int32_t refrain();
    virtual bool end();
