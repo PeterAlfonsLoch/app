@@ -565,7 +565,7 @@ throw todo(get_thread_app());
 
       m_dib->map();
 
-      memcpy(m_dib->m_pcolorref, m_pcolorref, m_dib->area() * sizeof(COLORREF));
+      memcpy(m_dib->m_pcolorref, m_pcolorref, (size_t) (m_dib->area() * sizeof(COLORREF)));
 
       pgraphics->BitBlt(lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, m_dib->get_graphics());
 
