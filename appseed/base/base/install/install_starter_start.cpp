@@ -118,6 +118,9 @@ namespace install
          return uiRet;
 
 
+      ExitProcess(0);
+
+
       //throw todo(get_thread_app());
       _c_simple_message_loop();
 
