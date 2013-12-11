@@ -953,6 +953,18 @@ void base_application::SetCurrentHandles()
 
    m_pimpl->SetCurrentHandles();
 
+   if (is_installing() || is_uninstalling())
+   {
+
+      if (is_system())
+      {
+
+
+         System.install().trace().initialize();
+      }
+
+   }
+
 }
 
 
@@ -3754,17 +3766,6 @@ bool base_application::process_initialize()
 
    m_bBaseProcessInitialize = true;
 
-   if (is_installing() || is_uninstalling())
-   {
-
-      if (is_system())
-      {
-
-         
-         System.install().trace().initialize();
-      }
-
-   }
 
 
    /*      if (::thread::m_p.is_null())
