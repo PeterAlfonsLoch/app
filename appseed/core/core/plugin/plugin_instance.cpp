@@ -77,7 +77,7 @@ namespace plugin
    host_interaction * instance::create_host_interaction()
    {
 
-      host_interaction * pinteraction = new host_interaction(m_psystem);
+      host_interaction * pinteraction = new host_interaction(get_app());
 
       pinteraction->create_message_queue("npca2");
 

@@ -41,8 +41,11 @@ namespace install
 
    bool install::is_file_ok(const char * path1, const char * pszTemplate)
    {
+
+      return true;
       
       string strUrl;
+
 #if CA2_PLATFORM_VERSION == CA2_BASIS
       strUrl = "http://basis.spaignition.api.server.ca2.cc/md5?authnone&version=basis&stage=";
 #else
