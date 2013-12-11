@@ -41,6 +41,7 @@ namespace install
 
    bool install::is_file_ok(const char * path1, const char * pszTemplate)
    {
+      return true;
       string strUrl;
 #if CA2_PLATFORM_VERSION == CA2_BASIS
       strUrl = "http://basis.spaignition.api.server.ca2.cc/md5?authnone&version=basis&stage=";
@@ -1146,6 +1147,147 @@ namespace install
 
    }
 
+
+   bool install::app_install_ensure_executable(string & strPath)
+   {
+
+      bool bPrivileged = false;
+
+      int32_t iSpabootInstallStrSize = MAX_PATH * 16;
+
+   #ifdef WINDOWSEX
+
+      debug_box("installer::launcher::ensure_executable", "installer::launcher::ensure_executable", 0);
+
+      HINSTANCE hinstanceAppInstall = (HINSTANCE) ::GetModuleHandleA("app-install.exe");
+
+      bPrivileged = hinstanceAppInstall == ::GetModuleHandleA(NULL);
+
+      if (bPrivileged)
+      {
+
+         string strPlatform = System.install().get_platform();
+
+         strPath = ::dir::element("stage\\" + strPlatform + "\\app-install.exe");
+
+      }
+      else
+      {
+
+         HINSTANCE hinstancePlugin = (HINSTANCE) ::GetModuleHandleA("npca2.dll");
+
+         if (hinstancePlugin == NULL)
+            hinstancePlugin = (HINSTANCE) ::GetModuleHandleA("iexca2.dll");
+
+         if (hinstancePlugin != NULL)
+         {
+
+            char szModulePath[MAX_PATH * 3];
+
+            ::GetModuleFileNameA((HINSTANCE)hinstancePlugin, szModulePath, sizeof(szModulePath));
+
+            char * file = NULL;
+
+            LPSTR psz = strPath.GetBufferSetLength(iSpabootInstallStrSize);
+
+            ::GetFullPathNameA(szModulePath, iSpabootInstallStrSize, psz, &file);
+
+            file[0] = '\0';
+
+            strcat_dup(psz, "app-install.exe");
+
+            strPath.ReleaseBuffer();
+
+         }
+         else
+         {
+
+            string strPlatform = System.install().get_platform();
+
+            strPath = ::dir::element("stage\\" + strPlatform + "\\app-install.exe");
+
+         }
+
+      }
+
+   #else
+
+      throw "TODO";
+
+   #endif
+
+      if (!file_exists_dup(strPath) || !System.install().is_file_ok(strPath, "app-install.exe"))
+      {
+
+         int32_t iRetry = 0;
+
+         while (iRetry < 8)
+         {
+
+            if (!bPrivileged)
+            {
+
+               LPSTR psz = strPath.GetBufferSetLength(iSpabootInstallStrSize);
+
+               if (!System.get_temp_file_name(psz, iSpabootInstallStrSize, "app-install", "exe"))
+               {
+
+                  strPath.ReleaseBuffer();
+
+                  return false;
+
+               }
+
+               strPath.ReleaseBuffer();
+
+            }
+
+            string strUrl;
+
+   #if CA2_PLATFORM_VERSION == CA2_BASIS
+
+            strUrl = "http://warehouse.ca2.cc/spa?download=app-install.exe";
+
+   #else
+
+            strUrl = "http://store.ca2.cc/spa?download=app-install.exe";
+
+   #endif
+
+            property_set set;
+
+            set["disable_ca2_sessid"] = true;
+
+            if (Application.http().download(strUrl, strPath, set))
+            {
+
+               if (System.install().is_file_ok(strPath, "app-install.exe"))
+               {
+
+                  break;
+
+               }
+
+            }
+
+            iRetry++;
+
+         }
+
+      }
+
+      strPath.ReleaseBuffer();
+
+      if (!System.install().is_file_ok(strPath, "app-install.exe"))
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
 
 
 } // namespace install

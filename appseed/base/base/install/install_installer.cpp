@@ -703,7 +703,7 @@ RetryHost:
          System.install().trace().rich_trace("***Downloading files.");
          if(m_bInternetInstall)
          {
-            download_file_list(straFileList, mapLen, mapMd5, mapGzLen, mapFlag);
+            //download_file_list(straFileList, mapLen, mapMd5, mapGzLen, mapFlag);
          }
          else
          {
@@ -3478,79 +3478,8 @@ RetryHost:
    bool installer::launcher::ensure_executable()
    {
 
+      return System.install().app_install_ensure_executable(m_strPath);
 
-
-
-#ifdef WINDOWSEX
-      int32_t iSpabootInstallStrSize = MAX_PATH * 16;
-
-      HINSTANCE hinstancePlugin = (HINSTANCE) ::GetModuleHandleA("npca2.dll");
-      if(hinstancePlugin == NULL)
-         hinstancePlugin = (HINSTANCE) ::GetModuleHandleA("iexca2.dll");
-      if(hinstancePlugin != NULL)
-      {
-         char szModulePath[MAX_PATH * 3];
-         ::GetModuleFileNameA((HINSTANCE) hinstancePlugin , szModulePath, sizeof(szModulePath));
-
-         char * file = NULL;
-         LPSTR psz = m_strPath.GetBufferSetLength(iSpabootInstallStrSize);
-         ::GetFullPathNameA(szModulePath, iSpabootInstallStrSize, psz, &file);
-         file[0] = '\0';
-
-         strcat_dup(psz, "app-install.exe");
-         m_strPath.ReleaseBuffer();
-      }
-      else
-      {
-         string strPlatform = System.install().get_platform();
-         m_strPath = ::dir::element("stage\\" + strPlatform + "\\app-install.exe");
-      }
-#else
-      throw "TODO";
-#endif
-
-      if(!file_exists_dup(m_strPath) || !System.install().is_file_ok(m_strPath, "app-install.exe"))
-      {
-         int32_t iRetry = 0;
-         while(iRetry < 8)
-         {
-            LPSTR psz = m_strPath.GetBufferSetLength(iSpabootInstallStrSize);
-            if (!System.get_temp_file_name(psz, iSpabootInstallStrSize, "app-install", "exe"))
-            {
-               m_strPath.ReleaseBuffer();
-               return false;
-            }
-            m_strPath.ReleaseBuffer();
-            if (System.install().is_file_ok(m_strPath, "app-install.exe"))
-               break;
-            string strUrl;
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-            strUrl = "http://warehouse.ca2.cc/spa?download=app-install.exe";
-#else
-            strUrl = "http://store.ca2.cc/spa?download=app-install.exe";
-#endif
-
-            property_set set;
-
-            set["disable_ca2_sessid"] = true;
-
-            if(Application.http().download(strUrl, m_strPath, set))
-            {
-               if (System.install().is_file_ok(m_strPath, "app-install.exe"))
-               {
-                  break;
-               }
-            }
-            iRetry++;
-         }
-      }
-      m_strPath.ReleaseBuffer();
-      if (!System.install().is_file_ok(m_strPath, "app-install.exe"))
-      {
-
-         return false;
-      }
-      return true;
    }
 
    string installer::launcher::get_executable_path()
@@ -3562,21 +3491,26 @@ RetryHost:
 
    int32_t installer::run_ca2_application_installer(const char * pszCommandLine)
    {
+
 #if defined(METROWIN)
-            throw "todo";
+
+      throw "todo";
+
 #else
+      
       string param;
+      
       param = "-install:";
+      
       param += pszCommandLine;
+
 #if defined(WINDOWS)
-      wchar_t * pwsz = new wchar_t[2048];
-      ::GetModuleFileNameW(NULL, pwsz, 2048);
-      wchar_t * pwszFullPath = new wchar_t[2048];
-      wchar_t * pwszFile = NULL;
-      ::GetFullPathNameW(pwsz, 2048, pwszFullPath, &pwszFile);
-      string str = ::str::international::unicode_to_utf8(pwszFullPath);
-      delete pwsz;
-      delete pwszFullPath;
+
+      string strPath;
+
+      if (!System.install().app_install_ensure_executable(strPath))
+         return -1;
+
 #elif defined(MACOS)
       char path[MAXPATHLEN];
       uint32_t path_len = MAXPATHLEN;
@@ -3590,8 +3524,10 @@ RetryHost:
       string str(psz);
 #endif
 
-      call_sync(str, param, 0, SW_HIDE, -1, 84, 0, 0);
+      call_sync(strPath, param, 0, SW_HIDE, -1, 84, 0, 0);
+
 #endif
+
       return 0;
 
    }

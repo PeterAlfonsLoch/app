@@ -104,6 +104,7 @@ namespace install
       const char * get_version();
       const char * get_ca2_version();
 
+      virtual bool app_install_ensure_executable(string & strPath);
       virtual void app_install_call_sync(const char * szParameters);
       virtual bool app_install_send_short_message(const char * psz, bool bLaunch);
       virtual void app_install_send_response(const char * param);

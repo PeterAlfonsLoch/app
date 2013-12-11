@@ -1649,7 +1649,7 @@ sp(::command_thread) system::command_thread()
 
       try
       {
-
+         debug_box("system::on_install", "system::on_install", 0);
          if(!::application::on_install())
             return false;
 
