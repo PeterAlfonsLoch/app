@@ -1525,7 +1525,7 @@ string CLASS_DECL_BASE base_application::show_auth_window(LPRECT lprect, string 
 
 
 
-int_bool base_application::get_temp_file_name_template(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension, const char * pszTemplate)
+bool base_application::get_temp_file_name_template(string & strRet, const char * pszName, const char * pszExtension, const char * pszTemplate)
 {
 
 #ifdef METROWIN
@@ -1588,28 +1588,26 @@ int_bool base_application::get_temp_file_name_template(char * szRet, ::count iBu
    strRelative += "-";
    strRelative += bufItem;
 
-   string strRet;
-
    for (int32_t i = 0; i < (1024 * 1024); i++)
    {
       strRet = System.dir().path(str, strRelative + "-" + hex::lower_from(i + 1), string(pszName) + string(".") + pszExtension);
       if (pszTemplate != NULL)
       {
-         if (System.install().is_file_ok(szRet, pszTemplate))
+         if (System.install().is_file_ok(strRet, pszTemplate))
             return true;
       }
-      if (file_exists_dup(szRet))
+      if (file_exists_dup(strRet))
       {
          try
          {
 
-            m_pbasesystem->file().del(szRet);
+            m_pbasesystem->file().del(strRet);
 
          }
          catch (...)
          {
 
-            return false;
+            continue;
 
          }
 
@@ -1621,16 +1619,15 @@ int_bool base_application::get_temp_file_name_template(char * szRet, ::count iBu
          return true;
       }
    }
-   return FALSE;
-
+   return false;
 
 }
 
 
-int_bool base_application::get_temp_file_name(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension)
+bool base_application::get_temp_file_name(string & strRet, const char * pszName, const char * pszExtension)
 {
 
-   return get_temp_file_name_template(szRet, iBufferSize, pszName, pszExtension, NULL);
+   return get_temp_file_name_template(strRet, pszName, pszExtension, NULL);
 
 }
 

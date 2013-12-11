@@ -554,8 +554,20 @@ throw todo(get_thread_app());
 
       synch_lock ml(m_pmutexBitmap);
 
-      throw todo(get_app());
-//      pgraphics.blend_bitmap_data(lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref);
+      //throw todo(get_app());
+      //pgraphics.blend_bitmap_data(lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref);
+
+      if (m_dib.is_null())
+         m_dib.create(allocer());
+
+      if(!m_dib->create(m_sizeBitmap))
+         return;
+
+      m_dib->map();
+
+      memcpy(m_dib->m_pcolorref, m_pcolorref, m_dib->area() * sizeof(COLORREF));
+
+      pgraphics->BitBlt(lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, m_dib->get_graphics());
 
    }
 

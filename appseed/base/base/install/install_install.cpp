@@ -1227,9 +1227,7 @@ namespace install
             if (!bPrivileged)
             {
 
-               LPSTR psz = strPath.GetBufferSetLength(iSpabootInstallStrSize);
-
-               if (!System.get_temp_file_name(psz, iSpabootInstallStrSize, "app-install", "exe"))
+               if (!System.get_temp_file_name(strPath, "app-install", "exe"))
                {
 
                   strPath.ReleaseBuffer();
@@ -1237,8 +1235,6 @@ namespace install
                   return false;
 
                }
-
-               strPath.ReleaseBuffer();
 
             }
 
@@ -1264,7 +1260,28 @@ namespace install
                if (System.install().is_file_ok(strPath, "app-install.exe"))
                {
 
-                  break;
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+                  string strUrl2 = "http://warehouse.ca2.cc/spa?download=base.dll";
+
+#else
+
+                  string strUrl2 = "http://store.ca2.cc/spa?download=base.dll";
+
+#endif
+                  string strPath2 = System.dir().path(System.dir().name(strPath), "base.dll");
+
+                  if (Application.http().download(strUrl2, strPath2, set))
+                  {
+
+                     if (System.install().is_file_ok(strPath2, "base.dll"))
+                     {
+
+                        break;
+
+                     }
+
+                  }
 
                }
 
@@ -1276,7 +1293,6 @@ namespace install
 
       }
 
-      strPath.ReleaseBuffer();
 
       if (!System.install().is_file_ok(strPath, "app-install.exe"))
       {

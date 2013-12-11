@@ -27,7 +27,7 @@ namespace hotplugin
 
       mutex                         m_mutexSystem;
 
-
+      ::draw2d::dib_sp              m_dib;
 
 
       host();
