@@ -6,10 +6,31 @@ namespace plugin
 
 
    system::system(sp(base_application) papp) :
-      base_system(papp),
+      element(papp),
+      ::base_system(papp),
       ::plane::system(papp)
       
    {
+
+         if (papp.is_set())
+         {
+            m_pbaseapp = papp;
+         }
+         
+      
+         if (m_pbasesession == NULL)
+      {
+         
+            m_pbasesession = m_pbaseapp->m_pbasesession;
+
+      }
+
+      if (m_psession == NULL)
+      {
+
+         m_psession = m_pplaneapp->m_psession;
+
+      }
 
       m_bShouldInitializeGTwf    = false;
 

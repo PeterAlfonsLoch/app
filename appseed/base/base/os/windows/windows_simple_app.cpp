@@ -2,7 +2,6 @@
 
 
 simple_app::simple_app() :
-   element(this),
    base_system(this)
 {
    

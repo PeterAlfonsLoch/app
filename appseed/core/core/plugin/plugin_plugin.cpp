@@ -43,7 +43,7 @@ namespace plugin
       m_iEdge                 = -1;
       m_bAppStarted           = false;
       m_pbReady               = NULL;
-      m_psystem               = NULL;
+//      m_psystem               = NULL;
       m_bMainReady            = false;
 
       m_pbitmap               = NULL;
@@ -143,41 +143,44 @@ namespace plugin
 
       mlSystem.unlock();
 
-      if(m_psystem == NULL)
-      {
+//      if(m_psystem == NULL)
+  //    {
 
-         m_bAppStarted = false;
+    //     m_psystem = m_phost->get_system();
 
-         m_psystem = new ::plugin::system((::plane::system *) m_phost->get_system());
+      //      set_app(m_phost->get_system());
+//         m_bAppStarted = false;
+//
+//         m_psystem = new ::plugin::system((::plane::system *) m_phost->get_system());
+//
+//         System.m_pplugin = this;
+//
+//#ifdef WINDOWS
+//
+//         System.m_hinstance = ::GetModuleHandle("core.dll");
+//
+//#endif
+//
+//         if(!System.InitApplication())
+//            return 0;
+//
+//         if(!System.process_initialize())
+//            return 0;
+//
+//         System.set_history(new history(m_psystem, this));
+//
+//         System.m_prunstartinstaller = new run_start_installer(m_psystem, this);
+//
+//         System.m_bInitializeProDevianMode = false;
+//
+//         string strId;
+//         strId.Format("npca2::%08x", (uint_ptr) m_psystem);
+//
+//         System.command()->m_varTopicQuery["local_mutex_id"] = strId;
+//
+//         set_app(m_psystem);
 
-         m_psystem->m_pplugin = this;
-
-#ifdef WINDOWS
-
-         m_psystem->m_hinstance = ::GetModuleHandle("core.dll");
-
-#endif
-
-         if(!m_psystem->InitApplication())
-            return 0;
-
-         if(!m_psystem->process_initialize())
-            return 0;
-
-         m_psystem->set_history(new history(m_psystem, this));
-
-         m_psystem->m_prunstartinstaller = new run_start_installer(m_psystem, this);
-
-         m_psystem->m_bInitializeProDevianMode = false;
-
-         string strId;
-         strId.Format("npca2::%08x", (uint_ptr) m_psystem);
-
-         m_psystem->command()->m_varTopicQuery["local_mutex_id"] = strId;
-
-         set_app(m_psystem);
-
-      }
+//      }
 
       m_puiHost = create_host_interaction();
       m_puiHost->m_pplugin = this;
@@ -185,7 +188,10 @@ namespace plugin
 
       if(m_puiHost != NULL)
       {
-         m_psystem->oprop("top_parent") = m_puiHost;
+//         System.oprop("top_parent") = m_puiHost;
+
+         System.oprop("top_parent") = m_puiHost;
+
 /*         m_puiHost->m_bRectOk = true;
          m_puiHost->m_pimpl->m_bRectOk = true;
          m_puiHost->m_rectParentClient = m_rect;
@@ -197,8 +203,8 @@ namespace plugin
   //       set_window_rect(rect);
       }
 
-///      m_psystem->m_puiInitialPlaceHolderContainer = m_puiHost;
-      m_psystem->add_frame(m_puiHost);
+///      System.m_puiInitialPlaceHolderContainer = m_puiHost;
+      System.add_frame(m_puiHost);
       m_puiHost->layout();
 
       if(m_pbReady == NULL)
@@ -215,7 +221,7 @@ namespace plugin
       if(bNew || !m_bAppStarted)
       {
          m_bAppStarted = true;
-         m_psystem->begin();
+//         System.begin();
       }
 
       m_bInitialized = true;
@@ -358,7 +364,7 @@ namespace plugin
    void plugin::ca2_login()
    {
 
-      property_set set(m_psystem);
+      property_set set(get_app());
 
       set.parse_url_query(m_strCa2LoginRuri);
 
@@ -367,13 +373,13 @@ namespace plugin
       if(strLocation.is_empty())
          strLocation = m_strCa2LoginRuri;
 
-      property_set setUri(m_psystem);
+      property_set setUri(get_app());
 
       setUri.parse_url_query(strLocation);
 
-      if(Sys(m_psystem).url().get_server(strLocation).is_empty())
+      if(System.url().get_server(strLocation).is_empty())
       {
-         strLocation = Sys(m_psystem).url().override_if_empty(strLocation, get_host_location_url(), false);
+         strLocation = System.url().override_if_empty(strLocation, get_host_location_url(), false);
       }
 
       string strSessId = set["sessid"];
@@ -392,17 +398,17 @@ namespace plugin
       if(strSessId == puser->m_strFontopusServerSessId || puser->m_strFontopusServerSessId.get_length() < 16)
       {
 
-         m_psystem->url().string_remove(strLocation, "sessid");
+         System.url().string_remove(strLocation, "sessid");
 
       }
       else
       {
 
-         m_psystem->url().string_set(strLocation, "sessid", puser->m_strFontopusServerSessId);
+         System.url().string_set(strLocation, "sessid", puser->m_strFontopusServerSessId);
 
       }
 
-      m_psystem->url().string_remove(strLocation, "action");
+      System.url().string_remove(strLocation, "action");
 
       open_url(strLocation);
 
@@ -411,23 +417,23 @@ namespace plugin
    void plugin::ca2_logout()
    {
 
-      m_psystem->m_pfontopus->logout();
+      System.m_pfontopus->logout();
 
-      property_set set(m_psystem);
+      property_set set(get_app());
 
       set.parse_url_query(m_strCa2LogoutRuri);
 
       string strLocation = set["ruri"];
 
-      strLocation = m_psystem->url().string_remove(strLocation, "sessid");
+      strLocation = System.url().string_remove(strLocation, "sessid");
 
-      strLocation = m_psystem->url().string_remove(strLocation, "action");
+      strLocation = System.url().string_remove(strLocation, "action");
 
       string strUrl;
 
       strUrl = "https://account.ca2.cc/sec?action=logout";
 
-      m_psystem->url().string_set(strUrl, "ruri", strLocation);
+      System.url().string_set(strUrl, "ruri", strLocation);
 
       open_url(strUrl);
 
@@ -472,7 +478,7 @@ namespace plugin
       else if(m_phost->m_strPluginUrl.get_length() > 0)
       {
 
-         string strPluginUrl     = Sys(m_psystem).url().override_if_empty(m_phost->m_strPluginUrl, get_host_location_url());
+         string strPluginUrl     = System.url().override_if_empty(m_phost->m_strPluginUrl, get_host_location_url());
 
          string strExtension     = System.file().extension(System.url().get_script(strPluginUrl));
 
@@ -517,7 +523,7 @@ namespace plugin
             application_bias * pbiasCreate = new application_bias;
             pbiasCreate->m_puiParent = m_puiHost;
             pbiasCreate->m_set["NativeWindowFocus"] = false;
-            m_psystem->get_session(0)->open_by_file_extension("\"" + strPluginUrl + "\"", pbiasCreate);
+            System.get_session(0)->open_by_file_extension("\"" + strPluginUrl + "\"", pbiasCreate);
 
          }
 
@@ -543,12 +549,12 @@ namespace plugin
 
          strPluginUrl = m_phost->m_strPluginUrl;
 
-         Sys(m_psystem).url().override_if_empty(strPluginUrl, get_host_location_url());
+         System.url().override_if_empty(strPluginUrl, get_host_location_url());
 
-         string strPluginScript = m_psystem->url().get_script(m_phost->m_strPluginUrl);
+         string strPluginScript = System.url().get_script(m_phost->m_strPluginUrl);
 
 
-         property_set headers(m_psystem);
+         property_set headers(get_app());
 
          headers.parse_http_headers(m_phost->m_strPluginHeaders);
 
@@ -563,11 +569,11 @@ namespace plugin
          || ::str::ends_ci(strPluginScript, ".karaoke")
          || ::str::ends_ci(strPluginScript, ".st3"))
          {
-            //m_psystem->m_puiInitialPlaceHolderContainer = m_puiHost;
+            //System.m_puiInitialPlaceHolderContainer = m_puiHost;
             application_bias * pbiasCreate = new application_bias;
             pbiasCreate->m_puiParent = m_puiHost;
             pbiasCreate->m_set["NativeWindowFocus"] = false;
-            m_psystem->get_session(0)->open_by_file_extension("\"" + strPluginUrl + "\"", pbiasCreate);
+            System.get_session(0)->open_by_file_extension("\"" + strPluginUrl + "\"", pbiasCreate);
          }
          else
          {
@@ -633,9 +639,9 @@ namespace plugin
             if(str1 == "ca2login")
             {
                // graphical - 2 - user interface for login - fontopus - through the plugin
-               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/core/fontopus", strLocale, strSchema))
+               if(!System.install().is(NULL, strBuildNumber, "application", "app/core/fontopus", strLocale, strSchema))
                {
-/*                  Sys(m_psystem).install().start(": app=session session_start=app/core/fontopus app_type=application install");
+/*                  System.install().start(": app=session session_start=app/core/fontopus app_type=application install");
 #ifdef WINDOWS
                   ::TerminateProcess(::GetCurrentProcess(), 0);
 #else
@@ -651,7 +657,7 @@ namespace plugin
 #else
                   throw not_implemented(get_app());
 #endif
-                  Sys(m_psystem).install().start(strCommandLine);
+                  System.install().start(strCommandLine);
 
                   m_phost->m_bReload = true;
 
@@ -673,10 +679,10 @@ namespace plugin
             else if(str1 == "ca2logout")
             {
                // graphical - 2 - user interface for logout - fontopus - through the plugin
-               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/core/fontopus", strLocale, strSchema))
+               if(!System.install().is(NULL, strBuildNumber, "application", "app/core/fontopus", strLocale, strSchema))
                {
                   /*
-                  Sys(m_psystem).install().start(": app=session session_start=app/core/fontopus app_type=application install");
+                  System.install().start(": app=session session_start=app/core/fontopus app_type=application install");
 #ifdef WINDOWS
                   ::TerminateProcess(::GetCurrentProcess(), 0);
 #else
@@ -692,7 +698,7 @@ namespace plugin
                   throw not_implemented(get_app());
 #endif
 
-                  Sys(m_psystem).install().start(strCommandLine);
+                  System.install().start(strCommandLine);
 
                   m_phost->m_bReload = true;
 
@@ -740,7 +746,7 @@ namespace plugin
                      if(strType.is_empty())
                         strType = "application";
 
-                     if(strId.has_char() && !m_psystem->install().is(NULL, strBuildNumber, strType, strId, strLocale, strSchema))
+                     if(strId.has_char() && !System.install().is(NULL, strBuildNumber, strType, strId, strLocale, strSchema))
                      {
 
                         string strCommandLine;
@@ -791,7 +797,7 @@ namespace plugin
                         throw not_implemented(get_app());
 #endif
 
-                        Sys(m_psystem).install().start(strCommandLine);
+                        System.install().start(strCommandLine);
 
                         m_phost->m_bReload = true;
 
@@ -811,12 +817,12 @@ namespace plugin
                      {
                         m_puiHost->KillTimer(19841115);
                         //Sleep(15 * 1000);
-   //                     m_psystem->m_puiInitialPlaceHolderContainer = m_puiHost;
+   //                     System.m_puiInitialPlaceHolderContainer = m_puiHost;
                         xxdebug_box("plugin", "open_ca2_string", 0);
                         application_bias * pbiasCreate = new application_bias;
                         pbiasCreate->m_set["NativeWindowFocus"] = false;
                         pbiasCreate->m_puiParent = m_puiHost;
-                        m_psystem->post_fork_uri(str2, pbiasCreate);
+                        System.post_fork_uri(str2, pbiasCreate);
                      }
                   }
                }
@@ -873,7 +879,7 @@ namespace plugin
       try
       {
 
-         thread * pthread = m_psystem->thread::m_p;
+         thread * pthread = System.thread::m_p;
 
          if(pthread->get_run())
          {
@@ -905,13 +911,13 @@ namespace plugin
       {
       }
 
-      try
-      {
-         delete m_psystem;
-      }
-      catch(...)
-      {
-      }
+      //try
+      //{
+      //   delete m_psystem;
+      //}
+      //catch(...)
+      //{
+      //}
 
 #ifdef WINDOWS
       while(true)

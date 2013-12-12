@@ -40,7 +40,7 @@ namespace plugin
 
       host_interaction *            m_puiHost;
       primitive::memory             m_memory;
-      ::plugin::system *            m_psystem;
+      //::plugin::system *            m_psystem;
       index                           m_iEdge;
       bool                          m_bMainReady;
       string                        m_strCa2LoginRuri;
