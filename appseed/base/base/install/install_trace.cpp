@@ -151,7 +151,7 @@ namespace install
    void trace::trace_progress(double dRate)
    {
       if (dRate < 0.0)
-         dRate = 1.0;
+         dRate = 0.0;
       if (dRate > 1.0)
          dRate = 1.0;
       dRate = dRate * 1000.0 * 1000.0 * 1000.0;

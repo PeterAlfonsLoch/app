@@ -32,6 +32,10 @@ namespace install
          g_pszCa2Build = NULL;
 
 
+         m_iProgressAppInstallStart = 0;
+         m_iProgressAppInstallStep = 0;
+         m_iProgressAppInstallEnd = 0;
+
       }
 
    install::~install()
