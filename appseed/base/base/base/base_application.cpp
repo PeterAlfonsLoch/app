@@ -969,7 +969,7 @@ void base_application::SetCurrentHandles()
 
          System.install().m_progressApp.m_dProgressStart                   = 0.84;
 
-         System.install().m_progressApp.m_dProgressEnd                     = 0.98;
+         System.install().m_progressApp.m_dProgressEnd                     = 0.998;
 
          System.install().m_iProgressAppInstallStart                       = 0;
 

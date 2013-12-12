@@ -158,6 +158,9 @@ namespace install
    uint32_t installer::run()
    {
 
+      m_dProgressStart = 0.0;
+      m_dProgressEnd = 0.0;
+
       new_progress_end(0.1);
 
 
