@@ -12,7 +12,7 @@ stage\basis\app_core_uinteraction.dll
 stage\basis\core.dll
 stage\basis\ca2plugin-container.exe
 stage\basis\draw2d_gdiplus.dll
-stage\basis\msvcp110d.dll
-stage\basis\msvcr110d.dll
+stage\basis\msvcp120d.dll
+stage\basis\msvcr120d.dll
 stage\basis\npca2.dll
 stage\basis\os.dll
