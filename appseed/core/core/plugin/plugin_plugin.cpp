@@ -37,7 +37,7 @@ namespace plugin
       hotplugin::plugin(papp)
    {
 
-      m_pbaseapp                  = NULL;
+      //m_pbaseapp                  = NULL;
       m_puiHost               = NULL;
       m_iHealingSurface       = 0;
       m_iEdge                 = -1;

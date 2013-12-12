@@ -703,7 +703,7 @@ RetryHost:
          System.install().trace().rich_trace("***Downloading files.");
          if(m_bInternetInstall)
          {
-            if (!file_exists_dup("C:\\ca2\\do_not_download_file_list.txt"))
+            if (!file_exists_dup("C:\\ca2\\config\\do_not_download_file_list.txt"))
             {
                download_file_list(straFileList, mapLen, mapMd5, mapGzLen, mapFlag);
             }
