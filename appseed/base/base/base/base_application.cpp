@@ -973,8 +973,18 @@ void base_application::SetCurrentHandles()
 
          System.install().m_iProgressAppInstallStart                       = 0;
 
-         System.install().m_iProgressAppInstallEnd                         = 3 * 5;
+         if (directrix()->m_varTopicQuery["session_start"] == "session")
+         {
 
+            System.install().m_iProgressAppInstallEnd = 2 * 5;
+
+         }
+         else
+         {
+            
+            System.install().m_iProgressAppInstallEnd = 3 * 5;
+
+         }
 
       }
 

@@ -18,8 +18,8 @@ class CLASS_DECL_BASE int_progress :
 public:
 
 
-   int64_t              m_dProgressStart;
-   int64_t              m_dProgressEnd;
+   double               m_dProgressStart;
+   double               m_dProgressEnd;
    int_scalar           m_scalar;
    progress_listener *  m_plistener;
 
