@@ -23,13 +23,12 @@ namespace install
          m_dwLatestBuildNumberLastFetch = 0;
          m_hmutexBoot = NULL;
 
-         g_bCa2Installed = false;
-         g_bCa2Updated = false;
-         g_bInstallingCa2 = false;
-         g_bSpaInstalled = false;
-         g_bSpaUpdated = false;
-         g_bUpdated = false;
-         g_pszCa2Build = NULL;
+         m_bCa2Installed = false;
+         m_bCa2Updated = false;
+         m_bSpaInstalled = false;
+         m_bSpaUpdated = false;
+         m_bUpdated = false;
+         //m_strCa2Build = NULL;
 
 
          m_iProgressAppInstallStart = 0;
@@ -465,61 +464,16 @@ namespace install
 
 
 
-   string install::get_installation_lock_file_path()
-   {
-
-      string strPath;
-
-      strPath = dir::path(dir::afterca2(), "install.lock");
-
-      return strPath;
-
-   }
 
 
-   void install::installation_file_lock(bool bLock)
-   {
-
-      string strPath;
-
-      strPath = get_installation_lock_file_path();
-
-      int32_t iRetry = 84;
-
-      if (bLock)
-      {
-         while (!file_exists_dup(strPath) && iRetry > 0)
-         {
-            file_put_contents_dup(strPath, "installing...");
-            Sleep(184);
-            iRetry--;
-         }
-      }
-      else
-      {
-         while (file_exists_dup(strPath) && iRetry > 0)
-         {
-#ifdef WINDOWS
-            ::DeleteFileW(wstring(strPath));
-#else
-            unlink(strPath);
-#endif
-            Sleep(184);
-            iRetry--;
-         }
-      }
-
-   }
-
-
-   bool install::is_lock_file_locked()
+   bool install::is_installing_ca2()
    {
 
 #if 1
 
       sp(mutex) spmutex = ::mutex::open_mutex(get_app(), "Global\\::ca::fontopus::ca2_spaboot_install::7807e510-5579-11dd-ae16-0800200c7784");
 
-      single_lock sl(spmutex);
+      return spmutex.is_set();
 
 #elif defined(WINDOWS)
 
@@ -570,13 +524,6 @@ namespace install
 
 #endif
 
-      string strPath;
-
-      strPath = get_installation_lock_file_path();
-
-      if (file_exists_dup(strPath))
-         return true;
-
       return false;
 
    }
@@ -603,10 +550,10 @@ namespace install
    void install::update_ca2_installed(bool bUnloadIfNotInstalled)
    {
 
-      if (is_lock_file_locked())
+      if (is_installing_ca2())
       {
 
-         //g_bCa2Installed = false; in fact we cannot determine if ca2 is installed, 
+         //m_bCa2Installed = false; in fact we cannot determine if ca2 is installed, 
          // because it may be installed but unusable (installation file is locked)
          return;
 
@@ -619,8 +566,8 @@ namespace install
       ::SetDllDirectoryA(strStage);
 #endif
 
-      g_bCa2Installed = true;
-      if (g_bCa2Installed)
+      m_bCa2Installed = true;
+      if (m_bCa2Installed)
       {
          // this function (update_ca2_installed) calculates is_ca2_installed and 
          // is used at browser plugins like npca2.dll and iexca2.dll which now is 
@@ -630,12 +577,12 @@ namespace install
          // os.dll to be unloaded and make the dependant instatiated browser plugins
          // to malfunction. Using only core.dll test only by now.
          //base_library libraryOs(get_app());
-         //g_bCa2Installed = libraryOs.open(dir::path(strStage, "os")); 
-         //if (g_bCa2Installed)
+         //m_bCa2Installed = libraryOs.open(dir::path(strStage, "os")); 
+         //if (m_bCa2Installed)
          //{
             base_library libraryCa2(get_app());
-            g_bCa2Installed = libraryCa2.open(dir::path(strStage, "core"));
-            if (g_bCa2Installed)
+            m_bCa2Installed = libraryCa2.open(dir::path(strStage, "core"));
+            if (m_bCa2Installed)
             {
                
                // hey !! 
@@ -673,41 +620,31 @@ namespace install
 
    bool install::is_ca2_installed()
    {
-      return g_bCa2Installed;
+      return m_bCa2Installed;
    }
 
 
    void install::update_ca2_updated()
    {
-      g_bCa2Updated = !strcmp_dup(get_starter_version(), get_ca2_version());
+      m_bCa2Updated = !strcmp_dup(get_starter_version(), get_ca2_version());
    }
 
    // ca files in store updated only in store but may not be yet transferred to the stage
    bool install::is_ca2_updated()
    {
-      return g_bCa2Updated;
-   }
-
-   bool install::is_installing_ca2()
-   {
-      return g_bInstallingCa2;
-   }
-
-   void install::set_installing_ca2(bool bSet)
-   {
-      g_bInstallingCa2 = bSet;
+      return m_bCa2Updated;
    }
 
    // ca files in store updated and transferred to the stage
    void install::update_updated()
    {
-      g_bUpdated = !strcmp_dup(get_starter_version(), get_version());
+      m_bUpdated = !strcmp_dup(get_starter_version(), get_version());
    }
 
 
    bool install::is_updated()
    {
-      return g_bUpdated;
+      return m_bUpdated;
    }
 
 
@@ -741,16 +678,14 @@ namespace install
 
    void install::update_ca2_build()
    {
-      if (g_pszCa2Build != NULL)
-         memory_free_dbg(g_pszCa2Build, 0);
-      g_pszCa2Build = (char *)strdup_dup(Application.http().get("http://spaignition.api.server.ca2.cc/ca2_get_build?authnone"));
+      m_strCa2Build = Application.http().get("http://spaignition.api.server.ca2.cc/ca2_get_build?authnone");
    }
 
 
    const char * install::ca2_get_build()
    {
       update_ca2_build();
-      return g_pszCa2Build;
+      return m_strCa2Build;
    }
 
 

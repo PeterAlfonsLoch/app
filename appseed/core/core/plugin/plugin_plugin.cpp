@@ -322,7 +322,7 @@ namespace plugin
       try
       {
 
-         if(System.install().is_lock_file_locked())
+         if(System.install().is_installing_ca2())
          {
 
             reload_plugin();

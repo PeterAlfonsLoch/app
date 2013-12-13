@@ -11,29 +11,28 @@ namespace install
    {
    public:
 
-      bool m_bAdmin;
+      bool                 m_bAdmin;
 
-      string m_strId;
+      string               m_strId;
 
-      string_to_string m_strmapLatestBuildNumber;
+      string_to_string     m_strmapLatestBuildNumber;
 
-      uint32_t m_dwLatestBuildNumberLastFetch;
+      uint32_t             m_dwLatestBuildNumberLastFetch;
 
-      HANDLE m_hmutexBoot;
-      UINT g_nCa2StarterStartThreadID;
-      bool g_bCa2Installed;
-      bool g_bCa2Updated;
-      bool g_bInstallingCa2;
-      bool g_bSpaInstalled;
-      bool g_bSpaUpdated;
-      bool g_bUpdated;
-      char * g_pszCa2Build ;
-      oswindow g_oswindowMessage;
+      HANDLE               m_hmutexBoot;
+      UINT                 m_nCa2StarterStartThreadID;
+      bool                 m_bCa2Installed;
+      bool                 m_bCa2Updated;
+      bool                 m_bSpaInstalled;
+      bool                 m_bSpaUpdated;
+      bool                 m_bUpdated;
+      string               m_strCa2Build ;
+      oswindow             m_oswindowMessage;
 
-      mutex m_mutex;
+      mutex                m_mutex;
 
 
-      class trace m_trace;
+      class trace          m_trace;
 
 
       int_progress         m_progressApp;
@@ -53,7 +52,6 @@ namespace install
 
 
       virtual bool is_file_ok(const char * path1, const char * pszTemplate);
-      virtual bool is_lock_file_locked();
       virtual int32_t synch_install(const char * pszCommandLine, bool bBackground = true);
       virtual int32_t asynch_install(const char * pszCommandLine, bool bBackground = true);
 
@@ -78,12 +76,6 @@ namespace install
       int32_t start_app(const char * id);
 
 
-      virtual void installation_file_lock(bool bLock);
-
-
-      virtual string get_installation_lock_file_path();
-
-
 
 
       virtual void update_ca2_build();
@@ -98,7 +90,6 @@ namespace install
       virtual void set_updated(const char * pszBuild);
 
 
-      virtual void set_installing_ca2(bool bSet = true);
       virtual bool is_installing_ca2();
 
       const char * get_starter_version();

@@ -211,14 +211,16 @@ namespace install
 
       //Sleep(584);
 
-      if(m_bInstalling)
+      if(System.install().is_installing_ca2())
          return -1;
 
       // ::MessageBox(g_oswindow, "Start", "Start", MB_OK);
 
-      keep_true keeptrueInstalling(m_bInstalling);
+      //keep_true keeptrueInstalling(m_bInstalling);
 
-      installation_lock_file_lock installationlockfilelock(get_app());
+      mutex mutexInstallingCa2(get_app(), false, "Global\\::ca::fontopus::ca2_spaboot_install::7807e510-5579-11dd-ae16-0800200c7784");
+
+      //installation_lock_file_lock installationlockfilelock(get_app());
 
       m_dwInstallStartTime = ::get_tick_count();
 
@@ -2500,7 +2502,7 @@ RetryHost:
       if(i == 0)
       {
          System.install().set_updated(m_strBuild);
-         System.install().installation_file_lock(false);
+//         System.install().installation_file_lock(false);
          //       // keeps g_bInstalling for a while
          //         Sleep((1984 + 1977) * 5);
          //::PostMessage(g_oswindow, WM_CLOSE, 0, 0);

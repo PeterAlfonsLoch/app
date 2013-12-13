@@ -1234,7 +1234,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\install\install_cube_run.h" />
     <ClInclude Include="base\install\install_focus.h" />
     <ClInclude Include="base\install\install_install.h" />
-    <ClInclude Include="base\install\install_installation_lock_file_lock.h" />
     <ClInclude Include="base\install\install_installer.h" />
     <ClInclude Include="base\install\install_plugin.h" />
     <ClInclude Include="base\install\install_small_bell.h" />
@@ -2728,7 +2727,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\install\install_canvas.cpp" />
     <ClCompile Include="base\install\install_focus.cpp" />
     <ClCompile Include="base\install\install_install.cpp" />
-    <ClCompile Include="base\install\install_installation_lock_file_lock.cpp" />
     <ClCompile Include="base\install\install_installer.cpp" />
     <ClCompile Include="base\install\install_plugin.cpp" />
     <ClCompile Include="base\install\install_small_bell.cpp" />

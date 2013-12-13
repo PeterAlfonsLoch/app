@@ -374,8 +374,6 @@ namespace hotplugin
    int32_t host::starter_start(const char * pszCommandLine, base_application * papp, plugin * pplugin)
    {
 
-      Sys(papp).install().set_installing_ca2();
-
       ::install::starter_start * pstart    = new ::install::starter_start(papp);
 
       pstart->m_pplugin             = pplugin;
@@ -407,8 +405,6 @@ throw todo(get_thread_app());
 
    int32_t host::starter_start_sync(const char * pszCommandLine, base_application * papp, plugin * pplugin)
    {
-
-      Sys(papp).install().set_installing_ca2();
 
       ::install::starter_start * pstart = new ::install::starter_start(papp);
 

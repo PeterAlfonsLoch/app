@@ -2819,9 +2819,6 @@
     <ClInclude Include="base\exception\exception2.h">
       <Filter>Header Files\base\exception</Filter>
     </ClInclude>
-    <ClInclude Include="base\install\install_installation_lock_file_lock.h">
-      <Filter>Header Files\base\install</Filter>
-    </ClInclude>
     <ClInclude Include="base\install\aaa_want_to_remove_install_window.h">
       <Filter>Header Files\base\install</Filter>
     </ClInclude>
@@ -6544,9 +6541,6 @@
     <ClCompile Include="base\exception\exception_void_implementation.cpp">
       <Filter>Source Files\base\exception</Filter>
     </ClCompile>
-    <ClCompile Include="base\install\install_installation_lock_file_lock.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
     <ClCompile Include="base\install\aaa_want_to_remove_install_window.cpp">
       <Filter>Source Files\base\install</Filter>
     </ClCompile>
@@ -7013,6 +7007,9 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

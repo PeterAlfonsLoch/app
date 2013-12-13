@@ -138,7 +138,7 @@ namespace install
             try
             {
 
-               m_phost->m_bInstalling = System.install().is_lock_file_locked();
+               m_phost->m_bInstalling = System.install().is_installing_ca2();
 
             }
             catch(...)
@@ -156,7 +156,7 @@ namespace install
          try
          {
 
-            m_phost->m_bInstalling = System.install().is_lock_file_locked();
+            m_phost->m_bInstalling = System.install().is_installing_ca2();
 
          }
          catch(...)
@@ -204,7 +204,7 @@ namespace install
             try
             {
 
-               if (System.install().is_lock_file_locked())
+               if (System.install().is_installing_ca2())
                {
 
                   m_dwLastOk = get_tick_count();
@@ -320,10 +320,8 @@ namespace install
 
       }
 
-      if(System.install().is_lock_file_locked())
+      if(System.install().is_installing_ca2())
       {
-
-         System.install().set_installing_ca2();
 
          if(!m_phost->m_bInstalling)
          {

@@ -140,7 +140,7 @@ namespace install
 
       string            m_strFile;
       bool              m_bSynch;
-      bool              m_bInstalling;
+      //bool              m_bInstalling;
 
       stringa           m_straHttpFailure;
 

@@ -62,8 +62,14 @@ namespace install
 
          }
 
-         if (System.install().is_lock_file_locked())
-            break;
+         if (System.install().is_installing_ca2())
+         {
+            
+            Sleep((1984 + 1977) * 2);
+
+            continue;
+
+         }
 
          System.install().update_ca2_installed(true);
 
@@ -82,7 +88,7 @@ namespace install
 
          prepare_small_bell(true);
 
-         //Sleep((1984 + 1977) * 2);
+         
 
       }
 

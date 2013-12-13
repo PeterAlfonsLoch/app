@@ -357,7 +357,7 @@ mutex * mutex::open_mutex(sp(base_application) papp,  const char * pstrName)
    if(h == NULL || h == INVALID_HANDLE_VALUE)
       return NULL;
 
-   mutex * pmutex = new mutex(papp, pstrName, h);
+   mutex * pmutex = canew(mutex(papp, pstrName, h));
 
    return pmutex;
 
