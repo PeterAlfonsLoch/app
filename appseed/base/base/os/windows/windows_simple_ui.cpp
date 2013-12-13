@@ -229,47 +229,54 @@ namespace os
 
    bool simple_ui::on_windows_key_down(WPARAM wparam, LPARAM lparam)
    {
+
       if (wparam == VK_SHIFT)
       {
+
          m_bShiftKey = true;
+
       }
       else if (wparam == VK_ESCAPE)
       {
+
          on_action("escape");
+
       }
 
-      return false;
-
-   }
-
-   bool simple_ui::on_windows_key_up(WPARAM wparam, LPARAM lparam)
-   {
-
       string str;
+
       wchar_t wsz[32];
 
       BYTE baState[256];
 
       ZERO(baState);
+
       for (int i = 0; i < 256; i++)
       {
+
          baState[i] = (BYTE)GetAsyncKeyState(i);
+
       }
 
       baState[wparam & 0xff] = 0x80;
 
       /*if((GetAsyncKeyState(::user::key_shift) & 0x80000000) != 0)
       {
-      baState[::user::key_shift] |= 0x80;
+
+         baState[::user::key_shift] |= 0x80;
+
       }
       */
+
       if (m_bShiftKey)
       {
+
          baState[VK_SHIFT] |= 0x80;
+
       }
 
       int32_t iRet = ToUnicodeEx((UINT)wparam, 0, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
-      
+
       str = wsz;
 
       ::user::e_key ekey;
@@ -286,13 +293,21 @@ namespace os
          on_char(0, str);
 
       }
-      
+
+      return false;
+
+   }
+
+
+   bool simple_ui::on_windows_key_up(WPARAM wparam, LPARAM lparam)
+   {
 
       if (m_bShiftKey && wparam == VK_SHIFT)
       {
-         m_bShiftKey = false;
-      }
 
+         m_bShiftKey = false;
+
+      }
 
       return false;
 
