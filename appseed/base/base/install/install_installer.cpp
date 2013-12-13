@@ -2206,7 +2206,7 @@ RetryHost:
                   {
                      m_iStart = 4;
                      m_strCommandLine = string(lpnode->child_at(ui)->attr("start"));
-                     m_strApplicationId = get_command_line_param(m_strCommandLine, "app");
+                     m_strApplicationId = get_command_line_param(m_strCommandLine, "app").trimmed();
                   }
                }
                if(lpnode->child_at(ui)->attr("build").is_set())
@@ -2480,7 +2480,7 @@ RetryHost:
 
       string strCommandLine = m_strCommandLine;
 
-      if(get_command_line_param(strCommandLine, "build_number").is_empty())
+      if(get_command_line_param(strCommandLine, "build_number").trimmed().is_empty())
       {
 
          strCommandLine += " build_number=\"" + m_strBuild + "\"";
@@ -2667,9 +2667,9 @@ RetryHost:
 
       m_strCommandLine           = pszCommandLine;
 
-      m_strApplicationId         = get_command_line_param(pszCommandLine, "app", "session", "session_start");
+      m_strApplicationId         = get_command_line_param(pszCommandLine, "app", "session", "session_start").trimmed();
 
-      m_strApplicationType       = get_command_line_param(pszCommandLine, "app_type");
+      m_strApplicationType       = get_command_line_param(pszCommandLine, "app_type").trimmed();
 
       if(m_strApplicationId.is_empty())
          return -1;
@@ -2677,9 +2677,11 @@ RetryHost:
       if(m_strApplicationType.is_empty())
          m_strApplicationType    = "application";
 
-      m_strInstallLocale         = get_command_line_param(pszCommandLine, "locale");
+      m_strInstallLocale         = get_command_line_param(pszCommandLine, "locale").trimmed();
 
-      m_strInstallSchema         = get_command_line_param(pszCommandLine, "schema");
+      m_strInstallSchema         = get_command_line_param(pszCommandLine, "schema").trimmed();
+
+      m_strInstallSchema.trim();
 
       if(m_strInstallSchema.is_empty())
       {
@@ -2770,8 +2772,8 @@ RetryHost:
 
       strName = strStatusTemplate;
       strName = strName + " " + m_strBuild;
-      strName = strName + " \"" + get_command_line_param(m_strCommandLine, "locale");
-      strName = strName + "\" \"" + get_command_line_param(m_strCommandLine, "schema") + "\"";
+      strName = strName + " \"" + get_command_line_param(m_strCommandLine, "locale").trimmed();
+      strName = strName + "\" \"" + get_command_line_param(m_strCommandLine, "schema").trimmed() + "\"";
       System.install().trace().rich_trace((":::::" + strName));
 
       m_strTitle = strName;

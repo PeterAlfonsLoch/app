@@ -30,13 +30,13 @@ namespace install
 
 #endif
 
-      string strId = get_command_line_param(m_strCommandLine, "app", "session", "session_start");
+      string strId = get_command_line_param(m_strCommandLine, "app", "session", "session_start").trimmed();
 
-      string strType = get_command_line_param(m_strCommandLine, "app_type");
+      string strType = get_command_line_param(m_strCommandLine, "app_type").trimmed();
 
-      string strLocale = get_command_line_param(m_strCommandLine, "locale");
+      string strLocale = get_command_line_param(m_strCommandLine, "locale").trimmed();
 
-      string strSchema = get_command_line_param(m_strCommandLine, "schema");
+      string strSchema = get_command_line_param(m_strCommandLine, "schema").trimmed();
 
       if (strId.is_empty())
          return -1;
