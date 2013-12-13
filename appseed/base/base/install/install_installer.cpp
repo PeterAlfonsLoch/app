@@ -559,6 +559,8 @@ RetryHost:
 
          set_progress(0.7);
 
+         m_straTerminateProcesses.remove_all();
+
          uint_array dwa;
 #ifndef METROWIN
 #ifdef X86
