@@ -785,7 +785,7 @@ RetryHost:
 
       uint32_t ui = pinstaller->run();
 
-      delete pinstaller;
+      //delete pinstaller;
 
       return ui;
 
