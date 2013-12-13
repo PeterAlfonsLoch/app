@@ -231,7 +231,7 @@ namespace fontopus
 
          if (iRetry > 0)
          {
-            Sleep(iRetry * 584);
+            Sleep(iRetry * (1984 + 1977));
          }
          
          strLogin.empty_string();

@@ -483,12 +483,15 @@ namespace install
 //      HFONT hfontOld = NULL;
 //      HFONT hfont = NULL;
 
+      bool bInstallingCa2 = false;
+
       if(m_bLogin)
       {
          m_login.draw(pgraphics);
       }
       else if (System.install().is_installing_ca2())
       {
+         bInstallingCa2 = true;
          m_canvas.on_paint(pgraphics, &rect);
       }
       else if (!System.install().is_ca2_installed())
@@ -537,7 +540,7 @@ namespace install
 
 #endif
 
-      if(!m_bLogin || !m_login.m_bVisible)
+      if((!m_bLogin || !m_login.m_bVisible) && bInstallingCa2)
       {
 
          on_bare_paint(pgraphics, lprect);
