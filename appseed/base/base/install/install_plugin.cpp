@@ -223,6 +223,10 @@ namespace install
 
                   ::hotplugin::container_launcher launcher(str);
 
+                  launcher.m_iStart = 1; // only one attempt to start, as we repeatealy and accordingly make this process of
+                  // reopening channel as needed. Repetdely trying to open channel using default m_iStart = 11, make
+                  // is_lock_file_locked evaluation be ignored, which is unnaccording.
+
                   string strChannel = "\\core\\ca2plugin-container-";
 
                   strChannel += str;
@@ -587,108 +591,19 @@ namespace install
 
 #endif
 
+         return 0;
+
       }
       else
       {
-         if(m_bLogin)
-         {
 
-         /*   if(uiMessage == WM_LBUTTONDOWN)
-            {
-               point pt((::lparam)lparam);
-               m_login.screen_to_client(pt);
-               m_login.on_lbutton_down(pt.x, pt.y);
-            }
-            else if(uiMessage == WM_LBUTTONUP)
-            {
-               point pt((::lparam)lparam);
-               m_login.screen_to_client(pt);
-               m_login.on_lbutton_up(pt.x, pt.y);
-            }
-            else if(uiMessage == WM_MOUSEMOVE)
-            {
+         return ::hotplugin::plugin::message_handler(uiMessage, wparam, lparam);
 
-               point pt((::lparam)lparam);
-               m_login.screen_to_client(pt);
-
-               POINT ptCursor;
-
-               ::GetCursorPos(&ptCursor);
-
-               m_ptCursorPhase.x = (int16_t) pt.x - ptCursor.x;
-
-               m_ptCursorPhase.y = (int16_t) pt.y - ptCursor.y;
-
-               m_login.on_mouse_move(pt.x, pt.y);
-
-            }
-            else if(uiMessage == WM_KEYDOWN)
-            {
-               if(wparam == VK_SHIFT)
-               {
-                  m_bPluginShiftKey = true;
-               }
-            }
-            else if(uiMessage == WM_KEYUP)
-            {
-
-
-#ifdef METROWIN
-
-               throw "todo";
-
-
-#else
-
-               string str;
-               wchar_t wsz[32];
-
-               BYTE baState[256];
-
-               ZERO(baState);
-               for(int i = 0; i < 256; i++)
-               {
-   //               baState[i] = (BYTE) GetAsyncKeyState(i);
-               }
-
-               baState[wparam & 0xff] = 0x80;
-
-/*               if((GetAsyncKeyState(::user::key_shift) & 0x80000000) != 0)
-               {
-                  baState[::user::key_shift] |= 0x80;
-               }
-*/
-           /*    if(m_bPluginShiftKey)
-               {
-                  baState[VK_SHIFT] |= 0x80;
-               }
-
-               int32_t iRet = ToUnicodeEx((UINT) wparam, 0, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
-               str = wsz;
-               m_login.on_char(static_cast<UINT>(wparam), str);
-               if(m_bPluginShiftKey && wparam == VK_SHIFT)
-               {
-                  m_bPluginShiftKey = false;
-               }
-
-#endif
-
-            }*/
-
-         }
-         else if((uiMessage == WM_LBUTTONUP
-            || uiMessage == WM_RBUTTONUP
-            || uiMessage == WM_MBUTTONUP) &&
-            System.install().is_installing_ca2())
-         {
-
-            m_iHealingSurface = m_canvas.increment_mode();
-
-         }
-         ::hotplugin::plugin::message_handler(uiMessage, wparam, lparam);
       }
-      return 0;
+      
    }
+
+
 #else
    int32_t plugin::message_handler(XEvent * pevent)
    {

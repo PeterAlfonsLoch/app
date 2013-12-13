@@ -25,7 +25,7 @@ bool small_ipc_tx_channel::open(const char * pszKey, launcher * plauncher)
    int32_t iCount;
 
    if(plauncher != NULL)
-      iCount = 11;
+      iCount = plauncher->m_iStart;
    else
       iCount = 2;
 
@@ -48,7 +48,10 @@ bool small_ipc_tx_channel::open(const char * pszKey, launcher * plauncher)
          break;
       if(plauncher != NULL)
       {
+         if (plauncher->m_iStart <= 0)
+            return false;
          plauncher->start();
+         plauncher->m_iStart--;
       }
    }
    m_strKey = pszKey;
