@@ -108,6 +108,9 @@ namespace simple_ui
 
       virtual void destroy_window();
 
+      virtual LRESULT message_handler(UINT message, WPARAM wParam, LPARAM lParam);
+
+
    };
 
 

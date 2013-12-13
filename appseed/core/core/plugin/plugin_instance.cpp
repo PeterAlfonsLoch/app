@@ -81,6 +81,12 @@ namespace plugin
 
       pinteraction->create_message_queue("npca2");
 
+      pinteraction->m_bMessageWindow = false;
+
+      pinteraction->m_pimpl->m_bMessageWindow = false;
+
+      pinteraction->install_message_handling(pinteraction->m_pimpl);
+
       sp(::user::window) pwindow = pinteraction->m_pimpl;
 
       pwindow->m_bTranslateMouseMessageCursor = false;

@@ -210,7 +210,7 @@ namespace os
       pui = m_windowmap[hWnd];
 
       if (pui != NULL)
-         return pui->window_procedure(hWnd, message, wparam, lparam);
+         return pui->message_handler(message, wparam, lparam);
 
       return DefWindowProc(hWnd, message, wparam, lparam);
 
@@ -299,7 +299,7 @@ namespace os
    }
 
 
-   LRESULT simple_ui::window_procedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+   LRESULT simple_ui::message_handler(UINT message, WPARAM wParam, LPARAM lParam)
    {
 
       switch (message)
@@ -343,7 +343,7 @@ namespace os
 
    default_window_procedure:
 
-      return DefWindowProc(hWnd, message, wParam, lParam);
+      return DefWindowProc(m_window, message, wParam, lParam);
 
    }
 

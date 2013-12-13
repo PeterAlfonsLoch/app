@@ -35,8 +35,10 @@
    }
 
 
-   bool base_library::open(const char * pszPath)
+   bool base_library::open(const char * pszPath, bool bAutoClose)
    {
+
+      m_bAutoClose = bAutoClose;
 
       if(stricmp_dup(pszPath, "app_c") == 0)
       {

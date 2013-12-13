@@ -126,6 +126,11 @@ namespace install
 
       virtual bool set_host(::hotplugin::host * phost);
 
+      ::simple_ui::interaction * get_focus();
+
+      void set_focus(::simple_ui::interaction * puiFocus);
+
+
    };
 
 

@@ -221,7 +221,7 @@ namespace hotplugin
    {
       if(m_pplugin != NULL)
       {
-         return m_pplugin->window_procedure(NULL, uiMessage, wparam, lparam);
+         return m_pplugin->message_handler(uiMessage, wparam, lparam);
       }
       return 0;
    }

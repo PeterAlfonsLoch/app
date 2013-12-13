@@ -226,6 +226,10 @@ namespace plugin
 
       m_bInitialized = true;
 
+      m_bApp = true;
+
+      set_ready();
+
       return 0;
 
 #endif
@@ -787,27 +791,35 @@ namespace plugin
 
                         strCommandLine += " install";
 
+                        //m_phost->starter_start(strCommandLine, get_app(), this);
+
+                        System.install().asynch_install(strCommandLine, true);
+
+
+                        ExitProcess(0);
+
+
                         //m_phost->m_pszReloadCommandLine = (const char *) HeapAlloc(GetProcessHeap(), 0, strCommandLine.get_length() + 1);
                         //strncpy((char *) m_phost->m_pszReloadCommandLine, strCommandLine, strCommandLine.get_length() + 1);
 
 
 #ifdef WINDOWSEX
-                        PostMessage(m_phost->::small_ipc_tx_channel::m_oswindow, WM_USER + 100, 1, 1);
+//                        PostMessage(m_phost->::small_ipc_tx_channel::m_oswindow, WM_USER + 100, 1, 1);
 #else
                         throw not_implemented(get_app());
 #endif
 
-                        System.install().start(strCommandLine);
+//                        System.install().start(strCommandLine);
 
-                        m_phost->m_bReload = true;
+                        //m_phost->m_bReload = true;
 
 #ifdef WINDOWSEX
-              //          ::TerminateProcess(::GetCurrentProcess(), 0);
+  //                      ExitProcess(0);
 #else
                 //        kill(0, SIGSTOP);
 #endif
 
-                        m_bMainReady = false;
+                        //m_bMainReady = false;
 
                         return;
                         //m_puiHost->SetTimer(19841115, (1984 + 1977 )* 2, NULL);
@@ -1067,6 +1079,8 @@ namespace plugin
          m_puiHost->send_message(WM_SIZE);
 
          m_puiHost->send_message(WM_MOVE);
+
+         m_puiHost->layout();
 
       }
 

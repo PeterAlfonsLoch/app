@@ -63,6 +63,8 @@ namespace plugin
    {
       UNREFERENCED_PARAMETER(pobj);
       Application.m_bSessionSynchronizedCursor = false;
+      Session.m_bSessionSynchronizedCursor = false;
+      System.m_bSessionSynchronizedCursor = false;
    }
 
    void host_interaction::_001OnCheck(signal_details * pobj)
@@ -166,11 +168,11 @@ namespace plugin
             {
                pui->SetWindowPos(0, 0, 0, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
             }
-            else
-            {
-               pui->ShowWindow(SW_SHOW);
-               pui->layout();
-            }
+            //else
+            //{
+              // pui->ShowWindow(SW_SHOW);
+               //pui->layout();
+            //}
          }
       }
    }

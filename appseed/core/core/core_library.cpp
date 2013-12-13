@@ -41,21 +41,20 @@ namespace core
       try
       {
 
-         m_bAutoClose      = bAutoClose;
-
          string strCa2Name = pszPath;
-
 
          try
          {
 
-            if(!base_library::open(strCa2Name))
+            if(!base_library::open(strCa2Name, bAutoClose))
                return false;
 
          }
          catch(...)
          {
+
             return false;
+
          }
 
          ::plane::system::eengine().reset();

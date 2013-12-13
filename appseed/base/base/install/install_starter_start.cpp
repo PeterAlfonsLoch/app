@@ -62,6 +62,9 @@ namespace install
 
          }
 
+         if (System.install().is_lock_file_locked())
+            break;
+
          System.install().update_ca2_installed(true);
 
          if (System.install().is_ca2_installed() && System.install().is_installed(strVersion, strBuildNumber, strType, strId, strLocale, strSchema))
@@ -79,7 +82,7 @@ namespace install
 
          prepare_small_bell(true);
 
-         Sleep((1984 + 1977) * 2);
+         //Sleep((1984 + 1977) * 2);
 
       }
 
@@ -116,13 +119,6 @@ namespace install
 
       if (uiRet != 0)
          return uiRet;
-
-
-      ExitProcess(0);
-
-
-      //throw todo(get_thread_app());
-      _c_simple_message_loop();
 
 
       delete pstart;

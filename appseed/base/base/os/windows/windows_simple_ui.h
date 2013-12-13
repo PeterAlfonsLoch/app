@@ -63,7 +63,7 @@ namespace os
 
       virtual void screen_to_client(POINT * ppt);
 
-      virtual LRESULT window_procedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+      virtual LRESULT message_handler(UINT message, WPARAM wParam, LPARAM lParam);
 
       virtual void get_window_rect(RECT * prect);
       virtual void get_client_rect(RECT * prect);

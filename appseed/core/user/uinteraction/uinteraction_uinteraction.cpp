@@ -93,7 +93,7 @@ namespace uinteraction
       if(System.get_twf() == NULL)
       {
 
-         System.create_twf();
+         System.defer_initialize_twf();
 
       }
 

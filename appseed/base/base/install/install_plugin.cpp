@@ -199,26 +199,41 @@ namespace install
          }
          else if(get_tick_count() - m_dwLastOk > ((1984 + 1977) * 2))
          {
+
+
             try
             {
 
-               string str;
+               if (System.install().is_lock_file_locked())
+               {
 
-               str = hex::lower_from((int_ptr) m_phost);
+                  m_dwLastOk = get_tick_count();
 
-               m_phost->m_strBitmapChannel = str;
+                  return false; // "no job done"
 
-               ::hotplugin::container_launcher launcher(str);
+               }
+               else
+               {
 
-               string strChannel = "\\core\\ca2plugin-container-";
+                  string str;
 
-               strChannel += str;
+                  str = hex::lower_from((int_ptr)m_phost);
 
-   #ifdef WINDOWS
-               open_ab(strChannel, "plugin-container.exe", &launcher);
-   #else
-               open_ab(strChannel, &launcher);
-   #endif
+                  m_phost->m_strBitmapChannel = str;
+
+                  ::hotplugin::container_launcher launcher(str);
+
+                  string strChannel = "\\core\\ca2plugin-container-";
+
+                  strChannel += str;
+
+#ifdef WINDOWS
+                  open_ab(strChannel, "plugin-container.exe", &launcher);
+#else
+                  open_ab(strChannel, &launcher);
+#endif
+
+               }
 
             }
             catch(...)
@@ -409,6 +424,9 @@ namespace install
 
    }
 
+
+
+
    void plugin::on_paint(::draw2d::graphics * pgraphics, LPCRECT lprect)
    {
 
@@ -575,7 +593,7 @@ namespace install
          if(m_bLogin)
          {
 
-            if(uiMessage == WM_LBUTTONDOWN)
+         /*   if(uiMessage == WM_LBUTTONDOWN)
             {
                point pt((::lparam)lparam);
                m_login.screen_to_client(pt);
@@ -640,7 +658,7 @@ namespace install
                   baState[::user::key_shift] |= 0x80;
                }
 */
-               if(m_bPluginShiftKey)
+           /*    if(m_bPluginShiftKey)
                {
                   baState[VK_SHIFT] |= 0x80;
                }
@@ -655,7 +673,7 @@ namespace install
 
 #endif
 
-            }
+            }*/
 
          }
          else if((uiMessage == WM_LBUTTONUP
@@ -667,6 +685,7 @@ namespace install
             m_iHealingSurface = m_canvas.increment_mode();
 
          }
+         ::hotplugin::plugin::message_handler(uiMessage, wparam, lparam);
       }
       return 0;
    }
@@ -692,8 +711,39 @@ namespace install
 
    bool plugin::initialize()
    {
+
+      set_focus(&m_login.m_editUser);
+
       start_ca2();
+
       return true;
+
+   }
+
+   ::simple_ui::interaction * plugin::get_focus()
+   {
+
+      if (m_phost != NULL)
+      {
+
+         return m_phost->get_focus();
+
+      }
+      
+      return NULL;
+
+   }
+
+   void plugin::set_focus(::simple_ui::interaction * puiFocus)
+   {
+
+      if (m_phost != NULL)
+      {
+
+         m_phost->set_focus(puiFocus);
+
+      }
+
    }
 
 
@@ -997,7 +1047,6 @@ namespace install
          m_login.defer_translate(this);
 
          m_bLogin    = true;
-         set_focus(&m_login.m_editUser);
          //m_login.m_editUser.m_strText = "";
          //m_login.m_password.m_strText = "";
          m_login.m_bVisible = true;

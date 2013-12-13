@@ -15,7 +15,7 @@ public:
    base_library(sp(base_application) papp, const char * pszOpen);
    virtual ~base_library();
 
-   virtual bool open(const char * pszPath);
+   virtual bool open(const char * pszPath, bool bAutoClose = true);
    virtual bool close();
 
 

@@ -606,7 +606,8 @@ namespace install
       if (is_lock_file_locked())
       {
 
-         g_bCa2Installed = false;
+         //g_bCa2Installed = false; in fact we cannot determine if ca2 is installed, 
+         // because it may be installed but unusable (installation file is locked)
          return;
 
       }
@@ -621,20 +622,49 @@ namespace install
       g_bCa2Installed = true;
       if (g_bCa2Installed)
       {
-         base_library libraryOs(get_app());
-         g_bCa2Installed = libraryOs.open(dir::path(strStage, "os"));
-         if (g_bCa2Installed)
-         {
+         // this function (update_ca2_installed) calculates is_ca2_installed and 
+         // is used at browser plugins like npca2.dll and iexca2.dll which now is 
+         // linked with os.dll and that are shipped during browser plugin installation
+         // with its own version of os.dll. Testing if ca2 is installed by using this
+         // os.dll, is not a good indicator anymore, and worst, can potentially make
+         // os.dll to be unloaded and make the dependant instatiated browser plugins
+         // to malfunction. Using only core.dll test only by now.
+         //base_library libraryOs(get_app());
+         //g_bCa2Installed = libraryOs.open(dir::path(strStage, "os")); 
+         //if (g_bCa2Installed)
+         //{
             base_library libraryCa2(get_app());
             g_bCa2Installed = libraryCa2.open(dir::path(strStage, "core"));
-            if (!bUnloadIfNotInstalled && g_bCa2Installed)
+            if (g_bCa2Installed)
             {
-               libraryCa2.m_bAutoClose = false;
-               libraryOs.m_bAutoClose = false;
-               return;
+               
+               // hey !! 
+               // now ca2 is installed!!
+               // great event!!
+               // let's celebrate!!
+               // but to celebrate we need some planning, preparation...
+               // humm, let's think....
+               // is m_strCa2 in win_dir initialized correctly now that there is a ca2 module?
+               // (reversed enginereed frustation and anger into flowers garden...)
+
+               System.update_module_paths();
+
+               System.dir().initialize();
+
+               if (!bUnloadIfNotInstalled)
+               {
+
+                  libraryCa2.m_bAutoClose = false;
+                  
+                  //    libraryOs.m_bAutoClose = false;
+
+                  return;
+
+               }
+
             }
 
-         }
+         //}
       }
 
    }

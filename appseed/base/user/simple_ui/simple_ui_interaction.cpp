@@ -1149,6 +1149,17 @@ namespace simple_ui
 
    }
 
+   LRESULT interaction::message_handler(UINT message, WPARAM wparam, LPARAM lparam)
+   {
+
+      UNREFERENCED_PARAMETER(message);
+      UNREFERENCED_PARAMETER(wparam);
+      UNREFERENCED_PARAMETER(lparam);
+
+
+      return 0;
+
+   }
 
 } // namespace simple_ui
 

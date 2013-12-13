@@ -1727,9 +1727,9 @@ void base_application::Ex1OnFactoryExchange()
 
    System.factory().creatable_large < ::file::exception >();
 
-   static base_library library(this);
+   base_library library(this);
 
-   if (!library.open("os"))
+   if (!library.open("os", false))
       throw "failed to do factory exchange";
 
    PFN_ca2_factory_exchange pfn_ca2_factory_exchange = library.get < PFN_ca2_factory_exchange >("ca2_factory_exchange");
