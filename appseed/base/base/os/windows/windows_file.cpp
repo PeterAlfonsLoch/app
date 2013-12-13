@@ -622,14 +622,8 @@ void dll_processes(uint_array & dwa, stringa & straProcesses, const char * pszDl
       if(PrintModules(strImage, aProcesses[ui], pszDll))
       {
 
-         if (straProcesses.add_unique_ci(strImage) >= 0)
-         {
-            
-            dwa.add(aProcesses[ui]);
-
-         }
-
-         
+         straProcesses.add(strImage); // there may processes with different pids but same image
+         dwa.add(aProcesses[ui]);
 
       }
 

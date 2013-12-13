@@ -3557,7 +3557,7 @@ RetryHost:
       string strPlatform = System.install().get_platform();
 
 #ifdef WINDOWS
-      ::SetDllDirectory(dir::path(dir::element(), "stage\\" + strPlatform));
+      //::SetDllDirectory(dir::path(dir::element(), "stage\\" + strPlatform));
 #endif
 
       base_library libraryOs(get_app());

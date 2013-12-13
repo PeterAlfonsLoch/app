@@ -327,7 +327,7 @@ namespace dynamic_source
       buf = new char[dwSize + 1024];
       GetDllDirectory(dwSize + 1024, buf);
       TRACE(buf);
-      SetDllDirectory(buf);
+      //SetDllDirectory(buf);
       GetDllDirectory(dwSize + 1024, buf);
       TRACE(buf);
       delete buf;*/

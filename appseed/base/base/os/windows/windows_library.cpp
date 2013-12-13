@@ -71,9 +71,9 @@
          strPath += ".dll";
 
 #ifdef _M_X64
-      ::SetDllDirectory(dir::element("stage\\x64") + "\\");
+      //::SetDllDirectory(dir::element("stage\\x64") + "\\");
 #else
-      ::SetDllDirectory(dir::element("stage\\x86") + "\\");
+      //::SetDllDirectory(dir::element("stage\\x86") + "\\");
 #endif
 
 
@@ -242,9 +242,9 @@
                if(str[0] == '/')
                return FALSE;
                #ifdef _M_X64
-               ::SetDllDirectory(dir::element("stage\\x64") + "\\");
+               //::SetDllDirectory(dir::element("stage\\x64") + "\\");
                #else
-               ::SetDllDirectory(dir::element("stage\\x86") + "\\");
+               //::SetDllDirectory(dir::element("stage\\x86") + "\\");
                #endif*/
 
          return LoadLibrary(psz);
