@@ -750,6 +750,10 @@ namespace plugin
                      if(strType.is_empty())
                         strType = "application";
 
+                     strLocale.trim();
+
+                     strSchema.trim();
+
                      if(strId.has_char() && !System.install().is(NULL, strBuildNumber, strType, strId, strLocale, strSchema))
                      {
 

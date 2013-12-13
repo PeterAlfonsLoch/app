@@ -1170,14 +1170,18 @@ return "";
 
 void base_application::set_locale(const string & lpcsz, bool bUser)
 {
-   m_strLocale = lpcsz;
-   on_set_locale(lpcsz, bUser);
+   string strLocale(lpcsz);
+   strLocale.trim();
+   m_strLocale = strLocale;
+   on_set_locale(m_strLocale, bUser);
 }
 
 void base_application::set_schema(const string & lpcsz, bool bUser)
 {
-   m_strSchema = lpcsz;
-   on_set_schema(lpcsz, bUser);
+   string strSchema(lpcsz);
+   strSchema.trim();
+   m_strSchema = strSchema;
+   on_set_schema(m_strSchema, bUser);
 }
 
 void base_application::on_set_locale(const string & lpcsz, bool bUser)

@@ -562,15 +562,15 @@ RetryHost:
          uint_array dwa;
 #ifndef METROWIN
 #ifdef X86
-         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\c.dll"));
-         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\ca.dll"));
-         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\ca.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\base.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\core.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\os.dll"));
          //dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\npca2.dll"));
          //dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\iexca2.dll"));
 #else
-         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\c.dll"));
-         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\ca.dll"));
-         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\ca.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\base.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\core.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\os.dll"));
          //dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\npca2.dll"));
          //dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\iexca2.dll"));
 #endif
