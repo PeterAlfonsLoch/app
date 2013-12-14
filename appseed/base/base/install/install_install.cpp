@@ -46,7 +46,7 @@ namespace install
    {
 
       return true;
-      
+
       string strUrl;
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
@@ -237,105 +237,105 @@ namespace install
 
       return is(pszVersion, pszBuild, pszType, pszId, pszLocale, pszSchema);
 
-/*      if (psz == NULL)
-         return true;
+      /*      if (psz == NULL)
+               return true;
 
-      if (*psz == '\0')
-         return true;
+               if (*psz == '\0')
+               return true;
 
-      if (pszType == NULL || *pszType == '\0')
-         pszType = "application";
+               if (pszType == NULL || *pszType == '\0')
+               pszType = "application";
 
-      if (pszVersion == NULL || *pszVersion == '\0')
-      {
+               if (pszVersion == NULL || *pszVersion == '\0')
+               {
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
+               #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-         pszVersion = "basis";
+               pszVersion = "basis";
 
-#else
+               #else
 
-         pszVersion = "stage";
+               pszVersion = "stage";
 
-#endif
+               #endif
 
-      }
+               }
 
-      string strLatestBuildNumber;
+               string strLatestBuildNumber;
 
-      if (pszBuild == NULL || *pszBuild == '\0')
-      {
+               if (pszBuild == NULL || *pszBuild == '\0')
+               {
 
-         strLatestBuildNumber = get_latest_build_number(pszVersion);
+               strLatestBuildNumber = get_latest_build_number(pszVersion);
 
-         pszBuild = strLatestBuildNumber;
+               pszBuild = strLatestBuildNumber;
 
-      }
+               }
 
-      if (stricmp_dup(pszVersion, "basis") && stricmp_dup(pszVersion, "stage"))
-         return false;
+               if (stricmp_dup(pszVersion, "basis") && stricmp_dup(pszVersion, "stage"))
+               return false;
 
-      ::xml::document nodeInstall;
+               ::xml::document nodeInstall;
 
-      nodeInstall.load(file_as_string_dup(dir::appdata("spa_install.xml")));
+               nodeInstall.load(file_as_string_dup(dir::appdata("spa_install.xml")));
 
-      ::xml::node * lpnodeVersion = nodeInstall.get_child(pszVersion);
+               ::xml::node * lpnodeVersion = nodeInstall.get_child(pszVersion);
 
-      if (lpnodeVersion == NULL)
-         return false;
+               if (lpnodeVersion == NULL)
+               return false;
 
-      ::xml::node * lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", pszBuild);
+               ::xml::node * lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", pszBuild);
 
-      if (lpnodeInstalled == NULL)
-         return false;
+               if (lpnodeInstalled == NULL)
+               return false;
 
-      ::xml::node * lpnodeType = lpnodeInstalled->get_child(pszType);
+               ::xml::node * lpnodeType = lpnodeInstalled->get_child(pszType);
 
-      if (lpnodeType == NULL)
-         return false;
+               if (lpnodeType == NULL)
+               return false;
 
-      ::xml::node * lpnodeId = NULL;
+               ::xml::node * lpnodeId = NULL;
 
-      for (int32_t ui = 0; ui < lpnodeType->get_children_count(); ui++)
-      {
+               for (int32_t ui = 0; ui < lpnodeType->get_children_count(); ui++)
+               {
 
-         lpnodeId = lpnodeType->child_at(ui);
+               lpnodeId = lpnodeType->child_at(ui);
 
-         string strId = lpnodeId->attr("id");
+               string strId = lpnodeId->attr("id");
 
-         if (!strcmp(lpnodeId->get_name(), pszType) && strId == psz)
-         {
+               if (!strcmp(lpnodeId->get_name(), pszType) && strId == psz)
+               {
 
-            goto found_id;
+               goto found_id;
 
-         }
+               }
 
-      }
+               }
 
-      return false;
+               return false;
 
-   found_id:
+               found_id:
 
-      ::xml::node * lpnodeLocalization = NULL;
+               ::xml::node * lpnodeLocalization = NULL;
 
-      for (int32_t ui = 0; ui < lpnodeId->get_children_count(); ui++)
-      {
+               for (int32_t ui = 0; ui < lpnodeId->get_children_count(); ui++)
+               {
 
-         lpnodeLocalization = lpnodeId->child_at(ui);
+               lpnodeLocalization = lpnodeId->child_at(ui);
 
-         string strLocale = lpnodeLocalization->attr("locale");
-         string strSchema = lpnodeLocalization->attr("schema");
+               string strLocale = lpnodeLocalization->attr("locale");
+               string strSchema = lpnodeLocalization->attr("schema");
 
-         if (!strcmp(lpnodeLocalization->get_name(), "localization") && strLocale == pszLocale && strSchema == pszSchema)
-         {
+               if (!strcmp(lpnodeLocalization->get_name(), "localization") && strLocale == pszLocale && strSchema == pszSchema)
+               {
 
-            return true;
+               return true;
 
-         }
+               }
 
-      }
+               }
 
-      return false;*/
+               return false;*/
 
    }
 
@@ -580,36 +580,36 @@ namespace install
          //m_bCa2Installed = libraryOs.open(dir::path(strStage, "os")); 
          //if (m_bCa2Installed)
          //{
-            base_library libraryCa2(get_app());
-            m_bCa2Installed = libraryCa2.open(dir::path(strStage, "core"));
-            if (m_bCa2Installed)
+         base_library libraryCa2(get_app());
+         m_bCa2Installed = libraryCa2.open(dir::path(strStage, "core"));
+         if (m_bCa2Installed)
+         {
+
+            // hey !! 
+            // now ca2 is installed!!
+            // great event!!
+            // let's celebrate!!
+            // but to celebrate we need some planning, preparation...
+            // humm, let's think....
+            // is m_strCa2 in win_dir initialized correctly now that there is a ca2 module?
+            // (reversed enginereed frustation and anger into flowers garden...)
+
+            System.update_module_paths();
+
+            System.dir().initialize();
+
+            if (!bUnloadIfNotInstalled)
             {
-               
-               // hey !! 
-               // now ca2 is installed!!
-               // great event!!
-               // let's celebrate!!
-               // but to celebrate we need some planning, preparation...
-               // humm, let's think....
-               // is m_strCa2 in win_dir initialized correctly now that there is a ca2 module?
-               // (reversed enginereed frustation and anger into flowers garden...)
 
-               System.update_module_paths();
+               libraryCa2.m_bAutoClose = false;
 
-               System.dir().initialize();
+               //    libraryOs.m_bAutoClose = false;
 
-               if (!bUnloadIfNotInstalled)
-               {
-
-                  libraryCa2.m_bAutoClose = false;
-                  
-                  //    libraryOs.m_bAutoClose = false;
-
-                  return;
-
-               }
+               return;
 
             }
+
+         }
 
          //}
       }
@@ -1146,7 +1146,7 @@ namespace install
 
 
 
-   string install::app_install_get_extern_executable_path()
+   string install::app_install_get_extern_executable_path(::install::installer * pinstaller)
    {
 
       bool bPrivileged = false;
@@ -1203,13 +1203,13 @@ namespace install
 
 #endif
 
-      if (!file_exists_dup(strPath) 
-       || !System.install().is_file_ok(strPath, "app-install.exe")
-       || !System.install().is_file_ok(strPath, "base.dll")
-       || !System.install().is_file_ok(strPath, "msvcp120d.dll")
-       || !System.install().is_file_ok(strPath, "msvcr120d.dll")
-       || !System.install().is_file_ok(strPath, "draw2d_gdiplus.dll")
-       || !System.install().is_file_ok(strPath, "os.dll"))
+      if (!file_exists_dup(strPath)
+         || !System.install().is_file_ok(strPath, "app-install.exe")
+         || !System.install().is_file_ok(strPath, "base.dll")
+         || !System.install().is_file_ok(strPath, "msvcp120d.dll")
+         || !System.install().is_file_ok(strPath, "msvcr120d.dll")
+         || !System.install().is_file_ok(strPath, "draw2d_gdiplus.dll")
+         || !System.install().is_file_ok(strPath, "os.dll"))
       {
 
          int32_t iRetry = 0;
@@ -1247,11 +1247,30 @@ namespace install
 
             set["disable_ca2_sessid"] = true;
 
+            if (pinstaller != NULL)
+            {
+
+               set["int_scalar_source_listener"] = pinstaller;
+
+               pinstaller->m_dAppInstallProgressStart = 0.0;
+               pinstaller->m_dAppInstallProgressEnd = 0.05;
+
+            }
+
             if (Application.http().download(strUrl, strPath, set))
             {
 
                if (System.install().is_file_ok(strPath, "app-install.exe"))
                {
+
+                  if (pinstaller != NULL)
+                  {
+
+                     pinstaller->set_progress(0.1);
+                     pinstaller->m_dAppInstallProgressStart = 0.1;
+                     pinstaller->m_dAppInstallProgressEnd = 0.45;
+
+                  }
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
@@ -1264,11 +1283,20 @@ namespace install
 #endif
                   string strPath2 = System.dir().path(System.dir().name(strPath), "base.dll");
 
+
                   if (Application.http().download(strUrl2, strPath2, set))
                   {
 
                      if (System.install().is_file_ok(strPath2, "base.dll"))
                      {
+                        if (pinstaller != NULL)
+                        {
+
+                           pinstaller->set_progress(0.5);
+                           pinstaller->m_dAppInstallProgressStart = 0.5;
+                           pinstaller->m_dAppInstallProgressEnd = 0.60;
+
+                        }
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
@@ -1281,11 +1309,20 @@ namespace install
 #endif
                         strPath2 = System.dir().path(System.dir().name(strPath), "msvcp120d.dll");
 
+
                         if (Application.http().download(strUrl2, strPath2, set))
                         {
 
                            if (System.install().is_file_ok(strPath2, "msvcp120d.dll"))
                            {
+                              if (pinstaller != NULL)
+                              {
+
+                                 pinstaller->set_progress(0.65);
+                                 pinstaller->m_dAppInstallProgressStart = 0.65;
+                                 pinstaller->m_dAppInstallProgressEnd = 0.75;
+
+                              }
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
@@ -1304,6 +1341,16 @@ namespace install
                                  if (System.install().is_file_ok(strPath2, "msvcr120d.dll"))
                                  {
 
+                                    if (pinstaller != NULL)
+                                    {
+
+                                       pinstaller->set_progress(0.8);
+                                       pinstaller->m_dAppInstallProgressStart = 0.8;
+                                       pinstaller->m_dAppInstallProgressEnd = 0.85;
+
+                                    }
+
+
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
                                     strUrl2 = "http://warehouse.ca2.cc/spa?download=os.dll";
@@ -1320,6 +1367,16 @@ namespace install
 
                                        if (System.install().is_file_ok(strPath2, "os.dll"))
                                        {
+
+                                          if (pinstaller != NULL)
+                                          {
+
+                                             pinstaller->set_progress(0.9);
+                                             pinstaller->m_dAppInstallProgressStart = 0.9;
+                                             pinstaller->m_dAppInstallProgressEnd = 0.95;
+
+                                          }
+
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
@@ -1338,7 +1395,13 @@ namespace install
                                              if (System.install().is_file_ok(strPath2, "draw2d_gdiplus.dll"))
                                              {
 
-                                                break;
+
+                                                if (pinstaller != NULL)
+                                                {
+
+                                                   pinstaller->set_progress(1.0);
+                                                   break;
+                                                }
 
                                              }
 
@@ -1362,6 +1425,7 @@ namespace install
 
                         }
 
+                     }
 
                      }
 
@@ -1369,51 +1433,49 @@ namespace install
 
                }
 
-            }
+               iRetry++;
 
-            iRetry++;
+            }
 
          }
 
+
+         if (!System.install().is_file_ok(strPath, "app-install.exe"))
+         {
+
+            return "";
+
+         }
+
+         return strPath;
+
       }
 
 
-      if (!System.install().is_file_ok(strPath, "app-install.exe"))
+      string install::app_install_get_intern_executable_path()
       {
-
-         return "";
-
-      }
-
-      return strPath;
-
-   }
-
-
-   string install::app_install_get_intern_executable_path()
-   {
 
 #ifdef WINDOWSEX
 
-      xxdebug_box("installer::launcher::ensure_executable", "installer::launcher::ensure_executable", 0);
+         xxdebug_box("installer::launcher::ensure_executable", "installer::launcher::ensure_executable", 0);
 
-      string strPlatform = System.install().get_platform();
+         string strPlatform = System.install().get_platform();
 
-      string strPath = ::dir::element("stage\\" + strPlatform + "\\app-install.exe");
+         string strPath = ::dir::element("stage\\" + strPlatform + "\\app-install.exe");
 
 #else
 
-      throw "TODO";
+         throw "TODO";
 
 #endif
 
-      return strPath;
+         return strPath;
 
-   }
+      }
 
 
 
-} // namespace install
+   } // namespace install
 
 
 

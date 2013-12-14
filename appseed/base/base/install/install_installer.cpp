@@ -120,7 +120,7 @@ namespace install
       m_xmldocStringTable(papp)
    {
 
-
+      m_bProgressModeAppInstall = false;
       m_bMsDownload              = false;
       m_dAnime                   = 0.0;
 //      g_bInstalling              = false;
@@ -161,7 +161,6 @@ namespace install
       m_dProgressStart = 0.0;
       m_dProgressEnd = 0.0;
 
-      new_progress_end(0.1);
 
 
       //SECURITY_ATTRIBUTES MutexAttributes;
@@ -220,7 +219,16 @@ namespace install
 
       mutex mutexInstallingCa2(get_app(), false, "Global\\::ca::fontopus::ca2_spaboot_install::7807e510-5579-11dd-ae16-0800200c7784");
 
-      System.install().app_install_get_extern_executable_path(); // defer install install extern app-install.exe executable
+      new_progress_end(0.01);
+
+      m_bProgressModeAppInstall = true;
+
+      System.install().app_install_get_extern_executable_path(this); // defer install install extern app-install.exe executable
+
+      m_bProgressModeAppInstall = false;
+
+      new_progress_end(0.1);
+
 
       //installation_lock_file_lock installationlockfilelock(get_app());
 
@@ -423,6 +431,8 @@ RetryHost:
 
          appmatter_list();
 
+         set_progress(0.7);
+
          if(!GetFileList(straFileList, ("app/stage/metastage/" + m_strApplicationId + ".spa"), mapLen, mapGzLen, mapMd5, mapFlag))
          {
             System.install().trace().rich_trace("Failed to download file list!");
@@ -431,7 +441,7 @@ RetryHost:
             goto RetryHost;
          }
 
-         set_progress(0.7);
+         set_progress(0.8);
 
          for(int32_t i = 0; i < straFileList.get_count(); i++)
          {
@@ -561,7 +571,7 @@ RetryHost:
             ::OutputDebugStringA("\r\n");
          }
 
-         set_progress(0.7);
+         set_progress(0.9);
 
          m_straTerminateProcesses.remove_all();
 
@@ -3633,9 +3643,28 @@ RetryHost:
 
       if (escalar == scalar_download_size)
       {
+         if (m_bProgressModeAppInstall)
+         {
 
-         dlr(m_iGzLen + iValue);
-         set_progress((double)(m_iGzLen + iValue) / (double)m_iProgressTotalGzLen);
+            int64_t iMax = 0;
+            psource->get_scalar_maximum(escalar, iMax);
+
+            if (iMax == 0)
+               iMax = iValue;
+
+            if (iMax == 0)
+               iMax = 1;
+
+            set_progress(((double)iValue / (double)iMax) * (m_dAppInstallProgressEnd - m_dAppInstallProgressStart) + m_dAppInstallProgressStart);
+
+         }
+         else
+         {
+
+            dlr(m_iGzLen + iValue);
+            set_progress((double)(m_iGzLen + iValue) / (double)m_iProgressTotalGzLen);
+
+         }
 
       }
 

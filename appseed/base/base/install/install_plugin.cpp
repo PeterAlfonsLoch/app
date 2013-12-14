@@ -43,7 +43,6 @@ namespace install
       m_canvas(papp)
    {
 
-      
 
       m_pstyle = this;
 
@@ -300,7 +299,7 @@ namespace install
    void plugin::start_ca2()
    {
 
-
+      //return;
 
 
       if(!m_bLogged)

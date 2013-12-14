@@ -63,6 +63,10 @@ namespace install
       string            m_strHost;
       uint32_t          m_dwInstallStartTime;
 
+      bool              m_bProgressModeAppInstall;
+      double            m_dAppInstallProgressStart;
+      double            m_dAppInstallProgressEnd;
+
       
 #ifdef WINDOWS
       MESSAGE           m_msgSpaAdminWindow;

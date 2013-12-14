@@ -513,7 +513,7 @@ namespace hotplugin
 
       pgraphics->Rectangle(&m_rect);
 
-      on_paint_progress(pgraphics, lprect);
+      on_paint_progress(pgraphics, m_rect);
 
       double dRate = get_progress_rate();
 
@@ -713,7 +713,7 @@ namespace hotplugin
 
       r1.left = lprect->left + cx / iRate - 1;
       r1.top = lprect->top + (cy - iBarHeight) / 2 - 1;
-      r1.right = r1.left + iRowCount + 2;
+      r1.right = r1.left + iRowCount + 4;
       r1.bottom = r1.top + iBarHeight + 2;
 
       pgraphics->FillRect(&r1, br);
@@ -740,19 +740,19 @@ namespace hotplugin
       }
       }*/
       {
-         get_progress_color(uchR, uchG, uchB, 0.0, 0);
+         get_progress_color(uchR, uchG, uchB, dRate, 0);
          br->create_solid(ARGB(bA, uchR, uchG, uchB));
-         pgraphics->FillRect(::rect(lprect->left + cx / iRate, lprect->top + (cy - iBarHeight) / 2, iProgressCount, 5), br);
+         pgraphics->FillRect(&rect_dim(lprect->left + cx / iRate, lprect->top + (cy - iBarHeight) / 2, iProgressCount, 5), br);
       }
       {
-         get_progress_color(uchR, uchG, uchB, 0.0, 1);
+         get_progress_color(uchR, uchG, uchB, dRate, 1);
          br->create_solid(ARGB(bA, uchR, uchG, uchB));
-         pgraphics->FillRect(::rect(lprect->left + cx / iRate, lprect->top + (cy - iBarHeight) / 2 + 5, iProgressCount, 5), br);
+         pgraphics->FillRect(&rect_dim(lprect->left + cx / iRate, lprect->top + (cy - iBarHeight) / 2 + 5, iProgressCount, 5), br);
       }
       {
-         get_progress_color(uchR, uchG, uchB, 0.0, 2);
+         get_progress_color(uchR, uchG, uchB, dRate, 2);
          br->create_solid(ARGB(bA, uchR, uchG, uchB));
-         pgraphics->FillRect(::rect(lprect->left + cx / iRate, lprect->top + (cy - iBarHeight) / 2 + 10, iProgressCount, 13), br);
+         pgraphics->FillRect(&rect_dim(lprect->left + cx / iRate, lprect->top + (cy - iBarHeight) / 2 + 10, iProgressCount, 13), br);
       }
 
       int32_t iOffset = 3;
@@ -781,7 +781,7 @@ namespace hotplugin
 
       ::draw2d::font_sp f(allocer());
 
-      f->create_pixel_font("Calibri", iBarHeight);
+      f->create_pixel_font("Calibri", iBarHeight * 0.7);
 
       pgraphics->SelectObject(f);
 
@@ -814,6 +814,7 @@ namespace hotplugin
 
    double plugin::get_progress_rate()
    {
+      //return fmod(get_tick_count() / 15000.0, 1.0);
       if(m_phost != NULL)
       {
          return m_phost->get_progress_rate();
@@ -855,7 +856,7 @@ namespace hotplugin
             rectP.top      = y;
             rectP.bottom   = y + pcy;
             rectP.left     = x;
-            rectP.right    = pcx;
+            rectP.right    = rectWindow.right;
             pgraphics->FillSolidRect(&rectP, ARGB(84, 84, 84, 77));
          }
          y = y + pcy;
