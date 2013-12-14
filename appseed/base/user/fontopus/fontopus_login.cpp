@@ -502,8 +502,8 @@ namespace fontopus
 
       oprop("r") = r;
 
-      m_rect.left = m_puiParent->m_rect.left  + (width(m_puiParent->m_rect) - w) / 2;
-      m_rect.top = m_puiParent->m_rect.top + (height(m_puiParent->m_rect) - h) / 2;
+      m_rect.left = (width(m_puiParent->m_rect) - w) / 2;
+      m_rect.top = (height(m_puiParent->m_rect) - h) / 3;
       m_rect.right = m_rect.left + w;
       m_rect.bottom = m_rect.top + h;
 
