@@ -382,8 +382,11 @@ namespace install
          plogin->m_pcallback = this;
 
          plogin->m_pstyle = this;
+
+         plogin->m_bSelfLayout = true;
          
          set_focus(&plogin->m_editUser);
+
 
          oprop("install_plugin_fontopus_login") = plogin;
 

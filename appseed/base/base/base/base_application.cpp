@@ -4957,9 +4957,9 @@ bool base_application::update_appmatter(::sockets::socket_handler & h, ::sockets
 
    //update_appmatter(h, psession, pszRoot, pszRelative, localeschema.m_idLocale, localeschema.m_idSchema);
 
-   int iCount = localeschema.m_idaLocale.get_count();
+   ::count iCount = localeschema.m_idaLocale.get_count();
 
-   for (int32_t i = 0; i < iCount; i++)
+   for (index i = 0; i < iCount; i++)
    {
       if (localeschema.m_idaLocale[i] == __id(std) && localeschema.m_idaSchema[i] == __id(std) && bIgnoreStdStd)
          continue;

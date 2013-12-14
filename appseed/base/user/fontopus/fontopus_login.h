@@ -51,6 +51,9 @@ namespace fontopus
       string                        m_strFontopusServer;
       string                        m_strRequestingServer;
 
+      bool                          m_bSelfLayout;
+      double                        m_dRate;
+
 
       login(sp(base_application) papp, int left, int top);
       virtual ~login();

@@ -24,6 +24,8 @@ namespace fontopus
       m_tap(papp)
    {
 
+         m_bSelfLayout = false;
+
       m_pcallback = NULL;
 
       m_labelUser.set_parent(this);
@@ -38,6 +40,14 @@ namespace fontopus
       m_tap.m_strText = "open";
 
       m_eresult = login::result_fail;
+
+      int stdw = 884;
+      int stdh = 184 + 23 + 184;
+
+      m_rect.left = 0;
+      m_rect.top = 0;
+      m_rect.right = m_rect.left + stdw;
+      m_rect.bottom = m_rect.top + stdh;
 
    }
 
@@ -464,54 +474,99 @@ namespace fontopus
       int stdw = 884;
       int stdh = 184 + 23 + 184;
 
-      double dwh = (double) stdw / (double) stdh;
+      int h;
+      int w;
 
-      int availw = width(m_puiParent->m_rect) * (1.0 - 0.14);
-      int availh = height(m_puiParent->m_rect) * (1.0 - 0.14);
-
-      double davailwh;
-      
-      if (availh == 0.0)
+      if (m_bSelfLayout)
       {
-         davailwh = 1.0;
+
+
+         double dwh = (double)stdw / (double)stdh;
+
+         int availw = (int) (width(m_puiParent->m_rect) * (1.0 - 0.14));
+         int availh = (int) (height(m_puiParent->m_rect) * (1.0 - 0.14));
+
+         double davailwh;
+
+         if (availh == 0.0)
+         {
+            davailwh = 1.0;
+         }
+         else
+         {
+            davailwh = (double)availw / (double)availh;
+         }
+
+
+         if (davailwh > dwh) // remaining width
+         {
+
+            h = (int) min(stdh, availh);
+            w = (int) min(stdw, h  * dwh);
+
+         }
+         else // remaining height
+         {
+
+            w = (int) min(stdw, availw);
+            h = (int) min(stdh, w / dwh);
+
+         }
+
+         m_dRate = (double)w / (double)stdw;
+         m_rect.left = (width(m_puiParent->m_rect) - w) / 2;
+         m_rect.top = (height(m_puiParent->m_rect) - h) / 3;
+         m_rect.right = m_rect.left + w;
+         m_rect.bottom = m_rect.top + h;
+
       }
       else
       {
-         davailwh = (double) availw / (double) availh;
+
+
+         double dwh = (double)stdw / (double)stdh;
+
+         int availw = (int)(width(m_rect));
+         int availh = (int)(height(m_rect));
+
+         double davailwh;
+
+         if (availh == 0.0)
+         {
+            davailwh = 1.0;
+         }
+         else
+         {
+            davailwh = (double)availw / (double)availh;
+         }
+
+
+         if (davailwh > dwh) // remaining width
+         {
+
+            h = (int)min(stdh, availh);
+            w = (int)min(stdw, h  * dwh);
+
+         }
+         else // remaining height
+         {
+
+            w = (int)min(stdw, availw);
+            h = (int)min(stdh, w / dwh);
+
+         }
+
+         m_dRate = (double)w / (double)stdw;
       }
 
-      int h;
-      int w;
-         
-      if (davailwh > dwh) // remaining width
-      {
-
-         h = min(stdh, availh);
-         w = min(stdw, h  * dwh);
-
-      }
-      else // remaining height
-      {
-         
-         w = min(stdw, availw);
-         h = min(stdh, w / dwh);
-
-      }
-      
-      double r = (double) w / (double) stdw;
-
-      oprop("r") = r;
-
-      m_rect.left = (width(m_puiParent->m_rect) - w) / 2;
-      m_rect.top = (height(m_puiParent->m_rect) - h) / 3;
-      m_rect.right = m_rect.left + w;
-      m_rect.bottom = m_rect.top + h;
+      double r = m_dRate;
 
 
-      int32_t x1 = 49 * r;
-      int32_t x2 = x1 + (m_rect.width() - 49 * 2) * r;
-      int32_t h1 = 23 * r;
-      int32_t pad = 5 * r;
+
+      int32_t x1 = (int) (49 * r);
+      int32_t x2 = (int) (x1 + (m_rect.width() - 49 * 2) * r);
+      int32_t h1 = (int) (23 * r);
+      int32_t pad = (int) (5 * r);
 
       m_labelUser.m_rect.left = x1;
       m_labelUser.m_rect.right = x2;
@@ -524,7 +579,7 @@ namespace fontopus
       m_tap.m_rect.left = x1;
       m_tap.m_rect.right = x2;
 
-      int32_t y = (49 + 86) * r;
+      int32_t y = (int) ((49 + 86) * r);
       m_labelUser.m_rect.top = y;
       y += h1;
       m_labelUser.m_rect.bottom = y;
@@ -637,9 +692,9 @@ namespace fontopus
          (GetGValue(crOut) + GetGValue(crIn)) / 2,
          (GetBValue(crOut) + GetBValue(crIn)) / 2);
 
-      double r = oprop("r");
+      double r = m_dRate;
 
-      draw_ca2_with_border2(pgraphics, 49 * r, 49 * r, (84 + 1 + 1) * r, 1, 1, crBk, cr, crBorderOut, crBorderIn);
+      draw_ca2_with_border2(pgraphics, (int) (49 * r), (int) (49 * r), (int) ((84 + 1 + 1) * r), 1, 1, crBk, cr, crBorderOut, crBorderIn);
 
    }
 
