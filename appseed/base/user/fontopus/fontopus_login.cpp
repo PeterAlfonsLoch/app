@@ -509,7 +509,7 @@ namespace fontopus
 
 
       int32_t x1 = 49 * r;
-      int32_t x2 = (m_rect.width() - 49 * 2) * r;
+      int32_t x2 = x1 + (m_rect.width() - 49 * 2) * r;
       int32_t h1 = 23 * r;
       int32_t pad = 5 * r;
 
@@ -524,7 +524,7 @@ namespace fontopus
       m_tap.m_rect.left = x1;
       m_tap.m_rect.right = x2;
 
-      int32_t y = 49 + 86 * r;
+      int32_t y = (49 + 86) * r;
       m_labelUser.m_rect.top = y;
       y += h1;
       m_labelUser.m_rect.bottom = y;
