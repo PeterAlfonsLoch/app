@@ -643,7 +643,7 @@ namespace plugin
             if(str1 == "ca2login")
             {
                // graphical - 2 - user interface for login - fontopus - through the plugin
-               if(!System.install().is(NULL, strBuildNumber, "application", "app/core/fontopus", strLocale, strSchema))
+               /*if(!System.install().is(NULL, strBuildNumber, "application", "app/core/fontopus", strLocale, strSchema))
                {
 /*                  System.install().start(": app=session session_start=app/core/fontopus app_type=application install");
 #ifdef WINDOWS
@@ -653,7 +653,7 @@ namespace plugin
 #endif
                   m_bMainReady = false;*/
 
-                  string strCommandLine(": app=session session_start=app/core/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
+/*                  string strCommandLine(": app=session session_start=app/core/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
 
 
 #ifdef WINDOWSEX
@@ -676,14 +676,14 @@ namespace plugin
 
 
                   return;
-               }
+               }*/
                m_strCa2LoginRuri = string(lpszEnd + 1, iCount - (lpszEnd - lpszStart) - 1);
                start_ca2_login();
             }
             else if(str1 == "ca2logout")
             {
                // graphical - 2 - user interface for logout - fontopus - through the plugin
-               if(!System.install().is(NULL, strBuildNumber, "application", "app/core/fontopus", strLocale, strSchema))
+               /*if(!System.install().is(NULL, strBuildNumber, "application", "app/core/fontopus", strLocale, strSchema))
                {
                   /*
                   System.install().start(": app=session session_start=app/core/fontopus app_type=application install");
@@ -694,7 +694,7 @@ namespace plugin
 #endif
                   m_bMainReady = false;*/
 
-                  string strCommandLine(": app=session session_start=app/core/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
+/*                  string strCommandLine(": app=session session_start=app/core/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
 
 #ifdef WINDOWSEX
                   PostMessage(m_phost->::small_ipc_tx_channel::m_oswindow, WM_USER + 100, 1, 1);
@@ -716,7 +716,7 @@ namespace plugin
 
 
                   return;
-               }
+               }*/
                m_strCa2LogoutRuri = string(lpszEnd + 1, iCount - (lpszEnd - lpszStart) - 1);
                start_ca2_logout();
             }
