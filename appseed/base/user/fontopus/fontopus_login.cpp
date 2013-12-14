@@ -486,19 +486,19 @@ namespace fontopus
       if (davailwh > dwh) // remaining width
       {
 
-         h = min(h, availh);
-         w = min(w, h  * dwh);
+         h = min(stdh, availh);
+         w = min(stdw, h  * dwh);
 
       }
       else // remaining height
       {
          
-         w = min(h, availw);
-         h = min(w, w / dwh);
+         w = min(stdh, availw);
+         h = min(stdw, w / dwh);
 
       }
       
-      double r = (double) r / (double) stdw;
+      double r = (double) w / (double) stdw;
 
       m_rect.left = m_puiParent->m_rect.left  + (width(m_puiParent->m_rect) - w) / 2;
       m_rect.top = m_puiParent->m_rect.top + (height(m_puiParent->m_rect) - h) / 2;
