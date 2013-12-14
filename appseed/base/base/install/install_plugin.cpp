@@ -878,6 +878,12 @@ namespace install
 #endif
 
       }
+      else if (m_bLogin)
+      {
+
+         get_login().layout();
+
+      }
 
    }
 

@@ -32,13 +32,6 @@ namespace fontopus
       m_password.set_parent(this);
       m_tap.set_parent(this);
 
-      int w = 884;
-      int h = 184 + 23 + 184;
-
-      m_rect.left = left;
-      m_rect.top = top;
-      m_rect.right = m_rect.left + w;
-      m_rect.bottom = m_rect.top + h;
 
       m_labelUser.m_strText = "e-mail:";
       m_labelPassword.m_strText = "password:";
@@ -468,10 +461,55 @@ namespace fontopus
       m_tap.m_bVisible = true;
 
 
-      int32_t x1 = 49;
-      int32_t x2 = m_rect.width() - 49 * 2;
-      int32_t h1 = 23;
-      int32_t pad = 5;
+      int stdw = 884;
+      int stdh = 184 + 23 + 184;
+
+      double dwh = (double) stdw / (double) stdh;
+
+      int availw = width(m_puiParent->m_rect) * (1.0 - 0.14);
+      int availh = height(m_puiParent->m_rect) * (1.0 - 0.14);
+
+      double davailwh;
+      
+      if (availh == 0.0)
+      {
+         davailwh = 1.0;
+      }
+      else
+      {
+         davailwh = (double) availw / (double) availh;
+      }
+
+      int h;
+      int w;
+         
+      if (davailwh > dwh) // remaining width
+      {
+
+         h = min(h, availh);
+         w = min(w, h  * dwh);
+
+      }
+      else // remaining height
+      {
+         
+         w = min(h, availw);
+         h = min(w, w / dwh);
+
+      }
+      
+      double r = (double) r / (double) stdw;
+
+      m_rect.left = m_puiParent->m_rect.left  + (width(m_puiParent->m_rect) - w) / 2;
+      m_rect.top = m_puiParent->m_rect.top + (height(m_puiParent->m_rect) - h) / 2;
+      m_rect.right = m_rect.left + w;
+      m_rect.bottom = m_rect.top + h;
+
+
+      int32_t x1 = 49 * r;
+      int32_t x2 = (m_rect.width() - 49 * 2) * r;
+      int32_t h1 = 23 * r;
+      int32_t pad = 5 * r;
 
       m_labelUser.m_rect.left = x1;
       m_labelUser.m_rect.right = x2;
@@ -484,7 +522,7 @@ namespace fontopus
       m_tap.m_rect.left = x1;
       m_tap.m_rect.right = x2;
 
-      int32_t y = 49 + 86;
+      int32_t y = 49 + 86 * r;
       m_labelUser.m_rect.top = y;
       y += h1;
       m_labelUser.m_rect.bottom = y;
