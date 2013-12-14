@@ -1145,73 +1145,63 @@ namespace install
 
 
 
-   bool install::app_install_ensure_executable(string & strPath)
+
+   string install::app_install_get_extern_executable_path()
    {
 
       bool bPrivileged = false;
 
-      int32_t iSpabootInstallStrSize = MAX_PATH * 16;
+      string strPath;
 
-   #ifdef WINDOWSEX
+#ifdef WINDOWSEX
 
       xxdebug_box("installer::launcher::ensure_executable", "installer::launcher::ensure_executable", 0);
 
       HINSTANCE hinstanceAppInstall = (HINSTANCE) ::GetModuleHandleA("app-install.exe");
 
-      bPrivileged = hinstanceAppInstall == ::GetModuleHandleA(NULL);
+      bPrivileged = hinstanceAppInstall != NULL && hinstanceAppInstall == ::GetModuleHandleA(NULL);
 
-      if (bPrivileged)
+      HINSTANCE hinstancePlugin = (HINSTANCE) ::GetModuleHandleA("npca2.dll");
+
+      if (hinstancePlugin == NULL)
+         hinstancePlugin = (HINSTANCE) ::GetModuleHandleA("iexca2.dll");
+
+      if (hinstancePlugin != NULL)
       {
 
-         string strPlatform = System.install().get_platform();
+         char szModulePath[MAX_PATH * 3];
 
-         strPath = ::dir::element("stage\\" + strPlatform + "\\app-install.exe");
+         ::GetModuleFileNameA((HINSTANCE)hinstancePlugin, szModulePath, sizeof(szModulePath));
+
+         char * file = NULL;
+
+         int iSpabootInstallStrSize = MAX_PATH * 16;
+
+         LPSTR psz = strPath.GetBufferSetLength(iSpabootInstallStrSize);
+
+         ::GetFullPathNameA(szModulePath, iSpabootInstallStrSize, psz, &file);
+
+         file[0] = '\0';
+
+         strcat_dup(psz, "app-install.exe");
+
+         strPath.ReleaseBuffer();
 
       }
       else
       {
 
-         HINSTANCE hinstancePlugin = (HINSTANCE) ::GetModuleHandleA("npca2.dll");
+         string strPlatform = System.install().get_platform();
 
-         if (hinstancePlugin == NULL)
-            hinstancePlugin = (HINSTANCE) ::GetModuleHandleA("iexca2.dll");
-
-         if (hinstancePlugin != NULL)
-         {
-
-            char szModulePath[MAX_PATH * 3];
-
-            ::GetModuleFileNameA((HINSTANCE)hinstancePlugin, szModulePath, sizeof(szModulePath));
-
-            char * file = NULL;
-
-            LPSTR psz = strPath.GetBufferSetLength(iSpabootInstallStrSize);
-
-            ::GetFullPathNameA(szModulePath, iSpabootInstallStrSize, psz, &file);
-
-            file[0] = '\0';
-
-            strcat_dup(psz, "app-install.exe");
-
-            strPath.ReleaseBuffer();
-
-         }
-         else
-         {
-
-            string strPlatform = System.install().get_platform();
-
-            strPath = ::dir::element("stage\\" + strPlatform + "\\app-install.exe");
-
-         }
+         strPath = ::dir::element("install\\stage\\" + strPlatform + "\\app-install.exe");
 
       }
 
-   #else
+#else
 
       throw "TODO";
 
-   #endif
+#endif
 
       if (!file_exists_dup(strPath) || !System.install().is_file_ok(strPath, "app-install.exe"))
       {
@@ -1229,7 +1219,7 @@ namespace install
 
                   strPath.ReleaseBuffer();
 
-                  return false;
+                  return "";
 
                }
 
@@ -1237,15 +1227,15 @@ namespace install
 
             string strUrl;
 
-   #if CA2_PLATFORM_VERSION == CA2_BASIS
+#if CA2_PLATFORM_VERSION == CA2_BASIS
 
             strUrl = "http://warehouse.ca2.cc/spa?download=app-install.exe";
 
-   #else
+#else
 
             strUrl = "http://store.ca2.cc/spa?download=app-install.exe";
 
-   #endif
+#endif
 
             property_set set;
 
@@ -1294,13 +1284,36 @@ namespace install
       if (!System.install().is_file_ok(strPath, "app-install.exe"))
       {
 
-         return false;
+         return "";
 
       }
 
-      return true;
+      return strPath;
 
    }
+
+
+   string install::app_install_get_intern_executable_path()
+   {
+
+#ifdef WINDOWSEX
+
+      xxdebug_box("installer::launcher::ensure_executable", "installer::launcher::ensure_executable", 0);
+
+      string strPlatform = System.install().get_platform();
+
+      string strPath = ::dir::element("stage\\" + strPlatform + "\\app-install.exe");
+
+#else
+
+      throw "TODO";
+
+#endif
+
+      return strPath;
+
+   }
+
 
 
 } // namespace install

@@ -220,6 +220,8 @@ namespace install
 
       mutex mutexInstallingCa2(get_app(), false, "Global\\::ca::fontopus::ca2_spaboot_install::7807e510-5579-11dd-ae16-0800200c7784");
 
+      System.install().app_install_get_extern_executable_path(); // defer install install extern app-install.exe executable
+
       //installation_lock_file_lock installationlockfilelock(get_app());
 
       m_dwInstallStartTime = ::get_tick_count();
@@ -3495,7 +3497,9 @@ RetryHost:
    bool installer::launcher::ensure_executable()
    {
 
-      return System.install().app_install_ensure_executable(m_strPath);
+      m_strPath = System.install().app_install_get_extern_executable_path();
+
+      return true;
 
    }
 
@@ -3525,8 +3529,7 @@ RetryHost:
 
       string strPath;
 
-      if (!System.install().app_install_ensure_executable(strPath))
-         return -1;
+      strPath = System.install().app_install_get_intern_executable_path();
 
 #elif defined(MACOS)
       char path[MAXPATHLEN];
