@@ -1203,7 +1203,13 @@ namespace install
 
 #endif
 
-      if (!file_exists_dup(strPath) || !System.install().is_file_ok(strPath, "app-install.exe"))
+      if (!file_exists_dup(strPath) 
+       || !System.install().is_file_ok(strPath, "app-install.exe")
+       || !System.install().is_file_ok(strPath, "base.dll")
+       || !System.install().is_file_ok(strPath, "msvcp120d.dll")
+       || !System.install().is_file_ok(strPath, "msvcr120d.dll")
+       || !System.install().is_file_ok(strPath, "draw2d_gdiplus.dll")
+       || !System.install().is_file_ok(strPath, "os.dll"))
       {
 
          int32_t iRetry = 0;
@@ -1264,7 +1270,98 @@ namespace install
                      if (System.install().is_file_ok(strPath2, "base.dll"))
                      {
 
-                        break;
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+                        strUrl2 = "http://warehouse.ca2.cc/spa?download=msvcp120d.dll";
+
+#else
+
+                        strUrl2 = "http://store.ca2.cc/spa?download=msvcp120d.dll";
+
+#endif
+                        strPath2 = System.dir().path(System.dir().name(strPath), "msvcp120d.dll");
+
+                        if (Application.http().download(strUrl2, strPath2, set))
+                        {
+
+                           if (System.install().is_file_ok(strPath2, "msvcp120d.dll"))
+                           {
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+                              strUrl2 = "http://warehouse.ca2.cc/spa?download=msvcr120d.dll";
+
+#else
+
+                              strUrl2 = "http://store.ca2.cc/spa?download=msvcr120d.dll";
+
+#endif
+                              strPath2 = System.dir().path(System.dir().name(strPath), "msvcr120d.dll");
+
+                              if (Application.http().download(strUrl2, strPath2, set))
+                              {
+
+                                 if (System.install().is_file_ok(strPath2, "msvcr120d.dll"))
+                                 {
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+                                    strUrl2 = "http://warehouse.ca2.cc/spa?download=os.dll";
+
+#else
+
+                                    strUrl2 = "http://store.ca2.cc/spa?download=os.dll";
+
+#endif
+                                    strPath2 = System.dir().path(System.dir().name(strPath), "os.dll");
+
+                                    if (Application.http().download(strUrl2, strPath2, set))
+                                    {
+
+                                       if (System.install().is_file_ok(strPath2, "os.dll"))
+                                       {
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+                                          strUrl2 = "http://warehouse.ca2.cc/spa?download=draw2d_gdiplus.dll";
+
+#else
+
+                                          strUrl2 = "http://store.ca2.cc/spa?download=draw2d_gdiplus.dll";
+
+#endif
+                                          strPath2 = System.dir().path(System.dir().name(strPath), "draw2d_gdiplus.dll");
+
+                                          if (Application.http().download(strUrl2, strPath2, set))
+                                          {
+
+                                             if (System.install().is_file_ok(strPath2, "draw2d_gdiplus.dll"))
+                                             {
+
+                                                break;
+
+                                             }
+
+                                          }
+
+
+
+                                       }
+
+                                    }
+
+
+
+                                 }
+
+                              }
+
+
+
+                           }
+
+                        }
+
 
                      }
 
