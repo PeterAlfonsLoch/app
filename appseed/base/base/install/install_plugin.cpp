@@ -40,16 +40,12 @@ namespace install
       ::simple_ui::interaction(papp),
       ::os::simple_ui(papp),
       hotplugin::plugin(papp),
-      m_login(papp, 49, 23),
       m_canvas(papp)
    {
 
-      m_login.set_parent(this);
+      
 
       m_pstyle = this;
-
-      m_login.m_pcallback     = this;
-      m_login.m_pstyle        = this;
 
       m_iHealingSurface       = 0;
       m_iEdge                 = -1;
@@ -92,7 +88,7 @@ namespace install
       if (!::hotplugin::plugin::set_host(phost))
          return false;
 
-      m_login.m_strRequestingServer = System.url().get_server(m_phost->m_strHostPluginLocation);
+      get_login().m_strRequestingServer = System.url().get_server(m_phost->m_strHostPluginLocation);
 
       return true;
 
@@ -313,7 +309,7 @@ namespace install
          xxdebug_box("plugin::start_ca2 not logged", "not logged", 0);
 
          m_bLogin = true;
-         m_login.m_bVisible = false;
+         get_login().m_bVisible = false;
          m_bLogged = calc_logged();
 
          return;
@@ -367,6 +363,31 @@ namespace install
    bool plugin::hist(const char * pszUrl)
    {
       return open_url(pszUrl);
+   }
+
+
+   ::fontopus::login &     plugin::get_login()
+   {
+      
+      ::fontopus::login * plogin = System.oprop("install_plugin_fontopus_login").cast < ::fontopus::login >();
+      
+      if (plogin == NULL)
+      {
+         
+         plogin = new fontopus::login(get_app(), 49, 23);
+
+         plogin->set_parent(this);
+
+         plogin->m_pcallback = this;
+
+         plogin->m_pstyle = this;
+         
+         System.oprop("install_plugin_fontopus_login")  = plogin;
+
+      }
+
+      return *plogin;
+
    }
 
 
@@ -487,7 +508,7 @@ namespace install
 
       if(m_bLogin)
       {
-         m_login.draw(pgraphics);
+         get_login().draw(pgraphics);
       }
       else if (System.install().is_installing_ca2())
       {
@@ -540,7 +561,7 @@ namespace install
 
 #endif
 
-      if((!m_bLogin || !m_login.m_bVisible) && bInstallingCa2)
+      if((!m_bLogin || !get_login().m_bVisible) && bInstallingCa2)
       {
 
          on_bare_paint(pgraphics, lprect);
@@ -554,7 +575,7 @@ namespace install
    bool plugin::on_lbutton_up(int x, int y)
    {
 
-      if (m_login.m_bVisible && ::os::simple_ui::on_lbutton_up(x, y))
+      if (get_login().m_bVisible && ::os::simple_ui::on_lbutton_up(x, y))
          return true;
 
       m_iHealingSurface = m_canvas.increment_mode();
@@ -628,7 +649,7 @@ namespace install
    bool plugin::initialize()
    {
 
-      set_focus(&m_login.m_editUser);
+      set_focus(&get_login().m_editUser);
 
       start_ca2();
 
@@ -937,9 +958,9 @@ namespace install
    bool plugin::calc_logged()
    {
 
-      m_login.initialize();
+      get_login().initialize();
 
-      m_login.start_login();
+      get_login().start_login();
 
       return m_bLogged;
 
@@ -960,12 +981,12 @@ namespace install
       else
       {
 
-         m_login.defer_translate(this);
+         get_login().defer_translate(this);
 
          m_bLogin    = true;
-         //m_login.m_editUser.m_strText = "";
-         //m_login.m_password.m_strText = "";
-         m_login.m_bVisible = true;
+         //get_login().m_editUser.m_strText = "";
+         //get_login().m_password.m_strText = "";
+         get_login().m_bVisible = true;
 
       }
 
