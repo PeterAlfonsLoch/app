@@ -369,7 +369,7 @@ namespace install
    ::fontopus::login &     plugin::get_login()
    {
       
-      ::fontopus::login * plogin = System.oprop("install_plugin_fontopus_login").cast < ::fontopus::login >();
+      ::fontopus::login * plogin = oprop("install_plugin_fontopus_login").cast < ::fontopus::login >();
       
       if (plogin == NULL)
       {
