@@ -1339,7 +1339,7 @@ retry:
       string strCookie = psocket->response().cookies().get_cookie_header();
       set[__id(cookie)] = strCookie;
 
-      e_status estatus;
+      e_status estatus = status_fail;
 
       int32_t iStatusCode = psocket->outattr("http_status_code");
 #ifdef BSD_STYLE_SOCKETS
