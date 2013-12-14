@@ -493,12 +493,14 @@ namespace fontopus
       else // remaining height
       {
          
-         w = min(stdh, availw);
-         h = min(stdw, w / dwh);
+         w = min(stdw, availw);
+         h = min(stdh, w / dwh);
 
       }
       
       double r = (double) w / (double) stdw;
+
+      oprop("r") = r;
 
       m_rect.left = m_puiParent->m_rect.left  + (width(m_puiParent->m_rect) - w) / 2;
       m_rect.top = m_puiParent->m_rect.top + (height(m_puiParent->m_rect) - h) / 2;
@@ -635,7 +637,9 @@ namespace fontopus
          (GetGValue(crOut) + GetGValue(crIn)) / 2,
          (GetBValue(crOut) + GetBValue(crIn)) / 2);
 
-      draw_ca2_with_border2(pgraphics, 49, 49, 84 + 1 + 1, 1, 1, crBk, cr, crBorderOut, crBorderIn);
+      double r = oprop("r");
+
+      draw_ca2_with_border2(pgraphics, 49 * r, 49 * r, (84 + 1 + 1) * r, 1, 1, crBk, cr, crBorderOut, crBorderIn);
 
    }
 
