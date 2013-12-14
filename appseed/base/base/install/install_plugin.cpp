@@ -382,7 +382,7 @@ namespace install
 
          plogin->m_pstyle = this;
          
-         System.oprop("install_plugin_fontopus_login")  = plogin;
+         oprop("install_plugin_fontopus_login")  = plogin;
 
       }
 
