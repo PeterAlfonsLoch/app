@@ -39,7 +39,6 @@ namespace install
       } ;
 
       thread_start_ca2     m_startca2;
-      ::fontopus::login           m_login;
       canvas               m_canvas;
       uint32_t             m_dwLastInstallingCheck;
       uint32_t             m_dwLastRestart;
@@ -58,6 +57,9 @@ namespace install
 
       plugin(sp(base_application) papp);
       virtual ~plugin();
+
+
+      ::fontopus::login &     get_login();
 
 
       virtual bool hist(const char * pszUrl);
