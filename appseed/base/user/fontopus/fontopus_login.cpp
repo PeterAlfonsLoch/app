@@ -105,8 +105,17 @@ namespace fontopus
    void login::initialize()
    {
 
-      crypto_file_get(::dir::userappdata("license_auth/00001.data"), m_editUser.m_strText, "");
-      crypto_file_get(::dir::userappdata("license_auth/00002.data"), m_strPasshash, calc_key_hash());
+      string strText;
+
+      crypto_file_get(::dir::userappdata("license_auth/00001.data"), strText, "");
+
+      m_editUser.m_strText = strText;
+
+      string strPasshash;
+
+      crypto_file_get(::dir::userappdata("license_auth/00002.data"), strPasshash, calc_key_hash());
+
+      m_strPasshash = strPasshash;
 
       //crypt_file_get(dir::usersystemappdata(dir::default_os_user_path_prefix(), "license_auth", "00001.data"), m_editUser.m_strText, "");
 
