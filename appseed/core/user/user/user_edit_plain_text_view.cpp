@@ -30,20 +30,20 @@ namespace user
 
    }
 
-   void edit_plain_text_view::_001OnSetText()
+   void edit_plain_text_view::_001OnSetText(bool bUser)
    {
 
 
-      ::user::edit_plain_text::_001OnSetText();
+      ::user::edit_plain_text::_001OnSetText(bUser);
 
 
    }
 
-   void edit_plain_text_view::_001OnUpdate()
+   void edit_plain_text_view::_001OnUpdate(bool bUser)
    {
 
 
-      ::user::edit_plain_text::_001OnUpdate();
+      ::user::edit_plain_text::_001OnUpdate(bUser);
 
 
    }

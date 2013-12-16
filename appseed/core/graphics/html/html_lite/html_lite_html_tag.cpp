@@ -84,7 +84,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
    }
 
    // tag names always begin with an alphabet
-   if (!::isalpha(*lpszBegin))
+   if (!::isalpha_dup(*lpszBegin))
    {
       bClosingTag = (*lpszBegin == '/');
       if (bClosingTag)

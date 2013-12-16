@@ -350,13 +350,13 @@ namespace user
 
    }
 
-   void combo_box::_001SetText(const char * psz)
+   void combo_box::_001SetText(const char * psz, bool bUser)
    {
 
       if(m_bEdit)
       {
 
-         ::user::edit_plain_text::_001SetText(psz);
+         ::user::edit_plain_text::_001SetText(psz, bUser);
 
       }
       else
@@ -726,7 +726,7 @@ namespace user
 
       _001GetListText(iSel, strItem);
 
-      _001SetText(strItem);
+      _001SetText(strItem, bUser);
 
       m_iSel = iSel;
 

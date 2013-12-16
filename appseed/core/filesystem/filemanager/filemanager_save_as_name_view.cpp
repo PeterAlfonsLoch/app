@@ -69,7 +69,7 @@ void FileManagerSaveAsView::on_update(sp(::user::impact) pSender, LPARAM lHint, 
                   _001GetSelection(range);
                   if(range.get_item_count() > 0)
                   {
-                     ptext->_001SetText(m_itema.get_item(range.ItemAt(0).get_lower_bound()).m_strName);
+                     ptext->_001SetText(m_itema.get_item(range.ItemAt(0).get_lower_bound()).m_strName, false);
                   }
                }
             }
@@ -96,7 +96,7 @@ void FileManagerSaveAsView::_017Synchronize()
    _001GetText(strText);
    if(strText != System.file().title_(GetFileManager()->get_filemanager_data()->m_pmanager->m_strTopic))
    {
-      _001SetText(System.file().title_(GetFileManager()->get_filemanager_data()->m_pmanager->m_strTopic));
+      _001SetText(System.file().title_(GetFileManager()->get_filemanager_data()->m_pmanager->m_strTopic), false);
    }
 }
 

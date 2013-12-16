@@ -26,6 +26,14 @@
 	<item code="key_y" value="y" />
 	<item code="key_z" value="z" />
 	<item code="key_semicolon" value="ç" />
+	<item code="key_semicolon2" value=";" />
+	<item code="key_semicolon3" value="ç" />
+	<item code="key_slash2" value="/" />
+	<item code="key_backslash2" value="\\" />
+	<item code="key_closebracket2" value="]" />
+	<item code="key_openbracket2" value="[" />
+	<item code="key_til2" escape="~"  />
+	<item code="key_acute2" escape="´"  />
 	<item code="key_comma" value="," />
 	<item code="key_dot" value="." />
 	<item code="key_a" shift="1" value="A" />
@@ -55,6 +63,14 @@
 	<item code="key_y" shift="1" value="Y" />
 	<item code="key_z" shift="1" value="Z" />
 	<item code="key_semicolon" shift="1" value="Ç" />
+	<item code="key_semicolon2" shift="1" value=":" />
+	<item code="key_semicolon3" shift="1" value="Ç" />
+	<item code="key_slash2" shift="1" value="?" />
+	<item code="key_backslash2" shift="1" value="|" />
+	<item code="key_closebracket2" shift="1" value="}" />
+	<item code="key_openbracket2" shift="1" value="{" />
+	<item code="key_til2" shift="1" escape="^" />
+	<item code="key_acute2" shift="1" escape="`"  />
 	<item code="key_comma" shift="1" value="&lt;" />
 	<item code="key_dot" shift="1" value="&gt;" />
 	<item code="key_space" value=" " />

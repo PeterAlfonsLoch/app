@@ -59,7 +59,7 @@ namespace html
             
 
 
-            m_pcombo->_001SetText(pelemental->m_pbase->get_tag()->get_attr_value("value"));
+            m_pcombo->_001SetText(pelemental->m_pbase->get_tag()->get_attr_value("value"), false);
             m_pcombo->SetFont(pdata->get_font(pelemental)->m_font);
             m_pcombo->m_bEdit = false;
 

@@ -19,6 +19,14 @@
 	<item code="75" value="key_k" />
 	<item code="76" value="key_l" />
 	<item code="47" value="key_semicolon" />
+	<item code="191" value="key_semicolon2" />
+	<item code="186" value="key_semicolon3" />
+	<item code="193" value="key_slash2" />
+	<item code="226" value="key_backslash2" />
+	<item code="220" value="key_closebracket2" />
+	<item code="221" value="key_openbracket2" />
+	<item code="222" value="key_til2" />
+	<item code="219" value="key_acute2" />
 	<item code="90" value="key_z" />
 	<item code="88" value="key_x" />
 	<item code="67" value="key_c" />

@@ -138,8 +138,8 @@ namespace user
 
       virtual void _001OnAfterChangeText();
 
-      virtual void _001OnUpdate();
-      virtual void _001OnSetText();
+      virtual void _001OnUpdate(bool bUser);
+      virtual void _001OnSetText(bool bUser);
 
 
 
@@ -159,8 +159,8 @@ namespace user
 
       void _001GetViewSel(strsize &iSelStart, strsize &iSelEnd);
 
-      void _001SetText(const char * psz);
-      void _001SetSelText(const char * psz);
+      void _001SetText(const char * psz, bool bUser);
+      void _001SetSelText(const char * psz, bool bUser);
       void _001SetSel(strsize iSelStart, strsize iSelEnd);
 
       bool should_load_full_file();

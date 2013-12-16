@@ -48,7 +48,7 @@ namespace html
             m_pedit->m_strName = pelemental->m_pbase->get_tag()->get_attr_value("name");
             m_pedit->m_id = pelemental->m_pbase->get_tag()->get_attr_value("id");
             m_pedit->m_pimpl->m_id = m_pedit->m_id;
-            m_pedit->_001SetText(pelemental->m_pbase->get_tag()->get_attr_value("value"));
+            m_pedit->_001SetText(pelemental->m_pbase->get_tag()->get_attr_value("value"), false);
             m_pedit->SetFont(pdata->get_font(pelemental)->m_font);
          }
          pdata->m_focusptra.add_unique(m_pedit);

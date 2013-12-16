@@ -45,6 +45,7 @@ namespace user
      System.set_enum_name(key_y, "key_y");
      System.set_enum_name(key_z, "key_z");
      System.set_enum_name(key_semicolon, "key_semicolon");
+     System.set_enum_name(key_semicolon2, "key_semicolon2");
      System.set_enum_name(key_comma, "key_comma");
      System.set_enum_name(key_dot, "key_dot");
      System.set_enum_name(key_shift, "key_shift");
@@ -74,6 +75,13 @@ namespace user
      System.set_enum_name(key_tab, "key_tab");
      System.set_enum_name(key_capslock, "key_capslock");
      System.set_enum_name(key_hyphen, "key_hyphen");
+     System.set_enum_name(key_semicolon3, "key_semicolon3");
+     System.set_enum_name(key_slash2, "key_slash2");
+     System.set_enum_name(key_backslash2, "key_backslash2");
+     System.set_enum_name(key_closebracket2, "key_closebracket2");
+     System.set_enum_name(key_openbracket2, "key_openbracket2");
+     System.set_enum_name(key_til2, "key_til2");
+     System.set_enum_name(key_acute2, "key_acute2");
 
 
    }

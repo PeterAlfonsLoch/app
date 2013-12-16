@@ -54,6 +54,8 @@ namespace user
       key_y,
       key_z,
       key_semicolon,
+      key_semicolon2,
+      key_semicolon3,
       key_comma,
       key_dot,
       key_shift,
@@ -83,6 +85,12 @@ namespace user
       key_tab,
       key_capslock,
       key_hyphen,
+      key_slash2,
+      key_backslash2,
+      key_closebracket2,
+      key_openbracket2,
+      key_til2,
+      key_acute2,
       
       
    };

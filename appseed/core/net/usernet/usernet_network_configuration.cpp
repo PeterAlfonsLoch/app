@@ -55,10 +55,10 @@ namespace usernet // ca8 + cube
          int32_t iProxyPort = doc.get_root()->attr("port");
          sp(::user::interaction) pguie = m_pview->get_child_by_name("server");
          sp(text_interface) ptext =  (pguie.m_p);
-         ptext->_001SetText(strProxy);
+         ptext->_001SetText(strProxy, false);
          pguie = m_pview->get_child_by_name("port");
          ptext =  (pguie.m_p);
-         ptext->_001SetText(::str::from(iProxyPort));
+         ptext->_001SetText(::str::from(iProxyPort), false);
       }
 
    }

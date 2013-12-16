@@ -100,7 +100,11 @@ namespace http
 
       set["get_memory"] = &memory;
 
-      return System.http().get(pszUrl, process_set(set, pszUrl));
+      bool bOk = System.http().get(pszUrl, process_set(set, pszUrl));
+
+      set.remove_by_name("get_memory");
+
+      return bOk;
 
    }
 

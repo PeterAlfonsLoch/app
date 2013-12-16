@@ -1445,7 +1445,7 @@ void property_set::replace_gen(string & str)
       }
       else if(ch == '$')
       {
-         if(!(isalpha(chNext) || chNext == '_'))
+         if(!(isalpha_dup(chNext) || chNext == '_'))
          {
             // error
             break;
@@ -1455,7 +1455,7 @@ void property_set::replace_gen(string & str)
          for(; iEnd < str.get_length(); iEnd++)
          {
             ch = str[iEnd];
-            if(!(isalpha(ch) || ch == '_' || isdigit(ch)))
+            if(!(isalpha_dup(ch) || ch == '_' || isdigit_dup(ch)))
             {
                break;
             }

@@ -88,7 +88,7 @@ namespace userex // ca8 + cube
       html::elemental * pelemental = m_pdocument->get_html_data()->get_element_by_id("timeout");
       if(pelemental != NULL)
       {
-         pelemental->set_string(str);
+         pelemental->set_string(str, false);
          m_pframe->layout();
       }
       //m_pdocument->m_propertyset["wait_message_dialog_timeout"] = (int32_t) ((m_dwDelay - dwTimeout) / 1000);

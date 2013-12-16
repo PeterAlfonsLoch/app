@@ -50,7 +50,7 @@ void form_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phin
                   html::elemental * pelemental = get_html_data()->get_element_by_id(get_html_data()->m_propertyset.m_propertya[i].name());
                   if(pelemental != NULL)
                   {
-                     pelemental->set_string(get_html_data()->m_propertyset.m_propertya[i].get_string());
+                     pelemental->set_string(get_html_data()->m_propertyset.m_propertya[i].get_string(), false);
                   }
                }
             }

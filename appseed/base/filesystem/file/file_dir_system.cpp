@@ -1251,7 +1251,7 @@ ret:
             if(papp->m_pbasesession != NULL && papp->m_pbasesession != papp &&
                (sp(base_application)) papp->m_pbasesystem != (sp(base_application)) papp)
             {
-               strPath = matter(papp->m_pbasesession, str, str2);
+               strPath = matter(papp->m_pbasesession, str, str2, bDir);
                if(bDir)
                {
                   if(System.dir().is(strPath, papp))
@@ -1272,7 +1272,7 @@ ret:
          if(papp->m_pbasesystem != NULL && papp->m_pbasesystem != papp &&
             (sp(base_application)) papp->m_pbasesystem != (sp(base_application)) papp->m_pbasesession)
          {
-            strPath = matter(papp->m_pbasesystem, str, str2);
+            strPath = matter(papp->m_pbasesystem, str, str2, bDir);
             if(bDir)
             {
                if(System.dir().is(strPath, get_app()))

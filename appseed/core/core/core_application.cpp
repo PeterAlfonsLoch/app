@@ -2172,7 +2172,7 @@ bool application::on_run_exception(::exception::exception & e)
 
       not_installed & notinstalled = dynamic_cast <not_installed &> (e);
 
-      if (false && ::is_debugger_attached())
+      if (::is_debugger_attached())
       {
 
          try

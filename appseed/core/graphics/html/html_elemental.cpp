@@ -1803,7 +1803,7 @@ namespace html
       return NULL;
    }
 
-   void elemental::_001SetText(const char * psz)
+   void elemental::_001SetText(const char * psz, bool bUser)
    {
       if(m_pbase->get_type() == base::type_tag)
       {

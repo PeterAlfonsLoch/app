@@ -55,7 +55,7 @@ namespace user
       virtual void _001SetCurSelByData(uint_ptr ui, bool bUser = false);
 
       virtual void _001GetText(string & str);
-      virtual void _001SetText(const char * psz);
+      virtual void _001SetText(const char * psz, bool bUser);
 
 
       virtual void _001GetListText(index iSel, string & str) const;

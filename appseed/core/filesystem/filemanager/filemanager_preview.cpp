@@ -82,7 +82,7 @@ namespace filemanager
             _001GetSelection(range);
             if(range.get_item_count() > 0)
             {
-            ptext->_001SetText(m_itema.get_item(range.ItemAt(0).get_lower_bound()).m_strName);
+            ptext->_001SetText(m_itema.get_item(range.ItemAt(0).get_lower_bound()).m_strName, false);
             }
             }
             }

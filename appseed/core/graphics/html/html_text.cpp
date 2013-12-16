@@ -79,7 +79,7 @@ namespace html
 
          if(IsWindow() && pdata->m_bEdit)
          {
-            _001SetText(str);
+            _001SetText(str, false);
          }
 
 
@@ -739,11 +739,11 @@ namespace html
                   strTag = m_pelemental->m_propertyset["PropertyTag"];
                }
                string strClass;
-               if(m_pelemental->m_pparent->get_tag()->get_attr_value("class").has_char())
+               if (m_pelemental->m_pparent->get_tag() != NULL && m_pelemental->m_pparent->get_tag()->get_attr_value("class").has_char())
                {
                   strClass = m_pelemental->m_pparent->get_tag()->get_attr_value("class");
                }
-               else
+               else if (m_pelemental->get_tag() != NULL)
                {
                   strClass = m_pelemental->get_tag()->get_attr_value("class");
                }
@@ -851,7 +851,7 @@ namespace html
 
          _001GetText(strText);
 
-         m_pelemental->_001SetText(strText);
+         m_pelemental->_001SetText(strText, false);
 
          m_pelemental->m_pdata->m_pform->layout();
 

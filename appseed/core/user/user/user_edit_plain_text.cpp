@@ -120,7 +120,7 @@ namespace user
    void edit_plain_text::_001OnInitialUpdate(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      _001OnUpdate();
+      _001OnUpdate(false);
 
       ::draw2d::memory_graphics pdc(allocer());
       _001OnCalcLayout(pdc);
@@ -141,7 +141,7 @@ namespace user
 
    void edit_plain_text::VirtualOnSize()
    {
-      _001OnUpdate();
+      _001OnUpdate(false);
 
       ::draw2d::memory_graphics pdc(allocer());
       _001OnCalcLayout(pdc);
@@ -536,8 +536,8 @@ namespace user
       SetTimer(100, 100, NULL);
       m_ptree->m_iSelStart  = 0;
       m_ptree->m_iSelEnd = 0;
-      _001OnUpdate();
-      _001OnSetText();
+      _001OnUpdate(false);
+      _001OnSetText(false);
 
 
    }
@@ -822,7 +822,7 @@ namespace user
       ::draw2d::graphics * pdc = graphics;
       pview->_001OnCalcLayoutProc(pview, pdc);
 
-      pview->_001OnUpdate();
+      pview->_001OnUpdate(false);
       return 0;
    }
 
@@ -887,13 +887,13 @@ namespace user
       str.replace("\n", "\r\n");
    }
 
-   void edit_plain_text::_001SetSelText(const char * psz)
+   void edit_plain_text::_001SetSelText(const char * psz, bool bUser)
    {
       m_ptree->m_editfile.seek(m_ptree->m_iSelStart, ::file::seek_begin);
       m_ptree->m_editfile.Delete((file_size) (m_ptree->m_iSelEnd - m_ptree->m_iSelStart));
       m_ptree->m_editfile.seek(m_ptree->m_iSelStart, ::file::seek_begin);
       m_ptree->m_editfile.Insert(psz, strlen(psz));
-      _001OnUpdate();
+      _001OnUpdate(bUser);
       _001RedrawWindow();
    }
 
@@ -1506,7 +1506,7 @@ namespace user
                MacroRecord(psetsel);
                MacroRecord(new plain_text_file_command());
                MacroEnd();
-               _001OnUpdate();
+               _001OnUpdate(true);
                _001OnAfterChangeText();
             }
             else if(m_ptree->m_iSelEnd >= 0 && m_ptree->m_editfile.get_length() > 0)
@@ -1533,7 +1533,7 @@ namespace user
                MacroRecord(psetsel);
                MacroRecord(new plain_text_file_command());
                MacroEnd();
-               _001OnUpdate();
+               _001OnUpdate(true);
                _001OnAfterChangeText();
             }
          }
@@ -1705,7 +1705,7 @@ namespace user
             MacroRecord(psetsel);
             MacroRecord(new plain_text_file_command());
             MacroEnd();
-            _001OnUpdate();
+            _001OnUpdate(true);
             _001OnAfterChangeText();
          }
       }
@@ -1870,7 +1870,7 @@ namespace user
       CreateLineIndex();
       modifyEvent(0);
    }
-   void edit_plain_text::_001OnUpdate()
+   void edit_plain_text::_001OnUpdate(bool bUser)
    {
 
       string str;
@@ -1897,7 +1897,7 @@ namespace user
       try
       {
 
-         _001OnSetText();
+         _001OnSetText(bUser);
 
       }
       catch(...)
@@ -1970,7 +1970,7 @@ namespace user
 
       m_bGetTextNeedUpdate = true;
 
-      _001OnUpdate();
+      _001OnUpdate(true);
 
       _001OnAfterChangeText();
 
@@ -2006,7 +2006,7 @@ namespace user
       CreateLineIndex();
       m_bGetTextNeedUpdate = true;
 
-      _001OnUpdate();
+      _001OnUpdate(true);
       _001OnAfterChangeText();
 
       return true;
@@ -2032,15 +2032,15 @@ namespace user
 
 
 
-   void edit_plain_text::_001SetText(const char * psz)
+   void edit_plain_text::_001SetText(const char * psz, bool bUser)
    {
       ::data::simple_lock lockRoot(m_ptree);
       m_ptree->m_editfile.seek(0, ::file::seek_begin);
       m_ptree->m_editfile.Delete((::primitive::memory_size)m_ptree->m_editfile.get_length());
       m_ptree->m_editfile.seek(0, ::file::seek_begin);
       m_ptree->m_editfile.Insert(psz, strlen(psz));
-      _001OnUpdate();
-      _001OnSetText();
+      _001OnUpdate(bUser);
+      _001OnSetText(bUser);
       _001RedrawWindow();
    }
 
@@ -2083,18 +2083,18 @@ namespace user
       string str;
       str = Session.copydesk().get_plain_text();
       str.replace("\r\n", "\n");
-      _001SetSelText(str);
+      _001SetSelText(str, true);
       MacroBegin();
       MacroRecord(new plain_text_file_command());
       MacroEnd();
 
-      _001OnUpdate();
+      _001OnUpdate(true);
       _001OnAfterChangeText();
 
    }
 
 
-   void edit_plain_text::_001OnSetText()
+   void edit_plain_text::_001OnSetText(bool bUser)
    {
       m_iViewOffset = 0;
       rect rectClient;

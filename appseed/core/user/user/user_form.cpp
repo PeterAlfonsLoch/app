@@ -552,14 +552,14 @@ namespace user
                   {
                      string str;
                      str = var.m_str;
-                     ptext->_001SetText(str);
+                     ptext->_001SetText(str, false);
                   }
                   break;
                case var::type_int32:
                   {
                      string str;
                      str.Format("%d", var.int32());
-                     ptext->_001SetText(str);
+                     ptext->_001SetText(str, false);
                   }
                   break;
                default:

@@ -308,7 +308,7 @@ void html_form::_001GetText(string & str)
    get_html_data()->m_elemental.get_html(const_cast < ::html::data * > (get_html_data()), str);
 }
 
-void html_form::_001SetText(const char * psz)
+void html_form::_001SetText(const char * psz, bool bUser)
 {
 
    bool bFocus = Application.user()->get_keyboard_focus() == this || is_descendant(Application.user()->get_keyboard_focus());
