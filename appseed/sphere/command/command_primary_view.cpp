@@ -68,7 +68,7 @@ namespace command
                   strValue.Format("%f", pelement->get_value());
                   string strNewText = str + pelement->get_expression() + " = " + strValue  + "\n";
                   strNewText.replace("\r\n", "\n");
-                  _001SetText(strNewText);
+                  _001SetText(strNewText, false);
                   str = strNewText;
                   m_iCompromised = m_ptree->m_iSelStart = m_ptree->m_iSelEnd = strNewText.get_length();
                   bOk = true;
@@ -98,7 +98,7 @@ namespace command
                         strMinSec.Format("%f", fmod(pelement->get_value().mod(), 60.0));
                         string strNewText = str + pelement->get_expression() + " segundos = " + strValue  + " segundos = " + strMinFrac + " minutos = " + strMin + " minutos e " + strMinSec + " segundos\n";
                         strNewText.replace("\r\n", "\n");
-                        _001SetText(strNewText);
+                        _001SetText(strNewText, false);
                         str = strNewText;
                         m_iCompromised = m_ptree->m_iSelStart = m_ptree->m_iSelEnd = strNewText.get_length();
                         bOk = true;
@@ -117,7 +117,7 @@ namespace command
                         strMinSec.Format("%f", fmod(pelement->get_value().mod(), 60.0));
                         string strNewText = str + pelement->get_expression() + " segundos = " + strValue  + " segundos = " + strMinFrac + " minutos = " + strMin + " minutos e " + strMinSec + " segundos\n";
                         strNewText.replace("\r\n", "\n");
-                        _001SetText(strNewText);
+                        _001SetText(strNewText, false);
                         str = strNewText;
                         m_iCompromised = m_ptree->m_iSelStart = m_ptree->m_iSelEnd = strNewText.get_length();
                         Application.send_simple_command("winactionareaview::show_calendar(\""+ ::str::from((int32_t) pelement->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
@@ -146,7 +146,7 @@ namespace command
                   {
                      string strNewText = str + "executing " + strLine  + "...";
                      strNewText.replace("\r\n", "\n");
-                     _001SetText(strNewText);
+                     _001SetText(strNewText, false);
                      m_iCompromised = m_ptree->m_iSelStart = m_ptree->m_iSelEnd = strNewText.get_length();
                   }
 
