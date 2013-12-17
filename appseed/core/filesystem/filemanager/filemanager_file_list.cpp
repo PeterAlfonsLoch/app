@@ -85,6 +85,8 @@ namespace filemanager
    void file_list::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
 
+      ::filemanager::data_interface::on_update(pSender, lHint, phint);
+
       ::userfs::list::on_update(pSender, lHint, phint);
 
       if(m_bStatic && lHint == hint_add_location)
@@ -1180,161 +1182,8 @@ namespace filemanager
 
    void file_list::_017UpdateList(const char * lpcsz, ::action::context actioncontext)
    {
-      /*      UNREFERENCED_PARAMETER(lpcsz);
-      stringa straStrictOrder;
-      data_get(
-      data_get_current_sort_id(),
-      string(data_get_current_list_layout_id()) + ".straStrictOrder",
-      straStrictOrder);
-      index_biunique iaDisplayToStrict;
-      icon_layout iconlayout;
-      data_get(data_get_current_sort_id(), data_get_current_list_layout_id(),
-      iconlayout);
-      iaDisplayToStrict = iconlayout.m_iaDisplayToStrict;
-      index_biunique iaDisplayToStrictNew;
-
-      m_straFileSize.remove_all();
-      ::fs::list_item item;
-      get_fs_list_data()->m_itema.clear(NULL);
-      _001OnUpdateItemCount();*/
-      /*
-
-
-      string strParent = lpcsz;
-      //      ULONG ulRet;
-      //      STRRET strretDisplayName;
-      //      HRESULT hr;
-      uint32_t dwTimeIn;
-      uint32_t dwTimeOut;
-
-      dwTimeIn = get_tick_count();
-
-      int32_t iMaxSize;
-      iMaxSize = 1000;
-
-      int32_t iSize;
-      iSize = 0;
-
-      m_itema.SetItemCount(iMaxSize);
-
-      m_straStrictOrder.remove_all();
-
-      stringa straPath;
-      stringa straTitle;
-      if(strlen(lpcsz) == 0)
-      {
-      System.dir().root_ones(straPath);
-      straTitle = straPath;
-      }
-      else
-      {
-      System.dir().ls(lpcsz, &straPath, & straTitle);
-      }
-
-      for(int32_t i = 0; i < straPath.get_size(); i++)
-      {
-      item.m_flags.unsignalize_all();
-      if(Application.dir().is(straPath[i]))
-      {
-      item.m_flags.signalize(FlagFolder);
-      }
-      else
-      {
-      }
-      item.m_iImage = -1;
-      item.m_strPath = straPath[i];
-      item.m_strName = straTitle[i];
-      m_straStrictOrder.add(straPath[i]);
-
-      m_itema.SetItemAt(iSize, item);
-      iSize++;
-      if(iSize >= iMaxSize)
-      {
-      iMaxSize += 1000;
-      m_itema.SetItemCount(iMaxSize);
-      }
-      }
-      m_itema.SetItemCount(iSize);
-
-
-
-      //iaDisplayToStrict
-
-      dwTimeOut = get_tick_count();
-
-      TRACE("timeIn%d\n", dwTimeIn);
-      TRACE("timeOut%d\n", dwTimeIn);
-      TRACE("timeDelta%d\n", dwTimeOut - dwTimeIn);
-
-
-      _001OnUpdateItemCount();
-
-      if(m_eview == ViewIcon)
-      {
-      // primeiro, todos System arquivos que foram removidos
-      // ou seja, que existem no array antigo,
-      // mas não existe no novo.
-      for(index strictOld = 0; strictOld < straStrictOrder.get_count(); strictOld++)
-      {
-      string str = straStrictOrder[strictOld];
-      index find = m_straStrictOrder.find_first(str);
-      if(find < 0)
-      {
-      iaDisplayToStrictNew.remove_b(strictOld);
-      }
-      }*/
-      // segundo, reordena conforme a
-      // ordem que a listagem de arquivos fornecida pelo
-      // sistema operacional pode ser fornecida.
-      /*       for(index strictNew = 0; strictNew < m_straStrictOrder.get_count(); strictNew++)
-      {
-      string str = m_straStrictOrder[strictNew];
-      index strictOld = straStrictOrder.find_first(str);
-      if(strictOld >= 0)
-      {
-      index iDisplay = iaDisplayToStrict.get_a(strictOld);
-      iaDisplayToStrictNew.set(iDisplay, strictNew);
-      }
-      }
-      // terceiro, adiciona System novos arquivos nos primeiros espaços
-      // vazios
-      for(index strictNew = 0; strictNew < m_straStrictOrder.get_count(); strictNew++)
-      {
-      string str = m_straStrictOrder[strictNew];
-      index strictOld = straStrictOrder.find_first(str);
-      if(strictOld < 0)
-      {
-      iaDisplayToStrictNew.add_b_in_first_free_a(strictNew);
-      }
-      }
-      m_iconlayout.m_iaDisplayToStrict = iaDisplayToStrictNew;
-      }
-      else
-      {
-      m_itema.Arrange(ArrangeByName);
-      }
-
-      _001CreateImageList();
-
-      _001RedrawWindow();
-
-      file_size_add_request(true);
-      for(int32_t i = 0; i < m_itema.get_item_count(); i++)
-      {
-      pset->m_table.add_request(m_itema.get_item(i).m_strPath);
-      }*/
-      /*  if(m_eview == ViewIcon)
-      {
-      data_set(
-      data_get_current_sort_id(),
-      string(data_get_current_list_layout_id()) + ".straStrictOrder",
-      m_straStrictOrder);
-      m_iconlayout.m_iaDisplayToStrict = iaDisplayToStrictNew;
-      data_set_DisplayToStrict();
-      } */
 
       return ::userfs::list::_017UpdateList(lpcsz, actioncontext);
-
 
    }
 

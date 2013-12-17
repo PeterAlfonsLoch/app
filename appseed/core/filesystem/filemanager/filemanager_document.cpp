@@ -337,7 +337,7 @@ namespace filemanager
    void document::CreateViews()
    {
 
-      {
+      /*{
        
          ::user::view_update_hint uh(get_app());
          
@@ -345,7 +345,7 @@ namespace filemanager
          uh.m_ehint = ::user::view_update_hint::hint_create_views;
          update_all_views(NULL, 0, &uh);
 
-      }
+      }*/
 
       update_hint uh;
 

@@ -16,59 +16,16 @@ namespace filemanager
       m_pdataitemCreateImageListStep = NULL;
 
       m_iAnimate = 0;
-      //   IconKey iconkey;
-      //iconkey.m_strExtension = "";
-      //iconkey.m_strPath = "";
-      //iconkey.m_iIcon = 0;
-      //SHFILEINFO shfi;
-      //SHGetFileInfo(
-      // "foo",
-      //FILE_ATTRIBUTE_DIRECTORY,
-      //&shfi,
-      //sizeof(shfi),
-      //SHGFI_USEFILEATTRIBUTES
-      //| SHGFI_ICON
-      //| SHGFI_SMALLICON);
-      //icon icon;
-      //icon.m_hicon = shfi.hIcon;
-      //icon.m_iImage = m_pimagelist->add(icon.m_hicon);
-
-      //   m_pimagelist = NULL;
-
-
-      //   m_iDefaultImage = icon.m_iImage;
-      //   m_iconmap.set_at(iconkey, icon);
-
-      //   iconkey.m_strExtension = "";
-      // iconkey.m_strPath = "";
-      //iconkey.m_iIcon = 1;
-      /*SHGetFileInfo(
-      "foo",
-      FILE_ATTRIBUTE_DIRECTORY,
-      &shfi,
-      sizeof(shfi),
-      SHGFI_USEFILEATTRIBUTES
-      | SHGFI_ICON
-      | SHGFI_SMALLICON
-      | SHGFI_OPENICON);
-      icon.m_hicon = shfi.hIcon;
-      icon.m_iImage = m_pimagelist->add(icon.m_hicon);
-      m_iDefaultImageSelected = icon.m_iImage;
-      m_iconmap.set_at(iconkey, icon);*/
-
 
       m_bDelayedListUpdate = false;
 
-
-
-
    }
+
 
    tree::~tree()
    {
 
    }
-
 
 
    void tree::_017EnsureVisible(const char * lpcsz, ::action::context actioncontext)
@@ -119,11 +76,12 @@ namespace filemanager
 
       }
 
-      _StartDelayedListUpdate();
-
+      //_StartDelayedListUpdate();
 
       _001EnsureVisible(find_item(lpcsz));
+
    }
+
 
    sp(::data::tree_item) tree::find_item(const char * lpcsz)
    {

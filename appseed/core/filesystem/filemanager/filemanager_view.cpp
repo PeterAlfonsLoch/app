@@ -237,18 +237,18 @@ namespace filemanager
 
       SetPane(0, ppathview, false);
 
-      main_view * pmediaview = create_view < main_view >();
+      main_view * pmainview = create_view < main_view >();
 
-      if (pmediaview == NULL)
+      if (pmainview == NULL)
       {
 
          System.simple_message_box(NULL, "Could not create file list ::user::impact");
 
       }
 
-      SetPane(1, pmediaview, false);
+      SetPane(1, pmainview, false);
 
-      pmediaview->create_views();
+      pmainview->create_views();
 
    }
 
@@ -376,27 +376,34 @@ namespace filemanager
 
       set_position_rate(0, 0.3);
 
-
-
       left_view * pleftview = create_view < left_view >();
 
       if (pleftview == NULL)
       {
+
          System.simple_message_box(NULL, "Could not create folder tree ::user::impact");
+
       }
+      
       SetPane(0, pleftview, false);
+      
       pleftview->create_views();
 
       m_pfilelist = create_view < file_list >();
 
       if (m_pfilelist == NULL)
       {
+
          System.simple_message_box(NULL, "Could not create file list ::user::impact");
+
       }
+      
       SetPane(1, m_pfilelist, false);
 
       m_ppreview = create_view < preview >();
+
       m_ppreview->ShowWindow(SW_HIDE);
+
    }
 
 

@@ -118,6 +118,8 @@ namespace filemanager
    void path_view::_001OnAfterChangeText(::action::context actioncontext)
    {
 
+      if (actioncontext.is_source(::action::source_sync))
+         return;
 
       string str;
       _001GetText(str);

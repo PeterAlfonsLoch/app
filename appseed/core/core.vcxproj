@@ -51,7 +51,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E000FFAF-392F-4E32-BF51-FD7ED638991F}</ProjectGuid>
+    <ProjectGuid>{AFC48570-75E4-46BD-B8AB-4590B257E1C8}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>ca</RootNamespace>
@@ -1888,7 +1888,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="filesystem\filemanager\filemanager_view.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_data_interface.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_update_hint.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_ContextMenu.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_context_menu.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_data.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_document.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_filemanager.cpp" />
