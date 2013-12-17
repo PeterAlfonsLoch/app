@@ -40,6 +40,8 @@ namespace filemanager
 
       e_type    m_etype;
 
+      ::action::context         m_actioncontext;
+
 
       update_hint();
       virtual ~update_hint();

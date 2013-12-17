@@ -150,7 +150,7 @@ namespace html
       // always present property?! "text"
       property_set     m_propertyset;
 
-      virtual void _001SetText(const char * psz, bool bUser);
+      virtual void _001SetText(const string & str, ::action::context actioncontext);
 
       DECL_GEN_SIGNAL(OnLButtonDown)
       DECL_GEN_SIGNAL(OnMouseMove)

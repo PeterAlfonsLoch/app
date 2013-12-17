@@ -552,14 +552,14 @@ namespace user
                   {
                      string str;
                      str = var.m_str;
-                     ptext->_001SetText(str, false);
+                     ptext->_001SetText(str, ::action::source_database);
                   }
                   break;
                case var::type_int32:
                   {
                      string str;
                      str.Format("%d", var.int32());
-                     ptext->_001SetText(str, false);
+                     ptext->_001SetText(str, ::action::source_database);
                   }
                   break;
                default:
@@ -872,7 +872,7 @@ namespace user
       ::user::control_event ev;
 
       ev.m_puie         = pcontrol;
-      ev.m_bUser        = false;
+      ev.m_actioncontext        = ::action::source_database;
       ev.m_eevent       = ::user::event_initialize_control;
       ev.m_uiEvent      = 0;
 
@@ -1080,8 +1080,7 @@ namespace user
             }
          }
       }
-      else if(pevent->m_eevent == ::user::event_set_check
-         && pevent->m_bUser)
+      else if(pevent->m_eevent == ::user::event_set_check && pevent->m_actioncontext.is_user_source())
       {
          class control::descriptor * pdescriptor = m_controldescriptorset.get(pevent->m_puie);
          if(pdescriptor == NULL)

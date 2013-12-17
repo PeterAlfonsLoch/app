@@ -382,7 +382,7 @@ cmd_ui::cmd_ui(sp(base_application) papp)  :
 }
 
 // default cmd_ui implementation only works for Menu Items
-void cmd_ui::Enable(bool bOn)
+void cmd_ui::Enable(bool bOn, ::action::context actioncontext)
 {
 
    if (m_pMenu != NULL)
@@ -412,9 +412,15 @@ void cmd_ui::Enable(bool bOn)
 
 }
 
+void cmd_ui::_001SetCheck(bool bCheck, ::action::context actioncontext)
+{
+
+   ::user::check_interface::_001SetCheck(bCheck, actioncontext);
+
+}
 
 
-void cmd_ui::_001SetCheck(check::e_check nCheck)
+void cmd_ui::_001SetCheck(check::e_check nCheck, ::action::context actioncontext)
 {
    if (m_pMenu != NULL)
    {
@@ -442,9 +448,9 @@ void cmd_ui::_001SetCheck(check::e_check nCheck)
 
 __STATIC void __load_dot_bitmap(); // for swap tuning
 
-void cmd_ui::SetRadio(bool bOn)
+void cmd_ui::SetRadio(bool bOn, ::action::context actioncontext)
 {
-   _001SetCheck(bOn != FALSE); // this default works for most things as well
+   _001SetCheck(bOn != FALSE, actioncontext); // this default works for most things as well
    if (m_pMenu != NULL)
    {
       if (m_pSubMenu != NULL)
@@ -459,7 +465,7 @@ void cmd_ui::SetRadio(bool bOn)
    }
 }
 
-void cmd_ui::SetText(const char * lpszText)
+void cmd_ui::SetText(const char * lpszText, ::action::context actioncontext)
 {
    ENSURE_ARG(lpszText != NULL);
    ASSERT(__is_valid_string(lpszText));

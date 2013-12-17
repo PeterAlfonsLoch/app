@@ -85,7 +85,7 @@ namespace filemanager
    void file_list::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
 
-      data_interface::on_update(pSender, lHint, phint);
+      ::userfs::list::on_update(pSender, lHint, phint);
 
       if(m_bStatic && lHint == hint_add_location)
       {
@@ -114,15 +114,6 @@ namespace filemanager
 
          }
 
-      }
-      else if(lHint == 123)
-      {
-         _017UpdateList();
-      }
-      else if(lHint == 1234)
-      {
-         _001UpdateColumns();
-         _017UpdateList();
       }
       else if(lHint == 123458)
       {
@@ -183,8 +174,8 @@ namespace filemanager
                   GetFileManager()->get_filemanager_data()->m_pholderFileList->hold(this);
                   GetFileManager()->get_filemanager_data()->m_pholderFileList->layout();
                }
-               _017PreSynchronize();
-               _017Synchronize();
+               _017PreSynchronize(::action::source::sync(puh->m_actioncontext));
+               _017Synchronize(::action::source::sync(puh->m_actioncontext));
                data_get_DisplayToStrict();
                _001OnUpdateItemCount();
                /*string str;
@@ -203,7 +194,7 @@ namespace filemanager
             }
             else if(m_bStatic && puh->is_type_of(update_hint::TypeSynchronizeLocations))
             {
-               _017UpdateList();
+               _017UpdateList(puh->m_actioncontext);
             }
             else if(puh->is_type_of(update_hint::TypeFilter))
             {
@@ -240,7 +231,7 @@ namespace filemanager
                   _001GetSelection(range);
                   if(range.get_item_count() > 0)
                   {
-                     ptext->_001SetText(get_fs_list_data()->m_itema.get_item(range.ItemAt(0).get_lower_bound()).m_strName, false);
+                     ptext->_001SetText(get_fs_list_data()->m_itema.get_item(range.ItemAt(0).get_lower_bound()).m_strName, puh->m_actioncontext);
                   }
                }
             }
@@ -250,7 +241,7 @@ namespace filemanager
                if(!pmanageruh->m_strFind.is_empty())
                {
                   Application.file().replace(m_strPath, pmanageruh->m_strFind, pmanageruh->m_strReplace);
-                  _017UpdateList();
+                  _017UpdateList(puh->m_actioncontext);
                }
             }
          }
@@ -267,7 +258,7 @@ namespace filemanager
       {
          if(iSubItem == m_iNameSubItem || (m_eview == ViewList && iSubItem == 0))
          {
-           _017OpenSelected(true);
+           _017OpenSelected(true, ::action::source_user);
          }
       }
    }
@@ -279,11 +270,11 @@ namespace filemanager
       index iSubItem;
       if(_001HitTest_(point, iItem, iSubItem))
       {
-         _017OpenContextMenuSelected();
+         _017OpenContextMenuSelected(::action::source_user);
       }
       else
       {
-         _017OpenContextMenu();
+         _017OpenContextMenu(::action::source_user);
       }
    }
 
@@ -321,7 +312,7 @@ namespace filemanager
       return data_server_interface::OnSetData(key, iLine, iColumn, var);
    }*/
 
-   void file_list::RenameFile(int32_t iLine, string &wstrNameNew)
+   void file_list::RenameFile(int32_t iLine, string &wstrNameNew, ::action::context actioncontext)
    {
 
       string str = get_fs_list_data()->m_itema.get_item(iLine).m_strPath;
@@ -332,7 +323,7 @@ namespace filemanager
 
       System.file().path().rename(wstrNew, str, get_app());
 
-      _017UpdateList();
+      _017UpdateList(actioncontext);
 
    }
 
@@ -350,7 +341,7 @@ namespace filemanager
          ::user::menu menu(get_app());
          if(get_fs_list_data()->m_itema.get_item(iItem).IsFolder())
          {
-            _017OpenContextMenuFolder(new ::fs::item(get_fs_list_data()->m_itema.get_item(iItem)));
+            _017OpenContextMenuFolder(new ::fs::item(get_fs_list_data()->m_itema.get_item(iItem)), ::action::source_user);
             /*if (menu.LoadXmlMenu(GetFileManager()->get_filemanager_data()->m_pschema->m_strFolderPopup))
             {
                ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
@@ -656,14 +647,14 @@ namespace filemanager
       pobj->m_bRet = true;
    }
 
-   void file_list::_017OpenContextMenuFolder(sp(::fs::item)  item)
+   void file_list::_017OpenContextMenuFolder(sp(::fs::item)  item, ::action::context actioncontext)
    {
       
       stringa straCommand;
       
       stringa straCommandTitle;
       
-      GetFileManager()->get_filemanager_data()->OnFileManagerOpenContextMenuFolder(item, straCommand, straCommandTitle);
+      GetFileManager()->get_filemanager_data()->OnFileManagerOpenContextMenuFolder(item, straCommand, straCommandTitle, actioncontext);
       
       if(straCommand.get_size() > 0)
       {
@@ -685,37 +676,58 @@ namespace filemanager
 
    }
 
-   void file_list::_017OpenContextMenuFile(const ::fs::item_array & itema)
+   void file_list::_017OpenContextMenuFile(const ::fs::item_array & itema, ::action::context actioncontext)
    {
-      GetFileManager()->get_filemanager_data()->OnFileManagerOpenContextMenuFile(itema);
+
+      GetFileManager()->get_filemanager_data()->OnFileManagerOpenContextMenuFile(itema, actioncontext);
+
    }
 
-   void file_list::_017OpenContextMenu()
+
+   void file_list::_017OpenContextMenu(::action::context actioncontext)
    {
-      GetFileManager()->get_filemanager_data()->OnFileManagerOpenContextMenu();
+
+      GetFileManager()->get_filemanager_data()->OnFileManagerOpenContextMenu(actioncontext);
+
    }
 
-   void file_list::_017OpenFolder(sp(::fs::item) item)
+
+   void file_list::_017OpenFolder(sp(::fs::item) item, ::action::context actioncontext)
    {
-      GetFileManager()->FileManagerBrowse(item);
+
+      GetFileManager()->FileManagerBrowse(item, actioncontext);
+
    }
 
-   void file_list::_017OpenFile(const ::fs::item_array &itema)
+
+   void file_list::_017OpenFile(const ::fs::item_array &itema, ::action::context actioncontext)
    {
-      GetFileManager()->get_filemanager_data()->OnFileManagerOpenFile(itema);
+
+      GetFileManager()->get_filemanager_data()->OnFileManagerOpenFile(itema, actioncontext);
+
    }
+
 
    void file_list::_001OnFileRename(signal_details * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
+
       sp(::user::control) pcontrol = _001GetControlBySubItem(m_iNameSubItem);
+
       range range;
+
       _001GetSelection(range);
+
       if (range.get_item_count() == 1 && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound())
       {
+
          _001PlaceControl(pcontrol);
+
       }
+
    }
+
 
    void file_list::_001OnUpdateFileRename(signal_details * pobj)
    {
@@ -822,7 +834,7 @@ namespace filemanager
          stra.add(itema[i].m_strPath);
       }
       Application.file().trash_that_is_not_trash(stra);
-      _017UpdateList();
+      _017UpdateList(::action::source_user);
    }
 
    void file_list::_001OnUpdateOpenWith(signal_details * pobj)
@@ -905,7 +917,7 @@ namespace filemanager
    {
       if(id == "1000")
       {
-   //      _017OpenSelected(true);
+   //      _017OpenSelected(true, ::action::source_user);
          return true;
       }
       int32_t iPos = -1;
@@ -1140,7 +1152,7 @@ namespace filemanager
 
 
 
-   void file_list::_017Browse(const char * lpcsz)
+   void file_list::_017Browse(const char * lpcsz, ::action::context actioncontext)
    {
       _001ClearSelection();
 
@@ -1151,7 +1163,7 @@ namespace filemanager
       if (GetFileManagerItem().m_strPath.is_empty())
       {
          m_strPath.Empty();
-         _017UpdateList(m_strPath);
+         _017UpdateList(m_strPath, actioncontext);
       }
       else
       {
@@ -1161,12 +1173,12 @@ namespace filemanager
          _017UpdateZipList(str, lpszExtra);
          goto zipDone;
          }*/
-         _017UpdateList(str);
+         _017UpdateList(str, actioncontext);
       }
       //   zipDone:;
    }
 
-   void file_list::_017UpdateList(const char * lpcsz)
+   void file_list::_017UpdateList(const char * lpcsz, ::action::context actioncontext)
    {
       /*      UNREFERENCED_PARAMETER(lpcsz);
       stringa straStrictOrder;
@@ -1321,13 +1333,13 @@ namespace filemanager
       data_set_DisplayToStrict();
       } */
 
-      return ::userfs::list::_017UpdateList(lpcsz);
+      return ::userfs::list::_017UpdateList(lpcsz, actioncontext);
 
 
    }
 
 
-   void file_list::_017UpdateZipList(const char * lpcsz)
+   void file_list::_017UpdateZipList(const char * lpcsz, ::action::context actioncontext)
    {
       /*      ::fs::list_item item;
 
@@ -1424,7 +1436,7 @@ namespace filemanager
       _001CreateImageList();*/
 
 
-      return ::userfs::list::_017UpdateZipList(lpcsz);
+      return ::userfs::list::_017UpdateZipList(lpcsz, actioncontext);
 
    }
 
@@ -1794,7 +1806,7 @@ namespace filemanager
    }
 
 
-   void file_list::_017UpdateList()
+   void file_list::_017UpdateList(::action::context actioncontext)
    {
 
       if (m_bStatic)
@@ -1851,7 +1863,7 @@ namespace filemanager
       //      IShellFolder * lpsfDesktop;
 
 
-      _017UpdateList(strPath);
+      _017UpdateList(strPath, actioncontext);
 
 
 
@@ -1910,13 +1922,13 @@ namespace filemanager
       return GetFileManager()->get_item();
    }
 
-   void file_list::_017Synchronize()
+   void file_list::_017Synchronize(::action::context actioncontext)
    {
 
       if (m_bStatic)
       {
 
-         _017UpdateList();
+         _017UpdateList(actioncontext);
 
          return;
 
@@ -1926,7 +1938,7 @@ namespace filemanager
 
       _001HideEditingControls();
 
-      _017Browse(GetFileManagerItem().m_strPath);
+      _017Browse(GetFileManagerItem().m_strPath, ::action::source::sync(actioncontext));
 
    }
 
@@ -1968,8 +1980,9 @@ namespace filemanager
       ::user::list::_001OnDraw(m_gdibuffer.GetBuffer());
    }
 
-   void file_list::_017PreSynchronize()
+   void file_list::_017PreSynchronize(::action::context actioncontext)
    {
+      UNREFERENCED_PARAMETER(actioncontext);
       //TakeAnimationSnapshot();
    }
 
@@ -1977,7 +1990,7 @@ namespace filemanager
 
 
 
-   void file_list::_017OpenSelected(bool bOpenFile)
+   void file_list::_017OpenSelected(bool bOpenFile, ::action::context actioncontext)
    {
       ::fs::item_array itema;
       index iItemRange, iItem;
@@ -2008,7 +2021,7 @@ namespace filemanager
             ::userfs::list_item & item = get_fs_list_data()->m_itema.get_item(iStrict);
             if (item.IsFolder())
             {
-               _017OpenFolder(new ::fs::item(item));
+               _017OpenFolder(new ::fs::item(item), ::action::source::sel(actioncontext));
                break;
             }
             else
@@ -2019,12 +2032,12 @@ namespace filemanager
       }
       if (bOpenFile && itema.get_size() > 0)
       {
-         _017OpenFile(itema);
+         _017OpenFile(itema, ::action::source::sel(actioncontext));
       }
       _001ClearSelection();
    }
 
-   void file_list::_017OpenContextMenuSelected()
+   void file_list::_017OpenContextMenuSelected(::action::context actioncontext)
    {
       ::fs::item_array itema;
       index iItemRange, iItem;
@@ -2054,7 +2067,7 @@ namespace filemanager
             }
             if (get_fs_list_data()->m_itema.get_item(iStrict).IsFolder())
             {
-               _017OpenContextMenuFolder(new  ::fs::item(get_fs_list_data()->m_itema.get_item(iStrict)));
+               _017OpenContextMenuFolder(new  ::fs::item(get_fs_list_data()->m_itema.get_item(iStrict)), actioncontext);
                break;
             }
             else
@@ -2065,11 +2078,11 @@ namespace filemanager
       }
       if (itema.get_size() > 0)
       {
-         _017OpenContextMenuFile(itema);
+         _017OpenContextMenuFile(itema, actioncontext);
       }
       else
       {
-         _017OpenContextMenu();
+         _017OpenContextMenu(actioncontext);
       }
       _001ClearSelection();
    }
@@ -2294,7 +2307,7 @@ namespace filemanager
          System.file().move(
             System.dir().path(get_fs_list_data()->m_itema.get_item(strict).m_strPath, strName),
             strPath);
-         _017Synchronize();
+         _017Synchronize(::action::source::user(::action::source_drop));
       }
       else
       {

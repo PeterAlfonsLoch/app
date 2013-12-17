@@ -190,6 +190,8 @@ CLASS_DECL_BASE base_application * get_thread_app();
 
 #include "base_definition.h"
 
+#include "base_action_source.h"
+
 #include "base_new.h"
 
 #include "base_lparam.h"
@@ -200,6 +202,9 @@ CLASS_DECL_BASE base_application * get_thread_app();
 #include "base_smart_pointer1.h"
 #include "base_root.h"
 #include "base_smart_pointer2.h"
+
+
+#include "base_action_context.h"
 
 
 #include "base_keep_true.h"

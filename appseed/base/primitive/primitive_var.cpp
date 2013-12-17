@@ -320,20 +320,20 @@ bool var::failed() const
    return get_type() == type_parareturn && !::is_return_ok(m_parareturn);
 }
 
-void var::set_string(const char * psz)
+void var::set_string(const string & str)
 {
    if(get_type() == type_pstring)
    {
-      *m_pstr = psz;
+      *m_pstr = str;
    }
    else if(get_type() == type_pvar)
    {
-      *m_pvar = psz;
+      *m_pvar = str;
    }
    else
    {
       set_type(type_string, false);
-      m_str = psz;
+      m_str = str;
    }
 }
 

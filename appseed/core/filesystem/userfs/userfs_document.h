@@ -26,7 +26,7 @@ namespace userfs
       virtual void dump(dump_context & dumpcontext) const;
    //#endif
 
-      bool file_manager_browse(const char * pszFolder);
+      bool file_manager_browse(const char * pszFolder, ::action::context actioncontext);
 
       inline ::fs::set & set()
       {

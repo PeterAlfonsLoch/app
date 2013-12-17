@@ -1803,22 +1803,22 @@ namespace html
       return NULL;
    }
 
-   void elemental::_001SetText(const char * psz, bool bUser)
+   void elemental::_001SetText(const string & str, ::action::context actioncontext)
    {
       if(m_pbase->get_type() == base::type_tag)
       {
          if(m_elementalptra.get_size() == 1)
          {
-            m_elementalptra[0]->m_propertyset["PropertyBody"] = psz;
+            m_elementalptra[0]->m_propertyset["PropertyBody"] = str;
          }
          else
          {
-            m_propertyset["PropertyBody"] = psz;
+            m_propertyset["PropertyBody"] = str;
          }
       }
       else
       {
-         m_propertyset["PropertyBody"] = psz;
+         m_propertyset["PropertyBody"] = str;
       }
       /*if(m_propertyset.is_new_or_null("PropertyTag"))
       {*/

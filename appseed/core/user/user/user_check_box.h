@@ -18,7 +18,7 @@ namespace user
    public:
       virtual void _001OnDraw(::draw2d::graphics * pdc);
       virtual check::e_check _001GetCheck();
-      virtual void _001SetCheck(check::e_check check, bool bUser);
+      virtual void _001SetCheck(check::e_check check, ::action::context actioncontext);
 
       void install_message_handling(::message::dispatch * pinterface);
 

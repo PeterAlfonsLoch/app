@@ -86,17 +86,18 @@ namespace filemanager
    /////////////////////////////////////////////////////////////////////////////
    // document commands
 
-   void document::OnFileManagerBrowse()
+   void document::OnFileManagerBrowse(::action::context actioncontext)
    {
 
       {
          update_hint uh;
          uh.set_type(update_hint::TypeSynchronizePath);
+         uh.m_actioncontext = ::action::source::sync(actioncontext);
          update_all_views(NULL, 0, &uh);
       }
 
 
-      manager::OnFileManagerBrowse();
+      manager::OnFileManagerBrowse(::action::source::sync(actioncontext));
 
    }
 
@@ -120,7 +121,7 @@ namespace filemanager
 //         ::schema * ptemplate = get_filemanager_data()->m_pschema;
          if(id == get_filemanager_data()->m_pschema->m_strLevelUp)
          {
-            FileManagerOneLevelUp();
+            FileManagerOneLevelUp(::action::source_user);
             return true;
          }
       }
@@ -187,7 +188,7 @@ namespace filemanager
 
    void document::_001OnLevelUp(signal_details * pobj)
    {
-      FileManagerOneLevelUp();
+      FileManagerOneLevelUp(::action::source_user);
       pobj->m_bRet = true;
    }
 
@@ -300,21 +301,21 @@ namespace filemanager
 
             if(data_get("InitialBrowsePath", idMachine, str))
             {
-               FileManagerBrowse(str);
+               FileManagerBrowse(str, ::action::source::database_default());
             }
             else
             {
-               FileManagerBrowse("");
+               FileManagerBrowse("", ::action::source::system_default());
             }
          }
          else
          {
-            FileManagerBrowse(str);
+            FileManagerBrowse(str, ::action::source::database_default());
          }
       }
       else
       {
-         FileManagerBrowse("");
+         FileManagerBrowse("", ::action::source::system_default());
       }
 
       uh.set_type(update_hint::TypeCreateBars);
@@ -328,9 +329,9 @@ namespace filemanager
 
    }
 
-   void document::OpenFolder(sp(::fs::item) item)
+   void document::OpenFolder(sp(::fs::item) item, ::action::context actioncontext)
    {
-      FileManagerBrowse(item);
+      FileManagerBrowse(item, actioncontext);
    }
 
    void document::CreateViews()
@@ -356,6 +357,7 @@ namespace filemanager
       uh.set_type(update_hint::TypeSynchronizeLocations);
       uh.m_uiId = get_filemanager_data()->m_iDocument;
       uh.m_pmanager = this;
+      uh.m_actioncontext = ::action::source_sync;
       update_all_views(NULL, 0, &uh);
 
 

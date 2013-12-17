@@ -1,4 +1,17 @@
 #include "framework.h"
 
 
-// IMPLEMENT_DYNAMIC(form_update_hint, object)
+form_update_hint::form_update_hint()
+{
+   
+}
+
+
+form_update_hint::~form_update_hint()
+{
+
+}
+
+
+
+

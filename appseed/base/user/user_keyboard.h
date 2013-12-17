@@ -20,7 +20,7 @@ namespace user
 
       virtual bool initialize();
 
-      bool load_layout(const char * pszPath, bool bUser);
+      bool load_layout(const char * pszPath, ::action::context actioncontext);
 
       string process_key(::user::e_key ekey);
 

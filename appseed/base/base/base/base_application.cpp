@@ -1168,32 +1168,32 @@ return "";
 }*/
 
 
-void base_application::set_locale(const string & lpcsz, bool bUser)
+void base_application::set_locale(const string & lpcsz, ::action::context actioncontext)
 {
    string strLocale(lpcsz);
    strLocale.trim();
    m_strLocale = strLocale;
-   on_set_locale(m_strLocale, bUser);
+   on_set_locale(m_strLocale, actioncontext);
 }
 
-void base_application::set_schema(const string & lpcsz, bool bUser)
+void base_application::set_schema(const string & lpcsz, ::action::context actioncontext)
 {
    string strSchema(lpcsz);
    strSchema.trim();
    m_strSchema = strSchema;
-   on_set_schema(m_strSchema, bUser);
+   on_set_schema(m_strSchema, actioncontext);
 }
 
-void base_application::on_set_locale(const string & lpcsz, bool bUser)
+void base_application::on_set_locale(const string & lpcsz, ::action::context actioncontext)
 {
-   UNREFERENCED_PARAMETER(bUser);
+   UNREFERENCED_PARAMETER(actioncontext);
    UNREFERENCED_PARAMETER(lpcsz);
    //System.appa_load_string_table();
 }
 
-void base_application::on_set_schema(const string & lpcsz, bool bUser)
+void base_application::on_set_schema(const string & lpcsz, ::action::context actioncontext)
 {
-   UNREFERENCED_PARAMETER(bUser);
+   UNREFERENCED_PARAMETER(actioncontext);
    UNREFERENCED_PARAMETER(lpcsz);
    //System.appa_load_string_table();
 }
@@ -4126,8 +4126,8 @@ bool base_application::initialize1()
 
 
 
-   set_locale(strLocale, false);
-   set_schema(strSchema, false);
+   set_locale(strLocale, ::action::source::database());
+   set_schema(strSchema, ::action::source::database());
 
 
    str_context()->localeschema().m_idaLocale.add(strLocale);

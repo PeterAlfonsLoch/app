@@ -174,7 +174,7 @@ namespace user
       m_playout->process_escape(pnode, set);
    }
 
-   bool keyboard::load_layout(const char * pszPath, bool bUser)
+   bool keyboard::load_layout(const char * pszPath, ::action::context actioncontext)
    {
       ::user::keyboard_layout * playout = new ::user::keyboard_layout(get_app());
       string strPath;
@@ -192,7 +192,7 @@ namespace user
          if(playout->load(playout->m_strPath))
          {
             m_playout = playout;
-// xxx            System.simpledb().on_set_keyboard_layout(playout->m_strPath, bUser);
+// xxx            System.simpledb().on_set_keyboard_layout(playout->m_strPath, actioncontext);
             TRACE("successfully set keyboard layout to %s (path=%s)", playout->m_strName, playout->m_strPath);
             return true;
          }

@@ -543,7 +543,7 @@ namespace user
             eelement == tree_element_image ||
             eelement == tree_element_text)
          {
-            _001ExpandItem(pitem, !(pitem->m_dwState & ::data::tree_item_state_expanded));
+            _001ExpandItem(pitem, ::action::source_user, !(pitem->m_dwState & ::data::tree_item_state_expanded));
          }
       }
 
@@ -600,12 +600,12 @@ namespace user
             eelement == tree_element_image ||
             eelement == tree_element_text)
          {
-            _001ExpandItem(pitem, !(pitem->m_dwState & ::data::tree_item_state_expanded));
+            _001ExpandItem(pitem, ::action::source_user, !(pitem->m_dwState & ::data::tree_item_state_expanded));
          }
          if(eelement == tree_element_image ||
             eelement == tree_element_text)
          {
-            _001OnOpenItem(pitem);
+            _001OnOpenItem(pitem, ::action::source_user);
          }
       }
 
@@ -813,7 +813,7 @@ namespace user
 
    }
 
-   void tree::_001ExpandItem(::data::tree_item * pitem, bool bExpand, /* = true */ bool bRedraw, /*=true*/ bool bLayout /*=true*/)
+   void tree::_001ExpandItem(::data::tree_item * pitem, ::action::context actioncontext, bool bExpand, /* = true */ bool bRedraw, /*=true*/ bool bLayout /*=true*/)
    {
       
       ::data::simple_lock lock(pitem->m_pitem);
@@ -826,9 +826,10 @@ namespace user
          if(!(pitem->m_dwState & ::data::tree_item_state_expanded))
          {
 
-            _001OnItemExpand(pitem);
-
             pitem->m_dwState |= ::data::tree_item_state_expanded;
+
+            _001OnItemExpand(pitem, actioncontext);
+
 
             // scroll properly to show the highest possible number
             // of children while trying to preserve the old position and
@@ -856,7 +857,14 @@ namespace user
       }
       else
       {
-         pitem->m_dwState &= ~::data::tree_item_state_expanded;
+         if (!(pitem->m_dwState & ::data::tree_item_state_expanded))
+         {
+            
+            pitem->m_dwState &= ~::data::tree_item_state_expanded;
+
+            _001OnItemCollapse(pitem, actioncontext);
+
+         }
       }
 
       layout();
@@ -923,7 +931,7 @@ namespace user
       return false;
 
    }
-   void tree::_001OnItemExpand(::data::tree_item * pitem)
+   void tree::_001OnItemExpand(::data::tree_item * pitem, ::action::context actioncontext)
    {
       
       sp(::data::tree) ptree = find_tree(pitem);
@@ -931,13 +939,13 @@ namespace user
       if (ptree.is_set())
       {
 
-         ptree->_001OnItemExpand(pitem);
+         ptree->_001OnItemExpand(pitem, actioncontext);
 
       }
 
    }
 
-   void tree::_001OnItemCollapse(::data::tree_item * pitem)
+   void tree::_001OnItemCollapse(::data::tree_item * pitem, ::action::context actioncontext)
    {
 
       sp(::data::tree) ptree = find_tree(pitem);
@@ -945,7 +953,7 @@ namespace user
       if (ptree.is_set())
       {
 
-         ptree->_001OnItemCollapse(pitem);
+         ptree->_001OnItemCollapse(pitem, actioncontext);
 
       }
 
@@ -1027,10 +1035,10 @@ namespace user
 
 
 
-   void tree::_001OnOpenItem(::data::tree_item * pitem)
+   void tree::_001OnOpenItem(::data::tree_item * pitem, ::action::context actioncontext)
    {
 
-      pitem->m_ptree->_001OnOpenItem(pitem);
+      pitem->m_ptree->_001OnOpenItem(pitem, actioncontext);
 
    }
 

@@ -71,7 +71,7 @@ namespace filemanager
 
 
 
-   void tree::_017EnsureVisible(const char * lpcsz)
+   void tree::_017EnsureVisible(const char * lpcsz, ::action::context actioncontext)
    {
       stringa stra;
 
@@ -90,12 +90,12 @@ namespace filemanager
             str = strAscendant;
             if(i == 0)
             {
-               _017UpdateList("", NULL, 1);
+               _017UpdateList("", NULL, 1, actioncontext);
             }
             else
             {
                get_document()->set().eat_end_level(str, 1);
-               _017UpdateList(str, NULL, 1);
+               _017UpdateList(str, NULL, 1, actioncontext);
             }
          }
          pitem = find_item(strAscendant);
@@ -104,7 +104,7 @@ namespace filemanager
 
          if(!(pitem->m_dwState & ::data::tree_item_state_expanded))
          {
-            _001ExpandItem(pitem, true, false, false);
+            _001ExpandItem(pitem, actioncontext, true, false, false);
          }
       }
 
@@ -130,7 +130,7 @@ namespace filemanager
       return find_absolute(lpcsz);
    }
 
-   void tree::_017Browse(const char * lpcsz, bool bForceUpdate)
+   void tree::_017Browse(const char * lpcsz, ::action::context actioncontext, bool bForceUpdate)
    {
       if(!bForceUpdate)
       {
@@ -145,10 +145,10 @@ namespace filemanager
 
       if(strlen(lpcsz) == 0)
       {
-         _017UpdateList("", get_base_item(), 1);
+         _017UpdateList("", get_base_item(), 1, actioncontext);
       }
 
-      _017EnsureVisible(lpcsz);
+      _017EnsureVisible(lpcsz, actioncontext);
 
       _001SelectItem(find_item(lpcsz));
 
@@ -161,7 +161,7 @@ namespace filemanager
 
    }
 
-   void tree::_017UpdateZipList(const char * lpcsz, sp(::data::tree_item) pitemParent, int32_t iLevel)
+   void tree::_017UpdateZipList(const char * lpcsz, sp(::data::tree_item) pitemParent, int32_t iLevel, ::action::context actioncontext)
    {
 
       string szPath(lpcsz);
@@ -274,7 +274,7 @@ namespace filemanager
             }
             if(iLevel > 1)
             {
-               _017UpdateZipList(pitemNew->m_strPath, pitem, iLevel - 1);
+               _017UpdateZipList(pitemNew->m_strPath, pitem, iLevel - 1, actioncontext);
             }
          }
       }
@@ -284,7 +284,7 @@ namespace filemanager
 
    }
 
-   void tree::_017UpdateList(const char * lpcsz, sp(::data::tree_item) pitemParent, int32_t iLevel)
+   void tree::_017UpdateList(const char * lpcsz, sp(::data::tree_item) pitemParent, int32_t iLevel, ::action::context actioncontext)
    {
       if(lpcsz == NULL)
          lpcsz = "";
@@ -581,7 +581,7 @@ namespace filemanager
                if(iLevel > 1)
                {
 
-                  _017UpdateZipList(pitemChild->m_strPath, pitem, iLevel - 1);
+                  _017UpdateZipList(pitemChild->m_strPath, pitem, iLevel - 1, actioncontext);
 
                }
 
@@ -649,7 +649,7 @@ namespace filemanager
 
          if(iLevel > 1)
          {
-            _017UpdateList(pitemChild->m_strPath,  pitem, iLevel - 1);
+            _017UpdateList(pitemChild->m_strPath,  pitem, iLevel - 1, actioncontext);
          }
 
       }
@@ -741,8 +741,10 @@ namespace filemanager
    }
 
 
-   void tree::_017UpdateList()
+   void tree::_017UpdateList(::action::context actioncontext)
    {
+
+      UNREFERENCED_PARAMETER(actioncontext);
 
    }
 
@@ -780,9 +782,9 @@ namespace filemanager
    }
    */
 
-   void tree::_017Synchronize()
+   void tree::_017Synchronize(::action::context actioncontext)
    {
-      _017Browse(GetFileManagerItem().m_strPath);
+      _017Browse(GetFileManagerItem().m_strPath, actioncontext);
    }
 
    void tree::install_message_handling(::message::dispatch *pinterface)
@@ -813,8 +815,9 @@ namespace filemanager
       //   ::user::tree::_001OnDraw(m_gdibuffer.GetBuffer());
    }
 
-   void tree::_017PreSynchronize()
+   void tree::_017PreSynchronize(::action::context actioncontext)
    {
+      UNREFERENCED_PARAMETER(actioncontext);
       TakeAnimationSnapshot();
    }
 
@@ -882,19 +885,25 @@ namespace filemanager
 #endif
 
 
-   void tree::_001OnItemExpand(sp(::data::tree_item) pitem)
+   void tree::_001OnItemExpand(::data::tree_item * pitem, ::action::context actioncontext)
    {
+
       if(typeid(*pitem->m_pitem) == System.type_info < ::userfs::item > ())
       {
-         _017UpdateList(pitem->m_pitem.cast < ::userfs::item > ()->m_strPath, pitem, 1);
+
+         _017UpdateList(pitem->m_pitem.cast < ::userfs::item > ()->m_strPath, pitem, 1, actioncontext);
+
       }
       else
       {
-         _017UpdateList("", pitem, 1);
+
+         _017UpdateList("", pitem, 1, actioncontext);
+
       }
+
    }
 
-   void tree::_001OnItemCollapse(sp(::data::tree_item) pitem)
+   void tree::_001OnItemCollapse(::data::tree_item * pitem, ::action::context actioncontext)
    {
       UNREFERENCED_PARAMETER(pitem);
    }
@@ -904,18 +913,18 @@ namespace filemanager
       return true;
    }
 
-   void tree::_001OnOpenItem(sp(::data::tree_item) pitem)
+   void tree::_001OnOpenItem(::data::tree_item * pitem, ::action::context actioncontext)
    {
 
-      _017OpenFolder(new ::fs::item(*pitem->m_pitem.cast < ::userfs::item > ()));
+      _017OpenFolder(new ::fs::item(*pitem->m_pitem.cast < ::userfs::item > ()), actioncontext);
 
 
 
    }
 
-   void tree::_017OpenFolder(sp(::fs::item)  item)
+   void tree::_017OpenFolder(sp(::fs::item)  item, ::action::context actioncontext)
    {
-      GetFileManager()->FileManagerBrowse(item);
+      GetFileManager()->FileManagerBrowse(item, actioncontext);
    }
 
 
@@ -1044,12 +1053,13 @@ namespace filemanager
 
       m_bDelayedListUpdate = true;
 
-
       sp(::data::tree_item) pitem = find_item(m_straMissingUpdate[0]);
+
       if(pitem != NULL)
       {
 
-         _017UpdateList(m_straMissingUpdate[0], pitem, 1);
+         _017UpdateList(m_straMissingUpdate[0], pitem, 1, ::action::source_system);
+
       }
 
       m_straMissingUpdate.remove_at(0);
@@ -1125,8 +1135,8 @@ namespace filemanager
                }
                if (puh->is_type_of(update_hint::TypeSynchronizePath))
                {
-                  _017PreSynchronize();
-                  _017Synchronize();
+                  _017PreSynchronize(::action::source::sync(puh->m_actioncontext));
+                  _017Synchronize(::action::source::sync(puh->m_actioncontext));
                }
                if (puh->is_type_of(update_hint::TypeFilter))
                {

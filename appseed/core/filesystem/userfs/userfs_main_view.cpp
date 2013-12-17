@@ -46,7 +46,6 @@ namespace userfs
 //      list * plist = dynamic_cast < list * > (pwnd);
       SetPane(1, pwnd, false);
       layout();
-      SetTimer(123, 1000, NULL);
 
 
    }
@@ -55,10 +54,6 @@ namespace userfs
    {
 
       SCAST_PTR(::message::timer, ptimer, pobj);
-      if(ptimer->m_nIDEvent == 123)
-      {
-//         Application.TimerStep();
-      }
 
    }
 

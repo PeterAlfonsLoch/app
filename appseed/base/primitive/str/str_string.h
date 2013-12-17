@@ -922,12 +922,12 @@ inline void string_composite::get_string(char * psz) const
       m_pinterface->get_string(psz);
 }
 
-inline void string_composite::set_string(const char * psz)
+inline void string_composite::set_string(const string & str, ::action::context actioncontext)
 {
    if(m_pstring != NULL)
-      m_pstring->set_string(psz);
+      m_pstring->set_string(str);
    else
-      m_pinterface->set_string(psz);
+      m_pinterface->set_string(str, actioncontext);
 }
 
 class CLASS_DECL_BASE const_empty_string :
@@ -936,7 +936,7 @@ class CLASS_DECL_BASE const_empty_string :
 public:
    strsize get_length() const;
    void get_string(char * pszstr) const;
-   void set_string(const char * psz);
+   void set_string(const string & str, ::action::context actioncontext);
 };
 
 

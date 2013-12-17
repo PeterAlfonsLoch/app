@@ -40,7 +40,7 @@ void FileManagerSaveAsView::on_update(sp(::user::impact) pSender, LPARAM lHint, 
          }
          else if(puh->is_type_of(filemanager::update_hint::TypeSynchronizePath))
          {
-            _017Synchronize();
+            _017Synchronize(puh->m_actioncontext + ::action::source_sync);
          }
          else if(puh->is_type_of(filemanager::update_hint::TypeFilter))
          {
@@ -88,7 +88,7 @@ void FileManagerSaveAsView::on_update(sp(::user::impact) pSender, LPARAM lHint, 
 }
 
 
-void FileManagerSaveAsView::_017Synchronize()
+void FileManagerSaveAsView::_017Synchronize(::action::context actioncontext)
 {
    if(m_bVoidSync)
       return;
@@ -96,11 +96,11 @@ void FileManagerSaveAsView::_017Synchronize()
    _001GetText(strText);
    if(strText != System.file().title_(GetFileManager()->get_filemanager_data()->m_pmanager->m_strTopic))
    {
-      _001SetText(System.file().title_(GetFileManager()->get_filemanager_data()->m_pmanager->m_strTopic), false);
+      _001SetText(System.file().title_(GetFileManager()->get_filemanager_data()->m_pmanager->m_strTopic), actioncontext);
    }
 }
 
-void FileManagerSaveAsView::_001OnAfterChangeText()
+void FileManagerSaveAsView::_001OnAfterChangeText(::action::context actioncontext)
 {
 
    string str;
@@ -109,7 +109,7 @@ void FileManagerSaveAsView::_001OnAfterChangeText()
 
    if(Application.dir().is(str))
    {
-      GetFileManager()->FileManagerBrowse(str);
+      GetFileManager()->FileManagerBrowse(str, ::action::source::sync(actioncontext));
    }
    else if(str.find("/") >= 0 || str.find("\\") >= 0)
    {
@@ -121,7 +121,7 @@ void FileManagerSaveAsView::_001OnAfterChangeText()
          {
             if(!System.file().path().is_equal(GetFileManager()->get_item().m_strPath, strName))
             {
-               GetFileManager()->FileManagerBrowse(strName);
+               GetFileManager()->FileManagerBrowse(strName, ::action::source::sync(actioncontext));
             }
             break;
          }

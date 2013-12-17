@@ -44,7 +44,7 @@ public:
 
    void Initialize(::filemanager::schema * ptemplate, const char * lpcszSection, ::database::id datakey, bool bRecursive);
 
-   virtual void OnFileManagerBrowse();
+   virtual void OnFileManagerBrowse(::action::context actioncontext);
 
    void FolderAdd();
    void FolderRemove();

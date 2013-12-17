@@ -97,9 +97,9 @@ namespace user
       }
 
       if(strLangUser.has_char())
-         Application.set_locale(strLangUser, false);
+         Application.set_locale(strLangUser, ::action::source_database);
       if(strStyleUser.has_char())
-         Application.set_schema(strStyleUser, false);
+         Application.set_schema(strStyleUser, ::action::source_database);
 
       string strLicense = Application.get_license_id();
 
@@ -606,7 +606,7 @@ retry_license:
    }
 
 
-   bool user::set_keyboard_layout(const char * pszPath, bool bUser)
+   bool user::set_keyboard_layout(const char * pszPath, ::action::context actioncontext)
    {
 
       if (get_app()->m_pbasesession == NULL)
@@ -632,7 +632,7 @@ retry_license:
          if(keyboard().get_current_system_layout().is_empty())
             return false;
 
-         if(!set_keyboard_layout(keyboard().get_current_system_layout(), false))
+         if(!set_keyboard_layout(keyboard().get_current_system_layout(), ::action::source_database))
             return false;
 
          if(Application.fontopus()->m_puser != NULL
@@ -646,10 +646,10 @@ retry_license:
          return true;
       }
 
-      if(!Session.user()->keyboard().load_layout(pszPath, bUser))
+      if(!Session.user()->keyboard().load_layout(pszPath, actioncontext))
          return false;
 
-      // xxx Application.simpledb().on_set_keyboard_layout(pszPath, bUser);
+      // xxx Application.simpledb().on_set_keyboard_layout(pszPath, actioncontext);
 
       return true;
    }

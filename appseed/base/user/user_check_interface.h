@@ -22,9 +22,9 @@ namespace user
 
 
       virtual check::e_check _001GetCheck();
-      virtual void _001SetCheck(bool b = true, bool bUser = true);   // 0, 1
-      virtual void _001SetCheck(check::e_check check, bool bUser);
-      virtual void _001ToggleCheck(bool bUser);
+      virtual void _001SetCheck(bool b, ::action::context actioncontext);   // 0, 1
+      virtual void _001SetCheck(check::e_check check, ::action::context actioncontext);
+      virtual void _001ToggleCheck(::action::context actioncontext);
 
 
    };

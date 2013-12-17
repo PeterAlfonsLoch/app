@@ -1738,12 +1738,12 @@ sp(::command_thread) system::command_thread()
       if(command()->m_varTopicQuery["locale"].has_char()
          && command()->m_varTopicQuery["locale"] != "_std")
       {
-         set_locale(command()->m_varTopicQuery["locale"], true);
+         set_locale(command()->m_varTopicQuery["locale"], ::action::source::user());
       }
 
       if(command()->m_varTopicQuery["schema"].has_char())
       {
-         set_schema(command()->m_varTopicQuery["schema"], true);
+         set_schema(command()->m_varTopicQuery["schema"], ::action::source::user());
       }
 
    }

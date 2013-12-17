@@ -54,7 +54,7 @@ namespace filemanager
             virtual ~tree();
 
 
-            void _001OnItemExpand(::data::tree_item * pitem);
+            void _001OnItemExpand(::data::tree_item * pitem, ::action::context actioncontext);
 
 
             void parse(const char * lpszSource);

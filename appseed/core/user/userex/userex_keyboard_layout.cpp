@@ -135,7 +135,7 @@ namespace userex // ca8 + cube
                index iItem = range.ItemAt(0).get_lower_bound();
                if(iItem >= 0 && iItem < m_layoutida.get_count())
                {
-                  System.user()->set_keyboard_layout(m_layoutida[iItem].m_strPath, true);
+                  System.user()->set_keyboard_layout(m_layoutida[iItem].m_strPath, ::action::source::user());
                }
             }
          }

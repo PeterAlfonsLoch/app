@@ -44,13 +44,13 @@ namespace filemanager
 
       bool is_saving();
 
-      void FileManagerBrowse(const char * lpcsz);
-      void FileManagerBrowse(sp(::fs::item)  item);
-      void OnFileManagerOpenContextMenuFolder(sp(::fs::item)  item, stringa & straCommand, stringa & straCommandTitle);
-      void OnFileManagerOpenContextMenuFile(const ::fs::item_array & itema);
-      void OnFileManagerOpenContextMenu();
-      void OnFileManagerOpenFile(const ::fs::item_array & itema);
-      void OnFileManagerOpenFolder(sp(::fs::item)  str);
+      void FileManagerBrowse(const char * lpcsz, ::action::context actioncontext);
+      void FileManagerBrowse(sp(::fs::item) item, ::action::context actioncontext);
+      void OnFileManagerOpenContextMenuFolder(sp(::fs::item)  item, stringa & straCommand, stringa & straCommandTitle, ::action::context actioncontext);
+      void OnFileManagerOpenContextMenuFile(const ::fs::item_array & itema, ::action::context actioncontext);
+      void OnFileManagerOpenContextMenu(::action::context actioncontext);
+      void OnFileManagerOpenFile(const ::fs::item_array & itema, ::action::context actioncontext);
+      void OnFileManagerOpenFolder(sp(::fs::item)  str, ::action::context actioncontext);
 
       void OnFileManagerItemUpdate(cmd_ui * pcmdui, const ::fs::item_array & itema);
       void OnFileManagerItemCommand(const char * pszId, const ::fs::item_array & itema);

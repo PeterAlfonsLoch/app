@@ -37,9 +37,9 @@ namespace data
 
       virtual void _001OnTreeDataChange();
 
-      virtual void _001OnItemExpand(::data::tree_item * pitem);
-      virtual void _001OnItemCollapse(::data::tree_item * pitem);
-      virtual void _001OnOpenItem(::data::tree_item * pitem);
+      virtual void _001OnItemExpand(::data::tree_item * pitem, ::action::context actioncontext);
+      virtual void _001OnItemCollapse(::data::tree_item * pitem, ::action::context actioncontext);
+      virtual void _001OnOpenItem(::data::tree_item * pitem, ::action::context actioncontext);
 
       virtual ::count   remove(tree_item_ptr_array & itemptra);
       virtual ::count   remove(tree_item * pitem);
@@ -61,7 +61,7 @@ namespace data
 
       sp(image_list) get_image_list() const;
 
-      virtual void _001ExpandItem(tree_item * pitem, bool bExpand = true, bool bRedraw = true, bool bLayout = true);
+      virtual void _001ExpandItem(tree_item * pitem, ::action::context actioncontext, bool bExpand = true, bool bRedraw = true, bool bLayout = true);
       virtual void _001EnsureVisible(::data::tree_item * pitem);
       virtual void _001SelectItem(::data::tree_item * pitem);
 

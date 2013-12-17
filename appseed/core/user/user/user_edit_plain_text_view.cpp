@@ -30,20 +30,20 @@ namespace user
 
    }
 
-   void edit_plain_text_view::_001OnSetText(bool bUser)
+   void edit_plain_text_view::_001OnSetText(::action::context actioncontext)
    {
 
 
-      ::user::edit_plain_text::_001OnSetText(bUser);
+      ::user::edit_plain_text::_001OnSetText(actioncontext);
 
 
    }
 
-   void edit_plain_text_view::_001OnUpdate(bool bUser)
+   void edit_plain_text_view::_001OnUpdate(::action::context actioncontext)
    {
 
 
-      ::user::edit_plain_text::_001OnUpdate(bUser);
+      ::user::edit_plain_text::_001OnUpdate(actioncontext);
 
 
    }

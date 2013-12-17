@@ -47,7 +47,7 @@ public:
 
 
    virtual void _001GetText(string & str);
-   virtual void _001SetText(const char * psz, bool bUser);
+   virtual void _001SetText(const string & str, ::action::context actioncontext);
 
 
    virtual void GetClientBox(::html::box & box);

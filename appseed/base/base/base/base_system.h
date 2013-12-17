@@ -277,8 +277,8 @@ public:
 
 
    virtual void appa_load_string_table();
-   virtual void appa_set_locale(const char * pszLocale, bool bUser);
-   virtual void appa_set_schema(const char * pszStyle, bool bUser);
+   virtual void appa_set_locale(const char * pszLocale, ::action::context actioncontext);
+   virtual void appa_set_schema(const char * pszStyle, ::action::context actioncontext);
 
    virtual bool assert_running_global(const char * pszAppName, const char * pszId = NULL);
    virtual bool assert_running_local(const char * pszAppName, const char * pszId = NULL);

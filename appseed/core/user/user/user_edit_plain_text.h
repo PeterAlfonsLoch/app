@@ -136,10 +136,10 @@ namespace user
 
       void _001OnKeyboardFocusTimer(int32_t iTimer);
 
-      virtual void _001OnAfterChangeText();
+      virtual void _001OnAfterChangeText(::action::context actioncontext);
 
-      virtual void _001OnUpdate(bool bUser);
-      virtual void _001OnSetText(bool bUser);
+      virtual void _001OnUpdate(::action::context actioncontext);
+      virtual void _001OnSetText(::action::context actioncontext);
 
 
 
@@ -159,8 +159,8 @@ namespace user
 
       void _001GetViewSel(strsize &iSelStart, strsize &iSelEnd);
 
-      void _001SetText(const char * psz, bool bUser);
-      void _001SetSelText(const char * psz, bool bUser);
+      void _001SetText(const string & str, ::action::context actioncontext);
+      void _001SetSelText(const char * psz, ::action::context actioncontext);
       void _001SetSel(strsize iSelStart, strsize iSelEnd);
 
       bool should_load_full_file();

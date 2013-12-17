@@ -5,8 +5,6 @@ namespace filemanager
 {
 
 
-
-
    class CLASS_DECL_CORE tree :
       virtual public ::userfs::tree,
       virtual public ::filemanager::data_interface
@@ -61,7 +59,7 @@ namespace filemanager
       DECL_GEN_VSIGNAL(_001OnTimer)
 
 
-      virtual void _017Synchronize();
+      virtual void _017Synchronize(::action::context actioncontext);
       void install_message_handling(::message::dispatch * pinterface);
 
 
@@ -70,12 +68,12 @@ namespace filemanager
       void _CreateImageListStep();
 
       // user::tree
-      virtual void _001OnOpenItem(sp(::data::tree_item) pitem);
-      virtual void _001OnItemExpand(sp(::data::tree_item) pitem);
-      virtual void _001OnItemCollapse(sp(::data::tree_item) pitem);
+      virtual void _001OnOpenItem(::data::tree_item * pitem, ::action::context actioncontext);
+      virtual void _001OnItemExpand(::data::tree_item * pitem, ::action::context actioncontext);
+      virtual void _001OnItemCollapse(::data::tree_item * pitem, ::action::context actioncontext);
 
 
-      virtual void _017OpenFolder(sp(::fs::item)  item);
+      virtual void _017OpenFolder(sp(::fs::item)  item, ::action::context actioncontext);
 
       virtual COLORREF get_background_color();
 
@@ -89,18 +87,18 @@ namespace filemanager
 #endif
 
 
-      void _017PreSynchronize();
+      void _017PreSynchronize(::action::context actioncontext);
       void TakeAnimationSnapshot();
       virtual void StartAnimation();
       DECL_GEN_SIGNAL(_001OnMainPostMessage)
       void GetSelectedFilePath(stringa & stra);
       virtual bool _001IsTranslucent();
 
-      void _017Browse(const char * lpcsz, bool bForceUpdate = false);
-      void _017UpdateList();
-      void _017UpdateList(const char * lpcsz, sp(::data::tree_item) pitemParent, int32_t iLevel);
-      void _017UpdateZipList(const char * lpcsz, sp(::data::tree_item) pitemParent, int32_t iLevel);
-      void _017EnsureVisible(const char * lpcsz);
+      void _017Browse(const char * lpcsz, ::action::context actioncontext, bool bForceUpdate = false);
+      void _017UpdateList(::action::context actioncontext);
+      void _017UpdateList(const char * lpcsz, sp(::data::tree_item) pitemParent, int32_t iLevel, ::action::context actioncontext);
+      void _017UpdateZipList(const char * lpcsz, sp(::data::tree_item) pitemParent, int32_t iLevel, ::action::context actioncontext);
+      void _017EnsureVisible(const char * lpcsz, ::action::context actioncontext);
 
       sp(::data::tree_item) find_item(const char * lpcsz);
 
@@ -116,7 +114,7 @@ namespace filemanager
 
 
 
-      void RenameFile(int32_t iLine, string & str);
+      void RenameFile(int32_t iLine, string & str, ::action::context actioncontext);
 
       virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
 

@@ -27,7 +27,7 @@ namespace filemanager
 
    }
 
-   void data::OnFileManagerOpenContextMenuFolder(sp(::fs::item)  item, stringa & straCommand, stringa & straCommandTitle)
+   void data::OnFileManagerOpenContextMenuFolder(sp(::fs::item)  item, stringa & straCommand, stringa & straCommandTitle, ::action::context actioncontext)
    {
 
       ASSERT(m_pcallback != NULL);
@@ -35,14 +35,14 @@ namespace filemanager
       if(m_pcallback != NULL)
       {
 
-         m_pcallback->OnFileManagerOpenContextMenuFolder(this, item, straCommand, straCommandTitle);
+         m_pcallback->OnFileManagerOpenContextMenuFolder(this, item, straCommand, straCommandTitle, actioncontext);
 
       }
 
    }
 
 
-   void data::OnFileManagerOpenContextMenuFile(const ::fs::item_array & itema)
+   void data::OnFileManagerOpenContextMenuFile(const ::fs::item_array & itema, ::action::context actioncontext)
    {
 
       ASSERT(m_pcallback != NULL);
@@ -50,14 +50,14 @@ namespace filemanager
       if(m_pcallback != NULL)
       {
 
-         m_pcallback->OnFileManagerOpenContextMenuFile(this, itema);
+         m_pcallback->OnFileManagerOpenContextMenuFile(this, itema, actioncontext);
 
       }
 
    }
 
 
-   void data::OnFileManagerOpenContextMenu()
+   void data::OnFileManagerOpenContextMenu(::action::context actioncontext)
    {
 
       ASSERT(m_pcallback != NULL);
@@ -65,14 +65,14 @@ namespace filemanager
       if(m_pcallback != NULL)
       {
 
-         m_pcallback->OnFileManagerOpenContextMenu(this);
+         m_pcallback->OnFileManagerOpenContextMenu(this, actioncontext);
 
       }
 
    }
 
 
-   void data::OnFileManagerOpenFile(const ::fs::item_array & itema)
+   void data::OnFileManagerOpenFile(const ::fs::item_array & itema, ::action::context actioncontext)
    {
 
       ASSERT(m_pcallback != NULL);
@@ -142,7 +142,7 @@ namespace filemanager
    }
 
 
-   void data::OnFileManagerOpenFolder(sp(::fs::item)  item)
+   void data::OnFileManagerOpenFolder(sp(::fs::item)  item, ::action::context actioncontext)
    {
 
       ASSERT(m_pcallback != NULL);
@@ -150,7 +150,7 @@ namespace filemanager
       if(m_pcallback != NULL)
       {
 
-         m_pcallback->OnFileManagerOpenFolder(this, item);
+         m_pcallback->OnFileManagerOpenFolder(this, item, actioncontext);
 
       }
 
@@ -187,7 +187,7 @@ namespace filemanager
    }
 
 
-   void data::FileManagerBrowse(sp(::fs::item)  item)
+   void data::FileManagerBrowse(sp(::fs::item) item, ::action::context actioncontext)
    {
 
       ASSERT(m_pmanager != NULL);
@@ -195,13 +195,13 @@ namespace filemanager
       if(m_pmanager != NULL)
       {
 
-         m_pmanager->FileManagerBrowse(item);
+         m_pmanager->FileManagerBrowse(item, actioncontext);
 
       }
 
    }
 
-   void data::FileManagerBrowse(const char * lpcsz)
+   void data::FileManagerBrowse(const char * lpcsz, ::action::context actioncontext)
    {
       
       ASSERT(m_pmanager != NULL);
@@ -209,7 +209,7 @@ namespace filemanager
       if(m_pmanager != NULL)
       {
 
-         m_pmanager->FileManagerBrowse(lpcsz);
+         m_pmanager->FileManagerBrowse(lpcsz, actioncontext);
 
       }
 

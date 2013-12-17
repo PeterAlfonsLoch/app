@@ -51,22 +51,22 @@ namespace simpledb
       return true;
    }
 
-   void simpledb::on_set_locale(const char * lpcsz, bool bUser)
+   void simpledb::on_set_locale(const char * lpcsz, ::action::context actioncontext)
    {
-      if(bUser)
+      if(actioncontext.is_user_source())
       {
          data_set("locale", lpcsz);
       }
-      m_pbaseapp->m_pplaneapp->on_set_locale(lpcsz, bUser);
+      m_pbaseapp->m_pplaneapp->on_set_locale(lpcsz, actioncontext);
    }
 
-   void simpledb::on_set_schema(const char * lpcsz, bool bUser)
+   void simpledb::on_set_schema(const char * lpcsz, ::action::context actioncontext)
    {
-      if(bUser)
+      if(actioncontext.is_user_source())
       {
          data_set("schema", lpcsz);
       }
-      m_pbaseapp->m_pplaneapp->on_set_schema(lpcsz, bUser);
+      m_pbaseapp->m_pplaneapp->on_set_schema(lpcsz, actioncontext);
    }
 
    bool simpledb::FinalizeDataCentral()
@@ -112,13 +112,13 @@ namespace simpledb
       if(m_pbaseapp->m_pplaneapp->command()->m_varTopicQuery["locale"].get_string().has_char())
       {
          string str = m_pbaseapp->m_pplaneapp->command()->m_varTopicQuery["locale"];
-         m_pbaseapp->m_pplaneapp->set_locale(str, false);
+         m_pbaseapp->m_pplaneapp->set_locale(str, ::action::source::database());
       }
 
       if(m_pbaseapp->m_pplaneapp->command()->m_varTopicQuery["schema"].get_string().has_char())
       {
          string str = m_pbaseapp->m_pplaneapp->command()->m_varTopicQuery["schema"];
-         m_pbaseapp->m_pplaneapp->set_schema(str, false);
+         m_pbaseapp->m_pplaneapp->set_schema(str, ::action::source::database());
       }
 
 //      if(&AppUser(this) == NULL)
@@ -149,7 +149,7 @@ namespace simpledb
       if(!m_pbaseapp->m_pplaneapp->is_installing() && !m_pbaseapp->m_pplaneapp->is_uninstalling() && !m_pbaseapp->m_pplaneapp->is_system())
       {
 
-         set_keyboard_layout(NULL, false);
+         set_keyboard_layout(NULL, ::action::source::system());
 
       }
 
@@ -202,26 +202,35 @@ namespace simpledb
 
    }
 
+
    ::database::server * simpledb::get_data_server()
    {
+
       return m_pserver;
+
    }
+
 
    db_server & simpledb::db()
    {
+
       return *m_pserver;
-   }
-
-   bool simpledb::set_keyboard_layout(const char * pszPath, bool bUser)
-   {
-      return Application.user()->set_keyboard_layout(pszPath, bUser);
 
    }
 
-   void simpledb::on_set_keyboard_layout(const char * pszPath, bool bUser)
+
+   bool simpledb::set_keyboard_layout(const char * pszPath, ::action::context actioncontext)
    {
 
-      if(bUser)
+      return Application.user()->set_keyboard_layout(pszPath, actioncontext);
+
+   }
+
+
+   void simpledb::on_set_keyboard_layout(const char * pszPath, ::action::context actioncontext)
+   {
+
+      if(actioncontext.is_user_source())
       {
 
          if(App(m_pbaseapp).safe_get_user() != NULL)

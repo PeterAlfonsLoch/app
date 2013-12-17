@@ -10,9 +10,10 @@ void string_interface::get_string(char * psz) const
    *psz = '\0';
 }
 
-void string_interface::set_string(const char * psz)
+void string_interface::set_string(const string & str, ::action::context actioncontext)
 {
-   UNREFERENCED_PARAMETER(psz);
+   UNREFERENCED_PARAMETER(str);
+   UNREFERENCED_PARAMETER(actioncontext);
 }
 
 string_interface & string_interface::operator = (const string_interface & str)
@@ -24,13 +25,13 @@ string_interface & string_interface::operator = (const string_interface & str)
    if(iLen < ((sizeof(sz) / sizeof(char)) - sizeof(char)))
    {
       str.get_string(sz);
-      set_string(sz);
+      set_string(sz, ::action::source::op(::action::source_assign));
    }
    else
    {
       char * psz = new char[iLen + 1];
       str.get_string(psz);
-      set_string(psz);
+      set_string(psz, ::action::source::op(::action::source_assign));
       delete [] psz;
    }
    return *this;
@@ -38,7 +39,7 @@ string_interface & string_interface::operator = (const string_interface & str)
 
 string_interface & string_interface::operator = (const char * psz)
 {
-   set_string(psz);
+   set_string(psz, ::action::source::op(::action::source_assign));
    return *this;
 }
 
@@ -657,7 +658,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
 string::operator class string_composite ()
 {
    class string_composite composite;
-   composite.set_string(*this);
+   composite.set_string(*this, ::action::source::op(::action::source_cast));
    return composite;
 }
 

@@ -1032,6 +1032,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="base\base\base.h" />
+    <ClInclude Include="base\base\base_action_context.h" />
+    <ClInclude Include="base\base\base_action_source.h" />
     <ClInclude Include="base\base\base_allocate.h" />
     <ClInclude Include="base\base\base_application.h" />
     <ClInclude Include="base\base\base_async.h" />

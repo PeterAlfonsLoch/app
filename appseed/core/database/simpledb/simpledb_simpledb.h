@@ -38,15 +38,15 @@ namespace simpledb
       virtual ::database::server * get_data_server();
       virtual db_server & db();
 
-      virtual void on_set_locale(const char * lpcsz, bool bUser);
-      virtual void on_set_schema(const char * lpcsz, bool bUser);
+      virtual void on_set_locale(const char * lpcsz, ::action::context actioncontext);
+      virtual void on_set_schema(const char * lpcsz, ::action::context actioncontext);
 
 
       virtual bool InitializeDataCentral();
       virtual bool FinalizeDataCentral();
 
-      virtual bool set_keyboard_layout(const char * pszPath, bool bUser);
-      virtual void on_set_keyboard_layout(const char * pszPath, bool bUser);
+      virtual bool set_keyboard_layout(const char * pszPath, ::action::context actioncontext);
+      virtual void on_set_keyboard_layout(const char * pszPath, ::action::context actioncontext);
 
    };
 

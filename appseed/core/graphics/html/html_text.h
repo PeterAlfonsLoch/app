@@ -51,7 +51,7 @@ namespace html
          virtual float get_first_line_height();
          virtual float get_last_line_height();
 
-         virtual void _001OnAfterChangeText();
+         virtual void _001OnAfterChangeText(::action::context actioncontext);
 
 
       };

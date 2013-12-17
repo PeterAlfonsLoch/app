@@ -127,7 +127,7 @@ namespace bergedge
          strDirName.Format("application-%d", 0);
          string strDir = Application.dir().userappdata("bergedge", strDirName);
          sp(::filemanager::document) pdoc =  (m_pviewdata->m_pdoc);
-         pdoc->FileManagerBrowse(strDir);
+         pdoc->FileManagerBrowse(strDir, ::action::source::system_default());
       }
       else if(strId == "file_manager")
       {
@@ -138,7 +138,7 @@ namespace bergedge
       {
          /*bergedge::menu_view * pview = dynamic_cast < bergedge::menu_view *  > (get_view());
          sp(::filemanager::document) pdoc = (pview->get_document());
-         pdoc->FileManagerBrowse(Application.dir().userappdata("bergedge\\menu"));*/
+         pdoc->FileManagerBrowse(Application.dir().userappdata("bergedge\\menu"), ::action::source::system_default());*/
       }
       else if(get_view_id() == ::bergedge::PaneViewConfiguration)
       {
@@ -163,7 +163,7 @@ namespace bergedge
             check_desktop_dir(strDir);
          }
          sp(::filemanager::document) pdoc =  (m_pviewdata->m_pdoc);
-         pdoc->FileManagerBrowse(strDir);
+         pdoc->FileManagerBrowse(strDir, ::action::source::system_default());
       }
       else
       {
@@ -257,7 +257,7 @@ namespace bergedge
                   Application.file().put_contents(System.dir().path(strDir, strApp + ".core"), "ca2prompt\n" + strApp);
                }
             }
-            pdoc->FileManagerBrowse(strDir);
+            pdoc->FileManagerBrowse(strDir, ::action::source::system_default());
             if(pview != NULL)
             {
                sp(::user::frame_window) pframe = (pview->GetParentFrame());
@@ -310,7 +310,7 @@ namespace bergedge
                   {
                      check_desktop_dir(strDir);
                   }
-                  pdoc->FileManagerBrowse(strDir);
+                  pdoc->FileManagerBrowse(strDir, ::action::source::system_default());
                   if(pview != NULL)
                   {
                      sp(::user::frame_window) pframe = (pview->GetParentFrame());
@@ -340,7 +340,7 @@ namespace bergedge
                   sp(::user::impact) pview = pdoc->get_view();
                   string strDir = Application.dir().userappdata("bergedge\\3-action-launch");
                   check_3click_dir(strDir);
-                  pdoc->FileManagerBrowse(strDir);
+                  pdoc->FileManagerBrowse(strDir, ::action::source::system_default());
                   if(pview != NULL)
                   {
                      sp(::user::frame_window) pframe = (pview->GetParentFrame());

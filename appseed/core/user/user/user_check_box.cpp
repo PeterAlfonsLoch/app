@@ -20,7 +20,7 @@ namespace user
       return m_echeck;
    }
 
-   void check_box::_001SetCheck(check::e_check echeck, bool bUser)
+   void check_box::_001SetCheck(check::e_check echeck, ::action::context actioncontext)
    {
       if(echeck != check::unchecked
       && echeck != check::checked
@@ -33,7 +33,7 @@ namespace user
       ::user::control_event ev;
       ev.m_puie = this;
       ev.m_eevent = ::user::event_set_check;
-      ev.m_bUser = bUser;
+      ev.m_actioncontext = actioncontext;
       if(get_form() != NULL)
       {
          get_form()->send_message(
@@ -101,7 +101,7 @@ namespace user
       SCAST_PTR(::message::key, pkey, pobj)
       if(pkey->m_ekey == ::user::key_space)
       {
-         _001ToggleCheck(true);
+         _001ToggleCheck(::action::source_user);
       }
    }
 
@@ -120,7 +120,7 @@ namespace user
       SCAST_PTR(::message::mouse, pmouse, pobj)
       if(m_bMouseDown)
       {
-         _001ToggleCheck(true);
+         _001ToggleCheck(::action::source_user);
          pobj->m_bRet = true;
          pmouse->set_lresult(1);
       }

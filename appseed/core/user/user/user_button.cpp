@@ -282,23 +282,34 @@ namespace user
       m_bEnabled = bEnable;
    }
 
-   void button::_001SetCheck(check::e_check echeck, bool bUser)
+
+   void button::_001SetCheck(check::e_check echeck, ::action::context actioncontext)
    {
-      UNREFERENCED_PARAMETER(bUser);
+
+      UNREFERENCED_PARAMETER(actioncontext);
+
       m_echeck = echeck;
+
    }
 
 
    check::e_check button::_001GetCheck()
    {
+
       return m_echeck;
+
    }
 
-   void button::_001SetState(state::state state, bool bUser)
+
+   void button::_001SetState(state::state state, ::action::context actioncontext)
    {
-      UNREFERENCED_PARAMETER(bUser);
+
+      UNREFERENCED_PARAMETER(actioncontext);
+
       m_state = state;
+
    }
+
 
    state::state button::_001GetState()
    {

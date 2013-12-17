@@ -132,8 +132,8 @@ namespace userex
       sp(impact_system) get_template(index index) const;
 
 
-      //       virtual bool set_keyboard_layout(const char * pszPath, bool bUser);
-      //         virtual void on_set_keyboard_layout(const char * pszPath, bool bUser);
+      //       virtual bool set_keyboard_layout(const char * pszPath, ::action::context actioncontext);
+      //         virtual void on_set_keyboard_layout(const char * pszPath, ::action::context actioncontext);
 
 
 

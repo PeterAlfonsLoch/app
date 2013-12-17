@@ -630,7 +630,7 @@ public:
 
 
 
-   virtual bool set_keyboard_layout(const char * pszPath, bool bUser);
+   virtual bool set_keyboard_layout(const char * pszPath, ::action::context actioncontext);
 
 
    inline ::uinteraction::uinteraction          & uinteraction() { return *m_puinteraction; }

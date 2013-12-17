@@ -14,8 +14,10 @@
           
 #include "userfs_item.h"
 #include "userfs_tree.h"
-          
+
 #include "userfs_main_view.h"
+
+#include "userfs_update_hint.h"
           
 #include "userfs_userfs.h"
 

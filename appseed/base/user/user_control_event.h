@@ -1,5 +1,6 @@
 #pragma once
 
+
 namespace user
 {
 
@@ -20,19 +21,30 @@ namespace user
       event_after_change_cur_sel,
    };
 
+
    class CLASS_DECL_BASE control_event
    {
    public:
+
+
+      e_event                       m_eevent;
+      sp(::user::interaction)       m_puie;
+      uint32_t                      m_uiEvent;
+      ::action::context            m_actioncontext;
+      uint32_t                      m_uiVKey;
+      uint32_t                      m_uiFlags;
+      
+      
       control_event();
       virtual ~control_event();
 
-      e_event                 m_eevent;
-      sp(::user::interaction)    m_puie;
-      uint32_t                    m_uiEvent;
-      bool                    m_bUser;
-      uint32_t                    m_uiVKey;
-      uint32_t                    m_uiFlags;
+
    };
 
 
 } // namespace user
+
+
+
+
+

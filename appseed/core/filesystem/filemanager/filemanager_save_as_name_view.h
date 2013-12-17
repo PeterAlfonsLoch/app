@@ -11,12 +11,12 @@ public:
    FileManagerSaveAsView(sp(base_application) papp);
 
 
-   virtual void _001OnAfterChangeText();
+   virtual void _001OnAfterChangeText(::action::context actioncontext);
 
 
    bool m_bVoidSync;
 
-   void _017Synchronize();
+   void _017Synchronize(::action::context actioncontext);
    void on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint);
 
 

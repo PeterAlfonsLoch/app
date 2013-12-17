@@ -563,7 +563,7 @@ bool application::initialize1()
    if (!is_installing() && !is_uninstalling() && !is_system())
    {
 
-      simpledb().set_keyboard_layout(NULL, false);
+      simpledb().set_keyboard_layout(NULL, ::action::source::system());
 
    }
 
@@ -643,20 +643,20 @@ bool application::initialize1()
          str = command()->m_varTopicQuery["locale"];
          data_set("system_locale", str);
          data_set("locale", str);
-         set_locale(str, false);
+         set_locale(str, ::action::source::database());
       }
       else if (command()->m_varTopicQuery["lang"].get_string().has_char())
       {
          str = command()->m_varTopicQuery["lang"];
          data_set("system_locale", str);
          data_set("locale", str);
-         set_locale(str, false);
+         set_locale(str, ::action::source::database());
       }
       else if (data_get("locale", str))
       {
          if (str.has_char())
          {
-            set_locale(str, false);
+            set_locale(str, ::action::source::database());
          }
       }
       // if system schema has changed (compared to last recorded one by core)
@@ -688,24 +688,24 @@ bool application::initialize1()
          str = command()->m_varTopicQuery["schema"];
          data_set("system_schema", str);
          data_set("schema", str);
-         set_schema(str, false);
+         set_schema(str, ::action::source::database());
       }
       else if (data_get("schema", str))
       {
          if (str.has_char())
          {
-            set_schema(str, false);
+            set_schema(str, ::action::source::database());
          }
       }
 
       // keyboard layout
       if (data_get("keyboard_layout", str) && str.has_char())
       {
-         user()->set_keyboard_layout(str, false);
+         user()->set_keyboard_layout(str, ::action::source::database());
       }
       else
       {
-         user()->set_keyboard_layout(NULL, false);
+         user()->set_keyboard_layout(NULL, ::action::source::database());
       }
 
       data_pulse_change("ca2", "savings", NULL);
@@ -4370,10 +4370,10 @@ void application::defer_add_document_template(sp(::user::impact_system) ptemplat
 
 
 
-bool application::set_keyboard_layout(const char * pszPath, bool bUser)
+bool application::set_keyboard_layout(const char * pszPath, ::action::context actioncontext)
 {
 
-   return Application.user()->keyboard().load_layout(pszPath, bUser);
+   return Application.user()->keyboard().load_layout(pszPath, actioncontext);
 
 }
 

@@ -337,13 +337,13 @@ namespace data
    }
 
 
-   void tree::_001ExpandItem(::data::tree_item * pitem, bool bExpand, bool bRedraw, bool bLayout)
+   void tree::_001ExpandItem(::data::tree_item * pitem, ::action::context actioncontext, bool bExpand, bool bRedraw, bool bLayout)
    {
 
       for (index i = 0; i < m_treeptra.get_count(); i++)
       {
 
-         m_treeptra[i]._001ExpandItem(pitem, bExpand, bRedraw, bLayout);
+         m_treeptra[i]._001ExpandItem(pitem, actioncontext, bExpand, bRedraw, bLayout);
 
       }
 
@@ -419,7 +419,7 @@ namespace data
    }
 
 
-   void tree::_001OnItemExpand(::data::tree_item * pitem)
+   void tree::_001OnItemExpand(::data::tree_item * pitem, ::action::context actioncontext)
    {
 
       if (pitem->is_expanded())
@@ -436,7 +436,7 @@ namespace data
 /*      for (index i = 0; i < m_treeptra.get_count(); i++)
       {
 
-         m_treeptra[i]._001OnItemExpand(pitem);
+         m_treeptra[i]._001OnItemExpand(pitem, actioncontext);
 
       }*/
 
@@ -446,7 +446,7 @@ namespace data
    }
 
 
-   void tree::_001OnItemCollapse(::data::tree_item * pitem)
+   void tree::_001OnItemCollapse(::data::tree_item * pitem, ::action::context actioncontext)
    {
 
       if (!pitem->is_expanded())
@@ -466,13 +466,13 @@ namespace data
    }
 
 
-   void tree::_001OnOpenItem(::data::tree_item * pitem)
+   void tree::_001OnOpenItem(::data::tree_item * pitem, ::action::context actioncontext)
    {
 
       for (index i = 0; i < m_treeptra.get_count(); i++)
       {
 
-         m_treeptra[i]._001OnOpenItem(pitem);
+         m_treeptra[i]._001OnOpenItem(pitem, actioncontext);
 
       }
 

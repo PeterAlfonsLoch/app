@@ -33,8 +33,8 @@ namespace userfs
 
       void update_list();
 
-      void _001OnItemExpand(::data::tree_item * pitem);
-      void _017UpdateList(const char * lpcsz, ::data::tree_item * pitemParent, int32_t iLevel);
+      void _001OnItemExpand(::data::tree_item * pitem, ::action::context actioncontext);
+      void _017UpdateList(const char * lpcsz, ::data::tree_item * pitemParent, int32_t iLevel, ::action::context actioncontext);
 
       sp(::userfs::document) get_document();
 
@@ -43,7 +43,7 @@ namespace userfs
 
 
 
-      virtual void _017Synchronize();
+      virtual void _017Synchronize(::action::context actioncontext);
       void install_message_handling(::message::dispatch * pinterface);
 
 
@@ -52,24 +52,24 @@ namespace userfs
       void _CreateImageListStep();
 
       // user::tree
-      virtual void _001OnOpenItem(::data::tree_item * pitem);
-      virtual void _001OnItemCollapse(::data::tree_item * pitem);
+      virtual void _001OnOpenItem(::data::tree_item * pitem, ::action::context actioncontext);
+      virtual void _001OnItemCollapse(::data::tree_item * pitem, ::action::context actioncontext);
 
 
-      virtual void _017OpenFolder(sp(::fs::item) item);
+      virtual void _017OpenFolder(sp(::fs::item) item, ::action::context actioncontext);
 
       virtual COLORREF get_background_color();
 
-      void _017PreSynchronize();
+      void _017PreSynchronize(::action::context actioncontext);
       void TakeAnimationSnapshot();
       virtual void StartAnimation(::user::interaction * pui);
       void GetSelectedFilePath(stringa & stra);
       virtual bool _001IsTranslucent();
 
-      void _017Browse(const char * lpcsz, bool bForceUpdate = false);
-      void _017UpdateList();
-      void _017UpdateZipList(const char * lpcsz, ::data::tree_item * pitemParent, int32_t iLevel);
-      void _017EnsureVisible(const char * lpcsz);
+      void _017Browse(const char * lpcsz, ::action::context actioncontext, bool bForceUpdate = false);
+      void _017UpdateList(::action::context actioncontext);
+      void _017UpdateZipList(const char * lpcsz, ::data::tree_item * pitemParent, int32_t iLevel, ::action::context actioncontext);
+      void _017EnsureVisible(const char * lpcsz, ::action::context actioncontext);
 
       sp(::data::tree_item) find_item(const char * lpcsz);
 
@@ -85,7 +85,7 @@ namespace userfs
       void _DelayedListUpdate();
 
 
-      void RenameFile(int32_t iLine, string & str);
+      void RenameFile(int32_t iLine, string & str, ::action::context actioncontext);
 
       virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
     

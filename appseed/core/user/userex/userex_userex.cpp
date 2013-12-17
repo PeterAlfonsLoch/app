@@ -84,9 +84,9 @@ namespace userex
       }
 
       if(strLangUser.has_char())
-         Application.set_locale(strLangUser, false);
+         Application.set_locale(strLangUser, ::action::source::database());
       if(strStyleUser.has_char())
-         Application.set_schema(strStyleUser, false);
+         Application.set_schema(strStyleUser, ::action::source::database());
 
       string strLicense = Application.get_license_id();
 

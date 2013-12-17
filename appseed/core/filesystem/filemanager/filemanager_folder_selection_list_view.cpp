@@ -43,11 +43,11 @@ void folder_selection_list_view::Initialize(::filemanager::schema * ptemplate, c
 
    if(data_get("InitialBrowsePath", ::base_system::idEmpty, str))
    {
-      FileManagerBrowse(str);
+      FileManagerBrowse(str, ::action::source::database_default());
    }
    else
    {
-      FileManagerBrowse("");
+      FileManagerBrowse("", ::action::source::system_default());
    }
 
    m_plistview->_001OnUpdateItemCount();
@@ -85,11 +85,12 @@ void folder_selection_list_view::CreateViews()
 
 }
 
-void folder_selection_list_view::OnFileManagerBrowse()
+void folder_selection_list_view::OnFileManagerBrowse(::action::context actioncontext)
 {
    {
       filemanager::update_hint uh;
       uh.set_type(filemanager::update_hint::TypeSynchronizeFolderSelection);
+      uh.m_actioncontext = actioncontext + ::action::source_selection;
       get_document()->update_all_views(NULL, 0, &uh);
    }
 }

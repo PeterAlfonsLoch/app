@@ -38,7 +38,7 @@ namespace filemanager
 
       void PopViews();
       void CreateViews();
-      void OpenFolder(sp(::fs::item) item);
+      void OpenFolder(sp(::fs::item) item, ::action::context actioncontext);
       void Initialize(bool bMakeVisible);
       DECL_GEN_SIGNAL(_001OnLevelUp)
       DECL_GEN_SIGNAL(_001OnUpdateLevelUp)
@@ -50,7 +50,7 @@ namespace filemanager
       DECL_GEN_SIGNAL(_001OnUpdateEditPaste)
       DECL_GEN_SIGNAL(_001OnFileSaveAs)
       DECL_GEN_SIGNAL(_001OnUpdateFileSaveAs)
-      virtual void OnFileManagerBrowse();
+      virtual void OnFileManagerBrowse(::action::context actioncontext);
       virtual void OpenSelectionProperties();
    #ifdef DEBUG
       virtual void assert_valid() const;

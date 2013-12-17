@@ -27,11 +27,21 @@ namespace userfs
       ::user::object::dump(dumpcontext);
    }
 
-   bool document::file_manager_browse(const char * pszFolder)
+   bool document::file_manager_browse(const char * pszFolder, ::action::context actioncontext)
    {
+      
       m_strFolder = pszFolder;
-      update_all_views(NULL, 123);
+
+      update_hint uh;
+
+      uh.set_type(update_hint::type_synchronize_path);
+      uh.m_strPath = pszFolder;
+      uh.m_actioncontext = ::action::source::sync(actioncontext);
+
+      update_all_views(NULL, 0, &uh);
+
       return true;
+
    }
 
 

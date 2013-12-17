@@ -625,7 +625,7 @@ void base_system::appa_load_string_table()
 
 }
 
-void base_system::appa_set_locale(const char * pszLocale, bool bUser)
+void base_system::appa_set_locale(const char * pszLocale, ::action::context actioncontext)
 {
 
    retry_single_lock rsl(&m_mutex, millis(84), millis(84));
@@ -633,12 +633,12 @@ void base_system::appa_set_locale(const char * pszLocale, bool bUser)
    for (int32_t i = 0; i < appptra().get_size(); i++)
    {
       sp(base_application) papp = appptra()(i);
-      papp->set_locale(pszLocale, bUser);
+      papp->set_locale(pszLocale, actioncontext);
    }
 
 }
 
-void base_system::appa_set_schema(const char * pszStyle, bool bUser)
+void base_system::appa_set_schema(const char * pszStyle, ::action::context actioncontext)
 {
 
    retry_single_lock rsl(&m_mutex, millis(84), millis(84));
@@ -646,7 +646,7 @@ void base_system::appa_set_schema(const char * pszStyle, bool bUser)
    for (int32_t i = 0; i < appptra().get_size(); i++)
    {
       sp(base_application) papp = appptra()(i);
-      papp->set_schema(pszStyle, bUser);
+      papp->set_schema(pszStyle, actioncontext);
    }
 
 }

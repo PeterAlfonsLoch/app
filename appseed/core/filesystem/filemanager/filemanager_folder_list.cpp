@@ -93,7 +93,7 @@ namespace filemanager
             }
             else if(puh->is_type_of(update_hint::TypeSynchronizePath))
             {
-               _017Synchronize();
+               _017Synchronize(puh->m_actioncontext + ::action::source_sync);
             }
          }
       }
@@ -105,7 +105,7 @@ namespace filemanager
          index iItem;
       if(_001HitTest_(pmouse->m_pt, iItem))
       {
-         GetFileManager()->get_filemanager_data()->OnFileManagerOpenFolder(new::fs::item(m_foldera.GetFolder(iItem).m_strPath));
+         GetFileManager()->get_filemanager_data()->OnFileManagerOpenFolder(new::fs::item(m_foldera.GetFolder(iItem).m_strPath), ::action::source_user);
       }
    }
 
@@ -147,22 +147,22 @@ namespace filemanager
    }
 
 
-   void folder_list::_017Browse(const wchar_t * lpcsz)
+   void folder_list::_017Browse(const wchar_t * lpcsz, ::action::context actioncontext)
    {
       UNREFERENCED_PARAMETER(lpcsz);
-      _017UpdateList();
+      _017UpdateList(actioncontext);
    }
 
-   void folder_list::_017Browse(const char * lpcsz)
+   void folder_list::_017Browse(const char * lpcsz, ::action::context actioncontext)
    {
 
-      _017UpdateList(lpcsz);
+      _017UpdateList(lpcsz, actioncontext);
 
-      _017UpdateList();
+      _017UpdateList(actioncontext);
 
    }
 
-   void folder_list::_017UpdateList(const char * lpcsz)
+   void folder_list::_017UpdateList(const char * lpcsz, ::action::context actioncontext)
    {
       string strParent = lpcsz;
 
@@ -194,7 +194,7 @@ namespace filemanager
 
    }
 
-   void folder_list::_017UpdateList()
+   void folder_list::_017UpdateList(::action::context actioncontext)
    {
 
       Folder folder;
@@ -223,7 +223,7 @@ namespace filemanager
       }
       else
       {
-         _017UpdateList(strParent);
+         _017UpdateList(strParent, actioncontext);
       }
    }
 
@@ -399,9 +399,9 @@ namespace filemanager
       }
    }
 
-   void folder_list::_017Synchronize()
+   void folder_list::_017Synchronize(::action::context actioncontext)
    {
-      _017Browse(GetFileManagerItem().m_strPath);
+      _017Browse(GetFileManagerItem().m_strPath, actioncontext);
    }
 
    ::fs::item & folder_list::GetFileManagerItem()

@@ -15,7 +15,7 @@ namespace filemanager
 
    }
 
-   bool manager::FileManagerBrowse(sp(::fs::item)  item)
+   bool manager::FileManagerBrowse(sp(::fs::item) item, ::action::context actioncontext)
    {
 
       string strOldPath;
@@ -32,7 +32,7 @@ namespace filemanager
          m_item = canew(::fs::item(*item));
 
 
-         OnFileManagerBrowse();
+         OnFileManagerBrowse(::action::source::sync(actioncontext));
 
 
       }
@@ -48,7 +48,7 @@ namespace filemanager
 
             m_item = new ::fs::item(strOldPath);
 
-            OnFileManagerBrowse();
+            OnFileManagerBrowse(::action::source::sync(actioncontext));
 
          }
 
@@ -60,16 +60,16 @@ namespace filemanager
 
    }
 
-   bool manager::FileManagerBrowse(const char * lpcszPath)
+   bool manager::FileManagerBrowse(const char * lpcszPath, ::action::context actioncontext)
    {
 
-      FileManagerBrowse(new ::fs::item(lpcszPath));
+      FileManagerBrowse(new ::fs::item(lpcszPath), actioncontext);
 
       return false;
 
    }
 
-   void manager::FileManagerOneLevelUp()
+   void manager::FileManagerOneLevelUp(::action::context actioncontext)
    {
 
       if (get_item().m_strPath.is_empty())
@@ -77,7 +77,7 @@ namespace filemanager
 
       string strParent = get_fs_data()->eat_end_level(get_item().m_strPath, 1);
 
-      FileManagerBrowse(strParent);
+      FileManagerBrowse(strParent, ::action::source::sync(actioncontext));
 
    }
 
@@ -97,30 +97,35 @@ namespace filemanager
       return &m_csItemIdListAbsolute;
    }
 
-   void manager::OnFileManagerBrowse()
+   void manager::OnFileManagerBrowse(::action::context actioncontext)
    {
 
-      if (::str::begins(m_item->m_strPath, "uifs://")
-         || ::str::begins(m_item->m_strPath, "fs://"))
+      if (actioncontext.is_user_source())
       {
-         data_set("InitialBrowsePath", ::base_system::idEmpty, m_item->m_strPath);
-      }
-      else
-      {
+         
+         if (::str::begins(m_item->m_strPath, "uifs://")
+            || ::str::begins(m_item->m_strPath, "fs://"))
+         {
+            data_set("InitialBrowsePath", ::base_system::idEmpty, m_item->m_strPath);
+         }
+         else
+         {
 
-         id idMachine;
+            id idMachine;
 
 #ifdef LINUX
-         idMachine = "Linux";
+            idMachine = "Linux";
 #elif defined(WINDOWSEX)
-         idMachine = "Windows Desktop";
+            idMachine = "Windows Desktop";
 #endif
 
-         data_set("InitialBrowsePath", ::base_system::idEmpty, "machinefs://");
-         data_set("InitialBrowsePath", idMachine, m_item->m_strPath);
+            data_set("InitialBrowsePath", ::base_system::idEmpty, "machinefs://");
+            data_set("InitialBrowsePath", idMachine, m_item->m_strPath);
+
+         }
 
       }
-      //get_filemanager_data()->OnFileManagerOpenFolder(get_item());
+
    }
 
    void manager::OpenSelectionProperties()

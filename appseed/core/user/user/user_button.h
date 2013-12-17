@@ -58,9 +58,9 @@ namespace user
       DECL_GEN_SIGNAL(_001OnCreate)
       virtual bool _001IsWindowEnabled();
       virtual void _001EnableWindow(bool bEnable = true);
-      virtual void _001SetCheck(check::e_check check, bool bUser);
+      virtual void _001SetCheck(check::e_check check, ::action::context actioncontext);
       virtual check::e_check _001GetCheck();
-      virtual void _001SetState(state::state state, bool bUser);
+      virtual void _001SetState(state::state state, ::action::context actioncontext);
       virtual state::state _001GetState();
 
       virtual bool _001IsPressed();

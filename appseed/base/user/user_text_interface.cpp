@@ -10,10 +10,10 @@ void text_interface::_001GetSelText(string & str)
    UNREFERENCED_PARAMETER(str);
 }
 
-void text_interface::_001SetText(const char * psz, bool bUser)
+void text_interface::_001SetText(const string & str, ::action::context actioncontext)
 {
-   UNREFERENCED_PARAMETER(psz);
-   UNREFERENCED_PARAMETER(bUser);
+   UNREFERENCED_PARAMETER(str);
+   UNREFERENCED_PARAMETER(actioncontext);
 }
 
 strsize text_interface::get_length()
@@ -34,7 +34,9 @@ void text_interface::get_string(char * psz, ::primitive::memory_size len)
 
 }
 
-void text_interface::set_string(const char * psz, bool bUser)
+void text_interface::set_string(const string & str, ::action::context actioncontext)
 {
-   _001SetText(psz, bUser);
+   
+   _001SetText(str, actioncontext);
+
 }

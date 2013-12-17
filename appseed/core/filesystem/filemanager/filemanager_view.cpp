@@ -120,7 +120,7 @@ namespace filemanager
                         + "." + System.file().extension(GetFileManager()->get_filemanager_data()->m_pdocumentSave->get_path_name());
                      strName.replace(":", "-");
                      strName = System.dir().path(GetFileManager()->get_item().m_strPath, strName);
-                     ptopview->_001SetText(strName, false);
+                     ptopview->_001SetText(strName, puh->m_actioncontext);
                      GetFileManager()->get_filemanager_data()->m_pmanager->m_strTopic = strName;
                      set_position(0, 49);
                      set_position(1, 49 + 49);

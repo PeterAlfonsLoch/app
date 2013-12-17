@@ -26,11 +26,11 @@ namespace filemanager
       ::critical_section * GetItemIdListCriticalSection();
       ::fs::item & get_item();
 
-      virtual bool FileManagerBrowse(sp(::fs::item)  item);
-      virtual bool FileManagerBrowse(const char * lpcsz);
+      virtual bool FileManagerBrowse(sp(::fs::item) item, ::action::context actioncontext);
+      virtual bool FileManagerBrowse(const char * lpcsz, ::action::context actioncontext);
 
-      virtual void FileManagerOneLevelUp();
-      virtual void OnFileManagerBrowse();
+      virtual void FileManagerOneLevelUp(::action::context actioncontext);
+      virtual void OnFileManagerBrowse(::action::context actioncontext);
       virtual void OpenSelectionProperties();
 
       virtual void GetActiveViewSelection(::fs::item_array & itema);

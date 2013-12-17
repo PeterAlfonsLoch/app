@@ -18,10 +18,10 @@ namespace filemanager
       virtual void on_request(sp(::create_context) pcreatecontext);
 
 
-      virtual void OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, sp(::fs::item)  item, stringa & straCommand, stringa & straCommandTitle);
-      virtual void OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, const ::fs::item_array & itema);
-      virtual void OnFileManagerOpenContextMenu(::filemanager::data * pdata);
-      virtual void OnFileManagerOpenFolder(::filemanager::data * pdata, sp(::fs::item)  item);
+      virtual void OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, sp(::fs::item)  item, stringa & straCommand, stringa & straCommandTitle, ::action::context actioncontext);
+      virtual void OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, const ::fs::item_array & itema, ::action::context actioncontext);
+      virtual void OnFileManagerOpenContextMenu(::filemanager::data * pdata, ::action::context actioncontext);
+      virtual void OnFileManagerOpenFolder(::filemanager::data * pdata, sp(::fs::item)  item, ::action::context actioncontext);
       virtual bool GetFileManagerItemCallback(::filemanager::data * pdata, id id, const ::fs::item_array & itema);
       virtual void OnFileManagerItemUpdate(::filemanager::data * pdata, cmd_ui * pcmdui, const ::fs::item_array & itema);
       virtual void OnFileManagerItemCommand(::filemanager::data * pdata, id pszId, const ::fs::item_array & itema);

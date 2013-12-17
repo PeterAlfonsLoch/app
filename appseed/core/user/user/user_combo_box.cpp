@@ -350,21 +350,21 @@ namespace user
 
    }
 
-   void combo_box::_001SetText(const char * psz, bool bUser)
+   void combo_box::_001SetText(const string & str, ::action::context actioncontext)
    {
 
       if(m_bEdit)
       {
 
-         ::user::edit_plain_text::_001SetText(psz, bUser);
+         ::user::edit_plain_text::_001SetText(str, actioncontext);
 
       }
       else
       {
 
-         m_strText = psz;
+         m_strText = str;
 
-         _001OnAfterChangeText();
+         _001OnAfterChangeText(actioncontext);
 
       }
 
@@ -719,21 +719,21 @@ namespace user
 
    }
 
-   void combo_box::_001SetCurSel(index iSel, bool bUser)
+   void combo_box::_001SetCurSel(index iSel, ::action::context actioncontext)
    {
 
       string strItem;
 
       _001GetListText(iSel, strItem);
 
-      _001SetText(strItem, bUser);
+      _001SetText(strItem, actioncontext);
 
       m_iSel = iSel;
 
       ::user::control_event ev;
       ev.m_puie = this;
       ev.m_eevent = ::user::event_after_change_cur_sel;
-      ev.m_bUser = bUser;
+      ev.m_actioncontext = actioncontext;
       get_parent()->BaseOnControlEvent(&ev);
       BaseOnControlEvent(&ev);
 
@@ -774,7 +774,7 @@ namespace user
 
    }
 
-   void combo_box::_001OnAfterChangeText()
+   void combo_box::_001OnAfterChangeText(::action::context actioncontext)
    {
 
       string str;
@@ -1279,7 +1279,7 @@ namespace user
    }
 
 
-   void combo_box::_001SetCurSelByData(uint_ptr ui, bool bUser)
+   void combo_box::_001SetCurSelByData(uint_ptr ui, ::action::context actioncontext)
    {
 
       ::count c = _001GetListCount();
@@ -1304,7 +1304,7 @@ namespace user
          return;
 
 
-      _001SetCurSel(iSel, bUser);
+      _001SetCurSel(iSel, actioncontext);
 
    }
 

@@ -36,7 +36,7 @@ bool file_manager_form_view::BaseOnControlEvent(::user::control_event * pevent)
          get_document()->update_all_views(NULL, 0, &uh);
          sp(::user::interaction) pguie = get_child_by_name("lfs");
          sp(text_interface) ptext =  (pguie.m_p);
-         ptext->_001SetText(GetFileManagerItem().m_strPath, false);
+         ptext->_001SetText(GetFileManagerItem().m_strPath, ::action::source_user);
       }
       else if(pevent->m_puie->m_id == "ftp")
       {

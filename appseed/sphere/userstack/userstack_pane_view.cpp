@@ -138,7 +138,7 @@ namespace userstack
       {
          /*bergedge::menu_view * pview = dynamic_cast < bergedge::menu_view *  > (get_view());
          sp(::filemanager::document) pdoc = (pview->get_document());
-         pdoc->FileManagerBrowse(Application.dir().userappdata("bergedge\\menu"));*/
+         pdoc->FileManagerBrowse(Application.dir().userappdata("bergedge\\menu"), ::action::source::system_default());*/
       }
       else if(get_view_id() == ::bergedge::PaneViewConfiguration)
       {
@@ -163,7 +163,7 @@ namespace userstack
             check_desktop_dir(strDir);
          }
          sp(::filemanager::document) pdoc =  (m_pviewdata->m_pdoc);
-         pdoc->FileManagerBrowse(strDir);
+         pdoc->FileManagerBrowse(strDir, ::action::source::system_default());
       }
       else
       {

@@ -19,9 +19,9 @@ namespace user
       menu_button_cmd_ui(sp(base_application) papp);
 
 
-      virtual void Enable(bool bOn);
-      virtual void SetCheck(check::e_check echeck);
-      virtual void SetText(const char * lpszText);
+      virtual void Enable(bool bOn, ::action::context actioncontext);
+      virtual void _001SetCheck(check::e_check echeck, ::action::context actioncontext);
+      virtual void SetText(const char * lpszText, ::action::context actioncontext);
 
    };
 

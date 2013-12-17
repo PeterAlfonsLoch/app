@@ -50,9 +50,10 @@ void const_empty_string::get_string(char * psz) const
    psz[0] = '\0';
 }
 
-void const_empty_string::set_string(const char * psz)
+void const_empty_string::set_string(const string & str, ::action::context actioncontext)
 {
-   UNREFERENCED_PARAMETER(psz);
+   UNREFERENCED_PARAMETER(str);
+   UNREFERENCED_PARAMETER(actioncontext);
    throw "cannot set const string";
 }
 

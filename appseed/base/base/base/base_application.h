@@ -262,10 +262,10 @@ public:
 
 
 
-   virtual void set_locale(const string & lpcsz, bool bUser);
-   virtual void set_schema(const string & lpcsz, bool bUser);
-   virtual void on_set_locale(const string & lpcsz, bool bUser);
-   virtual void on_set_schema(const string & lpcsz, bool bUser);
+   virtual void set_locale(const string & lpcsz, ::action::context actioncontext);
+   virtual void set_schema(const string & lpcsz, ::action::context actioncontext);
+   virtual void on_set_locale(const string & lpcsz, ::action::context actioncontext);
+   virtual void on_set_schema(const string & lpcsz, ::action::context actioncontext);
 
 
 

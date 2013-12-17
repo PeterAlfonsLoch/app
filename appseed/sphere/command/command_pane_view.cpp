@@ -109,7 +109,7 @@ namespace command
       else if(get_view_id() == command::PaneViewContextMenu)
       {
          sp(::filemanager::document) pdoc =  (get_view_uie());
-         pdoc->FileManagerBrowse(Application.dir().userappdata("command\\menu"));
+         pdoc->FileManagerBrowse(Application.dir().userappdata("command\\menu"), ::action::source::system_default());
       }
       else
       {
@@ -154,7 +154,7 @@ namespace command
                pdoc->update_all_views(NULL, 1234);
                pdoc->update_all_views(NULL, 123458);
                sp(::user::impact) pview = pdoc->get_view();
-               pdoc->FileManagerBrowse(Application.dir().userappdata("command\\menu"));
+               pdoc->FileManagerBrowse(Application.dir().userappdata("command\\menu"), ::action::source::system_default());
                if(pview != NULL)
                {
                   sp(::user::frame_window) pframe =  (pview->GetParentFrame());
@@ -224,7 +224,7 @@ namespace command
                pdoc->update_all_views(NULL, 1234);
                pdoc->update_all_views(NULL, 123458);
                sp(::user::impact) pview = pdoc->get_view();
-               pdoc->FileManagerBrowse(Application.dir().userappdata("command\\3-action-launch"));
+               pdoc->FileManagerBrowse(Application.dir().userappdata("command\\3-action-launch"), ::action::source::system_default());
                if(pview != NULL)
                {
                   sp(::user::frame_window) pframe =  (pview->GetParentFrame());
@@ -251,6 +251,7 @@ namespace command
          ::user::view_creator_data * pcreatordata = new ::user::view_creator_data;
          sp(::user::impact) pview = pdoc->get_typed_view < ::user::impact > ();
          form_update_hint uh;
+         uh.m_actioncontext = ::action::source::system_default();
          uh.m_etype = form_update_hint::type_browse;
          uh.m_strForm = "filemanager\\replace_name_in_file_system.xhtml";
          pdoc->update_all_views(NULL, 0, &uh);

@@ -79,7 +79,7 @@ namespace html
 
          if(IsWindow() && pdata->m_bEdit)
          {
-            _001SetText(str, false);
+            _001SetText(str, ::action::source::add(::action::source_data, ::action::source_load));
          }
 
 
@@ -839,7 +839,7 @@ namespace html
          UNREFERENCED_PARAMETER(pgraphics);
       }
 
-      void text::_001OnAfterChangeText()
+      void text::_001OnAfterChangeText(::action::context actioncontext)
       {
 
          if(m_bOnAfterChangeText)
@@ -851,7 +851,7 @@ namespace html
 
          _001GetText(strText);
 
-         m_pelemental->_001SetText(strText, false);
+         m_pelemental->_001SetText(strText, actioncontext);
 
          m_pelemental->m_pdata->m_pform->layout();
 

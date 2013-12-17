@@ -47,7 +47,7 @@ namespace filemanager
             }
             else if (puh->is_type_of(update_hint::TypeSynchronizePath))
             {
-               //_017Synchronize();
+               //_017Synchronize(::action::context actioncontext);
                m_strPath = GetFileManagerItem().m_strPath;
                m_straPath.remove_all();
                m_straTitle.remove_all();

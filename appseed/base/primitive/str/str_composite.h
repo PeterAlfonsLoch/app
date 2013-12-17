@@ -28,7 +28,7 @@ public:
 
    virtual strsize get_length() const;
    virtual void get_string(char * psz) const;
-   virtual void set_string(const char * psz);
+   virtual void set_string(const string & str, ::action::context actioncontext);
 
 
 };

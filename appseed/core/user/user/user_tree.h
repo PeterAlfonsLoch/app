@@ -108,10 +108,10 @@ namespace user
       void _001SetCollapseImage(const char * pszMatter);
       void _001SetExpandImage(const char * pszMatter);
       void UpdateHover();
-      virtual void _001OnOpenItem(::data::tree_item * pitem);
-      void _001ExpandItem(::data::tree_item * pitem, bool bExpand = true, bool bRedraw = true, bool bLayout = true);
-      virtual void _001OnItemExpand(::data::tree_item * pitem);
-      virtual void _001OnItemCollapse(::data::tree_item * pitem);
+      virtual void _001OnOpenItem(::data::tree_item * pitem, ::action::context actioncontext);
+      void _001ExpandItem(::data::tree_item * pitem, ::action::context actioncontext, bool bExpand = true, bool bRedraw = true, bool bLayout = true);
+      virtual void _001OnItemExpand(::data::tree_item * pitem, ::action::context actioncontext);
+      virtual void _001OnItemCollapse(::data::tree_item * pitem, ::action::context actioncontext);
       virtual bool _001GetItemElementRect(LPRECT lprect, tree_draw_item & drawitem, ::user::e_tree_element eelement);
       virtual void install_message_handling(::message::dispatch * pdispatch);
       int32_t _001GetItemHeight();

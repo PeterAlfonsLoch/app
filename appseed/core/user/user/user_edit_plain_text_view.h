@@ -17,8 +17,8 @@ namespace user
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-      virtual void _001OnSetText(bool bUser);
-      virtual void _001OnUpdate(bool bUser);
+      virtual void _001OnSetText(::action::context actioncontext);
+      virtual void _001OnUpdate(::action::context actioncontext);
 
       virtual void layout();
 

@@ -36,12 +36,17 @@ namespace user
 
       if(pkey->m_ekey == ::user::key_tab)
       {
+         
          control_event ev;
-         ev.m_puie         = (this);
-         ev.m_eevent       = ::user::event_tab_key;
-         ev.m_bUser        = true;
+         
+         ev.m_puie                  = (this);
+         ev.m_eevent                = ::user::event_tab_key;
+         ev.m_actioncontext         = ::action::source_user;
+         
          get_parent()->BaseOnControlEvent(&ev);
+         
          BaseOnControlEvent(&ev);
+
       }
 
    }

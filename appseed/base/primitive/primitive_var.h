@@ -225,7 +225,7 @@ public:
    ::comparison::var_strict strict_compare() const;
 
 
-   void           set_string(const char * psz);
+   void           set_string(const string & str);
    void           set_id(const id & id);
    void unset();
 

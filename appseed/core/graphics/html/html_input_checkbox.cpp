@@ -25,11 +25,11 @@ namespace html
              string strValue = pelemental->m_pbase->get_tag()->get_attr_value("value");
              if(strValue.CompareNoCase("checked") == 0)
              {
-                m_pcheckbox->_001SetCheck(check::checked, false);
+                m_pcheckbox->_001SetCheck(check::checked, ::action::source::add(::action::source_data, ::action::source_load));
              }
              else
              {
-                m_pcheckbox->_001SetCheck(check::unchecked, false);
+                m_pcheckbox->_001SetCheck(check::unchecked, ::action::source::add(::action::source_data, ::action::source_load));
              }
          }
          elemental::implement_phase1(pdata, pelemental);
@@ -37,12 +37,11 @@ namespace html
          m_pcheckbox->m_id = pelemental->m_pbase->get_tag()->get_attr_value("id");
          m_pcheckbox->m_strName = pelemental->m_pbase->get_tag()->get_attr_value("name");
          m_pcheckbox->m_id = pelemental->m_pbase->get_tag()->get_attr_value("id");
-         if(pdata->m_pform != NULL
-            && pdata->m_pform->m_pcallback != NULL)
+         if(pdata->m_pform != NULL && pdata->m_pform->m_pcallback != NULL)
          {
             ::user::control_event ev;
             ev.m_puie = m_pcheckbox;
-            ev.m_bUser = false;
+            ev.m_actioncontext = ::action::source::add(::action::source_data, ::action::source_load);
             ev.m_eevent = ::user::event_initialize_control;
             ev.m_uiEvent = 0;
             pdata->m_pform->m_pcallback->BaseOnControlEvent(pdata->m_pform, &ev);

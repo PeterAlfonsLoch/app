@@ -67,13 +67,13 @@ namespace filemanager
 
       void schedule_file_size(const char * psz);
 
-      virtual void _017OpenContextMenuFolder(sp(::fs::item) item);
-      virtual void _017OpenContextMenuFile(const ::fs::item_array &itema);
-      virtual void _017OpenContextMenu();
-      virtual void _017OpenFile(const ::fs::item_array & itema);
-      virtual void _017OpenFolder(sp(::fs::item)  item);
+      virtual void _017OpenContextMenuFolder(sp(::fs::item) item, ::action::context actioncontext);
+      virtual void _017OpenContextMenuFile(const ::fs::item_array &itema, ::action::context actioncontext);
+      virtual void _017OpenContextMenu(::action::context actioncontext);
+      virtual void _017OpenFile(const ::fs::item_array & itema, ::action::context actioncontext);
+      virtual void _017OpenFolder(sp(::fs::item)  item, ::action::context actioncontext);
       void StartAnimation();
-      void RenameFile(int32_t iLine, string & str);
+      void RenameFile(int32_t iLine, string & str, ::action::context actioncontext);
       static UINT c_cdecl ThreadProcFileSize(LPVOID lpparam);
 
       void FileSize();
@@ -231,7 +231,7 @@ namespace filemanager
       bool add_item(const char * pszPath, const char * pszTitle);
       //virtual void schedule_file_size(const char * psz) = 0;
       // Attributes
-      virtual void _017Synchronize();
+      virtual void _017Synchronize(::action::context actioncontext);
 
       sp(image_list) GetActionButtonImageList(index i);
 
@@ -242,14 +242,14 @@ namespace filemanager
       void _001OnInitializeForm(sp(::user::control) pcontrol);
       void _001OnButtonAction(sp(::user::control) pcontrol);
 
-      virtual void _017OpenSelected(bool bOpenFile);
-      virtual void _017OpenContextMenuSelected();
-      void _017PreSynchronize();
+      virtual void _017OpenSelected(bool bOpenFile, ::action::context actioncontext);
+      virtual void _017OpenContextMenuSelected(::action::context actioncontext);
+      void _017PreSynchronize(::action::context actioncontext);
       void TakeAnimationSnapshot();
       virtual void _001OnDraw(::draw2d::graphics * pdc);
       ::fs::item & GetFileManagerItem();
-      DECL_GEN_SIGNAL(_001OnMainPostMessage)
-         void _017UpdateList();
+      DECL_GEN_SIGNAL(_001OnMainPostMessage);
+      void _017UpdateList(::action::context actioncontext);
       void GetSelectedFilePath(stringa & array);
       virtual bool TwiHasTranslucency();
       void _001CreateImageList();
@@ -257,9 +257,9 @@ namespace filemanager
       virtual void _001GetItemImage(::user::list_item * pitem);
       virtual void _001GetItemText(::user::list_item * pitem);
       virtual count _001GetItemCount();
-      void _017Browse(const char * lpcsz);
-      void _017UpdateList(const char * lpcsz);
-      void _017UpdateZipList(const char * lpcsz);
+      void _017Browse(const char * lpcsz, ::action::context actioncontext);
+      void _017UpdateList(const char * lpcsz, ::action::context actioncontext);
+      void _017UpdateZipList(const char * lpcsz, ::action::context actioncontext);
 
       DECL_GEN_SIGNAL(_001OnHScroll)
          DECL_GEN_SIGNAL(_001OnVScroll)

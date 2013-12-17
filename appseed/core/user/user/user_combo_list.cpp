@@ -403,7 +403,7 @@ namespace user
          if(eelement == element_item)
          {
 
-            m_pcombo->_001SetCurSel(iItem, true);
+            m_pcombo->_001SetCurSel(iItem, ::action::source_user);
 
          }
 

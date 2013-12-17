@@ -22,7 +22,7 @@ namespace filemanager
 
       void on_create_views();
 
-      void FileManagerBrowse(const char * lpcwstr);
+      void FileManagerBrowse(const char * lpcwstr, ::action::context actioncontext);
 
       virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
 
@@ -51,7 +51,7 @@ namespace filemanager
 
       void on_create_views();
 
-      void FileManagerBrowse(const char * lpcwstr);
+      void FileManagerBrowse(const char * lpcwstr, ::action::context actioncontext);
 
       bool _001OnCommand(id id);
 

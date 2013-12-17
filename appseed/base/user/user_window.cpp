@@ -2404,23 +2404,23 @@ element(papp),
    m_bEnabled = TRUE;  // assume it is enabled
 }
 
-void CTestCmdUI::Enable(bool bOn)
+void CTestCmdUI::Enable(bool bOn, ::action::context)
 {
    m_bEnabled = bOn;
    m_bEnableChanged = TRUE;
 }
 
-void CTestCmdUI::SetCheck(int32_t)
+void CTestCmdUI::SetCheck(int32_t, ::action::context)
 {
    // do nothing -- just want to know about calls to Enable
 }
 
-void CTestCmdUI::SetRadio(bool)
+void CTestCmdUI::SetRadio(bool, ::action::context)
 {
    // do nothing -- just want to know about calls to Enable
 }
 
-void CTestCmdUI::SetText(const char *)
+void CTestCmdUI::SetText(const char *, ::action::context)
 {
    // do nothing -- just want to know about calls to Enable
 }

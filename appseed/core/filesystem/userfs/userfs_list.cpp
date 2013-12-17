@@ -115,34 +115,34 @@ namespace userfs
 
    void list::on_update(sp(::user::impact) pSender, LPARAM lHint, object * phint)
    {
-      
 
-      /*if(phint != NULL)
+      if (phint != NULL)
       {
-         if(base < filemanager::update_hint > :: bases(phint))
+
+         if (base < update_hint > ::bases(phint))
          {
-            filemanager::update_hint * puh = (filemanager::update_hint *) phint;
-            if(puh->is_type_of(filemanager::update_hint::TypeInitialize))
+
+            update_hint * puh = dynamic_cast <update_hint * >(phint);
+
+            if (puh->is_type_of(update_hint::type_synchronize_path))
             {
-               string str;
-               str.Format("list(%s)", GetFileManager()->get_filemanager_data()->m_strDISection);
-               m_dataid = str;
-               if(GetFileManager()->get_filemanager_data()->m_bPassBk)
-               {
-                  ::user::list::m_bBackgroundBypass = true;
-               }
-               else if(GetFileManager()->get_filemanager_data()->m_bTransparentBackground)
-               {
-                  ::user::list::m_etranslucency = ::user::list::TranslucencyPresent;
-               }
+
+               _017UpdateList(puh->m_actioncontext);
+
+            }
+            else if (puh->is_type_of(update_hint::type_update_list_columns))
+            {
+
                _001UpdateColumns();
+
+               _017UpdateList(puh->m_actioncontext);
+
             }
-            else if(puh->is_type_of(filemanager::update_hint::TypeSynchronize))
-            {
-               _017Synchronize();
-            }
+
          }
-      }*/
+
+      }
+
    }
 
    void list::_001OnLButtonDblClk(signal_details * pobj)
@@ -233,21 +233,22 @@ namespace userfs
    }
 
 
-   void list::_017UpdateList()
+   void list::_017UpdateList(::action::context actioncontext)
    {
 
 
-      _017UpdateList(get_document()->m_strFolder);
+      _017UpdateList(get_document()->m_strFolder, actioncontext);
 
 
    }
 
-   void list::_017UpdateZipList(const char * lpcsz)
+   void list::_017UpdateZipList(const char * lpcsz, ::action::context actioncontext)
    {
       UNREFERENCED_PARAMETER(lpcsz);
+      UNREFERENCED_PARAMETER(actioncontext);
    }
 
-   void list::_017UpdateList(const char * lpcsz)
+   void list::_017UpdateList(const char * lpcsz, ::action::context actioncontext)
    {
 
       ::data::lock lock(get_fs_list_data());
@@ -405,7 +406,7 @@ namespace userfs
 
    LPITEMIDLIST lpiidl = _shell::_017ItemIDListGetFolderParent(m_lpiidlAbsolute);
 
-   _017Browse(lpiidl);
+   _017Browse(lpiidl, actioncontext);
 
    lpsfDesktop->Release();
    lpmalloc->Release();
@@ -414,16 +415,17 @@ namespace userfs
 
 
 
-   void list::_017Synchronize()
+   void list::_017Synchronize(::action::context actioncontext)
    {
 
-
       ::data::lock lock(m_pdata);
-      _001HideEditingControls();
-      _017UpdateList(get_document()->m_strFolder);
 
+      _001HideEditingControls();
+
+      _017UpdateList(get_document()->m_strFolder, actioncontext);
 
    }
+
 
    void list::_001OnDraw(::draw2d::graphics *pdc)
    {
@@ -467,8 +469,9 @@ namespace userfs
       //     ::user::list::_001OnDraw(m_gdibuffer.GetBuffer());
    }
 
-   void list::_017PreSynchronize()
+   void list::_017PreSynchronize(::action::context actioncontext)
    {
+      UNREFERENCED_PARAMETER(actioncontext);
       //TakeAnimationSnapshot();
    }
 
@@ -476,7 +479,7 @@ namespace userfs
 
 
 
-   void list::_017OpenSelected(bool bOpenFile)
+   void list::_017OpenSelected(bool bOpenFile, ::action::context actioncontext)
    {
       list_data * pdata = get_fs_list_data();
       ::fs::item_array itema;
@@ -509,7 +512,7 @@ namespace userfs
             sp(::fs::item) pitem(new ::fs::item(item));
             if (item.IsFolder())
             {
-               _017OpenFolder(pitem);
+               _017OpenFolder(pitem, ::action::source::sel(actioncontext));
                break;
             }
             else
@@ -520,12 +523,12 @@ namespace userfs
       }
       if (bOpenFile && itema.get_size() > 0)
       {
-         _017OpenFile(itema);
+         _017OpenFile(itema, ::action::source::sel(actioncontext));
       }
       _001ClearSelection();
    }
 
-   void list::_017OpenContextMenuSelected()
+   void list::_017OpenContextMenuSelected(::action::context actioncontext)
    {
       list_data * pdata = get_fs_list_data();
       ::fs::item_array itema;
@@ -557,7 +560,7 @@ namespace userfs
             list_item & item = pdata->m_itema.get_item(iStrict);
             if (pdata->m_itema.get_item(iStrict).IsFolder())
             {
-               _017OpenContextMenuFolder(new ::fs::item(item));
+               _017OpenContextMenuFolder(new ::fs::item(item), actioncontext);
                break;
             }
             else
@@ -568,44 +571,50 @@ namespace userfs
       }
       if (itema.get_size() > 0)
       {
-         _017OpenContextMenuFile(itema);
+         _017OpenContextMenuFile(itema, actioncontext);
       }
       else
       {
-         _017OpenContextMenu();
+         _017OpenContextMenu(actioncontext);
       }
       _001ClearSelection();
    }
 
-   void list::_017OpenContextMenuFolder(sp(::fs::item) item)
+   void list::_017OpenContextMenuFolder(sp(::fs::item) item, ::action::context actioncontext)
    {
       UNREFERENCED_PARAMETER(item);
+      UNREFERENCED_PARAMETER(actioncontext);
    }
 
-   void list::_017OpenContextMenuFile(const ::fs::item_array &itema)
+   void list::_017OpenContextMenuFile(const ::fs::item_array &itema, ::action::context actioncontext)
    {
       UNREFERENCED_PARAMETER(itema);
+      UNREFERENCED_PARAMETER(actioncontext);
    }
 
-   void list::_017OpenContextMenu()
+   void list::_017OpenContextMenu(::action::context actioncontext)
    {
+      UNREFERENCED_PARAMETER(actioncontext);
    }
 
-   void list::_017OpenFolder(sp(::fs::item) item)
+   void list::_017OpenFolder(sp(::fs::item) item, ::action::context actioncontext)
    {
       UNREFERENCED_PARAMETER(item);
+      UNREFERENCED_PARAMETER(actioncontext);
       ASSERT(FALSE);
    }
 
-   void list::_017OpenFolder(const ::userfs::list_item &item)
+   void list::_017OpenFolder(const ::userfs::list_item &item, ::action::context actioncontext)
    {
       UNREFERENCED_PARAMETER(item);
+      UNREFERENCED_PARAMETER(actioncontext);
       ASSERT(FALSE);
    }
 
-   void list::_017OpenFile(const ::fs::item_array &itema)
+   void list::_017OpenFile(const ::fs::item_array &itema, ::action::context actioncontext)
    {
       UNREFERENCED_PARAMETER(itema);
+      UNREFERENCED_PARAMETER(actioncontext);
       ASSERT(FALSE);
    }
 
@@ -836,7 +845,7 @@ namespace userfs
          string strPath = pdata->m_itema.get_item(strictDrag).m_strPath;
          string strName = get_document()->set().file_name(strPath);
          get_document()->set().file_move(pdata->m_itema.get_item(strict).m_strPath, strPath);
-         _017Synchronize();
+         _017Synchronize(::action::source::add(::action::source_paste, ::action::source_user));
       }
       else
       {

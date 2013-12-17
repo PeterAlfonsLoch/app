@@ -242,11 +242,11 @@ public:
 
 
    // Operations to do in ON_UPDATE_COMMAND_UI
-   virtual void Enable(bool bOn = TRUE);
-   using ::user::check_interface::_001SetCheck;
-   virtual void _001SetCheck(check::e_check echeck);   // 0, 1 or 2 (indeterminate)
-   virtual void SetRadio(bool bOn = TRUE);
-   virtual void SetText(const char * lpszText);
+   virtual void Enable(bool bOn = TRUE, ::action::context actioncontext = ::action::source_system);
+   virtual void _001SetCheck(bool bCheck, ::action::context = ::action::source_system);   // 0, 1 or 2 (indeterminate)
+   virtual void _001SetCheck(check::e_check echeck, ::action::context = ::action::source_system);   // 0, 1 or 2 (indeterminate)
+   virtual void SetRadio(bool bOn = TRUE, ::action::context actioncontext = ::action::source_system);
+   virtual void SetText(const char * lpszText, ::action::context actioncontext = ::action::source_system);
 
    // Advanced operation
    void ContinueRouting();
@@ -272,10 +272,10 @@ public:
    CTestCmdUI(sp(base_application) papp);
 
 public: // re-implementations only
-   virtual void Enable(bool bOn);
-   virtual void SetCheck(int32_t nCheck);
-   virtual void SetRadio(bool bOn);
-   virtual void SetText(const char *);
+   virtual void Enable(bool bOn, ::action::context actioncontext = ::action::source_system);
+   virtual void SetCheck(int32_t nCheck, ::action::context actioncontext = ::action::source_system);
+   virtual void SetRadio(bool bOn, ::action::context actioncontext = ::action::source_system);
+   virtual void SetText(const char *, ::action::context actioncontext = ::action::source_system);
 
    bool m_bEnabled;
 };

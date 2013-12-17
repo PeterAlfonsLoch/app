@@ -121,7 +121,7 @@ namespace user
    }
 
 
-   void menu_button_cmd_ui::Enable(bool bOn)
+   void menu_button_cmd_ui::Enable(bool bOn, ::action::context actioncontext)
    {
       m_bEnableChanged = TRUE;
       menu_button* pbutton = dynamic_cast < menu_button * > (m_pOther.m_p);
@@ -144,11 +144,11 @@ namespace user
       pToolBar->SetButtonStyle(m_nIndex, nNewStyle);*/
    }
 
-   void menu_button_cmd_ui::SetCheck(check::e_check echeck)
+   void menu_button_cmd_ui::_001SetCheck(check::e_check echeck, ::action::context actioncontext)
    {
       ASSERT(echeck == check::checked || echeck == check::unchecked || echeck == check::tristate); // 0=>off, 1=>on, 2=>indeterminate
       menu_button* pbutton = dynamic_cast < menu_button *  > (m_pOther.m_p);
-      pbutton->_001SetCheck(echeck, true);
+      pbutton->_001SetCheck(echeck, actioncontext);
    /*   ASSERT(pToolBar != NULL);
       ASSERT_KINDOF(simple_toolbar, pToolBar);
       ASSERT(m_nIndex < m_nIndexMax);
@@ -163,7 +163,7 @@ namespace user
       pToolBar->SetButtonStyle(m_nIndex, nNewStyle | TBBS_CHECKBOX);*/
    }
 
-   void menu_button_cmd_ui::SetText(const char *)
+   void menu_button_cmd_ui::SetText(const char *, ::action::context)
    {
       // ignore it
    }

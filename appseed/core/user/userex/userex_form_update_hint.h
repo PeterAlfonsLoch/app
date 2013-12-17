@@ -1,6 +1,8 @@
 #pragma once
 
+
 class form_view;
+
 
 class CLASS_DECL_CORE form_update_hint :
    virtual public ::object
@@ -15,8 +17,17 @@ public:
       type_get_form_view,
    };
 
+   
+   sp(form_view)           m_pformview;
+   e_type                  m_etype;
+   string                  m_strForm;
+   ::action::context      m_actioncontext;
 
-   sp(form_view)    m_pformview;
-   e_type         m_etype;
-   string         m_strForm;
+
+   form_update_hint();
+   virtual ~form_update_hint();
+
+
+
+
 };

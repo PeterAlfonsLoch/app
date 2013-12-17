@@ -46,7 +46,7 @@ namespace filemanager
             }
             else if (puh->is_type_of(update_hint::TypeSynchronizePath))
             {
-               _017Synchronize();
+               _017Synchronize(puh->m_actioncontext + ::action::source_sync);
             }
             else if (puh->is_type_of(update_hint::TypeFilter))
             {
@@ -95,7 +95,7 @@ namespace filemanager
    }
 
 
-   void path_view::_017Synchronize()
+   void path_view::_017Synchronize(::action::context actioncontext)
    {
 
       if (m_bVoidSync)
@@ -111,11 +111,11 @@ namespace filemanager
       if (strOld == GetFileManager()->get_item().m_strPath)
          return;
 
-      _001SetText(GetFileManager()->get_item().m_strPath, false);
+      _001SetText(GetFileManager()->get_item().m_strPath, actioncontext);
 
    }
 
-   void path_view::_001OnAfterChangeText()
+   void path_view::_001OnAfterChangeText(::action::context actioncontext)
    {
 
 
@@ -136,7 +136,7 @@ namespace filemanager
          if (strPreviousPath != str)
          {
 
-            GetFileManager()->FileManagerBrowse(str);
+            GetFileManager()->FileManagerBrowse(str, ::action::source::sync(actioncontext));
 
          }
 
@@ -152,7 +152,7 @@ namespace filemanager
                if (!System.file().path().is_equal(GetFileManager()->get_item().m_strPath, strName))
                {
                   keeper < bool > keepVoidSync(&m_bVoidSync, true, false, true);
-                  GetFileManager()->FileManagerBrowse(strName);
+                  GetFileManager()->FileManagerBrowse(strName, ::action::source::sync(actioncontext));
                }
                break;
             }
