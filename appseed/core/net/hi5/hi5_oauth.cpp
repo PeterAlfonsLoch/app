@@ -616,7 +616,7 @@ void CSHA1::GetHash(UINT_8 *puDest)
 
    OAUTHLIB_TWITTER_REQUEST_TOKEN_URL("http://twitter.com/oauth/request_token"),
    OAUTHLIB_TWITTER_AUTHORIZE_URL("http://twitter.com/oauth/authorize?oauth_token="),
-   OAUTHLIB_TWITTER_ACCESS_TOKEN_URL("http://twitter.com/oauth/access_token"),
+   OAUTHLIB_TWITTER_ACCESS_TOKEN_URL("https://twitter.com/oauth/access_token"),
 
    m_consumerKey(""),
       m_consumerSecret( "" ),
@@ -837,6 +837,10 @@ void CSHA1::GetHash(UINT_8 *puDest)
    *--*/
    void oauth::generateNonceTimeStamp()
    {
+
+      if (m_nonce.has_char() && m_timeStamp.has_char())
+         return;
+
       char szTime[oAuthLibDefaults::OAUTHLIB_BUFFSIZE];
       char szRand[oAuthLibDefaults::OAUTHLIB_BUFFSIZE];
       memset( szTime, 0, oAuthLibDefaults::OAUTHLIB_BUFFSIZE );
@@ -1042,6 +1046,15 @@ void CSHA1::GetHash(UINT_8 *puDest)
       string oauthSignature( "" );
       string paramsSeperator( "" );
       string pureUrl;
+      property_set post;
+
+      m_nonce.Empty();
+      m_timeStamp.Empty();
+
+      if (set.has_property("post") || eType == eOAuthHttpPost)
+      {
+         post = set["post"].propset();
+      }
 
       /* If URL itself contains ?key=value, then extract and put them in map */
 
@@ -1066,10 +1079,10 @@ void CSHA1::GetHash(UINT_8 *puDest)
       }
 
       /* Build key-value pairs needed for OAuth request token, without signature */
-      buildOAuthTokenKeyValuePairs(includeOAuthVerifierPin, set["post"].propset(), string( "" ), setSignature);
+      buildOAuthTokenKeyValuePairs(includeOAuthVerifierPin, post, string( "" ), setSignature);
 
 
-      setSignature.merge(set["post"].propset());
+      setSignature.merge(post);
 
       /* Get url encoded base64 signature using request type, url and parameters */
       getSignature(eType, pureUrl, setSignature, oauthSignature);

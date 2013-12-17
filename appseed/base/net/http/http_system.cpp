@@ -889,7 +889,7 @@ retry:
          if(iStatusCode == 0)
          {
 #if defined(BSD_STYLE_SOCKETS)
-            if(psession->m_spsslclientcontext.is_set() && psession->m_spsslclientcontext->m_iRetry == 1)
+            if(psession->m_spsslclientcontext.is_set() && psession->m_spsslclientcontext->m_iRetry == 1 && iTry < 8)
             {
                goto retry;
             }
@@ -1120,52 +1120,59 @@ retry:
 
 
       string strSessId;
-      if(!(bool)set["disable_ca2_sessid"] && !setQuery.has_property("authnone"))
+      if ((bool)set["raw_http"])
       {
-         if((bool)set["optional_ca2_sessid"])
+      }
+      else
+      {
+
+         if (!(bool)set["disable_ca2_sessid"] && !setQuery.has_property("authnone"))
          {
-
-
-            if(papp != NULL)
+            if ((bool)set["optional_ca2_sessid"])
             {
 
-               string strFontopusServer = Application.fontopus()->get_server(strUrl, 8);
 
-               url_domain domainFontopus;
-
-               domainFontopus.create(strFontopusServer);
-
-               if(domainFontopus.m_strRadix == "ca2")
+               if (papp != NULL)
                {
-                  set["user"] = &AppUser(papp);
-                  if (set["user"].cast < ::fontopus::user >() != NULL && (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new()
-                     && (bool)set["interactive_user"])).has_char() &&
-                     if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
+
+                  string strFontopusServer = Application.fontopus()->get_server(strUrl, 8);
+
+                  url_domain domainFontopus;
+
+                  domainFontopus.create(strFontopusServer);
+
+                  if (domainFontopus.m_strRadix == "ca2")
                   {
-                     System.url().string_set(strUrl, "sessid", strSessId);
+                     set["user"] = &AppUser(papp);
+                     if (set["user"].cast < ::fontopus::user >() != NULL && (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new()
+                        && (bool)set["interactive_user"])).has_char() &&
+                        if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
+                     {
+                        System.url().string_set(strUrl, "sessid", strSessId);
+                     }
                   }
+
                }
 
             }
-
-         }
-         else if (set["user"].cast < ::fontopus::user >() != NULL &&
-            (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
-            if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
-         {
-            System.url().string_set(strUrl, "sessid", strSessId);
-         }
-         else if (if_then(set.has_property("optional_ca2_login"), (bool)set["optional_ca2_login"]))
-         {
+            else if (set["user"].cast < ::fontopus::user >() != NULL &&
+               (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
+               if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
+            {
+               System.url().string_set(strUrl, "sessid", strSessId);
+            }
+            else if (if_then(set.has_property("optional_ca2_login"), (bool)set["optional_ca2_login"]))
+            {
+            }
+            else
+            {
+               System.url().string_set(strUrl, "authnone", 1);
+            }
          }
          else
          {
             System.url().string_set(strUrl, "authnone", 1);
          }
-      }
-      else
-      {
-         System.url().string_set(strUrl, "authnone", 1);
       }
 
 
@@ -1181,7 +1188,7 @@ retry:
          dynamic_cast < ::sockets::http_put_socket * > (psocket)->m_file = set["put"].cast < ::file::stream_buffer >();
          psocket->m_strMethod = "PUT";
       }
-      else if (set["post"].propset().m_propertya.get_count() > 0 || set.lookup(__id(http_method)) == "POST")
+      else if (set["post"].propset().m_propertya.get_count() > 0)
       {
          bPost = true;
          bPut = false;
@@ -1202,7 +1209,7 @@ retry:
       {
          psocket->::sockets::http_socket::m_plistener = set["http_listener"].cast < ::sockets::http_listener >();
       }
-      psocket->inheaders().add(set["headers"]);
+      psocket->inheaders().add(set["headers"].propset());
       if (set.has_property("progress_listener"))
       {
          psocket->m_progress.m_plistener = set["progress_listener"].cast < progress_listener >();

@@ -71,7 +71,7 @@ namespace sockets
    void http_client_socket::OnConnect()
    {
 
-      m_request.attr(__id(http_method)) = "GET";
+      m_request.attr(__id(http_method)) = m_strMethod;
 
       http_tunnel::OnConnect();
 

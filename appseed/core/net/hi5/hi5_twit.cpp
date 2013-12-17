@@ -114,7 +114,9 @@ namespace hi5
       m_oauth(papp)
    {
 
-      m_setHttp["disable_ca2_sessid"] = true;
+      m_setHttp["raw_http"] = true;
+
+      m_setHttp["minimal_headers"] = true;
 
       m_curlLoginParamsSet = false ;
 
@@ -1277,23 +1279,32 @@ namespace hi5
 
    }
 
-   bool twit::performPost( const string & getUrl, property_set & headers, property_set & post)
+/*   bool twit::performPost( const string & getUrl, property_set & headers, property_set & post)
    {
 
       string dataStrDummy( "" );
 
       property_set set(m_setHttp);
 
-      set["headers"] = headers;
+      if (headers.m_propertya.get_count() > 0)
+      {
+
+         set["headers"] = headers;
+
+      }
 
       set["post"] = post;
 
       set["http_method"] = "POST";
 
       /* Send http request */
-      return Application.http().get(getUrl, m_strResponse, set);
+      /*bool bOk = Application.http().get(getUrl, m_strResponse, set);
 
-   }
+      headers = set["get_headers"].propset();
+
+      return bOk;
+
+   }*/
 
    /*++
    * @method: twit::performDelete
@@ -1339,21 +1350,41 @@ namespace hi5
    * @remarks: internal method
    *
    *--*/
-   bool twit::performPost( const string & postUrl, property_set & post)
+   bool twit::performPost( const string & postUrl, property_set & set)
    {
 
-      property_set set(get_app());
+      if (set.has_property("headers"))
+      {
 
-      set["post"] = post;
+         set.merge(m_setHttp);
 
-      /* set OAuth header */
-      m_oauth.getOAuthHeader( eOAuthHttpPost, postUrl, set);
+         if (set.has_property("post"))
+         {
 
-      set.merge(m_setHttp);
+            set["http_method"] = "POST";
 
-      set["http_method"] = "POST";
+         }
 
-      return Application.http().get(postUrl, m_strResponse, set);
+         return Application.http().get(postUrl, m_strResponse, set);
+
+      }
+      else
+      {
+       
+         property_set setHttp(get_app());
+
+         setHttp["post"] = set;
+
+         /* set OAuth header */
+         m_oauth.getOAuthHeader(eOAuthHttpPost, postUrl, setHttp);
+
+         setHttp.merge(m_setHttp);
+
+         setHttp["http_method"] = "POST";
+
+         return Application.http().get(postUrl, m_strResponse, setHttp) && setHttp["get_status"].int32() == ::http::status_ok;
+
+      }
 
    }
 
@@ -1500,7 +1531,7 @@ namespace hi5
          property_set set(get_app());
          if(m_oauth.getOAuthHeader( eOAuthHttpGet, m_oauth.OAUTHLIB_TWITTER_ACCESS_TOKEN_URL, set, true))
          {
-            if (performGet(m_oauth.OAUTHLIB_TWITTER_ACCESS_TOKEN_URL, set))
+            if (performGet(m_oauth.OAUTHLIB_TWITTER_ACCESS_TOKEN_URL, set["headers"].propset()))
             {
                /* Tell OAuth object to save access token and secret from web response */
                string twitterResp( "" );

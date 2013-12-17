@@ -186,7 +186,7 @@ namespace hi5
        bool performGet( const string & getUrl, property_set & headers );
        bool performDelete( const string & deleteUrl );
        bool performPost( const string & postUrl, property_set & post );
-       bool performPost( const string & postUrl, property_set & headers, property_set & post );
+       //bool performPost( const string & postUrl, property_set & headers, property_set & post );
 
        string build_url(const char * baseUrl, const char * userInfo, bool isUserId );
 

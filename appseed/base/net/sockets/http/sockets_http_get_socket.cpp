@@ -61,18 +61,20 @@ namespace sockets
    void http_get_socket::step()
    {
 
-      //inheader("Accept") = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
-      //inheader("Accept-Language") = "en-us,en;q=0.5";
-      if(m_pfile == NULL) // by the time, inline gzip decompression not yet implemented
+
+
+      if (!(bool)inattr("minimal_headers"))
       {
-         inheader(__id(accept_encoding)) = "gzip,deflate";
+         //inheader("Accept") = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
+         //inheader("Accept-Language") = "en-us,en;q=0.5";
+         if (m_pfile == NULL) // by the time, inline gzip decompression not yet implemented
+         {
+            inheader(__id(accept_encoding)) = "gzip,deflate";
+         }
+         //inheader("Accept-Charset") = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
+         inheader(__id(user_agent)) = MyUseragent();
       }
-      //inheader("Accept-Charset") = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
-
-
-
-      inheader(__id(user_agent)) = MyUseragent();
-      //outheader("Content-Length") = "0";
+      inheader("Content-Length") = 0;
 
       if (GetUrlPort() != 80 && GetUrlPort() != 443)
          inheader(__id(host)) = GetUrlHost() + ":" + ::str::from(GetUrlPort());

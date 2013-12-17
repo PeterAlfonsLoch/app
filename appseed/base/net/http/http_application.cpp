@@ -15,33 +15,34 @@ namespace http
 
    property_set & application::process_set(property_set & set, const char * pszUrl)
    {
+
+      if ((bool)set["raw_http"] || (bool)set["disable_ca2_sessid"]
+         || ::str::find_ci("/matter.ca2.cc/", pszUrl) >= 0 || ::str::find_ci("-matter.ca2.cc/", pszUrl) >= 0
+         || ::str::find_ci("sessid=noauth", pszUrl) >= 0
+         || set["user"].cast < ::fontopus::user >() != NULL)
+         return set;
       
-      if (!(bool)set["disable_ca2_sessid"] && set["user"].cast < ::fontopus::user >() == NULL && ::str::find_ci("/matter.ca2.cc/", pszUrl) < 0 && ::str::find_ci("-matter.ca2.cc/", pszUrl) < 0
-         && ::str::find_ci("sessid=noauth", pszUrl) < 0)
+      string strWorkUrl;
+         
+      if (get_thread() != NULL)
       {
 
-         string strWorkUrl;
-         
-         if (get_thread() != NULL)
-         {
+         strWorkUrl = get_thread()->m_strWorkUrl;
 
-            strWorkUrl = get_thread()->m_strWorkUrl;
-
-         }
-
-         keeper < string > keepWorkUrl(get_thread() == NULL ? &strWorkUrl : &get_thread()->m_strWorkUrl, pszUrl, strWorkUrl, true);
-
-         if ((bool)set["optional_ca2_sessid"])
-         {
-            if (Application.fontopus()->m_puser != NULL)
-               set["user"] = &ApplicationUser;
-         }
-         else
-         {
-            set["user"] = &ApplicationUser;
-         }
-         set["app"] = get_app();
       }
+
+      keeper < string > keepWorkUrl(get_thread() == NULL ? &strWorkUrl : &get_thread()->m_strWorkUrl, pszUrl, strWorkUrl, true);
+
+      if ((bool)set["optional_ca2_sessid"])
+      {
+         if (Application.fontopus()->m_puser != NULL)
+            set["user"] = &ApplicationUser;
+      }
+      else
+      {
+         set["user"] = &ApplicationUser;
+      }
+      set["app"] = get_app();
 
       return set;
 

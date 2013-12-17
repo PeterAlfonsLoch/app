@@ -694,6 +694,13 @@ void ssl_sigpipe_handle( int x );
             int32_t errnr = SSL_get_error(m_ssl, (int32_t) n);
             if ( errnr != SSL_ERROR_WANT_READ && errnr != SSL_ERROR_WANT_WRITE )
             {
+               if (errnr == SSL_ERROR_SYSCALL)
+               {
+                  int iError = errno;
+
+                  const char * pszError = strerror(iError);
+                  TRACE(pszError);
+               }
                OnDisconnect();
                SetCloseAndDelete(true);
                SetFlushBeforeClose(false);
