@@ -276,7 +276,7 @@ namespace html
                point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                point p2(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                ::draw2d::pen_sp pen(pdata->get_app()->allocer());
-               pen->create_solid(pdata->m_pdc, m_border.left, m_border.crLeft);
+               pen->create_solid(m_border.left, m_border.crLeft);
                pdata->m_pdc->SelectObject(pen);
                pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
             }
@@ -300,7 +300,7 @@ namespace html
                point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                ::draw2d::pen_sp pen(pdata->get_app()->allocer());
-               pen->create_solid(pdata->m_pdc, m_border.top, m_border.crTop);
+               pen->create_solid(m_border.top, m_border.crTop);
                pdata->m_pdc->SelectObject(pen);
                pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
             }
@@ -324,7 +324,7 @@ namespace html
                point p1(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                ::draw2d::pen_sp pen(pdata->get_app()->allocer());
-               pen->create_solid(pdata->m_pdc, m_border.right, m_border.crRight);
+               pen->create_solid(m_border.right, m_border.crRight);
                pdata->m_pdc->SelectObject(pen);
                pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
             }
@@ -348,7 +348,7 @@ namespace html
                point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                ::draw2d::pen_sp pen(pdata->get_app()->allocer());
-               pen->create_solid(pdata->m_pdc, m_border.bottom, m_border.crBottom);
+               pen->create_solid(m_border.bottom, m_border.crBottom);
                pdata->m_pdc->SelectObject(pen);
                pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
             }

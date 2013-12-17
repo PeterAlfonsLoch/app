@@ -327,7 +327,7 @@ namespace user
 
       ::draw2d::brush_sp brushText(allocer());
 
-      penCaret->create_solid(pdc, 1.0, ARGB(255, 0, 0, 0));
+      penCaret->create_solid(1.0, ARGB(255, 0, 0, 0));
 
 
    /*   rectClient.top = m_pt.y;

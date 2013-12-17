@@ -110,7 +110,7 @@ namespace user
             if(rectItem.contains(ptCursor))
             {
                ::draw2d::pen_sp pen(allocer());
-               pen->create_solid(pdc, m_iItemHeight / 8, ARGB(230, 77, 184, 63));
+               pen->create_solid(m_iItemHeight / 8, ARGB(230, 77, 184, 63));
                pdc->SelectObject(pen);
                pdc->DrawRectangle(rectItem);
             }
@@ -195,7 +195,7 @@ namespace user
             if(rectItem.contains(ptCursor))
             {
                ::draw2d::pen_sp pen(allocer());
-               pen->create_solid(pdc, m_iItemHeight / 8, ARGB(230, 77, 184, 63));
+               pen->create_solid(m_iItemHeight / 8, ARGB(230, 77, 184, 63));
                pdc->SelectObject(pen);
                pdc->DrawRectangle(rectItem);
             }

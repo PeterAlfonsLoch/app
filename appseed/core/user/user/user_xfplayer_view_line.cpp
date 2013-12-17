@@ -1451,7 +1451,7 @@ void XfplayerViewLine::EmbossedTextOut(
          | PS_JOIN_ROUND,
          iWidth * 2,
          &lb);*/
-      pen->create_solid(pdc, iWidth * 2, crOutline);
+      pen->create_solid(iWidth * 2, crOutline);
 
 
       ::draw2d::pen * ppenOld = pdc->SelectObject(pen);

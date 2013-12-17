@@ -123,8 +123,8 @@ public:
    bool color_blend(::draw2d::graphics * pdc, LPCRECT lpcrect, COLORREF cr, BYTE alpha);
    bool color_blend(::draw2d::graphics * pdc,   const __rect64 * lpcrect, COLORREF cr,   BYTE alpha);
 
-   bool color_blend(::draw2d::graphics * pdc, point pt, size size, COLORREF cr, BYTE alpha, ::draw2d::dib * pdibWork);
-   bool color_blend(::draw2d::graphics * pdc, LPCRECT lpcrect, COLORREF cr, BYTE alpha, ::draw2d::dib * pdibWork);
+   bool color_blend(::draw2d::graphics * pdc, point pt, size size, COLORREF cr, BYTE alpha, ::draw2d::dib * pdibWork, ::draw2d::brush * pbrushWork);
+   bool color_blend(::draw2d::graphics * pdc, LPCRECT lpcrect, COLORREF cr, BYTE alpha, ::draw2d::dib * pdibWork, ::draw2d::brush * pbrushWork);
 
    bool prepare_blend(::draw2d::dib * pdib, point pt, size size, COLORREF cr, BYTE alpha, ::draw2d::dib * pdibWork);
    bool prepare_blend(::draw2d::dib * pdib, LPCRECT lpcrect, COLORREF cr, BYTE alpha, ::draw2d::dib * pdibWork);

@@ -16,9 +16,28 @@ namespace user
       m_font(allocer()),
       m_fontUnderline(allocer()),
       m_fontBold(allocer()),
+      m_brushTextHover(allocer()),
+      m_brushTextSel(allocer()),
+      m_brushText(allocer()),
+      m_brushCloseHover(allocer()),
+      m_brushCloseSel(allocer()),
+      m_brushClose(allocer()),
+      m_penBorder(allocer()),
+      m_penBorderSel(allocer()),
+      m_penBorderHover(allocer()),
       m_dcextension(papp),
       m_panea(papp)
    {
+
+      m_brushTextHover->create_solid(ARGB(255, 0, 127, 255));
+      m_brushTextSel->create_solid(ARGB(255, 0, 0, 0));
+      m_brushText->create_solid(ARGB(163, 0, 0, 0));
+      m_brushCloseHover->create_solid(ARGB(255, 255, 127, 0));
+      m_brushCloseSel->create_solid(ARGB(255, 0, 0, 0));
+      m_brushClose->create_solid(ARGB(163, 0, 0, 0));
+      m_penBorderHover->create_solid(1.0, ARGB(255, 0, 0, 0));
+      m_penBorderSel->create_solid(1.0, ARGB(255, 0, 0, 0));
+      m_penBorder->create_solid(1.0, ARGB(163, 84, 84, 77));
 
       m_bEnableCloseAll = false;
 
@@ -245,7 +264,7 @@ namespace user
    {
 
 
-      get_data()->m_pen->create_solid(pdc, 1, RGB(32, 32, 32));
+      get_data()->m_pen->create_solid(1, RGB(32, 32, 32));
 
 
       _001OnDrawSchema01(pdc);
@@ -361,7 +380,7 @@ namespace user
 
                ::draw2d::pen_sp pen(allocer());
 
-               pen->create_solid(pdc, 1.0, ARGB(255, 0, 0, 0));
+               pen->create_solid(1.0, ARGB(255, 0, 0, 0));
 
                pdc->SelectObject(pen);
 
@@ -373,7 +392,7 @@ namespace user
 
                pdc->set_font(get_data()->m_fontBold);
 
-               brushText->create_solid(ARGB(255, 0, 0, 0));
+               brushText = get_data()->m_brushTextSel;
 
             }
             else
@@ -381,7 +400,7 @@ namespace user
 
                ::draw2d::pen_sp pen(allocer());
 
-               pen->create_solid(pdc, 1.0, ARGB(255, 0, 0, 0));
+               pen->create_solid(1.0, ARGB(255, 0, 0, 0));
 
                pdc->SelectObject(pen);
 
@@ -394,12 +413,12 @@ namespace user
                if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
                {
                   pdc->set_font(get_data()->m_fontUnderline);
-                  brushText->create_solid(ARGB(255, 0, 127, 255));
+                  brushText = get_data()->m_brushClose;
                }
                else
                {
                   pdc->set_font(get_data()->m_font);
-                  brushText->create_solid(ARGB(255, 0, 0, 0));
+                  brushText = get_data()->m_brushText;
                }
             }
 
@@ -419,7 +438,7 @@ namespace user
 
                ::draw2d::pen_sp pen(allocer());
 
-               pen->create_solid(pdc, 1.0, ARGB(255, 0, 0, 0));
+               pen->create_solid(1.0, ARGB(255, 0, 0, 0));
 
                pdc->SelectObject(pen);
 
@@ -438,7 +457,7 @@ namespace user
 
                ::draw2d::pen_sp pen(allocer());
 
-               pen->create_solid(pdc, 1.0, ARGB(255, 0, 0, 0));
+               pen->create_solid(1.0, ARGB(255, 0, 0, 0));
 
                pdc->SelectObject(pen);
 
@@ -459,7 +478,7 @@ namespace user
                else
                {
                   pdc->set_font(get_data()->m_font);
-                  brushText->create_solid(ARGB(255, 10, 10, 10));
+                  brushText = get_data()->m_brushText;
                }
             }
 
@@ -479,6 +498,7 @@ namespace user
             pdc->set_font(get_data()->m_fontBold);
             if(iVisiblePane == m_iHover && m_eelementHover == element_close_tab_button)
             {
+               brushText = get_data()->m_brushCloseSel;
                brushText->create_solid(ARGB(0xff, 255, 127, 0));
             }
             else
@@ -573,9 +593,7 @@ namespace user
 
       //return;
 
-      ::draw2d::brush_sp brushText(allocer());
-
-      ::draw2d::pen_sp pen(allocer());
+      ::draw2d::brush_sp brushText;
 
       for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
       {
@@ -584,8 +602,6 @@ namespace user
 
          if(!pane.m_bVisible)
             continue;
-
-
 
          if(!get_element_rect(iVisiblePane, rect, element_tab))
             continue;
@@ -620,23 +636,19 @@ namespace user
 
                //path->close_figure();
 
-               ::draw2d::brush_sp br(allocer());
+               pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
 
-               br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
-
-               pdc->SelectObject(br);
+               pdc->SelectObject(pane.m_brushFillSel);
 
                pdc->fill_path(path);
 
-               pen->create_solid(pdc, 1.0, ARGB(255, 0, 0, 0));
-
-               pdc->SelectObject(pen);
+               pdc->SelectObject(get_data()->m_penBorderSel);
 
                pdc->draw_path(path);
 
                pdc->set_font(get_data()->m_font);
 
-               brushText->create_solid(ARGB(255, 0, 0, 0));
+               brushText = get_data()->m_brushTextSel;
 
             }
             else
@@ -658,45 +670,37 @@ namespace user
                if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
                {
 
-                  ::draw2d::brush_sp br(allocer());
+                  pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
 
-                  br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
-
-                  pdc->SelectObject(br);
+                  pdc->SelectObject(pane.m_brushFillHover);
 
                   pdc->fill_path(path);
 
-                  pen->create_solid(pdc, 1.0, ARGB(200, 100, 100, 100));
-
-                  pdc->SelectObject(pen);
+                  pdc->SelectObject(get_data()->m_penBorderHover);
 
                   pdc->draw_path(path);
 
                   pdc->set_font(get_data()->m_fontUnderline);
 
-                  brushText->create_solid(ARGB(255, 0, 0, 0));
+                  brushText = get_data()->m_brushTextHover;
 
                }
                else
                {
 
-                  ::draw2d::brush_sp br(allocer());
+                  pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
 
-                  br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
-
-                  pdc->SelectObject(br);
+                  pdc->SelectObject(pane.m_brushFill);
 
                   pdc->fill_path(path);
 
-                  pen->create_solid(pdc, 1.0, ARGB(200, 100, 100, 100));
-
-                  pdc->SelectObject(pen);
+                  pdc->SelectObject(get_data()->m_penBorder);
 
                   pdc->draw_path(path);
 
                   pdc->set_font(get_data()->m_font);
 
-                  brushText->create_solid(ARGB(255, 0, 0, 0));
+                  brushText = get_data()->m_brushText;
 
                }
 
@@ -733,23 +737,21 @@ namespace user
 
                path->end_figure(false);
 
-               ::draw2d::brush_sp br(allocer());
+               pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
 
-               br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
-
-               pdc->SelectObject(br);
+               pdc->SelectObject(pane.m_brushFillSel);
 
                pdc->fill_path(path);
 
-               pen->create_solid(pdc, 1.0, ARGB(255, 0, 0, 0));
+               get_data()->m_penBorderSel->create_solid(1.0, ARGB(255, 0, 0, 0));
 
-               pdc->SelectObject(pen);
+               pdc->SelectObject(get_data()->m_penBorderSel);
 
                pdc->draw_path(path);
 
                pdc->set_font(get_data()->m_font);
 
-               brushText->create_solid(ARGB(255, 0, 0, 0));
+               brushText = get_data()->m_brushTextSel;
 
             }
             else
@@ -770,45 +772,37 @@ namespace user
                if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
                {
 
-                  ::draw2d::brush_sp br(allocer());
+                  pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
 
-                  br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
-
-                  pdc->SelectObject(br);
+                  pdc->SelectObject(pane.m_brushFillHover);
 
                   pdc->fill_path(path);
 
-                  pen->create_solid(pdc, 1.0, ARGB(200, 100, 100, 100));
-
-                  pdc->SelectObject(pen);
+                  pdc->SelectObject(get_data()->m_penBorderHover);
 
                   pdc->draw_path(path);
 
                   pdc->set_font(get_data()->m_fontUnderline);
 
-                  brushText->create_solid(ARGB(255, 0, 0, 0));
+                  brushText = get_data()->m_brushTextHover;
 
                }
                else
                {
 
-                  ::draw2d::brush_sp br(allocer());
+                  pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
 
-                  br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
-
-                  pdc->SelectObject(br);
+                  pdc->SelectObject(pane.m_brushFill);
 
                   pdc->fill_path(path);
 
-                  pen->create_solid(pdc, 1.0, ARGB(200, 100, 100, 100));
-
-                  pdc->SelectObject(pen);
+                  pdc->SelectObject(get_data()->m_penBorder);
 
                   pdc->draw_path(path);
 
                   pdc->set_font(get_data()->m_font);
 
-                  brushText->create_solid(ARGB(255, 0, 0, 0));
+                  brushText = get_data()->m_brushTextSel;
 
                }
 
@@ -834,13 +828,13 @@ namespace user
             if(iVisiblePane == m_iHover && m_eelementHover == element_close_tab_button)
             {
 
-               brushText->create_solid(ARGB(0xff, 255, 127, 0));
+               brushText = get_data()->m_brushCloseHover;
 
             }
             else
             {
 
-               brushText->create_solid(ARGB(0xff, 0, 0, 0));
+               brushText = get_data()->m_brushClose;
 
             }
 
@@ -1446,13 +1440,12 @@ namespace user
       on_change_pane_count();
    }
 
-   tab::pane::pane() :
-      m_istrTitleEx(NULL)
-   {
-   }
 
    tab::pane::pane(sp(base_application) papp) :
       element(papp),
+      m_brushFill(allocer()),
+      m_brushFillSel(allocer()),
+      m_brushFillHover(allocer()),
       m_istrTitleEx(papp)
    {
       m_bVisible     = true;

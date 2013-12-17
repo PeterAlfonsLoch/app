@@ -44,7 +44,7 @@ namespace draw2d
 
 
       virtual bool create_null();
-      virtual bool create_solid(::draw2d::graphics * pgraphics, double dWidth, COLORREF crColor);
+      virtual bool create_solid(double dWidth, COLORREF crColor);
 
       virtual e_end_cap get_end_cap();
       virtual bool set_end_cap(e_end_cap eendcap);

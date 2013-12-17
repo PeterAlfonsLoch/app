@@ -811,7 +811,7 @@ void simple_scroll_bar::UpdateDrawingObjects()
 void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 {
 
-   m_penDraw->create_solid(pdc, 1, ARGB(255, 0, 0, 0));
+   m_penDraw->create_solid(1, ARGB(255, 0, 0, 0));
 
    m_brushDraw->m_etype = ::draw2d::brush::type_null;
 

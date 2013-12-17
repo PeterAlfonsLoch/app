@@ -400,7 +400,7 @@ namespace simple_ui
 
       simple_pen pen;
 
-      pen.create_solid(g, ARGB(255, 0, 0, 0));
+      pen.create_solid(ARGB(255, 0, 0, 0));
 
       pgraphics->select(br);
 
@@ -805,7 +805,7 @@ namespace simple_ui
 
       ::draw2d::pen_sp p(allocer());
 
-      p->create_solid(pgraphics, 1.0, ARGB(255, 0, 0, 0));
+      p->create_solid(1.0, ARGB(255, 0, 0, 0));
 
       pgraphics->SelectObject(p);
 
@@ -927,7 +927,7 @@ namespace simple_ui
          byte r1 = brate(dRate, 23, 127);
          byte g1 = brate(dRate, 23, 127);
          byte b1 = brate(dRate, 23, 127);
-         p->create_solid(pgraphics, 1.0, ARGB(a1, r1, g1, b1));
+         p->create_solid(1.0, ARGB(a1, r1, g1, b1));
          pgraphics->SelectObject(p);
          pgraphics->draw_line(rectWindow.left, i, rectWindow.right, i);
 
@@ -993,7 +993,7 @@ namespace simple_ui
 
          ::draw2d::pen_sp p(allocer());
 
-         p->create_solid(pgraphics, 1.0, ARGB(184, 184, 184, 184));
+         p->create_solid(1.0, ARGB(184, 184, 184, 184));
 
          pgraphics->SelectObject(p);
 
@@ -1033,7 +1033,7 @@ namespace simple_ui
 
          ::draw2d::pen_sp p(allocer());
 
-         p->create_solid(pgraphics, 1.0, ARGB(177, 177, 177, 177));
+         p->create_solid(1.0, ARGB(177, 177, 177, 177));
 
          pgraphics->SelectObject(p);
 
@@ -1059,7 +1059,7 @@ namespace simple_ui
 
          ::draw2d::pen_sp p(allocer());
 
-         p->create_solid(pgraphics, 1.0, ARGB(123, 84, 84, 84));
+         p->create_solid(1.0, ARGB(123, 84, 84, 84));
 
          pgraphics->SelectObject(p);
 
@@ -1085,7 +1085,7 @@ namespace simple_ui
 
          ::draw2d::pen_sp p(allocer());
 
-         p->create_solid(pgraphics, 1.0, ARGB(149, 177, 177, 177));
+         p->create_solid(1.0, ARGB(149, 177, 177, 177));
 
          pgraphics->SelectObject(p);
 
@@ -1111,7 +1111,7 @@ namespace simple_ui
 
          ::draw2d::pen_sp p(allocer());
 
-         p->create_solid(pgraphics, 1.0, ARGB(84, 123, 123, 123));
+         p->create_solid(1.0, ARGB(84, 123, 123, 123));
 
          pgraphics->SelectObject(p);
 
@@ -1128,7 +1128,7 @@ namespace simple_ui
 
          ::draw2d::pen_sp p(allocer());
 
-         p->create_solid(pgraphics, 1.0, ARGB(184, 84, 84, 84));
+         p->create_solid(1.0, ARGB(184, 84, 84, 84));
 
          pgraphics->SelectObject(p);
 

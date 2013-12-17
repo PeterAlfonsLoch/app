@@ -502,7 +502,7 @@ CLASS_DECL_BASE void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int 
 
    ::draw2d::pen_sp p(pdc->allocer());
 
-   p->create_solid(pdc, 1.0, crIn);
+   p->create_solid(1.0, crIn);
 
    for(int i = 0; i < bIn; i++)
    {
@@ -513,7 +513,7 @@ CLASS_DECL_BASE void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int 
 
    }
 
-   p->create_solid(pdc, 1.0, crOut);
+   p->create_solid(1.0, crOut);
 
    for(int i = 0; i < bOut; i++)
    {
@@ -544,7 +544,7 @@ CLASS_DECL_BASE void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y
 
    ::draw2d::pen_sp p(pdc->allocer());
 
-   p->create_solid(pdc, 1.0, crBorder);
+   p->create_solid(1.0, crBorder);
 
    for(int i = 0; i < b; i++)
    {

@@ -26,7 +26,7 @@ namespace user
       {
          ::draw2d::brush_sp br(allocer(), RGB(0, 0, 0));
          ::draw2d::pen_sp pen(allocer());
-         pen->create_solid(pdc, 1, RGB(0, 0, 0));
+         pen->create_solid(1, RGB(0, 0, 0));
          pdc->SelectObject(pen);
          pdc->SelectObject(br);
          rect rectPopupArrow;

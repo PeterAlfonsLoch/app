@@ -2855,7 +2855,8 @@ bool imaging::color_blend(
    LPCRECT lpcrect,
    COLORREF cr,
    BYTE alpha,
-   ::draw2d::dib * pdibWork)
+   ::draw2d::dib * pdibWork,
+   ::draw2d::brush * pbrushWork)
 {
    class rect rect(lpcrect);
    return color_blend(
@@ -2864,7 +2865,8 @@ bool imaging::color_blend(
       rect.size(),
       cr,
       alpha,
-      pdibWork);
+      pdibWork,
+      pbrushWork);
 }
 
 bool imaging::color_blend(
@@ -2876,7 +2878,7 @@ bool imaging::color_blend(
 {
    //::draw2d::dib_sp spdib(allocer());
    //return color_blend(pdc, pt, size, cr, bA, spdib);
-   return color_blend(pdc, pt, size, cr, bA, NULL);
+   return color_blend(pdc, pt, size, cr, bA, NULL, NULL);
 }
 
 bool imaging::color_blend(
@@ -2890,11 +2892,22 @@ bool imaging::color_blend(
    return color_blend(pdc, point(x, y), size(cx, cy), cr, bA);
 }
 
-bool imaging::color_blend(::draw2d::graphics * pdc, point pt, size size, COLORREF cr, BYTE bA, ::draw2d::dib * pdibWork)
+bool imaging::color_blend(::draw2d::graphics * pdc, point pt, size size, COLORREF cr, BYTE bA, ::draw2d::dib * pdibWork, ::draw2d::brush * pbrushWork)
 {
 
+   if (pbrushWork == NULL)
+   {
+      pdc->FillSolidRect(pt.x, pt.y, size.cx, size.cy, (cr & 0x00ffffff) | (bA << 24));
+   }
+   else
+   {
+      pbrushWork->create_solid((cr & 0x00ffffff) | (bA << 24));
 
-   pdc->FillSolidRect(pt.x, pt.y, size.cx, size.cy, (cr & 0x00ffffff) | (bA << 24));
+
+      pdc->FillRect(&::rect_dim(pt.x, pt.y, size.cx, size.cy), pbrushWork);
+   }
+
+   
 
    return true;
 

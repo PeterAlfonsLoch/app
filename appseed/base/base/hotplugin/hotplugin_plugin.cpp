@@ -501,7 +501,7 @@ namespace hotplugin
 
       ::draw2d::pen_sp pen(allocer());
 
-      pen->create_solid(pgraphics, 1.0, RGB(84, 84, 77));
+      pen->create_solid(1.0, RGB(84, 84, 77));
 
       ::draw2d::brush_sp brush(allocer());
 
@@ -757,20 +757,20 @@ namespace hotplugin
 
       int32_t iOffset = 3;
 
-      pen->create_solid(pgraphics, 1.0, ARGB(220, 180, 180, 180));
+      pen->create_solid(1.0, ARGB(220, 180, 180, 180));
       pgraphics->draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, pen);
       pgraphics->draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
 
-      pen->create_solid(pgraphics, 1.0, ARGB(220, 77, 77, 77));
+      pen->create_solid(1.0, ARGB(220, 77, 77, 77));
       pgraphics->draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
       pgraphics->draw_line(lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
 
       iOffset = 2;
-      pen->create_solid(pgraphics, 1.0, ARGB(220, 84, 84, 84));
+      pen->create_solid(1.0, ARGB(220, 84, 84, 84));
       pgraphics->draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, pen);
       pgraphics->draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
 
-      pen->create_solid(pgraphics, 1.0, ARGB(220, 170, 170, 170));
+      pen->create_solid(1.0, ARGB(220, 170, 170, 170));
       pgraphics->draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
       pgraphics->draw_line(lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
 

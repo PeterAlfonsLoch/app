@@ -69,7 +69,7 @@ namespace user
          || m_echeck == check::checked)
          {
             ::draw2d::pen_sp pen(allocer());
-            pen->create_solid(pdc, 1, m_echeck == check::checked ? ARGB(255, 0, 0, 0) : ARGB(255, 96, 96, 96));
+            pen->create_solid(1, m_echeck == check::checked ? ARGB(255, 0, 0, 0) : ARGB(255, 96, 96, 96));
             pdc->SelectObject(pen);
             pdc->MoveTo(2, 8);
             pdc->LineTo(6, 12);

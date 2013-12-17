@@ -177,9 +177,9 @@ namespace user
 
       single_lock sl(&m_mutex, true);
 
-      m_penFocused->create_solid(pdc, 2, ARGB(255, 0, 255, 255));
+      m_penFocused->create_solid(2, ARGB(255, 0, 255, 255));
 
-      m_penHighlight->create_solid(pdc, 2, ARGB(255, 0, 255, 255));
+      m_penHighlight->create_solid(2, ARGB(255, 0, 255, 255));
 
       pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
 

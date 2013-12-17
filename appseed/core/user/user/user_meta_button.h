@@ -16,15 +16,19 @@ public:
 
    ::draw2d::brush_sp   m_brushEllipse;
    ::draw2d::pen_sp     m_penEllipse;
+   ::draw2d::brush_sp   m_brushText;
    COLORREF             m_crText;
    ::draw2d::brush_sp   m_brushEllipseSel;
    ::draw2d::pen_sp     m_penEllipseSel;
+   ::draw2d::brush_sp   m_brushTextSel;
    COLORREF             m_crTextSel;
    ::draw2d::brush_sp   m_brushEllipseFocus;
    ::draw2d::pen_sp     m_penEllipseFocus;
+   ::draw2d::brush_sp   m_brushTextFocus;
    COLORREF             m_crTextFocus;
    ::draw2d::brush_sp   m_brushEllipseDisabled;
    ::draw2d::pen_sp     m_penEllipseDisabled;
+   ::draw2d::brush_sp   m_brushTextDisabled;
    COLORREF             m_crTextDisabled;
    oswindow             m_oswindowPreviousFocus;
 

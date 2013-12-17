@@ -2605,7 +2605,7 @@ namespace draw2d
 
       m_sppen.create(allocer());
 
-      m_sppen->create_solid(this, dWidth, m_crColor);
+      m_sppen->create_solid(dWidth, m_crColor);
 
    }
 

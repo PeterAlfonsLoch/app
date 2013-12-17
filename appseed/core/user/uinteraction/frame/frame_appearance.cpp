@@ -244,10 +244,10 @@ namespace uinteraction
 
          UNREFERENCED_PARAMETER(crLight);
 
-         m_penHighlight->create_solid(pdc,1, crHighlight);
-         m_penLight->create_solid(pdc, 1, crHighlight);
-         m_penShadow->create_solid(pdc, 1, crShadow);
-         m_penDkShadow->create_solid(pdc, 1, crDkShadow);
+         m_penHighlight->create_solid(1, crHighlight);
+         m_penLight->create_solid(1, crHighlight);
+         m_penShadow->create_solid(1, crShadow);
+         m_penDkShadow->create_solid(1, crDkShadow);
          m_brushNull->create_null();
          m_brushBody->create_solid(crBody);
 
@@ -353,7 +353,7 @@ namespace uinteraction
 
          ::draw2d::pen_sp pen(allocer());
 
-         pen->create_solid(pdc, 0, RGB(255, 255, 255));
+         pen->create_solid(0, RGB(255, 255, 255));
 
          pdc->SelectObject(pen);
 

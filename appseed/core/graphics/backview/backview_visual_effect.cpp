@@ -1411,19 +1411,19 @@ namespace backview
 
       {
          ::draw2d::pen_sp pen1(allocer());
-         pen1->create_solid(pdib2->get_graphics(), 1.0, colorStrong1.get_rgb() | (255 << 24));
+         pen1->create_solid(1.0, colorStrong1.get_rgb() | (255 << 24));
          ::draw2d::brush_sp brush1(allocer(), colorStrong1.get_rgb() | (255 << 24));
          ::draw2d::pen_sp pen2(allocer());
-         pen2->create_solid(pdib2->get_graphics(), 1.0, colorStrong2.get_rgb() | (255 << 24));
+         pen2->create_solid(1.0, colorStrong2.get_rgb() | (255 << 24));
          ::draw2d::brush_sp brush2(allocer(), colorStrong2.get_rgb() | (255 << 24));
          ::draw2d::pen_sp pen3(allocer());
-         pen3->create_solid(pdib2->get_graphics(), 1.0, colorStrong3.get_rgb() | (255 << 24));
+         pen3->create_solid(1.0, colorStrong3.get_rgb() | (255 << 24));
          ::draw2d::brush_sp brush3(allocer(), colorStrong3.get_rgb() | (255 << 24));
          ::draw2d::pen_sp pen4(allocer());
-         pen4->create_solid(pdib2->get_graphics(), 1.0, colorStrong4.get_rgb() | (255 << 24));
+         pen4->create_solid(1.0, colorStrong4.get_rgb() | (255 << 24));
          ::draw2d::brush_sp brush4(allocer(), colorStrong4.get_rgb() | (255 << 24));
          ::draw2d::pen_sp pen5(allocer());
-         pen5->create_solid(pdib2->get_graphics(), 1.0, colorStrong5.get_rgb() | (255 << 24));
+         pen5->create_solid(1.0, colorStrong5.get_rgb() | (255 << 24));
          ::draw2d::brush_sp brush5(allocer(), colorStrong5.get_rgb() | (255 << 24));
          for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
          {
@@ -2194,7 +2194,7 @@ namespace backview
 
       // top1
       ::draw2d::pen_sp pen1(allocer());
-      pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
+      pen1->create_solid(1, colorStrong1.get_rgb() | (255 << 24));
       pdib1->get_graphics()->SelectObject(pen1);
       int32_t margin = 10;
       int32_t w = margin * 2;
@@ -2580,9 +2580,9 @@ namespace backview
       }
 
       ::draw2d::pen_sp pen1(allocer());
-      pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
+      pen1->create_solid(1, colorStrong1.get_rgb() | (255 << 24));
       ::draw2d::pen_sp penWhite(allocer());
-      penWhite->create_solid(pdib1->get_graphics(), 3, ARGB(255, 205, 205, 205));
+      penWhite->create_solid(3, ARGB(255, 205, 205, 205));
       int32_t margin1 = cx1 / 8;
       int32_t margin2 = cy1 / 2;
       int32_t w = cy1 / 3;
@@ -3027,9 +3027,9 @@ namespace backview
 
       // top1
       ::draw2d::pen_sp pen1(allocer());
-      pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
+      pen1->create_solid(1, colorStrong1.get_rgb() | (255 << 24));
       ::draw2d::pen_sp penWhite(allocer());
-      penWhite->create_solid(pdib1->get_graphics(), 3, ARGB(255, 205, 205, 205));
+      penWhite->create_solid(3, ARGB(255, 205, 205, 205));
       int32_t margin1 = 10;
 //         int32_t margin2 = cy1 / 2;
       int32_t w = cy1 / 3;
@@ -3828,7 +3828,7 @@ namespace backview
 
       // top1
       ::draw2d::pen_sp pen1(allocer());
-      pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
+      pen1->create_solid(1, colorStrong1.get_rgb() | (255 << 24));
       pdib1->get_graphics()->SelectObject(pen1);
       int32_t marginx = cx1 / 12;
       int32_t marginy = cy1 * 5 / 11;
@@ -4278,7 +4278,7 @@ namespace backview
 
       // top1
       ::draw2d::pen_sp pen1(allocer());
-      pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
+      pen1->create_solid(1, colorStrong1.get_rgb() | (255 << 24));
       pdib1->get_graphics()->SelectObject(pen1);
       int32_t margin = 10;
       int32_t w = margin * 2;
@@ -4565,9 +4565,9 @@ namespace backview
       }
 
       ::draw2d::pen_sp pen1(allocer());
-      pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
+      pen1->create_solid(1, colorStrong1.get_rgb() | (255 << 24));
       ::draw2d::pen_sp penWhite(allocer());
-      penWhite->create_solid(pdib1->get_graphics(), 3, ARGB(255, 205, 205, 205));
+      penWhite->create_solid(3, ARGB(255, 205, 205, 205));
       int32_t margin1 = cx1 / 8;
       int32_t margin2 = cy1 / 2;
       int32_t w = cy1 / 3;
@@ -5016,9 +5016,9 @@ namespace backview
 
       // top1
       ::draw2d::pen_sp pen1(allocer());
-      pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
+      pen1->create_solid(1, colorStrong1.get_rgb() | (255 << 24));
       ::draw2d::pen_sp penWhite(allocer());
-      penWhite->create_solid(pdib1->get_graphics(), 3, ARGB(255, 205, 205, 205));
+      penWhite->create_solid(3, ARGB(255, 205, 205, 205));
       int32_t margin1 = 10;
 //         int32_t margin2 = cy1 / 2;
       int32_t w = cy1 / 3;
@@ -5510,7 +5510,7 @@ namespace backview
 
       // top1
       ::draw2d::pen_sp pen1(allocer());
-      pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
+      pen1->create_solid(1, colorStrong1.get_rgb() | (255 << 24));
       pdib1->get_graphics()->SelectObject(pen1);
       int32_t marginx = cx1 / 12;
       int32_t marginy = cy1 * 5 / 11;

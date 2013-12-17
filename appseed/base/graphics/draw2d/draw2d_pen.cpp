@@ -8,7 +8,7 @@ namespace draw2d
    pen_sp::pen_sp(::draw2d::graphics * pgraphics, double dWidth, COLORREF crColor) :
       smart_pointer < pen > (pgraphics->allocer())
    {
-      m_p->create_solid(pgraphics, dWidth, crColor);
+      m_p->create_solid(dWidth, crColor);
    }
 
 
@@ -46,10 +46,14 @@ namespace draw2d
 
    }
 
-   bool pen::create_solid(::draw2d::graphics * pdc, double dWidth, COLORREF crColor)
+   bool pen::create_solid(double dWidth, COLORREF crColor)
    {
 
-      UNREFERENCED_PARAMETER(pdc);
+      if (m_etype == type_solid
+         && dWidth >= (m_dWidth - 0.1)
+         && dWidth <= (m_dWidth + 0.1)
+         && m_cr == crColor)
+         return true;
 
       m_etype                 = type_solid;
       m_dWidth                = dWidth;

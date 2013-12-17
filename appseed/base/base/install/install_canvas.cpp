@@ -103,7 +103,7 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, LPCRECT lpcrect)
 
       ::draw2d::pen_sp pen(allocer());
 
-      pen->create_solid(pgraphics, 1.0, ARGB(255, 84, 84, 77));
+      pen->create_solid(1.0, ARGB(255, 84, 84, 77));
 
       if(iMode == 0 || iMode == 1)
       {

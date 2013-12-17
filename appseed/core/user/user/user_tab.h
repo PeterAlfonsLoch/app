@@ -23,6 +23,9 @@ namespace user
       public:
 
 
+         ::draw2d::brush_sp                  m_brushFill;
+         ::draw2d::brush_sp                  m_brushFillSel;
+         ::draw2d::brush_sp                  m_brushFillHover;
          id                   m_id;
          istring              m_istrTitleEx;
          ::visual::dib_sp     m_dib;
@@ -31,7 +34,6 @@ namespace user
          bool                 m_bPermanent;
 
 
-         pane();
          pane(sp(base_application) papp);
          pane(const pane & pane);
          virtual ~pane();
@@ -67,12 +69,21 @@ namespace user
       {
       public:
 
-         int32_t                              m_iHeightAddUp;
-         ::draw2d::pen_sp                     m_pen;
-         ::draw2d::font_sp                    m_font;
-         ::draw2d::font_sp                    m_fontUnderline;
-         ::draw2d::font_sp                    m_fontBold;
-         bool                             m_bCreated;
+         int32_t                             m_iHeightAddUp;
+         ::draw2d::pen_sp                    m_pen;
+         ::draw2d::font_sp                   m_font;
+         ::draw2d::font_sp                   m_fontUnderline;
+         ::draw2d::font_sp                   m_fontBold;
+         ::draw2d::brush_sp                  m_brushTextHover;
+         ::draw2d::brush_sp                  m_brushTextSel;
+         ::draw2d::brush_sp                  m_brushText;
+         ::draw2d::brush_sp                  m_brushCloseHover;
+         ::draw2d::brush_sp                  m_brushCloseSel;
+         ::draw2d::brush_sp                  m_brushClose;
+         ::draw2d::pen_sp                    m_penBorder;
+         ::draw2d::pen_sp                    m_penBorderSel;
+         ::draw2d::pen_sp                    m_penBorderHover;
+         bool                                m_bCreated;
          int32_t                              m_iTabHeight;
          int32_t                              m_iTabWidth;
          pane_array                       m_panea;

@@ -134,6 +134,13 @@ namespace draw2d
    bool brush::CreateLinearGradientBrush(point p1, point p2, COLORREF cr1, COLORREF cr2)
    {
 
+      if (m_etype == type_linear_gradient_point_color
+         && m_pt1 == p1
+         && m_pt2 == p2
+         && m_cr1 == cr1
+         && m_cr2 == cr2)
+         return true;
+
       m_etype           = type_linear_gradient_point_color;
       m_pt1             = p1;
       m_pt2             = p2;

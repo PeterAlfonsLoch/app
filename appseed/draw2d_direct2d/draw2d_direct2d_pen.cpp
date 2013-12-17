@@ -413,7 +413,7 @@ namespace draw2d_direct2d
 
 
 
-      if(!::draw2d::pen::create_solid(pgraphics, dWidth, cr))
+      if(!::draw2d::pen::create_solid(dWidth, cr))
          return false;
 
 

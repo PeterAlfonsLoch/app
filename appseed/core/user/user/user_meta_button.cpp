@@ -72,6 +72,17 @@ void MetaButton::SetTextColors(
    m_crTextDisabled = crDisabled;
 
 
+   m_brushText.create(allocer());
+   m_brushTextSel.create(allocer());
+   m_brushTextFocus.create(allocer());
+   m_brushTextDisabled.create(allocer());
+
+   m_brushText->create_solid(cr);
+   m_brushTextSel->create_solid(crSel);
+   m_brushTextFocus->create_solid(crFocus);
+   m_brushTextDisabled->create_solid(crDisabled);
+
+
 }
 
 
@@ -87,14 +98,14 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
    if(rectClient.area() <= 0)
       return;
 
-   COLORREF crText;
+   ::draw2d::brush_sp brushText;
 
    if(!IsWindowEnabled())
    {
 
       pdc->SelectObject(m_brushEllipseDisabled);
       pdc->SelectObject(m_penEllipseDisabled);
-      crText = m_crTextDisabled;
+      brushText = m_brushTextDisabled;
 
    }
    else if(m_iHover >= 0)
@@ -102,7 +113,7 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
 
       pdc->SelectObject(m_brushEllipseSel);
       pdc->SelectObject(m_penEllipseSel);
-      crText = m_crTextSel;
+      brushText = m_brushTextSel;
 
    }
    else if(System.get_focus_guie() == this)
@@ -110,7 +121,7 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
 
       pdc->SelectObject(m_brushEllipseFocus);
       pdc->SelectObject(m_penEllipseFocus);
-      crText = m_crTextFocus;
+      brushText = m_brushTextFocus;
 
    }
    else
@@ -121,7 +132,7 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
       //m_brushEllipse->m_cr = ARGB(127, 0, 255, 0);
 
       pdc->SelectObject(m_penEllipse);
-      crText = m_crText;
+      brushText = m_brushText;
 
    }
 
@@ -137,9 +148,9 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
    string str;
    GetWindowText(str);
 
-   ::draw2d::brush_sp brushText(allocer());
+//   ::draw2d::brush_sp brushText(allocer());
 
-   brushText->create_solid(crText);
+  // brushText->create_solid(brushText);
 
    pdc->set_font(GetFont());
    pdc->SelectObject(brushText);
