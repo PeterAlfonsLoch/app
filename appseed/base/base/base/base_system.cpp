@@ -191,6 +191,24 @@ bool base_system::initialize_instance()
 }
 
 
+int32_t base_system::exit_instance()
+{
+
+   base_application::exit_instance();
+
+#ifdef WINDOWS
+
+   m_pdevicecontext = nullptr;
+
+   m_pmutexDc.release();
+
+#endif
+
+   return 0;
+
+}
+
+
 UINT base_system::os_post_to_all_threads(UINT uiMessage, WPARAM wparam, lparam lparam)
 {
 

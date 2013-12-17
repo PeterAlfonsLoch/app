@@ -66,7 +66,7 @@ namespace user
       bool bMakeVisible = pcreatecontext->m_bMakeVisible;
       //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
       //   sp(::user::impact) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].cast < ::user::impact > ();
-      sp(::user::object) pdocument = create_new_document();
+      sp(::user::object) pdocument = create_new_document(pcreatecontext);
       if (pdocument == NULL)
       {
          TRACE(::core::trace::category_AppMsg, 0, "impact_system::create_new_document returned NULL.\n");

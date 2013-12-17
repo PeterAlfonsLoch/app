@@ -44,6 +44,8 @@ namespace plane
 
       }
 
+      m_ftlibrary = NULL;
+
 
       ::application::m_file.set_app(this);
       ::application::m_dir.set_app(this);
@@ -650,13 +652,21 @@ namespace plane
 
 
       int32_t iRet = 0;
+/*
+
       try
       {
+
          iRet = ::application::exit_instance();
+
       }
       catch(...)
       {
+
       }
+
+*/
+
 
       try
       {
@@ -737,6 +747,18 @@ namespace plane
       m_typemap.remove_all();
 
       m_typemap.release();
+
+      try
+      {
+
+         iRet = ::core::system::exit_instance();
+
+      }
+      catch (...)
+      {
+
+      }
+
 
       return iRet;
    }

@@ -91,11 +91,11 @@ namespace user
    }
 
 
-   void object::on_alloc(sp(base_application) papp)
+   void object::on_create(sp(::create_context) pcreatecontext)
    {
 
       //::user::object::on_alloc(papp);
-      ::database::client::initialize_data_client(&App(papp).dataserver());
+      ::database::client::initialize_data_client(&Application.dataserver());
 
    }
 

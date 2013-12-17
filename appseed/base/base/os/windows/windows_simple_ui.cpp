@@ -398,7 +398,9 @@ namespace os
          rect.right = m_pt.x + m_size.cx;
          rect.bottom = m_pt.y + m_size.cy;
 
-         BYTE *dst = (BYTE*)m_dib->get_data();
+         m_dib->map();
+
+         /*BYTE *dst = (BYTE*)m_dib->get_data();
          int64_t size = m_size.cx * m_size.cy;
 
 
@@ -448,9 +450,9 @@ namespace os
             dst[1] = LOBYTE(((int32_t)dst[1] * (int32_t)dst[3]) >> 8);
             dst[2] = LOBYTE(((int32_t)dst[2] * (int32_t)dst[3]) >> 8);
             dst += 4;
-         }
+         }*/
 
-         m_gdi.update_window(m_window, (COLORREF *)m_dib->get_data(), &rect);
+         m_gdi.update_window(m_window, (COLORREF *)m_dib->get_data(), &rect, m_dib->m_iScan);
 
       }
 

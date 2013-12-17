@@ -64,7 +64,7 @@ namespace draw2d_direct2d
       void SetIconMask(::visual::icon * picon, int32_t cx, int32_t cy);
 
 
-      //virtual bool update_window(::user::window * pwnd, signal_details * pobj);
+      virtual bool update_window(::user::window * pwnd, signal_details * pobj);
       //virtual bool print_window(::user::window * pwnd, signal_details * pobj);
 
 

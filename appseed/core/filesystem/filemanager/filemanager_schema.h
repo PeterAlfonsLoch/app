@@ -51,7 +51,7 @@ namespace filemanager
       sp(document) open_child(bool bMakeVisible = true, bool bTransparentBackground = false, sp(::user::interaction) pwndParent = NULL, data * pfilemanagerdata = NULL);
       sp(document) open_child_list(bool bMakeVisible = true, bool bTransparentBackground = false, sp(::user::interaction) pwndParent = NULL, data * pfilemanagerdata = NULL);
 
-      sp(document) create_new_document(callback * pinterface);
+      sp(document) create_new_document(callback * pinterface, sp(::create_context) pcreatecontext);
 
 
       schema(filemanager * pfilemanager);

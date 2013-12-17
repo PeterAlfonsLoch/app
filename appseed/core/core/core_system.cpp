@@ -78,6 +78,16 @@ namespace core
    }
 
 
+   int32_t system::exit_instance()
+   {
+
+      ::base_system::exit_instance();
+
+      return 0;
+
+   }
+
+
 } // namespace core
 
 

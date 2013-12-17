@@ -324,6 +324,8 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
       <FunctionLevelLinking>false</FunctionLevelLinking>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <FloatingPointExceptions>true</FloatingPointExceptions>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -658,12 +660,12 @@
       </HeaderFileName>
     </Midl>
     <ClCompile>
-      <Optimization>Disabled</Optimization>
+      <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);DeprecationManager;OpenEXR;OpenEXR\Half;OpenEXR\Iex;OpenEXR\IlmImf;OpenEXR\Imath;OpenEXR\IlmThread;LibJPEG;LibMNG;LibOpenJPEG;LibPNG;LibTIFF;LibRawLite;FreeImage;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WINDOWSEX;WIN32;_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_USRDL;OPJ_STATIC;FREEIMAGE_EXPORTS;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
@@ -677,6 +679,14 @@
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -698,6 +708,7 @@
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <PostBuildEvent>
       <Command>

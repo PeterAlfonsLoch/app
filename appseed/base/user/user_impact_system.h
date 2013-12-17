@@ -101,7 +101,7 @@ namespace user
       void update_all_views(sp(::user::impact) pviewSender, LPARAM lhint, ::object * puh);
 
       virtual Confidence MatchDocType(const char * lpszPathName, sp(::user::object)& rpDocMatch);
-      virtual sp(::user::object) create_new_document();
+      virtual sp(::user::object) create_new_document(sp(::create_context) pcreatecontext);
       virtual sp(::user::frame_window) create_new_frame(sp(::user::object) pDoc, sp(::user::frame_window) pOther, sp(::create_context) pcreatecontext);
       virtual void InitialUpdateFrame(sp(::user::frame_window) pFrame, sp(::user::object) pDoc, bool bMakeVisible = TRUE);
       virtual bool save_all_modified();     // for all documents

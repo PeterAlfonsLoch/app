@@ -33,37 +33,49 @@ namespace filemanager
       }
    }
 
-   sp(document) schema::open(sp(::create_context) pcreatecontext, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata)
+   sp(document) schema::open(sp(::create_context) pcreatecontext, ::fs::data * pdata, ::filemanager::data * pfilemanagerdataParam)
    {
+      
+      sp(::filemanager::data) pfilemanagerdata(pfilemanagerdataParam);
+
+      if (pfilemanagerdata.is_null())
+      {
+
+         pfilemanagerdata = canew(::filemanager::data(get_app()));
+         pfilemanagerdata->m_pcallback = m_pfilemanager;
+         pfilemanagerdata->m_pschema = this;
+         pfilemanagerdata->m_iTemplate = m_iTemplate;
+         pfilemanagerdata->m_iDocument = m_iNextDocument++;
+         pfilemanagerdata->m_bTransparentBackground = pcreatecontext == NULL ? true : pcreatecontext->m_bTransparentBackground;
+         string strId;
+         strId.Format("filemanager(%d)", pfilemanagerdata->m_iDocument);
+         pfilemanagerdata->m_strDISection = m_strDISection + "." + strId;
+         pfilemanagerdata->m_bFileSize = true;
+
+      }
+
+      pcreatecontext->oprop("filemanager::data") = pfilemanagerdata;
+
       sp(document) pdoc = (m_pdoctemplateMain->open_document_file(pcreatecontext));
+
       if (pdoc != NULL)
       {
-         if (pfilemanagerdata == NULL)
-         {
-            pfilemanagerdata = new ::filemanager::data(get_app());
-         }
-         pdoc->set_filemanager_data(pfilemanagerdata);
-         pdoc->get_filemanager_data()->m_pcallback = m_pfilemanager;
-         pdoc->get_filemanager_data()->m_pmanager = pdoc;
-         pdoc->get_filemanager_data()->m_pmanagerMain = pdoc;
-         pdoc->get_filemanager_data()->m_pschema = this;
-         pdoc->get_filemanager_data()->m_iTemplate = m_iTemplate;
-         pdoc->get_filemanager_data()->m_iDocument = m_iNextDocument++;
-         pdoc->get_filemanager_data()->m_bTransparentBackground = pcreatecontext == NULL ? true : pcreatecontext->m_bTransparentBackground;
-         string strId;
-         strId.Format("filemanager(%d)", pdoc->get_filemanager_data()->m_iDocument);
-         pdoc->get_filemanager_data()->m_strDISection = m_strDISection + "." + strId;
-         pdoc->get_filemanager_data()->m_bFileSize = true;
+
          pdoc->Initialize(pcreatecontext == NULL ? true : pcreatecontext->m_bMakeVisible);
+
          return pdoc;
+
       }
+
       return NULL;
+
    }
 
-   sp(document) schema::create_new_document(
-      callback * pcallback)
+   sp(document) schema::create_new_document(callback * pcallback, sp(::create_context) pcreatecontext)
    {
-      sp(document) pdoc = (m_pdoctemplate->create_new_document());
+
+      sp(document) pdoc = (m_pdoctemplate->create_new_document(pcreatecontext));
+
       if (pdoc != NULL)
       {
 

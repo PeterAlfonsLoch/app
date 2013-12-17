@@ -2938,9 +2938,6 @@
     <ClCompile Include="filesystem\filemanager\file_operation.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_ContextMenu.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_document.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
@@ -4013,6 +4010,12 @@
       <Filter>Source Files\compress\crypto</Filter>
     </ClCompile>
     <ClCompile Include="net\usermail\usermail_tree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_context_menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_update_hint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

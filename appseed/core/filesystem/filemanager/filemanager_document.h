@@ -20,6 +20,9 @@ namespace filemanager
       virtual ~document();
 
 
+      virtual void on_create(sp(::create_context) pcreatecontext);
+
+
       sp(file_manager_operation_document) get_operation_doc(bool bSwitch);
 
 

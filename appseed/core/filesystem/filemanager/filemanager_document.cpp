@@ -484,6 +484,13 @@ namespace filemanager
    }
 
 
+   void document::on_create(sp(::create_context) pcreatecontext)
+   {
+
+      m_spfilemanagerdata = pcreatecontext->oprop("filemanager::data").cast < ::filemanager::data >();
+
+   }
+
 } // namespace filemanager
 
 

@@ -808,98 +808,6 @@ bool application::initialize_instance()
 int32_t application::exit_instance()
 {
 
-
-
-   //try
-   //{
-   //   if(is_system())
-   //   {
-   //      if(System.m_spcopydesk.is_set())
-   //      {
-   //         System.m_spcopydesk->finalize();
-   //         System.m_spcopydesk.release();
-   //      }
-   //      System.m_splicense.release();
-   //   }
-   //}
-   //catch(...)
-   //{
-   //}
-
-
-   /*      try
-   {
-   if(m_plemonarray != NULL)
-   {
-   delete m_plemonarray;
-   }
-   }
-   catch(...)
-   {
-   }
-   m_plemonarray = NULL;
-   */
-
-
-   //try
-   //{
-   //   if(m_pmath != NULL)
-   //   {
-   //      delete m_pmath;
-   //   }
-   //}
-   //catch(...)
-   //{
-   //}
-   //m_pmath = NULL;
-
-
-
-   //try
-   //{
-   //   if(m_pgeometry != NULL)
-   //   {
-   //      delete m_pgeometry;
-   //   }
-   //}
-   //catch(...)
-   //{
-   //}
-   //m_pgeometry = NULL;
-
-
-
-   //try
-   //{
-   //   if(m_psavings != NULL)
-   //   {
-   //      delete m_psavings;
-   //   }
-   //}
-   //catch(...)
-   //{
-   //}
-   //m_psavings = NULL;
-
-
-   //m_pcommandthread.release();
-
-   //release_exclusive();
-
-   //if(!destroy_message_queue())
-   //{
-   //   TRACE("Could not finalize message window");
-   //}
-
-   //application_signal_details signal(this, m_psignal, application_signal_exit_instance);
-   //try
-   //{
-   //   m_psignal->emit(&signal);
-   //}
-   //catch(...)
-   //{
-   //}
-
    try
    {
       if (!is_system())
@@ -909,32 +817,8 @@ int32_t application::exit_instance()
    }
    catch (...)
    {
+
    }
-
-   /*try
-   {
-   ::release(smart_pointer <thread>::m_p);
-   }
-   catch(...)
-   {
-   }*/
-
-
-   if (is_system())
-   {
-
-      //         try
-      //       {
-      //        if(m_spfilesystem.m_p != NULL)
-      //      {
-      //       ::core::del(m_spfilesystem.m_p);
-      //  }
-      //         }
-      //       catch(...)
-      //     {
-      //   }
-   }
-
 
 
    try
@@ -997,18 +881,6 @@ int32_t application::exit_instance()
    {
 
    }
-/*   try
-   {
-
-      System.unregister_bergedge_application(this);
-
-   }
-   catch (...)
-   {
-
-      m_iReturnCode = -1;
-
-   }*/
 
    try
    {
@@ -1043,14 +915,9 @@ int32_t application::exit_instance()
    }
 
    return 0;
-   /*      int32_t nReturnValue=0;
-   if(__get_current_message())
-   {
-   nReturnValue=static_cast<int32_t>(__get_current_message()->wParam);
-   }*/
-   //      return nReturnValue; // returns the value from PostQuitMessage
 
 }
+
 
 LRESULT application::GetPaintMsgProc(int32_t nCode, WPARAM wParam, LPARAM lParam)
 {

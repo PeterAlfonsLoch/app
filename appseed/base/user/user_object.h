@@ -52,7 +52,7 @@ namespace user
 
       virtual void update_title();
 
-      virtual void on_alloc(sp(base_application) papp);
+      virtual void on_create(sp(::create_context) pcreatecontext);
 
       const string & get_title() const;
       virtual void set_title(const char * lpszTitle);

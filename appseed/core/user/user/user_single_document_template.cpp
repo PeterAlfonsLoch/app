@@ -82,7 +82,7 @@ namespace user
       else
       {
          // create a new ::user::object
-         pdocument = create_new_document();
+         pdocument = create_new_document(pcreatecontext);
          ASSERT(pFrame == NULL);     // will be created below
          bCreated = TRUE;
       }

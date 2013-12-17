@@ -236,8 +236,13 @@ namespace draw2d
       return get_graphics()->from(ptDst, size, pdc, ptSrc, SRCCOPY) != FALSE;
    }
 
-   bool dib::from(point ptDst, ::draw2d::dib * pdib, point ptSrc, class size size)
+   bool dib::from(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, class size size)
    {
+
+      dib * pdibDst = this;
+
+      pdibDst->map();
+      pdibSrc->map();
 
       if(ptSrc.x < 0)
       {
@@ -269,9 +274,9 @@ namespace draw2d
       if(size.cy < 0)
          return true;
 
-      int xEnd = min(size.cx, min(pdib->m_size.cx - ptSrc.x, m_size.cx - ptDst.x));
+      int xEnd = min(size.cx, min(pdibSrc->m_size.cx - ptSrc.x, pdibDst->m_size.cx - ptDst.x));
 
-      int yEnd = min(size.cy, min(pdib->m_size.cy - ptSrc.y, m_size.cy - ptDst.y));
+      int yEnd = min(size.cy, min(pdibSrc->m_size.cy - ptSrc.y, pdibDst->m_size.cy - ptDst.y));
 
       if(xEnd < 0)
          return false;
@@ -279,13 +284,13 @@ namespace draw2d
       if(yEnd < 0)
          return false;
 
-      int32_t s1 = m_iScan / sizeof(COLORREF);
+      int32_t scanDst = pdibDst->m_iScan;
 
-      int32_t s2 = pdib->m_iScan / sizeof(COLORREF);
+      int32_t scanSrc = pdibSrc->m_iScan;
 
-      COLORREF * pdst = &m_pcolorref[s1 * ptDst.y] + ptDst.x;
+      byte * pdst = &((byte *)pdibDst->m_pcolorref)[scanDst * ptDst.y + ptDst.x * sizeof(COLORREF)];
 
-      COLORREF * psrc = &pdib->m_pcolorref[s2 * ptSrc.y] + ptSrc.x;
+      byte * psrc = &((byte *)pdibSrc->m_pcolorref)[scanSrc * ptSrc.y + ptSrc.x * sizeof(COLORREF)];
 
       COLORREF * pdst2;
 
@@ -294,9 +299,9 @@ namespace draw2d
       for(int y = 0; y < yEnd; y++)
       {
 
-         pdst2 = &pdst[s1 * y];
+         pdst2 = (COLORREF *) &pdst[scanDst * y];
 
-         psrc2 = &psrc[s2 * y];
+         psrc2 = (COLORREF *)&psrc[scanSrc * y];
 
          for(int x = 0; x < xEnd; x++)
          {
@@ -996,7 +1001,23 @@ namespace draw2d
       dib->map();
       // If DibSize Wrong Re-create dib
       // do Paste
-      memcpy ( get_data(), dib->get_data(), (size_t) area() * sizeof(COLORREF) );
+
+      if (m_iScan == dib->m_iScan)
+      {
+         memcpy(get_data(), dib->get_data(), m_size.cy * m_iScan);
+      }
+      else
+      {
+
+         int iScan = min(m_iScan, dib->m_iScan);
+
+         for (int i = 0; i < m_iScan; i++)
+         {
+            memcpy(&((byte *)get_data())[m_iScan * i], &((byte *)dib->get_data())[dib->m_iScan * i], iScan);
+         }
+
+      }
+      
 
    }
 
@@ -3541,6 +3562,7 @@ namespace draw2d
       // and ready to be queried if post queried
 
 //      throw interface_only_exception(get_app());
+
 
       return true;
 

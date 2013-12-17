@@ -59,7 +59,7 @@ namespace filemanager
 
             sp(::user::view_update_hint) puh = phint;
 
-            if (puh->is_type_of(::user::view_update_hint::hint_create_views))
+            if (puh->is_type_of(::user::view_update_hint::hint_open_document))
             {
 
                if (m_viewmap.get_count() == 0)
@@ -201,7 +201,8 @@ namespace filemanager
             //      pdoc->get_filemanager_data()->m_uiMenuBar = m_uiMenuBar;
             //      pdoc->get_filemanager_data()->m_uiToolBar = m_uiToolBar;
 
-
+            if (m_pfilemanagerinterface.is_null())
+               m_pfilemanagerinterface = get_document();
 
             pdoc->set().m_spafsdata = GetFileManagerDoc()->set().m_spafsdata;
             pdoc->set().m_fsdatamap = GetFileManagerDoc()->set().m_fsdatamap;
@@ -210,15 +211,21 @@ namespace filemanager
 
             pdoc->set_filemanager_data(pfilemanagerdata);
 
-            pdoc->get_filemanager_data()->m_pcallback = GetFileManager()->get_filemanager_data()->m_pcallback;
             pdoc->get_filemanager_data()->m_pmanager = pdoc;
             pdoc->get_filemanager_data()->m_pmanagerMain = GetFileManager();
             pdoc->get_filemanager_data()->m_pschema = &System.filemanager().std();
             pdoc->get_filemanager_data()->m_iTemplate = System.filemanager().std().m_iTemplate;
             pdoc->get_filemanager_data()->m_iDocument = System.filemanager().std().m_iNextDocument++;
-            pdoc->get_filemanager_data()->m_bTransparentBackground = GetFileManager()->get_filemanager_data()->m_bTransparentBackground;
             pdoc->get_filemanager_data()->m_pschema->m_strDISection.Format("filemanager(%d)", pdoc->get_filemanager_data()->m_iDocument);
             pdoc->get_filemanager_data()->m_bFileSize = true;
+
+            if (GetFileManager()->get_filemanager_data() != NULL)
+            {
+
+               pdoc->get_filemanager_data()->m_pcallback = GetFileManager()->get_filemanager_data()->m_pcallback;
+               pdoc->get_filemanager_data()->m_bTransparentBackground = GetFileManager()->get_filemanager_data()->m_bTransparentBackground;
+
+            }
 
 
 

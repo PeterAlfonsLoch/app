@@ -98,7 +98,7 @@ namespace user
       return yesAttemptForeign;
    }
 
-   sp(::user::object) impact_system::create_new_document()
+   sp(::user::object) impact_system::create_new_document(sp(::create_context) pcreatecontext)
    {
       // default implementation constructs one from sp(type)
       if (!m_typeinfoDocument)
@@ -114,7 +114,7 @@ namespace user
             m_typeinfoDocument->name());
          return NULL;
       }
-      pdocument->on_alloc(get_app());
+      pdocument->on_create(pcreatecontext);
       ASSERT_KINDOF(::user::object, pdocument);
       add_document(pdocument);
       return pdocument;

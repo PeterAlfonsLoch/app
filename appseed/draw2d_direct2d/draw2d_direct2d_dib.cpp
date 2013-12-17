@@ -18,8 +18,8 @@ namespace draw2d_direct2d
       m_spgraphics(allocer())
    {
 
-      m_pcolorref          = NULL;
-      m_bMapped            = false;
+      m_pcolorref = NULL;
+      m_bMapped = false;
 
    }
 
@@ -38,16 +38,16 @@ namespace draw2d_direct2d
    }
 
 
-   void    dib::construct (int cx,  int cy)
+   void    dib::construct(int cx, int cy)
    {
-      m_pcolorref    = NULL;
-      m_size.cx             = 0;
-      m_size.cy             = 0;
-      m_iScan           = 0;
+      m_pcolorref = NULL;
+      m_size.cx = 0;
+      m_size.cy = 0;
+      m_iScan = 0;
       create(cx, cy);
    }
 
-   dib::~dib ()
+   dib::~dib()
    {
       //      Destroy ();
    }
@@ -59,40 +59,40 @@ namespace draw2d_direct2d
 
    bool dib::create(int width, int height)
    {
-      if(m_spbitmap.is_set()
-         && m_spbitmap->get_os_data() != NULL 
+      if (m_spbitmap.is_set()
+         && m_spbitmap->get_os_data() != NULL
          && width == m_size.cx
          && height == m_size.cy)
          return TRUE;
 
       Destroy();
 
-      if(width <= 0 || height <= 0)
+      if (width <= 0 || height <= 0)
          return FALSE;
 
       ZeroMemory(&m_info, sizeof (BITMAPINFO));
 
-      m_info.bmiHeader.biSize          = sizeof (BITMAPINFOHEADER);
-      m_info.bmiHeader.biWidth         = width;
-      m_info.bmiHeader.biHeight        =- height;
-      m_info.bmiHeader.biPlanes        = 1;
-      m_info.bmiHeader.biBitCount      = 32; 
-      m_info.bmiHeader.biCompression   = BI_RGB;
-      m_info.bmiHeader.biSizeImage     = width * height * 4;
+      m_info.bmiHeader.biSize = sizeof (BITMAPINFOHEADER);
+      m_info.bmiHeader.biWidth = width;
+      m_info.bmiHeader.biHeight = -height;
+      m_info.bmiHeader.biPlanes = 1;
+      m_info.bmiHeader.biBitCount = 32;
+      m_info.bmiHeader.biCompression = BI_RGB;
+      m_info.bmiHeader.biSizeImage = width * height * 4;
 
       m_spbitmap.create(allocer());
       m_spbitmapMap.create(allocer());
       m_spgraphics.create(allocer());
       m_spgraphicsMap.create(allocer());
 
-      if(m_spbitmap.m_p == NULL || m_spbitmapMap.is_null() || m_spgraphics.is_null() || m_spgraphicsMap.is_null())
+      if (m_spbitmap.m_p == NULL || m_spbitmapMap.is_null() || m_spgraphics.is_null() || m_spgraphicsMap.is_null())
       {
 
-         m_size.cx    = 0;
+         m_size.cx = 0;
 
-         m_size.cy    = 0;
+         m_size.cy = 0;
 
-         m_iScan  = 0;
+         m_iScan = 0;
 
          return false;
 
@@ -100,20 +100,20 @@ namespace draw2d_direct2d
 
       m_spgraphicsMap->CreateCompatibleDC(NULL);
 
-      if(!m_spbitmapMap->CreateDIBSection(m_spgraphicsMap, &m_info, DIB_RGB_COLORS, (void **) &m_pcolorref, &m_iScan, NULL, NULL))
+      if (!m_spbitmapMap->CreateDIBSection(m_spgraphicsMap, &m_info, DIB_RGB_COLORS, (void **)&m_pcolorref, &m_iScan, NULL, NULL))
       {
 
-         m_size.cx       = 0;
+         m_size.cx = 0;
 
-         m_size.cy       = 0;
+         m_size.cy = 0;
 
-         m_iScan     = 0;
+         m_iScan = 0;
 
          return false;
 
       }
 
-      if(m_spbitmapMap->get_os_data() == NULL)
+      if (m_spbitmapMap->get_os_data() == NULL)
       {
 
          Destroy();
@@ -122,24 +122,24 @@ namespace draw2d_direct2d
 
       }
 
-      HRESULT hr = m_spbitmapMap->get_typed_os_data < ID2D1Bitmap1 > (::draw2d_direct2d::bitmap::data_bitmap1)->Unmap();
+      HRESULT hr = m_spbitmapMap->get_typed_os_data < ID2D1Bitmap1 >(::draw2d_direct2d::bitmap::data_bitmap1)->Unmap();
 
-      m_size.cx    = width;
+      m_size.cx = width;
 
-      m_size.cy    = height;
+      m_size.cy = height;
 
-      m_iScan  = width * sizeof(COLORREF);
+      m_iScan = width * sizeof(COLORREF);
 
       realize(NULL);
 
-      if(!is_realized())
+      if (!is_realized())
       {
 
-         m_size.cx       = 0;
+         m_size.cx = 0;
 
-         m_size.cy       = 0;
+         m_size.cy = 0;
 
-         m_iScan     = 0;
+         m_iScan = 0;
 
          return false;
 
@@ -172,11 +172,11 @@ namespace draw2d_direct2d
 
    bool dib::create(::draw2d::graphics * pgraphics)
    {
-      ::draw2d::bitmap * pbitmap = dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics)->get_current_bitmap();
-      if(pbitmap == NULL)
+      ::draw2d::bitmap * pbitmap = dynamic_cast<::draw2d_direct2d::graphics *>(pgraphics)->get_current_bitmap();
+      if (pbitmap == NULL)
          return FALSE;
       class size size = pbitmap->get_size();
-      if(!create(size.cx, size.cy))
+      if (!create(size.cx, size.cy))
       {
          return FALSE;
       }
@@ -184,10 +184,10 @@ namespace draw2d_direct2d
       return TRUE;
    }
 
-   bool dib::Destroy ()
+   bool dib::Destroy()
    {
 
-      if(m_bMapped)
+      if (m_bMapped)
       {
          unmap();
       }
@@ -196,13 +196,13 @@ namespace draw2d_direct2d
 
       m_spgraphics.release();
 
-      m_size.cx            = 0;
+      m_size.cx = 0;
 
-      m_size.cy            = 0;
+      m_size.cy = 0;
 
-      m_iScan              = 0;
+      m_iScan = 0;
 
-      m_pcolorref          = NULL;
+      m_pcolorref = NULL;
 
       return TRUE;
    }
@@ -213,10 +213,10 @@ namespace draw2d_direct2d
       return pgraphics->BitBlt(pt.x, pt.y, size.cx, size.cy, get_graphics(), ptSrc.x, ptSrc.y, SRCCOPY) != FALSE;
 
       /*  return SetDIBitsToDevice(
-      (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->get_handle1(), 
-      pt.x, pt.y, 
-      size.cx, size.cy, 
-      ptSrc.x, ptSrc.y, ptSrc.y, cy - ptSrc.y, 
+      (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->get_handle1(),
+      pt.x, pt.y,
+      size.cx, size.cy,
+      ptSrc.x, ptSrc.y, ptSrc.y, cy - ptSrc.y,
       m_pcolorref, &m_info, 0)
       != FALSE; */
 
@@ -228,10 +228,10 @@ namespace draw2d_direct2d
       ::draw2d::bitmap_sp bitmap(get_app());
       bitmap->CreateCompatibleBitmap(pgraphics, 1, 1);
       ::draw2d::bitmap * pbitmap = pgraphics->SelectObject(bitmap);
-      if(pbitmap == NULL)
+      if (pbitmap == NULL)
          return false;
       class size size = pbitmap->get_size();
-      if(!create(size))
+      if (!create(size))
       {
          pgraphics->SelectObject(pbitmap);
          return false;
@@ -251,496 +251,496 @@ namespace draw2d_direct2d
    }
 
 
-//   void dib::Fill(int A, int R, int G, int B)
-//   {
-//
-//      map();
-//
-//      COLORREF color = ARGB(A, B, G, R);
-//
-//      COLORREF * pcr;
-//
-//      for(int y = 0; y < cy; y++)
-//      {
-//
-//         pcr = (COLORREF *) &((byte *) m_pcolorref)[scan * y];
-//
-//         for(int x = 0; x < cx; x++)
-//         {
-//
-//            *pcr     = color;
-//
-//            pcr++;
-//
-//         }
-//
-//      }
-//
-//   }
-//
-//
-//   void dib::set_rgb(int R, int G, int B)
-//   {
-//
-//      map();
-//
-//      byte * pdata = (byte *) m_pcolorref;
-//
-//      byte * p;
-//
-//      for(int y = 0; y < cy; y++)
-//      {
-//
-//         p = &pdata[scan * y];
-//
-//         for(int x = 0; x < cx; x++)
-//         {
-//
-//            p[0]     = R;
-//
-//            p[1]     = G;
-//
-//            p[2]     = B;
-//
-//            p += 4;
-//
-//         }
-//
-//      }
-//
-//   }
-//
-//
-//   void dib::ToAlpha(int i)
-//   {
-//
-//      BYTE * dst = (BYTE *) m_pcolorref;
-//
-//      int size = cx * cy;
-//
-//      while(size--)
-//      {
-//         dst[3] = dst[i];
-//         dst += 4;
-//      }
-//
-//   }
-//
-//   void dib::from_alpha()
-//   {
-//
-//      BYTE * dst = (BYTE*) m_pcolorref;
-//
-//      int64_t size = cx * cy;
-//
-//      while ( size-- )
-//      {
-//         dst[0] = dst[3];
-//         dst[1] = dst[3];
-//         dst[2] = dst[3];
-//         dst+=4;
-//      }
-//
-//   }
-//
-//   //DIB = DIB * SRC_ALPHA
-//
-//   void dib::mult_alpha(::draw2d::dib * pdibWork, bool bPreserveAlpha)
-//   {
-//      ::draw2d::dib::mult_alpha(pdibWork, bPreserveAlpha);
-//      return ;
-//      /*
-//      if(area() <= 0)
-//      return;
-//
-//      //return ::draw2d::dib::mult_alpha(NULL, true);
-//      ::draw2d::dib_sp dibWork;
-//
-//      if(pdibWork == NULL)
-//      {
-//      dibWork.create(get_app());
-//      pdibWork = dibWork;
-//      }
-//
-//      if(pdibWork->create(cx, cy))
-//      return;
-//
-//      pdibWork->FillByte(0);
-//
-//      pdibWork->channel_from(visual::rgba::channel_alpha, this);
-//
-//      pdibWork->channel_invert(visual::rgba::channel_alpha);
-//
-//
-//      BLENDFUNCTION bf;
-//
-//      bf.BlendOp = AC_SRC_OVER;
-//      bf.BlendFlags = 0;
-//      bf.SourceConstantAlpha = 255;
-//      bf.AlphaFormat = AC_SRC_ALPHA;
-//
-//      get_graphics()->alpha_blend(size(), pdibWork->get_graphics(), bf);
-//
-//      if(bPreserveAlpha)
-//      {
-//
-//      pdibWork->channel_invert(visual::rgba::channel_alpha);
-//
-//      channel_from(visual::rgba::channel_alpha, pdibWork);
-//
-//      }
-//
-//      */
-//
-//   }
-//
-//   void dib::Map(int ToRgb, int FromRgb)
-//   {
-//
-//      BYTE * dst = (BYTE *) m_pcolorref;
-//
-//      int size = cx * cy;
-//
-//      while ( size-- )
-//      {
-//
-//         *dst = (byte) (*dst == FromRgb ? ToRgb : *dst);
-//
-//         dst += 4;
-//
-//      }
-//
-//   }
-//
-//
-//   void dib::ToAlphaAndFill(int i, COLORREF cr)
-//   {
-//
-//      BYTE * dst = (BYTE *) m_pcolorref;
-//
-//      int size = cx * cy;
-//
-//      BYTE uchB = rgba_get_b(cr);
-//      BYTE uchG = rgba_get_g(cr);
-//      BYTE uchR = rgba_get_r(cr);
-//
-//      while ( size-- )
-//      {
-//         dst[3] = dst[i];
-//         dst[0] = uchB;
-//         dst[1] = uchG;
-//         dst[2] = uchR;
-//         dst+=4;
-//      }
-//   }
-//
-//   void dib::GrayToARGB(COLORREF cr)
-//   {
-//
-//      BYTE * dst = (BYTE *) m_pcolorref;
-//
-//      int size = cx * cy;
-//
-//      DWORD dwB = rgba_get_b(cr);
-//      DWORD dwG = rgba_get_g(cr);
-//      DWORD dwR = rgba_get_r(cr);
-//
-//      while (size-- > 0)
-//      {
-//         dst[3] = dst[0];
-//         dst[0] = (BYTE)(((dwB * dst[3]) / 256) & 0xff);
-//         dst[1] = (BYTE)(((dwG * dst[3]) / 256) & 0xff);
-//         dst[2] = (BYTE)(((dwR * dst[3]) / 256) & 0xff);
-//         dst+=4;
-//      }
-//   }
-//
-//
-//   void dib::BitBlt(::draw2d::dib *pdib, int op)
-//   {
-//      if(op == 123) // zero dest RGB, invert alpha, and OR src RGB
-//      {
-//
-//         int isize = cx * cy;
-//
-//         LPDWORD lpbitsSrc = (LPDWORD) pdib->m_pcolorref;
-//         LPDWORD lpbitsDst = (LPDWORD) m_pcolorref;
-//
-//         COLORREF _colorref = RGB ( 0, 0, 0 ) | (255 << 24);
-//         COLORREF colorrefa[2];
-//
-//         colorrefa[0] = _colorref;
-//         colorrefa[1] = _colorref;
-//
-//         COLORREF _colorrefN = RGB ( 255, 255, 255) | (0 << 24);
-//         COLORREF colorrefaN[2];
-//
-//         colorrefaN[0] = _colorrefN;
-//         colorrefaN[1] = _colorrefN;
-//
-//#ifdef AMD64
-//
-//         //x64
-//#else
-//         _asm
-//         {
-//            emms
-//               mov      eax, isize
-//               mov      ebx, lpbitsDst
-//               mov      ecx, lpbitsSrc
-//               movq     mm0, colorrefa
-//               movq     mm7, colorrefaN
-//fill_loop:
-//            cmp      eax, 1
-//               jle      fill_last
-//               movq     mm1, [ebx]
-//            movq     mm2, [ecx]
-//            pandn    mm1, mm0
-//               pand     mm2, mm7
-//               por      mm1, mm2
-//               movq     [ebx], mm1
-//
-//               sub      eax, 2
-//               add      ebx, 8
-//               add      ecx, 8
-//
-//               jmp      fill_loop
-//
-//fill_last:
-//            emms 
-//         }
-//#endif
-//      }
-//
-//   }
-//
-//
-//   void dib::Invert()
-//   {
-//
-//      int size = cx * cy;
-//
-//      LPBYTE lpb = (LPBYTE) m_pcolorref;
-//
-//      for ( int i=0; i<size; i++ )
-//      {
-//
-//         lpb[0] = 255 - lpb[0];
-//
-//         lpb[1] = 255 - lpb[1];
-//
-//         lpb[2] = 255 - lpb[2];
-//
-//         lpb += 4;
-//
-//      }
-//
-//   }
-//
-//   void dib::channel_invert(visual::rgba::echannel echannel)
-//   {
-//
-//      int64_t size   = area();
-//
-//      register int64_t size64 = size / 64;
-//
-//      LPBYTE lpb = (LPBYTE) m_pcolorref;
-//
-//      lpb += ((int)echannel) % 4;
-//
-//      register int64_t i = 0;
-//
-//      for(; i < size64; i++)
-//      {
-//         lpb[4 *  0] = 255 - lpb[4 *  0];
-//         lpb[4 *  1] = 255 - lpb[4 *  1];
-//         lpb[4 *  2] = 255 - lpb[4 *  2];
-//         lpb[4 *  3] = 255 - lpb[4 *  3];
-//         lpb[4 *  4] = 255 - lpb[4 *  4];
-//         lpb[4 *  5] = 255 - lpb[4 *  5];
-//         lpb[4 *  6] = 255 - lpb[4 *  6];
-//         lpb[4 *  7] = 255 - lpb[4 *  7];
-//         lpb[4 *  8] = 255 - lpb[4 *  8];
-//         lpb[4 *  9] = 255 - lpb[4 *  9];
-//         lpb[4 * 10] = 255 - lpb[4 * 10];
-//         lpb[4 * 11] = 255 - lpb[4 * 11];
-//         lpb[4 * 12] = 255 - lpb[4 * 12];
-//         lpb[4 * 13] = 255 - lpb[4 * 13];
-//         lpb[4 * 14] = 255 - lpb[4 * 14];
-//         lpb[4 * 15] = 255 - lpb[4 * 15];
-//         lpb[4 * 16] = 255 - lpb[4 * 16];
-//         lpb[4 * 17] = 255 - lpb[4 * 17];
-//         lpb[4 * 18] = 255 - lpb[4 * 18];
-//         lpb[4 * 19] = 255 - lpb[4 * 19];
-//         lpb[4 * 20] = 255 - lpb[4 * 20];
-//         lpb[4 * 21] = 255 - lpb[4 * 21];
-//         lpb[4 * 22] = 255 - lpb[4 * 22];
-//         lpb[4 * 23] = 255 - lpb[4 * 23];
-//         lpb[4 * 24] = 255 - lpb[4 * 24];
-//         lpb[4 * 25] = 255 - lpb[4 * 25];
-//         lpb[4 * 26] = 255 - lpb[4 * 26];
-//         lpb[4 * 27] = 255 - lpb[4 * 27];
-//         lpb[4 * 28] = 255 - lpb[4 * 28];
-//         lpb[4 * 29] = 255 - lpb[4 * 29];
-//         lpb[4 * 30] = 255 - lpb[4 * 30];
-//         lpb[4 * 31] = 255 - lpb[4 * 31];
-//
-//         lpb[4 * 32] = 255 - lpb[4 * 32];
-//         lpb[4 * 33] = 255 - lpb[4 * 33];
-//         lpb[4 * 34] = 255 - lpb[4 * 34];
-//         lpb[4 * 35] = 255 - lpb[4 * 35];
-//         lpb[4 * 36] = 255 - lpb[4 * 36];
-//         lpb[4 * 37] = 255 - lpb[4 * 37];
-//         lpb[4 * 38] = 255 - lpb[4 * 38];
-//         lpb[4 * 39] = 255 - lpb[4 * 39];
-//         lpb[4 * 40] = 255 - lpb[4 * 40];
-//         lpb[4 * 41] = 255 - lpb[4 * 41];
-//         lpb[4 * 42] = 255 - lpb[4 * 42];
-//         lpb[4 * 43] = 255 - lpb[4 * 43];
-//         lpb[4 * 44] = 255 - lpb[4 * 44];
-//         lpb[4 * 45] = 255 - lpb[4 * 45];
-//         lpb[4 * 46] = 255 - lpb[4 * 46];
-//         lpb[4 * 47] = 255 - lpb[4 * 47];
-//         lpb[4 * 48] = 255 - lpb[4 * 48];
-//         lpb[4 * 49] = 255 - lpb[4 * 49];
-//         lpb[4 * 50] = 255 - lpb[4 * 50];
-//         lpb[4 * 51] = 255 - lpb[4 * 51];
-//         lpb[4 * 52] = 255 - lpb[4 * 52];
-//         lpb[4 * 53] = 255 - lpb[4 * 53];
-//         lpb[4 * 54] = 255 - lpb[4 * 54];
-//         lpb[4 * 55] = 255 - lpb[4 * 55];
-//         lpb[4 * 56] = 255 - lpb[4 * 56];
-//         lpb[4 * 57] = 255 - lpb[4 * 57];
-//         lpb[4 * 58] = 255 - lpb[4 * 58];
-//         lpb[4 * 59] = 255 - lpb[4 * 59];
-//         lpb[4 * 60] = 255 - lpb[4 * 60];
-//         lpb[4 * 61] = 255 - lpb[4 * 61];
-//         lpb[4 * 62] = 255 - lpb[4 * 62];
-//         lpb[4 * 63] = 255 - lpb[4 * 63];
-//
-//         lpb += 4 * 64;
-//      }
-//      i *= 64;
-//      for(; i < size; i++ )
-//      {
-//         *lpb = 255 - *lpb;
-//         lpb += 4;
-//      }
-//   }
-//   void dib::channel_multiply(visual::rgba::echannel echannel, double dRate)
-//   {
-//      if(dRate < 0)
-//         return;
-//      map();
-//      register int64_t size = area();
-//      LPBYTE lpb = (LPBYTE) get_data();
-//      if(lpb == NULL)
-//         return;
-//      lpb += ((int)echannel) % 4;
-//      register int iDiv = 256 * 256;
-//      register int iMul = (int) (dRate * ((double) iDiv));
-//      register int iRes;
-//      for(register int64_t i = 0; i < size; i++)
-//      {
-//         iRes = *lpb * iMul / iDiv; 
-//         *lpb = (byte) (iRes > 255 ? 255 : iRes);
-//         lpb += 4;
-//      }
-//   }
-//
-//   void dib::FillGlass ( int R, int G, int B, int A )
-//   {
-//
-//      BYTE * dst = (BYTE *) m_pcolorref;
-//
-//      int size = cx * cy;
-//
-//      while ( size-- )
-//      {
-//         dst[0]=(BYTE)(((B-dst[0])*A+(dst[0]<<8))>>8);
-//         dst[1]=(BYTE)(((G-dst[1])*A+(dst[1]<<8))>>8);
-//         dst[2]=(BYTE)(((R-dst[2])*A+(dst[2]<<8))>>8);   
-//         dst+=4;
-//      }
-//
-//   }
-//
-//   void dib::FillStippledGlass ( int R, int G, int B )
-//   {   
-//
-//      COLORREF color=RGB ( B, G, R );
-//
-//      int w = cx;
-//      int h = cy;
-//
-//      for ( int j=0; j<w; j++ )
-//      {
-//         for ( int i=0; i<h; i++ )
-//         {
-//            m_pcolorref[j*w+i]=((i+j)&0x1) ? m_pcolorref[j*w+i] : color;
-//         }
-//      }
-//   }
-//
-//
-//   void dib::Paste ( ::draw2d::dib * pdib )
-//   {
-//      // If DibSize Wrong Re-create dib
-//      if ( (cx!=pdib->cx) || (cy!=pdib->cy) )
-//         create ( pdib->cx, pdib->cy );
-//      if(pdib->m_pcolorref == NULL)
-//         return;
-//      map();
-//      if(m_pcolorref != NULL)
-//      {
-//         // do Paste
-//         memcpy ( m_pcolorref, pdib->m_pcolorref, cx*cy*4 );
-//      }
-//   }
-//
-//   bool dib::color_blend(COLORREF cr, BYTE bAlpha)
-//   {
-//
-//      BYTE *dst=(BYTE*)m_pcolorref;
-//      int size=cx*cy;
-//
-//      DWORD dwB = rgba_get_b(cr);
-//      DWORD dwG = rgba_get_g(cr);
-//      DWORD dwR = rgba_get_r(cr);
-//
-//      DWORD dwB_ = dwB << 8;
-//      DWORD dwG_ = dwG << 8;
-//      DWORD dwR_ = dwR << 8;
-//
-//      while ( size-- )
-//      {
-//         dst[0]=(BYTE)(((dst[0]-dwB)*bAlpha+dwB_)>>8);
-//         dst[1]=(BYTE)(((dst[1]-dwG)*bAlpha+dwG_)>>8);
-//         dst[2]=(BYTE)(((dst[2]-dwG)*bAlpha+dwR_)>>8);   
-//         dst+=4;
-//      }
-//      return true;
-//   }
-//
-//
-//   void dib::Blend (::draw2d::dib * pdib, int A )
-//   {
-//      if ( size()!=pdib->size() )
-//         return;
-//
-//      BYTE *src=(BYTE*)pdib->m_pcolorref;
-//      BYTE *dst=(BYTE*)m_pcolorref;
-//      int size=cx*cy;
-//
-//      while ( size-- )
-//      {
-//         dst[0]=(BYTE)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
-//         dst[1]=(BYTE)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
-//         dst[2]=(BYTE)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);   
-//         dst+=4;
-//         src+=4;
-//      }
-//   }
+   //   void dib::Fill(int A, int R, int G, int B)
+   //   {
+   //
+   //      map();
+   //
+   //      COLORREF color = ARGB(A, B, G, R);
+   //
+   //      COLORREF * pcr;
+   //
+   //      for(int y = 0; y < cy; y++)
+   //      {
+   //
+   //         pcr = (COLORREF *) &((byte *) m_pcolorref)[scan * y];
+   //
+   //         for(int x = 0; x < cx; x++)
+   //         {
+   //
+   //            *pcr     = color;
+   //
+   //            pcr++;
+   //
+   //         }
+   //
+   //      }
+   //
+   //   }
+   //
+   //
+   //   void dib::set_rgb(int R, int G, int B)
+   //   {
+   //
+   //      map();
+   //
+   //      byte * pdata = (byte *) m_pcolorref;
+   //
+   //      byte * p;
+   //
+   //      for(int y = 0; y < cy; y++)
+   //      {
+   //
+   //         p = &pdata[scan * y];
+   //
+   //         for(int x = 0; x < cx; x++)
+   //         {
+   //
+   //            p[0]     = R;
+   //
+   //            p[1]     = G;
+   //
+   //            p[2]     = B;
+   //
+   //            p += 4;
+   //
+   //         }
+   //
+   //      }
+   //
+   //   }
+   //
+   //
+   //   void dib::ToAlpha(int i)
+   //   {
+   //
+   //      BYTE * dst = (BYTE *) m_pcolorref;
+   //
+   //      int size = cx * cy;
+   //
+   //      while(size--)
+   //      {
+   //         dst[3] = dst[i];
+   //         dst += 4;
+   //      }
+   //
+   //   }
+   //
+   //   void dib::from_alpha()
+   //   {
+   //
+   //      BYTE * dst = (BYTE*) m_pcolorref;
+   //
+   //      int64_t size = cx * cy;
+   //
+   //      while ( size-- )
+   //      {
+   //         dst[0] = dst[3];
+   //         dst[1] = dst[3];
+   //         dst[2] = dst[3];
+   //         dst+=4;
+   //      }
+   //
+   //   }
+   //
+   //   //DIB = DIB * SRC_ALPHA
+   //
+   //   void dib::mult_alpha(::draw2d::dib * pdibWork, bool bPreserveAlpha)
+   //   {
+   //      ::draw2d::dib::mult_alpha(pdibWork, bPreserveAlpha);
+   //      return ;
+   //      /*
+   //      if(area() <= 0)
+   //      return;
+   //
+   //      //return ::draw2d::dib::mult_alpha(NULL, true);
+   //      ::draw2d::dib_sp dibWork;
+   //
+   //      if(pdibWork == NULL)
+   //      {
+   //      dibWork.create(get_app());
+   //      pdibWork = dibWork;
+   //      }
+   //
+   //      if(pdibWork->create(cx, cy))
+   //      return;
+   //
+   //      pdibWork->FillByte(0);
+   //
+   //      pdibWork->channel_from(visual::rgba::channel_alpha, this);
+   //
+   //      pdibWork->channel_invert(visual::rgba::channel_alpha);
+   //
+   //
+   //      BLENDFUNCTION bf;
+   //
+   //      bf.BlendOp = AC_SRC_OVER;
+   //      bf.BlendFlags = 0;
+   //      bf.SourceConstantAlpha = 255;
+   //      bf.AlphaFormat = AC_SRC_ALPHA;
+   //
+   //      get_graphics()->alpha_blend(size(), pdibWork->get_graphics(), bf);
+   //
+   //      if(bPreserveAlpha)
+   //      {
+   //
+   //      pdibWork->channel_invert(visual::rgba::channel_alpha);
+   //
+   //      channel_from(visual::rgba::channel_alpha, pdibWork);
+   //
+   //      }
+   //
+   //      */
+   //
+   //   }
+   //
+   //   void dib::Map(int ToRgb, int FromRgb)
+   //   {
+   //
+   //      BYTE * dst = (BYTE *) m_pcolorref;
+   //
+   //      int size = cx * cy;
+   //
+   //      while ( size-- )
+   //      {
+   //
+   //         *dst = (byte) (*dst == FromRgb ? ToRgb : *dst);
+   //
+   //         dst += 4;
+   //
+   //      }
+   //
+   //   }
+   //
+   //
+   //   void dib::ToAlphaAndFill(int i, COLORREF cr)
+   //   {
+   //
+   //      BYTE * dst = (BYTE *) m_pcolorref;
+   //
+   //      int size = cx * cy;
+   //
+   //      BYTE uchB = rgba_get_b(cr);
+   //      BYTE uchG = rgba_get_g(cr);
+   //      BYTE uchR = rgba_get_r(cr);
+   //
+   //      while ( size-- )
+   //      {
+   //         dst[3] = dst[i];
+   //         dst[0] = uchB;
+   //         dst[1] = uchG;
+   //         dst[2] = uchR;
+   //         dst+=4;
+   //      }
+   //   }
+   //
+   //   void dib::GrayToARGB(COLORREF cr)
+   //   {
+   //
+   //      BYTE * dst = (BYTE *) m_pcolorref;
+   //
+   //      int size = cx * cy;
+   //
+   //      DWORD dwB = rgba_get_b(cr);
+   //      DWORD dwG = rgba_get_g(cr);
+   //      DWORD dwR = rgba_get_r(cr);
+   //
+   //      while (size-- > 0)
+   //      {
+   //         dst[3] = dst[0];
+   //         dst[0] = (BYTE)(((dwB * dst[3]) / 256) & 0xff);
+   //         dst[1] = (BYTE)(((dwG * dst[3]) / 256) & 0xff);
+   //         dst[2] = (BYTE)(((dwR * dst[3]) / 256) & 0xff);
+   //         dst+=4;
+   //      }
+   //   }
+   //
+   //
+   //   void dib::BitBlt(::draw2d::dib *pdib, int op)
+   //   {
+   //      if(op == 123) // zero dest RGB, invert alpha, and OR src RGB
+   //      {
+   //
+   //         int isize = cx * cy;
+   //
+   //         LPDWORD lpbitsSrc = (LPDWORD) pdib->m_pcolorref;
+   //         LPDWORD lpbitsDst = (LPDWORD) m_pcolorref;
+   //
+   //         COLORREF _colorref = RGB ( 0, 0, 0 ) | (255 << 24);
+   //         COLORREF colorrefa[2];
+   //
+   //         colorrefa[0] = _colorref;
+   //         colorrefa[1] = _colorref;
+   //
+   //         COLORREF _colorrefN = RGB ( 255, 255, 255) | (0 << 24);
+   //         COLORREF colorrefaN[2];
+   //
+   //         colorrefaN[0] = _colorrefN;
+   //         colorrefaN[1] = _colorrefN;
+   //
+   //#ifdef AMD64
+   //
+   //         //x64
+   //#else
+   //         _asm
+   //         {
+   //            emms
+   //               mov      eax, isize
+   //               mov      ebx, lpbitsDst
+   //               mov      ecx, lpbitsSrc
+   //               movq     mm0, colorrefa
+   //               movq     mm7, colorrefaN
+   //fill_loop:
+   //            cmp      eax, 1
+   //               jle      fill_last
+   //               movq     mm1, [ebx]
+   //            movq     mm2, [ecx]
+   //            pandn    mm1, mm0
+   //               pand     mm2, mm7
+   //               por      mm1, mm2
+   //               movq     [ebx], mm1
+   //
+   //               sub      eax, 2
+   //               add      ebx, 8
+   //               add      ecx, 8
+   //
+   //               jmp      fill_loop
+   //
+   //fill_last:
+   //            emms 
+   //         }
+   //#endif
+   //      }
+   //
+   //   }
+   //
+   //
+   //   void dib::Invert()
+   //   {
+   //
+   //      int size = cx * cy;
+   //
+   //      LPBYTE lpb = (LPBYTE) m_pcolorref;
+   //
+   //      for ( int i=0; i<size; i++ )
+   //      {
+   //
+   //         lpb[0] = 255 - lpb[0];
+   //
+   //         lpb[1] = 255 - lpb[1];
+   //
+   //         lpb[2] = 255 - lpb[2];
+   //
+   //         lpb += 4;
+   //
+   //      }
+   //
+   //   }
+   //
+   //   void dib::channel_invert(visual::rgba::echannel echannel)
+   //   {
+   //
+   //      int64_t size   = area();
+   //
+   //      register int64_t size64 = size / 64;
+   //
+   //      LPBYTE lpb = (LPBYTE) m_pcolorref;
+   //
+   //      lpb += ((int)echannel) % 4;
+   //
+   //      register int64_t i = 0;
+   //
+   //      for(; i < size64; i++)
+   //      {
+   //         lpb[4 *  0] = 255 - lpb[4 *  0];
+   //         lpb[4 *  1] = 255 - lpb[4 *  1];
+   //         lpb[4 *  2] = 255 - lpb[4 *  2];
+   //         lpb[4 *  3] = 255 - lpb[4 *  3];
+   //         lpb[4 *  4] = 255 - lpb[4 *  4];
+   //         lpb[4 *  5] = 255 - lpb[4 *  5];
+   //         lpb[4 *  6] = 255 - lpb[4 *  6];
+   //         lpb[4 *  7] = 255 - lpb[4 *  7];
+   //         lpb[4 *  8] = 255 - lpb[4 *  8];
+   //         lpb[4 *  9] = 255 - lpb[4 *  9];
+   //         lpb[4 * 10] = 255 - lpb[4 * 10];
+   //         lpb[4 * 11] = 255 - lpb[4 * 11];
+   //         lpb[4 * 12] = 255 - lpb[4 * 12];
+   //         lpb[4 * 13] = 255 - lpb[4 * 13];
+   //         lpb[4 * 14] = 255 - lpb[4 * 14];
+   //         lpb[4 * 15] = 255 - lpb[4 * 15];
+   //         lpb[4 * 16] = 255 - lpb[4 * 16];
+   //         lpb[4 * 17] = 255 - lpb[4 * 17];
+   //         lpb[4 * 18] = 255 - lpb[4 * 18];
+   //         lpb[4 * 19] = 255 - lpb[4 * 19];
+   //         lpb[4 * 20] = 255 - lpb[4 * 20];
+   //         lpb[4 * 21] = 255 - lpb[4 * 21];
+   //         lpb[4 * 22] = 255 - lpb[4 * 22];
+   //         lpb[4 * 23] = 255 - lpb[4 * 23];
+   //         lpb[4 * 24] = 255 - lpb[4 * 24];
+   //         lpb[4 * 25] = 255 - lpb[4 * 25];
+   //         lpb[4 * 26] = 255 - lpb[4 * 26];
+   //         lpb[4 * 27] = 255 - lpb[4 * 27];
+   //         lpb[4 * 28] = 255 - lpb[4 * 28];
+   //         lpb[4 * 29] = 255 - lpb[4 * 29];
+   //         lpb[4 * 30] = 255 - lpb[4 * 30];
+   //         lpb[4 * 31] = 255 - lpb[4 * 31];
+   //
+   //         lpb[4 * 32] = 255 - lpb[4 * 32];
+   //         lpb[4 * 33] = 255 - lpb[4 * 33];
+   //         lpb[4 * 34] = 255 - lpb[4 * 34];
+   //         lpb[4 * 35] = 255 - lpb[4 * 35];
+   //         lpb[4 * 36] = 255 - lpb[4 * 36];
+   //         lpb[4 * 37] = 255 - lpb[4 * 37];
+   //         lpb[4 * 38] = 255 - lpb[4 * 38];
+   //         lpb[4 * 39] = 255 - lpb[4 * 39];
+   //         lpb[4 * 40] = 255 - lpb[4 * 40];
+   //         lpb[4 * 41] = 255 - lpb[4 * 41];
+   //         lpb[4 * 42] = 255 - lpb[4 * 42];
+   //         lpb[4 * 43] = 255 - lpb[4 * 43];
+   //         lpb[4 * 44] = 255 - lpb[4 * 44];
+   //         lpb[4 * 45] = 255 - lpb[4 * 45];
+   //         lpb[4 * 46] = 255 - lpb[4 * 46];
+   //         lpb[4 * 47] = 255 - lpb[4 * 47];
+   //         lpb[4 * 48] = 255 - lpb[4 * 48];
+   //         lpb[4 * 49] = 255 - lpb[4 * 49];
+   //         lpb[4 * 50] = 255 - lpb[4 * 50];
+   //         lpb[4 * 51] = 255 - lpb[4 * 51];
+   //         lpb[4 * 52] = 255 - lpb[4 * 52];
+   //         lpb[4 * 53] = 255 - lpb[4 * 53];
+   //         lpb[4 * 54] = 255 - lpb[4 * 54];
+   //         lpb[4 * 55] = 255 - lpb[4 * 55];
+   //         lpb[4 * 56] = 255 - lpb[4 * 56];
+   //         lpb[4 * 57] = 255 - lpb[4 * 57];
+   //         lpb[4 * 58] = 255 - lpb[4 * 58];
+   //         lpb[4 * 59] = 255 - lpb[4 * 59];
+   //         lpb[4 * 60] = 255 - lpb[4 * 60];
+   //         lpb[4 * 61] = 255 - lpb[4 * 61];
+   //         lpb[4 * 62] = 255 - lpb[4 * 62];
+   //         lpb[4 * 63] = 255 - lpb[4 * 63];
+   //
+   //         lpb += 4 * 64;
+   //      }
+   //      i *= 64;
+   //      for(; i < size; i++ )
+   //      {
+   //         *lpb = 255 - *lpb;
+   //         lpb += 4;
+   //      }
+   //   }
+   //   void dib::channel_multiply(visual::rgba::echannel echannel, double dRate)
+   //   {
+   //      if(dRate < 0)
+   //         return;
+   //      map();
+   //      register int64_t size = area();
+   //      LPBYTE lpb = (LPBYTE) get_data();
+   //      if(lpb == NULL)
+   //         return;
+   //      lpb += ((int)echannel) % 4;
+   //      register int iDiv = 256 * 256;
+   //      register int iMul = (int) (dRate * ((double) iDiv));
+   //      register int iRes;
+   //      for(register int64_t i = 0; i < size; i++)
+   //      {
+   //         iRes = *lpb * iMul / iDiv; 
+   //         *lpb = (byte) (iRes > 255 ? 255 : iRes);
+   //         lpb += 4;
+   //      }
+   //   }
+   //
+   //   void dib::FillGlass ( int R, int G, int B, int A )
+   //   {
+   //
+   //      BYTE * dst = (BYTE *) m_pcolorref;
+   //
+   //      int size = cx * cy;
+   //
+   //      while ( size-- )
+   //      {
+   //         dst[0]=(BYTE)(((B-dst[0])*A+(dst[0]<<8))>>8);
+   //         dst[1]=(BYTE)(((G-dst[1])*A+(dst[1]<<8))>>8);
+   //         dst[2]=(BYTE)(((R-dst[2])*A+(dst[2]<<8))>>8);   
+   //         dst+=4;
+   //      }
+   //
+   //   }
+   //
+   //   void dib::FillStippledGlass ( int R, int G, int B )
+   //   {   
+   //
+   //      COLORREF color=RGB ( B, G, R );
+   //
+   //      int w = cx;
+   //      int h = cy;
+   //
+   //      for ( int j=0; j<w; j++ )
+   //      {
+   //         for ( int i=0; i<h; i++ )
+   //         {
+   //            m_pcolorref[j*w+i]=((i+j)&0x1) ? m_pcolorref[j*w+i] : color;
+   //         }
+   //      }
+   //   }
+   //
+   //
+   //   void dib::Paste ( ::draw2d::dib * pdib )
+   //   {
+   //      // If DibSize Wrong Re-create dib
+   //      if ( (cx!=pdib->cx) || (cy!=pdib->cy) )
+   //         create ( pdib->cx, pdib->cy );
+   //      if(pdib->m_pcolorref == NULL)
+   //         return;
+   //      map();
+   //      if(m_pcolorref != NULL)
+   //      {
+   //         // do Paste
+   //         memcpy ( m_pcolorref, pdib->m_pcolorref, cx*cy*4 );
+   //      }
+   //   }
+   //
+   //   bool dib::color_blend(COLORREF cr, BYTE bAlpha)
+   //   {
+   //
+   //      BYTE *dst=(BYTE*)m_pcolorref;
+   //      int size=cx*cy;
+   //
+   //      DWORD dwB = rgba_get_b(cr);
+   //      DWORD dwG = rgba_get_g(cr);
+   //      DWORD dwR = rgba_get_r(cr);
+   //
+   //      DWORD dwB_ = dwB << 8;
+   //      DWORD dwG_ = dwG << 8;
+   //      DWORD dwR_ = dwR << 8;
+   //
+   //      while ( size-- )
+   //      {
+   //         dst[0]=(BYTE)(((dst[0]-dwB)*bAlpha+dwB_)>>8);
+   //         dst[1]=(BYTE)(((dst[1]-dwG)*bAlpha+dwG_)>>8);
+   //         dst[2]=(BYTE)(((dst[2]-dwG)*bAlpha+dwR_)>>8);   
+   //         dst+=4;
+   //      }
+   //      return true;
+   //   }
+   //
+   //
+   //   void dib::Blend (::draw2d::dib * pdib, int A )
+   //   {
+   //      if ( size()!=pdib->size() )
+   //         return;
+   //
+   //      BYTE *src=(BYTE*)pdib->m_pcolorref;
+   //      BYTE *dst=(BYTE*)m_pcolorref;
+   //      int size=cx*cy;
+   //
+   //      while ( size-- )
+   //      {
+   //         dst[0]=(BYTE)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
+   //         dst[1]=(BYTE)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
+   //         dst[2]=(BYTE)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);   
+   //         dst+=4;
+   //         src+=4;
+   //      }
+   //   }
 
    //bool dib::Blend(::draw2d::dib *pdib, ::draw2d::dib *pdibA, int A)
    //{
@@ -1247,14 +1247,14 @@ namespace draw2d_direct2d
    y=y1;
 
    m_pcolorref[y*cx+x]=color;
-   while (x<dx) 
+   while (x<dx)
    {
-   if (d<=0) 
+   if (d<=0)
    {
    d+=k1;
    x++;
-   } 
-   else 
+   }
+   else
    {
    d+=k2;
    x++;
@@ -1739,7 +1739,7 @@ namespace draw2d_direct2d
    {
       create(cx, cy);
 
-      if(cx <= 0 || cy <= 0)
+      if (cx <= 0 || cy <= 0)
          return;
 
 
@@ -1802,38 +1802,38 @@ namespace draw2d_direct2d
          0);
       //         DI_MASK);
 
-      BYTE * r1=(BYTE*)dib1.m_pcolorref;
-      BYTE * r2=(BYTE*)spdib2->get_data();
-      BYTE * srcM=(BYTE*)dibM.m_pcolorref;
-      BYTE * dest=(BYTE*)m_pcolorref;
+      BYTE * r1 = (BYTE*)dib1.m_pcolorref;
+      BYTE * r2 = (BYTE*)spdib2->get_data();
+      BYTE * srcM = (BYTE*)dibM.m_pcolorref;
+      BYTE * dest = (BYTE*)m_pcolorref;
       int iSize = cx*cy;
 
       BYTE b;
       BYTE bMax;
-      while ( iSize-- > 0)
+      while (iSize-- > 0)
       {
-         if(srcM[0] == 255)
+         if (srcM[0] == 255)
          {
             bMax = 0;
          }
          else
          {
             bMax = 0;
-            b =(BYTE)(r1[0]  - r2[0]);
+            b = (BYTE)(r1[0] - r2[0]);
             bMax = max(b, bMax);
-            b =(BYTE)(r1[1]  - r2[1]);
+            b = (BYTE)(r1[1] - r2[1]);
             bMax = max(b, bMax);
-            b =(BYTE)(r1[2]  - r2[2]); 
+            b = (BYTE)(r1[2] - r2[2]);
             bMax = max(b, bMax);
             bMax = 255 - bMax;
          }
-         dest[0]  =  bMax;
-         dest[1]  =  bMax;
-         dest[2]  =  bMax;
-         dest     += 4;
-         srcM     += 4;
-         r1       += 4;
-         r2       += 4;
+         dest[0] = bMax;
+         dest[1] = bMax;
+         dest[2] = bMax;
+         dest += 4;
+         srcM += 4;
+         r1 += 4;
+         r2 += 4;
       }
 
 
@@ -2425,18 +2425,18 @@ namespace draw2d_direct2d
    void dib::stretch_dib(::draw2d::dib * pdib)
    {
 
-      D2D1_RECT_F rectDest = D2D1::RectF(0, 0, (FLOAT) m_size.cx, (FLOAT) m_size.cy);
+      D2D1_RECT_F rectDest = D2D1::RectF(0, 0, (FLOAT)m_size.cx, (FLOAT)m_size.cy);
 
-      D2D1_RECT_F rectSource = D2D1::RectF(0, 0, (FLOAT) pdib->m_size.cx, (FLOAT) pdib->m_size.cy);
+      D2D1_RECT_F rectSource = D2D1::RectF(0, 0, (FLOAT)pdib->m_size.cx, (FLOAT)pdib->m_size.cy);
 
-      ((ID2D1RenderTarget * ) m_spgraphics->get_os_data())->DrawBitmap(((ID2D1Bitmap1 *)pdib->get_bitmap()->get_os_data()), rectDest, 1.0, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, rectSource);
+      ((ID2D1RenderTarget *)m_spgraphics->get_os_data())->DrawBitmap(((ID2D1Bitmap1 *)pdib->get_bitmap()->get_os_data()), rectDest, 1.0, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, rectSource);
 
       /*
       ::StretchDIBits(
       SP_HDC(m_spgraphics),
       0, 0,
       cx, cy,
-      0, 0, 
+      0, 0,
       pdib->cx, pdib->cy,
       pdib->m_pcolorref,
       &pdib->m_info,
@@ -2534,21 +2534,21 @@ namespace draw2d_direct2d
 
       synch_lock ml(&user_mutex());
 
-      if(m_bMapped)
+      if (m_bMapped)
          return;
 
-      if(m_spbitmapMap.is_null() || m_spbitmap.is_null())
+      if (m_spbitmapMap.is_null() || m_spbitmap.is_null())
          return;
 
 
       HRESULT hr;
 
-      if(m_spbitmap->get_os_data() != NULL)
+      if (m_spbitmap->get_os_data() != NULL)
       {
 
-         hr = ((ID2D1DeviceContext *) m_spgraphics->get_os_data())->EndDraw();
+         hr = ((ID2D1DeviceContext *)m_spgraphics->get_os_data())->EndDraw();
 
-         hr = m_spbitmapMap->get_typed_os_data < ID2D1Bitmap1 > (::draw2d_direct2d::bitmap::data_bitmap1)->CopyFromBitmap(NULL, (ID2D1Bitmap *) m_spbitmap->get_os_data(), NULL);
+         hr = m_spbitmapMap->get_typed_os_data < ID2D1Bitmap1 >(::draw2d_direct2d::bitmap::data_bitmap1)->CopyFromBitmap(NULL, (ID2D1Bitmap *)m_spbitmap->get_os_data(), NULL);
 
       }
 
@@ -2556,39 +2556,39 @@ namespace draw2d_direct2d
 
       ZERO(pb->m_map);
 
-      hr = m_spbitmapMap->get_typed_os_data < ID2D1Bitmap1 > (::draw2d_direct2d::bitmap::data_bitmap1)->Map(D2D1_MAP_OPTIONS_READ, &pb->m_map);
+      hr = m_spbitmapMap->get_typed_os_data < ID2D1Bitmap1 >(::draw2d_direct2d::bitmap::data_bitmap1)->Map(D2D1_MAP_OPTIONS_READ, &pb->m_map);
 
-      if(FAILED(hr) ||pb->m_map.bits == NULL)
+      if (FAILED(hr) || pb->m_map.bits == NULL)
          throw "";
 
-      m_pcolorref = (COLORREF *) pb->m_map.bits;
+      m_pcolorref = (COLORREF *)pb->m_map.bits;
 
       m_iScan = pb->m_map.pitch;
 
       int compare_scan = m_size.cx * sizeof(COLORREF);
 
-      if(bApplyAlphaTransform)
+      int64_t i = area();
+
+      if (bApplyAlphaTransform)
       {
 
-         for(int y = 0; y < m_size.cy; y++)
+         byte * p = ((byte *)m_pcolorref);
+         while (i > 0)
          {
-            byte * p = &((byte *) m_pcolorref)[m_iScan * y];
-            for(int x = 0; x < m_size.cx; x++)
+            if (p[3] == 0)
             {
-               if(p[3] == 0)
-               {
-                  p[0] = 0;
-                  p[1] = 0;
-                  p[2] = 0;
-               }
-               else
-               {
-                  p[0] = (p[0] * 255 / p[3]);
-                  p[1] = (p[1] * 255 / p[3]);
-                  p[2] = (p[2] * 255 / p[3]);
-               }
-               p += 4;
+               p[0] = 0;
+               p[1] = 0;
+               p[2] = 0;
             }
+            else
+            {
+               p[0] = (p[0] * 255 / p[3]);
+               p[1] = (p[1] * 255 / p[3]);
+               p[2] = (p[2] * 255 / p[3]);
+            }
+            p += 4;
+            i--;
          }
 
       }
@@ -2602,16 +2602,16 @@ namespace draw2d_direct2d
 
       synch_lock ml(&user_mutex());
 
-      if(!m_bMapped)
+      if (!m_bMapped)
          return;
 
-      if(m_spbitmapMap.is_null() || m_spbitmap.is_null())
+      if (m_spbitmapMap.is_null() || m_spbitmap.is_null())
          return;
 
-      if(m_spbitmap->get_os_data() == NULL)
+      if (m_spbitmap->get_os_data() == NULL)
       {
 
-         HRESULT hr = m_spbitmapMap->get_typed_os_data < ID2D1Bitmap1 > (::draw2d_direct2d::bitmap::data_bitmap1)->Unmap();
+         HRESULT hr = m_spbitmapMap->get_typed_os_data < ID2D1Bitmap1 >(::draw2d_direct2d::bitmap::data_bitmap1)->Unmap();
 
          m_pcolorref = NULL;
 
@@ -2623,18 +2623,17 @@ namespace draw2d_direct2d
 
       int64_t iArea = area();
 
-      byte * p = (byte *) m_pcolorref;
+      byte * p = (byte *)m_pcolorref;
 
-      for(int y = 0; y < m_size.cy; y++)
+      int64_t i = area();
+
+      while (i > 0)
       {
-         byte * p = &((byte *) m_pcolorref)[m_iScan * y];
-         for(int x = 0; x < m_size.cx; x++)
-         {
-            p[0] = (p[0] * p[3] / 255);
-            p[1] = (p[1] * p[3] / 255);
-            p[2] = (p[2] * p[3] / 255);
-            p += 4;
-         }
+         p[0] = (p[0] * p[3] / 255);
+         p[1] = (p[1] * p[3] / 255);
+         p[2] = (p[2] * p[3] / 255);
+         p += 4;
+         i--;
       }
 
 
@@ -2647,14 +2646,14 @@ namespace draw2d_direct2d
 
       //memset(m_pcolorref, 127, scan * cy / 2);
 
-      HRESULT hr = ((ID2D1Bitmap *) m_spbitmap->get_os_data())->CopyFromMemory(&srcRect, m_pcolorref, m_iScan);
+      HRESULT hr = ((ID2D1Bitmap *)m_spbitmap->get_os_data())->CopyFromMemory(&srcRect, m_pcolorref, m_iScan);
       //zero(&METROWIN_BITMAP(m_spbitmapMap.m_p)->m_map, sizeof(METROWIN_BITMAP(m_spbitmapMap.m_p)->m_map));
 
-      hr = m_spbitmapMap->get_typed_os_data < ID2D1Bitmap1 > (::draw2d_direct2d::bitmap::data_bitmap1)->Unmap();
+      hr = m_spbitmapMap->get_typed_os_data < ID2D1Bitmap1 >(::draw2d_direct2d::bitmap::data_bitmap1)->Unmap();
 
       m_pcolorref = NULL;
 
-      if(FAILED(hr))
+      if (FAILED(hr))
       {
 
          m_bMapped = false;
@@ -2665,7 +2664,7 @@ namespace draw2d_direct2d
 
       m_spgraphics->SelectObject(m_spbitmap);
 
-      ((ID2D1DeviceContext *) m_spgraphics->get_os_data())->BeginDraw();
+      ((ID2D1DeviceContext *)m_spgraphics->get_os_data())->BeginDraw();
 
       m_bMapped = false;
 
@@ -2690,9 +2689,9 @@ namespace draw2d_direct2d
    bool dib::defer_realize(::draw2d::graphics * pgraphics)
    {
 
-      if(is_realized())
+      if (is_realized())
       {
-         ((ID2D1DeviceContext *) m_spgraphics->get_os_data())->BeginDraw();
+         ((ID2D1DeviceContext *)m_spgraphics->get_os_data())->BeginDraw();
          return true;
       }
 
@@ -2703,25 +2702,25 @@ namespace draw2d_direct2d
    bool dib::realize(::draw2d::graphics * pgraphics)
    {
 
-      if(is_realized())
+      if (is_realized())
          unrealize();
 
-      if(is_realized())
+      if (is_realized())
          return false;
 
       m_spbitmap.create(allocer());
       m_spgraphics.create(allocer());
 
-      if(m_spbitmap.is_null() || m_spbitmapMap.is_null() || m_spgraphics.is_null() || m_spgraphicsMap.is_null())
+      if (m_spbitmap.is_null() || m_spbitmapMap.is_null() || m_spgraphics.is_null() || m_spgraphicsMap.is_null())
       {
          return false;
       }
 
-      ::draw2d_direct2d::graphics * pgraphicsSrc = dynamic_cast < ::draw2d_direct2d::graphics * > (pgraphics);
+      ::draw2d_direct2d::graphics * pgraphicsSrc = dynamic_cast <::draw2d_direct2d::graphics *> (pgraphics);
 
-      ::draw2d_direct2d::graphics * pgraphicsDst = dynamic_cast < ::draw2d_direct2d::graphics * > (m_spgraphics.m_p);
+      ::draw2d_direct2d::graphics * pgraphicsDst = dynamic_cast <::draw2d_direct2d::graphics *> (m_spgraphics.m_p);
 
-      ::draw2d_direct2d::bitmap * pbitmap = dynamic_cast < ::draw2d_direct2d::bitmap * > (m_spbitmap.m_p);
+      ::draw2d_direct2d::bitmap * pbitmap = dynamic_cast <::draw2d_direct2d::bitmap *> (m_spbitmap.m_p);
 
       pgraphicsDst->m_pbitmaprendertarget = nullptr;
 
@@ -2739,16 +2738,16 @@ namespace draw2d_direct2d
 
       HRESULT hr = t->CreateCompatibleRenderTarget(NULL, &sizeu, &pixelformat, D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS_NONE, &pgraphicsDst->m_pbitmaprendertarget);
 
-      if(pgraphicsDst->m_pbitmaprendertarget == NULL)
+      if (pgraphicsDst->m_pbitmaprendertarget == NULL)
          return false;
 
-      if(FAILED(pgraphicsDst->m_pbitmaprendertarget.As(&pgraphicsDst->m_prendertarget)))
+      if (FAILED(pgraphicsDst->m_pbitmaprendertarget.As(&pgraphicsDst->m_prendertarget)))
       {
          pgraphicsDst->m_pbitmaprendertarget = nullptr;
          return false;
       }
 
-      if(FAILED(pgraphicsDst->m_pbitmaprendertarget.As(&pgraphicsDst->m_pdevicecontext)))
+      if (FAILED(pgraphicsDst->m_pbitmaprendertarget.As(&pgraphicsDst->m_pdevicecontext)))
       {
          pgraphicsDst->m_pbitmaprendertarget = nullptr;
          pgraphicsDst->m_prendertarget = nullptr;
@@ -2757,13 +2756,13 @@ namespace draw2d_direct2d
 
       pgraphicsDst->m_pbitmaprendertarget->GetBitmap(&pbitmap->m_pbitmap);
 
-      if(pbitmap->m_pbitmap == NULL)
+      if (pbitmap->m_pbitmap == NULL)
       {
          m_spgraphics.release();
          return false;
       }
 
-      if(pgraphicsDst->m_spbitmap.is_null())
+      if (pgraphicsDst->m_spbitmap.is_null())
          pgraphicsDst->m_spbitmap.create(allocer());
 
       pgraphicsDst->m_spbitmap->attach(pbitmap->m_pbitmap.Get());
@@ -2784,7 +2783,7 @@ namespace draw2d_direct2d
 
       //hr = METROWIN_BITMAP(m_spbitmap.m_p)->m_pbitmap->CopyFromBitmap(&p, METROWIN_BITMAP(m_spbitmapMap.m_p)->m_pbitmap, &srcRect);
 
-      ((ID2D1DeviceContext *) m_spgraphics->get_os_data())->BeginDraw();
+      ((ID2D1DeviceContext *)m_spgraphics->get_os_data())->BeginDraw();
 
       return true;
 
@@ -2794,7 +2793,7 @@ namespace draw2d_direct2d
    bool dib::unrealize()
    {
 
-      if(!is_realized())
+      if (!is_realized())
          return false;
 
       D2D1_POINT_2U p;
@@ -2809,7 +2808,7 @@ namespace draw2d_direct2d
       srcRect.top = 0;
       srcRect.bottom = m_size.cy;
 
-      HRESULT hr = ((ID2D1Bitmap *) m_spbitmapMap->get_os_data())->CopyFromBitmap(&p, ((ID2D1Bitmap *) m_spbitmapMap->get_os_data()), &srcRect);
+      HRESULT hr = ((ID2D1Bitmap *)m_spbitmapMap->get_os_data())->CopyFromBitmap(&p, ((ID2D1Bitmap *)m_spbitmapMap->get_os_data()), &srcRect);
 
       m_spgraphics.release();
 
@@ -2821,7 +2820,7 @@ namespace draw2d_direct2d
    bool dib::is_realized()
    {
 
-      if(m_spgraphics.is_null() || m_spgraphics->get_os_data() == NULL)
+      if (m_spgraphics.is_null() || m_spgraphics->get_os_data() == NULL)
          return false;
 
       return true;
@@ -2837,7 +2836,6 @@ namespace draw2d_direct2d
 
 #if defined(WINDOWSEX)
 
-   /*
 
    bool dib::update_window(::user::window * pwnd, signal_details * pobj)
    {
@@ -2858,7 +2856,6 @@ namespace draw2d_direct2d
 
    }
 
-   */
 
 
    /*
@@ -2867,82 +2864,82 @@ namespace draw2d_direct2d
    {
 
 
-      SCAST_PTR(::message::base, pbase, pobj);
+   SCAST_PTR(::message::base, pbase, pobj);
 
-      if(pbase->m_wparam == NULL)
-         return false;
+   if(pbase->m_wparam == NULL)
+   return false;
 
-      m_spgraphics->attach((HDC) pbase->m_wparam);
+   m_spgraphics->attach((HDC) pbase->m_wparam);
 
-      rect rectx;
+   rect rectx;
 
-      ::draw2d::bitmap * pbitmap = m_spgraphics->get_current_bitmap();
+   ::draw2d::bitmap * pbitmap = m_spgraphics->get_current_bitmap();
 
-      ::GetCurrentObject((HDC) pbase->m_wparam, OBJ_BITMAP);
+   ::GetCurrentObject((HDC) pbase->m_wparam, OBJ_BITMAP);
 
-      //      uint32_t dw = ::GetLastError();
-      class size size = pbitmap->get_size();
+   //      uint32_t dw = ::GetLastError();
+   class size size = pbitmap->get_size();
 
-      rectx.left = 0;
-      rectx.top = 0;
-      rectx.right = size.cx;
-      rectx.bottom = size.cy;
+   rectx.left = 0;
+   rectx.top = 0;
+   rectx.right = size.cx;
+   rectx.bottom = size.cy;
 
-      try
-      {
+   try
+   {
 
-         rect rectWindow;
+   rect rectWindow;
 
-         pwnd->GetWindowRect(rectWindow);
+   pwnd->GetWindowRect(rectWindow);
 
-         ::draw2d::dib_sp dib(allocer());
+   ::draw2d::dib_sp dib(allocer());
 
-         if(!dib->create(rectWindow.bottom_right()))
-            return false;
+   if(!dib->create(rectWindow.bottom_right()))
+   return false;
 
-         ::draw2d::graphics * pdc = dib->get_graphics();
+   ::draw2d::graphics * pdc = dib->get_graphics();
 
-         if(pdc->get_os_data() == NULL)
-            return false;
+   if(pdc->get_os_data() == NULL)
+   return false;
 
-         rect rectPaint;
-         rect rectUpdate;
-         rectUpdate = rectWindow;
-         rectPaint = rectWindow;
-         rectPaint.offset(-rectPaint.top_left());
-         m_spgraphics->SelectClipRgn(NULL);
-         if(pwnd->m_pguie != NULL && pwnd->m_pguie != this)
-         {
-            pwnd->m_pguie->_001OnDeferPaintLayeredWindowBackground(pdc);
-         }
-         else
-         {
-            pwnd->_001OnDeferPaintLayeredWindowBackground(pdc);
-         }
-         m_spgraphics->SelectClipRgn(NULL);
-         m_spgraphics-> SetViewportOrg(point(0, 0));
-         pwnd->_000OnDraw(pdc);
-         m_spgraphics->SetViewportOrg(point(0, 0));
-         //(dynamic_cast<::win::graphics * >(pdc))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
-         m_spgraphics->SelectClipRgn(NULL);
-         m_spgraphics->SetViewportOrg(point(0, 0));
+   rect rectPaint;
+   rect rectUpdate;
+   rectUpdate = rectWindow;
+   rectPaint = rectWindow;
+   rectPaint.offset(-rectPaint.top_left());
+   m_spgraphics->SelectClipRgn(NULL);
+   if(pwnd->m_pguie != NULL && pwnd->m_pguie != this)
+   {
+   pwnd->m_pguie->_001OnDeferPaintLayeredWindowBackground(pdc);
+   }
+   else
+   {
+   pwnd->_001OnDeferPaintLayeredWindowBackground(pdc);
+   }
+   m_spgraphics->SelectClipRgn(NULL);
+   m_spgraphics-> SetViewportOrg(point(0, 0));
+   pwnd->_000OnDraw(pdc);
+   m_spgraphics->SetViewportOrg(point(0, 0));
+   //(dynamic_cast<::win::graphics * >(pdc))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
+   m_spgraphics->SelectClipRgn(NULL);
+   m_spgraphics->SetViewportOrg(point(0, 0));
 
-         m_spgraphics->SelectClipRgn( NULL);
-         m_spgraphics->BitBlt(rectPaint.left, rectPaint.top, 
-            rectPaint.width(), rectPaint.height(),
-            pdc, rectUpdate.left, rectUpdate.top,
-            SRCCOPY);
+   m_spgraphics->SelectClipRgn( NULL);
+   m_spgraphics->BitBlt(rectPaint.left, rectPaint.top,
+   rectPaint.width(), rectPaint.height(),
+   pdc, rectUpdate.left, rectUpdate.top,
+   SRCCOPY);
 
-         m_spgraphics->TextOut(0, 0, "Te Amo CGCL", 11);
-      }
-      catch(...)
-      {
-      }
-      m_spgraphics->FillSolidRect(rectx, RGB(255, 255, 255));
-      pobj->m_bRet = true;
-      pbase->set_lresult(0);
+   m_spgraphics->TextOut(0, 0, "Te Amo CGCL", 11);
+   }
+   catch(...)
+   {
+   }
+   m_spgraphics->FillSolidRect(rectx, RGB(255, 255, 255));
+   pobj->m_bRet = true;
+   pbase->set_lresult(0);
 
-      return true;
+   return true;
    }
 
    */

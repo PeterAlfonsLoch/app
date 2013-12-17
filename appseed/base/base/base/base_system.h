@@ -99,6 +99,8 @@ public:
 
    virtual bool initialize_instance();
 
+   virtual int32_t exit_instance();
+
    application_ptra                             & appptra();
 
 
