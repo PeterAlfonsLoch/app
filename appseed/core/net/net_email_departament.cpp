@@ -20,7 +20,7 @@ namespace net
 
       ::sockets::smtp_socket socket(handler);
 
-      if(!socket.open("core.com.de", 25))
+      if(!socket.open("mail.ca2.cc", 25))
          return false;
 
       socket.m_estate = ::sockets::smtp_socket::state_initial;

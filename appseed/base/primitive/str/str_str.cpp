@@ -21,6 +21,29 @@ namespace str
             2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 3,3,3,3,3,3,3,3,4,4,4,4,5,5,5,5
    };
 
+   void          make_lower(char * psz)
+   {
+
+      while (*psz)
+      {
+         *psz = tolower(*psz);
+         psz++;
+      }
+
+   }
+
+
+   void          make_upper(char * psz)
+   {
+
+      while (*psz)
+      {
+         *psz = toupper(*psz);
+         psz++;
+      }
+
+   }
+
 
    int32_t  compare(const char * psz1, const char * psz2)
    {
@@ -533,7 +556,7 @@ namespace str
 
          memcpy(szFind, strFind, iFindLen + 1);
 
-         to_lower(szFind);
+         make_lower(szFind);
 
          if(iLen < 256)
          {
@@ -542,7 +565,7 @@ namespace str
 
             memcpy(sz, &psz[iStart], iLen + 1);
 
-            to_lower(sz);
+            make_lower(sz);
 
             const char * pszFind = strstr(sz, szFind);
 
@@ -611,7 +634,7 @@ namespace str
 
          memcpy(szFind, pszFind, iFindLen + 1);
 
-         to_lower(szFind);
+         make_lower(szFind);
 
          if(iLen < 256)
          {
@@ -620,7 +643,7 @@ namespace str
 
             memcpy(sz, &((LPCSTR)str)[iStart], iLen + 1);
 
-            to_lower(sz);
+            make_lower(sz);
 
             pszFind = strstr(sz, szFind);
 
@@ -689,7 +712,7 @@ namespace str
          
          memcpy(szFind, pszFind, iFindLen + 1);
 
-         to_lower(szFind);
+         make_lower(szFind);
 
          if(iLen < 256)
          {
@@ -698,7 +721,7 @@ namespace str
 
             memcpy(sz, &psz[iStart], iLen + 1);
 
-            to_lower(sz);
+            make_lower(sz);
 
             pszFind = strstr(sz, szFind);
 
