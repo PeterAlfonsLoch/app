@@ -112,7 +112,7 @@ namespace simple_ui
 
 #else
 
-         simple_solid_brush br(g, ARGB(184, 184, 255, 177));
+         ::draw2d::brush_sp br(allocer(), ARGB(184, 184, 255, 177));
 
 #endif
 
@@ -251,7 +251,7 @@ namespace simple_ui
 
 #else
 
-      simple_solid_brush b(g, ARGB(223, 49, 84, 23));
+      ::draw2d::brush_sp b(allocer(), ARGB(223, 49, 84, 23));
 
 #endif
 
