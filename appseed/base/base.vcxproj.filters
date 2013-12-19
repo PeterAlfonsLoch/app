@@ -3185,11 +3185,11 @@
     <ClInclude Include="base\base\base_action_source.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\version.config.h">
-      <Filter>Header Files\base\base</Filter>
+    <ClInclude Include="version.config.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\version.h">
-      <Filter>Header Files\base\base</Filter>
+    <ClInclude Include="version.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -7013,6 +7013,9 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

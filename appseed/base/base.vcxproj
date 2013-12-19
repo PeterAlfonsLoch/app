@@ -1117,8 +1117,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base\base_trace.h" />
     <ClInclude Include="base\base\base_types.h" />
     <ClInclude Include="base\base\base_url.h" />
-    <ClInclude Include="base\base\version.config.h" />
-    <ClInclude Include="base\base\version.h" />
     <ClInclude Include="base\compress\bsdiff\bsdiff.h" />
     <ClInclude Include="base\compress\bsdiff\bsdiff_private.h" />
     <ClInclude Include="base\compress\bsdiff\bzlib.h" />
@@ -1868,6 +1866,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user_window_interface.h" />
     <ClInclude Include="user\user_window_map.h" />
     <ClInclude Include="user\user_window_util.h" />
+    <ClInclude Include="version.config.h" />
+    <ClInclude Include="version.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base\base\base.cpp" />
