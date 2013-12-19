@@ -57,6 +57,8 @@ string defer_solve_relative_name(const char * pszRelative, const char * pszAbsol
       return defer_solve_relative_compresions(strRelative);
    if (str::begins_ci(strRelative, "ftp://"))
       return defer_solve_relative_compresions(strRelative);
+   if (str::begins_ci(strRelative, "ext://"))
+      return defer_solve_relative_compresions(strRelative);
 
    strAbsolute = ::url_dir_name_for_relative(strAbsolute);
 
