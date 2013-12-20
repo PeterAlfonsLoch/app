@@ -506,7 +506,7 @@ namespace install
       try
       {
 
-         if (get_process_pid("app-install") < 0)
+         if (get_process_pid("app.install") < 0)
          {
 
             return false;
@@ -1157,7 +1157,7 @@ namespace install
 
       xxdebug_box("installer::launcher::ensure_executable", "installer::launcher::ensure_executable", 0);
 
-      HINSTANCE hinstanceAppInstall = (HINSTANCE) ::GetModuleHandleA("app-install.exe");
+      HINSTANCE hinstanceAppInstall = (HINSTANCE) ::GetModuleHandleA("app.install.exe");
 
       bPrivileged = hinstanceAppInstall != NULL && hinstanceAppInstall == ::GetModuleHandleA(NULL);
 
@@ -1183,7 +1183,7 @@ namespace install
 
          file[0] = '\0';
 
-         strcat_dup(psz, "app-install.exe");
+         strcat_dup(psz, "app.install.exe");
 
          strPath.ReleaseBuffer();
 
@@ -1193,7 +1193,7 @@ namespace install
 
          string strPlatform = System.install().get_platform();
 
-         strPath = ::dir::element("install\\stage\\" + strPlatform + "\\app-install.exe");
+         strPath = ::dir::element("install\\stage\\" + strPlatform + "\\app.install.exe");
 
       }
 
@@ -1204,7 +1204,7 @@ namespace install
 #endif
 
       if (!file_exists_dup(strPath)
-         || !System.install().is_file_ok(strPath, "app-install.exe")
+         || !System.install().is_file_ok(strPath, "app.install.exe")
          || !System.install().is_file_ok(strPath, "base.dll")
          || !System.install().is_file_ok(strPath, "msvcp120d.dll")
          || !System.install().is_file_ok(strPath, "msvcr120d.dll")
@@ -1220,7 +1220,7 @@ namespace install
             if (!bPrivileged)
             {
 
-               if (!System.get_temp_file_name(strPath, "app-install", "exe"))
+               if (!System.get_temp_file_name(strPath, "app.install", "exe"))
                {
 
                   strPath.ReleaseBuffer();
@@ -1235,11 +1235,11 @@ namespace install
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-            strUrl = "http://warehouse.ca2.cc/spa?download=app-install.exe";
+            strUrl = "http://warehouse.ca2.cc/spa?download=app.install.exe";
 
 #else
 
-            strUrl = "http://store.ca2.cc/spa?download=app-install.exe";
+            strUrl = "http://store.ca2.cc/spa?download=app.install.exe";
 
 #endif
 
@@ -1260,7 +1260,7 @@ namespace install
             if (Application.http().download(strUrl, strPath, set))
             {
 
-               if (System.install().is_file_ok(strPath, "app-install.exe"))
+               if (System.install().is_file_ok(strPath, "app.install.exe"))
                {
 
                   if (pinstaller != NULL)
@@ -1440,7 +1440,7 @@ namespace install
          }
 
 
-         if (!System.install().is_file_ok(strPath, "app-install.exe"))
+         if (!System.install().is_file_ok(strPath, "app.install.exe"))
          {
 
             return "";
@@ -1461,7 +1461,7 @@ namespace install
 
          string strPlatform = System.install().get_platform();
 
-         string strPath = ::dir::element("stage\\" + strPlatform + "\\app-install.exe");
+         string strPath = ::dir::element("stage\\" + strPlatform + "\\app.install.exe");
 
 #else
 

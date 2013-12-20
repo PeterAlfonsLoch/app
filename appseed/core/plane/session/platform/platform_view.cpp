@@ -783,7 +783,7 @@ namespace platform
 
 
       return;
-      // spa boot should cling (app-install.exe should catch
+      // spa boot should cling (app.install.exe should catch
       // exit could and restart main application)
       }
       }

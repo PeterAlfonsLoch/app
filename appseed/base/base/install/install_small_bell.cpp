@@ -21,8 +21,8 @@ void prepare_small_bell(bool bExistsOk)
 
 #else
    if((bExistsOk && file_exists_dup(dir::element("stage\\small_bell.mp3")))
-   || read_resource_as_file_dup(dir::element("stage\\small_bell.mp3"), ::GetModuleHandleA("app-install.exe"), ID_MP3_SMALL_BELL, "MP3")
-   || read_resource_as_file_dup(dir::element("stage\\small_bell.mp3"), ::GetModuleHandleA("app-sentinel.exe"), ID_MP3_SMALL_BELL, "MP3")
+   || read_resource_as_file_dup(dir::element("stage\\small_bell.mp3"), ::GetModuleHandleA("app.install.exe"), ID_MP3_SMALL_BELL, "MP3")
+   || read_resource_as_file_dup(dir::element("stage\\small_bell.mp3"), ::GetModuleHandleA("app.sentinel.exe"), ID_MP3_SMALL_BELL, "MP3")
    || read_resource_as_file_dup(dir::element("stage\\small_bell.mp3"), ::GetModuleHandleA(NULL), ID_MP3_SMALL_BELL, "MP3"))
    {
       if(mciSendString(("open \"" + dir::element("stage\\small_bell.mp3") + "\" type mpegvideo alias small_bell_mp3"), NULL, 0, NULL) == 0)
@@ -50,8 +50,8 @@ void play_small_bell()
 
 #else
 
-   if(read_resource_as_file_dup(dir::element("stage\\small_bell.mp3"), ::GetModuleHandleA("app-install.exe"), ID_MP3_SMALL_BELL, "MP3")
-   || read_resource_as_file_dup(dir::element("stage\\small_bell.mp3"), ::GetModuleHandleA("app-sentinel.exe"), ID_MP3_SMALL_BELL, "MP3")
+   if(read_resource_as_file_dup(dir::element("stage\\small_bell.mp3"), ::GetModuleHandleA("app.install.exe"), ID_MP3_SMALL_BELL, "MP3")
+   || read_resource_as_file_dup(dir::element("stage\\small_bell.mp3"), ::GetModuleHandleA("app.sentinel.exe"), ID_MP3_SMALL_BELL, "MP3")
    || read_resource_as_file_dup(dir::element("stage\\small_bell.mp3"), ::GetModuleHandleA(NULL), ID_MP3_SMALL_BELL, "MP3")
    || file_exists_dup(dir::element("stage\\small_bell.mp3")))
    {

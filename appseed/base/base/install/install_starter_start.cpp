@@ -106,7 +106,7 @@ namespace install
 
       /*string strPlatform = spa_get_platform();
 
-      string strSentinelPath = dir::path(dir::beforeca2(), ("core\\stage\\" + strPlatform + "\\app-sentinel.exe"));
+      string strSentinelPath = dir::path(dir::beforeca2(), ("core\\stage\\" + strPlatform + "\\app.sentinel.exe"));
 
       call_sync(strSentinelPath, "");*/
 

@@ -11,11 +11,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="akrip.def">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="aspilib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -69,5 +64,10 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="storage_akrip.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

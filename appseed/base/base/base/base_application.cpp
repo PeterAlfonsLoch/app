@@ -5038,7 +5038,7 @@ bool base_application::update_appmatter(::sockets::socket_handler & h, ::sockets
       catch (...)
       {
 
-         // spa app-install.exe would recover by retrying or someone would fix the resource packaging problem and then zip extraction at least should work.
+         // spa app.install.exe would recover by retrying or someone would fix the resource packaging problem and then zip extraction at least should work.
 
          return false;
 

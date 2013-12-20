@@ -8,10 +8,14 @@ namespace comparison
    class CLASS_DECL_BASE var_strict
    {
    public:
+
+
+      const var * m_pvar;
+
+
       var_strict(const var & var);
       var_strict(const ::comparison::var_strict & compare);
 
-      const var & m_var;
 
       bool operator == (const var & var) const;
       bool operator == (const char * psz) const;
@@ -38,6 +42,9 @@ namespace comparison
       friend bool CLASS_DECL_BASE operator != (double d, const ::comparison::var_strict & var);
       friend bool CLASS_DECL_BASE operator != (int32_t i, const ::comparison::var_strict & var);
       friend bool CLASS_DECL_BASE operator != (bool b, const ::comparison::var_strict & var);
+
+      var_strict & operator = (const var_strict & var);
+
 
    };
 

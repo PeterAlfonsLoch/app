@@ -1,7 +1,7 @@
-; akrip.def : Declares the module parameters for the DLL.
+; storage_akrip.def : Declares the module parameters for the DLL.
 
-LIBRARY      "akrip"
-; DESCRIPTION  'akrip Windows Dynamic Link Library'
+LIBRARY      "storage_akrip"
+; DESCRIPTION  'storage_akrip Windows Dynamic Link Library'
 
 EXPORTS
 GetNumAdapters

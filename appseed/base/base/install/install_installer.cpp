@@ -223,7 +223,7 @@ namespace install
 
       m_bProgressModeAppInstall = true;
 
-      System.install().app_install_get_extern_executable_path(this); // defer install install extern app-install.exe executable
+      System.install().app_install_get_extern_executable_path(this); // defer install install extern app.install.exe executable
 
       m_bProgressModeAppInstall = false;
 
@@ -615,12 +615,12 @@ RetryHost:
                bAsk = true;
                bRestart = true;
                string strPath = m_straTerminateProcesses.element_at(i);
-               if(str_ends_ci_dup(strPath, "\\app-install.exe") && stristr_dup(strPath, "\\core\\") != NULL)
+               if(str_ends_ci_dup(strPath, "\\app.install.exe") && stristr_dup(strPath, "\\core\\") != NULL)
                {
                   bAsk = false;
                   bRestart = false;
                }
-               else if(str_ends_ci_dup(strPath, ".exe")  && stristr_dup(strPath, "\\app-install.exe") != NULL)
+               else if(str_ends_ci_dup(strPath, ".exe")  && stristr_dup(strPath, "\\app.install.exe") != NULL)
                {
                   bAsk = false;
                   bRestart = false;
@@ -765,7 +765,7 @@ RetryHost:
                System.install().trace().trace_add(".");
             }
          }
-         System.install().trace().rich_trace("***executing app-install.exe.");
+         System.install().trace().rich_trace("***executing app.install.exe.");
 
          if(m_NeedRestartBecauseOfReservedFile
             || m_NeedRestartFatalError)
@@ -2487,7 +2487,7 @@ RetryHost:
       }
       //set_progress(0.5);
       //      uint32_t dwStartError;
-      System.install().trace().rich_trace("starting app-install.exe...");
+      System.install().trace().rich_trace("starting app.install.exe...");
 
 
       string strCommandLine = m_strCommandLine;
@@ -3550,7 +3550,7 @@ RetryHost:
 #elif defined(ANDROID)
       char * psz = NULL;
 #else
-      char * psz = br_find_exe("app-install");
+      char * psz = br_find_exe("app.install");
       string str(psz);
 #endif
 

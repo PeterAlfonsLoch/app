@@ -240,9 +240,9 @@ uint_ptr lite_html_reader::ReadFile(HANDLE hFile)
    ASSERT(hFile != INVALID_HANDLE_VALUE);
    ASSERT(::GetFileType(hFile) == FILE_TYPE_DISK);
 
-   HANDLE   hFileMap;
-   const char *   lpsz;
-   uint_ptr   nRetVal;
+   HANDLE   hFileMap = NULL;
+   const char *   lpsz = NULL;
+   uint_ptr   nRetVal = -1;
 
    // determine file size
    strsize dwBufLen = ::GetFileSize(hFile, NULL);

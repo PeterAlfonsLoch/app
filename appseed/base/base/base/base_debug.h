@@ -910,7 +910,13 @@ should not have done so since it was not documented.
 CLASS_DECL_BASE int32_t FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, int32_t iFlags);
 inline int32_t FUNCTION_XXDEBUGBOX(const char * pszMessage, const char * pszTitle, int32_t iFlags)
 {
+
+   UNREFERENCED_PARAMETER(pszMessage);
+   UNREFERENCED_PARAMETER(pszTitle);
+   UNREFERENCED_PARAMETER(iFlags);
+
    return 0;
+
 }
 
 #define debug_box FUNCTION_DEBUGBOX

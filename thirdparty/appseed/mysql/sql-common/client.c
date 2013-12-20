@@ -401,7 +401,7 @@ static HANDLE create_shared_memory(MYSQL *mysql, NET *net,
   ulong connect_number;
   char connect_number_char[22], *p;
   char *tmp= NULL;
-  char *suffix_pos;
+  char *suffix_pos = NULL;
   DWORD error_allow = 0;
   DWORD error_code = 0;
   DWORD event_access_rights= SYNCHRONIZE | EVENT_MODIFY_STATE;
