@@ -35,7 +35,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{001D20F8-BB84-4ED2-8024-FD8F46CAFD65}</ProjectGuid>
+    <ProjectGuid>{52ED20F8-BB84-4ED2-8024-FD8F46CAFD65}</ProjectGuid>
     <RootNamespace>akrip</RootNamespace>
     <ProjectName>storage_akrip</ProjectName>
   </PropertyGroup>
