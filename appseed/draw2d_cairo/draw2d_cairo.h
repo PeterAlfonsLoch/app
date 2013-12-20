@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "app/appseed/core/core.h"
+#include "app/appseed/core/core.h" // System.ftlibrary()
 
 
 #include "ft2build.h"
