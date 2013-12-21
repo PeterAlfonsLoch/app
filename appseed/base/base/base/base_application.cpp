@@ -2897,113 +2897,50 @@ int32_t base_application::run()
 }
 
 
-
-
-sp(::base_application) base_application::assert_running(const char * pszAppId)
+bool base_application::safe_is_running()
 {
 
-
-   sp(::base_application) papp = NULL;
-
+   bool bRunning = false;
 
    try
    {
 
-      bool bFound = false;
-
-      for (int32_t i = 0; i < System.m_appptra.get_count(); i++)
-      {
-         try
-         {
-
-            papp = System.m_appptra(i);
-
-            if (papp->m_strAppName == pszAppId)
-            {
-               bFound = true;
-               break;
-            }
-
-         }
-         catch (...)
-         {
-         }
-
-      }
-
-      bool bCreate = !bFound;
-
-      if (bFound)
+      if (is_running())
       {
 
-         bool bRunning = false;
-
-         try
-         {
-            if (papp->is_running())
-            {
-               bRunning = true;
-            }
-         }
-         catch (...)
-         {
-         }
-
-         if (!bRunning)
-         {
-
-            try
-            {
-               papp->post_thread_message(WM_QUIT);
-            }
-            catch (...)
-            {
-            }
-            try
-            {
-               papp.release();
-            }
-            catch (...)
-            {
-            }
-
-            bCreate = true;
-
-         }
-
+         bRunning = true;
 
       }
-
-      if (bCreate)
-      {
-
-         sp(::create_context) spcreatecontext(allocer());
-
-         papp = Session.start_application("application", pszAppId, spcreatecontext);
-
-      }
-
-   }
-   catch (const ::exit_exception & e)
-   {
-
-      throw e;
-
-   }
-   catch (const ::exception::exception & e)
-   {
-
-      if (!Application.on_run_exception((::exception::exception &) e))
-         throw exit_exception(get_app());
 
    }
    catch (...)
    {
 
-      papp = NULL;
+      bRunning = false;
 
    }
 
+
+   return bRunning;
+
+}
+
+
+sp(::base_application) base_application::assert_running(const char * pszAppId)
+{
+
+   sp(::base_application) papp;
+
+   papp = System.m_appptra.find_running_defer_try_quit_damaged(pszAppId);
+
+   if (papp.is_null())
+   {
+
+      sp(::create_context) spcreatecontext(allocer());
+
+      papp = Session.start_application("application", pszAppId, spcreatecontext);
+
+   }
 
    return papp;
 
@@ -5212,4 +5149,79 @@ void base_application::message_queue_message_handler(signal_details * pobj)
          System.appa_load_string_table();
       }
    }
+}
+
+
+
+base_application * application_ptra::find_by_app_name(const string & strAppName)
+{
+
+   base_application * papp = NULL;
+
+   for (int32_t i = 0; i < get_count(); i++)
+   {
+      try
+      {
+
+         papp = element_at(i).m_p;
+
+         if (papp == NULL)
+            continue;
+
+         if (papp->m_strAppName == strAppName)
+         {
+            
+            return papp;
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
+   return NULL;
+
+
+}
+
+
+base_application * application_ptra::find_running_defer_try_quit_damaged(const string & strAppName)
+{
+
+   sp(base_application) papp = find_by_app_name(strAppName);
+
+   if (papp.is_null())
+      return NULL;
+
+   if (papp->safe_is_running())
+      return papp;
+
+   try
+   {
+
+      papp->post_thread_message(WM_QUIT);
+
+   }
+   catch (...)
+   {
+
+   }
+
+   try
+   {
+
+      papp.release();
+
+   }
+   catch (...)
+   {
+
+   }
+
+   return NULL;
+
 }

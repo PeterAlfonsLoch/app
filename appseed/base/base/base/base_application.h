@@ -533,6 +533,7 @@ public:
    virtual void message_queue_message_handler(signal_details * pobj);
 
 
+   bool safe_is_running();
 
 
 };
@@ -562,6 +563,9 @@ class CLASS_DECL_BASE application_ptra :
 public:
 
 
+   base_application * find_by_app_name(const string & strAppName);
+
+   base_application * find_running_defer_try_quit_damaged(const string & strAppName);
 
 };
 
