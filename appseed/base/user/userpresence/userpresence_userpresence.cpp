@@ -86,7 +86,7 @@ namespace userpresence
       if(Application.command()->m_varTopicQuery["app"] == "app-core/netnode_dynamic_web_server")
          return true;
 
-      if(Application.command()->m_varTopicQuery["app"] == "app-gtech/alarm")
+      if(Application.command()->m_varTopicQuery["app"] == "app-gtech/sensible_netnode")
          return true;
 	  
       if(Application.command()->m_varTopicQuery["app"] == "app-gtech/sensible_service")

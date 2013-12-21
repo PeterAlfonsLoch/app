@@ -87,7 +87,7 @@ namespace fontopus
          || command_thread()->property("app") == "app-core/netnodecfg"
          || command_thread()->property("app") == "app-core/netnode_dynamic_web_server"
          || command_thread()->property("app") == "app-core/netnode_dynamic_web_server_cfg"
-		   || command_thread()->property("app") == "app-gtech/alarm"
+		   || command_thread()->property("app") == "app-gtech/sensible_netnode"
          || command_thread()->property("app") == "app-gtech/sensible_service")
       {
          m_puser = Application.m_pfontopus->allocate_user();
@@ -275,7 +275,7 @@ namespace fontopus
          || strLicense == "app-core/netnodecfg"
          || strLicense == "app-core/netnode_dynamic_web_server"
          || strLicense == "app-core/netnode_dynamic_web_server_cfg"
-		   || strLicense == "app-gtech/alarm"
+		   || strLicense == "app-gtech/sensible_netnode"
          || strLicense == "app-gtech/sensible_service")
       {
          return true;
