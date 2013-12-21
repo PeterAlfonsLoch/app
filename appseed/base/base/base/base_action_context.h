@@ -44,8 +44,8 @@ namespace action
 
       };
 
-
-      sp(data) m_spdata;
+      spa(object)    m_spa;
+      sp(data)       m_spdata;
 
 
       context() { m_spdata = canew(data(source_none)); }

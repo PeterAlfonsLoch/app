@@ -204,9 +204,6 @@ CLASS_DECL_BASE base_application * get_thread_app();
 #include "base_smart_pointer2.h"
 
 
-#include "base_action_context.h"
-
-
 #include "base_keep_true.h"
 
 
@@ -273,6 +270,11 @@ namespace file
 #include "base/primitive/collection/collection_array_decl.h"
 #include "base/primitive/collection/collection_raw_array_decl.h"
 #include "base/primitive/collection/collection_lemon_array_decl.h"
+#include "base/primitive/collection/collection_smart_pointer_array.h"
+
+
+#include "base_action_context.h"
+
 
 
 #include "base_fixed_alloc.h"

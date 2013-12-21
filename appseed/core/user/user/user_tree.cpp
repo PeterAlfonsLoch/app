@@ -1038,6 +1038,8 @@ namespace user
    void tree::_001OnOpenItem(::data::tree_item * pitem, ::action::context actioncontext)
    {
 
+      actioncontext.add(this);
+
       pitem->m_ptree->_001OnOpenItem(pitem, actioncontext);
 
    }
