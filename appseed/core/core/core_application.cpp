@@ -3872,25 +3872,25 @@ bool application::initialize()
 
 
 
-<<<<<<< .mine
-      if(!System.m_spcopydesk->initialize())
-         return false;
-
-   }
-
-   if(is_system()
-      && command_thread()->m_varTopicQuery["app"] != "core_netnodelite"
-      && command_thread()->m_varTopicQuery["app"] != "app-core/netnode_dynamic_web_server"
-      && command_thread()->m_varTopicQuery["app"] != "app-gtech/sensible_netnode"
-      && command_thread()->m_varTopicQuery["app"] != "app-gtech/sensible_service")
-   {
-      System.http().defer_auto_initialize_proxy_configuration();
-   }
-
-
-
-=======
->>>>>>> .r7309
+//<<<<<<< .mine
+//      if(!System.m_spcopydesk->initialize())
+//         return false;
+//
+//   }
+//
+//   if(is_system()
+//      && command_thread()->m_varTopicQuery["app"] != "core_netnodelite"
+//      && command_thread()->m_varTopicQuery["app"] != "app-core/netnode_dynamic_web_server"
+//      && command_thread()->m_varTopicQuery["app"] != "app-gtech/sensible_netnode"
+//      && command_thread()->m_varTopicQuery["app"] != "app-gtech/sensible_service")
+//   {
+//      System.http().defer_auto_initialize_proxy_configuration();
+//   }
+//
+//
+//
+//=======
+//>>>>>>> .r7309
    m_dwAlive = ::get_tick_count();
 
    if (is_system())
