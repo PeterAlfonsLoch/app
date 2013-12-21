@@ -59,6 +59,22 @@ string defer_solve_relative_name(const char * pszRelative, const char * pszAbsol
       return defer_solve_relative_compresions(strRelative);
    if (str::begins_ci(strRelative, "ext://"))
       return defer_solve_relative_compresions(strRelative);
+   
+   index iFind = strRelative.find(":\\");
+
+   if (iFind >= 0)
+   {
+      index i = 0;
+      for (; i < iFind; i++)
+      {
+         if (!isalpha_dup(strRelative[i]) && !isdigit_dup(strRelative[i]))
+            break;
+      }
+
+      if (i == iFind)
+         return defer_solve_relative_compresions(strRelative);
+
+   }
 
    strAbsolute = ::url_dir_name_for_relative(strAbsolute);
 
