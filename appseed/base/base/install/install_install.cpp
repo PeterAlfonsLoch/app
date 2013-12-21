@@ -943,7 +943,7 @@ namespace install
 
 #else
 
-         pszVersion = "basis";
+         pszVersion = "stage";
 
 #endif
 
