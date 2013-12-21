@@ -27,10 +27,11 @@ namespace action
          
          
          e_source          m_esource;
+         spa(object)       m_spa;
 
 
          data(e_source esource) { m_esource = esource; }
-         data(const data & data) { m_esource = data.m_esource; }
+         data(const data & data) { m_esource = data.m_esource; m_spa.copy(data.m_spa); }
          virtual ~data() {};
 
          data & operator = (const data & data)
@@ -38,13 +39,13 @@ namespace action
             if (this != &data)
             {
                m_esource = data.m_esource;
+               m_spa.copy(data.m_spa);
             }
             return *this;
          }
 
       };
 
-      spa(object)    m_spa;
       sp(data)       m_spdata;
 
 
@@ -57,7 +58,11 @@ namespace action
       ~context() {}
 
 
-      
+      virtual void add(object * pobject);
+      virtual index find(object * pobject);
+      virtual bool contains(object * pobject);
+
+
       inline context & operator += (e_source esourceAdd) { m_spdata->m_esource = (e_source)(esourceAdd | m_spdata->m_esource); return *this; }
       inline context & operator -= (e_source esourceRemove)  { m_spdata->m_esource = (e_source)(m_spdata->m_esource & ~(int)(esourceRemove)); return *this; }
 

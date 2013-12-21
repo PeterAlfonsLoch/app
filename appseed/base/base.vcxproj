@@ -1869,6 +1869,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base\base\base.cpp" />
+    <ClCompile Include="base\base\base_action_context.cpp" />
     <ClCompile Include="base\base\base_allocate_mid_big.cpp" />
     <ClCompile Include="base\base\base_allocate_system_heap.cpp" />
     <ClCompile Include="base\base\base_application.cpp" />
