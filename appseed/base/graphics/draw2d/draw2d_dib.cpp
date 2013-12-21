@@ -2020,6 +2020,8 @@ namespace draw2d
    {
       if (iRadius == 0)
          return;
+
+      map();
       /*if(version == 0)
       {
 
@@ -2104,8 +2106,13 @@ namespace draw2d
       else if(version == 1)*/
       {
 
-         LPBYTE lpbAlloc = (LPBYTE) malloc((iRadius * iRadius) + 4);
-         LPBYTE lpb = ((LPBYTE) NULL) +  (*((uint_ptr *) &lpbAlloc[3]) & ~3);
+         primitive::memory mem;
+         
+         mem.allocate((iRadius * iRadius) + 4);
+         
+         LPBYTE lpbAlloc = mem.get_data();
+
+         LPBYTE lpb = lpbAlloc;
 
 
          int32_t x, y;
@@ -2171,7 +2178,6 @@ namespace draw2d
             dst += dwAdd;
          }
 
-         free(lpbAlloc);
       }
    }
 

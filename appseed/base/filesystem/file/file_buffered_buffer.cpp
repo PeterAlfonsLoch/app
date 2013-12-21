@@ -92,7 +92,7 @@ namespace file
       }
       else
       {
-         m_uiPosition = m_pfile->seek(lOff, nFrom);
+         m_uiPosition = m_pfile->seek(uiNewPos, ::file::seek_begin);
          if(m_bDirty)
             flush();
          m_uiBufLPos     = 0;
