@@ -1244,7 +1244,8 @@ cairo_type1_font_subset_write_private_dict (cairo_type1_font_subset_t *font,
 					    const char                *name)
 {
     cairo_status_t status;
-    const char *p, *subrs, *charstrings, *array_start, *array_end, *dict_start, *dict_end;
+    const char * array_start = NULL;
+    const char *p, *subrs, *charstrings, *array_end, *dict_start, *dict_end;
     const char *lenIV_start, *lenIV_end, *closefile_token;
     char buffer[32], *lenIV_str, *subr_count_end, *glyph_count_end;
     int ret, lenIV, length;

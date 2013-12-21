@@ -1321,10 +1321,10 @@ _cairo_pdf_surface_add_source_surface (cairo_pdf_surface_t	    *surface,
     cairo_pdf_source_surface_entry_t *surface_entry;
     cairo_status_t status;
     cairo_bool_t interpolate;
-    unsigned char *unique_id;
+    unsigned char *unique_id = NULL;
     unsigned long unique_id_length = 0;
-    cairo_image_surface_t *image;
-    void *image_extra;
+    cairo_image_surface_t *image = NULL;
+    void *image_extra = NULL;
 
     switch (filter) {
     default:
@@ -2334,7 +2334,7 @@ _cairo_pdf_surface_emit_image (cairo_pdf_surface_t     *surface,
 			       cairo_bool_t             stencil_mask)
 {
     cairo_status_t status = CAIRO_STATUS_SUCCESS;
-    char *data;
+    char *data = NULL;
     unsigned long data_size;
     uint32_t *pixel;
     int i, x, y, bit;
