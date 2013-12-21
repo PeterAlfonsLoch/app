@@ -117,8 +117,7 @@ namespace fontopus
       if (!::os::simple_ui::prepare_window(rectFontopus))
          return "";
 
-      if (!show_window())
-         return "";
+      set_window_pos(m_pt.x, m_pt.y, m_size.cx, m_size.cy, true);
 
       m_login.m_strRequestingServer = strRequestingServer;
 

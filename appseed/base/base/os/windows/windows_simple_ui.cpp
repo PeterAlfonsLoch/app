@@ -157,13 +157,13 @@ namespace os
       if (bShow)
       {
 
-         ShowWindow(m_window, SW_SHOW);
+         ::ShowWindow(m_window, SW_SHOW);
 
          UpdateWindow(m_window);
 
          ::SetWindowLong(m_window, GWL_STYLE, WS_VISIBLE);
 
-         return true;
+         ::BringWindowToTop(m_window);
 
       }
       else
@@ -171,9 +171,9 @@ namespace os
 
          ShowWindow(m_window, SW_HIDE);
 
-         return true;
-
       }
+
+      return ::simple_ui::interaction::show_window(bShow);
 
    }
 
@@ -380,77 +380,33 @@ namespace os
 
    void simple_ui::on_windows_gdi_draw_framebuffer()
    {
+
       if (m_dib->get_graphics() != NULL)
       {
-         RECT rectClient;
-         rectClient.left = 0;
-         rectClient.top = 0;
-         rectClient.right = m_size.cx;
-         rectClient.bottom = m_size.cy;
-         m_dib->get_graphics()->set_alpha_mode(draw2d::alpha_mode_set);
-         m_dib->get_graphics()->SetViewportOrg(0, 0);
-         m_dib->get_graphics()->FillSolidRect(&rectClient, ARGB(0, 0, 0, 0));
-         draw(m_dib->get_graphics());
-         RECT rect;
-         rect.left = m_pt.x;
-         rect.top = m_pt.y;
 
-         rect.right = m_pt.x + m_size.cx;
-         rect.bottom = m_pt.y + m_size.cy;
+         RECT rectClient;
+
+         rectClient.left      = 0;
+         rectClient.top       = 0;
+         rectClient.right     = m_size.cx;
+         rectClient.bottom    = m_size.cy;
+
+         m_dib->get_graphics()->set_alpha_mode(draw2d::alpha_mode_set);
+
+         m_dib->get_graphics()->SetViewportOrg(0, 0);
+
+         m_dib->get_graphics()->FillSolidRect(&rectClient, ARGB(0, 0, 0, 0));
+
+         draw(m_dib->get_graphics());
+
+         RECT rect;
+
+         rect.left            = m_pt.x;
+         rect.top             = m_pt.y;
+         rect.right           = m_pt.x + m_size.cx;
+         rect.bottom          = m_pt.y + m_size.cy;
 
          m_dib->map();
-
-         /*BYTE *dst = (BYTE*)m_dib->get_data();
-         int64_t size = m_size.cx * m_size.cy;
-
-
-         // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
-
-
-         while (size >= 8)
-         {
-            dst[0] = LOBYTE(((int32_t)dst[0] * (int32_t)dst[3]) >> 8);
-            dst[1] = LOBYTE(((int32_t)dst[1] * (int32_t)dst[3]) >> 8);
-            dst[2] = LOBYTE(((int32_t)dst[2] * (int32_t)dst[3]) >> 8);
-
-            dst[4 + 0] = LOBYTE(((int32_t)dst[4 + 0] * (int32_t)dst[4 + 3]) >> 8);
-            dst[4 + 1] = LOBYTE(((int32_t)dst[4 + 1] * (int32_t)dst[4 + 3]) >> 8);
-            dst[4 + 2] = LOBYTE(((int32_t)dst[4 + 2] * (int32_t)dst[4 + 3]) >> 8);
-
-            dst[8 + 0] = LOBYTE(((int32_t)dst[8 + 0] * (int32_t)dst[8 + 3]) >> 8);
-            dst[8 + 1] = LOBYTE(((int32_t)dst[8 + 1] * (int32_t)dst[8 + 3]) >> 8);
-            dst[8 + 2] = LOBYTE(((int32_t)dst[8 + 2] * (int32_t)dst[8 + 3]) >> 8);
-
-            dst[12 + 0] = LOBYTE(((int32_t)dst[12 + 0] * (int32_t)dst[12 + 3]) >> 8);
-            dst[12 + 1] = LOBYTE(((int32_t)dst[12 + 1] * (int32_t)dst[12 + 3]) >> 8);
-            dst[12 + 2] = LOBYTE(((int32_t)dst[12 + 2] * (int32_t)dst[12 + 3]) >> 8);
-
-            dst[16 + 0] = LOBYTE(((int32_t)dst[16 + 0] * (int32_t)dst[16 + 3]) >> 8);
-            dst[16 + 1] = LOBYTE(((int32_t)dst[16 + 1] * (int32_t)dst[16 + 3]) >> 8);
-            dst[16 + 2] = LOBYTE(((int32_t)dst[16 + 2] * (int32_t)dst[16 + 3]) >> 8);
-
-            dst[20 + 0] = LOBYTE(((int32_t)dst[20 + 0] * (int32_t)dst[20 + 3]) >> 8);
-            dst[20 + 1] = LOBYTE(((int32_t)dst[20 + 1] * (int32_t)dst[20 + 3]) >> 8);
-            dst[20 + 2] = LOBYTE(((int32_t)dst[20 + 2] * (int32_t)dst[20 + 3]) >> 8);
-
-            dst[24 + 0] = LOBYTE(((int32_t)dst[24 + 0] * (int32_t)dst[24 + 3]) >> 8);
-            dst[24 + 1] = LOBYTE(((int32_t)dst[24 + 1] * (int32_t)dst[24 + 3]) >> 8);
-            dst[24 + 2] = LOBYTE(((int32_t)dst[24 + 2] * (int32_t)dst[24 + 3]) >> 8);
-
-            dst[28 + 0] = LOBYTE(((int32_t)dst[28 + 0] * (int32_t)dst[28 + 3]) >> 8);
-            dst[28 + 1] = LOBYTE(((int32_t)dst[28 + 1] * (int32_t)dst[28 + 3]) >> 8);
-            dst[28 + 2] = LOBYTE(((int32_t)dst[28 + 2] * (int32_t)dst[28 + 3]) >> 8);
-
-            dst += 4 * 8;
-            size -= 8;
-         }
-         while (size--)
-         {
-            dst[0] = LOBYTE(((int32_t)dst[0] * (int32_t)dst[3]) >> 8);
-            dst[1] = LOBYTE(((int32_t)dst[1] * (int32_t)dst[3]) >> 8);
-            dst[2] = LOBYTE(((int32_t)dst[2] * (int32_t)dst[3]) >> 8);
-            dst += 4;
-         }*/
 
          m_gdi.update_window(m_window, (COLORREF *)m_dib->get_data(), &rect, m_dib->m_iScan);
 
@@ -538,7 +494,7 @@ namespace os
    bool simple_ui::set_window_pos(int32_t x, int32_t y, int32_t cx, int32_t cy, bool bShow)
    {
 
-      SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, 0, 0, SWP_NOZORDER);
+      SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, cx, cy, SWP_NOZORDER);
 
       if (bShow)
       {
