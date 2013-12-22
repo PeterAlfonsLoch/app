@@ -11,10 +11,6 @@
 #include "windows_utils.h"
 
 
-#define GetAValue(rgb)      (LOBYTE((rgb)>>24))
-
-
-
 CLASS_DECL_BASE int_bool os_initialize();
 CLASS_DECL_BASE int_bool os_finalize();
 

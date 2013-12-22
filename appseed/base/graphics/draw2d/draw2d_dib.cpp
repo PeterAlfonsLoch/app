@@ -375,7 +375,7 @@ namespace draw2d
          for(int x = 0; x < xEnd; x++)
          {
 
-            if(GetAValue(*psrc2) == 0)
+            if(argb_get_a_value(*psrc2) == 0)
             {
                i++;
             }
@@ -3305,10 +3305,10 @@ namespace draw2d
                for(int32_t j = 0; j < iSize; j++)
                {
                   COLORREF cr = pdata[x1 + i + (y1 + j) * w];
-                  a += GetAValue(cr);
-                  r += GetRValue(cr);
-                  g += GetGValue(cr);
-                  b += GetBValue(cr);
+                  a += argb_get_a_value(cr);
+                  r += argb_get_r_value(cr);
+                  g += argb_get_g_value(cr);
+                  b += argb_get_b_value(cr);
                   iDiv++;
                   if(iDiv >= 64)
                   {
@@ -3369,10 +3369,10 @@ namespace draw2d
                for(int32_t j = 0; j < iSize; j++)
                {
                   COLORREF cr = pdata[x1 + i + (y1 + j) * w];
-                  a += GetAValue(cr);
-                  r += GetRValue(cr);
-                  g += GetGValue(cr);
-                  b += GetBValue(cr);
+                  a += argb_get_a_value(cr);
+                  r += argb_get_r_value(cr);
+                  g += argb_get_g_value(cr);
+                  b += argb_get_b_value(cr);
                   iDiv++;
                   if(iDiv >= 64)
                   {
@@ -3432,10 +3432,10 @@ namespace draw2d
                for(int32_t j = 0; j < jMax; j++)
                {
                   COLORREF cr = pdata[x1 + i + (y1 + j) * w];
-                  a += GetAValue(cr);
-                  r += GetRValue(cr);
-                  g += GetGValue(cr);
-                  b += GetBValue(cr);
+                  a += argb_get_a_value(cr);
+                  r += argb_get_r_value(cr);
+                  g += argb_get_g_value(cr);
+                  b += argb_get_b_value(cr);
                   iDiv++;
                   if(iDiv >= 64)
                   {
@@ -3496,10 +3496,10 @@ namespace draw2d
             for(int32_t j = 0; j < jMax; j++)
             {
                COLORREF cr = pdata[x1 + i + (y1 + j) * w];
-               a += GetAValue(cr);
-               r += GetRValue(cr);
-               g += GetGValue(cr);
-               b += GetBValue(cr);
+               a += argb_get_a_value(cr);
+               r += argb_get_r_value(cr);
+               g += argb_get_g_value(cr);
+               b += argb_get_b_value(cr);
                iDiv++;
                if(iDiv >= 64)
                {
@@ -3593,10 +3593,10 @@ namespace draw2d
       if(dx == 0.0 && dy == 0.0)
       {
          Fill(
-            byte_clip(GetAValue(clr1) * 0.5 + GetAValue(clr2) * 0.5),
-            byte_clip(GetRValue(clr1) * 0.5 + GetRValue(clr2) * 0.5),
-            byte_clip(GetGValue(clr1) * 0.5 + GetGValue(clr2) * 0.5),
-            byte_clip(GetBValue(clr1) * 0.5 + GetBValue(clr2) * 0.5));
+            byte_clip(argb_get_a_value(clr1) * 0.5 + argb_get_a_value(clr2) * 0.5),
+            byte_clip(argb_get_r_value(clr1) * 0.5 + argb_get_r_value(clr2) * 0.5),
+            byte_clip(argb_get_g_value(clr1) * 0.5 + argb_get_g_value(clr2) * 0.5),
+            byte_clip(argb_get_b_value(clr1) * 0.5 + argb_get_b_value(clr2) * 0.5));
       }
       else if(dx == 0.0)
       {
@@ -3695,10 +3695,10 @@ namespace draw2d
          d = ((double) (line - start)) / ((double) (end - start));
 
          clr = ARGB(
-                  byte_clip(GetAValue(clr1) * (1.0 - d) + GetAValue(clr2) * d),
-                  byte_clip(GetRValue(clr1) * (1.0 - d) + GetRValue(clr2) * d),
-                  byte_clip(GetGValue(clr1) * (1.0 - d) + GetGValue(clr2) * d),
-                  byte_clip(GetBValue(clr1) * (1.0 - d) + GetBValue(clr2) * d));
+                  byte_clip(argb_get_a_value(clr1) * (1.0 - d) + argb_get_a_value(clr2) * d),
+                  byte_clip(argb_get_r_value(clr1) * (1.0 - d) + argb_get_r_value(clr2) * d),
+                  byte_clip(argb_get_g_value(clr1) * (1.0 - d) + argb_get_g_value(clr2) * d),
+                  byte_clip(argb_get_b_value(clr1) * (1.0 - d) + argb_get_b_value(clr2) * d));
 
          pdata = (COLORREF *) &pb[m_iScan * line];
          for(int row = 0; row < m_size.cx; row++)
@@ -3749,10 +3749,10 @@ namespace draw2d
          d = ((double) (row - start)) / ((double) (end - start));
 
          clr = ARGB(
-                  byte_clip(GetAValue(clr1) * (1.0 - d) + GetAValue(clr2) * d),
-                  byte_clip(GetRValue(clr1) * (1.0 - d) + GetRValue(clr2) * d),
-                  byte_clip(GetGValue(clr1) * (1.0 - d) + GetGValue(clr2) * d),
-                  byte_clip(GetBValue(clr1) * (1.0 - d) + GetBValue(clr2) * d));
+                  byte_clip(argb_get_a_value(clr1) * (1.0 - d) + argb_get_a_value(clr2) * d),
+                  byte_clip(argb_get_r_value(clr1) * (1.0 - d) + argb_get_r_value(clr2) * d),
+                  byte_clip(argb_get_g_value(clr1) * (1.0 - d) + argb_get_g_value(clr2) * d),
+                  byte_clip(argb_get_b_value(clr1) * (1.0 - d) + argb_get_b_value(clr2) * d));
 
          pdata = (COLORREF *) &pb[sizeof(COLORREF) * row];
          for(int line = 0; line < m_size.cx; line++)

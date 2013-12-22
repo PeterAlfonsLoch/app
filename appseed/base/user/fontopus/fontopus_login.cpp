@@ -696,10 +696,10 @@ namespace fontopus
 #endif
 
       crBk = ARGB(
-         (GetAValue(crOut) + GetAValue(crIn)) / 2,
-         (GetRValue(crOut) + GetRValue(crIn)) / 2,
-         (GetGValue(crOut) + GetGValue(crIn)) / 2,
-         (GetBValue(crOut) + GetBValue(crIn)) / 2);
+         (argb_get_a_value(crOut) + argb_get_a_value(crIn)) / 2,
+         (argb_get_r_value(crOut) + argb_get_r_value(crIn)) / 2,
+         (argb_get_g_value(crOut) + argb_get_g_value(crIn)) / 2,
+         (argb_get_b_value(crOut) + argb_get_b_value(crIn)) / 2);
 
       double r = m_dRate;
 

@@ -11,8 +11,6 @@
 #include "windows_file_watcher.h"
 
 
-#define GetAValue(rgb)      (LOBYTE((rgb)>>24))
-
 
 
 #define MESSAGE MSG

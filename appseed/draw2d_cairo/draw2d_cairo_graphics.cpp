@@ -5622,7 +5622,7 @@ return true;
 
       synch_lock ml(&user_mutex());
 
-//      ::Gdiplus::Pen pen(::Gdiplus::Color(GetAValue(m_crColor), GetRValue(m_crColor), GetGValue(m_crColor), GetBValue(m_crColor)), m_dPenWidth);
+//      ::Gdiplus::Pen pen(::Gdiplus::Color(argb_get_a_value(m_crColor), argb_get_r_value(m_crColor), argb_get_g_value(m_crColor), argb_get_b_value(m_crColor)), m_dPenWidth);
 
       //gdiplus_pen()->SetAlignment(Gdiplus::PenAlignment::PenAlignmentCenter);
 
@@ -5886,9 +5886,9 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
          cairo_pattern_t * ppattern = cairo_pattern_create_linear(pbrush->m_pt1.x, pbrush->m_pt1.y, pbrush->m_pt2.x, pbrush->m_pt2.y);
 
-         cairo_pattern_add_color_stop_rgba(ppattern, 0., GetRValue(pbrush->m_cr1) / 255.0, GetGValue(pbrush->m_cr1) / 255.0, GetBValue(pbrush->m_cr1) / 255.0, GetAValue(pbrush->m_cr1) / 255.0);
+         cairo_pattern_add_color_stop_rgba(ppattern, 0., argb_get_r_value(pbrush->m_cr1) / 255.0, argb_get_g_value(pbrush->m_cr1) / 255.0, argb_get_b_value(pbrush->m_cr1) / 255.0, argb_get_a_value(pbrush->m_cr1) / 255.0);
 
-         cairo_pattern_add_color_stop_rgba(ppattern, 1., GetRValue(pbrush->m_cr2) / 255.0, GetGValue(pbrush->m_cr2) / 255.0, GetBValue(pbrush->m_cr2) / 255.0, GetAValue(pbrush->m_cr2) / 255.0);
+         cairo_pattern_add_color_stop_rgba(ppattern, 1., argb_get_r_value(pbrush->m_cr2) / 255.0, argb_get_g_value(pbrush->m_cr2) / 255.0, argb_get_b_value(pbrush->m_cr2) / 255.0, argb_get_a_value(pbrush->m_cr2) / 255.0);
 
          cairo_set_source(m_pdc, ppattern);
 
@@ -5898,7 +5898,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
       else
       {
 
-         cairo_set_source_rgba(m_pdc, GetRValue(pbrush->m_cr) / 255.0, GetGValue(pbrush->m_cr) / 255.0, GetBValue(pbrush->m_cr) / 255.0, GetAValue(pbrush->m_cr) / 255.0);
+         cairo_set_source_rgba(m_pdc, argb_get_r_value(pbrush->m_cr) / 255.0, argb_get_g_value(pbrush->m_cr) / 255.0, argb_get_b_value(pbrush->m_cr) / 255.0, argb_get_a_value(pbrush->m_cr) / 255.0);
 
       }
 
@@ -5910,7 +5910,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
    bool graphics::set(const ::draw2d::pen * ppen)
    {
 
-      cairo_set_source_rgba(m_pdc, GetRValue(ppen->m_cr) / 255.0, GetGValue(ppen->m_cr) / 255.0, GetBValue(ppen->m_cr) / 255.0, GetAValue(ppen->m_cr) / 255.0);
+      cairo_set_source_rgba(m_pdc, argb_get_r_value(ppen->m_cr) / 255.0, argb_get_g_value(ppen->m_cr) / 255.0, argb_get_b_value(ppen->m_cr) / 255.0, argb_get_a_value(ppen->m_cr) / 255.0);
 
       cairo_set_line_width(m_pdc, ppen->m_dWidth - 0.5);
 
@@ -6256,7 +6256,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
     bool graphics::set_os_color(COLORREF cr)
     {
 
-       cairo_set_source_rgba(m_pdc, GetRValue(cr) / 255.0, GetGValue(cr) / 255.0, GetBValue(cr) / 255.0, GetAValue(cr) / 255.0);
+       cairo_set_source_rgba(m_pdc, argb_get_r_value(cr) / 255.0, argb_get_g_value(cr) / 255.0, argb_get_b_value(cr) / 255.0, argb_get_a_value(cr) / 255.0);
 
       return true;
 

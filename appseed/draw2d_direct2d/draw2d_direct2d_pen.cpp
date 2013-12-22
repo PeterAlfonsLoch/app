@@ -419,10 +419,10 @@ namespace draw2d_direct2d
 
       D2D1_COLOR_F ca;
 
-      ca.a = GetAValue(cr) / 255.0f;
-      ca.r = GetRValue(cr) / 255.0f;
-      ca.g = GetGValue(cr) / 255.0f;
-      ca.b = GetBValue(cr) / 255.0f;
+      ca.a = argb_get_a_value(cr) / 255.0f;
+      ca.r = argb_get_r_value(cr) / 255.0f;
+      ca.g = argb_get_g_value(cr) / 255.0f;
+      ca.b = argb_get_b_value(cr) / 255.0f;
 
       //METROWIN_DC(pgraphics)->m_pdc->CreateSolidColorBrush(ca, &m_psolidbrush);
 
@@ -455,10 +455,10 @@ namespace draw2d_direct2d
 
          D2D1_COLOR_F ca;
 
-         ca.a = GetAValue(m_cr) / 255.0f;
-         ca.r = GetRValue(m_cr) / 255.0f;
-         ca.g = GetGValue(m_cr) / 255.0f;
-         ca.b = GetBValue(m_cr) / 255.0f;
+         ca.a = argb_get_a_value(m_cr) / 255.0f;
+         ca.r = argb_get_r_value(m_cr) / 255.0f;
+         ca.g = argb_get_g_value(m_cr) / 255.0f;
+         ca.b = argb_get_b_value(m_cr) / 255.0f;
 
          CreatePatternBrush((ID2D1DeviceContext *) pgraphics->get_os_data(), &ca, &((pen *) this)->m_pimagebrush);
 

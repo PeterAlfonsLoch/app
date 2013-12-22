@@ -24,7 +24,7 @@ namespace draw2d_direct2d
    //      delete m_pbrush;
    //   }
 
-   //   m_pbrush = new Gdiplus::SolidBrush(Gdiplus::Color(GetAValue(crColor), GetRValue(crColor), GetGValue(crColor), GetBValue(crColor)));
+   //   m_pbrush = new Gdiplus::SolidBrush(Gdiplus::Color(argb_get_a_value(crColor), argb_get_r_value(crColor), argb_get_g_value(crColor), argb_get_b_value(crColor)));
 
    //   return m_pbrush != NULL;
    //      
@@ -133,10 +133,10 @@ namespace draw2d_direct2d
 
             D2D1_COLOR_F ca;
 
-            ca.a = GetAValue(m_cr) / 255.0f;
-            ca.r = GetRValue(m_cr) / 255.0f;
-            ca.g = GetGValue(m_cr) / 255.0f;
-            ca.b = GetBValue(m_cr) / 255.0f;
+            ca.a = argb_get_a_value(m_cr) / 255.0f;
+            ca.r = argb_get_r_value(m_cr) / 255.0f;
+            ca.g = argb_get_g_value(m_cr) / 255.0f;
+            ca.b = argb_get_b_value(m_cr) / 255.0f;
 
             pgraphics->m_prendertarget->CreateSolidColorBrush(ca, &((brush *) this)->m_psolidbrush);
 
@@ -177,15 +177,15 @@ namespace draw2d_direct2d
 
             D2D1_GRADIENT_STOP gradientstops[2];
 
-            gradientstops[0].color.a = GetAValue(m_cr1) / 255.0f;
-            gradientstops[0].color.r = GetRValue(m_cr1) / 255.0f;
-            gradientstops[0].color.g = GetGValue(m_cr1) / 255.0f;
-            gradientstops[0].color.b = GetBValue(m_cr1) / 255.0f;
+            gradientstops[0].color.a = argb_get_a_value(m_cr1) / 255.0f;
+            gradientstops[0].color.r = argb_get_r_value(m_cr1) / 255.0f;
+            gradientstops[0].color.g = argb_get_g_value(m_cr1) / 255.0f;
+            gradientstops[0].color.b = argb_get_b_value(m_cr1) / 255.0f;
             gradientstops[0].position = 0.0f;
-            gradientstops[1].color.a = GetAValue(m_cr2) / 255.0f;
-            gradientstops[1].color.r = GetRValue(m_cr2) / 255.0f;
-            gradientstops[1].color.g = GetGValue(m_cr2) / 255.0f;
-            gradientstops[1].color.b = GetBValue(m_cr2) / 255.0f;
+            gradientstops[1].color.a = argb_get_a_value(m_cr2) / 255.0f;
+            gradientstops[1].color.r = argb_get_r_value(m_cr2) / 255.0f;
+            gradientstops[1].color.g = argb_get_g_value(m_cr2) / 255.0f;
+            gradientstops[1].color.b = argb_get_b_value(m_cr2) / 255.0f;
             gradientstops[1].position = 1.0f;
 
             // Create the ID2D1GradientStopCollection from a previously

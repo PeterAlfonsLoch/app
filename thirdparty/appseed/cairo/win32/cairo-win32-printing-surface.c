@@ -1600,9 +1600,9 @@ _cairo_win32_printing_surface_show_glyphs (void                 *abstract_surfac
 
 	color = _cairo_win32_printing_surface_flatten_transparency (surface,
 								    &solid->color);
-	opaque = cairo_pattern_create_rgb (GetRValue (color) / 255.0,
-					   GetGValue (color) / 255.0,
-					   GetBValue (color) / 255.0);
+	opaque = cairo_pattern_create_rgb (argb_get_r_value (color) / 255.0,
+					   argb_get_g_value (color) / 255.0,
+					   argb_get_b_value (color) / 255.0);
 	if (opaque->status)
 	    return opaque->status;
 	source = opaque;

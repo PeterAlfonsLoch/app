@@ -2768,7 +2768,7 @@ bool imaging::clip_color_blend(
 bool imaging::clip_color_blend(::draw2d::graphics * pdc, point pt, size size, COLORREF cr, BYTE bA)
 {
 
-   pdc->FillSolidRect(0, 0, size.cx, size.cy, ARGB(bA, GetRValue(cr), GetGValue(cr), GetBValue(cr)));
+   pdc->FillSolidRect(0, 0, size.cx, size.cy, ARGB(bA, argb_get_r_value(cr), argb_get_g_value(cr), argb_get_b_value(cr)));
 
    return true;
 
@@ -7085,7 +7085,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pdc, int32_t left, int32_t top, c
       pdc->TextOut(left, top, str);
       return;
    }
-   brushText->create_solid(ARGB((BYTE) (255 * dBlend), GetRValue(cr), GetGValue(cr), GetBValue(cr)));
+   brushText->create_solid(ARGB((BYTE) (255 * dBlend), argb_get_r_value(cr), argb_get_g_value(cr), argb_get_b_value(cr)));
    pdc->SelectObject(brushText);
    pdc->TextOut(left, top, str);
 }
