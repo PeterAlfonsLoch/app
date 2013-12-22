@@ -439,17 +439,17 @@ unsigned out;
 #ifdef GUNZIP
 #  define CRC2(check, word) \
     do { \
-        hbuf[0] = (unsigned char)(word); \
-        hbuf[1] = (unsigned char)((word) >> 8); \
+        hbuf[0] = (unsigned char)low_byte(word); \
+        hbuf[1] = (unsigned char)low_byte((word) >> 8); \
         check = crc32(check, hbuf, 2); \
     } while (0)
 
 #  define CRC4(check, word) \
     do { \
-        hbuf[0] = (unsigned char)(word); \
-        hbuf[1] = (unsigned char)((word) >> 8); \
-        hbuf[2] = (unsigned char)((word) >> 16); \
-        hbuf[3] = (unsigned char)((word) >> 24); \
+    hbuf[0] = (unsigned char)low_byte(word); \
+    hbuf[1] = (unsigned char)low_byte((word) >> 8); \
+    hbuf[2] = (unsigned char)low_byte((word) >> 16); \
+    hbuf[3] = (unsigned char)low_byte((word) >> 24); \
         check = crc32(check, hbuf, 4); \
     } while (0)
 #endif

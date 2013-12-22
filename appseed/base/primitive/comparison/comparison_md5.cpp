@@ -337,33 +337,33 @@ namespace md5
 	   memset_dup(&m_ctx.buffer[used], 0, free - 8);
 
 	   m_ctx.lo <<= 3;
-	   m_ctx.buffer[56] = (uchar) (m_ctx.lo);
-	   m_ctx.buffer[57] = (uchar) (m_ctx.lo >> 8);
-	   m_ctx.buffer[58] = (uchar) (m_ctx.lo >> 16);
-	   m_ctx.buffer[59] = (uchar) (m_ctx.lo >> 24);
-	   m_ctx.buffer[60] = (uchar) (m_ctx.hi);
-	   m_ctx.buffer[61] = (uchar) (m_ctx.hi >> 8);
-	   m_ctx.buffer[62] = (uchar) (m_ctx.hi >> 16);
-	   m_ctx.buffer[63] = (uchar) (m_ctx.hi >> 24);
+	   m_ctx.buffer[56] = (uchar) low_byte(m_ctx.lo);
+      m_ctx.buffer[57] = (uchar) low_byte(m_ctx.lo >> 8);
+      m_ctx.buffer[58] = (uchar) low_byte(m_ctx.lo >> 16);
+      m_ctx.buffer[59] = (uchar) low_byte(m_ctx.lo >> 24);
+      m_ctx.buffer[60] = (uchar) low_byte(m_ctx.hi);
+      m_ctx.buffer[61] = (uchar) low_byte(m_ctx.hi >> 8);
+      m_ctx.buffer[62] = (uchar) low_byte(m_ctx.hi >> 16);
+      m_ctx.buffer[63] = (uchar) low_byte(m_ctx.hi >> 24);
 
 	   body(m_ctx.buffer, 64);
 
-	   result[0] = m_ctx.a;
-	   result[1] = m_ctx.a >> 8;
-	   result[2] = m_ctx.a >> 16;
-	   result[3] = m_ctx.a >> 24;
-	   result[4] = m_ctx.b;
-	   result[5] = m_ctx.b >> 8;
-	   result[6] = m_ctx.b >> 16;
-	   result[7] = m_ctx.b >> 24;
-	   result[8] = m_ctx.c;
-	   result[9] = m_ctx.c >> 8;
-	   result[10] = m_ctx.c >> 16;
-	   result[11] = m_ctx.c >> 24;
-	   result[12] = m_ctx.d;
-	   result[13] = m_ctx.d >> 8;
-	   result[14] = m_ctx.d >> 16;
-	   result[15] = m_ctx.d >> 24;
+	   result[0] = low_byte(m_ctx.a);
+	   result[1] = low_byte(m_ctx.a >> 8);
+	   result[2] = low_byte(m_ctx.a >> 16);
+      result[3] = low_byte(m_ctx.a >> 24);
+      result[4] = low_byte(m_ctx.b);
+      result[5] = low_byte(m_ctx.b >> 8);
+      result[6] = low_byte(m_ctx.b >> 16);
+      result[7] = low_byte(m_ctx.b >> 24);
+      result[8] = low_byte(m_ctx.c);
+      result[9] = low_byte(m_ctx.c >> 8);
+      result[10] = low_byte(m_ctx.c >> 16);
+      result[11] = low_byte(m_ctx.c >> 24);
+      result[12] = low_byte(m_ctx.d);
+      result[13] = low_byte(m_ctx.d >> 8);
+      result[14] = low_byte(m_ctx.d >> 16);
+      result[15] = low_byte(m_ctx.d >> 24);
 
 	   memset_dup(&m_ctx, 0, sizeof(m_ctx));
    }

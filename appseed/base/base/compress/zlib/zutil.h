@@ -21,6 +21,10 @@
 
 #include "zlib.h"
 
+#ifndef low_byte
+#define low_byte(w)              ((unsigned char)(w & 0xff))
+#endif
+
 #if defined(STDC) && !defined(Z_SOLO)
 #  if !(defined(_WIN32_WCE) && defined(_MSC_VER))
 #    include <stddef.h>
