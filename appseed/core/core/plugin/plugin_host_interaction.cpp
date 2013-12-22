@@ -12,11 +12,17 @@
 namespace plugin
 {
 
+
    host_interaction::host_interaction(sp(base_application) papp) :
       element(papp)
    {
+
       m_pframe = NULL;
+
+      m_dataidWindow = "plugin::host_interaction";
+
    }
+
 
    host_interaction::~host_interaction()
    {

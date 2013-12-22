@@ -20,6 +20,11 @@ namespace database
       friend class server;
 
 
+      server *  m_pdataserver;
+      id        m_dataid;
+
+
+
       client();
       virtual ~client();
 
@@ -76,9 +81,10 @@ namespace database
 
       virtual string calc_key(::database::id & idSection, ::database::id & id, ::database::id & idIndex);
 
+      virtual id get_data_id();
+      virtual id calc_data_id();
+      virtual bool update_data_id();
 
-      server *  m_pdataserver;
-      id        m_dataid;
 
 
    };

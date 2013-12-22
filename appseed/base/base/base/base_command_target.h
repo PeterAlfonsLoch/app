@@ -232,8 +232,6 @@ public:
    bool                    m_bContinueRouting;
    bool                    m_bEnableIfHasCommandHandler;
 
-
-
    ::user::menu* m_pParentMenu;   // NULL if parent menu not easily determined
    //  (probably a secondary popup menu)
 
@@ -269,15 +267,25 @@ inline void cmd_ui::ContinueRouting()
 class CTestCmdUI : public cmd_ui
 {
 public:
+
+
+   bool                    m_bEnabled;
+   check::e_check          m_echeck;
+   string                  m_strText;
+   bool                    m_bRadio;
+   bool                    m_bRadioChanged;
+
+
    CTestCmdUI(sp(base_application) papp);
 
-public: // re-implementations only
-   virtual void Enable(bool bOn, ::action::context actioncontext = ::action::source_system);
-   virtual void SetCheck(int32_t nCheck, ::action::context actioncontext = ::action::source_system);
-   virtual void SetRadio(bool bOn, ::action::context actioncontext = ::action::source_system);
-   virtual void SetText(const char *, ::action::context actioncontext = ::action::source_system);
 
-   bool m_bEnabled;
+   virtual void Enable(bool bOn, ::action::context actioncontext = ::action::source_system);
+   virtual void _001SetCheck(bool bCheck, ::action::context = ::action::source_system);   // 0, 1 or 2 (indeterminate)
+   virtual void _001SetCheck(check::e_check echeck, ::action::context = ::action::source_system);   // 0, 1 or 2 (indeterminate)
+   virtual void SetRadio(bool bOn = TRUE, ::action::context actioncontext = ::action::source_system);
+   virtual void SetText(const char * lpszText, ::action::context actioncontext = ::action::source_system);
+
+
 };
 
 

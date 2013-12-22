@@ -48,6 +48,9 @@ namespace database
          
          virtual bool on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult);
 
+         virtual id calc_data_id();
+
+         virtual void on_set_parent(sp(::user::interaction) pguieParent);
 
       };
 

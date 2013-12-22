@@ -49,16 +49,11 @@ namespace database
          if(m_dataidWindow.is_null())
          {
 
-            m_dataidWindow = "window";
+            m_dataidWindow = typeid(*this).name();
 
          }
 
-         if(m_dataid.is_null())
-         {
-
-            m_dataid = m_dataidWindow;
-
-         }
+         update_data_id();
 
       }
 
@@ -405,6 +400,49 @@ namespace database
 
 
          return false;
+
+      }
+
+      id interaction::calc_data_id()
+      {
+
+         string str;
+
+         sp(::database::user::interaction) puiParent = get_parent();
+
+         if (puiParent.is_set())
+         {
+
+            str = puiParent->calc_data_id().m_id;
+
+         }
+
+         if (str.has_char())
+         {
+
+            str += ".";
+
+         }
+
+         return str + m_dataidWindow.m_id;
+
+      }
+
+      void interaction::on_set_parent(sp(::user::interaction) pguieParent)
+      {
+
+         try
+         {
+
+            ::user::interaction::on_set_parent(pguieParent);
+
+         }
+         catch (...)
+         {
+
+         }
+
+         update_data_id();
 
       }
 

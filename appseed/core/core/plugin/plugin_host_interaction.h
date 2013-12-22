@@ -11,7 +11,7 @@ namespace plugin
 
 
    class CLASS_DECL_CORE host_interaction :
-      public ::user::interaction
+      public ::database::user::interaction
    {
    public:
 

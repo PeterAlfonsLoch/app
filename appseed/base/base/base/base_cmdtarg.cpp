@@ -378,7 +378,6 @@ cmd_ui::cmd_ui(sp(base_application) papp)  :
    m_bContinueRouting            = FALSE;
    m_bEnableIfHasCommandHandler  = true;
 
-
 }
 
 // default cmd_ui implementation only works for Menu Items
@@ -422,6 +421,7 @@ void cmd_ui::_001SetCheck(bool bCheck, ::action::context actioncontext)
 
 void cmd_ui::_001SetCheck(check::e_check nCheck, ::action::context actioncontext)
 {
+
    if (m_pMenu != NULL)
    {
       if (m_pSubMenu != NULL)
@@ -430,7 +430,7 @@ void cmd_ui::_001SetCheck(check::e_check nCheck, ::action::context actioncontext
       // place checkmark next to menu item
       ENSURE(m_iIndex < m_iCount);
    }
-   else
+   else if (m_pOther != NULL)
    {
 
 #ifdef WINDOWS
@@ -445,6 +445,7 @@ void cmd_ui::_001SetCheck(check::e_check nCheck, ::action::context actioncontext
 
    }
 }
+
 
 __STATIC void __load_dot_bitmap(); // for swap tuning
 
@@ -546,3 +547,59 @@ __STATIC void __load_dot_bitmap()
 
 
 */
+
+
+CTestCmdUI::CTestCmdUI(sp(base_application) papp) :
+element(papp),
+cmd_ui(papp)
+{
+   
+   m_bEnabled        = TRUE;  // assume it is enabled
+   m_echeck          = ::check::undefined;
+   m_bRadio          = false;
+   m_bRadioChanged   = false;
+
+}
+
+
+void CTestCmdUI::Enable(bool bOn, ::action::context)
+{
+
+   m_bEnabled        = bOn;
+   m_bEnableChanged  = true;
+
+}
+
+
+void CTestCmdUI::_001SetCheck(bool bCheck, ::action::context context)
+{
+
+   ::cmd_ui::_001SetCheck(bCheck, context);
+
+}
+
+
+void CTestCmdUI::_001SetCheck(check::e_check echeck, ::action::context )
+{
+
+   m_echeck = echeck;
+
+}
+
+void CTestCmdUI::SetRadio(bool bOn, ::action::context)
+{
+
+   m_bRadio = bOn;
+   m_bRadioChanged = true;
+
+   
+}
+
+void CTestCmdUI::SetText(const char * lpszText, ::action::context)
+{
+   
+   m_strText = lpszText;
+
+}
+
+
