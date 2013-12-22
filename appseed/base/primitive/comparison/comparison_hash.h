@@ -45,7 +45,7 @@ namespace comparison
          }
          register const char * pszKey = (const char *) puiKey;
          while(counter-- >= 0) nHash = (nHash<<5) + nHash + *pszKey++;
-         return (UINT) nHash;
+         return (UINT) (nHash & 0xffffffff);
       }
 
    };
@@ -73,7 +73,7 @@ namespace comparison
                break;
                nHash = (nHash<<5) + nHash + *pszKey++;
          }
-         return (UINT) nHash;
+         return (UINT)(nHash & 0xffffffff);
       }
 
    };
