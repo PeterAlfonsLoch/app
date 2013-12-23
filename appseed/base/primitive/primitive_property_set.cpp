@@ -877,6 +877,28 @@ property_set & property_set::merge(const property_set & set)
             {
                ((property &)operator[](set.m_propertya[i].name())).m_var = set.m_propertya[i].m_var;
             }
+            else if (ppropertyThis->m_var.get_type() == ::var::type_propset)
+            {
+               if (pproperty->m_var.get_type() == ::var::type_propset)
+               {
+                  ppropertyThis->propset().merge(pproperty->propset());
+               }
+               else
+               {
+                  index i = 0;
+                  while (true)
+                  {
+                     if (!has_property(str::from(i)))
+                     {
+                        operator[](str::from(i)).m_var = set.m_propertya[i].m_var;
+                        break;
+                     }
+                     i++;
+                  }
+                  
+               }
+
+            }
             else
             {
                ((property &)operator[](set.m_propertya[i].name())).stra().add_unique(set.m_propertya[i].m_var.stra());

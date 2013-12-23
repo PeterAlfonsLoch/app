@@ -75,6 +75,12 @@ namespace userstack
 
       }
 
+      for (int32_t i = 0; i < Application.directrix()->m_varTopicQuery["app/sphere/userstack"]["tab"].stra().get_count(); i++)
+      {
+
+         set_cur_tab_by_id("app:" + Application.directrix()->m_varTopicQuery["app/sphere/userstack"]["tab"].stra()[i]);
+
+      }
 
    }
 
