@@ -252,7 +252,7 @@ namespace plugin
       ::user::interaction::_000OnMouse(pmouse);
    }
 
-   LRESULT host_interaction::DefWindowProc(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   LRESULT host_interaction::DefWindowProc(UINT uiMessage, WPARAM wparam, lparam lparam)
    {
 
       if(uiMessage == WM_NCCREATE
@@ -275,4 +275,5 @@ namespace plugin
 
    }
 
+   
 } // namespace plugin

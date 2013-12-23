@@ -536,6 +536,9 @@ public:
    bool safe_is_running();
 
 
+   virtual void on_request(sp(::create_context) pcreatecontext);
+
+
 };
 
 

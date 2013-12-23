@@ -173,6 +173,7 @@ namespace userstack
    void application::on_request(sp(::create_context) pcreatecontext)
    {
 
+      ::asphere::application::on_request(pcreatecontext);
 
       m_ptemplate_pane->open_document_file(pcreatecontext);
 

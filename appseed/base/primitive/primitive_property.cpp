@@ -1617,7 +1617,15 @@ property_set & property_set::merge(const property_set & set)
    {
       for(int32_t i = 0; i < set.m_propertya.get_count(); i++)
       {
-         ((property &)operator[](set.m_propertya[i].name())).m_var = set.m_propertya[i].m_var;
+         if (has_property(set.m_propertya[i].name()))
+         {
+            ((property &)operator[](set.m_propertya[i].name())).stra().add(set.m_propertya[i].m_var.stra());
+         }
+         else
+         {
+            ((property &)operator[](set.m_propertya[i].name())).m_var = set.m_propertya[i].m_var;
+         }
+         
       }
    }
    return *this;

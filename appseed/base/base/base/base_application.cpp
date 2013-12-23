@@ -2808,18 +2808,14 @@ bool base_application::os_native_bergedge_start()
 //}
 
 
-//void application::on_request(sp(::create_context) pcreatecontext)
-//{
-//   string strId = m_strId;
-//   char chFirst = '\0';
-//   if (strId.get_length() > 0)
-//   {
-//      chFirst = strId[0];
-//   }
-//   return ::application::on_request(pcreatecontext);
+void base_application::on_request(sp(::create_context) pcreatecontext)
+{
 
+   ::request_interface::on_request(pcreatecontext);
 
-//}
+   command()->consolidate(pcreatecontext);
+
+}
 
 //bool application::is_serviceable()
 //{

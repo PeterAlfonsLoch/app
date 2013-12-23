@@ -769,20 +769,8 @@ bool application::initialize3()
 
 void application::on_request(sp(::create_context) pcreatecontext)
 {
-   string strId = m_strId;
-   char chFirst = '\0';
-   if (strId.get_length() > 0)
-   {
-      chFirst = strId[0];
-   }
-
-
-   if (strId == "default_file_handler")
-   {
-
-   }
-
-   ::request_interface::on_request(pcreatecontext);
+   
+   base_application::on_request(pcreatecontext);
 
 }
 

@@ -61,7 +61,7 @@ namespace userstack
 
       add_tab("menu", ::userstack::PaneViewContextMenu);
 
-      for(int32_t i = 0; i < Application.directrix()->m_varTopicQuery["app"].get_count(); i++)
+      for(int32_t i = 0; i < Application.directrix()->m_varTopicQuery["app"].stra().get_count(); i++)
       {
 
          string strId = Application.directrix()->m_varTopicQuery["app"].stra()[i];
