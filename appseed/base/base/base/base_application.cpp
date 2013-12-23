@@ -2695,6 +2695,30 @@ bool base_application::system_add_app_install(const char * pszId)
 
    }
 
+   System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strSystemLocale, "");
+   System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, "");
+
+   for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+   {
+
+      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, straLocale[iLocale], "");
+
+   }
+
+   System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, "", m_strSchema);
+   System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, "", strSystemSchema);
+   
+   for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   {
+
+      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, "", straSchema[iSchema]);
+
+   }
+
+
+   System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, "", "");
+
+
    return true;
 
 }
