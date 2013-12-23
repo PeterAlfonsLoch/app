@@ -11,63 +11,52 @@ namespace filehandler
    public:
 
 
+      class list;
+
+
       class CLASS_DECL_sphere item :
          virtual public ::object
       {
       public:
          
 
-         string      m_strApp;
-         int32_t         m_iIndex;
+         string         m_strApp;
+         int32_t        m_iIndex;
 
+         rect           m_rectItem;
+         rect           m_rectStatusImage;
+         rect           m_rectName;
+
+         item(sp(base_application) papp);
 
          void parse(const char * pszApp);
 
-
-      };
-
-      class CLASS_DECL_sphere list :
-         public smart_pointer_array < item >
-      {
-      public:
-
-
-         void parse(handler * phandler, const char * pszTopic);
-
-
-      };
-
-      class CLASS_DECL_sphere draw_item :
-         virtual public ::object
-      {
-      public:
-
-         rect        m_rectItem;
-         rect        m_rectStatusImage;
-         rect        m_rectName;
-         
-         void draw(sp(view) pview, ::draw2d::graphics * pdc, list * plist, item * pcontact);
-
-      };
-
-      class CLASS_DECL_sphere draw_list :
-         public array < draw_item >
-      {
-      public:
-
-
-         int32_t m_iItemHeight;
-
-         draw_list();
-
-         void layout(LPCRECT lpcrect, list * plist);
          void draw(sp(view) pview, ::draw2d::graphics * pdc, list * plist);
 
       };
 
+      class CLASS_DECL_sphere list :
+         virtual public spa(item)
+      {
+      public:
+
+         int32_t m_iItemHeight;
+
+         list(sp(base_application) papp);
+
+
+         void parse(handler * phandler, const char * pszTopic);
+
+         void layout(LPCRECT lpcrect);
+         void draw(sp(view) pview, ::draw2d::graphics * pdc);
+
+      };
+
+
+
       ::xml::document         m_document;
-      list                    m_list;
-      draw_list               m_drawlist;
+      sp(list)                m_plistWorking;
+      sp(list)                m_plist;
 
 
       view(sp(base_application) papp);
@@ -87,6 +76,9 @@ namespace filehandler
 
 
       index hit_test(point pt, e_element & eelement);
+
+
+      void layout_list(list * plist);
 
 
    };

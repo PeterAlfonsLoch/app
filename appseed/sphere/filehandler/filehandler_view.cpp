@@ -34,8 +34,17 @@ namespace filehandler
 
    void view::refresh()
    {
-      m_list.parse(&System.filehandler(), System.file().extension(m_strName));
+      
+      m_plistWorking = canew(list(get_app()));
+      
+      m_plistWorking->parse(&System.filehandler(), System.file().extension(m_strName));
+      
+      m_plist = m_plistWorking;
+
+      m_plistWorking = NULL;
+
       layout();
+
    }
 
    void view::_001OnTimer(signal_details * pobj)
@@ -64,14 +73,14 @@ namespace filehandler
 
    void view::list::parse(handler * phandler, const char * pszTopic)
    {
-
+      
       remove_all();
 
       stringa straApp;
 
       phandler->get_extension_app(straApp, pszTopic);
 
-      item item;
+      item item(get_app());
 
       for(int32_t i = 0; i < straApp.get_count(); i++)
       {
@@ -82,14 +91,20 @@ namespace filehandler
 
    }
 
-   void view::draw_item::draw(sp(view) pview, ::draw2d::graphics * pdc, list * plist, item * pitem)
+   view::item::item(sp(base_application) papp) :
+      element(papp)
+   {
+
+   }
+
+   void view::item::draw(sp(view) pview, ::draw2d::graphics * pdc, list * plist)
    {
 
       UNREFERENCED_PARAMETER(plist);
 
       COLORREF cr;
       sp(base_application) papp = pview->get_app();
-      bool bHover = pview->m_iHover == pitem->m_iIndex;
+      bool bHover = pview->m_iHover == m_iIndex;
       cr = bHover ? ARGB(255, 230, 255, 230) : ARGB(255, 200, 255, 200);
       if(!Sys(papp).savings().is_trying_to_save(::core::resource_processing)
          && !Sys(papp).savings().is_trying_to_save(::core::resource_display_bandwidth)
@@ -123,22 +138,22 @@ namespace filehandler
       ::draw2d::brush_sp brushText(allocer());
       brushText->create_solid(cr);
       //pdc->set_color(cr);
-      pdc->draw_text(pitem->m_strApp, m_rectName, DT_LEFT | DT_BOTTOM);
+      pdc->draw_text(m_strApp, m_rectName, DT_LEFT | DT_BOTTOM);
    }
 
 
-   view::draw_list::draw_list()
+   view::list::list(sp(base_application) papp) :
+      element(papp)
    {
       m_iItemHeight = 30;
    }
 
-   void view::draw_list::layout(LPCRECT lpcrect, list * plist)
+   void view::list::layout(LPCRECT lpcrect)
    {
-      remove_all();
-      draw_item item;
       int32_t top = lpcrect->top;
-      for(int32_t i = 0; i < plist->get_count(); i++)
+      for(int32_t i = 0; i < get_count(); i++)
       {
+         item & item = operator[](i);
          item.m_rectItem.left = lpcrect->left;
          item.m_rectItem.right = lpcrect->right;
          item.m_rectItem.top = top;
@@ -150,15 +165,15 @@ namespace filehandler
          item.m_rectName = item.m_rectItem;
          item.m_rectName.left = item.m_rectStatusImage.right;
          item.m_rectName.deflate(2, 2);
-         add(item);
+         
       }
    }
 
-   void view::draw_list::draw(sp(view) pview, ::draw2d::graphics * pdc, list * plist)
+   void view::list::draw(sp(view) pview, ::draw2d::graphics * pdc)
    {
       for(int32_t i = 0; i < get_count(); i++)
       {
-         element_at(i).draw(pview, pdc, plist, plist->element_at(i));
+         element_at(i)->draw(pview, pdc, this);
       }
    }
 
@@ -166,24 +181,42 @@ namespace filehandler
    void view::layout()
    {
 
+      if (m_plist.is_null())
+         return;
+
+      layout_list(m_plist);
+
+      
+   }
+
+   void view::layout_list(list * plist)
+   {
+      
       ::draw2d::memory_graphics pdc(allocer());
 
       rect rectClient;
 
       GetClientRect(rectClient);
 
-      m_drawlist.layout(rectClient, &m_list);
-      
+      plist->layout(rectClient);
+
    }
 
 
    void view::_001OnDraw(::draw2d::graphics * pdc)
    {
 
+      if (m_plist.is_null())
+         return;
+
       pdc->set_font(GetFont());
-      m_drawlist.draw(this, pdc, &m_list);
+
+      m_plist->draw(this, pdc);
+
 
    }
+
+
 
    void view::_001OnLButtonUp(signal_details * pobj)
    {
@@ -205,9 +238,9 @@ namespace filehandler
          Session.request(varRequest);
          */
 
-         sp(::create_context) createcontext(get_app()->cast_app < ::application > ().command());
+         sp(::create_context) createcontext(allocer());
 
-         createcontext->m_spCommandLine->m_strApp                 = m_list[iItem].m_strApp;
+         createcontext->m_spCommandLine->m_strApp = m_plist->operator [](iItem).m_strApp;
 
          createcontext->m_spCommandLine->m_varFile                = m_strName;
 
@@ -221,20 +254,25 @@ namespace filehandler
 
    index view::hit_test(point pt, e_element & eelement)
    {
+
+
+      if (m_plist.is_null())
+         return -1;
+
       ScreenToClient(&pt);
-      for(int32_t i = 0; i < m_drawlist.get_count(); i++)
+      for(int32_t i = 0; i < m_plist->get_count(); i++)
       {
-         if(m_drawlist[i].m_rectName.contains(pt))
+         if(m_plist->element_at(i)->m_rectName.contains(pt))
          {
             eelement = element_text;
             return i;
          }
-         if(m_drawlist[i].m_rectStatusImage.contains(pt))
+         if (m_plist->element_at(i)->m_rectStatusImage.contains(pt))
          {
             eelement = element_status_image;
             return i;
          }
-         if(m_drawlist[i].m_rectItem.contains(pt))
+         if (m_plist->element_at(i)->m_rectItem.contains(pt))
          {
             eelement = element_area;
             return i;

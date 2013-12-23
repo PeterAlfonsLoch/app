@@ -776,6 +776,12 @@ void application::on_request(sp(::create_context) pcreatecontext)
       chFirst = strId[0];
    }
 
+
+   if (strId == "default_file_handler")
+   {
+
+   }
+
    ::request_interface::on_request(pcreatecontext);
 
 }
@@ -2039,7 +2045,7 @@ bool application::on_run_exception(::exception::exception & e)
 
       not_installed & notinstalled = dynamic_cast <not_installed &> (e);
 
-      if (::is_debugger_attached())
+      if (::is_debugger_attached() && !file_exists_dup("C:\\ca2\\config\\disable_manual_install_warning.txt"))
       {
 
          try

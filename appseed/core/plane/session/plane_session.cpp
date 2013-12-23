@@ -855,7 +855,7 @@ namespace plane
          }
          else
          {
-            strId = "app/core/default_file_handler";
+            strId = "app/sphere/default_file_handler";
          }
 
       }

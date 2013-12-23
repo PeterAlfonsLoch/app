@@ -201,7 +201,7 @@ namespace filehandler
          }
          break;
       default:
-         ASSERT(FALSE);
+         //ASSERT(FALSE);
          break;
       }
    }

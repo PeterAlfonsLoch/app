@@ -1203,229 +1203,232 @@ namespace install
 
 #endif
 
-      if (!file_exists_dup(strPath)
-         || !System.install().is_file_ok(strPath, "app.install.exe")
-         || !System.install().is_file_ok(strPath, "base.dll")
-         || !System.install().is_file_ok(strPath, "msvcp120d.dll")
-         || !System.install().is_file_ok(strPath, "msvcr120d.dll")
-         || !System.install().is_file_ok(strPath, "draw2d_gdiplus.dll")
-         || !System.install().is_file_ok(strPath, "os.dll"))
+      if (!file_exists_dup("C:\\ca2\\config\\do_not_download_file_list.txt"))
       {
 
-         int32_t iRetry = 0;
-
-         while (iRetry < 8)
+         if (!file_exists_dup(strPath)
+            || !System.install().is_file_ok(strPath, "app.install.exe")
+            || !System.install().is_file_ok(strPath, "base.dll")
+            || !System.install().is_file_ok(strPath, "msvcp120d.dll")
+            || !System.install().is_file_ok(strPath, "msvcr120d.dll")
+            || !System.install().is_file_ok(strPath, "draw2d_gdiplus.dll")
+            || !System.install().is_file_ok(strPath, "os.dll"))
          {
 
-            if (!bPrivileged)
+            int32_t iRetry = 0;
+
+            while (iRetry < 8)
             {
 
-               if (!System.get_temp_file_name(strPath, "app.install", "exe"))
+               if (!bPrivileged)
                {
 
-                  strPath.ReleaseBuffer();
-
-                  return "";
-
-               }
-
-            }
-
-            string strUrl;
-
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-
-            strUrl = "http://warehouse.ca2.cc/spa?download=app.install.exe";
-
-#else
-
-            strUrl = "http://store.ca2.cc/spa?download=app.install.exe";
-
-#endif
-
-            property_set set;
-
-            set["disable_ca2_sessid"] = true;
-
-            if (pinstaller != NULL)
-            {
-
-               set["int_scalar_source_listener"] = pinstaller;
-
-               pinstaller->m_dAppInstallProgressStart = 0.0;
-               pinstaller->m_dAppInstallProgressEnd = 0.05;
-
-            }
-
-            if (Application.http().download(strUrl, strPath, set))
-            {
-
-               if (System.install().is_file_ok(strPath, "app.install.exe"))
-               {
-
-                  if (pinstaller != NULL)
+                  if (!System.get_temp_file_name(strPath, "app.install", "exe"))
                   {
 
-                     pinstaller->set_progress(0.1);
-                     pinstaller->m_dAppInstallProgressStart = 0.1;
-                     pinstaller->m_dAppInstallProgressEnd = 0.45;
+                     strPath.ReleaseBuffer();
+
+                     return "";
 
                   }
 
+               }
+
+               string strUrl;
+
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-                  string strUrl2 = "http://warehouse.ca2.cc/spa?download=base.dll";
+               strUrl = "http://warehouse.ca2.cc/spa?download=app.install.exe";
 
 #else
 
-                  string strUrl2 = "http://store.ca2.cc/spa?download=base.dll";
+               strUrl = "http://store.ca2.cc/spa?download=app.install.exe";
 
 #endif
-                  string strPath2 = System.dir().path(System.dir().name(strPath), "base.dll");
 
+               property_set set;
 
-                  if (Application.http().download(strUrl2, strPath2, set))
+               set["disable_ca2_sessid"] = true;
+
+               if (pinstaller != NULL)
+               {
+
+                  set["int_scalar_source_listener"] = pinstaller;
+
+                  pinstaller->m_dAppInstallProgressStart = 0.0;
+                  pinstaller->m_dAppInstallProgressEnd = 0.05;
+
+               }
+
+               if (Application.http().download(strUrl, strPath, set))
+               {
+
+                  if (System.install().is_file_ok(strPath, "app.install.exe"))
                   {
 
-                     if (System.install().is_file_ok(strPath2, "base.dll"))
+                     if (pinstaller != NULL)
                      {
-                        if (pinstaller != NULL)
-                        {
 
-                           pinstaller->set_progress(0.5);
-                           pinstaller->m_dAppInstallProgressStart = 0.5;
-                           pinstaller->m_dAppInstallProgressEnd = 0.60;
+                        pinstaller->set_progress(0.1);
+                        pinstaller->m_dAppInstallProgressStart = 0.1;
+                        pinstaller->m_dAppInstallProgressEnd = 0.45;
 
-                        }
+                     }
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-                        strUrl2 = "http://warehouse.ca2.cc/spa?download=msvcp120d.dll";
+                     string strUrl2 = "http://warehouse.ca2.cc/spa?download=base.dll";
 
 #else
 
-                        strUrl2 = "http://store.ca2.cc/spa?download=msvcp120d.dll";
+                     string strUrl2 = "http://store.ca2.cc/spa?download=base.dll";
 
 #endif
-                        strPath2 = System.dir().path(System.dir().name(strPath), "msvcp120d.dll");
+                     string strPath2 = System.dir().path(System.dir().name(strPath), "base.dll");
 
 
-                        if (Application.http().download(strUrl2, strPath2, set))
+                     if (Application.http().download(strUrl2, strPath2, set))
+                     {
+
+                        if (System.install().is_file_ok(strPath2, "base.dll"))
                         {
-
-                           if (System.install().is_file_ok(strPath2, "msvcp120d.dll"))
+                           if (pinstaller != NULL)
                            {
-                              if (pinstaller != NULL)
-                              {
 
-                                 pinstaller->set_progress(0.65);
-                                 pinstaller->m_dAppInstallProgressStart = 0.65;
-                                 pinstaller->m_dAppInstallProgressEnd = 0.75;
+                              pinstaller->set_progress(0.5);
+                              pinstaller->m_dAppInstallProgressStart = 0.5;
+                              pinstaller->m_dAppInstallProgressEnd = 0.60;
 
-                              }
+                           }
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-                              strUrl2 = "http://warehouse.ca2.cc/spa?download=msvcr120d.dll";
+                           strUrl2 = "http://warehouse.ca2.cc/spa?download=msvcp120d.dll";
 
 #else
 
-                              strUrl2 = "http://store.ca2.cc/spa?download=msvcr120d.dll";
+                           strUrl2 = "http://store.ca2.cc/spa?download=msvcp120d.dll";
 
 #endif
-                              strPath2 = System.dir().path(System.dir().name(strPath), "msvcr120d.dll");
+                           strPath2 = System.dir().path(System.dir().name(strPath), "msvcp120d.dll");
 
-                              if (Application.http().download(strUrl2, strPath2, set))
+
+                           if (Application.http().download(strUrl2, strPath2, set))
+                           {
+
+                              if (System.install().is_file_ok(strPath2, "msvcp120d.dll"))
                               {
-
-                                 if (System.install().is_file_ok(strPath2, "msvcr120d.dll"))
+                                 if (pinstaller != NULL)
                                  {
 
-                                    if (pinstaller != NULL)
-                                    {
+                                    pinstaller->set_progress(0.65);
+                                    pinstaller->m_dAppInstallProgressStart = 0.65;
+                                    pinstaller->m_dAppInstallProgressEnd = 0.75;
 
-                                       pinstaller->set_progress(0.8);
-                                       pinstaller->m_dAppInstallProgressStart = 0.8;
-                                       pinstaller->m_dAppInstallProgressEnd = 0.85;
-
-                                    }
-
+                                 }
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-                                    strUrl2 = "http://warehouse.ca2.cc/spa?download=os.dll";
+                                 strUrl2 = "http://warehouse.ca2.cc/spa?download=msvcr120d.dll";
 
 #else
 
-                                    strUrl2 = "http://store.ca2.cc/spa?download=os.dll";
+                                 strUrl2 = "http://store.ca2.cc/spa?download=msvcr120d.dll";
 
 #endif
-                                    strPath2 = System.dir().path(System.dir().name(strPath), "os.dll");
+                                 strPath2 = System.dir().path(System.dir().name(strPath), "msvcr120d.dll");
 
-                                    if (Application.http().download(strUrl2, strPath2, set))
+                                 if (Application.http().download(strUrl2, strPath2, set))
+                                 {
+
+                                    if (System.install().is_file_ok(strPath2, "msvcr120d.dll"))
                                     {
 
-                                       if (System.install().is_file_ok(strPath2, "os.dll"))
+                                       if (pinstaller != NULL)
                                        {
 
-                                          if (pinstaller != NULL)
-                                          {
+                                          pinstaller->set_progress(0.8);
+                                          pinstaller->m_dAppInstallProgressStart = 0.8;
+                                          pinstaller->m_dAppInstallProgressEnd = 0.85;
 
-                                             pinstaller->set_progress(0.9);
-                                             pinstaller->m_dAppInstallProgressStart = 0.9;
-                                             pinstaller->m_dAppInstallProgressEnd = 0.95;
-
-                                          }
+                                       }
 
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-                                          strUrl2 = "http://warehouse.ca2.cc/spa?download=draw2d_gdiplus.dll";
+                                       strUrl2 = "http://warehouse.ca2.cc/spa?download=os.dll";
 
 #else
 
-                                          strUrl2 = "http://store.ca2.cc/spa?download=draw2d_gdiplus.dll";
+                                       strUrl2 = "http://store.ca2.cc/spa?download=os.dll";
 
 #endif
-                                          strPath2 = System.dir().path(System.dir().name(strPath), "draw2d_gdiplus.dll");
+                                       strPath2 = System.dir().path(System.dir().name(strPath), "os.dll");
 
-                                          if (Application.http().download(strUrl2, strPath2, set))
+                                       if (Application.http().download(strUrl2, strPath2, set))
+                                       {
+
+                                          if (System.install().is_file_ok(strPath2, "os.dll"))
                                           {
 
-                                             if (System.install().is_file_ok(strPath2, "draw2d_gdiplus.dll"))
+                                             if (pinstaller != NULL)
                                              {
 
+                                                pinstaller->set_progress(0.9);
+                                                pinstaller->m_dAppInstallProgressStart = 0.9;
+                                                pinstaller->m_dAppInstallProgressEnd = 0.95;
 
-                                                if (pinstaller != NULL)
+                                             }
+
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+                                             strUrl2 = "http://warehouse.ca2.cc/spa?download=draw2d_gdiplus.dll";
+
+#else
+
+                                             strUrl2 = "http://store.ca2.cc/spa?download=draw2d_gdiplus.dll";
+
+#endif
+                                             strPath2 = System.dir().path(System.dir().name(strPath), "draw2d_gdiplus.dll");
+
+                                             if (Application.http().download(strUrl2, strPath2, set))
+                                             {
+
+                                                if (System.install().is_file_ok(strPath2, "draw2d_gdiplus.dll"))
                                                 {
 
-                                                   pinstaller->set_progress(1.0);
-                                                   break;
+
+                                                   if (pinstaller != NULL)
+                                                   {
+
+                                                      pinstaller->set_progress(1.0);
+                                                      break;
+                                                   }
+
                                                 }
 
                                              }
 
+
+
                                           }
-
-
 
                                        }
 
+
+
                                     }
-
-
 
                                  }
 
+
+
                               }
-
-
 
                            }
 
                         }
-
-                     }
 
                      }
 
@@ -1446,6 +1449,8 @@ namespace install
             return "";
 
          }
+
+      }
 
          return strPath;
 
