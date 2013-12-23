@@ -2661,16 +2661,39 @@ bool base_application::system_add_app_install(const char * pszId)
    string strId(pszId);
    string strSystemLocale = System.m_strLocale;
    string strSystemSchema = System.m_strSchema;
-   string strLocale = command()->m_varTopicQuery["locale"];
-   string strSchema = command()->m_varTopicQuery["schema"];
+   stringa straLocale = command()->m_varTopicQuery["locale"].stra();
+   stringa straSchema = command()->m_varTopicQuery["schema"].stra();
 
    System.install().remove_spa_start(m_strInstallType, strId);
    System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strSystemLocale, m_strSchema);
    System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strSystemLocale, strSystemSchema);
    System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, m_strSchema);
-   System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, strSchema);
-   System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strLocale, m_strSchema);
-   System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strLocale, strSchema);
+
+   for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+   {
+
+      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, straLocale[iLocale], m_strSchema);
+
+   }
+
+   for (index iSchema = 0; iSchema = straSchema.get_count(); iSchema++)
+   {
+
+      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, straSchema[iSchema]);
+
+   }
+
+   for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+   {
+      
+      for (index iSchema = 0; iSchema = straSchema.get_count(); iSchema++)
+      {
+      
+         System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, straLocale[iLocale], straSchema[iSchema]);
+
+      }
+
+   }
 
    return true;
 
@@ -3368,32 +3391,64 @@ void base_application::fill_locale_schema(::str::international::locale_schema & 
    //localeschema.m_bAddAlternateStyle = true;
 
 
-   string strLocale;
-   string strSchema;
+   stringa straLocale;
+   stringa straSchema;
 
-   strLocale = get_locale();
-   strSchema = get_schema();
+   straLocale.add(get_locale());
+   straSchema.add(get_schema());
 
-   if (Application.directrix()->m_varTopicQuery["locale"].has_char() && Application.directrix()->m_varTopicQuery["locale"].get_string().CompareNoCase("_std") != 0)
+
+   stringa stra;
+
+   stra = Application.directrix()->m_varTopicQuery["locale"].stra();
+
+   stra.remove_ci("_std");
+
+   straLocale.add_unique(Application.directrix()->m_varTopicQuery["locale"].stra());
+
+   stra = Application.directrix()->m_varTopicQuery["schema"].stra();
+
+   stra.remove_ci("_std");
+
+   straSchema.add_unique(Application.directrix()->m_varTopicQuery["schema"].stra());
+
+
+   localeschema.m_idLocale = straLocale[0];
+   localeschema.m_idSchema = straSchema[0];
+
+   for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
    {
-      strLocale = Application.directrix()->m_varTopicQuery["locale"];
+
+      for (index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
+      {
+
+         localeschema.add_locale_variant(straLocale[iLocale], straSchema[iSchema]);
+
+      }
+
+   }
+   
+   for (index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
+   {
+
+      localeschema.add_locale_variant(get_locale(), straSchema[iSchema]);
+
    }
 
-   if (Application.directrix()->m_varTopicQuery["schema"].has_char() && Application.directrix()->m_varTopicQuery["schema"].get_string().CompareNoCase("_std") != 0)
+   for (index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
    {
-      strSchema = Application.directrix()->m_varTopicQuery["schema"];
+
+      localeschema.add_locale_variant(__id(std), straSchema[iSchema]);
+
    }
 
 
-   localeschema.m_idLocale = strLocale;
-   localeschema.m_idSchema = strSchema;
+   for (index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
+   {
 
+      localeschema.add_locale_variant(__id(en), straSchema[iSchema]);
 
-   localeschema.add_locale_variant(strLocale, strSchema);
-   localeschema.add_locale_variant(get_locale(), strSchema);
-   localeschema.add_locale_variant(__id(std), strSchema);
-   localeschema.add_locale_variant(__id(en), strSchema);
-
+   }
 
    localeschema.finalize();
 
@@ -3602,119 +3657,6 @@ bool base_application::initialize()
    if (!m_spuser->initialize())
       return false;
 
-   //if (!m_spuserex->initialize())
-   //   return false;
-
-   //if (!m_phtml->initialize())
-   //   return false;
-
-   //if (!is_system() && !is_session() && !is_installing() && !is_uninstalling())
-   //{
-
-   //   string str;
-   //   // if system locale has changed (compared to last recorded one by core)
-   //   // use the system locale
-   //   if (data_get("system_locale", str))
-   //   {
-   //      if (str.has_char())
-   //      {
-   //         if (str != get_locale())
-   //         {
-   //            try
-   //            {
-   //               data_set("system_locale", get_locale());
-   //               data_set("locale", get_locale());
-   //            }
-   //            catch (...)
-   //            {
-   //            }
-   //         }
-   //      }
-   //   }
-   //   else
-   //   {
-   //      data_set("system_locale", get_locale());
-   //   }
-
-   //   if (command()->m_varTopicQuery["locale"].get_string().has_char())
-   //   {
-   //      str = command()->m_varTopicQuery["locale"];
-   //      data_set("system_locale", str);
-   //      data_set("locale", str);
-   //      set_locale(str, false);
-   //   }
-   //   else if (command()->m_varTopicQuery["lang"].get_string().has_char())
-   //   {
-   //      str = command()->m_varTopicQuery["lang"];
-   //      data_set("system_locale", str);
-   //      data_set("locale", str);
-   //      set_locale(str, false);
-   //   }
-   //   else if (data_get("locale", str))
-   //   {
-   //      if (str.has_char())
-   //      {
-   //         set_locale(str, false);
-   //      }
-   //   }
-   //   // if system schema has changed (compared to last recorded one by core)
-   //   // use the system schema
-   //   if (data_get("system_schema", str))
-   //   {
-   //      if (str.has_char())
-   //      {
-   //         if (str != get_schema())
-   //         {
-   //            try
-   //            {
-   //               data_set("system_schema", get_schema());
-   //               data_set("schema", get_schema());
-   //            }
-   //            catch (...)
-   //            {
-   //            }
-   //         }
-   //      }
-   //   }
-   //   else
-   //   {
-   //      data_set("system_schema", get_schema());
-   //   }
-
-   //   if (command()->m_varTopicQuery["schema"].get_string().has_char())
-   //   {
-   //      str = command()->m_varTopicQuery["schema"];
-   //      data_set("system_schema", str);
-   //      data_set("schema", str);
-   //      set_schema(str, false);
-   //   }
-   //   else if (data_get("schema", str))
-   //   {
-   //      if (str.has_char())
-   //      {
-   //         set_schema(str, false);
-   //      }
-   //   }
-
-   //   // keyboard layout
-   //   if (data_get("keyboard_layout", str) && str.has_char())
-   //   {
-   //      user()->set_keyboard_layout(str, false);
-   //   }
-   //   else
-   //   {
-   //      user()->set_keyboard_layout(NULL, false);
-   //   }
-
-   //   data_pulse_change("ca2", "savings", NULL);
-
-
-   //   App(this).fill_locale_schema(*str_context()->m_plocaleschema);
-
-
-   //   Sys(this).appa_load_string_table();
-
-   //}
 
 
    return true;
@@ -4045,17 +3987,17 @@ bool base_application::initialize1()
    if (strSchemaSystem.has_char())
       strSchema = strSchemaSystem;
 
-   if (Sys(this).directrix()->m_varTopicQuery["locale"].get_string().has_char())
-      strLocale = Sys(this).directrix()->m_varTopicQuery["locale"];
+   if (Sys(this).directrix()->m_varTopicQuery["locale"].get_count() > 0)
+      strLocale = Sys(this).directrix()->m_varTopicQuery["locale"].stra()[0];
 
-   if (Sys(this).directrix()->m_varTopicQuery["schema"].get_string().has_char())
-      strSchema = Sys(this).directrix()->m_varTopicQuery["schema"];
+   if (Sys(this).directrix()->m_varTopicQuery["schema"].get_count() > 0)
+      strSchema = Sys(this).directrix()->m_varTopicQuery["schema"].stra()[0];
 
-   if (App(this).directrix()->m_varTopicQuery["locale"].get_string().has_char())
-      strLocale = App(this).directrix()->m_varTopicQuery["locale"];
+   if (App(this).directrix()->m_varTopicQuery["locale"].get_count() > 0)
+      strLocale = App(this).directrix()->m_varTopicQuery["locale"].stra()[0];
 
-   if (App(this).directrix()->m_varTopicQuery["schema"].get_string().has_char())
-      strSchema = App(this).directrix()->m_varTopicQuery["schema"];
+   if (App(this).directrix()->m_varTopicQuery["schema"].get_count() > 0)
+      strSchema = App(this).directrix()->m_varTopicQuery["schema"].stra()[0];
 
 
 

@@ -1742,6 +1742,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\primitive_object.h" />
     <ClInclude Include="primitive\primitive_property.h" />
     <ClInclude Include="primitive\primitive_property_set.h" />
+    <ClInclude Include="primitive\primitive_relation_set.h" />
     <ClInclude Include="primitive\primitive_request_interface.h" />
     <ClInclude Include="primitive\primitive_request_signal.h" />
     <ClInclude Include="primitive\primitive_signal.h" />
@@ -9690,6 +9691,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\primitive_object.cpp" />
     <ClCompile Include="primitive\primitive_property.cpp" />
     <ClCompile Include="primitive\primitive_property_set.cpp" />
+    <ClCompile Include="primitive\primitive_relation_set.cpp" />
     <ClCompile Include="primitive\primitive_request_interface.cpp" />
     <ClCompile Include="primitive\primitive_request_signal.cpp" />
     <ClCompile Include="primitive\primitive_shared_memory.cpp" />

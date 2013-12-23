@@ -146,6 +146,7 @@ public:
 
 #include "base/primitive/primitive_signal.h"
 #include "base/primitive/primitive_property_set.h"
+#include "base/primitive/primitive_relation_set.h"
 
 
 #include "collection_point_array.h"

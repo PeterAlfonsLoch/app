@@ -3191,6 +3191,9 @@
     <ClInclude Include="version.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\primitive_relation_set.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_c.c">
@@ -6829,6 +6832,9 @@
     <ClCompile Include="base\base\base_action_context.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\primitive_relation_set.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -7016,6 +7022,9 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

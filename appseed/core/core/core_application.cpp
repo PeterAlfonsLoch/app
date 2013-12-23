@@ -411,154 +411,6 @@ bool application::initialize1()
    */
 
 
-   /*   m_dwAlive = ::get_tick_count();
-
-
-      m_strMatterLocator = System.dir().appmatter_locator(this);
-
-
-      m_puserstrcontext = canew(::user::str_context(this));
-      if(m_puserstrcontext == NULL)
-      return false;
-
-
-      if(!ca_initialize1())
-      return false;
-
-      string strLocaleSystem;
-
-      string strSchemaSystem;
-
-      string strPath = System.dir().appdata("langstyle_settings.xml");
-
-      if(Application.file().exists(strPath))
-      {
-
-      string strSystem = Application.file().as_string(strPath);
-
-      ::xml::document docSystem(get_app());
-
-      if(docSystem.load(strSystem))
-      {
-
-      if(docSystem.get_child("lang") != NULL)
-      {
-
-      strLocaleSystem = docSystem.get_child("lang")->get_value();
-
-      }
-
-      if(docSystem.get_child("style") != NULL)
-      {
-
-      strSchemaSystem = docSystem.get_child("style")->get_value();
-
-      }
-
-      }
-
-      }
-
-
-
-      string strLocale;
-
-      string strSchema;
-
-      #ifdef METROWIN
-
-      stringa stra;
-
-      try
-      {
-
-      stra.explode("-", ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
-
-      }
-      catch (long)
-      {
-
-
-      }
-
-      strLocale = stra[0];
-
-      strSchema = stra[0];
-
-      #elif defined(WINDOWS)
-      LANGID langid = ::GetUserDefaultLangID();
-      #define SPR_DEUTSCH LANG_GERMAN
-      if(langid == LANG_SWEDISH)
-      {
-      strLocale = "se";
-      strSchema = "se";
-      }
-      else if(langid == MAKELANGID(LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN))
-      {
-      strLocale = "pt-br";
-      strSchema = "pt-br";
-      }
-      else if(PRIMARYLANGID(langid) == SPR_DEUTSCH)
-      {
-      strLocale = "de";
-      strSchema = "de";
-      }
-      else if(PRIMARYLANGID(langid) == LANG_ENGLISH)
-      {
-      strLocale = "en";
-      strSchema = "en";
-      }
-      else if(PRIMARYLANGID(langid) == LANG_JAPANESE)
-      {
-      strLocale = "jp";
-      strSchema = "jp";
-      }
-      else if(PRIMARYLANGID(langid) == LANG_POLISH)
-      {
-      strLocale = "pl";
-      strSchema = "pl";
-      }
-      #endif
-
-      if(strLocale.is_empty())
-      strLocale = "se";
-
-      if(strSchema.is_empty())
-      strSchema = "se";
-
-      if(strLocaleSystem.has_char())
-      strLocale = strLocaleSystem;
-
-      if(strSchemaSystem.has_char())
-      strSchema = strSchemaSystem;
-
-      if(Sys(this).directrix()->m_varTopicQuery["locale"].get_string().has_char())
-      strLocale = Sys(this).directrix()->m_varTopicQuery["locale"];
-
-      if(Sys(this).directrix()->m_varTopicQuery["schema"].get_string().has_char())
-      strSchema = Sys(this).directrix()->m_varTopicQuery["schema"];
-
-      if(App(this).directrix()->m_varTopicQuery["locale"].get_string().has_char())
-      strLocale = App(this).directrix()->m_varTopicQuery["locale"];
-
-      if(App(this).directrix()->m_varTopicQuery["schema"].get_string().has_char())
-      strSchema = App(this).directrix()->m_varTopicQuery["schema"];
-
-
-
-      set_locale(strLocale, false);
-      set_schema(strSchema, false);
-
-
-      str_context()->localeschema().m_idaLocale.add(strLocale);
-      str_context()->localeschema().m_idaSchema.add(strSchema);
-
-      //Sleep(15 * 1000);
-
-
-
-      if(!m_pimpl->initialize1())
-      return false;*/
 
    if (!is_installing() && !is_uninstalling() && !is_system())
    {
@@ -568,20 +420,7 @@ bool application::initialize1()
    }
 
 
-   /*      if(m_bIfs)
-   {
-   if(m_psession != NULL && &Session != NULL)
-   {
-   if(m_spfsdata.is_null())
-   m_spfsdata = new ::fs::set(this);
-   ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
-   pset->m_spafsdata.add(Session.m_pifs);
-   pset->m_spafsdata.add(Session.m_prfs);
-   stringa stra;
-   pset->root_ones(stra);
-   }
-   }*/
-
+   
    m_dwAlive = ::get_tick_count();
 
    if (!is_system())
@@ -638,16 +477,16 @@ bool application::initialize1()
          data_set("system_locale", get_locale());
       }
 
-      if (command()->m_varTopicQuery["locale"].get_string().has_char())
+      if (command()->m_varTopicQuery["locale"].get_count() > 0)
       {
-         str = command()->m_varTopicQuery["locale"];
+         str = command()->m_varTopicQuery["locale"].stra()[0];
          data_set("system_locale", str);
          data_set("locale", str);
          set_locale(str, ::action::source::database());
       }
-      else if (command()->m_varTopicQuery["lang"].get_string().has_char())
+      else if (command()->m_varTopicQuery["lang"].get_count() > 0)
       {
-         str = command()->m_varTopicQuery["lang"];
+         str = command()->m_varTopicQuery["lang"].stra()[0];
          data_set("system_locale", str);
          data_set("locale", str);
          set_locale(str, ::action::source::database());
@@ -683,9 +522,9 @@ bool application::initialize1()
          data_set("system_schema", get_schema());
       }
 
-      if (command()->m_varTopicQuery["schema"].get_string().has_char())
+      if (command()->m_varTopicQuery["schema"].get_count() > 0)
       {
-         str = command()->m_varTopicQuery["schema"];
+         str = command()->m_varTopicQuery["schema"].stra()[0];
          data_set("system_schema", str);
          data_set("schema", str);
          set_schema(str, ::action::source::database());

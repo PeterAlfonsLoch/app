@@ -28,6 +28,11 @@ inline ::count var::get_count() const
       return m_pvara->get_count();
    case type_propset:
       return m_pset->get_count();
+   case type_empty:
+   case type_null:
+   case type_new:
+   case type_empty_argument:
+      return 0;
    default:
       return 1;
    }

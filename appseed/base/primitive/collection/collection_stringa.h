@@ -139,6 +139,13 @@ public:
 
    void decode_v16(const char * psz);
 
+   ::count get_count_except(const char * psz);
+   ::count get_count_except(const string & str);
+   ::count get_count_except(const stringa & stra);
+
+   ::count get_count_except_ci(const char * psz);
+   ::count get_count_except_ci(const string & str);
+   ::count get_count_except_ci(const stringa & stra);
 
 };
 
@@ -306,3 +313,16 @@ class string2a :
 public:
 };
 
+inline ::count stringa::get_count_except(const char * psz)
+{
+   
+   return get_count_except(string(psz));
+
+}
+
+inline ::count stringa::get_count_except_ci(const char * psz)
+{
+
+   return get_count_except_ci(string(psz));
+
+}

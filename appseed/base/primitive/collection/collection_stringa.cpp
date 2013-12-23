@@ -1200,3 +1200,73 @@ void stringa::decode_v16(const char * psz)
    }
 
 }
+
+
+::count stringa::get_count_except(const string & str)
+{
+
+   ::count c = get_count();
+
+   for (index i = 0; i < get_count(); i++)
+   {
+      
+      if (element_at(i) == str)
+         c--;
+
+   }
+
+   return c;
+
+}
+
+::count stringa::get_count_except(const stringa & stra)
+{
+
+   ::count c = get_count();
+
+   for (index i = 0; i < get_count(); i++)
+   {
+
+      if (stra.contains(element_at(i)))
+         c--;
+
+   }
+
+   return c;
+
+}
+
+
+::count stringa::get_count_except_ci(const string & str)
+{
+
+   ::count c = get_count();
+
+   for (index i = 0; i < get_count(); i++)
+   {
+
+      if (element_at(i).CompareNoCase(str) == 0)
+         c--;
+
+   }
+
+   return c;
+
+}
+
+::count stringa::get_count_except_ci(const stringa & stra)
+{
+
+   ::count c = get_count();
+
+   for (index i = 0; i < get_count(); i++)
+   {
+
+      if (stra.contains_ci(element_at(i)))
+         c--;
+
+   }
+
+   return c;
+
+}

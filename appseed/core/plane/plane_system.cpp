@@ -1757,15 +1757,14 @@ sp(::command_thread) system::command_thread()
 
       command()->add_fork_uri(pszUri, pbiasCreate);
 
-      if(command()->m_varTopicQuery["locale"].has_char()
-         && command()->m_varTopicQuery["locale"] != "_std")
+      if(command()->m_varTopicQuery["locale"].array_get_count() > 0 && command()->m_varTopicQuery["locale"].stra().get_count_except_ci("_std") > 0)
       {
-         set_locale(command()->m_varTopicQuery["locale"], ::action::source::user());
+         set_locale(command()->m_varTopicQuery["locale"].stra()[0], ::action::source::user());
       }
 
-      if(command()->m_varTopicQuery["schema"].has_char())
+      if(command()->m_varTopicQuery["schema"].array_get_count() > 0)
       {
-         set_schema(command()->m_varTopicQuery["schema"], ::action::source::user());
+         set_schema(command()->m_varTopicQuery["schema"].stra()[0], ::action::source::user());
       }
 
    }
