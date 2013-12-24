@@ -317,6 +317,31 @@ namespace install
 
       }
 
+
+      if (!m_phost->m_bOk)
+         return;
+
+      string strScript = System.url().get_script(m_phost->m_strPluginUrl);
+
+      if (strScript == "/ca2login")
+      {
+         property_set set(get_app());
+         set.parse_url_query(System.url().get_query(m_phost->m_strPluginUrl));
+         string strUrl;
+         System.url().set_param(strUrl, set["ruri"], "sessid", get_login().m_strSessId);
+         m_phost->open_url(strUrl);
+         return;
+      }
+      else if (strScript == "/ca2logout")
+      {
+         property_set set(get_app());
+         set.parse_url_query(System.url().get_query(m_phost->m_strPluginUrl));
+         //ca2logout(set);
+         return;
+      }
+
+
+
       if(System.install().is_installing_ca2())
       {
 
@@ -899,90 +924,71 @@ namespace install
 
       string strScript = System.url().get_script(m_phost->m_strPluginUrl);
 
-      if (strScript == "/ca2login")
+      if (!m_bInstalling && System.install().is_ca2_installed())
       {
-         property_set set(get_app());
-         set.parse_url_query(System.url().get_query(m_phost->m_strPluginUrl));
-         string strUrl;
-         System.url().set_param(strUrl, set["ruri"], "sessid", get_login().m_strSessId);
-         m_phost->open_url(strUrl);
-      }
-      else if (strScript == "/ca2logout")
-      {
-         property_set set(get_app());
-         set.parse_url_query(System.url().get_query(m_phost->m_strPluginUrl));
-         //ca2logout(set);
+
+         xxdebug_box("on_ready", "on_ready", 0);
+
+         m_bRestartCa2 = true;
+
+         m_bPendingStream = false;
+
       }
       else
       {
 
-         if (!m_bInstalling && System.install().is_ca2_installed())
+         string strPrompt;
+
+         if (m_phost->m_memory.get_data() != NULL && m_phost->m_memory.get_size() > 0)
          {
 
-            xxdebug_box("on_ready", "on_ready", 0);
-
-            m_bRestartCa2 = true;
-
-            m_bPendingStream = false;
+            strPrompt = string((const char *)m_phost->m_memory.get_data(), m_phost->m_memory.get_size());
 
          }
          else
          {
 
-            string strPrompt;
+            int32_t iTry = 0;
 
-            if (m_phost->m_memory.get_data() != NULL && m_phost->m_memory.get_size() > 0)
+         retry_get_prompt:
+
+            strPrompt = Application.http().get(m_phost->m_strPluginUrl);
+
+            if (strPrompt.is_empty())
             {
 
-               strPrompt = string((const char *)m_phost->m_memory.get_data(), m_phost->m_memory.get_size());
-
-            }
-            else
-            {
-
-               int32_t iTry = 0;
-
-            retry_get_prompt:
-
-               strPrompt = Application.http().get(m_phost->m_strPluginUrl);
-
-               if (strPrompt.is_empty())
+               if (iTry < 9)
                {
 
-                  if (iTry < 9)
-                  {
+                  Sleep(iTry * 84);
 
-                     Sleep(iTry * 84);
+                  iTry++;
 
-                     iTry++;
-
-                     goto retry_get_prompt;
-
-                  }
+                  goto retry_get_prompt;
 
                }
 
             }
 
-            string strLocale;
-
-            if (strPrompt.is_empty() || !url_query_get_param_dup(strLocale, "locale", strPrompt) || strLocale.is_empty())
-               strLocale = str_get_system_default_locale_dup();
-
-            if (strLocale.is_empty())
-               strLocale = "en";
-
-            string strSchema;
-
-            if (strPrompt.is_empty() || !url_query_get_param_dup(strSchema, "schema", strPrompt) || strSchema.is_empty())
-               strSchema = str_get_system_default_schema_dup();
-
-            if (strSchema.is_empty())
-               strSchema = "en";
-
-            m_phost->starter_start(": app=session session_start=session app_type=application install locale=" + strLocale + " schema=" + strSchema);
-
          }
+
+         string strLocale;
+
+         if (strPrompt.is_empty() || !url_query_get_param_dup(strLocale, "locale", strPrompt) || strLocale.is_empty())
+            strLocale = str_get_system_default_locale_dup();
+
+         if (strLocale.is_empty())
+            strLocale = "en";
+
+         string strSchema;
+
+         if (strPrompt.is_empty() || !url_query_get_param_dup(strSchema, "schema", strPrompt) || strSchema.is_empty())
+            strSchema = str_get_system_default_schema_dup();
+
+         if (strSchema.is_empty())
+            strSchema = "en";
+
+         m_phost->starter_start(": app=session session_start=session app_type=application install locale=" + strLocale + " schema=" + strSchema);
 
       }
 
