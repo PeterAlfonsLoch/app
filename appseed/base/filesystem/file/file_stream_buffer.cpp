@@ -467,6 +467,26 @@ namespace file
 
    }
 
+   bool stream_buffer::full_read_string(string & str)
+   {
+
+      int i = sbumpc();
+
+      if (i == EOF)
+         return false;
+
+      while (i != EOF)
+      {
+
+         str += (char)i;
+
+         i = sbumpc();
+      };
+
+      return true;
+
+   }
+
    void stream_buffer::SetFilePath(const char * lpszNewName)
    {
       UNREFERENCED_PARAMETER(lpszNewName);

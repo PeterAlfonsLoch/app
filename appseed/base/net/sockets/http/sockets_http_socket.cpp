@@ -136,8 +136,8 @@ namespace sockets
          else
          {
             size_t sz = m_body_size_left < len ? m_body_size_left : len;
-            OnData(buf, sz);
             m_body_size_left -= sz;
+            OnData(buf, sz);
             if (!m_body_size_left)
             {
                OnDataComplete();
@@ -319,10 +319,10 @@ namespace sockets
    #endif
    }
 
-   bool http_socket::http_filter_response_header(string & strKey, string & strValue)
+   bool http_socket::http_filter_response_header(string & strKey, stringa & straValue)
    {
       UNREFERENCED_PARAMETER(strKey);
-      UNREFERENCED_PARAMETER(strValue);
+      UNREFERENCED_PARAMETER(straValue);
       return true;
    }
 
@@ -351,14 +351,18 @@ namespace sockets
       for(int i = 0; i < m_response.m_propertysetHeader.m_propertya.get_size(); i++)
       {
          string strKey = m_response.m_propertysetHeader.m_propertya[i].name();
-         string strValue = m_response.m_propertysetHeader.m_propertya[i].get_string();
-         if(!http_filter_response_header(strKey, strValue))
+         stringa & straValue = m_response.m_propertysetHeader.m_propertya[i].m_var.stra();
+         if(!http_filter_response_header(strKey, straValue))
             continue;
          if(strKey.CompareNoCase("host") == 0)
             continue;
-//         strLine = ;
-         msg += strKey + ": " + strValue + "\r\n";
-         TRACE0(strKey + ": " + strValue +  + "\n");
+         for (int j = 0; j < straValue.get_count(); j++)
+         {
+            string strValue = straValue[j];
+            //         strLine = ;
+            msg += strKey + ": " + strValue + "\r\n";
+            TRACE0(strKey + ": " + strValue + "\n");
+         }
          //TRACE(strTrace + "\n");
       }
 

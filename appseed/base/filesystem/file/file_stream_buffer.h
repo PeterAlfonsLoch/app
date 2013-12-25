@@ -81,6 +81,7 @@ namespace file
       virtual int sgetc();
       virtual int sbumpc();
       virtual bool read_string(string & str);
+      virtual bool full_read_string(string & str);
 
 
       void writef(const char *format, ...);

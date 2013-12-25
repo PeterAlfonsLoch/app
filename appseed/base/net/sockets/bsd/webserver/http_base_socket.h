@@ -37,10 +37,11 @@ namespace sockets
       ~http_base_socket();
 
 
-      void OnFirst();
-      void OnHeader(id idKey, const string & value);
-      void OnHeaderComplete();
-      void OnData(const char *,size_t);
+      virtual void OnFirst();
+      virtual void OnHeader(id idKey, const string & value);
+      virtual void OnHeaderComplete();
+      virtual void OnData(const char *, size_t);
+      virtual void OnDataComplete();
 
       void Respond();
 
