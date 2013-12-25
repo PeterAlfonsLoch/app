@@ -200,7 +200,7 @@ namespace fontopus
 
       {
 
-         ::string_timeout & strtimeout = ::fontopus::authentication_map::m_authmap[strUsername].m_mapServer[m_strRequestingServer];
+         string_timeout & strtimeout = ::fontopus::authentication_map::m_authmap[strUsername].m_mapServer[m_strRequestingServer];
 
          if (strtimeout.get_length() > 32 && strtimeout.valid())
          {
@@ -223,7 +223,7 @@ namespace fontopus
 
       {
 
-         ::string_timeout & strtimeout = ::fontopus::authentication_map::m_authmap[strUsername].m_mapFontopus[m_strFontopusServer];
+         string_timeout & strtimeout = ::fontopus::authentication_map::m_authmap[strUsername].m_mapFontopus[m_strFontopusServer];
 
          if (strtimeout.get_length() > 32 && strtimeout.valid())
          {
