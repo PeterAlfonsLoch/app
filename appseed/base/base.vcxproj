@@ -9735,6 +9735,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\fontopus\fontopus_simple_ui.cpp" />
     <ClCompile Include="user\fontopus\fontopus_user.cpp" />
     <ClCompile Include="user\fontopus\fontopus_usera.cpp" />
+    <ClCompile Include="user\fontopus\fontopus_user_authentication.cpp" />
     <ClCompile Include="user\fontopus\fontopus_user_set.cpp" />
     <ClCompile Include="user\fontopus\fontopus_validate.cpp" />
     <ClCompile Include="user\simple_ui\simple_ui_edit_box.cpp" />
