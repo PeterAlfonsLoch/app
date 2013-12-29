@@ -684,7 +684,6 @@
     <ClInclude Include="kissfft\kiss_fft.h" />
     <ClInclude Include="kissfft\kiss_ifft.h" />
     <ClInclude Include="kissfft\kiss_fft_guts.h" />
-    <ClInclude Include="kissfft\aaa_vmskissfftfKiss_want_to_remove_xxx.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="math\math_math.h" />
   </ItemGroup>
