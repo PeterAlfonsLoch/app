@@ -220,7 +220,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
       if(pinteractionframe != NULL && (_ca_is_basis() || Application.command()->m_varTopicQuery["version"] == "basis"))
       {
 
-         pinteractionframe->set_style("BlueRedPurple");
+         //pinteractionframe->set_style("BlueRedPurple");
 
       }
 
@@ -988,8 +988,24 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
 }
 
 
+bool simple_frame_window::on_before_set_parent(sp(interaction) pinterface)
+{
+
+   WindowDataSaveWindowRect();
+
+   if (!::database::user::interaction::on_before_set_parent(pinterface))
+      return false;
+
+   return true;
+
+}
+
+
 void simple_frame_window::on_set_parent(sp(::user::interaction) pguieParent)
 {
+
+   ::database::user::interaction::on_set_parent(pguieParent);
+
    UNREFERENCED_PARAMETER(pguieParent);
    m_workset.m_pwndEvent = m_pimpl->m_pguie;
 
@@ -1005,6 +1021,16 @@ void simple_frame_window::on_set_parent(sp(::user::interaction) pguieParent)
          m_bWindowFrame = false;
          m_workset.Enable(false);
       }
+   }
+
+   if (pguieParent == NULL || !pguieParent->is_place_holder())
+   {
+
+      WindowDataLoadWindowRect(false);
+
+      WindowDataEnableSaveWindowRect(true);
+
+
    }
 
    if (m_bAutoWindowFrame)
@@ -1036,6 +1062,8 @@ void simple_frame_window::on_set_parent(sp(::user::interaction) pguieParent)
          layout();
       }
    }
+
+
 }
 
 void simple_frame_window::GetClientRect(LPRECT lprect)
@@ -1108,14 +1136,20 @@ bool simple_frame_window::WndFrameworkDownUpGetDownEnable()
    && m_pupdowntarget->up_down_target_is_up();
 }
 
+
 void simple_frame_window::WfiOnDown()
 {
+
    frame_Attach();
+
 }
+
 
 void simple_frame_window::WfiOnUp()
 {
+
    frame_Detach();
+
 }
 
 

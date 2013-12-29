@@ -681,7 +681,7 @@ namespace user
             if (pguie->get_parent()->is_place_holder())
             {
 
-               pguie->get_parent()->hold(pguie);
+               pguie->get_parent()->place(pguie);
 
             }
 

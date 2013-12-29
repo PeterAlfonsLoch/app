@@ -865,7 +865,7 @@ namespace user
          && (!oprop("should_not_be_automatically_holded_on_initial_update_frame").is_set()
          || !oprop("should_not_be_automatically_holded_on_initial_update_frame")))
       {
-         get_parent()->hold(this);
+         get_parent()->place(this);
          get_parent()->layout();
       }
 

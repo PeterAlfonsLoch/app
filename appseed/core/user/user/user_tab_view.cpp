@@ -255,7 +255,7 @@ namespace user
             {
                if(get_tab_holder(iTab) == NULL)
                {
-                  get_data()->m_panea[iTab].m_pholder = hold(pcreatordata->m_pwnd);
+                  get_data()->m_panea[iTab].m_pholder = place(pcreatordata->m_pwnd);
                }
                else
                {

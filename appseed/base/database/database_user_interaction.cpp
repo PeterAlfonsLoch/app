@@ -428,6 +428,19 @@ namespace database
 
       }
 
+      bool interaction::on_before_set_parent(sp(::user::interaction) pguieParent)
+      {
+
+         if (!::user::interaction::on_before_set_parent(pguieParent))
+            return false;
+         
+         WindowDataEnableSaveWindowRect(false);
+
+         return true;
+
+      }
+
+
       void interaction::on_set_parent(sp(::user::interaction) pguieParent)
       {
 

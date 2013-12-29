@@ -50,7 +50,7 @@ namespace data
 namespace user
 {
 
-
+   class place_holder;
 
 #if defined METROWIN && defined(__cplusplus_winrt)
 
@@ -227,6 +227,7 @@ namespace user
       virtual LONG SetWindowLong(int32_t nIndex, LONG lValue);
 
 
+      virtual bool on_before_set_parent(sp(interaction) pinterface);
       virtual void on_set_parent(sp(interaction) pinterface);
 
 
@@ -604,7 +605,7 @@ namespace user
 
       virtual bool is_selected(::data::item * pitem);
 
-      virtual bool hold(sp(::user::interaction) pui);
+      virtual sp(place_holder) place(sp(::user::interaction) pui);
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
       static Platform::Agile<Windows::UI::Core::CoreWindow>(*s_get_os_window)(interaction * pui);

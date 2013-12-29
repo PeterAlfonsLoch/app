@@ -171,6 +171,7 @@ namespace frame
          pmouse->m_bRet = true;
          SizeWindow(GetSizingWindow(), pmouse->m_pt, false);
          m_ehittestMode = HitTestNone;
+         m_pworkset->m_bSizingCapture = false;
          System.release_capture_uie();
          return true;
       }

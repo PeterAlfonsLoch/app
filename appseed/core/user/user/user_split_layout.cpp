@@ -538,7 +538,7 @@ namespace user
       }
       else
       {
-         pcomponent->m_pholder = hold(pwnd);
+         pcomponent->m_pholder = place(pwnd);
          if(pcomponent->m_pholder == NULL)
             return false;
       }
@@ -590,7 +590,7 @@ namespace user
       }
       else
       {
-         pcomponent->m_pholder = hold(pwnd);
+         pcomponent->m_pholder = place(pwnd);
          if(pcomponent->m_pholder == NULL)
             return false;
       }

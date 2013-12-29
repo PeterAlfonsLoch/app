@@ -193,10 +193,10 @@ namespace user
 
    }
 
-   bool interaction::hold(sp(::user::interaction) pui)
+   sp(place_holder) interaction::place(sp(::user::interaction) pui)
    {
       UNREFERENCED_PARAMETER(pui);
-      return false;
+      return NULL;
    }
 
    sp(interaction) interaction::get_parent_base() const
@@ -217,6 +217,15 @@ namespace user
       return set_parent(pguieParent);
    }
 
+   
+   bool interaction::on_before_set_parent(sp(interaction) pguieParent)
+   {
+
+      return true;
+
+   }
+
+
    sp(interaction) interaction::set_parent(sp(interaction) pguieParent)
    {
       if (pguieParent == this
@@ -226,6 +235,8 @@ namespace user
       {
          return get_parent();
       }
+      if (!on_before_set_parent(pguieParent))
+         return get_parent();
       sp(::user::interaction) pimplOld = m_pimpl;
       sp(interaction) pparentOld = get_parent();
       if (pparentOld != NULL)
@@ -300,6 +311,7 @@ namespace user
          {
             ::virtual_user_interface * pimplNew = new ::virtual_user_interface(get_app());
             pimplNew->m_pguie = this;
+            ::count cFrame = System.frames().remove(this); // no more a top level frame if it were one
             m_pimpl = pimplNew;
             string strName;
             int32_t iStyle = GetWindowLong(GWL_STYLE);
@@ -315,6 +327,10 @@ namespace user
             if (!pimplNew->create(NULL, strName, iStyle, rect(0, 0, 0, 0), pguieParent, GetDlgCtrlId()))
             {
                m_pimpl = pimplOld;
+               if (cFrame > 0)
+               {
+                  System.frames().add(this);
+               }
                pimplOld->m_uiptraChild = pimplNew->m_uiptraChild;
                pimplNew->m_uiptraChild.remove_all();
                delete pimplNew;
@@ -2791,15 +2807,50 @@ namespace user
    void interaction::on_set_parent(sp(interaction) pguieParent)
    {
 
-      if (pguieParent != NULL)
+      try
       {
+         if (pguieParent != NULL)
+         {
 
-         single_lock sl(pguieParent->m_pthread == NULL ? NULL : &pguieParent->m_pthread->m_mutex, TRUE);
+            single_lock sl(pguieParent->m_pthread == NULL ? NULL : &pguieParent->m_pthread->m_mutex, TRUE);
 
-         single_lock sl2(m_pguie->m_pthread == NULL ? NULL : &m_pguie->m_pthread->m_mutex, TRUE);
+            single_lock sl2(m_pguie->m_pthread == NULL ? NULL : &m_pguie->m_pthread->m_mutex, TRUE);
 
-         pguieParent->m_uiptraChild.add_unique(m_pguie);
+            pguieParent->m_uiptraChild.add_unique(m_pguie);
 
+         }
+      }
+      catch (...)
+      {
+      }
+
+      try
+      {
+         if (pguieParent != NULL)
+         {
+
+            sp(place_holder) pholder = pguieParent;
+
+            if (pholder.is_set())
+            {
+
+               single_lock sl(pguieParent->m_pthread == NULL ? NULL : &pguieParent->m_pthread->m_mutex, TRUE);
+
+               single_lock sl2(m_pguie->m_pthread == NULL ? NULL : &m_pguie->m_pthread->m_mutex, TRUE);
+
+               if (!pholder->is_holding(this))
+               {
+
+                  pholder->hold(this);
+
+               }
+
+            }
+
+         }
+      }
+      catch (...)
+      {
       }
 
    }

@@ -90,13 +90,13 @@ namespace user
       return ::user::interaction::create(NULL, NULL, 0 /*__WS_DEFAULT_VIEW*/, rect(0,0,0,0), puiParent, id) != FALSE;
    }
 
-   place_holder_ptra place_holder_container_ptra::hold(sp(::user::interaction) pui)
+   place_holder_ptra place_holder_container_ptra::place(sp(::user::interaction) pui)
    {
       place_holder_ptra holderptra;
       sp(place_holder) pholder;
       for(int32_t i = 0; i < this->get_count(); i++)
       {
-         pholder = this->element_at(i)->hold(pui);
+         pholder = this->element_at(i)->place(pui);
          if(pholder != NULL)
          {
             holderptra.add(pholder);
@@ -105,7 +105,7 @@ namespace user
       return holderptra;
    }
 
-   int32_t place_holder_container_ptra::unhold(sp(::user::interaction) pui)
+   int32_t place_holder_container_ptra::unplace(sp(::user::interaction) pui)
    {
       int32_t count = 0;
       for(int32_t i = 0; i < this->get_count(); i++)
