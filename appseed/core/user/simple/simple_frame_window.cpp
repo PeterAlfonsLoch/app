@@ -988,7 +988,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
 }
 
 
-bool simple_frame_window::on_before_set_parent(sp(interaction) pinterface)
+bool simple_frame_window::on_before_set_parent(sp(::user::interaction) pinterface)
 {
 
    WindowDataSaveWindowRect();

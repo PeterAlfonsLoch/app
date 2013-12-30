@@ -1131,6 +1131,17 @@ bool virtual_user_interface::DestroyWindow()
 
 //#ifdef WINDOWS
 
+   if (m_pthread.is_set())
+   {
+      if (m_pthread->m_puiptra.is_set())
+      {
+         m_pthread->m_puiptra->remove(this);
+         m_pthread->m_puiptra->remove(m_pguie);
+      }
+   }
+
+
+
    try
    {
       send_message(WM_DESTROY);
