@@ -116,10 +116,13 @@ void signalizable::unregister_target(signalizable* psignalizable)
 
 void signalizable::filter_target(signalizable* psignalizable)
 {
-   for(int32_t i = 0; i < m_signalptra.get_size();)
+   for(int32_t i = 0; i < m_signalptra.get_size(); i++)
    {
       m_signalptra[i]->leave_only(psignalizable);
-      if(m_signalptra[i]->m_delegatea.get_count() <= 0)
+   }
+   for (int32_t i = 0; i < m_signalptra.get_size();)
+   {
+      if (m_signalptra[i]->m_delegatea.get_count() <= 0)
       {
          m_signalptra.remove_at(i);
       }

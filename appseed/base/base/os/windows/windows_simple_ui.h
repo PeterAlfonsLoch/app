@@ -100,3 +100,4 @@ namespace os
 
 
 
+CLASS_DECL_BASE LRESULT layered_window_nc_calc_size(WPARAM wparam, LPARAM lparam);

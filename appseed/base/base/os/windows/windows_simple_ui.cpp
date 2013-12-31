@@ -163,6 +163,8 @@ namespace os
 
          ::SetWindowLong(m_window, GWL_STYLE, WS_VISIBLE);
 
+//         ::RedrawWindow(m_window, NULL, NULL, RDW_ERASE | RDW_FRAME | RDW_INTERNALPAINT | RDW_INVALIDATE);
+
          ::BringWindowToTop(m_window);
 
       }
@@ -204,6 +206,12 @@ namespace os
          m_windowmap[hWnd] = pui;
 
          pui->m_window = hWnd;
+
+      }
+      else if (message == WM_NCCALCSIZE)
+      {
+
+         return layered_window_nc_calc_size(wparam, lparam);
 
       }
 
@@ -314,7 +322,7 @@ namespace os
    }
 
 
-   LRESULT simple_ui::message_handler(UINT message, WPARAM wParam, LPARAM lParam)
+   LRESULT simple_ui::message_handler(UINT message, WPARAM wparam, LPARAM lparam)
    {
 
       switch (message)
@@ -323,32 +331,35 @@ namespace os
          PostQuitMessage(0);
          goto default_window_procedure;
       case WM_LBUTTONDOWN:
-         on_lbutton_down(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+         on_lbutton_down(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
          break;
       case WM_LBUTTONUP:
-         on_lbutton_up(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+         on_lbutton_up(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
          break;
       case WM_MOUSEMOVE:
-         on_mouse_move(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+         on_mouse_move(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
          break;
       case WM_KEYDOWN:
-         if (!on_windows_key_down(wParam, lParam))
+         if (!on_windows_key_down(wparam, lparam))
             goto default_window_procedure;
          break;
       case WM_KEYUP:
-         if (!on_windows_key_up(wParam, lParam))
+         if (!on_windows_key_up(wparam, lparam))
             goto default_window_procedure;
          break;
       case WM_TIMER:
          on_windows_gdi_draw_framebuffer();
          goto default_window_procedure;
       case WM_MOVE:
-         if (!on_windows_move(LOWORD(lParam), HIWORD(lParam)))
+         if (!on_windows_move(LOWORD(lparam), HIWORD(lparam)))
             goto default_window_procedure;
          break;
       case WM_SIZE:
-         if (!on_windows_size(LOWORD(lParam), HIWORD(lParam)))
+         if (!on_windows_size(LOWORD(lparam), HIWORD(lparam)))
             goto default_window_procedure;
+         break;
+      case WM_NCCALCSIZE:
+         return layered_window_nc_calc_size(wparam, lparam);
          break;
       default:
          goto default_window_procedure;
@@ -358,7 +369,7 @@ namespace os
 
    default_window_procedure:
 
-      return DefWindowProc(m_window, message, wParam, lParam);
+      return DefWindowProc(m_window, message, wparam, lparam);
 
    }
 
@@ -511,6 +522,25 @@ namespace os
 } // namespace os
 
 
+
+
+LRESULT layered_window_nc_calc_size(WPARAM wparam, LPARAM lparam)
+{
+
+   if (wparam == FALSE)
+   {
+
+      LPNCCALCSIZE_PARAMS pncc = (LPNCCALCSIZE_PARAMS) lparam;
+
+      pncc->rgrc[2] = pncc->rgrc[1];
+      pncc->rgrc[1] = pncc->rgrc[0];
+
+   }
+
+   return 0;
+
+
+}
 
 
 

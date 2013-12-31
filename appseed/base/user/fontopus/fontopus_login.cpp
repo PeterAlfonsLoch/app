@@ -24,7 +24,7 @@ namespace fontopus
       m_tap(papp)
    {
 
-         m_bSelfLayout = false;
+      m_bSelfLayout = false;
 
       m_pcallback = NULL;
 
@@ -42,7 +42,7 @@ namespace fontopus
       m_eresult = login::result_fail;
 
       int stdw = 884;
-      int stdh = 184 + 23 + 184;
+      int stdh = 177 + 23 + 184 + 49;
 
       m_rect.left = 0;
       m_rect.top = 0;

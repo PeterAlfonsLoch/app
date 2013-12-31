@@ -111,6 +111,14 @@ void window_gdi::update_window(oswindow window, COLORREF * pcolorref, LPCRECT lp
 
    bool bLayered = (::GetWindowLong(window, GWL_EXSTYLE) & WS_EX_LAYERED) != 0;
 
+   int64_t area = iStride * height(rectOutputClient) / sizeof(COLORREF);
+
+   COLORREF * pdata = m_pcolorref;
+
+   for (int64_t i = area - 1; i >= 0; i--)
+   {
+      *pdata++ = ARGB(255, 0, 255, 0);
+   }
 
 copy_colorref(m_pcolorref, pcolorref, iStride);
 
