@@ -64,5 +64,7 @@
 <item code="34" value="key_next" />
 <item code="13" value="key_return" />
 <item code="9" value="key_tab" />
+<item code="189" value="key_hyphen" />
+<item code="187" value="key_equal" />
 </layout>
 

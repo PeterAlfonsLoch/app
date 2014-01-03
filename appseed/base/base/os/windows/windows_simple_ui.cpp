@@ -527,7 +527,7 @@ namespace os
 LRESULT layered_window_nc_calc_size(WPARAM wparam, LPARAM lparam)
 {
 
-   if (wparam == FALSE)
+   if (wparam != FALSE)
    {
 
       LPNCCALCSIZE_PARAMS pncc = (LPNCCALCSIZE_PARAMS) lparam;

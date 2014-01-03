@@ -64,7 +64,7 @@ uint calc_days_in_year(uint year)
    @param tm[OUT]    The value to set.
    @param time_type  Timestasmp type
 */
-inline void set_zero_time(MYSQL_TIME *tm,
+ void set_zero_time(MYSQL_TIME *tm,
                           enum enum_mysql_timestamp_type time_type)
 {
   memset(tm, 0, sizeof(*tm));
@@ -76,7 +76,7 @@ inline void set_zero_time(MYSQL_TIME *tm,
   Set hour, minute and second of a MYSQL_TIME variable to maximum time value.
   Unlike set_max_time(), does not touch the other structure members.
 */
-inline void set_max_hhmmss(MYSQL_TIME *tm)
+void set_max_hhmmss(MYSQL_TIME *tm)
 {
   tm->hour= TIME_MAX_HOUR;
   tm->minute= TIME_MAX_MINUTE;

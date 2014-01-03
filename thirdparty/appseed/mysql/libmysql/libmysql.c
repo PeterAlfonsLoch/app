@@ -2980,7 +2980,7 @@ mysql_stmt_send_long_data(MYSQL_STMT *stmt, uint param_number,
   and no-conversion fetching.
 */
 
-static void read_binary_time(MYSQL_TIME *tm, uchar **pos)
+void read_binary_time(MYSQL_TIME *tm, uchar **pos)
 {
   /* net_field_length will set pos to the first byte of data */
   uint length= (uint) net_field_length(pos);

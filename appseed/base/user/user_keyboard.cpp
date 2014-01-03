@@ -82,6 +82,7 @@ namespace user
      System.set_enum_name(key_openbracket2, "key_openbracket2");
      System.set_enum_name(key_til2, "key_til2");
      System.set_enum_name(key_acute2, "key_acute2");
+     System.set_enum_name(key_equal, "key_equal");
 
 
    }
