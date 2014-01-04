@@ -370,6 +370,10 @@ namespace file
 #include "base/os/macos/macos.h"
 #include "base/os/macos/macos_window.h"
 
+#elif defined(ANDROID)
+
+#include "base/os/android/android.h"
+
 #elif defined(WINDOWS)
 
 #include "base/os/windows/windows.h"

@@ -40,7 +40,11 @@ m_mutexStr(this)
 
       m_pbasesystem           = m_pbaseapp->m_pbasesystem;
 
+#ifdef WINDOWS
+
       m_hinstance             = m_pbaseapp->m_hinstance;
+
+#endif
 
    }
    else
@@ -459,12 +463,20 @@ string base_application::file_as_string(var varFile)
    if (::str::begins_ci(varFile.get_string(), "http://")
       || ::str::begins_ci(varFile.get_string(), "https://"))
    {
-      return Application.http().get(varFile.get_string());
+      
+      ::property_set set(get_app());
+
+      return Application.http().get(varFile.get_string(), set);
+
    }
    else if (::str::begins_ci(varFile["url"].get_string(), "http://")
       || ::str::begins_ci(varFile["url"].get_string(), "https://"))
    {
-      return Application.http().get(varFile["url"].get_string());
+
+      ::property_set set(get_app());
+
+      return Application.http().get(varFile["url"].get_string(), set);
+
    }
    else
    {
@@ -3654,7 +3666,7 @@ bool base_application::initialize()
       {
          if (m_spfsdata.is_null())
             m_spfsdata = new ::fs::set(this);
-         ::fs::set * pset = dynamic_cast <::fs::set *> ((class ::fs::data *) m_spfsdata);
+         ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
          pset->m_spafsdata.add(Session.m_pifs);
          pset->m_spafsdata.add(Session.m_prfs);
          stringa stra;
@@ -3843,7 +3855,7 @@ bool base_application::initialize1()
    {
       if (m_spfsdata.is_null())
          m_spfsdata = new ::fs::set(this);
-      ::fs::set * pset = dynamic_cast <::fs::set *> ((class ::fs::data *) m_spfsdata);
+      ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
       pset->m_spafsdata.add(new ::fs::native(this));
       stringa stra;
       pset->root_ones(stra);
@@ -4130,7 +4142,7 @@ bool base_application::initialize_instance()
 
    if (!create_message_queue(this, strWindow))
    {
-      TRACE("Fatal error: could not initialize application message window (name=\"%s\").", strWindow);
+      TRACE("Fatal error: could not initialize application message window (name=\"%s\").", strWindow.c_str());
       return false;
    }
 
@@ -4713,7 +4725,7 @@ string base_application::get_local_id_mutex_name(const char * pszAppName, const 
 {
    string strId(pszId);
    string strMutex;
-   strMutex.Format("Local\\ca2_application_local_mutex:%s, id:%s", pszAppName, strId);
+   strMutex.Format("Local\\ca2_application_local_mutex:%s, id:%s", pszAppName, strId.c_str());
    return strMutex;
 }
 
@@ -4728,7 +4740,7 @@ string base_application::get_global_id_mutex_name(const char * pszAppName, const
 {
    string strId(pszId);
    string strMutex;
-   strMutex.Format("Global\\ca2_application_global_mutex:%s, id:%s", pszAppName, strId);
+   strMutex.Format("Global\\ca2_application_global_mutex:%s, id:%s", pszAppName, strId.c_str());
    return strMutex;
 }
 

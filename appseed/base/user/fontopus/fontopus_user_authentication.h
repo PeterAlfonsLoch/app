@@ -30,7 +30,7 @@ template < int t_iTimeout >
 bool string_timeout < t_iTimeout >::expired()
 {
 
-   int iCur = (int)GetTickCount();
+   int iCur = (int) get_tick_count();
 
    int iExp = (int)m_dwExpire;
 
@@ -52,7 +52,7 @@ string_timeout< t_iTimeout > & string_timeout < t_iTimeout >::operator = (const 
 
    m_str = str;
 
-   m_dwExpire = GetTickCount() + t_iTimeout;
+   m_dwExpire = get_tick_count() + t_iTimeout;
 
    return *this;
 

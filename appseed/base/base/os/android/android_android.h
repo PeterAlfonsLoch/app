@@ -7,14 +7,14 @@
 #include "android_graphics.h"
 
 
-#include "android_http_lib.h"
-#include "android_http.h"
 #include "android_process.h"
 #include "android_cross_win_gdi.h"
 #include "android_cross_win_file.h"
 #include "android_file.h"
 #include "android_file_watcher.h"
 #include "android_window_android.h"
+#include "android_simple_ui.h"
+#include "android_window_impl.h"
 
 
 
@@ -51,7 +51,7 @@ DWORD get_tick_count();
 #define MAXIMUM_WAIT_OBJECTS      64
 
 
-
+#ifndef ANDROID
 
 union semun
 {
@@ -62,7 +62,7 @@ union semun
 
 };
 
-
+#endif
 
 CLASS_DECL_BASE DWORD GetLastError();
 CLASS_DECL_BASE DWORD SetLastError(DWORD dw);

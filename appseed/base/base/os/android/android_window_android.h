@@ -1,15 +1,16 @@
 #pragma once
 
 
-class CLASS_DECL_BOOT window_android :
+class CLASS_DECL_BASE window_android :
    public window_graphics
 {
 public:
 
 
-   cairo_t *                     m_cairoSource;
-   cairo_surface_t *             m_cairosurfaceSource;
+   //cairo_t *                     m_cairoSource;
+   //cairo_surface_t *             m_cairosurfaceSource;
    ::primitive::memory                 m_mem;
+   size                                m_size;
 
 
    window_android();

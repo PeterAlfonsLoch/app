@@ -42,7 +42,7 @@ struct CLASS_DECL_BASE oswindow_data
    HTHREAD                       m_hthread;
    COLORREF *                    m_pcolorref;
    RECT                          m_rect;
-   simple_map < int, LONG > *    m_plongmap;
+   int_map < LONG > *            m_plongmap;
    bool                          m_bDestroying;
 
 
@@ -126,11 +126,11 @@ struct CLASS_DECL_BASE oswindow_data
 
 
 CLASS_DECL_BASE int32_t oswindow_find_message_only_window(::user::interaction_base * puibaseMessageWindow);
-CLASS_DECL_BASE int32_t oswindow_find(::ca::window * pwindow);
+CLASS_DECL_BASE int32_t oswindow_find(::user::interaction * pwindow);
 CLASS_DECL_BASE oswindow_data * oswindow_get_message_only_window(::user::interaction_base * puibaseMessageWindow);
-CLASS_DECL_BASE oswindow_data * oswindow_get(::ca::window * pwindow);
-CLASS_DECL_BASE oswindow oswindow_defer_get(::ca::window * pwindow);
-CLASS_DECL_BASE bool oswindow_remove(::ca::window * pwindow);
+CLASS_DECL_BASE oswindow_data * oswindow_get(::user::interaction * pwindow);
+CLASS_DECL_BASE oswindow oswindow_defer_get(::user::interaction * pwindow);
+CLASS_DECL_BASE bool oswindow_remove(::user::interaction * pwindow);
 CLASS_DECL_BASE bool oswindow_remove_message_only_window(::user::interaction_base * puibaseMessageOnlyWindow);
 
 

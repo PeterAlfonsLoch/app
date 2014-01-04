@@ -14,7 +14,7 @@ void TRACELASTERROR()
 {
    sp(base_application) m_pbaseapp = get_thread_app();
    string strErrorMessage = ::get_system_error_message(::GetLastError());
-   TRACE("Error Message :\n%s\n", strErrorMessage);
+   TRACE("Error Message :\n%s\n", strErrorMessage.c_str());
 }
 #endif
 

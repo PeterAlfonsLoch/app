@@ -81,31 +81,31 @@ namespace http
          ::fontopus::user * puser,
          const char * pszVersion);
 
-      ::sockets::http_session * request(::sockets::socket_handler & handler, ::sockets::http_session * psession, const char * pszUrl, property_set & set = property_set());
+      ::sockets::http_session * request(::sockets::socket_handler & handler, ::sockets::http_session * psession, const char * pszUrl, property_set & set);
 
 
 
 
 
-      ::sockets::http_client_socket * get(::sockets::socket_handler & handler, const char * pszUrl, property_set & set = property_set());
+      ::sockets::http_client_socket * get(::sockets::socket_handler & handler, const char * pszUrl, property_set & set);
 
 
 
       DECL_GEN_SIGNAL(get);
 
 
-      bool exists(const char * pszUrl, property_set & set = property_set());
+      bool exists(const char * pszUrl, property_set & set);
 
-      bool get(const char * pszUrl, property_set & set = property_set());
+      bool get(const char * pszUrl, property_set & set);
 
-      bool request(const char * pszMethod, const char * pszUrl, property_set & set = property_set());
-
-
-      bool download(const char * pszUrl, const char * pszFile, property_set & set = property_set());
+      bool request(const char * pszMethod, const char * pszUrl, property_set & set);
 
 
-      bool put(const char * pszUrl, primitive::memory_base & memory, property_set & set = property_set());
-      bool put(const char * pszUrl, ::file::buffer_sp  pfile, property_set & set = property_set());
+      bool download(const char * pszUrl, const char * pszFile, property_set & set);
+
+
+      bool put(const char * pszUrl, primitive::memory_base & memory, property_set & set);
+      bool put(const char * pszUrl, ::file::buffer_sp  pfile, property_set & set);
 
       void defer_auto_initialize_proxy_configuration();
       void auto_config_proxy(int32_t i);

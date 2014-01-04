@@ -26,8 +26,10 @@
 #include "base/os/windows/windows_file_watcher.h"
 #elif defined(MACOS)
 #include "base/os/macos/macos_file_watcher.h"
-#elif defined(LINUX) || defined(ANDROID)
+#elif defined(LINUX)
 #include "base/os/linux/linux_file_watcher.h"
+#elif defined(ANDROID)
+#include "base/os/android/android_file_watcher.h"
 #elif defined(METROWIN)
 #include "base/os/metrowin/metrowin_file_watcher.h"
 #endif

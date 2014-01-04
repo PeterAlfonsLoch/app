@@ -386,7 +386,7 @@ inline void __cdecl __clearerr_s(FILE *stream)
 #ifdef WINDOWS
    C_RUNTIME_ERROR_CHECK(::clearerr_s(stream));
 #else
-   ::clearerr(stream);
+   clearerr(stream);
    C_RUNTIME_ERROR_CHECK(errno);
 #endif
 }

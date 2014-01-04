@@ -451,7 +451,7 @@ namespace message
       mouse_activate(sp(base_application) papp) : element(papp), message::base(papp) {}
       sp(::user::interaction) GetDesktopWindow();
       UINT GetHitTest();
-      UINT GetMessage();
+      UINT get_message();
    };
 
    class CLASS_DECL_BASE context_menu : public base

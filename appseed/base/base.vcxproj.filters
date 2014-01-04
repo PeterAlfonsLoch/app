@@ -704,9 +704,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework_c.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_wstringtou.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
@@ -3209,46 +3206,22 @@
     <ClInclude Include="base\os\android\android_graphics.h">
       <Filter>Header Files\base\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="base\os\android\android_http.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_http_lib.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
     <ClInclude Include="base\os\android\android_internal.h">
       <Filter>Header Files\base\os\android</Filter>
     </ClInclude>
     <ClInclude Include="base\os\android\android_process.h">
       <Filter>Header Files\base\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="base\os\android\android_simple_bitmap.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_simple_brush.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_simple_font.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_simple_graphics.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_simple_path.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_simple_pen.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
     <ClInclude Include="base\os\android\android_window_android.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\linux_internal.h">
       <Filter>Header Files\base\os\android</Filter>
     </ClInclude>
     <ClInclude Include="base\os\android\android_android.h">
       <Filter>Header Files\base\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="base\os\android\android_simple_ui.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="framework_c.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="base\crypto\crypto\crypto_framework.h">
@@ -3318,9 +3291,6 @@
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_waitable.cpp">
       <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="framework.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_memory.cpp">
       <Filter>Source Files\primitive</Filter>
@@ -6898,6 +6868,69 @@
     <ClCompile Include="user\fontopus\fontopus_user_authentication.cpp">
       <Filter>Source Files\user\fontopus</Filter>
     </ClCompile>
+    <ClCompile Include="base\os\android\android.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_cairo_keep.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_cross_win_file.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_cross_win_gdi.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_file.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_file_watcher.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_launcher.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_library.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_lock.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_message_loop.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_process.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_process_pid.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_simple_shell_launcher.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_small_ipca_channel.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_thread.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_win_base.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_window.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_window_android.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\os_binreloc.cpp">
+      <Filter>Source Files\base\os</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -7085,6 +7118,33 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

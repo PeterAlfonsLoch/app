@@ -729,7 +729,7 @@ namespace message
       return LOWORD(m_lparam);
    }
 
-   UINT mouse_activate::GetMessage()
+   UINT mouse_activate::get_message()
    {
       return HIWORD(m_lparam);
    }

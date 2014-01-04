@@ -48,7 +48,7 @@ namespace core
          return m_pbaseapp;
       }
 
-#ifdef WINDOWS
+#ifndef VARIADIC_TEMPLATE
 
       inline void __cdecl operator()(uint32_t dwCategory, UINT nLevel, const char *pszFmt, ...) const
       {

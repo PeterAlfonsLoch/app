@@ -35,7 +35,7 @@ namespace file_watcher
 	{
 	public:
 		/// type for a map from id to watch_struct pointer
-		typedef map<id, watch_struct*> WatchMap;
+		typedef map<id, id, watch_struct *, watch_struct*> WatchMap;
 
 	public:
 		///
@@ -62,7 +62,7 @@ namespace file_watcher
 		void update();
 
 		/// Handles the action
-		void handle_action(watch_struct* watch, const char * filename, uint32_t ulOsAction);
+		virtual void handle_action(action * paction);
 
 	private:
 		/// Map of id to watch_struct pointers

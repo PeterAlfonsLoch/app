@@ -36,7 +36,7 @@
 #elif defined(ANDROID)
 
 #include "base/os/ansios/ansios.h"
-//#include "base/os/android/os_binreloc.h"
+#include "base/os/os_binreloc.h"
 #include "base/os/android/android_android.h"
 
 #define HAVE_MYSQL
