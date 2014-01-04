@@ -4,17 +4,17 @@
 #include <wchar.h>
 
 
-#include "ca_os_graphics.h"
+#include "android_graphics.h"
 
 
-#include "ca_os_http_lib.h"
-#include "ca_os_http.h"
-#include "ca_os_process.h"
-#include "ca_os_cross_win_gdi.h"
-#include "ca_os_cross_win_file.h"
-#include "ca_os_file.h"
-#include "ca_os_file_watcher.h"
-#include "ca_os_window_android.h"
+#include "android_http_lib.h"
+#include "android_http.h"
+#include "android_process.h"
+#include "android_cross_win_gdi.h"
+#include "android_cross_win_file.h"
+#include "android_file.h"
+#include "android_file_watcher.h"
+#include "android_window_android.h"
 
 
 

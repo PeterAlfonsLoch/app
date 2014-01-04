@@ -788,9 +788,6 @@
     <ClInclude Include="primitive\primitive_var.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_logic.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
@@ -2414,9 +2411,6 @@
     <ClInclude Include="base\crypto\crypto\crypto_sha1_digest.h">
       <Filter>Header Files\base\crypto\crypto</Filter>
     </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_framework.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
     <ClInclude Include="base\crypto\crypto\crypto_internal_data_types.h">
       <Filter>Header Files\base\crypto\crypto</Filter>
     </ClInclude>
@@ -3193,6 +3187,72 @@
     </ClInclude>
     <ClInclude Include="primitive\primitive_relation_set.h">
       <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_cairo_keep.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_cross_win_file.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_cross_win_gdi.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_cross_win_gdi_internal.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_file.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_file_watcher.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_graphics.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_http.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_http_lib.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_internal.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_process.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_simple_bitmap.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_simple_brush.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_simple_font.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_simple_graphics.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_simple_path.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_simple_pen.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_window_android.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\linux_internal.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_android.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\crypto\crypto_framework.h">
+      <Filter>Header Files\base\crypto\crypto</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -7025,6 +7085,12 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

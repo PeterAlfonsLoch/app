@@ -70,7 +70,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <CLRSupport>false</CLRSupport>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>arm-linux-androideabi-4.7</PlatformToolset>
+    <PlatformToolset>arm-linux-androideabi-4.8</PlatformToolset>
     <AndroidStlType>gnustl_dynamic</AndroidStlType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'" Label="Configuration">
@@ -401,7 +401,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DEBUG;__C__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/base/base;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../app/appseed/base/base/openssl;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto;$(SolutionDir)../../../app/appseed/base/base/openssl/ssl;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/asn1;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/evp;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/krb5;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/modes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -1171,7 +1171,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\crypto\crypto\crypto_c_crypto.h" />
     <ClInclude Include="base\crypto\crypto\crypto_datatypes.h" />
     <ClInclude Include="base\crypto\crypto\crypto_err.h" />
-    <ClInclude Include="base\crypto\crypto\crypto_framework.h" />
+    <ClInclude Include="base\crypto\crypto\crypto_framework.h">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CompileAs>
+    </ClInclude>
     <ClInclude Include="base\crypto\crypto\crypto_gf2_8.h" />
     <ClInclude Include="base\crypto\crypto\crypto_hmac.h" />
     <ClInclude Include="base\crypto\crypto\crypto_integers.h" />
@@ -1395,9 +1397,29 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\os\android\android.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="base\os\android\android_cairo_keep.h" />
+    <ClInclude Include="base\os\android\android_cross_win_file.h" />
+    <ClInclude Include="base\os\android\android_cross_win_gdi.h" />
+    <ClInclude Include="base\os\android\android_cross_win_gdi_internal.h" />
+    <ClInclude Include="base\os\android\android_file.h" />
+    <ClInclude Include="base\os\android\android_file_watcher.h" />
+    <ClInclude Include="base\os\android\android_graphics.h" />
+    <ClInclude Include="base\os\android\android_http.h" />
+    <ClInclude Include="base\os\android\android_http_lib.h" />
+    <ClInclude Include="base\os\android\android_internal.h" />
+    <ClInclude Include="base\os\android\android_process.h" />
+    <ClInclude Include="base\os\android\android_simple_bitmap.h" />
+    <ClInclude Include="base\os\android\android_simple_brush.h" />
+    <ClInclude Include="base\os\android\android_simple_font.h" />
+    <ClInclude Include="base\os\android\android_simple_graphics.h" />
+    <ClInclude Include="base\os\android\android_simple_path.h" />
+    <ClInclude Include="base\os\android\android_simple_pen.h" />
+    <ClInclude Include="base\os\android\android_window_android.h" />
     <ClInclude Include="base\os\android\android_window_impl.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="base\os\android\android_android.h" />
+    <ClInclude Include="base\os\android\linux_internal.h" />
     <ClInclude Include="base\os\cross.h" />
     <ClInclude Include="base\os\cross\cross.h" />
     <ClInclude Include="base\os\os.h" />
@@ -2246,6 +2268,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_cipher_aes.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2265,6 +2288,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_cipher_aes_cbc.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2284,6 +2308,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_cipher_aes_icm.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2303,6 +2328,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_cipher_cipher.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2322,6 +2348,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_cipher_null_cipher.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2341,6 +2368,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_framework.c">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">crypto_framework.h</PrecompiledHeaderFile>
@@ -2367,6 +2395,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCHeader</CompileAs>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_gf2_8.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2386,6 +2416,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_hash_auth.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2405,6 +2436,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_hash_hmac.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2424,6 +2456,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_hash_null_auth.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2443,6 +2476,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_hash_sha1.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2462,6 +2496,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_kernel_alloc.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2481,6 +2516,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_kernel_crypto_kernel.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2500,6 +2536,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_kernel_err.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2519,6 +2556,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_kernel_key.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2538,6 +2576,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_math.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2557,6 +2596,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_math_stat.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2576,6 +2616,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_replay_rdb.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2595,6 +2636,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_replay_rdbx.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2614,6 +2656,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_replay_ut_sim.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2633,6 +2676,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_rng_ctr_prng.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2652,6 +2696,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_rng_prng.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2671,6 +2716,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_rng_rand_source.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2690,6 +2736,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto_crypto.cpp" />
     <ClCompile Include="base\crypto\crypto_hmac_sha1.cpp" />
@@ -9506,6 +9553,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">framework_c.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCHeader</CompileAs>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
     </ClCompile>
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
@@ -9515,6 +9564,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">Create</PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCppHeader</CompileAs>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_brush.cpp" />

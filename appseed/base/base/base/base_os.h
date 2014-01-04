@@ -36,10 +36,9 @@
 #elif defined(ANDROID)
 
 #include "base/os/ansios/ansios.h"
-#include "base/os_binreloc.h"
-#include "base/os/android/ca_os.h"
+//#include "base/os/android/os_binreloc.h"
+#include "base/os/android/android_android.h"
 
-#define BSD_STYLE_SOCKETS
 #define HAVE_MYSQL
 #define HAVE_OPENSSL
 

@@ -841,7 +841,9 @@ namespace numeric_info
 
 #else
 
-#define BSD_STYLE_SOCKETS
+#ifndef BSD_STYLE_SOCKETS
+#define BSD_STYLE_SOCKETS 1
+#endif
    //#include "base_small_ipc_channel.h"
 
 #endif
