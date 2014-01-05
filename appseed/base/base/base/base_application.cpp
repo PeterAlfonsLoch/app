@@ -7,6 +7,11 @@ void openURL(const string &url_str);
 
 #endif
 
+#if defined(LINUX)
+#define _GNU_SOURCE
+#include <link.h>
+#endif
+
 #if defined(LINUX) || defined(MACOS)
 #include <dlfcn.h>
 #endif
@@ -463,7 +468,7 @@ string base_application::file_as_string(var varFile)
    if (::str::begins_ci(varFile.get_string(), "http://")
       || ::str::begins_ci(varFile.get_string(), "https://"))
    {
-      
+
       ::property_set set(get_app());
 
       return Application.http().get(varFile.get_string(), set);
@@ -993,7 +998,7 @@ void base_application::SetCurrentHandles()
          }
          else
          {
-            
+
             System.install().m_iProgressAppInstallEnd = 3 * 5;
 
          }
@@ -1790,14 +1795,14 @@ string base_application::get_ca2_module_file_path()
 
 #else
 
-#ifdef RTLD_DI_LINKMAP
+#ifdef LINUX
 
    {
 
       void * handle = dlopen("core.so", 0);
 
       if (handle == NULL)
-         return false;
+         return "";
 
       link_map * plm;
 
@@ -2697,10 +2702,10 @@ bool base_application::system_add_app_install(const char * pszId)
 
    for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
    {
-      
+
       for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
       {
-      
+
          System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, straLocale[iLocale], straSchema[iSchema]);
 
       }
@@ -2719,7 +2724,7 @@ bool base_application::system_add_app_install(const char * pszId)
 
    System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, "", m_strSchema);
    System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, "", strSystemSchema);
-   
+
    for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
    {
 
@@ -3463,7 +3468,7 @@ void base_application::fill_locale_schema(::str::international::locale_schema & 
       }
 
    }
-   
+
    for (index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
    {
 
@@ -5101,7 +5106,7 @@ int32_t base_application::simple_message_box_timeout(sp(::user::interaction) pwn
 
 service_base * base_application::get_service()
 {
-   
+
    return m_pservice;
 
 }
@@ -5144,7 +5149,7 @@ base_application * application_ptra::find_by_app_name(const string & strAppName)
 
          if (papp->m_strAppName == strAppName)
          {
-            
+
             return papp;
 
          }

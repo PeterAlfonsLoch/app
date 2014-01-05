@@ -53,6 +53,9 @@
 			<Add option="-DNO_LCMS" />
 			<Add option="-DOPENSSL_NO_ASM" />
 			<Add option="-DLINUX" />
+			<Add directory="../../../include" />
+			<Add directory="../../include" />
+			<Add directory="framework" />
 			<Add directory="../../thirdparty/appseed" />
 			<Add directory="../../thirdparty/include" />
 			<Add directory="." />
@@ -360,10 +363,6 @@
 		<Unit filename="base/crypto/crypto/crypto_err.h" />
 		<Unit filename="base/crypto/crypto/crypto_framework.c">
 			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/crypto/crypto/crypto_framework.h">
-			<Option compile="1" />
-			<Option weight="0" />
 		</Unit>
 		<Unit filename="base/crypto/crypto/crypto_gf2_8.c">
 			<Option compilerVar="CC" />
@@ -2975,16 +2974,21 @@
 		<Unit filename="filesystem/fs/fs_set.cpp" />
 		<Unit filename="filesystem/fs/fs_set.h" />
 		<Unit filename="framework.cpp" />
-		<Unit filename="framework.h">
+		<Unit filename="framework/crypto_framework.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="framework/crypto_framework.h" />
+		<Unit filename="framework/framework.cpp" />
+		<Unit filename="framework/framework.h" />
+		<Unit filename="framework/framework_c.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="framework/framework_c.h">
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
 		<Unit filename="framework_c.c">
 			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="framework_c.h">
-			<Option compile="1" />
-			<Option weight="0" />
 		</Unit>
 		<Unit filename="graphics/draw2d/draw2d.h" />
 		<Unit filename="graphics/draw2d/draw2d_bitmap.cpp" />
@@ -3549,7 +3553,6 @@
 		<Unit filename="primitive/str/x/x_defines.h" />
 		<Unit filename="primitive/str/x/x_encodings.h" />
 		<Unit filename="primitive/str/x/x_tables.h" />
-		<Unit filename="product.version.config.h" />
 		<Unit filename="programming/javascript/javascript.cpp" />
 		<Unit filename="programming/javascript/javascript.h" />
 		<Unit filename="programming/javascript/javascript_functions.cpp" />
