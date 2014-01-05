@@ -3551,6 +3551,7 @@ RetryHost:
 
       strPath - path;
 
+
 #elif defined(ANDROID)
 
       char * psz = NULL;
@@ -3558,6 +3559,7 @@ RetryHost:
 #else
 
       strPath = br_find_exe("app.install");
+
 
 #endif
 

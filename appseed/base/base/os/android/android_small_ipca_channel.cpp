@@ -353,7 +353,7 @@ void * small_ipc_rx_channel::receive()
 
          }
          */
-         mem.write(data.data, data.size);
+         mem.assign(data.data, data.size);
 
 
          if(data.size < 512)
@@ -366,13 +366,13 @@ void * small_ipc_rx_channel::receive()
       if(data.request == 0)
       {
 
-         on_receive(this, mem.str());
+         on_receive(this, mem.to_string());
 
       }
       else
       {
 
-         on_receive(this, data.request, mem.m_psz, mem.m_iSize);
+         on_receive(this, data.request, mem.get_data(), mem.get_size());
 
       }
 

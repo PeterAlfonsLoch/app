@@ -23,8 +23,7 @@ namespace user
 } // namespace user
 
 
-class oswindow_dataptra;
-
+typedef comparable_array < oswindow_data * > oswindow_dataptra;
 
 class simple_event;
 
@@ -38,7 +37,7 @@ struct CLASS_DECL_BASE oswindow_data
 
 
    bool                          m_bMessageOnlyWindow;
-   ::user::interaction_base *    m_pui;
+   ::user::interaction *         m_pui;
    HTHREAD                       m_hthread;
    COLORREF *                    m_pcolorref;
    RECT                          m_rect;
@@ -47,7 +46,7 @@ struct CLASS_DECL_BASE oswindow_data
 
 
    static oswindow_dataptra * s_pdataptra;
-   static simple_mutex * s_pmutex;
+   static mutex * s_pmutex;
 
 
    oswindow_data();
@@ -89,9 +88,7 @@ struct CLASS_DECL_BASE oswindow_data
    int32_t select_all_input();
    int32_t map_window();
 
-   void set_user_interaction(::user::interaction_base * pui);
-   ::user::interaction_base * get_user_interaction_base();
-   ::user::interaction_base * get_user_interaction_base() const;
+   void set_user_interaction(::user::interaction * pui);
    ::user::interaction * get_user_interaction();
    ::user::interaction * get_user_interaction() const;
 
@@ -132,7 +129,6 @@ CLASS_DECL_BASE oswindow_data * oswindow_get(::user::interaction * pwindow);
 CLASS_DECL_BASE oswindow oswindow_defer_get(::user::interaction * pwindow);
 CLASS_DECL_BASE bool oswindow_remove(::user::interaction * pwindow);
 CLASS_DECL_BASE bool oswindow_remove_message_only_window(::user::interaction_base * puibaseMessageOnlyWindow);
-
 
 
 

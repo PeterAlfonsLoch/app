@@ -5,7 +5,7 @@
 oswindow_data::oswindow_data()
 {
 
-   m_plongmap              = new map < int, LONG >();
+   m_plongmap              = new int_map < LONG >();
 
    m_hthread               = NULL;
 
@@ -40,7 +40,7 @@ int32_t oswindow_find_message_only_window(::user::interaction * pui)
    if(pui == NULL)
       return -1;
 
-   synch_lock slOsWindow(*oswindow_data::s_pmutex, true);
+   synch_lock slOsWindow(oswindow_data::s_pmutex);
 
    for(int32_t i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
@@ -60,7 +60,7 @@ int32_t oswindow_find_message_only_window(::user::interaction * pui)
 int32_t oswindow_find(::user::interaction * pui)
 {
 
-   synch_lock slOsWindow(*::oswindow_data::s_pmutex, true);
+   synch_lock slOsWindow(::oswindow_data::s_pmutex);
 
    for(int32_t i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
@@ -81,7 +81,7 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction * pui)
    if(pui == NULL)
       return NULL;
 
-   synch_lock slOsWindow(*::oswindow_data::s_pmutex, true);
+   synch_lock slOsWindow(::oswindow_data::s_pmutex);
 
    int_ptr iFind = oswindow_find_message_only_window(pui);
 
@@ -103,7 +103,7 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction * pui)
 oswindow_data * oswindow_get(::user::interaction * pui)
 {
 
-   synch_lock slOsWindow(*::oswindow_data::s_pmutex, true);
+   synch_lock slOsWindow(::oswindow_data::s_pmutex);
 
    int_ptr iFind = oswindow_find(pui);
 
@@ -134,7 +134,7 @@ oswindow::oswindow()
 oswindow::oswindow(::user::interaction * pui)
 {
 
-   synch_lock slOsWindow(*s_pmutex, true);
+   synch_lock slOsWindow(s_pmutex);
 
    m_pdata = get_message_only_window(pui);
 
@@ -145,7 +145,7 @@ oswindow::oswindow(::user::interaction * pui)
 oswindow::oswindow(Display * pdisplay, Window window, Visual * pvisual)
 {
 
-   synch_lock slOsWindow(*s_pmutex, true);
+   synch_lock slOsWindow(s_pmutex);
 
    m_pdata = get(pdisplay, window);
 
@@ -218,7 +218,7 @@ oswindow oswindow_defer_get(::user::interaction * pui)
 bool oswindow_remove(::user::interaction * pui)
 {
 
-   synch_lock slOsWindow(*::oswindow_data::s_pmutex, true);
+   synch_lock slOsWindow(::oswindow_data::s_pmutex);
 
    int_ptr iFind = oswindow_find(pui);
 
@@ -235,7 +235,7 @@ bool oswindow_remove(::user::interaction * pui)
 bool oswindow_remove_message_only_window(::user::interaction * pui)
 {
 
-   synch_lock slOsWindow(*::oswindow_data::s_pmutex, true);
+   synch_lock slOsWindow(::oswindow_data::s_pmutex);
 
    int_ptr iFind = oswindow_find_message_only_window(pui);
 
@@ -254,7 +254,7 @@ int32_t oswindow_data::store_name(const char * psz)
 
    synch_lock sl(&user_mutex());
 
-   synch_lock slOsWindow(*s_pmutex, true);
+   synch_lock slOsWindow(s_pmutex);
 
    /*
 
@@ -275,7 +275,7 @@ int32_t oswindow_data::select_input(int32_t iInput)
 
    synch_lock sl(&user_mutex());
 
-   synch_lock slOsWindow(*s_pmutex, true);
+   synch_lock slOsWindow(s_pmutex);
 
    /*
 
@@ -313,7 +313,7 @@ int32_t oswindow_data::map_window()
 
    synch_lock sl(&user_mutex());
 
-   synch_lock slOsWindow(*s_pmutex, true);
+   synch_lock slOsWindow(s_pmutex);
 
    xdisplay d(display());
 
@@ -329,7 +329,7 @@ int32_t oswindow_data::map_window()
 void oswindow_data::post_nc_destroy()
 {
 
-   synch_lock slOsWindow(*s_pmutex, true);
+   synch_lock slOsWindow(s_pmutex);
 
    oswindow_remove(m_pui);
 
@@ -339,7 +339,7 @@ void oswindow_data::post_nc_destroy()
 void oswindow_data::set_user_interaction(::user::interaction * pui)
 {
 
-   synch_lock slOsWindow(*s_pmutex, true);
+   synch_lock slOsWindow(s_pmutex);
 
    if(this == NULL)
       throw "error, m_pdata cannot be NULL to ::oswindow::set_user_interaction";
@@ -351,32 +351,10 @@ void oswindow_data::set_user_interaction(::user::interaction * pui)
 }
 
 
-::user::interaction * oswindow_data::get_user_interaction_base()
-{
-
-   synch_lock slOsWindow(*s_pmutex, true);
-
-   if(this == NULL)
-      return NULL;
-
-   return m_pui;
-
-}
-
-::user::interaction * oswindow_data::get_user_interaction_base() const
-{
-
-   if(this == NULL)
-      return NULL;
-
-   return m_pui;
-
-}
-
 ::user::interaction * oswindow_data::get_user_interaction()
 {
 
-   synch_lock slOsWindow(*s_pmutex, true);
+   synch_lock slOsWindow(s_pmutex);
 
    if(this == NULL)
       return NULL;
@@ -384,14 +362,14 @@ void oswindow_data::set_user_interaction(::user::interaction * pui)
    if(m_pui == NULL)
       return NULL;
 
-   return m_pui->m_pui;
+   return m_pui;
 
 }
 
 ::user::interaction * oswindow_data::get_user_interaction() const
 {
 
-   synch_lock slOsWindow(*s_pmutex, true);
+   synch_lock slOsWindow(s_pmutex);
 
    if(this == NULL)
       return NULL;
@@ -399,7 +377,7 @@ void oswindow_data::set_user_interaction(::user::interaction * pui)
    if(m_pui == NULL)
       return NULL;
 
-   return m_pui->m_pui;
+   return m_pui;
 
 }
 
@@ -409,7 +387,7 @@ bool oswindow_data::is_child(::oswindow oswindow)
 
    synch_lock sl(&user_mutex());
 
-   synch_lock slOsWindow(*s_pmutex, true);
+   synch_lock slOsWindow(s_pmutex);
 
    oswindow = oswindow->get_parent();
 
@@ -428,7 +406,7 @@ oswindow oswindow_data::get_parent()
 
    synch_lock sl(&user_mutex());
 
-   synch_lock slOsWindow(*s_pmutex, true);
+   synch_lock slOsWindow(s_pmutex);
 
    if(this == NULL)
       return NULL;
@@ -460,7 +438,7 @@ oswindow oswindow_data::set_parent(oswindow oswindow)
 
    synch_lock sl(&user_mutex());
 
-   synch_lock slOsWindow(*s_pmutex, true);
+   synch_lock slOsWindow(s_pmutex);
 
    if(this == NULL)
       return NULL;
@@ -486,7 +464,7 @@ bool oswindow_data::show_window(int32_t nCmdShow)
 
    synch_lock sl(&user_mutex());
 
-   synch_lock slOsWindow(*s_pmutex, true);
+   synch_lock slOsWindow(s_pmutex);
 
    /*
 

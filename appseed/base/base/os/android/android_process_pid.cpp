@@ -26,7 +26,8 @@ int32_t get_process_pid(const char * procNameParam)
             string cmdPath = string("/proc/") + dirp->d_name + "/cmdline";
             FILE * cmdFile = fopen(cmdPath, "rb");
             string cmdLine;
-            fgets(cmdLine.alloc(1024 * 256), 1024 * 256, cmdFile);
+            fgets(cmdLine.GetBufferSetLength(1024 * 256), 1024 * 256, cmdFile);
+            cmdLine.ReleaseBuffer();
             if(cmdLine.has_char())
             {
                // Keep first cmdline item which contains the program path
@@ -34,7 +35,7 @@ int32_t get_process_pid(const char * procNameParam)
                if(pos >= 0)
                   cmdLine = cmdLine.substr(0, pos);
                // Keep program name only, removing the path
-               pos = cmdLine.rfind('/');
+               pos = cmdLine.reverse_find('/');
                if (pos >= 0)
                   cmdLine = cmdLine.substr(pos + 1);
                // Compare against requested process name

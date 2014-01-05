@@ -84,7 +84,7 @@ oswindow GetDesktopWindow();
 
 
 class osdisplay_dataptra :
-   public simple_array < osdisplay_data * >
+   public array < osdisplay_data * >
 {
 public:
 
@@ -93,7 +93,7 @@ public:
 
 
 class oswindow_dataptra :
-   public simple_array < oswindow_data * >
+   public array < oswindow_data * >
 {
 public:
 
