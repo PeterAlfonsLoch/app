@@ -526,7 +526,8 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <GccExceptionHandling>true</GccExceptionHandling>
-      <AdditionalOptions />
+      <AdditionalOptions>-Wno-attributes -Wno-conversion-null -fpermissive</AdditionalOptions>
+      <CppStandard>CppStandard11</CppStandard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

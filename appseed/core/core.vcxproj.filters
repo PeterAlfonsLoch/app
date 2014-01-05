@@ -485,9 +485,6 @@
     <ClInclude Include="math\value.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="compress\compress_get_input_stream_processed_size_interface.h">
       <Filter>Header Files\compress</Filter>
     </ClInclude>
@@ -2465,6 +2462,9 @@
     <ClInclude Include="net\usermail\usermail_tree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="framework\framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="compress\compress_archive.cpp">
@@ -2649,9 +2649,6 @@
     </ClCompile>
     <ClCompile Include="math\value.cpp">
       <Filter>Source Files\math</Filter>
-    </ClCompile>
-    <ClCompile Include="framework.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="compress\crypto\crypto_7z_crc.cpp">
       <Filter>Source Files\compress\crypto</Filter>
@@ -4016,6 +4013,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_update_hint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
