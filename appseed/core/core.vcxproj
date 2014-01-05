@@ -1476,7 +1476,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="programming\dynamic_source\dynamic_source_script_interface.h" />
     <ClInclude Include="programming\dynamic_source\dynamic_source_script_manager.h" />
     <ClInclude Include="programming\dynamic_source\dynamic_source_session.h" />
-    <ClInclude Include="framework.h" />
     <ClInclude Include="user\colorertake5\colorertake5.h" />
     <ClInclude Include="user\colorertake5\colorertake5_base_editor.h" />
     <ClInclude Include="user\colorertake5\colorertake5_colorertake5.h" />
@@ -2120,20 +2119,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="programming\dynamic_source\dynamic_source_script_interface.cpp" />
     <ClCompile Include="programming\dynamic_source\dynamic_source_script_manager.cpp" />
     <ClCompile Include="programming\dynamic_source\dynamic_source_session.cpp" />
-    <ClCompile Include="framework.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Create</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_colorertake5.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_default_error_handler.cpp" />
