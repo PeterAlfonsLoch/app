@@ -193,12 +193,16 @@ namespace file_watcher
 
 			len = read (mFD, buff, BUFF_SIZE);
 
+			file_watcher_impl::action a;
+
 			while (i < len)
 			{
 				struct inotify_event *pevent = (struct inotify_event *)&buff[i];
 
-				watch_struct* watch = m_watchmap[(id &)pevent->wd];
-				handle_action(watch, pevent->name, pevent->mask);
+				a.watch = m_watchmap[(id &)pevent->wd];
+				a.filename = pevent->name;
+				a.ulOsAction = pevent->mask;
+				handle_action(&a);
 				i += sizeof(struct inotify_event) + pevent->len;
 			}
 
@@ -207,28 +211,28 @@ namespace file_watcher
 	}
 
 	//--------
-	void os_file_watcher::handle_action(watch_struct* watch, const char * filename, uint32_t action)
+	void os_file_watcher::handle_action(action * paction)
 	{
 
-	    if(!watch)
+	    if(!paction->watch)
 	    return;
 
-		if(!watch->m_plistener)
+		if(!wpaction->atch->m_plistener)
 			return;
 
-		if(IN_CLOSE_WRITE & action)
+		if(IN_CLOSE_WRITE & paction->action)
 		{
-			watch->m_plistener->handle_file_action(watch->m_id, watch->m_strDirName, filename, action_modify);
+			paction->watch->m_plistener->handle_file_actionpaction->watch->m_id, paction->watch->m_strDirName, paction->filename, action_modify);
 		}
 
-		if(IN_MOVED_TO & action || IN_CREATE & action)
+		if(IN_MOVED_TO & action || IN_CREATE & paction->action)
 		{
-			watch->m_plistener->handle_file_action(watch->m_id, watch->m_strDirName, filename, action_add);
+			paction->watch->m_plistener->handle_file_action(paction->watch->m_id, paction->watch->m_strDirName, paction->filename, action_add);
 		}
 
-		if(IN_MOVED_FROM & action || IN_DELETE & action)
+		if(IN_MOVED_FROM & action || IN_DELETE & paction->action)
 		{
-			watch->m_plistener->handle_file_action(watch->m_id, watch->m_strDirName, filename, action_delete);
+			paction->watch->m_plistener->handle_file_action(paction->watch->m_id, paction->watch->m_strDirName, paction->filename, action_delete);
 		}
 
 	}

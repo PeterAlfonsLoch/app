@@ -921,11 +921,6 @@ namespace numeric_info
 #include "base_simple_app.h"
 
 
-#if defined(LINUX)
-
-#include "app/appseed/base/base/os/linux/linux_cpp.h"
-
-#endif
 
 
 #if defined(LINUX) || defined(MACOS)
