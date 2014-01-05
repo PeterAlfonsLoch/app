@@ -739,20 +739,24 @@ namespace hotplugin
       delete pbr;
       }
       }*/
+      ::rect r;
       {
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          br->create_solid(ARGB(bA, uchR, uchG, uchB));
-         pgraphics->FillRect(&rect_dim(lprect->left + cx / iRate, lprect->top + (cy - iBarHeight) / 2, iProgressCount, 5), br);
+         r = rect_dim(lprect->left + cx / iRate, lprect->top + (cy - iBarHeight) / 2, iProgressCount, 5);
+         pgraphics->FillRect(r, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 1);
          br->create_solid(ARGB(bA, uchR, uchG, uchB));
-         pgraphics->FillRect(&rect_dim(lprect->left + cx / iRate, lprect->top + (cy - iBarHeight) / 2 + 5, iProgressCount, 5), br);
+         r = rect_dim(lprect->left + cx / iRate, lprect->top + (cy - iBarHeight) / 2 + 5, iProgressCount, 5);
+         pgraphics->FillRect(r, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 2);
          br->create_solid(ARGB(bA, uchR, uchG, uchB));
-         pgraphics->FillRect(&rect_dim(lprect->left + cx / iRate, lprect->top + (cy - iBarHeight) / 2 + 10, iProgressCount, 13), br);
+         r = rect_dim(lprect->left + cx / iRate, lprect->top + (cy - iBarHeight) / 2 + 10, iProgressCount, 13);
+         pgraphics->FillRect(r, br);
       }
 
       int32_t iOffset = 3;

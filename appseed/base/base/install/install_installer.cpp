@@ -730,7 +730,7 @@ RetryHost:
             {
                download_file_list(straFileList, mapLen, mapMd5, mapGzLen, mapFlag);
             }
-            
+
          }
          else
          {
@@ -2387,7 +2387,7 @@ RetryHost:
          simple_shell_launcher launcher2(m_pwindow == NULL ? NULL : m_pwindow->m_window, "open", strStage, " : install usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
 
          launcher2.execute();
-         
+
 #endif
 
       }
@@ -3523,35 +3523,42 @@ RetryHost:
    int32_t installer::run_ca2_application_installer(const char * pszCommandLine)
    {
 
+      string strPath;
+
 #if defined(METROWIN)
 
       throw "todo";
 
 #else
-      
+
       string param;
-      
+
       param = "-install:";
-      
+
       param += pszCommandLine;
 
 #if defined(WINDOWS)
 
-      string strPath;
-
       strPath = System.install().app_install_get_intern_executable_path();
 
 #elif defined(MACOS)
+
       char path[MAXPATHLEN];
+
       uint32_t path_len = MAXPATHLEN;
+
       _NSGetExecutablePath(path, &path_len);
-      char * psz = path;
-      string str(psz);
+
+      strPath - path;
+
 #elif defined(ANDROID)
+
       char * psz = NULL;
+
 #else
-      char * psz = br_find_exe("app.install");
-      string str(psz);
+
+      strPath = br_find_exe("app.install");
+
 #endif
 
       call_sync(strPath, param, 0, SW_HIDE, -1, 84, 0, 0);
@@ -3629,7 +3636,7 @@ RetryHost:
 
       if (estatus != ::http::status_ok)
       {
-         
+
          m_straHttpFailure.add(psocket->m_strUrl);
 
          System.install().trace().rich_trace("Failure downloading : " + psocket->m_strUrl);

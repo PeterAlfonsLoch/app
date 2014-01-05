@@ -4593,10 +4593,10 @@ return 1;
 
       XRenderColor c;
 
-      c.red = GetRValue(m_spbrush->m_cr) * 255;
-      c.green = GetGValue(m_spbrush->m_cr) * 255;
-      c.blue = GetBValue(m_spbrush->m_cr) * 255;
-      c.alpha = GetAValue(m_spbrush->m_cr) * 255;
+      c.red = argb_get_r_value(m_spbrush->m_cr) * 255;
+      c.green = argb_get_g_value(m_spbrush->m_cr) * 255;
+      c.blue = argb_get_b_value(m_spbrush->m_cr) * 255;
+      c.alpha = argb_get_a_value(m_spbrush->m_cr) * 255;
 
       XftColor ftc;
       XftColorAllocValue(m_pdc->m_pdisplay, pbitmap->m_ui.m_window->visual(), pbitmap->m_ui.m_window->m_colormap, &c, &ftc);
@@ -4979,9 +4979,9 @@ return 1;
 
       XRenderColor c;
 
-      c.red = GetRValue(m_spbrush->m_cr) * 255;
-      c.green = GetGValue(m_spbrush->m_cr) * 255;
-      c.blue = GetBValue(m_spbrush->m_cr) * 255;
+      c.red = argb_get_r_value(m_spbrush->m_cr) * 255;
+      c.green = argb_get_g_value(m_spbrush->m_cr) * 255;
+      c.blue = argb_get_b_value(m_spbrush->m_cr) * 255;
       c.alpha = 0xffff;
 
       XftColor ftc;
@@ -5284,9 +5284,9 @@ return 1;
 
          //xlib_pattern_t * ppattern = xlib_pattern_create_linear(pbrush->m_pt1.x, pbrush->m_pt1.y, pbrush->m_pt2.x, pbrush->m_pt2.y);
 
-         //xlib_pattern_add_color_stop_rgba(ppattern, 0., GetRValue(pbrush->m_cr1) / 255.0, GetGValue(pbrush->m_cr1) / 255.0, GetBValue(pbrush->m_cr1) / 255.0, GetAValue(pbrush->m_cr1) / 255.0);
+         //xlib_pattern_add_color_stop_rgba(ppattern, 0., argb_get_r_value(pbrush->m_cr1) / 255.0, argb_get_g_value(pbrush->m_cr1) / 255.0, argb_get_b_value(pbrush->m_cr1) / 255.0, argb_get_a_value(pbrush->m_cr1) / 255.0);
 
-         //xlib_pattern_add_color_stop_rgba(ppattern, 1., GetRValue(pbrush->m_cr2) / 255.0, GetGValue(pbrush->m_cr2) / 255.0, GetBValue(pbrush->m_cr2) / 255.0, GetAValue(pbrush->m_cr2) / 255.0);
+         //xlib_pattern_add_color_stop_rgba(ppattern, 1., argb_get_r_value(pbrush->m_cr2) / 255.0, argb_get_g_value(pbrush->m_cr2) / 255.0, argb_get_b_value(pbrush->m_cr2) / 255.0, argb_get_a_value(pbrush->m_cr2) / 255.0);
 
          //xlib_set_source(m_pdc, ppattern);
 
@@ -5297,10 +5297,10 @@ return 1;
          pbrush->m_color.create(
             m_pdc->m_pdisplay,
             m_pdc->m_iScreen,
-            (GetRValue(pbrush->m_cr1) + GetRValue(pbrush->m_cr2)) / 2,
-            (GetGValue(pbrush->m_cr1) + GetGValue(pbrush->m_cr2)) / 2,
-            (GetBValue(pbrush->m_cr1) + GetBValue(pbrush->m_cr2)) / 2,
-            (GetAValue(pbrush->m_cr1) + GetAValue(pbrush->m_cr2)) / 2);
+            (argb_get_r_value(pbrush->m_cr1) + argb_get_r_value(pbrush->m_cr2)) / 2,
+            (argb_get_g_value(pbrush->m_cr1) + argb_get_g_value(pbrush->m_cr2)) / 2,
+            (argb_get_b_value(pbrush->m_cr1) + argb_get_b_value(pbrush->m_cr2)) / 2,
+            (argb_get_a_value(pbrush->m_cr1) + argb_get_a_value(pbrush->m_cr2)) / 2);
 
          XSetForeground(m_pdc->m_pdisplay, m_pdc->m_gc, pbrush->m_color.m_color.pixel);
 
@@ -5313,10 +5313,10 @@ return 1;
          pbrush->m_color.create(
             m_pdc->m_pdisplay,
             m_pdc->m_iScreen,
-            GetRValue(pbrush->m_cr),
-            GetGValue(pbrush->m_cr),
-            GetBValue(pbrush->m_cr),
-            GetAValue(pbrush->m_cr));
+            argb_get_r_value(pbrush->m_cr),
+            argb_get_g_value(pbrush->m_cr),
+            argb_get_b_value(pbrush->m_cr),
+            argb_get_a_value(pbrush->m_cr));
 
          XSetForeground(m_pdc->m_pdisplay, m_pdc->m_gc, pbrush->m_color.m_color.pixel);
 
@@ -5341,10 +5341,10 @@ return 1;
       ppen->m_color.create(
          m_pdc->m_pdisplay,
          m_pdc->m_iScreen,
-         GetRValue(ppen->m_cr),
-         GetGValue(ppen->m_cr),
-         GetBValue(ppen->m_cr),
-         GetAValue(ppen->m_cr));
+         argb_get_r_value(ppen->m_cr),
+         argb_get_g_value(ppen->m_cr),
+         argb_get_b_value(ppen->m_cr),
+         argb_get_a_value(ppen->m_cr));
 
       XSetForeground(m_pdc->m_pdisplay, m_pdc->m_gc, ppen->m_color.m_color.pixel);
 
@@ -5678,7 +5678,7 @@ ok:
     bool graphics::set_os_color(COLORREF cr)
     {
 
-       //xlib_set_source_rgba(m_pdc, GetRValue(cr) / 255.0, GetGValue(cr) / 255.0, GetBValue(cr) / 255.0, GetAValue(cr) / 255.0);
+       //xlib_set_source_rgba(m_pdc, argb_get_r_value(cr) / 255.0, argb_get_g_value(cr) / 255.0, argb_get_b_value(cr) / 255.0, argb_get_a_value(cr) / 255.0);
 
       return true;
 
@@ -5711,10 +5711,10 @@ ok:
 
       XRenderColor c;
 
-      c.red = GetRValue(m_spbrush->m_cr);
-      c.green = GetGValue(m_spbrush->m_cr);
-      c.blue = GetBValue(m_spbrush->m_cr);
-      c.alpha = GetAValue(m_spbrush->m_cr);
+      c.red = argb_get_r_value(m_spbrush->m_cr);
+      c.green = argb_get_g_value(m_spbrush->m_cr);
+      c.blue = argb_get_b_value(m_spbrush->m_cr);
+      c.alpha = argb_get_a_value(m_spbrush->m_cr);
 
       XftColor ftc;
       XftColorAllocValue(m_pdc->m_pdisplay, pbitmap->m_ui.m_window->visual(), pbitmap->m_ui.m_window->m_colormap, &c, &ftc);
