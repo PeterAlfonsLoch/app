@@ -830,14 +830,24 @@ namespace dynamic_source
       {
          for(int32_t i = 1; i < m_straSync.get_count(); i++)
          {
-            Application.http().get("http://" + m_straSync[i] + "/sync?src=" +m_straSync[0] + "&url=" + System.url().url_encode(strTransfer) + "&pwd=sym123&authnone=1");
+
+            property_set set(get_app());
+
+            Application.http().get("http://" + m_straSync[i] + "/sync?src=" +m_straSync[0] + "&url=" + System.url().url_encode(strTransfer) + "&pwd=sym123&authnone=1", set);
+
          }
+
       }
+
       int32_t i = 0;
+
       while(i < str.get_length() && str[i] != '\\' && str[i] != '/')
       {
+
          i++;
+
       }
+
       if(::str::begins(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "library\\include", false)))
       {
          compile_library();

@@ -86,30 +86,53 @@ namespace hi5
          }
          else
          {
+
             strAppName = System.m_strAppName;
+         
          }
+
          strUrl += strAppName;
+
          strUrl += "&key=name";
-         m_pdocAuth->get_html_data()->m_propertyset["application_name"] = System.http().get(strUrl);
+
+         property_set set(get_app());
+
+         m_pdocAuth->get_html_data()->m_propertyset["application_name"] = System.http().get(strUrl, set);
+
          m_pdocAuth->get_html_data()->m_propertyset["authorization_link"] = m_strAuthorizationUrl;
+
          if(m_strLicense.is_empty())
          {
+
             m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Authenticating";
+
          }
          else
          {
+
             m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Licensing";
+
          }
+         
          if(!m_pdocAuth->on_open_document(Application.dir().matter(m_strForm)))
          {
+
             return;
+
          }
+
          ::html::elemental * pelemental = m_pdocAuth->get_html_data()->get_element_by_id("authorization_link");
+
          ::html::impl::text * ptext = dynamic_cast < ::html::impl::text * > (pelemental->m_pimpl);
+
          ptext->m_strLink = "ext://" + m_strAuthorizationUrl;
+
          ptext->m_bLink = true;
+
          display_main_frame();
+
       }
+
 
       void authorization::display_main_frame()
       {

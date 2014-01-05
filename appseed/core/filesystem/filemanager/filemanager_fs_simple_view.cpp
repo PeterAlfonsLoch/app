@@ -73,24 +73,34 @@ namespace filemanager
 
          }
 
+
          void view::start_music()
          {
 
-            Application.http().get("http://file.veriwell.net/");
+            property_set set(get_app());
+
+            Application.http().get("http://file.veriwell.net/", set);
+
             open_folder(1000); // user ::music folder
 
          }
 
+
          void view::start_root()
          {
 
-            Application.http().get("http://file.veriwell.net/");
+            property_set set(get_app());
+
+            Application.http().get("http://file.veriwell.net/", set);
+
             open_folder(1); // user root folder
 
          }
 
+
          void view::on_request_response(signal_details * pobj)
          {
+
             SCAST_PTR(::http::signal, psignal, pobj);
 
             string strResponse;
@@ -101,12 +111,12 @@ namespace filemanager
 
             m_pusertree->_001SelectItem(m_ptree->FindTreeItem(m_ptree->m_iParentFolder));
 
-
             m_plist->parse(strResponse);
 
             layout();
 
          }
+
 
          void view::open_folder(int64_t iFolder)
          {
@@ -114,6 +124,7 @@ namespace filemanager
             ::http::signal * psignal = new ::http::signal;
 
             (*psignal)()["request"] = "";
+
             psignal->m_strUrl.Format("http://file.veriwell.net/ifs/ls?id=%I64d", iFolder); 
 
             psignal->m_puser = &ApplicationUser;
@@ -121,6 +132,7 @@ namespace filemanager
             ::emit(get_app(), this, &view::on_request_response, &Application.http(), &::http::application::get, psignal);
 
          }
+
 
          void view::open_file(int64_t iFolder, const char * lpszFileName, const char * pszExtension)
          {

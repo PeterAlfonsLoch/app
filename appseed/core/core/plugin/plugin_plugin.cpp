@@ -20,8 +20,6 @@ void CLASS_DECL_CORE __cdecl _ca2_purecall_()
     throw simple_exception(get_thread_app());
 }
 
-extern HMODULE g_hmoduleOs;
-
 namespace plugin
 {
 
@@ -936,7 +934,7 @@ namespace plugin
       //}
 
 #ifdef WINDOWS
-      while(true)
+/*      while(true)
       {
          try
          {
@@ -950,7 +948,7 @@ namespace plugin
          {
          }
 
-      }
+      }*/
 #endif
 
 

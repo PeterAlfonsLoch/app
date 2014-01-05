@@ -12,6 +12,10 @@
 #include <mach-o/dyld.h>
 #endif
 
+#ifdef WINDOWS
+#include <cderr.h>      // Commdlg Error definitions
+#include <winspool.h>
+#endif
 
 
 
@@ -21,7 +25,6 @@
 
 
 
-CLASS_DECL_CORE HMODULE g_hmoduleOs = NULL;
 
 const char application::gen_FileSection[] = "Recent File List";
 const char application::gen_FileEntry[] = "File%d";
@@ -1227,17 +1230,9 @@ strHex.ReleaseBuffer(count * 2);
 
 
 
-#include "framework.h"
-
-#ifdef WINDOWS
-#include <cderr.h>      // Commdlg Error definitions
-#include <winspool.h>
-#endif
 
 
-CLASS_DECL_CORE extern fixed_alloc_array * g_pfixedallocaWstring;
 
-CLASS_DECL_CORE fixed_alloc_array * new_wstring_manager();
 
 
 
