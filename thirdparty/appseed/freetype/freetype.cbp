@@ -68,6 +68,8 @@
 			<Add option="-Wno-conversion-null" />
 			<Add option="-fPIC" />
 			<Add option="-DFT2_BUILD_LIBRARY" />
+			<Add directory="../../../../include" />
+			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="../../../.." />
 			<Add directory="../../../appseed/c" />

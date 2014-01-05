@@ -53,6 +53,8 @@
 			<Add option="-Wno-conversion-null" />
 			<Add option="-fPIC" />
 			<Add option="-DRAW_LINUX" />
+			<Add directory="../../../../include" />
+			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="../../appseed" />
 			<Add directory="../../../appseed" />

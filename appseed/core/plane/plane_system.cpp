@@ -1170,7 +1170,7 @@ namespace plane
       set["cookies"] = pcookies;
       if(!http().download(lpszUrl, filename, set))
          return false;
-      
+
       string strLocation = set["get_headers"]["Location"];
 
       if(strLocation.has_char())
@@ -1408,7 +1408,11 @@ namespace plane
 
       pgenapp->m_pplaneapp->m_psystem = this;
 
+#ifdef WINDOWS
+
       pgenapp->m_hinstance = m_hinstance;
+
+#endif
 
       pgenapp->::base_application::construct();
 

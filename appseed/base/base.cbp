@@ -2776,21 +2776,12 @@
 		<Unit filename="base/os/cross/windows/windows_user.cpp" />
 		<Unit filename="base/os/cross/windows/windows_user.h" />
 		<Unit filename="base/os/cross/windows/windows_winnt.h" />
-		<Unit filename="base/os/linux/ca_os.h" />
-		<Unit filename="base/os/linux/ca_os_cross_win_file.cpp" />
-		<Unit filename="base/os/linux/ca_os_internal.h" />
-		<Unit filename="base/os/linux/ca_os_process.cpp" />
-		<Unit filename="base/os/linux/ca_os_thread.cpp" />
-		<Unit filename="base/os/linux/ca_os_window.cpp" />
 		<Unit filename="base/os/linux/linux.cpp" />
 		<Unit filename="base/os/linux/linux.h" />
 		<Unit filename="base/os/linux/linux.h.bak" />
 		<Unit filename="base/os/linux/linux_c.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/os/linux/linux_cairo_keep.cpp" />
-		<Unit filename="base/os/linux/linux_cairo_keep.h" />
-		<Unit filename="base/os/linux/linux_cpp.h" />
 		<Unit filename="base/os/linux/linux_cross_win_file.cpp" />
 		<Unit filename="base/os/linux/linux_cross_win_file.h" />
 		<Unit filename="base/os/linux/linux_cross_win_gdi.cpp" />
@@ -2972,6 +2963,8 @@
 		<Unit filename="filesystem/file/file_seekable.cpp" />
 		<Unit filename="filesystem/file/file_seekable.h" />
 		<Unit filename="filesystem/file/file_serializable.h" />
+		<Unit filename="filesystem/file/file_set.cpp" />
+		<Unit filename="filesystem/file/file_set.h" />
 		<Unit filename="filesystem/file/file_simple_binary_buffer.cpp" />
 		<Unit filename="filesystem/file/file_simple_binary_buffer.h" />
 		<Unit filename="filesystem/file/file_status.h" />

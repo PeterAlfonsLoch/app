@@ -761,6 +761,34 @@ namespace os
    }
 
 
+   bool simple_ui::move_window(int32_t x, int32_t y)
+   {
+
+      ::SetWindowPos(m_window, NULL, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+
+      return true;
+
+   }
+
+
+   bool simple_ui::set_window_pos(int32_t x, int32_t y, int32_t cx, int32_t cy, bool bShow)
+   {
+
+      ::SetWindowPos(m_window, NULL, x, y, cx, cy, SWP_NOSIZE | SWP_NOZORDER);
+
+      if(bShow)
+      {
+
+         ::ShowWindow(m_window, SW_SHOW);
+
+      }
+
+      return true;
+
+   }
+
+
+
 } // namespace os
 
 

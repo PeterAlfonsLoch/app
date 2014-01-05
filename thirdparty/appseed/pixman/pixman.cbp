@@ -52,6 +52,8 @@
 			<Add option="-fPIC" />
 			<Add option="-DRAW_LINUX" />
 			<Add option="-DHAVE_CONFIG_H" />
+			<Add directory="../../../../include" />
+			<Add directory="../../../include" />
 			<Add directory="../../../../../ca2" />
 			<Add directory="../../../../app" />
 			<Add directory="../../../appseed" />

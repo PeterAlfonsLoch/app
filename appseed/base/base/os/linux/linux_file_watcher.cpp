@@ -217,20 +217,20 @@ namespace file_watcher
 	    if(!paction->watch)
 	    return;
 
-		if(!wpaction->atch->m_plistener)
+		if(!paction->watch->m_plistener)
 			return;
 
-		if(IN_CLOSE_WRITE & paction->action)
+		if(IN_CLOSE_WRITE & paction->ulOsAction)
 		{
-			paction->watch->m_plistener->handle_file_actionpaction->watch->m_id, paction->watch->m_strDirName, paction->filename, action_modify);
+			paction->watch->m_plistener->handle_file_action(paction->watch->m_id, paction->watch->m_strDirName, paction->filename, action_modify);
 		}
 
-		if(IN_MOVED_TO & action || IN_CREATE & paction->action)
+		if(IN_MOVED_TO & paction->ulOsAction || IN_CREATE & paction->ulOsAction)
 		{
 			paction->watch->m_plistener->handle_file_action(paction->watch->m_id, paction->watch->m_strDirName, paction->filename, action_add);
 		}
 
-		if(IN_MOVED_FROM & action || IN_DELETE & paction->action)
+		if(IN_MOVED_FROM & paction->ulOsAction || IN_DELETE & paction->ulOsAction)
 		{
 			paction->watch->m_plistener->handle_file_action(paction->watch->m_id, paction->watch->m_strDirName, paction->filename, action_delete);
 		}
