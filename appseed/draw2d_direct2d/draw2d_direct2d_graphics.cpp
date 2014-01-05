@@ -396,8 +396,10 @@ namespace draw2d_direct2d
       return NULL;
    }
 
-   /*HGDIOBJ graphics::SelectObject(HGDIOBJ hObject) // Safe for NULL handles
+/*   HGDIOBJ graphics::SelectObject(HGDIOBJ hObject) // Safe for NULL handles
    {
+      return hObject;
+   }*/
 
    COLORREF graphics::GetNearestColor(COLORREF crColor) const
    { 
@@ -908,8 +910,8 @@ namespace draw2d_direct2d
 
    }
    */
-#endif
 
+#endif
 
    bool graphics::DrawEdge(LPRECT lpRect, UINT nEdge, UINT nFlags)
    {

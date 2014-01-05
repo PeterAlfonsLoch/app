@@ -29,6 +29,8 @@
   <ItemGroup>
     <ClInclude Include="android\c_os_internal.h" />
     <ClInclude Include="base\base\base.h" />
+    <ClInclude Include="base\base\base_action_context.h" />
+    <ClInclude Include="base\base\base_action_source.h" />
     <ClInclude Include="base\base\base_allocate.h" />
     <ClInclude Include="base\base\base_application.h" />
     <ClInclude Include="base\base\base_async.h" />
@@ -39,6 +41,8 @@
     <ClInclude Include="base\base\base_common.h" />
     <ClInclude Include="base\base\base_conv.h" />
     <ClInclude Include="base\base\base_core.h" />
+    <ClInclude Include="base\base\base_core_copydesk.h" />
+    <ClInclude Include="base\base\base_core_os.h" />
     <ClInclude Include="base\base\base_cpu_architecture.h" />
     <ClInclude Include="base\base\base_cregexp.h" />
     <ClInclude Include="base\base\base_cregexp_util.h" />
@@ -297,6 +301,7 @@
     <ClInclude Include="filesystem\file\file_dir_application.h" />
     <ClInclude Include="filesystem\file\file_dir_system.h" />
     <ClInclude Include="filesystem\file\file_exception.h" />
+    <ClInclude Include="filesystem\file\file_folder_watch.h" />
     <ClInclude Include="filesystem\file\file_input_stream.h" />
     <ClInclude Include="filesystem\file\file_memory_buffer.h" />
     <ClInclude Include="filesystem\file\file_opened.h" />
@@ -312,6 +317,7 @@
     <ClInclude Include="filesystem\file\file_reader.h" />
     <ClInclude Include="filesystem\file\file_seekable.h" />
     <ClInclude Include="filesystem\file\file_serializable.h" />
+    <ClInclude Include="filesystem\file\file_set.h" />
     <ClInclude Include="filesystem\file\file_simple_binary_buffer.h" />
     <ClInclude Include="filesystem\file\file_status.h" />
     <ClInclude Include="filesystem\file\file_stream.h" />
@@ -393,6 +399,8 @@
     <ClInclude Include="net\http\http_get_socket.h" />
     <ClInclude Include="net\http\http_http.h" />
     <ClInclude Include="net\http\http_output_stream.h" />
+    <ClInclude Include="net\http\http_signal.h" />
+    <ClInclude Include="net\http\http_status.h" />
     <ClInclude Include="net\http\http_system.h" />
     <ClInclude Include="net\mail\mail.h" />
     <ClInclude Include="net\mail\mail_pop3.h" />
@@ -403,7 +411,9 @@
     <ClInclude Include="net\net_byte_order.h" />
     <ClInclude Include="net\net_email.h" />
     <ClInclude Include="net\net_email_address.h" />
+    <ClInclude Include="net\net_ip_enum.h" />
     <ClInclude Include="net\net_net.h" />
+    <ClInclude Include="net\net_port_forward.h" />
     <ClInclude Include="net\net_url_departament.h" />
     <ClInclude Include="net\net_url_domain.h" />
     <ClInclude Include="net\sockets\base\sockets_base_socket.h" />
@@ -412,6 +422,7 @@
     <ClInclude Include="net\sockets\http\sockets_http_client_socket.h" />
     <ClInclude Include="net\sockets\http\sockets_http_debug_socket.h" />
     <ClInclude Include="net\sockets\http\sockets_http_get_socket.h" />
+    <ClInclude Include="net\sockets\http\sockets_http_listener.h" />
     <ClInclude Include="net\sockets\http\sockets_http_post_socket.h" />
     <ClInclude Include="net\sockets\http\sockets_http_put_socket.h" />
     <ClInclude Include="net\sockets\http\sockets_http_request_socket.h" />
@@ -561,6 +572,8 @@
     <ClInclude Include="primitive\math\math_natural.h" />
     <ClInclude Include="primitive\math\math_number.h" />
     <ClInclude Include="primitive\math\math_numeric_info.h" />
+    <ClInclude Include="primitive\math\math_scalar.h" />
+    <ClInclude Include="primitive\math\math_scalar_enum.h" />
     <ClInclude Include="primitive\math\math_static_numeric_info.h" />
     <ClInclude Include="primitive\math\_math.h" />
     <ClInclude Include="primitive\primitive_application_bias.h" />
@@ -730,6 +743,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base\base\base.cpp" />
+    <ClCompile Include="base\base\base_action_context.cpp" />
     <ClCompile Include="base\base\base_allocate_mid_big.cpp" />
     <ClCompile Include="base\base\base_allocate_system_heap.cpp" />
     <ClCompile Include="base\base\base_application.cpp" />
@@ -739,6 +753,8 @@
     <ClCompile Include="base\base\base_cmdtarg.cpp" />
     <ClCompile Include="base\base\base_command_target.cpp" />
     <ClCompile Include="base\base\base_conv.cpp" />
+    <ClCompile Include="base\base\base_core_copydesk.cpp" />
+    <ClCompile Include="base\base\base_core_os.cpp" />
     <ClCompile Include="base\base\base_cpu_architecture.cpp" />
     <ClCompile Include="base\base\base_cregexp.cpp" />
     <ClCompile Include="base\base\base_cregexp_util.cpp" />
@@ -770,7 +786,9 @@
     <ClCompile Include="base\base\base_plex.cpp" />
     <ClCompile Include="base\base\base_plex_heap.cpp" />
     <ClCompile Include="base\base\base_printf.cpp" />
+    <ClCompile Include="base\base\base_progress.cpp" />
     <ClCompile Include="base\base\base_root.cpp" />
+    <ClCompile Include="base\base\base_savings.cpp" />
     <ClCompile Include="base\base\base_session.cpp" />
     <ClCompile Include="base\base\base_simple_shell_launcher.cpp" />
     <ClCompile Include="base\base\base_sprintf.cpp" />
@@ -1104,6 +1122,21 @@
     <ClCompile Include="base\xml\xml_var_exchange.cpp" />
     <ClCompile Include="base\xml\xml_xml.cpp" />
     <ClCompile Include="base\xml\xml_xmlite.cpp" />
+    <ClCompile Include="database\database_application.cpp" />
+    <ClCompile Include="database\database_base.cpp" />
+    <ClCompile Include="database\database_client.cpp" />
+    <ClCompile Include="database\database_definition.cpp" />
+    <ClCompile Include="database\database_event_change.cpp" />
+    <ClCompile Include="database\database_field_definition.cpp" />
+    <ClCompile Include="database\database_id.cpp" />
+    <ClCompile Include="database\database_key.cpp" />
+    <ClCompile Include="database\database_selection.cpp" />
+    <ClCompile Include="database\database_selection_item.cpp" />
+    <ClCompile Include="database\database_server.cpp" />
+    <ClCompile Include="database\database_set.cpp" />
+    <ClCompile Include="database\database_stringhelper.cpp" />
+    <ClCompile Include="database\database_update_hint.cpp" />
+    <ClCompile Include="database\database_user_interaction.cpp" />
     <ClCompile Include="filesystem\file\file_application.cpp" />
     <ClCompile Include="filesystem\file\file_binary_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_buffered_buffer.cpp" />
@@ -1121,6 +1154,7 @@
     <ClCompile Include="filesystem\file\file_dir_application.cpp" />
     <ClCompile Include="filesystem\file\file_dir_system.cpp" />
     <ClCompile Include="filesystem\file\file_exception.cpp" />
+    <ClCompile Include="filesystem\file\file_folder_watch.cpp" />
     <ClCompile Include="filesystem\file\file_input_stream.cpp" />
     <ClCompile Include="filesystem\file\file_memory_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_output_stream.cpp" />
@@ -1133,6 +1167,7 @@
     <ClCompile Include="filesystem\file\file_plain_text_stream_string_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_reader.cpp" />
     <ClCompile Include="filesystem\file\file_seekable.cpp" />
+    <ClCompile Include="filesystem\file\file_set.cpp" />
     <ClCompile Include="filesystem\file\file_simple_binary_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_stream.cpp" />
     <ClCompile Include="filesystem\file\file_stream2.cpp" />
@@ -1212,6 +1247,7 @@
     <ClCompile Include="net\http\http_get_socket.cpp" />
     <ClCompile Include="net\http\http_output_stream.cpp" />
     <ClCompile Include="net\http\http_signal.cpp" />
+    <ClCompile Include="net\http\http_status.cpp" />
     <ClCompile Include="net\http\http_system.cpp" />
     <ClCompile Include="net\mail\mail_pop3.cpp" />
     <ClCompile Include="net\mail\mail_pop3_socket.cpp" />
@@ -1219,7 +1255,9 @@
     <ClCompile Include="net\net_address.cpp" />
     <ClCompile Include="net\net_email.cpp" />
     <ClCompile Include="net\net_email_address.cpp" />
+    <ClCompile Include="net\net_ip_enum.cpp" />
     <ClCompile Include="net\net_net.cpp" />
+    <ClCompile Include="net\net_port_forward.cpp" />
     <ClCompile Include="net\net_url_departament.cpp" />
     <ClCompile Include="net\net_url_domain.cpp" />
     <ClCompile Include="net\sockets\base\sockets_base_socket.cpp" />
@@ -1227,6 +1265,7 @@
     <ClCompile Include="net\sockets\http\sockets_http_client_socket.cpp" />
     <ClCompile Include="net\sockets\http\sockets_http_debug_socket.cpp" />
     <ClCompile Include="net\sockets\http\sockets_http_get_socket.cpp" />
+    <ClCompile Include="net\sockets\http\sockets_http_listener.cpp" />
     <ClCompile Include="net\sockets\http\sockets_http_post_socket.cpp" />
     <ClCompile Include="net\sockets\http\sockets_http_put_socket.cpp" />
     <ClCompile Include="net\sockets\http\sockets_http_session.cpp" />
@@ -1308,6 +1347,7 @@
     <ClCompile Include="primitive\geometry\geometry_types.cpp" />
     <ClCompile Include="primitive\math\math_math.cpp" />
     <ClCompile Include="primitive\math\math_math_rng.cpp" />
+    <ClCompile Include="primitive\math\math_scalar.cpp" />
     <ClCompile Include="primitive\math\_math.cpp" />
     <ClCompile Include="primitive\primitive_application_bias.cpp" />
     <ClCompile Include="primitive\primitive_bit.cpp" />
@@ -1333,6 +1373,7 @@
     <ClCompile Include="primitive\primitive_object.cpp" />
     <ClCompile Include="primitive\primitive_property.cpp" />
     <ClCompile Include="primitive\primitive_property_set.cpp" />
+    <ClCompile Include="primitive\primitive_relation_set.cpp" />
     <ClCompile Include="primitive\primitive_request_interface.cpp" />
     <ClCompile Include="primitive\primitive_request_signal.cpp" />
     <ClCompile Include="primitive\primitive_shared_memory.cpp" />
@@ -1404,6 +1445,7 @@
     <ClCompile Include="user\user_keyboard.cpp" />
     <ClCompile Include="user\user_keyboard_focus.cpp" />
     <ClCompile Include="user\user_keyboard_layout.cpp" />
+    <ClCompile Include="user\user_message.cpp" />
     <ClCompile Include="user\user_mouse_focus.cpp" />
     <ClCompile Include="user\user_object.cpp" />
     <ClCompile Include="user\user_place_holder.cpp" />

@@ -64,8 +64,10 @@ namespace draw2d_direct2d
       void SetIconMask(::visual::icon * picon, int32_t cx, int32_t cy);
 
 
+#if defined(WINDOWSEX)
       virtual bool update_window(::user::window * pwnd, signal_details * pobj);
       //virtual bool print_window(::user::window * pwnd, signal_details * pobj);
+#endif
 
 
       //bool color_blend(COLORREF cr, BYTE bAlpha);
@@ -155,6 +157,8 @@ namespace draw2d_direct2d
       virtual bool realize(::draw2d::graphics * pgraphics);
       virtual bool unrealize();
       virtual bool is_realized();
+
+
       //virtual bool update_window(::user::window * pwnd, signal_details * pobj);
       //virtual bool print_window(::user::window * pwnd, signal_details * pobj);
 

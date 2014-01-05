@@ -797,9 +797,9 @@ namespace plugin
 
                         System.install().asynch_install(strCommandLine, true);
 
-
+#ifdef WINDOWSEX
                         ExitProcess(0);
-
+#endif
 
                         //m_phost->m_pszReloadCommandLine = (const char *) HeapAlloc(GetProcessHeap(), 0, strCommandLine.get_length() + 1);
                         //strncpy((char *) m_phost->m_pszReloadCommandLine, strCommandLine, strCommandLine.get_length() + 1);

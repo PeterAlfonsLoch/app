@@ -164,3 +164,11 @@ bool simple_app::end()
 {
    return true;
 }
+
+
+int simple_app::simple_app_pre_run()
+{
+
+   return 0;
+
+}

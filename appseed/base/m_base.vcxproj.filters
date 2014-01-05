@@ -331,6 +331,15 @@
     <Filter Include="Source Files\framework">
       <UniqueIdentifier>{b4ee8f8a-40a6-4255-9000-900b0a5e03d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\database">
+      <UniqueIdentifier>{8f79a158-d148-4f87-a5e7-68a765d90df2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\file\NewFilter1">
+      <UniqueIdentifier>{7acd626a-7bff-4295-a62c-4e6ea645f65a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\NewFilter1">
+      <UniqueIdentifier>{c926cc4b-83fe-4012-86ae-b9a9fc73a53f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="android\c_os_internal.h">
@@ -2334,6 +2343,45 @@
     <ClInclude Include="framework\framework_c.h">
       <Filter>Header Files\framework</Filter>
     </ClInclude>
+    <ClInclude Include="base\base\base_action_source.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_action_context.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\math_scalar.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\math_scalar_enum.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_core_os.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_core_copydesk.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_ip_enum.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_port_forward.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_set.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_folder_watch.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_signal.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_status.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_listener.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\primitive_factory_impl.inl">
@@ -3955,6 +4003,93 @@
     </ClCompile>
     <ClCompile Include="framework\framework_c.c">
       <Filter>Source Files\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_action_context.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_scalar.cpp">
+      <Filter>Source Files\primitive\math</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_savings.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_progress.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_application.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_base.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_client.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_definition.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_event_change.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_field_definition.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_id.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_key.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_selection.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_selection_item.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_server.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_set.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_stringhelper.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_update_hint.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_user_interaction.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_core_copydesk.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_core_os.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_ip_enum.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_port_forward.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_folder_watch.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_set.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_relation_set.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_status.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_listener.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_message.cpp">
+      <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

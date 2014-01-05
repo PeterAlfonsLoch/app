@@ -438,26 +438,9 @@
     <ClInclude Include="core\plugin\plugin_system.h" />
     <ClInclude Include="core\service\service_plain_service.h" />
     <ClInclude Include="core\service\service_thread_pool.h" />
-    <ClInclude Include="database\database.h" />
     <ClInclude Include="database\databaseuser\databaseuser.h" />
     <ClInclude Include="database\databaseuser\data_key_list_data.h" />
     <ClInclude Include="database\databaseuser\list_data.h" />
-    <ClInclude Include="database\database_database.h" />
-    <ClInclude Include="database\database_base.h" />
-    <ClInclude Include="database\database_change_event.h" />
-    <ClInclude Include="database\database_client.h" />
-    <ClInclude Include="database\database_definition.h" />
-    <ClInclude Include="database\database_field_definition.h" />
-    <ClInclude Include="database\database_id.h" />
-    <ClInclude Include="database\database_key.h" />
-    <ClInclude Include="database\database_selection.h" />
-    <ClInclude Include="database\database_selection_item.h" />
-    <ClInclude Include="database\database_server.h" />
-    <ClInclude Include="database\database_set.h" />
-    <ClInclude Include="database\database_stringhelper.h" />
-    <ClInclude Include="database\database_template.h" />
-    <ClInclude Include="database\database_update_hint.h" />
-    <ClInclude Include="database\database_user_interaction.h" />
     <ClInclude Include="database\simpledb\DBFileSystemSize.h" />
     <ClInclude Include="database\simpledb\db_long_set.h" />
     <ClInclude Include="database\simpledb\db_server.h" />
@@ -564,8 +547,10 @@
     <ClInclude Include="filesystem\userfs\userfs_list_item_array.h" />
     <ClInclude Include="filesystem\userfs\userfs_main_view.h" />
     <ClInclude Include="filesystem\userfs\userfs_tree.h" />
+    <ClInclude Include="filesystem\userfs\userfs_update_hint.h" />
     <ClInclude Include="filesystem\userfs\userfs_userfs.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="framework\framework.h" />
     <ClInclude Include="graphics\backview\backview.h" />
     <ClInclude Include="graphics\backview\backview_enum.h" />
     <ClInclude Include="graphics\backview\backview_graphics.h" />
@@ -997,7 +982,6 @@
     <ClCompile Include="core\core_application.cpp" />
     <ClCompile Include="core\core_composite.cpp" />
     <ClCompile Include="core\core_constraint.cpp" />
-    <ClCompile Include="core\core_copydesk.cpp" />
     <ClCompile Include="core\core_Debug.cpp" />
     <ClCompile Include="core\core_fs_interface.cpp" />
     <ClCompile Include="core\core_history.cpp" />
@@ -1006,7 +990,6 @@
     <ClCompile Include="core\core_logic.cpp" />
     <ClCompile Include="core\core_match.cpp" />
     <ClCompile Include="core\core_memory.cpp" />
-    <ClCompile Include="core\core_os.cpp" />
     <ClCompile Include="core\core_os_history.cpp" />
     <ClCompile Include="core\core_patch.cpp" />
     <ClCompile Include="core\core_pipe.cpp" />
@@ -1015,7 +998,6 @@
     <ClCompile Include="core\core_process_section.cpp" />
     <ClCompile Include="core\core_profiler.cpp" />
     <ClCompile Include="core\core_resource.cpp" />
-    <ClCompile Include="core\core_savings.cpp" />
     <ClCompile Include="core\core_section.cpp" />
     <ClCompile Include="core\core_service.cpp" />
     <ClCompile Include="core\core_session.cpp" />
@@ -1035,7 +1017,6 @@
     <ClCompile Include="core\geoip\geoip_region_name.cpp" />
     <ClCompile Include="core\geoip\geoip_time_zone.cpp" />
     <ClCompile Include="core\geoip\geoip_update.cpp" />
-    <ClCompile Include="core\install\install_install.cpp" />
     <ClCompile Include="core\libcharguess\libcharguess.cpp" />
     <ClCompile Include="core\libcharguess\libcharguess_big5Prober.cpp" />
     <ClCompile Include="core\libcharguess\libcharguess_charDistribution.cpp" />
@@ -1069,21 +1050,6 @@
     <ClCompile Include="core\service\service_plain_service.cpp" />
     <ClCompile Include="database\databaseuser\database_key_list_data.cpp" />
     <ClCompile Include="database\databaseuser\database_list_data.cpp" />
-    <ClCompile Include="database\database_application.cpp" />
-    <ClCompile Include="database\database_base.cpp" />
-    <ClCompile Include="database\database_client.cpp" />
-    <ClCompile Include="database\database_definition.cpp" />
-    <ClCompile Include="database\database_event_change.cpp" />
-    <ClCompile Include="database\database_field_definition.cpp" />
-    <ClCompile Include="database\database_id.cpp" />
-    <ClCompile Include="database\database_key.cpp" />
-    <ClCompile Include="database\database_selection.cpp" />
-    <ClCompile Include="database\database_selection_item.cpp" />
-    <ClCompile Include="database\database_server.cpp" />
-    <ClCompile Include="database\database_set.cpp" />
-    <ClCompile Include="database\database_stringhelper.cpp" />
-    <ClCompile Include="database\database_update_hint.cpp" />
-    <ClCompile Include="database\database_user_interaction.cpp" />
     <ClCompile Include="database\simpledb\simpledb_database.cpp" />
     <ClCompile Include="database\simpledb\simpledb_dataset.cpp" />
     <ClCompile Include="database\simpledb\simpledb_db_server.cpp" />
@@ -1116,7 +1082,7 @@
     <ClCompile Include="filesystem\filehandler\filehandler_tree_interface.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_callback.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_child_frame.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_ContextMenu.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_context_menu.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_data.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_data_interface.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_document.cpp" />
@@ -1160,7 +1126,6 @@
     <ClCompile Include="filesystem\file\file_clustered_input_stream.cpp" />
     <ClCompile Include="filesystem\file\file_dynamic_buffered_writer.cpp" />
     <ClCompile Include="filesystem\file\file_edit_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_folder_watch.cpp" />
     <ClCompile Include="filesystem\file\file_in_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_io_temp_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_limited_input_stream.cpp" />
@@ -1168,7 +1133,6 @@
     <ClCompile Include="filesystem\file\file_limited_writer.cpp" />
     <ClCompile Include="filesystem\file\file_locked_in_stream.cpp" />
     <ClCompile Include="filesystem\file\file_out_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_set.cpp" />
     <ClCompile Include="filesystem\file\file_size_count_writer.cpp" />
     <ClCompile Include="filesystem\file\file_sssociation.cpp" />
     <ClCompile Include="filesystem\file\file_stream.cpp" />
@@ -1181,10 +1145,10 @@
     <ClCompile Include="filesystem\userfs\userfs_list_item_array.cpp" />
     <ClCompile Include="filesystem\userfs\userfs_main_view.cpp" />
     <ClCompile Include="filesystem\userfs\userfs_tree.cpp" />
+    <ClCompile Include="filesystem\userfs\userfs_update_hint.cpp" />
     <ClCompile Include="filesystem\userfs\userfs_userfs.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="framework\framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="graphics\backview\backview_graphics.cpp" />
     <ClCompile Include="graphics\backview\backview_helper.cpp" />
@@ -1267,8 +1231,6 @@
     <ClCompile Include="net\hi5\hi5_twit.cpp" />
     <ClCompile Include="net\hi5\hi5_twitter_authorization.cpp" />
     <ClCompile Include="net\net_email_departament.cpp" />
-    <ClCompile Include="net\net_ip_enum.cpp" />
-    <ClCompile Include="net\net_port_forward.cpp" />
     <ClCompile Include="net\usermail\usermail_account.cpp" />
     <ClCompile Include="net\usermail\usermail_db_pop3.cpp" />
     <ClCompile Include="net\usermail\usermail_item.cpp" />
@@ -1276,7 +1238,6 @@
     <ClCompile Include="net\usermail\usermail_tree.cpp" />
     <ClCompile Include="net\usermail\usermail_usermail.cpp" />
     <ClCompile Include="net\usernet\usernet_network_configuration.cpp" />
-    <ClCompile Include="plane\plane_application.cpp" />
     <ClCompile Include="plane\plane_library.cpp" />
     <ClCompile Include="plane\plane_system.cpp" />
     <ClCompile Include="plane\session\bergedge\bergedge_document.cpp" />
@@ -1308,7 +1269,6 @@
     <ClCompile Include="primitive\datetime\datetime_windows_file_time.cpp" />
     <ClCompile Include="primitive\primitive_fixed_string.cpp" />
     <ClCompile Include="primitive\primitive_int_biunique.cpp" />
-    <ClCompile Include="primitive\primitive_scalar.cpp" />
     <ClCompile Include="primitive\primitive_shared_file.cpp" />
     <ClCompile Include="programming\dynamic_source\dynamic_source_exit_exception.cpp" />
     <ClCompile Include="programming\dynamic_source\dynamic_source_httpd_socket.cpp" />
@@ -1446,7 +1406,6 @@
     <ClCompile Include="user\user\user_list_header.cpp" />
     <ClCompile Include="user\user\user_main_frame.cpp" />
     <ClCompile Include="user\user\user_menu_list_view.cpp" />
-    <ClCompile Include="user\user\user_message.cpp" />
     <ClCompile Include="user\user\user_meta_button.cpp" />
     <ClCompile Include="user\user\user_multiple_document_template.cpp" />
     <ClCompile Include="user\user\user_network_configuration.cpp" />
