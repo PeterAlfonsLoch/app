@@ -5,7 +5,7 @@
 //#include <io.h>
 //#include <fcntl.h>
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
 
 #include <unistd.h>
 #define _doserrno errno
@@ -106,6 +106,7 @@ namespace file
       ASSERT(__is_valid_address(lpBuf, nCount));
 
       primitive::memory_size nRead = 0;
+
 
       if ((nRead = fread(lpBuf, sizeof(BYTE), nCount, m_pfile)) == 0 && !feof(m_pfile))
          throw_exception(get_app(), ::file::exception::type_generic, _doserrno, m_strFileName);

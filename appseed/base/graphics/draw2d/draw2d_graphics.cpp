@@ -1175,7 +1175,7 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
-#if !defined(LINUX) && !defined(MACOS)
+#if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID)
 
    bool graphics::ResetDC(const DEVMODE* lpDevMode)
    {

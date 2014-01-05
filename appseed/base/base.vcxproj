@@ -9501,28 +9501,72 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\os\os_http.cpp" />
     <ClCompile Include="base\os\os_process.cpp" />
     <ClCompile Include="base\os\os_thread.cpp" />
-    <ClCompile Include="base\os\windows\windows.cpp" />
-    <ClCompile Include="base\os\windows\windows_crypto.cpp" />
-    <ClCompile Include="base\os\windows\windows_dll.cpp" />
-    <ClCompile Include="base\os\windows\windows_file.cpp" />
-    <ClCompile Include="base\os\windows\windows_file_std.cpp" />
-    <ClCompile Include="base\os\windows\windows_file_watcher.cpp" />
-    <ClCompile Include="base\os\windows\windows_internal.cpp" />
-    <ClCompile Include="base\os\windows\windows_launcher.cpp" />
-    <ClCompile Include="base\os\windows\windows_library.cpp" />
-    <ClCompile Include="base\os\windows\windows_lock.cpp" />
-    <ClCompile Include="base\os\windows\windows_message_loop.cpp" />
-    <ClCompile Include="base\os\windows\windows_process.cpp" />
-    <ClCompile Include="base\os\windows\windows_registry.cpp" />
-    <ClCompile Include="base\os\windows\windows_simple_app.cpp" />
-    <ClCompile Include="base\os\windows\windows_simple_shell_launcher.cpp" />
-    <ClCompile Include="base\os\windows\windows_simple_ui.cpp" />
-    <ClCompile Include="base\os\windows\windows_small_ipc_channel.cpp" />
-    <ClCompile Include="base\os\windows\windows_std_file.cpp" />
-    <ClCompile Include="base\os\windows\windows_thread.cpp" />
-    <ClCompile Include="base\os\windows\windows_time.cpp" />
-    <ClCompile Include="base\os\windows\windows_utils.cpp" />
-    <ClCompile Include="base\os\windows\windows_window_gdi.cpp" />
+    <ClCompile Include="base\os\windows\windows.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_crypto.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_dll.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_file.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_file_std.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_file_watcher.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_internal.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_launcher.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_library.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_lock.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_message_loop.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_process.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_registry.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_simple_app.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_simple_shell_launcher.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_simple_ui.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_small_ipc_channel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_std_file.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_thread.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_time.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_utils.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_window_gdi.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="base\xml\xml_attr.cpp" />
     <ClCompile Include="base\xml\xml_base_array.cpp" />
     <ClCompile Include="base\xml\xml_data.cpp" />

@@ -160,7 +160,7 @@ bool event::SetEvent()
 
 #elif defined(ANDROID)
 
-   psingle_lock lockMutex(&m_mutex, true);
+   synch_lock lockMutex(&m_mutex);
 
    if(m_bManualEvent)
    {

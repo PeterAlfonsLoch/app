@@ -347,7 +347,7 @@ namespace xml
                   pparseinfo->m_bErrorOccur = true;
                   pparseinfo->m_pszErrorPointer = xml;
                   pparseinfo->m_eparseerror = parse_error_attr_no_value;
-                  pparseinfo->m_strError.Format( "<%s> attr has error ", m_strName );
+                  pparseinfo->m_strError.Format( "<%s> attr has error ", m_strName.c_str() );
                }
                return NULL;
             }
@@ -510,7 +510,7 @@ namespace xml
                   pparseinfo->m_bErrorOccur = true;
                   pparseinfo->m_pszErrorPointer = xml;
                   pparseinfo->m_eparseerror = parse_error_attr_no_value;
-                  pparseinfo->m_strError.Format( "<%s> attr has error ", m_strName );
+                  pparseinfo->m_strError.Format( "<%s> attr has error ", m_strName.c_str() );
                }
                return NULL;
             }
@@ -853,7 +853,7 @@ namespace xml
                      pparseinfo->m_bErrorOccur = true;
                      pparseinfo->m_pszErrorPointer = xml;
                      pparseinfo->m_eparseerror = parse_error_not_closed;
-                     pparseinfo->m_strError.Format("%s must be closed with </%s>", m_strName );
+                     pparseinfo->m_strError.Format("%s must be closed with </%s>", m_strName.c_str() );
                   }
                   // error cos not exist CloseTag </TAG>
                   return NULL;
@@ -921,7 +921,7 @@ namespace xml
                            pparseinfo->m_bErrorOccur = true;
                            pparseinfo->m_pszErrorPointer = xml;
                            pparseinfo->m_eparseerror = parse_error_not_closed;
-                           pparseinfo->m_strError.Format("it must be closed with </%s>", m_strName );
+                           pparseinfo->m_strError.Format("it must be closed with </%s>", m_strName.c_str() );
                         }
                         // error
                         return NULL;
@@ -947,7 +947,7 @@ namespace xml
                               pparseinfo->m_bErrorOccur = true;
                               pparseinfo->m_pszErrorPointer = xml;
                               pparseinfo->m_eparseerror = parse_error_not_nested;
-                              pparseinfo->m_strError.Format("'<%s> ... </%s>' is not wel-formed.", m_strName, closename );
+                              pparseinfo->m_strError.Format("'<%s> ... </%s>' is not wel-formed.", m_strName.c_str(), closename.c_str() );
                            }
                            return NULL;
                         }
@@ -971,7 +971,7 @@ namespace xml
                            pparseinfo->m_bErrorOccur = true;
                            pparseinfo->m_pszErrorPointer = xml;
                            pparseinfo->m_eparseerror = parse_error_not_closed;
-                           pparseinfo->m_strError.Format("it must be closed with </%s>", m_strName );
+                           pparseinfo->m_strError.Format("it must be closed with </%s>", m_strName.c_str() );
                         }
                         return NULL;
                      }

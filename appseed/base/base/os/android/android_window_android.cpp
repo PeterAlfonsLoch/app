@@ -4,8 +4,8 @@
 window_android::window_android()
 {
 
-   m_cairoSource = NULL;
-   m_cairosurfaceSource = NULL;
+   //m_cairoSource = NULL;
+   //m_cairosurfaceSource = NULL;
 
 }
 
@@ -24,26 +24,26 @@ void window_android::create(oswindow window, int64_t cxParam, int64_t cyParam, i
 
    synch_lock sl(&user_mutex());
 
-   if(m_cairoSource != NULL)
-   {
-      cairo_destroy(m_cairoSource);
+   //if(m_cairoSource != NULL)
+   //{
+   //   cairo_destroy(m_cairoSource);
 
-   }
+   //}
 
-   if(m_cairosurfaceSource != NULL)
-   {
+   //if(m_cairosurfaceSource != NULL)
+   //{
 
-      cairo_surface_destroy(m_cairosurfaceSource);
+   //   cairo_surface_destroy(m_cairosurfaceSource);
 
-   }
+   //}
 
    int32_t iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, cxParam);
 
    m_mem.allocate(iStride * cyParam);
 
-   m_cairosurfaceSource = cairo_image_surface_create_for_data((unsigned char *) m_mem.get_data(), CAIRO_FORMAT_ARGB32, cxParam, cyParam, iStride);
+   //m_cairosurfaceSource = cairo_image_surface_create_for_data((unsigned char *) m_mem.get_data(), CAIRO_FORMAT_ARGB32, cxParam, cyParam, iStride);
 
-   m_cairoSource = cairo_create(m_cairosurfaceSource);
+   //m_cairoSource = cairo_create(m_cairosurfaceSource);
 
    window_graphics::create(window, cxParam, cyParam, iStride);
 

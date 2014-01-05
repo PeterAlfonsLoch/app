@@ -346,7 +346,7 @@ void oswindow_data::set_user_interaction(::user::interaction * pui)
 
    m_pui = pui;
 
-   m_hthread = pui->get_os_handle();
+   m_hthread = pui->m_pthread->get_os_handle();
 
 }
 
@@ -723,6 +723,8 @@ void message_box_paint(cairo_surface_t * cs, stringa & stra, array < bool >  & b
 
 }
 
+/*
+
 void message_box_show_dib_data(COLORREF * pcolorref, LPCRECT lpcrect, const char * lpText, const char * lpCaption)
 {
 
@@ -732,7 +734,7 @@ void message_box_show_dib_data(COLORREF * pcolorref, LPCRECT lpcrect, const char
 	cairo_surface_t *cs;
 
 
-	simple_graphics g;
+   ::draw2d::graphics_sp g(get_a)
 
 	g.create(NULL);
 
@@ -818,7 +820,10 @@ void message_box_show_dib_data(COLORREF * pcolorref, LPCRECT lpcrect, const char
 
 }
 
+*/
 
+
+/*
 
 int32_t WINAPI MessageBoxA(oswindow hWnd, const char * lpText, const char * lpCaption, UINT uType)
 {
@@ -829,6 +834,7 @@ int32_t WINAPI MessageBoxA(oswindow hWnd, const char * lpText, const char * lpCa
 
 }
 
+*/
 
 static oswindow g_oswindowCapture;
 
@@ -1131,7 +1137,7 @@ bool oswindow_data::is_destroying()
 }
 
 
-bool IsWindow(oswindow oswindow)
+int_bool IsWindow(oswindow oswindow)
 {
    return oswindow->get_user_interaction() != NULL && !oswindow->is_destroying();
 }

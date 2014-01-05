@@ -176,7 +176,7 @@ namespace file
 
       strExtra += m_strAdd;
 
-      strMessage.Format("file error number: %d - %s - file: %s", m_cause, strExtra, strFileName);
+      strMessage.Format("file error number: %d - %s - file: %s", m_cause, strExtra.c_str(), strFileName.c_str());
 
       str = strMessage;
 
