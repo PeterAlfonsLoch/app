@@ -1,13 +1,15 @@
 #include "framework.h"
 
 
-base_library::base_library()
+base_library::base_library(sp(base_application) papp) :
+   element(papp)
 {
    m_bAutoClose = true;
    m_plibrary = NULL;
 }
 
-base_library::base_library(const char * pszOpen)
+base_library::base_library(sp(base_application) papp, const char * pszOpen) :
+   element(papp)
 {
    m_bAutoClose = true;
    m_plibrary = NULL;
@@ -33,8 +35,10 @@ bool base_library::is_closed()
 }
 
 
-bool base_library::open(const char * pszPath)
+bool base_library::open(const char * pszPath, bool bAutoClose)
 {
+
+   m_bAutoClose = bAutoClose;
 
    if(stricmp_dup(pszPath, "app_c") == 0)
    {
@@ -110,12 +114,15 @@ void * base_library::raw_get(const char * pszElement)
    return ::GetProcAddress((HINSTANCE) m_plibrary, pszElement);
 }
 
-ca2_library::ca2_library()
+ca2_library::ca2_library(sp(base_application) papp) :
+element(papp),
+base_library(papp)
 {
 }
 
-ca2_library::ca2_library(const char * pszOpen) :
-   base_library(pszOpen)
+ca2_library::ca2_library(sp(base_application) papp, const char * pszOpen) :
+element(papp),
+base_library(papp, pszOpen)
 {
 
 }

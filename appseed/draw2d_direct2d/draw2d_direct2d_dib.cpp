@@ -2680,11 +2680,6 @@ namespace draw2d_direct2d
    return cy;
    }*/
 
-#undef new
-
-
-
-#define new BASE_NEW
 
    bool dib::defer_realize(::draw2d::graphics * pgraphics)
    {

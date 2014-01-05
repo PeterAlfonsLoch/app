@@ -27,21 +27,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d.h" />
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_bitmap.h" />
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_brush.h" />
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_dib.h" />
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_directx.h" />
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_factory_exchange.h" />
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_font.h" />
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_graphics.h" />
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_object.h" />
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_palette.h" />
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_path.h" />
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_pen.h" />
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_printer.h" />
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_region.h" />
-    <ClInclude Include="..\draw2d_direct2d\framework.h" />
     <ClInclude Include="android\c_os_internal.h" />
     <ClInclude Include="base\base\base.h" />
     <ClInclude Include="base\base\base_allocate.h" />
@@ -163,7 +148,6 @@
     <ClInclude Include="base\crypto\crypto\crypto_c_crypto.h" />
     <ClInclude Include="base\crypto\crypto\crypto_datatypes.h" />
     <ClInclude Include="base\crypto\crypto\crypto_err.h" />
-    <ClInclude Include="base\crypto\crypto\crypto_framework.h" />
     <ClInclude Include="base\crypto\crypto\crypto_gf2_8.h" />
     <ClInclude Include="base\crypto\crypto\crypto_hmac.h" />
     <ClInclude Include="base\crypto\crypto\crypto_integers.h" />
@@ -353,8 +337,9 @@
     <ClInclude Include="filesystem\fs\fs_remote_native_file.h" />
     <ClInclude Include="filesystem\fs\fs_remote_native_fs.h" />
     <ClInclude Include="filesystem\fs\fs_set.h" />
-    <ClInclude Include="framework.h" />
-    <ClInclude Include="framework_c.h" />
+    <ClInclude Include="framework\crypto_framework.h" />
+    <ClInclude Include="framework\framework.h" />
+    <ClInclude Include="framework\framework_c.h" />
     <ClInclude Include="graphics\draw2d\draw2d.h" />
     <ClInclude Include="graphics\draw2d\draw2d_bitmap.h" />
     <ClInclude Include="graphics\draw2d\draw2d_brush.h" />
@@ -644,7 +629,6 @@
     <ClInclude Include="primitive\str\x\x_defines.h" />
     <ClInclude Include="primitive\str\x\x_encodings.h" />
     <ClInclude Include="primitive\str\x\x_tables.h" />
-    <ClInclude Include="product.version.config.h" />
     <ClInclude Include="programming\javascript\javascript.h" />
     <ClInclude Include="programming\javascript\javascript_functions.h" />
     <ClInclude Include="programming\javascript\javascript_tinyjs.h" />
@@ -745,19 +729,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d.cpp" />
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_bitmap.cpp" />
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_brush.cpp" />
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_dib.cpp" />
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_factory_exchange.cpp" />
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_font.cpp" />
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_graphics.cpp" />
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_object.cpp" />
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_palette.cpp" />
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_path.cpp" />
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_pen.cpp" />
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_preview_dc.cpp" />
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_region.cpp" />
     <ClCompile Include="base\base\base.cpp" />
     <ClCompile Include="base\base\base_allocate_mid_big.cpp" />
     <ClCompile Include="base\base\base_allocate_system_heap.cpp" />
@@ -933,12 +904,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
       <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</CompileAsWinRT>
     </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_framework.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">crypto_framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
-      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</CompileAsWinRT>
-    </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_gf2_8.c">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">crypto_framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
@@ -1078,9 +1043,7 @@
     <ClCompile Include="base\install\install_bz.cpp" />
     <ClCompile Include="base\install\install_canvas.cpp" />
     <ClCompile Include="base\install\install_focus.cpp" />
-    <ClCompile Include="base\install\install_http.cpp" />
     <ClCompile Include="base\install\install_install.cpp" />
-    <ClCompile Include="base\install\install_installation_lock_file_lock.cpp" />
     <ClCompile Include="base\install\install_installer.cpp" />
     <ClCompile Include="base\install\install_installer_square.cpp" />
     <ClCompile Include="base\install\install_plugin.cpp" />
@@ -1193,14 +1156,20 @@
     <ClCompile Include="filesystem\fs\fs_remote_native_file.cpp" />
     <ClCompile Include="filesystem\fs\fs_remote_native_fs.cpp" />
     <ClCompile Include="filesystem\fs\fs_set.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="framework\crypto_framework.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">crypto_framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)crypto_framework.pch</PrecompiledHeaderOutputFile>
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="framework\framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="framework_c.c">
+    <ClCompile Include="framework\framework_c.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">framework_c.h</PrecompiledHeaderFile>
-      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</CompileAsWinRT>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</CompileAsWinRT>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_brush.cpp" />
@@ -1260,7 +1229,6 @@
     <ClCompile Include="net\sockets\http\sockets_http_get_socket.cpp" />
     <ClCompile Include="net\sockets\http\sockets_http_post_socket.cpp" />
     <ClCompile Include="net\sockets\http\sockets_http_put_socket.cpp" />
-    <ClCompile Include="net\sockets\http\sockets_http_request_socket.cpp" />
     <ClCompile Include="net\sockets\http\sockets_http_session.cpp" />
     <ClCompile Include="net\sockets\http\sockets_http_socket.cpp" />
     <ClCompile Include="net\sockets\http\sockets_http_tunnel.cpp" />
@@ -1564,7 +1532,7 @@
       <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../app/appseed/base;.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -1593,7 +1561,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcr110d.dll" "$(OutDi
       <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>__C__DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -1632,6 +1600,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -1644,6 +1613,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -1667,6 +1637,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -1679,6 +1650,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

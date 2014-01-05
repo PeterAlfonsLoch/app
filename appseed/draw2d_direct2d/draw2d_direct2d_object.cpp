@@ -56,23 +56,9 @@ namespace draw2d_direct2d
 
    object * object_allocator(base_application * papp, HANDLE h)
    {
-      /*switch(::GetObjectType(h))
-      {
-      case OBJ_BITMAP:
-         return dynamic_cast < object * > (new bitmap(papp));
-      case OBJ_REGION:
-         return dynamic_cast < object * > (new region(papp));
-      case OBJ_PEN:
-         return dynamic_cast < object * > (new pen(papp));
-      case OBJ_BRUSH:
-         return dynamic_cast < object * > (new brush(papp));
-      case OBJ_PAL:
-         return dynamic_cast < object * > (new palette(papp));
-      case OBJ_FONT:
-         return dynamic_cast < object * > (new font(papp));
-      }
-      return new object();*/
+
       return NULL;
+
    }
 
    /*object* object::from_handle(base_application * papp, HGDIOBJ h)

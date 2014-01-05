@@ -1,9 +1,6 @@
 #include "framework.h"
 
 
-#undef new
-
-
 namespace draw2d_direct2d
 {
 

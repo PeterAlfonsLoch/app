@@ -979,13 +979,15 @@ namespace file
             strLs      = locale_schema_matter(papp, "en", "en");
             straPath.add(path(strLs, stra[0]));
 
+            property_set set(papp);
+
             if(bDir)
             {
-               strPath = System.http().get("http://server.ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = App(papp).http().get("http://server.ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
             }
             else
             {
-               strPath = System.http().get("http://server.ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = App(papp).http().get("http://server.ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
             }
 
             if(strPath.has_char())
@@ -1193,13 +1195,15 @@ ret:
             strLs             = locale_schema_matter(papp, "en", "en");
             straPath.add(path(strLs, str, str2));
 
+            property_set set(papp);
+
             if(bDir)
             {
-               strPath = System.http().get("http://server.ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = App(papp).http().get("http://server.ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
             }
             else
             {
-               strPath = System.http().get("http://server.ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = App(papp).http().get("http://server.ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
             }
 
             strPath.trim();

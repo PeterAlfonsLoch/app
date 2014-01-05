@@ -1,7 +1,8 @@
 #include "framework.h"
 
 
-simple_app::simple_app()
+simple_app::simple_app() :
+base_system(this)
 {
    
    m_iError = 0;
@@ -139,12 +140,12 @@ void simple_app::body()
 
 }
 
-bool simple_app::initialize()
+bool simple_app::intro()
 {
    return true;
 }
 
-int simple_app::run()
+int simple_app::refrain()
 {
 
 #ifdef WINDOWSEX
@@ -159,7 +160,7 @@ int simple_app::run()
    return 0;
 }
 
-bool simple_app::finalize()
+bool simple_app::end()
 {
    return true;
 }

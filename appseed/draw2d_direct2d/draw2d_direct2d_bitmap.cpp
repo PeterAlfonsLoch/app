@@ -1,9 +1,6 @@
 #include "framework.h"
 
 
-#undef new
-
-
 namespace draw2d_direct2d
 {
 
@@ -265,24 +262,9 @@ namespace draw2d_direct2d
 
       return true;
 
-/*
-      if(m_pdata != NULL)
-      {
-         memory_free(m_pdata);
-         m_pdata = NULL;
-      }
-
-      if(m_pbitmap != NULL)
-      {
-         delete m_pbitmap;
-         m_pbitmap = NULL;
-      }
-
-      m_pbitmap = new ::Gdiplus::Bitmap(nWidth, nHeight, Gdiplus::PixelOffsetModeHighQuality);
-
-      return TRUE;*/
-
    }
+
+
    bool bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight)
    { 
 

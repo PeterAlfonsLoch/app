@@ -3,7 +3,7 @@
 
 #include "app/appseed/base/base/base/base.h"
 
-
+#undef new
 
 #include <winapifamily.h>
 #include <windows.h>
@@ -44,9 +44,12 @@ namespace draw2d_direct2d
 } // namespace draw2d_direct2d
 
 
+
 #ifdef WINDOWSEX
 #include "draw2d_direct2d_win_tls.h"
 #endif
+
+
 #include "draw2d_direct2d_factory_exchange.h"
 
 
@@ -59,12 +62,12 @@ namespace draw2d_direct2d
 #include "draw2d_direct2d_region.h"
 #include "draw2d_direct2d_dib.h"
 #include "draw2d_direct2d_path.h"
-//#include "draw2d_direct2d_printer.h"
 
 
 #include "draw2d_direct2d_graphics.h"
 
 
-#pragma comment(lib, "Msimg32.lib") 
 
+
+#define new BASE_NEW
 

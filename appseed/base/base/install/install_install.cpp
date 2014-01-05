@@ -1468,13 +1468,15 @@ namespace install
       string install::app_install_get_intern_executable_path()
       {
 
+         string strPath ;
+
 #ifdef WINDOWSEX
 
          xxdebug_box("installer::launcher::ensure_executable", "installer::launcher::ensure_executable", 0);
 
          string strPlatform = System.install().get_platform();
 
-         string strPath = ::dir::element("stage\\" + strPlatform + "\\app.install.exe");
+         strPath = ::dir::element("stage\\" + strPlatform + "\\app.install.exe");
 
 #else
 

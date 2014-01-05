@@ -5,9 +5,6 @@
 #define single_threaded D2D1_FACTORY_TYPE_SINGLE_THREADED // ???? muliple performance multi thread hidden option there exists cost uses?
 
 
-#undef new
-
-
 namespace draw2d_direct2d
 {
 
@@ -382,8 +379,6 @@ namespace draw2d_direct2d
       m_iType = 3;
 
 
-      //m_prendertarget = new Gdiplus::Graphics((Gdiplus::Bitmap *) pBitmap->get_os_data());
-
       //set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
 
       //m_spbitmap = pBitmap;
@@ -403,39 +398,6 @@ namespace draw2d_direct2d
 
    /*HGDIOBJ graphics::SelectObject(HGDIOBJ hObject) // Safe for NULL handles
    {
-
-   UINT uiType = GetObjectType(hObject);
-
-   if(uiType == OBJ_BITMAP)
-   {
-
-   HBITMAP hbitmap = (HBITMAP) hObject;
-
-   if(m_spbitmap.is_null())
-   m_spbitmap.create(get_app());
-
-   if(m_spbitmap.is_null())
-   return NULL;
-
-   (dynamic_cast < ::draw2d_direct2d::bitmap * > (m_spbitmap.m_p))->m_pbitmap = new Gdiplus::Bitmap(hbitmap, NULL);
-
-   if(m_prendertarget != NULL)
-   {
-   delete m_prendertarget;
-   }
-
-   m_prendertarget = new Gdiplus::Graphics((Gdiplus::Bitmap *) m_spbitmap->get_os_data());
-
-   set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
-
-   return hbitmap;
-
-   }
-
-   //*ASSERT(get_handle1() == get_handle2()); // ASSERT a simple graphics object
-   //return (hObject != NULL) ? ::SelectObject(get_handle1(), hObject) : NULL; */
-   //return NULL;
-   //}
 
    COLORREF graphics::GetNearestColor(COLORREF crColor) const
    { 
@@ -1110,47 +1072,6 @@ namespace draw2d_direct2d
 
       return this->path(path);
 
-      //bool bOk2 = Draw(path);
-
-      //return bOk1 && bOk2;
-
-      //throw todo(get_app());
-
-      //if(nCount <= 0)
-      //   return TRUE;
-
-      //bool bOk1 = FALSE;
-
-      //bool bOk2 = FALSE;
-
-      //Gdiplus::Point * ppoints = new Gdiplus::Point[nCount];
-
-      //try
-      //{
-
-      //   for(int i = 0; i < nCount; i++)
-      //   {
-      //      ppoints[i].X = lpPoints[i].x;
-      //      ppoints[i].Y = lpPoints[i].y;
-      //   }
-
-      //   bOk1 = m_prendertarget->FillPolygon(direct2d_brush(), ppoints, nCount, direct2d_get_fill_mode()) == Gdiplus::Status::Ok;
-      //   bOk2 = m_prendertarget->DrawPolygon(direct2d_pen(), ppoints, nCount) == Gdiplus::Status::Ok;
-
-      //}
-      //catch(...)
-      //{
-      //}
-
-      //try
-      //{
-      //   delete ppoints;         
-      //}
-      //catch(...)
-      //{
-      //}
-
-      //return bOk1 && bOk2;
 
    }
 
@@ -2345,13 +2266,6 @@ namespace draw2d_direct2d
       
       throw todo(get_app());
 
-      //if(m_ppath != NULL)
-      //   delete m_ppath;
-
-      //m_ppath = new Gdiplus::GraphicsPath;
-
-      //return m_ppath != NULL;
-
    }
 
    bool graphics::CloseFigure()
@@ -3094,18 +3008,6 @@ namespace draw2d_direct2d
 
       }
 
-      if(hdc != NULL)
-      {
-
-         m_prendertarget = new ::Gdiplus::Graphics(hdc);
-
-         set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
-
-         m_hdc = hdc;
-
-      }
-
-      return m_prendertarget != NULL;
 
       /*ASSERT(get_handle1() == NULL);      // only attach once, detach on destroy
       ASSERT(get_handle2() == NULL);    // only attach to an is_empty DC
@@ -4322,97 +4224,6 @@ namespace draw2d_direct2d
 
    return size;
 
-/*      if(lpszString == NULL || *lpszString == '\0')
-         return size(0, 0);
-
-      if(nCount < 0)
-         nCount = strlen(lpszString);
-
-      if(iIndex > nCount)
-         return size(0, 0);
-
-      if(iIndex < 0)
-         return size(0, 0);
-
-      wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
-
-      strsize iRange = 0;
-      strsize i = 0;
-      strsize iLen;
-      const char * psz = lpszString;
-      while(i < iIndex)
-      {
-         iLen = ::str::utf8_char(psz).length();
-         iRange++;
-         i += iLen;
-         psz = ::str::utf8_inc(psz);
-         if(psz == NULL)
-            break;
-         if(*psz == '\0')
-            break;
-      }
-
-      Gdiplus::CharacterRange charRanges[1] = { Gdiplus::CharacterRange(0, (INT) iRange) }; 
-
-      Gdiplus::StringFormat strFormat(Gdiplus::StringFormat::GenericTypographic());
-      //Gdiplus::StringFormat strFormat;
-
-      strFormat.SetMeasurableCharacterRanges(1, charRanges);
-
-      strFormat.SetFormatFlags(strFormat.GetFormatFlags() 
-         | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-         | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
-
-      int count = strFormat.GetMeasurableCharacterRangeCount();
-
-      Gdiplus::Region * pCharRangeRegions = new Gdiplus::Region[count];
-
-      Gdiplus::RectF box(0.0f, 0.0f, 128.0f * 1024.0f, 128.0f * 1024.0f);
-
-      Gdiplus::PointF origin(0, 0);
-
-      //m_prendertarget->MeasureString(wstr, (int) wstr.get_length(), ((graphics *)this)->direct2d_font(), origin, Gdiplus::StringFormat::GenericTypographic(), &box);
-
-      ((graphics *)this)->m_prendertarget->MeasureCharacterRanges(wstr, (INT) wstr.get_length(), ((graphics *)this)->direct2d_font(), box, &strFormat, (INT) count, pCharRangeRegions);
-
-      Gdiplus::Region * pregion = NULL;
-
-
-      if(count > 0)
-      {
-
-         pregion = pCharRangeRegions[0].Clone();
-
-      }
-
-
-
-      for(i = 1; i < count; i++)
-      {
-         pregion->Union(&pCharRangeRegions[i]);
-      }
-
-
-      if(pregion == NULL)
-         return size(0, 0);
-
-      delete [] pCharRangeRegions;
-
-
-      Gdiplus::RectF rectBound;
-
-      pregion->GetBounds(&rectBound, m_prendertarget);
-
-      delete pregion;
-
-
-
-      Gdiplus::SizeF size;
-
-      rectBound.GetSize(&size);
-
-      return class ::size((int64_t) (size.Width * m_fontxyz.m_dFontWidth), (int64_t) (size.Height));
-      */
    }
 
    size graphics::GetTextExtent(const char * lpszString, strsize nCount) const
@@ -4652,94 +4463,6 @@ namespace draw2d_direct2d
    return true;
 
 
-/*      if(lpszString == NULL || *lpszString == '\0')
-         return false;
-
-      if(nCount < 0)
-         nCount = strlen(lpszString);
-
-      if(iIndex > nCount)
-         return false;
-
-      if(iIndex < 0)
-         return false;
-
-      wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
-
-      strsize iRange = 0;
-      strsize i = 0;
-      strsize iLen;
-      const char * psz = lpszString;
-      while(i < iIndex)
-      {
-         iLen = ::str::utf8_char(psz).length();
-         iRange++;
-         i += iLen;
-         psz = ::str::utf8_inc(psz);
-         if(psz == NULL)
-            break;
-         if(*psz == '\0')
-            break;
-      }
-
-      Gdiplus::CharacterRange charRanges[1] = { Gdiplus::CharacterRange(0, (INT) iRange) }; 
-
-      Gdiplus::StringFormat strFormat(Gdiplus::StringFormat::GenericTypographic());
-      //Gdiplus::StringFormat strFormat;
-
-      strFormat.SetMeasurableCharacterRanges(1, charRanges);
-
-      strFormat.SetFormatFlags(strFormat.GetFormatFlags() 
-         | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-         | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
-
-      int count = strFormat.GetMeasurableCharacterRangeCount();
-
-      Gdiplus::Region * pCharRangeRegions = new Gdiplus::Region[count];
-
-      Gdiplus::RectF box(0.0f, 0.0f, 128.0f * 1024.0f, 128.0f * 1024.0f);
-
-      Gdiplus::PointF origin(0, 0);
-
-      //m_prendertarget->MeasureString(wstr, (int) wstr.get_length(), ((graphics *)this)->direct2d_font(), origin, Gdiplus::StringFormat::GenericTypographic(), &box);
-
-      ((graphics *)this)->m_prendertarget->MeasureCharacterRanges(wstr, (INT) nCount, ((graphics *)this)->direct2d_font(), box, &strFormat, (INT) count, pCharRangeRegions);
-
-      Gdiplus::Region * pregion = NULL;
-
-
-      if(count > 0)
-      {
-
-         pregion = pCharRangeRegions[0].Clone();
-
-      }
-
-      for(i = 1; i < count; i++)
-      {
-         pregion->Union(&pCharRangeRegions[i]);
-      }
-
-      delete [] pCharRangeRegions;
-
-      if(pregion == NULL)
-         return false;
-
-      Gdiplus::RectF rectBound;
-
-      pregion->GetBounds(&rectBound, m_prendertarget);
-
-      delete pregion;
-
-      Gdiplus::SizeF sizef;
-
-      rectBound.GetSize(&sizef);
-
-      size.cx = sizef.Width * m_fontxyz.m_dFontWidth;
-
-      size.cy = sizef.Height;
-
-      return true;*/
    }
 
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount) const
@@ -5088,116 +4811,6 @@ namespace draw2d_direct2d
    bool graphics::TextOut(int x, int y, const char * lpszString, int nCount)
    {
 
-/*      ::Gdiplus::PointF origin(0, 0);
-
-      string str(lpszString, nCount);
-
-      wstring wstr = ::str::international::utf8_to_unicode(str);
-
-
-      try
-      {
-
-         if(m_prendertarget == NULL)
-            return FALSE;
-
-         switch(m_etextrendering)
-         {
-         case ::draw2d::text_rendering_anti_alias:
-            m_prendertarget->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-            m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAlias);
-            break;
-         case ::draw2d::text_rendering_anti_alias_grid_fit:
-            m_prendertarget->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-            m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAliasGridFit);
-            break;
-         case ::draw2d::text_rendering_single_bit_per_pixel:
-            m_prendertarget->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-            m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintSingleBitPerPixel);
-            break;
-         case ::draw2d::text_rendering_clear_type_grid_fit:
-            m_prendertarget->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-            m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintClearTypeGridFit);
-            break;
-         }
-
-      }
-      catch(...)
-      {
-      }
-
-
-      //
-      //m_prendertarget->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-      //m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAliasGridFit);
-      //m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintClearTypeGridFit);
-      //m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAlias);
-
-      Gdiplus::Matrix m;
-      m_prendertarget->GetTransform(&m);
-
-      Gdiplus::Matrix * pmNew;
-
-      if(m_ppath != NULL)
-      {
-         pmNew = new Gdiplus::Matrix();
-      }
-      else
-      {
-         pmNew = m.Clone();
-      }
-
-      pmNew->Translate((Gdiplus::REAL)  (x / m_fontxyz.m_dFontWidth), (Gdiplus::REAL) y);
-      pmNew->Scale((Gdiplus::REAL) m_fontxyz.m_dFontWidth, (Gdiplus::REAL) 1.0, Gdiplus::MatrixOrderAppend);
-
-      Gdiplus::Status status;
-
-      Gdiplus::StringFormat format(Gdiplus::StringFormat::GenericTypographic());
-
-      format.SetFormatFlags(format.GetFormatFlags() 
-         | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-         | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap
-         | Gdiplus::StringFormatFlagsNoFitBlackBox);
-
-
-      format.SetLineAlignment(Gdiplus::StringAlignmentNear);
-
-      if(m_ppath != NULL)
-      {
-
-         Gdiplus::GraphicsPath path;
-
-         Gdiplus::FontFamily fontfamily;
-
-         direct2d_font()->GetFamily(&fontfamily);
-
-         double d1 = direct2d_font()->GetSize() * m_prendertarget->GetDpiX() / 72.0;
-         double d2 = fontfamily.GetEmHeight(direct2d_font()->GetStyle());
-         double d3 = d1 * d2;
-
-         status = path.AddString(::str::international::utf8_to_unicode(str), -1, &fontfamily, direct2d_font()->GetStyle(), (Gdiplus::REAL) d1, origin, &format);
-
-         path.Transform(pmNew);
-
-
-         m_ppath->AddPath(&path, FALSE);
-
-      }
-      else
-      {
-
-         m_prendertarget->SetTransform(pmNew);
-
-         status = m_prendertarget->DrawString(::str::international::utf8_to_unicode(str), -1, direct2d_font(), origin, &format, direct2d_brush());
-
-         m_prendertarget->SetTransform(&m);
-
-      }
-
-      delete pmNew;
-
-      return status  == Gdiplus::Status::Ok;*/
-
       try
       {
 
@@ -5319,221 +4932,6 @@ namespace draw2d_direct2d
    bool graphics::TextOut(double x, double y, const char * lpszString, int nCount)
    {
 
-      //::Gdiplus::PointF origin(0, 0);
-
-      //string str(lpszString, nCount);
-
-      //wstring wstr = ::str::international::utf8_to_unicode(str);
-
-
-      //try
-      //{
-
-      //   if(m_prendertarget == NULL)
-      //      return FALSE;
-
-      //   switch(m_etextrendering)
-      //   {
-      //   case ::draw2d::text_rendering_anti_alias:
-      //      m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAlias);
-      //      break;
-      //   case ::draw2d::text_rendering_anti_alias_grid_fit:
-      //      m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAliasGridFit);
-      //      break;
-      //   case ::draw2d::text_rendering_single_bit_per_pixel:
-      //      m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintSingleBitPerPixel);
-      //      break;
-      //   case ::draw2d::text_rendering_clear_type_grid_fit:
-      //      m_prendertarget->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-      //      m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintClearTypeGridFit);
-      //      break;
-      //   }
-
-      //}
-      //catch(...)
-      //{
-      //}
-
-
-      ////
-      ////m_prendertarget->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-      ////m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAliasGridFit);
-      ////m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintClearTypeGridFit);
-      ////m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAlias);
-
-      //Gdiplus::Matrix m;
-      //m_prendertarget->GetTransform(&m);
-
-      //Gdiplus::Matrix * pmNew;
-
-      //if(m_ppath != NULL)
-      //{
-      //   pmNew = new Gdiplus::Matrix();
-      //}
-      //else
-      //{
-      //   pmNew = m.Clone();
-      //}
-
-      //pmNew->Translate((Gdiplus::REAL)  (x / m_fontxyz.m_dFontWidth), (Gdiplus::REAL) y);
-      //pmNew->Scale((Gdiplus::REAL) m_fontxyz.m_dFontWidth, (Gdiplus::REAL) 1.0, Gdiplus::MatrixOrderAppend);
-
-      //Gdiplus::Status status;
-
-      //Gdiplus::StringFormat format(Gdiplus::StringFormat::GenericTypographic());
-
-      //format.SetFormatFlags(format.GetFormatFlags() 
-      //   | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-      //   | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap
-      //   | Gdiplus::StringFormatFlagsNoFitBlackBox);
-
-
-      //format.SetLineAlignment(Gdiplus::StringAlignmentNear);
-
-      //if(m_ppath != NULL)
-      //{
-
-      //   Gdiplus::GraphicsPath path;
-
-      //   Gdiplus::FontFamily fontfamily;
-
-      //   direct2d_font()->GetFamily(&fontfamily);
-
-      //   double d1 = direct2d_font()->GetSize() * m_prendertarget->GetDpiX() / 72.0;
-      //   double d2 = fontfamily.GetEmHeight(direct2d_font()->GetStyle());
-      //   double d3 = d1 * d2;
-
-      //   status = path.AddString(::str::international::utf8_to_unicode(str), -1, &fontfamily, direct2d_font()->GetStyle(), (Gdiplus::REAL) d1, origin, &format);
-
-      //   path.Transform(pmNew);
-
-
-      //   m_ppath->AddPath(&path, FALSE);
-
-      //}
-      //else
-      //{
-
-      //   m_prendertarget->SetTransform(pmNew);
-
-      //   status = m_prendertarget->DrawString(::str::international::utf8_to_unicode(str), -1, direct2d_font(), origin, &format, direct2d_brush());
-
-      //   m_prendertarget->SetTransform(&m);
-
-      //}
-
-      //delete pmNew;
-
-      //return status  == Gdiplus::Status::Ok;
-/*      ::Gdiplus::PointF origin(0, 0);
-
-      string str(lpszString, nCount);
-
-      wstring wstr = ::str::international::utf8_to_unicode(str);
-
-
-      try
-      {
-
-         if(m_prendertarget == NULL)
-            return FALSE;
-
-         switch(m_etextrendering)
-         {
-         case ::draw2d::text_rendering_anti_alias:
-            m_prendertarget->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-            m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAlias);
-            break;
-         case ::draw2d::text_rendering_anti_alias_grid_fit:
-            m_prendertarget->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-            m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAliasGridFit);
-            break;
-         case ::draw2d::text_rendering_single_bit_per_pixel:
-            m_prendertarget->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-            m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintSingleBitPerPixel);
-            break;
-         case ::draw2d::text_rendering_clear_type_grid_fit:
-            m_prendertarget->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-            m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintClearTypeGridFit);
-            break;
-         }
-
-      }
-      catch(...)
-      {
-      }
-
-
-      //
-      //m_prendertarget->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-      //m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAliasGridFit);
-      //m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintClearTypeGridFit);
-      //m_prendertarget->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAlias);
-
-      Gdiplus::Matrix m;
-      m_prendertarget->GetTransform(&m);
-
-      Gdiplus::Matrix * pmNew;
-
-      if(m_ppath != NULL)
-      {
-         pmNew = new Gdiplus::Matrix();
-      }
-      else
-      {
-         pmNew = m.Clone();
-      }
-
-      pmNew->Translate((Gdiplus::REAL)  (x / m_fontxyz.m_dFontWidth), (Gdiplus::REAL) y);
-      pmNew->Scale((Gdiplus::REAL) m_fontxyz.m_dFontWidth, (Gdiplus::REAL) 1.0, Gdiplus::MatrixOrderAppend);
-
-      Gdiplus::Status status;
-
-      Gdiplus::StringFormat format(Gdiplus::StringFormat::GenericTypographic());
-
-      format.SetFormatFlags(format.GetFormatFlags() 
-         | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-         | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap
-         | Gdiplus::StringFormatFlagsNoFitBlackBox);
-
-
-      format.SetLineAlignment(Gdiplus::StringAlignmentNear);
-
-      if(m_ppath != NULL)
-      {
-
-         Gdiplus::GraphicsPath path;
-
-         Gdiplus::FontFamily fontfamily;
-
-         direct2d_font()->GetFamily(&fontfamily);
-
-         double d1 = direct2d_font()->GetSize() * m_prendertarget->GetDpiX() / 72.0;
-         double d2 = fontfamily.GetEmHeight(direct2d_font()->GetStyle());
-         double d3 = d1 * d2;
-
-         status = path.AddString(::str::international::utf8_to_unicode(str), -1, &fontfamily, direct2d_font()->GetStyle(), (Gdiplus::REAL) d1, origin, &format);
-
-         path.Transform(pmNew);
-
-
-         m_ppath->AddPath(&path, FALSE);
-
-      }
-      else
-      {
-
-         m_prendertarget->SetTransform(pmNew);
-
-         status = m_prendertarget->DrawString(::str::international::utf8_to_unicode(str), -1, direct2d_font(), origin, &format, direct2d_brush());
-
-         m_prendertarget->SetTransform(&m);
-
-      }
-
-      delete pmNew;
-
-      return status  == Gdiplus::Status::Ok;*/
 
       try
       {

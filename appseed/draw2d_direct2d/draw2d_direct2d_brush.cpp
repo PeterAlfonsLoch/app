@@ -1,6 +1,5 @@
 #include "framework.h"
 
-#undef new
 
 namespace draw2d_direct2d
 {
@@ -16,19 +15,6 @@ namespace draw2d_direct2d
    { 
    }
 
-   //bool brush::CreateSolidBrush(COLORREF crColor)
-   //{
-
-   //   if(m_pbrush != NULL)
-   //   {
-   //      delete m_pbrush;
-   //   }
-
-   //   m_pbrush = new Gdiplus::SolidBrush(Gdiplus::Color(argb_get_a_value(crColor), argb_get_r_value(crColor), argb_get_g_value(crColor), argb_get_b_value(crColor)));
-
-   //   return m_pbrush != NULL;
-   //      
-   //}
 
    // bool brush::CreateHatchBrush(int nIndex, COLORREF crColor)
    // { 

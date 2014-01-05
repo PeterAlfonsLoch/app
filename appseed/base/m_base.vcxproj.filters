@@ -265,12 +265,6 @@
     <Filter Include="Source Files\user\simple_ui">
       <UniqueIdentifier>{0e9bf539-2451-4fb8-986b-b05f0368128f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\graphics\draw2d_direct2d">
-      <UniqueIdentifier>{a335152b-f004-4c4d-93b6-6f22539bce23}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\draw2d_direct2d">
-      <UniqueIdentifier>{f374cc9d-d364-4762-94d1-31a3d18bfc08}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\net\sockets\winrt">
       <UniqueIdentifier>{d36b45e3-401d-4764-ac60-30c1050778b6}</UniqueIdentifier>
     </Filter>
@@ -331,18 +325,15 @@
     <Filter Include="Source Files\base\os\cross\windows">
       <UniqueIdentifier>{47268ea3-b103-4d63-a1fb-b14c50e124d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\framework">
+      <UniqueIdentifier>{bdb08dff-7c96-4ccd-b518-7b6faf142d63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\framework">
+      <UniqueIdentifier>{b4ee8f8a-40a6-4255-9000-900b0a5e03d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="android\c_os_internal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="product.version.config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework_c.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="version.config.h">
@@ -1180,9 +1171,6 @@
       <Filter>Header Files\base\crypto\crypto</Filter>
     </ClInclude>
     <ClInclude Include="base\crypto\crypto\crypto_err.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_framework.h">
       <Filter>Header Files\base\crypto\crypto</Filter>
     </ClInclude>
     <ClInclude Include="base\crypto\crypto\crypto_gf2_8.h">
@@ -2172,51 +2160,6 @@
     <ClInclude Include="primitive\math\_math.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d.h">
-      <Filter>Header Files\graphics\draw2d_direct2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_bitmap.h">
-      <Filter>Header Files\graphics\draw2d_direct2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_brush.h">
-      <Filter>Header Files\graphics\draw2d_direct2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_dib.h">
-      <Filter>Header Files\graphics\draw2d_direct2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_directx.h">
-      <Filter>Header Files\graphics\draw2d_direct2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_factory_exchange.h">
-      <Filter>Header Files\graphics\draw2d_direct2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_font.h">
-      <Filter>Header Files\graphics\draw2d_direct2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_graphics.h">
-      <Filter>Header Files\graphics\draw2d_direct2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_object.h">
-      <Filter>Header Files\graphics\draw2d_direct2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_path.h">
-      <Filter>Header Files\graphics\draw2d_direct2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_palette.h">
-      <Filter>Header Files\graphics\draw2d_direct2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_pen.h">
-      <Filter>Header Files\graphics\draw2d_direct2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_printer.h">
-      <Filter>Header Files\graphics\draw2d_direct2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\draw2d_direct2d\draw2d_direct2d_region.h">
-      <Filter>Header Files\graphics\draw2d_direct2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\draw2d_direct2d\framework.h">
-      <Filter>Header Files\graphics\draw2d_direct2d</Filter>
-    </ClInclude>
     <ClInclude Include="net\net_byte_order.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
@@ -2382,6 +2325,15 @@
     <ClInclude Include="base\os\metrowin\metrowin_user_impl.h">
       <Filter>Header Files\base\os\metrowin</Filter>
     </ClInclude>
+    <ClInclude Include="framework\crypto_framework.h">
+      <Filter>Header Files\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\framework.h">
+      <Filter>Header Files\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\framework_c.h">
+      <Filter>Header Files\framework</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\primitive_factory_impl.inl">
@@ -2417,12 +2369,6 @@
     <None Include="metrowin_base.def" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="framework_c.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="framework.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="version.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -2570,9 +2516,6 @@
     <ClCompile Include="base\crypto\crypto\crypto_cipher_null_cipher.c">
       <Filter>Source Files\base\crypto\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_framework.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_gf2_8.c">
       <Filter>Source Files\base\crypto\crypto</Filter>
     </ClCompile>
@@ -2708,13 +2651,7 @@
     <ClCompile Include="base\install\install_focus.cpp">
       <Filter>Source Files\base\install</Filter>
     </ClCompile>
-    <ClCompile Include="base\install\install_http.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
     <ClCompile Include="base\install\install_install.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
-    <ClCompile Include="base\install\install_installation_lock_file_lock.cpp">
       <Filter>Source Files\base\install</Filter>
     </ClCompile>
     <ClCompile Include="base\install\install_installer.cpp">
@@ -3371,9 +3308,6 @@
     <ClCompile Include="net\sockets\http\sockets_http_put_socket.cpp">
       <Filter>Source Files\net\sockets\http</Filter>
     </ClCompile>
-    <ClCompile Include="net\sockets\http\sockets_http_request_socket.cpp">
-      <Filter>Source Files\net\sockets\http</Filter>
-    </ClCompile>
     <ClCompile Include="net\sockets\http\sockets_http_session.cpp">
       <Filter>Source Files\net\sockets\http</Filter>
     </ClCompile>
@@ -3830,45 +3764,6 @@
     <ClCompile Include="primitive\math\_math.cpp">
       <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d.cpp">
-      <Filter>Source Files\graphics\draw2d_direct2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_bitmap.cpp">
-      <Filter>Source Files\graphics\draw2d_direct2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_brush.cpp">
-      <Filter>Source Files\graphics\draw2d_direct2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_dib.cpp">
-      <Filter>Source Files\graphics\draw2d_direct2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_factory_exchange.cpp">
-      <Filter>Source Files\graphics\draw2d_direct2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_font.cpp">
-      <Filter>Source Files\graphics\draw2d_direct2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_graphics.cpp">
-      <Filter>Source Files\graphics\draw2d_direct2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_object.cpp">
-      <Filter>Source Files\graphics\draw2d_direct2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_path.cpp">
-      <Filter>Source Files\graphics\draw2d_direct2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_palette.cpp">
-      <Filter>Source Files\graphics\draw2d_direct2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_pen.cpp">
-      <Filter>Source Files\graphics\draw2d_direct2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_preview_dc.cpp">
-      <Filter>Source Files\graphics\draw2d_direct2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\draw2d_direct2d\draw2d_direct2d_region.cpp">
-      <Filter>Source Files\graphics\draw2d_direct2d</Filter>
-    </ClCompile>
     <ClCompile Include="net\sockets\winrt\sip\sockets_sip_base.cpp">
       <Filter>Source Files\net\sockets\winrt\sip</Filter>
     </ClCompile>
@@ -4051,6 +3946,15 @@
     </ClCompile>
     <ClCompile Include="base\os\metrowin\metrowin_user.cpp">
       <Filter>Source Files\base\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\crypto_framework.c">
+      <Filter>Source Files\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\framework.cpp">
+      <Filter>Source Files\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\framework_c.c">
+      <Filter>Source Files\framework</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include <regex>
+#include <winternl.h>
 
 
 extern CLASS_DECL_THREAD os_thread * t_posthread;
@@ -79,9 +79,6 @@ VOID WINAPI Sleep(DWORD dwMilliseconds)
    WaitForSingleObjectEx(sleepEvent, dwMilliseconds, false);
 }
 
-#include "framework.h"
-#include <gdiplus.h>
-#include <winternl.h>
 
 typedef bool
 (WINAPI * LPFN_ChangeWindowMessageFilter)(

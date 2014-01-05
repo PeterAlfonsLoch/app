@@ -1,7 +1,5 @@
 #include "framework.h"
 
-#undef new
-
 #ifdef METROWIN
 #include <wrl/module.h>
 #endif

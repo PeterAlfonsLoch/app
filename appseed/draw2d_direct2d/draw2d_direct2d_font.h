@@ -1,12 +1,6 @@
 #pragma once
 
 
-#undef new
-
-
-#include <GdiPlus.h>
-
-
 namespace draw2d_direct2d
 {
 
@@ -52,8 +46,6 @@ namespace draw2d_direct2d
 
 } // namespace draw2d_direct2d
 
-
-#define new BASE_NEW
 
 
 
