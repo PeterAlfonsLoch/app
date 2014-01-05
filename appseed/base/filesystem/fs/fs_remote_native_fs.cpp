@@ -43,7 +43,9 @@ namespace fs
 
       string strSource;
 
-      strSource = Application.http().get(strUrl);
+      property_set set(get_app());
+
+      strSource = Application.http().get(strUrl, set);
 
       if(strSource.is_empty())
          return false;
@@ -98,7 +100,9 @@ namespace fs
 
       string strSource;
 
-      strSource = Application.http().get(strUrl);
+      property_set set(get_app());
+
+      strSource = Application.http().get(strUrl, set);
 
       if(strSource.is_empty())
          return false;

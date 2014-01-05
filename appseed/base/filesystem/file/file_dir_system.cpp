@@ -403,12 +403,20 @@ namespace file
          UNREFERENCED_PARAMETER(pszPattern);
          if(::str::begins_ci(lpcsz, "http://") || ::str::begins_ci(lpcsz, "https://"))
          {
-            string str = App(papp).http().get(lpcsz);
+
+            property_set set(get_app());
+
+            string str = App(papp).http().get(lpcsz, set);
+
             if(pstraPath != NULL)
             {
+
                pstraPath->add_tokens(str, "\n", false);
+
             }
+
             return;
+
          }
          if(papp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
          {
@@ -485,8 +493,10 @@ namespace file
          
          if (::str::begins_ci(lpcszPath, "http://") || ::str::begins_ci(lpcszPath, "https://"))
          {
+
+            property_set set(get_app());
             
-            bIs = App(papp).http().exists(lpcszPath);
+            bIs = App(papp).http().exists(lpcszPath, set);
 
             return true;
 
@@ -544,10 +554,16 @@ namespace file
 
       bool system::is(const string & strPath, sp(base_application) papp)
       {
+
          if(::str::begins_ci(strPath, "http://") || ::str::begins_ci(strPath, "https://"))
          {
-            return App(papp).http().exists(strPath);
+
+            property_set set(get_app());
+
+            return App(papp).http().exists(strPath, set);
+
          }
+
 
          if(papp->m_bZipIsDir && (::str::ends_ci(strPath, ".zip")))
          {

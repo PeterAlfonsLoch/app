@@ -869,10 +869,10 @@ namespace user
       pobj->previous();
       //int32_t nResult = pmouseactivate->get_lresult();
 
-      if (pmouseactivate->GetMessage() == MA_NOACTIVATE
-         || pmouseactivate->GetMessage() == MA_NOACTIVATEANDEAT)
+      if (pmouseactivate->get_message() == MA_NOACTIVATE
+         || pmouseactivate->get_message() == MA_NOACTIVATEANDEAT)
       {
-         pmouseactivate->set_lresult(pmouseactivate->GetMessage()); // frame does not want to activate
+         pmouseactivate->set_lresult(pmouseactivate->get_message()); // frame does not want to activate
          pmouseactivate->m_bRet = true;
       }
 
@@ -898,8 +898,11 @@ namespace user
             pParentFrame->SetActiveView(this);
          }
       }
-      pmouseactivate->set_lresult(pmouseactivate->GetMessage());
+
+      pmouseactivate->set_lresult(pmouseactivate->get_message());
+
       pmouseactivate->m_bRet = true;
+
    }
 
    void impact::on_select()

@@ -1,4 +1,9 @@
 #include "framework.h"
+#ifndef METROWIN
+#include <openssl/ssl.h>
+#include <openssl/md5.h>
+#include <openssl/err.h>
+#endif
 
 
 bool hex_to_memory(primitive::memory & memory, const char * pszHex)
@@ -65,12 +70,6 @@ void memory_to_hex(string & strHex, primitive::memory & memory)
 
 
 
-#include "framework.h"
-#ifndef METROWIN
-#include <openssl/ssl.h>
-#include <openssl/md5.h>
-#include <openssl/err.h>
-#endif
 
 
 CLASS_DECL_BASE int32_t crypto_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memory & storageDecrypt, ::primitive::memory & key);

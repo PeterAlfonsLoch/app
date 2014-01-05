@@ -165,7 +165,9 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
 
    string strSource;
 
-   strSource = Application.http().get(strUrl);
+   property_set set(get_app());
+
+   strSource = Application.http().get(strUrl, set);
 
    if(strSource.is_empty())
    {

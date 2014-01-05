@@ -421,7 +421,6 @@ namespace draw2d
    }
 
 
-#include "framework.h"
 
 
    //

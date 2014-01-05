@@ -110,15 +110,19 @@ void ifs_file::set_file_data()
 
       strUrl = "http://file.veriwell.net/ifs/set?path=" + System.url().url_encode(m_varFile["url"]);
 
-      Application.http().put(strUrl, m_varFile["xml"].cast < ::file::memory_buffer >());
+      property_set setPut(get_app());
+
+      Application.http().put(strUrl, m_varFile["xml"].cast < ::file::memory_buffer >(), setPut);
 
       return;
-   }
 
+   }
 
    strUrl = "http://file.veriwell.net/ifs/set?path=" + System.url().url_encode(m_strPath);
 
-   Application.http().put(strUrl, &m_memfile);
+   property_set setPut(get_app());
+
+   Application.http().put(strUrl, &m_memfile, setPut);
 
 
 }

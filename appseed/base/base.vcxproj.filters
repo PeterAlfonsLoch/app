@@ -6193,9 +6193,6 @@
     <ClCompile Include="base\crypto\crypto\crypto_kernel_crypto_kernel.c">
       <Filter>Source Files\base\crypto\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_framework.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\str\str_base64.cpp">
       <Filter>Source Files\primitive\str</Filter>
     </ClCompile>
@@ -6931,13 +6928,13 @@
     <ClCompile Include="framework\framework_c.c">
       <Filter>Source Files\framework</Filter>
     </ClCompile>
+    <ClCompile Include="framework\crypto_framework.h">
+      <Filter>Header Files\framework</Filter>
+    </ClCompile>
     <ClCompile Include="framework\framework.h">
       <Filter>Header Files\framework</Filter>
     </ClCompile>
     <ClCompile Include="framework\framework_c.h">
-      <Filter>Header Files\framework</Filter>
-    </ClCompile>
-    <ClCompile Include="framework\crypto_framework.h">
       <Filter>Header Files\framework</Filter>
     </ClCompile>
   </ItemGroup>
@@ -7127,6 +7124,9 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

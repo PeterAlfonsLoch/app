@@ -75,7 +75,9 @@ namespace http
          strFileDownloading.replace("?", "%19");
          strFileDownloading = System.dir().appdata("cache/" + strFileDownloading + ".local_copy.downloading");
 
-         if(!Application.file().exists(strFileDownloading) && !exists(psignal->m_strUrl))
+         property_set set(get_app());
+
+         if(!Application.file().exists(strFileDownloading) && !exists(psignal->m_strUrl, set))
          {
 
             psignal->m_estatusRet = status_fail;
@@ -225,7 +227,9 @@ namespace http
 
       strUrl += "lang=" + string(pszLocale) + "&styl=" + string(pszSchema);
 
-      while ((str = get(strUrl)).is_empty())
+      property_set set(get_app());
+
+      while ((str = get(strUrl, set)).is_empty())
       {
          iAttempt++;
          if (iAttempt > 11)

@@ -56,7 +56,9 @@ namespace install
 #endif
       strUrl += pszTemplate;
 
-      return file_exists_dup(path1) && !stricmp_dup(get_file_md5(path1), Application.http().get(strUrl));
+      property_set set(get_app());
+
+      return file_exists_dup(path1) && !stricmp_dup(get_file_md5(path1), Application.http().get(strUrl, set));
 
    }
 
@@ -404,7 +406,9 @@ namespace install
 
       iRetry++;
 
-      strBuildNumber = Application.http().get(strSpaIgnitionBaseUrl + "/query?node=build");
+      property_set set(get_app());
+
+      strBuildNumber = Application.http().get(strSpaIgnitionBaseUrl + "/query?node=build", set);
 
       strBuildNumber.trim();
 
@@ -678,7 +682,11 @@ namespace install
 
    void install::update_ca2_build()
    {
-      m_strCa2Build = Application.http().get("http://spaignition.api.server.ca2.cc/ca2_get_build?authnone");
+
+      property_set set(get_app());
+
+      m_strCa2Build = Application.http().get("http://spaignition.api.server.ca2.cc/ca2_get_build?authnone", set);
+
    }
 
 

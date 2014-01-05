@@ -64,7 +64,6 @@ string crypt_nessie(const char * psz)
 
 
 
-#include "framework.h"
 
 
 namespace crypto

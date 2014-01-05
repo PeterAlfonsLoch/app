@@ -1587,7 +1587,11 @@ namespace fontopus
             strUrl = "http://api.ca2.cc/spaignition/query?node=install_application&id=";
             strUrl += m_strLicense;
             strUrl += "&key=launch_name";
-            string strName = Application.http().get(strUrl);
+
+            property_set set(get_app());
+
+            string strName = Application.http().get(strUrl, set);
+
             if(strName.is_empty())
                strName = m_strLicense;
             propertyset["project"] = strName;

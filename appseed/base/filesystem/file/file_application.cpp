@@ -316,7 +316,9 @@ namespace file
 
             varQuery["disable_ca2_sessid"] = true;
 
-            if(m_pbaseapp->m_file.exists(strFileDownloading) || m_pbaseapp->m_http.exists(strPath, &varQuery))
+            property_set set(get_app());
+
+            if(m_pbaseapp->m_file.exists(strFileDownloading) || m_pbaseapp->m_http.exists(strPath, &varQuery, set))
             {
 
                spfile = new ::sockets::http_buffer(get_app());

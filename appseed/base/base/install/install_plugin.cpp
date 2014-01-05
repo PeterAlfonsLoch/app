@@ -952,7 +952,9 @@ namespace install
 
          retry_get_prompt:
 
-            strPrompt = Application.http().get(m_phost->m_strPluginUrl);
+            property_set set(get_app());
+
+            strPrompt = Application.http().get(m_phost->m_strPluginUrl, set);
 
             if (strPrompt.is_empty())
             {
@@ -1064,7 +1066,9 @@ restart:
          Sleep(iAttemptUrl * 84);
       }
 
-      while((str = Application.http().get(m_phost->m_strPluginUrl)).is_empty())
+      property_set set(get_app());
+
+      while((str = Application.http().get(m_phost->m_strPluginUrl, set)).is_empty())
       {
          if(!m_phost->m_bStream)
          {

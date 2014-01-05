@@ -117,7 +117,9 @@ namespace fs
          strUrl = "http://fs.veriwell.net/fs/set?path=" + System.url().url_encode(System.url().get_script(m_varFile["url"]))
             + "&server=" + System.url().url_encode(System.url().get_server(m_varFile["url"]));
 
-         Application.http().put(strUrl, m_varFile["xml"].cast < ::file::memory_buffer >());
+         property_set setPut(get_app());
+
+         Application.http().put(strUrl, m_varFile["xml"].cast < ::file::memory_buffer >(), setPut);
 
          return;
       }
@@ -126,7 +128,9 @@ namespace fs
       strUrl = "http://fs.veriwell.net/fs/set?path=" + System.url().url_encode(System.url().get_script(m_strPath))
          + "&server=" + System.url().url_encode(System.url().get_server(m_strPath));
 
-      Application.http().put(strUrl, &m_memfile);
+      property_set set(get_app());
+
+      Application.http().put(strUrl, &m_memfile, set);
 
 
    }
