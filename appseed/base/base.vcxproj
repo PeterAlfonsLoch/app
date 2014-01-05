@@ -429,7 +429,8 @@
       <MinimalRebuild>false</MinimalRebuild>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <GccExceptionHandling>true</GccExceptionHandling>
-      <CppStandard>Default</CppStandard>
+      <CppStandard>
+      </CppStandard>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -1174,12 +1175,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\crypto\crypto\crypto_c_crypto.h" />
     <ClInclude Include="base\crypto\crypto\crypto_datatypes.h" />
     <ClInclude Include="base\crypto\crypto\crypto_err.h" />
-    <ClInclude Include="base\crypto\crypto\crypto_framework.h">
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCHeader</CompileAs>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</ExcludedFromBuild>
-      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
-      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
-    </ClInclude>
     <ClInclude Include="base\crypto\crypto\crypto_gf2_8.h" />
     <ClInclude Include="base\crypto\crypto\crypto_hmac.h" />
     <ClInclude Include="base\crypto\crypto\crypto_integers.h" />
@@ -1533,6 +1528,23 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="filesystem\fs\fs_remote_native_file.h" />
     <ClInclude Include="filesystem\fs\fs_remote_native_fs.h" />
     <ClInclude Include="filesystem\fs\fs_set.h" />
+    <ClCompile Include="framework\crypto_framework.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</ExcludedFromBuild>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCHeader</CompileAs>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
+      <PrecompileHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompileHeader>
+    </ClCompile>
+    <ClCompile Include="framework\framework.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
+      </ExcludedFromBuild>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCppHeader</CompileAs>
+      <PrecompileHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompileHeader>
+    </ClCompile>
+    <ClCompile Include="framework\framework_c.h">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCHeader</CompileAs>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
+      <PrecompileHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompileHeader>
+    </ClCompile>
     <ClInclude Include="graphics\graphics_window_graphics.h" />
     <ClInclude Include="graphics\draw2d\draw2d.h" />
     <ClInclude Include="graphics\draw2d\draw2d_bitmap.h" />
@@ -1800,17 +1812,14 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="programming\javascript\javascript_functions.h" />
     <ClInclude Include="programming\javascript\javascript_tinyjs.h" />
     <ClInclude Include="programming\javascript\javascript_tinyjs_functions.h" />
-    <ClInclude Include="framework_c.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</ExcludedFromBuild>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCHeader</CompileAs>
-      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
-      </RuntimeTypeInfo>
-      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
-    </ClInclude>
-    <ClCompile Include="framework.h">
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCppHeader</CompileAs>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</ExcludedFromBuild>
-      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CppStandard11</CppStandard>
+    <ClCompile Include="framework\crypto_framework.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="framework\framework.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="framework\framework_c.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClInclude Include="multithreading\multithreading.h" />
     <ClInclude Include="multithreading\multithreading_condition.h" />
@@ -9586,40 +9595,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="filesystem\fs\fs_remote_native_file.cpp" />
     <ClCompile Include="filesystem\fs\fs_remote_native_fs.cpp" />
     <ClCompile Include="filesystem\fs\fs_set.cpp" />
-    <ClCompile Include="framework_c.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCHeader</CompileAs>
-      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="framework.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">Create</PrecompiledHeader>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCppHeader</CompileAs>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_brush.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_dib.cpp" />

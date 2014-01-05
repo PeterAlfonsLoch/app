@@ -702,6 +702,12 @@
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{1d5d8dc4-0d8b-4334-b743-43678a161c7a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\framework">
+      <UniqueIdentifier>{ccec0149-b6e0-4798-a023-182e3ce11e41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\framework">
+      <UniqueIdentifier>{7d1cc48a-cede-4123-9adb-5f2b00b52132}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_wstringtou.h">
@@ -3221,17 +3227,8 @@
     <ClInclude Include="base\os\android\android_simple_ui.h">
       <Filter>Header Files\base\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="framework_c.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_framework.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="framework_c.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
@@ -6925,11 +6922,23 @@
     <ClCompile Include="base\os\os_binreloc.cpp">
       <Filter>Source Files\base\os</Filter>
     </ClCompile>
-    <ClCompile Include="framework.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="framework\crypto_framework.c">
+      <Filter>Source Files\framework</Filter>
     </ClCompile>
-    <ClCompile Include="framework.h">
-      <Filter>Header Files</Filter>
+    <ClCompile Include="framework\framework.cpp">
+      <Filter>Source Files\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\framework_c.c">
+      <Filter>Source Files\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\framework.h">
+      <Filter>Header Files\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\framework_c.h">
+      <Filter>Header Files\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\crypto_framework.h">
+      <Filter>Header Files\framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -7118,6 +7127,21 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
