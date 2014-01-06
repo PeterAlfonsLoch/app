@@ -773,6 +773,14 @@ namespace os
 
       ::SetWindowPos(m_window, NULL, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 
+      m_rect.left = x;
+      m_rect.top = y;
+      m_rect.right = x + m_size.cx;
+      m_rect.bottom = y + m_size.cy;
+
+      m_pt.x = x;
+      m_pt.y = y;
+
       return true;
 
    }
@@ -781,14 +789,7 @@ namespace os
    bool simple_ui::set_window_pos(int32_t x, int32_t y, int32_t cx, int32_t cy, bool bShow)
    {
 
-      ::SetWindowPos(m_window, NULL, x, y, cx, cy, SWP_NOSIZE | SWP_NOZORDER);
-
-      if(bShow)
-      {
-
-         ::ShowWindow(m_window, SW_SHOW);
-
-      }
+      ::SetWindowPos(m_window, NULL, x, y, cx, cy, SWP_NOZORDER | (bShow ? SWP_SHOWWINDOW : 0));
 
       return true;
 

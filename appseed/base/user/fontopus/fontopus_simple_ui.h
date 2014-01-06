@@ -39,6 +39,8 @@ namespace fontopus
       virtual bool on_lbutton_up(int32_t x, int32_t y);
       virtual bool on_mouse_move(int32_t x, int32_t y);
 
+      virtual bool on_move(int32_t x, int32_t y);
+      virtual bool on_size(int32_t cx, int32_t cy);
 
 
    };

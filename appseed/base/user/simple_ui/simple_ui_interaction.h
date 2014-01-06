@@ -97,8 +97,8 @@ namespace simple_ui
       virtual void release_capture();
 
       virtual bool show_window(bool bShow = true);
-      
-      
+
+
       virtual void redraw_window();
 
       virtual void get_cursor_pos(POINT * ppt);
@@ -109,6 +109,10 @@ namespace simple_ui
       virtual void destroy_window();
 
       virtual LRESULT message_handler(UINT message, WPARAM wParam, LPARAM lParam);
+
+      virtual bool on_move(int32_t x, int32_t y);
+      virtual bool on_size(int32_t cx, int32_t cy);
+
 
 
    };

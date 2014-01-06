@@ -61,13 +61,13 @@ namespace fontopus
 
    void simple_ui::get_window_rect(LPRECT lprect)
    {
-      
+
       *lprect = m_rect;
 
    }
 
 
-   
+
 
 
 
@@ -81,7 +81,7 @@ namespace fontopus
 
 //         ::GetWindowRect(::GetDesktopWindow(), &m_rectDesktop);
          System.get_monitor_rect(0, &m_rectDesktop);
-         
+
       }
       else
       {
@@ -147,7 +147,29 @@ namespace fontopus
    }
 
 
+   bool simple_ui::on_move(int32_t x, int32_t y)
+   {
 
+      ::os::simple_ui::on_move(x, y);
+
+      return true;
+
+   }
+
+   bool simple_ui::on_size(int32_t cx, int32_t cy)
+   {
+
+      if(!::os::simple_ui::on_size(cx, cy))
+         return false;
+
+      m_login.m_rect.right = cx;
+      m_login.m_rect.bottom = cy;
+
+      m_login.layout();
+
+      return true;
+
+   }
 
 
    /*
@@ -189,7 +211,7 @@ namespace fontopus
 
 
          release_capture();
-      
+
          m_bDrag = false;
 
       /*

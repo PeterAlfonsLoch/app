@@ -771,15 +771,15 @@ namespace simple_ui
       return true;
 
    }
-   
+
    void interaction::redraw_window()
    {
-   
+
       if(m_puiParent == NULL)
          return;
-      
+
       m_puiParent->redraw_window();
-   
+
    }
 
    void interaction::get_cursor_pos(POINT * ppt)
@@ -1160,6 +1160,14 @@ namespace simple_ui
       return 0;
 
    }
+      bool interaction::on_move(int32_t x, int32_t y)
+      {
+         return true;
+      }
+      bool interaction::on_size(int32_t cx, int32_t cy)
+      {
+         return true;
+      }
 
 } // namespace simple_ui
 
