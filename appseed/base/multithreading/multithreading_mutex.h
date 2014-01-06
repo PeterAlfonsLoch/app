@@ -11,13 +11,24 @@ public:
 
 
    // thread mutex
-   pthread_mutex_t      m_mutex;
-
+   pthread_mutex_t         m_mutex;
 
    // named process mutex
-   string               m_strName;
-   key_t                m_key;
-   int32_t                  m_semid;
+   string                  m_strName;
+
+#ifdef ANDROID
+
+   sem_t *                 m_psem;
+
+#else
+
+   key_t                   m_key;
+   int32_t                 m_semid;
+
+#endif
+
+
+
 
 #endif
 
@@ -30,6 +41,10 @@ protected:
 #ifdef WINDOWS
 
    mutex(sp(base_application) pappp, const char * pstrName, HANDLE h);
+
+#elif defined(ANDROID)
+
+   mutex(const char * pstrName, sem_t * psem);
 
 #else
 

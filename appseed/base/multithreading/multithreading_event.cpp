@@ -160,7 +160,7 @@ bool event::SetEvent()
 
 #elif defined(ANDROID)
 
-   synch_lock lockMutex(&m_mutex);
+   pthread_mutex_lock(&m_mutex);
 
    if(m_bManualEvent)
    {
@@ -178,6 +178,8 @@ bool event::SetEvent()
       pthread_cond_signal(&m_cond);
 
    }
+
+   pthread_mutex_unlock(&m_mutex);
 
 
 #else
@@ -289,7 +291,7 @@ void event::wait ()
 #elif defined(ANDROID)
 
 
-   psingle_lock lockMutex(&m_mutex, true);
+   pthread_mutex_lock(&m_mutex);
 
    if(m_bManualEvent)
    {
@@ -311,6 +313,7 @@ void event::wait ()
 
    }
 
+   pthread_mutex_unlock(&m_mutex);
 
 #else
 
@@ -360,7 +363,7 @@ wait_result event::wait (const duration & durationTimeout)
 
 #elif defined(ANDROID)
 
-   psingle_lock lockMutex(&m_mutex, true);
+   pthread_mutex_lock(&m_mutex);
 
    ((duration & ) durationTimeout).normalize();
 
@@ -391,6 +394,8 @@ wait_result event::wait (const duration & durationTimeout)
       pthread_cond_timedwait(&m_cond, &m_mutex, &delay);
 
    }
+
+   pthread_mutex_unlock(&m_mutex);
 
    return m_bSignaled ? wait_result(wait_result::Event0) : wait_result(wait_result::Timeout);
 
@@ -610,7 +615,7 @@ bool event::lock(const duration & durationTimeout)
 
 #elif defined(ANDROID)
 
-   psingle_lock lockMutex(&m_mutex, true);
+   pthread_mutex_lock(&m_mutex);
 
    ((duration & ) durationTimeout).normalize();
 
@@ -646,7 +651,7 @@ bool event::lock(const duration & durationTimeout)
 
    }
 
-
+   pthread_mutex_unlock(&m_mutex);
 
 #else
 

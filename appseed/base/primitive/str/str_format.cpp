@@ -1,14 +1,15 @@
 #include "framework.h"
 
 
+
+#ifdef VARIADIC_TEMPLATE
+
+
 #ifdef MACOS
 
 #include <stdlib.h>
 
 #endif
-
-
-#ifndef NO_VARIADIC_TEMPLATE
 
 
 void string_format::construct(string_format_printer * pprinter, string_format_printer::PRINTER pfnPrinter, void * pvoidPrinter)

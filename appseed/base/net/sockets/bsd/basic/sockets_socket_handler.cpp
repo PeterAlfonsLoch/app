@@ -354,9 +354,9 @@ namespace sockets
 
                sp(class socket) psocket = ppair->m_element2;
 
-               TRACE("tmout sckt(%d):remote_address=\"%s\""          , s, psocket->GetRemoteAddress().get_display_number());
+               TRACE("tmout sckt(%d):remote_address=\"%s\""          , s, psocket->GetRemoteAddress().get_display_number().c_str());
 //               TRACE("tmout sckt(%d):remote_canonical_name=\"%s\""   , s, psocket->GetRemoteAddress().get_canonical_name());
-               TRACE("tmout sckt(%d):short_desc=\"%s\""              , s, psocket->get_short_description());
+               TRACE("tmout sckt(%d):short_desc=\"%s\""              , s, psocket->get_short_description().c_str());
 
                time_t tnow = time(NULL);
 
@@ -394,7 +394,7 @@ namespace sockets
             TRACE("m_maxsock: %d\n", m_maxsock);
             TRACE("sockets::socket_handler select error : %s (%d)", strerror(Errno), Errno);
 #else
-            TRACE("sockets::socket_handler select error : %s (%d)", get_system_error_message(iError), iError);
+            TRACE("sockets::socket_handler select error : %s (%d)", get_system_error_message(iError).c_str(), iError);
 #endif
 
             if(iError == 10022)
@@ -1036,7 +1036,7 @@ namespace sockets
       }
       add(resolv);
       m_resolve_q[p] = true;
-      TRACE(" *** Resolve '%s:%d' id#%d  m_resolve_q size: %d  p: %p\n", host, port, resolv -> GetId(), m_resolve_q.get_size(), p);
+      TRACE(" *** Resolve '%s:%d' id#%d  m_resolve_q size: %d  p: %p\n", host.c_str(), port, resolv -> GetId(), m_resolve_q.get_size(), p);
       return resolv -> GetId();
    }
 
@@ -1260,7 +1260,7 @@ namespace sockets
          }
          if (!found)
          {
-            TRACE("CheckList failed for \"%s\": fd %d\n", listname, s);
+            TRACE("CheckList failed for \"%s\": fd %d\n", listname.c_str(), s);
          }
       }
    }

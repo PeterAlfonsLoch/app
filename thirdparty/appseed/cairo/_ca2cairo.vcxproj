@@ -462,10 +462,14 @@
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <RuntimeTypeInfo>Default</RuntimeTypeInfo>
       <GccExceptionHandling>true</GccExceptionHandling>
-      <AdditionalOptions>-Wno-attributes -Wno-conversion-null -fpermissive</AdditionalOptions>
+      <AdditionalOptions>
+      </AdditionalOptions>
       <CppStandard>CppStandard11</CppStandard>
+      <ConversionNull>Default</ConversionNull>
+      <Attributes>NoAttributes</Attributes>
+      <Permissive>Default</Permissive>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

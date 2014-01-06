@@ -1,5 +1,27 @@
 #include "framework.h"
 
+#ifdef ANDROID
+
+time_t
+my_timegm(struct tm *tm)
+{
+   time_t ret;
+   char *tz;
+
+   tz = getenv("TZ");
+   setenv("TZ", "", 1);
+   tzset();
+   ret = mktime(tm);
+   if (tz)
+      setenv("TZ", tz, 1);
+   else
+      unsetenv("TZ");
+   tzset();
+   return ret;
+}
+
+
+#endif
 
 namespace datetime
 {
@@ -171,6 +193,8 @@ namespace datetime
                time_t tDiff = difftime(nowUtc, now);*/
 #ifdef WINDOWS
                time = ::datetime::time(_mkgmtime64(&atm));
+#elif defined(ANDROID)
+               time = ::datetime::time(my_timegm(&atm));
 #else
                time = ::datetime::time(timegm(&atm));
 #endif

@@ -53,9 +53,9 @@ namespace sockets
          if(m_estate == state_initial)
          {
             string str;
-            str.Format("CONNECT %s:%d HTTP/1.0\r\n", GetUrlHost(), (int) GetUrlPort());
+            str.Format("CONNECT %s:%d HTTP/1.0\r\n", GetUrlHost().c_str(), (int) GetUrlPort());
             write(str);
-            str.Format("host: %s:%d\r\n", GetUrlHost(), (int) GetUrlPort());
+            str.Format("host: %s:%d\r\n", GetUrlHost().c_str(), (int) GetUrlPort());
             write(str);
             str = "\r\n";
             write(str);

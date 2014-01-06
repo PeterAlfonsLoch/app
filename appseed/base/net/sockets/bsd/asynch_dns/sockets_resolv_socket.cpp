@@ -119,7 +119,7 @@ namespace sockets
       {
          m_query = pa.getword();
          m_data = pa.getrest();
-   TRACE(" *** resolv_socket server; query=%s, data=%s\n", m_query, m_data);
+   TRACE(" *** resolv_socket server; query=%s, data=%s\n", m_query.c_str(), m_data.c_str());
          // %! check cache
          {
             single_lock lock(&System.sockets().m_mutexResolvCache, true);
@@ -128,7 +128,7 @@ namespace sockets
             {
                if (time(NULL) - System.sockets().m_resolvtimeout[m_query][m_data] < 3600) // ttl
                {
-   TRACE(" *** Returning cache for [%s][%s] = '%s'\n", m_query, m_data, result);
+   TRACE(" *** Returning cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), result.c_str());
                   write("Cached\n");
                   if (result.is_empty()) /* failed */
                   {
@@ -165,7 +165,7 @@ namespace sockets
       }
       string key = pa.getword();
       string value = pa.getrest();
-   TRACE(" *** resolv_socket response;  %s: %s\n", key, value);
+   TRACE(" *** resolv_socket response;  %s: %s\n", key.c_str(), value.c_str());
 
       if (key == "Cached")
       {
@@ -183,7 +183,7 @@ namespace sockets
          if (!m_cached)
          {
             single_lock lock(&System.sockets().m_mutexResolvCache, true);
-   TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
+   TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
             System.sockets().m_resolvcache[m_query][m_data] = value;
             System.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
@@ -200,7 +200,7 @@ namespace sockets
          if (!m_cached)
          {
             single_lock lock(&System.sockets().m_mutexResolvCache, true);
-   TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
+   TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
             System.sockets().m_resolvcache[m_query][m_data] = value;
             System.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
@@ -219,7 +219,7 @@ namespace sockets
          if (!m_cached)
          {
             single_lock lock(&System.sockets().m_mutexResolvCache, true);
-   TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
+   TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
             System.sockets().m_resolvcache[m_query][m_data] = value;
             System.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
@@ -237,7 +237,7 @@ namespace sockets
          if (!m_cached)
          {
             single_lock lock(&System.sockets().m_mutexResolvCache, true);
-   TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
+   TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
             System.sockets().m_resolvcache[m_query][m_data] = value;
             System.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
@@ -248,7 +248,7 @@ namespace sockets
 
    void resolv_socket::OnDetached()
    {
-   TRACE(" *** resolv_socket::OnDetached(); query=%s, data=%s\n", m_query, m_data);
+   TRACE(" *** resolv_socket::OnDetached(); query=%s, data=%s\n", m_query.c_str(), m_data.c_str());
       if (m_query == "gethostbyname")
       {
          struct in_addr sa;
@@ -379,7 +379,7 @@ namespace sockets
          {
             single_lock lock(&System.sockets().m_mutexResolvCache, true);
             string value;
-   TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
+   TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
             System.sockets().m_resolvcache[m_query][m_data] = value;
             System.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }

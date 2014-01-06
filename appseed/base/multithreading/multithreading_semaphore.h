@@ -6,11 +6,17 @@ class CLASS_DECL_BASE semaphore :
 {
 public:
 
+   string            m_strName;
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(ANDROID)
 
-   LONG             m_lMaxCount;
-   int32_t              m_object;
+   LONG              m_lMaxCount;
+   sem_t *           m_psem;
+
+#elif defined(LINUX) || defined(MACOS)
+
+   LONG              m_lMaxCount;
+   int32_t           m_object;
 
 #endif
 

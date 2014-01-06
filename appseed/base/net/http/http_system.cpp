@@ -1629,7 +1629,7 @@ retry:
       string strUserNameFile;
       string strPasswordFile;
       string strSection;
-      strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin, "proxy_auth");
+      strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
       strUserNameFile = System.dir().appdata(strSection + "_1");
       strPasswordFile = System.dir().appdata(strSection + "_2");
       bool bOk = true;
@@ -1664,7 +1664,7 @@ retry:
    void system::clean_proxy_auth(::fontopus::user * puser)
    {
       string strSection;
-      strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin, "proxy_auth");
+      strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str() , "proxy_auth");
       System.file().del(System.dir().appdata(strSection + "_1"));
       System.file().del(System.dir().appdata(strSection + "_2"));
    }

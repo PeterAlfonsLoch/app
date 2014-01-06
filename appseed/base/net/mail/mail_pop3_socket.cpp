@@ -406,7 +406,7 @@ namespace mail
          return false;
       m_ppop3->m_id = m_ppop3->m_straId[0];
       string strSend;
-      strSend.Format("RETR %s\r\n", m_ppop3->m_straIndex[0]);
+      strSend.Format("RETR %s\r\n", m_ppop3->m_straIndex[0].c_str());
       write((const char *) strSend);
       m_ppop3->m_strHeaders.Empty();
       m_ppop3->m_strBody.Empty();

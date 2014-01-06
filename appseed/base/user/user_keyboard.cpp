@@ -189,18 +189,18 @@ namespace user
       }
       if(initialize(playout, strPath))
       {
-         TRACE("setting keyboard layout to %s (path=%s)", playout->m_strName, playout->m_strPath);
+         TRACE("setting keyboard layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
          if(playout->load(playout->m_strPath))
          {
             m_playout = playout;
 // xxx            System.simpledb().on_set_keyboard_layout(playout->m_strPath, actioncontext);
-            TRACE("successfully set keyboard layout to %s (path=%s)", playout->m_strName, playout->m_strPath);
+            TRACE("successfully set keyboard layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
             return true;
          }
          else
          {
             playout->release();
-            TRACE("failed to load keyboard layout : %s (path=%s)", playout->m_strName, playout->m_strPath);
+            TRACE("failed to load keyboard layout : %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
          }
       }
       else
