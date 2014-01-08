@@ -6,6 +6,8 @@
 #include <unistd.h>
 
 
+int32_t gdb_check();
+
 
 int32_t is_gdb_present()
 {
@@ -35,7 +37,11 @@ int32_t gdb_check()
         {
           /* Wait for the parent to stop and continue it */
           waitpid(ppid, NULL, 0);
+#ifdef ANDROID
+          ptrace(PTRACE_CONT, NULL, NULL, NULL);
+#else
           ptrace(PTRACE_CONT, NULL, NULL);
+#endif
 
           /* Detach */
           ptrace(PTRACE_DETACH, getppid(), NULL, NULL);

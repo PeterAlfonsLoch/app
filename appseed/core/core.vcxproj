@@ -1306,7 +1306,10 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="filesystem\userfs\userfs_main_view.h" />
     <ClInclude Include="filesystem\userfs\userfs_tree.h" />
     <ClInclude Include="filesystem\userfs\userfs_item.h" />
-    <ClInclude Include="framework\framework.h" />
+    <ClCompile Include="framework\framework.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCppHeader</CompileAs>
+    </ClCompile>
     <ClInclude Include="graphics\backview\backview.h" />
     <ClInclude Include="graphics\backview\backview_enum.h" />
     <ClInclude Include="graphics\backview\backview_graphics.h" />
