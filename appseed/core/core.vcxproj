@@ -51,7 +51,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{AFC48570-75E4-46BD-B8AB-4590B257E1C8}</ProjectGuid>
+    <ProjectGuid>{E000FFAF-392F-4E32-BF51-FD7ED638991F}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>core</RootNamespace>
@@ -1408,10 +1408,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="net\hi5\hi5.h" />
     <ClInclude Include="net\hi5\hi5_oauth.h" />
     <ClInclude Include="net\hi5\hi5_twitter_authorization.h" />
-    <ClInclude Include="net\mail\mail.h" />
-    <ClInclude Include="net\mail\mail_pop3.h" />
-    <ClInclude Include="net\mail\pop3_socket.h" />
-    <ClInclude Include="net\mail\simple_pop3.h" />
     <ClInclude Include="net\net_email_departament.h" />
     <ClInclude Include="net\usermail\usermail.h" />
     <ClInclude Include="net\usermail\usermail_account.h" />
@@ -1991,7 +1987,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="filesystem\userfs\userfs_main_view.cpp" />
     <ClCompile Include="filesystem\userfs\userfs_tree.cpp" />
     <ClCompile Include="filesystem\userfs\userfs_item.cpp" />
-    <ClCompile Include="framework\framework.cpp" />
+    <ClCompile Include="framework\framework.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="graphics\backview\backview_graphics.cpp" />
     <ClCompile Include="graphics\backview\backview_helper.cpp" />
     <ClCompile Include="graphics\backview\backview_image_change.cpp" />

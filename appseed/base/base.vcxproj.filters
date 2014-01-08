@@ -708,6 +708,18 @@
     <Filter Include="Source Files\framework">
       <UniqueIdentifier>{7d1cc48a-cede-4123-9adb-5f2b00b52132}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\base\os\cross\windows">
+      <UniqueIdentifier>{c2c59a3f-bfe4-4a34-af7d-9cbdd458db15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\os\ansios">
+      <UniqueIdentifier>{68334ac9-3045-461a-9922-b6f49f0a803d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\os\cross\windows">
+      <UniqueIdentifier>{105dbf8b-8b00-4530-b1fa-ac561338c12e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\os\ansios">
+      <UniqueIdentifier>{d8fdcc30-b719-4944-8c43-76d53cfb6b94}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_wstringtou.h">
@@ -884,17 +896,11 @@
     <ClInclude Include="primitive\primitive_request_signal.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="product.version.config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_bit.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include="user\user_create_context.h">
       <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="android\c_os_internal.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive_application_bias.h">
       <Filter>Header Files\primitive</Filter>
@@ -3083,9 +3089,6 @@
     <ClInclude Include="user\user_place_holder.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\_math.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="net\net_ip_enum.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
@@ -3191,9 +3194,6 @@
     <ClInclude Include="primitive\primitive_relation_set.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="base\os\android\android_cairo_keep.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
     <ClInclude Include="base\os\android\android_cross_win_file.h">
       <Filter>Header Files\base\os\android</Filter>
     </ClInclude>
@@ -3226,6 +3226,69 @@
     </ClInclude>
     <ClInclude Include="base\os\android\android_simple_ui.h">
       <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_crt.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_defs.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_error.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_file.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_gdi.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_guid_def.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_internals.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_ole_automation.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_shared_memory.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_thread.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_thread_impl.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_time.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_types.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_user.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_winnt.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\ansios\ansios.h">
+      <Filter>Header Files\base\os\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\ansios\ansios_file.h">
+      <Filter>Header Files\base\os\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\ansios\ansios_multithreading.h">
+      <Filter>Header Files\base\os\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\ansios\ansios_thread.h">
+      <Filter>Header Files\base\os\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\_math.h">
+      <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -6373,9 +6436,6 @@
     <ClCompile Include="base\os\os_thread.cpp">
       <Filter>Source Files\base\os</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\android\android.c">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\android\android_locale.c">
       <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
@@ -6865,9 +6925,6 @@
     <ClCompile Include="base\os\android\android.cpp">
       <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\android\android_cairo_keep.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\android\android_cross_win_file.cpp">
       <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
@@ -6936,6 +6993,63 @@
     </ClCompile>
     <ClCompile Include="framework\framework_c.h">
       <Filter>Header Files\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\cross\windows\windows_crt.cpp">
+      <Filter>Source Files\base\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\cross\windows\windows_error.cpp">
+      <Filter>Source Files\base\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\cross\windows\windows_locale.cpp">
+      <Filter>Source Files\base\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\cross\windows\windows_shared_memory.cpp">
+      <Filter>Source Files\base\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\cross\windows\windows_user.cpp">
+      <Filter>Source Files\base\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\ansios_cross_win.cpp">
+      <Filter>Source Files\base\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\ansios_cross_win_file.cpp">
+      <Filter>Source Files\base\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\ansios_cross_windows_user.cpp">
+      <Filter>Source Files\base\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\crypto\ansios_crypt.cpp">
+      <Filter>Source Files\base\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\ansios_file.cpp">
+      <Filter>Source Files\base\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\ansios_file_std.cpp">
+      <Filter>Source Files\base\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\ansios_multithreading.cpp">
+      <Filter>Source Files\base\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\ansios_thread.cpp">
+      <Filter>Source Files\base\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_c.c">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_simple_ui.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\cross\windows\windows_windows.cpp">
+      <Filter>Source Files\base\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\cross\windows\windows_threading.cpp">
+      <Filter>Source Files\base\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\cross\windows\windows_datetime.cpp">
+      <Filter>Source Files\base\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\crypto\rand\rand_unix.c">
+      <Filter>Source Files\base\openssl\crypto\rand</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -7124,6 +7238,12 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

@@ -351,6 +351,12 @@
     <Filter Include="Source Files\user\user">
       <UniqueIdentifier>{7346c89e-20fb-4d09-b049-ab363570fff2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\framework">
+      <UniqueIdentifier>{312f9e0f-09e0-4a12-92bd-598304ede50b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\framework">
+      <UniqueIdentifier>{59a690e7-7032-43a1-b6ca-f3e228253f78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive.h">
@@ -2186,12 +2192,6 @@
     <ClInclude Include="filesystem\filemanager\filemanager_context_menu.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\html\html_select.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_data.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -2444,26 +2444,20 @@
     <ClInclude Include="core\core.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="net\mail\mail.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="net\mail\mail_pop3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="net\mail\pop3_socket.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="net\mail\simple_pop3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="compress\crypto\crypto_aes_cbc_coder.h">
       <Filter>Header Files\compress\crypto</Filter>
     </ClInclude>
-    <ClInclude Include="net\usermail\usermail_tree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework\framework.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_select.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="net\usermail\usermail_tree.h">
+      <Filter>Header Files\net\usermail</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_data.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3802,12 +3796,6 @@
     <ClCompile Include="filesystem\filemanager\filemanager_file_list.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\html\html_select.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_data.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -4006,17 +3994,23 @@
     <ClCompile Include="compress\crypto\crypto_my_aes.cpp">
       <Filter>Source Files\compress\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="net\usermail\usermail_tree.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="framework\framework.cpp">
+      <Filter>Source Files\framework</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_context_menu.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_data.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_update_hint.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
-    <ClCompile Include="framework\framework.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="graphics\html\html_select.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="net\usermail\usermail_tree.cpp">
+      <Filter>Source Files\net\usermail</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
