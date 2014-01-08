@@ -45,6 +45,8 @@
 			<Add option="-Winvalid-pch" />
 			<Add option="-Wno-conversion-null" />
 			<Add option="-fPIC" />
+			<Add directory="../../../include" />
+			<Add directory="../../include" />
 			<Add directory="." />
 			<Add directory="../../.." />
 			<Add directory=".." />
