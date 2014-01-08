@@ -2,7 +2,7 @@
 
 
 
-DWORD get_tick_count()
+dword get_tick_count()
 {
    timeval ts;
    gettimeofday(&ts,0);
