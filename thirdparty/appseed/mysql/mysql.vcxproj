@@ -443,7 +443,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/base/base;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../app/appseed/base/base/openssl;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto;$(SolutionDir)../../../app/appseed/base/base/openssl/ssl;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/asn1;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/evp;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/krb5;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/modes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DBUG_OFF;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -460,14 +460,13 @@
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <RuntimeTypeInfo>Default</RuntimeTypeInfo>
+      <RuntimeTypeInfo>EnableRuntimeTypeInfo</RuntimeTypeInfo>
       <GccExceptionHandling>true</GccExceptionHandling>
-      <AdditionalOptions>
-      </AdditionalOptions>
+      <AdditionalOptions>-Wnarrowing</AdditionalOptions>
       <CppStandard>CppStandard11</CppStandard>
-      <ConversionNull>Default</ConversionNull>
+      <ConversionNull>NoConversionNull</ConversionNull>
       <Attributes>NoAttributes</Attributes>
-      <Permissive>Default</Permissive>
+      <Permissive>Yes</Permissive>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -486,8 +485,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\stage\$(PlatformName)\</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>LIBCMTD.lib</IgnoreSpecificDefaultLibraries>
-      <AndroidSystemLibs>c;m;log;gcc;_c;_ca2zlib</AndroidSystemLibs>
+      <AndroidSystemLibs>m;log;gcc;base</AndroidSystemLibs>
       <ModuleDefinitionFile>_ca2freeimage.def</ModuleDefinitionFile>
+      <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -1158,13 +1158,25 @@
     <ClInclude Include="welcome_copyright_notice.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="libmysql\authentication_win\common.cc" />
-    <ClCompile Include="libmysql\authentication_win\handshake.cc" />
-    <ClCompile Include="libmysql\authentication_win\handshake_client.cc" />
-    <ClCompile Include="libmysql\authentication_win\log_client.cc" />
-    <ClCompile Include="libmysql\authentication_win\plugin_client.cc" />
+    <ClCompile Include="libmysql\authentication_win\common.cc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="libmysql\authentication_win\handshake.cc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="libmysql\authentication_win\handshake_client.cc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="libmysql\authentication_win\log_client.cc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="libmysql\authentication_win\plugin_client.cc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="libmysql\errmsg.c" />
-    <ClCompile Include="libmysql\get_password.c" />
+    <ClCompile Include="libmysql\get_password.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="libmysql\libmysql.c" />
     <ClCompile Include="mysys\array.c" />
     <ClCompile Include="mysys\base64.c" />
@@ -1252,7 +1264,9 @@
     <ClCompile Include="mysys\my_thr_init.c" />
     <ClCompile Include="mysys\my_wincond.c" />
     <ClCompile Include="mysys\my_windac.c" />
-    <ClCompile Include="mysys\my_winerr.c" />
+    <ClCompile Include="mysys\my_winerr.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="mysys\my_winfile.c" />
     <ClCompile Include="mysys\my_winthread.c" />
     <ClCompile Include="mysys\my_write.c" />
@@ -1267,16 +1281,61 @@
     <ClCompile Include="mysys\thr_rwlock.c" />
     <ClCompile Include="mysys\tree.c" />
     <ClCompile Include="mysys\typelib.c" />
-    <ClCompile Include="mysys_ssl\crypt_genhash_impl.cc" />
-    <ClCompile Include="mysys_ssl\my_aes.cc" />
-    <ClCompile Include="mysys_ssl\my_default.cc" />
-    <ClCompile Include="mysys_ssl\my_getopt.cc" />
-    <ClCompile Include="mysys_ssl\my_md5.cc" />
-    <ClCompile Include="mysys_ssl\my_rnd.cc" />
-    <ClCompile Include="mysys_ssl\my_sha1.cc" />
-    <ClCompile Include="mysys_ssl\my_sha2.cc" />
+    <ClCompile Include="mysys_ssl\crypt_genhash_impl.cc">
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">EnableRuntimeTypeInfo</RuntimeTypeInfo>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">NoConversionNull</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Yes</Permissive>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CppStandard11</CppStandard>
+    </ClCompile>
+    <ClCompile Include="mysys_ssl\my_aes.cc">
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">EnableRuntimeTypeInfo</RuntimeTypeInfo>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">NoConversionNull</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Yes</Permissive>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CppStandard11</CppStandard>
+    </ClCompile>
+    <ClCompile Include="mysys_ssl\my_default.cc">
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">EnableRuntimeTypeInfo</RuntimeTypeInfo>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">NoConversionNull</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Yes</Permissive>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CppStandard11</CppStandard>
+    </ClCompile>
+    <ClCompile Include="mysys_ssl\my_getopt.cc">
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">EnableRuntimeTypeInfo</RuntimeTypeInfo>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">NoConversionNull</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Yes</Permissive>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CppStandard11</CppStandard>
+    </ClCompile>
+    <ClCompile Include="mysys_ssl\my_md5.cc">
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">EnableRuntimeTypeInfo</RuntimeTypeInfo>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">NoConversionNull</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Yes</Permissive>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CppStandard11</CppStandard>
+    </ClCompile>
+    <ClCompile Include="mysys_ssl\my_rnd.cc">
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">EnableRuntimeTypeInfo</RuntimeTypeInfo>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">NoConversionNull</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Yes</Permissive>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CppStandard11</CppStandard>
+    </ClCompile>
+    <ClCompile Include="mysys_ssl\my_sha1.cc">
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">EnableRuntimeTypeInfo</RuntimeTypeInfo>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">NoConversionNull</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Yes</Permissive>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CppStandard11</CppStandard>
+    </ClCompile>
+    <ClCompile Include="mysys_ssl\my_sha2.cc">
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">EnableRuntimeTypeInfo</RuntimeTypeInfo>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">NoConversionNull</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Yes</Permissive>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CppStandard11</CppStandard>
+    </ClCompile>
     <ClCompile Include="sql-common\client.c" />
-    <ClCompile Include="sql-common\client_authentication.cc" />
+    <ClCompile Include="sql-common\client_authentication.cc">
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">EnableRuntimeTypeInfo</RuntimeTypeInfo>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">NoConversionNull</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Yes</Permissive>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CppStandard11</CppStandard>
+    </ClCompile>
     <ClCompile Include="sql-common\client_plugin.c" />
     <ClCompile Include="sql-common\my_time.c" />
     <ClCompile Include="sql-common\pack.c" />

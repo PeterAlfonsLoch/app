@@ -685,43 +685,206 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 */
 
 
-#include <cairo/cairo.h>
-
-
-#define SIZEX 100
-#define SIZEY  50
-
-
-void message_box_paint(cairo_surface_t * cs, stringa & stra, array < bool >  & baTab, array < int >  & ya,SIZE * psize)
+void message_box_paint(::draw2d::graphics * pdc, stringa & stra, bool_array  & baTab, int_array  & ya, SIZE * psize)
 {
-	cairo_t *c;
 
-	c=cairo_create(cs);
-	cairo_rectangle(c, 0.0, 0.0, psize->cx, psize->cy);
-	cairo_set_source_rgb(c, 0.84, 0.84, 0.77);
-	cairo_fill(c);
+   pdc->FillSolidRect(0, 0, psize->cx, psize->cy, RGB(84, 84, 77));
 
-	cairo_set_source_rgb(c, 0.0, 0.0, 0.0);
+   draw2d::brush_sp pen(pdc->allocer());
 
-	for(index i = 0; i < stra.get_count(); i++)
-	{
-      cairo_move_to(c, 10.0 + 50.0 + (baTab[i] ? 25.0 : 0), 10.0 + 50.0 + ya[i]);
-      cairo_show_text(c, stra[i]);
-	}
+   pen->create_solid(0);
+
+   for (index i = 0; i < stra.get_count(); i++)
+   {
+      pdc->TextOut(10.0 + 50.0 + (baTab[i] ? 25.0 : 0), 10.0 + 50.0 + ya[i], stra[i]);
+   }
 
 
-	cairo_show_page(c);
-
-
-	if(c ==  ::ca_cairo_keep::g_cairo)
-	{
-         printf("123");
-
-	}
-
-	cairo_destroy(c);
 
 }
+
+
+class xlib_simple_message_box :
+   virtual public ::os::simple_ui
+{
+public:
+
+
+   spa(::simple_ui::label) m_labela;
+
+   rect m_rectDesktop;
+
+   xlib_simple_message_box(sp(base_application) papp) : element(papp), ::os::simple_ui(papp), ::simple_ui::interaction(papp)
+   {
+   }
+
+
+   void draw_this(::draw2d::graphics *  pdc)
+   {
+      rect rect;
+
+      get_client_rect(rect);
+
+      pdc->FillSolidRect(rect, ARGB(255, 240, 240, 240));
+   }
+
+   int32_t show_window(const char * lpText, const char * lpCaption)
+   {
+
+      ::GetWindowRect(::GetDesktopWindow(), &m_rectDesktop);
+
+
+      rect rect(100, 100, 200, 200);
+
+      if (!create_window(rect))
+         return 0;
+
+
+      draw2d::graphics_sp g(allocer());
+
+      g->CreateCompatibleDC(NULL);
+
+      ::draw2d::font_sp font(allocer());
+
+      font->create_point_font("helvetica", 12.0);
+
+      g->selectFont(font);
+
+      stringa stra;
+
+      stra.add_tokens(lpText, "\n");
+
+      bool_array baTab;
+
+      int_array ya;
+
+      size sz;
+
+      sz.cx = 0;
+      sz.cy = 0;
+
+      for (index i = 0; i < stra.get_count(); i++)
+      {
+
+         string str = stra[i];
+
+         bool bTab = str_begins_dup(str, "\t");
+
+         str.trim();
+
+         bool bEmpty = str.is_empty();
+
+         if (bEmpty)
+            str = "L";
+
+         SIZE sizeItem = g->GetTextExtent(str);
+
+         int x = bTab ? 25 : 0;
+
+         if (sizeItem.cx + x > sz.cx)
+         {
+
+            sz.cx = sizeItem.cx + x;
+
+         }
+
+         baTab.add(bTab);
+
+         ya.add(sz.cy);
+
+         sz.cy += sizeItem.cy;
+
+         if (bEmpty)
+         {
+            stra[i] = "";
+         }
+         else
+         {
+            stra[i] = str;
+         }
+
+      }
+
+      for (index i = 0; i < stra.get_count(); i++)
+      {
+
+         m_labela.add(canew(::simple_ui::label(get_app())));
+
+         ::simple_ui::label & label = *m_labela.last_element();
+
+         label.set_parent(this);
+
+         label.m_strText = stra[i];
+
+         label.m_bVisible = true;
+
+         label.m_rect.left = 10;
+         label.m_rect.top = 10 + (sz.cy / stra.get_count()) * i;
+         label.m_rect.right = label.m_rect.left + sz.cx - 20;
+         label.m_rect.bottom = label.m_rect.top + (sz.cy / stra.get_count());
+
+      }
+
+      sz.cx += 20;
+      sz.cy += 20;
+
+      rect.left = m_rectDesktop.left + ((m_rectDesktop.width() - sz.cx) / 2);
+      rect.top = m_rectDesktop.top + ((m_rectDesktop.height() - sz.cy) / 4);
+      rect.right = rect.left + sz.cx;
+      rect.bottom = rect.top + sz.cy;
+
+
+      if (!prepare_window(rect))
+         return 0;
+
+
+
+      SetWindowPos(m_window, NULL, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW);
+
+      run_loop();
+
+      return 0;
+
+   }
+
+};
+
+int32_t message_box_show_xlib(base_application * papp, const char * lpText, const char * lpCaption)
+{
+
+   xlib_simple_message_box box(papp);
+
+   return box.show_window(lpText, lpCaption);
+
+
+}
+
+
+
+int32_t WINAPI MessageBoxA_x11(oswindow hWnd, const char * lpText, const char * lpCaption, UINT uType)
+{
+
+   base_application * papp = NULL;
+
+   if (hWnd == NULL || hWnd->get_user_interaction() == NULL || hWnd->get_user_interaction()->get_app() == NULL)
+   {
+
+      papp = get_thread_app();
+
+   }
+   else
+   {
+
+      papp = hWnd->get_user_interaction()->get_app();
+
+   }
+
+   return message_box_show_xlib(get_thread_app(), lpText, lpCaption);
+
+}
+
+
+
 
 /*
 
@@ -954,6 +1117,123 @@ oswindow GetFocus()
 }
 
 
+int_bool GetClientRect(oswindow_data * pdata, RECT * prect)
+{
+   
+   *prect = pdata->m_rect;
+
+   prect->right -= prect->left;
+   prect->bottom -= prect->top;
+   prect->left = 0;
+   prect->top = 0;
+
+   return TRUE;
+
+}
+
+
+int_bool GetWindowRect(oswindow_data * pdata, RECT * prect)
+{
+
+   *prect = pdata->m_rect;
+
+   return TRUE;
+
+}
+
+
+int_bool ShowWindow(oswindow_data * pdata, int nCmdShow)
+{
+
+   return pdata->show_window(nCmdShow);
+
+}
+
+
+int_bool SetWindowPos(oswindow_data * pdata, oswindow_data * pdataAfter, int x, int y, int cx, int cy, unsigned int uiFlags)
+{
+
+   if (uiFlags & SWP_NOMOVE)
+   {
+      if (uiFlags & SWP_NOSIZE)
+      {
+      }
+      else
+      {
+         pdata->m_rect.right = pdata->m_rect.left + cx;
+         pdata->m_rect.bottom = pdata->m_rect.top + cy;
+      }
+   }
+   else
+   {
+      if (uiFlags & SWP_NOSIZE)
+      {
+         int offsetX = pdata->m_rect.left - x;
+         int offsetY = pdata->m_rect.top - y;
+         pdata->m_rect.left += offsetX;
+         pdata->m_rect.top += offsetY;
+         pdata->m_rect.right  += offsetX;
+         pdata->m_rect.bottom += offsetY;
+      }
+      else
+      {
+         pdata->m_rect.left = x;
+         pdata->m_rect.top = y;
+         pdata->m_rect.right = x + cx;
+         pdata->m_rect.right = y + cy;
+
+      }
+
+   }
+
+   return TRUE;
+
+}
+
+oswindow_data * GetParent(oswindow_data * pdata)
+{
+
+   if (pdata == NULL)
+      return NULL;
+
+   if (!IsWindow(pdata))
+      return NULL;
+
+   return pdata->get_parent();
+
+
+}
+
+int_bool IsAscendant(oswindow_data * pdata, oswindow_data * pdataAscendant)
+{
+
+   if (pdata == NULL)
+      return FALSE;
+
+   oswindow_data * pdataParent = pdata->get_parent();
+
+   if (pdataAscendant == NULL)
+   {
+      if (pdataParent == NULL)
+         return TRUE;
+      else
+         return FALSE;
+   }
+      
+   while (pdataParent != NULL)
+   {
+
+      if (pdataParent == pdataAscendant)
+         return TRUE;
+
+      pdataParent = pdataParent->get_parent();
+   }
+
+   return FALSE;
+
+}
+
+
 oswindow GetActiveWindow()
 {
 
@@ -1172,4 +1452,21 @@ oswindow GetDesktopWindow()
 {
 
 return g_oswindowDesktop;
+}
+
+
+POINT g_ptCursor;
+
+
+int_bool SetCursorPos(LPPOINT lppt)
+{
+   g_ptCursor = *lppt;
+   return TRUE;
+}
+
+
+int_bool GetCursorPos(LPPOINT lppt)
+{
+   *lppt = g_ptCursor;
+   return TRUE;
 }

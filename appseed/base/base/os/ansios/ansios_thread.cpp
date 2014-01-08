@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) // || defined(ANDROID)
 
 bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow oswindow, bool bPeek);
 
@@ -935,7 +935,7 @@ restart:
 
    ml.unlock();
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) // || defined(ANDROID)
    if(hthread != NULL && hthread->m_pthread != NULL)
    {
 
@@ -1029,7 +1029,7 @@ CLASS_DECL_BASE int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow,
 
    ml.unlock();
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) // || defined(ANDROID)
    if(g_defer_process_x_message != NULL && hthread != NULL && hthread->m_pthread != NULL && hthread->m_pthread->get_x_window_count() > 0)
    {
 

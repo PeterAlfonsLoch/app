@@ -102,6 +102,10 @@
 #include <my_global.h>
 #include <my_sys.h>
 #include <lf.h>
+#ifdef ANDROID
+#include <sched.h>
+#endif
+
 
 #define LF_PINBOX_MAX_PINS 65536
 
@@ -233,7 +237,11 @@ void _lf_pinbox_put_pins(LF_PINS *pins)
     if (pins->purgatory_count)
     {
       my_atomic_rwlock_wrunlock(&pins->pinbox->pinarray.lock);
+#ifdef ANDROID
+      sched_yield();
+#else
       pthread_yield();
+#endif
       my_atomic_rwlock_wrlock(&pins->pinbox->pinarray.lock);
     }
   }

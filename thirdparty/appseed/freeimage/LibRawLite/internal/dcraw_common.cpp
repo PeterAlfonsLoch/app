@@ -32,9 +32,9 @@ it under the terms of the one of three licenses as you choose:
 #include <math.h>
 
 
-#ifdef ANDROID
-extern "C" void swab(const void *from, void*to, ssize_t n);
-#endif
+//#ifdef ANDROID
+//extern "C" void swab(const void *from, void*to, ssize_t n);
+//#endif
 
 
 #ifndef __GLIBC__
@@ -2467,14 +2467,14 @@ void CLASS kodak_radc_load_raw()
     2,4, 2,7, 3,3, 3,6, 4,1, 4,2, 4,5, 5,0, 5,8,
     2,6, 3,1, 3,3, 3,5, 3,7, 3,8, 4,0, 5,2, 5,4,
     2,0, 2,1, 3,2, 3,3, 4,4, 4,5, 5,6, 5,7, 4,8,
-    1,0, 2,2, 2,-2,
-    1,-3, 1,3,
-    2,-17, 2,-5, 2,5, 2,17,
-    2,-7, 2,2, 2,9, 2,18,
-    2,-18, 2,-9, 2,-2, 2,7,
-    2,-28, 2,28, 3,-49, 3,-9, 3,9, 4,49, 5,-79, 5,79,
-    2,-1, 2,13, 2,26, 3,39, 4,-16, 5,55, 6,-37, 6,76,
-    2,-26, 2,-13, 2,1, 3,-39, 4,16, 5,-55, 6,-76, 6,37
+    1,0, 2,2, 2, (char) -2,
+    1, (char)-3, 1, 3,
+    2, (char)-17, 2, (char)-5, 2, 5, 2, 17,
+    2, (char)-7, 2, 2, 2, 9, 2, 18,
+    2, (char)-18, 2, (char)-9, 2, (char)-2, 2, 7,
+    2, (char)-28, 2, 28, 3, (char)-49, 3, (char)-9, 3, 9, 4, 49, 5, (char)-79, 5, 79,
+    2, (char)-1, 2, 13, 2, 26, 3, 39, 4, (char)-16, 5, 55, 6, (char)-37, 6, 76,
+    2, (char)-26, 2, (char)-13, 2, 1, 3, (char)-39, 4, 16, 5, (char)-55, 6, (char)-76, 6, 37
   };
   ushort huff[19][256];
   int row, col, tree, nreps, rep, step, i, c, s, r, x, y, val;
@@ -4023,24 +4023,24 @@ void CLASS vng_interpolate()
     -2,+0,+0,-1,0,0x06, -2,+0,+0,+0,1,0x02, -2,+0,+0,+1,0,0x03,
     -2,+1,-1,+0,0,0x04, -2,+1,+0,-1,1,0x04, -2,+1,+0,+0,0,0x06,
     -2,+1,+0,+1,0,0x02, -2,+2,+0,+0,1,0x04, -2,+2,+0,+1,0,0x04,
-    -1,-2,-1,+0,0,(char)0x80, -1,-2,+0,-1,0,0x01, -1,-2,+1,-1,0,0x01,
-    -1,-2,+1,+0,1,0x01, -1,-1,-1,+1,0,(char)0x88, -1,-1,+1,-2,0,0x40,
+    -1, -2, -1, +0, 0, (const signed char)0x80, -1, -2, +0, -1, 0, 0x01, -1, -2, +1, -1, 0, 0x01,
+    -1, -2, +1, +0, 1, 0x01, -1, -1, -1, +1, 0, (const signed char)0x88, -1, -1, +1, -2, 0, 0x40,
     -1,-1,+1,-1,0,0x22, -1,-1,+1,+0,0,0x33, -1,-1,+1,+1,1,0x11,
     -1,+0,-1,+2,0,0x08, -1,+0,+0,-1,0,0x44, -1,+0,+0,+1,0,0x11,
     -1,+0,+1,-2,1,0x40, -1,+0,+1,-1,0,0x66, -1,+0,+1,+0,1,0x22,
     -1,+0,+1,+1,0,0x33, -1,+0,+1,+2,1,0x10, -1,+1,+1,-1,1,0x44,
     -1,+1,+1,+0,0,0x66, -1,+1,+1,+1,0,0x22, -1,+1,+1,+2,0,0x10,
     -1,+2,+0,+1,0,0x04, -1,+2,+1,+0,1,0x04, -1,+2,+1,+1,0,0x04,
-    +0,-2,+0,+0,1,(char)0x80, +0,-1,+0,+1,1,(char)0x88, +0,-1,+1,-2,0,0x40,
+    +0, -2, +0, +0, 1, (const signed char)0x80, +0, -1, +0, +1, 1, (const signed char)0x88, +0, -1, +1, -2, 0, 0x40,
     +0,-1,+1,+0,0,0x11, +0,-1,+2,-2,0,0x40, +0,-1,+2,-1,0,0x20,
     +0,-1,+2,+0,0,0x30, +0,-1,+2,+1,1,0x10, +0,+0,+0,+2,1,0x08,
     +0,+0,+2,-2,1,0x40, +0,+0,+2,-1,0,0x60, +0,+0,+2,+0,1,0x20,
     +0,+0,+2,+1,0,0x30, +0,+0,+2,+2,1,0x10, +0,+1,+1,+0,0,0x44,
     +0,+1,+1,+2,0,0x10, +0,+1,+2,-1,1,0x40, +0,+1,+2,+0,0,0x60,
-    +0,+1,+2,+1,0,0x20, +0,+1,+2,+2,0,0x10, +1,-2,+1,+0,0,(char)0x80,
-    +1,-1,+1,+1,0,(char)0x88, +1,+0,+1,+2,0,0x08, +1,+0,+2,-1,0,0x40,
+    +0, +1, +2, +1, 0, 0x20, +0, +1, +2, +2, 0, 0x10, +1, -2, +1, +0, 0, (const signed char)0x80,
+    +1, -1, +1, +1, 0, (const signed char)0x88, +1, +0, +1, +2, 0, 0x08, +1, +0, +2, -1, 0, 0x40,
     +1,+0,+2,+1,0,0x10
-  }, chood[] = { -1,-1, -1,0, -1,+1, 0,+1, +1,+1, +1,0, +1,-1, 0,-1 };
+  }, chood[] = { (const signed char)-1, (const signed char)-1, (const signed char)-1, 0, (const signed char)-1, +1, 0, +1, +1, +1, +1, 0, +1, (const signed char)-1, 0, (const signed char)-1 };
   ushort (*brow[5])[4], *pix;
   int prow=7, pcol=1, *ip, *code[16][16], gval[8], gmin, gmax, sum[4];
   int row, col, x, y, x1, x2, y1, y2, t, weight, grads, color, diag;
@@ -6276,8 +6276,10 @@ void CLASS parse_phase_one (int base)
     switch (tag) {
       case 0x100:  flip = "0653"[data & 3]-'0';  break;
       case 0x106:
-	for (i=0; i < 9; i++)
-	  romm_cam[0][i] = (float) getreal(11);
+         for (i = 0; i < 9; i++)
+         {
+            ((float *) romm_cam)[i] = (float)getreal(11);
+         }
 	romm_coeff (romm_cam);
 	break;
       case 0x107:
@@ -7084,9 +7086,9 @@ void CLASS adobe_coeff (const char *p_make, const char *p_model)
       if (table[i].trans[0]) {
         for (j=0; j < 12; j++)
 #ifdef LIBRAW_LIBRARY_BUILD
-          imgdata.color.cam_xyz[0][j] = (float)
+          ((float *) imgdata.color.cam_xyz)[j] = (float)
 #endif
-	  (cam_xyz[0][j] = (float) (table[i].trans[j] / 10000.0));
+	  (((double *)cam_xyz)[j] = (float) (table[i].trans[j] / 10000.0));
       cam_xyz_coeff (cam_xyz);
       }
       break;

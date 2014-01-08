@@ -2121,7 +2121,7 @@ def:
 }
 
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(ANDROID)
 #include <stdlib.h> /* for getenv() */
 #ifdef HAVE_LANGINFO_H
 #include <langinfo.h>

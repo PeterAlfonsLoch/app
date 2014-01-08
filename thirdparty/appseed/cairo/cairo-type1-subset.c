@@ -53,7 +53,9 @@
 #include "cairo-output-stream-private.h"
 
 #include <ctype.h>
+#ifndef ANDROID
 #include <locale.h>
+#endif
 
 #define TYPE1_STACKSIZE 24 /* Defined in Type 1 Font Format */
 

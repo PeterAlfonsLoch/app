@@ -187,7 +187,9 @@ char *get_tty_password(const char *opt_message)
   gtty(fileno(stdin), &org);
   tmp=org;
   tmp.sg_flags &= ~ECHO;
+#ifndef ANDROID
   tmp.sg_flags |= RAW;
+#endif
   stty(fileno(stdin), &tmp);
   get_password(buff,sizeof(buff)-1,fileno(stdin),isatty(fileno(stdout)));
   stty(fileno(stdin), &org);

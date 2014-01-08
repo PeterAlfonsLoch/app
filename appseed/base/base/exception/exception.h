@@ -266,7 +266,11 @@ inline void c_cdecl __trace(...) { }
 #else
 #define ASSERT(f)
 #define _ASSUME(cond)
+#if defined(ANDROID)
+#define ASSERT_VALID(cond) 
+#else
 #define ASSERT_VALID(cond) __noop;
+#endif
 #endif
 
 // Debug ASSERTs then throws. Retail throws if condition not met

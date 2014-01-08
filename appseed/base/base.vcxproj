@@ -423,8 +423,7 @@
       <FloatingPointModel>
       </FloatingPointModel>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalOptions>
-      </AdditionalOptions>
+      <AdditionalOptions>-Wnarrowing</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -445,6 +444,7 @@
       <EntryPointSymbol>
       </EntryPointSymbol>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -1400,7 +1400,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\os\android\android.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="base\os\android\android_cairo_keep.h" />
     <ClInclude Include="base\os\android\android_cross_win_file.h" />
     <ClInclude Include="base\os\android\android_cross_win_gdi.h" />
     <ClInclude Include="base\os\android\android_cross_win_gdi_internal.h" />
@@ -1415,8 +1414,28 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="base\os\android\android_android.h" />
+    <ClInclude Include="base\os\ansios\ansios.h" />
+    <ClInclude Include="base\os\ansios\ansios_file.h" />
+    <ClInclude Include="base\os\ansios\ansios_multithreading.h" />
+    <ClInclude Include="base\os\ansios\ansios_thread.h" />
     <ClInclude Include="base\os\cross.h" />
     <ClInclude Include="base\os\cross\cross.h" />
+    <ClInclude Include="base\os\cross\windows\windows.h" />
+    <ClInclude Include="base\os\cross\windows\windows_crt.h" />
+    <ClInclude Include="base\os\cross\windows\windows_defs.h" />
+    <ClInclude Include="base\os\cross\windows\windows_error.h" />
+    <ClInclude Include="base\os\cross\windows\windows_file.h" />
+    <ClInclude Include="base\os\cross\windows\windows_gdi.h" />
+    <ClInclude Include="base\os\cross\windows\windows_guid_def.h" />
+    <ClInclude Include="base\os\cross\windows\windows_internals.h" />
+    <ClInclude Include="base\os\cross\windows\windows_ole_automation.h" />
+    <ClInclude Include="base\os\cross\windows\windows_shared_memory.h" />
+    <ClInclude Include="base\os\cross\windows\windows_thread.h" />
+    <ClInclude Include="base\os\cross\windows\windows_thread_impl.h" />
+    <ClInclude Include="base\os\cross\windows\windows_time.h" />
+    <ClInclude Include="base\os\cross\windows\windows_types.h" />
+    <ClInclude Include="base\os\cross\windows\windows_user.h" />
+    <ClInclude Include="base\os\cross\windows\windows_winnt.h" />
     <ClInclude Include="base\os\os.h" />
     <ClInclude Include="base\os\os_binreloc.h" />
     <ClInclude Include="base\os\os_process.h" />
@@ -1530,6 +1549,24 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="filesystem\fs\fs_remote_native_file.h" />
     <ClInclude Include="filesystem\fs\fs_remote_native_fs.h" />
     <ClInclude Include="filesystem\fs\fs_set.h" />
+    <ClCompile Include="base\openssl\crypto\rand\rand_unix.c" />
+    <ClCompile Include="base\os\android\android_simple_ui.cpp" />
+    <ClCompile Include="base\os\ansios\ansios_cross_win.cpp" />
+    <ClCompile Include="base\os\ansios\ansios_cross_windows_user.cpp" />
+    <ClCompile Include="base\os\ansios\ansios_cross_win_file.cpp" />
+    <ClCompile Include="base\os\ansios\ansios_file.cpp" />
+    <ClCompile Include="base\os\ansios\ansios_file_std.cpp" />
+    <ClCompile Include="base\os\ansios\ansios_multithreading.cpp" />
+    <ClCompile Include="base\os\ansios\ansios_thread.cpp" />
+    <ClCompile Include="base\os\ansios\crypto\ansios_crypt.cpp" />
+    <ClCompile Include="base\os\cross\windows\windows.cpp" />
+    <ClCompile Include="base\os\cross\windows\windows_crt.cpp" />
+    <ClCompile Include="base\os\cross\windows\windows_error.cpp" />
+    <ClCompile Include="base\os\cross\windows\windows_locale.cpp" />
+    <ClCompile Include="base\os\cross\windows\windows_shared_memory.cpp" />
+    <ClCompile Include="base\os\cross\windows\windows_thread.cpp" />
+    <ClCompile Include="base\os\cross\windows\windows_time.cpp" />
+    <ClCompile Include="base\os\cross\windows\windows_user.cpp" />
     <ClCompile Include="framework\crypto_framework.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCHeader</CompileAs>
@@ -2026,6 +2063,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\compress\zlib\compress.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
@@ -2045,6 +2085,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\compress\zlib\crc32.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
@@ -2064,6 +2107,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\compress\zlib\deflate.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
@@ -2083,6 +2129,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\compress\zlib\gzclose.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
@@ -2102,6 +2151,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\compress\zlib\gzlib.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
@@ -2121,6 +2173,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\compress\zlib\gzread.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
@@ -2140,6 +2195,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\compress\zlib\gzwrite.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
@@ -2159,6 +2217,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\compress\zlib\infback.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
@@ -2178,6 +2239,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\compress\zlib\inffast.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
@@ -2197,6 +2261,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\compress\zlib\inflate.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
@@ -2216,6 +2283,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\compress\zlib\inftrees.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
@@ -2235,6 +2305,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\compress\zlib\trees.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
@@ -2254,6 +2327,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\compress\zlib\uncompr.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
@@ -2273,6 +2349,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\compress\zlib\zutil.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
@@ -2292,6 +2371,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x64'">_BASE_LIBRARY;ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto.cpp" />
     <ClCompile Include="base\crypto\crypto\crypto_ae_xfm.c">
@@ -2315,6 +2397,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_cipher_aes.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2337,6 +2421,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_cipher_aes_cbc.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2359,6 +2445,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_cipher_aes_icm.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2381,6 +2469,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_cipher_cipher.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2403,6 +2493,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_cipher_null_cipher.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2425,6 +2517,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_gf2_8.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2447,6 +2541,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_hash_auth.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2469,6 +2565,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_hash_hmac.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2491,6 +2589,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_hash_null_auth.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2513,6 +2613,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_hash_sha1.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2535,6 +2637,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_kernel_alloc.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2557,6 +2661,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_kernel_crypto_kernel.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2579,6 +2685,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_kernel_err.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2601,6 +2709,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_kernel_key.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2623,6 +2733,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_math.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2645,6 +2757,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_math_stat.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2667,6 +2781,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_replay_rdb.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2689,6 +2805,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_replay_rdbx.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2711,6 +2829,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_replay_ut_sim.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2733,6 +2853,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_rng_ctr_prng.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2755,6 +2877,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_rng_prng.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2777,6 +2901,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto\crypto_rng_rand_source.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2799,6 +2925,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</CppStandard>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wno-attributes %(AdditionalOptions)</AdditionalOptions>
+      <ConversionNull Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</ConversionNull>
+      <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto_crypto.cpp" />
     <ClCompile Include="base\crypto\crypto_hmac_sha1.cpp" />
@@ -7419,6 +7547,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="base\openssl\crypto\rc2\rc2cfb64.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
@@ -9451,7 +9580,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="base\os\android\android.c">
+    <ClCompile Include="base\os\android\android_c.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
@@ -9462,9 +9591,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="base\os\android\android.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_cairo_keep.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="base\os\android\android_cross_win_file.cpp">

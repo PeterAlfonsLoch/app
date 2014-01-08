@@ -17,7 +17,7 @@ typedef unsigned int u4;
 typedef unsigned long u4;
 #endif
 /* Typedef for unsigned 8-bit integer */
-#if defined(LINUX) || defined(_WIN32)
+#if defined(LINUX) || defined(_WIN32) || defined(ANDROID)
 typedef unsigned char byte;
 #endif
 

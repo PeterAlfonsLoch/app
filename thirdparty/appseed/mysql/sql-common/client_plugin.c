@@ -397,7 +397,11 @@ mysql_load_plugin_v(MYSQL *mysql, const char *name, int type,
 
   DBUG_PRINT ("info", ("dlopeninig %s", dlpath));
   /* Open new dll handle */
-  if (!(dlhandle= dlopen(dlpath, RTLD_NOW)))
+#if defined(ANDROID)
+  if (!(dlhandle= (void *) dlopen(dlpath, 0)))
+#else
+  if (!(dlhandle = dlopen(dlpath, RTLD_NOW)))
+#endif
   {
 #if defined(__APPLE__)
     /* Apple supports plugins with .so also, so try this as well */
@@ -426,7 +430,7 @@ mysql_load_plugin_v(MYSQL *mysql, const char *name, int type,
 #if defined(__APPLE__)
 have_plugin:
 #endif
-  if (!(sym= dlsym(dlhandle, plugin_declarations_sym)))
+  if (!(sym= (void *) dlsym(dlhandle, plugin_declarations_sym)))
   {
     errmsg= "not a plugin";
     dlclose(dlhandle);

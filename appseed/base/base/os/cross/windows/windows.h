@@ -19,6 +19,7 @@ CLASS_DECL_BASE BOOL WINAPI UnlockFile(HANDLE hfile, uint32_t dwLo, uint32_t dwH
 #include "windows_guid_def.h"
 //#include "os_cross_windows_internals.h"
 #include "windows_winnt.h"
+#include "windows_error.h"
 //#include "os_cross_windows_shared_memory.h"
 //#include "os_cross_windows_time.h"
 //#include "os_cross_windows_crt.h"

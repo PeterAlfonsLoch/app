@@ -923,7 +923,7 @@ namespace numeric_info
 
 
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
 
 
 template < class T >

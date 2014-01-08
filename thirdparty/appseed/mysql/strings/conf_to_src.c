@@ -88,10 +88,10 @@ static void simple_cs_copy_data(CHARSET_INFO *to, CHARSET_INFO *from)
   to->state|= from->state;
 
   if (from->csname)
-    to->csname= _strdup(from->csname);
+    to->csname= (char *) _strdup(from->csname);
   
   if (from->name)
-    to->name= _strdup(from->name);
+    to->name= (char *) _strdup(from->name);
   
   if (from->ctype)
     to->ctype= (uchar*) mdup((char*) from->ctype, MY_CS_CTYPE_TABLE_SIZE);

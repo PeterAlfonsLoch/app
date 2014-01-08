@@ -41,7 +41,9 @@
  * http://www.adobe.com/content/dam/Adobe/en/devnet/font/pdfs/5177.Type2.pdf
  */
 #include "base/base/base/base.h"
+#ifndef _BSD_SOURCE
 #define _BSD_SOURCE /* for snprintf(), strdup() */
+#endif
 #include "cairoint.h"
 
 #include "cairo-array-private.h"
@@ -52,7 +54,9 @@
 #include "cairo-scaled-font-subsets-private.h"
 #include "cairo-truetype-subset-private.h"
 #include <string.h>
+#ifndef ANDROID
 #include <locale.h>
+#endif
 
 /* CFF Dict Operators. If the high byte is 0 the command is encoded
  * with a single byte. */

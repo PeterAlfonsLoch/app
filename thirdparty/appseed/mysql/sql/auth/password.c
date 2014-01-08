@@ -26,7 +26,7 @@
   a string generated from the stored hash_value of the password and the
   random string.
 
-  The password is saved (in user.password) by using the PASSWORD() function in
+ The password is saved (in user.password) by using the PASSWORD() function in
   mysql.
 
   This is .c file because it's used in libmysqlclient, which is entirely in C.
@@ -63,7 +63,7 @@
 #include <my_global.h>
 #include <my_sys.h>
 #include <m_string.h>
-#include <sha1.h>
+#include "mysql/sha1.h"
 #include <my_rnd.h>
 #include "mysql.h"
 #include "crypt_genhash_impl.h"

@@ -23,7 +23,7 @@
 */
 
 #include <my_global.h>
-#include <sha1.h>
+#include <mysql/sha1.h>
 
 #if defined(HAVE_YASSL)
 #include "sha.hpp"

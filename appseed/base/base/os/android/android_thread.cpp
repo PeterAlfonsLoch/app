@@ -410,3 +410,18 @@ namespace core
 
 } // namespace core
 
+
+__thread struct _TEB * t_pteb = NULL;
+
+struct _TEB * WINAPI NtCurrentTeb(void)
+{
+
+   if (t_pteb == NULL)
+      t_pteb = new _TEB;
+
+   return t_pteb;
+
+}
+
+
+

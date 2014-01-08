@@ -43,7 +43,7 @@ namespace os
 
       virtual bool create_window(LPCRECT lprect);
 
-      virtual ATOM register_window_class(HINSTANCE hInstance);
+      //virtual ATOM register_window_class(HINSTANCE hInstance);
 
       virtual bool prepare_window(LPCRECT lprect);
 
@@ -55,20 +55,20 @@ namespace os
 
       virtual void screen_to_client(POINT * ppt);
 
-      virtual LRESULT message_handler(UINT message, WPARAM wParam, LPARAM lParam);
+      //virtual LRESULT message_handler(UINT message, WPARAM wParam, LPARAM lParam);
 
       virtual void get_window_rect(RECT * prect);
       virtual void get_client_rect(RECT * prect);
 
 
 
-      virtual bool on_windows_key_down(WPARAM wparam, LPARAM lparam);
-      virtual bool on_windows_key_up(WPARAM wparam, LPARAM lparam);
+      virtual bool on_key_down(uint32_t uiKey);
+      virtual bool on_key_up(uint32_t uiKey);
 
-      virtual void on_windows_gdi_draw_framebuffer();
+      //virtual void on_windows_gdi_draw_framebuffer();
 
-      virtual bool on_windows_move(int32_t x, int32_t y);
-      virtual bool on_windows_size(int32_t cx, int32_t cy);
+      virtual bool on_move(int32_t x, int32_t y);
+      virtual bool on_size(int32_t cx, int32_t cy);
 
       virtual void set_capture();
       virtual void release_capture();

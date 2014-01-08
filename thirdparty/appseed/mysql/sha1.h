@@ -1,5 +1,5 @@
-#ifndef SHA1_INCLUDED
-#define SHA1_INCLUDED
+#ifndef SHA1_MYSQL_INCLUDED
+#define SHA1_MYSQL_INCLUDED
 
 /* Copyright (c) 2002, 2012, Oracle and/or its affiliates. All rights reserved.
 
@@ -27,4 +27,4 @@ void compute_sha1_hash_multi(uint8 *digest, const char *buf1, int len1,
 
 C_MODE_END
 
-#endif /* SHA1_INCLUDED */
+#endif /* SHA1_MYSQL_INCLUDED */

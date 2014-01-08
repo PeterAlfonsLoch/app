@@ -888,6 +888,8 @@ typedef char		my_bool; /* Small bool */
 #define bool In_C_you_should_use_my_bool_instead()
 #endif
 
+#undef __func__
+
 /* Provide __func__ macro definition for platforms that miss it. */
 #if __STDC_VERSION__ < 199901L
 #  if __GNUC__ >= 2
@@ -905,40 +907,6 @@ typedef char		my_bool; /* Small bool */
 #  define __func__ "<unknown>"
 #endif
 
-#ifndef HAVE_RINT
-/**
-   All integers up to this number can be represented exactly as double precision
-   values (DBL_MANT_DIG == 53 for IEEE 754 hardware).
-*/
-#define MAX_EXACT_INTEGER ((1LL << DBL_MANT_DIG) - 1)
-
-/**
-   rint(3) implementation for platforms that do not have it.
-   Always rounds to the nearest integer with ties being rounded to the nearest
-   even integer to mimic glibc's rint() behavior in the "round-to-nearest"
-   FPU mode. Hardware-specific optimizations are possible (frndint on x86).
-   Unlike this implementation, hardware will also honor the FPU rounding mode.
-*/
-
-static inline double rint(double x)
-{
-  double f, i;
-  f = modf(x, &i);
-  /*
-    All doubles with absolute values > MAX_EXACT_INTEGER are even anyway,
-    no need to check it.
-  */
-  if (x > 0.0)
-    i += (double) ((f > 0.5) || (f == 0.5 &&
-                                 i <= (double) MAX_EXACT_INTEGER &&
-                                 (longlong) i % 2));
-  else
-    i -= (double) ((f < -0.5) || (f == -0.5 &&
-                                  i >= (double) -MAX_EXACT_INTEGER &&
-                                  (longlong) i % 2));
-  return i;
-}
-#endif /* HAVE_RINT */
 
 /*
   MYSQL_PLUGIN_IMPORT macro is used to export mysqld data

@@ -40,7 +40,7 @@ class CLASS_DECL_BASE device_context
 public:
 
 
-   cairo_t *      m_pdc;
+   //cairo_t *      m_pdc;
 
    device_context();
 

@@ -33,7 +33,9 @@
  *	Kristian Høgsberg <krh@redhat.com>
  */
 #include "base/base/base/base.h"
+#ifndef _BSD_SOURCE
 #define _BSD_SOURCE /* for snprintf() */
+#endif
 #include "cairoint.h"
 
 #include "cairo-output-stream-private.h"
@@ -43,7 +45,9 @@
 #include "cairo-compiler-private.h"
 
 #include <stdio.h>
+#ifndef ANDROID
 #include <locale.h>
+#endif
 #include <errno.h>
 
 /* Numbers printed with %f are printed with this number of significant

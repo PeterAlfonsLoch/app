@@ -36,7 +36,9 @@
  *	Chris Wilson <chris@chris-wilson.co.uk>
  */
 #include "base/base/base/base.h"
+#ifndef _BSD_SOURCE
 #define _BSD_SOURCE /* for hypot() */
+#endif
 #include "cairoint.h"
 
 #include "cairo-box-inline.h"

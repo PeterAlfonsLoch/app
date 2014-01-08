@@ -87,7 +87,7 @@ static int comp_names(struct fileinfo *a, struct fileinfo *b)
 } /* comp_names */
 
 
-#if !defined(_WIN32)
+#if !defined(_WIN32) 
 
 MY_DIR	*my_dir(const char *path, myf MyFlags)
 {

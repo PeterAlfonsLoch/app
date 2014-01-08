@@ -38,7 +38,9 @@
  *      Carl Worth <cworth@cworth.org>
  */
 #include "base/base/base/base.h"
+#ifndef ANDROID
 #define _BSD_SOURCE /* for strdup() */
+#endif
 #include "cairoint.h"
 
 #include "cairo-error-private.h"

@@ -37,9 +37,11 @@ void window_android::create(oswindow window, int64_t cxParam, int64_t cyParam, i
 
    //}
 
-   int32_t iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, cxParam);
+   //int32_t iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, cxParam);
 
-   m_mem.allocate(iStride * cyParam);
+   int32_t iStride = iStrideParam;
+
+   //m_mem.allocate(iStride * cyParam);
 
    //m_cairosurfaceSource = cairo_image_surface_create_for_data((unsigned char *) m_mem.get_data(), CAIRO_FORMAT_ARGB32, cxParam, cyParam, iStride);
 

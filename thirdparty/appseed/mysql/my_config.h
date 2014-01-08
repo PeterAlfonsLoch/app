@@ -213,8 +213,45 @@
 /* #undef HAVE_STRSEP */
 #define HAVE_STRTOK_R 1
 #define HAVE_STRTOLL 1
+
+#if !defined(ANDROID)
 #define HAVE_TELL 1
+#endif
+
 #define HAVE_TEMPNAM 1
+
+#if defined(ANDROID)
+#define SYSTEM_TYPE "Android"
+#define MACHINE_TYPE "ARM"
+#define HAVE_RINT 1
+#undef HAVE_GETPASS
+#define HAVE_UTIME_H 1
+#define HAVE_DIRENT_H 1
+#define HAVE_SYS_IOCTL_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_FDATASYNC 1
+#define HAVE_DECL_FDATASYNC 1
+#define HAVE_POLL_H 1
+#define HAVE_POLL 1
+#define HAVE_SYS_SOCKET_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_SYS_MMAN_H 1
+#define HAVE_FCNTL 1
+//#define HAVE_MKSTEMP 1
+#define _access access
+#define _chmod chmod
+#define _unlink unlink
+#define _getcwd getcwd
+#define _chdir chdir
+//#define tell tell64
+#define _cputs cputs
+#define _getch getch
+#define _open open
+#define _read read
+#define _close close
+#define _strdup strdup
+#endif
+
 
 
 #if defined(LINUX)
@@ -425,7 +462,7 @@
 /* #undef HAVE_DTRACE */
 
 /* Windows stuff, mostly functions, that have Posix analogs but named differently */
-#if !defined(MACOS)
+#if !defined(MACOS) && !defined(ANDROID)
 #define S_IROTH _S_IREAD
 #define S_IFIFO _S_IFIFO
 #endif
