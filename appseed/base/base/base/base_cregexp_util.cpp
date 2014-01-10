@@ -67,13 +67,13 @@ index cregexp_util::match(string_array & stra, const char * lpcsz, const char * 
 
 bool cregexp_util::find(string & strMatch, const string & str, cregexp * pre, index iSubString, strsize  * piStart, strsize  * piEnd)
 {
-   
+
    if(pre == NULL)
       return false;
 
-   strsize iStart;
-   
-   strsize iEnd;
+   strsize iStart = piStart == NULL ? 0 : *piStart;
+
+   strsize iEnd = piEnd == NULL ? str.get_length() - 1 : *piEnd;
 
    bool bOk = find(str, pre, iSubString, &iStart, &iEnd);
 
@@ -99,7 +99,7 @@ bool cregexp_util::find(string & strMatch, const string & str, cregexp * pre, in
 
 bool cregexp_util::find(string & strMatch, const string & str, const string & strExp, index iSubString, strsize  * piStart, strsize  * piEnd)
 {
-   
+
    cregexp * pre;
 
    pre = CompileExpression(strExp, false);
@@ -142,7 +142,7 @@ bool cregexp_util::find(const string & str, cregexp * re, index iSubString, strs
    string strSubject;
 
    strsize iStart;
-   
+
    strsize iEnd;
 
    if(piStart != NULL)
@@ -185,7 +185,7 @@ bool cregexp_util::find(const string & str, cregexp * re, index iSubString, strs
    {
       *piStart = iStart;
    }
-   
+
    if(piEnd != NULL)
    {
       *piEnd = iEnd;
@@ -252,17 +252,17 @@ bool cregexp_util::split(string_array & stra, index_array & iaStart, index_array
 
    while(true)
    {
-      
+
       strsize iEnd = str.get_length() - 1;
 
       iPreviousStart = iStart;
-      
+
       if(!find(strMatch, str, pre, 0, &iStart, &iEnd))
          break;
 
       if(bAddEmpty || iStart > iPreviousStart)
       {
-         
+
          if(bWithSeparator)
          {
             stra.add(str.substr(iPreviousStart, iEnd - iPreviousStart + 1));
@@ -278,7 +278,7 @@ bool cregexp_util::split(string_array & stra, index_array & iaStart, index_array
       }
 
       iStart = iEnd + 1;
-      
+
       if(iStart >= str.length())
          break;
 
@@ -305,17 +305,17 @@ bool cregexp_util::split(string_array & stra, const string & str, cregexp * pre,
 
    while(true)
    {
-      
+
       strsize iEnd = str.get_length() - 1;
 
       iPreviousStart = iStart;
-      
+
       if(!find(strMatch, str, pre, 0, &iStart, &iEnd))
          break;
 
       if(bAddEmpty || iStart > iPreviousStart)
       {
-         
+
          if(bWithSeparator)
          {
             stra.add(str.substr(iPreviousStart, iEnd - iPreviousStart + 1));
@@ -328,7 +328,7 @@ bool cregexp_util::split(string_array & stra, const string & str, cregexp * pre,
       }
 
       iStart = iEnd + 1;
-      
+
       if(iStart >= str.length())
          break;
 
@@ -430,9 +430,9 @@ bool cregexp_util::match(const char * lpsz, cregexp * re)
 
 void cregexp_util::Format(string & str, string_array & wstraArg)
 {
-   
+
    string wstrExp;
-   
+
    for(int32_t i = 0; i < wstraArg.get_size(); i++)
    {
 
@@ -452,7 +452,7 @@ void cregexp_util::Format(string & str, string_array & wstraArg)
 
 bool cregexp_util::replace(string & str, const string & strTopicParam, const string & strExp, index iSubString, const string & strReplace, strsize start, strsize end)
 {
-   
+
    sp(cregexp) re;
 
    re = CompileExpression(strExp, true);

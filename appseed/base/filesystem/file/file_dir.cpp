@@ -430,8 +430,20 @@ bool eat_end_level_dup(string & str, int32_t iLevelCount, const char * lpSeparat
 }
 
 
+
 string ca2_module_folder_dup()
 {
+
+   static bool s_bCalc = false;
+
+   static string s_strCalc;
+
+   if(s_bCalc)
+   {
+
+      return s_strCalc;
+
+   }
 
 #ifdef WINDOWSEX
 
@@ -440,11 +452,11 @@ string ca2_module_folder_dup()
    char lpszModuleFolder[MAX_PATH + 1];
    LPTSTR lpszModuleFileName;
    GetFullPathName(lpszModuleFilePath, MAX_PATH + 1, lpszModuleFolder, &lpszModuleFileName);
-   return string(lpszModuleFolder, lpszModuleFileName - lpszModuleFolder);
+   s_strCalc = string(lpszModuleFolder, lpszModuleFileName - lpszModuleFolder);
 
 #elif defined(LINUX)
 
-   void * handle = dlopen("libca2ca.so", RTLD_NOW);
+   void * handle = dlopen("libcore.so", RTLD_NOW);
 
    if(handle == NULL)
       return "";
@@ -457,11 +469,11 @@ string ca2_module_folder_dup()
 
    dlclose(handle);
 
-   return strCa2ModuleFolder;
+   s_strCalc = strCa2ModuleFolder;
 
 #elif defined(METROWIN)
 
-   return "";
+   s_strCalc = "";
 
 #elif defined(MACOS)
 
@@ -479,11 +491,15 @@ string ca2_module_folder_dup()
       }
 
 
-      return ::dir::name(::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libca2.dylib", "rfs")); // readable - normal file - non zero sized
+      s_strCalc = ::dir::name(::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libca2.dylib", "rfs")); // readable - normal file - non zero sized
 
    }
 
 #endif
+
+   s_bCalc = true;
+
+   return s_strCalc;
 
 
 }
@@ -498,7 +514,7 @@ string dir::element(const char * path1, const char * path2, const char * path3, 
 
       string str;
 
-      
+
       str = get_ca2_module_folder();
       stringa stra;
 
@@ -818,7 +834,7 @@ void dir::ls(stringa & stra, const char *psz)
    }
    catch (...)
    {
-      
+
       return;
 
    }

@@ -954,6 +954,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
       }
       else
       {
+#ifndef LINUX
          if(rectClient.size() != m_dibBk->size())
          {
             m_dibBk->create(rectClient.size());
@@ -979,6 +980,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
                null_point(),
                SRCCOPY);
          }
+#endif
       }
       pdc->SelectClipRgn(NULL);
    }

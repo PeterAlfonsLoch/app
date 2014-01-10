@@ -99,6 +99,8 @@ void window_xlib::update_window(oswindow window, COLORREF * pOsBitmapData, LPCRE
 
    copy_colorref((COLORREF *) m_mem.get_data(), pOsBitmapData, iStride);
 
+   memset(m_mem.get_data(), 0xCC, iStride * 20);
+
    try
    {
 
