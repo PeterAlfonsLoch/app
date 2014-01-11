@@ -131,9 +131,9 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int
    if(m_mapdirFileName[strDir].is_null())
       m_mapdirFileName[strDir] = canew(stringa);
    if (m_mapdirFileSize[strDir].is_null())
-      m_mapdirFileSize[strDir] = canew(int_array);
+      m_mapdirFileSize[strDir] = canew(int64_array);
    if (m_mapdirFolderSize[strDir].is_null())
-      m_mapdirFolderSize[strDir] = canew(int_array);
+      m_mapdirFolderSize[strDir] = canew(int64_array);
 
 
    stringa        & straDir         = *m_mapdirFolder[strDir];

@@ -206,13 +206,63 @@ bool file_operation::step()
          }
          else
          {
+
             {
+
                string strDestPath = m_fileDst->GetFilePath();
+
                m_fileDst->close();
+
                ::file::file_status st;
-               m_fileSrc->GetStatus(st);
-               System.os().set_file_status(strDestPath, st);
+               
+               bool bOk = true;
+
+               try
+               {
+
+                  m_fileSrc->GetStatus(st);
+
+               }
+               catch (...)
+               {
+
+                  bOk = false;
+
+               }
+
+               if (bOk)
+               {
+               
+                  try
+                  {
+                     
+                     System.os().set_file_status(strDestPath, st);
+
+                  }
+                  catch (...)
+                  {
+
+                     bOk = false;
+
+                  }
+                  
+                  if (!bOk)
+                  {
+
+                     TRACE("Failed to set status of destination file '%s' using file status of '%s' file", strDestPath, m_fileSrc->GetFilePath());
+
+                  }
+
+               }
+               else
+               {
+
+                  TRACE("Failed to get status of source file '%s' for setting file status of '%s' file", m_fileSrc->GetFilePath(), strDestPath);
+
+               }
+
                m_fileSrc->close();
+
             }
             m_iFile++;
             while(m_iFile < m_stra.get_size() && Application.dir().is(m_stra[m_iFile]) && !::str::ends_ci(m_stra[m_iFile], ".zip"))
