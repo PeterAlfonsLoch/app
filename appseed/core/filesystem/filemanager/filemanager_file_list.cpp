@@ -803,8 +803,16 @@ namespace filemanager
       string strDir;
       strDir = GetFileManagerItem().m_strPath;
 
-      GetFileManagerDoc()->get_operation_doc(true)->m_thread.queue_copy(stra, strDir, NULL, true);
-      GetFileManagerDoc()->get_operation_doc(true)->m_thread.kick();
+      tab_view * ptabview = GetTypedParent < tab_view >();
+
+      if (ptabview != NULL)
+      {
+
+         ptabview->GetFileManagerDoc()->get_operation_doc(true)->m_thread.queue_copy(stra, strDir, NULL, true);
+
+         ptabview->GetFileManagerDoc()->get_operation_doc(true)->m_thread.kick();
+
+      }
 
 
      /* for(int32_t i = 0; i < stra.get_size(); i++)
