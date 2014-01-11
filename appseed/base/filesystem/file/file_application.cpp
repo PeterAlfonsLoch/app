@@ -69,15 +69,69 @@ namespace file
 
    }
 
+
+   var application::length(const char * pszPath)
+   {
+
+      if (::str::begins_ci(pszPath, "uifs://"))
+      {
+
+         return AppUser(m_pbaseapp).m_pifs->file_length(pszPath);
+
+      }
+
+      return m_pbaseapp->m_pbasesystem->m_spfile->length(pszPath, m_pbaseapp);
+
+   }
+
+
+   var application::length(const string & strPath)
+   {
+
+      if (::str::begins_ci_iws(strPath, "uifs://"))
+      {
+
+         return AppUser(m_pbaseapp).m_pifs->file_length(strPath);
+
+      }
+
+      return m_pbaseapp->m_pbasesystem->m_spfile->length(strPath, m_pbaseapp);
+
+   }
+
+
+   var application::length(const var & var)
+   {
+
+      const string & strPath = var.get_string();
+
+      if (::str::begins_ci_iws(strPath, "uifs://"))
+      {
+
+         return AppUser(m_pbaseapp).m_pifs->file_length(strPath);
+
+      }
+
+      return m_pbaseapp->m_pbasesystem->m_spfile->length(strPath, m_pbaseapp);
+
+   }
+
+
    string application::time(const char * pszBasePath, int32_t iDepth, const char * pszPrefix, const char * pszSuffix)
    {
+
       return m_pbaseapp->m_pbasesystem->m_spfile->time(m_pbaseapp, pszBasePath, iDepth, pszPrefix, pszSuffix);
+
    }
+
 
    string application::time_square(const char * pszPrefix, const char * pszSuffix)
    {
+
       return m_pbaseapp->m_pbasesystem->m_spfile->time_square(m_pbaseapp, pszPrefix, pszSuffix);
+
    }
+
 
    string application::time_log(const char * pszId)
    {

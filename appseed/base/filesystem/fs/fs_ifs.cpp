@@ -57,7 +57,7 @@ bool ifs::has_subdir(const char * pszPath)
 
    }
 
-   ls(pszPath, NULL, NULL);
+   ls(pszPath, NULL, NULL, NULL);
 
 
    if(m_maplsTimeout.Lookup(strDir, dwTimeout))
@@ -84,7 +84,7 @@ void ifs::root_ones(stringa & stra)
 
 
 
-bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
+bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int64_array * piaSize)
 {
 
    uint32_t dwTimeout;
@@ -108,6 +108,11 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
             pstraTitle->add(*m_mapdirFolderName[strDir]);
             pstraTitle->add(*m_mapdirFileName[strDir]);
          }
+         if (piaSize != NULL)
+         {
+            piaSize->add(*m_mapdirFolderSize[strDir]);
+            piaSize->add(*m_mapdirFileSize[strDir]);
+         }
          return true;
       }
    }
@@ -125,19 +130,26 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
       m_mapdirFile[strDir] = canew(stringa);
    if(m_mapdirFileName[strDir].is_null())
       m_mapdirFileName[strDir] = canew(stringa);
+   if (m_mapdirFileSize[strDir].is_null())
+      m_mapdirFileSize[strDir] = canew(int_array);
+   if (m_mapdirFolderSize[strDir].is_null())
+      m_mapdirFolderSize[strDir] = canew(int_array);
 
 
-   stringa & straDir          = *m_mapdirFolder[strDir];
-   stringa & straDirName      = *m_mapdirFolderName[strDir];
-   stringa & straFile         = *m_mapdirFile[strDir];
-   stringa & straFileName     = *m_mapdirFileName[strDir];
+   stringa        & straDir         = *m_mapdirFolder[strDir];
+   stringa        & straDirName     = *m_mapdirFolderName[strDir];
+   stringa        & straFile        = *m_mapdirFile[strDir];
+   stringa        & straFileName    = *m_mapdirFileName[strDir];
+   int64_array    & iaFileSize      = *m_mapdirFileSize[strDir];
+   int64_array    & iaFolderSize    = *m_mapdirFolderSize[strDir];
 
 
    straDir.remove_all();
    straDirName.remove_all();
    straFile.remove_all();
    straFileName.remove_all();
-
+   iaFileSize.remove_all();
+   iaFolderSize.remove_all();
 
 
 
@@ -201,6 +213,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
          m_mapfileTimeout.remove_key(strPath);
          straDir.add(strPath);
          straDirName.add(strName);
+         iaFolderSize.add(0);
       }
    }
 
@@ -214,11 +227,13 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
          string strExtension = pnode->child_at(i)->attr("extension");
          if(pnode->child_at(i)->get_name() != "file")
             continue;
+         string strSize = pnode->child_at(i)->attr("size");
          string strPath = dir_path(pszDir, strName);
          m_mapfileTimeout[strPath] = ::get_tick_count() + (4 * 1000);
          m_mapdirTimeout.remove_key(strPath);
          straFile.add(strPath);
          straFileName.add(strName);
+         iaFileSize.add(::str::to_int64(strSize));
       }
    }
    if(pstraPath != NULL)
@@ -230,6 +245,11 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
    {
       pstraTitle->add(straDirName);
       pstraTitle->add(straFileName);
+   }
+   if (piaSize != NULL)
+   {
+      piaSize->add(iaFolderSize);
+      piaSize->add(iaFileSize);
    }
 
    m_maplsTimeout.set_at(strDir, get_tick_count() + ((1984 + 1977) * 4));
@@ -271,7 +291,7 @@ bool ifs::is_dir(const char * pszPath)
       {
          stringa straPath;
          stringa straTitle;
-         ls(System.dir().name(strPath), &straPath, &straTitle);
+         ls(System.dir().name(strPath), &straPath, &straTitle, NULL);
       }
       else
       {
@@ -285,7 +305,7 @@ bool ifs::is_dir(const char * pszPath)
       {
          stringa straPath;
          stringa straTitle;
-         ls(System.dir().name(strPath), &straPath, &straTitle);
+         ls(System.dir().name(strPath), &straPath, &straTitle, NULL);
          if(m_mapdirTimeout.Lookup(strPath, dwTimeout))
          {
             return true;
@@ -362,9 +382,20 @@ bool ifs::file_move(const char * pszDst, const char * pszSrc)
 
 }
 
+
 bool ifs::file_exists(const char * pszPath)
 {
+
    return ::fs::data::file_exists(pszPath);
+
+}
+
+
+var ifs::file_length(const char * pszPath)
+{
+
+   return ::fs::data::file_length(pszPath);
+
 }
 
 

@@ -178,6 +178,53 @@ namespace http
    }
 
 
+   var application::length(const char * pszUrl, property_set & set)
+   {
+
+      return length(pszUrl, NULL, set);
+
+   }
+
+
+   var application::length(const char * pszUrl, var * pvarQuery, property_set & set)
+   {
+
+      string strUrl(pszUrl);
+
+      string strFile(strUrl);
+
+      strFile.replace(":", "_");
+      strFile.replace("//", "/");
+      strFile.replace("?", "%19");
+      strFile = System.dir().appdata("cache/" + strFile + ".length_question");
+
+      string strCache = Application.file().as_string(strFile);
+
+      if (strCache.has_char())
+      {
+         if (strCache == "-1")
+         {
+            return -1;
+         }
+         else if (strCache == "no")
+         {
+            return ::str::to_int64(strCache);
+         }
+      }
+
+      var len = System.http().length(strUrl, process_set(set, pszUrl));
+
+      if (len.is_empty())
+         strCache = "-1";
+      else
+         strCache = ::str::from(len.int64());
+
+      Application.file().put_contents(strFile, strCache);
+
+      return len;
+
+   }
+
 
    bool application::request(const char * pszRequest, const char * pszUrl, property_set & set)
    {

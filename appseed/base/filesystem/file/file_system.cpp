@@ -146,8 +146,135 @@ namespace file
       }
    }
 
-   var system::length(const char * pszPath)
+
+   bool system::exists(const char * pszPath, sp(base_application) papp)
    {
+
+      return exists(pszPath, NULL, papp);
+
+   }
+
+
+   bool system::exists(const char * pszPath, var * pvarQuery, sp(base_application) papp)
+   {
+
+      return exists(string(pszPath), pvarQuery, papp);
+
+   }
+
+
+   bool system::exists(const string & strPath, sp(base_application) papp)
+   {
+
+      return exists(strPath, NULL, papp);
+
+   }
+
+
+   bool system::exists(const string & strPath, var * pvarQuery, sp(base_application) papp)
+   {
+
+      if (::str::begins_ci_iws(strPath, "uifs://"))
+      {
+         return AppUser(papp).m_pifs->file_exists(strPath);
+      }
+
+      if (::str::begins_ci_iws(strPath, "http://")
+         || ::str::begins_ci_iws(strPath, "https://"))
+      {
+         property_set set(papp);
+         set["user"] = papp->safe_get_user();
+         return App(papp).http().exists(strPath, pvarQuery, set);
+      }
+
+
+      if (papp->m_bZipIsDir)
+      {
+
+         strsize iFind = ::str::find_ci(".zip:", strPath);
+
+         zip::Util ziputil;
+
+         if (iFind >= 0)
+         {
+
+            if (!exists(strPath.Mid(0, iFind + 4), papp))
+               return false;
+
+            return ziputil.exists(papp, strPath);
+
+         }
+
+
+      }
+
+      if (!papp->m_pbasesystem->dir().name_is(strPath, papp))
+         return false;
+
+#ifdef WINDOWS
+
+
+      return file_exists_dup(strPath) != FALSE;
+      // return true;
+
+      //return App(papp).m_spfsdata->file_exists(strPath);
+      //return ::GetFileAttributesW(::str::international::utf8_to_unicode(strPath)) != INVALID_FILE_ATTRIBUTES;
+
+#else
+
+      struct stat st;
+
+      if (stat(strPath, &st) != 0)
+         return false;
+
+      return S_ISREG(st.st_mode) || S_ISDIR(st.st_mode);
+
+#endif
+
+   }
+
+   var system::length(const char * pszPath, sp(base_application) papp)
+   {
+
+      return length(pszPath, NULL, papp);
+
+   }
+
+
+   var system::length(const char * pszPath, var * pvarQuery, sp(base_application) papp)
+   {
+
+      return length(string(pszPath), pvarQuery, papp);
+
+   }
+
+
+   var system::length(const string & strPath, sp(base_application) papp)
+   {
+
+      return length(strPath, NULL, papp);
+
+   }
+
+
+   var system::length(const string & strPath, var * pvarQuery, sp(base_application) papp)
+   {
+
+      if (::str::begins_ci(strPath, "http://") || ::str::begins_ci(strPath, "https://"))
+      {
+
+         property_set set(papp);
+         
+         return Application.http().length(strPath, set);
+
+      }
+
+      if (::str::begins_ci(strPath, "uifs://"))
+      {
+
+         return AppUser(papp).m_pifs->file_length(strPath);
+
+      }
 
       var varRet;
 
@@ -155,7 +282,7 @@ namespace file
 
       WIN32_FILE_ATTRIBUTE_DATA data;
 
-      if(!GetFileAttributesExW(::str::international::utf8_to_unicode(pszPath), GetFileExInfoStandard, &data))
+      if(!GetFileAttributesExW(::str::international::utf8_to_unicode(strPath), GetFileExInfoStandard, &data))
       {
          varRet.set_type(var::type_null);
       }
@@ -975,133 +1102,6 @@ restart:
    }
 
 
-   bool system::exists(const char * pszPath, sp(base_application) papp)
-   {
-
-      return exists(pszPath, NULL, papp);
-
-   }
-
-
-   bool system::exists(const char * pszPath, var * pvarQuery, sp(base_application) papp)
-   {
-
-      if(::str::begins_ci_iws(pszPath, "uifs://"))
-      {
-         return AppUser(papp).m_pifs->file_exists(pszPath);
-      }
-      else if(::str::begins_ci_iws(pszPath, "http://") || ::str::begins_ci_iws(pszPath, "https://"))
-      {
-         property_set set(papp);
-         set["user"] = papp->safe_get_user();
-         return App(papp).http().exists(pszPath, pvarQuery, set);
-      }
-
-      if(papp->m_bZipIsDir)
-      {
-
-         strsize iFind = ::str::find_ci(".zip:", pszPath);
-
-         zip::Util ziputil;
-
-         if(iFind >= 0)
-            return ziputil.exists(papp, pszPath);
-
-         if(!Sys(papp).dir().name_is(pszPath, papp))
-            return false;
-
-      }
-
-#ifdef WINDOWS
-
-
-      return file_exists_dup(pszPath) != FALSE;
-
-      //return ::GetFileAttributesW(::str::international::utf8_to_unicode(pszPath)) != INVALID_FILE_ATTRIBUTES;
-
-#else
-
-      struct stat st;
-
-      if(stat(pszPath, &st) != 0)
-         return false;
-
-      return S_ISREG(st.st_mode) || S_ISDIR(st.st_mode);
-
-#endif
-
-   }
-
-
-   bool system::exists(const string & strPath, sp(base_application) papp)
-   {
-
-      return exists(strPath, NULL, papp);
-
-   }
-
-
-   bool system::exists(const string & strPath, var * pvarQuery, sp(base_application) papp)
-   {
-
-      if(::str::begins_ci_iws(strPath, "uifs://"))
-      {
-         return AppUser(papp).m_pifs->file_exists(strPath);
-      }
-
-      if(::str::begins_ci_iws(strPath, "http://")
-         || ::str::begins_ci_iws(strPath, "https://"))
-      {
-         property_set set(papp);
-         set["user"] = papp->safe_get_user();
-         return App(papp).http().exists(strPath, pvarQuery, set);
-      }
-
-
-      if(papp->m_bZipIsDir)
-      {
-
-         strsize iFind = ::str::find_ci(".zip:", strPath);
-
-         zip::Util ziputil;
-
-         if(iFind >= 0)
-         {
-
-            if(!exists(strPath.Mid(0, iFind + 4), papp))
-               return false;
-
-            return ziputil.exists(papp, strPath);
-
-         }
-
-
-      }
-
-      if(!papp->m_pbasesystem->dir().name_is(strPath, papp))
-         return false;
-
-#ifdef WINDOWS
-
-
-      return file_exists_dup(strPath) != FALSE;
-      // return true;
-
-      //return App(papp).m_spfsdata->file_exists(strPath);
-      //return ::GetFileAttributesW(::str::international::utf8_to_unicode(strPath)) != INVALID_FILE_ATTRIBUTES;
-
-#else
-
-      struct stat st;
-
-      if(stat(strPath, &st) != 0)
-         return false;
-
-      return S_ISREG(st.st_mode) || S_ISDIR(st.st_mode);
-
-#endif
-
-   }
 
    string system::paste(const char * pszLocation, const char * path, sp(base_application) papp)
    {

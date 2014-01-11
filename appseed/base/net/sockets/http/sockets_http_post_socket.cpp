@@ -74,7 +74,7 @@ namespace sockets
       if (Application.file().exists(filename))
       {
          m_mapFiles[name]              = filename;
-         m_mapContentLength[filename]  = System.file().length(filename);
+         m_mapContentLength[filename]  = Application.file().length(filename);
          m_mapContentType[filename]    = type;
          m_bMultipart                  = true;
       }

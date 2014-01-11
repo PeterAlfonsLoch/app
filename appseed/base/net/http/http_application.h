@@ -40,6 +40,9 @@ namespace http
       bool exists(const char * pszUrl, property_set & set);
       bool exists(const char * pszUrl, var * pvarQuery, property_set & set);
 
+      var length(const char * pszUrl, property_set & set);
+      var length(const char * pszUrl, var * pvarQuery, property_set & set);
+
       string get(const char * pszUrl, property_set & set);
 
       //bool request(const char * pszRequest, const char * pszUrl, primitive::memory_base & memory, property_set & set);

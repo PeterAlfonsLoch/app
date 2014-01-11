@@ -1590,6 +1590,47 @@ retry:
    }
 
 
+   var system::length(const char * pszUrl, ::property_set & set)
+   {
+
+      ::sockets::socket_handler handler(get_app());
+
+      set["only_headers"] = true;
+      set["minimal_headers"] = true;
+
+      ::url_domain domain;
+
+      domain.create(System.url().get_server(pszUrl));
+
+      if (::str::begins(System.url().get_object(pszUrl), "/matter/"))
+      {
+
+         set["disable_ca2_sessid"] = true;
+
+      }
+
+      sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, set);
+
+      if (psocket == NULL)
+         return false;
+
+      int32_t iStatusCode = psocket->outattr("http_status_code");
+
+      if (iStatusCode == 200)
+      {
+         
+         return psocket->outheader(__id(content_length));
+
+      }
+      else
+      {
+
+         return var(var::type_null);
+
+      }
+      
+
+   }
 
 
    string system::gmdate(time_t t)

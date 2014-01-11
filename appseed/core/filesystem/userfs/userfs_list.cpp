@@ -285,6 +285,7 @@ namespace userfs
 
       stringa straPath;
       stringa straTitle;
+      int64_array iaSize;
       if (strlen(lpcsz) == 0)
       {
          get_document()->set().root_ones(straPath);
@@ -292,7 +293,7 @@ namespace userfs
       }
       else
       {
-         get_document()->set().ls(lpcsz, &straPath, &straTitle);
+         get_document()->set().ls(lpcsz, &straPath, &straTitle, &iaSize);
       }
 
       for (int32_t i = 0; i < straPath.get_size(); i++)

@@ -75,7 +75,7 @@ namespace fs
 
 
 
-   bool remote_native::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
+   bool remote_native::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int64_array * piaSize)
    {
 
       try
@@ -147,6 +147,7 @@ namespace fs
             if(pnode->child_at(i)->get_name() != "file")
                continue;
             string strPath = dir_path(pszDir, strName);
+            string strSize = pnode->child_at(i)->attr("size");
             m_mapfileTimeout[strPath] = ::get_tick_count() + (15 * 1000);
             m_mapdirTimeout.remove_key(strPath);
             if(pstraPath != NULL)
@@ -156,6 +157,10 @@ namespace fs
             if(pstraTitle != NULL)
             {
                pstraTitle->add(strName);
+            }
+            if (piaSize != NULL)
+            {
+               piaSize->add(::str::to_int64(strSize));
             }
          }
       }
@@ -197,7 +202,8 @@ namespace fs
          {
             stringa straPath;
             stringa straTitle;
-            ls(System.dir().name(pszPath), &straPath, &straTitle);
+            int64_array iaSize;
+            ls(System.dir().name(pszPath), &straPath, &straTitle, &iaSize);
          }
          else
          {
@@ -211,7 +217,8 @@ namespace fs
          {
             stringa straPath;
             stringa straTitle;
-            ls(System.dir().name(pszPath), &straPath, &straTitle);
+            int64_array iaSize;
+            ls(System.dir().name(pszPath), &straPath, &straTitle, &iaSize);
          }
          else
          {

@@ -83,7 +83,7 @@ namespace fs
       return strPath.Left(iFind);
    }
 
-   bool data::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
+   bool data::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int64_array * piaSize)
    {
       UNREFERENCED_PARAMETER(pszDir);
       UNREFERENCED_PARAMETER(pstraPath);
@@ -151,8 +151,26 @@ namespace fs
    bool data::file_exists(const char * pszPath)
    {
       stringa straTitle;
-      ls(eat_end_level(pszPath, 1), NULL, &straTitle);
+      ls(eat_end_level(pszPath, 1), NULL, &straTitle, NULL);
       return straTitle.contains_ci(file_name(pszPath));
+   }
+
+   var data::file_length(const char * pszPath)
+   {
+      
+      stringa straTitle;
+
+      int64_array iaFileSize;
+      
+      ls(eat_end_level(pszPath, 1), NULL, &straTitle, &iaFileSize);
+      
+      index iFind = straTitle.find_first_ci(file_name(pszPath));
+
+      if (iFind < 0)
+         return var(var::type_null);
+
+      return iaFileSize[iFind];
+
    }
 
 } // namespace fs

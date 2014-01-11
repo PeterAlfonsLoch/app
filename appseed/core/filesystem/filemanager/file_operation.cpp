@@ -2,9 +2,7 @@
 
 
 file_operation::file_operation(sp(base_application) papp) :
-   element(papp),
-   m_fileSrc(allocer()),
-   m_fileDst(allocer())
+   element(papp)
 {
 
    m_oswindowCallback = NULL;
@@ -95,16 +93,24 @@ bool file_operation::set_delete(stringa & stra)
 
 bool file_operation::open_src_dst(const char * pszSrc, const char * pszDst)
 {
+   
    if(Application.dir().is(pszSrc) && !::str::ends_ci(pszSrc, ".zip"))
    {
       Application.dir().mk(System.dir().name(pszDst));
       return false;
    }
-   if(!m_fileSrc->open(pszSrc, ::file::mode_read | ::file::type_binary | ::file::share_deny_write))
+   
+   m_fileSrc = Application.file().get_file(pszSrc, ::file::mode_read | ::file::type_binary | ::file::share_deny_write);
+
+   if(m_fileSrc.is_null())
    {
+      
       TRACE("\n Could not open source file(%d)=%s", m_iFile, pszSrc);
+      
       return false;
+
    }
+
    if(!m_bReplaceAll)
    {
 /*      if(System.file().exists(pszDst))
@@ -116,19 +122,31 @@ bool file_operation::open_src_dst(const char * pszSrc, const char * pszDst)
          return false;
       }*/
    }
+   
    Application.dir().mk(System.dir().name(pszDst));
-   if(!m_fileDst->open(pszDst, ::file::mode_write | ::file::type_binary | ::file::mode_create))
+
+   m_fileDst = Application.file().get_file(pszDst, ::file::mode_write | ::file::type_binary | ::file::mode_create);
+
+
+   if (m_fileDst.is_null())
    {
+      
       TRACE("\n Could not open dest file(%d)=%s", m_iFile, pszDst);
+
       property_set propertyset;
+
       propertyset["filepath"] = pszDst;
+
       System.message_box("filemanager\\not_accessible_destination_file.xhtml", propertyset);
+
       return false;
+
    }
 
    TRACE("\n%d Opened %s %s",  m_iFile, pszSrc, pszDst);
 
    return true;
+
 }
 
 
@@ -287,23 +305,36 @@ bool file_operation::finish()
 
 bool file_operation::initialize()
 {
+   
    m_dSize = 0.0;
+   
    var varLen;
+   
    for(int32_t i = 0; i < m_stra.get_size(); i++)
    {
+      
       if(Application.dir().is(m_stra[i]) && !::str::ends_ci(m_stra[i], ".zip"))
       {
+         
          m_daSize.add(0.0);
+         
          m_daRead.add(0.0);
+
       }
       else
       {
-         varLen = System.file().length(m_stra[i]);
+
+         varLen = Application.file().length(m_stra[i]);
+
          if(varLen.is_null())
             return false;
+
          m_dSize += (uint32_t) varLen;
+
          m_daSize.add((double) (uint32_t) varLen);
+
          m_daRead.add(0.0);
+
       }
    }
    return true;

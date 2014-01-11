@@ -96,6 +96,8 @@ namespace http
 
       bool exists(const char * pszUrl, property_set & set);
 
+      var length(const char * pszUrl, property_set & set);
+
       bool get(const char * pszUrl, property_set & set);
 
       bool request(const char * pszMethod, const char * pszUrl, property_set & set);

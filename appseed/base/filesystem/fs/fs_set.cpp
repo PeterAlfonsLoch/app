@@ -69,7 +69,7 @@ namespace fs
 
    }
 
-   bool set::ls(const char * psz, stringa * pstraPath, stringa * pstraTitle)
+   bool set::ls(const char * psz, stringa * pstraPath, stringa * pstraTitle, int64_array * piaSize)
    {
 
       if(psz == NULL || strlen(psz) == 0)
@@ -86,6 +86,10 @@ namespace fs
             {
                pstraTitle->add(file_name(straPath[i]));
             }
+            if (piaSize != NULL)
+            {
+               piaSize->add(file_length(straPath[i]));
+            }
          }
          return true;
       }
@@ -94,7 +98,7 @@ namespace fs
 
       if(pdata != NULL)
       {
-         return pdata->ls(psz, pstraPath, pstraTitle);
+         return pdata->ls(psz, pstraPath, pstraTitle, piaSize);
       }
       
       return false;

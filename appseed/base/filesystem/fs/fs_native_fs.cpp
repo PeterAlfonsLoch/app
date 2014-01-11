@@ -22,10 +22,10 @@ namespace fs
    }
 
 
-   bool native::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
+   bool native::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int64_array * piaSize)
    {
 
-      System.dir().ls(get_app(), pszDir, pstraPath, pstraTitle);
+      System.dir().ls(get_app(), pszDir, pstraPath, pstraTitle, NULL, piaSize);
 
       return true;
 

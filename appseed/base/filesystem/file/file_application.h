@@ -27,6 +27,9 @@ namespace file
       virtual bool exists(const string & strPath);
       virtual bool exists(const var & var);
 
+      virtual var length(const char * pszPath);
+      virtual var length(const string & strPath);
+      virtual var length(const var & var);
 
       string time(const char * pszBasePath, int32_t iDepth = 1, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
       string time_square(const char * pszPrefix = NULL, const char * pszSuffix = NULL);

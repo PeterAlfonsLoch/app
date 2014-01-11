@@ -46,7 +46,7 @@ namespace file
       virtual string name_(const char * path);
       virtual string extension(const char * path);
 
-      virtual var length(const char * path);
+      
 
       virtual void replace(const char * pszContext, const char * pszFind, const char * pszReplace, sp(base_application) papp);
 
@@ -55,6 +55,12 @@ namespace file
 
       virtual bool exists(const char * path, var * pvarQuery, sp(base_application) papp);
       virtual bool exists(const string & path, var * pvarQuery, sp(base_application) papp);
+
+      virtual var length(const char * path, sp(base_application) papp);
+      virtual var length(const string & path, sp(base_application) papp);
+
+      virtual var length(const char * path, var * pvarQuery, sp(base_application) papp);
+      virtual var length(const string & path, var * pvarQuery, sp(base_application) papp);
 
       void  get_ascendants_path(const char * lpcsz, stringa & stra);
       void  get_ascendants_name(const char * lpcsz, stringa & stra);

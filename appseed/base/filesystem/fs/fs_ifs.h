@@ -20,6 +20,8 @@ public:
    strsp(stringa)             m_mapdirFolder;
    strsp(stringa)             m_mapdirFileName;
    strsp(stringa)             m_mapdirFolderName;
+   strsp(int64_array)         m_mapdirFileSize;
+   strsp(int64_array)         m_mapdirFolderSize; // by now, always store item count?
 
 
    ifs(sp(base_application) papp, const char * pszRoot);
@@ -27,7 +29,7 @@ public:
    
    virtual bool has_subdir(const char * pszPath);
    virtual bool fast_has_subdir(const char * pszPath);
-   virtual bool ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle);
+   virtual bool ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int64_array * piaSize);
    virtual bool is_dir(const char * pszPath);
    virtual void root_ones(stringa & stra);
 
@@ -39,6 +41,7 @@ public:
    virtual ::file::buffer_sp get_file(var varFile, UINT nOpenFlags);
 
    virtual bool file_exists(const char * pszPath);
+   virtual var file_length(const char * pszPath);
 
    virtual void defer_initialize();
 
