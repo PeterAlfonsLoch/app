@@ -754,14 +754,21 @@ namespace user
 
       var newName = varFile;
 
-      if (newName.is_empty() || is_new_document())
+      //if (newName.is_empty() || is_new_document())
+      if (newName.is_empty())
       {
+         
          sp(impact_system) ptemplate = get_document_template();
+         
          ASSERT(ptemplate != NULL);
 
          newName = m_strPathName;
-         if (bReplace && (newName.is_empty() || is_new_document()))
+         
+         //if (bReplace && (newName.is_empty() || is_new_document()))
+
+         if (bReplace && newName.is_empty())
          {
+           
             newName = m_strTitle;
             // check for dubious filename
             strsize iBad = newName.get_string().FindOneOf(":/\\");
