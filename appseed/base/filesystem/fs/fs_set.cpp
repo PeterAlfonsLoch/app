@@ -88,7 +88,7 @@ namespace fs
             }
             if (piaSize != NULL)
             {
-               piaSize->add(file_length(straPath[i]));
+               piaSize->add(0); // don't tell size of root folders
             }
          }
          return true;
