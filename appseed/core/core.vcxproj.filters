@@ -2923,9 +2923,6 @@
     <ClCompile Include="graphics\visual\visual_api.cpp">
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\file_operation.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_document.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
@@ -4011,6 +4008,9 @@
     </ClCompile>
     <ClCompile Include="framework\framework.h">
       <Filter>Header Files\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

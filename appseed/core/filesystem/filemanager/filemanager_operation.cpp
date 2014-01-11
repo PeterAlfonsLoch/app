@@ -326,35 +326,57 @@ bool file_operation::initialize()
 
          varLen = Application.file().length(m_stra[i]);
 
-         if(varLen.is_null())
-            return false;
+         if (varLen.is_null())
+         {
 
-         m_dSize += (uint32_t) varLen;
+            m_daSize.add(0.0);
 
-         m_daSize.add((double) (uint32_t) varLen);
+            m_daRead.add(0.0);
 
-         m_daRead.add(0.0);
+         }
+         else
+         {
+
+            m_dSize += (uint32_t)varLen;
+
+            m_daSize.add((double)(uint32_t)varLen);
+
+            m_daRead.add(0.0);
+
+         }
 
       }
+
    }
+
    return true;
+
 }
+
 
 int32_t file_operation::get_item_count()
 {
+
    return (int32_t) m_stra.get_size();
+
 }
+
 
 string file_operation::get_item_message(int32_t iItem)
 {
+
    string str;
-   str.Format("Copying %s (%s) to %s", System.file().name_(m_stra[iItem]),
-      System.dir().name(m_stra[iItem]), m_str);
+
+   str.Format("Copying %s (%s) to %s", System.file().name_(m_stra[iItem]), System.dir().name(m_stra[iItem]), m_str);
+
    return str;
+
 }
+
 
 double file_operation::get_item_progress(int32_t iItem)
 {
+
    if(m_daSize[iItem] == 0.0)
    {
       if(m_iFile > iItem)
