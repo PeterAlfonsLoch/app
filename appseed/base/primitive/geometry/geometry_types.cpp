@@ -3,6 +3,7 @@
 
 
 
+
 int64_t MulDiv(int64_t nNumber, int64_t nNumerator, int64_t nDenominator)
 {
    return muldiv64(nNumber, nNumerator, nDenominator);
@@ -347,10 +348,10 @@ bool offset(__rect64 * prect, int64_t x, int64_t y)
 
 bool x_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2)
 {
-   
+
    prect->left    = max(prect1->left   , prect2->left);
    prect->right   = min(prect1->right  , prect2->right);
-   
+
    if(prect->right > prect->left)
    {
       return true;
