@@ -2646,9 +2646,6 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       if(m_pdibAlphaBlend != NULL)
       {
 
-         throw not_implemented(get_app());
-
-/*
          rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
 
 
@@ -2659,15 +2656,15 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
 
          class point ptSrc(xSrc, ySrc);
-         class point ptDest(xDest, yDest);
-         class size size(nDestWidth, nDestHeight);
+         class point ptDest(xDst, yDst);
+         class size size(nDstWidth, nDstHeight);
 
 
 
          ::draw2d::dib_sp spdib;
          if(pdibWork == NULL)
          {
-            spdib.create(get_app());
+            spdib.create(allocer());
             pdibWork = spdib;
          }
          if(pdibWork == NULL)
@@ -2683,7 +2680,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          ::draw2d::dib_sp spdib2;
          if(pdibWork2 == NULL)
          {
-            spdib2.create(get_app());
+            spdib2.create(allocer());
             pdibWork2 = spdib2;
          }
 
@@ -2691,7 +2688,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          ::draw2d::dib_sp spdib4;
          if(pdibWork4 == NULL)
          {
-            spdib4.create(get_app());
+            spdib4.create(allocer());
             pdibWork4 = spdib4;
          }
          if(pdibWork4 == NULL)
@@ -2702,8 +2699,8 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
          pdibWork4->Fill(255, 0, 0, 0);
 
-         pdibWork4->from(point(max(0, m_ptAlphaBlend.x - xDest), max(0, m_ptAlphaBlend.y - yDest)),
-            m_pdibAlphaBlend->get_graphics(), point(max(0, xDest - m_ptAlphaBlend.x), max(0, yDest - m_ptAlphaBlend.y)), size);
+         pdibWork4->from(point(max(0, m_ptAlphaBlend.x - xDst), max(0, m_ptAlphaBlend.y - yDst)),
+            m_pdibAlphaBlend->get_graphics(), point(max(0, xDst - m_ptAlphaBlend.x), max(0, yDst - m_ptAlphaBlend.y)), size);
 
          pdibWork->channel_multiply(visual::rgba::channel_alpha, pdibWork4);
 
@@ -2711,9 +2708,8 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
 
 
-         return System.imaging().true_blend(this, ptDest, size, pdibWork->get_graphics(), ptSrc);
+         return BitBlt(ptDest.x, ptDest.y, size.cx, size.cy, pdibWork->get_graphics(), ptSrc.x, ptSrc.y, SRCCOPY);
 
-*/
       }
 
       if(pgraphicsSrc == NULL)
