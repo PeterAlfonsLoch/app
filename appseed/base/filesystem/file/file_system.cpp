@@ -264,7 +264,7 @@ namespace file
       {
 
          property_set set(papp);
-         
+
          return Application.http().length(strPath, set);
 
       }
@@ -295,7 +295,7 @@ namespace file
 
       struct stat stat;
 
-      if(::stat(pszPath, &stat)  == -1)
+      if(::stat(strPath, &stat)  == -1)
       {
          varRet.set_type(var::type_null);
       }

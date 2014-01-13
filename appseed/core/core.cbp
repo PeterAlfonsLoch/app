@@ -630,7 +630,6 @@
 		<Unit filename="filesystem/filemanager/SimpleFolderTreeView.h" />
 		<Unit filename="filesystem/filemanager/SimplePreview.h" />
 		<Unit filename="filesystem/filemanager/SimplePreviewInterface.h" />
-		<Unit filename="filesystem/filemanager/file_operation.cpp" />
 		<Unit filename="filesystem/filemanager/file_operation.h" />
 		<Unit filename="filesystem/filemanager/filemanager.h" />
 		<Unit filename="filesystem/filemanager/filemanager_callback.cpp" />
@@ -691,6 +690,7 @@
 		<Unit filename="filesystem/filemanager/filemanager_main_frame.h" />
 		<Unit filename="filesystem/filemanager/filemanager_manager.cpp" />
 		<Unit filename="filesystem/filemanager/filemanager_manager.h" />
+		<Unit filename="filesystem/filemanager/filemanager_operation.cpp" />
 		<Unit filename="filesystem/filemanager/filemanager_operation_child_frame.cpp" />
 		<Unit filename="filesystem/filemanager/filemanager_operation_child_frame.h" />
 		<Unit filename="filesystem/filemanager/filemanager_operation_document.cpp" />
