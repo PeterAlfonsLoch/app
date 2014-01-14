@@ -285,3 +285,4 @@ CLASS_DECL_BASE ::count utf16_len(const char * psz);
 CLASS_DECL_BASE void utf8_to_utf16(wchar_t * pwsz, const char * psz);
 CLASS_DECL_BASE int32_t utf8_len(const wchar_t * pwsz);
 CLASS_DECL_BASE void utf16_to_utf8(char * psz, const wchar_t * pwsz);
+

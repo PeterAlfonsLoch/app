@@ -937,3 +937,4 @@ void CLASS_DECL_BASE TRACELASTERROR();
 CLASS_DECL_BASE string FormatMessageFromSystem(uint32_t dwError);
 
 
+
