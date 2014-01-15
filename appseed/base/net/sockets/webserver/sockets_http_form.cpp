@@ -224,7 +224,7 @@ namespace http
          string str;
          infil->full_read_string(str);
          strsize len = str.get_length();
-         strsize clen = content_length;
+//         strsize clen = content_length;
          TRACE("x-www-form-urlencoded POST is %d bytes length and reported content-length header is %d.", len);
          m_setPost.parse_url_query(str);
    /*      bool got_name = false; // tnx to FatherNitwit

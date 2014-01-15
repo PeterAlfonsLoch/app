@@ -2,4 +2,4 @@
 #pragma once
 #endif
 
-#include "core.h"
+#include "app/appseed/core/core.h"

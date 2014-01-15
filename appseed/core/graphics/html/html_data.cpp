@@ -1,5 +1,11 @@
 #include "framework.h"
 
+
+string url_dir_name_for_relative(const char * pszPath);
+string defer_solve_relative_compresions(const char * pszAbsolute);
+string defer_solve_relative_name(const char * pszRelative, const char * pszAbsolute);
+
+
 string url_dir_name_for_relative(const char * pszPath)
 {
    string strDir(pszPath);

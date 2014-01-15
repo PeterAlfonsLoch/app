@@ -1144,10 +1144,14 @@ namespace simple_ui
 
    }
 
-   void interaction::destroy_window()
+
+   bool interaction::destroy_window()
    {
+   
+      return true;
 
    }
+   
 
    LRESULT interaction::message_handler(UINT message, WPARAM wparam, LPARAM lparam)
    {

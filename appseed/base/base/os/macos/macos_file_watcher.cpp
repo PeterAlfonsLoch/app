@@ -401,8 +401,10 @@ namespace file_watcher
    
 	
 	//--------
-	void os_file_watcher::handle_action(watch_struct* watch, const char * filename, uint32_t action)
+	void os_file_watcher::handle_action(action *)
 	{
+   
+//      watch_struct * watch, const char * filename, uint32_t action
 	}
 
 } // namespace file_watcher

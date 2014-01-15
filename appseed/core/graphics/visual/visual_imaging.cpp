@@ -990,7 +990,7 @@ bool imaging::Createcolor_blend_ImageList(sp(image_list) pilGray, sp(image_list)
 
       ::draw2d::graphics_sp spgraphics(allocer());
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 
       spgraphics->CreateCompatibleDC(NULL);
 

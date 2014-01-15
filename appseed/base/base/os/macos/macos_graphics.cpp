@@ -58,10 +58,10 @@ CGColorRef mac_create_color(COLORREF cr)
    
    // Create a color and add it as an attribute to the string.
    CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-   CGFloat components[] = { GetRValue(cr) / 255.0, 
-      GetGValue(cr) / 255.0,
-      GetBValue(cr) / 255.0,
-      GetAValue(cr) / 255.0};
+   CGFloat components[] = { argb_get_r_value(cr) / 255.0, 
+      argb_get_g_value(cr) / 255.0,
+      argb_get_b_value(cr) / 255.0,
+      argb_get_a_value(cr) / 255.0};
    
    CGColorRef color = CGColorCreate(rgbColorSpace, components);
    
@@ -194,7 +194,7 @@ int FillRect(HDC hdc, const RECT * lprc, HBRUSH hbr)
    rect.size.width   = lprc->right - lprc->left;
    rect.size.height  = lprc->bottom - lprc->top;
    
-   CGContextSetRGBFillColor(hdc->m_cgcontext, GetRValue(hbr->lbColor), GetGValue(hbr->lbColor), GetBValue(hbr->lbColor), GetAValue(hbr->lbColor));
+   CGContextSetRGBFillColor(hdc->m_cgcontext, argb_get_r_value(hbr->lbColor), argb_get_g_value(hbr->lbColor), argb_get_b_value(hbr->lbColor), argb_get_a_value(hbr->lbColor));
     
    CGContextFillRect(hdc->m_cgcontext, rect);
    
@@ -324,7 +324,7 @@ CTFontDescriptorRef CreateFontDescriptorFromFamilyAndTraits(CFStringRef iFamilyN
    // Create a mutable dictionary to hold our attributes.
    attributes = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
    
-   __Check(attributes != NULL);
+//   __Check(attributes != NULL);
    
    if (attributes != NULL)
    {
@@ -346,7 +346,7 @@ CTFontDescriptorRef CreateFontDescriptorFromFamilyAndTraits(CFStringRef iFamilyN
          // Create a dictionary to hold our traits values.
          traits = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
          
-         __Check(traits != NULL);
+//         __Check(traits != NULL);
          
          if (traits != NULL)
          {
@@ -368,7 +368,7 @@ CTFontDescriptorRef CreateFontDescriptorFromFamilyAndTraits(CFStringRef iFamilyN
       // Create the font descriptor with our attributes and input size.
       descriptor = CTFontDescriptorCreateWithAttributes(attributes);
       
-      __Check(descriptor != NULL);
+//      __Check(descriptor != NULL);
       
       CFRelease(attributes);
       
@@ -383,7 +383,7 @@ CTFontDescriptorRef CreateFontDescriptorFromFamilyAndTraits(CFStringRef iFamilyN
 CTFontRef CreateFont(CTFontDescriptorRef iFontDescriptor, CGFloat iSize)
 {
    
-   __Check(iFontDescriptor != NULL);
+//   __Check(iFontDescriptor != NULL);
    
    // Create the font from the font descriptor and input size. Pass
    // NULL for the matrix parameter to use the default matrix (identity).

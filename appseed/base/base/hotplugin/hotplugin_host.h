@@ -115,7 +115,7 @@ namespace hotplugin
       virtual void translate_mouse_message(int * px, int * py);
 
       virtual bool show_window(bool bShow = true);
-      virtual void destroy_window();
+      virtual bool destroy_window();
 
 
    };

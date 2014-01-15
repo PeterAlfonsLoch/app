@@ -54,14 +54,14 @@ CLASS_DECL_BASE bool send_short_message_to_installer(const char * psz, bool bLau
 
 #else
    
-   small_ipc_tx_channel txchannel;
+/*   small_ipc_tx_channel txchannel;
    
    install::installer::launcher launcher;
 
    if(!txchannel.open("core/spaboot_install", bLaunch ? &launcher : NULL)) 
       return false;
 
-   txchannel.send(psz, false);
+   txchannel.send(psz, false);*/
 
 #endif
 
@@ -79,14 +79,14 @@ void send_spaboot_install_response(const char * param)
 
 #else
 
-   small_ipc_tx_channel txchannel;
+/*   small_ipc_tx_channel txchannel;
    
    install::installer::launcher launcher;
 
    if(!txchannel.open("core/spaboot_install_callback")) 
       return;
 
-   txchannel.send(param, false);
+   txchannel.send(param, false);*/
 
 #endif
 

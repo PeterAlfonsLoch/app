@@ -581,10 +581,10 @@ throw todo(get_thread_app());
    }
 
 
-   void host::destroy_window()
+   bool host::destroy_window()
    {
 
-      ::simple_ui::interaction::destroy_window();
+      return ::simple_ui::interaction::destroy_window();
 
    }
 

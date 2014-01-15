@@ -185,7 +185,7 @@ CLASS_DECL_BASE bool main_finalize()
    
 //   os_thread::stop_all((1984 + 1977) * 49);
    
-   finalize_primitive_trace();
+//   finalize_primitive_trace();
    
    return bOk;
    
@@ -197,8 +197,8 @@ CLASS_DECL_BASE bool main_finalize()
 bool os_initialize()
 {
    
-   if(!initialize_primitive_trace())
-      return false;
+//   if(!initialize_primitive_trace())
+  //    return false;
    
    
    return TRUE;
@@ -209,7 +209,7 @@ bool os_initialize()
 bool os_finalize()
 {
    
-   finalize_primitive_trace();
+//   finalize_primitive_trace();
    
    return true;
    

@@ -1195,15 +1195,17 @@ namespace hotplugin
    }
 
 
-   void plugin::destroy_window()
+   bool plugin::destroy_window()
    {
 
       if (m_phost != NULL)
       {
 
-         m_phost->destroy_window();
+         return m_phost->destroy_window();
 
       }
+      
+      return true;
 
    }
 

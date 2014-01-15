@@ -2,18 +2,24 @@
 #include <dlfcn.h>
 
 
-   base_library::base_library()
+   base_library::base_library(sp(base_application) papp) :
+      element(papp)
    {
       
       m_plibrary = NULL;
+      
+      m_bAutoClose = false;
       
    }
 
    
-   base_library::base_library(const char * pszOpen)
+   base_library::base_library(sp(base_application) papp, const char * pszOpen) :
+      element(papp)
    {
       
       m_plibrary = NULL;
+      
+      m_bAutoClose = false;
       
       open(pszOpen);
       
@@ -33,8 +39,17 @@
    }
    
 
-   bool base_library::open(const char * pszPath)
+   bool base_library::open(const char * pszPath, bool bAutoClose)
    {
+   
+      if(m_bAutoClose)
+      {
+         
+         close();
+      
+      }
+      
+      m_bAutoClose = bAutoClose;
       
       string strPath(pszPath);
       
@@ -99,14 +114,17 @@
    }
 
    
-   ca2_library::ca2_library()
+   ca2_library::ca2_library(sp(base_application) papp) :
+      element(papp),
+      base_library(papp)
    {
       
    }
 
    
-   ca2_library::ca2_library(const char * pszOpen) :
-      base_library(pszOpen)
+   ca2_library::ca2_library(sp(base_application) papp, const char * pszOpen) :
+      element(papp),
+      base_library(papp, pszOpen)
    {
 
    }

@@ -32,7 +32,7 @@
    #define CLASS_DECL_BASE  CLASS_DECL_IMPORT
 #endif
 
-#include "version.h"
+#include "app/appseed/base/version.h"
 
 #include "nodeapp/operational_system/_c.h"
 

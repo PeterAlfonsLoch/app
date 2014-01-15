@@ -52,8 +52,8 @@ namespace userfs
 
    void main_view::_001OnTimer(signal_details * pobj)
    {
-
-      SCAST_PTR(::message::timer, ptimer, pobj);
+      UNREFERENCED_PARAMETER(pobj);
+//      SCAST_PTR(::message::timer, ptimer, pobj);
 
    }
 

@@ -2259,10 +2259,8 @@ namespace user
       return oswindow;    // return the owner as oswindow
    }*/
 
-
    void window::_001BaseWndInterfaceMap()
    {
-
    }
 
 
@@ -2271,9 +2269,7 @@ namespace user
 
       if(m_bUpdateGraphics)
       {
-
          update_graphics_resources();
-
       }
 
       single_lock sl(mutex_graphics(), true);
@@ -2299,9 +2295,34 @@ namespace user
          m_spdib->Fill(255, 184, 184, 177);
       }
 
+      //m_spdib->get_graphics()->FillSolidRect(00, 00, 100, 100, ARGB(127, 0, 127, 0));
       _001Print(m_spdib->get_graphics());
+      //m_spdib->get_graphics()->SetViewportOrg(0, 0);
+      //m_spdib->get_graphics()->FillSolidRect(100, 100, 100, 100, ARGB(127, 127, 0, 0));
 
-      m_spdib->update_window(this, NULL);
+
+      single_lock sl2(mutex_display(), true);
+
+      rect rect;
+
+      GetClientRect(rect);
+
+      if(m_spdibFlip.is_null())
+         m_spdibFlip.create(allocer());
+
+      if(m_spdibFlip.is_null())
+         return;
+
+      m_spdibFlip->create(rect.size());
+
+      if(m_spdibFlip->get_data() == NULL)
+         return;
+
+      m_spdibFlip->Paste(m_spdib);
+
+      sl.unlock();
+
+      m_spdibFlip->update_window(this, NULL);
 
    }
 

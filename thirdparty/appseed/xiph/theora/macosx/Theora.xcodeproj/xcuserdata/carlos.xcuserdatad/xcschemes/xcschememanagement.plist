@@ -4,25 +4,35 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>FreeImage.xcscheme</key>
+		<key>Theora.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>47</integer>
 		</dict>
-		<key>_ca2freeimage.xcscheme</key>
+		<key>libtheoradec (static).xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>12</integer>
+			<integer>49</integer>
+		</dict>
+		<key>libtheoraenc (static).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>48</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>9A1B2F8716A2AF5C00875A94</key>
+		<key>09C8F6420C82FBE500F72188</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9AA5E4C216F7C61B005C45CE</key>
+		<key>7388370F0B192732005C7A69</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8D07F2BC0486CC7A007CD1D0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

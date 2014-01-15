@@ -79,6 +79,10 @@ namespace os
       
       virtual interaction * get_focus();
 
+      
+      virtual bool move_window(int32_t x, int32_t y);
+      virtual bool set_window_pos(int32_t x, int32_t y, int32_t cx, int32_t cy, bool bShow);
+      
 
    };
 

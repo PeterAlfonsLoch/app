@@ -106,7 +106,7 @@ namespace simple_ui
       virtual void translate_mouse_message(int * px, int * py);
 
 
-      virtual void destroy_window();
+      virtual bool destroy_window();
 
       virtual LRESULT message_handler(UINT message, WPARAM wParam, LPARAM lParam);
 

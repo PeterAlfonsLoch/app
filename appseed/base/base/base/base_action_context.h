@@ -101,7 +101,7 @@ namespace action
    {
       
       static inline context add(e_source esourceAdd, e_source esource) { context ctx(esource); return ctx + esourceAdd; }
-      static inline context remove(e_source esource, e_source esourceRemove)  { context ctx(esource); ctx - esourceRemove; }
+      static inline context remove(e_source esource, e_source esourceRemove)  { context ctx(esource); return ctx - esourceRemove; }
       static inline context add_remove(e_source esource, e_source esourceAdd, e_source esourceRemove)  { context ctx(esource); return ctx + esourceAdd - esourceRemove; }
       static inline context sync(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return add_remove(source_sync, esourceAdd, esourceRemove); }
       static inline context sel(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return add_remove(source_selection, esourceAdd, esourceRemove); }
@@ -113,7 +113,7 @@ namespace action
 
 
       static inline context add(context ctx, e_source esourceAdd) { return ctx + esourceAdd; }
-      static inline context remove(context ctx, e_source esourceRemove)  { ctx - esourceRemove; }
+      static inline context remove(context ctx, e_source esourceRemove)  { return ctx - esourceRemove; }
       static inline context add_remove(context ctx, e_source esourceAdd, e_source esourceRemove)  { return ctx + esourceAdd - esourceRemove; }
       static inline context sync(context ctx, e_source esourceRemove = source_none) { return add_remove(ctx, source_sync, esourceRemove); }
       static inline context sel(context ctx, e_source esourceRemove = source_none) { return add_remove(ctx, source_selection, esourceRemove); }

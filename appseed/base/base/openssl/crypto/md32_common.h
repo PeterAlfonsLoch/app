@@ -222,10 +222,10 @@
 #endif
 
 #ifndef HOST_c2l_noret
-#define HOST_c2l_noret(c,l)	(l =(((unsigned long)(*((c)++)))<<24),		\
-			 l|=(((unsigned long)(*((c)++)))<<16),		\
-			 l|=(((unsigned long)(*((c)++)))<< 8),		\
-			 l|=(((unsigned long)(*((c)++)))    ),		\
+#define HOST_c2l_noret(c,l)	(l =(((unsigned int)(*((c)++)))<<24),		\
+			 l|=(((unsigned int)(*((c)++)))<<16),		\
+			 l|=(((unsigned int)(*((c)++)))<< 8),		\
+			 l|=(((unsigned int)(*((c)++)))    ),		\
 			 l)
 #endif
 #ifndef HOST_l2c_noret

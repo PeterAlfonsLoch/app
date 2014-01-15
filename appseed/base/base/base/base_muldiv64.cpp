@@ -280,7 +280,7 @@ uint64_t my_multdiv_64(uint64_t a, uint64_t b, uint64_t c)
     // p2 holds 2 digits, p1 and p0 one
 
     // first digit is easy, not null only in case of overflow
-    uint64_t q2 = p2 / c;
+//    uint64_t q2 = p2 / c;
     p2 = p2 % c;
 
     // second digit, estimate

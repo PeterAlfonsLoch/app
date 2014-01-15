@@ -4235,46 +4235,11 @@ int32_t base_application::exit_instance()
       */
 
 
-      try
-      {
-         if (m_pmath != NULL)
-         {
-            delete m_pmath;
-         }
-      }
-      catch (...)
-      {
-      }
-      m_pmath = NULL;
+      m_pmath.release();
 
+      m_pgeometry.release();
 
-
-      try
-      {
-         if (m_pgeometry != NULL)
-         {
-            delete m_pgeometry;
-         }
-      }
-      catch (...)
-      {
-      }
-      m_pgeometry = NULL;
-
-
-
-      try
-      {
-         if (m_psavings != NULL)
-         {
-            delete m_psavings;
-         }
-      }
-      catch (...)
-      {
-      }
-      m_psavings = NULL;
-
+      m_psavings.release();
 
       m_pcommandthread.release();
 
@@ -4282,12 +4247,16 @@ int32_t base_application::exit_instance()
 
       if (!destroy_message_queue())
       {
+      
          TRACE("Could not finalize message window");
+         
       }
 
       application_signal_details signal(this, m_psignal, application_signal_exit_instance);
+      
       try
       {
+      
          m_psignal->emit(&signal);
       }
       catch (...)

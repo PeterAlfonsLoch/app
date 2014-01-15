@@ -491,7 +491,7 @@ namespace plugin
             // in core library normally System or Application.http() is used
             string strPluginData;
 
-            ::http::e_status estatus = ::http::status_fail;
+//            ::http::e_status estatus = ::http::status_fail;
 
             string strUrl = strPluginUrl;
 
