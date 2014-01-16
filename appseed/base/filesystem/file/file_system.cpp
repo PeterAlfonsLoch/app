@@ -684,7 +684,7 @@ restart:
       spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
       if(spfile.is_null())
          return false;
-      ::file::output_stream(spfile) << "\xef\xbb\xbf";
+      spfile->write("\xef\xbb\xbf", 3);
       spfile->write(lpcszContents, strlen(lpcszContents));
       return true;
    }

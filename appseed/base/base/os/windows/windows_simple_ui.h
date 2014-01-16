@@ -57,7 +57,7 @@ namespace os
 
       virtual bool show_window(bool bShow = true);
 
-      virtual void destroy_window();
+      virtual bool destroy_window();
 
       virtual void client_to_screen(POINT * ppt);
 

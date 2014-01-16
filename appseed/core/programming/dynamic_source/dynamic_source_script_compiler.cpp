@@ -57,14 +57,14 @@ namespace dynamic_source
 
 #ifndef METROWIN
 
-      strVars = getenv("VS110COMNTOOLS");
+      strVars = getenv("VS120COMNTOOLS");
 
 #endif
 
       System.file().path().eat_end_level(strVars, 2, "\\");
-      //m_strEnv = strVars;
-      //m_strEnv += "vc\\vcvarsall.bat";
-      m_strEnv = ".\\vc_vars.bat";
+      m_strEnv = strVars;
+      m_strEnv = System.dir().path(strVars, "vc\\vcvarsall.bat");
+      //m_strEnv = ".\\vc_vars.bat";
 
       m_strTime = System.dir().element("time");
 
@@ -75,7 +75,7 @@ namespace dynamic_source
       string strPlat2;
 #ifdef _M_X64
       m_strPlat1     = "64";
-      strPlat2 = " /x64";
+      strPlat2 = "  x86_amd64";
       m_strPlatform = "x64";
       m_strLibPlatform = "x64/";
 #else
@@ -459,6 +459,15 @@ namespace dynamic_source
       str.replace("%ITEM_DIR%", System.dir().name(strTransformName));
       str.replace("%LIBS_LIBS%", m_strLibsLibs);
       str.replace("%VS_VARS%", m_strEnv);
+      string strPlat2;
+#ifdef _M_X64
+      strPlat2 = "x86_amd64";
+#else
+      strPlat2 = " /x86";
+#endif
+      str.replace("%VS_VARS_PLAT2%", strPlat2);
+
+
       str.replace("%CA2_ROOT%", strV);
       str.replace("%NETNODE_ROOT%", strN);
       str.replace("%CONFIGURATION_NAME%", m_strDynamicSourceConfiguration);
@@ -770,7 +779,7 @@ namespace dynamic_source
       strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
 
       //Application.file().put_contents_utf8(pscript->m_strCppPath, strDest);
-      Application.file().put_contents_utf8(pscript->m_strCppPath, strDest);
+      Application.file().put_contents(pscript->m_strCppPath, strDest);
 
    }
 
@@ -797,6 +806,14 @@ namespace dynamic_source
       System.file().path().eat_end_level(strVars, 2, "\\");
       strVars += "vc\\bin\\vcvars32.bat";*/
       str.replace("%VS_VARS%", m_strEnv);
+      string strPlat2;
+#ifdef _M_X64
+      strPlat2 = "x86_amd64";
+#else
+      strPlat2 = " /x86";
+#endif
+      str.replace("%VS_VARS_PLAT2%", strPlat2);
+
       string strV(strFolder);
       strV.replace("\\", "/");
       str.replace("%CA2_ROOT%", strV);
@@ -1188,7 +1205,7 @@ namespace dynamic_source
       strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
 
       //Application.file().put_contents_utf8(lpcszDest, strDest);
-      Application.file().put_contents_utf8(lpcszDest, strDest);
+      Application.file().put_contents(lpcszDest, strDest);
 
 
    }
@@ -1894,7 +1911,7 @@ ch_else:
          }
       }
       //Application.file().put_contents_utf8(strCat, strBody);
-      Application.file().put_contents_utf8(strCat, strBody);
+      Application.file().put_contents(strCat, strBody);
       string strInclude = strCat;
       //   defer_run_persistent(str);
       ::str::begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);

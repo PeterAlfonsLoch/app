@@ -180,10 +180,12 @@ namespace os
    }
 
    
-   void simple_ui::destroy_window()
+   bool simple_ui::destroy_window()
    {
 
       ::PostMessage(m_window, WM_CLOSE, 0, 0);
+
+      return true;
 
    }
 

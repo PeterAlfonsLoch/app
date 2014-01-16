@@ -501,7 +501,7 @@ namespace file
 
          if((nOpenFlags & ::file::mode_create) == 0 && !exists(strPath))
          {
-            TRACE("::application::file does not exist!!");
+            TRACE("::application::file does not exist!! : \"%s\"", strPath);
             return spfile;
          }
 
