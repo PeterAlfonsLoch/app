@@ -197,7 +197,7 @@ public:
    flags_ex(flags_ex & flags);
    virtual ~flags_ex();
 
-   using ::flags::signalize;
+   using ::flags < ENUM >::signalize;
    virtual bool signalize(ENUM eenum);
    virtual bool unsignalize(ENUM eenum);
    virtual bool unsignalize_all();

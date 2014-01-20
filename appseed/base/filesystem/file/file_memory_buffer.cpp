@@ -366,28 +366,30 @@ namespace file
 
    }
 
-   void memory_buffer::transfer_to(writer & writer)
+   void memory_buffer::transfer_to(writer & writer, ::primitive::memory_size uiSize)
    {
-
 
       if(get_internal_data() == NULL || get_internal_data_size() <= 0)
          return;
 
-      if(writer.increase_internal_data_size(get_internal_data_size()) && writer.get_internal_data() != NULL)
+      if(uiSize > get_internal_data_size())
+         uiSize = get_internal_data_size();
+      
+      if(writer.increase_internal_data_size(uiSize) && writer.get_internal_data() != NULL)
       {
             
          if(writer.get_internal_data() == get_internal_data())
             return;
 
-         memmove(((byte *) writer.get_internal_data()) + writer.get_position() + get_internal_data_size(), ((byte *) writer.get_internal_data()) + writer.get_position(), writer.get_internal_data_size() - get_internal_data_size());
-         memcpy(((byte *) writer.get_internal_data()) + writer.get_position(), get_internal_data(), get_internal_data_size());
+         memmove(((byte *) writer.get_internal_data()) + writer.get_position() + uiSize, ((byte *) writer.get_internal_data()) + writer.get_position(), writer.get_internal_data_size() - uiSize);
+         memcpy(((byte *) writer.get_internal_data()) + writer.get_position(), get_internal_data(), uiSize);
          writer.seek(get_internal_data_size(), seek_current);
 
       }
       else
       {
             
-         writer.write(get_internal_data(), get_internal_data_size());
+         writer.write(get_internal_data(), uiSize);
 
       }
 

@@ -8,7 +8,7 @@ namespace net
    address::address()
    {
 
-      zero(this, sizeof(m_sa));
+      zero(this, sizeof(u.m_sa));
 
 #ifdef METROWIN
 
@@ -21,7 +21,7 @@ namespace net
    address::address(int32_t family, port_t port)
    {
 
-      zero(this, sizeof(m_sa));
+      zero(this, sizeof(u.m_sa));
 
 #ifdef METROWIN
 
@@ -29,8 +29,8 @@ namespace net
 
 #endif
 
-      m_family = family;
-      m_port = htons(port);
+      u.s.m_family = family;
+      u.s.m_port = htons(port);
       sync_os_service();
 
    }
@@ -45,11 +45,11 @@ namespace net
 
 #endif
 
-      m_sa = sa;
+      u.m_sa = sa;
 
-      if (m_family != AF_INET6 && m_family != AF_INET)
+      if (u.s.m_family != AF_INET6 && u.s.m_family != AF_INET)
       {
-         m_family = AF_UNSPEC;
+         u.s.m_family = AF_UNSPEC;
       }
       else
       {
@@ -63,7 +63,7 @@ namespace net
    address::address(const string & host, port_t port)
    {
 
-      zero(this, sizeof(m_sa));
+      zero(this, sizeof(u.m_sa));
 
 #ifdef METROWIN
 
@@ -72,7 +72,7 @@ namespace net
 #endif
 
       set_address(host);
-      m_port = htons(port);
+      u.s.m_port = htons(port);
       sync_os_service();
 
    }
@@ -81,7 +81,7 @@ namespace net
    address::address(const string & host, const string & strService)
    {
 
-      zero(this, sizeof(m_sa));
+      zero(this, sizeof(u.m_sa));
 
 #ifdef METROWIN
 
@@ -90,7 +90,7 @@ namespace net
 #endif
 
       set_address(host);
-      m_port = ::sockets::net::service_port(strService);
+      u.s.m_port = ::sockets::net::service_port(strService);
       sync_os_service();
 
    }
@@ -99,7 +99,7 @@ namespace net
    address::address(const in6_addr & a, port_t port)
    {
 
-      zero(this, sizeof(m_sa));
+      zero(this, sizeof(u.m_sa));
 
 #ifdef METROWIN
 
@@ -107,9 +107,9 @@ namespace net
 
 #endif
 
-      m_family = AF_INET6;
-      m_port = htons(port);
-      m_addr6.sin6_addr = a;
+      u.s.m_family = AF_INET6;
+      u.s.m_port = htons(port);
+      u.m_addr6.sin6_addr = a;
       sync_os_address();
       sync_os_service();
 
@@ -118,7 +118,7 @@ namespace net
    address::address(const sockaddr_in6 & sa)
    {
 
-      m_addr6 = sa;
+      u.m_addr6 = sa;
 
 #ifdef METROWIN
 
@@ -126,9 +126,9 @@ namespace net
 
 #endif
 
-      if (m_family != AF_INET6)
+      if (u.s.m_family != AF_INET6)
       {
-         m_family = AF_UNSPEC;
+         u.s.m_family = AF_UNSPEC;
       }
       else
       {
@@ -142,7 +142,7 @@ namespace net
    address::address(const in_addr& a, port_t port)
    {
 
-      zero(this, sizeof(m_sa));
+      zero(this, sizeof(u.m_sa));
 
 #ifdef METROWIN
 
@@ -150,9 +150,9 @@ namespace net
 
 #endif
 
-      m_family = AF_INET;
-      m_port = htons(port);
-      m_addr.sin_addr = a;
+      u.s.m_family = AF_INET;
+      u.s.m_port = htons(port);
+      u.m_addr.sin_addr = a;
       sync_os_address();
       sync_os_service();
 
@@ -161,7 +161,7 @@ namespace net
    address::address(const sockaddr_in & sa)
    {
 
-      m_addr = sa;
+      u.m_addr = sa;
 
 #ifdef METROWIN
 
@@ -169,9 +169,9 @@ namespace net
 
 #endif
 
-      if (m_family != AF_INET)
+      if (u.s.m_family != AF_INET)
       {
-         m_family = AF_UNSPEC;
+         u.s.m_family = AF_UNSPEC;
       }
       else
       {
@@ -249,13 +249,13 @@ namespace net
       if (is_ipv4())
       {
 
-         return ::to_vsstring(&m_addr.sin_addr);
+         return ::to_vsstring(&u.m_addr.sin_addr);
 
       }
       else if (is_ipv6())
       {
 
-         return ::to_vsstring(&m_addr6.sin6_addr);
+         return ::to_vsstring(&u.m_addr6.sin6_addr);
 
       }
       else
@@ -278,11 +278,11 @@ namespace net
       if (is_ipv4() && addr.is_ipv4() && addrMask.is_ipv4())
       {
 
-         in_addr a1 = m_addr.sin_addr;
+         in_addr a1 = u.m_addr.sin_addr;
 
-         in_addr a2 = addr.m_addr.sin_addr;
+         in_addr a2 = addr.u.m_addr.sin_addr;
 
-         in_addr aM = addrMask.m_addr.sin_addr;
+         in_addr aM = addrMask.u.m_addr.sin_addr;
 
          memand_dup(&a1, &a1, &aM, sizeof(a1));
 
@@ -294,11 +294,11 @@ namespace net
       else if (is_ipv6() && addr.is_ipv6() && addrMask.is_ipv6())
       {
 
-         in6_addr a1 = m_addr6.sin6_addr;
+         in6_addr a1 = u.m_addr6.sin6_addr;
 
-         in6_addr a2 = addr.m_addr6.sin6_addr;
+         in6_addr a2 = addr.u.m_addr6.sin6_addr;
 
-         in6_addr aM = addrMask.m_addr6.sin6_addr;
+         in6_addr aM = addrMask.u.m_addr6.sin6_addr;
 
          memand_dup(&a1, &a1, &aM, sizeof(a1));
 
@@ -317,19 +317,19 @@ namespace net
    bool address::is_equal(const address & addr) const
    {
 
-      if (m_port != addr.m_port)
+      if (u.s.m_port != addr.u.s.m_port)
          return false;
 
       if (is_ipv6() && addr.is_ipv6())
       {
 
-         return memcmp(&m_addr6.sin6_addr, &addr.m_addr6.sin6_addr, sizeof(in6_addr)) == 0;
+         return memcmp(&u.m_addr6.sin6_addr, &addr.u.m_addr6.sin6_addr, sizeof(in6_addr)) == 0;
 
       }
       else if (is_ipv4() && addr.is_ipv4())
       {
 
-         return memcmp(&m_addr.sin_addr, &addr.m_addr.sin_addr, sizeof(in_addr)) == 0;
+         return memcmp(&u.m_addr.sin_addr, &addr.u.m_addr.sin_addr, sizeof(in_addr)) == 0;
 
       }
 
@@ -386,22 +386,22 @@ namespace net
 
 #else
 
-      if (Sys(get_thread_app()).net().convert(m_addr6.sin6_addr, strAddress))
+      if (Sys(get_thread_app()).net().convert(u.m_addr6.sin6_addr, strAddress))
       {
-         m_family = AF_INET6;
+         u.s.m_family = AF_INET6;
       }
-      else if (Sys(get_thread_app()).net().convert(m_addr.sin_addr, strAddress))
+      else if (Sys(get_thread_app()).net().convert(u.m_addr.sin_addr, strAddress))
       {
-         m_family = AF_INET;
+         u.s.m_family = AF_INET;
       }
       else
       {
-         m_family = AF_UNSPEC;
+         u.s.m_family = AF_UNSPEC;
       }
 
 #endif
 
-      return m_family != AF_UNSPEC;
+      return u.s.m_family != AF_UNSPEC;
 
    }
 

@@ -35,10 +35,10 @@ namespace sockets
       if (IsIpv6())
       {
          ::net::address ad(AF_INET6, port);
-         return Bind((in6_addr) ad.m_addr6.sin6_addr, ad.m_addr6.sin6_port, range);
+         return Bind((in6_addr) ad.u.m_addr6.sin6_addr, ad.u.m_addr6.sin6_port, range);
       }
       ::net::address ad(AF_INET, port);
-      return Bind((in_addr)  ad.m_addr.sin_addr, ad.m_addr.sin_port, range);
+      return Bind((in_addr)  ad.u.m_addr.sin_addr, ad.u.m_addr.sin_port, range);
    }
 
 
@@ -51,11 +51,11 @@ namespace sockets
       {
          if(ad.is_ipv6())
          {
-            return Bind((in6_addr) ad.m_addr6.sin6_addr, ad.m_addr6.sin6_port, range);
+            return Bind((in6_addr) ad.u.m_addr6.sin6_addr, ad.u.m_addr6.sin6_port, range);
          }
          else if(ad.is_ipv4())
          {
-            return Bind((in_addr)  ad.m_addr.sin_addr, ad.m_addr.sin_port, range);
+            return Bind((in_addr)  ad.u.m_addr.sin_addr, ad.u.m_addr.sin_port, range);
          }
 
       }

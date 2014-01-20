@@ -77,12 +77,12 @@ namespace sockets
       if (IsIpv6())
       {
          ::net::address ad(AF_INET6, port);
-         return Bind(ad.m_addr6.sin6_addr, port, protocol, depth);
+         return Bind(ad.u.m_addr6.sin6_addr, port, protocol, depth);
       }
       else
       {
          ::net::address ad(AF_INET, port);
-         return Bind(ad.m_addr.sin_addr, port, protocol, depth);
+         return Bind(ad.u.m_addr.sin_addr, port, protocol, depth);
       }
    }
 

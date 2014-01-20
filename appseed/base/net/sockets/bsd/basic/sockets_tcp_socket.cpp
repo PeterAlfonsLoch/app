@@ -317,16 +317,15 @@ void ssl_sigpipe_handle( int x );
    }
 
 
-   void tcp_socket::OnResolved(int32_t id,in_addr & a,port_t port)
+   void tcp_socket::OnResolved(int32_t id, const ::net::address & a)
    {
-      TRACE("tcp_socket::OnResolved id %d addr %x port %d\n", id, *(uint32_t*) &a, port);
+      TRACE("tcp_socket::OnResolved id %d addr %s port %d\n", id, System.net().canonical_name(a), a.u.s.m_port);
       if (id == m_resolver_id)
       {
-         if (ISNT_ZERO(a) && port)
+         if (a.is_valid() && a.u.s.m_port)
          {
-            ::net::address ad(a, port);
             ::net::address local;
-            if (open(ad, local))
+            if (open(a, local))
             {
                if (!Handler().Valid(this))
                {
@@ -348,29 +347,6 @@ void ssl_sigpipe_handle( int x );
    }
 
 
-   void tcp_socket::OnResolved(int32_t id,in6_addr& a,port_t port)
-   {
-      if (id == m_resolver_id)
-      {
-         ::net::address ad(a, port);
-         if (ad.is_valid())
-         {
-            ::net::address local;
-            if (open(ad, local))
-            {
-               if (!Handler().Valid(this))
-               {
-                  Handler().add(this);
-               }
-            }
-         }
-      }
-      else
-      {
-         log("OnResolved", id, "Resolver returned wrong job id", ::core::log::level_fatal);
-         SetCloseAndDelete();
-      }
-   }
 
 
    ::primitive::memory_size tcp_socket::recv(void * buf, ::primitive::memory_size nBufSize)

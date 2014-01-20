@@ -198,7 +198,7 @@ namespace sockets
    }
 
 
-   void EventHandler::add(socket *p)
+   void EventHandler::add(base_socket *p)
    {
       if (!m_socket)
       {
@@ -214,7 +214,7 @@ namespace sockets
    #ifdef ENABLE_RECONNECT
          m_socket -> SetReconnect(true);
    #endif
-         m_socket -> open("127.0.0.1", m_port);
+         m_socket -> open(::net::address("127.0.0.1", m_port));
          socket_handler::add(m_socket);
       }
       socket_handler::add( p );

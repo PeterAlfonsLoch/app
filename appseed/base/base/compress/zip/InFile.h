@@ -4,18 +4,18 @@
 #if !defined(WINDOWSEX)
 
 
-namespace core
+namespace file
 {
 
 
-    class file;
+    class stream_buffer;
 
 
 } // namespace core
 
 
 
-typedef ::file::binary_buffer * HFILE;
+typedef ::file::stream_buffer * HFILE;
 
 
 #endif

@@ -33,7 +33,7 @@ namespace mail
          m_psocket->m_bSsl = true;
          m_psocket->EnableSSL();
       }
-      m_psocket->open((const char *) get_host(), (port_t) iPort);
+      m_psocket->open(::net::address(get_host(), (port_t) iPort));
       m_handler.add(m_psocket);
       m_handler.select(1,0);
       while(m_bRun && m_psocket->m_estate != pop3_socket::state_finished)

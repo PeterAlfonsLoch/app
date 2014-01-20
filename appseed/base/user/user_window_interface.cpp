@@ -249,7 +249,7 @@ namespace user
 
    }*/
 
-   window_interface * window_interface::window_interface_get_parent() const
+   window_interface * window_interface::window_interface_get_parent()
    {
       return NULL;
    }
@@ -499,7 +499,7 @@ namespace user
    {
    }
 
-   sp(interaction) window_interface::get_guie() const
+   sp(interaction) window_interface::get_guie()
    {
       return m_pguie;
    }
@@ -510,7 +510,7 @@ namespace user
       return NULL;
    }
 #else
-   sp(::user::window) window_interface::get_wnd() const
+   sp(::user::window) window_interface::get_wnd()
    {
       return NULL;
    }

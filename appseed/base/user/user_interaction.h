@@ -526,7 +526,7 @@ namespace user
 
       virtual void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlag = reposDefault, LPRECT lpRectParam = NULL, LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
 
-      virtual sp(interaction) get_owner() const;
+      virtual sp(interaction) get_owner();
       virtual void set_owner(sp(interaction) pguie);
 
       virtual sp(interaction) ChildWindowFromPoint(POINT point);
@@ -555,9 +555,7 @@ namespace user
 
       virtual LRESULT DefWindowProc(UINT uiMessage, WPARAM wparam, lparam lparam);
       virtual void message_handler(signal_details * pobj);
-#ifdef WINDOWSEX
       virtual LRESULT message_handler(LPMESSAGE lpmessage);
-#endif
       virtual void GuieProc(signal_details * pobj);
 
       virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics * pdc);
@@ -565,8 +563,8 @@ namespace user
       virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc);
 
 
-      oswindow get_safe_handle() const;
-      virtual oswindow get_handle() const;
+      oswindow get_safe_handle();
+      virtual oswindow get_handle();
       virtual bool attach(oswindow oswindow_New);
       virtual oswindow detach();
 
@@ -638,7 +636,7 @@ namespace user
 
    };
 
-   inline oswindow interaction::get_safe_handle() const
+   inline oswindow interaction::get_safe_handle()
    {
       if (((byte *)this) < (byte *)(((byte *)NULL) + (16 * 1024))) // consider invalid
       {

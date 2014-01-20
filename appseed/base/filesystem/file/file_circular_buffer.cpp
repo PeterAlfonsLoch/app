@@ -140,21 +140,27 @@ namespace file
    }
 
 
-   file_size circular_buffer::get_length()
+   file_size circular_buffer::get_length() const
    {
+   
       return m_q;
+      
    }
 
 
    const char *circular_buffer::GetStart()
    {
+   
       return (const char * ) (m_memory.get_data() + m_b);
+      
    }
 
 
    size_t circular_buffer::GetL()
    {
+   
       return (m_b + m_q > m_max) ? m_max - m_b : m_q;
+      
    }
 
 

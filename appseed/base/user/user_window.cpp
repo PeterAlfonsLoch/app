@@ -541,8 +541,7 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
-   void window::RepositionBars(UINT nIDFirst, UINT nIDLast, UINT nIdLeftOver,
-      UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, bool bStretch)
+   void window::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIdLeftOver, UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, bool bStretch)
    {
       UNREFERENCED_PARAMETER(nIDFirst);
       UNREFERENCED_PARAMETER(nIDLast);
@@ -861,39 +860,56 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
+
    void window::_001WindowRestore()
    {
+   
       throw interface_only_exception(get_app());
+      
    }
+
 
    bool window::ShowWindow(int32_t nCmdShow)
    {
+   
       UNREFERENCED_PARAMETER(nCmdShow);
       throw interface_only_exception(get_app());
+      
    }
+
 
    bool window::IsIconic()
    {
+   
       throw interface_only_exception(get_app());
+      
    }
+
 
    bool window::IsZoomed()
    {
+   
       throw interface_only_exception(get_app());
+      
    }
 
-   sp(::user::interaction) window::get_parent() const
+
+   sp(::user::interaction) window::get_parent()
    {
 
       return NULL;
 
    }
 
+
    LONG window::GetWindowLong(int32_t nIndex)
    {
+   
       UNREFERENCED_PARAMETER(nIndex);
       throw interface_only_exception(get_app());
+      
    }
+   
 
    LONG window::SetWindowLong(int32_t nIndex, LONG lValue)
    {
@@ -1419,55 +1435,84 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
+
    sp(::user::interaction) window::GetNextWindow(UINT nFlag)
    {
+   
       UNREFERENCED_PARAMETER(nFlag);
       throw interface_only_exception(get_app());
+      
    }
+
 
    sp(::user::interaction) window::GetTopWindow()
    {
+   
       throw interface_only_exception(get_app());
+      
    }
 
-/*   sp(::user::interaction) window::GetWindow(UINT nCmd)
+
+/* 
+   
+   sp(::user::interaction) window::GetWindow(UINT nCmd)
    {
       UNREFERENCED_PARAMETER(nCmd);
       throw interface_only_exception(get_app());
-   }*/
+ 
+   }
+ 
+*/
+
 
    sp(::user::interaction) window::GetLastActivePopup()
    {
+   
       throw interface_only_exception(get_app());
+      
    }
 
-   sp(::user::window) window::set_parent(sp(::user::window) pWndNewParent)
+
+   sp(::user::interaction) window::set_parent(sp(::user::interaction) pWndNewParent)
    {
+   
       UNREFERENCED_PARAMETER(pWndNewParent);
       throw interface_only_exception(get_app());
+      
    }
 
 
    bool window::FlashWindow(bool bInvert)
    {
+   
       UNREFERENCED_PARAMETER(bInvert);
       throw interface_only_exception(get_app());
+      
    }
+   
 
    bool window::ChangeClipboardChain(oswindow oswindow_Next)
    {
+   
       UNREFERENCED_PARAMETER(oswindow_Next);
       throw interface_only_exception(get_app());
+      
    }
+
 
    oswindow window::SetClipboardViewer()
    {
+   
       throw interface_only_exception(get_app());
+      
    }
+
 
    bool window::OpenClipboard()
    {
+   
       throw interface_only_exception(get_app());
+      
    }
 
 

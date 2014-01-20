@@ -168,12 +168,12 @@ namespace user
          return m_pimpl->IsChild(pWnd);
    }
 
-   window_interface * interaction::window_interface_get_parent() const
+   window_interface * interaction::window_interface_get_parent()
    {
       return get_parent();
    }
 
-   sp(interaction) interaction::get_parent() const
+   sp(interaction) interaction::get_parent()
    {
       if (m_pimpl == NULL || m_pimpl == this)
          return NULL;
@@ -181,7 +181,7 @@ namespace user
          return m_pimpl->get_parent();
    }
 
-   oswindow interaction::get_parent_handle() const
+   oswindow interaction::get_parent_handle()
    {
 
       sp(interaction) puiparent = get_parent();
@@ -199,7 +199,7 @@ namespace user
       return NULL;
    }
 
-   sp(interaction) interaction::get_parent_base() const
+   sp(interaction) interaction::get_parent_base()
    {
       return get_parent();
    }
@@ -1262,7 +1262,7 @@ namespace user
          return m_pimpl->pre_translate_message(pobj);
    }
 
-   oswindow interaction::get_handle() const
+   oswindow interaction::get_handle()
    {
 
 #ifdef METROWIN
@@ -2040,7 +2040,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction::get_owner() const
+   sp(interaction) interaction::get_owner()
    {
       if (m_pguieOwner != NULL)
       {
@@ -3409,7 +3409,7 @@ namespace user
 #ifdef METROWIN
    sp(::user::interaction) interaction::get_wnd() const
 #else
-   sp(::user::window) interaction::get_wnd() const
+   sp(::user::window) interaction::get_wnd()
 #endif
    {
       if (m_pimpl != NULL)

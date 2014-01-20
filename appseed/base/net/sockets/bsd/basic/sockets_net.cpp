@@ -933,11 +933,11 @@ namespace sockets
 
       if(address.is_ipv4())
       {
-         ::sockets::net::convert(str, address.m_addr.sin_addr);
+         ::sockets::net::convert(str, address.u.m_addr.sin_addr);
       }
       else if(address.is_ipv6())
       {
-         ::sockets::net::convert(str, address.m_addr6.sin6_addr);
+         ::sockets::net::convert(str, address.u.m_addr6.sin6_addr);
       }
 
       return str;

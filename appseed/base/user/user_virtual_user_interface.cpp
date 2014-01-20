@@ -42,7 +42,7 @@ bool virtual_user_interface::ReleaseDC(::draw2d::graphics * pdc)
    return pdc->DeleteDC();
 }
 
-sp(::user::interaction) virtual_user_interface::get_parent() const
+sp(::user::interaction) virtual_user_interface::get_parent()
 {
    return m_pparent;
 }
