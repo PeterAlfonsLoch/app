@@ -1,18 +1,22 @@
 #pragma once
 
+
 enum EExclusiveInstance
 {
+   
    ExclusiveInstanceNone,
    ExclusiveInstanceLocal,
    ExclusiveInstanceLocalId,
    ExclusiveInstanceGlobal,
    ExclusiveInstanceGlobalId,
-   ExclusiveInstanceLicense,
+   ExclusiveInstanceLicense
+      
 };
 
 
 enum e_application_signal
 {
+   
    application_signal_initialize1, // cgcl // first initialization
    application_signal_initialize2, // cst  // second initialization
    application_signal_initialize3, // third initialization and so on...
@@ -23,6 +27,7 @@ enum e_application_signal
    application_signal_exit_instance,
    application_signal_init_application,
    application_signal_none
+      
 };
 
 
@@ -362,6 +367,7 @@ public:
 #endif
 
 
+   using ::thread::construct;
    virtual void construct();
 
 
@@ -571,4 +577,6 @@ public:
    base_application * find_running_defer_try_quit_damaged(const string & strAppName);
 
 };
+
+
 

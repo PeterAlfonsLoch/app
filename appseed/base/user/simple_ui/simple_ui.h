@@ -39,4 +39,16 @@
 #include "base/os/android/android_simple_ui.h"
 
 
+#elif defined(SOLARIS)
+
+
+#include "base/os/solaris/solaris_simple_ui.h"
+
+
+#else
+
+
+#error "Please implement simple ui for this platform"
+
+
 #endif

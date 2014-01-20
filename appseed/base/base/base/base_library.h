@@ -41,8 +41,8 @@ public:
    ca2_library(sp(base_application) papp, const char * pszOpen);
    virtual ~ca2_library();
 
-   virtual bool open(const char * pszPath);
-
+   virtual bool open(const char * pszPath, bool bAutoClose = true);
+   
 };
 
 

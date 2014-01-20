@@ -232,7 +232,8 @@ inline void string_data::Release() RELEASENOTHROW
 {
    ASSERT( nRefs != 0 );
 
-   if( _gen_InterlockedDecrement( &nRefs ) <= 0 )
+   _gen_InterlockedDecrement( &nRefs );
+   if(nRefs <= 0 )
    {
       pstringmanager->Free( this );
    }
@@ -268,3 +269,6 @@ inline bool string::ends_ci(const string & strSuffixCandidate)
 {
    return ::str::ends_ci(*this, strSuffixCandidate);
 }
+
+
+

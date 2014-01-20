@@ -10,19 +10,27 @@ namespace file
    {
    public:
 
+      
       enum e_action
       {
+         
          action_added,
          action_removed,
          action_renamed_old_name,
          action_renamed_new_name,
-         action_unexpected,
+         action_unexpected
+            
       };
+      
 
       class CLASS_DECL_BASE callback
       {
       public:
+         
+         
          virtual void on_file_action(e_action eaction, const char * pszFolder, const char * psz);
+         
+         
       };
 
 

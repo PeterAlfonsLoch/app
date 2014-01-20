@@ -87,6 +87,8 @@ namespace hotplugin
 
       virtual void deferred_prodevian_redraw();
 
+      
+      using ::hotplugin::plugin::message_handler;
 
 #ifdef WINDOWS
       virtual LRESULT message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam);

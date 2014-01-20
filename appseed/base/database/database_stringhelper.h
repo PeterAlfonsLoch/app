@@ -25,26 +25,34 @@
  * THE SOFTWARE.
  *
  **********************************************************************/
-
 #pragma once
+
 
 class CLASS_DECL_BASE str_helper 
 {
-  private:
-  string work_str;
-  public:
-  str_helper();
-  str_helper (const char *s);
-  ~str_helper () {};
+public:
+   
+  
+   string work_str;
+  
+  
+   str_helper();
+   str_helper (const char *s);
+   virtual ~str_helper () { }
 
-  string get_str(); 
-  void set_str(const char *s);
+   string get_str(); 
+   void set_str(const char *s);
 
-  string before(string s, bool &is_found);
+   string before(string s, bool &is_found);
 
-  string after(string s);
+   string after(string s);
 
-  string replace(string pattern, string by_what);
+   string replace(string pattern, string by_what);
+  
 };
+
+
+
+
 
 

@@ -11,7 +11,7 @@ namespace check
       undefined, // not set, unitialized
       unchecked,
       checked,
-      tristate,
+      tristate
 
    };
 

@@ -1,26 +1,34 @@
 #pragma once
 
+
 namespace xml
 {
 
+   
    class CLASS_DECL_BASE entity
    {
    public:
 
+      
       char     m_chEntity;      // entity ( & " ' < > )
       string   m_strRef;      // entity reference ( &amp; &quot; etc )
       int32_t      m_iRefLen;      // entity reference length
 
+      
       entity();
       entity(char chEntity, const char * pszReference);
       entity(const entity & entity);
       entity & operator = (const entity & entity);
+      
+      
    };
 
+   
    class CLASS_DECL_BASE entities : 
       public array < entity >
    {
    public:
+   
       
       entity * get_entity( int32_t entity );
       entity * get_entity(const char * pszEntity);
@@ -35,9 +43,16 @@ namespace xml
 
       void add_entity(char chEntity, const char * pszReference);
 
+      
    };
 
+   
    string XRef2Entity( const char * estr );
    string XEntity2Ref( const char * str );   
+   
 
 } // namespace xml
+
+
+
+

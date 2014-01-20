@@ -84,16 +84,26 @@ public:
 
 namespace visual
 {
+   
+   
    namespace rgba
    {
+      
+      
       enum echannel
       {
+         
          channel_red = 0,
          channel_green = 1,
          channel_blue = 2,
-         channel_alpha = 3,
+         channel_alpha = 3
+            
       };
+      
+      
    } // namespace rgba
+   
+   
 } // namespace visual
 
 

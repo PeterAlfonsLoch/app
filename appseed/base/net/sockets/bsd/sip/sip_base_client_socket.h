@@ -1,29 +1,38 @@
 #pragma once
 
+
 namespace sockets
 {
 
+   
    class CLASS_DECL_BASE sip_base_client_socket :
       virtual public sip_base,
       virtual public socket
    {
    public:
 
+      
       enum e_error
       {
+         
          error_none,
-         error_wrong_state,
+         error_wrong_state
+            
       };
 
+      
       enum e_state
       {
+         
          state_free, // caller/receiver
          state_waiting_call_trying, // caller/server
          state_waiting_call_ringing, // caller/server
          state_waiting_call_ok, // caller/server
          state_ringing, // receiver/server/caller
-         state_waiting_bye_ok,
+         state_waiting_bye_ok
+            
       };
+      
 
       e_error        m_eerrorLast;
       e_state        m_estate;

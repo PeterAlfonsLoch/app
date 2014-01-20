@@ -31,7 +31,7 @@ namespace action
       source_default    = 0x10000000,
       source_data       = 0x20000000,
       source_database   = 0x40000000,
-      source_user       = 0x80000000,
+      source_user       = 0x80000000
 
    };
 

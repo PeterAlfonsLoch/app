@@ -15,7 +15,9 @@ namespace user
 
       enum eflag
       {
-         flag_hide_all_others_on_show,
+         
+         flag_hide_all_others_on_show
+            
       };
 
 

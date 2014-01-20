@@ -10,10 +10,13 @@ namespace userpresence
    {
    public:
 
+      
       enum e_predefined_status
       {
+         
          status_online     = 1000000006,
-         status_offline    = 1000000025,
+         status_offline    = 1000000025
+            
       };
 
 

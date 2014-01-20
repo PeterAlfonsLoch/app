@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace xml
 {
+
    
    class node;
 
@@ -34,3 +36,4 @@ namespace xml
 
 
 } // namespace xml
+

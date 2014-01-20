@@ -91,6 +91,7 @@ class base_command;
 namespace message
 {
 
+   
    enum e_message
    {
 
@@ -98,12 +99,14 @@ namespace message
       message_event = WM_APP + 1000,
       message_property = WM_APP + 1001,
       message_pos_create = WM_USER + 193,
-      message_frame_initial_update,
+      message_frame_initial_update
 
    };
 
+   
    CLASS_DECL_BASE UINT translate_to_os_message(UINT uiMessage);
 
+   
    class base;
 
 
@@ -134,12 +137,14 @@ namespace message
       PrototypeCommand,
       PrototypeWindowPos,
       PrototypeNcCalcSize,
-
-      PrototypeOnDraw,
+      PrototypeOnDraw
+         
    };
 
+   
    class ::signal * CreateSignal();
 
+   
    /*   class CLASS_DECL_BASE Handler
    {
    public:
@@ -348,6 +353,7 @@ namespace message
       LPCREATESTRUCT m_lpcreatestruct;
 
       virtual void set_lresult(LRESULT lresult);
+      using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
       virtual void error(const char * lpcszErrorMessage);
       virtual void failed(const char * lpcszErrorMessage);
@@ -359,6 +365,7 @@ namespace message
 
 
       timer(sp(base_application) papp) : element(papp), message::base(papp) {}
+      using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
       UINT m_nIDEvent;
    };
@@ -374,6 +381,7 @@ namespace message
 
 
       activate(sp(base_application) papp);
+      using ::message::base::set;
 
       virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
    };
@@ -395,6 +403,7 @@ namespace message
       size(sp(base_application) papp) : element(papp), message::base(papp) {}
       UINT     m_nType;
       ::size   m_size;
+      using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
    };
 
@@ -408,6 +417,7 @@ namespace message
       UINT              m_nSBCode;
       int32_t           m_nPos;
       sp(::user::interaction)  m_pScrollBar;
+      using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
    };
 
@@ -424,6 +434,7 @@ namespace message
 
       mouse(sp(base_application) papp);
       virtual ~mouse();
+      using ::message::base::set;
 
       virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
       static mouse * cast(signal_details * pobj) { return (mouse *)pobj; }
@@ -438,6 +449,7 @@ namespace message
       UINT     GetFlags();
       int16_t    GetDelta();
       point    GetPoint();
+      using ::message::base::set;
 
       virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
    };
@@ -484,6 +496,7 @@ namespace message
       show_window(sp(base_application) papp) : element(papp), message::base(papp) {}
       bool m_bShow;
       UINT  m_nStatus;
+      using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
    };
 
@@ -543,6 +556,7 @@ namespace message
 
       key(sp(base_application) papp);
 
+      using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
    };
 
@@ -556,6 +570,7 @@ namespace message
 
       nc_activate(sp(base_application) papp);
 
+      using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
    };
 
@@ -611,6 +626,7 @@ namespace message
 
 
       set_focus(sp(base_application) papp) : element(papp), message::base(papp) {}
+      using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
    };
 
@@ -622,6 +638,7 @@ namespace message
 
       window_pos(sp(base_application) papp) : element(papp), message::base(papp) {}
       WINDOWPOS * m_pwindowpos;
+      using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
    };
 
@@ -650,6 +667,7 @@ namespace message
       nc_calc_size(sp(base_application) papp) : element(papp), message::base(papp) {}
       NCCALCSIZE_PARAMS * m_pparams;
       bool GetCalcValidRects();
+      using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
 
    };

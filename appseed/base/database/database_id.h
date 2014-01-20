@@ -1,8 +1,10 @@
 #pragma once
 
+
 namespace database
 {
 
+   
    class CLASS_DECL_BASE id
    {
    public:
@@ -109,4 +111,8 @@ namespace database
       return *this;
    }
 
+   
 } // namespace dabase
+
+
+

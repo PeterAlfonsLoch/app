@@ -13,6 +13,35 @@ namespace user
    public:
 
 
+      enum DocStringIndex
+      {
+         
+         windowTitle,        // default ::user::window title
+         docName,            // ::fontopus::user visible name for default ::user::object
+         fileNewName,        // ::fontopus::user visible name for FileNew
+         // for file based documents:
+         filterName,         // ::fontopus::user visible name for FileOpen
+         filterExt,          // ::fontopus::user visible extension for FileOpen
+         // for file based documents with Shell open support:
+         regFileTypeId,      // REGEDIT visible registered file type identifier
+         regFileTypeName    // Shell visible registered file type name
+            
+      };
+
+      
+      enum Confidence
+      {
+         
+         noAttempt,
+         maybeAttemptForeign,
+         maybeAttemptNative,
+         yesAttemptForeign,
+         yesAttemptNative,
+         yesAlreadyOpen
+            
+      };
+      
+
       class on_open_document
       {
       public:
@@ -27,28 +56,6 @@ namespace user
       };
 
 
-      enum DocStringIndex
-      {
-         windowTitle,        // default ::user::window title
-         docName,            // ::fontopus::user visible name for default ::user::object
-         fileNewName,        // ::fontopus::user visible name for FileNew
-         // for file based documents:
-         filterName,         // ::fontopus::user visible name for FileOpen
-         filterExt,          // ::fontopus::user visible extension for FileOpen
-         // for file based documents with Shell open support:
-         regFileTypeId,      // REGEDIT visible registered file type identifier
-         regFileTypeName,    // Shell visible registered file type name
-      };
-
-      enum Confidence
-      {
-         noAttempt,
-         maybeAttemptForeign,
-         maybeAttemptNative,
-         yesAttemptForeign,
-         yesAttemptNative,
-         yesAlreadyOpen
-      };
 
 
       bool                    m_bQueueDocumentOpening;

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#if defined(LINUX) || defined(ANDROID)
+#if !defined(WINDOWSEX)
 
 
 namespace core
@@ -24,18 +24,23 @@ typedef ::file::binary_buffer * HFILE;
 namespace zip
 {
 
+   
    class File;
 
+   
    class CLASS_DECL_BASE InFile :
       public ::file::binary_buffer
    {
    public:
 
+      
       enum e_mode
       {
+         
          mode_undefined,
          mode_zip,
-         mode_unzip,
+         mode_unzip
+            
       };
 
       unz_file_info                       m_fi;
@@ -81,7 +86,10 @@ namespace zip
       virtual void set_length(file_size dwNewLen);
       virtual file_size get_length() const;
 
+      using ::file::stream_buffer::read;
       virtual ::primitive::memory_size read(void * lpBuf, ::primitive::memory_size nCount);
+      
+      using ::file::stream_buffer::write;
       virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
 
       virtual void LockRange(file_position dwPos, file_size dwCount);
@@ -105,5 +113,8 @@ namespace zip
 
    };
 
+   
 } // namespace zip
+
+
 

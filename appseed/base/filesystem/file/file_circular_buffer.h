@@ -32,16 +32,19 @@ namespace file
       ~circular_buffer();
 
       /** append l bytes from p to buffer */
+      using ::file::stream_buffer::write;
       void write(const void * pdata, ::primitive::memory_size l);
       /** copy l bytes from buffer to dest */
+      using ::file::stream_buffer::read;
       ::primitive::memory_size read(void * pbuffer, ::primitive::memory_size l);
       /** skip l bytes from buffer */
       bool remove(size_t l);
       /** read l bytes from buffer, returns as string. */
+      using ::file::stream_buffer::read_string;
       string read_string(size_t l);
 
       /** total buffer length */
-      file_size get_length();
+      file_size get_length() const;
       /** pointer to circular buffer beginning */
       const char *GetStart();
       /** return number of bytes from circular buffer beginning to buffer physical end */

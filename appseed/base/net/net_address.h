@@ -27,11 +27,11 @@ namespace net
 
 #endif
 
-      union
+      union address_union
       {
 
 
-         struct
+         struct address_struct
          {
 
 
@@ -39,7 +39,7 @@ namespace net
             uint16_t m_port;
 
 
-         };
+         } s;
 
 
          struct sockaddr_in      m_addr;
@@ -47,7 +47,7 @@ namespace net
          struct sockaddr         m_sa;
 
 
-      };
+      } u;
 
 
 #ifdef METROWIN
@@ -124,14 +124,14 @@ namespace net
    inline int32_t address::get_family() const
    {
 
-      return m_family;
+      return u.s.m_family;
 
    }
 
    inline port_t address::get_service_number() const
    {
 
-      return ntohs(m_port);
+      return ntohs(u.s.m_port);
 
    }
 
@@ -139,7 +139,7 @@ namespace net
    inline void address::set_service_number(port_t port)
    {
 
-      m_port = htons(port);
+      u.s.m_port = htons(port);
 
    }
 
@@ -147,7 +147,7 @@ namespace net
    inline void address::copy(const address & address)
    {
 
-      memcpy(this, &address, sizeof(m_sa));
+      memcpy(this, &address, sizeof(u.m_sa));
 
       sync_os_address();
       sync_os_service();
@@ -158,7 +158,7 @@ namespace net
    inline bool address::is_ipv4() const
    {
 
-      return m_family == AF_INET;
+      return u.s.m_family == AF_INET;
 
    }
 
@@ -166,7 +166,7 @@ namespace net
    inline bool address::is_ipv6() const
    {
 
-      return m_family == AF_INET6;
+      return u.s.m_family == AF_INET6;
 
    }
 
@@ -186,7 +186,7 @@ namespace net
    inline const sockaddr * address::sa() const
    {
 
-      return &m_sa;
+      return &u.m_sa;
 
    }
 
@@ -194,21 +194,21 @@ namespace net
    inline int32_t address::sa_len() const
    {
 
-      return family_len(m_family);
+      return family_len(u.s.m_family);
 
    }
 
    inline void address::SetFlowinfo(uint32_t x)
    {
       ASSERT(is_ipv6());
-      m_addr6.sin6_flowinfo = x;
+      u.m_addr6.sin6_flowinfo = x;
    }
 
 
    inline uint32_t address::GetFlowinfo()
    {
       ASSERT(is_ipv6());
-      return m_addr6.sin6_flowinfo;
+      return u.m_addr6.sin6_flowinfo;
    }
 
 
@@ -217,14 +217,14 @@ namespace net
    inline void address::SetScopeId(uint32_t x)
    {
       ASSERT(is_ipv6());
-      m_addr6.sin6_scope_id = x;
+      u.m_addr6.sin6_scope_id = x;
    }
 
 
    inline uint32_t address::GetScopeId()
    {
       ASSERT(is_ipv6());
-      return m_addr6.sin6_scope_id;
+      return u.m_addr6.sin6_scope_id;
    }
 
 #endif

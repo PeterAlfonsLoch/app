@@ -21,6 +21,7 @@ namespace sockets
       ~link_in_socket();
 
 
+      using ::sockets::tcp_socket::OnRead;
       void OnRead( char *buf, size_t n );
       void link_write(void * p, size_t size);
 

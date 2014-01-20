@@ -32,8 +32,12 @@ namespace file
       file_position get_position() const;
       file_size get_length() const;
 
+      using ::file::stream_buffer::read;
       virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
+      
+      using ::file::stream_buffer::write;
       virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
+      
       virtual void flush();
       virtual bool buffer(::primitive::memory_size uiGrow = 0);
       virtual void set_length(file_size dwNewLen);

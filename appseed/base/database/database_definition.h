@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CA2_APP_BASE_DATABASE_DEFINITION_H
+#define CA2_APP_BASE_DATABASE_DEFINITION_H
 
 
 #include "database_stringhelper.h"
@@ -177,5 +178,11 @@ namespace database
 
 
 } // namespace database
+
+
+
+#endif // CA2_APP_BASE_DATABASE_DEFINITION_H
+
+
 
 

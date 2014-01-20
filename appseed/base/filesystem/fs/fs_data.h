@@ -40,8 +40,13 @@ namespace fs
 
       virtual bool fast_has_subdir(const char * pszPath);
 
+      
    };
 
 
 
 } // namespace fs
+
+
+
+

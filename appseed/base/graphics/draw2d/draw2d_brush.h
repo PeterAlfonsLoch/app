@@ -16,7 +16,7 @@ namespace draw2d
 
          type_null,
          type_solid,
-         type_linear_gradient_point_color,
+         type_linear_gradient_point_color
 
       };
 

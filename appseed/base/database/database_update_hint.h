@@ -1,11 +1,14 @@
 #pragma once
 
+
 namespace database
 {
 
+   
    class client;
    class server;
 
+   
    class CLASS_DECL_BASE update_hint  :
       virtual public ::object
    {
@@ -15,7 +18,8 @@ namespace database
       enum e_update
       {
          update_internal,
-         update_user,
+         update_user
+            
       };
       
 
@@ -35,7 +39,10 @@ namespace database
 
    };
 
+   
 } // namespace database
+
+
 
 
 

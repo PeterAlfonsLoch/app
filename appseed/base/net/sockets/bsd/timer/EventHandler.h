@@ -75,7 +75,7 @@ namespace sockets
       /** Stop event loop. */
       void SetQuit(bool = true);
 
-      void add(socket *);
+      void add(base_socket *);
 
 
    };

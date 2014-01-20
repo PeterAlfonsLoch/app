@@ -28,7 +28,9 @@ namespace file
       file_size get_length() const;
       file_size get_length(single_lock * psl) const;
 
+      using ::file::stream_buffer::read;
       virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
+      using ::file::stream_buffer::write;
       virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
       virtual void flush();
       virtual void set_length(file_size dwNewLen);

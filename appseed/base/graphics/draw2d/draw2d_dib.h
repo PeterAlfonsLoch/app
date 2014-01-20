@@ -33,10 +33,11 @@ namespace draw2d
       {
 
          type_complex,
-         type_plain_color,
+         type_plain_color
 
       };
 
+      
       class descriptor
       {
       public:
@@ -165,7 +166,7 @@ namespace draw2d
       virtual void channel_mask(BYTE uchFind, BYTE uchSet, BYTE uchUnset, visual::rgba::echannel echannel);
       virtual void transparent_color(color color);
 
-
+      using ::object::create;
       virtual bool create(class size);
       virtual bool create(int32_t iWidth, int32_t iHeight);
       virtual bool create(::draw2d::graphics * pdc);

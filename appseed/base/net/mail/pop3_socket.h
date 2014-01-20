@@ -1,15 +1,19 @@
 #pragma once
 
+
 namespace mail
 {
 
+   
    class CLASS_DECL_BASE pop3_socket : 
       public ::sockets::tcp_socket
    {
    public:
    
+      
       enum e_state
       {
+         
          state_disconnected,
          state_auth_1,
          state_auth_2,
@@ -32,17 +36,9 @@ namespace mail
          state_retr_headers,
          state_retr_body,
          state_quit,
-         state_rset,
+         state_rset
+            
       };
-
-      bool retrieve();
-
-      void InitSSLClient();
-
-      pop3_socket(::sockets::socket_handler & handler);
-      ~pop3_socket();
-
-      void OnLine(const string & );
 
       pop3 *   m_ppop3;
       bool m_bSsl;
@@ -50,14 +46,26 @@ namespace mail
       string m_strKey;
       string m_strValue;
 
-
-   
-
-
-
-   public:
-      void SendPrompt();
       e_state  m_estate;
+
+      
+      pop3_socket(::sockets::socket_handler & handler);
+      virtual ~pop3_socket();
+      bool retrieve();
+
+      void InitSSLClient();
+
+
+      void OnLine(const string & );
+
+
+      void SendPrompt();
+      
+      
    };
 
+   
 } // namespace mail
+
+
+

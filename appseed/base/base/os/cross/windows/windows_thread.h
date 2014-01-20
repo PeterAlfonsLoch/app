@@ -27,8 +27,9 @@
 //    - No affinity APIs
 //    - No GetExitCodeThread
 //    - Failure cases return error codes but do not always call SetLastError
+#ifndef CA2_APP_BASE_OS_CROSS_WINDOWS_THREAD_H
+#define CA2_APP_BASE_OS_CROSS_WINDOWS_THREAD_H
 
-#pragma once
 
 #ifndef CREATE_SUSPENDED
 #define CREATE_SUSPENDED 0x00000004
@@ -36,7 +37,7 @@
 
 
 
-#if !defined(LINUX)
+#if !defined(LINUX) && !defined(SOLARIS)
 typedef struct hthread * HTHREAD;
 #endif
 
@@ -93,3 +94,4 @@ CLASS_DECL_BASE IDXGIDevice * TlsGetDXGIDevice();
 
 
 
+#endif // CA2_APP_BASE_OS_CROSS_WINDOWS_THREAD_H

@@ -81,7 +81,10 @@ namespace hotplugin
       virtual oswindow         get_host_window();
       virtual void         get_window_rect(LPRECT lprect);
 
+      using ::os::simple_ui::client_to_screen;
       virtual void client_to_screen(POINT * ppt);
+
+      using ::os::simple_ui::screen_to_client;
       virtual void screen_to_client(POINT * ppt);
 
       // client should implement
@@ -119,6 +122,8 @@ namespace hotplugin
 
       virtual void plugin_system_redraw();
 
+      
+      using ::os::simple_ui::message_handler;
 #ifdef WINDOWS
       //virtual LRESULT message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam);
 #else
@@ -145,7 +150,11 @@ namespace hotplugin
 
       virtual bool set_host(::hotplugin::host * phost);
 
+      
    };
 
 
 } // namespace hotplugin
+
+
+

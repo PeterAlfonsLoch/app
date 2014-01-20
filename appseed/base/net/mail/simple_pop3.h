@@ -1,14 +1,19 @@
 #pragma once
 
+
 namespace mail
 {
 
+   
    class pop3_socket;
 
+   
    class CLASS_DECL_BASE simple_pop3 :
       virtual public pop3
    {
    public:
+      
+      
       string                  m_strUser;
       string                  m_strPass;
       string                  m_strHost;
@@ -18,6 +23,9 @@ namespace mail
       int32_t                     m_iStatSize;
 
       int32_t                     m_iListSize;
+
+
+      simple_pop3(sp(base_application) papp);
 
 
       virtual string get_user();
@@ -30,10 +38,13 @@ namespace mail
 
       virtual void set_list_size(int32_t iSize);
 
-      simple_pop3(sp(base_application) papp);
-
       void store();
 
    };
 
+   
 }
+
+
+
+

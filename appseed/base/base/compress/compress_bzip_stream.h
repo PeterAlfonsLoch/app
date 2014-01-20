@@ -66,10 +66,16 @@ public:
    virtual ~bzip_stream();
 
 
+   using ::file::output_stream::write;
    void write(const void * buf, ::primitive::memory_size iSize);
    void finish();
+   
 
 protected:
+   
+   
    void construct();
+   
+   
 };
 

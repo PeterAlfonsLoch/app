@@ -59,7 +59,7 @@ namespace user
    class frame_window;
    class mdi_child_window;
    class control_bar;
-   class document;
+   class object;
    class impact_system;
 
 
@@ -71,9 +71,6 @@ namespace user
    class BaseDockBar;             // forward reference (see afxpriv.h)
    class mini_dock_frame_window;    // forward reference (see afxpriv.h)
    class CDockState;           // forward reference (see afxpriv.h)
-
-
-   class document;
 
 
    class FrameInitialUpdate
@@ -92,6 +89,16 @@ namespace user
    {
    public:
 
+
+
+      enum EColumn
+      {
+         
+         ColumnWindowRect
+            
+      };
+
+      
       static bool             g_bFullScreenAlt;
       bool                    m_bAutoWindowFrame;
       bool                    m_bWindowFrame;
@@ -137,12 +144,6 @@ namespace user
       static const uint32_t dwDockBarMap[4][2];
 
 
-
-      enum EColumn
-      {
-         ColumnWindowRect,
-      };
-
       frame_window();
       virtual ~frame_window();
 
@@ -164,8 +165,8 @@ namespace user
       //virtual void _001OnDraw(::draw2d::graphics * pdc);
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-      DECL_GEN_SIGNAL(_guserbaseOnInitialUpdate);
-      DECL_GEN_VSIGNAL(guserbaseOnInitialUpdate);
+      DECL_GEN_SIGNAL(_guserbaseOnInitialUpdate)
+      DECL_GEN_VSIGNAL(guserbaseOnInitialUpdate)
 
       virtual void on_set_parent(sp(::user::interaction) pguieParent);
 
@@ -309,9 +310,10 @@ namespace user
       friend class ::user::window;  // for access to m_bModalDisable
       friend class CReBar; // for access to m_bInRecalcLayout
 
-      DECL_GEN_SIGNAL(_001OnCreate);
-      DECL_GEN_SIGNAL(_001OnDestroy);
-      DECL_GEN_SIGNAL(_001OnSysCommand);
+      DECL_GEN_SIGNAL(_001OnCreate)
+      DECL_GEN_SIGNAL(_001OnDestroy)
+      DECL_GEN_SIGNAL(_001OnSysCommand)
+         
       void OnClose();
       LRESULT OnPopMessageString(WPARAM wParam, LPARAM lParam);
       LRESULT OnSetMessageString(WPARAM wParam, LPARAM lParam);
@@ -392,8 +394,8 @@ namespace user
 
       //    DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnIdleUpdateCmdUI)
-         DECL_GEN_SIGNAL(_001OnSetFocus)
-         DECL_GEN_SIGNAL(_001OnSize);
+      DECL_GEN_SIGNAL(_001OnSetFocus)
+      DECL_GEN_SIGNAL(_001OnSize)
       DECL_GEN_SIGNAL(_001OnQueryEndSession)
 
       friend class user;

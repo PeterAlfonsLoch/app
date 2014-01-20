@@ -1,8 +1,10 @@
 #pragma once
 
+
 namespace fontopus
 {
 
+   
    class contact_list :
       virtual public usera
    {
@@ -12,6 +14,11 @@ namespace fontopus
       contact_list();
       virtual ~contact_list();
 
+      
    };
+   
 
 } // namespace fontopus
+
+
+

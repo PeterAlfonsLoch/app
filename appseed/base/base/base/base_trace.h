@@ -66,18 +66,23 @@ namespace core
          category_dumpContext,   // traces from dump_context
          category_Memory,      // generic non-kernel primitive::memory traces
          category_Html,         // Html traces
-         category_Socket,      // socket traces
+         category_Socket      // socket traces
+            
       };
+      
 
       class trace;
 
+      
       // Declare a global instance of this class to automatically register a custom trace category at startup
       class CLASS_DECL_BASE category
       {
       public:
 
+         
          category();
          ~category();
+         
 
          UINT GetLevel() const throw();
          void SetLevel(UINT nLevel) throw();

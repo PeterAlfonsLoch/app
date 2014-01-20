@@ -16,7 +16,7 @@ namespace draw2d
    {
       
       unit_pixel,
-      unit_point,
+      unit_point
       
    };
 
@@ -27,7 +27,7 @@ namespace draw2d
       text_rendering_anti_alias,
       text_rendering_anti_alias_grid_fit,
       text_rendering_single_bit_per_pixel,
-      text_rendering_clear_type_grid_fit,
+      text_rendering_clear_type_grid_fit
       
    };
 

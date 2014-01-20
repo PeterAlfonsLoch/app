@@ -1,5 +1,6 @@
 #pragma once
 
+
 namespace xml
 {
 
@@ -10,6 +11,8 @@ namespace xml
    class CLASS_DECL_BASE parse_info
    {
    public:
+
+      
       bool               m_bTrimValue;        // [set] do trim when parse?
       bool               m_bEntityValue;      // [set] do convert from reference to entity? ( &lt; -> < )
       entities *        m_pentities;         // [set] entity table for entity decode
@@ -24,9 +27,19 @@ namespace xml
 
       sp(::xml::document)        m_pdoc;
 
+      
       parse_info(sp(base_application) papp);
+      
+      
    };
 
+   
    CLASS_DECL_BASE char * LoadOtherNodes( node * node, bool* pbRet, const char * pszXml, parse_info * pi = NULL);
+   
 
 } // namespace xml
+
+
+
+
+

@@ -378,8 +378,8 @@ namespace user
       virtual sp(::user::interaction) GetLastActivePopup();
 
       virtual bool IsChild(sp(::user::interaction)  pWnd);
-      virtual sp(::user::interaction) get_parent() const;
-      sp(::user::window) set_parent(sp(::user::window) pWndNewParent);
+      virtual sp(::user::interaction) get_parent();
+      sp(::user::interaction) set_parent(sp(::user::interaction) pWndNewParent);
 
       // Alert Functions
       bool FlashWindow(bool bInvert);
@@ -432,9 +432,7 @@ namespace user
       UINT nFlag = reposDefault, LPRECT lpRectParam = NULL,
       LPCRECT lpRectClient = NULL, bool bStretch = TRUE);*/
 
-      virtual void RepositionBars(UINT nIDFirst, UINT nIDLast, UINT nIDLeftOver,
-         UINT nFlags = reposDefault, LPRECT lpRectParam = NULL,
-         LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
+      virtual void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlags = reposDefault, LPRECT lpRectParam = NULL, LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
 
       // Dialog Data support
       virtual bool update_data(bool bSaveAndValidate = true);
@@ -470,7 +468,7 @@ namespace user
 
          HBRUSH OnCtlColor(::draw2d::graphics * pgraphics, sp(::user::window) pWnd, UINT nCtlColor);
 
-      DECL_GEN_SIGNAL(_001OnDestroy);
+      DECL_GEN_SIGNAL(_001OnDestroy)
       void OnEnable(bool bEnable);
       void OnEndSession(bool bEnding);
       void OnEnterIdle(UINT nWhy, sp(::user::window) pWho);

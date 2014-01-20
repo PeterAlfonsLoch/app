@@ -42,8 +42,6 @@
     }
 //////////////////////////////////////////////////////////////////////////////
 */
-
-
 #pragma once
 
 
@@ -63,13 +61,20 @@ public:
    gzip_stream(::file::output_stream & ostreamDest);
    virtual ~gzip_stream();
 
+   using ::file::output_stream::write;
    virtual void write(const void * buf, ::primitive::memory_size iSize);
    void finish();
 
 protected:
+   
+   
    void construct();
    int32_t _finish();
    int32_t destroy();
    void putLong (uint_ptr x);
+   
+   
 };
+
+
 

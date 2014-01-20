@@ -84,6 +84,8 @@ namespace install
       virtual void login_result(::fontopus::login::e_result eresult);
 
       virtual bool on_lbutton_up(int x, int y);
+      
+      using ::hotplugin::plugin::message_handler;
 
 #ifdef WINDOWS
 
@@ -123,7 +125,10 @@ namespace install
 
       virtual string defer_get_plugin();
 
+      using ::hotplugin::plugin::viewport_screen_to_client;
       virtual void viewport_screen_to_client(POINT * ppt);
+      
+      using ::hotplugin::plugin::viewport_client_to_screen;
       virtual void viewport_client_to_screen(POINT * ppt);
 
       virtual bool set_host(::hotplugin::host * phost);

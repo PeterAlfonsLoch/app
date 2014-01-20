@@ -7,8 +7,10 @@
 namespace fontopus
 {
 
+   
    enum e_result
    {
+      
       result_auth,
       result_registration_deferred,
       result_please_finish_registration,
@@ -16,18 +18,24 @@ namespace fontopus
       result_no_password,
       result_wrong_password_or_login,
       result_time_out,
-      result_fail,
+      result_fail
+         
    };
+   
 
    class CLASS_DECL_BASE login_thread_callback :
       virtual public ::object
    {
    public:
+      
+      
       virtual void on_login_thread_response(e_result iAuth, const char * pszResponse);
       virtual string calc_mod_hash();
       virtual string calc_key_hash();
       virtual string calc_ca2_hash();
       virtual bool get_defer_registration() = 0;
+      
+      
    };
 
 
@@ -35,6 +43,8 @@ namespace fontopus
       virtual public element
    {
    public:
+      
+      
       string                  m_strUrl;
       property_set       m_propertysetPost;
       property_set       m_propertysetHeaders;

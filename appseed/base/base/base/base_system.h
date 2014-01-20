@@ -95,6 +95,7 @@ public:
    base_system(sp(base_application) papp);
 
 
+   using thread::construct;
    virtual void construct();
 
    virtual bool initialize_instance();
@@ -318,3 +319,7 @@ inline ::file::input_stream & operator >>( ::file::input_stream &  _Istr, bitset
 
 
 void CLASS_DECL_BASE __start_system(base_system * psystem);
+
+
+
+

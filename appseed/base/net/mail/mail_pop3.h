@@ -1,27 +1,19 @@
 #pragma once
 
 
-
 namespace mail
 {
 
+   
    class pop3_socket;
 
+   
    class CLASS_DECL_BASE pop3 :
       virtual public ::object
    {
    public:
 
-      virtual string get_user();
-      virtual string get_pass();
-      virtual string get_host();
-      virtual string get_transaction();
-
-      virtual void set_stat_count(int32_t iCount);
-      virtual void set_stat_size(int32_t iSize);
-
-      virtual void set_list_size(int32_t iSize);
-
+      
       ::sockets::socket_handler     m_handler;
       pop3_socket *                 m_psocket;
       event                         m_evFinish;
@@ -40,9 +32,22 @@ namespace mail
 
       critical_section              m_csDataset;
 
-
-
+      
       pop3(sp(base_application) papp);
+
+
+      virtual string get_user();
+      virtual string get_pass();
+      virtual string get_host();
+      virtual string get_transaction();
+
+      virtual void set_stat_count(int32_t iCount);
+      virtual void set_stat_size(int32_t iSize);
+
+      virtual void set_list_size(int32_t iSize);
+
+
+
 
       virtual void update_lists();
 
@@ -60,3 +65,7 @@ namespace mail
    };
 
 }
+
+
+
+

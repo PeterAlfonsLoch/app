@@ -1,7 +1,7 @@
 #pragma once
 
 
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#ifndef WINDOWS
 
 
 typedef void * HKL;

@@ -9,9 +9,10 @@ namespace action
    {
 
       context_this_set_text,
-      context_this_on_after_set_text,
+      context_this_on_after_set_text
 
    };
+   
 
    class CLASS_DECL_BASE context
    {

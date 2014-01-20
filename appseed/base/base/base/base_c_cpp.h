@@ -98,9 +98,11 @@ namespace install
 
 enum e_extract
 {
+   
    extract_none,
    extract_first,
-   extract_all,
+   extract_all
+           
 };
 
 
@@ -165,7 +167,7 @@ class random_access_iterator { public: };
 #endif
 
 
-#if defined(LINUX) || defined(MACOS) || defined(METROWIN) || defined(ANDROID)
+#ifndef WINDOWSEX
 
 typedef void * HDWP;
 
@@ -351,7 +353,7 @@ namespace file
 
 
 
-#include "base/user/user_create_context.h"
+//#include "base/user/user_create_context.h"
 
 
 #if defined(LINUX)
@@ -531,8 +533,9 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_fixed_alloc_impl.h"
 #include "base_plex_heap_impl.h"
 #include "base/primitive/primitive_command_line.h"
-#include "base/primitive/primitive_create_context.h"
 #include "base/primitive/primitive_command.h"
+#include "base/user/user_create_context.h"
+#include "base/primitive/primitive_create_context.h"
 #include "base/primitive/primitive_request_signal.h"
 
 
@@ -548,7 +551,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
-#include "base/graphics/visual/visual.h"
+//#include "base/graphics/visual/visual.h"
 
 
 #include "base/filesystem/file/file_system.h"
@@ -615,7 +618,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
-#include "base/install/install_trace.h"
+//#include "base/install/install_trace.h"
 
 
 #define new BASE_NEW

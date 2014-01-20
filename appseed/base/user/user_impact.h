@@ -45,7 +45,7 @@ namespace user
          hint_set_edit_file = hint_begin,
          hint_add_location,
          hint_save_to_output_stream,
-         hint_end,
+         hint_end
 
       };
 

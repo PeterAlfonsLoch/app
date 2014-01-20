@@ -61,11 +61,13 @@ namespace draw2d
 
             enum e_type
             {
+               
                type_begin,
                type_arc,
                type_line,
                type_move,
-               type_end,
+               type_end
+                  
             };
 
 
@@ -113,6 +115,7 @@ namespace draw2d
 
       virtual bool add_arc(const RECT & rect, int32_t iStart, int32_t iAngle);
 
+      using ::draw2d::object::add_line;
       virtual bool add_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool add_line(point p1, point p2);
 

@@ -94,4 +94,4 @@ CLASS_DECL_BASE bool crypto_file_set(const char * pszFile, const char * pszData,
 
 CLASS_DECL_BASE string spa_login_crypto(const char * psz, const char * pszRsa);
 
-#include "crypto_nessie.h"
+

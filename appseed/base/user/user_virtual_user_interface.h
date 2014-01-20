@@ -25,7 +25,7 @@ public:
    sp(::user::interaction) set_parent(sp(::user::interaction) pguieParent);
    bool ShowWindow(int32_t nCmdShow);
    virtual bool ReleaseDC(::draw2d::graphics *);
-   virtual sp(::user::interaction) get_parent() const;
+   virtual sp(::user::interaction) get_parent();
 
    virtual void _001WindowMaximize();
    virtual void _001WindowRestore();
@@ -75,6 +75,7 @@ public:
    virtual void _002InstallMessageHandling(::message::dispatch * pinterface);
 
 
+   using ::user::interaction::create_message_queue;
    bool create_message_queue();
 
    // timer Functions
@@ -88,6 +89,7 @@ public:
    virtual bool IsWindowVisible();
 
    virtual void VirtualOnSize();
+   using ::user::interaction::create;
    virtual bool create(sp(::user::interaction)pparent, id id);
    virtual bool create(const char * lpszClassName,
       const char * lpszWindowName, uint32_t dwStyle,

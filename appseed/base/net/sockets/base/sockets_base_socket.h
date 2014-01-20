@@ -17,6 +17,15 @@ namespace sockets
    public:
 
 
+      enum e_status
+      {
+
+         status_ok,
+         status_connection_timed_out
+            
+      };
+      
+
       class CLASS_DECL_BASE callback
       {
       public:
@@ -74,12 +83,7 @@ namespace sockets
       };
 
 
-      enum e_status
-      {
-         status_ok,
-         status_connection_timed_out,
-      };
-
+      
       base_socket_handler &   m_handler; ///< Reference of base_socket_handler in control of this socket
       SOCKET                  m_socket; ///< File descriptor
 

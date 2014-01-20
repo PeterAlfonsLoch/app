@@ -4,13 +4,14 @@
 namespace xml
 {
 
+   
    enum e_action
    {
 
       set_attr,
       set_name,
       set_value,
-      add_attr,
+      add_attr
 
    };
 

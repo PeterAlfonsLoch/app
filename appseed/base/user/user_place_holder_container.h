@@ -20,6 +20,7 @@ namespace user
       void install_message_handling(::message::dispatch * pdispatch);
 
 
+      using ::user::interaction::create;
       virtual bool create(sp(::user::interaction) puiParent, id id);
 
 

@@ -4,22 +4,30 @@
 namespace fs
 {
 
+   
    enum e_arrange
    {
-      arrange_by_name,
+      
+      arrange_by_name
+         
    };
+   
 
    enum e_flag
    {
+      
       FlagInZip,
       FlagFolder,
       FlagFolderEx001,
       FlagFolderEx001Calc,
       FlagHasSubFolder,
-      FlagHasSubFolderUnknown,
+      FlagHasSubFolderUnknown
+         
    };
+   
 
 } // namespace fs
+
 
 
 #include "fs_item.h"

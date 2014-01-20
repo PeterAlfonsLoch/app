@@ -17,7 +17,7 @@ namespace draw2d
          combine_add,
          combine_exclude,
          combine_intersect,
-         combine_xor,
+         combine_xor
 
       };
 
@@ -31,7 +31,7 @@ namespace draw2d
          type_polygon,
          type_poly_polygon,
          type_round_rect,
-         type_combine,
+         type_combine
 
       };
 

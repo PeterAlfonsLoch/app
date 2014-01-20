@@ -113,13 +113,12 @@ namespace sockets
       bool m_bTryingReconnect; ///< Trying to reconnect
       string m_strHost;
 
-   public:
-
       bool m_bCertCommonNameCheckEnabled;
 
       sp(ssl_client_context)     m_spsslclientcontext;
       string                     m_strInitSSLClientContext;
 
+      tcp_socket(const tcp_socket& );
       /** Constructor with standard values on input/output buffers. */
       tcp_socket(base_socket_handler& );
       /** Constructor with custom values for i/o buffer.
@@ -127,8 +126,10 @@ namespace sockets
       \param isize Input buffer size
       \param osize Output buffer size */
       tcp_socket(base_socket_handler& h,size_t isize,size_t osize);
-      ~tcp_socket();
+      virtual ~tcp_socket();
 
+      
+      using ::sockets::stream_socket::open;
       bool open(const ::net::address & address, bool skip_socks = false);
       bool open(const ::net::address & address, const ::net::address & addressBind,bool skip_socks = false);
       /** open connection.
@@ -185,8 +186,7 @@ namespace sockets
       bool OnSocks4Read();
 
       /** Callback executed when resolver thread has finished a resolve request. */
-      void OnResolved(int32_t id, in_addr & addr, port_t port);
-      void OnResolved(int32_t id,in6_addr& a,port_t port);
+      void OnResolved(int32_t id, const ::net::address & addr);
       /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
       void OnSSLConnect();
       /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
@@ -224,8 +224,9 @@ namespace sockets
       set by SetTransferLimit. Default: 0 (disabled). */
       virtual void OnTransferLimit();
 
-      tcp_socket(const tcp_socket& );
+      
       void OnRead();
+      using ::sockets::stream_socket::read;
       virtual primitive::memory_size read(void * buf, ::primitive::memory_size n);
       virtual primitive::memory_size recv(void * buf, ::primitive::memory_size n);
       virtual void on_read(const void * buf, ::primitive::memory_size n );

@@ -19,7 +19,10 @@ namespace fs
       remote_native_file(sp(base_application) papp, var varFile);
       virtual ~remote_native_file();
 
+      using ::sockets::http_batch_buffer::read;
       virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
+      
+      using ::sockets::http_batch_buffer::write;
       virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
 
       file_position seek(file_offset lOff, ::file::e_seek  nFrom);
@@ -34,3 +37,7 @@ namespace fs
 
 
 } // namespace fs
+
+
+
+

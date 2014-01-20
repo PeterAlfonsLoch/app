@@ -1,11 +1,14 @@
 #pragma once
 
 
+
 namespace database
 {
 
+   
    class id;
 
+   
    class CLASS_DECL_BASE server :
       public client_array
    {
@@ -53,4 +56,8 @@ namespace database
       virtual bool data_save              (client * pclient, class id idSection, class id id, class id idIndex, var var, update_hint * phint = NULL);
    };
 
+   
 } // namespace database
+
+
+

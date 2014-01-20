@@ -1,8 +1,10 @@
 #pragma once
 
+
 namespace xml
 {
 
+   
    class var_exchange :
       public exportable,
       public importable,
@@ -24,4 +26,9 @@ namespace xml
 
    };
 
+   
 } // namespace xml
+
+
+
+

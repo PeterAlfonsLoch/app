@@ -19,6 +19,7 @@ namespace sockets
          \param len Length of data
          \param sa Pointer to sockaddr struct of sender
          \param sa_len Length of sockaddr struct */
+      using ::sockets::udp_socket::OnRawData;
       virtual void OnRawData(char *buf,size_t len,struct sockaddr *sa,socklen_t sa_len);
 
       /** Called when incoming data has been received and read timestamp is enabled.

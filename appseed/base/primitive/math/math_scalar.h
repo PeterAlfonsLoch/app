@@ -150,3 +150,5 @@ public:
    int_scalar & operator --(int) { decrement(); return *this; }
 
 };
+
+

@@ -1,8 +1,10 @@
 #pragma once
 
+
 namespace xml
 {
 
+   
    class CLASS_DECL_BASE property_set_exchange :
       virtual public exportable,
       virtual public importable,
@@ -26,3 +28,7 @@ namespace xml
 
 
 } // namespace xml
+
+
+
+

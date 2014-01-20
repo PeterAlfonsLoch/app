@@ -46,6 +46,7 @@
 
 const int32_t TINYJS_LOOP_MAX_ITERATIONS = 8192;
 
+
 enum LEX_TYPES {
     LEX_EOF = 0,
     LEX_ID = 256,
@@ -114,9 +115,10 @@ enum SCRIPTVAR_FLAGS {
                             SCRIPTVAR_FUNCTION |
                             SCRIPTVAR_OBJECT |
                             SCRIPTVAR_ARRAY |
-                            SCRIPTVAR_NULL,
+                            SCRIPTVAR_NULL
 
 };
+
 
 #define TINYJS_RETURN_VAR "return"
 #define TINYJS_PROTOTYPE_CLASS "prototype"

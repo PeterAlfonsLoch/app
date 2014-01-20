@@ -18,35 +18,48 @@ namespace user
    {
    public:
 
+      
       enum ETranslucency
       {
+         
          TranslucencyNone,
          TranslucencyPresent,
-         TranslucencyTotal,
+         TranslucencyTotal
+         
       };
 
+      
       enum e_message
       {
+      
          MessageBaseWndGetProperty = WM_USER + 96,
          MessageProperty,
-         MessageGeneralEvent,
+         MessageGeneralEvent
+            
       };
 
+      
       enum EProperty
       {
+         
          PropertyBaseWndInterface = 0,
-         PropertyDrawBaseWndInterface,
+         PropertyDrawBaseWndInterface
+            
       };
 
+      
       enum EGeneralEvent
       {
+         
          GeneralEventPosCreate1,
          GeneralEventPosCreate2,
          GeneralEventPosCreate3,
          GeneralEventPosCreate4,
-         GeneralEventPosCreate5,
+         GeneralEventPosCreate5
+            
       };
 
+      
       sp(interaction)                       m_pguie;
       // window rectangle relative to the parent
       // this rectangle comes before in importance compared to m_rectWindow
@@ -94,7 +107,7 @@ namespace user
       virtual void ScreenToClient(__point64 * lppoint);
 
 
-      virtual window_interface * window_interface_get_parent() const;
+      virtual window_interface * window_interface_get_parent();
 
 
       /*oswindow GetHandle() const;
@@ -171,18 +184,22 @@ namespace user
 
          virtual LRESULT _001BaseWndGetProperty(EProperty eproperty, LPARAM lparam);
 
-      virtual sp(interaction) get_guie() const;
+      virtual sp(interaction) get_guie();
 #ifdef METROWIN
-      virtual sp(interaction) get_wnd() const;
+      virtual sp(interaction) get_wnd();
 #else
-      virtual sp(::user::window) get_wnd() const;
+      virtual sp(::user::window) get_wnd();
 #endif
 
+      
       enum EOptimize
       {
+         
          OptimizeNone,
-         OptimizeThis,
+         OptimizeThis
+            
       };
+      
 
       //void Optimize001(
       //   user::oswindow_tree::Array & oswindowtreea,
@@ -220,6 +237,7 @@ namespace user
       void _001BaseWndInterfaceMap();
 
    };
+   
 
 } // namespace user
 

@@ -91,8 +91,7 @@ namespace user
       key_openbracket2,
       key_til2,
       key_acute2,
-      key_equal,
-
+      key_equal
       
    };
    

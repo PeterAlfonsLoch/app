@@ -1,18 +1,17 @@
 #pragma once
 
+
 namespace xml
 {
 
+   
    class CLASS_DECL_BASE tree_base :
       virtual public ::object
    {
-   protected:
+   public:
 
 
       var_exchange   m_varexchange;
-
-
-   public:
 
 
       //The schema of the tree
@@ -28,6 +27,11 @@ namespace xml
       void set_schema(tree_schema * pschema);
       tree_schema & get_schema();
 
+   
    };
 
+   
 } // namespace xml
+
+
+

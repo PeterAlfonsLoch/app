@@ -17,7 +17,8 @@ enum e_scalar
 
    scalar_tempo,
    scalar_position,
-   scalar_key_shift,
-
+   scalar_key_shift
 
 };
+
+

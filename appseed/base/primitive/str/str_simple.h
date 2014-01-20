@@ -274,6 +274,7 @@ extern "C"
 #pragma intrinsic( _InterlockedIncrement )
 #pragma intrinsic( _InterlockedDecrement )
 
+
       struct string_data;
 
 /*      class CLASS_DECL_BASE string_manager
@@ -289,8 +290,16 @@ extern "C"
       virtual string_data * GetNilString() = 0;
       virtual string_manager* Clone() = 0;
       };*/
-
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(SOLARIS)
+      #include <atomic.h>
+#if defined(OS64BIT)
+   #define _gen_InterlockedIncrement(ptr) atomic_inc_64(ptr)
+   #define _gen_InterlockedDecrement(ptr) atomic_dec_64(ptr)
+#else
+   #define _gen_InterlockedIncrement(ptr) atomic_inc_32((volatile uint32_t *) ptr)
+   #define _gen_InterlockedDecrement(ptr) atomic_dec_32((volatile uint32_t *) ptr)
+#endif
+#elif defined(LINUX) || defined(MACOS) || defined(ANDROID)
    #define _gen_InterlockedIncrement(ptr) __sync_add_and_fetch(ptr, 1)
    #define _gen_InterlockedDecrement(ptr) __sync_sub_and_fetch(ptr, 1)
 #else

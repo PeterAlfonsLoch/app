@@ -13,24 +13,32 @@ namespace draw2d
 
       enum e_type
       {
+         
          type_null,
-         type_solid,
+         type_solid
+            
       };
 
+      
       enum e_end_cap
       {
+         
          end_cap_flat,
-         end_cap_round,
+         end_cap_round
+            
       };
 
 
       enum e_line_join
       {
+         
          line_join_miter,
          line_join_bevel,
          line_join_round,
-         line_join_miter_clipped,
+         line_join_miter_clipped
+            
       };
+      
 
       e_type            m_etype;
       e_end_cap         m_eendcap;

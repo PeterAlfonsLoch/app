@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CA2_APP_BASE_USER_INTERACTION_H
+#define CA2_APP_BASE_USER_INTERACTION_H
 
 
 class message_queue_listener;
@@ -11,10 +12,12 @@ class base_session;
 // special struct for WM_SIZEPARENT
 struct __SIZEPARENTPARAMS
 {
+   
    HDWP hDWP;       // handle for DeferWindowPos
    RECT rect;       // parent client rectangle (trim as appropriate)
    SIZE sizeTotal;  // total size on each side as layout proceeds
    bool bStretch;   // should stretch to fill all space
+   
 };
 
 
@@ -86,7 +89,7 @@ namespace user
       enum e_message
       {
 
-         message_simple_command = WM_APP + 1985,
+         message_simple_command = WM_APP + 1985
 
       };
 
@@ -97,16 +100,17 @@ namespace user
          simple_command_load_window_rect,
          simple_command_update_frame_title,
          simple_command_set_edit_file,
-         simple_command_layout,
+         simple_command_layout
 
       };
 
 
       enum e_type
       {
+         
          type_window,
          type_frame,
-         type_view,
+         type_view
 
       };
 
@@ -166,10 +170,12 @@ namespace user
 
       enum e_appearance
       {
+         
          appearance_normal,
          appearance_zoomed,
          appearance_iconic,
-         appearance_notify,
+         appearance_notify
+            
       };
 
       sp(mutex)                           m_spmutex;
@@ -395,8 +401,7 @@ namespace user
       virtual bool is_frame_window();
 
       // timer Functions
-      virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse,
-         void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, uint32_t));
+      virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, uint32_t));
       virtual bool KillTimer(uint_ptr nIDEvent);
 
       virtual bool IsWindowEnabled();
@@ -413,11 +418,11 @@ namespace user
       virtual bool ReleaseDC(::draw2d::graphics *);
 
       virtual bool IsChild(sp(interaction)  pWnd);
-      virtual window_interface * window_interface_get_parent() const;
-      virtual sp(::user::interaction) get_parent() const;
+      virtual window_interface * window_interface_get_parent();
+      virtual sp(::user::interaction) get_parent();
       virtual sp(::user::interaction) set_parent(sp(::user::interaction) pguieParent);
-      virtual oswindow get_parent_handle() const;
-      virtual sp(::user::interaction) get_parent_base() const;
+      virtual oswindow get_parent_handle();
+      virtual sp(::user::interaction) get_parent_base();
       virtual sp(::user::interaction) set_parent_base(sp(::user::interaction) pguieParent);
 
       virtual id GetDlgCtrlId();
@@ -466,7 +471,7 @@ namespace user
          DECL_GEN_SIGNAL(_001OnUser184)
          DECL_GEN_SIGNAL(_001OnNcCalcSize)
          DECL_GEN_SIGNAL(_001OnClose)
-         DECL_GEN_SIGNAL(_001OnSimpleCommand);
+         DECL_GEN_SIGNAL(_001OnSimpleCommand)
 
 
 
@@ -502,18 +507,22 @@ namespace user
       virtual sp(::user::interaction) get_focusable_descendant(sp(::user::interaction) pui = NULL);
 
 #ifdef METROWIN
-      virtual sp(::user::interaction) get_wnd() const;
+      virtual sp(::user::interaction) get_wnd();
 #else
-      virtual sp(::user::window) get_wnd() const;
+      virtual sp(::user::window) get_wnd();
 #endif
 
+      
       enum RepositionFlags
       {
+         
          reposDefault = 0,
          reposQuery = 1,
          reposExtra = 2,
          reposNoPosLeftOver = 0x8000
+            
       };
+      
 
       virtual void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlag = reposDefault, LPRECT lpRectParam = NULL, LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
 
@@ -546,7 +555,9 @@ namespace user
 
       virtual LRESULT DefWindowProc(UINT uiMessage, WPARAM wparam, lparam lparam);
       virtual void message_handler(signal_details * pobj);
+#ifdef WINDOWSEX
       virtual LRESULT message_handler(LPMESSAGE lpmessage);
+#endif
       virtual void GuieProc(signal_details * pobj);
 
       virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics * pdc);
@@ -654,3 +665,9 @@ CLASS_DECL_BASE sp(::user::interaction) WINAPI CreateGuieEx(
    id id,
    HINSTANCE hInstance,
    LPVOID lpParam);
+
+
+#endif // CA2_APP_BASE_USER_INTERACTION_H
+
+
+

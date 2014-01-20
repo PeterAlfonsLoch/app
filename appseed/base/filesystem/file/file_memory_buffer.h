@@ -47,7 +47,11 @@ namespace file
       file_size get_length() const;
       void Truncate(file_size iPosition);
       void clear();
+      
+      using ::file::stream_buffer::read;
       virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
+      
+      using ::file::stream_buffer::write;
       virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
 
       virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = NULL, void ** ppBufMax = NULL);
@@ -64,12 +68,10 @@ namespace file
       virtual ::primitive::memory_size get_internal_data_size();
       virtual bool set_internal_data_size(::primitive::memory_size c);
 
+      virtual void transfer_to(writer & writer, ::primitive::memory_size uiBufferSize = 1024 * 1024);
 
-      virtual void transfer_to(writer & writer);
-
+      
    };
-
-
 
 
 } // namespace primitive
