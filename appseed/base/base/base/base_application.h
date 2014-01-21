@@ -3,20 +3,20 @@
 
 enum EExclusiveInstance
 {
-   
+
    ExclusiveInstanceNone,
    ExclusiveInstanceLocal,
    ExclusiveInstanceLocalId,
    ExclusiveInstanceGlobal,
    ExclusiveInstanceGlobalId,
    ExclusiveInstanceLicense
-      
+
 };
 
 
 enum e_application_signal
 {
-   
+
    application_signal_initialize1, // cgcl // first initialization
    application_signal_initialize2, // cst  // second initialization
    application_signal_initialize3, // third initialization and so on...
@@ -27,7 +27,7 @@ enum e_application_signal
    application_signal_exit_instance,
    application_signal_init_application,
    application_signal_none
-      
+
 };
 
 
@@ -147,7 +147,7 @@ public:
    string                                          m_strInstallType;
    bool                                            m_bIfs;
    mutex                                           m_mutexMatterLocator;
-   
+
 
 
    mutex                                           m_mutexStr;
@@ -157,7 +157,7 @@ public:
 
    static UINT                                     APPM_LANGUAGE;
    static WPARAM                                   WPARAM_LANGUAGE_UPDATE;
-   
+
    bool                                            m_bBaseProcessInitialize;
    bool                                            m_bBaseInitializeInstance;
 
@@ -423,7 +423,7 @@ public:
    virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
    virtual void TermThread(HINSTANCE hInstTerm);
 
-   
+
 
    virtual sp(::user::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
    virtual sp(::user::window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
@@ -571,6 +571,35 @@ class CLASS_DECL_BASE application_ptra :
 {
 public:
 
+
+   application_ptra() { }
+
+
+   application_ptra(const application_ptra & a) :
+      spa(base_application)(a)
+   {
+
+   }
+
+
+#if defined(MOVE_SEMANTICS)
+
+   application_ptra(application_ptra && a) :
+      spa(base_application)(a)
+   {
+
+   }
+
+   inline application_ptra & operator = (application_ptra && a)
+   {
+
+      spa(base_application)::operator = (a);
+
+      return *this;
+
+   }
+
+#endif
 
    base_application * find_by_app_name(const string & strAppName);
 

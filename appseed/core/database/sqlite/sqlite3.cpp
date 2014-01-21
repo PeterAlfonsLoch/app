@@ -17820,7 +17820,7 @@ translate_out:
       }
       zTempPath[j] = '\0';
       sqlite3_snprintf( nBuf-30, zBuf,
-         "%s\\"SQLITE_TEMP_FILE_PREFIX, zTempPath );
+         "%s\\" SQLITE_TEMP_FILE_PREFIX, zTempPath );
       j = (int32_t) strlen( zBuf );
       sqlite3Randomness( 20, &zBuf[j] );
       for( i = 0; i < 20; i++, j++ ){
@@ -21237,7 +21237,7 @@ afp_end_lock:
          sInfo.dwOSVersionInfoSize = sizeof(sInfo);
          GetVersionEx(&sInfo);
          sqlite3_os_type = sInfo.dwPlatformId==VER_PLATFORM_WIN32_NT ? 2 : 1;*/
-         sqlite3_os_type = is_windows_nt() ? 2 : 1; 
+         sqlite3_os_type = is_windows_nt() ? 2 : 1;
       }
       return sqlite3_os_type==2;
    }
@@ -22418,7 +22418,7 @@ afp_end_lock:
       for(i=(int32_t) strlen(zTempPath); i>0 && zTempPath[i-1]=='\\'; i--){}
       zTempPath[i] = 0;
       sqlite3_snprintf(nBuf-30, zBuf,
-     "%s\\"SQLITE_TEMP_FILE_PREFIX, zTempPath);
+     "%s\\" SQLITE_TEMP_FILE_PREFIX, zTempPath);
       j = (int32_t) strlen(zBuf);
       sqlite3Randomness(20, &zBuf[j]);
       for(i=0; i<20; i++, j++){

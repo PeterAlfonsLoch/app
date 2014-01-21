@@ -421,7 +421,7 @@ namespace draw2d_xlib
 
       XFreePixmap(m_ui.m_window->display(), m_pixmap);
 
-      m_pixmap = NULL;
+      m_pixmap = None;
 
       return true;
 

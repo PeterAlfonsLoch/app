@@ -751,7 +751,8 @@ namespace os
 
    }
 
-   void simple_ui::destroy_window()
+
+   bool simple_ui::destroy_window()
    {
 
       if(m_bRunLoop)
@@ -761,9 +762,11 @@ namespace os
 
       }
 
-      ::DestroyWindow(m_window);
+      bool b = ::DestroyWindow(m_window) != FALSE;
 
       m_window = NULL;
+
+      return b;
 
    }
 

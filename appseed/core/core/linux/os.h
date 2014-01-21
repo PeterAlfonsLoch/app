@@ -16,13 +16,13 @@ namespace file
 {
 
 
-   class binary_buffer;
+   class stream_buffer;
 
 
 } // namespace file
 
 
-typedef ::file::binary_buffer * HFILE;
+typedef ::file::stream_buffer * HFILE;
 
 
 

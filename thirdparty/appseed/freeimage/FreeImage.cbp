@@ -535,6 +535,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="LibPNG/png_framework.h">
+			<Option compilerVar="CC" />
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>

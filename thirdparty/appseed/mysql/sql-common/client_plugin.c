@@ -397,7 +397,7 @@ mysql_load_plugin_v(MYSQL *mysql, const char *name, int type,
 
   DBUG_PRINT ("info", ("dlopeninig %s", dlpath));
   /* Open new dll handle */
-#if defined(ANDROID)
+#if defined(ANDROID) || defined(LINUX)
   if (!(dlhandle= (void *) dlopen(dlpath, 0)))
 #else
   if (!(dlhandle = dlopen(dlpath, RTLD_NOW)))

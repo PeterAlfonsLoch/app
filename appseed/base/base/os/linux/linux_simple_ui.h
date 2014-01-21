@@ -69,7 +69,7 @@ namespace os
 
       virtual bool show_window(bool bShow = true);
 
-      virtual void destroy_window();
+      virtual bool destroy_window();
 
 
       virtual bool on_key_down(uint32_t uiKey);

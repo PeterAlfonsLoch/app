@@ -130,10 +130,14 @@ ca2_library::~ca2_library()
 
 }
 
-bool ca2_library::open(const char * pszPath)
+
+bool ca2_library::open(const char * pszPath, bool bAutoClose)
 {
-   return base_library::open(pszPath);
+
+   return base_library::open(pszPath, bAutoClose);
+
 }
+
 
 bool base_library::is_opened()
 {
@@ -141,6 +145,7 @@ bool base_library::is_opened()
    return m_plibrary != NULL;
 
 }
+
 
 bool base_library::is_closed()
 {
