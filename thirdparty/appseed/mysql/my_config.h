@@ -271,6 +271,7 @@
 #define HAVE_STDINT_H 1
 #define HAVE_SYS_MMAN_H
 #define HAVE_MKSTEMP 1
+#define HAVE_DLERROR
 #define _access access
 #define _chmod chmod
 #define _unlink unlink

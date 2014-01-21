@@ -29,6 +29,8 @@
 #ifdef HAVE_GETPASS
 #ifdef HAVE_PWD_H
 #include <pwd.h>
+#else
+extern char *getpass (const char *__prompt);
 #endif /* HAVE_PWD_H */
 #else /* ! HAVE_GETPASS */
 #if !defined(_WIN32)
@@ -152,7 +154,11 @@ char *get_tty_password(const char *opt_message)
   DBUG_ENTER("get_tty_password");
 
 #ifdef HAVE_GETPASS
-  passbuff = (char *) getpass(opt_message ? opt_message : "Enter password: ");
+   const char * pszFallbackPrompt = "Enter password: ";
+   const char * pszPrompt = pszFallbackPrompt;
+   if(opt_message != NULL)
+      pszPrompt = opt_message;
+   passbuff = getpass(pszPrompt);
 
   /* copy the password to buff and clear original (static) buffer */
   strnmov(buff, passbuff, sizeof(buff) - 1);

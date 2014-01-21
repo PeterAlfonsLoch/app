@@ -581,6 +581,15 @@ public:
 
    }
 
+   inline application_ptra & operator = (const application_ptra & a)
+   {
+
+      spa(base_application)::operator = (a);
+
+      return *this;
+
+   }
+
 
 #if defined(MOVE_SEMANTICS)
 

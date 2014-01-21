@@ -20,6 +20,7 @@ It is provided "as is" without express or implied warranty.
 #ifdef LINUX
 #include <execinfo.h>
 #include <cxxabi.h>
+#define _BSD_SOURCE
 #include <unistd.h>
 #elif defined(MACOS)
 #include <execinfo.h>

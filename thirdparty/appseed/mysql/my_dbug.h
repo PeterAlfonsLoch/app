@@ -21,6 +21,7 @@
 #include <sys/types.h>
 #endif
 #ifdef HAVE_UNISTD_H
+#define _BSD_SOURCE
 #include <unistd.h>
 #endif
 #include <signal.h>
