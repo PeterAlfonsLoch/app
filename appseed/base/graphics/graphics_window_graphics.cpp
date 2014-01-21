@@ -52,6 +52,10 @@ void window_graphics::update_window(window_graphics * & pdata, oswindow window, 
 
          pdata = new window_gdi();
 
+#elif defined(LINUX)
+
+         pdata = new window_xlib();
+
 #endif
 
       }

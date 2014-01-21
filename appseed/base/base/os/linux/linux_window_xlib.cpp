@@ -18,7 +18,9 @@ window_xlib::~window_xlib()
 
 }
 
+
 HDC GetDC(oswindow window);
+
 
 void window_xlib::create(oswindow window, int64_t cxParam, int64_t cyParam, int iStrideParam)
 {
@@ -97,7 +99,12 @@ void window_xlib::update_window(oswindow window, COLORREF * pOsBitmapData, LPCRE
    if(m_size.area() <= 0)
       return;
 
+
+   //memset(pOsBitmapData, 0x44, min(iStride * 16, iStride * m_size.cy));
+
    copy_colorref((COLORREF *) m_mem.get_data(), pOsBitmapData, iStride);
+
+
 
    try
    {
