@@ -20,6 +20,7 @@ public:
    virtual_user_interface(sp(base_application) papp);
    virtual ~virtual_user_interface();
 
+   using ::user::interaction::message_handler;
    virtual void message_handler(signal_details * pobj);
    virtual ::draw2d::graphics * GetDC();
    sp(::user::interaction) set_parent(sp(::user::interaction) pguieParent);

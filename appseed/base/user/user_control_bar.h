@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "user_interaction.h"
+
+
 namespace user
 {
 
@@ -99,15 +102,50 @@ public:
 namespace user
 {
 
+   
    class CLASS_DECL_BASE control_bar :
       virtual public ::user::interaction
    {
    public:
-      control_bar();
 
-      // Attributes
-   public:
-      //int32_t get_count();
+      
+      // support for delayed hide/show
+      enum StateFlags
+      {
+         
+         delayHide = 1, 
+         delayShow = 2, 
+         tempHide = 4, 
+         statusSet = 8
+            
+      };
+
+      
+      // info about bar (for status bar and toolbar)
+      int32_t m_cxLeftBorder, m_cxRightBorder;
+      int32_t m_cyTopBorder, m_cyBottomBorder;
+      int32_t m_cxDefaultGap;         // default gap value
+      UINT m_nMRUWidth;   // For dynamic resizing.
+      bool  m_bDockTrack;
+
+      // array of elements
+      //int32_t m_nCount;
+      //void * m_pData;        // m_nCount elements - type depends on derived class
+
+      UINT m_nStateFlags;
+
+      // support for docking
+      uint32_t m_dwStyle;    // creation style (used for layout)
+      uint32_t m_dwDockStyle;// indicates how bar can be docked
+      sp(::user::frame_window) m_pDockSite; // current dock site, if dockable
+      BaseDockBar* m_pDockBar;   // current dock bar, if dockable
+      BaseDockContext* m_pDockContext;   // used during dragging
+      uint32_t m_dwCtrlStyle;
+
+      
+      
+      control_bar();
+      virtual ~control_bar();
 
       // for styles specific to ::user::control_bar
       uint32_t GetBarStyle();
@@ -131,11 +169,10 @@ namespace user
       // Overridables
       virtual void OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler) = 0;
 
-      // Implementation
-   public:
       virtual void _001OnDraw(::draw2d::graphics * pdc);
+      
+      using ::user::interaction::message_handler;
       virtual void message_handler(signal_details * pobj);
-      virtual ~control_bar();
 #ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
@@ -148,31 +185,6 @@ namespace user
       virtual bool DestroyWindow();
       virtual void OnBarStyleChange(uint32_t dwOldStyle, uint32_t dwNewStyle);
 
-      // info about bar (for status bar and toolbar)
-      int32_t m_cxLeftBorder, m_cxRightBorder;
-      int32_t m_cyTopBorder, m_cyBottomBorder;
-      int32_t m_cxDefaultGap;         // default gap value
-      UINT m_nMRUWidth;   // For dynamic resizing.
-      bool  m_bDockTrack;
-
-      // array of elements
-      //int32_t m_nCount;
-      //void * m_pData;        // m_nCount elements - type depends on derived class
-
-      // support for delayed hide/show
-      enum StateFlags
-      {
-         delayHide = 1, delayShow = 2, tempHide = 4, statusSet = 8
-      };
-      UINT m_nStateFlags;
-
-      // support for docking
-      uint32_t m_dwStyle;    // creation style (used for layout)
-      uint32_t m_dwDockStyle;// indicates how bar can be docked
-      sp(::user::frame_window) m_pDockSite; // current dock site, if dockable
-      BaseDockBar* m_pDockBar;   // current dock bar, if dockable
-      BaseDockContext* m_pDockContext;   // used during dragging
-      uint32_t m_dwCtrlStyle;
 
       virtual void pre_translate_message(signal_details * pobj);
       virtual bool pre_create_window(CREATESTRUCT& cs);
@@ -194,34 +206,37 @@ namespace user
       void SetBarInfo(BaseControlBarInfo* pInfo, sp(::user::frame_window) pFrameWnd);
 
       DECL_GEN_SIGNAL(_001OnTimer)
-         DECL_GEN_SIGNAL(_001OnCreate)
-         DECL_GEN_SIGNAL(_001OnDestroy)
-         DECL_GEN_SIGNAL(_001OnCtlColor)
-         DECL_GEN_SIGNAL(_001OnWindowPosChanging)
-         DECL_GEN_SIGNAL(_001OnSizeParent)
-         DECL_GEN_SIGNAL(_001OnHelpHitTest)
-         DECL_GEN_SIGNAL(_001OnInitialUpdate)
-         DECL_GEN_SIGNAL(_001OnIdleUpdateCmdUI)
-         DECL_GEN_SIGNAL(_001OnLButtonDown)
-         DECL_GEN_SIGNAL(_001OnLButtonDblClk)
-         DECL_GEN_SIGNAL(_001OnMouseActivate)
-         DECL_GEN_SIGNAL(_001OnMouseMove)
-         DECL_GEN_SIGNAL(_001OnLButtonUp)
-         //DECL_GEN_SIGNAL(_001OnShowWindow)
-         //DECL_GEN_SIGNAL(_001OnCancelMode)
+      DECL_GEN_SIGNAL(_001OnCreate)
+      DECL_GEN_SIGNAL(_001OnDestroy)
+      DECL_GEN_SIGNAL(_001OnCtlColor)
+      DECL_GEN_SIGNAL(_001OnWindowPosChanging)
+      DECL_GEN_SIGNAL(_001OnSizeParent)
+      DECL_GEN_SIGNAL(_001OnHelpHitTest)
+      DECL_GEN_SIGNAL(_001OnInitialUpdate)
+      DECL_GEN_SIGNAL(_001OnIdleUpdateCmdUI)
+      DECL_GEN_SIGNAL(_001OnLButtonDown)
+      DECL_GEN_SIGNAL(_001OnLButtonDblClk)
+      DECL_GEN_SIGNAL(_001OnMouseActivate)
+      DECL_GEN_SIGNAL(_001OnMouseMove)
+      DECL_GEN_SIGNAL(_001OnLButtonUp)
+      //DECL_GEN_SIGNAL(_001OnShowWindow)
+      //DECL_GEN_SIGNAL(_001OnCancelMode)
 
-         //   DECL_GEN_SIGNAL(_001OnPaint)
-         //   virtual void _001OnDraw(::draw2d::graphics * pdc);
+      //   DECL_GEN_SIGNAL(_001OnPaint)
+      //   virtual void _001OnDraw(::draw2d::graphics * pdc);
 
-         virtual void install_message_handling(::message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
 
       friend class ::user::frame_window;
       friend class BaseDockBar;
 
+      
    };
 
 
 } // namespace user
+
+
 
 
 

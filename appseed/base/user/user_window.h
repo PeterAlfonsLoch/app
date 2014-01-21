@@ -644,6 +644,7 @@ namespace user
 
 
       // for processing Windows messages
+      using ::user::interaction::message_handler;
       virtual void message_handler(signal_details * pobj);
       //virtual bool OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
@@ -729,9 +730,18 @@ class CLASS_DECL_BASE guie_message_wnd :
    virtual public ::user::window
 {
 public:
-   guie_message_wnd(sp(base_application) papp);
-   virtual void message_handler(signal_details * pobj);
+   
+   
    sp(::user::interaction) m_pguieForward;
+   
+   
+   guie_message_wnd(sp(base_application) papp);
+   
+   
+   using ::user::window::message_handler;
+   virtual void message_handler(signal_details * pobj);
+   
+   
 };
 
 

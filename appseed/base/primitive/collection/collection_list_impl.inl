@@ -98,3 +98,7 @@ template<class TYPE, class ARG_TYPE>
       pOldNode->m_pnext = pNewNode;
       return (POSITION) pNewNode;
    }
+
+
+
+
