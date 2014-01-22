@@ -2446,7 +2446,9 @@ namespace draw2d_cairo
    void dib::stretch_dib(::draw2d::dib * pdib)
    {
 
-      throw todo(get_app());
+      get_graphics()->StretchBlt(0, 0, m_size.cx, m_size.cy, pdib->get_graphics(), 0, 0, pdib->m_size.cx, pdib->m_size.cy, SRCCOPY);
+
+//      throw todo(get_app());
 
       /* xxx
 

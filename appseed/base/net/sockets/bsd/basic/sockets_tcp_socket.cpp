@@ -478,6 +478,7 @@ void ssl_sigpipe_handle( int x );
             try
             {
 
+
                ibuf.write(buf, n);
 
             }
@@ -534,24 +535,38 @@ void ssl_sigpipe_handle( int x );
 
    void tcp_socket::on_read(const void * buf, ::primitive::memory_size n)
    {
+
       // unbuffered
       if (n > 0)
       {
+
          stream_socket::on_read(buf, n);
+
       }
+
       if (m_b_input_buffer_disabled)
       {
+
          return;
+
       }
+
+
       // further processing: socks4
       if (Socks4())
       {
+
          bool need_more = false;
+
          while (GetInputLength() && !need_more && !CloseAndDelete())
          {
+
             need_more = OnSocks4Read();
+
          }
+
       }
+
    }
 
 
@@ -1455,27 +1470,39 @@ void ssl_sigpipe_handle( int x );
 
    void tcp_socket::SetIsReconnect(bool bTryingReconnect)
    {
+
       m_bTryingReconnect = bTryingReconnect;
+
    }
+
 
    bool tcp_socket::IsReconnect()
    {
+
       return m_bTryingReconnect;
+
    }
+
 
    const string & tcp_socket::GetPassword()
    {
+
       return m_password;
+
    }
+
 
    void tcp_socket::DisableInputBuffer(bool x)
    {
+
       m_b_input_buffer_disabled = x;
+
    }
 
 
    void tcp_socket::OnOptions(int32_t family, int32_t type, int32_t protocol, SOCKET s)
    {
+
       UNREFERENCED_PARAMETER(family);
       UNREFERENCED_PARAMETER(type);
       UNREFERENCED_PARAMETER(protocol);

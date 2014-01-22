@@ -11,7 +11,9 @@ namespace file
       m_t(0),
       m_count(0)
    {
-      m_memory.allocate(size * 2);
+
+      m_memory.allocate(size);
+
    }
 
    circular_buffer::circular_buffer(const circular_buffer& buffer)
@@ -28,11 +30,6 @@ namespace file
    {
 
       const char * s = (const char *) pdata;
-
-      if (m_q + l > m_max)
-      {
-         throw io_exception(get_app());
-      }
 
       m_count += (uint_ptr) l;
 
@@ -55,7 +52,7 @@ namespace file
             m_t -= m_max;
          m_q += l;
       }
-      
+
    }
 
 
@@ -126,7 +123,7 @@ namespace file
 
       try
       {
-         
+
          return read(NULL, l) == l;
 
       }
@@ -142,25 +139,25 @@ namespace file
 
    file_size circular_buffer::get_length() const
    {
-   
+
       return m_q;
-      
+
    }
 
 
    const char *circular_buffer::GetStart()
    {
-   
+
       return (const char * ) (m_memory.get_data() + m_b);
-      
+
    }
 
 
    size_t circular_buffer::GetL()
    {
-   
+
       return (m_b + m_q > m_max) ? m_max - m_b : m_q;
-      
+
    }
 
 

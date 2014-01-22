@@ -14,7 +14,7 @@ namespace database
    bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, var & var   , update_hint * puh)
    {
       ::file::byte_stream_memory_buffer memfile(get_app());
-      if(!data_server_load(pclient, idSection, id, idIndex, memfile, puh))
+      if(!data_server_load(pclient, idSection, id, idIndex, memfile, puh) || memfile.get_length() <= 0)
          return false;
       try
       {
@@ -36,7 +36,7 @@ namespace database
    bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ::file::serializable & obj, update_hint * puh)
    {
       ::file::byte_stream_memory_buffer memfile(get_app());
-      if(!data_server_load(pclient, idSection, id, idIndex, memfile, puh))
+      if(!data_server_load(pclient, idSection, id, idIndex, memfile, puh) || memfile.get_length() <= 0)
          return false;
       try
       {
