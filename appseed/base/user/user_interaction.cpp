@@ -217,7 +217,7 @@ namespace user
       return set_parent(pguieParent);
    }
 
-   
+
    bool interaction::on_before_set_parent(sp(interaction) pguieParent)
    {
 
@@ -2838,10 +2838,10 @@ namespace user
 
                single_lock sl2(m_pguie->m_pthread == NULL ? NULL : &m_pguie->m_pthread->m_mutex, TRUE);
 
-               if (!pholder->is_holding(this))
+               if (!pholder->is_holding(m_pguie))
                {
 
-                  pholder->hold(this);
+                  pholder->hold(m_pguie);
 
                }
 

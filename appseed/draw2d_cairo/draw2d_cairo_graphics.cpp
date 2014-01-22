@@ -2758,10 +2758,10 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
          return false;
 
-      cairo_pattern_destroy(ppattern);
+      //cairo_pattern_destroy(ppattern);
 
-      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
-         return false;
+      //if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+        // return false;
 
       return true;
 
