@@ -1860,12 +1860,15 @@ if(m_pdibAlphaBlend != NULL)
       //lpMetrics->tmAscent              = (LONG) (((graphics * )this)->gdiplus_font()->GetSize() * family.GetCellAscent(((graphics * )this)->gdiplus_font()->GetStyle()) / dHeight);
       //lpMetrics->tmDescent             = (LONG) (((graphics * )this)->gdiplus_font()->GetSize() * family.GetCellDescent(((graphics * )this)->gdiplus_font()->GetStyle()) / dHeight);
       //lpMetrics->tmHeight              = (LONG) (((graphics * )this)->gdiplus_font()->GetSize());
-      lpMetrics->tmAscent              = (LONG) e.ascent;
+      /*lpMetrics->tmAscent              = (LONG) e.ascent;
       lpMetrics->tmDescent             = (LONG) e.descent;
-      lpMetrics->tmHeight              = (LONG) e.height;
+      lpMetrics->tmHeight              = (LONG) e.height;*/
+      lpMetrics->tmAscent              = (LONG) e.ascent - e.descent;
+      lpMetrics->tmDescent             = (LONG) e.descent;
+      lpMetrics->tmHeight              = (LONG) e.ascent;
 
       lpMetrics->tmInternalLeading     = (LONG) lpMetrics->tmAscent + lpMetrics->tmDescent - lpMetrics->tmHeight;
-      lpMetrics->tmExternalLeading     = (LONG) (e.height * 0.25);
+      lpMetrics->tmExternalLeading     = (LONG) lpMetrics->tmHeight - (lpMetrics->tmAscent + lpMetrics->tmDescent);
 //                                                (e.family.GetLineSpacing(((graphics * )this)->gdiplus_font()->GetStyle())
   //                                              - family.GetCellAscent(((graphics * )this)->gdiplus_font()->GetStyle())
     //                                            - family.GetCellDescent(((graphics * )this)->gdiplus_font()->GetStyle())) / dHeight);
@@ -3191,7 +3194,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    /*void graphics::FillSolidRect(LPCRECT lpRect, COLORREF clr)
    {
       ::SetBkColor(get_handle1(), clr);
-      ::ExtTextOut(get_handle1(), 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
+      ::ExtTextOutTextOut(get_handle1(), 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
    }*/
 
    void graphics::FillSolidRect(const __rect64 * lpRect, COLORREF clr)
@@ -4667,6 +4670,14 @@ return 1;
 
       set_os_color(m_spbrush->m_cr);
 
+      cairo_matrix_t m;
+
+      cairo_get_matrix(m_pdc, &m);
+
+      cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
+
+      cairo_set_matrix(m_pdc, &m);
+
       cairo_show_text(m_pdc, str);
 
       return 1;
@@ -4712,23 +4723,31 @@ return 1;
 
       synch_lock ml(&user_mutex());
 
-   string str(&lpszString[iIndex], nCount);
+      string str(lpszString, min(iIndex, nCount));
 
-   cairo_keep keep(m_pdc);
+      cairo_keep keep(m_pdc);
 
-   ((graphics *) this)->set(m_spfont);
+      ((graphics *) this)->set(m_spfont);
 
-   cairo_text_extents_t ex;
+      cairo_text_extents_t ex;
 
-   cairo_text_extents(m_pdc, str, &ex);
+      cairo_matrix_t m;
 
-	SIZE size;
+      cairo_get_matrix(m_pdc, &m);
 
-	size.cx = (LONG) ex.width;
+      cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
 
-	size.cy = (LONG) ex.height;
+      cairo_set_matrix(m_pdc, &m);
 
-   return size;
+      cairo_text_extents(m_pdc, str, &ex);
+
+      SIZE size;
+
+      size.cx = (LONG) (ex.x_advance) * m_spfont->m_dFontWidth;
+
+      size.cy = (LONG) (ex.height);
+
+      return size;
 
 
 /*      if(lpszString == NULL || *lpszString == '\0')
@@ -4829,22 +4848,31 @@ return 1;
       synch_lock ml(&user_mutex());
       //retry_single_lock slGdiplus(&System.s_mutexGdiplus, millis(1), millis(1));
 
-   string str(lpszString, nCount);
+      cairo_keep keep(m_pdc);
 
+      string str(lpszString, nCount);
 
-   ((graphics *) this)->set(m_spfont);
+      ((graphics *) this)->set(m_spfont);
 
-   cairo_text_extents_t ex;
+      cairo_text_extents_t ex;
 
-   cairo_text_extents(m_pdc, str, &ex);
+      cairo_matrix_t m;
 
-	SIZE size;
+      cairo_get_matrix(m_pdc, &m);
 
-	size.cx = (LONG) ex.width;
+      cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
 
-	size.cy = (LONG) ex.height;
+      cairo_set_matrix(m_pdc, &m);
 
-   return size;
+      cairo_text_extents(m_pdc, str, &ex);
+
+      SIZE size;
+
+      size.cx = (LONG) (ex.x_advance) * m_spfont->m_dFontWidth;
+
+      size.cy = (LONG) (ex.height);
+
+      return size;
 
       /*wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
 
@@ -4955,7 +4983,10 @@ return 1;
 
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, int32_t iIndex) const
    {
+
       synch_lock ml(&user_mutex());
+
+      cairo_keep keep(m_pdc);
 
       string str(&lpszString[iIndex], nCount);
 
@@ -4963,11 +4994,19 @@ return 1;
 
       cairo_text_extents_t ex;
 
+      cairo_matrix_t m;
+
+      cairo_get_matrix(m_pdc, &m);
+
+      cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
+
+      cairo_set_matrix(m_pdc, &m);
+
       cairo_text_extents(m_pdc, str, &ex);
 
-      size.cx = ex.width;
+      size.cx = (LONG) (ex.x_advance) * m_spfont->m_dFontWidth;
 
-      size.cy = ex.height;
+      size.cy = (LONG) (ex.height);
 
       return true;
 
@@ -5100,20 +5139,29 @@ return 1;
 
       synch_lock ml(&user_mutex());
 
-   string str(lpszString, nCount);
+      cairo_keep keep(m_pdc);
 
+      string str(lpszString, nCount);
 
-   ((graphics *) this)->set(m_spfont);
+      ((graphics *) this)->set(m_spfont);
 
-   cairo_text_extents_t ex;
+      cairo_text_extents_t ex;
 
-   cairo_text_extents(m_pdc, str, &ex);
+      cairo_matrix_t m;
 
-	size.cx = ex.width;
+      cairo_get_matrix(m_pdc, &m);
 
-	size.cy = ex.height;
+      cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
 
-   return true;
+      cairo_set_matrix(m_pdc, &m);
+
+      cairo_text_extents(m_pdc, str, &ex);
+
+      size.cx = (LONG) (ex.x_advance) * m_spfont->m_dFontWidth;
+
+      size.cy = (LONG) (ex.height);
+
+      return true;
 
 
 /*      wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
@@ -5357,6 +5405,14 @@ return 1;
 
       cairo_move_to(m_pdc, x, y + sz.cy);
 
+      cairo_matrix_t m;
+
+      cairo_get_matrix(m_pdc, &m);
+
+      cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
+
+      cairo_set_matrix(m_pdc, &m);
+
       cairo_show_text(m_pdc, str);
 
       /*::Gdiplus::PointF origin(0, 0);
@@ -5490,6 +5546,14 @@ return true;
       set_os_color(m_spbrush->m_cr);
 
       cairo_move_to(m_pdc, x, y + sz.cy);
+
+      cairo_matrix_t m;
+
+      cairo_get_matrix(m_pdc, &m);
+
+      cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
+
+      cairo_set_matrix(m_pdc, &m);
 
       cairo_show_text(m_pdc, str);
 

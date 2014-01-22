@@ -9,13 +9,13 @@ namespace zip
    {
       m_bOwnFile                 = false;
       m_filefuncdef.opaque       = (voidpf) this;
-      m_filefuncdef.zopen_file   = open_file_func;
-      m_filefuncdef.zread_file   = read_file_func;
-      m_filefuncdef.zwrite_file  = write_file_func;
-      m_filefuncdef.ztell_file   = tell_file_func;
-      m_filefuncdef.zseek_file   = seek_file_func;
-      m_filefuncdef.zclose_file  = close_file_func;
-      m_filefuncdef.zerror_file  = testerror_file_func;
+      m_filefuncdef.zopen_file   = &c_zip_file_open_file_func;
+      m_filefuncdef.zread_file   = &c_zip_file_read_file_func;
+      m_filefuncdef.zwrite_file  = &c_zip_file_write_file_func;
+      m_filefuncdef.ztell_file   = &c_zip_file_tell_file_func;
+      m_filefuncdef.zseek_file   = &c_zip_file_seek_file_func;
+      m_filefuncdef.zclose_file  = &c_zip_file_close_file_func;
+      m_filefuncdef.zerror_file  = &c_zip_file_testerror_file_func;
       m_pfUnzip = NULL;
       m_pfZip = NULL;
    }
@@ -124,66 +124,73 @@ namespace zip
    }
 
 
-   voidpf File::open_file_func (voidpf opaque, const char* filename, int32_t mode)
-   {
-      UNREFERENCED_PARAMETER(mode);
-      UNREFERENCED_PARAMETER(filename);
-      File * pzipfile = (File *) opaque;
-      ::file::buffer_sp  pfile = pzipfile->m_pfile;
-      return (voidpf) pfile;
-   }
-   uint_ptr  File::read_file_func (voidpf opaque, voidpf stream, void * buf, uint_ptr size)
-   {
-      UNREFERENCED_PARAMETER(stream);
-      File * pzipfile = (File *) opaque;
-      ::file::buffer_sp  pfile = pzipfile->m_pfile;
-      return (uint_ptr) pfile->read(buf, size);
-   }
-   uint_ptr  File::write_file_func (voidpf opaque, voidpf stream, const void * buf, uint_ptr size)
-   {
-      UNREFERENCED_PARAMETER(stream);
-      File * pzipfile = (File *) opaque;
-      ::file::buffer_sp  pfile = pzipfile->m_pfile;
-      pfile->write(buf, size);
-      return size;
-   }
-   long   File::tell_file_func (voidpf opaque, voidpf stream)
-   {
-      UNREFERENCED_PARAMETER(stream);
-      File * pzipfile = (File *) opaque;
-      ::file::buffer_sp  pfile = pzipfile->m_pfile;
-      return (long) pfile->get_position();
-   }
-
-   long   File::seek_file_func (voidpf opaque, voidpf stream, uint_ptr offset, int32_t origin)
-   {
-      UNREFERENCED_PARAMETER(stream);
-      File * pzipfile = (File *) opaque;
-      ::file::buffer_sp  pfile = pzipfile->m_pfile;
-      if(pfile->seek(offset, (::file::e_seek) origin) == 0xffffffff)
-         return -1;
-      else
-         return 0;
-
-   }
-
-   int32_t    File::close_file_func (voidpf opaque, voidpf stream)
-   {
-      UNREFERENCED_PARAMETER(opaque);
-      UNREFERENCED_PARAMETER(stream);
-//      File * pzipfile = (File *) opaque;
-//      ::file::buffer_sp  pfile = pzipfile->m_pfile;
-      return 1;
-   }
-
-   int32_t File::testerror_file_func (voidpf opaque, voidpf stream)
-   {
-      UNREFERENCED_PARAMETER(opaque);
-      UNREFERENCED_PARAMETER(stream);
-//      File * pzipfile = (File *) opaque;
-//      ::file::buffer_sp  pfile = pzipfile->m_pfile;
-      //return spfile->IsValid() ? 0 : 1;
-      return 0;
-   }
-
 } // namespace zip
+
+
+BEGIN_EXTERN_C
+
+
+voidpf c_zip_file_open_file_func (voidpf opaque, const char* filename, int32_t mode)
+{
+   UNREFERENCED_PARAMETER(mode);
+   UNREFERENCED_PARAMETER(filename);
+   ::zip::File * pzipfile = (::zip::File *) opaque;
+   ::file::buffer_sp  pfile = pzipfile->m_pfile;
+   return (voidpf) pfile;
+}
+uint_ptr  c_zip_file_read_file_func (voidpf opaque, voidpf stream, void * buf, uint_ptr size)
+{
+   UNREFERENCED_PARAMETER(stream);
+   ::zip::File * pzipfile = (::zip::File *) opaque;
+   ::file::buffer_sp  pfile = pzipfile->m_pfile;
+   return (uint_ptr) pfile->read(buf, size);
+}
+uint_ptr  c_zip_file_write_file_func (voidpf opaque, voidpf stream, const void * buf, uint_ptr size)
+{
+   UNREFERENCED_PARAMETER(stream);
+   ::zip::File * pzipfile = (::zip::File *) opaque;
+   ::file::buffer_sp  pfile = pzipfile->m_pfile;
+   pfile->write(buf, size);
+   return size;
+}
+long   c_zip_file_tell_file_func (voidpf opaque, voidpf stream)
+{
+   UNREFERENCED_PARAMETER(stream);
+   ::zip::File * pzipfile = (::zip::File *) opaque;
+   ::file::buffer_sp  pfile = pzipfile->m_pfile;
+   return (long) pfile->get_position();
+}
+
+long   c_zip_file_seek_file_func (voidpf opaque, voidpf stream, uint_ptr offset, int32_t origin)
+{
+   UNREFERENCED_PARAMETER(stream);
+   ::zip::File * pzipfile = (::zip::File *) opaque;
+   ::file::buffer_sp  pfile = pzipfile->m_pfile;
+   if(pfile->seek(offset, (::file::e_seek) origin) == 0xffffffff)
+      return -1;
+   else
+      return 0;
+
+}
+
+int32_t    c_zip_file_close_file_func (voidpf opaque, voidpf stream)
+{
+   UNREFERENCED_PARAMETER(opaque);
+   UNREFERENCED_PARAMETER(stream);
+//      ::zip::File * pzipfile = (::zip::File *) opaque;
+//      ::file::buffer_sp  pfile = pzipfile->m_pfile;
+   return 1;
+}
+
+int32_t c_zip_file_testerror_file_func (voidpf opaque, voidpf stream)
+{
+   UNREFERENCED_PARAMETER(opaque);
+   UNREFERENCED_PARAMETER(stream);
+//      ::zip::File * pzipfile = (::zip::File *) opaque;
+//      ::file::buffer_sp  pfile = pzipfile->m_pfile;
+   //return spfile->IsValid() ? 0 : 1;
+   return 0;
+}
+
+END_EXTERN_C
+

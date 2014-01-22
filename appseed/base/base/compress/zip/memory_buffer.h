@@ -7,7 +7,6 @@
 namespace zip
 {
 
-
    class CLASS_DECL_BASE memory_buffer :
       public ::file::memory_buffer
 
@@ -26,18 +25,22 @@ namespace zip
       void common_construct();
 
 
-      static voidpf open_file_func (voidpf opaque, const char* filename, int32_t mode);
-      static uint_ptr  read_file_func (voidpf opaque, voidpf stream, void * buf, uint_ptr size);
-      static uint_ptr  write_file_func (voidpf opaque, voidpf stream, const void * buf, uint_ptr size);
-      static long   tell_file_func (voidpf opaque, voidpf stream);
-      static long   seek_file_func (voidpf opaque, voidpf stream, uint_ptr offset, int32_t origin);
-      static int32_t    close_file_func (voidpf opaque, voidpf stream);
-      static int32_t testerror_file_func (voidpf opaque, voidpf stream);
 
    };
 
-   
+
 } // namespace zip
 
 
 
+BEGIN_EXTERN_C
+
+voidpf      c_zip_memory_buffer_open_file_func        (voidpf opaque, const char* filename, int32_t mode);
+uint_ptr    c_zip_memory_buffer_read_file_func        (voidpf opaque, voidpf stream, void * buf, uint_ptr size);
+uint_ptr    c_zip_memory_buffer_write_file_func       (voidpf opaque, voidpf stream, const void * buf, uint_ptr size);
+long        c_zip_memory_buffer_tell_file_func        (voidpf opaque, voidpf stream);
+long        c_zip_memory_buffer_seek_file_func        (voidpf opaque, voidpf stream, uint_ptr offset, int32_t origin);
+int32_t     c_zip_memory_buffer_close_file_func       (voidpf opaque, voidpf stream);
+int32_t     c_zip_memory_buffer_testerror_file_func   (voidpf opaque, voidpf stream);
+
+END_EXTERN_C

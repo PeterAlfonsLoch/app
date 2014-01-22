@@ -6,6 +6,7 @@
 //
 //
 #include "framework.h"
+#include "base/primitive/str/iconv/iconv.h"
 
 CLASS_DECL_BASE COLORREF GetSysColor(DWORD dw)
 {
@@ -166,6 +167,20 @@ CLASS_DECL_BASE int_bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prec
 
 #ifndef METROWIN
 
+string iconv_charset_from_windows_code_page(UINT CodePage)
+{
+
+   switch(CodePage)
+   {
+   case 1252:
+      return "CP1252";
+   default:
+      return "UTF-8";
+
+   }
+
+}
+
 int32_t
 WINAPI
 MultiByteToWideChar(
@@ -176,49 +191,113 @@ MultiByteToWideChar(
     LPWSTR  lpWideCharStr,
     int32_t      cchWideChar)
 {
-
    string str(lpMultiByteStr, cbMultiByte);
 
-   wstring wstr(str);
-
-   if(cchWideChar == 0)
+   if(CodePage == CP_UTF8)
    {
+
+      str = string(lpMultiByteStr, cbMultiByte);
+
+      wstring wstr(str);
+
+      if(cchWideChar == 0)
+      {
+         if(cbMultiByte < 0)
+         {
+            return (int32_t) (wstr.get_length() + 1);
+         }
+         else
+         {
+            return (int32_t) wstr.get_length();
+         }
+      }
+
+      int32_t iLen = (int32_t) min(cchWideChar, wstr.get_length());
+
+      if(lpWideCharStr != NULL)
+      {
+
+         wcsncpy_dup(lpWideCharStr, wstr, iLen);
+
+         if(cchWideChar > 0 && cbMultiByte < 0)
+         {
+
+            lpWideCharStr[iLen] = L'\0';
+
+         }
+
+      }
+
       if(cbMultiByte < 0)
       {
-         return (int32_t) (wstr.get_length() + 1);
+         return iLen + 1;
       }
       else
       {
-         return (int32_t) wstr.get_length();
-      }
-   }
-
-   int32_t iLen = (int32_t) min(cchWideChar, wstr.get_length());
-
-   if(lpWideCharStr != NULL)
-   {
-
-      wcsncpy_dup(lpWideCharStr, wstr, iLen);
-
-      if(cchWideChar > 0 && cbMultiByte < 0)
-      {
-
-         lpWideCharStr[iLen] = L'\0';
-
+         return iLen;
       }
 
-   }
-
-   if(cbMultiByte < 0)
-   {
-      return iLen + 1;
    }
    else
    {
-      return iLen;
+
+      size_t sIn;
+
+      if(cbMultiByte < 0)
+         sIn = strlen(lpMultiByteStr);
+      else
+         sIn = cbMultiByte;
+
+      if(cchWideChar <= 0)
+      {
+
+         wstring wstr;
+
+         size_t sOut = sIn * 4;
+
+         wstr.alloc(sOut);
+
+         sOut *= sizeof(wchar_t);
+
+         wchar_t * lpsz = (wchar_t *) (const wchar_t *) wstr;
+
+         lpWideCharStr = lpsz;
+
+         iconv_t iconvPlease = iconv_open("WCHAR_T", iconv_charset_from_windows_code_page(CodePage));
+
+         iconv(iconvPlease, (char **) &lpMultiByteStr, &sIn, (char **) &lpsz, &sOut);
+
+         iconv_close(iconvPlease);
+
+         return (lpsz - lpWideCharStr) + (cbMultiByte < 0 ? 1 : 0);
+
+      }
+      else
+      {
+
+         wchar_t * lpsz = (wchar_t *) (const wchar_t *) lpWideCharStr;
+
+         size_t sOut = cchWideChar * sizeof(wchar_t);
+
+         iconv_t iconvPlease = iconv_open("WCHAR_T", iconv_charset_from_windows_code_page(CodePage));
+
+         iconv(iconvPlease, (char **) &lpMultiByteStr, &sIn, (char **) &lpsz, &sOut);
+
+         iconv_close(iconvPlease);
+
+         return (lpsz - lpWideCharStr) + (cbMultiByte < 0 ? 1 : 0);
+
+      }
+
    }
 
+
+
+
+
 }
+
+
 
 int32_t
 WINAPI
@@ -237,9 +316,33 @@ WideCharToMultiByte(
 
    string str;
 
-   LPSTR lpsz = str.GetBufferSetLength(utf8_len(wstr));
 
-   utf16_to_utf8(lpsz, wstr);
+
+
+   if(CodePage == CP_UTF8)
+   {
+
+      LPSTR lpsz = str.GetBufferSetLength(utf8_len(wstr));
+
+      utf16_to_utf8(lpsz, wstr);
+
+   }
+   else
+   {
+
+      size_t sIn = wstr.get_length() * 2;
+
+      LPSTR lpsz = str.GetBufferSetLength(sIn);
+
+      size_t sOut = wstr.get_length() * 8;
+
+      iconv_t iconvPlease = iconv_open(iconv_charset_from_windows_code_page(CodePage), "WCHAR_T");
+
+      iconv(iconvPlease, (char **) &lpWideCharStr, &sIn, &lpsz, &sOut);
+
+      iconv_close(iconvPlease);
+
+   }
 
    str.ReleaseBuffer();
 
