@@ -10,6 +10,7 @@ namespace draw2d_cairo
    {
    public:
 
+      cairo_t *               m_pdc;
       cairo_surface_t *       m_psurface;
       rect                    m_rectBoundingBoxInternal;
 
@@ -52,13 +53,19 @@ namespace draw2d_cairo
       //bool RectInRegion(LPCRECT lpRect) const;
 // xxx      int32_t GetRegionData(LPRGNDATA lpRgnData, int32_t nCount) const;
 
-      bool get(cairo_t * pdc);
-      bool get_rect(cairo_t * pdc);
-      bool get_oval(cairo_t * pdc);
-      bool get_polygon(cairo_t * pdc);
-      bool get_poly_polygon(cairo_t * pdc);
-      bool get_combine(cairo_t * pdc);
+      bool mask(cairo_t * pdc);
+      bool mask_rect(cairo_t * pdc);
+      bool mask_oval(cairo_t * pdc);
+      bool mask_polygon(cairo_t * pdc);
+      bool mask_poly_polygon(cairo_t * pdc);
+      bool mask_combine(cairo_t * pdc);
 
+      bool clip(cairo_t * pdc);
+      bool clip_rect(cairo_t * pdc);
+      bool clip_oval(cairo_t * pdc);
+      bool clip_polygon(cairo_t * pdc);
+
+      bool is_simple_positive_region();
 
       virtual void * get_os_data() const;
 

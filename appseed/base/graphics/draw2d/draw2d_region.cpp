@@ -597,6 +597,103 @@ namespace draw2d
 
    }
 
+   void region::max_bounding_box(LPRECT lprect) const
+   {
+
+      switch(m_etype)
+      {
+      case type_none:
+         return;
+      case type_rect:
+         return max_bounding_box_rect(lprect);
+      case type_oval:
+         return max_bounding_box_oval(lprect);
+      case type_polygon:
+         return max_bounding_box_polygon(lprect);
+      case type_poly_polygon:
+         return max_bounding_box_poly_polygon(lprect);
+      case type_combine:
+         return max_bounding_box_combine(lprect);
+      default:
+         throw not_implemented(get_app());
+      }
+
+   }
+
+
+   void region::max_bounding_box_rect(LPRECT lprect) const
+   {
+
+      lprect->left = min(lprect->left, m_x1);
+      lprect->right = max(lprect->right, m_x2);
+      lprect->top = min(lprect->left, m_y1);
+      lprect->bottom = max(lprect->right, m_y2);
+
+   }
+
+   void region::max_bounding_box_oval(LPRECT lprect) const
+   {
+
+      lprect->left = min(lprect->left, m_x1);
+      lprect->right = max(lprect->right, m_x2);
+      lprect->top = min(lprect->left, m_y1);
+      lprect->bottom = max(lprect->right, m_y2);
+
+   }
+
+
+   void region::max_bounding_box_polygon(LPRECT lprect) const
+   {
+
+      if(m_nCount <= 0)
+         return;
+
+      for(int i = 0; i < m_nCount; i++)
+      {
+
+         lprect->left = min(lprect->left, m_lppoints[i].x);
+         lprect->right = max(lprect->right, m_lppoints[i].x);
+         lprect->top = min(lprect->left, m_lppoints[i].y);
+         lprect->bottom = max(lprect->right, m_lppoints[i].y);
+
+      }
+
+   }
+
+   void region::max_bounding_box_poly_polygon(LPRECT lprect) const
+   {
+
+      int32_t n = 0;
+
+      for(int32_t i = 0; i < m_nCount;i++)
+      {
+
+         int32_t iCount = m_lppolycounts[i];
+
+         for(int j = 0; j < iCount; j++, n++)
+         {
+
+            lprect->left = min(lprect->left, m_lppoints[n].x);
+            lprect->right = max(lprect->right, m_lppoints[n].x);
+            lprect->top = min(lprect->left, m_lppoints[n].y);
+            lprect->bottom = max(lprect->right, m_lppoints[n].y);
+
+         }
+
+      }
+
+   }
+
+
+   void region::max_bounding_box_combine(LPRECT lprect) const
+   {
+
+      m_pregion1->max_bounding_box(lprect);
+
+      m_pregion2->max_bounding_box(lprect);
+
+   }
+
 
    bool region::internal_contains(LPPOINT lppt)
    {
@@ -714,7 +811,7 @@ namespace draw2d
          {
             if(m_pregion2->internal_contains(lppt))
                return false;
-            else 
+            else
                return true;
          }
          else if(m_pregion2->internal_contains(lppt))

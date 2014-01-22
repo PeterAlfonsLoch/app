@@ -89,6 +89,12 @@ namespace draw2d
       bool internal_poly_polygon_contains(LPPOINT lppt);
       bool internal_combine_contains(LPPOINT lppt);
 
+      virtual void max_bounding_box(LPRECT lpRect) const;
+      virtual void max_bounding_box_rect(LPRECT lpRect) const;
+      virtual void max_bounding_box_oval(LPRECT lpRect) const;
+      virtual void max_bounding_box_polygon(LPRECT lpRect) const;
+      virtual void max_bounding_box_poly_polygon(LPRECT lpRect) const;
+      virtual void max_bounding_box_combine(LPRECT lpRect) const;
 
       virtual bool destroy();
 

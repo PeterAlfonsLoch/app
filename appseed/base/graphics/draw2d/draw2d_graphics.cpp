@@ -2214,25 +2214,25 @@ namespace draw2d
 
    int32_t graphics::draw_text(const char * lpszString, strsize nCount, LPRECT lpRect, UINT nFormat)
    {
-      
+
       return draw_text(string(lpszString, nCount), lpRect, nFormat);
-      
+
    }
-   
+
 
    int32_t graphics::draw_text(const string & str, LPRECT lpRect, UINT nFormat)
    {
-      
+
       synch_lock ml(&user_mutex());
-      
+
 //      size szBase = GetTextExtent("P");
-      
+
       size sz = GetTextExtent(str);
-      
+
       double dx;
-      
+
       double dy;
-      
+
       if(nFormat & DT_RIGHT)
       {
          dx = lpRect->right - lpRect->left - sz.cx;
@@ -2245,7 +2245,7 @@ namespace draw2d
       {
          dx = 0.;
       }
-      
+
       if(nFormat & DT_BOTTOM)
       {
          dy = lpRect->bottom - lpRect->top - sz.cy;
@@ -2258,11 +2258,11 @@ namespace draw2d
       {
          dy = 0.;
       }
-      
+
       TextOut(lpRect->left + dx, lpRect->top + dy, str);
-      
+
       return 1;
-      
+
    }
 
 #ifndef METROWIN
@@ -2693,7 +2693,7 @@ namespace draw2d
       throw interface_only_exception(get_app());
 
    }
-   
+
 
    bool graphics::release_dc(::user::window * pwnd)
    {
@@ -2960,26 +2960,29 @@ namespace draw2d
    int32_t graphics::_DrawText(const char * lpcsz, strsize iCount, LPCRECT lpcrect, UINT uiFormat, ::draw2d::font * pfontUnderline)
    {
 
+      TEXTMETRICW tm;
+
+      get_text_metrics(&tm);
+
       ::draw2d::graphics * pdc = this;
 
       string strParam(lpcsz, iCount);
 
-      //      ::
-
-      //    if(pdc->GetBkMode() == TRANSPARENT
-
       wstring wstr = ::str::international::utf8_to_unicode(strParam);
 
       string str(lpcsz);
-      string str2;
-      rect rectClip(lpcrect);
 
+      string str2;
+
+      rect rectClip(lpcrect);
 
       if (rectClip.area() <= 0)
          return 0;
 
       size sz;
+
       sz.cx = 0;
+
       sz.cy = 0;
 
       strsize iUnderline = _EncodeV033(str);
@@ -2991,7 +2994,7 @@ namespace draw2d
          sz = pdc->GetTextExtent(str, (int32_t)iLen);
          if (sz.cx > rectClip.width())
          {
-            if ((uiFormat & DT_WORDBREAK) != 0 && sz.cy * 2 <= rectClip.height())
+            if ((uiFormat & DT_WORDBREAK) != 0 && tm.tmHeight * 2 <= rectClip.height())
             {
                string str1;
                string str2;
@@ -3110,7 +3113,7 @@ namespace draw2d
       rect.left = 0;
       rect.top = 0;
       rect.right = sz.cx;
-      rect.bottom = sz.cy;
+      rect.bottom = tm.tmHeight;
 
       int32_t align = 0;
       if (uiFormat & DT_BOTTOM)
@@ -3194,19 +3197,19 @@ namespace draw2d
       else
       {
          pdc->TextOut(rect.left, rect.top, str);
-         /*::TextOutU(
-         (HDC)pdc->get_os_data(),
-         rect.left,
-         rect.top,
-         str,
-         iLen);*/
       }
+
       if (str2.get_length() > 0)
       {
-         rectClip.top += sz.cy;
+
+         rectClip.top += tm.tmHeight;
+
          _DrawText(str2, str2.get_length(), rectClip, uiFormat);
+
       }
+
       return 1;
+
    }
 
 
@@ -3313,7 +3316,7 @@ namespace draw2d
 
 #ifdef WINDOWSEX
 
-   
+
    bool graphics::Attach(HDC hdc)
    {
 
@@ -3323,7 +3326,7 @@ namespace draw2d
 
    }
 
-   
+
    HDC graphics::Detach()
    {
 

@@ -9,6 +9,10 @@ namespace draw2d_cairo
       element(papp)
    {
 
+      m_pdc = NULL;
+
+      m_psurface = NULL;
+
    }
 
 
@@ -75,36 +79,116 @@ namespace draw2d_cairo
    int_bool region::RectInRegion(LPCRECT lpRect) const
    { ASSERT(get_os_data() != NULL); return ::RectInRegion((HRGN)get_os_data(), lpRect); }*/
 
-   bool region::get(cairo_t * pdc)
+   bool region::is_simple_positive_region()
    {
-
-      cairo_set_source_rgba(pdc, 0.0, 0.0, 0.0, 0.0);
-
-      cairo_set_operator(pdc, CAIRO_OPERATOR_SOURCE);
 
       switch(m_etype)
       {
       case type_none:
          return true;
       case type_rect:
-         return get_rect(pdc);
+         return true;
       case type_oval:
-         return get_oval(pdc);
+         return true;
       case type_polygon:
-         return get_polygon(pdc);
+         return true;
       case type_poly_polygon:
-         return get_polygon(pdc);
+         return false;
       case type_combine:
-         return get_combine(pdc);
+         return false;
       default:
          throw not_implemented(get_app());
       }
 
-      return false;
+      return true;
 
    }
 
-   bool region::get_rect(cairo_t * pdc)
+
+   bool region::mask(cairo_t * pdc)
+   {
+
+      if(m_pdc != NULL)
+      {
+
+         cairo_destroy(m_pdc);
+
+         m_pdc = NULL;
+
+      }
+
+      if(m_psurface != NULL)
+      {
+
+         cairo_surface_destroy(m_psurface);
+
+         m_psurface = NULL;
+
+      }
+
+
+      m_rectBoundingBoxInternal = rect(0, 0, 0, 0);
+
+      max_bounding_box(m_rectBoundingBoxInternal);
+
+      m_psurface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, m_rectBoundingBoxInternal.width(), m_rectBoundingBoxInternal.height());
+
+      if(m_psurface == NULL)
+      {
+
+         return false;
+
+      }
+
+      m_pdc = cairo_create(m_psurface);
+
+      int x = m_rectBoundingBoxInternal.left;
+
+      int y = m_rectBoundingBoxInternal.top;
+
+      cairo_translate(m_pdc, -x, -y);
+
+      cairo_set_source_rgba(m_pdc, 0.0, 0.0, 0.0, 0.0);
+
+
+      cairo_rectangle(m_pdc, 0, 0, m_rectBoundingBoxInternal.width(), m_rectBoundingBoxInternal.height());
+
+      cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
+
+      cairo_fill(m_pdc);
+
+      cairo_set_source_rgba(m_pdc, 0.0, 0.0, 0.0, 1.0);
+
+      switch(m_etype)
+      {
+      case type_none:
+         break;
+      case type_rect:
+         mask_rect(m_pdc);
+         break;
+      case type_oval:
+         mask_oval(m_pdc);
+         break;
+      case type_polygon:
+         mask_polygon(m_pdc);
+         break;
+      case type_poly_polygon:
+         mask_polygon(m_pdc);
+         break;
+      case type_combine:
+         mask_combine(m_pdc);
+         break;
+      default:
+         throw not_implemented(get_app());
+      }
+
+      cairo_mask_surface(pdc, m_psurface, m_rectBoundingBoxInternal.left, m_rectBoundingBoxInternal.top);
+
+      return true;
+
+   }
+
+   bool region::mask_rect(cairo_t * pdc)
    {
 
       cairo_rectangle(pdc, m_x1, m_y1, m_x2, m_y2);
@@ -115,7 +199,7 @@ namespace draw2d_cairo
 
    }
 
-   bool region::get_oval(cairo_t * pdc)
+   bool region::mask_oval(cairo_t * pdc)
    {
 
       double centerx    = (m_x2 + m_x1) / 2.0;
@@ -127,6 +211,8 @@ namespace draw2d_cairo
       if(radiusx == 0.0 || radiusy == 0.0)
          return false;
 
+      cairo_keep k(pdc);
+
       cairo_translate(pdc, centerx, centery);
 
       cairo_scale(pdc, radiusx, radiusy);
@@ -135,15 +221,11 @@ namespace draw2d_cairo
 
       cairo_fill(pdc);
 
-      cairo_scale(pdc, 1.0 / radiusx, 1.0 / radiusy);
-
-      cairo_translate(pdc, -centerx,  -centery);
-
       return true;
 
    }
 
-   bool region::get_polygon(cairo_t * pdc)
+   bool region::mask_polygon(cairo_t * pdc)
    {
 
       if(m_nCount <= 0)
@@ -164,7 +246,7 @@ namespace draw2d_cairo
 
    }
 
-   bool region::get_poly_polygon(cairo_t * pdc)
+   bool region::mask_poly_polygon(cairo_t * pdc)
    {
 
       int32_t n = 0;
@@ -190,12 +272,12 @@ namespace draw2d_cairo
 
    }
 
-   bool region::get_combine(cairo_t * pdc)
+   bool region::mask_combine(cairo_t * pdc)
    {
 
-      cairo_push_group( pdc);
+      cairo_push_group(pdc);
 
-      dynamic_cast < ::draw2d_cairo::region * >(m_pregion1)->get( pdc);
+      dynamic_cast < ::draw2d_cairo::region * >(m_pregion1)->mask(pdc);
 
       cairo_pop_group_to_source(pdc);
 
@@ -203,7 +285,7 @@ namespace draw2d_cairo
 
       cairo_push_group(pdc);
 
-      dynamic_cast < ::draw2d_cairo::region * >(m_pregion2)->get( pdc);
+      dynamic_cast < ::draw2d_cairo::region * >(m_pregion2)->mask(pdc);
 
       cairo_pop_group_to_source(pdc);
 
@@ -224,12 +306,114 @@ namespace draw2d_cairo
          cairo_set_operator(pdc, CAIRO_OPERATOR_SOURCE);
       }
 
-      cairo_paint(pdc);
+      cairo_paint(m_pdc);
 
       return true;
 
    }
 
+   bool region::clip(cairo_t * pdc)
+   {
+
+      if(m_pdc != NULL)
+      {
+
+         cairo_destroy(m_pdc);
+
+         m_pdc = NULL;
+
+      }
+
+      if(m_psurface != NULL)
+      {
+
+         cairo_surface_destroy(m_psurface);
+
+         m_psurface = NULL;
+
+      }
+
+      switch(m_etype)
+      {
+      case type_none:
+         break;
+      case type_rect:
+         clip_rect(pdc);
+         break;
+      case type_oval:
+         clip_oval(pdc);
+         break;
+      case type_polygon:
+         clip_polygon(pdc);
+         break;
+      default:
+         throw not_implemented(get_app());
+      }
+
+      return true;
+
+   }
+
+   bool region::clip_rect(cairo_t * pdc)
+   {
+
+      cairo_rectangle(pdc, m_x1, m_y1, m_x2, m_y2);
+
+      cairo_clip(pdc);
+
+      return true;
+
+   }
+
+   bool region::clip_oval(cairo_t * pdc)
+   {
+
+      double centerx    = (m_x2 + m_x1) / 2.0;
+      double centery    = (m_y2 + m_y1) / 2.0;
+
+      double radiusx    = abs(m_x2 - m_x1) / 2.0;
+      double radiusy    = abs(m_y2 - m_y1) / 2.0;
+
+      if(radiusx == 0.0 || radiusy == 0.0)
+         return false;
+
+      cairo_translate(pdc, centerx, centery);
+
+      cairo_scale(pdc, radiusx, radiusy);
+
+      cairo_arc(pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
+
+      cairo_clip(pdc);
+
+      cairo_scale(pdc, 1.0 / radiusx, 1.0 / radiusy);
+
+      cairo_translate(pdc, -centerx, -centery);
+
+
+      return true;
+
+   }
+
+   bool region::clip_polygon(cairo_t * pdc)
+   {
+
+      if(m_nCount <= 0)
+         return true;
+
+
+      cairo_move_to(pdc, m_lppoints[0].x, m_lppoints[0].y);
+
+      for(int32_t i = 1; i < m_nCount; i++)
+      {
+
+         cairo_line_to(pdc, m_lppoints[i].x, m_lppoints[i].y);
+
+      }
+      cairo_clip(pdc);
+
+      return true;
+
+   }
 
    void * region::get_os_data() const
    {
