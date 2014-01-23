@@ -5,10 +5,11 @@ namespace user
 {
 
 
-   class CLASS_DECL_CORE printer :
+   class CLASS_DECL_BASE printer :
       virtual public ::object
    {
    public:
+
 
       string      m_strName;
 

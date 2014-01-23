@@ -84,6 +84,8 @@ namespace user
    class create_context;
    class impact;
    class printer;
+   class user;
+   class object;
 
 
 } // namespace user
@@ -397,32 +399,32 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 #include "graphics/graphics.h"
-#include "user/user_keyboard_focus.h"
-#include "user/user_mouse_focus.h"
-#include "user/user_elemental.h"
+#include "user/user/user_keyboard_focus.h"
+#include "user/user/user_mouse_focus.h"
+#include "user/user/user_elemental.h"
 #include "base_flags.h"
 #include "primitive/primitive_check.h"
-#include "user/user_check_interface.h"
+#include "user/user/user_check_interface.h"
 #include "base_command.h"
 #include "graphics/visual/visual_const.h"
-#include "base/user/user_key_enum.h"
+#include "user/user/user_key_enum.h"
 #include "base_message.h"
 #include "base_command_target.h"
-#include "user/user_text_interface.h"
-#include "user/user_draw_interface.h"
-#include "user/user_window_util.h"
-#include "user/user_window_interface.h"
-#include "user/user_buffer.h"
+#include "user/user/user_text_interface.h"
+#include "user/user/user_draw_interface.h"
+#include "user/user/user_window_util.h"
+#include "user/user/user_window_interface.h"
+#include "user/user/user_buffer.h"
 #include "core/core/core_keeper.h"
 #include "base/filesystem/file/file_stream2.h"
-#include "user/user_interaction.h"
-#include "user/user_virtual_user_interface.h"
-#include "user/user_window.h"
-#include "user/user_control_bar.h"
-#include "user/user_wait_cursor.h"
-#include "user/user_frame_window.h"
-#include "user/user_server.h"
-#include "user/user_impact_system.h"
+#include "user/user/user_interaction.h"
+#include "user/user/user_virtual_user_interface.h"
+#include "user/user/user_window.h"
+#include "user/user/user_control_bar.h"
+#include "user/user/user_wait_cursor.h"
+#include "user/user/user_frame_window.h"
+#include "user/user/user_server.h"
+#include "user/user/user_impact_system.h"
 #include "primitive/primitive_interlocked_long.h"
 #include "primitive/primitive_interlocked_long_pulse.h"
 #include "primitive/primitive_data.h"
@@ -433,8 +435,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_departament_container.h"
 #include "base/xml/xml.h"
 #include "base/database/database.h"
-#include "user/user_object.h"
-#include "user/user_impact.h"
+#include "user/user/user_object.h"
+#include "user/user/user_impact.h"
 #include "base_live_object.h"
 #include "base_live_signal.h"
 #include "multithreading/multithreading_thread.h"
@@ -504,11 +506,11 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
-#include "user/user_window_map.h"
+#include "user/user/user_window_map.h"
 
-#include "user/user_keyboard_layout.h"
-#include "user/user_keyboard.h"
-#include "user/user_user.h"
+#include "user/user/user_keyboard_layout.h"
+#include "user/user/user_keyboard.h"
+#include "user/user/user_user.h"
 
 #include "base_main_init_data.h"
 
@@ -534,7 +536,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_plex_heap_impl.h"
 #include "base/primitive/primitive_command_line.h"
 #include "base/primitive/primitive_command.h"
-#include "base/user/user_create_context.h"
+#include "user/user/user_create_context.h"
 #include "base/primitive/primitive_create_context.h"
 #include "base/primitive/primitive_request_signal.h"
 
@@ -574,11 +576,11 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "primitive/datetime/datetime_departament.h"
 
 
-#include "user/user_window_draw.h"
+#include "user/user/user_window_draw.h"
 
 #include "base/primitive/str/str_international_locale_schema.h"
 
-#include "base/user/user_str.h"
+#include "user/user/user_str.h"
 
 #include "base_id_pool.h"
 
@@ -627,11 +629,11 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_system_trace.h"
 
 
-#include "user/user_place_holder.h"
-#include "user/user_place_holder_container.h"
-#include "user/user_view_creator_data.h"
-#include "user/user_view_container.h"
-#include "user/user_view_creator.h"
+#include "user/user/user_place_holder.h"
+#include "user/user/user_place_holder_container.h"
+#include "user/user/user_view_creator_data.h"
+#include "user/user/user_view_container.h"
+#include "user/user/user_view_creator.h"
 
 
 #include "base/multithreading/multithreading.inl"
@@ -802,8 +804,8 @@ namespace numeric_info
 #include "base_microtimer.h"
 
 
-#include "user/user.h"
-#include "user/user_control_event.h"
+#include "user/user/user.h"
+#include "user/user/user_control_event.h"
 #include "base_cregexp.h"
 #include "base_cregexp_util.h"
 

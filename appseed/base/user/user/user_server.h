@@ -5,9 +5,6 @@ namespace user
 {
 
 
-   class interaction;
-
-
    class CLASS_DECL_BASE server :
       virtual public ::object
    {
