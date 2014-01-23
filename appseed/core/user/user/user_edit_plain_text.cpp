@@ -218,22 +218,24 @@ namespace user
       //rectClient.deflate(0, 0, 1, 1);
 
 
-
-      if(_001IsBackgroundBypass())
+      if (pprintjob == NULL)
       {
-      }
-      else if(_001IsTranslucent())
-      {
-         class imaging & imaging = System.visual().imaging();
-         imaging.color_blend(
-            pdc,
-            rectClient,
-            RGB(200, 255, 255),
-            127);
-      }
-      else
-      {
-         pdc->FillSolidRect(rectClient, get_background_color());
+         if (_001IsBackgroundBypass())
+         {
+         }
+         else if (_001IsTranslucent())
+         {
+            class imaging & imaging = System.visual().imaging();
+            imaging.color_blend(
+               pdc,
+               rectClient,
+               RGB(200, 255, 255),
+               127);
+         }
+         else
+         {
+            pdc->FillSolidRect(rectClient, get_background_color());
+         }
       }
       /*else if(!System.savings().is_trying_to_save(::core::resource_processing)
       && !System.savings().is_trying_to_save(::core::resource_blur_background))

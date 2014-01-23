@@ -1060,7 +1060,7 @@ void base_application::_001OnFileNew(signal_details * pobj)
 }
 
 
-::user::printer * base_application::get_printer(const char * pszDeviceName)
+sp(::user::printer) base_application::get_printer(const char * pszDeviceName)
 {
 
    throw interface_only_exception(this);

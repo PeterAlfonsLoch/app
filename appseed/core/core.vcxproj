@@ -1614,7 +1614,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user\user_form1.h" />
     <ClInclude Include="user\user\user_form_callback.h" />
     <ClInclude Include="user\user\user_form_list.h" />
-    <ClInclude Include="user\user\user_frame_window.h" />
     <ClInclude Include="user\user\user_front_end.h" />
     <ClInclude Include="user\user\user_front_end_schema.h" />
     <ClInclude Include="user\user\user_image_manager.h" />
@@ -1637,7 +1636,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user\user_notify_icon.h" />
     <ClInclude Include="user\user\user_notify_icon_listener.h" />
     <ClInclude Include="user\user\user_plain_text_data.h" />
-    <ClInclude Include="user\user\user_printer.h" />
     <ClInclude Include="user\user\user_print_job.h" />
     <ClInclude Include="user\user\user_scroll_bar.h" />
     <ClInclude Include="user\user\user_scroll_view.h" />
@@ -1664,7 +1662,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user\user_tool_tip_tool.h" />
     <ClInclude Include="user\user\user_tool_tip_window.h" />
     <ClInclude Include="user\user\user_tree.h" />
-    <ClInclude Include="user\user\user_user.h" />
     <ClInclude Include="user\user\user_view_update_hint.h" />
     <ClInclude Include="user\user\user_virtual_user_interface.h" />
     <ClInclude Include="user\user\user_window_draw.h" />
@@ -2241,7 +2238,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\user\user_notify_icon.cpp" />
     <ClCompile Include="user\user\user_notify_icon_listener.cpp" />
     <ClCompile Include="user\user\user_plain_text_data.cpp" />
-    <ClCompile Include="user\user\user_printer.cpp" />
     <ClCompile Include="user\user\user_print_job.cpp" />
     <ClCompile Include="user\user\user_scroll_bar.cpp" />
     <ClCompile Include="user\user\user_scroll_view.cpp" />
@@ -2265,7 +2261,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\user\user_tool_tip_window.cpp" />
     <ClCompile Include="user\user\user_tree.cpp" />
     <ClCompile Include="user\user\user_tree_window.cpp" />
-    <ClCompile Include="user\user\user_util.cpp" />
     <ClCompile Include="user\user\user_xfplayer_view_line.cpp" />
     <ClCompile Include="user\userex\userex_dialog.cpp" />
     <ClCompile Include="user\userex\userex_form_child_frame.cpp" />

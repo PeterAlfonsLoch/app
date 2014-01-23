@@ -9,6 +9,7 @@ namespace user
       element(papp),
       ::print_job(papp),
       ::job(papp),
+      ::user::job(papp),
       thread(papp)
    {
 
@@ -35,8 +36,6 @@ namespace user
       {
          throw "a view should collaborate";
       }
-
-#ifdef WINDOWSEX
 
       ::draw2d::graphics * pgraphics = m_phprinter->create_graphics();
       
@@ -85,11 +84,6 @@ namespace user
 
       pgraphics->EndDoc();
 
-#else
-
-      throw todo(get_app());
-
-#endif
 
       return 0;
 

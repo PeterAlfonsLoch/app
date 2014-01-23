@@ -59,6 +59,9 @@
     <ClCompile Include="draw2d_direct2d_win_tls.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="draw2d_direct2d_printer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -101,6 +104,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="draw2d_direct2d_win_tls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="draw2d_direct2d_printer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -648,6 +648,8 @@ namespace draw2d
 
       virtual bool Attach(HDC hdc);
       virtual HDC Detach();
+      virtual bool AttachPrinter(HDC hdc);
+      virtual HDC DetachPrinter();
 
 #endif
 

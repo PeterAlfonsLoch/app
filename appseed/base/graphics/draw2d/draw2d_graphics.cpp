@@ -3339,6 +3339,25 @@ namespace draw2d
    }
 
 
+   bool graphics::AttachPrinter(HDC hdc)
+   {
+
+      throw not_implemented(get_app());
+
+      return false;
+
+   }
+
+
+   HDC graphics::DetachPrinter()
+   {
+
+      throw not_implemented(get_app());
+
+      return NULL;
+
+   }
+
 #endif
 
 

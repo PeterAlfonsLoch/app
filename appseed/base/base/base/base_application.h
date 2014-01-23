@@ -446,7 +446,7 @@ public:
    virtual sp(::user::object) _001OpenDocumentFile(var varFile);
    virtual void _001OnFileNew(signal_details * pobj);
 
-   virtual ::user::printer * get_printer(const char * pszDeviceName);
+   virtual sp(::user::printer) get_printer(const char * pszDeviceName);
 
 
    virtual bool update_module_paths();

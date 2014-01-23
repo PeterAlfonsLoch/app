@@ -804,7 +804,7 @@ namespace numeric_info
 #include "base_microtimer.h"
 
 
-#include "user/user/user.h"
+#include "base/user/user/user.h"
 #include "user/user/user_control_event.h"
 #include "base_cregexp.h"
 #include "base_cregexp_util.h"

@@ -62,6 +62,7 @@ namespace draw2d_direct2d
 #include "draw2d_direct2d_region.h"
 #include "draw2d_direct2d_dib.h"
 #include "draw2d_direct2d_path.h"
+#include "draw2d_direct2d_printer.h"
 
 
 #include "draw2d_direct2d_graphics.h"

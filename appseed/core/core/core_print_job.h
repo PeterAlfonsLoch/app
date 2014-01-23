@@ -3,7 +3,7 @@
 
 
 class CLASS_DECL_CORE print_job :
-   virtual public job
+   virtual public ::user::job
 {
 public:
 

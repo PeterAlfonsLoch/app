@@ -4,15 +4,14 @@
 namespace user
 {
 
+
    class CLASS_DECL_CORE print_job :
-      virtual public ::print_job,
-      virtual public ::job
+      virtual public ::print_job
    {
    public:
 
       
       sp(printer)       m_phprinter;
-      impact *            m_pview;
 
 
       print_job(sp(base_application) papp);

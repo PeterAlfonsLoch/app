@@ -19,10 +19,9 @@ namespace draw2d_direct2d
 
    bool printer::open(const char * pszDeviceName)
    {
-      throw todo(get_app());
-      //if(is_opened())
-      //   close();
-      //return OpenPrinter((LPSTR) (LPCSTR) pszDeviceName, &m_hPrinter, NULL) != FALSE && m_hPrinter != NULL;
+      if(is_opened())
+         close();
+      return OpenPrinter((LPSTR) (LPCSTR) pszDeviceName, &m_hPrinter, NULL) != FALSE && m_hPrinter != NULL;
    }
 
    bool printer::is_opened()
@@ -40,14 +39,13 @@ namespace draw2d_direct2d
 
    bool printer::close()
    {
-      throw todo(get_app());
-      //bool bOk = true;
-      //if(m_hPrinter != NULL)
-      //{
-      //   bOk = ::ClosePrinter(m_hPrinter) != FALSE;
-      //   m_hPrinter = NULL;
-      //}
-      //return bOk;
+      bool bOk = true;
+      if(m_hPrinter != NULL)
+      {
+         bOk = ::ClosePrinter(m_hPrinter) != FALSE;
+         m_hPrinter = NULL;
+      }
+      return bOk;
    }
 
 
@@ -65,51 +63,49 @@ namespace draw2d_direct2d
 
    bool printer::document_properties::initialize(::draw2d_direct2d::printer * pprinter, DEVMODE * pdevmode)
    {
-      throw todo(get_app());
-      //UNREFERENCED_PARAMETER(pdevmode);
-      //if(m_pdevmode != NULL)
-      //   return false;
-      //if(m_hdc != NULL)
-      //   return false;
-      //int iSize = DocumentProperties(NULL, pprinter->m_hPrinter, (LPSTR)(LPCSTR) pprinter->m_strName, NULL, NULL, 0);
-      //m_pdevmode = (DEVMODE *) malloc(iSize);
-      //if(!DocumentProperties(NULL, pprinter->m_hPrinter, (LPSTR) (LPCSTR) pprinter->m_strName, m_pdevmode, NULL, DM_OUT_BUFFER))
-      //{
-      //   throw "failed to get printer DocumentProperties";
-      //   return false;
-      //}
-      //return true;
+      UNREFERENCED_PARAMETER(pdevmode);
+      if(m_pdevmode != NULL)
+         return false;
+      if(m_hdc != NULL)
+         return false;
+      int iSize = DocumentProperties(NULL, pprinter->m_hPrinter, (LPSTR)(LPCSTR) pprinter->m_strName, NULL, NULL, 0);
+      m_pdevmode = (DEVMODE *) malloc(iSize);
+      if(!DocumentProperties(NULL, pprinter->m_hPrinter, (LPSTR) (LPCSTR) pprinter->m_strName, m_pdevmode, NULL, DM_OUT_BUFFER))
+      {
+         throw "failed to get printer DocumentProperties";
+         return false;
+      }
+      return true;
    }
 
    bool printer::document_properties::close()
    {
       throw todo(get_app());
-      //if(m_hdc != NULL)
-      //{
-      //   ::DeleteDC(m_hdc);
-      //   m_hdc = NULL;
-      //}
-      //if(m_pdevmode != NULL)
-      //{
-      //   free(m_pdevmode);
-      //   m_pdevmode = NULL;
-      //}
-      //return true;
+      if(m_hdc != NULL)
+      {
+         ::DeleteDC(m_hdc);
+         m_hdc = NULL;
+      }
+      if(m_pdevmode != NULL)
+      {
+         free(m_pdevmode);
+         m_pdevmode = NULL;
+      }
+      return true;
    }
 
 
 
    ::draw2d::graphics * printer::document_properties::create_graphics()
    {
-      throw todo(get_app());
-      //if(m_pdevmode == NULL)
-      //   return NULL;
-      //if(m_hdc != NULL)
-      //   return NULL;
-      //m_hdc = ::CreateDC("WINSPOOL", (LPCSTR) m_pdevmode->dmDeviceName, NULL, m_pdevmode);
-      //::draw2d::graphics_sp g(get_app());
-      //g->Attach(m_hdc);
-      //return g.detach();
+      if(m_pdevmode == NULL)
+         return NULL;
+      if(m_hdc != NULL)
+         return NULL;
+      m_hdc = ::CreateDC("WINSPOOL", (LPCSTR) m_pdevmode->dmDeviceName, NULL, m_pdevmode);
+      ::draw2d::graphics_sp g(get_app());
+      g->Attach(m_hdc);
+      return g.detach();
    }
 
 

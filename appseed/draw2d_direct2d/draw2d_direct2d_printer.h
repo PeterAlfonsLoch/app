@@ -1,8 +1,10 @@
 #pragma once
 
+
 namespace draw2d_direct2d
 {
-   
+
+
    class CLASS_DECL_DRAW2D_DIRECT2D printer :
       virtual public ::user::printer
    {

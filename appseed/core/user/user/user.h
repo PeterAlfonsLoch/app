@@ -128,10 +128,6 @@ class CDockState;           // forward reference (see afxpriv.h)
 
 
 
-#include "user_frame_window.h"
-
-
-
 /*
 
 
@@ -224,20 +220,6 @@ class COleDataObject;   // forward reference (see afxole.h)
 #include "user/menu/user_menu_central.h"
 
 
-
-#include "user_user.h"
-
-
-
-
-
-
-
-
-
-
-
-
 #include "user_xfplayer_view_line.h"
 #include "user_xfplayer_view_lines.h"
 
@@ -245,14 +227,10 @@ class COleDataObject;   // forward reference (see afxole.h)
 #include "user_tool_tip_window.h"
 
 
-
-#include "user_printer.h"
-
 #include "user_print_job.h"
 
 
 
-#include "user_user.h"
 
 
 
@@ -283,7 +261,6 @@ namespace user
 
 #include "user_button_control.h"
 
-#include "user_frame_window.h"
 //#include "user_mdi_frame_window.h"
 //#include "user_mdi_child_window.h"
 
@@ -350,7 +327,6 @@ namespace user
 #include "user_image_manager.h"
 
 
-#include "user_printer.h"
 
 
 

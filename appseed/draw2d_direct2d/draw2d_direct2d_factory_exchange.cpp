@@ -18,6 +18,7 @@ namespace draw2d_direct2d
       System.factory().cloneable_large < palette               >  (System.type_info < ::draw2d::palette           > ());
       System.factory().cloneable_large < region                >  (System.type_info < ::draw2d::region            > ());
       System.factory().cloneable_large < font                  >  (System.type_info < ::draw2d::font              > ());
+      System.factory().cloneable_large < printer               >  (System.type_info < ::user::printer             >());
       
 
       draw2d_direct2d_initialize();

@@ -631,7 +631,7 @@ namespace user
 #include "core_timer_callback.h"
 #include "core_timer_window.h"
 #include "core_timer_listener.h"
-#include "user/user_window_draw.h"
+#include "user/user/user_window_draw.h"
 #include "core_history.h"
 #include "core_print_job.h"
 
@@ -982,7 +982,7 @@ class Ex1FactoryImpl;
 #include "graphics/visual/visual.h"
 
 
-#include "user/user/user.h"
+#include "core/user/user/user.h"
 
 
 

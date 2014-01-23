@@ -4074,7 +4074,7 @@ void application::defer_add_document_template(sp(::user::impact_system) ptemplat
 }
 
 
-::user::printer * application::get_printer(const char * pszDeviceName)
+sp(::user::printer) application::get_printer(const char * pszDeviceName)
 {
 
    return m_pimpl->get_printer(pszDeviceName);

@@ -1,10 +1,13 @@
 #include "framework.h"
 
+
 namespace user
 {
 
+
    window::window()
    {
+
       m_bOSNativeMouseMessagePosition     = true;
       m_bTranslateMouseMessageCursor      = true;
       m_pgraphics                         = NULL;
@@ -12,37 +15,51 @@ namespace user
       m_bUpdateGraphics                   = false;
       m_pmutexGraphics                    = NULL;
       m_pmutexDisplay                     = NULL;
-      m_rectParentClient = ::null_rect();
+      m_rectParentClient                  = ::null_rect();
+
    }
+
 
    window::~window()
    {
 
       if(m_pgraphics != NULL)
       {
+
          delete m_pgraphics;
+
       }
 
    }
 
+
    bool window::create_message_queue(const char * pszName, ::message_queue_listener * pcallback)
    {
+
       UNREFERENCED_PARAMETER(pszName);
       UNREFERENCED_PARAMETER(pcallback);
       throw interface_only_exception(get_app());
+
    }
+
 
    void window::mouse_hover_add(sp(::user::interaction) pinterface)
    {
+
       UNREFERENCED_PARAMETER(pinterface);
       throw interface_only_exception(get_app());
+
    }
+
 
    void window::mouse_hover_remove(sp(::user::interaction) pinterface)
    {
+
       UNREFERENCED_PARAMETER(pinterface);
       throw interface_only_exception(get_app());
+
    }
+
 
 #ifdef WINDOWSEX
    bool window::GetWindowInfo(PWINDOWINFO pwi) const

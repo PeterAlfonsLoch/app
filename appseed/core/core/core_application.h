@@ -675,7 +675,7 @@ public:
    virtual int32_t send_simple_command(const char * psz, void * osdataSender);
    virtual int32_t send_simple_command(void * osdata, const char * psz, void * osdataSender);
 
-   virtual ::user::printer * get_printer(const char * pszDeviceName);
+   virtual sp(::user::printer) get_printer(const char * pszDeviceName);
 
    /*
    virtual string draw2d_get_default_library_name();
