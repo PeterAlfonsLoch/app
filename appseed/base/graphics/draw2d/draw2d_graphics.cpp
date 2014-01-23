@@ -2960,9 +2960,11 @@ namespace draw2d
    int32_t graphics::_DrawText(const char * lpcsz, strsize iCount, LPCRECT lpcrect, UINT uiFormat, ::draw2d::font * pfontUnderline)
    {
 
-      TEXTMETRICW tm;
+      TEXTMETRICW tm2;
 
-      get_text_metrics(&tm);
+      get_text_metrics(&tm2);
+
+      int iLineSpacing = tm2.tmHeight;
 
       ::draw2d::graphics * pdc = this;
 
@@ -2994,7 +2996,7 @@ namespace draw2d
          sz = pdc->GetTextExtent(str, (int32_t)iLen);
          if (sz.cx > rectClip.width())
          {
-            if ((uiFormat & DT_WORDBREAK) != 0 && tm.tmHeight * 2 <= rectClip.height())
+            if ((uiFormat & DT_WORDBREAK) != 0 && iLineSpacing * 2 <= rectClip.height())
             {
                string str1;
                string str2;
@@ -3113,7 +3115,7 @@ namespace draw2d
       rect.left = 0;
       rect.top = 0;
       rect.right = sz.cx;
-      rect.bottom = tm.tmHeight;
+      rect.bottom = iLineSpacing;
 
       int32_t align = 0;
       if (uiFormat & DT_BOTTOM)
@@ -3202,7 +3204,7 @@ namespace draw2d
       if (str2.get_length() > 0)
       {
 
-         rectClip.top += tm.tmHeight;
+         rectClip.top += iLineSpacing;
 
          _DrawText(str2, str2.get_length(), rectClip, uiFormat);
 

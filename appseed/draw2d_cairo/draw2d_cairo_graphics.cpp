@@ -1925,7 +1925,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
       //lpMetrics->tmHeight              = (LONG) e.height;
 
       //lpMetrics->tmInternalLeading     = (LONG) lpMetrics->tmAscent + lpMetrics->tmDescent - lpMetrics->tmHeight;
-      lpMetrics->tmExternalLeading     = (LONG) e.height - (e.ascent + e.descent);
+      lpMetrics->tmExternalLeading     = (LONG) (e.height - (e.ascent + e.descent));
 
       lpMetrics->tmInternalLeading     = (LONG) 0;
       lpMetrics->tmExternalLeading     = (LONG) 0;
@@ -4678,9 +4678,9 @@ return 1;
 
       SIZE size;
 
-      size.cx = (LONG) (ex.x_advance) * m_spfont->m_dFontWidth;
+      size.cx = (LONG) (ex.x_advance * m_spfont->m_dFontWidth);
 
-      size.cy = (LONG) (ex.height);
+      size.cy = (LONG) ex.height;
 
       return size;
 
@@ -4803,9 +4803,9 @@ return 1;
 
       SIZE size;
 
-      size.cx = (LONG) (ex.x_advance) * m_spfont->m_dFontWidth;
+      size.cx = (LONG) (ex.x_advance * m_spfont->m_dFontWidth);
 
-      size.cy = (LONG) (ex.height);
+      size.cy = (LONG) ex.height;
 
       return size;
 

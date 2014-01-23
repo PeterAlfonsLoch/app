@@ -15,6 +15,9 @@ public:
 };
 
 
+#if defined(SOLARIS)
+
+
 namespace std
 {
 
@@ -43,6 +46,7 @@ namespace std
 
 } 
 
+#endif
 
 
 

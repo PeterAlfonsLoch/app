@@ -78,10 +78,16 @@ void window_gdi::destroy()
 void window_gdi::update_window(oswindow window, COLORREF * pcolorref, LPCRECT lpcrect, int iStride)
 {
 
+   if (window == NULL)
+      return;
+
    HDC hdcScreen = ::GetDCEx(window, NULL,  DCX_CLIPSIBLINGS | DCX_WINDOW);
+
+   bool bOwnDC;
 
    if(hdcScreen == NULL)
    {
+
       // If it has failed to get ::user::window
       // owned device context, try to get
       // a device context from the cache.
@@ -92,7 +98,17 @@ void window_gdi::update_window(oswindow window, COLORREF * pcolorref, LPCRECT lp
       // The function failed.
       if(hdcScreen == NULL)
          return;
+
+      bOwnDC = false;
+
    }
+   else
+   {
+
+      bOwnDC = true;
+
+   }
+
 
    ::SelectClipRgn(hdcScreen, NULL);
 
@@ -111,16 +127,7 @@ void window_gdi::update_window(oswindow window, COLORREF * pcolorref, LPCRECT lp
 
    bool bLayered = (::GetWindowLong(window, GWL_EXSTYLE) & WS_EX_LAYERED) != 0;
 
-   int64_t area = iStride * height(rectOutputClient) / sizeof(COLORREF);
-
-   COLORREF * pdata = m_pcolorref;
-
-   for (int64_t i = area - 1; i >= 0; i--)
-   {
-      *pdata++ = ARGB(255, 0, 255, 0);
-   }
-
-copy_colorref(m_pcolorref, pcolorref, iStride);
+   copy_colorref(m_pcolorref, pcolorref, iStride);
 
    ::GdiFlush();
 
@@ -128,7 +135,6 @@ copy_colorref(m_pcolorref, pcolorref, iStride);
 
    if(bLayered)
    {
-
 
       POINT pt;
 
@@ -153,13 +159,16 @@ copy_colorref(m_pcolorref, pcolorref, iStride);
    else
    {
 
-      ::BitBlt(hdcScreen, rectWindow.left, rectWindow.top, cx, cy,  m_hdc, rectWindow.left, rectWindow.top, SRCCOPY);
+      ::BitBlt(hdcScreen, 0, 0, cx, cy,  m_hdc, 0, 0, SRCCOPY);
 
    }
 
+   if (!bOwnDC)
+   {
 
+      ::ReleaseDC(window, hdcScreen);
 
-   ::ReleaseDC(window, hdcScreen);
+   }
 
 }
 
