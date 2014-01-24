@@ -396,6 +396,238 @@ namespace draw2d
 
    }
 
+   bool dib::blend(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, ::draw2d::dib * pdibAlf, point ptAlf, class size size)
+   {
+
+      dib * pdibDst = this;
+
+      pdibDst->map();
+      pdibSrc->map();
+      pdibAlf->map();
+
+      if (ptSrc.x < 0)
+      {
+         ptDst.x -= ptSrc.x;
+         ptAlf.x -= ptSrc.x;
+         ptSrc.x = 0;
+      }
+
+      if (ptSrc.y < 0)
+      {
+         ptDst.y -= ptSrc.y;
+         ptAlf.y -= ptSrc.y;
+         ptSrc.y = 0;
+      }
+
+      if (ptDst.x < 0)
+      {
+         size.cx += ptDst.x;
+         ptDst.x = 0;
+      }
+
+      if (size.cx < 0)
+         return true;
+
+      if (ptDst.y < 0)
+      {
+         size.cy += ptDst.y;
+         ptDst.y = 0;
+      }
+
+      if (size.cy < 0)
+         return true;
+
+      int xEnd = min(size.cx, min(pdibSrc->m_size.cx - ptSrc.x, pdibDst->m_size.cx - ptDst.x));
+
+      int yEnd = min(size.cy, min(pdibSrc->m_size.cy - ptSrc.y, pdibDst->m_size.cy - ptDst.y));
+
+      if (xEnd < 0)
+         return false;
+
+      if (yEnd < 0)
+         return false;
+
+      int32_t scanDst = pdibDst->m_iScan;
+
+      int32_t scanSrc = pdibSrc->m_iScan;
+
+      int32_t scanAlf = pdibAlf->m_iScan;
+
+      byte * pdst = &((byte *)pdibDst->m_pcolorref)[scanDst * ptDst.y + ptDst.x * sizeof(COLORREF)];
+
+      byte * psrc = &((byte *)pdibSrc->m_pcolorref)[scanSrc * ptSrc.y + ptSrc.x * sizeof(COLORREF)];
+
+      byte * palf = &((byte *)pdibAlf->m_pcolorref)[scanAlf * ptAlf.y + ptAlf.x * sizeof(COLORREF)] + 3;
+
+      byte * pdst2;
+
+      byte * psrc2;
+
+      byte * palf2;
+
+      int x1;
+      int x2;
+      int y1;
+      int y2;
+
+      if (ptAlf.x < 0)
+      {
+         x1 = -ptAlf.x;
+         x2 = pdibAlf->m_size.cx + ptAlf.x;
+      }
+      else
+      {
+         x1 = 0;
+         x2 = pdibAlf->m_size.cx - ptAlf.x;
+      }
+         
+
+      
+
+      if (ptAlf.y < 0)
+      {
+         y1 = -ptAlf.y;
+         y2 = pdibAlf->m_size.cy + ptAlf.y;
+      }
+      else
+      {
+         y1 = 0;
+         y2 = pdibAlf->m_size.cy - ptAlf.y;
+      }
+         
+
+      
+
+      for (int y = 0; y < yEnd; y++)
+      {
+
+         pdst2 = (byte *) &pdst[scanDst * y];
+
+         psrc2 = (byte *) &psrc[scanSrc * y];
+
+         palf2 = (byte *) &palf[scanAlf * y];
+
+         for (int x = 0; x < xEnd; x++)
+         {
+
+            if (x >= x1 && x < x2 && y >= y1 && y < y2)
+            {
+
+               pdst2[3] = (BYTE)max((*palf2 * psrc2[3]) / 255, pdst2[3]);
+               pdst2[0] = (BYTE)(((psrc2[0] - pdst2[0]) * (*palf2 * psrc2[3]) / 255 + (pdst2[0] * 255)) / 255);
+               pdst2[1] = (BYTE)(((psrc2[1] - pdst2[1]) * (*palf2 * psrc2[3]) / 255 + (pdst2[1] * 255)) / 255);
+               pdst2[2] = (BYTE)(((psrc2[2] - pdst2[2]) * (*palf2 * psrc2[3]) / 255 + (pdst2[2] * 255)) / 255);
+
+            }
+            else if (psrc2[3] > 0)
+            {
+            
+               pdst2[3] = (BYTE)(max(psrc2[3], pdst2[3]));
+               pdst2[0] = (BYTE)(((psrc2[0] - pdst2[0]) * psrc2[3] + (pdst2[0] * 255)) / 255);
+               pdst2[1] = (BYTE)(((psrc2[1] - pdst2[1]) * psrc2[3] + (pdst2[1] * 255)) / 255);
+               pdst2[2] = (BYTE)(((psrc2[2] - pdst2[2]) * psrc2[3] + (pdst2[2] * 255)) / 255);
+
+            }
+
+
+            pdst2+=4;
+
+            psrc2+=4;
+
+            palf2+=4;
+
+         }
+
+      }
+
+      return true;
+
+   }
+
+   bool dib::blend(point ptDst,::draw2d::dib * pdibSrc, point ptSrc, class size size)
+   {
+
+      dib * pdibDst = this;
+
+      pdibDst->map();
+      pdibSrc->map();
+
+      if (ptSrc.x < 0)
+      {
+         ptDst.x -= ptSrc.x;
+         ptSrc.x = 0;
+      }
+
+      if (ptSrc.y < 0)
+      {
+         ptDst.y -= ptSrc.y;
+         ptSrc.y = 0;
+      }
+
+      if (ptDst.x < 0)
+      {
+         size.cx += ptDst.x;
+         ptDst.x = 0;
+      }
+
+      if (size.cx < 0)
+         return true;
+
+      if (ptDst.y < 0)
+      {
+         size.cy += ptDst.y;
+         ptDst.y = 0;
+      }
+
+      if (size.cy < 0)
+         return true;
+
+      int xEnd = min(size.cx, min(pdibSrc->m_size.cx - ptSrc.x, pdibDst->m_size.cx - ptDst.x));
+
+      int yEnd = min(size.cy, min(pdibSrc->m_size.cy - ptSrc.y, pdibDst->m_size.cy - ptDst.y));
+
+      if (xEnd < 0)
+         return false;
+
+      if (yEnd < 0)
+         return false;
+
+      int32_t scanDst = pdibDst->m_iScan;
+
+      int32_t scanSrc = pdibSrc->m_iScan;
+
+      byte * pdst = &((byte *)pdibDst->m_pcolorref)[scanDst * ptDst.y + ptDst.x * sizeof(COLORREF)] + 3;
+
+      byte * psrc = &((byte *)pdibSrc->m_pcolorref)[scanSrc * ptSrc.y + ptSrc.x * sizeof(COLORREF)] + 3;
+
+      byte * pdst2;
+
+      byte * psrc2;
+
+      for (int y = 0; y < yEnd; y++)
+      {
+
+         pdst2 = (byte *) &pdst[scanDst * y];
+
+         psrc2 = (byte *) &psrc[scanSrc * y];
+
+         for (int x = 0; x < xEnd; x++)
+         {
+            
+            *pdst2 = *psrc2 * *pdst2 / 255;
+
+            pdst2+=4;
+
+            psrc2+=4;
+
+         }
+
+      }
+
+      return true;
+
+   }
+
    void dib::set( int32_t R, int32_t G, int32_t B )
    {
       int64_t size = area();
@@ -799,18 +1031,39 @@ namespace draw2d
 
    void dib::channel_multiply(visual::rgba::echannel echannel, ::draw2d::dib * pdib)
    {
-      register int64_t size = area();
+
+      int64_t size = area();
+
       LPBYTE lpb1 = (LPBYTE) get_data();
+
       LPBYTE lpb2 = (LPBYTE) pdib->get_data();
+
       lpb1 += ((int32_t)echannel) % 4;
+
       lpb2 += ((int32_t)echannel) % 4;
-      for(register int64_t i = 0; i < size; i++)
+      
+      for(register int32_t y = 0; y < m_size.cy; y++)
       {
-         *lpb1 = (BYTE)(((uint32_t)*lpb1 * (uint32_t)*lpb2) / 255);
-         lpb1 += 4;
-         lpb2 += 4;
+
+         LPBYTE lpb1_2 = lpb1 + (m_iScan * y);
+
+         LPBYTE lpb2_2 = lpb2 + (pdib->m_iScan * y);
+
+         for (register int32_t x = 0; x < m_size.cx; x++)
+         {
+          
+            *lpb2 = (BYTE)(((uint32_t)*lpb1_2 * (uint32_t)*lpb2_2) / 255);
+
+            lpb1_2 += 4;
+
+            lpb2_2 += 4;
+
+         }
+
       }
+
    }
+
 
    void dib::channel_darken(visual::rgba::echannel echannel, ::draw2d::dib * pdib)
    {
@@ -1100,6 +1353,37 @@ namespace draw2d
 
       return true;
    }
+
+
+   bool dib::Blend(dib *pDib, dib *DibA)
+   {
+      if (m_size != pDib->m_size ||
+         m_size != DibA->size())
+         return false;
+
+      map();
+      pDib->map();
+      DibA->map();
+
+      BYTE *src = (BYTE*)pDib->get_data();
+      BYTE *dst = (BYTE*)get_data();
+      BYTE *alf = ((BYTE*)DibA->get_data()) + 3;
+      int64_t size = area();
+
+      while (size--)
+      {
+         dst[0] = (BYTE)(((src[0] - dst[0])* (*alf) + (dst[0] << 8)) >> 8);
+         dst[1] = (BYTE)(((src[1] - dst[1])* (*alf) + (dst[1] << 8)) >> 8);
+         dst[2] = (BYTE)(((src[2] - dst[2])* (*alf) + (dst[2] << 8)) >> 8);
+         dst += 4;
+         src += 4;
+         alf += 4;
+      }
+
+      return true;
+   }
+
+
 
    bool dib::blend(dib * pdib, dib * pdibRate)
    {
@@ -1696,7 +1980,7 @@ namespace draw2d
       if(x1 < 0)
          x1 += m_size.cx;
       COLORREF color=RGB ( B, G, R ) | (A << 24);
-      COLORREF * pdata = get_data() + y * m_size.cx;
+      COLORREF * pdata = get_data() + y * (m_iScan / sizeof(COLORREF));
       for(int32_t x = x1; x <= x2; x++)
       {
          *pdata = color;
@@ -1723,7 +2007,7 @@ namespace draw2d
          d=ay-(core>>1);
          while ( x!=x2 )
          {
-            get_data()[y*m_size.cx+x]=color;
+            get_data()[y*(m_iScan / sizeof(COLORREF)) + x] = color;
             if ( d>=0 )
             {
                y+=sy;
@@ -1738,7 +2022,7 @@ namespace draw2d
          d=core-(ay>>1);
          while ( y!=y2 )
          {
-            get_data()[y*m_size.cx+x]=color;
+            get_data()[y*(m_iScan / sizeof(COLORREF)) + x] = color;
             if ( d>=0 )
             {
                x+=sx;
@@ -1770,9 +2054,9 @@ namespace draw2d
          d=ay-(core>>1);
          while ( x!=x2 )
          {
-            dst[(y*m_size.cx+x)<<2]=(BYTE)(((B-dst[(y*m_size.cx+x)<<2])*A+(dst[(y*m_size.cx+x)<<2]<<8))>>8);
-            dst[((y*m_size.cx+x)<<2)+1]=(BYTE)(((G-dst[((y*m_size.cx+x)<<2)+1])*A+(dst[((y*m_size.cx+x)<<2)+1]<<8))>>8);
-            dst[((y*m_size.cx+x)<<2)+2]=(BYTE)(((R-dst[((y*m_size.cx+x)<<2)+2])*A+(dst[((y*m_size.cx+x)<<2)+2]<<8))>>8);
+            dst[(y*(m_iScan / sizeof(COLORREF))+x)<<2]=(BYTE)(((B-dst[(y*(m_iScan / sizeof(COLORREF))+x)<<2])*A+(dst[(y*(m_iScan / sizeof(COLORREF))+x)<<2]<<8))>>8);
+            dst[((y*(m_iScan / sizeof(COLORREF))+x)<<2)+1]=(BYTE)(((G-dst[((y*(m_iScan / sizeof(COLORREF))+x)<<2)+1])*A+(dst[((y*(m_iScan / sizeof(COLORREF))+x)<<2)+1]<<8))>>8);
+            dst[((y*(m_iScan / sizeof(COLORREF))+x)<<2)+2]=(BYTE)(((R-dst[((y*(m_iScan / sizeof(COLORREF))+x)<<2)+2])*A+(dst[((y*(m_iScan / sizeof(COLORREF))+x)<<2)+2]<<8))>>8);
             if ( d>=0 )
             {
                y+=sy;
@@ -1787,9 +2071,9 @@ namespace draw2d
          d=core-(ay>>1);
          while ( y!=y2 )
          {
-            dst[(y*m_size.cx+x)<<2]=(BYTE)(((B-dst[(y*m_size.cx+x)<<2])*A+(dst[(y*m_size.cx+x)<<2]<<8))>>8);
-            dst[((y*m_size.cx+x)<<2)+1]=(BYTE)(((G-dst[((y*m_size.cx+x)<<2)+1])*A+(dst[((y*m_size.cx+x)<<2)+1]<<8))>>8);
-            dst[((y*m_size.cx+x)<<2)+2]=(BYTE)(((R-dst[((y*m_size.cx+x)<<2)+2])*A+(dst[((y*m_size.cx+x)<<2)+2]<<8))>>8);
+            dst[(y*(m_iScan / sizeof(COLORREF))+x)<<2]=(BYTE)(((B-dst[(y*(m_iScan / sizeof(COLORREF))+x)<<2])*A+(dst[(y*(m_iScan / sizeof(COLORREF))+x)<<2]<<8))>>8);
+            dst[((y*(m_iScan / sizeof(COLORREF))+x)<<2)+1]=(BYTE)(((G-dst[((y*(m_iScan / sizeof(COLORREF))+x)<<2)+1])*A+(dst[((y*(m_iScan / sizeof(COLORREF))+x)<<2)+1]<<8))>>8);
+            dst[((y*(m_iScan / sizeof(COLORREF))+x)<<2)+2]=(BYTE)(((R-dst[((y*(m_iScan / sizeof(COLORREF))+x)<<2)+2])*A+(dst[((y*(m_iScan / sizeof(COLORREF))+x)<<2)+2]<<8))>>8);
             if ( d>=0 )
             {
                x+=sx;
@@ -1831,7 +2115,7 @@ namespace draw2d
 
    void dib::channel_mask(uchar uchFind, uchar uchSet, uchar uchUnset, visual::rgba::echannel echannel)
    {
-      int32_t size = m_size.cx * m_size.cy;
+      int32_t size = (m_iScan / sizeof(COLORREF)) * m_size.cy;
       uchar * puch = (uchar * ) get_data();
       puch += ((int32_t) echannel) % 4;
 
@@ -1847,7 +2131,7 @@ namespace draw2d
 
    uint32_t dib::GetPixel(int32_t x, int32_t y)
    {
-      uint32_t dw = *(get_data() + x + (m_size.cy - y - 1) * m_size.cx);
+      uint32_t dw = *(get_data() + x + (m_size.cy - y - 1) * (m_iScan / sizeof(COLORREF)));
       return RGB(rgba_get_b(dw), rgba_get_g(dw), rgba_get_r(dw));
    }
 
@@ -1872,14 +2156,14 @@ namespace draw2d
 
 
       if(xL < 0) xL = 0;
-      if(xU >= m_Size.m_size.cx) xU = m_Size.m_size.cx - 1;
+      if(xU >= m_Size.(m_iScan / sizeof(COLORREF))) xU = m_Size.(m_iScan / sizeof(COLORREF)) - 1;
       if(yL < 0) yL = 0;
       if(yU >= m_Size.m_size.cy) yU = m_Size.m_size.cy - 1;
 
 
-      BYTE *dst = ((BYTE*)(get_data() + xL + yL * m_Size.m_size.cx));
-      uint32_t dwAdd = ((m_Size.m_size.cx - 1 - xU) + xL) * 4;
-      int32_t size=m_Size.m_size.cx*m_Size.m_size.cy;
+      BYTE *dst = ((BYTE*)(get_data() + xL + yL * m_Size.(m_iScan / sizeof(COLORREF))));
+      uint32_t dwAdd = ((m_Size.(m_iScan / sizeof(COLORREF)) - 1 - xU) + xL) * 4;
+      int32_t size=m_Size.(m_iScan / sizeof(COLORREF))*m_Size.m_size.cy;
       double iLevel;
 
       int32_t dx, dy;
@@ -1984,8 +2268,8 @@ namespace draw2d
          if(yU >= m_size.cy) yU = m_size.cy - 1;
 
 
-         BYTE *dst = ((BYTE*)(get_data() + xL + yL * m_size.cx));
-         uint32_t dwAdd = ((m_size.cx - 1 - xU) + xL) * 4;
+         BYTE *dst = ((BYTE*)(get_data() + xL + yL * (m_iScan / sizeof(COLORREF))));
+         uint32_t dwAdd = (((m_iScan / sizeof(COLORREF)) - 1 - xU) + xL) * 4;
 //         int64_t size = area();
 
          int32_t dx, dy;
@@ -2034,14 +2318,14 @@ namespace draw2d
 
 
       if(xL < 0) xL = 0;
-      if(xU >= m_Size.m_size.cx) xU = m_Size.m_size.cx - 1;
+      if(xU >= m_Size.(m_iScan / sizeof(COLORREF))) xU = m_Size.(m_iScan / sizeof(COLORREF)) - 1;
       if(yL < 0) yL = 0;
       if(yU >= m_Size.m_size.cy) yU = m_Size.m_size.cy - 1;
 
 
-      BYTE *dst = ((BYTE*)(get_data() + xL + yL * m_Size.m_size.cx));
-      uint32_t dwAdd = ((m_Size.m_size.cx - 1 - xU) + xL) * 4;
-      int32_t size=m_Size.m_size.cx*m_Size.m_size.cy;
+      BYTE *dst = ((BYTE*)(get_data() + xL + yL * m_Size.(m_iScan / sizeof(COLORREF))));
+      uint32_t dwAdd = ((m_Size.(m_iScan / sizeof(COLORREF)) - 1 - xU) + xL) * 4;
+      int32_t size=m_Size.(m_iScan / sizeof(COLORREF))*m_Size.m_size.cy;
       double iLevel;
 
       int32_t dx, dy;
@@ -2151,7 +2435,7 @@ namespace draw2d
          if(yU >= m_size.cy) yU = m_size.cy - 1;
 
 
-         BYTE *dst = ((BYTE*)(get_data() + xL + yL * m_size.cx));
+         BYTE *dst = ((BYTE*)(get_data() + xL + yL * (m_iScan / sizeof(COLORREF))));
          uint32_t dwAdd = ((m_size.cx - 1 - xU) + xL) * 4;
 //         int64_t size = area();
 
