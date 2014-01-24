@@ -7,7 +7,7 @@
 #include "framework.h"
 
 
-bool optca_fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius, uint32_t * prgba, byte * dv, int32_t stride);
+
 
 
 namespace visual
@@ -50,15 +50,39 @@ namespace visual
 
       for(int32_t i = 0; i < m_uchaDiv.get_count(); i++)
       {
+
          dv[i]= min(255, i/div);
+
       }
 
       m_p->map();
-      m_ucha.allocate(m_p->m_iScan * m_p->m_size.cy);
+
+      int area = m_p->m_iScan * m_p->m_size.cy;
+
+      m_ucha.allocate(area);
+
+      area /= sizeof(COLORREF);
+
+      m_uchaR.allocate(area);
+
+      m_uchaG.allocate(area);
+
+      m_uchaB.allocate(area);
+
+      m_uchaA.allocate(area);
+
+      int s = m_p->m_iScan / sizeof(COLORREF);
+
+      int maxsh = max(s, m_size.cy);
+
+      m_iaVmin.allocate(maxsh);
+
+      m_iaVmax.allocate(maxsh);
 
       return true;
       
    }
+
 
    bool fastblur::initialize(size sz, int32_t iRadius)
    {
@@ -77,11 +101,18 @@ namespace visual
       m_p->map();
 
       bool b = false;
-
+      
       try
       {
 
-         b = optca_fastblur((uint32_t *) m_p->get_data(), m_size.cx, m_size.cy, m_iRadius, (uint32_t *) m_ucha.get_data(), m_uchaDiv.get_data(), m_p->m_iScan);
+         b = s_fastblur(
+               (uint32_t *) m_p->get_data(),
+               m_size.cx, 
+               m_size.cy, 
+               m_iRadius,
+               (uint32_t *) m_ucha.get_data(),
+               m_uchaDiv.get_data(),
+               m_p->m_iScan);
 
       }
       catch(...)
@@ -91,196 +122,323 @@ namespace visual
 
       return b;
 
-      /*int32_t radius  = m_iRadius;
-      int32_t w       = m_size.cx;
-      int32_t h       = m_size.cy;
+   }
 
-      if(radius < 1)
+   bool fastblur::s_fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius, uint32_t * prgba, byte * dv, int32_t stride)
+   {
+
+      if (radius <= 0)
       {
          return false;
       }
 
-      if(w <= 0 || h <= 0)
+      register int32_t rsum, gsum, bsum, asum;
+      int32_t x;
+      int32_t y;
+      int32_t i;
+      int32_t yp;
+      int32_t yw;
+      register byte * p1;
+      register byte * p2;
+      int32_t wm = w - 1;
+      int32_t hm = h - 1;
+      int32_t wr = wm - radius;
+      int32_t hr = hm - radius;
+      //   int32_t div        = radius + radius + 1;
+      int32_t * pix = (int32_t *)pdata;
+      byte * pb = (byte *)pdata;
+      byte * pwork = (byte *)prgba;
+      byte * pwk = (byte *)prgba;
+      byte * p;
+
+      yw = 0;
+
+      for (y = 0; y < h; y++)
       {
-         return false;
+
+         pwork = &pwk[stride * y];
+
+         asum = 0;
+         rsum = 0;
+         gsum = 0;
+         bsum = 0;
+
+         for (i = -radius; i <= radius; i++)
+         {
+
+            p = &pb[yw + (min(wm, max(i, 0)) * 4)];
+            rsum += p[0];
+            gsum += p[1];
+            bsum += p[2];
+            asum += p[3];
+
+         }
+
+         p1 = &pb[yw + (radius + 1) * 4];
+         p2 = &pb[yw];
+
+         for (x = 0; x < radius; x++)
+         {
+
+            pwork[0] = dv[rsum];
+            pwork[1] = dv[gsum];
+            pwork[2] = dv[bsum];
+            pwork[3] = dv[asum];
+
+            rsum += p1[0] - p2[0];
+            gsum += p1[1] - p2[1];
+            bsum += p1[2] - p2[2];
+            asum += p1[3] - p2[3];
+
+            pwork += 4;
+            p1 += 4;
+
+         }
+
+         for (; x < wr; x++)
+         {
+
+            pwork[0] = dv[rsum];
+            pwork[1] = dv[gsum];
+            pwork[2] = dv[bsum];
+            pwork[3] = dv[asum];
+
+
+            rsum += p1[0] - p2[0];
+            gsum += p1[1] - p2[1];
+            bsum += p1[2] - p2[2];
+            asum += p1[3] - p2[3];
+
+            p1 += 4;
+            p2 += 4;
+            pwork += 4;
+
+         }
+
+         p1 -= 4;
+
+         for (; x < w; x++)
+         {
+
+            pwork[0] = dv[rsum];
+            pwork[1] = dv[gsum];
+            pwork[2] = dv[bsum];
+            pwork[3] = dv[asum];
+
+
+            rsum += p1[0] - p2[0];
+            gsum += p1[1] - p2[1];
+            bsum += p1[2] - p2[2];
+            asum += p1[3] - p2[3];
+
+            p2 += 4;
+            pwork += 4;
+
+         }
+
+         yw += stride;
+
       }
 
-      register int32_t rsum,gsum,bsum,asum;
-      int32_t x,y,i,yp,yi,yw,p;
-      register int32_t * p1;
-      register int32_t * p2;
-      register int32_t c1;
-      register int32_t c2;
-      int32_t wm      = w - 1;
-      int32_t hm      = h - 1;
-      int32_t wr      = wm - radius;
-      int32_t hr      = hm - radius;
-      int32_t div     = radius + radius + 1;
-      int32_t * r     = m_iaR.get_data();
-      int32_t * g     = m_iaG.get_data();
-      int32_t * b     = m_iaB.get_data();
-      int32_t * a     = m_iaA.get_data();
-      int32_t * pix   = (int32_t *) m_p->get_data();
-  //    int32_t * dv    = m_iaDv.get_data();
+      for (x = 0; x < w; x++)
+      {
+
+         asum = 0;
+         rsum = 0;
+         gsum = 0;
+         bsum = 0;
+
+         yp = -radius * stride;
+
+         for (i = -radius; i <= radius; i++)
+         {
+            p = &pwk[max(0, yp) + x * 4];
+            rsum += p[0];
+            gsum += p[1];
+            bsum += p[2];
+            asum += p[3];
+            yp += stride;
+         }
+
+         byte * r1 = &pwk[(x * 4) + (radius + 1) * stride];
+         byte * r2 = &pwk[(x * 4)];
+
+         p1 = (byte *)&pix[x];
+
+         for (y = 0; y < radius; y++)
+         {
+
+            p1[0] = dv[rsum];
+            p1[1] = dv[gsum];
+            p1[2] = dv[bsum];
+            p1[3] = dv[asum];
+
+            rsum += r1[0] - r2[0];
+            gsum += r1[1] - r2[1];
+            bsum += r1[2] - r2[2];
+            asum += r1[3] - r2[3];
+
+            p1 += stride;
+            r1 += stride;
+
+         }
+
+         for (; y < hr; y++)
+         {
+
+            p1[0] = dv[rsum];
+            p1[1] = dv[gsum];
+            p1[2] = dv[bsum];
+            p1[3] = dv[asum];
+
+            rsum += r1[0] - r2[0];
+            gsum += r1[1] - r2[1];
+            bsum += r1[2] - r2[2];
+            asum += r1[3] - r2[3];
+
+            p1 += stride;
+            r1 += stride;
+            r2 += stride;
+
+         }
+
+         p1 -= stride;
+         r1 -= stride;
+
+         for (; y < h; y++)
+         {
+
+            p1[0] = dv[rsum];
+            p1[1] = dv[gsum];
+            p1[2] = dv[bsum];
+            p1[3] = dv[asum];
+
+            rsum += r1[0] - r2[0];
+            gsum += r1[1] - r2[1];
+            bsum += r1[2] - r2[2];
+            asum += r1[3] - r2[3];
+
+            p1 += stride;
+            r2 += stride;
+
+         }
+
+      }
+
+      return true;
+
+   }
+
+
+   bool fastblur::s_fastblur(uint32_t * pix, int32_t w, int32_t h, int32_t radius, byte * r, byte * g, byte * b, byte * a, byte * dv, int32_t stride, int32_t * vmin, int32_t * vmax)
+   {
+
+      return false;
+
+/*      
+
+      if (radius <= 0)
+      {
+
+         return false;
+
+      }
+
+      int32_t asum, rsum, gsum, bsum, x, y, i, yp, yi, yw;
+      int32_t s = stride / sizeof(COLORREF);
+      int32_t wm = w - 1;
+      int32_t hm = h - 1;
+      int32_t div = radius + radius + 1;
+      int32_t p;
+      int32_t p1;
+      int32_t p2;
 
       yw = yi = 0;
 
-      int32_t * pr = r;
-      int32_t * pg = g;
-      int32_t * pb = b;
-      int32_t * pa = a;
-
-
-      for (y=0;y<h;y++)
+      for (x = 0; x < w; x++)
       {
-         asum=rsum=gsum=bsum=0;
-         for(i=-radius;i<=radius;i++)
-         {
-            p=pix[yi+min(wm,max(i,0))];
-            asum+=((p & 0xff000000)>>24);
-            rsum+=((p & 0xff0000)>>16);
-            gsum+=((p & 0x00ff00)>>8);
-            bsum+=(p & 0x0000ff);
-         }
-         p1 = &pix[yw + radius + 1];
-         p2 = &pix[yw];
-
-         c2 = *p2;
-         for(x = 0; x < radius; x++)
-         {
-            //*pa++ = dv[asum];
-            //*pr++ = dv[rsum];
-            //*pg++ = dv[gsum];
-            //*pb++ = dv[bsum];
-            *pa++ = asum / div;
-            *pr++ = rsum / div;
-            *pg++ = gsum / div;
-            *pb++ = bsum / div;
-
-            c1 = *p1++;
-
-            asum+= ((c1 >> 24) & 0xff )-((c2 >> 24) & 0xff);
-            rsum+= ((c1 & 0x00ff0000)-(c2 & 0x00ff0000))>>16;
-            gsum+= ((c1 & 0x0000ff00)-(c2 & 0x0000ff00))>>8;
-            bsum+= ((c1 & 0x000000ff)-(c2 & 0x000000ff));
-
-            yi++;
-         }
-
-         for(; x < wr; x ++)
-         {
-
-            //*pa++ = dv[asum];
-            //*pr++ = dv[rsum];
-            //*pg++ = dv[gsum];
-            //*pb++ = dv[bsum];
-            *pa++ = asum / div;
-            *pr++ = rsum / div;
-            *pg++ = gsum / div;
-            *pb++ = bsum / div;
-
-            c1 = *p1++;
-            c2 = *p2++;
-
-            asum += ((c1 >> 24) & 0xff )-((c2 >> 24) & 0xff);
-            rsum += ((c1 & 0x00ff0000)-(c2 & 0x00ff0000))>>16;
-            gsum += ((c1 & 0x0000ff00)-(c2 & 0x0000ff00))>>8;
-            bsum += ((c1 & 0x000000ff)-(c2 & 0x000000ff));
-
-            yi++;
-
-         }
-         p1--;
-         c1 = *p1;
-         for(; x < w; x ++)
-         {
-
-            //*pa++ = dv[asum];
-            //*pr++ = dv[rsum];
-            //*pg++ = dv[gsum];
-            //*pb++ = dv[bsum];
-            *pa++ = asum / div;
-            *pr++ = rsum / div;
-            *pg++ = gsum / div;
-            *pb++ = bsum / div;
-
-            c2 = *p2++;
-
-            asum += ((c1 >> 24) & 0xff )-((c2 >> 24) & 0xff);
-            rsum += ((c1 & 0x00ff0000)-(c2 & 0x00ff0000))>>16;
-            gsum += ((c1 & 0x0000ff00)-(c2 & 0x0000ff00))>>8;
-            bsum += ((c1 & 0x000000ff)-(c2 & 0x000000ff));
-
-            yi++;
-
-         }
-
-
-         yw+=w;
+         vmin[x] = min(x + radius + 1, wm);
+         vmax[x] = max(x - radius, 0);
       }
 
-
-
-
-      for (x=0;x<w;x++)
+      for (y = 0; y < h; y++)
       {
-         asum=rsum=gsum=bsum=0;
-         yp=-radius*w;
-         for(i=-radius;i<=radius;i++)
+         asum = rsum = gsum = bsum = 0;
+         yi = y * s;
+         for (i = -radius; i <= radius; i++)
          {
-            yi=max(0,yp)+x;
-            rsum+=r[yi];
-            gsum+=g[yi];
-            bsum+=b[yi];
-            asum+=a[yi];
-            yp+=w;
+            p = pix[yi + min(wm, max(i, 0))];
+            asum += ((p & 0xff000000) >> 24);
+            rsum += ((p & 0xff0000) >> 16);
+            gsum += ((p & 0x00ff00) >> 8);
+            bsum += (p & 0x0000ff);
          }
-         int32_t i1 = x + (radius + 1) * w;
-         int32_t i2 = x + 0;
-         p1 = &pix[x];
-         for (y=0;y<radius;y++)
+         for (x = 0; x < w; x++)
          {
-//            *p1 = (dv[asum]<<24) | (dv[rsum]<<16) | (dv[gsum]<<8) | dv[bsum];
-            *p1 = ((asum / div) <<24) | ((rsum / div)<<16) | ((gsum / div)<<8) | (bsum / div);
+            a[yi] = dv[asum];
+            r[yi] = dv[rsum];
+            g[yi] = dv[gsum];
+            b[yi] = dv[bsum];
 
-            rsum+=r[i1]-r[i2];
-            gsum+=g[i1]-g[i2];
-            bsum+=b[i1]-b[i2];
-            asum+=a[i1]-a[i2];
+            p1 = pix[yw + vmin[x]];
+            p2 = pix[yw + vmax[x]];
 
-            p1+=w;
-            i1+=w;
+            asum += ((p1 >> 24) & 0xff) - ((p2 >> 24) & 0xff);
+            rsum += ((p1 & 0x00ff0000) - (p2 & 0x00ff0000)) >> 16;
+            gsum += ((p1 & 0x0000ff00) - (p2 & 0x0000ff00)) >> 8;
+            bsum += ((p1 & 0x000000ff) - (p2 & 0x000000ff));
+            yi++;
          }
-         for (;y<hr;y++)
+         yw += s;
+      }
+      for (y = 0; y < h; y++)
+      {
+         vmin[y] = min(y + radius + 1, hm) * s;
+         vmax[y] = max(y - radius, 0) * s;
+      }
+
+      for (x = 0; x < w; x++)
+      {
+         asum = rsum = gsum = bsum = 0;
+         yp = -radius*s;
+         for (i = -radius; i <= radius; i++)
          {
-//            *p1 = (dv[asum]<<24) | (dv[rsum]<<16) | (dv[gsum]<<8) | dv[bsum];
-            *p1 = ((asum / div) <<24) | ((rsum / div)<<16) | ((gsum / div)<<8) | (bsum / div);
-
-            rsum+=r[i1]-r[i2];
-            gsum+=g[i1]-g[i2];
-            bsum+=b[i1]-b[i2];
-            asum+=a[i1]-a[i2];
-
-            p1+=w;
-            i1+=w;
-            i2+=w;
+            yi = max(0, yp) + x;
+            rsum += r[yi];
+            gsum += g[yi];
+            bsum += b[yi];
+            asum += a[yi];
+            yp += s;
          }
-         i1-=w;
-         for(;y<h;y++)
+         yi = x;
+         for (y = 0; y < h; y++)
          {
-//            *p1 = (dv[asum]<<24) | (dv[rsum]<<16) | (dv[gsum]<<8) | dv[bsum];
-            *p1 = ((asum / div) <<24) | ((rsum / div)<<16) | ((gsum / div)<<8) | (bsum / div);
+            pix[yi] = (dv[asum] << 24) | (dv[rsum] << 16) | (dv[gsum] << 8) | dv[bsum];
 
-            rsum+=r[i1]-r[i2];
-            gsum+=g[i1]-g[i2];
-            bsum+=b[i1]-b[i2];
-            asum+=a[i1]-a[i2];
+            p1 = x + vmin[y];
+            p2 = x + vmax[y];
 
-            p1+=w;
-            i2+=w;
+            rsum += r[p1] - r[p2];
+            gsum += g[p1] - g[p2];
+            bsum += b[p1] - b[p2];
+            asum += a[p1] - a[p2];
+
+            yi += s;
+
          }
-      }*/
+
+      }
+
+      return true;
+      
+*/
+
    }
+
+
+
+
+
 
 
 } // namespace visual

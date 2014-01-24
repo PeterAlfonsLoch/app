@@ -888,7 +888,7 @@ namespace draw2d
 
                dib1->create(rectBlt.size());
 
-               dib1->Fill(0, 0, 0, 0);
+               dib1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
                if (!dib1->from(null_point(), pgraphicsSrc, point(xSrc, ySrc), rectBlt.size()))
                   return false;
@@ -2326,8 +2326,6 @@ namespace draw2d
 
       synch_lock ml(&user_mutex());
 
-//      size szBase = GetTextExtent("P");
-
       size sz = GetTextExtent(str);
 
       double dx;
@@ -2365,6 +2363,7 @@ namespace draw2d
       return 1;
 
    }
+
 
 #ifndef METROWIN
 

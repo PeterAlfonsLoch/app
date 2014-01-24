@@ -514,9 +514,9 @@ namespace draw2d
             {
 
                pdst2[3] = (BYTE)max((*palf2 * psrc2[3]) / 255, pdst2[3]);
-               pdst2[0] = (BYTE)(((psrc2[0] - pdst2[0]) * (*palf2 * psrc2[3]) / 255 + (pdst2[0] * 255)) / 255);
-               pdst2[1] = (BYTE)(((psrc2[1] - pdst2[1]) * (*palf2 * psrc2[3]) / 255 + (pdst2[1] * 255)) / 255);
-               pdst2[2] = (BYTE)(((psrc2[2] - pdst2[2]) * (*palf2 * psrc2[3]) / 255 + (pdst2[2] * 255)) / 255);
+               pdst2[0] = (BYTE)(((psrc2[0] - pdst2[0]) * (psrc2[3]) + (pdst2[0] * 255)) / 255);
+               pdst2[1] = (BYTE)(((psrc2[1] - pdst2[1]) * (psrc2[3]) + (pdst2[1] * 255)) / 255);
+               pdst2[2] = (BYTE)(((psrc2[2] - pdst2[2]) * (psrc2[3]) + (pdst2[2] * 255)) / 255);
 
             }
             else if (psrc2[3] > 0)

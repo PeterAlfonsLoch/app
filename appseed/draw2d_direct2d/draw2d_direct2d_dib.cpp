@@ -18,9 +18,9 @@ namespace draw2d_direct2d
       m_spgraphics(allocer())
    {
 
-      m_pcolorref = NULL;
-      m_bMapped = false;
-
+      m_pcolorref    = NULL;
+      m_bMapped      = false;
+      m_bTrans       = false;
    }
 
    COLORREF * dib::get_data()
@@ -147,6 +147,8 @@ namespace draw2d_direct2d
 
 
       m_bMapped = false;
+
+      //m_spgraphics->m_pdib = this;
 
 
       //realize(m_spgraphicsMap);
@@ -2567,10 +2569,12 @@ namespace draw2d_direct2d
 
       int compare_scan = m_size.cx * sizeof(COLORREF);
 
-      int64_t i = area();
+      int64_t i = m_iScan * m_size.cy / sizeof(COLORREF);
 
       if (bApplyAlphaTransform)
       {
+
+         
 
          byte * p = ((byte *)m_pcolorref);
          while (i > 0)
@@ -2590,6 +2594,8 @@ namespace draw2d_direct2d
             p += 4;
             i--;
          }
+
+         m_bTrans = true;
 
       }
 
@@ -2625,15 +2631,20 @@ namespace draw2d_direct2d
 
       byte * p = (byte *)m_pcolorref;
 
-      int64_t i = area();
+      int64_t i = m_iScan * m_size.cy / sizeof(COLORREF);
 
-      while (i > 0)
+      if (m_bTrans)
       {
-         p[0] = (p[0] * p[3] / 255);
-         p[1] = (p[1] * p[3] / 255);
-         p[2] = (p[2] * p[3] / 255);
-         p += 4;
-         i--;
+
+         while (i > 0)
+         {
+            p[0] = (p[0] * p[3] / 255);
+            p[1] = (p[1] * p[3] / 255);
+            p[2] = (p[2] * p[3] / 255);
+            p += 4;
+            i--;
+         }
+
       }
 
 
@@ -2667,6 +2678,7 @@ namespace draw2d_direct2d
       ((ID2D1DeviceContext *)m_spgraphics->get_os_data())->BeginDraw();
 
       m_bMapped = false;
+      m_bTrans = false;
 
    }
 

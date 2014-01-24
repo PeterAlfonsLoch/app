@@ -335,17 +335,19 @@ true);
       if(TestEnd())
          return;
 
-      synch_lock sl(&user_mutex());
-
       if(m_tool001.m_iStep == 1
          && m_tool001.m_ia.get_size() <= 0)
       {
+         synch_lock sl(&user_mutex());
+
          RenderBuffer(recta);
       }
       else
       {
          if(m_tool001.m_ia.get_size() <= 0)
          {
+            synch_lock sl(&user_mutex());
+
             RenderBuffer(recta);
          }
          else
@@ -353,6 +355,8 @@ true);
             rect rect;
             for(int32_t i = 0; i < 1 && m_tool001.m_ia.get_size(); i++)
             {
+               synch_lock sl(&user_mutex());
+
                RenderBuffer(recta);
             }
          }

@@ -7,7 +7,7 @@
 #define new BASE_NEW
 
 
-void fastblur(::draw2d::dib * pimg, int32_t radius);
+//void fastblur(::draw2d::dib * pimg, int32_t radius);
 
 
 #endif
@@ -3514,172 +3514,27 @@ return true;
 
 */
 
-// Super Fast Blur v1.1
-// by Mario Klingemann <http://incubator.quasimondo.com>
-//
-// Tip: Multiple invovations of this filter with a small
-// radius will approximate a gaussian blur quite well.
-//
-//BImage a;
-
-
-void fastblur(::draw2d::dib * pimg, int32_t radius);
-
-
-
-void fastblur(::draw2d::dib * pimg, int32_t radius)
-{
-   if(radius < 1)
-   {
-      return;
-   }
-   int32_t w=pimg->m_size.cx;
-   int32_t h=pimg->m_size.cy;
-   int32_t wm=w-1;
-   int32_t hm=h-1;
-   int32_t wh=w*h;
-   int32_t div=radius+radius+1;
-   int_array iaA;
-   iaA.allocate(wh);
-   int32_t * a = iaA.get_data();
-   int_array iaR;
-   iaR.allocate(wh);
-   int32_t * r = iaR.get_data();
-   int_array iaG;
-   iaG.allocate(wh);
-   int32_t * g = iaG.get_data();
-   int_array iaB;
-   iaB.allocate(wh);
-   int32_t * b = iaB.get_data();
-   int32_t asum, rsum,gsum,bsum,x,y,i,yp,yi,yw;
-   int32_t p;
-   int32_t p1;
-   int32_t p2;
-   int_array iaVmin;
-   iaVmin.allocate(max(w,h));
-   int32_t * vmin = iaVmin.get_data();
-   int_array iaVmax;
-   iaVmax.allocate(max(w,h));
-   int32_t * vmax = iaVmax.get_data();
-   int32_t * pix=(int32_t *) pimg->get_data();
-   int_array iaDv;
-   iaDv.allocate(256*div);
-   int32_t * dv = iaDv.get_data();
-   for (i=0;i<iaDv.get_count();i++)
-   {
-      dv[i]= min(255, i/div);
-   }
-
-   yw=yi=0;
-
-   for(x=0;x<w;x++)
-   {
-      vmin[x]=min(x+radius+1,wm);
-      vmax[x]=max(x-radius,0);
-   }
-
-   for (y=0;y<h;y++)
-   {
-      asum=rsum=gsum=bsum=0;
-      for(i=-radius;i<=radius;i++)
-      {
-         p=pix[yi+min(wm,max(i,0))];
-         asum+=((p & 0xff000000)>>24);
-         rsum+=((p & 0xff0000)>>16);
-         gsum+=((p & 0x00ff00)>>8);
-         bsum+=(p & 0x0000ff);
-      }
-      for(x=0;x<w;x++)
-      {
-         a[yi]=dv[asum];
-         r[yi]=dv[rsum];
-         g[yi]=dv[gsum];
-         b[yi]=dv[bsum];
-
-         p1=pix[yw+vmin[x]];
-         p2=pix[yw+vmax[x]];
-
-         asum+= ((p1 >> 24) & 0xff )-((p2 >> 24) & 0xff);
-         rsum+= ((p1 & 0x00ff0000)-(p2 & 0x00ff0000))>>16;
-         gsum+= ((p1 & 0x0000ff00)-(p2 & 0x0000ff00))>>8;
-         bsum+= ((p1 & 0x000000ff)-(p2 & 0x000000ff));
-         yi++;
-      }
-      yw+=w;
-   }
-   for (y=0;y<h;y++)
-   {
-      vmin[y] = min(y+radius+1,hm) * w;
-      vmax[y] = max(y-radius,0) * w;
-   }
-
-   for (x=0;x<w;x++)
-   {
-      asum=rsum=gsum=bsum=0;
-      yp=-radius*w;
-      for(i=-radius;i<=radius;i++)
-      {
-         yi=max(0,yp)+x;
-         rsum+=r[yi];
-         gsum+=g[yi];
-         bsum+=b[yi];
-         asum+=a[yi];
-         yp+=w;
-      }
-      yi=x;
-      for (y=0;y<h;y++)
-      {
-         pix[yi]=(dv[asum]<<24) | (dv[rsum]<<16) | (dv[gsum]<<8) | dv[bsum];
-
-         p1=x+vmin[y];
-         p2=x+vmax[y];
-
-         rsum+=r[p1]-r[p2];
-         gsum+=g[p1]-g[p2];
-         bsum+=b[p1]-b[p2];
-         asum+=a[p1]-a[p2];
-
-         yi+=w;
-      }
-   }
-
-}
 
 
 
 bool imaging::blur(::draw2d::graphics *pdcDst, point ptDst, size size, ::draw2d::graphics * pdcSrc, point ptSrc, int32_t iRadius)
 {
+
    if(size.cx <= 0 || size.cy <= 0)
       return true;
 
-   ::draw2d::dib_sp dibDst(allocer());
+   ::visual::fastblur f(allocer());
 
-   if(!dibDst->create(size))
+   if (!f.initialize(size, abs(iRadius)))
       return false;
 
-   dibDst->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
-   dibDst->get_graphics()->FillSolidRect(0, 0, size.cx, size.cy, ARGB(0, 0, 0, 0));
-   dibDst->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
-   /*   ::draw2d::dib_sp dibSrc(allocer());
+   f->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+   
+   f->from(null_point(), pdcSrc, ptSrc, size);
 
-   if(!dibSrc->create(size))
-   return false;*/
+   f.blur();
 
-   if(iRadius < 0)
-   {
-      if(!dibDst->from(null_point(), pdcSrc, ptSrc, size))
-         return false;
-      fastblur(dibDst, max(3, -iRadius));
-   }
-   else
-   {
-      if(!dibDst->from(null_point(), pdcSrc, ptSrc, size))
-         return false;
-      fastblur(dibDst, max(3, iRadius));
-   }
-
-
-   dibDst->to(pdcDst, ptDst, size);
+   f->to(pdcDst, ptDst, size);
 
    return true;
 

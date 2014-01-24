@@ -2866,9 +2866,6 @@
     <ClCompile Include="user\uinteraction\frame\frame_work_set_listener_array.cpp">
       <Filter>Source Files\user\uinteraction\frame</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\optca_fastblur.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\visual\visual_water_routine.cpp">
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>

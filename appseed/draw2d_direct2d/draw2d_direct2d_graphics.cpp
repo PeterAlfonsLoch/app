@@ -1211,6 +1211,8 @@ namespace draw2d_direct2d
    bool graphics::BitBlt(int x, int y, int nWidth, int nHeight, ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc, uint32_t dwRop)
    { 
 
+      if (::draw2d::graphics::BitBlt(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, dwRop))
+         return true;
 
       try
       {
@@ -1223,6 +1225,31 @@ namespace draw2d_direct2d
 
          if(pgraphicsSrc->get_current_bitmap()->get_os_data() == NULL)
             return FALSE;
+
+         if (get_current_bitmap() != NULL && get_current_bitmap()->get_os_data() != NULL)
+         {
+
+            D2D1_SIZE_U sz = ((ID2D1Bitmap *)get_current_bitmap()->get_os_data())->GetPixelSize();
+
+            if (nWidth + x > sz.width)
+               nWidth = sz.width - x;
+
+            if (nHeight + y > sz.height)
+               nHeight = sz.height - y;
+
+         }
+
+         {
+
+            D2D1_SIZE_U sz = ((ID2D1Bitmap *)pgraphicsSrc->get_current_bitmap()->get_os_data())->GetPixelSize();
+
+            if (nWidth + xSrc > sz.width)
+               nWidth = sz.width - xSrc;
+
+            if (nHeight + ySrc > sz.height)
+               nHeight = sz.height - ySrc;
+
+         }
 
          D2D1_RECT_F rectDst = D2D1::RectF((float) x, (float) y, (float) (x + nWidth), (float) (y + nHeight));
          D2D1_RECT_F rectSrc = D2D1::RectF((float) xSrc, (float) ySrc, (float) (xSrc + nWidth), (float) (ySrc + nHeight));
@@ -1617,13 +1644,11 @@ namespace draw2d_direct2d
 
       }
 
-
       DWRITE_FONT_METRICS metrics;
 
       pfont->GetMetrics(&metrics);
 
       double ratio = get_os_font()->GetFontSize() / (float)metrics.designUnitsPerEm;
-
 
       string str("APÁpgfditflmnopw");
 
@@ -3268,17 +3293,19 @@ namespace draw2d_direct2d
 
    point graphics::SetViewportOrg(int x, int y)
    {
-      /*point point(0, 0);
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-      ::SetViewportOrgEx(get_handle1(), x, y, &point);
-      if(get_handle2() != NULL)
-      ::SetViewportOrgEx(get_handle2(), x, y, &point);*/
-      //Gdiplus::Matrix m;
-      //m.Translate((Gdiplus::REAL) x, (Gdiplus::REAL) y);
-      //g().SetTransform(&m);
-      //return point;
-      m_prendertarget->SetTransform(D2D1::Matrix3x2F::Translation((FLOAT) x, (FLOAT) y));
+
+      D2D1::Matrix3x2F m;
+
+      m_prendertarget->GetTransform(&m);
+
+      m._31 = (FLOAT)x;
+
+      m._32 = (FLOAT)y;
+
+      m_prendertarget->SetTransform(m);
+
       return point(x, y);
+
    }
 
    point graphics::OffsetViewportOrg(int nWidth, int nHeight)
@@ -3903,13 +3930,6 @@ namespace draw2d_direct2d
 
    int graphics::draw_text(const char * lpszString, int nCount, LPRECT lpRect, UINT nFormat)
    { 
-      /*if(get_handle1() == NULL)
-      return -1;
-      // these flags would modify the string
-      ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
-      ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
-      wstring wstr = ::str::international::utf8_to_unicode(string(lpszString, nCount));
-      return ::DrawTextW(get_handle1(), wstr, (int) wcslen(wstr), lpRect, nFormat); */
 
       return draw_text(string(lpszString, nCount), lpRect, nFormat);
 
@@ -3917,14 +3937,6 @@ namespace draw2d_direct2d
 
    int graphics::draw_text(const string & str, LPRECT lpRect, UINT nFormat)
    { 
-
-      /*if(get_handle1() == NULL)
-      return -1;
-      // these flags would modify the string
-      ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
-      ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
-      wstring wstr = ::str::international::utf8_to_unicode(str);
-      return ::DrawTextW(get_handle1(), (const wchar_t *)wstr, (int)wcslen(wstr), lpRect, nFormat); */
 
       try
       {
@@ -3964,17 +3976,63 @@ namespace draw2d_direct2d
       if (get_os_font() == NULL)
          return false;
 
-      D2D1_MATRIX_3X2_F m;
+      if (nFormat & DT_RIGHT)
+      {
 
+         get_os_font()->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_TRAILING);
 
-      D2D1_RECT_F rectf = D2D1::RectF((FLOAT) lpRect->left, (FLOAT) lpRect->top, (FLOAT) lpRect->right, (FLOAT) lpRect->bottom);
+      }
+      else if (nFormat & DT_CENTER)
+      {
+
+         get_os_font()->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
+
+      }
+      else
+      {
+
+         get_os_font()->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+
+      }
+
+      if (nFormat & DT_BOTTOM)
+      {
+
+         get_os_font()->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_FAR);
+
+      }
+      else if (nFormat & DT_VCENTER)
+      {
+
+         get_os_font()->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
+
+      }
+      else
+      {
+
+         get_os_font()->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
+
+      }
+
+      D2D1::Matrix3x2F m;
+
+      m_prendertarget->GetTransform(&m);
+
+      D2D1::Matrix3x2F mOriginal(m);
+
+      D2D1_RECT_F rectf = D2D1::RectF((FLOAT) 0, (FLOAT) 0, (FLOAT) lpRect->right, (FLOAT) lpRect->bottom);
 
       wstring wstr(str);
 
+      m = m * D2D1::Matrix3x2F::Translation((FLOAT)lpRect->left, (FLOAT)lpRect->top);
+
+      m = m * D2D1::Matrix3x2F::Scale((FLOAT)m_spfont->m_dFontWidth, 1.f);
+
+      m_prendertarget->SetTransform(&m);
+
       m_prendertarget->DrawText(wstr, (UINT32) wstr.get_length(), get_os_font(), &rectf, get_os_brush());
 
-      //m_prendertarget->SetTransform(&m);
-
+      m_prendertarget->SetTransform(&mOriginal);
       
       return 1;
 
@@ -4119,7 +4177,7 @@ namespace draw2d_direct2d
       
          playout->GetMetrics(&m);
 
-         size.cx = (LONG) m.width;
+         size.cx = (LONG) (m.width * m_spfont->m_dFontWidth);
 
          size.cy = (LONG) m.height;
 
@@ -4367,10 +4425,10 @@ namespace draw2d_direct2d
    bool graphics::TextOut(int x, int y, const char * lpszString, int nCount)
    {
 
-
       return TextOut((double)x, (double)y, lpszString, nCount);
 
    }
+
 
    bool graphics::TextOut(double x, double y, const char * lpszString, int nCount)
    {
@@ -4407,24 +4465,42 @@ namespace draw2d_direct2d
       }
       catch(...)
       {
+
       }
 
+      if (m_spfont.is_null())
+         return false;
 
-      D2D1_RECT_F rect;
+      if (get_os_font() == NULL)
+         return false;
 
-      rect.left      = (FLOAT) x;
-      rect.top       = (FLOAT) y;
-      rect.right     = (FLOAT)  (x + (1024.f * 1024.f));
-      rect.bottom    = (FLOAT)  (y + (1024.f * 1024.f));
+      D2D1::Matrix3x2F m;
 
-      wstring wstr(string(lpszString, nCount));
+      m_prendertarget->GetTransform(&m);
 
-      m_prendertarget->DrawText(wstr, (UINT32) wstr.get_length(), get_os_font(), &rect, get_os_brush());
+      D2D1::Matrix3x2F mOriginal(m);
+
+      D2D1_RECT_F rectf = D2D1::RectF((FLOAT)x / m_spfont->m_dFontWidth, (FLOAT)y, (FLOAT) (1024 * 1024), (FLOAT) (1024 * 1024));
+
+      get_os_font()->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+
+      get_os_font()->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
+
+      string str(lpszString, nCount);
+
+      wstring wstr(str);
+
+      m._11 *= (FLOAT) m_spfont->m_dFontWidth;
+
+      m_prendertarget->SetTransform(&m);
+
+      m_prendertarget->DrawText(wstr, (UINT32)wstr.get_length(), get_os_font(), &rectf, get_os_brush());
+
+      m_prendertarget->SetTransform(mOriginal);
 
       return true;
 
    }
-
 
 
    bool graphics::LineTo(double x, double y)

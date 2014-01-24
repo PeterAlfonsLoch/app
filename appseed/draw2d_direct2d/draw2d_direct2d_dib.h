@@ -23,6 +23,7 @@ namespace draw2d_direct2d
       ::draw2d::graphics_sp         m_spgraphics;
       ::draw2d::graphics_sp         m_spgraphicsMap;
       bool                          m_bMapped;
+      bool                          m_bTrans;
 
 
       dib(sp(base_application) papp);

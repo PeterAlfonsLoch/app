@@ -22,7 +22,7 @@
 #endif
 
 
-void fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius);
+//void fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius);
 
 
 namespace hotplugin
