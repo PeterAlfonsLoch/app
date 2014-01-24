@@ -1376,124 +1376,22 @@ namespace draw2d_direct2d
    // double blend
    //// COLOR_DEST = SRC_ALPHA * BLEND_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA * BLEND_ALPHA) * COLOR_DST
 
+   
    bool graphics::TextOut(int x, int y, const string & str)
    { 
-      if(m_pdibAlphaBlend != NULL)
-      {
-//         if(GetBkMode() == TRANSPARENT)
-         {
-            //   return TRUE;
-            rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
-            rect rectText(point(x, y), GetTextExtent(str));
-            if(rectIntersect.intersect(rectIntersect, rectText))
-            {
-               ::draw2d::dib_sp dib0(allocer());
-               dib0->create(rectText.size());
-               ::draw2d::brush_sp brushText(allocer());
-               brushText->create_solid(ARGB(255, 255, 255, 255));
-               dib0->get_graphics()->SelectObject(brushText);
-               dib0->get_graphics()->SelectObject(get_current_font());
-//               dib0->get_graphics()->SetBkMode(TRANSPARENT);
-               dib0->get_graphics()->TextOut(0, 0, str);
-               dib0->ToAlpha(0);
-               ::draw2d::dib_sp dib1(allocer());
-               dib1->create(rectText.size());
 
-               brushText->create_solid(m_spbrush->m_cr);
-               dib0->get_graphics()->SelectObject(brushText);
-               dib1->get_graphics()->SelectObject(get_current_font());
-               dib1->get_graphics()->TextOut(0, 0, str);
+      return TextOut((double)x, (double)y, str);
+      
+   }
 
-               dib1->channel_from(visual::rgba::channel_alpha, dib0);
-               ::draw2d::dib_sp dib2(allocer());
-               dib2->create(rectText.size());
-               dib2->Fill(255, 0, 0, 0);
-               dib2->from(point(max(0, m_ptAlphaBlend.x - x), max(0, m_ptAlphaBlend.y - y)),
-                  m_pdibAlphaBlend->get_graphics(), point(max(0, x - m_ptAlphaBlend.x), max(0, y - m_ptAlphaBlend.y)), rectText.size());
-               dib1->channel_multiply(visual::rgba::channel_alpha, dib2);
-               /*::draw2d::dib_sp dib3(get_app());
-               dib1->mult_alpha(dib3);*/
-
-               keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
-
-               return BitBlt(x, y, rectText.width(), rectText.height(), dib1->get_graphics(), 0, 0, SRCCOPY);
-
-               /*BLENDFUNCTION bf;
-               bf.BlendOp     = AC_SRC_OVER;
-               bf.BlendFlags  = 0;
-               bf.SourceConstantAlpha = 0xFF;
-               bf.AlphaFormat = AC_SRC_ALPHA;
-               return ::AlphaBlend(get_handle1(), x, y, 
-               rectText.width(), rectText.height(), WIN_HDC(dib1->get_graphics()), 0, 0, rectText.width(), 
-               rectText.height(), bf) != FALSE; */
-            }
-         }
-      }
-
-      //ASSERT(get_handle1() != NULL); 
-      //wstring wstr = ::str::international::utf8_to_unicode(str);
-      return TextOut(x, y, str, (int) str.get_length()); 
-
-   } // call virtual
 
    bool graphics::TextOut(double x, double y, const string & str)
    { 
-      if(m_pdibAlphaBlend != NULL)
-      {
-//         if(GetBkMode() == TRANSPARENT)
-         {
-            //   return TRUE;
-            rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
-            rect rectText(point((int64_t) x, (int64_t) y), GetTextExtent(str));
-            if(rectIntersect.intersect(rectIntersect, rectText))
-            {
-               ::draw2d::dib_sp dib0(allocer());
-               dib0->create(rectText.size());
 
-               ::draw2d::brush_sp brushText(allocer(), ARGB(255, 255, 255, 255));
-               dib0->get_graphics()->SelectObject(brushText);
-               dib0->get_graphics()->SelectObject(get_current_font());
-               dib0->get_graphics()->TextOut(0, 0, str);
-               dib0->ToAlpha(0);
-
-               ::draw2d::dib_sp dib1(allocer());
-               dib1->create(rectText.size());
-               brushText->create_solid(m_spbrush->m_cr);
-               dib1->get_graphics()->SelectObject(brushText);
-               dib1->get_graphics()->SelectObject(get_current_font());
-               //dib1->get_graphics()->SetBkMode(TRANSPARENT);
-               dib1->get_graphics()->TextOut(0, 0, str);
-               dib1->channel_from(visual::rgba::channel_alpha, dib0);
-               ::draw2d::dib_sp dib2(allocer());
-               dib2->create(rectText.size());
-               dib2->Fill(255, 0, 0, 0);
-               dib2->from(point((int64_t) max(0, m_ptAlphaBlend.x - x), (int64_t) max(0, m_ptAlphaBlend.y - y)),
-                  m_pdibAlphaBlend->get_graphics(), point((int64_t) max(0, x - m_ptAlphaBlend.x), (int64_t) max(0, y - m_ptAlphaBlend.y)), rectText.size());
-               dib1->channel_multiply(visual::rgba::channel_alpha, dib2);
-               /*::draw2d::dib_sp dib3(get_app());
-               dib1->mult_alpha(dib3);*/
-
-               keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
-
-               return BitBlt((int32_t) x, (int32_t) y, rectText.width(), rectText.height(), dib1->get_graphics(), 0, 0, SRCCOPY);
-
-               /*BLENDFUNCTION bf;
-               bf.BlendOp     = AC_SRC_OVER;
-               bf.BlendFlags  = 0;
-               bf.SourceConstantAlpha = 0xFF;
-               bf.AlphaFormat = AC_SRC_ALPHA;
-               return ::AlphaBlend(get_handle1(), x, y, 
-               rectText.width(), rectText.height(), WIN_HDC(dib1->get_graphics()), 0, 0, rectText.width(), 
-               rectText.height(), bf) != FALSE; */
-            }
-         }
-      }
-
-      //ASSERT(get_handle1() != NULL); 
-      //wstring wstr = ::str::international::utf8_to_unicode(str);
       return TextOut(x, y, str, (int) str.get_length()); 
 
-   } // call virtual
+   }
+
 
    bool graphics::ExtTextOut(int x, int y, UINT nOptions, LPCRECT lpRect, const char * lpszString, UINT nCount, LPINT lpDxWidths)
    { 
@@ -1641,120 +1539,109 @@ namespace draw2d_direct2d
       if(m_spfont.is_null())
          return false;
 
-      //ASSERT(get_handle2() != NULL); return ::GetTextMetrics(get_handle2(), lpMetrics); 
-      wstring wstr(L"123AWZwmc");
+      IDWriteFontCollection * pcollection = NULL;
 
-      IDWriteTextLayout * playout = NULL;
+      WCHAR name[256]; 
+      UINT32 findex; 
+      BOOL exists;
 
-      HRESULT hr = TlsGetWriteFactory()->CreateTextLayout(
-         wstr,                // The string to be laid out and formatted.
-         (UINT32) wstr.get_length(),   // The length of the string.
-         (IDWriteTextFormat *) get_os_font(),    // The text format to apply to the string (contains font information, etc).
-         1024.f * 1024.f,               // The width of the layout box.
-         1024.f * 1024.f,        // The height of the layout box.
-         &playout  // The IDWriteTextLayout interface pointer.
-         );
+      if (get_os_font() == NULL)
+      {
+         lpMetrics->tmAveCharWidth = 0;
+         lpMetrics->tmAscent = 0;
+         lpMetrics->tmDescent = 0;
+         lpMetrics->tmHeight = 0;
 
-      wstring wstr2(L"123AWZwmcqgjq");
+         return true;
+      }
+      get_os_font()->GetFontFamilyName(name, 256);
 
-      SIZE size;
+      get_os_font()->GetFontCollection(&pcollection);
 
-      IDWriteTextLayout * playout2 = NULL;
+      if (pcollection == NULL)
+      {
+         
+         lpMetrics->tmAveCharWidth = 0;
+         lpMetrics->tmAscent = 0;
+         lpMetrics->tmDescent = 0;
+         lpMetrics->tmHeight = 0;
 
-      HRESULT hr2 = TlsGetWriteFactory()->CreateTextLayout(
-         wstr2,                // The string to be laid out and formatted.
-         (UINT32) wstr2.get_length(),   // The length of the string.
-         (IDWriteTextFormat *) get_os_font(),    // The text format to apply to the string (contains font information, etc).
-         1024.f * 1024.f,               // The width of the layout box.
-         1024.f * 1024.f,        // The height of the layout box.
-         &playout2  // The IDWriteTextLayout interface pointer.
-         );
+         return true;
 
+      }
 
+      pcollection->FindFamilyName(name, &findex, &exists);
 
-   if(playout == NULL || FAILED(hr) || playout2 == NULL || FAILED(hr2))
-   {
+      if (!exists)
+      {
 
-      size.cx = 0;
+         lpMetrics->tmAveCharWidth = 0;
+         lpMetrics->tmAscent = 0;
+         lpMetrics->tmDescent = 0;
+         lpMetrics->tmHeight = 0;
 
-      size.cy = 0;
-
-      lpMetrics->tmAveCharWidth = 0;
-      lpMetrics->tmAscent = 0;
-      lpMetrics->tmDescent = 0;
-      lpMetrics->tmHeight = 0;
-   }
-   else
-   {
-      
-      DWRITE_TEXT_METRICS m;
-      
-      playout->GetMetrics(&m);
+         return true;
 
 
-      DWRITE_TEXT_METRICS m2;
-      
-      playout2->GetMetrics(&m2);
+      }
+
+      IDWriteFontFamily *ffamily;
+
+      pcollection->GetFontFamily(findex, &ffamily);
+
+      if (ffamily == NULL)
+      {
+
+         lpMetrics->tmAveCharWidth = 0;
+         lpMetrics->tmAscent = 0;
+         lpMetrics->tmDescent = 0;
+         lpMetrics->tmHeight = 0;
+         pcollection->Release();
+         return true;
+
+      }
+      IDWriteFont * pfont;
+
+      ffamily->GetFirstMatchingFont(get_os_font()->GetFontWeight(), get_os_font()->GetFontStretch(), get_os_font()->GetFontStyle(), &pfont);
+
+      if (pfont == NULL)
+      {
+
+         lpMetrics->tmAveCharWidth = 0;
+         lpMetrics->tmAscent = 0;
+         lpMetrics->tmDescent = 0;
+         lpMetrics->tmHeight = 0;
+         ffamily->Release();
+         pcollection->Release();
+         return true;
+
+      }
 
 
-      size.cx = (LONG) m.width;
+      DWRITE_FONT_METRICS metrics;
 
-      size.cy = (LONG) m.height;
+      pfont->GetMetrics(&metrics);
 
-      lpMetrics->tmAveCharWidth = (LONG) (m.width / (double) wstr.get_length());
-      lpMetrics->tmAscent = (LONG) m.height;
-      lpMetrics->tmDescent = (LONG) (m2.height - m.height);
-      lpMetrics->tmHeight = (LONG) (lpMetrics->tmAscent + lpMetrics->tmDescent);
-
-   }
-
-   return true;
+      double ratio = get_os_font()->GetFontSize() / (float)metrics.designUnitsPerEm;
 
 
-      throw todo(get_app());
+      string str("APÁpgfditflmnopw");
 
+      ::size sz = GetTextExtent(str);
 
-      //single_lock slGdiplus(&System.m_mutexGdiplus, TRUE);
+      lpMetrics->tmAveCharWidth = (LONG) (sz.cx / str.get_length());
+      lpMetrics->tmAscent = (LONG) ( metrics.ascent * ratio);
+      lpMetrics->tmDescent = (LONG)( metrics.descent * ratio);
+      lpMetrics->tmInternalLeading = (LONG)0;
+      lpMetrics->tmExternalLeading = (LONG)( metrics.lineGap * ratio);
+      lpMetrics->tmHeight = (LONG) ((metrics.ascent + metrics.descent + metrics.lineGap) * ratio);
 
-      //Gdiplus::FontFamily family;
+      pfont->Release();
+      ffamily->Release();
+      pcollection->Release();
 
+      return true;
 
-      //if(((graphics * )this)->direct2d_font() == NULL)
-      //   return FALSE;
-
-      //((graphics * )this)->direct2d_font()->GetFamily(&family);
-
-      //double dHeight = family.GetEmHeight(((graphics * )this)->direct2d_font()->GetStyle());
-
-      //lpMetrics->tmAscent              = (LONG) (((graphics * )this)->direct2d_font()->GetSize() * family.GetCellAscent(((graphics * )this)->direct2d_font()->GetStyle()) / dHeight);
-      //lpMetrics->tmDescent             = (LONG) (((graphics * )this)->direct2d_font()->GetSize() * family.GetCellDescent(((graphics * )this)->direct2d_font()->GetStyle()) / dHeight);
-      //lpMetrics->tmHeight              = (LONG) (((graphics * )this)->direct2d_font()->GetSize());
-
-      //lpMetrics->tmInternalLeading     = (LONG) lpMetrics->tmAscent + lpMetrics->tmDescent - lpMetrics->tmHeight;
-      //lpMetrics->tmExternalLeading     = (LONG) (((graphics * )this)->direct2d_font()->GetSize() * 
-      //   (family.GetLineSpacing(((graphics * )this)->direct2d_font()->GetStyle()) 
-      //   - family.GetCellAscent(((graphics * )this)->direct2d_font()->GetStyle())
-      //   - family.GetCellDescent(((graphics * )this)->direct2d_font()->GetStyle())) / dHeight);
-
-      //const Gdiplus::FontFamily * pfamilyMono = family.GenericMonospace();
-
-      //::Gdiplus::Font font2(pfamilyMono, pfamilyMono->GetEmHeight(((graphics * )this)->direct2d_font()->GetStyle()));
-
-      //wstring wstr(L"123AWZwmc123AWZwmcpQçg");
-      //Gdiplus::RectF rect;
-      //Gdiplus::RectF rect2;
-      //Gdiplus::PointF origin(0, 0);
-
-      //m_prendertarget->MeasureString(wstr, (INT) wstr.get_length(), ((graphics * )this)->direct2d_font(), origin, &rect);
-
-
-      ///*wstr = L"";
-      //m_prendertarget->MeasureString(wstr.m_pwsz, -1, (Gdiplus::Font *) m_font->get_os_data(), origin, &rect2);*/
-
-      //lpMetrics->tmAveCharWidth        = (LONG) (rect.Width * get_current_font().m_dFontWidth / (double) wstr.get_length());
-      //
-
-      return TRUE;
    }
 
 
@@ -2958,17 +2845,6 @@ namespace draw2d_direct2d
    }
 
 
-   /*
-
-   void graphics::FillSolidRect(int x, int y, int cx, int cy, COLORREF clr)
-   {
-   ::SetBkColor(get_handle1(), clr);
-   rect rect(x, y, x + cx, y + cy);
-   ::ExtTextOut(get_handle1(), 0, 0, ETO_OPAQUE, &rect, NULL, 0, NULL);
-   }
-
-   */
-
    void graphics::Draw3dRect(LPCRECT lpRect, COLORREF clrTopLeft, COLORREF clrBottomRight)
    {
       Draw3dRect(lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top, clrTopLeft, clrBottomRight);
@@ -4081,62 +3957,15 @@ namespace draw2d_direct2d
       {
       }
 
-      /*
 
-      Gdiplus::StringFormat format(Gdiplus::StringFormat::GenericTypographic());
+      if (m_spfont.is_null())
+         return false;
 
+      if (get_os_font() == NULL)
+         return false;
 
-      format.SetFormatFlags(format.GetFormatFlags() 
-         | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-         | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
+      D2D1_MATRIX_3X2_F m;
 
-      if(nFormat & DT_LEFT)
-      {
-         format.SetAlignment(Gdiplus::StringAlignmentNear);
-      }
-      else if(nFormat & DT_RIGHT)
-      {
-         format.SetAlignment(Gdiplus::StringAlignmentFar);
-      }
-      else if(nFormat & DT_CENTER)
-      {
-         format.SetAlignment(Gdiplus::StringAlignmentCenter);
-      }
-      else
-      {
-         format.SetAlignment(Gdiplus::StringAlignmentNear);
-      }
-
-      if(nFormat & DT_BOTTOM)
-      {
-         format.SetLineAlignment(Gdiplus::StringAlignmentFar);
-      }
-      else if(nFormat & DT_TOP)
-      {
-         format.SetLineAlignment(Gdiplus::StringAlignmentNear);
-      }
-      else if(nFormat & DT_VCENTER)
-      {
-         format.SetLineAlignment(Gdiplus::StringAlignmentCenter);
-      }
-      else
-      {
-         format.SetLineAlignment(Gdiplus::StringAlignmentNear);
-      }
-
-      //m_dFontSize             = fontSrc.m_dFontSize;
-
-      Gdiplus::Matrix m;
-      m_prendertarget->GetTransform(&m);
-
-      Gdiplus::Matrix * pmNew = m.Clone();
-
-      pmNew->Translate((Gdiplus::REAL) lpRect->left, (Gdiplus::REAL) lpRect->top);
-      pmNew->Scale((Gdiplus::REAL) m_fontxyz.m_dFontWidth, (Gdiplus::REAL) 1.0, Gdiplus::MatrixOrderAppend);
-
-      Gdiplus::RectF rectf(0, 0, (Gdiplus::REAL) ((lpRect->right - lpRect->left) * m_fontxyz.m_dFontWidth), (Gdiplus::REAL) (lpRect->bottom - lpRect->top));
-
-      m_prendertarget->SetTransform(pmNew);*/
 
       D2D1_RECT_F rectf = D2D1::RectF((FLOAT) lpRect->left, (FLOAT) lpRect->top, (FLOAT) lpRect->right, (FLOAT) lpRect->bottom);
 
@@ -4182,214 +4011,38 @@ namespace draw2d_direct2d
    size graphics::GetTextExtent(const char * lpszString, strsize nCount, int iIndex) const
    {
 
+      sized sz;
 
-   if(nCount < 0)
-      nCount = strlen(&lpszString[iIndex]);
+      bool bOk = GetTextExtent(sz, lpszString, nCount, iIndex);
 
-   string str(&lpszString[iIndex], nCount);
+      if (!bOk)
+      {
 
-   wstring wstr(str);
+         return ::size(0, 0);
 
-   SIZE size;
+      }
+      else
+      {
 
-   IDWriteTextLayout * playout = NULL;
+         return ::size((int32_t) sz.cx, (int32_t) sz.cy);
 
-   HRESULT hr = TlsGetWriteFactory()->CreateTextLayout(
-      wstr,                // The string to be laid out and formatted.
-      (UINT32) wstr.get_length(),   // The length of the string.
-      (dynamic_cast < ::draw2d_direct2d::font * > (m_spfont.m_p))->m_pformat.Get(),    // The text format to apply to the string (contains font information, etc).
-      1024.f * 1024.f,               // The width of the layout box.
-      1024.f * 1024.f,        // The height of the layout box.
-      &playout  // The IDWriteTextLayout interface pointer.
-      );
-
-   if(playout == NULL || FAILED(hr))
-   {
-
-      size.cx = 0;
-
-      size.cy = 0;
-
-   }
-   else
-   {
-      
-      DWRITE_TEXT_METRICS m;
-      
-      playout->GetMetrics(&m);
-
-      size.cx = (LONG) m.width;
-
-      size.cy = (LONG) m.height;
-
-   }
-
-   return size;
+      }
 
    }
 
    size graphics::GetTextExtent(const char * lpszString, strsize nCount) const
    {
 
-   if(nCount < 0)
-      nCount = strlen(lpszString);
-
-   string str(lpszString, nCount);
-
-   wstring wstr(str);
-
-   SIZE size;
-      size.cx = 0;
-
-      size.cy = 0;
-
-
-   IDWriteTextLayout * playout = NULL;
-
-   if(m_spfont.is_null())
-      ((graphics *) this)->m_spfont.create(((graphics *) this)->allocer());
-
-   if(m_spfont.is_null())
-      return size;
-
-   HRESULT hr = TlsGetWriteFactory()->CreateTextLayout(
-      wstr,                // The string to be laid out and formatted.
-      (UINT32) wstr.get_length(),   // The length of the string.
-      (IDWriteTextFormat *) get_os_font(),    // The text format to apply to the string (contains font information, etc).
-      1024.f * 1024.f,               // The width of the layout box.
-      1024.f * 1024.f,        // The height of the layout box.
-      &playout  // The IDWriteTextLayout interface pointer.
-      );
-
-   if(playout == NULL || FAILED(hr))
-   {
-
-   }
-   else
-   {
-      
-      DWRITE_TEXT_METRICS m;
-      
-      playout->GetMetrics(&m);
-
-      size.cx = (LONG) m.width;
-
-      size.cy = (LONG) m.height;
+      return GetTextExtent(lpszString, nCount, nCount);
 
    }
 
-   return size;
-
-      //single_lock slGdiplus(&System.m_mutexGdiplus, TRUE);
-
-      //wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
-
-      //Gdiplus::RectF box;
-
-      //Gdiplus::PointF origin(0, 0);
-
-      //Gdiplus::StringFormat strFormat(Gdiplus::StringFormat::GenericTypographic());
-
-      //strFormat.SetFormatFlags(strFormat.GetFormatFlags() 
-      //   | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-      //   | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
-
-      //m_prendertarget->MeasureString(wstr, (int) wstr.get_length(), ((graphics *)this)->direct2d_font(), origin, &strFormat,  &box);
-
-      //return size((int64_t) (box.Width * m_fontxyz.m_dFontWidth), (int64_t) (box.Height));
-
-      /*if(get_handle2() == NULL)
-      return size(0, 0);
-      SIZE size;
-      string str(lpszString, nCount);
-      wstring wstr = ::str::international::utf8_to_unicode(str);
-      if(!::GetTextExtentPoint32W(get_handle2(), wstr, (int)wstr.get_length(), &size))
-      {
-      return class size(0, 0);
-      }
-      return size;*/
-   }
 
    size graphics::GetTextExtent(const string & str) const
    {
-      /*      if(get_handle2() == NULL)
-      return size(0, 0);
-      SIZE size;
-      wstring wstr = ::str::international::utf8_to_unicode(str);
-      if(!::GetTextExtentPoint32W(get_handle2(), wstr, (int)wstr.get_length(), &size))
-      {
-      return class size(0, 0);
-      }
-      return size;*/
 
-   /*if(nCount < 0)
-      nCount = strlen(lpszString);
-
-   string str(lpszString, nCount);*/
-
-   wstring wstr(str);
-
-   SIZE size;
-
-   IDWriteTextLayout * playout = NULL;
-
-   HRESULT hr = TlsGetWriteFactory()->CreateTextLayout(
-      wstr,                // The string to be laid out and formatted.
-      (UINT32) wstr.get_length(),   // The length of the string.
-      get_os_font(),    // The text format to apply to the string (contains font information, etc).
-      1024.f * 1024.f,               // The width of the layout box.
-      1024.f * 1024.f,        // The height of the layout box.
-      &playout  // The IDWriteTextLayout interface pointer.
-      );
-
-   if(playout == NULL || FAILED(hr))
-   {
-
-      size.cx = 0;
-
-      size.cy = 0;
-
-   }
-   else
-   {
-      
-      DWRITE_TEXT_METRICS m;
-      
-      playout->GetMetrics(&m);
-
-      size.cx = (LONG) m.width;
-
-      size.cy = (LONG) m.height;
-
-   }
-
-   return size;
-
-
-      //if(m_prendertarget == NULL)
-      //   return size(0, 0);
-
-      //wstring wstr = ::str::international::utf8_to_unicode(str);
-
-      //Gdiplus::RectF box;
-
-      //Gdiplus::PointF origin(0, 0);
-
-
-      //if(m_prendertarget == NULL)
-      //   return size(0, 0);
-
-      //try
-      //{
-      //   m_prendertarget->MeasureString(wstr, (int) wstr.get_length(), ((graphics *)this)->direct2d_font(), origin, &box);
-      //}
-      //catch(...)
-      //{
-      //   return size(0, 0);
-      //}
-
-      //return size((int64_t) (box.Width * m_fontxyz.m_dFontWidth), (int64_t) box.Height);
-
+      return GetTextExtent(str, str.get_length());
+   
    }
 
    size graphics::GetOutputTextExtent(const char * lpszString, strsize nCount) const
@@ -4420,50 +4073,59 @@ namespace draw2d_direct2d
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, int iIndex) const
    {
 
-   if(nCount < 0)
-      nCount = strlen(&lpszString[iIndex]);
+      if(nCount < 0)
+         nCount = strlen(lpszString);
 
-   string str(&lpszString[iIndex], nCount);
+      if (iIndex < 0)
+         iIndex = nCount;
 
-   wstring wstr(str);
+      if (iIndex > nCount)
+         iIndex = nCount;
 
-//   SIZE size;
+      if (m_spfont.is_null())
+         return false;
 
-   IDWriteTextLayout * playout = NULL;
+      if (get_os_font() == NULL)
+         return false;
 
-   HRESULT hr = TlsGetWriteFactory()->CreateTextLayout(
-      wstr,                // The string to be laid out and formatted.
-      (UINT32) wstr.get_length(),   // The length of the string.
-      (dynamic_cast < ::draw2d_direct2d::font * > (m_spfont.m_p))->m_pformat.Get(),    // The text format to apply to the string (contains font information, etc).
-      1024.f * 1024.f,               // The width of the layout box.
-      1024.f * 1024.f,        // The height of the layout box.
-      &playout  // The IDWriteTextLayout interface pointer.
-      );
+      string str(lpszString, iIndex);
 
-   if(playout == NULL || FAILED(hr))
-   {
+      wstring wstr(str);
 
-      size.cx = 0;
+      IDWriteTextLayout * playout = NULL;
 
-      size.cy = 0;
-      return false;
+      HRESULT hr = TlsGetWriteFactory()->CreateTextLayout(
+         wstr,                // The string to be laid out and formatted.
+         (UINT32) wstr.get_length(),   // The length of the string.
+         (dynamic_cast < ::draw2d_direct2d::font * > (m_spfont.m_p))->m_pformat.Get(),    // The text format to apply to the string (contains font information, etc).
+         1024.f * 1024.f,               // The width of the layout box.
+         1024.f * 1024.f,        // The height of the layout box.
+         &playout  // The IDWriteTextLayout interface pointer.
+         );
 
-   }
-   else
-   {
+      if(playout == NULL || FAILED(hr))
+      {
+
+         size.cx = 0;
+
+         size.cy = 0;
+         return false;
+
+      }
+      else
+      {
       
-      DWRITE_TEXT_METRICS m;
+         DWRITE_TEXT_METRICS m;
       
-      playout->GetMetrics(&m);
+         playout->GetMetrics(&m);
 
-      size.cx = (LONG) m.width;
+         size.cx = (LONG) m.width;
 
-      size.cy = (LONG) m.height;
+         size.cy = (LONG) m.height;
 
-   }
+      }
 
-   return true;
-
+      return true;
 
    }
 
@@ -4472,121 +4134,13 @@ namespace draw2d_direct2d
 
       return GetTextExtent(size, lpszString, nCount, 0);
 
-   return true;
-
-
-
-      //single_lock slGdiplus(&System.m_mutexGdiplus, TRUE);
-
-      //wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
-
-      //Gdiplus::RectF box;
-
-      //Gdiplus::PointF origin(0, 0);
-
-      //Gdiplus::StringFormat strFormat(Gdiplus::StringFormat::GenericTypographic());
-
-      //strFormat.SetFormatFlags(strFormat.GetFormatFlags() 
-      //   | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-      //   | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
-      //bool bOk = true;
-
-      //try
-      //{
-      //   if(m_prendertarget->MeasureString(wstr, (int) wstr.get_length(), ((graphics *)this)->direct2d_font(), origin, &strFormat,  &box) != Gdiplus::Status::Ok)
-      //      bOk = false;
-      //}
-      //catch(...)
-      //{
-      //   bOk = false;
-      //}
-
-      //if(!bOk)
-      //   return false;
-
-      //size.cx = box.Width * m_fontxyz.m_dFontWidth;
-
-      //size.cy = box.Height;
-
-      //return true;
 
    }
 
    bool graphics::GetTextExtent(sized & size, const string & str) const
    {
 
-   wstring wstr(str);
-
-//   SIZE size;
-
-   IDWriteTextLayout * playout = NULL;
-
-   HRESULT hr = TlsGetWriteFactory()->CreateTextLayout(
-      wstr,                // The string to be laid out and formatted.
-      (UINT32) wstr.get_length(),   // The length of the string.
-      get_os_font(),    // The text format to apply to the string (contains font information, etc).
-      1024.f * 1024.f,               // The width of the layout box.
-      1024.f * 1024.f,        // The height of the layout box.
-      &playout  // The IDWriteTextLayout interface pointer.
-      );
-
-   if(playout == NULL || FAILED(hr))
-   {
-
-      size.cx = 0;
-
-      size.cy = 0;
-      return false;
-
-   }
-   else
-   {
-      
-      DWRITE_TEXT_METRICS m;
-      
-      playout->GetMetrics(&m);
-
-      size.cx = (LONG) m.width;
-
-      size.cy = (LONG) m.height;
-
-   }
-
-   return true;
-
-      //if(m_prendertarget == NULL)
-      //   return false;
-
-      //wstring wstr = ::str::international::utf8_to_unicode(str);
-
-      //Gdiplus::RectF box;
-
-      //Gdiplus::PointF origin(0, 0);
-
-
-      //if(m_prendertarget == NULL)
-      //   return false;
-
-      //bool bOk = true;
-
-      //try
-      //{
-      //   if(m_prendertarget->MeasureString(wstr, (int) wstr.get_length(), ((graphics *)this)->direct2d_font(), origin, &box) != Gdiplus::Status::Ok)
-      //      bOk = false;
-      //}
-      //catch(...)
-      //{
-      //   bOk = false;
-      //}
-
-      //if(!bOk)
-      //   return false;
-
-      //size.cx = box.Width * m_fontxyz.m_dFontWidth;
-
-      //size.cy = box.Height;
-
-      //return true;
+      return GetTextExtent(size, str, str.get_length());
 
    }
 
@@ -4813,127 +4367,16 @@ namespace draw2d_direct2d
    bool graphics::TextOut(int x, int y, const char * lpszString, int nCount)
    {
 
-      try
-      {
 
-         if(m_prendertarget == NULL)
-            return FALSE;
-
-         switch(m_etextrendering)
-         {
-         case ::draw2d::text_rendering_anti_alias:
-            if(m_pdevicecontext) m_pdevicecontext->SetPrimitiveBlend(D2D1_PRIMITIVE_BLEND_SOURCE_OVER);
-            m_prendertarget->SetTextAntialiasMode(D2D1_TEXT_ANTIALIAS_MODE_GRAYSCALE);
-            break;
-         case ::draw2d::text_rendering_anti_alias_grid_fit:
-            if(m_pdevicecontext) m_pdevicecontext->SetPrimitiveBlend(D2D1_PRIMITIVE_BLEND_SOURCE_OVER);
-            m_prendertarget->SetTextAntialiasMode(D2D1_TEXT_ANTIALIAS_MODE_GRAYSCALE);
-            break;
-         case ::draw2d::text_rendering_single_bit_per_pixel:
-            if(m_pdevicecontext) m_pdevicecontext->SetPrimitiveBlend(D2D1_PRIMITIVE_BLEND_SOURCE_OVER);
-            m_prendertarget->SetTextAntialiasMode(D2D1_TEXT_ANTIALIAS_MODE_GRAYSCALE);
-            break;
-         case ::draw2d::text_rendering_clear_type_grid_fit:
-            if(m_pdevicecontext) m_pdevicecontext->SetPrimitiveBlend(D2D1_PRIMITIVE_BLEND_SOURCE_OVER);
-            m_prendertarget->SetTextAntialiasMode(D2D1_TEXT_ANTIALIAS_MODE_CLEARTYPE);
-            break;
-         }
-
-      }
-      catch(...)
-      {
-      }
-
-      /*
-
-      Gdiplus::StringFormat format(Gdiplus::StringFormat::GenericTypographic());
-
-
-      format.SetFormatFlags(format.GetFormatFlags() 
-         | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-         | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
-
-      if(nFormat & DT_LEFT)
-      {
-         format.SetAlignment(Gdiplus::StringAlignmentNear);
-      }
-      else if(nFormat & DT_RIGHT)
-      {
-         format.SetAlignment(Gdiplus::StringAlignmentFar);
-      }
-      else if(nFormat & DT_CENTER)
-      {
-         format.SetAlignment(Gdiplus::StringAlignmentCenter);
-      }
-      else
-      {
-         format.SetAlignment(Gdiplus::StringAlignmentNear);
-      }
-
-      if(nFormat & DT_BOTTOM)
-      {
-         format.SetLineAlignment(Gdiplus::StringAlignmentFar);
-      }
-      else if(nFormat & DT_TOP)
-      {
-         format.SetLineAlignment(Gdiplus::StringAlignmentNear);
-      }
-      else if(nFormat & DT_VCENTER)
-      {
-         format.SetLineAlignment(Gdiplus::StringAlignmentCenter);
-      }
-      else
-      {
-         format.SetLineAlignment(Gdiplus::StringAlignmentNear);
-      }
-
-      //m_dFontSize             = fontSrc.m_dFontSize;
-
-      Gdiplus::Matrix m;
-      m_prendertarget->GetTransform(&m);
-
-      Gdiplus::Matrix * pmNew = m.Clone();
-
-      pmNew->Translate((Gdiplus::REAL) lpRect->left, (Gdiplus::REAL) lpRect->top);
-      pmNew->Scale((Gdiplus::REAL) m_fontxyz.m_dFontWidth, (Gdiplus::REAL) 1.0, Gdiplus::MatrixOrderAppend);
-
-      Gdiplus::RectF rectf(0, 0, (Gdiplus::REAL) ((lpRect->right - lpRect->left) * m_fontxyz.m_dFontWidth), (Gdiplus::REAL) (lpRect->bottom - lpRect->top));
-
-      m_prendertarget->SetTransform(pmNew);*/
-
-      TEXTMETRICW metrics;
-
-      get_text_metrics(&metrics);
-
-      D2D1_RECT_F rect;
-
-      rect.left = (FLOAT) x;
-      rect.top = (FLOAT) y;
-      rect.right = x + (1024.f * 1024.f);
-      rect.bottom = y + (1024.f * 1024.f);
-
-      wstring wstr(string(lpszString, nCount));
-
-
-      ID2D1Brush * pbrush = get_os_brush();
-
-      if(pbrush == NULL)
-         return false;
-
-      IDWriteTextFormat * pfont = get_os_font();
-
-      if(pfont == NULL)
-         return false;
-
-      m_prendertarget->DrawText(wstr, (UINT32) wstr.get_length(), pfont, &rect, pbrush);
-
-      return true;
+      return TextOut((double)x, (double)y, lpszString, nCount);
 
    }
 
    bool graphics::TextOut(double x, double y, const char * lpszString, int nCount)
    {
 
+      if (::draw2d::graphics::TextOut(x, y, lpszString, nCount))
+         return true;
 
       try
       {
@@ -4966,62 +4409,6 @@ namespace draw2d_direct2d
       {
       }
 
-      /*
-
-      Gdiplus::StringFormat format(Gdiplus::StringFormat::GenericTypographic());
-
-
-      format.SetFormatFlags(format.GetFormatFlags() 
-         | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-         | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
-
-      if(nFormat & DT_LEFT)
-      {
-         format.SetAlignment(Gdiplus::StringAlignmentNear);
-      }
-      else if(nFormat & DT_RIGHT)
-      {
-         format.SetAlignment(Gdiplus::StringAlignmentFar);
-      }
-      else if(nFormat & DT_CENTER)
-      {
-         format.SetAlignment(Gdiplus::StringAlignmentCenter);
-      }
-      else
-      {
-         format.SetAlignment(Gdiplus::StringAlignmentNear);
-      }
-
-      if(nFormat & DT_BOTTOM)
-      {
-         format.SetLineAlignment(Gdiplus::StringAlignmentFar);
-      }
-      else if(nFormat & DT_TOP)
-      {
-         format.SetLineAlignment(Gdiplus::StringAlignmentNear);
-      }
-      else if(nFormat & DT_VCENTER)
-      {
-         format.SetLineAlignment(Gdiplus::StringAlignmentCenter);
-      }
-      else
-      {
-         format.SetLineAlignment(Gdiplus::StringAlignmentNear);
-      }
-
-      //m_dFontSize             = fontSrc.m_dFontSize;
-
-      Gdiplus::Matrix m;
-      m_prendertarget->GetTransform(&m);
-
-      Gdiplus::Matrix * pmNew = m.Clone();
-
-      pmNew->Translate((Gdiplus::REAL) lpRect->left, (Gdiplus::REAL) lpRect->top);
-      pmNew->Scale((Gdiplus::REAL) m_fontxyz.m_dFontWidth, (Gdiplus::REAL) 1.0, Gdiplus::MatrixOrderAppend);
-
-      Gdiplus::RectF rectf(0, 0, (Gdiplus::REAL) ((lpRect->right - lpRect->left) * m_fontxyz.m_dFontWidth), (Gdiplus::REAL) (lpRect->bottom - lpRect->top));
-
-      m_prendertarget->SetTransform(pmNew);*/
 
       D2D1_RECT_F rect;
 

@@ -2935,6 +2935,7 @@ namespace draw2d
 
    COLORREF dib::GetAverageColor()
    {
+      map();
       double dR = 0.0;
       double dG = 0.0;
       double dB = 0.0;
@@ -2944,12 +2945,13 @@ namespace draw2d
       double dDiv = m_size.cx * m_size.cy;
       if(dDiv > 0)
       {
-         LPBYTE lpb = (LPBYTE) get_data();
+         
          for (int32_t y = 0; y < m_size.cy; y++)
          {
             iRLine = 0;
             iGLine = 0;
             iBLine = 0;
+            LPBYTE lpb = ((LPBYTE)get_data()) + m_iScan * y;
             for (int32_t x = 0; x < m_size.cx; x++)
             {
                iRLine += lpb[2];
@@ -3546,6 +3548,7 @@ namespace draw2d
 
       int32_t w = m_size.cx;
       int32_t h = m_size.cy;
+      int32_t s = m_iScan / sizeof(COLORREF);
 
       int32_t xCount = w / iSize;
       int32_t yCount = h / iSize;
@@ -3588,7 +3591,7 @@ namespace draw2d
             {
                for(int32_t j = 0; j < iSize; j++)
                {
-                  COLORREF cr = pdata[x1 + i + (y1 + j) * w];
+                  COLORREF cr = pdata[x1 + i + (y1 + j) * s];
                   a += argb_get_a_value(cr);
                   r += argb_get_r_value(cr);
                   g += argb_get_g_value(cr);
@@ -3621,7 +3624,7 @@ namespace draw2d
             {
                for(int32_t j = 0; j < iSize; j++)
                {
-                  pdata[x1 + i + (y1 + j) * w] = cr;
+                  pdata[x1 + i + (y1 + j) * s] = cr;
                }
             }
          }

@@ -335,6 +335,8 @@ true);
       if(TestEnd())
          return;
 
+      synch_lock sl(&user_mutex());
+
       if(m_tool001.m_iStep == 1
          && m_tool001.m_ia.get_size() <= 0)
       {
