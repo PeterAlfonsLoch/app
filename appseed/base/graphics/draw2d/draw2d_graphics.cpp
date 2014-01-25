@@ -1067,7 +1067,7 @@ namespace draw2d
 
    bool graphics::TextOut(double x, double y, const string & str)
    {
-      return TextOut((int32_t) x, (int32_t) y, str);
+      return TextOut(x, y, str, str.get_length());
    }
 
 

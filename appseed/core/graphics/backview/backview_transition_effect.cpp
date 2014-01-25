@@ -1832,6 +1832,9 @@ true);
 
    void TransitionEffect::_Init()
    {
+
+      synch_lock slUserMutex(&user_mutex());
+
       Main & main = HelperGetMain();
 
       Graphics & graphics = main.GetGraphics();

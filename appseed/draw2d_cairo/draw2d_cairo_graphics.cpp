@@ -1262,176 +1262,177 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
       synch_lock ml(&user_mutex());
 
-      if(m_pdibAlphaBlend != NULL)
-      {
+      if (::draw2d::graphics::BitBlt(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, dwRop))
+         return true;
+   //   {
 
 
-         rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
-         rect rectBlt(x, y, x + nWidth, y + nHeight);
-         if(rectIntersect.intersect(rectIntersect, rectBlt))
-         {
+   //      rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
+   //      rect rectBlt(x, y, x + nWidth, y + nHeight);
+   //      if(rectIntersect.intersect(rectIntersect, rectBlt))
+   //      {
 
-            if(pgraphicsSrc == NULL)
-               return false;
+   //         if(pgraphicsSrc == NULL)
+   //            return false;
 
-            if(nWidth <= 0 || nHeight <= 0)
-               return false;
+   //         if(nWidth <= 0 || nHeight <= 0)
+   //            return false;
 
-            cairo_surface_t * psurface = cairo_get_target((cairo_t *) pgraphicsSrc->get_os_data());
+   //         cairo_surface_t * psurface = cairo_get_target((cairo_t *) pgraphicsSrc->get_os_data());
 
-            if(psurface == NULL)
-               return false;
+   //         if(psurface == NULL)
+   //            return false;
 
-            cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
+   //         cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
 
-            if(ppattern == NULL)
-               return false;
+   //         if(ppattern == NULL)
+   //            return false;
 
-            cairo_matrix_t matrix;
+   //         cairo_matrix_t matrix;
 
-            cairo_matrix_t matrixOld;
+   //         cairo_matrix_t matrixOld;
 
-            cairo_keep keep(m_pdc);
+   //         cairo_keep keep(m_pdc);
 
-            cairo_translate(m_pdc, x, y);
+   //         cairo_translate(m_pdc, x, y);
 
-            cairo_pattern_get_matrix(ppattern, &matrixOld);
+   //         cairo_pattern_get_matrix(ppattern, &matrixOld);
 
-            cairo_matrix_init_translate(&matrix, xSrc, ySrc);
+   //         cairo_matrix_init_translate(&matrix, xSrc, ySrc);
 
-            cairo_pattern_set_matrix(ppattern, &matrix);
+   //         cairo_pattern_set_matrix(ppattern, &matrix);
 
-            cairo_rectangle(m_pdc, 0, 0, nWidth, nHeight);
+   //         cairo_rectangle(m_pdc, 0, 0, nWidth, nHeight);
 
-            cairo_clip(m_pdc);
+   //         cairo_clip(m_pdc);
 
-            cairo_set_source(m_pdc, ppattern);
+   //         cairo_set_source(m_pdc, ppattern);
 
-            if(m_ealphamode == ::draw2d::alpha_mode_blend)
-            {
-               cairo_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
-            }
-            else if(m_ealphamode == ::draw2d::alpha_mode_set)
-            {
-               cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
-            }
+   //         if(m_ealphamode == ::draw2d::alpha_mode_blend)
+   //         {
+   //            cairo_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
+   //         }
+   //         else if(m_ealphamode == ::draw2d::alpha_mode_set)
+   //         {
+   //            cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
+   //         }
 
-            cairo_surface_t * psurfaceBlend = (cairo_surface_t *) m_pdibAlphaBlend->get_bitmap()->get_os_data();
+   //         cairo_surface_t * psurfaceBlend = (cairo_surface_t *) m_pdibAlphaBlend->get_bitmap()->get_os_data();
 
-            if(psurfaceBlend == NULL)
-               return false;
+   //         if(psurfaceBlend == NULL)
+   //            return false;
 
-            cairo_rectangle(m_pdc, m_ptAlphaBlend.x - x, m_ptAlphaBlend.y - y, m_pdibAlphaBlend->m_size.cx, m_pdibAlphaBlend->m_size.cy);
+   //         cairo_rectangle(m_pdc, m_ptAlphaBlend.x - x, m_ptAlphaBlend.y - y, m_pdibAlphaBlend->m_size.cx, m_pdibAlphaBlend->m_size.cy);
 
-            cairo_clip(m_pdc);
+   //         cairo_clip(m_pdc);
 
-            cairo_mask_surface(m_pdc, psurfaceBlend, m_ptAlphaBlend.x - x, m_ptAlphaBlend.y - y);
+   //         cairo_mask_surface(m_pdc, psurfaceBlend, m_ptAlphaBlend.x - x, m_ptAlphaBlend.y - y);
 
-            /*keep.restore();
+   //         /*keep.restore();
 
-            if(m_spregion.is_set())
-            {
+   //         if(m_spregion.is_set())
+   //         {
 
-               SelectClipRgn(m_spregion);
+   //            SelectClipRgn(m_spregion);
 
-            }*/
+   //         }*/
 
-            return true;
+   //         return true;
 
-         }
+   //      }
 
 
 
-         if(false)
-         {
+   //      if(false)
+   //      {
 
-            ::draw2d::dib * pdibWork = NULL;
-            ::draw2d::dib * pdibWork2 = NULL;
-   //         ::draw2d::dib * pdibWork3 = NULL;
-            ::draw2d::dib * pdibWork4 = NULL;
+   //         ::draw2d::dib * pdibWork = NULL;
+   //         ::draw2d::dib * pdibWork2 = NULL;
+   ////         ::draw2d::dib * pdibWork3 = NULL;
+   //         ::draw2d::dib * pdibWork4 = NULL;
 
 
-            class point ptSrc(xSrc, ySrc);
-            class point ptDest(x, y);
-            class size size(nWidth, nHeight);
+   //         class point ptSrc(xSrc, ySrc);
+   //         class point ptDest(x, y);
+   //         class size size(nWidth, nHeight);
 
 
 
-            ::draw2d::dib_sp spdib;
-            if(pdibWork == NULL)
-            {
-               spdib.create(allocer());
-               pdibWork = spdib;
-            }
-            if(pdibWork == NULL)
-               return false;
-            if(!pdibWork->create(size))
-               return false;
+   //         ::draw2d::dib_sp spdib;
+   //         if(pdibWork == NULL)
+   //         {
+   //            spdib.create(allocer());
+   //            pdibWork = spdib;
+   //         }
+   //         if(pdibWork == NULL)
+   //            return false;
+   //         if(!pdibWork->create(size))
+   //            return false;
 
-            pdibWork->Fill(0, 0, 0, 0);
+   //         pdibWork->Fill(0, 0, 0, 0);
 
-            pdibWork->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+   //         pdibWork->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-            if(!pdibWork->from(null_point(), pgraphicsSrc, ptSrc, size))
-               return false;
+   //         if(!pdibWork->from(null_point(), pgraphicsSrc, ptSrc, size))
+   //            return false;
 
 
 
 
-            ::draw2d::dib_sp spdib2;
-            if(pdibWork2 == NULL)
-            {
-               spdib2.create(allocer());
-               pdibWork2 = spdib2;
-            }
+   //         ::draw2d::dib_sp spdib2;
+   //         if(pdibWork2 == NULL)
+   //         {
+   //            spdib2.create(allocer());
+   //            pdibWork2 = spdib2;
+   //         }
 
 
-            ::draw2d::dib_sp spdib4;
-            if(pdibWork4 == NULL)
-            {
-               spdib4.create(allocer());
-               pdibWork4 = spdib4;
-            }
-            if(pdibWork4 == NULL)
-               return false;
-            if(!pdibWork4->create(size))
-               return false;
+   //         ::draw2d::dib_sp spdib4;
+   //         if(pdibWork4 == NULL)
+   //         {
+   //            spdib4.create(allocer());
+   //            pdibWork4 = spdib4;
+   //         }
+   //         if(pdibWork4 == NULL)
+   //            return false;
+   //         if(!pdibWork4->create(size))
+   //            return false;
 
 
-            pdibWork4->Fill(255, 0, 0, 0);
+   //         pdibWork4->Fill(255, 0, 0, 0);
 
-            pdibWork4->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+   //         pdibWork4->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-            pdibWork4->from(point(max(0, m_ptAlphaBlend.x - x), max(0, m_ptAlphaBlend.y - y)),
-               m_pdibAlphaBlend->get_graphics(), point(max(0, x - m_ptAlphaBlend.x), max(0, y - m_ptAlphaBlend.y)),
-                                  ::size(max(0, m_pdibAlphaBlend->m_size.cx - max(0, x - m_ptAlphaBlend.x)), max(0, m_pdibAlphaBlend->m_size.cy - max(0, y - m_ptAlphaBlend.y))));
+   //         pdibWork4->from(point(max(0, m_ptAlphaBlend.x - x), max(0, m_ptAlphaBlend.y - y)),
+   //            m_pdibAlphaBlend->get_graphics(), point(max(0, x - m_ptAlphaBlend.x), max(0, y - m_ptAlphaBlend.y)),
+   //                               ::size(max(0, m_pdibAlphaBlend->m_size.cx - max(0, x - m_ptAlphaBlend.x)), max(0, m_pdibAlphaBlend->m_size.cy - max(0, y - m_ptAlphaBlend.y))));
 
-            pdibWork->channel_multiply(visual::rgba::channel_alpha, pdibWork4);
+   //         pdibWork->channel_multiply(visual::rgba::channel_alpha, pdibWork4);
 
-            /*pdibWork->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
+   //         /*pdibWork->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pdibWork->from(point(max(0, m_ptAlphaBlend.x - x), max(0, m_ptAlphaBlend.y - y)),
-               m_pdibAlphaBlend->get_graphics(), point(max(0, x - m_ptAlphaBlend.x), max(0, y - m_ptAlphaBlend.y)),
-                                  class size(max(0, size.cx - max(0, x - m_ptAlphaBlend.x)), max(0, size.cy - max(0, y - m_ptAlphaBlend.y))));*/
+   //         pdibWork->from(point(max(0, m_ptAlphaBlend.x - x), max(0, m_ptAlphaBlend.y - y)),
+   //            m_pdibAlphaBlend->get_graphics(), point(max(0, x - m_ptAlphaBlend.x), max(0, y - m_ptAlphaBlend.y)),
+   //                               class size(max(0, size.cx - max(0, x - m_ptAlphaBlend.x)), max(0, size.cy - max(0, y - m_ptAlphaBlend.y))));*/
 
-            //keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
+   //         //keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
 
-            //Gdiplus::CompositingMode mode = m_pgraphics->GetCompositingMode();
+   //         //Gdiplus::CompositingMode mode = m_pgraphics->GetCompositingMode();
 
-            //m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+   //         //m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
-            bool bOk = BitBlt(x, y , 0, 0, pdibWork->get_graphics(), nWidth, nHeight, SRCCOPY);
+   //         bool bOk = BitBlt(x, y , 0, 0, pdibWork->get_graphics(), nWidth, nHeight, SRCCOPY);
 
 
-            //m_pgraphics->SetCompositingMode(mode);
+   //         //m_pgraphics->SetCompositingMode(mode);
 
-            return bOk;
+   //         return bOk;
 
-         //return System.visual().imaging().true_blend(this, ptDest, size, pdibWork->get_graphics(), null_point());
-         }
+   //      //return System.visual().imaging().true_blend(this, ptDest, size, pdibWork->get_graphics(), null_point());
+   //      }
 
 
-      }
+   //   }
 
 
       try
@@ -1680,95 +1681,8 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    bool graphics::TextOut(double x, double y, const string & str)
    {
-
-      if(m_pdibAlphaBlend != NULL)
-      {
-
-         rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
-
-         rect rectText(point((int64_t) x, (int64_t) y), GetTextExtent(str));
-
-         if(rectIntersect.intersect(rectIntersect, rectText))
-         {
-
-            ::draw2d::dib_sp dib0(allocer());
-            dib0->create(rectText.size());
-            ::draw2d::brush_sp brush(allocer(),ARGB(255, 255, 255, 255));
-            dib0->get_graphics()->SelectObject(get_current_font());
-            dib0->get_graphics()->SelectObject(brush);
-            dib0->get_graphics()->TextOut(0, 0, str);
-            dib0->ToAlpha(0);
-
-            ::draw2d::dib_sp dib1(allocer());
-            dib1->create(rectText.size());
-            brush->create_solid(m_spbrush->m_cr);
-            dib1->get_graphics()->SelectObject(get_current_font());
-            dib1->get_graphics()->TextOut(0, 0, str);
-            dib1->channel_from(visual::rgba::channel_alpha, dib0);
-
-            ::draw2d::dib_sp dib2(allocer());
-            dib2->create(rectText.size());
-            dib2->Fill(255, 0, 0, 0);
-            dib2->from(point((int64_t) max(0, m_ptAlphaBlend.x - x), (int64_t) max(0, m_ptAlphaBlend.y - y)),
-            m_pdibAlphaBlend->get_graphics(), point((int64_t) max(0, x - m_ptAlphaBlend.x), (int64_t) max(0, y - m_ptAlphaBlend.y)), rectText.size());
-            dib1->channel_multiply(visual::rgba::channel_alpha, dib2.m_p);
-
-            keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
-
-            return BitBlt((int32_t) x, (int32_t) y, rectText.width(), rectText.height(), dib1->get_graphics(), 0, 0, SRCCOPY);
-
-         }
-
-      }
-
-      if(m_spregion.is_set() && !m_spregion.cast < region > ()->is_simple_positive_region())
-      {
-
-         ::draw2d::dib_sp dib0(allocer());
-
-         dib0->create(m_spregion.cast < region > ()->m_rectBoundingBoxInternal.size());
-         dib0->Fill(0, 0, 0, 0);
-         dib0->get_graphics()->SelectObject(get_current_brush());
-         dib0->get_graphics()->SelectObject(get_current_font());
-         dib0->get_graphics()->TextOut(x - m_spregion.cast < region > ()->m_rectBoundingBoxInternal.left,
-                                       y - m_spregion.cast < region > ()->m_rectBoundingBoxInternal.top,
-                                       str);
-
-         cairo_keep k(m_pdc);
-
-         cairo_pattern_t * ppattern = cairo_pattern_create_for_surface((cairo_surface_t *) dib0->get_bitmap()->get_os_data());
-
-         cairo_set_source(m_pdc, ppattern);
-
-         return m_spregion.cast < region > ()->mask(m_pdc);
-
-      }
-
-      synch_lock ml(&user_mutex());
-
-      cairo_keep keep(m_pdc);
-
-      ((graphics *) this)->set(m_spfont);
-
-      cairo_font_extents_t e;
-
-      cairo_font_extents(m_pdc, &e);
-
-      set_os_color(m_spbrush->m_cr);
-
-      cairo_move_to(m_pdc, x, y + e.ascent);
-
-      cairo_matrix_t m;
-
-      cairo_get_matrix(m_pdc, &m);
-
-      cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
-
-      cairo_set_matrix(m_pdc, &m);
-
-      cairo_show_text(m_pdc, str);
-
-      return true;
+      
+      return TextOut(x, y, str, str.get_length());
 
    }
 
@@ -4656,233 +4570,29 @@ return 1;
    size graphics::GetTextExtent(const char * lpszString, strsize nCount, int32_t iIndex) const
    {
 
-      synch_lock ml(&user_mutex());
+      sized sz;
+      
+      if (!GetTextExtent(sz, lpszString, nCount, iIndex))
+         return ::size(0, 0);
 
-      string str(lpszString, min(iIndex, nCount));
+      return size((int) sz.cx, (int) sz.cy);
 
-      cairo_keep keep(m_pdc);
-
-      ((graphics *) this)->set(m_spfont);
-
-      cairo_text_extents_t ex;
-
-      cairo_matrix_t m;
-
-      cairo_get_matrix(m_pdc, &m);
-
-      cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
-
-      cairo_set_matrix(m_pdc, &m);
-
-      cairo_text_extents(m_pdc, str, &ex);
-
-      SIZE size;
-
-      size.cx = (LONG) (ex.x_advance * m_spfont->m_dFontWidth);
-
-      size.cy = (LONG) ex.height;
-
-      return size;
-
-
-/*      if(lpszString == NULL || *lpszString == '\0')
-         return size(0, 0);
-
-      if(nCount < 0)
-         nCount = strlen(lpszString);
-
-      if(iIndex > nCount)
-         return size(0, 0);
-
-      if(iIndex < 0)
-         return size(0, 0);
-
-      wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
-
-      strsize iRange = 0;
-      strsize i = 0;
-      strsize iLen;
-      const char * psz = lpszString;
-      while(i < iIndex)
-      {
-         iLen = ::str::get_utf8_char(psz).length();
-         iRange++;
-         i += iLen;
-         psz = ::str::utf8_inc(psz);
-         if(psz == NULL)
-            break;
-         if(*psz == '\0')
-            break;
-      }
-
-      Gdiplus::CharacterRange charRanges[1] = { Gdiplus::CharacterRange(0, (INT) iRange) };
-
-      Gdiplus::StringFormat strFormat(Gdiplus::StringFormat::GenericTypographic());
-      //Gdiplus::StringFormat strFormat;
-
-      strFormat.SetMeasurableCharacterRanges(1, charRanges);
-
-      strFormat.SetFormatFlags(strFormat.GetFormatFlags()
-                             | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-                             | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
-
-      int32_t count = strFormat.GetMeasurableCharacterRangeCount();
-
-      Gdiplus::Region * pCharRangeRegions = new Gdiplus::Region[count];
-
-      Gdiplus::RectF box(0.0f, 0.0f, 128.0f * 1024.0f, 128.0f * 1024.0f);
-
-      Gdiplus::PointF origin(0, 0);
-
-      //m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), ((graphics *)this)->gdiplus_font(), origin, Gdiplus::StringFormat::GenericTypographic(), &box);
-
-      ((graphics *)this)->m_pgraphics->MeasureCharacterRanges(wstr, (INT) wstr.get_length(), ((graphics *)this)->gdiplus_font(), box, &strFormat, (INT) count, pCharRangeRegions);
-
-      Gdiplus::Region * pregion = NULL;
-
-
-      if(count > 0)
-      {
-
-          pregion = pCharRangeRegions[0].Clone();
-
-      }
-
-
-
-      for(i = 1; i < count; i++)
-      {
-         pregion->Union(&pCharRangeRegions[i]);
-      }
-
-
-      if(pregion == NULL)
-         return size(0, 0);
-
-      delete [] pCharRangeRegions;
-
-
-      Gdiplus::RectF rectBound;
-
-      pregion->GetBounds(&rectBound, m_pgraphics);
-
-      delete pregion;
-
-
-
-      Gdiplus::SizeF size;
-
-      rectBound.GetSize(&size);
-
-      return class ::size((int64_t) (size.Width * m_spfont->m_dFontWidth), (int64_t) (size.Height));
-*/
    }
 
    size graphics::GetTextExtent(const char * lpszString, strsize nCount) const
    {
-      synch_lock ml(&user_mutex());
-      //retry_single_lock slGdiplus(&System.s_mutexGdiplus, millis(1), millis(1));
 
-      cairo_keep keep(m_pdc);
+      return GetTextExtent(lpszString, nCount, -1);
 
-      string str(lpszString, nCount);
-
-      ((graphics *) this)->set(m_spfont);
-
-      cairo_text_extents_t ex;
-
-      cairo_matrix_t m;
-
-      cairo_get_matrix(m_pdc, &m);
-
-      cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
-
-      cairo_set_matrix(m_pdc, &m);
-
-      cairo_text_extents(m_pdc, str, &ex);
-
-      SIZE size;
-
-      size.cx = (LONG) (ex.x_advance * m_spfont->m_dFontWidth);
-
-      size.cy = (LONG) ex.height;
-
-      return size;
-
-      /*wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
-
-      Gdiplus::RectF box;
-
-      Gdiplus::PointF origin(0, 0);
-
-      Gdiplus::StringFormat strFormat(Gdiplus::StringFormat::GenericTypographic());
-
-      strFormat.SetFormatFlags(strFormat.GetFormatFlags()
-                             | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-                             | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
-
-      m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), ((graphics *)this)->gdiplus_font(), origin, &strFormat,  &box);
-
-      return size((int64_t) (box.Width * m_spfont->m_dFontWidth), (int64_t) (box.Height));*/
-
-      /*if(get_handle2() == NULL)
-         return size(0, 0);
-      SIZE size;
-      string str(lpszString, nCount);
-      wstring wstr = ::str::international::utf8_to_unicode(str);
-      if(!::GetTextExtentPoint32W(get_handle2(), wstr, (int32_t)wstr.get_length(), &size))
-      {
-         return class size(0, 0);
-      }
-      return size;*/
    }
 
    size graphics::GetTextExtent(const string & str) const
    {
 
-      synch_lock ml(&user_mutex());
-/*      if(get_handle2() == NULL)
-         return size(0, 0);
-      SIZE size;
-      wstring wstr = ::str::international::utf8_to_unicode(str);
-      if(!::GetTextExtentPoint32W(get_handle2(), wstr, (int32_t)wstr.get_length(), &size))
-      {
-         return class size(0, 0);
-      }
-      return size;*/
-
-      class sized size;
-
-      if(!GetTextExtent(size, str, str.get_length(), 0))
-         return ::size(0, 0);
-
-      return ::size((long) size.cx, (long) size.cy);
-
-      /*if(m_pgraphics == NULL)
-         return size(0, 0);
-
-      wstring wstr = ::str::international::utf8_to_unicode(str);
-
-      Gdiplus::RectF box;
-
-      Gdiplus::PointF origin(0, 0);
-
-
-      if(m_pgraphics == NULL)
-         return size(0, 0);
-
-      try
-      {
-         m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), ((graphics *)this)->gdiplus_font(), origin, &box);
-      }
-      catch(...)
-      {
-         return size(0, 0);
-      }
-
-      return size((int64_t) (box.Width * m_spfont->m_dFontWidth), (int64_t) box.Height);*/
+      return GetTextExtent(str, str.get_length());
 
    }
+
 
    size graphics::GetOutputTextExtent(const char * lpszString, strsize nCount) const
    {
@@ -4921,217 +4631,60 @@ return 1;
 
       synch_lock ml(&user_mutex());
 
-      cairo_keep keep(m_pdc);
+      if (iIndex < 0)
+         iIndex = nCount;
 
-      string str(&lpszString[iIndex], nCount);
+      string str(lpszString, min(iIndex, nCount));
+
+
+      cairo_keep keep(m_pdc);
 
       ((graphics *) this)->set(m_spfont);
 
       cairo_text_extents_t ex;
 
-      cairo_matrix_t m;
+      cairo_font_extents_t e;
 
-      cairo_get_matrix(m_pdc, &m);
+      //cairo_matrix_t m;
+
+      cairo_font_extents(m_pdc, &e);
+
+      if (!str.has_char())
+      {
+         
+         size.cx = 0;
+         
+         size.cy = e.height;
+
+         return true;
+
+      }
+
+
+      /*cairo_get_matrix(m_pdc, &m);
 
       cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
 
-      cairo_set_matrix(m_pdc, &m);
+      cairo_set_matrix(m_pdc, &m);*/
 
       cairo_text_extents(m_pdc, str, &ex);
 
-      size.cx = (LONG) (ex.x_advance) * m_spfont->m_dFontWidth;
+      size.cx = (LONG)(ex.x_advance * m_spfont->m_dFontWidth);
 
-      size.cy = (LONG) (ex.height);
+      size.cy = (LONG) e.height;
 
       return true;
 
-
-
-      //retry_single_lock slGdiplus(&System.s_mutexGdiplus, millis(1), millis(1));
-
-/*      if(lpszString == NULL || *lpszString == '\0')
-         return false;
-
-      if(nCount < 0)
-         nCount = strlen(lpszString);
-
-      if(iIndex > nCount)
-         return false;
-
-      if(iIndex < 0)
-         return false;
-
-      wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
-
-      strsize iRange = 0;
-      strsize i = 0;
-      strsize iLen;
-      const char * psz = lpszString;
-      while(i < iIndex)
-      {
-         try
-         {
-            iLen = ::str::get_utf8_char(psz).length();
-         }
-         catch(...)
-         {
-            break;
-         }
-         iRange++;
-         i += iLen;
-         try
-         {
-            psz = ::str::utf8_inc(psz);
-         }
-         catch(...)
-         {
-            break;
-         }
-         if(psz == NULL)
-            break;
-         if(*psz == '\0')
-            break;
-      }
-
-      Gdiplus::CharacterRange charRanges[1] = { Gdiplus::CharacterRange(0, (INT) iRange) };
-
-      Gdiplus::StringFormat strFormat(Gdiplus::StringFormat::GenericTypographic());
-      //Gdiplus::StringFormat strFormat;
-
-      strFormat.SetMeasurableCharacterRanges(1, charRanges);
-
-      strFormat.SetFormatFlags(strFormat.GetFormatFlags()
-                             | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-                             | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
-
-      int32_t count = strFormat.GetMeasurableCharacterRangeCount();
-
-      Gdiplus::Region * pCharRangeRegions = new Gdiplus::Region[count];
-
-      //Gdiplus::RectF box(0.0f, 0.0f, 128.0f * 1024.0f, 128.0f * 1024.0f);
-
-      Gdiplus::PointF origin(0, 0);
-
-
-      // Generate a layout rect for the text
-
-      Gdiplus::RectF layoutRect;
-      Gdiplus::Status status = ((graphics *)this)->m_pgraphics->MeasureString( wstr, (INT) nCount, ((graphics *)this)->gdiplus_font(), origin, &layoutRect );
-
-
-      // Prevent clipping
-
-      //StringFormat strFormat( StringFormat::GenericTypographic() );
-      //status = ((graphics *)this)->m_pgraphics->SetFormatFlags( StringFormatFlagsNoWrap | StringFormatFlagsNoClip );
-
-
-
-      //m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), ((graphics *)this)->gdiplus_font(), origin, Gdiplus::StringFormat::GenericTypographic(), &box);
-
-      ((graphics *)this)->m_pgraphics->MeasureCharacterRanges(wstr, (INT) nCount, ((graphics *)this)->gdiplus_font(), layoutRect, &strFormat, (INT) count, pCharRangeRegions);
-
-      Gdiplus::Region * pregion = NULL;
-
-
-      if(count > 0)
-      {
-
-          pregion = pCharRangeRegions[0].Clone();
-
-      }
-
-      for(i = 1; i < count; i++)
-      {
-         pregion->Union(&pCharRangeRegions[i]);
-      }
-
-      delete [] pCharRangeRegions;
-
-      if(pregion == NULL)
-         return false;
-
-      Gdiplus::RectF rectBound;
-
-      pregion->GetBounds(&rectBound, m_pgraphics);
-
-      delete pregion;
-
-      Gdiplus::SizeF sizef;
-
-      rectBound.GetSize(&sizef);
-
-      size.cx = sizef.Width * m_spfont->m_dFontWidth;
-
-      size.cy = sizef.Height;
-
-      return true;*/
+   
    }
 
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount) const
    {
 
-      //retry_single_lock slGdiplus(&System.s_mutexGdiplus, millis(1), millis(1));
+      return GetTextExtent(size, lpszString, nCount, -1);
 
-      synch_lock ml(&user_mutex());
-
-      cairo_keep keep(m_pdc);
-
-      string str(lpszString, nCount);
-
-      ((graphics *) this)->set(m_spfont);
-
-      cairo_text_extents_t ex;
-
-      cairo_matrix_t m;
-
-      cairo_get_matrix(m_pdc, &m);
-
-      cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
-
-      cairo_set_matrix(m_pdc, &m);
-
-      cairo_text_extents(m_pdc, str, &ex);
-
-      size.cx = (LONG) (ex.x_advance) * m_spfont->m_dFontWidth;
-
-      size.cy = (LONG) (ex.height);
-
-      return true;
-
-
-/*      wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
-
-      Gdiplus::RectF box;
-
-      Gdiplus::PointF origin(0, 0);
-
-      Gdiplus::StringFormat strFormat(Gdiplus::StringFormat::GenericTypographic());
-
-      strFormat.SetFormatFlags(strFormat.GetFormatFlags()
-                             | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-                             | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
-      bool bOk = true;
-
-      try
-      {
-         if(m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), ((graphics *)this)->gdiplus_font(), origin, &strFormat,  &box) != Gdiplus::Status::Ok)
-            bOk = false;
-      }
-      catch(...)
-      {
-         bOk = false;
-      }
-
-      if(!bOk)
-         return false;
-
-      size.cx = box.Width * m_spfont->m_dFontWidth;
-
-      size.cy = box.Height;
-
-      return true;
-*/
    }
+
 
    bool graphics::GetTextExtent(sized & size, const string & str) const
    {
@@ -5327,7 +4880,67 @@ return 1;
    bool graphics::TextOut(double x, double y, const char * lpszString, int32_t nCount)
    {
 
-      return TextOut(x, y, string(lpszString, nCount));
+      if (::draw2d::graphics::TextOut(x, y, lpszString, nCount))
+         return true;
+
+      if (m_spregion.is_set() && !m_spregion.cast < region >()->is_simple_positive_region())
+      {
+         
+         string str(lpszString, nCount);
+
+         ::draw2d::dib_sp dib0(allocer());
+
+         dib0->create(m_spregion.cast < region >()->m_rectBoundingBoxInternal.size());
+         dib0->Fill(0, 0, 0, 0);
+         dib0->get_graphics()->SelectObject(get_current_brush());
+         dib0->get_graphics()->SelectObject(get_current_font());
+         dib0->get_graphics()->TextOut(x - m_spregion.cast < region >()->m_rectBoundingBoxInternal.left,
+            y - m_spregion.cast < region >()->m_rectBoundingBoxInternal.top,
+            str);
+
+         cairo_keep k(m_pdc);
+
+         cairo_pattern_t * ppattern = cairo_pattern_create_for_surface((cairo_surface_t *)dib0->get_bitmap()->get_os_data());
+
+         cairo_set_source(m_pdc, ppattern);
+
+         return m_spregion.cast < region >()->mask(m_pdc);
+
+      }
+
+      synch_lock ml(&user_mutex());
+
+      cairo_keep keep(m_pdc);
+
+      ((graphics *) this)->set(m_spfont);
+
+      cairo_font_extents_t e;
+
+      cairo_font_extents(m_pdc, &e);
+
+      if (m_spbrush.is_null())
+      {
+         set_os_color(ARGB(255, 0, 0, 0));
+      }
+      else
+      {
+         set_os_color(m_spbrush->m_cr);
+      }
+
+      cairo_move_to(m_pdc, x, y + e.ascent);
+
+      cairo_matrix_t m;
+
+      cairo_get_matrix(m_pdc, &m);
+
+      cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
+
+      cairo_set_matrix(m_pdc, &m);
+
+      cairo_show_text(m_pdc, lpszString);
+
+      return true;
+
 
    }
 
