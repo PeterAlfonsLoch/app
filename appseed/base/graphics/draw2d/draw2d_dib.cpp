@@ -396,7 +396,8 @@ namespace draw2d
 
    }
 
-   bool dib::blend(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, ::draw2d::dib * pdibAlf, point ptAlf, class size size)
+
+   bool dib::blend(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, ::draw2d::dib * pdibAlf, point ptDstAlf, class size size)
    {
 
       dib * pdibDst = this;
@@ -408,14 +409,14 @@ namespace draw2d
       if (ptSrc.x < 0)
       {
          ptDst.x -= ptSrc.x;
-         ptAlf.x -= ptSrc.x;
+         ptDstAlf.x -= ptSrc.x;
          ptSrc.x = 0;
       }
 
       if (ptSrc.y < 0)
       {
          ptDst.y -= ptSrc.y;
-         ptAlf.y -= ptSrc.y;
+         ptDstAlf.y -= ptSrc.y;
          ptSrc.y = 0;
       }
 
@@ -447,6 +448,11 @@ namespace draw2d
       if (yEnd < 0)
          return false;
 
+
+      if (ptDstAlf.x < 0)
+      {
+      }
+
       int32_t scanDst = pdibDst->m_iScan;
 
       int32_t scanSrc = pdibSrc->m_iScan;
@@ -457,7 +463,7 @@ namespace draw2d
 
       byte * psrc = &((byte *)pdibSrc->m_pcolorref)[scanSrc * ptSrc.y + ptSrc.x * sizeof(COLORREF)];
 
-      byte * palf = &((byte *)pdibAlf->m_pcolorref)[scanAlf * ptAlf.y + ptAlf.x * sizeof(COLORREF)] + 3;
+      byte * palf = &((byte *)pdibAlf->m_pcolorref)[- scanAlf * ptDstAlf.y - ptDstAlf.x * sizeof(COLORREF)] + 3;
 
       byte * pdst2;
 
@@ -470,33 +476,13 @@ namespace draw2d
       int y1;
       int y2;
 
-      if (ptAlf.x < 0)
-      {
-         x1 = -ptAlf.x;
-         x2 = pdibAlf->m_size.cx + ptAlf.x;
-      }
-      else
-      {
-         x1 = 0;
-         x2 = pdibAlf->m_size.cx - ptAlf.x;
-      }
-         
+      x1 = ptDstAlf.x;
+      x2 = pdibAlf->m_size.cx + x1;
+      y1 = ptDstAlf.y;
+      y2 = pdibAlf->m_size.cy + y1;
 
-      
 
-      if (ptAlf.y < 0)
-      {
-         y1 = -ptAlf.y;
-         y2 = pdibAlf->m_size.cy + ptAlf.y;
-      }
-      else
-      {
-         y1 = 0;
-         y2 = pdibAlf->m_size.cy - ptAlf.y;
-      }
-         
-
-      
+      int a;
 
       for (int y = 0; y < yEnd; y++)
       {
@@ -510,23 +496,42 @@ namespace draw2d
          for (int x = 0; x < xEnd; x++)
          {
 
-            if (x >= x1 && x < x2 && y >= y1 && y < y2)
+            if (psrc2[3] > 0)
             {
+               if (false && x >= x1 && x < x2 && y >= y1 && y < y2)
+               {
 
-               pdst2[3] = (BYTE)max((*palf2 * psrc2[3]) / 255, pdst2[3]);
-               pdst2[0] = (BYTE)(((psrc2[0] - pdst2[0]) * (psrc2[3]) + (pdst2[0] * 255)) / 255);
-               pdst2[1] = (BYTE)(((psrc2[1] - pdst2[1]) * (psrc2[3]) + (pdst2[1] * 255)) / 255);
-               pdst2[2] = (BYTE)(((psrc2[2] - pdst2[2]) * (psrc2[3]) + (pdst2[2] * 255)) / 255);
+                  a = (*palf2 * psrc2[3]) / 255;
+                  a = psrc2[3];
+                  //a = (int) (byte) sqrt((float) (*palf2 * psrc2[3]));
+                  pdst2[3] = (BYTE)max(a, pdst2[3]);
+                  //pdst2[3] = (BYTE)((((int)psrc2[3] - (int)pdst2[3]) * a + ((int)pdst2[3] * 255)) / 255);
+                  pdst2[3] = (BYTE)(max(psrc2[3], pdst2[3]));
 
-            }
-            else if (psrc2[3] > 0)
-            {
-            
-               pdst2[3] = (BYTE)(max(psrc2[3], pdst2[3]));
-               pdst2[0] = (BYTE)(((psrc2[0] - pdst2[0]) * psrc2[3] + (pdst2[0] * 255)) / 255);
-               pdst2[1] = (BYTE)(((psrc2[1] - pdst2[1]) * psrc2[3] + (pdst2[1] * 255)) / 255);
-               pdst2[2] = (BYTE)(((psrc2[2] - pdst2[2]) * psrc2[3] + (pdst2[2] * 255)) / 255);
+//                  if (a > 0)
+                  {
+                   
+                     pdst2[0] = (BYTE)((((int)psrc2[0] - (int)pdst2[0]) * a + ((int)pdst2[0] * 255)) / 255);
+                     pdst2[1] = (BYTE)((((int)psrc2[1] - (int)pdst2[1]) * a + ((int)pdst2[1] * 255)) / 255);
+                     pdst2[2] = (BYTE)((((int)psrc2[2] - (int)pdst2[2]) * a + ((int)pdst2[2] * 255)) / 255);
 
+                  }
+
+               }
+               else
+               {
+
+                  //pdst2[3] = (BYTE)(max(psrc2[3], pdst2[3]));
+                  //pdst2[3] = (BYTE)((((int)psrc2[3] - (int)pdst2[3]) * (int)psrc2[3] + ((int)pdst2[3] * 255)) / 255);
+                  //pdst2[0] = (BYTE)((((int)psrc2[0] - (int)pdst2[0]) * (int)psrc2[3] + ((int)pdst2[0] * 255)) / 255);
+                  //pdst2[1] = (BYTE)((((int)psrc2[1] - (int)pdst2[1]) * (int)psrc2[3] + ((int)pdst2[1] * 255)) / 255);
+                  //pdst2[2] = (BYTE)((((int)psrc2[2] - (int)pdst2[2]) * (int)psrc2[3] + ((int)pdst2[2] * 255)) / 255);
+                  pdst2[3] = (BYTE)(max(((((int)psrc2[3] - (int)pdst2[3]) * (int)psrc2[3] + ((int)pdst2[3] * 255)) / 255), pdst2[3]));
+                  pdst2[0] = (BYTE)((((int)psrc2[0] - (int)pdst2[0]) * (int)psrc2[3] + ((int)pdst2[0] * 255)) / 255);
+                  pdst2[1] = (BYTE)((((int)psrc2[1] - (int)pdst2[1]) * (int)psrc2[3] + ((int)pdst2[1] * 255)) / 255);
+                  pdst2[2] = (BYTE)((((int)psrc2[2] - (int)pdst2[2]) * (int)psrc2[3] + ((int)pdst2[2] * 255)) / 255);
+
+               }
             }
 
 
@@ -535,6 +540,7 @@ namespace draw2d
             psrc2+=4;
 
             palf2+=4;
+
 
          }
 

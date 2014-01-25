@@ -112,7 +112,7 @@ namespace draw2d
       virtual bool blend(dib * pdib, dib * pdibRate);
       virtual bool Blend(dib *pdib, dib * pdibA, int32_t A);
       virtual bool Blend(dib *pdib, dib * pdibA);
-      virtual bool blend(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, ::draw2d::dib * pdibAlf, point ptAlf, class size size);
+      virtual bool blend(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, ::draw2d::dib * pdibAlf, point ptDstAlf, class size size);
       virtual bool blend(point ptDst, ::draw2d::dib * pdibAlf, point ptAlf, class size size);
       virtual bool bitmap_blend(::draw2d::graphics * pgraphics, LPCRECT lprect);
       virtual bool color_blend(COLORREF cr, BYTE bAlpha);

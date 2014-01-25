@@ -869,19 +869,21 @@ namespace draw2d
          if (rectIntersect.intersect(rectIntersect, rectBlt))
          {
 
-            if (m_pdib != NULL && pgraphicsSrc->m_pdib != NULL)
-            {
+            // The following commented out code does not work well when there is clipping
+            // and some calculations are not precise
+            //if (m_pdib != NULL && pgraphicsSrc->m_pdib != NULL)
+            //{
 
-               point ptOff = GetViewportOrg();
+            //   point ptOff = GetViewportOrg();
 
-               x += ptOff.x;
+            //   x += ptOff.x;
 
-               y += ptOff.y;
+            //   y += ptOff.y;
 
-               return m_pdib->blend(point(x, y), pgraphicsSrc->m_pdib, point(xSrc, ySrc), m_pdibAlphaBlend, point((int)max(0, x - m_ptAlphaBlend.x), (int)max(0, y - m_ptAlphaBlend.y)), rectBlt.size());
+            //   return m_pdib->blend(point(x, y), pgraphicsSrc->m_pdib, point(xSrc, ySrc), m_pdibAlphaBlend, point(m_ptAlphaBlend.x - x, m_ptAlphaBlend.y - y), rectBlt.size());
 
-            }
-            else
+            //}
+            //else
             {
 
                ::draw2d::dib_sp dib1(allocer());
@@ -1006,19 +1008,25 @@ namespace draw2d
             dib1->get_graphics()->TextOut(0, 0, lpszString, nCount);
 
 
-            if (m_pdib != NULL)
-            {
+            // The following commented out code does not work well when there is clipping
+            // and some calculations are not precise
+            //::rect rectClip;
 
-               point ptOff = GetViewportOrg();
+            //GetClipBox(rectClip);
 
-               x += ptOff.x;
+            //if (m_pdib != NULL && rectClip.is_null())
+            //{
 
-               y += ptOff.y;
+            //   point ptOff = GetViewportOrg();
 
-               m_pdib->blend(point((int)x, (int)y), dib1, point(0, 0), m_pdibAlphaBlend, point((int)max(0, x - m_ptAlphaBlend.x), (int)max(0, y - m_ptAlphaBlend.y)), rectText.size());
+            //   x += ptOff.x;
 
-            }
-            else
+            //   y += ptOff.y;
+
+            //   m_pdib->blend(point((int)x, (int)y), dib1, point(0, 0), m_pdibAlphaBlend, point((int)(m_ptAlphaBlend.x - x), (int) (m_ptAlphaBlend.y - y)), rectText.size());
+
+            //}
+            //else
             {
 
                dib1->blend(null_point(), m_pdibAlphaBlend, point((int)max(0, x - m_ptAlphaBlend.x), (int)max(0, y - m_ptAlphaBlend.y)), rectText.size());
