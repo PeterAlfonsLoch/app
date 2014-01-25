@@ -274,6 +274,8 @@ namespace draw2d
 
       static void static_initialize();
 
+      virtual COLORREF make_colorref(int32_t a, int32_t r, int32_t g, int32_t b);
+
    };
 
    class CLASS_DECL_BASE dib_sp :
@@ -424,6 +426,7 @@ namespace draw2d
          }
       }
 
+      
 
    };
 

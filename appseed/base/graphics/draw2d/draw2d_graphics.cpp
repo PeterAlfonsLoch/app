@@ -973,11 +973,9 @@ namespace draw2d
 
    bool graphics::TextOut(int32_t x, int32_t y, const char * lpszString, int32_t nCount)
    {
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(lpszString);
-      UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
+      
+      return TextOut((double)x, (double)y, lpszString, nCount);
+
    }
 
    bool graphics::TextOut(int32_t x, int32_t y, const string & str)

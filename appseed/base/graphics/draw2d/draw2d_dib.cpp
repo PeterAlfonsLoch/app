@@ -2883,12 +2883,21 @@ namespace draw2d
 
    }
 
-   void dib::Fill (int32_t A, int32_t R, int32_t G, int32_t B )
+   
+   COLORREF dib::make_colorref(int32_t a, int32_t r, int32_t g, int32_t b)
+   {
+
+      return ARGB(a, b, g, r);
+
+   }
+
+
+   void dib::Fill (int32_t a, int32_t r, int32_t g, int32_t b)
    {
 
       map();
 
-      COLORREF color = RGB ( B, G, R ) | (A << 24);
+      COLORREF color = make_colorref(a, r, g, b);
       int64_t size = area();
 
       COLORREF * pcr;

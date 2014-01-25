@@ -433,6 +433,9 @@ namespace backview
 
    void Graphics::UpdateObjects()
    {
+
+      synch_lock slUserMutex(&user_mutex());
+
       rect rectClient;
       Interface & iface = HelperGetMain().GetInterface();
       iface.BackViewGetClientRect(rectClient);
