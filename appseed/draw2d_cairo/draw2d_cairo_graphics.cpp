@@ -1682,7 +1682,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    bool graphics::TextOut(double x, double y, const string & str)
    {
       
-      return TextOut(x, y, str, str.get_length());
+      return TextOut(x, y, str, (int32_t) str.get_length());
 
    }
 
@@ -4632,7 +4632,7 @@ return 1;
       synch_lock ml(&user_mutex());
 
       if (iIndex < 0)
-         iIndex = nCount;
+         iIndex = (int32_t) nCount;
 
       string str(lpszString, min(iIndex, nCount));
 
