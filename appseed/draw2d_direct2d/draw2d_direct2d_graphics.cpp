@@ -4091,7 +4091,7 @@ namespace draw2d_direct2d
    size graphics::GetTextExtent(const char * lpszString, strsize nCount) const
    {
 
-      return GetTextExtent(lpszString, nCount, nCount);
+      return GetTextExtent(lpszString, (int32_t) nCount, (int32_t) nCount);
 
    }
 
