@@ -47,7 +47,7 @@ public:
 
 #else
 
-   smart_pointer_query(const smart_pointer < T > & sp)
+   smart_pointer_query(smart_pointer < T > & sp)
    {
 
       m_psp    = &sp;
@@ -95,7 +95,7 @@ inline smart_pointer_query < T > ca_smart_pointer_query(smart_pointer < T > & sp
 #else
 
 template < class T >
-inline smart_pointer_query < T > ca_smart_pointer_query(const smart_pointer < T > & sp)
+inline smart_pointer_query < T > ca_smart_pointer_query(smart_pointer < T > & sp)
 {
    return sp;
 }
