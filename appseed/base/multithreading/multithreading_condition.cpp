@@ -6,10 +6,6 @@
 #include <sys/ipc.h>
 #include <sys/sem.h>
 
-#elif defined(ANDROID)
-
-#include <semaphore.h>
-
 #endif
 
 
