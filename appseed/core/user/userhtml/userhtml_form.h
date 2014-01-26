@@ -46,7 +46,7 @@ public:
 
 
 
-   virtual void _001GetText(string & str);
+   virtual void _001GetText(string & str) const;
    virtual void _001SetText(const string & str, ::action::context actioncontext);
 
 

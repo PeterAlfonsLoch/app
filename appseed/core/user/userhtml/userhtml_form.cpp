@@ -288,25 +288,37 @@ bool html_form::open_document(var varFile)
    string strPathName;
    if(varFile.get_type() == var::type_propset && varFile.propset()["url"].get_string().has_char())
    {
+
       strPathName = varFile.propset()["url"];
+
    }
    else if(varFile.cast < ::file::binary_buffer > () != NULL)
    {
+
       strPathName = System.datetime().international().get_gmt_date_time() + "." + get_document()->get_document_template()->m_set["default_extension"];
+
    }
    else
    {
+
       strPathName = varFile;
+
    }
+
    m_strPath = strPathName;
+
    return true;
+
 }
 
 
-void html_form::_001GetText(string & str)
+void html_form::_001GetText(string & str) const
 {
-   get_html_data()->m_elemental.get_html(const_cast < ::html::data * > (get_html_data()), str);
+
+   ((html_form *) this)->get_html_data()->m_elemental.get_html(const_cast < ::html::data * > (get_html_data()), str);
+
 }
+
 
 void html_form::_001SetText(const string & str, ::action::context actioncontext)
 {

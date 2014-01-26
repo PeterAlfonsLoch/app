@@ -829,23 +829,29 @@ namespace user
    }
 
 
-   void edit_plain_text::_001GetText(string & str)
+   void edit_plain_text::_001GetText(string & str) const
    {
+
       ::data::simple_lock lock(m_ptree);
+
       if(m_ptree == NULL)
          return;
+
       file_size iSize = m_ptree->m_editfile.get_length();
+
       char * psz = str.GetBufferSetLength((strsize)(iSize + 1));
       m_ptree->m_editfile.seek(0, ::file::seek_begin);
       m_ptree->m_editfile.read(psz, (::primitive::memory_size) iSize);
       psz[(::primitive::memory_position) iSize] = '\0';
       str.ReleaseBuffer();
   //    str.replace("\n", "\r\n");
+
    }
 
 
-   void edit_plain_text::_001GetSelText(string & str)
+   void edit_plain_text::_001GetSelText(string & str) const
    {
+
       file_position iEnd;
       file_position iStart;
       if(m_ptree->m_iSelEnd < 0)

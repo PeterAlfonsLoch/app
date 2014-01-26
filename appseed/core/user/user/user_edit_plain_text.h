@@ -154,8 +154,8 @@ namespace user
 
       colorertake5::file_type * colorer_select_type();
 
-      virtual void _001GetText(string & str);
-      virtual void _001GetSelText(string & str);
+      virtual void _001GetText(string & str) const;
+      virtual void _001GetSelText(string & str) const;
 
       void _001GetViewSel(strsize &iSelStart, strsize &iSelEnd);
 
