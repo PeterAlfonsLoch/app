@@ -15,6 +15,22 @@ namespace primitive
       m_iOffset            = 0;
       m_dwAllocation       = 0;
       m_cbStorage          = 0;
+      m_bAligned = false;
+
+   }
+
+   memory::memory(sp(base_application) papp, bool bAligned) :
+      element(papp)
+   {
+
+      m_pprimitivememory = this;
+      m_pbStorage = NULL;
+      m_pbComputed = NULL;
+      m_pcontainer = NULL;
+      m_iOffset = 0;
+      m_dwAllocation = 0;
+      m_cbStorage = 0;
+      m_bAligned = bAligned;
 
    }
 
@@ -24,6 +40,7 @@ namespace primitive
       m_pbStorage    = NULL;
       m_pbComputed   = NULL;
       m_iOffset      = 0;
+      m_bAligned = false;
       allocate(iCount);
       ASSERT(__is_valid_address(pdata, iCount, FALSE));
       memcpy(m_pbStorage, pdata, iCount);
@@ -37,6 +54,7 @@ namespace primitive
       m_iOffset      = 0;
       m_dwAllocation = 0;
       m_cbStorage    = 0;
+      m_bAligned = false;
       memory_base::operator = (s);
    }
 
@@ -48,6 +66,7 @@ namespace primitive
       m_iOffset      = 0;
       m_dwAllocation = 0;
       m_cbStorage    = 0;
+      m_bAligned = s.m_bAligned;
       memory_base::operator = (s);
    }
 
@@ -59,6 +78,7 @@ namespace primitive
       m_iOffset      = 0;
       m_dwAllocation = 0;
       m_cbStorage    = 0;
+      m_bAligned = false;
       from_string(psz);
    }
 
@@ -73,6 +93,7 @@ namespace primitive
       m_iOffset            = 0;
       m_dwAllocation       = 0;
       m_cbStorage          = 0;
+      m_bAligned = false;
    }
 
    memory::memory(primitive::memory_container * pcontainer, void * pMemory, memory_size dwSize)
@@ -84,6 +105,7 @@ namespace primitive
       m_iOffset            = 0;
       m_dwAllocation       = 0;
       m_cbStorage          = 0;
+      m_bAligned = false;
 
       allocate(dwSize);
       ASSERT(__is_valid_address(pMemory, (uint_ptr) dwSize, FALSE));
@@ -116,7 +138,15 @@ namespace primitive
       {
          m_iOffset = 0;
          memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
-         m_pbStorage = (LPBYTE) memory_alloc((size_t) dwAllocation);
+         if (m_bAligned)
+         {
+            m_pbStorage = (LPBYTE)aligned_memory_alloc((size_t)dwAllocation);
+         }
+         else
+         {
+            m_pbStorage = (LPBYTE)memory_alloc((size_t)dwAllocation);
+         }
+         
          if(m_pbStorage == NULL)
          {
             m_pbComputed = NULL;
@@ -139,7 +169,15 @@ namespace primitive
          {
             m_iOffset = 0;
             memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
-            LPVOID lpVoid = memory_alloc((size_t) dwAllocation);
+            LPVOID lpVoid = NULL;
+            if (m_bAligned)
+            {
+               lpVoid = aligned_memory_alloc((size_t)dwAllocation);
+            }
+            else
+            {
+               lpVoid = memory_alloc((size_t)dwAllocation);
+            }
             if(lpVoid == NULL)
             {
                return false;

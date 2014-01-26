@@ -14,7 +14,11 @@ namespace primitive
    public:
 
 
+      bool m_bAligned;
+
+
       memory(sp(base_application) papp);
+      memory(sp(base_application) papp, bool bAligned);
       memory(const void *, memory_size iCount);
       memory(const memory_base & memorybase);
       memory(const memory & memory);
@@ -23,7 +27,7 @@ namespace primitive
       memory(primitive::memory_container * pmsc, void * pMemory, memory_size dwSize);
       virtual ~memory();
 
-
+      
       LPBYTE detach();
 
 

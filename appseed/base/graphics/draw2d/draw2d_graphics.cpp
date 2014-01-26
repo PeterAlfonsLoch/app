@@ -691,11 +691,12 @@ namespace draw2d
 
    bool graphics::FillEllipse(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
-      UNREFERENCED_PARAMETER(x1);
-      UNREFERENCED_PARAMETER(y1);
-      UNREFERENCED_PARAMETER(x2);
-      UNREFERENCED_PARAMETER(y2);
-      throw interface_only_exception(get_app());
+
+      ::rect rect(x1, y1, x2, y2);
+
+      return FillEllipse(rect);
+
+
    }
 
    bool graphics::FillEllipse(LPCRECT lpRect)

@@ -175,6 +175,10 @@ namespace backview
 
    bool Graphics::RenderBufferLevel2()
    {
+
+      synch_lock slUserMutex(&user_mutex());
+
+
       Main & main = HelperGetMain();
 
       Interface & iface = main.GetInterface();
@@ -347,16 +351,16 @@ namespace backview
                int32_t iYMod = (cy - iH) / 2;
                int32_t iXOffset =  iXMod;
                int32_t iYOffset =  iYMod;
-               while(iXOffset > 0)
+               while(iXOffset > 0 && iW > 0)
                {
                   iXOffset -= iW;
                }
-               while(iYOffset > 0)
+               while (iYOffset > 0 && iH > 0)
                {
                   iYOffset -= iH;
                }
-               int32_t iCount = (iXMod < 0) ? 1 : cx / iW + (iXOffset == 0 ? 0 : 2);
-               int32_t jCount = (iYMod < 0) ? 1 : cy / iH + (iYOffset == 0 ? 0 : 2);
+               int32_t iCount = (iXMod < 0) ? 1 : cx / (iW <= 0 ? 1 : iW) + (iXOffset == 0 ? 0 : 2);
+               int32_t jCount = (iYMod < 0) ? 1 : cy / (iH <= 0 ? 1 : iH) + (iYOffset == 0 ? 0 : 2);
                for(int32_t i = 0; i < iCount; i++)
                {
                   int32_t iX = iXOffset + iW * i;
