@@ -1231,10 +1231,10 @@ namespace draw2d_direct2d
 
             D2D1_SIZE_U sz = ((ID2D1Bitmap *)get_current_bitmap()->get_os_data())->GetPixelSize();
 
-            if (nWidth + x > sz.width)
+            if (natural(nWidth + x) > sz.width)
                nWidth = sz.width - x;
 
-            if (nHeight + y > sz.height)
+            if (natural(nHeight + y) > sz.height)
                nHeight = sz.height - y;
 
          }
@@ -1243,10 +1243,10 @@ namespace draw2d_direct2d
 
             D2D1_SIZE_U sz = ((ID2D1Bitmap *)pgraphicsSrc->get_current_bitmap()->get_os_data())->GetPixelSize();
 
-            if (nWidth + xSrc > sz.width)
+            if (natural(nWidth + xSrc) > sz.width)
                nWidth = sz.width - xSrc;
 
-            if (nHeight + ySrc > sz.height)
+            if (natural(nHeight + ySrc) > sz.height)
                nHeight = sz.height - ySrc;
 
          }
@@ -4480,7 +4480,7 @@ namespace draw2d_direct2d
 
       D2D1::Matrix3x2F mOriginal(m);
 
-      D2D1_RECT_F rectf = D2D1::RectF((FLOAT)x / m_spfont->m_dFontWidth, (FLOAT)y, (FLOAT) (1024 * 1024), (FLOAT) (1024 * 1024));
+      D2D1_RECT_F rectf = D2D1::RectF((FLOAT) (x / m_spfont->m_dFontWidth), (FLOAT)y, (FLOAT) (1024 * 1024), (FLOAT) (1024 * 1024));
 
       get_os_font()->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
 
