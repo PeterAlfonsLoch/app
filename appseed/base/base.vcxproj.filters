@@ -726,6 +726,9 @@
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{6dfb842d-9db9-46a1-a7d1-6f696d6287bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user\user\NewFilter1">
+      <UniqueIdentifier>{f934c7e3-9f5b-43f2-9b49-7a4340ae2ddb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_wstringtou.h">
@@ -3297,6 +3300,9 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_window_util.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_print_job.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
@@ -7063,6 +7069,9 @@
     <ClCompile Include="user\user\user_window_util.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\user_print_job.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -7250,6 +7259,9 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

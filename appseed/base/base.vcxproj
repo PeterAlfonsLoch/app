@@ -2478,6 +2478,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_place_holder.h" />
     <ClInclude Include="user\user\user_place_holder_container.h" />
     <ClInclude Include="user\user\user_printer.h" />
+    <ClInclude Include="user\user\user_print_job.h" />
     <ClInclude Include="user\user\user_server.h" />
     <ClInclude Include="user\user\user_str.h" />
     <ClInclude Include="user\user\user_text_interface.h" />
@@ -10725,6 +10726,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\user\user_place_holder.cpp" />
     <ClCompile Include="user\user\user_place_holder_container.cpp" />
     <ClCompile Include="user\user\user_printer.cpp" />
+    <ClCompile Include="user\user\user_print_job.cpp" />
     <ClCompile Include="user\user\user_server.cpp" />
     <ClCompile Include="user\user\user_str.cpp" />
     <ClCompile Include="user\user\user_text_interface.cpp" />
