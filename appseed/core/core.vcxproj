@@ -1635,7 +1635,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user\user_notify_icon.h" />
     <ClInclude Include="user\user\user_notify_icon_listener.h" />
     <ClInclude Include="user\user\user_plain_text_data.h" />
-    <ClInclude Include="user\user\user_print_job.h" />
     <ClInclude Include="user\user\user_scroll_bar.h" />
     <ClInclude Include="user\user\user_scroll_view.h" />
     <ClInclude Include="user\user\user_shell.h" />
