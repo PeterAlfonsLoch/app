@@ -3565,9 +3565,6 @@
     <ClCompile Include="core\core_pipe.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core_print_job.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core_process.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
