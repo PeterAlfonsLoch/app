@@ -227,8 +227,6 @@ class COleDataObject;   // forward reference (see afxole.h)
 #include "user_tool_tip_window.h"
 
 
-#include "user_print_job.h"
-
 
 
 
