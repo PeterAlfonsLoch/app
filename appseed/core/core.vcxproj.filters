@@ -3877,9 +3877,6 @@
     <ClCompile Include="user\user\user_plain_text_data.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_print_job.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_scroll_bar.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>

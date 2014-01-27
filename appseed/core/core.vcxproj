@@ -2234,7 +2234,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\user\user_notify_icon.cpp" />
     <ClCompile Include="user\user\user_notify_icon_listener.cpp" />
     <ClCompile Include="user\user\user_plain_text_data.cpp" />
-    <ClCompile Include="user\user\user_print_job.cpp" />
     <ClCompile Include="user\user\user_scroll_bar.cpp" />
     <ClCompile Include="user\user\user_scroll_view.cpp" />
     <ClCompile Include="user\user\user_shell.cpp" />
