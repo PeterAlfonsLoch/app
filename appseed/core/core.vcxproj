@@ -1035,7 +1035,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core_patch.h" />
     <ClInclude Include="core\core_pipe.h" />
     <ClInclude Include="core\core_port_forward.h" />
-    <ClInclude Include="core\core_print_job.h" />
     <ClInclude Include="core\core_process.h" />
     <ClInclude Include="core\core_process_data.h" />
     <ClInclude Include="core\core_process_departament.h" />

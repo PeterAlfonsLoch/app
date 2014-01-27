@@ -1955,9 +1955,6 @@
     <ClInclude Include="core\core_port_forward.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core_print_job.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core_process.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
