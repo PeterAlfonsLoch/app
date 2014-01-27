@@ -1082,6 +1082,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base\base_heap.h" />
     <ClInclude Include="base\base\base_id_pool.h" />
     <ClInclude Include="base\base\base_international.h" />
+    <ClInclude Include="base\base\base_print_job.h" />
     <ClInclude Include="base\base\base_progress.h" />
     <ClInclude Include="base\base\base_keep_true.h" />
     <ClInclude Include="base\base\base_launcher.h" />
@@ -1835,6 +1836,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="filesystem\fs\fs_remote_native_file.h" />
     <ClInclude Include="filesystem\fs\fs_remote_native_fs.h" />
     <ClInclude Include="filesystem\fs\fs_set.h" />
+    <ClCompile Include="base\base\base_print_job.cpp" />
     <ClCompile Include="base\openssl\crypto\rand\rand_unix.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
