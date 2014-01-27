@@ -22,6 +22,7 @@ namespace draw2d_cairo
 
       m_pcolorref          = NULL;
       m_bMapped            = false;
+      m_bTrans             = false;
 
    }
 
@@ -419,6 +420,10 @@ namespace draw2d_cairo
             size--;
          }
       }
+      else
+      {
+         m_bTrans = true;
+      }
 
       m_bMapped = true;
 
@@ -443,13 +448,17 @@ namespace draw2d_cairo
 
       byte * pdata =  (byte *) m_pcolorref;
       int size = m_iScan * m_size.cy / sizeof(COLORREF);
-      while(size > 0)
+      if(m_bTrans)
       {
-         pdata[0] = pdata[0] * pdata[3] / 255;
-         pdata[1] = pdata[1] * pdata[3] / 255;
-         pdata[2] = pdata[2] * pdata[3] / 255;
-         pdata += 4;
-         size--;
+         m_bTrans = false;
+         while(size > 0)
+         {
+            pdata[0] = pdata[0] * pdata[3] / 255;
+            pdata[1] = pdata[1] * pdata[3] / 255;
+            pdata[2] = pdata[2] * pdata[3] / 255;
+            pdata += 4;
+            size--;
+         }
       }
 
       pdata =  (byte *) cairo_image_surface_get_data(surface);

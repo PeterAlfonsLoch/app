@@ -25,6 +25,7 @@ namespace draw2d_cairo
       HBITMAP                    m_hbitmap;
       class size64                       m_sizeWnd;
       BITMAPINFO           m_bitmapinfo;
+      bool                    m_bTrans;
 
 
 

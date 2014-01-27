@@ -880,34 +880,34 @@ namespace user
 
    void window::_001WindowRestore()
    {
-   
+
       throw interface_only_exception(get_app());
-      
+
    }
 
 
    bool window::ShowWindow(int32_t nCmdShow)
    {
-   
+
       UNREFERENCED_PARAMETER(nCmdShow);
       throw interface_only_exception(get_app());
-      
+
    }
 
 
    bool window::IsIconic()
    {
-   
+
       throw interface_only_exception(get_app());
-      
+
    }
 
 
    bool window::IsZoomed()
    {
-   
+
       throw interface_only_exception(get_app());
-      
+
    }
 
 
@@ -921,12 +921,12 @@ namespace user
 
    LONG window::GetWindowLong(int32_t nIndex)
    {
-   
+
       UNREFERENCED_PARAMETER(nIndex);
       throw interface_only_exception(get_app());
-      
+
    }
-   
+
 
    LONG window::SetWindowLong(int32_t nIndex, LONG lValue)
    {
@@ -1455,81 +1455,81 @@ namespace user
 
    sp(::user::interaction) window::GetNextWindow(UINT nFlag)
    {
-   
+
       UNREFERENCED_PARAMETER(nFlag);
       throw interface_only_exception(get_app());
-      
+
    }
 
 
    sp(::user::interaction) window::GetTopWindow()
    {
-   
+
       throw interface_only_exception(get_app());
-      
+
    }
 
 
-/* 
-   
+/*
+
    sp(::user::interaction) window::GetWindow(UINT nCmd)
    {
       UNREFERENCED_PARAMETER(nCmd);
       throw interface_only_exception(get_app());
- 
+
    }
- 
+
 */
 
 
    sp(::user::interaction) window::GetLastActivePopup()
    {
-   
+
       throw interface_only_exception(get_app());
-      
+
    }
 
 
    sp(::user::interaction) window::set_parent(sp(::user::interaction) pWndNewParent)
    {
-   
+
       UNREFERENCED_PARAMETER(pWndNewParent);
       throw interface_only_exception(get_app());
-      
+
    }
 
 
    bool window::FlashWindow(bool bInvert)
    {
-   
+
       UNREFERENCED_PARAMETER(bInvert);
       throw interface_only_exception(get_app());
-      
+
    }
-   
+
 
    bool window::ChangeClipboardChain(oswindow oswindow_Next)
    {
-   
+
       UNREFERENCED_PARAMETER(oswindow_Next);
       throw interface_only_exception(get_app());
-      
+
    }
 
 
    oswindow window::SetClipboardViewer()
    {
-   
+
       throw interface_only_exception(get_app());
-      
+
    }
 
 
    bool window::OpenClipboard()
    {
-   
+
       throw interface_only_exception(get_app());
-      
+
    }
 
 
@@ -2336,7 +2336,7 @@ namespace user
 
       single_lock sl(mutex_graphics(), true);
 
-      if(m_spdib.is_null() || m_spdib->get_graphics() == NULL)
+      if(m_spdib.is_null())
          return;
 
       m_spdib->map();
@@ -2358,7 +2358,12 @@ namespace user
       }
 
       //m_spdib->get_graphics()->FillSolidRect(00, 00, 100, 100, ARGB(127, 0, 127, 0));
-      _001Print(m_spdib->get_graphics());
+      ::draw2d::graphics * pgraphics = m_spdib->get_graphics();
+
+      if(pgraphics == NULL)
+         return;
+
+      _001Print(pgraphics);
       //m_spdib->get_graphics()->SetViewportOrg(0, 0);
       //m_spdib->get_graphics()->FillSolidRect(100, 100, 100, 100, ARGB(127, 127, 0, 0));
 

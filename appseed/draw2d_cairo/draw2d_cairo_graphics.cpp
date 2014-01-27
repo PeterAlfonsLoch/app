@@ -431,22 +431,11 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    // non-virtual helpers calling virtual mapping functions
    point graphics::SetViewportOrg(POINT point)
    {
-      if(abs(point.x) > 900 || abs(point.y) > 800)
-      {
 
-         printf("123");
-      }
+      return SetViewportOrg(point.x, point.y);
 
-      //return SetViewportOrg(point.x, point.y);
-      cairo_matrix_t m;
-      cairo_get_matrix(m_pdc, &m);
-      int xOld = (int) m.x0;
-      int yOld = (int) m.y0;
-      m.x0 = point.x;
-      m.y0 = point.y;
-      cairo_set_matrix(m_pdc, &m);
-      return ::point(xOld, yOld);
    }
+
 
    size graphics::SetViewportExt(SIZE size)
    {
@@ -1262,177 +1251,10 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
       synch_lock ml(&user_mutex());
 
+      cairo_keep keep(m_pdc);
+
       if (::draw2d::graphics::BitBlt(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, dwRop))
          return true;
-   //   {
-
-
-   //      rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
-   //      rect rectBlt(x, y, x + nWidth, y + nHeight);
-   //      if(rectIntersect.intersect(rectIntersect, rectBlt))
-   //      {
-
-   //         if(pgraphicsSrc == NULL)
-   //            return false;
-
-   //         if(nWidth <= 0 || nHeight <= 0)
-   //            return false;
-
-   //         cairo_surface_t * psurface = cairo_get_target((cairo_t *) pgraphicsSrc->get_os_data());
-
-   //         if(psurface == NULL)
-   //            return false;
-
-   //         cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
-
-   //         if(ppattern == NULL)
-   //            return false;
-
-   //         cairo_matrix_t matrix;
-
-   //         cairo_matrix_t matrixOld;
-
-   //         cairo_keep keep(m_pdc);
-
-   //         cairo_translate(m_pdc, x, y);
-
-   //         cairo_pattern_get_matrix(ppattern, &matrixOld);
-
-   //         cairo_matrix_init_translate(&matrix, xSrc, ySrc);
-
-   //         cairo_pattern_set_matrix(ppattern, &matrix);
-
-   //         cairo_rectangle(m_pdc, 0, 0, nWidth, nHeight);
-
-   //         cairo_clip(m_pdc);
-
-   //         cairo_set_source(m_pdc, ppattern);
-
-   //         if(m_ealphamode == ::draw2d::alpha_mode_blend)
-   //         {
-   //            cairo_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
-   //         }
-   //         else if(m_ealphamode == ::draw2d::alpha_mode_set)
-   //         {
-   //            cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
-   //         }
-
-   //         cairo_surface_t * psurfaceBlend = (cairo_surface_t *) m_pdibAlphaBlend->get_bitmap()->get_os_data();
-
-   //         if(psurfaceBlend == NULL)
-   //            return false;
-
-   //         cairo_rectangle(m_pdc, m_ptAlphaBlend.x - x, m_ptAlphaBlend.y - y, m_pdibAlphaBlend->m_size.cx, m_pdibAlphaBlend->m_size.cy);
-
-   //         cairo_clip(m_pdc);
-
-   //         cairo_mask_surface(m_pdc, psurfaceBlend, m_ptAlphaBlend.x - x, m_ptAlphaBlend.y - y);
-
-   //         /*keep.restore();
-
-   //         if(m_spregion.is_set())
-   //         {
-
-   //            SelectClipRgn(m_spregion);
-
-   //         }*/
-
-   //         return true;
-
-   //      }
-
-
-
-   //      if(false)
-   //      {
-
-   //         ::draw2d::dib * pdibWork = NULL;
-   //         ::draw2d::dib * pdibWork2 = NULL;
-   ////         ::draw2d::dib * pdibWork3 = NULL;
-   //         ::draw2d::dib * pdibWork4 = NULL;
-
-
-   //         class point ptSrc(xSrc, ySrc);
-   //         class point ptDest(x, y);
-   //         class size size(nWidth, nHeight);
-
-
-
-   //         ::draw2d::dib_sp spdib;
-   //         if(pdibWork == NULL)
-   //         {
-   //            spdib.create(allocer());
-   //            pdibWork = spdib;
-   //         }
-   //         if(pdibWork == NULL)
-   //            return false;
-   //         if(!pdibWork->create(size))
-   //            return false;
-
-   //         pdibWork->Fill(0, 0, 0, 0);
-
-   //         pdibWork->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
-
-   //         if(!pdibWork->from(null_point(), pgraphicsSrc, ptSrc, size))
-   //            return false;
-
-
-
-
-   //         ::draw2d::dib_sp spdib2;
-   //         if(pdibWork2 == NULL)
-   //         {
-   //            spdib2.create(allocer());
-   //            pdibWork2 = spdib2;
-   //         }
-
-
-   //         ::draw2d::dib_sp spdib4;
-   //         if(pdibWork4 == NULL)
-   //         {
-   //            spdib4.create(allocer());
-   //            pdibWork4 = spdib4;
-   //         }
-   //         if(pdibWork4 == NULL)
-   //            return false;
-   //         if(!pdibWork4->create(size))
-   //            return false;
-
-
-   //         pdibWork4->Fill(255, 0, 0, 0);
-
-   //         pdibWork4->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
-
-   //         pdibWork4->from(point(max(0, m_ptAlphaBlend.x - x), max(0, m_ptAlphaBlend.y - y)),
-   //            m_pdibAlphaBlend->get_graphics(), point(max(0, x - m_ptAlphaBlend.x), max(0, y - m_ptAlphaBlend.y)),
-   //                               ::size(max(0, m_pdibAlphaBlend->m_size.cx - max(0, x - m_ptAlphaBlend.x)), max(0, m_pdibAlphaBlend->m_size.cy - max(0, y - m_ptAlphaBlend.y))));
-
-   //         pdibWork->channel_multiply(visual::rgba::channel_alpha, pdibWork4);
-
-   //         /*pdibWork->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
-
-   //         pdibWork->from(point(max(0, m_ptAlphaBlend.x - x), max(0, m_ptAlphaBlend.y - y)),
-   //            m_pdibAlphaBlend->get_graphics(), point(max(0, x - m_ptAlphaBlend.x), max(0, y - m_ptAlphaBlend.y)),
-   //                               class size(max(0, size.cx - max(0, x - m_ptAlphaBlend.x)), max(0, size.cy - max(0, y - m_ptAlphaBlend.y))));*/
-
-   //         //keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
-
-   //         //Gdiplus::CompositingMode mode = m_pgraphics->GetCompositingMode();
-
-   //         //m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-
-   //         bool bOk = BitBlt(x, y , 0, 0, pdibWork->get_graphics(), nWidth, nHeight, SRCCOPY);
-
-
-   //         //m_pgraphics->SetCompositingMode(mode);
-
-   //         return bOk;
-
-   //      //return System.visual().imaging().true_blend(this, ptDest, size, pdibWork->get_graphics(), null_point());
-   //      }
-
-
-   //   }
 
 
       try
@@ -1457,8 +1279,6 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
          cairo_matrix_t matrix;
 
          cairo_matrix_t matrixOld;
-
-         cairo_keep keep(m_pdc);
 
          cairo_translate(m_pdc, x, y);
 
@@ -1520,84 +1340,80 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
       synch_lock ml(&user_mutex());
 
+     cairo_keep keep(m_pdc);
+
       if(pgraphicsSrc == NULL)
          return false;
 
       if(nSrcWidth <= 0 || nSrcHeight <= 0 || nDstWidth <= 0 || nDstHeight <= 0)
          return false;
 
-         if(pgraphicsSrc == NULL)
-            return false;
+      if(pgraphicsSrc == NULL)
+         return false;
 
-         cairo_surface_t * psurface = cairo_get_target((cairo_t *) pgraphicsSrc->get_os_data());
+      cairo_surface_t * psurface = cairo_get_target((cairo_t *) pgraphicsSrc->get_os_data());
 
-         if(psurface == NULL)
-            return false;
+      if(psurface == NULL)
+         return false;
 
-         cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
+      cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
 
-         if(ppattern == NULL)
-            return false;
+      if(ppattern == NULL)
+         return false;
 
-         cairo_matrix_t matrix;
+      cairo_matrix_t matrix;
 
-         cairo_matrix_t matrixOld;
+      cairo_matrix_t matrixOld;
 
-         cairo_pattern_get_matrix(ppattern, &matrixOld);
+      cairo_pattern_get_matrix(ppattern, &matrixOld);
 
-         cairo_keep keep(m_pdc);
+      cairo_translate(m_pdc, xDst, yDst);
 
-         cairo_translate(m_pdc, xDst, yDst);
+      cairo_matrix_init_translate(&matrix, -xSrc, -ySrc);
 
-         cairo_matrix_init_translate(&matrix, -xSrc, -ySrc);
+      cairo_matrix_scale(&matrix, (double) nSrcWidth / (double) nDstWidth, (double) nSrcHeight / (double) nDstHeight);
 
-         cairo_matrix_scale(&matrix, (double) nSrcWidth / (double) nDstWidth, (double) nSrcHeight / (double) nDstHeight);
+      cairo_pattern_set_matrix(ppattern, &matrix);
 
-         cairo_pattern_set_matrix(ppattern, &matrix);
+      cairo_rectangle(m_pdc, 0, 0, nDstWidth, nDstHeight);
 
-         cairo_rectangle(m_pdc, 0, 0, nDstWidth, nDstHeight);
+      cairo_clip(m_pdc);
 
-         cairo_clip(m_pdc);
+      cairo_set_source(m_pdc, ppattern);
 
-         cairo_set_source(m_pdc, ppattern);
+      if(m_nStretchBltMode == 0)
+      {
+         cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_NEAREST);
+      }
+      else if(m_nStretchBltMode == HALFTONE)
+      {
+         cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_GOOD);
+      }
+      else
+      {
+         cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_FAST);
+      }
 
-         if(m_nStretchBltMode == 0)
-         {
-            cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_NEAREST);
-         }
-         else if(m_nStretchBltMode == HALFTONE)
-         {
-            cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_GOOD);
-         }
-         else
-         {
-            cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_FAST);
-         }
+      if(m_spregion.is_set() && !m_spregion.cast < region > ()->is_simple_positive_region())
+      {
 
-         if(m_spregion.is_set() && !m_spregion.cast < region > ()->is_simple_positive_region())
-         {
+         m_spregion.cast < region > ()->mask(m_pdc);
 
-            m_spregion.cast < region > ()->mask(m_pdc);
+      }
+      else
+      {
 
-         }
-         else
-         {
+         cairo_paint(m_pdc);
 
-            cairo_paint(m_pdc);
+      }
 
-         }
+      cairo_pattern_set_matrix(ppattern, &matrixOld);
 
-         cairo_pattern_set_matrix(ppattern, &matrixOld);
-
-         cairo_pattern_destroy(ppattern);
-
+      cairo_pattern_destroy(ppattern);
 
       return true;
 
-      //return ::StretchBlt(get_handle1(), x, y, nWidth, nHeight, WIN_HDC(pgraphicsSrc), xSrc, ySrc, nSrcWidth, nSrcHeight, dwRop);
-
    }
-
 
    COLORREF graphics::GetPixel(int32_t x, int32_t y) const
    {
@@ -1681,7 +1497,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    bool graphics::TextOut(double x, double y, const string & str)
    {
-      
+
       return TextOut(x, y, str, (int32_t) str.get_length());
 
    }
@@ -2602,126 +2418,130 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    bool graphics::alpha_blend(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dRate)
    {
 
-      synch_lock ml(&user_mutex());
+      throw not_implemented(get_app());
 
-      if(m_pdibAlphaBlend != NULL)
-      {
+      return false;
 
-         rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
-
-
-         ::draw2d::dib * pdibWork = NULL;
-         ::draw2d::dib * pdibWork2 = NULL;
-//         ::draw2d::dib * pdibWork3 = NULL;
-         ::draw2d::dib * pdibWork4 = NULL;
-
-
-         class point ptSrc(xSrc, ySrc);
-         class point ptDest(xDst, yDst);
-         class size size(nDstWidth, nDstHeight);
-
-
-
-         ::draw2d::dib_sp spdib;
-         if(pdibWork == NULL)
-         {
-            spdib.create(allocer());
-            pdibWork = spdib;
-         }
-         if(pdibWork == NULL)
-            return false;
-         if(!pdibWork->create(size))
-            return false;
-         if(!pdibWork->from(null_point(), pgraphicsSrc, ptSrc, size))
-            return false;
-
-
-
-
-         ::draw2d::dib_sp spdib2;
-         if(pdibWork2 == NULL)
-         {
-            spdib2.create(allocer());
-            pdibWork2 = spdib2;
-         }
-
-
-         ::draw2d::dib_sp spdib4;
-         if(pdibWork4 == NULL)
-         {
-            spdib4.create(allocer());
-            pdibWork4 = spdib4;
-         }
-         if(pdibWork4 == NULL)
-            return false;
-         if(!pdibWork4->create(size))
-            return false;
-
-
-         pdibWork4->Fill(255, 0, 0, 0);
-
-         pdibWork4->from(point(max(0, m_ptAlphaBlend.x - xDst), max(0, m_ptAlphaBlend.y - yDst)),
-            m_pdibAlphaBlend->get_graphics(), point(max(0, xDst - m_ptAlphaBlend.x), max(0, yDst - m_ptAlphaBlend.y)), size);
-
-         pdibWork->channel_multiply(visual::rgba::channel_alpha, pdibWork4);
-
-
-         keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
-
-
-         return BitBlt(ptDest.x, ptDest.y, size.cx, size.cy, pdibWork->get_graphics(), ptSrc.x, ptSrc.y, SRCCOPY);
-
-      }
-
-      if(pgraphicsSrc == NULL)
-         return false;
-
-
-      if(nSrcWidth == 0 || nSrcHeight == 0 || nDstWidth == 0 || nDstHeight == 0)
-         return false;
-
-      cairo_pattern_t * ppattern = cairo_get_source((cairo_t *) pgraphicsSrc->get_os_data());
-
-      if(ppattern == NULL)
-         return false;
-
-      if(cairo_pattern_status(ppattern) != CAIRO_STATUS_SUCCESS)
-         return false;
-
-      if(m_pdc == NULL)
-         return false;
-
-      cairo_keep keep(m_pdc);
-
-      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
-         return false;
-
-      cairo_translate(m_pdc, xDst, yDst);
-
-      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
-         return false;
-
-      cairo_scale(m_pdc, (double) nDstWidth / (double) nSrcWidth, (double) nDstHeight / (double) nSrcHeight);
-
-      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
-         return false;
-
-      cairo_set_source(m_pdc, ppattern);
-
-      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
-         return false;
-
-      cairo_paint_with_alpha(m_pdc, dRate);
-
-      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
-         return false;
-
-      //cairo_pattern_destroy(ppattern);
-
-      //if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
-        // return false;
-
-      return true;
+//      synch_lock ml(&user_mutex());
+//
+//      if(m_pdibAlphaBlend != NULL)
+//      {
+//
+//         rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
+//
+//
+//         ::draw2d::dib * pdibWork = NULL;
+//         ::draw2d::dib * pdibWork2 = NULL;
+////         ::draw2d::dib * pdibWork3 = NULL;
+//         ::draw2d::dib * pdibWork4 = NULL;
+//
+//
+//         class point ptSrc(xSrc, ySrc);
+//         class point ptDest(xDst, yDst);
+//         class size size(nDstWidth, nDstHeight);
+//
+//
+//
+//         ::draw2d::dib_sp spdib;
+//         if(pdibWork == NULL)
+//         {
+//            spdib.create(allocer());
+//            pdibWork = spdib;
+//         }
+//         if(pdibWork == NULL)
+//            return false;
+//         if(!pdibWork->create(size))
+//            return false;
+//         if(!pdibWork->from(null_point(), pgraphicsSrc, ptSrc, size))
+//            return false;
+//
+//
+//
+//
+//         ::draw2d::dib_sp spdib2;
+//         if(pdibWork2 == NULL)
+//         {
+//            spdib2.create(allocer());
+//            pdibWork2 = spdib2;
+//         }
+//
+//
+//         ::draw2d::dib_sp spdib4;
+//         if(pdibWork4 == NULL)
+//         {
+//            spdib4.create(allocer());
+//            pdibWork4 = spdib4;
+//         }
+//         if(pdibWork4 == NULL)
+//            return false;
+//         if(!pdibWork4->create(size))
+//            return false;
+//
+//
+//         pdibWork4->Fill(255, 0, 0, 0);
+//
+//         pdibWork4->from(point(max(0, m_ptAlphaBlend.x - xDst), max(0, m_ptAlphaBlend.y - yDst)),
+//            m_pdibAlphaBlend->get_graphics(), point(max(0, xDst - m_ptAlphaBlend.x), max(0, yDst - m_ptAlphaBlend.y)), size);
+//
+//         pdibWork->channel_multiply(visual::rgba::channel_alpha, pdibWork4);
+//
+//
+//         keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
+//
+//
+//         return BitBlt(ptDest.x, ptDest.y, size.cx, size.cy, pdibWork->get_graphics(), ptSrc.x, ptSrc.y, SRCCOPY);
+//
+//      }
+//
+//      if(pgraphicsSrc == NULL)
+//         return false;
+//
+//
+//      if(nSrcWidth == 0 || nSrcHeight == 0 || nDstWidth == 0 || nDstHeight == 0)
+//         return false;
+//
+//      cairo_pattern_t * ppattern = cairo_get_source((cairo_t *) pgraphicsSrc->get_os_data());
+//
+//      if(ppattern == NULL)
+//         return false;
+//
+//      if(cairo_pattern_status(ppattern) != CAIRO_STATUS_SUCCESS)
+//         return false;
+//
+//      if(m_pdc == NULL)
+//         return false;
+//
+//      cairo_keep keep(m_pdc);
+//
+//      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+//         return false;
+//
+//      cairo_translate(m_pdc, xDst, yDst);
+//
+//      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+//         return false;
+//
+//      cairo_scale(m_pdc, (double) nDstWidth / (double) nSrcWidth, (double) nDstHeight / (double) nSrcHeight);
+//
+//      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+//         return false;
+//
+//      cairo_set_source(m_pdc, ppattern);
+//
+//      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+//         return false;
+//
+//      cairo_paint_with_alpha(m_pdc, dRate);
+//
+//      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+//         return false;
+//
+//      //cairo_pattern_destroy(ppattern);
+//
+//      //if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+//        // return false;
+//
+//      return true;
 
    }
 
@@ -3620,8 +3440,6 @@ return 1;
    {
 
       synch_lock ml(&user_mutex());
-      //POINT point;
-      //::GetViewportOrgEx(get_handle2(), &point);
 
       cairo_matrix_t m;
 
@@ -3636,25 +3454,28 @@ return 1;
    point graphics::SetViewportOrg(int32_t x, int32_t y)
    {
 
-      synch_lock ml(&user_mutex());
-      /*point point(0, 0);
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         ::SetViewportOrgEx(get_handle1(), x, y, &point);
-      if(get_handle2() != NULL)
-         ::SetViewportOrgEx(get_handle2(), x, y, &point);*/
+      if(abs(x) > 900 || abs(y) > 800)
+      {
+
+         printf("123");
+
+      }
 
       cairo_matrix_t m;
 
       cairo_get_matrix(m_pdc, &m);
 
-      m.x0  = x;
+      int xOld = (int) m.x0;
+
+      int yOld = (int) m.y0;
+
+      m.x0 = x;
 
       m.y0 = y;
 
       cairo_set_matrix(m_pdc, &m);
 
-      //return point;
-      return point(x, y);
+      return ::point(xOld, yOld);
 
    }
 
@@ -3662,20 +3483,23 @@ return 1;
    {
 
       synch_lock ml(&user_mutex());
-      point point = GetViewportOrg();
 
+      point point = GetViewportOrg();
 
       if(abs(nWidth) > 800|| abs(nHeight) >800)
       {
 
          printf("123");
+
       }
 
       cairo_translate(m_pdc, nWidth, nHeight);
+
       if(abs(point.x + nWidth) > 800 || abs(point.y + nHeight) > 800)
       {
 
          printf("123");
+
       }
 
       return ::point(point.x + nWidth, point.y + nHeight);
@@ -3793,7 +3617,6 @@ return 1;
 
    int32_t graphics::SelectClipRgn(::draw2d::region * pregion)
    {
-
       synch_lock ml(&user_mutex());
       if(pregion == NULL)
       {
@@ -4571,7 +4394,7 @@ return 1;
    {
 
       sized sz;
-      
+
       if (!GetTextExtent(sz, lpszString, nCount, iIndex))
          return ::size(0, 0);
 
@@ -4636,7 +4459,6 @@ return 1;
 
       string str(lpszString, min(iIndex, nCount));
 
-
       cairo_keep keep(m_pdc);
 
       ((graphics *) this)->set(m_spfont);
@@ -4645,27 +4467,18 @@ return 1;
 
       cairo_font_extents_t e;
 
-      //cairo_matrix_t m;
-
       cairo_font_extents(m_pdc, &e);
 
       if (!str.has_char())
       {
-         
+
          size.cx = 0;
-         
+
          size.cy = e.height;
 
          return true;
 
       }
-
-
-      /*cairo_get_matrix(m_pdc, &m);
-
-      cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
-
-      cairo_set_matrix(m_pdc, &m);*/
 
       cairo_text_extents(m_pdc, str, &ex);
 
@@ -4675,7 +4488,7 @@ return 1;
 
       return true;
 
-   
+
    }
 
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount) const
@@ -4885,7 +4698,7 @@ return 1;
 
       if (m_spregion.is_set() && !m_spregion.cast < region >()->is_simple_positive_region())
       {
-         
+
          string str(lpszString, nCount);
 
          ::draw2d::dib_sp dib0(allocer());
