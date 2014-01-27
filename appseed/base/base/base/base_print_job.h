@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_CORE print_job :
+class CLASS_DECL_BASE print_job :
    virtual public ::user::job
 {
 public:

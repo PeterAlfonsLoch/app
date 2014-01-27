@@ -358,6 +358,9 @@ CLASS_DECL_BASE char * ::core::TaskStringW2A(const wchar_t * lpw);
 #include "user_job.h"
 
 
+#include "base/base/base/base_print_job.h"
+
+
 #include "user_message.h"
 
 #include "user_printer.h"
