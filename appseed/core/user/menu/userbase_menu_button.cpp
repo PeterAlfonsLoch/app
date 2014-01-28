@@ -78,7 +78,6 @@ namespace user
          rect rectImage = m_rectCheckBox;
          rect rectImageBorder = rectImage;
          rectImageBorder.inflate(2, 2);
-#ifdef WINDOWSEX
          ::image_list::info ii;
          sp(image_list) pimagelist;
          if(!_001IsWindowEnabled())
@@ -104,9 +103,6 @@ namespace user
             uiImage,
             rectImage.top_left(),
             0);
-#else
-         throw todo(get_app());
-#endif
       }
       else
       {
