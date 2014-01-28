@@ -189,7 +189,7 @@ void * aligned_memory_alloc(size_t size)
 void * unaligned_memory_alloc(size_t size)
 {
 
-#ifdef MACOS
+#if defined(MACOS) || defined(LINUX)
 
    return aligned_memory_alloc(size);
 
@@ -668,11 +668,11 @@ public:
       g_pmutgen = new mutex();
 
       //g_pmutexTrace = new mutex();
-      
+
 #ifdef BSD_STYLE_SOCKETS
 
      ::sockets::base_socket::s_pmutex = new mutex();
-     
+
 #endif
 
 #if defined(WINDOWSEX)
@@ -834,11 +834,11 @@ public:
 #endif // defined(MACOS)
 
 #ifdef BSD_STYLE_SOCKETS
-      
+
       delete ::sockets::base_socket::s_pmutex;
-      
+
       ::sockets::base_socket::s_pmutex = NULL;
-      
+
 #endif
 
 

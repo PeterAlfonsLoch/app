@@ -107,7 +107,7 @@ namespace draw2d_cairo
 
    bool region::mask(cairo_t * pdc)
    {
-
+synch_lock ml(&user_mutex());
       if(m_pdc != NULL)
       {
 
@@ -190,7 +190,7 @@ namespace draw2d_cairo
 
    bool region::mask_rect(cairo_t * pdc)
    {
-
+synch_lock ml(&user_mutex());
       cairo_rectangle(pdc, m_x1, m_y1, m_x2, m_y2);
 
       cairo_fill(pdc);
@@ -201,7 +201,7 @@ namespace draw2d_cairo
 
    bool region::mask_oval(cairo_t * pdc)
    {
-
+synch_lock ml(&user_mutex());
       double centerx    = (m_x2 + m_x1) / 2.0;
       double centery    = (m_y2 + m_y1) / 2.0;
 
@@ -227,7 +227,7 @@ namespace draw2d_cairo
 
    bool region::mask_polygon(cairo_t * pdc)
    {
-
+synch_lock ml(&user_mutex());
       if(m_nCount <= 0)
          return true;
 
@@ -248,7 +248,7 @@ namespace draw2d_cairo
 
    bool region::mask_poly_polygon(cairo_t * pdc)
    {
-
+synch_lock ml(&user_mutex());
       int32_t n = 0;
 
       for(int32_t i = 0; i < m_nCount; i++)
@@ -274,7 +274,7 @@ namespace draw2d_cairo
 
    bool region::mask_combine(cairo_t * pdc)
    {
-
+synch_lock ml(&user_mutex());
       cairo_push_group(pdc);
 
       dynamic_cast < ::draw2d_cairo::region * >(m_pregion1)->mask(pdc);
@@ -314,7 +314,7 @@ namespace draw2d_cairo
 
    bool region::clip(cairo_t * pdc)
    {
-
+synch_lock ml(&user_mutex());
       if(m_pdc != NULL)
       {
 
@@ -356,7 +356,7 @@ namespace draw2d_cairo
 
    bool region::clip_rect(cairo_t * pdc)
    {
-
+synch_lock ml(&user_mutex());
       cairo_rectangle(pdc, m_x1, m_y1, m_x2, m_y2);
 
       cairo_clip(pdc);
@@ -367,7 +367,7 @@ namespace draw2d_cairo
 
    bool region::clip_oval(cairo_t * pdc)
    {
-
+synch_lock ml(&user_mutex());
       double centerx    = (m_x2 + m_x1) / 2.0;
       double centery    = (m_y2 + m_y1) / 2.0;
 
@@ -396,7 +396,7 @@ namespace draw2d_cairo
 
    bool region::clip_polygon(cairo_t * pdc)
    {
-
+synch_lock ml(&user_mutex());
       if(m_nCount <= 0)
          return true;
 

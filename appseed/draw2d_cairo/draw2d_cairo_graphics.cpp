@@ -272,6 +272,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    ::draw2d::bitmap* graphics::SelectObject(::draw2d::bitmap* pbitmap)
    {
 
+synch_lock ml(&user_mutex());
 
       if(pbitmap == NULL)
          return NULL;
@@ -367,6 +368,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    int32_t graphics::GetPolyFillMode() const
    {
+      synch_lock ml(&user_mutex());
       //return ::GetPolyFillMode(get_handle2());
       return cairo_get_fill_rule(m_pdc) == CAIRO_FILL_RULE_WINDING ? ::draw2d::fill_mode_winding : ::draw2d::fill_mode_alternate;
    }
@@ -564,7 +566,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    bool graphics::Arc(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4)
    {
-
+synch_lock ml(&user_mutex());
       double centerx    = (x2 + x1) / 2.0;
       double centery    = (y2 + y1) / 2.0;
 
@@ -967,7 +969,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    bool graphics::DrawEllipse(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
-
+synch_lock ml(&user_mutex());
       double centerx    = (x2 + x1) / 2.0;
       double centery    = (y2 + y1) / 2.0;
 
@@ -1010,7 +1012,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    bool graphics::FillEllipse(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
-
+synch_lock ml(&user_mutex());
       double centerx    = (x2 + x1) / 2.0;
 
       double centery    = (y2 + y1) / 2.0;
@@ -1077,7 +1079,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    }
 
    bool graphics::fill_polygon(const POINTD * pa, int32_t nCount)
-   {
+   {synch_lock ml(&user_mutex());
 
       if(nCount <= 0)
          return TRUE;
@@ -1097,7 +1099,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    }
 
    bool graphics::fill_polygon(const POINT* pa, int32_t nCount)
-   {
+   {synch_lock ml(&user_mutex());
 
       if(nCount <= 0)
          return TRUE;
@@ -1120,7 +1122,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    bool graphics::Polygon(const POINT* pa, int32_t nCount)
    {
 
-
+synch_lock ml(&user_mutex());
       if(nCount <= 0)
          return TRUE;
 
@@ -1162,7 +1164,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
       return bOk1 && bOk2;*/
 
 
-      cairo_rectangle(m_pdc, x1, y1, x2, y2);
+      cairo_rectangle(m_pdc, x1, y1, x2 - x1, y2 - y1);
 
 
       return fill_and_draw();
@@ -1181,8 +1183,8 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    bool graphics::DrawRectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
-
-      cairo_rectangle(m_pdc, x1, y1, x2, y2);
+synch_lock ml(&user_mutex());
+      cairo_rectangle(m_pdc, x1, y1, x2 - x1, y2 - y1);
 
       return draw();
 
@@ -1197,8 +1199,8 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    bool graphics::FillRectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
-
-      cairo_rectangle(m_pdc, x1, y1, x2, y2);
+synch_lock ml(&user_mutex());
+      cairo_rectangle(m_pdc, x1, y1, x2 - x1, y2 - y1);
 
       return fill();
 
@@ -1639,6 +1641,8 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    bool graphics::get_text_metrics(LPTEXTMETRICW lpMetrics) const
    {
+
+      synch_lock sl(&user_mutex());
 
       ((::draw2d_cairo::graphics *) this)->set(m_spfont);
 
@@ -3453,7 +3457,7 @@ return 1;
 
    point graphics::SetViewportOrg(int32_t x, int32_t y)
    {
-
+synch_lock ml(&user_mutex());
       if(abs(x) > 900 || abs(y) > 800)
       {
 
@@ -3820,7 +3824,7 @@ return 1;
    UINT graphics::SetTextAlign(UINT nFlags)
    {
 
-      throw not_implemented(get_app());
+      //throw not_implemented(get_app());
       return 0;
 
 /*
@@ -4693,6 +4697,8 @@ return 1;
    bool graphics::TextOut(double x, double y, const char * lpszString, int32_t nCount)
    {
 
+      synch_lock sl(&user_mutex());
+
       if (::draw2d::graphics::TextOut(x, y, lpszString, nCount))
          return true;
 
@@ -4720,8 +4726,6 @@ return 1;
          return m_spregion.cast < region >()->mask(m_pdc);
 
       }
-
-      synch_lock ml(&user_mutex());
 
       cairo_keep keep(m_pdc);
 
@@ -4848,7 +4852,7 @@ return 1;
    }*/
 
    bool graphics::attach(void * pdata)
-   {
+   {synch_lock ml(&user_mutex());
 
       if(m_pdc != NULL)
       {
@@ -4987,7 +4991,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
 
    bool graphics::blur(bool bExpand, double dRadius, LPCRECT lpcrect)
-   {
+   {synch_lock ml(&user_mutex());
 
       cairo_pattern_t * ppattern = cairo_get_source(m_pdc);
 
@@ -5022,7 +5026,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
    bool graphics::set(const ::draw2d::brush * pbrush)
    {
-
+synch_lock ml(&user_mutex());
       if(pbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
       {
 
@@ -5051,7 +5055,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
    bool graphics::set(const ::draw2d::pen * ppen)
    {
-
+synch_lock ml(&user_mutex());
       cairo_set_source_rgba(m_pdc, argb_get_r_value(ppen->m_cr) / 255.0, argb_get_g_value(ppen->m_cr) / 255.0, argb_get_b_value(ppen->m_cr) / 255.0, argb_get_a_value(ppen->m_cr) / 255.0);
 
       cairo_set_line_width(m_pdc, ppen->m_dWidth - 0.5);
@@ -5063,7 +5067,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
    bool graphics::set(const ::draw2d::font * pfontParam)
    {
-
+synch_lock ml(&user_mutex());
       //cairo_select_font_face(m_pdc, pfont->m_strFontFamilyName, pfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
 
       if(pfontParam == NULL)
@@ -5179,7 +5183,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
    bool graphics::fill_and_draw()
    {
-
+synch_lock ml(&user_mutex());
       bool bPen = m_sppen->m_etype != ::draw2d::pen::type_null;
 
       cairo_keep keep(m_pdc);
@@ -5206,7 +5210,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
       }
 
-      keep.pulse();
+      //keep.pulse();
 
       if(bPen)
       {
@@ -5227,7 +5231,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
    bool graphics::fill(::draw2d::brush * pbrush)
    {
-
+synch_lock ml(&user_mutex());
       if(pbrush == NULL || pbrush->m_etype == ::draw2d::brush::type_null)
          return true;
 
@@ -5244,7 +5248,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
    bool graphics::draw(::draw2d::pen * ppen)
    {
-
+synch_lock ml(&user_mutex());
       if(ppen == NULL || ppen->m_etype == ::draw2d::pen::type_null)
          return true;
 
@@ -5261,7 +5265,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
    bool graphics::set(const ::draw2d::path * ppathParam)
    {
-
+synch_lock ml(&user_mutex());
       cairo_keep keep(m_pdc);
 
       cairo_new_sub_path(m_pdc);
@@ -5295,7 +5299,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
    bool graphics::set(const ::draw2d_cairo::path::element & e)
    {
-
+synch_lock ml(&user_mutex());
       switch(e.m_etype)
       {
       case ::draw2d::path::element::type_arc:
@@ -5326,7 +5330,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
    bool graphics::set(const ::draw2d_cairo::path::arc & a)
    {
-
+synch_lock ml(&user_mutex());
       cairo_keep keep(m_pdc);
 
       cairo_translate(m_pdc, a.m_xCenter, a.m_yCenter);
@@ -5341,7 +5345,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
    bool graphics::set(const ::draw2d_cairo::path::line & l)
    {
-
+synch_lock ml(&user_mutex());
       if(!cairo_has_current_point(m_pdc))
       {
 
@@ -5362,7 +5366,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
    bool graphics::set(const ::draw2d_cairo::path::move & p)
    {
-
+synch_lock ml(&user_mutex());
       cairo_move_to(m_pdc, p.m_x + 0.5, p.m_y + 0.5);
 
       return true;
@@ -5397,7 +5401,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
     bool graphics::set_os_color(COLORREF cr)
     {
-
+synch_lock ml(&user_mutex());
        cairo_set_source_rgba(m_pdc, argb_get_r_value(cr) / 255.0, argb_get_g_value(cr) / 255.0, argb_get_b_value(cr) / 255.0, argb_get_a_value(cr) / 255.0);
 
       return true;
