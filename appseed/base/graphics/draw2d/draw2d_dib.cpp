@@ -1038,7 +1038,7 @@ namespace draw2d
    void dib::channel_multiply(visual::rgba::echannel echannel, ::draw2d::dib * pdib)
    {
 
-      int64_t size = area();
+//      int64_t size = area();
 
       LPBYTE lpb1 = (LPBYTE) get_data();
 

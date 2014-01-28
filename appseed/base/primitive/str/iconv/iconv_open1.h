@@ -82,7 +82,7 @@
         goto invalid;
       continue;
     }
-    ap = aliases_lookup(buf,bp-buf);
+    ap = aliases_lookup(buf,(int) (bp-buf));
     if (ap == NULL) {
       ap = aliases2_lookup(buf);
       if (ap == NULL)
@@ -174,7 +174,7 @@
         goto invalid;
       continue;
     }
-    ap = aliases_lookup(buf,bp-buf);
+    ap = aliases_lookup(buf, (int) (bp-buf));
     if (ap == NULL) {
       ap = aliases2_lookup(buf);
       if (ap == NULL)

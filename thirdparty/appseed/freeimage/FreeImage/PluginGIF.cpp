@@ -1019,7 +1019,11 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				}
 				comment.append(1, '\0');
 #ifdef _LP64
+#ifdef MACOS
+				sprintf(buf, "Comment%lld", idx);
+            #else
 				sprintf(buf, "Comment%ld", idx);
+            #endif
 #else
 				sprintf(buf, "Comment%d", idx);
 #endif

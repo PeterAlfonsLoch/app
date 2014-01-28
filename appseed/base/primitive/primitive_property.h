@@ -183,7 +183,7 @@ public:
    {
       return m_var;
    }
-   inline var get_value() const
+   inline const var & get_value() const
    {
       return m_var;
    }

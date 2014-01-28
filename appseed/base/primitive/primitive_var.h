@@ -198,13 +198,13 @@ public:
    property_set &                   propset(sp(base_application) papp = NULL);
    property &                       prop();
    const class primitive::memory &  memory() const;
-   stringa                          stra() const;
-   int_array                        inta() const;
-   int64_array                      int64a() const;
-   var_array                        vara()  const;
-   property_set                     propset() const;
-   property                         prop() const;
-   class duration                   duration() const;
+   const stringa &                  stra() const;
+   const int_array &                inta() const;
+   const int64_array &              int64a() const;
+   const var_array &                vara()  const;
+   const property_set &             propset() const;
+   const property &                 prop() const;
+   const class duration &           duration() const;
 
    bool is_scalar() const;
    inline bool is_array() const;

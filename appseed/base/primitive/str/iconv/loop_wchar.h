@@ -444,7 +444,7 @@ static size_t wchar_id_loop_convert (iconv_t icd,
                                      const char* * inbuf, size_t *inbytesleft,
                                      char* * outbuf, size_t *outbytesleft)
 {
-  struct conv_struct * cd = (struct conv_struct *) icd;
+//  struct conv_struct * cd = (struct conv_struct *) icd;
   const wchar_t* inptr = (const wchar_t*) *inbuf;
   size_t inleft = *inbytesleft / sizeof(wchar_t);
   wchar_t* outptr = (wchar_t*) *outbuf;

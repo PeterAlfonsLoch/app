@@ -345,14 +345,17 @@ void property_set::_008Add(const char * pszKey, const char * pszValue)
    stringa straKey;
 
    straKey.explode(".", pszKey);
-
+   
+   if(straKey.get_count() <= 0)
+      return;
+   
    property_set * pset = this;
-
+   
    int32_t i = 0;
 
    while(i  < straKey.get_upper_bound())
    {
-      pset = &pset->operator[](straKey[i]).propset();
+      pset = &(*pset)[straKey[i]].propset();
       i++;
    }
 
@@ -367,165 +370,124 @@ void property_set::_008Add(const char * pszKey, const char * pszValue)
 
 }
 
-void property_set::_008Parse(bool bApp, const char * pszCmdLineParam, var & varFile, string & strApp)
+void property_set::_008Parse(bool bApp, const char * pszCmdLine, var & varFile, string & strApp)
 {
-
-   const char * pszCmdLine =  pszCmdLineParam;
 
    if(pszCmdLine == NULL)
       return;
 
+   enum e_state
+   {
+      state_key,
+      state_equal,
+      state_value,
+   };
+   
+   
+   ::str::parse parse(pszCmdLine, "= ");
+   
+   parse.EnableQuote(true);
+   
+   if(bApp && parse.getrestlen())
+   {
+      parse.getword(strApp);
+   }
+
+   string strFile;
+   
+   
+   while(parse.getrestlen())
+   {
+   
+      parse.getword(strFile);
+      
+      if(strFile == ":")
+         break;
+      
+      if(varFile.is_empty())
+      {
+         varFile = strFile;
+      }
+      else if(varFile.get_type() == var::type_string)
+      {
+         varFile.stra().add(strFile);
+      }
+      else if(varFile.get_type() == var::type_stra)
+      {
+         varFile.stra().add(strFile);
+      }
+      else if(varFile.get_type() == var::type_propset)
+      {
+         varFile.propset()["stra"].stra().add(strFile);
+      }
+      else
+      {
+         varFile.propset()["varFile"] = varFile;
+         varFile.propset()["stra"].stra().add(strFile);
+      }
+      
+   
+   }
+
+
    string str;
    string strKey;
-   string strValue;
-   bool bQuote = false;
-   bool bKey = false;
-   bool bTwoDots = false;
-   bool bFile = !bApp;
-   bool bRun = true;
-   bool bStarted = false;
+   
 
+   e_state state = state_key;
+   
+   int iEnd = 0;
 
-   const char * pszStart = pszCmdLine;
-   while(bRun)
+   while(iEnd <= 1)
    {
-      bRun = bRun && *pszCmdLine != '\0';
-      //         if(!bStarted && !bQuote && *pszCmdLine != '\0' && ::str::ch::is_space_char(pszCmdLine))
-      //       {
-      //        pszStart = ::str::utf8_inc(pszCmdLine);
-      //      bStarted = true;
-      // }
-      if(pszStart <= pszCmdLine && (((bApp || bFile) && ((!bQuote && isspace(*pszCmdLine)) || (bQuote && *pszCmdLine == '\"' && (*(pszCmdLine - 1)) != '\\') || !bRun)) || (!bTwoDots && !bQuote && *pszCmdLine == ':')))
+      
+      if(parse.getrestlen() <= 0)
       {
-         if(!bTwoDots && !bQuote && *pszCmdLine == ':')
-         {
-            bTwoDots    = true;
-         }
-         if(bApp)
-         {
-            strApp = string(pszStart, pszCmdLine - pszStart);
-            bApp = false;
-            bFile = true;
-            bStarted = false;
-         }
-         else if(bFile)
-         {
-            string strFile = string(pszStart, pszCmdLine - pszStart);
-            strFile.trim();
-            if(strFile.has_char())
-            {
-               if(varFile.is_empty())
-               {
-                  varFile = strFile;
-                  if(bQuote)
-                  {
-                     pszCmdLine++;
-                     bRun = bRun && *pszCmdLine != '\0';
-                  }
-                  bStarted = false;
-               }
-               else if(varFile.get_type() == var::type_string)
-               {
-                  varFile.stra().add(strFile);
-                  bStarted = false;
-               }
-               else if(varFile.get_type() == var::type_stra)
-               {
-                  varFile.stra().add(strFile);
-                  bStarted = false;
-               }
-               else if(varFile.get_type() == var::type_propset)
-               {
-                  varFile.propset()["stra"].stra().add(strFile);
-                  bStarted = false;
-               }
-               else
-               {
-                  varFile.propset()["varFile"] = varFile;
-                  varFile.propset()["stra"].stra().add(strFile);
-                  bStarted = false;
-               }
-            }
-            pszStart = pszCmdLine;
-
-         }
-         if(bTwoDots)
-         {
-            bApp = false;
-            bFile = false;
-         }
-         bQuote = false;
+         iEnd++;
       }
-      else if(bRun && !bQuote && *pszCmdLine == '\"' && (pszCmdLine == pszCmdLineParam || (*(pszCmdLine - 1)) != '\\'))
+      
+      if(iEnd <= 0)
       {
-         bQuote = true;
-         pszStart = pszCmdLine + 1;
+         parse.getsplit(str);
       }
-      else if(bTwoDots)
+      
+      switch(state)
       {
-         if(*pszCmdLine == '\"' && *(pszCmdLine - 1) != '\\')
+      case state_key:
          {
-            if(bQuote)
-            {
-               if(bKey)
-               {
-                  strKey = str;
-                  str.Empty();
-               }
-               else
-               {
-                  strValue = str;
-                  str.Empty();
-                  _008Add(strKey, strValue);
-                  strKey.Empty();
-                  strValue.Empty();
-               }
-               bQuote = false;
-            }
+            strKey = str;
+            state = state_equal;
          }
-         else
+         break;
+      case state_equal:
          {
-            if(bQuote)
+            if(str == '=')
             {
-               str += *pszCmdLine;
-            }
-            else if(*pszCmdLine == '=')
-            {
-               strKey = str;
-               str.Empty();
-
-               bKey = false;
-            }
-            else if(*pszCmdLine == '\n' || *pszCmdLine == '\r'
-               || *pszCmdLine == '\t' || *pszCmdLine == ' '
-               || *pszCmdLine == '\0' || !bRun)
-            {
-               if(bKey)
-               {
-                  strKey = str;
-                  _008Add(strKey, strValue);
-                  strKey.Empty();
-                  strValue.Empty();
-                  str.Empty();
-               }
-               else if(!strKey.is_empty())
-               {
-                  strValue = str;
-                  _008Add(strKey, strValue);
-                  strKey.Empty();
-                  strValue.Empty();
-                  str.Empty();
-               }
-               bKey = true;
+               state = state_value;
             }
             else
             {
-               str += *pszCmdLine;
+               _008Add(strKey, "");
+               strKey.Empty();
+               str.Empty();
+               state = state_key;
             }
          }
+         break;
+      case state_value:
+         {
+      
+            _008Add(strKey, str);
+            strKey.Empty();
+            str.Empty();
+            state = state_key;
+
+         }
+         break;
       }
-      pszCmdLine++;
+      
    }
+
 }
 
 void property_set::parse_json(const char * & pszJson)
@@ -899,8 +861,20 @@ property_set & property_set::merge(const property_set & set)
                }
 
             }
+            else if(((property &)operator[](set.m_propertya[i].name())).is_empty())
+            {
+               ((property &)operator[](set.m_propertya[i].name())) = set.m_propertya[i];
+            }
             else
             {
+               try {
+                  
+               if(((property &)operator[](set.m_propertya[i].name())) == set.m_propertya[i])
+               {
+                  continue;
+               }
+               } catch(...){
+               }
                ((property &)operator[](set.m_propertya[i].name())).stra().add_unique(set.m_propertya[i].m_var.stra());
                if (((property &)operator[](set.m_propertya[i].name())).stra().get_size() == 1)
                {

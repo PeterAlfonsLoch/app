@@ -1480,6 +1480,10 @@ string var::get_string(const char * pszOnNull) const
       {
          str = *m_pid;
       }
+      else if(m_etype == var::type_stra)
+      {
+         str = stra().implode("");
+      }
 
       return str;
 
@@ -1910,23 +1914,28 @@ const class primitive::memory & var::memory() const
 }
 
 
-stringa var::stra() const
+const stringa & var::stra() const
 {
-   var varTime = *this;
-   return varTime.stra();
+
+   return ((var *)this)->stra();
+   
 }
 
-int_array var::inta() const
+
+const int_array & var::inta() const
 {
-   var varTime = *this;
-   return varTime.inta();
+
+   return ((var *)this)->inta();
+   
 }
 
-int64_array var::int64a() const
+const int64_array & var::int64a() const
 {
-   var varTime = *this;
-   return varTime.int64a();
+
+   return ((var *)this)->int64a();
+   
 }
+
 
 class var & var::operator = (var * pvar)
 {
@@ -1964,46 +1973,40 @@ var_array & var::vara()
    return *m_pvara;
 }
 
-var_array var::vara() const
+
+const var_array & var::vara() const
 {
-   if(get_type() == type_pvar)
-   {
-      return m_pvar->vara();
-   }
-   else if(get_type() != type_vara)
-   {
-      var varTime = *this;
-      return varTime.vara();
-   }
-   return *m_pvara;
+
+   return ((var *)this)->vara();
+   
 }
 
 
-::duration var::duration() const
+const ::duration & var::duration() const
 {
-   var varDuration = *this;
-   return varDuration.duration();
+
+   return ((var *)this)->duration();
+   
 }
 
 
 property_set & var::propset(sp(base_application) papp)
 {
-   property_set * pset;
+   sp(property_set) pset;
    if(m_etype == type_pvar)
    {
       pset = &m_pvar->propset();
    }
    else if(m_etype != type_propset)
    {
-      property_set * ppropset = canew(property_set());
+      pset = canew(property_set());
       for(int32_t i = 0; i < array_get_count(); i++)
       {
-         ppropset->add(id(), at(i));
+         pset->add(id(), at(i));
       }
       set_type(type_propset, false);
       //ASSERT(m_sp.is_null());
-      m_sp = ppropset;
-      pset = ppropset;
+      m_sp = pset;
       m_pset = pset;
    }
    else if(m_sp.is_null())
@@ -2023,11 +2026,14 @@ property_set & var::propset(sp(base_application) papp)
    return *pset;
 }
 
-property_set var::propset() const
+
+const property_set & var::propset() const
 {
-   var varTime = *this;
-   return varTime.propset();
+
+   return ((var *)this)->propset();
+   
 }
+
 
 property & var::prop()
 {
@@ -2043,15 +2049,14 @@ property & var::prop()
    return *dynamic_cast < property * > (m_sp.m_p);
 }
 
-property var::prop() const
+
+const property & var::prop() const
 {
-   if(get_type() != type_prop)
-   {
-      var varTime = *this;
-      return varTime.prop();
-   }
-   return *dynamic_cast < const property * > (m_sp.m_p);
+
+   return ((var *)this)->prop();
+   
 }
+
 
 string var::implode(const char * pszGlue) const
 {

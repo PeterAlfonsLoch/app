@@ -1690,12 +1690,13 @@ static const struct alias aliases[] =
     {(int)(long)&((struct stringpool_t *)0)->stringpool_str935, ei_big5hkscs2004}
   };
 
-#ifdef __GNUC__
-__inline
-#if defined __GNUC_STDC_INLINE__ || defined __GNUC_GNU_INLINE__
-__attribute__ ((__gnu_inline__))
-#endif
-#endif
+//#ifdef __GNUC__
+//__inline
+//#if defined __GNUC_STDC_INLINE__ || defined __GNUC_GNU_INLINE__
+//__attribute__ ((__gnu_inline__))
+//#endif
+//#endif
+static
 const struct alias *
 aliases_lookup (register const char *str, register unsigned int len)
 {

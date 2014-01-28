@@ -20,6 +20,10 @@
 
  #include <errno.h>
 
+#ifndef EILSEQ
+#define EILSEQ 0x02
+#endif
+
 /* This file defines the conversion loop via Unicode as a pivot encoding. */
 
 /* Attempt to transliterate wc. Return code as in xxx_wctomb. */
@@ -43,13 +47,13 @@ static int unicode_transliterate (conv_t cd, ucs4_t wc,
           sub_outcount = RET_TOOSMALL;
           goto johab_hangul_failed;
         }
-        sub_outcount = cd->ofuncs.xxx_wctomb(cd,outptr,buf[i],outleft);
+        sub_outcount = cd->ofuncs.xxx_wctomb(cd,outptr,buf[i],(int) outleft);
         if (sub_outcount <= RET_ILUNI)
           goto johab_hangul_failed;
         if (!(sub_outcount <= outleft)) abort();
         outptr += sub_outcount; outleft -= sub_outcount;
       }
-      return outptr-backup_outptr;
+      return (int) (outptr-backup_outptr);
     johab_hangul_failed:
       cd->ostate = backup_state;
       outptr = backup_outptr;
@@ -87,13 +91,13 @@ static int unicode_transliterate (conv_t cd, ucs4_t wc,
               sub_outcount = RET_TOOSMALL;
               goto variant_failed;
             }
-            sub_outcount = cd->ofuncs.xxx_wctomb(cd,outptr,buf[i],outleft);
+            sub_outcount = cd->ofuncs.xxx_wctomb(cd,outptr,buf[i],(int) outleft);
             if (sub_outcount <= RET_ILUNI)
               goto variant_failed;
             if (!(sub_outcount <= outleft)) abort();
             outptr += sub_outcount; outleft -= sub_outcount;
           }
-          return outptr-backup_outptr;
+          return (int) (outptr-backup_outptr);
         variant_failed:
           cd->ostate = backup_state;
           outptr = backup_outptr;
@@ -115,7 +119,7 @@ static int unicode_transliterate (conv_t cd, ucs4_t wc,
           ? (wc==0x2019 ? 0x00b4 : 0x0060) /* use accents */
           : 0x0027 /* use apostrophe */
       )  );
-    int outcount = cd->ofuncs.xxx_wctomb(cd,outptr,substitute,outleft);
+    int outcount = cd->ofuncs.xxx_wctomb(cd,outptr,substitute,(int) outleft);
     if (outcount != RET_ILUNI)
       return outcount;
   }
@@ -135,7 +139,7 @@ static int unicode_transliterate (conv_t cd, ucs4_t wc,
           sub_outcount = RET_TOOSMALL;
           goto translit_failed;
         }
-        sub_outcount = cd->ofuncs.xxx_wctomb(cd,outptr,cp[i],outleft);
+        sub_outcount = cd->ofuncs.xxx_wctomb(cd,outptr,cp[i],(int) outleft);
         if (sub_outcount == RET_ILUNI)
           /* Recursive transliteration. */
           sub_outcount = unicode_transliterate(cd,cp[i],outptr,outleft);
@@ -144,7 +148,7 @@ static int unicode_transliterate (conv_t cd, ucs4_t wc,
         if (!(sub_outcount <= outleft)) abort();
         outptr += sub_outcount; outleft -= sub_outcount;
       }
-      return outptr-backup_outptr;
+      return (int) (outptr-backup_outptr);
     translit_failed:
       cd->ostate = backup_state;
       outptr = backup_outptr;
@@ -283,7 +287,7 @@ static size_t unicode_loop_convert (iconv_t icd,
     ucs4_t wc;
     int incount;
     int outcount;
-    incount = cd->ifuncs.xxx_mbtowc(cd,&wc,inptr,inleft);
+    incount = cd->ifuncs.xxx_mbtowc(cd,&wc,inptr,(int) inleft);
     if (incount < 0) {
       if ((unsigned int)(-1-incount) % 2 == (unsigned int)(-1-RET_ILSEQ) % 2) {
         /* Case 1: invalid input, possibly after a shift sequence */
@@ -361,7 +365,7 @@ static size_t unicode_loop_convert (iconv_t icd,
         result = -1;
         break;
       }
-      outcount = cd->ofuncs.xxx_wctomb(cd,outptr,wc,outleft);
+      outcount = cd->ofuncs.xxx_wctomb(cd,outptr,wc,(int) outleft);
       if (outcount != RET_ILUNI)
         goto outcount_ok;
       /* Handle Unicode tag characters (range U+E0000..U+E007F). */
@@ -399,7 +403,7 @@ static size_t unicode_loop_convert (iconv_t icd,
         goto outcount_ok;
       }
       #endif
-      outcount = cd->ofuncs.xxx_wctomb(cd,outptr,0xFFFD,outleft);
+      outcount = cd->ofuncs.xxx_wctomb(cd,outptr,0xFFFD,(int) outleft);
       if (outcount != RET_ILUNI)
         goto outcount_ok;
       cd->istate = last_istate;
@@ -448,7 +452,7 @@ static size_t unicode_loop_reset (iconv_t icd,
       if (cd->ifuncs.xxx_flushwc(cd, &wc)) {
         unsigned char* outptr = (unsigned char*) *outbuf;
         size_t outleft = *outbytesleft;
-        int outcount = cd->ofuncs.xxx_wctomb(cd,outptr,wc,outleft);
+        int outcount = cd->ofuncs.xxx_wctomb(cd,outptr,wc,(int) outleft);
         if (outcount != RET_ILUNI)
           goto outcount_ok;
         /* Handle Unicode tag characters (range U+E0000..U+E007F). */
@@ -486,7 +490,7 @@ static size_t unicode_loop_reset (iconv_t icd,
           goto outcount_ok;
         }
         #endif
-        outcount = cd->ofuncs.xxx_wctomb(cd,outptr,0xFFFD,outleft);
+        outcount = cd->ofuncs.xxx_wctomb(cd,outptr,0xFFFD,(int) outleft);
         if (outcount != RET_ILUNI)
           goto outcount_ok;
         cd->istate = last_istate;
@@ -513,7 +517,7 @@ static size_t unicode_loop_reset (iconv_t icd,
     if (cd->ofuncs.xxx_reset) {
       unsigned char* outptr = (unsigned char*) *outbuf;
       size_t outleft = *outbytesleft;
-      int outcount = cd->ofuncs.xxx_reset(cd,outptr,outleft);
+      int outcount = cd->ofuncs.xxx_reset(cd,outptr,(int) outleft);
       if (outcount < 0) {
         errno = E2BIG;
         return -1;

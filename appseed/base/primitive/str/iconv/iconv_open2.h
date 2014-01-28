@@ -80,10 +80,10 @@
   cd->hooks.data = NULL;
   #endif
   /* Initialize additional fields. */
-  if (from_wchar != to_wchar) {
-    struct wchar_conv_struct * wcd = (struct wchar_conv_struct *) cd;
 #if HAVE_WCRTOMB || HAVE_MBRTOWC
+if (from_wchar != to_wchar) {
+   struct wchar_conv_struct * wcd = (struct wchar_conv_struct *) cd;
     memset(&wcd->state,'\0',sizeof(mbstate_t));
+}
 #endif
-  }
   /* Done. */
