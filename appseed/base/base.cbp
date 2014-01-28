@@ -195,6 +195,8 @@
 		<Unit filename="base/base/base_plex_heap.cpp" />
 		<Unit filename="base/base/base_plex_heap.h" />
 		<Unit filename="base/base/base_plex_heap_impl.h" />
+		<Unit filename="base/base/base_print_job.cpp" />
+		<Unit filename="base/base/base_print_job.h" />
 		<Unit filename="base/base/base_printf.cpp" />
 		<Unit filename="base/base/base_printf.h" />
 		<Unit filename="base/base/base_progress.cpp" />
@@ -4021,6 +4023,8 @@
 		<Unit filename="user/user/user_place_holder.h" />
 		<Unit filename="user/user/user_place_holder_container.cpp" />
 		<Unit filename="user/user/user_place_holder_container.h" />
+		<Unit filename="user/user/user_print_job.cpp" />
+		<Unit filename="user/user/user_print_job.h" />
 		<Unit filename="user/user/user_printer.cpp" />
 		<Unit filename="user/user/user_printer.h" />
 		<Unit filename="user/user/user_server.cpp" />

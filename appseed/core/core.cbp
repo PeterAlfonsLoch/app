@@ -319,8 +319,6 @@
 		<Unit filename="core/core_patch.h" />
 		<Unit filename="core/core_pipe.cpp" />
 		<Unit filename="core/core_pipe.h" />
-		<Unit filename="core/core_print_job.cpp" />
-		<Unit filename="core/core_print_job.h" />
 		<Unit filename="core/core_process.cpp" />
 		<Unit filename="core/core_process.h" />
 		<Unit filename="core/core_process_data.h" />
@@ -1238,7 +1236,6 @@
 		<Unit filename="user/fontopus/fontopus_user_set.h" />
 		<Unit filename="user/fontopus/fontopus_usera.h" />
 		<Unit filename="user/fontopus/fontopus_validate.h" />
-		<Unit filename="user/interaction.inl" />
 		<Unit filename="user/menu/user_menu.h" />
 		<Unit filename="user/menu/user_menu_base.h" />
 		<Unit filename="user/menu/user_menu_button.h" />
@@ -1414,8 +1411,6 @@
 		<Unit filename="user/user/user_notify_icon_listener.h" />
 		<Unit filename="user/user/user_plain_text_data.cpp" />
 		<Unit filename="user/user/user_plain_text_data.h" />
-		<Unit filename="user/user/user_print_job.cpp" />
-		<Unit filename="user/user/user_print_job.h" />
 		<Unit filename="user/user/user_scroll_bar.cpp" />
 		<Unit filename="user/user/user_scroll_bar.h" />
 		<Unit filename="user/user/user_scroll_view.cpp" />
@@ -1469,7 +1464,6 @@
 		<Unit filename="user/user/user_xfplayer_view_line_selection.h" />
 		<Unit filename="user/user/user_xfplayer_view_lines.cpp" />
 		<Unit filename="user/user/user_xfplayer_view_lines.h" />
-		<Unit filename="user/user_interaction.inl" />
 		<Unit filename="user/userex/userex.h" />
 		<Unit filename="user/userex/userex_dialog.cpp" />
 		<Unit filename="user/userex/userex_dialog.h" />
