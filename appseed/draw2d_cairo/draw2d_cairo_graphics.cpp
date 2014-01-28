@@ -2422,130 +2422,127 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    bool graphics::alpha_blend(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dRate)
    {
 
-      throw not_implemented(get_app());
 
-      return false;
+      synch_lock ml(&user_mutex());
 
-//      synch_lock ml(&user_mutex());
-//
-//      if(m_pdibAlphaBlend != NULL)
-//      {
-//
-//         rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
-//
-//
-//         ::draw2d::dib * pdibWork = NULL;
-//         ::draw2d::dib * pdibWork2 = NULL;
-////         ::draw2d::dib * pdibWork3 = NULL;
-//         ::draw2d::dib * pdibWork4 = NULL;
-//
-//
-//         class point ptSrc(xSrc, ySrc);
-//         class point ptDest(xDst, yDst);
-//         class size size(nDstWidth, nDstHeight);
-//
-//
-//
-//         ::draw2d::dib_sp spdib;
-//         if(pdibWork == NULL)
-//         {
-//            spdib.create(allocer());
-//            pdibWork = spdib;
-//         }
-//         if(pdibWork == NULL)
-//            return false;
-//         if(!pdibWork->create(size))
-//            return false;
-//         if(!pdibWork->from(null_point(), pgraphicsSrc, ptSrc, size))
-//            return false;
-//
-//
-//
-//
-//         ::draw2d::dib_sp spdib2;
-//         if(pdibWork2 == NULL)
-//         {
-//            spdib2.create(allocer());
-//            pdibWork2 = spdib2;
-//         }
-//
-//
-//         ::draw2d::dib_sp spdib4;
-//         if(pdibWork4 == NULL)
-//         {
-//            spdib4.create(allocer());
-//            pdibWork4 = spdib4;
-//         }
-//         if(pdibWork4 == NULL)
-//            return false;
-//         if(!pdibWork4->create(size))
-//            return false;
-//
-//
-//         pdibWork4->Fill(255, 0, 0, 0);
-//
-//         pdibWork4->from(point(max(0, m_ptAlphaBlend.x - xDst), max(0, m_ptAlphaBlend.y - yDst)),
-//            m_pdibAlphaBlend->get_graphics(), point(max(0, xDst - m_ptAlphaBlend.x), max(0, yDst - m_ptAlphaBlend.y)), size);
-//
-//         pdibWork->channel_multiply(visual::rgba::channel_alpha, pdibWork4);
-//
-//
-//         keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
-//
-//
-//         return BitBlt(ptDest.x, ptDest.y, size.cx, size.cy, pdibWork->get_graphics(), ptSrc.x, ptSrc.y, SRCCOPY);
-//
-//      }
-//
-//      if(pgraphicsSrc == NULL)
-//         return false;
-//
-//
-//      if(nSrcWidth == 0 || nSrcHeight == 0 || nDstWidth == 0 || nDstHeight == 0)
-//         return false;
-//
-//      cairo_pattern_t * ppattern = cairo_get_source((cairo_t *) pgraphicsSrc->get_os_data());
-//
-//      if(ppattern == NULL)
-//         return false;
-//
-//      if(cairo_pattern_status(ppattern) != CAIRO_STATUS_SUCCESS)
-//         return false;
-//
-//      if(m_pdc == NULL)
-//         return false;
-//
-//      cairo_keep keep(m_pdc);
-//
-//      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
-//         return false;
-//
-//      cairo_translate(m_pdc, xDst, yDst);
-//
-//      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
-//         return false;
-//
-//      cairo_scale(m_pdc, (double) nDstWidth / (double) nSrcWidth, (double) nDstHeight / (double) nSrcHeight);
-//
-//      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
-//         return false;
-//
-//      cairo_set_source(m_pdc, ppattern);
-//
-//      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
-//         return false;
-//
-//      cairo_paint_with_alpha(m_pdc, dRate);
-//
-//      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
-//         return false;
-//
-//      //cairo_pattern_destroy(ppattern);
-//
-//      //if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
-//        // return false;
-//
-//      return true;
+      if(m_pdibAlphaBlend != NULL)
+      {
+
+         rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
+
+
+         ::draw2d::dib * pdibWork = NULL;
+         ::draw2d::dib * pdibWork2 = NULL;
+//         ::draw2d::dib * pdibWork3 = NULL;
+         ::draw2d::dib * pdibWork4 = NULL;
+
+
+         class point ptSrc(xSrc, ySrc);
+         class point ptDest(xDst, yDst);
+         class size size(nDstWidth, nDstHeight);
+
+
+
+         ::draw2d::dib_sp spdib;
+         if(pdibWork == NULL)
+         {
+            spdib.create(allocer());
+            pdibWork = spdib;
+         }
+         if(pdibWork == NULL)
+            return false;
+         if(!pdibWork->create(size))
+            return false;
+         if(!pdibWork->from(null_point(), pgraphicsSrc, ptSrc, size))
+            return false;
+
+
+
+
+         ::draw2d::dib_sp spdib2;
+         if(pdibWork2 == NULL)
+         {
+            spdib2.create(allocer());
+            pdibWork2 = spdib2;
+         }
+
+
+         ::draw2d::dib_sp spdib4;
+         if(pdibWork4 == NULL)
+         {
+            spdib4.create(allocer());
+            pdibWork4 = spdib4;
+         }
+         if(pdibWork4 == NULL)
+            return false;
+         if(!pdibWork4->create(size))
+            return false;
+
+
+         pdibWork4->Fill(255, 0, 0, 0);
+
+         pdibWork4->from(point(max(0, m_ptAlphaBlend.x - xDst), max(0, m_ptAlphaBlend.y - yDst)),
+            m_pdibAlphaBlend->get_graphics(), point(max(0, xDst - m_ptAlphaBlend.x), max(0, yDst - m_ptAlphaBlend.y)), size);
+
+         pdibWork->channel_multiply(visual::rgba::channel_alpha, pdibWork4);
+
+
+         keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
+
+
+         return BitBlt(ptDest.x, ptDest.y, size.cx, size.cy, pdibWork->get_graphics(), ptSrc.x, ptSrc.y, SRCCOPY);
+
+      }
+
+      if(pgraphicsSrc == NULL)
+         return false;
+
+
+      if(nSrcWidth == 0 || nSrcHeight == 0 || nDstWidth == 0 || nDstHeight == 0)
+         return false;
+
+      cairo_pattern_t * ppattern = cairo_get_source((cairo_t *) pgraphicsSrc->get_os_data());
+
+      if(ppattern == NULL)
+         return false;
+
+      if(cairo_pattern_status(ppattern) != CAIRO_STATUS_SUCCESS)
+         return false;
+
+      if(m_pdc == NULL)
+         return false;
+
+      cairo_keep keep(m_pdc);
+
+      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+         return false;
+
+      cairo_translate(m_pdc, xDst, yDst);
+
+      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+         return false;
+
+      cairo_scale(m_pdc, (double) nDstWidth / (double) nSrcWidth, (double) nDstHeight / (double) nSrcHeight);
+
+      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+         return false;
+
+      cairo_set_source(m_pdc, ppattern);
+
+      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+         return false;
+
+      cairo_paint_with_alpha(m_pdc, dRate);
+
+      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+         return false;
+
+      //cairo_pattern_destroy(ppattern);
+
+      //if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+        // return false;
+
+      return true;
 
    }
 
