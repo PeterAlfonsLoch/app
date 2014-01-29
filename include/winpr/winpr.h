@@ -42,9 +42,17 @@
 #endif
 
 #ifdef _WIN32
+#ifndef INLINE
 #define INLINE	__inline
+#endif
 #else
 #define INLINE	inline
+#endif
+
+#ifdef WINDOWS
+
+#define WITH_NATIVE_SSPI
+
 #endif
 
 #endif /* WINPR_H */

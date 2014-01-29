@@ -27,7 +27,7 @@
 #endif
 
 #ifdef _WIN32
-#define INLINE	__inline
+//#define INLINE	__inline
 #else
 #define INLINE	inline
 #endif
