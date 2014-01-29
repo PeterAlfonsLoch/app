@@ -404,6 +404,11 @@ namespace plane
 
       ::core::library library(this, NULL);
 
+      if (!strcmp(pszLibrary, "app_core_rdpclient.dll"))
+      {
+         TRACE("reach");
+      }
+
       if(!library.open(pszLibrary, true))
          return false;
 

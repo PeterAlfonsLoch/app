@@ -1,0 +1,678 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{f4df35c3-2c22-4725-b932-b995caedb7ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{5c5c35ea-06c7-4df8-a336-a930b7402163}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\framework">
+      <UniqueIdentifier>{5ace9298-75b1-4976-8816-488d2060b3c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\framework">
+      <UniqueIdentifier>{e6e30705-34e1-4d08-b1c2-5501f428074a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cache">
+      <UniqueIdentifier>{8d9761f5-2d43-4acd-aaf6-5b70d261e511}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\codec">
+      <UniqueIdentifier>{51131744-8e29-452a-ae18-1a99d3a1c7f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\common">
+      <UniqueIdentifier>{f87afaa9-1967-4e54-bedb-2dd9fe971538}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\codec">
+      <UniqueIdentifier>{6ec3b714-fbe7-48cb-810b-907e3d922958}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\crypto">
+      <UniqueIdentifier>{e43cfbd1-dbc7-4225-8bcd-0c4151686eb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gdi">
+      <UniqueIdentifier>{25759740-1de4-4b80-bb75-6f01eb4835d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gdi">
+      <UniqueIdentifier>{714a9f38-8b9a-45bf-addc-d19646e93a75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\locale">
+      <UniqueIdentifier>{6a0f3a86-7dcc-4d95-8936-f76869680643}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\locale">
+      <UniqueIdentifier>{c9160cfc-36c9-45ee-8912-10303dab2d8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitives">
+      <UniqueIdentifier>{b90d8c2a-aa35-48de-85fa-5cfa55c99e19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitives">
+      <UniqueIdentifier>{fd67f269-1b4f-4616-965f-e82896ba773a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\rail">
+      <UniqueIdentifier>{b36a6589-4892-4778-a944-8ec6efe84f47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\rail">
+      <UniqueIdentifier>{9faaec17-f52b-406e-99f3-e78e92d190c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{c0a8344a-1905-4f3a-b23a-222b5cb61905}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core">
+      <UniqueIdentifier>{ae83e5f1-fc6e-49f6-bbe4-edec22f88d39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core">
+      <UniqueIdentifier>{a89bdfcf-afdd-4af1-aec6-6bfa227d6120}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\gateway">
+      <UniqueIdentifier>{cb8c560c-148a-4e24-abd0-fe8abc4d0826}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="core\activation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\freerdp\addin.h">
+      <Filter>Header Files\codec</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\freerdp\altsec.h">
+      <Filter>Header Files\codec</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\freerdp\api.h">
+      <Filter>Header Files\codec</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\framework.h">
+      <Filter>Header Files\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\nsc_encode.h">
+      <Filter>Header Files\codec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\nsc_sse2.h">
+      <Filter>Header Files\codec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\nsc_types.h">
+      <Filter>Header Files\codec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\rfx_bitstream.h">
+      <Filter>Header Files\codec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\rfx_constants.h">
+      <Filter>Header Files\codec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\rfx_decode.h">
+      <Filter>Header Files\codec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\rfx_differential.h">
+      <Filter>Header Files\codec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\rfx_dwt.h">
+      <Filter>Header Files\codec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\rfx_encode.h">
+      <Filter>Header Files\codec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\rfx_neon.h">
+      <Filter>Header Files\codec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\rfx_quantization.h">
+      <Filter>Header Files\codec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\rfx_rlgr.h">
+      <Filter>Header Files\codec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\rfx_sse2.h">
+      <Filter>Header Files\codec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\rfx_types.h">
+      <Filter>Header Files\codec</Filter>
+    </ClInclude>
+    <ClInclude Include="gdi\gdi.h">
+      <Filter>Header Files\gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="gdi\graphics.h">
+      <Filter>Header Files\gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="locale\keyboard_sun.h">
+      <Filter>Header Files\locale</Filter>
+    </ClInclude>
+    <ClInclude Include="locale\keyboard_x11.h">
+      <Filter>Header Files\locale</Filter>
+    </ClInclude>
+    <ClInclude Include="locale\keyboard_xkbfile.h">
+      <Filter>Header Files\locale</Filter>
+    </ClInclude>
+    <ClInclude Include="locale\liblocale.h">
+      <Filter>Header Files\locale</Filter>
+    </ClInclude>
+    <ClInclude Include="locale\xkb_layout_ids.h">
+      <Filter>Header Files\locale</Filter>
+    </ClInclude>
+    <ClInclude Include="primitives\prim_add.h">
+      <Filter>Header Files\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="primitives\prim_alphaComp.h">
+      <Filter>Header Files\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="primitives\prim_andor.h">
+      <Filter>Header Files\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="primitives\prim_colors.h">
+      <Filter>Header Files\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="primitives\prim_internal.h">
+      <Filter>Header Files\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="primitives\prim_set.h">
+      <Filter>Header Files\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="primitives\prim_shift.h">
+      <Filter>Header Files\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="primitives\prim_sign.h">
+      <Filter>Header Files\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="primitives\prim_templates.h">
+      <Filter>Header Files\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="rail\librail.h">
+      <Filter>Header Files\rail</Filter>
+    </ClInclude>
+    <ClInclude Include="core\capabilities.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\certificate.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\channel.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\connection.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\errinfo.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\extension.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\fastpath.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\gcc.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\info.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\input.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\license.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\listener.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\mcs.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\message.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\nego.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\nla.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\orders.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\peer.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\rdp.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\redirection.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\security.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\surface.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\tcp.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\timezone.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\tpdu.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\tpkt.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\transport.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\update.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\window.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework\framework.c">
+      <Filter>Source Files\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="cache\cache_bitmap.c">
+      <Filter>Source Files\cache</Filter>
+    </ClCompile>
+    <ClCompile Include="cache\cache_brush.c">
+      <Filter>Source Files\cache</Filter>
+    </ClCompile>
+    <ClCompile Include="cache\cache_cache.c">
+      <Filter>Source Files\cache</Filter>
+    </ClCompile>
+    <ClCompile Include="cache\cache_glyph.c">
+      <Filter>Source Files\cache</Filter>
+    </ClCompile>
+    <ClCompile Include="cache\cache_nine_grid.c">
+      <Filter>Source Files\cache</Filter>
+    </ClCompile>
+    <ClCompile Include="cache\cache_offscreen.c">
+      <Filter>Source Files\cache</Filter>
+    </ClCompile>
+    <ClCompile Include="cache\cache_palette.c">
+      <Filter>Source Files\cache</Filter>
+    </ClCompile>
+    <ClCompile Include="cache\cache_pointer.c">
+      <Filter>Source Files\cache</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\audio.c">
+      <Filter>Source Files\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\bitmap_decode.c">
+      <Filter>Source Files\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\bitmap_encode.c">
+      <Filter>Source Files\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\color.c">
+      <Filter>Source Files\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\dsp.c">
+      <Filter>Source Files\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\jpeg.c">
+      <Filter>Source Files\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\mppc_dec.c">
+      <Filter>Source Files\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\mppc_enc.c">
+      <Filter>Source Files\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\nsc.c">
+      <Filter>Source Files\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\nsc_encode.c">
+      <Filter>Source Files\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\nsc_sse2.c">
+      <Filter>Source Files\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\rfx.c">
+      <Filter>Source Files\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\rfx_decode.c">
+      <Filter>Source Files\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\rfx_differential.c">
+      <Filter>Source Files\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\rfx_dwt.c">
+      <Filter>Source Files\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\rfx_encode.c">
+      <Filter>Source Files\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\rfx_neon.c">
+      <Filter>Source Files\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\rfx_quantization.c">
+      <Filter>Source Files\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\rfx_rlgr.c">
+      <Filter>Source Files\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\rfx_sse2.c">
+      <Filter>Source Files\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="common\settings.c">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\addin.c">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\base64.c">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\ber.c">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\certificate.c">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto.c">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\der.c">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\er.c">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\per.c">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\tls.c">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="gdi\8bpp.c">
+      <Filter>Source Files\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="gdi\16bpp.c">
+      <Filter>Source Files\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="gdi\32bpp.c">
+      <Filter>Source Files\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="gdi\bitmap.c">
+      <Filter>Source Files\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="gdi\brush.c">
+      <Filter>Source Files\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="gdi\clipping.c">
+      <Filter>Source Files\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="gdi\dc.c">
+      <Filter>Source Files\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="gdi\drawing.c">
+      <Filter>Source Files\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="gdi\gdi.c">
+      <Filter>Source Files\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="gdi\graphics.c">
+      <Filter>Source Files\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="gdi\line.c">
+      <Filter>Source Files\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="gdi\palette.c">
+      <Filter>Source Files\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="gdi\pen.c">
+      <Filter>Source Files\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="gdi\region.c">
+      <Filter>Source Files\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="gdi\shape.c">
+      <Filter>Source Files\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="locale\keyboard.c">
+      <Filter>Source Files\locale</Filter>
+    </ClCompile>
+    <ClCompile Include="locale\keyboard_layout.c">
+      <Filter>Source Files\locale</Filter>
+    </ClCompile>
+    <ClCompile Include="locale\locale.c">
+      <Filter>Source Files\locale</Filter>
+    </ClCompile>
+    <ClCompile Include="locale\timezone.c">
+      <Filter>Source Files\locale</Filter>
+    </ClCompile>
+    <ClCompile Include="locale\xkb_layout_ids.c">
+      <Filter>Source Files\locale</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\prim_add.c">
+      <Filter>Source Files\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\prim_add_opt.c">
+      <Filter>Source Files\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\prim_alphaComp.c">
+      <Filter>Source Files\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\prim_alphaComp_opt.c">
+      <Filter>Source Files\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\prim_andor.c">
+      <Filter>Source Files\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\prim_andor_opt.c">
+      <Filter>Source Files\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\prim_colors.c">
+      <Filter>Source Files\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\prim_colors_opt.c">
+      <Filter>Source Files\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\prim_copy.c">
+      <Filter>Source Files\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\prim_set.c">
+      <Filter>Source Files\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\prim_set_opt.c">
+      <Filter>Source Files\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\prim_shift.c">
+      <Filter>Source Files\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\prim_shift_opt.c">
+      <Filter>Source Files\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\prim_sign.c">
+      <Filter>Source Files\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\prim_sign_opt.c">
+      <Filter>Source Files\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\primitives.c">
+      <Filter>Source Files\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="rail\icon.c">
+      <Filter>Source Files\rail</Filter>
+    </ClCompile>
+    <ClCompile Include="rail\rail.c">
+      <Filter>Source Files\rail</Filter>
+    </ClCompile>
+    <ClCompile Include="rail\window.c">
+      <Filter>Source Files\rail</Filter>
+    </ClCompile>
+    <ClCompile Include="rail\window_list.c">
+      <Filter>Source Files\rail</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\utils_bitmap.c">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\utils_event.c">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\utils_list.c">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\utils_msusb.c">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\utils_passphrase.c">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\utils_pcap.c">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\utils_profiler.c">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\utils_rail.c">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\utils_signal.c">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\utils_stopwatch.c">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\utils_svc_plugin.c">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\utils_tcp.c">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\utils_time.c">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\utils_uds.c">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_activation.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_capabilities.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_certificate.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_channel.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_connection.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_errinfo.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_extension.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_fastpath.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_freerdp.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_gcc.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_graphics.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_info.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_input.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_license.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_listener.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_mcs.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_message.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_nego.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_nla.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_orders.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_peer.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_rdp.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_redirection.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_security.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_settings.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_surface.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_tcp.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_timezone.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_tpdu.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_tpkt.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_transport.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_update.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_window.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\gateway\http.c">
+      <Filter>Source Files\core\gateway</Filter>
+    </ClCompile>
+    <ClCompile Include="core\gateway\ncacn_http.c">
+      <Filter>Source Files\core\gateway</Filter>
+    </ClCompile>
+    <ClCompile Include="core\gateway\ntlm.c">
+      <Filter>Source Files\core\gateway</Filter>
+    </ClCompile>
+    <ClCompile Include="core\gateway\rpc.c">
+      <Filter>Source Files\core\gateway</Filter>
+    </ClCompile>
+    <ClCompile Include="core\gateway\rpc_bind.c">
+      <Filter>Source Files\core\gateway</Filter>
+    </ClCompile>
+    <ClCompile Include="core\gateway\rpc_client.c">
+      <Filter>Source Files\core\gateway</Filter>
+    </ClCompile>
+    <ClCompile Include="core\gateway\rpc_fault.c">
+      <Filter>Source Files\core\gateway</Filter>
+    </ClCompile>
+    <ClCompile Include="core\gateway\rts.c">
+      <Filter>Source Files\core\gateway</Filter>
+    </ClCompile>
+    <ClCompile Include="core\gateway\rts_signature.c">
+      <Filter>Source Files\core\gateway</Filter>
+    </ClCompile>
+    <ClCompile Include="core\gateway\tsg.c">
+      <Filter>Source Files\core\gateway</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="basefreerdp.def" />
+  </ItemGroup>
+</Project>
