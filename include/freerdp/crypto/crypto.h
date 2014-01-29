@@ -33,6 +33,8 @@
 #include <openssl/x509v3.h>
 #include <openssl/rand.h>
 
+BEGIN_EXTERN_C
+
 #if defined(OPENSSL_VERSION_NUMBER) && (OPENSSL_VERSION_NUMBER >= 0x0090800f)
 #define D2I_X509_CONST const
 #else
@@ -145,5 +147,7 @@ FREERDP_API void crypto_nonce(BYTE* nonce, int size);
 
 FREERDP_API char* crypto_base64_encode(BYTE* data, int length);
 FREERDP_API void crypto_base64_decode(BYTE* enc_data, int length, BYTE** dec_data, int* res_length);
+
+END_EXTERN_C
 
 #endif /* FREERDP_CRYPTO_H */

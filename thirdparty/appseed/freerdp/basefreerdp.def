@@ -1,2 +1,2 @@
-LIBRARY		"libwinpr-interlocked"
+LIBRARY		"basefreerdp"
 EXPORTS

@@ -75,7 +75,7 @@ struct rdp_client_context
 };
 
 /* Common client functions */
-
+//
 FREERDP_API rdpContext* freerdp_client_context_new(RDP_CLIENT_ENTRY_POINTS* pEntryPoints);
 FREERDP_API void freerdp_client_context_free(rdpContext* context);
 
@@ -89,6 +89,12 @@ FREERDP_API int freerdp_client_settings_parse_command_line(rdpSettings* settings
 FREERDP_API int freerdp_client_settings_parse_connection_file(rdpSettings* settings, const char* filename);
 FREERDP_API int freerdp_client_settings_parse_connection_file_buffer(rdpSettings* settings, BYTE* buffer, size_t size);
 FREERDP_API int freerdp_client_settings_write_connection_file(rdpSettings* settings, const char* filename, BOOL unicode);
+
+
+
+
+
+
 
 #ifdef __cplusplus
 }

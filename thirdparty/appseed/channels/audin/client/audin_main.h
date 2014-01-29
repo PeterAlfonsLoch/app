@@ -1,8 +1,8 @@
 /**
  * FreeRDP: A Remote Desktop Protocol Implementation
- * GDI Device Context Functions
+ * Audio Input Redirection Virtual Channel
  *
- * Copyright 2010-2011 Marc-Andre Moreau <marcandre.moreau@gmail.com>
+ * Copyright 2010-2011 Vic Lee
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,21 +17,22 @@
  * limitations under the License.
  */
 
-#ifndef FREERDP_GDI_DC_H
-#define FREERDP_GDI_DC_H
+#ifndef FREERDP_AUDIN_CLIENT_MAIN_H
+#define FREERDP_AUDIN_CLIENT_MAIN_H
 
-#include <freerdp/api.h>
-#include <freerdp/gdi/gdi.h>
+#include "framework.h"
 
-BEGIN_EXTERN_C
+#include <freerdp/dvc.h>
+#include <freerdp/types.h>
+#include <freerdp/addin.h>
+#include <freerdp/utils/debug.h>
+#include <freerdp/client/audin.h>
 
-FREERDP_API HGDI_DC gdi_GetDC(void);
-FREERDP_API HGDI_DC gdi_CreateDC(HCLRCONV clrconv, int bpp);
-FREERDP_API HGDI_DC gdi_CreateCompatibleDC(HGDI_DC hdc);
-FREERDP_API HGDIOBJECT gdi_SelectObject(HGDI_DC hdc, HGDIOBJECT hgdiobject);
-FREERDP_API int gdi_DeleteObject(HGDIOBJECT hgdiobject);
-FREERDP_API int gdi_DeleteDC(HGDI_DC hdc);
+#ifdef WITH_DEBUG_DVC
+#define DEBUG_DVC(fmt, ...) DEBUG_CLASS(DVC, fmt, ## __VA_ARGS__)
+#else
+#define DEBUG_DVC(fmt, ...) DEBUG_NULL(fmt, ## __VA_ARGS__)
+#endif
 
-END_EXTERN_C
+#endif /* FREERDP_AUDIN_CLIENT_MAIN_H */
 
-#endif /* FREERDP_GDI_DC_H */

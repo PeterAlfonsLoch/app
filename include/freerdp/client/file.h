@@ -152,6 +152,8 @@ FREERDP_API size_t freerdp_client_write_rdp_file_buffer(rdpFile* file, char* buf
 FREERDP_API rdpFile* freerdp_client_rdp_file_new(void);
 FREERDP_API void freerdp_client_rdp_file_free(rdpFile* file);
 
+
+
 #ifdef __cplusplus
 }
 #endif

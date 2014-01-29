@@ -1014,9 +1014,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <None Include="draw2d_cairo.def" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\thirdparty\appseed\cairo\_ca2cairo.vcxproj">
-      <Project>{e6c58c82-71e5-48e6-98ed-1b505d6f10c2}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\thirdparty\appseed\freetype\freetype.vcxproj">
       <Project>{771f4b49-cad1-438f-b272-20f3eb8e88f1}</Project>
     </ProjectReference>

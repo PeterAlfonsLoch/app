@@ -20,9 +20,7 @@
 #ifndef FREERDP_UTILS_DEBUG_H
 #define FREERDP_UTILS_DEBUG_H
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
+#include "framework.h"
 
 #define DEBUG_NULL(fmt, ...) do { } while (0)
 

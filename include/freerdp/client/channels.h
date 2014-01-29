@@ -34,6 +34,11 @@ FREERDP_API void* freerdp_channels_load_static_addin_entry(LPCSTR pszName, LPSTR
 FREERDP_API FREERDP_ADDIN** freerdp_channels_list_addins(LPSTR lpName, LPSTR lpSubsystem, LPSTR lpType, DWORD dwFlags);
 FREERDP_API void freerdp_channels_addin_list_free(FREERDP_ADDIN** ppAddins);
 
+
+
+FREERDP_ADDIN** freerdp_channels_list_addins(LPSTR lpName, LPSTR lpSubsystem, LPSTR lpType, DWORD dwFlags);
+void freerdp_channels_addin_list_free(FREERDP_ADDIN** ppAddins);
+
 #ifdef __cplusplus
 }
 #endif
