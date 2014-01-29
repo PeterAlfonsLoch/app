@@ -2906,6 +2906,10 @@ EXPORTS
     X509_load_cert_file                     
     X509_load_crl_file                      
 	OPENSSL_X509_NAME_get_text_by_NID
+	OPENSSL_X509_NAME_print_ex
+	OPENSSL_X509_NAME_get_index_by_NID
+	OPENSSL_X509_NAME_get_entry
+	OPENSSL_X509_NAME_ENTRY_get_data
     X509_new                                
     X509_ocspid_print                       
     X509_policy_check                       
