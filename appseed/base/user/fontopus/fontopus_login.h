@@ -54,6 +54,8 @@ namespace fontopus
       bool                          m_bSelfLayout;
       double                        m_dRate;
 
+      bool                          m_bCred;
+
 
       login(sp(base_application) papp, int left, int top);
       virtual ~login();

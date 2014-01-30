@@ -445,7 +445,7 @@ namespace os
 
       m_size.cy = cy;
 
-      m_dib.create(::get_thread_app()->allocer());
+      m_dib.create(allocer());
 
       m_dib->create(m_size.cx, m_size.cy);
 

@@ -49,6 +49,9 @@ namespace fontopus
       m_rect.right = m_rect.left + stdw;
       m_rect.bottom = m_rect.top + stdh;
 
+      m_bCred = false;
+
+
    }
 
 
@@ -437,37 +440,46 @@ namespace fontopus
 
    void login::authentication_succeeded()
    {
-
-      string strUsername = m_editUser.m_strText;
-      string strPasshash = m_strPasshash;
-      string strPassword = m_password.m_strText;
-
-      string strUsernamePrevious;
-      string strPasshashPrevious;
-      crypto_file_get(dir::userappdata("license_auth/00001.data"), strUsernamePrevious, "");
-      crypto_file_get(dir::userappdata("license_auth/00002.data"), strPasshashPrevious, calc_key_hash());
-
-      if ((strUsername.has_char() && strPasshash.has_char())
-         && (strUsernamePrevious != strUsername || strPasshashPrevious != strPasshash))
+      if (m_bCred)
       {
-         dir::mk(::dir::userappdata("license_auth"));
-         crypto_file_set(::dir::userappdata("license_auth/00001.data"), strUsername, "");
-         crypto_file_set(::dir::userappdata("license_auth/00002.data"), strPasshash, calc_key_hash());
-         /*if(strPassword.has_char())
-         {
-         string strSalt = System.crypto().v5_get_password_salt();
-         System.crypto().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00005.data"), strSalt, calc_key_hash(), get_app());
-         string strPasshash2 = System.crypto().v5_get_password_hash(strSalt, strPassword);
-         crypto_file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00010.data"), strPasshash2, calc_key_hash(), get_app());
-         }*/
+
+         set_cred(get_app(), m_strRequestingServer, false, m_editUser.m_strText, m_password.m_strText);
+
       }
-      /*if(m_loginthread.m_strLicense.has_char())
+      else
       {
-      stringa straLicense;
-      straLicense.add(m_loginthread.m_strValidUntil);
-      straLicense.add(System.datetime().international().get_gmt_date_time());
-      crypto_file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/" + m_loginthread.m_strLicense + ".data"), straLicense.implode(";"), calc_ca2_hash(), get_app());
-      }*/
+         string strUsername = m_editUser.m_strText;
+         string strPasshash = m_strPasshash;
+         string strPassword = m_password.m_strText;
+
+         string strUsernamePrevious;
+         string strPasshashPrevious;
+         crypto_file_get(dir::userappdata("license_auth/00001.data"), strUsernamePrevious, "");
+         crypto_file_get(dir::userappdata("license_auth/00002.data"), strPasshashPrevious, calc_key_hash());
+
+         if ((strUsername.has_char() && strPasshash.has_char())
+            && (strUsernamePrevious != strUsername || strPasshashPrevious != strPasshash))
+         {
+            dir::mk(::dir::userappdata("license_auth"));
+            crypto_file_set(::dir::userappdata("license_auth/00001.data"), strUsername, "");
+            crypto_file_set(::dir::userappdata("license_auth/00002.data"), strPasshash, calc_key_hash());
+            /*if(strPassword.has_char())
+            {
+            string strSalt = System.crypto().v5_get_password_salt();
+            System.crypto().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00005.data"), strSalt, calc_key_hash(), get_app());
+            string strPasshash2 = System.crypto().v5_get_password_hash(strSalt, strPassword);
+            crypto_file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00010.data"), strPasshash2, calc_key_hash(), get_app());
+            }*/
+         }
+         /*if(m_loginthread.m_strLicense.has_char())
+         {
+         stringa straLicense;
+         straLicense.add(m_loginthread.m_strValidUntil);
+         straLicense.add(System.datetime().international().get_gmt_date_time());
+         crypto_file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/" + m_loginthread.m_strLicense + ".data"), straLicense.implode(";"), calc_ca2_hash(), get_app());
+         }*/
+
+      }
 
    }
 
@@ -725,16 +737,37 @@ namespace fontopus
       if (!strcmp(pszId, "submit"))
       {
 
-         if (get_os_data() == NULL)
+         if (m_bCred)
          {
 
-            m_bVisible = false;
+            if (m_editUser.m_strText.is_empty())
+               return true;
 
-            get_top_level_parent()->show_window(false);
+            if (m_password.m_strText.is_empty())
+               return true;
 
-            ::thread::m_p.create(allocer());
+            login_result(::fontopus::login::result_ok);
 
-            begin();
+            get_top_level_parent()->destroy_window();
+
+            return true;
+
+         }
+         else
+         {
+
+            if (get_os_data() == NULL)
+            {
+
+               m_bVisible = false;
+
+               get_top_level_parent()->show_window(false);
+
+               ::thread::m_p.create(allocer());
+
+               begin();
+
+            }
 
          }
 

@@ -28,6 +28,7 @@ namespace fontopus
       m_bNoDecorations = true;
 
 
+
    }
 
 
@@ -72,14 +73,13 @@ namespace fontopus
 
 
 
-
-   string simple_ui::interactive_auth(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
+   string simple_ui::fontopus(LPRECT lprect)
    {
 
       if (lprect == NULL)
       {
 
-//         ::GetWindowRect(::GetDesktopWindow(), &m_rectDesktop);
+         //         ::GetWindowRect(::GetDesktopWindow(), &m_rectDesktop);
          System.get_monitor_rect(0, &m_rectDesktop);
 
       }
@@ -119,11 +119,23 @@ namespace fontopus
 
       set_window_pos(m_pt.x, m_pt.y, m_size.cx, m_size.cy, true);
 
-      m_login.m_strRequestingServer = strRequestingServer;
-
       m_login.m_bVisible = true;
 
       run_loop();
+
+      return "";
+   }
+
+
+   string simple_ui::interactive_auth(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
+   {
+
+      m_login.m_bCred = false;
+
+      m_login.m_strRequestingServer = strRequestingServer;
+
+
+      fontopus(lprect);
 
       if (m_login.m_eresult == login::result_ok)
       {
@@ -146,6 +158,33 @@ namespace fontopus
 
    }
 
+   string simple_ui::get_cred(LPRECT lprect, string & strUsername, string & strPassword, string strToken)
+   {
+
+      m_login.m_bCred = true;
+
+      m_login.m_strRequestingServer = strToken;
+
+      fontopus(lprect);
+
+      if (m_login.m_eresult == login::result_ok)
+      {
+
+         strUsername = m_login.m_editUser.m_strText;
+         strPassword = m_login.m_password.m_strText;
+
+         return "ok";
+
+      }
+      else
+      {
+
+         return "fail";
+
+      }
+
+
+   }
 
    bool simple_ui::on_move(int32_t x, int32_t y)
    {
@@ -502,6 +541,67 @@ namespace fontopus
    }
 
 
+   string CLASS_DECL_BASE get_cred(base_application * papp, LPRECT lprect, string & strUsername, string & strPassword, string strToken)
+   {
+
+      ::fontopus::simple_ui ui(papp);
+
+      string str = get_cred(papp, strUsername, strPassword, strToken);
+
+      if (str == "yes")
+         return "ok";
+         
+
+      return ui.get_cred(lprect, strUsername, strPassword, strToken);
+
+   }
+
+   string CLASS_DECL_BASE get_cred(base_application * papp, string & strUsername, string & strPassword, string strToken)
+   {
+
+      string str;
+      crypto_file_get(::dir::userappdata("cred/" + strToken + "_a.data"), strUsername, "");
+      crypto_file_get(::dir::userappdata("cred/" + strToken + "_b.data"), strPassword, strToken);
+      crypto_file_get(::dir::userappdata("cred/" + strToken + "_c.data"), str, strToken);
+
+      return str;
+
+   }
+
+   void set_cred(base_application * papp, string strToken, bool bOk, const char * pszUsername, const char * pszPassword)
+   {
+
+      if (!bOk)
+      {
+         string strUsername(pszUsername);
+         string strPassword(pszPassword);
+         string strUsernamePrevious;
+         string strPasswordPrevious;
+
+         get_cred(papp, strUsernamePrevious, strPasswordPrevious, strToken);
+
+         if ((strUsername.has_char() && strPassword.has_char())
+            && (strUsernamePrevious != strUsername || strPasswordPrevious != strPassword))
+         {
+            dir::mk(::dir::userappdata("cred"));
+            crypto_file_set(::dir::userappdata("cred/" + strToken + "_a.data"), strUsername, "");
+            crypto_file_set(::dir::userappdata("cred/" + strToken + "_b.data"), strPassword, strToken);
+         }
+      }
+
+      if (bOk)
+      {
+
+         crypto_file_set(::dir::userappdata("cred/" + strToken + "_c.data"), "yes", strToken);
+
+      }
+      else
+      {
+         crypto_file_set(::dir::userappdata("cred/" + strToken + "_c.data"), "no", strToken);
+
+      }
+
+   }
 
 
 } // namespace fontopus

@@ -138,6 +138,21 @@ void command_line::_001ParseCommandLine(const char * pszCommandLine)
       m_strAppType = m_varQuery.propset()["app_type"];
    }
 
+   if (!m_varQuery.propset().has_property("build_number")
+      || m_varQuery["build_number"].is_empty())
+   {
+      
+      if (file_exists_dup("C:\\ca2\\config\\build_number.txt"))
+      {
+
+         string str = file_as_string_dup("C:\\ca2\\config\\build_number.txt");
+
+         m_varQuery["build_number"] = str;
+
+      }
+
+   }
+
 }
 
 
