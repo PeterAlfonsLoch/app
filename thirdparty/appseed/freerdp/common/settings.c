@@ -185,8 +185,8 @@ RDPDR_DEVICE* freerdp_device_clone(RDPDR_DEVICE* device)
 
 		_printer->Id = printer->Id;
 		_printer->Type = printer->Type;
-		_printer->Name = _strdup(printer->Name);
-		_printer->DriverName = _strdup(printer->DriverName);
+		_printer->Name = wcsdup(printer->Name);
+      _printer->DriverName = wcsdup(printer->DriverName);
 
 		_device = (RDPDR_DEVICE*) _printer;
 	}

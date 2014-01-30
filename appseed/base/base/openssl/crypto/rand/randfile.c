@@ -57,10 +57,9 @@
  */
 
 /* We need to define this to get macros like S_IFBLK and S_IFCHR */
+#if !defined(OPENSSL_SYS_VXWORKS)
 #define _XOPEN_SOURCE 500
-
-#include "base/base/base/base.h"
-
+#endif
 
 #include <errno.h>
 #include <stdio.h>
@@ -158,7 +157,7 @@ int RAND_load_file(const char *file, long bytes)
 			n = (bytes < BUFSIZE)?(int)bytes:BUFSIZE;
 		else
 			n = BUFSIZE;
-		i = (int)fread(buf,1,n,in);
+		i=fread(buf,1,n,in);
 		if (i <= 0) break;
 #ifdef PURIFY
 		RAND_add(buf,i,(double)i);
@@ -255,7 +254,7 @@ int RAND_write_file(const char *file)
 		n-=BUFSIZE;
 		if (RAND_bytes(buf,i) <= 0)
 			rand_err=1;
-		i = (int) fwrite(buf,1,i,out);
+		i=fwrite(buf,1,i,out);
 		if (i <= 0)
 			{
 			ret=0;

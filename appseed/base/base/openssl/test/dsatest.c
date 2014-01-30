@@ -1,1 +1,1 @@
-../crypto/dsa/dsatest.c
+ypto/dsa/dsatest.c

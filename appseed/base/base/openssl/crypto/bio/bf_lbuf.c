@@ -184,9 +184,9 @@ static int linebuffer_write(BIO *b, const char *in, int inl)
 					{
 					memcpy(&(ctx->obuf[ctx->obuf_len]),
 						in,p - in);
-					ctx->obuf_len += (int) (p - in);
-					inl -= (int) (p - in);
-					num += (int) (p - in);
+					ctx->obuf_len += p - in;
+					inl -= p - in;
+					num += p - in;
 					in = p;
 					}
 				else
@@ -232,7 +232,7 @@ BIO_write(b->next_bio, ">*>", 3);
 #if 0
 BIO_write(b->next_bio, "<*<", 3);
 #endif
-			i=BIO_write(b->next_bio,in,(int) (p - in));
+			i=BIO_write(b->next_bio,in,p - in);
 			if (i <= 0)
 				{
 				BIO_copy_next_retry(b);
@@ -392,6 +392,6 @@ static int linebuffer_gets(BIO *b, char *buf, int size)
 
 static int linebuffer_puts(BIO *b, const char *str)
 	{
-	return(linebuffer_write(b,str,(int) strlen(str)));
+	return(linebuffer_write(b,str,strlen(str)));
 	}
 

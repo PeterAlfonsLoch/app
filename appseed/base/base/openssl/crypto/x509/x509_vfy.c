@@ -56,10 +56,6 @@
  * [including the GNU Public Licence.]
  */
 
-
-#include "base/base/base/base.h"
-
-
 #include <stdio.h>
 #include <time.h>
 #include <errno.h>
@@ -698,6 +694,7 @@ static int check_cert(X509_STORE_CTX *ctx)
 	X509_CRL *crl = NULL, *dcrl = NULL;
 	X509 *x;
 	int ok, cnum;
+	unsigned int last_reasons;
 	cnum = ctx->error_depth;
 	x = sk_X509_value(ctx->chain, cnum);
 	ctx->current_cert = x;
@@ -706,6 +703,7 @@ static int check_cert(X509_STORE_CTX *ctx)
 	ctx->current_reasons = 0;
 	while (ctx->current_reasons != CRLDP_ALL_REASONS)
 		{
+		last_reasons = ctx->current_reasons;
 		/* Try to retrieve relevant CRL */
 		if (ctx->get_crl)
 			ok = ctx->get_crl(ctx, &crl, x);
@@ -749,6 +747,15 @@ static int check_cert(X509_STORE_CTX *ctx)
 		X509_CRL_free(dcrl);
 		crl = NULL;
 		dcrl = NULL;
+		/* If reasons not updated we wont get anywhere by
+		 * another iteration, so exit loop.
+		 */
+		if (last_reasons == ctx->current_reasons)
+			{
+			ctx->error = X509_V_ERR_UNABLE_TO_GET_CRL;
+			ok = ctx->verify_cb(0, ctx);
+			goto err;
+			}
 		}
 	err:
 	X509_CRL_free(crl);
@@ -876,7 +883,7 @@ static int crl_extension_match(X509_CRL *a, X509_CRL *b, int nid)
 	{
 	ASN1_OCTET_STRING *exta, *extb;
 	int i;
-	i = X509_CRL_get_ext_by_NID(a, nid, 0);
+	i = X509_CRL_get_ext_by_NID(a, nid, -1);
 	if (i >= 0)
 		{
 		/* Can't have multiple occurrences */
@@ -887,7 +894,7 @@ static int crl_extension_match(X509_CRL *a, X509_CRL *b, int nid)
 	else
 		exta = NULL;
 
-	i = X509_CRL_get_ext_by_NID(b, nid, 0);
+	i = X509_CRL_get_ext_by_NID(b, nid, -1);
 
 	if (i >= 0)
 		{
@@ -923,7 +930,7 @@ static int check_delta_base(X509_CRL *delta, X509_CRL *base)
 	if (!base->crl_number)
 			return 0;
 	/* Issuer names must match */
-	if (OPENSSL_X509_NAME_cmp(X509_CRL_get_issuer(base),
+	if (X509_NAME_cmp(X509_CRL_get_issuer(base),
 				X509_CRL_get_issuer(delta)))
 		return 0;
 	/* AKID and IDP must match */
@@ -1004,7 +1011,7 @@ static int get_crl_score(X509_STORE_CTX *ctx, X509 **pissuer,
 	else if (crl->base_crl_number)
 		return 0;
 	/* If issuer name doesn't match certificate need indirect CRL */
-	if (OPENSSL_X509_NAME_cmp(X509_get_issuer_name(x), X509_CRL_get_issuer(crl)))
+	if (X509_NAME_cmp(X509_get_issuer_name(x), X509_CRL_get_issuer(crl)))
 		{
 		if (!(crl->idp_flags & IDP_INDIRECT))
 			return 0;
@@ -1048,7 +1055,7 @@ static void crl_akid_check(X509_STORE_CTX *ctx, X509_CRL *crl,
 				X509 **pissuer, int *pcrl_score)
 	{
 	X509 *crl_issuer = NULL;
-	OPENSSL_X509_NAME *cnm = X509_CRL_get_issuer(crl);
+	X509_NAME *cnm = X509_CRL_get_issuer(crl);
 	int cidx = ctx->error_depth;
 	int i;
 
@@ -1070,7 +1077,7 @@ static void crl_akid_check(X509_STORE_CTX *ctx, X509_CRL *crl,
 	for (cidx++; cidx < sk_X509_num(ctx->chain); cidx++)
 		{
 		crl_issuer = sk_X509_value(ctx->chain, cidx);
-		if (OPENSSL_X509_NAME_cmp(X509_get_subject_name(crl_issuer), cnm))
+		if (X509_NAME_cmp(X509_get_subject_name(crl_issuer), cnm))
 			continue;
 		if (X509_check_akid(crl_issuer, crl->akid) == X509_V_OK)
 			{
@@ -1091,7 +1098,7 @@ static void crl_akid_check(X509_STORE_CTX *ctx, X509_CRL *crl,
 	for (i = 0; i < sk_X509_num(ctx->untrusted); i++)
 		{
 		crl_issuer = sk_X509_value(ctx->untrusted, i);
-		if (OPENSSL_X509_NAME_cmp(X509_get_subject_name(crl_issuer), cnm))
+		if (X509_NAME_cmp(X509_get_subject_name(crl_issuer), cnm))
 			continue;
 		if (X509_check_akid(crl_issuer, crl->akid) == X509_V_OK)
 			{
@@ -1161,8 +1168,8 @@ static int check_crl_chain(X509_STORE_CTX *ctx,
 	}
 
 /* Check for match between two dist point names: three separate cases.
- * 1. Both are relative names and compare OPENSSL_X509_NAME types.
- * 2. One full, one relative. Compare OPENSSL_X509_NAME to GENERAL_NAMES.
+ * 1. Both are relative names and compare X509_NAME types.
+ * 2. One full, one relative. Compare X509_NAME to GENERAL_NAMES.
  * 3. Both are full names and compare two GENERAL_NAMES.
  * 4. One is NULL: automatic match.
  */
@@ -1170,7 +1177,7 @@ static int check_crl_chain(X509_STORE_CTX *ctx,
 
 static int idp_check_dp(DIST_POINT_NAME *a, DIST_POINT_NAME *b)
 	{
-	OPENSSL_X509_NAME *nm = NULL;
+	X509_NAME *nm = NULL;
 	GENERAL_NAMES *gens = NULL;
 	GENERAL_NAME *gena, *genb;
 	int i, j;
@@ -1180,12 +1187,12 @@ static int idp_check_dp(DIST_POINT_NAME *a, DIST_POINT_NAME *b)
 		{
 		if (!a->dpname)
 			return 0;
-		/* Case 1: two OPENSSL_X509_NAME */
+		/* Case 1: two X509_NAME */
 		if (b->type == 1)
 			{
 			if (!b->dpname)
 				return 0;
-			if (!OPENSSL_X509_NAME_cmp(a->dpname, b->dpname))
+			if (!X509_NAME_cmp(a->dpname, b->dpname))
 				return 1;
 			else
 				return 0;
@@ -1203,7 +1210,7 @@ static int idp_check_dp(DIST_POINT_NAME *a, DIST_POINT_NAME *b)
 		nm = b->dpname;
 		}
 
-	/* Handle case 2 with one GENERAL_NAMES and one OPENSSL_X509_NAME */
+	/* Handle case 2 with one GENERAL_NAMES and one X509_NAME */
 	if (nm)
 		{
 		for (i = 0; i < sk_GENERAL_NAME_num(gens); i++)
@@ -1211,7 +1218,7 @@ static int idp_check_dp(DIST_POINT_NAME *a, DIST_POINT_NAME *b)
 			gena = sk_GENERAL_NAME_value(gens, i);	
 			if (gena->type != GEN_DIRNAME)
 				continue;
-			if (!OPENSSL_X509_NAME_cmp(nm, gena->d.directoryName))
+			if (!X509_NAME_cmp(nm, gena->d.directoryName))
 				return 1;
 			}
 		return 0;
@@ -1237,7 +1244,7 @@ static int idp_check_dp(DIST_POINT_NAME *a, DIST_POINT_NAME *b)
 static int crldp_check_crlissuer(DIST_POINT *dp, X509_CRL *crl, int crl_score)
 	{
 	int i;
-	OPENSSL_X509_NAME *nm = X509_CRL_get_issuer(crl);
+	X509_NAME *nm = X509_CRL_get_issuer(crl);
 	/* If no CRLissuer return is successful iff don't need a match */
 	if (!dp->CRLissuer)
 		return !!(crl_score & CRL_SCORE_ISSUER_NAME);
@@ -1246,7 +1253,7 @@ static int crldp_check_crlissuer(DIST_POINT *dp, X509_CRL *crl, int crl_score)
 		GENERAL_NAME *gen = sk_GENERAL_NAME_value(dp->CRLissuer, i);
 		if (gen->type != GEN_DIRNAME)
 			continue;
-		if (!OPENSSL_X509_NAME_cmp(gen->d.directoryName, nm))
+		if (!X509_NAME_cmp(gen->d.directoryName, nm))
 			return 1;
 		}
 	return 0;
@@ -1302,7 +1309,7 @@ static int get_crl_delta(X509_STORE_CTX *ctx,
 	unsigned int reasons;
 	X509_CRL *crl = NULL, *dcrl = NULL;
 	STACK_OF(X509_CRL) *skcrl;
-	OPENSSL_X509_NAME *nm = X509_get_issuer_name(x);
+	X509_NAME *nm = X509_get_issuer_name(x);
 	reasons = ctx->current_reasons;
 	ok = get_crl_sk(ctx, &crl, &dcrl, 
 				&issuer, &crl_score, &reasons, ctx->crls);
@@ -1486,7 +1493,7 @@ static int check_policy(X509_STORE_CTX *ctx)
 	if (ctx->parent)
 		return 1;
 	ret = X509_policy_check(&ctx->tree, &ctx->explicit_policy, ctx->chain,
-				ctx->param->policies, (unsigned int) ctx->param->flags);
+				ctx->param->policies, ctx->param->flags);
 	if (ret == 0)
 		{
 		X509err(X509_F_CHECK_POLICY,ERR_R_MALLOC_FAILURE);
@@ -2212,7 +2219,7 @@ void X509_STORE_CTX_set0_param(X509_STORE_CTX *ctx, X509_VERIFY_PARAM *param)
 IMPLEMENT_STACK_OF(X509)
 IMPLEMENT_ASN1_SET_OF(X509)
 
-IMPLEMENT_STACK_OF(OPENSSL_X509_NAME)
+IMPLEMENT_STACK_OF(X509_NAME)
 
 IMPLEMENT_STACK_OF(X509_ATTRIBUTE)
 IMPLEMENT_ASN1_SET_OF(X509_ATTRIBUTE)

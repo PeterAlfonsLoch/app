@@ -1,1 +1,1 @@
-../crypto/rc2/rc2test.c
+ypto/rc2/rc2test.c

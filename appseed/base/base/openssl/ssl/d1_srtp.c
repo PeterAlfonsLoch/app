@@ -115,11 +115,12 @@
   Copyright (C) 2011, RTFM, Inc.
 */
 
-#ifndef OPENSSL_NO_SRTP
-
 #include <stdio.h>
 #include <openssl/objects.h>
 #include "ssl_locl.h"
+
+#ifndef OPENSSL_NO_SRTP
+
 #include "srtp.h"
 
 
@@ -206,7 +207,7 @@ static int ssl_ctx_make_profiles(const char *profiles_string,STACK_OF(SRTP_PROTE
 		col=strchr(ptr,':');
 
 		if(!find_profile_by_name(ptr,&p,
-					 col ? (int) (col - ptr) : (int)strlen(ptr)))
+					 col ? col-ptr : (int)strlen(ptr)))
 			{
 			sk_SRTP_PROTECTION_PROFILE_push(profiles,p);
 			}

@@ -387,8 +387,13 @@ int freerdp_context_new(freerdp* instance)
 	rdpRdp* rdp;
 	rdpContext* context;
 
-	instance->context = (rdpContext*) malloc(instance->ContextSize);
-	ZeroMemory(instance->context, instance->ContextSize);
+   if (instance->context == NULL)
+   {
+
+      instance->context = (rdpContext*)malloc(instance->ContextSize);
+      ZeroMemory(instance->context, instance->ContextSize);
+
+   }
 
 	context = instance->context;
 	context->instance = instance;

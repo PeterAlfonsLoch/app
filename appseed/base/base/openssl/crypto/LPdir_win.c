@@ -24,9 +24,6 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-#include "base/base/base.h"
-
 #include <windows.h>
 #include <tchar.h>
 #ifndef LPDIR_H
@@ -37,14 +34,10 @@
     broken WinCE headers and explicitly opt for UNICODE call.
     Keep in mind that our WinCE builds are compiled with -DUNICODE
     [as well as -D_UNICODE]. */
-#if defined(METROWIN)
-# define FindFirstFile FindFirstFileW
-#elif defined(LP_SYS_WINCE) && !defined(FindFirstFile)
+#if defined(LP_SYS_WINCE) && !defined(FindFirstFile)
 # define FindFirstFile FindFirstFileW
 #endif
-#if defined(METROWIN)
-# define FindNextFile FindNextFileW
-#elif defined(LP_SYS_WINCE) && !defined(FindFirstFile)
+#if defined(LP_SYS_WINCE) && !defined(FindFirstFile)
 # define FindNextFile FindNextFileW
 #endif
 
@@ -94,7 +87,7 @@ const char *LP_find_file(LP_DIR_CTX **ctx, const char *directory)
 	    }
 
 #ifdef LP_MULTIBYTE_AVAILABLE
-	  if (!MultiByteToWideChar(CP_ACP, 0, directory, (int) len_0, (WCHAR *)wdir, (int) len_0))
+	  if (!MultiByteToWideChar(CP_ACP, 0, directory, len_0, (WCHAR *)wdir, len_0))
 #endif
 	    for (index = 0; index < len_0; index++)
 	      wdir[index] = (TCHAR)directory[index];
@@ -131,7 +124,7 @@ const char *LP_find_file(LP_DIR_CTX **ctx, const char *directory)
       len_0++;
 
 #ifdef LP_MULTIBYTE_AVAILABLE
-      if (!WideCharToMultiByte(CP_ACP, 0, (WCHAR *)wdir, (int) len_0, (*ctx)->entry_name,
+      if (!WideCharToMultiByte(CP_ACP, 0, (WCHAR *)wdir, len_0, (*ctx)->entry_name,
 			       sizeof((*ctx)->entry_name), NULL, 0))
 #endif
 	for (index = 0; index < len_0; index++)

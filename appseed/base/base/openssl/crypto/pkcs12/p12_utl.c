@@ -66,14 +66,14 @@ unsigned char *OPENSSL_asc2uni(const char *asc, int asclen, unsigned char **uni,
 {
 	int ulen, i;
 	unsigned char *unitmp;
-	if (asclen == -1) asclen = (int) strlen(asc);
+	if (asclen == -1) asclen = strlen(asc);
 	ulen = asclen*2  + 2;
 	if (!(unitmp = OPENSSL_malloc(ulen))) return NULL;
 	for (i = 0; i < ulen - 2; i+=2) {
 		unitmp[i] = 0;
 		unitmp[i + 1] = asc[i>>1];
 	}
-	/* Make result double NULL terminated */
+	/* Make result double null terminated */
 	unitmp[ulen - 2] = 0;
 	unitmp[ulen - 1] = 0;
 	if (unilen) *unilen = ulen;

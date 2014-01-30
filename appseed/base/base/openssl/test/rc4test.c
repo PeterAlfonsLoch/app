@@ -1,1 +1,1 @@
-../crypto/rc4/rc4test.c
+ypto/rc4/rc4test.c

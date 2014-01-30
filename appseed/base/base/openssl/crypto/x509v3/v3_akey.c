@@ -115,7 +115,7 @@ static AUTHORITY_KEYID *v2i_AUTHORITY_KEYID(X509V3_EXT_METHOD *method,
 	int i;
 	CONF_VALUE *cnf;
 	ASN1_OCTET_STRING *ikeyid = NULL;
-	OPENSSL_X509_NAME *isname = NULL;
+	X509_NAME *isname = NULL;
 	GENERAL_NAMES * gens = NULL;
 	GENERAL_NAME *gen = NULL;
 	ASN1_INTEGER *serial = NULL;
@@ -170,7 +170,7 @@ static AUTHORITY_KEYID *v2i_AUTHORITY_KEYID(X509V3_EXT_METHOD *method,
 
 	if((issuer && !ikeyid) || (issuer == 2))
 		{
-		isname = OPENSSL_X509_NAME_dup(X509_get_issuer_name(cert));
+		isname = X509_NAME_dup(X509_get_issuer_name(cert));
 		serial = M_ASN1_INTEGER_dup(X509_get_serialNumber(cert));
 		if(!isname || !serial)
 			{
@@ -201,7 +201,7 @@ static AUTHORITY_KEYID *v2i_AUTHORITY_KEYID(X509V3_EXT_METHOD *method,
 	return akeyid;
 
  err:
-	OPENSSL_X509_NAME_free(isname);
+	X509_NAME_free(isname);
 	M_ASN1_INTEGER_free(serial);
 	M_ASN1_OCTET_STRING_free(ikeyid);
 	return NULL;

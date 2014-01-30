@@ -187,7 +187,7 @@ _dopr(
     size_t currlen;
 
     state = DP_S_DEFAULT;
-    flags = (int) (currlen = cflags = min = 0);
+    flags = currlen = cflags = min = 0;
     max = -1;
     ch = *format++;
 
@@ -370,7 +370,7 @@ _dopr(
 		    if (buffer)
 			max = INT_MAX;
 		    else
-			max = (int)*maxlen;
+			max = *maxlen;
 		}
                 fmtstr(sbuffer, buffer, &currlen, maxlen, strvalue,
                        flags, min, max);
@@ -384,7 +384,7 @@ _dopr(
                 if (cflags == DP_C_SHORT) {
                     short int *num;
                     num = va_arg(args, short int *);
-                    *num = (short) currlen;
+                    *num = currlen;
                 } else if (cflags == DP_C_LONG) { /* XXX */
                     long int *num;
                     num = va_arg(args, long int *);
@@ -396,7 +396,7 @@ _dopr(
                 } else {
                     int    *num;
                     num = va_arg(args, int *);
-                    *num = (int) currlen;
+                    *num = currlen;
                 }
                 break;
             case '%':
@@ -519,7 +519,7 @@ fmtint(
     convert[place] = 0;
 
     zpadlen = max - place;
-    spadlen = (int) (min - OSSL_MAX(max, place) - (signvalue ? 1 : 0) - strlen(prefix));
+    spadlen = min - OSSL_MAX(max, place) - (signvalue ? 1 : 0) - strlen(prefix);
     if (zpadlen < 0)
         zpadlen = 0;
     if (spadlen < 0)

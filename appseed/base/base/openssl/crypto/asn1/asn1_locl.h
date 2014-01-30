@@ -140,6 +140,6 @@ struct x509_crl_method_st
 	int (*crl_init)(X509_CRL *crl);
 	int (*crl_free)(X509_CRL *crl);
 	int (*crl_lookup)(X509_CRL *crl, X509_REVOKED **ret,
-				ASN1_INTEGER *ser, OPENSSL_X509_NAME *issuer);
+				ASN1_INTEGER *ser, X509_NAME *issuer);
 	int (*crl_verify)(X509_CRL *crl, EVP_PKEY *pk);
 	};

@@ -51,9 +51,9 @@ struct rdp_credssp
 	SecBuffer PublicKey;
 	SecBuffer ts_credentials;
 	CryptoRc4 rc4_seal_state;
-	LPTSTR ServicePrincipalName;
-	SEC_WINNT_AUTH_IDENTITY identity;
-	PSecurityFunctionTable table;
+	LPWSTR ServicePrincipalName;
+	SEC_WINNT_AUTH_IDENTITY_W identity;
+	PSecurityFunctionTableW table;
 	SecPkgContext_Sizes ContextSizes;
 };
 

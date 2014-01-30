@@ -460,12 +460,12 @@ int dump_cert_text (BIO *out, X509 *x)
 {
 	char *p;
 
-	p=OPENSSL_X509_NAME_oneline(X509_get_subject_name(x),NULL,0);
+	p=X509_NAME_oneline(X509_get_subject_name(x),NULL,0);
 	BIO_puts(out,"subject=");
 	BIO_puts(out,p);
 	OPENSSL_free(p);
 
-	p=OPENSSL_X509_NAME_oneline(X509_get_issuer_name(x),NULL,0);
+	p=X509_NAME_oneline(X509_get_issuer_name(x),NULL,0);
 	BIO_puts(out,"\nissuer=");
 	BIO_puts(out,p);
 	BIO_puts(out,"\n");
@@ -1400,7 +1400,7 @@ static int set_table_opts(unsigned long *flags, const char *arg, const NAME_EX_T
 	return 0;
 }
 
-void print_name(BIO *out, const char *title, OPENSSL_X509_NAME *nm, unsigned long lflags)
+void print_name(BIO *out, const char *title, X509_NAME *nm, unsigned long lflags)
 {
 	char *buf;
 	char mline = 0;
@@ -1412,13 +1412,13 @@ void print_name(BIO *out, const char *title, OPENSSL_X509_NAME *nm, unsigned lon
 		indent = 4;
 	}
 	if(lflags == XN_FLAG_COMPAT) {
-		buf = OPENSSL_X509_NAME_oneline(nm, 0, 0);
+		buf = X509_NAME_oneline(nm, 0, 0);
 		BIO_puts(out, buf);
 		BIO_puts(out, "\n");
 		OPENSSL_free(buf);
 	} else {
 		if(mline) BIO_puts(out, "\n");
-		OPENSSL_X509_NAME_print_ex(out, nm, indent, lflags);
+		X509_NAME_print_ex(out, nm, indent, lflags);
 		BIO_puts(out, "\n");
 	}
 }
@@ -2117,7 +2117,7 @@ int parse_yesno(const char *str, int def)
  * subject is expected to be in the format /type0=value0/type1=value1/type2=...
  * where characters may be escaped by \
  */
-OPENSSL_X509_NAME *parse_name(char *subject, long chtype, int multirdn)
+X509_NAME *parse_name(char *subject, long chtype, int multirdn)
 	{
 	size_t buflen = strlen(subject)+1; /* to copy the types and values into. due to escaping, the copy can only become shorter */
 	char *buf = OPENSSL_malloc(buflen);
@@ -2129,10 +2129,10 @@ OPENSSL_X509_NAME *parse_name(char *subject, long chtype, int multirdn)
 	char *sp = subject, *bp = buf;
 	int i, ne_num = 0;
 
-	OPENSSL_X509_NAME *n = NULL;
+	X509_NAME *n = NULL;
 	int nid;
 
-	if (!buf || !ne_types || !ne_values)
+	if (!buf || !ne_types || !ne_values || !mval)
 		{
 		BIO_printf(bio_err, "malloc error\n");
 		goto error;
@@ -2212,7 +2212,7 @@ OPENSSL_X509_NAME *parse_name(char *subject, long chtype, int multirdn)
 		ne_num++;
 		}	
 
-	if (!(n = OPENSSL_X509_NAME_new()))
+	if (!(n = X509_NAME_new()))
 		goto error;
 
 	for (i = 0; i < ne_num; i++)
@@ -2229,21 +2229,24 @@ OPENSSL_X509_NAME *parse_name(char *subject, long chtype, int multirdn)
 			continue;
 			}
 
-		if (!OPENSSL_X509_NAME_add_entry_by_NID(n, nid, chtype, (unsigned char*)ne_values[i], -1,-1,mval[i]))
+		if (!X509_NAME_add_entry_by_NID(n, nid, chtype, (unsigned char*)ne_values[i], -1,-1,mval[i]))
 			goto error;
 		}
 
 	OPENSSL_free(ne_values);
 	OPENSSL_free(ne_types);
 	OPENSSL_free(buf);
+	OPENSSL_free(mval);
 	return n;
 
 error:
-	OPENSSL_X509_NAME_free(n);
+	X509_NAME_free(n);
 	if (ne_values)
 		OPENSSL_free(ne_values);
 	if (ne_types)
 		OPENSSL_free(ne_types);
+	if (mval)
+		OPENSSL_free(mval);
 	if (buf)
 		OPENSSL_free(buf);
 	return NULL;

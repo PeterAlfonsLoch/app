@@ -62,7 +62,7 @@
 void ENGINE_load_builtin_engines(void)
 	{
 	/* Some ENGINEs need this */
-	OPENSSL_cpuid_setup();
+	//xxx OPENSSL_cpuid_setup();
 #if 0
 	/* There's no longer any need for an "openssl" ENGINE unless, one day,
 	 * it is the *only* way for standard builtin implementations to be be
@@ -74,7 +74,7 @@ void ENGINE_load_builtin_engines(void)
 	ENGINE_load_cryptodev();
 #endif
 #ifndef OPENSSL_NO_RSAX
-//	ENGINE_load_rsax();
+	ENGINE_load_rsax();
 #endif
 #ifndef OPENSSL_NO_RDRAND
 	ENGINE_load_rdrand();

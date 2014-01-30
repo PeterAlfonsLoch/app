@@ -338,7 +338,7 @@ static int rsa_blinding_invert(BN_BLINDING *b, BIGNUM *f, BIGNUM *unblind,
 	{
 	/* For local blinding, unblind is set to NULL, and BN_BLINDING_invert_ex
 	 * will use the unblinding factor stored in BN_BLINDING.
-	 * If BN_BLINDING is shared between threads, unblind must be non-NULL:
+	 * If BN_BLINDING is shared between threads, unblind must be non-null:
 	 * BN_BLINDING_invert_ex will then use the local unblinding factor,
 	 * and will only read the modulus from BN_BLINDING.
 	 * In both cases it's safe to access the blinding without a lock.
@@ -847,12 +847,12 @@ static int RSA_eay_mod_exp(BIGNUM *r0, const BIGNUM *I, RSA *rsa, BN_CTX *ctx)
 	if (!BN_mod(r0,pr1,rsa->p,ctx)) goto err;
 
 	/* If p < q it is occasionally possible for the correction of
-         * adding 'p' if r0 is negative above to leave the result still
+	 * adding 'p' if r0 is negative above to leave the result still
 	 * negative. This can break the private key operations: the following
 	 * second correction should *always* correct this rare occurrence.
 	 * This will *never* happen with OpenSSL generated keys because
-         * they ensure p > q [steve]
-         */
+	 * they ensure p > q [steve]
+	 */
 	if (BN_is_negative(r0))
 		if (!BN_add(r0,r0,rsa->p)) goto err;
 	if (!BN_mul(r1,r0,rsa->q,ctx)) goto err;

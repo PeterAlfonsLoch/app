@@ -62,7 +62,7 @@
 #include <openssl/buffer.h>
 #include <openssl/evp.h>
 
-static int ber_write(BIO *h,const char *buf,int num);
+static int ber_write(BIO *h,char *buf,int num);
 static int ber_read(BIO *h,char *buf,int size);
 /*static int ber_puts(BIO *h,char *str); */
 /*static int ber_gets(BIO *h,char *str,int size); */
@@ -270,7 +270,7 @@ again:
 		}
 	}
 
-static int ber_write(BIO *b, const char *in, int inl)
+static int ber_write(BIO *b, char *in, int inl)
 	{
 	int ret=0,n,i;
 	BIO_ENC_CTX *ctx;

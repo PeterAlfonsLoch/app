@@ -56,8 +56,6 @@
  *
  */
 
-#include "base/base/base/base.h"
-
 #include <stdio.h>
 #include <ctype.h>
 #include <openssl/crypto.h>
@@ -330,9 +328,9 @@ static CONF_MODULE *module_find(char *name)
 	p = strrchr(name, '.');
 
 	if (p)
-		nchar = (int) (p - name);
+		nchar = p - name;
 	else 
-		nchar = (int) strlen(name);
+		nchar = strlen(name);
 
 	for (i = 0; i < sk_CONF_MODULE_num(supported_modules); i++)
 		{
@@ -554,7 +552,7 @@ char *CONF_get1_default_config_file(void)
 	if (file) 
 		return BUF_strdup(file);
 
-	len = (int) strlen(X509_get_default_cert_area());
+	len = strlen(X509_get_default_cert_area());
 #ifndef OPENSSL_SYS_VMS
 	len++;
 #endif
@@ -613,7 +611,7 @@ int CONF_parse_list(const char *list_, int sep, int nospc,
 				while(isspace((unsigned char)*tmpend))
 					tmpend--;
 				}
-			ret = list_cb(lstart, (int) (tmpend - lstart + 1), arg);
+			ret = list_cb(lstart, tmpend - lstart + 1, arg);
 			}
 		if (ret <= 0)
 			return ret;

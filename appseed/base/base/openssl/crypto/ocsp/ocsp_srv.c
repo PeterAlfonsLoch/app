@@ -69,12 +69,12 @@
  * relevant information from the request.
  */
 
-int OCSP_request_onereq_count(OPENSSL_OCSP_REQUEST *req)
+int OCSP_request_onereq_count(OCSP_REQUEST *req)
 	{
 	return sk_OCSP_ONEREQ_num(req->tbsRequest->requestList);
 	}
 
-OCSP_ONEREQ *OCSP_request_onereq_get0(OPENSSL_OCSP_REQUEST *req, int i)
+OCSP_ONEREQ *OCSP_request_onereq_get0(OCSP_REQUEST *req, int i)
 	{
 	return sk_OCSP_ONEREQ_value(req->tbsRequest->requestList, i);
 	}
@@ -96,18 +96,18 @@ int OCSP_id_get0_info(ASN1_OCTET_STRING **piNameHash, ASN1_OBJECT **pmd,
 	return 1;
 	}
 
-int OCSP_request_is_signed(OPENSSL_OCSP_REQUEST *req)
+int OCSP_request_is_signed(OCSP_REQUEST *req)
 	{
 	if(req->optionalSignature) return 1;
 	return 0;
 	}
 
 /* Create an OCSP response and encode an optional basic response */
-OPENSSL_OCSP_RESPONSE *OCSP_response_create(int status, OCSP_BASICRESP *bs)
+OCSP_RESPONSE *OCSP_response_create(int status, OCSP_BASICRESP *bs)
         {
-        OPENSSL_OCSP_RESPONSE *rsp = NULL;
+        OCSP_RESPONSE *rsp = NULL;
 
-	if (!(rsp = OPENSSL_OCSP_RESPONSE_new())) goto err;
+	if (!(rsp = OCSP_RESPONSE_new())) goto err;
 	if (!(ASN1_ENUMERATED_set(rsp->responseStatus, status))) goto err;
 	if (!bs) return rsp;
 	if (!(rsp->responseBytes = OCSP_RESPBYTES_new())) goto err;
@@ -116,7 +116,7 @@ OPENSSL_OCSP_RESPONSE *OCSP_response_create(int status, OCSP_BASICRESP *bs)
 				goto err;
 	return rsp;
 err:
-	if (rsp) OPENSSL_OCSP_RESPONSE_free(rsp);
+	if (rsp) OCSP_RESPONSE_free(rsp);
 	return NULL;
 	}
 
@@ -243,7 +243,7 @@ int OCSP_basic_sign(OCSP_BASICRESP *brsp,
 		}
 	else
 		{
-		if (!OPENSSL_X509_NAME_set(&rid->value.byName,
+		if (!X509_NAME_set(&rid->value.byName,
 					X509_get_subject_name(signer)))
 				goto err;
 		rid->type = V_OCSP_RESPID_NAME;

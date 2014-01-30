@@ -116,7 +116,7 @@ static ERR_STRING_DATA HWCRHK_lib_name[]=
 static int HWCRHK_lib_error_code=0;
 static int HWCRHK_error_init=1;
 
-void ERR_load_HWCRHK_strings(void)
+static void ERR_load_HWCRHK_strings(void)
 	{
 	if (HWCRHK_lib_error_code == 0)
 		HWCRHK_lib_error_code=ERR_get_next_error_library();
@@ -136,7 +136,7 @@ void ERR_load_HWCRHK_strings(void)
 		}
 	}
 
-void ERR_unload_HWCRHK_strings(void)
+static void ERR_unload_HWCRHK_strings(void)
 	{
 	if (HWCRHK_error_init == 0)
 		{
@@ -152,7 +152,7 @@ void ERR_unload_HWCRHK_strings(void)
 		}
 	}
 
-void ERR_HWCRHK_error(int function, int reason, char *file, int line)
+static void ERR_HWCRHK_error(int function, int reason, char *file, int line)
 	{
 	if (HWCRHK_lib_error_code == 0)
 		HWCRHK_lib_error_code=ERR_get_next_error_library();

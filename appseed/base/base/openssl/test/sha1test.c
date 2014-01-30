@@ -1,1 +1,1 @@
-../crypto/sha/sha1test.c
+ypto/sha/sha1test.c

@@ -357,12 +357,14 @@ static void sc_usage(void)
 	BIO_printf(bio_err," -tlsextdebug      - hex dump of all TLS extensions received\n");
 	BIO_printf(bio_err," -status           - request certificate status from server\n");
 	BIO_printf(bio_err," -no_ticket        - disable use of RFC4507bis session tickets\n");
-# if !defined(OPENSSL_NO_NEXTPROTONEG)
+# ifndef OPENSSL_NO_NEXTPROTONEG
 	BIO_printf(bio_err," -nextprotoneg arg - enable NPN extension, considering named protocols supported (comma-separated list)\n");
 # endif
 #endif
 	BIO_printf(bio_err," -legacy_renegotiation - enable use of legacy renegotiation (dangerous)\n");
+#ifndef OPENSSL_NO_SRTP
 	BIO_printf(bio_err," -use_srtp profiles - Offer SRTP key management with a colon-separated profile list\n");
+#endif
  	BIO_printf(bio_err," -keymatexport label   - Export keying material using label\n");
  	BIO_printf(bio_err," -keymatexportlen len  - Export len bytes of keying material (default 20)\n");
 	}
@@ -502,7 +504,9 @@ static char * MS_CALLBACK ssl_give_srp_client_pwd_cb(SSL *s, void *arg)
 	}
 
 #endif
+#ifndef OPENSSL_NO_SRTP
 	char *srtp_profiles = NULL;
+#endif
 
 # ifndef OPENSSL_NO_NEXTPROTONEG
 /* This the context that we pass to next_proto_cb */
@@ -536,7 +540,7 @@ static int next_proto_cb(SSL *s, unsigned char **out, unsigned char *outlen, con
 	ctx->status = SSL_select_next_proto(out, outlen, in, inlen, ctx->data, ctx->len);
 	return SSL_TLSEXT_ERR_OK;
 	}
-# endif
+# endif  /* ndef OPENSSL_NO_NEXTPROTONEG */
 #endif
 
 enum
@@ -945,11 +949,13 @@ int MAIN(int argc, char **argv)
 			jpake_secret = *++argv;
 			}
 #endif
+#ifndef OPENSSL_NO_SRTP
 		else if (strcmp(*argv,"-use_srtp") == 0)
 			{
 			if (--argc < 1) goto bad;
 			srtp_profiles = *(++argv);
 			}
+#endif
 		else if (strcmp(*argv,"-keymatexport") == 0)
 			{
 			if (--argc < 1) goto bad;
@@ -1130,6 +1136,8 @@ bad:
 			BIO_printf(bio_c_out, "PSK key given or JPAKE in use, setting client callback\n");
 		SSL_CTX_set_psk_client_callback(ctx, psk_client_cb);
 		}
+#endif
+#ifndef OPENSSL_NO_SRTP
 	if (srtp_profiles != NULL)
 		SSL_CTX_set_tlsext_use_srtp(ctx, srtp_profiles);
 #endif
@@ -1890,6 +1898,10 @@ end:
 			print_stuff(bio_c_out,con,1);
 		SSL_free(con);
 		}
+#if !defined(OPENSSL_NO_TLSEXT) && !defined(OPENSSL_NO_NEXTPROTONEG)
+	if (next_proto.data)
+		OPENSSL_free(next_proto.data);
+#endif
 	if (ctx != NULL) SSL_CTX_free(ctx);
 	if (cert)
 		X509_free(cert);
@@ -1897,6 +1909,8 @@ end:
 		EVP_PKEY_free(key);
 	if (pass)
 		OPENSSL_free(pass);
+	if (vpm)
+		X509_VERIFY_PARAM_free(vpm);
 	if (cbuf != NULL) { OPENSSL_cleanse(cbuf,BUFSIZZ); OPENSSL_free(cbuf); }
 	if (sbuf != NULL) { OPENSSL_cleanse(sbuf,BUFSIZZ); OPENSSL_free(sbuf); }
 	if (mbuf != NULL) { OPENSSL_cleanse(mbuf,BUFSIZZ); OPENSSL_free(mbuf); }
@@ -1917,9 +1931,9 @@ static void print_stuff(BIO *bio, SSL *s, int full)
 	static const char *space="                ";
 	char buf[BUFSIZ];
 	STACK_OF(X509) *sk;
-	STACK_OF(OPENSSL_X509_NAME) *sk2;
+	STACK_OF(X509_NAME) *sk2;
 	const SSL_CIPHER *c;
-	OPENSSL_X509_NAME *xn;
+	X509_NAME *xn;
 	int j,i;
 #ifndef OPENSSL_NO_COMP
 	const COMP_METHOD *comp, *expansion;
@@ -1938,10 +1952,10 @@ static void print_stuff(BIO *bio, SSL *s, int full)
 			BIO_printf(bio,"---\nCertificate chain\n");
 			for (i=0; i<sk_X509_num(sk); i++)
 				{
-				OPENSSL_X509_NAME_oneline(X509_get_subject_name(
+				X509_NAME_oneline(X509_get_subject_name(
 					sk_X509_value(sk,i)),buf,sizeof buf);
 				BIO_printf(bio,"%2d s:%s\n",i,buf);
-				OPENSSL_X509_NAME_oneline(X509_get_issuer_name(
+				X509_NAME_oneline(X509_get_issuer_name(
 					sk_X509_value(sk,i)),buf,sizeof buf);
 				BIO_printf(bio,"   i:%s\n",buf);
 				if (c_showcerts)
@@ -1956,10 +1970,10 @@ static void print_stuff(BIO *bio, SSL *s, int full)
 			BIO_printf(bio,"Server certificate\n");
 			if (!(c_showcerts && got_a_chain)) /* Redundant if we showed the whole chain */
 				PEM_write_bio_X509(bio,peer);
-			OPENSSL_X509_NAME_oneline(X509_get_subject_name(peer),
+			X509_NAME_oneline(X509_get_subject_name(peer),
 				buf,sizeof buf);
 			BIO_printf(bio,"subject=%s\n",buf);
-			OPENSSL_X509_NAME_oneline(X509_get_issuer_name(peer),
+			X509_NAME_oneline(X509_get_issuer_name(peer),
 				buf,sizeof buf);
 			BIO_printf(bio,"issuer=%s\n",buf);
 			}
@@ -1967,13 +1981,13 @@ static void print_stuff(BIO *bio, SSL *s, int full)
 			BIO_printf(bio,"no peer certificate available\n");
 
 		sk2=SSL_get_client_CA_list(s);
-		if ((sk2 != NULL) && (sk_OPENSSL_X509_NAME_num(sk2) > 0))
+		if ((sk2 != NULL) && (sk_X509_NAME_num(sk2) > 0))
 			{
 			BIO_printf(bio,"---\nAcceptable client certificate CA names\n");
-			for (i=0; i<sk_OPENSSL_X509_NAME_num(sk2); i++)
+			for (i=0; i<sk_X509_NAME_num(sk2); i++)
 				{
-				xn=sk_OPENSSL_X509_NAME_value(sk2,i);
-				OPENSSL_X509_NAME_oneline(xn,buf,sizeof(buf));
+				xn=sk_X509_NAME_value(sk2,i);
+				X509_NAME_oneline(xn,buf,sizeof(buf));
 				BIO_write(bio,buf,strlen(buf));
 				BIO_write(bio,"\n",1);
 				}
@@ -2061,6 +2075,7 @@ static void print_stuff(BIO *bio, SSL *s, int full)
 	}
 #endif
 
+#ifndef OPENSSL_NO_SRTP
  	{
  	SRTP_PROTECTION_PROFILE *srtp_profile=SSL_get_selected_srtp_profile(s);
  
@@ -2068,6 +2083,7 @@ static void print_stuff(BIO *bio, SSL *s, int full)
 		BIO_printf(bio,"SRTP Extension negotiated, profile=%s\n",
 			   srtp_profile->name);
 	}
+#endif
  
 	SSL_SESSION_print(bio,SSL_get_session(s));
 	if (keymatexportlabel != NULL)
@@ -2110,7 +2126,7 @@ static int ocsp_resp_cb(SSL *s, void *arg)
 	{
 	const unsigned char *p;
 	int len;
-	OPENSSL_OCSP_RESPONSE *rsp;
+	OCSP_RESPONSE *rsp;
 	len = SSL_get_tlsext_status_ocsp_resp(s, &p);
 	BIO_puts(arg, "OCSP response: ");
 	if (!p)
@@ -2118,7 +2134,7 @@ static int ocsp_resp_cb(SSL *s, void *arg)
 		BIO_puts(arg, "no response sent\n");
 		return 1;
 		}
-	rsp = d2i_OPENSSL_OCSP_RESPONSE(NULL, &p, len);
+	rsp = d2i_OCSP_RESPONSE(NULL, &p, len);
 	if (!rsp)
 		{
 		BIO_puts(arg, "response parse error\n");
@@ -2126,9 +2142,9 @@ static int ocsp_resp_cb(SSL *s, void *arg)
 		return 0;
 		}
 	BIO_puts(arg, "\n======================================\n");
-	OPENSSL_OCSP_RESPONSE_print(arg, rsp, 0);
+	OCSP_RESPONSE_print(arg, rsp, 0);
 	BIO_puts(arg, "======================================\n");
-	OPENSSL_OCSP_RESPONSE_free(rsp);
+	OCSP_RESPONSE_free(rsp);
 	return 1;
 	}
 

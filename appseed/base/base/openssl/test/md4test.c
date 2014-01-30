@@ -1,1 +1,1 @@
-../crypto/md4/md4test.c
+ypto/md4/md4test.c

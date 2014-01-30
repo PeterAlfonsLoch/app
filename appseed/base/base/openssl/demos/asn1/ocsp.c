@@ -218,7 +218,7 @@ typedef struct {
 typedef struct {
 	int type;
 	union {
-	   OPENSSL_X509_NAME *byName;
+	   X509_NAME *byName;
 	   ASN1_OCTET_STRING *byKey;
 	}d;
 } ResponderID;
@@ -262,7 +262,7 @@ typedef struct {
 
 
 typedef struct {
-    OPENSSL_X509_NAME *issuer;
+    X509_NAME *issuer;
     STACK_OF(ACCESS_DESCRIPTION) *locator;
 } ServiceLocator;
 
@@ -273,7 +273,7 @@ IMPLEMENT_COMPAT_ASN1(X509);
 IMPLEMENT_COMPAT_ASN1(X509_ALGOR);
 //IMPLEMENT_COMPAT_ASN1(X509_EXTENSION);
 IMPLEMENT_COMPAT_ASN1(GENERAL_NAME);
-IMPLEMENT_COMPAT_ASN1(OPENSSL_X509_NAME);
+IMPLEMENT_COMPAT_ASN1(X509_NAME);
 
 ASN1_SEQUENCE(X509_EXTENSION) = {
 	ASN1_SIMPLE(X509_EXTENSION, object, ASN1_OBJECT),
@@ -326,7 +326,7 @@ ASN1_SEQUENCE(OCSPResponse) = {
 } ASN1_SEQUENCE_END(OCSPResponse);
 
 ASN1_CHOICE(ResponderID) = {
-	   ASN1_EXP(ResponderID, d.byName, OPENSSL_X509_NAME, 1),
+	   ASN1_EXP(ResponderID, d.byName, X509_NAME, 1),
 	   ASN1_IMP(ResponderID, d.byKey, ASN1_OCTET_STRING, 2)
 } ASN1_CHOICE_END(ResponderID);
 

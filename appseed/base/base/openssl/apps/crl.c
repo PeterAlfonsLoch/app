@@ -302,7 +302,7 @@ bad:
 			if (hash == i)
 				{
 				BIO_printf(bio_out,"%08lx\n",
-					OPENSSL_X509_NAME_hash(X509_CRL_get_issuer(x)));
+					X509_NAME_hash(X509_CRL_get_issuer(x)));
 				}
 			if (lastupdate == i)
 				{

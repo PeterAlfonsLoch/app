@@ -142,7 +142,7 @@ int MS_CALLBACK verify_callback(int ok, X509_STORE_CTX *ctx)
 	BIO_printf(bio_err,"depth=%d ",depth);
 	if (err_cert)
 		{
-		OPENSSL_X509_NAME_print_ex(bio_err, X509_get_subject_name(err_cert),
+		X509_NAME_print_ex(bio_err, X509_get_subject_name(err_cert),
 					0, XN_FLAG_ONELINE);
 		BIO_puts(bio_err, "\n");
 		}
@@ -168,7 +168,7 @@ int MS_CALLBACK verify_callback(int ok, X509_STORE_CTX *ctx)
 		{
 	case X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT:
 		BIO_puts(bio_err,"issuer= ");
-		OPENSSL_X509_NAME_print_ex(bio_err, X509_get_issuer_name(err_cert),
+		X509_NAME_print_ex(bio_err, X509_get_issuer_name(err_cert),
 					0, XN_FLAG_ONELINE);
 		BIO_puts(bio_err, "\n");
 		break;
@@ -237,8 +237,8 @@ int set_cert_stuff(SSL_CTX *ctx, char *cert_file, char *key_file)
 
 		/* If we are using DSA, we can copy the parameters from
 		 * the private key */
-		
-		
+
+
 		/* Now we know that a key and cert have been set against
 		 * the SSL context */
 		if (!SSL_CTX_check_private_key(ctx))
@@ -436,6 +436,8 @@ void MS_CALLBACK msg_cb(int write_p, int version, int content_type, const void *
 
 	if (version == SSL3_VERSION ||
 	    version == TLS1_VERSION ||
+	    version == TLS1_1_VERSION ||
+	    version == TLS1_2_VERSION ||
 	    version == DTLS1_VERSION ||
 	    version == DTLS1_BAD_VER)
 		{

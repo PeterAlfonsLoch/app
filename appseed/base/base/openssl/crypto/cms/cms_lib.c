@@ -176,7 +176,7 @@ int CMS_dataFinal(CMS_ContentInfo *cms, BIO *cmsbio)
 		/* Set bio as read only so its content can't be clobbered */
 		BIO_set_flags(mbio, BIO_FLAGS_MEM_RDONLY);
 		BIO_set_mem_eof_return(mbio, 0);
-		ASN1_STRING_set0(*pos, cont, (int) contlen);
+		ASN1_STRING_set0(*pos, cont, contlen);
 		(*pos)->flags &= ~ASN1_STRING_FLAG_CONT;
 		}
 
@@ -411,9 +411,7 @@ int cms_DigestAlgorithm_find_ctx(EVP_MD_CTX *mctx, BIO *chain,
 		 * algorithm  OID instead of digest.
 		 */
 			|| EVP_MD_pkey_type(EVP_MD_CTX_md(mtmp)) == nid)
-			{
 			return EVP_MD_CTX_copy_ex(mctx, mtmp);
-			}
 		chain = BIO_next(chain);
 		}
 	}

@@ -84,8 +84,8 @@ ASN1_CHOICE(GENERAL_NAME) = {
 	ASN1_IMP(GENERAL_NAME, d.dNSName, ASN1_IA5STRING, GEN_DNS),
 	/* Don't decode this */
 	ASN1_IMP(GENERAL_NAME, d.x400Address, ASN1_SEQUENCE, GEN_X400),
-	/* OPENSSL_X509_NAME is a CHOICE type so use EXPLICIT */
-	ASN1_EXP(GENERAL_NAME, d.directoryName, OPENSSL_X509_NAME, GEN_DIRNAME),
+	/* X509_NAME is a CHOICE type so use EXPLICIT */
+	ASN1_EXP(GENERAL_NAME, d.directoryName, X509_NAME, GEN_DIRNAME),
 	ASN1_IMP(GENERAL_NAME, d.ediPartyName, EDIPARTYNAME, GEN_EDIPARTY),
 	ASN1_IMP(GENERAL_NAME, d.uniformResourceIdentifier, ASN1_IA5STRING, GEN_URI),
 	ASN1_IMP(GENERAL_NAME, d.iPAddress, ASN1_OCTET_STRING, GEN_IPADD),
@@ -131,7 +131,7 @@ int GENERAL_NAME_cmp(GENERAL_NAME *a, GENERAL_NAME *b)
 		break;
 
 	case GEN_DIRNAME:
-		result = OPENSSL_X509_NAME_cmp(a->d.dirn, b->d.dirn);
+		result = X509_NAME_cmp(a->d.dirn, b->d.dirn);
 		break;
 
 	case GEN_IPADD:

@@ -1,1 +1,1 @@
-../crypto/whrlpool/wp_test.c
+ypto/whrlpool/wp_test.c

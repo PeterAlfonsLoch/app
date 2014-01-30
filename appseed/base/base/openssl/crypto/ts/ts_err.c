@@ -135,7 +135,7 @@ static ERR_STRING_DATA TS_str_reasons[]=
 {ERR_REASON(TS_R_DETACHED_CONTENT)       ,"detached content"},
 {ERR_REASON(TS_R_ESS_ADD_SIGNING_CERT_ERROR),"ess add signing cert error"},
 {ERR_REASON(TS_R_ESS_SIGNING_CERTIFICATE_ERROR),"ess signing certificate error"},
-{ERR_REASON(TS_R_INVALID_NULL_POINTER)   ,"invalid NULL pointer"},
+{ERR_REASON(TS_R_INVALID_NULL_POINTER)   ,"invalid null pointer"},
 {ERR_REASON(TS_R_INVALID_SIGNER_CERTIFICATE_PURPOSE),"invalid signer certificate purpose"},
 {ERR_REASON(TS_R_MESSAGE_IMPRINT_MISMATCH),"message imprint mismatch"},
 {ERR_REASON(TS_R_NONCE_MISMATCH)         ,"nonce mismatch"},

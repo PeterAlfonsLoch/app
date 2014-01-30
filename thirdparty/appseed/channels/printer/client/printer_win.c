@@ -55,7 +55,7 @@ struct rdp_win_printer
 struct rdp_win_print_job
 {
 	rdpPrintJob printjob;
-	DOC_INFO_1 di;
+	DOC_INFO_1W di;
 	DWORD handle;
 
 	void* printjob_object;
@@ -171,12 +171,12 @@ static void printer_win_free_printer(rdpPrinter* printer)
 	free(printer);
 }
 
-static rdpPrinter* printer_win_new_printer(rdpWinPrinterDriver* win_driver, const char* name, const wchar_t* drivername, BOOL is_default)
+static rdpPrinter* printer_win_new_printer(rdpWinPrinterDriver* win_driver, const wchar_t* name, const wchar_t* drivername, BOOL is_default)
 {
 	rdpWinPrinter* win_printer;
 	wchar_t wname[256];
 	DWORD needed;
-	PRINTER_INFO_2 *prninfo=NULL;
+	PRINTER_INFO_2W *prninfo=NULL;
 	size_t charsConverted;
 	DEBUG_WINPR("");
 
@@ -184,7 +184,7 @@ static rdpPrinter* printer_win_new_printer(rdpWinPrinterDriver* win_driver, cons
 	ZeroMemory(win_printer, sizeof(rdpWinPrinter));
 
 	win_printer->printer.id = win_driver->id_sequence++;
-	win_printer->printer.name = _strdup(name);
+	win_printer->printer.name = _wcsdup(name);
 	win_printer->printer.is_default = is_default;
 
 	win_printer->printer.CreatePrintJob = printer_win_create_printjob;
@@ -192,12 +192,12 @@ static rdpPrinter* printer_win_new_printer(rdpWinPrinterDriver* win_driver, cons
 	win_printer->printer.Free = printer_win_free_printer;
 
 	swprintf(wname, 256, L"%hs", name);
-	OpenPrinter(wname, &(win_printer->hPrinter), NULL);
+	OpenPrinterW(wname, &(win_printer->hPrinter), NULL);
 	DEBUG_WINPR("handle: 0x%08X", win_printer->hPrinter);
 
-	GetPrinter(win_printer->hPrinter, 2, (LPBYTE) prninfo, 0, &needed);
-	prninfo = (PRINTER_INFO_2*) GlobalAlloc(GPTR,needed);
-	GetPrinter(win_printer->hPrinter, 2, (LPBYTE) prninfo, needed, &needed);
+	GetPrinterW(win_printer->hPrinter, 2, (LPBYTE) prninfo, 0, &needed);
+	prninfo = (PRINTER_INFO_2W*) GlobalAlloc(GPTR,needed);
+	GetPrinterW(win_printer->hPrinter, 2, (LPBYTE) prninfo, needed, &needed);
 
 	win_printer->printer.driver = malloc(1000);
 	wcstombs_s(&charsConverted, win_printer->printer.driver, 1000, prninfo->pDriverName, _TRUNCATE);
@@ -239,21 +239,21 @@ static rdpPrinter** printer_win_enum_printers(rdpPrinterDriver* driver)
 
 	for (i = 0; i < (int)returned; i++)
 	{
-		wcstombs_s(&charsConverted, pname, 1000, prninfo[i].pPrinterName, _TRUNCATE);
+//		wcstombs_s(&charsConverted, pname, 1000, prninfo[i].pPrinterName, _TRUNCATE);
 		printers[num_printers++] = printer_win_new_printer((rdpWinPrinterDriver*)driver,
-			pname, prninfo[i].pDriverName, 0);
+         prninfo[i].pDriverName, prninfo[i].pDriverName, 0);
 	}
 
 	GlobalFree(prninfo);
 	return printers;
 }
 
-static rdpPrinter* printer_win_get_printer(rdpPrinterDriver* driver, const char* name)
+static rdpPrinter* printer_win_get_printer(rdpPrinterDriver* driver, const wchar_t* name)
 {
 	rdpWinPrinterDriver* win_driver = (rdpWinPrinterDriver*)driver;
 	rdpPrinter *myPrinter = NULL;
 
-	DEBUG_WINPR("printer %s", name);
+	DEBUG_WINPR("printer %S", name);
 	
 	myPrinter = printer_win_new_printer(win_driver, name, L"", win_driver->id_sequence == 1 ? TRUE : FALSE);
 	

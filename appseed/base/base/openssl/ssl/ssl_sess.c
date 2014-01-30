@@ -134,7 +134,7 @@
  * OTHER ENTITY BASED ON INFRINGEMENT OF INTELLECTUAL PROPERTY RIGHTS OR
  * OTHERWISE.
  */
-#define _WINSOCKAPI_   /* Prevent inclusion of winsock.h in windows.h */
+
 #include <stdio.h>
 #include <openssl/lhash.h>
 #include <openssl/rand.h>
@@ -159,7 +159,7 @@ SSL_SESSION *SSL_get1_session(SSL *ssl)
 	SSL_SESSION *sess;
 	/* Need to lock this all up rather than just use CRYPTO_add so that
 	 * somebody doesn't free ssl->session between when we check it's
-	 * non-NULL and when we up the reference count. */
+	 * non-null and when we up the reference count. */
 	CRYPTO_w_lock(CRYPTO_LOCK_SSL_SESSION);
 	sess = ssl->session;
 	if(sess)

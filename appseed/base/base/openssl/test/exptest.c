@@ -1,1 +1,1 @@
-../crypto/bn/exptest.c
+ypto/bn/exptest.c

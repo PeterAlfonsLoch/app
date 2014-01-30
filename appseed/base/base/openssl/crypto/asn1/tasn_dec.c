@@ -249,7 +249,7 @@ int ASN1_item_ex_d2i(ASN1_VALUE **pval, const unsigned char **in, long len,
 			int exptag;
 			p = *in;
 			if (tag == -1)
-				exptag = (int) it->utype;
+				exptag = it->utype;
 			else exptag = tag;
 			/* Don't care about anything other than presence
 			 * of expected tag */
@@ -385,7 +385,7 @@ int ASN1_item_ex_d2i(ASN1_VALUE **pval, const unsigned char **in, long len,
 			return -1;
 		if (aux && (aux->flags & ASN1_AFLG_BROKEN))
 			{
-			len = (long) (tmplen - (p - *in));
+			len = tmplen - (p - *in);
 			seq_nolen = 1;
 			}
 		/* If indefinite we don't do a length check */
@@ -428,7 +428,7 @@ int ASN1_item_ex_d2i(ASN1_VALUE **pval, const unsigned char **in, long len,
 							ASN1_R_UNEXPECTED_EOC);
 					goto err;
 					}
-				len -= (long) (p - q);
+				len -= p - q;
 				seq_eoc = 0;
 				q = p;
 				break;
@@ -461,7 +461,7 @@ int ASN1_item_ex_d2i(ASN1_VALUE **pval, const unsigned char **in, long len,
 				continue;
 				}
 			/* Update length */
-			len -= (long) (p - q);
+			len -= p - q;
 			}
 
 		/* Check for EOC if expecting one */
@@ -503,7 +503,7 @@ int ASN1_item_ex_d2i(ASN1_VALUE **pval, const unsigned char **in, long len,
 				}
 			}
 		/* Save encoding */
-		if (!asn1_enc_save(pval, *in, (int) (p - *in), it))
+		if (!asn1_enc_save(pval, *in, p - *in, it))
 			goto auxerr;
 		*in = p;
 		if (asn1_cb && !asn1_cb(ASN1_OP_D2I_POST, pval, it, NULL))
@@ -541,7 +541,7 @@ static int asn1_template_ex_d2i(ASN1_VALUE **val,
 	char exp_eoc;
 	if (!val)
 		return 0;
-	flags = (int) tt->flags;
+	flags = tt->flags;
 	aclass = flags & ASN1_TFLG_TAG_CLASS;
 
 	p = *in;
@@ -555,7 +555,7 @@ static int asn1_template_ex_d2i(ASN1_VALUE **val,
 		 * get the info.
 		 */
 		ret = asn1_check_tlen(&len, NULL, NULL, &exp_eoc, &cst,
-					&p, inlen, (int) tt->tag, aclass, opt, ctx);
+					&p, inlen, tt->tag, aclass, opt, ctx);
 		q = p;
 		if (!ret)
 			{
@@ -580,7 +580,7 @@ static int asn1_template_ex_d2i(ASN1_VALUE **val,
 			return 0;
 			}
 		/* We read the field in OK so update length */
-		len -= (long) (p - q);
+		len -= p - q;
 		if (exp_eoc)
 			{
 			/* If NDEF we must have an EOC here */
@@ -625,7 +625,7 @@ static int asn1_template_noexp_d2i(ASN1_VALUE **val,
 	const unsigned char *p, *q;
 	if (!val)
 		return 0;
-	flags = (int) tt->flags;
+	flags = tt->flags;
 	aclass = flags & ASN1_TFLG_TAG_CLASS;
 
 	p = *in;
@@ -639,7 +639,7 @@ static int asn1_template_noexp_d2i(ASN1_VALUE **val,
 		/* First work out expected inner tag value */
 		if (flags & ASN1_TFLG_IMPTAG)
 			{
-			sktag = (int) tt->tag;
+			sktag = tt->tag;
 			skaclass = aclass;
 			}
 		else
@@ -698,7 +698,7 @@ static int asn1_template_noexp_d2i(ASN1_VALUE **val,
 							ASN1_R_UNEXPECTED_EOC);
 					goto err;
 					}
-				len -= (long) (p - q);
+				len -= p - q;
 				sk_eoc = 0;
 				break;
 				}
@@ -711,7 +711,7 @@ static int asn1_template_noexp_d2i(ASN1_VALUE **val,
 					ERR_R_NESTED_ASN1_ERROR);
 				goto err;
 				}
-			len -= (long) (p - q);
+			len -= p - q;
 			if (!sk_ASN1_VALUE_push((STACK_OF(ASN1_VALUE) *)*val,
 						skfield))
 				{
@@ -730,7 +730,7 @@ static int asn1_template_noexp_d2i(ASN1_VALUE **val,
 		{
 		/* IMPLICIT tagging */
 		ret = ASN1_item_ex_d2i(val, &p, len,
-			ASN1_ITEM_ptr(tt->item), (int) tt->tag, aclass, opt, ctx);
+			ASN1_ITEM_ptr(tt->item), tt->tag, aclass, opt, ctx);
 		if (!ret)
 			{
 			ASN1err(ASN1_F_ASN1_TEMPLATE_NOEXP_D2I,
@@ -787,7 +787,7 @@ static int asn1_d2i_ex_primitive(ASN1_VALUE **pval,
 		tag = -1;
 		}
 	else
-		utype = (int) it->utype;
+		utype = it->utype;
 
 	if (utype == V_ASN1_ANY)
 		{
@@ -859,11 +859,11 @@ static int asn1_d2i_ex_primitive(ASN1_VALUE **pval,
 			{
 			if (!asn1_find_end(&p, plen, inf))
 				 goto err;
-			len = (long) (p - cont);
+			len = p - cont;
 			}
 		else
 			{
-			len = (long) (p - cont + plen);
+			len = p - cont + plen;
 			p += plen;
 			buf.data = NULL;
 			}
@@ -884,8 +884,8 @@ static int asn1_d2i_ex_primitive(ASN1_VALUE **pval,
 			free_cont = 1;
 			goto err;
 			}
-		len = (long) buf.length;
-		/* Append a final NULL to string */
+		len = buf.length;
+		/* Append a final null to string */
 		if (!BUF_MEM_grow_clean(&buf, len + 1))
 			{
 			ASN1err(ASN1_F_ASN1_D2I_EX_PRIMITIVE,
@@ -904,7 +904,7 @@ static int asn1_d2i_ex_primitive(ASN1_VALUE **pval,
 		}
 
 	/* We now have content length and type: translate into a structure */
-	if (!asn1_ex_c2i(pval, cont, (int) len, utype, &free_cont, it))
+	if (!asn1_ex_c2i(pval, cont, len, utype, &free_cont, it))
 		goto err;
 
 	*in = p;
@@ -1125,7 +1125,7 @@ static int asn1_find_end(const unsigned char **in, long len, char inf)
 			expected_eoc++;
 		else
 			p += plen;
-		len -= (long) (p - q);
+		len -= p - q;
 		}
 	if (expected_eoc)
 		{
@@ -1206,7 +1206,7 @@ static int asn1_collect(BUF_MEM *buf, const unsigned char **in, long len,
 			}
 		else if (plen && !collect_data(buf, &p, plen))
 			return 0;
-		len -= (long) (p - q);
+		len -= p - q;
 		}
 	if (inf)
 		{
@@ -1222,7 +1222,7 @@ static int collect_data(BUF_MEM *buf, const unsigned char **p, long plen)
 	int len;
 	if (buf)
 		{
-		len = (int) buf->length;
+		len = buf->length;
 		if (!BUF_MEM_grow_clean(buf, len + plen))
 			{
 			ASN1err(ASN1_F_COLLECT_DATA, ERR_R_MALLOC_FAILURE);
@@ -1286,7 +1286,7 @@ static int asn1_check_tlen(long *olen, int *otag, unsigned char *oclass,
 			ctx->plen = plen;
 			ctx->pclass = pclass;
 			ctx->ptag = ptag;
-			ctx->hdrlen = (int) (p - q);
+			ctx->hdrlen = p - q;
 			ctx->valid = 1;
 			/* If definite length, and no error, length +
 			 * header can't exceed total amount of data available. 
@@ -1325,7 +1325,7 @@ static int asn1_check_tlen(long *olen, int *otag, unsigned char *oclass,
 		}
 
 	if (i & 1)
-		plen = (long) (len - (p - q));
+		plen = len - (p - q);
 
 	if (inf)
 		*inf = i & 1;

@@ -712,7 +712,7 @@ int v3_addr_get_range(IPAddressOrRange *aor,
  * the ordering: I can read it as meaning that IPv6 without a SAFI
  * comes before IPv4 with a SAFI, which seems pretty weird.  The
  * examples in appendix B suggest that the author intended the
- * NULL-SAFI rule to apply only within a single AFI, which is what I
+ * null-SAFI rule to apply only within a single AFI, which is what I
  * would have expected and is what the following code implements.
  */
 static int IPAddressFamily_cmp(const IPAddressFamily * const *a_,
@@ -982,7 +982,7 @@ static void *v2i_IPAddrBlocks(const struct v3_ext_method *method,
     length = length_from_afi(afi);
 
     /*
-     * Handle SAFI, if any, and BUF_strdup() so we can NULL-terminate
+     * Handle SAFI, if any, and BUF_strdup() so we can null-terminate
      * the other input values.
      */
     if (safi != NULL) {

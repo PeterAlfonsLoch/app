@@ -200,7 +200,7 @@ int CMS_RecipientInfo_ktri_get0_algs(CMS_RecipientInfo *ri,
 					X509_ALGOR **palg);
 int CMS_RecipientInfo_ktri_get0_signer_id(CMS_RecipientInfo *ri,
 					ASN1_OCTET_STRING **keyid,
-					OPENSSL_X509_NAME **issuer, ASN1_INTEGER **sno);
+					X509_NAME **issuer, ASN1_INTEGER **sno);
 
 CMS_RecipientInfo *CMS_add0_recipient_key(CMS_ContentInfo *cms, int nid,
 					unsigned char *key, size_t keylen,
@@ -260,7 +260,7 @@ STACK_OF(CMS_SignerInfo) *CMS_get0_SignerInfos(CMS_ContentInfo *cms);
 void CMS_SignerInfo_set1_signer_cert(CMS_SignerInfo *si, X509 *signer);
 int CMS_SignerInfo_get0_signer_id(CMS_SignerInfo *si,
 					ASN1_OCTET_STRING **keyid,
-					OPENSSL_X509_NAME **issuer, ASN1_INTEGER **sno);
+					X509_NAME **issuer, ASN1_INTEGER **sno);
 int CMS_SignerInfo_cert_cmp(CMS_SignerInfo *si, X509 *cert);
 int CMS_set1_signers_certs(CMS_ContentInfo *cms, STACK_OF(X509) *certs,
 					unsigned int flags);

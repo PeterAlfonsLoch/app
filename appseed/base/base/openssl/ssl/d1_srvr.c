@@ -113,9 +113,6 @@
  * [including the GNU Public Licence.]
  */
 
-#include "base/base/base/base.h"
-
-
 #include <stdio.h>
 #include "ssl_locl.h"
 #include <openssl/buffer.h>
@@ -279,10 +276,11 @@ int dtls1_accept(SSL *s)
 		case SSL3_ST_SW_HELLO_REQ_B:
 
 			s->shutdown=0;
+			dtls1_clear_record_buffer(s);
 			dtls1_start_timer(s);
 			ret=dtls1_send_hello_request(s);
 			if (ret <= 0) goto end;
-			s->s3->tmp.next_state=SSL3_ST_SW_HELLO_REQ_C;
+			s->s3->tmp.next_state=SSL3_ST_SR_CLNT_HELLO_A;
 			s->state=SSL3_ST_SW_FLUSH;
 			s->init_num=0;
 
@@ -724,10 +722,13 @@ int dtls1_accept(SSL *s)
 			if (ret <= 0) goto end;
 
 #ifndef OPENSSL_NO_SCTP
-			/* Change to new shared key of SCTP-Auth,
-			 * will be ignored if no SCTP used.
-			 */
-			BIO_ctrl(SSL_get_wbio(s), BIO_CTRL_DGRAM_SCTP_NEXT_AUTH_KEY, 0, NULL);
+			if (!s->hit)
+				{
+				/* Change to new shared key of SCTP-Auth,
+				 * will be ignored if no SCTP used.
+				 */
+				BIO_ctrl(SSL_get_wbio(s), BIO_CTRL_DGRAM_SCTP_NEXT_AUTH_KEY, 0, NULL);
+				}
 #endif
 
 			s->state=SSL3_ST_SW_FINISHED_A;
@@ -752,7 +753,16 @@ int dtls1_accept(SSL *s)
 			if (ret <= 0) goto end;
 			s->state=SSL3_ST_SW_FLUSH;
 			if (s->hit)
+				{
 				s->s3->tmp.next_state=SSL3_ST_SR_FINISHED_A;
+
+#ifndef OPENSSL_NO_SCTP
+				/* Change to new shared key of SCTP-Auth,
+				 * will be ignored if no SCTP used.
+				 */
+				BIO_ctrl(SSL_get_wbio(s), BIO_CTRL_DGRAM_SCTP_NEXT_AUTH_KEY, 0, NULL);
+#endif
+				}
 			else
 				{
 				s->s3->tmp.next_state=SSL_ST_OK;
@@ -894,15 +904,15 @@ int dtls1_send_hello_verify_request(SSL *s)
 		*(p++) = (unsigned char) s->d1->cookie_len;
 		memcpy(p, s->d1->cookie, s->d1->cookie_len);
 		p += s->d1->cookie_len;
-		msg_len = (int) (p - msg);
+		msg_len = p - msg;
 
 		dtls1_set_message_header(s, buf,
 			DTLS1_MT_HELLO_VERIFY_REQUEST, msg_len, 0, msg_len);
 
 		s->state=DTLS1_ST_SW_HELLO_VERIFY_REQUEST_B;
 		/* number of bytes to write */
-		s->init_num = (int) (p - buf);
-		s->init_off = 0;
+		s->init_num=p-buf;
+		s->init_off=0;
 		}
 
 	/* s->state = DTLS1_ST_SW_HELLO_VERIFY_REQUEST_B */
@@ -915,15 +925,13 @@ int dtls1_send_server_hello(SSL *s)
 	unsigned char *p,*d;
 	int i;
 	unsigned int sl;
-	unsigned long l,Time;
+	unsigned long l;
 
 	if (s->state == SSL3_ST_SW_SRVR_HELLO_A)
 		{
 		buf=(unsigned char *)s->init_buf->data;
 		p=s->s3->server_random;
-		Time=(unsigned long)time(NULL);			/* Time */
-		l2n(Time,p);
-		RAND_pseudo_bytes(p,SSL3_RANDOM_SIZE-4);
+		ssl_fill_hello_random(s, 1, p, SSL3_RANDOM_SIZE);
 		/* Do the message type and length last */
 		d=p= &(buf[DTLS1_HM_HEADER_LENGTH]);
 
@@ -980,15 +988,15 @@ int dtls1_send_server_hello(SSL *s)
 #endif
 
 		/* do the header */
-		l = (unsigned long) (p - d);
+		l=(p-d);
 		d=buf;
 
 		d = dtls1_set_message_header(s, d, SSL3_MT_SERVER_HELLO, l, 0, l);
 
 		s->state=SSL3_ST_SW_SRVR_HELLO_B;
 		/* number of bytes to write */
-		s->init_num = (int) (p - buf);
-		s->init_off = 0;
+		s->init_num=p-buf;
+		s->init_off=0;
 
 		/* buffer the message to handle re-xmits */
 		dtls1_buffer_message(s, 0);
@@ -1230,7 +1238,7 @@ int dtls1_send_server_key_exchange(SSL *s)
 			 * First check the size of encoding and
 			 * allocate memory accordingly.
 			 */
-			encodedlen = (int) EC_POINT_point2oct(group,
+			encodedlen = EC_POINT_point2oct(group, 
 			    EC_KEY_get0_public_key(ecdh),
 			    POINT_CONVERSION_UNCOMPRESSED, 
 			    NULL, 0, NULL);
@@ -1245,7 +1253,7 @@ int dtls1_send_server_key_exchange(SSL *s)
 				}
 
 
-			encodedlen = (int) EC_POINT_point2oct(group,
+			encodedlen = EC_POINT_point2oct(group, 
 			    EC_KEY_get0_public_key(ecdh), 
 			    POINT_CONVERSION_UNCOMPRESSED, 
 			    encodedPoint, encodedlen, bn_ctx);
@@ -1472,8 +1480,8 @@ int dtls1_send_certificate_request(SSL *s)
 	{
 	unsigned char *p,*d;
 	int i,j,nl,off,n;
-	STACK_OF(OPENSSL_X509_NAME) *sk=NULL;
-	OPENSSL_X509_NAME *name;
+	STACK_OF(X509_NAME) *sk=NULL;
+	X509_NAME *name;
 	BUF_MEM *buf;
 	unsigned int msg_len;
 
@@ -1498,10 +1506,10 @@ int dtls1_send_certificate_request(SSL *s)
 		nl=0;
 		if (sk != NULL)
 			{
-			for (i=0; i<sk_OPENSSL_X509_NAME_num(sk); i++)
+			for (i=0; i<sk_X509_NAME_num(sk); i++)
 				{
-				name=sk_OPENSSL_X509_NAME_value(sk,i);
-				j=i2d_OPENSSL_X509_NAME(name,NULL);
+				name=sk_X509_NAME_value(sk,i);
+				j=i2d_X509_NAME(name,NULL);
 				if (!BUF_MEM_grow_clean(buf,DTLS1_HM_HEADER_LENGTH+n+j+2))
 					{
 					SSLerr(SSL_F_DTLS1_SEND_CERTIFICATE_REQUEST,ERR_R_BUF_LIB);
@@ -1511,14 +1519,14 @@ int dtls1_send_certificate_request(SSL *s)
 				if (!(s->options & SSL_OP_NETSCAPE_CA_DN_BUG))
 					{
 					s2n(j,p);
-					i2d_OPENSSL_X509_NAME(name,&p);
+					i2d_X509_NAME(name,&p);
 					n+=2+j;
 					nl+=2+j;
 					}
 				else
 					{
 					d=p;
-					i2d_OPENSSL_X509_NAME(name,&p);
+					i2d_X509_NAME(name,&p);
 					j-=2; s2n(j,d); j+=2;
 					n+=j;
 					nl+=j;
@@ -1579,7 +1587,7 @@ int dtls1_send_server_certificate(SSL *s)
 		x=ssl_get_server_send_cert(s);
 		if (x == NULL)
 			{
-			/* VRS: allow NULL cert if auth == KRB5 */
+			/* VRS: allow null cert if auth == KRB5 */
 			if ((s->s3->tmp.new_cipher->algorithm_mkey != SSL_kKRB5) ||
 			    (s->s3->tmp.new_cipher->algorithm_auth != SSL_aKRB5))
 				{
@@ -1688,7 +1696,7 @@ int dtls1_send_newsession_ticket(SSL *s)
 		p += hlen;
 		/* Now write out lengths: p points to end of data written */
 		/* Total length */
-		len = (int) (p - (unsigned char *)(s->init_buf->data));
+		len = p - (unsigned char *)(s->init_buf->data);
 		/* Ticket length */
 		p=(unsigned char *)&(s->init_buf->data[DTLS1_HM_HEADER_LENGTH]) + 4;
 		s2n(len - DTLS1_HM_HEADER_LENGTH - 6, p);

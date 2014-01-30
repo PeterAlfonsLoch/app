@@ -1,1 +1,1 @@
-../crypto/sha/shatest.c
+ypto/sha/shatest.c

@@ -97,10 +97,10 @@ struct rsa_meth_st
 	int (*rsa_priv_dec)(int flen,const unsigned char *from,
 			    unsigned char *to,
 			    RSA *rsa,int padding);
-	int (*rsa_mod_exp)(BIGNUM *r0,const BIGNUM *I,RSA *rsa,BN_CTX *ctx); /* Can be NULL */
+	int (*rsa_mod_exp)(BIGNUM *r0,const BIGNUM *I,RSA *rsa,BN_CTX *ctx); /* Can be null */
 	int (*bn_mod_exp)(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 			  const BIGNUM *m, BN_CTX *ctx,
-			  BN_MONT_CTX *m_ctx); /* Can be NULL */
+			  BN_MONT_CTX *m_ctx); /* Can be null */
 	int (*init)(RSA *rsa);		/* called at new */
 	int (*finish)(RSA *rsa);	/* called at free */
 	int flags;			/* RSA_METHOD_FLAG_* things */
@@ -280,7 +280,7 @@ struct rsa_st
 
 RSA *	RSA_new(void);
 RSA *	RSA_new_method(ENGINE *engine);
-int	RSA_size(const RSA *);
+int	RSA_size(const RSA *rsa);
 
 /* Deprecated version */
 #ifndef OPENSSL_NO_DEPRECATED

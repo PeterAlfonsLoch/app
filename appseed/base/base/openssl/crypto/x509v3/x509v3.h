@@ -189,7 +189,7 @@ union {
 	ASN1_IA5STRING *rfc822Name;
 	ASN1_IA5STRING *dNSName;
 	ASN1_TYPE *x400Address;
-	OPENSSL_X509_NAME *directoryName;
+	X509_NAME *directoryName;
 	EDIPARTYNAME *ediPartyName;
 	ASN1_IA5STRING *uniformResourceIdentifier;
 	ASN1_OCTET_STRING *iPAddress;
@@ -197,7 +197,7 @@ union {
 
 	/* Old names */
 	ASN1_OCTET_STRING *ip; /* iPAddress */
-	OPENSSL_X509_NAME *dirn;		/* dirn */
+	X509_NAME *dirn;		/* dirn */
 	ASN1_IA5STRING *ia5;/* rfc822Name, dNSName, uniformResourceIdentifier */
 	ASN1_OBJECT *rid; /* registeredID */
 	ASN1_TYPE *other; /* x400Address */
@@ -225,10 +225,10 @@ typedef struct DIST_POINT_NAME_st {
 int type;
 union {
 	GENERAL_NAMES *fullname;
-	STACK_OF(OPENSSL_X509_NAME_ENTRY) *relativename;
+	STACK_OF(X509_NAME_ENTRY) *relativename;
 } name;
 /* If relativename then this contains the full distribution point name */
-OPENSSL_X509_NAME *dpname;
+X509_NAME *dpname;
 } DIST_POINT_NAME;
 /* All existing reasons */
 #define CRLDP_ALL_REASONS	0x807f
@@ -570,7 +570,7 @@ DECLARE_ASN1_FUNCTIONS(DIST_POINT)
 DECLARE_ASN1_FUNCTIONS(DIST_POINT_NAME)
 DECLARE_ASN1_FUNCTIONS(ISSUING_DIST_POINT)
 
-int DIST_POINT_set_dpname(DIST_POINT_NAME *dpn, OPENSSL_X509_NAME *iname);
+int DIST_POINT_set_dpname(DIST_POINT_NAME *dpn, X509_NAME *iname);
 
 int NAME_CONSTRAINTS_check(X509 *x, NAME_CONSTRAINTS *nc);
 
@@ -701,7 +701,7 @@ STACK_OF(OPENSSL_STRING) *X509_get1_ocsp(X509 *x);
 ASN1_OCTET_STRING *a2i_IPADDRESS(const char *ipasc);
 ASN1_OCTET_STRING *a2i_IPADDRESS_NC(const char *ipasc);
 int a2i_ipadd(unsigned char *ipout, const char *ipasc);
-int X509V3_NAME_from_section(OPENSSL_X509_NAME *nm, STACK_OF(CONF_VALUE)*dn_sk,
+int X509V3_NAME_from_section(X509_NAME *nm, STACK_OF(CONF_VALUE)*dn_sk,
 						unsigned long chtype);
 
 void X509_POLICY_NODE_print(BIO *out, X509_POLICY_NODE *node, int indent);

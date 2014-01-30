@@ -93,7 +93,7 @@ int PEM_def_callback(char *buf, int num, int w, void *key)
 	int i,j;
 	const char *prompt;
 	if(key) {
-		i=(int) strlen(key);
+		i=strlen(key);
 		i=(i > num)?num:i;
 		memcpy(buf,key,i);
 		return(i);
@@ -112,7 +112,7 @@ int PEM_def_callback(char *buf, int num, int w, void *key)
 			memset(buf,0,(unsigned int)num);
 			return(-1);
 			}
-		j = (int) strlen(buf);
+		j=strlen(buf);
 		if (j < MIN_LENGTH)
 			{
 			fprintf(stderr,"phrase is too short, needs to be at least %d chars\n",MIN_LENGTH);
@@ -151,7 +151,7 @@ void PEM_dek_info(char *buf, const char *type, int len, char *str)
 	BUF_strlcat(buf,"DEK-Info: ",PEM_BUFSIZE);
 	BUF_strlcat(buf,type,PEM_BUFSIZE);
 	BUF_strlcat(buf,",",PEM_BUFSIZE);
-   j = (int) strlen(buf);
+	j=strlen(buf);
 	if (j + (len * 2) + 1 > PEM_BUFSIZE)
         	return;
 	for (i=0; i<len; i++)
@@ -394,7 +394,8 @@ int PEM_ASN1_write_bio(i2d_of_void *i2d, const char *name, BIO *bp,
 			goto err;
 		/* The 'iv' is used as the iv and as a salt.  It is
 		 * NOT taken from the BytesToKey function */
-		EVP_BytesToKey(enc,EVP_md5(),iv,kstr,klen,1,key,NULL);
+		if (!EVP_BytesToKey(enc,EVP_md5(),iv,kstr,klen,1,key,NULL))
+			goto err;
 
 		if (kstr == (unsigned char *)buf) OPENSSL_cleanse(buf,PEM_BUFSIZE);
 
@@ -406,12 +407,15 @@ int PEM_ASN1_write_bio(i2d_of_void *i2d, const char *name, BIO *bp,
 		/* k=strlen(buf); */
 
 		EVP_CIPHER_CTX_init(&ctx);
-		EVP_EncryptInit_ex(&ctx,enc,NULL,key,iv);
-		EVP_EncryptUpdate(&ctx,data,&j,data,i);
-		EVP_EncryptFinal_ex(&ctx,&(data[j]),&i);
+		ret = 1;
+		if (!EVP_EncryptInit_ex(&ctx,enc,NULL,key,iv)
+			|| !EVP_EncryptUpdate(&ctx,data,&j,data,i)
+			|| !EVP_EncryptFinal_ex(&ctx,&(data[j]),&i))
+			ret = 0;
 		EVP_CIPHER_CTX_cleanup(&ctx);
+		if (ret == 0)
+			goto err;
 		i+=j;
-		ret=1;
 		}
 	else
 		{
@@ -459,14 +463,17 @@ int PEM_do_header(EVP_CIPHER_INFO *cipher, unsigned char *data, long *plen,
 	ebcdic2ascii(buf, buf, klen);
 #endif
 
-	EVP_BytesToKey(cipher->cipher,EVP_md5(),&(cipher->iv[0]),
-		(unsigned char *)buf,klen,1,key,NULL);
+	if (!EVP_BytesToKey(cipher->cipher,EVP_md5(),&(cipher->iv[0]),
+		(unsigned char *)buf,klen,1,key,NULL))
+		return 0;
 
 	j=(int)len;
 	EVP_CIPHER_CTX_init(&ctx);
-	EVP_DecryptInit_ex(&ctx,cipher->cipher,NULL, key,&(cipher->iv[0]));
-	EVP_DecryptUpdate(&ctx,data,&i,data,j);
-	o=EVP_DecryptFinal_ex(&ctx,&(data[i]),&j);
+	o = EVP_DecryptInit_ex(&ctx,cipher->cipher,NULL, key,&(cipher->iv[0]));
+	if (o)
+		o = EVP_DecryptUpdate(&ctx,data,&i,data,j);
+	if (o)
+		o = EVP_DecryptFinal_ex(&ctx,&(data[i]),&j);
 	EVP_CIPHER_CTX_cleanup(&ctx);
 	OPENSSL_cleanse((char *)buf,sizeof(buf));
 	OPENSSL_cleanse((char *)key,sizeof(key));
@@ -593,14 +600,14 @@ int PEM_write_bio(BIO *bp, const char *name, char *header, unsigned char *data,
 	int reason=ERR_R_BUF_LIB;
 	
 	EVP_EncodeInit(&ctx);
-	nlen = (int) strlen(name);
+	nlen=strlen(name);
 
 	if (	(BIO_write(bp,"-----BEGIN ",11) != 11) ||
 		(BIO_write(bp,name,nlen) != nlen) ||
 		(BIO_write(bp,"-----\n",6) != 6))
 		goto err;
 		
-	i = (int) strlen(header);
+	i=strlen(header);
 	if (i > 0)
 		{
 		if (	(BIO_write(bp,header,i) != i) ||
@@ -702,7 +709,7 @@ int PEM_read_bio(BIO *bp, char **name, char **header, unsigned char **data,
 
 		if (strncmp(buf,"-----BEGIN ",11) == 0)
 			{
-			i = (int) strlen(&(buf[11]));
+			i=strlen(&(buf[11]));
 
 			if (strncmp(&(buf[11+i-6]),"-----\n",6) != 0)
 				continue;
@@ -787,7 +794,7 @@ int PEM_read_bio(BIO *bp, char **name, char **header, unsigned char **data,
 		dataB=tmpB;
 		bl=hl;
 		}
-	i = (int) strlen(nameB->data);
+	i=strlen(nameB->data);
 	if (	(strncmp(buf,"-----END ",9) != 0) ||
 		(strncmp(nameB->data,&(buf[9]),i) != 0) ||
 		(strncmp(&(buf[9+i]),"-----\n",6) != 0))
@@ -836,8 +843,8 @@ err:
 
 int pem_check_suffix(const char *pem_str, const char *suffix)
 	{
-	int pem_len = (int) strlen(pem_str);
-	int suffix_len = (int) strlen(suffix);
+	int pem_len = strlen(pem_str);
+	int suffix_len = strlen(suffix);
 	const char *p;
 	if (suffix_len + 1 >= pem_len)
 		return 0;
@@ -847,6 +854,6 @@ int pem_check_suffix(const char *pem_str, const char *suffix)
 	p--;
 	if (*p != ' ')
 		return 0;
-	return (int)  (p - pem_str);
+	return p - pem_str;
 	}
 

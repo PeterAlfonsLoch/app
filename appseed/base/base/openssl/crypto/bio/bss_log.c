@@ -224,7 +224,7 @@ static long MS_CALLBACK slg_ctrl(BIO *b, int cmd, long num, void *ptr)
 		{
 	case BIO_CTRL_SET:
 		xcloselog(b);
-		xopenlog(b, ptr, (int) num);
+		xopenlog(b, ptr, num);
 		break;
 	default:
 		break;
@@ -236,7 +236,7 @@ static int MS_CALLBACK slg_puts(BIO *bp, const char *str)
 	{
 	int n,ret;
 
-	n=(int) strlen(str);
+	n=strlen(str);
 	ret=slg_write(bp,str,n);
 	return(ret);
 	}

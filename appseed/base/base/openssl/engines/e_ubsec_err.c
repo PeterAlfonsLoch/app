@@ -113,7 +113,7 @@ static ERR_STRING_DATA UBSEC_lib_name[]=
 static int UBSEC_lib_error_code=0;
 static int UBSEC_error_init=1;
 
-void ERR_load_UBSEC_strings(void)
+static void ERR_load_UBSEC_strings(void)
 	{
 	if (UBSEC_lib_error_code == 0)
 		UBSEC_lib_error_code=ERR_get_next_error_library();
@@ -133,7 +133,7 @@ void ERR_load_UBSEC_strings(void)
 		}
 	}
 
-void ERR_unload_UBSEC_strings(void)
+static void ERR_unload_UBSEC_strings(void)
 	{
 	if (UBSEC_error_init == 0)
 		{
@@ -149,7 +149,7 @@ void ERR_unload_UBSEC_strings(void)
 		}
 	}
 
-void ERR_UBSEC_error(int function, int reason, char *file, int line)
+static void ERR_UBSEC_error(int function, int reason, char *file, int line)
 	{
 	if (UBSEC_lib_error_code == 0)
 		UBSEC_lib_error_code=ERR_get_next_error_library();

@@ -55,8 +55,8 @@ typedef void (*pcFreePrinter) (rdpPrinter* printer);
 struct rdp_printer
 {
 	int id;
-	char* name;
-	char* driver;
+	wchar_t* name;
+   wchar_t* driver;
 	BOOL is_default;
 
 	pcCreatePrintJob CreatePrintJob;

@@ -702,7 +702,7 @@ int MS_CALLBACK verify_callback(int ok, X509_STORE_CTX *ctx)
 
 	if (verbose)
 		{
-		s=OPENSSL_X509_NAME_oneline(X509_get_subject_name(ctx->current_cert),
+		s=X509_NAME_oneline(X509_get_subject_name(ctx->current_cert),
 				    buf,256);
 		if (s != NULL)
 			{

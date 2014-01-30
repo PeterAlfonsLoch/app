@@ -1,1 +1,1 @@
-../crypto/des/destest.c
+ypto/des/destest.c

@@ -1,1 +1,1 @@
-../crypto/dh/dhtest.c
+ypto/dh/dhtest.c

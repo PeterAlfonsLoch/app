@@ -64,24 +64,24 @@
 #include <openssl/evp.h>
 #include <openssl/x509.h>
 
-int OPENSSL_X509_NAME_get_text_by_NID(OPENSSL_X509_NAME *name, int nid, char *buf, int len)
+int X509_NAME_get_text_by_NID(X509_NAME *name, int nid, char *buf, int len)
 	{
 	ASN1_OBJECT *obj;
 
 	obj=OBJ_nid2obj(nid);
 	if (obj == NULL) return(-1);
-	return(OPENSSL_X509_NAME_get_text_by_OBJ(name,obj,buf,len));
+	return(X509_NAME_get_text_by_OBJ(name,obj,buf,len));
 	}
 
-int OPENSSL_X509_NAME_get_text_by_OBJ(OPENSSL_X509_NAME *name, ASN1_OBJECT *obj, char *buf,
+int X509_NAME_get_text_by_OBJ(X509_NAME *name, ASN1_OBJECT *obj, char *buf,
 	     int len)
 	{
 	int i;
 	ASN1_STRING *data;
 
-	i=OPENSSL_X509_NAME_get_index_by_OBJ(name,obj,-1);
+	i=X509_NAME_get_index_by_OBJ(name,obj,-1);
 	if (i < 0) return(-1);
-	data=OPENSSL_X509_NAME_ENTRY_get_data(OPENSSL_X509_NAME_get_entry(name,i));
+	data=X509_NAME_ENTRY_get_data(X509_NAME_get_entry(name,i));
 	i=(data->length > (len-1))?(len-1):data->length;
 	if (buf == NULL) return(data->length);
 	memcpy(buf,data->data,i);
@@ -89,73 +89,73 @@ int OPENSSL_X509_NAME_get_text_by_OBJ(OPENSSL_X509_NAME *name, ASN1_OBJECT *obj,
 	return(i);
 	}
 
-int OPENSSL_X509_NAME_entry_count(OPENSSL_X509_NAME *name)
+int X509_NAME_entry_count(X509_NAME *name)
 	{
 	if (name == NULL) return(0);
-	return(sk_OPENSSL_X509_NAME_ENTRY_num(name->entries));
+	return(sk_X509_NAME_ENTRY_num(name->entries));
 	}
 
-int OPENSSL_X509_NAME_get_index_by_NID(OPENSSL_X509_NAME *name, int nid, int lastpos)
+int X509_NAME_get_index_by_NID(X509_NAME *name, int nid, int lastpos)
 	{
 	ASN1_OBJECT *obj;
 
 	obj=OBJ_nid2obj(nid);
 	if (obj == NULL) return(-2);
-	return(OPENSSL_X509_NAME_get_index_by_OBJ(name,obj,lastpos));
+	return(X509_NAME_get_index_by_OBJ(name,obj,lastpos));
 	}
 
 /* NOTE: you should be passsing -1, not 0 as lastpos */
-int OPENSSL_X509_NAME_get_index_by_OBJ(OPENSSL_X509_NAME *name, ASN1_OBJECT *obj,
+int X509_NAME_get_index_by_OBJ(X509_NAME *name, ASN1_OBJECT *obj,
 	     int lastpos)
 	{
 	int n;
-	OPENSSL_X509_NAME_ENTRY *ne;
-	STACK_OF(OPENSSL_X509_NAME_ENTRY) *sk;
+	X509_NAME_ENTRY *ne;
+	STACK_OF(X509_NAME_ENTRY) *sk;
 
 	if (name == NULL) return(-1);
 	if (lastpos < 0)
 		lastpos= -1;
 	sk=name->entries;
-	n=sk_OPENSSL_X509_NAME_ENTRY_num(sk);
+	n=sk_X509_NAME_ENTRY_num(sk);
 	for (lastpos++; lastpos < n; lastpos++)
 		{
-		ne=sk_OPENSSL_X509_NAME_ENTRY_value(sk,lastpos);
+		ne=sk_X509_NAME_ENTRY_value(sk,lastpos);
 		if (OBJ_cmp(ne->object,obj) == 0)
 			return(lastpos);
 		}
 	return(-1);
 	}
 
-OPENSSL_X509_NAME_ENTRY *OPENSSL_X509_NAME_get_entry(OPENSSL_X509_NAME *name, int loc)
+X509_NAME_ENTRY *X509_NAME_get_entry(X509_NAME *name, int loc)
 	{
-	if(name == NULL || sk_OPENSSL_X509_NAME_ENTRY_num(name->entries) <= loc
+	if(name == NULL || sk_X509_NAME_ENTRY_num(name->entries) <= loc
 	   || loc < 0)
 		return(NULL);
 	else
-		return(sk_OPENSSL_X509_NAME_ENTRY_value(name->entries,loc));
+		return(sk_X509_NAME_ENTRY_value(name->entries,loc));
 	}
 
-OPENSSL_X509_NAME_ENTRY *OPENSSL_X509_NAME_delete_entry(OPENSSL_X509_NAME *name, int loc)
+X509_NAME_ENTRY *X509_NAME_delete_entry(X509_NAME *name, int loc)
 	{
-	OPENSSL_X509_NAME_ENTRY *ret;
+	X509_NAME_ENTRY *ret;
 	int i,n,set_prev,set_next;
-	STACK_OF(OPENSSL_X509_NAME_ENTRY) *sk;
+	STACK_OF(X509_NAME_ENTRY) *sk;
 
-	if (name == NULL || sk_OPENSSL_X509_NAME_ENTRY_num(name->entries) <= loc
+	if (name == NULL || sk_X509_NAME_ENTRY_num(name->entries) <= loc
 	    || loc < 0)
 		return(NULL);
 	sk=name->entries;
-	ret=sk_OPENSSL_X509_NAME_ENTRY_delete(sk,loc);
-	n=sk_OPENSSL_X509_NAME_ENTRY_num(sk);
+	ret=sk_X509_NAME_ENTRY_delete(sk,loc);
+	n=sk_X509_NAME_ENTRY_num(sk);
 	name->modified=1;
 	if (loc == n) return(ret);
 
 	/* else we need to fixup the set field */
 	if (loc != 0)
-		set_prev=(sk_OPENSSL_X509_NAME_ENTRY_value(sk,loc-1))->set;
+		set_prev=(sk_X509_NAME_ENTRY_value(sk,loc-1))->set;
 	else
 		set_prev=ret->set-1;
-	set_next=sk_OPENSSL_X509_NAME_ENTRY_value(sk,loc)->set;
+	set_next=sk_X509_NAME_ENTRY_value(sk,loc)->set;
 
 	/* set_prev is the previous set
 	 * set is the current set
@@ -167,58 +167,58 @@ OPENSSL_X509_NAME_ENTRY *OPENSSL_X509_NAME_delete_entry(OPENSSL_X509_NAME *name,
 	 * re-number down by 1 */
 	if (set_prev+1 < set_next)
 		for (i=loc; i<n; i++)
-			sk_OPENSSL_X509_NAME_ENTRY_value(sk,i)->set--;
+			sk_X509_NAME_ENTRY_value(sk,i)->set--;
 	return(ret);
 	}
 
-int OPENSSL_X509_NAME_add_entry_by_OBJ(OPENSSL_X509_NAME *name, ASN1_OBJECT *obj, int type,
+int X509_NAME_add_entry_by_OBJ(X509_NAME *name, ASN1_OBJECT *obj, int type,
 			unsigned char *bytes, int len, int loc, int set)
 {
-	OPENSSL_X509_NAME_ENTRY *ne;
+	X509_NAME_ENTRY *ne;
 	int ret;
-	ne = OPENSSL_X509_NAME_ENTRY_create_by_OBJ(NULL, obj, type, bytes, len);
+	ne = X509_NAME_ENTRY_create_by_OBJ(NULL, obj, type, bytes, len);
 	if(!ne) return 0;
-	ret = OPENSSL_X509_NAME_add_entry(name, ne, loc, set);
-	OPENSSL_X509_NAME_ENTRY_free(ne);
+	ret = X509_NAME_add_entry(name, ne, loc, set);
+	X509_NAME_ENTRY_free(ne);
 	return ret;
 }
 
-int OPENSSL_X509_NAME_add_entry_by_NID(OPENSSL_X509_NAME *name, int nid, int type,
+int X509_NAME_add_entry_by_NID(X509_NAME *name, int nid, int type,
 			unsigned char *bytes, int len, int loc, int set)
 {
-	OPENSSL_X509_NAME_ENTRY *ne;
+	X509_NAME_ENTRY *ne;
 	int ret;
-	ne = OPENSSL_X509_NAME_ENTRY_create_by_NID(NULL, nid, type, bytes, len);
+	ne = X509_NAME_ENTRY_create_by_NID(NULL, nid, type, bytes, len);
 	if(!ne) return 0;
-	ret = OPENSSL_X509_NAME_add_entry(name, ne, loc, set);
-	OPENSSL_X509_NAME_ENTRY_free(ne);
+	ret = X509_NAME_add_entry(name, ne, loc, set);
+	X509_NAME_ENTRY_free(ne);
 	return ret;
 }
 
-int OPENSSL_X509_NAME_add_entry_by_txt(OPENSSL_X509_NAME *name, const char *field, int type,
+int X509_NAME_add_entry_by_txt(X509_NAME *name, const char *field, int type,
 			const unsigned char *bytes, int len, int loc, int set)
 {
-	OPENSSL_X509_NAME_ENTRY *ne;
+	X509_NAME_ENTRY *ne;
 	int ret;
-	ne = OPENSSL_X509_NAME_ENTRY_create_by_txt(NULL, field, type, bytes, len);
+	ne = X509_NAME_ENTRY_create_by_txt(NULL, field, type, bytes, len);
 	if(!ne) return 0;
-	ret = OPENSSL_X509_NAME_add_entry(name, ne, loc, set);
-	OPENSSL_X509_NAME_ENTRY_free(ne);
+	ret = X509_NAME_add_entry(name, ne, loc, set);
+	X509_NAME_ENTRY_free(ne);
 	return ret;
 }
 
 /* if set is -1, append to previous set, 0 'a new one', and 1,
  * prepend to the guy we are about to stomp on. */
-int OPENSSL_X509_NAME_add_entry(OPENSSL_X509_NAME *name, OPENSSL_X509_NAME_ENTRY *ne, int loc,
+int X509_NAME_add_entry(X509_NAME *name, X509_NAME_ENTRY *ne, int loc,
 	     int set)
 	{
-	OPENSSL_X509_NAME_ENTRY *new_name=NULL;
+	X509_NAME_ENTRY *new_name=NULL;
 	int n,i,inc;
-	STACK_OF(OPENSSL_X509_NAME_ENTRY) *sk;
+	STACK_OF(X509_NAME_ENTRY) *sk;
 
 	if (name == NULL) return(0);
 	sk=name->entries;
-	n=sk_OPENSSL_X509_NAME_ENTRY_num(sk);
+	n=sk_X509_NAME_ENTRY_num(sk);
 	if (loc > n) loc=n;
 	else if (loc < 0) loc=n;
 
@@ -233,7 +233,7 @@ int OPENSSL_X509_NAME_add_entry(OPENSSL_X509_NAME *name, OPENSSL_X509_NAME_ENTRY
 			}
 		else
 			{
-			set=sk_OPENSSL_X509_NAME_ENTRY_value(sk,loc-1)->set;
+			set=sk_X509_NAME_ENTRY_value(sk,loc-1)->set;
 			inc=0;
 			}
 		}
@@ -242,103 +242,103 @@ int OPENSSL_X509_NAME_add_entry(OPENSSL_X509_NAME *name, OPENSSL_X509_NAME_ENTRY
 		if (loc >= n)
 			{
 			if (loc != 0)
-				set=sk_OPENSSL_X509_NAME_ENTRY_value(sk,loc-1)->set+1;
+				set=sk_X509_NAME_ENTRY_value(sk,loc-1)->set+1;
 			else
 				set=0;
 			}
 		else
-			set=sk_OPENSSL_X509_NAME_ENTRY_value(sk,loc)->set;
+			set=sk_X509_NAME_ENTRY_value(sk,loc)->set;
 		inc=(set == 0)?1:0;
 		}
 
-	if ((new_name=OPENSSL_X509_NAME_ENTRY_dup(ne)) == NULL)
+	if ((new_name=X509_NAME_ENTRY_dup(ne)) == NULL)
 		goto err;
 	new_name->set=set;
-	if (!sk_OPENSSL_X509_NAME_ENTRY_insert(sk,new_name,loc))
+	if (!sk_X509_NAME_ENTRY_insert(sk,new_name,loc))
 		{
-		X509err(X509_F_OPENSSL_X509_NAME_ADD_ENTRY,ERR_R_MALLOC_FAILURE);
+		X509err(X509_F_X509_NAME_ADD_ENTRY,ERR_R_MALLOC_FAILURE);
 		goto err;
 		}
 	if (inc)
 		{
-		n=sk_OPENSSL_X509_NAME_ENTRY_num(sk);
+		n=sk_X509_NAME_ENTRY_num(sk);
 		for (i=loc+1; i<n; i++)
-			sk_OPENSSL_X509_NAME_ENTRY_value(sk,i-1)->set+=1;
+			sk_X509_NAME_ENTRY_value(sk,i-1)->set+=1;
 		}	
 	return(1);
 err:
 	if (new_name != NULL)
-		OPENSSL_X509_NAME_ENTRY_free(new_name);
+		X509_NAME_ENTRY_free(new_name);
 	return(0);
 	}
 
-OPENSSL_X509_NAME_ENTRY *OPENSSL_X509_NAME_ENTRY_create_by_txt(OPENSSL_X509_NAME_ENTRY **ne,
+X509_NAME_ENTRY *X509_NAME_ENTRY_create_by_txt(X509_NAME_ENTRY **ne,
 		const char *field, int type, const unsigned char *bytes, int len)
 	{
 	ASN1_OBJECT *obj;
-	OPENSSL_X509_NAME_ENTRY *nentry;
+	X509_NAME_ENTRY *nentry;
 
 	obj=OBJ_txt2obj(field, 0);
 	if (obj == NULL)
 		{
-		X509err(X509_F_OPENSSL_X509_NAME_ENTRY_CREATE_BY_TXT,
+		X509err(X509_F_X509_NAME_ENTRY_CREATE_BY_TXT,
 						X509_R_INVALID_FIELD_NAME);
 		ERR_add_error_data(2, "name=", field);
 		return(NULL);
 		}
-	nentry = OPENSSL_X509_NAME_ENTRY_create_by_OBJ(ne,obj,type,bytes,len);
+	nentry = X509_NAME_ENTRY_create_by_OBJ(ne,obj,type,bytes,len);
 	ASN1_OBJECT_free(obj);
 	return nentry;
 	}
 
-OPENSSL_X509_NAME_ENTRY *OPENSSL_X509_NAME_ENTRY_create_by_NID(OPENSSL_X509_NAME_ENTRY **ne, int nid,
+X509_NAME_ENTRY *X509_NAME_ENTRY_create_by_NID(X509_NAME_ENTRY **ne, int nid,
 	     int type, unsigned char *bytes, int len)
 	{
 	ASN1_OBJECT *obj;
-	OPENSSL_X509_NAME_ENTRY *nentry;
+	X509_NAME_ENTRY *nentry;
 
 	obj=OBJ_nid2obj(nid);
 	if (obj == NULL)
 		{
-		X509err(X509_F_OPENSSL_X509_NAME_ENTRY_CREATE_BY_NID,X509_R_UNKNOWN_NID);
+		X509err(X509_F_X509_NAME_ENTRY_CREATE_BY_NID,X509_R_UNKNOWN_NID);
 		return(NULL);
 		}
-	nentry = OPENSSL_X509_NAME_ENTRY_create_by_OBJ(ne,obj,type,bytes,len);
+	nentry = X509_NAME_ENTRY_create_by_OBJ(ne,obj,type,bytes,len);
 	ASN1_OBJECT_free(obj);
 	return nentry;
 	}
 
-OPENSSL_X509_NAME_ENTRY *OPENSSL_X509_NAME_ENTRY_create_by_OBJ(OPENSSL_X509_NAME_ENTRY **ne,
+X509_NAME_ENTRY *X509_NAME_ENTRY_create_by_OBJ(X509_NAME_ENTRY **ne,
 	     ASN1_OBJECT *obj, int type, const unsigned char *bytes, int len)
 	{
-	OPENSSL_X509_NAME_ENTRY *ret;
+	X509_NAME_ENTRY *ret;
 
 	if ((ne == NULL) || (*ne == NULL))
 		{
-		if ((ret=OPENSSL_X509_NAME_ENTRY_new()) == NULL)
+		if ((ret=X509_NAME_ENTRY_new()) == NULL)
 			return(NULL);
 		}
 	else
 		ret= *ne;
 
-	if (!OPENSSL_X509_NAME_ENTRY_set_object(ret,obj))
+	if (!X509_NAME_ENTRY_set_object(ret,obj))
 		goto err;
-	if (!OPENSSL_X509_NAME_ENTRY_set_data(ret,type,bytes,len))
+	if (!X509_NAME_ENTRY_set_data(ret,type,bytes,len))
 		goto err;
 
 	if ((ne != NULL) && (*ne == NULL)) *ne=ret;
 	return(ret);
 err:
 	if ((ne == NULL) || (ret != *ne))
-		OPENSSL_X509_NAME_ENTRY_free(ret);
+		X509_NAME_ENTRY_free(ret);
 	return(NULL);
 	}
 
-int OPENSSL_X509_NAME_ENTRY_set_object(OPENSSL_X509_NAME_ENTRY *ne, ASN1_OBJECT *obj)
+int X509_NAME_ENTRY_set_object(X509_NAME_ENTRY *ne, ASN1_OBJECT *obj)
 	{
 	if ((ne == NULL) || (obj == NULL))
 		{
-		X509err(X509_F_OPENSSL_X509_NAME_ENTRY_SET_OBJECT,ERR_R_PASSED_NULL_PARAMETER);
+		X509err(X509_F_X509_NAME_ENTRY_SET_OBJECT,ERR_R_PASSED_NULL_PARAMETER);
 		return(0);
 		}
 	ASN1_OBJECT_free(ne->object);
@@ -346,7 +346,7 @@ int OPENSSL_X509_NAME_ENTRY_set_object(OPENSSL_X509_NAME_ENTRY *ne, ASN1_OBJECT 
 	return((ne->object == NULL)?0:1);
 	}
 
-int OPENSSL_X509_NAME_ENTRY_set_data(OPENSSL_X509_NAME_ENTRY *ne, int type,
+int X509_NAME_ENTRY_set_data(X509_NAME_ENTRY *ne, int type,
 	     const unsigned char *bytes, int len)
 	{
 	int i;
@@ -356,7 +356,7 @@ int OPENSSL_X509_NAME_ENTRY_set_data(OPENSSL_X509_NAME_ENTRY *ne, int type,
 		return ASN1_STRING_set_by_NID(&ne->value, bytes,
 						len, type,
 					OBJ_obj2nid(ne->object)) ? 1 : 0;
-	if (len < 0) len= (int) strlen((const char *)bytes);
+	if (len < 0) len=strlen((const char *)bytes);
 	i=ASN1_STRING_set(ne->value,bytes,len);
 	if (!i) return(0);
 	if (type != V_ASN1_UNDEF)
@@ -369,13 +369,13 @@ int OPENSSL_X509_NAME_ENTRY_set_data(OPENSSL_X509_NAME_ENTRY *ne, int type,
 	return(1);
 	}
 
-ASN1_OBJECT *OPENSSL_X509_NAME_ENTRY_get_object(OPENSSL_X509_NAME_ENTRY *ne)
+ASN1_OBJECT *X509_NAME_ENTRY_get_object(X509_NAME_ENTRY *ne)
 	{
 	if (ne == NULL) return(NULL);
 	return(ne->object);
 	}
 
-ASN1_STRING *OPENSSL_X509_NAME_ENTRY_get_data(OPENSSL_X509_NAME_ENTRY *ne)
+ASN1_STRING *X509_NAME_ENTRY_get_data(X509_NAME_ENTRY *ne)
 	{
 	if (ne == NULL) return(NULL);
 	return(ne->value);

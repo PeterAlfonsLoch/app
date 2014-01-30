@@ -108,13 +108,15 @@
  * Hudson (tjh@cryptsoft.com).
  *
  */
+#include <stdio.h>
+
 #define USE_SOCKETS
 #include "e_os.h"
 #include "cryptlib.h"
 #include <openssl/rand.h>
 #include "rand_lcl.h"
 
-#if defined(METROWIN) || !(defined(OPENSSL_SYS_WINDOWS) || defined(OPENSSL_SYS_WIN32) || defined(OPENSSL_SYS_VMS) || defined(OPENSSL_SYS_OS2) || defined(OPENSSL_SYS_VXWORKS) || defined(OPENSSL_SYS_NETWARE))
+#if !(defined(OPENSSL_SYS_WINDOWS) || defined(OPENSSL_SYS_WIN32) || defined(OPENSSL_SYS_VMS) || defined(OPENSSL_SYS_OS2) || defined(OPENSSL_SYS_VXWORKS) || defined(OPENSSL_SYS_NETWARE))
 
 #include <sys/types.h>
 #include <sys/time.h>
@@ -342,7 +344,7 @@ int RAND_poll(void)
 				
 				if (try_read)
 					{
-					r = (int) read(fd,(unsigned char *)tmpbuf+n, ENTROPY_NEEDED-n);
+					r = read(fd,(unsigned char *)tmpbuf+n, ENTROPY_NEEDED-n);
 					if (r > 0)
 						n += r;
 #if defined(OPENSSL_SYS_BEOS_R5)

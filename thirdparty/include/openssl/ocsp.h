@@ -15,7 +15,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -68,6 +68,12 @@
 #include <openssl/x509.h>
 #include <openssl/x509v3.h>
 #include <openssl/safestack.h>
+
+#if defined(OPENSSL_SYS_WINDOWS) || defined(OPENSSL_SYS_WIN32)
+#undef OCSP_REQUEST
+#undef X509_NAME
+#undef OCSP_RESPONSE
+#endif
 
 #ifdef  __cplusplus
 extern "C" {
@@ -154,7 +160,7 @@ typedef struct ocsp_request_st
 	{
 	OCSP_REQINFO *tbsRequest;
 	OCSP_SIGNATURE *optionalSignature; /* OPTIONAL */
-	} OPENSSL_OCSP_REQUEST;
+	} OCSP_REQUEST;
 
 /*   OCSPResponseStatus ::= ENUMERATED {
  *       successful            (0),      --Response has valid confirmations
@@ -166,12 +172,12 @@ typedef struct ocsp_request_st
  *       unauthorized          (6)       --Request unauthorized
  *   }
  */
-#define OPENSSL_OCSP_RESPONSE_STATUS_SUCCESSFUL          0
-#define OPENSSL_OCSP_RESPONSE_STATUS_MALFORMEDREQUEST     1
-#define OPENSSL_OCSP_RESPONSE_STATUS_INTERNALERROR        2
-#define OPENSSL_OCSP_RESPONSE_STATUS_TRYLATER             3
-#define OPENSSL_OCSP_RESPONSE_STATUS_SIGREQUIRED          5
-#define OPENSSL_OCSP_RESPONSE_STATUS_UNAUTHORIZED         6
+#define OCSP_RESPONSE_STATUS_SUCCESSFUL          0
+#define OCSP_RESPONSE_STATUS_MALFORMEDREQUEST     1
+#define OCSP_RESPONSE_STATUS_INTERNALERROR        2
+#define OCSP_RESPONSE_STATUS_TRYLATER             3
+#define OCSP_RESPONSE_STATUS_SIGREQUIRED          5
+#define OCSP_RESPONSE_STATUS_UNAUTHORIZED         6
 
 /*   ResponseBytes ::=       SEQUENCE {
  *       responseType   OBJECT IDENTIFIER,
@@ -203,7 +209,7 @@ struct ocsp_responder_id_st
 	{
 	int type;
 	union   {
-		OPENSSL_X509_NAME* byName;
+		X509_NAME* byName;
         	ASN1_OCTET_STRING *byKey;
 		} value;
 	};
@@ -347,36 +353,36 @@ typedef struct ocsp_crl_id_st
  */
 typedef struct ocsp_service_locator_st
         {
-	OPENSSL_X509_NAME* issuer;
+	X509_NAME* issuer;
 	STACK_OF(ACCESS_DESCRIPTION) *locator;
         } OCSP_SERVICELOC;
- 
-#define PEM_STRING_OPENSSL_OCSP_REQUEST	"OCSP REQUEST"
-#define PEM_STRING_OPENSSL_OCSP_RESPONSE "OCSP RESPONSE"
 
-#define d2i_OPENSSL_OCSP_REQUEST_bio(bp,p) ASN1_d2i_bio_of(OPENSSL_OCSP_REQUEST,OPENSSL_OCSP_REQUEST_new,d2i_OPENSSL_OCSP_REQUEST,bp,p)
+#define PEM_STRING_OCSP_REQUEST	"OCSP REQUEST"
+#define PEM_STRING_OCSP_RESPONSE "OCSP RESPONSE"
 
-#define d2i_OPENSSL_OCSP_RESPONSE_bio(bp,p) ASN1_d2i_bio_of(OPENSSL_OCSP_RESPONSE,OPENSSL_OCSP_RESPONSE_new,d2i_OPENSSL_OCSP_RESPONSE,bp,p)
+#define d2i_OCSP_REQUEST_bio(bp,p) ASN1_d2i_bio_of(OCSP_REQUEST,OCSP_REQUEST_new,d2i_OCSP_REQUEST,bp,p)
 
-#define	PEM_read_bio_OPENSSL_OCSP_REQUEST(bp,x,cb) (OPENSSL_OCSP_REQUEST *)PEM_ASN1_read_bio( \
-     (char *(*)())d2i_OPENSSL_OCSP_REQUEST,PEM_STRING_OPENSSL_OCSP_REQUEST,bp,(char **)x,cb,NULL)
+#define d2i_OCSP_RESPONSE_bio(bp,p) ASN1_d2i_bio_of(OCSP_RESPONSE,OCSP_RESPONSE_new,d2i_OCSP_RESPONSE,bp,p)
 
-#define	PEM_read_bio_OPENSSL_OCSP_RESPONSE(bp,x,cb)(OPENSSL_OCSP_RESPONSE *)PEM_ASN1_read_bio(\
-     (char *(*)())d2i_OPENSSL_OCSP_RESPONSE,PEM_STRING_OPENSSL_OCSP_RESPONSE,bp,(char **)x,cb,NULL)
+#define	PEM_read_bio_OCSP_REQUEST(bp,x,cb) (OCSP_REQUEST *)PEM_ASN1_read_bio( \
+     (char *(*)())d2i_OCSP_REQUEST,PEM_STRING_OCSP_REQUEST,bp,(char **)x,cb,NULL)
 
-#define PEM_write_bio_OPENSSL_OCSP_REQUEST(bp,o) \
-    PEM_ASN1_write_bio((int (*)())i2d_OPENSSL_OCSP_REQUEST,PEM_STRING_OPENSSL_OCSP_REQUEST,\
+#define	PEM_read_bio_OCSP_RESPONSE(bp,x,cb)(OCSP_RESPONSE *)PEM_ASN1_read_bio(\
+     (char *(*)())d2i_OCSP_RESPONSE,PEM_STRING_OCSP_RESPONSE,bp,(char **)x,cb,NULL)
+
+#define PEM_write_bio_OCSP_REQUEST(bp,o) \
+    PEM_ASN1_write_bio((int (*)())i2d_OCSP_REQUEST,PEM_STRING_OCSP_REQUEST,\
 			bp,(char *)o, NULL,NULL,0,NULL,NULL)
 
-#define PEM_write_bio_OPENSSL_OCSP_RESPONSE(bp,o) \
-    PEM_ASN1_write_bio((int (*)())i2d_OPENSSL_OCSP_RESPONSE,PEM_STRING_OPENSSL_OCSP_RESPONSE,\
+#define PEM_write_bio_OCSP_RESPONSE(bp,o) \
+    PEM_ASN1_write_bio((int (*)())i2d_OCSP_RESPONSE,PEM_STRING_OCSP_RESPONSE,\
 			bp,(char *)o, NULL,NULL,0,NULL,NULL)
 
-#define i2d_OPENSSL_OCSP_RESPONSE_bio(bp,o) ASN1_i2d_bio_of(OPENSSL_OCSP_RESPONSE,i2d_OPENSSL_OCSP_RESPONSE,bp,o)
+#define i2d_OCSP_RESPONSE_bio(bp,o) ASN1_i2d_bio_of(OCSP_RESPONSE,i2d_OCSP_RESPONSE,bp,o)
 
-#define i2d_OPENSSL_OCSP_REQUEST_bio(bp,o) ASN1_i2d_bio_of(OPENSSL_OCSP_REQUEST,i2d_OPENSSL_OCSP_REQUEST,bp,o)
+#define i2d_OCSP_REQUEST_bio(bp,o) ASN1_i2d_bio_of(OCSP_REQUEST,i2d_OCSP_REQUEST,bp,o)
 
-#define OPENSSL_OCSP_REQUEST_sign(o,pkey,md) \
+#define OCSP_REQUEST_sign(o,pkey,md) \
 	ASN1_item_sign(ASN1_ITEM_rptr(OCSP_REQINFO),\
 		o->optionalSignature->signatureAlgorithm,NULL,\
 	        o->optionalSignature->signature,o->tbsRequest,pkey,md)
@@ -385,7 +391,7 @@ typedef struct ocsp_service_locator_st
 	ASN1_item_sign(ASN1_ITEM_rptr(OCSP_RESPDATA),o->signatureAlgorithm,NULL,\
 		o->signature,o->tbsResponseData,pkey,md)
 
-#define OPENSSL_OCSP_REQUEST_verify(a,r) ASN1_item_verify(ASN1_ITEM_rptr(OCSP_REQINFO),\
+#define OCSP_REQUEST_verify(a,r) ASN1_item_verify(ASN1_ITEM_rptr(OCSP_REQINFO),\
         a->optionalSignature->signatureAlgorithm,\
 	a->optionalSignature->signature,a->tbsRequest,r)
 
@@ -401,41 +407,41 @@ typedef struct ocsp_service_locator_st
 
 OCSP_CERTID *OCSP_CERTID_dup(OCSP_CERTID *id);
 
-OPENSSL_OCSP_RESPONSE *OCSP_sendreq_bio(BIO *b, char *path, OPENSSL_OCSP_REQUEST *req);
-OCSP_REQ_CTX *OCSP_sendreq_new(BIO *io, char *path, OPENSSL_OCSP_REQUEST *req,
+OCSP_RESPONSE *OCSP_sendreq_bio(BIO *b, char *path, OCSP_REQUEST *req);
+OCSP_REQ_CTX *OCSP_sendreq_new(BIO *io, char *path, OCSP_REQUEST *req,
 								int maxline);
-int OCSP_sendreq_nbio(OPENSSL_OCSP_RESPONSE **presp, OCSP_REQ_CTX *rctx);
+int OCSP_sendreq_nbio(OCSP_RESPONSE **presp, OCSP_REQ_CTX *rctx);
 void OCSP_REQ_CTX_free(OCSP_REQ_CTX *rctx);
-int OCSP_REQ_CTX_set1_req(OCSP_REQ_CTX *rctx, OPENSSL_OCSP_REQUEST *req);
+int OCSP_REQ_CTX_set1_req(OCSP_REQ_CTX *rctx, OCSP_REQUEST *req);
 int OCSP_REQ_CTX_add1_header(OCSP_REQ_CTX *rctx,
 		const char *name, const char *value);
 
 OCSP_CERTID *OCSP_cert_to_id(const EVP_MD *dgst, X509 *subject, X509 *issuer);
 
-OCSP_CERTID *OCSP_cert_id_new(const EVP_MD *dgst, 
-			      OPENSSL_X509_NAME *issuerName, 
-			      ASN1_BIT_STRING* issuerKey, 
+OCSP_CERTID *OCSP_cert_id_new(const EVP_MD *dgst,
+			      X509_NAME *issuerName,
+			      ASN1_BIT_STRING* issuerKey,
 			      ASN1_INTEGER *serialNumber);
 
-OCSP_ONEREQ *OCSP_request_add0_id(OPENSSL_OCSP_REQUEST *req, OCSP_CERTID *cid);
+OCSP_ONEREQ *OCSP_request_add0_id(OCSP_REQUEST *req, OCSP_CERTID *cid);
 
-int OCSP_request_add1_nonce(OPENSSL_OCSP_REQUEST *req, unsigned char *val, int len);
+int OCSP_request_add1_nonce(OCSP_REQUEST *req, unsigned char *val, int len);
 int OCSP_basic_add1_nonce(OCSP_BASICRESP *resp, unsigned char *val, int len);
-int OCSP_check_nonce(OPENSSL_OCSP_REQUEST *req, OCSP_BASICRESP *bs);
-int OCSP_copy_nonce(OCSP_BASICRESP *resp, OPENSSL_OCSP_REQUEST *req);
+int OCSP_check_nonce(OCSP_REQUEST *req, OCSP_BASICRESP *bs);
+int OCSP_copy_nonce(OCSP_BASICRESP *resp, OCSP_REQUEST *req);
 
-int OCSP_request_set1_name(OPENSSL_OCSP_REQUEST *req, OPENSSL_X509_NAME *nm);
-int OCSP_request_add1_cert(OPENSSL_OCSP_REQUEST *req, X509 *cert);
+int OCSP_request_set1_name(OCSP_REQUEST *req, X509_NAME *nm);
+int OCSP_request_add1_cert(OCSP_REQUEST *req, X509 *cert);
 
-int OCSP_request_sign(OPENSSL_OCSP_REQUEST   *req,
+int OCSP_request_sign(OCSP_REQUEST   *req,
 		      X509           *signer,
 		      EVP_PKEY       *key,
 		      const EVP_MD   *dgst,
 		      STACK_OF(X509) *certs,
 		      unsigned long flags);
 
-int OCSP_response_status(OPENSSL_OCSP_RESPONSE *resp);
-OCSP_BASICRESP *OCSP_response_get1_basic(OPENSSL_OCSP_RESPONSE *resp);
+int OCSP_response_status(OCSP_RESPONSE *resp);
+OCSP_BASICRESP *OCSP_response_get1_basic(OCSP_RESPONSE *resp);
 
 int OCSP_resp_count(OCSP_BASICRESP *bs);
 OCSP_SINGLERESP *OCSP_resp_get0(OCSP_BASICRESP *bs, int idx);
@@ -453,28 +459,28 @@ int OCSP_check_validity(ASN1_GENERALIZEDTIME *thisupd,
 			ASN1_GENERALIZEDTIME *nextupd,
 			long sec, long maxsec);
 
-int OCSP_request_verify(OPENSSL_OCSP_REQUEST *req, STACK_OF(X509) *certs, X509_STORE *store, unsigned long flags);
+int OCSP_request_verify(OCSP_REQUEST *req, STACK_OF(X509) *certs, X509_STORE *store, unsigned long flags);
 
 int OCSP_parse_url(char *url, char **phost, char **pport, char **ppath, int *pssl);
 
 int OCSP_id_issuer_cmp(OCSP_CERTID *a, OCSP_CERTID *b);
 int OCSP_id_cmp(OCSP_CERTID *a, OCSP_CERTID *b);
 
-int OCSP_request_onereq_count(OPENSSL_OCSP_REQUEST *req);
-OCSP_ONEREQ *OCSP_request_onereq_get0(OPENSSL_OCSP_REQUEST *req, int i);
+int OCSP_request_onereq_count(OCSP_REQUEST *req);
+OCSP_ONEREQ *OCSP_request_onereq_get0(OCSP_REQUEST *req, int i);
 OCSP_CERTID *OCSP_onereq_get0_id(OCSP_ONEREQ *one);
 int OCSP_id_get0_info(ASN1_OCTET_STRING **piNameHash, ASN1_OBJECT **pmd,
 			ASN1_OCTET_STRING **pikeyHash,
 			ASN1_INTEGER **pserial, OCSP_CERTID *cid);
-int OCSP_request_is_signed(OPENSSL_OCSP_REQUEST *req);
-OPENSSL_OCSP_RESPONSE *OCSP_response_create(int status, OCSP_BASICRESP *bs);
+int OCSP_request_is_signed(OCSP_REQUEST *req);
+OCSP_RESPONSE *OCSP_response_create(int status, OCSP_BASICRESP *bs);
 OCSP_SINGLERESP *OCSP_basic_add1_status(OCSP_BASICRESP *rsp,
 						OCSP_CERTID *cid,
 						int status, int reason,
 						ASN1_TIME *revtime,
 					ASN1_TIME *thisupd, ASN1_TIME *nextupd);
 int OCSP_basic_add1_cert(OCSP_BASICRESP *resp, X509 *cert);
-int OCSP_basic_sign(OCSP_BASICRESP *brsp, 
+int OCSP_basic_sign(OCSP_BASICRESP *brsp,
 			X509 *signer, EVP_PKEY *key, const EVP_MD *dgst,
 			STACK_OF(X509) *certs, unsigned long flags);
 
@@ -484,18 +490,18 @@ X509_EXTENSION *OCSP_accept_responses_new(char **oids);
 
 X509_EXTENSION *OCSP_archive_cutoff_new(char* tim);
 
-X509_EXTENSION *OCSP_url_svcloc_new(OPENSSL_X509_NAME* issuer, char **urls);
+X509_EXTENSION *OCSP_url_svcloc_new(X509_NAME* issuer, char **urls);
 
-int OPENSSL_OCSP_REQUEST_get_ext_count(OPENSSL_OCSP_REQUEST *x);
-int OPENSSL_OCSP_REQUEST_get_ext_by_NID(OPENSSL_OCSP_REQUEST *x, int nid, int lastpos);
-int OPENSSL_OCSP_REQUEST_get_ext_by_OBJ(OPENSSL_OCSP_REQUEST *x, ASN1_OBJECT *obj, int lastpos);
-int OPENSSL_OCSP_REQUEST_get_ext_by_critical(OPENSSL_OCSP_REQUEST *x, int crit, int lastpos);
-X509_EXTENSION *OPENSSL_OCSP_REQUEST_get_ext(OPENSSL_OCSP_REQUEST *x, int loc);
-X509_EXTENSION *OPENSSL_OCSP_REQUEST_delete_ext(OPENSSL_OCSP_REQUEST *x, int loc);
-void *OPENSSL_OCSP_REQUEST_get1_ext_d2i(OPENSSL_OCSP_REQUEST *x, int nid, int *crit, int *idx);
-int OPENSSL_OCSP_REQUEST_add1_ext_i2d(OPENSSL_OCSP_REQUEST *x, int nid, void *value, int crit,
+int OCSP_REQUEST_get_ext_count(OCSP_REQUEST *x);
+int OCSP_REQUEST_get_ext_by_NID(OCSP_REQUEST *x, int nid, int lastpos);
+int OCSP_REQUEST_get_ext_by_OBJ(OCSP_REQUEST *x, ASN1_OBJECT *obj, int lastpos);
+int OCSP_REQUEST_get_ext_by_critical(OCSP_REQUEST *x, int crit, int lastpos);
+X509_EXTENSION *OCSP_REQUEST_get_ext(OCSP_REQUEST *x, int loc);
+X509_EXTENSION *OCSP_REQUEST_delete_ext(OCSP_REQUEST *x, int loc);
+void *OCSP_REQUEST_get1_ext_d2i(OCSP_REQUEST *x, int nid, int *crit, int *idx);
+int OCSP_REQUEST_add1_ext_i2d(OCSP_REQUEST *x, int nid, void *value, int crit,
 							unsigned long flags);
-int OPENSSL_OCSP_REQUEST_add_ext(OPENSSL_OCSP_REQUEST *x, X509_EXTENSION *ex, int loc);
+int OCSP_REQUEST_add_ext(OCSP_REQUEST *x, X509_EXTENSION *ex, int loc);
 
 int OCSP_ONEREQ_get_ext_count(OCSP_ONEREQ *x);
 int OCSP_ONEREQ_get_ext_by_NID(OCSP_ONEREQ *x, int nid, int lastpos);
@@ -536,11 +542,11 @@ DECLARE_ASN1_FUNCTIONS(OCSP_REVOKEDINFO)
 DECLARE_ASN1_FUNCTIONS(OCSP_BASICRESP)
 DECLARE_ASN1_FUNCTIONS(OCSP_RESPDATA)
 DECLARE_ASN1_FUNCTIONS(OCSP_RESPID)
-DECLARE_ASN1_FUNCTIONS(OPENSSL_OCSP_RESPONSE)
+DECLARE_ASN1_FUNCTIONS(OCSP_RESPONSE)
 DECLARE_ASN1_FUNCTIONS(OCSP_RESPBYTES)
 DECLARE_ASN1_FUNCTIONS(OCSP_ONEREQ)
 DECLARE_ASN1_FUNCTIONS(OCSP_CERTID)
-DECLARE_ASN1_FUNCTIONS(OPENSSL_OCSP_REQUEST)
+DECLARE_ASN1_FUNCTIONS(OCSP_REQUEST)
 DECLARE_ASN1_FUNCTIONS(OCSP_SIGNATURE)
 DECLARE_ASN1_FUNCTIONS(OCSP_REQINFO)
 DECLARE_ASN1_FUNCTIONS(OCSP_CRLID)
@@ -550,8 +556,8 @@ const char *OCSP_response_status_str(long s);
 const char *OCSP_cert_status_str(long s);
 const char *OCSP_crl_reason_str(long s);
 
-int OPENSSL_OCSP_REQUEST_print(BIO *bp, OPENSSL_OCSP_REQUEST* a, unsigned long flags);
-int OPENSSL_OCSP_RESPONSE_print(BIO *bp, OPENSSL_OCSP_RESPONSE* o, unsigned long flags);
+int OCSP_REQUEST_print(BIO *bp, OCSP_REQUEST* a, unsigned long flags);
+int OCSP_RESPONSE_print(BIO *bp, OCSP_RESPONSE* o, unsigned long flags);
 
 int OCSP_basic_verify(OCSP_BASICRESP *bs, STACK_OF(X509) *certs,
 				X509_STORE *st, unsigned long flags);
@@ -577,9 +583,9 @@ void ERR_load_OCSP_strings(void);
 #define OCSP_F_OCSP_CHECK_VALIDITY			 115
 #define OCSP_F_OCSP_MATCH_ISSUERID			 109
 #define OCSP_F_OCSP_PARSE_URL				 114
-#define OCSP_F_OPENSSL_OCSP_REQUEST_SIGN			 110
-#define OCSP_F_OPENSSL_OCSP_REQUEST_VERIFY			 116
-#define OCSP_F_OPENSSL_OCSP_RESPONSE_GET1_BASIC			 111
+#define OCSP_F_OCSP_REQUEST_SIGN			 110
+#define OCSP_F_OCSP_REQUEST_VERIFY			 116
+#define OCSP_F_OCSP_RESPONSE_GET1_BASIC			 111
 #define OCSP_F_OCSP_SENDREQ_BIO				 112
 #define OCSP_F_OCSP_SENDREQ_NBIO			 117
 #define OCSP_F_PARSE_HTTP_LINE1				 118

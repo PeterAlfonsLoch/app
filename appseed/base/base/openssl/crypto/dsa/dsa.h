@@ -139,7 +139,7 @@ struct dsa_method
 			BN_MONT_CTX *in_mont);
 	int (*bn_mod_exp)(DSA *dsa, BIGNUM *r, BIGNUM *a, const BIGNUM *p,
 				const BIGNUM *m, BN_CTX *ctx,
-				BN_MONT_CTX *m_ctx); /* Can be NULL */
+				BN_MONT_CTX *m_ctx); /* Can be null */
 	int (*init)(DSA *dsa);
 	int (*finish)(DSA *dsa);
 	int flags;

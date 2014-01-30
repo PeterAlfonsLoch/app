@@ -178,7 +178,7 @@ int ASN1_TIME_set_string(ASN1_TIME *s, const char *str)
 	{
 	ASN1_TIME t;
 
-	t.length = (int) strlen(str);
+	t.length = strlen(str);
 	t.data = (unsigned char *)str;
 	t.flags = 0;
 	

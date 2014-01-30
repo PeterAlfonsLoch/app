@@ -1,1 +1,1 @@
-../crypto/ecdh/ecdhtest.c
+ypto/ecdh/ecdhtest.c

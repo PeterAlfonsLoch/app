@@ -265,11 +265,11 @@ extern "C" {
 
 /* If an ENGINE supports its own specific control commands and wishes the
  * framework to handle the above 'ENGINE_CMD_***'-manipulation commands on its
- * behalf, it should supply a NULL-terminated array of ENGINE_CMD_DEFN entries
+ * behalf, it should supply a null-terminated array of ENGINE_CMD_DEFN entries
  * to ENGINE_set_cmd_defns(). It should also implement a ctrl() handler that
  * supports the stated commands (ie. the "cmd_num" entries as described by the
  * array). NB: The array must be ordered in increasing order of cmd_num.
- * "NULL-terminated" means that the last ENGINE_CMD_DEFN element has cmd_num set
+ * "null-terminated" means that the last ENGINE_CMD_DEFN element has cmd_num set
  * to zero and/or cmd_name set to NULL. */
 typedef struct ENGINE_CMD_DEFN_st
 	{
@@ -289,7 +289,7 @@ typedef int (*ENGINE_CTRL_FUNC_PTR)(ENGINE *, int, long, void *, void (*f)(void)
 typedef EVP_PKEY * (*ENGINE_LOAD_KEY_PTR)(ENGINE *, const char *,
 	UI_METHOD *ui_method, void *callback_data);
 typedef int (*ENGINE_SSL_CLIENT_CERT_PTR)(ENGINE *, SSL *ssl,
-	STACK_OF(OPENSSL_X509_NAME) *ca_dn, X509 **pcert, EVP_PKEY **pkey,
+	STACK_OF(X509_NAME) *ca_dn, X509 **pcert, EVP_PKEY **pkey,
 	STACK_OF(X509) **pother, UI_METHOD *ui_method, void *callback_data);
 /* These callback types are for an ENGINE's handler for cipher and digest logic.
  * These handlers have these prototypes;
@@ -571,7 +571,7 @@ EVP_PKEY *ENGINE_load_private_key(ENGINE *e, const char *key_id,
 EVP_PKEY *ENGINE_load_public_key(ENGINE *e, const char *key_id,
 	UI_METHOD *ui_method, void *callback_data);
 int ENGINE_load_ssl_client_cert(ENGINE *e, SSL *s,
-	STACK_OF(OPENSSL_X509_NAME) *ca_dn, X509 **pcert, EVP_PKEY **ppkey,
+	STACK_OF(X509_NAME) *ca_dn, X509 **pcert, EVP_PKEY **ppkey,
 	STACK_OF(X509) **pother,
 	UI_METHOD *ui_method, void *callback_data);
 

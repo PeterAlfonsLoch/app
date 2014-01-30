@@ -118,12 +118,12 @@ void main ()
   if (client_cert != NULL) {
     printf ("Client certificate:\n");
     
-    str = OPENSSL_X509_NAME_oneline (X509_get_subject_name (client_cert), 0, 0);
+    str = X509_NAME_oneline (X509_get_subject_name (client_cert), 0, 0);
     CHK_NULL(str);
     printf ("\t subject: %s\n", str);
     OPENSSL_free (str);
     
-    str = OPENSSL_X509_NAME_oneline (X509_get_issuer_name  (client_cert), 0, 0);
+    str = X509_NAME_oneline (X509_get_issuer_name  (client_cert), 0, 0);
     CHK_NULL(str);
     printf ("\t issuer: %s\n", str);
     OPENSSL_free (str);

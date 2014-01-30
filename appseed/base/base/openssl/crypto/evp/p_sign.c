@@ -80,7 +80,7 @@ int EVP_SignFinal(EVP_MD_CTX *ctx, unsigned char *sigret, unsigned int *siglen,
 	{
 	unsigned char m[EVP_MAX_MD_SIZE];
 	unsigned int m_len;
-	int i=0,ok=0,v;
+	int i = 0,ok = 0,v;
 	EVP_MD_CTX tmp_ctx;
 	EVP_PKEY_CTX *pkctx = NULL;
 
@@ -105,7 +105,7 @@ int EVP_SignFinal(EVP_MD_CTX *ctx, unsigned char *sigret, unsigned int *siglen,
 			goto err;
 		if (EVP_PKEY_sign(pkctx, sigret, &sltmp, m, m_len) <= 0)
 			goto err;
-		*siglen = (unsigned int) sltmp;
+		*siglen = sltmp;
 		i = 1;
 		err:
 		EVP_PKEY_CTX_free(pkctx);

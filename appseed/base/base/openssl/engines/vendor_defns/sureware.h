@@ -167,10 +167,10 @@ extern SW_EXPORT SureWareHook_Free_t SureWareHook_Free;
 *			SUREWAREHOOK_ERROR_DATA_SIZE wrong size for buf
 *
 *	in param flen : byte size of from and to
-*	in param from : encrypted data buffer, should be a not-NULL valid pointer
+*	in param from : encrypted data buffer, should be a not-null valid pointer
 *	out param tlen: byte size of decrypted data, if error, unexpected value
-*	out param to : decrypted data buffer, should be a not-NULL valid pointer
-*   in param prsa: a protected key pointer, should be a not-NULL valid pointer
+*	out param to : decrypted data buffer, should be a not-null valid pointer
+*   in param prsa: a protected key pointer, should be a not-null valid pointer
 *   int padding: padding id as follow
 *					SUREWARE_PKCS1_PAD
 *					SUREWARE_NO_PAD
@@ -188,10 +188,10 @@ extern SW_EXPORT SureWareHook_Rsa_Priv_Dec_t SureWareHook_Rsa_Priv_Dec;
 *			SUREWAREHOOK_ERROR_DATA_SIZE wrong size for buf
 *
 *	in param flen : byte size of from and to
-*	in param from : encrypted data buffer, should be a not-NULL valid pointer
+*	in param from : encrypted data buffer, should be a not-null valid pointer
 *	out param tlen: byte size of decrypted data, if error, unexpected value
-*	out param to : decrypted data buffer, should be a not-NULL valid pointer
-*   in param prsa: a protected key pointer, should be a not-NULL valid pointer
+*	out param to : decrypted data buffer, should be a not-null valid pointer
+*   in param prsa: a protected key pointer, should be a not-null valid pointer
 *   int padding: padding id as follow
 *					SUREWARE_PKCS1_PAD
 *					SUREWARE_ISO9796_PAD
@@ -209,9 +209,9 @@ extern SW_EXPORT SureWareHook_Rsa_Sign_t SureWareHook_Rsa_Sign;
 *			SUREWAREHOOK_ERROR_DATA_SIZE wrong size for buf
 *
 *	in param flen : byte size of from and to
-*	in param from : encrypted data buffer, should be a not-NULL valid pointer
+*	in param from : encrypted data buffer, should be a not-null valid pointer
 *	out param to : decrypted data buffer, should be a 40bytes valid pointer
-*   in param pdsa: a protected key pointer, should be a not-NULL valid pointer
+*   in param pdsa: a protected key pointer, should be a not-null valid pointer
 *
 */
 typedef int SureWareHook_Dsa_Sign_t(char*const msg,int flen,const unsigned char *from,

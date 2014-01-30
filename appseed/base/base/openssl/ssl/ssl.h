@@ -493,6 +493,9 @@ struct ssl_session_st
 	char *psk_identity_hint;
 	char *psk_identity;
 #endif
+	/* Used to indicate that session resumption is not allowed.
+	 * Applications can also set this bit for a new session via
+	 * not_resumable_session_cb to disable session caching and tickets. */
 	int not_resumable;
 
 	/* The cert is the certificate used to establish this connection */
@@ -535,7 +538,7 @@ struct ssl_session_st
 #endif /* OPENSSL_NO_EC */
 	/* RFC4507 info */
 	unsigned char *tlsext_tick;	/* Session ticket */
-	size_t	tlsext_ticklen;		/* Session ticket length */	
+	size_t tlsext_ticklen;		/* Session ticket length */
 	long tlsext_tick_lifetime_hint;	/* Session lifetime hint in seconds */
 #endif
 #ifndef OPENSSL_NO_SRP
@@ -552,10 +555,13 @@ struct ssl_session_st
 #define SSL_OP_NETSCAPE_REUSE_CIPHER_CHANGE_BUG		0x00000008L
 #define SSL_OP_SSLREF2_REUSE_CERT_TYPE_BUG		0x00000010L
 #define SSL_OP_MICROSOFT_BIG_SSLV3_BUFFER		0x00000020L
-#define SSL_OP_MSIE_SSLV2_RSA_PADDING			0x00000040L /* no effect since 0.9.7h and 0.9.8b */
+#define SSL_OP_SAFARI_ECDHE_ECDSA_BUG			0x00000040L
 #define SSL_OP_SSLEAY_080_CLIENT_DH_BUG			0x00000080L
 #define SSL_OP_TLS_D5_BUG				0x00000100L
 #define SSL_OP_TLS_BLOCK_PADDING_BUG			0x00000200L
+
+/* Hasn't done anything since OpenSSL 0.9.7h, retained for compatibility */
+#define SSL_OP_MSIE_SSLV2_RSA_PADDING			0x0
 
 /* Disable SSL 3.0/TLS 1.0 CBC vulnerability workaround that was added
  * in OpenSSL 0.9.6d.  Usually (depending on the application protocol)
@@ -638,6 +644,12 @@ struct ssl_session_st
  * TLS only.)  "Released" buffers are put onto a free-list in the context
  * or just freed (depending on the context's setting for freelist_max_len). */
 #define SSL_MODE_RELEASE_BUFFERS 0x00000010L
+/* Send the current time in the Random fields of the ClientHello and
+ * ServerHello records for compatibility with hypothetical implementations
+ * that require it.
+ */
+#define SSL_MODE_SEND_CLIENTHELLO_TIME 0x00000020L
+#define SSL_MODE_SEND_SERVERHELLO_TIME 0x00000040L
 
 /* Note: SSL[_CTX]_set_{options,mode} use |= op on the previous value,
  * they cannot be used to clear bits. */
@@ -791,12 +803,12 @@ struct ssl_ctx_st
 	 * life easier to set things up */
 	long session_timeout;
 
-	/* If this callback is not NULL, it will be called each
+	/* If this callback is not null, it will be called each
 	 * time a session id is added to the cache.  If this function
 	 * returns 1, it means that the callback will do a
 	 * SSL_SESSION_free() when it has finished using it.  Otherwise,
 	 * on 0, it means the callback has finished with it.
-	 * If remove_session_cb is not NULL, it will be called when
+	 * If remove_session_cb is not null, it will be called when
 	 * a session-id is removed from the cache.  After the call,
 	 * OpenSSL will SSL_SESSION_free() it. */
 	int (*new_session_cb)(struct ssl_st *ssl,SSL_SESSION *sess);
@@ -864,7 +876,7 @@ struct ssl_ctx_st
 	void (*info_callback)(const SSL *ssl,int type,int val); /* used if SSL's info_callback is NULL */
 
 	/* what we put in client cert requests */
-	STACK_OF(OPENSSL_X509_NAME) *client_CA;
+	STACK_OF(X509_NAME) *client_CA;
 
 
 	/* Default values to use in SSL structures follow (these are copied by SSL_new) */
@@ -927,6 +939,7 @@ struct ssl_ctx_st
 	/* Callback for status request */
 	int (*tlsext_status_cb)(SSL *ssl, void *arg);
 	void *tlsext_status_arg;
+
 	/* draft-rescorla-tls-opaque-prf-input-00.txt information */
 	int (*tlsext_opaque_prf_input_callback)(SSL *, void *peerinput, size_t len, void *arg);
 	void *tlsext_opaque_prf_input_callback_arg;
@@ -952,6 +965,7 @@ struct ssl_ctx_st
 #endif
 
 #ifndef OPENSSL_NO_TLSEXT
+
 # ifndef OPENSSL_NO_NEXTPROTONEG
 	/* Next protocol negotiation information */
 	/* (for experimental NPN extension). */
@@ -1252,7 +1266,7 @@ struct ssl_st
 	CRYPTO_EX_DATA ex_data;
 
 	/* for server side, keep the list of CA_dn we can use */
-	STACK_OF(OPENSSL_X509_NAME) *client_CA;
+	STACK_OF(X509_NAME) *client_CA;
 
 	int references;
 	unsigned long options; /* protocol behaviour */
@@ -1281,7 +1295,7 @@ struct ssl_st
 	int tlsext_status_expected;
 	/* OCSP status request only */
 	STACK_OF(OCSP_RESPID) *tlsext_ocsp_ids;
-	OPENSSL_X509_EXTENSIONS *tlsext_ocsp_exts;
+	X509_EXTENSIONS *tlsext_ocsp_exts;
 	/* OCSP response received or to be sent */
 	unsigned char *tlsext_ocsp_resp;
 	int tlsext_ocsp_resplen;
@@ -1715,12 +1729,12 @@ int	SSL_CTX_use_RSAPrivateKey_file(SSL_CTX *ctx, const char *file, int type);
 int	SSL_CTX_use_PrivateKey_file(SSL_CTX *ctx, const char *file, int type);
 int	SSL_CTX_use_certificate_file(SSL_CTX *ctx, const char *file, int type);
 int	SSL_CTX_use_certificate_chain_file(SSL_CTX *ctx, const char *file); /* PEM type */
-STACK_OF(OPENSSL_X509_NAME) *SSL_load_client_CA_file(const char *file);
-int	SSL_add_file_cert_subjects_to_stack(STACK_OF(OPENSSL_X509_NAME) *stackCAs,
+STACK_OF(X509_NAME) *SSL_load_client_CA_file(const char *file);
+int	SSL_add_file_cert_subjects_to_stack(STACK_OF(X509_NAME) *stackCAs,
 					    const char *file);
 #ifndef OPENSSL_SYS_VMS
 #ifndef OPENSSL_SYS_MACINTOSH_CLASSIC /* XXXXX: Better scheme needed! [was: #ifndef MAC_OS_pre_X] */
-int	SSL_add_dir_cert_subjects_to_stack(STACK_OF(OPENSSL_X509_NAME) *stackCAs,
+int	SSL_add_dir_cert_subjects_to_stack(STACK_OF(X509_NAME) *stackCAs,
 					   const char *dir);
 #endif
 #endif
@@ -1894,10 +1908,10 @@ const char *SSL_alert_type_string(int value);
 const char *SSL_alert_desc_string_long(int value);
 const char *SSL_alert_desc_string(int value);
 
-void SSL_set_client_CA_list(SSL *s, STACK_OF(OPENSSL_X509_NAME) *name_list);
-void SSL_CTX_set_client_CA_list(SSL_CTX *ctx, STACK_OF(OPENSSL_X509_NAME) *name_list);
-STACK_OF(OPENSSL_X509_NAME) *SSL_get_client_CA_list(const SSL *s);
-STACK_OF(OPENSSL_X509_NAME) *SSL_CTX_get_client_CA_list(const SSL_CTX *s);
+void SSL_set_client_CA_list(SSL *s, STACK_OF(X509_NAME) *name_list);
+void SSL_CTX_set_client_CA_list(SSL_CTX *ctx, STACK_OF(X509_NAME) *name_list);
+STACK_OF(X509_NAME) *SSL_get_client_CA_list(const SSL *s);
+STACK_OF(X509_NAME) *SSL_CTX_get_client_CA_list(const SSL_CTX *s);
 int SSL_add_client_CA(SSL *ssl,X509 *x);
 int SSL_CTX_add_client_CA(SSL_CTX *ctx,X509 *x);
 
@@ -1909,7 +1923,7 @@ long SSL_get_default_timeout(const SSL *s);
 int SSL_library_init(void );
 
 char *SSL_CIPHER_description(const SSL_CIPHER *,char *buf,int size);
-STACK_OF(OPENSSL_X509_NAME) *SSL_dup_CA_list(STACK_OF(OPENSSL_X509_NAME) *sk);
+STACK_OF(X509_NAME) *SSL_dup_CA_list(STACK_OF(X509_NAME) *sk);
 
 SSL *SSL_dup(SSL *ssl);
 
@@ -2206,6 +2220,7 @@ void ERR_load_SSL_strings(void);
 #define SSL_F_SSL_GET_NEW_SESSION			 181
 #define SSL_F_SSL_GET_PREV_SESSION			 217
 #define SSL_F_SSL_GET_SERVER_SEND_CERT			 182
+#define SSL_F_SSL_GET_SERVER_SEND_PKEY			 317
 #define SSL_F_SSL_GET_SIGN_PKEY				 183
 #define SSL_F_SSL_INIT_WBIO_BUFFER			 184
 #define SSL_F_SSL_LOAD_CLIENT_CA_FILE			 185

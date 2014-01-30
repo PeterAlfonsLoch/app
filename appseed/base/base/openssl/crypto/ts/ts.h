@@ -92,7 +92,7 @@ extern "C" {
 
 #ifdef WIN32
 /* Under Win32 this is defined in wincrypt.h */
-#undef OPENSSL_X509_NAME
+#undef X509_NAME
 #endif
 
 #include <openssl/x509.h>

@@ -119,7 +119,7 @@ int X509_LOOKUP_ctrl(X509_LOOKUP *ctx, int cmd, const char *argc, long argl,
 		return 1;
 	}
 
-int X509_LOOKUP_by_subject(X509_LOOKUP *ctx, int type, OPENSSL_X509_NAME *name,
+int X509_LOOKUP_by_subject(X509_LOOKUP *ctx, int type, X509_NAME *name,
 	     X509_OBJECT *ret)
 	{
 	if ((ctx->method == NULL) || (ctx->method->get_by_subject == NULL))
@@ -128,7 +128,7 @@ int X509_LOOKUP_by_subject(X509_LOOKUP *ctx, int type, OPENSSL_X509_NAME *name,
 	return ctx->method->get_by_subject(ctx,type,name,ret);
 	}
 
-int X509_LOOKUP_by_issuer_serial(X509_LOOKUP *ctx, int type, OPENSSL_X509_NAME *name,
+int X509_LOOKUP_by_issuer_serial(X509_LOOKUP *ctx, int type, X509_NAME *name,
 	     ASN1_INTEGER *serial, X509_OBJECT *ret)
 	{
 	if ((ctx->method == NULL) ||
@@ -286,7 +286,7 @@ X509_LOOKUP *X509_STORE_add_lookup(X509_STORE *v, X509_LOOKUP_METHOD *m)
 		}
 	}
 
-int X509_STORE_get_by_subject(X509_STORE_CTX *vs, int type, OPENSSL_X509_NAME *name,
+int X509_STORE_get_by_subject(X509_STORE_CTX *vs, int type, X509_NAME *name,
 	     X509_OBJECT *ret)
 	{
 	X509_STORE *ctx=vs->ctx;
@@ -424,7 +424,7 @@ void X509_OBJECT_free_contents(X509_OBJECT *a)
 	}
 
 static int x509_object_idx_cnt(STACK_OF(X509_OBJECT) *h, int type,
-	     OPENSSL_X509_NAME *name, int *pnmatch)
+	     X509_NAME *name, int *pnmatch)
 	{
 	X509_OBJECT stmp;
 	X509 x509_s;
@@ -471,13 +471,13 @@ static int x509_object_idx_cnt(STACK_OF(X509_OBJECT) *h, int type,
 
 
 int X509_OBJECT_idx_by_subject(STACK_OF(X509_OBJECT) *h, int type,
-	     OPENSSL_X509_NAME *name)
+	     X509_NAME *name)
 	{
 	return x509_object_idx_cnt(h, type, name, NULL);
 	}
 
 X509_OBJECT *X509_OBJECT_retrieve_by_subject(STACK_OF(X509_OBJECT) *h, int type,
-	     OPENSSL_X509_NAME *name)
+	     X509_NAME *name)
 	{
 	int idx;
 	idx = X509_OBJECT_idx_by_subject(h, type, name);
@@ -485,7 +485,7 @@ X509_OBJECT *X509_OBJECT_retrieve_by_subject(STACK_OF(X509_OBJECT) *h, int type,
 	return sk_X509_OBJECT_value(h, idx);
 	}
 
-STACK_OF(X509)* X509_STORE_get1_certs(X509_STORE_CTX *ctx, OPENSSL_X509_NAME *nm)
+STACK_OF(X509)* X509_STORE_get1_certs(X509_STORE_CTX *ctx, X509_NAME *nm)
 	{
 	int i, idx, cnt;
 	STACK_OF(X509) *sk;
@@ -534,7 +534,7 @@ STACK_OF(X509)* X509_STORE_get1_certs(X509_STORE_CTX *ctx, OPENSSL_X509_NAME *nm
 
 	}
 
-STACK_OF(X509_CRL)* X509_STORE_get1_crls(X509_STORE_CTX *ctx, OPENSSL_X509_NAME *nm)
+STACK_OF(X509_CRL)* X509_STORE_get1_crls(X509_STORE_CTX *ctx, X509_NAME *nm)
 	{
 	int i, idx, cnt;
 	STACK_OF(X509_CRL) *sk;
@@ -623,7 +623,7 @@ X509_OBJECT *X509_OBJECT_retrieve_match(STACK_OF(X509_OBJECT) *h, X509_OBJECT *x
  */
 int X509_STORE_CTX_get1_issuer(X509 **issuer, X509_STORE_CTX *ctx, X509 *x)
 	{
-	OPENSSL_X509_NAME *xn;
+	X509_NAME *xn;
 	X509_OBJECT obj, *pobj;
 	int i, ok, idx, ret;
 	xn=X509_get_issuer_name(x);
@@ -665,7 +665,7 @@ int X509_STORE_CTX_get1_issuer(X509 **issuer, X509_STORE_CTX *ctx, X509 *x)
 			/* See if we've run past the matches */
 			if (pobj->type != X509_LU_X509)
 				break;
-			if (OPENSSL_X509_NAME_cmp(xn, X509_get_subject_name(pobj->data.x509)))
+			if (X509_NAME_cmp(xn, X509_get_subject_name(pobj->data.x509)))
 				break;
 			if (ctx->check_issued(ctx, x, pobj->data.x509))
 				{

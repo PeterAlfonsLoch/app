@@ -1,1 +1,1 @@
-../crypto/ripemd/rmdtest.c
+ypto/ripemd/rmdtest.c

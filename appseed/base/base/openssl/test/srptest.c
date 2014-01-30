@@ -1,1 +1,1 @@
-../crypto/srp/srptest.c
+ypto/srp/srptest.c

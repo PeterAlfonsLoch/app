@@ -139,7 +139,7 @@ static int auto_info(X509_REQ *req, STACK_OF(CONF_VALUE) *sk,
 static int add_attribute_object(X509_REQ *req, char *text, const char *def,
 				char *value, int nid, int n_min,
 				int n_max, unsigned long chtype);
-static int add_DN_object(OPENSSL_X509_NAME *n, char *text, const char *def, char *value,
+static int add_DN_object(X509_NAME *n, char *text, const char *def, char *value,
 	int nid,int n_min,int n_max, unsigned long chtype, int mval);
 static int genpkey_cb(EVP_PKEY_CTX *ctx);
 static int req_check_len(int len,int n_min,int n_max);
@@ -1183,17 +1183,17 @@ err:
  */
 static int build_subject(X509_REQ *req, char *subject, unsigned long chtype, int multirdn)
 	{
-	OPENSSL_X509_NAME *n;
+	X509_NAME *n;
 
 	if (!(n = parse_name(subject, chtype, multirdn)))
 		return 0;
 
 	if (!X509_REQ_set_subject_name(req, n))
 		{
-		OPENSSL_X509_NAME_free(n);
+		X509_NAME_free(n);
 		return 0;
 		}
-	OPENSSL_X509_NAME_free(n);
+	X509_NAME_free(n);
 	return 1;
 }
 
@@ -1211,7 +1211,7 @@ static int prompt_info(X509_REQ *req,
 	char *type, *value;
 	const char *def;
 	CONF_VALUE *v;
-	OPENSSL_X509_NAME *subj;
+	X509_NAME *subj;
 	subj = X509_REQ_get_subject_name(req);
 
 	if(!batch)
@@ -1297,7 +1297,7 @@ start:		for (;;)
 				n_min,n_max, chtype, mval))
 				return 0;
 			}
-		if (OPENSSL_X509_NAME_entry_count(subj) == 0)
+		if (X509_NAME_entry_count(subj) == 0)
 			{
 			BIO_printf(bio_err,"error, no objects specified in config file\n");
 			return 0;
@@ -1384,7 +1384,7 @@ static int auto_info(X509_REQ *req, STACK_OF(CONF_VALUE) *dn_sk,
 	char *p,*q;
 	char *type;
 	CONF_VALUE *v;
-	OPENSSL_X509_NAME *subj;
+	X509_NAME *subj;
 
 	subj = X509_REQ_get_subject_name(req);
 
@@ -1418,12 +1418,12 @@ static int auto_info(X509_REQ *req, STACK_OF(CONF_VALUE) *dn_sk,
 			}
 		else
 			mval = 0;
-		if (!OPENSSL_X509_NAME_add_entry_by_txt(subj,type, chtype,
+		if (!X509_NAME_add_entry_by_txt(subj,type, chtype,
 				(unsigned char *) v->value,-1,-1,mval)) return 0;
 
 		}
 
-		if (!OPENSSL_X509_NAME_entry_count(subj))
+		if (!X509_NAME_entry_count(subj))
 			{
 			BIO_printf(bio_err,"error, no objects specified in config file\n");
 			return 0;
@@ -1441,7 +1441,7 @@ static int auto_info(X509_REQ *req, STACK_OF(CONF_VALUE) *dn_sk,
 	}
 
 
-static int add_DN_object(OPENSSL_X509_NAME *n, char *text, const char *def, char *value,
+static int add_DN_object(X509_NAME *n, char *text, const char *def, char *value,
 	     int nid, int n_min, int n_max, unsigned long chtype, int mval)
 	{
 	int i,ret=0;
@@ -1491,7 +1491,7 @@ start:
 	ebcdic2ascii(buf, buf, i);
 #endif
 	if(!req_check_len(i, n_min, n_max)) goto start;
-	if (!OPENSSL_X509_NAME_add_entry_by_NID(n,nid, chtype,
+	if (!X509_NAME_add_entry_by_NID(n,nid, chtype,
 				(unsigned char *) buf, -1,-1,mval)) goto err;
 	ret=1;
 err:

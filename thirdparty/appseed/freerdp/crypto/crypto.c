@@ -335,12 +335,12 @@ char* crypto_cert_fingerprint(X509* xcert)
 	return fp_buffer;
 }
 
-char* crypto_print_name(OPENSSL_X509_NAME* name)
+char* crypto_print_name(X509_NAME* name)
 {
 	char* buffer = NULL;
 	BIO* outBIO = BIO_new(BIO_s_mem());
 	
-	if (OPENSSL_X509_NAME_print_ex(outBIO, name, 0, XN_FLAG_ONELINE) > 0)
+	if (X509_NAME_print_ex(outBIO, name, 0, XN_FLAG_ONELINE) > 0)
 	{
 		unsigned long size = BIO_number_written(outBIO);
 		buffer = malloc(size + 1);
@@ -363,8 +363,8 @@ char* crypto_cert_subject_common_name(X509* xcert, int* length)
 {
 	int index;
 	BYTE* common_name;
-	OPENSSL_X509_NAME* subject_name;
-	OPENSSL_X509_NAME_ENTRY* entry;
+	X509_NAME* subject_name;
+	X509_NAME_ENTRY* entry;
 	ASN1_STRING* entry_data;
 
 	subject_name = X509_get_subject_name(xcert);
@@ -372,17 +372,17 @@ char* crypto_cert_subject_common_name(X509* xcert, int* length)
 	if (subject_name == NULL)
 		return NULL;
 
-	index = OPENSSL_X509_NAME_get_index_by_NID(subject_name, NID_commonName, -1);
+	index = X509_NAME_get_index_by_NID(subject_name, NID_commonName, -1);
 
 	if (index < 0)
 		return NULL;
 
-	entry = OPENSSL_X509_NAME_get_entry(subject_name, index);
+	entry = X509_NAME_get_entry(subject_name, index);
 
 	if (entry == NULL)
 		return NULL;
 
-	entry_data = OPENSSL_X509_NAME_ENTRY_get_data(entry);
+	entry_data = X509_NAME_ENTRY_get_data(entry);
 
 	if (entry_data == NULL)
 		return NULL;

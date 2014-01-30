@@ -123,7 +123,7 @@ static ERR_STRING_DATA PEM_str_reasons[]=
 {ERR_REASON(PEM_R_BAD_PASSWORD_READ)     ,"bad password read"},
 {ERR_REASON(PEM_R_BAD_VERSION_NUMBER)    ,"bad version number"},
 {ERR_REASON(PEM_R_BIO_WRITE_FAILURE)     ,"bio write failure"},
-{ERR_REASON(PEM_R_CIPHER_IS_NULL)        ,"cipher is NULL"},
+{ERR_REASON(PEM_R_CIPHER_IS_NULL)        ,"cipher is null"},
 {ERR_REASON(PEM_R_ERROR_CONVERTING_PRIVATE_KEY),"error converting private key"},
 {ERR_REASON(PEM_R_EXPECTING_PRIVATE_KEY_BLOB),"expecting private key blob"},
 {ERR_REASON(PEM_R_EXPECTING_PUBLIC_KEY_BLOB),"expecting public key blob"},

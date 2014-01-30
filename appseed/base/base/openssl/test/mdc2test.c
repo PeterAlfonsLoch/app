@@ -1,1 +1,1 @@
-../crypto/mdc2/mdc2test.c
+ypto/mdc2/mdc2test.c

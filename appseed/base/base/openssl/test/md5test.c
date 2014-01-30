@@ -1,1 +1,1 @@
-../crypto/md5/md5test.c
+ypto/md5/md5test.c

@@ -1,1 +1,1 @@
-../crypto/ecdsa/ecdsatest.c
+ypto/ecdsa/ecdsatest.c

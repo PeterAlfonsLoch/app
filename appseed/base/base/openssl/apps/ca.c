@@ -1408,6 +1408,7 @@ bad:
 			if (!NCONF_get_number(conf,section,
 				ENV_DEFAULT_CRL_HOURS, &crlhours))
 				crlhours = 0;
+			ERR_clear_error();
 			}
 		if ((crldays == 0) && (crlhours == 0) && (crlsec == 0))
 			{
@@ -1705,14 +1706,14 @@ static int do_body(X509 **xret, EVP_PKEY *pkey, X509 *x509, const EVP_MD *dgst,
 	     unsigned long certopt, unsigned long nameopt, int default_op,
 	     int ext_copy, int selfsign)
 	{
-	OPENSSL_X509_NAME *name=NULL,*CAname=NULL,*subject=NULL, *dn_subject=NULL;
+	X509_NAME *name=NULL,*CAname=NULL,*subject=NULL, *dn_subject=NULL;
 	ASN1_UTCTIME *tm,*tmptm;
 	ASN1_STRING *str,*str2;
 	ASN1_OBJECT *obj;
 	X509 *ret=NULL;
 	X509_CINF *ci;
-	OPENSSL_X509_NAME_ENTRY *ne;
-	OPENSSL_X509_NAME_ENTRY *tne,*push;
+	X509_NAME_ENTRY *ne;
+	X509_NAME_ENTRY *tne,*push;
 	EVP_PKEY *pktmp;
 	int ok= -1,i,j,last,nid;
 	const char *p;
@@ -1734,7 +1735,7 @@ static int do_body(X509 **xret, EVP_PKEY *pkey, X509 *x509, const EVP_MD *dgst,
 
 	if (subj)
 		{
-		OPENSSL_X509_NAME *n = parse_name(subj, chtype, multirdn);
+		X509_NAME *n = parse_name(subj, chtype, multirdn);
 
 		if (!n)
 			{
@@ -1743,18 +1744,18 @@ static int do_body(X509 **xret, EVP_PKEY *pkey, X509 *x509, const EVP_MD *dgst,
 			}
 		X509_REQ_set_subject_name(req,n);
 		req->req_info->enc.modified = 1;
-		OPENSSL_X509_NAME_free(n);
+		X509_NAME_free(n);
 		}
 
 	if (default_op)
 		BIO_printf(bio_err,"The Subject's Distinguished Name is as follows\n");
 
 	name=X509_REQ_get_subject_name(req);
-	for (i=0; i<OPENSSL_X509_NAME_entry_count(name); i++)
+	for (i=0; i<X509_NAME_entry_count(name); i++)
 		{
-		ne= OPENSSL_X509_NAME_get_entry(name,i);
-		str=OPENSSL_X509_NAME_ENTRY_get_data(ne);
-		obj=OPENSSL_X509_NAME_ENTRY_get_object(ne);
+		ne= X509_NAME_get_entry(name,i);
+		str=X509_NAME_ENTRY_get_data(ne);
+		obj=X509_NAME_ENTRY_get_object(ne);
 
 		if (msie_hack)
 			{
@@ -1802,7 +1803,7 @@ static int do_body(X509 **xret, EVP_PKEY *pkey, X509 *x509, const EVP_MD *dgst,
 		}
 
 	/* Ok, now we check the 'policy' stuff. */
-	if ((subject=OPENSSL_X509_NAME_new()) == NULL)
+	if ((subject=X509_NAME_new()) == NULL)
 		{
 		BIO_printf(bio_err,"Memory allocation failure\n");
 		goto err;
@@ -1810,9 +1811,9 @@ static int do_body(X509 **xret, EVP_PKEY *pkey, X509 *x509, const EVP_MD *dgst,
 
 	/* take a copy of the issuer name before we mess with it. */
 	if (selfsign)
-		CAname=OPENSSL_X509_NAME_dup(name);
+		CAname=X509_NAME_dup(name);
 	else
-		CAname=OPENSSL_X509_NAME_dup(x509->cert_info->subject);
+		CAname=X509_NAME_dup(x509->cert_info->subject);
 	if (CAname == NULL) goto err;
 	str=str2=NULL;
 
@@ -1830,7 +1831,7 @@ static int do_body(X509 **xret, EVP_PKEY *pkey, X509 *x509, const EVP_MD *dgst,
 		for (;;)
 			{
 			/* lookup the object in the supplied name list */
-			j=OPENSSL_X509_NAME_get_index_by_OBJ(name,obj,last);
+			j=X509_NAME_get_index_by_OBJ(name,obj,last);
 			if (j < 0)
 				{
 				if (last != -1) break;
@@ -1838,7 +1839,7 @@ static int do_body(X509 **xret, EVP_PKEY *pkey, X509 *x509, const EVP_MD *dgst,
 				}
 			else
 				{
-				tne=OPENSSL_X509_NAME_get_entry(name,j);
+				tne=X509_NAME_get_entry(name,j);
 				}
 			last=j;
 
@@ -1872,7 +1873,7 @@ static int do_body(X509 **xret, EVP_PKEY *pkey, X509 *x509, const EVP_MD *dgst,
 				last2= -1;
 
 again2:
-				j=OPENSSL_X509_NAME_get_index_by_OBJ(CAname,obj,last2);
+				j=X509_NAME_get_index_by_OBJ(CAname,obj,last2);
 				if ((j < 0) && (last2 == -1))
 					{
 					BIO_printf(bio_err,"The %s field does not exist in the CA certificate,\nthe 'policy' is misconfigured\n",cv->name);
@@ -1880,9 +1881,9 @@ again2:
 					}
 				if (j >= 0)
 					{
-					push=OPENSSL_X509_NAME_get_entry(CAname,j);
-					str=OPENSSL_X509_NAME_ENTRY_get_data(tne);
-					str2=OPENSSL_X509_NAME_ENTRY_get_data(push);
+					push=X509_NAME_get_entry(CAname,j);
+					str=X509_NAME_ENTRY_get_data(tne);
+					str2=X509_NAME_ENTRY_get_data(push);
 					last2=j;
 					if (ASN1_STRING_cmp(str,str2) != 0)
 						goto again2;
@@ -1901,10 +1902,10 @@ again2:
 
 			if (push != NULL)
 				{
-				if (!OPENSSL_X509_NAME_add_entry(subject,push, -1, 0))
+				if (!X509_NAME_add_entry(subject,push, -1, 0))
 					{
 					if (push != NULL)
-						OPENSSL_X509_NAME_ENTRY_free(push);
+						X509_NAME_ENTRY_free(push);
 					BIO_printf(bio_err,"Memory allocation failure\n");
 					goto err;
 					}
@@ -1915,9 +1916,9 @@ again2:
 
 	if (preserve)
 		{
-		OPENSSL_X509_NAME_free(subject);
-		/* subject=OPENSSL_X509_NAME_dup(X509_REQ_get_subject_name(req)); */
-		subject=OPENSSL_X509_NAME_dup(name);
+		X509_NAME_free(subject);
+		/* subject=X509_NAME_dup(X509_REQ_get_subject_name(req)); */
+		subject=X509_NAME_dup(name);
 		if (subject == NULL) goto err;
 		}
 
@@ -1931,21 +1932,21 @@ again2:
 		dn_subject = subject;
 	else
 		{
-		OPENSSL_X509_NAME_ENTRY *tmpne;
+		X509_NAME_ENTRY *tmpne;
 		/* Its best to dup the subject DN and then delete any email
 		 * addresses because this retains its structure.
 		 */
-		if (!(dn_subject = OPENSSL_X509_NAME_dup(subject)))
+		if (!(dn_subject = X509_NAME_dup(subject)))
 			{
 			BIO_printf(bio_err,"Memory allocation failure\n");
 			goto err;
 			}
-		while((i = OPENSSL_X509_NAME_get_index_by_NID(dn_subject,
+		while((i = X509_NAME_get_index_by_NID(dn_subject,
 					NID_pkcs9_emailAddress, -1)) >= 0)
 			{
-			tmpne = OPENSSL_X509_NAME_get_entry(dn_subject, i);
-			OPENSSL_X509_NAME_delete_entry(dn_subject, i);
-			OPENSSL_X509_NAME_ENTRY_free(tmpne);
+			tmpne = X509_NAME_get_entry(dn_subject, i);
+			X509_NAME_delete_entry(dn_subject, i);
+			X509_NAME_ENTRY_free(tmpne);
 			}
 		}
 
@@ -2184,7 +2185,7 @@ again2:
 
 	/* row[DB_serial] done already */
 	row[DB_file]=(char *)OPENSSL_malloc(8);
-	row[DB_name]=OPENSSL_X509_NAME_oneline(X509_get_subject_name(ret),NULL,0);
+	row[DB_name]=X509_NAME_oneline(X509_get_subject_name(ret),NULL,0);
 
 	if ((row[DB_type] == NULL) || (row[DB_exp_date] == NULL) ||
 		(row[DB_file] == NULL) || (row[DB_name] == NULL))
@@ -2221,11 +2222,11 @@ err:
 		if (row[i] != NULL) OPENSSL_free(row[i]);
 
 	if (CAname != NULL)
-		OPENSSL_X509_NAME_free(CAname);
+		X509_NAME_free(CAname);
 	if (subject != NULL)
-		OPENSSL_X509_NAME_free(subject);
+		X509_NAME_free(subject);
 	if ((dn_subject != NULL) && !email_dn)
-		OPENSSL_X509_NAME_free(dn_subject);
+		X509_NAME_free(dn_subject);
 	if (tmptm != NULL)
 		ASN1_UTCTIME_free(tmptm);
 	if (ok <= 0)
@@ -2248,10 +2249,10 @@ static void write_new_certificate(BIO *bp, X509 *x, int output_der, int notext)
 		}
 #if 0
 	/* ??? Not needed since X509_print prints all this stuff anyway */
-	f=OPENSSL_X509_NAME_oneline(X509_get_issuer_name(x),buf,256);
+	f=X509_NAME_oneline(X509_get_issuer_name(x),buf,256);
 	BIO_printf(bp,"issuer :%s\n",f);
 
-	f=OPENSSL_X509_NAME_oneline(X509_get_subject_name(x),buf,256);
+	f=X509_NAME_oneline(X509_get_subject_name(x),buf,256);
 	BIO_printf(bp,"subject:%s\n",f);
 
 	BIO_puts(bp,"serial :");
@@ -2277,8 +2278,8 @@ static int certify_spkac(X509 **xret, char *infile, EVP_PKEY *pkey, X509 *x509,
 	X509_REQ_INFO *ri;
 	char *type,*buf;
 	EVP_PKEY *pktmp=NULL;
-	OPENSSL_X509_NAME *n=NULL;
-	OPENSSL_X509_NAME_ENTRY *ne=NULL;
+	X509_NAME *n=NULL;
+	X509_NAME_ENTRY *ne=NULL;
 	int ok= -1,i,j;
 	long errline;
 	int nid;
@@ -2357,7 +2358,7 @@ static int certify_spkac(X509 **xret, char *infile, EVP_PKEY *pkey, X509 *x509,
 			continue;
 			}
 
-		if (!OPENSSL_X509_NAME_add_entry_by_NID(n, nid, chtype,
+		if (!X509_NAME_add_entry_by_NID(n, nid, chtype,
 				(unsigned char *)buf, -1, -1, 0))
 			goto err;
 		}
@@ -2397,7 +2398,7 @@ err:
 	if (req != NULL) X509_REQ_free(req);
 	if (parms != NULL) CONF_free(parms);
 	if (spki != NULL) NETSCAPE_SPKI_free(spki);
-	if (ne != NULL) OPENSSL_X509_NAME_ENTRY_free(ne);
+	if (ne != NULL) X509_NAME_ENTRY_free(ne);
 
 	return(ok);
 	}
@@ -2417,7 +2418,7 @@ static int do_revoke(X509 *x509, CA_DB *db, int type, char *value)
 
 	for (i=0; i<DB_NUMBER; i++)
 		row[i]=NULL;
-	row[DB_name]=OPENSSL_X509_NAME_oneline(X509_get_subject_name(x509),NULL,0);
+	row[DB_name]=X509_NAME_oneline(X509_get_subject_name(x509),NULL,0);
 	bn = ASN1_INTEGER_to_BN(X509_get_serialNumber(x509),NULL);
 	if (!bn)
 		goto err;

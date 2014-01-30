@@ -135,7 +135,7 @@ static ERR_STRING_DATA DSO_str_reasons[]=
 {ERR_REASON(DSO_R_NAME_TRANSLATION_FAILED),"name translation failed"},
 {ERR_REASON(DSO_R_NO_FILENAME)           ,"no filename"},
 {ERR_REASON(DSO_R_NO_FILE_SPECIFICATION) ,"no file specification"},
-{ERR_REASON(DSO_R_NULL_HANDLE)           ,"a NULL shared library handle was used"},
+{ERR_REASON(DSO_R_NULL_HANDLE)           ,"a null shared library handle was used"},
 {ERR_REASON(DSO_R_SET_FILENAME_FAILED)   ,"set filename failed"},
 {ERR_REASON(DSO_R_STACK_ERROR)           ,"the meth_data stack is corrupt"},
 {ERR_REASON(DSO_R_SYM_FAILURE)           ,"could not bind to the requested symbol name"},

@@ -92,7 +92,7 @@ ASN1_OCTET_STRING *s2i_ASN1_OCTET_STRING(X509V3_EXT_METHOD *method,
 		return NULL;
 	}
 
-	oct->length = (int) length;
+	oct->length = length;
 
 	return oct;
 

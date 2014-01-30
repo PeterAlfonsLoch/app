@@ -63,7 +63,7 @@ int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
 	X509 *x;
 	EVP_PKEY *pk;
 	RSA *rsa;
-	OPENSSL_X509_NAME *name=NULL;
+	X509_NAME *name=NULL;
 	
 	if ((pkeyp == NULL) || (*pkeyp == NULL))
 		{
@@ -104,9 +104,9 @@ int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
 	 * correct string type and performing checks on its length.
 	 * Normally we'd check the return value for errors...
 	 */
-	OPENSSL_X509_NAME_add_entry_by_txt(name,"C",
+	X509_NAME_add_entry_by_txt(name,"C",
 				MBSTRING_ASC, "UK", -1, -1, 0);
-	OPENSSL_X509_NAME_add_entry_by_txt(name,"CN",
+	X509_NAME_add_entry_by_txt(name,"CN",
 				MBSTRING_ASC, "OpenSSL Group", -1, -1, 0);
 
 	/* Its self signed so set the issuer name to be the same as the

@@ -84,13 +84,13 @@ static int t_fromb64(unsigned char *a, const char *src)
 
 	while(*src && (*src == ' ' || *src == '\t' || *src == '\n'))
 		++src;
-	size = (int) strlen(src);
+	size = strlen(src);
 	i = 0;
 	while(i < size)
 		{
 		loc = strchr(b64table, src[i]);
 		if(loc == (char *) 0) break;
-		else a[i] = (unsigned char ) (loc - b64table);
+		else a[i] = loc - b64table;
 		++i;
 		}
 	size = i;
@@ -121,7 +121,7 @@ static int t_fromb64(unsigned char *a, const char *src)
 
 
 /*
- * Convert a raw byte string into a NULL-terminated base64 ASCII string.
+ * Convert a raw byte string into a null-terminated base64 ASCII string.
  */
 static char *t_tob64(char *dst, const unsigned char *src, int size)
 	{
@@ -390,7 +390,7 @@ int SRP_VBASE_init(SRP_VBASE *vb, char *verifier_file)
 		}
 	for (i = 0; i < sk_OPENSSL_PSTRING_num(tmpdb->data); i++)
 		{
-		pp = (char **)sk_OPENSSL_PSTRING_value(tmpdb->data,i);
+		pp = sk_OPENSSL_PSTRING_value(tmpdb->data,i);
 		if (pp[DB_srptype][0] == DB_SRP_INDEX)
 			{
 			/*we add this couple in the internal Stack */
@@ -581,7 +581,8 @@ char *SRP_create_verifier(const char *user, const char *pass, char **salt,
 	if (*salt == NULL)
 		{
 		char *tmp_salt;
-		if ((tmp_salt = (char *)OPENSSL_malloc(SRP_RANDOM_SALT_LEN * 2)) == NULL)
+
+		if ((tmp_salt = OPENSSL_malloc(SRP_RANDOM_SALT_LEN * 2)) == NULL)
 			{
 			OPENSSL_free(vf);
 			goto err;

@@ -195,7 +195,7 @@ static int ecdh_compute_key(void *out, size_t outlen, const EC_POINT *pub_key,
 			ECDHerr(ECDH_F_ECDH_COMPUTE_KEY,ECDH_R_KDF_FAILED);
 			goto err;
 			}
-		ret = (int) outlen;
+		ret = outlen;
 		}
 	else
 		{
@@ -203,7 +203,7 @@ static int ecdh_compute_key(void *out, size_t outlen, const EC_POINT *pub_key,
 		if (outlen > buflen)
 			outlen = buflen;
 		memcpy(out, buf, outlen);
-		ret = (int) outlen;
+		ret = outlen;
 		}
 	
 err:

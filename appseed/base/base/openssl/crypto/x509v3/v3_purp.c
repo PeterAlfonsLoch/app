@@ -316,7 +316,7 @@ int X509_supported_extension(X509_EXTENSION *ex)
 
 static void setup_dp(X509 *x, DIST_POINT *dp)
 	{
-	OPENSSL_X509_NAME *iname = NULL;
+	X509_NAME *iname = NULL;
 	int i;
 	if (dp->reasons)
 		{
@@ -369,7 +369,7 @@ static void x509v3_cache_extensions(X509 *x)
 	X509_digest(x, EVP_sha1(), x->sha1_hash, NULL);
 #endif
 	/* Does subject name match issuer ? */
-	if(!OPENSSL_X509_NAME_cmp(X509_get_subject_name(x), X509_get_issuer_name(x)))
+	if(!X509_NAME_cmp(X509_get_subject_name(x), X509_get_issuer_name(x)))
 			 x->ex_flags |= EXFLAG_SI;
 	/* V1 should mean no extensions ... */
 	if(!X509_get_version(x)) x->ex_flags |= EXFLAG_V1;
@@ -474,11 +474,11 @@ static void x509v3_cache_extensions(X509 *x)
 	for (i = 0; i < X509_get_ext_count(x); i++)
 		{
 		ex = X509_get_ext(x, i);
-		if (!X509_EXTENSION_get_critical(ex))
-			continue;
 		if (OBJ_obj2nid(X509_EXTENSION_get_object(ex))
 					== NID_freshest_crl)
 			x->ex_flags |= EXFLAG_FRESHEST;
+		if (!X509_EXTENSION_get_critical(ex))
+			continue;
 		if (!X509_supported_extension(ex))
 			{
 			x->ex_flags |= EXFLAG_CRITICAL;
@@ -700,7 +700,7 @@ static int no_check(const X509_PURPOSE *xp, const X509 *x, int ca)
 
 int X509_check_issued(X509 *issuer, X509 *subject)
 {
-	if(OPENSSL_X509_NAME_cmp(X509_get_subject_name(issuer),
+	if(X509_NAME_cmp(X509_get_subject_name(issuer),
 			X509_get_issuer_name(subject)))
 				return X509_V_ERR_SUBJECT_ISSUER_MISMATCH;
 	x509v3_cache_extensions(issuer);
@@ -747,7 +747,7 @@ int X509_check_akid(X509 *issuer, AUTHORITY_KEYID *akid)
 		 */
 		GENERAL_NAMES *gens;
 		GENERAL_NAME *gen;
-		OPENSSL_X509_NAME *nm = NULL;
+		X509_NAME *nm = NULL;
 		int i;
 		gens = akid->issuer;
 		for(i = 0; i < sk_GENERAL_NAME_num(gens); i++)
@@ -759,7 +759,7 @@ int X509_check_akid(X509 *issuer, AUTHORITY_KEYID *akid)
 				break;
 				}
 			}
-		if(nm && OPENSSL_X509_NAME_cmp(nm, X509_get_issuer_name(issuer)))
+		if(nm && X509_NAME_cmp(nm, X509_get_issuer_name(issuer)))
 			return X509_V_ERR_AKID_ISSUER_SERIAL_MISMATCH;
 		}
 	return X509_V_OK;

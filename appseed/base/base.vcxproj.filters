@@ -603,12 +603,6 @@
     <Filter Include="Source Files\graphics\visual">
       <UniqueIdentifier>{279c4f0b-7469-485f-a720-40edf81d3278}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\base\openssl\engines">
-      <UniqueIdentifier>{f355e97e-3b31-4109-bddd-4d52f301696b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\openssl\engines\ccgost">
-      <UniqueIdentifier>{753ce398-7e8c-4737-8bf6-f2fac3e33a13}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\base\crypto\crypto">
       <UniqueIdentifier>{20c88a33-e98c-4710-a7c2-fbaf3e3b8766}</UniqueIdentifier>
     </Filter>
@@ -728,6 +722,12 @@
     </Filter>
     <Filter Include="Header Files\user\user\NewFilter1">
       <UniqueIdentifier>{f934c7e3-9f5b-43f2-9b49-7a4340ae2ddb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\openssl\engines">
+      <UniqueIdentifier>{fc0ace0a-2174-4a64-b90a-08ca0c9bfea4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\openssl\engines\ccgost">
+      <UniqueIdentifier>{cf875873-2cc1-492e-a931-3e687893c18b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -5146,9 +5146,6 @@
     <ClCompile Include="base\openssl\crypto\engine\eng_pkey.c">
       <Filter>Source Files\base\openssl\crypto\engine</Filter>
     </ClCompile>
-    <ClCompile Include="base\openssl\crypto\engine\eng_rdrand.c">
-      <Filter>Source Files\base\openssl\crypto\engine</Filter>
-    </ClCompile>
     <ClCompile Include="base\openssl\crypto\engine\eng_table.c">
       <Filter>Source Files\base\openssl\crypto\engine</Filter>
     </ClCompile>
@@ -5967,87 +5964,6 @@
     </ClCompile>
     <ClCompile Include="base\openssl\crypto\engine\eng_all.c">
       <Filter>Source Files\base\openssl\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_4758cca.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_aep.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_atalla.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_capi.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_chil.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_cswift.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_gmp.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_nuron.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_padlock.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_sureware.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\e_ubsec.c">
-      <Filter>Source Files\base\openssl\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\ccgost\e_gost_err.c">
-      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\ccgost\gost_ameth.c">
-      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\ccgost\gost_asn1.c">
-      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\ccgost\gost_crypt.c">
-      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\ccgost\gost_ctl.c">
-      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\ccgost\gost_eng.c">
-      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\ccgost\gost_keywrap.c">
-      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\ccgost\gost_md.c">
-      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\ccgost\gost_params.c">
-      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\ccgost\gost_pmeth.c">
-      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\ccgost\gost_sign.c">
-      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\ccgost\gost89.c">
-      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\ccgost\gost94_keyx.c">
-      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\ccgost\gost2001.c">
-      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\ccgost\gost2001_keyx.c">
-      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="base\openssl\engines\ccgost\gosthash.c">
-      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
     </ClCompile>
     <ClCompile Include="base\compress\bsdiff\bsdiff_blocksort.cpp">
       <Filter>Source Files\base\compress\bsdiff</Filter>
@@ -7078,6 +6994,123 @@
     <ClCompile Include="base\base\base_print_job.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_4758cca.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_4758cca_err.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_aep.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_aep_err.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_atalla.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_atalla_err.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_capi.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_capi_err.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_chil.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_chil_err.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_cswift.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_cswift_err.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_gmp.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_gmp_err.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_nuron.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_nuron_err.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_padlock.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_sureware.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_sureware_err.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_ubsec.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\e_ubsec_err.c">
+      <Filter>Source Files\base\openssl\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\e_gost_err.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost_ameth.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost_asn1.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost_crypt.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost_ctl.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost_eng.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost_keywrap.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost_md.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost_params.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost_pmeth.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost_sign.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost89.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost94_keyx.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost2001.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gost2001_keyx.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\engines\ccgost\gosthash.c">
+      <Filter>Source Files\base\openssl\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\crypto\evp\evp_cnf.c">
+      <Filter>Source Files\base\openssl\crypto\evp</Filter>
+    </ClCompile>
+    <ClCompile Include="base\openssl\ssl\s3_cbc.c">
+      <Filter>Source Files\base\openssl\ssl</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -7265,6 +7298,9 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

@@ -85,7 +85,7 @@ Key_Encryption_ID	rsaEncryption
 
 typedef struct pkcs7_issuer_and_serial_st
 	{
-	OPENSSL_X509_NAME *issuer;
+	X509_NAME *issuer;
 	ASN1_INTEGER *serial;
 	} PKCS7_ISSUER_AND_SERIAL;
 

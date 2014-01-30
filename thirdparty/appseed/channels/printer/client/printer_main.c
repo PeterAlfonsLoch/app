@@ -272,8 +272,10 @@ void printer_register(PDEVICE_SERVICE_ENTRY_POINTS pEntryPoints, rdpPrinter* pri
 	if (printer->is_default)
 		Flags |= RDPDR_PRINTER_ANNOUNCE_FLAG_DEFAULTPRINTER;
 
-	DriverNameLen = ConvertToUnicode(CP_UTF8, 0, printer->driver, -1, &DriverName, 0) * 2;
-	PrintNameLen = ConvertToUnicode(CP_UTF8, 0, printer->name, -1, &PrintName, 0) * 2;
+//	DriverNameLen = ConvertToUnicode(CP_UTF8, 0, printer->driver, -1, &DriverName, 0) * 2;
+	//PrintNameLen = ConvertToUnicode(CP_UTF8, 0, printer->name, -1, &PrintName, 0) * 2;
+   DriverNameLen = wcslen(printer->driver) * 2;
+   PrintNameLen = wcslen(printer->name) * 2;
 
 	printer_dev->device.data = Stream_New(NULL, 28 + DriverNameLen + PrintNameLen + CachedFieldsLen);
 
@@ -315,8 +317,8 @@ void printer_register(PDEVICE_SERVICE_ENTRY_POINTS pEntryPoints, rdpPrinter* pri
 int DeviceServiceEntry(PDEVICE_SERVICE_ENTRY_POINTS pEntryPoints)
 {
 	int i;
-	char* name;
-	char* driver_name;
+	wchar_t* name;
+	wchar_t* driver_name;
 	rdpPrinter* printer;
 	rdpPrinter** printers;
 	RDPDR_PRINTER* device;

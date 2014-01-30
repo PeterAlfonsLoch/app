@@ -1,1 +1,1 @@
-../crypto/bf/bftest.c
+ypto/bf/bftest.c

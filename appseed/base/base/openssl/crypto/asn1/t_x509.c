@@ -183,7 +183,7 @@ int X509_print_ex(BIO *bp, X509 *x, unsigned long nmflags, unsigned long cflag)
 	if(!(cflag & X509_FLAG_NO_ISSUER))
 		{
 		if (BIO_printf(bp,"        Issuer:%c",mlch) <= 0) goto err;
-		if (OPENSSL_X509_NAME_print_ex(bp,X509_get_issuer_name(x),nmindent, nmflags) < 0) goto err;
+		if (X509_NAME_print_ex(bp,X509_get_issuer_name(x),nmindent, nmflags) < 0) goto err;
 		if (BIO_write(bp,"\n",1) <= 0) goto err;
 		}
 	if(!(cflag & X509_FLAG_NO_VALIDITY))
@@ -198,7 +198,7 @@ int X509_print_ex(BIO *bp, X509 *x, unsigned long nmflags, unsigned long cflag)
 	if(!(cflag & X509_FLAG_NO_SUBJECT))
 		{
 		if (BIO_printf(bp,"        Subject:%c",mlch) <= 0) goto err;
-		if (OPENSSL_X509_NAME_print_ex(bp,X509_get_subject_name(x),nmindent, nmflags) < 0) goto err;
+		if (X509_NAME_print_ex(bp,X509_get_subject_name(x),nmindent, nmflags) < 0) goto err;
 		if (BIO_write(bp,"\n",1) <= 0) goto err;
 		}
 	if(!(cflag & X509_FLAG_NO_PUBKEY))
@@ -255,10 +255,10 @@ int X509_ocspid_print (BIO *bp, X509 *x)
 	   in OCSP requests */
 	if (BIO_printf(bp,"        Subject OCSP hash: ") <= 0)
 		goto err;
-	derlen = i2d_OPENSSL_X509_NAME(x->cert_info->subject, NULL);
+	derlen = i2d_X509_NAME(x->cert_info->subject, NULL);
 	if ((der = dertmp = (unsigned char *)OPENSSL_malloc (derlen)) == NULL)
 		goto err;
-	i2d_OPENSSL_X509_NAME(x->cert_info->subject, &dertmp);
+	i2d_X509_NAME(x->cert_info->subject, &dertmp);
 
 	if (!EVP_Digest(der, derlen, SHA1md, NULL, EVP_sha1(), NULL))
 		goto err;
@@ -467,14 +467,14 @@ err:
 	return(0);
 	}
 
-int OPENSSL_X509_NAME_print(BIO *bp, OPENSSL_X509_NAME *name, int obase)
+int X509_NAME_print(BIO *bp, X509_NAME *name, int obase)
 	{
 	char *s,*c,*b;
 	int ret=0,l,i;
 
 	l=80-2-obase;
 
-	b=OPENSSL_X509_NAME_oneline(name,NULL,0);
+	b=X509_NAME_oneline(name,NULL,0);
 	if (!*b)
 		{
 		OPENSSL_free(b);
@@ -503,7 +503,7 @@ int OPENSSL_X509_NAME_print(BIO *bp, OPENSSL_X509_NAME *name, int obase)
 			(*s == '\0'))
 #endif
 			{
-			i=(int) (s-c);
+			i=s-c;
 			if (BIO_write(bp,c,i) != i) goto err;
 			c=s+1;	/* skip following slash */
 			if (*s != '\0')
@@ -521,7 +521,7 @@ int OPENSSL_X509_NAME_print(BIO *bp, OPENSSL_X509_NAME *name, int obase)
 	if (0)
 		{
 err:
-		X509err(X509_F_OPENSSL_X509_NAME_PRINT,ERR_R_BUF_LIB);
+		X509err(X509_F_X509_NAME_PRINT,ERR_R_BUF_LIB);
 		}
 	OPENSSL_free(b);
 	return(ret);

@@ -74,7 +74,7 @@ BIO *cms_EncryptedContent_init_bio(CMS_EncryptedContentInfo *ec)
 	X509_ALGOR *calg = ec->contentEncryptionAlgorithm;
 	unsigned char iv[EVP_MAX_IV_LENGTH], *piv = NULL;
 	unsigned char *tkey = NULL;
-	size_t tkeylen;
+	size_t tkeylen = 0;
 
 	int ok = 0;
 
@@ -169,7 +169,7 @@ BIO *cms_EncryptedContent_init_bio(CMS_EncryptedContentInfo *ec)
 	if (ec->keylen != tkeylen)
 		{
 		/* If necessary set key length */
-		if (EVP_CIPHER_CTX_set_key_length(ctx, (int) ec->keylen) <= 0)
+		if (EVP_CIPHER_CTX_set_key_length(ctx, ec->keylen) <= 0)
 			{
 			/* Only reveal failure if debugging so we don't
 			 * leak information which may be useful in MMA.

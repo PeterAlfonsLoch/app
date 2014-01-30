@@ -58,10 +58,6 @@
 /* X509 v3 extension utilities */
 
 
-#include "base/base/base/base.h"
-
-
-
 #include <stdio.h>
 #include <ctype.h>
 #include "cryptlib.h"
@@ -71,7 +67,7 @@
 
 static char *strip_spaces(char *name);
 static int sk_strcmp(const char * const *a, const char * const *b);
-static STACK_OF(OPENSSL_STRING) *get_email(OPENSSL_X509_NAME *name, GENERAL_NAMES *gens);
+static STACK_OF(OPENSSL_STRING) *get_email(X509_NAME *name, GENERAL_NAMES *gens);
 static void str_free(OPENSSL_STRING str);
 static int append_ia5(STACK_OF(OPENSSL_STRING) **sk, ASN1_IA5STRING *email);
 
@@ -431,7 +427,7 @@ unsigned char *string_to_hex(const char *str, long *len)
 		*q++ = (ch << 4) | cl;
 	}
 
-	if(len) *len = (long) (q - hexbuf);
+	if(len) *len = q - hexbuf;
 
 	return hexbuf;
 
@@ -455,7 +451,7 @@ int name_cmp(const char *name, const char *cmp)
 {
 	int len, ret;
 	char c;
-	len = (int) strlen(cmp);
+	len = strlen(cmp);
 	if((ret = strncmp(name, cmp, len))) return ret;
 	c = name[len];
 	if(!c || (c=='.')) return 0;
@@ -518,20 +514,20 @@ STACK_OF(OPENSSL_STRING) *X509_REQ_get1_email(X509_REQ *x)
 }
 
 
-static STACK_OF(OPENSSL_STRING) *get_email(OPENSSL_X509_NAME *name, GENERAL_NAMES *gens)
+static STACK_OF(OPENSSL_STRING) *get_email(X509_NAME *name, GENERAL_NAMES *gens)
 {
 	STACK_OF(OPENSSL_STRING) *ret = NULL;
-	OPENSSL_X509_NAME_ENTRY *ne;
+	X509_NAME_ENTRY *ne;
 	ASN1_IA5STRING *email;
 	GENERAL_NAME *gen;
 	int i;
 	/* Now add any email address(es) to STACK */
 	i = -1;
-	/* First supplied OPENSSL_X509_NAME */
-	while((i = OPENSSL_X509_NAME_get_index_by_NID(name,
+	/* First supplied X509_NAME */
+	while((i = X509_NAME_get_index_by_NID(name,
 					 NID_pkcs9_emailAddress, i)) >= 0) {
-		ne = OPENSSL_X509_NAME_get_entry(name, i);
-		email = OPENSSL_X509_NAME_ENTRY_get_data(ne);
+		ne = X509_NAME_get_entry(name, i);
+		email = X509_NAME_ENTRY_get_data(ne);
 		if(!append_ia5(&ret, email)) return NULL;
 	}
 	for(i = 0; i < sk_GENERAL_NAME_num(gens); i++)
@@ -831,7 +827,7 @@ static int ipv6_hex(unsigned char *out, const char *in, int inlen)
 	}
 
 
-int X509V3_NAME_from_section(OPENSSL_X509_NAME *nm, STACK_OF(CONF_VALUE)*dn_sk,
+int X509V3_NAME_from_section(X509_NAME *nm, STACK_OF(CONF_VALUE)*dn_sk,
 						unsigned long chtype)
 	{
 	CONF_VALUE *v;
@@ -869,7 +865,7 @@ int X509V3_NAME_from_section(OPENSSL_X509_NAME *nm, STACK_OF(CONF_VALUE)*dn_sk,
 			}
 		else
 			mval = 0;
-		if (!OPENSSL_X509_NAME_add_entry_by_txt(nm,type, (int) chtype,
+		if (!X509_NAME_add_entry_by_txt(nm,type, chtype,
 				(unsigned char *) v->value,-1,-1,mval))
 					return 0;
 

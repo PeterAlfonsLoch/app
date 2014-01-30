@@ -114,10 +114,6 @@
  * SUN MICROSYSTEMS, INC., and contributed to the OpenSSL project.
  */
 
-
-#include "base/base/base/base.h"
-
-
 #include "cryptlib.h"
 #include <openssl/safestack.h>
 
@@ -508,7 +504,7 @@ void CRYPTO_THREADID_current(CRYPTO_THREADID *id)
 	CRYPTO_THREADID_set_numeric(id, (unsigned long)find_thread(NULL));
 #else
 	/* For everything else, default to using the address of 'errno' */
-	CRYPTO_THREADID_set_pointer(id, (void *) (int_ptr) &errno);
+	CRYPTO_THREADID_set_pointer(id, (void*)&errno);
 #endif
 	}
 
@@ -682,6 +678,7 @@ unsigned long *OPENSSL_ia32cap_loc(void)
 }
 
 #if defined(OPENSSL_CPUID_OBJ) && !defined(OPENSSL_NO_ASM) && !defined(I386_ONLY)
+//#if defined(OPENSSL_CPUID_OBJ) && !defined(I386_ONLY)
 #define OPENSSL_CPUID_SETUP
 #if defined(_WIN32)
 typedef unsigned __int64 IA32CAP;
@@ -708,6 +705,7 @@ void OPENSSL_cpuid_setup(void)
     }
     else
 	vec = OPENSSL_ia32_cpuid();
+
     /*
      * |(1<<10) sets a reserved bit to signal that variable
      * was initialized already... This is to avoid interference
@@ -743,7 +741,7 @@ BOOL WINAPI openssl_DllMain(HINSTANCE hinstDLL, DWORD fdwReason,
 	switch(fdwReason)
 		{
 	case DLL_PROCESS_ATTACH:
-		OPENSSL_cpuid_setup();
+      //xxx OPENSSL_cpuid_setup();
 #if defined(_WIN32_WINNT)
 		{
 		IMAGE_DOS_HEADER *dos_header = (IMAGE_DOS_HEADER *)hinstDLL;
@@ -771,7 +769,7 @@ BOOL WINAPI openssl_DllMain(HINSTANCE hinstDLL, DWORD fdwReason,
 	}
 #endif
 
-#if !defined(METROWIN) && defined(_WIN32) && !defined(__CYGWIN__)
+#if defined(_WIN32) && !defined(__CYGWIN__)
 #include <tchar.h>
 #include <signal.h>
 #ifdef __WATCOMC__
@@ -863,7 +861,7 @@ void OPENSSL_showfatal (const char *fmta,...)
 	if (fmtw == NULL) { fmt=(const TCHAR *)L"no stack?"; break; }
 
 #ifndef OPENSSL_NO_MULTIBYTE
-	if (!MultiByteToWideChar(CP_ACP,0,fmta,(int) len_0,fmtw, (int) len_0))
+	if (!MultiByteToWideChar(CP_ACP,0,fmta,len_0,fmtw,len_0))
 #endif
 	    for (i=0;i<len_0;i++) fmtw[i]=(WCHAR)fmta[i];
 
@@ -892,6 +890,7 @@ void OPENSSL_showfatal (const char *fmta,...)
 
 #if defined(_WIN32_WINNT) && _WIN32_WINNT>=0x0333
     /* this -------------v--- guards NT-specific calls */
+    //if (GetVersion() < 0x80000000 && OPENSSL_isservice() > 0)
     if (is_windows_nt() && OPENSSL_isservice() > 0)
     {	HANDLE h = RegisterEventSource(0,_T("OPENSSL"));
 	const TCHAR *pmsg=buf;
@@ -922,11 +921,22 @@ void OpenSSLDie(const char *file,int line,const char *assertion)
 	abort();
 #else
 	/* Win32 abort() customarily shows a dialog, but we just did that... */
-#if !defined(METROWIN)
 	raise(SIGABRT);
-#endif
 	_exit(3);
 #endif
 	}
 
 void *OPENSSL_stderr(void)	{ return stderr; }
+
+int CRYPTO_memcmp(const void *in_a, const void *in_b, size_t len)
+	{
+	size_t i;
+	const unsigned char *a = in_a;
+	const unsigned char *b = in_b;
+	unsigned char x = 0;
+
+	for (i = 0; i < len; i++)
+		x |= a[i] ^ b[i];
+
+	return x;
+	}

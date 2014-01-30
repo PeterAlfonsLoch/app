@@ -266,7 +266,7 @@ static int bio_read(BIO *bio, char *buf, int size_)
 		}
 	while (rest);
 	
-	return (int) size;
+	return size;
 	}
 
 /* non-copying interface: provide pointer to available data in buffer
@@ -304,10 +304,10 @@ static ossl_ssize_t bio_nread0(BIO *bio, char **buf)
 		return bio_read(bio, &dummy, 1); /* returns 0 or -1 */
 		}
 
-	num = (long) peer_b->len;
+	num = peer_b->len;
 	if (peer_b->size < peer_b->offset + num)
 		/* no ring buffer wrap-around for non-copying interface */
-		num = (long) (peer_b->size - peer_b->offset);
+		num = peer_b->size - peer_b->offset;
 	assert(num > 0);
 
 	if (buf != NULL)
@@ -419,7 +419,7 @@ static int bio_write(BIO *bio, const char *buf, int num_)
 		}
 	while (rest);
 
-	return (int) num;
+	return num;
 	}
 
 /* non-copying interface: provide pointer to region to write to
@@ -473,7 +473,7 @@ static ossl_ssize_t bio_nwrite0(BIO *bio, char **buf)
 		*buf = b->buf + write_offset;
 	assert(write_offset + num <= b->size);
 
-	return (long) num;
+	return num;
 	}
 
 static ossl_ssize_t bio_nwrite(BIO *bio, char **buf, size_t num_)
@@ -567,7 +567,7 @@ static long bio_ctrl(BIO *bio, int cmd, long num, void *ptr)
 		if (b->peer == NULL || b->closed)
 			ret = 0;
 		else
-			ret = (long) (b->size - b->len);
+			ret = (long) b->size - b->len;
 		break;
 
 	case BIO_C_GET_READ_REQUEST:
@@ -697,7 +697,7 @@ static long bio_ctrl(BIO *bio, int cmd, long num, void *ptr)
 
 static int bio_puts(BIO *bio, const char *str)
 	{
-	return bio_write(bio, str, (int) strlen(str));
+	return bio_write(bio, str, strlen(str));
 	}
 
 
@@ -802,13 +802,13 @@ int BIO_new_bio_pair(BIO **bio1_p, size_t writebuf1,
 
 	 if (writebuf1)
 		 {
-		 r = BIO_set_write_buf_size(bio1, (long) writebuf1);
+		 r = BIO_set_write_buf_size(bio1, writebuf1);
 		 if (!r)
 			 goto err;
 		 }
 	 if (writebuf2)
 		 {
-		 r = BIO_set_write_buf_size(bio2, (long) writebuf2);
+		 r = BIO_set_write_buf_size(bio2, writebuf2);
 		 if (!r)
 			 goto err;
 		 }
@@ -917,7 +917,7 @@ int BIO_nwrite(BIO *bio, char **buf, int num)
 		return -2;
 		}
 
-	ret = (int) BIO_ctrl(bio, BIO_C_NWRITE, num, buf);
+	ret = BIO_ctrl(bio, BIO_C_NWRITE, num, buf);
 	if (ret > 0)
 		bio->num_write += ret;
 	return ret;

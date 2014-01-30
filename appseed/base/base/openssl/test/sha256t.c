@@ -1,1 +1,1 @@
-../crypto/sha/sha256t.c
+ypto/sha/sha256t.c

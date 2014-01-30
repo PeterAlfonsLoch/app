@@ -188,6 +188,7 @@ extern BIO *bio_err;
 			do { CONF_modules_unload(1); destroy_ui_method(); \
 			OBJ_cleanup(); EVP_cleanup(); ENGINE_cleanup(); \
 			CRYPTO_cleanup_all_ex_data(); ERR_remove_thread_state(NULL); \
+			RAND_cleanup(); \
 			ERR_free_strings(); zlib_cleanup();} while(0)
 #  else
 #    define apps_startup() \
@@ -198,6 +199,7 @@ extern BIO *bio_err;
 			do { CONF_modules_unload(1); destroy_ui_method(); \
 			OBJ_cleanup(); EVP_cleanup(); \
 			CRYPTO_cleanup_all_ex_data(); ERR_remove_thread_state(NULL); \
+			RAND_cleanup(); \
 			ERR_free_strings(); zlib_cleanup(); } while(0)
 #  endif
 #endif
@@ -235,7 +237,7 @@ void program_name(char *in,char *out,int size);
 int chopup_args(ARGS *arg,char *buf, int *argc, char **argv[]);
 #ifdef HEADER_X509_H
 int dump_cert_text(BIO *out, X509 *x);
-void print_name(BIO *out, const char *title, OPENSSL_X509_NAME *nm, unsigned long lflags);
+void print_name(BIO *out, const char *title, X509_NAME *nm, unsigned long lflags);
 #endif
 int set_cert_ex(unsigned long *flags, const char *arg);
 int set_name_ex(unsigned long *flags, const char *arg);
@@ -259,7 +261,7 @@ ENGINE *setup_engine(BIO *err, const char *engine, int debug);
 #endif
 
 #ifndef OPENSSL_NO_OCSP
-OPENSSL_OCSP_RESPONSE *process_responder(BIO *err, OPENSSL_OCSP_REQUEST *req,
+OCSP_RESPONSE *process_responder(BIO *err, OCSP_REQUEST *req,
 			char *host, char *path, char *port, int use_ssl,
 			STACK_OF(CONF_VALUE) *headers,
 			int req_timeout);
@@ -309,7 +311,7 @@ void free_index(CA_DB *db);
 int index_name_cmp(const OPENSSL_CSTRING *a, const OPENSSL_CSTRING *b);
 int parse_yesno(const char *str, int def);
 
-OPENSSL_X509_NAME *parse_name(char *str, long chtype, int multirdn);
+X509_NAME *parse_name(char *str, long chtype, int multirdn);
 int args_verify(char ***pargs, int *pargc,
 			int *badarg, BIO *err, X509_VERIFY_PARAM **pm);
 void policies_print(BIO *out, X509_STORE_CTX *ctx);

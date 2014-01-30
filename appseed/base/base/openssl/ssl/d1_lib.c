@@ -57,10 +57,6 @@
  *
  */
 
-
-#include "base/base/base/base.h"
-
-
 #include <stdio.h>
 #define USE_SOCKETS
 #include <openssl/objects.h>
@@ -200,6 +196,7 @@ void dtls1_free(SSL *s)
 	pqueue_free(s->d1->buffered_app_data.q);
 
 	OPENSSL_free(s->d1);
+	s->d1 = NULL;
 	}
 
 void dtls1_clear(SSL *s)
@@ -268,7 +265,7 @@ long dtls1_ctrl(SSL *s, int cmd, long larg, void *parg)
 		break;
 
 	default:
-		ret = (int) ssl3_ctrl(s, cmd, larg, parg);
+		ret = ssl3_ctrl(s, cmd, larg, parg);
 		break;
 		}
 	return(ret);
@@ -380,7 +377,7 @@ int dtls1_is_timer_expired(SSL *s)
 		return 0;
 		}
 
-	/* timer expired, so return true */	
+	/* Timer expired, so return true */	
 	return 1;
 	}
 
@@ -410,7 +407,7 @@ int dtls1_check_timeout_num(SSL *s)
 	/* Reduce MTU after 2 unsuccessful retransmissions */
 	if (s->d1->timeout.num_alerts > 2)
 		{
-		s->d1->mtu = (int) BIO_ctrl(SSL_get_wbio(s), BIO_CTRL_DGRAM_GET_FALLBACK_MTU, 0, NULL);
+		s->d1->mtu = BIO_ctrl(SSL_get_wbio(s), BIO_CTRL_DGRAM_GET_FALLBACK_MTU, 0, NULL);		
 		}
 
 	if (s->d1->timeout.num_alerts > DTLS1_TMO_ALERT_COUNT)

@@ -103,11 +103,8 @@ void do_fp(FILE *f)
 	int fd;
 	int i;
 	static unsigned char buf[BUFSIZE];
-#ifdef _WIN32
-	fd = _fileno(f);
-#else
+
 	fd=fileno(f);
-#endif
 	MD4_Init(&c);
 	for (;;)
 		{

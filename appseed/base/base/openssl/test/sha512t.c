@@ -1,1 +1,1 @@
-../crypto/sha/sha512t.c
+ypto/sha/sha512t.c

@@ -56,10 +56,6 @@
  * [including the GNU Public Licence.]
  */
 
-
-#include "base/base/base/base.h"
-
-
 #include <stdio.h>
 #include <time.h>
 #include <errno.h>
@@ -104,7 +100,7 @@ static int dir_ctrl(X509_LOOKUP *ctx, int cmd, const char *argp, long argl,
 static int new_dir(X509_LOOKUP *lu);
 static void free_dir(X509_LOOKUP *lu);
 static int add_cert_dir(BY_DIR *ctx,const char *dir,int type);
-static int get_cert_by_subject(X509_LOOKUP *xl,int type,OPENSSL_X509_NAME *name,
+static int get_cert_by_subject(X509_LOOKUP *xl,int type,X509_NAME *name,
 	X509_OBJECT *ret);
 X509_LOOKUP_METHOD x509_dir_lookup=
 	{
@@ -274,7 +270,7 @@ static int add_cert_dir(BY_DIR *ctx, const char *dir, int type)
 	return 1;
 	}
 
-static int get_cert_by_subject(X509_LOOKUP *xl, int type, OPENSSL_X509_NAME *name,
+static int get_cert_by_subject(X509_LOOKUP *xl, int type, X509_NAME *name,
 	     X509_OBJECT *ret)
 	{
 	BY_DIR *ctx;
@@ -326,14 +322,14 @@ static int get_cert_by_subject(X509_LOOKUP *xl, int type, OPENSSL_X509_NAME *nam
 	
 	ctx=(BY_DIR *)xl->method_data;
 
-	h=OPENSSL_X509_NAME_hash(name);
+	h=X509_NAME_hash(name);
 	for (i=0; i < sk_BY_DIR_ENTRY_num(ctx->dirs); i++)
 		{
 		BY_DIR_ENTRY *ent;
 		int idx;
 		BY_DIR_HASH htmp, *hent;
 		ent = sk_BY_DIR_ENTRY_value(ctx->dirs, i);
-		j = (int) (strlen(ent->dir)+1+8+6+1+1);
+		j=strlen(ent->dir)+1+8+6+1+1;
 		if (!BUF_MEM_grow(b,j))
 			{
 			X509err(X509_F_GET_CERT_BY_SUBJECT,ERR_R_MALLOC_FAILURE);

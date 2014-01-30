@@ -74,7 +74,7 @@ static int print_nc_ipadd(BIO *bp, ASN1_OCTET_STRING *ip);
 
 static int nc_match(GENERAL_NAME *gen, NAME_CONSTRAINTS *nc);
 static int nc_match_single(GENERAL_NAME *sub, GENERAL_NAME *gen);
-static int nc_dn(OPENSSL_X509_NAME *sub, OPENSSL_X509_NAME *nm);
+static int nc_dn(X509_NAME *sub, X509_NAME *nm);
 static int nc_dns(ASN1_IA5STRING *sub, ASN1_IA5STRING *dns);
 static int nc_email(ASN1_IA5STRING *sub, ASN1_IA5STRING *eml);
 static int nc_uri(ASN1_IA5STRING *uri, ASN1_IA5STRING *base);
@@ -239,11 +239,11 @@ static int print_nc_ipadd(BIO *bp, ASN1_OCTET_STRING *ip)
 int NAME_CONSTRAINTS_check(X509 *x, NAME_CONSTRAINTS *nc)
 	{
 	int r, i;
-	OPENSSL_X509_NAME *nm;
+	X509_NAME *nm;
 
 	nm = X509_get_subject_name(x);
 
-	if (OPENSSL_X509_NAME_entry_count(nm) > 0)
+	if (X509_NAME_entry_count(nm) > 0)
 		{
 		GENERAL_NAME gntmp;
 		gntmp.type = GEN_DIRNAME;
@@ -261,14 +261,14 @@ int NAME_CONSTRAINTS_check(X509 *x, NAME_CONSTRAINTS *nc)
 
 		for (i = -1;;)
 			{
-			OPENSSL_X509_NAME_ENTRY *ne;
-			i = OPENSSL_X509_NAME_get_index_by_NID(nm,
+			X509_NAME_ENTRY *ne;
+			i = X509_NAME_get_index_by_NID(nm,
 						       NID_pkcs9_emailAddress,
 						       i);
 			if (i == -1)
 				break;
-			ne = OPENSSL_X509_NAME_get_entry(nm, i);
-			gntmp.d.rfc822Name = OPENSSL_X509_NAME_ENTRY_get_data(ne);
+			ne = X509_NAME_get_entry(nm, i);
+			gntmp.d.rfc822Name = X509_NAME_ENTRY_get_data(ne);
 			if (gntmp.d.rfc822Name->type != V_ASN1_IA5STRING)
 				return X509_V_ERR_UNSUPPORTED_NAME_SYNTAX;
 
@@ -369,16 +369,16 @@ static int nc_match_single(GENERAL_NAME *gen, GENERAL_NAME *base)
 	}
 
 /* directoryName name constraint matching.
- * The canonical encoding of OPENSSL_X509_NAME makes this comparison easy. It is
+ * The canonical encoding of X509_NAME makes this comparison easy. It is
  * matched if the subtree is a subset of the name.
  */
 
-static int nc_dn(OPENSSL_X509_NAME *nm, OPENSSL_X509_NAME *base)
+static int nc_dn(X509_NAME *nm, X509_NAME *base)
 	{
 	/* Ensure canonical encodings are up to date.  */
-	if (nm->modified && i2d_OPENSSL_X509_NAME(nm, NULL) < 0)
+	if (nm->modified && i2d_X509_NAME(nm, NULL) < 0)
 		return X509_V_ERR_OUT_OF_MEM;
-	if (base->modified && i2d_OPENSSL_X509_NAME(base, NULL) < 0)
+	if (base->modified && i2d_X509_NAME(base, NULL) < 0)
 		return X509_V_ERR_OUT_OF_MEM;
 	if (base->canon_enclen > nm->canon_enclen)
 		return X509_V_ERR_PERMITTED_VIOLATION;
@@ -478,9 +478,9 @@ static int nc_uri(ASN1_IA5STRING *uri, ASN1_IA5STRING *base)
 		p = strchr(hostptr, '/');
 
 	if (!p)
-		hostlen = (int) strlen(hostptr);
+		hostlen = strlen(hostptr);
 	else
-		hostlen = (int) (p - hostptr);
+		hostlen = p - hostptr;
 
 	if (hostlen == 0)
 		return X509_V_ERR_UNSUPPORTED_NAME_SYNTAX;

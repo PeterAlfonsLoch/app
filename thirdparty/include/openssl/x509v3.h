@@ -10,7 +10,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -189,7 +189,7 @@ union {
 	ASN1_IA5STRING *rfc822Name;
 	ASN1_IA5STRING *dNSName;
 	ASN1_TYPE *x400Address;
-	OPENSSL_X509_NAME *directoryName;
+	X509_NAME *directoryName;
 	EDIPARTYNAME *ediPartyName;
 	ASN1_IA5STRING *uniformResourceIdentifier;
 	ASN1_OCTET_STRING *iPAddress;
@@ -197,7 +197,7 @@ union {
 
 	/* Old names */
 	ASN1_OCTET_STRING *ip; /* iPAddress */
-	OPENSSL_X509_NAME *dirn;		/* dirn */
+	X509_NAME *dirn;		/* dirn */
 	ASN1_IA5STRING *ia5;/* rfc822Name, dNSName, uniformResourceIdentifier */
 	ASN1_OBJECT *rid; /* registeredID */
 	ASN1_TYPE *other; /* x400Address */
@@ -225,10 +225,10 @@ typedef struct DIST_POINT_NAME_st {
 int type;
 union {
 	GENERAL_NAMES *fullname;
-	STACK_OF(OPENSSL_X509_NAME_ENTRY) *relativename;
+	STACK_OF(X509_NAME_ENTRY) *relativename;
 } name;
 /* If relativename then this contains the full distribution point name */
-OPENSSL_X509_NAME *dpname;
+X509_NAME *dpname;
 } DIST_POINT_NAME;
 /* All existing reasons */
 #define CRLDP_ALL_REASONS	0x807f
@@ -443,7 +443,7 @@ struct ISSUING_DIST_POINT_st
 #define NS_OBJSIGN_CA		0x01
 #define NS_ANY_CA		(NS_SSL_CA|NS_SMIME_CA|NS_OBJSIGN_CA)
 
-#define XKU_SSL_SERVER		0x1	
+#define XKU_SSL_SERVER		0x1
 #define XKU_SSL_CLIENT		0x2
 #define XKU_SMIME		0x4
 #define XKU_CODE_SIGN		0x8
@@ -509,9 +509,9 @@ DECLARE_ASN1_FUNCTIONS(BASIC_CONSTRAINTS)
 DECLARE_ASN1_FUNCTIONS(SXNET)
 DECLARE_ASN1_FUNCTIONS(SXNETID)
 
-int SXNET_add_id_asc(SXNET **psx, char *zone, char *user, int userlen); 
-int SXNET_add_id_ulong(SXNET **psx, unsigned long lzone, char *user, int userlen); 
-int SXNET_add_id_INTEGER(SXNET **psx, ASN1_INTEGER *izone, char *user, int userlen); 
+int SXNET_add_id_asc(SXNET **psx, char *zone, char *user, int userlen);
+int SXNET_add_id_ulong(SXNET **psx, unsigned long lzone, char *user, int userlen);
+int SXNET_add_id_INTEGER(SXNET **psx, ASN1_INTEGER *izone, char *user, int userlen);
 
 ASN1_OCTET_STRING *SXNET_get_id_asc(SXNET *sx, char *zone);
 ASN1_OCTET_STRING *SXNET_get_id_ulong(SXNET *sx, unsigned long lzone);
@@ -550,7 +550,7 @@ void GENERAL_NAME_set0_value(GENERAL_NAME *a, int type, void *value);
 void *GENERAL_NAME_get0_value(GENERAL_NAME *a, int *ptype);
 int GENERAL_NAME_set0_othername(GENERAL_NAME *gen,
 				ASN1_OBJECT *oid, ASN1_TYPE *value);
-int GENERAL_NAME_get0_otherName(GENERAL_NAME *gen, 
+int GENERAL_NAME_get0_otherName(GENERAL_NAME *gen,
 				ASN1_OBJECT **poid, ASN1_TYPE **pvalue);
 
 char *i2s_ASN1_OCTET_STRING(X509V3_EXT_METHOD *method, ASN1_OCTET_STRING *ia5);
@@ -570,7 +570,7 @@ DECLARE_ASN1_FUNCTIONS(DIST_POINT)
 DECLARE_ASN1_FUNCTIONS(DIST_POINT_NAME)
 DECLARE_ASN1_FUNCTIONS(ISSUING_DIST_POINT)
 
-int DIST_POINT_set_dpname(DIST_POINT_NAME *dpn, OPENSSL_X509_NAME *iname);
+int DIST_POINT_set_dpname(DIST_POINT_NAME *dpn, X509_NAME *iname);
 
 int NAME_CONSTRAINTS_check(X509 *x, NAME_CONSTRAINTS *nc);
 
@@ -701,7 +701,7 @@ STACK_OF(OPENSSL_STRING) *X509_get1_ocsp(X509 *x);
 ASN1_OCTET_STRING *a2i_IPADDRESS(const char *ipasc);
 ASN1_OCTET_STRING *a2i_IPADDRESS_NC(const char *ipasc);
 int a2i_ipadd(unsigned char *ipout, const char *ipasc);
-int X509V3_NAME_from_section(OPENSSL_X509_NAME *nm, STACK_OF(CONF_VALUE)*dn_sk,
+int X509V3_NAME_from_section(X509_NAME *nm, STACK_OF(CONF_VALUE)*dn_sk,
 						unsigned long chtype);
 
 void X509_POLICY_NODE_print(BIO *out, X509_POLICY_NODE *node, int indent);

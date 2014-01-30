@@ -208,7 +208,7 @@ STACK_OF(X509_EXTENSION) *X509_REQ_get_extensions(X509_REQ *req)
 	p = ext->value.sequence->data;
 	return (STACK_OF(X509_EXTENSION) *)
 		ASN1_item_d2i(NULL, &p, ext->value.sequence->length,
-				ASN1_ITEM_rptr(OPENSSL_X509_EXTENSIONS));
+				ASN1_ITEM_rptr(X509_EXTENSIONS));
 }
 
 /* Add a STACK_OF extensions to a certificate request: allow alternative OIDs
@@ -228,7 +228,7 @@ int X509_REQ_add_extensions_nid(X509_REQ *req, STACK_OF(X509_EXTENSION) *exts,
 	at->value.sequence->length = 
 			ASN1_item_i2d((ASN1_VALUE *)exts,
 				&at->value.sequence->data,
-				ASN1_ITEM_rptr(OPENSSL_X509_EXTENSIONS));
+				ASN1_ITEM_rptr(X509_EXTENSIONS));
 	if(!(attr = X509_ATTRIBUTE_new())) goto err;
 	if(!(attr->value.set = sk_ASN1_TYPE_new_null())) goto err;
 	if(!sk_ASN1_TYPE_push(attr->value.set, at)) goto err;

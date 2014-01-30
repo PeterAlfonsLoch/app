@@ -56,9 +56,6 @@
  *
  */
 
-#include "base/base/base/base.h"
-
-
 #include <stdio.h>
 #include "cryptlib.h"
 #include <openssl/conf.h>
@@ -139,7 +136,7 @@ STACK_OF(CONF_VALUE) *i2v_GENERAL_NAME(X509V3_EXT_METHOD *method,
 		break;
 
 		case GEN_DIRNAME:
-		OPENSSL_X509_NAME_oneline(gen->d.dirn, oline, 256);
+		X509_NAME_oneline(gen->d.dirn, oline, 256);
 		X509V3_add_value("DirName",oline, &ret);
 		break;
 
@@ -210,7 +207,7 @@ int GENERAL_NAME_print(BIO *out, GENERAL_NAME *gen)
 
 		case GEN_DIRNAME:
 		BIO_printf(out, "DirName: ");
-		OPENSSL_X509_NAME_print_ex(out, gen->d.dirn, 0, XN_FLAG_ONELINE);
+		X509_NAME_print_ex(out, gen->d.dirn, 0, XN_FLAG_ONELINE);
 		break;
 
 		case GEN_IPADD:
@@ -345,9 +342,9 @@ static GENERAL_NAMES *v2i_subject_alt(X509V3_EXT_METHOD *method,
 
 static int copy_email(X509V3_CTX *ctx, GENERAL_NAMES *gens, int move_p)
 {
-	OPENSSL_X509_NAME *nm;
+	X509_NAME *nm;
 	ASN1_IA5STRING *email = NULL;
-	OPENSSL_X509_NAME_ENTRY *ne;
+	X509_NAME_ENTRY *ne;
 	GENERAL_NAME *gen = NULL;
 	int i;
 	if(ctx != NULL && ctx->flags == CTX_TEST)
@@ -362,14 +359,14 @@ static int copy_email(X509V3_CTX *ctx, GENERAL_NAMES *gens, int move_p)
 
 	/* Now add any email address(es) to STACK */
 	i = -1;
-	while((i = OPENSSL_X509_NAME_get_index_by_NID(nm,
+	while((i = X509_NAME_get_index_by_NID(nm,
 					 NID_pkcs9_emailAddress, i)) >= 0) {
-		ne = OPENSSL_X509_NAME_get_entry(nm, i);
-		email = M_ASN1_IA5STRING_dup(OPENSSL_X509_NAME_ENTRY_get_data(ne));
+		ne = X509_NAME_get_entry(nm, i);
+		email = M_ASN1_IA5STRING_dup(X509_NAME_ENTRY_get_data(ne));
                 if (move_p)
                         {
-                        OPENSSL_X509_NAME_delete_entry(nm, i);
-			OPENSSL_X509_NAME_ENTRY_free(ne);
+                        X509_NAME_delete_entry(nm, i);
+			X509_NAME_ENTRY_free(ne);
                         i--;
                         }
 		if(!email || !(gen = GENERAL_NAME_new())) {
@@ -507,7 +504,7 @@ GENERAL_NAME *a2i_GENERAL_NAME(GENERAL_NAME *out,
 		{
 		if(!(gen->d.ia5 = M_ASN1_IA5STRING_new()) ||
 			      !ASN1_STRING_set(gen->d.ia5, (unsigned char*)value,
-					       (int) strlen(value)))
+					       strlen(value)))
 			{
 			X509V3err(X509V3_F_A2I_GENERAL_NAME,ERR_R_MALLOC_FAILURE);
 			goto err;
@@ -580,7 +577,7 @@ static int do_othername(GENERAL_NAME *gen, char *value, X509V3_CTX *ctx)
 	ASN1_TYPE_free(gen->d.otherName->value);
 	if (!(gen->d.otherName->value = ASN1_generate_v3(p + 1, ctx)))
 		return 0;
-	objlen = (int) (p - value);
+	objlen = p - value;
 	objtmp = OPENSSL_malloc(objlen + 1);
 	strncpy(objtmp, value, objlen);
 	objtmp[objlen] = 0;
@@ -595,21 +592,21 @@ static int do_dirname(GENERAL_NAME *gen, char *value, X509V3_CTX *ctx)
 	{
 	int ret;
 	STACK_OF(CONF_VALUE) *sk;
-	OPENSSL_X509_NAME *nm;
-	if (!(nm = OPENSSL_X509_NAME_new()))
+	X509_NAME *nm;
+	if (!(nm = X509_NAME_new()))
 		return 0;
 	sk = X509V3_get_section(ctx, value);
 	if (!sk)
 		{
 		X509V3err(X509V3_F_DO_DIRNAME,X509V3_R_SECTION_NOT_FOUND);
 		ERR_add_error_data(2, "section=", value);
-		OPENSSL_X509_NAME_free(nm);
+		X509_NAME_free(nm);
 		return 0;
 		}
 	/* FIXME: should allow other character types... */
 	ret = X509V3_NAME_from_section(nm, sk, MBSTRING_ASC);
 	if (!ret)
-		OPENSSL_X509_NAME_free(nm);
+		X509_NAME_free(nm);
 	gen->d.dirn = nm;
 	X509V3_section_free(ctx, sk);
 		

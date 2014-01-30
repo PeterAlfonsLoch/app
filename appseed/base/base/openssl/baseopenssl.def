@@ -1112,7 +1112,7 @@ EXPORTS
     ENGINE_load_openssl                     
     ENGINE_load_private_key                 
     ENGINE_load_public_key                  
-    ENGINE_load_rdrand                      
+    ;ENGINE_load_rdrand                      
     ENGINE_load_ssl_client_cert             
     ENGINE_new                              
     ENGINE_pkey_asn1_find_str               

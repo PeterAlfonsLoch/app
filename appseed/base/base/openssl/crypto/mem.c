@@ -56,8 +56,6 @@
  * [including the GNU Public Licence.]
  */
 
-#include "base/base/base/base.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <openssl/crypto.h>
@@ -123,10 +121,10 @@ static void (*set_debug_options_func)(long) = NULL;
 static long (*get_debug_options_func)(void) = NULL;
 #endif
 
-
 int CRYPTO_set_mem_functions(void *(*m)(size_t), void *(*r)(void *, size_t),
 	void (*f)(void *))
 	{
+	/* Dummy call just to ensure OPENSSL_init() gets linked in */
 	OPENSSL_init();
 	if (!allow_customize)
 		return 0;
@@ -328,7 +326,7 @@ void *CRYPTO_malloc(int num, const char *file, int line)
 	}
 char *CRYPTO_strdup(const char *str, const char *file, int line)
 	{
-	char *ret = CRYPTO_malloc((int) (strlen(str)+1), file, line);
+	char *ret = CRYPTO_malloc(strlen(str)+1, file, line);
 
 	strcpy(ret, str);
 	return ret;

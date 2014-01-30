@@ -1,1 +1,1 @@
-dummytest.c
+test.c

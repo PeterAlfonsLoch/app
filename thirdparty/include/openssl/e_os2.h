@@ -260,28 +260,13 @@ extern "C" {
 # define OPENSSL_EXPORT extern __declspec(dllexport)
 # define OPENSSL_IMPORT extern __declspec(dllimport)
 # define OPENSSL_GLOBAL
-#ifdef OPENSSL_OPT_WINDLL
-#define CLASS_DECL_OPENSSL OPENSSL_EXPORT
-#define CLASS_IMPL_OPENSSL OPENSSL_EXPORT
-#else
-#define CLASS_DECL_OPENSSL
-#define CLASS_IMPL_OPENSSL
-#endif
 #else
 # define OPENSSL_EXPORT extern
 # define OPENSSL_IMPORT extern
 # define OPENSSL_GLOBAL
-
-#ifdef OPENSSL_OPT_LIBRARY
-#define CLASS_DECL_OPENSSL extern
-#define CLASS_IMPL_OPENSSL
-#else
-#define CLASS_DECL_OPENSSL extern
-#define CLASS_IMPL_OPENSSL
-#endif
-
 #endif
 #define OPENSSL_EXTERN OPENSSL_IMPORT
+
 /* Macros to allow global variables to be reached through function calls when
    required (if a shared library version requires it, for example.
    The way it's done allows definitions like this:

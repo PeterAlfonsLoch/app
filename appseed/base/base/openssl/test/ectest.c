@@ -1,1 +1,1 @@
-../crypto/ec/ectest.c
+ypto/ec/ectest.c

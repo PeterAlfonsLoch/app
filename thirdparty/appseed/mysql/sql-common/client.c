@@ -1850,7 +1850,7 @@ static int ssl_verify_server_cert(Vio *vio, const char* server_hostname, const c
     are what we expect.
   */
 
-  OPENSSL_X509_NAME_oneline(X509_get_subject_name(server_cert), buf, sizeof(buf));
+  X509_NAME_oneline(X509_get_subject_name(server_cert), buf, sizeof(buf));
   X509_free (server_cert);
 
   DBUG_PRINT("info", ("hostname in cert: %s", buf));

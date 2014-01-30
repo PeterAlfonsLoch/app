@@ -5,21 +5,21 @@
  * This package is an SSL implementation written
  * by Eric Young (eay@cryptsoft.com).
  * The implementation was written so as to conform with Netscapes SSL.
- * 
+ *
  * This library is free for commercial and non-commercial use as long as
  * the following conditions are aheared to.  The following conditions
  * apply to all code found in this distribution, be it the RC4, RSA,
  * lhash, DES, etc., code; not just the SSL code.  The SSL documentation
  * included with this distribution is covered by the same copyright terms
  * except that the holder is Tim Hudson (tjh@cryptsoft.com).
- * 
+ *
  * Copyright remains Eric Young's, and as such any Copyright notices in
  * the code are not to be removed.
  * If this package is used in a product, Eric Young should be given attribution
  * as the author of the parts of the library used.
  * This can be in the form of a textual message at program startup or
  * in documentation (online or textual) provided with the package.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -34,10 +34,10 @@
  *     Eric Young (eay@cryptsoft.com)"
  *    The word 'cryptographic' can be left out if the rouines from the library
  *    being used are not cryptographic related :-).
- * 4. If you include any Windows specific code (or a derivative thereof) from 
+ * 4. If you include any Windows specific code (or a derivative thereof) from
  *    the apps directory (application code) you must include an acknowledgement:
  *    "This product includes software written by Tim Hudson (tjh@cryptsoft.com)"
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY ERIC YOUNG ``AS IS'' AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -49,7 +49,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
- * 
+ *
  * The licence and distribution terms for any publically available version or
  * derivative of this code cannot be changed.  i.e. this code cannot simply be
  * copied and put under another distribution licence
@@ -243,7 +243,7 @@ typedef int evp_verify_method(int type,const unsigned char *m,
 #define EVP_PKEY_ECDSA_method   (evp_sign_method *)ECDSA_sign, \
 				(evp_verify_method *)ECDSA_verify, \
                                  {EVP_PKEY_EC,0,0,0}
-#else   
+#else
 #define EVP_PKEY_ECDSA_method   EVP_PKEY_NULL_method
 #endif
 
@@ -402,7 +402,6 @@ struct evp_cipher_st
 /* Length of tag for TLS */
 #define EVP_GCM_TLS_TAG_LEN				16
 
-
 typedef struct evp_cipher_info_st
 	{
 	const EVP_CIPHER *cipher;
@@ -477,7 +476,7 @@ typedef int (EVP_PBE_KEYGEN)(EVP_CIPHER_CTX *ctx, const char *pass, int passlen,
 int EVP_MD_type(const EVP_MD *md);
 #define EVP_MD_nid(e)			EVP_MD_type(e)
 #define EVP_MD_name(e)			OBJ_nid2sn(EVP_MD_nid(e))
-int EVP_MD_pkey_type(const EVP_MD *md);	
+int EVP_MD_pkey_type(const EVP_MD *md);
 int EVP_MD_size(const EVP_MD *md);
 int EVP_MD_block_size(const EVP_MD *md);
 unsigned long EVP_MD_flags(const EVP_MD *md);
@@ -517,7 +516,7 @@ unsigned long EVP_CIPHER_CTX_flags(const EVP_CIPHER_CTX *ctx);
 #define	EVP_VerifyInit(a,b)		EVP_DigestInit(a,b)
 #define	EVP_VerifyUpdate(a,b,c)		EVP_DigestUpdate(a,b,c)
 #define EVP_OpenUpdate(a,b,c,d,e)	EVP_DecryptUpdate(a,b,c,d,e)
-#define EVP_SealUpdate(a,b,c,d,e)	EVP_EncryptUpdate(a,b,c,d,e)	
+#define EVP_SealUpdate(a,b,c,d,e)	EVP_EncryptUpdate(a,b,c,d,e)
 #define EVP_DigestSignUpdate(a,b,c)	EVP_DigestUpdate(a,b,c)
 #define EVP_DigestVerifyUpdate(a,b,c)	EVP_DigestUpdate(a,b,c)
 
@@ -550,7 +549,7 @@ void	EVP_MD_CTX_init(EVP_MD_CTX *ctx);
 int	EVP_MD_CTX_cleanup(EVP_MD_CTX *ctx);
 EVP_MD_CTX *EVP_MD_CTX_create(void);
 void	EVP_MD_CTX_destroy(EVP_MD_CTX *ctx);
-int     EVP_MD_CTX_copy_ex(EVP_MD_CTX *out,const EVP_MD_CTX *in);  
+int     EVP_MD_CTX_copy_ex(EVP_MD_CTX *out,const EVP_MD_CTX *in);
 void	EVP_MD_CTX_set_flags(EVP_MD_CTX *ctx, int flags);
 void	EVP_MD_CTX_clear_flags(EVP_MD_CTX *ctx, int flags);
 int 	EVP_MD_CTX_test_flags(const EVP_MD_CTX *ctx,int flags);
@@ -561,7 +560,7 @@ int	EVP_DigestFinal_ex(EVP_MD_CTX *ctx,unsigned char *md,unsigned int *s);
 int	EVP_Digest(const void *data, size_t count,
 		unsigned char *md, unsigned int *size, const EVP_MD *type, ENGINE *impl);
 
-int     EVP_MD_CTX_copy(EVP_MD_CTX *out,const EVP_MD_CTX *in);  
+int     EVP_MD_CTX_copy(EVP_MD_CTX *out,const EVP_MD_CTX *in);
 int	EVP_DigestInit(EVP_MD_CTX *ctx, const EVP_MD *type);
 int	EVP_DigestFinal(EVP_MD_CTX *ctx,unsigned char *md,unsigned int *s);
 
@@ -789,8 +788,8 @@ const EVP_CIPHER *EVP_aes_128_cfb128(void);
 # define EVP_aes_128_cfb EVP_aes_128_cfb128
 const EVP_CIPHER *EVP_aes_128_ofb(void);
 const EVP_CIPHER *EVP_aes_128_ctr(void);
-const EVP_CIPHER *EVP_aes_128_gcm(void);
 const EVP_CIPHER *EVP_aes_128_ccm(void);
+const EVP_CIPHER *EVP_aes_128_gcm(void);
 const EVP_CIPHER *EVP_aes_128_xts(void);
 const EVP_CIPHER *EVP_aes_192_ecb(void);
 const EVP_CIPHER *EVP_aes_192_cbc(void);
@@ -800,8 +799,8 @@ const EVP_CIPHER *EVP_aes_192_cfb128(void);
 # define EVP_aes_192_cfb EVP_aes_192_cfb128
 const EVP_CIPHER *EVP_aes_192_ofb(void);
 const EVP_CIPHER *EVP_aes_192_ctr(void);
-const EVP_CIPHER *EVP_aes_192_gcm(void);
 const EVP_CIPHER *EVP_aes_192_ccm(void);
+const EVP_CIPHER *EVP_aes_192_gcm(void);
 const EVP_CIPHER *EVP_aes_256_ecb(void);
 const EVP_CIPHER *EVP_aes_256_cbc(void);
 const EVP_CIPHER *EVP_aes_256_cfb1(void);
@@ -810,8 +809,8 @@ const EVP_CIPHER *EVP_aes_256_cfb128(void);
 # define EVP_aes_256_cfb EVP_aes_256_cfb128
 const EVP_CIPHER *EVP_aes_256_ofb(void);
 const EVP_CIPHER *EVP_aes_256_ctr(void);
-const EVP_CIPHER *EVP_aes_256_gcm(void);
 const EVP_CIPHER *EVP_aes_256_ccm(void);
+const EVP_CIPHER *EVP_aes_256_gcm(void);
 const EVP_CIPHER *EVP_aes_256_xts(void);
 #if !defined(OPENSSL_NO_SHA) && !defined(OPENSSL_NO_SHA1)
 const EVP_CIPHER *EVP_aes_128_cbc_hmac_sha1(void);
@@ -1019,7 +1018,7 @@ int EVP_PKEY_asn1_get0_info(int *ppkey_id, int *pkey_base_id, int *ppkey_flags,
 const EVP_PKEY_ASN1_METHOD* EVP_PKEY_get0_asn1(EVP_PKEY *pkey);
 EVP_PKEY_ASN1_METHOD* EVP_PKEY_asn1_new(int id, int flags,
 					const char *pem_str, const char *info);
-void EVP_PKEY_asn1_copy(EVP_PKEY_ASN1_METHOD *dst, 
+void EVP_PKEY_asn1_copy(EVP_PKEY_ASN1_METHOD *dst,
 			const EVP_PKEY_ASN1_METHOD *src);
 void EVP_PKEY_asn1_free(EVP_PKEY_ASN1_METHOD *ameth);
 void EVP_PKEY_asn1_set_public(EVP_PKEY_ASN1_METHOD *ameth,
@@ -1243,6 +1242,8 @@ void EVP_PKEY_meth_set_ctrl(EVP_PKEY_METHOD *pmeth,
 	int (*ctrl_str)(EVP_PKEY_CTX *ctx,
 					const char *type, const char *value));
 
+void EVP_add_alg_module(void);
+
 /* BEGIN ERROR CODES */
 /* The following lines are auto generated by the script mkerr.pl. Any changes
  * made after this point may be overwritten when the script is next run.
@@ -1257,6 +1258,7 @@ void ERR_load_EVP_strings(void);
 #define EVP_F_AES_INIT_KEY				 133
 #define EVP_F_AES_XTS					 172
 #define EVP_F_AES_XTS_CIPHER				 175
+#define EVP_F_ALG_MODULE_INIT				 177
 #define EVP_F_CAMELLIA_INIT_KEY				 159
 #define EVP_F_CMAC_INIT					 173
 #define EVP_F_D2I_PKEY					 100
@@ -1350,15 +1352,19 @@ void ERR_load_EVP_strings(void);
 #define EVP_R_DIFFERENT_PARAMETERS			 153
 #define EVP_R_DISABLED_FOR_FIPS				 163
 #define EVP_R_ENCODE_ERROR				 115
+#define EVP_R_ERROR_LOADING_SECTION			 165
+#define EVP_R_ERROR_SETTING_FIPS_MODE			 166
 #define EVP_R_EVP_PBE_CIPHERINIT_ERROR			 119
 #define EVP_R_EXPECTING_AN_RSA_KEY			 127
 #define EVP_R_EXPECTING_A_DH_KEY			 128
 #define EVP_R_EXPECTING_A_DSA_KEY			 129
 #define EVP_R_EXPECTING_A_ECDSA_KEY			 141
 #define EVP_R_EXPECTING_A_EC_KEY			 142
+#define EVP_R_FIPS_MODE_NOT_SUPPORTED			 167
 #define EVP_R_INITIALIZATION_ERROR			 134
 #define EVP_R_INPUT_NOT_INITIALIZED			 111
 #define EVP_R_INVALID_DIGEST				 152
+#define EVP_R_INVALID_FIPS_MODE				 168
 #define EVP_R_INVALID_KEY_LENGTH			 130
 #define EVP_R_INVALID_OPERATION				 148
 #define EVP_R_IV_TOO_LARGE				 102
@@ -1383,6 +1389,7 @@ void ERR_load_EVP_strings(void);
 #define EVP_R_TOO_LARGE					 164
 #define EVP_R_UNKNOWN_CIPHER				 160
 #define EVP_R_UNKNOWN_DIGEST				 161
+#define EVP_R_UNKNOWN_OPTION				 169
 #define EVP_R_UNKNOWN_PBE_ALGORITHM			 121
 #define EVP_R_UNSUPORTED_NUMBER_OF_ROUNDS		 135
 #define EVP_R_UNSUPPORTED_ALGORITHM			 156

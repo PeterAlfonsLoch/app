@@ -246,7 +246,7 @@ static ERR_STRING_DATA EC_str_reasons[]=
 {ERR_REASON(EC_R_NOT_INITIALIZED)        ,"not initialized"},
 {ERR_REASON(EC_R_NO_FIELD_MOD)           ,"no field mod"},
 {ERR_REASON(EC_R_NO_PARAMETERS_SET)      ,"no parameters set"},
-{ERR_REASON(EC_R_PASSED_NULL_PARAMETER)  ,"passed NULL parameter"},
+{ERR_REASON(EC_R_PASSED_NULL_PARAMETER)  ,"passed null parameter"},
 {ERR_REASON(EC_R_PKPARAMETERS2GROUP_FAILURE),"pkparameters2group failure"},
 {ERR_REASON(EC_R_POINT_AT_INFINITY)      ,"point at infinity"},
 {ERR_REASON(EC_R_POINT_IS_NOT_ON_CURVE)  ,"point is not on curve"},

@@ -1,1 +1,1 @@
-../crypto/rand/randtest.c
+ypto/rand/randtest.c

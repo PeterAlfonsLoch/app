@@ -292,7 +292,7 @@ void sspi_SecureHandleFree(SecHandle* handle)
 	free(handle);
 }
 
-void sspi_SetAuthIdentity(SEC_WINNT_AUTH_IDENTITY* identity, char* user, char* domain, char* password)
+void sspi_SetAuthIdentity(SEC_WINNT_AUTH_IDENTITY_W* identity, char* user, char* domain, char* password)
 {
 	identity->Flags = SEC_WINNT_AUTH_IDENTITY_UNICODE;
 
@@ -327,7 +327,7 @@ void sspi_SetAuthIdentity(SEC_WINNT_AUTH_IDENTITY* identity, char* user, char* d
 	}
 }
 
-void sspi_CopyAuthIdentity(SEC_WINNT_AUTH_IDENTITY* identity, SEC_WINNT_AUTH_IDENTITY* srcIdentity)
+void sspi_CopyAuthIdentity(SEC_WINNT_AUTH_IDENTITY_W* identity, SEC_WINNT_AUTH_IDENTITY* srcIdentity)
 {
 	if (identity->Flags == SEC_WINNT_AUTH_IDENTITY_ANSI)
 	{

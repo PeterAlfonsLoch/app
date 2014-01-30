@@ -10,7 +10,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -180,12 +180,12 @@ CMS_ContentInfo *CMS_encrypt(STACK_OF(X509) *certs, BIO *in,
 int CMS_decrypt(CMS_ContentInfo *cms, EVP_PKEY *pkey, X509 *cert,
 				BIO *dcont, BIO *out,
 				unsigned int flags);
-	
+
 int CMS_decrypt_set1_pkey(CMS_ContentInfo *cms, EVP_PKEY *pk, X509 *cert);
-int CMS_decrypt_set1_key(CMS_ContentInfo *cms, 
+int CMS_decrypt_set1_key(CMS_ContentInfo *cms,
 				unsigned char *key, size_t keylen,
 				unsigned char *id, size_t idlen);
-int CMS_decrypt_set1_password(CMS_ContentInfo *cms, 
+int CMS_decrypt_set1_password(CMS_ContentInfo *cms,
 				unsigned char *pass, ossl_ssize_t passlen);
 
 STACK_OF(CMS_RecipientInfo) *CMS_get0_RecipientInfos(CMS_ContentInfo *cms);
@@ -200,7 +200,7 @@ int CMS_RecipientInfo_ktri_get0_algs(CMS_RecipientInfo *ri,
 					X509_ALGOR **palg);
 int CMS_RecipientInfo_ktri_get0_signer_id(CMS_RecipientInfo *ri,
 					ASN1_OCTET_STRING **keyid,
-					OPENSSL_X509_NAME **issuer, ASN1_INTEGER **sno);
+					X509_NAME **issuer, ASN1_INTEGER **sno);
 
 CMS_RecipientInfo *CMS_add0_recipient_key(CMS_ContentInfo *cms, int nid,
 					unsigned char *key, size_t keylen,
@@ -216,13 +216,13 @@ int CMS_RecipientInfo_kekri_get0_id(CMS_RecipientInfo *ri,
 					ASN1_OBJECT **potherid,
 					ASN1_TYPE **pothertype);
 
-int CMS_RecipientInfo_set0_key(CMS_RecipientInfo *ri, 
+int CMS_RecipientInfo_set0_key(CMS_RecipientInfo *ri,
 				unsigned char *key, size_t keylen);
 
-int CMS_RecipientInfo_kekri_id_cmp(CMS_RecipientInfo *ri, 
+int CMS_RecipientInfo_kekri_id_cmp(CMS_RecipientInfo *ri,
 					const unsigned char *id, size_t idlen);
 
-int CMS_RecipientInfo_set0_password(CMS_RecipientInfo *ri, 
+int CMS_RecipientInfo_set0_password(CMS_RecipientInfo *ri,
 					unsigned char *pass,
 					ossl_ssize_t passlen);
 
@@ -233,7 +233,7 @@ CMS_RecipientInfo *CMS_add0_recipient_password(CMS_ContentInfo *cms,
 					const EVP_CIPHER *kekciph);
 
 int CMS_RecipientInfo_decrypt(CMS_ContentInfo *cms, CMS_RecipientInfo *ri);
-	
+
 int CMS_uncompress(CMS_ContentInfo *cms, BIO *dcont, BIO *out,
 							unsigned int flags);
 CMS_ContentInfo *CMS_compress(BIO *in, int comp_nid, unsigned int flags);
@@ -260,7 +260,7 @@ STACK_OF(CMS_SignerInfo) *CMS_get0_SignerInfos(CMS_ContentInfo *cms);
 void CMS_SignerInfo_set1_signer_cert(CMS_SignerInfo *si, X509 *signer);
 int CMS_SignerInfo_get0_signer_id(CMS_SignerInfo *si,
 					ASN1_OCTET_STRING **keyid,
-					OPENSSL_X509_NAME **issuer, ASN1_INTEGER **sno);
+					X509_NAME **issuer, ASN1_INTEGER **sno);
 int CMS_SignerInfo_cert_cmp(CMS_SignerInfo *si, X509 *cert);
 int CMS_set1_signers_certs(CMS_ContentInfo *cms, STACK_OF(X509) *certs,
 					unsigned int flags);

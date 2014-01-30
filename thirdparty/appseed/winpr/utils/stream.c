@@ -67,10 +67,17 @@ wStream* Stream_New(BYTE* buffer, size_t size)
 
 	if (s != NULL)
 	{
+      memset(s, 0, sizeof(wStream));
 		if (buffer)
 			s->buffer = buffer;
-		else
-			s->buffer = (BYTE*) malloc(size);
+      else
+      {
+         s->buffer = (BYTE*)malloc(size);
+         memset(s->buffer, 0, size);
+      }
+		
+
+      
 
 		s->pointer = s->buffer;
 		s->capacity = size;

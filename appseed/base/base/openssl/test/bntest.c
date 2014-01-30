@@ -1,1 +1,1 @@
-../crypto/bn/bntest.c
+ypto/bn/bntest.c

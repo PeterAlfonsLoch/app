@@ -418,8 +418,8 @@ struct _RDPDR_PRINTER
 {
 	UINT32 Id;
 	UINT32 Type;
-	char* Name;
-	char* DriverName;
+	wchar_t* Name;
+	wchar_t* DriverName;
 };
 typedef struct _RDPDR_PRINTER RDPDR_PRINTER;
 

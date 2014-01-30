@@ -59,7 +59,7 @@
 
 
 ASN1_SEQUENCE(CMS_IssuerAndSerialNumber) = {
-	ASN1_SIMPLE(CMS_IssuerAndSerialNumber, issuer, OPENSSL_X509_NAME),
+	ASN1_SIMPLE(CMS_IssuerAndSerialNumber, issuer, X509_NAME),
 	ASN1_SIMPLE(CMS_IssuerAndSerialNumber, serialNumber, ASN1_INTEGER)
 } ASN1_SEQUENCE_END(CMS_IssuerAndSerialNumber)
 

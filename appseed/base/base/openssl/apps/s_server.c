@@ -556,7 +556,9 @@ static void sv_usage(void)
 # ifndef OPENSSL_NO_NEXTPROTONEG
 	BIO_printf(bio_err," -nextprotoneg arg - set the advertised protocols for the NPN extension (comma-separated list)\n");
 # endif
+# ifndef OPENSSL_NO_SRTP
         BIO_printf(bio_err," -use_srtp profiles - Offer SRTP key management with a colon-separated profile list\n");
+# endif
 #endif
 	BIO_printf(bio_err," -keymatexport label   - Export keying material using label\n");
 	BIO_printf(bio_err," -keymatexportlen len  - Export len bytes of keying material (default 20)\n");
@@ -784,8 +786,8 @@ static int cert_status_cb(SSL *s, void *arg)
 	X509 *x = NULL;
 	X509_STORE_CTX inctx;
 	X509_OBJECT obj;
-	OPENSSL_OCSP_REQUEST *req = NULL;
-	OPENSSL_OCSP_RESPONSE *resp = NULL;
+	OCSP_REQUEST *req = NULL;
+	OCSP_RESPONSE *resp = NULL;
 	OCSP_CERTID *id = NULL;
 	STACK_OF(X509_EXTENSION) *exts;
 	int ret = SSL_TLSEXT_ERR_NOACK;
@@ -836,7 +838,7 @@ BIO_printf(err, "cert_status: received %d ids\n", sk_OCSP_RESPID_num(ids));
 		X509_STORE_CTX_cleanup(&inctx);
 		goto done;
 		}
-	req = OPENSSL_OCSP_REQUEST_new();
+	req = OCSP_REQUEST_new();
 	if (!req)
 		goto err;
 	id = OCSP_cert_to_id(NULL, x, obj.data.x509);
@@ -852,7 +854,7 @@ BIO_printf(err, "cert_status: received %d ids\n", sk_OCSP_RESPID_num(ids));
 	for (i = 0; i < sk_X509_EXTENSION_num(exts); i++)
 		{
 		X509_EXTENSION *ext = sk_X509_EXTENSION_value(exts, i);
-		if (!OPENSSL_OCSP_REQUEST_add_ext(req, ext, -1))
+		if (!OCSP_REQUEST_add_ext(req, ext, -1))
 			goto err;
 		}
 	resp = process_responder(err, req, host, path, port, use_ssl, NULL,
@@ -862,14 +864,14 @@ BIO_printf(err, "cert_status: received %d ids\n", sk_OCSP_RESPID_num(ids));
 		BIO_puts(err, "cert_status: error querying responder\n");
 		goto done;
 		}
-	rspderlen = i2d_OPENSSL_OCSP_RESPONSE(resp, &rspder);
+	rspderlen = i2d_OCSP_RESPONSE(resp, &rspder);
 	if (rspderlen <= 0)
 		goto err;
 	SSL_set_tlsext_status_ocsp_resp(s, rspder, rspderlen);
 	if (srctx->verbose)
 		{
 		BIO_puts(err, "cert_status: ocsp response sent:\n");
-		OPENSSL_OCSP_RESPONSE_print(err, resp, 2);
+		OCSP_RESPONSE_print(err, resp, 2);
 		}
 	ret = SSL_TLSEXT_ERR_OK;
 	done:
@@ -885,9 +887,9 @@ BIO_printf(err, "cert_status: received %d ids\n", sk_OCSP_RESPID_num(ids));
 	if (id)
 		OCSP_CERTID_free(id);
 	if (req)
-		OPENSSL_OCSP_REQUEST_free(req);
+		OCSP_REQUEST_free(req);
 	if (resp)
-		OPENSSL_OCSP_RESPONSE_free(resp);
+		OCSP_RESPONSE_free(resp);
 	return ret;
 	err:
 	ret = SSL_TLSEXT_ERR_ALERT_FATAL;
@@ -923,7 +925,9 @@ static char *jpake_secret = NULL;
 #ifndef OPENSSL_NO_SRP
 	static srpsrvparm srp_callback_parm;
 #endif
+#ifndef OPENSSL_NO_SRTP
 static char *srtp_profiles = NULL;
+#endif
 
 int MAIN(int argc, char *argv[])
 	{
@@ -1206,13 +1210,13 @@ int MAIN(int argc, char *argv[])
 			{
 			if (--argc < 1) goto bad;
 			srp_verifier_file = *(++argv);
-			meth=TLSv1_server_method();
+			meth = TLSv1_server_method();
 			}
 		else if (strcmp(*argv, "-srpuserseed") == 0)
 			{
 			if (--argc < 1) goto bad;
 			srpuserseed = *(++argv);
-			meth=TLSv1_server_method();
+			meth = TLSv1_server_method();
 			}
 #endif
 		else if	(strcmp(*argv,"-www") == 0)
@@ -1319,11 +1323,13 @@ int MAIN(int argc, char *argv[])
 			jpake_secret = *(++argv);
 			}
 #endif
+#ifndef OPENSSL_NO_SRTP
 		else if (strcmp(*argv,"-use_srtp") == 0)
 			{
 			if (--argc < 1) goto bad;
 			srtp_profiles = *(++argv);
 			}
+#endif
 		else if (strcmp(*argv,"-keymatexport") == 0)
 			{
 			if (--argc < 1) goto bad;
@@ -1431,24 +1437,23 @@ bad:
 				goto end;
 				}
 			}
-
-# ifndef OPENSSL_NO_NEXTPROTONEG
-		if (next_proto_neg_in)
-			{
-			unsigned short len;
-			next_proto.data = next_protos_parse(&len,
-				next_proto_neg_in);
-			if (next_proto.data == NULL)
-				goto end;
-			next_proto.len = len;
-			}
-		else
-			{
-			next_proto.data = NULL;
-			}
-# endif
 #endif
 		}
+
+#if !defined(OPENSSL_NO_TLSEXT) && !defined(OPENSSL_NO_NEXTPROTONEG) 
+	if (next_proto_neg_in)
+		{
+		unsigned short len;
+		next_proto.data = next_protos_parse(&len, next_proto_neg_in);
+		if (next_proto.data == NULL)
+			goto end;
+		next_proto.len = len;
+		}
+	else
+		{
+		next_proto.data = NULL;
+		}
+#endif
 
 
 	if (s_dcert_file)
@@ -1550,8 +1555,10 @@ bad:
 	else
 		SSL_CTX_sess_set_cache_size(ctx,128);
 
+#ifndef OPENSSL_NO_SRTP
 	if (srtp_profiles != NULL)
 		SSL_CTX_set_tlsext_use_srtp(ctx, srtp_profiles);
+#endif
 
 #if 0
 	if (cipher == NULL) cipher=getenv("SSL_CIPHER");
@@ -1730,7 +1737,7 @@ bad:
 		}
 #endif
 	
-	if (!set_cert_key_stuff(ctx,s_cert,s_key))
+	if (!set_cert_key_stuff(ctx, s_cert, s_key))
 		goto end;
 #ifndef OPENSSL_NO_TLSEXT
 	if (ctx2 && !set_cert_key_stuff(ctx2,s_cert2,s_key2))
@@ -1738,7 +1745,7 @@ bad:
 #endif
 	if (s_dcert != NULL)
 		{
-		if (!set_cert_key_stuff(ctx,s_dcert,s_dkey))
+		if (!set_cert_key_stuff(ctx, s_dcert, s_dkey))
 			goto end;
 		}
 
@@ -1893,7 +1900,15 @@ end:
 		OPENSSL_free(pass);
 	if (dpass)
 		OPENSSL_free(dpass);
+	if (vpm)
+		X509_VERIFY_PARAM_free(vpm);
 #ifndef OPENSSL_NO_TLSEXT
+	if (tlscstatp.host)
+		OPENSSL_free(tlscstatp.host);
+	if (tlscstatp.port)
+		OPENSSL_free(tlscstatp.port);
+	if (tlscstatp.path)
+		OPENSSL_free(tlscstatp.path);
 	if (ctx2 != NULL) SSL_CTX_free(ctx2);
 	if (s_cert2)
 		X509_free(s_cert2);
@@ -2422,9 +2437,9 @@ static int init_ssl_connection(SSL *con)
 		{
 		BIO_printf(bio_s_out,"Client certificate\n");
 		PEM_write_bio_X509(bio_s_out,peer);
-		OPENSSL_X509_NAME_oneline(X509_get_subject_name(peer),buf,sizeof buf);
+		X509_NAME_oneline(X509_get_subject_name(peer),buf,sizeof buf);
 		BIO_printf(bio_s_out,"subject=%s\n",buf);
-		OPENSSL_X509_NAME_oneline(X509_get_issuer_name(peer),buf,sizeof buf);
+		X509_NAME_oneline(X509_get_issuer_name(peer),buf,sizeof buf);
 		BIO_printf(bio_s_out,"issuer=%s\n",buf);
 		X509_free(peer);
 		}
@@ -2433,6 +2448,7 @@ static int init_ssl_connection(SSL *con)
 		BIO_printf(bio_s_out,"Shared ciphers:%s\n",buf);
 	str=SSL_CIPHER_get_name(SSL_get_current_cipher(con));
 	BIO_printf(bio_s_out,"CIPHER is %s\n",(str != NULL)?str:"(NONE)");
+
 #if !defined(OPENSSL_NO_TLSEXT) && !defined(OPENSSL_NO_NEXTPROTONEG)
 	SSL_get0_next_proto_negotiated(con, &next_proto_neg, &next_proto_neg_len);
 	if (next_proto_neg)
@@ -2442,6 +2458,7 @@ static int init_ssl_connection(SSL *con)
 		BIO_printf(bio_s_out, "\n");
 		}
 #endif
+#ifndef OPENSSL_NO_SRTP
 	{
 	SRTP_PROTECTION_PROFILE *srtp_profile
 	  = SSL_get_selected_srtp_profile(con);
@@ -2450,6 +2467,7 @@ static int init_ssl_connection(SSL *con)
 		BIO_printf(bio_s_out,"SRTP Extension negotiated, profile=%s\n",
 			   srtp_profile->name);
 	}
+#endif
 	if (SSL_cache_hit(con)) BIO_printf(bio_s_out,"Reused session-id\n");
 	if (SSL_ctrl(con,SSL_CTRL_GET_FLAGS,0,NULL) &
 		TLS1_FLAGS_TLS_PADDING_BUG)
@@ -2700,6 +2718,11 @@ static int www_body(char *hostname, int s, unsigned char *context)
 				BIO_write(io," ",1);
 				}
 			BIO_puts(io,"\n");
+
+			BIO_printf(io,
+				"Secure Renegotiation IS%s supported\n",
+		      		SSL_get_secure_renegotiation_support(con) ?
+							"" : " NOT");
 
 			/* The following is evil and should not really
 			 * be done */

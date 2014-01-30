@@ -1,1 +1,1 @@
-../crypto/idea/ideatest.c
+ypto/idea/ideatest.c

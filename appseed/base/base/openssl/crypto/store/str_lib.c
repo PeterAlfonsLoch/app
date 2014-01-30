@@ -94,9 +94,9 @@ const int STORE_attr_sizes[STORE_ATTR_TYPE_NUM+1] =
 	SHA_DIGEST_LENGTH,	/* ISSUERKEYID:		SHA1 digest, 160 bits */
 	SHA_DIGEST_LENGTH,	/* SUBJECTKEYID:	SHA1 digest, 160 bits */
 	SHA_DIGEST_LENGTH,	/* ISSUERSERIALHASH:	SHA1 digest, 160 bits */
-	sizeof(OPENSSL_X509_NAME *),	/* ISSUER:		OPENSSL_X509_NAME * */
+	sizeof(X509_NAME *),	/* ISSUER:		X509_NAME * */
 	sizeof(BIGNUM *),	/* SERIAL:		BIGNUM * */
-	sizeof(OPENSSL_X509_NAME *),	/* SUBJECT:		OPENSSL_X509_NAME * */
+	sizeof(X509_NAME *),	/* SUBJECT:		X509_NAME * */
 	SHA_DIGEST_LENGTH,	/* CERTHASH:		SHA1 digest, 160 bits */
 	-1,			/* EMAIL:		C string */
 	-1,			/* FILENAME:		C string */
@@ -1266,7 +1266,7 @@ struct STORE_attr_info_st
 		{
 		char *cstring;
 		unsigned char *sha1string;
-		OPENSSL_X509_NAME *dn;
+		X509_NAME *dn;
 		BIGNUM *number;
 		void *any;
 		} values[STORE_ATTR_TYPE_NUM+1];
@@ -1353,7 +1353,7 @@ unsigned char *STORE_ATTR_INFO_get0_sha1str(STORE_ATTR_INFO *attrs,
 		STORE_R_NO_VALUE);
 	return NULL;
 	}
-OPENSSL_X509_NAME *STORE_ATTR_INFO_get0_dn(STORE_ATTR_INFO *attrs, STORE_ATTR_TYPES code)
+X509_NAME *STORE_ATTR_INFO_get0_dn(STORE_ATTR_INFO *attrs, STORE_ATTR_TYPES code)
 	{
 	if (!attrs)
 		{
@@ -1424,7 +1424,7 @@ int STORE_ATTR_INFO_set_sha1str(STORE_ATTR_INFO *attrs, STORE_ATTR_TYPES code,
 	return 0;
 	}
 int STORE_ATTR_INFO_set_dn(STORE_ATTR_INFO *attrs, STORE_ATTR_TYPES code,
-	OPENSSL_X509_NAME *dn)
+	X509_NAME *dn)
 	{
 	if (!attrs)
 		{
@@ -1434,7 +1434,7 @@ int STORE_ATTR_INFO_set_dn(STORE_ATTR_INFO *attrs, STORE_ATTR_TYPES code,
 		}
 	if (!ATTR_IS_SET(attrs,code))
 		{
-		if ((attrs->values[code].dn = OPENSSL_X509_NAME_dup(dn)))
+		if ((attrs->values[code].dn = X509_NAME_dup(dn)))
 			return 1;
 		STOREerr(STORE_F_STORE_ATTR_INFO_SET_DN,
 			ERR_R_MALLOC_FAILURE);
@@ -1498,7 +1498,7 @@ int STORE_ATTR_INFO_modify_sha1str(STORE_ATTR_INFO *attrs, STORE_ATTR_TYPES code
 	return STORE_ATTR_INFO_set_sha1str(attrs, code, sha1str, sha1str_size);
 	}
 int STORE_ATTR_INFO_modify_dn(STORE_ATTR_INFO *attrs, STORE_ATTR_TYPES code,
-	OPENSSL_X509_NAME *dn)
+	X509_NAME *dn)
 	{
 	if (!attrs)
 		{
@@ -1810,7 +1810,7 @@ int STORE_ATTR_INFO_in_ex(STORE_ATTR_INFO *a, STORE_ATTR_INFO *b)
 				break;
 			case STORE_ATTR_ISSUER:
 			case STORE_ATTR_SUBJECT:
-				if (OPENSSL_X509_NAME_cmp(a->values[i].dn,
+				if (X509_NAME_cmp(a->values[i].dn,
 					    b->values[i].dn))
 					return 0;
 				break;

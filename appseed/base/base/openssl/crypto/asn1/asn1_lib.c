@@ -328,14 +328,14 @@ int asn1_GetSequence(ASN1_const_CTX *c, long *length)
 		c->error=ERR_R_EXPECTING_AN_ASN1_SEQUENCE;
 		return(0);
 		}
-	(*length)-= (long) (c->p-q);
+	(*length)-=(c->p-q);
 	if (c->max && (*length < 0))
 		{
 		c->error=ERR_R_ASN1_LENGTH_MISMATCH;
 		return(0);
 		}
 	if (c->inf == (1|V_ASN1_CONSTRUCTED))
-		c->slen= (long) (*length+ *(c->pp)-c->p);
+		c->slen= *length+ *(c->pp)-c->p;
 	c->eos=0;
 	return(1);
 	}
@@ -377,7 +377,7 @@ int ASN1_STRING_set(ASN1_STRING *str, const void *_data, int len)
 		if (data == NULL)
 			return(0);
 		else
-			len=(int) strlen(data);
+			len=strlen(data);
 		}
 	if ((str->length < len) || (str->data == NULL))
 		{

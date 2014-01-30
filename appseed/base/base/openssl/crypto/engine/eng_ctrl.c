@@ -156,14 +156,14 @@ static int int_ctrl_helper(ENGINE *e, int cmd, long i, void *p,
 		else
 			return e->cmd_defns[idx].cmd_num;
 	case ENGINE_CTRL_GET_NAME_LEN_FROM_CMD:
-		return (int) strlen(e->cmd_defns[idx].cmd_name);
+		return strlen(e->cmd_defns[idx].cmd_name);
 	case ENGINE_CTRL_GET_NAME_FROM_CMD:
 		return BIO_snprintf(s,strlen(e->cmd_defns[idx].cmd_name) + 1,
 				    "%s", e->cmd_defns[idx].cmd_name);
 	case ENGINE_CTRL_GET_DESC_LEN_FROM_CMD:
 		if(e->cmd_defns[idx].cmd_desc)
-			return (int) strlen(e->cmd_defns[idx].cmd_desc);
-		return (int) strlen(int_no_description);
+			return strlen(e->cmd_defns[idx].cmd_desc);
+		return strlen(int_no_description);
 	case ENGINE_CTRL_GET_DESC_FROM_CMD:
 		if(e->cmd_defns[idx].cmd_desc)
 			return BIO_snprintf(s,

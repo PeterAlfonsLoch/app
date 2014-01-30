@@ -110,7 +110,7 @@ static ERR_STRING_DATA CSWIFT_lib_name[]=
 static int CSWIFT_lib_error_code=0;
 static int CSWIFT_error_init=1;
 
-void ERR_load_CSWIFT_strings(void)
+static void ERR_load_CSWIFT_strings(void)
 	{
 	if (CSWIFT_lib_error_code == 0)
 		CSWIFT_lib_error_code=ERR_get_next_error_library();
@@ -130,7 +130,7 @@ void ERR_load_CSWIFT_strings(void)
 		}
 	}
 
-void ERR_unload_CSWIFT_strings(void)
+static void ERR_unload_CSWIFT_strings(void)
 	{
 	if (CSWIFT_error_init == 0)
 		{
@@ -146,7 +146,7 @@ void ERR_unload_CSWIFT_strings(void)
 		}
 	}
 
-void ERR_CSWIFT_error(int function, int reason, char *file, int line)
+static void ERR_CSWIFT_error(int function, int reason, char *file, int line)
 	{
 	if (CSWIFT_lib_error_code == 0)
 		CSWIFT_lib_error_code=ERR_get_next_error_library();

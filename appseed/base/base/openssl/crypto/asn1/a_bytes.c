@@ -280,7 +280,7 @@ static int asn1_collate_primitive(ASN1_STRING *a, ASN1_const_CTX *c)
 			}
 
 		c->q=c->p;
-		if (d2i_ASN1_bytes(&os,&c->p,  (long) (c->max - c->p),c->tag,c->xclass)
+		if (d2i_ASN1_bytes(&os,&c->p,c->max-c->p,c->tag,c->xclass)
 			== NULL)
 			{
 			c->error=ERR_R_ASN1_LIB;
@@ -294,7 +294,7 @@ static int asn1_collate_primitive(ASN1_STRING *a, ASN1_const_CTX *c)
 			}
 		memcpy(&(b.data[num]),os->data,os->length);
 		if (!(c->inf & 1))
-			c->slen-= (long) (c->p - c->q);
+			c->slen-=(c->p-c->q);
 		num+=os->length;
 		}
 

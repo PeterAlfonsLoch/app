@@ -140,9 +140,6 @@
  * OTHERWISE.
  */
 
-#include "base/base/base/base.h"
-
-
 #define _BSD_SOURCE 1		/* Or gethostname won't be declared properly
 				   on Linux and GNU platforms. */
 
@@ -196,7 +193,7 @@
 				  */
 
 #ifdef OPENSSL_SYS_WINDOWS
-#include <winsock2.h>
+//#include <winsock.h>
 #else
 #include OPENSSL_UNISTD
 #endif
@@ -546,8 +543,8 @@ int main(int argc, char *argv[])
 	int comp = 0;
 #ifndef OPENSSL_NO_COMP
 	COMP_METHOD *cm = NULL;
-#endif
 	STACK_OF(SSL_COMP) *ssl_comp_methods = NULL;
+#endif
 	int test_cipherlist = 0;
 #ifdef OPENSSL_FIPS
 	int fips_mode=0;
@@ -884,7 +881,13 @@ bad:
 		meth=SSLv23_method();
 #else
 #ifdef OPENSSL_NO_SSL2
-	meth=SSLv3_method();
+	if (tls1)
+		meth=TLSv1_method();
+	else
+	if (ssl3)
+		meth=SSLv3_method();
+	else
+		meth=SSLv23_method();
 #else
 	meth=SSLv2_method();
 #endif
@@ -1859,7 +1862,7 @@ static int MS_CALLBACK verify_callback(int ok, X509_STORE_CTX *ctx)
 	{
 	char *s,buf[256];
 
-	s=OPENSSL_X509_NAME_oneline(X509_get_subject_name(ctx->current_cert),buf,
+	s=X509_NAME_oneline(X509_get_subject_name(ctx->current_cert),buf,
 			    sizeof buf);
 	if (s != NULL)
 		{
@@ -2244,7 +2247,7 @@ static int MS_CALLBACK app_verify_callback(X509_STORE_CTX *ctx, void *arg)
 		fprintf(stderr, "Finished printing do we have a context? 0x%p a cert? 0x%p\n",
 			(void *)ctx, (void *)ctx->cert);
 		if (ctx->cert)
-			s=OPENSSL_X509_NAME_oneline(X509_get_subject_name(ctx->cert),buf,256);
+			s=X509_NAME_oneline(X509_get_subject_name(ctx->cert),buf,256);
 		if (s != NULL)
 			{
 			fprintf(stderr,"cert depth=%d %s\n",ctx->error_depth,buf);

@@ -98,7 +98,7 @@ static ERR_STRING_DATA CONF_str_functs[]=
 static ERR_STRING_DATA CONF_str_reasons[]=
 	{
 {ERR_REASON(CONF_R_ERROR_LOADING_DSO)    ,"error loading dso"},
-{ERR_REASON(CONF_R_LIST_CANNOT_BE_NULL)  ,"list cannot be NULL"},
+{ERR_REASON(CONF_R_LIST_CANNOT_BE_NULL)  ,"list cannot be null"},
 {ERR_REASON(CONF_R_MISSING_CLOSE_SQUARE_BRACKET),"missing close square bracket"},
 {ERR_REASON(CONF_R_MISSING_EQUAL_SIGN)   ,"missing equal sign"},
 {ERR_REASON(CONF_R_MISSING_FINISH_FUNCTION),"missing finish function"},

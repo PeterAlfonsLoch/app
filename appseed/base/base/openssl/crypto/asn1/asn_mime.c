@@ -614,7 +614,7 @@ static int multi_split(BIO *bio, char *bound, STACK_OF(BIO) **ret)
 	STACK_OF(BIO) *parts;
 	char state, part, first;
 
-	blen = (int) strlen(bound);
+	blen = strlen(bound);
 	part = 0;
 	state = 0;
 	first = 1;
@@ -768,9 +768,9 @@ static char *strip_start(char *name)
 	/* Look for first non white space or quote */
 	for(p = name; (c = *p) ;p++) {
 		if(c == '"') {
-			/* Next char is start of string if non NULL */
+			/* Next char is start of string if non null */
 			if(p[1]) return p + 1;
-			/* Else NULL string */
+			/* Else null string */
 			return NULL;
 		}
 		if(!isspace((unsigned char)c)) return p;
@@ -920,8 +920,8 @@ static void mime_param_free(MIME_PARAM *param)
  */
 static int mime_bound_check(char *line, int linelen, char *bound, int blen)
 {
-	if(linelen == -1) linelen = (int) strlen(line);
-	if(blen == -1) blen = (int) strlen(bound);
+	if(linelen == -1) linelen = strlen(line);
+	if(blen == -1) blen = strlen(bound);
 	/* Quickly eliminate if line length too short */
 	if(blen + 2 > linelen) return 0;
 	/* Check for part boundary */

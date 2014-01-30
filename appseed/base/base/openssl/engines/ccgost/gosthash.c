@@ -42,7 +42,7 @@ static void circle_xor8 (const byte *w, byte *k)
 	byte buf[8];
 	int i;
 	memcpy(buf,w,8);
-	memcpy(k,w+8,24);
+	memmove(k,w+8,24);
 	for(i=0;i<8;i++) 
 		k[i+24]=buf[i]^k[i];
 	}
@@ -188,7 +188,7 @@ int hash_block(gost_hash_ctx *ctx,const byte *block, size_t length)
 		unsigned int add_bytes = 32-ctx->left;
 		if (add_bytes>length)
 			{
-			add_bytes = (int) length;
+			add_bytes = length;
 			}	
 		memcpy(&(ctx->remainder[ctx->left]),block,add_bytes);
 		ctx->left+=add_bytes;
@@ -212,7 +212,7 @@ int hash_block(gost_hash_ctx *ctx,const byte *block, size_t length)
 		}	
 	if (curptr!=block+length)
 		{
-		ctx->left = (int) (block  + length - curptr);
+		ctx->left=block+length-curptr;
 		memcpy(ctx->remainder,curptr,ctx->left);
 		}	
 	return 1;	

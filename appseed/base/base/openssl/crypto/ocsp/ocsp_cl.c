@@ -79,7 +79,7 @@
  * pointer: useful if we want to add extensions.
  */
 
-OCSP_ONEREQ *OCSP_request_add0_id(OPENSSL_OCSP_REQUEST *req, OCSP_CERTID *cid)
+OCSP_ONEREQ *OCSP_request_add0_id(OCSP_REQUEST *req, OCSP_CERTID *cid)
         {
 	OCSP_ONEREQ *one = NULL;
 
@@ -95,15 +95,15 @@ err:
 	return NULL;
         }
 
-/* Set requestorName from an OPENSSL_X509_NAME structure */
+/* Set requestorName from an X509_NAME structure */
 
-int OCSP_request_set1_name(OPENSSL_OCSP_REQUEST *req, OPENSSL_X509_NAME *nm)
+int OCSP_request_set1_name(OCSP_REQUEST *req, X509_NAME *nm)
 	{
 	GENERAL_NAME *gen;
 	gen = GENERAL_NAME_new();
 	if (gen == NULL)
 		return 0;
-	if (!OPENSSL_X509_NAME_set(&gen->d.directoryName, nm))
+	if (!X509_NAME_set(&gen->d.directoryName, nm))
 		{
 		GENERAL_NAME_free(gen);
 		return 0;
@@ -118,7 +118,7 @@ int OCSP_request_set1_name(OPENSSL_OCSP_REQUEST *req, OPENSSL_X509_NAME *nm)
 
 /* Add a certificate to an OCSP request */
 
-int OCSP_request_add1_cert(OPENSSL_OCSP_REQUEST *req, X509 *cert)
+int OCSP_request_add1_cert(OCSP_REQUEST *req, X509 *cert)
 	{
 	OCSP_SIGNATURE *sig;
 	if (!req->optionalSignature)
@@ -140,7 +140,7 @@ int OCSP_request_add1_cert(OPENSSL_OCSP_REQUEST *req, X509 *cert)
  * like PKCS7_sign().
  */
 
-int OCSP_request_sign(OPENSSL_OCSP_REQUEST   *req,
+int OCSP_request_sign(OCSP_REQUEST   *req,
 		      X509           *signer,
 		      EVP_PKEY       *key,
 		      const EVP_MD   *dgst,
@@ -159,10 +159,10 @@ int OCSP_request_sign(OPENSSL_OCSP_REQUEST   *req,
 		{
 		if (!X509_check_private_key(signer, key))
 			{
-			OCSPerr(OCSP_F_OPENSSL_OCSP_REQUEST_SIGN, OCSP_R_PRIVATE_KEY_DOES_NOT_MATCH_CERTIFICATE);
+			OCSPerr(OCSP_F_OCSP_REQUEST_SIGN, OCSP_R_PRIVATE_KEY_DOES_NOT_MATCH_CERTIFICATE);
 			goto err;
 			}
-		if (!OPENSSL_OCSP_REQUEST_sign(req, key, dgst)) goto err;
+		if (!OCSP_REQUEST_sign(req, key, dgst)) goto err;
 		}
 
 	if (!(flags & OCSP_NOCERTS))
@@ -184,28 +184,28 @@ err:
 
 /* Get response status */
 
-int OCSP_response_status(OPENSSL_OCSP_RESPONSE *resp)
+int OCSP_response_status(OCSP_RESPONSE *resp)
 	{
-	return (int) ASN1_ENUMERATED_get(resp->responseStatus);
+	return ASN1_ENUMERATED_get(resp->responseStatus);
 	}
 
-/* Extract basic response from OPENSSL_OCSP_RESPONSE or NULL if
+/* Extract basic response from OCSP_RESPONSE or NULL if
  * no basic response present.
  */
  
 
-OCSP_BASICRESP *OCSP_response_get1_basic(OPENSSL_OCSP_RESPONSE *resp)
+OCSP_BASICRESP *OCSP_response_get1_basic(OCSP_RESPONSE *resp)
 	{
 	OCSP_RESPBYTES *rb;
 	rb = resp->responseBytes;
 	if (!rb)
 		{
-		OCSPerr(OCSP_F_OPENSSL_OCSP_RESPONSE_GET1_BASIC, OCSP_R_NO_RESPONSE_DATA);
+		OCSPerr(OCSP_F_OCSP_RESPONSE_GET1_BASIC, OCSP_R_NO_RESPONSE_DATA);
 		return NULL;
 		}
 	if (OBJ_obj2nid(rb->responseType) != NID_id_pkix_OCSP_basic)
 		{
-		OCSPerr(OCSP_F_OPENSSL_OCSP_RESPONSE_GET1_BASIC, OCSP_R_NOT_BASIC_RESPONSE);
+		OCSPerr(OCSP_F_OCSP_RESPONSE_GET1_BASIC, OCSP_R_NOT_BASIC_RESPONSE);
 		return NULL;
 		}
 
@@ -272,7 +272,7 @@ int OCSP_single_get0_status(OCSP_SINGLERESP *single, int *reason,
 		if (reason) 
 			{
 			if(rev->revocationReason)
-				*reason = (int) ASN1_ENUMERATED_get(rev->revocationReason);
+				*reason = ASN1_ENUMERATED_get(rev->revocationReason);
 			else *reason = -1;
 			}
 		}

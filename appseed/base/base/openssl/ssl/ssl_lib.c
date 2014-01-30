@@ -142,11 +142,6 @@
  * OTHERWISE.
  */
 
-
-#include "base/base/base/base.h"
-
-
-
 #ifdef REF_CHECK
 #  include <assert.h>
 #endif
@@ -586,7 +581,7 @@ void SSL_free(SSL *s)
 #endif
 
 	if (s->client_CA != NULL)
-		sk_OPENSSL_X509_NAME_pop_free(s->client_CA,OPENSSL_X509_NAME_free);
+		sk_X509_NAME_pop_free(s->client_CA,X509_NAME_free);
 
 	if (s->method != NULL) s->method->ssl_free(s);
 
@@ -602,8 +597,10 @@ void SSL_free(SSL *s)
 		OPENSSL_free(s->next_proto_negotiated);
 #endif
 
+#ifndef OPENSSL_NO_SRTP
         if (s->srtp_profiles)
             sk_SRTP_PROTECTION_PROFILE_free(s->srtp_profiles);
+#endif
 
 	OPENSSL_free(s);
 	}
@@ -1062,7 +1059,7 @@ long SSL_ctrl(SSL *s,int cmd,long larg,void *parg)
 		return(s->read_ahead);
 	case SSL_CTRL_SET_READ_AHEAD:
 		l=s->read_ahead;
-		s->read_ahead = (int) larg;
+		s->read_ahead=larg;
 		return(l);
 
 	case SSL_CTRL_SET_MSG_CALLBACK_ARG:
@@ -1092,14 +1089,14 @@ long SSL_ctrl(SSL *s,int cmd,long larg,void *parg)
 		if (SSL_version(s) == DTLS1_VERSION ||
 		    SSL_version(s) == DTLS1_BAD_VER)
 			{
-			s->d1->mtu = (int) larg;
+			s->d1->mtu = larg;
 			return larg;
 			}
 		return 0;
 	case SSL_CTRL_SET_MAX_SEND_FRAGMENT:
 		if (larg < 512 || larg > SSL3_RT_MAX_PLAIN_LENGTH)
 			return 0;
-		s->max_send_fragment = (int) larg;
+		s->max_send_fragment = larg;
 		return 1;
 	case SSL_CTRL_GET_RI_SUPPORT:
 		if (s->s3)
@@ -1138,7 +1135,7 @@ long SSL_CTX_ctrl(SSL_CTX *ctx,int cmd,long larg,void *parg)
 		return(ctx->read_ahead);
 	case SSL_CTRL_SET_READ_AHEAD:
 		l=ctx->read_ahead;
-		ctx->read_ahead = (int)larg;
+		ctx->read_ahead=larg;
 		return(l);
 		
 	case SSL_CTRL_SET_MSG_CALLBACK_ARG:
@@ -1160,7 +1157,7 @@ long SSL_CTX_ctrl(SSL_CTX *ctx,int cmd,long larg,void *parg)
 		return(ctx->session_cache_size);
 	case SSL_CTRL_SET_SESS_CACHE_MODE:
 		l=ctx->session_cache_mode;
-		ctx->session_cache_mode = (int)larg;
+		ctx->session_cache_mode=larg;
 		return(l);
 	case SSL_CTRL_GET_SESS_CACHE_MODE:
 		return(ctx->session_cache_mode);
@@ -1200,7 +1197,7 @@ long SSL_CTX_ctrl(SSL_CTX *ctx,int cmd,long larg,void *parg)
 	case SSL_CTRL_SET_MAX_SEND_FRAGMENT:
 		if (larg < 512 || larg > SSL3_RT_MAX_PLAIN_LENGTH)
 			return 0;
-		ctx->max_send_fragment = (int) larg;
+		ctx->max_send_fragment = larg;
 		return 1;
 	default:
 		return(ctx->method->ssl_ctx_ctrl(ctx,cmd,larg,parg));
@@ -1357,7 +1354,7 @@ char *SSL_get_shared_ciphers(const SSL *s,char *buf,int len)
 		int n;
 
 		c=sk_SSL_CIPHER_value(sk,i);
-		n = (int) strlen(c->name);
+		n=strlen(c->name);
 		if (n+1 > len)
 			{
 			if (p != buf)
@@ -1424,7 +1421,7 @@ int ssl_cipher_list_to_bytes(SSL *s,STACK_OF(SSL_CIPHER) *sk,unsigned char *p,
 #endif
 		}
 
-	return (int) (p - q);
+	return(p-q);
 	}
 
 STACK_OF(SSL_CIPHER) *ssl_bytes_to_cipher_list(SSL *s,unsigned char *p,int num,
@@ -1794,13 +1791,15 @@ SSL_CTX *SSL_CTX_new(const SSL_METHOD *meth)
 		goto err2;
 		}
 
-	if ((ret->client_CA=sk_OPENSSL_X509_NAME_new_null()) == NULL)
+	if ((ret->client_CA=sk_X509_NAME_new_null()) == NULL)
 		goto err;
 
 	CRYPTO_new_ex_data(CRYPTO_EX_INDEX_SSL_CTX, ret, &ret->ex_data);
 
 	ret->extra_certs=NULL;
-	ret->comp_methods=SSL_COMP_get_compression_methods();
+	/* No compression for DTLS */
+	if (meth->version != DTLS1_VERSION)
+		ret->comp_methods=SSL_COMP_get_compression_methods();
 
 	ret->max_send_fragment = SSL3_RT_MAX_PLAIN_LENGTH;
 
@@ -1947,7 +1946,7 @@ void SSL_CTX_free(SSL_CTX *a)
 	if (a->cert != NULL)
 		ssl_cert_free(a->cert);
 	if (a->client_CA != NULL)
-		sk_OPENSSL_X509_NAME_pop_free(a->client_CA,OPENSSL_X509_NAME_free);
+		sk_X509_NAME_pop_free(a->client_CA,X509_NAME_free);
 	if (a->extra_certs != NULL)
 		sk_X509_pop_free(a->extra_certs,X509_free);
 #if 0 /* This should never be done, since it removes a global database */
@@ -1957,8 +1956,10 @@ void SSL_CTX_free(SSL_CTX *a)
 	a->comp_methods = NULL;
 #endif
 
+#ifndef OPENSSL_NO_SRTP
         if (a->srtp_profiles)
                 sk_SRTP_PROTECTION_PROFILE_free(a->srtp_profiles);
+#endif
 
 #ifndef OPENSSL_NO_PSK
 	if (a->psk_identity_hint)
@@ -2292,7 +2293,7 @@ int ssl_check_srvr_ecc_cert_and_alg(X509 *x, SSL *s)
 #endif
 
 /* THIS NEEDS CLEANING UP */
-X509 *ssl_get_server_send_cert(SSL *s)
+CERT_PKEY *ssl_get_server_send_pkey(const SSL *s)
 	{
 	unsigned long alg_k,alg_a;
 	CERT *c;
@@ -2347,12 +2348,20 @@ X509 *ssl_get_server_send_cert(SSL *s)
 		i=SSL_PKEY_GOST01;
 	else /* if (alg_a & SSL_aNULL) */
 		{
-		SSLerr(SSL_F_SSL_GET_SERVER_SEND_CERT,ERR_R_INTERNAL_ERROR);
+		SSLerr(SSL_F_SSL_GET_SERVER_SEND_PKEY,ERR_R_INTERNAL_ERROR);
 		return(NULL);
 		}
-	if (c->pkeys[i].x509 == NULL) return(NULL);
 
-	return(c->pkeys[i].x509);
+	return c->pkeys + i;
+	}
+
+X509 *ssl_get_server_send_cert(const SSL *s)
+	{
+	CERT_PKEY *cpk;
+	cpk = ssl_get_server_send_pkey(s);
+	if (!cpk)
+		return NULL;
+	return cpk->x509;
 	}
 
 EVP_PKEY *ssl_get_sign_pkey(SSL *s,const SSL_CIPHER *cipher, const EVP_MD **pmd)
@@ -2613,7 +2622,7 @@ const char *SSL_get_version(const SSL *s)
 		return("TLSv1.2");
 	else if (s->version == TLS1_1_VERSION)
 		return("TLSv1.1");
-	if (s->version == TLS1_VERSION)
+	else if (s->version == TLS1_VERSION)
 		return("TLSv1");
 	else if (s->version == SSL3_VERSION)
 		return("SSLv3");
@@ -2625,8 +2634,8 @@ const char *SSL_get_version(const SSL *s)
 
 SSL *SSL_dup(SSL *s)
 	{
-	STACK_OF(OPENSSL_X509_NAME) *sk;
-	OPENSSL_X509_NAME *xn;
+	STACK_OF(X509_NAME) *sk;
+	X509_NAME *xn;
 	SSL *ret;
 	int i;
 	
@@ -2732,14 +2741,14 @@ SSL *SSL_dup(SSL *s)
 	/* Dup the client_CA list */
 	if (s->client_CA != NULL)
 		{
-		if ((sk=sk_OPENSSL_X509_NAME_dup(s->client_CA)) == NULL) goto err;
+		if ((sk=sk_X509_NAME_dup(s->client_CA)) == NULL) goto err;
 		ret->client_CA=sk;
-		for (i=0; i<sk_OPENSSL_X509_NAME_num(sk); i++)
+		for (i=0; i<sk_X509_NAME_num(sk); i++)
 			{
-			xn=sk_OPENSSL_X509_NAME_value(sk,i);
-			if (sk_OPENSSL_X509_NAME_set(sk,i,OPENSSL_X509_NAME_dup(xn)) == NULL)
+			xn=sk_X509_NAME_value(sk,i);
+			if (sk_X509_NAME_set(sk,i,X509_NAME_dup(xn)) == NULL)
 				{
-				OPENSSL_X509_NAME_free(xn);
+				X509_NAME_free(xn);
 				goto err;
 				}
 			}

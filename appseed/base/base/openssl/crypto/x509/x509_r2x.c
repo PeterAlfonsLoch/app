@@ -69,7 +69,7 @@ X509 *X509_REQ_to_X509(X509_REQ *r, int days, EVP_PKEY *pkey)
 	{
 	X509 *ret=NULL;
 	X509_CINF *xi=NULL;
-	OPENSSL_X509_NAME *xn;
+	X509_NAME *xn;
 
 	if ((ret=X509_new()) == NULL)
 		{
@@ -89,9 +89,9 @@ X509 *X509_REQ_to_X509(X509_REQ *r, int days, EVP_PKEY *pkey)
 		}
 
 	xn=X509_REQ_get_subject_name(r);
-	if (X509_set_subject_name(ret,OPENSSL_X509_NAME_dup(xn)) == 0)
+	if (X509_set_subject_name(ret,X509_NAME_dup(xn)) == 0)
 		goto err;
-	if (X509_set_issuer_name(ret,OPENSSL_X509_NAME_dup(xn)) == 0)
+	if (X509_set_issuer_name(ret,X509_NAME_dup(xn)) == 0)
 		goto err;
 
 	if (X509_gmtime_adj(xi->validity->notBefore,0) == NULL)

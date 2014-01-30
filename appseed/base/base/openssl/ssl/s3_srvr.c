@@ -148,9 +148,6 @@
  * OTHERWISE.
  */
 
-#include "base/base/base/base.h"
-
-
 #define REUSE_CIPHER_BUG
 #define NETSCAPE_HANG_BUG
 
@@ -194,7 +191,8 @@ static int ssl_check_srp_ext_ClientHello(SSL *s, int *al)
 		{
 		if(s->srp_ctx.login == NULL)
 			{
-			/* There isn't any srp login extension !!! */
+			/* RFC 5054 says SHOULD reject, 
+			   we do so if There is no srp login name */
 			ret = SSL3_AL_FATAL;
 			*al = SSL_AD_UNKNOWN_PSK_IDENTITY;
 			}
@@ -381,6 +379,7 @@ int ssl3_accept(SSL *s)
 				}
 			}
 #endif		
+			
 			s->renegotiate = 2;
 			s->state=SSL3_ST_SW_SRVR_HELLO_A;
 			s->init_num=0;
@@ -959,7 +958,8 @@ int ssl3_get_client_hello(SSL *s)
 	    (s->version != DTLS1_VERSION && s->client_version < s->version))
 		{
 		SSLerr(SSL_F_SSL3_GET_CLIENT_HELLO, SSL_R_WRONG_VERSION_NUMBER);
-		if ((s->client_version>>8) == SSL3_VERSION_MAJOR)
+		if ((s->client_version>>8) == SSL3_VERSION_MAJOR && 
+			!s->enc_write_ctx && !s->write_hash)
 			{
 			/* similar to ssl3_get_record, send alert using remote version number */
 			s->version = s->client_version;
@@ -1177,14 +1177,14 @@ int ssl3_get_client_hello(SSL *s)
 	/* TLS extensions*/
 	if (s->version >= SSL3_VERSION)
 		{
-		if (!ssl_parse_clienthello_tlsext(s,&p,d, (int) n, &al))
+		if (!ssl_parse_clienthello_tlsext(s,&p,d,n, &al))
 			{
 			/* 'al' set by ssl_parse_clienthello_tlsext */
 			SSLerr(SSL_F_SSL3_GET_CLIENT_HELLO,SSL_R_PARSE_TLSEXT);
 			goto f_err;
 			}
 		}
-		if (ssl_check_clienthello_tlsext(s) <= 0) {
+		if (ssl_check_clienthello_tlsext_early(s) <= 0) {
 			SSLerr(SSL_F_SSL3_GET_CLIENT_HELLO,SSL_R_CLIENTHELLO_TLSEXT);
 			goto err;
 		}
@@ -1194,12 +1194,9 @@ int ssl3_get_client_hello(SSL *s)
 	 * server_random before calling tls_session_secret_cb in order to allow
 	 * SessionTicket processing to use it in key derivation. */
 	{
-		unsigned long Time;
 		unsigned char *pos;
-		Time=(unsigned long)time(NULL);			/* Time */
 		pos=s->s3->server_random;
-		l2n(Time,pos);
-		if (RAND_pseudo_bytes(pos,SSL3_RANDOM_SIZE-4) <= 0)
+		if (ssl_fill_hello_random(s, 1, pos, SSL3_RANDOM_SIZE) <= 0)
 			{
 			al=SSL_AD_INTERNAL_ERROR;
 			goto f_err;
@@ -1392,7 +1389,10 @@ int ssl3_get_client_hello(SSL *s)
 	if (TLS1_get_version(s) < TLS1_2_VERSION || !(s->verify_mode & SSL_VERIFY_PEER))
 		{
 		if (!ssl3_digest_cached_records(s))
+			{
+			al = SSL_AD_INTERNAL_ERROR;
 			goto f_err;
+			}
 		}
 	
 	/* we now have the following setup. 
@@ -1405,6 +1405,16 @@ int ssl3_get_client_hello(SSL *s)
 	 * s->hit		- session reuse flag
 	 * s->tmp.new_cipher	- the new cipher to use.
 	 */
+
+	/* Handles TLS extensions that we couldn't check earlier */
+	if (s->version >= SSL3_VERSION)
+		{
+		if (ssl_check_clienthello_tlsext_late(s) <= 0)
+			{
+			SSLerr(SSL_F_SSL3_GET_CLIENT_HELLO, SSL_R_CLIENTHELLO_TLSEXT);
+			goto err;
+			}
+		}
 
 	if (ret < 0) ret=1;
 	if (0)
@@ -1423,19 +1433,13 @@ int ssl3_send_server_hello(SSL *s)
 	unsigned char *p,*d;
 	int i,sl;
 	unsigned long l;
-#ifdef OPENSSL_NO_TLSEXT
-	unsigned long Time;
-#endif
 
 	if (s->state == SSL3_ST_SW_SRVR_HELLO_A)
 		{
 		buf=(unsigned char *)s->init_buf->data;
 #ifdef OPENSSL_NO_TLSEXT
 		p=s->s3->server_random;
-		/* Generate server_random if it was not needed previously */
-		Time=(unsigned long)time(NULL);			/* Time */
-		l2n(Time,p);
-		if (RAND_pseudo_bytes(p,SSL3_RANDOM_SIZE-4) <= 0)
+		if (ssl_fill_hello_random(s, 1, p, SSL3_RANDOM_SIZE) <= 0)
 			return -1;
 #endif
 		/* Do the message type and length last */
@@ -1503,15 +1507,15 @@ int ssl3_send_server_hello(SSL *s)
 			}
 #endif
 		/* do the header */
-		l = (unsigned long) (p - d);
+		l=(p-d);
 		d=buf;
 		*(d++)=SSL3_MT_SERVER_HELLO;
 		l2n3(l,d);
 
 		s->state=SSL3_ST_SW_SRVR_HELLO_B;
 		/* number of bytes to write */
-		s->init_num = (int) (p - buf);
-		s->init_off = 0;
+		s->init_num=p-buf;
+		s->init_off=0;
 		}
 
 	/* SSL3_ST_SW_SRVR_HELLO_B */
@@ -1749,7 +1753,7 @@ int ssl3_send_server_key_exchange(SSL *s)
 			 * First check the size of encoding and
 			 * allocate memory accordingly.
 			 */
-			encodedlen = (int) EC_POINT_point2oct(group,
+			encodedlen = EC_POINT_point2oct(group, 
 			    EC_KEY_get0_public_key(ecdh),
 			    POINT_CONVERSION_UNCOMPRESSED, 
 			    NULL, 0, NULL);
@@ -1764,7 +1768,7 @@ int ssl3_send_server_key_exchange(SSL *s)
 				}
 
 
-			encodedlen = (int) EC_POINT_point2oct(group,
+			encodedlen = EC_POINT_point2oct(group, 
 			    EC_KEY_get0_public_key(ecdh), 
 			    POINT_CONVERSION_UNCOMPRESSED, 
 			    encodedPoint, encodedlen, bn_ctx);
@@ -2019,8 +2023,8 @@ int ssl3_send_certificate_request(SSL *s)
 	{
 	unsigned char *p,*d;
 	int i,j,nl,off,n;
-	STACK_OF(OPENSSL_X509_NAME) *sk=NULL;
-	OPENSSL_X509_NAME *name;
+	STACK_OF(X509_NAME) *sk=NULL;
+	X509_NAME *name;
 	BUF_MEM *buf;
 
 	if (s->state == SSL3_ST_SW_CERT_REQ_A)
@@ -2052,10 +2056,10 @@ int ssl3_send_certificate_request(SSL *s)
 		nl=0;
 		if (sk != NULL)
 			{
-			for (i=0; i<sk_OPENSSL_X509_NAME_num(sk); i++)
+			for (i=0; i<sk_X509_NAME_num(sk); i++)
 				{
-				name=sk_OPENSSL_X509_NAME_value(sk,i);
-				j=i2d_OPENSSL_X509_NAME(name,NULL);
+				name=sk_X509_NAME_value(sk,i);
+				j=i2d_X509_NAME(name,NULL);
 				if (!BUF_MEM_grow_clean(buf,4+n+j+2))
 					{
 					SSLerr(SSL_F_SSL3_SEND_CERTIFICATE_REQUEST,ERR_R_BUF_LIB);
@@ -2065,14 +2069,14 @@ int ssl3_send_certificate_request(SSL *s)
 				if (!(s->options & SSL_OP_NETSCAPE_CA_DN_BUG))
 					{
 					s2n(j,p);
-					i2d_OPENSSL_X509_NAME(name,&p);
+					i2d_X509_NAME(name,&p);
 					n+=2+j;
 					nl+=2+j;
 					}
 				else
 					{
 					d=p;
-					i2d_OPENSSL_X509_NAME(name,&p);
+					i2d_X509_NAME(name,&p);
 					j-=2; s2n(j,d); j+=2;
 					n+=j;
 					nl+=j;
@@ -3327,7 +3331,7 @@ int ssl3_send_server_certificate(SSL *s)
 		x=ssl_get_server_send_cert(s);
 		if (x == NULL)
 			{
-			/* VRS: allow NULL cert if auth == KRB5 */
+			/* VRS: allow null cert if auth == KRB5 */
 			if ((s->s3->tmp.new_cipher->algorithm_auth != SSL_aKRB5) ||
 			    (s->s3->tmp.new_cipher->algorithm_mkey & SSL_kKRB5))
 				{
@@ -3467,7 +3471,7 @@ int ssl3_send_newsession_ticket(SSL *s)
 		p += hlen;
 		/* Now write out lengths: p points to end of data written */
 		/* Total length */
-		len = (int) (p - (unsigned char *)s->init_buf->data);
+		len = p - (unsigned char *)s->init_buf->data;
 		p=(unsigned char *)s->init_buf->data + 1;
 		l2n3(len - 4, p); /* Message length */
 		p += 4;

@@ -109,10 +109,6 @@
  *
  */
 
-
-#include "base/base/base/base.h"
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>	
@@ -325,7 +321,7 @@ static int mem_cmp(const MEM *a, const MEM *b)
 	else if (ap>bp)	return 1;
 	else		return -1;
 #else
-	return (int) ((const char *)a->addr - (const char *)b->addr);
+	return (const char *)a->addr - (const char *)b->addr;
 #endif
 	}
 static IMPLEMENT_LHASH_COMP_FN(mem, MEM)
@@ -725,8 +721,8 @@ static void print_leak_doall_arg(const MEM *m, MEM_LEAK *l)
 			" thread=%lu, file=%s, line=%d, info=\"",
 			CRYPTO_THREADID_hash(&amip->threadid), amip->file,
 			amip->line);
-		buf_len=(int) strlen(buf);
-		info_len=(int) strlen(amip->info);
+		buf_len=strlen(buf);
+		info_len=strlen(amip->info);
 		if (128 - buf_len - 3 < info_len)
 			{
 			memcpy(buf + buf_len, amip->info, 128 - buf_len - 3);
@@ -736,7 +732,7 @@ static void print_leak_doall_arg(const MEM *m, MEM_LEAK *l)
 			{
 			BUF_strlcpy(buf + buf_len, amip->info,
 				    sizeof buf - buf_len);
-			buf_len = (int) strlen(buf);
+			buf_len = strlen(buf);
 			}
 		BIO_snprintf(buf + buf_len, sizeof buf - buf_len, "\"\n");
 		

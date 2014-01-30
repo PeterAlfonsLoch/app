@@ -57,8 +57,8 @@
  *
  */
 
-#ifndef HEADER_DTLS1_H 
-#define HEADER_DTLS1_H 
+#ifndef HEADER_DTLS1_H
+#define HEADER_DTLS1_H
 
 #include <openssl/buffer.h>
 #include <openssl/pqueue.h>
@@ -69,18 +69,14 @@
 #ifdef OPENSSL_SYS_WIN32
 /* Needed for struct timeval */
 //#include <winsock.h>
-/*
- * Structure used in select() call, taken from the BSD file sys/time.h.
- */
-struct timeval {
-        long    tv_sec;         /* seconds */
-        long    tv_usec;        /* and microseconds */
-};
-
 #elif defined(OPENSSL_SYS_NETWARE) && !defined(_WINSOCK2API_)
 #include <sys/timeval.h>
 #else
+#if defined(OPENSSL_SYS_VXWORKS)
+#include <sys/times.h>
+#else
 #include <sys/time.h>
+#endif
 #endif
 
 #ifdef  __cplusplus

@@ -192,7 +192,7 @@ int CMAC_Init(CMAC_CTX *ctx, const void *key, size_t keylen,
 		int bl;
 		if (!EVP_CIPHER_CTX_cipher(&ctx->cctx))
 			return 0;
-		if (!EVP_CIPHER_CTX_set_key_length(&ctx->cctx, (int) keylen))
+		if (!EVP_CIPHER_CTX_set_key_length(&ctx->cctx, keylen))
 			return 0;
 		if (!EVP_EncryptInit_ex(&ctx->cctx, NULL, NULL, key, zero_iv))
 			return 0;
@@ -234,26 +234,26 @@ int CMAC_Update(CMAC_CTX *ctx, const void *in, size_t dlen)
 			nleft = dlen;
 		memcpy(ctx->last_block + ctx->nlast_block, data, nleft);
 		dlen -= nleft;
-		ctx->nlast_block += (int) nleft;
+		ctx->nlast_block += nleft;
 		/* If no more to process return */
 		if (dlen == 0)
 			return 1;
 		data += nleft;
 		/* Else not final block so encrypt it */
-		if (!EVP_Cipher(&ctx->cctx, ctx->tbl, ctx->last_block,(int) bl))
+		if (!EVP_Cipher(&ctx->cctx, ctx->tbl, ctx->last_block,bl))
 			return 0;
 		}
 	/* Encrypt all but one of the complete blocks left */
 	while(dlen > bl)
 		{
-		if (!EVP_Cipher(&ctx->cctx, ctx->tbl, data, (int) bl))
+		if (!EVP_Cipher(&ctx->cctx, ctx->tbl, data, bl))
 			return 0;
 		dlen -= bl;
 		data += bl;
 		}
 	/* Copy any data left to last block buffer */
 	memcpy(ctx->last_block, data, dlen);
-	ctx->nlast_block = (int) dlen;
+	ctx->nlast_block = dlen;
 	return 1;
 
 	}

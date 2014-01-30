@@ -288,7 +288,7 @@ int MAIN(int argc, char **argv)
 			days=atoi(*(++argv));
 			if (days == 0)
 				{
-				BIO_printf(STDout,"bad number of days\n");
+				BIO_printf(bio_err,"bad number of days\n");
 				goto bad;
 				}
 			}
@@ -861,10 +861,10 @@ bad:
 				char *m;
 				int y,z;
 
-				OPENSSL_X509_NAME_oneline(X509_get_subject_name(x),
+				X509_NAME_oneline(X509_get_subject_name(x),
 					buf,sizeof buf);
 				BIO_printf(STDout,"/* subject:%s */\n",buf);
-				m=OPENSSL_X509_NAME_oneline(
+				m=X509_NAME_oneline(
 					X509_get_issuer_name(x),buf,
 					sizeof buf);
 				BIO_printf(STDout,"/* issuer :%s */\n",buf);
@@ -873,7 +873,7 @@ bad:
 				m=OPENSSL_malloc(z);
 
 				d=(unsigned char *)m;
-				z=i2d_OPENSSL_X509_NAME(X509_get_subject_name(x),&d);
+				z=i2d_X509_NAME(X509_get_subject_name(x),&d);
 				BIO_printf(STDout,"unsigned char XXX_subject_name[%d]={\n",z);
 				d=(unsigned char *)m;
 				for (y=0; y<z; y++)
@@ -912,7 +912,7 @@ bad:
 				}
 			else if (text == i)
 				{
-				X509_print_ex(out,x,nmflag, certflag);
+				X509_print_ex(STDout,x,nmflag, certflag);
 				}
 			else if (startdate == i)
 				{

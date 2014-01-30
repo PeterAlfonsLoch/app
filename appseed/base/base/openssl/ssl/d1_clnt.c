@@ -538,13 +538,6 @@ int dtls1_connect(SSL *s)
 				SSL3_ST_CW_CHANGE_A,SSL3_ST_CW_CHANGE_B);
 			if (ret <= 0) goto end;
 
-#ifndef OPENSSL_NO_SCTP
-			/* Change to new shared key of SCTP-Auth,
-			 * will be ignored if no SCTP used.
-			 */
-			BIO_ctrl(SSL_get_wbio(s), BIO_CTRL_DGRAM_SCTP_NEXT_AUTH_KEY, 0, NULL);
-#endif
-
 			s->state=SSL3_ST_CW_FINISHED_A;
 			s->init_num=0;
 
@@ -571,6 +564,16 @@ int dtls1_connect(SSL *s)
 				goto end;
 				}
 			
+#ifndef OPENSSL_NO_SCTP
+				if (s->hit)
+					{
+					/* Change to new shared key of SCTP-Auth,
+					 * will be ignored if no SCTP used.
+					 */
+					BIO_ctrl(SSL_get_wbio(s), BIO_CTRL_DGRAM_SCTP_NEXT_AUTH_KEY, 0, NULL);
+					}
+#endif
+
 			dtls1_reset_seq_numbers(s, SSL3_CC_WRITE);
 			break;
 
@@ -613,6 +616,13 @@ int dtls1_connect(SSL *s)
 				}
 			else
 				{
+#ifndef OPENSSL_NO_SCTP
+				/* Change to new shared key of SCTP-Auth,
+				 * will be ignored if no SCTP used.
+				 */
+				BIO_ctrl(SSL_get_wbio(s), BIO_CTRL_DGRAM_SCTP_NEXT_AUTH_KEY, 0, NULL);
+#endif
+
 #ifndef OPENSSL_NO_TLSEXT
 				/* Allow NewSessionTicket if ticket expected */
 				if (s->tlsext_ticket_expected)
@@ -773,7 +783,7 @@ int dtls1_client_hello(SSL *s)
 	unsigned char *buf;
 	unsigned char *p,*d;
 	unsigned int i,j;
-	unsigned long Time,l;
+	unsigned long l;
 	SSL_COMP *comp;
 
 	buf=(unsigned char *)s->init_buf->data;
@@ -798,13 +808,11 @@ int dtls1_client_hello(SSL *s)
 
 		/* if client_random is initialized, reuse it, we are
 		 * required to use same upon reply to HelloVerify */
-		for (i=0;p[i]=='\0' && i<sizeof(s->s3->client_random);i++) ;
+		for (i=0;p[i]=='\0' && i<sizeof(s->s3->client_random);i++)
+			;
 		if (i==sizeof(s->s3->client_random))
-			{
-			Time=(unsigned long)time(NULL);	/* Time */
-			l2n(Time,p);
-			RAND_pseudo_bytes(p,sizeof(s->s3->client_random)-4);
-			}
+			ssl_fill_hello_random(s, 0, p,
+					      sizeof(s->s3->client_random));
 
 		/* Do the message type and length last */
 		d=p= &(buf[DTLS1_HM_HEADER_LENGTH]);
@@ -875,15 +883,15 @@ int dtls1_client_hello(SSL *s)
 			}
 #endif		
 
-		l = (unsigned long) (p - d);
+		l=(p-d);
 		d=buf;
 
 		d = dtls1_set_message_header(s, d, SSL3_MT_CLIENT_HELLO, l, 0, l);
 
 		s->state=SSL3_ST_CW_CLNT_HELLO_B;
 		/* number of bytes to write */
-		s->init_num = (int) (p - buf);
-		s->init_off = 0;
+		s->init_num=p-buf;
+		s->init_off=0;
 
 		/* buffer the message to handle re-xmits */
 		dtls1_buffer_message(s, 0);
@@ -901,7 +909,7 @@ static int dtls1_get_hello_verify(SSL *s)
 	unsigned char *data;
 	unsigned int cookie_len;
 
-	n = (int) s->method->ssl_get_message(s,
+	n=s->method->ssl_get_message(s,
 		DTLS1_ST_CR_HELLO_VERIFY_REQUEST_A,
 		DTLS1_ST_CR_HELLO_VERIFY_REQUEST_B,
 		-1,
@@ -1124,7 +1132,7 @@ int dtls1_send_client_key_exchange(SSL *s)
 				}
 			else
 				{
-				s2n(0,p);/*  NULL authenticator length	*/
+				s2n(0,p);/*  null authenticator length	*/
 				n+=2;
 				}
  
@@ -1369,7 +1377,7 @@ int dtls1_send_client_key_exchange(SSL *s)
 				 * allocate memory accordingly.
 				 */
 				encoded_pt_len = 
-				    (int) EC_POINT_point2oct(srvr_group,
+				    EC_POINT_point2oct(srvr_group, 
 					EC_KEY_get0_public_key(clnt_ecdh), 
 					POINT_CONVERSION_UNCOMPRESSED, 
 					NULL, 0, NULL);
@@ -1386,7 +1394,7 @@ int dtls1_send_client_key_exchange(SSL *s)
 					}
 
 				/* Encode the public key */
-				n = (int) EC_POINT_point2oct(srvr_group,
+				n = EC_POINT_point2oct(srvr_group, 
 				    EC_KEY_get0_public_key(clnt_ecdh), 
 				    POINT_CONVERSION_UNCOMPRESSED, 
 				    encodedPoint, encoded_pt_len, bn_ctx);
@@ -1476,7 +1484,7 @@ int dtls1_send_client_key_exchange(SSL *s)
 				s->method->ssl3_enc->generate_master_secret(s,
 					s->session->master_key,
 					psk_or_pre_ms, pre_ms_len); 
-			n = (int) strlen(identity);
+			n = strlen(identity);
 			s2n(n, p);
 			memcpy(p, identity, n);
 			n+=2;

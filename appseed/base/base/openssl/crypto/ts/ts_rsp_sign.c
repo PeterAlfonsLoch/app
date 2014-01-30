@@ -55,7 +55,7 @@
  * Hudson (tjh@cryptsoft.com).
  *
  */
-#include "base/base/base/base.h"
+
 #include "cryptlib.h"
 
 #if defined(OPENSSL_SYS_UNIX)
@@ -352,7 +352,7 @@ int TS_RESP_CTX_set_status_info(TS_RESP_CTX *ctx,
 	if (text)
 		{
 		if (!(utf8_text = ASN1_UTF8STRING_new())
-		    || !ASN1_STRING_set(utf8_text, text, (int) strlen(text)))
+		    || !ASN1_STRING_set(utf8_text, text, strlen(text)))
 			goto err;
 		if (!si->text && !(si->text = sk_ASN1_UTF8STRING_new_null()))
 			goto err;
@@ -657,7 +657,7 @@ static TS_TST_INFO *TS_RESP_create_tst_info(TS_RESP_CTX *ctx,
 		if (!(tsa_name = GENERAL_NAME_new())) goto end;
 		tsa_name->type = GEN_DIRNAME;
 		tsa_name->d.dirn = 
-			OPENSSL_X509_NAME_dup(ctx->signer_cert->cert_info->subject);
+			X509_NAME_dup(ctx->signer_cert->cert_info->subject);
 		if (!tsa_name->d.dirn) goto end;
 		if (!TS_TST_INFO_set_tsa(tst_info, tsa_name)) goto end;
 		}
@@ -872,7 +872,7 @@ static ESS_CERT_ID *ESS_CERT_ID_new_init(X509 *cert, int issuer_needed)
 		/* Creating general name from the certificate issuer. */
 		if (!(name = GENERAL_NAME_new())) goto err;
 		name->type = GEN_DIRNAME;
-		if (!(name->d.dirn = OPENSSL_X509_NAME_dup(cert->cert_info->issuer))) 
+		if (!(name->d.dirn = X509_NAME_dup(cert->cert_info->issuer))) 
 			goto err;
 		if (!sk_GENERAL_NAME_push(cid->issuer_serial->issuer, name)) 
 			goto err;
@@ -976,7 +976,7 @@ TS_RESP_set_genTime_with_precision(ASN1_GENERALIZEDTIME *asn1_time,
 			  tm->tm_hour, tm->tm_min, tm->tm_sec);
 	if (precision > 0)
 	{
-		/* Add fraction of seconds (leave space for dot and NULL). */
+		/* Add fraction of seconds (leave space for dot and null). */
 		BIO_snprintf(p, 2 + precision, ".%ld", usec);
 		/* We cannot use the snprintf return value, 
 		   because it might have been truncated. */
@@ -1000,7 +1000,7 @@ TS_RESP_set_genTime_with_precision(ASN1_GENERALIZEDTIME *asn1_time,
 		/* p points to either the dot or the last non-zero digit. */
 		if (*p != '.') ++p;
 		}
-	/* Add the trailing Z and the terminating NULL. */
+	/* Add the trailing Z and the terminating null. */
 	*p++ = 'Z';
 	*p++ = '\0';
 

@@ -141,7 +141,7 @@ static int pkey_ec_sign(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen,
 		type = NID_sha1;
 
 
-	ret = ECDSA_sign(type, tbs, (int) tbslen, sig, &sltmp, ec);
+	ret = ECDSA_sign(type, tbs, tbslen, sig, &sltmp, ec);
 
 	if (ret <= 0)
 		return ret;
@@ -162,7 +162,7 @@ static int pkey_ec_verify(EVP_PKEY_CTX *ctx,
 	else
 		type = NID_sha1;
 
-	ret = ECDSA_verify(type, tbs, (int) tbslen, sig, (int) siglen, ec);
+	ret = ECDSA_verify(type, tbs, tbslen, sig, siglen, ec);
 
 	return ret;
 	}
@@ -188,7 +188,7 @@ static int pkey_ec_derive(EVP_PKEY_CTX *ctx, unsigned char *key, size_t *keylen)
 
 	pubkey = EC_KEY_get0_public_key(ctx->peerkey->pkey.ec);
 
-	/* NB: unlike PKS#3 DH, if *outlen is less than maximum size this is
+	/* NB: unlike PKCS#3 DH, if *outlen is less than maximum size this is
 	 * not an error, the result is truncated.
 	 */
 

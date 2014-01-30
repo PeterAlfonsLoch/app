@@ -1117,7 +1117,7 @@ EXPORTS
     ENGINE_load_openssl                     
     ENGINE_load_private_key                 
     ENGINE_load_public_key                  
-    ENGINE_load_rdrand                      
+    ;ENGINE_load_rdrand                      
     ENGINE_load_ssl_client_cert             
     ENGINE_new                              
     ENGINE_pkey_asn1_find_str               
@@ -1855,7 +1855,7 @@ EXPORTS
     OCSP_sendreq_nbio                       
     OCSP_sendreq_new                        
     OCSP_single_get0_status                 
-    OCSP_url_svcloc_new                     
+    OCSP_url_svcloc_new 
     OPENSSL_DIR_end                         
     OPENSSL_DIR_read                        
     OPENSSL_add_all_algorithms_conf         
@@ -1863,7 +1863,7 @@ EXPORTS
     OPENSSL_asc2uni                         
     OPENSSL_cleanse                         
     OPENSSL_config                          
-    OPENSSL_cpuid_setup                     
+    ;OPENSSL_cpuid_setup                     
     OPENSSL_gmtime                          
     OPENSSL_gmtime_adj                      
     OPENSSL_ia32cap_loc                     
@@ -2905,11 +2905,12 @@ EXPORTS
     X509_load_cert_crl_file                 
     X509_load_cert_file                     
     X509_load_crl_file                      
-	OPENSSL_X509_NAME_get_text_by_NID
-	OPENSSL_X509_NAME_print_ex
-	OPENSSL_X509_NAME_get_index_by_NID
-	OPENSSL_X509_NAME_get_entry
-	OPENSSL_X509_NAME_ENTRY_get_data
+	X509_NAME_get_text_by_NID
+	X509_NAME_print_ex
+	X509_NAME_get_index_by_NID
+	X509_NAME_get_entry
+	X509_NAME_ENTRY_get_data
+	X509_NAME_oneline
     X509_new                                
     X509_ocspid_print                       
     X509_policy_check                       
@@ -3806,7 +3807,6 @@ EXPORTS
     TLSv1_server_method                     
     d2i_SSL_SESSION                         
     i2d_SSL_SESSION                         
-	OPENSSL_X509_NAME_oneline
 
 
 

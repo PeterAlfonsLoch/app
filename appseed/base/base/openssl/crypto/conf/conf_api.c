@@ -63,8 +63,6 @@
 # define NDEBUG
 #endif
 
-#include "base/base/base/base.h"
-
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>
@@ -279,7 +277,7 @@ CONF_VALUE *_CONF_new_section(CONF *conf, const char *section)
 		goto err;
 	if ((v=OPENSSL_malloc(sizeof(CONF_VALUE))) == NULL)
 		goto err;
-	i=(int) (strlen(section)+1);
+	i=strlen(section)+1;
 	if ((v->section=OPENSSL_malloc(i)) == NULL)
 		goto err;
 
