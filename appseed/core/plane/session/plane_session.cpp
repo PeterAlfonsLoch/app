@@ -425,10 +425,9 @@ namespace plane
       TRACE("::plane::session::on_request(sp(::create_context))");
 
 
-      if(pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() > 1
-         && pcreatecontext->m_spCommandLine->m_varQuery["app"].stra()[0] == "app/sphere/userstack")
+      if(pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() > 1)
       {
-         start_application("application", "app/sphere/userstack", pcreatecontext);
+         start_application("application", pcreatecontext->m_spCommandLine->m_varQuery["app"].stra()[0], pcreatecontext);
          return;
       }
 

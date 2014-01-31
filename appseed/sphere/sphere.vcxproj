@@ -251,8 +251,10 @@
       </Command>
     </PreBuildEvent>
     <CustomBuildStep>
-      <Command>
-      </Command>
+      <Command>"$(OutDir)app._.exe" "$(OutDir)app.exe" "app/sphere/userstack" "$(OutDir)app_sphere_userstack.exe"</Command>
+      <Outputs>$(OutDir)sphere_userstack.exe</Outputs>
+      <Inputs>$(OutDir)app.exe</Inputs>
+      <TreatOutputAsContent>true</TreatOutputAsContent>
     </CustomBuildStep>
     <ClCompile>
       <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
