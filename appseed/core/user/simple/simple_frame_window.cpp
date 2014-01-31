@@ -370,7 +370,7 @@ bool simple_frame_window::pre_create_window(CREATESTRUCT& cs)
 void simple_frame_window::layout()
 {
 
-   if(m_bWindowFrame && m_workset.IsAppearanceEnabled() && !WfiIsFullScreen())
+   if(m_bWindowFrame && m_workset.IsAppearanceEnabled())
    {
       m_workset.layout();
    }
@@ -478,19 +478,31 @@ void simple_frame_window::WfiOnFullScreen(bool bFullScreen)
             dwStyleEx);*/
       }
 
+      if (IsIconic())
+      {
+         ShowWindow(SW_NORMAL);
+      }
+      if (IsIconic())
+      {
+         ShowWindow(SW_NORMAL);
+      }
+
       m_FullScreenWindowRect = rectDesktop;
 
       //if(get_parent() == NULL)
       {
          SetWindowPos(
-            ZORDER_TOP,
+            ZORDER_TOPMOST,
             rectDesktop.left, rectDesktop.top,
             rectDesktop.width(), rectDesktop.height(),
             SWP_FRAMECHANGED |
             SWP_SHOWWINDOW);
 
+        
          //::SetWindowPos(oswindowTrayWindow, 0, 0, 0, 0, 0, SWP_HIDEWINDOW);
       }
+      layout();
+      
    }
    else
    {
@@ -553,7 +565,14 @@ void simple_frame_window::_001OnSysCommand(signal_details * pobj)
       }
       else if(pbase->m_wparam == SC_RESTORE)
       {
-         WfiRestore();
+         if (WfiIsFullScreen())
+         {
+            WfiFullScreen(true, true);
+         }
+         else
+         {
+            WfiRestore();
+         }
          pbase->m_bRet = true;
          pbase->set_lresult(0);
       }
@@ -1561,9 +1580,9 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
 {
    if (!m_bVisible)
       return;
-   if (GetExStyle() & WS_EX_LAYERED
-      || m_etranslucency == TranslucencyTotal
-      || m_etranslucency == TranslucencyPresent)
+//   if (GetExStyle() & WS_EX_LAYERED
+  //    || m_etranslucency == TranslucencyTotal
+//      || m_etranslucency == TranslucencyPresent)
    {
       sp(::user::interaction) pui;
       if (m_pguie != NULL)
@@ -1586,18 +1605,32 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
          pui = get_bottom_child();
       while (pui != NULL)
       {
-         if (pui->IsWindowVisible() && base < MetaButton > ::bases(pui))
+         if (base < MetaButton > ::bases(pui))
          {
-            pui->_000OnDraw(pdc);
+            string str;
+            pui->GetWindowText(str);
+            if (str == "r")
+            {
+               //TRACE0("x button");
+            }
+            if (pui->IsWindowVisible())
+            {
+               if (str == "r")
+               {
+                  //TRACE0("x button visible");
+               }
+               pui->_000OnDraw(pdc);
+            }
+            
          }
          pui = pui->above_sibling();
       }
    }
-   else
-   {
-      _001DrawThis(pdc);
-      _001DrawChildren(pdc);
-   }
+//   else
+  // {
+    //  _001DrawThis(pdc);
+//      _001DrawChildren(pdc);
+//   }
 }
 
 void simple_frame_window::_011OnDraw(::draw2d::graphics *pdc)
@@ -1813,8 +1846,7 @@ return NULL;        // just use the default
 
 bool simple_frame_window::calc_layered()
 {
-   return true;
-   if (m_bLayered)
+   if (m_bLayered && m_etranslucency != TranslucencyNone)
    {
       return !Session.savings().is_trying_to_save(::core::resource_processing)
          && !Session.savings().is_trying_to_save(::core::resource_display_bandwidth);

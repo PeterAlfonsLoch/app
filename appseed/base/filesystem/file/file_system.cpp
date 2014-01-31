@@ -531,7 +531,14 @@ restart:
       {
          ::str::international::unicode_to_utf8(strResult, (const wchar_t *) &storage.get_data()[2], (int32_t)(storage.get_size() - 2));
       }
-      else if(storage.get_size() >= 3
+      else if (storage.get_size() >= 3
+         && storage.get_data()[0] == 255
+         && storage.get_data()[1] == 254
+         && storage.get_data()[2] == 0x73)
+      {
+         ::str::international::unicode_to_utf8(strResult, (const wchar_t *)&storage.get_data()[2], (int32_t)(storage.get_size() - 2));
+      }
+      else if (storage.get_size() >= 3
          && storage.get_data()[0] == 0xef
          && storage.get_data()[1] == 0xbb
          && storage.get_data()[2] == 0xbf)

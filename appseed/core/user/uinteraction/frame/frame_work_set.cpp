@@ -134,7 +134,7 @@ namespace frame
 
    void WorkSet::_001OnDraw(::draw2d::graphics *pdc)
    {
-      if(IsAppearanceEnabled() && m_pframeschema != NULL)
+      if(IsAppearanceEnabled() && m_pframeschema != NULL && !IsFullScreen())
       {
          try
          {
@@ -260,7 +260,7 @@ namespace frame
    bool WorkSet::IsFullScreen()
    {
        if(m_pappearance != NULL)
-           return m_pappearance->IsFullScreen();
+          return m_pappearance->IsFullScreen() && !m_pwndDraw->IsIconic();
        else
            return false;
    }
@@ -517,6 +517,9 @@ namespace frame
 
    void WorkSet::AppearanceUpdateControlBox()
    {
+      if (m_pframeschema == NULL)
+         return;
+      m_pframeschema->UpdateControlBox();
    }
 
    //void WorkSet::OnUp()

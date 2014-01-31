@@ -7,7 +7,7 @@ MetaButton::MetaButton(sp(base_application) papp) :
    m_spregion(allocer())
 {
 
-
+      
 }
 
 MetaButton::~MetaButton()

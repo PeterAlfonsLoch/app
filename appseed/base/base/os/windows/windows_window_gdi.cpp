@@ -78,6 +78,9 @@ void window_gdi::destroy()
 void window_gdi::update_window(oswindow window, COLORREF * pcolorref, LPCRECT lpcrect, int iStride)
 {
 
+   if (width(lpcrect) <= 0 || height(lpcrect) <= 0)
+      return;
+
    if (window == NULL)
       return;
 
@@ -127,7 +130,14 @@ void window_gdi::update_window(oswindow window, COLORREF * pcolorref, LPCRECT lp
 
    bool bLayered = (::GetWindowLong(window, GWL_EXSTYLE) & WS_EX_LAYERED) != 0;
 
-   copy_colorref(m_pcolorref, pcolorref, iStride);
+   try
+   {
+      copy_colorref(m_pcolorref, pcolorref, iStride);
+   }
+   catch (...)
+   {
+
+   }
 
    ::GdiFlush();
 

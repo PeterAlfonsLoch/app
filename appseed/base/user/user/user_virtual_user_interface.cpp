@@ -1322,16 +1322,37 @@ bool virtual_user_interface::ShowWindow(int32_t nCmdShow)
 
       }
 
+      if (m_pimpl != NULL)
+      {
+
+         m_pimpl->m_bVisible = true;
+
+      }
+
    }
    else
    {
 
       m_bVisible = false;
 
+      string str;
+      m_pguie->GetWindowText(str);
+      if (str == "r")
+      {
+         TRACE0("Hiding virtual user interface with text r");
+      }
+
       if(m_pguie != NULL)
       {
 
          m_pguie->m_bVisible = false;
+
+      }
+
+      if (m_pimpl != NULL)
+      {
+
+         m_pimpl->m_bVisible = false;
 
       }
 
@@ -1549,17 +1570,54 @@ void virtual_user_interface::_001OnSize(signal_details * pobj)
 
 bool virtual_user_interface::IsWindowVisible()
 {
-   if(!IsWindow())
+   if (!IsWindow())
+   {
+      string str;
+      m_pguie->GetWindowText(str);
+      if (str == "r")
+      {
+         TRACE0("Hiding virtual user interface with text r Not is window");
+      }
       return FALSE;
+
+   }
    if(m_pguie != NULL)
    {
-      if(!m_pguie->m_bVisible)
+      if (!m_pguie->m_bVisible)
+      {
+         string str;
+         m_pguie->GetWindowText(str);
+         if (str == "r")
+         {
+            TRACE0("Hiding virtual user interface with text r !m_pguie->m_bVisible");
+         }
          return FALSE;
-      if(m_pguie->get_parent() != NULL && !m_pguie->get_parent()->IsWindowVisible())
+
+      }
+      if (m_pguie->get_parent() != NULL && !m_pguie->get_parent()->IsWindowVisible())
+      {
+         string str;
+         m_pguie->GetWindowText(str);
+         if (str == "r")
+         {
+            TRACE0("Hiding virtual user interface with text r");
+         }
+
          return FALSE;
+      }
+         
    }
-   if(!m_bVisible)
+   if (!m_bVisible)
+   {
+      string str;
+      m_pguie->GetWindowText(str);
+      if (str == "r")
+      {
+         TRACE0("Hiding virtual user interface with text r");
+      }
       return FALSE;
+
+   }
    return TRUE;
 }
 

@@ -25,7 +25,9 @@ namespace userpresence
 
       if (!(bool)System.oprop("do_not_initialize_user_presence"))
       {
-         defer_initialize_user_presence();
+         // xxx
+         // defer_initialize_user_presence();
+         //
       }
 
       
