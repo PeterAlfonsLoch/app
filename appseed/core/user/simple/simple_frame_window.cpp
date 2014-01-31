@@ -1593,7 +1593,7 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
 
       while (pui != NULL)
       {
-         if (pui->IsWindowVisible() && !base < MetaButton > ::bases(pui))
+         if (pui->IsWindowVisible() && !base < ::uinteraction::frame::control_box > ::bases(pui))
          {
             pui->_000OnDraw(pdc);
          }
@@ -1606,7 +1606,7 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
          pui = get_bottom_child();
       while (pui != NULL)
       {
-         if (base < MetaButton > ::bases(pui))
+         if (base < ::uinteraction::frame::control_box > ::bases(pui))
          {
             string str;
             pui->GetWindowText(str);

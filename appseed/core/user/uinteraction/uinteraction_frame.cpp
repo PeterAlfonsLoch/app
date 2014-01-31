@@ -11,6 +11,9 @@ namespace uinteraction
 
       frame::frame(sp(base_application) papp)
       {
+
+         m_typeinfoControlBox = System.type_info < MetaControlBox >();
+
       }
 
 

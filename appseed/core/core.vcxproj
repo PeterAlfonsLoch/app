@@ -1570,6 +1570,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\uinteraction\frame\frame.h" />
     <ClInclude Include="user\uinteraction\frame\frame_appearance.h" />
     <ClInclude Include="user\uinteraction\frame\frame_constants.h" />
+    <ClInclude Include="user\uinteraction\frame\frame_control_box.h" />
     <ClInclude Include="user\uinteraction\frame\frame_control_box_button.h" />
     <ClInclude Include="user\uinteraction\frame\frame_dock_manager.h" />
     <ClInclude Include="user\uinteraction\frame\frame_move_manager.h" />
@@ -1629,6 +1630,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user\user_list_header.h" />
     <ClInclude Include="user\user\user_main_frame.h" />
     <ClInclude Include="user\user\user_meta_button.h" />
+    <ClInclude Include="user\user\user_meta_control_box.h" />
     <ClInclude Include="user\user\user_multiple_document_template.h" />
     <ClInclude Include="user\user\user_network_configuration.h" />
     <ClInclude Include="user\user\user_notification_area.h" />
@@ -2183,6 +2185,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\simple\simple_tree_view.cpp" />
     <ClCompile Include="user\uinteraction\frame\frame_appearance.cpp" />
     <ClCompile Include="user\uinteraction\frame\frame_constants.cpp" />
+    <ClCompile Include="user\uinteraction\frame\frame_control_box.cpp" />
     <ClCompile Include="user\uinteraction\frame\frame_control_box_button.cpp" />
     <ClCompile Include="user\uinteraction\frame\frame_dock_manager.cpp" />
     <ClCompile Include="user\uinteraction\frame\frame_move_manager.cpp" />
@@ -2228,6 +2231,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\user\user_main_frame.cpp" />
     <ClCompile Include="user\user\user_menu_list_view.cpp" />
     <ClCompile Include="user\user\user_meta_button.cpp" />
+    <ClCompile Include="user\user\user_meta_control_box.cpp" />
     <ClCompile Include="user\user\user_multiple_document_template.cpp" />
     <ClCompile Include="user\user\user_network_configuration.cpp" />
     <ClCompile Include="user\user\user_notification_area.cpp" />

@@ -177,6 +177,8 @@ retry_license:
 
          System.factory().creatable_small < SimplePushButton > ();
 
+         System.factory().creatable_small < MetaControlBox >();
+
 
       // menu
       System.factory().creatable_small < menu_document > ();

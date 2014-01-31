@@ -2441,6 +2441,12 @@
     <ClInclude Include="filesystem\filemanager\filemanager_data.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\user_meta_control_box.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\uinteraction\frame\frame_control_box.h">
+      <Filter>Header Files\user\uinteraction\frame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="compress\compress_archive.cpp">
@@ -3981,6 +3987,12 @@
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_operation.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_meta_control_box.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\uinteraction\frame\frame_control_box.cpp">
+      <Filter>Source Files\user\uinteraction\frame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
