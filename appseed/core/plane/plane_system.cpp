@@ -2046,11 +2046,10 @@ sp(::command_thread) system::command_thread()
    bool system::set_main_init_data(::core::main_init_data * pdata)
    {
 
-      if(pdata == NULL)
+      if(pdata != NULL)
       {
          if(!::application::set_main_init_data(pdata))
             return false;
-         return true;
       }
 
       property_set set(this);
@@ -2060,8 +2059,8 @@ sp(::command_thread) system::command_thread()
 
       set._008ParseCommandFork(pdata->m_vssCommandLine, varFile, strApp);
 
-      if((varFile.is_empty() && ((!set.has_property("app") && !set.has_property("show_platform"))
-         || set["app"] == "bergedge")) &&
+      if ((varFile.is_empty() && ((!set.has_property("app") && !directrix()->m_varTopicQuery.has_property("cgcl_app") && !set.has_property("show_platform"))
+         || set["app"] == "bergedge" || directrix()->m_varTopicQuery["cgcl_app"] == "bergedge")) &&
          !(set.has_property("install") || set.has_property("uninstall")))
       {
          if(!set.has_property("show_platform") || set["show_platform"] == 1)
@@ -2086,8 +2085,8 @@ sp(::command_thread) system::command_thread()
          command()->add_line(strCommandLine);
       }
 
-      if(!::application::set_main_init_data(pdata))
-         return false;
+      //if(!::application::set_main_init_data(pdata))
+        // return false;
 
       return true;
 
@@ -2199,3 +2198,222 @@ sp(::command_thread) system::command_thread()
 
 
 
+
+
+
+
+simple_app2::simple_app2() :
+base_system(this)
+{
+
+   m_iError = 0;
+
+}
+
+simple_app2::~simple_app2()
+{
+
+}
+
+
+int32_t simple_app2::main()
+{
+
+   //Sleep(15 * 1000);
+
+
+   __argc = _init_args();
+   __targv = _argv;
+   _init_file();
+
+   TCHAR *cmd = GetCommandLine();
+
+   // Skip program name
+   if (*cmd == _T('"'))
+   {
+      while (*cmd && *cmd != _T('"'))
+         cmd++;
+      if (*cmd == _T('"'))
+         cmd++;
+   }
+   else
+   {
+      while (*cmd > _T(' '))
+         cmd++;
+   }
+
+   // Skip any white space
+   while (*cmd && *cmd <= _T(' '))
+      cmd++;
+
+   STARTUPINFO si;
+   si.dwFlags = 0;
+   GetStartupInfo(&si);
+
+   //initialize_primitive_heap(); 
+
+
+   //	_init_atexit();
+   //	_initterm(__xc_a, __xc_z);			// call C++ constructors
+
+   //initialize_primitive_trace();
+
+   if (!os_initialize())
+      return -1;
+
+   if (!main_initialize())
+      return -1;
+
+   body();
+
+   main_finalize();
+
+   os_finalize();
+
+   //finalize_primitive_heap(); 
+
+   //_doexit();
+   _term_args();
+
+   return m_iError;
+
+}
+
+
+void simple_app2::body()
+{
+
+   try
+   {
+      if ((m_iError = simple_app_pre_run()) != 0)
+      {
+
+         if (m_iError != 0)
+            m_iError = -1;
+
+         return;
+
+      }
+   }
+   catch (...)
+   {
+
+      if (m_iError > 0)
+         m_iError = -1;
+
+      return;
+
+   }
+
+
+   try
+   {
+
+      set_main_thread(GetCurrentThread());
+
+      set_main_thread_id(GetCurrentThreadId());
+
+      if ((m_iError = pre_run()) != 0)
+      {
+
+         if (m_iError != 0)
+            m_iError = -1;
+
+         return;
+
+      }
+
+      SetCurrentHandles();
+
+   }
+   catch (...)
+   {
+
+      if (m_iError > 0)
+         m_iError = -1;
+
+      return;
+
+   }
+
+
+   try
+   {
+
+      if (!intro())
+      {
+
+         if (m_iError > 0)
+            m_iError = -1;
+
+         return;
+
+      }
+
+   }
+   catch (...)
+   {
+
+      if (m_iError > 0)
+         m_iError = -1;
+
+      return;
+
+   }
+
+   try
+   {
+
+      m_iError = run();
+
+   }
+   catch (...)
+   {
+
+      if (m_iError > 0)
+         m_iError = -1;
+
+      return;
+
+   }
+
+   try
+   {
+
+      end();
+
+   }
+   catch (...)
+   {
+   }
+
+}
+
+bool simple_app2::intro()
+{
+   return true;
+}
+
+int32_t simple_app2::refrain()
+{
+
+   while (true)
+   {
+      GetMessage(&m_msg, NULL, 0, 0xffffffffu);
+      TranslateMessage(&m_msg);
+      DispatchMessage(&m_msg);
+   }
+
+   return 0;
+}
+
+bool simple_app2::end()
+{
+   return true;
+}
+
+
+int32_t simple_app2::simple_app_pre_run()
+{
+   return 0;
+}

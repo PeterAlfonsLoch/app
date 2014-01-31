@@ -17,9 +17,9 @@ BEGIN_EXTERN_C
 #ifdef WINDOWSEX
 
 
-extern TCHAR *_argv[];
-int32_t _init_args();
-void _term_args();
+CLASS_DECL_BASE extern TCHAR *_argv[];
+CLASS_DECL_BASE int32_t _init_args();
+CLASS_DECL_BASE void _term_args();
 
 #endif
 

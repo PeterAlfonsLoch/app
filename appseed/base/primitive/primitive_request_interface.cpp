@@ -17,6 +17,33 @@ void request_interface::add_line(const char * pszCommandLine, application_bias *
    sp(::create_context) createcontext(canew(create_context(commandcentral)));
    createcontext->m_spApplicationBias = pbiasCreate;
    createcontext->m_spCommandLine->_001ParseCommandLine(pszCommandLine);
+
+   if (createcontext->m_spCommandLine->m_strApp.is_empty())
+   {
+
+      if (get_app()->command_central()->m_varTopicQuery.has_property("cgcl_app"))
+      {
+
+         createcontext->m_spCommandLine->m_varQuery["app"] = get_app()->command_central()->m_varTopicQuery["cgcl_app"];
+         createcontext->m_spCommandLine->m_strApp = createcontext->m_spCommandLine->m_varQuery["app"];
+
+      }
+
+   }
+
+   if (get_app()->command_central()->m_varTopicQuery["build_number"].has_char())
+   {
+
+      createcontext->m_spCommandLine->m_varQuery["build_number"] = get_app()->command_central()->m_varTopicQuery["build_number"];
+
+   }
+   else if (createcontext->m_spCommandLine->m_varQuery["build_number"].is_empty())
+   {
+
+      createcontext->m_spCommandLine->m_varQuery["build_number"] = "basis";
+
+   }
+
    commandcentral->consolidate(createcontext);
    System.command()->consolidate(createcontext);
    create(createcontext);

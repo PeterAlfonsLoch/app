@@ -22,13 +22,13 @@ namespace file
 
 
          virtual string locale_schema(const char * pszLocale = NULL, const char * pszStyle = NULL);
-         virtual string locale_schema_matter(const char * pszLocale = NULL, const char * pszStyle = NULL);
-         virtual string matter(const string & str, bool bDir = false);
-         virtual string matter(const string & str, const string & str2, bool bDir = false);
-         virtual string matter(const string & str, const char * psz, bool bDir = false);
-         virtual string matter(const char * psz, const string & str, bool bDir = false);
-         virtual string matter(const char * lpcsz = NULL, const char * lpcsz2 = NULL, bool bDir = false);
-         virtual string matter(const stringa & stra, bool bDir = false);
+         virtual string locale_schema_matter(const char * pszLocale = NULL, const char * pszStyle = NULL, const char * pszRoot = NULL, const char * pszApp = NULL);
+         virtual string matter(const string & str, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
+         virtual string matter(const string & str, const string & str2, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
+         virtual string matter(const string & str, const char * psz, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
+         virtual string matter(const char * psz, const string & str, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
+         virtual string matter(const char * lpcsz = NULL, const char * lpcsz2 = NULL, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
+         virtual string matter(const stringa & stra, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
 
          virtual void   matter_ls(const string & str, stringa & stra);
          virtual string matter_file(const char * lpcsz = NULL, const char * lpcsz2 = NULL, bool bDir = false);

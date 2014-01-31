@@ -877,6 +877,7 @@ string read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPCTSTR lpcszType)
       UINT FAR* lpnRes = (UINT FAR*)::LockResource(hres);
 
       psz = str.GetBufferSetLength(dwResSize);
+      memcpy(psz, lpnRes, dwResSize);
       psz[dwResSize] = '\0';
       str.ReleaseBuffer(dwResSize);
       ::FreeResource(hres);

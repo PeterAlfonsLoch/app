@@ -450,6 +450,8 @@ void property_set::_008Parse(bool bApp, const char * pszCmdLine, var & varFile, 
       {
          parse.getsplit(str);
       }
+
+      str.trim("\"'");
       
       switch(state)
       {

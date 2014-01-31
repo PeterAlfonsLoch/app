@@ -30,9 +30,9 @@ namespace file
          return m_pbaseapp->m_pbasesystem->m_spdir->locale_schema(get_app(), pszLocale, pszStyle);
       }
 
-      string application::locale_schema_matter(const char * pszLocale, const char * pszStyle)
+      string application::locale_schema_matter(const char * pszLocale, const char * pszStyle, const char * pszRoot, const char * pszApp)
       {
-         return m_pbaseapp->m_pbasesystem->m_spdir->locale_schema_matter(get_app(), pszLocale, pszStyle);
+         return m_pbaseapp->m_pbasesystem->m_spdir->locale_schema_matter(get_app(), pszLocale, pszStyle, pszRoot, pszApp);
       }
 
       void application::matter_ls(const string & str, stringa & stra)
@@ -45,29 +45,29 @@ namespace file
          m_pbaseapp->m_pbasesystem->m_spdir->matter_ls_file(get_app(), str, stra);
       }
 
-      string application::matter(const string & str, bool bDir)
+      string application::matter(const string & str, bool bDir, const char * pszRoot, const char * pszApp)
       {
-         return m_pbaseapp->m_pbasesystem->m_spdir->matter(get_app(), str, bDir);
+         return m_pbaseapp->m_pbasesystem->m_spdir->matter(get_app(), str, bDir, pszRoot, pszApp);
       }
 
-      string application::matter(const string & str, const string & str2, bool bDir)
+      string application::matter(const string & str, const string & str2, bool bDir, const char * pszRoot, const char * pszApp)
       {
-         return m_pbaseapp->m_pbasesystem->m_spdir->matter(get_app(), str, str2, bDir);
+         return m_pbaseapp->m_pbasesystem->m_spdir->matter(get_app(), str, str2, bDir, pszRoot, pszApp);
       }
 
-      string application::matter(const string & str, const char * psz, bool bDir)
+      string application::matter(const string & str, const char * psz, bool bDir, const char * pszRoot, const char * pszApp)
       {
-         return m_pbaseapp->m_pbasesystem->m_spdir->matter(get_app(), str, psz, bDir);
+         return m_pbaseapp->m_pbasesystem->m_spdir->matter(get_app(), str, psz, bDir, pszRoot, pszApp);
       }
 
-      string application::matter(const char * psz, const string & str, bool bDir)
+      string application::matter(const char * psz, const string & str, bool bDir, const char * pszRoot, const char * pszApp)
       {
-         return m_pbaseapp->m_pbasesystem->m_spdir->matter(get_app(), psz, str, bDir);
+         return m_pbaseapp->m_pbasesystem->m_spdir->matter(get_app(), psz, str, bDir, pszRoot, pszApp);
       }
 
-      string application::matter(const char * lpcsz, const char * lpcsz2, bool bDir)
+      string application::matter(const char * lpcsz, const char * lpcsz2, bool bDir, const char * pszRoot, const char * pszApp)
       {
-         return m_pbaseapp->m_pbasesystem->m_spdir->matter(get_app(), lpcsz, lpcsz2, bDir);
+         return m_pbaseapp->m_pbasesystem->m_spdir->matter(get_app(), lpcsz, lpcsz2, bDir, pszRoot, pszApp);
       }
 
       string application::matter_file(const char * lpcsz, const char * lpcsz2, bool bDir)
@@ -110,9 +110,9 @@ namespace file
 
       }
 
-      string application::matter(const stringa & stra, bool bDir)
+      string application::matter(const stringa & stra, bool bDir, const char * pszRoot, const char * pszApp)
       {
-         return m_pbaseapp->m_pbasesystem->m_spdir->matter(get_app(), stra, bDir);
+         return m_pbaseapp->m_pbasesystem->m_spdir->matter(get_app(), stra, bDir, pszRoot, pszApp);
       }
 
       string application::usersystemappdata(const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)
