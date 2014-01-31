@@ -493,6 +493,7 @@ void simple_frame_window::WfiOnFullScreen(bool bFullScreen)
       {
          SetWindowPos(
             ZORDER_TOPMOST,
+            //ZORDER_TOP,
             rectDesktop.left, rectDesktop.top,
             rectDesktop.width(), rectDesktop.height(),
             SWP_FRAMECHANGED |

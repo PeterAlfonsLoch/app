@@ -28,7 +28,7 @@ namespace fontopus
 
       virtual string interactive_auth(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
 
-      virtual string get_cred(LPRECT lprect, string & strUsername, string & strPassword, string strToken);
+      virtual string get_cred(LPRECT lprect, string & strUsername, string & strPassword, string strToken, string strTitle);
 
       virtual string fontopus(LPRECT lprect);
 

@@ -55,6 +55,8 @@ namespace fontopus
       double                        m_dRate;
 
       bool                          m_bCred;
+      string                        m_strCred;
+
 
 
       login(sp(base_application) papp, int left, int top);

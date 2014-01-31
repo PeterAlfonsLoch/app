@@ -158,10 +158,12 @@ namespace fontopus
 
    }
 
-   string simple_ui::get_cred(LPRECT lprect, string & strUsername, string & strPassword, string strToken)
+   string simple_ui::get_cred(LPRECT lprect, string & strUsername, string & strPassword, string strToken, string strTitle)
    {
 
       m_login.m_bCred = true;
+
+      m_login.m_strCred = strTitle;
 
       m_login.m_strRequestingServer = strToken;
 
@@ -541,7 +543,7 @@ namespace fontopus
    }
 
 
-   string CLASS_DECL_BASE get_cred(base_application * papp, LPRECT lprect, string & strUsername, string & strPassword, string strToken)
+   string CLASS_DECL_BASE get_cred(base_application * papp, LPRECT lprect, string & strUsername, string & strPassword, string strToken, string strTitle)
    {
 
       ::fontopus::simple_ui ui(papp);
@@ -552,7 +554,7 @@ namespace fontopus
          return "ok";
          
 
-      return ui.get_cred(lprect, strUsername, strPassword, strToken);
+      return ui.get_cred(lprect, strUsername, strPassword, strToken, strTitle);
 
    }
 

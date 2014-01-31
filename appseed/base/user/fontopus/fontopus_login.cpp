@@ -727,7 +727,29 @@ namespace fontopus
 
       double r = m_dRate;
 
-      draw_ca2_with_border2(pgraphics, (int) (49 * r), (int) (49 * r), (int) ((84 + 1 + 1) * r), 1, 1, crBk, cr, crBorderOut, crBorderIn);
+      if (m_bCred && m_strCred.has_char())
+      {
+         float fHeight = 18.0;
+
+         ::draw2d::font_sp f(allocer());
+
+         /*f->create_pixel_font("Geneva", (int32_t)height(rectClient) * 0.7);
+
+         float fMargin = (height(rectClient) * ((1.0f - 0.7f) / 2.0f));*/
+
+         f->create_point_font("Geneva", fHeight * 1.0);
+
+
+         pgraphics->SelectObject(f);
+
+         pgraphics->set_text_color(crBorderOut);
+         pgraphics->TextOut((int)(49 * r), (int)(49 * r), m_strCred);
+      }
+      else
+      {
+         draw_ca2_with_border2(pgraphics, (int)(49 * r), (int)(49 * r), (int)((84 + 1 + 1) * r), 1, 1, crBk, cr, crBorderOut, crBorderIn);
+      }
+      
 
    }
 
