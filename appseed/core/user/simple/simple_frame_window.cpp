@@ -498,6 +498,12 @@ void simple_frame_window::WfiOnFullScreen(bool bFullScreen)
             rectDesktop.width(), rectDesktop.height(),
             SWP_FRAMECHANGED |
             SWP_SHOWWINDOW);
+         SetWindowPos(
+            ZORDER_TOP,
+            //ZORDER_TOP,
+            0, 0, 0, 0,
+            SWP_FRAMECHANGED | SWP_NOSIZE | SWP_NOMOVE |
+            SWP_SHOWWINDOW);
 
         
          //::SetWindowPos(oswindowTrayWindow, 0, 0, 0, 0, 0, SWP_HIDEWINDOW);
@@ -819,31 +825,6 @@ void simple_frame_window::pre_translate_message(signal_details * pobj)
    SCAST_PTR(::message::base, pbase, pobj);
    if (pbase->m_uiMessage == WM_MOUSEMOVE)
    {
-      if (WfiIsFullScreen())
-      {
-
-         if (m_workset.m_pframeschema->get_control_box().is_set() 
-            && !m_workset.m_pframeschema->get_control_box()->IsWindowVisible()
-            && !m_workset.m_pframeschema->get_control_box()->m_bShowAttempt)
-         {
-            SCAST_PTR(::message::mouse, pmouse, pobj);
-
-            rect rectWindow;
-
-            m_workset.m_pframeschema->get_control_box()->GetWindowRect(rectWindow);
-
-            if (pmouse->m_pt.x >= rectWindow.left && pmouse->m_pt.x <= rectWindow.right
-               && pmouse->m_pt.y == 0)
-            {
-
-               m_workset.m_pframeschema->get_control_box()->m_bShowAttempt = true;
-               m_workset.m_pframeschema->get_control_box()->m_dwShowTime = ::GetTickCount();
-
-            }
-
-         }
-
-      }
 
    }
    else if (pbase->m_uiMessage == WM_KEYDOWN)

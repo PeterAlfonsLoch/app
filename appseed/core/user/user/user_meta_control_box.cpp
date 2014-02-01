@@ -28,7 +28,7 @@ void MetaControlBox::_001OnDraw(::draw2d::graphics * pdc)
 
    pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-   pdc->FillSolidRect(rectClient, ARGB(84, 84, 184, 77));
+   pdc->FillSolidRect(rectClient, ARGB(184, 84, 184, 77));
 
 }
 

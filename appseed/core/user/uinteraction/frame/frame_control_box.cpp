@@ -194,6 +194,42 @@ namespace uinteraction
 
             }
          }
+         else
+         {
+
+            if (m_pworkset->GetDrawWindow().cast < simple_frame_window >()->WfiIsFullScreen())
+            {
+
+               rect rectWindow;
+
+               GetWindowRect(rectWindow);
+
+               point pt(0, 0);
+
+               try
+               {
+
+                  pt = Session.m_ptCursor;
+
+               }
+               catch (...)
+               {
+               }
+
+
+               
+
+               if (pt.x >= rectWindow.left && pt.x <= rectWindow.right && pt.y == 0)
+               {
+
+                  m_bShowAttempt = true;
+                  m_dwShowTime = ::GetTickCount();
+
+               }
+
+            }
+
+         }
 
       }
 
