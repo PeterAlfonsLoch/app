@@ -1,9 +1,6 @@
 #pragma once
 
 
-#include "openssl/ssl.h"
-
-
 #include "windows_registry.h"
 #include "windows_process.h"
 #include "windows_simple_hold_handle.h"
