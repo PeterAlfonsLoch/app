@@ -53,6 +53,8 @@
  *
  */
 
+#include "app/appseed/base/base/base/base.h"
+
 #include <openssl/opensslconf.h>
 
 #ifndef HEADER_E_OS2_H

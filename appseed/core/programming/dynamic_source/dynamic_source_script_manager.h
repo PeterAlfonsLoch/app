@@ -1,7 +1,7 @@
 #pragma once
 
 
-typedef struct rsa_st RSA;
+
 
 namespace webserver
 {

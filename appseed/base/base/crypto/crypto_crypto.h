@@ -3,6 +3,27 @@
 
 //CLASS_DECL_BASE bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt);
 
+#ifdef MACOS
+
+#define BASE_RSA_KEY SecKeyRef
+
+#elif defined(BSD_STYLE_SOCKETS)
+
+typedef struct rsa_st RSA;
+
+#define BASE_RSA_KEY RSA *
+
+#elif defined(METROWIN)
+
+#define BASE_RSA_KEY ::Windows::Security::Cryptography::Core::CryptographicKey ^
+
+#else
+
+#error "BASE_RSA_KEY could not be defined, is RSA implementation missing?"
+
+#endif
+
+
 
 namespace crypto
 {
@@ -69,6 +90,12 @@ namespace crypto
 
       virtual string get_crypt_key_file_path();
       virtual string defer_get_cryptkey();
+
+
+      virtual BASE_RSA_KEY get_new_rsa_key();
+      virtual void free_rsa_key(BASE_RSA_KEY prsa);
+
+
 
 
    };

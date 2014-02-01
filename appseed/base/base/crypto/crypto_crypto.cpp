@@ -813,6 +813,79 @@ namespace crypto
 
    }
 
+   
+#ifdef MACOS
+
+   SecKeyRef crypto::get_new_rsa_key()
+   {
+
+      CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+
+      CFDictionaryAddValue(parameters, kSecAttrKeyType, kSecAttrKeyTypeRSA);
+
+      CFDictionaryAddValue(parameters, kSecAttrKeySizeInBits, (CFTypeRef)1024);
+
+      SecKeyRef prsa = SecKeyGenerateSymmetric(parameters, NULL);
+
+      if (prsa == NULL)
+         return;
+
+      CFRelease(parameters);
+
+      return rsa;
+
+   }
+
+   void crypto::free_rsa_key(SecKeyRef prsa)
+   {
+
+      CFRelease(prsa);
+
+   }
+
+
+#elif defined(BSD_STYLE_SOCKETS)
+
+
+   RSA * crypto::get_new_rsa_key()
+   {
+
+      return RSA_generate_key(1024, 65537, NULL, NULL);
+
+   }
+
+
+   void crypto::free_rsa_key(RSA * prsa)
+   {
+
+      RSA_free(prsa);
+
+   }
+
+
+#else
+
+   ::Windows::Security::Cryptography::Core::CryptographicKey ^ crypto::get_new_rsa_key()
+   {
+
+      ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider ^ provider =
+         ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider::OpenAlgorithm(
+         ::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
+
+      return provider->CreateKeyPair(1024);
+
+   }
+
+   void crypto::free_rsa_key(::Windows::Security::Cryptography::Core::CryptographicKey ^ prsa)
+   {
+
+      UNREFERENCED_PARAMETER(prsa);
+
+   }
+
+#endif
+
+
 
 } // namespace crypto
 

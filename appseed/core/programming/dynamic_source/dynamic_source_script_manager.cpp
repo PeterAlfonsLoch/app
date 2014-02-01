@@ -696,47 +696,35 @@ namespace dynamic_source
 
 #ifdef MACOS
 
-      CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+      SecKeyRef prsa = System.crypto().get_new_rsa_key();
 
-      CFDictionaryAddValue(parameters, kSecAttrKeyType, kSecAttrKeyTypeRSA);
-
-      CFDictionaryAddValue(parameters, kSecAttrKeySizeInBits, (CFTypeRef) 1024);
-
-      SecKeyRef prsa = SecKeyGenerateSymmetric(parameters, NULL);
-
-      if(prsa == NULL)
+      if (prsa == NULL)
          return;
-
-      CFRelease(parameters);
 
 #elif defined(BSD_STYLE_SOCKETS)
 
-      RSA * prsa = RSA_generate_key(1024, 65537, NULL, NULL);
+      RSA * prsa = System.crypto().get_new_rsa_key();
+
+      if (prsa == NULL)
+         return;
 
 #else
 
-      ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider ^ provider =
-         ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider::OpenAlgorithm(
-         ::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
+      ::Windows::Security::Cryptography::Core::CryptographicKey ^ prsa = System.crypto().get_new_rsa_key();
 
-      ::Windows::Security::Cryptography::Core::CryptographicKey ^ prsa = provider->CreateKeyPair(1024);
+      if (prsa == nullptr)
+         return;
 
 #endif
 
       single_lock sl(&m_mutexRsa, TRUE);
+
       m_rsaptra.add(prsa);
+
       if(m_rsaptra.get_size() > 23)
       {
 
-#ifdef MACOS
-
-         CFRelease(m_rsaptra[0]);
-
-#elif defined(BSD_STYLE_SOCKETS)
-
-         RSA_free(m_rsaptra[0]);
-
-#endif
+         System.crypto().free_rsa_key(m_rsaptra[0]);
 
          m_rsaptra.remove_at(0);
       }
