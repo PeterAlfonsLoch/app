@@ -1063,11 +1063,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\data\data_tree.h" />
     <ClInclude Include="core\data\data_tree_item.h" />
     <ClInclude Include="core\data\data_item.h" />
-    <ClInclude Include="core\geoip\geoip.h" />
-    <ClInclude Include="core\geoip\geoip_city.h" />
-    <ClInclude Include="core\geoip\geoip_internal.h" />
-    <ClInclude Include="core\geoip\geoip_update.h" />
-    <ClInclude Include="core\geoip\global.h" />
     <ClInclude Include="core\libcharguess\big5Prober.h" />
     <ClInclude Include="core\libcharguess\charDistribution.h" />
     <ClInclude Include="core\libcharguess\charguess.h" />
@@ -1761,11 +1756,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="core\data\data_tree.cpp" />
     <ClCompile Include="core\data\data_tree_item.cpp" />
     <ClCompile Include="core\data\data_item.cpp" />
-    <ClCompile Include="core\geoip\geoip.cpp" />
-    <ClCompile Include="core\geoip\geoip_city.cpp" />
-    <ClCompile Include="core\geoip\geoip_region_name.cpp" />
-    <ClCompile Include="core\geoip\geoip_time_zone.cpp" />
-    <ClCompile Include="core\geoip\geoip_update.cpp" />
     <ClCompile Include="core\libcharguess\libcharguess.cpp" />
     <ClCompile Include="core\libcharguess\libcharguess_big5Prober.cpp" />
     <ClCompile Include="core\libcharguess\libcharguess_charDistribution.cpp" />

@@ -302,7 +302,7 @@ void _GeoIP_setup_dbfilename() {
 }
 
 
-int32_t GeoIP_db_avail(application * m_pbaseapp, int32_t type) {
+int32_t GeoIP_db_avail(int32_t type) {
    const char * filePath;
    if (type < 0 || type >= NUM_DB_TYPES) {
       return 0;
@@ -312,7 +312,7 @@ int32_t GeoIP_db_avail(application * m_pbaseapp, int32_t type) {
    if (NULL == filePath) {
       return 0;
    }
-   return App(m_pbaseapp).file().exists(filePath);
+   return file_exists_dup(filePath);
 }
 
 static

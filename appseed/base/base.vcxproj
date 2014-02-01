@@ -1239,6 +1239,11 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\exception\exception_unhandled_report.h" />
     <ClInclude Include="base\exception\exception_user.h" />
     <ClInclude Include="base\exception\exception_void_implementation.h" />
+    <ClInclude Include="base\geoip\geoip.h" />
+    <ClInclude Include="base\geoip\geoip_city.h" />
+    <ClInclude Include="base\geoip\geoip_internal.h" />
+    <ClInclude Include="base\geoip\geoip_update.h" />
+    <ClInclude Include="base\geoip\global.h" />
     <ClInclude Include="base\hotplugin\hotplugin.h" />
     <ClInclude Include="base\hotplugin\hotplugin_container_launcher.h" />
     <ClInclude Include="base\hotplugin\hotplugin_host.h" />
@@ -1837,6 +1842,11 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="filesystem\fs\fs_remote_native_fs.h" />
     <ClInclude Include="filesystem\fs\fs_set.h" />
     <ClCompile Include="base\base\base_print_job.cpp" />
+    <ClCompile Include="base\geoip\geoip.cpp" />
+    <ClCompile Include="base\geoip\geoip_city.cpp" />
+    <ClCompile Include="base\geoip\geoip_region_name.cpp" />
+    <ClCompile Include="base\geoip\geoip_time_zone.cpp" />
+    <ClCompile Include="base\geoip\geoip_update.cpp" />
     <ClCompile Include="base\openssl\crypto\evp\evp_cnf.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>

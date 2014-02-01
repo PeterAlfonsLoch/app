@@ -258,9 +258,6 @@
     <Filter Include="Header Files\core\libcharguess">
       <UniqueIdentifier>{7b7c2c1f-7213-497e-9a3f-2adb146b5724}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\core\geoip">
-      <UniqueIdentifier>{b869cccd-625d-4d1b-b005-8270ac4d15a7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\core\install">
       <UniqueIdentifier>{c09a6b2b-5c02-4df3-ba4b-8131a8aa1e40}</UniqueIdentifier>
     </Filter>
@@ -269,9 +266,6 @@
     </Filter>
     <Filter Include="Source Files\core\os">
       <UniqueIdentifier>{d3860369-4c94-40b9-bc4a-300baea8cfd8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\core\geoip">
-      <UniqueIdentifier>{5fcdf9f7-4a55-4f09-92cd-be40278095ff}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\core\install">
       <UniqueIdentifier>{b8258c88-5f05-479d-ae79-9b6deadc4f4f}</UniqueIdentifier>
@@ -1606,21 +1600,6 @@
     </ClInclude>
     <ClInclude Include="core\libcharguess\UTF8Prober.h">
       <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\geoip\geoip.h">
-      <Filter>Header Files\core\geoip</Filter>
-    </ClInclude>
-    <ClInclude Include="core\geoip\geoip_city.h">
-      <Filter>Header Files\core\geoip</Filter>
-    </ClInclude>
-    <ClInclude Include="core\geoip\geoip_internal.h">
-      <Filter>Header Files\core\geoip</Filter>
-    </ClInclude>
-    <ClInclude Include="core\geoip\geoip_update.h">
-      <Filter>Header Files\core\geoip</Filter>
-    </ClInclude>
-    <ClInclude Include="core\geoip\global.h">
-      <Filter>Header Files\core\geoip</Filter>
     </ClInclude>
     <ClInclude Include="core\api\api.h">
       <Filter>Header Files\core\api</Filter>
@@ -3357,21 +3336,6 @@
     </ClCompile>
     <ClCompile Include="core\libcharguess\libcharguess_UTF8Prober.cpp">
       <Filter>Source Files\core\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="core\geoip\geoip.cpp">
-      <Filter>Source Files\core\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="core\geoip\geoip_city.cpp">
-      <Filter>Source Files\core\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="core\geoip\geoip_region_name.cpp">
-      <Filter>Source Files\core\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="core\geoip\geoip_time_zone.cpp">
-      <Filter>Source Files\core\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="core\geoip\geoip_update.cpp">
-      <Filter>Source Files\core\geoip</Filter>
     </ClCompile>
     <ClCompile Include="core\plugin\plugin_history.cpp">
       <Filter>Source Files\core\plugin</Filter>

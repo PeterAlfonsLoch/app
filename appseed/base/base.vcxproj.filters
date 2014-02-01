@@ -729,6 +729,12 @@
     <Filter Include="Source Files\base\openssl\engines\ccgost">
       <UniqueIdentifier>{cf875873-2cc1-492e-a931-3e687893c18b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\base\geoip">
+      <UniqueIdentifier>{a1196ae1-643e-46d0-9f06-361c06e383d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\geoip">
+      <UniqueIdentifier>{403c1ed8-0445-4993-8c2f-5ad393680969}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_wstringtou.h">
@@ -3307,6 +3313,21 @@
     </ClInclude>
     <ClInclude Include="base\base\base_print_job.h">
       <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\geoip\geoip.h">
+      <Filter>Header Files\base\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="base\geoip\geoip_city.h">
+      <Filter>Header Files\base\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="base\geoip\geoip_internal.h">
+      <Filter>Header Files\base\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="base\geoip\geoip_update.h">
+      <Filter>Header Files\base\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="base\geoip\global.h">
+      <Filter>Header Files\base\geoip</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -7111,6 +7132,21 @@
     <ClCompile Include="base\openssl\ssl\s3_cbc.c">
       <Filter>Source Files\base\openssl\ssl</Filter>
     </ClCompile>
+    <ClCompile Include="base\geoip\geoip.cpp">
+      <Filter>Source Files\base\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="base\geoip\geoip_city.cpp">
+      <Filter>Source Files\base\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="base\geoip\geoip_region_name.cpp">
+      <Filter>Source Files\base\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="base\geoip\geoip_time_zone.cpp">
+      <Filter>Source Files\base\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="base\geoip\geoip_update.cpp">
+      <Filter>Source Files\base\geoip</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -7298,6 +7334,9 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
