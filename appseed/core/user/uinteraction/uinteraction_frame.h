@@ -21,6 +21,7 @@ namespace uinteraction
 
       // implemented in core
       class WorkSet;
+      class control_box;
 
       enum EHitTest
       {
@@ -84,6 +85,8 @@ namespace uinteraction
          virtual void OnInitializeAppearance();
          virtual void OnAppearanceModeChange();
          virtual int32_t UpdateControlBox();
+
+         virtual sp(::uinteraction::frame::control_box) get_control_box() = 0;
 
          virtual void SetControlBoxButtonId(e_button ebutton, id id);
          virtual id GetControlId(e_button ebutton);

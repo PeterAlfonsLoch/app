@@ -319,6 +319,7 @@ namespace frame
    {
       if(bFullScreen)
       {
+         m_workset.m_pframeschema->get_control_box()->ShowWindow(SW_HIDE);
          WindowDataSaveWindowRect();
       }
    }

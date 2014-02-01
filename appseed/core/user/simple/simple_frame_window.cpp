@@ -817,7 +817,36 @@ void simple_frame_window::_001OnDdeInitiate(signal_details * pobj)
 void simple_frame_window::pre_translate_message(signal_details * pobj)
 {
    SCAST_PTR(::message::base, pbase, pobj);
-   if(pbase->m_uiMessage == WM_KEYDOWN)
+   if (pbase->m_uiMessage == WM_MOUSEMOVE)
+   {
+      if (WfiIsFullScreen())
+      {
+
+         if (m_workset.m_pframeschema->get_control_box().is_set() 
+            && !m_workset.m_pframeschema->get_control_box()->IsWindowVisible()
+            && !m_workset.m_pframeschema->get_control_box()->m_bShowAttempt)
+         {
+            SCAST_PTR(::message::mouse, pmouse, pobj);
+
+            rect rectWindow;
+
+            m_workset.m_pframeschema->get_control_box()->GetWindowRect(rectWindow);
+
+            if (pmouse->m_pt.x >= rectWindow.left && pmouse->m_pt.x <= rectWindow.right
+               && pmouse->m_pt.y == 0)
+            {
+
+               m_workset.m_pframeschema->get_control_box()->m_bShowAttempt = true;
+               m_workset.m_pframeschema->get_control_box()->m_dwShowTime = ::GetTickCount();
+
+            }
+
+         }
+
+      }
+
+   }
+   else if (pbase->m_uiMessage == WM_KEYDOWN)
    {
 
       SCAST_PTR(::message::key, pkey, pobj);
