@@ -1,1 +1,0 @@
-ypto/sha/shatest.c

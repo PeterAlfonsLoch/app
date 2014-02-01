@@ -1,1 +1,0 @@
-ypto/srp/srptest.c

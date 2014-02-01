@@ -1,1 +1,0 @@
-ypto/rand/randtest.c

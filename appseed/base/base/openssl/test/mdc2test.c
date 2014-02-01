@@ -1,1 +1,0 @@
-ypto/mdc2/mdc2test.c

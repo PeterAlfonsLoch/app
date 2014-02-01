@@ -1,1 +1,0 @@
-ypto/ecdh/ecdhtest.c

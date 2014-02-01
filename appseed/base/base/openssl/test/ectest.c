@@ -1,1 +1,0 @@
-ypto/ec/ectest.c

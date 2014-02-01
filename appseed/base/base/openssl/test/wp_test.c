@@ -1,1 +1,0 @@
-ypto/whrlpool/wp_test.c

@@ -1,1 +1,0 @@
-ypto/ripemd/rmdtest.c
