@@ -54,6 +54,10 @@
 			<Add option="-DOPENSSL_NO_ASM" />
 			<Add option="-DLINUX" />
 			<Add option="-DLIBICONV_PLUG" />
+			<Add option="-DOPENSSL_NO_DYNAMIC_ENGINE" />
+			<Add option="-DOPENSSL_NO_RSAX" />
+			<Add option="-DOPENSSL_NO_HW" />
+			<Add option="-DOPENSSL_NO_RDRAND" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="framework" />
@@ -73,6 +77,8 @@
 			<Add directory="base/openssl/crypto/asn1" />
 			<Add directory="base/openssl/crypto/evp" />
 			<Add directory="base/openssl/crypto/modes" />
+			<Add directory="base/openssl/include" />
+			<Add directory="../../../nodeapp/thirdparty/include" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -1141,6 +1147,9 @@
 		<Unit filename="base/openssl/crypto/comp/comp_lib.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="base/openssl/crypto/conf/Makefile" />
+		<Unit filename="base/openssl/crypto/conf/Makefile.save" />
+		<Unit filename="base/openssl/crypto/conf/README" />
 		<Unit filename="base/openssl/crypto/conf/conf.h" />
 		<Unit filename="base/openssl/crypto/conf/conf_api.c">
 			<Option compilerVar="CC" />
@@ -1165,6 +1174,8 @@
 		<Unit filename="base/openssl/crypto/conf/conf_sap.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="base/openssl/crypto/conf/keysets.pl" />
+		<Unit filename="base/openssl/crypto/conf/ssleay.cnf" />
 		<Unit filename="base/openssl/crypto/cpt_err.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1497,12 +1508,6 @@
 		<Unit filename="base/openssl/crypto/engine/eng_pkey.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/engine/eng_rdrand.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/engine/eng_rsax.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/engine/eng_table.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1625,6 +1630,9 @@
 		</Unit>
 		<Unit filename="base/openssl/crypto/evp/evp.h" />
 		<Unit filename="base/openssl/crypto/evp/evp_acnf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="base/openssl/crypto/evp/evp_cnf.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/evp/evp_enc.c">
@@ -2002,9 +2010,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/pkcs7/pk7_doit.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/pkcs7/pk7_enc.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/pkcs7/pk7_lib.c">
@@ -2654,6 +2659,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/ssl/s3_both.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="base/openssl/ssl/s3_cbc.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/ssl/s3_clnt.c">

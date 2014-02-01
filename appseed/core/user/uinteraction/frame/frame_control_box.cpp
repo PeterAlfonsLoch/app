@@ -112,7 +112,7 @@ namespace uinteraction
          if (pshow->m_bShow)
          {
 
-            m_dwShowTime = ::GetTickCount();
+            m_dwShowTime = ::get_tick_count();
 
          }
 
@@ -128,7 +128,7 @@ namespace uinteraction
          {
             if (m_bDrag)
             {
-               m_dwShowTime = ::GetTickCount();
+               m_dwShowTime = ::get_tick_count();
             }
             else
             {
@@ -144,11 +144,11 @@ namespace uinteraction
 
                      if (rectWindow.contains(Session.m_ptCursor))
                      {
-                        m_dwShowTime = ::GetTickCount();
+                        m_dwShowTime = ::get_tick_count();
                      }
                      else
                      {
-                        if ((::GetTickCount() - m_dwShowTime) > (884))
+                        if ((::get_tick_count() - m_dwShowTime) > (884))
                         {
 
 
@@ -167,7 +167,7 @@ namespace uinteraction
          }
          else if (m_bShowAttempt)
          {
-            if ((::GetTickCount() - m_dwShowTime) > 284)
+            if ((::get_tick_count() - m_dwShowTime) > 284)
             {
                if (m_pworkset->GetDrawWindow().cast < simple_frame_window >() != NULL)
                {
@@ -217,13 +217,13 @@ namespace uinteraction
                }
 
 
-               
+
 
                if (pt.x >= rectWindow.left && pt.x <= rectWindow.right && pt.y == 0)
                {
 
                   m_bShowAttempt = true;
-                  m_dwShowTime = ::GetTickCount();
+                  m_dwShowTime = ::get_tick_count();
 
                }
 

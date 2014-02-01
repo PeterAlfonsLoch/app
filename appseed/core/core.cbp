@@ -17,21 +17,6 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
-					<Add directory="framework" />
-					<Add directory="../../../include" />
-					<Add directory="../../include" />
-					<Add directory="../ca2" />
-					<Add directory="." />
-					<Add directory=".." />
-					<Add directory="../../.." />
-					<Add directory="../../../app" />
-					<Add directory="../../appseedcore" />
-					<Add directory="../../nodeapp/linux" />
-					<Add directory="../../thirdparty" />
-					<Add directory="../../thirdparty/appseed" />
-					<Add directory="../../../app/thirdparty/include" />
-					<Add directory="../../../app/thirdparty/appseed" />
-					<Add directory="../ca" />
 				</Compiler>
 			</Target>
 			<Target title="memdleak">
@@ -76,6 +61,20 @@
 			<Add directory="." />
 			<Add directory="../../.." />
 			<Add directory="../base" />
+			<Add directory="framework" />
+			<Add directory="../../../include" />
+			<Add directory="../../include" />
+			<Add directory=".." />
+			<Add directory="../../../app" />
+			<Add directory="../../appseedcore" />
+			<Add directory="../../nodeapp/linux" />
+			<Add directory="../../thirdparty" />
+			<Add directory="../../thirdparty/appseed" />
+			<Add directory="../../../app/thirdparty/include" />
+			<Add directory="../../../app/thirdparty/appseed" />
+			<Add directory="../ca" />
+			<Add directory="../base/base/openssl/include" />
+			<Add directory="../../../nodeapp/thirdparty/include" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -1303,6 +1302,8 @@
 		<Unit filename="user/uinteraction/frame/frame_appearance.h" />
 		<Unit filename="user/uinteraction/frame/frame_constants.cpp" />
 		<Unit filename="user/uinteraction/frame/frame_constants.h" />
+		<Unit filename="user/uinteraction/frame/frame_control_box.cpp" />
+		<Unit filename="user/uinteraction/frame/frame_control_box.h" />
 		<Unit filename="user/uinteraction/frame/frame_control_box_button.cpp" />
 		<Unit filename="user/uinteraction/frame/frame_control_box_button.h" />
 		<Unit filename="user/uinteraction/frame/frame_dock_manager.cpp" />
@@ -1399,6 +1400,8 @@
 		<Unit filename="user/user/user_menu_list_view.cpp" />
 		<Unit filename="user/user/user_meta_button.cpp" />
 		<Unit filename="user/user/user_meta_button.h" />
+		<Unit filename="user/user/user_meta_control_box.cpp" />
+		<Unit filename="user/user/user_meta_control_box.h" />
 		<Unit filename="user/user/user_multiple_document_template.cpp" />
 		<Unit filename="user/user/user_multiple_document_template.h" />
 		<Unit filename="user/user/user_network_configuration.cpp" />

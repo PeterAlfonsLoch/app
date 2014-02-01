@@ -65,6 +65,8 @@
 			<Add directory="../../../.." />
 			<Add directory="../../../../app" />
 			<Add directory="../../../appseed/base" />
+			<Add directory="../../../appseed/base/base/openssl/include" />
+			<Add directory="../../../../nodeapp/thirdparty/include" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
