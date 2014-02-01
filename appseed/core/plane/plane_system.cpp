@@ -2221,7 +2221,7 @@ int32_t simple_app2::main()
 
    //Sleep(15 * 1000);
 
-
+#ifdef WINDOWS
    __argc = _init_args();
    __targv = _argv;
    _init_file();
@@ -2250,7 +2250,7 @@ int32_t simple_app2::main()
    si.dwFlags = 0;
    GetStartupInfo(&si);
 
-   //initialize_primitive_heap(); 
+   //initialize_primitive_heap();
 
 
    //	_init_atexit();
@@ -2258,22 +2258,34 @@ int32_t simple_app2::main()
 
    //initialize_primitive_trace();
 
+#endif // WINDOWS
+
+#ifdef WINDOWS
+
    if (!os_initialize())
       return -1;
 
+#endif
+
    if (!main_initialize())
       return -1;
+
+
 
    body();
 
    main_finalize();
 
+
+#ifdef WINDOWS
    os_finalize();
 
-   //finalize_primitive_heap(); 
+   //finalize_primitive_heap();
 
    //_doexit();
    _term_args();
+
+#endif
 
    return m_iError;
 
@@ -2309,9 +2321,13 @@ void simple_app2::body()
    try
    {
 
+#ifdef WINDOWS
+
       set_main_thread(GetCurrentThread());
 
       set_main_thread_id(GetCurrentThreadId());
+
+#endif
 
       if ((m_iError = pre_run()) != 0)
       {
@@ -2397,12 +2413,16 @@ bool simple_app2::intro()
 int32_t simple_app2::refrain()
 {
 
+#ifdef WINDOWS
+
    while (true)
    {
       GetMessage(&m_msg, NULL, 0, 0xffffffffu);
       TranslateMessage(&m_msg);
       DispatchMessage(&m_msg);
    }
+
+#endif
 
    return 0;
 }

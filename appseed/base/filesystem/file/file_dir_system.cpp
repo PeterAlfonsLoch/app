@@ -490,12 +490,12 @@ namespace file
       {
 
          bIs = false;
-         
+
          if (::str::begins_ci(lpcszPath, "http://") || ::str::begins_ci(lpcszPath, "https://"))
          {
 
             property_set set(get_app());
-            
+
             bIs = App(papp).http().exists(lpcszPath, set);
 
             return true;
@@ -512,14 +512,14 @@ namespace file
 
          if (papp->m_bZipIsDir && (::str::find_ci(".zip:", lpcszPath) >= 0))
          {
-            
+
             bool bHasSubFolder;
-            
+
             uint32_t dwLastError;
-            
+
             if (m_isdirmap.lookup(lpcszPath, bHasSubFolder, dwLastError))
             {
-               
+
                bIs = bHasSubFolder;
 
                return true;
@@ -527,9 +527,9 @@ namespace file
             }
 
             bHasSubFolder = m_pziputil->HasSubFolder(papp, lpcszPath);
-            
+
             m_isdirmap.set(lpcszPath, bHasSubFolder, ::GetLastError());
-            
+
             bIs = bHasSubFolder;
 
             return true;
@@ -542,7 +542,7 @@ namespace file
 
       bool system::is(const char * lpcszPath, sp(base_application) papp)
       {
-         
+
          bool bIs;
 
          if (!is_or_definitively_not(bIs, lpcszPath, papp) || !bIs)
@@ -579,7 +579,7 @@ namespace file
             bHasSubFolder = m_pziputil->HasSubFolder(papp, strPath);
             m_isdirmap.set(strPath, bHasSubFolder, GetLastError());
             return bHasSubFolder;
-         } 
+         }
          return false;
       }
 
@@ -610,7 +610,7 @@ namespace file
             bHasSubFolder = m_pziputil->HasSubFolder(papp, strPath);
             m_isdirmap.set(strPath, bHasSubFolder, GetLastError());
             return bHasSubFolder;
-         } 
+         }
          return false;
       }
 
@@ -873,7 +873,7 @@ namespace file
          //single_lock sl(&papp->m_mutexMatterLocator, true);
          if (pszRoot != NULL && pszApp != NULL)
          {
-            
+
             string strRoot(pszRoot);
 
             string strDomain(pszApp);
@@ -896,7 +896,7 @@ namespace file
             return path(papp->m_strMatterLocator, papp->get_locale_schema_dir(strLocale, strSchema));
 
          }
-         
+
 
       }
 
@@ -927,7 +927,14 @@ namespace file
 
       string system::matter(sp(base_application) papp, const stringa & stra, bool bDir, const char * pszRoot, const char * pszApp)
       {
-         
+
+        ::user::str_context * pcontext = App(papp).str_context();
+
+         ::index j;
+
+         ::count ca = stra.get_count();
+
+
          string strPath;
 
          string strLocale;
@@ -1105,18 +1112,12 @@ namespace file
 
             }
 
-          
+
          }
 
 
-            ::index j;
-
-            ::count ca = stra.get_count();
-
             if (ca <= 0)
                return "";
-
-            ::user::str_context * pcontext = App(papp).str_context();
 
 
 

@@ -373,9 +373,9 @@ static int ssl_do(struct st_VioSSLFd *ptr, Vio *vio, long timeout,
     if ((cert= SSL_get_peer_certificate (ssl)))
     {
       DBUG_PRINT("info",("Peer certificate:"));
-      OPENSSL_X509_NAME_oneline(X509_get_subject_name(cert), buf, sizeof(buf));
+      X509_NAME_oneline(X509_get_subject_name(cert), buf, sizeof(buf));
       DBUG_PRINT("info",("\t subject: '%s'", buf));
-      OPENSSL_X509_NAME_oneline(X509_get_issuer_name(cert), buf, sizeof(buf));
+      X509_NAME_oneline(X509_get_issuer_name(cert), buf, sizeof(buf));
       DBUG_PRINT("info",("\t issuer: '%s'", buf));
       X509_free(cert);
     }

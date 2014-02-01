@@ -1,11 +1,17 @@
 #include "framework.h"
 
+#ifndef METROWIN
+
+#include <openssl/md5.h>
+
+#endif
+
 
 namespace crypto
 {
 
 
-   namespace md5 
+   namespace md5
    {
 
 
@@ -16,13 +22,13 @@ namespace crypto
 
          m_bEnd = false;
 
-         
+
 
 #ifdef METROWIN
 
          m_posdata = new os_data;
 
-         ::Windows::Security::Cryptography::Core::HashAlgorithmProvider ^ provider = 
+         ::Windows::Security::Cryptography::Core::HashAlgorithmProvider ^ provider =
             ::Windows::Security::Cryptography::Core::HashAlgorithmProvider::OpenAlgorithm(
                ::Windows::Security::Cryptography::Core::HashAlgorithmNames::Md5);
 
@@ -30,7 +36,9 @@ namespace crypto
 
 #else
 
-         MD5_Init(&m_ctx);
+         m_pctx = new MD5_CTX;
+
+         MD5_Init(m_pctx);
 
 #endif
 
@@ -47,6 +55,16 @@ namespace crypto
 
             delete m_posdata;
             m_posdata = NULL;
+
+         }
+
+#else
+
+         if(m_pctx != NULL)
+         {
+
+            delete m_pctx;
+            m_pctx = NULL;
 
          }
 
@@ -80,7 +98,7 @@ namespace crypto
 
             read = min(size - pos, 0xffffffffu);
 
-            MD5_Update(&m_ctx, &((byte *) data)[pos], read);
+            MD5_Update(m_pctx, &((byte *) data)[pos], read);
 
             pos += read;
 
@@ -120,10 +138,10 @@ namespace crypto
             m_memoryDigest.set_os_buffer(m_posdata->m_hash->GetValueAndReset());
 
 #else
-         
+
             m_memoryDigest.allocate(16);
 
-            MD5_Final(m_memoryDigest.get_data(), &m_ctx);
+            MD5_Final(m_memoryDigest.get_data(), m_pctx);
 
 #endif
 
@@ -149,7 +167,7 @@ namespace crypto
 
 #ifndef METROWIN
 
-         MD5_Init(&m_ctx);
+         MD5_Init(m_pctx);
 
 #endif
 
@@ -157,7 +175,7 @@ namespace crypto
 
       }
 
-      
+
 
    } // namespace md5
 

@@ -1,18 +1,13 @@
 #pragma once
 
 
-#ifndef METROWIN
-
-#include <openssl/md5.h>
-
-#endif
-
+typedef struct MD5state_st MD5_CTX;
 
 namespace crypto
 {
 
 
-   namespace md5 
+   namespace md5
    {
 
 
@@ -26,12 +21,12 @@ namespace crypto
          class os_data
          {
          public:
-            
+
             ::Windows::Security::Cryptography::Core::CryptographicHash ^ m_hash;
 
 
          };
-         
+
 
 #else
 
@@ -48,10 +43,10 @@ namespace crypto
          os_data * m_posdata;
 
 #else
-         MD5_CTX                 m_ctx;
+         MD5_CTX *                m_pctx;
 
 #endif
-      
+
          context(sp(base_application) papp);
          virtual ~context();
 
