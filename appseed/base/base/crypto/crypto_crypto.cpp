@@ -816,6 +816,7 @@ namespace crypto
    
 #ifdef MACOS
 
+
    SecKeyRef crypto::get_new_rsa_key()
    {
 
@@ -864,6 +865,7 @@ namespace crypto
 
 
 #else
+
 
    ::Windows::Security::Cryptography::Core::CryptographicKey ^ crypto::get_new_rsa_key()
    {
