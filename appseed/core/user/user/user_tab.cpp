@@ -1018,10 +1018,14 @@ namespace user
             m_rectTab.height(),
             0);*/
 
-         get_data()->m_rectTabClient.left       = get_data()->m_rectTab.left;
-         get_data()->m_rectTabClient.top        = m_bShowTabs ? get_data()->m_rectTab.bottom : rectClient.top;
-         get_data()->m_rectTabClient.right      = get_data()->m_rectTab.right;
-         get_data()->m_rectTabClient.bottom     = rectClient.bottom;
+         rect & rectTabClient = get_data()->m_rectTabClient;
+
+         rectTabClient.left       = get_data()->m_rectTab.left;
+         rectTabClient.top        = m_bShowTabs ? get_data()->m_rectTab.bottom : rectClient.top;
+         rectTabClient.right      = get_data()->m_rectTab.right;
+         rectTabClient.bottom     = rectClient.bottom;
+
+         TRACE0("rectTabClient");
       }
 
       for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
