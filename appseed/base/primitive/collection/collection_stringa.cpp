@@ -1270,3 +1270,30 @@ void stringa::decode_v16(const char * psz)
    return c;
 
 }
+
+
+string stringa::get_json()
+{
+   
+   string str("[");
+
+   for (index i = 1; i < get_count(); i++)
+   {
+      if (i > 0)
+      {
+         str += ", \r\n";
+      }
+
+      str += "\"";
+
+      str += element_at(i);
+
+      str += "\"";
+
+   }
+
+
+   str += "\r\n]";
+
+   return str;
+}

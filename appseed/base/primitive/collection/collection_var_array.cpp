@@ -340,3 +340,27 @@ void var_array::parse_json(const char * & pszJson, const char * pszEnd)
 }
 
 
+
+
+
+
+string var_array::get_json()
+{
+   string str("[");
+
+   for (index i = 1; i < get_count(); i++)
+   {
+      if (i > 0)
+      {
+         str += ", \r\n";
+      }
+
+      str += element_at(i).get_json();
+
+   }
+
+
+   str += "\r\n]";
+
+   return str;
+}

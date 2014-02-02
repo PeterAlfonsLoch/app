@@ -141,6 +141,7 @@ public:
    void _parse_url_query(const char * pszUrlQuery);
    void parse_http_headers(const char * pszHeaders);
    string get_http_post();
+   string get_json();
 
    virtual void write(::file::output_stream & ostream);
    virtual void read(::file::input_stream & ostream);

@@ -691,6 +691,13 @@ namespace numeric_info
       return true;
    }
 
+
+   template < typename T >
+   inline string json(const T & value)
+   {
+      return ::str::from(value);
+   }
+
 } // namespace numeric_info
 
 

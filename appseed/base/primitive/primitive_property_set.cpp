@@ -527,6 +527,37 @@ void property_set::parse_json(const char * & pszJson, const char * pszEnd)
    }
 }
 
+string property_set::get_json()
+{
+
+   string str;
+
+   str = "{";
+
+   for (int i = 0; i < m_propertya.get_count(); i++)
+   {
+      
+      if (i > 0)
+      {
+         str += ", \r\n";
+      }
+      
+      str += "\"";
+      str += m_propertya.element_at(i)->name();
+      str += "\"";
+      str += ":";
+      str += m_propertya.element_at(i)->m_var.get_json();
+
+   }
+
+
+   str += "}";
+
+
+   return str;
+
+}
+
 
 void property_set::parse_url_query(const char * pszUrl)
 {

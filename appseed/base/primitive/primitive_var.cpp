@@ -3756,3 +3756,50 @@ var str_ends_get(const char * lpcsz, const char * lpcszSuffix)
 
 
 
+string var::get_json()
+{
+
+   if (get_type() == var::type_propset)
+   {
+
+      return propset().get_json();
+
+   }
+   else if (get_type() == var::type_stra)
+   {
+
+      return stra().get_json();
+
+   }
+   else if (get_type() == var::type_inta)
+   {
+
+      return inta().get_json();
+
+   }
+   else if (get_type() == var::type_int64a)
+   {
+
+      return int64a().get_json();
+
+   }
+   else if (get_type() == var::type_vara)
+   {
+
+      return vara().get_json();
+
+   }
+   else if (is_numeric())
+   {
+
+      return get_string();
+
+   }
+   else
+   {
+
+      return "\"" + get_string() + "\"";
+
+   }
+
+}

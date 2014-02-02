@@ -181,6 +181,9 @@ public:
    numeric_array & operator += (const numeric_array & a);
 
 
+   string get_json();
+
+
 };
 
 template < class TYPE >
@@ -299,6 +302,32 @@ numeric_array < TYPE >::
    numeric_array(const numeric_array < TYPE > & a)
 {
    this->operator = (a);
+}
+
+
+template < class TYPE >
+string numeric_array < TYPE >::get_json()
+{
+
+
+   string str("[");
+
+   for (index i = 1; i < get_count(); i++)
+   {
+      if (i > 0)
+      {
+         str += ", \r\n";
+      }
+
+      str += ::numeric_info::json(element_at(i));
+
+   }
+
+
+   str += "\r\n]";
+
+   return str; 
+
 }
 
 

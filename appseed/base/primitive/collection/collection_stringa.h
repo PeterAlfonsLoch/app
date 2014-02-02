@@ -147,6 +147,8 @@ public:
    ::count get_count_except_ci(const string & str);
    ::count get_count_except_ci(const stringa & stra);
 
+   string get_json();
+
 };
 
 
