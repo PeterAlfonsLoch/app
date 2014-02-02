@@ -404,14 +404,21 @@ namespace sockets
       }
       for(int i = 0; i < m_request.m_propertysetHeader.m_propertya.get_count(); i++)
       {
-         string strKey = m_request.m_propertysetHeader.m_propertya[i].name();
          string strValue = m_request.m_propertysetHeader.m_propertya[i].get_string();
-         if(strKey.CompareNoCase("host") == 0)
-            continue;
-         strValue.trim();
-         if(strValue.is_empty())
-            continue;
-         msg += strKey + ": " + strValue + "\r\n";
+         if (m_request.m_propertysetHeader.m_propertya[i].name() == __id(content_type))
+         {
+            msg += "Content-Type: " + strValue + "\r\n";
+         }
+         else
+         {
+            string strKey = m_request.m_propertysetHeader.m_propertya[i].name();
+            if (strKey.CompareNoCase("host") == 0)
+               continue;
+            strValue.trim();
+            if (strValue.is_empty())
+               continue;
+            msg += strKey + ": " + strValue + "\r\n";
+         }
       }
       msg += "\r\n";
       write( msg );

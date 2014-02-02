@@ -100,7 +100,16 @@ namespace sockets
 
          string body;
 
-         if(m_fields.has_property("xml") && m_fields["xml"].get_value().get_type() == var::type_element)
+         if (m_fields.has_property("json") && m_fields["json"].get_value().get_type() == var::type_propset)
+         {
+            ::xml::node * pnode = m_fields["xml"].cast < ::xml::node >();
+            body = m_fields["json"].propset().get_json();
+            if (inheader(__id(content_type)).get_string().find_ci("application/json") < 0)
+            {
+               inheader(__id(content_type)) = "application/json" + ::str::has_char(inheader(__id(content_type)).get_string(), "; ");
+            }
+         }
+         else if (m_fields.has_property("xml") && m_fields["xml"].get_value().get_type() == var::type_element)
          {
             ::xml::node * pnode = m_fields["xml"].cast < ::xml::node >();
             body = pnode->get_xml();

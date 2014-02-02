@@ -348,7 +348,7 @@ string var_array::get_json()
 {
    string str("[");
 
-   for (index i = 1; i < get_count(); i++)
+   for (index i = 0; i < get_count(); i++)
    {
       if (i > 0)
       {

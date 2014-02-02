@@ -59,6 +59,7 @@ namespace crypto
       static uint32_t crc32(uint32_t dwPrevious, const char * psz);
       string md5(const char * psz);
       string nessie(const char * psz);
+      string sha1(const char * psz);
 
       string md5(const primitive::memory & mem);
       string sha1(const primitive::memory & mem);

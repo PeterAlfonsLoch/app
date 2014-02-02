@@ -597,6 +597,7 @@ namespace crypto
    }
 
 
+
    string crypto::md5(const primitive::memory & mem)
    {
 
@@ -634,6 +635,51 @@ namespace crypto
       return memSha1.to_hex();
 
    }
+
+   string crypto::sha1(const char * psz)
+   {
+
+      primitive::memory memSha1;
+
+      memSha1.allocate(20);
+
+      string strSha1;
+      //string strSha1_2;
+
+      {
+
+         ::crypto::sha1::CContext ctx;
+
+         ctx.Init();
+
+         ctx.update(psz, strlen(psz));
+
+         memSha1.set(0, memSha1.get_size());
+
+         ctx.Final(memSha1.get_data());
+
+         strSha1 = memSha1.to_hex();
+
+      }
+
+      /*{
+         SHA_CTX ctx;
+         SHA1_Init(&ctx);
+         SHA1_Update(&ctx, psz, strlen(psz));
+
+         memSha1.set(0, memSha1.get_size());
+
+         SHA1_Final(memSha1.get_data(), &ctx);
+
+
+         strSha1_2 = memSha1.to_hex();
+
+      }
+      */
+
+      return strSha1;
+   }
+
 
    void crypto::sha1(primitive::memory & memSha1, const primitive::memory & mem)
    {

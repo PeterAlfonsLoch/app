@@ -278,7 +278,7 @@ namespace sockets
    {
       if(m_content_length == ((size_t)-1))
       {
-         return 0;
+         return m_memoryfile.get_size();
       }
       else
       {
