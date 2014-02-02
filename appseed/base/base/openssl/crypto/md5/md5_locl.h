@@ -85,7 +85,7 @@ void md5_block_data_order (MD5_CTX *c, const void *p,size_t num);
 #define HASH_TRANSFORM		MD5_Transform
 #define HASH_FINAL		MD5_Final
 #define	HASH_MAKE_STRING(c,s)	do {	\
-	unsigned long ll;		\
+	unsigned int ll;		\
 	ll=(c)->A; (void)HOST_l2c(ll,(s));	\
 	ll=(c)->B; (void)HOST_l2c(ll,(s));	\
 	ll=(c)->C; (void)HOST_l2c(ll,(s));	\

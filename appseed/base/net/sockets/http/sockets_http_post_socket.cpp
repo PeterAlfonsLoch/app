@@ -102,7 +102,6 @@ namespace sockets
 
          if (m_fields.has_property("json") && m_fields["json"].get_value().get_type() == var::type_propset)
          {
-            ::xml::node * pnode = m_fields["xml"].cast < ::xml::node >();
             body = m_fields["json"].propset().get_json();
             if (inheader(__id(content_type)).get_string().find_ci("application/json") < 0)
             {

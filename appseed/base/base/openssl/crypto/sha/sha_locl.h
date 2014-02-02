@@ -68,7 +68,7 @@
 #define HASH_CTX                SHA_CTX
 #define HASH_CBLOCK             SHA_CBLOCK
 #define HASH_MAKE_STRING(c,s)   do {	\
-	unsigned long ll;		\
+	unsigned int ll;		\
 	ll=(c)->h0; (void)HOST_l2c(ll,(s));	\
 	ll=(c)->h1; (void)HOST_l2c(ll,(s));	\
 	ll=(c)->h2; (void)HOST_l2c(ll,(s));	\

@@ -755,7 +755,7 @@ int SSL_CTX_use_certificate_chain_file(SSL_CTX *ctx, const char *file)
 					ctx->default_passwd_callback_userdata))
 			!= NULL)
 			{
-			r = SSL_CTX_add_extra_chain_cert(ctx, ca);
+			r = (int) SSL_CTX_add_extra_chain_cert(ctx, ca);
 			if (!r) 
 				{
 				X509_free(ca);

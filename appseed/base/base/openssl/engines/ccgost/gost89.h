@@ -17,7 +17,9 @@ typedef unsigned int u4;
 typedef unsigned long u4; 
 #endif 
 /* Typedef for unsigned 8-bit integer */
-typedef unsigned char byte; 
+#ifndef MACOS
+typedef unsigned char byte;
+#endif
 
 /* Internal representation of GOST substitution blocks */
 typedef struct {

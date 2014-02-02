@@ -934,7 +934,6 @@ namespace file
 
          ::count ca = stra.get_count();
 
-
          string strPath;
 
          string strLocale;
@@ -942,7 +941,9 @@ namespace file
          string strSchema;
 
          string strLs;
-
+         
+         string strFile;
+         
          if (pszRoot != NULL && pszApp != NULL && *pszRoot != '\0' && pszApp != '\0')
          {
 
@@ -971,7 +972,7 @@ namespace file
 
                strLocale = pcontext->m_plocaleschema->m_idLocale;
                strSchema = pcontext->m_plocaleschema->m_idSchema;
-               strLs = locale_schema_matter(papp, strLocale, strSchema);
+               strLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
 
                strFile = System.dir().appdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), stra.implode(",") + ".map_question"));
 
@@ -1004,7 +1005,7 @@ namespace file
 
                   strLocale = pcontext->localeschema().m_idaLocale[i];
                   strSchema = pcontext->localeschema().m_idaSchema[i];
-                  strLs = locale_schema_matter(papp, strLocale, strSchema);
+                  strLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
 
                   for (j = 0; j < ca; j++)
                   {
@@ -1122,8 +1123,6 @@ namespace file
 
 
 #ifdef MATTER_CACHE_FROM_HTTP_SERVER
-
-            string strFile;
 
             {
 
@@ -1347,7 +1346,9 @@ namespace file
          string strLs;
 
          string strPath;
-
+         
+         string strFile;
+         
          if (pszRoot != NULL && pszApp != NULL && *pszRoot != '\0' && *pszApp != '\0')
          {
 
@@ -1358,8 +1359,6 @@ namespace file
 
 #ifdef MATTER_CACHE_FROM_HTTP_SERVER
 
-            string strFile;
-
             {
 
 
@@ -1367,7 +1366,7 @@ namespace file
 
                strLocale = pcontext->m_plocaleschema->m_idLocale;
                strSchema = pcontext->m_plocaleschema->m_idSchema;
-               strLs = locale_schema_matter(papp, strLocale, strSchema);
+               strLs = locale_schema_matter(papp, strLocale, strSchema, pszRoot, pszApp);
 
                strFile = System.dir().appdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), str + ::str::has_char(str2, ",") + ".map_question"));
 
@@ -1396,7 +1395,7 @@ namespace file
                {
                   strLocale = pcontext->localeschema().m_idaLocale[i];
                   strSchema = pcontext->localeschema().m_idaSchema[i];
-                  strLs = locale_schema_matter(papp, strLocale, strSchema);
+                  strLs = locale_schema_matter(papp, strLocale, strSchema, pszRoot, pszApp);
                   straPath.add(path(strLs, str, str2, true));
                }
 
@@ -1485,8 +1484,6 @@ namespace file
 
 
 #ifdef MATTER_CACHE_FROM_HTTP_SERVER
-
-         string strFile;
 
          {
 

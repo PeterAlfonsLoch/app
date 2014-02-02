@@ -304,6 +304,11 @@ numeric_array < TYPE >::
    this->operator = (a);
 }
 
+namespace numeric_info
+{
+   template < typename TYPE > string json(const TYPE & t);
+}
+
 
 template < class TYPE >
 string numeric_array < TYPE >::get_json()
@@ -312,14 +317,14 @@ string numeric_array < TYPE >::get_json()
 
    string str("[");
 
-   for (index i = 1; i < get_count(); i++)
+   for (index i = 1; i < this->get_count(); i++)
    {
       if (i > 0)
       {
          str += ", \r\n";
       }
 
-      str += ::numeric_info::json(element_at(i));
+      str += ::numeric_info::json(this->element_at(i));
 
    }
 

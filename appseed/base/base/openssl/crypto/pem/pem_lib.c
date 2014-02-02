@@ -93,7 +93,7 @@ int PEM_def_callback(char *buf, int num, int w, void *key)
 	int i,j;
 	const char *prompt;
 	if(key) {
-		i=strlen(key);
+		i=(int)strlen(key);
 		i=(i > num)?num:i;
 		memcpy(buf,key,i);
 		return(i);
@@ -112,7 +112,7 @@ int PEM_def_callback(char *buf, int num, int w, void *key)
 			memset(buf,0,(unsigned int)num);
 			return(-1);
 			}
-		j=strlen(buf);
+		j=(int)strlen(buf);
 		if (j < MIN_LENGTH)
 			{
 			fprintf(stderr,"phrase is too short, needs to be at least %d chars\n",MIN_LENGTH);
@@ -151,7 +151,7 @@ void PEM_dek_info(char *buf, const char *type, int len, char *str)
 	BUF_strlcat(buf,"DEK-Info: ",PEM_BUFSIZE);
 	BUF_strlcat(buf,type,PEM_BUFSIZE);
 	BUF_strlcat(buf,",",PEM_BUFSIZE);
-	j=strlen(buf);
+	j=(int)strlen(buf);
 	if (j + (len * 2) + 1 > PEM_BUFSIZE)
         	return;
 	for (i=0; i<len; i++)
@@ -440,7 +440,7 @@ err:
 int PEM_do_header(EVP_CIPHER_INFO *cipher, unsigned char *data, long *plen,
 	     pem_password_cb *callback,void *u)
 	{
-	int i,j,o,klen;
+	int i = 0,j,o,klen;
 	long len;
 	EVP_CIPHER_CTX ctx;
 	unsigned char key[EVP_MAX_KEY_LENGTH];
@@ -600,7 +600,7 @@ int PEM_write_bio(BIO *bp, const char *name, char *header, unsigned char *data,
 	int reason=ERR_R_BUF_LIB;
 	
 	EVP_EncodeInit(&ctx);
-	nlen=strlen(name);
+	nlen=(int)strlen(name);
 
 	if (	(BIO_write(bp,"-----BEGIN ",11) != 11) ||
 		(BIO_write(bp,name,nlen) != nlen) ||
@@ -843,7 +843,7 @@ err:
 
 int pem_check_suffix(const char *pem_str, const char *suffix)
 	{
-	int pem_len = strlen(pem_str);
+	int pem_len = (int)strlen(pem_str);
 	int suffix_len = strlen(suffix);
 	const char *p;
 	if (suffix_len + 1 >= pem_len)

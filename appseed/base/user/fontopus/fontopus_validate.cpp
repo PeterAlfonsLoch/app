@@ -5,6 +5,7 @@
 
 #include <openssl/rsa.h>
 #include <openssl/engine.h>
+#include <openssl/bn.h>
 #include <openssl/err.h>
 
 #endif

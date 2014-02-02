@@ -97,7 +97,7 @@ int PKCS5_PBKDF2_HMAC(const char *pass, int passlen,
 	if(!pass)
 		passlen = 0;
 	else if(passlen == -1)
-		passlen = strlen(pass);
+		passlen = (int) strlen(pass);
 	if (!HMAC_Init_ex(&hctx_tpl, pass, passlen, digest, NULL))
 		{
 		HMAC_CTX_cleanup(&hctx_tpl);
@@ -323,7 +323,7 @@ int PKCS5_v2_PBKDF2_keyivgen(EVP_CIPHER_CTX *ctx, const char *pass, int passlen,
 	/* it seems that its all OK */
 	salt = kdf->salt->value.octet_string->data;
 	saltlen = kdf->salt->value.octet_string->length;
-	iter = ASN1_INTEGER_get(kdf->iter);
+	iter = (int) ASN1_INTEGER_get(kdf->iter);
 	if(!PKCS5_PBKDF2_HMAC(pass, passlen, salt, saltlen, iter, prfmd,
 						   keylen, key))
 		goto err;

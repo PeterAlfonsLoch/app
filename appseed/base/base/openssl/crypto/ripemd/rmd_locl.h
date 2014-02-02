@@ -87,7 +87,7 @@ void ripemd160_block_data_order (RIPEMD160_CTX *c, const void *p,size_t num);
 #define HASH_TRANSFORM          RIPEMD160_Transform
 #define HASH_FINAL              RIPEMD160_Final
 #define	HASH_MAKE_STRING(c,s)	do {	\
-	unsigned long ll;		\
+	unsigned int ll;		\
 	ll=(c)->A; (void)HOST_l2c(ll,(s));	\
 	ll=(c)->B; (void)HOST_l2c(ll,(s));	\
 	ll=(c)->C; (void)HOST_l2c(ll,(s));	\
