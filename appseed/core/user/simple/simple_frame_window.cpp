@@ -1591,9 +1591,9 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
 {
    if (!m_bVisible)
       return;
-//   if (GetExStyle() & WS_EX_LAYERED
-  //    || m_etranslucency == TranslucencyTotal
-//      || m_etranslucency == TranslucencyPresent)
+   if (GetExStyle() & WS_EX_LAYERED
+     || m_etranslucency == TranslucencyTotal
+      || m_etranslucency == TranslucencyPresent)
    {
       sp(::user::interaction) pui;
       if (m_pguie != NULL)
@@ -1637,11 +1637,11 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
          pui = pui->above_sibling();
       }
    }
-//   else
-  // {
-    //  _001DrawThis(pdc);
-//      _001DrawChildren(pdc);
-//   }
+   else
+   {
+      _001DrawThis(pdc);
+      _001DrawChildren(pdc);
+   }
 }
 
 void simple_frame_window::_011OnDraw(::draw2d::graphics *pdc)

@@ -3523,6 +3523,37 @@ bool var::has_property(const char * pszName) const
 
 
 
+void var::consume_identifier(const char * & psz)
+{
+   consume_number(psz, psz + strlen(psz) - 1);
+}
+
+void var::consume_identifier(const char * & psz, const char * pszEnd)
+{
+   const char * pszParse = psz;
+   ::str::consume_spaces(pszParse, 0, pszEnd);
+   const char * pszStart = pszParse;
+   while (isalpha_dup(*pszParse) && pszParse <= pszEnd)
+      pszParse++;
+   string str(pszStart, pszParse - pszStart);
+   if (str.CompareNoCase("false") == 0)
+   {
+      operator = (false);
+   }
+   else if (str.CompareNoCase("true") == 0)
+   {
+      operator = (true);
+   }
+   else if (str.CompareNoCase("NULL") == 0)
+   {
+      set_type(var::type_null);
+   }
+   else
+   {
+      throw "not expected identifier";
+   }
+   psz = pszParse;
+}
 
 
 
@@ -3643,9 +3674,7 @@ void var::parse_json(const char * & pszJson, const char * pszEnd)
    }
    else
    {
-      string str = "not expected character : ";
-      str += pszJson;
-      throw str;
+      consume_identifier(pszJson, pszEnd);
    }
 }
 

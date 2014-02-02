@@ -46,7 +46,11 @@ namespace html
          m_ptag->baseptra().add(ptag);
          m_ptag = ptag;
       }
-      m_ptag->set_name(pTag->getTagName());
+      
+      string strTagName = pTag->getTagName();
+      
+      m_ptag->set_name(strTagName);
+
       if(pTag->getAttributes() != NULL)
       {
          for(int32_t i = 0; i < pTag->getAttributes()->getCount(); i++)

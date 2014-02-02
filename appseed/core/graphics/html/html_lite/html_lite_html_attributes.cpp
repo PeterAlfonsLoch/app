@@ -95,6 +95,11 @@ uint_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const char
    // extract attribute name
    string   strAttrName(lpszBegin, int32_t(lpszEnd - lpszBegin));
 
+   // skip leading white-space characters
+   while (::isspace((uchar)*lpszEnd))
+      lpszEnd++;
+
+
    if (*lpszEnd != '=')
    {
       m_strName = strAttrName;

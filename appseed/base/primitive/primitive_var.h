@@ -574,6 +574,8 @@ public:
 
    void consume_number(const char * & psz);
    void consume_number(const char * & psz, const char * pszEnd);
+   void consume_identifier(const char * & psz);
+   void consume_identifier(const char * & psz, const char * pszEnd);
    void parse_json(const char * & pszJson);
    void parse_json(const char * & pszJson, const char * pszEnd);
 

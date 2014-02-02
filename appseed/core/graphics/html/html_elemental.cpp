@@ -759,9 +759,9 @@ namespace html
 
    void elemental::implement_phase1(data * pdata)
    {
-      if(m_pbase == NULL)
-         return;
       string strTag = get_tag_name();
+      if (m_pbase == NULL)
+         return;
 //      bool tBody = strTag == "tbody";
 //      TRACE("elemental::implement_phase1\nstrTag=%s\n", strTag);
       tag * ptag = get_tag();
