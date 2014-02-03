@@ -3,7 +3,7 @@
 
 #ifndef __cplusplus
 
-#include <assert.h>
+//#include <assert.h>
 
 #define ASSERT assert
 

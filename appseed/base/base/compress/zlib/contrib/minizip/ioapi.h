@@ -41,8 +41,8 @@
 
 #endif
 
-#include <stdio.h>
-#include <stdlib.h>
+////#include <stdio.h>
+//#include <stdlib.h>
 #include "zlib.h"
 
 #if defined(USE_FILE32API)

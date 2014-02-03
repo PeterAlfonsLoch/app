@@ -25,8 +25,8 @@
  */
 
 #include <strstream.h>
-#include <string.h>
-#include <stdio.h>
+//#include <string.h>
+//#include <stdio.h>
 #include "zlib.h"
 
 #if defined(_WIN32)

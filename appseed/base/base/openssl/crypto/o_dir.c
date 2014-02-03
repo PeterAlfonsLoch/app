@@ -10,7 +10,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -56,7 +56,7 @@
  *
  */
 
-#include <errno.h>
+//#include <errno.h>
 #include <e_os.h>
 
 /* The routines really come from the Levitte Programming, so to make

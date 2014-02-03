@@ -13,7 +13,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -60,7 +60,7 @@
  */
 
 #include <openssl/e_os2.h>
-#include <string.h>
+//#include <string.h>
 #include "o_time.h"
 
 #ifdef OPENSSL_SYS_VMS
@@ -155,8 +155,8 @@ struct tm *OPENSSL_gmtime(const time_t *timer, struct tm *result)
 		   below is January 1st 1970 expressed as a VMS time.  The
 		   following code was used to get this number:
 
-		   #include <stdio.h>
-		   #include <stdlib.h>
+		   ////#include <stdio.h>
+		   //#include <stdlib.h>
 		   #include <lib$routines.h>
 		   #include <starlet.h>
 
@@ -292,7 +292,7 @@ int OPENSSL_gmtime_adj(struct tm *tm, int off_day, long offset_sec)
 	tm->tm_sec = offset_hms % 60;
 
 	return 1;
-		
+
 }
 
 /* Convert date to and from julian day
@@ -324,7 +324,7 @@ static void julian_to_date(long jd, int *y, int *m, int *d)
 
 #ifdef OPENSSL_TIME_TEST
 
-#include <stdio.h>
+////#include <stdio.h>
 
 /* Time checking test code. Check times are identical for a wide range of
  * offsets. This should be run on a machine with 64 bit time_t or it will

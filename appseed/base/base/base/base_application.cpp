@@ -8,11 +8,13 @@ void openURL(const string &url_str);
 #endif
 
 #if defined(LINUX)
-#define _GNU_SOURCE
-#include <link.h>
+#ifdef _GNU_SOURCE
+#undef _GNU_SOURCE
 #endif
-
-#if defined(LINUX) || defined(MACOS)
+#define _GNU_SOURCE
+#define __USE_GNU
+#include <link.h>
+#elif defined(MACOS)
 #include <dlfcn.h>
 #endif
 
@@ -4247,16 +4249,16 @@ int32_t base_application::exit_instance()
 
       if (!destroy_message_queue())
       {
-      
+
          TRACE("Could not finalize message window");
-         
+
       }
 
       application_signal_details signal(this, m_psignal, application_signal_exit_instance);
-      
+
       try
       {
-      
+
          m_psignal->emit(&signal);
       }
       catch (...)
