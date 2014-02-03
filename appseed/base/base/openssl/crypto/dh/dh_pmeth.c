@@ -9,7 +9,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -55,7 +55,7 @@
  *
  */
 
-#include <stdio.h>
+//#include <stdio.h>
 #include "cryptlib.h"
 #include <openssl/asn1t.h>
 #include <openssl/x509.h>
@@ -90,7 +90,7 @@ static int pkey_dh_init(EVP_PKEY_CTX *ctx)
 	ctx->data = dctx;
 	ctx->keygen_info = dctx->gentmp;
 	ctx->keygen_info_count = 2;
-	
+
 	return 1;
 	}
 
@@ -139,7 +139,7 @@ static int pkey_dh_ctrl(EVP_PKEY_CTX *ctx, int type, int p1, void *p2)
 		}
 	}
 
-			
+
 static int pkey_dh_ctrl_str(EVP_PKEY_CTX *ctx,
 			const char *type, const char *value)
 	{
@@ -217,7 +217,7 @@ static int pkey_dh_derive(EVP_PKEY_CTX *ctx, unsigned char *key, size_t *keylen)
 	return 1;
 	}
 
-const EVP_PKEY_METHOD dh_pkey_meth = 
+const EVP_PKEY_METHOD dh_pkey_meth =
 	{
 	EVP_PKEY_DH,
 	EVP_PKEY_FLAG_AUTOARGLEN,

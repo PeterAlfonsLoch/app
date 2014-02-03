@@ -35,7 +35,7 @@
 #include <inttypes.h>
 #endif
 
-#include <string.h>
+//#include <string.h>
 #include <openssl/err.h>
 #include "ec_lcl.h"
 
@@ -1012,7 +1012,7 @@ point_double(felem x_out, felem y_out, felem z_out,
 	/* beta[i] < 2^61 + 2^60 + 2^16 */
 	felem_mul(tmp, alpha, beta);
 	/* tmp[i] < 17*((2^59 + 2^14)(2^61 + 2^60 + 2^16))
-	 *        = 17*(2^120 + 2^75 + 2^119 + 2^74 + 2^75 + 2^30) 
+	 *        = 17*(2^120 + 2^75 + 2^119 + 2^74 + 2^75 + 2^30)
 	 *        = 17*(2^120 + 2^119 + 2^76 + 2^74 + 2^30)
 	 *        < 2^128 */
 	felem_square(tmp2, gamma);

@@ -34,7 +34,7 @@
 #include <inttypes.h>
 #endif
 
-#include <string.h>
+//#include <string.h>
 #include <openssl/err.h>
 #include "ec_lcl.h"
 

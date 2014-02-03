@@ -7,7 +7,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -67,13 +67,13 @@
  * also Appendix 2.2 of FIPS PUB 186-1 (i.e. use SHA as defined in
  * FIPS PUB 180-1) */
 #define HASH    EVP_sha1()
-#endif 
+#endif
 
 static void *dummy=&dummy;
 
 #ifndef OPENSSL_NO_SHA
 
-#include <stdio.h>
+//#include <stdio.h>
 #include <time.h>
 #include "cryptlib.h"
 #include <openssl/evp.h>

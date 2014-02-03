@@ -21,7 +21,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -68,7 +68,7 @@
  */
 
 #include "ech_locl.h"
-#include <string.h>
+//#include <string.h>
 #ifndef OPENSSL_NO_ENGINE
 #include <openssl/engine.h>
 #endif
@@ -92,7 +92,7 @@ void ECDH_set_default_method(const ECDH_METHOD *meth)
 
 const ECDH_METHOD *ECDH_get_default_method(void)
 	{
-	if(!default_ECDH_method) 
+	if(!default_ECDH_method)
 		{
 #ifdef OPENSSL_FIPS
 		if (FIPS_mode())
@@ -129,7 +129,7 @@ int ECDH_set_method(EC_KEY *eckey, const ECDH_METHOD *meth)
 #endif
         ecdh->meth = meth;
 #if 0
-        if (meth->init) 
+        if (meth->init)
 		meth->init(eckey);
 #endif
         return 1;
@@ -175,7 +175,7 @@ static ECDH_DATA *ECDH_DATA_new_method(ENGINE *engine)
 		OPENSSL_free(ret);
 		ret=NULL;
 		}
-#endif	
+#endif
 	return(ret);
 	}
 
@@ -214,7 +214,7 @@ void ecdh_data_free(void *data)
 ECDH_DATA *ecdh_check(EC_KEY *key)
 	{
 	ECDH_DATA *ecdh_data;
- 
+
 	void *data = EC_KEY_get_key_method_data(key, ecdh_data_dup,
 					ecdh_data_free, ecdh_data_free);
 	if (data == NULL)
@@ -242,7 +242,7 @@ ECDH_DATA *ecdh_check(EC_KEY *key)
 		return NULL;
 		}
 #endif
-	
+
 
 	return ecdh_data;
 	}

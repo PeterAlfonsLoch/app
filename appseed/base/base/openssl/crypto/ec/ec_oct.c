@@ -10,7 +10,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -57,11 +57,11 @@
  */
 /* ====================================================================
  * Copyright 2002 Sun Microsystems, Inc. ALL RIGHTS RESERVED.
- * Binary polynomial ECC support in OpenSSL originally developed by 
+ * Binary polynomial ECC support in OpenSSL originally developed by
  * SUN MICROSYSTEMS, INC., and contributed to the OpenSSL project.
  */
 
-#include <string.h>
+//#include <string.h>
 
 #include <openssl/err.h>
 #include <openssl/opensslv.h>
@@ -159,7 +159,7 @@ size_t EC_POINT_point2oct(const EC_GROUP *group, const EC_POINT *point, point_co
 							form, buf, len, ctx);
 #endif
 		}
-			
+
 	return group->meth->point2oct(group, point, form, buf, len, ctx);
 	}
 

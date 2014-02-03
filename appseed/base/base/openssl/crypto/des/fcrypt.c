@@ -1,5 +1,5 @@
 /* NOCW */
-#include <stdio.h>
+//#include <stdio.h>
 #ifdef _OSD_POSIX
 #ifndef CHARSET_EBCDIC
 #define CHARSET_EBCDIC 1
@@ -25,7 +25,7 @@
 #include "des_locl.h"
 
 /* Added more values to handle illegal salt values the way normal
- * crypt() implementations do.  The patch was sent by 
+ * crypt() implementations do.  The patch was sent by
  * Bjorn Gronvall <bg@sics.se>
  */
 static unsigned const char con_salt[128]={
@@ -90,7 +90,7 @@ char *DES_crypt(const char *buf, const char *salt)
 
 	/* Convert the result back to EBCDIC */
 	ascii2ebcdic(ret, ret, strlen(ret));
-	
+
 	return ret;
 #endif
 	}

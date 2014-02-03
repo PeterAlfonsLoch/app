@@ -7,7 +7,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -57,8 +57,8 @@
 #ifndef OPENSSL_NO_SEED
 #include <openssl/evp.h>
 #include <openssl/err.h>
-#include <string.h>
-#include <assert.h>
+//#include <string.h>
+//#include <assert.h>
 #include <openssl/seed.h>
 #include "evp_locl.h"
 
