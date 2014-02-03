@@ -57,7 +57,7 @@ typedef void* iconv_t;
 #include <stddef.h>
 
 /* Get errno declaration and values. */
-#include <errno.h>
+//#include <errno.h>
 /* Some systems, like SunOS 4, don't have EILSEQ. Some systems, like BSD/OS,
    have EILSEQ in a different header.  On these systems, define EILSEQ
    ourselves. */
@@ -111,7 +111,7 @@ extern LIBICONV_DLL_EXPORTED int iconv_close (iconv_t cd);
    BSD/OS 4.0.1 has a bug: <stddef.h>, <stdio.h> and <time.h> must be
    included before <wchar.h>.  */
 #include <stddef.h>
-#include <stdio.h>
+//#include <stdio.h>
 #include <time.h>
 #endif
 #include <wchar.h>

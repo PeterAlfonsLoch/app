@@ -71,7 +71,7 @@
 #endif
 
 /* Get LONG_MIN, LONG_MAX, ULONG_MAX.  */
-#include <limits.h>
+//#include <limits.h>
 
 #if @HAVE_INTTYPES_H@
   /* In OpenBSD 3.8, <inttypes.h> includes <machine/types.h>, which defines

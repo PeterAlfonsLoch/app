@@ -2,7 +2,7 @@
 
 
 #ifdef LINUX
-#include <ctype.h>
+//#include <ctype.h>
 #endif
 
 
@@ -709,7 +709,7 @@ namespace str
       {
 
          char szFind[256];
-         
+
          memcpy(szFind, pszFind, iFindLen + 1);
 
          make_lower(szFind);

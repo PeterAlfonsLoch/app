@@ -23,7 +23,7 @@
 /* Specification.  */
 #include "xreadlink.h"
 
-#include <errno.h>
+//#include <errno.h>
 
 #include "areadlink.h"
 #include "xalloc.h"

@@ -22,10 +22,10 @@
 
 #include "careadlinkat.h"
 
-#include <errno.h>
-#include <limits.h>
-#include <stdlib.h>
-#include <string.h>
+//#include <errno.h>
+//#include <limits.h>
+//#include <stdlib.h>
+//#include <string.h>
 #include <unistd.h>
 
 /* Define this independently so that stdint.h is not a prerequisite.  */

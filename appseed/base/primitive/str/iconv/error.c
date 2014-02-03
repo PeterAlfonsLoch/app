@@ -24,9 +24,9 @@
 #include "error.h"
 
 #include <stdarg.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+////#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
 
 #if !_LIBC && ENABLE_NLS
 # include "gettext.h"

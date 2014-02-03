@@ -23,7 +23,7 @@
 
 /* The MSVC7 <stdio.h> doesn't like to be included after '#define fileno ...',
    so we include it here first.  */
-#include <stdio.h>
+//#include <stdio.h>
 
 /* SET_BINARY (fd);
    changes the file descriptor fd to perform binary I/O.  */

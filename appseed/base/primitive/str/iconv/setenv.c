@@ -26,14 +26,14 @@
 #include <alloca.h>
 
 /* Specification.  */
-#include <stdlib.h>
+//#include <stdlib.h>
 
-#include <errno.h>
+//#include <errno.h>
 #ifndef __set_errno
 # define __set_errno(ev) ((errno) = (ev))
 #endif
 
-#include <string.h>
+//#include <string.h>
 #if _LIBC || HAVE_UNISTD_H
 # include <unistd.h>
 #endif

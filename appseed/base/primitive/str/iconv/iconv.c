@@ -20,8 +20,8 @@
 
 #include <iconv.h>
 
-#include <stdlib.h>
-#include <string.h>
+//#include <stdlib.h>
+//#include <string.h>
 #include "config.h"
 #include "localcharset.h"
 

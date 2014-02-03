@@ -30,11 +30,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "framework.h"
 #ifdef _WIN32
 #else
-#include <errno.h>
+//#include <errno.h>
 #include <netdb.h>
 #include <fcntl.h>
 #endif
-//#include <ctype.h>
+////#include <ctype.h>
 
 
 namespace sockets
@@ -343,7 +343,7 @@ namespace sockets
 
    bool base_socket::SetNonblocking(bool bNb, SOCKET s)
    {
-      
+
       UNREFERENCED_PARAMETER(bNb);
       UNREFERENCED_PARAMETER(s);
 
@@ -666,7 +666,7 @@ namespace sockets
 
       if(m_bClient && m_bEnablePool)
       {
-      
+
          m_bRetain = true;
 
       }
@@ -1944,7 +1944,7 @@ namespace sockets
 
    string base_socket::get_short_description()
    {
-      
+
       return System.net().canonical_name(GetRemoteAddress());
 
    }

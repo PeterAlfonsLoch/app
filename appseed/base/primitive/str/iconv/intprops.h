@@ -20,7 +20,7 @@
 #ifndef _GL_INTPROPS_H
 #define _GL_INTPROPS_H
 
-#include <limits.h>
+//#include <limits.h>
 
 /* Return an integer value, converted to the same type as the integer
    expression E after integer type promotion.  V is the unconverted value.  */

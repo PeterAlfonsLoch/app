@@ -18,7 +18,7 @@
 #include "config.h"
 
 /* Specification.  */
-#include <stdio.h>
+//#include <stdio.h>
 
 /* Replace these functions only if module 'nonblocking' or module 'sigpipe' is
    requested.  */

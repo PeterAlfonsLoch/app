@@ -29,7 +29,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#include <errno.h>
+//#include <errno.h>
 
 #ifdef EINTR
 # define IS_EINTR(x) ((x) == EINTR)
@@ -37,7 +37,7 @@
 # define IS_EINTR(x) 0
 #endif
 
-#include <limits.h>
+//#include <limits.h>
 
 #ifdef SAFE_WRITE
 # define safe_rw safe_write

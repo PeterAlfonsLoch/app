@@ -35,10 +35,10 @@
 #include "c/c/mutex.h"
 #include "c/c/single_lock.h"
 #include <stdarg.h>
-#include <stdlib.h>
-#include <errno.h>
-#include <string.h>
-#include <limits.h>
+//#include <stdlib.h>
+//#include <errno.h>
+//#include <string.h>
+//#include <limits.h>
 #include <time.h>
 #ifdef HAVE_SYS_TIME_H
 # include <sys/time.h>

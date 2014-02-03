@@ -8,9 +8,9 @@
 #pragma once
 /*
 #ifdef _WIN32
-#include <stdlib.h>
+//#include <stdlib.h>
 #else
-#include <errno.h>
+//#include <errno.h>
 #endif
 */
 
@@ -122,7 +122,7 @@
          {
 
 #ifdef USE_SCTP
-            
+
             if (dynamic_cast<SctpSocket *>(m_creator))
             {
 

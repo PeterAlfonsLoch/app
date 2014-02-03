@@ -13,7 +13,7 @@
 #ifdef LINUX
 #include <dlfcn.h>
 #include <link.h>
-#include <ctype.h>
+//#include <ctype.h>
 #elif defined(MACOS)
 #include <dlfcn.h>
 #include <mach-o/dyld.h>

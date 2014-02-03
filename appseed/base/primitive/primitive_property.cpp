@@ -1,7 +1,7 @@
 #include "framework.h"
 
 #if defined(LINUX)
-#include <ctype.h>
+//#include <ctype.h>
 #endif
 
 

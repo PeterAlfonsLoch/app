@@ -7,7 +7,7 @@
 
 
 #if defined(LINUX)
-#include <ctype.h>
+//#include <ctype.h>
 #endif
 
 
@@ -396,7 +396,7 @@ namespace mail
          break;
          default:
             break;
-            
+
       }
    }
 

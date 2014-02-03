@@ -18,7 +18,7 @@
  * Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
- #include <errno.h>
+ //#include <errno.h>
 
 #ifndef EILSEQ
 #define EILSEQ 0x02

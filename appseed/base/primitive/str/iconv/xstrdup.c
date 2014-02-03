@@ -19,7 +19,7 @@
 /* Specification.  */
 #include "xalloc.h"
 
-#include <string.h>
+//#include <string.h>
 
 /* Return a newly allocated copy of the N bytes of memory starting at P.  */
 

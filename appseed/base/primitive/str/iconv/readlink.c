@@ -19,8 +19,8 @@
 /* Specification.  */
 #include <unistd.h>
 
-#include <errno.h>
-#include <string.h>
+//#include <errno.h>
+//#include <string.h>
 #include <sys/stat.h>
 
 #if !HAVE_READLINK

@@ -19,7 +19,7 @@
 /* Specification.  */
 #include "xalloc.h"
 
-#include <stdlib.h>
+//#include <stdlib.h>
 
 #include "error.h"
 #include "gettext.h"

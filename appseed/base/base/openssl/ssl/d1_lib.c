@@ -1,7 +1,7 @@
 /* ssl/d1_lib.c */
-/* 
+/*
  * DTLS implementation written by Nagendra Modadugu
- * (nagendra@cs.stanford.edu) for the OpenSSL project 2005.  
+ * (nagendra@cs.stanford.edu) for the OpenSSL project 2005.
  */
 /* ====================================================================
  * Copyright (c) 1999-2005 The OpenSSL Project.  All rights reserved.
@@ -11,7 +11,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -57,7 +57,7 @@
  *
  */
 
-#include <stdio.h>
+//#include <stdio.h>
 #define USE_SOCKETS
 #include <openssl/objects.h>
 #include "ssl_locl.h"
@@ -113,7 +113,7 @@ int dtls1_new(SSL *s)
 		d1->cookie_len = sizeof(s->d1->cookie);
 		}
 
-	if( ! d1->unprocessed_rcds.q || ! d1->processed_rcds.q 
+	if( ! d1->unprocessed_rcds.q || ! d1->processed_rcds.q
         || ! d1->buffered_messages || ! d1->sent_messages || ! d1->buffered_app_data.q)
 		{
         if ( d1->unprocessed_rcds.q) pqueue_free(d1->unprocessed_rcds.q);
@@ -307,7 +307,7 @@ void dtls1_start_timer(SSL *s)
 		{
 		s->d1->timeout_duration = 1;
 		}
-	
+
 	/* Set timeout to current time */
 	get_current_time(&(s->d1->next_timeout));
 
@@ -356,7 +356,7 @@ struct timeval* dtls1_get_timeout(SSL *s, struct timeval* timeleft)
 		{
 		memset(timeleft, 0, sizeof(struct timeval));
 		}
-	
+
 
 	return timeleft;
 	}
@@ -377,7 +377,7 @@ int dtls1_is_timer_expired(SSL *s)
 		return 0;
 		}
 
-	/* Timer expired, so return true */	
+	/* Timer expired, so return true */
 	return 1;
 	}
 
@@ -407,7 +407,7 @@ int dtls1_check_timeout_num(SSL *s)
 	/* Reduce MTU after 2 unsuccessful retransmissions */
 	if (s->d1->timeout.num_alerts > 2)
 		{
-		s->d1->mtu = BIO_ctrl(SSL_get_wbio(s), BIO_CTRL_DGRAM_GET_FALLBACK_MTU, 0, NULL);		
+		s->d1->mtu = BIO_ctrl(SSL_get_wbio(s), BIO_CTRL_DGRAM_GET_FALLBACK_MTU, 0, NULL);
 		}
 
 	if (s->d1->timeout.num_alerts > DTLS1_TMO_ALERT_COUNT)
@@ -477,7 +477,7 @@ int dtls1_listen(SSL *s, struct sockaddr *client)
 
 	ret = SSL_accept(s);
 	if (ret <= 0) return ret;
-	
+
 	(void) BIO_dgram_get_peer(SSL_get_rbio(s), client);
 	return 1;
 	}

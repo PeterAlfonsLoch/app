@@ -8,7 +8,7 @@
 
 #ifndef WINDOWS
 #include <sys/stat.h>
-#include <ctype.h>
+//#include <ctype.h>
 #endif
 
 CLASS_DECL_BASE void NESSIEinit(struct NESSIEstruct * const structpointer);

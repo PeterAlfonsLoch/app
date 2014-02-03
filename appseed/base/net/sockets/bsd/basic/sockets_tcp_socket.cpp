@@ -3,7 +3,7 @@
 
 
 #include <fcntl.h>
-#include <assert.h>
+//#include <assert.h>
 #include <openssl/rand.h>
 #include <openssl/err.h>
 

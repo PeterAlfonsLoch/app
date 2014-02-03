@@ -2,7 +2,7 @@
 
 
 #if defined(LINUX)
-#include <ctype.h>
+//#include <ctype.h>
 #endif
 
 
@@ -991,7 +991,7 @@ namespace url
    {
 
       string strValue;
-      
+
       if(!query_get_param(strValue, strQuery, strKey))
          return "";
 
@@ -1130,7 +1130,7 @@ namespace url
             {
                return (strQuery.length() - (strKey.length() + 1)) > 0;
             }
-            
+
          }
 
       }

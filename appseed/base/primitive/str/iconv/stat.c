@@ -33,10 +33,10 @@ orig_stat (const char *filename, struct stat *buf)
 /* Specification.  */
 #include <sys/stat.h>
 
-#include <errno.h>
-#include <limits.h>
+//#include <errno.h>
+//#include <limits.h>
 #include <stdbool.h>
-#include <string.h>
+//#include <string.h>
 #include "dosname.h"
 #include "verify.h"
 

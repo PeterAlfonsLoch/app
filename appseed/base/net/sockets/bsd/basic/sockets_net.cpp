@@ -9,8 +9,8 @@
 #define	NI_MAXHOST	1025
 #define	NI_MAXSERV	32
 #endif
-#define __USE_MISC
-#include <ctype.h>
+//#define __USE_MISC
+//#include <ctype.h>
 #endif
 
 

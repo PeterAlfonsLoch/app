@@ -5,21 +5,21 @@
  * This package is an SSL implementation written
  * by Eric Young (eay@cryptsoft.com).
  * The implementation was written so as to conform with Netscapes SSL.
- * 
+ *
  * This library is free for commercial and non-commercial use as long as
  * the following conditions are aheared to.  The following conditions
  * apply to all code found in this distribution, be it the RC4, RSA,
  * lhash, DES, etc., code; not just the SSL code.  The SSL documentation
  * included with this distribution is covered by the same copyright terms
  * except that the holder is Tim Hudson (tjh@cryptsoft.com).
- * 
+ *
  * Copyright remains Eric Young's, and as such any Copyright notices in
  * the code are not to be removed.
  * If this package is used in a product, Eric Young should be given attribution
  * as the author of the parts of the library used.
  * This can be in the form of a textual message at program startup or
  * in documentation (online or textual) provided with the package.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -34,10 +34,10 @@
  *     Eric Young (eay@cryptsoft.com)"
  *    The word 'cryptographic' can be left out if the rouines from the library
  *    being used are not cryptographic related :-).
- * 4. If you include any Windows specific code (or a derivative thereof) from 
+ * 4. If you include any Windows specific code (or a derivative thereof) from
  *    the apps directory (application code) you must include an acknowledgement:
  *    "This product includes software written by Tim Hudson (tjh@cryptsoft.com)"
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY ERIC YOUNG ``AS IS'' AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -49,7 +49,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
- * 
+ *
  * The licence and distribution terms for any publically available version or
  * derivative of this code cannot be changed.  i.e. this code cannot simply be
  * copied and put under another distribution licence
@@ -63,7 +63,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -110,13 +110,13 @@
  */
 /* ====================================================================
  * Copyright 2002 Sun Microsystems, Inc. ALL RIGHTS RESERVED.
- * ECC cipher suite support in OpenSSL originally developed by 
+ * ECC cipher suite support in OpenSSL originally developed by
  * SUN MICROSYSTEMS, INC., and contributed to the OpenSSL project.
  */
 
-#include <limits.h>
-#include <string.h>
-#include <stdio.h>
+//#include <limits.h>
+//#include <string.h>
+//#include <stdio.h>
 #include "ssl_locl.h"
 #include <openssl/buffer.h>
 #include <openssl/rand.h>
@@ -136,7 +136,7 @@ int ssl3_do_write(SSL *s, int type)
 		/* should not be done for 'Hello Request's, but in that case
 		 * we'll ignore the result anyway */
 		ssl3_finish_mac(s,(unsigned char *)&s->init_buf->data[s->init_off],ret);
-	
+
 	if (ret == s->init_num)
 		{
 		if (s->msg_callback)
@@ -173,14 +173,14 @@ int ssl3_send_finished(SSL *s, int a, int b, const char *sender, int slen)
                 if(s->type == SSL_ST_CONNECT)
                         {
                          OPENSSL_assert(i <= EVP_MAX_MD_SIZE);
-                         memcpy(s->s3->previous_client_finished, 
+                         memcpy(s->s3->previous_client_finished,
                              s->s3->tmp.finish_md, i);
                          s->s3->previous_client_finished_len=i;
                         }
                 else
                         {
                         OPENSSL_assert(i <= EVP_MAX_MD_SIZE);
-                        memcpy(s->s3->previous_server_finished, 
+                        memcpy(s->s3->previous_server_finished,
                             s->s3->tmp.finish_md, i);
                         s->s3->previous_server_finished_len=i;
                         }
@@ -240,7 +240,7 @@ int ssl3_get_finished(SSL *s, int a, int b)
 #ifdef OPENSSL_NO_NEXTPROTONEG
 	/* the mac has already been generated when we received the
 	 * change cipher spec message and is in s->s3->tmp.peer_finish_md.
-	 */ 
+	 */
 #endif
 
 	n=s->method->ssl_get_message(s,
@@ -283,14 +283,14 @@ int ssl3_get_finished(SSL *s, int a, int b)
         if(s->type == SSL_ST_ACCEPT)
                 {
                 OPENSSL_assert(i <= EVP_MAX_MD_SIZE);
-                memcpy(s->s3->previous_client_finished, 
+                memcpy(s->s3->previous_client_finished,
                     s->s3->tmp.peer_finish_md, i);
                 s->s3->previous_client_finished_len=i;
                 }
         else
                 {
                 OPENSSL_assert(i <= EVP_MAX_MD_SIZE);
-                memcpy(s->s3->previous_server_finished, 
+                memcpy(s->s3->previous_server_finished,
                     s->s3->tmp.peer_finish_md, i);
                 s->s3->previous_server_finished_len=i;
                 }
@@ -310,7 +310,7 @@ f_err:
  * ssl->session->read_hash		assign
  */
 int ssl3_send_change_cipher_spec(SSL *s, int a, int b)
-	{ 
+	{
 	unsigned char *p;
 
 	if (s->state == a)
@@ -464,7 +464,7 @@ long ssl3_get_message(SSL *s, int st1, int stn, int mt, long max, int *ok)
 					}
 				s->init_num+=i;
 				}
-			
+
 			skip_message = 0;
 			if (!s->server)
 				if (p[0] == SSL3_MT_HELLO_REQUEST)
@@ -590,13 +590,13 @@ int ssl_cert_type(X509 *x, EVP_PKEY *pkey)
 	else if (i == EVP_PKEY_EC)
 		{
 		ret = SSL_PKEY_ECC;
-		}	
+		}
 #endif
-	else if (i == NID_id_GostR3410_94 || i == NID_id_GostR3410_94_cc) 
+	else if (i == NID_id_GostR3410_94 || i == NID_id_GostR3410_94_cc)
 		{
 		ret = SSL_PKEY_GOST94;
 		}
-	else if (i == NID_id_GostR3410_2001 || i == NID_id_GostR3410_2001_cc) 
+	else if (i == NID_id_GostR3410_2001 || i == NID_id_GostR3410_2001_cc)
 		{
 		ret = SSL_PKEY_GOST01;
 		}
@@ -743,7 +743,7 @@ int ssl3_setup_read_buffer(SSL *s)
 	{
 	unsigned char *p;
 	size_t len,align=0,headerlen;
-	
+
 	if (SSL_version(s) == DTLS1_VERSION || SSL_version(s) == DTLS1_BAD_VER)
 		headerlen = DTLS1_RT_HEADER_LENGTH;
 	else
