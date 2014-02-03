@@ -498,12 +498,12 @@ void simple_frame_window::WfiOnFullScreen(bool bFullScreen)
             rectDesktop.width(), rectDesktop.height(),
             SWP_FRAMECHANGED |
             SWP_SHOWWINDOW);
-         SetWindowPos(
-            ZORDER_TOP,
-            //ZORDER_TOP,
-            0, 0, 0, 0,
-            SWP_FRAMECHANGED | SWP_NOSIZE | SWP_NOMOVE |
-            SWP_SHOWWINDOW);
+         ///SetWindowPos(
+         //   ZORDER_TOP,
+         //   //ZORDER_TOP,
+         //   0, 0, 0, 0,
+         //   SWP_FRAMECHANGED | SWP_NOSIZE | SWP_NOMOVE |
+         //   SWP_SHOWWINDOW);
 
         
          //::SetWindowPos(oswindowTrayWindow, 0, 0, 0, 0, 0, SWP_HIDEWINDOW);
