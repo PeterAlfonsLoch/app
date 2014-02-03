@@ -10,7 +10,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -56,8 +56,8 @@
  *
  */
 
-#include <stdio.h>
-#include <stdlib.h>
+//#include <stdio.h>
+//#include <stdlib.h>
 #include "cryptlib.h"
 #include <openssl/objects.h>
 #include <openssl/evp.h>
@@ -467,7 +467,7 @@ EVP_PKEY *EVP_PKEY_CTX_get0_peerkey(EVP_PKEY_CTX *ctx)
 	{
 	return ctx->peerkey;
 	}
-	
+
 void EVP_PKEY_CTX_set_app_data(EVP_PKEY_CTX *ctx, void *data)
 	{
 	ctx->app_data = data;

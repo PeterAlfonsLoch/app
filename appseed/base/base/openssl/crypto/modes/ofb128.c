@@ -6,7 +6,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -50,14 +50,14 @@
 
 #include <openssl/crypto.h>
 #include "modes_lcl.h"
-#include <string.h>
+//#include <string.h>
 
 #ifndef MODES_DEBUG
 # ifndef NDEBUG
 #  define NDEBUG
 # endif
 #endif
-#include <assert.h>
+//#include <assert.h>
 
 /* The input and output encrypted as though 128bit ofb mode is being
  * used.  The extra state information to record how much of the

@@ -6,7 +6,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -52,8 +52,8 @@
 #ifndef OPENSSL_NO_AES
 #include <openssl/evp.h>
 #include <openssl/err.h>
-#include <string.h>
-#include <assert.h>
+//#include <string.h>
+//#include <assert.h>
 #include <openssl/aes.h>
 #include "evp_locl.h"
 #ifndef OPENSSL_FIPS
@@ -235,7 +235,7 @@ static int aesni_init_key(EVP_CIPHER_CTX *ctx, const unsigned char *key,
 	mode = ctx->cipher->flags & EVP_CIPH_MODE;
 	if ((mode == EVP_CIPH_ECB_MODE || mode == EVP_CIPH_CBC_MODE)
 	    && !enc)
-		{ 
+		{
 		ret = aesni_set_decrypt_key(key, ctx->key_len*8, ctx->cipher_data);
 		dat->block	= (block128_f)aesni_decrypt;
 		dat->stream.cbc	= mode==EVP_CIPH_CBC_MODE ?
@@ -650,7 +650,7 @@ static int aes_cfb1_cipher(EVP_CIPHER_CTX *ctx,unsigned char *out,
 	if (len)
 		CRYPTO_cfb128_1_encrypt(in,out,len*8,&dat->ks,
 			ctx->iv,&ctx->num,ctx->encrypt,dat->block);
-	
+
 	return 1;
 }
 

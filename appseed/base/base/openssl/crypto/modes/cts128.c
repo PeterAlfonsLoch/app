@@ -7,14 +7,14 @@
 
 #include <openssl/crypto.h>
 #include "modes_lcl.h"
-#include <string.h>
+//#include <string.h>
 
 #ifndef MODES_DEBUG
 # ifndef NDEBUG
 #  define NDEBUG
 # endif
 #endif
-#include <assert.h>
+//#include <assert.h>
 
 /*
  * Trouble with Ciphertext Stealing, CTS, mode is that there is no
@@ -51,7 +51,7 @@ size_t CRYPTO_cts128_encrypt_block(const unsigned char *in, unsigned char *out,
 		ivec[n] ^= in[n];
 	(*block)(ivec,ivec,key);
 	memcpy(out,out-16,residue);
-	memcpy(out-16,ivec,16); 
+	memcpy(out-16,ivec,16);
 
 	return len+residue;
 }
@@ -301,7 +301,7 @@ size_t CRYPTO_nistcts128_decrypt(const unsigned char *in, unsigned char *out,
 }
 
 #if defined(SELFTEST)
-#include <stdio.h>
+//#include <stdio.h>
 #include <openssl/aes.h>
 
 /* test vectors from RFC 3962 */

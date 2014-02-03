@@ -10,7 +10,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -56,10 +56,10 @@
  *
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
+////#include <stdio.h>
+//#include <stdlib.h>
+//#include <ctype.h>
+//#include <string.h>
 #include "e_os.h"
 #include <openssl/asn1.h>
 #include <openssl/ocsp.h>
@@ -223,7 +223,7 @@ static int parse_http_line1(char *line)
 		return 0;
 		}
 
-	/* Set end of response code and start of message */ 
+	/* Set end of response code and start of message */
 	*q++ = 0;
 
 	/* Attempt to parse numeric code */
@@ -392,7 +392,7 @@ int OCSP_sendreq_nbio(OCSP_RESPONSE **presp, OCSP_REQ_CTX *rctx)
 			rctx->state = OHS_ASN1_HEADER;
 
 			}
- 
+
 		/* Fall thru */
 
 
@@ -449,7 +449,7 @@ int OCSP_sendreq_nbio(OCSP_RESPONSE **presp, OCSP_REQ_CTX *rctx)
 		rctx->state = OHS_ASN1_CONTENT;
 
 		/* Fall thru */
-		
+
 		case OHS_ASN1_CONTENT:
 		n = BIO_get_mem_data(rctx->mem, &p);
 		if (n < (int)rctx->asn1_len)

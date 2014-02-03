@@ -6,7 +6,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -49,14 +49,14 @@
 
 #include <openssl/crypto.h>
 #include "modes_lcl.h"
-#include <string.h>
+//#include <string.h>
 
 #ifndef MODES_DEBUG
 # ifndef NDEBUG
 #  define NDEBUG
 # endif
 #endif
-#include <assert.h>
+//#include <assert.h>
 
 int CRYPTO_xts128_encrypt(const XTS128_CONTEXT *ctx, const unsigned char iv[16],
 	const unsigned char *inp, unsigned char *out,
@@ -100,7 +100,7 @@ int CRYPTO_xts128_encrypt(const XTS128_CONTEXT *ctx, const unsigned char iv[16],
 
 		if (is_endian.little) {
 			unsigned int carry,res;
-			
+
 			res = 0x87&(((int)tweak.d[3])>>31);
 			carry = (unsigned int)(tweak.u[0]>>63);
 			tweak.u[0] = (tweak.u[0]<<1)^res;
@@ -110,7 +110,7 @@ int CRYPTO_xts128_encrypt(const XTS128_CONTEXT *ctx, const unsigned char iv[16],
 			size_t c;
 
 			for (c=0,i=0;i<16;++i) {
-				/*+ substitutes for |, because c is 1 bit */ 
+				/*+ substitutes for |, because c is 1 bit */
 				c += ((size_t)tweak.c[i])<<1;
 				tweak.c[i] = (u8)c;
 				c = c>>8;
@@ -146,7 +146,7 @@ int CRYPTO_xts128_encrypt(const XTS128_CONTEXT *ctx, const unsigned char iv[16],
 			size_t c;
 
 			for (c=0,i=0;i<16;++i) {
-				/*+ substitutes for |, because c is 1 bit */ 
+				/*+ substitutes for |, because c is 1 bit */
 				c += ((size_t)tweak.c[i])<<1;
 				tweak1.c[i] = (u8)c;
 				c = c>>8;
