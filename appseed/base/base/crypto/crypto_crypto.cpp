@@ -905,6 +905,37 @@ namespace crypto
 
    }
 
+   RSA * crypto::get_new_rsa_key(
+      string & n,
+      string & e,
+      string & d,
+      string & p,
+      string & q,
+      string & dmp1,
+      string & dmq1,
+      string & iqmp)
+   {
+
+      n = BN_bn2hex(rsa->n);
+      e = BN_bn2hex(rsa->e);
+      d = BN_bn2hex(rsa->d);
+      p = BN_bn2hex(rsa->p);
+      q = BN_bn2hex(rsa->q);
+      dmp1 = BN_bn2hex(rsa->dmp1);
+      dmq1 = BN_bn2hex(rsa->dmq1);
+      iqmp = BN_bn2hex(rsa->iqmp);
+
+      OPENSSL_free(n);
+      OPENSSL_free(e);
+      OPENSSL_free(d);
+      OPENSSL_free(p);
+      OPENSSL_free(q);
+      OPENSSL_free(dmp1);
+      OPENSSL_free(dmq1);
+      OPENSSL_free(iqmp);
+
+   }
+
 
    void crypto::free_rsa_key(RSA * prsa)
    {
