@@ -673,49 +673,45 @@ namespace dynamic_source
       return 0;
    }
 
-#ifdef MACOS
-   SecKeyRef script_manager::get_rsa_key()
-#elif defined(BSD_STYLE_SOCKETS)
-   RSA * script_manager::get_rsa_key()
-#else
-   ::Windows::Security::Cryptography::Core::CryptographicKey ^ script_manager::get_rsa_key()
-#endif
+   sp(::crypto::rsa) script_manager::get_rsa_key()
    {
+
       if(::get_tick_count() - m_dwLastRsa > (1984 + 1977))
       {
+
          __begin_thread(get_app(), ThreadProcRsa, this);
+
          m_dwLastRsa = ::get_tick_count();
+
       }
+
       single_lock sl(&m_mutexRsa, TRUE);
+
       return m_rsaptra.last_element();
+
    }
+
+
+   string script_manager::get_rsa_key(script_instance * pinstance)
+   {
+
+      pinstance->session_id(); // trigger session creation;
+
+      sp(::crypto::rsa) prsa = get_rsa_key();
+
+      pinstance->set_session_value("rsa", prsa);
+
+      return prsa->n;
+
+   }
+
+
 
 
    void script_manager::calc_rsa_key()
    {
 
-#ifdef MACOS
-
-      SecKeyRef prsa = System.crypto().get_new_rsa_key();
-
-      if (prsa == NULL)
-         return;
-
-#elif defined(BSD_STYLE_SOCKETS)
-
-      RSA * prsa = System.crypto().get_new_rsa_key();
-
-      if (prsa == NULL)
-         return;
-
-#else
-
-      ::Windows::Security::Cryptography::Core::CryptographicKey ^ prsa = System.crypto().get_new_rsa_key();
-
-      if (prsa == nullptr)
-         return;
-
-#endif
+      sp(::crypto::rsa) prsa = System.crypto().generate_rsa_key();
 
       single_lock sl(&m_mutexRsa, TRUE);
 
@@ -723,11 +719,11 @@ namespace dynamic_source
 
       if(m_rsaptra.get_size() > 23)
       {
-
-         System.crypto().free_rsa_key(m_rsaptra[0]);
-
+         
          m_rsaptra.remove_at(0);
+
       }
+
    }
 
    void script_manager::on_load_env()

@@ -6,6 +6,7 @@
 #include <openssl/rsa.h>
 #include <openssl/engine.h>
 #include <openssl/err.h>
+#include <openssl/crypto.h>
 #endif
 
 #define CA4_CRYPT_V5_FINAL_HASH_BYTES (NESSIE_DIGESTBYTES * 16)
@@ -898,32 +899,32 @@ namespace crypto
 #elif defined(BSD_STYLE_SOCKETS)
 
 
-   RSA * crypto::get_new_rsa_key()
+   sp(::crypto::rsa) crypto::generate_rsa_key()
    {
 
-      return RSA_generate_key(1024, 65537, NULL, NULL);
+      sp(::crypto::rsa) rsa = canew(::crypto::rsa(get_app()));
 
-   }
+      RSA * & prsa = rsa->m_prsa;
 
-   RSA * crypto::get_new_rsa_key(
-      string & n,
-      string & e,
-      string & d,
-      string & p,
-      string & q,
-      string & dmp1,
-      string & dmq1,
-      string & iqmp)
-   {
+      prsa = RSA_generate_key(1024, 65537, NULL, NULL);
 
-      n = BN_bn2hex(rsa->n);
-      e = BN_bn2hex(rsa->e);
-      d = BN_bn2hex(rsa->d);
-      p = BN_bn2hex(rsa->p);
-      q = BN_bn2hex(rsa->q);
-      dmp1 = BN_bn2hex(rsa->dmp1);
-      dmq1 = BN_bn2hex(rsa->dmq1);
-      iqmp = BN_bn2hex(rsa->iqmp);
+      char * n      = BN_bn2hex(prsa->n);
+      char * e      = BN_bn2hex(prsa->e);
+      char * d      = BN_bn2hex(prsa->d);
+      char * p      = BN_bn2hex(prsa->p);
+      char * q      = BN_bn2hex(prsa->q);
+      char * dmp1   = BN_bn2hex(prsa->dmp1);
+      char * dmq1   = BN_bn2hex(prsa->dmq1);
+      char * iqmp   = BN_bn2hex(prsa->iqmp);
+
+      rsa->n = n;
+      rsa->e = e;
+      rsa->d = d;
+      rsa->p = p;
+      rsa->q = q;
+      rsa->dmp1 = dmp1;
+      rsa->dmq1 = dmq1;
+      rsa->iqmp = iqmp;
 
       OPENSSL_free(n);
       OPENSSL_free(e);
@@ -934,15 +935,11 @@ namespace crypto
       OPENSSL_free(dmq1);
       OPENSSL_free(iqmp);
 
-   }
-
-
-   void crypto::free_rsa_key(RSA * prsa)
-   {
-
-      RSA_free(prsa);
+      return rsa;
 
    }
+
+
 
 
 #else
@@ -983,7 +980,17 @@ namespace crypto
 
    }
 
-   int crypto::rsa_private_decrypt(::primitive::memory & out, const ::primitive::memory & in,
+
+   rsa::rsa(sp(base_application) papp) :
+      element(papp),
+      m_mutex(papp)
+   {
+
+      m_prsa = NULL;
+
+   }
+
+   rsa::rsa(sp(base_application) papp,
       const string & n,
       const string & e,
       const string & d,
@@ -991,43 +998,66 @@ namespace crypto
       const string & q,
       const string & dmp1,
       const string & dmq1,
-      const string & iqmp,
-      string strError)
+      const string & iqmp) :
+      element(papp),
+      m_mutex(papp)
    {
 
-      RSA * rsa = RSA_new();
+      m_prsa = RSA_new();
+
+      BN_hex2bn(&m_prsa->n, n);
+      BN_hex2bn(&m_prsa->e, e);
+      BN_hex2bn(&m_prsa->d, d);
+      BN_hex2bn(&m_prsa->p, p);
+      BN_hex2bn(&m_prsa->q, q);
+      BN_hex2bn(&m_prsa->dmp1, dmp1);
+      BN_hex2bn(&m_prsa->dmq1, dmq1);
+      BN_hex2bn(&m_prsa->iqmp, iqmp);
+
+   }
 
 
-      BN_hex2bn(&rsa->n, n);
+   rsa::~rsa()
+   {
+
+      if (m_prsa != NULL)
+      {
+
+         RSA_free(m_prsa);
+         m_prsa = NULL;
+
+      }
 
 
-      BN_hex2bn(&rsa->e, e);
-      BN_hex2bn(&rsa->d, d);
-      BN_hex2bn(&rsa->p, p);
-      BN_hex2bn(&rsa->q, q);
-      BN_hex2bn(&rsa->dmp1, dmp1);
-      BN_hex2bn(&rsa->dmq1, dmq1);
-      BN_hex2bn(&rsa->iqmp, iqmp);
+   }
+   
 
+   int rsa::private_decrypt(::primitive::memory & out, const ::primitive::memory & in, string & strError)
+   {
+
+      single_lock sl(&m_mutex, true);
+      
       int32_t iRsaSize = 8192;
 
       out.allocate(iRsaSize);
 
-      ::count i = RSA_private_decrypt((int)in.get_size(), in.get_data(), out.get_data(), rsa, RSA_PKCS1_PADDING);
+      ::count i = RSA_private_decrypt((int)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
+
       if (i < 0 || i >(1024 * 1024))
       {
+         
          strError = ERR_error_string(ERR_get_error(), NULL);
-         RSA_free(rsa);
 
          return (int)i;
+
       }
-      RSA_free(rsa);
 
       out.allocate(i);
 
       return (int)i;
 
    }
+
 
 } // namespace crypto
 

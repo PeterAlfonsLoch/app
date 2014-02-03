@@ -24,6 +24,12 @@ namespace dynamic_source
 
       void destroy();
 
+
+      virtual void set_session_value(id id, var value);
+      virtual var get_session_value(id id);
+      virtual string session_id(const char * pszId = NULL);
+
+
    };
 
 

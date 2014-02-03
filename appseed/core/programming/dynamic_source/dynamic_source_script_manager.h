@@ -115,20 +115,8 @@ namespace dynamic_source
       mutex                                     m_mutexSpider;
                                                
       mutex                                     m_mutexRsa;
-      
-#ifdef MACOS
-      
-      array < SecKeyRef >                   m_rsaptra;
 
-#elif defined(BSD_STYLE_SOCKETS)
-
-      pointera(RSA)                                  m_rsaptra;
-
-#else
-
-      array < ::Windows::Security::Cryptography::Core::CryptographicKey ^ > m_rsaptra;
-
-#endif
+      ::crypto::rsaptra                         m_rsaptra;
 
       uint32_t                                  m_dwLastRsa;
 
@@ -199,19 +187,9 @@ namespace dynamic_source
       virtual string real_path(const string & strBase, const string & str);
 
 
-#ifdef MACOS
-      
-      SecKeyRef get_rsa_key();
-      
-#elif defined(BSD_STYLE_SOCKETS)
+      sp(::crypto::rsa) get_rsa_key();
 
-      RSA * get_rsa_key();
-
-#else
-
-      ::Windows::Security::Cryptography::Core::CryptographicKey ^ get_rsa_key();
-
-#endif
+      string get_rsa_key(script_instance * pinstance);
       
       void calc_rsa_key();
 

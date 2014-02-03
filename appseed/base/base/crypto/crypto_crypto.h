@@ -29,6 +29,9 @@ namespace crypto
 {
 
 
+   class rsa;
+
+
    class CLASS_DECL_BASE crypto :
       virtual public ::object
    {
@@ -93,23 +96,13 @@ namespace crypto
       virtual string defer_get_cryptkey();
 
 
-      virtual BASE_RSA_KEY get_new_rsa_key();
-      virtual void free_rsa_key(BASE_RSA_KEY prsa);
+      virtual sp(rsa) generate_rsa_key();
 
-      virtual BASE_RSA_KEY get_new_rsa_key(
-         string & n,
-         string & e,
-         string & d,
-         string & p,
-         string & q,
-         string & dmp1,
-         string & dmq1,
-         string & iqmp);
 
       void err_load_rsa_strings();
       void err_load_crypto_strings();
 
-      int rsa_private_decrypt(::primitive::memory & out, const ::primitive::memory & in,
+      /*int rsa_private_decrypt(::primitive::memory & out, const ::primitive::memory & in,
          const string & n,
          const string & e,
          const string & d,
@@ -118,13 +111,48 @@ namespace crypto
          const string & dmp1,
          const string & dmq1,
          const string & iqmp,
-         string strError);
+         string strError);*/
 
    };
 
 
    typedef smart_pointer < crypto > crypto_sp;
 
+
+   class CLASS_DECL_BASE rsa :
+      virtual public element
+   {
+   public:
+
+      mutex m_mutex;
+      BASE_RSA_KEY m_prsa;
+      string n;
+      string e;
+      string d;
+      string p;
+      string q;
+      string dmp1;
+      string dmq1;
+      string iqmp;
+
+      rsa(sp(base_application) papp);
+      rsa(sp(base_application) papp,
+         const string & n,
+         const string & e,
+         const string & d,
+         const string & p,
+         const string & q,
+         const string & dmp1,
+         const string & dmq1,
+         const string & iqmp);
+      virtual ~rsa();
+
+
+      int private_decrypt(::primitive::memory & out, const ::primitive::memory & in, string & strError);
+
+   };
+
+   typedef spa(rsa) rsaptra;
 
 } //   namespace crypto
 
