@@ -10,7 +10,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -58,7 +58,7 @@
 
 /* Simple PKCS#7 processing functions */
 
-#include <stdio.h>
+//#include <stdio.h>
 #include "cryptlib.h"
 #include <openssl/x509.h>
 #include <openssl/x509v3.h>
@@ -369,7 +369,7 @@ int PKCS7_verify(PKCS7 *p7, STACK_OF(X509) *certs, X509_STORE *store,
 		}
 	else
 		tmpin = indata;
-		
+
 
 	if (!(p7bio=PKCS7_dataInit(p7,tmpin)))
 		goto err;
@@ -415,7 +415,7 @@ int PKCS7_verify(PKCS7 *p7, STACK_OF(X509) *certs, X509_STORE *store,
 	ret = 1;
 
 	err:
-	
+
 	if (tmpin == indata)
 		{
 		if (indata) BIO_pop(p7bio);
@@ -591,7 +591,7 @@ int PKCS7_decrypt(PKCS7 *p7, EVP_PKEY *pkey, X509 *cert, BIO *data, int flags)
 					if (!BIO_get_cipher_status(tmpmem))
 						ret = 0;
 					}
-					
+
 				break;
 				}
 			if (BIO_write(data, buf, i) != i)

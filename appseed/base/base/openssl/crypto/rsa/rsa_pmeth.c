@@ -10,7 +10,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -56,7 +56,7 @@
  *
  */
 
-#include <stdio.h>
+//#include <stdio.h>
 #include "cryptlib.h"
 #include <openssl/asn1t.h>
 #include <openssl/x509.h>
@@ -111,7 +111,7 @@ static int pkey_rsa_init(EVP_PKEY_CTX *ctx)
 	ctx->data = rctx;
 	ctx->keygen_info = rctx->gentmp;
 	ctx->keygen_info_count = 2;
-	
+
 	return 1;
 	}
 
@@ -364,7 +364,7 @@ static int pkey_rsa_verify(EVP_PKEY_CTX *ctx,
 							rctx->saltlen,
 							rctx->mgf1md,
 							sig, siglen);
-							
+
 			}
 #endif
 		if (rctx->pad_mode == RSA_PKCS1_PADDING)
@@ -409,9 +409,9 @@ static int pkey_rsa_verify(EVP_PKEY_CTX *ctx,
 		return 0;
 
 	return 1;
-			
+
 	}
-	
+
 
 static int pkey_rsa_encrypt(EVP_PKEY_CTX *ctx,
 					unsigned char *out, size_t *outlen,
@@ -465,7 +465,7 @@ static int check_padding_md(const EVP_MD *md, int padding)
 
 	return 1;
 	}
-			
+
 
 static int pkey_rsa_ctrl(EVP_PKEY_CTX *ctx, int type, int p1, void *p2)
 	{
@@ -477,7 +477,7 @@ static int pkey_rsa_ctrl(EVP_PKEY_CTX *ctx, int type, int p1, void *p2)
 			{
 			if (!check_padding_md(rctx->md, p1))
 				return 0;
-			if (p1 == RSA_PKCS1_PSS_PADDING) 
+			if (p1 == RSA_PKCS1_PSS_PADDING)
 				{
 				if (!(ctx->operation &
 				     (EVP_PKEY_OP_SIGN | EVP_PKEY_OP_VERIFY)))
@@ -485,7 +485,7 @@ static int pkey_rsa_ctrl(EVP_PKEY_CTX *ctx, int type, int p1, void *p2)
 				if (!rctx->md)
 					rctx->md = EVP_sha1();
 				}
-			if (p1 == RSA_PKCS1_OAEP_PADDING) 
+			if (p1 == RSA_PKCS1_OAEP_PADDING)
 				{
 				if (!(ctx->operation & EVP_PKEY_OP_TYPE_CRYPT))
 					goto bad_pad;
@@ -584,14 +584,14 @@ static int pkey_rsa_ctrl(EVP_PKEY_CTX *ctx, int type, int p1, void *p2)
 		case EVP_PKEY_CTRL_PEER_KEY:
 			RSAerr(RSA_F_PKEY_RSA_CTRL,
 			RSA_R_OPERATION_NOT_SUPPORTED_FOR_THIS_KEYTYPE);
-			return -2;	
+			return -2;
 
 		default:
 		return -2;
 
 		}
 	}
-			
+
 static int pkey_rsa_ctrl_str(EVP_PKEY_CTX *ctx,
 			const char *type, const char *value)
 	{
@@ -685,7 +685,7 @@ static int pkey_rsa_keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey)
 	return ret;
 	}
 
-const EVP_PKEY_METHOD rsa_pkey_meth = 
+const EVP_PKEY_METHOD rsa_pkey_meth =
 	{
 	EVP_PKEY_RSA,
 	EVP_PKEY_FLAG_AUTOARGLEN,

@@ -41,8 +41,8 @@
  * 16-bit platforms.
  *					<appro@fy.chalmers.se>
  */
-#include <stdlib.h>
-#include <string.h>
+//#include <stdlib.h>
+//#include <string.h>
 
 #include <openssl/crypto.h>
 #include <openssl/sha.h>

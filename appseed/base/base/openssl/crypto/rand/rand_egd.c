@@ -8,7 +8,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -126,8 +126,8 @@ struct	sockaddr_un {
 	char	sun_path[108];		/* path name (gag) */
 };
 #endif /* NO_SYS_UN_H */
-#include <string.h>
-#include <errno.h>
+//#include <string.h>
+//#include <errno.h>
 
 #ifndef offsetof
 #  define offsetof(TYPE, MEMBER) ((size_t) &((TYPE *)0)->MEMBER)

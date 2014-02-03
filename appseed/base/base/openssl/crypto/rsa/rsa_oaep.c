@@ -8,7 +8,7 @@
  * <URL: http://www.shoup.net/papers/oaep.ps.Z>
  * for problems with the security proof for the
  * original OAEP scheme, which EME-OAEP is based on.
- * 
+ *
  * A new proof can be found in E. Fujisaki, T. Okamoto,
  * D. Pointcheval, J. Stern, "RSA-OEAP is Still Alive!",
  * Dec. 2000, <URL: http://eprint.iacr.org/2000/061/>.
@@ -20,7 +20,7 @@
 
 
 #if !defined(OPENSSL_NO_SHA) && !defined(OPENSSL_NO_SHA1)
-#include <stdio.h>
+//#include <stdio.h>
 #include "cryptlib.h"
 #include <openssl/bn.h>
 #include <openssl/rsa.h>
@@ -140,7 +140,7 @@ int RSA_padding_check_PKCS1_OAEP(unsigned char *to, int tlen,
 		return -1;
 	for (i = 0; i < SHA_DIGEST_LENGTH; i++)
 		seed[i] ^= padded_from[i];
-  
+
 	if (MGF1(db, dblen, seed, SHA_DIGEST_LENGTH))
 		return -1;
 	for (i = 0; i < dblen; i++)

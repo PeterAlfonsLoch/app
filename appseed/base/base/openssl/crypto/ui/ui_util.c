@@ -7,7 +7,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -53,7 +53,7 @@
  *
  */
 
-#include <string.h>
+//#include <string.h>
 #include "ui_locl.h"
 
 int UI_UTIL_read_pw_string(char *buf,int length,const char *prompt,int verify)

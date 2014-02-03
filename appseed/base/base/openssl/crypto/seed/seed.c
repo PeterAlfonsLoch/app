@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007 KISA(Korea Information Security Agency). All rights reserved.  
+ * Copyright (c) 2007 KISA(Korea Information Security Agency). All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -25,9 +25,9 @@
  */
 #ifndef OPENSSL_NO_SEED
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
 #ifdef WIN32
 #include <memory.h>
 #endif
@@ -256,7 +256,7 @@ void SEED_encrypt(const unsigned char s[SEED_BLOCK_SIZE], unsigned char d[SEED_B
 	char2word(s+8,  x3);
 	char2word(s+12, x4);
 
-#if !defined(OPENSSL_SMALL_FOOTPRINT)	
+#if !defined(OPENSSL_SMALL_FOOTPRINT)
 	E_SEED(t0, t1, x1, x2, x3, x4, 0);
 	E_SEED(t0, t1, x3, x4, x1, x2, 2);
 	E_SEED(t0, t1, x1, x2, x3, x4, 4);
