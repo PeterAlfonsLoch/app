@@ -44,7 +44,7 @@
 
 #include "crypto_framework.h"
 
-//#include <time.h>
+
 
 
 /* single, global prng structure */
