@@ -10,7 +10,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -51,9 +51,9 @@
  * ====================================================================
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
 #include "cryptlib.h"
 #include <openssl/cmac.h>
 
@@ -149,7 +149,7 @@ int CMAC_CTX_copy(CMAC_CTX *out, const CMAC_CTX *in)
 	return 1;
 	}
 
-int CMAC_Init(CMAC_CTX *ctx, const void *key, size_t keylen, 
+int CMAC_Init(CMAC_CTX *ctx, const void *key, size_t keylen,
 			const EVP_CIPHER *cipher, ENGINE *impl)
 	{
 	static unsigned char zero_iv[EVP_MAX_BLOCK_LENGTH];
@@ -288,7 +288,7 @@ int CMAC_Final(CMAC_CTX *ctx, unsigned char *out, size_t *poutlen)
 		}
 	if (!EVP_Cipher(&ctx->cctx, out, out, bl))
 		{
-		OPENSSL_cleanse(out, bl);	
+		OPENSSL_cleanse(out, bl);
 		return 0;
 		}
 	return 1;
@@ -302,7 +302,7 @@ int CMAC_resume(CMAC_CTX *ctx)
 	 * which is the last IV (or all zeroes if no last encrypted block).
 	 * The last block has not been modified since CMAC_final().
 	 * So reinitliasing using the last decrypted block will allow
-	 * CMAC to continue after calling CMAC_Final(). 
+	 * CMAC to continue after calling CMAC_Final().
 	 */
 	return EVP_EncryptInit_ex(&ctx->cctx, NULL, NULL, NULL, ctx->tbl);
 	}

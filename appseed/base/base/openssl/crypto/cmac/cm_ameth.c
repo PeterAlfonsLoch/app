@@ -9,7 +9,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -50,7 +50,7 @@
  * ====================================================================
  */
 
-#include <stdio.h>
+////#include <stdio.h>
 #include "cryptlib.h"
 #include <openssl/evp.h>
 #include <openssl/cmac.h>
@@ -73,7 +73,7 @@ static void cmac_key_free(EVP_PKEY *pkey)
 		CMAC_CTX_free(cmctx);
 	}
 
-const EVP_PKEY_ASN1_METHOD cmac_asn1_meth = 
+const EVP_PKEY_ASN1_METHOD cmac_asn1_meth =
 	{
 	EVP_PKEY_CMAC,
 	EVP_PKEY_CMAC,
