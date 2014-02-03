@@ -7,7 +7,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -61,8 +61,8 @@
  * written by Steve Henson.
  */
 
-#include <stdio.h>
-#include <time.h>
+////#include <stdio.h>
+//#include <time.h>
 #include "cryptlib.h"
 #include "o_time.h"
 #include <openssl/asn1t.h>
@@ -116,7 +116,7 @@ ASN1_TIME *ASN1_TIME_adj(ASN1_TIME *s, time_t t,
 		return NULL;
 		}
 	if (offset_day || offset_sec)
-		{ 
+		{
 		if (!OPENSSL_gmtime_adj(ts, offset_day, offset_sec))
 			return NULL;
 		}
@@ -181,7 +181,7 @@ int ASN1_TIME_set_string(ASN1_TIME *s, const char *str)
 	t.length = strlen(str);
 	t.data = (unsigned char *)str;
 	t.flags = 0;
-	
+
 	t.type = V_ASN1_UTCTIME;
 
 	if (!ASN1_TIME_check(&t))
@@ -190,7 +190,7 @@ int ASN1_TIME_set_string(ASN1_TIME *s, const char *str)
 		if (!ASN1_TIME_check(&t))
 			return 0;
 		}
-	
+
 	if (s && !ASN1_STRING_copy((ASN1_STRING *)s, (ASN1_STRING *)&t))
 			return 0;
 

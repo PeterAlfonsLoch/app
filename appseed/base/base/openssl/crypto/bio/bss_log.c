@@ -7,7 +7,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -63,8 +63,8 @@
 */
 
 
-#include <stdio.h>
-#include <errno.h>
+//#include <stdio.h>
+//#include <errno.h>
 
 #include "cryptlib.h"
 
@@ -164,7 +164,7 @@ static int MS_CALLBACK slg_free(BIO *a)
 	xcloselog(a);
 	return(1);
 	}
-	
+
 static int MS_CALLBACK slg_write(BIO *b, const char *in, int inl)
 	{
 	int ret= inl;
@@ -289,7 +289,7 @@ static void xsyslog(BIO *bp, int priority, const char *string)
 	ReportEventA(bp->ptr, evtype, 0, 1024, NULL, 2, 0,
 				lpszStrings, NULL);
 }
-	
+
 static void xcloselog(BIO* bp)
 {
 	if(bp->ptr)
@@ -303,7 +303,7 @@ static int VMS_OPC_target = LOG_DAEMON;
 
 static void xopenlog(BIO* bp, char* name, int level)
 {
-	VMS_OPC_target = level; 
+	VMS_OPC_target = level;
 }
 
 static void xsyslog(BIO *bp, int priority, const char *string)

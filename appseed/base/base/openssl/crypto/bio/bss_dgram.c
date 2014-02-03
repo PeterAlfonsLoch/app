@@ -1,7 +1,7 @@
 /* crypto/bio/bio_dgram.c */
-/* 
+/*
  * DTLS implementation written by Nagendra Modadugu
- * (nagendra@cs.stanford.edu) for the OpenSSL project 2005.  
+ * (nagendra@cs.stanford.edu) for the OpenSSL project 2005.
  */
 /* ====================================================================
  * Copyright (c) 1999-2005 The OpenSSL Project.  All rights reserved.
@@ -11,7 +11,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -58,8 +58,8 @@
  */
 
 
-#include <stdio.h>
-#include <errno.h>
+//#include <stdio.h>
+//#include <errno.h>
 #define USE_SOCKETS
 #include "cryptlib.h"
 
@@ -287,7 +287,7 @@ static void dgram_adjust_rcv_timeout(BIO *b)
 			}
 #else
 		sz.i = sizeof(data->socket_timeout);
-		if ( getsockopt(b->num, SOL_SOCKET, SO_RCVTIMEO, 
+		if ( getsockopt(b->num, SOL_SOCKET, SO_RCVTIMEO,
 						&(data->socket_timeout), (void *)&sz) < 0)
 			{ perror("getsockopt"); }
 		else if (sizeof(sz.s)!=sizeof(sz.i) && sz.i==0)
@@ -441,7 +441,7 @@ static int dgram_write(BIO *b, const char *in, int inl)
 		{
 		if (BIO_dgram_should_retry(ret))
 			{
-			BIO_set_retry_write(b);  
+			BIO_set_retry_write(b);
 			data->_errno = get_last_socket_error();
 
 #if 0 /* higher layers are responsible for querying MTU, if necessary */
@@ -758,7 +758,7 @@ static long dgram_ctrl(BIO *b, int cmd, long num, void *ptr)
 			}
 #else
 		sz.i = sizeof(struct timeval);
-		if ( getsockopt(b->num, SOL_SOCKET, SO_RCVTIMEO, 
+		if ( getsockopt(b->num, SOL_SOCKET, SO_RCVTIMEO,
 			ptr, (void *)&sz) < 0)
 			{ perror("getsockopt"); ret = -1; }
 		else if (sizeof(sz.s)!=sizeof(sz.i) && sz.i==0)
@@ -807,7 +807,7 @@ static long dgram_ctrl(BIO *b, int cmd, long num, void *ptr)
 			}
 #else
 		sz.i = sizeof(struct timeval);
-		if ( getsockopt(b->num, SOL_SOCKET, SO_SNDTIMEO, 
+		if ( getsockopt(b->num, SOL_SOCKET, SO_SNDTIMEO,
 			ptr, (void *)&sz) < 0)
 			{ perror("getsockopt"); ret = -1; }
 		else if (sizeof(sz.s)!=sizeof(sz.i) && sz.i==0)
@@ -914,7 +914,7 @@ BIO *BIO_new_dgram_sctp(int fd, int close_flag)
 		if (*p == OPENSSL_SCTP_DATA_CHUNK_TYPE) auth_data = 1;
 		if (*p == OPENSSL_SCTP_FORWARD_CUM_TSN_CHUNK_TYPE) auth_forward = 1;
 		}
-		
+
 	OPENSSL_free(authchunks);
 
 	OPENSSL_assert(auth_data);
@@ -1320,7 +1320,7 @@ static int dgram_sctp_write(BIO *b, const char *in, int inl)
 		{
 		if (BIO_dgram_should_retry(ret))
 			{
-			BIO_set_retry_write(b);  
+			BIO_set_retry_write(b);
 			data->_errno = get_last_socket_error();
 			}
 		}
@@ -1573,9 +1573,9 @@ int BIO_dgram_sctp_wait_for_dry(BIO *b)
 	ret = getsockopt(b->num, IPPROTO_SCTP, SCTP_EVENTS, &event, &eventsize);
 	if (ret < 0)
 		return -1;
-	
+
 	event.sctp_sender_dry_event = 1;
-	
+
 	ret = setsockopt(b->num, IPPROTO_SCTP, SCTP_EVENTS, &event, sizeof(struct sctp_event_subscribe));
 #endif
 	if (ret < 0)
@@ -1624,7 +1624,7 @@ int BIO_dgram_sctp_wait_for_dry(BIO *b)
 			else
 				return is_dry;
 			}
-		
+
 		if (snp.sn_header.sn_type == SCTP_SENDER_DRY_EVENT)
 			{
 			is_dry = 1;
