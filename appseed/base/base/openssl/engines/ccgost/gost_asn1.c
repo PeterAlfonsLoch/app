@@ -6,7 +6,7 @@
  *   ASN1 structure definition for GOST key transport                 *
  *          Requires OpenSSL 0.9.9 for compilation                    *
  **********************************************************************/
-#include <stdio.h>
+//#include <stdio.h>
 #include <openssl/asn1t.h>
 #include <openssl/x509.h>
 #include "gost_lcl.h"

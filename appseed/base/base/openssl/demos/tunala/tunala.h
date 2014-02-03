@@ -52,9 +52,9 @@
 #error "can't build without some network basics like select() and socket()"
 #endif
 
-#include <stdlib.h>
+//#include <stdlib.h>
 #ifndef NO_SYSTEM_H
-#include <string.h>
+//#include <string.h>
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
@@ -62,7 +62,7 @@
 #include <fcntl.h>
 #endif
 #ifdef HAVE_LIMITS_H
-#include <limits.h>
+//#include <limits.h>
 #endif
 #include <netdb.h>
 #include <signal.h>

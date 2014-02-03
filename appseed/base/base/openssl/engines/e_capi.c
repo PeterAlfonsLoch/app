@@ -10,7 +10,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -52,8 +52,8 @@
  */
 
 
-#include <stdio.h>
-#include <string.h>
+////#include <stdio.h>
+//#include <string.h>
 #include <openssl/crypto.h>
 #include <openssl/buffer.h>
 #include <openssl/bn.h>
@@ -107,7 +107,7 @@
 
 #ifndef CERT_SYSTEM_STORE_CURRENT_USER
 #define CERT_SYSTEM_STORE_CURRENT_USER			0x00010000
-#endif 
+#endif
 
 #include <openssl/engine.h>
 #include <openssl/pem.h>
@@ -485,7 +485,7 @@ static int capi_init(ENGINE *e)
 		ctx->client_cert_select = cert_select_dialog;
 	}
 #endif
-		
+
 
 	return 1;
 
@@ -556,7 +556,7 @@ static int bind_helper(ENGINE *e, const char *id)
 	if(!bind_capi(e))
 		return 0;
 	return 1;
-	}       
+	}
 IMPLEMENT_DYNAMIC_CHECK_FN()
 IMPLEMENT_DYNAMIC_BIND_FN(bind_helper)
 #else
@@ -589,7 +589,7 @@ static int lend_tobn(BIGNUM *bn, unsigned char *bin, int binlen)
 	{
 	int i;
 	/* Reverse buffer in place: since this is a keyblob structure
-	 * that will be freed up after conversion anyway it doesn't 
+	 * that will be freed up after conversion anyway it doesn't
 	 * matter if we change it.
 	 */
 	for(i = 0; i < binlen / 2; i++)
@@ -915,14 +915,14 @@ int capi_rsa_priv_dec(int flen, const unsigned char *from,
 		}
 
 	/* Create temp reverse order version of input */
-	if(!(tmpbuf = OPENSSL_malloc(flen)) ) 
+	if(!(tmpbuf = OPENSSL_malloc(flen)) )
 		{
 		CAPIerr(CAPI_F_CAPI_RSA_PRIV_DEC, ERR_R_MALLOC_FAILURE);
 		return -1;
 		}
 	for(i = 0; i < flen; i++)
 		tmpbuf[flen - i - 1] = from[i];
-	
+
 	/* Finally decrypt it */
 	if(!CryptDecrypt(capi_key->key, 0, TRUE, 0, tmpbuf, &flen))
 		{
@@ -930,7 +930,7 @@ int capi_rsa_priv_dec(int flen, const unsigned char *from,
 		capi_addlasterror();
 		OPENSSL_free(tmpbuf);
 		return -1;
-		} 
+		}
 	else memcpy(to, tmpbuf, flen);
 
 	OPENSSL_free(tmpbuf);
@@ -1219,7 +1219,7 @@ CRYPT_KEY_PROV_INFO *capi_get_prov_info(CAPI_CTX *ctx, PCCERT_CONTEXT cert)
 	{
 	DWORD len;
 	CRYPT_KEY_PROV_INFO *pinfo;
-	
+
 	if(!CertGetCertificateContextProperty(cert, CERT_KEY_PROV_INFO_PROP_ID, NULL, &len))
 		return NULL;
 	pinfo = OPENSSL_malloc(len);
@@ -1341,7 +1341,7 @@ HCERTSTORE capi_open_store(CAPI_CTX *ctx, char *storename)
 		storename = "MY";
 	CAPI_trace(ctx, "Opening certificate store %s\n", storename);
 
-	hstore = CertOpenStore(CERT_STORE_PROV_SYSTEM_A, 0, 0, 
+	hstore = CertOpenStore(CERT_STORE_PROV_SYSTEM_A, 0, 0,
 				ctx->store_flags, storename);
 	if (!hstore)
 		{
@@ -1432,13 +1432,13 @@ static PCCERT_CONTEXT capi_find_cert(CAPI_CTX *ctx, const char *id, HCERTSTORE h
 static CAPI_KEY *capi_get_key(CAPI_CTX *ctx, const char *contname, char *provname, DWORD ptype, DWORD keyspec)
 	{
 	CAPI_KEY *key;
-    DWORD dwFlags = 0; 
+    DWORD dwFlags = 0;
 	key = OPENSSL_malloc(sizeof(CAPI_KEY));
-	CAPI_trace(ctx, "capi_get_key, contname=%s, provname=%s, type=%d\n", 
+	CAPI_trace(ctx, "capi_get_key, contname=%s, provname=%s, type=%d\n",
 						contname, provname, ptype);
     if(ctx->store_flags & CERT_SYSTEM_STORE_LOCAL_MACHINE)
         dwFlags = CRYPT_MACHINE_KEYSET;
-    if (!CryptAcquireContextA(&key->hprov, contname, provname, ptype, dwFlags)) 
+    if (!CryptAcquireContextA(&key->hprov, contname, provname, ptype, dwFlags))
 		{
 		CAPIerr(CAPI_F_CAPI_GET_KEY, CAPI_R_CRYPTACQUIRECONTEXT_ERROR);
 		capi_addlasterror();

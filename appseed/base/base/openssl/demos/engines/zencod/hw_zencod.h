@@ -8,7 +8,7 @@
  #ifndef	_HW_ZENCOD_H_
 #define	_HW_ZENCOD_H_
 
-#include <stdio.h>
+////#include <stdio.h>
 
 #ifdef	__cplusplus
 extern "C" {

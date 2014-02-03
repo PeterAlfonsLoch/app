@@ -10,7 +10,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -56,7 +56,7 @@
  *
  */
 
-#include <stdio.h>
+//#include <stdio.h>
 #include "cryptlib.h"
 #include <openssl/conf.h>
 #include <openssl/x509v3.h>
@@ -258,7 +258,7 @@ static GENERAL_NAMES *v2i_issuer_alt(X509V3_EXT_METHOD *method,
 		} else {
 			GENERAL_NAME *gen;
 			if(!(gen = v2i_GENERAL_NAME(method, ctx, cnf)))
-								 goto err; 
+								 goto err;
 			sk_GENERAL_NAME_push(gens, gen);
 		}
 	}
@@ -299,10 +299,10 @@ static int copy_issuer(X509V3_CTX *ctx, GENERAL_NAMES *gens)
 	sk_GENERAL_NAME_free(ialt);
 
 	return 1;
-		
+
 	err:
 	return 0;
-	
+
 }
 
 static GENERAL_NAMES *v2i_subject_alt(X509V3_EXT_METHOD *method,
@@ -326,7 +326,7 @@ static GENERAL_NAMES *v2i_subject_alt(X509V3_EXT_METHOD *method,
 		} else {
 			GENERAL_NAME *gen;
 			if(!(gen = v2i_GENERAL_NAME(method, ctx, cnf)))
-								 goto err; 
+								 goto err;
 			sk_GENERAL_NAME_push(gens, gen);
 		}
 	}
@@ -336,7 +336,7 @@ static GENERAL_NAMES *v2i_subject_alt(X509V3_EXT_METHOD *method,
 	return NULL;
 }
 
-/* Copy any email addresses in a certificate or request to 
+/* Copy any email addresses in a certificate or request to
  * GENERAL_NAMES
  */
 
@@ -383,14 +383,14 @@ static int copy_email(X509V3_CTX *ctx, GENERAL_NAMES *gens, int move_p)
 		gen = NULL;
 	}
 
-	
+
 	return 1;
-		
+
 	err:
 	GENERAL_NAME_free(gen);
 	M_ASN1_IA5STRING_free(email);
 	return 0;
-	
+
 }
 
 GENERAL_NAMES *v2i_GENERAL_NAMES(const X509V3_EXT_METHOD *method,
@@ -406,7 +406,7 @@ GENERAL_NAMES *v2i_GENERAL_NAMES(const X509V3_EXT_METHOD *method,
 	}
 	for(i = 0; i < sk_CONF_VALUE_num(nval); i++) {
 		cnf = sk_CONF_VALUE_value(nval, i);
-		if(!(gen = v2i_GENERAL_NAME(method, ctx, cnf))) goto err; 
+		if(!(gen = v2i_GENERAL_NAME(method, ctx, cnf))) goto err;
 		sk_GENERAL_NAME_push(gens, gen);
 	}
 	return gens;
@@ -453,7 +453,7 @@ GENERAL_NAME *a2i_GENERAL_NAME(GENERAL_NAME *out,
 		case GEN_DNS:
 		is_string = 1;
 		break;
-		
+
 		case GEN_RID:
 		{
 		ASN1_OBJECT *obj;
@@ -582,7 +582,7 @@ static int do_othername(GENERAL_NAME *gen, char *value, X509V3_CTX *ctx)
 	strncpy(objtmp, value, objlen);
 	objtmp[objlen] = 0;
 	gen->d.otherName->type_id = OBJ_txt2obj(objtmp, 0);
-	OPENSSL_free(objtmp);	
+	OPENSSL_free(objtmp);
 	if (!gen->d.otherName->type_id)
 		return 0;
 	return 1;
@@ -609,6 +609,6 @@ static int do_dirname(GENERAL_NAME *gen, char *value, X509V3_CTX *ctx)
 		X509_NAME_free(nm);
 	gen->d.dirn = nm;
 	X509V3_section_free(ctx, sk);
-		
+
 	return ret;
 	}
