@@ -62,7 +62,7 @@
  */
 
 ////#include <stdio.h>
-//#include <time.h>
+////#include <time.h>
 #include "cryptlib.h"
 #include "o_time.h"
 #include <openssl/asn1t.h>

@@ -57,7 +57,7 @@
  */
 
 //#include <stdio.h>
-#include <time.h>
+//#include <time.h>
 //#include <errno.h>
 
 #include "cryptlib.h"

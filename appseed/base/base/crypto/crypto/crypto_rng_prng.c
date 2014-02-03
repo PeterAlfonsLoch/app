@@ -1,5 +1,5 @@
 /*
- * prng.ca 
+ * prng.ca
  *
  * pseudorandom source
  *
@@ -7,26 +7,26 @@
  * Cisco Systems, Inc.
  */
 /*
- *   
+ *
  * Copyright(ca) 2001-2006 Cisco Systems, Inc.
- * 
- * 
+ *
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- * 
+ *
  *   Redistributions of source code must retain the above copyright
  *   notice, this list of conditions and the following disclaimer.
- * 
+ *
  *   Redistributions in binary form must reproduce the above
  *   copyright notice, this list of conditions and the following
  *   disclaimer in the documentation and/or other materials provided
  *   with the distribution.
- * 
+ *
  *   Neither the name of the Cisco Systems, Inc. nor the names of its
  *   contributors may be used to endorse or promote products derived
  *   from this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -44,7 +44,7 @@
 
 #include "crypto_framework.h"
 
-#include <time.h>
+//#include <time.h>
 
 
 /* single, global prng structure */
@@ -64,10 +64,10 @@ x917_prng_init(rand_source_func_t random_source) {
 
   /* set random source */
   x917_prng.rand = random_source;
-  
+
   /* initialize secret key from random source */
   status = random_source((uint8_t *)&tmp_key, 16);
-  if (status) 
+  if (status)
     return status;
 
   /* expand aes key */
@@ -75,7 +75,7 @@ x917_prng_init(rand_source_func_t random_source) {
 
   /* initialize prng state from random source */
   status = x917_prng.rand((uint8_t *)&x917_prng.state, 16);
-  if (status) 
+  if (status)
     return status;
 
   return err_status_ok;
@@ -88,33 +88,33 @@ x917_prng_get_octet_string(uint8_t *dest, uint32_t len) {
   uint32_t i, tail_len;
   err_status_t status;
 
-  /* 
-   * if we need to re-initialize the prng, do so now 
+  /*
+   * if we need to re-initialize the prng, do so now
    *
    * avoid overflows by subtracting instead of adding
    */
   if (x917_prng.octet_count > MAX_PRNG_OUT_LEN - len) {
-    status = x917_prng_init(x917_prng.rand);    
+    status = x917_prng_init(x917_prng.rand);
     if (status)
       return status;
   }
   x917_prng.octet_count += len;
-  
+
   /* find out the time */
   t = (uint32_t)time(NULL);
-  
+
   /* loop until we have output enough data */
   for (i=0; i < len/16; i++) {
-    
+
     /* exor time into state */
-    x917_prng.state.v32[0] ^= t; 
- 
+    x917_prng.state.v32[0] ^= t;
+
     /* copy state into buffer */
     v128_copy(&buffer, &x917_prng.state);
 
     /* apply aes to buffer */
     aes_encrypt(&buffer, x917_prng.key);
-    
+
     /* write data to output */
     *dest++ = buffer.v8[0];
     *dest++ = buffer.v8[1];
@@ -141,16 +141,16 @@ x917_prng_get_octet_string(uint8_t *dest, uint32_t len) {
 
     /* copy buffer into state */
     v128_copy(&x917_prng.state, &buffer);
-    
+
   }
-  
+
   /* if we need to output any more octets, we'll do so now */
   tail_len = len % 16;
   if (tail_len) {
-    
+
     /* exor time into state */
-    x917_prng.state.v32[0] ^= t; 
- 
+    x917_prng.state.v32[0] ^= t;
+
     /* copy value into buffer */
     v128_copy(&buffer, &x917_prng.state);
 
@@ -174,12 +174,12 @@ x917_prng_get_octet_string(uint8_t *dest, uint32_t len) {
     v128_copy(&x917_prng.state, &buffer);
 
   }
-  
+
   return err_status_ok;
 }
 
 err_status_t
 x917_prng_deinit() {
-  
-  return err_status_ok;  
+
+  return err_status_ok;
 }

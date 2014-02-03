@@ -457,7 +457,7 @@ namespace sockets
       ::str::parse pa(url_in,"/");
       protocol = pa.getword(); // http
       protocol.trim(":");
-      if (!stricmp(protocol, "https"))
+      if (!stricmp_dup(protocol, "https"))
       {
    #ifdef HAVE_OPENSSL
          EnableSSL();

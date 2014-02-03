@@ -1,10 +1,10 @@
 #pragma once
 
 
-#ifdef LINUX
-#undef __USE_MISC
-#include <strings.h>
-#endif
+//#ifdef LINUX
+//#undef __USE_MISC
+//#include <strings.h>
+//#endif
 
 
 class string;

@@ -52,7 +52,7 @@ namespace str
 
    int32_t  compare_ci(const char * psz1, const char * psz2)
    {
-      return stricmp(psz1, psz2);
+      return stricmp_dup(psz1, psz2);
    }
 
    bool equals(const char * psz1, const char * psz2)

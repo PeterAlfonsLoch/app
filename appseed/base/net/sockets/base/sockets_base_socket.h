@@ -1,6 +1,15 @@
 #pragma once
 
 
+#if defined(LINUX)
+struct ucred {
+    pid_t pid;    /* process ID of the sending process */
+    uid_t uid;    /* user ID of the sending process */
+    gid_t gid;    /* group ID of the sending process */
+};
+#endif // defined
+
+
 namespace sockets
 {
 
@@ -22,9 +31,9 @@ namespace sockets
 
          status_ok,
          status_connection_timed_out
-            
+
       };
-      
+
 
       class CLASS_DECL_BASE callback
       {
@@ -57,8 +66,8 @@ namespace sockets
 
 
       private:
-         
-         
+
+
          socket_thread(const socket_thread& s);
          socket_thread& operator=(const socket_thread& ) { return *this; }
 
@@ -69,8 +78,8 @@ namespace sockets
       class trigger_data
       {
       public:
-         
-         
+
+
          base_socket *m_src;
 
 
@@ -83,7 +92,7 @@ namespace sockets
       };
 
 
-      
+
       base_socket_handler &   m_handler; ///< Reference of base_socket_handler in control of this socket
       SOCKET                  m_socket; ///< File descriptor
 
@@ -518,7 +527,7 @@ namespace sockets
       bool SetSoPasscred(bool x = true);
 #endif
 #ifdef SO_PEERCRED
-      bool SoPeercred(struct ucred& );
+      bool SoPeercred(ucred & );
 #endif
 #ifdef SO_PRIORITY
       bool SetSoPriority(int);
@@ -734,7 +743,7 @@ namespace sockets
 
       virtual void log(const string & strUser, int32_t err, const string & strSystem, ::core::log::e_level elevel = ::core::log::level_warning);
 
-      
+
       virtual string get_short_description();
 
 

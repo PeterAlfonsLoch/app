@@ -39,7 +39,7 @@
 //#include <errno.h>
 //#include <string.h>
 //#include <limits.h>
-#include <time.h>
+//#include <time.h>
 #ifdef HAVE_SYS_TIME_H
 # include <sys/time.h>
 #endif

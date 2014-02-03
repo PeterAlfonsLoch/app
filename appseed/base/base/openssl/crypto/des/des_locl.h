@@ -85,7 +85,7 @@
 #ifdef OPENSSL_SYS_MSDOS		/* Visual C++ 2.1 (Windows NT/95) */
 //#include <stdlib.h>
 //#include <errno.h>
-#include <time.h>
+//#include <time.h>
 #include <io.h>
 #endif
 

@@ -6,6 +6,7 @@
 //
 //
 #include "framework.h"
+#define LIBICONV_PLUG
 #include "base/primitive/str/iconv/iconv.h"
 
 CLASS_DECL_BASE COLORREF GetSysColor(DWORD dw)
@@ -335,11 +336,11 @@ WideCharToMultiByte(
       LPSTR lpsz = str.GetBufferSetLength(sIn);
 
       size_t sOut = wstr.get_length() * 8;
-      
+
       string strCodePage = iconv_charset_from_windows_code_page(CodePage);
 
       iconv_t iconvPlease = iconv_open(strCodePage, "UTF-16");
-      
+
       iconv(iconvPlease, (char **) &lpWideCharStr, &sIn, &lpsz, &sOut);
 
       iconv_close(iconvPlease);

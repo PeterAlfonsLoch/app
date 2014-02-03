@@ -29,8 +29,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
 #ifdef _WIN32
+#elif defined(LINUX)
+#include <netdb.h>
+#include <fcntl.h>
 #else
-//#include <errno.h>
 #include <netdb.h>
 #include <fcntl.h>
 #endif
@@ -1466,7 +1468,7 @@ namespace sockets
 
 
 #ifdef SO_PEERCRED
-   bool base_socket::SoPeercred(struct ucred& ucr)
+   bool base_socket::SoPeercred(struct ::ucred & ucr)
    {
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_PEERCRED, (char *)&ucr, sizeof(ucr)) == -1)
       {

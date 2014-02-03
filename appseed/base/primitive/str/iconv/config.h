@@ -1,6 +1,14 @@
+#pragma once
+
+//ca2 configuration for iconv
+#include "app/appseed/base/base/base/base.h"
+#define LIBICONV_PLUG
+//end of ca2 configuration for iconv
+
+
+
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
-//#define LIBICONV_PLUG
 #define NO_I18N
 
 /* Define to the number of bits in type 'ptrdiff_t'. */

@@ -75,12 +75,12 @@ namespace http
                         break;
                      ::str::parse pa(slask,";");
                      string h = pa.getword();
-                     if(!stricmp(h,"Content-type:"))
+                     if(!stricmp_dup(h,"Content-type:"))
                      {
                         content_type = pa.getword();
                      }
                      else
-                     if(!stricmp(h,"Content-Disposition:"))
+                     if(!stricmp_dup(h,"Content-Disposition:"))
                      {
                         h = pa.getword();
                         if (!strcmp(h,"form-data"))
@@ -185,7 +185,7 @@ namespace http
                                  break;
                               }
                            }
-                           
+
                         }
 
                         spfile->close();
@@ -195,9 +195,9 @@ namespace http
                         m_setPost[current_name]["name"]           = current_filename;
                         m_setPost[current_name]["tmp_name"]       = strTempFile;
                         m_setPost[current_name]["content_type"]   = content_type;
-                     
+
                         slask = m_strBoundary;
-                        
+
                      }
                      else
                      {
@@ -211,7 +211,7 @@ namespace http
                   // Probably '<m_strBoundary>--'
                   break;
                }
-            } 
+            }
          }
          if(tempcmp != NULL)
          {

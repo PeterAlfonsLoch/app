@@ -1126,16 +1126,17 @@ simple_string( string_trait::GetDefaultManager() )
 
 inline int32_t __cdecl crt_char_traits::StringCompare(const char * pszA,const char * pszB ) throw()
 {
+
    return strcmp( reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
+
 }
+
 
 inline int32_t __cdecl crt_char_traits::StringCompareIgnore(const char * pszA,const char * pszB ) throw()
 {
-#ifdef WINDOWS
-   return _stricmp( reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
-#else
-   return strcasecmp( reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
-#endif
+
+   return stricmp_dup(reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
+
 }
 
 

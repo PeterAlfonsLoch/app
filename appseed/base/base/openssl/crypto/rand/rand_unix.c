@@ -124,7 +124,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <time.h>
+//#include <time.h>
 #if defined(OPENSSL_SYS_LINUX) /* should actually be available virtually everywhere */
 # include <poll.h>
 #endif

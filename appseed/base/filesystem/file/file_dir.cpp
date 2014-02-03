@@ -11,9 +11,8 @@
 
 
 #ifdef LINUX
-#include <dlfcn.h>
+#define __USE_GNU
 #include <link.h>
-//#include <ctype.h>
 #elif defined(MACOS)
 #include <dlfcn.h>
 #include <mach-o/dyld.h>

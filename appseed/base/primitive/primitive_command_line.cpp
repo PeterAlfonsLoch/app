@@ -38,23 +38,23 @@ void command_line::ParseParamFlag(const char* pszParam)
    // OLE command switches are case insensitive, while
    // shell command switches are case sensitive
 
-   if(stricmp(pszParam, "pt") == 0)
+   if(stricmp_dup(pszParam, "pt") == 0)
       m_ecommand = command_file_print_to;
-   else if (stricmp(pszParam, "p") == 0)
+   else if (stricmp_dup(pszParam, "p") == 0)
       m_ecommand = command_file_print;
-   else if (stricmp(pszParam, "Unregister") == 0 ||
-      stricmp(pszParam, "Unregserver") == 0)
+   else if (stricmp_dup(pszParam, "Unregister") == 0 ||
+      stricmp_dup(pszParam, "Unregserver") == 0)
       m_ecommand = command_app_unregister;
-   else if (stricmp(pszParam, "dde") == 0)
+   else if (stricmp_dup(pszParam, "dde") == 0)
    {
       m_ecommand = command_file_dde;
    }
-   else if (stricmp(pszParam, "Embedding") == 0)
+   else if (stricmp_dup(pszParam, "Embedding") == 0)
    {
       m_bRunEmbedded = TRUE;
       m_bShowSplash = FALSE;
    }
-   else if (stricmp(pszParam, "Automation") == 0)
+   else if (stricmp_dup(pszParam, "Automation") == 0)
    {
       m_bRunAutomated = TRUE;
       m_bShowSplash = FALSE;
@@ -141,7 +141,7 @@ void command_line::_001ParseCommandLine(const char * pszCommandLine)
    if (!m_varQuery.propset().has_property("build_number")
       || m_varQuery["build_number"].is_empty())
    {
-      
+
       if (file_exists_dup("C:\\ca2\\config\\build_number.txt"))
       {
 

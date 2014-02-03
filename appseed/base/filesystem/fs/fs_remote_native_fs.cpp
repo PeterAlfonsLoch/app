@@ -179,7 +179,7 @@ namespace fs
          return true;
       }
 
-      if(stricmp(pszPath, "fs://") == 0)
+      if(stricmp_dup(pszPath, "fs://") == 0)
       {
          return true;
       }

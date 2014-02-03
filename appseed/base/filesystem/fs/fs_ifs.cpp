@@ -153,7 +153,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int
 
 
 
-   
+
    try
    {
       defer_initialize();
@@ -172,7 +172,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int
 
    string strUrl;
 
-   
+
    strUrl = "http://file.veriwell.net/ifs/ls?path=" + System.url().url_encode(pszDir);
 
    string strSource;
@@ -268,7 +268,7 @@ bool ifs::is_dir(const char * pszPath)
       return true;
    }
 
-   if(stricmp(pszPath, "uifs://") == 0)
+   if(stricmp_dup(pszPath, "uifs://") == 0)
    {
       return true;
    }
@@ -350,7 +350,7 @@ bool ifs::file_move(const char * pszDst, const char * pszSrc)
 
 ::file::buffer_sp ifs::get_file(var varFile, UINT nOpenFlags)
 {
-   
+
    ::file::buffer_sp spfile;
 
    spfile = new ifs_file(get_app(), varFile);
@@ -401,7 +401,7 @@ var ifs::file_length(const char * pszPath)
 
 void ifs::defer_initialize()
 {
-   
+
    if(!m_bInitialized)
    {
       //Application.http().get("http://file.veriwell.net/");

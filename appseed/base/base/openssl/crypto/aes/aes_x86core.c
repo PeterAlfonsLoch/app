@@ -40,11 +40,11 @@
 #  define NDEBUG
 # endif
 #endif
-//#include <assert.h>
 
 //#include <stdlib.h>
 #include <openssl/aes.h>
 #include "aes_locl.h"
+#include <assert.h>
 
 /*
  * These two parameters control which table, 256-byte or 2KB, is

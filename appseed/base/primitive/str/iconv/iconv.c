@@ -18,11 +18,11 @@
  * Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+#include "config.h"
 #include <iconv.h>
 
 //#include <stdlib.h>
 //#include <string.h>
-#include "config.h"
 #include "localcharset.h"
 
 #ifdef __CYGWIN__

@@ -112,7 +112,7 @@ extern LIBICONV_DLL_EXPORTED int iconv_close (iconv_t cd);
    included before <wchar.h>.  */
 #include <stddef.h>
 //#include <stdio.h>
-#include <time.h>
+//#include <time.h>
 #endif
 #include <wchar.h>
 #endif

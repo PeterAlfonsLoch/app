@@ -1965,7 +1965,7 @@ namespace xml
          if(m_nodea[i].m_strName == pszName)
          {
             if(m_nodea[i].get_attr(pszAttrName, strValue)
-               && _stricmp(strValue, pszAttrValue) == 0)
+               && stricmp_dup(strValue, pszAttrValue) == 0)
             {
                return m_nodea(i);
             }
@@ -1983,7 +1983,7 @@ namespace xml
          {
             for(int32_t j = 0; j < straAttrName.get_size(); j++)
             {
-               if(m_nodea[i].get_attr(straAttrName[j], strValue) && _stricmp(strValue, straAttrValue[j]) == 0)
+               if(m_nodea[i].get_attr(straAttrName[j], strValue) && stricmp_dup(strValue, straAttrValue[j]) == 0)
                {
                   return m_nodea(i);
                }
@@ -2003,7 +2003,7 @@ namespace xml
             bool bAll = true;
             for(int32_t j = 0; j < straAttrName.get_size(); j++)
             {
-               if(!m_nodea[i].get_attr(straAttrName[j], strValue) || _stricmp(strValue, straAttrValue[j]) != 0)
+               if(!m_nodea[i].get_attr(straAttrName[j], strValue) || stricmp_dup(strValue, straAttrValue[j]) != 0)
                {
                   bAll = false;
                   break;

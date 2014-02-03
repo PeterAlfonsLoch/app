@@ -169,7 +169,7 @@ int32_t __cdecl crt_char_traits::StringCollate(const char * pszA,const char * ps
 
 int32_t __cdecl crt_char_traits::StringCollateIgnore(const char * pszA,const char * pszB ) throw()
 {
-   return _stricmp( reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
+   return stricmp_dup( reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
 }
 
 const char * __cdecl crt_char_traits::StringFindString(const char * pszBlock,const char * pszMatch ) throw()

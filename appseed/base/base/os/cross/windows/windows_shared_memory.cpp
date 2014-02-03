@@ -8,6 +8,11 @@
 #include <unistd.h>
 
 
+#ifdef LINUX
+extern "C" int mkostemps64 (char *__template, int __suffixlen, int __flags);
+#define mkostemps mkostemps64
+#endif
+
 #ifdef ANDROID
 /*
 

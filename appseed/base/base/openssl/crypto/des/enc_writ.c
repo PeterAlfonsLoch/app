@@ -57,7 +57,7 @@
  */
 
 //#include <errno.h>
-#include <time.h>
+//#include <time.h>
 //#include <stdio.h>
 #include "cryptlib.h"
 #include "des_locl.h"

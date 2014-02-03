@@ -27,6 +27,12 @@
 
 #define server_start_time 0
 
+#if defined(LINUX)
+/* Set the current time of day and timezone information.
+   This call is restricted to the super-user.  */
+extern "C" int settimeofday (const struct timeval *__tv, const struct timezone *__tz);
+#endif
+
 
 #define NONAMELESSUNION
 #define NONAMELESSSTRUCT
