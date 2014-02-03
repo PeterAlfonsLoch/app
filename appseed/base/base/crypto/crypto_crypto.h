@@ -96,8 +96,19 @@ namespace crypto
       virtual BASE_RSA_KEY get_new_rsa_key();
       virtual void free_rsa_key(BASE_RSA_KEY prsa);
 
+      void err_load_rsa_strings();
+      void err_load_crypto_strings();
 
-
+      int rsa_private_decrypt(::primitive::memory & out, const ::primitive::memory & in,
+         const string & n,
+         const string & e,
+         const string & d,
+         const string & p,
+         const string & q,
+         const string & dmp1,
+         const string & dmq1,
+         const string & iqmp,
+         string strError);
 
    };
 

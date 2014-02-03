@@ -1,7 +1,11 @@
 #include "framework.h"
 #ifndef METROWIN
+#include <openssl/rsa.h>
 #include <openssl/ssl.h>
 #include <openssl/md5.h>
+#include <openssl/rsa.h>
+#include <openssl/engine.h>
+#include <openssl/err.h>
 #endif
 
 #define CA4_CRYPT_V5_FINAL_HASH_BYTES (NESSIE_DIGESTBYTES * 16)
@@ -29,7 +33,7 @@ namespace crypto
 
       string str = defer_get_cryptkey();
 
-      if(str.is_empty())
+      if (str.is_empty())
          return false;
 
       str += pszSalt;
@@ -49,7 +53,7 @@ namespace crypto
 
       string str = defer_get_cryptkey();
 
-      if(str.is_empty())
+      if (str.is_empty())
          return false;
 
       str += pszSalt;
@@ -67,11 +71,11 @@ namespace crypto
    int32_t crypto::key(primitive::memory & storage)
    {
       storage.allocate(16);
-      for(primitive::memory_position i = 0; i < storage.get_size(); i++)
+      for (primitive::memory_position i = 0; i < storage.get_size(); i++)
       {
          storage.get_data()[i] = rand() & 0xff;
       }
-      return (int32_t) storage.get_size();
+      return (int32_t)storage.get_size();
    }
 
    /**
@@ -265,7 +269,7 @@ namespace crypto
 
 #else
 
-      int32_t plainlen = (int32_t) storageDecrypt.get_size();
+      int32_t plainlen = (int32_t)storageDecrypt.get_size();
 
       int32_t cipherlen, tmplen;
 
@@ -275,11 +279,11 @@ namespace crypto
 
       EVP_EncryptInit(&ctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
 
-      cipherlen = (int32_t) (storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(&ctx) - 1);
+      cipherlen = (int32_t)(storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(&ctx) - 1);
 
       storageEncrypt.allocate(cipherlen);
 
-      if (!EVP_EncryptUpdate(&ctx,storageEncrypt.get_data(), &cipherlen, storageDecrypt.get_data(), plainlen))
+      if (!EVP_EncryptUpdate(&ctx, storageEncrypt.get_data(), &cipherlen, storageDecrypt.get_data(), plainlen))
       {
 
          storageEncrypt.allocate(0);
@@ -494,7 +498,7 @@ namespace crypto
 
 #else
 
-      int32_t cipherlen = (int32_t) storageEncrypt.get_size();
+      int32_t cipherlen = (int32_t)storageEncrypt.get_size();
 
       int32_t plainlen, tmplen;
 
@@ -504,11 +508,11 @@ namespace crypto
 
       EVP_DecryptInit(&ctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
 
-      plainlen = (int32_t) storageEncrypt.get_size() + EVP_CIPHER_CTX_block_size(&ctx);
+      plainlen = (int32_t)storageEncrypt.get_size() + EVP_CIPHER_CTX_block_size(&ctx);
 
       storageDecrypt.allocate(plainlen);
 
-      if(!EVP_DecryptUpdate(&ctx, storageDecrypt.get_data(), &plainlen, storageEncrypt.get_data(), cipherlen))
+      if (!EVP_DecryptUpdate(&ctx, storageDecrypt.get_data(), &plainlen, storageEncrypt.get_data(), cipherlen))
       {
 
          storageDecrypt.allocate(0);
@@ -554,7 +558,7 @@ namespace crypto
       primitive::memory storageDecrypt;
       primitive::memory storageEncrypt;
       primitive::memory storageKey;
-      if(pszDecrypt == NULL || strlen(pszDecrypt) == 0)
+      if (pszDecrypt == NULL || strlen(pszDecrypt) == 0)
       {
          strEncrypt = "";
          return 0;
@@ -652,7 +656,7 @@ namespace crypto
 
          ctx.Init();
 
-         ctx.update(psz,(int32_t) strlen(psz));
+         ctx.update(psz, (int32_t)strlen(psz));
 
          memSha1.set(0, memSha1.get_size());
 
@@ -674,8 +678,8 @@ namespace crypto
 
          strSha1_2 = memSha1.to_hex();
 
-      }
-      */
+         }
+         */
 
       return strSha1;
    }
@@ -690,7 +694,7 @@ namespace crypto
 
       ctx.Init();
 
-      ctx.update(mem, (int32_t) mem.get_size());
+      ctx.update(mem, (int32_t)mem.get_size());
 
       ctx.Final(memSha1.get_data());
 
@@ -723,7 +727,7 @@ namespace crypto
    bool crypto::decrypt(string & strDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
    {
       primitive::memory memoryDecrypt;
-      if(!decrypt(memoryDecrypt, storageEncrypt, pszSalt))
+      if (!decrypt(memoryDecrypt, storageEncrypt, pszSalt))
          return false;
       memoryDecrypt.to_asc(strDecrypt);
       return true;
@@ -738,7 +742,7 @@ namespace crypto
    {
       string strSalt;
       string strFormat;
-      for(int32_t i = 0; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - NESSIE_DIGESTBYTES; i+=2)
+      for (int32_t i = 0; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - NESSIE_DIGESTBYTES; i += 2)
       {
          int64_t iDigit = System.math().RandRange(0, 255);
          strFormat.Format("%02x", iDigit);
@@ -754,7 +758,7 @@ namespace crypto
       string strHash(pszPassword);
       string strSalt(pszSalt);
       strSalt = strSalt.Left(CA4_CRYPT_V5_SALT_BYTES);
-      for(int32_t i = iOrder; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - NESSIE_DIGESTBYTES; i++)
+      for (int32_t i = iOrder; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - NESSIE_DIGESTBYTES; i++)
       {
          string strStepSalt = strSalt.Mid(i) + strSalt.Left(i);
          strHash = nessie(strStepSalt + strHash);
@@ -767,7 +771,7 @@ namespace crypto
       string strHash(pszPassword);
       string strSalt(pszSalt);
       strSalt = strSalt.Left(CA4_CRYPT_V5_SALT_BYTES);
-      for(int32_t i = 0; i < iMaxOrder; i++)
+      for (int32_t i = 0; i < iMaxOrder; i++)
       {
          string strStepSalt = strSalt.Mid(i) + strSalt.Left(i);
          strHash = nessie(strStepSalt + strHash);
@@ -785,7 +789,7 @@ namespace crypto
    bool crypto::v5_validate_plain_password(const char * pszPassword)
    {
       string str(pszPassword);
-      if(str.get_length() < 6)
+      if (str.get_length() < 6)
          return false;
       return ::str::has_all_v1(pszPassword);
    }
@@ -797,7 +801,7 @@ namespace crypto
 
    uint32_t crypto::crc32(uint32_t dwPrevious, const char * psz)
    {
-      return (uint32_t) ::crc32(dwPrevious, (const byte *) psz, (uInt) strlen(psz));
+      return (uint32_t) ::crc32(dwPrevious, (const byte *)psz, (uInt)strlen(psz));
    }
 
    void crypto::hmac(void * result, const primitive::memory & memMessage, const primitive::memory & memKey)
@@ -805,7 +809,7 @@ namespace crypto
 
       ::crypto::hmac_sha1::context context;
 
-      context.digest(result, memMessage.get_data(), (int32_t) memMessage.get_size(), memKey.get_data(), (int32_t) memKey.get_size());
+      context.digest(result, memMessage.get_data(), (int32_t)memMessage.get_size(), memKey.get_data(), (int32_t)memKey.get_size());
 
    }
 
@@ -814,7 +818,7 @@ namespace crypto
 
       ::crypto::hmac_sha1::context context;
 
-      context.digest(result, strMessage, (int32_t) strMessage.get_length(), strKey, (int32_t) strKey.get_length());
+      context.digest(result, strMessage, (int32_t)strMessage.get_length(), strKey, (int32_t)strKey.get_length());
 
    }
 
@@ -833,17 +837,17 @@ namespace crypto
 
       string str = Application.file().as_string(strPath);
 
-      if(str.has_char())
+      if (str.has_char())
          return str;
 
-      for(int32_t i = 0; i < 256; i++)
+      for (int32_t i = 0; i < 256; i++)
       {
 
          char ch = Application.math().rnd() % (10 + 26 + 26);
 
-         if(ch < 10)
+         if (ch < 10)
             ch += '0';
-         else if(ch < (10 + 26))
+         else if (ch < (10 + 26))
             ch += 'a';
          else
             ch += 'A';
@@ -859,7 +863,7 @@ namespace crypto
 
    }
 
-   
+
 #ifdef MACOS
 
 
@@ -933,7 +937,66 @@ namespace crypto
 
 #endif
 
+   void crypto::err_load_rsa_strings()
+   {
 
+      ERR_load_RSA_strings();
+
+   }
+
+
+   void crypto::err_load_crypto_strings()
+   {
+
+      ERR_load_crypto_strings();
+
+   }
+
+   int crypto::rsa_private_decrypt(::primitive::memory & out, const ::primitive::memory & in,
+      const string & n,
+      const string & e,
+      const string & d,
+      const string & p,
+      const string & q,
+      const string & dmp1,
+      const string & dmq1,
+      const string & iqmp,
+      string strError)
+   {
+
+      RSA * rsa = RSA_new();
+
+
+      BN_hex2bn(&rsa->n, n);
+
+
+      BN_hex2bn(&rsa->e, e);
+      BN_hex2bn(&rsa->d, d);
+      BN_hex2bn(&rsa->p, p);
+      BN_hex2bn(&rsa->q, q);
+      BN_hex2bn(&rsa->dmp1, dmp1);
+      BN_hex2bn(&rsa->dmq1, dmq1);
+      BN_hex2bn(&rsa->iqmp, iqmp);
+
+      int32_t iRsaSize = 8192;
+
+      out.allocate(iRsaSize);
+
+      ::count i = RSA_private_decrypt((int)in.get_size(), in.get_data(), out.get_data(), rsa, RSA_PKCS1_PADDING);
+      if (i < 0 || i >(1024 * 1024))
+      {
+         strError = ERR_error_string(ERR_get_error(), NULL);
+         RSA_free(rsa);
+
+         return (int)i;
+      }
+      RSA_free(rsa);
+
+      out.allocate(i);
+
+      return (int)i;
+
+   }
 
 } // namespace crypto
 
@@ -944,14 +1007,14 @@ namespace crypto
 bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt)
 {
 
-   string vsstr;
+string vsstr;
 
-   if(!crypt_file_get(pszFile, vsstr, pszSalt))
-      return false;
+if(!crypt_file_get(pszFile, vsstr, pszSalt))
+return false;
 
-   str = vsstr;
+str = vsstr;
 
-   return true;
+return true;
 
 }
 
