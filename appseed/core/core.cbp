@@ -397,16 +397,6 @@
 		<Unit filename="core/data/data_tree_item.cpp" />
 		<Unit filename="core/data/data_tree_item.h" />
 		<Unit filename="core/data/data_tree_item_data.h" />
-		<Unit filename="core/geoip/geoip.cpp" />
-		<Unit filename="core/geoip/geoip.h" />
-		<Unit filename="core/geoip/geoip_city.cpp" />
-		<Unit filename="core/geoip/geoip_city.h" />
-		<Unit filename="core/geoip/geoip_internal.h" />
-		<Unit filename="core/geoip/geoip_region_name.cpp" />
-		<Unit filename="core/geoip/geoip_time_zone.cpp" />
-		<Unit filename="core/geoip/geoip_update.cpp" />
-		<Unit filename="core/geoip/geoip_update.h" />
-		<Unit filename="core/geoip/global.h" />
 		<Unit filename="core/install/install.h" />
 		<Unit filename="core/install/install_install.h" />
 		<Unit filename="core/libcharguess/EUCJPProber.h" />

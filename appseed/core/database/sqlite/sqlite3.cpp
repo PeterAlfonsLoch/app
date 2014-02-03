@@ -91,8 +91,9 @@ namespace sqlite3
    /************** Continuing where we left off in sqliteInt.h ******************/
 
    /* Needed for various definitions... */
+   #ifndef _GNU_SOURCE
 #define _GNU_SOURCE
-
+#endif // _GNU_SOURCE
    /*
    ** Include standard header files as necessary
    */

@@ -50,14 +50,7 @@
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
 			<Add option="-fPIC" />
-			<Add option="-DNO_LCMS" />
-			<Add option="-DOPENSSL_NO_ASM" />
 			<Add option="-DLINUX" />
-			<Add option="-DLIBICONV_PLUG" />
-			<Add option="-DOPENSSL_NO_DYNAMIC_ENGINE" />
-			<Add option="-DOPENSSL_NO_RSAX" />
-			<Add option="-DOPENSSL_NO_HW" />
-			<Add option="-DOPENSSL_NO_RDRAND" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="framework" />

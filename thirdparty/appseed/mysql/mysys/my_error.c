@@ -104,7 +104,7 @@ char *my_strerror(char *buf, size_t len, int nr)
       {
         char tmp_buff[256] ;
 
-        my_snprintf(tmp_buff, sizeof(tmp_buff), 
+        my_snprintf(tmp_buff, sizeof(tmp_buff),
                     " [OS Error Code : 0x%x]", my_winerr);
 
         strcat_s(buf, len, tmp_buff);
@@ -118,9 +118,12 @@ char *my_strerror(char *buf, size_t len, int nr)
     strerror_r(nr, buf, len);             /* I can build with or without GNU */
 #elif defined(ANDROID)
      strerror_r(nr, buf, len);
-        
+#elif defined(LINUX)
+     strerror_r(nr, buf, len);
+
+
 #elif defined _GNU_SOURCE
-    char *r= strerror_r(nr, buf, len);
+    char *r= (char *) strerror_r(nr, buf, len);
     if (r != buf)                         /* Want to help, GNU? */
       strmake(buf, r, len - 1);           /* Then don't. */
 #else
@@ -400,7 +403,7 @@ const char **my_error_unregister(int first, int last)
   /* Save the return value and free the header. */
   errmsgs= meh_p->get_errmsgs();
   my_free(meh_p);
-  
+
   return errmsgs;
 }
 
