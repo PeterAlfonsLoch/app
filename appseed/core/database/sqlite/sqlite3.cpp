@@ -15801,7 +15801,7 @@ translate_out:
 #define UpperToLower sqlite3UpperToLower
 
    /*
-   ** Some systems have _stricmp().  Others have strcasecmp().  Because
+   ** Some systems have stricmp_dup().  Others have strcasecmp().  Because
    ** there is no consistency, we will define our own.
    */
    SQLITE_PRIVATE int32_t sqlite3StrICmp(const char *zLeft, const char *zRight){

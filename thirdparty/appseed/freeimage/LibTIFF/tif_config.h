@@ -162,7 +162,7 @@
 /* Define to 1 if you have the <stdlib.h> header file. */
 #define HAVE_STDLIB_H 1
 
-/* Define to 1 if you have the `strcasecmp' function. */
+/* Define to 1 if you have the `stricmp_dup' function. */
 #define HAVE_STRCASECMP 1
 
 /* Define to 1 if you have the `strchr' function. */
@@ -257,7 +257,7 @@
   #endif // _MSC_VER
 #endif // __cplusplus
 
-#ifdef _MSC_VER 
+#ifdef _MSC_VER
 //#define lfind _lfind
 /* Define to 1 if you have the <search.h> header file. */
 #define HAVE_SEARCH_H 1

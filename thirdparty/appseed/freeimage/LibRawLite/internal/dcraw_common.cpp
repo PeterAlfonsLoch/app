@@ -32,12 +32,14 @@ it under the terms of the one of three licenses as you choose:
 #include <math.h>
 
 
+
+
 //#ifdef ANDROID
 //extern "C" void swab(const void *from, void*to, ssize_t n);
 //#endif
 
 
-#ifndef __GLIBC__
+#if defined(LINUX)
 char *my_memmem (char *haystack, size_t haystacklen,
 	      char *needle, size_t needlelen)
 {
@@ -916,7 +918,7 @@ void CLASS lossless_jpeg_load_raw()
   }
   ljpeg_end (&jh);
   FORC4 if (cblack[4+c]) cblack[c] /= cblack[4+c];
-  if (!strcasecmp(make,"KODAK"))
+  if (!stricmp_dup(make,"KODAK"))
     black = min;
 #ifdef LIBRAW_LIBRARY_BUILD
   delete buf;
@@ -5981,7 +5983,7 @@ void CLASS parse_external_jpeg()
   strcpy (jname, ifname);
   jfile = file - ifname + jname;
   jext  = ext  - ifname + jname;
-  if (strcasecmp (ext, ".jpg")) {
+  if (stricmp_dup (ext, ".jpg")) {
     strcpy (jext, isupper(ext[1]) ? ".JPG":".jpg");
     if (isdigit(*file)) {
       memcpy (jfile, file+4, 4);
@@ -6425,7 +6427,7 @@ void CLASS parse_riff()
     memset (&t, 0, sizeof t);
     if (sscanf (date, "%*s %s %d %d:%d:%d %d", month, &t.tm_mday,
 	&t.tm_hour, &t.tm_min, &t.tm_sec, &t.tm_year) == 6) {
-      for (i=0; i < 12 && strcasecmp(mon[i],month); i++);
+      for (i=0; i < 12 && stricmp_dup(mon[i],month); i++);
       t.tm_mon = i;
       t.tm_year -= 1900;
       if (mktime(&t) > 0)
@@ -7428,7 +7430,7 @@ void CLASS identify()
 #ifdef _WIN32
           if(!_stricmp(make,"SIGMA") && !_strnicmp(model,"SIGMA DP",8))
 #else
-          if(!strcasecmp(make,"SIGMA") && !strncasecmp(model,"SIGMA DP",8))
+          if(!stricmp_dup(make,"SIGMA") && !strnicmp_dup(model,"SIGMA DP",8))
 #endif
               {
                   make[0] = model[0] = 0;
@@ -7465,7 +7467,7 @@ void CLASS identify()
 #ifdef _WIN32
   if (!_strnicmp (model, make, i) && model[i++] == ' ')
 #else
-  if (!strncasecmp (model, make, i) && model[i++] == ' ')
+  if (!strnicmp_dup (model, make, i) && model[i++] == ' ')
 #endif
     memmove (model, model+i, 64-i);
   if (!strncmp (model,"Digital Camera ",15))
@@ -8028,7 +8030,7 @@ cp_e2500:
     goto konica_400z;
   } else if (!strcmp(model,"KD-510Z")) {
     goto konica_510z;
-  } else if (!strcasecmp(make,"MINOLTA")) {
+  } else if (!stricmp_dup(make,"MINOLTA")) {
     load_raw = &CLASS unpacked_load_raw;
     maximum = 0xfff;
     if (!strncmp(model,"DiMAGE A",8)) {
@@ -8407,10 +8409,10 @@ c603:
   else
       identify2(fsize,flen,head); /* Avoid MS VS 2008 bug */
 #else
-  } else if (!strncasecmp(model,"EasyShare",9)) {
+  } else if (!strnicmp_dup(model,"EasyShare",9)) {
     data_offset = 0x15000;
     load_raw = &CLASS packed_load_raw;
-  } else if (!strcasecmp(make,"KODAK")) {
+  } else if (!stricmp_dup(make,"KODAK")) {
     if (filters == UINT_MAX) filters = 0x61616161;
     if (!strncmp(model,"NC2000",6)) {
       width -= 4;
@@ -8681,11 +8683,11 @@ void CLASS identify2(unsigned fsize, unsigned flen, char *head)
 #ifdef _WIN32
   if (!_strnicmp(model,"EasyShare",9)) {
 #else
-   if (!strncasecmp(model,"EasyShare",9)) {
+   if (!strnicmp_dup(model,"EasyShare",9)) {
 #endif
     data_offset = 0x15000;
     load_raw = &CLASS packed_load_raw;
-  } else if (!strcasecmp(make,"KODAK")) {
+  } else if (!stricmp_dup(make,"KODAK")) {
     if (filters == UINT_MAX) filters = 0x61616161;
     if (!strncmp(model,"NC2000",6)) {
       width -= 4;

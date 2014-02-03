@@ -1,4 +1,4 @@
-/* 
+/*
   Copyright 2008-2010 LibRaw LLC (info@libraw.org)
 
 LibRaw is free software; you can redistribute it and/or modify
@@ -62,8 +62,8 @@ it under the terms of the one of three licenses as you choose:
 #include <winsock2.h>
 #pragma comment(lib, "ws2_32.lib")
 #define snprintf _snprintf
-#define strcasecmp _stricmp
-#define strncasecmp strnicmp
+#define stricmp_dup _stricmp
+#define strnicmp_dup strnicmp
 #else
 #include <unistd.h>
 #include <utime.h>

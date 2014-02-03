@@ -143,7 +143,7 @@ namespace html
          {
             if(bParent)
             {
-               if(pelemental->m_pparent != NULL && _stricmp(pszName, "background-color"))
+               if(pelemental->m_pparent != NULL && stricmp_dup(pszName, "background-color"))
                {
                   if(pelemental->m_pparent->m_style.get_dimension(true, pszName, pszSubClass, pdata, pelemental->m_pparent, f))
                   {
@@ -678,7 +678,7 @@ namespace html
          style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
          if(pstyle == NULL)
          {
-            if(pelemental->m_pparent != NULL && _stricmp(pszName, "background-color"))
+            if(pelemental->m_pparent != NULL && stricmp_dup(pszName, "background-color"))
             {
                if(pelemental->m_pparent->m_style.get_color(pszName, pszSubClass, pdata, pelemental->m_pparent, cr))
                {
@@ -722,17 +722,17 @@ namespace html
             }
             if(strTag == "h1")
             {
-               if(_stricmp("font-family", pszName) == 0)
+               if(stricmp_dup("font-family", pszName) == 0)
                {
                   str = "Times New Roman";
                   return true;
                }
-               else if(_stricmp("font-size", pszName) == 0)
+               else if(stricmp_dup("font-size", pszName) == 0)
                {
                   str = "30";
                   return true;
                }
-               else if(_stricmp("font-weight", pszName) == 0)
+               else if(stricmp_dup("font-weight", pszName) == 0)
                {
                   str = "bold";
                   return true;
@@ -744,17 +744,17 @@ namespace html
             }
             else if(strTag == "h2")
             {
-               if(_stricmp("font-family", pszName) == 0)
+               if(stricmp_dup("font-family", pszName) == 0)
                {
                   str = "Times New Roman";
                   return true;
                }
-               else if(_stricmp("font-size", pszName) == 0)
+               else if(stricmp_dup("font-size", pszName) == 0)
                {
                   str = "23";
                   return true;
                }
-               else if(_stricmp("font-weight", pszName) == 0)
+               else if(stricmp_dup("font-weight", pszName) == 0)
                {
                   str = "bold";
                   return true;
@@ -766,17 +766,17 @@ namespace html
             }
             else if(strTag == "p")
             {
-               if(_stricmp("font-family", pszName) == 0)
+               if(stricmp_dup("font-family", pszName) == 0)
                {
                   str = "Times New Roman";
                   return true;
                }
-               else if(_stricmp("font-size", pszName) == 0)
+               else if(stricmp_dup("font-size", pszName) == 0)
                {
                   str = "11";
                   return true;
                }
-               else if(_stricmp("font-weight", pszName) == 0)
+               else if(stricmp_dup("font-weight", pszName) == 0)
                {
                   str = "normal";
                   return true;
@@ -788,17 +788,17 @@ namespace html
             }
             else if(strTag == "h3")
             {
-               if(_stricmp("font-family", pszName) == 0)
+               if(stricmp_dup("font-family", pszName) == 0)
                {
                   str = "Times New Roman";
                   return true;
                }
-               else if(_stricmp("font-size", pszName) == 0)
+               else if(stricmp_dup("font-size", pszName) == 0)
                {
                   str = "18";
                   return true;
                }
-               else if(_stricmp("font-weight", pszName) == 0)
+               else if(stricmp_dup("font-weight", pszName) == 0)
                {
                   str = "bold";
                   return true;

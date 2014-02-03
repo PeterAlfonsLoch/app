@@ -91,11 +91,7 @@ void colorer_logger(int32_t level, const char *cname, const char *msg, va_list v
 
   for (int32_t idx = 0; idx < sizeof(toTrace)/sizeof(toTrace[0]); idx++)
   {
-#ifdef WINDOWS
-      if (_stricmp(toTrace[idx], cname) == 0)
-#else
-      if (strcasecmp(toTrace[idx], cname) == 0)
-#endif
+      if (stricmp_dup(toTrace[idx], cname) == 0)
       {
          found = true;
       }

@@ -10,6 +10,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <spawn.h>
+extern char **environ;
 #elif defined(MACOS)
 #include <sys/wait.h>
 #include <unistd.h>
@@ -365,7 +366,7 @@ namespace core
       int32_t iExitCode;
       //      bool bExited;
 
-      int32_t wpid = waitpid(m_iPid, &iExitCode, 
+      int32_t wpid = waitpid(m_iPid, &iExitCode,
          0
 #ifdef WNOHANG
          | WNOHANG
