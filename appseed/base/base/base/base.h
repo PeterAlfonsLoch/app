@@ -1,3 +1,6 @@
+#ifndef CA2_APP_BASE_BASE_BASE_BASE_H
+#define CA2_APP_BASE_BASE_BASE_BASE_H
+
 #pragma once
 
 
@@ -97,3 +100,6 @@ END_EXTERN_C
 #endif
 
 
+
+
+#endif // CA2_APP_BASE_BASE_BASE_BASE_H

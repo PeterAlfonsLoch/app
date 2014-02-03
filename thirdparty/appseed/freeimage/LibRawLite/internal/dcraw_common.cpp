@@ -39,7 +39,7 @@ it under the terms of the one of three licenses as you choose:
 //#endif
 
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(WINDOWS)
 char *my_memmem (char *haystack, size_t haystacklen,
 	      char *needle, size_t needlelen)
 {

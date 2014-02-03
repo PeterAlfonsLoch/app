@@ -58,9 +58,10 @@
 #ifndef HEADER_ASN1T_H
 #define HEADER_ASN1T_H
 
-#include <stddef.h>
+//#include <stddef.h>
 #include <openssl/e_os2.h>
 #include <openssl/asn1.h>
+#include <stddef.h>                    /* needed for offsetof() */
 
 #ifdef OPENSSL_BUILD_SHLIBCRYPTO
 # undef OPENSSL_EXTERN
