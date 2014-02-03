@@ -113,6 +113,8 @@ namespace crypto
          const string & iqmp,
          string strError);*/
 
+      string spa_login_crypt(const char * psz, const char * pszRsa);
+
    };
 
 
@@ -136,6 +138,7 @@ namespace crypto
       string iqmp;
 
       rsa(sp(base_application) papp);
+      rsa(sp(base_application) papp, const string & n);
       rsa(sp(base_application) papp,
          const string & n,
          const string & e,
@@ -147,7 +150,7 @@ namespace crypto
          const string & iqmp);
       virtual ~rsa();
 
-
+      int public_encrypt(::primitive::memory & out, const ::primitive::memory & in, string & strError);
       int private_decrypt(::primitive::memory & out, const ::primitive::memory & in, string & strError);
 
    };
@@ -169,6 +172,6 @@ CLASS_DECL_BASE bool crypto_encrypt(::primitive::memory & storageEncrypt, const 
 CLASS_DECL_BASE bool crypto_file_get(const char * pszFile, string & str, const char * pszSalt);
 CLASS_DECL_BASE bool crypto_file_set(const char * pszFile, const char * pszData, const char * pszSalt);
 
-CLASS_DECL_BASE string spa_login_crypto(const char * psz, const char * pszRsa);
+
 
 

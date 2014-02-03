@@ -990,6 +990,138 @@ namespace crypto
 
    }
 
+
+   rsa::rsa(sp(base_application) papp, const string & nParam)
+   {
+
+#ifdef MACOS_DEPRECATED
+
+      CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+
+      CFDictionaryAddValue(parameters, kSecAttrKeyType, kSecAttrKeyTypeRSA);
+
+      // not needed, defaults to true    CFDictionaryAddValue(parameters, kSecAttrCanEncrypt, kCFBooleanTrue);
+
+      primitive::memory memKeyData;
+
+      memKeyData.from_hex(strPass);
+
+      CFDataRef keyData = memKeyData.get_os_cf_data();
+
+      CFErrorRef error = NULL;
+
+      m_prsa = SecKeyCreateFromData(parameters, keyData, &error);
+
+      if (error != NULL)
+      {
+
+         CFRelease(parameters);
+
+         CFRelease(keyData);
+
+         CFRelease(error);
+
+         throw resource_exception(get_app());
+
+      }
+
+      CFRelease(parameters);
+
+      CFRelease(keyData);
+
+
+#elif defined(METROWIN)
+
+
+      typedef struct _BCRYPT_RSAKEY_BLOB {
+         ULONG Magic;
+         ULONG BitLength;
+         ULONG cbPublicExp;
+         ULONG cbModulus;
+         ULONG cbPrime1;
+         ULONG cbPrime2;
+      } BCRYPT_RSAKEY_BLOB;
+
+      BCRYPT_RSAKEY_BLOB blob;
+
+      ::file::memory_buffer memfile(get_app());
+
+      blob.Magic = 0x31415352; // BCRYPT_RSAPUBLIC_MAGIC;
+      blob.BitLength = 1024;
+      blob.cbPublicExp = 3;
+      blob.cbModulus = 1024 / 8;
+      blob.cbPrime1 = 0;
+      blob.cbPrime2 = 0;
+
+      primitive::memory memVer(get_app());
+
+      memVer.from_hex("00");
+
+      memVer.prefix_der_uint();
+
+      memfile.write(&blob, sizeof(blob));
+
+      primitive::memory memMod(get_app());
+
+      memMod.from_hex(strRsaModulus);
+
+      //memMod.reverse();
+
+
+
+      //memMod.prefix_der_uint();
+
+      primitive::memory memExp(get_app());
+
+      memExp.from_hex("10001");
+
+      //memExp.reverse();
+
+      memfile.write(memExp.get_data(), memExp.get_size());
+
+      memfile.write(memMod.get_data(), memMod.get_size());
+
+      //memExp.prefix_der_uint();
+
+      ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider ^ cipher =
+         ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider::OpenAlgorithm(::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
+
+
+      primitive::memory memKey(get_app());
+
+      //memKey = memVer;
+      //memKey += memMod;
+      memKey = memMod;
+      memKey += memExp;
+
+
+      memKey.prefix_der_sequence();
+
+      //      string strRsaPrivateKey = "-----BEGIN RSA PRIVATE KEY-----\r\n";
+      //    strRsaPrivateKey += chunk_split(System.base64().encode(memKey));
+      //  strRsaPrivateKey += "-----END RSA PRIVATE KEY-----";
+
+      //memKey.allocate(strRsaPrivateKey.get_length());
+
+      //memcpy(memKey.get_data(), strRsaPrivateKey, memKey.get_size());
+
+      m_prsa = cipher->ImportPublicKey(memfile.get_memory()->get_os_crypt_buffer(), ::Windows::Security::Cryptography::Core::CryptographicPublicKeyBlobType::BCryptPublicKey);
+
+#else
+
+      m_prsa = RSA_new();
+
+      n = nParam;
+      e = "10001";
+
+      BN_hex2bn(&m_prsa->n, n);
+      BN_hex2bn(&m_prsa->e, e);
+
+#endif
+
+   }
+
+
    rsa::rsa(sp(base_application) papp,
       const string & n,
       const string & e,
@@ -1020,6 +1152,18 @@ namespace crypto
    rsa::~rsa()
    {
 
+#ifdef MACOS_DEPRECATED
+      if (m_prsa != NULL)
+      {
+
+         CFRelease(m_prsa);
+         m_prsa = NULL;
+      }
+#elif defined(METROWIN)
+
+      m_prsa = nullptr;
+
+#else
       if (m_prsa != NULL)
       {
 
@@ -1027,10 +1171,113 @@ namespace crypto
          m_prsa = NULL;
 
       }
-
+#endif
 
    }
    
+   int rsa::public_encrypt(::primitive::memory & out, const ::primitive::memory & in, string & strError)
+   {
+#ifdef MACOS_DEPRECATED
+
+
+      SecTransformRef transform = SecEncryptTransformCreate(m_prsa, &error);
+
+      if (error != NULL)
+      {
+
+         CFRelease(error);
+
+         return "";
+
+      }
+
+      SecTransformSetAttribute(transform, kSecPaddingKey, kSecPaddingPKCS1Key, &error);
+
+      if (error != NULL)
+      {
+
+         CFRelease(transform);
+
+         CFRelease(error);
+
+         return "";
+
+      }
+
+      primitive::memory memDataIn;
+
+      memDataIn.from_hex(strRsaModulus);
+
+      CFDataRef dataIn = memDataIn.get_os_cf_data();
+
+      SecTransformSetAttribute(transform, kSecTransformInputAttributeName, dataIn, &error);
+
+      if (error != NULL)
+      {
+
+         CFRelease(dataIn);
+
+         CFRelease(transform);
+
+         CFRelease(error);
+
+         return "";
+
+      }
+
+      /* Encrypt the data. */
+
+      CFDataRef data = (CFDataRef)SecTransformExecute(transform, &error);
+
+      if (error != NULL)
+      {
+
+         CFRelease(dataIn);
+
+         CFRelease(transform);
+
+         CFRelease(error);
+
+         return "";
+
+      }
+
+
+      string strHex;
+
+      primitive::memory memory;
+
+      memory.set_os_cf_data(data);
+
+      memory.to_hex(strHex);
+
+      CFRelease(data);
+
+      CFRelease(dataIn);
+
+      CFRelease(transform);
+
+#elif defined(METROWIN)
+
+
+
+      memory.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(m_prsa, memIn.get_os_crypt_buffer(), nullptr));
+
+
+#else
+
+      int32_t i = RSA_public_encrypt((int32_t)in.get_size(), (const uchar *)(const char *)in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
+
+      strError = ERR_error_string(ERR_get_error(), NULL);
+
+      out.allocate(i);
+
+#endif
+
+
+      return i;
+
+   }
 
    int rsa::private_decrypt(::primitive::memory & out, const ::primitive::memory & in, string & strError)
    {
@@ -1055,6 +1302,38 @@ namespace crypto
       out.allocate(i);
 
       return (int)i;
+
+   }
+
+   string crypto::spa_login_crypt(const char * psz, const char * pszRsa)
+   {
+
+      sp(::crypto::rsa) prsa = canew(::crypto::rsa(get_app(), pszRsa));
+
+      primitive::memory memory;
+
+      primitive::memory memIn;
+
+      hex_to_memory(memIn, psz);
+
+      memory.allocate(2048);
+
+      string strError;
+
+      int i = prsa->public_encrypt(memory, memIn, strError);
+
+      if (i < 0 || i >(1024 * 1024))
+      {
+
+         TRACE0(strError);
+
+      }
+
+      string strHex;
+
+      memory_to_hex(strHex, memory);
+
+      return strHex;
 
    }
 
