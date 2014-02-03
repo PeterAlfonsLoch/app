@@ -243,7 +243,7 @@ int pkey_GOST01cp_decrypt(EVP_PKEY_CTX *pctx, unsigned char *key, size_t * key_l
 		return 1;
 		}
 	gkt = d2i_GOST_KEY_TRANSPORT(NULL,(const unsigned char **)&p,
-		in_len);
+		(long) in_len);
 	if (!gkt)
 		{
 		GOSTerr(GOST_F_PKEY_GOST01CP_DECRYPT,GOST_R_ERROR_PARSING_KEY_TRANSPORT_INFO);

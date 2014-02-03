@@ -110,7 +110,7 @@
  */
 
 //#include <stdio.h>
-#include <stdarg.h>
+//#include <stdarg.h>
 //#include <string.h>
 #include "cryptlib.h"
 #include <openssl/lhash.h>

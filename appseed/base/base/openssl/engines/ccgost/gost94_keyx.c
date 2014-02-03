@@ -226,7 +226,7 @@ int pkey_GOST94cp_decrypt(EVP_PKEY_CTX *ctx, unsigned char *key, size_t *key_len
 		}
 
 	gkt = d2i_GOST_KEY_TRANSPORT(NULL,(const unsigned char **)&p,
-		in_len);
+		(long) in_len);
 	if (!gkt)
 		{
 		GOSTerr(GOST_F_PKEY_GOST94CP_DECRYPT,GOST_R_ERROR_PARSING_KEY_TRANSPORT_INFO);

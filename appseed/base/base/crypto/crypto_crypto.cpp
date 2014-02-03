@@ -652,7 +652,7 @@ namespace crypto
 
          ctx.Init();
 
-         ctx.update(psz, strlen(psz));
+         ctx.update(psz,(int32_t) strlen(psz));
 
          memSha1.set(0, memSha1.get_size());
 
