@@ -39,26 +39,6 @@ namespace dynamic_source
    }
 
 
-   void script_instance::set_session_value(id, var)
-   {
-   
-   }
-
-
-   var script_instance::get_session_value(id)
-   {
-      
-      return var(var::type_new);
-
-   }
-   
-   string script_instance::session_id(const char *)
-   {
-
-      return "";
-
-   }
-
 
 } // namespace dynamic_source
 

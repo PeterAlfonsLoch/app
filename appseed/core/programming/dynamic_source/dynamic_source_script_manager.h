@@ -189,7 +189,7 @@ namespace dynamic_source
 
       sp(::crypto::rsa) get_rsa_key();
 
-      string get_rsa_key(script_instance * pinstance);
+      string get_rsa_key(script_interface * pscriptinterface);
       
       void calc_rsa_key();
 

@@ -692,14 +692,14 @@ namespace dynamic_source
    }
 
 
-   string script_manager::get_rsa_key(script_instance * pinstance)
+   string script_manager::get_rsa_key(script_interface * pscriptinterface)
    {
 
-      pinstance->session_id(); // trigger session creation;
+      pscriptinterface->session_id(); // trigger session creation;
 
       sp(::crypto::rsa) prsa = get_rsa_key();
 
-      pinstance->set_session_value("rsa", prsa);
+      pscriptinterface->set_session_value("rsa", prsa);
 
       return prsa->n;
 

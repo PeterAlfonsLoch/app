@@ -133,6 +133,25 @@ namespace dynamic_source
 
    }
 
+   void script_interface::set_session_value(id, var)
+   {
+
+   }
+
+
+   var script_interface::get_session_value(id)
+   {
+
+      return var(var::type_new);
+
+   }
+
+   string script_interface::session_id(const char *)
+   {
+
+      return "";
+
+   }
 } // namespace dynamic_source
 
 

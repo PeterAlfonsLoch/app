@@ -87,6 +87,11 @@ namespace dynamic_source
          return m_pmanager;
       }
 
+
+      virtual void set_session_value(id id, var value);
+      virtual var get_session_value(id id);
+      virtual string session_id(const char * pszId = NULL);
+
    };
 
 
