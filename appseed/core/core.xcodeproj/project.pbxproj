@@ -869,6 +869,10 @@
 		07AD9A99182FF968005C3335 /* filemanager_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A6E182FF968005C3335 /* filemanager_view.h */; };
 		07AD9A9C182FF9E1005C3335 /* userfs_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A9A182FF9E1005C3335 /* userfs_item.cpp */; };
 		07AD9A9D182FF9E1005C3335 /* userfs_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A9B182FF9E1005C3335 /* userfs_item.h */; };
+		07B0B294189EED130041FCB1 /* user_meta_control_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B0B292189EED130041FCB1 /* user_meta_control_box.cpp */; };
+		07B0B295189EED130041FCB1 /* user_meta_control_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0B293189EED130041FCB1 /* user_meta_control_box.h */; };
+		07B0B298189EED360041FCB1 /* frame_control_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B0B296189EED360041FCB1 /* frame_control_box.cpp */; };
+		07B0B299189EED360041FCB1 /* frame_control_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0B297189EED360041FCB1 /* frame_control_box.h */; };
 		07F5B372184A4FA00092C3E1 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B2E6184A4FA00092C3E1 /* user.cpp */; };
 		07F5B373184A4FA00092C3E1 /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B2E7184A4FA00092C3E1 /* user.h */; };
 		07F5B374184A4FA00092C3E1 /* user1.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B2E8184A4FA00092C3E1 /* user1.h */; };
@@ -1126,16 +1130,6 @@
 		9AE72B2017E85ECE003E47F9 /* data_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE729CC17E85ECE003E47F9 /* data_tree.h */; };
 		9AE72B2317E85ECE003E47F9 /* data_tree_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE729CF17E85ECE003E47F9 /* data_tree_item.cpp */; };
 		9AE72B2417E85ECE003E47F9 /* data_tree_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE729D017E85ECE003E47F9 /* data_tree_item.h */; };
-		9AE72B2717E85ECE003E47F9 /* geoip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE729D517E85ECE003E47F9 /* geoip.cpp */; };
-		9AE72B2817E85ECE003E47F9 /* geoip.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE729D617E85ECE003E47F9 /* geoip.h */; };
-		9AE72B2917E85ECE003E47F9 /* geoip_city.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE729D717E85ECE003E47F9 /* geoip_city.cpp */; };
-		9AE72B2A17E85ECE003E47F9 /* geoip_city.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE729D817E85ECE003E47F9 /* geoip_city.h */; };
-		9AE72B2B17E85ECE003E47F9 /* geoip_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE729D917E85ECE003E47F9 /* geoip_internal.h */; };
-		9AE72B2C17E85ECE003E47F9 /* geoip_region_name.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE729DA17E85ECE003E47F9 /* geoip_region_name.cpp */; };
-		9AE72B2D17E85ECE003E47F9 /* geoip_time_zone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE729DB17E85ECE003E47F9 /* geoip_time_zone.cpp */; };
-		9AE72B2E17E85ECE003E47F9 /* geoip_update.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE729DC17E85ECE003E47F9 /* geoip_update.cpp */; };
-		9AE72B2F17E85ECE003E47F9 /* geoip_update.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE729DD17E85ECE003E47F9 /* geoip_update.h */; };
-		9AE72B3017E85ECE003E47F9 /* global.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE729DE17E85ECE003E47F9 /* global.h */; };
 		9AE72B3417E85ECE003E47F9 /* big5Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE729E517E85ECE003E47F9 /* big5Prober.h */; };
 		9AE72B3517E85ECE003E47F9 /* charDistribution.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE729E617E85ECE003E47F9 /* charDistribution.h */; };
 		9AE72B3617E85ECE003E47F9 /* charguess.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE729E717E85ECE003E47F9 /* charguess.h */; };
@@ -2091,6 +2085,10 @@
 		07AD9A6E182FF968005C3335 /* filemanager_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_view.h; sourceTree = "<group>"; };
 		07AD9A9A182FF9E1005C3335 /* userfs_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = userfs_item.cpp; sourceTree = "<group>"; };
 		07AD9A9B182FF9E1005C3335 /* userfs_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userfs_item.h; sourceTree = "<group>"; };
+		07B0B292189EED130041FCB1 /* user_meta_control_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_meta_control_box.cpp; sourceTree = "<group>"; };
+		07B0B293189EED130041FCB1 /* user_meta_control_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_meta_control_box.h; sourceTree = "<group>"; };
+		07B0B296189EED360041FCB1 /* frame_control_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_control_box.cpp; sourceTree = "<group>"; };
+		07B0B297189EED360041FCB1 /* frame_control_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame_control_box.h; sourceTree = "<group>"; };
 		07F5B2E5184A4FA00092C3E1 /* interaction.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = interaction.inl; sourceTree = "<group>"; };
 		07F5B2E6184A4FA00092C3E1 /* user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user.cpp; sourceTree = "<group>"; };
 		07F5B2E7184A4FA00092C3E1 /* user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user.h; sourceTree = "<group>"; };
@@ -2352,16 +2350,6 @@
 		9AE729CC17E85ECE003E47F9 /* data_tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_tree.h; sourceTree = "<group>"; };
 		9AE729CF17E85ECE003E47F9 /* data_tree_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_tree_item.cpp; sourceTree = "<group>"; };
 		9AE729D017E85ECE003E47F9 /* data_tree_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_tree_item.h; sourceTree = "<group>"; };
-		9AE729D517E85ECE003E47F9 /* geoip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoip.cpp; sourceTree = "<group>"; };
-		9AE729D617E85ECE003E47F9 /* geoip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geoip.h; sourceTree = "<group>"; };
-		9AE729D717E85ECE003E47F9 /* geoip_city.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoip_city.cpp; sourceTree = "<group>"; };
-		9AE729D817E85ECE003E47F9 /* geoip_city.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geoip_city.h; sourceTree = "<group>"; };
-		9AE729D917E85ECE003E47F9 /* geoip_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geoip_internal.h; sourceTree = "<group>"; };
-		9AE729DA17E85ECE003E47F9 /* geoip_region_name.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoip_region_name.cpp; sourceTree = "<group>"; };
-		9AE729DB17E85ECE003E47F9 /* geoip_time_zone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoip_time_zone.cpp; sourceTree = "<group>"; };
-		9AE729DC17E85ECE003E47F9 /* geoip_update.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoip_update.cpp; sourceTree = "<group>"; };
-		9AE729DD17E85ECE003E47F9 /* geoip_update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geoip_update.h; sourceTree = "<group>"; };
-		9AE729DE17E85ECE003E47F9 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
 		9AE729E417E85ECE003E47F9 /* Big5Freq.tab */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Big5Freq.tab; sourceTree = "<group>"; };
 		9AE729E517E85ECE003E47F9 /* big5Prober.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = big5Prober.h; sourceTree = "<group>"; };
 		9AE729E617E85ECE003E47F9 /* charDistribution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = charDistribution.h; sourceTree = "<group>"; };
@@ -3586,6 +3574,8 @@
 				07A6D738173C27E9009E6FB8 /* frame_constants.h */,
 				07A6D739173C27E9009E6FB8 /* frame_control_box_button.cpp */,
 				07A6D73A173C27E9009E6FB8 /* frame_control_box_button.h */,
+				07B0B296189EED360041FCB1 /* frame_control_box.cpp */,
+				07B0B297189EED360041FCB1 /* frame_control_box.h */,
 				07A6D73B173C27E9009E6FB8 /* frame_dock_manager.cpp */,
 				07A6D73C173C27E9009E6FB8 /* frame_dock_manager.h */,
 				07A6D73D173C27E9009E6FB8 /* frame_move_manager.cpp */,
@@ -3771,6 +3761,8 @@
 				07F5B326184A4FA00092C3E1 /* user_menu_list_view.cpp */,
 				07F5B328184A4FA00092C3E1 /* user_meta_button.cpp */,
 				07F5B329184A4FA00092C3E1 /* user_meta_button.h */,
+				07B0B292189EED130041FCB1 /* user_meta_control_box.cpp */,
+				07B0B293189EED130041FCB1 /* user_meta_control_box.h */,
 				07F5B32A184A4FA00092C3E1 /* user_multiple_document_template.cpp */,
 				07F5B32B184A4FA00092C3E1 /* user_multiple_document_template.h */,
 				07F5B32C184A4FA00092C3E1 /* user_network_configuration.cpp */,
@@ -3917,7 +3909,6 @@
 			children = (
 				9AE728F517E85ECD003E47F9 /* api */,
 				9AE729C617E85ECE003E47F9 /* data */,
-				9AE729D417E85ECE003E47F9 /* geoip */,
 				9AE729E317E85ECE003E47F9 /* libcharguess */,
 				9AE72A2317E85ECE003E47F9 /* macos */,
 				9AE72A2B17E85ECE003E47F9 /* plugin */,
@@ -4031,23 +4022,6 @@
 				9AE729D017E85ECE003E47F9 /* data_tree_item.h */,
 			);
 			path = data;
-			sourceTree = "<group>";
-		};
-		9AE729D417E85ECE003E47F9 /* geoip */ = {
-			isa = PBXGroup;
-			children = (
-				9AE729D517E85ECE003E47F9 /* geoip.cpp */,
-				9AE729D617E85ECE003E47F9 /* geoip.h */,
-				9AE729D717E85ECE003E47F9 /* geoip_city.cpp */,
-				9AE729D817E85ECE003E47F9 /* geoip_city.h */,
-				9AE729D917E85ECE003E47F9 /* geoip_internal.h */,
-				9AE729DA17E85ECE003E47F9 /* geoip_region_name.cpp */,
-				9AE729DB17E85ECE003E47F9 /* geoip_time_zone.cpp */,
-				9AE729DC17E85ECE003E47F9 /* geoip_update.cpp */,
-				9AE729DD17E85ECE003E47F9 /* geoip_update.h */,
-				9AE729DE17E85ECE003E47F9 /* global.h */,
-			);
-			path = geoip;
 			sourceTree = "<group>";
 		};
 		9AE729E317E85ECE003E47F9 /* libcharguess */ = {
@@ -4493,6 +4467,7 @@
 				07A6DF89173C27EB009E6FB8 /* bergedge_view.h in Headers */,
 				07A6DF8B173C27EB009E6FB8 /* nature.h in Headers */,
 				07A6DF8D173C27EB009E6FB8 /* nature_appearance_view.h in Headers */,
+				07B0B295189EED130041FCB1 /* user_meta_control_box.h in Headers */,
 				07A6DF8F173C27EB009E6FB8 /* nature_application.h in Headers */,
 				07A6DF91173C27EB009E6FB8 /* nature_database.h in Headers */,
 				07A6DF93173C27EB009E6FB8 /* nature_document.h in Headers */,
@@ -4567,6 +4542,7 @@
 				07A6E030173C27EC009E6FB8 /* colorertake5_hrc_parser.h in Headers */,
 				07A6E032173C27EC009E6FB8 /* colorertake5_hrc_parser_helpers.h in Headers */,
 				072AE9C11810372200F74E98 /* backview_helper.h in Headers */,
+				07B0B299189EED360041FCB1 /* frame_control_box.h in Headers */,
 				07A6E034173C27EC009E6FB8 /* colorertake5_hrc_parser_impl.h in Headers */,
 				07A6E035173C27EC009E6FB8 /* colorertake5_line_region.h in Headers */,
 				07A6E037173C27EC009E6FB8 /* colorertake5_line_regions_compact_support.h in Headers */,
@@ -4782,12 +4758,7 @@
 				9AE72B2017E85ECE003E47F9 /* data_tree.h in Headers */,
 				072AE9D21810372200F74E98 /* backview_visual_effect.h in Headers */,
 				9AE72B2417E85ECE003E47F9 /* data_tree_item.h in Headers */,
-				9AE72B2817E85ECE003E47F9 /* geoip.h in Headers */,
-				9AE72B2A17E85ECE003E47F9 /* geoip_city.h in Headers */,
 				07F5B39B184A4FA00092C3E1 /* user_front_end.h in Headers */,
-				9AE72B2B17E85ECE003E47F9 /* geoip_internal.h in Headers */,
-				9AE72B2F17E85ECE003E47F9 /* geoip_update.h in Headers */,
-				9AE72B3017E85ECE003E47F9 /* global.h in Headers */,
 				9AE72B3417E85ECE003E47F9 /* big5Prober.h in Headers */,
 				9AE72B3517E85ECE003E47F9 /* charDistribution.h in Headers */,
 				9AE72B3617E85ECE003E47F9 /* charguess.h in Headers */,
@@ -5138,6 +5109,7 @@
 				07A6DF8E173C27EB009E6FB8 /* nature_application.cpp in Sources */,
 				07F5B3DC184A4FA00092C3E1 /* user_tab.cpp in Sources */,
 				07A6DF90173C27EB009E6FB8 /* nature_database.cpp in Sources */,
+				07B0B298189EED360041FCB1 /* frame_control_box.cpp in Sources */,
 				07F5B3E0184A4FA00092C3E1 /* user_tab_view.cpp in Sources */,
 				07A6DF92173C27EB009E6FB8 /* nature_document.cpp in Sources */,
 				07A6DF94173C27EB009E6FB8 /* nature_frame.cpp in Sources */,
@@ -5220,6 +5192,7 @@
 				07A6E08D173C27EC009E6FB8 /* simple_edit.cpp in Sources */,
 				07F5B39E184A4FA00092C3E1 /* user_image_manager.cpp in Sources */,
 				07A6E08F173C27EC009E6FB8 /* simple_edit_plain_text.cpp in Sources */,
+				07B0B294189EED130041FCB1 /* user_meta_control_box.cpp in Sources */,
 				07A6E091173C27EC009E6FB8 /* simple_form_list_edit.cpp in Sources */,
 				07A6E093173C27EC009E6FB8 /* simple_form_list_view.cpp in Sources */,
 				07A6E095173C27EC009E6FB8 /* simple_frame_window.cpp in Sources */,
@@ -5348,12 +5321,7 @@
 				9AE72AD917E85ECE003E47F9 /* core_timer_window.cpp in Sources */,
 				9AE72B1F17E85ECE003E47F9 /* data_tree.cpp in Sources */,
 				9AE72B2317E85ECE003E47F9 /* data_tree_item.cpp in Sources */,
-				9AE72B2717E85ECE003E47F9 /* geoip.cpp in Sources */,
-				9AE72B2917E85ECE003E47F9 /* geoip_city.cpp in Sources */,
-				9AE72B2C17E85ECE003E47F9 /* geoip_region_name.cpp in Sources */,
-				9AE72B2D17E85ECE003E47F9 /* geoip_time_zone.cpp in Sources */,
 				07AD9A71182FF968005C3335 /* filemanager_child_frame.cpp in Sources */,
-				9AE72B2E17E85ECE003E47F9 /* geoip_update.cpp in Sources */,
 				9AE72B4117E85ECE003E47F9 /* libcharguess.cpp in Sources */,
 				9AE72B4317E85ECE003E47F9 /* libcharguess_big5Prober.cpp in Sources */,
 				9AE72B4417E85ECE003E47F9 /* libcharguess_charDistribution.cpp in Sources */,

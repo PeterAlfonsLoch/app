@@ -59,7 +59,8 @@ void MetaControlBox::_001OnLButtonUp(signal_details * pobj)
 
 void MetaControlBox::_001OnTimer(signal_details * pobj)
 {
-   SCAST_PTR(::message::timer, ptimer, pobj)
+//   SCAST_PTR(::message::timer, ptimer, pobj)
+   UNREFERENCED_PARAMETER(pobj);
 
 
 }

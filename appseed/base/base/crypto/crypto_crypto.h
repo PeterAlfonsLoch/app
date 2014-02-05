@@ -3,7 +3,7 @@
 
 //CLASS_DECL_BASE bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt);
 
-#ifdef MACOS
+#ifdef MACOS_DEPRECATED
 
 #define BASE_RSA_KEY SecKeyRef
 

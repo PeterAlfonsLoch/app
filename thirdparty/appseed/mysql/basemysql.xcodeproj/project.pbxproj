@@ -1310,6 +1310,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
+					"$(WorkspaceDir)/../../../app/appseed/base/base/openssl/include",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1347,6 +1348,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
+					"$(WorkspaceDir)/../../../app/appseed/base/base/openssl/include",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

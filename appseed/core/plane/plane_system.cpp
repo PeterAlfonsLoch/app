@@ -2267,14 +2267,22 @@ int32_t simple_app2::main()
 
 #endif
 
+#if !defined(MACOS)
+   
    if (!main_initialize())
       return -1;
+   
+#endif
 
 
 
    body();
 
+#if !defined(MACOS)
+   
    main_finalize();
+   
+#endif
 
 
 #ifdef WINDOWS

@@ -137,6 +137,7 @@
 #error "HASH_BLOCK_DATA_ORDER must be defined!"
 #endif
 
+
 /*
  * Engage compiler specific rotate intrinsic function if available.
  */

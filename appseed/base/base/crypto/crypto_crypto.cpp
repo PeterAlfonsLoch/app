@@ -865,7 +865,7 @@ namespace crypto
    }
 
 
-#ifdef MACOS
+#ifdef MACOS_DEPRECATED
 
 
    SecKeyRef crypto::get_new_rsa_key()

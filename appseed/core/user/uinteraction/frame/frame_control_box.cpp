@@ -122,7 +122,7 @@ namespace uinteraction
       void control_box::_001OnTimer(signal_details * pobj)
       {
 
-         SCAST_PTR(::message::timer, ptimer, pobj)
+//         SCAST_PTR(::message::timer, ptimer, pobj)
 
          if (IsWindowVisible())
          {
@@ -237,7 +237,8 @@ namespace uinteraction
       void control_box::_001OnCreate(signal_details * pobj)
       {
 
-         SCAST_PTR(::message::create, pcreate, pobj)
+         UNREFERENCED_PARAMETER(pobj);
+//         SCAST_PTR(::message::create, pcreate, pobj)
 
             SetTimer(123, 184, NULL);
 

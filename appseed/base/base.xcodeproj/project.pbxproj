@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0715B917189EDE4500B3EBD9 /* evp_cnf.c in Sources */ = {isa = PBXBuildFile; fileRef = 0715B916189EDE4500B3EBD9 /* evp_cnf.c */; };
+		0715B919189EDE7F00B3EBD9 /* s3_cbc.c in Sources */ = {isa = PBXBuildFile; fileRef = 0715B918189EDE7F00B3EBD9 /* s3_cbc.c */; };
+		0715B925189EE65700B3EBD9 /* geoip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0715B91B189EE65700B3EBD9 /* geoip.cpp */; };
+		0715B926189EE65700B3EBD9 /* geoip.h in Headers */ = {isa = PBXBuildFile; fileRef = 0715B91C189EE65700B3EBD9 /* geoip.h */; };
+		0715B927189EE65700B3EBD9 /* geoip_city.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0715B91D189EE65700B3EBD9 /* geoip_city.cpp */; };
+		0715B928189EE65700B3EBD9 /* geoip_city.h in Headers */ = {isa = PBXBuildFile; fileRef = 0715B91E189EE65700B3EBD9 /* geoip_city.h */; };
+		0715B929189EE65700B3EBD9 /* geoip_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 0715B91F189EE65700B3EBD9 /* geoip_internal.h */; };
+		0715B92A189EE65700B3EBD9 /* geoip_region_name.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0715B920189EE65700B3EBD9 /* geoip_region_name.cpp */; };
+		0715B92B189EE65700B3EBD9 /* geoip_time_zone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0715B921189EE65700B3EBD9 /* geoip_time_zone.cpp */; };
+		0715B92C189EE65700B3EBD9 /* geoip_update.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0715B922189EE65700B3EBD9 /* geoip_update.cpp */; };
+		0715B92D189EE65700B3EBD9 /* geoip_update.h in Headers */ = {isa = PBXBuildFile; fileRef = 0715B923189EE65700B3EBD9 /* geoip_update.h */; };
+		0715B92E189EE65700B3EBD9 /* global.h in Headers */ = {isa = PBXBuildFile; fileRef = 0715B924189EE65700B3EBD9 /* global.h */; };
 		07884BDE1897E9A400DC6CEB /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07884B901897E9A400DC6CEB /* user.cpp */; };
 		07884BDF1897E9A400DC6CEB /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 07884B911897E9A400DC6CEB /* user.h */; };
 		07884BE01897E9A400DC6CEB /* user_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07884B921897E9A400DC6CEB /* user_buffer.cpp */; };
@@ -1142,7 +1154,6 @@
 		07B08F5918495B41007A0560 /* eng_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B0837A18495B3A007A0560 /* eng_list.c */; };
 		07B08F5A18495B41007A0560 /* eng_openssl.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B0837B18495B3A007A0560 /* eng_openssl.c */; };
 		07B08F5B18495B41007A0560 /* eng_pkey.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B0837C18495B3A007A0560 /* eng_pkey.c */; };
-		07B08F5C18495B41007A0560 /* eng_rdrand.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B0837D18495B3A007A0560 /* eng_rdrand.c */; };
 		07B08F5E18495B41007A0560 /* eng_table.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B0837F18495B3A007A0560 /* eng_table.c */; };
 		07B08F5F18495B41007A0560 /* engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0838018495B3A007A0560 /* engine.h */; };
 		07B08F6218495B41007A0560 /* tb_asnmth.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B0838418495B3A007A0560 /* tb_asnmth.c */; };
@@ -1333,7 +1344,6 @@
 		07B0904F18495B41007A0560 /* pk7_attr.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B084B218495B3B007A0560 /* pk7_attr.c */; };
 		07B0905018495B41007A0560 /* pk7_dgst.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B084B318495B3B007A0560 /* pk7_dgst.c */; };
 		07B0905118495B41007A0560 /* pk7_doit.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B084B418495B3B007A0560 /* pk7_doit.c */; };
-		07B0905218495B41007A0560 /* pk7_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B084B518495B3B007A0560 /* pk7_enc.c */; };
 		07B0905318495B41007A0560 /* pk7_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B084B618495B3B007A0560 /* pk7_lib.c */; };
 		07B0905418495B41007A0560 /* pk7_mime.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B084B718495B3B007A0560 /* pk7_mime.c */; };
 		07B0905518495B41007A0560 /* pk7_smime.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B084B818495B3B007A0560 /* pk7_smime.c */; };
@@ -2448,6 +2458,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0715B916189EDE4500B3EBD9 /* evp_cnf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = evp_cnf.c; sourceTree = "<group>"; };
+		0715B918189EDE7F00B3EBD9 /* s3_cbc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = s3_cbc.c; sourceTree = "<group>"; };
+		0715B91B189EE65700B3EBD9 /* geoip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoip.cpp; sourceTree = "<group>"; };
+		0715B91C189EE65700B3EBD9 /* geoip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geoip.h; sourceTree = "<group>"; };
+		0715B91D189EE65700B3EBD9 /* geoip_city.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoip_city.cpp; sourceTree = "<group>"; };
+		0715B91E189EE65700B3EBD9 /* geoip_city.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geoip_city.h; sourceTree = "<group>"; };
+		0715B91F189EE65700B3EBD9 /* geoip_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geoip_internal.h; sourceTree = "<group>"; };
+		0715B920189EE65700B3EBD9 /* geoip_region_name.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoip_region_name.cpp; sourceTree = "<group>"; };
+		0715B921189EE65700B3EBD9 /* geoip_time_zone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoip_time_zone.cpp; sourceTree = "<group>"; };
+		0715B922189EE65700B3EBD9 /* geoip_update.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoip_update.cpp; sourceTree = "<group>"; };
+		0715B923189EE65700B3EBD9 /* geoip_update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geoip_update.h; sourceTree = "<group>"; };
+		0715B924189EE65700B3EBD9 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
 		073EDDE1164E968100818801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		073EDDE4164E96DA00818801 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		07884B901897E9A400DC6CEB /* user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user.cpp; sourceTree = "<group>"; };
@@ -3594,7 +3616,6 @@
 		07B0837A18495B3A007A0560 /* eng_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = eng_list.c; sourceTree = "<group>"; };
 		07B0837B18495B3A007A0560 /* eng_openssl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = eng_openssl.c; sourceTree = "<group>"; };
 		07B0837C18495B3A007A0560 /* eng_pkey.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = eng_pkey.c; sourceTree = "<group>"; };
-		07B0837D18495B3A007A0560 /* eng_rdrand.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = eng_rdrand.c; sourceTree = "<group>"; };
 		07B0837F18495B3A007A0560 /* eng_table.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = eng_table.c; sourceTree = "<group>"; };
 		07B0838018495B3A007A0560 /* engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = engine.h; sourceTree = "<group>"; };
 		07B0838418495B3A007A0560 /* tb_asnmth.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tb_asnmth.c; sourceTree = "<group>"; };
@@ -3785,7 +3806,6 @@
 		07B084B218495B3B007A0560 /* pk7_attr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pk7_attr.c; sourceTree = "<group>"; };
 		07B084B318495B3B007A0560 /* pk7_dgst.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pk7_dgst.c; sourceTree = "<group>"; };
 		07B084B418495B3B007A0560 /* pk7_doit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pk7_doit.c; sourceTree = "<group>"; };
-		07B084B518495B3B007A0560 /* pk7_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pk7_enc.c; sourceTree = "<group>"; };
 		07B084B618495B3B007A0560 /* pk7_lib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pk7_lib.c; sourceTree = "<group>"; };
 		07B084B718495B3B007A0560 /* pk7_mime.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pk7_mime.c; sourceTree = "<group>"; };
 		07B084B818495B3B007A0560 /* pk7_smime.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pk7_smime.c; sourceTree = "<group>"; };
@@ -4931,6 +4951,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0715B91A189EE65700B3EBD9 /* geoip */ = {
+			isa = PBXGroup;
+			children = (
+				0715B91B189EE65700B3EBD9 /* geoip.cpp */,
+				0715B91C189EE65700B3EBD9 /* geoip.h */,
+				0715B91D189EE65700B3EBD9 /* geoip_city.cpp */,
+				0715B91E189EE65700B3EBD9 /* geoip_city.h */,
+				0715B91F189EE65700B3EBD9 /* geoip_internal.h */,
+				0715B920189EE65700B3EBD9 /* geoip_region_name.cpp */,
+				0715B921189EE65700B3EBD9 /* geoip_time_zone.cpp */,
+				0715B922189EE65700B3EBD9 /* geoip_update.cpp */,
+				0715B923189EE65700B3EBD9 /* geoip_update.h */,
+				0715B924189EE65700B3EBD9 /* global.h */,
+			);
+			path = geoip;
+			sourceTree = "<group>";
+		};
 		07884B8F1897E9A400DC6CEB /* user */ = {
 			isa = PBXGroup;
 			children = (
@@ -6404,7 +6441,6 @@
 				07B0837A18495B3A007A0560 /* eng_list.c */,
 				07B0837B18495B3A007A0560 /* eng_openssl.c */,
 				07B0837C18495B3A007A0560 /* eng_pkey.c */,
-				07B0837D18495B3A007A0560 /* eng_rdrand.c */,
 				07B0837F18495B3A007A0560 /* eng_table.c */,
 				07B0838018495B3A007A0560 /* engine.h */,
 				07B0838418495B3A007A0560 /* tb_asnmth.c */,
@@ -6463,6 +6499,7 @@
 				07B083B018495B3A007A0560 /* encode.c */,
 				07B083B118495B3A007A0560 /* evp.h */,
 				07B083B218495B3A007A0560 /* evp_acnf.c */,
+				0715B916189EDE4500B3EBD9 /* evp_cnf.c */,
 				07B083B318495B3A007A0560 /* evp_enc.c */,
 				07B083B418495B3A007A0560 /* evp_err.c */,
 				07B083B518495B3A007A0560 /* evp_fips.c */,
@@ -6696,7 +6733,6 @@
 				07B084B218495B3B007A0560 /* pk7_attr.c */,
 				07B084B318495B3B007A0560 /* pk7_dgst.c */,
 				07B084B418495B3B007A0560 /* pk7_doit.c */,
-				07B084B518495B3B007A0560 /* pk7_enc.c */,
 				07B084B618495B3B007A0560 /* pk7_lib.c */,
 				07B084B718495B3B007A0560 /* pk7_mime.c */,
 				07B084B818495B3B007A0560 /* pk7_smime.c */,
@@ -7113,6 +7149,7 @@
 				07B088E518495B3F007A0560 /* s2_pkt.c */,
 				07B088E618495B3F007A0560 /* s2_srvr.c */,
 				07B088E718495B3F007A0560 /* s3_both.c */,
+				0715B918189EDE7F00B3EBD9 /* s3_cbc.c */,
 				07B088E818495B3F007A0560 /* s3_clnt.c */,
 				07B088E918495B3F007A0560 /* s3_enc.c */,
 				07B088EA18495B3F007A0560 /* s3_lib.c */,
@@ -8195,6 +8232,7 @@
 				07B07EB618495B37007A0560 /* compress */,
 				07B07FFE18495B38007A0560 /* crypto */,
 				07B0804518495B38007A0560 /* exception */,
+				0715B91A189EE65700B3EBD9 /* geoip */,
 				07B0809A18495B38007A0560 /* hotplugin */,
 				07B080A318495B38007A0560 /* install */,
 				07B080C818495B38007A0560 /* openssl */,
@@ -8619,6 +8657,7 @@
 				07884E0D1897EC9600DC6CEB /* iso8859_3.h in Headers */,
 				07B08BC218495B40007A0560 /* base_cregexp_util.h in Headers */,
 				07884D871897EC9600DC6CEB /* canonical_local_syshpux.h in Headers */,
+				0715B92E189EE65700B3EBD9 /* global.h in Headers */,
 				07B08D5918495B41007A0560 /* hotplugin_host.h in Headers */,
 				079AE07B1886483600635C39 /* base_progress.h in Headers */,
 				07884DD11897EC9600DC6CEB /* cp950ext.h in Headers */,
@@ -8753,6 +8792,7 @@
 				07884DBE1897EC9600DC6CEB /* cp857.h in Headers */,
 				07B08BEA18495B40007A0560 /* base_log.h in Headers */,
 				07B08C0D18495B40007A0560 /* base_session.h in Headers */,
+				0715B926189EE65700B3EBD9 /* geoip.h in Headers */,
 				07B094B618495C2A007A0560 /* collection_comparable_array.h in Headers */,
 				079AE095188648BC00635C39 /* sockets_http_listener.h in Headers */,
 				07B08BE018495B40007A0560 /* base_international.h in Headers */,
@@ -8788,6 +8828,7 @@
 				07F5B283184A3B6A0092C3E1 /* visual_const.h in Headers */,
 				07B091C418495B42007A0560 /* e_nuron_err.h in Headers */,
 				07B092F818495B43007A0560 /* macos_mm_window_frame_view.h in Headers */,
+				0715B929189EE65700B3EBD9 /* geoip_internal.h in Headers */,
 				07884E221897EC9600DC6CEB /* localcharset.h in Headers */,
 				07884DDC1897EC9600DC6CEB /* euc_tw.h in Headers */,
 				07F5B1DE184A3B430092C3E1 /* file_simple_binary_buffer.h in Headers */,
@@ -9288,6 +9329,7 @@
 				07B0976A18495CBE007A0560 /* http_system.h in Headers */,
 				07884E001897EC9600DC6CEB /* iso2022_jp2.h in Headers */,
 				07B0979F18495CBE007A0560 /* sockets_udp_socket.h in Headers */,
+				0715B928189EE65700B3EBD9 /* geoip_city.h in Headers */,
 				9AE7255F17E83B69003E47F9 /* primitive_factory.h in Headers */,
 				9AE7256117E83B69003E47F9 /* primitive_id.h in Headers */,
 				07884E031897EC9600DC6CEB /* iso646_cn.h in Headers */,
@@ -9482,6 +9524,7 @@
 				07B08BBB18495B40007A0560 /* base_conv.h in Headers */,
 				07B0908318495B41007A0560 /* rc5.h in Headers */,
 				07F5B1CB184A3B430092C3E1 /* file_plain_text_input_stream.h in Headers */,
+				0715B92D189EE65700B3EBD9 /* geoip_update.h in Headers */,
 				07884E281897EC9600DC6CEB /* mac_centraleurope.h in Headers */,
 				07884D821897EC9600DC6CEB /* canonical_aix_sysaix.h in Headers */,
 				079AE0671886481200635C39 /* math_scalar.h in Headers */,
@@ -9750,6 +9793,7 @@
 				07B090E018495B41007A0560 /* ts_asn1.c in Sources */,
 				07884C171897E9A500DC6CEB /* user_user.cpp in Sources */,
 				07B0931318495B43007A0560 /* macos_win_base.cpp in Sources */,
+				0715B917189EDE4500B3EBD9 /* evp_cnf.c in Sources */,
 				07F5B24E184A3B6A0092C3E1 /* draw2d_bitmap.cpp in Sources */,
 				07B0910018495B41007A0560 /* by_file.c in Sources */,
 				07B092FC18495B43007A0560 /* macos_os.cpp in Sources */,
@@ -9851,6 +9895,7 @@
 				07B08D4518495B41007A0560 /* exception_simple.cpp in Sources */,
 				07B08DDA18495B41007A0560 /* a_i2d_fp.c in Sources */,
 				07B08E0F18495B41007A0560 /* tasn_fre.c in Sources */,
+				0715B92C189EE65700B3EBD9 /* geoip_update.cpp in Sources */,
 				07B08F1918495B41007A0560 /* dso_lib.c in Sources */,
 				07B08EF418495B41007A0560 /* dh_ameth.c in Sources */,
 				07B091A118495B42007A0560 /* gost_keywrap.c in Sources */,
@@ -10009,6 +10054,7 @@
 				07B08DD918495B41007A0560 /* a_gentm.c in Sources */,
 				07B08CAD18495B40007A0560 /* inftrees.c in Sources */,
 				07B08BEC18495B40007A0560 /* base_machine_event.cpp in Sources */,
+				0715B927189EE65700B3EBD9 /* geoip_city.cpp in Sources */,
 				07B08CDB18495B40007A0560 /* crypto_kernel_alloc.c in Sources */,
 				07B08F6918495B41007A0560 /* tb_pkmeth.c in Sources */,
 				07B0910E18495B41007A0560 /* x509_trs.c in Sources */,
@@ -10078,13 +10124,13 @@
 				07B091F118495B42007A0560 /* kssl.c in Sources */,
 				07B093B918495B43007A0560 /* xml_edit.cpp in Sources */,
 				07B0978018495CBE007A0560 /* sockets_base_socket.cpp in Sources */,
+				0715B92B189EE65700B3EBD9 /* geoip_time_zone.cpp in Sources */,
 				07B0912C18495B41007A0560 /* v3_cpols.c in Sources */,
 				07B0920D18495B42007A0560 /* ssl_asn1.c in Sources */,
 				079AE0C4188648D400635C39 /* database_id.cpp in Sources */,
 				07B08DED18495B41007A0560 /* asn1_lib.c in Sources */,
 				07B08D3918495B41007A0560 /* exception_operation_canceled.cpp in Sources */,
 				07B097F218495CBE007A0560 /* sockets_http_put_socket.cpp in Sources */,
-				07B08F5C18495B41007A0560 /* eng_rdrand.c in Sources */,
 				07884C261897E9A500DC6CEB /* user_window_interface.cpp in Sources */,
 				07B08D6418495B41007A0560 /* install_canvas.cpp in Sources */,
 				07B08E8718495B41007A0560 /* cmll_ofb.c in Sources */,
@@ -10104,6 +10150,7 @@
 				07B08F4C18495B41007A0560 /* ecs_sign.c in Sources */,
 				07B094D018495C2B007A0560 /* collection_object_list.cpp in Sources */,
 				07B08CD618495B40007A0560 /* crypto_hash_sha1.c in Sources */,
+				0715B92A189EE65700B3EBD9 /* geoip_region_name.cpp in Sources */,
 				07B090E518495B41007A0560 /* ts_req_utils.c in Sources */,
 				07B08E1B18495B41007A0560 /* x_name.c in Sources */,
 				07F5B2DC184A403C0092C3E1 /* multithreading_go_thread.cpp in Sources */,
@@ -10596,6 +10643,7 @@
 				07B08ECF18495B41007A0560 /* des_old.c in Sources */,
 				9AE7255417E83B69003E47F9 /* primitive_create_context.cpp in Sources */,
 				07B08EAF18495B41007A0560 /* comp_err.c in Sources */,
+				0715B919189EDE7F00B3EBD9 /* s3_cbc.c in Sources */,
 				07B091FA18495B42007A0560 /* s2_clnt.c in Sources */,
 				07B08CEA18495B40007A0560 /* crypto_replay_rdb.c in Sources */,
 				9AE7255617E83B69003E47F9 /* primitive_data.cpp in Sources */,
@@ -10632,7 +10680,6 @@
 				07884D6F1897EC9600DC6CEB /* allocator.c in Sources */,
 				07B0902018495B41007A0560 /* ocsp_lib.c in Sources */,
 				9AE7256617E83B69003E47F9 /* primitive_interlocked_long_pulse.cpp in Sources */,
-				07B0905218495B41007A0560 /* pk7_enc.c in Sources */,
 				07B08CD418495B40007A0560 /* crypto_hash_hmac.c in Sources */,
 				07B08F2E18495B41007A0560 /* ec_mult.c in Sources */,
 				07B0920E18495B42007A0560 /* ssl_cert.c in Sources */,
@@ -10646,6 +10693,7 @@
 				07B08E8D18495B41007A0560 /* c_ofb64.c in Sources */,
 				07F5B1A9184A3B430092C3E1 /* file_byte_input_stream_binary_buffer.cpp in Sources */,
 				07B08D0618495B40007A0560 /* exception_archive_exception.cpp in Sources */,
+				0715B925189EE65700B3EBD9 /* geoip.cpp in Sources */,
 				07B08E1218495B41007A0560 /* tasn_typ.c in Sources */,
 				07B0911818495B41007A0560 /* x509type.c in Sources */,
 				07B08E1818495B41007A0560 /* x_exten.c in Sources */,
@@ -10977,11 +11025,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					LIBICONV_PLUG,
-					OPENSSL_NO_ASM,
-					_DEBUG,
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = _DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
@@ -11035,10 +11079,7 @@
 				EXECUTABLE_PREFIX = lib;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					LIBICONV_PLUG,
-					OPENSSL_NO_ASM,
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
