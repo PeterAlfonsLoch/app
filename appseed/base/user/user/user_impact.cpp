@@ -1109,4 +1109,28 @@ namespace user
       GetParentFrame()->SetActiveView((this));
    }
 
+
+   bool impact::_001HasCommandHandler(id id)
+   {
+
+      if (command_target_interface::_001HasCommandHandler(id))
+         return true;
+
+      if (get_document() != NULL)
+      {
+
+         if (get_document()->_001HasCommandHandler(id))
+            return true;
+
+      }
+
+
+
+      return false;
+
+   }
+
+
+
+
 } // namespace user

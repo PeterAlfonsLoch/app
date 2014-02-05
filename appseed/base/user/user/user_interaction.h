@@ -632,6 +632,7 @@ namespace user
          return nullptr;
       }
 #endif
+      virtual bool _001HasCommandHandler(id id);
 
 
    };

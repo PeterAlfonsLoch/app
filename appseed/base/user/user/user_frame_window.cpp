@@ -2117,6 +2117,32 @@ namespace user
 
 
 
+   bool frame_window::_001HasCommandHandler(id id)
+   {
+
+      if (command_target_interface::_001HasCommandHandler(id))
+         return true;
+
+      if (m_pViewActive.is_set())
+      {
+
+         if (m_pViewActive->_001HasCommandHandler(id))
+            return true;
+
+      }
+
+      if (get_parent().is_set())
+      {
+
+         if (get_parent()->_001HasCommandHandler(id))
+            return true;
+
+      }
+
+      return false;
+
+   }
+
 
 
 

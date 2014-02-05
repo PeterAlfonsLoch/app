@@ -16,8 +16,6 @@ namespace user
 
 
    class frame_window;
-   class document;
-   class frame_window;
 
 
 
@@ -226,6 +224,10 @@ namespace user
          DECL_GEN_SIGNAL(_001OnMButtonDown)
 
          //         virtual void install_message_handling(::message::dispatch * pinterface);
+
+         virtual bool _001HasCommandHandler(id id);
+
+
    };
 
 

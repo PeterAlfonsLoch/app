@@ -1595,7 +1595,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user\user_combo_box.h" />
     <ClInclude Include="user\user\user_combo_list.h" />
     <ClInclude Include="user\user\user_control.h" />
-    <ClInclude Include="user\user\user_control_bar.h" />
     <ClInclude Include="user\user\user_control_event.h" />
     <ClInclude Include="user\user\user_control_property.h" />
     <ClInclude Include="user\user\user_data_exchange.h" />

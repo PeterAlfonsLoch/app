@@ -1072,4 +1072,5 @@ namespace user
       { return rect(m_cxLeftBorder, m_cyTopBorder, m_cxRightBorder, m_cyBottomBorder); }
 
 
+
 } // namespace user

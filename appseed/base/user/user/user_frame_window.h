@@ -413,6 +413,10 @@ namespace user
 
       void data_on_after_change(signal_details * pobj);
 
+
+      virtual bool _001HasCommandHandler(id id);
+
+
    };
 
 

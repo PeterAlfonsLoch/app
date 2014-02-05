@@ -7,9 +7,11 @@ class SimpleToolCmdUI : public cmd_ui        // class private to this file !
 public: // re-implementations only
 
    SimpleToolCmdUI(sp(base_application) papp);
-   virtual void Enable(bool bOn);
-   virtual void SetCheck(check::e_check echeck = check::checked);
-   virtual void SetText(const char * lpszText);
+   virtual void Enable(bool bOn = TRUE, ::action::context actioncontext = ::action::source_system);
+//   virtual void _001SetCheck(bool bCheck, ::action::context = ::action::source_system);   // 0, 1 or 2 (indeterminate)
+   virtual void _001SetCheck(check::e_check echeck, ::action::context = ::action::source_system);   // 0, 1 or 2 (indeterminate)
+//   virtual void SetRadio(bool bOn = TRUE, ::action::context actioncontext = ::action::source_system);
+   virtual void SetText(const char * lpszText, ::action::context actioncontext = ::action::source_system);
 };
 
 
@@ -1564,7 +1566,7 @@ element(papp),
    cmd_ui(papp)
 {
 }
-void SimpleToolCmdUI::Enable(bool bOn)
+void SimpleToolCmdUI::Enable(bool bOn, ::action::context actioncontext)
 {
    m_bEnableChanged = TRUE;
    simple_toolbar* pToolBar = dynamic_cast < simple_toolbar * > (m_pOther.m_p);
@@ -1589,7 +1591,7 @@ void SimpleToolCmdUI::Enable(bool bOn)
 #endif
 }
 
-void SimpleToolCmdUI::SetCheck(check::e_check echeck)
+void SimpleToolCmdUI::_001SetCheck(check::e_check echeck, ::action::context actioncontext)
 {
    ASSERT(echeck == check::checked
       || echeck == check::unchecked
@@ -1613,7 +1615,7 @@ void SimpleToolCmdUI::SetCheck(check::e_check echeck)
 #endif
 }
 
-void SimpleToolCmdUI::SetText(const char *)
+void SimpleToolCmdUI::SetText(const char *, ::action::context)
 {
    // ignore it
 }

@@ -355,7 +355,10 @@ namespace database
 
       void interaction::_001WindowRestore()
       {
-         WindowDataLoadWindowRect(true);
+         if (!WindowDataLoadWindowRect(true))
+         {
+            ShowWindow(SW_RESTORE);
+         }
       }
 
 

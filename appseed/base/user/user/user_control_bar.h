@@ -230,7 +230,7 @@ namespace user
       friend class ::user::frame_window;
       friend class BaseDockBar;
 
-      
+
    };
 
 

@@ -3651,7 +3651,23 @@ namespace user
 
 
 
+   bool interaction::_001HasCommandHandler(id id)
+   {
 
+      if (command_target_interface::_001HasCommandHandler(id))
+         return true;
+
+      if (get_parent().is_set())
+      {
+
+         if (get_parent()->_001HasCommandHandler(id))
+            return true;
+
+      }
+
+      return false;
+
+   }
 
 
 
