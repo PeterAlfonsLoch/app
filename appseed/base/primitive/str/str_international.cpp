@@ -152,6 +152,10 @@ namespace str
 
       wstring MultiByteToUnicode(UINT uiCodePage, const string & str)
       {
+         //if(uiCodePage == CP_UTF8)
+         {
+           // return wstring(str);
+         }
          if(str.length() <= 0)
             return L"";
          strsize iBuffer = MultiByteToUnicodeCount(uiCodePage, str, (strsize) str.get_length());

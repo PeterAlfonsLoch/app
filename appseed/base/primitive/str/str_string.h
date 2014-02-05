@@ -8,11 +8,7 @@ CLASS_DECL_BASE int64_t strtoi(const wchar_t * psz);
 
 inline UINT _gen_GetConversionACP()
 {
-#ifdef WINDOWS
    return CP_UTF8;
-#else
-   return 0;
-#endif
 }
 
 
