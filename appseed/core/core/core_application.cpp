@@ -3803,6 +3803,7 @@ void application::_001OnApplicationRequest(signal_details * pobj)
    SCAST_PTR(::message::base, pbase, pobj);
    if (pbase->m_wparam == 2)
    {
+      pobj->m_bRet = true;
       // when wparam == 2 lparam is a pointer to a ::core::command_fork
       // that should be treated as command_line on request, i.e.,
       // a fork whose Forking part has been done, now

@@ -403,6 +403,8 @@ void property_set::_008Parse(bool bApp, const char * pszCmdLine, var & varFile, 
       
       if(strFile == ":")
          break;
+
+      strFile.trim("\"'");
       
       if(varFile.is_empty())
       {
