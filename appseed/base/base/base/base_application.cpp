@@ -3138,6 +3138,7 @@ void base_application::on_service_request(sp(::create_context) pcreatecontext)
       remove_service();
    }
 
+
 }
 
 

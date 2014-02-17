@@ -2969,9 +2969,6 @@
     <ClInclude Include="base\base\base_template.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\base_thread.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
     <ClInclude Include="base\base\base_trace.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
@@ -6106,9 +6103,6 @@
     <ClCompile Include="base\openssl\ssl\s3_srvr.c">
       <Filter>Source Files\base\openssl\ssl</Filter>
     </ClCompile>
-    <ClCompile Include="base\openssl\ssl\ssltest.c">
-      <Filter>Source Files\base\openssl\ssl</Filter>
-    </ClCompile>
     <ClCompile Include="base\openssl\ssl\ssl_algs.c">
       <Filter>Source Files\base\openssl\ssl</Filter>
     </ClCompile>
@@ -7562,6 +7556,9 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

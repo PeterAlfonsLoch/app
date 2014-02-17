@@ -903,14 +903,52 @@ void thread::step_timer()
 }
 
 
-void thread::on_run_step()
+bool thread::on_run_step()
 {
 
    if (m_p == NULL)
-      return;
+      return false;
+
+
+   step_timer();
+
+   sp(base_application) papp = (this);
+
+   m_dwAlive = m_dwAlive = ::get_tick_count();
+
+   if (papp != NULL)
+   {
+
+      papp->m_dwAlive = m_dwAlive;
+
+   }
+
+   try
+   {
+
+      if (!verb())
+         return false;
+
+   }
+   catch (::exit_exception & e)
+   {
+
+      throw e;
+
+   }
+   catch (::exception::exception & e)
+   {
+
+      if (!Application.on_run_exception(e))
+         throw exit_exception(get_app());
+
+   }
+   catch (...)
+   {
+
+   }
 
    return m_p->on_run_step();
-
 
 }
 
