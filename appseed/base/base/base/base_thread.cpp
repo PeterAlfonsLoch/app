@@ -923,6 +923,17 @@ bool thread::on_run_step()
 
    }
 
+   sp(base_application) pappP = (this);
+
+   m_p->m_dwAlive = m_dwAlive = ::get_tick_count();
+
+   if (pappP != NULL)
+   {
+
+      pappP->m_dwAlive = m_dwAlive;
+
+   }
+
    try
    {
 
@@ -948,7 +959,7 @@ bool thread::on_run_step()
 
    }
 
-   return m_p->on_run_step();
+   return true;
 
 }
 

@@ -18,6 +18,7 @@ void plain_service::Start(uint32_t)
 
 void plain_service::Stop(uint32_t ui)
 {
+   System.m_bDoNotExitIfNoApplications = false;
    m_bStopping = true;
    m_stopped.wait(millis(ui));
 }
