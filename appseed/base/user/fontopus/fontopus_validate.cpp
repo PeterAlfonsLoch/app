@@ -80,8 +80,8 @@ namespace fontopus
    {
       m_loginthread.m_strSalt.Empty();
       if(command_thread()->property("app") == "simpledbcfg"
-         || (command_thread()->property("app") == "core_netnodelite" && command_thread()->property("root_handler") == "webserver")
-         || (command_thread()->property("app") == "core_netnodelite")
+         || (command_thread()->property("app") == "app-core/netnodelite" && command_thread()->property("root_handler") == "webserver")
+         || (command_thread()->property("app") == "app-core/netnodelite")
          || command_thread()->property("app") == "veievserver"
          || command_thread()->property("app") == "simpledbcfg"
          //|| command_thread()->property("app") == "veriwell_mplite"      // churrasco 2011 m_strLicense
@@ -264,8 +264,8 @@ namespace fontopus
       if(strLicense == "netnodeapp"
          || strLicense == "netnodecfgapp"
          || strLicense == "simpledbcfg"
-         || (strLicense == "core_netnodelite" && command_thread()->property("root_handler") == "webserver")
-         || (strLicense == "core_netnodelite")
+         || (strLicense == "app-core/netnodelite" && command_thread()->property("root_handler") == "webserver")
+         || (strLicense == "app-core/netnodelite")
          || strLicense == "veievserver"
          //|| strLicense == "veriwell_mplite"      // churrasco 2011 m_strLicense
          || strLicense == "mydns"

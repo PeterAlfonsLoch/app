@@ -3690,7 +3690,7 @@ bool application::initialize()
    //}
 
    //if(is_system()
-   //   && command_thread()->m_varTopicQuery["app"] != "core_netnodelite"
+   //   && command_thread()->m_varTopicQuery["app"] != "app-core/netnodelite"
    //   && command_thread()->m_varTopicQuery["app"] != "app-core/netnode_dynamic_web_server"
    //   && command_thread()->m_varTopicQuery["app"] != "app-gtech/alarm"
    //   && command_thread()->m_varTopicQuery["app"] != "app-gtech/sensible_service")
@@ -3707,7 +3707,7 @@ bool application::initialize()
 //   }
 //
 //   if(is_system()
-//      && command_thread()->m_varTopicQuery["app"] != "core_netnodelite"
+//      && command_thread()->m_varTopicQuery["app"] != "app-core/netnodelite"
 //      && command_thread()->m_varTopicQuery["app"] != "app-core/netnode_dynamic_web_server"
 //      && command_thread()->m_varTopicQuery["app"] != "app-gtech/sensible_netnode"
 //      && command_thread()->m_varTopicQuery["app"] != "app-gtech/sensible_service")

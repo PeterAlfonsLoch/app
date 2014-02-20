@@ -132,7 +132,7 @@ namespace userpresence
          return true;
 
       if(Application.command()->m_varTopicQuery["app"] == "simpledbcfg"
-      || Application.command()->m_varTopicQuery["app"] == "core_netnodelite")
+      || Application.command()->m_varTopicQuery["app"] == "app-core/netnodelite")
          return true;
 
       if(!is_initialized())
