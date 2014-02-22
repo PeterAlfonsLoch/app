@@ -36,7 +36,9 @@ namespace dynamic_source
 
          single_lock sl(&m_pmanager->m_mutexSession, true);
          
-         m_pmanager->m_mapSession.set_at(m_strId, this);
+		 m_timeRead = ::datetime::time::get_current_time();
+
+		 m_pmanager->m_mapSession.set_at(m_strId, this);
 
          m_pmanager->m_mapSessionExpiry.remove_key(m_strId);
 
@@ -60,9 +62,7 @@ namespace dynamic_source
 
          single_lock sl(&m_pmanager->m_mutexSession, true);
          
-         m_timeExpiry = ::datetime::time::get_current_time();
-
-         m_timeExpiry += minutes(2);
+         m_timeWrite = ::datetime::time::get_current_time();
 
          m_pmanager->m_mapSessionExpiry.set_at(m_strId, this);
 
