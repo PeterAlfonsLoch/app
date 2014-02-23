@@ -162,9 +162,7 @@ namespace dynamic_source
       string include_expand_md5(const string & strPath);
       void set_include_expand_md5(const string & strPath, const string & strMd5);
 
-      
-	  virtual sp(session) load_session(script_interface * pscript, const char * pszId);
-	  virtual sp(session) _get_session(const char * pszId);
+      sp(session) get_session(const char * pszId);
 
 
       script_instance * get(const string & strName);

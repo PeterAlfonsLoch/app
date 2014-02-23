@@ -600,20 +600,7 @@ namespace dynamic_source
 #endif
    }
 
-   sp(::dynamic_source::session) script_manager::load_session(script_interface * pscript, const char * pszId)
-   {
-
-	   sp(::dynamic_source::session) psession = _get_session(pszId);
-
-	   if (psession.is_null())
-		   return psession;
-
-	   return psession;
-
-   }
-
-
-   sp(::dynamic_source::session) script_manager::_get_session(const char * pszId)
+   sp(::dynamic_source::session) script_manager::get_session(const char * pszId)
    {
       single_lock sl(&m_mutexSession, TRUE);
 
@@ -628,7 +615,7 @@ namespace dynamic_source
       if(ppair != NULL)
       {
          
-         if(::datetime::time::get_current_time() < (ppair->m_element2->m_timeRead + minutes(2)))
+         if(::datetime::time::get_current_time() < ppair->m_element2->m_timeExpiry)
             return ppair->m_element2;
 
          ppair->m_element2.m_p->~session();
@@ -643,9 +630,7 @@ namespace dynamic_source
 
       sp(::dynamic_source::session) psession = canew(::dynamic_source::session(pszId, this));
 
-      psession->m_timeRead = ::datetime::time::get_current_time();
-
-	  psession->m_timeWrite = ::datetime::time::get_current_time();
+      psession->m_timeExpiry= ::datetime::time::get_current_time() + minutes(2);
 
       return psession;
 
@@ -670,7 +655,7 @@ namespace dynamic_source
          }
          else if(passoc->m_element2->get_ref_count() <= 1)
          {
-            if((passoc->m_element2->m_timeRead + minutes(2)) < time)
+            if(passoc->m_element2->m_timeExpiry < time)
             {
                m_mapSessionExpiry.remove_assoc(passoc);
             }

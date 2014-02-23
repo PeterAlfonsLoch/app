@@ -11,12 +11,11 @@ namespace dynamic_source
    public:
 
 
-      string								m_strId;
-      mutex									m_mutex;
-      property_set							m_set;
-      ::datetime::time						m_timeRead;
-	  ::datetime::time						m_timeWrite;
-      ::dynamic_source::script_manager *	m_pmanager;
+      string                              m_strId;
+      mutex                               m_mutex;
+      property_set                  m_set;
+      ::datetime::time                    m_timeExpiry;
+      ::dynamic_source::script_manager *  m_pmanager;
 
 
       session(const string & strId, ::dynamic_source::script_manager * pmanager);
