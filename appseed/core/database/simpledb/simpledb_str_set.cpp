@@ -230,8 +230,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
    if(m_pdataserver == NULL)
       return false;
 
-   // xxx
-   if(m_pdataserver->m_bRemote && Application.fontopus()->m_puser != NULL)
+   if(m_pdataserver->m_bRemote && &ApplicationUser != NULL)
    {
 
       item stritem;
