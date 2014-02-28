@@ -43,12 +43,12 @@ os_thread::~os_thread()
 
    }
 
-   if (m_hthread != NULL)
+   /*if (m_hthread != NULL)
    {
       
       ::CloseHandle(m_hthread);
 
-   }
+   }*/
 
    
 

@@ -6968,7 +6968,7 @@ bool imaging::load_from_file(::draw2d::dib * pdib, var varFile, base_application
       strFile.replace("/", "\\");
       strFile = System.dir().time("cache", strFile);
       strFile += ".dib";
-      if (App(papp).file().exists(strFile))
+      if (false && App(papp).file().exists(strFile))
       {
          try
          {

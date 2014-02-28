@@ -23,10 +23,10 @@ namespace visual
 
 
 
-   bool dib_sp::load_from_file(var varFile)
+   bool dib_sp::load_from_file(var varFile, bool bCache)
    {
       
-      return Sys(m_p->m_pbaseapp).visual().imaging().load_from_file(m_p, varFile, m_p->m_pbaseapp);
+      return Sys(m_p->m_pbaseapp).visual().imaging().load_from_file(m_p, varFile, bCache, m_p->m_pbaseapp);
 
    }
 

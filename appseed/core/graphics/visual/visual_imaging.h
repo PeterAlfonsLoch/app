@@ -316,7 +316,7 @@ public:
    virtual void free(FIBITMAP * pfibitmap);
 
 
-   bool load_from_file(::draw2d::dib * pdib, var varFile, base_application * papp = NULL);
+   bool load_from_file(::draw2d::dib * pdib, var varFile, bool bCache = true, base_application * papp = NULL);
    bool load_from_matter(::draw2d::dib * pdib, var varFile, base_application * papp = NULL);
    bool read_from_file(::draw2d::dib * pdib, ::file::buffer_sp buffer, base_application * papp = NULL);
 
