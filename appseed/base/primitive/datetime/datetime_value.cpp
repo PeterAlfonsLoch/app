@@ -153,7 +153,7 @@ namespace datetime
    }
 
 
-   value strtotime(sp(base_application) pbaseapp, ::user::str_context * pcontext, const char * psz, int32_t & iPath, int32_t & iPathCount)
+   value strtotime(sp(base_application) pbaseapp, ::user::str_context * pcontext, const char * psz, int32_t & iPath, int32_t & iPathCount, bool bUTC)
    {
       ::datetime::time time;
       string str(psz);
@@ -178,7 +178,8 @@ namespace datetime
             strWord.trim_left();
             strWord = ::str::get_word(strWord, " ");
             if(strWord.CompareNoCase("UTC") == 0
-            || strWord.CompareNoCase("GMT") == 0)
+            || strWord.CompareNoCase("GMT") == 0
+            || bUTC)
             {
                struct tm atm;
                atm.tm_sec = set["second"];

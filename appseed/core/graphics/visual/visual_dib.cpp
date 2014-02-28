@@ -49,7 +49,7 @@ namespace visual
 
    bool dib_sp::save_to_file(var varFile, save_image * psaveimage)
    {
-      ::file::binary_buffer_sp spfile;
+      ::file::buffer_sp spfile;
       spfile = App(m_p->m_pbaseapp).file().get_file(varFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
       if(spfile.is_null())
          return false;
@@ -71,6 +71,7 @@ namespace visual
       FREE_IMAGE_FORMAT eformat;
       bool b8 = false;
       bool b24 = false;
+      int iFreeImageSave = 0;
       switch(psaveimage->m_eformat)
       {
       case ::visual::image::format_png:
@@ -86,6 +87,26 @@ namespace visual
       case ::visual::image::format_jpeg:
          b24 = true;
          eformat = FIF_JPEG;
+         if (psaveimage->m_iQuality > 80)
+         {
+            iFreeImageSave |= JPEG_QUALITYSUPERB;
+         }
+         else if (psaveimage->m_iQuality > 67)
+         {
+            iFreeImageSave |= JPEG_QUALITYGOOD;
+         }
+         else if (psaveimage->m_iQuality > 33)
+         {
+            iFreeImageSave |= JPEG_QUALITYNORMAL;
+         }
+         else if (psaveimage->m_iQuality > 15)
+         {
+            iFreeImageSave |= JPEG_QUALITYAVERAGE;
+         }
+         else
+         {
+            iFreeImageSave |= JPEG_QUALITYBAD;
+         }
          break;
       default:
          return false;
@@ -114,7 +135,7 @@ namespace visual
          bConv = false;
       }
 
-      bool bOk = FreeImage_SaveToMemory(eformat, pfi8, pfm1 , PNG_DEFAULT) != FALSE;
+      bool bOk = FreeImage_SaveToMemory(eformat, pfi8, pfm1 , iFreeImageSave) != FALSE;
 
       BYTE * pbData = NULL;
       DWORD dwSize;
@@ -157,6 +178,7 @@ namespace visual
    save_image::save_image()
    {
       m_eformat = ::visual::image::format_png;
+      m_iQuality = 100;
    }
 
 

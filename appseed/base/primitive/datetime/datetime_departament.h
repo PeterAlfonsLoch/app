@@ -55,6 +55,7 @@ namespace datetime
       int64_t get_timestamp(int32_t year, int32_t month, int32_t day);
       int64_t strtotime(::user::str_context * pcontext, const char * psz, time_t time, int32_t iPath, int32_t & iPathCount);
       int64_t strtotime(::user::str_context * pcontext, const char * psz, int32_t iPath, int32_t & iPathCount);
+      int64_t gmt_strtotime(::user::str_context * pcontext, const char * psz, int32_t iPath, int32_t & iPathCount);
 
       // 1 - domingo
       string get_week_day_str(user::str_context * pcontext, int32_t iWeekDay);
@@ -82,6 +83,9 @@ namespace datetime
       int32_t DOW(int32_t y, int32_t m, int32_t d);
       int32_t getDayOfWeek(int32_t month, int32_t day, int32_t year, int32_t CalendarSystem);
       int32_t ISO_WN(int32_t  y, int32_t m, int32_t d);
+
+
+      string friend_time(user::str_context * pcontext, ::datetime::time timeNow, ::datetime::time time);
 
 
    };

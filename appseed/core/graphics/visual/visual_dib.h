@@ -29,8 +29,8 @@ namespace visual
    public:
 
 
-      image::e_format       m_eformat;
-
+      image::e_format         m_eformat;
+      int                     m_iQuality;
 
       save_image();
 

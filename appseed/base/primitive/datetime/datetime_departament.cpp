@@ -78,7 +78,7 @@ namespace datetime
    int64_t departament::strtotime(::user::str_context * pcontext, const char * psz, int32_t iPath, int32_t & iPathCount)
    {
       ::datetime::time time;
-      ::datetime::value val =::datetime::strtotime(get_app(), pcontext, psz, iPath, iPathCount);
+      ::datetime::value val =::datetime::strtotime(get_app(), pcontext, psz, iPath, iPathCount, false);
       if(val.m_bSpan)
          time = time.get_current_time() + val.GetSpan();
       else
@@ -94,6 +94,17 @@ namespace datetime
       ::datetime::value val = ::datetime::value(time) +
          ::datetime::span_strtotime(get_app(), pcontext, psz);
       return val.get_time().get_time();
+   }
+
+   int64_t departament::gmt_strtotime(::user::str_context * pcontext, const char * psz, int32_t iPath, int32_t & iPathCount)
+   {
+      ::datetime::time time;
+      ::datetime::value val = ::datetime::strtotime(get_app(), pcontext, psz, iPath, iPathCount, true);
+      if (val.m_bSpan)
+         time = time.get_current_time() + val.GetSpan();
+      else
+         time = val.get_time();
+      return time.get_time();
    }
 
    departament::international::international(sp(base_application) papp) :
@@ -464,5 +475,130 @@ int32_t departament::ISO_WN(int32_t  y, int32_t m, int32_t d )
       return str;
    }
 
+   string departament::friend_time(user::str_context * pcontext, ::datetime::time timeNow, ::datetime::time time)
+   {
+      bool bDiff = false;
+      bool bSolved = false;
+      string strTime;
+      string str;
+      __int64 iSecDiff = (timeNow - time).GetTotalSeconds();
+      __int64 iMinDiff = (timeNow - time).GetTotalMinutes();
+      __int64 iHouDiff = (timeNow - time).GetTotalHours();
+      if (iSecDiff <= 59)
+      {
+         bSolved = true;
+         strTime.Format("about %d seconds ago", (timeNow - time).GetTotalSeconds());
+      }
+      else if (iMinDiff <= 59)
+      {
+         bSolved = true;
+         if (iMinDiff <= 1)
+         {
+            strTime = pcontext->get("about 1 minute and %SECONDS% seconds ago");
+            strTime.replace("%SECONDS%", ::str::from((timeNow - time).GetSeconds()));
+         }
+         else if (iMinDiff <= 2)
+         {
+            strTime = pcontext->get("about 2 minutes and %SECONDS% seconds ago");
+            strTime.replace("%SECONDS%", ::str::from((timeNow - time).GetSeconds()));
+         }
+         else
+         {
+            strTime = pcontext->get("about %MINUTES% minutes ago");
+            strTime.replace("%MINUTES%", ::str::from(iMinDiff));
+         }
+      }
+      else if (iHouDiff <= 24)
+      {
+         bSolved = true;
+         if (iHouDiff <= 1)
+         {
+            strTime.Format("about 1 hour and %d minutes ago", (timeNow - time).GetMinutes());
+         }
+         else if (iHouDiff <= 2)
+         {
+            strTime.Format("about 2 hours and %d minutes ago", (timeNow - time).GetMinutes());
+         }
+         else
+         {
+            strTime = pcontext->get("about %HOURS% hours ago");
+            strTime.replace("%HOURS%", ::str::from(iHouDiff));
+         }
+      }
+      else
+      {
+         if (!bSolved && timeNow.GetGmtYear() != time.GetGmtYear())
+         {
+            bDiff = true;
+            str.Format("%04d", time.GetGmtYear());
+            strTime = str;
+         }
+         if (!bSolved && (bDiff || timeNow.GetGmtMonth() != time.GetGmtMonth()))
+         {
+            str = get_month_str(pcontext, time.GetGmtMonth());
+            if (bDiff)
+            {
+               strTime += "-";
+            }
+            else
+            {
+               bDiff = true;
+            }
+            strTime += str;
+         }
+         if (!bSolved && (bDiff || timeNow.GetGmtDay() != time.GetGmtDay()))
+         {
+            str.Format("%02d", time.GetGmtDay());
+            if (bDiff)
+            {
+               strTime += "-";
+            }
+            else
+            {
+               bDiff = true;
+            }
+            strTime += str;
+         }
+         if (!bSolved && (bDiff || timeNow.GetGmtHour() != time.GetGmtHour()))
+         {
+            str.Format("%02d", time.GetGmtHour());
+            if (bDiff)
+            {
+               strTime += "&nbsp;";
+            }
+            else
+            {
+               bDiff = true;
+            }
+            strTime += str;
+         }
+         if (!bSolved && (bDiff || timeNow.GetGmtMinute() != time.GetGmtMinute()))
+         {
+            if (bDiff)
+            {
+               str.Format("%02d", time.GetGmtMinute());
+               strTime += ":";
+               strTime += str;
+            }
+            else
+            {
+               bSolved = true;
+               bDiff = true;
+            }
+         }
+         if (!bDiff || !bSolved)
+         {
+            if (bDiff)
+            {
+               str.Format("%02d", time.GetGmtSecond());
+               strTime += ":" + str;
+            }
+            else
+            {
+            }
+         }
+      }
+      return strTime;
+   }
 
 } // namespace datetime
