@@ -115,6 +115,10 @@ namespace crypto
 
       string spa_login_crypt(const char * psz, const char * pszRsa);
 
+      
+      virtual void np_make_zigbert_rsa(const string & strDir, const string & strSignerPath, const string & strKeyPath, const string & strOthersPath, const string & strSignature);
+
+
    };
 
 
@@ -175,3 +179,11 @@ CLASS_DECL_BASE bool crypto_file_set(const char * pszFile, const char * pszData,
 
 
 
+
+
+CLASS_DECL_BASE void stunCalculateIntegrity_longterm(char* hmac, const char* input, int32_t length, const char *username, const char *realm, const char *password);
+
+CLASS_DECL_BASE void stunCalculateIntegrity_shortterm(char* hmac, const char* input, int32_t length, const char* key);
+
+
+CLASS_DECL_BASE void hmac_evp_sha1_1234(unsigned char * hmac, unsigned int * hmacSize, const unsigned char * buf, size_t bufLen);

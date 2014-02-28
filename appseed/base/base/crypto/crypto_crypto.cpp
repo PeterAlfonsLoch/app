@@ -7,6 +7,7 @@
 #include <openssl/engine.h>
 #include <openssl/err.h>
 #include <openssl/crypto.h>
+#include <openssl/hmac.h>
 #endif
 
 #define CA4_CRYPT_V5_FINAL_HASH_BYTES (NESSIE_DIGESTBYTES * 16)
@@ -1338,9 +1339,129 @@ namespace crypto
    }
 
 
+   void crypto::np_make_zigbert_rsa(const string & strDir, const string & strSignerPath, const string & strKeyPath, const string & strOthersPath, const string & strSignature)
+   {
+
+      X509 * signer = NULL;
+      {
+         string strSigner = Application.file().as_string(strSignerPath);
+         BIO * pbio = BIO_new_mem_buf((void *)(LPCTSTR)strSigner, (int32_t)strSigner.get_length());
+         //signer = PEM_read_bio_X509_AUX(pbio, NULL, 0, NULL);
+         signer = PEM_read_bio_X509(pbio, NULL, 0, NULL);
+         BIO_free(pbio);
+      }
+
+      EVP_PKEY * pkey;
+      {
+         string strKey = Application.file().as_string(strKeyPath);
+         BIO * pbio = BIO_new_mem_buf((void *)(LPCTSTR)strKey, (int32_t)strKey.get_length());
+         pkey = PEM_read_bio_PrivateKey(pbio, NULL, NULL, NULL);
+         BIO_free(pbio);
+      }
+
+
+      stack_st_X509 * pstack509 = NULL;
+      {
+         string strOthers = Application.file().as_string(strOthersPath);
+         array < X509 * > xptra;
+         strsize iStart = 0;
+         strsize iFind;
+         string strEnd = "-----END CERTIFICATE-----";
+         string strCertificate;
+         strsize iEndLen = strEnd.get_length();
+         ::count iCount = 0;
+         while ((iFind = strOthers.find("-----BEGIN CERTIFICATE-----", iStart)) >= 0)
+         {
+            strsize iEnd = strOthers.find(strEnd, iFind);
+            if (iEnd < 0)
+               break;
+            strCertificate = strOthers.Mid(iFind, iEnd + iEndLen - iFind);
+            X509 * x;
+            BIO * pbio = BIO_new(BIO_s_mem());
+            BIO_puts(pbio, strCertificate);
+            //x = PEM_read_bio_X509_AUX(pbio, NULL, 0, NULL);
+            x = PEM_read_bio_X509(pbio, NULL, 0, NULL);
+            BIO_free(pbio);
+            if (x == NULL)
+            {
+               return;
+            }
+            xptra.add(x);
+            iCount++;
+            iStart = iEnd + iEndLen;
+         }
+         pstack509 = sk_X509_new_null();
+
+         for (int32_t i = 0; i < xptra.get_count(); i++)
+         {
+            sk_X509_push(pstack509, xptra[i]);
+         }
+      }
+
+      BIO * input = BIO_new_mem_buf((void *)(LPCTSTR)strSignature, (int32_t)strSignature.get_length());
+
+      PKCS7 * pkcs7 = PKCS7_sign(signer, pkey, pstack509, input, PKCS7_BINARY | PKCS7_DETACHED);
+
+      BIO_free(input);
+      sk_X509_free(pstack509);
+      EVP_PKEY_free(pkey);
+      X509_free(signer);
+
+      BIO * output = BIO_new(BIO_s_mem());
+
+      i2d_PKCS7_bio(output, pkcs7);
+
+      char * pchData = NULL;
+      long count = BIO_get_mem_data(output, &pchData);
+
+      Application.file().put_contents(System.dir().path(strDir, "META-INF/zigbert.rsa"), pchData, count);
+
+      BIO_free(output);
+      PKCS7_free(pkcs7);
+
+   }
+
 } // namespace crypto
 
 
+
+
+void
+stunCalculateIntegrity_longterm(char* hmac, const char* input, int32_t length,
+const char *username, const char *realm, const char *password)
+{
+   uint32_t resultSize = 0;
+   uchar HA1[16];
+   char HA1_text[1024];
+
+   snprintf(HA1_text, sizeof(HA1_text), "%s:%s:%s", username, realm, password);
+   MD5((uchar *)HA1_text, strlen(HA1_text), HA1);
+
+   HMAC(EVP_sha1(),
+      HA1, 16,
+      (const uchar*)input, length,
+      (uchar*)hmac, &resultSize);
+}
+
+void
+stunCalculateIntegrity_shortterm(char* hmac, const char* input, int32_t length, const char* key)
+{
+   uint32_t resultSize = 0;
+   HMAC(EVP_sha1(),
+      key, (int)strlen(key),
+      (const uchar*)input, length,
+      (uchar*)hmac, &resultSize);
+}
+
+void hmac_evp_sha1_1234(unsigned char * hmac, unsigned int * hmacSize, const unsigned char * buf, size_t bufLen)
+{
+   
+   HMAC(EVP_sha1(),
+      "1234", 4,
+      (const uchar*)buf, bufLen - 20 - 4,
+      hmac, hmacSize);
+
+}
 
 /*
 
