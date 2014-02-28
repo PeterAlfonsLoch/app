@@ -6950,7 +6950,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pdc, int32_t left, int32_t top, c
 }
 
 
-bool imaging::load_from_file(::draw2d::dib * pdib, var varFile, base_application * papp)
+bool imaging::load_from_file(::draw2d::dib * pdib, var varFile, bool bCache, base_application * papp)
 {
 
    if (papp == NULL)
@@ -6959,7 +6959,7 @@ bool imaging::load_from_file(::draw2d::dib * pdib, var varFile, base_application
    // image cache load
    // cache of decompression time
    string strFile;
-   if (varFile.get_type() == var::type_string)
+   if (bCache && varFile.get_type() == var::type_string)
       //if(false)
    {
       strFile = varFile;
@@ -6999,7 +6999,7 @@ bool imaging::load_from_file(::draw2d::dib * pdib, var varFile, base_application
 
 
    // image cache write
-   if (strFile.has_char())
+   if (bCache && strFile.has_char())
    {
       try
       {
