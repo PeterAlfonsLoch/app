@@ -209,7 +209,7 @@ UINT32 rpc_offset_pad(UINT32* offset, UINT32 pad)
  *
  * The sec_trailer structure MUST be placed at the end of the PDU, including past stub data,
  * when present. The sec_trailer structure MUST be 4-byte aligned with respect to the beginning
- * of the PDU. Padding octets MUST be used to align the sec_trailer structure if its natural
+ * of the PDU. Padding octets MUST be used to align the sec_trailer structure if its natural32
  * beginning is not already 4-byte aligned.
  *
  * All PDUs that carry sec_trailer information share certain common fields:

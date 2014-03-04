@@ -145,7 +145,7 @@ void freerdp_device_collection_add(rdpSettings* settings, RDPDR_DEVICE* device)
 
 RDPDR_DEVICE* freerdp_device_collection_find(rdpSettings* settings, const char* name)
 {
-	int index;
+	UINT32 index;
 	RDPDR_DEVICE* device;
 
 	for (index = 0; index < settings->DeviceCount; index++)
@@ -232,7 +232,7 @@ RDPDR_DEVICE* freerdp_device_clone(RDPDR_DEVICE* device)
 
 void freerdp_device_collection_free(rdpSettings* settings)
 {
-	int index;
+	UINT32 index;
 	RDPDR_DEVICE* device;
 
 	for (index = 0; index < settings->DeviceCount; index++)
@@ -286,7 +286,7 @@ void freerdp_static_channel_collection_add(rdpSettings* settings, ADDIN_ARGV* ch
 
 ADDIN_ARGV* freerdp_static_channel_collection_find(rdpSettings* settings, const char* name)
 {
-	int index;
+	UINT32 index;
 	ADDIN_ARGV* channel;
 
 	for (index = 0; index < settings->StaticChannelCount; index++)
@@ -320,7 +320,7 @@ ADDIN_ARGV* freerdp_static_channel_clone(ADDIN_ARGV* channel)
 
 void freerdp_static_channel_collection_free(rdpSettings* settings)
 {
-	int i, j;
+	UINT32 i, j;
 
 	for (i = 0; i < settings->StaticChannelCount; i++)
 	{
@@ -352,7 +352,7 @@ void freerdp_dynamic_channel_collection_add(rdpSettings* settings, ADDIN_ARGV* c
 
 ADDIN_ARGV* freerdp_dynamic_channel_collection_find(rdpSettings* settings, const char* name)
 {
-	int index;
+	UINT32 index;
 	ADDIN_ARGV* channel;
 
 	for (index = 0; index < settings->DynamicChannelCount; index++)
@@ -386,7 +386,7 @@ ADDIN_ARGV* freerdp_dynamic_channel_clone(ADDIN_ARGV* channel)
 
 void freerdp_dynamic_channel_collection_free(rdpSettings* settings)
 {
-	int index;
+	UINT32 index;
 
 	for (index = 0; index < settings->DynamicChannelCount; index++)
 	{

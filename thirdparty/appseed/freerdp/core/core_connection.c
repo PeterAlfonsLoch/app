@@ -336,7 +336,7 @@ BOOL rdp_client_redirect(rdpRdp* rdp)
 
 BOOL rdp_client_reconnect(rdpRdp* rdp)
 {
-	int i;
+	UINT32 i;
 
 	transport_disconnect(rdp->transport);
 
@@ -555,7 +555,7 @@ BOOL rdp_client_connect_mcs_attach_user_confirm(rdpRdp* rdp, wStream* s)
 
 BOOL rdp_client_connect_mcs_channel_join_confirm(rdpRdp* rdp, wStream* s)
 {
-	int i;
+	UINT32 i;
 	UINT16 channel_id;
 	BOOL all_joined = TRUE;
 
@@ -868,7 +868,7 @@ BOOL rdp_server_accept_nego(rdpRdp* rdp, wStream* s)
 
 BOOL rdp_server_accept_mcs_connect_initial(rdpRdp* rdp, wStream* s)
 {
-	int i;
+	UINT32 i;
 
 	if (!mcs_recv_connect_initial(rdp->mcs, s))
 		return FALSE;
@@ -915,7 +915,7 @@ BOOL rdp_server_accept_mcs_attach_user_request(rdpRdp* rdp, wStream* s)
 
 BOOL rdp_server_accept_mcs_channel_join_request(rdpRdp* rdp, wStream* s)
 {
-	int i;
+	UINT32 i;
 	UINT16 channel_id;
 	BOOL all_joined = TRUE;
 

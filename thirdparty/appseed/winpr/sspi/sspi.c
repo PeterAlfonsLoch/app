@@ -327,7 +327,7 @@ void sspi_SetAuthIdentity(SEC_WINNT_AUTH_IDENTITY_W* identity, char* user, char*
 	}
 }
 
-void sspi_CopyAuthIdentity(SEC_WINNT_AUTH_IDENTITY_W* identity, SEC_WINNT_AUTH_IDENTITY* srcIdentity)
+void sspi_CopyAuthIdentity(SEC_WINNT_AUTH_IDENTITY_W* identity, SEC_WINNT_AUTH_IDENTITY_W * srcIdentity)
 {
 	if (identity->Flags == SEC_WINNT_AUTH_IDENTITY_ANSI)
 	{
@@ -378,7 +378,7 @@ void sspi_CopyAuthIdentity(SEC_WINNT_AUTH_IDENTITY_W* identity, SEC_WINNT_AUTH_I
 
 PSecBuffer sspi_FindSecBuffer(PSecBufferDesc pMessage, ULONG BufferType)
 {
-	int index;
+	unsigned long index;
 	PSecBuffer pSecBuffer = NULL;
 
 	for (index = 0; index < pMessage->cBuffers; index++)

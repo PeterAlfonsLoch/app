@@ -34,7 +34,7 @@
 
 wReference* ReferenceTable_FindEntry(wReferenceTable* referenceTable, void* ptr)
 {
-	int index = 0;
+	UINT32 index = 0;
 	BOOL found = FALSE;
 	wReference* reference = NULL;
 
@@ -51,7 +51,7 @@ wReference* ReferenceTable_FindEntry(wReferenceTable* referenceTable, void* ptr)
 
 wReference* ReferenceTable_GetFreeEntry(wReferenceTable* referenceTable)
 {
-	int index = 0;
+	UINT32 index = 0;
 	BOOL found = FALSE;
 	wReference* reference = NULL;
 

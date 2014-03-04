@@ -18,7 +18,7 @@
 #define ARGB(a, r, g, b)         RGBA(r, g, b, a)
 
 
-
+#include "primitive/math/math_mkint_c.h"
 
 #if defined(ANDROID)
 #include "base/base/os/android/android.h"

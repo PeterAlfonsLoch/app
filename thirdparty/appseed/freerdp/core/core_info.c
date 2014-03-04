@@ -312,7 +312,7 @@ BOOL rdp_read_info_packet(wStream* s, rdpSettings* settings)
 	Stream_Read_UINT16(s, cbAlternateShell); /* cbAlternateShell */
 	Stream_Read_UINT16(s, cbWorkingDir); /* cbWorkingDir */
 
-	if (Stream_GetRemainingLength(s) < cbDomain + 2)
+   if (Stream_GetRemainingLength(s) < natural32(cbDomain + 2))
 		return FALSE;
 
 	if (cbDomain > 0)
@@ -322,7 +322,7 @@ BOOL rdp_read_info_packet(wStream* s, rdpSettings* settings)
 	}
 	Stream_Seek(s, 2);
 
-	if (Stream_GetRemainingLength(s) < cbUserName + 2)
+   if (Stream_GetRemainingLength(s) < natural32(cbUserName + 2))
 		return FALSE;
 
 	if (cbUserName > 0)
@@ -332,7 +332,7 @@ BOOL rdp_read_info_packet(wStream* s, rdpSettings* settings)
 	}
 	Stream_Seek(s, 2);
 
-	if (Stream_GetRemainingLength(s) < cbPassword + 2)
+   if (Stream_GetRemainingLength(s) < natural32(cbPassword + 2))
 		return FALSE;
 
 	if (cbPassword > 0)
@@ -342,7 +342,7 @@ BOOL rdp_read_info_packet(wStream* s, rdpSettings* settings)
 	}
 	Stream_Seek(s, 2);
 
-	if (Stream_GetRemainingLength(s) < cbAlternateShell + 2)
+   if (Stream_GetRemainingLength(s) < natural32(cbAlternateShell + 2))
 		return FALSE;
 
 	if (cbAlternateShell > 0)
@@ -352,7 +352,7 @@ BOOL rdp_read_info_packet(wStream* s, rdpSettings* settings)
 	}
 	Stream_Seek(s, 2);
 
-	if (Stream_GetRemainingLength(s) < cbWorkingDir + 2)
+   if (Stream_GetRemainingLength(s) < natural32(cbWorkingDir + 2))
 		return FALSE;
 
 	if (cbWorkingDir > 0)

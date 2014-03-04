@@ -119,9 +119,12 @@ void CRYPTO_thread_setup(void)
 		lock_cs[i]=CreateMutex(NULL,FALSE,NULL);
 		}
 
-	CRYPTO_set_locking_callback((void (*)(int,int,char *,int))win32_locking_callback);
+	CRYPTO_set_locking_callback((void (*)(int,int,const char *,int))win32_locking_callback);
 	/* id callback defined */
-	return(1);
+//	return(1);
+   
+   return;
+
 	}
 
 static void CRYPTO_thread_cleanup(void)

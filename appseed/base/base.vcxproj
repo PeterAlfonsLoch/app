@@ -2743,6 +2743,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\math\math_scalar.h" />
     <ClInclude Include="primitive\math\math_scalar_enum.h" />
     <ClInclude Include="primitive\math\math_static_numeric_info.h" />
+    <ClInclude Include="primitive\math\math_mkint_c.h" />
     <ClInclude Include="primitive\math\_math.h" />
     <ClInclude Include="primitive\primitive_application_bias.h" />
     <ClInclude Include="primitive\primitive_bit.h" />
@@ -8410,16 +8411,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="base\openssl\crypto\pkcs7\pk7_enc.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="base\openssl\crypto\pkcs7\pk7_lib.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
@@ -10765,6 +10756,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\geometry\geometry_types.cpp" />
     <ClCompile Include="primitive\math\math_math.cpp" />
     <ClCompile Include="primitive\math\math_math_rng.cpp" />
+    <ClCompile Include="primitive\math\math_mkint_c.cpp" />
+    <ClCompile Include="primitive\math\math_natural.cpp" />
     <ClCompile Include="primitive\math\math_scalar.cpp" />
     <ClCompile Include="primitive\math\_math.cpp" />
     <ClCompile Include="primitive\primitive_application_bias.cpp" />

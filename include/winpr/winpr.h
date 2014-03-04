@@ -51,7 +51,11 @@
 
 #ifdef WINDOWS
 
+#ifndef WITH_NATIVE_SSPI
+
 #define WITH_NATIVE_SSPI
+
+#endif
 
 #endif
 

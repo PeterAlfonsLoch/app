@@ -334,7 +334,7 @@ int decompress_rdp_4(struct rdp_mppc_dec* dec, BYTE* cbuf, int len, int ctype, U
 
 		while (tmp)
 		{
-			if (cur_bits_left < tmp)
+			if (mkint32(cur_bits_left) < tmp)
 			{
 				/* we have less bits than we need */
 				i32 = cur_byte >> (8 - cur_bits_left);
@@ -354,7 +354,7 @@ int decompress_rdp_4(struct rdp_mppc_dec* dec, BYTE* cbuf, int len, int ctype, U
 					cur_bits_left = 0;
 				}
 			}
-			else if (cur_bits_left > tmp)
+			else if (mkint32(cur_bits_left) > tmp)
 			{
 				/* we have more bits than we need */
 				d32 |= cur_byte >> (8 - tmp);
@@ -533,7 +533,7 @@ int decompress_rdp_4(struct rdp_mppc_dec* dec, BYTE* cbuf, int len, int ctype, U
 
 		while (tmp)
 		{
-			if (cur_bits_left < tmp)
+			if (mkint32(cur_bits_left) < tmp)
 			{
 				/* we have less bits than we need */
 				i32 = cur_byte >> (8 - cur_bits_left);
@@ -553,7 +553,7 @@ int decompress_rdp_4(struct rdp_mppc_dec* dec, BYTE* cbuf, int len, int ctype, U
 					cur_bits_left = 0;
 				}
 			}
-			else if (cur_bits_left > tmp)
+			else if (mkint32(cur_bits_left) > tmp)
 			{
 				/* we have more bits than we need */
 				d32 |= cur_byte >> (8 - tmp);

@@ -35,7 +35,7 @@ BOOL freerdp_channel_send(rdpRdp* rdp, UINT16 channel_id, BYTE* data, int size)
 {
 	wStream* s;
 	UINT32 flags;
-	int i, left;
+	UINT32 i, left;
 	int chunk_size;
 	rdpChannel* channel = NULL;
 

@@ -2972,7 +2972,7 @@ BOOL rdp_print_capability_sets(wStream* s, UINT16 numberCapabilities, BOOL recei
 
 		em = bm + length;
 
-		if (Stream_GetRemainingLength(s) < length - 4)
+      if (Stream_GetRemainingLength(s) < natural32(length - 4))
 		{
 			fprintf(stderr, "error processing stream\n");
 			return FALSE;
@@ -3171,7 +3171,7 @@ BOOL rdp_read_capability_sets(wStream* s, rdpSettings* settings, UINT16 numberCa
 
 		em = bm + length;
 
-		if (Stream_GetRemainingLength(s) < length - 4)
+      if (Stream_GetRemainingLength(s) < natural32(length - 4))
 		{
 			fprintf(stderr, "error processing stream\n");
 			return FALSE;
@@ -3545,7 +3545,7 @@ BOOL rdp_recv_confirm_active(rdpRdp* rdp, wStream* s)
 	Stream_Read_UINT16(s, lengthSourceDescriptor); /* lengthSourceDescriptor (2 bytes) */
 	Stream_Read_UINT16(s, lengthCombinedCapabilities); /* lengthCombinedCapabilities (2 bytes) */
 
-	if (Stream_GetRemainingLength(s) < lengthSourceDescriptor + 4)
+   if (Stream_GetRemainingLength(s) < natural32(lengthSourceDescriptor + 4))
 		return FALSE;
 
 	Stream_Seek(s, lengthSourceDescriptor); /* sourceDescriptor */

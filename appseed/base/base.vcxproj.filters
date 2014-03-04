@@ -3554,6 +3554,9 @@
     <ClInclude Include="base\openssl\include\openssl\x509v3.h">
       <Filter>Header Files\base\openssl\include\openssl</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\math\math_mkint_c.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -5632,9 +5635,6 @@
     <ClCompile Include="base\openssl\crypto\pkcs7\pk7_doit.c">
       <Filter>Source Files\base\openssl\crypto\pkcs7</Filter>
     </ClCompile>
-    <ClCompile Include="base\openssl\crypto\pkcs7\pk7_enc.c">
-      <Filter>Source Files\base\openssl\crypto\pkcs7</Filter>
-    </ClCompile>
     <ClCompile Include="base\openssl\crypto\pkcs7\pk7_lib.c">
       <Filter>Source Files\base\openssl\crypto\pkcs7</Filter>
     </ClCompile>
@@ -7369,6 +7369,12 @@
     <ClCompile Include="base\geoip\geoip_update.cpp">
       <Filter>Source Files\base\geoip</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\math\math_natural.cpp">
+      <Filter>Source Files\primitive\math</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_mkint_c.cpp">
+      <Filter>Source Files\primitive\math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -7556,6 +7562,9 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
