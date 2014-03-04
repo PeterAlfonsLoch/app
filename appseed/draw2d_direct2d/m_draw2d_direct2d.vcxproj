@@ -285,10 +285,10 @@
     <None Include="draw2d_direct2d.def" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\thirdparty\appseed\FreeImage\m_FreeImage.vcxproj">
+    <ProjectReference Include="..\..\thirdparty\appseed\FreeImage\m_basefreeimage.vcxproj">
       <Project>{fced5042-9a2d-4e71-8022-129e8e5d1993}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\thirdparty\appseed\freetype\_m_ca2freetype.vcxproj">
+    <ProjectReference Include="..\..\thirdparty\appseed\freetype\_m_ca2basefreetype.vcxproj">
       <Project>{af9dfa62-6f0e-47b8-a55b-5ad825571f4f}</Project>
     </ProjectReference>
     <ProjectReference Include="..\base\m_base.vcxproj">
