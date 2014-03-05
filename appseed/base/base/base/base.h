@@ -31,6 +31,7 @@
    #define CLASS_DECL_BASE
 #elif defined(_BASE_LIBRARY)
    #define CLASS_DECL_BASE  CLASS_DECL_EXPORT
+   #define LIBIDN_BUILDING
 #else
    #define CLASS_DECL_BASE  CLASS_DECL_IMPORT
 #endif

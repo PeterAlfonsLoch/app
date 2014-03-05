@@ -455,7 +455,7 @@ g_utf8_to_ucs4_fast (const gchar * str, glong len, glong * items_written)
   result[i] = 0;
 
   if (items_written)
-    *items_written = i;
+    *items_written = (long) i;
 
   return result;
 }
@@ -517,7 +517,7 @@ g_ucs4_to_utf8 (const gunichar * str,
   *p = '\0';
 
   if (items_written)
-    *items_written = p - result;
+    *items_written = (long) ( p - result);
 
 err_out:
   if (items_read)
@@ -1021,7 +1021,13 @@ stringprep_unichar_to_utf8 (uint32_t c, char *outbuf)
 uint32_t *
 stringprep_utf8_to_ucs4 (const char *str, ssize_t len, size_t * items_written)
 {
-  return g_utf8_to_ucs4_fast (str, (glong) len, (glong *) items_written);
+   glong l;
+  uint32_t * p = g_utf8_to_ucs4_fast (str, (glong) len, (glong *) &l);
+  if (items_written)
+     *items_written = l;
+
+  return p;
+
 }
 
 /**
@@ -1045,8 +1051,15 @@ char *
 stringprep_ucs4_to_utf8 (const uint32_t * str, ssize_t len,
 			 size_t * items_read, size_t * items_written)
 {
-  return g_ucs4_to_utf8 (str, len, (glong *) items_read,
-			 (glong *) items_written);
+   glong read;
+   glong write;
+  char * p = g_ucs4_to_utf8 (str, (long) len, (glong *) &read,
+			 (glong *) &write);
+  if (items_read)
+     *items_read = read;
+  if (items_written)
+     *items_written = write;
+  return p;
 }
 
 /**

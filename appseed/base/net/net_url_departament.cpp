@@ -1540,6 +1540,48 @@ namespace url
       return strProtocol + "://" + strRoot + strScript + ::str::has_char(strQuery, "?");
    }
 
+
+   string departament::to_punycode(const char * psz)
+   {
+
+      char * p = NULL;
+
+      Idna_rc rc = (Idna_rc) idna_to_ascii_lz(psz, &p, 0);
+
+      if (rc != IDNA_SUCCESS)
+      {
+         throw idna_strerror(rc);
+      }
+
+      string str(p);
+
+      free(p);
+
+      return str;
+
+   }
+
+   string departament::from_punycode(const char * psz)
+   {
+
+      char * p = NULL;
+
+      Idna_rc rc = (Idna_rc)idna_to_unicode_lzlz(psz, &p, 0);
+
+      if (rc != IDNA_SUCCESS)
+      {
+         throw idna_strerror(rc);
+      }
+
+      string str(p);
+
+      free(p);
+
+      return str;
+
+   }
+
+
    inline bool isalnum_dup(int32_t i)
    {
       return (i >= '0' && i <= '9') || (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z');

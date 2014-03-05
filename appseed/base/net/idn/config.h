@@ -48,8 +48,6 @@ extern int strverscmp (const char *, const char *);
 
 #define WITH_TLD
 
-#define LIBIDN_BUILDING
-
 #define _(X) X
 
 #endif /* _CONFIG_H */
