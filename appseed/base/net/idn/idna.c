@@ -27,19 +27,20 @@
    the GNU Lesser General Public License along with this program.  If
    not, see <http://www.gnu.org/licenses/>. */
 
-#ifdef HAVE_CONFIG_H
-# include "config.h"
-#endif
+#include "idn_framework.h"
+
+
+
 
 #include <stdlib.h>
 #include <string.h>
-#include <stringprep.h>
-#include <punycode.h>
+#include "stringprep.h"
+#include "punycode.h"
 
 #include "idna.h"
 
 /* Get c_strcasecmp. */
-#include <c-strcase.h>
+//#include <c-strcase.h>
 
 #define DOTP(c) ((c) == 0x002E || (c) == 0x3002 ||	\
 		 (c) == 0xFF0E || (c) == 0xFF61)
@@ -337,7 +338,7 @@ idna_to_unicode_internal (char *utf8in,
    */
 
 step3:
-  if (c_strncasecmp (utf8in, IDNA_ACE_PREFIX, strlen (IDNA_ACE_PREFIX)) != 0)
+  if (strnicmp (utf8in, IDNA_ACE_PREFIX, strlen (IDNA_ACE_PREFIX)) != 0)
     {
       free (utf8in);
       return IDNA_NO_ACE_PREFIX;
@@ -379,7 +380,7 @@ step3:
    * step 3, using a case-insensitive ASCII comparison.
    */
 
-  if (c_strcasecmp (utf8in, tmpout + strlen (IDNA_ACE_PREFIX)) != 0)
+  if (stricmp (utf8in, tmpout + strlen (IDNA_ACE_PREFIX)) != 0)
     {
       free (utf8in);
       return IDNA_ROUNDTRIP_VERIFY_ERROR;

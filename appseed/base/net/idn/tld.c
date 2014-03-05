@@ -30,16 +30,20 @@
    the GNU Lesser General Public License along with this program.  If
    not, see <http://www.gnu.org/licenses/>. */
 
-#include <config.h>
+#include "idn_framework.h"
+
+
+
+
 
 /* Get stringprep_utf8_to_ucs4, stringprep_locale_to_utf8. */
-#include <stringprep.h>
+#include "stringprep.h"
 
 /* Get strcmp(). */
 #include <string.h>
 
 /* Get specifications. */
-#include <tld.h>
+#include "tld.h"
 
 /* Array of built-in domain restriction structures.  See tlds.c.  */
 extern const Tld_table *_tld_tables[];

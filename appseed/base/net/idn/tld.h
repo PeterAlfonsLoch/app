@@ -54,7 +54,7 @@ extern "C"
 # include <stdlib.h>
 
   /* Get uint32_t. */
-# include <idn-int.h>
+# include "idn-int.h"
 
   /* Interval of valid code points in the TLD. */
   struct Tld_table_element

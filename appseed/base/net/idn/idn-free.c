@@ -27,7 +27,10 @@
    the GNU Lesser General Public License along with this program.  If
    not, see <http://www.gnu.org/licenses/>. */
 
-#include <config.h>
+#include "idn_framework.h"
+
+
+
 
 /* Get specification. */
 #include "idn-free.h"

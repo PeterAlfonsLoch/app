@@ -67,7 +67,11 @@
  * MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-#include <config.h>
+#include "idn_framework.h"
+
+
+
+
 #include <string.h>
 
 #include "punycode.h"

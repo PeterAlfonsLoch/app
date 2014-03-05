@@ -747,6 +747,9 @@
     <Filter Include="Source Files\net\idn">
       <UniqueIdentifier>{8e679719-0ed1-4584-a8be-b13c4d00dc92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\framework\NewFilter1">
+      <UniqueIdentifier>{5b55869c-a9fd-4c54-a3cd-edaa75cfd0d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_wstringtou.h">
@@ -3563,8 +3566,50 @@
     <ClInclude Include="primitive\math\math_mkint_c.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
-    <ClInclude Include="net\idn\idn_cmd.h">
+    <ClInclude Include="net\idn\ac-stdint.h">
       <Filter>Header Files\net\idn</Filter>
+    </ClInclude>
+    <ClInclude Include="net\idn\config.h">
+      <Filter>Header Files\net\idn</Filter>
+    </ClInclude>
+    <ClInclude Include="net\idn\gunibreak.h">
+      <Filter>Header Files\net\idn</Filter>
+    </ClInclude>
+    <ClInclude Include="net\idn\gunicomp.h">
+      <Filter>Header Files\net\idn</Filter>
+    </ClInclude>
+    <ClInclude Include="net\idn\gunidecomp.h">
+      <Filter>Header Files\net\idn</Filter>
+    </ClInclude>
+    <ClInclude Include="net\idn\idna.h">
+      <Filter>Header Files\net\idn</Filter>
+    </ClInclude>
+    <ClInclude Include="net\idn\idn-free.h">
+      <Filter>Header Files\net\idn</Filter>
+    </ClInclude>
+    <ClInclude Include="net\idn\idn-int.h">
+      <Filter>Header Files\net\idn</Filter>
+    </ClInclude>
+    <ClInclude Include="net\idn\pr29.h">
+      <Filter>Header Files\net\idn</Filter>
+    </ClInclude>
+    <ClInclude Include="net\idn\punycode.h">
+      <Filter>Header Files\net\idn</Filter>
+    </ClInclude>
+    <ClInclude Include="net\idn\stdbool.h">
+      <Filter>Header Files\net\idn</Filter>
+    </ClInclude>
+    <ClInclude Include="net\idn\stringprep.h">
+      <Filter>Header Files\net\idn</Filter>
+    </ClInclude>
+    <ClInclude Include="net\idn\tld.h">
+      <Filter>Header Files\net\idn</Filter>
+    </ClInclude>
+    <ClInclude Include="net\idn\unistd.h">
+      <Filter>Header Files\net\idn</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\idn_framework.h">
+      <Filter>Header Files\framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -7384,8 +7429,56 @@
     <ClCompile Include="primitive\math\math_mkint_c.cpp">
       <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
-    <ClCompile Include="net\idn\idn.c">
+    <ClCompile Include="net\idn\idna.c">
       <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\idn-free.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\nfkc.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\pr29.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\profiles.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\punycode.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\rfc3454.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\strerror-idna.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\strerror-pr29.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\strerror-punycode.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\strerror-stringprep.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\strerror-tld.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\stringprep.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\tld.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\tlds.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\toutf8.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\idn_framework.c">
+      <Filter>Source Files\framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -7574,6 +7667,9 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

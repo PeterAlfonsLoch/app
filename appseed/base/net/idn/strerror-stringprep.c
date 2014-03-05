@@ -27,14 +27,15 @@
    the GNU Lesser General Public License along with this program.  If
    not, see <http://www.gnu.org/licenses/>. */
 
-#ifdef HAVE_CONFIG_H
-# include "config.h"
-#endif
+#include "idn_framework.h"
+
+
+
 
 #include "stringprep.h"
 
-#include "gettext.h"
-#define _(String) dgettext (PACKAGE, String)
+//#include "gettext.h"
+//#define _(String) dgettext (PACKAGE, String)
 
 /**
  * stringprep_strerror:
@@ -78,7 +79,7 @@ stringprep_strerror (Stringprep_rc rc)
 {
   const char *p;
 
-  bindtextdomain (PACKAGE, LOCALEDIR);
+  //bindtextdomain (PACKAGE, LOCALEDIR);
 
   switch (rc)
     {

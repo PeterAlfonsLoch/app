@@ -27,9 +27,10 @@
    the GNU Lesser General Public License along with this program.  If
    not, see <http://www.gnu.org/licenses/>. */
 
-#ifdef HAVE_CONFIG_H
-# include "config.h"
-#endif
+#include "idn_framework.h"
+
+
+
 
 /* Get prototypes. */
 #include "stringprep.h"
@@ -44,7 +45,7 @@
 #include <string.h>
 
 /* Get iconv_string. */
-#include "striconv.h"
+//#include "striconv.h"
 
 #ifdef _LIBC
 # define HAVE_ICONV 1

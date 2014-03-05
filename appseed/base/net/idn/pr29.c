@@ -27,12 +27,16 @@
    the GNU Lesser General Public License along with this program.  If
    not, see <http://www.gnu.org/licenses/>. */
 
-#include <config.h>
+#include "idn_framework.h"
+
+
+
+
 
 #include "pr29.h"
 
 /* Get stringprep_utf8_to_ucs4. */
-#include <stringprep.h>
+#include "stringprep.h"
 
 /*
  * The tables used in this file was extracted by Simon Josefsson from

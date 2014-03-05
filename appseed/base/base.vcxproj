@@ -2539,6 +2539,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClInclude Include="framework\idn_framework.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="graphics\graphics_window_graphics.h" />
     <ClInclude Include="graphics\draw2d\draw2d.h" />
     <ClInclude Include="graphics\draw2d\draw2d_bitmap.h" />
@@ -2569,7 +2572,20 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="net\http\http_signal.h" />
     <ClInclude Include="net\http\http_status.h" />
     <ClInclude Include="net\http\http_system.h" />
-    <ClInclude Include="net\idn\idn_cmd.h" />
+    <ClInclude Include="net\idn\ac-stdint.h" />
+    <ClInclude Include="net\idn\config.h" />
+    <ClInclude Include="net\idn\gunibreak.h" />
+    <ClInclude Include="net\idn\gunicomp.h" />
+    <ClInclude Include="net\idn\gunidecomp.h" />
+    <ClInclude Include="net\idn\idn-free.h" />
+    <ClInclude Include="net\idn\idn-int.h" />
+    <ClInclude Include="net\idn\idna.h" />
+    <ClInclude Include="net\idn\pr29.h" />
+    <ClInclude Include="net\idn\punycode.h" />
+    <ClInclude Include="net\idn\stdbool.h" />
+    <ClInclude Include="net\idn\stringprep.h" />
+    <ClInclude Include="net\idn\tld.h" />
+    <ClInclude Include="net\idn\unistd.h" />
     <ClInclude Include="net\mail\mail.h" />
     <ClInclude Include="net\mail\mail_pop3.h" />
     <ClInclude Include="net\mail\pop3_socket.h" />
@@ -10612,6 +10628,11 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="filesystem\fs\fs_remote_native_file.cpp" />
     <ClCompile Include="filesystem\fs\fs_remote_native_fs.cpp" />
     <ClCompile Include="filesystem\fs\fs_set.cpp" />
+    <ClCompile Include="framework\idn_framework.c">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">idn_framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)idn_framework.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_brush.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_dib.cpp" />
@@ -10655,9 +10676,69 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="net\http\http_signal.cpp" />
     <ClCompile Include="net\http\http_status.cpp" />
     <ClCompile Include="net\http\http_system.cpp" />
-    <ClCompile Include="net\idn\idn.c">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
+    <ClCompile Include="net\idn\idn-free.c">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">idn_framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)idn_framework.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\idn\idna.c">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">idn_framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)idn_framework.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\idn\nfkc.c">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">idn_framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)idn_framework.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\idn\pr29.c">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">idn_framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)idn_framework.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\idn\profiles.c">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">idn_framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)idn_framework.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\idn\punycode.c">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">idn_framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)idn_framework.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\idn\rfc3454.c">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">idn_framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)idn_framework.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\idn\strerror-idna.c">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">idn_framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)idn_framework.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\idn\strerror-pr29.c">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">idn_framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)idn_framework.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\idn\strerror-punycode.c">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">idn_framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)idn_framework.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\idn\strerror-stringprep.c">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">idn_framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)idn_framework.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\idn\strerror-tld.c">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">idn_framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)idn_framework.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\idn\stringprep.c">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">idn_framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)idn_framework.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\idn\tld.c">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">idn_framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)idn_framework.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\idn\tlds.c">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">idn_framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)idn_framework.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\idn\toutf8.c">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">idn_framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)idn_framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="net\mail\mail_pop3.cpp" />
     <ClCompile Include="net\mail\mail_pop3_socket.cpp" />

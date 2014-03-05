@@ -27,21 +27,13 @@
    the GNU Lesser General Public License along with this program.  If
    not, see <http://www.gnu.org/licenses/>. */
 
-#include <config.h>
+#include "idn_framework.h"
+
+
+
+
 #include "stringprep.h"
 
-const Stringprep_profiles stringprep_profiles[] = {
-  {"Nameprep", stringprep_nameprep},
-  {"KRBprep", stringprep_kerberos5},	/* Deprecate? */
-  {"Nodeprep", stringprep_xmpp_nodeprep},
-  {"Resourceprep", stringprep_xmpp_resourceprep},
-  {"plain", stringprep_plain},	/* sasl-anon-00. */
-  {"trace", stringprep_trace},	/* sasl-anon-01,02,03. */
-  {"SASLprep", stringprep_saslprep},
-  {"ISCSIprep", stringprep_iscsi},	/* Obsolete. */
-  {"iSCSI", stringprep_iscsi},	/* IANA. */
-  {NULL, NULL}
-};
 
 const Stringprep_profile stringprep_nameprep[] = {
   {STRINGPREP_MAP_TABLE, 0, stringprep_rfc3454_B_1},
@@ -319,4 +311,18 @@ const Stringprep_profile stringprep_saslprep[] = {
   {STRINGPREP_UNASSIGNED_TABLE, ~STRINGPREP_NO_UNASSIGNED,
    stringprep_rfc3454_A_1},
   {0}
+};
+
+
+const Stringprep_profiles stringprep_profiles[] = {
+   { "Nameprep", stringprep_nameprep },
+   { "KRBprep", stringprep_kerberos5 },	/* Deprecate? */
+   { "Nodeprep", stringprep_xmpp_nodeprep },
+   { "Resourceprep", stringprep_xmpp_resourceprep },
+   { "plain", stringprep_plain },	/* sasl-anon-00. */
+   { "trace", stringprep_trace },	/* sasl-anon-01,02,03. */
+   { "SASLprep", stringprep_saslprep },
+   { "ISCSIprep", stringprep_iscsi },	/* Obsolete. */
+   { "iSCSI", stringprep_iscsi },	/* IANA. */
+   { NULL, NULL }
 };
