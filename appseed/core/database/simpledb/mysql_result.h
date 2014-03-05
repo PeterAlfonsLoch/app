@@ -23,6 +23,7 @@ namespace mysql
       database *     m_pdatabase;
       MYSQL_RES *    m_pres;
       int32_t        m_iFieldCount;
+      int32_t        m_iAffectedRows;
 
 
       result(database * pdatabase, MYSQL_RES * pres);

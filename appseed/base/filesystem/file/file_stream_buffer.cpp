@@ -439,6 +439,8 @@ namespace file
 
    bool stream_buffer::read_string(string & str)
    {
+
+      str.Empty();
       
       int i = sbumpc();
 
@@ -469,6 +471,8 @@ namespace file
 
    bool stream_buffer::full_read_string(string & str)
    {
+
+      str.Empty();
 
       int i = sbumpc();
 

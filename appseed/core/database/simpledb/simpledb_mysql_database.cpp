@@ -207,9 +207,13 @@ namespace mysql
 
             m_iLastUsedTime = ::core::profiler::micros();
 
-            TRACE("Number of rows affected: %lu\n", (uint32_t) mysql_affected_rows ((MYSQL *) m_pmysql));
+            result * presult = canew(result(this, NULL));
 
-            return canew(result(this, NULL));
+            presult->m_iAffectedRows = mysql_affected_rows((MYSQL *)m_pmysql);
+
+            TRACE("Number of rows affected: %lu\n", (uint32_t)presult->m_iAffectedRows);
+
+            return presult;
 
          }
          else /* an error occurred */

@@ -153,8 +153,30 @@ namespace http
 //                     FILE *fil;
                      int32_t out = 0;
                      char ca;
-                     string strTempFile = System.file().time_square(get_app());
-                     ::file::binary_buffer_sp spfile(Application.file().get_file(strTempFile, ::file::type_binary | ::file::mode_create | ::file::mode_write));
+                     string strFormat;
+                     ::datetime::time t = ::datetime::time::get_current_time();
+
+                     string   strTime;
+                     string   strIndex;
+                     string strTempFile;
+                     int i = 0;
+
+                     static mutex s_mutex(NULL);
+
+                     single_lock sl(&s_mutex, true);
+
+                     while (true)
+                     {
+                        strTime = t.FormatGmt("%Y\\%m\\%d\\%H\\%M\\%S\\");
+                        strIndex.Format("%08x\\", i);
+                        strTempFile = "C:\\upload\\" + strTime + strIndex + current_filename;
+                        if (!Application.file().exists(strTempFile))
+                           break;
+
+                     }
+                     
+                     ::file::binary_buffer_sp spfile(Application.file().get_file(strTempFile, ::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write));
+                     sl.unlock();
                      if(spfile.is_set())
                      {
                         while (infil -> read(&ca,1))
