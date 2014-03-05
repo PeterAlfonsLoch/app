@@ -7055,7 +7055,7 @@ bool imaging::load_from_matter(::draw2d::dib * pdib, var varFile, base_applicati
       papp = get_app();
 
 
-   return load_from_file(pdib, App(papp).dir().matter((const string &) varFile), papp);
+   return load_from_file(pdib, App(papp).dir().matter((const string &) varFile), true, papp);
 
 }
 
@@ -7065,7 +7065,7 @@ bool imaging::load_from_file(::visual::cursor * pcursor, var varFile, base_appli
    string str(varFile);
    if (!::str::ends_eat_ci(str, ".png"))
       return false;
-   if (!load_from_file(pcursor->m_dib, varFile, papp))
+   if (!load_from_file(pcursor->m_dib, varFile, true, papp))
       return false;
 
    if (papp == NULL)

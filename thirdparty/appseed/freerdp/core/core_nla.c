@@ -1238,7 +1238,7 @@ int credssp_recv(rdpCredssp* credssp)
 			!ber_read_sequence_tag(s, &length) || /* NegoDataItem */
 			!ber_read_contextual_tag(s, 0, &length, TRUE) || /* [0] negoToken */
 			!ber_read_octet_string_tag(s, &length) || /* OCTET STRING */
-			Stream_GetRemainingLength(s) < length)
+			Stream_GetRemainingLength(s) < natural32(length))
 		{
 			Stream_Free(s, TRUE);
 			return -1;
@@ -1252,7 +1252,7 @@ int credssp_recv(rdpCredssp* credssp)
 	if (ber_read_contextual_tag(s, 2, &length, TRUE) != FALSE)
 	{
 		if(!ber_read_octet_string_tag(s, &length) || /* OCTET STRING */
-			Stream_GetRemainingLength(s) < length)
+			Stream_GetRemainingLength(s) < natural32(length))
 		{
 			Stream_Free(s, TRUE);
 			return -1;
@@ -1266,7 +1266,7 @@ int credssp_recv(rdpCredssp* credssp)
 	if (ber_read_contextual_tag(s, 3, &length, TRUE) != FALSE)
 	{
 		if(!ber_read_octet_string_tag(s, &length) || /* OCTET STRING */
-			Stream_GetRemainingLength(s) < length)
+			Stream_GetRemainingLength(s) < natural32(length))
 		{
 			Stream_Free(s, TRUE);
 			return -1;

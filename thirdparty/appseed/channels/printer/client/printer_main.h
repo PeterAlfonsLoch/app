@@ -40,7 +40,7 @@ typedef struct rdp_printer rdpPrinter;
 typedef struct rdp_print_job rdpPrintJob;
 
 typedef rdpPrinter** (*pcEnumPrinters) (rdpPrinterDriver* driver);
-typedef rdpPrinter* (*pcGetPrinter) (rdpPrinterDriver* driver, const char* name);
+typedef rdpPrinter* (*pcGetPrinter) (rdpPrinterDriver* driver, const wchar_t* name);
 
 struct rdp_printer_driver
 {
@@ -55,8 +55,8 @@ typedef void (*pcFreePrinter) (rdpPrinter* printer);
 struct rdp_printer
 {
 	int id;
-	wchar_t* name;
-   wchar_t* driver;
+	wchar_t * name;
+   wchar_t * driver;
 	BOOL is_default;
 
 	pcCreatePrintJob CreatePrintJob;

@@ -75,7 +75,7 @@ static void update_message_DesktopResize(rdpContext* context)
 
 static void update_message_BitmapUpdate(rdpContext* context, BITMAP_UPDATE* bitmap)
 {
-	int index;
+   UINT32 index;
 	BITMAP_UPDATE* wParam;
 
 	wParam = (BITMAP_UPDATE*) malloc(sizeof(BITMAP_UPDATE));
@@ -996,7 +996,7 @@ static int update_message_free_update_class(wMessage* msg, int type)
 
 		case Update_BitmapUpdate:
 			{
-				int index;
+				UINT32 index;
 				BITMAP_UPDATE* wParam = (BITMAP_UPDATE*) msg->wParam;
 
 				for (index = 0; index < wParam->number; index++)

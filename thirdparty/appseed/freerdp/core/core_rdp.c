@@ -107,7 +107,7 @@ BOOL rdp_read_share_control_header(wStream* s, UINT16* length, UINT16* type, UIN
 	/* Share Control Header */
 	Stream_Read_UINT16(s, *length); /* totalLength */
 
-	if (*length - 2 > Stream_GetRemainingLength(s))
+	if (natural32(*length - 2) > Stream_GetRemainingLength(s))
 		return FALSE;
 
 	Stream_Read_UINT16(s, *type); /* pduType */
@@ -249,7 +249,7 @@ BOOL rdp_read_header(rdpRdp* rdp, wStream* s, UINT16* length, UINT16* channelId)
 			return FALSE;
 	}
 
-	if (*length - 8 > Stream_GetRemainingLength(s))
+	if (natural32(*length - 8) > Stream_GetRemainingLength(s))
 		return FALSE;
 
 	if (MCSPDU == DomainMCSPDU_DisconnectProviderUltimatum)
@@ -540,7 +540,7 @@ int rdp_recv_data_pdu(rdpRdp* rdp, wStream* s)
 
 	if (compressed_type & PACKET_COMPRESSED)
 	{
-		if (Stream_GetRemainingLength(s) < compressed_len - 18)
+		if (Stream_GetRemainingLength(s) < natural32(compressed_len - 18))
 		{
 			fprintf(stderr, "decompress_rdp: not enough bytes for compressed_len=%d\n", compressed_len);
 			return -1;	

@@ -71,7 +71,7 @@ typedef struct _DISP_PLUGIN DISP_PLUGIN;
 
 int disp_send_display_control_monitor_layout_pdu(DISP_CHANNEL_CALLBACK* callback, UINT32 NumMonitors, DISPLAY_CONTROL_MONITOR_LAYOUT* Monitors)
 {
-	int index;
+	UINT32 index;
 	int status;
 	wStream* s;
 	UINT32 type;

@@ -317,8 +317,8 @@ void printer_register(PDEVICE_SERVICE_ENTRY_POINTS pEntryPoints, rdpPrinter* pri
 int DeviceServiceEntry(PDEVICE_SERVICE_ENTRY_POINTS pEntryPoints)
 {
 	int i;
-	wchar_t* name;
-	wchar_t* driver_name;
+	wchar_t * name;
+	wchar_t * driver_name;
 	rdpPrinter* printer;
 	rdpPrinter** printers;
 	RDPDR_PRINTER* device;

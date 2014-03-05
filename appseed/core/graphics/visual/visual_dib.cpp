@@ -34,7 +34,7 @@ namespace visual
    bool dib_sp::load_from_matter(const char * pszMatter)
    {
 
-      return Sys(m_p->m_pbaseapp).visual().imaging().load_from_file(m_p, App(m_p->m_pbaseapp).dir().matter(pszMatter), m_p->m_pbaseapp);
+      return Sys(m_p->m_pbaseapp).visual().imaging().load_from_file(m_p, App(m_p->m_pbaseapp).dir().matter(pszMatter), true, m_p->m_pbaseapp);
 
    }
 

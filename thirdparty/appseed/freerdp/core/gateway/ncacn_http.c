@@ -125,7 +125,7 @@ int rpc_ncacn_http_ntlm_init(rdpRpc* rpc, TSG_CHANNEL channel)
 			rpc->TlsIn->Bindings);
 
 	//ntlm_client_make_spn(ntlm, NULL, settings->GatewayHostname);
-	ntlm_client_make_spn(ntlm, _T("HTTP"), settings->GatewayHostname);
+	ntlm_client_make_spn(ntlm, L"HTTP", settings->GatewayHostname);
 
 	return 0;
 }

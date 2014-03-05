@@ -320,7 +320,8 @@ ADDIN_ARGV* freerdp_static_channel_clone(ADDIN_ARGV* channel)
 
 void freerdp_static_channel_collection_free(rdpSettings* settings)
 {
-	UINT32 i, j;
+   UINT32 i;
+   int j;
 
 	for (i = 0; i < settings->StaticChannelCount; i++)
 	{

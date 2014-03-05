@@ -250,7 +250,7 @@ void rdpei_print_contact_flags(UINT32 contactFlags)
 
 int rdpei_write_touch_frame(wStream* s, RDPINPUT_TOUCH_FRAME* frame)
 {
-	int index;
+	UINT32 index;
 	int rectSize = 2;
 	RDPINPUT_CONTACT_DATA* contact;
 
@@ -343,7 +343,7 @@ int rdpei_send_touch_event_pdu(RDPEI_CHANNEL_CALLBACK* callback, RDPINPUT_TOUCH_
 	 * the time that has elapsed (in milliseconds) from when the oldest touch frame
 	 * was generated to when it was encoded for transmission by the client.
 	 */
-	rdpei_write_4byte_unsigned(s, frame->frameOffset); /* encodeTime (FOUR_BYTE_UNSIGNED_INTEGER) */
+	rdpei_write_4byte_unsigned(s, (UINT32) frame->frameOffset); /* encodeTime (FOUR_BYTE_UNSIGNED_INTEGER) */
 
 	rdpei_write_2byte_unsigned(s, 1); /* (frameCount) TWO_BYTE_UNSIGNED_INTEGER */
 

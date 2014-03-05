@@ -171,13 +171,13 @@ static void printer_win_free_printer(rdpPrinter* printer)
 	free(printer);
 }
 
-static rdpPrinter* printer_win_new_printer(rdpWinPrinterDriver* win_driver, const wchar_t* name, const wchar_t* drivername, BOOL is_default)
+static rdpPrinter* printer_win_new_printer(rdpWinPrinterDriver* win_driver, const wchar_t * name, const wchar_t * drivername, BOOL is_default)
 {
 	rdpWinPrinter* win_printer;
 	wchar_t wname[256];
 	DWORD needed;
 	PRINTER_INFO_2W *prninfo=NULL;
-	size_t charsConverted;
+//	size_t charsConverted;
 	DEBUG_WINPR("");
 
 	win_printer = (rdpWinPrinter*) malloc(sizeof(rdpWinPrinter));
@@ -199,8 +199,10 @@ static rdpPrinter* printer_win_new_printer(rdpWinPrinterDriver* win_driver, cons
 	prninfo = (PRINTER_INFO_2W*) GlobalAlloc(GPTR,needed);
 	GetPrinterW(win_printer->hPrinter, 2, (LPBYTE) prninfo, needed, &needed);
 
-	win_printer->printer.driver = malloc(1000);
-	wcstombs_s(&charsConverted, win_printer->printer.driver, 1000, prninfo->pDriverName, _TRUNCATE);
+	//win_printer->printer.driver = malloc(1000);
+//	wcstombs_s(&charsConverted, win_printer->printer.driver, 1000, prninfo->pDriverName, _TRUNCATE);
+
+   win_printer->printer.driver = _wcsdup(prninfo->pDriverName);
 
 	return (rdpPrinter*)win_printer;
 }
@@ -210,22 +212,22 @@ static rdpPrinter** printer_win_enum_printers(rdpPrinterDriver* driver)
 	rdpPrinter** printers;
 	int num_printers;
 	int i;
-	char pname[1000];
-	size_t charsConverted;
-	PRINTER_INFO_2* prninfo = NULL;
+//	char pname[1000];
+//	size_t charsConverted;
+	PRINTER_INFO_2W* prninfo = NULL;
 	DWORD needed, returned;
  
 	DEBUG_WINPR("");
 
 	/* find required size for the buffer */
-	EnumPrinters(PRINTER_ENUM_LOCAL|PRINTER_ENUM_CONNECTIONS, NULL, 2, NULL, 0, &needed, &returned);
+	EnumPrintersW(PRINTER_ENUM_LOCAL|PRINTER_ENUM_CONNECTIONS, NULL, 2, NULL, 0, &needed, &returned);
 
 
 	/* allocate array of PRINTER_INFO structures */
-	prninfo = (PRINTER_INFO_2*) GlobalAlloc(GPTR,needed);
+	prninfo = (PRINTER_INFO_2W*) GlobalAlloc(GPTR,needed);
  
 	/* call again */
-	if ( !EnumPrinters(PRINTER_ENUM_LOCAL|PRINTER_ENUM_CONNECTIONS, NULL, 2, (LPBYTE) prninfo, needed, &needed, &returned) )
+	if ( !EnumPrintersW(PRINTER_ENUM_LOCAL|PRINTER_ENUM_CONNECTIONS, NULL, 2, (LPBYTE) prninfo, needed, &needed, &returned) )
 	{
 		DEBUG_WINPR("EnumPrinters failed");
 	} ; /* ERROR... */
@@ -240,8 +242,7 @@ static rdpPrinter** printer_win_enum_printers(rdpPrinterDriver* driver)
 	for (i = 0; i < (int)returned; i++)
 	{
 //		wcstombs_s(&charsConverted, pname, 1000, prninfo[i].pPrinterName, _TRUNCATE);
-		printers[num_printers++] = printer_win_new_printer((rdpWinPrinterDriver*)driver,
-         prninfo[i].pDriverName, prninfo[i].pDriverName, 0);
+      printers[num_printers++] = printer_win_new_printer((rdpWinPrinterDriver*)driver, prninfo[i].pPrinterName, prninfo[i].pDriverName, 0);
 	}
 
 	GlobalFree(prninfo);

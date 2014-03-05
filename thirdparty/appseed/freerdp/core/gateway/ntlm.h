@@ -56,13 +56,13 @@ struct rdp_ntlm
 	SecBuffer outputBuffer[2];
 	BOOL haveContext;
 	BOOL haveInputBuffer;
-	LPTSTR ServicePrincipalName;
+	LPWSTR ServicePrincipalName;
 	SecBufferDesc inputBufferDesc;
 	SecBufferDesc outputBufferDesc;
 	CredHandle credentials;
 	BOOL confidentiality;
-	SecPkgInfo* pPackageInfo;
-	SecurityFunctionTable* table;
+	SecPkgInfoW* pPackageInfo;
+	SecurityFunctionTableW* table;
 	SEC_WINNT_AUTH_IDENTITY_W identity;
 	SecPkgContext_Sizes ContextSizes;
 	SecPkgContext_Bindings* Bindings;
@@ -80,7 +80,7 @@ BOOL ntlm_client_init(rdpNtlm* ntlm, BOOL confidentiality, char* user,
 		char* domain, char* password, SecPkgContext_Bindings* Bindings);
 void ntlm_client_uninit(rdpNtlm* ntlm);
 
-BOOL ntlm_client_make_spn(rdpNtlm* ntlm, LPCTSTR ServiceClass, char* hostname);
+BOOL ntlm_client_make_spn(rdpNtlm* ntlm, LPCWSTR ServiceClass, char* hostname);
 
 rdpNtlm* ntlm_new(void);
 void ntlm_free(rdpNtlm* ntlm);

@@ -44,7 +44,7 @@
 
 static void rdpdr_process_connect(rdpdrPlugin* rdpdr)
 {
-	int index;
+	UINT32 index;
 	RDPDR_DEVICE* device;
 	rdpSettings* settings;
 
