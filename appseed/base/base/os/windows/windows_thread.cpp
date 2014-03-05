@@ -43,14 +43,15 @@ os_thread::~os_thread()
 
    }
 
-   /*if (m_hthread != NULL)
+
+   if (m_hthread != NULL)
    {
       
       ::CloseHandle(m_hthread);
 
-   }*/
+   }
 
-   
+
 
 }
 
@@ -194,7 +195,22 @@ HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, uint_ptr cbStack, uint32_t (* p
 
    posthread->add_ref();
 
-   return posthread->m_hthread = (HANDLE) _beginthreadex(lpsa, (unsigned int) cbStack, &::os_thread::thread_proc, (void *) posthread, f, lpui);
+   static int s_i = 0;
+
+   s_i++;
+
+   posthread->m_strDebug.Format("index = %d", s_i);
+
+   posthread->m_hthread = (HTHREAD) _beginthreadex(lpsa, (unsigned int)cbStack, &::os_thread::thread_proc, (void *)posthread, f | CREATE_SUSPENDED, lpui);
+
+   if (!(f & CREATE_SUSPENDED))
+   {
+
+      ::ResumeThread(posthread->m_hthread);
+
+   }
+
+   return posthread->m_hthread;
 
 }
 

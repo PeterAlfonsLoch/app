@@ -78,6 +78,7 @@ public:
    LPVOID                                 m_pv;
    bool                                   m_bRun;
    HTHREAD                                m_hthread;
+   string                                 m_strDebug;
 
 #if defined(LINUX) || defined(MACOS) || defined(ANDROID)
 
