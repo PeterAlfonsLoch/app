@@ -8,6 +8,8 @@
   we make no copyright claims on it.
 */
 
+#include "framework_c.h"
+
 /* If we use autoconf.  */
 #ifdef HAVE_CONFIG_H
 #include "config.h"

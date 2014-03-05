@@ -18,6 +18,9 @@
  *
  */
 
+
+#include "framework_c.h"
+
 #ifdef HAVE_CONFIG_H
 # include "config.h"
 #endif
@@ -27,8 +30,10 @@
 #include <string.h>
 #include <errno.h>
 #include <locale.h>
+#ifdef WIN32
+#include "unistd.h"
+#else
 #include <unistd.h>
-
 /* Gnulib headers. */
 #include "error.h"
 #include "gettext.h"
@@ -36,6 +41,8 @@
 #define N_(String) gettext_noop (String)
 #include "progname.h"
 #include "version-etc.h"
+#endif
+
 
 /* Libidn headers. */
 #include <stringprep.h>

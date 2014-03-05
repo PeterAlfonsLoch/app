@@ -7387,9 +7387,6 @@
     <ClCompile Include="net\idn\idn.c">
       <Filter>Source Files\net\idn</Filter>
     </ClCompile>
-    <ClCompile Include="net\idn\idn_cmd.c">
-      <Filter>Source Files\net\idn</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -7577,6 +7574,9 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

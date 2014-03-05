@@ -10655,8 +10655,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="net\http\http_signal.cpp" />
     <ClCompile Include="net\http\http_status.cpp" />
     <ClCompile Include="net\http\http_system.cpp" />
-    <ClCompile Include="net\idn\idn.c" />
-    <ClCompile Include="net\idn\idn_cmd.c" />
+    <ClCompile Include="net\idn\idn.c">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">framework_c.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="net\mail\mail_pop3.cpp" />
     <ClCompile Include="net\mail\mail_pop3_socket.cpp" />
     <ClCompile Include="net\mail\mail_simple_pop3.cpp" />
