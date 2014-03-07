@@ -209,9 +209,9 @@ namespace mysql
 
             result * presult = canew(result(this, NULL));
 
-            presult->m_iAffectedRows = mysql_affected_rows((MYSQL *)m_pmysql);
+            presult->m_uiAffectedRows = mysql_affected_rows((MYSQL *)m_pmysql);
 
-            TRACE("Number of rows affected: %lu\n", (uint32_t)presult->m_iAffectedRows);
+            TRACE("Number of rows affected: %lu\n", (uint32_t)presult->m_uiAffectedRows);
 
             return presult;
 
