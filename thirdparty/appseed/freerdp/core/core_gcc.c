@@ -199,7 +199,7 @@ void gcc_write_conference_create_request(wStream* s, wStream* user_data)
 	per_write_object_identifier(s, t124_02_98_oid); /* ITU-T T.124 (02/98) OBJECT_IDENTIFIER */
 
 	/* ConnectData::connectPDU (OCTET_STRING) */
-	per_write_length(s, Stream_GetPosition(user_data) + 14); /* connectPDU length */
+   per_write_length(s, (int)(Stream_GetPosition(user_data) + 14)); /* connectPDU length */
 
 	/* ConnectGCCPDU */
 	per_write_choice(s, 0); /* From ConnectGCCPDU select conferenceCreateRequest (0) of type ConferenceCreateRequest */
@@ -217,7 +217,7 @@ void gcc_write_conference_create_request(wStream* s, wStream* user_data)
 	per_write_octet_string(s, h221_cs_key, 4, 4); /* h221NonStandard, client-to-server H.221 key, "Duca" */
 
 	/* userData::value (OCTET_STRING) */
-	per_write_octet_string(s, user_data->buffer, Stream_GetPosition(user_data), 0); /* array of client data blocks */
+   per_write_octet_string(s, user_data->buffer, (int)Stream_GetPosition(user_data), 0); /* array of client data blocks */
 }
 
 BOOL gcc_read_conference_create_response(wStream* s, rdpSettings* settings)
@@ -276,7 +276,7 @@ void gcc_write_conference_create_response(wStream* s, wStream* user_data)
 	per_write_object_identifier(s, t124_02_98_oid);
 
 	/* ConnectData::connectPDU (OCTET_STRING) */
-	per_write_length(s, Stream_GetPosition(user_data) + 2);
+   per_write_length(s, (int) (Stream_GetPosition(user_data) + 2));
 
 	/* ConnectGCCPDU */
 	per_write_choice(s, 0x14);
@@ -300,7 +300,7 @@ void gcc_write_conference_create_response(wStream* s, wStream* user_data)
 	per_write_octet_string(s, h221_sc_key, 4, 4); /* h221NonStandard, server-to-client H.221 key, "McDn" */
 
 	/* userData (OCTET_STRING) */
-	per_write_octet_string(s, user_data->buffer, Stream_GetPosition(user_data), 0); /* array of server data blocks */
+   per_write_octet_string(s, user_data->buffer, (int) (Stream_GetPosition(user_data)), 0); /* array of server data blocks */
 }
 
 BOOL gcc_read_client_data_blocks(wStream* s, rdpSettings* settings, int length)
@@ -311,7 +311,7 @@ BOOL gcc_read_client_data_blocks(wStream* s, rdpSettings* settings, int length)
 
 	while (length > 0)
 	{
-		pos = Stream_GetPosition(s);
+      pos = (int)Stream_GetPosition(s);
 		if(!gcc_read_user_data_header(s, &type, &blockLength))
 			return FALSE;
 
@@ -1040,7 +1040,7 @@ void gcc_write_server_security_data(wStream* s, rdpSettings* settings)
 	Stream_Write(s, settings->RdpServerRsaKey->Modulus, keyLen);
 	Stream_Zero(s, 8);
 
-	sigDataLen = Stream_Pointer(s) - sigData;
+   sigDataLen = (int)(Stream_Pointer(s) - sigData);
 
 	Stream_Write_UINT16(s, BB_RSA_SIGNATURE_BLOB); /* wSignatureBlobType */
 	Stream_Write_UINT16(s, keyLen + 8); /* wSignatureBlobLen */

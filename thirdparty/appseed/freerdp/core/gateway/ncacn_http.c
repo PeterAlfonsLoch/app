@@ -81,7 +81,7 @@ int rpc_ncacn_http_send_in_channel_request(rdpRpc* rpc)
 	s = rpc_ntlm_http_request(rpc, &ntlm->outputBuffer[0], content_length, TSG_CHANNEL_IN);
 
 	DEBUG_RPC("\n%s", Stream_Buffer(s));
-	rpc_in_write(rpc, Stream_Buffer(s), Stream_Length(s));
+   rpc_in_write(rpc, Stream_Buffer(s), (int)Stream_Length(s));
 	Stream_Free(s, TRUE);
 
 	return 0;
@@ -97,7 +97,7 @@ int rpc_ncacn_http_recv_in_channel_response(rdpRpc* rpc)
 	http_response = http_response_recv(rpc->TlsIn);
 
 	ntlm_token_data = NULL;
-	crypto_base64_decode((BYTE*) http_response->AuthParam, strlen(http_response->AuthParam),
+   crypto_base64_decode((BYTE*)http_response->AuthParam, (int)strlen(http_response->AuthParam),
 			&ntlm_token_data, &ntlm_token_length);
 
 	ntlm->inputBuffer[0].pvBuffer = ntlm_token_data;
@@ -170,7 +170,7 @@ int rpc_ncacn_http_send_out_channel_request(rdpRpc* rpc)
 	s = rpc_ntlm_http_request(rpc, &ntlm->outputBuffer[0], content_length, TSG_CHANNEL_OUT);
 
 	DEBUG_RPC("\n%s", Stream_Buffer(s));
-	rpc_out_write(rpc, Stream_Buffer(s), Stream_Length(s));
+   rpc_out_write(rpc, Stream_Buffer(s), (int)Stream_Length(s));
 	Stream_Free(s, TRUE);
 
 	return 0;
@@ -186,7 +186,7 @@ int rpc_ncacn_http_recv_out_channel_response(rdpRpc* rpc)
 	http_response = http_response_recv(rpc->TlsOut);
 
 	ntlm_token_data = NULL;
-	crypto_base64_decode((BYTE*) http_response->AuthParam, strlen(http_response->AuthParam),
+   crypto_base64_decode((BYTE*)http_response->AuthParam, (int)strlen(http_response->AuthParam),
 			&ntlm_token_data, &ntlm_token_length);
 
 	ntlm->inputBuffer[0].pvBuffer = ntlm_token_data;

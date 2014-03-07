@@ -109,6 +109,9 @@
     <Filter Include="Source Files\tsmf">
       <UniqueIdentifier>{3189e97b-efbe-4bb9-8f04-e8731468d5df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\framework">
+      <UniqueIdentifier>{981cc737-c2ba-4ae6-99f5-91a710aeff1a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="audin\client\audin_main.c">
@@ -228,9 +231,6 @@
     <ClCompile Include="tsmf\client\tsmf_media.c">
       <Filter>Source Files\tsmf</Filter>
     </ClCompile>
-    <ClCompile Include="client\framework.c">
-      <Filter>Source Files\client</Filter>
-    </ClCompile>
     <ClCompile Include="cliprdr\client\cliprdr_format.c">
       <Filter>Source Files\cliprdr</Filter>
     </ClCompile>
@@ -239,6 +239,9 @@
     </ClCompile>
     <ClCompile Include="tables.c">
       <Filter>Source Files\client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\framework.c">
+      <Filter>Source Files\framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

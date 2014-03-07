@@ -259,7 +259,7 @@ BOOL certificate_read_x509_certificate(rdpCertBlob* cert, rdpCertInfo* info)
 
 	error++;
 
-	if (mkint32(Stream_GetRemainingLength(s)) < exponent_length || exponent_length > 4)
+	if (mkint32((uint32_t) (Stream_GetRemainingLength(s))) < exponent_length || exponent_length > 4)
 		goto error2;
 
 	Stream_Read(s, &info->exponent[4 - exponent_length], exponent_length);
@@ -462,7 +462,7 @@ BOOL certificate_read_server_proprietary_certificate(rdpCertificate* certificate
 	if (Stream_GetRemainingLength(s) < 4)
 		return FALSE;
 
-	sigdatalen = Stream_Pointer(s) - sigdata;
+	sigdatalen =(int) (Stream_Pointer(s) - sigdata);
 	Stream_Read_UINT16(s, wSignatureBlobType);
 
 	if (wSignatureBlobType != BB_RSA_SIGNATURE_BLOB)

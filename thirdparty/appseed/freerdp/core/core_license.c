@@ -183,7 +183,7 @@ BOOL license_send(rdpLicense* license, wStream* s, BYTE type)
 
 	DEBUG_LICENSE("Sending %s Packet", LICENSE_MESSAGE_STRINGS[type & 0x1F]);
 
-	length = Stream_GetPosition(s);
+   length = (int)Stream_GetPosition(s);
 	Stream_SetPosition(s, 0);
 
 	sec_flags = SEC_LICENSE_PKT;
@@ -978,10 +978,10 @@ void license_send_new_license_request_packet(rdpLicense* license)
 		username = "username";
 
 	license->ClientUserName->data = (BYTE*) username;
-	license->ClientUserName->length = strlen(username) + 1;
+	license->ClientUserName->length = (UINT16) (strlen(username) + 1);
 
 	license->ClientMachineName->data = (BYTE*) license->rdp->settings->ClientHostname;
-	license->ClientMachineName->length = strlen(license->rdp->settings->ClientHostname) + 1;
+	license->ClientMachineName->length = (UINT16) (strlen(license->rdp->settings->ClientHostname) + 1);
 
 	license_write_new_license_request_packet(license, s);
 

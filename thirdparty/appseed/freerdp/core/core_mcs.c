@@ -293,7 +293,7 @@ void mcs_write_domain_parameters(wStream* s, DomainParameters* domainParameters)
 	ber_write_integer(tmps, domainParameters->maxMCSPDUsize);
 	ber_write_integer(tmps, domainParameters->protocolVersion);
 
-	length = Stream_GetPosition(tmps);
+   length = (int)Stream_GetPosition(tmps);
 	ber_write_sequence_tag(s, length);
 	Stream_Write(s, Stream_Buffer(tmps), length);
 	Stream_Free(tmps, TRUE);
@@ -408,9 +408,9 @@ void mcs_write_connect_initial(wStream* s, rdpMcs* mcs, wStream* user_data)
 	mcs_write_domain_parameters(tmps, &mcs->maximumParameters);
 
 	/* userData (OCTET_STRING) */
-	ber_write_octet_string(tmps, user_data->buffer, Stream_GetPosition(user_data));
+   ber_write_octet_string(tmps, user_data->buffer, (int)Stream_GetPosition(user_data));
 
-	length = Stream_GetPosition(tmps);
+   length = (int)Stream_GetPosition(tmps);
 	/* Connect-Initial (APPLICATION 101, IMPLICIT SEQUENCE) */
 	ber_write_application_tag(s, MCS_TYPE_CONNECT_INITIAL, length);
 	Stream_Write(s, Stream_Buffer(tmps), length);
@@ -436,9 +436,9 @@ void mcs_write_connect_response(wStream* s, rdpMcs* mcs, wStream* user_data)
 	mcs->domainParameters = mcs->targetParameters;
 	mcs_write_domain_parameters(tmps, &(mcs->domainParameters));
 	/* userData (OCTET_STRING) */
-	ber_write_octet_string(tmps, user_data->buffer, Stream_GetPosition(user_data));
+   ber_write_octet_string(tmps, user_data->buffer, (int)Stream_GetPosition(user_data));
 
-	length = Stream_GetPosition(tmps);
+   length = (int)Stream_GetPosition(tmps);
 	ber_write_application_tag(s, MCS_TYPE_CONNECT_RESPONSE, length);
 	Stream_Write(s, Stream_Buffer(tmps), length);
 	Stream_Free(tmps, TRUE);
@@ -464,15 +464,15 @@ BOOL mcs_send_connect_initial(rdpMcs* mcs)
 
 	gcc_CCrq = Stream_New(NULL, 512);
 	gcc_write_conference_create_request(gcc_CCrq, client_data);
-	length = Stream_GetPosition(gcc_CCrq) + 7;
+   length = (int)Stream_GetPosition(gcc_CCrq) + 7;
 
 	s = Stream_New(NULL, 1024 + length);
 
-	bm = Stream_GetPosition(s);
+   bm = (int)Stream_GetPosition(s);
 	Stream_Seek(s, 7);
 
 	mcs_write_connect_initial(s, mcs, gcc_CCrq);
-	em = Stream_GetPosition(s);
+   em = (int)Stream_GetPosition(s);
 	length = (em - bm);
 	Stream_SetPosition(s, bm);
 
@@ -546,15 +546,15 @@ BOOL mcs_send_connect_response(rdpMcs* mcs)
 
 	gcc_CCrsp = Stream_New(NULL, 512);
 	gcc_write_conference_create_response(gcc_CCrsp, server_data);
-	length = Stream_GetPosition(gcc_CCrsp) + 7;
+   length = (int)Stream_GetPosition(gcc_CCrsp) + 7;
 
 	s = Stream_New(NULL, length + 1024);
 
-	bm = Stream_GetPosition(s);
+   bm = (int)Stream_GetPosition(s);
 	Stream_Seek(s, 7);
 
 	mcs_write_connect_response(s, mcs, gcc_CCrsp);
-	em = Stream_GetPosition(s);
+   em = (int)Stream_GetPosition(s);
 	length = (em - bm);
 	Stream_SetPosition(s, bm);
 

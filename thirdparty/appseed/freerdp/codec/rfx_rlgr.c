@@ -236,7 +236,7 @@ int rfx_rlgr_decode(RLGR_MODE mode, const BYTE* data, int data_size, INT16* buff
 
 	free(bs);
 
-	return (dst - buffer);
+	return (int) (dst - buffer);
 }
 
 /* Returns the next coefficient (a signed int) to encode, from the input stream */

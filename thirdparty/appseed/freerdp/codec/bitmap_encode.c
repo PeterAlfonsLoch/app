@@ -697,7 +697,7 @@ int freerdp_bitmap_compress(char* in_data, int width, int height,
 
 		while (start_line >= 0 && out_count < 32768)
 		{
-			i = Stream_GetPosition(s) + count;
+			i = (int) (Stream_GetPosition(s) + count);
 
 			if (i - color_count >= byte_limit &&
 					i - bicolor_count >= byte_limit &&
@@ -989,7 +989,7 @@ int freerdp_bitmap_compress(char* in_data, int width, int height,
 
 		while (start_line >= 0 && out_count < 32768)
 		{
-			i = Stream_GetPosition(s) + count * 2;
+			i = (int) (Stream_GetPosition(s) + count * 2);
 
 			if (i - (color_count * 2) >= byte_limit &&
 					i - (bicolor_count * 2) >= byte_limit &&
@@ -1281,7 +1281,7 @@ int freerdp_bitmap_compress(char* in_data, int width, int height,
 
 		while (start_line >= 0 && out_count < 32768)
 		{
-			i = Stream_GetPosition(s) + count * 3;
+			i = (int) (Stream_GetPosition(s) + count * 3);
 
 			if (i - (color_count * 3) >= byte_limit &&
 					i - (bicolor_count * 3) >= byte_limit &&

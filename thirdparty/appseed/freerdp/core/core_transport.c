@@ -554,7 +554,7 @@ int transport_read(rdpTransport* transport, wStream* s)
 		return -1;
 
 	/* first check if we have header */
-	streamPosition = Stream_GetPosition(s);
+   streamPosition = (int)Stream_GetPosition(s);
 
 	if (streamPosition < 4)
 	{
@@ -660,7 +660,7 @@ int transport_write(rdpTransport* transport, wStream* s)
 
 	WaitForSingleObject(transport->WriteMutex, INFINITE);
 
-	length = Stream_GetPosition(s);
+   length = (int)Stream_GetPosition(s);
 	Stream_SetPosition(s, 0);
 
 #ifdef WITH_DEBUG_TRANSPORT
@@ -817,7 +817,7 @@ int transport_check_fds(rdpTransport* transport)
 	if (status < 0)
 		return status;
 
-	while ((pos = Stream_GetPosition(transport->ReceiveBuffer)) > 0)
+   while ((pos = (int)Stream_GetPosition(transport->ReceiveBuffer)) > 0)
 	{
 		Stream_SetPosition(transport->ReceiveBuffer, 0);
 

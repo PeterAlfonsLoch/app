@@ -94,6 +94,7 @@ struct _MSUSB_PIPE_DESCRIPTOR
 	int InitCompleted;
 } __attribute__((packed));
 
+
 struct _MSUSB_INTERFACE_DESCRIPTOR
 {
 	UINT16 Length;

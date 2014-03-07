@@ -673,7 +673,7 @@ BOOL nego_send_negotiation_request(rdpNego* nego)
 	s = Stream_New(NULL, 512);
 
 	length = TPDU_CONNECTION_REQUEST_LENGTH;
-	bm = Stream_GetPosition(s);
+   bm = (int)Stream_GetPosition(s);
 	Stream_Seek(s, length);
 
 	if (nego->RoutingToken)
@@ -685,7 +685,7 @@ BOOL nego_send_negotiation_request(rdpNego* nego)
 	}
 	else if (nego->cookie)
 	{
-		cookie_length = strlen(nego->cookie);
+      cookie_length = (int)strlen(nego->cookie);
 
 		if (cookie_length > (int) nego->cookie_max_length)
 			cookie_length = nego->cookie_max_length;
@@ -713,7 +713,7 @@ BOOL nego_send_negotiation_request(rdpNego* nego)
 		length += 8;
 	}
 
-	em = Stream_GetPosition(s);
+   em = (int)Stream_GetPosition(s);
 	Stream_SetPosition(s, bm);
 	tpkt_write_header(s, length);
 	tpdu_write_connection_request(s, length - 5);
@@ -850,7 +850,7 @@ BOOL nego_send_negotiation_response(rdpNego* nego)
 	s = Stream_New(NULL, 512);
 
 	length = TPDU_CONNECTION_CONFIRM_LENGTH;
-	bm = Stream_GetPosition(s);
+   bm = (int)Stream_GetPosition(s);
 	Stream_Seek(s, length);
 
 	if (nego->selected_protocol > PROTOCOL_RDP)
@@ -884,7 +884,7 @@ BOOL nego_send_negotiation_response(rdpNego* nego)
 		status = FALSE;
 	}
 
-	em = Stream_GetPosition(s);
+   em = (int)Stream_GetPosition(s);
 	Stream_SetPosition(s, bm);
 	tpkt_write_header(s, length);
 	tpdu_write_connection_confirm(s, length - 5);

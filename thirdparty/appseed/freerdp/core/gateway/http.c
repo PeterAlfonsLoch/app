@@ -155,7 +155,7 @@ char* http_encode_body_line(char* param, char* value)
 	char* line;
 	int length;
 
-	length = strlen(param) + strlen(value) + 2;
+   length = (int) (strlen(param) + strlen(value) + 2);
 	line = (char*) malloc(length + 1);
 	sprintf_s(line, length + 1, "%s: %s", param, value);
 
@@ -169,7 +169,7 @@ char* http_encode_content_length_line(int ContentLength)
 	char str[32];
 
 	_itoa_s(ContentLength, str, sizeof(str), 10);
-	length = strlen("Content-Length") + strlen(str) + 2;
+   length = (int) (strlen("Content-Length") + strlen(str) + 2);
 	line = (char*) malloc(length + 1);
 	sprintf_s(line, length + 1, "Content-Length: %s", str);
 
@@ -181,7 +181,7 @@ char* http_encode_header_line(char* Method, char* URI)
 	char* line;
 	int length;
 
-	length = strlen("HTTP/1.1") + strlen(Method) + strlen(URI) + 2;
+   length = (int)(strlen("HTTP/1.1") + strlen(Method) + strlen(URI) + 2);
 	line = (char*) malloc(length + 1);
 	sprintf_s(line, length + 1, "%s %s HTTP/1.1", Method, URI);
 
@@ -193,7 +193,7 @@ char* http_encode_authorization_line(char* AuthScheme, char* AuthParam)
 	char* line;
 	int length;
 
-	length = strlen("Authorization") + strlen(AuthScheme) + strlen(AuthParam) + 3;
+   length = (int)(strlen("Authorization") + strlen(AuthScheme) + strlen(AuthParam) + 3);
 	line = (char*) malloc(length + 1);
 	sprintf_s(line, length + 1, "Authorization: %s %s", AuthScheme, AuthParam);
 
@@ -229,7 +229,7 @@ wStream* http_request_write(HttpContext* http_context, HttpRequest* http_request
 
 	for (i = 0; i < http_request->count; i++)
 	{
-		length += (strlen(http_request->lines[i]) + 2); /* add +2 for each '\r\n' character */
+      length += (int)(strlen(http_request->lines[i]) + 2); /* add +2 for each '\r\n' character */
 	}
 	length += 2; /* empty line "\r\n" at end of header */
 	length += 1; /* null terminator */

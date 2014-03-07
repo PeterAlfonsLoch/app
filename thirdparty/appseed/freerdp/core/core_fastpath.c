@@ -140,7 +140,7 @@ BOOL fastpath_read_header_rdp(rdpFastPath* fastpath, wStream* s, UINT16 *length)
 	if (!per_read_length(s, length))
 		return FALSE;
 
-	*length = *length - Stream_GetPosition(s);
+	*length = (UINT16) (*length - Stream_GetPosition(s));
 	return TRUE;
 }
 
@@ -325,7 +325,7 @@ static int fastpath_recv_update_data(rdpFastPath* fastpath, wStream* s)
 		return -1;
 
 	cs = s;
-	next_pos = Stream_GetPosition(s) + size;
+   next_pos = (int)(Stream_GetPosition(s) + size);
 
 	if (compressionFlags & PACKET_COMPRESSED)
 	{
@@ -399,7 +399,7 @@ static int fastpath_recv_update_data(rdpFastPath* fastpath, wStream* s)
 
 			fastpath->fragmentation = FASTPATH_FRAGMENT_NEXT;
 
-			totalSize = Stream_GetPosition(fastpath->updateData) + size;
+			totalSize = (UINT32) (Stream_GetPosition(fastpath->updateData) + size);
 
 			if (totalSize > transport->settings->MultifragMaxRequestSize)
 			{
@@ -423,7 +423,7 @@ static int fastpath_recv_update_data(rdpFastPath* fastpath, wStream* s)
 
 			fastpath->fragmentation = -1;
 
-			totalSize = Stream_GetPosition(fastpath->updateData) + size;
+			totalSize = (UINT32) (Stream_GetPosition(fastpath->updateData) + size);
 
 			if (totalSize > transport->settings->MultifragMaxRequestSize)
 			{
@@ -719,7 +719,7 @@ BOOL fastpath_send_multiple_input_pdu(rdpFastPath* fastpath, wStream* s, int iNu
 
 	rdp = fastpath->rdp;
 
-	length = Stream_GetPosition(s);
+	length = (UINT16) (Stream_GetPosition(s));
 
 	if (length >= (2 << 14))
 	{
@@ -838,7 +838,7 @@ BOOL fastpath_send_update_pdu(rdpFastPath* fastpath, BYTE updateCode, wStream* s
 
 	sec_bytes = fastpath_get_sec_bytes(rdp);
 	maxLength = FASTPATH_MAX_PACKET_SIZE - (6 + sec_bytes);
-	totalLength = Stream_GetPosition(s) - (6 + sec_bytes);
+	totalLength = (UINT32) (Stream_GetPosition(s) - (6 + sec_bytes));
 	Stream_SetPosition(s, 0);
 
 	for (fragment = 0; (totalLength > 0) || (fragment == 0); fragment++)

@@ -344,7 +344,7 @@ static UINT32 rdp_security_stream_out(rdpRdp* rdp, wStream* s, int length)
 			{
 				data = Stream_Pointer(s) + 12;
 
-				length = length - (data - Stream_Buffer(s));
+            length = (int)(length - (data - Stream_Buffer(s)));
 				Stream_Write_UINT16(s, 0x10); /* length */
 				Stream_Write_UINT8(s, 0x1); /* TSFIPS_VERSION 1*/
 
@@ -365,7 +365,7 @@ static UINT32 rdp_security_stream_out(rdpRdp* rdp, wStream* s, int length)
 			else
 			{
 				data = Stream_Pointer(s) + 8;
-				length = length - (data - Stream_Buffer(s));
+            length = (int) (length - (data - Stream_Buffer(s)));
 
 				if (sec_flags & SEC_SECURE_CHECKSUM)
 					security_salted_mac_signature(rdp, data, length, TRUE, Stream_Pointer(s));
@@ -419,13 +419,13 @@ BOOL rdp_send(rdpRdp* rdp, wStream* s, UINT16 channel_id)
 	UINT16 length;
 	UINT32 sec_bytes;
 
-	length = Stream_GetPosition(s);
+	length = (UINT16) Stream_GetPosition(s);
 	Stream_SetPosition(s, 0);
 
 	rdp_write_header(rdp, s, length, channel_id);
 
 	sec_bytes = rdp_get_sec_bytes(rdp);
-	secm = Stream_GetPosition(s);
+   secm = (int)Stream_GetPosition(s);
 	Stream_Seek(s, sec_bytes);
 
 	Stream_SetPosition(s, secm);
@@ -446,13 +446,13 @@ BOOL rdp_send_pdu(rdpRdp* rdp, wStream* s, UINT16 type, UINT16 channel_id)
 	UINT32 sec_bytes;
 	int sec_hold;
 
-	length = Stream_GetPosition(s);
+	length = (UINT16) Stream_GetPosition(s);
 	Stream_SetPosition(s, 0);
 
 	rdp_write_header(rdp, s, length, MCS_GLOBAL_CHANNEL_ID);
 
 	sec_bytes = rdp_get_sec_bytes(rdp);
-	sec_hold = Stream_GetPosition(s);
+   sec_hold = (int)Stream_GetPosition(s);
 	Stream_Seek(s, sec_bytes);
 
 	rdp_write_share_control_header(s, length - sec_bytes, type, channel_id);
@@ -475,13 +475,13 @@ BOOL rdp_send_data_pdu(rdpRdp* rdp, wStream* s, BYTE type, UINT16 channel_id)
 	UINT32 sec_bytes;
 	int sec_hold;
 
-	length = Stream_GetPosition(s);
+	length = (UINT16) Stream_GetPosition(s);
 	Stream_SetPosition(s, 0);
 
 	rdp_write_header(rdp, s, length, MCS_GLOBAL_CHANNEL_ID);
 
 	sec_bytes = rdp_get_sec_bytes(rdp);
-	sec_hold = Stream_GetPosition(s);
+   sec_hold = (int) Stream_GetPosition(s);
 	Stream_Seek(s, sec_bytes);
 
 	rdp_write_share_control_header(s, length - sec_bytes, PDU_TYPE_DATA, channel_id);
@@ -827,7 +827,7 @@ static int rdp_recv_tpkt_pdu(rdpRdp* rdp, wStream* s)
 	{
 		while (Stream_GetRemainingLength(s) > 3)
 		{
-			nextPosition = Stream_GetPosition(s);
+         nextPosition = (int) (Stream_GetPosition(s));
 
 			if (!rdp_read_share_control_header(s, &pduLength, &pduType, &pduSource))
 				return -1;

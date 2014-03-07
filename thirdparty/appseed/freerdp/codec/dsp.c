@@ -225,7 +225,7 @@ static void freerdp_dsp_decode_ima_adpcm(FREERDP_DSP_CONTEXT* context,
 		}
 	}
 
-	context->adpcm_size = dst - context->adpcm_buffer;
+	context->adpcm_size = (UINT32) (dst - context->adpcm_buffer);
 }
 
 /**
@@ -389,7 +389,7 @@ static void freerdp_dsp_encode_ima_adpcm(FREERDP_DSP_CONTEXT* context,
 		}
 	}
 	
-	context->adpcm_size = dst - context->adpcm_buffer;
+	context->adpcm_size = (UINT32) (dst - context->adpcm_buffer);
 }
 
 /**
@@ -534,7 +534,7 @@ static void freerdp_dsp_decode_ms_adpcm(FREERDP_DSP_CONTEXT* context,
 		}
 	}
 
-	context->adpcm_size = dst - context->adpcm_buffer;
+	context->adpcm_size = (UINT32) (dst - context->adpcm_buffer);
 }
 
 static BYTE freerdp_dsp_encode_ms_adpcm_sample(ADPCM* adpcm, INT32 sample, int channel)
@@ -643,7 +643,7 @@ static void freerdp_dsp_encode_ms_adpcm(FREERDP_DSP_CONTEXT* context,
 		size -= 4;
 	}
 	
-	context->adpcm_size = dst - context->adpcm_buffer;
+	context->adpcm_size = (UINT32) (dst - context->adpcm_buffer);
 }
 
 FREERDP_DSP_CONTEXT* freerdp_dsp_context_new(void)

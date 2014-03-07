@@ -533,7 +533,7 @@ static void update_end_paint(rdpContext* context)
 		return;
 
 	s = update->us;
-	headerLength = Stream_Length(s);
+   headerLength = (int)Stream_Length(s);
 	Stream_SealLength(s);
 
 	Stream_SetPosition(s, headerLength);
@@ -703,7 +703,7 @@ int update_write_order_info(rdpContext* context, wStream* s, ORDER_INFO* orderIn
 {
 	int position;
 
-	position = Stream_GetPosition(s);
+   position = (int)Stream_GetPosition(s);
 	Stream_SetPosition(s, offset);
 
 	Stream_Write_UINT8(s, orderInfo->controlFlags); /* controlFlags (1 byte) */
@@ -891,7 +891,7 @@ static void update_send_dstblt(rdpContext* context, DSTBLT_ORDER* dstblt)
 	update_check_flush(context, headerLength + update_approximate_dstblt_order(&orderInfo, dstblt));
 
 	s = update->us;
-	offset = Stream_GetPosition(s);
+   offset = (int)Stream_GetPosition(s);
 
 	Stream_EnsureRemainingCapacity(s, headerLength);
 	Stream_Seek(s, headerLength);
@@ -915,7 +915,7 @@ static void update_send_patblt(rdpContext* context, PATBLT_ORDER* patblt)
 	update_check_flush(context, headerLength + update_approximate_patblt_order(&orderInfo, patblt));
 
 	s = update->us;
-	offset = Stream_GetPosition(s);
+   offset = (int)Stream_GetPosition(s);
 
 	Stream_EnsureRemainingCapacity(s, headerLength);
 	Stream_Seek(s, headerLength);
@@ -939,7 +939,7 @@ static void update_send_scrblt(rdpContext* context, SCRBLT_ORDER* scrblt)
 	update_check_flush(context, headerLength + update_approximate_scrblt_order(&orderInfo, scrblt));
 
 	s = update->us;
-	offset = Stream_GetPosition(s);
+   offset = (int)Stream_GetPosition(s);
 
 	Stream_EnsureRemainingCapacity(s, headerLength);
 	Stream_Seek(s, headerLength);
@@ -963,7 +963,7 @@ static void update_send_opaque_rect(rdpContext* context, OPAQUE_RECT_ORDER* opaq
 	update_check_flush(context, headerLength + update_approximate_opaque_rect_order(&orderInfo, opaque_rect));
 
 	s = update->us;
-	offset = Stream_GetPosition(s);
+   offset = (int)Stream_GetPosition(s);
 
 	Stream_EnsureRemainingCapacity(s, headerLength);
 	Stream_Seek(s, headerLength);
@@ -987,7 +987,7 @@ static void update_send_line_to(rdpContext* context, LINE_TO_ORDER* line_to)
 	update_check_flush(context, headerLength + update_approximate_line_to_order(&orderInfo, line_to));
 
 	s = update->us;
-	offset = Stream_GetPosition(s);
+   offset = (int)Stream_GetPosition(s);
 
 	Stream_EnsureRemainingCapacity(s, headerLength);
 	Stream_Seek(s, headerLength);
@@ -1011,7 +1011,7 @@ static void update_send_memblt(rdpContext* context, MEMBLT_ORDER* memblt)
 	update_check_flush(context, headerLength + update_approximate_memblt_order(&orderInfo, memblt));
 
 	s = update->us;
-	offset = Stream_GetPosition(s);
+   offset = (int)Stream_GetPosition(s);
 
 	Stream_EnsureRemainingCapacity(s, headerLength);
 	Stream_Seek(s, headerLength);
@@ -1035,7 +1035,7 @@ static void update_send_glyph_index(rdpContext* context, GLYPH_INDEX_ORDER* glyp
 	update_check_flush(context, headerLength + update_approximate_glyph_index_order(&orderInfo, glyph_index));
 
 	s = update->us;
-	offset = Stream_GetPosition(s);
+   offset = (int)Stream_GetPosition(s);
 
 	Stream_EnsureRemainingCapacity(s, headerLength);
 	Stream_Seek(s, headerLength);
@@ -1069,13 +1069,13 @@ static void update_send_cache_bitmap(rdpContext* context, CACHE_BITMAP_ORDER* ca
 	update_check_flush(context, headerLength + update_approximate_cache_bitmap_order(cache_bitmap, cache_bitmap->compressed, &extraFlags));
 
 	s = update->us;
-	bm = Stream_GetPosition(s);
+   bm = (int)Stream_GetPosition(s);
 
 	Stream_EnsureRemainingCapacity(s, headerLength);
 	Stream_Seek(s, headerLength);
 
 	update_write_cache_bitmap_order(s, cache_bitmap, cache_bitmap->compressed, &extraFlags);
-	em = Stream_GetPosition(s);
+   em = (int)Stream_GetPosition(s);
 
 	orderLength = (em - bm) - 13;
 
@@ -1111,13 +1111,13 @@ static void update_send_cache_bitmap_v2(rdpContext* context, CACHE_BITMAP_V2_ORD
 	update_check_flush(context, headerLength + update_approximate_cache_bitmap_v2_order(cache_bitmap_v2, cache_bitmap_v2->compressed, &extraFlags));
 
 	s = update->us;
-	bm = Stream_GetPosition(s);
+   bm = (int)Stream_GetPosition(s);
 
 	Stream_EnsureRemainingCapacity(s, headerLength);
 	Stream_Seek(s, headerLength);
 
 	update_write_cache_bitmap_v2_order(s, cache_bitmap_v2, cache_bitmap_v2->compressed, &extraFlags);
-	em = Stream_GetPosition(s);
+   em = (int)Stream_GetPosition(s);
 
 	orderLength = (em - bm) - 13;
 
@@ -1148,13 +1148,13 @@ static void update_send_cache_bitmap_v3(rdpContext* context, CACHE_BITMAP_V3_ORD
 	update_check_flush(context, headerLength + update_approximate_cache_bitmap_v3_order(cache_bitmap_v3, &extraFlags));
 
 	s = update->us;
-	bm = Stream_GetPosition(s);
+   bm = (int)Stream_GetPosition(s);
 
 	Stream_EnsureRemainingCapacity(s, headerLength);
 	Stream_Seek(s, headerLength);
 
 	update_write_cache_bitmap_v3_order(s, cache_bitmap_v3, &extraFlags);
-	em = Stream_GetPosition(s);
+   em = (int)Stream_GetPosition(s);
 
 	orderLength = (em - bm) - 13;
 
@@ -1183,13 +1183,13 @@ static void update_send_cache_color_table(rdpContext* context, CACHE_COLOR_TABLE
 	update_check_flush(context, headerLength + update_approximate_cache_color_table_order(cache_color_table, &flags));
 
 	s = update->us;
-	bm = Stream_GetPosition(s);
+   bm = (int)Stream_GetPosition(s);
 
 	Stream_EnsureRemainingCapacity(s, headerLength);
 	Stream_Seek(s, headerLength);
 
 	update_write_cache_color_table_order(s, cache_color_table, &flags);
-	em = Stream_GetPosition(s);
+   em = (int)Stream_GetPosition(s);
 
 	orderLength = (em - bm) - 13;
 
@@ -1218,13 +1218,13 @@ static void update_send_cache_glyph(rdpContext* context, CACHE_GLYPH_ORDER* cach
 	update_check_flush(context, headerLength + update_approximate_cache_glyph_order(cache_glyph, &flags));
 
 	s = update->us;
-	bm = Stream_GetPosition(s);
+   bm = (int)Stream_GetPosition(s);
 
 	Stream_EnsureRemainingCapacity(s, headerLength);
 	Stream_Seek(s, headerLength);
 
 	update_write_cache_glyph_order(s, cache_glyph, &flags);
-	em = Stream_GetPosition(s);
+   em = (int)Stream_GetPosition(s);
 
 	orderLength = (em - bm) - 13;
 
@@ -1253,13 +1253,13 @@ static void update_send_cache_glyph_v2(rdpContext* context, CACHE_GLYPH_V2_ORDER
 	update_check_flush(context, headerLength + update_approximate_cache_glyph_v2_order(cache_glyph_v2, &flags));
 
 	s = update->us;
-	bm = Stream_GetPosition(s);
+   bm = (int)Stream_GetPosition(s);
 
 	Stream_EnsureRemainingCapacity(s, headerLength);
 	Stream_Seek(s, headerLength);
 
 	update_write_cache_glyph_v2_order(s, cache_glyph_v2, &flags);
-	em = Stream_GetPosition(s);
+   em = (int)Stream_GetPosition(s);
 
 	orderLength = (em - bm) - 13;
 
@@ -1288,13 +1288,13 @@ static void update_send_cache_brush(rdpContext* context, CACHE_BRUSH_ORDER* cach
 	update_check_flush(context, headerLength + update_approximate_cache_brush_order(cache_brush, &flags));
 
 	s = update->us;
-	bm = Stream_GetPosition(s);
+   bm = (int)Stream_GetPosition(s);
 
 	Stream_EnsureRemainingCapacity(s, headerLength);
 	Stream_Seek(s, headerLength);
 
 	update_write_cache_brush_order(s, cache_brush, &flags);
-	em = Stream_GetPosition(s);
+   em = (int)Stream_GetPosition(s);
 
 	orderLength = (em - bm) - 13;
 
@@ -1328,13 +1328,13 @@ static void update_send_create_offscreen_bitmap_order(rdpContext* context, CREAT
 	update_check_flush(context, headerLength + update_approximate_create_offscreen_bitmap_order(create_offscreen_bitmap));
 
 	s = update->us;
-	bm = Stream_GetPosition(s);
+   bm = (int)Stream_GetPosition(s);
 
 	Stream_EnsureRemainingCapacity(s, headerLength);
 	Stream_Seek(s, headerLength);
 
 	update_write_create_offscreen_bitmap_order(s, create_offscreen_bitmap);
-	em = Stream_GetPosition(s);
+   em = (int)Stream_GetPosition(s);
 
 	Stream_SetPosition(s, bm);
 	Stream_Write_UINT8(s, controlFlags); /* controlFlags (1 byte) */
@@ -1359,13 +1359,13 @@ static void update_send_switch_surface_order(rdpContext* context, SWITCH_SURFACE
 	update_check_flush(context, headerLength + update_approximate_switch_surface_order(switch_surface));
 
 	s = update->us;
-	bm = Stream_GetPosition(s);
+   bm = (int)Stream_GetPosition(s);
 
 	Stream_EnsureRemainingCapacity(s, headerLength);
 	Stream_Seek(s, headerLength);
 
 	update_write_switch_surface_order(s, switch_surface);
-	em = Stream_GetPosition(s);
+   em = (int)Stream_GetPosition(s);
 
 	Stream_SetPosition(s, bm);
 	Stream_Write_UINT8(s, controlFlags); /* controlFlags (1 byte) */

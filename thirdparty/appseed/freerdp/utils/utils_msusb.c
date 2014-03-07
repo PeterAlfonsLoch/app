@@ -18,6 +18,8 @@
  * limitations under the License.
  */
 
+#include "framework.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -693,10 +693,10 @@ BOOL compress_rdp_5(struct rdp_mppc_enc* enc, BYTE* srcData, int len)
 
 		/* cptr2 points to start of pattern match */
 		cptr2 = hbuf_start + hash_table[crc];
-		copy_offset = cptr1 - cptr2;
+		copy_offset = (UINT32) (cptr1 - cptr2);
 
 		/* save current entry */
-		hash_table[crc] = cptr1 - hbuf_start;
+		hash_table[crc] = (UINT16) (cptr1 - hbuf_start);
 
 		/* double check that we have a pattern match */
 		if ((*cptr1 != *cptr2) ||
@@ -740,7 +740,7 @@ BOOL compress_rdp_5(struct rdp_mppc_enc* enc, BYTE* srcData, int len)
 		if (cptr1 + lom > hbuf_start + last_crc_index)
 		{
 			/* we have gone beyond last_crc_index - go back */
-			j = last_crc_index - (cptr1 - hbuf_start);
+			j = (UINT32) (last_crc_index - (cptr1 - hbuf_start));
 		}
 		else
 		{
@@ -761,7 +761,7 @@ BOOL compress_rdp_5(struct rdp_mppc_enc* enc, BYTE* srcData, int len)
 			CRC(crc, byte_val);
 
 			/* save current entry */
-			hash_table[crc] = (cptr1 - 3) - hbuf_start;
+			hash_table[crc] = (UINT16) ((cptr1 - 3) - hbuf_start);
 
 			/* point to next triplet */
 			ctr++;

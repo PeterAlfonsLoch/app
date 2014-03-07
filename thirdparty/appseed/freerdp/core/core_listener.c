@@ -111,7 +111,7 @@ static BOOL freerdp_listener_open(freerdp_listener* instance, const char* bind_a
 		if (ai->ai_family != AF_INET && ai->ai_family != AF_INET6)
 			continue;
 
-		sockfd = socket(ai->ai_family, ai->ai_socktype, ai->ai_protocol);
+      sockfd = (int)socket(ai->ai_family, ai->ai_socktype, ai->ai_protocol);
 
 		if (sockfd == -1)
 		{
@@ -131,7 +131,7 @@ static BOOL freerdp_listener_open(freerdp_listener* instance, const char* bind_a
 		ioctlsocket(sockfd, FIONBIO, &arg);
 #endif
 
-		status = bind(sockfd, ai->ai_addr, ai->ai_addrlen);
+      status = bind(sockfd, ai->ai_addr, (int)ai->ai_addrlen);
 
 		if (status != 0)
 		{
@@ -289,7 +289,7 @@ static BOOL freerdp_listener_check_fds(freerdp_listener* instance)
 	for (i = 0; i < listener->num_sockfds; i++)
 	{
 		peer_addr_size = sizeof(peer_addr);
-		peer_sockfd = accept(listener->sockfds[i], (struct sockaddr*) &peer_addr, &peer_addr_size);
+      peer_sockfd = (int)accept(listener->sockfds[i], (struct sockaddr*) &peer_addr, &peer_addr_size);
 
 		if (peer_sockfd == -1)
 		{

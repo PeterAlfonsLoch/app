@@ -788,7 +788,7 @@ static BOOL rfx_process_message_tileset(RFX_CONTEXT* context, RFX_MESSAGE* messa
 			break;
 		}
 
-		pos = Stream_GetPosition(s) - 6 + blockLen;
+		pos = (int) (Stream_GetPosition(s) - 6 + blockLen);
 
 		if (blockType != CBT_TILE)
 		{
@@ -896,7 +896,7 @@ RFX_MESSAGE* rfx_process_message(RFX_CONTEXT* context, BYTE* data, UINT32 length
 		}
 
 
-		pos = Stream_GetPosition(s) - 6 + blockLen;
+		pos = (int) (Stream_GetPosition(s) - 6 + blockLen);
 
 		if (blockType >= WBT_CONTEXT && blockType <= WBT_EXTENSION)
 		{

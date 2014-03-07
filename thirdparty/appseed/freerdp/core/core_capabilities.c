@@ -126,7 +126,7 @@ int rdp_capability_set_start(wStream* s)
 {
 	int header;
 
-	header = Stream_GetPosition(s);
+	header = (int) Stream_GetPosition(s);
 	Stream_Zero(s, CAPSET_HEADER_LENGTH);
 
 	return header;
@@ -137,7 +137,7 @@ void rdp_capability_set_finish(wStream* s, int header, UINT16 type)
 	int footer;
 	UINT16 length;
 
-	footer = Stream_GetPosition(s);
+	footer = (int) Stream_GetPosition(s);
 	length = footer - header;
 	Stream_SetPosition(s, header);
 
@@ -3457,11 +3457,11 @@ void rdp_write_demand_active(wStream* s, rdpSettings* settings)
 	Stream_Write_UINT32(s, settings->ShareId); /* shareId (4 bytes) */
 	Stream_Write_UINT16(s, 4); /* lengthSourceDescriptor (2 bytes) */
 
-	lm = Stream_GetPosition(s);
+	lm = (int) Stream_GetPosition(s);
 	Stream_Seek_UINT16(s); /* lengthCombinedCapabilities (2 bytes) */
 	Stream_Write(s, "RDP", 4); /* sourceDescriptor */
 
-	bm = Stream_GetPosition(s);
+   bm = (int)Stream_GetPosition(s);
 	Stream_Seek_UINT16(s); /* numberCapabilities (2 bytes) */
 	Stream_Write_UINT16(s, 0); /* pad2Octets (2 bytes) */
 
@@ -3487,7 +3487,7 @@ void rdp_write_demand_active(wStream* s, rdpSettings* settings)
 		rdp_write_bitmap_cache_host_support_capability_set(s, settings);
 	}
 
-	em = Stream_GetPosition(s);
+   em = (int)Stream_GetPosition(s);
 
 	Stream_SetPosition(s, lm); /* go back to lengthCombinedCapabilities */
 	lengthCombinedCapabilities = (em - bm);
@@ -3607,11 +3607,11 @@ void rdp_write_confirm_active(wStream* s, rdpSettings* settings)
 	Stream_Write_UINT16(s, 0x03EA); /* originatorId (2 bytes) */
 	Stream_Write_UINT16(s, lengthSourceDescriptor);/* lengthSourceDescriptor (2 bytes) */
 
-	lm = Stream_GetPosition(s);
+   lm = (int)Stream_GetPosition(s);
 	Stream_Seek_UINT16(s); /* lengthCombinedCapabilities (2 bytes) */
 	Stream_Write(s, SOURCE_DESCRIPTOR, lengthSourceDescriptor); /* sourceDescriptor */
 
-	bm = Stream_GetPosition(s);
+   bm = (int)Stream_GetPosition(s);
 	Stream_Seek_UINT16(s); /* numberCapabilities (2 bytes) */
 	Stream_Write_UINT16(s, 0); /* pad2Octets (2 bytes) */
 
@@ -3702,7 +3702,7 @@ void rdp_write_confirm_active(wStream* s, rdpSettings* settings)
 		}
 	}
 
-	em = Stream_GetPosition(s);
+   em = (int)Stream_GetPosition(s);
 
 	Stream_SetPosition(s, lm); /* go back to lengthCombinedCapabilities */
 	lengthCombinedCapabilities = (em - bm);

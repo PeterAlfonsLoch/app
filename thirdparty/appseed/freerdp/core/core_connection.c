@@ -191,7 +191,7 @@ BOOL rdp_client_connect(rdpRdp* rdp)
 		if (settings->Username)
 		{
 			user = settings->Username;
-			user_length = strlen(settings->Username);
+			user_length = (int) strlen(settings->Username);
 		}
 
 		if (settings->Domain)
@@ -199,7 +199,7 @@ BOOL rdp_client_connect(rdpRdp* rdp)
 		else
 			domain = settings->ComputerName;
 
-		domain_length = strlen(domain);
+		domain_length = (int) strlen(domain);
 
 		cookie_length = domain_length + 1 + user_length;
 		cookie = (char*) malloc(cookie_length + 1);

@@ -45,7 +45,7 @@ static int update_recv_surfcmd_surface_bits(rdpUpdate* update, wStream* s, UINT3
 	if (Stream_GetRemainingLength(s) < cmd->bitmapDataLength)
 		return -1;
 
-	pos = Stream_GetPosition(s) + cmd->bitmapDataLength;
+   pos = (int)(Stream_GetPosition(s) + cmd->bitmapDataLength);
 	cmd->bitmapData = Stream_Pointer(s);
 
 	Stream_SetPosition(s, pos);

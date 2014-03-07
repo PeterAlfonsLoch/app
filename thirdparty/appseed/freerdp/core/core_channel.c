@@ -102,7 +102,7 @@ BOOL freerdp_channel_process(freerdp* instance, wStream* s, UINT16 channel_id)
 
 	Stream_Read_UINT32(s, length);
 	Stream_Read_UINT32(s, flags);
-	chunk_length = Stream_GetRemainingLength(s);
+	chunk_length = (int) (Stream_GetRemainingLength(s));
 
 	IFCALL(instance->ReceiveChannelData, instance,
 		channel_id, Stream_Pointer(s), chunk_length, flags, length);
@@ -121,7 +121,7 @@ BOOL freerdp_channel_peer_process(freerdp_peer* client, wStream* s, UINT16 chann
 
 	Stream_Read_UINT32(s, length);
 	Stream_Read_UINT32(s, flags);
-	chunk_length = Stream_GetRemainingLength(s);
+	chunk_length = (int) Stream_GetRemainingLength(s);
 
 	IFCALL(client->ReceiveChannelData, client,
 		channel_id, Stream_Pointer(s), chunk_length, flags, length);

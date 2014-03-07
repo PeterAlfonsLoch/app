@@ -124,7 +124,7 @@ BOOL ntlm_client_make_spn(rdpNtlm* ntlm, LPCWSTR ServiceClass, char* hostname)
 	length = 0;
 
 //#ifdef UNICODE
-	length = strlen(hostname);
+   length = (int)strlen(hostname);
 	hostnameX = (LPWSTR) malloc((length + 1)* sizeof(TCHAR));
 	MultiByteToWideChar(CP_UTF8, 0, hostname, length, hostnameX, length);
 	hostnameX[length] = 0;

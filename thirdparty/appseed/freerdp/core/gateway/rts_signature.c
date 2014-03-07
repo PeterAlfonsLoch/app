@@ -17,6 +17,8 @@
  * limitations under the License.
  */
 
+#include "framework.h"
+
 #include "rts_signature.h"
 
 RtsPduSignature RTS_PDU_CONN_A1_SIGNATURE = { RTS_FLAG_NONE, 4,

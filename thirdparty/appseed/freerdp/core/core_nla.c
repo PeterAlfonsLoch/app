@@ -200,7 +200,7 @@ int credssp_ntlm_client_init(rdpCredssp* credssp)
 	sspi_SecBufferAlloc(&credssp->PublicKey, tls->PublicKeyLength);
 	CopyMemory(credssp->PublicKey.pvBuffer, tls->PublicKey, tls->PublicKeyLength);
 
-	length = sizeof(TERMSRV_SPN_PREFIX) / sizeof(WCHAR) + strlen(settings->ServerHostname);
+   length = (int) ( sizeof(TERMSRV_SPN_PREFIX) / sizeof(WCHAR)+strlen(settings->ServerHostname));
 
 	spn = (WCHAR*) malloc((length + 1) * sizeof(WCHAR));
 	wsprintfW(spn, L"%s%hs", TERMSRV_SPN_PREFIX, settings->ServerHostname);

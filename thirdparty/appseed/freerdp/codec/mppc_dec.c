@@ -206,7 +206,7 @@ int decompress_rdp_4(struct rdp_mppc_dec* dec, BYTE* cbuf, int len, int ctype, U
 
 	/* get next free slot in history buffer */
 	history_ptr = dec->history_ptr;
-	*roff = history_ptr - history_buf;
+	*roff = (UINT32) (history_ptr - history_buf);
 
 	if (ctype & PACKET_AT_FRONT)
 	{
@@ -229,7 +229,7 @@ int decompress_rdp_4(struct rdp_mppc_dec* dec, BYTE* cbuf, int len, int ctype, U
 		/* data in cbuf is not compressed - copy to history buf as is */
 		memcpy(history_ptr, cbuf, len);
 		history_ptr += len;
-		*rlen = history_ptr - dec->history_ptr;
+      *rlen = (UINT32) (history_ptr - dec->history_ptr);
 		dec->history_ptr = history_ptr;
 		return TRUE;
 	}
@@ -581,7 +581,7 @@ int decompress_rdp_4(struct rdp_mppc_dec* dec, BYTE* cbuf, int len, int ctype, U
 		}
 	} /* end while (bits_left >= 8) */
 
-	*rlen = history_ptr - dec->history_ptr;
+   *rlen = (UINT32)(history_ptr - dec->history_ptr);
 
 	dec->history_ptr = history_ptr;
 
@@ -637,7 +637,7 @@ int decompress_rdp_5(struct rdp_mppc_dec* dec, BYTE* cbuf, int len, int ctype, U
 
 	/* get next free slot in history buffer */
 	history_ptr = dec->history_ptr;
-	*roff = history_ptr - history_buf;
+   *roff = (UINT32)(history_ptr - history_buf);
 
 	if (ctype & PACKET_AT_FRONT)
 	{
@@ -660,7 +660,7 @@ int decompress_rdp_5(struct rdp_mppc_dec* dec, BYTE* cbuf, int len, int ctype, U
 		/* data in cbuf is not compressed - copy to history buf as is */
 		memcpy(history_ptr, cbuf, len);
 		history_ptr += len;
-		*rlen = history_ptr - dec->history_ptr;
+      *rlen = (UINT32)(history_ptr - dec->history_ptr);
 		dec->history_ptr = history_ptr;
 		return TRUE;
 	}
@@ -1049,7 +1049,7 @@ int decompress_rdp_5(struct rdp_mppc_dec* dec, BYTE* cbuf, int len, int ctype, U
 
 	} /* end while (cptr < cbuf + len) */
 
-	*rlen = history_ptr - dec->history_ptr;
+   *rlen = (UINT32)(history_ptr - dec->history_ptr);
 
 	dec->history_ptr = history_ptr;
 
@@ -1110,7 +1110,7 @@ int decompress_rdp_6(struct rdp_mppc_dec* dec, BYTE* cbuf, int len, int ctype, U
 
 	/* get next free slot in history buffer */
 	history_ptr = dec->history_ptr;
-	*roff = history_ptr - history_buf;
+   *roff = (UINT32)(history_ptr - history_buf);
 
 	if (ctype & PACKET_AT_FRONT)
 	{
@@ -1135,7 +1135,7 @@ int decompress_rdp_6(struct rdp_mppc_dec* dec, BYTE* cbuf, int len, int ctype, U
 		/* data in cbuf is not compressed - copy to history buf as is */
 		memcpy(history_ptr, cbuf, len);
 		history_ptr += len;
-		*rlen = history_ptr - dec->history_ptr;
+      *rlen = (UINT32)(history_ptr - dec->history_ptr);
 		dec->history_ptr = history_ptr;
 		return TRUE;
 	}
@@ -1384,9 +1384,9 @@ int decompress_rdp_6(struct rdp_mppc_dec* dec, BYTE* cbuf, int len, int ctype, U
 	}/* end while (bits_left >= 8) */
 
 	if(ctype & PACKET_FLUSHED)
-		*rlen = history_ptr - history_buf;
+      *rlen = (UINT32)(history_ptr - history_buf);
 	else
-		*rlen = history_ptr - dec->history_ptr;
+      *rlen = (UINT32)(history_ptr - dec->history_ptr);
 
 	dec->history_ptr = history_ptr;
 
