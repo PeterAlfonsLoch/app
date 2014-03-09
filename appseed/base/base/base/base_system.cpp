@@ -121,6 +121,9 @@ base_system::base_system(sp(base_application) papp) :
    if (!m_pxml->initialize())
       throw simple_exception(this, "failed to construct base_system");
 
+   
+
+
 }
 
 
@@ -169,7 +172,12 @@ bool base_system::process_initialize()
    m_spdir.create(allocer());
 
    if (!m_spdir->initialize())
-      throw simple_exception(this, "failed to construct base_system");
+      return false;
+
+   m_spcrypto.create(allocer());
+
+   if (!m_spcrypto.is_set())
+      return false;
 
    return true;
 

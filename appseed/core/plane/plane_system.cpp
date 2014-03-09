@@ -239,6 +239,8 @@ namespace plane
    bool system::initialize1()
    {
 
+
+
       enum_display_monitors();
 
       m_visual.construct(this);
@@ -251,11 +253,6 @@ namespace plane
       m_spfilehandler = new ::filehandler::handler(this);
 
 
-
-      m_spcrypto.create(allocer());
-
-      if(!m_spcrypto.is_set())
-         return false;
 
 
       if(!::application::initialize1())
