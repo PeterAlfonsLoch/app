@@ -606,8 +606,11 @@ namespace dynamic_source
 
       strsp(::dynamic_source::session)::pair * ppair = m_mapSession.PLookup(pszId);
 
-      if(ppair != NULL)
+      if (ppair != NULL)
+      {
          return ppair->m_element2;
+      }
+         
 
 
       ppair = m_mapSessionExpiry.PLookup(pszId);
@@ -629,8 +632,6 @@ namespace dynamic_source
       }
 
       sp(::dynamic_source::session) psession = canew(::dynamic_source::session(pszId, this));
-
-      psession->m_timeExpiry= ::datetime::time::get_current_time() + minutes(2);
 
       return psession;
 
