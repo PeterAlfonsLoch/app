@@ -54,6 +54,9 @@ void form_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phin
                   }
                }
             }
+            sp(::draw2d::graphics) pdc = GetDC();
+            get_html_data()->implement(pdc);
+            ReleaseDC(pdc);
          }
       }
    }

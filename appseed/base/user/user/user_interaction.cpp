@@ -554,6 +554,7 @@ namespace user
 
    void interaction::_001OnSize(signal_details * pobj)
    {
+      pobj->previous();
       UNREFERENCED_PARAMETER(pobj);
    }
 

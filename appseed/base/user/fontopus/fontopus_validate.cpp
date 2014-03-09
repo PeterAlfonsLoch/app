@@ -128,8 +128,8 @@ namespace fontopus
 
       stringa straRequestingServer;
       straRequestingServer.add("account.ca2.cc");
-      straRequestingServer.add("eu-account.ca2.cc");
-      straRequestingServer.add("asia-account.ca2.cc");
+      //straRequestingServer.add("eu-account.ca2.cc");
+      ///straRequestingServer.add("asia-account.ca2.cc");
       if(strHost.is_empty())
       {
          if(::get_thread() != NULL && ::get_thread()->m_strWorkUrl.has_char())
@@ -321,8 +321,8 @@ namespace fontopus
       string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
       stringa straRequestingServer;
       straRequestingServer.add("account.ca2.cc");
-      straRequestingServer.add("eu-account.ca2.cc");
-      straRequestingServer.add("asia-account.ca2.cc");
+      //straRequestingServer.add("eu-account.ca2.cc");
+      //straRequestingServer.add("asia-account.ca2.cc");
       if(!straRequestingServer.contains_ci(strHost))
       {
          strHost = "account.ca2.cc";
@@ -633,8 +633,8 @@ namespace fontopus
       {
          stringa straRequestingServer;
          straRequestingServer.add("account.ca2.cc");
-         straRequestingServer.add("eu-account.ca2.cc");
-         straRequestingServer.add("asia-account.ca2.cc");
+         //straRequestingServer.add("eu-account.ca2.cc");
+         //straRequestingServer.add("asia-account.ca2.cc");
          if(straRequestingServer.contains_ci(m_strRequestingServer))
          {
             m_bFontopusServer = true;

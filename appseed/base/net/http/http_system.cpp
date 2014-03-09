@@ -98,8 +98,8 @@ namespace http
       string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
       stringa straRequestingServer;
       straRequestingServer.add("account.ca2.cc");
-      straRequestingServer.add("eu-account.ca2.cc");
-      straRequestingServer.add("asia-account.ca2.cc");
+      //straRequestingServer.add("eu-account.ca2.cc");
+      //straRequestingServer.add("asia-account.ca2.cc");
       if(!straRequestingServer.contains_ci(strHost))
       {
          strHost = "account.ca2.cc";
@@ -1160,6 +1160,13 @@ retry:
                if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
             {
                System.url().string_set(strUrl, "sessid", strSessId);
+               if (strUrl.find_ci("://api.ca2.cc/"))
+               {
+                  string strApi(Application.fontopus()->get_server(strUrl, 8));
+                  strApi.replace("account", "api");
+                  strUrl.replace("://api.ca2.cc/", "://" + strApi + "/");
+//                  set["user"].cast < ::fontopus::user >()->set_sessid(set["user"].cast < ::fontopus::user >()->get_sessid(strApi), "api.ca2.cc");
+               }
             }
             else if (if_then(set.has_property("optional_ca2_login"), (bool)set["optional_ca2_login"]))
             {
@@ -1236,10 +1243,18 @@ retry:
       }
       if (set["cookies"].cast < ::http::cookies >() != NULL && set["cookies"].cast < ::http::cookies >()->get_size() > 0)
       {
+         if (set["cookies"].cast < ::http::cookies >()->find_cookie("sessid") >= 0)
+         {
+            set["cookies"].cast < ::http::cookies >()->set_cookie("sessid", strSessId);
+         }
          psocket->request().header(__id(cookie)) = set["cookies"].cast < ::http::cookies >()->get_cookie_header();
       }
       if (set["user"].cast < ::fontopus::user >() != NULL && set["user"].cast < ::fontopus::user >()->m_phttpcookies != NULL && !(bool)set["disable_ca2_user_cookies"])
       {
+         if (set["user"].cast < ::fontopus::user >()->m_phttpcookies->find_cookie("sessid") >= 0)
+         {
+            set["user"].cast < ::fontopus::user >()->m_phttpcookies->set_cookie("sessid", strSessId);
+         }
          psocket->request().header(__id(cookie)) = set["user"].cast < ::fontopus::user >()->m_phttpcookies->get_cookie_header();
       }
       if(set.has_property(__id(cookie)) && set[__id(cookie)].get_string().has_char())
