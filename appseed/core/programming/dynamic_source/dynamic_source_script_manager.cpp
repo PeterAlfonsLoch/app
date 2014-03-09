@@ -677,18 +677,18 @@ namespace dynamic_source
    sp(::crypto::rsa) script_manager::get_rsa_key()
    {
 
-      if(::get_tick_count() - m_dwLastRsa > (1984 + 1977))
+      /*if(::get_tick_count() - m_dwLastRsa > (1984 + 1977))
       {
 
-         __begin_thread(get_app(), ThreadProcRsa, this);
+         calc_rsa_key();
 
          m_dwLastRsa = ::get_tick_count();
 
-      }
+      }*/
 
       single_lock sl(&m_mutexRsa, TRUE);
 
-      return m_rsaptra.last_element();
+      return  System.crypto().generate_rsa_key();
 
    }
 
@@ -698,7 +698,7 @@ namespace dynamic_source
 
       pscriptinterface->session_id(); // trigger session creation;
 
-      sp(::crypto::rsa) prsa = get_rsa_key();
+      ::crypto::rsa * prsa = get_rsa_key();
 
       pscriptinterface->set_session_value("rsa", prsa);
 
