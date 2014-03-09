@@ -55,13 +55,19 @@ namespace dynamic_source
    int64_t session::release()
    {
 
-      single_lock sl(&m_pmanager->m_mutexSession, true);
-         
-      m_timeExpiry = ::datetime::time::get_current_time() + minutes(9);
 
-      m_pmanager->m_mapSessionExpiry.set_at(m_strId, this);
+      if (get_ref_count() == 2)
+      {
 
-      m_pmanager->m_mapSession.remove_key(m_strId);
+         single_lock sl(&m_pmanager->m_mutexSession, true);
+
+         m_timeExpiry = ::datetime::time::get_current_time() + minutes(9);
+
+         m_pmanager->m_mapSessionExpiry.set_at(m_strId, this);
+
+         m_pmanager->m_mapSession.remove_key(m_strId);
+
+      }
 
       return root::dec_ref();
 
