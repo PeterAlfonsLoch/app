@@ -126,7 +126,6 @@ namespace dynamic_source
 
       mutex                                     m_mutexSession;
       strsp(session)                            m_mapSession;
-      strsp(session)                            m_mapSessionExpiry;
       mutex                                     m_mutexMusicDbPool;
       mutex                                     m_mutexWayDbPool;
       script_cache *                            m_pcache;

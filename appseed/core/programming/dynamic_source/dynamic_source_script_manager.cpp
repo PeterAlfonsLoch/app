@@ -602,36 +602,39 @@ namespace dynamic_source
 
    sp(::dynamic_source::session) script_manager::get_session(const char * pszId)
    {
+      
       single_lock sl(&m_mutexSession, TRUE);
 
       strsp(::dynamic_source::session)::pair * ppair = m_mapSession.PLookup(pszId);
 
       if (ppair != NULL)
       {
-         return ppair->m_element2;
-      }
-         
 
+         if (::datetime::time::get_current_time() < ppair->m_element2->m_timeExpiry)
+         {
 
-      ppair = m_mapSessionExpiry.PLookup(pszId);
+            ppair->m_element2->m_timeExpiry = ::datetime::time::get_current_time() + minutes(9);
 
-      if(ppair != NULL)
-      {
-         
-         if(::datetime::time::get_current_time() < ppair->m_element2->m_timeExpiry)
             return ppair->m_element2;
 
+         }
+            
          ppair->m_element2.m_p->~session();
-         
+
 #undef new
-       ::new(ppair->m_element2.m_p) ::dynamic_source::session(pszId, this);
+         ::new(ppair->m_element2.m_p) ::dynamic_source::session(pszId, this);
 #define new BASE_NEW
 
          return ppair->m_element2;
 
-      }
 
+         return ppair->m_element2;
+
+      }
+         
       sp(::dynamic_source::session) psession = canew(::dynamic_source::session(pszId, this));
+
+      m_mapSession.set_at(pszId, psession);
 
       return psession;
 
@@ -643,7 +646,7 @@ namespace dynamic_source
       single_lock sl(&m_mutexSession, TRUE);
       ::datetime::time time;
       time = ::datetime::time::get_current_time();
-      strsp(session)::assoc * passoc = m_mapSessionExpiry.PGetFirstAssoc();
+      strsp(session)::assoc * passoc = m_mapSession.PGetFirstAssoc();
       strsp(session)::assoc * passocNext;
       while(passoc != NULL)
       {
@@ -651,14 +654,14 @@ namespace dynamic_source
          if(passoc->m_element2.is_null())
          {
 
-            m_mapSessionExpiry.remove_assoc(passoc);
+            m_mapSession.remove_assoc(passoc);
 
          }
          else if(passoc->m_element2->get_ref_count() <= 1)
          {
             if(passoc->m_element2->m_timeExpiry < time)
             {
-               m_mapSessionExpiry.remove_assoc(passoc);
+               m_mapSession.remove_assoc(passoc);
             }
          }
          passoc = passocNext;
@@ -698,7 +701,7 @@ namespace dynamic_source
 
       pscriptinterface->session_id(); // trigger session creation;
 
-      ::crypto::rsa * prsa = get_rsa_key();
+      sp(::crypto::rsa) prsa = get_rsa_key();
 
       pscriptinterface->set_session_value("rsa", prsa);
 
