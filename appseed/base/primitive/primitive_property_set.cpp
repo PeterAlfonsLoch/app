@@ -450,7 +450,7 @@ void property_set::_008Parse(bool bApp, const char * pszCmdLine, var & varFile, 
       
       if(iEnd <= 0)
       {
-         parse.getsplit(str);
+         parse.getsplitword(str);
       }
 
       str.trim("\"'");
