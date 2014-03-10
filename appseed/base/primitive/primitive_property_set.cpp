@@ -472,9 +472,8 @@ void property_set::_008Parse(bool bApp, const char * pszCmdLine, var & varFile, 
             else
             {
                _008Add(strKey, "");
-               strKey.Empty();
-               str.Empty();
-               state = state_key;
+               strKey = str;
+               state = state_equal;
             }
          }
          break;

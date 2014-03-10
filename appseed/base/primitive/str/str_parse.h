@@ -50,6 +50,8 @@ namespace str
       string getword();
       void getword(string &);
       void getword(string &, string &, int32_t);
+      void getsplitword();
+      void getsplitword(string &);
       string getrest();
       void getrest(string &);
       long getvalue();

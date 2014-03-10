@@ -104,6 +104,96 @@ namespace str {
       return 0;
    }
 
+   void parse::getsplitword()
+   {
+      index x;
+      int32_t disabled = 0;
+      int32_t quote = 0;
+      int32_t rem = 0;
+
+      if (C == '=')
+      {
+         x = pa_the_ptr++;
+         if (x == pa_the_ptr && C == '=')
+            pa_the_ptr++;
+      }
+      else if (pa_nospace)
+      {
+         while (C && issplit(C))
+            pa_the_ptr++;
+         x = pa_the_ptr;
+         while (C && !issplit(C) && C != '=' && (C != pa_breakchar || !pa_breakchar || disabled))
+         {
+            if (pa_breakchar && C == pa_disable)
+               disabled = 1;
+            if (pa_breakchar && C == pa_enable)
+               disabled = 0;
+            if (pa_quote && C == '"')
+               quote = 1;
+            pa_the_ptr++;
+            while (quote && C && C != '"')
+            {
+               pa_the_ptr++;
+            }
+            if (pa_quote && C == '"')
+            {
+               pa_the_ptr++;
+            }
+            quote = 0;
+         }
+      }
+      else
+      {
+         if (C == pa_breakchar && pa_breakchar)
+         {
+            x = pa_the_ptr++;
+            rem = 1;
+         }
+         else
+         {
+            while (C && (C == ' ' || C == 9 || C == 13 || C == 10 || issplit(C)))
+               pa_the_ptr++;
+            x = pa_the_ptr;
+            while (C && C != ' ' && C != 9 && C != 13 && C != 10 && !issplit(C) && C != '=' &&
+               (C != pa_breakchar || !pa_breakchar || disabled))
+            {
+               if (pa_breakchar && C == pa_disable)
+                  disabled = 1;
+               if (pa_breakchar && C == pa_enable)
+                  disabled = 0;
+               if (pa_quote && C == '"')
+               {
+                  quote = 1;
+                  pa_the_ptr++;
+                  while (quote && C && C != '"')
+                  {
+                     pa_the_ptr++;
+                  }
+                  if (pa_quote && C == '"')
+                  {
+                     pa_the_ptr++;
+                  }
+               }
+               else
+                  pa_the_ptr++;
+               quote = 0;
+            }
+            pa_the_ptr++;
+            rem = 1;
+         }
+         if (x == pa_the_ptr && C == pa_breakchar && pa_breakchar)
+            pa_the_ptr++;
+      }
+      if (x < pa_the_str.get_length())
+      {
+         pa_ord = pa_the_str.Mid(x, pa_the_ptr - x - rem);
+      }
+      else
+      {
+         pa_ord = "";
+      }
+   }
+
    void parse::getsplit()
    {
       index x;
@@ -217,6 +307,17 @@ namespace str {
       parse::getsplit();
       s = pa_ord;
    }
+
+
+   void parse::getsplitword(string & s)
+   {
+      
+      parse::getsplitword();
+      
+      s = pa_ord;
+
+   }
+
 
    void parse::getword(string &s,string &fill,int32_t l)
    {
