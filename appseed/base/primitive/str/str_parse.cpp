@@ -141,6 +141,8 @@ namespace str {
             }
             quote = 0;
          }
+         if (x == pa_the_ptr && C == '=')
+            pa_the_ptr++;
       }
       else
       {
@@ -178,20 +180,18 @@ namespace str {
                   pa_the_ptr++;
                quote = 0;
             }
-            pa_the_ptr++;
-            rem = 1;
+            if (C != '=')
+            {
+               pa_the_ptr++;
+               rem = 1;
+            }
          }
-         if (x == pa_the_ptr && C == pa_breakchar && pa_breakchar)
+         if (x == pa_the_ptr && ((C == pa_breakchar && pa_breakchar) || C == '='))
             pa_the_ptr++;
       }
-      if (x < pa_the_str.get_length())
-      {
-         pa_ord = pa_the_str.Mid(x, pa_the_ptr - x - rem);
-      }
-      else
-      {
-         pa_ord = "";
-      }
+
+      pa_ord = (x < pa_the_str.get_length()) ? pa_the_str.Mid(x, pa_the_ptr - x - rem) : "";
+
    }
 
    void parse::getsplit()
