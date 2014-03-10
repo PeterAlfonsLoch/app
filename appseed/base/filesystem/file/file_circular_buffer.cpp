@@ -12,7 +12,7 @@ namespace file
       m_count(0)
    {
 
-      m_memory.allocate(size);
+      m_memory.allocate(size * 2);
 
    }
 
