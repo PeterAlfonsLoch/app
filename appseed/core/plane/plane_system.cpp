@@ -2049,6 +2049,9 @@ sp(::command_thread) system::command_thread()
             return false;
       }
 
+      if (pdata == NULL)
+         return true;
+
       property_set set(this);
 
       var varFile;
