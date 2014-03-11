@@ -276,7 +276,17 @@ RetryHost:
             return iRet;
          m_strCurrentHost = strSpaHost;
          System.install().trace().rich_trace(("got server: " + strSpaHost));
-         m_strInstall = "http://" + strSpaHost + "/stage/";
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+         m_strInstall = "http://" + strSpaHost + "/ccvotagus/basis/";
+
+#else
+
+         m_strInstall = "http://" + strSpaHost + "/ccvotagus/stage/";
+
+#endif
+
          m_strInstallGz = m_strInstall;
          System.install().trace().rich_trace(strSpaHost);
 
@@ -389,9 +399,13 @@ RetryHost:
          nodeInstall.load(file_as_string_dup(dir::appdata("install.xml")));
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
+
          ::xml::node * lpnodeVersion = nodeInstall.get_child("basis");
+
 #else
+
          ::xml::node * lpnodeVersion = nodeInstall.get_child("stage");
+
 #endif
 
          System.install().trace().rich_trace("***Downloading file list.");
@@ -407,7 +421,17 @@ RetryHost:
             Sleep(184);
             goto RetryHost;
          }
-         strUrl = "http://" + strSpaHost + "/stage/app/stage/metastage/index-"+strBuild+".md5";
+
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+         strUrl = "http://" + strSpaHost + "/basis/app/stage/metastage/index-" + strBuild + ".md5";
+
+#else
+
+         strUrl = "http://" + strSpaHost + "/stage/app/stage/metastage/index-" + strBuild + ".md5";
+
+#endif
 
          property_set set;
 
@@ -2907,9 +2931,13 @@ RetryHost:
       string strUrl;
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
+
       strUrl = m_strSpaIgnitionBaseUrl + "/query?node=spa_host&version=basis";
+
 #else
+
       strUrl = m_strSpaIgnitionBaseUrl + "/query?node=spa_host&version=stage";
+
 #endif
 
       if(!m_strLastHost.is_empty())
@@ -2939,11 +2967,17 @@ RetryHost:
             }
             else
             {
+
 #if CA2_PLATFORM_VERSION == CA2_BASIS
+
                strUrl = m_strSpaIgnitionBaseUrl + "/query?node=spa_host&version=basis";
+
 #else
+
                strUrl = m_strSpaIgnitionBaseUrl + "/query?node=spa_host&version=stage";
+
 #endif
+
             }
          }
          else
