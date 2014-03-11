@@ -625,14 +625,14 @@ namespace dynamic_source
          ::new(ppair->m_element2.m_p) ::dynamic_source::session(pszId, this);
 #define new BASE_NEW
 
-         return ppair->m_element2;
-
 
          return ppair->m_element2;
 
       }
          
       sp(::dynamic_source::session) psession = canew(::dynamic_source::session(pszId, this));
+
+      psession->m_timeExpiry = ::datetime::time::get_current_time() + minutes(9);
 
       m_mapSession.set_at(pszId, psession);
 

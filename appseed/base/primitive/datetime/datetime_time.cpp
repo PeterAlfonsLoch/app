@@ -440,7 +440,7 @@ namespace datetime
 
    ::datetime::time time::operator+(const duration & duration) const
    {
-      return time(m_time - duration.GetTimeSpan());
+      return time(m_time + duration.GetTimeSpan());
    }
 
 

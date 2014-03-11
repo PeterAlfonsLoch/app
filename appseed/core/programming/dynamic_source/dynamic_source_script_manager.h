@@ -125,7 +125,7 @@ namespace dynamic_source
       int64_t                                   m_iDatabaseWaitTimeOut;
 
       mutex                                     m_mutexSession;
-      strsp(session)                            m_mapSession;
+      strsp(::dynamic_source::session)          m_mapSession;
       mutex                                     m_mutexMusicDbPool;
       mutex                                     m_mutexWayDbPool;
       script_cache *                            m_pcache;
