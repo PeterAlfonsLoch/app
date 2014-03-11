@@ -795,7 +795,7 @@ namespace plugin
 
                         //m_phost->starter_start(strCommandLine, get_app(), this);
 
-                        System.install().asynch_install(strCommandLine, true);
+                        System.install().asynch_install(strCommandLine, strBuildNumber, true);
 
 #ifdef WINDOWSEX
                         ExitProcess(0);

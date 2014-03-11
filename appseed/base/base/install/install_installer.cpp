@@ -140,6 +140,16 @@ namespace install
       m_bStarterStart            = false;
       m_strPlatform              = "";
 
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+      m_strVersion = "basis";
+
+#else
+
+      m_strVersion = "stage";
+
+#endif
+
    }
 
 
@@ -219,11 +229,18 @@ namespace install
 
       mutex mutexInstallingCa2(get_app(), false, "Global\\::ca::fontopus::ca2_spaboot_install::7807e510-5579-11dd-ae16-0800200c7784");
 
-      new_progress_end(0.01);
+      new_progress_end(0.02);
 
       m_bProgressModeAppInstall = true;
 
-      System.install().app_install_get_extern_executable_path(this); // defer install install extern app.install.exe executable
+      int32_t iRet = ca2_build_version();
+      if (iRet < 0)
+         return iRet;
+
+      set_progress(0.5);
+
+
+      System.install().app_install_get_extern_executable_path(m_strVersion, m_strBuild, this); // defer install install extern app.install.exe executable
 
       m_bProgressModeAppInstall = false;
 
@@ -234,15 +251,7 @@ namespace install
 
       m_dwInstallStartTime = ::get_tick_count();
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-
-      m_strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
-
-#else
-
-      m_strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
-
-#endif
+      m_strSpaIgnitionBaseUrl = "http://" + m_strVersion + ".spaignition.api.server.ca2.cc";
 
 install_begin:;
 
@@ -255,11 +264,11 @@ install_begin:;
          m_NeedRestartFatalError = false;
 //         int32_t iFileError = 0;
 
-         int32_t iRet = ca2_build_version();
+         int32_t iRet = 0;
          if(iRet < 0)
             return iRet;
 
-         set_progress(0.1);
+//         set_progress(0.1);
 
          int32_t iRetry = 0;
          iRet = application_name();
@@ -269,30 +278,31 @@ install_begin:;
          set_progress(0.2);
 
          int32_t iHostRetry = 0;
+
 RetryHost:
+         
          string strSpaHost;
+         
          iRet= calc_host(strSpaHost, iHostRetry);
+         
          if(iRet < 0)
             return iRet;
+         
          m_strCurrentHost = strSpaHost;
+         
          System.install().trace().rich_trace(("got server: " + strSpaHost));
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-
-         m_strInstall = "http://" + strSpaHost + "/ccvotagus/basis/";
-
-#else
-
-         m_strInstall = "http://" + strSpaHost + "/ccvotagus/stage/";
-
-#endif
+         m_strInstall = "http://" + strSpaHost + "/ccvotagus/" + m_strVersion + "/";
 
          m_strInstallGz = m_strInstall;
+
          System.install().trace().rich_trace(strSpaHost);
 
-         dir::mk("C:\\ca");
-         dir::mk("C:\\core\\time");
-         dir::mk("C:\\core\\time\\ca");
+         //dir::mk("C:\\ca");
+
+         //dir::mk("C:\\core\\time");
+
+         //dir::mk("C:\\core\\time\\ca");
 
          set_progress(0.3);
 
@@ -398,15 +408,7 @@ RetryHost:
 
          nodeInstall.load(file_as_string_dup(dir::appdata("install.xml")));
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-
-         ::xml::node * lpnodeVersion = nodeInstall.get_child("basis");
-
-#else
-
-         ::xml::node * lpnodeVersion = nodeInstall.get_child("stage");
-
-#endif
+         ::xml::node * lpnodeVersion = nodeInstall.get_child(m_strVersion);
 
          System.install().trace().rich_trace("***Downloading file list.");
 
@@ -423,15 +425,7 @@ RetryHost:
          }
 
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-
-         strUrl = "http://" + strSpaHost + "/basis/app/stage/metastage/index-" + strBuild + ".md5";
-
-#else
-
          strUrl = "http://" + strSpaHost + "/stage/app/stage/metastage/index-" + strBuild + ".md5";
-
-#endif
 
          property_set set;
 
@@ -2930,15 +2924,7 @@ RetryHost:
       }
       string strUrl;
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-
-      strUrl = m_strSpaIgnitionBaseUrl + "/query?node=spa_host&version=basis";
-
-#else
-
-      strUrl = m_strSpaIgnitionBaseUrl + "/query?node=spa_host&version=stage";
-
-#endif
+      strUrl = m_strSpaIgnitionBaseUrl + "/query?node=spa_host&version=" + m_strVersion;
 
       if(!m_strLastHost.is_empty())
       {
@@ -2968,17 +2954,10 @@ RetryHost:
             else
             {
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-
-               strUrl = m_strSpaIgnitionBaseUrl + "/query?node=spa_host&version=basis";
-
-#else
-
-               strUrl = m_strSpaIgnitionBaseUrl + "/query?node=spa_host&version=stage";
-
-#endif
+               strUrl = m_strSpaIgnitionBaseUrl + "/query?node=spa_host&version=" + m_strVersion;
 
             }
+
          }
          else
          {
@@ -3531,9 +3510,13 @@ RetryHost:
    }
 
 
-   installer::launcher::launcher(sp(base_application) papp) :
+   installer::launcher::launcher(sp(base_application) papp, const char * pszVersion, const char * pszBuild) :
       element(papp)
    {
+
+      m_strVersion   = pszVersion;
+
+      m_strBuild     = pszBuild;
 
    }
 
@@ -3541,7 +3524,7 @@ RetryHost:
    bool installer::launcher::ensure_executable()
    {
 
-      m_strPath = System.install().app_install_get_extern_executable_path();
+      m_strPath = System.install().app_install_get_extern_executable_path(m_strVersion, m_strBuild);
 
       return true;
 
@@ -3573,7 +3556,7 @@ RetryHost:
 
 #if defined(WINDOWS)
 
-      strPath = System.install().app_install_get_intern_executable_path();
+      strPath = System.install().app_install_get_intern_executable_path(m_strVersion, m_strBuild);
 
 #elif defined(MACOS)
 

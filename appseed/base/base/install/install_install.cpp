@@ -35,6 +35,17 @@ namespace install
          m_iProgressAppInstallStep = 0;
          m_iProgressAppInstallEnd = 0;
 
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+         m_strVersion = "basis";
+
+#else
+
+         m_strVersion = "stage";
+
+#endif
+
+
       }
 
    install::~install()
@@ -81,7 +92,7 @@ namespace install
    }
 
 
-   int32_t install::synch_install(const char * pszCommandLine, bool bBackground)
+   int32_t install::synch_install(const char * pszCommandLine, const char * pszBuild, bool bBackground)
    {
 
       wait_until_mutex_does_not_exist("Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
@@ -101,14 +112,14 @@ namespace install
 
       }
 
-      app_install_call_sync(strCommand);
+      app_install_call_sync(strCommand, pszBuild);
 
       return 0;
 
    }
 
 
-   void install::app_install_call_sync(const char * szParameters)
+   void install::app_install_call_sync(const char * szParameters, const char * pszBuild)
    {
       bool bLaunch;
 
@@ -122,12 +133,12 @@ namespace install
          bLaunch = true;
       }
 
-      app_install_send_short_message(szParameters, bLaunch);
+      app_install_send_short_message(szParameters, bLaunch, pszBuild);
 
    }
 
 
-   CLASS_DECL_BASE bool install::app_install_send_short_message(const char * psz, bool bLaunch)
+   CLASS_DECL_BASE bool install::app_install_send_short_message(const char * psz, bool bLaunch, const char * pszBuild)
    {
 
 
@@ -140,7 +151,7 @@ namespace install
 
       small_ipc_tx_channel txchannel;
 
-      installer::launcher launcher(get_app());
+      installer::launcher launcher(get_app(), m_strVersion, pszBuild);
 
       if (!txchannel.open("core/spaboot_install", bLaunch ? &launcher : NULL))
          return false;
@@ -154,7 +165,7 @@ namespace install
    }
 
 
-   void install::app_install_send_response(const char * param)
+   void install::app_install_send_response(const char * param, const char * pszBuild)
    {
 
 #ifdef METROWIN
@@ -165,7 +176,7 @@ namespace install
 
       small_ipc_tx_channel txchannel;
 
-      installer::launcher launcher(get_app());
+      installer::launcher launcher(get_app(), m_strVersion, pszBuild);
 
       if (!txchannel.open("core/spaboot_install_callback"))
          return;
@@ -178,7 +189,7 @@ namespace install
 
 
 
-   int32_t install::asynch_install(const char * pszCommandLine, bool bBackground)
+   int32_t install::asynch_install(const char * pszCommandLine, const char * pszBuild, bool bBackground)
    {
 
       wait_until_mutex_does_not_exist("Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
@@ -196,7 +207,7 @@ namespace install
          strCommand += " background";
       }
 
-      app_install_call_sync(strCommand);
+      app_install_call_sync(strCommand, pszBuild);
 
       return 0;
 
@@ -1016,16 +1027,18 @@ namespace install
 
 
 
-   int32_t install::start(const char * pszCommandLine)
+   int32_t install::start(const char * pszCommandLine, const char * pszBuild)
    {
-      return System.install().asynch_install(pszCommandLine);
+
+      return System.install().asynch_install(pszCommandLine, pszBuild);
+
    }
 
 
-   int32_t install::synch(const char * pszCommandLine)
+   int32_t install::synch(const char * pszCommandLine, const char * pszBuild)
    {
 
-      return System.install().synch_install(pszCommandLine);
+      return System.install().synch_install(pszCommandLine, pszBuild);
 
    }
 
@@ -1154,8 +1167,12 @@ namespace install
 
 
 
-   string install::app_install_get_extern_executable_path(::install::installer * pinstaller)
+   string install::app_install_get_extern_executable_path(const char * pszVersion, const char * pszBuild, ::install::installer * pinstaller)
    {
+
+      string strVersion(pszVersion);
+
+      string strBuild(pszBuild);
 
       bool bPrivileged = false;
 
@@ -1244,15 +1261,7 @@ namespace install
 
                string strUrl;
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-
-               strUrl = "http://warehouse.ca2.cc/spa?download=app.install.exe";
-
-#else
-
-               strUrl = "http://store.ca2.cc/spa?download=app.install.exe";
-
-#endif
+               strUrl = "http://server.ca2.cc/spa?download=app.install.exe&version=" + strVersion + "&build=" + strBuild;
 
                property_set set;
 
@@ -1283,15 +1292,8 @@ namespace install
 
                      }
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
+                     string strUrl2 = "http://server.ca2.cc/spa?download=base.dll&version=" + strVersion + "&build=" + strBuild;
 
-                     string strUrl2 = "http://warehouse.ca2.cc/spa?download=base.dll";
-
-#else
-
-                     string strUrl2 = "http://store.ca2.cc/spa?download=base.dll";
-
-#endif
                      string strPath2 = System.dir().path(System.dir().name(strPath), "base.dll");
 
 
@@ -1309,15 +1311,8 @@ namespace install
 
                            }
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
+                           strUrl2 = "http://server.ca2.cc/spa?download=msvcp120d.dll&version=" + strVersion + "&build=" + strBuild;
 
-                           strUrl2 = "http://warehouse.ca2.cc/spa?download=msvcp120d.dll";
-
-#else
-
-                           strUrl2 = "http://store.ca2.cc/spa?download=msvcp120d.dll";
-
-#endif
                            strPath2 = System.dir().path(System.dir().name(strPath), "msvcp120d.dll");
 
 
@@ -1335,15 +1330,8 @@ namespace install
 
                                  }
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
+                                 strUrl2 = "http://server.ca2.cc/spa?download=msvcr120d.dll&version=" + strVersion + "&build=" + strBuild;
 
-                                 strUrl2 = "http://warehouse.ca2.cc/spa?download=msvcr120d.dll";
-
-#else
-
-                                 strUrl2 = "http://store.ca2.cc/spa?download=msvcr120d.dll";
-
-#endif
                                  strPath2 = System.dir().path(System.dir().name(strPath), "msvcr120d.dll");
 
                                  if (Application.http().download(strUrl2, strPath2, set))
@@ -1362,15 +1350,8 @@ namespace install
                                        }
 
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
+                                       strUrl2 = "http://server.ca2.cc/spa?download=os.dll&version=" + strVersion + "&build=" + strBuild;
 
-                                       strUrl2 = "http://warehouse.ca2.cc/spa?download=os.dll";
-
-#else
-
-                                       strUrl2 = "http://store.ca2.cc/spa?download=os.dll";
-
-#endif
                                        strPath2 = System.dir().path(System.dir().name(strPath), "os.dll");
 
                                        if (Application.http().download(strUrl2, strPath2, set))
@@ -1389,15 +1370,8 @@ namespace install
                                              }
 
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
+                                             strUrl2 = "http://server.ca2.cc/spa?download=draw2d_gdiplus.dll&version=" + strVersion + "&build=" + strBuild;
 
-                                             strUrl2 = "http://warehouse.ca2.cc/spa?download=draw2d_gdiplus.dll";
-
-#else
-
-                                             strUrl2 = "http://store.ca2.cc/spa?download=draw2d_gdiplus.dll";
-
-#endif
                                              strPath2 = System.dir().path(System.dir().name(strPath), "draw2d_gdiplus.dll");
 
                                              if (Application.http().download(strUrl2, strPath2, set))
@@ -1465,8 +1439,12 @@ namespace install
       }
 
 
-      string install::app_install_get_intern_executable_path()
+      string install::app_install_get_intern_executable_path(const char * pszVersion, const char * pszBuild)
       {
+
+         string strVersion(pszVersion);
+
+         string strBuild(pszBuild);
 
          string strPath ;
 

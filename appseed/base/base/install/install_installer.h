@@ -25,10 +25,12 @@ namespace install
       {
       public:
 
-         string m_strPath;
+         string   m_strPath;
+         string   m_strVersion;
+         string   m_strBuild;
 
 
-         launcher(sp(base_application) papp);
+         launcher(sp(base_application) papp, const char * pszVersion, const char * pszBuild);
 
          virtual bool ensure_executable();
 
@@ -147,6 +149,8 @@ namespace install
       //bool              m_bInstalling;
 
       stringa           m_straHttpFailure;
+
+      string            m_strVersion;
 
       installer(sp(base_application) papp);
       ~installer();

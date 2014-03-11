@@ -84,7 +84,7 @@ namespace install
 
          }
 
-         System.install().synch_install(m_strCommandLine);
+         System.install().synch_install(m_strCommandLine, strBuildNumber);
 
          prepare_small_bell(true);
 

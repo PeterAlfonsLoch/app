@@ -4604,7 +4604,7 @@ sp(base_application) application::instantiate_application(const char * pszType, 
       strCommandLine += " style=" + string(Application.str_context()->m_plocaleschema->m_idSchema);
       strCommandLine += " install";
 
-      System.install().start(strCommandLine);
+      System.install().start(strCommandLine, Application.command()->m_varTopicQuery["build_number"]);
 
       throw installing_exception(get_app());
 

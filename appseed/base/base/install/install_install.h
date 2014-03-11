@@ -42,6 +42,9 @@ namespace install
       int64_t              m_iProgressAppInstallEnd;
 
 
+      string               m_strVersion;
+
+
 
       install(sp(base_application) papp);
       virtual ~install();
@@ -52,8 +55,8 @@ namespace install
 
 
       virtual bool is_file_ok(const char * path1, const char * pszTemplate);
-      virtual int32_t synch_install(const char * pszCommandLine, bool bBackground = true);
-      virtual int32_t asynch_install(const char * pszCommandLine, bool bBackground = true);
+      virtual int32_t synch_install(const char * pszCommandLine, const char * pszBuild, bool bBackground = true);
+      virtual int32_t asynch_install(const char * pszCommandLine, const char * pszBuild, bool bBackground = true);
 
 
 
@@ -96,11 +99,11 @@ namespace install
       const char * get_version();
       const char * get_ca2_version();
 
-      virtual string app_install_get_extern_executable_path(::install::installer * pinstaller = NULL);
-      virtual string app_install_get_intern_executable_path();
-      virtual void app_install_call_sync(const char * szParameters);
-      virtual bool app_install_send_short_message(const char * psz, bool bLaunch);
-      virtual void app_install_send_response(const char * param);
+      virtual string app_install_get_extern_executable_path(const char * pszVersion, const char * pszBuild, ::install::installer * pinstaller = NULL);
+      virtual string app_install_get_intern_executable_path(const char * pszVersion, const char * pszBuild);
+      virtual void app_install_call_sync(const char * szParameters, const char * pszBuild);
+      virtual bool app_install_send_short_message(const char * psz, bool bLaunch, const char * pszBuild);
+      virtual void app_install_send_response(const char * param, const char * pszBuild);
 
 
 
@@ -109,8 +112,8 @@ namespace install
       virtual void add_app_install(const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema);
 virtual bool is_installed(const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema);
           virtual bool is(const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema);
-      virtual int32_t  start(const char * pszCommandLine);
-      virtual int32_t  synch(const char * pszCommandLine);
+      virtual int32_t  start(const char * pszCommandLine, const char * pszBuild);
+      virtual int32_t  synch(const char * pszCommandLine, const char * pszBuild);
 
       virtual void on_set_scalar(e_scalar escalar, int64_t iValue);
       virtual void get_scalar_minimum(e_scalar escalar, int64_t & i);
