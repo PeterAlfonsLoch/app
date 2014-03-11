@@ -1477,7 +1477,7 @@ restart:
       buf.allocate(iBufSize);
       int64_t iLen;
       ::md5::md5 md5;
-      ::file::binary_buffer_sp file2(get_app());
+      ::file::binary_buffer_sp file2(allocer());
       ::primitive::memory_size uiRead;
       if(strVersion == "fileset v1")
       {
