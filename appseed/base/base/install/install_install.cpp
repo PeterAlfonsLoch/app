@@ -1269,7 +1269,7 @@ namespace install
 
                string strUrl;
 
-               strUrl = "http://server.ca2.cc/spa?download=app.install.exe.bz&version=" + strVersion + "&build=" + strFormatBuild;
+               strUrl = "http://server.ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild  + "/install/x86/app.install.exe.bz";
 
                property_set set;
 
@@ -1302,10 +1302,9 @@ namespace install
 
                      }
 
-                     string strUrl2 = "http://server.ca2.cc/spa?download=base.dll.bz&version=" + strVersion + "&build=" + strFormatBuild;
+                     string strUrl2 = "http://server.ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild + "/install/x86/base.dll.bz";
 
                      string strPath2 = System.dir().path(System.dir().name(strPath), "base.dll");
-
 
                      if (Application.http().download(strUrl2, strPath2 + ".bz", set))
                      {
@@ -1323,7 +1322,7 @@ namespace install
 
                            }
 
-                           strUrl2 = "http://server.ca2.cc/spa?download=msvcp120d.dll.bz&version=" + strVersion + "&build=" + strFormatBuild;
+                           strUrl2 = "http://server.ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild + "/install/x86/msvcp120d.dll.bz";
 
                            strPath2 = System.dir().path(System.dir().name(strPath), "msvcp120d.dll");
 
@@ -1344,7 +1343,7 @@ namespace install
 
                                  }
 
-                                 strUrl2 = "http://server.ca2.cc/spa?download=msvcr120d.dll.bz&version=" + strVersion + "&build=" + strFormatBuild;
+                                 strUrl2 = "http://server.ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild + "/install/x86/msvcr120d.dll.bz";
 
                                  strPath2 = System.dir().path(System.dir().name(strPath), "msvcr120d.dll");
 
@@ -1366,7 +1365,7 @@ namespace install
                                        }
 
 
-                                       strUrl2 = "http://server.ca2.cc/spa?download=os.dll.bz&version=" + strVersion + "&build=" + strFormatBuild;
+                                       strUrl2 = "http://server.ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild + "/install/x86/os.dll.bz";
 
                                        strPath2 = System.dir().path(System.dir().name(strPath), "os.dll");
 
@@ -1388,7 +1387,7 @@ namespace install
                                              }
 
 
-                                             strUrl2 = "http://server.ca2.cc/spa?download=draw2d_gdiplus.dll.bz&version=" + strVersion + "&build=" + strFormatBuild;
+                                             strUrl2 = "http://server.ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild + "/install/x86/draw2d_gdiplus.dll.bz";
 
                                              strPath2 = System.dir().path(System.dir().name(strPath), "draw2d_gdiplus.dll");
 

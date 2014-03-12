@@ -1556,20 +1556,23 @@ retry:
       
       ::sockets::socket_handler handler(get_app());
 
+      ::file::buffer_sp spfile = App(set.cast < base_application >("app", get_app())).file().get_file(pszFile,
+         ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
+
+      set["file"] = spfile;
+
       sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, set);
 
       if(psocket == NULL)
          return false;
 
-      ::file::buffer_sp spfile = App(set.cast < base_application >("app", get_app())).file().get_file(pszFile,
-            ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
 
-      if(spfile.is_null())
+/*      if(spfile.is_null())
       {
          return false;
       }
 
-      spfile->write(psocket->GetDataPtr(), psocket->GetContentLength());
+      spfile->write(psocket->GetDataPtr(), psocket->GetContentLength());*/
 
       return true;
 
