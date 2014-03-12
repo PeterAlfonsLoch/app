@@ -1230,16 +1230,22 @@ namespace install
 
 #endif
 
-      if (!file_exists_dup("C:\\ca2\\config\\do_not_download_file_list.txt"))
+      if (!file_exists_dup("C:\\ca2\\config\\do_not_download_file_list.txt") && bPrivileged)
       {
+
+         string strPathA(System.dir().path(System.dir().name(strPath), "base.dll"));
+         string strPathB(System.dir().path(System.dir().name(strPath), "msvcp120d.dll"));
+         string strPathC(System.dir().path(System.dir().name(strPath), "msvcr120d.dll"));
+         string strPathD(System.dir().path(System.dir().name(strPath), "draw2d_gdiplus.dll"));
+         string strPathE(System.dir().path(System.dir().name(strPath), "os.dll"));
 
          if (!file_exists_dup(strPath)
             || !System.install().is_file_ok(strPath, "app.install.exe", strFormatBuild)
-            || !System.install().is_file_ok(strPath, "base.dll", strFormatBuild)
-            || !System.install().is_file_ok(strPath, "msvcp120d.dll", strFormatBuild)
-            || !System.install().is_file_ok(strPath, "msvcr120d.dll", strFormatBuild)
-            || !System.install().is_file_ok(strPath, "draw2d_gdiplus.dll", strFormatBuild)
-            || !System.install().is_file_ok(strPath, "os.dll", strFormatBuild))
+            || !System.install().is_file_ok(strPathA, "base.dll", strFormatBuild)
+            || !System.install().is_file_ok(strPathB, "msvcp120d.dll", strFormatBuild)
+            || !System.install().is_file_ok(strPathC, "msvcr120d.dll", strFormatBuild)
+            || !System.install().is_file_ok(strPathD, "draw2d_gdiplus.dll", strFormatBuild)
+            || !System.install().is_file_ok(strPathE, "os.dll", strFormatBuild))
          {
 
             int32_t iRetry = 0;
