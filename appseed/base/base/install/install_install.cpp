@@ -60,7 +60,7 @@ namespace install
 
       string strUrl;
 
-      strUrl = "http://anycast.ca2.cc/md5?authnone&version=basis&stage=";
+      strUrl = "http://api.ca2.cc/md5?authnone&version=basis&stage=";
       strUrl += pszTemplate;
       strUrl += "&build=";
       strUrl += strFormatBuild;
