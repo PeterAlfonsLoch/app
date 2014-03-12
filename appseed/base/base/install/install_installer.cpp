@@ -233,7 +233,10 @@ namespace install
 
       m_bProgressModeAppInstall = true;
 
+      m_strSpaIgnitionBaseUrl = "http://" + m_strVersion + ".spaignition.api.server.ca2.cc";
+
       int32_t iRet = ca2_build_version();
+
       if (iRet < 0)
          return iRet;
 
@@ -250,8 +253,6 @@ namespace install
       //installation_lock_file_lock installationlockfilelock(get_app());
 
       m_dwInstallStartTime = ::get_tick_count();
-
-      m_strSpaIgnitionBaseUrl = "http://" + m_strVersion + ".spaignition.api.server.ca2.cc";
 
 install_begin:;
 

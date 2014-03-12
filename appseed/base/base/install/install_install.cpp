@@ -53,19 +53,17 @@ namespace install
 
    }
 
-   bool install::is_file_ok(const char * path1, const char * pszTemplate)
+   bool install::is_file_ok(const char * path1, const char * pszTemplate, const char * pszFormatBuild)
    {
 
-      return true;
+      string strFormatBuild(pszFormatBuild);
 
       string strUrl;
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-      strUrl = "http://basis.spaignition.api.server.ca2.cc/md5?authnone&version=basis&stage=";
-#else
-      strUrl = "http://stage.spaignition.api.server.ca2.cc/md5?authnone&version=stage&stage=";
-#endif
+      strUrl = "http://anycast.ca2.cc/md5?authnone&version=basis&stage=";
       strUrl += pszTemplate;
+      strUrl += "&build=";
+      strUrl += strFormatBuild;
 
       property_set set(get_app());
 
@@ -1174,6 +1172,10 @@ namespace install
 
       string strBuild(pszBuild);
 
+      string strFormatBuild;
+
+      strFormatBuild = ::str::replace(" ", "_", strBuild);
+
       bool bPrivileged = false;
 
       string strPath;
@@ -1232,12 +1234,12 @@ namespace install
       {
 
          if (!file_exists_dup(strPath)
-            || !System.install().is_file_ok(strPath, "app.install.exe")
-            || !System.install().is_file_ok(strPath, "base.dll")
-            || !System.install().is_file_ok(strPath, "msvcp120d.dll")
-            || !System.install().is_file_ok(strPath, "msvcr120d.dll")
-            || !System.install().is_file_ok(strPath, "draw2d_gdiplus.dll")
-            || !System.install().is_file_ok(strPath, "os.dll"))
+            || !System.install().is_file_ok(strPath, "app.install.exe", strFormatBuild)
+            || !System.install().is_file_ok(strPath, "base.dll", strFormatBuild)
+            || !System.install().is_file_ok(strPath, "msvcp120d.dll", strFormatBuild)
+            || !System.install().is_file_ok(strPath, "msvcr120d.dll", strFormatBuild)
+            || !System.install().is_file_ok(strPath, "draw2d_gdiplus.dll", strFormatBuild)
+            || !System.install().is_file_ok(strPath, "os.dll", strFormatBuild))
          {
 
             int32_t iRetry = 0;
@@ -1261,7 +1263,7 @@ namespace install
 
                string strUrl;
 
-               strUrl = "http://server.ca2.cc/spa?download=app.install.exe&version=" + strVersion + "&build=" + strBuild;
+               strUrl = "http://server.ca2.cc/spa?download=app.install.exe.bz&version=" + strVersion + "&build=" + strFormatBuild;
 
                property_set set;
 
@@ -1277,10 +1279,12 @@ namespace install
 
                }
 
-               if (Application.http().download(strUrl, strPath, set))
+               if (Application.http().download(strUrl, strPath + ".bz", set))
                {
 
-                  if (System.install().is_file_ok(strPath, "app.install.exe"))
+                  System.compress().unbz(get_app(), strPath, strPath + ".bz");
+
+                  if (System.install().is_file_ok(strPath, "app.install.exe", strFormatBuild))
                   {
 
                      if (pinstaller != NULL)
@@ -1292,15 +1296,17 @@ namespace install
 
                      }
 
-                     string strUrl2 = "http://server.ca2.cc/spa?download=base.dll&version=" + strVersion + "&build=" + strBuild;
+                     string strUrl2 = "http://server.ca2.cc/spa?download=base.dll.bz&version=" + strVersion + "&build=" + strFormatBuild;
 
                      string strPath2 = System.dir().path(System.dir().name(strPath), "base.dll");
 
 
-                     if (Application.http().download(strUrl2, strPath2, set))
+                     if (Application.http().download(strUrl2, strPath2 + ".bz", set))
                      {
 
-                        if (System.install().is_file_ok(strPath2, "base.dll"))
+                        System.compress().unbz(get_app(), strPath2, strPath2 + ".bz");
+
+                        if (System.install().is_file_ok(strPath2, "base.dll", strFormatBuild))
                         {
                            if (pinstaller != NULL)
                            {
@@ -1311,15 +1317,17 @@ namespace install
 
                            }
 
-                           strUrl2 = "http://server.ca2.cc/spa?download=msvcp120d.dll&version=" + strVersion + "&build=" + strBuild;
+                           strUrl2 = "http://server.ca2.cc/spa?download=msvcp120d.dll.bz&version=" + strVersion + "&build=" + strFormatBuild;
 
                            strPath2 = System.dir().path(System.dir().name(strPath), "msvcp120d.dll");
 
 
-                           if (Application.http().download(strUrl2, strPath2, set))
+                           if (Application.http().download(strUrl2, strPath2 + ".bz", set))
                            {
 
-                              if (System.install().is_file_ok(strPath2, "msvcp120d.dll"))
+                              System.compress().unbz(get_app(), strPath2, strPath2 + ".bz");
+
+                              if (System.install().is_file_ok(strPath2, "msvcp120d.dll", strFormatBuild))
                               {
                                  if (pinstaller != NULL)
                                  {
@@ -1330,14 +1338,16 @@ namespace install
 
                                  }
 
-                                 strUrl2 = "http://server.ca2.cc/spa?download=msvcr120d.dll&version=" + strVersion + "&build=" + strBuild;
+                                 strUrl2 = "http://server.ca2.cc/spa?download=msvcr120d.dll.bz&version=" + strVersion + "&build=" + strFormatBuild;
 
                                  strPath2 = System.dir().path(System.dir().name(strPath), "msvcr120d.dll");
 
-                                 if (Application.http().download(strUrl2, strPath2, set))
+                                 if (Application.http().download(strUrl2, strPath2 + ".bz", set))
                                  {
 
-                                    if (System.install().is_file_ok(strPath2, "msvcr120d.dll"))
+                                    System.compress().unbz(get_app(), strPath2, strPath2 + ".bz");
+
+                                    if (System.install().is_file_ok(strPath2, "msvcr120d.dll", strFormatBuild))
                                     {
 
                                        if (pinstaller != NULL)
@@ -1350,14 +1360,16 @@ namespace install
                                        }
 
 
-                                       strUrl2 = "http://server.ca2.cc/spa?download=os.dll&version=" + strVersion + "&build=" + strBuild;
+                                       strUrl2 = "http://server.ca2.cc/spa?download=os.dll.bz&version=" + strVersion + "&build=" + strFormatBuild;
 
                                        strPath2 = System.dir().path(System.dir().name(strPath), "os.dll");
 
-                                       if (Application.http().download(strUrl2, strPath2, set))
+                                       if (Application.http().download(strUrl2, strPath2 + ".bz", set))
                                        {
+                                          
+                                          System.compress().unbz(get_app(), strPath2, strPath2 + ".bz");
 
-                                          if (System.install().is_file_ok(strPath2, "os.dll"))
+                                          if (System.install().is_file_ok(strPath2, "os.dll", strFormatBuild))
                                           {
 
                                              if (pinstaller != NULL)
@@ -1370,14 +1382,16 @@ namespace install
                                              }
 
 
-                                             strUrl2 = "http://server.ca2.cc/spa?download=draw2d_gdiplus.dll&version=" + strVersion + "&build=" + strBuild;
+                                             strUrl2 = "http://server.ca2.cc/spa?download=draw2d_gdiplus.dll.bz&version=" + strVersion + "&build=" + strFormatBuild;
 
                                              strPath2 = System.dir().path(System.dir().name(strPath), "draw2d_gdiplus.dll");
 
-                                             if (Application.http().download(strUrl2, strPath2, set))
+                                             if (Application.http().download(strUrl2, strPath2 + ".bz", set))
                                              {
 
-                                                if (System.install().is_file_ok(strPath2, "draw2d_gdiplus.dll"))
+                                                System.compress().unbz(get_app(), strPath2, strPath2 + ".bz");
+
+                                                if (System.install().is_file_ok(strPath2, "draw2d_gdiplus.dll", strFormatBuild))
                                                 {
 
 
@@ -1425,7 +1439,7 @@ namespace install
          }
 
 
-         if (!System.install().is_file_ok(strPath, "app.install.exe"))
+         if (!System.install().is_file_ok(strPath, "app.install.exe", strFormatBuild))
          {
 
             return "";
@@ -1445,6 +1459,10 @@ namespace install
          string strVersion(pszVersion);
 
          string strBuild(pszBuild);
+
+         string strFormatBuild;
+
+         strFormatBuild = ::str::replace(" ", "_", strBuild);
 
          string strPath ;
 

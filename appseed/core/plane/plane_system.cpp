@@ -90,7 +90,6 @@ namespace plane
 #endif
       m_pdatetime = new class ::datetime::departament(this);
 //      m_email.set_app(this);
-      m_compress.set_app(this);
 
       m_pmachineeventcentral     = NULL;
 

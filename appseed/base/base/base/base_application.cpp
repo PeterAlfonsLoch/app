@@ -1653,7 +1653,7 @@ bool base_application::get_temp_file_name_template(string & strRet, const char *
       strRet = System.dir().path(str, strRelative + "-" + hex::lower_from(i + 1), string(pszName) + string(".") + pszExtension);
       if (pszTemplate != NULL)
       {
-         if (System.install().is_file_ok(strRet, pszTemplate))
+         if (System.install().is_file_ok(strRet, pszTemplate, ""))
             return true;
       }
       if (file_exists_dup(strRet))

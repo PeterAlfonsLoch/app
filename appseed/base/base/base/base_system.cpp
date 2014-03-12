@@ -122,6 +122,7 @@ base_system::base_system(sp(base_application) papp) :
       throw simple_exception(this, "failed to construct base_system");
 
    
+   m_compress.set_app(this);
 
 
 }
