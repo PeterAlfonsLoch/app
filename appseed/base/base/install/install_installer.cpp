@@ -229,7 +229,7 @@ namespace install
 
       mutex mutexInstallingCa2(get_app(), false, "Global\\::ca::fontopus::ca2_spaboot_install::7807e510-5579-11dd-ae16-0800200c7784");
 
-      new_progress_end(0.02);
+      new_progress_end(0.01);
 
       m_bProgressModeAppInstall = true;
 
@@ -240,7 +240,9 @@ namespace install
       if (iRet < 0)
          return iRet;
 
-      set_progress(0.005);
+      set_progress(1.0);
+
+      new_progress_end(0.02);
 
 
       System.install().app_install_get_extern_executable_path(m_strVersion, m_strBuild, this); // defer install install extern app.install.exe executable
@@ -328,6 +330,8 @@ RetryHost:
 
          set1["disable_ca2_sessid"] = true;
 
+         set1["raw_http"] = true;
+
          string strInstallFilterList = Application.http().get(strUrl, set1);
          ::xml::document nodeInstallFilter(get_app());
          nodeInstallFilter.load(strInstallFilterList);
@@ -339,6 +343,8 @@ RetryHost:
          property_set set2;
 
          set2["disable_ca2_sessid"] = true;
+
+         set2["raw_http"] = true;
 
          string strInstallFilter = Application.http().get(strUrl, set2);
          for(int32_t ui = 0; ui < nodeInstallFilter.get_root()->get_children_count(); ui++)
@@ -426,11 +432,13 @@ RetryHost:
          }
 
 
-         strUrl = "http://" + strSpaHost + "/stage/app/stage/metastage/index-" + strBuild + ".md5";
+         strUrl = "http://" + strSpaHost + "/ccvotagus/" + m_strVersion + "/app/stage/metastage/index-" + strBuild + ".md5";
 
          property_set set;
 
          set["disable_ca2_sessid"] = true;
+
+         set["raw_http"] = true;
 
          string strCgclIndexMd5 = Application.http().get(strUrl, set);
          if(strCgclIndexMd5.length() != 32
@@ -1201,6 +1209,8 @@ RetryHost:
 
       set["disable_ca2_sessid"] = true;
 
+      set["raw_http"] = true;
+
       return Application.http().download(strUrl, (dir + file), set);
 
    }
@@ -1386,6 +1396,8 @@ RetryHost:
 
             set["disable_ca2_sessid"] = true;
 
+            set["raw_http"] = true;
+
             bOk = Application.http().download(strUrl, strBsPatch, set);
 
 //            if(iStatus == 404)
@@ -1539,6 +1551,8 @@ RetryHost:
             set["int_scalar_source_listener"] = this;
 
             set["disable_ca2_sessid"] = true;
+
+            set["raw_http"] = true;
 
             bOk = Application.http().download((url_in + "." + pszMd5), (dir + file + "." + pszMd5), set);
 //            if(iStatus == 404)
@@ -2479,6 +2493,8 @@ RetryHost:
 
       set["disable_ca2_sessid"] = true;
 
+      set["raw_http"] = true;
+
       string strCount = Application.http().get(strUrl, set);
       int32_t iCount = atoi_dup(strCount);
       //set_progress(0.2);
@@ -2493,6 +2509,8 @@ RetryHost:
          property_set set;
 
          set["disable_ca2_sessid"] = true;
+
+         set["raw_http"] = true;
 
          string strExec = Application.http().get(strUrl, set);
 
@@ -2838,6 +2856,8 @@ RetryHost:
 
          set["disable_ca2_sessid"] = true;
 
+         set["raw_http"] = true;
+
          str = Application.http().get(strUrl, set);
 
          if(str.length() > 0)
@@ -2888,6 +2908,8 @@ RetryBuildNumber:
          set["int_scalar_source_listener"] = this;
 
          set["disable_ca2_sessid"] = true;
+
+         set["raw_http"] = true;
 
          Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build&sessid=noauth", m_strBuild, set);
 
@@ -2941,6 +2963,8 @@ RetryHost:
          property_set set;
 
          set["disable_ca2_sessid"] = true;
+
+         set["raw_http"] = true;
 
          strSpaHost = Application.http().get(strUrl, set);
 

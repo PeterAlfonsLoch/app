@@ -1248,197 +1248,126 @@ namespace install
             || !System.install().is_file_ok(strPathE, "os.dll", strFormatBuild))
          {
 
-            int32_t iRetry = 0;
+            stringa straFile;
 
-            while (iRetry < 8)
+            straFile.add("app.install.exe");
+            straFile.add("base.dll");
+            straFile.add("msvcp120d.dll");
+            straFile.add("msvcr120d.dll");
+            straFile.add("draw2d_gdiplus.dll");
+            straFile.add("os.dll");
+
+            string strFile;
+
+            string strUrlPrefix = "http://server.ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild + "/install/x86/";
+
+            string strUrl;
+
+            property_set set;
+
+            string strDownload;
+
+            set["disable_ca2_sessid"] = true;
+
+            set["raw_http"] = true;
+
+            double dRate = 1.0 / (straFile.get_count() * 3.0);
+
+            if (pinstaller != NULL)
             {
 
-               if (!bPrivileged)
+               set["int_scalar_source_listener"] = pinstaller;
+
+            }
+
+            int32_t iRetry;
+
+            bool bFileNice;
+
+            for (index iFile = 0; iFile < straFile.get_count(); iFile++)
+            {
+
+               iRetry = 0;
+
+               strFile = straFile[iFile];
+
+               strUrl = strUrlPrefix + strFile + ".bz";
+
+               strDownload = System.dir().path(System.dir().name(strPath), strFile);
+
+               bFileNice = false;
+
+               while (iRetry < 8)
                {
 
-                  if (!System.get_temp_file_name(strPath, "app.install", "exe"))
+                  //if (!bPrivileged)
+                  //{
+
+                  //   if (!System.get_temp_file_name(strPath, "app.install", "exe"))
+                  //   {
+
+                  //      strPath.ReleaseBuffer();
+
+                  //      return "";
+
+                  //   }
+
+                  //}
+
+
+                  if (pinstaller != NULL)
                   {
 
-                     strPath.ReleaseBuffer();
-
-                     return "";
+                     pinstaller->m_dAppInstallProgressStart = iFile * (dRate  * 3.0);
+                     pinstaller->m_dAppInstallProgressEnd = iFile * (dRate * 3.0) + dRate;
 
                   }
 
-               }
-
-               string strUrl;
-
-               strUrl = "http://server.ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild  + "/install/x86/app.install.exe.bz";
-
-               property_set set;
-
-               set["disable_ca2_sessid"] = true;
-               set["raw_http"] = true;
-
-               if (pinstaller != NULL)
-               {
-
-                  set["int_scalar_source_listener"] = pinstaller;
-
-                  pinstaller->m_dAppInstallProgressStart = 0.0;
-                  pinstaller->m_dAppInstallProgressEnd = 0.05;
-
-               }
-
-               if (Application.http().download(strUrl, strPath + ".bz", set))
-               {
-
-                  System.compress().unbz(get_app(), strPath, strPath + ".bz");
-
-                  if (System.install().is_file_ok(strPath, "app.install.exe", strFormatBuild))
+                  if (Application.http().download(strUrl, strDownload + ".bz", set))
                   {
+
+                     System.compress().unbz(get_app(), strDownload, strDownload + ".bz");
 
                      if (pinstaller != NULL)
                      {
 
-                        pinstaller->set_progress(0.1);
-                        pinstaller->m_dAppInstallProgressStart = 0.1;
-                        pinstaller->m_dAppInstallProgressEnd = 0.45;
+                        pinstaller->set_progress(iFile * (dRate * 3.0) + (dRate * 2.0));
 
                      }
 
-                     string strUrl2 = "http://server.ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild + "/install/x86/base.dll.bz";
-
-                     string strPath2 = System.dir().path(System.dir().name(strPath), "base.dll");
-
-                     if (Application.http().download(strUrl2, strPath2 + ".bz", set))
+                     if (System.install().is_file_ok(strDownload, strFile, strFormatBuild))
                      {
 
-                        System.compress().unbz(get_app(), strPath2, strPath2 + ".bz");
-
-                        if (System.install().is_file_ok(strPath2, "base.dll", strFormatBuild))
+                        if (pinstaller != NULL)
                         {
-                           if (pinstaller != NULL)
-                           {
 
-                              pinstaller->set_progress(0.5);
-                              pinstaller->m_dAppInstallProgressStart = 0.5;
-                              pinstaller->m_dAppInstallProgressEnd = 0.60;
+                           pinstaller->set_progress(iFile * (dRate * 3.0) + (dRate * 2.0));
 
-                           }
+                           bFileNice = true;
 
-                           strUrl2 = "http://server.ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild + "/install/x86/msvcp120d.dll.bz";
-
-                           strPath2 = System.dir().path(System.dir().name(strPath), "msvcp120d.dll");
+                           break;
 
 
-                           if (Application.http().download(strUrl2, strPath2 + ".bz", set))
-                           {
-
-                              System.compress().unbz(get_app(), strPath2, strPath2 + ".bz");
-
-                              if (System.install().is_file_ok(strPath2, "msvcp120d.dll", strFormatBuild))
-                              {
-                                 if (pinstaller != NULL)
-                                 {
-
-                                    pinstaller->set_progress(0.65);
-                                    pinstaller->m_dAppInstallProgressStart = 0.65;
-                                    pinstaller->m_dAppInstallProgressEnd = 0.75;
-
-                                 }
-
-                                 strUrl2 = "http://server.ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild + "/install/x86/msvcr120d.dll.bz";
-
-                                 strPath2 = System.dir().path(System.dir().name(strPath), "msvcr120d.dll");
-
-                                 if (Application.http().download(strUrl2, strPath2 + ".bz", set))
-                                 {
-
-                                    System.compress().unbz(get_app(), strPath2, strPath2 + ".bz");
-
-                                    if (System.install().is_file_ok(strPath2, "msvcr120d.dll", strFormatBuild))
-                                    {
-
-                                       if (pinstaller != NULL)
-                                       {
-
-                                          pinstaller->set_progress(0.8);
-                                          pinstaller->m_dAppInstallProgressStart = 0.8;
-                                          pinstaller->m_dAppInstallProgressEnd = 0.85;
-
-                                       }
-
-
-                                       strUrl2 = "http://server.ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild + "/install/x86/os.dll.bz";
-
-                                       strPath2 = System.dir().path(System.dir().name(strPath), "os.dll");
-
-                                       if (Application.http().download(strUrl2, strPath2 + ".bz", set))
-                                       {
-                                          
-                                          System.compress().unbz(get_app(), strPath2, strPath2 + ".bz");
-
-                                          if (System.install().is_file_ok(strPath2, "os.dll", strFormatBuild))
-                                          {
-
-                                             if (pinstaller != NULL)
-                                             {
-
-                                                pinstaller->set_progress(0.9);
-                                                pinstaller->m_dAppInstallProgressStart = 0.9;
-                                                pinstaller->m_dAppInstallProgressEnd = 0.95;
-
-                                             }
-
-
-                                             strUrl2 = "http://server.ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild + "/install/x86/draw2d_gdiplus.dll.bz";
-
-                                             strPath2 = System.dir().path(System.dir().name(strPath), "draw2d_gdiplus.dll");
-
-                                             if (Application.http().download(strUrl2, strPath2 + ".bz", set))
-                                             {
-
-                                                System.compress().unbz(get_app(), strPath2, strPath2 + ".bz");
-
-                                                if (System.install().is_file_ok(strPath2, "draw2d_gdiplus.dll", strFormatBuild))
-                                                {
-
-
-                                                   if (pinstaller != NULL)
-                                                   {
-
-                                                      pinstaller->set_progress(1.0);
-                                                      break;
-                                                   }
-
-                                                }
-
-                                             }
-
-
-
-                                          }
-
-                                       }
-
-
-
-                                    }
-
-                                 }
-
-
-
-                              }
-
-                           }
 
                         }
 
                      }
 
+
                   }
+
+                  iRetry++;
 
                }
 
-               iRetry++;
+               if (!bFileNice)
+               {
+                  
+                  // failed by too much retry in any number of the files already downloaded :
+                  // so, return failure (no eligible app.install.exe file).
+                  return "";
+
+               }
 
             }
 
@@ -1454,45 +1383,45 @@ namespace install
 
       }
 
-         return strPath;
+      return strPath;
 
-      }
+   }
 
 
-      string install::app_install_get_intern_executable_path(const char * pszVersion, const char * pszBuild)
-      {
+   string install::app_install_get_intern_executable_path(const char * pszVersion, const char * pszBuild)
+   {
 
-         string strVersion(pszVersion);
+      string strVersion(pszVersion);
 
-         string strBuild(pszBuild);
+      string strBuild(pszBuild);
 
-         string strFormatBuild;
+      string strFormatBuild;
 
-         strFormatBuild = ::str::replace(" ", "_", strBuild);
+      strFormatBuild = ::str::replace(" ", "_", strBuild);
 
-         string strPath ;
+      string strPath;
 
 #ifdef WINDOWSEX
 
-         xxdebug_box("installer::launcher::ensure_executable", "installer::launcher::ensure_executable", 0);
+      xxdebug_box("installer::launcher::ensure_executable", "installer::launcher::ensure_executable", 0);
 
-         string strPlatform = System.install().get_platform();
+      string strPlatform = System.install().get_platform();
 
-         strPath = ::dir::element("stage\\" + strPlatform + "\\app.install.exe");
+      strPath = ::dir::element("stage\\" + strPlatform + "\\app.install.exe");
 
 #else
 
-         throw "TODO";
+      throw "TODO";
 
 #endif
 
-         return strPath;
+      return strPath;
 
-      }
+   }
 
 
 
-   } // namespace install
+} // namespace install
 
 
 
