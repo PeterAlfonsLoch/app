@@ -1563,6 +1563,8 @@ retry:
 
       sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, set);
 
+      set["file"] = NULL;
+
       if(psocket == NULL)
          return false;
 

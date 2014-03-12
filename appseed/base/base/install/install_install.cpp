@@ -1274,6 +1274,7 @@ namespace install
                property_set set;
 
                set["disable_ca2_sessid"] = true;
+               set["raw_http"] = true;
 
                if (pinstaller != NULL)
                {

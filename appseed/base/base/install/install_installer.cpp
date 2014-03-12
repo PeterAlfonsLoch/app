@@ -240,7 +240,7 @@ namespace install
       if (iRet < 0)
          return iRet;
 
-      set_progress(0.5);
+      set_progress(0.005);
 
 
       System.install().app_install_get_extern_executable_path(m_strVersion, m_strBuild, this); // defer install install extern app.install.exe executable
