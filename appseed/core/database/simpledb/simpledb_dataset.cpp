@@ -645,10 +645,10 @@ namespace simpledb
       }
       else
       {
-         m_strQueryErrorMessage = errmsg;
-         m_strDatabaseErrorMessage = db->getErrorMsg();
-         TRACE("set::query: Error: %s, %s", errmsg, db->getErrorMsg());
-         return false;
+         //m_strQueryErrorMessage = errmsg;
+         //m_strDatabaseErrorMessage = db->getErrorMsg();
+         //TRACE("set::query: Error: %s, %s", errmsg, db->getErrorMsg());
+         //return false;
       }*/
       return false;
    }

@@ -616,6 +616,33 @@ namespace data
 
       }
 
+
+      try
+      {
+
+
+         for (index i = 0; i < ptree->m_treeptra.get_count(); i++)
+         {
+            try
+            {
+
+               ptree->m_treeptra[i].layout();
+
+            }
+            catch (...)
+            {
+            }
+            
+         }
+
+         
+
+      }
+      catch (...)
+      {
+
+      }
+
       ptree->m_bFill = false;
 
       return 0;
