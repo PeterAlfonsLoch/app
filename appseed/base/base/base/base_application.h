@@ -98,7 +98,7 @@ public:
    sp(::sockets::sockets)                          m_psockets;
    sp(class ::fs::data)                            m_spfsdata;
    bool                                            m_bZipIsDir;
-   string                                          m_strMatterLocator;
+   stringa                                         m_straMatterLocator;
    sp(::user::str_context)                         m_puserstrcontext;
    string                                          m_strLibraryName;
    string                                          m_strAppId;

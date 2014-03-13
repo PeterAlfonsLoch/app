@@ -3913,7 +3913,7 @@ bool base_application::initialize1()
    m_dwAlive = ::get_tick_count();
 
 
-   m_strMatterLocator = System.dir().appmatter_locator(this);
+   m_straMatterLocator.add_unique(System.dir().appmatter_locator(this));
 
 
    m_puserstrcontext = canew(::user::str_context(this));

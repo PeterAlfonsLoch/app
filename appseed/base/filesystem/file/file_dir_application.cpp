@@ -30,7 +30,7 @@ namespace file
          return m_pbaseapp->m_pbasesystem->m_spdir->locale_schema(get_app(), pszLocale, pszStyle);
       }
 
-      string application::locale_schema_matter(const char * pszLocale, const char * pszStyle, const char * pszRoot, const char * pszApp)
+      stringa application::locale_schema_matter(const char * pszLocale, const char * pszStyle, const char * pszRoot, const char * pszApp)
       {
          return m_pbaseapp->m_pbasesystem->m_spdir->locale_schema_matter(get_app(), pszLocale, pszStyle, pszRoot, pszApp);
       }

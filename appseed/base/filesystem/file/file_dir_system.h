@@ -152,8 +152,8 @@ namespace file
          virtual string time_log(const char * pszId);
 
          virtual string locale_schema(sp(base_application) papp, const string & strLocale, const string & strStyle);
-         virtual string locale_schema_matter(sp(base_application) papp, const string & strLocale, const string & strStyle, const char * pszRoot = NULL, const char * pszApp = NULL);
-         virtual string locale_schema_matter(const string & strLocator, const string & strLocale, const string & strStyle);
+         virtual stringa locale_schema_matter(sp(base_application) papp, const string & strLocale, const string & strStyle, const char * pszRoot = NULL, const char * pszApp = NULL);
+         virtual stringa locale_schema_matter(const string & strLocator, const string & strLocale, const string & strStyle);
          virtual string matter(sp(base_application) papp, const stringa & stra, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
          virtual string matter(sp(base_application) papp, const string & str, const string & str2, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
          virtual string matter(sp(base_application) papp, const string & str, const char * psz, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);

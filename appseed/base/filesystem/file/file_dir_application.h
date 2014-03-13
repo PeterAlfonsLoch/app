@@ -22,7 +22,7 @@ namespace file
 
 
          virtual string locale_schema(const char * pszLocale = NULL, const char * pszStyle = NULL);
-         virtual string locale_schema_matter(const char * pszLocale = NULL, const char * pszStyle = NULL, const char * pszRoot = NULL, const char * pszApp = NULL);
+         virtual stringa locale_schema_matter(const char * pszLocale = NULL, const char * pszStyle = NULL, const char * pszRoot = NULL, const char * pszApp = NULL);
          virtual string matter(const string & str, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
          virtual string matter(const string & str, const string & str2, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
          virtual string matter(const string & str, const char * psz, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);

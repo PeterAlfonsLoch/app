@@ -867,7 +867,7 @@ namespace file
 
       }
 
-      string system::locale_schema_matter(sp(base_application) papp, const string & strLocale, const string & strSchema, const char * pszRoot, const char * pszApp)
+      stringa system::locale_schema_matter(sp(base_application) papp, const string & strLocale, const string & strSchema, const char * pszRoot, const char * pszApp)
       {
 
          //single_lock sl(&papp->m_mutexMatterLocator, true);
@@ -893,14 +893,23 @@ namespace file
          else
          {
 
-            return path(papp->m_strMatterLocator, papp->get_locale_schema_dir(strLocale, strSchema));
+            stringa stra;
+
+            for (index i = 0; i < papp->m_straMatterLocator.get_count(); i++)
+            {
+
+               stra.add_unique(path(papp->m_straMatterLocator[i], papp->get_locale_schema_dir(strLocale, strSchema)));
+
+            }
+
+            return stra;
 
          }
 
 
       }
 
-      string system::locale_schema_matter(const string & strLocator, const string & strLocale, const string & strSchema)
+      stringa system::locale_schema_matter(const string & strLocator, const string & strLocale, const string & strSchema)
       {
 
          return path(strLocator, simple_path(strLocale, strSchema));
@@ -928,7 +937,7 @@ namespace file
       string system::matter(sp(base_application) papp, const stringa & stra, bool bDir, const char * pszRoot, const char * pszApp)
       {
 
-        ::user::str_context * pcontext = App(papp).str_context();
+         ::user::str_context * pcontext = App(papp).str_context();
 
          ::index j;
 
@@ -940,10 +949,12 @@ namespace file
 
          string strSchema;
 
+         stringa straLs;
+
          string strLs;
-         
+
          string strFile;
-         
+
          if (pszRoot != NULL && pszApp != NULL && *pszRoot != '\0' && pszApp != '\0')
          {
 
@@ -972,40 +983,31 @@ namespace file
 
                strLocale = pcontext->m_plocaleschema->m_idLocale;
                strSchema = pcontext->m_plocaleschema->m_idSchema;
-               strLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
+               straLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
 
-               strFile = System.dir().appdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), stra.implode(",") + ".map_question"));
-
-               strsize iFind = strFile.find(DIR_SEPARATOR);
-
-               if (iFind > 0)
+               for(index l = 0; l < straLs.get_count(); l++)
                {
 
-                  strFile.replace(":", "_", iFind + 1);
+                  strLs = straLs[l];
 
-               }
+                  strFile = System.dir().appdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), stra.implode(",") + ".map_question"));
 
-               strPath = Application.file().as_string(strFile);
+                  strsize iFind = strFile.find(DIR_SEPARATOR);
 
-               if (strPath.has_char())
-               {
-                  // todo: keep cache timeout information;
-                  return strPath;
-               }
+                  if (iFind > 0)
+                  {
 
-               for (j = 0; j < ca; j++)
-               {
+                     strFile.replace(":", "_", iFind + 1);
 
-                  straPath.add(path(strLs, stra[j]));
+                  }
 
-               }
+                  strPath = Application.file().as_string(strFile);
 
-               for (int32_t i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
-               {
-
-                  strLocale = pcontext->localeschema().m_idaLocale[i];
-                  strSchema = pcontext->localeschema().m_idaSchema[i];
-                  strLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
+                  if (strPath.has_char())
+                  {
+                     // todo: keep cache timeout information;
+                     return strPath;
+                  }
 
                   for (j = 0; j < ca; j++)
                   {
@@ -1014,24 +1016,40 @@ namespace file
 
                   }
 
+                  for (int32_t i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
+                  {
+
+                     strLocale = pcontext->localeschema().m_idaLocale[i];
+                     strSchema = pcontext->localeschema().m_idaSchema[i];
+                     strLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
+
+                     for (j = 0; j < ca; j++)
+                     {
+
+                        straPath.add(path(strLs, stra[j]));
+
+                     }
+
+                  }
+
+                  strLs = locale_schema_matter(papp, "en", "en");
+                  straPath.add(path(strLs, stra[0]));
+
+                  property_set set(papp);
+
+                  if (bDir)
+                  {
+                     strPath = App(papp).http().get("http://server.ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                  }
+                  else
+                  {
+                     strPath = App(papp).http().get("http://server.ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                  }
+
+                  if (strPath.has_char())
+                     goto ret;
+
                }
-
-               strLs = locale_schema_matter(papp, "en", "en");
-               straPath.add(path(strLs, stra[0]));
-
-               property_set set(papp);
-
-               if (bDir)
-               {
-                  strPath = App(papp).http().get("http://server.ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
-               }
-               else
-               {
-                  strPath = App(papp).http().get("http://server.ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
-               }
-
-               if (strPath.has_char())
-                  goto ret;
 
             }
 
@@ -1041,33 +1059,11 @@ namespace file
 
                strLocale = pcontext->m_plocaleschema->m_idLocale;
                strSchema = pcontext->m_plocaleschema->m_idSchema;
-               strLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
+               straLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
 
-               for (j = 0; j < ca; j++)
+               for (index l = 0; l < straLs.get_count(); l++)
                {
-
-                  strPath = path(strLs, stra[j]);
-
-                  if (bDir)
-                  {
-                     if (System.dir().is(strPath, get_app()))
-                        return strPath;
-                  }
-                  else
-                  {
-                     if (System.file().exists(strPath, get_app()))
-                        return strPath;
-                  }
-
-               }
-
-
-               for (int32_t i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
-               {
-
-                  strLocale = pcontext->localeschema().m_idaLocale[i];
-                  strSchema = pcontext->localeschema().m_idaSchema[i];
-                  strLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
+                  strLs = straLs[l];
 
                   for (j = 0; j < ca; j++)
                   {
@@ -1087,51 +1083,96 @@ namespace file
 
                   }
 
+
+                  for (int32_t i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
+                  {
+
+                     strLocale = pcontext->localeschema().m_idaLocale[i];
+                     strSchema = pcontext->localeschema().m_idaSchema[i];
+                     straLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
+
+                     for (index l = 0; l < straLs.get_count(); l++)
+                     {
+                        strLs = straLs[l];
+
+                        for (j = 0; j < ca; j++)
+                        {
+
+                           strPath = path(strLs, stra[j]);
+
+                           if (bDir)
+                           {
+                              if (System.dir().is(strPath, get_app()))
+                                 return strPath;
+                           }
+                           else
+                           {
+                              if (System.file().exists(strPath, get_app()))
+                                 return strPath;
+                           }
+
+                        }
+
+                     }
+
+                  }
+
                }
 
             }
+
 
 #endif
 
-            strLs = locale_schema_matter(papp, "en", "en", strRoot, strApp);
+            straLs = locale_schema_matter(papp, "en", "en", strRoot, strApp);
 
-            for (j = 0; j < ca; j++)
+            for (index l = 0; l < straLs.get_count(); l++)
             {
 
-               strPath = path(strLs, stra[j]);
+               strLs = straLs[l];
 
-               if (bDir)
+               for (j = 0; j < ca; j++)
                {
-                  if (System.dir().is(strPath, get_app()))
-                     goto ret;
+
+                  strPath = path(strLs, stra[j]);
+
+                  if (bDir)
+                  {
+                     if (System.dir().is(strPath, get_app()))
+                        goto ret;
+                  }
+                  else
+                  {
+                     if (System.file().exists(strPath, get_app()))
+                        goto ret;
+                  }
+
                }
-               else
-               {
-                  if (System.file().exists(strPath, get_app()))
-                     goto ret;
-               }
+
 
             }
-
-
-         }
 
 
             if (ca <= 0)
                return "";
 
+         }
 
 
 #ifdef MATTER_CACHE_FROM_HTTP_SERVER
 
+         {
+
+
+            stringa straPath;
+
+            strLocale  = pcontext->m_plocaleschema->m_idLocale;
+            strSchema  = pcontext->m_plocaleschema->m_idSchema;
+            straLs      = locale_schema_matter(papp, strLocale, strSchema);
+
+            for(index l = 0; l < straLs.get_count(); l++)
             {
-
-
-               stringa straPath;
-
-               strLocale  = pcontext->m_plocaleschema->m_idLocale;
-               strSchema  = pcontext->m_plocaleschema->m_idSchema;
-               strLs      = locale_schema_matter(papp, strLocale, strSchema);
+               strLs = straLs[l];
 
                strFile = System.dir().appdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), stra.implode(",") + ".map_question"));
 
@@ -1194,39 +1235,21 @@ namespace file
 
             }
 
+         }
+
 #else
 
             {
 
                strLocale = pcontext->m_plocaleschema->m_idLocale;
                strSchema = pcontext->m_plocaleschema->m_idSchema;
-               strLs = locale_schema_matter(papp, strLocale, strSchema);
+               straLs = locale_schema_matter(papp, strLocale, strSchema);
 
-               for (j = 0; j < ca; j++)
+
+               for (index l = 0; l < straLs.get_count(); l++)
                {
 
-                  strPath = path(strLs, stra[j]);
-
-                  if (bDir)
-                  {
-                     if (System.dir().is(strPath, get_app()))
-                        return strPath;
-                  }
-                  else
-                  {
-                     if (System.file().exists(strPath, get_app()))
-                        return strPath;
-                  }
-
-               }
-
-
-               for (int32_t i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
-               {
-
-                  strLocale = pcontext->localeschema().m_idaLocale[i];
-                  strSchema = pcontext->localeschema().m_idaSchema[i];
-                  strLs = locale_schema_matter(papp, strLocale, strSchema);
+                  strLs = straLs[l];
 
                   for (j = 0; j < ca; j++)
                   {
@@ -1248,26 +1271,69 @@ namespace file
 
                }
 
+
+               for (int32_t i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
+               {
+
+                  strLocale = pcontext->localeschema().m_idaLocale[i];
+                  strSchema = pcontext->localeschema().m_idaSchema[i];
+                  straLs = locale_schema_matter(papp, strLocale, strSchema);
+
+                  for (index l = 0; l < straLs.get_count(); l++)
+                  {
+
+                     strLs = straLs[l];
+
+                     for (j = 0; j < ca; j++)
+                     {
+
+                        strPath = path(strLs, stra[j]);
+
+                        if (bDir)
+                        {
+                           if (System.dir().is(strPath, get_app()))
+                              return strPath;
+                        }
+                        else
+                        {
+                           if (System.file().exists(strPath, get_app()))
+                              return strPath;
+                        }
+
+                     }
+
+                  }
+
+               }
+
             }
 
 #endif
 
-            strLs = locale_schema_matter(papp, "en", "en");
+            straLs = locale_schema_matter(papp, "en", "en");
 
-            for (j = 0; j < ca; j++)
+            for (index l = 0; l < straLs.get_count(); l++)
             {
 
-               strPath = path(strLs, stra[j]);
+               strLs = straLs[l];
 
-               if (bDir)
+
+               for (j = 0; j < ca; j++)
                {
-                  if (System.dir().is(strPath, get_app()))
-                     goto ret;
-               }
-               else
-               {
-                  if (System.file().exists(strPath, get_app()))
-                     goto ret;
+
+                  strPath = path(strLs, stra[j]);
+
+                  if (bDir)
+                  {
+                     if (System.dir().is(strPath, get_app()))
+                        goto ret;
+                  }
+                  else
+                  {
+                     if (System.file().exists(strPath, get_app()))
+                        goto ret;
+                  }
+
                }
 
             }
@@ -1348,6 +1414,8 @@ namespace file
          string strPath;
          
          string strFile;
+
+         stringa straLs;
          
          if (pszRoot != NULL && pszApp != NULL && *pszRoot != '\0' && *pszApp != '\0')
          {
@@ -1426,26 +1494,12 @@ namespace file
 
                strLocale = pcontext->m_plocaleschema->m_idLocale;
                strSchema = pcontext->m_plocaleschema->m_idSchema;
-               strLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
-               strPath = path(strLs, str, str2);
-               if (bDir)
-               {
-                  if (System.dir().is(strPath, papp))
-                     goto ret;
-               }
-               else
-               {
-                  if (System.file().exists(strPath, papp))
-                     goto ret;
-               }
+               straLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
 
-
-               for (int32_t i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
+               for (index l = 0; l < straLs.get_count(); l++)
                {
+                  strLs = straLs[l];
 
-                  strLocale = pcontext->localeschema().m_idaLocale[i];
-                  strSchema = pcontext->localeschema().m_idaSchema[i];
-                  strLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
                   strPath = path(strLs, str, str2);
                   if (bDir)
                   {
@@ -1461,17 +1515,50 @@ namespace file
                }
 
 
-               strLs = locale_schema_matter(papp, "en", "en", strRoot, strApp);
-               strPath = path(strLs, str, str2);
-               if (bDir)
+               for (int32_t i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
                {
-                  if (System.dir().is(strPath, papp))
-                     goto ret;
+
+                  strLocale = pcontext->localeschema().m_idaLocale[i];
+                  strSchema = pcontext->localeschema().m_idaSchema[i];
+                  straLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
+
+                  for (index l = 0; l < straLs.get_count(); l++)
+                  {
+                     strLs = straLs[l];
+
+                     strPath = path(strLs, str, str2);
+                     if (bDir)
+                     {
+                        if (System.dir().is(strPath, papp))
+                           goto ret;
+                     }
+                     else
+                     {
+                        if (System.file().exists(strPath, papp))
+                           goto ret;
+                     }
+                  }
+
                }
-               else
+
+
+               straLs = locale_schema_matter(papp, "en", "en", strRoot, strApp);
+
+               for (index l = 0; l < straLs.get_count(); l++)
                {
-                  if (System.file().exists(strPath, papp))
-                     goto ret;
+                  strLs = straLs[l];
+
+                  strPath = path(strLs, str, str2);
+                  if (bDir)
+                  {
+                     if (System.dir().is(strPath, papp))
+                        goto ret;
+                  }
+                  else
+                  {
+                     if (System.file().exists(strPath, papp))
+                        goto ret;
+                  }
                }
 
             }
@@ -1552,17 +1639,24 @@ namespace file
 
             strLocale  = pcontext->m_plocaleschema->m_idLocale;
             strSchema  = pcontext->m_plocaleschema->m_idSchema;
-            strLs      = locale_schema_matter(papp, strLocale, strSchema);
-            strPath           = path(strLs, str, str2);
-            if(bDir)
+            straLs      = locale_schema_matter(papp, strLocale, strSchema);
+
+            for (index l = 0; l < straLs.get_count(); l++)
             {
-               if(System.dir().is(strPath, papp))
-                  goto ret;
-            }
-            else
-            {
-               if(System.file().exists(strPath, papp))
-                  goto ret;
+               strLs = straLs[l];
+
+               strPath = path(strLs, str, str2);
+               if (bDir)
+               {
+                  if (System.dir().is(strPath, papp))
+                     goto ret;
+               }
+               else
+               {
+                  if (System.file().exists(strPath, papp))
+                     goto ret;
+               }
+
             }
 
 
@@ -1571,33 +1665,47 @@ namespace file
 
                strLocale         = pcontext->localeschema().m_idaLocale[i];
                strSchema         = pcontext->localeschema().m_idaSchema[i];
-               strLs             = locale_schema_matter(papp, strLocale, strSchema);
-               strPath           = path(strLs, str, str2);
-               if(bDir)
+               straLs             = locale_schema_matter(papp, strLocale, strSchema);
+
+               for (index l = 0; l < straLs.get_count(); l++)
                {
-                  if(System.dir().is(strPath, papp))
+                  strLs = straLs[l];
+
+                  strPath = path(strLs, str, str2);
+                  if (bDir)
+                  {
+                     if (System.dir().is(strPath, papp))
+                        goto ret;
+                  }
+                  else
+                  {
+                     if (System.file().exists(strPath, papp))
+                        goto ret;
+                  }
+
+               }
+
+            }
+
+
+            straLs             = locale_schema_matter(papp, "en", "en");
+
+            for (index l = 0; l < straLs.get_count(); l++)
+            {
+               strLs = straLs[l];
+
+               strPath = path(strLs, str, str2);
+               if (bDir)
+               {
+                  if (System.dir().is(strPath, papp))
                      goto ret;
                }
                else
                {
-                  if(System.file().exists(strPath, papp))
+                  if (System.file().exists(strPath, papp))
                      goto ret;
                }
 
-            }
-
-
-            strLs             = locale_schema_matter(papp, "en", "en");
-            strPath           = path(strLs, str, str2);
-            if(bDir)
-            {
-               if(System.dir().is(strPath, papp))
-                  goto ret;
-            }
-            else
-            {
-               if(System.file().exists(strPath, papp))
-                  goto ret;
             }
 
 
@@ -1781,12 +1889,22 @@ ret:
 
          string strPath;
 
+         stringa straLs;
+
+         string strLs;
+
          string strLocale  = pcontext->m_plocaleschema->m_idLocale;
          string strSchema   = pcontext->m_plocaleschema->m_idSchema;
-         string strLs      = locale_schema_matter(strLocator, strLocale, strSchema);
-         strPath           = path(strLs, str, str2);
-         if(System.file().exists(strPath, get_app()))
-            return strPath;
+         straLs      = locale_schema_matter(strLocator, strLocale, strSchema);
+         for (index l = 0; l < straLs.get_count(); l++)
+         {
+            strLs = straLs[l];
+
+            strPath = path(strLs, str, str2);
+            if (System.file().exists(strPath, get_app()))
+               return strPath;
+
+         }
 
 
          for(int32_t i = 0; i < pcontext->m_plocaleschema->m_idaLocale.get_count(); i++)
@@ -1794,19 +1912,49 @@ ret:
 
             strLocale         = pcontext->m_plocaleschema->m_idaLocale[i];
             strSchema          = pcontext->m_plocaleschema->m_idaSchema[i];
-            strLs             = locale_schema_matter(strLocator, strLocale, strSchema);
-            strPath           = path(strLs, str, str2);
-            if(System.file().exists(strPath, get_app()))
+            straLs             = locale_schema_matter(strLocator, strLocale, strSchema);
+
+            for (index l = 0; l < straLs.get_count(); l++)
+            {
+               strLs = straLs[l];
+
+               strPath = path(strLs, str, str2);
+               if (System.file().exists(strPath, get_app()))
+                  return strPath;
+
+            }
+
+         }
+
+
+         straLs             = locale_schema_matter(strLocator, "en", "en");
+
+         for (index l = 0; l < straLs.get_count(); l++)
+         {
+
+            strLs = straLs[l];
+
+            strPath = path(strLs, str, str2);
+
+            if (System.file().exists(strPath, get_app()))
                return strPath;
 
          }
 
 
-         strLs             = locale_schema_matter(strLocator, "en", "en");
-         strPath           = path(locale_schema_matter(strLocator, "se", "se"), str, str2);
-         if(System.file().exists(strPath, get_app()))
-            return strPath;
+         straLs = locale_schema_matter(strLocator, "se", "se");
 
+         for (index l = 0; l < straLs.get_count(); l++)
+         {
+
+            strLs = straLs[l];
+
+            strPath = path(strLs, str, str2);
+
+            if (System.file().exists(strPath, get_app()))
+               return strPath;
+
+         }
 
          return path(strLs, str, str2);
 
