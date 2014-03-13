@@ -233,7 +233,7 @@ namespace install
 
       m_bProgressModeAppInstall = true;
 
-      m_strSpaIgnitionBaseUrl = "http://" + m_strVersion + ".spaignition.api.server.ca2.cc";
+      m_strSpaIgnitionBaseUrl = "http://api.ca2.cc/spaignition";
 
       int32_t iRet = ca2_build_version();
 
@@ -2846,6 +2846,8 @@ RetryHost:
       strUrl += m_strInstallLocale;
       strUrl += "&schema=";
       strUrl += m_strInstallSchema;
+      strUrl += "&version=";
+      strUrl += m_strVersion;
 
       string str;
       int32_t iRetry = 0;
