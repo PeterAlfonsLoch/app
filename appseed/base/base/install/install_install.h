@@ -55,6 +55,8 @@ namespace install
 
 
       virtual bool is_file_ok(const char * path1, const char * pszTemplate, const char * pszFormatBuild);
+      virtual bool reference_is_file_ok(const char * path1, const char * pszTemplate, const char * pszVersion, const char * pszFormatBuild);
+
       virtual int32_t synch_install(const char * pszCommandLine, const char * pszBuild, bool bBackground = true);
       virtual int32_t asynch_install(const char * pszCommandLine, const char * pszBuild, bool bBackground = true);
 
@@ -119,6 +121,8 @@ virtual bool is_installed(const char * pszVersion, const char * pszBuild, const 
       virtual void get_scalar_minimum(e_scalar escalar, int64_t & i);
       virtual void get_scalar(e_scalar escalar, int64_t & i);
       virtual void get_scalar_maximum(e_scalar escalar, int64_t & i);
+
+
 
 
    };
