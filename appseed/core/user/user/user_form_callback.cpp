@@ -11,6 +11,19 @@ namespace user
 
    form_callback::~form_callback()
    {
+
+      strsp(form_view)::pair * ppair = m_mapview.PGetFirstAssoc();
+
+      while (ppair != NULL)
+      {
+         
+         ppair->m_element2->DestroyWindow();
+
+         ppair = m_mapview.PGetNextAssoc(ppair);
+
+      }
+
+
    }
 
    void form_callback::on_update(::user::form * pview, sp(::user::impact) pSender, LPARAM lHint, object* phint)

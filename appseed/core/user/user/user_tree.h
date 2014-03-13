@@ -109,6 +109,7 @@ namespace user
       void _001SetExpandImage(const char * pszMatter);
       void UpdateHover();
       virtual void _001OnOpenItem(::data::tree_item * pitem, ::action::context actioncontext);
+      virtual void _001OnItemContextMenu(::data::tree_item * pitem, ::action::context actioncontext, ::user::tree * ptree, point pt);
       void _001ExpandItem(::data::tree_item * pitem, ::action::context actioncontext, bool bExpand = true, bool bRedraw = true, bool bLayout = true);
       virtual void _001OnItemExpand(::data::tree_item * pitem, ::action::context actioncontext);
       virtual void _001OnItemCollapse(::data::tree_item * pitem, ::action::context actioncontext);
@@ -117,19 +118,19 @@ namespace user
       int32_t _001GetItemHeight();
       virtual index _001GetIndentation();
 
-
-
       sp(::data::tree_item) _001HitTest(POINT pt, ::user::e_tree_element & eelement);
+      
       void _001OnClick(UINT uiFlags, point point);
 
+      void _001OnRightClick(UINT uiFlags, point point);
 
       virtual void perform_click();
 
+      virtual void perform_right_click(UINT uiFlags, point pt);
 
       virtual int32_t get_wheel_scroll_delta();
 
       virtual void _001OnUpdateScrollPosition();
-
 
       sp(image_list) get_image_list();
 
@@ -141,6 +142,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnLButtonDown)
       DECL_GEN_SIGNAL(_001OnLButtonUp)
       DECL_GEN_SIGNAL(_001OnLButtonDblClk)
+      DECL_GEN_SIGNAL(_001OnRButtonDown)
+      DECL_GEN_SIGNAL(_001OnRButtonUp)
       DECL_GEN_SIGNAL(_001OnTimer)
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnVScroll)

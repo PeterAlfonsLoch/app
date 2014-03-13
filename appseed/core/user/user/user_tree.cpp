@@ -515,19 +515,6 @@ namespace user
       pobj->m_bRet = true;
    }
 
-   void tree::_001OnLButtonDown(signal_details * pobj)
-   {
-      SCAST_PTR(::message::mouse, pmouse, pobj)
-         /*if(System.get_focus_guie() != this)
-         {
-         System.set_active_guie(this);
-         }*/
-
-      pmouse->previous();
-      pobj->m_bRet = true;
-      pmouse->set_lresult(1);
-   }
-
    void tree::_001OnLButtonDblClk(signal_details * pobj)
    {
       SCAST_PTR(::message::mouse, pmouse, pobj)
@@ -568,6 +555,19 @@ namespace user
       }*/
 
       // trans   pobj->m_bRet = lresult != 0;
+   }
+
+   void tree::_001OnLButtonDown(signal_details * pobj)
+   {
+      SCAST_PTR(::message::mouse, pmouse, pobj)
+         /*if(System.get_focus_guie() != this)
+         {
+         System.set_active_guie(this);
+         }*/
+
+         pmouse->previous();
+      pobj->m_bRet = true;
+      pmouse->set_lresult(1);
    }
 
    void tree::_001OnLButtonUp(signal_details * pobj)
@@ -632,6 +632,63 @@ namespace user
 
    }
 
+
+   void tree::perform_right_click(UINT nFlags, point point)
+   {
+
+      _001OnRightClick(nFlags, point);
+
+      sp(::data::tree_item) pitem;
+
+      ::user::e_tree_element eelement;
+
+      ScreenToClient(&point);
+
+      pitem = _001HitTest(point, eelement);
+
+      if (pitem != NULL)
+      {
+
+         if (eelement == tree_element_image || eelement == tree_element_text)
+         {
+
+            _001OnItemContextMenu(pitem, ::action::source_user, this, point);
+
+         }
+
+      }
+
+   }
+
+
+   void tree::_001OnRButtonDown(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::mouse, pmouse, pobj)
+
+      pmouse->previous();
+
+      pobj->m_bRet = true;
+
+      pmouse->set_lresult(1);
+
+   }
+
+
+   void tree::_001OnRButtonUp(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::mouse, pmouse, pobj)
+
+      perform_right_click(pmouse->m_nFlags, pmouse->m_pt);
+
+      pobj->m_bRet = true;
+
+      pmouse->set_lresult(1);
+
+   }
+
+
    void tree::_001OnTimer(signal_details * pobj)
    {
       SCAST_PTR(::message::timer, ptimer, pobj)
@@ -674,6 +731,26 @@ namespace user
    }*/
 
    void tree::_001OnClick(UINT uiFlags, point point)
+   {
+      UNREFERENCED_PARAMETER(point);
+      //      if(uiFlags & MK_SHIFT)
+      //    {
+      //     if(uiFlags & MK_CONTROL)
+      //   {
+      // }
+      //}
+      //else
+      {
+
+         //      Ex1TreeItemMetaData * pdata = _001HitTest(point);
+         //      if(pdata != NULL)
+         //      {
+         //       m_pmetadataSelected = pdata;
+         //   }
+      }
+   }
+
+   void tree::_001OnRightClick(UINT uiFlags, point point)
    {
       UNREFERENCED_PARAMETER(point);
       //      if(uiFlags & MK_SHIFT)
@@ -744,6 +821,10 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK , pdispatch, this, &tree::_001OnLButtonDblClk);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP     , pdispatch, this, &tree::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN   , pdispatch, this, &tree::_001OnLButtonDown);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONUP     , pdispatch, this, &tree::_001OnLButtonUp);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN   , pdispatch, this, &tree::_001OnLButtonDown);
+      IGUI_WIN_MSG_LINK(WM_RBUTTONUP     , pdispatch, this, &tree::_001OnRButtonUp);
+      IGUI_WIN_MSG_LINK(WM_RBUTTONDOWN   , pdispatch, this, &tree::_001OnRButtonDown);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE     , pdispatch, this, &tree::_001OnMouseMove);
       IGUI_WIN_MSG_LINK(WM_MOUSELEAVE    , pdispatch, this, &tree::_001OnMouseLeave);
       IGUI_WIN_MSG_LINK(WM_HSCROLL       , pdispatch, this, &tree::_001OnHScroll);
@@ -1034,7 +1115,6 @@ namespace user
    }
 
 
-
    void tree::_001OnOpenItem(::data::tree_item * pitem, ::action::context actioncontext)
    {
 
@@ -1046,6 +1126,20 @@ namespace user
       pitem->m_ptree->_001OnOpenItem(pitem, actioncontext);
 
    }
+
+
+   void tree::_001OnItemContextMenu(::data::tree_item * pitem, ::action::context actioncontext, ::user::tree * ptree, point pt)
+   {
+
+      if (actioncontext.contains(this))
+         return;
+
+      actioncontext.add(this);
+
+      pitem->m_ptree->_001OnItemContextMenu(pitem, actioncontext, ptree, pt);
+
+   }
+
 
    void tree::UpdateHover()
    {

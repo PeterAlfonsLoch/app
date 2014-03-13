@@ -482,6 +482,18 @@ namespace data
    }
 
 
+   void tree::_001OnItemContextMenu(::data::tree_item * pitem, ::action::context actioncontext, ::user::tree * ptree, point pt)
+   {
+
+      for (index i = 0; i < m_treeptra.get_count(); i++)
+      {
+
+         m_treeptra[i]._001OnItemContextMenu(pitem, actioncontext, ptree, pt);
+
+      }
+
+   }
+
 
    ::count   tree::selection_set(::data::tree_item_ptr_array & itemptra)
    {
