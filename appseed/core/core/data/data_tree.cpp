@@ -7,8 +7,11 @@ namespace data
 
    tree::tree(sp(base_application) papp) :
       element(papp),
-      ::data::data(papp)
+      ::data::data(papp),
+      m_mutex(papp)
    {
+
+      m_bFill = false;
       
       m_proot = new tree_item;
 
@@ -561,6 +564,50 @@ namespace data
 
    void tree::on_update(sp(::user::impact) pSender, LPARAM lHint, ::object* pHint)
    {
+
+   }
+
+
+
+   void tree::on_fill_children()
+   {
+
+   }
+
+
+   void tree::start_fill_children()
+   {
+
+      single_lock sl(&m_mutex, true);
+
+      m_bFill = true;
+
+      __begin_thread(get_app(), thread_proc_fill_children, this);
+
+   }
+
+   UINT c_cdecl tree::thread_proc_fill_children(LPVOID lpParameter)
+   {
+
+      tree * ptree = (tree *) lpParameter;
+
+      Sleep(284);
+
+      try
+      {
+         
+         ptree->on_fill_children();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      ptree->m_bFill = false;
+
+      return 0;
+
 
    }
 

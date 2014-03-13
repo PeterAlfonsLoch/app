@@ -16,6 +16,8 @@ namespace data
       spa(::user::tree)                   m_treeptraBound;
       sp(tree_item)                       m_proot;
       sp(image_list)                      m_pimagelist;
+      mutex                               m_mutex;
+      bool                                m_bFill;
 
 
 
@@ -75,6 +77,12 @@ namespace data
       virtual bool      selection_set(index iIndex, ::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
 
       virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, ::object* pHint);
+
+
+      virtual void on_fill_children();
+      virtual void start_fill_children();
+
+      static UINT c_cdecl thread_proc_fill_children(LPVOID lpParameter);
 
    };
 
