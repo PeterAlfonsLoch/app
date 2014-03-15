@@ -10,6 +10,8 @@ html_form::html_form(sp(base_application) papp) :
 
    m_sphtmldata = new html::data(papp);
 
+   m_sphtmldata->m_pguie = this;
+
 }
 
 html_form::~html_form()
