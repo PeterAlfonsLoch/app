@@ -76,8 +76,10 @@ namespace user
 
 #endif
 
+   
    class control_event;
    class frame_window;
+   class menu_base;
 
 
    class CLASS_DECL_BASE interaction :
@@ -209,6 +211,7 @@ namespace user
       COLORREF                            m_crDefaultBackgroundColor;
       sp(::thread)                        m_pthread;
 
+      sp(::user::interaction)             m_spmenuPopup;
 
 
       interaction();

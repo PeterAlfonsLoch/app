@@ -306,7 +306,6 @@ namespace user
 
 #include "user/menu/user_menu_button.h"
 #include "user/menu/user_menu_item.h"
-#include "user/menu/user_menu_base.h"
 #include "user/menu/user_menu.h"
 #include "user/menu/user_menu_list_window.h"
 #include "user/menu/user_menu_list_view.h"

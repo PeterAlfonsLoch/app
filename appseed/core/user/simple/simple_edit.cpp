@@ -4,15 +4,18 @@
 simple_edit::simple_edit(sp(base_application) papp) :
    element(papp),
    ::user::interaction(papp),
-   
    ::user::scroll_view(papp),
+   ::data::data_listener(papp),
+   ::colorertake5::base_editor(papp),
    ::user::edit_plain_text(papp)
 {
 
 }
 
+
 simple_edit::~simple_edit()
 {
+
 }
 
 

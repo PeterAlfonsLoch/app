@@ -171,6 +171,7 @@ retry_license:
          System.factory().creatable_small < simple_document > ();
          System.factory().creatable_small < simple_printer_list_view > ();
          System.factory().creatable_small < simple_combo_list > ();
+         System.factory().creatable_small < simple_edit_plain_text >();
 
          System.factory().creatable_small < ::user::tree >();
 

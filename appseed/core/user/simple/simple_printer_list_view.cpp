@@ -93,7 +93,7 @@ void simple_printer_list_view::_001OnClick(UINT nFlags, point point)
       item.m_iSubItem = 0;
       item.m_iListItem = -1;
       m_listdata._001GetItemText(&item);
-      ::user::print_job * pprintjob = new ::user::print_job(get_app());
+      sp(::user::print_job) pprintjob = Application.alloc(System.type_info < ::user::print_job > ());
       pprintjob->m_phprinter = System.get_printer(item.m_strText);
       m_pview->collaborate(pprintjob);
       pprintjob->begin();

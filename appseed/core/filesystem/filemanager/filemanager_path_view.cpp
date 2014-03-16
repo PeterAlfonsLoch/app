@@ -11,17 +11,21 @@ namespace filemanager
       ::filemanager::data_interface(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
+      ::data::data_listener(papp),
+      ::colorertake5::base_editor(papp),
       ::user::edit_plain_text_view(papp)
    {
 
          m_bVoidSync = false;
 
+   }
 
-      }
 
    void path_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
+
       data_interface::on_update(pSender, lHint, phint);
+
       if (phint != NULL)
       {
          if (base < update_hint >::bases(phint))
@@ -170,6 +174,17 @@ namespace filemanager
    }
 
 
+   void path_view::_001OnDraw(::draw2d::graphics * pdc)
+   {
+
+      if (false)
+      {
+
+         ::user::edit_plain_text_view::_001OnDraw(pdc);
+
+      }
+
+   }
 
 
 } // namespace filemanager

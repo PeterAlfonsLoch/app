@@ -8,6 +8,8 @@ namespace user
    combo_box::combo_box(sp(base_application) papp) :
       element(papp),
       ::user::scroll_view(papp),
+      ::data::data_listener(papp),
+      ::colorertake5::base_editor(papp),
       ::user::edit_plain_text(papp)
    {
 

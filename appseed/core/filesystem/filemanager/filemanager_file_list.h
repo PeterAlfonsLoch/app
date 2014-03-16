@@ -53,12 +53,13 @@ namespace filemanager
 
       };
 
-      context_menu                      m_contextmenu;
+      context_menu                     m_contextmenu;
       stringa                          m_straOpenWith;
       bool                             m_bFileSize;
       bool                             m_bShow;
-      uint32_t                            m_dwLastFileSize;
+      uint32_t                         m_dwLastFileSize;
 
+      
 
 
       file_list(sp(base_application) papp);

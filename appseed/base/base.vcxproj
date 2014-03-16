@@ -2948,6 +2948,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\userpresence\userpresence_user_presence.h" />
     <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\user_buffer.h" />
+    <ClInclude Include="user\user\user_button.h" />
     <ClInclude Include="user\user\user_check_interface.h" />
     <ClInclude Include="user\user\user_control_bar.h" />
     <ClInclude Include="user\user\user_control_event.h" />
@@ -2965,6 +2966,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_keyboard_focus.h" />
     <ClInclude Include="user\user\user_keyboard_layout.h" />
     <ClInclude Include="user\user\user_key_enum.h" />
+    <ClInclude Include="user\user\user_menu_base.h" />
+    <ClInclude Include="user\user\user_menu_button.h" />
+    <ClInclude Include="user\user\user_menu_item.h" />
     <ClInclude Include="user\user\user_message.h" />
     <ClInclude Include="user\user\user_mouse_focus.h" />
     <ClInclude Include="user\user\user_object.h" />

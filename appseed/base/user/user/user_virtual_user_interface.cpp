@@ -1358,6 +1358,19 @@ bool virtual_user_interface::ShowWindow(int32_t nCmdShow)
 
    }
 
+   if (m_pguie != NULL)
+   {
+
+      m_pguie->send_message(WM_SHOWWINDOW, m_bVisible ? 1 : 0);
+
+   }
+   else
+   {
+
+      send_message(WM_SHOWWINDOW, m_bVisible ? 1 : 0);
+
+   }
+
    return m_bVisible ? TRUE : FALSE;
 
 }

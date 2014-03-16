@@ -96,6 +96,8 @@ namespace user
 
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &::user::edit_plain_text::_002OnTimer);
 
+      IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &::user::edit_plain_text::_001OnSize);
+
       connect_update_cmd_ui("edit_focus_copy", &edit_plain_text::_001OnUpdateEditFocusCopy);
       connect_command("edit_focus_copy", &edit_plain_text::_001OnEditFocusCopy);
       connect_update_cmd_ui("edit_focus_paste", &edit_plain_text::_001OnUpdateEditFocusPaste);
@@ -182,6 +184,8 @@ namespace user
 
    void edit_plain_text::_001OnDraw(::draw2d::graphics * pdc)
    {
+
+      //return;
 
       pdc->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
@@ -2237,6 +2241,7 @@ namespace user
          TRACE("Failed to create control");
          return false;
       }
+      ShowWindow(SW_HIDE);
       m_bMultiLine = pdescriptor->has_function(control::function_edit_multi_line);
       return control::create_control(pdescriptor);
    }
@@ -2316,6 +2321,37 @@ namespace user
       pobj->m_bRet = true;
 
    }
+
+
+   void edit_plain_text::_001OnSize(signal_details * pobj)
+   {
+
+      UNREFERENCED_PARAMETER(pobj);
+
+   }
+
+   void edit_plain_text::layout()
+   {
+
+      scroll_view::layout();
+
+   }
+
+   bool edit_plain_text::ShowWindow(int32_t nCmdShow)
+   {
+
+      if (nCmdShow != SW_HIDE)
+      {
+
+         TRACE("Going to Show edit_plain_text");
+
+      }
+
+      return ::user::scroll_view::ShowWindow(nCmdShow);
+
+   }
+
+
 
 
 } // namespace core

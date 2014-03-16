@@ -10,6 +10,7 @@ namespace userfs
    {
       m_iIndex = -1;
       m_iArrange = -1;
+      m_iImage = -1;
    }
 
    list_item::list_item(const list_item & listitem)

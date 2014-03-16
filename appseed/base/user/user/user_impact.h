@@ -49,7 +49,9 @@ namespace user
 
 
 
-      sp(::user::object)    m_spdocument;
+      sp(::user::object)         m_spdocument;
+
+
 
       impact();
       virtual ~impact();

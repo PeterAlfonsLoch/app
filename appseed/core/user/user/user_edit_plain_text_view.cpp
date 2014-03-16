@@ -8,11 +8,14 @@ namespace user
    edit_plain_text_view::edit_plain_text_view(sp(base_application) papp) :
       element(papp),
       ::user::interaction(papp),
-      
       ::user::scroll_view(papp),
+      ::data::data_listener(papp),
+      ::colorertake5::base_editor(papp),
       ::user::edit_plain_text(papp)
    {
+
    }
+
 
    void edit_plain_text_view::install_message_handling(::message::dispatch * pinterface)
    {

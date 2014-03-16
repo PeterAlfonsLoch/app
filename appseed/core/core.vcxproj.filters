@@ -827,16 +827,7 @@
     <ClInclude Include="user\menu\user_menu.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
-    <ClInclude Include="user\menu\user_menu_base.h">
-      <Filter>Header Files\user\menu</Filter>
-    </ClInclude>
-    <ClInclude Include="user\menu\user_menu_button.h">
-      <Filter>Header Files\user\menu</Filter>
-    </ClInclude>
     <ClInclude Include="user\menu\user_menu_central.h">
-      <Filter>Header Files\user\menu</Filter>
-    </ClInclude>
-    <ClInclude Include="user\menu\user_menu_item.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
     <ClInclude Include="user\menu\user_menu_list_view.h">
@@ -2177,9 +2168,6 @@
     <ClInclude Include="user\user\user_bitmap_button.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_button.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_button_control.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -2422,6 +2410,9 @@
     </ClInclude>
     <ClInclude Include="user\uinteraction\frame\frame_control_box.h">
       <Filter>Header Files\user\uinteraction\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_button.h">
+      <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

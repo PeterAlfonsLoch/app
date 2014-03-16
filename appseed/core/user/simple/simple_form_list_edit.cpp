@@ -4,15 +4,20 @@
 simple_form_list_edit::simple_form_list_edit(sp(base_application) papp) :
     element(papp),
    ::user::interaction(papp),
-   
    ::user::scroll_view(papp),
+   ::data::data_listener(papp),
+   ::colorertake5::base_editor(papp),
    ::user::edit_plain_text(papp)
 {
+
 }
+
 
 simple_form_list_edit::~simple_form_list_edit()
 {
+
 }
+
 
 bool simple_form_list_edit::OnEraseBkgnd(::draw2d::graphics * pgraphics)
 {

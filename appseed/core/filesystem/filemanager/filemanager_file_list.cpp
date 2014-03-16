@@ -359,12 +359,12 @@ namespace filemanager
          }
          else if (menu.LoadXmlMenu(GetFileManager()->get_filemanager_data()->m_pschema->m_strFilePopup))
          {
-            ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
+            m_spmenuPopup = canew(::user::menu(get_app(), menu.GetSubMenu(0)));
             //SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
             //ASSERT(pPopup != NULL);
-            sp(::user::frame_window) pframe = (GetTopLevelFrame());
+            //sp(::user::frame_window) pframe = (GetTopLevelFrame());
 
-            pframe->SetActiveView(this);
+            //pframe->SetActiveView(this);
 
             //IContextMenu * pcontextmenu;
             //int32_t iInsertIndex = menu.FindMenuItemPos(GetFileManager()->get_filemanager_data()->m_pschema->m_uiFilePopupSubstId);
@@ -392,7 +392,8 @@ namespace filemanager
                }
             }*/
 
-            menuPopup.TrackPopupMenu(0, point.x, point.y, pframe);
+            //menuPopup.TrackPopupMenu(0, point.x, point.y, pframe);
+            m_spmenuPopup.cast < ::user::menu > ->TrackPopupMenu(0, point.x, point.y, this);
          }
       }
       else
@@ -400,7 +401,8 @@ namespace filemanager
          ::user::menu menu(get_app());
          if (menu.LoadXmlMenu(GetFileManager()->get_filemanager_data()->m_pschema->m_strPopup))
          {
-            ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
+            m_spmenu = canew(::user::menu(get_app(), menu.GetSubMenu(0)));
+            //::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
             //ASSERT(pPopup != NULL);
             //sp(::user::frame_window) pframe = GetTopLevelFrame();
 
@@ -431,11 +433,14 @@ namespace filemanager
 
             pframe->SetActiveView(this);
 
-            menuPopup.TrackPopupMenu(0, point.x, point.y, pframe);
+            m_spmenu->TrackPopupMenu(0, point.x, point.y, pframe);
 
          }
+
       }
+
    }
+
 
    bool file_list::pre_create_window(CREATESTRUCT& cs)
    {
@@ -723,6 +728,8 @@ namespace filemanager
 
       if (range.get_item_count() == 1 && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound())
       {
+
+         pcontrol->m_iEditItem = range.ItemAt(0).get_lower_bound();
 
          _001PlaceControl(pcontrol);
 
@@ -1475,8 +1482,8 @@ namespace filemanager
       //pcontrol->descriptor().m_id = _vms::FILE_MANAGER_ID_FILE_NAME;
       control.set_data_type(user::control::DataTypeString);
       control.add_function(user::control::function_vms_data_edit);
-      //control.m_typeinfo = System.type_info < simple_edit_plain_text > ();
-      control.m_typeinfo = sp(type)();
+      control.m_typeinfo = System.type_info < simple_edit_plain_text > ();
+      //control.m_typeinfo = sp(type)();
       control.m_iSubItem = i;
       control.m_id = 1000 + i;
       index iControl = _001AddControl(control);

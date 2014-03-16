@@ -4,10 +4,18 @@
 simple_edit_plain_text::simple_edit_plain_text(sp(base_application) papp) :
    element(papp),
    ::user::interaction(papp),
-   
    ::user::scroll_view(papp),
+   ::data::data_listener(papp),
+   ::colorertake5::base_editor(papp),
    ::user::edit_plain_text(papp)
 {
+
+}
+
+
+simple_edit_plain_text::~simple_edit_plain_text()
+{
+   
 }
 
 
@@ -25,8 +33,28 @@ void simple_edit_plain_text::install_message_handling(::message::dispatch * pint
 
 void simple_edit_plain_text::_001OnShowWindow(signal_details * pobj)
 {
-   UNREFERENCED_PARAMETER(pobj);
-//   SCAST_PTR(::message::show_window, pshowwindow, pobj);
+
+   SCAST_PTR(::message::show_window, pshowwindow, pobj);
+
+   if (pshowwindow->m_bShow)
+   {
+      TRACE("Show event true simple_edit_plain_text");
+   }
+
+}
+
+
+bool simple_edit_plain_text::ShowWindow(int32_t nCmdShow)
+{
+
+   if (nCmdShow != SW_HIDE)
+   {
+
+      TRACE("Going to Show simple_edit_plain_text");
+
+   }
+
+   return ::user::edit_plain_text::ShowWindow(nCmdShow);
 
 }
 

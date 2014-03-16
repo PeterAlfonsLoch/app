@@ -11,8 +11,8 @@ namespace user
 
    class CLASS_DECL_CORE edit_plain_text :
       virtual public scroll_view,
-      public colorertake5::base_editor,
-      public ::data::data_listener
+      virtual public colorertake5::base_editor,
+      virtual public ::data::data_listener
    {
    public:
 
@@ -199,11 +199,16 @@ namespace user
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnContextMenu)
       DECL_GEN_SIGNAL(_001OnSetCursor)
+      DECL_GEN_SIGNAL(_001OnSize)
 
 
       virtual sp(::data::item) on_allocate_item();
 
       void set_root(plain_text_tree * pdata, bool bOwnData);
+
+      virtual void layout();
+
+      virtual bool ShowWindow(int32_t nCmdShow);
 
    };
 

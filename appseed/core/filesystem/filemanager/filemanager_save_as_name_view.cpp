@@ -4,6 +4,8 @@
 FileManagerSaveAsView::FileManagerSaveAsView(sp(base_application) papp) :
    element(papp),
    ::filemanager::data_interface(papp),
+   data::data_listener(papp),
+   colorertake5::base_editor(papp),
    ::user::edit_plain_text_view(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp)

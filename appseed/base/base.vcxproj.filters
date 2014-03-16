@@ -720,9 +720,6 @@
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{6dfb842d-9db9-46a1-a7d1-6f696d6287bc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\user\user\NewFilter1">
-      <UniqueIdentifier>{f934c7e3-9f5b-43f2-9b49-7a4340ae2ddb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\base\openssl\engines">
       <UniqueIdentifier>{fc0ace0a-2174-4a64-b90a-08ca0c9bfea4}</UniqueIdentifier>
     </Filter>
@@ -3610,6 +3607,18 @@
     </ClInclude>
     <ClInclude Include="framework\idn_framework.h">
       <Filter>Header Files\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_menu_base.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_menu_item.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_menu_button.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_button.h">
+      <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -7667,6 +7676,9 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

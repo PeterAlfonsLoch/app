@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace state
 {
+
    enum e_state
    {
       unchecked,
@@ -16,7 +18,7 @@ namespace state
 namespace user
 {
 
-   class CLASS_DECL_CORE button :
+   class CLASS_DECL_BASE button :
       virtual public control,
       virtual public check_interface
    {
@@ -56,7 +58,7 @@ namespace user
       virtual void _002OnDraw(::draw2d::graphics * pdc);
 
       DECL_GEN_SIGNAL(_001OnCreate)
-      virtual bool _001IsWindowEnabled();
+         virtual bool _001IsWindowEnabled();
       virtual void _001EnableWindow(bool bEnable = true);
       virtual void _001SetCheck(check::e_check check, ::action::context actioncontext);
       virtual check::e_check _001GetCheck();
@@ -66,19 +68,19 @@ namespace user
       virtual bool _001IsPressed();
 
 
-//      void _002OnDraw(::draw2d::graphics * pdc);
+      //      void _002OnDraw(::draw2d::graphics * pdc);
 
       virtual index get_hover();
 
 
-//      virtual void ResizeToFit();
+      //      virtual void ResizeToFit();
       virtual void _001Layout();
 
 
 
       virtual index hit_test(point pt, e_element & eelement);
 
-//      virtual ::draw2d::font * _001GetFont();
+      //      virtual ::draw2d::font * _001GetFont();
       void _001SetButtonText(const char * lpcszText);
       void _001SetButtonTextId(const char * lpcszText);
       string _001GetButtonText();
@@ -92,4 +94,8 @@ namespace user
 
    };
 
+
 } // namespace user
+
+
+

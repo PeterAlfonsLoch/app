@@ -4762,12 +4762,17 @@ namespace user
 
    void list::_001OnMouseMove(signal_details * pobj)
    {
+      
       SCAST_PTR(::message::mouse, pmouse, pobj)
-         pmouse->set_lresult(1);
+      
+      pmouse->set_lresult(1);
+
       point pt = pmouse->m_pt;
+
       ScreenToClient(&pt);
 
       pmouse->previous(); // give chance to child control
+
       if(m_bDrag)
       {
          index iItemOld = m_iItemDrop;
@@ -4783,27 +4788,32 @@ namespace user
 
       track_mouse_leave();
 
-      UpdateHover();
-      pobj->m_bRet = true;
-
-
-      index iItemEnter;
-      index iSubItemEnter;
-      point point;
-      //Application.get_cursor_pos(&point);
-      //ScreenToClient(&point);
-
-      if(_001DisplayHitTest(pt, iItemEnter, iSubItemEnter))
+      if (m_spmenuPopup.is_null())
       {
-         if(m_bHoverSelect &&
-            (m_iSubItemEnter != iSubItemEnter ||
-            m_iItemEnter != iItemEnter))
+
+         UpdateHover();
+         pobj->m_bRet = true;
+
+
+         index iItemEnter;
+         index iSubItemEnter;
+         point point;
+         //Application.get_cursor_pos(&point);
+         //ScreenToClient(&point);
+
+         if (_001DisplayHitTest(pt, iItemEnter, iSubItemEnter))
          {
-            m_iMouseFlagEnter = pmouse->m_nFlags;
-            m_iItemEnter = iItemEnter;
-            m_iSubItemEnter = iSubItemEnter;
-            SetTimer(12321, 840, NULL);
+            if (m_bHoverSelect &&
+               (m_iSubItemEnter != iSubItemEnter ||
+               m_iItemEnter != iItemEnter))
+            {
+               m_iMouseFlagEnter = pmouse->m_nFlags;
+               m_iItemEnter = iItemEnter;
+               m_iSubItemEnter = iSubItemEnter;
+               SetTimer(12321, 840, NULL);
+            }
          }
+
       }
 
 
