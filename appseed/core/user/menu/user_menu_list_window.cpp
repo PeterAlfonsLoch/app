@@ -9,23 +9,26 @@ namespace user
 
    menu_list_window::menu_list_window(sp(base_application) papp) :
       element(papp),
-      
       menu_base(papp),
+      menu(papp),
       m_buttonClose(papp)
    {
+
       m_bAutoDelete        = true;
       m_bOwnItem           = false;
       m_pwndNotify         = NULL;
-      m_pitem = new menu_item(papp);
+      m_pitem              = new menu_item(papp);
       m_etranslucency      = TranslucencyPresent;
       m_pschema            = NULL;
       m_bAutoClose         = true;
+
    }
 
-   menu_list_window::menu_list_window(sp(base_application) papp, menu_item * pitem) :
+
+   menu_list_window::menu_list_window(sp(base_application) papp, sp(menu_item) pitem) :
       element(papp),
-      
       menu_base(papp),
+      menu(papp),
       m_buttonClose(papp)
    {
       m_pwndNotify         = NULL;
@@ -170,7 +173,7 @@ namespace user
       return true;
    }
 
-   void menu_list_window::_UpdateCmdUi(menu_item * pitemParent)
+   void menu_list_window::_UpdateCmdUi(sp(menu_item) pitemParent)
    {
 
       if(pitemParent->m_spitema == NULL)
@@ -209,7 +212,7 @@ namespace user
       pobj->m_bRet = false;
    }
 
-   void menu_list_window::_CalcSize(menu_item * pitemParent, ::draw2d::graphics * pdc, int32_t & iMaxWidth, int32_t & iMaxHeight)
+   void menu_list_window::_CalcSize(sp(menu_item) pitemParent, ::draw2d::graphics * pdc, int32_t & iMaxWidth, int32_t & iMaxHeight)
    {
       if(pitemParent->m_spitema == NULL)
          return;
@@ -245,8 +248,10 @@ namespace user
       _CalcSize(m_pitem, pdc, iMaxWidth, iMaxHeight);
       m_iItemHeight = iMaxHeight + 6 + 2;
       m_size.cx = iMaxWidth + 4;
-      m_size.cy = m_iHeaderHeight +
-         m_pitem->m_iSeparatorCount * 3 + m_pitem->m_iFullHeightItemCount * m_iItemHeight + 4;
+
+      sp(menu_item) pitem = get_item();
+
+      m_size.cy = m_iHeaderHeight + pitem->m_iSeparatorCount * 3 + pitem->m_iFullHeightItemCount * m_iItemHeight + 4;
    //   int32_t iMaxHeight = 0;
      // int32_t iMaxWidth = 0;
       rect rect(4, m_iHeaderHeight + 4, m_size.cx - 8, 4);
@@ -267,10 +272,12 @@ namespace user
    }
 
 
-   void menu_list_window::_LayoutButtons(menu_item * pitemParent, int32_t iMaxWidth, LPRECT lprect, LPCRECT lpcrectBound)
+   void menu_list_window::_LayoutButtons(sp(menu_item) pitemParent, int32_t iMaxWidth, LPRECT lprect, LPCRECT lpcrectBound)
    {
+
       if(pitemParent->m_spitema == NULL)
          return;
+
       for(int32_t i = 0; i < pitemParent->m_spitema->get_size(); i++)
       {
          menu_item * pitem = pitemParent->m_spitema->element_at(i);
@@ -330,7 +337,7 @@ namespace user
    }
 
 
-   void menu_list_window::_CreateButtons(menu_item * pitemParent)
+   void menu_list_window::_CreateButtons(sp(menu_item) pitemParent)
    {
       if(pitemParent->m_spitema == NULL)
          return;
@@ -359,6 +366,11 @@ namespace user
 
    bool menu_list_window::BaseOnControlEvent(::user::control_event * pevent)
    {
+
+      sp(menu_item) pitemThis = get_item();
+
+      sp(menu_item_ptra) spitema = pitemThis->m_spitema;
+
       if(pevent->m_eevent == ::user::event_button_clicked)
       {
          if(pevent->m_puie == &m_buttonClose)
@@ -380,7 +392,9 @@ namespace user
          {
             if(pevent->m_puie->m_id != "separator")
             {
-               menu_item * pitem = m_pitem->find(pevent->m_puie->m_id);
+
+               menu_item * pitem = pitemThis->find(pevent->m_puie->m_id);
+
                if(pitem != NULL && !pitem->m_bPopup)
                {
                   m_pwndNotify->_001SendCommand(pitem->m_id);

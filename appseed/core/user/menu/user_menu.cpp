@@ -15,7 +15,6 @@ namespace user
       m_bAutoDelete        = true;
       m_pschema            = NULL;
       m_etranslucency      = TranslucencyPresent;
-      _m_pmenu             = NULL;
       m_pitem              = new menu_item(papp);
       m_bOwnItem           = true;
       m_oswindowParent         = NULL;
@@ -25,7 +24,7 @@ namespace user
 
    }
 
-   menu::menu(sp(base_application) papp, menu_item * pitem) :
+   menu::menu(sp(base_application) papp, sp(menu_item) pitem) :
       element(papp),
       menu_base(papp),
       m_buttonClose(papp)
@@ -37,7 +36,6 @@ namespace user
       m_bAutoDelete        = true;
       m_etranslucency      = TranslucencyPresent;
       m_pschema            = NULL;
-      _m_pmenu             = NULL;
       m_pitem              = pitem;
       m_bOwnItem           = false;
    }
@@ -62,16 +60,24 @@ namespace user
 
    menu_item * menu::GetSubMenu(int32_t i)
    {
-      return m_pitem->m_spitema->element_at(i);
+
+      return get_item()->m_spitema->element_at(i);
+
    }
 
-   bool menu::TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent)
+
+   bool menu::TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent, sp(menu_base) * pthis)
    {
+
       ASSERT(oswindowParent != NULL);
-      _m_pmenu = new menu(get_app(), m_pitem);
-      _m_pmenu->set_app(get_app());
-      return _m_pmenu->_TrackPopupMenu(iFlags, x, y, oswindowParent, NULL);
+
+      if (!menu_base::TrackPopupMenu(iFlags, x, y, oswindowParent, pthis))
+         return false;
+
+      return _TrackPopupMenu(iFlags, x, y, oswindowParent, NULL);
+
    }
+
 
    bool menu::_TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent, menu * pmenuParent)
    {
@@ -137,10 +143,15 @@ namespace user
       int32_t iMaxHeight = size.cy;
       int32_t iMaxWidth = size.cx;
       m_iHeaderHeight = size.cy;
-      for(int32_t i = 0; i < m_pitem->m_spitema->get_size(); i++)
+
+      sp(menu_item) pitem = get_item();
+
+      sp(menu_item_ptra) spitema = pitem->m_spitema;
+
+      for (int32_t i = 0; i < spitema->get_size(); i++)
       {
-         class size size = pdc->GetTextExtent(m_pitem->m_spitema->element_at(i)->m_button._001GetButtonText());
-         if(m_pitem->m_spitema->element_at(i)->IsPopup())
+         class size size = pdc->GetTextExtent(spitema->element_at(i)->m_button._001GetButtonText());
+         if (spitema->element_at(i)->IsPopup())
             size.cx += 12 + 16;
          if(size.cy > iMaxHeight)
             iMaxHeight = size.cy;
@@ -150,8 +161,8 @@ namespace user
       m_iItemHeight = iMaxHeight + 6 + 2;
       m_size.cx = iMaxWidth + 4 + 20 + 8;
 
-      ::count iItemCount = m_pitem->m_spitema->get_size();
-      int32_t iSeparatorCount = m_pitem->m_iSeparatorCount;
+      ::count iItemCount = spitema->get_size();
+      int32_t iSeparatorCount = pitem->m_iSeparatorCount;
 //      int32_t iFullHeightItemCount = m_pitem->m_iFullHeightItemCount;
 
    //   int32_t iMaxHeight = 0;
@@ -160,7 +171,7 @@ namespace user
       string str;
       for(int32_t i = 0; i < iItemCount; i++)
       {
-         menu_item * pitem = m_pitem->m_spitema->element_at(i);
+         menu_item * pitem = spitema->element_at(i);
          if(pitem->m_id == "separator")
          {
             rect.bottom = rect.top + 3;
@@ -329,7 +340,13 @@ namespace user
          }
          else
          {
-            menu_item * pitem = m_pitem->m_spitema->find(pevent->m_puie->m_id);
+
+            sp(menu_item) pitemThis = get_item();
+
+            sp(menu_item_ptra) spitema = pitemThis->m_spitema;
+
+            sp(menu_item) pitem = spitema->find(pevent->m_puie->m_id);
+
             if(pitem != NULL && !pitem->m_bPopup)
             {
                if(::str::begins((const char *) pevent->m_puie->m_id, "syscommand::"))
@@ -376,15 +393,21 @@ namespace user
                }
                else*/
                {
-                  menu_item * pitem = m_pitem->m_spitema->find(pevent->m_puie->m_id);
+
+                  sp(menu_item) pitemThis = get_item();
+
+                  sp(menu_item_ptra) spitema = pitemThis->m_spitema;
+
+                  sp(menu_item) pitem = spitema->find(pevent->m_puie->m_id);
+
                   if(pitem != NULL)
                   {
                      if(pitem->m_bPopup)
                      {
                         m_idSubMenu = pevent->m_puie->m_id;
-                        m_psubmenu = new menu(get_app(), m_pitem->m_spitema->find(pevent->m_puie->m_id));
+                        m_psubmenu = new menu(get_app(), spitema->find(pevent->m_puie->m_id));
                         rect rect;
-                        m_pitem->m_spitema->find(pevent->m_puie->m_id)->m_button.GetWindowRect(rect);
+                        spitema->find(pevent->m_puie->m_id)->m_button.GetWindowRect(rect);
                         m_psubmenu->_TrackPopupMenu(0,
                            rect.right,
                            rect.top, m_oswindowParent, this);
@@ -408,6 +431,11 @@ namespace user
    void menu::_001OnTimer(signal_details * pobj)
    {
       SCAST_PTR(::message::timer, ptimer, pobj);
+
+      sp(menu_item) pitemThis = get_item();
+
+      sp(menu_item_ptra) spitema = pitemThis->m_spitema;
+
       if(ptimer->m_nIDEvent == BaseWndMenuTimer)
       {
          KillTimer(BaseWndMenuTimer);
@@ -420,9 +448,9 @@ namespace user
          if(m_idTimerMenu.has_char())
          {
             m_idSubMenu = m_idTimerMenu;
-            m_psubmenu = new menu(get_app(), m_pitem->m_spitema->find(m_idTimerMenu));
+            m_psubmenu = new menu(get_app(), spitema->find(m_idTimerMenu));
             rect rect;
-            m_pitem->m_spitema->find(m_idTimerMenu)->m_button.GetWindowRect(rect);
+            spitema->find(m_idTimerMenu)->m_button.GetWindowRect(rect);
             m_psubmenu->_TrackPopupMenu(0,
                rect.right,
                rect.top, m_oswindowParent, this);
@@ -431,16 +459,16 @@ namespace user
       }
       else if(ptimer->m_nIDEvent == BaseWndMenuCmdUi)
       {
-         if(m_pitem->m_spitema != NULL)
+         if(spitema != NULL)
          {
             menu_button_cmd_ui cmdui(get_app());
-            cmdui.m_pitema          = m_pitem->m_spitema;
-            for(int32_t i = 0; i < m_pitem->m_spitema->get_size(); i++)
+            cmdui.m_pitema          = spitema;
+            for(int32_t i = 0; i < spitema->get_size(); i++)
             {
 
                cmdui.m_iIndex    = i;
-               cmdui.m_id        = m_pitem->m_spitema->element_at(i)->m_id;
-               cmdui.m_pOther    = (sp(::user::interaction)) &m_pitem->m_spitema->element_at(i)->m_button;
+               cmdui.m_id        = spitema->element_at(i)->m_id;
+               cmdui.m_pOther    = (sp(::user::interaction)) &spitema->element_at(i)->m_button;
 
                sp(::user::interaction) pwndParent = m_oswindowParent;
                if(pwndParent != NULL)
@@ -461,7 +489,9 @@ namespace user
 
    void menu::install_message_handling(::message::dispatch * pinterface)
    {
-      ::user::interaction::install_message_handling(pinterface);
+      
+      ::user::menu_base::install_message_handling(pinterface);
+
       IGUI_WIN_MSG_LINK(MessageDestroyWindow, pinterface, this, &menu::OnMessageDestroyWindow);
       IGUI_WIN_MSG_LINK(WM_IDLEUPDATECMDUI  , pinterface, this, &menu::_001OnIdleUpdateCmdUI);
       IGUI_WIN_MSG_LINK(WM_CREATE           , pinterface, this, &menu::_001OnCreate);
@@ -487,16 +517,21 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::message::base, pbase, pobj)
-      if(m_pitem->m_spitema != NULL)
+
+      sp(menu_item) pitemThis = get_item();
+
+      sp(menu_item_ptra) spitema = pitemThis->m_spitema;
+
+      if(spitema != NULL)
       {
          menu_button_cmd_ui cmdui(get_app());
-         cmdui.m_pitema          = m_pitem->m_spitema;
-         for(int32_t i = 0; i < m_pitem->m_spitema->get_size(); i++)
+         cmdui.m_pitema          = spitema;
+         for(int32_t i = 0; i < spitema->get_size(); i++)
          {
 
             cmdui.m_iIndex    = i;
-            cmdui.m_id        = m_pitem->m_spitema->element_at(i)->m_id;
-            cmdui.m_pOther    = (sp(::user::interaction)) &m_pitem->m_spitema->element_at(i)->m_button;
+            cmdui.m_id        = spitema->element_at(i)->m_id;
+            cmdui.m_pOther    = (sp(::user::interaction)) &spitema->element_at(i)->m_button;
 
             sp(::user::interaction) pwndParent = m_oswindowParent;
             if(pwndParent != NULL)
@@ -567,8 +602,19 @@ namespace user
 
    void menu::_001OnShowWindow(signal_details * pobj)
    {
+      
       SCAST_PTR(::message::show_window, pshow, pobj)
+   
       TRACE("menu::_001OnShowWindow bShow = %d", pshow->m_bShow);
+
+   }
+
+
+   sp(menu_item) menu::get_item()
+   {
+
+      return m_pitem;
+
    }
 
 } // namespace user

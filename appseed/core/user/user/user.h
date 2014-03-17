@@ -323,6 +323,8 @@ namespace user
 
 #include "user_image_manager.h"
 
+#include "user_core.h"
+
 
 
 

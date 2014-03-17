@@ -628,11 +628,11 @@ namespace bergedge
       {
          ::user::menu menu(get_app());
          menu.LoadXmlMenu("bergedge\\popup_winactionarea.xml");
-         ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
+         m_spmenuPopup = canew(::user::menu(get_app(), menu.GetSubMenu(0)));
          GetParentFrame()->SetActiveView(this);
          point pt;
          System.get_cursor_pos(&pt);
-         menuPopup.TrackPopupMenu(0, pt.x, pt.y, GetParentFrame());
+         m_spmenuPopup->TrackPopupMenu(0, pt.x, pt.y, GetParentFrame(), &m_spmenuPopup);
       }
 
    }

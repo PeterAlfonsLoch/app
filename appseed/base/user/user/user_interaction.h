@@ -211,7 +211,7 @@ namespace user
       COLORREF                            m_crDefaultBackgroundColor;
       sp(::thread)                        m_pthread;
 
-      sp(::user::interaction)             m_spmenuPopup;
+      sp(::user::menu_base)               m_spmenuPopup;
 
 
       interaction();

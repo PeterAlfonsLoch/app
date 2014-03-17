@@ -8,6 +8,7 @@ namespace user
    menu_list_view::menu_list_view(sp(base_application) papp) :
       element(papp),
       menu_base(papp),
+      menu(papp),
       menu_list_window(papp)
    {
       m_etranslucency      = TranslucencyPresent;

@@ -1531,7 +1531,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\colorertake5\colorertake5_Writer.h" />
     <ClInclude Include="user\colorertake5\colorertake5_xmldom.h" />
     <ClInclude Include="user\menu\user_menu.h" />
+    <ClInclude Include="user\menu\user_menu_button.h" />
     <ClInclude Include="user\menu\user_menu_central.h" />
+    <ClInclude Include="user\menu\user_menu_item.h" />
     <ClInclude Include="user\menu\user_menu_list_view.h" />
     <ClInclude Include="user\menu\user_menu_list_window.h" />
     <ClInclude Include="user\simple\simple_button.h" />
@@ -1594,6 +1596,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user\user_control.h" />
     <ClInclude Include="user\user\user_control_event.h" />
     <ClInclude Include="user\user\user_control_property.h" />
+    <ClInclude Include="user\user\user_core.h" />
     <ClInclude Include="user\user\user_data_exchange.h" />
     <ClInclude Include="user\user\user_dock_context.h" />
     <ClInclude Include="user\user\user_dock_state.h" />
@@ -2139,12 +2142,11 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\colorertake5\colorertake5_text_lines.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_helpers.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp" />
-    <ClCompile Include="user\menu\userbase_menu.cpp" />
-    <ClCompile Include="user\menu\userbase_menu_base.cpp" />
-    <ClCompile Include="user\menu\userbase_menu_button.cpp" />
-    <ClCompile Include="user\menu\userbase_menu_central.cpp" />
-    <ClCompile Include="user\menu\userbase_menu_item.cpp" />
-    <ClCompile Include="user\menu\userbase_menu_list_window.cpp" />
+    <ClCompile Include="user\menu\user_menu.cpp" />
+    <ClCompile Include="user\menu\user_menu_button.cpp" />
+    <ClCompile Include="user\menu\user_menu_central.cpp" />
+    <ClCompile Include="user\menu\user_menu_item.cpp" />
+    <ClCompile Include="user\menu\user_menu_list_window.cpp" />
     <ClCompile Include="user\simple\simple_button.cpp" />
     <ClCompile Include="user\simple\simple_child_frame.cpp" />
     <ClCompile Include="user\simple\simple_combo_box.cpp" />
@@ -2196,6 +2198,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\user\user_combo_list.cpp" />
     <ClCompile Include="user\user\user_control.cpp" />
     <ClCompile Include="user\user\user_control_property.cpp" />
+    <ClCompile Include="user\user\user_core.cpp" />
     <ClCompile Include="user\user\user_data_exchange.cpp" />
     <ClCompile Include="user\user\user_document_manager.cpp" />
     <ClCompile Include="user\user\user_edit_plain_text.cpp" />

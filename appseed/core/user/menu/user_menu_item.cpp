@@ -7,6 +7,7 @@ namespace user
 
    menu_item::menu_item(sp(base_application) papp) :
       element(papp),
+      menu_base_item(papp),
       m_button(papp)
    {
       m_spitema = new menu_item_ptra(this);
@@ -16,13 +17,21 @@ namespace user
 
    menu_item::~menu_item()
    {
+
       m_button.DestroyWindow();
+
    }
+
 
    void menu_item::add_item(menu_item * pitem)
    {
+
       m_spitema->add(pitem);
+
    }
+
+
+
 
    bool menu_item::create_menu(const stringa & straCommand, const stringa & straCommandTitle)
    {

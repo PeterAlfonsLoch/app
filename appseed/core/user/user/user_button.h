@@ -18,7 +18,7 @@ namespace state
 namespace user
 {
 
-   class CLASS_DECL_BASE button :
+   class CLASS_DECL_CORE button :
       virtual public control,
       virtual public check_interface
    {

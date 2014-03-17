@@ -17,7 +17,7 @@ namespace userex
 
 
    class CLASS_DECL_CORE userex :
-      virtual public ::base_departament,
+      virtual public ::user::core,
       virtual public ::user::server,
       virtual public BaseMenuCentralContainer,
       virtual public ::database::client

@@ -23,8 +23,7 @@ namespace user
    class form_callback;
 
    class CLASS_DECL_CORE control :
-      virtual public impact,
-      virtual public ::database::user::interaction
+      virtual public impact
    {
    public:
 

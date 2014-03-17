@@ -158,65 +158,8 @@ retry_license:
       }*/
 
 
-      /* xxx 
-
-      if(Application.is_system())
-      {
-
-         System.factory().cloneable_small < int_biunique > ();
-         System.factory().creatable_small < ::user::edit_plain_text > ();
-         System.factory().cloneable_small < XfplayerViewLine > ();
-         System.factory().creatable_small < ::user::place_holder > ();
-         System.factory().creatable_small < ::user::place_holder_container > ();
 
 
-         System.factory().cloneable_small < ::user::split_layout > ();
-         System.factory().cloneable_small < ::user::split_bar >();
-         System.factory().cloneable_small < ::user::split_view::Pane >();
-         System.factory().cloneable_small < simple_frame_window >();
-         System.factory().creatable_small < MetaButton >();
-         System.factory().creatable_small < BaseButtonControl >();
-         System.factory().creatable_small < ::user::menu_list_view >();
-         System.factory().cloneable_small < simple_child_frame >();
-         System.factory().cloneable_small < simple_main_frame >();
-         System.factory().creatable_small < simple_button >();
-         System.factory().cloneable_small < ::user::object >();
-         System.factory().cloneable_small < ::user::split_view >();
-         System.factory().cloneable_small < ::user::edit_plain_text_view >();
-         System.factory().creatable_small < simple_list_view >();
-         System.factory().creatable_small < simple_document > ();
-         System.factory().creatable_small < simple_printer_list_view > ();
-         System.factory().creatable_small < simple_combo_list > ();
-
-         System.factory().creatable_small < ::user::tree >();
-
-
-         System.factory().creatable_small < SimplePushButton > ();
-
-
-      // menu
-      System.factory().creatable_small < menu_document > ();
-      System.factory().creatable_small < menu_frame > ();
-      System.factory().creatable_small < menu_view > ();
-
-      // form
-      System.factory().creatable_small < form_document > ();
-      System.factory().creatable_small < ::userex::pane_tab_view > ();
-      System.factory().creatable_small < form_frame > ();
-      System.factory().creatable_small < form_child_frame > ();
-      System.factory().creatable_small < form_view > ();
-
-      System.factory().creatable_small < ::userex::hour_list_view > ();
-      System.factory().creatable_small < ::userex::minute_list_view > ();
-      System.factory().creatable_small < ::userex::second_list_view > ();
-
-
-
-
-      }
-
-
-      */
 
       //if(Application.m_pdocmanager != NULL)
         // Application.m_pdocmanager->add_document_template(NULL);

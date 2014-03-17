@@ -2414,6 +2414,15 @@
     <ClInclude Include="user\user\user_button.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="user\menu\user_menu_button.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\user_menu_item.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_core.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="compress\compress_archive.cpp">
@@ -2766,24 +2775,6 @@
     </ClCompile>
     <ClCompile Include="user\userhtml\userhtml_view_update_hint.cpp">
       <Filter>Source Files\user\userhtml</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu\userbase_menu_list_window.cpp">
-      <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu\userbase_menu.cpp">
-      <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu\userbase_menu_base.cpp">
-      <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu\userbase_menu_button.cpp">
-      <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu\userbase_menu_central.cpp">
-      <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu\userbase_menu_item.cpp">
-      <Filter>Source Files\user\menu</Filter>
     </ClCompile>
     <ClCompile Include="user\uinteraction\uinteraction_frame.cpp">
       <Filter>Source Files\user\uinteraction</Filter>
@@ -3945,6 +3936,24 @@
     </ClCompile>
     <ClCompile Include="user\uinteraction\frame\frame_control_box.cpp">
       <Filter>Source Files\user\uinteraction\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\user_menu.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\user_menu_button.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\user_menu_central.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\user_menu_item.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\user_menu_list_window.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_core.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

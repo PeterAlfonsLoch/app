@@ -393,7 +393,7 @@ namespace filemanager
             }*/
 
             //menuPopup.TrackPopupMenu(0, point.x, point.y, pframe);
-            m_spmenuPopup.cast < ::user::menu > ->TrackPopupMenu(0, point.x, point.y, this);
+            m_spmenuPopup->TrackPopupMenu(0, point.x, point.y, this, &m_spmenuPopup);
          }
       }
       else
@@ -401,7 +401,7 @@ namespace filemanager
          ::user::menu menu(get_app());
          if (menu.LoadXmlMenu(GetFileManager()->get_filemanager_data()->m_pschema->m_strPopup))
          {
-            m_spmenu = canew(::user::menu(get_app(), menu.GetSubMenu(0)));
+            m_spmenuPopup = canew(::user::menu(get_app(), menu.GetSubMenu(0)));
             //::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
             //ASSERT(pPopup != NULL);
             //sp(::user::frame_window) pframe = GetTopLevelFrame();
@@ -433,7 +433,7 @@ namespace filemanager
 
             pframe->SetActiveView(this);
 
-            m_spmenu->TrackPopupMenu(0, point.x, point.y, pframe);
+            m_spmenuPopup->TrackPopupMenu(0, point.x, point.y, pframe, &m_spmenuPopup);
 
          }
 
@@ -666,16 +666,16 @@ namespace filemanager
       if(straCommand.get_size() > 0)
       {
          
-         ::user::menu menu(get_app());
+         m_spmenuPopup = canew(::user::menu(get_app()));
          
          point ptCursor;
          
          Session.get_cursor_pos(&ptCursor);
       
-         if(menu.create_menu(straCommand, straCommandTitle))
+         if(m_spmenuPopup->create_menu(straCommand, straCommandTitle))
          {
 
-            menu.TrackPopupMenu(0, ptCursor.x, ptCursor.y, GetParentFrame());
+            m_spmenuPopup->TrackPopupMenu(0, ptCursor.x, ptCursor.y, GetParentFrame(), &m_spmenuPopup);
 
          }
 

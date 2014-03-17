@@ -982,8 +982,8 @@ namespace user
 
       ::user::menu menu(get_app());
       menu.LoadXmlMenu("system\\edit_focus_popup.xml");
-      ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
-      menuPopup.TrackPopupMenu(0, pmouse->m_pt.x, pmouse->m_pt.y, GetParentFrame());
+      m_spmenuPopup = canew(::user::menu(get_app(), menu.GetSubMenu(0)));
+      m_spmenuPopup->TrackPopupMenu(0, pmouse->m_pt.x, pmouse->m_pt.y, GetParentFrame(), &m_spmenuPopup);
 
       pmouse->set_lresult(1);
       pmouse->m_bRet = true;

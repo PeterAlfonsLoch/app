@@ -7,18 +7,18 @@ namespace user
    class menu_item_ptra;
 
    class CLASS_DECL_CORE menu_item :
-      virtual public ::object
+      virtual public menu_base_item
    {
    public:
 
 
       id                   m_id;
       sp(menu_item_ptra)   m_spitema;
-      int32_t                  m_iFullHeightItemCount;
-      int32_t                  m_iSeparatorCount;
+      int32_t              m_iFullHeightItemCount;
+      int32_t              m_iSeparatorCount;
       menu_button          m_button;
       bool                 m_bPopup;
-      int32_t                  m_iLevel;
+      int32_t              m_iLevel;
       menu_base *          m_pbase;
 
 

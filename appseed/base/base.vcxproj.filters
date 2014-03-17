@@ -3611,13 +3611,7 @@
     <ClInclude Include="user\user\user_menu_base.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_menu_item.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_menu_button.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_button.h">
+    <ClInclude Include="user\user\user_menu_base_item.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
@@ -7489,6 +7483,12 @@
     <ClCompile Include="framework\idn_framework.c">
       <Filter>Source Files\framework</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\user_menu_base.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_menu_base_item.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -7676,6 +7676,15 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

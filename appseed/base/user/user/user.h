@@ -365,10 +365,10 @@ CLASS_DECL_BASE char * ::core::TaskStringW2A(const wchar_t * lpw);
 
 #include "user_printer.h"
 #include "user_print_job.h"
+
+
+#include "user_menu_base_item.h"
 #include "user_menu_base.h"
-#include "user_button.h"
-#include "user_menu_button.h"
-#include "user_menu_item.h"
 
 
 
