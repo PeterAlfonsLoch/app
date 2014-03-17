@@ -20,7 +20,7 @@ namespace net
 
       ::sockets::smtp_socket socket(handler);
 
-      if(!socket.open("mail.ca2.cc", 25))
+      if(!socket.open((const string &) string("mail.ca2.cc"), (port_t) 25))
          return false;
 
       socket.m_estate = ::sockets::smtp_socket::state_initial;
