@@ -494,14 +494,14 @@ namespace userstack
 
       if(get_view_id() == ::bergedge::PaneViewWinActionArea)
       {
-         ::user::menu menu(get_app());
-         menu.LoadXmlMenu("bergedge\\popup_winactionarea.xml");
-         ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
-         GetParentFrame()->SetActiveView(this);
-         point pt;
-         System.get_cursor_pos(&pt);
-         menuPopup.TrackPopupMenu(0, pt.x, pt.y, GetParentFrame());
+
+         track_popup_xml_matter_menu("bergedge/popup_winactionarea.xml", 0);
+
       }
+
+
+
+
 
    }
 

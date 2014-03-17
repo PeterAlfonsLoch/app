@@ -357,85 +357,18 @@ namespace filemanager
                   pframe);
             }*/
          }
-         else if (menu.LoadXmlMenu(GetFileManager()->get_filemanager_data()->m_pschema->m_strFilePopup))
+         else
          {
-            m_spmenuPopup = canew(::user::menu(get_app(), menu.GetSubMenu(0)));
-            //SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
-            //ASSERT(pPopup != NULL);
-            //sp(::user::frame_window) pframe = (GetTopLevelFrame());
 
-            //pframe->SetActiveView(this);
+            track_popup_xml_matter_menu(GetFileManager()->get_filemanager_data()->m_pschema->m_strFilePopup, 0, pobj);
 
-            //IContextMenu * pcontextmenu;
-            //int32_t iInsertIndex = menu.FindMenuItemPos(GetFileManager()->get_filemanager_data()->m_pschema->m_uiFilePopupSubstId);
-   /*         if(iInsertIndex >= 0)
-            {
-               pPopup->DeleteMenu(iInsertIndex, MF_BYPOSITION);
-               hr = m_spshellfolder->GetUIObjectOf(
-                  NULL,
-                  1,
-                  (LPCITEMIDLIST *) &m_itema.get_item(iItem).m_lpiidlRelative,
-                  IID_IContextMenu,
-                  NULL,
-                  (void **) &m_contextmenu.m_pcontextmenu);
-
-
-               if(SUCCEEDED(hr))
-               {
-                  hr = m_contextmenu.m_pcontextmenu->QueryContextMenu(
-                        pPopup->GetSafeHmenu(),
-                        iInsertIndex,
-                        SHELL_COMMAND_FIRST,
-                        SHELL_COMMAND_LAST,
-                        CMF_NORMAL);
-
-               }
-            }*/
-
-            //menuPopup.TrackPopupMenu(0, point.x, point.y, pframe);
-            m_spmenuPopup->TrackPopupMenu(0, point.x, point.y, this, &m_spmenuPopup);
          }
+
       }
       else
       {
-         ::user::menu menu(get_app());
-         if (menu.LoadXmlMenu(GetFileManager()->get_filemanager_data()->m_pschema->m_strPopup))
-         {
-            m_spmenuPopup = canew(::user::menu(get_app(), menu.GetSubMenu(0)));
-            //::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
-            //ASSERT(pPopup != NULL);
-            //sp(::user::frame_window) pframe = GetTopLevelFrame();
 
-
-
-   /*         hr = m_spshellfolderParent->GetUIObjectOf(
-               NULL,
-               1,
-               (LPCITEMIDLIST *) &m_lpiidlRelative,
-               IID_IContextMenu,
-               NULL,
-               (void **) &m_contextmenu.m_pcontextmenu);
-
-
-            if(SUCCEEDED(hr))
-            {
-               hr = m_contextmenu.m_pcontextmenu->QueryContextMenu(
-                     pPopup->GetSafeHmenu(),
-                     0,
-                     SHELL_COMMAND_FIRST,
-                     SHELL_COMMAND_LAST,
-                     CMF_NORMAL);
-
-            }*/
-
-
-            sp(::user::frame_window) pframe = (GetTopLevelFrame());
-
-            pframe->SetActiveView(this);
-
-            m_spmenuPopup->TrackPopupMenu(0, point.x, point.y, pframe, &m_spmenuPopup);
-
-         }
+         track_popup_xml_matter_menu(GetFileManager()->get_filemanager_data()->m_pschema->m_strPopup, 0, pobj);
 
       }
 

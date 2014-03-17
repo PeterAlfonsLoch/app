@@ -619,6 +619,7 @@ namespace bergedge
       }*/
    }
 
+
    void pane_view::OnFileManagerOpenContextMenu(::filemanager::data * pdata)
    {
 
@@ -626,16 +627,13 @@ namespace bergedge
 
       if(get_view_id() == ::bergedge::PaneViewWinActionArea)
       {
-         ::user::menu menu(get_app());
-         menu.LoadXmlMenu("bergedge\\popup_winactionarea.xml");
-         m_spmenuPopup = canew(::user::menu(get_app(), menu.GetSubMenu(0)));
-         GetParentFrame()->SetActiveView(this);
-         point pt;
-         System.get_cursor_pos(&pt);
-         m_spmenuPopup->TrackPopupMenu(0, pt.x, pt.y, GetParentFrame(), &m_spmenuPopup);
+
+         track_popup_xml_matter_menu("bergedge/popup_winactionarea.xml", 0);
+
       }
 
    }
+
 
    /*void pane_view::OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, ::fs::item & item)
    {

@@ -9,7 +9,7 @@ namespace user
 
 
    class CLASS_DECL_BASE menu_base :
-      virtual public ::user::interaction
+      virtual public ::database::user::interaction
    {
    public:
 

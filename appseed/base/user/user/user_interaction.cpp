@@ -3670,6 +3670,159 @@ namespace user
 
    }
 
+   bool interaction::track_popup_menu(sp(::user::menu_base_item) pitem, int32_t iFlags)
+   {
+
+      point pt;
+
+      Application.get_cursor_pos(&pt);
+
+      return track_popup_menu(pitem, iFlags, pt.x, pt.y);
+
+   }
+
+
+   bool interaction::track_popup_menu(sp(::xml::node) lpnode, int32_t iFlags)
+   {
+
+      point pt;
+
+      Application.get_cursor_pos(&pt);
+
+      return track_popup_menu(lpnode, iFlags, pt.x, pt.y);
+
+   }
+
+
+   bool interaction::track_popup_xml_matter_menu(const char * pszMatter, int32_t iFlags)
+   {
+
+      point pt;
+
+      Application.get_cursor_pos(&pt);
+
+      return track_popup_xml_matter_menu(pszMatter, iFlags, pt.x, pt.y);
+
+   }
+
+
+
+   bool interaction::track_popup_menu(sp(::user::menu_base_item) pitem, int32_t iFlags, signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::mouse, pmouse, pobj);
+
+      point pt = pmouse->m_pt;
+
+      ScreenToClient(&pt);
+
+      return track_popup_menu(pitem, iFlags, pt.x, pt.y);
+
+   }
+
+
+   bool interaction::track_popup_menu(sp(::xml::node) lpnode, int32_t iFlags, signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::mouse, pmouse, pobj);
+
+      point pt = pmouse->m_pt;
+
+      ScreenToClient(&pt);
+
+      return track_popup_menu(lpnode, iFlags, pt.x, pt.y);
+
+   }
+
+
+   bool interaction::track_popup_xml_matter_menu(const char * pszMatter, int32_t iFlags, signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::mouse, pmouse, pobj);
+
+      point pt = pmouse->m_pt;
+
+      ScreenToClient(&pt);
+
+      return track_popup_xml_matter_menu(pszMatter, iFlags, pt.x, pt.y);
+
+   }
+
+
+   bool interaction::track_popup_menu(sp(::user::menu_base_item) pitem, int32_t iFlags, int32_t x, int32_t y)
+   {
+
+      m_spmenuPopup = Application.alloc(System.type_info < ::user::menu_base > ());
+
+      m_spmenuPopup->m_pitem = pitem;
+
+      if (!m_spmenuPopup->TrackPopupMenu(iFlags, x, y, this, &m_spmenuPopup))
+      {
+         
+         m_spmenuPopup.release();
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+   bool interaction::track_popup_menu(sp(::xml::node) lpnode, int32_t iFlags, int32_t x, int32_t y)
+   {
+
+      m_spmenuPopup = Application.alloc(System.type_info < ::user::menu_base >());
+
+      if (!m_spmenuPopup->LoadMenu(lpnode))
+      {
+
+         m_spmenuPopup.release();
+
+         return false;
+
+      }
+
+      if (!m_spmenuPopup->TrackPopupMenu(iFlags, x, y, this, &m_spmenuPopup))
+      {
+
+         m_spmenuPopup.release();
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+   bool interaction::track_popup_xml_matter_menu(const char * pszMatter, int32_t iFlags, int32_t x, int32_t y)
+   {
+
+      m_spmenuPopup = Application.alloc(System.type_info < ::user::menu_base >());
+
+      if (!m_spmenuPopup->LoadXmlMenu(pszMatter))
+      {
+
+         m_spmenuPopup.release();
+
+         return false;
+
+      }
+
+      if (!m_spmenuPopup->TrackPopupMenu(iFlags, x, y, this, &m_spmenuPopup))
+      {
+
+         m_spmenuPopup.release();
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
 
 
 } // namespace user

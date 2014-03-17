@@ -8,9 +8,10 @@ namespace command
    primary_view::primary_view(sp(base_application) papp) :
       element(papp),
       ::user::interaction(papp),
-
-      ::user::edit_plain_text_view(papp),
-      ::user::scroll_view(papp)
+      ::user::scroll_view(papp),
+      ::colorertake5::base_editor(papp),
+      ::data::data_listener(papp),
+      ::user::edit_plain_text_view(papp)
    {
 
       m_iCompromised = 0;
@@ -192,13 +193,8 @@ namespace command
 
    void primary_view::_001OnContextMenu(signal_details * pobj)
    {
-      SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
-      point point = pcontextmenu->GetPoint();
 
-      ::user::menu menu(get_app());
-      menu.LoadXmlMenu("command\\popup_primary_verbing.xml");
-      ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
-      menuPopup.TrackPopupMenu(0, point.x, point.y, GetParentFrame());
+      track_popup_xml_matter_menu("command/popup_primary_verbing.xml", 0, pobj);
 
    }
 

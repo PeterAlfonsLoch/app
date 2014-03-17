@@ -980,10 +980,7 @@ namespace user
       _001RedrawWindow();
       m_bMouseDown = false;
 
-      ::user::menu menu(get_app());
-      menu.LoadXmlMenu("system\\edit_focus_popup.xml");
-      m_spmenuPopup = canew(::user::menu(get_app(), menu.GetSubMenu(0)));
-      m_spmenuPopup->TrackPopupMenu(0, pmouse->m_pt.x, pmouse->m_pt.y, GetParentFrame(), &m_spmenuPopup);
+      track_popup_xml_matter_menu("ystem/edit_focus_popup.xml", 0, pobj);
 
       pmouse->set_lresult(1);
       pmouse->m_bRet = true;

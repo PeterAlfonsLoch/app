@@ -50,10 +50,19 @@ namespace data
 } // namespace data
 
 
+namespace xml
+{
+
+   class node;
+
+} // namespace xml
+
+
 namespace user
 {
 
    class place_holder;
+   class menu_base_item;
 
 #if defined METROWIN && defined(__cplusplus_winrt)
 
@@ -637,6 +646,19 @@ namespace user
 #endif
       virtual bool _001HasCommandHandler(id id);
 
+
+
+      virtual bool track_popup_menu(sp(::user::menu_base_item) pitem, int32_t iFlags, int32_t x, int32_t y);
+      virtual bool track_popup_menu(sp(::xml::node) lpnode, int32_t iFlags, int32_t x, int32_t y);
+      virtual bool track_popup_xml_matter_menu(const char * pszMatter, int32_t iFlags, int32_t x, int32_t y);
+
+      virtual bool track_popup_menu(sp(::user::menu_base_item) pitem, int32_t iFlags, signal_details * pobj);
+      virtual bool track_popup_menu(sp(::xml::node) lpnode, int32_t iFlags, signal_details * pobj);
+      virtual bool track_popup_xml_matter_menu(const char * pszMatter, int32_t iFlags, signal_details * pobj);
+
+      virtual bool track_popup_menu(sp(::user::menu_base_item) pitem, int32_t iFlags);
+      virtual bool track_popup_menu(sp(::xml::node) lpnode, int32_t iFlags);
+      virtual bool track_popup_xml_matter_menu(const char * pszMatter, int32_t iFlags);
 
    };
 
