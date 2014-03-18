@@ -5,7 +5,6 @@
 namespace draw2d
 {
 
-
    void word_break(::draw2d::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, string &str1, string & str2);
 
    strsize _EncodeV033(string & str);
@@ -3098,23 +3097,11 @@ namespace draw2d
 
       strsize iLen = str.get_length();
 
-      if ((uiFormat & DT_END_ELLIPSIS) != 0 || (uiFormat & DT_WORDBREAK) != 0)
+      if ((uiFormat & DT_END_ELLIPSIS) != 0)
       {
          sz = pdc->GetTextExtent(str, (int32_t)iLen);
          if (sz.cx > rectClip.width())
          {
-            if ((uiFormat & DT_WORDBREAK) != 0 && iLineSpacing * 2 <= rectClip.height())
-            {
-               string str1;
-               string str2;
-               word_break(pdc, lpcsz, rectClip, str1, str2);
-               iLen = str.get_length();
-               sz = pdc->GetTextExtent(str, (int32_t)iLen);
-               if (sz.cx <= rectClip.width())
-               {
-                  goto skip1;
-               }
-            }
             iLen += 3;
             char * lpsz = str.GetBuffer(iLen + 1);
             strsize i = sz.cx == 0 ? iLen : (iLen * rectClip.width()) / sz.cx;
@@ -3163,7 +3150,14 @@ namespace draw2d
             str.ReleaseBuffer();
             iLen = str.get_length();
          }
-      skip1:;
+      }
+      else if ((uiFormat & DT_WORDBREAK) != 0)
+      {
+         sz = pdc->GetTextExtent(str, (int32_t)iLen);
+         if (sz.cx > rectClip.width())
+         {
+            word_break(pdc, lpcsz, rectClip, str, str2);
+         }
       }
       else
       {
@@ -3336,57 +3330,57 @@ namespace draw2d
 
       index iFind = str.find(L' ');
 
-      if (iFind < 0)
+      size_t i = 1;
+      size_t iEnd = -1;
+
+      size sz;
+
+      int iLastSpaceStart = -1;
+      int iLastSpaceEnd = -1;
+
+      while (i <= wcslen(wstr))
       {
 
-         size_t i = 1;
+         sz = pdc->GetTextExtent(string(lpwsz, i));
 
-         size sz;
+         if (::str::ch::is_space_char(lpwsz[i - 1]))
+         {
+            iLastSpaceStart = i - 1;
+            while (::str::ch::is_space_char(lpwsz[i - 1]))
+            {
+               iLastSpaceEnd = i - 1;
+               i++;
+            }
+         }
 
-         while (i < wcslen(wstr))
+         if (sz.cx > rectClip.width())
          {
 
-#ifdef WINDOWSEX
-
-            ::GetTextExtentPoint32W((HDC)pdc->get_os_data(), lpwsz, (int32_t)i, &sz);
-
-#else
-
-            throw todo(get_thread_app());
-
-            // ::GetTextExtentPoint32((HDC)pdc->get_os_data(), ::str::international::unicode_to_utf8(lpwsz), (int32_t) ::str::international::unicode_to_utf8(lpwsz).get_lengt(), &sz);
-
-#endif
-
-            if (sz.cx > rectClip.width())
-            {
-
-               if (i == 1)
-                  break;
-
-               i--;
-
+            if (i == 1)
                break;
 
+            if (iLastSpaceStart > 0)
+            {
+               i = iLastSpaceStart;
+               iEnd = iLastSpaceEnd + 1;
+               break;
             }
 
-            i++;
+            i--;
+
+            break;
 
          }
 
-         ::str::international::unicode_to_utf8(str1, lpwsz, i);
-
-         ::str::international::unicode_to_utf8(str2, &lpwsz[i]);
+         i++;
 
       }
-      else
-      {
+      if (iEnd < 0)
+         iEnd = i;
 
-         ::str::international::unicode_to_utf8(str1, lpwsz, iFind);
+      ::str::international::unicode_to_utf8(str1, lpwsz, i);
 
-         ::str::international::unicode_to_utf8(str2, &lpwsz[iFind + 1]);
-
-      }
+      ::str::international::unicode_to_utf8(str2, &lpwsz[iEnd]);
 
    }
 
