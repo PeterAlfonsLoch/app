@@ -190,7 +190,8 @@ namespace user
 
       inline string get(const ::id & id)
       {
-
+         if (m_pstr == NULL)
+            return id;
          return m_pstr->get(this, id);
 
       }

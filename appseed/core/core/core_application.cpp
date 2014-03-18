@@ -3816,7 +3816,9 @@ void application::_001OnApplicationRequest(signal_details * pobj)
       catch (not_installed & e)
       {
 
-         throw e;
+         System.on_run_exception(e);
+
+         throw exit_exception(e.get_app());
 
       }
       catch (exit_exception & e)

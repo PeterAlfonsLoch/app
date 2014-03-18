@@ -7027,7 +7027,7 @@ bool imaging::read_from_file(::draw2d::dib * pdib, ::file::buffer_sp  pfile, bas
    if (pfi == NULL)
       return false;
 
-   synch_lock ml(&user_mutex());
+   /*synch_lock ml(&user_mutex());
 
 #if !defined(LINUX) && !defined(MACOS)
 
@@ -7037,9 +7037,10 @@ bool imaging::read_from_file(::draw2d::dib * pdib, ::file::buffer_sp  pfile, bas
 
    ::draw2d::graphics_sp spgraphics(allocer());
 
-   spgraphics->CreateCompatibleDC(NULL);
+   spgraphics->CreateCompatibleDC(NULL);*/
 
-   if (!from(pdib, spgraphics, pfi, true, papp))
+   //if (!from(pdib, spgraphics, pfi, true, papp))
+   if (!from(pdib, NULL, pfi, true, papp))
       return false;
 
    return true;
