@@ -41,9 +41,6 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="kissfft\aaa_vmskissfftfKiss_want_to_remove_xxx.h">
-      <Filter>Header Files\kissfft</Filter>
-    </ClInclude>
     <ClInclude Include="kissfft\kiss_fft_guts.h">
       <Filter>Header Files\kissfft</Filter>
     </ClInclude>
