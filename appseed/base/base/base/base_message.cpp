@@ -515,12 +515,13 @@ namespace message
          return PrototypeShowWindow;
       case WM_INITMENUPOPUP:
          return PrototypeInitMenuPopup;
-#ifdef WINDOWS
+/*#ifdef WINDOWS
       case WM_CTLCOLOR:
+         if(pba)
          return PrototypeCtlColor;
       case WM_CTLCOLOR + WM_REFLECT_BASE:
          return PrototypeCtlColorReflect;
-#endif
+#endif*/
       case WM_SETFOCUS:
          return PrototypeSetFocus;
       case WM_WINDOWPOSCHANGING:

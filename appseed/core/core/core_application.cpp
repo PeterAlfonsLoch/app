@@ -2606,7 +2606,7 @@ while (pos != NULL)
 {
 sp(impact_system) pTempl = get_template(pos);
 if (pTempl != NULL)
-pTempl->_001OnCommand(0, CN_OLE_UNREGISTER, NULL, NULL);
+pTempl->on_simple_action(0, CN_OLE_UNREGISTER, NULL, NULL);
 }*/
 
 // remove profile information -- the registry entries exist if

@@ -18,7 +18,7 @@ namespace userex
    }
 
 
-   bool pane_view::_001OnUpdateCmdUi(cmd_ui * pcmdui)
+   bool pane_view::on_simple_update(cmd_ui * pcmdui)
    {
 
       for(int32_t i = 0; i < m_menua.get_size(); i++)
@@ -35,12 +35,12 @@ namespace userex
 
       }
 
-      return _001OnUpdateCmdUi(pcmdui);
+      return on_simple_update(pcmdui);
 
    }
 
 
-   bool pane_view::_001OnCommand(id id)
+   bool pane_view::on_simple_action(id id)
    {
       for(int32_t i = 0; i < m_menua.get_size(); i++)
       {
@@ -50,7 +50,7 @@ namespace userex
             return true;
          }
       }
-      return ::user::impact::_001OnCommand(id);
+      return ::user::impact::on_simple_action(id);
    }
 
 

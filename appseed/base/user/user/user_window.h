@@ -172,7 +172,7 @@ namespace user
       virtual bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = 0);
 
       virtual bool SendNotifyMessage(UINT message, WPARAM wParam, lparam lParam);
-      virtual bool SendChildNotifyLastMsg(LRESULT* pResult = NULL);
+      //virtual bool SendChildNotifyLastMsg(LRESULT* pResult = NULL);
 
       virtual bool DragDetect(POINT pt) const;
 
@@ -449,8 +449,8 @@ namespace user
       //virtual void EndModalLoop(id nResult);
 
       // Window-Management message handler member functions
-      virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
-      virtual bool OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+      virtual bool OnCommand(::message::base * pbase);
+      virtual bool OnNotify(::message::base * pbase);
 
       void OnActivate(UINT nState, sp(::user::window) pWndOther, bool bMinimized);
       void OnActivateApp(bool bActive, uint32_t dwThreadID);
@@ -656,9 +656,9 @@ namespace user
       virtual void PostNcDestroy();
 
       // for notifications from parent
-      virtual bool OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+      virtual bool OnChildNotify(::message::base * pbase);
       // return TRUE if parent should not process this message
-      virtual bool ReflectChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+      virtual bool ReflectChildNotify(::message::base * pbase);
 
       // Implementation
       virtual ~window();

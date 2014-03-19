@@ -97,7 +97,7 @@ namespace user
 
       __STATUSPANE* _GetPanePtr(int32_t nIndex);
       void UpdateAllPanes(bool bUpdateRects, bool bUpdateText);
-      virtual bool OnChildNotify(UINT message, WPARAM, LPARAM, LRESULT*);
+      virtual bool OnChildNotify(::message::base * pbase);
 
       DECL_GEN_SIGNAL(_001OnNcHitTest)
       DECL_GEN_SIGNAL(_001OnNcCalcSize)

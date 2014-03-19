@@ -192,7 +192,7 @@ namespace user
          cmdui.m_id           = pitem->m_id;
          cmdui.m_pOther       = (sp(::user::interaction)) &pitem->m_button;
 
-         if(m_pwndNotify->_001OnUpdateCmdUi(&cmdui))
+         if(m_pwndNotify->on_simple_update(&cmdui))
             continue;
 
          _UpdateCmdUi(pitem);

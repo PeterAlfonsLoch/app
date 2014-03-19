@@ -90,13 +90,13 @@ namespace nature
 
 
 
-   bool document::_001OnUpdateCmdUi(cmd_ui * pcmdui)
+   bool document::on_simple_update(cmd_ui * pcmdui)
    {
       UNREFERENCED_PARAMETER(pcmdui);
       return false;
    }
 
-   bool document::_001OnCommand(id id)
+   bool document::on_simple_action(id id)
    {
       bool bOk;
       string strLocale = "se";

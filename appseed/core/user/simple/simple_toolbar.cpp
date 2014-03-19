@@ -365,7 +365,7 @@ void simple_toolbar::OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisab
          state.m_bEnableIfHasCommandHandler = m_itema[state.m_iIndex].m_bEnableIfHasCommandHandler;
 
          // allow reflections
-         //if (::user::interaction::_001OnCommand(0,
+         //if (::user::interaction::on_simple_action(0,
          //   MAKELONG((int32_t)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
          //   &state, NULL))
          //   continue;

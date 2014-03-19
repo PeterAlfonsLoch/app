@@ -845,47 +845,41 @@ namespace user
       { /* default to nothing */ }
 #endif
 
-   bool combo_box::OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam,
-      LRESULT* pResult)
+   bool combo_box::OnChildNotify(::message::base * pbase)
    {
-      UNREFERENCED_PARAMETER(wParam);
-      switch (message)
+
+      switch (pbase->m_uiMessage)
       {
       case WM_DRAWITEM:
 #ifdef WINODWSEX
-         ASSERT(pResult == NULL);       // no return value expected
-         DrawItem((LPDRAWITEMSTRUCT)lParam);
+         DrawItem((LPDRAWITEMSTRUCT)pbase->m_lparam);
 #else
          throw todo(get_app());
 #endif
          break;
       case WM_MEASUREITEM:
 #ifdef WINODWSEX
-         ASSERT(pResult == NULL);       // no return value expected
-         MeasureItem((LPMEASUREITEMSTRUCT)lParam);
+         MeasureItem((LPMEASUREITEMSTRUCT)pbase->m_lparam);
 #else
          throw todo(get_app());
 #endif
          break;
       case WM_COMPAREITEM:
 #ifdef WINODWSEX
-         ASSERT(pResult != NULL);       // return value expected
-         *pResult = CompareItem((LPCOMPAREITEMSTRUCT)lParam);
+         *pResult = CompareItem((LPCOMPAREITEMSTRUCT)pbase->m_lparam);
 #else
          throw todo(get_app());
 #endif
          break;
       case WM_DELETEITEM:
 #ifdef WINODWSEX
-         ASSERT(pResult == NULL);       // no return value expected
-         DeleteItem((LPDELETEITEMSTRUCT)lParam);
+         DeleteItem((LPDELETEITEMSTRUCT)pbase->m_lparam);
 #else
          throw todo(get_app());
 #endif
          break;
       default:
-         // trans return ::user::interaction::OnChildNotify(message, wParam, lParam, pResult);
-         return FALSE;
+         return ::user::interaction::OnChildNotify(pbase);
       }
       return TRUE;
    }

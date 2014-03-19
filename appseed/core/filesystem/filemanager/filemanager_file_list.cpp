@@ -840,7 +840,7 @@ namespace filemanager
    }
 
 
-   bool file_list::_001OnUpdateCmdUi(cmd_ui * pcmdui)
+   bool file_list::on_simple_update(cmd_ui * pcmdui)
    {
       int32_t iPos = -1;
       for(int32_t i = 0; i < m_straOpenWith.get_size(); i++)
@@ -859,11 +859,11 @@ namespace filemanager
       }
       else
       {
-         return ::user::impact::_001OnUpdateCmdUi(pcmdui);
+         return ::user::impact::on_simple_update(pcmdui);
       }
    }
 
-   bool file_list::_001OnCommand(id id)
+   bool file_list::on_simple_action(id id)
    {
       if(id == "1000")
       {
@@ -903,7 +903,7 @@ namespace filemanager
       }
       else
       {
-         return ::user::impact::_001OnCommand(id);
+         return ::user::impact::on_simple_action(id);
       }
 
    }

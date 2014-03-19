@@ -422,7 +422,7 @@ namespace filemanager
       layout();
    }
 
-   bool main_view::_001OnCommand(id id)
+   bool main_view::on_simple_action(id id)
    {
       //  int32_t iPos = -1;
       if (id == "change_view")

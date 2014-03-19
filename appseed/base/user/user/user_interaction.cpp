@@ -465,6 +465,7 @@ namespace user
          IGUI_WIN_MSG_LINK(WM_USER + 184, pinterface, this, &interaction::_001OnUser184);
          IGUI_WIN_MSG_LINK(WM_NCCALCSIZE, pinterface, this, &interaction::_001OnNcCalcSize);
       }
+      IGUI_WIN_MSG_LINK(WM_COMMAND, pinterface, this, &interaction::_001OnCommand);
       IGUI_WIN_MSG_LINK(message_simple_command, pinterface, this, &interaction::_001OnSimpleCommand);
    }
 
@@ -1903,13 +1904,13 @@ namespace user
          return m_pimpl->GetFont();
    }
 
-   bool interaction::SendChildNotifyLastMsg(LRESULT* pResult)
-   {
-      if (m_pimpl == NULL)
-         return false;
-      else
-         return m_pimpl->SendChildNotifyLastMsg(pResult);
-   }
+   //bool interaction::SendChildNotifyLastMsg(LRESULT* pResult)
+   //{
+   //   if (m_pimpl == NULL)
+   //      return false;
+   //   else
+   //      return m_pimpl->SendChildNotifyLastMsg(pResult);
+   //}
 
    sp(interaction) interaction::EnsureTopLevelParent()
    {
@@ -3605,6 +3606,20 @@ namespace user
 
    }
 
+   void interaction::_001OnCommand(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::base, pbase, pobj);
+
+      LRESULT lresult = 0;
+
+      pbase->m_bRet = OnCommand(pbase);
+
+      pbase->set_lresult(lresult);
+
+   }
+
+
    void interaction::_001OnSimpleCommand(signal_details * pobj)
    {
 
@@ -3612,11 +3627,44 @@ namespace user
 
       LRESULT lresult = 0;
 
-      pbase->m_bRet = on_simple_command((e_simple_command)pbase->m_wparam, pbase->m_lparam, lresult);
+      pbase->m_bRet = on_simple_command((e_simple_command)pbase->m_wparam, pbase->m_lparam, pbase->get_lresult());
 
       pbase->set_lresult(lresult);
 
    }
+
+
+   bool interaction::OnCommand(::message::base * pbase)
+   {
+
+      if (m_pimpl != NULL)
+         return m_pimpl->OnCommand(pbase);
+
+      return false;
+   
+   }
+
+   bool interaction::OnNotify(::message::base * pbase)
+   {
+
+      if (m_pimpl != NULL)
+         return m_pimpl->OnNotify(pbase);
+
+      return false;
+
+   }
+
+   
+   bool interaction::OnChildNotify(::message::base * pbase)
+   {
+
+      if (m_pimpl != NULL)
+         return m_pimpl->OnChildNotify(pbase);
+
+      return false;
+
+   }
+
 
    bool interaction::on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult)
    {
@@ -3627,10 +3675,10 @@ namespace user
 
       switch (ecommand)
       {
-      case simple_command_layout:
-      {
-                                   layout();
-      }
+         case simple_command_layout:
+         {
+            layout();
+         }
          break;
       default:
          break;

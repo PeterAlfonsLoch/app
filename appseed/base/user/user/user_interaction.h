@@ -321,7 +321,7 @@ namespace user
       virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
 #endif
 
-      virtual bool SendChildNotifyLastMsg(LRESULT* pResult = NULL);
+      //virtual bool SendChildNotifyLastMsg(LRESULT* pResult = NULL);
 
 
       virtual bool pre_create_window(CREATESTRUCT& cs);
@@ -483,6 +483,7 @@ namespace user
          DECL_GEN_SIGNAL(_001OnUser184)
          DECL_GEN_SIGNAL(_001OnNcCalcSize)
          DECL_GEN_SIGNAL(_001OnClose)
+         DECL_GEN_SIGNAL(_001OnCommand)
          DECL_GEN_SIGNAL(_001OnSimpleCommand)
 
 
@@ -622,6 +623,13 @@ namespace user
 
 
       virtual bool on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult);
+
+
+      // Window-Management message handler member functions
+      virtual bool OnCommand(::message::base * pbase);
+      virtual bool OnNotify(::message::base * pbase);
+      virtual bool OnChildNotify(::message::base * pbase);
+
 
 
       virtual bool is_selected(::data::item * pitem);

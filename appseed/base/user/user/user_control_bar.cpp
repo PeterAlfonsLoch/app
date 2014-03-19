@@ -527,10 +527,8 @@ namespace user
    void control_bar::_001OnCtlColor(signal_details * pobj)
    {
       SCAST_PTR(::message::ctl_color, pctlcolor, pobj)
-      LRESULT lResult;
-      if (pctlcolor->m_pwnd->SendChildNotifyLastMsg(&lResult))
+      if (pctlcolor->m_pwnd->OnChildNotify(pctlcolor))
       {
-         pctlcolor->set_lresult(lResult);
          pctlcolor->m_bRet = true;
          return;
       }

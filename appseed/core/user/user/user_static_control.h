@@ -56,7 +56,7 @@ namespace user
 #endif
 
 
-      virtual bool OnChildNotify(UINT, WPARAM, LPARAM, LRESULT*);
+      virtual bool OnChildNotify(::message::base * pbase);
 
 
    };

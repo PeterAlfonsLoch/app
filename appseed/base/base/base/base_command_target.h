@@ -147,11 +147,11 @@ public:
    virtual bool _001SendCommand(id id);
    virtual bool _001SendUpdateCmdUi(cmd_ui * pcmdUI);
 
-   virtual bool _001OnCommand(id id);
+   virtual bool on_simple_action(id id);
    virtual bool _001HasCommandHandler(id id);
-   virtual bool _001OnUpdateCmdUi(cmd_ui * pcmdui);
+   virtual bool on_simple_update(cmd_ui * pcmdui);
 
-   //virtual bool _001OnUpdateCmdUi(cmd_ui * pcmdui);
+   //virtual bool on_simple_update(cmd_ui * pcmdui);
    virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
    //virtual bool _001HasCommandHandler(const char * pszId);
 

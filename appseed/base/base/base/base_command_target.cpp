@@ -77,20 +77,20 @@ bool command_target_interface::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
 
       cmdui.m_id = pcmdmsg->m_id;
 
-      if(_001OnUpdateCmdUi(&cmdui))
+      if(on_simple_update(&cmdui))
       {
          if(!cmdui.m_bEnabled)
             return false;
       }
 
-      if(_001OnCommand(pcmdmsg->m_id))
+      if(on_simple_action(pcmdmsg->m_id))
          return true;
 
    }
    else
    {
 
-      if(_001OnUpdateCmdUi(pcmdmsg->m_pcmdui))
+      if(on_simple_update(pcmdmsg->m_pcmdui))
          return true;
 
       if(_001HasCommandHandler(pcmdmsg->m_pcmdui->m_id))
@@ -122,7 +122,7 @@ command_target_interface::command_target_interface(sp(base_application) papp)
 {
 }
 
-bool command_target_interface::_001OnCommand(id id)
+bool command_target_interface::on_simple_action(id id)
 {
    ::dispatch::signal_item_ptr_array signalptra;
    get_command_signal_array(base_cmd_msg::type_command, signalptra, id);
@@ -150,7 +150,7 @@ bool command_target_interface::_001HasCommandHandler(id id)
 }
 
 
-bool command_target_interface::_001OnUpdateCmdUi(cmd_ui * pcmdui)
+bool command_target_interface::on_simple_update(cmd_ui * pcmdui)
 {
    ::dispatch::signal_item_ptr_array signalptra;
    get_command_signal_array(base_cmd_msg::type_cmdui, signalptra, pcmdui->m_id);

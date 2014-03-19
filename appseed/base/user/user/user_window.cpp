@@ -422,12 +422,16 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
-   bool window::OnNotify(WPARAM, LPARAM lParam, LRESULT* pResult)
+   
+   bool window::OnNotify(::message::base * pbase)
    {
-      UNREFERENCED_PARAMETER(lParam);
-      UNREFERENCED_PARAMETER(pResult);
+      
+      UNREFERENCED_PARAMETER(pbase);
+
       throw interface_only_exception(get_app());
+
    }
+
 
    sp(::user::frame_window) window::GetParentFrame()
    {
@@ -594,30 +598,32 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
-   bool window::SendChildNotifyLastMsg(LRESULT* pResult)
+   //bool window::SendChildNotifyLastMsg(LRESULT* pResult)
+   //{
+   //   UNREFERENCED_PARAMETER(pResult);
+   //   throw interface_only_exception(get_app());
+   //}
+
+
+   bool window::OnChildNotify(::message::base * pbase)
    {
-      UNREFERENCED_PARAMETER(pResult);
+
+      UNREFERENCED_PARAMETER(pbase);
+
       throw interface_only_exception(get_app());
+
    }
 
 
-   bool window::OnChildNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
+   bool window::ReflectChildNotify(::message::base * pbase)
    {
-      UNREFERENCED_PARAMETER(uMsg);
-      UNREFERENCED_PARAMETER(wParam);
-      UNREFERENCED_PARAMETER(lParam);
-      UNREFERENCED_PARAMETER(pResult);
+
+      UNREFERENCED_PARAMETER(pbase);
+
       throw interface_only_exception(get_app());
+
    }
 
-   bool window::ReflectChildNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
-   {
-      UNREFERENCED_PARAMETER(uMsg);
-      UNREFERENCED_PARAMETER(wParam);
-      UNREFERENCED_PARAMETER(lParam);
-      UNREFERENCED_PARAMETER(pResult);
-      throw interface_only_exception(get_app());
-   }
 
    void window::OnParentNotify(UINT message, LPARAM lParam)
    {
@@ -2192,11 +2198,11 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // ::user::window command handling
 
-   bool window::OnCommand(WPARAM wParam, LPARAM lParam)
+   bool window::OnCommand(::message::base * pbase)
       // return TRUE if command invocation was attempted
    {
-      UNREFERENCED_PARAMETER(wParam);
-      UNREFERENCED_PARAMETER(lParam);
+      UNREFERENCED_PARAMETER(pbase);
+      //UNREFERENCED_PARAMETER(lParam);
       /*   UINT nID = LOWORD(wParam);
       oswindow oswindow_Ctrl = lParam;
       int32_t nCode = HIWORD(wParam);
@@ -2212,7 +2218,7 @@ namespace user
       // make sure command has not become disabled before routing
       CTestCmdUI state;
       state.m_id = nID;
-      _001OnCommand(nID, CN_UPDATE_COMMAND_UI, &state, NULL);
+      on_simple_action(nID, CN_UPDATE_COMMAND_UI, &state, NULL);
       if (!state.m_bEnabled)
       {
       TRACE(::core::trace::category_AppMsg, 0, "Warning: not executing disabled command %d\n", nID);
@@ -2245,7 +2251,7 @@ namespace user
       nCode);
       #endif
 
-      return _001OnCommand(nID, nCode, NULL, NULL);*/
+      return on_simple_action(nID, nCode, NULL, NULL);*/
       return FALSE;
    }
 

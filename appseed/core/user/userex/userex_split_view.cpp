@@ -59,7 +59,7 @@ namespace userex
    }
 
 
-   bool split_view::_001OnUpdateCmdUi(cmd_ui * pcmdui)
+   bool split_view::on_simple_update(cmd_ui * pcmdui)
    {
 
       UNREFERENCED_PARAMETER(pcmdui);
@@ -68,7 +68,7 @@ namespace userex
 
    }
 
-   bool split_view::_001OnCommand(id id)
+   bool split_view::on_simple_action(id id)
    {
       UNREFERENCED_PARAMETER(id);
       return false;

@@ -473,7 +473,7 @@ namespace user
                sp(::user::interaction) pwndParent = m_oswindowParent;
                if(pwndParent != NULL)
                {
-                 /* xxx if(pwndParent->_001OnCommand(0,
+                 /* xxx if(pwndParent->on_simple_action(0,
                      MAKELONG((int32_t)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
                      &cmdui, NULL))
                      continue;*/
@@ -537,7 +537,7 @@ namespace user
             if(pwndParent != NULL)
             {
                /*
-               if(pwndParent->_001OnCommand(0,
+               if(pwndParent->on_simple_action(0,
                   MAKELONG((int32_t)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
                   &cmdui, NULL))
                   continue;

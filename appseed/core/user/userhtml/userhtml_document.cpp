@@ -145,7 +145,7 @@ void html_document::soft_reload()
    return pdoc->m_spadata.get < ::html::data >();
 }
 
-bool html_document::_001OnUpdateCmdUi(cmd_ui * pcmdui)
+bool html_document::on_simple_update(cmd_ui * pcmdui)
 {
    if(pcmdui->m_id == "viewindefaultbrowser")
    {
@@ -155,7 +155,7 @@ bool html_document::_001OnUpdateCmdUi(cmd_ui * pcmdui)
    return false;
 }
 
-bool html_document::_001OnCommand(id id)
+bool html_document::on_simple_action(id id)
 {
 
    if(id == "viewindefaultbrowser")

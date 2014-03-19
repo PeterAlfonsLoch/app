@@ -717,9 +717,9 @@ namespace user
       selection.add_item(id, ::base_system::idEmpty);
    }
 
-   bool form::_001OnCommand(id id)
+   bool form::on_simple_action(id id)
    {
-      return control::_001OnCommand(id);
+      return control::on_simple_action(id);
    }
 
 

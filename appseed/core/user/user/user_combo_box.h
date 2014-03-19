@@ -158,7 +158,7 @@ namespace user
       virtual void DeleteItem(LPDELETEITEMSTRUCT lpDeleteItemStruct);
 #endif
 
-      virtual bool OnChildNotify(UINT, WPARAM, LPARAM, LRESULT*);
+      virtual bool OnChildNotify(::message::base * pbase);
 
 
    };

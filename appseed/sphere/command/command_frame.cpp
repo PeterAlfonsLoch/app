@@ -441,17 +441,17 @@ namespace command
    }
 
 
-   bool frame::_001OnCommand(id id)
+   bool frame::on_simple_action(id id)
    {
       if(id == "app_exit")
       {
          simple_frame_window::OnClose();
          return true;
       }
-      return simple_frame_window::_001OnCommand(id);
+      return simple_frame_window::on_simple_action(id);
    }
 
-   bool frame::_001OnUpdateCmdUi(cmd_ui * pcmdui)
+   bool frame::on_simple_update(cmd_ui * pcmdui)
    {
       if(pcmdui->m_id == "app_exit")
       {

@@ -369,13 +369,13 @@ void simple_menu_bar::OnUpdateCmdUI(sp(::user::frame_window)pTarget, bool bDisab
       if (!(button.fsStyle & TBSTYLE_SEP))
       {
          // allow reflections
-         if (::user::interaction::_001OnCommand(0,
+         if (::user::interaction::on_simple_action(0,
             MAKELONG((int32_t)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
             &state, NULL))
             continue;
 
          // allow the toolbar itself to have update handlers
-         if (::user::interaction::_001OnCommand(state.m_nID, CN_UPDATE_COMMAND_UI, &state, NULL))
+         if (::user::interaction::on_simple_action(state.m_nID, CN_UPDATE_COMMAND_UI, &state, NULL))
             continue;
 
          // allow the owner to process the update

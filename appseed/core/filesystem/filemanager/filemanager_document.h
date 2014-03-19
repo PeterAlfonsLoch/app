@@ -26,8 +26,8 @@ namespace filemanager
       sp(file_manager_operation_document) get_operation_doc(bool bSwitch);
 
 
-      virtual bool _001OnCommand(id id);
-      virtual bool _001OnUpdateCmdUi(cmd_ui * pcmdui);
+      virtual bool on_simple_action(id id);
+      virtual bool on_simple_update(cmd_ui * pcmdui);
 
       virtual ::filemanager::data * get_filemanager_data();
 

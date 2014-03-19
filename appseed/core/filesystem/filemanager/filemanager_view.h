@@ -53,7 +53,7 @@ namespace filemanager
 
       void FileManagerBrowse(const char * lpcwstr, ::action::context actioncontext);
 
-      bool _001OnCommand(id id);
+      bool on_simple_action(id id);
 
       virtual void OpenSelectionProperties();
 

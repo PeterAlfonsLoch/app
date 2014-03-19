@@ -568,20 +568,21 @@ namespace user
    }
 #endif
 
-   bool status_bar::OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
-   {
-      UNREFERENCED_PARAMETER(message);
-      UNREFERENCED_PARAMETER(wParam);
-   // trans   if (message != WM_DRAWITEM)
-   //      return ::user::interaction::OnChildNotify(message, wParam, lParam, pResult);
 
-      ASSERT(pResult == NULL);
+   bool status_bar::OnChildNotify(::message::base * pbase)
+   {
+
+      if (pbase->m_uiMessage != WM_DRAWITEM)
+         return ::user::interaction::OnChildNotify(pbase);
+
 #ifdef WINDOWSEX
-      UNUSED(pResult); // unused in release builds
-      DrawItem((LPDRAWITEMSTRUCT)lParam);
+      DrawItem((LPDRAWITEMSTRUCT)pbase->m_lparam);
 #endif
-      return TRUE;
+
+      return true;
+
    }
+
 
    /*void status_bar::OnPaint()
    {
@@ -775,7 +776,7 @@ namespace user
          state.m_id = _GetPanePtr((int32_t) state.m_iIndex)->m_id;
 
          // allow the statusbar itself to have update handlers
-         if (::user::interaction::_001OnUpdateCmdUi(&state))
+         if (::user::interaction::on_simple_update(&state))
             continue;
 
          // allow target (owner) to handle the remaining updates

@@ -37,20 +37,20 @@ namespace user
 #endif
 
 
-   bool static_control::OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam,
-      LRESULT* pResult)
+   bool static_control::OnChildNotify(::message::base * pbase)
    {
-      UNREFERENCED_PARAMETER(message);
-      UNREFERENCED_PARAMETER(wParam);
-   // trans   if (message != WM_DRAWITEM)
-         // return ::user::interaction::OnChildNotify(message, wParam, lParam, pResult);
+      
+      if (pbase->m_uiMessage != WM_DRAWITEM)
+          return ::user::interaction::OnChildNotify(pbase);
 
-      ASSERT(pResult == NULL);       // no return value expected
 #ifdef WINDOWSEX
-      UNUSED(pResult); // unused in release builds
-      DrawItem((LPDRAWITEMSTRUCT)lParam);
+      
+      DrawItem((LPDRAWITEMSTRUCT)pbase->m_lparam);
+
 #endif
-      return TRUE;
+
+      return true;
+
    }
 
 

@@ -46,7 +46,7 @@ namespace user
       virtual void _001RemoveControls();
       bool _001Validate(sp(control) pcontrol, var & var);
       bool _001SaveEdit(sp(control) pcontrol);
-      virtual bool _001OnCommand(id id);
+      virtual bool on_simple_action(id id);
       DECL_GEN_VSIGNAL(_001OnNotify)
       DECL_GEN_VSIGNAL(_001OnMessageNotify)
       virtual void _001GetSelection(::database::id & key, ::database::selection & selection);

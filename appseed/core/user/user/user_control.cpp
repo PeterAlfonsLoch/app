@@ -626,13 +626,13 @@ namespace user
               if ((pwnd->GetStyle() & WS_VISIBLE))
               {
                   // allow reflections
-                  if (pview->_001OnUpdateCmdUi(&state))
+                  if (pview->on_simple_update(&state))
                   {
                       continue;
                   }
 
                   // allow the toolbar itself to have update handlers
-                  if (pview->_001OnUpdateCmdUi(&state))
+                  if (pview->on_simple_update(&state))
    //               {
      //                state.DoUpdate(pTarget, bDisableIfNoHndler);
                       continue;

@@ -112,7 +112,7 @@ namespace filemanager
    }
 
 
-   bool document::_001OnCommand(id id)
+   bool document::on_simple_action(id id)
    {
 
       if(get_filemanager_data() != NULL
@@ -125,17 +125,17 @@ namespace filemanager
             return true;
          }
       }
-      return ::user::object::_001OnCommand(id);
+      return ::user::object::on_simple_action(id);
    }
 
-   bool document::_001OnUpdateCmdUi(cmd_ui * pcmdui)
+   bool document::on_simple_update(cmd_ui * pcmdui)
    {
       /*if(pcmdui->m_id == get_filemanager_data()->m_pschema->m_strLevelUp)
       {
       FileManagerOnUpdateLevelUp(pcmdui);
       return true;
       }*/
-      return ::user::object::_001OnUpdateCmdUi(pcmdui);
+      return ::user::object::on_simple_update(pcmdui);
    }
 
 

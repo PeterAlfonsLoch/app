@@ -253,23 +253,23 @@ public:
 
    //	private:
 
-   static bool    s_bAllocReady;
-   mutex          m_mutex;
-   bool                                m_bRun;
+   static bool                            s_bAllocReady;
+   mutex                                  m_mutex;
+   bool                                   m_bRun;
 
-   thread_sp                     m_p;
-   sp(::user::interaction_ptr_array)     m_puiptra;
-   sp(::user::interaction::timer_array)  m_ptimera;
-   bool                                m_bAutoDelete;       // enables 'delete this' after thread termination
-   uint_ptr                            m_dwAlive;
-   bool                                m_bReady;
-   int32_t                             m_iReturnCode;
-   sp(base_application)                 m_pappDelete;
-   sp(::user::interaction)             m_puiMain;           // main window (usually same System.GetMainWnd())
-   sp(::user::interaction)             m_puiActive;         // active main window (may not be GetMainWnd())
-   bool *                              m_pbReady;
-   property_set                  m_set;
-   string                              m_strWorkUrl;
+   thread_sp                              m_p;
+   sp(::user::interaction_ptr_array)      m_puiptra;
+   sp(::user::interaction::timer_array)   m_ptimera;
+   bool                                   m_bAutoDelete;       // enables 'delete this' after thread termination
+   uint_ptr                               m_dwAlive;
+   bool                                   m_bReady;
+   int32_t                                m_iReturnCode;
+   sp(base_application)                   m_pappDelete;
+   sp(::user::interaction)                m_puiMain;           // main window (usually same System.GetMainWnd())
+   sp(::user::interaction)                m_puiActive;         // active main window (may not be GetMainWnd())
+   bool *                                 m_pbReady;
+   property_set                           m_set;
+   string                                 m_strWorkUrl;
 
 
    thread();
@@ -574,7 +574,7 @@ public:
 };
 
 CLASS_DECL_BASE thread * get_thread();
-CLASS_DECL_BASE thread_state * get_thread_state();
+//CLASS_DECL_BASE thread_state * get_thread_state();
 
 
 typedef thread * (*PFN_get_thread)();

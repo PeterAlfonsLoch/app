@@ -58,13 +58,13 @@ base_application * get_thread_app()
 }
 
 
-thread_state * get_thread_state()
-{
-   if(g_pfn_get_thread_state == NULL)
-      return NULL;
-   return g_pfn_get_thread_state();
-}
-
+//thread_state * get_thread_state()
+//{
+//   if(g_pfn_get_thread_state == NULL)
+//      return NULL;
+//   return g_pfn_get_thread_state();
+//}
+//
 
 
 

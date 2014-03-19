@@ -70,7 +70,7 @@ namespace user
 
 
 #define CN_UPDATE_COMMAND_UI 23
-#define WM_REFLECT_BASE 2048
+//#define WM_REFLECT_BASE 2048
 #define MPARAM uint32_t
 #define NPARAM uint32_t
 #define OPARAM uint32_t
@@ -325,11 +325,12 @@ namespace message
    public:
 
 
-      sp(::user::interaction)   m_pwnd;
-      UINT                    m_uiMessage;
-      WPARAM                  m_wparam;
-      lparam                  m_lparam;
-      bool                    m_bConditional;
+      sp(::user::interaction)    m_pwnd;
+      UINT                       m_uiMessage;
+      WPARAM                     m_wparam;
+      lparam                     m_lparam;
+      bool                       m_bConditional;
+      bool                       m_bReflect;
 
       base(sp(base_application) papp, class ::signal * psignal = NULL);
       base(sp(base_application) papp, sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);

@@ -83,8 +83,8 @@ namespace filemanager
       virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
-      bool _001OnUpdateCmdUi(cmd_ui * pcmdui);
-      bool _001OnCommand(id id);
+      bool on_simple_update(cmd_ui * pcmdui);
+      bool on_simple_action(id id);
 
       DECL_GEN_SIGNAL(_001OnUpdateOpenWith)
       DECL_GEN_SIGNAL(_001OnEditCopy)

@@ -92,8 +92,8 @@ namespace user
    bool frame_window::on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult)
    {
 
-      //if (::user::frame_window::on_simple_command(ecommand, lparam, lresult))
-        // return true;
+      if (::user::interaction::on_simple_command(ecommand, lparam, lresult))
+         return true;
 
       switch (ecommand)
       {
