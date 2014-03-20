@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-
+string_map < INT_PTR, INT_PTR > & __library();
 
 
 namespace core
@@ -43,6 +43,8 @@ namespace core
 
          string strCa2Name = pszPath;
 
+#ifndef CUBE
+
          try
          {
 
@@ -57,14 +59,20 @@ namespace core
 
          }
 
+#endif
+
          ::plane::system::eengine().reset();
 
          PFN_GET_NEW_LIBRARY pfn_get_new_library = NULL;
 
          try
-         {
-
-            pfn_get_new_library = get < PFN_GET_NEW_LIBRARY > ("get_new_library");
+      
+{
+#ifdef CUBE
+            pfn_get_new_library = (PFN_GET_NEW_LIBRARY) (INT_PTR) __library()[strCa2Name + "_get_new_library"];
+#else
+            pfn_get_new_library = get < PFN_GET_NEW_LIBRARY >("get_new_library");
+#endif
 
          }
          catch(...)

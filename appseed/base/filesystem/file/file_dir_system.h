@@ -1,7 +1,7 @@
 #pragma once
 
 
-#if defined(METROWIN) || defined(MACOS)
+#if defined(METROWIN) || defined(MACOS) || defined(CUBE)
 
 #define MATTER_CACHE_FROM_HTTP_SERVER
 

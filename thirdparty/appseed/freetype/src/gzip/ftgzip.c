@@ -25,7 +25,7 @@
 #include FT_INTERNAL_STREAM_H
 
 
-#ifdef DEBUG
+#if defined(DEBUG) && !defined(CUBE)
 int z_verbose = 1;
 void z_error(char * psz)
 {
@@ -137,7 +137,7 @@ void z_error(char * psz)
   }
 
 
-#if !defined( FT_CONFIG_OPTION_SYSTEM_ZLIB ) && !defined( USE_ZLIB_ZCALLOC )
+#if !defined( FT_CONFIG_OPTION_SYSTEM_ZLIB ) && !defined( USE_ZLIB_ZCALLOC ) && !defined(CUBE)
 
   local voidpf
   zcalloc ( voidpf    opaque,

@@ -89,7 +89,7 @@ long __TellProc (fi_handle handle)
    return SetFilePointer(handle, 0, NULL, SEEK_CUR);
 }*/
 
-uint32_t _stdcall  __ReadProc2 (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
+uint32_t DLL_CALLCONV  __ReadProc2 (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
    primitive::memory_size dwRead;
    ::file::buffer_sp  pfile = (::file::stream_buffer * ) handle;
@@ -103,7 +103,7 @@ uint32_t _stdcall  __ReadProc2 (void *buffer, uint32_t size, uint32_t count, fi_
    }
 
 }
-uint32_t _stdcall __WriteProc2 (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
+uint32_t DLL_CALLCONV __WriteProc2(void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
    ::file::buffer_sp  pfile = (::file::stream_buffer * ) handle;
    try
@@ -116,7 +116,7 @@ uint32_t _stdcall __WriteProc2 (void *buffer, uint32_t size, uint32_t count, fi_
    }
    return count;
 }
-int32_t _stdcall __SeekProc2 (fi_handle handle, long offset, int32_t origin)
+int32_t DLL_CALLCONV __SeekProc2(fi_handle handle, long offset, int32_t origin)
 {
    ::file::buffer_sp  pfile = (::file::stream_buffer * ) handle;
    if(origin == SEEK_SET)
@@ -135,7 +135,7 @@ int32_t _stdcall __SeekProc2 (fi_handle handle, long offset, int32_t origin)
    }
    return 0;
 }
-long _stdcall __TellProc2 (fi_handle handle)
+long DLL_CALLCONV __TellProc2(fi_handle handle)
 {
    ::file::buffer_sp  pfile = (::file::stream_buffer * ) handle;
    return (long) pfile->get_position();

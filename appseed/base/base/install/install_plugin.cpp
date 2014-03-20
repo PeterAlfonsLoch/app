@@ -1100,10 +1100,12 @@ restart:
 
 } // namespace install
 
+#ifndef CUBE
 
 ::hotplugin::plugin * new_hotplugin(sp(base_application) papp)
 {
    return new ::install::plugin(papp);
 }
 
+#endif
 

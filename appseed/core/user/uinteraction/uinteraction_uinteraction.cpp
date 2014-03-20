@@ -33,6 +33,12 @@ namespace uinteraction
 
       }
 
+#ifdef CUBE
+
+      // should implemente
+
+#else
+
 #ifndef METROWIN
       if(!System.directrix()->m_varTopicQuery.has_property("install")
       && !System.directrix()->m_varTopicQuery.has_property("uninstall")
@@ -42,6 +48,8 @@ namespace uinteraction
          throw not_installed(get_app(), NULL, strBuildNumber, "uinteraction", strId, Application.m_strLocale, Application.m_strSchema);
 
       }
+
+#endif
 
 #endif
 

@@ -102,7 +102,7 @@ contains(ARG_TYPE t, index find, index last, ::count countMin, ::count countMax)
    while((count < countMin || (countMax >= 0 && count <= countMax))
       && (find = find_first(t, find, last)) >= 0)
       count++;
-   return count >= countMin && conditional(countMax >= 0, count <= countMax);
+   return count >= countMin && ::conditional(countMax >= 0, count <= countMax);
 }
 
 
@@ -232,7 +232,7 @@ remove(ARG_TYPE t, index find, index last, ::count countMin, ::count countMax)
 {
    ::count count = 0;
    if(contains(t, find, last, countMin, countMax))
-      while(conditional(countMax >= 0, count < countMax)
+      while(::conditional(countMax >= 0, count < countMax)
          && (find = remove_first(t, find, last)) >= 0)
          count++;
    return count;

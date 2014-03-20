@@ -1021,19 +1021,33 @@ namespace file
 
                      strLocale = pcontext->localeschema().m_idaLocale[i];
                      strSchema = pcontext->localeschema().m_idaSchema[i];
-                     strLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
+                     straLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
 
-                     for (j = 0; j < ca; j++)
+                     for(int k = 0; k < straLs.get_count(); k++)
                      {
 
-                        straPath.add(path(strLs, stra[j]));
+                        string strLd = straLs[k];
+
+                        for (j = 0; j < ca; j++)
+                        {
+
+                           straPath.add(path(strLs, stra[j]));
+
+                        }
 
                      }
 
                   }
 
-                  strLs = locale_schema_matter(papp, "en", "en");
-                  straPath.add(path(strLs, stra[0]));
+                  straLs = locale_schema_matter(papp, "en", "en");
+                  for(int k = 0; k < straLs.get_count(); k++)
+                  {
+
+                     string strLd = straLs[k];
+
+                     straPath.add(path(strLs, stra[0]));
+
+                  }
 
                   property_set set(papp);
 
@@ -1205,19 +1219,30 @@ namespace file
 
                   strLocale         = pcontext->localeschema().m_idaLocale[i];
                   strSchema         = pcontext->localeschema().m_idaSchema[i];
-                  strLs             = locale_schema_matter(papp, strLocale, strSchema);
-
-                  for(j = 0; j < ca; j++)
+                  straLs             = locale_schema_matter(papp, strLocale, strSchema);
+                  for(int k = 0; k < straLs.get_count(); k++)
                   {
 
-                     straPath.add(path(strLs, stra[j]));
+                     strLs = straLs[k];
+
+                     for(j = 0; j < ca; j++)
+                     {
+
+                        straPath.add(path(strLs, stra[j]));
+
+                     }
 
                   }
 
                }
 
-               strLs      = locale_schema_matter(papp, "en", "en");
-               straPath.add(path(strLs, stra[0]));
+               straLs      = locale_schema_matter(papp, "en", "en");
+               for(int k = 0; k < straLs.get_count(); k++)
+               {
+
+                  strLs = straLs[k];
+                  straPath.add(path(strLs, stra[0]));
+               }
 
                property_set set(papp);
 
@@ -1434,7 +1459,7 @@ namespace file
 
                strLocale = pcontext->m_plocaleschema->m_idLocale;
                strSchema = pcontext->m_plocaleschema->m_idSchema;
-               strLs = locale_schema_matter(papp, strLocale, strSchema, pszRoot, pszApp);
+               straLs = locale_schema_matter(papp, strLocale, strSchema, pszRoot, pszApp);
 
                strFile = System.dir().appdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), str + ::str::has_char(str2, ",") + ".map_question"));
 
@@ -1456,19 +1481,36 @@ namespace file
                }
 
 
+               for(int k = 0; k < straLs.get_count(); k++)
+               {
 
-               straPath.add(path(strLs, str, str2));
+                  strLs = straLs[k];
+
+                  straPath.add(path(strLs, str, str2));
+               }
 
                for (int32_t i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
                {
                   strLocale = pcontext->localeschema().m_idaLocale[i];
                   strSchema = pcontext->localeschema().m_idaSchema[i];
-                  strLs = locale_schema_matter(papp, strLocale, strSchema, pszRoot, pszApp);
-                  straPath.add(path(strLs, str, str2, true));
+                  straLs = locale_schema_matter(papp, strLocale, strSchema, pszRoot, pszApp);
+                  for(int k = 0; k < straLs.get_count(); k++)
+                  {
+
+                     strLs = straLs[k];
+
+                     straPath.add(path(strLs, str, str2, true));
+                  }
                }
 
-               strLs = locale_schema_matter(papp, "en", "en");
-               straPath.add(path(strLs, str, str2));
+               straLs = locale_schema_matter(papp, "en", "en");
+               for(int k = 0; k < straLs.get_count(); k++)
+               {
+
+                  strLs = straLs[k];
+
+                  straPath.add(path(strLs, str, str2));
+               }
 
                property_set set(papp);
 
@@ -1579,7 +1621,7 @@ namespace file
 
             strLocale  = pcontext->m_plocaleschema->m_idLocale;
             strSchema  = pcontext->m_plocaleschema->m_idSchema;
-            strLs      = locale_schema_matter(papp, strLocale, strSchema);
+            straLs      = locale_schema_matter(papp, strLocale, strSchema);
 
             strFile = System.dir().appdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), str + ::str::has_char(str2, ",") + ".map_question"));
 
@@ -1601,19 +1643,37 @@ namespace file
             }
 
 
+            for(int k = 0; k < straLs.get_count(); k++)
+            {
 
-            straPath.add(path(strLs, str, str2));
+               strLs = straLs[k];
+
+               straPath.add(path(strLs, str, str2));
+
+            }
 
             for(int32_t i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
             {
                strLocale         = pcontext->localeschema().m_idaLocale[i];
                strSchema         = pcontext->localeschema().m_idaSchema[i];
-               strLs             = locale_schema_matter(papp, strLocale, strSchema);
-               straPath.add(path(strLs, str, str2, true));
+               straLs             = locale_schema_matter(papp, strLocale, strSchema);
+               for(int k = 0; k < straLs.get_count(); k++)
+               {
+
+                  strLs = straLs[k];
+
+                  straPath.add(path(strLs, str, str2, true));
+               }
             }
 
-            strLs             = locale_schema_matter(papp, "en", "en");
-            straPath.add(path(strLs, str, str2));
+            straLs             = locale_schema_matter(papp, "en", "en");
+            for(int k = 0; k < straLs.get_count(); k++)
+            {
+
+               strLs = straLs[k];
+
+               straPath.add(path(strLs, str, str2));
+            }
 
             property_set set(papp);
 

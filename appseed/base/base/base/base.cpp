@@ -27,3 +27,9 @@ void __post_quit_message(int32_t nExitCode)
 
 }
 
+
+string_map < INT_PTR, INT_PTR > & __library()
+{
+   static string_map < INT_PTR, INT_PTR > map;
+   return map;
+}

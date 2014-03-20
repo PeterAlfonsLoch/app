@@ -1744,9 +1744,16 @@ void openURL(const string &url_str) {
 }
 #endif
 
+void win_factory_exchange(sp(base_application) papp);
 
 void base_application::Ex1OnFactoryExchange()
 {
+
+#ifdef CUBE
+
+   win_factory_exchange(this);
+
+#else
 
    System.factory().creatable_large < ::file::exception >();
 
@@ -1758,6 +1765,8 @@ void base_application::Ex1OnFactoryExchange()
    PFN_ca2_factory_exchange pfn_ca2_factory_exchange = library.get < PFN_ca2_factory_exchange >("ca2_factory_exchange");
 
    pfn_ca2_factory_exchange(this);
+
+#endif
 
 }
 
@@ -4795,10 +4804,16 @@ bool base_application::Ex2OnAppUninstall()
 }
 
 
-
+void draw2d_gdiplus_factory_exchange(sp(base_application) papp);
 
 void base_application::draw2d_factory_exchange()
 {
+
+#ifdef CUBE
+
+   draw2d_gdiplus_factory_exchange(this);
+
+#else
 
    string strLibrary = draw2d_get_default_library_name();
 
@@ -4829,6 +4844,8 @@ void base_application::draw2d_factory_exchange()
    PFN_ca2_factory_exchange pfn_ca2_factory_exchange = library.get < PFN_ca2_factory_exchange >("ca2_factory_exchange");
 
    pfn_ca2_factory_exchange(this);
+
+#endif
 
 }
 

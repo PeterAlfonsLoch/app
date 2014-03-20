@@ -1365,8 +1365,11 @@ namespace plane
 
       }
 
+#ifdef CUBE
 
-#ifndef METROWIN
+      // Criar novo meio de instalação
+
+#elif !defined(METROWIN)
 
       if(!System.directrix()->m_varTopicQuery.has_property("install")
          && !System.directrix()->m_varTopicQuery.has_property("uninstall")
@@ -1382,14 +1385,26 @@ namespace plane
 
       ::core::library library(pappNewApplicationParent, NULL);
 
+#ifdef CUBE
+
+      string strLibrary = pszAppId;
+
+      strLibrary.replace("/", "_");
+      strLibrary.replace("-", "_");
+
+
+#else
+
       string strLibrary = m_mapAppLibrary[pszAppId];
 
-      if(strLibrary.is_empty())
+      if (strLibrary.is_empty())
       {
 
          throw not_installed(get_app(), NULL, strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema);
 
       }
+
+#endif
 
       sp(base_application) papp = NULL;
 

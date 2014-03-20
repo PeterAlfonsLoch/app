@@ -99,6 +99,8 @@ namespace plugin
 } // namespace plugin
 
 
+
+
 ::hotplugin::plugin * new_hotplugin(sp(base_application) papp)
 {
 
