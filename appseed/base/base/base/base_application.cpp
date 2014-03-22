@@ -572,7 +572,7 @@ sp(::command_thread) base_application::creation()
 ::file::binary_buffer_sp base_application::file_get_file(var varFile, uint32_t uiFlags)
 {
 
-   return NULL;
+   return file().get_file(varFile, uiFlags);
 
 }
 

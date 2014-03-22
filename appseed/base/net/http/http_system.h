@@ -64,6 +64,10 @@ namespace http
       mutex                                  m_mutexProxy;
       string_map < proxy *  >  m_mapProxy;
 
+      mutex                                  m_mutexDownload;
+      stringa                                m_straDownloading;
+      stringa                                m_straExists;
+
 
       system(sp(base_application) papp);
       virtual ~system();

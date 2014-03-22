@@ -633,10 +633,12 @@ namespace user
    }
 
 
-   void tree::perform_right_click(UINT nFlags, point point)
+   void tree::perform_right_click(UINT nFlags, point pointCursor)
    {
 
-      _001OnRightClick(nFlags, point);
+      _001OnRightClick(nFlags, pointCursor);
+
+      point point(pointCursor);
 
       sp(::data::tree_item) pitem;
 
@@ -652,7 +654,7 @@ namespace user
          if (eelement == tree_element_image || eelement == tree_element_text)
          {
 
-            _001OnItemContextMenu(pitem, ::action::source_user, this, point);
+            _001OnItemContextMenu(pitem, ::action::source_user, this, pointCursor);
 
          }
 

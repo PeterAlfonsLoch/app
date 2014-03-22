@@ -92,6 +92,7 @@ public:
 
 
 
+
    base_system(sp(base_application) papp);
 
 

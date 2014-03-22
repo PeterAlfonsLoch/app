@@ -62,6 +62,7 @@ namespace user
          System.factory().creatable_small < simple_edit_plain_text >();
 
          System.factory().creatable_small < menu_item >(System.type_info < menu_base_item >());
+         System.factory().creatable_small < menu >(System.type_info < menu_base >());
 
 
          System.factory().creatable_small < SimplePushButton >();

@@ -157,7 +157,8 @@ namespace userex
       }
       else if(pcreatordata->m_id == "file_manager"
          || pcreatordata->m_id == "left_file"
-         || pcreatordata->m_id == "right_file")
+         || pcreatordata->m_id == "right_file"
+         || pcreatordata->m_id == "pick_file")
       {
 
          ::filemanager::data * pfilemanagerdata = oprop("file_manager_data." + *pcreatordata->m_id.m_pstr).cast < ::filemanager::data >();

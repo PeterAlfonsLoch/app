@@ -305,8 +305,6 @@ namespace file
 
             string strFile(strPath);
 
-            string strFileDownloading(strPath);
-
             if(::str::ends(strPath, "en_us_international.xml"))
             {
                TRACE("Debug Here");
@@ -331,10 +329,12 @@ namespace file
 
             strFile = strFile + ".local_copy";
 
-            strFileDownloading = strFile + ".downloading";
+            single_lock sl(&System.http().m_mutexDownload, true);
 
-            if(m_pbaseapp->m_file.exists(strFile) && !m_pbaseapp->m_file.exists(strFileDownloading))
+            if (m_pbaseapp->m_file.exists(strFile) && !(System.http().m_straDownloading.contains(strPath) || System.http().m_straExists.contains(strPath)))
             {
+
+               sl.unlock();
 
                spfile = Application.alloc(System.type_info < ::file::binary_buffer > ());
 
@@ -368,22 +368,42 @@ namespace file
 
             var varQuery;
 
-            varQuery["disable_ca2_sessid"] = true;
+            varQuery["raw_http"] = true;
 
             property_set set(get_app());
 
-            if(m_pbaseapp->m_file.exists(strFileDownloading) || m_pbaseapp->m_http.exists(strPath, &varQuery, set))
+            bool bOk = true;
+
+            sl.lock();
+
+            while (System.http().m_straDownloading.contains(strPath) || System.http().m_straExists.contains(strPath))
             {
+               sl.unlock();
+               Sleep(100);
+               sl.lock();
+            }
+
+            if (!System.http().m_straDownloading.contains(strPath) && m_pbaseapp->m_http.exists(strPath, &varQuery, set))
+            {
+
+               System.http().m_straDownloading.add(strPath);
+
+               sl.unlock();
 
                spfile = new ::sockets::http_buffer(get_app());
 
                if(!spfile->open(strPath, nOpenFlags))
                {
+                  sl.lock();
+
+                  System.http().m_straDownloading.remove(strPath);
+
+                  sl.unlock();
 
                   spfile.release();
 
                }
-               else if(!m_pbaseapp->m_file.exists(strFileDownloading))
+               else
                {
 
                   try
@@ -394,10 +414,15 @@ namespace file
                      System.file().output(m_pbaseapp, strFile, &System.compress(), &::core::compress::null, is);
 
                   }
-                  catch(...)
+                  catch (...)
                   {
                   }
 
+                  sl.lock();
+
+                  System.http().m_straDownloading.remove(strPath);
+
+                  sl.unlock();
 
                   spfile->seek_to_begin();
 

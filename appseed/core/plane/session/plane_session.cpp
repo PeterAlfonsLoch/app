@@ -1760,11 +1760,12 @@ alt1:
    bool session::initialize1()
    {
 
+      m_puserpresence = canew(::userpresence::userpresence(this));
+
+
       if(!::platform::application::initialize1())
          return false;
 
-
-      m_puserpresence            = canew(::userpresence::userpresence(this));
 
       if(m_puserpresence.is_null())
       {

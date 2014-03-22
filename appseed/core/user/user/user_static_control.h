@@ -49,11 +49,7 @@ namespace user
       e_type get_type();
 
 
-#ifdef WINDOWSEX
-
-      virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
-
-#endif
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
 
 
       virtual bool OnChildNotify(::message::base * pbase);

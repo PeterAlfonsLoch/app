@@ -21,20 +21,15 @@ namespace user
    }
 
 
-   // Derived class is responsible for implementing all of these handlers
-   //   for owner/self draw controls
-#ifdef WINDOWSEX
-
-
-   void static_control::DrawItem(LPDRAWITEMSTRUCT)
+   
+   void static_control::_001OnDraw(::draw2d::graphics * pdc)
    {
 
-      ASSERT(FALSE);
+      pdc->set_text_color(ARGB(255, 0, 0, 0));
+
+      pdc->TextOut(0, 0, get_window_text());
 
    }
-
-
-#endif
 
 
    bool static_control::OnChildNotify(::message::base * pbase)
@@ -45,7 +40,7 @@ namespace user
 
 #ifdef WINDOWSEX
       
-      DrawItem((LPDRAWITEMSTRUCT)pbase->m_lparam);
+//      DrawItem((LPDRAWITEMSTRUCT)pbase->m_lparam);
 
 #endif
 

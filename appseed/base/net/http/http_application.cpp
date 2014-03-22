@@ -68,17 +68,14 @@ namespace http
 
          string strUrl(psignal->m_strUrl);
 
-         string strFileDownloading(strUrl);
-
-         strFileDownloading.replace(":", "_");
-         strFileDownloading.replace("//", "/");
-         strFileDownloading.replace("?", "%19");
-         strFileDownloading = System.dir().appdata("cache/" + strFileDownloading + ".local_copy.downloading");
-
          property_set set(get_app());
 
-         if(!Application.file().exists(strFileDownloading) && !exists(psignal->m_strUrl, set))
+         single_lock sl(&System.http().m_mutexDownload, true);
+
+         if (!(System.http().m_straDownloading.contains(strUrl)) && !exists(psignal->m_strUrl, set))
          {
+
+            sl.unlock();
 
             psignal->m_estatusRet = status_fail;
 

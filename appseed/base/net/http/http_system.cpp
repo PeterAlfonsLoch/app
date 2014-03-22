@@ -8,7 +8,8 @@ namespace http
    system::system(sp(base_application) papp) :
       element(papp),
       m_mutexPac(papp),
-      m_mutexProxy(papp)
+      m_mutexProxy(papp),
+      m_mutexDownload(papp)
    {
    }
 
@@ -1160,7 +1161,7 @@ retry:
                if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
             {
                System.url().string_set(strUrl, "sessid", strSessId);
-               if (strUrl.find_ci("://api.ca2.cc/"))
+               if (strUrl.find_ci("://api.ca2.cc/") > 0)
                {
                   string strApi(Application.fontopus()->get_server(strUrl, 8));
                   strApi.replace("account", "api");
@@ -1584,6 +1585,19 @@ retry:
    bool system::exists(const char * pszUrl, ::property_set & set)
    {
 
+      single_lock sl(&m_mutexDownload, true);
+
+      while (m_straExists.contains(pszUrl))
+      {
+         sl.unlock();
+         Sleep(100);
+         sl.lock();
+      }
+
+      m_straExists.add(pszUrl);
+
+      sl.unlock();
+
       ::sockets::socket_handler handler(get_app());
 
       set["only_headers"] = true;
@@ -1592,19 +1606,26 @@ retry:
 
       domain.create(System.url().get_server(pszUrl));
 
-      if(::str::begins(System.url().get_object(pszUrl), "/matter/"))
+      if (::str::begins(System.url().get_object(pszUrl), "/matter/"))
       {
 
-         set["disable_ca2_sessid"] = true;
+         set["raw_http"] = true;
 
       }
 
       sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, set);
 
-      if(psocket == NULL)
+      if (psocket == NULL)
+      {
+         sl.lock();
+         m_straExists.remove(pszUrl);
          return false;
+      }
 
       int32_t iStatusCode = psocket->outattr("http_status_code");
+
+      sl.lock();
+      m_straExists.remove(pszUrl);
 
       return iStatusCode == 200;
    }

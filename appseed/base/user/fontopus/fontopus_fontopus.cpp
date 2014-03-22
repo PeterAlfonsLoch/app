@@ -285,7 +285,9 @@ namespace fontopus
    {
 
 
-#ifndef METROWIN
+
+
+#ifdef METROWIN
 
       if(!System.directrix()->m_varTopicQuery.has_property("install")
          && !System.directrix()->m_varTopicQuery.has_property("uninstall"))
@@ -343,9 +345,11 @@ namespace fontopus
    string fontopus::get_server(const char * pszUrl, int32_t iRetry)
    {
 
+      string strHost(url_get_server(pszUrl));
+
       string strFontopusServer;
 
-      if (m_mapFontopusServer.Lookup(pszUrl, strFontopusServer) && strFontopusServer.has_char())
+      if (m_mapFontopusServer.Lookup(strHost, strFontopusServer) && strFontopusServer.has_char())
       {
          return strFontopusServer;
       }
@@ -355,13 +359,13 @@ namespace fontopus
       if (iRetry < 0)
          return ""; // should not retry or lookup is valid and strFontopusServer is really empty
 
-      string strGetFontopus("http://" + url_get_server(pszUrl) + "/get_fontopus");
+      string strGetFontopus("http://" + strHost + "/get_fontopus");
       try
       {
 
          ::property_set set(get_app());
 
-         set["disable_ca2_sessid"] = true;
+         set["raw_http"] = true;
 
          if(!Application.http().get(strGetFontopus, strFontopusServer, set))
             strFontopusServer.Empty();
@@ -370,7 +374,7 @@ namespace fontopus
       {
       }
 
-      m_mapFontopusServer.set_at(pszUrl, strFontopusServer);
+      m_mapFontopusServer.set_at(strHost, strFontopusServer);
 
       iRetry--;
 
