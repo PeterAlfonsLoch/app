@@ -26,12 +26,14 @@ namespace user
          ::draw2d::brush_sp                  m_brushFill;
          ::draw2d::brush_sp                  m_brushFillSel;
          ::draw2d::brush_sp                  m_brushFillHover;
-         id                   m_id;
-         istring              m_istrTitleEx;
-         ::visual::dib_sp     m_dib;
-         sp(place_holder)       m_pholder;
-         bool                 m_bVisible;
-         bool                 m_bPermanent;
+         id                                  m_id;
+         istring                             m_istrTitleEx;
+         ::visual::dib_sp                    m_dib;
+         sp(place_holder)                    m_pholder;
+         bool                                m_bVisible;
+         bool                                m_bPermanent;
+         size                                m_size;
+         point                               m_pt;
 
 
          pane(sp(base_application) papp);

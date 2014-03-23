@@ -964,6 +964,12 @@ namespace user
          graphics->CreateCompatibleDC(NULL);
          ::draw2d::graphics * pdc = graphics;
          pdc->SelectObject(get_data()->m_fontBold);
+
+         rect rectClient;
+         GetClientRect(rectClient);
+         int x = rectClient.left;
+
+         int32_t ixAdd;
          for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
 
@@ -983,10 +989,42 @@ namespace user
                size.cy = max(size.cy, pane.m_dib->size().cy);
             }
             cy = size.cy + 2;
+
             if(cy > iTabHeight)
             {
                iTabHeight = cy;
             }
+
+            pane.m_pt.x = x;
+            pane.m_pt.y = rectClient.top;
+
+
+//            string str = pane.get_title();
+
+//            size size;
+
+            ixAdd = 5;
+
+            if (pane.m_dib.is_set())
+            {
+               //::image_list::info ii;
+               ixAdd += pane.m_dib->m_size.cx + 2;
+            }
+
+            if (!pane.m_bPermanent)
+            {
+               ixAdd += 2 + 16 + 2;
+            }
+
+
+
+
+            pane.m_size.cx = size.cx + ixAdd 
+                                     + get_data()->m_rectBorder.left + get_data()->m_rectBorder.right
+                                     + get_data()->m_rectMargin.left + get_data()->m_rectMargin.right
+                                     + get_data()->m_rectTextMargin.left + get_data()->m_rectTextMargin.right;
+
+            x += pane.m_size.cx;
          }
 
          // close tab button
@@ -1001,8 +1039,16 @@ namespace user
 
          get_data()->m_iTabHeight = iTabHeight;
 
-         rect rectClient;
-         GetClientRect(rectClient);
+         for (int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
+         {
+
+            pane & pane = get_data()->m_panea[iPane];
+
+            pane.m_size.cy = iTabHeight;
+
+         }
+
+
 
 
          get_data()->m_rectTab.left       = rectClient.left;
@@ -1254,66 +1300,71 @@ namespace user
       }
       else
       {
-         ASSERT(iTabParam >= 0);
-         ASSERT(iTabParam < GetTabCount());
-         ::draw2d::graphics_sp graphics(allocer());
-         graphics->CreateCompatibleDC(NULL);
+         pane & pane = get_data()->m_panea[iTabParam];
+         lprect->left = pane.m_pt.x;
+         lprect->top = pane.m_pt.y;
+         lprect->right = pane.m_pt.x + pane.m_size.cx;
+         lprect->bottom = pane.m_pt.y + pane.m_size.cy;
+         ///*ASSERT(iTabParam >= 0);
+         //ASSERT(iTabParam < GetTabCount());
+         ////::draw2d::graphics_sp graphics(allocer());
+         ////graphics->CreateCompatibleDC(NULL);
 
-         //HDC hdc = ::CreateCompatibleDC(NULL);
-         //Gdiplus::Graphics * pg = new Gdiplus::Graphics(hdc);
-         //delete pg;
-         //::DeleteDC(hdc);
-         ::draw2d::graphics * pdc = graphics;
-         rect rect = get_data()->m_rectTab;
-         rect.right = rect.left;
-         int32_t ixAdd;
-         //return false;
-         for(int32_t iPane = 0; iPane < iTabParam + 1; iPane++)
-         {
+         ////HDC hdc = ::CreateCompatibleDC(NULL);
+         ////Gdiplus::Graphics * pg = new Gdiplus::Graphics(hdc);
+         ////delete pg;
+         ////::DeleteDC(hdc);
+         //::draw2d::graphics * pdc = graphics;
+         //rect rect = get_data()->m_rectTab;
+         //rect.right = rect.left;
+         //int32_t ixAdd;
+         ////return false;
+         //for(int32_t iPane = 0; iPane < iTabParam + 1; iPane++)
+         //{
 
-            rect.left = rect.right;
+         //   rect.left = rect.right;
 
-            pane & pane = get_data()->m_panea[iPane];
+         //   pane & pane = get_data()->m_panea[iPane];
 
-            if(!pane.m_bVisible)
-               continue;
+         //   if(!pane.m_bVisible)
+         //      continue;
 
-            string str = pane.get_title();
+         //   //string str = pane.get_title();
 
-            size size;
+         //   //size size;
 
-            ixAdd = 5;
+         //   ixAdd = 5;
 
-            if(pane.m_dib.is_set())
-            {
-               //::image_list::info ii;
-               ixAdd += pane.m_dib->m_size.cx + 2;
-            }
+         //   if(pane.m_dib.is_set())
+         //   {
+         //      //::image_list::info ii;
+         //      ixAdd += pane.m_dib->m_size.cx + 2;
+         //   }
 
-            if(!pane.m_bPermanent)
-            {
-               ixAdd += 2 + 16 + 2;
-            }
+         //   if(!pane.m_bPermanent)
+         //   {
+         //      ixAdd += 2 + 16 + 2;
+         //   }
 
-            if(get_data()->m_iaSel.contains(iPane))
-            {
-               pdc->SelectObject(get_data()->m_fontBold);
-            }
-            else
-            {
-               pdc->SelectObject(get_data()->m_font);
-            }
-            m_dcextension.GetTextExtent(
-               pdc,
-               str,
-               size);
-            rect.right = rect.left + ixAdd + size.cx +
-               get_data()->m_rectBorder.left + get_data()->m_rectBorder.right +
-               get_data()->m_rectMargin.left + get_data()->m_rectMargin.right +
-               get_data()->m_rectTextMargin.left + get_data()->m_rectTextMargin.right;
+         //   /*if(get_data()->m_iaSel.contains(iPane))
+         //   {
+         //      pdc->SelectObject(get_data()->m_fontBold);
+         //   }
+         //   else
+         //   {
+         //      pdc->SelectObject(get_data()->m_font);
+         //   }
+         //   m_dcextension.GetTextExtent(
+         //      pdc,
+         //      str,
+         //      size);*/
+         //   rect.right = rect.left + ixAdd + size.cx +
+         //      get_data()->m_rectBorder.left + get_data()->m_rectBorder.right +
+         //      get_data()->m_rectMargin.left + get_data()->m_rectMargin.right +
+         //      get_data()->m_rectTextMargin.left + get_data()->m_rectTextMargin.right;
 
-         }
-         *lprect = rect;
+         //}*/
+         //*lprect = rect;
       }
       return true;
    }

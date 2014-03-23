@@ -27,11 +27,17 @@ namespace user
       };
 
 
-      e_type                         m_etype;
+      e_type                              m_etype;
+
+      bool                                m_bLButtonDown;
+      COLORREF                            m_crText;
 
 
       static_control(sp(base_application) papp);
       virtual ~static_control();
+
+
+      virtual void install_message_handling(::message::dispatch * pdispatch);
 
 
       virtual bool create(sp(::user::interaction) puiParent, id id);
@@ -53,6 +59,12 @@ namespace user
 
 
       virtual bool OnChildNotify(::message::base * pbase);
+
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnLButtonDown);
+      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECL_GEN_SIGNAL(_001OnMouseLeave);
 
 
    };

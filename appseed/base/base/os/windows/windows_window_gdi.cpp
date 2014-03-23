@@ -173,12 +173,7 @@ void window_gdi::update_window(oswindow window, COLORREF * pcolorref, LPCRECT lp
 
    }
 
-   if (!bOwnDC)
-   {
-
-      ::ReleaseDC(window, hdcScreen);
-
-   }
+   ::ReleaseDC(window, hdcScreen);
 
 }
 

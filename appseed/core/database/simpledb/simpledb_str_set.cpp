@@ -230,7 +230,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
    if(m_pdataserver == NULL)
       return false;
 
-   if(m_pdataserver->m_bRemote && Application.fontopus()->m_puser != NULL)
+   if(m_pdataserver->m_bRemote && &ApplicationUser != NULL)
    {
 
       item stritem;
@@ -255,7 +255,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       set["user"] = &ApplicationUser;
 
-      set["get_response"].m_var = &strValue;
+      set["get_response"] = "";
 
       m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, set);
 
@@ -263,6 +263,8 @@ bool db_str_set::load(const char * lpKey, string & strValue)
       {
          return false;
       }
+
+      strValue = set["get_response"];
 
       stritem.m_dwTimeout = get_tick_count() + 23 * (1984 + 1977);
       stritem.m_str = strValue;

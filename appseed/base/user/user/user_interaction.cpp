@@ -39,7 +39,7 @@ namespace user
       //       m_crDefaultBackgroundColor    = ARGB(127, 200, 255, 220);
       //#endif
 
-      m_crDefaultBackgroundColor = ARGB(0xcc, 0xcc, 0xcc, 0xcc);
+      m_crDefaultBackgroundColor = ARGB(255, 255, 255, 255);
 
       m_psession = NULL;
       m_bMessageWindow = false;
@@ -64,7 +64,7 @@ namespace user
          m_bRectOk = false;
          m_bVisible = true;
 
-         m_crDefaultBackgroundColor = ARGB(0xcc, 0xcc, 0xcc, 0xcc);
+         m_crDefaultBackgroundColor = ARGB(255, 255, 255, 255);
 
          m_psession = NULL;
          m_bMessageWindow = false;

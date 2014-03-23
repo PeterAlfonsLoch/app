@@ -879,6 +879,7 @@ retry:
 
          if(iStatusCode != 200)
          {
+            psession = NULL;
             if(iTry < 8)
             {
                goto retry;

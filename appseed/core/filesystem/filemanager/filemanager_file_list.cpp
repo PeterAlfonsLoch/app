@@ -2117,11 +2117,11 @@ namespace filemanager
    {
       if (GetFileManager() != NULL && GetFileManager()->get_filemanager_data()->is_saving())
       {
-         return RGB(255, 177, 84);
+         return ARGB(255, 255, 210, 180);
       }
       else
       {
-         return RGB(200, 255, 255);
+         return ARGB(255, 255, 255, 255);
       }
    }
 

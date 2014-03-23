@@ -62,6 +62,27 @@ namespace filemanager
                   puh->m_pview == (this)))
                {
                   m_pfilemanagerinterface = puh->m_pmanager;
+
+
+                  sp(::user::interaction) pui = this;
+
+                  if (pui.is_set())
+                  {
+
+                     if (GetFileManager()->get_filemanager_data()->m_bTransparentBackground)
+                     {
+                        pui->m_etranslucency = ::user::interaction::TranslucencyPresent;
+                     }
+                     else
+                     {
+                        pui->m_etranslucency = ::user::interaction::TranslucencyNone;
+                     }
+
+                     pui->set_default_background_color(ARGB(255, 255, 255, 255));
+
+                  }
+
+
                }
             }
          }

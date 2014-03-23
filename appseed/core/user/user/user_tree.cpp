@@ -96,8 +96,10 @@ namespace user
       rect rectClient;
       GetClientRect(rectClient);
 
+      pdc->FillSolidRect(rectClient, get_background_color());
+
       //      ::core::savings & savings = System.savings();
-      rect rectClientOffset = rectClient;
+      /*rect rectClientOffset = rectClient;
 
       rect rectClipBox;
       pdc->GetClipBox(rectClipBox);
@@ -125,7 +127,7 @@ namespace user
             rectClipBox,
             Session.get_default_color(COLOR_WINDOW),
             196);
-      }
+      }*/
    }
 
    COLORREF tree::get_background_color()
@@ -135,6 +137,8 @@ namespace user
 
    void tree::_001OnDraw(::draw2d::graphics *pdc)
    {
+
+      ::user::interaction::_001OnDraw(pdc);
 
       rect rectClient;
 
@@ -199,83 +203,6 @@ namespace user
       //      point ptOriginalViewportOrg = pdc->GetViewportOrg();
       //
       //      rect rectClientOffset = rectClient;
-
-      /*rect rectClipBox;
-      pdc->GetClipBox(rectClipBox);
-      if(rectClipBox.is_null())
-      {
-      rectClipBox = rectClientOffset;
-      }
-      else
-      {
-      rectClipBox.intersect(rectClipBox, rectClientOffset);
-      }*/
-
-      //       class imaging & imaging = System.visual().imaging();
-
-      if(_001IsTranslucent())
-      {
-         class imaging & imaging = System.visual().imaging();
-         //_001DrawBackground(pdc, rectClipBox);
-         imaging.color_blend(
-            pdc,
-            rectClient,
-            get_background_color(),
-            127);
-      }
-      else
-      {
-         //      if(m_pgdibuffer != NULL
-         //         && !TwiHasTranslucency())
-         {
-            /*         ::draw2d::graphics * pdcBack = m_pgdibuffer->GetBuffer();
-            if(pdcBack != NULL)
-            {
-            pdc->BitBlt(
-            rectClient.left,
-            rectClient.top,
-            rectClient.width(),
-            rectClient.height(),
-            pdcBack,
-            rectClient.left,
-            rectClient.top,
-            SRCCOPY);
-            }*/
-         }
-         //else
-         {
-            //if(System.savings().is_trying_to_save(::core::resource_processing))
-            {
-               pdc->FillSolidRect(
-                  rectClient,
-                  get_background_color());
-            }
-            /*         else
-            {
-            imaging.color_blend(
-            pdc,
-            rectClipBox,
-            Session.get_default_color(COLOR_WINDOW),
-            196);
-            }*/
-            /*         if(m_pgdibuffer != NULL)
-            {
-            ::draw2d::graphics * pdcBack = m_pgdibuffer->GetBuffer();
-            if(pdcBack != NULL)
-            {
-            pdcBack->BitBlt(
-            rectClient.left,
-            rectClient.top,
-            rectClient.width(),
-            rectClient.height(),
-            pdc,
-            rectClient.left,
-            rectClient.top,
-            SRCCOPY);
-            }
-            }*/
-         }
-      }
 
       pdc->OffsetViewportOrg((int32_t) -m_scrollinfo.m_ptScroll.x, (int32_t) -(m_scrollinfo.m_ptScroll.y % _001GetItemHeight()));
 

@@ -1680,6 +1680,10 @@ int64_t var::int64(int64_t iDefault) const
       return m_i32;
    case type_uint32:
       return m_ui32;
+   case type_int64:
+      return m_i64;
+   case type_uint64:
+      return m_ui64;
    case type_element:
       return iDefault;
    case type_pvar:

@@ -202,27 +202,34 @@ namespace user
          for(int32_t i = 0 ; i < m_splitbara.get_count(); i++)
          {
 
-            if((m_splitbara[i].m_dRate < m_splitbara[i].m_dMinimumRate
-            || m_splitbara[i].m_dRate > m_splitbara[i].m_dMaximumRate)
-            && m_splitbara[i].m_dwPosition > 0)
+            if (m_splitbara[i].m_dRate >= 0.0)
             {
-               dwPosition = m_splitbara[i].m_dwPosition;
-               dRate = (double) dwPosition / (double) iDimension;
-               m_splitbara[i].m_dRate = dRate;
+               if ((m_splitbara[i].m_dRate < m_splitbara[i].m_dMinimumRate
+                  || m_splitbara[i].m_dRate > m_splitbara[i].m_dMaximumRate)
+                  && m_splitbara[i].m_dwPosition > 0)
+               {
+                  dwPosition = m_splitbara[i].m_dwPosition;
+                  dRate = (double)dwPosition / (double)iDimension;
+                  m_splitbara[i].m_dRate = dRate;
+               }
+
+
+               if (m_splitbara[i].m_dRate < m_splitbara[i].m_dMinimumRate)
+               {
+                  m_splitbara[i].m_dRate = m_splitbara[i].m_dMinimumRate;
+               }
+               else if (m_splitbara[i].m_dRate > m_splitbara[i].m_dMaximumRate)
+               {
+                  m_splitbara[i].m_dRate = m_splitbara[i].m_dMaximumRate;
+               }
+
+
+               m_splitbara[i].m_dwPosition = min(m_splitbara[i].m_dwMaxPosition, (uint32_t)(m_splitbara[i].m_dRate * iDimension));
             }
-
-
-            if(m_splitbara[i].m_dRate < m_splitbara[i].m_dMinimumRate)
+            else
             {
-               m_splitbara[i].m_dRate = m_splitbara[i].m_dMinimumRate;
+               m_splitbara[i].m_dwPosition = min(m_splitbara[i].m_dwMaxPosition, (uint32_t)(m_splitbara[i].m_dwPosition));
             }
-            else if(m_splitbara[i].m_dRate > m_splitbara[i].m_dMaximumRate)
-            {
-               m_splitbara[i].m_dRate = m_splitbara[i].m_dMaximumRate;
-            }
-
-
-            m_splitbara[i].m_dwPosition = min(m_splitbara[i].m_dwMaxPosition, (uint32_t) (m_splitbara[i].m_dRate * iDimension));
 
          }
       }

@@ -869,7 +869,7 @@ namespace filemanager
 
    bool tree::_001IsTranslucent()
    {
-      return true;
+      return GetFileManager()->get_filemanager_data()->m_bTransparentBackground;
    }
 
    void tree::_001OnOpenItem(::data::tree_item * pitem, ::action::context actioncontext)
@@ -1033,15 +1033,15 @@ namespace filemanager
 
       if(GetFileManager() == NULL)
       {
-         return ARGB(255, 200, 255, 255);
+         return ARGB(255, 255, 255, 255);
       }
       else if(GetFileManager()->get_filemanager_data()->is_saving())
       {
-         return ARGB(255, 255, 177, 84);
+         return ARGB(255, 255, 210, 180);
       }
       else
       {
-         return ARGB(255, 200, 255, 255);
+         return ARGB(255, 255, 255, 255);
       }
 
    }
@@ -1085,10 +1085,6 @@ namespace filemanager
                   //        AddClient(&m_datainterface);
                   string str;
                   str.Format("tree(%s)", GetFileManager()->get_filemanager_data()->m_strDISection);
-                  if (GetFileManager()->get_filemanager_data()->m_bTransparentBackground)
-                  {
-                     //::user::tree::m_etranslucency = ::user::tree::TranslucencyPresent;
-                  }
 //                  m_dataid = str;
                   //            _001UpdateColumns();
                }

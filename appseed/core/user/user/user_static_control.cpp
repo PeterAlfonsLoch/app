@@ -5,10 +5,15 @@ namespace user
 {
 
 
-   bool static_control::create(sp(::user::interaction) pParentWnd, id id)
+   static_control::static_control(sp(base_application) papp) :
+      element(papp)
    {
 
-      return ::user::control::create(pParentWnd, id);
+      m_etype = type_text;
+
+      m_bLButtonDown = false;
+
+      m_crText = ARGB(255, 0, 0, 0);
 
    }
 
@@ -22,10 +27,91 @@ namespace user
 
 
    
+   bool static_control::create(sp(::user::interaction) pParentWnd, id id)
+   {
+
+      return ::user::control::create(pParentWnd, id);
+
+   }
+
+
+   void static_control::install_message_handling(::message::dispatch * pdispatch)
+   {
+
+      ::user::control::install_message_handling(pdispatch);
+
+      IGUI_WIN_MSG_LINK(WM_CREATE, pdispatch, this, &static_control::_001OnCreate);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pdispatch, this, &static_control::_001OnLButtonDown);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pdispatch, this, &static_control::_001OnLButtonUp);
+      IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &static_control::_001OnMouseLeave);
+      IGUI_WIN_MSG_LINK(WM_MOUSELEAVE, pdispatch, this, &static_control::_001OnMouseMove);
+
+   }
+
+   void static_control::_001OnCreate(signal_details * pobj)
+   {
+
+      pobj->previous();
+
+      if (pobj->m_bRet)
+         return;
+
+   }
+
+   void static_control::_001OnLButtonDown(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::mouse, pmouse, pobj);
+
+      m_bLButtonDown = true;
+
+   }
+
+
+   void static_control::_001OnLButtonUp(signal_details * pobj)
+   {
+      
+      SCAST_PTR(::message::mouse, pmouse, pobj);
+
+      if (m_bLButtonDown)
+      {
+         
+         m_bLButtonDown = false;
+
+         ::user::control_event ev;
+         ev.m_puie = this;
+         ev.m_eevent = ::user::event_button_clicked;
+         ev.m_actioncontext = ::action::source_user;
+         
+         BaseOnControlEvent(&ev);
+
+      }
+
+
+   }
+
+   void static_control::_001OnMouseMove(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::mouse, pmouse, pobj);
+   }
+
+
+   void static_control::_001OnMouseLeave(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::mouse, pleave, pobj);
+
+      m_bLButtonDown = false;
+
+   }
+
    void static_control::_001OnDraw(::draw2d::graphics * pdc)
    {
 
-      pdc->set_text_color(ARGB(255, 0, 0, 0));
+      pdc->set_text_color(m_crText);
+
+      pdc->SelectObject(GetFont());
 
       pdc->TextOut(0, 0, get_window_text());
 
@@ -45,15 +131,6 @@ namespace user
 #endif
 
       return true;
-
-   }
-
-
-   static_control::static_control(sp(base_application) papp) :
-      element(papp)
-   {
-
-      m_etype = type_text;
 
    }
 

@@ -58,6 +58,10 @@ namespace userfs
             filemanager::update_hint * puh = (filemanager::update_hint *)phint;
             if (puh->is_type_of(filemanager::update_hint::TypeInitialize))
             {
+               //if (GetFileManager()->get_filemanager_data()->m_bTransparentBackground)
+               //{
+               //   ::user::tree::m_etranslucency = ::user::tree::TranslucencyPresent;
+               //}
                /* xxx _001SetExpandImage(
                   System.LoadIcon(
                   GetFileManager()->get_filemanager_data()->m_pschema->m_uiExpandBox));
@@ -71,10 +75,6 @@ namespace userfs
                //        AddClient(&m_datainterface);
                /*               string str;
                               str.Format("tree(%s)", GetFileManager()->get_filemanager_data()->m_strDISection);
-                              if(GetFileManager()->get_filemanager_data()->m_bTransparentBackground)
-                              {
-                              ::user::tree::m_etranslucency = ::user::tree::TranslucencyPresent;
-                              }
                               m_dataid = str;*/
                //            _001UpdateColumns();
             }

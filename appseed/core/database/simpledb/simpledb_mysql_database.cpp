@@ -390,9 +390,7 @@ namespace mysql
 
    var database::get_insert_id()
    {
-      string str;
-      str.Format("%I64d", (int_ptr) mysql_insert_id((MYSQL *) m_pmysql));
-      return str;
+      return mysql_insert_id((MYSQL *) m_pmysql);
    }
 
 } //   namespace mysql

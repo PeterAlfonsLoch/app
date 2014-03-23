@@ -1,5 +1,7 @@
 #pragma once
 
+CLASS_DECL_BASE void set_splash(oswindow oswindow);
+CLASS_DECL_BASE oswindow get_splash();
 
 enum EExclusiveInstance
 {
@@ -615,6 +617,7 @@ public:
    base_application * find_running_defer_try_quit_damaged(const string & strAppName);
 
 };
+
 
 
 

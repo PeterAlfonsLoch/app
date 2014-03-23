@@ -181,7 +181,7 @@ namespace userex
          else
             pfilemanagerdata->m_strToolBarSave = "file_manager_toolbar_save.xml";
 
-         sp(::filemanager::document) pdoc = Application.filemanager().std().open_child(true, true, pcreatordata->m_pholder, pfilemanagerdata);
+         sp(::filemanager::document) pdoc = Application.filemanager().std().open_child(true, pfilemanagerdata->m_bTransparentBackground, pcreatordata->m_pholder, pfilemanagerdata);
          if(pdoc != NULL)
          {
             sp(::user::impact) pview = pdoc->get_view();
