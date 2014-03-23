@@ -298,7 +298,7 @@ namespace user
       bool bSelected    = ptree->is_selected(pitem.m_p);
       bool bHover       = ptree->is_hover(pitem);
 
-
+      data.m_pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       if(m_uchHoverAlpha > 0)
       {
