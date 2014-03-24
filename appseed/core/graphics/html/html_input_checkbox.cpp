@@ -22,8 +22,8 @@ namespace html
          {
             m_pcheckbox->create(pdata->m_pguie, 100);
             pdata->on_create_interaction(m_pcheckbox);
-             string strValue = pelemental->m_pbase->get_tag()->get_attr_value("value");
-             if(strValue.CompareNoCase("checked") == 0)
+             bool bCheck = pelemental->m_pbase->get_tag()->get_attr("checked") != NULL;
+             if(bCheck)
              {
                 m_pcheckbox->_001SetCheck(check::checked, ::action::source::add(::action::source_data, ::action::source_load));
              }

@@ -297,6 +297,8 @@ element(a.get_app())
 
 
 
+
+
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > :: array(::count n)
 {

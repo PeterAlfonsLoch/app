@@ -229,6 +229,8 @@ namespace install
 
       mutex mutexInstallingCa2(get_app(), false, "Global\\::ca::fontopus::ca2_spaboot_install::7807e510-5579-11dd-ae16-0800200c7784");
 
+      System.install().trace().rich_trace("***Thank you");
+
       new_progress_end(0.01);
 
       m_bProgressModeAppInstall = true;

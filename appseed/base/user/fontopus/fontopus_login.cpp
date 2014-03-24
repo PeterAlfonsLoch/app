@@ -49,6 +49,24 @@ namespace fontopus
       m_bCred = false;
 
 
+      m_picon84 = NULL;
+
+      {
+
+         HICON hicon84 = (HICON) ::LoadImage(::GetModuleHandle(NULL), MAKEINTRESOURCE(33), IMAGE_ICON, 84, 84, LR_VGACOLOR);
+
+         if (hicon84 != NULL)
+         {
+
+            m_picon84 = new ::visual::icon(hicon84);
+
+         }
+
+      }
+
+
+
+
    }
 
 
@@ -743,6 +761,10 @@ namespace fontopus
 
          pgraphics->set_text_color(crBorderOut);
          pgraphics->TextOut((int)(49 * r), (int)(49 * r), m_strCred);
+      }
+      else if (m_picon84)
+      {
+         pgraphics->DrawIcon((int)(49 * r), (int)(49 * r), m_picon84, (int)((84) * r), (int)((84) * r), 0, NULL, 0);
       }
       else
       {

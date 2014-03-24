@@ -507,12 +507,19 @@ namespace os
    bool simple_ui::set_window_pos(int32_t x, int32_t y, int32_t cx, int32_t cy, bool bShow)
    {
 
-      SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, cx, cy, SWP_NOZORDER);
-
+      
       if (bShow)
       {
 
+         SetWindowPos(m_window, get_splash() == NULL ? ZORDER_TOP : get_splash(), m_pt.x, m_pt.y, cx, cy, 0);
+
          show_window();
+
+      }
+      else
+      {
+         
+         SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, cx, cy, SWP_NOZORDER);
 
       }
 

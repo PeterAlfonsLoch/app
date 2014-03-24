@@ -14,13 +14,15 @@ namespace user
    {
       m_bAutoDelete        = true;
       m_pschema            = NULL;
-      m_etranslucency      = TranslucencyPresent;
+      m_etranslucency      = TranslucencyNone;
       m_pitem              = new menu_item(papp);
       m_bOwnItem           = true;
       m_oswindowParent         = NULL;
       m_pmenuParent        = NULL;
       m_psubmenu           = NULL;
       m_iHoverSubMenu      = -1;
+
+      set_default_background_color(ARGB(255, 185, 184, 177));
 
    }
 
@@ -34,10 +36,13 @@ namespace user
       m_pmenuParent        = NULL;
       m_psubmenu           = NULL;
       m_bAutoDelete        = true;
-      m_etranslucency      = TranslucencyPresent;
+      m_etranslucency      = TranslucencyNone;
       m_pschema            = NULL;
       m_pitem              = pitem;
       m_bOwnItem           = false;
+
+      set_default_background_color(ARGB(255, 185, 184, 177));
+
    }
 
    menu::~menu()

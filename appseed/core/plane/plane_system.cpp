@@ -1154,6 +1154,13 @@ namespace plane
    void system::on_request(sp(::create_context) pcreatecontext)
    {
       sp(::plane::session) psession = get_session(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      if (psession == NULL)
+      {
+
+         ::MessageBox(get_splash(), "An error that prevents the application from starting has occurred.\r\n\r\nPlease run app-removal.exe and restart the application, or contact the administrator.", "Startup Error", MB_ICONEXCLAMATION);
+         ::ExitProcess(-17);
+         return;
+      }
       psession->request_create(pcreatecontext);
    }
 

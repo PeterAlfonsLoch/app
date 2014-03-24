@@ -57,6 +57,8 @@ namespace fontopus
       bool                          m_bCred;
       string                        m_strCred;
 
+      visual::icon *                m_picon84;
+
 
 
       login(sp(base_application) papp, int left, int top);

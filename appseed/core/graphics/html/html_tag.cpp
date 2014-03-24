@@ -36,7 +36,7 @@ namespace html
 
    attribute * tag::get_attr(const char * pszAttrName)
    {
-      return attra().get(pszAttrName);
+      return m_attra.get(pszAttrName);
    }
 
    string tag::get_attr_value(const char * pszAttrName)
