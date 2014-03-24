@@ -249,16 +249,16 @@ namespace dynamic_source
       pscript->m_strScriptPath = System.dir().path(System.dir().stage(m_strPlatform+"\\dynamic_source"), System.dir().path(System.dir().name(strTransformName), strScript + ".so", false));
 #else
       pscript->m_strBuildBat.Format(System.dir().stage("front\\dynamic_source\\BuildBat\\%s\\%s.bat"), System.file().name_(strTransformName), strTransformName);
-      strO.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\%s.obj", false), strTransformName, System.file().name_(strTransformName));
+      strO.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\%s.obj", false), strTransformName, System.file().name_(strTransformName));
       strP.Format(System.dir().stage(m_strPlatform+"\\dynamic_source\\%s.pdb"), System.dir().path(System.dir().name(strTransformName), strScript, false));
       strL.Format(System.dir().stage(m_strPlatform+"\\dynamic_source\\%s.lib"), System.dir().path(System.dir().name(strTransformName), strScript, false));
       strE.Format(System.dir().stage(m_strPlatform+"\\dynamic_source\\%s.exp"), System.dir().path(System.dir().name(strTransformName), strScript, false));
-      strDVI.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\" + m_strSdk1 + ".idb", false), strTransformName);
-      strDVP.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\" + m_strSdk1 + ".pdb", false), strTransformName);
-      strDPCH.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\" + m_pmanager->m_strNamespace + "_dynamic_source_script.pch", false), strTransformName);
-      strSVI.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\" + m_strSdk1 + ".idb", false), strTransformName);
-      strSVP.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\" + m_strSdk1 + ".pdb", false), strTransformName);
-      strSPCH.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\" + m_pmanager->m_strNamespace + "_dynamic_source_script.pch", false), strTransformName);
+      strDVI.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\" + m_strSdk1 + ".idb", false), strTransformName);
+      strDVP.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\" + m_strSdk1 + ".pdb", false), strTransformName);
+      strDPCH.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\" + m_pmanager->m_strNamespace + "_dynamic_source_script.pch", false), strTransformName);
+      strSVI.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\" + m_strSdk1 + ".idb", false), strTransformName);
+      strSVP.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\" + m_strSdk1 + ".pdb", false), strTransformName);
+      strSPCH.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\" + m_pmanager->m_strNamespace + "_dynamic_source_script.pch", false), strTransformName);
       pscript->m_strScriptPath = System.dir().path(System.dir().stage(m_strPlatform+"\\dynamic_source"), System.dir().path(System.dir().name(strTransformName), strScript + ".dll", false));
 #endif
       //#else
@@ -432,7 +432,7 @@ namespace dynamic_source
 
       Application.dir().mk(System.dir().name(pscript->m_strScriptPath));
       Application.dir().mk(System.dir().name(strL));
-      Application.dir().mk(System.dir().path(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script", false), strTransformName));
+      Application.dir().mk(System.dir().path(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script", false), strTransformName));
 
       cppize(pscript);
 
@@ -471,6 +471,7 @@ namespace dynamic_source
       str.replace("%CA2_ROOT%", strV);
       str.replace("%NETNODE_ROOT%", strN);
       str.replace("%CONFIGURATION_NAME%", m_strDynamicSourceConfiguration);
+      str.replace("%CONFIGURATION%", m_strDynamicSourceConfiguration);
       str.replace("%PLATFORM%", m_strPlatform);
       str.replace("%LIBPLATFORM%", m_strLibPlatform);
       str.replace("%SDK1%", m_strSdk1);
@@ -482,9 +483,9 @@ namespace dynamic_source
 #endif
       str.replace("%TARGET_PATH%", strTargetPath);
       strBuildCmd = pscript->m_strBuildBat;
-      Application.file().put_contents_utf8(strBuildCmd, str);
+      //Application.file().put_contents_utf8(strBuildCmd, str);
 
-      //Application.file().put_contents(strLinkCmd, str);
+      Application.file().put_contents(strBuildCmd, str);
 
       bool bTimeout = false;
 
@@ -828,7 +829,8 @@ namespace dynamic_source
       // strCmd = System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false);
       //#endif
       Application.dir().mk(System.dir().name(strCmd));
-      Application.file().put_contents_utf8(strCmd, str);
+      //Application.file().put_contents_utf8(strCmd, str);
+      Application.file().put_contents(strCmd, str);
       Application.dir().mk(System.dir().path(m_strTime, "dynamic_source\\", false));
    }
 
@@ -963,7 +965,7 @@ namespace dynamic_source
       //#endif
 
       Application.dir().mk(System.dir().name(m_strLibraryPath));
-      Application.dir().mk(System.dir().path(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_library\\library", false), System.dir().name(strName), false));
+      Application.dir().mk(System.dir().path(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_library\\library", false), System.dir().name(strName), false));
 
       for(int32_t i = 0; i < m_straLibIncludePath.get_size(); i++)
       {
@@ -998,8 +1000,9 @@ namespace dynamic_source
          str.replace("%NETNODE_ROOT%", strN);
          str.replace("%LIBPLATFORM%", m_strLibPlatform);
          str.replace("%CONFIGURATION_NAME%", m_strDynamicSourceConfiguration);
+         str.replace("%CONFIGURATION%", m_strDynamicSourceConfiguration);
          str.replace("%SDK1%", m_strSdk1);
-         Application.dir().mk(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_library\\" + System.dir().name(str1)));
+         Application.dir().mk(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_library\\" + System.dir().name(str1)));
          Application.dir().mk(System.dir().path(m_strTime, "library\\" + m_strPlatform + "\\" + System.dir().name(str1), false));
 #ifdef LINUX
          strCmd = System.dir().element("stage\\front\\libc1.bash");
@@ -1029,7 +1032,8 @@ namespace dynamic_source
          }
 #endif
 
-         Application.file().put_contents_utf8(strCmd, str);
+         //Application.file().put_contents_utf8(strCmd, str);
+         Application.file().put_contents(strCmd, str);
 
 #ifndef METROWIN
          ::core::process process;
@@ -1065,7 +1069,7 @@ namespace dynamic_source
          string strRel = m_straLibSourceRelPath[i];
          ::str::ends_eat_ci(strRel, ".ds");
          strObjs += System.dir().path(
-            System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_library\\library\\source", false),
+            System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_library\\library\\source", false),
 #ifdef LINUX
             strRel + ".o", false);
 #else
@@ -1092,6 +1096,7 @@ namespace dynamic_source
       str.replace("%NETNODE_ROOT%", strN);
       str.replace("%LIBPLATFORM%", m_strLibPlatform);
       str.replace("%CONFIGURATION_NAME%", m_strDynamicSourceConfiguration);
+      str.replace("%CONFIGURATION%", m_strDynamicSourceConfiguration);
       str.replace("%SDK1%", m_strSdk1);
       string strTargetName = m_strLibraryPath;
       ::str::ends_eat_ci(strTargetName, ".dll");
@@ -1103,7 +1108,8 @@ namespace dynamic_source
 #else
       strCmd = System.dir().element("stage\\front\\libl1.bat");
 #endif
-      Application.file().put_contents_utf8(strCmd, str);
+      //Application.file().put_contents_utf8(strCmd, str);
+      Application.file().put_contents(strCmd, str);
 
 #ifndef METROWIN
 

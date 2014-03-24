@@ -23,10 +23,6 @@ namespace core
       if(!thread.m_process.create_child_process(pszCmdLine, true))
          return false;
       thread.begin();
-      while(!thread.m_process.has_exited())
-      {
-         Sleep(100);
-      }
       thread.m_evReady.wait();
       return thread.m_strRead;
    }
@@ -113,7 +109,7 @@ namespace core
          m_strRead += m_process.m_pipe.m_pipeOut.read();
          Sleep(100);
       }
-      int32_t iRetry = 50;
+      int32_t iRetry = 5;
       string strRead;
       while(iRetry > 0 && get_run())
       {
@@ -126,6 +122,7 @@ namespace core
          {
             m_strRead += strRead;
             strRead.Empty();
+            iRetry = 5;
          }
          Sleep(100);
       }
