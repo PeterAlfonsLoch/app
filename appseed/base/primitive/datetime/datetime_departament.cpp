@@ -564,7 +564,7 @@ int32_t departament::ISO_WN(int32_t  y, int32_t m, int32_t d )
             str.Format("%02d", time.GetGmtHour());
             if (bDiff)
             {
-               strTime += "&nbsp;";
+               strTime += " ";
             }
             else
             {

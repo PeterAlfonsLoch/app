@@ -11,11 +11,12 @@ namespace user
       m_istrButtonText(papp),
       m_dib(allocer())
    {
+      
       m_iHover    = -1;
       m_bEnabled  = true;
       m_echeck    = check::unchecked;
       m_pschema   = NULL;
-      m_pschema   = NULL;
+
    }
 
    button::~button()
@@ -53,22 +54,27 @@ namespace user
 
       ::draw2d::brush_sp brushText(allocer());
 
-
+      
       if(m_pschema == NULL)
       {
-   
-         pdc->SelectObject(_001GetFont());
 
          if(m_iHover == 0)
          {
+            
             pdc->FillSolidRect(rectClient, ARGB(255, 127, 127, 127));
+
             brushText->create_solid(ARGB(255, 0, 100, 255));
+
          }
          else
          {
+
             pdc->FillSolidRect(rectClient, ARGB(255, 127, 127, 127));
+
             brushText->create_solid(ARGB(255, 0, 0, 0));
+
          }
+
       }
       else
       {
@@ -103,21 +109,26 @@ namespace user
             brushText->create_solid(m_pschema->m_crTextNormal);
          }
 
-         *GetFont() = *m_pschema->m_font;
-
-         GetFont()->m_dFontSize = rectClient.height() * 0.5;
-
-         GetFont()->m_bUpdated = false;
-
-         pdc->selectFont(GetFont());
-
       }
+
+      ::draw2d::font_sp font(allocer());
+
+      *font = *_001GetFont();
+
+      font->m_dFontSize = m_rectText.height() * 0.84;
+
+      font->m_eunitFontSize = ::draw2d::unit_pixel;
+
+      font->m_bUpdated = false;
+
+      pdc->selectFont(font);
 
       pdc->SelectObject(brushText);
 
       pdc->draw_text(strText, m_rectText, DT_LEFT | DT_TOP);
 
    }
+
 
    void button::_001OnLButtonDown(signal_details * pobj)
    {
@@ -243,6 +254,7 @@ namespace user
 
    void button::ResizeToFit()
    {
+
       ::draw2d::memory_graphics pdc(allocer());
 
       if(pdc.is_null())
@@ -325,28 +337,46 @@ namespace user
 
    void button::on_create(signal_details * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
       //SCAST_PTR(::message::create, pcreate, pobj)
 
       sp(::simple_frame_window) pframewindow = GetTypedParent < ::simple_frame_window > ();
+
       if(pframewindow != NULL)
       {
+
          if(pframewindow->GetTypedParent < ::simple_frame_window > () != NULL)
          {
+
             pframewindow = pframewindow->GetTypedParent < ::simple_frame_window > ();
+
          }
+         
          if(pframewindow->GetTypedParent < ::simple_frame_window > () != NULL)
          {
+            
             pframewindow = pframewindow->GetTypedParent < ::simple_frame_window > ();
+
          }
+
          if(pframewindow->m_workset.m_pframeschema == NULL)
          {
+            
             m_pschema = &Application.userex()->GetUfeSchema()->m_button;
+            
+            SetFont(m_pschema->m_font);
+
          }
          else
          {
+            
             m_pschema = &pframewindow->m_workset.m_pframeschema->get_user_front_end_schema()->m_button;
+
+            SetFont(m_pschema->m_font);
+
          }
+
       }
 
    }
@@ -360,21 +390,12 @@ namespace user
 
       ::rect rect(rectClient);
 
-      rect.left   += (LONG) (rect.height() * 0.15);
-      rect.top    += (LONG) (rect.height() * 0.15);
+      rect.deflate((LONG) (rect.height() * 0.15), (LONG) (rect.height() * 0.15));
 
       m_rectText = rect;
 
-
-      /*::draw2d::font font;
-
-      font.m_strFontFamilyName = "Calibri";
-      font.m_dFontSize = rect.height() * 0.7;
-      font.m_eunitFontSize = ::draw2d::unit_pixel;
-
-      SetFont(&font);*/
-
    }
+
 
    string button::_001GetButtonText()
    {
@@ -506,8 +527,7 @@ namespace user
 //      string str = ::str::international::utf8_to_unicode(str);
       if(m_dib.is_set())
       {
-         if(m_dib->m_size.cx > 0 &&
-            m_dib->m_size.cy > 0)
+         if(m_dib->m_size.cx > 0 && m_dib->m_size.cy > 0)
          {
             rect rectDib;
             rectDib = m_rectText;

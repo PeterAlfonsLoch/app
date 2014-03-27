@@ -162,23 +162,24 @@ namespace html
    bool style::get_surround_box(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, box & box)
    {
       string strTag;
-      if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
+      string strClass;
+      if (pelemental->m_propertyset.is_new_or_null("PropertyTag"))
       {
          strTag = pelemental->m_pparent->m_propertyset["PropertyTag"];
+         if (pelemental->m_pparent != NULL && pelemental->m_pparent->get_tag()->get_attr_value("class").has_char())
+         {
+            strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
+         }
       }
       else
       {
          strTag = pelemental->m_propertyset["PropertyTag"];
+         if (pelemental->get_tag() != NULL)
+         {
+            strClass = pelemental->get_tag()->get_attr_value("class");
+         }
       }
-      string strClass;
-      if(pelemental->m_pparent != NULL && pelemental->m_pparent->get_tag()->get_attr_value("class").has_char())
-      {
-         strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
-      }
-      else if(pelemental->get_tag() != NULL)
-      {
-         strClass = pelemental->get_tag()->get_attr_value("class");
-      }
+      
       if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
       {
          strTag = pelemental->m_pparent->m_propertyset["PropertyTag"];
@@ -713,7 +714,10 @@ namespace html
          style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
          if(pstyle == NULL)
          {
-            if(pelemental->m_pparent != NULL)
+            if(pelemental->m_pparent != NULL
+            && stricmp_dup(pszName, "padding") != 0
+            && stricmp_dup(pszName, "margin") != 0
+            && stricmp_dup(pszName, "border") != 0)   
             {
                if(pelemental->m_pparent->m_style.get_text(pszName, pszSubClass, pdata, pelemental->m_pparent, str))
                {

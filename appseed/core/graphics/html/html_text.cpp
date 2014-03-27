@@ -191,13 +191,20 @@ namespace html
          if(m_pelemental->m_elementalptra.get_size() > 0
          || m_pelemental->m_propertyset["PropertyBody"].is_empty())
          {
-            if((bParent && m_pelemental->m_pparent->m_style.m_propertyset["display"] != "table-cell")
-            || (!bParent && m_pelemental->m_style.m_propertyset["display"] != "table-cell"))
+            if ((bParent && m_pelemental->m_pparent->m_style.m_propertyset["display"] != "table-cell")
+               || (!bParent && m_pelemental->m_style.m_propertyset["display"] != "table-cell"))
             {
                m_box.set_cx(0);
             }
             m_box.set_cy(pdata->m_layoutstate.m_cy);
-            pdata->m_layoutstate.m_cx   = get_cx();
+            pdata->m_layoutstate.m_cx = get_cx();
+            if (strTag == "body")
+            {
+               m_box.set_x(m_margin.left + m_border.left + m_padding.left);
+               m_box.set_y(pdata->m_layoutstate.m_cy + m_margin.top + m_border.top + m_padding.top);
+               pdata->m_layoutstate.m_x = get_x();
+               pdata->m_layoutstate.m_y = get_y();
+            }
          }
          else
          {

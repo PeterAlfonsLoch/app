@@ -53,8 +53,9 @@ namespace user
       m_pguie->GetClientRect(rectClient);
 
       rect = rectClient;
-      rect.left   += 3 + 16;
-      rect.top    += 3;
+      rect.left   += 3 + 16 + 2;
+      rect.top    += 7;
+      rect.bottom -= 6;
       m_rectText = rect;
 
       rect = rectClient;
