@@ -1,9 +1,6 @@
 #pragma once
 
 
-class html_form;
-
-
 namespace html
 {
 

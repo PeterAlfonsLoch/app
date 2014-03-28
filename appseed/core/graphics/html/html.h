@@ -3,6 +3,10 @@
 
 class html_view;
 
+
+class html_form;
+
+
 namespace html
 {
 
@@ -15,6 +19,7 @@ namespace html
 
 
       class elemental;
+      class table;
 
 
    } // namespace impl

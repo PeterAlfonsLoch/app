@@ -18,30 +18,17 @@
 #include "html_style.h"
 #include "html_style_sheet.h"
 #include "html_style_sheet_array.h"
-//#include "html_elemental.h"
-
-//#include "html_text.h"
-#include "html_image.h"
-
-#include "html_input_button.h"
-#include "html_input_check_box.h"
-#include "html_input_text.h"
-#include "html_select.h"
-#include "html_form.h"
-
-
-#include "html_cell.h"
-#include "html_table_elemental.h"
-#include "html_table_row.h"
-#include "html_table.h"
-
-#include "html_data.h"
 
 
 #include "html_ex.h"
 
 
-#include "elemetal/html_elemental.h"
+#include "elemental/html_elemental.h"
+
+
+#include "html_data.h"
+
+
 #include "impl/html_impl.h"
 
 

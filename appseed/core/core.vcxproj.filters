@@ -363,9 +363,6 @@
     <Filter Include="Source Files\graphics\html\elemental">
       <UniqueIdentifier>{ccc64be9-5aa9-4ebb-ae9d-200f1e31e87c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\graphics\html\impl\NewFilter1">
-      <UniqueIdentifier>{a878df42-7cd7-4023-aa4d-2442075633fc}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive.h">
@@ -2480,6 +2477,15 @@
     <ClInclude Include="graphics\html\impl\html_impl_select.h">
       <Filter>Header Files\graphics\html\impl</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\html\impl\html_impl_form.h">
+      <Filter>Header Files\graphics\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\elemental\html_elemental_form.h">
+      <Filter>Header Files\graphics\html\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\elemental\html_elemental_image.h">
+      <Filter>Header Files\graphics\html\elemental</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="compress\compress_archive.cpp">
@@ -3004,13 +3010,7 @@
     <ClCompile Include="graphics\html\html_base.cpp">
       <Filter>Source Files\graphics\html</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\html\html_cell.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\html\html_data.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_elemental.cpp">
       <Filter>Source Files\graphics\html</Filter>
     </ClCompile>
     <ClCompile Include="graphics\html\html_file.cpp">
@@ -3019,22 +3019,7 @@
     <ClCompile Include="graphics\html\html_font.cpp">
       <Filter>Source Files\graphics\html</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\html\html_form.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\html\html_html.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_image.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_input_button.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_input_checkbox.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_input_text.cpp">
       <Filter>Source Files\graphics\html</Filter>
     </ClCompile>
     <ClCompile Include="graphics\html\html_reader.cpp">
@@ -3052,19 +3037,7 @@
     <ClCompile Include="graphics\html\html_style_sheet_array.cpp">
       <Filter>Source Files\graphics\html</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\html\html_table.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_table_elemental.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_table_row.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\html\html_tag.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_text.cpp">
       <Filter>Source Files\graphics\html</Filter>
     </ClCompile>
     <ClCompile Include="graphics\html\html_value.cpp">
@@ -3976,9 +3949,6 @@
     <ClCompile Include="filesystem\userfs\userfs_update_hint.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\html\html_select.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
     <ClCompile Include="net\usermail\usermail_tree.cpp">
       <Filter>Source Files\net\usermail</Filter>
     </ClCompile>
@@ -4073,6 +4043,15 @@
       <Filter>Source Files\graphics\html</Filter>
     </ClCompile>
     <ClCompile Include="graphics\html\elemental\html_elemental_input_checkbox.cpp">
+      <Filter>Source Files\graphics\html\elemental</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\impl\html_impl_form.cpp">
+      <Filter>Source Files\graphics\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\elemental\html_elemental_form.cpp">
+      <Filter>Source Files\graphics\html\elemental</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\elemental\html_elemental_image.cpp">
       <Filter>Source Files\graphics\html\elemental</Filter>
     </ClCompile>
   </ItemGroup>

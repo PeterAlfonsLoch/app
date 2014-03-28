@@ -141,7 +141,7 @@ namespace html
             }
             else if(strType == "checkbox")
             {
-               m_pimpl = new ::html::impl::input_check_box(pdata);
+               m_pimpl = new ::html::impl::input_checkbox(pdata);
             }
             else
             {

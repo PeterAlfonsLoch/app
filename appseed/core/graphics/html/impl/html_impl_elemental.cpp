@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "float.h"
 
 
 namespace html
