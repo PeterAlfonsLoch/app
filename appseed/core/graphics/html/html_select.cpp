@@ -69,20 +69,31 @@ namespace html
          m_cxMin = 200;
       }
 
+
+      void select::layout_phase1(data * pdata)
+      {
+
+         string strSize = m_pelemental->m_pbase->get_tag()->get_attr_value("size");
+
+         int iSize = 20;
+
+         if (strSize.has_char())
+            iSize = max(1, atoi(strSize));
+      
+         m_box.set_cxy(iSize * 10.f, 23.f);
+
+      }
+
+      
       void select::layout_phase3(data * pdata)
       {
+         
          elemental::layout_phase3(pdata);
-         point pointBound = get_bound_point();
-         m_box.set_cxy(200, 23);
-         m_box.offset_y(pdata->m_layoutstate.m_cy);
-         pdata->m_layoutstate.m_y = get_y();
-         pdata->m_layoutstate.m_cy = get_cy();
-         pdata->m_layoutstate.m_x = pointBound.x;
-         pdata->m_layoutstate.m_cx = get_cx();
-         pdata->m_layoutstate.m_bLastBlockX = true;
-         pdata->m_layoutstate.m_bLastBlockY = true;
+
          m_pcombo->SetWindowPos(0, (int32_t)m_box.left, (int32_t)m_box.top, (int32_t)m_box.get_cx(), (int32_t)m_box.get_cy(), SWP_NOREDRAW);
+
       }
+
 
       void select::_001OnDraw(data * pdata)
       {

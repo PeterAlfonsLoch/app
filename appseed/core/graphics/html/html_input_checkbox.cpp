@@ -48,20 +48,23 @@ namespace html
          }
       }
 
+      void input_check_box::layout_phase1(data * pdata)
+      {
+
+         m_box.set_cxy(23, 23);
+
+      }
+
+
       void input_check_box::layout_phase3(data * pdata)
       {
+
          elemental::layout_phase3(pdata);
-//         point pointBound = get_bound_point();
-         m_box.set_cxy(23, 23);
-         m_box.offset_y(pdata->m_layoutstate.m_cy);
-         pdata->m_layoutstate.m_y    = get_y();
-         pdata->m_layoutstate.m_cy   = 23;
-         pdata->m_layoutstate.m_x    += pdata->m_layoutstate.m_cx;
-         pdata->m_layoutstate.m_cx   = 23;
-         pdata->m_layoutstate.m_bLastBlockX = false;
-         pdata->m_layoutstate.m_bLastBlockY = false;
+         
          m_pcheckbox->SetWindowPos(0, (int32_t) m_box.left, (int32_t) m_box.top, (int32_t) m_box.get_cx(), (int32_t) m_box.get_cy(), SWP_NOREDRAW);
+
       }
+
 
       void input_check_box::_001OnDraw(data * pdata)
       {

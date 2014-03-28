@@ -40,38 +40,13 @@ namespace html
 
       void input_button::layout_phase3(data * pdata)
       {
+
          elemental::layout_phase3(pdata);
-         point pointBound = get_bound_point();
-         m_box.set_cxy(200, 23);
-         m_box.offset_y(pdata->m_layoutstate.m_cy);
-         pdata->m_layoutstate.m_y    = get_y();
-         pdata->m_layoutstate.m_cy   = get_cy();
-         pdata->m_layoutstate.m_x    = pointBound.x;
-         pdata->m_layoutstate.m_cx   = get_cx();
-         pdata->m_layoutstate.m_bLastBlockX = true;
-         pdata->m_layoutstate.m_bLastBlockY = true;
-/*
-         if(m_pelemental->m_propertyset["display"] == "block"
-             || m_pelemental->m_propertyset["display"] == "table")
-         {
-            pdata->m_layoutstate.m_y    = get_y() + get_cy();
-            pdata->m_layoutstate.m_cy   = 0;
-            pdata->m_layoutstate.m_x    = pointBound.x;
-            pdata->m_layoutstate.m_cx   = 0;
-            pdata->m_layoutstate.m_bLastBlockX = true;
-            pdata->m_layoutstate.m_bLastBlockY = true;
-         }
-         else
-         {
-            pdata->m_layoutstate.m_y    = get_y();
-            pdata->m_layoutstate.m_cy   = get_cy();
-            pdata->m_layoutstate.m_x    = get_x();
-            pdata->m_layoutstate.m_cx   = get_cx();
-            pdata->m_layoutstate.m_bLastBlockX = false;
-            pdata->m_layoutstate.m_bLastBlockY = false;
-         }*/
+
          m_pbutton->SetWindowPos(0, (int32_t) m_box.left, (int32_t) m_box.top, (int32_t) m_box.get_cx(), (int32_t) m_box.get_cy(), SWP_NOREDRAW);
+
       }
+
 
       void input_button::_001OnDraw(data * pdata)
       {

@@ -40,7 +40,7 @@ namespace draw2d
       m_dFontSize             = dSize;
       m_dFontWidth            = 1.0;
       m_eunitFontSize         = ::draw2d::unit_pixel;
-      m_iFontWeight           = 400;
+      m_iFontWeight           = iWeight;
       m_bItalic               = bItalic;
       m_bUnderline            = bUnderline;
       m_bStrikeout            = bStrikeOut;
@@ -57,7 +57,7 @@ namespace draw2d
       m_dFontSize             = dSize;
       m_dFontWidth            = 1.0;
       m_eunitFontSize         = ::draw2d::unit_point;
-      m_iFontWeight           = 400;
+      m_iFontWeight           = iWeight;
       m_bItalic               = bItalic;
       m_bUnderline            = bUnderline;
       m_bStrikeout            = bStrikeOut;

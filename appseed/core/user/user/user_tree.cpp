@@ -410,7 +410,7 @@ namespace user
 
 
          font->operator=(*System.visual().font_central().GetListCtrlFont());
-         font->set_bold();
+         //font->set_bold();
          data.m_pdc->set_font(font);
          data.m_pdc->_DrawText(strItem, strItem.get_length(), &rect, DT_LEFT | DT_BOTTOM);
 

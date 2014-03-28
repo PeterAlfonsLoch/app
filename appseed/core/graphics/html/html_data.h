@@ -36,7 +36,32 @@ namespace html
       };
 
 
-      class CLASS_DECL_CORE layout_state
+      class CLASS_DECL_CORE layout_state1
+      {
+      public:
+         //int32_t      m_iBody;
+         //float    m_y;
+         //float    m_cy;
+         //float    m_x;
+         //float    m_cx;
+//         bool     m_bLastBlockX;
+//         bool     m_bLastCellX;
+         //bool     m_bLastBlock;
+         //bool     m_bLastCell;
+         bool     m_bHasChar;
+
+
+         //array < impl::table *, impl::table *> m_tableptraStack;
+         //array < impl::table_row *, impl::table_row *> m_tablerowptraStack;
+
+
+         void reset();
+
+
+      };
+
+
+      class CLASS_DECL_CORE layout_state2
       {
       public:
          int32_t      m_iBody;
@@ -44,11 +69,36 @@ namespace html
          float    m_cy;
          float    m_x;
          float    m_cx;
-         bool     m_bLastBlockX;
-         bool     m_bLastCellX;
-         bool     m_bLastBlockY;
-         bool     m_bLastCellY;
-         bool     m_bHasChar;
+         //         bool     m_bLastBlockX;
+         //         bool     m_bLastCellX;
+         bool     m_bLastBlock;
+         bool     m_bLastCell;
+         //bool     m_bHasChar;
+
+
+         //array < impl::table *, impl::table *> m_tableptraStack;
+         //array < impl::table_row *, impl::table_row *> m_tablerowptraStack;
+
+
+         void reset();
+
+
+      };
+
+
+      class CLASS_DECL_CORE layout_state3
+      {
+      public:
+         int32_t      m_iBody;
+         float    m_y;
+         float    m_cy;
+         float    m_x;
+         float    m_cx;
+         //         bool     m_bLastBlockX;
+         //         bool     m_bLastCellX;
+         bool     m_bLastBlock;
+         bool     m_bLastCell;
+         //bool     m_bHasChar;
 
 
          //array < impl::table *, impl::table *> m_tableptraStack;
@@ -65,7 +115,9 @@ namespace html
       ::draw2d::graphics *           m_pdc;
       box                        m_box;
       string                     m_strTitle;
-      layout_state               m_layoutstate;
+      layout_state1               m_layoutstate1;
+      layout_state2               m_layoutstate2;
+      layout_state3               m_layoutstate3;
 
       array < impl::table *, impl::table * >
                                  m_tableptra;

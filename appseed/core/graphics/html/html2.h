@@ -41,6 +41,8 @@
 #include "html_ex.h"
 
 
+#include "impl/html_impl.h"
+
 
 #include "html_html.h"
 

@@ -4804,14 +4804,14 @@ bool base_application::Ex2OnAppUninstall()
 }
 
 
-void draw2d_gdiplus_factory_exchange(sp(base_application) papp);
+void draw2d_factory_exchange(sp(base_application) papp);
 
 void base_application::draw2d_factory_exchange()
 {
 
 #ifdef CUBE
 
-   draw2d_gdiplus_factory_exchange(this);
+   ::draw2d_factory_exchange(this);
 
 #else
 

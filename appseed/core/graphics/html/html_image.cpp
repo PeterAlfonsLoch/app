@@ -47,16 +47,16 @@ namespace html
 
             if(lockImage.lock(duration::zero()))
             {
-               pdata->m_layoutstate.m_cx = (float) pdata->m_imagea[m_iImage].m_spdib->m_size.cx;
-               if(pdata->m_imagea[m_iImage].m_spdib->m_size.cy > pdata->m_layoutstate.m_cy)
+               pdata->m_layoutstate3.m_cx = (float) pdata->m_imagea[m_iImage].m_spdib->m_size.cx;
+               if(pdata->m_imagea[m_iImage].m_spdib->m_size.cy > pdata->m_layoutstate3.m_cy)
                {
-                  pdata->m_layoutstate.m_cy = (float) pdata->m_imagea[m_iImage].m_spdib->m_size.cy;
+                  pdata->m_layoutstate3.m_cy = (float) pdata->m_imagea[m_iImage].m_spdib->m_size.cy;
                }
             }
             else
             {
-               pdata->m_layoutstate.m_cx = 0;
-               pdata->m_layoutstate.m_cy = 0;
+               pdata->m_layoutstate3.m_cx = 0;
+               pdata->m_layoutstate3.m_cy = 0;
             }
 
             m_box.set_cxy(pdata->m_imagea[m_iImage].m_spdib->size());

@@ -25,13 +25,19 @@ namespace html
 
       int32_t iWeight;
       
+      m_strWeight.trim();
+
       if(m_strWeight.CompareNoCase("bold") == 0)
       {
          iWeight = 800;
       }
-      else
+      else if (m_strWeight.is_empty())
       {
          iWeight = 400;
+      }
+      else 
+      {
+         iWeight = max(100, atoi(m_strWeight));
       }
       
       double dSize;

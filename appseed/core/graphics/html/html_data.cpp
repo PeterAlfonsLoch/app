@@ -333,7 +333,9 @@ namespace html
          implement(pdc);
       keeper < bool > keepLayout(&m_bLayout, true, false, true);
       m_pdc = pdc;
-      m_layoutstate.reset();
+      m_layoutstate1.reset();
+      m_layoutstate2.reset();
+      m_layoutstate3.reset();
       m_elemental.layout(this);
    }
 
@@ -358,19 +360,31 @@ namespace html
       return m_elemental.get_element_by_id(id);
    }
 
-   void data::layout_state::reset()
+   void data::layout_state1::reset()
    {
-      m_iBody     = 0;
-      m_y         = 0;
-      m_cy        = 0;
-      m_x         = 0;
-      m_cx        = 0;
       m_bHasChar  = false;
-      m_bLastCellX = false;
-      m_bLastCellY = false;
-      m_bLastBlockX = false;
-      m_bLastBlockY = false;
    }
+
+
+   void data::layout_state2::reset()
+   {
+      m_iBody = 0;
+      m_y = 0;
+      m_cy = 0;
+      m_x = 0;
+      m_cx = 0;
+   }
+
+
+   void data::layout_state3::reset()
+   {
+      m_iBody = 0;
+      m_y = 0;
+      m_cy = 0;
+      m_x = 0;
+      m_cx = 0;
+   }
+
 
    int32_t data::get_image_index(const char * pszUrl)
    {

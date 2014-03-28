@@ -351,6 +351,12 @@
     <Filter Include="Source Files\framework">
       <UniqueIdentifier>{59a690e7-7032-43a1-b6ca-f3e228253f78}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics\html\impl">
+      <UniqueIdentifier>{64d6255f-5a69-4231-aeb6-8d38d5bcb9af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\html\impl">
+      <UniqueIdentifier>{b9b63f5c-c1a3-43db-9e35-55ee159dce9f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive.h">
@@ -2423,6 +2429,18 @@
     <ClInclude Include="user\user\user_core.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\html\impl\html_impl_elemental.h">
+      <Filter>Header Files\graphics\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\impl\html_impl.h">
+      <Filter>Header Files\graphics\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\impl\html_impl_text.h">
+      <Filter>Header Files\graphics\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\impl\html_impl_image.h">
+      <Filter>Header Files\graphics\html\impl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="compress\compress_archive.cpp">
@@ -3954,6 +3972,9 @@
     </ClCompile>
     <ClCompile Include="user\user\user_core.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\impl\html_impl_elemental.cpp">
+      <Filter>Source Files\graphics\html\impl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

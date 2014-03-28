@@ -45,6 +45,15 @@ namespace draw2d_direct2d
 } // namespace draw2d_direct2d
 
 
+
+void draw2d_factory_exchange(sp(base_application) papp)
+{
+
+   draw2d_direct2d::factory_exchange factoryexchange(papp);
+
+}
+
+
 void ca2_factory_exchange(sp(base_application) papp)
 {
 
