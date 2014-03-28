@@ -357,6 +357,9 @@
     <Filter Include="Source Files\graphics\html\impl">
       <UniqueIdentifier>{b9b63f5c-c1a3-43db-9e35-55ee159dce9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics\html\elemental">
+      <UniqueIdentifier>{73677568-0c76-4b7c-9b52-3c0c4b1f2168}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive.h">
@@ -2440,6 +2443,51 @@
     </ClInclude>
     <ClInclude Include="graphics\html\impl\html_impl_image.h">
       <Filter>Header Files\graphics\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\impl\html_impl_button.h">
+      <Filter>Header Files\graphics\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\impl\html_impl_input_text.h">
+      <Filter>Header Files\graphics\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\impl\html_impl_check_box.h">
+      <Filter>Header Files\graphics\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\impl\html_impl_table_elemental.h">
+      <Filter>Header Files\graphics\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\impl\html_impl_table.h">
+      <Filter>Header Files\graphics\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\impl\html_impl_table_row.h">
+      <Filter>Header Files\graphics\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\elemental\html_elemental_elemental.h">
+      <Filter>Header Files\graphics\html\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\elemental\html_elemental_input_button.h">
+      <Filter>Header Files\graphics\html\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\elemental\html_elemental_input_checkbox.h">
+      <Filter>Header Files\graphics\html\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\elemental\html_elemental_input_text.h">
+      <Filter>Header Files\graphics\html\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\elemental\html_elemental_select.h">
+      <Filter>Header Files\graphics\html\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\elemental\html_elemental_table.h">
+      <Filter>Header Files\graphics\html\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\elemental\html_elemental_table_elemental.h">
+      <Filter>Header Files\graphics\html\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\elemental\html_elemental_table_row.h">
+      <Filter>Header Files\graphics\html\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\elemental\html_elemental.h">
+      <Filter>Header Files\graphics\html\elemental</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

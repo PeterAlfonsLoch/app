@@ -27,10 +27,10 @@ namespace html
          text(sp(base_application) papp);
 
          DECL_GEN_SIGNAL(OnLButtonDown)
-            DECL_GEN_SIGNAL(OnMouseMove)
-            DECL_GEN_SIGNAL(OnLButtonUp)
+         DECL_GEN_SIGNAL(OnMouseMove)
+         DECL_GEN_SIGNAL(OnLButtonUp)
 
-            virtual void _001OnGetText();
+         virtual void _001OnGetText();
 
          virtual void _001OnDraw(data * pdoc);
          virtual void _001OnDraw(::draw2d::graphics * pgraphics);
