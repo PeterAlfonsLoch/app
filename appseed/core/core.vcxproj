@@ -1636,7 +1636,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="graphics\html\html_style_sheet.h" />
     <ClInclude Include="graphics\html\html_style_sheet_array.h" />
     <ClInclude Include="graphics\html\html_tag.h" />
-    <ClInclude Include="graphics\html\html_text.h" />
     <ClInclude Include="graphics\html\html_value.h" />
     <ClInclude Include="graphics\html\impl\html_impl.h" />
     <ClInclude Include="graphics\html\impl\html_impl_cell.h" />
@@ -2298,6 +2297,16 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="graphics\gcom\gcom_space.cpp" />
     <ClCompile Include="graphics\gcom\gcom_space_util.cpp" />
     <ClCompile Include="graphics\gcom\gcom_util.cpp" />
+    <ClCompile Include="graphics\html\elemental\html_elemental_cell.cpp" />
+    <ClCompile Include="graphics\html\elemental\html_elemental_elemental.cpp" />
+    <ClCompile Include="graphics\html\elemental\html_elemental_input_button.cpp" />
+    <ClCompile Include="graphics\html\elemental\html_elemental_input_checkbox.cpp" />
+    <ClCompile Include="graphics\html\elemental\html_elemental_input_text.cpp" />
+    <ClCompile Include="graphics\html\elemental\html_elemental_select.cpp" />
+    <ClCompile Include="graphics\html\elemental\html_elemental_table.cpp" />
+    <ClCompile Include="graphics\html\elemental\html_elemental_table_elemental.cpp" />
+    <ClCompile Include="graphics\html\elemental\html_elemental_table_row.cpp" />
+    <ClCompile Include="graphics\html\elemental\html_elemental_text.cpp" />
     <ClCompile Include="graphics\html\html_attribute.cpp" />
     <ClCompile Include="graphics\html\html_base.cpp" />
     <ClCompile Include="graphics\html\html_cell.cpp" />
@@ -2327,6 +2336,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="graphics\html\html_tag.cpp" />
     <ClCompile Include="graphics\html\html_text.cpp" />
     <ClCompile Include="graphics\html\html_value.cpp" />
+    <ClCompile Include="graphics\html\impl\html.cpp" />
+    <ClCompile Include="graphics\html\impl\html_impl_cell.cpp" />
     <ClCompile Include="graphics\html\impl\html_impl_elemental.cpp" />
     <ClCompile Include="graphics\html\impl\html_impl_input_button.cpp" />
     <ClCompile Include="graphics\html\impl\html_impl_input_checkbox.cpp" />

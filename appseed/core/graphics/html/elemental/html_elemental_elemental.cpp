@@ -2,28 +2,10 @@
 #include "float.h"
 
 
-void trim001(string & str);
 
 
-void trim001(string & str)
+namespace html
 {
-   uchar uch;
-   while(str.get_length() > 0)
-   {
-      uch = str[0];
-      if(isdigit(uch) || isalpha(uch))
-         break;
-      str = str.Mid(1);
-   }
-   while(str.get_length() > 0)
-   {
-      uch = str[str.get_length() - 1];
-      if(isdigit(uch) || isalpha(uch))
-         break;
-      str = str.Left(str.get_length() - 1);
-   }
-}
-
 
 
    elemental::elemental(data * pdata, elemental * pparent)
@@ -1185,3 +1167,5 @@ void trim001(string & str)
    }
 
 } // namespace html
+
+
