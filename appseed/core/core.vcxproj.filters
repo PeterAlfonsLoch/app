@@ -1052,9 +1052,6 @@
     <ClInclude Include="graphics\html\html_data.h">
       <Filter>Header Files\graphics\html</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\html\html_elemental.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\html\html_ex.h">
       <Filter>Header Files\graphics\html</Filter>
     </ClInclude>
@@ -1071,18 +1068,6 @@
       <Filter>Header Files\graphics\html</Filter>
     </ClInclude>
     <ClInclude Include="graphics\html\html_html2.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_image.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_input_button.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_input_check_box.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_input_text.h">
       <Filter>Header Files\graphics\html</Filter>
     </ClInclude>
     <ClInclude Include="graphics\html\html_point.h">
@@ -1104,15 +1089,6 @@
       <Filter>Header Files\graphics\html</Filter>
     </ClInclude>
     <ClInclude Include="graphics\html\html_style_sheet_array.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_table.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_table_elemental.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_table_row.h">
       <Filter>Header Files\graphics\html</Filter>
     </ClInclude>
     <ClInclude Include="graphics\html\html_tag.h">
@@ -2405,9 +2381,6 @@
     <ClInclude Include="compress\crypto\crypto_aes_cbc_coder.h">
       <Filter>Header Files\compress\crypto</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\html\html_select.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
     <ClInclude Include="net\usermail\usermail_tree.h">
       <Filter>Header Files\net\usermail</Filter>
     </ClInclude>
@@ -2432,35 +2405,41 @@
     <ClInclude Include="user\user\user_core.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\html\impl\html_impl_elemental.h">
-      <Filter>Header Files\graphics\html\impl</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\html\impl\html_impl.h">
       <Filter>Header Files\graphics\html\impl</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\html\impl\html_impl_text.h">
+    <ClInclude Include="graphics\html\impl\html_impl_cell.h">
+      <Filter>Header Files\graphics\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\impl\html_impl_elemental.h">
       <Filter>Header Files\graphics\html\impl</Filter>
     </ClInclude>
     <ClInclude Include="graphics\html\impl\html_impl_image.h">
       <Filter>Header Files\graphics\html\impl</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\html\impl\html_impl_button.h">
+    <ClInclude Include="graphics\html\impl\html_impl_input_button.h">
+      <Filter>Header Files\graphics\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\impl\html_impl_input_checkbox.h">
       <Filter>Header Files\graphics\html\impl</Filter>
     </ClInclude>
     <ClInclude Include="graphics\html\impl\html_impl_input_text.h">
       <Filter>Header Files\graphics\html\impl</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\html\impl\html_impl_check_box.h">
+    <ClInclude Include="graphics\html\impl\html_impl_table.h">
       <Filter>Header Files\graphics\html\impl</Filter>
     </ClInclude>
     <ClInclude Include="graphics\html\impl\html_impl_table_elemental.h">
       <Filter>Header Files\graphics\html\impl</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\html\impl\html_impl_table.h">
-      <Filter>Header Files\graphics\html\impl</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\html\impl\html_impl_table_row.h">
       <Filter>Header Files\graphics\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\impl\html_impl_text.h">
+      <Filter>Header Files\graphics\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\elemental\html_elemental.h">
+      <Filter>Header Files\graphics\html\elemental</Filter>
     </ClInclude>
     <ClInclude Include="graphics\html\elemental\html_elemental_elemental.h">
       <Filter>Header Files\graphics\html\elemental</Filter>
@@ -2486,8 +2465,17 @@
     <ClInclude Include="graphics\html\elemental\html_elemental_table_row.h">
       <Filter>Header Files\graphics\html\elemental</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\html\elemental\html_elemental.h">
+    <ClInclude Include="graphics\html\elemental\html_elemental_cell.h">
       <Filter>Header Files\graphics\html\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\elemental\html_elemental_text.h">
+      <Filter>Header Files\graphics\html\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\html_enum.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html\impl\html_impl_select.h">
+      <Filter>Header Files\graphics\html\impl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4022,6 +4010,30 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="graphics\html\impl\html_impl_elemental.cpp">
+      <Filter>Source Files\graphics\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\impl\html_impl_input_button.cpp">
+      <Filter>Source Files\graphics\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\impl\html_impl_input_checkbox.cpp">
+      <Filter>Source Files\graphics\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\impl\html_impl_input_text.cpp">
+      <Filter>Source Files\graphics\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\impl\html_impl_select.cpp">
+      <Filter>Source Files\graphics\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\impl\html_impl_table.cpp">
+      <Filter>Source Files\graphics\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\impl\html_impl_table_elemental.cpp">
+      <Filter>Source Files\graphics\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\impl\html_impl_table_row.cpp">
+      <Filter>Source Files\graphics\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\impl\html_impl_text.cpp">
       <Filter>Source Files\graphics\html\impl</Filter>
     </ClCompile>
   </ItemGroup>

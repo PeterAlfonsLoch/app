@@ -9,22 +9,22 @@ namespace html
    {
 
 
-      class CLASS_DECL_CORE input_checkbox : public elemental
+      class CLASS_DECL_CORE select : public elemental
       {
       public:
 
 
-         sp(::user::check_box) m_pcheckbox;
+         int32_t                 m_iFont;
+         ::simple_combo_box *    m_pcombo;
 
 
-         input_checkbox(data * pdoc);
-         virtual ~input_checkbox();
+         select(data * pdoc);
+         virtual ~select();
          void _001OnDraw(data * pdoc);
          virtual void implement_phase1(data * pdoc, ::html::elemental * pelemental);
          virtual void layout_phase1(data * pdoc);
          virtual void layout_phase3(data * pdoc);
          void on_change_layout(data * pdoc);
-
 
       };
 

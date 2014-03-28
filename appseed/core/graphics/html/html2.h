@@ -18,9 +18,9 @@
 #include "html_style.h"
 #include "html_style_sheet.h"
 #include "html_style_sheet_array.h"
-#include "html_elemental.h"
+//#include "html_elemental.h"
 
-#include "html_text.h"
+//#include "html_text.h"
 #include "html_image.h"
 
 #include "html_input_button.h"
@@ -41,6 +41,7 @@
 #include "html_ex.h"
 
 
+#include "elemetal/html_elemental.h"
 #include "impl/html_impl.h"
 
 

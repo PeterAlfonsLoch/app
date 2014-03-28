@@ -1,57 +1,29 @@
 #pragma once
 
 
-class html_view;
-
-
 namespace html
 {
 
 
-   enum e_position
-   {
-
-      PositionRelative,
-
-   };
-
-
-   enum e_flag
-   {
-      // the width can be expanded
-      FlagWidthExpandable,
-      // the height can be expanded
-      FlagHeightExpandable,
-      // the width is fixed but can grow to make space to a single long uint16_t
-      FlagWidthFixedTable,
-      // the width is fixed
-      FlagWidthFixed,
-      // the height is fixed
-      FlagHeightFixed,
-      // width in percent
-      FlagWidthPercent,
-      // width in pixel
-      FlagWidthPixel,
-      FlagWidth,
-   };
-
-
-   class elemental;
-
-   namespace impl
-   {
-
-      class elemental;
-
-   } // namespace impl
-
    class CLASS_DECL_CORE elemental : public text_interface
    {
    public:
-      elemental(data * pdoc, elemental * pparent = NULL);
-      virtual ~elemental();
+
+
       // always present property?! "text"
       property_set     m_propertyset;
+      impl::elemental *    m_pimpl;
+      elemental *          m_pparent;
+      base *               m_pbase;
+      data *               m_pdata;
+
+
+      style                m_style;
+      array < elemental *, elemental * > m_elementalptra;
+
+
+      elemental(data * pdoc, elemental * pparent = NULL);
+      virtual ~elemental();
 
       virtual void _001SetText(const string & str, ::action::context actioncontext);
 
@@ -62,14 +34,6 @@ namespace html
 
       virtual void delete_implementation();
 
-      impl::elemental *    m_pimpl;
-      elemental *          m_pparent;
-      base *               m_pbase;
-      data *               m_pdata;
-
-
-      style                m_style;
-      array < elemental *, elemental * > m_elementalptra;
 
 
       elemental * get_element_by_name(id id);
@@ -102,11 +66,18 @@ namespace html
 
       virtual void get_html(data * pdata, string & str);
 
+
    protected:
       virtual bool parse(data * pdoc, const char * & psz);
       virtual void parse_attributes(data * pdoc, const char * & psz);
+
+
    };
 
 
-
 } // namespace html
+
+
+
+
+
