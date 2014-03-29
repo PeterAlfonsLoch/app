@@ -978,6 +978,13 @@ namespace html
             pstylesheet->parse(pdata, pvalue->get_value());
             pdata->m_stylesheeta.add(pstylesheet);
          }
+         else if (m_pparent->m_propertyset["PropertyTag"] == "link"
+            && pvalue->get_tag()->get_attr_value("rel").CompareNoCase("stylesheet") == 0)
+         {
+            sp(style_sheet) pstylesheet(new style_sheet);
+            pstylesheet->parse(pdata, Application.file().as_string(pvalue->get_tag()->get_attr_value("href")));
+            pdata->m_stylesheeta.add(pstylesheet);
+         }
       }
       else
       {
