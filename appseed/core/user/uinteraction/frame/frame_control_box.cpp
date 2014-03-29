@@ -92,10 +92,18 @@ namespace uinteraction
          if (x > rectParent.right - rectClient.width())
             x = rectParent.right - rectClient.width();
 
-         GetClientRect(rectClient);
+         if (x < rectParent.left)
+            x = rectParent.left;
 
+         rect rectWindow;
 
-         SetWindowPos(ZORDER_TOP, x, 0, 0, 0, SWP_NOSIZE);
+         GetWindowRect(rectWindow);
+
+         point ptClient(x, rectWindow.top);
+
+         get_parent()->ScreenToClient(ptClient);
+
+         SetWindowPos(ZORDER_TOP, ptClient.x, ptClient.y, 0, 0, SWP_NOSIZE);
 
 
       }

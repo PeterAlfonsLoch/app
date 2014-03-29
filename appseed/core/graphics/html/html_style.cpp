@@ -812,6 +812,18 @@ namespace html
                   return false;
                }
             }
+            else if (strTag == "strong")
+            {
+               if (stricmp_dup("font-weight", pszName) == 0)
+               {
+                  str = "bold";
+                  return true;
+               }
+               else
+               {
+                  return false;
+               }
+            }
             else
             {
                return false;

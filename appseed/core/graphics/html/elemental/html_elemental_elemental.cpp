@@ -745,7 +745,7 @@ namespace html
 
          pdata->m_layoutstate3.m_xParent.add(pdata->m_layoutstate3.m_xParent.last_element() + m_pimpl->m_margin.left + m_pimpl->m_border.left + m_pimpl->m_padding.left);
 
-         pdata->m_layoutstate3.m_x = pdata->m_layoutstate3.m_xParent.last_element();
+         pdata->m_layoutstate3.m_x = max(pdata->m_layoutstate3.m_x, pdata->m_layoutstate3.m_xParent.last_element());
 
          int32_t i;
 
@@ -960,7 +960,14 @@ namespace html
          {
             m_propertyset[ptag->attra()[i].get_name()] = ptag->attra()[i].get_value();
          }
-         for(int32_t i = 0; i < ptag->baseptra().get_size(); i++)
+         if (m_propertyset["PropertyTag"] == "link"
+            && get_tag()->get_attr_value("rel").CompareNoCase("stylesheet") == 0)
+         {
+            sp(style_sheet) pstylesheet(new style_sheet);
+            pstylesheet->parse(pdata, App(pdata->get_app()).file().as_string(get_tag()->get_attr_value("href")));
+            pdata->m_stylesheeta.add(pstylesheet);
+         }
+         for (int32_t i = 0; i < ptag->baseptra().get_size(); i++)
          {
             elemental * pelemental = new elemental(pdata, this);
             pelemental->load(pdata, ptag->baseptra()[i]);
@@ -979,10 +986,10 @@ namespace html
             pdata->m_stylesheeta.add(pstylesheet);
          }
          else if (m_pparent->m_propertyset["PropertyTag"] == "link"
-            && pvalue->get_tag()->get_attr_value("rel").CompareNoCase("stylesheet") == 0)
+            && m_pparent->get_tag()->get_attr_value("rel").CompareNoCase("stylesheet") == 0)
          {
             sp(style_sheet) pstylesheet(new style_sheet);
-            pstylesheet->parse(pdata, Application.file().as_string(pvalue->get_tag()->get_attr_value("href")));
+            pstylesheet->parse(pdata, App(pdata->get_app()).file().as_string(m_pparent->get_tag()->get_attr_value("href")));
             pdata->m_stylesheeta.add(pstylesheet);
          }
       }

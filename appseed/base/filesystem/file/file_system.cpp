@@ -459,9 +459,9 @@ restart:
    string system::as_string(var varFile, var & varQuery, sp(base_application) papp)
    {
       primitive::memory storage;
-      if(varFile.cast < ::file::binary_buffer > () != NULL)
+      if(varFile.cast < ::file::stream_buffer > () != NULL)
       {
-         ::file::byte_input_stream is(varFile.cast < ::file::binary_buffer >());
+         ::file::byte_input_stream is(varFile.cast < ::file::stream_buffer >());
          storage.read(is);
       }
       else
