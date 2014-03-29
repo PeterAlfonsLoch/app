@@ -16,7 +16,7 @@ namespace html
       elemental *          m_pparent;
       base *               m_pbase;
       data *               m_pdata;
-
+      //bool                 m_bHasChar;
 
       style                m_style;
       array < elemental *, elemental * > m_elementalptra;

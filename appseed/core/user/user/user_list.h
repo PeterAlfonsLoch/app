@@ -459,7 +459,6 @@ namespace user
       LOGFONTW                       m_logfont;
       visual::graphics_extension    m_dcextension;
 
-      COLORREF                      m_crText;
       COLORREF                      m_crTextSelected;
       COLORREF                      m_crTextFocused;
       COLORREF                      m_crTextHighlight;

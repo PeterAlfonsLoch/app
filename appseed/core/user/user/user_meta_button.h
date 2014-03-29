@@ -17,7 +17,6 @@ public:
    ::draw2d::brush_sp   m_brushEllipse;
    ::draw2d::pen_sp     m_penEllipse;
    ::draw2d::brush_sp   m_brushText;
-   COLORREF             m_crText;
    ::draw2d::brush_sp   m_brushEllipseSel;
    ::draw2d::pen_sp     m_penEllipseSel;
    ::draw2d::brush_sp   m_brushTextSel;

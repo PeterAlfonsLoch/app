@@ -77,6 +77,20 @@ namespace user
 
       pdc->FillRectangle(rectClient);
 
+      {
+
+         color ca;
+
+         ca.set_rgb(RGB(227, 227, 210));
+
+         ca.hls_rate(0.0, -0.33, -0.23);
+
+         COLORREF crBorder = ca.get_rgb() | (0xff << 24);
+
+         pdc->Draw3dRect(rectClient, crBorder, crBorder);
+
+      }
+
       rect rectItem;
 
       rectItem = rectClient;
@@ -91,11 +105,11 @@ namespace user
 
       br->create_solid(ARGB(255, 84, 84, 77));
 
-      int32_t dSize = (int32_t) ( _001GetItemHeight() * 0.7);
+//      int32_t dSize = (int32_t) ( _001GetItemHeight() * 0.7);
 
-      GetFont()->m_dFontSize = dSize;
-      GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
-      GetFont()->m_bUpdated = false;
+  //    GetFont()->m_dFontSize = dSize;
+    //  GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
+//      GetFont()->m_bUpdated = false;
 
       pdc->selectFont(GetFont());
 
@@ -162,6 +176,20 @@ namespace user
 
       pdc->FillRectangle(rectClient);
 
+      {
+
+         color ca;
+
+         ca.set_rgb(RGB(227, 227, 210));
+
+         ca.hls_rate(0.0, -0.33, -0.23);
+
+         COLORREF crBorder = ca.get_rgb() | (0xff << 24);
+
+         pdc->Draw3dRect(rectClient, crBorder, crBorder);
+
+      }
+
       rect rectItem;
 
       rectItem = rectClient;
@@ -176,11 +204,11 @@ namespace user
 
       br->create_solid(ARGB(255, 84, 84, 77));
 
-      int32_t dSize = (int32_t) (_001GetItemHeight() * 0.7);
+      //int32_t dSize = (int32_t) (_001GetItemHeight() * 0.7);
 
-      GetFont()->m_dFontSize = dSize;
-      GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
-      GetFont()->m_bUpdated = false;
+      //GetFont()->m_dFontSize = dSize;
+      //GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
+      //GetFont()->m_bUpdated = false;
 
       pdc->selectFont(GetFont());
 
@@ -245,13 +273,13 @@ namespace user
       pdc->SelectObject(tameshi->get_bitmap());
 
       int32_t dSize = (int32_t) (_001GetItemHeight() * 0.7);
-
-      ((combo_list *) this)->GetFont()->m_dFontSize = dSize;
-
-      ((combo_list *) this)->GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
-
-      ((combo_list *) this)->GetFont()->m_bUpdated = false;
-
+////
+//      ((combo_list *) this)->GetFont()->m_dFontSize = dSize;
+//
+//      ((combo_list *) this)->GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
+//
+//      ((combo_list *) this)->GetFont()->m_bUpdated = false;
+//
       pdc->selectFont(((combo_list *) this)->GetFont());
 
       string strItem;

@@ -18,6 +18,7 @@ namespace html
          m_bHoverEvaluated = false;
          m_bHasHover = false;
          m_bHover = false;
+         m_bHasChar = false;
 
       }
 
@@ -183,82 +184,141 @@ namespace html
 
          }
 
+         if (m_pelemental->m_elementalptra.get_size() > 0
+         && strTag.CompareNoCase("select") != 0)
+            return;
+
+
+         if (strTag.CompareNoCase("html") == 0
+          || strTag.CompareNoCase("head") == 0
+          || strTag.CompareNoCase("style") == 0
+          || strTag.CompareNoCase("script") == 0)
+         {
+            return;
+         }
+         
+         
          if (strTag.CompareNoCase("br") == 0)
          {
 
-            if (pdata->m_layoutstate3.m_cy <= 0)
-            {
+            //pdata->m_layoutstate3.m_y += pdata->m_layoutstate3.m_cya.last_element();
 
-               ::draw2d::graphics * pdc = pdata->m_pdc;
+            pdata->m_layoutstate3.m_y += get_cy();
 
-               if (pdc == NULL)
-                  return;
+            pdata->m_layoutstate3.m_x = pdata->m_layoutstate3.m_xParent.last_element();
 
-               pdc->SelectObject(pdata->get_font(m_pelemental)->m_font);
+            pdata->m_layoutstate3.m_cya.last_element() = 0;
 
-               m_box.set_cx(0);
+            //pdata->m_layoutstate3.m_cya.last_element() = 0.f;
 
-               class ::size size = pdc->GetTextExtent(unitext("MAÚqg"));
+            //pdata->m_layoutstate3.m_bLastBlock = false;
 
-               m_box.set_cy((float)size.cy);
+            //pdata->m_layoutstate3.m_bLastCell = false;
 
-               pdata->m_layoutstate3.m_cy = (float)size.cy;
-
-            }
-
-            pdata->m_layoutstate3.m_bLastBlock = true;
+            return;
 
          }
 
-         if (pdata->m_layoutstate3.m_bLastBlock)
+
+         ::html::impl::cell * pcell = dynamic_cast < ::html::impl::cell * > (this);
+         float iTableBorder = 0;
+         if (pcell != NULL)
          {
+            if (pcell->get_table()->m_iBorder > 0)
+            {
+               iTableBorder = pcell->get_table()->m_iBorder + 1;
+            }
+         }
 
-            pdata->m_layoutstate3.m_y += pdata->m_layoutstate2.m_cy;
-
-            pdata->m_layoutstate3.m_x = bParent ? m_pelemental->m_pparent->m_pparent->m_pimpl->get_bound_point().x : m_pelemental->m_pparent->m_pimpl->get_bound_point().x;
-
-            pdata->m_layoutstate3.m_bLastBlock = false;
+         if (m_pelemental->m_pbase->get_type() == ::html::base::type_tag
+            && (strTag == "td"
+            || strTag == "table"))
+         {
+            if (pcell != NULL && pcell->m_iColBeg == 0)
+            {
+               pdata->m_layoutstate3.m_x = pcell->get_table()->get_x();
+               if (pcell->m_iRowBeg > 0)
+               {
+                  pdata->m_layoutstate3.m_x -= iTableBorder;
+               }
+            }
+            if (pcell != NULL)
+            {
+               pdata->m_layoutstate3.m_y = pcell->get_row()->get_y() + iTableBorder;
+            }
+            if (strTag == "table")
+            {
+               if (m_pelemental->m_pparent != NULL)
+               {
+                  pdata->m_layoutstate3.m_x = m_pelemental->m_pparent->m_pimpl->get_x();
+               }
+               else
+               {
+                  pdata->m_layoutstate3.m_x = 0;
+               }
+               pdata->m_layoutstate3.m_bLastBlock = false;
+            }
+            if (pdata->m_layoutstate3.m_bLastCell || m_pelemental->m_style.m_propertyset["display"] == "table-cell")
+            {
+               pdata->m_layoutstate3.m_x += (pdata->m_layoutstate3.m_bLastCell ? pdata->m_layoutstate3.m_cx : 0) + (pcell == NULL ? 0 : (pcell->m_iColEnd - pcell->m_iColBeg + 1) * iTableBorder);
+               pdata->m_layoutstate3.m_bLastCell = false;
+            }
+            if (pdata->m_layoutstate3.m_bLastCell || m_pelemental->m_style.m_propertyset["display"] == "table")
+            {
+               pdata->m_layoutstate3.m_y += pdata->m_layoutstate3.m_cya.last_element();
+               pdata->m_layoutstate3.m_cya.last_element() = 0;
+               pdata->m_layoutstate3.m_bLastBlock = false;
+               pdata->m_layoutstate3.m_bLastCell = false;
+            }
+         }
+         else if ((m_pelemental->m_pbase->get_type() == ::html::base::type_value
+            && strTag != "table"
+            && strTag != "tbody"
+            && strTag != "tr")
+            || (m_pelemental->m_pbase->get_type() == ::html::base::type_tag
+            && strTag == "tr"))
+         {
+/*            if (pdata->m_layoutstate3.m_bLastBlock || m_pelemental->m_style.m_propertyset["display"] == "block")
+            {
+               if (m_pelemental->m_pparent != NULL)
+               {
+                  pdata->m_layoutstate3.m_x = m_pelemental->m_pparent->m_pimpl->get_x();
+               }
+               else
+               {
+                  pdata->m_layoutstate3.m_x = 0;
+               }
+               pdata->m_layoutstate3.m_bLastBlock = false;
+            }
+            else
+            {
+               pdata->m_layoutstate3.m_x += pdata->m_layoutstate3.m_cx;
+               pdata->m_layoutstate3.m_cx = 0;
+            }*/
 
          }
 
-         m_box.set_x(pdata->m_layoutstate3.m_x);
-
-         m_box.set_y(pdata->m_layoutstate3.m_y);
 
          int cx = m_box.get_cx();
 
          int cy = m_box.get_cy();
 
-         if (m_pelemental->m_pparent == NULL)
-         {
+         m_box.set_x(pdata->m_layoutstate3.m_x);
 
-            m_box.set_cx(cx);
+         m_box.set_y(pdata->m_layoutstate3.m_y);
 
-            m_box.set_cy(cy);
+         m_box.set_cx(cx);
 
-         }
-         else
-         {
+         m_box.set_cy(cy);
 
-            m_box.set_cy(cy + m_pelemental->m_pparent->m_pimpl->m_padding.top
-               + m_pelemental->m_pparent->m_pimpl->m_padding.bottom
-               + m_pelemental->m_pparent->m_pimpl->m_border.top
-               + m_pelemental->m_pparent->m_pimpl->m_border.bottom
-               + m_pelemental->m_pparent->m_pimpl->m_margin.top
-               + m_pelemental->m_pparent->m_pimpl->m_margin.top);
+         pdata->m_layoutstate3.m_x = get_x() + get_cx();
 
-            m_box.set_cx(cx + m_pelemental->m_pparent->m_pimpl->m_padding.left
-               + m_pelemental->m_pparent->m_pimpl->m_padding.right
-               + m_pelemental->m_pparent->m_pimpl->m_border.left
-               + m_pelemental->m_pparent->m_pimpl->m_border.right
-               + m_pelemental->m_pparent->m_pimpl->m_margin.left
-               + m_pelemental->m_pparent->m_pimpl->m_margin.right);
-
-         }
-
-         pdata->m_layoutstate3.m_cy = get_cy();
+         pdata->m_layoutstate3.m_y = get_y();
 
          pdata->m_layoutstate3.m_cx = get_cx();
+
+         pdata->m_layoutstate3.m_cya.last_element() = max(pdata->m_layoutstate3.m_cya.last_element(), get_cy());
+         
 
       }
 
@@ -607,6 +667,7 @@ namespace html
 
       void elemental::final_layout(data * pdata)
       {
+         return;
          string strTag = m_pelemental->get_tag_name();
 
          /*         if(m_pelemental->m_style.m_edisplay == display_block ||

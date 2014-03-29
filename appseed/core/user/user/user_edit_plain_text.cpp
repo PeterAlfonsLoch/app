@@ -195,7 +195,7 @@ namespace user
       COLORREF cr;
 
 
-      cr          = ARGB(255, 23, 23, 23);
+      cr          = m_crText;
       crBk        = ARGB(255, 255, 255, 255);
       crBkSel     = ARGB(255, 0, 0, 127);
       crSel       = ARGB(255, 255, 255, 255);

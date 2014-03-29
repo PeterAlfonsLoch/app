@@ -86,11 +86,14 @@ namespace html
       class CLASS_DECL_CORE layout_state3
       {
       public:
-         int32_t      m_iBody;
-         float    m_y;
-         float    m_cy;
-         float    m_x;
-         float    m_cx;
+         int32_t                       m_iBody;
+         float                         m_y;
+//         numeric_array < float >       m_cyStack;
+         numeric_array < float >       m_xParent;
+         numeric_array < float >       m_cya;
+  //       int                           m_iy;
+         float                         m_x;
+         float                         m_cx;
          //         bool     m_bLastBlockX;
          //         bool     m_bLastCellX;
          bool     m_bLastBlock;
@@ -154,6 +157,8 @@ namespace html
       bool                       m_bEdit;
       elemental *                m_pElementalSelStart;
       elemental *                m_pElementalSelEnd;
+
+      bool                       m_bHasChar;
 
 
 

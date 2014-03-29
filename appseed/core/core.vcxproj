@@ -1615,7 +1615,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="graphics\html\html_base.h" />
     <ClInclude Include="graphics\html\html_border.h" />
     <ClInclude Include="graphics\html\html_box.h" />
-    <ClInclude Include="graphics\html\html_cell.h" />
     <ClInclude Include="graphics\html\html_data.h" />
     <ClInclude Include="graphics\html\html_enum.h" />
     <ClInclude Include="graphics\html\html_ex.h" />
@@ -2333,6 +2332,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="graphics\html\impl\html_impl_cell.cpp" />
     <ClCompile Include="graphics\html\impl\html_impl_elemental.cpp" />
     <ClCompile Include="graphics\html\impl\html_impl_form.cpp" />
+    <ClCompile Include="graphics\html\impl\html_impl_image.cpp" />
     <ClCompile Include="graphics\html\impl\html_impl_input_button.cpp" />
     <ClCompile Include="graphics\html\impl\html_impl_input_checkbox.cpp" />
     <ClCompile Include="graphics\html\impl\html_impl_input_text.cpp" />

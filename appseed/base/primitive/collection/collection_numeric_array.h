@@ -54,6 +54,15 @@ public:
    ::count remove_lesser_than_or_equal_or_greater_than_or_equal(TYPE lo, TYPE hi);
 
 
+   void push_last();
+
+
+   TYPE pop_max();
+   TYPE pop_max_last_add_up(TYPE tLastAddUp);
+
+
+   TYPE pop_to();
+
 
    void CopySorted(const numeric_array < TYPE > & array, TYPE & tOffset, TYPE & tMin);
 
@@ -664,6 +673,62 @@ numeric_array < TYPE >  & numeric_array < TYPE >::operator += (const numeric_arr
    return *this;
 
 }
+
+
+
+template < class TYPE >
+inline void numeric_array < TYPE > ::push_last()
+{
+
+   add(last_element());
+
+}
+
+
+template < class TYPE >
+inline TYPE numeric_array < TYPE > ::pop_max()
+{
+
+   TYPE lastelement = last_element();
+
+   TYPE nowpop = pop();
+
+   last_element() = max(nowpop, lastelement);
+
+   return last_element();
+
+}
+
+
+
+template < class TYPE >
+inline TYPE numeric_array < TYPE > ::pop_max_last_add_up(TYPE tLastAddUp)
+{
+
+   TYPE lastelement = last_element();
+
+   TYPE nowpop = pop();
+
+   last_element() = max(nowpop, lastelement + tLastAddUp);
+
+   return last_element();
+
+}
+
+
+
+template < class TYPE >
+inline TYPE numeric_array < TYPE > ::pop_to()
+{
+
+   TYPE lastelement = pop();
+
+   last_element() = lastelement;
+
+   return last_element();
+
+}
+
 
 
 template < class TYPE >
@@ -2019,3 +2084,6 @@ namespace lemon
 
 
 } // namespace lemon
+
+
+

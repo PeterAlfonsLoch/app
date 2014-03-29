@@ -192,6 +192,15 @@ inline TYPE* array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_data()
 }
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::push_last()
+{
+
+   add(last_element());
+
+}
+
+
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::push_back(ARG_TYPE newElement)
 {
    return add(newElement);
@@ -230,6 +239,22 @@ inline TYPE array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::pop(index n)
    return t;
 
 }
+
+
+
+
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline TYPE array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::pop_to()
+{
+
+   TYPE lastelement = pop();
+
+   last_element() = lastelement;
+
+   return last_element();
+
+}
+
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::pop_back(index n)

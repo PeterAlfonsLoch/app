@@ -36,6 +36,7 @@ namespace user
       bool                       m_bEdit;
 
 
+
       combo_box(sp(base_application) papp);
       virtual ~combo_box();
 
@@ -72,12 +73,16 @@ namespace user
       DECL_GEN_SIGNAL(_001OnLButtonDown)
       DECL_GEN_SIGNAL(_001OnLButtonUp)
       DECL_GEN_SIGNAL(_001OnSetFocus)
+      DECL_GEN_SIGNAL(_001OnMouseMove)
 
       virtual void _001ShowDropDown(bool bShow = true);
       virtual void _001ToggleDropDown();
 
 
       void defer_create_combo_list();
+
+      virtual void SetFont(::draw2d::font* pFont, bool bRedraw = true);
+      virtual void set_text_color(COLORREF crText);
 
 
       virtual void layout();

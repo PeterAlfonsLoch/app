@@ -3872,5 +3872,16 @@ namespace user
    }
 
 
+   void interaction::set_text_color(COLORREF crText)
+   {
+
+      m_crText = crText;
+
+   }
+
 
 } // namespace user
+
+
+
+

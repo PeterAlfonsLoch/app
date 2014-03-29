@@ -32,6 +32,9 @@ namespace html
 
       void table_row::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {
+
+         m_bHasChar = true;
+
          elemental::implement_phase1(pdata, pelemental);
          table * ptable = get_table();
          if(ptable == NULL)

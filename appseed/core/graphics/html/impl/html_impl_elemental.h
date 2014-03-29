@@ -30,6 +30,8 @@ namespace html
          bool              m_bHasHover;
          bool              m_bHover;
 
+         bool              m_bHasChar;
+
 
 
          elemental();

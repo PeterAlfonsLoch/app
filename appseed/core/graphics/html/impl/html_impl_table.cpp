@@ -29,6 +29,8 @@ namespace html
       void table::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {
 
+         m_bHasChar = true;
+
          elemental::implement_phase1(pdata, pelemental);
 
          if(m_pelemental->m_pbase->get_type() !=:: html::base::type_tag)

@@ -352,17 +352,25 @@ namespace html
 
    elemental * data::get_element_by_name(id id)
    {
+
       return m_elemental.get_element_by_name(id);
+
    }
+
 
    elemental * data::get_element_by_id(id id)
    {
+
       return m_elemental.get_element_by_id(id);
+
    }
+
 
    void data::layout_state1::reset()
    {
+
       m_bHasChar  = false;
+
    }
 
 
@@ -378,11 +386,21 @@ namespace html
 
    void data::layout_state3::reset()
    {
+
+//      m_cyStack.remove_all();
+      m_cya.remove_all();
+      m_xParent.remove_all();
+      m_x = 0.f;
+
       m_iBody = 0;
       m_y = 0;
-      m_cy = 0;
-      m_x = 0;
+      //m_cyStack.add(0.f);
+      m_cya.add(0.f);
+      m_xParent.add(0.f);
+      //m_iy = 0;
+      m_x = 0.f;
       m_cx = 0;
+
    }
 
 

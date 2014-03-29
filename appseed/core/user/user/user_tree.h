@@ -62,7 +62,6 @@ namespace user
       index                         m_iFirstVisibleItemLevel;
       index                         m_iFirstVisibleItemProperIndex;
       int32_t                       m_iCurrentViewWidth;
-      COLORREF                      m_crText;
       COLORREF                      m_crTextSelected;
       COLORREF                      m_crTextHighlight;
       COLORREF                      m_crTextSelectedHighlight;

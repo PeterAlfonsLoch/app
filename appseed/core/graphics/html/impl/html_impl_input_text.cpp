@@ -38,6 +38,9 @@ namespace html
 
       void input_text::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {
+
+         m_bHasChar = true;
+
          elemental::implement_phase1(pdata, pelemental);
          if(!m_pedit->IsWindow())
          {
@@ -50,6 +53,22 @@ namespace html
             m_pedit->m_pimpl->m_id = m_pedit->m_id;
             m_pedit->_001SetText(pelemental->m_pbase->get_tag()->get_attr_value("value"), ::action::source::add(::action::source_data, ::action::source_load));
             m_pedit->SetFont(pdata->get_font(pelemental)->m_font);
+
+            COLORREF cr;
+
+            if (m_pelemental->m_style.get_color("color", "", pdata, m_pelemental, cr))
+            {
+
+               m_pedit->set_text_color(cr);
+
+            }
+            else
+            {
+
+               m_pedit->set_text_color(ARGB(255, 0, 0, 0));
+
+            }
+
          }
          pdata->m_focusptra.add_unique(m_pedit);
          m_cxMax = 200;

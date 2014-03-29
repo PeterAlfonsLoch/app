@@ -30,7 +30,6 @@ namespace user
       e_type                              m_etype;
 
       bool                                m_bLButtonDown;
-      COLORREF                            m_crText;
 
 
       static_control(sp(base_application) papp);

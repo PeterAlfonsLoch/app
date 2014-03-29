@@ -20,6 +20,7 @@ namespace html
 
          void _001OnDraw(data * pdoc);
          void implement_phase1(data * pdoc, ::html::elemental * pelemental);
+         void layout_phase1(data * pdoc);
          void layout_phase3(data * pdoc);
 
       };

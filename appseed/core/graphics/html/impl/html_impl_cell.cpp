@@ -63,6 +63,7 @@ namespace html
 
       void cell::layout_phase1(data * pdata)
       {
+         
          if(m_pelemental->m_pbase->get_type() != ::html::base::type_value)
          {
             text::layout_phase1(pdata);
@@ -163,6 +164,9 @@ namespace html
 
       void cell::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {
+
+         m_bHasChar = true;
+
          if(pelemental->m_pbase->get_type() == ::html::base::type_value)
          {
             text::implement_phase1(pdata, pelemental);

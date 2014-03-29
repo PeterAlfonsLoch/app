@@ -25,10 +25,14 @@ namespace html
 
       }
 
+
       void text::delete_implementation()
       {
+
          m_bLink = false;
+
       }
+
 
       void text::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {
@@ -36,126 +40,195 @@ namespace html
          ::data::lock lock(pdata);
 
          ::html::impl::elemental::implement_phase1(pdata, pelemental);
+         
          string strTag;
+
          if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
          {
+
             strTag = pelemental->m_pparent->m_propertyset["PropertyTag"];
+
          }
          else
          {
+
             strTag = pelemental->m_propertyset["PropertyTag"];
+
          }
+
          if(strTag == "a")
          {
+
             m_bLink = true;
+
             if(m_strLink.is_empty())
             {
+
                if(!pelemental->m_pparent->m_propertyset.is_new_or_null("href"))
                {
+
                   m_strLink = pelemental->m_pparent->m_propertyset["href"];
+
                }
                else if(!pelemental->m_propertyset.is_new_or_null("href"))
                {
+
                   m_strLink = pelemental->m_propertyset["href"];
+
                }
+
             }
+
          }
+         
          if(!IsWindow() && pdata->m_bEdit)
          {
+
             create(pdata->m_pform, 1004);
+
          }
 
-         if(pelemental->m_elementalptra.get_size() > 0
-         || pelemental->m_propertyset["PropertyBody"].is_empty())
+         if (pelemental->m_elementalptra.get_size() > 0 || pelemental->m_propertyset["PropertyBody"].is_empty())
             return;
 
          ::draw2d::graphics * pdc = pdata->m_pdc;
+
          if(pdc == NULL)
             return;
+
          font * pfont = pdata->get_font(m_pelemental);
+
          if(pfont != NULL)
          {
+
             pdc->SelectObject(pfont->m_font);
+
          }
+
          string str = m_pelemental->m_propertyset["PropertyBody"];
 
          if(IsWindow() && pdata->m_bEdit)
          {
-            _001SetText(str, ::action::source::add(::action::source_data, ::action::source_load));
-         }
 
+            _001SetText(str, ::action::source::add(::action::source_data, ::action::source_load));
+
+         }
 
          ::size size = pdc->GetTextExtent(str);
 
-
          m_cxMax = (float) size.cx;
 
-
          strsize iLastSpace = 0;
+
          uchar uch;
+
          int32_t iSpace = 0;
+
          string strLine;
+
          for(int32_t i = 0; i < str.get_length();)
          {
+
             iSpace = 0;
+
             uch = (uchar) str[i];
+
             while(i < str.get_length())
             {
+
                uch = (uchar) str[i];
+
                if(!isspace(uch))
                   break;
+
                iSpace++;
+
                if(iSpace == 1)
                {
-                  if(strLine.get_length() > 0)
+
+                  if(pdata->m_bHasChar || strLine.get_length() > 0)
                   {
+
                      strLine += " ";
+
                      iLastSpace = strLine.get_length();
+
                   }
+
                }
+
                i++;
+
             }
+
             if(strLine.get_length() > 0)
             {
+
                m_straWordSpace.add(strLine);
+
                strLine.Empty();
+
             }
+
             while(i < str.get_length())
             {
+
                uch = (uchar) str[i];
+
                if(isspace(uch))
                   break;
+
                strLine += str[i];
+
                i++;
+
             }
+
             if(strLine.get_length() > 0)
             {
+
                m_straWordSpace.add(strLine);
+
                strLine.Empty();
+
             }
+
          }
+
          m_cxMin = 0;
+
          for(int32_t i = 0; i < m_straWordSpace.get_size(); i++)
          {
+
             uch = (uchar) m_straWordSpace[i][0];
+
             if(!isspace(uch))
             {
                size = pdc->GetTextExtent(m_straWordSpace[i]);
+
                if(size.cx > m_cxMin)
                   m_cxMin = (float) size.cx;
+
             }
+
          }
+
+         str.trim();
+
+         if (str.has_char())
+         {
+
+            m_bHasChar = true;
+
+         }
+
       }
-
-
-
-
 
 
       void text::layout_phase1(data * pdata)
       {
 
-         ::html::impl::elemental::layout_phase3(pdata);
+         ::html::impl::elemental::layout_phase1(pdata);
 
          string strTag;
          bool bParent = false;
@@ -172,13 +245,21 @@ namespace html
          if (strTag.CompareNoCase("br") == 0)
          {
 
+            ::draw2d::graphics * pdc = pdata->m_pdc;
+            if (pdc == NULL)
+               return;
+            pdc->SelectObject(pdata->get_font(m_pelemental)->m_font);
+            m_box.set_cx(0);
+            class ::size size = pdc->GetTextExtent(unitext("MAÚqg"));
+            m_box.set_cy((float)size.cy);
+            pdata->m_layoutstate3.m_cya.last_element() = (float)size.cy;
+
             return;
 
          }
 
 
-         if (m_pelemental->m_elementalptra.get_size() > 0
-            || m_pelemental->m_propertyset["PropertyBody"].is_empty())
+         if (m_pelemental->m_elementalptra.get_size() > 0 || m_pelemental->m_propertyset["PropertyBody"].is_empty())
          {
          }
          else
@@ -214,8 +295,7 @@ namespace html
                   iSpace++;
                   if (iSpace == 1)
                   {
-                     if (strLine.get_length() > 0
-                        || pdata->m_layoutstate1.m_bHasChar)
+                     if (strLine.get_length() > 0 || pdata->m_layoutstate1.m_bHasChar)
                      {
                         strLine += " ";
                         iLastSpace = strLine.get_length();
@@ -297,12 +377,7 @@ namespace html
             else
             {
 
-               m_box.set_cy(cy + m_pelemental->m_pparent->m_pimpl->m_padding.top
-                  + m_pelemental->m_pparent->m_pimpl->m_padding.bottom
-                  + m_pelemental->m_pparent->m_pimpl->m_border.top
-                  + m_pelemental->m_pparent->m_pimpl->m_border.bottom
-                  + m_pelemental->m_pparent->m_pimpl->m_margin.top
-                  + m_pelemental->m_pparent->m_pimpl->m_margin.top);
+               m_box.set_cy(cy);
 
             }
 
@@ -316,214 +391,8 @@ namespace html
       void text::layout_phase3(data * pdata)
       {
 
-         string strTag;
-         bool bParent = false;
-         if(m_pelemental->m_propertyset.is_new_or_null("PropertyTag"))
-         {
-            strTag = m_pelemental->m_pparent->m_propertyset["PropertyTag"];
-            bParent = true;
-         }
-         else
-         {
-            strTag = m_pelemental->m_propertyset["PropertyTag"];
-         }
          ::html::impl::elemental::layout_phase3(pdata);
-         if(strTag.CompareNoCase("br") == 0)
-         {
-//            int32_t iIndex = -1;
 
-            ::draw2d::graphics * pdc = pdata->m_pdc;
-            if(pdc == NULL)
-               return;
-            if(pdata->m_layoutstate3.m_cy <= 0)
-            {
-               pdc->SelectObject(pdata->get_font(m_pelemental)->m_font);
-               m_box.set_cx(0);
-               class ::size size = pdc->GetTextExtent(unitext("MAÚqg"));
-               m_box.set_cy((float) size.cy);
-               pdata->m_layoutstate3.m_cy = (float) size.cy;
-            }
-            
-            pdata->m_layoutstate3.m_bLastBlock = true;
-         
-            return;
-
-         }
-
-/*         if(m_pelemental->m_pbase->get_type() != ::html::base::type_value)
-         {
-            text::layout_phase1(pdata);
-            return;
-         }*/
-
-         if(m_pelemental->m_elementalptra.get_size() > 0
-         || m_pelemental->m_propertyset["PropertyBody"].is_empty())
-         {
-            if ((bParent && m_pelemental->m_pparent->m_style.m_propertyset["display"] != "table-cell")
-               || (!bParent && m_pelemental->m_style.m_propertyset["display"] != "table-cell"))
-            {
-               m_box.set_cx(0);
-            }
-            m_box.set_cy(pdata->m_layoutstate3.m_cy);
-            pdata->m_layoutstate3.m_cx = get_cx();
-            if (strTag == "body")
-            {
-               m_box.set_x(m_margin.left + m_border.left + m_padding.left);
-               m_box.set_y(pdata->m_layoutstate3.m_cy + m_margin.top + m_border.top + m_padding.top);
-               pdata->m_layoutstate3.m_x = get_x();
-               pdata->m_layoutstate3.m_y = get_y();
-            }
-         }
-//         else
-//         {
-////            int32_t iIndex = -1;
-//
-//            ::draw2d::graphics * pdc = pdata->m_pdc;
-//            if(pdc == NULL)
-//               return;
-//            pdc->SelectObject(pdata->get_font(m_pelemental)->m_font);
-//            string str = m_pelemental->m_propertyset["PropertyBody"];
-//            m_straLines.remove_all();
-//            m_sizea.remove_all();
-//            ::size sizeText;
-//            int32_t iSpace;
-//            string strLine;
-//            uchar uch;
-//            strsize iLastSpace = 0;
-//            point pointBound(get_x(), get_y());
-//            pointBound.x += m_margin.left + m_border.left + m_padding.left;
-//            float x = pointBound.x;
-//            size sizeContent = size(get_bound_size());
-//            sizeContent.cx = max(0, sizeContent.cx - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
-//            sizeContent.cy = max(0, sizeContent.cy - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
-//            for(int32_t i = 0; i < str.get_length();)
-//            {
-//               iSpace = 0;
-//               uch = (uchar) str[i];
-//               while(i < str.get_length())
-//               {
-//                  uch = (uchar) str[i];
-//                  if(!isspace(uch))
-//                     break;
-//                  iSpace++;
-//                  if(iSpace == 1)
-//                  {
-//                     if(strLine.get_length() > 0
-//                     || pdata->m_layoutstate.m_bHasChar)
-//                     {
-//                        strLine += " ";
-//                        iLastSpace = strLine.get_length();
-//                     }
-//                  }
-//                  i++;
-//               }
-//               while(i < str.get_length())
-//               {
-//                  uch = (uchar) str[i];
-//                  if(isspace(uch))
-//                     break;
-//                  strLine += str[i];
-//                  i++;
-//               }
-//               sizeText = pdc->GetTextExtent(strLine);
-//               if((x + sizeText.cx) > pointBound.x + sizeContent.cx)
-//               {
-//                  if(x > pointBound.x && iLastSpace == 0)
-//                  {
-//                     m_straLines.add("");
-//                     sizeText.cx = 0;
-//                  }
-//                  else if(iLastSpace > 0)
-//                  {
-//                     sizeText = pdc->GetTextExtent(strLine.Left(iLastSpace));
-//                     m_straLines.add(strLine.Left(iLastSpace));
-//                     strLine = strLine.Mid(iLastSpace);
-//                  }
-//                  else
-//                  {
-//                     m_straLines.add(strLine);
-//                     strLine.Empty();
-//                  }
-//                  m_sizea.add(size(sizeText));
-//                  iLastSpace = 0;
-//                  x = pointBound.x;
-//               }
-//            }
-//            if(strLine.get_length() > 0)
-//            {
-//               sizeText = pdc->GetTextExtent(strLine);
-//               m_straLines.add(strLine);
-//               m_sizea.add(size(sizeText));
-//            }
-//            if(pdata->m_bEdit && m_straLines.get_size() == 0)
-//            {
-//               m_straLines.add("");
-//               m_sizea.add(size(0.f, 0.f));
-//            }
-//            if((bParent && m_pelemental->m_pparent->m_style.m_propertyset["display"] != "table-cell")
-//            || (!bParent && m_pelemental->m_style.m_propertyset["display"] != "table-cell"))
-//            {
-//               float cx = 0.f;
-//               if(m_straLines.get_size() > 1)
-//               {
-//                  cx = m_sizea.last_element().cx;
-//               }
-//               else if(m_straLines.get_size() > 0)
-//               {
-//                  cx = m_sizea[0].cx;
-//               }
-//               m_box.set_cx(cx);
-//            }
-//
-//            float cy = 0.f;
-//            int32_t i;
-//            for(i = 0; i < m_sizea.get_size(); i++)
-//            {
-//               cy += m_sizea[i].cy;
-//            }
-//
-//            if(m_pelemental->m_pparent == NULL)
-//            {
-//
-//               m_box.set_cy(cy);
-//
-//            }
-//            else
-//            {
-//
-//               m_box.set_cy(cy + m_pelemental->m_pparent->m_pimpl->m_padding.top
-//                            + m_pelemental->m_pparent->m_pimpl->m_padding.bottom
-//                            + m_pelemental->m_pparent->m_pimpl->m_border.top
-//                            + m_pelemental->m_pparent->m_pimpl->m_border.bottom
-//                            + m_pelemental->m_pparent->m_pimpl->m_margin.top
-//                            + m_pelemental->m_pparent->m_pimpl->m_margin.top);
-//
-//            }
-//
-//            if(m_straLines.get_size() > 0)
-//            {
-///*               if(get_y() == pdata->m_layoutstate.m_y)
-//               {
-//                  if(pdata->m_layoutstate.m_cy > m_size.cy)
-//                  {
-//                     m_pt.y += pdata->m_layoutstate.m_cy - m_size.cy;
-//                     m_size.cy = pdata->m_layoutstate.m_cy;
-//                  }
-//               }*/
-//               pdata->m_layoutstate.m_cy   = get_cy();
-//               pdata->m_layoutstate.m_cx   = get_cx();
-//            }
-//
-//            //m_size.cx = min(m_size.cx, m_pelemental->m_pparent->m_pimpl->get_cx());
-//            /*if(m_pelemental->m_pparent->m_pimpl->get_cx() == 0)
-//            {
-//               m_size.cy = sizeText.cy;
-//            }
-//            else
-//            {
-//               m_size.cy = sizeText.cy * ((sizeText.cx / m_pelemental->m_pparent->m_pimpl->get_cx()) + 1);
-//            }*/
-//         }
       }
 
 
@@ -680,9 +549,9 @@ namespace html
          if(m_pelemental->m_pparent != NULL)
          {
 
-            x += m_pelemental->m_pparent->m_pimpl->m_border.left + m_pelemental->m_pparent->m_pimpl->m_padding.left + m_pelemental->m_pparent->m_pimpl->m_margin.left;
+            /*x += m_pelemental->m_pparent->m_pimpl->m_border.left + m_pelemental->m_pparent->m_pimpl->m_padding.left + m_pelemental->m_pparent->m_pimpl->m_margin.left;
 
-            y += m_pelemental->m_pparent->m_pimpl->m_border.top + m_pelemental->m_pparent->m_pimpl->m_padding.top + m_pelemental->m_pparent->m_pimpl->m_margin.top;
+            y += m_pelemental->m_pparent->m_pimpl->m_border.top + m_pelemental->m_pparent->m_pimpl->m_padding.top + m_pelemental->m_pparent->m_pimpl->m_margin.top;*/
 
          }
 

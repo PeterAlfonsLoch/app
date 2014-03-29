@@ -8,6 +8,7 @@ namespace html
 
       form::form()
       {
+         m_bHasChar = true;
       }
 
       form::~form()

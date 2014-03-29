@@ -38,7 +38,11 @@ namespace html
 
       void select::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {
+
+         m_bHasChar = true;
+
          elemental::implement_phase1(pdata, pelemental);
+
          if (!m_pcombo->IsWindow())
          {
             m_pcombo->oprop("parent_lock_data") = (::data::data *) pdata;
@@ -57,16 +61,35 @@ namespace html
                m_pcombo->AddString(strText, strValue);
             }
             
-
-
             m_pcombo->_001SetText(pelemental->m_pbase->get_tag()->get_attr_value("value"), ::action::source::add(::action::source_data, ::action::source_load));
+
             m_pcombo->SetFont(pdata->get_font(pelemental)->m_font);
+
             m_pcombo->m_bEdit = false;
 
+            COLORREF cr;
+
+            if (m_pelemental->m_style.get_color("color", "", pdata, m_pelemental, cr))
+            {
+               
+               m_pcombo->set_text_color(cr);
+
+            }
+            else
+            {
+
+               m_pcombo->set_text_color(ARGB(255, 0, 0, 0));
+
+            }
+
          }
+
          pdata->m_focusptra.add_unique(m_pcombo);
+
          m_cxMax = 200;
+
          m_cxMin = 200;
+
       }
 
 

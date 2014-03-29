@@ -1049,9 +1049,6 @@
     <ClInclude Include="graphics\html\html_box.h">
       <Filter>Header Files\graphics\html</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\html\html_cell.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\html\html_data.h">
       <Filter>Header Files\graphics\html</Filter>
     </ClInclude>
@@ -4053,6 +4050,9 @@
     </ClCompile>
     <ClCompile Include="graphics\html\elemental\html_elemental_image.cpp">
       <Filter>Source Files\graphics\html\elemental</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\impl\html_impl_image.cpp">
+      <Filter>Source Files\graphics\html\impl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -18,6 +18,9 @@ namespace html
 
       void input_checkbox::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {
+
+         m_bHasChar = true;
+
          if(!m_pcheckbox->IsWindow())
          {
             m_pcheckbox->create(pdata->m_pguie, 100);

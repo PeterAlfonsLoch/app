@@ -461,10 +461,13 @@ public:
    inline index add_new( ::count count);
 
 
+   void push_last();
+
 
    TYPE pop(index index = -1);
    void pop_back(index index = -1);
 
+   TYPE pop_to();
 
 
    iterator erase(iterator pos);

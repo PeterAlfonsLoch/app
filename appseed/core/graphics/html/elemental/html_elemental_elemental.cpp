@@ -2,8 +2,6 @@
 #include "float.h"
 
 
-
-
 namespace html
 {
 
@@ -29,16 +27,26 @@ namespace html
 
    void elemental::implement(data * pdata)
    {
+      
       m_pdata = pdata;
+      
       ::data::lock lock(pdata);
+      
       implement_phase1(pdata);
+
       implement_phase2(pdata);
+
    }
 
 
    tag * elemental::get_tag()
    {
-      if(m_pbase->get_type() == base::type_tag)
+
+      if (m_pbase == NULL)
+      {
+         return NULL;
+      }
+      else if(m_pbase->get_type() == base::type_tag)
       {
          return dynamic_cast < ::html::tag * > (m_pbase);
       }
@@ -62,135 +70,222 @@ namespace html
 
    void elemental::implement_phase1(data * pdata)
    {
+      
       string strTag = get_tag_name();
+      
       if (m_pbase == NULL)
          return;
-//      bool tBody = strTag == "tbody";
-//      TRACE("elemental::implement_phase1\nstrTag=%s\n", strTag);
+
       tag * ptag = get_tag();
+
       if(ptag != NULL)
       {
          string str = ptag->get_attr_value("style");
+
          if(!str.is_empty())
          {
+
             m_style.parse(pdata, str);
+
          }
+
          if(strTag.CompareNoCase("font") == 0)
          {
-            string str = ptag->get_attr_value("face");
-            if(str.has_char())
-            {
-               m_style.m_propertyset["font-family"] = str;
-            }
-            str = ptag->get_attr_value("color");
-            if(str.has_char())
-            {
-               m_style.m_propertyset["color"] = str;
-            }
-         }
-      }
 
+            string str = ptag->get_attr_value("face");
+
+            if(str.has_char())
+            {
+
+               m_style.m_propertyset["font-family"] = str;
+
+            }
+
+            str = ptag->get_attr_value("color");
+
+            if(str.has_char())
+            {
+
+               m_style.m_propertyset["color"] = str;
+
+            }
+
+         }
+
+      }
 
       if(m_pimpl == NULL)
       {
-         if(strTag == "html" || strTag == "body" || strTag == "head"
-         || strTag == "style")
+
+         if(strTag == "html" || strTag == "body" || strTag == "head" || strTag == "style")
          {
+
             if(strTag == "head" || strTag == "html")
             {
+
                m_pimpl = new ::html::impl::elemental();
+
             }
             else if(strTag == "body")
             {
+
                m_pimpl = new ::html::impl::text(pdata->get_app());
+
             }
             else
             {
+
                m_pimpl = new ::html::impl::elemental();
+
             }
+
          }
          else if(strTag == "title")
          {
+
             if(m_pbase->get_type() == base::type_value)
             {
+
                pdata->m_strTitle = m_pbase->get_value()->get_value();
+
                m_pimpl = new ::html::impl::elemental();
+
             }
             else
             {
+
                m_pimpl = new ::html::impl::elemental();
+
             }
+
          }
          else if(strTag == "input")
          {
+
             string strType;
-            if(!m_propertyset.is_new_or_null("type"))
+
+            if (!m_propertyset.is_new_or_null("type"))
+            {
+
                strType = m_propertyset["type"];
+
+            }
+             
             trim001(strType);
+
             if(strType == "text")
             {
+
                m_pimpl = new ::html::impl::input_text(pdata);
+
             }
             else if(strType == "password")
             {
+
                m_pimpl = new ::html::impl::input_text(pdata);
+
             }
             else if(strType == "button")
             {
+
                m_pimpl = new ::html::impl::input_button(pdata);
+
             }
             else if(strType == "checkbox")
             {
+
                m_pimpl = new ::html::impl::input_checkbox(pdata);
+
             }
             else
             {
+
                m_pimpl = new ::html::impl::text(pdata->get_app());
+
             }
+
          }
          else if (strTag == "select")
          {
+
             m_pimpl = new ::html::impl::select(pdata);
+
          }
          else if (strTag == "option")
          {
-            //m_pimpl = new ::html::impl::elemental();
+
             m_pimpl = NULL;
+
          }
          else if (strTag == "img")
          {
+
             m_pimpl = new ::html::impl::image();
+           
          }
          else if(strTag == "table")
          {
-             m_pimpl = new ::html::impl::table();
+
+            m_pimpl = new ::html::impl::table();
+
          }
          else if(strTag == "tr")
          {
-             m_pimpl = new ::html::impl::table_row();
+
+            m_pimpl = new ::html::impl::table_row();
+
          }
          else if(strTag == "td")
          {
+
             m_pimpl = new ::html::impl::cell(pdata->get_app());
+            
          }
          else
          {
+
             m_pimpl = new ::html::impl::text(pdata->get_app());
+
          }
+
       }
 
       if (m_pimpl != NULL)
       {
 
          m_style.get_surround_box("padding", NULL, pdata, this, m_pimpl->m_padding);
+         
          m_style.get_border_box("border", NULL, pdata, this, m_pimpl->m_border);
+         
          m_style.get_border_color("border", NULL, pdata, this, m_pimpl->m_border);
+         
          m_style.get_surround_box("margin", NULL, pdata, this, m_pimpl->m_margin);
 
          m_pimpl->implement_phase1(pdata, this);
+
          for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
          {
+            
             m_elementalptra[i]->implement_phase1(pdata);
+
+         }
+
+         if (m_elementalptra.is_empty())
+         {
+
+            if (m_style.m_propertyset["display"] == "block")
+            {
+
+               pdata->m_bHasChar = false;
+
+            }
+            else
+            {
+
+               pdata->m_bHasChar = m_pimpl->m_bHasChar;
+
+            }
+
          }
 
       }
@@ -252,37 +347,38 @@ namespace html
    }
 
 
-
-
-
    void elemental::layout(data * pdata)
    {
+
+      pdata->m_bHasChar = false;
+      
       layout_phase1(pdata);
+      
       layout_phase2(pdata);
+      
       layout_phase3(pdata);
+
    }
-
-
 
 
    void elemental::layout_phase1(data * pdata)
    {
+
       if(m_pimpl == NULL)
          return;
-      // implement must be called before
-      ASSERT(m_pimpl != NULL);
+
       string strTag = get_tag_name();
 
       if(m_pimpl != NULL)
       {
+
          if(strTag == "html" || strTag == "body" || strTag == "head" || m_pparent == NULL)
          {
+
             if(m_pparent == NULL)
             {
-               m_pimpl->set_pos(
-                  pdata,
-                  0, 0,
-                  0, 0);
+
+               m_pimpl->set_pos(pdata, 0, 0, 0, 0);
                //if(pdata->m_layoutstate1.m_iBody == 0)
                //{
                //   pdata->m_layoutstate1.m_y = 0;
@@ -343,19 +439,42 @@ namespace html
             m_pimpl->set_bound_size(pdata, m_pparent->m_pimpl->get_bound_size());
          }
       }
+
       m_pimpl->layout_phase1(pdata);
+
       for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
       {
+
          m_elementalptra[i]->layout_phase1(pdata);
+
       }
-      if(m_pimpl->m_cxMin >
-         m_pimpl->get_bound_size().cx)
+
+      if (m_elementalptra.is_empty())
       {
-         m_pimpl->set_bound_size(pdata, size(m_pimpl->m_cxMin,
-            m_pimpl->get_bound_size().cx));
+
+         if (m_style.m_propertyset["display"] == "block")
+         {
+
+            pdata->m_bHasChar = pdata->m_layoutstate1.m_bHasChar = false;
+
+         }
+         else
+         {
+
+            pdata->m_bHasChar = pdata->m_layoutstate1.m_bHasChar = m_pimpl->m_bHasChar;
+
+         }
+
       }
-      m_pimpl->set_x(pdata, max(m_pimpl->get_bound_size().cx,
-         m_pimpl->get_x()));
+
+      if(m_pimpl->m_cxMin > m_pimpl->get_bound_size().cx)
+      {
+
+         m_pimpl->set_bound_size(pdata, size(m_pimpl->m_cxMin, m_pimpl->get_bound_size().cx));
+
+      }
+
+      m_pimpl->set_x(pdata, max(m_pimpl->get_bound_size().cx, m_pimpl->get_x()));
 
    }
 
@@ -432,11 +551,10 @@ namespace html
 
    void elemental::layout_phase3(data * pdata)
    {
+      
       if(m_pimpl == NULL)
          return;
 
-      // implement must be called before
-      ASSERT(m_pimpl != NULL);
       string strTag = get_tag_name();
 
       if(m_pimpl != NULL)
@@ -539,13 +657,13 @@ namespace html
          }
          if(pdata->m_layoutstate3.m_bLastCell || m_style.m_propertyset["display"] == "table-cell")
          {
-            pdata->m_layoutstate3.m_x += (pdata->m_layoutstate3.m_bLastCell ? pdata->m_layoutstate3.m_cx : 0)  + (pcell == NULL ? 0 : (pcell->m_iColEnd - pcell->m_iColBeg + 1) * iTableBorder);
+            pdata->m_layoutstate3.m_x += (pdata->m_layoutstate3.m_bLastCell ? pdata->m_layoutstate3.m_x : 0) + (pcell == NULL ? 0 : (pcell->m_iColEnd - pcell->m_iColBeg + 1) * iTableBorder);
             pdata->m_layoutstate3.m_bLastCell = false;
          }
          if(pdata->m_layoutstate3.m_bLastCell || m_style.m_propertyset["display"] == "table")
          {
-            pdata->m_layoutstate3.m_y += pdata->m_layoutstate3.m_cy;
-            pdata->m_layoutstate3.m_cy = 0;
+            pdata->m_layoutstate3.m_y += pdata->m_layoutstate3.m_cya.last_element();
+            pdata->m_layoutstate3.m_cya.last_element() = 0;
             pdata->m_layoutstate3.m_bLastBlock = false;
             pdata->m_layoutstate3.m_bLastCell   = false;
          }
@@ -557,7 +675,7 @@ namespace html
          || (m_pbase->get_type() == ::html::base::type_tag
          && strTag == "tr"))
       {
-         if(pdata->m_layoutstate3.m_bLastBlock || m_style.m_propertyset["display"] == "block")
+         /*if(pdata->m_layoutstate3.m_bLastBlock || m_style.m_propertyset["display"] == "block")
          {
             if(m_pparent != NULL)
             {
@@ -576,20 +694,104 @@ namespace html
          }
          if(pdata->m_layoutstate3.m_bLastBlock || m_style.m_propertyset["display"] == "block")
          {
-            pdata->m_layoutstate3.m_y += pdata->m_layoutstate3.m_cy;
-            pdata->m_layoutstate3.m_cy = 0;
+            pdata->m_layoutstate3.m_y += pdata->m_layoutstate3.m_cya.last_element();
+            pdata->m_layoutstate3.m_cya.last_element() = 0;
             pdata->m_layoutstate3.m_bLastBlock = false;
             pdata->m_layoutstate3.m_bLastCell   = false;
-         }
+         }*/
       }
-      m_pimpl->set_xy(pdata);
+
+//      m_pimpl->set_xy(pdata);
 
       m_pimpl->layout_phase3(pdata);
-      //m_pimpl->set_cxy(pdata);
-      int32_t i;
-      for(i = 0; i < m_elementalptra.get_size(); i++)
+
+      if (m_elementalptra.has_elements()
+         && strTag.CompareNoCase("select") != 0)
       {
-         m_elementalptra[i]->layout_phase3(pdata);
+
+         bool bVisible =
+            strTag.CompareNoCase("html") != 0
+            && strTag.CompareNoCase("head") != 0
+            && strTag.CompareNoCase("style") != 0
+            && strTag.CompareNoCase("script") != 0;
+
+         if (bVisible && (pdata->m_layoutstate3.m_bLastBlock || m_style.m_propertyset["display"] == "block"))
+         {
+
+            pdata->m_layoutstate3.m_y += pdata->m_layoutstate3.m_cya.last_element();
+
+            pdata->m_layoutstate3.m_x = pdata->m_layoutstate3.m_xParent.last_element();
+
+            pdata->m_layoutstate3.m_cya.last_element() = 0;
+
+            pdata->m_layoutstate3.m_bLastBlock = false;
+
+            pdata->m_layoutstate3.m_bLastCell = false;
+
+         }
+
+         pdata->m_layoutstate3.m_y += m_pimpl->m_margin.top + m_pimpl->m_border.top + m_pimpl->m_padding.top;
+
+/*         pdata->m_layoutstate3.m_iy++;
+
+         if (pdata->m_layoutstate3.m_cyStack.get_size() <= pdata->m_layoutstate3.m_iy)
+         {
+
+            pdata->m_layoutstate3.m_cyStack.set_at_grow(pdata->m_layoutstate3.m_iy, 0.f);
+
+         }*/
+
+         pdata->m_layoutstate3.m_cya.add(0.f);
+
+         pdata->m_layoutstate3.m_xParent.add(pdata->m_layoutstate3.m_xParent.last_element() + m_pimpl->m_margin.left + m_pimpl->m_border.left + m_pimpl->m_padding.left);
+
+         pdata->m_layoutstate3.m_x = pdata->m_layoutstate3.m_xParent.last_element();
+
+         int32_t i;
+
+         for (i = 0; i < m_elementalptra.get_size(); i++)
+         {
+            m_elementalptra[i]->layout_phase3(pdata);
+
+         }
+
+         /*pdata->m_layoutstate3.m_cyStack.set_at(pdata->m_layoutstate3.m_iy - 1,
+            max(pdata->m_layoutstate3.m_cyStack[pdata->m_layoutstate3.m_iy - 1],
+            pdata->m_layoutstate3.m_cya.last_element()
+            + m_pimpl->m_margin.top
+            + m_pimpl->m_border.top
+            + m_pimpl->m_padding.top
+            + m_pimpl->m_padding.bottom
+            + m_pimpl->m_border.bottom
+            + m_pimpl->m_margin.bottom));
+
+         pdata->m_layoutstate3.m_iy--;*/
+
+         pdata->m_layoutstate3.m_cya.pop_max_last_add_up(
+            m_pimpl->m_margin.top
+            + m_pimpl->m_border.top
+            + m_pimpl->m_padding.top
+            + m_pimpl->m_padding.bottom
+            + m_pimpl->m_border.bottom
+            + m_pimpl->m_margin.bottom);
+
+         pdata->m_layoutstate3.m_xParent.pop();
+
+         if (bVisible && (pdata->m_layoutstate3.m_bLastBlock || m_style.m_propertyset["display"] == "block"))
+         {
+
+            pdata->m_layoutstate3.m_y += pdata->m_layoutstate3.m_cya.last_element();
+
+            pdata->m_layoutstate3.m_x = pdata->m_layoutstate3.m_xParent.last_element();
+
+            pdata->m_layoutstate3.m_cya.last_element() = 0;
+
+            pdata->m_layoutstate3.m_bLastBlock = false;
+
+            pdata->m_layoutstate3.m_bLastCell = false;
+
+         }
+
       }
 
 
@@ -610,13 +812,13 @@ namespace html
                pdata->m_layoutstate3.m_bLastCell = true;
                pdata->m_layoutstate3.m_cx = m_pimpl->get_cx();
                //pdata->m_layoutstate.m_y = m_pimpl->get_y() + m_pimpl->get_cy();
-               pdata->m_layoutstate3.m_cy = 0;
+               pdata->m_layoutstate3.m_cya.last_element() = 0;
             }
             else
             {
                pdata->m_layoutstate3.m_bLastCell = true;
                //pdata->m_layoutstate.m_y = m_pimpl->get_y() + m_pimpl->get_cy();
-               pdata->m_layoutstate3.m_cy = 0;
+               pdata->m_layoutstate3.m_cya.last_element() = 0;
                pdata->m_layoutstate3.m_cx = 0;
                if(m_pparent != NULL)
                {
@@ -633,7 +835,7 @@ namespace html
             pdata->m_layoutstate3.m_bLastCell = true;
             pdata->m_layoutstate3.m_cx = 0;
             pdata->m_layoutstate3.m_x = m_pimpl->get_x() + m_pimpl->get_cx();
-            pdata->m_layoutstate3.m_cy = 0;
+            pdata->m_layoutstate3.m_cya.last_element() = 0;
          }
 
          if(pcell->m_iColBeg == 0 && pcell->m_iRowBeg == 0)
@@ -655,7 +857,7 @@ namespace html
       {
          if(strTag.CompareNoCase("br") == 0)
          {
-            if(m_pparent != NULL)
+            /*if(m_pparent != NULL)
             {
                pdata->m_layoutstate3.m_x = m_pparent->m_pimpl->get_x();
             }
@@ -663,13 +865,13 @@ namespace html
             {
                pdata->m_layoutstate3.m_x = 0;
             }
-            pdata->m_layoutstate3.m_cx = 0;
+            pdata->m_layoutstate3.m_cx = 0;*/
          }
          else if(strTag == "tr")
          {
             pdata->m_layoutstate3.m_bLastCell = true;
             pdata->m_layoutstate3.m_y = m_pimpl->get_y() + m_pimpl->get_cy();
-            pdata->m_layoutstate3.m_cy = 0;
+            pdata->m_layoutstate3.m_cya.last_element() = 0;
             pdata->m_layoutstate3.m_cx = 0;
             pdata->m_layoutstate3.m_x = m_pimpl->get_x() + m_pimpl->get_cx();
          }
@@ -677,18 +879,18 @@ namespace html
          {
             //pdata->m_layoutstate.m_bLastCellY = true;
             pdata->m_layoutstate3.m_y = m_pimpl->get_y() + m_pimpl->get_cy();
-            pdata->m_layoutstate3.m_cy = 0;
+            pdata->m_layoutstate3.m_cya.last_element() = 0;
             pdata->m_layoutstate3.m_cx = 0;
             pdata->m_layoutstate3.m_x = m_pimpl->get_x() + m_pimpl->get_cx();
          }
          else if(m_style.m_propertyset["display"] == "block")
          {
-            pdata->m_layoutstate3.m_bLastBlock = true;
-            pdata->m_layoutstate3.m_bLastBlock = true;
-            if(m_pimpl->get_cy() > pdata->m_layoutstate3.m_cy)
-            {
-               pdata->m_layoutstate3.m_cy = m_pimpl->get_cy();
-            }
+            //pdata->m_layoutstate3.m_bLastBlock = true;
+            //pdata->m_layoutstate3.m_bLastBlock = true;
+            //if (m_pimpl->get_cy() > pdata->m_layoutstate3.m_cya.last_element())
+            //{
+            //   pdata->m_layoutstate3.m_cya.last_element() = m_pimpl->get_cy();
+            //}
          }
          else
          {

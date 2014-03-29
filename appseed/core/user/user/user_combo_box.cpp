@@ -18,6 +18,7 @@ namespace user
       m_typeComboList         = System.type_info < simple_combo_list > ();
       m_estyle                = style_simply;
       m_bEdit                 = true;
+      m_crText                = ARGB(255, 0, 0, 0);
 
    }
 
@@ -45,6 +46,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pdispatch, this, &combo_box::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pdispatch, this, &combo_box::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_SETFOCUS, pdispatch, this, &combo_box::_001OnSetFocus);
+      IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &combo_box::_001OnMouseMove);
 
    }
 
@@ -60,17 +62,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      ::draw2d::brush_sp br(allocer());
-
-      br->create_solid(ARGB(84, 255, 255, 255));
-
-      pdc->SelectObject(br);
-
-      pdc->FillRectangle(rectClient);
-
-      br->create_solid(ARGB(255, 84, 84, 77));
-
-      pdc->SelectObject(br);
+      pdc->set_text_color(m_crText);
 
       rect rectText;
 
@@ -159,7 +151,11 @@ namespace user
    void combo_box::_001OnDrawSimply(::draw2d::graphics * pdc)
    {
 
-      pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      ::draw2d::brush_sp br(allocer());
 
       if(m_bEdit)
       {
@@ -170,15 +166,32 @@ namespace user
       else
       {
 
+         pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+         br->create_solid(ARGB(84, 255, 255, 255));
+
+         pdc->SelectObject(br);
+
+         pdc->FillRectangle(rectClient);
+
+         pdc->set_alpha_mode(::draw2d::alpha_mode_set);
+
+         color ca;
+
+         ca.set_rgb(RGB(227, 227, 210));
+
+         ca.hls_rate(0.0, -0.33, -0.23);
+
+         COLORREF crBorder = ca.get_rgb() | (0xff << 24);
+
+         pdc->Draw3dRect(rectClient, crBorder, crBorder);
+
          _001OnDrawStaticText(pdc);
 
       }
 
-      rect rectClient;
 
-      GetClientRect(rectClient);
-
-      ::draw2d::brush_sp br(allocer());
+      pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       rect rectDropDown;
 
@@ -534,6 +547,28 @@ namespace user
 
          _001ToggleDropDown();
 
+         pmouse->m_bRet = true;
+
+      }
+
+   }
+
+   void combo_box::_001OnMouseMove(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::mouse, pmouse, pobj);
+
+      point pt = pmouse->m_pt;
+
+      ScreenToClient(&pt);
+
+      if (hit_test(pt) == element_drop_down)
+      {
+
+         pmouse->m_ecursor = ::visual::cursor_arrow;
+
+         pmouse->m_bRet = true;
+
       }
 
    }
@@ -542,7 +577,18 @@ namespace user
    void combo_box::_001OnLButtonUp(signal_details * pobj)
    {
 
-//      SCAST_PTR(::message::mouse, pmouse, pobj);
+      SCAST_PTR(::message::mouse, pmouse, pobj);
+
+      point pt = pmouse->m_pt;
+
+      ScreenToClient(&pt);
+
+      if (hit_test(pt) == element_drop_down)
+      {
+
+         pmouse->m_bRet = true;
+
+      }
 
    }
 
@@ -715,6 +761,10 @@ namespace user
 
       GetClientRect(rectClient);
 
+      m_plist->SetFont(GetFont());
+
+      m_plist->set_text_color(m_crText);
+
       m_plist->m_iItemHeight = min(24, rectClient.height());
 
 
@@ -724,23 +774,28 @@ namespace user
    void combo_box::_001SetCurSel(index iSel, ::action::context actioncontext)
    {
 
+      if (m_iSel != iSel)
+      {
+
+         m_iSel = iSel;
+
+         ::user::control_event ev;
+         ev.m_puie = this;
+         ev.m_eevent = ::user::event_after_change_cur_sel;
+         ev.m_actioncontext = actioncontext;
+         //if(!get_parent()->BaseOnControlEvent(&ev))
+         BaseOnControlEvent(&ev);
+
+      }
+
       string strItem;
 
       _001GetListText(iSel, strItem);
 
       _001SetText(strItem, actioncontext);
 
-      m_iSel = iSel;
-
-      ::user::control_event ev;
-      ev.m_puie = this;
-      ev.m_eevent = ::user::event_after_change_cur_sel;
-      ev.m_actioncontext = actioncontext;
-      get_parent()->BaseOnControlEvent(&ev);
-      BaseOnControlEvent(&ev);
-
-
    }
+
 
    index combo_box::_001GetCurSel()
    {
@@ -760,7 +815,7 @@ namespace user
       }
 
 
-      ::draw2d::font_sp fontxyz(allocer());
+/*      ::draw2d::font_sp fontxyz(allocer());
 
       rect rectClient;
 
@@ -770,7 +825,7 @@ namespace user
       fontxyz->m_eunitFontSize = ::draw2d::unit_pixel;
       fontxyz->m_bUpdated = false;
 
-      SetFont(fontxyz);
+      SetFont(fontxyz);*/
 
 
 
@@ -1305,7 +1360,39 @@ namespace user
    }
 
 
+   void combo_box::SetFont(::draw2d::font* pFont, bool bRedraw)
+   {
+
+      edit_plain_text::SetFont(pFont, bRedraw);
+
+      if (m_plist != NULL)
+      {
+
+         m_plist->SetFont(pFont, bRedraw);
+
+      }
+
+   }
+
+
+   void combo_box::set_text_color(COLORREF crText)
+   {
+
+      edit_plain_text::set_text_color(crText);
+
+      if (m_plist != NULL)
+      {
+
+         m_plist->m_crText = crText;
+
+      }
+
+   }
+
+
 } // namespace user
+
+
 
 
 

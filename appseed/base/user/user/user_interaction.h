@@ -222,6 +222,8 @@ namespace user
 
       sp(::user::menu_base)               m_spmenuPopup;
 
+      COLORREF                            m_crText;
+
 
       interaction();
       interaction(sp(base_application) papp);
@@ -463,6 +465,8 @@ namespace user
       virtual strsize GetWindowTextLength();
       virtual void SetFont(::draw2d::font* pFont, bool bRedraw = TRUE);
       virtual ::draw2d::font* GetFont();
+
+      virtual void set_text_color(COLORREF crText);
 
       virtual void install_message_handling(::message::dispatch * pinterface);
       virtual bool IsWindowVisible();

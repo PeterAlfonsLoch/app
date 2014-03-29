@@ -23,6 +23,9 @@ namespace html
 
       void input_button::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {
+
+         m_bHasChar = true;
+
          if(!m_pbutton->IsWindow())
          {
             m_pbutton->create(pdata->m_pguie, 100);
@@ -39,6 +42,14 @@ namespace html
          m_cxMax = 200;
          m_cxMin = 200;
       }
+
+      void input_button::layout_phase1(data * pdata)
+      {
+
+         m_box.set_cxy(200.f, 23.f);
+
+      }
+
 
       void input_button::layout_phase3(data * pdata)
       {
