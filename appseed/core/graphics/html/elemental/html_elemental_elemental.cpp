@@ -106,13 +106,13 @@ namespace html
 
       m_style.initialize(m_etag);
 
-      if (m_pparent != NULL && m_pparent->get_tag()->get_attr_value(__id(html_class)).has_char())
+      if (m_pbase->get_type() == ::html::base::type_value)
       {
 
          m_strClass = m_pparent->get_tag()->get_attr_value(__id(html_class));
 
       }
-      else if (get_tag() != NULL)
+      else
       {
 
          m_strClass = get_tag()->get_attr_value(__id(html_class));
@@ -313,14 +313,24 @@ namespace html
 
       if (m_pimpl != NULL)
       {
+         
+         if (m_elementalptra.has_elements())
+         {
 
-         m_style.get_surround_box(__id(html_padding), "", pdata, this, m_pimpl->m_padding);
-         
-         m_style.get_border_box(__id(html_border), "", pdata, this, m_pimpl->m_border);
-         
-         m_style.get_border_color(__id(html_border), "", pdata, this, m_pimpl->m_border);
-         
-         m_style.get_surround_box(__id(html_margin), "", pdata, this, m_pimpl->m_margin);
+            m_style.get_surround_box(__id(html_padding), "", pdata, this, m_pimpl->m_padding);
+
+            m_style.get_border_box(__id(html_border), "", pdata, this, m_pimpl->m_border);
+
+            m_style.get_border_color(__id(html_border), "", pdata, this, m_pimpl->m_border);
+
+            m_style.get_surround_box(__id(html_margin), "", pdata, this, m_pimpl->m_margin);
+
+            if (m_pimpl->m_margin.left > 1.0f)
+            {
+               TRACE("margin-left greater than 1.0f");
+            }
+
+         }
 
          m_pimpl->implement_phase1(pdata, this);
 
