@@ -83,11 +83,21 @@ namespace html
          virtual point get_content_xy();
 
 
+         virtual float get_extra_content_cy();
+
+
          virtual void implement_phase1(data * pdoc, ::html::elemental * pelemental);
-         virtual void implement_phase2(data * pdoc);
+
+
+         virtual void layout_phase0(data * pdoc);
          virtual void layout_phase1(data * pdoc);
          virtual void layout_phase3(data * pdoc);
-         virtual void final_layout(data * pdoc);
+
+
+         virtual void layout_phase0_end(data * pdata);
+         virtual void layout_phase3_end(data * pdata);
+
+
          void on_change_layout(data * pdoc);
 
          void _001OnDraw(data * pdata);

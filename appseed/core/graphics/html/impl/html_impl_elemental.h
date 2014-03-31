@@ -46,6 +46,14 @@ namespace html
          virtual bool has_link();
          virtual string link();
 
+         virtual index find(elemental * pelemental);
+
+         virtual elemental * get_sibling(index i);
+
+         virtual elemental * get_next_sibling();
+         virtual elemental * get_first_sibling();
+         virtual elemental * get_previous_sibling();
+
          bool hit_test(data * pdata, ::point pt);
          double bound_hit_test(data * pdata, ::point pt);
 
@@ -79,15 +87,27 @@ namespace html
          ::html::elemental * m_pelemental;
          virtual void _001OnDraw(data * pdoc);
 
+
+         virtual float get_extra_content_cy();
+
+
          virtual void implement_phase1(data * pdoc, ::html::elemental * pelemental);
          virtual void implement_phase2(data * pdoc);
 
 
-         virtual void layout_phase1(data * pdoc);
-         virtual void layout_phase2(data * pdoc);
-         virtual void layout_phase3(data * pdoc);
+         virtual void container_raw_cxmax(data * pdata);
 
-         virtual void final_layout(data * pdoc);
+
+         virtual void layout_phase0(data * pdata); // cx min/max calculation
+         virtual void layout_phase1(data * pdata); // cx calculation or cxy calculation at final nodes
+         virtual void layout_phase2(data * pdata); // adjust
+         virtual void layout_phase3(data * pdata); // final layout
+
+
+         virtual void layout_phase0_end(data * pdata); // cxMax calculation for containers
+         virtual void layout_phase1_end(data * pdata); // cy calculation
+         virtual void layout_phase3_end(data * pdata); // final layout
+
          virtual void set_xy(data * pdoc);
 
          virtual void on_change_layout(data * pdoc);

@@ -14,7 +14,9 @@ namespace html
       {
 
          m_iBorder         = 1;
+
          m_iCellSpacing    = 2;
+
          m_iCellPadding    = 2;
 
       }
@@ -91,180 +93,214 @@ namespace html
 
       }
 
-      void table::final_layout(data * pdata)
+      
+      float table::calc_width()
       {
-         string strTag = m_pelemental->get_tag_name();
 
-/*         if(m_pelemental->m_style.m_edisplay == display_block ||
-            strTag == "br")
+         string strWidth = m_pelemental->m_style.m_propertyset["width"].get_string();
+
+         strWidth.trim();
+
+         if (false && str::ends_eat(strWidth, "%"))
          {
-            pdata->m_layoutstate.m_bLastBlock = true;
+
+            strWidth.trim();
+
+            float percent = var(strWidth).get_double();
+
+            float cx = m_bound.get_cx();
+
+            cx *= percent / 100.0f;
+
+            return cx;
+
+
          }
-         else
+         
+         float cx = 0.f;
+
+         for (int32_t i = 0; i < m_columna.get_size(); i++)
          {
-            pdata->m_layoutstate.m_bLastBlock = false;
-         }*/
 
-         if(m_pelemental->m_elementalptra.get_size() == 0)
-         {
-            return;
-         }
-
-         float x = FLT_MAX;
-         float y = FLT_MAX;
-         float cx = FLT_MIN;
-         float cy = FLT_MIN;
-
-         //elemental * pelemental = m_pelemental->m_elementalptra.last_element()->m_pimpl;
-         /*if(pelemental->get_cy() <= 0)
-         {
-            pelemental->set_cy(pdata, pelemental->get_bound_point().y + pelemental->get_bound_size().cy - pelemental->get_y());
-         }
-         if(pelemental->get_cx() <= 0)
-         {
-            pelemental->set_cx(pdata, pelemental->get_bound_point().x + pelemental->get_bound_size().cx - pelemental->get_x());
-         }*/
-
-         bool bOk = false;
-
-         for(int32_t i = 0; i < m_pelemental->m_elementalptra.get_size(); i++)
-         {
-            
-            elemental * pelemental = m_pelemental->m_elementalptra[i]->m_pimpl;
-            
-            if(!use_in_final_layout(pelemental))
-               continue;
-
-            
-
-            if(pelemental->get_x() < x)
-               x = pelemental->get_x();
-            if(pelemental->get_y() < y)
-               y = pelemental->get_y();
-            if(pelemental->get_x() + pelemental->get_cx() > x + cx)
-               cx = pelemental->get_cx() + pelemental->get_x() - x;
-            if(pelemental->get_y() + pelemental->get_cy() > y + cy)
-               cy = pelemental->get_cy() + pelemental->get_y() - y;
-
-            bOk = true;
+            cx += m_columna[i].m_cxMax;
 
          }
 
-         if(bOk)
-         {
-
-            set_pos(pdata,
-               x - m_iCellSpacing - m_iBorder,
-               y - m_iCellSpacing - m_iBorder,
-               cx + m_iCellSpacing * 2 + m_iBorder * 2,
-               cy + m_iCellSpacing * 2 + m_iBorder * 2);
-
-         }
-
+         return cx;
 
       }
 
 
-      void table::implement_phase2(data * pdata)
+      void table::layout_phase0(data * pdata)
       {
-         if(m_pelemental->m_pbase->get_type() !=:: html::base::type_value)
+
+         for (index j = 0; j < m_rowptra.get_size(); j++)
          {
-            return;
+
+            m_rowptra[j]->m_pelemental->layout_phase0(pdata);
+
          }
 
-         float cxMax;
-         float cxMin;
-         while(true)
-         {
-            cxMax = -1.f;
-            cxMin = -1.f;
-            for(int32_t i = 0; i < m_columna.get_size(); i++)
-            {
-               if(m_columna[i].m_cxMax <= -2.f
-               || m_columna[i].m_cxMin <= -2.f)
-               {
-                  for(index j = 0; j < m_rowptra.get_size(); j++)
-                  {
-                     m_rowptra[j]->m_pelemental->implement_phase2(pdata);
-                  }
-               }
-               if(cxMax > -2.f)
-               {
-                  if(m_columna[i].m_cxMax > cxMax)
-                  {
-                     cxMax = m_columna[i].m_cxMax;
-                  }
-                  else if(m_columna[i].m_cxMax <= -2.f)
-                  {
-                     cxMax = m_columna[i].m_cxMax;
-                  }
-               }
-               if(cxMin > -2.f)
-               {
-                  if(m_columna[i].m_cxMin > cxMin)
-                  {
-                     cxMin = m_columna[i].m_cxMin;
-                  }
-                  else if(m_columna[i].m_cxMin <= -2.f)
-                  {
-                     cxMin = m_columna[i].m_cxMin;
-                  }
-               }
-            }
-            if(cxMax >= -1.f
-            && cxMin >= -1.f)
-            {
-               break;
-            }
-         }
-         cxMax = 0;
-         cxMin = 0;
+         float cxMax = 0;
+
+         float cxMin = 0;
+
          for(index i = 0; i < m_cellholdera.get_size(); i++)
          {
+
             cxMax += max(0, m_columna[i].m_cxMax);
+
             cxMin += max(0, m_columna[i].m_cxMin);
+
          }
+
          m_cxMax = cxMax;
+
          m_cxMin = cxMin;
+
       }
+
+
+      void table::layout_phase1_end(data * pdata)
+      {
+
+         elemental::layout_phase1_end(pdata);
+
+         for (index i = 0; i < m_columna.get_count(); i++)
+         {
+
+            m_columna[i].m_cx = 0;
+
+         }
+
+         int iCol;
+
+         cell * pcell;
+
+         for (index i = 0; i < m_cellholdera.get_count(); i++)
+         {
+
+            for (index j = 0; j < m_cellholdera[i].get_count(); j++)
+            {
+
+               cell::holder & holder = m_cellholdera[i][j];
+
+               pcell = holder.m_pcell;
+
+               if (pcell == NULL)
+                  continue;
+
+               iCol = holder.m_iCol;
+
+               if (iCol < 0)
+                  continue;
+
+               if (iCol >= m_columna.get_size())
+                  continue;
+
+               m_columna[iCol].m_cx = max(pcell->m_box.get_cx(), m_columna[iCol].m_cx);
+
+            }
+
+         }
+
+      }
+
+
+      void table::layout_phase2(data * pdata)
+      {
+
+         UNREFERENCED_PARAMETER(pdata);
+
+      }
+
 
       void table::layout_phase3(data * pdata)
       {
+         
          UNREFERENCED_PARAMETER(pdata);
+
+         set_xy(pdata);
+
          float cx = 0.f;
+
          float cy = 0.f;
+
          for(int32_t i = 0; i < m_columna.get_size(); i++)
          {
-            cx += m_columna[i].m_cxMax;
+
+            m_columna[i].m_x = cx + m_box.left;
+
+            cx += m_columna[i].m_cx;
+
          }
+
          for(int32_t i = 0; i < m_rowptra.get_size(); i++)
          {
-            cy += m_rowptra[i]->m_cyMax;
+
+            cy += m_rowptra[i]->m_box.get_cy();
+
          }
-         m_box.right    = m_box.left   + cx;
-         m_box.bottom   = m_box.top    + cy;
+
+         m_box.right = 
+              m_box.left   
+            + cx 
+            + m_margin.left
+            + m_margin.right
+            + m_border.left
+            + m_border.right
+            + m_padding.left
+            + m_padding.right
+            - 1;
+
+         m_box.bottom = 
+              m_box.top
+            + cy
+            + m_margin.top
+            + m_margin.bottom
+            + m_border.top
+            + m_border.bottom
+            + m_padding.top
+            + m_padding.bottom;
+
       }
+
+
+      void table::layout_phase3_end(data * pdata)
+      {
+
+      }
+
 
       table::column::column()
       {
+
          m_iCol   = -1;
          m_cxMax  = -2;
          m_cxMin  = -2;
+
       }
+
 
       table::column::column(index iCol)
       {
+
          m_iCol   = iCol;
          m_cxMax  = -2;
          m_cxMin  = -2;
+
       }
+
 
       void table::set_cell(index iCol, index iRow, cell * pcell)
       {
 
-         m_cellholdera.element_at_grow(iCol).element_at_grow(iRow).m_pcell = pcell;
+         m_cellholdera.element_at_grow(iCol).element_at_grow(iRow).m_iCol     = iCol;
+         m_cellholdera.element_at_grow(iCol).element_at_grow(iRow).m_iRow     = iRow;
+         m_cellholdera.element_at_grow(iCol).element_at_grow(iRow).m_pcell    = pcell;
 
       }
+
 
       void table::_001OnDraw(data * pdata)
       {

@@ -341,6 +341,8 @@ bool application::process_initialize()
 
    m_phtml = create_html();
 
+   m_phtml->add_ref();
+
    if (m_phtml == NULL)
       return false;
 

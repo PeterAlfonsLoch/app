@@ -137,6 +137,9 @@ LiteHTMLEntityResolver::CharEntityRefs::CharEntityRefs(base_application * papp) 
 
 int32_t LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & strChar)
 {
+   if (m_CharEntityRefs.get_count() <= 0)
+      return 0;
+
    ASSERT(m_CharEntityRefs.get_count());
    ASSERT(__is_valid_string(lpszEntity));
 

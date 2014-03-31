@@ -195,7 +195,7 @@ namespace dynamic_source
 
       virtual void on_load_env();
 
-      virtual void register_plugin(const char * pszHost, const char * pszScript, const char * pszName, script * pscript);
+      virtual void register_plugin(const string & strHost, const string & strScript, const string & strName, script * pscript);
 
 
       virtual string get_root_plugin();

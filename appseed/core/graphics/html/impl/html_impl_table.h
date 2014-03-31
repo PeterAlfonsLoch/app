@@ -21,6 +21,8 @@ namespace html
             index        m_iCol;
             float        m_cxMax;
             float        m_cxMin;
+            float        m_x;
+            float        m_cx;
 
             column();
             column(index iCol);
@@ -31,25 +33,38 @@ namespace html
          float                                           m_iCellSpacing;
          float                                           m_iCellPadding;
 
-         array < array < cell::holder > >    m_cellholdera;
+         array < array < cell::holder > >                m_cellholdera;
          comparable_array < table_row * >                m_rowptra;
-         array < column >                          m_columna;
+         array < column >                                m_columna;
 
 
          table();
          virtual ~table();
 
 
+
+
+
          void set_cell(index iCol, index iRow, cell * pcell);
 
-         virtual void implement_phase2(data * pdata);
+         
+         void implement_phase1(data * pdata, ::html::elemental * pelemental);
+
+
+         virtual void layout_phase0(data * pdata);
+         virtual void layout_phase2(data * pdata);
          virtual void layout_phase3(data * pdata);
+
+
+         virtual void layout_phase1_end(data * pdata);
+         virtual void layout_phase3_end(data * pdata);
+
 
          void _001OnDraw(data * pdata);
 
-         void implement_phase1(data * pdata, ::html::elemental * pelemental);
 
-         void final_layout(data * pdata);
+
+         virtual float calc_width();
 
 
       };

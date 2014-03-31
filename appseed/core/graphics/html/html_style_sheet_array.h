@@ -14,9 +14,9 @@ namespace html
       style_sheet_array();
 
 
-      style * rfind(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName);
-      style * rfind_border_width(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, float & f);
-      style * rfind_border_color(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, COLORREF & cr);
+      style * rfind(e_tag etag, const string & strClass, const string & strSubClass, id idName);
+      style * rfind_border_width(e_tag etag, const string & strClass, const string & strSubClass, id idName, float & f);
+      style * rfind_border_color(e_tag etag, const string & strClass, const string & strSubClass, id idName, COLORREF & cr);
 
       style * greater(style * pstyle1, style * pstyle2);
 

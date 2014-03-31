@@ -5,55 +5,79 @@ namespace html
 {
 
 
-   void attribute::set_name(const char * pszName)
+   void attribute::set_name(id idName)
    {
-      m_strName = pszName;
+
+      m_idName = idName;
+
    }
 
-   string attribute::get_name() const
+   id attribute::get_name() const
    {
-      return m_strName;
+
+      return m_idName;
+
    }
+
 
    void attribute::set_value(const char * pszValue)
    {
+
       m_strValue = pszValue;
+
    }
+
 
    string attribute::get_value() const
    {
+
       return m_strValue;
+
    }
 
 
 
    // attribute_array
 
-   attribute * attribute_array::get(const char * pszName)
+   attribute * attribute_array::get(id idName)
    {
+
       for(int32_t i = 0; i < this->get_size(); i++)
       {
-         if(this->element_at(i)->get_name().CompareNoCase(pszName) == 0)
+
+         if(this->element_at(i)->get_name() == idName)
             return this->element_at(i);
+
       }
+
       return NULL;
+
    }
 
-   const attribute * attribute_array::get(const char * pszName) const 
+
+   const attribute * attribute_array::get(id idName) const 
    {
-      return const_cast < attribute_array * > (this)->get(pszName);
+
+      return const_cast < attribute_array * > (this)->get(idName);
+
    }
 
-   string attribute_array::get_value(const char * pszName) const
+
+   string attribute_array::get_value(id idName) const
    {
-      const attribute * pattr = get(pszName);
+
+      const attribute * pattr = get(idName);
+
       if(pattr == NULL)
          return "";
       else
          return pattr->get_value();
+
    }
 
 
 } // namespace html
+
+
 
 

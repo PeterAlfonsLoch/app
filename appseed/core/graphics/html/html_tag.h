@@ -8,7 +8,8 @@ namespace html
    {
    public:
 
-      string            m_strName;
+
+      id                m_idName;
       attribute_array   m_attra;
       base_ptr_array    m_baseptra;
 
@@ -20,11 +21,11 @@ namespace html
 
       attribute_array & attra();
 
-      void set_name(const char * pszName);
-      string get_name();
+      void set_name(id idName);
+      id get_name();
 
-      attribute * get_attr(const char * pszAttrName);
-      string get_attr_value(const char * pszAttrName);
+      attribute * get_attr(id idName);
+      string get_attr_value(id idName);
 
       base_ptr_array & baseptra();
 

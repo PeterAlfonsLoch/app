@@ -734,18 +734,18 @@ namespace dynamic_source
    {
    }
 
-   void script_manager::register_plugin(const char * pszHost, const char * pszScript, const char * pszName, script * pscript)
+   void script_manager::register_plugin(const string & strHost, const string & strScript, const string & strName, script * pscript)
    {
 
       plugin_map_item item;
 
-      item.m_strHost       = pszHost;
-      item.m_strScript     = pszScript;
-      item.m_strPlugin     = pszName;
+      item.m_strHost       = strHost;
+      item.m_strScript     = strScript;
+      item.m_strPlugin     = strName;
 
       m_pluginmapitema.add(new plugin_map_item(item));
 
-      m_pcache->register_script(pszName, pscript);
+      m_pcache->register_script(strName, pscript);
 
 
    }

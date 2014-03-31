@@ -38,6 +38,12 @@ namespace html
       string entities(const char * psz);
       int32_t resolve_entity(const char * lpszEntity, string & strChar);
 
+
+      e_tag tag_name_to_id(id idTag);
+      e_display display_name_to_id(const var & varDisplay, e_tag e_tag);
+      e_display tag_to_display(e_tag etag);
+      id concat(id id1, id id2);
+
    };
 
 

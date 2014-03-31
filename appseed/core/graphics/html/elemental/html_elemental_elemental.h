@@ -21,6 +21,13 @@ namespace html
       style                m_style;
       array < elemental *, elemental * > m_elementalptra;
 
+      e_tag                m_etag;
+      string               m_strBody;
+      id                   m_idTagName;
+      bool                 m_bParent;
+      bool                 m_bTagVisible;
+      string               m_strClass;
+
 
       elemental(data * pdoc, elemental * pparent = NULL);
       virtual ~elemental();
@@ -34,7 +41,8 @@ namespace html
 
       virtual void delete_implementation();
 
-
+      
+      
 
       elemental * get_element_by_name(id id);
       elemental * get_element_by_id(id id);
@@ -53,16 +61,20 @@ namespace html
       bool get_background_color(COLORREF & cr);
       bool get_color(COLORREF & cr);
 
-      string get_tag_name();
+      static bool tag_visible(e_tag etag);
+
+      void initialize();
+
       tag * get_tag();
 
 
       virtual void implement_phase1(data * pdoc);
       virtual void implement_phase2(data * pdoc);
 
-      virtual void layout_phase1(data * pdoc);
-      virtual void layout_phase2(data * pdoc);
-      virtual void layout_phase3(data * pdoc);
+      virtual void layout_phase0(data * pdata); // cx min/max
+      virtual void layout_phase1(data * pdata); // cxy
+      virtual void layout_phase2(data * pdata); // adjust
+      virtual void layout_phase3(data * pdata); // final layout
 
       virtual void get_html(data * pdata, string & str);
 

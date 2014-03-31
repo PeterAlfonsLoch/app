@@ -32,9 +32,14 @@ namespace html
 
 
          virtual void implement_phase1(data * pdoc, ::html::elemental * pelemental);
-         virtual void implement_phase2(data * pdoc);
+         
+         
+         virtual void layout_phase0(data * pdoc);
+         virtual void layout_phase2(data * pdoc);
          virtual void layout_phase3(data * pdata);
-         virtual void final_layout(data * pdata);
+
+         
+         virtual void layout_phase3_end(data * pdata);
 
 
          virtual bool use_in_final_layout(::html::impl::elemental * pimplChild);

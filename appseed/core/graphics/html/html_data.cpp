@@ -113,7 +113,7 @@ namespace html
       ::data::data(papp),
       m_imagea(papp),
       m_uiptra(papp),
-      m_elemental(NULL)
+      m_elemental(this)
    {
       m_elemental.m_pdata        = this;
       m_pcookies                 = NULL;
@@ -169,18 +169,22 @@ namespace html
       }
 
    }
+
+
    int32_t data::create_font(elemental * pelemental)
    {
-      string strTag;
+      
       string strSubClass;
+
       class font font;
+
       if(!pelemental->m_pimpl->m_bHover
       || !pelemental->m_style.get_text("font-family", "hover", this, pelemental, font.m_strFamily))
       {
          if(!pelemental->m_pimpl->has_link()
             || !pelemental->m_style.get_text("font-family", "link", this, pelemental, font.m_strFamily))
          {
-            pelemental->m_style.get_text("font-family", NULL, this, pelemental, font.m_strFamily);
+            pelemental->m_style.get_text("font-family", "", this, pelemental, font.m_strFamily);
          }
       }
       if(!pelemental->m_pimpl->m_bHover
@@ -189,7 +193,7 @@ namespace html
          if(!pelemental->m_pimpl->has_link()
             || !pelemental->m_style.get_text("font-size", "link", this, pelemental, font.m_strSize))
          {
-            pelemental->m_style.get_text("font-size", NULL, this, pelemental, font.m_strSize);
+            pelemental->m_style.get_text("font-size", "", this, pelemental, font.m_strSize);
          }
       }
       if(!pelemental->m_pimpl->m_bHover
@@ -198,7 +202,7 @@ namespace html
          if(!pelemental->m_pimpl->has_link()
             || !pelemental->m_style.get_text("font-weight", "link", this, pelemental, font.m_strWeight))
          {
-            pelemental->m_style.get_text("font-weight", NULL, this, pelemental, font.m_strWeight);
+            pelemental->m_style.get_text("font-weight", "", this, pelemental, font.m_strWeight);
          }
       }
       if(pelemental->m_pimpl->m_bHover
@@ -207,7 +211,7 @@ namespace html
          if(pelemental->m_pimpl->has_link()
             && !pelemental->m_style.get_text("text-decoration", "link", this, pelemental, font.m_strTextDecoration))
          {
-            pelemental->m_style.get_text("text-decoration", NULL, this, pelemental, font.m_strTextDecoration);
+            pelemental->m_style.get_text("text-decoration", "", this, pelemental, font.m_strTextDecoration);
          }
       }
       font.m_strFamily.trim();
@@ -370,6 +374,10 @@ namespace html
    {
 
       m_bHasChar  = false;
+
+      m_cya.remove_all();
+
+      m_cya.add(0.f);
 
    }
 

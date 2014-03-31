@@ -20,8 +20,12 @@ namespace html
 {
 
 
-   style::style()
+   style::style(sp(application) papp) :
+      element(papp)
    {
+
+      m_edisplay = display_inline;
+
    }
 
    style::style(const style & style)
@@ -33,7 +37,7 @@ namespace html
    {
       if(this != &style)
       {
-         m_strTag       = style.m_strTag;
+         m_etag         = style.m_etag;
          m_strName      = style.m_strName;
          m_strSubClass  = style.m_strSubClass;
          m_propertyset  = style.m_propertyset;
@@ -105,89 +109,62 @@ namespace html
       return 0;
    }
 
-   bool style::get_dimension(bool bParent, const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, float & f)
+   bool style::get_dimension(bool bParent, id idName, const string & strSubClass, data * pdata, elemental * pelemental, float & f)
    {
 
       f = 0.f;
 
-      string strTag;
-      if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
+      e_tag etag = pelemental->m_etag;
+
+      string strClass = pelemental->m_strClass;
+
+      if(m_propertyset.is_new_or_null(idName))
       {
-         strTag = pelemental->m_pparent->m_propertyset["PropertyTag"];
-      }
-      else
-      {
-         strTag = pelemental->m_propertyset["PropertyTag"];
-      }
-      string strClass;
-      if(pelemental->m_pparent != NULL && pelemental->m_pparent->get_tag()->get_attr_value("class").has_char())
-      {
-         strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
-      }
-      else
-      {
-         strClass = pelemental->get_tag()->get_attr_value("class");
-      }
-      if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
-      {
-         strTag = pelemental->m_pparent->m_propertyset["PropertyTag"];
-      }
-      else
-      {
-         strTag = pelemental->m_propertyset["PropertyTag"];
-      }
-      if(m_propertyset.is_new_or_null(pszName))
-      {
-         style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
+
+         style * pstyle = pdata->m_stylesheeta.rfind(etag, strClass, strSubClass, idName);
+
          if(pstyle == NULL)
          {
+
             if(bParent)
             {
-               if(pelemental->m_pparent != NULL && stricmp_dup(pszName, "background-color"))
+
+               if(pelemental->m_pparent != NULL && stricmp_dup(idName, "background-color"))
                {
-                  if(pelemental->m_pparent->m_style.get_dimension(true, pszName, pszSubClass, pdata, pelemental->m_pparent, f))
+
+                  if(pelemental->m_pparent->m_style.get_dimension(true, idName, strSubClass, pdata, pelemental->m_pparent, f))
                   {
+
                      return true;
+
                   }
+
                }
+
             }
+
             return false;
+
          }
-         return pstyle->get_dimension(bParent, pszName, pszSubClass, pdata, pelemental, f);
+
+         return pstyle->get_dimension(bParent, idName, strSubClass, pdata, pelemental, f);
+
       }
-      f = parse_dimension(m_propertyset[pszName]);
+
+      f = parse_dimension(m_propertyset[idName]);
+
       return true;
+
    }
 
-   bool style::get_surround_box(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, box & box)
+
+   bool style::get_surround_box(id idName, const string & strSubClass, data * pdata, elemental * pelemental, box & box)
    {
-      string strTag;
-      string strClass;
-      if (pelemental->m_propertyset.is_new_or_null("PropertyTag"))
-      {
-         strTag = pelemental->m_pparent->m_propertyset["PropertyTag"];
-         if (pelemental->m_pparent != NULL && pelemental->m_pparent->get_tag()->get_attr_value("class").has_char())
-         {
-            strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
-         }
-      }
-      else
-      {
-         strTag = pelemental->m_propertyset["PropertyTag"];
-         if (pelemental->get_tag() != NULL)
-         {
-            strClass = pelemental->get_tag()->get_attr_value("class");
-         }
-      }
       
-      if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
-      {
-         strTag = pelemental->m_pparent->m_propertyset["PropertyTag"];
-      }
-      else
-      {
-         strTag = pelemental->m_propertyset["PropertyTag"];
-      }
+      e_tag etag = pelemental->m_etag;
+      
+      string strClass = pelemental->m_strClass;
+      
       style * pstyleCur = NULL;
       style * pstyle = NULL;
       style * pstyleLeft = NULL;
@@ -199,99 +176,134 @@ namespace html
       index iTop;
       index iRight;
       index iBottom;
-      string strName(pszName);
 
-      if(m_propertyset.has_property(strName))
+      if(m_propertyset.has_property(idName))
          pstyle = this;
       else
-         pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
-      if(pstyle != NULL)
-         i = pstyle->m_propertyset.find_index(strName);
+         pstyle = pdata->m_stylesheeta.rfind(etag, strClass, strSubClass, idName);
 
-      if(m_propertyset.has_property(strName + "-left"))
+      if(pstyle != NULL)
+         i = pstyle->m_propertyset.find_index(idName);
+
+      if(m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_left))))
          pstyleLeft = this;
       else
-         pstyleLeft = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, strName + "-left");
-      if(pstyleLeft != NULL)
-         iLeft = pstyleLeft->m_propertyset.find_index(strName + "-left");
+         pstyleLeft = pdata->m_stylesheeta.rfind(etag, strClass, strSubClass, m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_left)));
 
-      if(m_propertyset.has_property(strName + "-top"))
+      if(pstyleLeft != NULL)
+         iLeft = pstyleLeft->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_left)));
+
+      if (m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_top))))
          pstyleTop = this;
       else
-         pstyleTop = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, strName + "-top");
-      if(pstyleTop != NULL)
-         iTop = pstyleTop->m_propertyset.find_index(strName + "-top");
+         pstyleTop = pdata->m_stylesheeta.rfind(etag, strClass, strSubClass, m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_top)));
 
-      if(m_propertyset.has_property(strName + "-right"))
+      if(pstyleTop != NULL)
+         iTop = pstyleTop->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_top)));
+
+      if (m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_right))))
          pstyleRight = this;
       else
-         pstyleRight = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, strName + "-right");
-      if(pstyleRight != NULL)
-         iRight = pstyleRight->m_propertyset.find_index(strName + "-right");
+         pstyleRight = pdata->m_stylesheeta.rfind(etag, strClass, strSubClass, m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_right)));
 
-      if(m_propertyset.has_property(strName + "-bottom"))
+      if(pstyleRight != NULL)
+         iRight = pstyleRight->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_right)));
+
+      if (m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_bottom))))
          pstyleBottom = this;
       else
-         pstyleBottom = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, strName + "-bottom");
+         pstyleBottom = pdata->m_stylesheeta.rfind(etag, strClass, strSubClass, m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_bottom)));
+
       if(pstyleBottom != NULL)
-         iBottom = pstyleBottom->m_propertyset.find_index(strName + "-bottom");
+         iBottom = pstyleBottom->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_bottom)));
 
       float f = 0.f;
+
       if(pstyle != NULL)
       {
-         f = parse_dimension(pstyle->m_propertyset[strName]);
+
+         f = parse_dimension(pstyle->m_propertyset[idName]);
+
       }
 
       pstyleCur = pdata->m_stylesheeta.greater(pstyle, pstyleLeft);
+
       if(pstyleCur != NULL)
       {
+
          if(pstyleCur == pstyleLeft && if_then(pstyleLeft == pstyle, iLeft > i))
          {
+
             box.left =  parse_dimension(pstyleLeft->m_propertyset.m_propertya[iLeft].get_value().get_string());
+
          }
          else
          {
+
             box.left = f;
+
          }
+
       }
 
       pstyleCur = pdata->m_stylesheeta.greater(pstyle, pstyleTop);
+
       if(pstyleCur != NULL)
       {
+
          if(pstyleCur == pstyleTop && if_then(pstyleTop == pstyle, iTop > i))
          {
+
             box.top =  parse_dimension(pstyleTop->m_propertyset.m_propertya[iTop].get_value().get_string());
+
          }
          else
          {
+
             box.top = f;
+
          }
+
       }
 
       pstyleCur = pdata->m_stylesheeta.greater(pstyle, pstyleRight);
+
       if(pstyleCur != NULL)
       {
+
          if(pstyleCur == pstyleRight && if_then(pstyleRight == pstyle, iRight > i))
          {
+
             box.right =  parse_dimension(pstyleRight->m_propertyset.m_propertya[iRight].get_value().get_string());
+
          }
          else
          {
+
             box.right = f;
+
          }
+
       }
 
       pstyleCur = pdata->m_stylesheeta.greater(pstyle, pstyleBottom);
+
       if(pstyleCur != NULL)
       {
+
          if(pstyleCur == pstyleBottom && if_then(pstyleBottom == pstyle, iBottom > i))
          {
+
             box.bottom =  parse_dimension(pstyleBottom->m_propertyset.m_propertya[iBottom].get_value().get_string());
+
          }
          else
          {
+
             box.bottom = f;
+
          }
+
       }
 
       return true;
@@ -299,34 +311,12 @@ namespace html
    }
 
 
-   bool style::get_border_box(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, border & box)
+   bool style::get_border_box(id idName, const string & strSubClass, data * pdata, elemental * pelemental, border & box)
    {
-      string strTag;
-      if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
-      {
-         strTag = pelemental->m_pparent->m_propertyset["PropertyTag"];
-      }
-      else
-      {
-         strTag = pelemental->m_propertyset["PropertyTag"];
-      }
-      string strClass;
-      if(pelemental->m_pparent != NULL && pelemental->m_pparent->get_tag()->get_attr_value("class").has_char())
-      {
-         strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
-      }
-      else if(pelemental->get_tag() != NULL)
-      {
-         strClass = pelemental->get_tag()->get_attr_value("class");
-      }
-      if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
-      {
-         strTag = pelemental->m_pparent->m_propertyset["PropertyTag"];
-      }
-      else
-      {
-         strTag = pelemental->m_propertyset["PropertyTag"];
-      }
+      
+      e_tag etag = pelemental->m_etag;
+
+      string strClass = pelemental->m_strClass;
 
       style * pstyle          = NULL;
       style * pstyleLeft      = NULL;
@@ -358,77 +348,92 @@ namespace html
       float fTopW          = 0.f;
       float fRightW        = 0.f;
       float fBottomW       = 0.f;
-      string strName(pszName);
 
-      if(m_propertyset.has_property(strName) && parse_border_width(m_propertyset[strName], f))
+      if(m_propertyset.has_property(idName) && parse_border_width(m_propertyset[idName], f))
          pstyle = this;
       else
-         pstyle = pdata->m_stylesheeta.rfind_border_width(strTag, strClass, pszSubClass, pszName, f);
+         pstyle = pdata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, idName, f);
       if(pstyle != NULL)
-         i = pstyle->m_propertyset.find_index(strName);
+         i = pstyle->m_propertyset.find_index(idName);
 
-      if(m_propertyset.has_property(strName + "-width") && parse_border_width(m_propertyset[strName + "-width"], fW))
+      if(m_propertyset.has_property(idName + "-width") && parse_border_width(m_propertyset[idName + "-width"], fW))
          pstyleW = this;
       else
-         pstyleW = pdata->m_stylesheeta.rfind_border_width(strTag, strClass, pszSubClass, pszName, fW);
+         pstyleW = pdata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, idName, fW);
       if(pstyleW != NULL)
-         iW = pstyleW->m_propertyset.find_index(strName + "-width");
+         iW = pstyleW->m_propertyset.find_index(idName + "-width");
 
-      if(m_propertyset.has_property(strName + "-left") && parse_border_width(m_propertyset[strName + "-left"], fLeft))
+      if (m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_left))
+         && parse_border_width(m_propertyset[m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_left))], fLeft)))
          pstyleLeft = this;
       else
-         pstyleLeft = pdata->m_stylesheeta.rfind_border_width(strTag, strClass, pszSubClass, strName + "-left", fLeft);
-      if(pstyleLeft != NULL)
-         iLeft = pstyleLeft->m_propertyset.find_index(strName + "-left");
+         pstyleLeft = pdata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_left)), fLeft);
 
-      if(m_propertyset.has_property(strName + "-left-width") && parse_border_width(m_propertyset[strName + "-left-width"], fLeftW))
+      if(pstyleLeft != NULL)
+         iLeft = pstyleLeft->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_left)));
+
+      if (m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_left_width))
+         && parse_border_width(m_propertyset[m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_left_width))], fLeftW)))
          pstyleLeftW = this;
       else
-         pstyleLeftW = pdata->m_stylesheeta.rfind_border_width(strTag, strClass, pszSubClass, strName + "-left-width", fLeftW);
-      if(pstyleLeftW != NULL)
-         iLeftW = pstyleLeftW->m_propertyset.find_index(strName + "-left-width");
+         pstyleLeftW = pdata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_left_width)), fLeftW);
 
-      if(m_propertyset.has_property(strName + "-top") && parse_border_width(m_propertyset[strName + "-top"], fTop))
+      if(pstyleLeftW != NULL)
+         iLeftW = pstyleLeftW->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_left_width)));
+
+      if (m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_top)) 
+         && parse_border_width(m_propertyset[m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_top))], fTop)))
          pstyleTop = this;
       else
-         pstyleTop = pdata->m_stylesheeta.rfind_border_width(strTag, strClass, pszSubClass, strName + "-top", fTop);
-      if(pstyleTop != NULL)
-         iTop = pstyleTop->m_propertyset.find_index(strName + "-top");
+         pstyleTop = pdata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_top)), fTop);
 
-      if(m_propertyset.has_property(strName + "-top-width") && parse_border_width(m_propertyset[strName + "-top-width"], fTopW))
+      if(pstyleTop != NULL)
+         iTop = pstyleTop->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_top)));
+
+      if (m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_top_width)) 
+         && parse_border_width(m_propertyset[m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_top_width))], fTopW)))
          pstyleTopW = this;
       else
-         pstyleTopW = pdata->m_stylesheeta.rfind_border_width(strTag, strClass, pszSubClass, strName + "-top-width", fTopW);
-      if(pstyleTopW != NULL)
-         iTopW = pstyleTopW->m_propertyset.find_index(strName + "-top-width");
+         pstyleTopW = pdata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_top_width)), fTopW);
 
-      if(m_propertyset.has_property(strName + "-right") && parse_border_width(m_propertyset[strName + "-right"], fRight))
+      if(pstyleTopW != NULL)
+         iTopW = pstyleTopW->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_top_width)));
+
+      if (m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_right))
+         && parse_border_width(m_propertyset[m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_right))], fRight)))
          pstyleRight = this;
       else
-         pstyleRight = pdata->m_stylesheeta.rfind_border_width(strTag, strClass, pszSubClass, strName + "-right", fRight);
-      if(pstyleRight != NULL)
-         iRight = pstyleRight->m_propertyset.find_index(strName + "-right");
+         pstyleRight = pdata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_right)), fRight);
 
-      if(m_propertyset.has_property(strName + "-right-width") && parse_border_width(m_propertyset[strName + "-right-width"], fRightW))
+      if(pstyleRight != NULL)
+         iRight = pstyleRight->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_right)));
+
+      if (m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_right_width)) 
+         && parse_border_width(m_propertyset[m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_right_width))], fRightW)))
          pstyleRightW = this;
       else
-         pstyleRightW = pdata->m_stylesheeta.rfind_border_width(strTag, strClass, pszSubClass, strName + "-right-width", fRightW);
-      if(pstyleRightW != NULL)
-         iRightW = pstyleRightW->m_propertyset.find_index(strName + "-right-width");
+         pstyleRightW = pdata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_right_width)), fRightW);
 
-      if(m_propertyset.has_property(strName + "-bottom") && parse_border_width(m_propertyset[strName + "-bottom"], fBottom))
+      if(pstyleRightW != NULL)
+         iRightW = pstyleRightW->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_right_width)));
+
+      if (m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_bottom)) 
+         && parse_border_width(m_propertyset[m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_bottom))], fBottom)))
          pstyleBottom = this;
       else
-         pstyleBottom = pdata->m_stylesheeta.rfind_border_width(strTag, strClass, pszSubClass, strName + "-bottom", fBottom);
-      if(pstyleBottom != NULL)
-         iBottom = pstyleBottom->m_propertyset.find_index(strName + "-bottom");
+         pstyleBottom = pdata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_bottom)), fBottom);
 
-      if(m_propertyset.has_property(strName + "-bottom-width") && parse_border_width(m_propertyset[strName + "-bottom-width"], fBottomW))
+      if(pstyleBottom != NULL)
+         iBottom = pstyleBottom->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_bottom)));
+
+      if (m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_bottom_width))
+         && parse_border_width(m_propertyset[m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_bottom_width))], fBottomW)))
          pstyleBottomW = this;
       else
-         pstyleBottomW = pdata->m_stylesheeta.rfind_border_width(strTag, strClass, pszSubClass, strName + "-bottom-width", fBottomW);
+         pstyleBottomW = pdata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_bottom_width)), fBottomW);
+
       if(pstyleBottomW != NULL)
-         iBottomW = pstyleBottomW->m_propertyset.find_index(strName + "-bottom-width");
+         iBottomW = pstyleBottomW->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_bottom_width)));
 
       style *     pstyle1           = NULL;
       index               i1                = -1;
@@ -473,34 +478,13 @@ namespace html
    }
 
 
-   bool style::get_border_color(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, border & box)
+   bool style::get_border_color(id idName, const string & strSubClass, data * pdata, elemental * pelemental, border & box)
    {
-      string strTag;
-      if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
-      {
-         strTag = pelemental->m_pparent->m_propertyset["PropertyTag"];
-      }
-      else
-      {
-         strTag = pelemental->m_propertyset["PropertyTag"];
-      }
-      string strClass;
-      if(pelemental->m_pparent != NULL && pelemental->m_pparent->get_tag()->get_attr_value("class").has_char())
-      {
-         strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
-      }
-      else if(pelemental->get_tag() != NULL)
-      {
-         strClass = pelemental->get_tag()->get_attr_value("class");
-      }
-      if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
-      {
-         strTag = pelemental->m_pparent->m_propertyset["PropertyTag"];
-      }
-      else
-      {
-         strTag = pelemental->m_propertyset["PropertyTag"];
-      }
+      
+      e_tag etag = pelemental->m_etag;
+
+      string strClass= pelemental->m_strClass;
+      
       style * pstyle          = NULL;
       style * pstyleLeft      = NULL;
       style * pstyleTop       = NULL;
@@ -531,77 +515,94 @@ namespace html
       COLORREF crTopW          = 0;
       COLORREF crRightW        = 0;
       COLORREF crBottomW       = 0;
-      string strName(pszName);
 
-      if(m_propertyset.has_property(strName) && parse_border_color(m_propertyset[strName], cr))
+      if(m_propertyset.has_property(idName) && parse_border_color(m_propertyset[idName], cr))
          pstyle = this;
       else
-         pstyle = pdata->m_stylesheeta.rfind_border_color(strTag, strClass, pszSubClass, pszName, cr);
+         pstyle = pdata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, idName, cr);
       if(pstyle != NULL)
-         i = pstyle->m_propertyset.find_index(strName);
+         i = pstyle->m_propertyset.find_index(idName);
 
-      if(m_propertyset.has_property(strName + "-color") && parse_border_color(m_propertyset[strName + "-color"], crW))
+      if (m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_color)))
+         && parse_border_color(m_propertyset[m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_color))], crW))
          pstyleW = this;
       else
-         pstyleW = pdata->m_stylesheeta.rfind_border_color(strTag, strClass, pszSubClass, pszName, crW);
-      if(pstyleW != NULL)
-         iW = pstyleW->m_propertyset.find_index(strName + "-color");
+         pstyleW = pdata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, idName, crW);
 
-      if(m_propertyset.has_property(strName + "-left") && parse_border_color(m_propertyset[strName + "-left"], crLeft))
+      if(pstyleW != NULL)
+         iW = pstyleW->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_color)));
+
+      if (m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_left)))
+         && parse_border_color(m_propertyset[m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_left))], crLeft))
          pstyleLeft = this;
       else
-         pstyleLeft = pdata->m_stylesheeta.rfind_border_color(strTag, strClass, pszSubClass, strName + "-left", crLeft);
-      if(pstyleLeft != NULL)
-         iLeft = pstyleLeft->m_propertyset.find_index(strName + "-left");
+         pstyleLeft = pdata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_left)), crLeft);
 
-      if(m_propertyset.has_property(strName + "-left-color") && parse_border_color(m_propertyset[strName + "-left-color"], crLeftW))
+      if(pstyleLeft != NULL)
+         iLeft = pstyleLeft->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_left)));
+
+      if (m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_left_color)))
+         && parse_border_color(m_propertyset[m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_left_color))], crLeftW))
          pstyleLeftW = this;
       else
-         pstyleLeftW = pdata->m_stylesheeta.rfind_border_color(strTag, strClass, pszSubClass, strName + "-left-color", crLeftW);
-      if(pstyleLeftW != NULL)
-         iLeftW = pstyleLeftW->m_propertyset.find_index(strName + "-left-color");
+         pstyleLeftW = pdata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_left_color)), crLeftW);
 
-      if(m_propertyset.has_property(strName + "-top") && parse_border_color(m_propertyset[strName + "top"], crTop))
+      if(pstyleLeftW != NULL)
+         iLeftW = pstyleLeftW->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_left_color)));
+
+      if (m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_top))) 
+         && parse_border_color(m_propertyset[m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_top))], crTop))
          pstyleTop = this;
       else
-         pstyleTop = pdata->m_stylesheeta.rfind_border_color(strTag, strClass, pszSubClass, strName + "-top", crTop);
-      if(pstyleTop != NULL)
-         iTop = pstyleTop->m_propertyset.find_index(strName + "-top");
+         pstyleTop = pdata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_top)), crTop);
 
-      if(m_propertyset.has_property(strName + "-top-color") && parse_border_color(m_propertyset[strName + "-top-color"], crTopW))
+      if(pstyleTop != NULL)
+         iTop = pstyleTop->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_top)));
+
+      if (m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_top_color)))
+         && parse_border_color(m_propertyset[m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_top_color))], crTopW))
          pstyleTopW = this;
       else
-         pstyleTopW = pdata->m_stylesheeta.rfind_border_color(strTag, strClass, pszSubClass, strName + "-top-color", crTopW);
-      if(pstyleTopW != NULL)
-         iTopW = pstyleTopW->m_propertyset.find_index(strName + "-top-color");
+         pstyleTopW = pdata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_top_color)), crTopW);
 
-      if(m_propertyset.has_property(strName + "-right") && parse_border_color(m_propertyset[strName + "-right"], crRight))
+      if(pstyleTopW != NULL)
+         iTopW = pstyleTopW->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_top_color)));
+
+      if (m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_right))) 
+         && parse_border_color(m_propertyset[m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_right))], crRight))
          pstyleRight = this;
       else
-         pstyleRight = pdata->m_stylesheeta.rfind_border_color(strTag, strClass, pszSubClass, strName + "-right", crRight);
-      if(pstyleRight != NULL)
-         iRight = pstyleRight->m_propertyset.find_index(strName + "-right");
+         pstyleRight = pdata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_right)), crRight);
 
-      if(m_propertyset.has_property(strName + "-right-color") && parse_border_color(m_propertyset[strName + "-right-color"], crRightW))
+      if(pstyleRight != NULL)
+         iRight = pstyleRight->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_right)));
+
+      if (m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_right_color))) 
+         && parse_border_color(m_propertyset[m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_right_color))], crRightW))
          pstyleRightW = this;
       else
-         pstyleRightW = pdata->m_stylesheeta.rfind_border_color(strTag, strClass, pszSubClass, strName + "-right-color", crRightW);
-      if(pstyleRightW != NULL)
-         iRightW = pstyleRightW->m_propertyset.find_index(strName + "-right-color");
+         pstyleRightW = pdata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_right_color)), crRightW);
 
-      if(m_propertyset.has_property(strName + "-bottom") && parse_border_color(m_propertyset[strName + "-bottom"], crBottom))
+      if(pstyleRightW != NULL)
+         iRightW = pstyleRightW->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_right_color)));
+
+      if (m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_bottom))) 
+         && parse_border_color(m_propertyset[m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_bottom))], crBottom))
          pstyleBottom = this;
       else
-         pstyleBottom = pdata->m_stylesheeta.rfind_border_color(strTag, strClass, pszSubClass, strName + "-bottom", crBottom);
-      if(pstyleBottom != NULL)
-         iBottom = pstyleBottom->m_propertyset.find_index(strName + "-bottom");
+         pstyleBottom = pdata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_bottom)), crBottom);
 
-      if(m_propertyset.has_property(strName + "-bottom-color") && parse_border_color(m_propertyset[strName + "-bottom-color"], crBottomW))
+      if(pstyleBottom != NULL)
+         iBottom = pstyleBottom->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_bottom)));
+
+      if (m_propertyset.has_property(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_bottom_color))) 
+         && parse_border_color(m_propertyset[m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_bottom_color))], crBottomW))
          pstyleBottomW = this;
       else
-         pstyleBottomW = pdata->m_stylesheeta.rfind_border_color(strTag, strClass, pszSubClass, strName + "-bottom-color", crBottomW);
+         pstyleBottomW = pdata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_bottom_color)), crBottomW);
+
       if(pstyleBottomW != NULL)
-         iBottomW = pstyleBottomW->m_propertyset.find_index(strName + "-bottom-color");
+         iBottomW = pstyleBottomW->m_propertyset.find_index(m_pbaseapp->m_phtml->concat(idName, __id(html_css_suffix_bottom_color)));
 
       style *     pstyle1           = NULL;
       index               i1                 = -1;
@@ -646,97 +647,73 @@ namespace html
    }
 
 
-   bool style::get_color(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, COLORREF & cr)
+   bool style::get_color(id idName, const string & strSubClass, data * pdata, elemental * pelemental, COLORREF & cr)
    {
-      string strTag;
-      if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
+      
+      e_tag etag = pelemental->m_etag;
+
+      string strClass = pelemental->m_strClass;
+
+      if(m_propertyset.is_new_or_null(idName))
       {
-         strTag = pelemental->m_pparent->m_propertyset["PropertyTag"];
-      }
-      else
-      {
-         strTag = pelemental->m_propertyset["PropertyTag"];
-      }
-      string strClass;
-      if(pelemental->m_pparent != NULL && pelemental->m_pparent->get_tag()->get_attr_value("class").has_char())
-      {
-         strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
-      }
-      else if(pelemental->get_tag() != NULL)
-      {
-         strClass = pelemental->get_tag()->get_attr_value("class");
-      }
-      if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
-      {
-         strTag = pelemental->m_pparent->m_propertyset["PropertyTag"];
-      }
-      else
-      {
-         strTag = pelemental->m_propertyset["PropertyTag"];
-      }
-      if(m_propertyset.is_new_or_null(pszName))
-      {
-         style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
+
+         style * pstyle = pdata->m_stylesheeta.rfind(etag, strClass, strSubClass, idName);
+
          if(pstyle == NULL)
          {
-            if(pelemental->m_pparent != NULL && stricmp_dup(pszName, "background-color"))
+
+            if(pelemental->m_pparent != NULL && stricmp_dup(idName, "background-color"))
             {
-               if(pelemental->m_pparent->m_style.get_color(pszName, pszSubClass, pdata, pelemental->m_pparent, cr))
+
+               if(pelemental->m_pparent->m_style.get_color(idName, strSubClass, pdata, pelemental->m_pparent, cr))
                {
                   return true;
                }
             }
             return false;
          }
-         return pstyle->get_color(pszName, pszSubClass, pdata, pelemental, cr);
+         return pstyle->get_color(idName, strSubClass, pdata, pelemental, cr);
       }
-      cr = parse_color(m_propertyset[pszName]);
+      cr = parse_color(m_propertyset[idName]);
       return true;
    }
 
-   bool style::get_text(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, string & str)
+   bool style::get_text(id idName, const string & strSubClass, data * pdata, elemental * pelemental, string & str)
    {
-      string strTag;
-      string strClass;
-      if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
-      {
-         strTag = pelemental->m_pparent->m_propertyset["PropertyTag"];
-         strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
-      }
-      else
-      {
-         strTag = pelemental->m_propertyset["PropertyTag"];
-         strClass = pelemental->get_tag()->get_attr_value("class");
-      }
 
-      if(m_propertyset.is_new_or_null(pszName))
+      e_tag etag = pelemental->m_etag;
+
+      string strClass = pelemental->m_strClass;
+
+      if(m_propertyset.is_new_or_null(idName))
       {
-         style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
+
+         style * pstyle = pdata->m_stylesheeta.rfind(etag, strClass, strSubClass, idName);
          if(pstyle == NULL)
          {
             if(pelemental->m_pparent != NULL
-            && stricmp_dup(pszName, "padding") != 0
-            && stricmp_dup(pszName, "margin") != 0
-            && stricmp_dup(pszName, "border") != 0)   
+            && stricmp_dup(idName, "padding") != 0
+            && stricmp_dup(idName, "margin") != 0
+            && stricmp_dup(idName, "border") != 0)   
             {
-               if(pelemental->m_pparent->m_style.get_text(pszName, pszSubClass, pdata, pelemental->m_pparent, str))
+               if(pelemental->m_pparent->m_style.get_text(idName, strSubClass, pdata, pelemental->m_pparent, str))
                {
                   return true;
                }
             }
-            if(strTag == "h1")
+            if(etag == tag_h1)
             {
-               if(stricmp_dup("font-family", pszName) == 0)
+               if(stricmp_dup("font-family", idName) == 0)
                {
                   str = "Times New Roman";
                   return true;
                }
-               else if(stricmp_dup("font-size", pszName) == 0)
+               else if(stricmp_dup("font-size", idName) == 0)
                {
                   str = "30";
                   return true;
                }
-               else if(stricmp_dup("font-weight", pszName) == 0)
+               else if(stricmp_dup("font-weight", idName) == 0)
                {
                   str = "bold";
                   return true;
@@ -746,19 +723,19 @@ namespace html
                   return false;
                }
             }
-            else if(strTag == "h2")
+            else if(etag == tag_h2)
             {
-               if(stricmp_dup("font-family", pszName) == 0)
+               if(stricmp_dup("font-family", idName) == 0)
                {
                   str = "Times New Roman";
                   return true;
                }
-               else if(stricmp_dup("font-size", pszName) == 0)
+               else if(stricmp_dup("font-size", idName) == 0)
                {
                   str = "23";
                   return true;
                }
-               else if(stricmp_dup("font-weight", pszName) == 0)
+               else if(stricmp_dup("font-weight", idName) == 0)
                {
                   str = "bold";
                   return true;
@@ -768,19 +745,19 @@ namespace html
                   return false;
                }
             }
-            else if(strTag == "p")
+            else if(etag == tag_p)
             {
-               if(stricmp_dup("font-family", pszName) == 0)
+               if(stricmp_dup("font-family", idName) == 0)
                {
                   str = "Times New Roman";
                   return true;
                }
-               else if(stricmp_dup("font-size", pszName) == 0)
+               else if(stricmp_dup("font-size", idName) == 0)
                {
                   str = "11";
                   return true;
                }
-               else if(stricmp_dup("font-weight", pszName) == 0)
+               else if(stricmp_dup("font-weight", idName) == 0)
                {
                   str = "normal";
                   return true;
@@ -790,19 +767,19 @@ namespace html
                   return false;
                }
             }
-            else if(strTag == "h3")
+            else if(etag == tag_h3)
             {
-               if(stricmp_dup("font-family", pszName) == 0)
+               if(stricmp_dup("font-family", idName) == 0)
                {
                   str = "Times New Roman";
                   return true;
                }
-               else if(stricmp_dup("font-size", pszName) == 0)
+               else if(stricmp_dup("font-size", idName) == 0)
                {
                   str = "18";
                   return true;
                }
-               else if(stricmp_dup("font-weight", pszName) == 0)
+               else if(stricmp_dup("font-weight", idName) == 0)
                {
                   str = "bold";
                   return true;
@@ -812,9 +789,9 @@ namespace html
                   return false;
                }
             }
-            else if (strTag == "strong")
+            else if (etag == tag_strong)
             {
-               if (stricmp_dup("font-weight", pszName) == 0)
+               if (stricmp_dup("font-weight", idName) == 0)
                {
                   str = "bold";
                   return true;
@@ -829,18 +806,18 @@ namespace html
                return false;
             }
          }
-         return pstyle->get_text(pszName, pszSubClass, pdata, pelemental, str);
+         return pstyle->get_text(idName, strSubClass, pdata, pelemental, str);
       }
-      str = m_propertyset[pszName];
+      str = m_propertyset[idName];
       string strEm = str;
-      if(string(pszName).CompareNoCase("font-size") == 0)
+      if(string(idName).CompareNoCase("font-size") == 0)
       {
          if(::str::find_awwci("em", str) > 0)
          {
             if(pelemental->m_pparent != NULL)
             {
                string strParent;
-               if(pelemental->m_pparent->m_style.get_text(pszName, pszSubClass, pdata, pelemental->m_pparent, strParent))
+               if(pelemental->m_pparent->m_style.get_text(idName, strSubClass, pdata, pelemental->m_pparent, strParent))
                {
                   str = ::str::from((int32_t)((double) atof(str) * atoi(strParent)));
                }
@@ -858,37 +835,33 @@ namespace html
       return true;
    }
 
-   bool style::get_alpha(const char * pszSubClass, data * pdata, elemental * pelemental, double & d)
+   bool style::get_alpha(const string & strSubClass, data * pdata, elemental * pelemental, double & d)
    {
-      const char* pszName = "opacity";
-      string strTag;
-      if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
+      
+      const char* idName = "opacity";
+      
+      e_tag etag = pelemental->m_etag;
+
+      string strClass = pelemental->m_strClass;
+
+      if(m_propertyset.is_new_or_null(idName))
       {
-         strTag = pelemental->m_pparent->m_propertyset["PropertyTag"];
-      }
-      else
-      {
-         strTag = pelemental->m_propertyset["PropertyTag"];
-      }
-      string strClass;
-      if(pelemental->m_pparent->get_tag()->get_attr_value("class").has_char())
-      {
-         strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
-      }
-      else if(pelemental->get_tag() != NULL)
-      {
-         strClass = pelemental->get_tag()->get_attr_value("class");
-      }
-      if(m_propertyset.is_new_or_null(pszName))
-      {
-         style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
+
+         style * pstyle = pdata->m_stylesheeta.rfind(etag, strClass, strSubClass, idName);
+
          if(pstyle == NULL)
             return false;
-         return pstyle->get_alpha(pszSubClass, pdata, pelemental, d);
+
+         return pstyle->get_alpha(strSubClass, pdata, pelemental, d);
+
       }
+
       d = m_propertyset["opacity"];
+
       return true;
+
    }
+
 
    const char * style::parse(data * pdata, const char * psz)
    {
@@ -932,37 +905,37 @@ namespace html
 
    }
 
-   bool style::matches(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName)
+   bool style::matches(e_tag etag, const string & strClass, const string & strSubClass, id idName)
    {
-      if(pszTag != NULL && m_strTag.has_char())
-         if(m_strTag != pszTag)
+      if(etag != tag_none && m_etag != tag_none)
+         if(m_etag != etag)
             return false;
-      if(pszClass != NULL && m_strName.has_char())
-         if(m_strName != pszClass)
+      if(m_strName.has_char())
+         if(m_strName != strClass)
             return false;
-      if(pszSubClass != NULL && m_strSubClass.has_char())
-         if(m_strSubClass != pszSubClass)
+      if(m_strSubClass.has_char())
+         if(m_strSubClass != strSubClass)
             return false;
-      if(pszName != NULL)
-         if(!m_propertyset.has_property(pszName))
+      if(!idName.is_empty())
+         if(!m_propertyset.has_property(idName))
             return false;
       return true;
    }
 
-   bool style::matches_border_width(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, float & f)
+   bool style::matches_border_width(e_tag etag, const string & strClass, const string & strSubClass, id idName, float & f)
    {
-      if(pszTag != NULL && m_strTag.has_char())
-         if(m_strTag != pszTag)
+      if(etag != tag_none && m_etag != tag_none)
+         if(m_etag != etag)
             return false;
-      if(pszClass != NULL && m_strName.has_char())
-         if(m_strName != pszClass)
+      if(m_strName.has_char())
+         if(m_strName != strClass)
             return false;
-      if(pszSubClass != NULL && m_strSubClass.has_char())
-         if(m_strSubClass != pszSubClass)
+      if(m_strSubClass.has_char())
+         if(m_strSubClass != strSubClass)
             return false;
-      if(pszName == NULL)
+      if(idName == NULL)
          return false;
-      index i = m_propertyset.find_index(pszName);
+      index i = m_propertyset.find_index(idName);
       if(i < 0)
          return false;
       if(!parse_border_width(m_propertyset.m_propertya[i].get_value().get_string(), f))
@@ -970,20 +943,20 @@ namespace html
       return true;
    }
 
-   bool style::matches_border_color(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, COLORREF & cr)
+   bool style::matches_border_color(e_tag etag, const string & strClass, const string & strSubClass, id idName, COLORREF & cr)
    {
-      if(pszTag != NULL && m_strTag.has_char())
-         if(m_strTag != pszTag)
+      if(etag != tag_none && m_etag != tag_none)
+         if(m_etag != etag)
             return false;
-      if(pszClass != NULL && m_strName.has_char())
-         if(m_strName != pszClass)
+      if(m_strName.has_char())
+         if(m_strName != strClass)
             return false;
-      if(pszSubClass != NULL && m_strSubClass.has_char())
-         if(m_strSubClass != pszSubClass)
+      if(m_strSubClass.has_char())
+         if(m_strSubClass != strSubClass)
             return false;
-      if(pszName == NULL)
+      if(idName == NULL)
          return false;
-      index i = m_propertyset.find_index(pszName);
+      index i = m_propertyset.find_index(idName);
       if(i < 0)
          return false;
       if(!parse_border_color(m_propertyset.m_propertya[i].get_value().get_string(), cr))
@@ -1254,4 +1227,32 @@ namespace html
       return false;
    }
 
+
+   void style::initialize(e_tag etag)
+   {
+
+      if (m_propertyset.has_property(__id(html_display)))
+      {
+         
+         m_edisplay = m_pbaseapp->m_phtml->display_name_to_id(m_propertyset[__id(html_display)], etag);
+
+      }
+      else
+      {
+
+         m_edisplay = m_pbaseapp->m_phtml->tag_to_display(etag);
+
+      }
+
+      
+
+   }
+
+
+
+
 } // namespace html
+
+
+
+

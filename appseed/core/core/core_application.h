@@ -47,7 +47,7 @@ public:
 
 
    sp(::userfs::userfs)                m_spuserfs;
-   sp(::html::html)                    m_phtml;
+   
    ::simpledb::simpledb                m_simpledb;
    sp(::userex::userex)                m_spuserex;
 

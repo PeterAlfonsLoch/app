@@ -2269,6 +2269,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="filesystem\fs\fs_remote_native_file.h" />
     <ClInclude Include="filesystem\fs\fs_remote_native_fs.h" />
     <ClInclude Include="filesystem\fs\fs_set.h" />
+    <ClCompile Include="base\base\base_id_pool.cpp" />
     <ClCompile Include="base\base\base_print_job.cpp" />
     <ClCompile Include="base\geoip\geoip.cpp" />
     <ClCompile Include="base\geoip\geoip_city.cpp" />

@@ -16,7 +16,7 @@ namespace html
       public:
 
 
-         array < size >           m_sizea;
+         array < size >                m_sizea;
          stringa                       m_straLines;
          stringa                       m_straWordSpace;
          bool                          m_bLink;
@@ -35,8 +35,9 @@ namespace html
          virtual void _001OnDraw(data * pdoc);
          virtual void _001OnDraw(::draw2d::graphics * pgraphics);
          void implement_phase1(data * pdoc, ::html::elemental * pelemental);
-         void layout_phase1(data * pdoc);
-         void layout_phase3(data * pdoc);
+         void layout_phase0(data * pdata);
+         void layout_phase1(data * pdata);
+         void layout_phase3(data * pdata);
 
          virtual void delete_implementation();
 

@@ -34,6 +34,12 @@ enum e_application_signal
 
 
 class machine_event_data;
+namespace html
+{
+   class html;
+} // namespace html
+
+
 
 
 class CLASS_DECL_BASE application_signal_details :
@@ -80,6 +86,8 @@ public:
    allocatorsp                                     m_allocer;
    sp(::command_thread)                            m_pcommandthread;
    sp(class signal)                                m_psignal;
+
+   ::html::html *                                  m_phtml; // only defined  in core;
 
 
    EExclusiveInstance                              m_eexclusiveinstance;

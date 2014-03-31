@@ -24,34 +24,49 @@ namespace html
    }
 
 
-   void tag::set_name(const char * pszName)
+   void tag::set_name(id idName)
    {
-      m_strName = pszName;
+
+      m_idName = idName;
+
    }
 
-   string tag::get_name()
+
+   id tag::get_name()
    {
-      return m_strName;
+
+      return m_idName;
+
    }
 
-   attribute * tag::get_attr(const char * pszAttrName)
+
+   attribute * tag::get_attr(id idName)
    {
-      return m_attra.get(pszAttrName);
+
+      return m_attra.get(idName);
+
    }
 
-   string tag::get_attr_value(const char * pszAttrName)
+
+   string tag::get_attr_value(id idName)
    {
-      return attra().get_value(pszAttrName);
+
+      return attra().get_value(idName);
+
    }
 
    base::type tag::get_type()
    {
+
       return type_tag;
+
    }
 
    base_ptr_array & tag::baseptra()
    {
+
       return m_baseptra;
+
    }
 
 

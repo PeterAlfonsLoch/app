@@ -11,12 +11,12 @@ namespace html
    public:
 
 
-      string   m_strName;
-      string   m_strValue;
+      id          m_idName;
+      string      m_strValue;
 
 
-      void set_name(const char * pszName);
-      string get_name() const;
+      void set_name(id idName);
+      id get_name() const;
 
       void set_value(const char * pszValue);
       string get_value() const;
@@ -30,9 +30,9 @@ namespace html
    public:
 
 
-      attribute * get(const char * pszName);
-      const attribute * get(const char * pszName) const;
-      string get_value(const char * pszName) const;
+      attribute * get(id idName);
+      const attribute * get(id idName) const;
+      string get_value(id idName) const;
 
 
    };

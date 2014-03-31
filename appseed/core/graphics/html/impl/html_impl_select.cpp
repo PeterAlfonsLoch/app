@@ -4,16 +4,21 @@
 namespace html
 {
 
+
    namespace impl
    {
 
+
       select::select(data * pdata)
       {
+
          m_iFont = -1;
          m_pcombo = new ::simple_combo_box(pdata->get_app());
          m_pcombo->m_ulFlags &= ~element::flag_auto_delete;
          m_pcombo->m_bMultiLine = false;
+
       }
+
 
       select::~select()
       {
@@ -106,6 +111,15 @@ namespace html
          m_box.set_cxy(iSize * 10.f, 23.f);
 
       }
+
+
+      void select::layout_phase1_end(data * pdata)
+      {
+
+         UNREFERENCED_PARAMETER(pdata);
+
+      }
+
 
       
       void select::layout_phase3(data * pdata)

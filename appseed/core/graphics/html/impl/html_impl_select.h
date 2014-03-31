@@ -20,10 +20,19 @@ namespace html
 
          select(data * pdoc);
          virtual ~select();
+         
+         
          void _001OnDraw(data * pdoc);
          virtual void implement_phase1(data * pdoc, ::html::elemental * pelemental);
+         
+         
          virtual void layout_phase1(data * pdoc);
          virtual void layout_phase3(data * pdoc);
+
+         
+         virtual void layout_phase1_end(data * pdata);
+
+
          void on_change_layout(data * pdoc);
 
       };

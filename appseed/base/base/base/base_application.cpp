@@ -96,6 +96,9 @@ m_mutexStr(this)
    m_bBaseInitializeInstance  = false;
 
 
+   m_phtml = NULL;
+
+
 }
 
 base_application::~base_application()

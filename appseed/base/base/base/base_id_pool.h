@@ -166,6 +166,101 @@ public:
    id id_accept;
 
 
+
+   id id_html_none;
+   id id_html_unknown;
+   id id_html_new;
+   id id_html_initial;
+   id id_html_html;
+   id id_html_head;
+   id id_html_title;
+   id id_html_meta;
+   id id_html_link;
+   id id_html_style;
+   id id_html_script;
+   id id_html_body;
+   id id_html_span;
+   id id_html_h1;
+   id id_html_h2;
+   id id_html_h3;
+   id id_html_h4;
+   id id_html_h5;
+   id id_html_p;
+   id id_html_table;
+   id id_html_tbody;
+   id id_html_tr;
+   id id_html_td;
+   id id_html_div;
+   id id_html_br;
+   id id_html_form;
+   id id_html_input;
+   id id_html_select;
+   id id_html_option;
+   id id_html_img;
+   id id_html_font;
+   id id_html_li;
+   id id_html_a;
+   id id_html_strong;
+
+
+   id id_html_class;
+
+   
+   id id_html_display;
+   id id_html_margin;
+   id id_html_border;
+   id id_html_padding;
+
+   id id_html_block;
+   id id_html_inline;
+   id id_html_table_row;
+   id id_html_table_cell;
+
+   id id_html_margin_left;
+   id id_html_margin_top;
+   id id_html_margin_right;
+   id id_html_margin_bottom;
+   id id_html_border_left;
+   id id_html_border_top;
+   id id_html_border_right;
+   id id_html_border_bottom;
+   id id_html_padding_left;
+   id id_html_padding_top;
+   id id_html_padding_right;
+   id id_html_padding_bottom;
+
+
+   id id_html_css_suffix_left;
+   id id_html_css_suffix_top;
+   id id_html_css_suffix_right;
+   id id_html_css_suffix_bottom;
+
+   id id_html_css_suffix_width;
+   id id_html_css_suffix_left_width;
+   id id_html_css_suffix_top_width;
+   id id_html_css_suffix_right_width;
+   id id_html_css_suffix_bottom_width;
+
+   id id_html_css_suffix_color;
+   id id_html_css_suffix_left_color;
+   id id_html_css_suffix_top_color;
+   id id_html_css_suffix_right_color;
+   id id_html_css_suffix_bottom_color;
+
+
+   id id_html_border_width;
+   id id_html_border_left_width;
+   id id_html_border_top_width;
+   id id_html_border_right_width;
+   id id_html_border_bottom_width;
+
+   id id_html_border_color;
+   id id_html_border_left_color;
+   id id_html_border_top_color;
+   id id_html_border_right_color;
+   id id_html_border_bottom_color;
+
+
    id_pool()
    {
 

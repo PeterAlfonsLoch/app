@@ -99,7 +99,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
    {
       // tag name may contain letters (a-z, A-Z), digits (0-9),
       // underscores '_', hyphen '-', colons ':', and periods '.'
-      if ( (!::isalnum(*lpszEnd)) &&
+      if ((!(*lpszEnd >= 0 && *lpszEnd < 255 && ::isalnum(*lpszEnd))) &&
           (*lpszEnd != '-') && (*lpszEnd != ':') &&
           (*lpszEnd != '_') && (*lpszEnd != '.') )
       {

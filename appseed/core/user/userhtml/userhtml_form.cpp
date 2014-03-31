@@ -207,21 +207,7 @@ void html_form::_001OnLButtonDown(signal_details * pobj)
    pmouse->m_bRet = true;
    pmouse->set_lresult(1);
 }
-   /*void html_form::_001OnMouseMove(signal_details * pobj)
-{
-SCAST_PTR(::message::mouse, pmouse, pobj);
-   point pt;
-   pt = pmouse->m_pt;
-   ScreenToClient(&pt);
-   html::elemental * pelemental = get_html_data()->m_elemental.hit_test(pt);
-   if(pelemental != NULL)
-   {
-      html::signal signal(pobj->m_psignal);
-      signal.m_pdoccontainer = m_pcontainer;
-      signal.m_psignal = pmouse;
-      pelemental->OnMouseMove(&signal);
-   }*/
-
+   
 void html_form::_001OnMouseMove(signal_details * pobj)
 {
    SCAST_PTR(::message::mouse, pmouse, pobj);

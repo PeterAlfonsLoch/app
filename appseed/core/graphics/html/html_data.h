@@ -16,40 +16,38 @@ namespace html
          virtual public ::object
       {
       public:
-         index      m_iIndex;
-         string   m_strPath;
-         ::visual::dib_sp      m_spdib;
+
+
+         index                   m_iIndex;
+         string                  m_strPath;
+         ::visual::dib_sp        m_spdib;
+
 
          image(sp(base_application) papp);
          virtual bool load_image();
+
       };
 
 
       class CLASS_DECL_CORE load_image
       {
       public:
-         image * m_pimage;
-         data * m_pdocument;
+         
+         
+         image *     m_pimage;
+         data *      m_pdocument;
+
+
       };
 
 
       class CLASS_DECL_CORE layout_state1
       {
       public:
-         //int32_t      m_iBody;
-         //float    m_y;
-         //float    m_cy;
-         //float    m_x;
-         //float    m_cx;
-//         bool     m_bLastBlockX;
-//         bool     m_bLastCellX;
-         //bool     m_bLastBlock;
-         //bool     m_bLastCell;
-         bool     m_bHasChar;
 
 
-         //array < impl::table *, impl::table *> m_tableptraStack;
-         //array < impl::table_row *, impl::table_row *> m_tablerowptraStack;
+         numeric_array < float >       m_cya;
+         bool                          m_bHasChar;
 
 
          void reset();
