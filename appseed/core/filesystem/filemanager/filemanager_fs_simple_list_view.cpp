@@ -602,7 +602,7 @@ namespace filemanager
             ASSERT(pPopup != NULL);
             sp(::user::frame_window) pframe = GetParentFrame()->GetParentFrame();
             pPopup->TrackPopupMenu(point.x, point.y,
-            (sp(window)) pframe);
+            (::window_sp) pframe);
             }
             }
             else
@@ -615,7 +615,7 @@ namespace filemanager
             sp(::user::frame_window) pframe = GetParentFrame()->GetParentFrame();
             pPopup->TrackPopupMenu(
             point.x, point.y,
-            (sp(window)) pframe);
+            (::window_sp) pframe);
             }
             }*/
          }

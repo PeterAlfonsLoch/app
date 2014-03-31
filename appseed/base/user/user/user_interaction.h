@@ -161,7 +161,7 @@ namespace user
          bool unset(sp(interaction) pui, uint_ptr uiId);
          void unset(sp(interaction) pui);
          void detach(spa(timer_item) & timera, sp(interaction) pui);
-         void transfer(sp(window) pwindow, sp(interaction) pui);
+         void transfer(::window_sp pwindow, sp(interaction) pui);
          sp(interaction) find(sp(element) pca);
          index find(sp(interaction) pui, uint_ptr uiId);
          index find_from(sp(interaction) pui, index iStart);

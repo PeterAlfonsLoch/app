@@ -87,7 +87,7 @@ namespace plugin
 
       pinteraction->install_message_handling(pinteraction->m_pimpl);
 
-      sp(window) pwindow = pinteraction->m_pimpl;
+      ::window_sp pwindow = pinteraction->m_pimpl;
 
       pwindow->m_bTranslateMouseMessageCursor = false;
 

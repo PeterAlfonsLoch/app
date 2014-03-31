@@ -2056,12 +2056,12 @@ void application::OnHelp()  // use context to derive help context
    }
 
    // otherwise, use window::OnHelp implementation
-   /* trans sp(window) pWnd = System.GetMainWnd();
-   ENSURE_VALID(pWnd);
-   if (!pWnd->is_frame_window())
-   pWnd->OnHelp();
+   /* trans ::window_sp pwindow = System.GetMainWnd();
+   ENSURE_VALID(pwindow);
+   if (!pwindow->is_frame_window())
+   pwindow->OnHelp();
    else
-   ((pWnd))->OnHelp();*/
+   ((pwindow))->OnHelp();*/
 }
 
 
@@ -3265,12 +3265,12 @@ return NULL;
 
 
 
-sp(window) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+::window_sp application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
 {
    return m_pimpl->FindWindow(lpszClassName, lpszWindowName);
 }
 
-sp(window) application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
+::window_sp application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
 {
    return m_pimpl->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
 }
@@ -3463,7 +3463,7 @@ return m_pimpl->graphics_from_os_data(pdata);
 
 
 
-sp(window) application::get_desktop_window()
+::window_sp application::get_desktop_window()
 {
 #if defined(METROWIN) || defined(MACOS)
    throw todo(this);

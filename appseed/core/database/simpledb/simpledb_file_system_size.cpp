@@ -329,7 +329,7 @@ bool DBFileSystemSizeSet::get_fs_size(int64_t & i64Size, const char * pszPath, b
 
 FileSystemSizeWnd::FileSystemSizeWnd(sp(base_application) papp) :
    element(papp),
-   ::user::window_sp(papp)
+   ::window_sp(papp)
 {
 }
 

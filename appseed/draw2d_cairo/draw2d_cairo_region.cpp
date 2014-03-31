@@ -23,61 +23,6 @@ namespace draw2d_cairo
 
 
 
-/*   region::operator HRGN() const
-   {
-      return (HRGN)(this == NULL ? NULL : get_os_data());
-   }
-   region* PASCAL region::from_handle(sp(base_application) papp, HRGN hRgn)
-   {
-      return dynamic_cast < region * > (::win::object::from_handle(papp, hRgn));
-   }
-   int_bool region::CreateRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
-   { return Attach(::CreateRectRgn(x1, y1, x2, y2)); }
-   int_bool region::CreateRectRgnIndirect(LPCRECT lpRect)
-   { return Attach(::CreateRectRgnIndirect(lpRect)); }
-   int_bool region::CreateEllipticRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
-   { return Attach(::CreateEllipticRgn(x1, y1, x2, y2)); }
-   int_bool region::CreateEllipticRgnIndirect(LPCRECT lpRect)
-   { return Attach(::CreateEllipticRgnIndirect(lpRect)); }
-   int_bool region::CreatePolygonRgn(LPPOINT lpPoints, int32_t nCount, int32_t nMode)
-   { return Attach(::CreatePolygonRgn(lpPoints, nCount, nMode)); }
-   int_bool region::CreatePolyPolygonRgn(LPPOINT lpPoints, LPINT lpPolyCounts, int32_t nCount, int32_t nPolyFillMode)
-   { return Attach(::CreatePolyPolygonRgn(lpPoints, lpPolyCounts, nCount, nPolyFillMode)); }
-   int_bool region::CreateRoundRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3)
-   { return Attach(::CreateRoundRectRgn(x1, y1, x2, y2, x3, y3)); }
-   int_bool region::CreateFromPath(::draw2d::graphics * pgraphics)
-   { ASSERT(pgraphics != NULL); return Attach(::PathToRegion((dynamic_cast<::win::graphics * >(pgraphics))->get_handle1())); }
-   int_bool region::CreateFromData(const XFORM* lpXForm, int32_t nCount, const RGNDATA* pRgnData)
-   { return Attach(::ExtCreateRegion(lpXForm, nCount, pRgnData)); }
-   int32_t region::GetRegionData(LPRGNDATA lpRgnData, int32_t nDataSize) const
-   { ASSERT(get_os_data() != NULL); return (int32_t)::GetRegionData((HRGN)get_os_data(), nDataSize, lpRgnData); }
-   void region::SetRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
-   { ASSERT(get_os_data() != NULL); ::SetRectRgn((HRGN)get_os_data(), x1, y1, x2, y2); }
-
-   void region::SetRectRgn(LPCRECT lpRect)
-   {
-      ::SetRectRgn((HRGN)get_os_data(), lpRect->left, lpRect->top, lpRect->right, lpRect->bottom);
-   }
-
-   int32_t region::CombineRgn(const ::draw2d::region* pRgn1, const ::draw2d::region* pRgn2, int32_t nCombineMode)
-   { ASSERT(get_os_data() != NULL); return ::CombineRgn((HRGN)get_os_data(), (HRGN)pRgn1->get_os_data(),
-   (HRGN)pRgn2->get_os_data(), nCombineMode); }
-   int32_t region::CopyRgn(const ::draw2d::region* pRgnSrc)
-   { ASSERT(get_os_data() != NULL); return ::CombineRgn((HRGN)get_os_data(), (HRGN)pRgnSrc->get_os_data(), NULL, RGN_COPY); }
-   int_bool region::EqualRgn(const ::draw2d::region* pRgn) const
-   { ASSERT(get_os_data() != NULL); return ::EqualRgn((HRGN)get_os_data(), (HRGN)pRgn->get_os_data()); }
-   int32_t region::OffsetRgn(int32_t x, int32_t y)
-   { ASSERT(get_os_data() != NULL); return ::OffsetRgn((HRGN)get_os_data(), x, y); }
-   int32_t region::OffsetRgn(POINT point)
-   { ASSERT(get_os_data() != NULL); return ::OffsetRgn((HRGN)get_os_data(), point.x, point.y); }
-   int32_t region::GetRgnBox(LPRECT lpRect) const
-   { ASSERT(get_os_data() != NULL); return ::GetRgnBox((HRGN)get_os_data(), lpRect); }
-   int_bool region::PtInRegion(int32_t x, int32_t y) const
-   { ASSERT(get_os_data() != NULL); return ::PtInRegion((HRGN)get_os_data(), x, y); }
-   int_bool region::PtInRegion(POINT point) const
-   { ASSERT(get_os_data() != NULL); return ::PtInRegion((HRGN)get_os_data(), point.x, point.y); }
-   int_bool region::RectInRegion(LPCRECT lpRect) const
-   { ASSERT(get_os_data() != NULL); return ::RectInRegion((HRGN)get_os_data(), lpRect); }*/
 
    bool region::is_simple_positive_region()
    {

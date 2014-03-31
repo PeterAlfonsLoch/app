@@ -52,15 +52,6 @@ namespace draw2d_direct2d
 
       window * GetWindow() const;
 
-      //static ::draw2d::graphics * from_handle(HDC hDC);
-      //static void DeleteTempMap();
-      //bool Attach(HDC hdc);   // Attach/Detach affects only the Output DC
-      //HDC Detach();
-
-      /*virtual void SetAttribDC(HDC hDC);  // Set the Attribute DC
-      virtual void SetOutputDC(HDC hDC);  // Set the Output DC
-      virtual void ReleaseAttribDC();     // Release the Attribute DC
-      virtual void ReleaseOutputDC();     // Release the Output DC*/
 
       bool IsPrinting() const;            // TRUE if being used for printing
 
@@ -215,7 +206,7 @@ namespace draw2d_direct2d
             int SelectClipRgn(::draw2d::region* pRgn);
             int ExcludeClipRect(int x1, int y1, int x2, int y2);
             int ExcludeClipRect(LPCRECT lpRect);
-            int ExcludeUpdateRgn(window * pWnd);
+            int ExcludeUpdateRgn(window * pwindow);
             int IntersectClipRect(int x1, int y1, int x2, int y2);
             int IntersectClipRect(LPCRECT lpRect);
             int OffsetClipRgn(int x, int y);

@@ -3552,7 +3552,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\base\base_sprintf.cpp" />
     <ClCompile Include="base\base\base_system.cpp" />
     <ClCompile Include="base\base\base_template.cpp" />
-    <ClCompile Include="base\base\base_thread.cpp" />
     <ClCompile Include="base\base\base_trace.cpp" />
     <ClCompile Include="base\compress\bsdiff\bsdiff_blocksort.cpp" />
     <ClCompile Include="base\compress\bsdiff\bsdiff_bsdiff.cpp" />
@@ -12875,6 +12874,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="multithreading\multithreading_socket_event.cpp" />
     <ClCompile Include="multithreading\multithreading_synch_lock.cpp" />
     <ClCompile Include="multithreading\multithreading_sync_object.cpp" />
+    <ClCompile Include="multithreading\multithreading_thread.cpp" />
     <ClCompile Include="multithreading\multithreading_waitable.cpp" />
     <ClCompile Include="multithreading\multithreading_wait_result.cpp" />
     <ClCompile Include="net\http\http.cpp" />

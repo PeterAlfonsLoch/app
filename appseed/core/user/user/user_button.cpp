@@ -286,12 +286,19 @@ namespace user
 
    bool button::is_window_enabled()
    {
+
       return m_bEnabled;
+
    }
 
-   void button::enable_window(bool bEnable)
+   
+   bool button::enable_window(bool bEnable)
    {
+
       m_bEnabled = bEnable;
+
+      return bEnable;
+
    }
 
 

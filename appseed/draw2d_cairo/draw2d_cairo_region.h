@@ -15,10 +15,6 @@ namespace draw2d_cairo
       rect                    m_rectBoundingBoxInternal;
 
 
-// xxx     Gdiplus::Region *       m_pregion;
-
-      //static region * PASCAL from_handle(sp(base_application) papp, HRGN hRgn);
-      //operator HRGN() const;
 
       region(sp(base_application) papp);
       virtual ~region();

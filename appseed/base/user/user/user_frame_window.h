@@ -333,7 +333,7 @@ namespace user
 #ifdef WINDOWSEX
       virtual void OnDropFiles(HDROP hDropInfo);
 #endif
-      bool OnSetCursor(sp(::user::interaction) pWnd, UINT nHitTest, UINT message);
+      bool OnSetCursor(sp(::user::interaction) pwindow, UINT nHitTest, UINT message);
       //LRESULT OnCommandHelp(WPARAM wParam, LPARAM lParam);
       //LRESULT OnHelpHitTest(WPARAM wParam, LPARAM lParam);
       LRESULT OnActivateTopLevel(WPARAM wParam, LPARAM lParam);

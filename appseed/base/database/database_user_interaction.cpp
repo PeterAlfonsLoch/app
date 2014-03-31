@@ -170,7 +170,7 @@ namespace database
       }
 
 
-      bool interaction::LoadWindowRect_(::database::id key, ::database::id idIndex, sp(::user::interaction) pWnd, bool bForceRestore)
+      bool interaction::LoadWindowRect_(::database::id key, ::database::id idIndex, sp(::user::interaction) pwindow, bool bForceRestore)
       {
 
          try
@@ -190,7 +190,7 @@ namespace database
             if (!bForceRestore && bZoomed)
             {
 
-               pWnd->ShowWindow(SW_MAXIMIZE);
+               pwindow->ShowWindow(SW_MAXIMIZE);
 
             }
 
@@ -203,16 +203,16 @@ namespace database
 
                if (bFullScreen)
                {
-                  if (!pWnd->IsFullScreen())
+                  if (!pwindow->IsFullScreen())
                   {
-                     pWnd->ShowWindowFullScreen(true, false);
+                     pwindow->ShowWindowFullScreen(true, false);
                   }
                }
                else
                {
-                  if (pWnd->IsFullScreen())
+                  if (pwindow->IsFullScreen())
                   {
-                     pWnd->ShowWindowFullScreen(false, false);
+                     pwindow->ShowWindowFullScreen(false, false);
                   }
                }
 
@@ -220,9 +220,9 @@ namespace database
             else if (!bFullScreen)
             {
 
-               if (pWnd->IsFullScreen())
+               if (pwindow->IsFullScreen())
                {
-                  pWnd->ShowWindowFullScreen(false, false);
+                  pwindow->ShowWindowFullScreen(false, false);
                }
 
             }
@@ -234,14 +234,14 @@ namespace database
             if (!bForceRestore && bIconic)
             {
 
-               pWnd->ShowWindow(SW_MINIMIZE);
+               pwindow->ShowWindow(SW_MINIMIZE);
 
             }
 
             if (bForceRestore)
             {
 
-               pWnd->ShowWindow(SW_RESTORE);
+               pwindow->ShowWindow(SW_RESTORE);
 
             }
 
@@ -288,7 +288,7 @@ namespace database
                }
 
 
-               //pWnd->SetWindowPos(0, rect.left, rect.top, rect.width(), rect.height(), SWP_NOZORDER | SWP_NOACTIVATE);
+               //pwindow->SetWindowPos(0, rect.left, rect.top, rect.width(), rect.height(), SWP_NOZORDER | SWP_NOACTIVATE);
 
             }
 
@@ -306,10 +306,10 @@ namespace database
       }
 
 
-      bool interaction::SaveWindowRect_(::database::id key, ::database::id idIndex,  sp(::user::interaction) pWnd)
+      bool interaction::SaveWindowRect_(::database::id key, ::database::id idIndex,  sp(::user::interaction) pwindow)
       {
          //WINDOWPLACEMENT wp;
-         //pWnd->GetWindowPlacement(&wp);
+         //pwindow->GetWindowPlacement(&wp);
          ::file::byte_stream_memory_buffer memstream(get_app());
          ::file::byte_stream_memory_buffer memstreamGet(get_app());
          bool bGet = data_get(
@@ -335,11 +335,11 @@ namespace database
                bGet = false;
             }
          }
-         bool bZoomed = pWnd->IsZoomed() != FALSE;
+         bool bZoomed = pwindow->IsZoomed() != FALSE;
          memstream << bZoomed;
-         bool bFullScreen = pWnd->IsFullScreen();
+         bool bFullScreen = pwindow->IsFullScreen();
          memstream << bFullScreen;
-         bool bIconic = pWnd->IsIconic();
+         bool bIconic = pwindow->IsIconic();
          memstream << bIconic;
          if(bGet && (bZoomed || bFullScreen || bIconic))
          {
@@ -348,7 +348,7 @@ namespace database
          else
          {
             rect rect;
-            pWnd->GetWindowRect(rect);
+            pwindow->GetWindowRect(rect);
             memstream << &rect;
          }
          return data_set(key, idIndex, memstream);

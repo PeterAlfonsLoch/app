@@ -372,8 +372,8 @@ public:
    virtual sp(::user::interaction) window_from_os_data(void * pdata);
    virtual sp(::user::interaction) window_from_os_data_permanent(void * pdata);
 #else
-   virtual sp(window) window_from_os_data(void * pdata);
-   virtual sp(window) window_from_os_data_permanent(void * pdata);
+   virtual ::window_sp window_from_os_data(void * pdata);
+   virtual ::window_sp window_from_os_data_permanent(void * pdata);
 #endif
 
 
@@ -435,8 +435,8 @@ public:
 
 
 
-   virtual sp(window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
-   virtual sp(window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
+   virtual ::window_sp FindWindow(const char * lpszClassName, const char * lpszWindowName);
+   virtual ::window_sp FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
 
    virtual string get_version();
 

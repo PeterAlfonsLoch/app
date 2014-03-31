@@ -1228,7 +1228,7 @@ namespace filemanager
 
          pPopup->TrackPopupMenu(
          point.x, point.y,
-         (sp(window)) pframe);
+         (::window_sp) pframe);
          }
          }
          else
@@ -1241,7 +1241,7 @@ namespace filemanager
          sp(::user::frame_window) pframe = GetTopLevelFrame();
          pPopup->TrackPopupMenu(
          point.x, point.y,
-         (sp(window)) pframe);
+         (::window_sp) pframe);
          }
          }*/
       }

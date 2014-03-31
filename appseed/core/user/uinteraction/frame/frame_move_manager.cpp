@@ -358,7 +358,7 @@ namespace uinteraction
          return FALSE;
          else
          return TRUE;*/
-         /*sp(::user::interaction) pwnd = ::user::interaction::from_handle;
+         /*sp(::user::interaction) pwnd = ::user::interaction::from_handle_dup;
          if(pwnd == NULL)
          return TRUE;
          //HICON hicon = pwnd->GetIcon(FALSE);

@@ -942,15 +942,15 @@ namespace user
             {
                for (int32_t i = 0; i < nControlCount; i++)
                {
-                  sp(::user::interaction) pWnd = get_child_by_id(pControl[i].nID);
-                  if (pWnd != NULL)
+                  sp(::user::interaction) pwindow = get_child_by_id(pControl[i].nID);
+                  if (pwindow != NULL)
                   {
                      rect rect;
-                     pWnd->GetWindowRect(&rect);
+                     pwindow->GetWindowRect(&rect);
                      point pt = rect.top_left() - pControl[i].rectOldPos.top_left();
                      GetItemRect(pControl[i].nIndex, &rect);
                      pt = rect.top_left() + pt;
-                     pWnd->SetWindowPos(0, pt.x, pt.y, 0, 0, SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOZORDER);
+                     pwindow->SetWindowPos(0, pt.x, pt.y, 0, 0, SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOZORDER);
                   }
                }
                delete[] pControl;

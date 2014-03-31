@@ -1394,13 +1394,13 @@ namespace user
       return -1;
    }
 
-   sp(window) tab::GetNotifyWnd()
+   ::window_sp tab::GetNotifyWnd()
    {
 #ifdef METROWIN
       return NULL;
 
 #else
-      sp(window) pwnd;
+      ::window_sp pwnd;
    //   if((pwnd = m_pui->get_owner()) != NULL)
      //    return pwnd;
       if((pwnd = m_pui->get_parent()->get_wnd()) != NULL)

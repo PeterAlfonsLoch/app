@@ -220,7 +220,7 @@ namespace userfs
 
          pPopup->TrackPopupMenu(
          point.x, point.y,
-         (sp(window)) pframe);
+         (::window_sp) pframe);
          }
          }
          else
@@ -233,7 +233,7 @@ namespace userfs
          sp(::user::frame_window) pframe = GetTopLevelFrame();
          pPopup->TrackPopupMenu(
          point.x, point.y,
-         (sp(window)) pframe);
+         (::window_sp) pframe);
          }
          }*/
    }

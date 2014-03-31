@@ -84,7 +84,7 @@ namespace filemanager
 
                str.Format("frame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
 
-               sp(frame) pframe = ((sp(window)) GetParentFrame());
+               sp(frame) pframe = ((::window_sp) GetParentFrame());
 
                if (pframe != NULL)
                {

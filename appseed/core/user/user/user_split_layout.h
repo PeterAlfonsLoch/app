@@ -76,8 +76,8 @@ namespace user
       e_orientation GetSplitOrientation();
       int32_t GetMaxPos(int32_t iPane);
       int32_t GetMinPos(int32_t iPane);
-      bool InsertPaneAt(int32_t iIndex, sp(::user::interaction)pWnd, bool bFixedSize, id idPane = id());
-      bool SetPane(int32_t iIndex, sp(::user::interaction)pWnd, bool bFixedSize, id idPane = id());
+      bool InsertPaneAt(int32_t iIndex, sp(::user::interaction)pwindow, bool bFixedSize, id idPane = id());
+      bool SetPane(int32_t iIndex, sp(::user::interaction)pwindow, bool bFixedSize, id idPane = id());
       bool RemovePaneAt(int32_t iIndex);
       void SetPaneFixedSize(int32_t iIndex, SIZE * pSize);
       void SetVisible(bool bNewValue);

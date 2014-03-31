@@ -233,7 +233,7 @@ namespace message
 #endif
 
       void RemoveMessageHandler(signalizable* psignalizable);
-      sp(window) _GetWnd();
+      ::window_sp _GetWnd();
       // Prototype_bool_WPARAM_LPARAM;
 
       template < class T >
@@ -464,7 +464,7 @@ namespace message
 
 
       context_menu(sp(base_application) papp) : element(papp), message::base(papp) {}
-      sp(window) GetWindow();
+      ::window_sp GetWindow();
       point GetPoint();
    };
 
@@ -608,7 +608,7 @@ namespace message
       ctl_color(sp(base_application) papp) : element(papp), message::base(papp) {}
       HBRUSH      m_hbrush;
       ::draw2d::graphics *       m_pdc;
-      sp(window)      m_pwnd;
+      ::window_sp      m_pwnd;
       UINT        m_nCtlType;
    };
 

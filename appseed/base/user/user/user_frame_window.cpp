@@ -392,9 +392,9 @@ namespace user
       */
    }
 
-   bool frame_window::OnSetCursor(sp(::user::interaction) pWnd, UINT nHitTest, UINT message)
+   bool frame_window::OnSetCursor(sp(::user::interaction) pwindow, UINT nHitTest, UINT message)
    {
-      UNREFERENCED_PARAMETER(pWnd);
+      UNREFERENCED_PARAMETER(pwindow);
       UNREFERENCED_PARAMETER(nHitTest);
       UNREFERENCED_PARAMETER(message);
       sp(::user::frame_window) pFrameWnd = GetTopLevelFrame();
@@ -404,7 +404,7 @@ namespace user
          //      SetCursor(afxData.hcurHelp);
          return TRUE;
       }
-      // trans   return user::frame_window::OnSetCursor(pWnd, nHitTest, message);
+      // trans   return user::frame_window::OnSetCursor(pwindow, nHitTest, message);
       return TRUE;
    }
 
@@ -528,21 +528,21 @@ namespace user
       /*   oswindow oswindow = ::GetWindow(::GetDesktopWindow(), GW_CHILD);
       while (oswindow != NULL)
       {
-      sp(window) pWnd = window::FromHandlePermanent(oswindow);
-      if (pWnd != NULL && get_handle() != oswindow && __is_descendant(this, pWnd))
+      ::window_sp pwindow = window::FromHandlePermanent(oswindow);
+      if (pwindow != NULL && get_handle() != oswindow && __is_descendant(this, pwindow))
       {
       uint32_t dwStyle = ::GetWindowLong(oswindow, GWL_STYLE);
       if (!bShow && (dwStyle & (WS_VISIBLE|WS_DISABLED)) == WS_VISIBLE)
       {
       ::ShowWindow(oswindow, SW_HIDE);
-      pWnd->m_nFlags |= WF_TEMPHIDE;
+      pwindow->m_nFlags |= WF_TEMPHIDE;
       }
       // don't show temporarily hidden windows if we're in print preview mode
       else if (bShow && (dwStyle & (WS_VISIBLE|WS_DISABLED)) == 0 &&
-      (pWnd->m_nFlags & WF_TEMPHIDE) && !m_lpfnCloseProc)
+      (pwindow->m_nFlags & WF_TEMPHIDE) && !m_lpfnCloseProc)
       {
       ::ShowWindow(oswindow, SW_SHOWNOACTIVATE);
-      pWnd->m_nFlags &= ~WF_TEMPHIDE;
+      pwindow->m_nFlags &= ~WF_TEMPHIDE;
       }
       }
       oswindow = ::GetWindow(oswindow, GW_HWNDNEXT);
@@ -812,10 +812,10 @@ namespace user
       sp(::user::impact) pview = NULL;
       if (GetActiveView() == NULL)
       {
-         sp(::user::interaction) pWnd = GetDescendantWindow("pane_first");
-         if (pWnd != NULL && base < ::user::impact > ::bases(pWnd))
+         sp(::user::interaction) pwindow = GetDescendantWindow("pane_first");
+         if (pwindow != NULL && base < ::user::impact > ::bases(pwindow))
          {
-            pview = pWnd;
+            pview = pwindow;
             SetActiveView(pview, FALSE);
          }
       }

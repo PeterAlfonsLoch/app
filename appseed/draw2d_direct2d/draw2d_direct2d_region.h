@@ -11,14 +11,8 @@ namespace draw2d_direct2d
    public:
 
 
-//      Gdiplus::Region *       m_pregion;
       ID2D1Geometry *            m_pgeometry;
-//      ID2D1GeometrySink *        m_psink;
-  //    bool                       m_bFill;
-      //::draw2d::e_fill_mode          m_efillmode;
 
-      //static region * from_handle(base_application * papp, HRGN hRgn);
-      //operator HRGN() const;
 
       region(base_application * papp);
       virtual ~region();

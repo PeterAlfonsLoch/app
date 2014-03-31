@@ -114,9 +114,9 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
-/*   int32_t graphics::ExcludeUpdateRgn(sp(window) pWnd)
+/*   int32_t graphics::ExcludeUpdateRgn(::window_sp pwindow)
    {
-      UNREFERENCED_PARAMETER(pWnd);
+      UNREFERENCED_PARAMETER(pwindow);
       throw interface_only_exception(get_app());
    }
    */

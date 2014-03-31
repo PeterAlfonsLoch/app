@@ -12,35 +12,9 @@ namespace draw2d_cairo
    pen::~pen()
    {
    }
-/*   pen::operator HPEN() const
-   {
-      return (HPEN)(this == NULL ? NULL : get_handle());
-   }*/
-/*   pen* PASCAL pen::from_handle(sp(base_application) papp, HPEN hPen)
-   {
-      return dynamic_cast < pen* > (::win::object::from_handle(papp, hPen));
-   }*/
-/*   int_bool pen::CreatePen(int32_t nPenStyle, int32_t nWidth, COLORREF crColor)
-   { return Attach(::CreatePen(nPenStyle, nWidth, crColor)); }*/
-/*   int_bool pen::CreatePenIndirect(LPLOGPEN lpLogPen)
-   { return Attach(::CreatePenIndirect(lpLogPen)); }*/
-/*   int_bool pen::CreatePen(int32_t nPenStyle, int32_t nWidth, const LOGBRUSH* pLogBrush,
-      int32_t nStyleCount, const DWORD* lpStyle)
-   { return Attach(::ExtCreatePen(nPenStyle, nWidth, pLogBrush, nStyleCount,
-   lpStyle)); }*/
-/*   int32_t pen::GetExtLogPen(EXTLOGPEN* pLogPen)
-   { ASSERT(get_handle() != NULL);
-   return ::GetObject(get_handle(), sizeof(EXTLOGPEN), pLogPen); }
-*/
-/*   int32_t pen::GetLogPen(LOGPEN* pLogPen)
-   {
-      if(get_handle() == NULL)
-         return 0;
-      return ::GetObject(get_handle(), sizeof(LOGPEN), pLogPen);
-   }
-*/
 
-/*   void pen::construct(int32_t nPenStyle, int32_t nWidth, COLORREF crColor)
+
+   /*   void pen::construct(int32_t nPenStyle, int32_t nWidth, COLORREF crColor)
    {
       if (!Attach(::CreatePen(nPenStyle, nWidth, crColor)))
          AfxThrowResourceException();

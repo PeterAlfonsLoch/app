@@ -111,7 +111,7 @@ namespace user
 
        throw not_implemented(get_app());
        // draw the whole button
-       /*::draw2d::graphics * pgraphics = ::draw2d::graphics_sp::from_handle(lpDIS->hDC);
+       /*::draw2d::graphics * pgraphics = ::draw2d::graphics_sp::from_handle_dup(lpDIS->hDC);
        ::draw2d::graphics_sp memDC;
        memDC.CreateCompatibleDC(pgraphics);
        ::draw2d::bitmap* pOld = memDC.SelectObject(pBitmap);

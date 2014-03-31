@@ -234,7 +234,7 @@ namespace draw2d
       virtual int32_t SelectClipRgn(::draw2d::region* pRgn);
       virtual int32_t ExcludeClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual int32_t ExcludeClipRect(LPCRECT lpRect);
-//      virtual int32_t ExcludeUpdateRgn(sp(window) pWnd);
+//      virtual int32_t ExcludeUpdateRgn(::window_sp pwindow);
       virtual int32_t IntersectClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual int32_t IntersectClipRect(LPCRECT lpRect);
       virtual int32_t OffsetClipRgn(int32_t x, int32_t y);
@@ -696,9 +696,9 @@ namespace draw2d
    {
    public:
 
-      sp(window) m_pwindow;
+      ::window_sp m_pwindow;
 
-      window_graphics(sp(window) pwindow);
+      window_graphics(::window_sp pwindow);
       virtual ~window_graphics();
 
    };
@@ -708,12 +708,12 @@ namespace draw2d
    {
    public:
 
-      sp(window)    m_pwindow;
+      ::window_sp    m_pwindow;
 #ifdef WINDOWSEX
       PAINTSTRUCT       m_ps;
 #endif
 
-      paint_graphics(sp(window) pwindow);
+      paint_graphics(::window_sp pwindow);
       virtual ~paint_graphics();
 
    };*/

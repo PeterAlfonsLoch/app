@@ -61,46 +61,6 @@ namespace draw2d_direct2d
 
    }
 
-   /*object* object::from_handle(base_application * papp, HGDIOBJ h)
-   {
-      hgdiobj_map* pMap = afxMapHGDIOBJ(TRUE); //create ::map if not exist
-      ASSERT(pMap != NULL);
-      object* pObject = (::draw2d_direct2d::object*)pMap->from_handle(h, &object_allocator, papp);
-      ASSERT(pObject == NULL || pObject->get_os_data() == h);
-      return pObject;
-   }
-
-   bool object::Attach(HGDIOBJ hObject)
-   {
-      if (hObject == NULL)
-      {
-         return FALSE;
-      }
-      if(get_os_data() != NULL)
-      {
-         delete_object();
-      }
-      // remember early to avoid leak
-      set_handle(hObject);
-      hgdiobj_map* pMap = afxMapHGDIOBJ(TRUE); // create ::map if not exist
-      ASSERT(pMap != NULL);
-      pMap->set_permanent(get_os_data(), this);
-      return TRUE;
-   }
-
-   HGDIOBJ object::Detach()
-   {
-      HGDIOBJ hObject = get_os_data();
-      if (hObject != NULL)
-      {
-         hgdiobj_map* pMap = afxMapHGDIOBJ(); // don't create if not exist
-         if (pMap != NULL)
-            pMap->remove_handle(get_os_data());
-      }
-
-      set_handle(NULL);
-      return hObject;
-   }*/
 
    bool object::delete_object()
    {

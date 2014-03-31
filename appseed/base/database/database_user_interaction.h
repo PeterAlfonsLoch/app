@@ -42,8 +42,8 @@ namespace database
          bool WindowDataSaveWindowRect();
          bool WindowDataLoadWindowRect(bool bForceRestore = false);
 
-         virtual bool LoadWindowRect_(class id key, class id idIndex, sp(::user::interaction) pWnd, bool bForceRestore = false);
-         virtual bool SaveWindowRect_(class id key, class id idIndex, sp(::user::interaction) pWnd);
+         virtual bool LoadWindowRect_(class id key, class id idIndex, sp(::user::interaction) pwindow, bool bForceRestore = false);
+         virtual bool SaveWindowRect_(class id key, class id idIndex, sp(::user::interaction) pwindow);
         
          
          virtual bool on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult);

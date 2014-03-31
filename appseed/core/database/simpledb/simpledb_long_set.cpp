@@ -476,22 +476,24 @@ bool db_long_set::save(const char * lpKey, LPCRECT lpRect)
    return true;
 
 }
-bool db_long_set::MoveWindow_(const char * lpKey, sp(window)pWnd)
+
+bool db_long_set::MoveWindow_(const char * lpKey, ::window_sp pwindow)
 {
    rect rect;
    if(!load(lpKey, &rect))
       return false;
-   pWnd->MoveWindow(&rect);
+   pwindow->MoveWindow(&rect);
    return true;
 }
 
-bool db_long_set::SaveWindowRect_(const char * lpKey, sp(window)pWnd)
+
+bool db_long_set::SaveWindowRect_(const char * lpKey, ::window_sp pwindow)
 {
 
 #ifdef WINDOWSEX
 
    WINDOWPLACEMENT wp;
-   pWnd->GetWindowPlacement(&wp);
+   pwindow->GetWindowPlacement(&wp);
    return save(lpKey , &wp.rcNormalPosition);
 
 #else
@@ -638,7 +640,7 @@ return hr;
 
 //}
 
-bool db_long_set::SetWindowPlacement(const char * lpKey, sp(window)pWnd)
+bool db_long_set::SetWindowPlacement(const char * lpKey, ::window_sp pwindow)
 {
 
 #ifdef WINDOWSEX
@@ -664,7 +666,7 @@ bool db_long_set::SetWindowPlacement(const char * lpKey, sp(window)pWnd)
    strKey += ".flags";
    if(!load(strKey, (int32_t &) wp.flags))
       return false;
-   pWnd->SetWindowPlacement(&wp);
+   pwindow->SetWindowPlacement(&wp);
    return true;
 
 #else
@@ -675,13 +677,13 @@ bool db_long_set::SetWindowPlacement(const char * lpKey, sp(window)pWnd)
 
 }
 
-bool db_long_set::SaveWindowPlacement(const char * lpKey, sp(window)pWnd)
+bool db_long_set::SaveWindowPlacement(const char * lpKey, ::window_sp pwindow)
 {
 
 #ifdef WINDOWSEX
 
    WINDOWPLACEMENT wp;
-   pWnd->GetWindowPlacement(&wp);
+   pwindow->GetWindowPlacement(&wp);
    if(!save(lpKey , &wp.rcNormalPosition))
       return false;
    string strKey;

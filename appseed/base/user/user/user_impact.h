@@ -146,7 +146,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnCreate)
          DECL_GEN_SIGNAL(_001OnDestroy)
          void OnPaint();
-      //int32_t OnMouseActivate(sp(window) pDesktopWnd, UINT nHitTest, UINT message);
+      //int32_t OnMouseActivate(::window_sp pDesktopWnd, UINT nHitTest, UINT message);
       // commands
       void OnUpdateSplitCmd(cmd_ui* pCmdUI);
       bool OnSplitCmd(UINT nID);

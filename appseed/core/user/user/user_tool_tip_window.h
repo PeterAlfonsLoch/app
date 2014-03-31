@@ -82,7 +82,7 @@ namespace user
       virtual bool create(sp(::user::interaction) pwnd, id id);
       bool CalcRect(::draw2d::graphics * pdc, LPRECT lprect, LPCRECT lprectToolScreen, const char * lpcsz);
       void ShowTip(int32_t iTool, bool bForce = false);
-      void SetPositionHint(sp(window) pwnd, e_position eposition);
+      void SetPositionHint(::window_sp pwnd, e_position eposition);
       void relay_event(tool_tip_tool * pwnd, signal_details * pobj);
 
       void OnPaint();

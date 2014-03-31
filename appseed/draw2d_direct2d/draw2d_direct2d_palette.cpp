@@ -15,16 +15,18 @@ namespace draw2d_direct2d
    { 
       return (HPALETTE)(this == NULL ? NULL : get_os_data()); 
    }
-   palette* palette::from_handle(base_application * papp, HPALETTE hPalette)
-   { 
-      //return dynamic_cast < palette * > (::draw2d_direct2d::object::from_handle(papp, hPalette)); 
-      return NULL;
-   }
+
+
    bool palette::CreatePalette(LPLOGPALETTE lpLogPalette)
    { 
+
       //return Attach(::CreatePalette(lpLogPalette)); 
+
       return FALSE;
+
    }
+
+
    bool palette::CreateHalftonePalette(::draw2d::graphics * pgraphics)
    {
       //ASSERT(pgraphics != NULL && (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->get_handle1() != NULL); 

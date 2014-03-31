@@ -415,7 +415,7 @@ namespace message
    }
 
 
-   sp(window) dispatch::_GetWnd()
+   ::window_sp dispatch::_GetWnd()
    {
       return dynamic_cast < window * > (this);
    }
@@ -721,8 +721,8 @@ namespace message
    sp(::user::interaction) mouse_activate::GetDesktopWindow()
    {
       throw not_implemented(get_app());
+//      return window::from_handle_dup(reinterpret_cast<oswindow>(m_wparam));
       return NULL;
-      //            return window::from_handle(reinterpret_cast<oswindow>(m_wparam));
    }
 
    UINT mouse_activate::GetHitTest()
@@ -735,11 +735,11 @@ namespace message
       return HIWORD(m_lparam);
    }
 
-   sp(window) context_menu::GetWindow()
+   ::window_sp context_menu::GetWindow()
    {
       throw not_implemented(get_app());
       return NULL;
-      //            return window::from_handle(reinterpret_cast<oswindow>(m_wparam));
+      //            return window::from_handle_dup(reinterpret_cast<oswindow>(m_wparam));
    }
 
    point context_menu::GetPoint()
@@ -979,274 +979,6 @@ namespace message
 
 
 
-//         e_prototype eprototype = signal.m_eprototype;
-/*         switch(eprototype)
-{
-case PrototypeNone:
-{
-base base(get_app());
-base.m_psignal = psignal;
-base.set(message, wparam, lparam, lresult);
-psignal->emit(&base);
-if(base.m_bRet)
-return true;
-}
-break;
-
-case PrototypeCreate:
-{
-create create(allocer());
-create.m_psignal = psignal;
-create.set(message, wparam, lparam, lresult);
-psignal->emit(&create);
-if(create.m_bRet)
-return true;
-}
-break;
-case PrototypeNcActivate:
-{
-nc_activate ncactivate(get_app());
-ncactivate.m_psignal = psignal;
-ncactivate.set(message, wparam, lparam, lresult);
-ncactivate.m_bActive = static_cast<bool>(wparam);
-psignal->emit(&ncactivate);
-if(ncactivate.m_bRet)
-return true;
-}
-break;
-case PrototypeKey:
-{
-key key(get_app());
-key.m_psignal = psignal;
-key.set(message, wparam, lparam, lresult);
-psignal->emit(&key);
-if(key.m_bRet)
-return true;
-}
-break;
-case PrototypeTimer:
-{
-timer timer(get_app());
-timer.m_psignal = psignal;
-timer.set(message, wparam, lparam, lresult);
-timer.m_nIDEvent = static_cast<UINT>(wparam);
-psignal->emit(&timer);
-if(timer.m_bRet)
-return true;
-}
-break;
-case PrototypeShowWindow:
-{
-show_window showwindow(get_app());
-showwindow.m_psignal = psignal;
-showwindow.set(message, wparam, lparam, lresult);
-showwindow.m_bShow = static_cast<UINT>(wparam);
-showwindow.m_nStatus = static_cast<UINT>(lparam);
-psignal->emit(&showwindow);
-if(showwindow.m_bRet)
-return true;
-}
-break;
-case PrototypeSetCursor:
-{
-set_cursor setcursor(get_app());
-setcursor.m_psignal = psignal;
-setcursor.set(message, wparam, lparam, lresult);
-//setcursor.m_pWnd = window::from_os_data(reinterpret_cast<oswindow>(wparam));
-setcursor.m_nHitTest = LOWORD(lparam);
-setcursor.m_message = HIWORD(lparam);
-psignal->emit(&setcursor);
-if(setcursor.m_bRet)
-return true;
-}
-break;
-case PrototypeNcHitTest:
-{
-nchittest nchittest(get_app());
-nchittest.m_psignal = psignal;
-nchittest.set(message, wparam, lparam, lresult);
-nchittest.m_pt = point(lparam);
-psignal->emit(&nchittest);
-if(nchittest.m_bRet)
-return true;
-}
-break;
-case PrototypeMove:
-{
-move move(get_app());
-move.m_psignal = psignal;
-move.set(message, wparam, lparam, lresult);
-move.m_pt = point(lparam);
-psignal->emit(&move);
-if(move.m_bRet)
-return true;
-}
-break;
-case PrototypeEraseBkgnd:
-{
-erase_bkgnd erasebkgnd(get_app());
-erasebkgnd.m_psignal = psignal;
-erasebkgnd.set(message, wparam, lparam, lresult);
-//               erasebkgnd.m_pdc = ::draw2d::graphics_sp::from_handle(reinterpret_cast<HDC>(wparam));
-psignal->emit(&erasebkgnd);
-if(erasebkgnd.m_bRet)
-return true;
-}
-break;
-
-case PrototypeScroll:
-{
-scroll scroll(get_app());
-scroll.m_psignal = psignal;
-scroll.set(message, wparam, lparam, lresult);
-psignal->emit(&scroll);
-if(scroll.m_bRet)
-return true;
-}
-break;
-case PrototypeSetFocus:
-{
-set_focus setfocus(get_app());
-setfocus.set(message, wparam, lparam, lresult);
-psignal->emit(&setfocus);
-if(setfocus.m_bRet)
-return true;
-}
-break;
-case PrototypeWindowPos:
-{
-window_pos windowpos(get_app());
-windowpos.set(message, wparam, lparam, lresult);
-psignal->emit(&windowpos);
-if(windowpos.m_bRet)
-return true;
-}
-break;
-case PrototypeNcCalcSize:
-{
-nc_calc_size nccalcsize(get_app());
-nccalcsize.set(message, wparam, lparam, lresult);
-psignal->emit(&nccalcsize);
-if(nccalcsize.m_bRet)
-return true;
-}
-break;
-case PrototypeMouse:
-{
-mouse mouse(get_app());
-mouse.m_psignal = psignal;
-mouse.set(message, wparam, lparam, lresult);
-psignal->emit(&mouse);
-if(mouse.m_bRet)
-return true;
-}
-break;
-case PrototypeSize:
-{
-size size(get_app());
-size.m_psignal = psignal;
-size.set(message, wparam, lparam, lresult);
-psignal->emit(&size);
-if(size.m_bRet)
-return true;
-}
-break;
-
-case PrototypeActivate:
-{
-activate activate(get_app());
-activate.m_psignal = psignal;
-activate.set(message, wparam, lparam, lresult);
-activate.m_nState = (UINT)(LOWORD(wparam));
-activate.m_pWndOther = System.window_from_os_data(lparam);
-activate.m_bMinimized = (bool)HIWORD(wparam);
-psignal->emit(&activate);
-if(activate.m_bRet)
-return true;
-}
-break;
-case PrototypeCtlColor:
-{
-// special case for OnCtlColor to avoid too many temporary objects
-ASSERT(message == WM_CTLCOLOR);
-myfx_CTLCOLOR* pCtl = reinterpret_cast<myfx_CTLCOLOR*>(lparam);
-::draw2d::graphics_sp dcTemp;
-//               dcTemp.set_handle1(pCtl->hDC);
-window wndTemp;
-//               wndTemp.set_handle(pCtl->oswindow);
-UINT nCtlType = pCtl->nCtlType;
-// if not coming from a permanent window, use stack temporary
-//               sp(window) pWnd = window::FromHandlePermanent(wndTemp.get_handle());
-//               if (pWnd == NULL)
-{
-
-//               pWnd = &wndTemp;
-/*         }
-ctl_color ctlcolor(get_app());
-ctlcolor.m_psignal   = psignal;
-//            ctlcolor.m_pdc       = &dcTemp;
-//            ctlcolor.m_pwnd      = pWnd;
-ctlcolor.m_nCtlType  = nCtlType;
-ctlcolor.m_hbrush    = NULL;
-psignal->emit(&ctlcolor);
-// fast detach of temporary objects
-//            dcTemp.set_handle1(NULL);
-//            wndTemp.set_handle(NULL);
-lresult = reinterpret_cast<LRESULT>(ctlcolor.m_hbrush);
-if(ctlcolor.m_bRet)
-return true;
-}
-break;
-
-
-/*case PrototypeCtlColorReflect:
-{         // special case for CtlColor to avoid too many temporary objects
-ASSERT(message == WM_REFLECT_BASE+WM_CTLCOLOR);
-myfx_CTLCOLOR* pCtl = reinterpret_cast<myfx_CTLCOLOR*>(lparam);
-::draw2d::graphics_sp dcTemp;
-//               dcTemp.set_handle1(pCtl->hDC);
-UINT nCtlType = pCtl->nCtlType;
-ctl_color ctlcolor(get_app());
-ctlcolor.m_psignal   = psignal;
-//               ctlcolor.m_pdc       = &dcTemp;
-ctlcolor.m_pwnd      = NULL;
-ctlcolor.m_nCtlType  = nCtlType;
-ctlcolor.m_hbrush    = NULL;
-psignal->emit(&ctlcolor);
-// fast detach of temporary objects
-//               dcTemp.set_handle1(NULL);
-lresult = reinterpret_cast<LRESULT>(ctlcolor.m_hbrush);
-if(ctlcolor.m_bRet)
-return true;
-
-}
-break;*/
-
-//    default:;
-/*            if(message == WM_COMMAND)
-{
-command command;
-command.set(message, wparam, lparam, lresult);
-psignal->emit(&command);
-if(command.m_bRet)
-return true;
-}
-else if(message == WM_NOTIFY)
-{
-notify notify;
-notify.set(message, wparam, lparam, lresult);
-
-psignal->emit(&notify);
-if(notify.m_bRet)
-return true;
-}
-else
-{
-// Unknown Prototype
-ASSERT(FALSE);
-return false;
-}*/
-//  }
 
 #define ROUND(x,y) (((x)+(y-1))&~(y-1))
 #define ROUND4(x) ROUND(x, 4)

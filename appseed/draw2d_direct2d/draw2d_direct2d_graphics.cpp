@@ -302,12 +302,12 @@ namespace draw2d_direct2d
 
    }
 
-   int graphics::ExcludeUpdateRgn(window * pWnd)
+   int graphics::ExcludeUpdateRgn(window * pwindow)
    { 
       throw todo(get_app());
 
       //ASSERT(get_handle1() != NULL); 
-      //return ::ExcludeUpdateRgn(get_handle1(), WIN_WINDOW(pWnd)->get_handle()); 
+      //return ::ExcludeUpdateRgn(get_handle1(), WIN_WINDOW(pwindow)->get_handle()); 
    }
 
    int graphics::GetDeviceCaps(int nIndex) const
@@ -2759,7 +2759,8 @@ namespace draw2d_direct2d
 
    ::draw2d::brush* graphics::GetHalftoneBrush(base_application * papp)
    {
-      /*      ::core::LockGlobals(CRIT_HALFTONEBRUSH);
+      /*
+      ::core::LockGlobals(CRIT_HALFTONEBRUSH);
       if (gen_HalftoneBrush == NULL)
       {
       WORD grayPattern[8];
@@ -2775,92 +2776,90 @@ namespace draw2d_direct2d
       if (!gen_WingdixTerm)
       gen_WingdixTerm = (char)!atexit(&__win_gdi_x_term);
       ::core::UnlockGlobals(CRIT_HALFTONEBRUSH);
+      */
 
-      //      return ::draw2d_direct2d::brush::from_handle(papp, gen_HalftoneBrush);*/
       return NULL;
    }
 
+
    void graphics::DrawDragRect(LPCRECT lpRect, SIZE size, LPCRECT lpRectLast, SIZE sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
    {
-      
-      throw todo(get_app());
 
+      throw not_implemented(get_app());
 
-      //ASSERT(__is_valid_address(lpRect, sizeof(RECT), FALSE));
-      //ASSERT(lpRectLast == NULL ||
-      //   __is_valid_address(lpRectLast, sizeof(RECT), FALSE));
+      /*
+      ASSERT(__is_valid_address(lpRect, sizeof(RECT), FALSE));
+      ASSERT(lpRectLast == NULL ||
+      __is_valid_address(lpRectLast, sizeof(RECT), FALSE));
 
-      //// first, determine the update region and select it
-      //::draw2d::region rgnNew;
-      //::draw2d::region rgnOutside, rgnInside;
-      //rgnOutside.CreateRectRgnIndirect(lpRect);
-      //rect rect = *lpRect;
-      //rect.inflate(-size.cx, -size.cy);
-      //rect.intersect(rect, lpRect);
-      //rgnInside.CreateRectRgnIndirect(rect);
-      //rgnNew.CreateRectRgn(0, 0, 0, 0);
-      //rgnNew.CombineRgn(&rgnOutside, &rgnInside, RGN_XOR);
+      // first, determine the update region and select it
+      ::draw2d::region rgnNew;
+      ::draw2d::region rgnOutside, rgnInside;
+      rgnOutside.CreateRectRgnIndirect(lpRect);
+      rect rect = *lpRect;
+      rect.inflate(-size.cx, -size.cy);
+      rect.intersect(rect, lpRect);
+      rgnInside.CreateRectRgnIndirect(rect);
+      rgnNew.CreateRectRgn(0, 0, 0, 0);
+      rgnNew.CombineRgn(&rgnOutside, &rgnInside, RGN_XOR);
 
-      //::draw2d::brush* pBrushOld = NULL;
-      //if (pBrush == NULL)
-      //{
-      //   pBrush = graphics::GetHalftoneBrush(get_app());
-      //}
+      ::draw2d::brush* pBrushOld = NULL;
+      if (pBrush == NULL)
+      {
+      pBrush = graphics::GetHalftoneBrush(get_app());
+      }
 
-      //ENSURE(pBrush);
+      ENSURE(pBrush);
 
-      //if (pBrushLast == NULL)
-      //{
-      //   pBrushLast = pBrush;
-      //}
+      if (pBrushLast == NULL)
+      {
+      pBrushLast = pBrush;
+      }
 
-      //::draw2d::region rgnLast, rgnUpdate;
-      //if (lpRectLast != NULL)
-      //{
-      //   // find difference between new region and old region
-      //   rgnLast.CreateRectRgn(0, 0, 0, 0);
-      //   rgnOutside.SetRectRgn(lpRectLast);
-      //   rect = *lpRectLast;
-      //   rect.inflate(-sizeLast.cx, -sizeLast.cy);
-      //   rect.intersect(rect, lpRectLast);
-      //   rgnInside.SetRectRgn(rect);
-      //   rgnLast.CombineRgn(&rgnOutside, &rgnInside, RGN_XOR);
+      ::draw2d::region rgnLast, rgnUpdate;
+      if (lpRectLast != NULL)
+      {
+      // find difference between new region and old region
+      rgnLast.CreateRectRgn(0, 0, 0, 0);
+      rgnOutside.SetRectRgn(lpRectLast);
+      rect = *lpRectLast;
+      rect.inflate(-sizeLast.cx, -sizeLast.cy);
+      rect.intersect(rect, lpRectLast);
+      rgnInside.SetRectRgn(rect);
+      rgnLast.CombineRgn(&rgnOutside, &rgnInside, RGN_XOR);
 
-      //   // only diff them if brushes are the same
-      //   if (pBrush->get_os_data() == pBrushLast->get_os_data())
-      //   {
-      //      rgnUpdate.CreateRectRgn(0, 0, 0, 0);
-      //      rgnUpdate.CombineRgn(&rgnLast, &rgnNew, RGN_XOR);
-      //   }
-      //}
-      //if (pBrush->get_os_data() != pBrushLast->get_os_data() && lpRectLast != NULL)
-      //{
-      //   // brushes are different -- erase old region first
-      //   SelectClipRgn(&rgnLast);
-      //   GetClipBox(&rect);
-      //   pBrushOld = SelectObject(pBrushLast);
-      //   PatBlt(rect.left, rect.top, rect.width(), rect.height(), PATINVERT);
-      //   SelectObject(pBrushOld);
-      //   pBrushOld = NULL;
-      //}
+      // only diff them if brushes are the same
+      if (pBrush->get_os_data() == pBrushLast->get_os_data())
+      {
+      rgnUpdate.CreateRectRgn(0, 0, 0, 0);
+      rgnUpdate.CombineRgn(&rgnLast, &rgnNew, RGN_XOR);
+      }
+      }
+      if (pBrush->get_os_data() != pBrushLast->get_os_data() && lpRectLast != NULL)
+      {
+      // brushes are different -- erase old region first
+      SelectClipRgn(&rgnLast);
+      GetClipBox(&rect);
+      pBrushOld = SelectObject(pBrushLast);
+      PatBlt(rect.left, rect.top, rect.width(), rect.height(), PATINVERT);
+      SelectObject(pBrushOld);
+      pBrushOld = NULL;
+      }
 
-      //// draw into the update/new region
-      //SelectClipRgn(rgnUpdate.get_os_data() != NULL ? &rgnUpdate : &rgnNew);
-      //GetClipBox(&rect);
-      //pBrushOld = SelectObject(pBrush);
-      //PatBlt(rect.left, rect.top, rect.width(), rect.height(), PATINVERT);
+      // draw into the update/new region
+      SelectClipRgn(rgnUpdate.get_os_data() != NULL ? &rgnUpdate : &rgnNew);
+      GetClipBox(&rect);
+      pBrushOld = SelectObject(pBrush);
+      PatBlt(rect.left, rect.top, rect.width(), rect.height(), PATINVERT);
 
-      //// cleanup DC
-      //if (pBrushOld != NULL)
-      //   SelectObject(pBrushOld);
-      //SelectClipRgn(NULL);
+      // cleanup DC
+      if (pBrushOld != NULL)
+      SelectObject(pBrushOld);
+      SelectClipRgn(NULL);
+
+      */
+
    }
-
-   /*void graphics::FillSolidRect(LPCRECT lpRect, COLORREF clr)
-   {
-   ::SetBkColor(get_handle1(), clr);
-   ::ExtTextOut(get_handle1(), 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
-   }*/
 
    void graphics::FillSolidRect(const __rect64 * lpRect, COLORREF clr)
    {
@@ -2887,15 +2886,6 @@ namespace draw2d_direct2d
 
 
 
-   //::draw2d::graphics * ::draw2d_direct2d::graphics::from_handle(HDC hDC)
-   //{
-   //hdc_map* pMap = afxMapHDC(TRUE); //create ::map if not exist
-   //ASSERT(pMap != NULL);
-   //      ::draw2d::graphics * pgraphics = (::draw2d::graphics *)pMap->from_handle(hDC);
-   //    ASSERT(pgraphics == NULL || (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->get_handle1() == hDC);
-   //  return pgraphics;
-   // return NULL;
-   //}
 
 /*   bool graphics::Attach(HDC hdc)
    {
@@ -3039,11 +3029,6 @@ namespace draw2d_direct2d
    //
    }
 
-   //   ::draw2d::object* graphics::SelectGdiObject(application * papp, HDC hDC, HGDIOBJ h)
-   // {
-   //      return ::draw2d_direct2d::object::from_handle(papp, ::SelectObject(hDC, h));
-   //}
-
 
    ::draw2d::object* graphics::SelectStockObject(int nIndex)
    {
@@ -3128,7 +3113,6 @@ namespace draw2d_direct2d
    ::draw2d::palette* graphics::SelectPalette(::draw2d::palette* pPalette, bool bForceBackground)
    {
       return NULL;
-      //      return dynamic_cast < ::draw2d::palette * > (::draw2d_direct2d::object::from_handle(get_app(), ::SelectPalette(get_handle1(), (HPALETTE)pPalette->get_os_data(), bForceBackground)));
    }
 
 /*   COLORREF graphics::SetBkColor(COLORREF crColor)
@@ -3857,7 +3841,7 @@ namespace draw2d_direct2d
                {
                   // got the stock object back, so must be selecting a font
                   throw not_implemented(pgraphics->get_app());
-                  //                  (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SelectObject(::draw2d_direct2d::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
+                  //                  (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SelectObject(::draw2d_direct2d::font::from_handle_dup(pgraphics->get_app(), (HFONT)hObject));
                   break;  // don't play the default record
                }
                else
@@ -3871,7 +3855,7 @@ namespace draw2d_direct2d
             else if (nObjType == OBJ_FONT)
             {
                // play back as graphics::SelectObject(::draw2d::font*)
-               //               (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SelectObject(::draw2d_direct2d::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
+               //               (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SelectObject(::draw2d_direct2d::font::from_handle_dup(pgraphics->get_app(), (HFONT)hObject));
                throw not_implemented(pgraphics->get_app());
                break;  // don't play the default record
             }

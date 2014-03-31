@@ -982,13 +982,13 @@ namespace plugin
          if(uiMessage == WM_MOUSEMOVE)
          {
 
-            sp(window) pwindow = m_puiHost->m_pimpl;
+            ::window_sp pwindow = m_puiHost->m_pimpl;
 
             pwindow->m_bMouseHover = true; // avoids tracking mouse leave;
 
          }
 
-         sp(window) pwindow = m_puiHost->m_pimpl;
+         ::window_sp pwindow = m_puiHost->m_pimpl;
 
          oswindow oswindow = pwindow->get_handle();
 

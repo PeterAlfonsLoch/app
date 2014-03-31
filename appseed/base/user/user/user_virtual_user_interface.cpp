@@ -159,17 +159,6 @@ bool virtual_user_interface::create_message_queue()
 {
    if(m_puiMessage == NULL)
    {
-      /*guie_message_wnd * pwnd = new guie_message_wnd(get_app());
-      pwnd->m_puiForward = this;
-      string strName = "::draw2d::fontopus::guie_message_wnd::";
-      strName += typeid(*m_pui).name();
-      if(!pwnd->window::create(NULL, strName, 0,
-      rect(0, 0, 0, 0), window::from_handle(HWND_MESSAGE), NULL))
-      {
-         delete pwnd;
-         return false;
-      }
-      m_puiMessage = pwnd;*/
    }
    return true;
 }
@@ -219,7 +208,7 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
 
    //m_pui = this;
 //   m_oswindow = pparent->get_handle();
-   /*sp(window) pwndThis = (this);
+   /*::window_sp pwndThis = (this);
    if(pwndThis != NULL)
    {
       pwndThis->set_handle(m_oswindow);
@@ -358,7 +347,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
    
    //m_pui = this;
 //   m_oswindow = pparent->get_handle();
-//   sp(window) pwndThis = (this);
+//   ::window_sp pwndThis = (this);
 /*   if(pwndThis != NULL)
    {
       pwndThis->set_handle(m_oswindow);
@@ -496,7 +485,7 @@ bool virtual_user_interface::create(sp(::user::interaction) pparent, id id)
    
    //m_pui = this;
 //   m_oswindow = pparent->get_handle();
-//   sp(window) pwndThis = (this);
+//   ::window_sp pwndThis = (this);
 /*   if(pwndThis != NULL)
    {
       pwndThis->set_handle(m_oswindow);
@@ -602,7 +591,7 @@ bool virtual_user_interface::create(sp(::user::interaction) pparent, id id)
    bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,
-      sp(window) pParentWnd, UINT nID,
+      ::window_sp pParentWnd, UINT nID,
       LPVOID lpParam)
    {
       return FALSE;
@@ -842,20 +831,20 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
          oswindow_Child = oswindow_Child->GetNextWindow(GW_HWNDNEXT))
       {
          id nIDC = oswindow_Child->GetDlgCtrlId();
-         sp(::user::interaction) pWnd = oswindow_Child;
+         sp(::user::interaction) pwindow = oswindow_Child;
          if (nIDC == nIDLeftOver)
             oswindow_LeftOver = oswindow_Child;
-         else if(pWnd != NULL)
+         else if(pwindow != NULL)
             oswindow_Child->send_message(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
       for (sp(::user::interaction) oswindow_Child = m_pui->get_top_child(); oswindow_Child != NULL;
          oswindow_Child = oswindow_Child->under_sibling())
       {
          id nIDC = oswindow_Child->GetDlgCtrlId();
-         sp(::user::interaction) pWnd = oswindow_Child;
+         sp(::user::interaction) pwindow = oswindow_Child;
          if (nIDC == nIDLeftOver)
             oswindow_LeftOver = oswindow_Child;
-         else if (pWnd != NULL)
+         else if (pwindow != NULL)
             oswindow_Child->send_message(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
    }
@@ -865,20 +854,20 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
          oswindow_Child = oswindow_Child->GetNextWindow(GW_HWNDNEXT))
       {
          id nIDC = oswindow_Child->GetDlgCtrlId();
-         sp(::user::interaction) pWnd = oswindow_Child;
+         sp(::user::interaction) pwindow = oswindow_Child;
          if (nIDC == nIDLeftOver)
             oswindow_LeftOver = oswindow_Child;
-         else if (pWnd != NULL)
+         else if (pwindow != NULL)
             oswindow_Child->send_message(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
       for (sp(::user::interaction) oswindow_Child = m_pui->get_top_child(); oswindow_Child != NULL;
          oswindow_Child = oswindow_Child->under_sibling())
       {
          id nIDC = oswindow_Child->GetDlgCtrlId();
-         sp(::user::interaction) pWnd = oswindow_Child;
+         sp(::user::interaction) pwindow = oswindow_Child;
          if (nIDC == nIDLeftOver)
             oswindow_LeftOver = oswindow_Child;
-         else if (pWnd != NULL)
+         else if (pwindow != NULL)
             oswindow_Child->send_message(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
    }
@@ -953,10 +942,10 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
       oswindow_Child = oswindow_Child->GetNextWindow(GW_HWNDNEXT))
    {
       uint_ptr nIDC = __get_dialog_control_id_(oswindow_Child);
-      sp(::user::interaction) pWnd = oswindow_Child;
+      sp(::user::interaction) pwindow = oswindow_Child;
       if (nIDC == nIDLeftOver)
          oswindow_LeftOver = oswindow_Child;
-      else if (nIDC >= nIDFirst && nIDC <= nIDLast && pWnd != NULL)
+      else if (nIDC >= nIDFirst && nIDC <= nIDLast && pwindow != NULL)
          oswindow_Child->SendMessage( WM_SIZEPARENT, 0, (LPARAM)&layout);
    }
 
@@ -964,10 +953,10 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    {
       sp(::user::interaction) oswindow_Child = m_uiptra[i];
       uint_ptr nIDC = __get_dialog_control_id_(oswindow_Child);
-      sp(::user::interaction) pWnd = oswindow_Child;
+      sp(::user::interaction) pwindow = oswindow_Child;
       if (nIDC == nIDLeftOver)
          oswindow_LeftOver = oswindow_Child;
-      else if (nIDC >= nIDFirst && nIDC <= nIDLast && pWnd != NULL)
+      else if (nIDC >= nIDFirst && nIDC <= nIDLast && pwindow != NULL)
          oswindow_Child->SendMessage( WM_SIZEPARENT, 0, (LPARAM)&layout);
    }
 
@@ -1209,9 +1198,9 @@ bool virtual_user_interface::DestroyWindow()
 
 sp(::user::interaction) virtual_user_interface::EnsureTopLevelParent()
 {
-    sp(::user::interaction)pWnd=GetTopLevelParent();
-    ENSURE_VALID(pWnd);
-    return pWnd;
+    sp(::user::interaction)pwindow=GetTopLevelParent();
+    ENSURE_VALID(pwindow);
+    return pwindow;
 }
 
 

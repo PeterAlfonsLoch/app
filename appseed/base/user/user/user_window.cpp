@@ -81,7 +81,7 @@ bool window::GetTitleBarInfo(PTITLEBARINFO pti) const
 
 #if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID)
 
-sp(window) window::GetAncestor(UINT gaFlags) const
+::window_sp window::GetAncestor(UINT gaFlags) const
 {
    UNREFERENCED_PARAMETER(gaFlags);
    throw interface_only_exception(get_app());
@@ -153,7 +153,7 @@ void window::pre_subclass_window()
    throw interface_only_exception(get_app());
 }
 
-sp(window) window::from_os_data(void * pdata)
+::window_sp window::from_os_data(void * pdata)
 {
    UNREFERENCED_PARAMETER(pdata);
    throw interface_only_exception(get_app());
@@ -623,7 +623,7 @@ void window::OnParentNotify(UINT message, LPARAM lParam)
    throw interface_only_exception(get_app());
 }
 
-void window::OnSetFocus(sp(window))
+void window::OnSetFocus(::window_sp)
 {
    throw interface_only_exception(get_app());
 }
@@ -712,14 +712,14 @@ void window::_001OnPrint(signal_details * pobj)
    throw interface_only_exception(get_app());
 }
 
-void window::OnEnterIdle(UINT /*nWhy*/, sp(window) /*pWho*/)
+void window::OnEnterIdle(UINT /*nWhy*/, ::window_sp /*pWho*/)
 {
    throw interface_only_exception(get_app());
 }
 
-HBRUSH window::OnCtlColor(::draw2d::graphics *, sp(window) pWnd, UINT)
+HBRUSH window::OnCtlColor(::draw2d::graphics *, ::window_sp pwindow, UINT)
 {
-   UNREFERENCED_PARAMETER(pWnd);
+   UNREFERENCED_PARAMETER(pwindow);
    throw interface_only_exception(get_app());
 }
 
@@ -804,7 +804,7 @@ bool window::subclass_window(oswindow oswindow)
    throw interface_only_exception(get_app());
 }
 
-bool window::SubclassDlgItem(UINT nID, sp(window) pParent)
+bool window::SubclassDlgItem(UINT nID, ::window_sp pParent)
 {
    UNREFERENCED_PARAMETER(nID);
    UNREFERENCED_PARAMETER(pParent);
@@ -908,7 +908,7 @@ bool window::IsZoomed()
 }
 
 
-sp(::user::interaction) window::get_parent()
+::user::interaction * window::get_parent()
 {
 
    return NULL;
@@ -1097,7 +1097,7 @@ bool window::BringWindowToTop()
    throw interface_only_exception(get_app());
 }
 
-void window::MapWindowPoints(sp(window) pwndTo, LPPOINT lpPoint, UINT nCount)
+void window::MapWindowPoints(::window_sp pwndTo, LPPOINT lpPoint, UINT nCount)
 {
    UNREFERENCED_PARAMETER(pwndTo);
    UNREFERENCED_PARAMETER(lpPoint);
@@ -1105,7 +1105,7 @@ void window::MapWindowPoints(sp(window) pwndTo, LPPOINT lpPoint, UINT nCount)
    throw interface_only_exception(get_app());
 }
 
-void window::MapWindowPoints(sp(window) pwndTo, LPRECT lpRect)
+void window::MapWindowPoints(::window_sp pwndTo, LPRECT lpRect)
 {
    UNREFERENCED_PARAMETER(pwndTo);
    UNREFERENCED_PARAMETER(lpRect);
@@ -1355,14 +1355,14 @@ int32_t window::GetChildByIdText(int32_t nID, LPTSTR lpStr, int32_t nMaxCount) c
    throw interface_only_exception(get_app());
 }
 
-sp(window) window::GetNextDlgGroupItem(sp(window) pWndCtl, bool bPrevious) const
+::window_sp window::GetNextDlgGroupItem(::window_sp pWndCtl, bool bPrevious) const
 {
    UNREFERENCED_PARAMETER(pWndCtl);
    UNREFERENCED_PARAMETER(bPrevious);
    throw interface_only_exception(get_app());
 }
 
-sp(window) window::GetNextDlgTabItem(sp(window) pWndCtl, bool bPrevious) const
+::window_sp window::GetNextDlgTabItem(::window_sp pWndCtl, bool bPrevious) const
 {
    UNREFERENCED_PARAMETER(pWndCtl);
    UNREFERENCED_PARAMETER(bPrevious);
@@ -1592,7 +1592,7 @@ void window::OnActivateApp(bool, uint32_t)
    throw interface_only_exception(get_app());
 }
 
-void window::OnActivate(UINT, sp(window), bool)
+void window::OnActivate(UINT, ::window_sp, bool)
 {
    throw interface_only_exception(get_app());
 }
@@ -1612,7 +1612,7 @@ void window::OnClose()
    throw interface_only_exception(get_app());
 }
 
-void window::OnContextMenu(sp(window), point)
+void window::OnContextMenu(::window_sp, point)
 {
    throw interface_only_exception(get_app());
 }
@@ -1620,7 +1620,7 @@ void window::OnContextMenu(sp(window), point)
 
 #ifdef WINDOWSEX
 
-bool window::OnCopyData(sp(window), COPYDATASTRUCT*)
+bool window::OnCopyData(::window_sp, COPYDATASTRUCT*)
 {
    throw interface_only_exception(get_app());
 }
@@ -1668,7 +1668,7 @@ void window::OnIconEraseBkgnd(::draw2d::graphics *)
    throw interface_only_exception(get_app());
 }
 
-void window::OnKillFocus(sp(window))
+void window::OnKillFocus(::window_sp)
 {
    throw interface_only_exception(get_app());
 }
@@ -1707,7 +1707,7 @@ bool window::OnQueryOpen()
    throw interface_only_exception(get_app());
 }
 
-bool window::OnSetCursor(sp(window), UINT, UINT)
+bool window::OnSetCursor(::window_sp, UINT, UINT)
 {
    throw interface_only_exception(get_app());
 }
@@ -1758,7 +1758,7 @@ void window::OnDropFiles(HDROP)
 #endif
 
 
-void window::OnPaletteIsChanging(sp(window))
+void window::OnPaletteIsChanging(::window_sp)
 {
    throw interface_only_exception(get_app());
 }
@@ -1883,7 +1883,7 @@ void window::OnFontChange()
    throw interface_only_exception(get_app());
 }
 
-void window::OnPaletteChanged(sp(window))
+void window::OnPaletteChanged(::window_sp)
 {
    throw interface_only_exception(get_app());
 }
@@ -1948,7 +1948,7 @@ void window::OnMButtonUp(UINT, point)
    throw interface_only_exception(get_app());
 }
 
-int32_t window::OnMouseActivate(sp(window), UINT, UINT)
+int32_t window::OnMouseActivate(::window_sp, UINT, UINT)
 {
    throw interface_only_exception(get_app());
 }
@@ -2024,12 +2024,12 @@ void window::OnDrawClipboard()
    throw interface_only_exception(get_app());
 }
 
-void window::OnHScrollClipboard(sp(window), UINT, UINT)
+void window::OnHScrollClipboard(::window_sp, UINT, UINT)
 {
    throw interface_only_exception(get_app());
 }
 
-void window::OnPaintClipboard(sp(window), HGLOBAL)
+void window::OnPaintClipboard(::window_sp, HGLOBAL)
 {
    throw interface_only_exception(get_app());
 }
@@ -2044,12 +2044,12 @@ void window::OnRenderFormat(UINT)
    throw interface_only_exception(get_app());
 }
 
-void window::OnSizeClipboard(sp(window), HGLOBAL)
+void window::OnSizeClipboard(::window_sp, HGLOBAL)
 {
    throw interface_only_exception(get_app());
 }
 
-void window::OnVScrollClipboard(sp(window), UINT, UINT)
+void window::OnVScrollClipboard(::window_sp, UINT, UINT)
 {
    throw interface_only_exception(get_app());
 }
@@ -2061,7 +2061,7 @@ UINT window::OnGetDlgCode()
    throw interface_only_exception(get_app());
 }
 
-void window::OnMDIActivate(bool, sp(window), sp(window))
+void window::OnMDIActivate(bool, ::window_sp, ::window_sp)
 {
    throw interface_only_exception(get_app());
 }
@@ -2110,7 +2110,7 @@ void window::OnMoving(UINT, LPRECT)
    throw interface_only_exception(get_app());
 }
 
-void window::OnCaptureChanged(sp(window))
+void window::OnCaptureChanged(::window_sp)
 {
    throw interface_only_exception(get_app());
 }
@@ -2436,16 +2436,7 @@ void window::update_graphics_resources()
 
    }
 
-
-
 }
-
-
-
-} // namespace core
-
-
-
 
 
 guie_message_wnd::guie_message_wnd(sp(base_application) papp) :

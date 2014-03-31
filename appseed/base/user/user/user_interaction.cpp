@@ -102,7 +102,7 @@ namespace user
       /*      if(GetTopLevelParent() != NULL
       && GetTopLevelParent() != this)
       {
-      sp(window) pwnd = GetTopLevelParent()->get_wnd();
+      ::window_sp pwnd = GetTopLevelParent()->get_wnd();
       if(pwnd != NULL)
       {
 
@@ -207,6 +207,12 @@ namespace user
 
    }
 
+   interaction * interaction::set_parent_base(interaction * pui)
+   {
+
+      return set_parent(pui);
+
+   }
 
    bool interaction::on_before_set_parent(sp(interaction) puiParent)
    {
@@ -237,7 +243,7 @@ namespace user
 
             m_pimpl->set_parent(NULL);
 
-            sp(window) pimplNew = Application.alloc(System.type_info < window >());
+            ::window_sp pimplNew = Application.alloc(System.type_info < window >());
 
             pimplNew->m_pui = this;
 
@@ -1081,7 +1087,7 @@ namespace user
    }
 
    /*
-   void interaction::_001SetWindowPos(const sp(window) pWndInsertAfter, int32_t x, int32_t y,
+   void interaction::_001SetWindowPos(const ::window_sp pWndInsertAfter, int32_t x, int32_t y,
    int32_t cx, int32_t cy, UINT nFlags)
    {
    SetWindowPos(pWndInsertAfter, x, y, cx, cy, nFlags);
@@ -1304,7 +1310,7 @@ namespace user
       return NULL;
 
 #else
-      sp(window) pwnd = NULL;
+      ::window_sp pwnd = NULL;
 
       try
       {
@@ -1345,7 +1351,7 @@ namespace user
 
       sp(interaction) pimplOld = m_pimpl;
 
-      sp(window) pimplNew = NULL;
+      ::window_sp pimplNew = NULL;
 
       pimplNew = (Application.alloc(System.type_info < window >()));
 
@@ -1368,7 +1374,7 @@ namespace user
 
             pimplOld->_001ClearMessageHandling();
 
-            sp(window) pwindowOld = pimplOld;
+            ::window_sp pwindowOld = pimplOld;
 
             if (pwindowOld != NULL)
             {
@@ -1402,7 +1408,7 @@ namespace user
    oswindow interaction::unsubclass_window()
    {
 
-      sp(window) pwindow = m_pimpl;
+      ::window_sp pwindow = m_pimpl;
 
       if (pwindow != NULL)
       {
@@ -1492,7 +1498,7 @@ namespace user
 
             pimplOld->_001ClearMessageHandling();
 
-            sp(window) pwindowOld = (pimplOld.m_p);
+            ::window_sp pwindowOld = (pimplOld.m_p);
 
             if (pwindowOld != NULL)
             {
@@ -1563,7 +1569,7 @@ namespace user
          {
             pimplOld->m_pui = NULL;
             pimplOld->_001ClearMessageHandling();
-            sp(window) pwindowOld = (pimplOld.m_p);
+            ::window_sp pwindowOld = (pimplOld.m_p);
             if (pwindowOld != NULL)
             {
                pwindowOld->install_message_handling(pimplOld);
@@ -3192,7 +3198,7 @@ namespace user
 
    }
 
-   void interaction::timer_array::transfer(sp(window) pwindow, sp(interaction) pui)
+   void interaction::timer_array::transfer(::window_sp pwindow, sp(interaction) pui)
    {
 
 
@@ -3434,7 +3440,7 @@ namespace user
       if (m_pimpl != NULL)
       {
 
-         sp(window) pwnd = m_pimpl.m_p;
+         ::window_sp pwnd = m_pimpl.m_p;
 
          if (pwnd != NULL)
             return pwnd;

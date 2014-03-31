@@ -483,7 +483,7 @@ namespace user
    //        if(pcomponent->m_etype == Pane::TypeWndPointer)
      //          pwnd = pcomponent->m_pwnd;
        //    else
-      //      pwnd = ::user::interaction::from_handle(pcomponent->m_oswindow);
+      //      pwnd = ::user::interaction::from_handle_dup(pcomponent->m_oswindow);
          pwnd = pcomponent->m_psplitpane;
            ASSERT(pwnd != NULL);
          if(bNewValue)

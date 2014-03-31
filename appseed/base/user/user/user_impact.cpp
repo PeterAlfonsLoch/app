@@ -360,7 +360,7 @@ namespace user
    }
 
    /* trans
-   int32_t impact::OnMouseActivate(sp(window) pDesktopWnd, UINT nHitTest, UINT message)
+   int32_t impact::OnMouseActivate(::window_sp pDesktopWnd, UINT nHitTest, UINT message)
    {
    int32_t nResult = ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
@@ -1064,7 +1064,7 @@ namespace user
    ASSERT(pContext->m_typeinfoNewView != NULL);
 
    // Note: can be a window with PostNcDestroy self cleanup
-   sp(window) pview = (pwndParent->System.alloc(pContext->m_typeinfoNewView));
+   ::window_sp pview = (pwndParent->System.alloc(pContext->m_typeinfoNewView));
    if (pview == NULL)
    {
    TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n",

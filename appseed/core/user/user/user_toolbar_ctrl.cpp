@@ -13,8 +13,8 @@ namespace user
    {
 
 #ifdef WINDOWSEX
-      sp(::user::interaction) pWnd = this;
-      return pWnd->create(TOOLBARCLASSNAME, NULL, dwStyle, rect, pParentWnd, nID);
+      sp(::user::interaction) pwindow = this;
+      return pwindow->create(TOOLBARCLASSNAME, NULL, dwStyle, rect, pParentWnd, nID);
 #else
       throw todo(get_app());
 #endif
@@ -530,12 +530,12 @@ namespace user
    }
 
 
-   void tool_bar_control::set_owner(sp(::user::interaction) pWnd)
+   void tool_bar_control::set_owner(sp(::user::interaction) pwindow)
    {
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); send_message( TB_SETPARENT, (WPARAM)pWnd.m_p);
+   ASSERT(IsWindow()); send_message( TB_SETPARENT, (WPARAM)pwindow.m_p);
 
 #else
 

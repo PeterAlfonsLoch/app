@@ -805,14 +805,14 @@ sp(::user::interaction) base_application::window_from_os_data_permanent(void * p
 
 }
 #else
-sp(window) base_application::window_from_os_data(void * pdata)
+::window_sp base_application::window_from_os_data(void * pdata)
 {
 
    return m_pimpl->window_from_os_data(pdata);
 
 }
 
-sp(window) base_application::window_from_os_data_permanent(void * pdata)
+::window_sp base_application::window_from_os_data_permanent(void * pdata)
 {
 
    return m_pimpl->window_from_os_data_permanent(pdata);
@@ -938,7 +938,7 @@ throw interface_only_exception(this);
 
 #endif*/
 
-sp(window) base_application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+::window_sp base_application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
 {
 
    throw interface_only_exception(this);
@@ -946,7 +946,7 @@ sp(window) base_application::FindWindow(const char * lpszClassName, const char *
 }
 
 
-sp(window) base_application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
+::window_sp base_application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
 {
 
    throw interface_only_exception(this);
@@ -1485,7 +1485,7 @@ sp(::user::interaction) base_application::get_focus_guie()
 
 #elif defined(WINDOWSEX) || defined(LINUX)
 
-   sp(window) pwnd = System.window_from_os_data_permanent(::GetFocus());
+   ::window_sp pwnd = System.window_from_os_data_permanent(::GetFocus());
    if (pwnd != NULL)
    {
       if (System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()

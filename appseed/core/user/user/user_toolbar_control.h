@@ -43,7 +43,7 @@ namespace user
       uint32_t GetButtonSize();
       bool SetButtonSize(size size);
       bool SetBitmapSize(size size);
-      void set_owner(sp(::user::interaction) pWnd);
+      void set_owner(sp(::user::interaction) pwindow);
       void SetRows(int32_t nRows, bool bLarger, LPRECT lpRect);
       int32_t GetRows();
       bool SetCmdID(int32_t nIndex, UINT nID);

@@ -29,18 +29,6 @@ namespace draw2d_cairo
    }
 */
 
-/*
-
-   palette* PASCAL palette::from_handle(sp(base_application) papp, HPALETTE hPalette)
-   {
-
-      //return dynamic_cast < palette * > (::win::object::from_handle(papp, hPalette));
-
-      return NULL;
-
-   }
-
-*/
 
 
 /*

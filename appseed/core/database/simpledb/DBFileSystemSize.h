@@ -137,7 +137,7 @@ public:
 
 
 class CLASS_DECL_CORE FileSystemSizeWnd :
-   public ::user::window_sp,
+   public ::window_sp,
    public signalizable
 {
 public:

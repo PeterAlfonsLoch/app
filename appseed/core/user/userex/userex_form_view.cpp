@@ -54,13 +54,16 @@ void form_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phin
                   }
                }
             }
-            
-            sp(::draw2d::graphics) dc(allocer());
-            
-            dc->CreateCompatibleDC(NULL);
 
-            get_html_data()->implement(pdc);
+            {
 
+               sp(::draw2d::graphics) dc(allocer());
+
+               dc->CreateCompatibleDC(NULL);
+
+               get_html_data()->implement(dc);
+
+            }
             
          }
 

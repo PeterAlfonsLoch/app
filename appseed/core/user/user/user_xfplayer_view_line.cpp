@@ -1106,9 +1106,9 @@ void XfplayerViewLine::SetAnimateIncrement(double dIncrement)
   //  m_iRedrawMode = iMode;
 //}
 
-//void XfplayerViewLine::SetRenderWindow(sp(window)pWnd)
+//void XfplayerViewLine::SetRenderWindow(::window_sp pwindow)
 //{
-  //  m_pRenderWnd = pWnd;
+  //  m_pRenderWnd = pwindow;
 //}
 
 void XfplayerViewLine::SetRenderCriticalSection(critical_section * pcs)

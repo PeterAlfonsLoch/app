@@ -77,7 +77,7 @@ namespace user
    {
    public:
       static void ContraintPosToParent(oswindow oswindow);
-      //static void EnumChildren(sp(window) pwnd, interaction_ptr_array & wndpa);
+      //static void EnumChildren(::window_sp pwnd, interaction_ptr_array & wndpa);
       static void EnumChildren(oswindow oswindow, oswindow_array & oswindowa);
       /*static void ExcludeChild(interaction_ptr_array & wndpa);*/
       /*static void SortByZOrder(interaction_ptr_array & wndpa);*/
@@ -98,7 +98,7 @@ namespace user
       //      static HRGN GetAClipRgn(oswindow oswindow, POINT ptOffset, bool bExludeChilren);
       //      static void ExcludeChildren(oswindow oswindow, HRGN hrgn, POINT ptOffset);
 
-      //static void SortByZOrder(comparable_array < sp(window), sp(window) > & wndpa);
+      //static void SortByZOrder(comparable_array < ::window_sp, ::window_sp > & wndpa);
       //static void SortByZOrder(comparable_array < oswindow, oswindow > & oswindowa);
       //static void EnumChildren(oswindow oswindow, comparable_array < oswindow, oswindow > & oswindowa);
 

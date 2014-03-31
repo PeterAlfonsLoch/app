@@ -586,13 +586,13 @@ namespace user
       {
          //::user::menu* pPopup = (::user::menu_item *) menu.GetSubMenu(0);
          //ASSERT(pPopup != NULL);
-         sp(::user::frame_window) pframe = (sp(::user::frame_window)) (sp(window)) GetParentFrame();
+         sp(::user::frame_window) pframe = (sp(::user::frame_window)) (::window_sp) GetParentFrame();
          //pPopup->TrackPopupMenu(
            // point.x, point.y,
-            //(sp(window)) pframe);
+            //(::window_sp) pframe);
          menu.TrackPopupMenu(
             point.x, point.y,
-            (sp(window)) pframe);
+            (::window_sp) pframe);
       }*/
    }
 

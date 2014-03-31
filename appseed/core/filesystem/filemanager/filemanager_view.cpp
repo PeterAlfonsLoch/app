@@ -47,7 +47,7 @@ namespace filemanager
                {
                   string str;
                   str.Format("::frame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-                  sp(frame) pframe = ((sp(window)) GetParentFrame());
+                  sp(frame) pframe = ((::window_sp) GetParentFrame());
                   if (pframe != NULL)
                   {
                      pframe->m_dataid = str;
@@ -309,7 +309,7 @@ namespace filemanager
                {
                   string str;
                   str.Format("::frame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-                  sp(frame) pframe = ((sp(window)) GetParentFrame());
+                  sp(frame) pframe = ((::window_sp) GetParentFrame());
                   if (pframe != NULL)
                   {
                      pframe->m_dataid = str;
@@ -325,7 +325,7 @@ namespace filemanager
                   GetParentFrame()->ActivateFrame(SW_SHOW);
                   OnActivateView(TRUE, this, this);
                   RedrawWindow();
-                  sp(frame) pframe = ((sp(window)) GetParentFrame());
+                  sp(frame) pframe = ((::window_sp) GetParentFrame());
                   if (pframe != NULL)
                   {
                      //xxx               pframe->WindowDataLoadWindowRect();
@@ -334,7 +334,7 @@ namespace filemanager
                }
                else if (puh->is_type_of(update_hint::TypeCreateBars))
                {
-                  sp(frame) pframe = ((sp(window)) GetParentFrame());
+                  sp(frame) pframe = ((::window_sp) GetParentFrame());
                   if (pframe != NULL)
                   {
                      ASSERT(pframe != NULL);
@@ -347,7 +347,7 @@ namespace filemanager
                   {
                      pmainframe->CreateBars();
                   }
-                  sp(child_frame) pchildframe = ((sp(window)) GetParentFrame());
+                  sp(child_frame) pchildframe = ((::window_sp) GetParentFrame());
                   if (pchildframe != NULL)
                   {
                      ASSERT(pchildframe != NULL);

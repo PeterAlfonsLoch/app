@@ -546,8 +546,8 @@ public:
    //virtual ::draw2d::graphics * graphics_from_os_data(void * pdata);
 
 
-   virtual sp(window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
-   virtual sp(window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
+   virtual ::window_sp FindWindow(const char * lpszClassName, const char * lpszWindowName);
+   virtual ::window_sp FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
 
 
 
@@ -578,7 +578,7 @@ public:
    //virtual void set_thread(thread * pthread);
 
 
-   virtual sp(window) get_desktop_window();
+   virtual ::window_sp get_desktop_window();
 
 
 

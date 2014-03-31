@@ -90,9 +90,9 @@ void XfplayerViewLines::SetEffect(int32_t iEffect)
     }
 }
 
-void XfplayerViewLines::SetRenderWindow(sp(window) pWnd)
+void XfplayerViewLines::SetRenderWindow(::window_sp pwindow)
 {
-   UNREFERENCED_PARAMETER(pWnd);
+   UNREFERENCED_PARAMETER(pwindow);
 }
 
 index XfplayerViewLines::FindLine(XfplayerViewLine * pline)

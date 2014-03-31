@@ -1534,10 +1534,10 @@ void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
       sp(::user::impact) pview = NULL;
       if (pframe->GetActiveView() == NULL)
       {
-         sp(::user::interaction) pWnd = pframe->GetDescendantWindow("pane_first");
-         if (pWnd != NULL && base < ::user::impact >::bases(pWnd))
+         sp(::user::interaction) pwindow = pframe->GetDescendantWindow("pane_first");
+         if (pwindow != NULL && base < ::user::impact >::bases(pwindow))
          {
-            pview = (pWnd.m_p);
+            pview = (pwindow.m_p);
             pframe->SetActiveView(pview, FALSE);
          }
       }
@@ -1646,6 +1646,7 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
 
 void simple_frame_window::_011OnDraw(::draw2d::graphics *pdc)
 {
+
    if ((m_bWindowFrame
       || m_etranslucency == TranslucencyTotal
       || m_etranslucency == TranslucencyPresent) &&
@@ -1655,13 +1656,17 @@ void simple_frame_window::_011OnDraw(::draw2d::graphics *pdc)
    }
    else
    {
+      
       rect rect;
 
-      pwnd->GetClientRect(rect);
+      GetClientRect(rect);
+
       pdc->FillSolidRect(rect, get_background_color());
+
    }
 
 }
+
 
 bool simple_frame_window::WfiOnMove(bool bTracking)
 {

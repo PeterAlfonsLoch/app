@@ -4,6 +4,11 @@
 #include "nodeapp/operational_system/operational_system.h"
 
 
+template < class T >
+class smart_pointer;
+
+
+#define sp(TYPE) smart_pointer < TYPE >
 
 
 class string;
@@ -31,8 +36,6 @@ class str_str_interface;
 class command_thread;
 class thread;
 class application;
-
-
 
 
 namespace visual
@@ -78,6 +81,7 @@ namespace file
 
 class window;
 
+typedef sp(window) window_sp;
 
 namespace user
 {
@@ -156,8 +160,6 @@ class random_access_iterator { public: };
 #define SCAST_REF(TYPE, rtarget, psource) TYPE & rtarget = *(dynamic_cast < TYPE * > (psource));
 
 
-#define sp(TYPE) smart_pointer < TYPE >
-
 #define CaSys(pca) (*pca->m_pbaseapp->m_pbasesystem)
 #define Sys(pbaseapp) (*pbaseapp->m_pbasesystem)
 #define System (Sys(this->m_pbaseapp))
@@ -192,10 +194,10 @@ typedef void * HDWP;
 
 #endif
 
-template < class T >
-class smart_pointer;
 
 typedef  void(*PFN_ca2_factory_exchange)(sp(base_application) papp);
+
+
 
 namespace core
 {

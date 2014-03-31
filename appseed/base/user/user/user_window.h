@@ -80,7 +80,7 @@ public:
 
 
 
-   virtual sp(window) from_os_data(void * pdata);
+   virtual ::window_sp from_os_data(void * pdata);
    virtual void * get_os_data() const;
 
 
@@ -102,7 +102,7 @@ public:
    // subclassing/unsubclassing functions
    virtual void pre_subclass_window();
    virtual bool subclass_window(oswindow oswindow);
-   virtual bool SubclassDlgItem(UINT nID, sp(window) pParent);
+   virtual bool SubclassDlgItem(UINT nID, ::window_sp pParent);
    virtual oswindow unsubclass_window();
 
    // handling of RT_DLGINIT resource (extension to RT_DIALOG)
@@ -148,7 +148,7 @@ public:
 
 #if(WINVER >= 0x0500)
 
-   virtual sp(window) GetAncestor(UINT gaFlags) const;
+   virtual ::window_sp GetAncestor(UINT gaFlags) const;
 
 #endif   // WINVER >= 0x0500
 
@@ -198,8 +198,8 @@ public:
 #endif
 
    // Coordinate Mapping Functions
-   virtual void MapWindowPoints(sp(window) pwndTo, LPPOINT lpPoint, UINT nCount);
-   virtual void MapWindowPoints(sp(window) pwndTo, LPRECT lpRect);
+   virtual void MapWindowPoints(::window_sp pwndTo, LPPOINT lpPoint, UINT nCount);
+   virtual void MapWindowPoints(::window_sp pwndTo, LPRECT lpRect);
 
    virtual void Print(::draw2d::graphics * pgraphics, uint32_t dwFlags) const;
    virtual void PrintClient(::draw2d::graphics * pgraphics, uint32_t dwFlags) const;
@@ -313,8 +313,8 @@ public:
    virtual UINT GetChildByIdInt(int32_t nID, bool* lpTrans = NULL, bool bSigned = TRUE) const;
    virtual int32_t GetChildByIdText(int32_t nID, LPTSTR lpStr, int32_t nMaxCount) const;
    virtual int32_t GetChildByIdText(int32_t nID, string & rString) const;
-   virtual sp(window) GetNextDlgGroupItem(sp(window) pWndCtl, bool bPrevious = FALSE) const;
-   virtual sp(window) GetNextDlgTabItem(sp(window) pWndCtl, bool bPrevious = FALSE) const;
+   virtual ::window_sp GetNextDlgGroupItem(::window_sp pWndCtl, bool bPrevious = FALSE) const;
+   virtual ::window_sp GetNextDlgTabItem(::window_sp pWndCtl, bool bPrevious = FALSE) const;
    virtual UINT IsDlgButtonChecked(int32_t nIDButton) const;
    virtual LRESULT SendDlgItemMessage(int32_t nID, UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
    virtual void SetDlgItemInt(int32_t nID, UINT nValue, bool bSigned = TRUE);
@@ -365,7 +365,7 @@ public:
    //      virtual sp(::user::interaction) GetWindow(UINT nCmd);
    virtual sp(::user::interaction) GetLastActivePopup();
 
-   virtual bool IsChild(sp(::user::interaction)  pWnd);
+   virtual bool IsChild(sp(::user::interaction)  pwindow);
    virtual ::user::interaction * get_parent();
    sp(::user::interaction) set_parent(sp(::user::interaction) pWndNewParent);
 
@@ -440,26 +440,26 @@ public:
    virtual bool OnCommand(::message::base * pbase);
    virtual bool OnNotify(::message::base * pbase);
 
-   void OnActivate(UINT nState, sp(window) pWndOther, bool bMinimized);
+   void OnActivate(UINT nState, ::window_sp pWndOther, bool bMinimized);
    void OnActivateApp(bool bActive, uint32_t dwThreadID);
    LRESULT OnActivateTopLevel(WPARAM, LPARAM);
    void OnCancelMode();
    void OnChildActivate();
    void OnClose();
-   void OnContextMenu(sp(window) pWnd, point pos);
+   void OnContextMenu(::window_sp pwindow, point pos);
 
 #ifdef WINDOWSEX
-   bool OnCopyData(sp(window) pWnd, COPYDATASTRUCT* pCopyDataStruct);
+   bool OnCopyData(::window_sp pwindow, COPYDATASTRUCT* pCopyDataStruct);
 #endif
    DECL_GEN_SIGNAL(_001OnCreate)
 
 
-      HBRUSH OnCtlColor(::draw2d::graphics * pgraphics, sp(window) pWnd, UINT nCtlColor);
+      HBRUSH OnCtlColor(::draw2d::graphics * pgraphics, ::window_sp pwindow, UINT nCtlColor);
 
    DECL_GEN_SIGNAL(_001OnDestroy)
       void OnEnable(bool bEnable);
    void OnEndSession(bool bEnding);
-   void OnEnterIdle(UINT nWhy, sp(window) pWho);
+   void OnEnterIdle(UINT nWhy, ::window_sp pWho);
    bool OnEraseBkgnd(::draw2d::graphics * pgraphics);
 
 
@@ -470,7 +470,7 @@ public:
 
 
    void OnIconEraseBkgnd(::draw2d::graphics * pgraphics);
-   void OnKillFocus(sp(window) pNewWnd);
+   void OnKillFocus(::window_sp pNewWnd);
    LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
    void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);
    void OnMove(int32_t x, int32_t y);
@@ -482,7 +482,7 @@ public:
    bool OnQueryEndSession();
    bool OnQueryNewPalette();
    bool OnQueryOpen();
-   void OnSetFocus(sp(window) pOldWnd);
+   void OnSetFocus(::window_sp pOldWnd);
    void OnShowWindow(bool bShow, UINT nStatus);
    void OnSize(UINT nType, int32_t cx, int32_t cy);
 
@@ -523,7 +523,7 @@ public:
 #ifdef WINDOWSEX
    void OnDropFiles(HDROP hDropInfo);
 #endif
-   void OnPaletteIsChanging(sp(window) pRealizeWnd);
+   void OnPaletteIsChanging(::window_sp pRealizeWnd);
    void OnSysChar(UINT nChar, UINT nRepCnt, UINT nFlags);
    void OnSysCommand(UINT nID, LPARAM lParam);
    void OnSysDeadChar(UINT nChar, UINT nRepCnt, UINT nFlags);
@@ -532,7 +532,7 @@ public:
    void OnCompacting(UINT nCpuTime);
    void OnDevModeChange(LPTSTR lpDeviceName);
    void OnFontChange();
-   void OnPaletteChanged(sp(window) pFocusWnd);
+   void OnPaletteChanged(::window_sp pFocusWnd);
    void OnSpoolerStatus(UINT nStatus, UINT nJobs);
    void OnSysColorChange();
    void OnTimeChange();
@@ -552,14 +552,14 @@ public:
    void OnMButtonDblClk(UINT nFlags, point point);
    void OnMButtonDown(UINT nFlags, point point);
    void OnMButtonUp(UINT nFlags, point point);
-   int32_t OnMouseActivate(sp(window) pDesktopWnd, UINT nHitTest, UINT message);
+   int32_t OnMouseActivate(::window_sp pDesktopWnd, UINT nHitTest, UINT message);
    void OnMouseMove(UINT nFlags, point point);
    bool OnMouseWheel(UINT nFlags, int16_t zDelta, point pt);
    LRESULT OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam);
    void OnRButtonDblClk(UINT nFlags, point point);
    void OnRButtonDown(UINT nFlags, point point);
    void OnRButtonUp(UINT nFlags, point point);
-   bool OnSetCursor(sp(window) pWnd, UINT nHitTest, UINT message);
+   bool OnSetCursor(::window_sp pwindow, UINT nHitTest, UINT message);
    void OnTimer(uint_ptr nIDEvent);
 
    // Initialization message handler member functions
@@ -575,12 +575,12 @@ public:
    void OnChangeCbChain(oswindow oswindow_Remove, oswindow oswindow_After);
    void OnDestroyClipboard();
    void OnDrawClipboard();
-   void OnHScrollClipboard(sp(window) pClipAppWnd, UINT nSBCode, UINT nPos);
-   void OnPaintClipboard(sp(window) pClipAppWnd, HGLOBAL hPaintStruct);
+   void OnHScrollClipboard(::window_sp pClipAppWnd, UINT nSBCode, UINT nPos);
+   void OnPaintClipboard(::window_sp pClipAppWnd, HGLOBAL hPaintStruct);
    void OnRenderAllFormats();
    void OnRenderFormat(UINT nFormat);
-   void OnSizeClipboard(sp(window) pClipAppWnd, HGLOBAL hRect);
-   void OnVScrollClipboard(sp(window) pClipAppWnd, UINT nSBCode, UINT nPos);
+   void OnSizeClipboard(::window_sp pClipAppWnd, HGLOBAL hRect);
+   void OnVScrollClipboard(::window_sp pClipAppWnd, UINT nSBCode, UINT nPos);
 
 
 #endif
@@ -603,7 +603,7 @@ public:
 
 
    // MDI message handler member functions
-   void OnMDIActivate(bool bActivate, sp(window) pActivateWnd, sp(window) pDeactivateWnd);
+   void OnMDIActivate(bool bActivate, ::window_sp pActivateWnd, ::window_sp pDeactivateWnd);
 
    // menu loop notification messages
    void OnEnterMenuLoop(bool bIsTrackPopupMenu);
@@ -616,7 +616,7 @@ public:
 #endif
    void OnSizing(UINT nSide, LPRECT lpRect);
    void OnMoving(UINT nSide, LPRECT lpRect);
-   void OnCaptureChanged(sp(window) pWnd);
+   void OnCaptureChanged(::window_sp pwindow);
    bool OnDeviceChange(UINT nEventType, uint_ptr dwData);
 
 
@@ -671,8 +671,8 @@ public:
 
 
    // for creating dialogs and dialog-like windows
-   //virtual bool CreateDlg(const char * lpszTemplateName, sp(window) pParentWnd);
-   //virtual bool CreateDlgIndirect(LPCDLGTEMPLATE lpDialogTemplate, sp(window) pParentWnd,
+   //virtual bool CreateDlg(const char * lpszTemplateName, ::window_sp pParentWnd);
+   //virtual bool CreateDlgIndirect(LPCDLGTEMPLATE lpDialogTemplate, ::window_sp pParentWnd,
    // HINSTANCE hInst);
 
 
@@ -708,7 +708,6 @@ public:
 };
 
 
-typedef smart_pointer < window > window_sp;
 
 
 

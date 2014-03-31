@@ -73,16 +73,16 @@ namespace user
    // have a permanent window associated object
    // and that all window array pointers
    // are pointers to permanent objects.
-   /*void window_util::SortByZOrder(Carray < sp(window), sp(window) > & wndpa)
+   /*void window_util::SortByZOrder(Carray < ::window_sp, ::window_sp > & wndpa)
    {
    if(wndpa.get_size() <= 0)
    return;
 
-   Carray < sp(window), sp(window) > wndpa2;
+   Carray < ::window_sp, ::window_sp > wndpa2;
 
-   sp(window) pwnd = wndpa[0];
+   ::window_sp pwnd = wndpa[0];
 
-   sp(window) pwndChild = pwnd->GetWindow(GW_HWNDFIRST);
+   ::window_sp pwndChild = pwnd->GetWindow(GW_HWNDFIRST);
 
    while(pwndChild != NULL
    && ::IsWindow(pwndChild->GetSafeoswindow_()))
@@ -112,8 +112,8 @@ namespace user
    pwndChild = pwndChild->GetWindow(GW_HWNDNEXT);
    }
 
-   Carray < sp(window), sp(window) > wndpa3;
-   Carray < sp(window), sp(window) > wndpa4;
+   Carray < ::window_sp, ::window_sp > wndpa3;
+   Carray < ::window_sp, ::window_sp > wndpa4;
 
    for(int32_t i = 0; i < wndpa2.get_size(); i++)
    {
@@ -377,11 +377,11 @@ namespace user
    // to the window array wndpa. The top
    // windows come first in the enumeration.
 
-   /*void window_util::EnumChildren(sp(window) pwnd, interaction_ptr_array & wndpa)
+   /*void window_util::EnumChildren(::window_sp pwnd, interaction_ptr_array & wndpa)
    {
    if(!::IsWindow(pwnd->GetSafeoswindow_()))
    return;
-   sp(window) pwndChild = pwnd->GetTopWindow();
+   ::window_sp pwndChild = pwnd->GetTopWindow();
    while(pwndChild != NULL)
    {
    wndpa.add(pwndChild);
@@ -437,9 +437,9 @@ namespace user
 
    interaction_ptr_array wndpa2;
 
-   sp(window) pwnd = wndpa[0];
+   ::window_sp pwnd = wndpa[0];
 
-   sp(window) pwndChild = pwnd->GetWindow(GW_HWNDFIRST);
+   ::window_sp pwndChild = pwnd->GetWindow(GW_HWNDFIRST);
 
    while(pwndChild != NULL)
    {
@@ -603,11 +603,11 @@ namespace user
    // if bOnlyPerm is TRUE, don't send to non-permanent windows
    if (bOnlyPerm)
    {
-   sp(window) pWnd = window::FromHandlePermanent(oswindow_Child);
-   if (pWnd != NULL)
+   ::window_sp pwindow = window::FromHandlePermanent(oswindow_Child);
+   if (pwindow != NULL)
    {
    // call window proc directly since it is a C++ window
-   __call_window_procedure(pWnd, pWnd->m_oswindow_, message, wParam, lParam);
+   __call_window_procedure(pwindow, pwindow->m_oswindow_, message, wParam, lParam);
    }
    }
    else

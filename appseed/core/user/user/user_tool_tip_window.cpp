@@ -579,7 +579,7 @@ namespace user
    }
 
 
-   void tool_tip_window::SetPositionHint(sp(window) pwnd, e_position eposition)
+   void tool_tip_window::SetPositionHint(::window_sp pwnd, e_position eposition)
    {
       rect rect;
       pwnd->GetWindowRect(rect);

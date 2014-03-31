@@ -37,7 +37,7 @@ CLASS_DECL_BASE PFN_get_thread_state g_pfn_get_thread_state = NULL;
 thread * get_thread()
 {
 
-   if(g_pfn_get_thread == NULL)
+   if (g_pfn_get_thread == NULL)
       return NULL;
 
    return g_pfn_get_thread();
@@ -50,7 +50,7 @@ base_application * get_thread_app()
 
    thread * pthread = get_thread();
 
-   if(pthread == NULL)
+   if (pthread == NULL)
       return NULL;
 
    return pthread->get_app();
@@ -414,57 +414,6 @@ bool thread::post_thread_message(UINT message, WPARAM wParam, lparam lParam)
 
 
 
-void thread::unset_timer(sp(::user::interaction) pui, uint_ptr nIDEvent)
-{
-UNREFERENCED_PARAMETER(pui);
-UNREFERENCED_PARAMETER(nIDEvent);
-throw interface_only_exception(get_app());
-}
-
-void thread::set_auto_delete(bool bAutoDelete)
-{
-UNREFERENCED_PARAMETER(bAutoDelete);
-throw interface_only_exception(get_app());
-}
-
-void thread::set_run(bool bRun)
-{
-UNREFERENCED_PARAMETER(bRun);
-throw interface_only_exception(get_app());
-}
-
-event & thread::get_finish_event()
-{
-throw interface_only_exception(get_app());
-}
-
-bool thread::get_run()
-{
-throw interface_only_exception(get_app());
-}
-
-thread * thread::get_app_thread()
-{
-throw interface_only_exception(get_app());
-}
-
-sp(::user::interaction) thread::get_active_ui()
-{
-throw interface_only_exception(get_app());
-}
-
-sp(::user::interaction) thread::set_active_ui(sp(::user::interaction) pui)
-{
-UNREFERENCED_PARAMETER(pui);
-throw interface_only_exception(get_app());
-}
-
-void thread::step_timer()
-{
-throw interface_only_exception(get_app());
-}
-
-*/
 void thread::set_os_data(void * pvoidOsData)
 {
    m_p->set_os_data(pvoidOsData);
@@ -765,7 +714,7 @@ void thread::remove(::user::interaction * pui)
 }
 
 
-sp(::user::interaction) thread::get_ui(index iIndex)
+::user::interaction * thread::get_ui(index iIndex)
 {
 
    if (m_p == NULL)

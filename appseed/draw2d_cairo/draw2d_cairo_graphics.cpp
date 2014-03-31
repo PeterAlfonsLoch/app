@@ -106,9 +106,9 @@ namespace draw2d_cairo
    }
 
 
-/*   sp(window) graphics::GetWindow() const
+/*   ::window_sp graphics::GetWindow() const
    {
-      ASSERT(get_handle1() != NULL); return ::win::window::from_handle(::WindowFromDC(get_handle1()));
+      //ASSERT(get_handle1() != NULL); return ::win::window::from_handle(::WindowFromDC(get_handle1()));
    }
 */
 
@@ -212,10 +212,10 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    }
 
-   int32_t graphics::ExcludeUpdateRgn(window * pWnd)
+   int32_t graphics::ExcludeUpdateRgn(window * pwindow)
    {
   //    ASSERT(get_handle1() != NULL);
-//      return ::ExcludeUpdateRgn(get_handle1(), WIN_WINDOW(pWnd)->get_handle());
+//      return ::ExcludeUpdateRgn(get_handle1(), WIN_WINDOW(pwindow)->get_handle());
          throw not_implemented(get_app());
          return 0;
    }
@@ -2886,8 +2886,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       if (!gen_WingdixTerm)
          gen_WingdixTerm = (char)!atexit(&__win_gdi_x_term);
       ::core::UnlockGlobals(CRIT_HALFTONEBRUSH);
-
-//      return ::win::brush::from_handle(papp, gen_HalftoneBrush);*/
+      */
       return NULL;
    }
 
@@ -3015,15 +3014,6 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
 
 
-   //::draw2d::graphics * PASCAL ::win::graphics::from_handle(HDC hDC)
-   //{
-      //hdc_map* pMap = afxMapHDC(TRUE); //create ::collection::map if not exist
-      //ASSERT(pMap != NULL);
-//      ::draw2d::graphics * pgraphics = (::draw2d::graphics *)pMap->from_handle(hDC);
-  //    ASSERT(pgraphics == NULL || (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1() == hDC);
-    //  return pgraphics;
-     // return NULL;
-   //}
 
 /*
 
@@ -3205,49 +3195,20 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
    }
 
-//   object* PASCAL graphics::SelectGdiObject(sp(base_application) papp, HDC hDC, HGDIOBJ h)
-  // {
-//      return ::win::object::from_handle(papp, ::SelectObject(hDC, h));
-   //}
-
    ::draw2d::object* graphics::SelectStockObject(int32_t nIndex)
    {
-/*      HGDIOBJ hObject = ::GetStockObject(nIndex);
-      HGDIOBJ hOldObj = NULL;
-      ASSERT(hObject != NULL);
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         hOldObj = ::SelectObject(get_handle1(), hObject);
-      if(get_handle2() != NULL)
-         hOldObj = ::SelectObject(get_handle2(), hObject);
-      return ::win::object::from_handle(get_app(), hOldObj);*/
 
       return NULL;
    }
 
    ::draw2d::pen* graphics::SelectObject(::draw2d::pen* ppen)
    {
-      /*HGDIOBJ hOldObj = NULL;
-      if(pPen == NULL)
-         return NULL;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         hOldObj = ::SelectObject(get_handle1(), pPen->get_os_data());
-      if(get_handle2() != NULL)
-         hOldObj = ::SelectObject(get_handle2(), pPen->get_os_data());
-      return dynamic_cast < pen * > (::win::object::from_handle(get_app(), hOldObj));*/
       m_sppen = ppen;
       return m_sppen;
    }
 
    ::draw2d::brush* graphics::SelectObject(::draw2d::brush* pbrush)
    {
-/*      HGDIOBJ hOldObj = NULL;
-      if(pBrush == NULL)
-         return NULL;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         hOldObj = ::SelectObject(get_handle1(), pBrush->get_os_data());
-      if(get_handle2() != NULL)
-         hOldObj = ::SelectObject(get_handle2(), pBrush->get_os_data());
-      return dynamic_cast < ::draw2d::brush * > (::win::object::from_handle(get_app(), hOldObj));*/
       m_spbrush = pbrush;
       return m_spbrush;
 
@@ -3255,14 +3216,6 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
    ::draw2d::font* graphics::SelectObject(::draw2d::font* pfont)
    {
-/*      HGDIOBJ hOldObj = NULL;
-      if(pFont == NULL)
-         return NULL;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         hOldObj = ::SelectObject(get_handle1(), pFont->get_os_data());
-      if(get_handle2() != NULL)
-         hOldObj = ::SelectObject(get_handle2(), pFont->get_os_data());
-      return dynamic_cast < ::draw2d::font * > (::win::object::from_handle(get_app(), hOldObj));*/
 
       /*ASSERT(pFont != NULL);
 
@@ -3299,7 +3252,6 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    ::draw2d::palette* graphics::SelectPalette(::draw2d::palette* pPalette, bool bForceBackground)
    {
       return NULL;
-//      return dynamic_cast < ::draw2d::palette * > (::win::object::from_handle(get_app(), ::SelectPalette(get_handle1(), (HPALETTE)pPalette->get_os_data(), bForceBackground)));
    }
 
 
@@ -4203,7 +4155,7 @@ synch_lock ml(&user_mutex());
                {
                   // got the stock object back, so must be selecting a font
                   throw not_implemented(get_thread_app());
-//                  (dynamic_cast<::win::graphics * >(pgraphics))->SelectObject(::win::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
+//                  (dynamic_cast<::win::graphics * >(pgraphics))->SelectObject(::win::font::from_handle_dup(pgraphics->get_app(), (HFONT)hObject));
                   break;  // don't play the default record
                }
                else
@@ -4217,7 +4169,7 @@ synch_lock ml(&user_mutex());
             else if (nObjType == OBJ_FONT)
             {
                // play back as graphics::SelectObject(::draw2d::font*)
-//               (dynamic_cast<::win::graphics * >(pgraphics))->SelectObject(::win::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
+//               (dynamic_cast<::win::graphics * >(pgraphics))->SelectObject(::win::font::from_handle_dup(pgraphics->get_app(), (HFONT)hObject));
                throw not_implemented(get_thread_app());
                break;  // don't play the default record
             }

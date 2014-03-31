@@ -70,46 +70,26 @@ namespace draw2d_cairo
       return NULL;
    }
 
-   /*object* PASCAL object::from_handle(sp(base_application) papp, HGDIOBJ h)
+#ifdef _DEBUG
+   void object::dump(dump_context & dumpcontext) const
    {
-      hgdiobj_map* pMap = afxMapHGDIOBJ(TRUE); //create ::collection::map if not exist
-      ASSERT(pMap != NULL);
-      object* pObject = (::win::object*)pMap->from_handle(h, &graphics_object_allocator, papp);
-      ASSERT(pObject == NULL || pObject->get_os_data() == h);
-      return pObject;
+      ::object::dump(dumpcontext);
+
+      dumpcontext << "get_handle() = " << 0;
+      dumpcontext << "\n";
    }
 
-   bool object::Attach(HGDIOBJ hObject)
+   void object::assert_valid() const
    {
-      if (hObject == NULL)
-      {
-         return FALSE;
-      }
-      if(get_os_data() != NULL)
-      {
-         delete_object();
-      }
-      // remember early to avoid leak
-      set_handle(hObject);
-      hgdiobj_map* pMap = afxMapHGDIOBJ(TRUE); // create ::collection::map if not exist
-      ASSERT(pMap != NULL);
-      pMap->set_permanent(get_os_data(), this);
-      return TRUE;
+      ::object::assert_valid();
+      /*      ASSERT(get_handle() == NULL ||
+      (afxData.bWin95 || ::GetObjectType(get_handle()) != 0));*/
    }
+#endif
 
-   HGDIOBJ object::Detach()
-   {
-      HGDIOBJ hObject = get_os_data();
-      if (hObject != NULL)
-      {
-         hgdiobj_map* pMap = afxMapHGDIOBJ(); // don't create if not exist
-         if (pMap != NULL)
-            pMap->remove_handle(get_os_data());
-      }
 
-      set_handle(NULL);
-      return hObject;
-   }*/
+   /*
+   
 
    bool object::delete_object()
    {
