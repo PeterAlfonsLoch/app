@@ -45,6 +45,8 @@ namespace html
 
             str = str.Mid(psz - pszStart + 1);
 
+            pstyle->m_etag = tag_none;
+
          }
          else
          {

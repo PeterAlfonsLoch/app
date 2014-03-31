@@ -314,13 +314,13 @@ namespace html
       if (m_pimpl != NULL)
       {
 
-         m_style.get_surround_box("padding", "", pdata, this, m_pimpl->m_padding);
+         m_style.get_surround_box(__id(html_padding), "", pdata, this, m_pimpl->m_padding);
          
-         m_style.get_border_box("border", "", pdata, this, m_pimpl->m_border);
+         m_style.get_border_box(__id(html_border), "", pdata, this, m_pimpl->m_border);
          
-         m_style.get_border_color("border", "", pdata, this, m_pimpl->m_border);
+         m_style.get_border_color(__id(html_border), "", pdata, this, m_pimpl->m_border);
          
-         m_style.get_surround_box("margin", "", pdata, this, m_pimpl->m_margin);
+         m_style.get_surround_box(__id(html_margin), "", pdata, this, m_pimpl->m_margin);
 
          m_pimpl->implement_phase1(pdata, this);
 
