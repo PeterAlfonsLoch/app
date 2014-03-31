@@ -228,7 +228,7 @@ namespace user
       sp(::user::interaction) pwndex;
       if (base < ::user::impact > ::bases(get_parent()))
       {
-         pwndex = (get_parent().m_p);
+         pwndex = get_parent();
          if (pwndex != NULL)
          {
             if (pwndex->_001OnCmdMsg(pcmdmsg))
@@ -271,9 +271,9 @@ namespace user
       //   trans OnDraw(&spgraphics);
    }
 
-   sp(::user::object) impact::get_document(sp(::user::interaction) pguie)
+   sp(::user::object) impact::get_document(sp(::user::interaction) pui)
    {
-      sp(::user::impact) pview = (pguie.m_p);
+      sp(::user::impact) pview = (pui.m_p);
       if (pview != NULL)
          return NULL;
       return pview->get_document();
@@ -360,7 +360,7 @@ namespace user
    }
 
    /* trans
-   int32_t impact::OnMouseActivate(sp(::user::window) pDesktopWnd, UINT nHitTest, UINT message)
+   int32_t impact::OnMouseActivate(sp(window) pDesktopWnd, UINT nHitTest, UINT message)
    {
    int32_t nResult = ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
@@ -623,20 +623,20 @@ namespace user
 
       sp(base_application) papp = pwndParent->get_app();
 
-      sp(::user::interaction) pguie;
+      sp(::user::interaction) pui;
 
       if (pContext->m_user->m_puiNew != NULL)
       {
 
-         pguie = pContext->m_user->m_puiNew;
+         pui = pContext->m_user->m_puiNew;
 
       }
       else
       {
 
          // Note: can be a ::user::interaction with PostNcDestroy self cleanup
-         pguie = App(papp).alloc(pContext->m_user->m_typeinfoNewView);
-         if (pguie == NULL)
+         pui = App(papp).alloc(pContext->m_user->m_typeinfoNewView);
+         if (pui == NULL)
          {
             //         TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n", pContext->m_typeinfoNewView.name());
             return NULL;
@@ -644,10 +644,10 @@ namespace user
 
       }
 
-      ASSERT_KINDOF(::user::interaction, pguie);
+      ASSERT_KINDOF(::user::interaction, pui);
 
       // views are always created with a border!
-      if (!pguie->create(NULL, NULL, WS_VISIBLE | WS_CHILD, rect(0, 0, 0, 0), pwndParent, id, pContext))
+      if (!pui->create(NULL, NULL, WS_VISIBLE | WS_CHILD, rect(0, 0, 0, 0), pwndParent, id, pContext))
       {
 
          //TRACE0("Warning: could not create ::user::impact for frame.\n");
@@ -656,7 +656,7 @@ namespace user
       }
 
 
-      sp(::user::impact) pview = pguie;
+      sp(::user::impact) pview = pui;
       if (pview != NULL)
       {
          pview->_001OnInitialUpdate(NULL);
@@ -670,18 +670,18 @@ namespace user
       }*/
 
 
-      if (pguie != NULL)
+      if (pui != NULL)
       {
 
-         if (pguie->get_parent() != NULL)
+         if (pui->get_parent() != NULL)
          {
 
 
 
-            if (pguie->get_parent()->is_place_holder())
+            if (pui->get_parent()->is_place_holder())
             {
 
-               pguie->get_parent()->place(pguie);
+               pui->get_parent()->place(pui);
 
             }
 
@@ -689,7 +689,7 @@ namespace user
 
       }
 
-      return pguie;
+      return pui;
 
    }
 
@@ -1063,15 +1063,15 @@ namespace user
    ASSERT(pContext != NULL);
    ASSERT(pContext->m_typeinfoNewView != NULL);
 
-   // Note: can be a ::user::window with PostNcDestroy self cleanup
-   sp(::user::window) pview = (pwndParent->System.alloc(pContext->m_typeinfoNewView));
+   // Note: can be a window with PostNcDestroy self cleanup
+   sp(window) pview = (pwndParent->System.alloc(pContext->m_typeinfoNewView));
    if (pview == NULL)
    {
    TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n",
    pContext->m_typeinfoNewView.name());
    return NULL;
    }
-   ASSERT_KINDOF(::user::window, pview);
+   ASSERT_KINDOF(window, pview);
 
    // views are always created with a border!
    if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,

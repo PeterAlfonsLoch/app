@@ -1,15 +1,8 @@
 #pragma once
 
 
-//CLASS_DECL_BASE extern bool g_bInstalling;
-
-#define SPA_FILE_FLAG_VOID_COPY 1
-
 namespace install
 {
-
-
-   class window;
 
 
    class CLASS_DECL_BASE installer :

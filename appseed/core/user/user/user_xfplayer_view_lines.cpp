@@ -90,7 +90,7 @@ void XfplayerViewLines::SetEffect(int32_t iEffect)
     }
 }
 
-void XfplayerViewLines::SetRenderWindow(sp(::user::window) pWnd)
+void XfplayerViewLines::SetRenderWindow(sp(window) pWnd)
 {
    UNREFERENCED_PARAMETER(pWnd);
 }

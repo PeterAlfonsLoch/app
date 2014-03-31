@@ -1,6 +1,21 @@
 #pragma once
 
 
+namespace install
+{
+
+
+   class installer;
+   class window;
+   class install;
+
+
+} // namespace install
+
+
+#define SPA_FILE_FLAG_VOID_COPY 1
+
+
 #include "install_canvas.h"
 #include "install_plugin.h"
 #include "install_starter_start.h"

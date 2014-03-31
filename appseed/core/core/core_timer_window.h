@@ -4,7 +4,7 @@
 class timer_callback;
 
 class CLASS_DECL_CORE timer_window : 
-   public ::user::window
+   public window
 {
 public:
 

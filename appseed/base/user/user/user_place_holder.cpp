@@ -120,20 +120,27 @@ namespace user
          puiHold->layout();
       }
 
-
    }
+
 
    bool place_holder::create(sp(::user::place_holder_container) pcontainer, id id)
    {
+
       return ::user::interaction::create(NULL, NULL, WS_VISIBLE | WS_CHILD /*__WS_DEFAULT_VIEW*/, rect(0,0,0,0), pcontainer, id) != FALSE;
+
    }
 
-   sp(interaction) place_holder::get_ui()
+
+   interaction * place_holder::get_hold()
    {
+
       if(m_uiptraHold.get_count() <= 0)
          return NULL;
+
       return m_uiptraHold(0);
+
    }
+
 
    int32_t place_holder_ptra::hold(sp(::user::interaction) pui)
    {
@@ -157,6 +164,7 @@ namespace user
       return count;
 
    }
+
 
    int32_t place_holder_ptra::unhold(sp(::user::interaction) pui)
    {

@@ -134,7 +134,7 @@ class CDockState;           // forward reference (see afxpriv.h)
 /////////////////////////////////////////////////////////////////////////////
 // CMiniFrameWnd
 
-// MiniFrame ::user::window styles
+// MiniFrame window styles
 #define MFS_SYNCACTIVE      0x00000100L // syncronize activation w/ parent
 #define MFS_4THICKFRAME     0x00000200L // thick frame all around (no tiles)
 #define MFS_THICKFRAME      0x00000400L // use instead of WS_THICKFRAME

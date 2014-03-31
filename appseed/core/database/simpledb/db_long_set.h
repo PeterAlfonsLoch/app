@@ -135,10 +135,10 @@ public:
    bool find(const char * lpKey);
 
 
-   bool MoveWindow_(const char * lpKey, sp(::user::window)pWnd);
-   bool SaveWindowRect_(const char * lpKey, sp(::user::window)pWnd);
-   bool SetWindowPlacement(const char * lpKey, sp(::user::window)pWnd);
-   bool SaveWindowPlacement(const char * lpKey, sp(::user::window)pWnd);
+   bool MoveWindow_(const char * lpKey, sp(window)pWnd);
+   bool SaveWindowRect_(const char * lpKey, sp(window)pWnd);
+   bool SetWindowPlacement(const char * lpKey, sp(window)pWnd);
+   bool SaveWindowPlacement(const char * lpKey, sp(window)pWnd);
 
 };
 

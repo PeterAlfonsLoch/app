@@ -7,7 +7,7 @@ simple_tab_view::simple_tab_view(sp(base_application) papp) :
    ::user::tab(papp),
    place_holder_container(papp)
 {
-   m_pguie = this;
+   m_pui = this;
 }
 
 simple_tab_view::~simple_tab_view()

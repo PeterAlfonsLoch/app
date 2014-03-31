@@ -91,7 +91,7 @@ void window_gdi::update_window(oswindow window, COLORREF * pcolorref, LPCRECT lp
    if(hdcScreen == NULL)
    {
 
-      // If it has failed to get ::user::window
+      // If it has failed to get window
       // owned device context, try to get
       // a device context from the cache.
       hdcScreen = ::GetDCEx(window, NULL, DCX_CACHE | DCX_CLIPSIBLINGS | DCX_WINDOW);

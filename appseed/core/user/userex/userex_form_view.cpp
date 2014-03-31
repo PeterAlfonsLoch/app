@@ -54,20 +54,27 @@ void form_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phin
                   }
                }
             }
-            sp(::draw2d::graphics) pdc = GetDC();
+            
+            sp(::draw2d::graphics) dc(allocer());
+            
+            dc->CreateCompatibleDC(NULL);
+
             get_html_data()->implement(pdc);
-            ReleaseDC(pdc);
+
+            
          }
+
       }
+
    }
+
    if(m_pcallback != NULL)
    {
-      m_pcallback->on_update(
-         this,
-         pSender,
-         lHint,
-         phint);
+
+      m_pcallback->on_update(this, pSender, lHint, phint);
+
    }
+
 }
 
 

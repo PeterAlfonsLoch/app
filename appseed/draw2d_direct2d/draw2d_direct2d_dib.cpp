@@ -2844,7 +2844,7 @@ namespace draw2d_direct2d
 #if defined(WINDOWSEX)
 
 
-   bool dib::update_window(::user::window * pwnd, signal_details * pobj)
+   bool dib::update_window(window * pwnd, signal_details * pobj)
    {
 
       rect64 rectWindow;
@@ -2867,7 +2867,7 @@ namespace draw2d_direct2d
 
    /*
 
-   bool dib::print_window(::user::window * pwnd, signal_details * pobj)
+   bool dib::print_window(window * pwnd, signal_details * pobj)
    {
 
 
@@ -2915,9 +2915,9 @@ namespace draw2d_direct2d
    rectPaint = rectWindow;
    rectPaint.offset(-rectPaint.top_left());
    m_spgraphics->SelectClipRgn(NULL);
-   if(pwnd->m_pguie != NULL && pwnd->m_pguie != this)
+   if(pwnd->m_pui != NULL && pwnd->m_pui != this)
    {
-   pwnd->m_pguie->_001OnDeferPaintLayeredWindowBackground(pdc);
+   pwnd->m_pui->_001OnDeferPaintLayeredWindowBackground(pdc);
    }
    else
    {

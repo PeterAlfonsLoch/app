@@ -42,34 +42,34 @@ namespace userex
       else if(m_pviewdata->m_iExtendOnParent > 0)
       {
          int32_t i = m_pviewdata->m_iExtendOnParent;
-         sp(::user::interaction) pguie = m_pviewdata->m_pwnd;
-         sp(::user::interaction) pguieNext = m_pviewdata->m_pwnd;
+         sp(::user::interaction) pui = m_pviewdata->m_pwnd;
+         sp(::user::interaction) puiNext = m_pviewdata->m_pwnd;
          for(; i > 0; i--)
          {
-            pguieNext = pguie->get_parent();
-            if(pguieNext == NULL || !pguieNext->IsWindow())
+            puiNext = pui->get_parent();
+            if(puiNext == NULL || !puiNext->IsWindow())
                break;
-            pguie = pguieNext;
+            pui = puiNext;
          }
-         pguie->GetWindowRect(lprect);
+         pui->GetWindowRect(lprect);
          ScreenToClient(lprect);
       }
       else if(m_pviewdata->m_iExtendOnParent < 0)
       {
-         sp(::user::interaction) pguie = m_pviewdata->m_pwnd;
-         sp(::user::interaction) pguieNext = m_pviewdata->m_pwnd;
+         sp(::user::interaction) pui = m_pviewdata->m_pwnd;
+         sp(::user::interaction) puiNext = m_pviewdata->m_pwnd;
          user::interaction_ptr_array wnda(get_app());
          while(true)
          {
-            wnda.add(pguie);
-            pguieNext = pguie->get_parent();
-            if(pguieNext == NULL || (pguie->m_pimpl.m_p) != NULL)
+            wnda.add(pui);
+            puiNext = pui->get_parent();
+            if(puiNext == NULL || (pui->m_pimpl.m_p) != NULL)
                break;
-            pguie = pguieNext;
+            pui = puiNext;
          }
          //         int32_t i = max(0, wnda.get_size() + m_pviewdata->m_iExtendOnParent);
-         pguie = wnda(wnda.get_size() + m_pviewdata->m_iExtendOnParent);
-         pguie->GetWindowRect(lprect);
+         pui = wnda(wnda.get_size() + m_pviewdata->m_iExtendOnParent);
+         pui->GetWindowRect(lprect);
          ScreenToClient(lprect);
       }
    }

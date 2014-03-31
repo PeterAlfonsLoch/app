@@ -114,7 +114,7 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
-/*   int32_t graphics::ExcludeUpdateRgn(sp(::user::window) pWnd)
+/*   int32_t graphics::ExcludeUpdateRgn(sp(window) pWnd)
    {
       UNREFERENCED_PARAMETER(pWnd);
       throw interface_only_exception(get_app());
@@ -2726,50 +2726,6 @@ namespace draw2d
 
    }
 
-/*   memory_graphics::memory_graphics(sp(::user::interaction) pui)
-   {
-      m_pui = pui;
-      throw "prefer not to use";
-      //::draw2d::graphics_sp::operator = (pui->GetDC());
-   }
-
-   memory_graphics::~memory_graphics()
-   {
-      m_pui->ReleaseDC(m_p);
-   }*/
-
-/*   window_graphics::window_graphics(sp(::user::window) pwindow)
-   {
-      m_pwindow = pwindow;
-      create(pwindow->get_app()->allocer());
-      m_p->attach(pwindow->GetWindowDC());
-   }
-
-   window_graphics::~window_graphics()
-   {
-      m_pwindow->ReleaseDC(m_p);
-   }
-
-   paint_graphics::paint_graphics(sp(::user::window) pwindow)
-   {
-      m_pwindow = pwindow;
-      create(pwindow->get_app()->allocer());
-#ifdef WINDOWSEX
-      m_p->attach(::BeginPaint(pwindow->get_safe_handle(), &m_ps));
-#else
-      throw todo(get_thread_app());
-#endif
-   }
-
-   paint_graphics::~paint_graphics()
-   {
-#ifdef WINDOWSEX
-      ::EndPaint(m_pwindow->get_safe_handle(), &m_ps);
-#else
-      throw todo(get_thread_app());
-#endif
-   }
-   */
 
    double graphics::get_dpix() const
    {
@@ -2783,32 +2739,6 @@ namespace draw2d
    }
 
 
-   /*bool graphics::create_client_dc(::user::window * pwnd)
-   {
-
-      UNREFERENCED_PARAMETER(pwnd);
-      throw interface_only_exception(get_app());
-
-   }
-
-
-   bool graphics::create_window_dc(::user::window * pwnd)
-   {
-
-      UNREFERENCED_PARAMETER(pwnd);
-      throw interface_only_exception(get_app());
-
-   }
-
-
-   bool graphics::release_dc(::user::window * pwnd)
-   {
-
-      UNREFERENCED_PARAMETER(pwnd);
-      throw interface_only_exception(get_app());
-
-   }
-   */
 
 
    //=============================================================================

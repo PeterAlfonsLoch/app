@@ -14,7 +14,7 @@ namespace user
 
       m_bAutoWindowFrame = true;
       m_bWindowFrame = true;
-      m_nWindow = -1;                 // unknown ::user::window ID
+      m_nWindow = -1;                 // unknown window ID
       m_bAutoMenuEnable = TRUE;       // auto enable on by default
       m_lpfnCloseProc = NULL;
       m_hMenuDefault = NULL;
@@ -171,10 +171,10 @@ namespace user
 
 
 
-   void frame_window::on_set_parent(sp(::user::interaction) pguieParent)
+   void frame_window::on_set_parent(sp(::user::interaction) puiParent)
    {
 
-      UNREFERENCED_PARAMETER(pguieParent);
+      UNREFERENCED_PARAMETER(puiParent);
 
    }
 
@@ -381,7 +381,7 @@ namespace user
       VERIFY(::PostMessage(get_handle(), WM_EXITHELPMODE, 0, 0));
       }
 
-      // release capture if this ::user::window has it
+      // release capture if this window has it
       if (System.get_capture_uie() == get_handle())
       System.release_capture_uie();
 
@@ -482,10 +482,10 @@ namespace user
       while (oswindow != NULL)
       {
 
-         if (oswindow->IsWindowEnabled() && ::user::is_descendant(pParent, oswindow) && oswindow->send_message(WM_DISABLEMODAL) == 0)
+         if (oswindow->is_window_enabled() && ::user::is_descendant(pParent, oswindow) && oswindow->send_message(WM_DISABLEMODAL) == 0)
          {
 
-            oswindow->EnableWindow(FALSE);
+            oswindow->enable_window(FALSE);
 
             m_uiptraDisable.add(oswindow);
 
@@ -511,7 +511,7 @@ namespace user
          ASSERT(m_uiptraDisable[nIndex] != NULL);
 
          if (m_uiptraDisable[nIndex]->IsWindow())
-            m_uiptraDisable[nIndex]->EnableWindow(TRUE);
+            m_uiptraDisable[nIndex]->enable_window(TRUE);
 
       }
 
@@ -528,7 +528,7 @@ namespace user
       /*   oswindow oswindow = ::GetWindow(::GetDesktopWindow(), GW_CHILD);
       while (oswindow != NULL)
       {
-      sp(::user::window) pWnd = ::user::window::FromHandlePermanent(oswindow);
+      sp(window) pWnd = window::FromHandlePermanent(oswindow);
       if (pWnd != NULL && get_handle() != oswindow && __is_descendant(this, pWnd))
       {
       uint32_t dwStyle = ::GetWindowLong(oswindow, GWL_STYLE);
@@ -555,10 +555,10 @@ namespace user
       if (bEnable && (m_nFlags & WF_STAYDISABLED))
       {
 
-         // Work around for MAPI support. This makes sure the main ::user::window
+         // Work around for MAPI support. This makes sure the main window
          // remains disabled even when the mail system is booting.
 
-         EnableWindow(FALSE);
+         enable_window(FALSE);
 
 #ifdef WINDOWSEX
 
@@ -767,7 +767,7 @@ namespace user
 
       VERIFY(__defer_register_class(__WNDFRAMEORVIEW_REG));
 
-      // attempt to create the ::user::window
+      // attempt to create the window
       const char * lpszClass = GetIconWndClass(dwDefaultStyle, nIDResource);
       string strTitle = m_strTitle;
       if (!CreateEx(0, lpszClass, strTitle, dwDefaultStyle, rectDefault,
@@ -842,7 +842,7 @@ namespace user
             pview->OnActivateFrame(WA_INACTIVE, this);
 
          // finally, activate the frame
-         // (send the default show command unless the main desktop ::user::window)
+         // (send the default show command unless the main desktop window)
          int32_t nCmdShow = -1;      // default
          base_application* pApp = &System;
          if (pApp != NULL && pApp->GetMainWnd() == this)
@@ -948,7 +948,7 @@ namespace user
 
 
       // there are cases where destroying the documents may destroy the
-      //  main ::user::window of the application.
+      //  main window of the application.
       if (!afxContextIsDLL && pApp->GetMainWnd() == NULL)
       {
       __post_quit_message(0);
@@ -978,11 +978,11 @@ namespace user
       return;
       }
 
-      // allow the ::user::object to cleanup before the ::user::window is destroyed
+      // allow the ::user::object to cleanup before the window is destroyed
       pdocument->pre_close_frame(this);
       }
 
-      // then destroy the ::user::window
+      // then destroy the window
       DestroyWindow();*/
    }
 
@@ -996,11 +996,11 @@ namespace user
       ASSERT(::GetMenu(get_handle()) == m_hMenuDefault);
       } */
 
-      // Automatically quit when the main ::user::window is destroyed.
+      // Automatically quit when the main window is destroyed.
       /* trans application* pApp = &System;
       if (pApp != NULL && pApp->GetMainWnd() == this && pApp->m_eHelpType == afxWinHelp)
       {
-      // closing the main application ::user::window
+      // closing the main application window
       ::WinHelp(get_handle(), NULL, HELP_QUIT, 0L);
 
       // will call PostQuitMessage in user::frame_window::OnNcDestroy
@@ -1077,8 +1077,8 @@ namespace user
 
       pobj->previous();
 
-      // get top level frame unless this is a child ::user::window
-      // determine if ::user::window should be active or not
+      // get top level frame unless this is a child window
+      // determine if window should be active or not
       sp(::user::frame_window) pTopLevel = (GetStyle() & WS_CHILD) ? this : GetTopLevelFrame().m_p;
 
       if (pTopLevel == NULL)
@@ -1125,8 +1125,8 @@ namespace user
       if (m_nFlags & WF_STAYACTIVE)
          pncactivate->m_bActive = TRUE;
 
-      // but do not stay active if the ::user::window is disabled
-      if (!IsWindowEnabled())
+      // but do not stay active if the window is disabled
+      if (!is_window_enabled())
          pncactivate->m_bActive = FALSE;
 
    }
@@ -1255,7 +1255,7 @@ namespace user
       if (pViewOld != NULL)
          pViewOld->OnActivateView(FALSE, pViewNew, pViewOld);
 
-      // if the OnActivateView moves the active ::user::window,
+      // if the OnActivateView moves the active window,
       //    that will veto this change
       if (m_pViewActive != NULL)
          return;     // already set
@@ -1411,7 +1411,7 @@ namespace user
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // Setting title of frame ::user::window - UISG standard
+   // Setting title of frame window - UISG standard
 
    void frame_window::on_update_frame_title(bool bAddToTitle)
    {
@@ -1437,7 +1437,7 @@ namespace user
          {
             WindowText += lpszDocName;
 
-            // add current ::user::window # if needed
+            // add current window # if needed
             if (m_nWindow > 0)
             {
 
@@ -1464,7 +1464,7 @@ namespace user
             WindowText += " - ";
             WindowText += lpszDocName;
 
-            // add current ::user::window # if needed
+            // add current window # if needed
             if (m_nWindow > 0)
             {
 
@@ -1489,7 +1489,7 @@ namespace user
 /*   void frame_window::OnSetPreviewMode(bool bPreview, CPrintPreviewState* pState)
    {
       ENSURE_ARG(pState != NULL);
-      // default implementation changes control bars, menu and main pane ::user::window
+      // default implementation changes control bars, menu and main pane window
 
 
       // set visibility of standard ControlBars (only the first 32)
@@ -1725,7 +1725,7 @@ namespace user
 
       if (nCmdShow != -1)
       {
-         // show the ::user::window as specified
+         // show the window as specified
          ShowWindow(nCmdShow);
 
          // and finally, bring to top after showing
@@ -1744,7 +1744,7 @@ namespace user
       if (get_parent() == NULL)
       {
 
-         // place the ::user::window on top except for certain nCmdShow
+         // place the window on top except for certain nCmdShow
 
          if (
             nCmdShow != SW_HIDE
@@ -1887,7 +1887,7 @@ namespace user
    {
       // trans ASSERT(get_handle() == NULL);
 
-      m_nWindow = -1;                 // unknown ::user::window ID
+      m_nWindow = -1;                 // unknown window ID
       m_bAutoMenuEnable = TRUE;       // auto enable on by default
       m_lpfnCloseProc = NULL;
       m_hMenuDefault = NULL;
@@ -2010,7 +2010,7 @@ namespace user
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // Setting title of frame ::user::window - UISG standard
+   // Setting title of frame window - UISG standard
 
 
 
@@ -2131,7 +2131,7 @@ namespace user
 
       }
 
-      if (get_parent().is_set())
+      if (get_parent() != NULL)
       {
 
          if (get_parent()->_001HasCommandHandler(id))

@@ -432,10 +432,10 @@ namespace database
 
       }
 
-      bool interaction::on_before_set_parent(sp(::user::interaction) pguieParent)
+      bool interaction::on_before_set_parent(sp(::user::interaction) puiParent)
       {
 
-         if (!::user::interaction::on_before_set_parent(pguieParent))
+         if (!::user::interaction::on_before_set_parent(puiParent))
             return false;
          
          WindowDataEnableSaveWindowRect(false);
@@ -445,13 +445,13 @@ namespace database
       }
 
 
-      void interaction::on_set_parent(sp(::user::interaction) pguieParent)
+      void interaction::on_set_parent(sp(::user::interaction) puiParent)
       {
 
          try
          {
 
-            ::user::interaction::on_set_parent(pguieParent);
+            ::user::interaction::on_set_parent(puiParent);
 
          }
          catch (...)

@@ -1,12 +1,6 @@
 #pragma once
 
 
-namespace draw2d
-{
-
-   class graphics;
-
-} // namespace draw2d
 
 
 namespace user
@@ -19,12 +13,13 @@ namespace user
    {
    public:
 
-      virtual sp(::user::interaction) get_guie();
-      virtual ::draw2d::graphics * _001GetDC();
-      virtual void _001ReleaseDC(::draw2d::graphics * pdc);
+
       virtual void _001RedrawWindow();
 
+
       virtual void pre_translate_message(signal_details * pobj);
+
+
    };
 
 

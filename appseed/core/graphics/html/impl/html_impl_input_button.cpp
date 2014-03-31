@@ -28,7 +28,7 @@ namespace html
 
          if(!m_pbutton->IsWindow())
          {
-            m_pbutton->create(pdata->m_pguie, 100);
+            m_pbutton->create(pdata->m_pui, 100);
             pdata->on_create_interaction(m_pbutton);
          }
          elemental::implement_phase1(pdata, pelemental);

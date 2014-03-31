@@ -942,7 +942,7 @@ namespace user
          get_data()->m_rectTab.right      = get_data()->m_rectTab.left + get_data()->m_iTabWidth;
          get_data()->m_rectTab.bottom     = rectClient.bottom;
 
-   /*      m_pguie->SetWindowPos(
+   /*      m_pui->SetWindowPos(
             ZORDER_TOP,
             m_rectTab.left,
             m_rectTab.top,
@@ -1394,16 +1394,16 @@ namespace user
       return -1;
    }
 
-   sp(::user::window) tab::GetNotifyWnd()
+   sp(window) tab::GetNotifyWnd()
    {
 #ifdef METROWIN
       return NULL;
 
 #else
-      sp(::user::window) pwnd;
-   //   if((pwnd = m_pguie->get_owner()) != NULL)
+      sp(window) pwnd;
+   //   if((pwnd = m_pui->get_owner()) != NULL)
      //    return pwnd;
-      if((pwnd = m_pguie->get_parent()->get_wnd()) != NULL)
+      if((pwnd = m_pui->get_parent()->get_wnd()) != NULL)
          return pwnd;
       return NULL;
 #endif
@@ -1412,7 +1412,7 @@ namespace user
    /*
    bool tab::create(sp(::user::interaction) pinterface, UINT uiId)
    {
-      if(!m_pguie->create(
+      if(!m_pui->create(
          pinterface,
          uiId))
          return false;
@@ -1686,7 +1686,7 @@ namespace user
       sp(place_holder) pholder = get_tab_holder(iPane, bVisible);
       if(pholder == NULL)
          return NULL;
-      return pholder->get_ui();
+      return pholder->get_hold();
    }
 
    sp(::user::place_holder) tab::get_tab_holder(::index iPane, bool bVisible)

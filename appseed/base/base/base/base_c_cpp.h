@@ -76,6 +76,9 @@ namespace file
 } // namespace file
 
 
+class window;
+
+
 namespace user
 {
 
@@ -86,6 +89,10 @@ namespace user
    class printer;
    class user;
    class object;
+   class frame_window;
+
+
+
 
 
 } // namespace user
@@ -125,6 +132,16 @@ namespace str
 } // namespace str
 
 
+
+
+namespace draw2d
+{
+
+
+   class graphics;
+
+
+} // namespace draw2d
 
 
 class random_access_iterator { public: };

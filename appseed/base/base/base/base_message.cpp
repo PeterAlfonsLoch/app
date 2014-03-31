@@ -232,7 +232,7 @@ namespace message
          {
             try
             {
-               pwnd = pwindow->m_pguie;
+               pwnd = pwindow->m_pui;
             }
             catch(...)
             {
@@ -415,9 +415,9 @@ namespace message
    }
 
 
-   sp(::user::window) dispatch::_GetWnd()
+   sp(window) dispatch::_GetWnd()
    {
-      return dynamic_cast < ::user::window * > (this);
+      return dynamic_cast < window * > (this);
    }
 
 
@@ -722,7 +722,7 @@ namespace message
    {
       throw not_implemented(get_app());
       return NULL;
-      //            return ::user::window::from_handle(reinterpret_cast<oswindow>(m_wparam));
+      //            return window::from_handle(reinterpret_cast<oswindow>(m_wparam));
    }
 
    UINT mouse_activate::GetHitTest()
@@ -735,11 +735,11 @@ namespace message
       return HIWORD(m_lparam);
    }
 
-   sp(::user::window) context_menu::GetWindow()
+   sp(window) context_menu::GetWindow()
    {
       throw not_implemented(get_app());
       return NULL;
-      //            return ::user::window::from_handle(reinterpret_cast<oswindow>(m_wparam));
+      //            return window::from_handle(reinterpret_cast<oswindow>(m_wparam));
    }
 
    point context_menu::GetPoint()
@@ -1052,7 +1052,7 @@ case PrototypeSetCursor:
 set_cursor setcursor(get_app());
 setcursor.m_psignal = psignal;
 setcursor.set(message, wparam, lparam, lresult);
-//setcursor.m_pWnd = ::user::window::from_os_data(reinterpret_cast<oswindow>(wparam));
+//setcursor.m_pWnd = window::from_os_data(reinterpret_cast<oswindow>(wparam));
 setcursor.m_nHitTest = LOWORD(lparam);
 setcursor.m_message = HIWORD(lparam);
 psignal->emit(&setcursor);
@@ -1172,11 +1172,11 @@ ASSERT(message == WM_CTLCOLOR);
 myfx_CTLCOLOR* pCtl = reinterpret_cast<myfx_CTLCOLOR*>(lparam);
 ::draw2d::graphics_sp dcTemp;
 //               dcTemp.set_handle1(pCtl->hDC);
-::user::window wndTemp;
+window wndTemp;
 //               wndTemp.set_handle(pCtl->oswindow);
 UINT nCtlType = pCtl->nCtlType;
-// if not coming from a permanent ::user::window, use stack temporary
-//               sp(::user::window) pWnd = ::user::window::FromHandlePermanent(wndTemp.get_handle());
+// if not coming from a permanent window, use stack temporary
+//               sp(window) pWnd = window::FromHandlePermanent(wndTemp.get_handle());
 //               if (pWnd == NULL)
 {
 

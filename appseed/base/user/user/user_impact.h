@@ -119,7 +119,7 @@ namespace user
       sp(VIEW) create_view(::user::view_creator_data * pcreatordata, sp(::user::interaction) pviewLast = NULL);
 
 
-      static sp(::user::object) get_document(sp(::user::interaction) pguie);
+      static sp(::user::object) get_document(sp(::user::interaction) pui);
 
       virtual void dump(dump_context &) const;
       virtual void assert_valid() const;
@@ -146,7 +146,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnCreate)
          DECL_GEN_SIGNAL(_001OnDestroy)
          void OnPaint();
-      //int32_t OnMouseActivate(sp(::user::window) pDesktopWnd, UINT nHitTest, UINT message);
+      //int32_t OnMouseActivate(sp(window) pDesktopWnd, UINT nHitTest, UINT message);
       // commands
       void OnUpdateSplitCmd(cmd_ui* pCmdUI);
       bool OnSplitCmd(UINT nID);

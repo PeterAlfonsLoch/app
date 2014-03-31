@@ -148,7 +148,7 @@ public:
    string                                          m_strModuleFolder;
 
    string                                          m_strCmdLine;
-   // Initial state of the application's ::user::window; normally,
+   // Initial state of the application's window; normally,
    // this is an argument to ShowWindow().
    int32_t                                         m_nCmdShow;
    size_t                                          m_nSafetyPoolSize;      // ideal size
@@ -372,8 +372,8 @@ public:
    virtual sp(::user::interaction) window_from_os_data(void * pdata);
    virtual sp(::user::interaction) window_from_os_data_permanent(void * pdata);
 #else
-   virtual sp(::user::window) window_from_os_data(void * pdata);
-   virtual sp(::user::window) window_from_os_data_permanent(void * pdata);
+   virtual sp(window) window_from_os_data(void * pdata);
+   virtual sp(window) window_from_os_data_permanent(void * pdata);
 #endif
 
 
@@ -435,8 +435,8 @@ public:
 
 
 
-   virtual sp(::user::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
-   virtual sp(::user::window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
+   virtual sp(window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
+   virtual sp(window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
 
    virtual string get_version();
 

@@ -146,7 +146,7 @@ namespace filemanager
                   return;
                //DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
                SetTimer(5432185, 230, NULL);
-               //::user::window::SetTimer(5432184, 23, NULL);
+               //window::SetTimer(5432184, 23, NULL);
    // dbbreak            m_pserverNext = simpledb::get(get_app())->GetDataServer();
    //            AddClient(this);
      //          SetDataInterface(&m_datainterface);

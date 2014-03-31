@@ -772,7 +772,7 @@ namespace user
       sp(::user::place_holder) pholder = get_pane_holder(iPane);
       if(pholder == NULL)
          return NULL;
-      return pholder->get_ui();
+      return pholder->get_hold();
    }
 
    id split_layout::get_pane_id(int32_t iPane)

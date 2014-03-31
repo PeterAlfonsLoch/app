@@ -430,7 +430,7 @@ namespace colorertake5
          CLR_TRACE("base_editor", "lrSize != wSize*2");
       }
 
-      /* Fixes ::user::window position according to line number */
+      /* Fixes window position according to line number */
       if (lno < wStart || lno > wStart+wSize){
          wStart = lno;
          //if enable, introduces heavy delays on pair searching

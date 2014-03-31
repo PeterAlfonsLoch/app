@@ -12,7 +12,7 @@ namespace user
       menu_list_window(papp)
    {
       m_etranslucency      = TranslucencyPresent;
-      m_pguieNotify        = NULL;
+      m_puiNotify        = NULL;
       m_bAutoClose         = false;
    }
 
@@ -61,15 +61,15 @@ namespace user
 
    bool menu_list_view::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
    {
-      if(m_pguieNotify != NULL && m_pguieNotify != this)
+      if(m_puiNotify != NULL && m_puiNotify != this)
       {
-         if(m_pguieNotify->_001OnCmdMsg(pcmdmsg))
+         if(m_puiNotify->_001OnCmdMsg(pcmdmsg))
             return TRUE;
       }
       return impact::_001OnCmdMsg(pcmdmsg);
    }
 
-   bool menu_list_view::LoadMenu(sp(::xml::node) pnode, sp(::user::interaction) pguieNotify, UINT uiCallbackMessage)
+   bool menu_list_view::LoadMenu(sp(::xml::node) pnode, sp(::user::interaction) puiNotify, UINT uiCallbackMessage)
    {
       
       m_uiMessage = uiCallbackMessage;
@@ -80,7 +80,7 @@ namespace user
 
       MenuFill(this, GetParentFrame());
 
-      m_pguieNotify = pguieNotify;
+      m_puiNotify = puiNotify;
 
       return true;
 

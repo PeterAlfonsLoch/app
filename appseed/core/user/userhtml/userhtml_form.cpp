@@ -10,7 +10,9 @@ html_form::html_form(sp(base_application) papp) :
 
    m_sphtmldata = new html::data(papp);
 
-   m_sphtmldata->m_pguie = this;
+   m_sphtmldata->m_pui = this;
+
+   m_pelementalHover = NULL;
 
 }
 
@@ -51,9 +53,9 @@ void html_form::_001OnDraw(::draw2d::graphics * pdc)
 void html_form::_001DrawChildren(::draw2d::graphics *pdc)
 {
 
-   if(m_pguie != NULL && m_pguie != this)
+   if(m_pui != NULL && m_pui != this)
    {
-      m_pguie->_001DrawChildren(pdc);
+      m_pui->_001DrawChildren(pdc);
    }
    else
    {
@@ -116,6 +118,7 @@ void html_form::install_message_handling(::message::dispatch * pinterface)
 
    IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &html_form::_001OnLButtonDown);
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &html_form::_001OnMouseMove);
+   IGUI_WIN_MSG_LINK(WM_MOUSELEAVE, pinterface, this, &html_form::_001OnMouseLeave);
    IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &html_form::_001OnLButtonUp);
 
    IGUI_WIN_MSG_LINK(html::message_on_image_loaded, pinterface, this, &html_form::_001OnImageLoaded);
@@ -210,38 +213,89 @@ void html_form::_001OnLButtonDown(signal_details * pobj)
    
 void html_form::_001OnMouseMove(signal_details * pobj)
 {
+   
    SCAST_PTR(::message::mouse, pmouse, pobj);
+
+   track_mouse_hover();
+
    point pt(pmouse->m_pt);
+
    ScreenToClient(&pt);
+
    html::elemental * pelemental = get_html_data()->m_elemental.hit_test(get_html_data(), pt);
-   html::signal signal(pobj->m_psignal);
-   signal.m_pdata = get_html_data();
-   signal.m_psignal = pmouse;
-   signal.m_pui = this;
+
    if(pelemental != NULL)
    {
+
+      if (pelemental != m_pelementalHover)
+      {
+
+         if (m_pelementalHover != NULL)
+         {
+
+            if (m_pelementalHover->m_pimpl != NULL)
+            {
+
+               m_pelementalHover->m_pimpl->m_bHover = false;
+
+            }
+
+         }
+
+         m_pelementalHover = pelemental;
+
+      }
+
+      html::signal signal(pobj->m_psignal);
+
+      signal.m_pdata = get_html_data();
+
+      signal.m_psignal = pmouse;
+
+      signal.m_pui = this;
+
       pelemental->OnMouseMove(&signal);
-      if(signal.m_bRet)
-         m_elementalptraMouseMove.add(pelemental);
+/*      if(signal.m_bRet)
+         m_elementalptraMouseMove.add(pelemental);*/
    }
-   for(int32_t i = 0; i < m_elementalptraMouseMove.get_count(); )
+
+   //for(int32_t i = 0; i < m_elementalptraMouseMove.get_count(); )
+   //{
+   //   try
+   //   {
+   //      m_elementalptraMouseMove.element_at(i)->OnMouseMove(&signal);
+   //      if(!signal.m_bRet)
+   //      {
+   //         m_elementalptraMouseMove.remove_at(i);
+   //      }
+   //      else
+   //      {
+   //         i++;
+   //      }
+   //   }
+   //   catch(...)
+   //   {
+   //      m_elementalptraMouseMove.remove_at(i);
+   //   }
+   //}
+
+}
+
+void html_form::_001OnMouseLeave(signal_details * pobj)
+{
+
+   if(m_pelementalHover != NULL)
    {
-      try
+
+      if (m_pelementalHover->m_pimpl != NULL)
       {
-         m_elementalptraMouseMove.element_at(i)->OnMouseMove(&signal);
-         if(!signal.m_bRet)
-         {
-            m_elementalptraMouseMove.remove_at(i);
-         }
-         else
-         {
-            i++;
-         }
+
+         m_pelementalHover->m_pimpl->m_bHover = false;
+
       }
-      catch(...)
-      {
-         m_elementalptraMouseMove.remove_at(i);
-      }
+
+      m_pelementalHover = NULL;
+
    }
 
 }
@@ -370,7 +424,7 @@ void html_form::defer_implement()
 
    ::draw2d::memory_graphics pdc(allocer());
 
-   get_html_data()->m_pguie = this;
+   get_html_data()->m_pui = this;
    get_html_data()->m_pform = this;
    get_html_data()->implement(pdc);
 
@@ -391,7 +445,7 @@ void html_form::defer_layout()
 
    ::draw2d::memory_graphics pdc(allocer());
 
-   get_html_data()->m_pguie = this;
+   get_html_data()->m_pui = this;
    get_html_data()->m_pform = this;
    get_html_data()->layout(pdc);
 

@@ -50,7 +50,7 @@ namespace database
 
          virtual id calc_data_id();
 
-         virtual void on_set_parent(sp(::user::interaction) pguieParent);
+         virtual void on_set_parent(sp(::user::interaction) puiParent);
          virtual bool on_before_set_parent(sp(::user::interaction) pinterface);
 
       };

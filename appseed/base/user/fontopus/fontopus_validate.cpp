@@ -1023,17 +1023,17 @@ namespace fontopus
       if(straMatter.get_count() <= 0)
       {
 
-         sp(::user::interaction) pguie = m_pviewAuth->get_child_by_name("user");
-         sp(text_interface) ptext =  (pguie.m_p);
+         sp(::user::interaction) pui = m_pviewAuth->get_child_by_name("user");
+         sp(text_interface) ptext =  (pui.m_p);
          if(ptext != NULL)
          {
             ptext->_001SetText(m_loginthread.m_strUsername);
             if(m_loginthread.m_strUsername.is_empty())
-               Application.user()->set_keyboard_focus(pguie);
+               Application.user()->set_keyboard_focus(pui);
             else
             {
-               pguie = m_pviewAuth->get_child_by_name("password");
-               Application.user()->set_keyboard_focus(pguie);
+               pui = m_pviewAuth->get_child_by_name("password");
+               Application.user()->set_keyboard_focus(pui);
             }
          }
 
@@ -1230,12 +1230,12 @@ namespace fontopus
             if(m_bAuth)
             {
                m_ptabview->GetParentFrame()->ShowWindow(SW_HIDE);
-               sp(::user::interaction) pguie = m_pviewAuth->get_child_by_name("user");
-               sp(text_interface) ptext =  (pguie.m_p);
+               sp(::user::interaction) pui = m_pviewAuth->get_child_by_name("user");
+               sp(text_interface) ptext =  (pui.m_p);
                //m_loginthread.m_puser = dynamic_cast < ::fontopus::user * > (System.allocate_user());
                ptext->_001GetText(m_loginthread.m_strUsername);
-               pguie = m_pviewAuth->get_child_by_name("password");
-               ptext =  (pguie.m_p);
+               pui = m_pviewAuth->get_child_by_name("password");
+               ptext =  (pui.m_p);
                ptext->_001GetText(m_loginthread.m_strPassword);
                m_loginthread.m_pcallback = this;
                m_loginthread.begin();
@@ -1243,11 +1243,11 @@ namespace fontopus
             else
             {
                m_pauth = new auth;
-               sp(::user::interaction) pguie = m_pviewAuth->get_child_by_name("user");
-               sp(text_interface) ptext =  (pguie.m_p);
+               sp(::user::interaction) pui = m_pviewAuth->get_child_by_name("user");
+               sp(text_interface) ptext =  (pui.m_p);
                ptext->_001GetText(m_pauth->m_strUsername);
-               pguie = m_pviewAuth->get_child_by_name("password");
-               ptext =  (pguie.m_p);
+               pui = m_pviewAuth->get_child_by_name("password");
+               ptext =  (pui.m_p);
                ptext->_001GetText(m_pauth->m_strPassword);
             }
             ::oswindow oswindowPrevious = (::oswindow) m_pvOldWindow;

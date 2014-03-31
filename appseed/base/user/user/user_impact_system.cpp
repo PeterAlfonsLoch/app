@@ -176,7 +176,7 @@ namespace user
    }
 
    /*
-   sp(::user::frame_window) impact_system::CreateOleFrame(sp(::user::window) pParentWnd, sp(::user::object) pdocument,
+   sp(::user::frame_window) impact_system::CreateOleFrame(sp(window) pParentWnd, sp(::user::object) pdocument,
    bool bCreateView)
    {
    create_context context;

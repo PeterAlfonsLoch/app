@@ -50,7 +50,7 @@ namespace draw2d_direct2d
          return *m_pdevice.Get();
       }
 
-      ::user::window * GetWindow() const;
+      window * GetWindow() const;
 
       //static ::draw2d::graphics * from_handle(HDC hDC);
       //static void DeleteTempMap();
@@ -215,7 +215,7 @@ namespace draw2d_direct2d
             int SelectClipRgn(::draw2d::region* pRgn);
             int ExcludeClipRect(int x1, int y1, int x2, int y2);
             int ExcludeClipRect(LPCRECT lpRect);
-            int ExcludeUpdateRgn(::user::window * pWnd);
+            int ExcludeUpdateRgn(window * pWnd);
             int IntersectClipRect(int x1, int y1, int x2, int y2);
             int IntersectClipRect(LPCRECT lpRect);
             int OffsetClipRgn(int x, int y);

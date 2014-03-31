@@ -21,7 +21,7 @@ namespace user
    {
       button::_001OnDraw(pdc);
       rect rectClient;
-      m_pguie->GetClientRect(rectClient);
+      m_pui->GetClientRect(rectClient);
       if(m_pitem != NULL && m_pitem->m_bPopup)
       {
          ::draw2d::brush_sp br(allocer(), RGB(0, 0, 0));
@@ -48,9 +48,9 @@ namespace user
    {
       rect rect;
       class rect rectClient;
-      if(m_pguie == NULL)
+      if(m_pui == NULL)
          return;
-      m_pguie->GetClientRect(rectClient);
+      m_pui->GetClientRect(rectClient);
 
       rect = rectClient;
       rect.left   += 3 + 16 + 2;
@@ -81,7 +81,7 @@ namespace user
          rectImageBorder.inflate(2, 2);
          ::image_list::info ii;
          sp(image_list) pimagelist;
-         if(!_001IsWindowEnabled())
+         if(!is_window_enabled())
          {
             pimagelist = BaseMenuCentral::GetMenuCentral(get_app())->MenuV033GetImageListHueLight();
          }
@@ -122,7 +122,7 @@ namespace user
    {
       m_bEnableChanged = TRUE;
       menu_button* pbutton = dynamic_cast < menu_button * > (m_pOther.m_p);
-      pbutton->_001EnableWindow(bOn != FALSE);
+      pbutton->enable_window(bOn != FALSE);
       /*ASSERT(pToolBar != NULL);
       ASSERT_KINDOF(simple_toolbar, pToolBar);
       ASSERT(m_nIndex < m_nIndexMax);*/

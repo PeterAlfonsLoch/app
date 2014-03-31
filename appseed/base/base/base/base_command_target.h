@@ -225,8 +225,8 @@ public:
    ::user::menu *      m_pSubMenu;      // sub containing menu item
    // if a popup sub menu - ID is for first in popup
 
-   // if from some other ::user::window
-   sp(::user::interaction)   m_pOther;         // NULL if a menu or not a ::user::window
+   // if from some other window
+   sp(::user::interaction)   m_pOther;         // NULL if a menu or not a window
 
    bool                    m_bEnableChanged;
    bool                    m_bContinueRouting;
@@ -353,7 +353,7 @@ enum DSCREASON
 };
 
 /////////////////////////////////////////////////////////////////////////////
-// ::user::window implementation
+// window implementation
 namespace user
 {
    class create_context;      // context for creating user interface things
@@ -365,30 +365,30 @@ namespace core
 struct CPrintInfo;          // print preview customization info
 
 /////////////////////////////////////////////////////////////////////////////
-// ::user::window - a Microsoft Windows application ::user::window
+// window - a Microsoft Windows application window
 
 
-// ::user::window::m_nFlags (generic to ::user::window)
-#define WF_TOOLTIPS         0x0001  // ::user::window is enabled for tooltips
-#define WF_TEMPHIDE         0x0002  // ::user::window is temporarily hidden
-#define WF_STAYDISABLED     0x0004  // ::user::window should stay disabled
+// window::m_nFlags (generic to window)
+#define WF_TOOLTIPS         0x0001  // window is enabled for tooltips
+#define WF_TEMPHIDE         0x0002  // window is temporarily hidden
+#define WF_STAYDISABLED     0x0004  // window should stay disabled
 #define WF_OLECTLCONTAINER  0x0100  // some descendant is an OLE control
-#define WF_TRACKINGTOOLTIPS 0x0400  // ::user::window is enabled for tracking tooltips
+#define WF_TRACKINGTOOLTIPS 0x0400  // window is enabled for tracking tooltips
 
-// ::user::window::m_nFlags (specific to frame_window)
+// window::m_nFlags (specific to frame_window)
 #define WF_STAYACTIVE       0x0020  // look active even though not active
 #define WF_NOPOPMSG         0x0040  // ignore WM_POPMESSAGESTRING calls
-#define WF_MODALDISABLE     0x0080  // ::user::window is disabled
+#define WF_MODALDISABLE     0x0080  // window is disabled
 #define WF_KEEPMINIACTIVE   0x0200  // stay activate even though you are deactivated
 
 
 #define WF_NOWIN32ISDIALOGMSG   0x0800
 #define WF_ISWINFORMSVIEWWND    0x1000
 
-// flags for ::user::window::RunModalLoop
+// flags for window::RunModalLoop
 #define MLF_NOIDLEMSG       0x0001  // don't send WM_ENTERIDLE messages
 #define MLF_NOKICKIDLE      0x0002  // don't send WM_KICKIDLE messages
-#define MLF_SHOWONIDLE      0x0004  // show ::user::window if not visible at idle time
+#define MLF_SHOWONIDLE      0x0004  // show window if not visible at idle time
 
 // extra core API defined TTF_ flags for TOOLINFO::uFlags
 #define TTF_NOTBUTTON       0x80000000L // no status help on buttondown

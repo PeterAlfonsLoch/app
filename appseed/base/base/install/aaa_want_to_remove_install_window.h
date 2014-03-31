@@ -6,10 +6,6 @@ namespace install
 {
 
 
-   class installer;
-   class window;
-
-
    class CLASS_DECL_BASE window :
       virtual public ::os::simple_ui
    {

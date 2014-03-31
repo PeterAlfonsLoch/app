@@ -106,7 +106,7 @@ namespace draw2d_cairo
    }
 
 
-/*   sp(::user::window) graphics::GetWindow() const
+/*   sp(window) graphics::GetWindow() const
    {
       ASSERT(get_handle1() != NULL); return ::win::window::from_handle(::WindowFromDC(get_handle1()));
    }
@@ -212,7 +212,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    }
 
-   int32_t graphics::ExcludeUpdateRgn(::user::window * pWnd)
+   int32_t graphics::ExcludeUpdateRgn(window * pWnd)
    {
   //    ASSERT(get_handle1() != NULL);
 //      return ::ExcludeUpdateRgn(get_handle1(), WIN_WINDOW(pWnd)->get_handle());
@@ -4509,110 +4509,6 @@ synch_lock ml(&user_mutex());
 
 
 
-/*
-
-   /////////////////////////////////////////////////////////////////////////////
-   // Helper DCs
-
-
-   void CClientDC::assert_valid() const
-   {
-      graphics::assert_valid();
-      ASSERT(m_hWnd == NULL || ::IsWindow(m_hWnd));
-   }
-
-   void CClientDC::dump(dump_context & dumpcontext) const
-   {
-      graphics::dump(dumpcontext);
-
-      dumpcontext << "get_handle1() = " << m_hWnd;
-      dumpcontext << "\n";
-   }
-
-
-   CClientDC::CClientDC(window * pWnd)
-   {
-      ASSERT(pWnd == NULL || ::IsWindow(WIN_WINDOW(pWnd)->get_handle1()));
-
-      if (!Attach(::GetDC(m_hWnd = WIN_WINDOW(pWnd)->GetSafeHwnd())))
-         throw resource_exception();
-   }
-
-   CClientDC::~CClientDC()
-   {
-      ASSERT(get_handle1() != NULL);
-      ::ReleaseDC(m_hWnd, Detach());
-   }
-
-
-   void CWindowDC::assert_valid() const
-   {
-      graphics::assert_valid();
-      ASSERT(m_hWnd == NULL || ::IsWindow(m_hWnd));
-   }
-
-   void CWindowDC::dump(dump_context & dumpcontext) const
-   {
-      graphics::dump(dumpcontext);
-
-      dumpcontext << "get_handle1() = " << m_hWnd;
-      dumpcontext << "\n";
-   }
-
-
-   CWindowDC::CWindowDC(window * pWnd)
-   {
-      ASSERT(pWnd == NULL || ::IsWindow(WIN_WINDOW(pWnd)->get_handle1()));
-
-      if (!Attach(::GetWindowDC(m_hWnd = WIN_WINDOW(pWnd)->GetSafeHwnd())))
-         throw resource_exception();
-   }
-
-   CWindowDC::~CWindowDC()
-   {
-      ASSERT(get_handle1() != NULL);
-      ::ReleaseDC(m_hWnd, Detach());
-   }
-
-
-   void CPaintDC::assert_valid() const
-   {
-      graphics::assert_valid();
-      ASSERT(::IsWindow(m_hWnd));
-   }
-
-   void CPaintDC::dump(dump_context & dumpcontext) const
-   {
-      graphics::dump(dumpcontext);
-
-      dumpcontext << "get_handle1() = " << m_hWnd;
-      dumpcontext << "\nm_ps.hdc = " << m_ps.hdc;
-      dumpcontext << "\nm_ps.fErase = " << m_ps.fErase;
-      dumpcontext << "\nm_ps.rcPaint = " << (rect)m_ps.rcPaint;
-
-      dumpcontext << "\n";
-   }
-
-
-   CPaintDC::CPaintDC(window * pWnd)
-   {
-      ASSERT_VALID(pWnd);
-      ASSERT(::IsWindow(WIN_WINDOW(pWnd)->get_handle1()));
-
-      if (!Attach(::BeginPaint(m_hWnd = WIN_WINDOW(pWnd)->get_handle1(), &m_ps)))
-         throw resource_exception();
-   }
-
-   CPaintDC::~CPaintDC()
-   {
-      ASSERT(get_handle1() != NULL);
-      ASSERT(::IsWindow(m_hWnd));
-
-      ::EndPaint(m_hWnd, &m_ps);
-      Detach();
-   }
-
-*/
 
 
 

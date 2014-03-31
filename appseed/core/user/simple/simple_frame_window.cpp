@@ -174,7 +174,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
    if(m_bAutoWindowFrame)
    {
 #ifdef METROWIN
-      m_bWindowFrame = get_parent() == NULL || dynamic_cast < ::user::window * > (get_parent()->m_pimpl.m_p) != NULL;
+      m_bWindowFrame = get_parent() == NULL || dynamic_cast < window * > (get_parent()->m_pimpl.m_p) != NULL;
 #else
       m_bWindowFrame = get_parent() == NULL;
 #endif
@@ -745,8 +745,8 @@ void simple_frame_window::_001OnNcActivate(signal_details * pobj)
    if (m_nFlags & WF_STAYACTIVE)
       pncactivate->m_bActive = TRUE;
 
-   // but do not stay active if the ::user::window is disabled
-   if (!IsWindowEnabled())
+   // but do not stay active if the window is disabled
+   if (!is_window_enabled())
       pncactivate->m_bActive = FALSE;
 
    /*if(m_bWindowFrame)
@@ -1033,17 +1033,17 @@ bool simple_frame_window::on_before_set_parent(sp(::user::interaction) pinterfac
 }
 
 
-void simple_frame_window::on_set_parent(sp(::user::interaction) pguieParent)
+void simple_frame_window::on_set_parent(sp(::user::interaction) puiParent)
 {
 
-   ::database::user::interaction::on_set_parent(pguieParent);
+   ::database::user::interaction::on_set_parent(puiParent);
 
-   UNREFERENCED_PARAMETER(pguieParent);
-   m_workset.m_pwndEvent = m_pimpl->m_pguie;
+   UNREFERENCED_PARAMETER(puiParent);
+   m_workset.m_pwndEvent = m_pimpl->m_pui;
 
    if(m_pupdowntarget != NULL && m_pupdowntarget->is_up_down_target())
    {
-      if (pguieParent == NULL)
+      if (puiParent == NULL)
       {
          m_bWindowFrame = true;
          m_workset.Enable(true);
@@ -1055,7 +1055,7 @@ void simple_frame_window::on_set_parent(sp(::user::interaction) pguieParent)
       }
    }
 
-   if (pguieParent == NULL || !pguieParent->is_place_holder())
+   if (puiParent == NULL || !puiParent->is_place_holder())
    {
 
       WindowDataLoadWindowRect(false);
@@ -1080,7 +1080,7 @@ void simple_frame_window::on_set_parent(sp(::user::interaction) pguieParent)
    }
    else
    {
-      if(pguieParent != NULL)
+      if(puiParent != NULL)
       {
          m_bCustomFrameBefore = m_bWindowFrame;
          m_bWindowFrame = false;
@@ -1389,10 +1389,10 @@ LRESULT simple_frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
       ReuseDDElParam(lParam, WM_DDE_EXECUTE, WM_DDE_ACK,
       (UINT)0x8000, (uint_ptr)hData));
 
-   // don't execute the command when the ::user::window is disabled
-   if (!IsWindowEnabled())
+   // don't execute the command when the window is disabled
+   if (!is_window_enabled())
    {
-      TRACE(::core::trace::category_AppMsg, 0, "Warning: DDE command '%s' ignored because ::user::window is disabled.\n",
+      TRACE(::core::trace::category_AppMsg, 0, "Warning: DDE command '%s' ignored because window is disabled.\n",
          strCommand.GetString());
       return 0;
    }
@@ -1436,14 +1436,14 @@ void simple_frame_window::NotifyFloatingWindows(uint32_t dwFlags)
    ASSERT_VALID(this);
    // trans   ASSERT(get_handle() != NULL);
 
-   // get top level parent frame ::user::window first unless this is a child ::user::window
+   // get top level parent frame window first unless this is a child window
    sp(::user::frame_window) pParent = (GetStyle() & WS_CHILD) ? this : (GetTopLevelFrame().m_p);
    ASSERT(pParent != NULL);
    if (dwFlags & (FS_DEACTIVATE | FS_ACTIVATE))
    {
-      // update parent ::user::window activation state
+      // update parent window activation state
       bool bActivate = !(dwFlags & FS_DEACTIVATE);
-      bool bEnabled = pParent->IsWindowEnabled();
+      bool bEnabled = pParent->is_window_enabled();
 
       if (bActivate && bEnabled && pParent != this)
       {
@@ -1552,7 +1552,7 @@ void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
             pview->OnActivateFrame(WA_INACTIVE, pframe);
 
          // finally, activate the frame
-         // (send the default show command unless the main desktop ::user::window)
+         // (send the default show command unless the main desktop window)
          int32_t nCmdShow = -1;      // default
          application* pApp = &System;
          if (pApp != NULL && pApp->GetMainWnd() == pframe)
@@ -1596,8 +1596,8 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
       || m_etranslucency == TranslucencyPresent)
    {
       sp(::user::interaction) pui;
-      if (m_pguie != NULL)
-         pui = m_pguie->get_bottom_child();
+      if (m_pui != NULL)
+         pui = m_pui->get_bottom_child();
       else
          pui = get_bottom_child();
 
@@ -1610,8 +1610,8 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
          pui = pui->above_sibling();
       }
       _001DrawThis(pdc);
-      if (m_pguie != NULL)
-         pui = m_pguie->get_bottom_child();
+      if (m_pui != NULL)
+         pui = m_pui->get_bottom_child();
       else
          pui = get_bottom_child();
       while (pui != NULL)
@@ -1656,12 +1656,11 @@ void simple_frame_window::_011OnDraw(::draw2d::graphics *pdc)
    else
    {
       rect rect;
-      sp(::user::interaction) pwnd = get_guie();
+
       pwnd->GetClientRect(rect);
-      //pdc->FillSolidRect(rect, ARGB(184 + 49 + 21 + 1, 184 + 49, 184 + 49, 177 + 49));
       pdc->FillSolidRect(rect, get_background_color());
-      //m_workset.OnDraw(pdc);
    }
+
 }
 
 bool simple_frame_window::WfiOnMove(bool bTracking)

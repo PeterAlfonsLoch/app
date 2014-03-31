@@ -599,7 +599,7 @@ namespace user
 
       if (cmdInfo.m_nShellCommand == command_line::FileOpen)
       {
-      // show the application ::user::window
+      // show the application window
       sp(::user::interaction) pMainWnd = System.GetMainWnd();
       int32_t nCmdShow = System.m_nCmdShow;
       if (nCmdShow == -1 || nCmdShow == SW_SHOWNORMAL)
@@ -617,7 +617,7 @@ namespace user
       /*System.open_document_file(cmdInfo.m_varFile);
 
 
-      // next time, show the ::user::window as default
+      // next time, show the window as default
       System.m_nCmdShow = -1;
       goto RestoreAndReturn;
       }

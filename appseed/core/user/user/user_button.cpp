@@ -284,12 +284,12 @@ namespace user
    }
 
 
-   bool button::_001IsWindowEnabled()
+   bool button::is_window_enabled()
    {
       return m_bEnabled;
    }
 
-   void button::_001EnableWindow(bool bEnable)
+   void button::enable_window(bool bEnable)
    {
       m_bEnabled = bEnable;
    }
@@ -460,10 +460,10 @@ namespace user
 
 
       rect rectClient;
-      m_pguie->GetClientRect(rectClient);
+      m_pui->GetClientRect(rectClient);
 
       COLORREF crBk;
-      if(!_001IsWindowEnabled())
+      if(!is_window_enabled())
       {
          crBk = m_pschema->m_crBkDisabled;
       }
@@ -497,7 +497,7 @@ namespace user
 
 
       COLORREF crBorder;
-      if(!_001IsWindowEnabled())
+      if(!is_window_enabled())
       {
          crBorder = ARGB(255, 127, 127, 127);
       }
@@ -543,7 +543,7 @@ namespace user
       ::draw2d::brush_sp brushText(allocer());
 
 
-      if(!_001IsWindowEnabled())
+      if(!is_window_enabled())
       {
 //         pdc->set_text_color(m_pschema->m_crTextDisabled);
          brushText->create_solid(m_pschema->m_crTextDisabled);

@@ -119,7 +119,7 @@ namespace plugin
    {
 
       //rect rectWindow;
-      //m_pguie->GetWindowRect(rectWindow);
+      //m_pui->GetWindowRect(rectWindow);
       //point ptPreviousViewportOrg = pdc->GetViewportOrg();
       //pdc->SetViewportOrg(rectWindow.top_left());
 

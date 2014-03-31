@@ -421,8 +421,8 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
          class font;
          class pen;
          class brush;
-         class memory_graphics;         // ::draw2d::graphics_sp for client of ::user::window
-         class window_graphics;         // ::draw2d::graphics_sp for entire ::user::window
+         class memory_graphics;         // ::draw2d::graphics_sp for client of window
+         class window_graphics;         // ::draw2d::graphics_sp for entire window
          class paint_graphics;          // embeddable BeginPaint struct helper
       }
 
@@ -435,9 +435,7 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
 
    namespace user
    {
-      class window;            // a window
       class menu;                 // a menu
-      class interaction;
       class edit_plain_text;            // Edit control
       class view;            // a ::user::impact on a document
       class document_manager;      // impact_system manager object

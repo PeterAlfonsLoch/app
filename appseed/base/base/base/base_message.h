@@ -57,15 +57,6 @@ namespace draw2d
 } // namespace draw2d
 
 
-namespace user
-{
-
-
-   class window;
-   class interaction;
-
-
-} // namespace user
 
 
 
@@ -242,7 +233,7 @@ namespace message
 #endif
 
       void RemoveMessageHandler(signalizable* psignalizable);
-      sp(::user::window) _GetWnd();
+      sp(window) _GetWnd();
       // Prototype_bool_WPARAM_LPARAM;
 
       template < class T >
@@ -473,7 +464,7 @@ namespace message
 
 
       context_menu(sp(base_application) papp) : element(papp), message::base(papp) {}
-      sp(::user::window) GetWindow();
+      sp(window) GetWindow();
       point GetPoint();
    };
 
@@ -617,7 +608,7 @@ namespace message
       ctl_color(sp(base_application) papp) : element(papp), message::base(papp) {}
       HBRUSH      m_hbrush;
       ::draw2d::graphics *       m_pdc;
-      sp(::user::window)      m_pwnd;
+      sp(window)      m_pwnd;
       UINT        m_nCtlType;
    };
 

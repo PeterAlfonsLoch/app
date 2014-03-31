@@ -302,7 +302,7 @@ namespace user
          break;
       }
 
-       ::user::window::OnTimer(nIDEvent);
+       window::OnTimer(nIDEvent);
    }
 
 
@@ -343,7 +343,7 @@ namespace user
    ///////////////////////////////////////////////////////////
    void tool_tip_window::OnSize(UINT nType, int32_t cx, int32_t cy)
    {
-       ::user::window::OnSize(nType, cx, cy);
+       window::OnSize(nType, cx, cy);
 
       UpdateDrawingObjects();
    }
@@ -422,7 +422,7 @@ namespace user
    ///////////////////////////////////////////////////////////
    void tool_tip_window::OnDestroy()
    {
-   //    ::user::window::OnDestroy();
+   //    window::OnDestroy();
    }
 
    ///////////////////////////////////////////////////////////
@@ -579,7 +579,7 @@ namespace user
    }
 
 
-   void tool_tip_window::SetPositionHint(sp(::user::window) pwnd, e_position eposition)
+   void tool_tip_window::SetPositionHint(sp(window) pwnd, e_position eposition)
    {
       rect rect;
       pwnd->GetWindowRect(rect);

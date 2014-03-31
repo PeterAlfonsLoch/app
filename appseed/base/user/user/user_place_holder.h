@@ -35,7 +35,7 @@ namespace user
 
       virtual void layout();
 
-      sp(::user::interaction) get_ui();
+      ::user::interaction * get_hold();
 
       virtual bool is_place_holder();
 

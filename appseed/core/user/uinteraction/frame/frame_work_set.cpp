@@ -1003,14 +1003,14 @@ namespace frame
          return;
 
       }
-      else if(pActive->m_pguie != NULL && (bool) pActive->m_pguie->oprop("combo_list"))
+      else if(pActive->m_pui != NULL && (bool) pActive->m_pui->oprop("combo_list"))
       {
 
          pactivate->m_bRet = true;
 
-         pActive->m_pguie->oprop("deactivate_together") = GetDrawWindow();
+         pActive->m_pui->oprop("deactivate_together") = GetDrawWindow();
 
-         pActive->m_pguie->oprop("deactivate_together_set") = this;
+         pActive->m_pui->oprop("deactivate_together_set") = this;
 
          return;
 

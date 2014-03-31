@@ -23,7 +23,7 @@ namespace html
 
          if(!m_pcheckbox->IsWindow())
          {
-            m_pcheckbox->create(pdata->m_pguie, 100);
+            m_pcheckbox->create(pdata->m_pui, 100);
             pdata->on_create_interaction(m_pcheckbox);
              bool bCheck = pelemental->m_pbase->get_tag()->get_attr("checked") != NULL;
              if(bCheck)

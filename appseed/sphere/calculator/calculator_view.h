@@ -20,7 +20,6 @@ namespace calculator
 #endif
 
       virtual sp(::user::interaction) BackViewGetWnd();
-      virtual sp(::user::interaction) get_guie();
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);
 

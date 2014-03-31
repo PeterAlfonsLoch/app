@@ -311,7 +311,7 @@ bool command_target::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
             TRACE(traceCmdRouting, 1, "SENDING command id 0x%04X to %hs target.\n", nID,
                typeid(*this).name());
          else if (nCode > CN_COMMAND)
-            TRACE(traceCmdRouting, 1, "SENDING control notification %d from control id 0x%04X to %hs ::user::window.\n",
+            TRACE(traceCmdRouting, 1, "SENDING control notification %d from control id 0x%04X to %hs window.\n",
                nCode, nID, typeid(*this).name());
 #endif //DEBUG
          return _::core::DispatchCmdMsg(this, nID, nCode,
@@ -396,14 +396,14 @@ void cmd_ui::Enable(bool bOn, ::action::context actioncontext)
    else
    {
 
-      // enable/disable a control (i.e. child ::user::window)
+      // enable/disable a control (i.e. child window)
       ENSURE(m_pOther != NULL);
 
       // if control has the focus, move the focus before disabling
       if (!bOn && (System.get_focus_guie() == m_pOther))
          m_pOther->get_parent()->send_message(WM_NEXTDLGCTL, 0, (LPARAM) FALSE);
 
-      m_pOther->EnableWindow(bOn);
+      m_pOther->enable_window(bOn);
 
    }
 

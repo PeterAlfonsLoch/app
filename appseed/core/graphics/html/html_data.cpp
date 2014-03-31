@@ -120,7 +120,7 @@ namespace html
       m_puser                    = NULL;
       m_pform                    = NULL;
       m_bEdit                    = false;
-      m_pguie                    = NULL;
+      m_pui                    = NULL;
       m_bImplemented             = false;
       m_bImplement               = false;
       m_bLayout                  = false;
@@ -288,7 +288,7 @@ namespace html
       m_pdc = pdc;
       m_focusptra.remove_all();
       m_elemental.implement(this);
-      IGUI_WIN_MSG_LINK(WM_KEYDOWN, m_pguie, this, &data::_001OnKeyDown);
+      IGUI_WIN_MSG_LINK(WM_KEYDOWN, m_pui, this, &data::_001OnKeyDown);
       m_bImplemented = true;
    }
 
@@ -486,10 +486,10 @@ namespace html
       
       UNREFERENCED_PARAMETER(pimage);
       
-      if(m_pguie != NULL)
+      if(m_pui != NULL)
       {
          
-         m_pguie->post_message(message_on_image_loaded);
+         m_pui->post_message(message_on_image_loaded);
          
       }
       
@@ -704,7 +704,7 @@ restart:
 
       ::draw2d::memory_graphics pdc(allocer());
 
-      m_pguie  = pform;
+      m_pui  = pform;
 
       m_pform  = pform;
 

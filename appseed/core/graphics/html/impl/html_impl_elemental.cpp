@@ -93,12 +93,65 @@ namespace html
 
       void elemental::OnMouseMove(signal_details * pobj)
       {
+
          SCAST_PTR(::html::signal, phtml, pobj);
+
          SCAST_PTR(::message::mouse, pmouse, phtml->m_psignal);
+
+         if (!m_bHoverEvaluated)
+         {
+
+            bool bHasHover = true;
+
+            if (bHasHover && !has_link())
+               bHasHover = false;
+
+            if (bHasHover)
+            {
+
+               e_tag etag = m_pelemental->m_etag;
+
+               string strClass = m_pelemental->m_strClass;
+
+               style * pstyle = phtml->m_pdata->m_stylesheeta.rfind(etag, strClass, "hover", NULL);
+
+               if (pstyle == NULL)
+               {
+
+                  bHasHover = false;
+
+               }
+
+            }
+
+            m_bHasHover = bHasHover;
+
+            m_bHoverEvaluated = true;
+
+         }
+
+         //::point pt = pmouse->m_pt;
+
+         //phtml->m_pui->ScreenToClient(&pt);
+
+         //bool bHover = hit_test(phtml->m_pdata, pt) != 0;
+
+         //if (bHover != m_bHover)
+         //{
+
+         //   m_bHover = bHover;
+
+         //   phtml->m_pui->_001RedrawWindow();
+
+         //}
+
          if (has_link())
          {
+
             pmouse->m_ecursor = ::visual::cursor_hand;
+
          }
+
       }
 
       void elemental::OnLButtonUp(signal_details * pobj)

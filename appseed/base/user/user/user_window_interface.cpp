@@ -27,7 +27,7 @@ namespace user
       m_rectParentClient(0, 0, 0, 0)
    {
       m_bVoidPaint               = false;
-      m_pguie                    = NULL;
+      m_pui                    = NULL;
       m_etranslucency            = TranslucencyNone;
       m_bBackgroundBypass        = false;
    }
@@ -38,7 +38,7 @@ namespace user
       m_rectParentClient(0, 0, 0, 0)
    {
       m_bVoidPaint               = false;
-      m_pguie                    = NULL;
+      m_pui                    = NULL;
       m_etranslucency            = TranslucencyNone;
       m_bBackgroundBypass        = false;
    }
@@ -71,7 +71,7 @@ namespace user
          &window_interface::_001OnBaseWndGetProperty);
    }
 
-   // draw the background of a ::user::window
+   // draw the background of a window
    // can be used for trasparency
    // the rectangle must be in client coordinates.
    void window_interface::_001DrawBackground(::draw2d::graphics *pdc, LPRECT lprect)
@@ -82,172 +82,6 @@ namespace user
    }
 
 
-   /*bool window_interface::TwfRender(
-      ::draw2d::graphics *          pdc,
-      oswindow           oswindowExclude,
-      LPCRECT        lpcrectUpdate,
-      user::oswindow_tree::Array & oswindowtreea,
-      bool           bBackground)
-   {
-      rect rectUpdate(*lpcrectUpdate);
-
-      rect rectChild;
-
-      rect rectNewUpdate;
-
-      for(int32_t i = oswindowtreea.get_size() - 1; i >= 0; i--)
-      {
-         user::oswindow_tree & oswindowtreeChild = oswindowtreea[i];
-         oswindow oswindowChild = oswindowtreeChild.m_oswindow;
-         if(oswindowChild == oswindowExclude)
-         {
-            if(bBackground)
-               return false;
-            else
-               continue;
-         }
-         sp(::user::window) pwndChild = ::user::window::from_handle(oswindowChild);
-         oswindow oswindowParent = ::get_parent(oswindowChild);
-         ::GetClientRect(oswindowChild, rectChild);
-         ::ClientToScreen(oswindowChild, &rectChild.top_left());
-         ::ClientToScreen(oswindowChild, &rectChild.bottom_right());
-         if(rectNewUpdate.intersect(rectChild, rectUpdate))
-         {
-            if(!TwfRender(pdc, oswindowExclude, rectNewUpdate, oswindowtreeChild, bBackground))
-               return false;
-         }
-       }
-       return true;
-   }
-
-
-   bool window_interface::TwfRender(
-      ::draw2d::graphics *          pdc,
-      oswindow           oswindowExclude,
-      LPCRECT        lpcrectUpdate,
-      user::oswindow_tree & oswindowtree,
-      bool           bBackground)
-   {
-
-      rect rectUpdate(*lpcrectUpdate);
-
-      uint32_t dwTimeIn = get_tick_count();
-
-      oswindow oswindowParam = oswindowtree.m_oswindow;
-
-      if(oswindowParam == NULL)
-      {
-         return false;
-      }
-
-      if(oswindowParam == oswindowExclude)
-      {
-         if(bBackground)
-            return false;
-         else
-            return true;
-      }
-
-      if(!::IsWindow(oswindowParam))
-      {
-         return false;
-      }
-
-      if(!::IsWindowVisible(oswindowParam))
-      {
-         return false;
-      }
-
-
-      sp(::user::window) pwnd = ::user::window::FromHandlePermanent(oswindowParam);
-
-      if((::GetWindowLong((oswindowParam), GWL_STYLE) & WS_VISIBLE) == 0)
-      {
-         return true;
-      }
-
-
-
-
-      window_interface * pwndi = dynamic_cast<window_interface *>(pwnd);
-      if(pwndi == NULL)
-      {
-         single_lock sl(m_pbaseapp->s_ptwf->m_csWndInterfaceMap, TRUE);
-         if(m_pbaseapp->s_ptwf->m_wndinterfacemap.Lookup(oswindowParam, pwndi))
-         {
-            if(pwndi != NULL)
-            {
-               pwnd = pwndi->get_guie();
-            }
-         }
-         else
-         {
-            m_pbaseapp->s_ptwf->m_wndinterfacemap.set_at(oswindowParam, pwndi);
-            ::SendMessage(
-               oswindowParam,
-               window_interface::MessageBaseWndGetProperty,
-               window_interface::PropertyDrawBaseWndInterface,
-               (LPARAM) &pwndi);
-         }
-         sl.unlock();
-      }
-
-   //   if(pwndi == this)
-     //    return true;
-
-      rect rectWindow;
-      ::GetClientRect(oswindowParam, rectWindow);
-      ::ClientToScreen(oswindowParam, &rectWindow.top_left());
-      ::ClientToScreen(oswindowParam, &rectWindow.bottom_right());
-      ::ScreenToClient(GetSafeoswindow_(), &rectWindow.top_left());
-      ::ScreenToClient(GetSafeoswindow_(), &rectWindow.bottom_right());
-
-      pdc->SetViewportOrg(rectWindow.left, rectWindow.top);
-
-      if(pwndi != NULL)
-      {
-         if(!pwndi->_001IsTransparent())
-         {
-            if(pwndi != NULL)
-            {
-               m_pbaseapp->s_ptwf->m_twrenderclienttool.FastClear();
-               pwndi->TwiRenderClient(m_pbaseapp->s_ptwf->m_twrenderclienttool);
-               if(m_pbaseapp->s_ptwf->m_twrenderclienttool.IsSignalizedRenderResult(
-                  user::RenderDoNotProceedWithChildren))
-                   return true;
-            }
-         }
-      }
-      else
-      {
-         bool bWin4 = FALSE;
-      //_::core::FillPSOnStack();
-         ::DefWindowProc(
-            oswindowParam,
-            (bWin4 ? WM_PRINT : WM_PAINT),
-            (WPARAM)(pdc->m_hDC),
-            (LPARAM)(bWin4 ? PRF_CHILDREN | PRF_CLIENT : 0));
-         //::RedrawWindow(oswindowParam, NULL, rgnClient, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOCHILDREN);
-      }
-
-
-
-
-      uint32_t dwTimeOut = get_tick_count();
-   //   TRACE("// Average Window Rendering time\n");
-   //   TRACE("// Window Class: %s\n", (pwnd!=NULL) ? pwnd->GetRuntimeClass()->m_lpszClassName : "(Not available)");
-   //   TRACE("// TickCount: %d \n", dwTimeOut - dwTimeIn);
-   //   TRACE("// \n");
-
-
-      return TwfRender(
-         pdc,
-         oswindowExclude,
-         rectUpdate,
-         oswindowtree.m_oswindowtreea,
-         bBackground);
-
-   }*/
 
    window_interface * window_interface::window_interface_get_parent()
    {
@@ -280,7 +114,7 @@ namespace user
          if(!System.get_twf()->m_bProDevianMode)
          {
             synch_lock lock(System.get_twf());
-            get_wnd()->m_pguie->RedrawWindow();
+            get_wnd()->m_pui->RedrawWindow();
          }
       }
    }
@@ -310,14 +144,14 @@ namespace user
 
 
 
-   // The first ::user::window handle in the array must belong
-   // to the higher z order ::user::window.
+   // The first window handle in the array must belong
+   // to the higher z order window.
    // The rectangle must contain all update region.
    // It must be in screen coordinates.
 
    // This optimization eliminates top level windows
    // that are lower z order siblings of a higher z order
-   // top level ::user::window that contains all
+   // top level window that contains all
    // the update region in a opaque area.
    // It doesn´t eliminates from the update parent windows
    // obscured by opaque children.
@@ -495,54 +329,63 @@ namespace user
       _001BaseWndInterfaceMap();
    }
 
+
    void window_interface::_001BaseWndInterfaceMap()
    {
+
    }
 
-   sp(interaction) window_interface::get_guie()
-   {
-      return m_pguie;
-   }
 
-#ifdef METROWIN
-   sp(::user::interaction) window_interface::get_wnd() const
+   window * window_interface::get_wnd()
    {
+
       return NULL;
-   }
-#else
-   sp(::user::window) window_interface::get_wnd()
-   {
-      return NULL;
-   }
-#endif
 
-   bool window_interface::_001IsWindowEnabled()
+   }
+
+
+   bool window_interface::is_window_enabled()
    {
+
       return true;
+
    }
 
-   void window_interface::_001EnableWindow(bool bEnable)
+
+   bool window_interface::enable_window(bool bEnable)
    {
+      
       UNREFERENCED_PARAMETER(bEnable);
+
+      return true;
+
    }
 
 
    void window_interface::_on_start_user_message_handler()
    {
+
       dispatch::_on_start_user_message_handler();
+
       _001BaseWndInterfaceMap();
+
    }
+
 
    void window_interface::_000OnDraw(::draw2d::graphics * pdc)
    {
+
       _001OnDraw(pdc);
+
    }
 
 
    void window_interface::UpdateWindow()
    {
+
       //ASSERT(::IsWindow(GetHandle()));
       //::UpdateWindow(GetHandle());
+
    }
 
    void window_interface::Invalidate(bool bErase)

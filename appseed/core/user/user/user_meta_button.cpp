@@ -100,7 +100,7 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
 
    ::draw2d::brush_sp brushText;
 
-   if(!IsWindowEnabled())
+   if(!is_window_enabled())
    {
 
       pdc->SelectObject(m_brushEllipseDisabled);

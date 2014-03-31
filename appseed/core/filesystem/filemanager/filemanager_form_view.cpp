@@ -34,8 +34,8 @@ bool file_manager_form_view::BaseOnControlEvent(::user::control_event * pevent)
          uh.m_etype = form_update_hint::type_browse;
          uh.m_strForm = "filemanager_add_location_lfs.xhtml";
          get_document()->update_all_views(NULL, 0, &uh);
-         sp(::user::interaction) pguie = get_child_by_name("lfs");
-         sp(text_interface) ptext =  (pguie.m_p);
+         sp(::user::interaction) pui = get_child_by_name("lfs");
+         sp(text_interface) ptext =  (pui.m_p);
          ptext->_001SetText(GetFileManagerItem().m_strPath, ::action::source_user);
       }
       else if(pevent->m_puie->m_id == "ftp")
@@ -51,8 +51,8 @@ bool file_manager_form_view::BaseOnControlEvent(::user::control_event * pevent)
          {
             stringa stra;
             GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_pschema->m_dataidStatic, ::base_system::idEmpty, stra);
-            sp(::user::interaction) pguie = get_child_by_name("lfs");
-            sp(text_interface) ptext =  (pguie.m_p);
+            sp(::user::interaction) pui = get_child_by_name("lfs");
+            sp(text_interface) ptext =  (pui.m_p);
             string str;
             ptext->_001GetText(str);
             stra.add_unique(str);
@@ -65,11 +65,11 @@ bool file_manager_form_view::BaseOnControlEvent(::user::control_event * pevent)
          else if(m_strPath == "filemanager\\replace_name_in_file_system.xhtml")
          {
             file_manager_form_update_hint uh;
-            sp(::user::interaction) pguie = get_child_by_name("encontrar");
-            sp(text_interface) ptext =  (pguie.m_p);
+            sp(::user::interaction) pui = get_child_by_name("encontrar");
+            sp(text_interface) ptext =  (pui.m_p);
             ptext->_001GetText(uh.m_strFind);
-            pguie = get_child_by_name("substituir");
-            ptext =  (pguie.m_p);
+            pui = get_child_by_name("substituir");
+            ptext =  (pui.m_p);
             ptext->_001GetText(uh.m_strReplace);
             sp(::filemanager::document) pdoc =  (GetFileManager());
             pdoc->update_all_views(NULL, 0, &uh);

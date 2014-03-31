@@ -153,11 +153,6 @@ namespace platform
 
    }
 
-   sp(::user::interaction) view::get_guie()
-   {
-      return this;
-   }
-
    void view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);

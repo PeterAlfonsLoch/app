@@ -394,11 +394,6 @@ namespace uinteraction
          m_pointset.remove_all();
       }
 
-      sp(::user::interaction) appearance::get_guie()
-      {
-         return NULL;
-      }
-
       bool appearance::IsNotifyIconEnabled()
       {
          return m_pworkset->IsNotifyIconEnabled();

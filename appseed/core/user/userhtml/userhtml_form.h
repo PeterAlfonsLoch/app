@@ -12,6 +12,7 @@ public:
    string                        m_strOpenOnCreate;
    rect                          m_rectOpen;
    html::elemental *             m_pelementalLButtonDown;
+   html::elemental *             m_pelementalHover;
    spa(::html::elemental)        m_elementalptraMouseMove;
    sp(html::data)                m_sphtmldata;
 
@@ -40,6 +41,7 @@ public:
    DECL_GEN_SIGNAL(_001OnCreate);
    DECL_GEN_SIGNAL(_001OnLButtonDown)
    DECL_GEN_SIGNAL(_001OnMouseMove)
+   DECL_GEN_SIGNAL(_001OnMouseLeave)
    DECL_GEN_SIGNAL(_001OnLButtonUp)
    DECL_GEN_SIGNAL(_001OnImageLoaded)
    DECL_GEN_SIGNAL(_001OnKeyDown)

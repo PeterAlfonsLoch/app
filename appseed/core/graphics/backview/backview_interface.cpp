@@ -279,7 +279,7 @@ namespace backview
    // background, this function call is a feedback requested by from some
    // transition effect or visual effect in order to display to the
    // the ::fontopus::user an intereactive effect. At first design, the only needed
-   // feedback is the final output ::user::window screenshot.
+   // feedback is the final output window screenshot.
    void Interface::BackViewFeedback(::draw2d::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);

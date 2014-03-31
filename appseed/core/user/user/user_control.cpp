@@ -500,7 +500,7 @@ namespace user
       {
          if(bOn)
          {
-            if(pwnd->IsWindowEnabled() &&
+            if(pwnd->is_window_enabled() &&
                !pcontrolex->IsControlCommandEnabled())
             {
                pcontrolex->EnableControlCommand(true);
@@ -520,16 +520,16 @@ namespace user
          {
             if(bOn)
             {
-               if(!pcontrol->IsWindowEnabled())
+               if(!pcontrol->is_window_enabled())
                {
-                  pcontrol->EnableWindow();
+                  pcontrol->enable_window();
                }
             }
             else
             {
-               if(pcontrol->IsWindowEnabled())
+               if(pcontrol->is_window_enabled())
                {
-                  pcontrol->EnableWindow(FALSE);
+                  pcontrol->enable_window(FALSE);
                }
             }
           }

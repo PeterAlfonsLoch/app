@@ -19,7 +19,7 @@ timer_window::~timer_window()
 }
 
 
-// // BEGIN_MESSAGE_MAP(timer_window, ::user::window)
+// // BEGIN_MESSAGE_MAP(timer_window, window)
 //{{__MSG_MAP(timer_window)
 /* xxx   ON_WM_TIMER()
 ON_WM_DESTROY()
@@ -39,7 +39,7 @@ bool timer_window::create(timer_callback *pCallback)
    ///    m_pTimerCallbackFinal = m_pTimerCallback;
    rect rect(0, 0, 0, 0);
 
-   return ::user::window::CreateEx(0,NULL, "timer Window", 0, rect, NULL, id());
+   return window::CreateEx(0,NULL, "timer Window", 0, rect, NULL, id());
 }
 
 void timer_window::OnTimer(UINT nIDEvent)
@@ -107,13 +107,13 @@ void timer_window::OnTimer(UINT nIDEvent)
       //    ASSERT(FALSE);
       //}
 
-      //::user::window::OnTimer(nIDEvent);
+      //window::OnTimer(nIDEvent);
 }
 
 void timer_window::OnDestroy()
 {
    m_pTimerCallback = NULL;
-   //   ::user::window::OnDestroy();
+   //   window::OnDestroy();
 
    //m_pTimerCallbackFinal = m_pTimerCallback;
 
@@ -133,7 +133,7 @@ void timer_window::OnClose()
 {
    // TODO: add your message handler code here and/or call default
 
-   //   ::user::window::OnClose();
+   //   window::OnClose();
    DestroyWindow();
 }
 
@@ -141,7 +141,7 @@ bool timer_window::DestroyWindow()
 {
    // TODO: add your specialized code here and/or call the base class
 
-   if(::user::window::DestroyWindow())
+   if(window::DestroyWindow())
    {
       delete this;
       return TRUE;

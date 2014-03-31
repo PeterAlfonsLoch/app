@@ -166,7 +166,7 @@ namespace filemanager
          get_app(),
          pszMatter,
          System.type_info < document >(),
-         System.type_info < main_frame >(),       // main SDI frame ::user::window
+         System.type_info < main_frame >(),       // main SDI frame window
          System.type_info < tab_view >());
 
       m_pdoctemplate = new ::user::multiple_document_template(

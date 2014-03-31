@@ -181,13 +181,13 @@ namespace user
 
    void bitmap_button::BaseToolTipGetRect(LPRECT lprect)
    {
-      // use ::user::window client rect as the tool rect
+      // use window client rect as the tool rect
       GetClientRect(lprect);
    }
 
    int32_t bitmap_button::BaseToolTipGetIndex()
    {
-      // use ::user::window dialog control id as the index
+      // use window dialog control id as the index
       return (int32_t) GetDlgCtrlId();
    }
 

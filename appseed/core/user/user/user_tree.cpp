@@ -649,16 +649,6 @@ namespace user
             }
    }
 
-   /*window_id tree::_001GetNotifyWnd()
-   {
-   sp(::user::window) pwnd = get_guie();
-
-   window_id wndidNotify = pwnd->get_owner()->GetSafeoswindow_();
-   if(wndidNotify == NULL)
-   wndidNotify = pwnd->get_parent()->GetSafeoswindow_();
-   return wndidNotify;
-   }*/
-
    void tree::_001OnClick(UINT uiFlags, point point)
    {
       UNREFERENCED_PARAMETER(point);

@@ -886,56 +886,13 @@ namespace html
 
       void text::OnMouseMove(signal_details * pobj)
       {
-         SCAST_PTR(::html::signal, phtml, pobj);
-         if(!m_bHoverEvaluated)
+
+         elemental::OnMouseMove(pobj);
+         
+         if (m_pelemental->m_pdata->m_bEdit)
          {
 
-            bool bHasHover = true;
-
-            if(bHasHover && !has_link())
-               bHasHover = false;
-
-            if(bHasHover)
-            {
-
-               e_tag etag = m_pelemental->m_etag;
-               
-               string strClass = m_pelemental->m_strClass;
-
-               style * pstyle = phtml->m_pdata->m_stylesheeta.rfind(etag, strClass, "hover", NULL);
-
-               if(pstyle == NULL)
-               {
-
-                  bHasHover = false;
-
-               }
-
-            }
-
-            m_bHasHover = bHasHover;
-
-            m_bHoverEvaluated = true;
-
-         }
-
-         SCAST_PTR(::message::mouse, pmouse, phtml->m_psignal);
-         ::point pt = pmouse->m_pt;
-         phtml->m_pui->ScreenToClient(&pt);
-         bool bHover = hit_test(phtml->m_pdata, pt) != 0;
-         if(bHover != m_bHover)
-         {
-            m_bHover = bHover;
-            phtml->m_pui->_001RedrawWindow();
-         }
-         phtml->m_bRet = m_bHover;
-         if(m_bHover)
-         {
-            pmouse->m_ecursor = ::visual::cursor_hand;
-         }
-
-         if(m_pelemental->m_pdata->m_bEdit)
-         {
+            SCAST_PTR(::html::signal, phtml, pobj);
 
             _002OnMouseMove(phtml->m_psignal);
 

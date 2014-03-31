@@ -226,7 +226,7 @@ namespace user
 
    void menu::_001OnDraw(::draw2d::graphics *pdc)
    {
-//      bool bEnabled = IsWindowEnabled();
+//      bool bEnabled = is_window_enabled();
       rect rectClient;
       GetClientRect(rectClient);
       if(_001IsTranslucent())

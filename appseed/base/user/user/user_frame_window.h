@@ -45,7 +45,7 @@
 #define CBRS_BOTTOM         (CBRS_ALIGN_BOTTOM|CBRS_BORDER_TOP)
 
 
-// Frame ::user::window styles
+// Frame window styles
 #define FWS_ADDTOTITLE  0x00008000L // modify title based on content
 #define FWS_PREFIXTITLE 0x00004000L // show document name before cast name
 #define FWS_SNAPTOBARS  0x00002000L // snap size to size of contained bars
@@ -112,8 +112,8 @@ namespace user
 
 
 
-      int32_t m_nWindow;  // general purpose ::user::window number - display as ":n"
-      // -1 => unknown, 0 => only ::user::window viewing ::user::object
+      int32_t m_nWindow;  // general purpose window number - display as ":n"
+      // -1 => unknown, 0 => only window viewing ::user::object
       // 1 => first of many windows viewing ::user::object, 2=> second
 
       HMENU m_hMenuDefault;       // default menu resource for this frame
@@ -124,7 +124,7 @@ namespace user
       rect m_rectBorder;         // for OLE border space negotiation
 
       pointer_list m_listControlBars; // array of all control bars that have this
-      // ::user::window as their dock site
+      // window as their dock site
       int32_t m_nShowDelay;           // SW_ command for delay show/hide
 
       bool m_bFrameMoveEnable;
@@ -168,7 +168,7 @@ namespace user
       DECL_GEN_SIGNAL(_guserbaseOnInitialUpdate)
       DECL_GEN_VSIGNAL(guserbaseOnInitialUpdate)
 
-      virtual void on_set_parent(sp(::user::interaction) pguieParent);
+      virtual void on_set_parent(sp(::user::interaction) puiParent);
 
       virtual void defer_synch_layered();
       virtual bool calc_layered();
@@ -232,7 +232,7 @@ namespace user
 
       ::user::control_bar* GetControlBar(UINT nID);
 
-      // frame ::user::window based modality
+      // frame window based modality
       virtual void BeginModalState();
       virtual void EndModalState();
       bool InModalState() const;
@@ -297,7 +297,7 @@ namespace user
       virtual void PostNcDestroy();   // default to delete this.
       int32_t OnCreateHelper(LPCREATESTRUCT lpcs, sp(::create_context) pContext);
       void BringToTop(int32_t nCmdShow);
-      // bring ::user::window to top for SW_ commands which affect z-order
+      // bring window to top for SW_ commands which affect z-order
 
       // implementation helpers for Shift+F1 help mode
       bool ProcessHelpMsg(MESSAGE & msg, uint32_t * pContext);
@@ -307,7 +307,7 @@ namespace user
       void AddFrameWnd();
       void RemoveFrameWnd();
 
-      friend class ::user::window;  // for access to m_bModalDisable
+      friend class window;  // for access to m_bModalDisable
       friend class CReBar; // for access to m_bInRecalcLayout
 
       DECL_GEN_SIGNAL(_001OnCreate)

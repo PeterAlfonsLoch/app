@@ -53,11 +53,11 @@ namespace usernet // ca8 + cube
       {
          string strProxy = doc.get_root()->attr("server");
          int32_t iProxyPort = doc.get_root()->attr("port");
-         sp(::user::interaction) pguie = m_pview->get_child_by_name("server");
-         sp(text_interface) ptext =  (pguie.m_p);
+         sp(::user::interaction) pui = m_pview->get_child_by_name("server");
+         sp(text_interface) ptext =  (pui.m_p);
          ptext->_001SetText(strProxy, ::action::source::add(::action::source_data, ::action::source_load));
-         pguie = m_pview->get_child_by_name("port");
-         ptext =  (pguie.m_p);
+         pui = m_pview->get_child_by_name("port");
+         ptext =  (pui.m_p);
          ptext->_001SetText(::str::from(iProxyPort), ::action::source::add(::action::source_data, ::action::source_load));
       }
 
@@ -70,8 +70,8 @@ namespace usernet // ca8 + cube
       {
          if(pevent->m_puie->m_id == "submit")
          {
-            sp(::user::interaction) pguie = m_pview->get_child_by_name("server");
-            sp(text_interface) ptext =  (pguie.m_p);
+            sp(::user::interaction) pui = m_pview->get_child_by_name("server");
+            sp(text_interface) ptext =  (pui.m_p);
             //m_loginthread.m_puser = dynamic_cast < ::fontopus::user * > (System.allocate_user());
             string strServer;
             ptext->_001GetText(strServer);
@@ -84,8 +84,8 @@ namespace usernet // ca8 + cube
                xml::document doc(get_app());
                doc.get_root()->set_name("proxy");
                doc.get_root()->add_attr("server", strServer);
-               pguie = m_pview->get_child_by_name("port");
-               ptext =  (pguie.m_p);
+               pui = m_pview->get_child_by_name("port");
+               ptext =  (pui.m_p);
                string strPort;
                ptext->_001GetText(strPort);
                doc.get_root()->add_attr("port", strPort);

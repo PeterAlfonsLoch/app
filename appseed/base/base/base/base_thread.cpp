@@ -352,9 +352,9 @@ UNREFERENCED_PARAMETER(dumpcontext);
 throw interface_only_exception(get_app());
 }
 
-bool thread::post_message(sp(::user::interaction) pguie, UINT uiMessage, WPARAM wparam, LPARAM lparam)
+bool thread::post_message(sp(::user::interaction) pui, UINT uiMessage, WPARAM wparam, LPARAM lparam)
 {
-UNREFERENCED_PARAMETER(pguie);
+UNREFERENCED_PARAMETER(pui);
 UNREFERENCED_PARAMETER(uiMessage);
 UNREFERENCED_PARAMETER(wparam);
 UNREFERENCED_PARAMETER(lparam);
@@ -413,24 +413,6 @@ bool thread::post_thread_message(UINT message, WPARAM wParam, lparam lParam)
 }
 
 
-/*   ::count thread::get_ui_count()
-{
-throw interface_only_exception(get_app());
-}
-
-sp(::user::interaction) thread::get_ui(index iIndex)
-{
-UNREFERENCED_PARAMETER(iIndex);
-throw interface_only_exception(get_app());
-}*/
-
-/*   void thread::set_timer(sp(::user::interaction) pui, uint_ptr nIDEvent, UINT nEllapse)
-{
-UNREFERENCED_PARAMETER(pui);
-UNREFERENCED_PARAMETER(nIDEvent);
-UNREFERENCED_PARAMETER(nEllapse);
-throw interface_only_exception(get_app());
-}
 
 void thread::unset_timer(sp(::user::interaction) pui, uint_ptr nIDEvent)
 {
@@ -580,11 +562,11 @@ void thread::ProcessMessageFilter(int32_t code, signal_details * pobj)
    return  m_p->ProcessMessageFilter(code, pobj);
 }
 
-bool thread::post_message(sp(::user::interaction) pguie, UINT message, WPARAM wParam, lparam lParam)
+bool thread::post_message(sp(::user::interaction) pui, UINT message, WPARAM wParam, lparam lParam)
 {
    if (m_p != NULL)
    {
-      return m_p->post_message(pguie, message, wParam, lParam);
+      return m_p->post_message(pui, message, wParam, lParam);
    }
    else
    {
@@ -729,7 +711,7 @@ void thread::remove(::user::interaction * pui)
    {
    }
    if (pui == GetMainWnd()
-      || pui->m_pguie == GetMainWnd()
+      || pui->m_pui == GetMainWnd()
       || pui->m_pimpl == GetMainWnd())
    {
       SetMainWnd(NULL);
@@ -759,11 +741,11 @@ void thread::remove(::user::interaction * pui)
    }
    try
    {
-   if(pui->m_pguie != NULL && pui->m_pguie != pui)
+   if(pui->m_pui != NULL && pui->m_pui != pui)
    {
-   if(pui->m_pguie->m_pthread == this)
+   if(pui->m_pui->m_pthread == this)
    {
-   pui->m_pguie->m_pthread = NULL;
+   pui->m_pui->m_pthread = NULL;
    }
    }
    }

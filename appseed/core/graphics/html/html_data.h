@@ -110,7 +110,7 @@ namespace html
       };
 
       ::user::form_callback *    m_pcallback;
-      sp(::user::interaction)      m_pguie;
+      sp(::user::interaction)      m_pui;
       ::draw2d::graphics *           m_pdc;
       box                        m_box;
       string                     m_strTitle;

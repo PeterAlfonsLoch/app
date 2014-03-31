@@ -13,7 +13,7 @@ public:
    ::draw2d::font_sp              m_spfont;
    bool                       m_bCreate;
    sp(::user::interaction)    m_pparent;
-   sp(::user::interaction)    m_pguieMessage;
+   sp(::user::interaction)    m_puiMessage;
 
 
    virtual_user_interface();
@@ -22,11 +22,9 @@ public:
 
    using ::user::interaction::message_handler;
    virtual void message_handler(signal_details * pobj);
-   virtual ::draw2d::graphics * GetDC();
-   sp(::user::interaction) set_parent(sp(::user::interaction) pguieParent);
+   sp(::user::interaction) set_parent(sp(::user::interaction) puiParent);
    bool ShowWindow(int32_t nCmdShow);
-   virtual bool ReleaseDC(::draw2d::graphics *);
-   virtual sp(::user::interaction) get_parent();
+   virtual ::user::interaction * get_parent();
 
    virtual void _001WindowMaximize();
    virtual void _001WindowRestore();
@@ -70,9 +68,9 @@ public:
 
 #endif
 
-   // as hosting ::user::window
+   // as hosting window
    virtual void install_message_handling(::message::dispatch * pinterface);
-   // as virtual ::user::window
+   // as virtual window
    virtual void _002InstallMessageHandling(::message::dispatch * pinterface);
 
 
@@ -86,7 +84,7 @@ public:
 
 
    virtual bool IsWindow();
-   virtual bool IsWindowEnabled();
+   virtual bool is_window_enabled();
    virtual bool IsWindowVisible();
 
    virtual void VirtualOnSize();
@@ -105,7 +103,6 @@ public:
 
 
    virtual sp(::user::frame_window) EnsureParentFrame();
-   virtual sp(::user::interaction) GetTopLevelParent();
    virtual sp(::user::interaction) EnsureTopLevelParent();
    virtual sp(::user::frame_window) GetTopLevelFrame();
 

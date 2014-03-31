@@ -23,10 +23,10 @@ namespace command
    bool form_callback::BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent)
    {
       UNREFERENCED_PARAMETER(pview);
-      sp(::user::interaction) pguie =  (this);
-      if(pguie != NULL && pguie->get_parent() != NULL)
+      sp(::user::interaction) pui =  (this);
+      if(pui != NULL && pui->get_parent() != NULL)
       {
-         return pguie->get_parent()->BaseOnControlEvent(pevent);
+         return pui->get_parent()->BaseOnControlEvent(pevent);
       }
       return false;
    }

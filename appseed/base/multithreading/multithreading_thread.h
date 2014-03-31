@@ -27,7 +27,7 @@ typedef hthread * HTHREAD;
 class CLASS_DECL_BASE message
 {
 public:
-sp(::user::interaction)  m_pguie;
+sp(::user::interaction)  m_pui;
 UINT              m_uiMessage;
 WPARAM            m_wparam;
 LPARAM            m_lparam;
@@ -313,7 +313,7 @@ public:
    //virtual uint32_t SuspendThread();
    //      virtual uint32_t ResumeThread();
    //    virtual bool post_thread_message(UINT message, WPARAM wParam, LPARAM lParam);
-   //  virtual bool post_message(sp(::user::interaction) pguie, UINT message, WPARAM wParam, LPARAM lParam);
+   //  virtual bool post_message(sp(::user::interaction) pui, UINT message, WPARAM wParam, LPARAM lParam);
 
    //      virtual bool PreInitInstance();
 
@@ -358,7 +358,7 @@ public:
    //      virtual void remove(sp(::user::interaction) pui);
 
    //      virtual ::count get_ui_count();
-   //      virtual sp(::user::interaction) get_ui(index iIndex);
+   //      virtual ::user::interaction * get_ui(index iIndex);
    //      virtual void set_timer(sp(::user::interaction) pui, uint_ptr nIDEvent, UINT nEllapse);
    //      virtual void unset_timer(sp(::user::interaction) pui, uint_ptr nIDEvent);
    ////      virtual void set_auto_delete(bool bAutoDelete = true);
@@ -472,7 +472,7 @@ public:
    //      virtual uint32_t SuspendThread();
    virtual uint32_t ResumeThread();
    virtual bool post_thread_message(UINT message, WPARAM wParam = 0, lparam lParam = 0);
-   virtual bool post_message(sp(::user::interaction) pguie, UINT message, WPARAM wParam = 0, lparam lParam = 0);
+   virtual bool post_message(sp(::user::interaction) pui, UINT message, WPARAM wParam = 0, lparam lParam = 0);
 
    virtual bool PreInitInstance();
 
@@ -510,7 +510,7 @@ public:
    virtual void add(sp(::user::interaction) pui);
    virtual void remove(::user::interaction * pui);
    virtual ::count get_ui_count();
-   virtual sp(::user::interaction) get_ui(index iIndex);
+   virtual ::user::interaction * get_ui(index iIndex);
    virtual void set_timer(sp(::user::interaction) pui, uint_ptr nIDEvent, UINT nEllapse);
    virtual void unset_timer(sp(::user::interaction) pui, uint_ptr nIDEvent);
    virtual void set_auto_delete(bool bAutoDelete = true);

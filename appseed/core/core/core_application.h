@@ -491,7 +491,7 @@ public:
 
    virtual int32_t get_document_count();
 
-   // transparent ::user::window framework
+   // transparent window framework
 
 
    //mutex * get_mutex(::waitable * pobject);
@@ -546,8 +546,8 @@ public:
    //virtual ::draw2d::graphics * graphics_from_os_data(void * pdata);
 
 
-   virtual sp(::user::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
-   virtual sp(::user::window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
+   virtual sp(window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
+   virtual sp(window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
 
 
 
@@ -578,7 +578,7 @@ public:
    //virtual void set_thread(thread * pthread);
 
 
-   virtual sp(::user::window) get_desktop_window();
+   virtual sp(window) get_desktop_window();
 
 
 

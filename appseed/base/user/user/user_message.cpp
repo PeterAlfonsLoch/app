@@ -7,7 +7,7 @@ namespace user
 
    LRESULT message::send()
    {
-      return m_pguie->send_message(m_uiMessage, m_wparam, m_lparam);
+      return m_pui->send_message(m_uiMessage, m_wparam, m_lparam);
    }
 
    UINT message::ThreadProcSendMessage(LPVOID lp)
@@ -21,7 +21,7 @@ namespace user
    void message::post(sp(::user::interaction) puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, int32_t epriority)
    {
       message * pmessage = new message;
-      pmessage->m_pguie = puie;
+      pmessage->m_pui = puie;
       pmessage->m_uiMessage = uiMessage;
       pmessage->m_wparam = wparam;
       pmessage->m_lparam = lparam;

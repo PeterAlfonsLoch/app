@@ -183,7 +183,7 @@ namespace user
             if(pThread->GetMainWnd() == NULL)
             {
             
-               // set as main frame (InitialUpdateFrame will show the ::user::window)
+               // set as main frame (InitialUpdateFrame will show the window)
                pThread->SetMainWnd(pFrame);
                
             }

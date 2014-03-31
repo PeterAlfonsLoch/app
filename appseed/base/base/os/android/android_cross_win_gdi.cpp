@@ -14,45 +14,6 @@
 //
 //
 //
-//HDC GetDC(oswindow hwnd)
-//{
-//
-//   throw "not_implemented";
-//
-//   HDC hdc = new device_context;
-//
-///*   hdc->m_display    = XOpenDisplay(NULL);
-//   hdc->m_hwnd       = hwnd;
-//   hdc->m_d          = (Drawable) (hwnd == NULL || hwnd->window() == NULL ? DefaultRootWindow(hdc->m_display) : hwnd->window());
-//   hdc->m_gc         = XCreateGC(hdc->m_display, hdc->m_d, 0, 0);*/
-//
-//   return hdc;
-//
-//}
-//HDC GetWindowDC(oswindow hwnd)
-//{
-//
-//   return GetDC(hwnd);
-//}
-//
-//
-//int_bool ReleaseDC(oswindow hwnd, HDC hdc)
-//{
-//
-//
-//   synch_lock sl(&user_mutex());
-//
-//
-//   if(hdc == NULL)
-//      return FALSE;
-//
-//   //XFreeGC(hdc->m_display, hdc->m_gc);
-//   //XCloseDisplay(hdc->m_display);
-//
-//   delete hdc;
-//   return TRUE;
-//
-//}
 //
 //
 //int_bool GetClientRect(oswindow hwnd, LPRECT lprect)
@@ -143,25 +104,6 @@
 //   return 1;
 //}
 //
-//
-//HDC BeginPaint(oswindow hwnd, PAINTSTRUCT * ps)
-//{
-//
-//   HDC hdc = GetDC(hwnd);
-//
-//   GetClientRect(hwnd, &ps->rcPaint);
-//
-//   return hdc;
-//
-//}
-//
-//
-//int_bool EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
-//{
-//
-//   return ReleaseDC(hwnd, ps->hdc);
-//
-//}
 //
 //
 //int_bool GetCursorPos(LPPOINT lpptCursor)

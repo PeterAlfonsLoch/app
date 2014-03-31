@@ -143,7 +143,7 @@ namespace user
                | HDS_HOTTRACK
                | HDS_DRAGDROP,
                rect(0 , 0 , 0 , 0),
-               get_guie(),
+               this,
                1023) != 0;
 #else
             return m_pheaderctrl->create(
@@ -152,7 +152,7 @@ namespace user
                WS_CHILD
                | WS_VISIBLE,
                rect(0 , 0 , 0 , 0),
-               get_guie(),
+               this,
                1023) != 0;
 #endif
          }
@@ -722,12 +722,12 @@ namespace user
 
    //cs.style |= LVS_NOSCROLL;
 
-   return ::user::window::pre_create_window(cs);
+   return window::pre_create_window(cs);
    }*/
 
    /*void list::OnSize(UINT nType, index cx, index cy)
    {
-   ::user::window::OnSize(nType, cx, cy);
+   window::OnSize(nType, cx, cy);
 
    layout();
    }*/

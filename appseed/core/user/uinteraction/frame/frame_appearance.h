@@ -70,7 +70,6 @@ namespace uinteraction
          CTool001 *                    m_ptool001;
 
          bool IsNotifyIconEnabled();
-         virtual sp(::user::interaction) get_guie();
          sp(::user::interaction) GetWnd();
 
          bool IsInAutomaticModeSwitching();

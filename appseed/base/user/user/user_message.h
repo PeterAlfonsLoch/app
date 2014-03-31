@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      sp(::user::interaction)    m_pguie;
+      sp(::user::interaction)    m_pui;
       UINT                       m_uiMessage;
       WPARAM                     m_wparam;
       LPARAM                     m_lparam;

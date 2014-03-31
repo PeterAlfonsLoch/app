@@ -5,7 +5,7 @@ namespace user
 
    class tool_tip_tool;
 
-   class tool_tip_window : public ::user::window
+   class tool_tip_window : public window
    {
    public:
 
@@ -55,7 +55,7 @@ namespace user
 
       CEnumAlign                 m_ealign;         // current alignment of the tool tip
       CEnumAlign                 m_ealignDefault;  // default alignment of the tool tip
-      sp(::user::interaction)      m_pwnd;           // ::user::window associate with this tool tip wnd
+      sp(::user::interaction)      m_pwnd;           // window associate with this tool tip wnd
       string                     m_strTip;         // tip string
       int32_t                        m_iEventTool;     // item selected
       int32_t                        m_iTool;          // item where the tip will be showed
@@ -82,7 +82,7 @@ namespace user
       virtual bool create(sp(::user::interaction) pwnd, id id);
       bool CalcRect(::draw2d::graphics * pdc, LPRECT lprect, LPCRECT lprectToolScreen, const char * lpcsz);
       void ShowTip(int32_t iTool, bool bForce = false);
-      void SetPositionHint(sp(::user::window) pwnd, e_position eposition);
+      void SetPositionHint(sp(window) pwnd, e_position eposition);
       void relay_event(tool_tip_tool * pwnd, signal_details * pobj);
 
       void OnPaint();

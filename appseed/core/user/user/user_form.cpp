@@ -43,7 +43,7 @@ namespace user
          {
          case control::type_static:
             {
-   /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) ::user::window::FromHandlePermanent(pform->get_child_by_id(pcontrol->m_id)->GetSafeoswindow_());
+   /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) window::FromHandlePermanent(pform->get_child_by_id(pcontrol->m_id)->GetSafeoswindow_());
                if(pstatic == NULL || !base < CTransparentStatic >::bases(pstatic))
                {
                   pstatic = new CTransparentStatic;
@@ -965,8 +965,8 @@ namespace user
                {
                   //xxx pcontrol->m_pwnd->unsubclass_window();
                }
-   //            ASSERT(pcontrol->m_typeinfo->IsDerivedFrom(System.type_info < ::user::window > ()));
-               if(dynamic_cast < ::user::window * >(descriptor.m_pcontrol.m_p) != NULL)
+   //            ASSERT(pcontrol->m_typeinfo->IsDerivedFrom(System.type_info < window > ()));
+               if(dynamic_cast < window * >(descriptor.m_pcontrol.m_p) != NULL)
                {
                   //window_id wndidTemp = get_child_by_id(pcontrol->m_id)->GetSafeoswindow_();
                   //if(wndidTemp != NULL)
@@ -1120,14 +1120,6 @@ namespace user
       if(m_bInitialized)
          return true;
       _001InitializeFormPreData();
-   /*   sp(::user::impact) pview = dynamic_cast <sp(::user::impact)>(get_guie());
-      if(pview != NULL)
-      {
-         if(pview->get_document() != NULL)
-         {
-            pview->get_document()->update_all_views(NULL);
-         }
-      }*/
       _001UpdateFunctionStatic();
    //   CVmsGuiApp * papp = (CVmsGuiApp *) &System;
    //   papp->m_pplaneapp->TwfInitializeDescendants(pview->GetSafeoswindow_(), true);

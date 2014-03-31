@@ -60,8 +60,8 @@ namespace user
       virtual void _002OnDraw(::draw2d::graphics * pdc);
 
       DECL_GEN_SIGNAL(_001OnCreate)
-         virtual bool _001IsWindowEnabled();
-      virtual void _001EnableWindow(bool bEnable = true);
+         virtual bool is_window_enabled();
+      virtual void enable_window(bool bEnable = true);
       virtual void _001SetCheck(check::e_check check, ::action::context actioncontext);
       virtual check::e_check _001GetCheck();
       virtual void _001SetState(state::state state, ::action::context actioncontext);

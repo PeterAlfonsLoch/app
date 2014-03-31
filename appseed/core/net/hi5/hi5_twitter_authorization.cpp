@@ -236,8 +236,8 @@ namespace hi5
             if(pevent->m_puie->m_id == "submit" ||
                pevent->m_eevent == ::user::event_enter_key)
             {
-               sp(::user::interaction) pguie = m_pviewAuth->get_child_by_name("pin");
-               sp(text_interface) ptext =  (pguie.m_p);
+               sp(::user::interaction) pui = m_pviewAuth->get_child_by_name("pin");
+               sp(text_interface) ptext =  (pui.m_p);
                ptext->_001GetText(m_strPin);
                m_ptabview->get_wnd()->EndModalLoop(IDOK);
                m_ptabview->GetParentFrame()->ShowWindow(SW_HIDE);

@@ -5,10 +5,6 @@ namespace user
 {
 
 
-   class interaction;
-   class frame_window;
-
-
    class CLASS_DECL_BASE window_interface :
       virtual public elemental,
       virtual public command_target,
@@ -60,7 +56,7 @@ namespace user
       };
 
       
-      sp(interaction)                       m_pguie;
+      sp(interaction)                     m_pui;
       // window rectangle relative to the parent
       // this rectangle comes before in importance compared to m_rectWindow
       // m_rectWindow should be sychronized and recalculated based
@@ -68,11 +64,11 @@ namespace user
       rect64                              m_rectParentClient;
       bool                                m_bVisible;
       bool                                m_bVoidPaint;
-      draw_interface *             m_pdrawinterfaceBackground;
+      draw_interface *                    m_pdrawinterfaceBackground;
       bool                                m_bBackgroundBypass;
       ETranslucency                       m_etranslucency;
 
-      static window_interface * g_pwndLastLButtonDown;
+      static window_interface *           g_pwndLastLButtonDown;
 
 
 
@@ -81,14 +77,9 @@ namespace user
       virtual ~window_interface();
 
 
-      virtual bool _001IsWindowEnabled();
-      virtual void _001EnableWindow(bool bEnable = true);
+      virtual bool is_window_enabled();
+      virtual bool enable_window(bool bEnable = true);
       virtual void _000OnDraw(::draw2d::graphics * pdc);
-
-      //window_interface * _001GetParent() const;
-      //virtual bool _001IsFrameWnd();
-      //user::frame_window * _001GetParentFrame() const;
-      //bool attach(oswindow oswindow);
 
       virtual void PreSubClassWindow();
 
@@ -139,19 +130,6 @@ namespace user
 
       virtual void UpdateWindow();
       virtual void Invalidate(bool bErase = TRUE);
-      /*void InvalidateRect(LPCRECT lprect, bool bErase = TRUE);
-      void InvalidateRgn(::draw2d::region* prgn, bool bErase = TRUE);
-      void ValidateRect(LPCRECT lprect);
-      void ValidateRgn(::draw2d::region* prgn);
-      bool ShowWindow(int32_t iCmdShow);
-      bool IsWindowVisible() const;
-      bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
-      ::draw2d::region* prgnUpdate = NULL,
-      UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
-      bool SetTimer(UINT nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, UINT, uint32_t));
-      bool KillTimer(int32_t nIDEvent);
-      bool SetWindowPos(const sp(::user::window) pWndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
-      sp(::user::window) SetFocus();*/
 
 
       virtual bool RedrawOptimize(LPRECT lprectOut, LPCRECT lpcrect1, LPCRECT lpcrect2);
@@ -160,13 +138,6 @@ namespace user
       virtual bool _001IsTransparent();
       virtual bool _001IsTranslucent();
       virtual bool _001HasTranslucency();
-
-      /*
-      virtual void _001SetWindowPos(const sp(::user::window) pWndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
-      virtual void _001SetFocus();
-      virtual void _001ShowWindow(int32_t iShow);
-      virtual void _001ScreenToClient(LPPOINT lppoint);
-      */
 
       virtual ETranslucency _001GetTranslucency();
 
@@ -179,17 +150,12 @@ namespace user
       virtual void _001DrawBackground(::draw2d::graphics * pdc, LPRECT lprect);
 
 
-      DECL_GEN_SIGNAL(_001OnCreate)
-         DECL_GEN_VSIGNAL(_001OnBaseWndGetProperty)
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_VSIGNAL(_001OnBaseWndGetProperty);
 
-         virtual LRESULT _001BaseWndGetProperty(EProperty eproperty, LPARAM lparam);
+     virtual LRESULT _001BaseWndGetProperty(EProperty eproperty, LPARAM lparam);
 
-      virtual sp(interaction) get_guie();
-#ifdef METROWIN
-      virtual sp(interaction) get_wnd();
-#else
-      virtual sp(::user::window) get_wnd();
-#endif
+      virtual window * get_wnd();
 
       
       enum EOptimize
@@ -200,18 +166,6 @@ namespace user
             
       };
       
-
-      //void Optimize001(
-      //   user::oswindow_tree::Array & oswindowtreea,
-      //   LPCRECT lpcrect);
-
-      //EOptimize Optimize001(
-      //   user::oswindow_tree::Array & oswindowtreea,
-      //   HRGN hrgn);
-
-      //EOptimize Optimize001(
-      //   user::oswindow_tree & oswindowtree,
-      //   HRGN hrgn);
 
       void Optimize008(
          ::user::oswindow_tree::Array & oswindowtreea,

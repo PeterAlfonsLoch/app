@@ -8,7 +8,7 @@ namespace user
       window_util::SortByZOrder(*this);
    }
 
-   // This function sort the ::user::window array
+   // This function sort the window array
    // by ascending z order.
 
    // This implementation relays in the fact
@@ -65,29 +65,29 @@ namespace user
 
    }
 
-   // This function sort the ::user::window array
+   // This function sort the window array
    // by ascending z order.
 
    // This implementation relays in the fact
    // that all windows are siblings,
-   // have a permanent ::user::window associated object
-   // and that all ::user::window array pointers
+   // have a permanent window associated object
+   // and that all window array pointers
    // are pointers to permanent objects.
-   /*void window_util::SortByZOrder(Carray < sp(::user::window), sp(::user::window) > & wndpa)
+   /*void window_util::SortByZOrder(Carray < sp(window), sp(window) > & wndpa)
    {
    if(wndpa.get_size() <= 0)
    return;
 
-   Carray < sp(::user::window), sp(::user::window) > wndpa2;
+   Carray < sp(window), sp(window) > wndpa2;
 
-   sp(::user::window) pwnd = wndpa[0];
+   sp(window) pwnd = wndpa[0];
 
-   sp(::user::window) pwndChild = pwnd->GetWindow(GW_HWNDFIRST);
+   sp(window) pwndChild = pwnd->GetWindow(GW_HWNDFIRST);
 
    while(pwndChild != NULL
    && ::IsWindow(pwndChild->GetSafeoswindow_()))
    {
-   pwnd = ::user::window::FromHandlePermanent(pwndChild->GetSafeoswindow_());
+   pwnd = window::FromHandlePermanent(pwndChild->GetSafeoswindow_());
    if(pwnd == NULL)
    {
    CTransparentWndInterface * ptwi = NULL;
@@ -112,8 +112,8 @@ namespace user
    pwndChild = pwndChild->GetWindow(GW_HWNDNEXT);
    }
 
-   Carray < sp(::user::window), sp(::user::window) > wndpa3;
-   Carray < sp(::user::window), sp(::user::window) > wndpa4;
+   Carray < sp(window), sp(window) > wndpa3;
+   Carray < sp(window), sp(window) > wndpa4;
 
    for(int32_t i = 0; i < wndpa2.get_size(); i++)
    {
@@ -135,13 +135,13 @@ namespace user
 
    }*/
 
-   // This function sort the ::user::window array
+   // This function sort the window array
    // by ascending z order.
 
    // This implementation relays in the fact
    // that all windows are siblings,
-   // have a permanent ::user::window associated object
-   // and that all ::user::window array pointers
+   // have a permanent window associated object
+   // and that all window array pointers
    // are pointers to permanent objects.
    /*void window_util::SortByZOrder(Carray < oswindow, oswindow > & oswindowa)
    {
@@ -373,15 +373,15 @@ namespace user
 
 
    // This function get all child windows of
-   // the ::user::window pointed by pwnd and add it
-   // to the ::user::window array wndpa. The top
+   // the window pointed by pwnd and add it
+   // to the window array wndpa. The top
    // windows come first in the enumeration.
 
-   /*void window_util::EnumChildren(sp(::user::window) pwnd, interaction_ptr_array & wndpa)
+   /*void window_util::EnumChildren(sp(window) pwnd, interaction_ptr_array & wndpa)
    {
    if(!::IsWindow(pwnd->GetSafeoswindow_()))
    return;
-   sp(::user::window) pwndChild = pwnd->GetTopWindow();
+   sp(window) pwndChild = pwnd->GetTopWindow();
    while(pwndChild != NULL)
    {
    wndpa.add(pwndChild);
@@ -390,8 +390,8 @@ namespace user
    }*/
 
    // This function get all child windows of
-   // the ::user::window pointed by pwnd and add it
-   // to the ::user::window array wndpa. The top
+   // the window pointed by pwnd and add it
+   // to the window array wndpa. The top
    // windows come first in the enumeration.
 
    void window_util::EnumChildren(oswindow oswindow, oswindow_array & oswindowa)
@@ -422,13 +422,13 @@ namespace user
    }
 
 
-   // This function sort the ::user::window array
+   // This function sort the window array
    // by ascending z order.
 
    // This implementation relays in the fact
    // that all windows are siblings,
-   // have a permanent ::user::window associated object
-   // and that all ::user::window array pointers
+   // have a permanent window associated object
+   // and that all window array pointers
    // are pointers to permanent objects.
    /*void window_util::SortByZOrder(interaction_ptr_array & wndpa)
    {
@@ -437,13 +437,13 @@ namespace user
 
    interaction_ptr_array wndpa2;
 
-   sp(::user::window) pwnd = wndpa[0];
+   sp(window) pwnd = wndpa[0];
 
-   sp(::user::window) pwndChild = pwnd->GetWindow(GW_HWNDFIRST);
+   sp(window) pwndChild = pwnd->GetWindow(GW_HWNDFIRST);
 
    while(pwndChild != NULL)
    {
-   pwnd = ::user::window::FromHandlePermanent(pwndChild->GetSafeoswindow_());
+   pwnd = window::FromHandlePermanent(pwndChild->GetSafeoswindow_());
    if(pwnd == NULL)
    {
    wndpa2.add(pwnd);
@@ -595,7 +595,7 @@ namespace user
    /*void window_util::SendMessageToDescendants(oswindow oswindow, UINT message,
    WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm)
    {
-   // walk through HWNDs to avoid creating temporary ::user::window objects
+   // walk through HWNDs to avoid creating temporary window objects
    // unless we need to call this function recursively
    for (oswindow oswindow_Child = ::GetTopWindow; oswindow_Child != NULL;
    oswindow_Child = ::GetNextWindow(oswindow_Child, GW_HWNDNEXT))
@@ -603,10 +603,10 @@ namespace user
    // if bOnlyPerm is TRUE, don't send to non-permanent windows
    if (bOnlyPerm)
    {
-   sp(::user::window) pWnd = ::user::window::FromHandlePermanent(oswindow_Child);
+   sp(window) pWnd = window::FromHandlePermanent(oswindow_Child);
    if (pWnd != NULL)
    {
-   // call ::user::window proc directly since it is a C++ ::user::window
+   // call window proc directly since it is a C++ window
    __call_window_procedure(pWnd, pWnd->m_oswindow_, message, wParam, lParam);
    }
    }
@@ -630,7 +630,7 @@ namespace user
 
 #if defined(WINDOWSEX)
 
-      // walk through HWNDs to avoid creating temporary ::user::window objects
+      // walk through HWNDs to avoid creating temporary window objects
       // unless we need to call this function recursively
       for(::oswindow oswindow_Child = ::GetTopWindow(oswindow); oswindow_Child != NULL; oswindow_Child = ::GetNextWindow(oswindow_Child, GW_HWNDNEXT))
       {
@@ -670,7 +670,7 @@ namespace user
 
    }
 
-   // This function sort the ::user::window array
+   // This function sort the window array
    // by ascending z order.
 
    // This implementation relays in the fact

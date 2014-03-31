@@ -1037,7 +1037,7 @@ void application::EnableModelessEx(bool bEnable)
    UNUSED(bEnable);
 #endif
 
-   // no-op if main ::user::window is NULL or not a frame_window
+   // no-op if main window is NULL or not a frame_window
    /*      sp(::user::interaction) pMainWnd = System.GetMainWnd();
    if (pMainWnd == NULL || !pMainWnd->is_frame_window())
    return;*/
@@ -1077,9 +1077,9 @@ return str;
 // Main running routine until application exits
 int32_t application::run()
 {
-   /*   if (GetMainWnd() == NULL) // may be a service or console application ::user::window
+   /*   if (GetMainWnd() == NULL) // may be a service or console application window
    {
-   // Not launched /Embedding or /Automation, but has no main ::user::window!
+   // Not launched /Embedding or /Automation, but has no main window!
    TRACE(::core::trace::category_AppMsg, 0, "Warning: GetMainWnd() is NULL in application::run - quitting application.\n");
    __post_quit_message(0);
    }*/
@@ -2055,8 +2055,8 @@ void application::OnHelp()  // use context to derive help context
       return;
    }
 
-   // otherwise, use ::user::window::OnHelp implementation
-   /* trans sp(::user::window) pWnd = System.GetMainWnd();
+   // otherwise, use window::OnHelp implementation
+   /* trans sp(window) pWnd = System.GetMainWnd();
    ENSURE_VALID(pWnd);
    if (!pWnd->is_frame_window())
    pWnd->OnHelp();
@@ -2217,7 +2217,7 @@ void application::SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld
 void application::OnAppExit()
 {
 
-   // same as double-clicking on main ::user::window close box
+   // same as double-clicking on main window close box
 
    ASSERT(GetMainWnd() != NULL);
 
@@ -2237,7 +2237,7 @@ void application::HideApplication()
       GetMainWnd()->ShowWindow(SW_HIDE);
       // trans    GetMainWnd()->ShowOwnedPopups(FALSE);
 
-      // put the ::user::window at the bottom of zorder, so it isn't activated
+      // put the window at the bottom of zorder, so it isn't activated
       GetMainWnd()->SetWindowPos(ZORDER_BOTTOM, 0, 0, 0, 0,
          SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
    }
@@ -2287,7 +2287,7 @@ void application::DoEnableModeless(bool bEnable)
    UNUSED(bEnable);
 #endif
 
-   // no-op if main ::user::window is NULL or not a frame_window
+   // no-op if main window is NULL or not a frame_window
    /*   sp(::user::interaction) pMainWnd = System.GetMainWnd();
    if (pMainWnd == NULL || !pMainWnd->is_frame_window())
    return;*/
@@ -2335,12 +2335,12 @@ int32_t application::ShowAppMessageBox(sp(application)pApp, const char * lpszPro
    // disable windows for modal dialog
    DoEnableModeless(FALSE);
    ::oswindow oswindow_Top;
-   ::oswindow oswindow = ::user::window::get_safe_owner(NULL, &oswindow_Top);
+   ::oswindow oswindow = window::get_safe_owner(NULL, &oswindow_Top);
 
-   // re-enable the parent ::user::window, so that focus is restored
+   // re-enable the parent window, so that focus is restored
    // correctly when the dialog is dismissed.
    if (oswindow != oswindow_Top)
-   EnableWindow(oswindow, TRUE);
+   enable_window(oswindow, TRUE);
 
    // set help context if possible
    uint32_t* pdwContext = NULL;
@@ -2440,7 +2440,7 @@ int32_t application::ShowAppMessageBox(sp(application)pApp, const char * lpszPro
 
    // re-enable windows
    if (oswindow_Top != NULL)
-   ::EnableWindow(oswindow_Top, TRUE);
+   ::enable_window(oswindow_Top, TRUE);
 
    DoEnableModeless(TRUE);
 
@@ -2502,7 +2502,7 @@ if (!open_document_file(rCmdInfo.m_strFileName))
 bResult = FALSE;
 break;
 
-// If the ::fontopus::user wanted to print, hide our main ::user::window and
+// If the ::fontopus::user wanted to print, hide our main window and
 // fire a message to ourselves to start the printing
 
 case CCommandLineInfo::FilePrintTo:
@@ -3265,12 +3265,12 @@ return NULL;
 
 
 
-sp(::user::window) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+sp(window) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
 {
    return m_pimpl->FindWindow(lpszClassName, lpszWindowName);
 }
 
-sp(::user::window) application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
+sp(window) application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
 {
    return m_pimpl->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
 }
@@ -3463,7 +3463,7 @@ return m_pimpl->graphics_from_os_data(pdata);
 
 
 
-sp(::user::window) application::get_desktop_window()
+sp(window) application::get_desktop_window()
 {
 #if defined(METROWIN) || defined(MACOS)
    throw todo(this);
@@ -4187,7 +4187,7 @@ bool application::_001CloseApplicationByUser(sp(::user::interaction) pwndExcept)
 
 
    // there are cases where destroying the documents may destroy the
-   //  main ::user::window of the application.
+   //  main window of the application.
    //bool b::core::ContextIsDll = afxContextIsDLL;
    //if (!b::core::ContextIsDll && papp->m_pplaneapp->GetVisibleFrameCount() <= 0)
    if (Application.userex()->GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)

@@ -132,7 +132,7 @@ namespace user
       public:
 
 
-         sp(interaction)        m_pguie;
+         sp(interaction)        m_pui;
          uint_ptr             m_uiId;
          UINT                 m_uiElapse;
          UINT                 m_uiLastSent;
@@ -156,15 +156,15 @@ namespace user
          timer_array(sp(base_application) papp);
 
 
-         uint_ptr set(sp(interaction) pguie, uint_ptr uiId, UINT uiElapse);
+         uint_ptr set(sp(interaction) pui, uint_ptr uiId, UINT uiElapse);
          void check();
-         bool unset(sp(interaction) pguie, uint_ptr uiId);
-         void unset(sp(interaction) pguie);
-         void detach(spa(timer_item) & timera, sp(interaction) pguie);
-         void transfer(sp(::user::window) pwindow, sp(interaction) pguie);
+         bool unset(sp(interaction) pui, uint_ptr uiId);
+         void unset(sp(interaction) pui);
+         void detach(spa(timer_item) & timera, sp(interaction) pui);
+         void transfer(sp(window) pwindow, sp(interaction) pui);
          sp(interaction) find(sp(element) pca);
-         index find(sp(interaction) pguie, uint_ptr uiId);
-         index find_from(sp(interaction) pguie, index iStart);
+         index find(sp(interaction) pui, uint_ptr uiId);
+         index find_from(sp(interaction) pui, index iStart);
 
          virtual void assert_valid() const;
          virtual void dump(dump_context & dc) const;
@@ -192,11 +192,11 @@ namespace user
       sp(mutex)                           m_spmutex;
       e_appearance                        m_eappearance;
       sp(interaction)                     m_pimpl;
-      static sp(interaction)                g_pguieMouseMoveCapture;
+      static sp(interaction)                g_puiMouseMoveCapture;
       spa(interaction)                    m_uiptraChild;
       string                              m_strName;
       id                                  m_id;
-      sp(interaction)                       m_pguieOwner;
+      sp(interaction)                       m_puiOwner;
       UINT                                m_nFlags;      // see WF_ flags above
       bool                                m_bCursorInside;
       ::visual::e_cursor                  m_ecursor;
@@ -216,7 +216,7 @@ namespace user
 
 #endif
 
-      id                                  m_idModalResult; // for return values from ::user::window::RunModalLoop
+      id                                  m_idModalResult; // for return values from window::RunModalLoop
       COLORREF                            m_crDefaultBackgroundColor;
       sp(::thread)                        m_pthread;
 
@@ -418,8 +418,8 @@ namespace user
       virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, uint32_t));
       virtual bool KillTimer(uint_ptr nIDEvent);
 
-      virtual bool IsWindowEnabled();
-      virtual bool EnableWindow(bool bEnable = TRUE);
+      virtual bool is_window_enabled();
+      virtual bool enable_window(bool bEnable = TRUE);
 
       virtual void _001Print(::draw2d::graphics * pdc);
       virtual void _000OnDraw(::draw2d::graphics *pdc);
@@ -428,16 +428,13 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics *pdc);
       virtual void draw_control_background(::draw2d::graphics *pdc);
 
-      virtual ::draw2d::graphics * GetDC();
-      virtual bool ReleaseDC(::draw2d::graphics *);
-
-      virtual bool IsChild(sp(interaction)  pWnd);
+      virtual bool IsChild(interaction * pui);
       virtual window_interface * window_interface_get_parent();
-      virtual sp(::user::interaction) get_parent();
-      virtual sp(::user::interaction) set_parent(sp(::user::interaction) pguieParent);
+      virtual ::user::interaction * get_parent();
+      virtual ::user::interaction * set_parent(::user::interaction * puiParent);
       virtual oswindow get_parent_handle();
-      virtual sp(::user::interaction) get_parent_base();
-      virtual sp(::user::interaction) set_parent_base(sp(::user::interaction) pguieParent);
+      virtual ::user::interaction * get_parent_base();
+      virtual ::user::interaction * set_parent_base(::user::interaction * puiParent);
 
       virtual id GetDlgCtrlId();
       virtual id SetDlgCtrlId(class id id);
@@ -523,11 +520,8 @@ namespace user
       virtual bool is_descendant(sp(::user::interaction) pui, bool bIncludeSelf = false);
       virtual sp(::user::interaction) get_focusable_descendant(sp(::user::interaction) pui = NULL);
 
-#ifdef METROWIN
-      virtual sp(::user::interaction) get_wnd();
-#else
-      virtual sp(::user::window) get_wnd();
-#endif
+
+      virtual window * get_wnd();
 
       
       enum RepositionFlags
@@ -544,7 +538,7 @@ namespace user
       virtual void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlag = reposDefault, LPRECT lpRectParam = NULL, LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
 
       virtual sp(interaction) get_owner();
-      virtual void set_owner(sp(interaction) pguie);
+      virtual void set_owner(sp(interaction) pui);
 
       virtual sp(interaction) ChildWindowFromPoint(POINT point);
       virtual sp(interaction) ChildWindowFromPoint(POINT point, UINT nFlags);
@@ -674,6 +668,7 @@ namespace user
 
    };
 
+
    inline oswindow interaction::get_safe_handle()
    {
       if (((byte *)this) < (byte *)(((byte *)NULL) + (16 * 1024))) // consider invalid
@@ -697,7 +692,7 @@ CLASS_DECL_BASE sp(::user::interaction) WINAPI CreateGuieEx(
    int32_t Y,
    int32_t nWidth,
    int32_t nHeight,
-   sp(::user::interaction) pguieParent,
+   sp(::user::interaction) puiParent,
    id id,
    HINSTANCE hInstance,
    LPVOID lpParam);

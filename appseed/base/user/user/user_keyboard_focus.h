@@ -4,16 +4,6 @@
 namespace user
 {
 
-
-   class window;
-
-
-} // namespace user
-
-
-namespace user
-{
-
    class interaction;
    class control_event;
 
@@ -28,11 +18,11 @@ namespace user
       virtual void keyboard_focus_OnSysChar(signal_details * pobj);
       virtual void keyboard_focus_OnKeyDown(signal_details * pobj);
       virtual void keyboard_focus_OnKeyUp(signal_details * pobj);
-      virtual sp(::user::interaction) get_parent() = 0;
+      virtual ::user::interaction * get_parent() = 0;
 #ifdef METROWIN
-      virtual sp(interaction) get_wnd() = 0;
+      virtual interaction * get_wnd() = 0;
 #else
-      virtual sp(::user::window) get_wnd() = 0;
+      virtual window * get_wnd() = 0;
 #endif
       virtual bool BaseOnControlEvent(control_event * pevent) = 0;
       virtual keyboard_focus * keyboard_get_next_focusable();

@@ -586,13 +586,13 @@ namespace user
       {
          //::user::menu* pPopup = (::user::menu_item *) menu.GetSubMenu(0);
          //ASSERT(pPopup != NULL);
-         sp(::user::frame_window) pframe = (sp(::user::frame_window)) (sp(::user::window)) GetParentFrame();
+         sp(::user::frame_window) pframe = (sp(::user::frame_window)) (sp(window)) GetParentFrame();
          //pPopup->TrackPopupMenu(
            // point.x, point.y,
-            //(sp(::user::window)) pframe);
+            //(sp(window)) pframe);
          menu.TrackPopupMenu(
             point.x, point.y,
-            (sp(::user::window)) pframe);
+            (sp(window)) pframe);
       }*/
    }
 
@@ -2246,7 +2246,7 @@ namespace user
 
    bool edit_plain_text::keyboard_focus_is_focusable()
    {
-      return IsWindowEnabled() && IsWindowVisible();
+      return is_window_enabled() && IsWindowVisible();
    }
 
    bool edit_plain_text::keyboard_focus_OnSetFocus()

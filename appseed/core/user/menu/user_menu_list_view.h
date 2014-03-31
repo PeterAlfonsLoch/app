@@ -9,7 +9,7 @@ namespace user
    {
    public:
 
-      ::user::interaction   * m_pguieNotify;
+      ::user::interaction   * m_puiNotify;
 
 
       menu_list_view(sp(base_application) papp);
@@ -21,7 +21,7 @@ namespace user
 
       virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
-      bool LoadMenu(sp(::xml::node) pnode, sp(::user::interaction) pguieNotify, UINT uiCallbackMessage);
+      bool LoadMenu(sp(::xml::node) pnode, sp(::user::interaction) puiNotify, UINT uiCallbackMessage);
          
    #ifdef DEBUG
       virtual void assert_valid() const;
