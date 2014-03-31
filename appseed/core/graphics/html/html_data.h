@@ -48,6 +48,7 @@ namespace html
 
          numeric_array < float >       m_cya;
          bool                          m_bHasChar;
+         float                         m_cy;
 
 
          void reset();

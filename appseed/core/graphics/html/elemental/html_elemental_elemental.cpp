@@ -440,6 +440,7 @@ namespace html
 
          pdata->m_layoutstate1.m_cya.add(0.f);
 
+         pdata->m_layoutstate1.m_cy = 0.f;
 
          for (int32_t i = 0; i < m_elementalptra.get_size(); i++)
          {
@@ -448,6 +449,7 @@ namespace html
 
          }
 
+         m_pimpl->layout_phase1_end(pdata);
 
          if (m_etag != tag_tr)
          {
@@ -473,11 +475,14 @@ namespace html
       else if (m_elementalptra.is_empty())
       {
 
-         pdata->m_layoutstate1.m_cya.last_element() = max(pdata->m_layoutstate1.m_cya.last_element(), m_pimpl->m_box.get_cy());
+         m_pimpl->layout_phase1_end(pdata);
+
+         pdata->m_layoutstate1.m_cy = m_pimpl->m_box.get_cy();
+
+         pdata->m_layoutstate1.m_cya.last_element() = max(pdata->m_layoutstate1.m_cya.last_element(), pdata->m_layoutstate1.m_cy);
 
       }
 
-      m_pimpl->layout_phase1_end(pdata);
 
       if (m_elementalptra.is_empty())
       {
@@ -551,12 +556,8 @@ namespace html
 
       ::html::impl::cell * pcell = dynamic_cast < ::html::impl::cell * > (m_pimpl);
 
-      m_pimpl->layout_phase3(pdata);
-
       if (m_elementalptra.has_elements() && m_etag != tag_select)
       {
-
-         point ptContent = m_pimpl->get_content_xy();
 
          if (m_bTagVisible)
          {
@@ -585,6 +586,10 @@ namespace html
             }
 
          }
+
+         m_pimpl->layout_phase3(pdata);
+
+         point ptContent = m_pimpl->get_content_xy();
 
          pdata->m_layoutstate3.m_y = ptContent.y;
 
@@ -628,6 +633,12 @@ namespace html
             pdata->m_layoutstate3.m_bLastCell = false;
 
          }
+
+      }
+      else
+      {
+
+         m_pimpl->layout_phase3(pdata);
 
       }
 

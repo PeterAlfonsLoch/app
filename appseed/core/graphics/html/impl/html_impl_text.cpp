@@ -269,7 +269,7 @@ namespace html
             if (pdc == NULL)
                return;
             
-            if (pdata->m_layoutstate1.m_cya.last_element() <= 0)
+            if (pdata->m_layoutstate1.m_cy <= 0)
             {
                
                pdc->SelectObject(pdata->get_font(m_pelemental)->m_font);
@@ -278,13 +278,15 @@ namespace html
 
                class ::size size = pdc->GetTextExtent(unitext("MAÚqg"));
 
+               pdata->m_layoutstate1.m_cy = (float)size.cy;
+
                pdata->m_layoutstate1.m_cya.last_element() = (float)size.cy;
 
                m_box.set_cy((float)size.cy);
 
             }
             
-            m_box.set_cy((float)pdata->m_layoutstate1.m_cya.last_element());
+            m_box.set_cy((float)pdata->m_layoutstate1.m_cy);
 
             return;
 

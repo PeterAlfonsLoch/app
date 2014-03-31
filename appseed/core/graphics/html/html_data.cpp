@@ -379,6 +379,8 @@ namespace html
 
       m_cya.add(0.f);
 
+      m_cy = 0.f;
+
    }
 
 
