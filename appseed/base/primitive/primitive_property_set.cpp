@@ -724,14 +724,21 @@ string property_set::eval(const char * psz)
 
 string property_set::gen_eval(const char * psz)
 {
+
    string str;
+
    ASSERT(psz != NULL);
+
    ASSERT(psz[0] == '$'); // until now accepts only one var
+
    ASSERT(strlen(psz) >= 2);
-   str = operator [](&psz[1]);
-   replace_gen(str);
-   return str;
+
+   str = &psz[1];
+   
+   return operator[](str);
+
 }
+
 
 void property_set::clear()
 {

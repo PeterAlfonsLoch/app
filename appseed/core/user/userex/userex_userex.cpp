@@ -293,6 +293,7 @@ retry_license:
 
       property_set propertyset;
       propertyset["message"] = pszMessage;
+      propertyset["application_name"] = pwndOwner == NULL ? Application.m_strAppName : App(pwndOwner->get_app()).m_strAppName;
 
       string strMatter;
       if(fuStyle & MB_YESNOCANCEL)

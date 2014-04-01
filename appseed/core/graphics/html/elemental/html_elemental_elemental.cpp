@@ -318,22 +318,21 @@ namespace html
       if (m_pimpl != NULL)
       {
 
-         if (m_strClass.has_char() || m_strInlineStyle.has_char())
-         {
-
-            m_style.get_surround_box(__id(html_padding), "", pdata, this, m_pimpl->m_padding);
-
-            m_style.get_border_box(__id(html_border), "", pdata, this, m_pimpl->m_border);
-
-            m_style.get_border_color(__id(html_border), "", pdata, this, m_pimpl->m_border);
-
-            m_style.get_surround_box(__id(html_margin), "", pdata, this, m_pimpl->m_margin);
-
-         }
-
          if (m_elementalptra.has_elements())
          {
 
+            if (m_strClass.has_char() || m_strInlineStyle.has_char())
+            {
+
+               m_style.get_surround_box(__id(html_padding), "", pdata, this, m_pimpl->m_padding);
+
+               m_style.get_border_box(__id(html_border), "", pdata, this, m_pimpl->m_border);
+
+               m_style.get_border_color(__id(html_border), "", pdata, this, m_pimpl->m_border);
+
+               m_style.get_surround_box(__id(html_margin), "", pdata, this, m_pimpl->m_margin);
+
+            }
 
             if (m_pimpl->m_margin.left > 1.0f)
             {
@@ -443,6 +442,14 @@ namespace html
 
       }
 
+      float xMax;
+
+      float x;
+
+      float fLastX;
+
+      float fLastY;
+
       m_pimpl->layout_phase1(pdata);
 
       if (m_elementalptra.has_elements())
@@ -471,7 +478,7 @@ namespace html
             if (m_style.m_edisplay == display_block || m_style.m_edisplay == display_table)
             {
 
-               float fLastY = pdata->m_layoutstate1.m_cya.pop();
+               fLastY = pdata->m_layoutstate1.m_cya.pop();
 
                pdata->m_layoutstate1.m_cya.last_element() += fLastY;
 
@@ -486,11 +493,11 @@ namespace html
 
             {
 
-               float xMax = pdata->m_layoutstate1.m_cxMax.pop();
+               xMax = pdata->m_layoutstate1.m_cxMax.pop();
 
-               float x = pdata->m_layoutstate1.m_cxa.pop();
+               x = pdata->m_layoutstate1.m_cxa.pop();
 
-               float fLastX = max(xMax, x);
+               fLastX = max(xMax, x);
 
                pdata->m_layoutstate1.m_cxMax.last_element() = fLastX;
 
@@ -511,8 +518,6 @@ namespace html
 
             pdata->m_layoutstate1.m_cya.last_element() += m_pimpl->m_box.get_cy();
 
-            pdata->m_layoutstate1.m_cxMax.last_element() = max(pdata->m_layoutstate1.m_cxMax.last_element(), pdata->m_layoutstate1.m_cxa.last_element());
-
          }
          else
          {
@@ -522,6 +527,14 @@ namespace html
             pdata->m_layoutstate1.m_cxa.last_element() += m_pimpl->m_box.get_cx();
 
          }
+
+         xMax = pdata->m_layoutstate1.m_cxMax.last_element();
+
+         x = pdata->m_layoutstate1.m_cxa.last_element();
+
+         fLastX = max(xMax, x);
+
+         pdata->m_layoutstate1.m_cxMax.last_element() = fLastX;
 
       }
 

@@ -266,29 +266,31 @@ namespace filemanager
 
    }
 
+
    main_view::~main_view()
    {
+
    }
 
-
-   // BEGIN_MESSAGE_MAP(main_view, ::user::split_view)
-   //{{__MSG_MAP(main_view)
-   //}}__MSG_MAP
-   // END_MESSAGE_MAP()
-
-   /////////////////////////////////////////////////////////////////////////////
-   // main_view diagnostics
 
 #ifdef DEBUG
+
+
    void main_view::assert_valid() const
    {
+
       ::user::split_view::assert_valid();
+
    }
+
 
    void main_view::dump(dump_context & dumpcontext) const
    {
+
       ::user::split_view::dump(dumpcontext);
+
    }
+
 
 #endif //DEBUG
 

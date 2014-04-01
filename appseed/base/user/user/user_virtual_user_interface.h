@@ -22,7 +22,7 @@ public:
 
    using ::user::interaction::message_handler;
    virtual void message_handler(signal_details * pobj);
-   sp(::user::interaction) set_parent(sp(::user::interaction) puiParent);
+   ::user::interaction * set_parent(::user::interaction * puiParent);
    bool ShowWindow(int32_t nCmdShow);
    virtual ::user::interaction * get_parent();
 

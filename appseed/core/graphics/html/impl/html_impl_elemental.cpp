@@ -328,7 +328,7 @@ namespace html
 
          elemental * pelemental = this;
 
-         elemental * pelementalPrevious = NULL;
+         elemental * pelementalPrevious = this;
 
          while (true)
          {
@@ -336,10 +336,10 @@ namespace html
             e_tag etag = pelemental->m_pelemental->m_etag;
 
             if (pelemental->m_pelemental->m_style.m_edisplay == display_block)
-               return pelemental;
+               return pelementalPrevious;
 
             if (pelemental->m_pelemental->m_style.m_edisplay == display_table)
-               return pelemental;
+               return pelementalPrevious;
 
             if (etag == tag_br)
                return pelementalPrevious;
@@ -362,12 +362,12 @@ namespace html
             if (etag == tag_link)
                return pelementalPrevious;
 
-            pelementalPrevious = pelemental->get_previous_sibling();
+            pelementalPrevious = pelemental;
 
-            if (pelementalPrevious == NULL)
-               return pelemental;
+            pelemental = pelemental->get_previous_sibling();
 
-            pelemental = pelementalPrevious;
+            if (pelemental == NULL)
+               return pelementalPrevious;
 
          }
 
@@ -405,20 +405,36 @@ namespace html
          bool bBlock = m_pelemental->m_style.m_edisplay == display_block
             || m_pelemental->m_style.m_edisplay == display_table;
 
-         if (!bBlock)
+         string str = m_pelemental->m_strBody;
+
+         if (m_pelemental->m_elementalptra.is_empty())
          {
 
-            float cx = min(m_pelemental->m_pparent->m_pimpl->m_bound.get_cx(), m_cxMax);
+            if (!bBlock)
+            {
 
-            m_box.set_cx(cx);
+               float cx = min(m_pelemental->m_pparent->m_pimpl->m_bound.get_cx(), m_cxMax);
 
-            m_bound.set_cx(cx);
+               m_box.set_cx(cx);
 
-            return;
+               m_bound.set_cx(cx);
+
+               return;
+
+            }
+            else if (!m_bHasChar)
+            {
+
+               m_box.set_cxy(0, 0);
+
+               m_bound.set_cxy(0, 0);
+
+               return;
+
+            }
 
          }
 
-         string str = m_pelemental->m_strBody;
 
          int iTotalMax = 0;
 

@@ -367,7 +367,7 @@ public:
 
    virtual bool IsChild(sp(::user::interaction)  pwindow);
    virtual ::user::interaction * get_parent();
-   sp(::user::interaction) set_parent(sp(::user::interaction) pWndNewParent);
+   ::user::interaction * set_parent(::user::interaction * pWndNewParent);
 
    // Alert Functions
    bool FlashWindow(bool bInvert);

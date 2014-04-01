@@ -17,6 +17,8 @@ namespace user
       m_echeck    = check::unchecked;
       m_pschema   = NULL;
 
+      m_bLButtonDown = false;
+
    }
 
    button::~button()
@@ -58,7 +60,7 @@ namespace user
       if(m_pschema == NULL)
       {
 
-         if(m_iHover == 0)
+         if (m_iHover == 0 || m_bLButtonDown)
          {
             
             pdc->FillSolidRect(rectClient, ARGB(255, 127, 127, 127));
@@ -78,7 +80,7 @@ namespace user
       }
       else
       {
-         if(m_iHover == 0)
+         if(m_iHover == 0 || m_bLButtonDown)
          {
             color ca;
             ca.set_rgb(m_pschema->m_crBkHover);

@@ -1231,7 +1231,7 @@ void virtual_user_interface::message_handler(signal_details * pobj)
    (this->*m_pfnDispatchWindowProc)(pobj);
 }
 
-sp(::user::interaction) virtual_user_interface::set_parent(sp(::user::interaction) puiParent)
+::user::interaction * virtual_user_interface::set_parent(::user::interaction * puiParent)
 {
    if((puiParent == this
    || puiParent == m_pui

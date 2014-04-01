@@ -22,20 +22,17 @@ namespace user
       virtual public control,
       virtual public check_interface
    {
-   protected:
+   public:
 
 
       check::e_check                      m_echeck;
       bool                                m_bEnabled;
       istring                             m_istrButtonText;
       rect                                m_rectText;
-
-
-   public:
-
       state::state                        m_state;
       index                               m_iClick;
       ::user::front_end_schema::button *  m_pschema;
+      bool                                m_bLButtonDown;
 
 
       button(sp(base_application) papp);

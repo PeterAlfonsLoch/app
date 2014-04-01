@@ -1471,7 +1471,7 @@ sp(::user::interaction) window::GetLastActivePopup()
 }
 
 
-sp(::user::interaction) window::set_parent(sp(::user::interaction) pWndNewParent)
+::user::interaction * window::set_parent(::user::interaction * pWndNewParent)
 {
 
    UNREFERENCED_PARAMETER(pWndNewParent);

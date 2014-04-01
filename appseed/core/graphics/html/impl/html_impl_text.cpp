@@ -257,6 +257,8 @@ namespace html
 
             m_bHasChar = true;
 
+            pdata->m_bHasChar = true;
+
          }
 
       }
