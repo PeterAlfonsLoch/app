@@ -27,6 +27,7 @@ namespace html
       bool                 m_bParent;
       bool                 m_bTagVisible;
       string               m_strClass;
+      string               m_strInlineStyle;
 
 
       elemental(data * pdoc, elemental * pparent = NULL);

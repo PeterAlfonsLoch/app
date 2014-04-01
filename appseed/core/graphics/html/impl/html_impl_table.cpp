@@ -164,7 +164,7 @@ namespace html
       void table::layout_phase1_end(data * pdata)
       {
 
-         elemental::layout_phase1_end(pdata);
+         //elemental::layout_phase1_end(pdata);
 
          for (index i = 0; i < m_columna.get_count(); i++)
          {
@@ -204,6 +204,56 @@ namespace html
 
          }
 
+
+         float cx = m_iCellSpacing;
+
+         float cy = m_iCellSpacing;
+
+         float x = m_box.left + m_iCellSpacing;
+
+         for (int32_t i = 0; i < m_columna.get_size(); i++)
+         {
+
+            m_columna[i].m_x = x;
+
+            x += m_columna[i].m_cx + m_iCellSpacing;
+
+            cx += m_columna[i].m_cx + m_iCellSpacing;
+
+         }
+
+         for (int32_t i = 0; i < m_rowptra.get_size(); i++)
+         {
+
+            //   cy += m_rowptra[i]->m_box.get_cy() + m_iCellSpacing + 1;
+            cy += m_rowptra[i]->m_box.get_cy() + m_iCellSpacing;
+
+         }
+
+         m_box.right =
+            m_box.left
+            + cx
+            + m_margin.left
+            + m_margin.right
+            + m_border.left
+            + m_border.right;
+//            + m_padding.left
+  //          + m_padding.right;
+
+         m_box.bottom =
+            m_box.top
+            + cy
+            + m_margin.top
+            + m_margin.bottom
+            + m_border.top
+            + m_border.bottom;
+//            + m_padding.top
+  //          + m_padding.bottom;
+
+         pdata->m_layoutstate1.m_cya.last_element() = m_box.get_cy();
+
+         pdata->m_layoutstate1.m_cxMax.last_element() = max(m_box.get_cx(), pdata->m_layoutstate1.m_cxMax.last_element());
+
       }
 
 
@@ -222,46 +272,30 @@ namespace html
 
          set_xy(pdata);
 
-         float cx = 0.f;
+         float cx = m_iCellSpacing;
 
-         float cy = 0.f;
+         float cy = m_iCellSpacing;
 
-         for(int32_t i = 0; i < m_columna.get_size(); i++)
+         float x = m_box.left + m_iCellSpacing + m_border.left + m_margin.left;
+
+         for (int32_t i = 0; i < m_columna.get_size(); i++)
          {
 
-            m_columna[i].m_x = cx + m_box.left;
+            m_columna[i].m_x = x;
 
-            cx += m_columna[i].m_cx;
+            x += m_columna[i].m_cx + m_iCellSpacing;
 
          }
 
-         for(int32_t i = 0; i < m_rowptra.get_size(); i++)
+         for (int32_t i = 0; i < m_rowptra.get_size(); i++)
          {
 
-            cy += m_rowptra[i]->m_box.get_cy();
+            //   cy += m_rowptra[i]->m_box.get_cy() + m_iCellSpacing + 1;
+            cy += m_rowptra[i]->m_box.get_cy() + m_iCellSpacing;
 
          }
 
-         m_box.right = 
-              m_box.left   
-            + cx 
-            + m_margin.left
-            + m_margin.right
-            + m_border.left
-            + m_border.right
-            + m_padding.left
-            + m_padding.right
-            - 1;
 
-         m_box.bottom = 
-              m_box.top
-            + cy
-            + m_margin.top
-            + m_margin.bottom
-            + m_border.top
-            + m_border.bottom
-            + m_padding.top
-            + m_padding.bottom;
 
       }
 

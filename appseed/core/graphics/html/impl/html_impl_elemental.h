@@ -88,6 +88,7 @@ namespace html
          virtual void _001OnDraw(data * pdoc);
 
 
+         virtual float get_extra_content_cx();
          virtual float get_extra_content_cy();
 
 

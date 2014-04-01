@@ -141,7 +141,16 @@ namespace html
 
          string str = m_pelemental->m_strBody;
 
-         ::size size = pdc->GetTextExtent(str);
+         string strMax = str;
+
+         if (!pdata->m_bHasChar)
+         {
+
+            strMax.trim_left();
+
+         }
+
+         ::size size = pdc->GetTextExtent(strMax);
 
          m_cxMax = (float)size.cx;
 
@@ -882,6 +891,7 @@ namespace html
          {
             ::html::impl::elemental::OnLButtonUp(pobj);
          }
+
       }
 
       void text::OnMouseMove(signal_details * pobj)
@@ -989,7 +999,6 @@ namespace html
          m_pelemental->m_pdata->m_pform->layout();
 
       }
-
 
 
    } // namespace impl

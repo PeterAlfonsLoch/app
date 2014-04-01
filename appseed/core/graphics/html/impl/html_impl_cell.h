@@ -95,6 +95,7 @@ namespace html
 
 
          virtual void layout_phase0_end(data * pdata);
+         virtual void layout_phase1_end(data * pdata);
          virtual void layout_phase3_end(data * pdata);
 
 

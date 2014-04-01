@@ -205,6 +205,10 @@ namespace html
 
          int cxMaxMax = 0;
 
+         int cxMin = 0;
+
+         int cxMinMax = 0;
+
          for (index i = 0; i < m_pelemental->m_elementalptra.get_count(); i++)
          {
 
@@ -220,17 +224,27 @@ namespace html
                
                cxMax = pelemental->m_cxMax;
 
+               cxMinMax = max(cxMin, cxMinMax);
+
+               cxMin = pelemental->m_cxMin;
+
             }
             else
             {
 
                cxMax += pelemental->m_cxMax;
 
+               cxMin += pelemental->m_cxMin;
+
             }
 
          }
 
          cxMaxMax = max(cxMax, cxMaxMax);
+
+         cxMinMax = max(cxMin, cxMinMax);
+
+         m_cxMin = cxMinMax;
 
          m_cxMax = cxMaxMax;
 
@@ -388,6 +402,22 @@ namespace html
             || etag == tag_body)
             return;
 
+         bool bBlock = m_pelemental->m_style.m_edisplay == display_block
+            || m_pelemental->m_style.m_edisplay == display_table;
+
+         if (!bBlock)
+         {
+
+            float cx = min(m_pelemental->m_pparent->m_pimpl->m_bound.get_cx(), m_cxMax);
+
+            m_box.set_cx(cx);
+
+            m_bound.set_cx(cx);
+
+            return;
+
+         }
+
          string str = m_pelemental->m_strBody;
 
          int iTotalMax = 0;
@@ -414,22 +444,23 @@ namespace html
          if (iTotalMax < m_pelemental->m_pparent->m_pimpl->m_bound.get_cx())
          {
 
-            m_bound.set_cx(m_cxMax + (m_pelemental->m_pparent->m_pimpl->m_bound.get_cx() - iTotalMax) / iCount);
+            m_box.set_cx(m_cxMax + (m_pelemental->m_pparent->m_pimpl->m_bound.get_cx() - iTotalMax) / iCount);
 
          }
          else if (iTotalMin < m_pelemental->m_pparent->m_pimpl->m_bound.get_cx())
          {
 
-            m_bound.set_cx(m_cxMin + (m_pelemental->m_pparent->m_pimpl->m_bound.get_cx() - iTotalMin) / iCount);
+            m_box.set_cx(m_cxMin + (m_pelemental->m_pparent->m_pimpl->m_bound.get_cx() - iTotalMin) / iCount);
 
          }
          else
          {
 
-            m_bound.set_cx(m_cxMin);
+            m_box.set_cx(m_cxMin);
 
          }
 
+         m_bound.set_cx(m_box.get_cx());
 
       }
 
@@ -466,8 +497,17 @@ namespace html
 
          }
 
+         float cxMax = pdata->m_layoutstate1.m_cxMax.last_element() + get_extra_content_cx();
+
+         float cxTotal = pdata->m_layoutstate1.m_cxa.last_element() + get_extra_content_cx();
+
+         cxMax = max(cxMax, cxTotal);
+
+         pdata->m_layoutstate1.m_cxMax.last_element() = cxMax;
 
          m_box.set_cy(pdata->m_layoutstate1.m_cya.last_element());
+
+         m_box.set_cx(pdata->m_layoutstate1.m_cxMax.last_element());
 
       }
 
@@ -495,7 +535,9 @@ namespace html
          if (etag == tag_html
             || etag == tag_head
             || etag == tag_style
-            || etag == tag_script)
+            || etag == tag_script
+            || etag == tag_table
+            || etag == tag_tbody)
          {
             return;
          }
@@ -891,13 +933,15 @@ namespace html
 
          e_tag etag = m_pelemental->m_etag;
 
-
          if (m_pelemental->m_elementalptra.is_empty())
             return;
 
          float x = 3e33f;
+
          float y = 3e33f;
+
          float cx = -3e33f;
+
          float cy = -3e33f;
 
          bool bOk = false;
@@ -938,7 +982,6 @@ namespace html
                cy);
 
          }
-
 
       }
 
@@ -1021,6 +1064,19 @@ namespace html
       {
 
          return 0.f;
+
+      }
+
+      
+      float elemental::get_extra_content_cx()
+      {
+
+         return m_margin.left
+            + m_border.left
+            + m_padding.left
+            + m_padding.right
+            + m_border.right
+            + m_margin.right;
 
       }
 

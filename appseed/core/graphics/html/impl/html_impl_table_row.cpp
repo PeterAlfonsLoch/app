@@ -168,75 +168,63 @@ namespace html
       }
 
 
-      void table_row::layout_phase2(data * pdata)
+      void table_row::layout_phase1_end(data * pdata)
       {
 
-         elemental::layout_phase2(pdata);
+         for (int32_t i = 0; i < m_cellholdera.get_size(); i++)
+         {
 
-         //float iTableBorder = get_table()->m_iBorder;
+            cell * pcell = m_cellholdera[i].m_pcell;
 
-         //if (iTableBorder > 0)
-         //{
+            if (pcell != NULL)
+            {
 
-         //   iTableBorder += 1;
+               if (pcell->get_cy() > m_cyMax)
+               {
 
-         //}
+                  m_cyMax = pcell->get_cy();
 
-         //for (int32_t i = 0; i < m_cellholdera.get_size(); i++)
-         //{
+               }
 
-         //   cell * pcell = m_cellholdera[i].m_pcell;
+               if (pcell->get_cy() < m_cyMin || m_cyMin < 0)
+               {
 
-         //   if (pcell != NULL)
-         //   {
+                  m_cyMin = pcell->get_cy();
 
-         //      if (pcell->get_cy() > m_cyMax)
-         //      {
+               }
 
-         //         //m_cyMax = pcell->get_cy() + (i == get_table()->m_columna.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
+            }
 
-         //         m_cyMax = pcell->get_cy();
+         }
 
-         //      }
+         for (int32_t i = 0; i < m_cellholdera.get_size(); i++)
+         {
 
-         //      if (pcell->get_cy() < m_cyMin || m_cyMin < 0)
-         //      {
+            cell * pcell = m_cellholdera[i].m_pcell;
 
-         //         //m_cyMin = pcell->get_cy() + (i == get_table()->m_columna.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
+            if (pcell != NULL)
+            {
 
-         //         m_cyMin = pcell->get_cy();
+               pcell->m_box.set_cy(m_cyMax);
 
-         //      }
+            }
 
-         //   }
-         //}
+         }
 
-         //for (int32_t i = 0; i < m_cellholdera.get_size(); i++)
-         //{
+         m_box.set_cy(m_cyMax);
 
-         //   cell * pcell = m_cellholdera[i].m_pcell;
+         m_bound.set_cy(m_cyMax);
 
-         //   if (pcell != NULL)
-         //   {
+         pdata->m_layoutstate1.m_cy = m_cyMax;
 
-         //      pcell->m_box.set_cy(m_cyMax);
-
-         //   }
-
-         //}
-
-         //m_box.set_cy(m_cyMax);
-
-         //m_bound.set_cy(m_cyMax);
-
-
+         pdata->m_layoutstate1.m_cya.last_element() = m_cyMax;
 
       }
 
 
       void table_row::layout_phase3(data * pdata)
       {
-
+         
          pdata->m_layoutstate3.m_y += get_table()->m_iCellSpacing;
 
          set_xy(pdata);
@@ -247,6 +235,7 @@ namespace html
       void table_row::layout_phase3_end(data * pdata)
       {
 
+//         pdata->m_layoutstate3.m_cya.last_element() = m_box.get_cy();
 
       }
 
@@ -280,6 +269,13 @@ namespace html
 
       }
 
+
    } // namespace impl
 
+
 } // namespace html
+
+
+
+
+

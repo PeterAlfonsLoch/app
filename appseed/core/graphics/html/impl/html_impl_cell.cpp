@@ -81,20 +81,26 @@ namespace html
 
       }
 
+
       void cell::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {
 
          m_bHasChar = true;
 
-         ::html::impl::elemental::implement_phase1(pdata, pelemental);
+         ::html::impl::text::implement_phase1(pdata, pelemental);
 
          if (!m_pelemental->m_propertyset.is_new_or_null("colspan"))
          {
+
             m_iColSpan = m_pelemental->m_propertyset["colspan"];
+
          }
+
          if (!m_pelemental->m_propertyset.is_new_or_null("rowspan"))
          {
+
             m_iRowSpan = m_pelemental->m_propertyset["rowspan"];
+
          }
 
          table * ptable = get_table();
@@ -106,7 +112,6 @@ namespace html
 
          if (prow == NULL)
             return;
-
 
          m_iColBeg = get_min_col();
 
@@ -193,25 +198,25 @@ namespace html
 
          bool bTableBorder = get_table()->m_iBorder > 0;
 
-         if (m_border.left == 0.f && bTableBorder)
+         if (m_border.left < 1.f && bTableBorder)
          {
             m_border.left = get_table()->m_iBorder;
             m_border.crLeft = ARGB(255, 84, 84, 84);
             m_border.styleLeft = ::html::border::style_solid;
          }
-         if (m_border.top == 0.f && bTableBorder)
+         if (m_border.top < 1.f && bTableBorder)
          {
             m_border.top = get_table()->m_iBorder;
             m_border.crTop = ARGB(255, 84, 84, 84);
             m_border.styleTop = ::html::border::style_solid;
          }
-         if (m_border.right == 0.f && bTableBorder)
+         if (m_border.right < 1.f && bTableBorder)
          {
             m_border.right = get_table()->m_iBorder;
             m_border.crRight = ARGB(255, 192, 192, 192);
             m_border.styleRight = ::html::border::style_solid;
          }
-         if (m_border.bottom == 0.f && bTableBorder)
+         if (m_border.bottom < 1.f && bTableBorder)
          {
             m_border.bottom = get_table()->m_iBorder;
             m_border.crBottom = ARGB(255, 192, 192, 192);
@@ -237,6 +242,10 @@ namespace html
             m_padding.bottom = get_table()->m_iCellPadding;
          }
 
+         if (m_pelemental->m_elementalptra.is_empty())
+            return;
+
+         pdata->m_bHasChar = false;
 
       }
 
@@ -251,6 +260,9 @@ namespace html
 
       void cell::layout_phase0_end(data * pdata)
       {
+
+         if (m_pelemental->m_elementalptra.is_empty())
+            return;
 
          container_raw_cxmax(pdata);
 
@@ -301,17 +313,22 @@ namespace html
 
          }
 
-
       }
-
-
-
 
 
       void cell::layout_phase1(data * pdata)
       {
 
-         set_xy(pdata);
+         if (m_pelemental->m_elementalptra.is_empty())
+         {
+
+            text::layout_phase1(pdata);
+            
+            return;
+
+         }
+
+         //set_xy(pdata);
 
          size size = get_bound_size();
 
@@ -319,7 +336,7 @@ namespace html
 
          float iTableBorder = get_table()->m_iBorder;
 
-         if(iTableBorder > 0)
+         /*if(iTableBorder > 0)
          {
 
             iTableBorder += 2;
@@ -329,13 +346,15 @@ namespace html
             size.cy -= (float) (m_iRowEnd == get_table()->m_rowptra.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
 
          }
-         else
+         else*/
          {
 
             size.cx = iColumnWidth;
 
          }
 
+         /*
+         
          table * ptable = get_table();
 
          if (ptable == NULL)
@@ -375,9 +394,21 @@ namespace html
 
          }
 
+         */
+
          m_box.set_cx((float) iColumnWidth);
 
          m_bound.set_cx((float) iColumnWidth);
+
+         pdata->m_layoutstate1.m_bHasChar = false;
+
+      }
+
+
+      void cell::layout_phase1_end(data * pdata)
+      {
+
+         elemental::layout_phase1_end(pdata);
 
       }
 
@@ -390,6 +421,8 @@ namespace html
 
          set_x(pdata, get_table()->m_columna[m_iColBeg].m_x);
 
+         set_cx(pdata, get_table()->m_columna[m_iColBeg].m_cx);
+
          set_y(pdata, get_table()->m_rowptra[m_iRowBeg]->m_box.top);
 
       }
@@ -398,7 +431,7 @@ namespace html
       void cell::layout_phase3_end(data * pdata)
       {
       
-         //elemental::layout_phase3_end(pdata);
+         pdata->m_layoutstate3.m_cya.last_element() = m_box.get_cy();
 
       }
 
@@ -424,27 +457,27 @@ namespace html
          
          class size size = ::html::impl::elemental::get_content_size();
 
-         size.cx -= get_table()->m_iCellSpacing;
+         //size.cx -= get_table()->m_iCellSpacing;
 
-         if(m_iColBeg == 0)
-         {
-            size.cx -= get_table()->m_iCellSpacing / 2.f;
-         }
-         else if(m_iColEnd == get_table()->m_columna.get_upper_bound())
-         {
-            size.cx -= get_table()->m_iCellSpacing / 2.f;
-         }
+         //if(m_iColBeg == 0)
+         //{
+         //   size.cx -= get_table()->m_iCellSpacing / 2.f;
+         //}
+         //else if(m_iColEnd == get_table()->m_columna.get_upper_bound())
+         //{
+         //   size.cx -= get_table()->m_iCellSpacing / 2.f;
+         //}
 
-         size.cy -= get_table()->m_iCellSpacing;
+         //size.cy -= get_table()->m_iCellSpacing;
 
-         if(m_iRowBeg == 0)
-         {
-            size.cy -= get_table()->m_iCellSpacing / 2.f;
-         }
-         else if(m_iRowEnd == get_table()->m_rowptra.get_upper_bound())
-         {
-            size.cy -= get_table()->m_iCellSpacing / 2.f;
-         }
+         //if(m_iRowBeg == 0)
+         //{
+         //   size.cy -= get_table()->m_iCellSpacing / 2.f;
+         //}
+         //else if(m_iRowEnd == get_table()->m_rowptra.get_upper_bound())
+         //{
+         //   size.cy -= get_table()->m_iCellSpacing / 2.f;
+         //}
 
          return size;
 
@@ -454,7 +487,8 @@ namespace html
       float cell::get_extra_content_cy()
       {
 
-         if (m_iRowBeg == 0 || m_iRowBeg == get_table()->m_rowptra.get_upper_bound())
+         return elemental::get_extra_content_cy();
+         /*if (m_iRowBeg == 0 || m_iRowBeg == get_table()->m_rowptra.get_upper_bound())
          {
 
             return elemental::get_extra_content_cy() + get_table()->m_iCellSpacing + get_table()->m_iCellSpacing / 2.f;
@@ -465,7 +499,7 @@ namespace html
 
             return elemental::get_extra_content_cy() + get_table()->m_iCellSpacing;
 
-         }
+         }*/
 
       }
 

@@ -375,6 +375,14 @@ namespace html
 
       m_bHasChar  = false;
 
+      m_cxMax.remove_all();
+
+      m_cxMax.add(0.f);
+
+      m_cxa.remove_all();
+
+      m_cxa.add(0.f);
+
       m_cya.remove_all();
 
       m_cya.add(0.f);
@@ -398,6 +406,7 @@ namespace html
    {
 
 //      m_cyStack.remove_all();
+      m_yParent.remove_all();
       m_cya.remove_all();
       m_xParent.remove_all();
       m_x = 0.f;
@@ -407,6 +416,7 @@ namespace html
       //m_cyStack.add(0.f);
       m_cya.add(0.f);
       m_xParent.add(0.f);
+      m_yParent.add(0.f);
       //m_iy = 0;
       m_x = 0.f;
       m_cx = 0;

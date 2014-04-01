@@ -35,7 +35,7 @@ namespace html
          
          
          virtual void layout_phase0(data * pdoc);
-         virtual void layout_phase2(data * pdoc);
+         virtual void layout_phase1_end(data * pdoc);
          virtual void layout_phase3(data * pdata);
 
          

@@ -235,11 +235,13 @@ void id_pool::_reset()
    id_html_css_suffix_right = "-right";
    id_html_css_suffix_bottom = "-bottom";
 
+   id_html_css_suffix_width = "-width";
    id_html_css_suffix_left_width = "-left-width";
    id_html_css_suffix_top_width = "-top-width";
    id_html_css_suffix_right_width = "-right-width";
    id_html_css_suffix_bottom_width = "-bottom-width";
 
+   id_html_css_suffix_color = "-color";
    id_html_css_suffix_left_color = "-left-color";
    id_html_css_suffix_top_color = "-top-color";
    id_html_css_suffix_right_color = "-right-color";
@@ -249,12 +251,12 @@ void id_pool::_reset()
    id_html_border_left_width = "border-left-width";
    id_html_border_top_width = "border-top-width";
    id_html_border_right_width = "border-right-width";
-   id_html_border_bottom_width = "border-bottom";
+   id_html_border_bottom_width = "border-bottom-width";
 
    id_html_border_color = "border-color";
    id_html_border_left_color = "border-left-color";
    id_html_border_top_color = "border-top-color";
    id_html_border_right_color = "border-right-color";
-   id_html_border_bottom_color = "border-bottom";
+   id_html_border_bottom_color = "border-bottom-color";
 
 }
