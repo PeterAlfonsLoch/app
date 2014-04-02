@@ -252,6 +252,12 @@ namespace html
       void cell::layout_phase0(data * pdata)
       {
 
+         if (m_pelemental->m_elementalptra.has_elements())
+         {
+
+            pdata->m_bHasChar = false;
+
+         }
 
          text::layout_phase0(pdata);
 
