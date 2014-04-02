@@ -1,15 +1,19 @@
 #include "framework.h"
 
+
 XfplayerViewLineSelection::XfplayerViewLineSelection()
 {
+
    m_estate = state_initial;
 
 }
+
 
 XfplayerViewLineSelection::~XfplayerViewLineSelection()
 {
 
 }
+
 
 void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, signal_details * pobj)
 {
@@ -642,7 +646,7 @@ bool XfplayerViewLineSelection::OnTimer(XfplayerViewLine & viewline, UINT user)
             viewline.GetPlacement(rectPlacement);
             viewline.get_interaction()->_001RedrawWindow();
          }
-         //         ::window_sp pwnd = viewline.GetWnd();
+         //         ::window_sp pwnd = viewline.get_window();
          //         pwnd->KillTimer(::timer::ID_HOVER);
       }
    }

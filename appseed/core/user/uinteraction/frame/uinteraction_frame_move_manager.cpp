@@ -41,7 +41,7 @@ namespace uinteraction
 
          WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetEventWindow().m_p);
          if(pinterface == NULL)
-            pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetDrawWindow().m_p);
+            pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->get_draw_window().m_p);
 
 
          if(pinterface->WfiOnBeginMoving(ptCursor))
@@ -49,7 +49,7 @@ namespace uinteraction
 
          m_ptCursorOrigin = ptCursor;
          rect rectWindow;
-         m_pworkset->GetDrawWindow()->GetWindowRect(rectWindow);
+         m_pworkset->get_draw_window()->GetWindowRect(rectWindow);
          m_ptWindowOrigin = rectWindow.top_left();
          GetEventWindow()->set_capture();
          m_bMoving = true;
@@ -222,7 +222,7 @@ namespace uinteraction
 
          WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetEventWindow().m_p);
          if(pinterface == NULL)
-            pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetDrawWindow().m_p);
+            pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->get_draw_window().m_p);
 
          pinterface->WfiOnMove(pmouse->m_uiMessage == WM_MOUSEMOVE || pmouse->m_uiMessage == WM_NCMOUSEMOVE);
          if(pmouse->m_uiMessage == WM_LBUTTONUP || pmouse->m_uiMessage == WM_NCLBUTTONUP)
@@ -576,7 +576,7 @@ namespace uinteraction
 
       sp(::user::interaction) MoveManager::GetMoveWindow()
       {
-         return m_pworkset->GetDrawWindow();
+         return m_pworkset->get_draw_window();
       }
 
    } // namespace frame

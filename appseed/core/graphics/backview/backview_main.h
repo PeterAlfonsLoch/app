@@ -51,7 +51,7 @@ namespace backview
       bool GetNextImagePath(string & str);
       void SetBackgroundImageChangeInterval(uint32_t dwMillis);
       void OnImageLoaded(::draw2d::dib * pdib);
-      void UpdateDrawingObjects();
+      void update_drawing_objects();
       void OnDestroy();
       void OnResize();
       int32_t SetState(e_state estate);

@@ -61,7 +61,7 @@ namespace backview
       void SetBackgroundImageChangeInterval(uint32_t dwMillis);
       Main & GetMain();
       void OnImageLoaded(::draw2d::dib * pdib);
-      void UpdateDrawingObjects();
+      void update_drawing_objects();
       void OnDestroy();
 
 

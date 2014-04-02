@@ -1,7 +1,9 @@
 #include "framework.h"
 
+
 namespace user
 {
+
 
    tool_tip_window::tool_tip_window(sp(base_application) papp) :
       element(papp),
@@ -158,7 +160,7 @@ namespace user
          rect.height(),
          SWP_NOACTIVATE  );
 
-      UpdateDrawingObjects();
+      update_drawing_objects();
       
       ShowWindow(SW_SHOWNOACTIVATE);
    }
@@ -345,7 +347,7 @@ namespace user
    {
        window::OnSize(nType, cx, cy);
 
-      UpdateDrawingObjects();
+      update_drawing_objects();
    }
 
    ///////////////////////////////////////////////////////////
@@ -445,7 +447,7 @@ namespace user
 
    ///////////////////////////////////////////////////////////
    //
-   // Function Name: UpdateDrawingObjects()
+   // Function Name: update_drawing_objects()
    //
    // Purpose:
    // Update the drawing of the tip.
@@ -455,7 +457,7 @@ namespace user
    //
    //
    ///////////////////////////////////////////////////////////
-   void tool_tip_window::UpdateDrawingObjects()
+   void tool_tip_window::update_drawing_objects()
    {
       /*::draw2d::region rgn;
       rect rectClient;

@@ -310,6 +310,7 @@ namespace user
       virtual void ScreenToClient(LPPOINT lppoint);
       virtual void ScreenToClient(__point64 * lprect);
       virtual bool SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
+      virtual bool defer_set_window_pos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags); // only set_windows_pos if get_parent()->screen_to_client(get_window_rect) different of rect(x, y, cx, cy)      virtual bool set_placement(LPRECT lprect);
       virtual bool set_placement(LPRECT lprect);
       virtual int32_t SetWindowRgn(HRGN hRgn, bool bRedraw);
       virtual int32_t GetWindowRgn(HRGN hRgn);

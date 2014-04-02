@@ -451,6 +451,47 @@ namespace user
    }
 
 
+   bool interaction::defer_set_window_pos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags) // only set_windows_pos if get_parent()->screen_to_client(get_window_rect) different of rect(x, y, cx, cy)
+   {
+
+      rect rectWindow;
+
+      GetWindowRect(rectWindow);
+
+      if (get_parent() != NULL)
+      {
+
+         get_parent()->ScreenToClient(rectWindow);
+
+      }
+
+      if (!(nFlags & SWP_NOMOVE))
+      {
+
+         if (rectWindow.left == x && rectWindow.top == y)
+         {
+            nFlags |= SWP_NOMOVE;
+
+         }
+
+      }
+
+      if (!(nFlags & SWP_NOSIZE))
+      {
+
+         if (rectWindow.width() == cx && rectWindow.height() == cy)
+         {
+
+            nFlags |= SWP_NOSIZE;
+
+         }
+
+      }
+
+      return SetWindowPos(z, x, y, cx, cy, nFlags);
+
+   }
+
    id interaction::GetDlgCtrlId()
    {
       if (m_pimpl == NULL)

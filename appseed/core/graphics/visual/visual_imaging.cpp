@@ -2730,69 +2730,18 @@ bool imaging::color_blend(
       alpha);
 }
 
-bool imaging::color_blend(
-   ::draw2d::graphics * pdc,
-   LPCRECT lpcrect,
-   COLORREF cr,
-   BYTE alpha,
-   ::draw2d::dib * pdibWork,
-   ::draw2d::brush * pbrushWork)
-{
-   class rect rect(lpcrect);
-   return color_blend(
-      pdc,
-      rect.top_left(),
-      rect.size(),
-      cr,
-      alpha,
-      pdibWork,
-      pbrushWork);
-}
 
-bool imaging::color_blend(
-   ::draw2d::graphics * pdc,
-   point pt,
-   size size,
-   COLORREF cr,
-   BYTE bA)
-{
-   //::draw2d::dib_sp spdib(allocer());
-   //return color_blend(pdc, pt, size, cr, bA, spdib);
-   return color_blend(pdc, pt, size, cr, bA, NULL, NULL);
-}
-
-bool imaging::color_blend(
-   ::draw2d::graphics * pdc,
-   int32_t x, int32_t y,
-   int32_t cx, int32_t cy,
-   COLORREF cr,
-   BYTE bA)
+bool imaging::color_blend(::draw2d::graphics * pdc, int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF cr, BYTE bA)
 {
 
    return color_blend(pdc, point(x, y), size(cx, cy), cr, bA);
+
 }
 
-bool imaging::color_blend(::draw2d::graphics * pdc, point pt, size size, COLORREF cr, BYTE bA, ::draw2d::dib * pdibWork, ::draw2d::brush * pbrushWork)
+bool imaging::color_blend(::draw2d::graphics * pdc, point pt, size size, COLORREF cr, BYTE bA)
 {
 
-   if (pbrushWork == NULL)
-   {
-
-      pdc->FillSolidRect(pt.x, pt.y, size.cx, size.cy, (cr & 0x00ffffff) | (bA << 24));
-
-   }
-   else
-   {
-
-      pbrushWork->create_solid((cr & 0x00ffffff) | (bA << 24));
-
-      rect r;
-
-      r = rect_dim(pt.x, pt.y, size.cx, size.cy);
-
-      pdc->FillRect(&r, pbrushWork);
-
-   }
+   pdc->FillSolidRect(pt.x, pt.y, size.cx, size.cy, (cr & 0x00ffffff) | (bA << 24));
 
    return true;
 
@@ -2800,60 +2749,6 @@ bool imaging::color_blend(::draw2d::graphics * pdc, point pt, size size, COLORRE
 
 
 
-bool imaging::prepare_blend(::draw2d::dib * pdib, LPCRECT lpcrect, COLORREF cr, BYTE bA, ::draw2d::dib * pdibWork)
-{
-
-   rect rect(lpcrect);
-
-   return prepare_blend(pdib, rect.top_left(), rect.size(), cr, bA, pdibWork);
-
-}
-
-bool imaging::prepare_blend(::draw2d::dib * pdib, point pt, size size, COLORREF cr, BYTE bA, ::draw2d::dib * pdibWork)
-{
-
-   if(pdibWork == NULL)
-   {
-      return false;
-   }
-
-   if(!pdibWork->create(size))
-      return false;
-
-#ifdef WINDOWS
-
-   pdibWork->get_graphics()->SetMapMode(MM_TEXT);
-
-#else
-
-   throw todo(get_app());
-
-#endif
-
-   pdibWork->get_graphics()->FillSolidRect(0, 0, size.cx, size.cy, cr);
-
-   pdibWork->mult_alpha(NULL);
-
-   bool bOk ;
-   try
-   {
-      bOk = pdib->get_graphics()->BitBlt(pt.x, pt.y, size.cx, size.cy, pdibWork->get_graphics(), null_point().x, null_point().y, SRCCOPY);
-   }
-   catch(...)
-   {
-      bOk = false;
-   }
-
-   pdib->channel_from(visual::rgba::channel_alpha, pdibWork);
-
-   //dib->mult_alpha(NULL);
-
-
-
-
-   return bOk != 0;
-
-}
 
 /*
 

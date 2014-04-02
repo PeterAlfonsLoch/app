@@ -851,56 +851,11 @@
     <ClInclude Include="user\uinteraction\uinteraction.h">
       <Filter>Header Files\user\uinteraction</Filter>
     </ClInclude>
-    <ClInclude Include="user\uinteraction\uinteraction_frame.h">
-      <Filter>Header Files\user\uinteraction</Filter>
-    </ClInclude>
     <ClInclude Include="user\uinteraction\uinteraction_interaction.h">
       <Filter>Header Files\user\uinteraction</Filter>
     </ClInclude>
     <ClInclude Include="user\uinteraction\uinteraction_uinteraction.h">
       <Filter>Header Files\user\uinteraction</Filter>
-    </ClInclude>
-    <ClInclude Include="user\uinteraction\frame\frame.h">
-      <Filter>Header Files\user\uinteraction\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="user\uinteraction\frame\frame_appearance.h">
-      <Filter>Header Files\user\uinteraction\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="user\uinteraction\frame\frame_constants.h">
-      <Filter>Header Files\user\uinteraction\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="user\uinteraction\frame\frame_control_box_button.h">
-      <Filter>Header Files\user\uinteraction\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="user\uinteraction\frame\frame_dock_manager.h">
-      <Filter>Header Files\user\uinteraction\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="user\uinteraction\frame\frame_move_manager.h">
-      <Filter>Header Files\user\uinteraction\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="user\uinteraction\frame\frame_size_manager.h">
-      <Filter>Header Files\user\uinteraction\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="user\uinteraction\frame\frame_sys_menu_manager.h">
-      <Filter>Header Files\user\uinteraction\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="user\uinteraction\frame\frame_up_down_target.h">
-      <Filter>Header Files\user\uinteraction\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="user\uinteraction\frame\frame_work_set.h">
-      <Filter>Header Files\user\uinteraction\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="user\uinteraction\frame\frame_work_set_client_interface.h">
-      <Filter>Header Files\user\uinteraction\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="user\uinteraction\frame\frame_work_set_down_up_interface.h">
-      <Filter>Header Files\user\uinteraction\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="user\uinteraction\frame\frame_work_set_listener.h">
-      <Filter>Header Files\user\uinteraction\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="user\uinteraction\frame\frame_work_set_listener_array.h">
-      <Filter>Header Files\user\uinteraction\frame</Filter>
     </ClInclude>
     <ClInclude Include="graphics\visual\visual.h">
       <Filter>Header Files\graphics\visual</Filter>
@@ -2387,9 +2342,6 @@
     <ClInclude Include="user\user\user_meta_control_box.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\uinteraction\frame\frame_control_box.h">
-      <Filter>Header Files\user\uinteraction\frame</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_button.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -2482,6 +2434,57 @@
     </ClInclude>
     <ClInclude Include="graphics\html\elemental\html_elemental_image.h">
       <Filter>Header Files\graphics\html\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="user\uinteraction\frame\uinteraction_frame.h">
+      <Filter>Header Files\user\uinteraction\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\uinteraction\frame\uinteraction_frame_appearance.h">
+      <Filter>Header Files\user\uinteraction\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\uinteraction\frame\uinteraction_frame_constants.h">
+      <Filter>Header Files\user\uinteraction\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\uinteraction\frame\uinteraction_frame_control_box.h">
+      <Filter>Header Files\user\uinteraction\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\uinteraction\frame\uinteraction_frame_control_box_button.h">
+      <Filter>Header Files\user\uinteraction\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\uinteraction\frame\uinteraction_frame_dock_manager.h">
+      <Filter>Header Files\user\uinteraction\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\uinteraction\frame\uinteraction_frame_move_manager.h">
+      <Filter>Header Files\user\uinteraction\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\uinteraction\frame\uinteraction_frame_size_manager.h">
+      <Filter>Header Files\user\uinteraction\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\uinteraction\frame\uinteraction_frame_sys_menu_manager.h">
+      <Filter>Header Files\user\uinteraction\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\uinteraction\frame\uinteraction_frame_up_down_target.h">
+      <Filter>Header Files\user\uinteraction\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\uinteraction\frame\uinteraction_frame_work_set.h">
+      <Filter>Header Files\user\uinteraction\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\uinteraction\frame\uinteraction_frame_work_set_client_interface.h">
+      <Filter>Header Files\user\uinteraction\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\uinteraction\frame\uinteraction_frame_work_set_down_up_interface.h">
+      <Filter>Header Files\user\uinteraction\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\uinteraction\frame\uinteraction_frame_work_set_listener.h">
+      <Filter>Header Files\user\uinteraction\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\uinteraction\frame\uinteraction_frame_work_set_listener_array.h">
+      <Filter>Header Files\user\uinteraction\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\uinteraction\frame\uinteraction_frame_frame.h">
+      <Filter>Header Files\user\uinteraction\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\uinteraction\frame\uinteraction_frame_enum.h">
+      <Filter>Header Files\user\uinteraction\frame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2836,53 +2839,11 @@
     <ClCompile Include="user\userhtml\userhtml_view_update_hint.cpp">
       <Filter>Source Files\user\userhtml</Filter>
     </ClCompile>
-    <ClCompile Include="user\uinteraction\uinteraction_frame.cpp">
-      <Filter>Source Files\user\uinteraction</Filter>
-    </ClCompile>
     <ClCompile Include="user\uinteraction\uinteraction_interaction.cpp">
       <Filter>Source Files\user\uinteraction</Filter>
     </ClCompile>
     <ClCompile Include="user\uinteraction\uinteraction_uinteraction.cpp">
       <Filter>Source Files\user\uinteraction</Filter>
-    </ClCompile>
-    <ClCompile Include="user\uinteraction\frame\frame_appearance.cpp">
-      <Filter>Source Files\user\uinteraction\frame</Filter>
-    </ClCompile>
-    <ClCompile Include="user\uinteraction\frame\frame_constants.cpp">
-      <Filter>Source Files\user\uinteraction\frame</Filter>
-    </ClCompile>
-    <ClCompile Include="user\uinteraction\frame\frame_control_box_button.cpp">
-      <Filter>Source Files\user\uinteraction\frame</Filter>
-    </ClCompile>
-    <ClCompile Include="user\uinteraction\frame\frame_dock_manager.cpp">
-      <Filter>Source Files\user\uinteraction\frame</Filter>
-    </ClCompile>
-    <ClCompile Include="user\uinteraction\frame\frame_move_manager.cpp">
-      <Filter>Source Files\user\uinteraction\frame</Filter>
-    </ClCompile>
-    <ClCompile Include="user\uinteraction\frame\frame_size_manager.cpp">
-      <Filter>Source Files\user\uinteraction\frame</Filter>
-    </ClCompile>
-    <ClCompile Include="user\uinteraction\frame\frame_sys_menu_manager.cpp">
-      <Filter>Source Files\user\uinteraction\frame</Filter>
-    </ClCompile>
-    <ClCompile Include="user\uinteraction\frame\frame_up_down_target.cpp">
-      <Filter>Source Files\user\uinteraction\frame</Filter>
-    </ClCompile>
-    <ClCompile Include="user\uinteraction\frame\frame_work_set.cpp">
-      <Filter>Source Files\user\uinteraction\frame</Filter>
-    </ClCompile>
-    <ClCompile Include="user\uinteraction\frame\frame_work_set_client_interface.cpp">
-      <Filter>Source Files\user\uinteraction\frame</Filter>
-    </ClCompile>
-    <ClCompile Include="user\uinteraction\frame\frame_work_set_down_up_interface.cpp">
-      <Filter>Source Files\user\uinteraction\frame</Filter>
-    </ClCompile>
-    <ClCompile Include="user\uinteraction\frame\frame_work_set_listener.cpp">
-      <Filter>Source Files\user\uinteraction\frame</Filter>
-    </ClCompile>
-    <ClCompile Include="user\uinteraction\frame\frame_work_set_listener_array.cpp">
-      <Filter>Source Files\user\uinteraction\frame</Filter>
     </ClCompile>
     <ClCompile Include="graphics\visual\visual_water_routine.cpp">
       <Filter>Source Files\graphics\visual</Filter>
@@ -3958,9 +3919,6 @@
     <ClCompile Include="user\user\user_meta_control_box.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\uinteraction\frame\frame_control_box.cpp">
-      <Filter>Source Files\user\uinteraction\frame</Filter>
-    </ClCompile>
     <ClCompile Include="user\menu\user_menu.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
@@ -4053,6 +4011,51 @@
     </ClCompile>
     <ClCompile Include="graphics\html\impl\html_impl_image.cpp">
       <Filter>Source Files\graphics\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="user\uinteraction\frame\uinteraction_frame_appearance.cpp">
+      <Filter>Source Files\user\uinteraction\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\uinteraction\frame\uinteraction_frame_constants.cpp">
+      <Filter>Source Files\user\uinteraction\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\uinteraction\frame\uinteraction_frame_control_box.cpp">
+      <Filter>Source Files\user\uinteraction\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\uinteraction\frame\uinteraction_frame_control_box_button.cpp">
+      <Filter>Source Files\user\uinteraction\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\uinteraction\frame\uinteraction_frame_dock_manager.cpp">
+      <Filter>Source Files\user\uinteraction\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\uinteraction\frame\uinteraction_frame_move_manager.cpp">
+      <Filter>Source Files\user\uinteraction\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\uinteraction\frame\uinteraction_frame_size_manager.cpp">
+      <Filter>Source Files\user\uinteraction\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\uinteraction\frame\uinteraction_frame_sys_menu_manager.cpp">
+      <Filter>Source Files\user\uinteraction\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\uinteraction\frame\uinteraction_frame_up_down_target.cpp">
+      <Filter>Source Files\user\uinteraction\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\uinteraction\frame\uinteraction_frame_work_set.cpp">
+      <Filter>Source Files\user\uinteraction\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\uinteraction\frame\uinteraction_frame_work_set_client_interface.cpp">
+      <Filter>Source Files\user\uinteraction\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\uinteraction\frame\uinteraction_frame_work_set_down_up_interface.cpp">
+      <Filter>Source Files\user\uinteraction\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\uinteraction\frame\uinteraction_frame_work_set_listener.cpp">
+      <Filter>Source Files\user\uinteraction\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\uinteraction\frame\uinteraction_frame_work_set_listener_array.cpp">
+      <Filter>Source Files\user\uinteraction\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\uinteraction\frame\uinteraction_frame_frame.cpp">
+      <Filter>Source Files\user\uinteraction\frame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

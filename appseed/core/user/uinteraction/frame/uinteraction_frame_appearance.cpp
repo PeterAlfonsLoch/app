@@ -32,7 +32,7 @@ namespace uinteraction
 
       }
 
-      sp(::user::interaction) appearance::GetWnd()
+      sp(::user::interaction) appearance::get_window()
       {
          return m_pworkset->GetRegionWindow();
       }
@@ -46,7 +46,7 @@ namespace uinteraction
          try
          {
 
-            m_pworkset->m_pframeschema->OnInitializeAppearance();
+            m_pworkset->m_pframeschema->on_initialize_appearance();
 
          }
          catch(...)
@@ -54,7 +54,7 @@ namespace uinteraction
 
          }
 
-         //      sp(::user::interaction) pwnd = GetWnd();
+         //      sp(::user::interaction) pwnd = get_window();
 
          return true;
       }
@@ -62,15 +62,23 @@ namespace uinteraction
 
       void appearance::Enable(bool bEnable)
       {
+
          m_bEnabled = bEnable;
+
          if(m_pworkset != NULL)
          {
+
             if(m_pworkset->m_pframeschema != NULL)
             {
-               m_pworkset->m_pframeschema->UpdateControlBox();
+
+               m_pworkset->m_pframeschema->title_bar_layout(false);
+
             }
+
          }
+
       }
+
 
       bool appearance::IsEnabled()
       {
@@ -92,7 +100,7 @@ namespace uinteraction
             && m_pworkset->m_pframeschema != NULL)
          {
             ASSERT(m_pworkset->m_pframeschema != NULL);
-            m_pworkset->m_pframeschema->OnAppearanceModeChange();
+            m_pworkset->m_pframeschema->on_appearance_mode_change();
          }
       }
 
@@ -104,7 +112,7 @@ namespace uinteraction
 
       void appearance::SetAppearanceMode()
       {
-         sp(::user::interaction) pwnd = GetWnd();
+         sp(::user::interaction) pwnd = get_window();
 
          if(pwnd == NULL)
             return;
@@ -141,7 +149,7 @@ namespace uinteraction
       bool appearance::WndFrameworkDownUpGetUpEnable()
       {
          CWorkSetDownUpInterface * pinterface = m_pwndframeworkdownupinterface;
-         //dynamic_cast<CWorkSetDownUpInterface *>(GetDrawWindow());
+         //dynamic_cast<CWorkSetDownUpInterface *>(get_draw_window());
          if(pinterface != NULL
             && pinterface != this)
          {
@@ -155,7 +163,7 @@ namespace uinteraction
       {
 
          CWorkSetDownUpInterface * pinterface = m_pwndframeworkdownupinterface;
-         //dynamic_cast<CWorkSetDownUpInterface *>(GetDrawWindow());
+         //dynamic_cast<CWorkSetDownUpInterface *>(get_draw_window());
          if(pinterface != NULL
             && pinterface != this)
          {
@@ -194,7 +202,7 @@ namespace uinteraction
 
       void appearance::UpdateAppearanceMode(bool bFullScreen)
       {
-         sp(::user::interaction) pwnd = m_pworkset->GetDrawWindow();
+         sp(::user::interaction) pwnd = m_pworkset->get_draw_window();
 
          if(pwnd->IsIconic())
          {
@@ -222,7 +230,7 @@ namespace uinteraction
       bool appearance::IsInAutomaticModeSwitching()
       {
 
-         sp(::database::user::interaction) pui =  (GetWnd().m_p);
+         sp(::database::user::interaction) pui =  (get_window().m_p);
 
          if(pui != NULL && !pui->does_display_match())
             return false;
@@ -400,13 +408,17 @@ namespace uinteraction
       }
 
 
+      sp(::uinteraction::frame::control_box_button) appearance::get_box_button(e_button ebutton)
+      {
+
+         throw interface_only_exception(get_app());
+
+         return NULL;
+
+      }
+
+
    } // namespace frame
-
-
-
-
-
-
 
 
 } // namespace uinteraction

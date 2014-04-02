@@ -30,7 +30,7 @@ public:
 
    virtual void _001OnDraw(::draw2d::graphics * pdc);
 
-   void UpdateDrawingObjects();
+   void update_drawing_objects();
 
 
 

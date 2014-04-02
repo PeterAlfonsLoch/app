@@ -29,7 +29,7 @@ public:
 
    virtual void install_message_handling(::message::dispatch * pdispatch);
 
-   void UpdateDrawingObjects();
+   void update_drawing_objects();
    void UpdateWndRgn();
    void _001OnDraw(::draw2d::graphics * pdc);
 

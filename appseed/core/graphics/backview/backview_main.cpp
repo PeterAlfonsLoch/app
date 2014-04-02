@@ -78,7 +78,7 @@ namespace backview
       return false;
    }
 
-   void Main::UpdateDrawingObjects()
+   void Main::update_drawing_objects()
    {
       //::core::savings & savings = System.savings();
       Graphics & graphics = GetGraphics();
@@ -406,7 +406,7 @@ namespace backview
 
    void Main::OnResize()
    {
-      //GetWnd().SetTimer(10001234, 100, NULL);
+      //get_window().SetTimer(10001234, 100, NULL);
       GetInterface().BackViewPostMessage(Interface::MessageBackViewDequeue, 18, 4);
 
    }
@@ -525,7 +525,7 @@ namespace backview
       if(m_bPendingLayout)
       {
          m_bPendingLayout = false;
-         UpdateDrawingObjects();
+         update_drawing_objects();
          PulseEvent((e_event) EventResize);
       }
 

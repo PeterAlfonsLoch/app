@@ -74,7 +74,7 @@ namespace user
       bool GetToolRect(int32_t iTool, LPRECT lprect);
       tool_tip_window(sp(base_application) papp);
       virtual ~tool_tip_window();
-      void UpdateDrawingObjects();
+      void update_drawing_objects();
       bool ShowTip();
       bool IsTipEnabled();
       void EnableTip(bool bEnable = true);

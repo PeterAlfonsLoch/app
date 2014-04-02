@@ -691,7 +691,7 @@ void simple_scroll_bar::_001OnCreate(signal_details * pobj)
 {
    SCAST_PTR(::message::create, pcreate, pobj)
 
-      UpdateDrawingObjects();
+      update_drawing_objects();
 
    pcreate->set_lresult(0);
 }
@@ -796,13 +796,13 @@ LRESULT simple_scroll_bar::OnEconoModeChange(WPARAM wParam, LPARAM lParam)
 {
    UNREFERENCED_PARAMETER(wParam);
    UNREFERENCED_PARAMETER(lParam);
-   UpdateDrawingObjects();
+   update_drawing_objects();
    //Redraw();
 
    return true;
 }
 
-void simple_scroll_bar::UpdateDrawingObjects()
+void simple_scroll_bar::update_drawing_objects()
 {
 
 }

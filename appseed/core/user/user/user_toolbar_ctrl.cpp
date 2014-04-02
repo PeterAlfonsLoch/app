@@ -691,7 +691,7 @@ namespace user
 
    /////////////////////////////////////////////////////////////////////////////
 
-   uint32_t tool_bar_control::GetButtonSize()
+   uint32_t tool_bar_control::get_button_size()
    {
 
 #ifdef WINDOWSEX

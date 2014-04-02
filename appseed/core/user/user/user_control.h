@@ -273,7 +273,7 @@ namespace user
       virtual LRESULT BaseControlExOnIdleUpdateCmdUI(WPARAM wParam, LPARAM);
       virtual void BaseControlExOnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler);
       virtual bool BaseControlExOnCommand(WPARAM wParam, LPARAM lParam) ;
-      virtual sp(::user::interaction) GetWnd();
+      virtual sp(::user::interaction) get_window();
 
       control_cmd_ui  m_cmdui; // cmd_ui derived class used to update
                                     // base_controlex derived controls

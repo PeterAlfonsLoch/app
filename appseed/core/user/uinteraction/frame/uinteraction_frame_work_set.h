@@ -68,11 +68,11 @@ namespace frame
 
       sp(::user::interaction) GetEventWindow();
       sp(::user::interaction) GetRegionWindow();
-      sp(::user::interaction) GetDrawWindow();
+      sp(::user::interaction) get_draw_window();
       sp(::user::interaction) GetCommandWindow();
 
 
-      appearance * GetAppearance();
+      appearance * get_appearance();
       DockManager * GetDockManager();
       MoveManager * GetMovingManager();
       SizeManager * GetSizingManager();
@@ -102,7 +102,6 @@ namespace frame
       bool IsFullScreenEnabled();
       void WindowClose();
       void UpdateApperanceMode(bool bFullScreen);
-      //void UpdateControlBox();
       void SetDownUpInterface(CWorkSetDownUpInterface *pinterface);
       void WindowProcBefore(sp(::user::interaction) pwnd, signal_details * pobj);
       void WindowProcHover(sp(::user::interaction) pwnd, signal_details * pobj);
@@ -129,7 +128,11 @@ namespace frame
       bool Start();
       //void OnDown();
       //void OnUp();
-      void AppearanceUpdateControlBox();
+      
+      
+      void appearance_title_bar_layout(bool bInitialControlBoxPosition);
+
+
       sp(::user::interaction) GetWndDraw();
       sp(::user::interaction) GetWndRegion();
 
@@ -149,7 +152,7 @@ namespace frame
       void SetAppearanceMode();
 
       void GetRegionClientRect(LPRECT lprect);
-      void GetDrawClientRect(LPRECT lprect);
+      void get_draw_client_rect(LPRECT lprect);
       //void SetWindow(sp(::user::interaction) pwnd);
       void relay_event(signal_details * pobj);
       void message_handler(signal_details * pobj);

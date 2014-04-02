@@ -10,7 +10,7 @@ namespace uinteraction
    {
 
       class WorkSet;
-      class ControlBoxButton;
+      class control_box_button;
 
       class CLASS_DECL_CORE appearance :
          public CWorkSetDownUpInterface,
@@ -70,7 +70,7 @@ namespace uinteraction
          CTool001 *                    m_ptool001;
 
          bool IsNotifyIconEnabled();
-         sp(::user::interaction) GetWnd();
+         sp(::user::interaction) get_window();
 
          bool IsInAutomaticModeSwitching();
          void SetAutomaticModeSwitching(bool bSetting);
@@ -96,6 +96,8 @@ namespace uinteraction
 
          virtual void frame_Attach();
          virtual void frame_Detach();
+
+         virtual sp(::uinteraction::frame::control_box_button) get_box_button(e_button ebutton);
 
       };
 

@@ -40,7 +40,7 @@ namespace user
       bool GetItemRect(int32_t nIndex, LPRECT lpRect);
       bool GetRect(int32_t nID, LPRECT lpRect);
       void SetButtonStructSize(int32_t nSize);
-      uint32_t GetButtonSize();
+      uint32_t get_button_size();
       bool SetButtonSize(size size);
       bool SetBitmapSize(size size);
       void set_owner(sp(::user::interaction) pwindow);

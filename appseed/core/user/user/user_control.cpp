@@ -573,7 +573,7 @@ namespace user
 
    LRESULT control_view_impl::BaseControlExOnIdleUpdateCmdUI(WPARAM wParam, LPARAM)
    {
-      sp(::user::interaction) pview = GetWnd();
+      sp(::user::interaction) pview = get_window();
 
        // handle delay hide/show
        bool bVis = (pview->GetStyle() & WS_VISIBLE) != 0;
@@ -593,7 +593,7 @@ namespace user
 
    void control_view_impl::BaseControlExOnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler)
    {
-      sp(::user::interaction) pview = GetWnd();
+      sp(::user::interaction) pview = get_window();
 
       cmd_ui & state = *m_cmdui.m_pcmdui;
       state.m_pOther = pview;
@@ -648,7 +648,7 @@ namespace user
    //  UpdateDialogControls(pTarget, bDisableIfNoHndler);
    }
 
-   sp(::user::interaction) control_view_impl::GetWnd()
+   sp(::user::interaction) control_view_impl::get_window()
    {
       return  (this);
    }
@@ -659,7 +659,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(lParam);
 
-      if(GetWnd() != NULL)
+      if(get_window() != NULL)
       {
 
 #ifdef WINDOWS
@@ -670,7 +670,7 @@ namespace user
          if(uiMessage == BN_CLICKED)
          {
             //xxx id idCommand = m_cmdui.GetControlCommand(wParam & 0xffff);
-            //xxx GetWnd()->GetParentFrame()->_001SendCommand(idCommand);
+            //xxx get_window()->GetParentFrame()->_001SendCommand(idCommand);
          }
 
 #endif

@@ -895,13 +895,17 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
    ::user::frame_window::InitialFramePosition(bForceRestore);
 
-   if(m_workset.GetAppearance() != NULL && m_workset.GetAppearanceMode() == ::uinteraction::frame::AppearanceModeIconic)
+   if(m_workset.get_appearance() != NULL && m_workset.GetAppearanceMode() == ::uinteraction::frame::AppearanceModeIconic)
    {
 
       WfiRestore();
 
+      
+
    }
 
+
+   m_workset.m_pframeschema->title_bar_layout(true);
 }
 
 
@@ -1102,7 +1106,7 @@ void simple_frame_window::GetClientRect(LPRECT lprect)
 {
    if(m_bWindowFrame && m_pframeschema != NULL && !WfiIsFullScreen())
    {
-      m_pframeschema->GetWndClientRect(lprect);
+      m_pframeschema->get_window_client_rect(lprect);
    }
    else
    {

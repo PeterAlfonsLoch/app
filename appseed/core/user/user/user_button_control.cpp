@@ -150,7 +150,7 @@ void BaseButtonControl::_001OnDraw(::draw2d::graphics * pdc)
 
 
 
-void BaseButtonControl::UpdateDrawingObjects()
+void BaseButtonControl::update_drawing_objects()
 {
    rect rectClient;
 

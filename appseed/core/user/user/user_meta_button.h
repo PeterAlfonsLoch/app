@@ -3,7 +3,7 @@
 
 class CLASS_DECL_CORE MetaButton :
    public ::user::button,
-   public ::uinteraction::frame::ControlBoxButton
+   public ::uinteraction::frame::control_box_button
 {
 public:
 

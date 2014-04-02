@@ -95,11 +95,11 @@ namespace backview
          ImageChangePostEvent(::backview::event_timer);
       }
       //else
-//            if(GetWnd() != NULL)
+//            if(get_window() != NULL)
         // {
-//             GetWnd()->KillTimer(ptimer->m_nIDEvent);
+//             get_window()->KillTimer(ptimer->m_nIDEvent);
          //}
-         //GetWnd().PostMessage(Interface::MessageBackViewDequeue, 18, 4);
+         //get_window().PostMessage(Interface::MessageBackViewDequeue, 18, 4);
       //}
       ptimer->m_bRet = false;
    }
@@ -111,7 +111,7 @@ namespace backview
       if(pobj->previous())
          return;
       initialize_user_interaction();
-      GetMain().UpdateDrawingObjects();
+      GetMain().update_drawing_objects();
    }
 
 
@@ -143,9 +143,9 @@ namespace backview
       return false;
    }
 
-   void Interface::UpdateDrawingObjects()
+   void Interface::update_drawing_objects()
    {
-      GetMain().UpdateDrawingObjects();
+      GetMain().update_drawing_objects();
 
    }
 

@@ -154,7 +154,7 @@ namespace backview
    {
 
         RECT rect;
-      pinterface->GetWnd().GetClientRect(&rect);
+      pinterface->get_window().GetClientRect(&rect);
        TRACE("CXfplayerThreadV1::OnImageStretched slGdi.lock\n");
 
 

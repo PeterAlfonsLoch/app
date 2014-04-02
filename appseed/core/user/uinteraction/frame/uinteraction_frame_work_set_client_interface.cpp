@@ -134,14 +134,14 @@ namespace frame
             if(m_workset.m_pappearance != NULL)
             {
 
-               if(m_workset.GetAppearance()->m_pworkset != NULL && m_workset.GetAppearance()->m_pworkset->m_pframeschema != NULL)
+               if(m_workset.get_appearance()->m_pworkset != NULL && m_workset.get_appearance()->m_pworkset->m_pframeschema != NULL)
                {
                
-                  ASSERT(m_workset.GetAppearance()->m_pworkset != NULL);
+                  ASSERT(m_workset.get_appearance()->m_pworkset != NULL);
 
-                  ASSERT(m_workset.GetAppearance()->m_pworkset->m_pframeschema != NULL);
+                  ASSERT(m_workset.get_appearance()->m_pworkset->m_pframeschema != NULL);
 
-                  m_workset.GetAppearance()->m_pworkset->m_pframeschema->OnAppearanceModeChange();
+                  m_workset.get_appearance()->m_pworkset->m_pframeschema->on_appearance_mode_change();
 
                }
 
@@ -233,7 +233,7 @@ namespace frame
          return false;
       WfiOnDown();
       WfiOnAfterDown();
-      m_workset.m_pframeschema->UpdateControlBox();
+      m_workset.m_pframeschema->title_bar_layout(false);
       return true;
    }
 
@@ -244,7 +244,7 @@ namespace frame
          return false;
       WfiOnUp();
       WfiOnAfterUp();
-      m_workset.m_pframeschema->UpdateControlBox();
+      m_workset.m_pframeschema->title_bar_layout(false);
       return true;
    }
 
