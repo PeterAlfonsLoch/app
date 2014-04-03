@@ -787,7 +787,7 @@ namespace install
                   bRate = true;
                   dRate = ((double) atoi_dup(strLine)) / (1000.0 * 1000.0 * 1000.0 );
                }
-               else if (!bStatus2 && ::str::begins_eat(strLine, ":::::"))
+               else if (!bStatus2 && ::str::begins_eat(strLine, "***"))
                {
                   bStatus2 = true;
                   m_strStatus2 = strLine;
