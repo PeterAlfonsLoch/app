@@ -366,6 +366,27 @@ namespace fontopus
       }
       if(m_bInteractive)
       {
+         
+         if (get_splash() != NULL)
+         {
+
+            ::KillTimer(get_splash(), 123);
+
+         }
+
+         if (get_splash() != NULL)
+         {
+
+            ::PostMessage(get_splash(), WM_CLOSE, 0, 0);
+
+         }
+
+         ::MessageBox(NULL, "No license to use the application/feature \"" + string(psz) + "\" for the user \"" + ApplicationUser.m_strLogin + "\". Contact your system administrator.", psz, MB_ICONEXCLAMATION);
+
+
+         return false;
+
+
          m_loginthread.m_strModHash.Empty();
          m_loginthread.m_strKeyHash.Empty();
          m_loginthread.m_strCa2Hash.Empty();
