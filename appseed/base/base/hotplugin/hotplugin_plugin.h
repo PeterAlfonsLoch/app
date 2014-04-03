@@ -42,6 +42,7 @@ namespace hotplugin
       SIZE                          m_sizeBitmap;
 
       string                        m_strStatus;
+      string                        m_strStatus2;
 
       uint32_t                      m_nCa2StarterStartThreadID;
       bool                          m_bReload;

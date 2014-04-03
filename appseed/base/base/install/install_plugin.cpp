@@ -752,6 +752,7 @@ namespace install
          bool bBold = false;
 //         bool bPreNormal = false;
          bool bStart = false;
+         bool bStatus2 = false;
          char ch;
          while(iTell >= 0 && !bStart && !(bNormal && bBold))
          {
@@ -786,13 +787,18 @@ namespace install
                   bRate = true;
                   dRate = ((double) atoi_dup(strLine)) / (1000.0 * 1000.0 * 1000.0 );
                }
-               else if(!bStatus && ::str::begins_eat(strLine, ":::::"))
+               else if (!bStatus2 && ::str::begins_eat(strLine, ":::::"))
+               {
+                  bStatus2 = true;
+                  m_strStatus2 = strLine;
+               }
+               else if (!bStatus && ::str::begins_eat(strLine, ":::::"))
                {
                   bStatus = true;
                   m_strStatus = strLine;
                }
 
-               if(bRate && bStatus)
+               if(bRate && bStatus && bStatus2)
                   break;
 
                strLine = ch;
