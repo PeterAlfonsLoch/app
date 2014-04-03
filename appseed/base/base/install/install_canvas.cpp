@@ -17,11 +17,11 @@ namespace install
 
 #ifdef SUPORTA_TELA_AVANCADA
 
-      m_iModeCount = 6;
+      m_iModeCount = 7;
 
 #else
 
-      m_iModeCount = 4;
+      m_iModeCount = 5;
 
 #endif
 
@@ -98,14 +98,14 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, LPCRECT lpcrect)
 
    ::draw2d::brush_sp brush(allocer());
 
-   if(iMode == 0 || iMode == 1 || iMode == 2 || iMode == 3)
+   if(iMode == 1 || iMode == 2 || iMode == 3 || iMode == 4)
    {
 
       ::draw2d::pen_sp pen(allocer());
 
       pen->create_solid(1.0, ARGB(255, 84, 84, 77));
 
-      if(iMode == 0 || iMode == 1)
+      if(iMode == 1 || iMode == 2)
       {
          brush->m_etype = ::draw2d::brush::type_null;
       }
@@ -123,7 +123,7 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, LPCRECT lpcrect)
    }
    SIZE size = pgraphics->GetTextExtent("CCpp");
 //   int32_t iLineCount = (rect.bottom - 30 - iThankYouHeight) / size.cy;
-   if(iMode == 5) // if(m_bHealingSurface)
+   if(iMode == 6) // if(m_bHealingSurface)
    {
 #ifdef SUPORTA_TELA_AVANCADA
       int32_t iCount = max(1, cx / 25);
@@ -203,7 +203,7 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, LPCRECT lpcrect)
       }
 #endif
    }
-   else if(iMode == 2) // else // !m_bHealingSurface => "Surgery Internals"
+   else if(iMode == 3) // else // !m_bHealingSurface => "Surgery Internals"
    {
 
       brush->create_solid(ARGB(255, 0xCC, 0xCC, 0xCC));
@@ -290,7 +290,7 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, LPCRECT lpcrect)
          }
       }
    }
-   else if(iMode == 3) // else // !m_bHealingSurface => "Surgery Internals"
+   else if(iMode == 4) // else // !m_bHealingSurface => "Surgery Internals"
    {
 
       brush->create_solid(ARGB(255, 0xCC, 0xCC, 0xCC));
@@ -383,7 +383,7 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, LPCRECT lpcrect)
          }
       }
    }
-   else if(iMode == 4) // if(m_bHealingSurface)
+   else if(iMode == 5) // if(m_bHealingSurface)
    {
 #ifdef SUPORT_TELA_AVANCADA
       czero.on_paint(g, lpcrect);

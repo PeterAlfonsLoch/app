@@ -57,7 +57,7 @@ namespace fontopus
       bool                          m_bCred;
       string                        m_strCred;
 
-      visual::icon *                m_picon84;
+      visual::icon *                m_picon95; // the best size to fit current ca2 icon (as of 2014)
 
 
 

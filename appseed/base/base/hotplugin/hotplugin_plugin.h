@@ -132,13 +132,21 @@ namespace hotplugin
 
       virtual void on_bare_paint(::draw2d::graphics * pgraphics, LPCRECT lprect);
 
+      virtual void on_bare_paint_full_screen(::draw2d::graphics * pgraphics, LPCRECT lprect);
+
+      virtual void on_bare_paint_discreet(::draw2d::graphics * pgraphics, LPCRECT lprect);
+
       virtual void start_ca2();
 
       virtual void set_progress_rate(double dRate);
 
       virtual double get_progress_rate();
 
+      virtual void on_update_progress();
+
       virtual void on_paint_progress(::draw2d::graphics * pgraphics, LPCRECT lprect);
+
+      virtual double extract_spa_progress_rate();
 
       virtual void set_ca2_installation_ready(bool bReady = true);
 
@@ -150,6 +158,7 @@ namespace hotplugin
 
       virtual bool set_host(::hotplugin::host * phost);
 
+      virtual void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int32_t iProfile);
       
    };
 

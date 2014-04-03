@@ -545,8 +545,11 @@ namespace install
       }
       else if (System.install().is_installing_ca2())
       {
+         
          bInstallingCa2 = true;
+
          m_canvas.on_paint(pgraphics, &rect);
+
       }
       else if (!System.install().is_ca2_installed())
       {
@@ -596,6 +599,8 @@ namespace install
 
       if((!m_bLogin || !get_login().m_bVisible) && bInstallingCa2)
       {
+
+         on_update_progress();
 
          on_bare_paint(pgraphics, lprect);
 
@@ -717,9 +722,11 @@ namespace install
 
    void plugin::on_paint_progress(::draw2d::graphics * pgraphics, LPCRECT lprect)
    {
-      set_progress_rate(extract_spa_progress_rate());
+
       ::hotplugin::plugin::on_paint_progress(pgraphics, lprect);
+
    }
+
 
    double plugin::extract_spa_progress_rate()
    {

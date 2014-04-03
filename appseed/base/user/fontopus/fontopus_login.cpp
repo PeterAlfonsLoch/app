@@ -3,6 +3,7 @@
 
 CLASS_DECL_BASE void draw_ca2(::draw2d::graphics * pdc, int x, int y, int z, COLORREF crBk, COLORREF cr);
 CLASS_DECL_BASE void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y, int z, int b, COLORREF crBk, COLORREF cr, COLORREF crOut);
+CLASS_DECL_BASE void draw_ca2_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
 CLASS_DECL_BASE void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
 
 
@@ -49,16 +50,16 @@ namespace fontopus
       m_bCred = false;
 
 
-      m_picon84 = NULL;
+      m_picon95 = NULL;
 
       {
 
-         HICON hicon84 = (HICON) ::LoadImage(::GetModuleHandle(NULL), MAKEINTRESOURCE(33), IMAGE_ICON, 84, 84, LR_VGACOLOR);
+         HICON hicon95 = (HICON) ::LoadImage(::GetModuleHandle(NULL), MAKEINTRESOURCE(95), IMAGE_ICON, 95, 95, LR_VGACOLOR);
 
-         if (hicon84 != NULL)
+         if (hicon95 != NULL)
          {
 
-            m_picon84 = new ::visual::icon(hicon84);
+            m_picon95 = new ::visual::icon(hicon95);
 
          }
 
@@ -762,13 +763,19 @@ namespace fontopus
          pgraphics->set_text_color(crBorderOut);
          pgraphics->TextOut((int)(49 * r), (int)(49 * r), m_strCred);
       }
-      else if (m_picon84)
+      else if (m_picon95)
       {
-         pgraphics->DrawIcon((int)(49 * r), (int)(49 * r), m_picon84, (int)((84) * r), (int)((84) * r), 0, NULL, 0);
+
+         draw_ca2_border2(pgraphics, (int)(49 * r), (int)(49 * r) - 11, (int)((91 + 2 + 2) * r), 1, 1, crBk, cr, crBorderOut, crBorderIn);
+
+         pgraphics->DrawIcon((int)(49 * r) + 2, (int)(49 * r) + 2 - 11, m_picon95, (int)((91 + 2 + 2) * r), (int)((91 + 2 + 2) * r), 0, NULL, 0);
+
       }
       else
       {
-         draw_ca2_with_border2(pgraphics, (int)(49 * r), (int)(49 * r), (int)((84 + 1 + 1) * r), 1, 1, crBk, cr, crBorderOut, crBorderIn);
+
+         draw_ca2_with_border2(pgraphics, (int)(49 * r), (int)(49 * r) - 11, (int)((91 + 2 + 2) * r), 1, 1, crBk, cr, crBorderOut, crBorderIn);
+
       }
       
 
