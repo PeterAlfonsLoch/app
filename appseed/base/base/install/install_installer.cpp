@@ -230,6 +230,7 @@ namespace install
       mutex mutexInstallingCa2(get_app(), false, "Global\\::ca::fontopus::ca2_spaboot_install::7807e510-5579-11dd-ae16-0800200c7784");
 
       System.install().trace().rich_trace(":::::Thank you");
+      System.install().trace().rich_trace("***Thank you");
 
       new_progress_end(0.01);
 
@@ -748,7 +749,6 @@ RetryHost:
 #endif
 
          new_progress_end(0.49);
-         System.install().trace().rich_trace("***Downloading files.");
          if(m_bInternetInstall)
          {
             if (file_exists_dup("C:\\ca2\\config\\do_not_download_file_list.txt"))
@@ -794,7 +794,7 @@ RetryHost:
                System.install().trace().trace_add(".");
             }
          }
-         System.install().trace().rich_trace("***executing app.install.exe.");
+         System.install().trace().rich_trace("***Installing application.");
 
          if(m_NeedRestartBecauseOfReservedFile
             || m_NeedRestartFatalError)
@@ -889,6 +889,8 @@ RetryHost:
       int64_t iPreviousTotalProgress;
 
       int32_t i = 0;
+
+      System.install().trace().rich_trace("***Downloading resource files.");
 
       for(; i < stringa.get_count();)
       {
@@ -1020,6 +1022,8 @@ RetryHost:
       }
 
       new_progress_end(0.84);
+
+      System.install().trace().rich_trace("***Downloading files.");
 
       m_iGzLen = 0;
 
@@ -2783,6 +2787,9 @@ RetryHost:
 
    int32_t installer::application_name()
    {
+
+      System.install().trace().rich_trace("***Getting application name");
+
       string strUrl;
       System.install().trace().rich_trace(("get application name from server http://spaignition.api.server.ca2.cc/ using application id \"" + m_strApplicationId + "\" "));
       strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
@@ -2829,7 +2836,6 @@ RetryHost:
 
       m_strTitle = strName;
 
-      System.install().trace().rich_trace(("***" + strName));
       return 0;
    }
 
@@ -2930,7 +2936,10 @@ RetryBuildNumber:
 
    int32_t installer::calc_host(string & strSpaHost, int32_t &iHostRetry)
    {
-RetryHost:
+   RetryHost:
+
+      System.install().trace().rich_trace("***Finding optimal server");
+
       if(iHostRetry > 84)
       {
 //         exit(-1);

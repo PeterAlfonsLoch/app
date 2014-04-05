@@ -1233,6 +1233,8 @@ namespace install
       if (!file_exists_dup("C:\\ca2\\config\\do_not_download_file_list.txt") && bPrivileged)
       {
 
+         trace().rich_trace("***Verifying installer");
+
          string strPathA(System.dir().path(System.dir().name(strPath), "base.dll"));
          string strPathB(System.dir().path(System.dir().name(strPath), "msvcp120d.dll"));
          string strPathC(System.dir().path(System.dir().name(strPath), "msvcr120d.dll"));
@@ -1247,6 +1249,8 @@ namespace install
             || !System.install().is_file_ok(strPathD, "draw2d_gdiplus.dll", strFormatBuild)
             || !System.install().is_file_ok(strPathE, "os.dll", strFormatBuild))
          {
+
+            trace().rich_trace("***Downloading installer");
 
             stringa straFile;
 
