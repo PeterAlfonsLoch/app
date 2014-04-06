@@ -1,44 +1,53 @@
 #pragma once
 
 
-namespace uinteraction
+namespace user
 {
 
-   namespace frame
+
+   namespace uinteraction
    {
 
-      class UpDownTarget;
 
-      class CLASS_DECL_CORE CWorkSetDownUpInterface:
-         virtual public ::object
+      namespace frame
       {
-      public:
 
 
-         sp(UpDownTarget)       m_pupdowntarget;
-         int32_t                  m_iType;
-         int32_t                  m_iIndex;
+         class CLASS_DECL_CORE CWorkSetDownUpInterface :
+            virtual public ::object
+         {
+         public:
 
 
-         CWorkSetDownUpInterface();
+            sp(UpDownTarget)       m_pupdowntarget;
+            int32_t                  m_iType;
+            int32_t                  m_iIndex;
 
 
-         virtual bool WndFrameworkDownUpGetUpEnable() = 0;
-         virtual bool WndFrameworkDownUpGetDownEnable() = 0;
-
-         virtual void frame_Attach();
-         virtual void frame_Detach();
+            CWorkSetDownUpInterface();
 
 
-      };
+            virtual bool WndFrameworkDownUpGetUpEnable() = 0;
+            virtual bool WndFrameworkDownUpGetDownEnable() = 0;
+
+            virtual void frame_Attach();
+            virtual void frame_Detach();
+
+
+         };
+
+
+      } // namespace frame
+
+
+   } // namespace uinteraction
+
+
+} // namespace user
 
 
 
-   } // namespace frame
 
-
-
-} // namespace uinteraction
 
 
 

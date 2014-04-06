@@ -1457,13 +1457,19 @@ sp(::user::frame_window) virtual_user_interface::GetTopLevelFrame()
 
 void virtual_user_interface::_001WindowMaximize()
 {
+
    ::user::interaction::_001WindowMaximize();
+
 }
+
 
 void virtual_user_interface::_001WindowRestore()
 {
+   
    ::user::interaction::_001WindowRestore();
+
 }
+
 
 void virtual_user_interface::_001OnDestroy(signal_details * pobj)
 {

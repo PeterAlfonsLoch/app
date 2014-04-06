@@ -28,9 +28,9 @@ class BaseMiniDockFrameWnd;
 class CLASS_DECL_CORE simple_frame_window :
    virtual public ::user::frame_window,
    virtual public database::user::interaction,
-   virtual public ::uinteraction::frame::WorkSetClientInterface,
-   virtual public ::uinteraction::frame::WorkSetListener,
-   virtual public ::uinteraction::frame::CWorkSetDownUpInterface
+   virtual public ::user::uinteraction::frame::WorkSetClientInterface,
+   virtual public ::user::uinteraction::frame::WorkSetListener,
+   virtual public ::user::uinteraction::frame::CWorkSetDownUpInterface
 {
 public:
 
@@ -38,7 +38,7 @@ public:
 
    ::database::id          m_datakeyFrame;
 
-   sp(::uinteraction::frame::frame)       m_pframeschema;
+   sp(::user::uinteraction::frame::frame)       m_pframeschema;
 
 
 //   HDC                           m_hdcOpenGL;
@@ -88,13 +88,14 @@ public:
 
    virtual void ToggleFullScreen();
    virtual bool IsFullScreen();
-   virtual void WfiOnFullScreen(bool bFullScreen);
+   virtual void WfiOnFullScreen();
+   virtual void WfiOnExitFullScreen();
    virtual void ShowControlBars(bool bShow = true);
 
 
    void OnUpdateControlBarMenu(cmd_ui * pcmdui);
 
-   virtual sp(::uinteraction::frame::frame) create_frame_schema();
+   virtual sp(::user::uinteraction::frame::frame) create_frame_schema();
 
    virtual bool LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, sp(::user::interaction) pParentWnd = NULL, sp(::create_context) pContext = NULL);
 
@@ -158,7 +159,7 @@ public:
    virtual bool WndFrameworkDownUpGetUpEnable();
    virtual bool WndFrameworkDownUpGetDownEnable();
 
-   using ::uinteraction::frame::WorkSetListener::attach;
+   using ::user::uinteraction::frame::WorkSetListener::attach;
    DECL_GEN_VSIGNAL(guserbaseOnInitialUpdate);
 
    virtual class mini_dock_frame_window* CreateFloatingFrame(uint32_t dwStyle);
@@ -200,7 +201,6 @@ public:
    virtual void WfiOnRestore();
 
    virtual bool DeferFullScreen(bool bFullScreen, bool bRestore);
-   virtual bool ShowWindowFullScreen(bool bFullScreen = true, bool bRestore = true);
 
    virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 

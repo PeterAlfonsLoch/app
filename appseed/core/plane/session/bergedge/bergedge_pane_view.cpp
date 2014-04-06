@@ -118,7 +118,7 @@ namespace bergedge
          sp(::simple_frame_window) pframeApp =  (m_pviewdata->m_pwnd.m_p);
          if(pframeApp != NULL)
          {
-            pframeApp->WfiFullScreen(true, false);
+            pframeApp->WfiFullScreen();
          }
       }
       else if(strId == "::bergedge::pane_view_application")

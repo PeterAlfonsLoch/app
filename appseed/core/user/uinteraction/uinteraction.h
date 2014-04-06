@@ -1,23 +1,30 @@
 #pragma once
 
 
-namespace uinteraction
+namespace user
 {
 
-   namespace frame
+
+   namespace uinteraction
    {
 
-
-      // implemented in core
-      class WorkSet;
-      class control_box;
-      class frame;
+      namespace frame
+      {
 
 
-   } // namespace frame
+         // implemented in core
+         class WorkSet;
+         class control_box;
+         class frame;
 
 
-} // namespace uinteraction
+      } // namespace frame
+
+
+   } // namespace uinteraction
+
+
+} // namespace user
 
 
 #include "uinteraction_interaction.h"

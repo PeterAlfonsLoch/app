@@ -8,6 +8,26 @@ namespace user
    class front_end_schema;
 
 
+   namespace uinteraction
+   {
+
+
+      namespace frame
+      {
+
+
+         class WorkSet;
+         class UpDownTarget;
+         class WorkSetListener;
+         class WorkSetListenerArray;
+
+
+      } // namespace frame
+
+
+   } // namespace uinteraction
+
+
 } // namespace user
 
 

@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_CORE MetaControlBox :
-   public ::uinteraction::frame::control_box
+   public ::user::uinteraction::frame::control_box
 {
 public:
 

@@ -111,7 +111,7 @@ namespace nature
       }
       else if(nIDEvent == 1000)
       {
-         ShowWindow(SW_RESTORE);
+         WfiRestore();
          KillTimer(nIDEvent);
          m_bTimerOn = false;
       }
@@ -208,7 +208,7 @@ namespace nature
 
    void frame::OnHoverAction()
    {
-      ShowWindow(SW_RESTORE);
+      WfiRestore();
    }
 
 

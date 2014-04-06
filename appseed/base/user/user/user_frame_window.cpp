@@ -1716,7 +1716,7 @@ namespace user
       {
          if (!IsWindowVisible())
             nCmdShow = SW_SHOWNORMAL;
-         else if (IsIconic())
+         else if (WfiIsIconic())
             nCmdShow = SW_RESTORE;
       }
 
@@ -1836,7 +1836,7 @@ namespace user
       {
          if (pbase->m_wparam == SC_RESTORE)
          {
-            m_eappearance = appearance_normal;
+            m_eappearance = AppearanceNormal;
             InitialFramePosition(true);
             pbase->m_bRet = true;
             pbase->set_lresult(0);

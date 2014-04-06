@@ -2,93 +2,8 @@
 #define CA2_APP_BASE_USER_INTERACTION_H
 
 
-class message_queue_listener;
-
-class image_list;
-
-class base_session;
-
-
-// special struct for WM_SIZEPARENT
-struct __SIZEPARENTPARAMS
-{
-   
-   HDWP hDWP;       // handle for DeferWindowPos
-   RECT rect;       // parent client rectangle (trim as appropriate)
-   SIZE sizeTotal;  // total size on each side as layout proceeds
-   bool bStretch;   // should stretch to fill all space
-   
-};
-
-
-namespace core
-{
-
-
-   class live_object;
-
-#if defined METROWIN && defined(__cplusplus_winrt)
-
-   interface class system_window
-   {
-      virtual Windows::Foundation::Rect get_window_rect() = 0;
-      virtual Windows::Foundation::Point get_cursor_pos() = 0;
-   };
-
-#endif
-
-} // namespace core
-
-
-namespace data
-{
-
-
-   class item;
-
-
-} // namespace data
-
-
-namespace xml
-{
-
-   class node;
-
-} // namespace xml
-
-
 namespace user
 {
-
-   class place_holder;
-   class menu_base_item;
-
-#if defined METROWIN && defined(__cplusplus_winrt)
-
-   
-   class CLASS_DECL_BASE native_window_initialize
-   {
-   public:
-
-
-      Platform::Agile<Windows::UI::Core::CoreWindow> window;
-      ::core::system_window ^ pwindow;
-
-
-   };
-
-
-#else
-
-   class native_window_initialize;
-
-#endif
-
-   
-   class control_event;
-   class frame_window;
-   class menu_base;
 
 
    class CLASS_DECL_BASE interaction :
@@ -124,6 +39,7 @@ namespace user
          type_view
 
       };
+
 
 
       class CLASS_DECL_BASE timer_item :
@@ -179,18 +95,9 @@ namespace user
 #endif
 
 
-      enum e_appearance
-      {
-         
-         appearance_normal,
-         appearance_zoomed,
-         appearance_iconic,
-         appearance_notify
-            
-      };
 
       sp(mutex)                           m_spmutex;
-      e_appearance                        m_eappearance;
+      EAppearance                         m_eappearance;
       sp(interaction)                     m_pimpl;
       static sp(interaction)                g_puiMouseMoveCapture;
       spa(interaction)                    m_uiptraChild;
@@ -288,10 +195,6 @@ namespace user
 
       virtual void _001WindowMaximize();
       virtual void _001WindowRestore();
-      virtual bool IsZoomed();
-      virtual bool IsFullScreen();
-      virtual bool ShowWindowFullScreen(bool bFullScreen = true, bool bRestore = true);
-      virtual bool IsIconic();
       virtual void MoveWindow(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight,
          bool bRepaint = TRUE);
       virtual void MoveWindow(LPCRECT lpRect, bool bRepaint = TRUE);
@@ -667,39 +570,40 @@ namespace user
       virtual bool track_popup_menu(sp(::xml::node) lpnode, int32_t iFlags);
       virtual bool track_popup_xml_matter_menu(const char * pszMatter, int32_t iFlags);
 
+      
+      virtual void WfiEnableFullScreen(bool bEnable = true);
+      virtual bool WfiIsFullScreen();
+      virtual bool WfiIsFullScreenEnabled();
+      virtual bool WfiIsZoomed();
+      virtual bool WfiIsIconic();
+
+
+      virtual bool WfiClose();
+      virtual bool WfiRestore();
+      virtual bool WfiMinimize();
+      virtual bool WfiMaximize();
+      virtual bool WfiFullScreen();
+      virtual bool WfiUp();
+      virtual bool WfiDown();
+      virtual bool WfiNotifyIcon();
+
+      virtual EAppearance get_appearance();
+      virtual EAppearance get_appearance_before();
+
+      virtual bool set_appearance(EAppearance eappearance);
+      virtual bool set_appearance_before(EAppearance eappearance);
+
    };
-
-
-   inline oswindow interaction::get_safe_handle()
-   {
-      if (((byte *)this) < (byte *)(((byte *)NULL) + (16 * 1024))) // consider invalid
-      {
-         return NULL;
-      }
-      return get_handle();
-   }
-
 
 
 } // namespace user
 
-CLASS_DECL_BASE sp(::user::interaction) WINAPI CreateGuieEx(
-   sp(base_application) papp,
-   uint32_t dwExStyle,
-   const char * lpClassName,
-   const char * lpWindowName,
-   uint32_t dwStyle,
-   int32_t X,
-   int32_t Y,
-   int32_t nWidth,
-   int32_t nHeight,
-   sp(::user::interaction) puiParent,
-   id id,
-   HINSTANCE hInstance,
-   LPVOID lpParam);
-
 
 #endif // CA2_APP_BASE_USER_INTERACTION_H
+
+
+
+
 
 
 

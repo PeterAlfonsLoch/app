@@ -21,7 +21,7 @@ namespace user
    {
 
       m_pmutex = NULL;
-      m_eappearance = appearance_normal;
+      m_eappearance = AppearanceNormal;
       m_bCursorInside = false;
       m_nFlags = 0;
       m_puiOwner = NULL;
@@ -52,7 +52,7 @@ namespace user
    {
 
          m_pmutex = NULL;
-         m_eappearance = appearance_normal;
+         m_eappearance = AppearanceNormal;
          m_bCursorInside = false;
          m_nFlags = 0;
          m_puiOwner = NULL;
@@ -2215,36 +2215,28 @@ namespace user
    }
 
 
-   bool interaction::IsZoomed()
+   bool interaction::WfiIsZoomed()
    {
       if (m_pimpl == NULL)
          return false;
       else
-         return m_pimpl->IsZoomed();
+         return m_pimpl->WfiIsZoomed();
    }
 
-   bool interaction::IsFullScreen()
+   bool interaction::WfiIsFullScreen()
    {
       if (m_pimpl == NULL)
          return false;
       else
-         return m_pimpl->IsZoomed();
+         return m_pimpl->WfiIsFullScreen();
    }
 
-   bool interaction::ShowWindowFullScreen(bool bShowWindowFullScreen, bool bRestore)
+   bool interaction::WfiIsIconic()
    {
       if (m_pimpl == NULL)
          return false;
       else
-         return m_pimpl->ShowWindowFullScreen(bShowWindowFullScreen, bRestore);
-   }
-
-   bool interaction::IsIconic()
-   {
-      if (m_pimpl == NULL)
-         return false;
-      else
-         return m_pimpl->IsIconic();
+         return m_pimpl->WfiIsIconic();
    }
 
    void interaction::MoveWindow(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight,
@@ -2816,21 +2808,22 @@ namespace user
    void interaction::_001WindowMaximize()
    {
 
-      m_eappearance = appearance_zoomed;
+      m_eappearance = AppearanceZoomed;
 
-      rect rectDesktop;
-
-      System.get_monitor_rect(0, rectDesktop);
-
-      SetWindowPos(ZORDER_TOP, 0, 0, rectDesktop.width(), rectDesktop.height(), SWP_SHOWWINDOW);
+      if (m_pimpl != NULL)
+         m_pimpl->_001WindowMaximize();
 
    }
 
+
    void interaction::_001WindowRestore()
    {
-      m_eappearance = appearance_normal;
+      
+      m_eappearance = AppearanceNormal;
+      
       if (m_pimpl != NULL)
          m_pimpl->_001WindowRestore();
+
    }
 
 
@@ -3936,6 +3929,119 @@ namespace user
    {
 
       m_crText = crText;
+
+   }
+
+   void interaction::WfiEnableFullScreen(bool bEnable)
+   {
+
+   }
+
+
+   bool interaction::WfiIsFullScreenEnabled()
+   {
+
+      return false;
+
+   }
+
+
+   bool interaction::WfiClose()
+   {
+
+      return false;
+
+   }
+
+
+   bool interaction::WfiRestore()
+   {
+
+      return false;
+
+   }
+
+
+   bool interaction::WfiMinimize()
+   {
+
+      return false;
+
+   }
+
+
+   bool interaction::WfiMaximize()
+   {
+
+      return false;
+
+   }
+
+
+   bool interaction::WfiFullScreen()
+   {
+
+      return false;
+
+   }
+
+
+   bool interaction::WfiUp()
+   {
+
+      return false;
+
+   }
+
+
+   bool interaction::WfiDown()
+   {
+
+      return false;
+
+   }
+
+
+   bool interaction::WfiNotifyIcon()
+   {
+
+      return false;
+
+   }
+
+
+   EAppearance interaction::get_appearance()
+   {
+
+      return m_eappearance;
+
+   }
+
+
+   EAppearance interaction::get_appearance_before()
+   {
+
+      return AppearanceNone;
+
+   }
+
+
+   bool interaction::set_appearance(EAppearance eappearance)
+   {
+
+      m_eappearance = eappearance;
+
+      return true;
+
+   }
+
+
+   bool interaction::set_appearance_before(EAppearance eappearance)
+   {
+
+      UNREFERENCED_PARAMETER(eappearance);
+
+      return false;
 
    }
 

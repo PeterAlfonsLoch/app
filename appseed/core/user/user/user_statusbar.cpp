@@ -193,7 +193,7 @@ namespace user
       ::user::control_bar::CalcInsideRect(rect, bHorz);
 #ifdef WINDOWSEX
       // subtract size grip if present
-      if ((GetStyle() & SBARS_SIZEGRIP) && !get_parent()->IsZoomed())
+      if ((GetStyle() & SBARS_SIZEGRIP) && !get_parent()->WfiIsZoomed())
       {
          // get border metrics from common control
          int32_t rgBorders[3];

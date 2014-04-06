@@ -1,31 +1,43 @@
 #pragma once
 
 
-namespace uinteraction
+namespace user
 {
 
 
-   class CLASS_DECL_CORE interaction :
-      virtual public ::object
+   namespace uinteraction
    {
-   public:
 
 
-      property_set       m_set;
+      class CLASS_DECL_CORE interaction :
+         virtual public ::object
+      {
+      public:
 
 
-      interaction(sp(base_application) papp);
-      virtual ~interaction();
-
-      virtual void update();
+         property_set       m_set;
 
 
-      virtual void get_frame_schema_list(stringa & stra);
+         interaction(sp(base_application) papp);
+         virtual ~interaction();
 
-      virtual sp(frame::frame) get_frame_schema(const char * pszSchema);
-
-
-   };
+         virtual void update();
 
 
-} // namespace uinteraction
+         virtual void get_frame_schema_list(stringa & stra);
+
+         virtual sp(frame::frame) get_frame_schema(const char * pszSchema);
+
+
+      };
+
+
+   } // namespace uinteraction
+
+
+} // namespace user
+
+
+
+
+

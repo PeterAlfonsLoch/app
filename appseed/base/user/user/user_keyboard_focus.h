@@ -4,8 +4,6 @@
 namespace user
 {
 
-   class interaction;
-   class control_event;
 
    class CLASS_DECL_BASE keyboard_focus :
       virtual public signalizable

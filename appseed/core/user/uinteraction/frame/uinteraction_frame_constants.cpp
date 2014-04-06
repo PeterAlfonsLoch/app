@@ -1,30 +1,38 @@
 #include "framework.h"
 
 
-
- namespace uinteraction
-
- {
-
-
-
-
-
-
-
-namespace frame
+namespace user
 {
 
 
 
-} // namespace frame
+   namespace uinteraction
+
+   {
 
 
 
-} // namespace uinteraction
 
 
 
+
+      namespace frame
+      {
+
+
+
+      } // namespace frame
+
+
+
+   } // namespace uinteraction
+
+
+
+
+
+
+} // namespace user
 
 
 

@@ -22,12 +22,22 @@ extern CLASS_DECL_CORE string g_strNote;
 class image_list;
 
 
+
 namespace user
 {
 
+   class printer;
    class tree;
 
+   namespace uinteraction
+   {
+
+      class uinteraction;
+
+   }
+
 } // namespace user
+
 
 #undef App
 #undef Application

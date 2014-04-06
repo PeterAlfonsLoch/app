@@ -68,7 +68,7 @@ namespace plane
       nature::database *                                 m_pdatabase;
 
 
-      string_map < sp(::uinteraction::interaction) >     m_mapUinteraction;
+      string_map < sp(::user::uinteraction::interaction) >     m_mapUinteraction;
 
 
       session(base_application * papp);

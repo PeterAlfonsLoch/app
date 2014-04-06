@@ -1,36 +1,45 @@
 #include "framework.h"
 
 
-namespace uinteraction
+namespace user
 {
 
-
-namespace frame
-{
-
-   CWorkSetDownUpInterface::CWorkSetDownUpInterface()
+   namespace uinteraction
    {
-      m_pupdowntarget = NULL;
-   }
-   void CWorkSetDownUpInterface::frame_Attach()
-   {
-      if(m_pupdowntarget != NULL)
+
+
+      namespace frame
       {
-         m_pupdowntarget->UpDownTargetAttach(this);
-      }
-   }
-   void CWorkSetDownUpInterface::frame_Detach()
-   {
-      if(m_pupdowntarget != NULL)
-      {
-         m_pupdowntarget->UpDownTargetDetach(this);
-      }
-   }
 
-} // namespace frame
+         CWorkSetDownUpInterface::CWorkSetDownUpInterface()
+         {
+            m_pupdowntarget = NULL;
+         }
+         void CWorkSetDownUpInterface::frame_Attach()
+         {
+            if(m_pupdowntarget != NULL)
+            {
+               m_pupdowntarget->UpDownTargetAttach(this);
+            }
+         }
+         void CWorkSetDownUpInterface::frame_Detach()
+         {
+            if(m_pupdowntarget != NULL)
+            {
+               m_pupdowntarget->UpDownTargetDetach(this);
+            }
+         }
 
-} // namespace uinteraction
+      } // namespace frame
 
+   } // namespace uinteraction
+
+
+
+
+
+
+} // namespace user
 
 
 

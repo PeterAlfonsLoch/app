@@ -399,16 +399,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnQueryEndSession)
 
       friend class user;
-      //virtual class mini_dock_frame_window* CreateFloatingFrame(uint32_t dwStyle);
-      //virtual uint32_t CanDock(rect rect, uint32_t dwDockStyle, BaseDockBar** ppDockBar = NULL); // called by CDockContext
       virtual void AddControlBar(::user::control_bar *pBar);
       virtual void RemoveControlBar(::user::control_bar *pBar);
-      //virtual void DockControlBar(::user::control_bar* pBar, BaseDockBar* pDockBar, LPCRECT lpRect = NULL);
-      //virtual void ReDockControlBar(::user::control_bar* pBar, BaseDockBar* pDockBar, LPCRECT lpRect = NULL);
-
-      //virtual bool IsFullScreen();
-      //virtual bool ShowWindowFullScreen(bool bFullScreen = true, bool bRestore = true);
-
 
 
       void data_on_after_change(signal_details * pobj);

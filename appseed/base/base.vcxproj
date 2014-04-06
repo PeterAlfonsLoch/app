@@ -3464,10 +3464,12 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_draw_context.h" />
     <ClInclude Include="user\user\user_draw_interface.h" />
     <ClInclude Include="user\user\user_elemental.h" />
+    <ClInclude Include="user\user\user_enum.h" />
     <ClInclude Include="user\user\user_frame_window.h" />
     <ClInclude Include="user\user\user_impact.h" />
     <ClInclude Include="user\user\user_impact_system.h" />
     <ClInclude Include="user\user\user_impact_update_hint.h" />
+    <ClInclude Include="user\user\user_inline.h" />
     <ClInclude Include="user\user\user_interaction.h" />
     <ClInclude Include="user\user\user_job.h" />
     <ClInclude Include="user\user\user_keyboard.h" />

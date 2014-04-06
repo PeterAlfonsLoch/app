@@ -82,24 +82,6 @@ namespace database
          //         SCAST_PTR(::message::show_window, pshowwindow, pobj)
          if(get_parent() == NULL)
          {
-#if !core_level_1 && !core_level_2 && defined(WINDOWS)
-            if(GetExStyle() && WS_EX_LAYERED)
-            {
-               if(IsZoomed())
-               {
-               }
-               else if(IsFullScreen())
-               {
-               }
-               else if(IsIconic())
-               {
-               }
-               else
-               {
-
-               }
-            }
-#endif
          }
       }
 
@@ -183,6 +165,12 @@ namespace database
 
             memstream.seek_to_begin();
 
+            int iBefore = 0;
+
+            memstream >> iBefore;
+
+            set_appearance_before((::user::EAppearance)iBefore);
+
             bool bZoomed = false;
 
             memstream >> bZoomed;
@@ -190,7 +178,7 @@ namespace database
             if (!bForceRestore && bZoomed)
             {
 
-               pwindow->ShowWindow(SW_MAXIMIZE);
+               pwindow->WfiMaximize();
 
             }
 
@@ -198,32 +186,10 @@ namespace database
 
             memstream >> bFullScreen;
 
-            if (!bForceRestore)
+            if (!bForceRestore && bFullScreen)
             {
 
-               if (bFullScreen)
-               {
-                  if (!pwindow->IsFullScreen())
-                  {
-                     pwindow->ShowWindowFullScreen(true, false);
-                  }
-               }
-               else
-               {
-                  if (pwindow->IsFullScreen())
-                  {
-                     pwindow->ShowWindowFullScreen(false, false);
-                  }
-               }
-
-            }
-            else if (!bFullScreen)
-            {
-
-               if (pwindow->IsFullScreen())
-               {
-                  pwindow->ShowWindowFullScreen(false, false);
-               }
+               pwindow->WfiFullScreen();
 
             }
 
@@ -234,14 +200,7 @@ namespace database
             if (!bForceRestore && bIconic)
             {
 
-               pwindow->ShowWindow(SW_MINIMIZE);
-
-            }
-
-            if (bForceRestore)
-            {
-
-               pwindow->ShowWindow(SW_RESTORE);
+               pwindow->WfiMinimize();
 
             }
 
@@ -270,21 +229,21 @@ namespace database
                   || rectDesktop.height() * 2 / 5 < 100)
                {
                   SetWindowPos(
-                     -3,
+                     ZORDER_TOP,
                      rectDesktop.left + rectDesktop.width() / 7,
                      rectDesktop.top + rectDesktop.height() / 7,
                      rectDesktop.width() * 2 / 5,
-                     rectDesktop.height() * 2 / 5, 0);
+                     rectDesktop.height() * 2 / 5, SWP_SHOWWINDOW);
                }
                else
                {
                   SetWindowPos(
-                     -3,
-                     rectWindow.left,
-                     rectWindow.top,
-                     rectWindow.width(),
-                     rectWindow.height(),
-                     0);
+                     ZORDER_TOP,
+                     rectIntersect.left,
+                     rectIntersect.top,
+                     rectIntersect.width(),
+                     rectIntersect.height(),
+                     SWP_SHOWWINDOW);
                }
 
 
@@ -317,6 +276,7 @@ namespace database
             idIndex,
             memstreamGet);
          memstreamGet.seek_to_begin();
+         int iBeforeOld = 0;
          bool bZoomedOld = false;
          bool bFullScreenOld = false;
          bool bIconicOld = false;
@@ -325,6 +285,7 @@ namespace database
          {
             try
             {
+               memstreamGet >> iBeforeOld;
                memstreamGet >> bZoomedOld;
                memstreamGet >> bFullScreenOld;
                memstreamGet >> bIconicOld;
@@ -335,11 +296,13 @@ namespace database
                bGet = false;
             }
          }
-         bool bZoomed = pwindow->IsZoomed() != FALSE;
+         int iBefore = (int) get_appearance_before();
+         memstream << iBefore;
+         bool bZoomed = pwindow->WfiIsZoomed() != FALSE;
          memstream << bZoomed;
-         bool bFullScreen = pwindow->IsFullScreen();
+         bool bFullScreen = pwindow->WfiIsFullScreen();
          memstream << bFullScreen;
-         bool bIconic = pwindow->IsIconic();
+         bool bIconic = pwindow->WfiIsIconic();
          memstream << bIconic;
          if(bGet && (bZoomed || bFullScreen || bIconic))
          {
@@ -354,12 +317,25 @@ namespace database
          return data_set(key, idIndex, memstream);
       }
 
+
       void interaction::_001WindowRestore()
       {
-         if (!WindowDataLoadWindowRect(true))
+
+         if (m_pimpl != NULL)
          {
-            ShowWindow(SW_RESTORE);
+
+            keeper < bool > keepEnable(&m_bEnableSaveWindowRect, false, m_bEnableSaveWindowRect, true);
+
+            m_pimpl->m_eappearance = ::user::AppearanceNormal;
+
+            m_pimpl->_001WindowRestore();
+
          }
+            
+         WindowDataLoadWindowRect(true);
+         
+         m_eappearance = ::user::AppearanceNormal;
+
       }
 
 

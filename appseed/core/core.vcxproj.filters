@@ -102,12 +102,6 @@
     <Filter Include="Header Files\user\uinteraction\frame">
       <UniqueIdentifier>{891c64f2-4f3a-46a8-9c2b-924c4c233a28}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user\uinteraction">
-      <UniqueIdentifier>{9551f1e5-0fea-491b-b235-70023ad525c2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\uinteraction\frame">
-      <UniqueIdentifier>{dca34ca8-c14a-4422-a164-706a0983c22e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\graphics">
       <UniqueIdentifier>{28024641-f58f-44d6-88a1-5d8e3b99563c}</UniqueIdentifier>
     </Filter>
@@ -362,6 +356,12 @@
     </Filter>
     <Filter Include="Source Files\graphics\html\elemental">
       <UniqueIdentifier>{ccc64be9-5aa9-4ebb-ae9d-200f1e31e87c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\uinteraction">
+      <UniqueIdentifier>{9551f1e5-0fea-491b-b235-70023ad525c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\uinteraction\frame">
+      <UniqueIdentifier>{dca34ca8-c14a-4422-a164-706a0983c22e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -1,103 +1,114 @@
 #include "framework.h"
 
 
-namespace uinteraction
+namespace user
 {
 
 
-   namespace frame
+   namespace uinteraction
    {
 
 
-      WorkSetListenerArray::WorkSetListenerArray()
+      namespace frame
       {
 
-      }
 
-
-      WorkSetListenerArray::~WorkSetListenerArray()
-      {
-
-      }
-
-      void WorkSetListenerArray::WFLOnSizingGripMove(
-         WorkSet * pwf,
-         sp(::user::interaction) pwnd,
-         EGrip egrip)
-      {
-         for(int32_t i = 0; i < this->get_size(); i++)
+         WorkSetListenerArray::WorkSetListenerArray()
          {
-            WorkSetListener * plistener = this->element_at(i);
-            plistener->WFLOnSizingGripMove(
-               pwf,
-               pwnd,
-               egrip);
-         }
-      }
 
-      void WorkSetListenerArray::WFLOnDock(
-         WorkSet * pwf,
-         sp(::user::interaction) pwnd)
-      {
-         for(int32_t i = 0; i < this->get_size(); i++)
+         }
+
+
+         WorkSetListenerArray::~WorkSetListenerArray()
          {
-            WorkSetListener * plistener = this->element_at(i);
-            plistener->WFLOnDock(
-               pwf,
-               pwnd);
-         }
-      }
 
-      void WorkSetListenerArray::WFLOnClose(
-         WorkSet * pwf,
-         sp(::user::interaction) pwnd)
-      {
-         for(int32_t i = 0; i < this->get_size(); i++)
+         }
+
+         void WorkSetListenerArray::WFLOnSizingGripMove(
+            WorkSet * pwf,
+            sp(::user::interaction) pwnd,
+            EGrip egrip)
          {
-            WorkSetListener * plistener = this->element_at(i);
-            plistener->WFLOnClose(
-               pwf,
-               pwnd);
+            for(int32_t i = 0; i < this->get_size(); i++)
+            {
+               WorkSetListener * plistener = this->element_at(i);
+               plistener->WFLOnSizingGripMove(
+                  pwf,
+                  pwnd,
+                  egrip);
+            }
          }
-      }
 
-      void WorkSetListenerArray::WFLOnNcLButtonDown(
-         WorkSet * pworkset,
-         sp(::user::interaction) pwnd,
-         UINT nHitTest,
-         point point)
-      {
-         for(int32_t i = 0; i < this->get_size(); i++)
+         void WorkSetListenerArray::WFLOnDock(
+            WorkSet * pwf,
+            sp(::user::interaction) pwnd)
          {
-            WorkSetListener * plistener = this->element_at(i);
-            plistener->WFLOnNcLButtonDown(
-               pworkset,
-               pwnd,
-               nHitTest,
-               point);
+            for(int32_t i = 0; i < this->get_size(); i++)
+            {
+               WorkSetListener * plistener = this->element_at(i);
+               plistener->WFLOnDock(
+                  pwf,
+                  pwnd);
+            }
          }
-      }
 
-      /*void WorkSetListenerArray::add(WorkSetListener *plistener)
-      {
-      Carray<WorkSetListener *, WorkSetListener *>
-      ::add(plistener);
-      }*/
+         void WorkSetListenerArray::WFLOnClose(
+            WorkSet * pwf,
+            sp(::user::interaction) pwnd)
+         {
+            for(int32_t i = 0; i < this->get_size(); i++)
+            {
+               WorkSetListener * plistener = this->element_at(i);
+               plistener->WFLOnClose(
+                  pwf,
+                  pwnd);
+            }
+         }
 
-      void WorkSetListenerArray::attach(WorkSetListener * plistener)
-      {
-         add(plistener);
-         plistener->attach(this);
-      }
+         void WorkSetListenerArray::WFLOnNcLButtonDown(
+            WorkSet * pworkset,
+            sp(::user::interaction) pwnd,
+            UINT nHitTest,
+            point point)
+         {
+            for(int32_t i = 0; i < this->get_size(); i++)
+            {
+               WorkSetListener * plistener = this->element_at(i);
+               plistener->WFLOnNcLButtonDown(
+                  pworkset,
+                  pwnd,
+                  nHitTest,
+                  point);
+            }
+         }
+
+         /*void WorkSetListenerArray::add(WorkSetListener *plistener)
+         {
+         Carray<WorkSetListener *, WorkSetListener *>
+         ::add(plistener);
+         }*/
+
+         void WorkSetListenerArray::attach(WorkSetListener * plistener)
+         {
+            add(plistener);
+            plistener->attach(this);
+         }
 
 
-   } // namespace frame
+      } // namespace frame
 
 
-} // namespace uinteraction
+   } // namespace uinteraction
 
 
 
+
+
+
+
+
+
+} // namespace user
 
 
 

@@ -297,7 +297,7 @@ namespace user
 
       if(!m_bShowTabs)
       {
-         if(!GetParentFrame()->IsFullScreen())
+         if(!GetParentFrame()->WfiIsFullScreen())
          {
             m_bShowTabs = true;
             post_simple_command(simple_command_layout);
@@ -308,7 +308,7 @@ namespace user
          }
       }
 
-      if(GetParentFrame()->IsFullScreen())
+      if(GetParentFrame()->WfiIsFullScreen())
       {
          rect rectTab(get_data()->m_rectTab);
          ClientToScreen(rectTab);
@@ -541,7 +541,7 @@ namespace user
 
       if(!m_bShowTabs)
       {
-         if(!GetParentFrame()->IsFullScreen())
+         if(!GetParentFrame()->WfiIsFullScreen())
          {
             m_bShowTabs = true;
             post_simple_command(simple_command_layout);
@@ -552,7 +552,7 @@ namespace user
          }
       }
 
-      if(GetParentFrame()->IsFullScreen())
+      if(GetParentFrame()->WfiIsFullScreen())
       {
          rect rectTab(get_data()->m_rectTab);
          ClientToScreen(rectTab);
@@ -1991,7 +1991,7 @@ namespace user
       {
          try
          {
-            if(!m_bNoTabs && GetParentFrame()->IsFullScreen())
+            if(!m_bNoTabs && GetParentFrame()->WfiIsFullScreen())
             {
 
                rect rectWindow;

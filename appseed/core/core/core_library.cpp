@@ -416,7 +416,7 @@ namespace core
    }
 
 
-   sp(::uinteraction::interaction) library::get_new_uinteraction()
+   sp(::user::uinteraction::interaction) library::get_new_uinteraction()
    {
 
       if(m_pca2library != NULL)

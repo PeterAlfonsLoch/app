@@ -1,29 +1,35 @@
 #include "framework.h"
 
 
-
- namespace uinteraction
-
- {
-
-
-
-
-
-
-
-namespace frame
+namespace user
 {
 
+   namespace uinteraction
+   {
 
 
-} // namespace frame
+      namespace frame
+      {
+
+
+         void control_box_button::UpdateWndRgn()
+         {
+
+         }
+
+
+      } // namespace frame
 
 
 
-} // namespace uinteraction
+   } // namespace uinteraction
 
 
+
+
+
+
+} // namespace user
 
 
 

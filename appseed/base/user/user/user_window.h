@@ -180,10 +180,9 @@ public:
 
 
    // Window size and position Functions
-   virtual bool IsIconic();
-   virtual bool IsZoomed();
-   virtual void MoveWindow(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight,
-      bool bRepaint = TRUE);
+   virtual bool WfiIsIconic();
+   virtual bool WfiIsZoomed();
+   virtual void MoveWindow(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, bool bRepaint = TRUE);
    virtual void MoveWindow(LPCRECT lpRect, bool bRepaint = TRUE);
    virtual int32_t SetWindowRgn(HRGN hRgn, bool bRedraw);
    virtual int32_t GetWindowRgn(HRGN hRgn);

@@ -88,6 +88,7 @@ namespace user
 
 
    class interaction;
+   class control_event;
    class create_context;
    class impact;
    class printer;
@@ -100,6 +101,101 @@ namespace user
 
 
 } // namespace user
+
+class message_queue_listener;
+class image_list;
+class base_session;
+
+// special struct for WM_SIZEPARENT
+struct __SIZEPARENTPARAMS
+{
+
+   HDWP hDWP;       // handle for DeferWindowPos
+   RECT rect;       // parent client rectangle (trim as appropriate)
+   SIZE sizeTotal;  // total size on each side as layout proceeds
+   bool bStretch;   // should stretch to fill all space
+
+};
+
+namespace core
+{
+
+
+   class live_object;
+
+#if defined METROWIN && defined(__cplusplus_winrt)
+
+   interface class system_window
+   {
+      virtual Windows::Foundation::Rect get_window_rect() = 0;
+      virtual Windows::Foundation::Point get_cursor_pos() = 0;
+   };
+
+#endif
+
+} // namespace core
+
+
+namespace data
+{
+
+
+   class item;
+
+
+} // namespace data
+
+
+namespace xml
+{
+
+   class node;
+
+} // namespace xml
+
+
+namespace user
+{
+
+   class place_holder;
+   class menu_base_item;
+
+#if defined METROWIN && defined(__cplusplus_winrt)
+
+
+   class CLASS_DECL_BASE native_window_initialize
+   {
+   public:
+
+
+      Platform::Agile<Windows::UI::Core::CoreWindow> window;
+      ::core::system_window ^ pwindow;
+
+
+   };
+
+
+#else
+
+   class native_window_initialize;
+
+#endif
+
+
+   class control_event;
+   class frame_window;
+   class menu_base;
+
+
+
+
+
+   CLASS_DECL_BASE bool is_descendant(::user::interaction * puiParent, ::user::interaction * puiChild);
+
+
+} // namespace user
+
+
 
 
 namespace install
@@ -418,6 +514,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 #include "graphics/graphics.h"
+#include "user/user/user_enum.h"
 #include "user/user/user_keyboard_focus.h"
 #include "user/user/user_mouse_focus.h"
 #include "user/user/user_elemental.h"

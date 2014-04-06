@@ -375,7 +375,7 @@ namespace user
          if(pActive != pframe)
          {
 
-            ::uinteraction::frame::WorkSet * pset = oprop("deactivate_together_set").cast < ::uinteraction::frame::WorkSet > ();
+            ::user::uinteraction::frame::WorkSet * pset = oprop("deactivate_together_set").cast < ::user::uinteraction::frame::WorkSet > ();
 
             pset->SetActiveFlag(FALSE);
 

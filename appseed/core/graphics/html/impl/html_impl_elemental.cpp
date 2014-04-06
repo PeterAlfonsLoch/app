@@ -683,16 +683,16 @@ namespace html
 
          if (m_border.left > 0.f)
          {
-            //if (m_border.left < 2.f)
-            //{
-            //   point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
-            //   point p2(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-            //   ::draw2d::pen_sp pen(pdata->get_app()->allocer());
-            //   pen->create_solid(m_border.left, m_border.crLeft);
-            //   pdata->m_pdc->SelectObject(pen);
-            //   pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
-            //}
-            //else
+            if (m_border.left < 2.f)
+            {
+               point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
+               point p2(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
+               ::draw2d::pen_sp pen(pdata->get_app()->allocer());
+               pen->create_solid(m_border.left, m_border.crLeft);
+               pdata->m_pdc->SelectObject(pen);
+               pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
+            }
+            else
             {
                ::pointd pa[4];
                pa[0] = ::pointd(bOut.left, bOut.top);
@@ -707,16 +707,16 @@ namespace html
          }
          if (m_border.top > 0.f)
          {
-            //if (m_border.top < 2.f)
-            //{
-            //   point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
-            //   point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
-            //   ::draw2d::pen_sp pen(pdata->get_app()->allocer());
-            //   pen->create_solid(m_border.top, m_border.crTop);
-            //   pdata->m_pdc->SelectObject(pen);
-            //   pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
-            //}
-            //else
+            if (m_border.top < 2.f)
+            {
+               point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
+               point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
+               ::draw2d::pen_sp pen(pdata->get_app()->allocer());
+               pen->create_solid(m_border.top, m_border.crTop);
+               pdata->m_pdc->SelectObject(pen);
+               pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
+            }
+            else
             {
                ::pointd pa[4];
                pa[0] = ::pointd(bOut.left, bOut.top);
@@ -731,16 +731,16 @@ namespace html
          }
          if (m_border.right > 0.f)
          {
-            //if (m_border.right < 2.f)
-            //{
-            //   point p1(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
-            //   point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-            //   ::draw2d::pen_sp pen(pdata->get_app()->allocer());
-            //   pen->create_solid(m_border.right, m_border.crRight);
-            //   pdata->m_pdc->SelectObject(pen);
-            //   pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
-            //}
-            //else
+            if (m_border.right < 2.f)
+            {
+               point p1(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
+               point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
+               ::draw2d::pen_sp pen(pdata->get_app()->allocer());
+               pen->create_solid(m_border.right, m_border.crRight);
+               pdata->m_pdc->SelectObject(pen);
+               pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
+            }
+            else
             {
                ::pointd pa[4];
                pa[0] = ::pointd(bOut.right, bOut.top);
@@ -755,16 +755,16 @@ namespace html
          }
          if (m_border.bottom > 0.f)
          {
-            //if (m_border.bottom < 2.f)
-            //{
-            //   point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-            //   point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-            //   ::draw2d::pen_sp pen(pdata->get_app()->allocer());
-            //   pen->create_solid(m_border.bottom, m_border.crBottom);
-            //   pdata->m_pdc->SelectObject(pen);
-            //   pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
-            //}
-            //else
+            if (m_border.bottom < 2.f)
+            {
+               point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
+               point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
+               ::draw2d::pen_sp pen(pdata->get_app()->allocer());
+               pen->create_solid(m_border.bottom, m_border.crBottom);
+               pdata->m_pdc->SelectObject(pen);
+               pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
+            }
+            else
             {
                ::pointd pa[4];
                pa[0] = ::pointd(bIn.left, bIn.bottom);

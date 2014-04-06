@@ -100,7 +100,7 @@ namespace bergedge
       }
       else if(nIDEvent == 1000)
       {
-         ShowWindow(SW_RESTORE);
+         WfiRestore();
          KillTimer(nIDEvent);
          m_bTimerOn = false;
       }
@@ -228,7 +228,7 @@ namespace bergedge
       }
       else
       {
-         WfiFullScreen(true, false);
+         WfiFullScreen();
       }
    }
 
@@ -282,7 +282,7 @@ namespace bergedge
            //OnHoverAction(true);
             ShowWindow(SW_SHOW);
             SetWindowPos(ZORDER_TOP, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
-            WfiFullScreen(true, true);
+            WfiFullScreen();
          }
          else if(pbase->m_lparam == 5)
          {
@@ -296,7 +296,7 @@ namespace bergedge
             {
                ShowWindow(SW_SHOW);
                SetWindowPos(ZORDER_TOP, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
-               WfiFullScreen(true, true);
+               WfiFullScreen();
                BringWindowToTop();
             }
             else

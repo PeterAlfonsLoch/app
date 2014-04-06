@@ -892,7 +892,7 @@ bool window::ShowWindow(int32_t nCmdShow)
 }
 
 
-bool window::IsIconic()
+bool window::WfiIsIconic()
 {
 
    throw interface_only_exception(get_app());
@@ -900,7 +900,7 @@ bool window::IsIconic()
 }
 
 
-bool window::IsZoomed()
+bool window::WfiIsZoomed()
 {
 
    throw interface_only_exception(get_app());

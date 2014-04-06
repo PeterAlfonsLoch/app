@@ -387,7 +387,7 @@ bool application::initialize1()
       return false;
 
 
-   m_puinteraction = canew(::uinteraction::uinteraction(this));
+   m_puinteraction = canew(::user::uinteraction::uinteraction(this));
 
    m_puinteraction->construct(this);
 

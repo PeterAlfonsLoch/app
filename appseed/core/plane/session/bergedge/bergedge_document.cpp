@@ -55,7 +55,7 @@ namespace bergedge
       //platform_frame * pframe = pdoc->get_platform_frame();
       //pframe->set_parent(get_bergedge_view());
       //pframe->ModifyStyle(0, WS_CHILD);
-      //pframe->ShowWindow(SW_RESTORE);
+      //pframe->WfiRestore();
       //pframe->SetWindowPos(0, 0, 0, 200, 200, SWP_SHOWWINDOW);
    }
 

@@ -1,28 +1,35 @@
 #pragma once
 
 
-namespace uinteraction
+namespace user
 {
 
 
-   class CLASS_DECL_CORE uinteraction :
-      virtual public ::base_departament
+   namespace uinteraction
    {
-   public:
 
 
-      uinteraction(base_application * papp);
-      virtual ~uinteraction();
+      class CLASS_DECL_CORE uinteraction :
+         virtual public ::base_departament
+      {
+      public:
 
 
-      virtual sp(::uinteraction::interaction) get_new_uinteraction(const char * pszUinteractionLibrary);
-      virtual sp(::uinteraction::interaction) get_uinteraction(const char * pszUinteractionLibrary);
-      virtual sp(::uinteraction::frame::frame) get_frame_schema(const char * pszUinteractionLibrary, const char * pszFrameSchemaName);
-
-   };
+         uinteraction(base_application * papp);
+         virtual ~uinteraction();
 
 
-} // namespace uinteraction
+         virtual sp(::user::uinteraction::interaction) get_new_uinteraction(const char * pszUinteractionLibrary);
+         virtual sp(::user::uinteraction::interaction) get_uinteraction(const char * pszUinteractionLibrary);
+         virtual sp(frame::frame) get_frame_schema(const char * pszUinteractionLibrary, const char * pszFrameSchemaName);
+
+      };
+
+
+   } // namespace uinteraction
+
+
+} // namespace user
 
 
 

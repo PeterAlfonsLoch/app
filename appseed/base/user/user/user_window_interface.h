@@ -101,24 +101,6 @@ namespace user
       virtual window_interface * window_interface_get_parent();
 
 
-      /*oswindow GetHandle() const;
-      uint32_t GetStyle() const;
-      uint32_t GetExStyle() const;
-      bool ModifyStyle(uint32_t dwRemove, uint32_t dwAdd, UINT uiFlags);
-      bool ModifyStyleEx(uint32_t dwRemove, uint32_t dwAdd, UINT uiFlags);
-      static bool ModifyStyle(oswindow oswindow, uint32_t dwRemove, uint32_t dwAdd, UINT uiFlags);
-      static bool ModifyStyleEx(oswindow oswindow, uint32_t dwRemove, uint32_t dwAdd, UINT uiFlags);
-
-      LRESULT SendMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
-      bool PostMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);*/
-
-      // Window size and position Functions
-      /*bool IsIconic() const;
-      bool IsZoomed() const;
-
-      int32_t GetWindowText(string & str) const;
-      int32_t GetWindowText(wchar_t * lpsz, int32_t iLen) const;
-      int32_t GetWindowTextLen() const;*/
 
 
 

@@ -163,7 +163,7 @@ bool html_frame::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
 void html_frame::OnHoverAction()
 {
 
-   ShowWindow(SW_RESTORE);
+   WfiRestore();
 
 }
 

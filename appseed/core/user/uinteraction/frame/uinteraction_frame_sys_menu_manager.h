@@ -1,58 +1,60 @@
 #pragma once
 
 
-namespace uinteraction
+namespace user
 {
 
 
-
-   namespace frame
+   namespace uinteraction
    {
 
 
-      class WorkSet;
-
-
-      class CLASS_DECL_CORE SysMenuManager
+      namespace frame
       {
-      public:
 
 
-         friend class WorkSet;
-
-         enum States
+         class CLASS_DECL_CORE SysMenuManager
          {
-            state_initial = 0,
-            StateMBDown = 1 // MOUSE BUtton down
+         public:
+
+
+            friend class WorkSet;
+
+            enum States
+            {
+               state_initial = 0,
+               StateMBDown = 1 // MOUSE BUtton down
+            };
+
+            WorkSet *      m_pworkset;
+            States         m_enumState;
+
+
+            SysMenuManager(WorkSet * pwf);
+            virtual ~SysMenuManager();
+
+            bool OnLButtonDblClk(UINT nFlags, point point);
+            void relay_event(signal_details * pobj);
+
+            bool update(WorkSet * pset);
+
+            void message_handler(sp(::user::interaction) pwnd, signal_details * pobj);
+
+
          };
 
-         WorkSet *      m_pworkset;
-         States         m_enumState;
+
+      } // namespace frame
 
 
-         SysMenuManager(WorkSet * pwf);
-         virtual ~SysMenuManager();
-
-         bool OnLButtonDblClk(UINT nFlags, point point);
-         void relay_event(signal_details * pobj);
-
-         bool update(WorkSet * pset);
-
-         void message_handler(sp(::user::interaction) pwnd, signal_details * pobj);
+   } // namespace uinteraction
 
 
-      };
-
-
-   } // namespace frame
+} // namespace user
 
 
 
 
-
-
-
-} // namespace uinteraction
 
 
 

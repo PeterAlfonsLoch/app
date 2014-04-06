@@ -341,16 +341,23 @@ namespace html
       m_layoutstate2.reset();
       m_layoutstate3.reset();
       m_elemental.layout(this);
+
    }
+
 
    void data::_001OnDraw(::draw2d::graphics * pdc)
    {
+      
       if(m_bImplement || m_bLayout)
          return;
+      
       if(is_locked())
          return;
+      
       m_pdc = pdc;
+      
       m_elemental._001OnDraw(this);
+
    }
 
 

@@ -1,6 +1,10 @@
 #include "framework.h"
 
 
+namespace user
+{
+
+
 namespace uinteraction
 {
 
@@ -198,7 +202,7 @@ namespace uinteraction
       bool WorkSet::IsSizingEnabled()
       {
          return m_bSizingEnabled && (m_pappearance == NULL ||
-            m_pappearance->GetAppearanceMode() != AppearanceFixedSize);
+            m_pappearance->GetAppearance() != AppearanceFixedSize);
       }
 
       bool WorkSet::IsSysMenuEnabled()
@@ -229,50 +233,54 @@ namespace uinteraction
          m_pframeschema->get_window_client_rect(lprect);
       }
 
-      void WorkSet::SetAppearanceMode(EAppearanceMode nMode)
+      void WorkSet::SetAppearance(::user::EAppearance nMode)
       {
          if (m_pappearance != NULL)
-            m_pappearance->SetAppearanceMode(nMode);
+            m_pappearance->SetAppearance(nMode);
       }
 
-      EAppearanceMode WorkSet::GetAppearanceMode()
+      ::user::EAppearance WorkSet::GetAppearance()
       {
          ASSERT(m_pappearance != NULL);
-         return m_pappearance->GetAppearanceMode();
+         return m_pappearance->GetAppearance();
       }
 
       void WorkSet::UpdateApperanceMode(bool bFullScreen)
       {
          if (m_pappearance != NULL)
-            m_pappearance->UpdateAppearanceMode(bFullScreen);
+            m_pappearance->UpdateAppearance(bFullScreen);
 
       }
 
 
-      void WorkSet::SetAppearanceMode()
+      void WorkSet::SetAppearance()
       {
          if (m_pappearance != NULL)
-            m_pappearance->SetAppearanceMode();
+            m_pappearance->SetAppearance();
       }
+
 
       bool WorkSet::IsFullScreen()
       {
+
          if (m_pappearance != NULL)
-            return m_pappearance->IsFullScreen() && !m_pwndDraw->IsIconic();
+            return m_pappearance->IsFullScreen() && !m_pwndDraw->WfiIsIconic();
          else
             return false;
+
       }
+
 
       bool WorkSet::ViewFullScreen(bool bFullScreen)
       {
          //    m_bFullScreen = bFullScreen;
          if (bFullScreen)
          {
-            m_pappearance->SetAppearanceMode(AppearanceModeFullScreen);
+            m_pappearance->SetAppearance(AppearanceFullScreen);
          }
          else
          {
-            m_pappearance->SetAppearanceMode();
+            m_pappearance->SetAppearance();
          }
 
          return true;
@@ -358,11 +366,11 @@ namespace uinteraction
       {
       if(IsFullScreen())
       {
-      m_pappearance->SetAppearanceMode(WorkSet::AppearanceModeFullScreen);
+      m_pappearance->SetAppearance(WorkSet::AppearanceFullScreen);
       }
       else
       {
-      m_pappearance->SetAppearanceMode();
+      m_pappearance->SetAppearance();
       }
       m_pappearance->OnSizeRegion(nType, cx, cy);
       }
@@ -383,25 +391,25 @@ namespace uinteraction
             e_button ebutton = m_pframeschema->get_control_box()->get_control_box_button_type((pevent->m_puie.m_p)->GetDlgCtrlId());
             switch (ebutton)
             {
-            case ::uinteraction::frame::button_close:
+            case ::user::uinteraction::frame::button_close:
                pinterface->WfiClose();
                return TRUE;
-            case ::uinteraction::frame::button_minimize:
+            case ::user::uinteraction::frame::button_minimize:
                pinterface->WfiMinimize();
                return TRUE;
-            case ::uinteraction::frame::button_maximize:
+            case ::user::uinteraction::frame::button_maximize:
                pinterface->WfiMaximize();
                return TRUE;
-            case ::uinteraction::frame::button_restore:
+            case ::user::uinteraction::frame::button_restore:
                pinterface->WfiRestore();
                return TRUE;
-            case ::uinteraction::frame::button_up:
+            case ::user::uinteraction::frame::button_up:
                pinterface->WfiUp();
                return TRUE;
-            case ::uinteraction::frame::button_down:
+            case ::user::uinteraction::frame::button_down:
                pinterface->WfiDown();
                return TRUE;
-            case ::uinteraction::frame::button_notify_icon:
+            case ::user::uinteraction::frame::button_notify_icon:
                pinterface->WfiNotifyIcon();
                return TRUE;
             default:
@@ -422,26 +430,26 @@ namespace uinteraction
 
             ASSERT(pinterface != NULL);
 
-            ::uinteraction::frame::e_button ebutton = m_pframeschema->get_control_box()->get_control_box_button_type(pcmdmsg->m_id);
+            ::user::uinteraction::frame::e_button ebutton = m_pframeschema->get_control_box()->get_control_box_button_type(pcmdmsg->m_id);
 
             switch (ebutton)
             {
-            case ::uinteraction::frame::button_close:
+            case ::user::uinteraction::frame::button_close:
                pinterface->WfiClose();
                return TRUE;
-            case ::uinteraction::frame::button_minimize:
+            case ::user::uinteraction::frame::button_minimize:
                pinterface->WfiMinimize();
                return TRUE;
-            case ::uinteraction::frame::button_maximize:
+            case ::user::uinteraction::frame::button_maximize:
                pinterface->WfiMaximize();
                return TRUE;
-            case ::uinteraction::frame::button_restore:
+            case ::user::uinteraction::frame::button_restore:
                pinterface->WfiRestore();
                return TRUE;
-            case ::uinteraction::frame::button_up:
+            case ::user::uinteraction::frame::button_up:
                pinterface->WfiUp();
                return TRUE;
-            case ::uinteraction::frame::button_down:
+            case ::user::uinteraction::frame::button_down:
                pinterface->WfiDown();
                return TRUE;
             default:
@@ -529,41 +537,30 @@ namespace uinteraction
       }
 
 
-      //void WorkSet::OnUp()
-      //{
-      //   FrameWnd(m_pwndRegion);
-      //
-      //   m_pwndRegion->SendMessage(WM_USER + 101, 1, ID_VMSGUI_UP);
-      //}
-
-      //void WorkSet::OnDown()
-      //{
-      //   ChildWnd(m_pwndRegion, m_pwndParent);
-      //   CDBCentral * pdb = db();
-      //   CDBLongSet * plongset = pdb->get_db_long_set();
-      //   plongset->MoveWindow_(m_strRegSection, "UpRect", m_pwndRegion);
-      //   plongset->Save(m_strRegSection, "Level", 50);
-      //   m_pappearance->m_pbuttonUp->ShowWindow(SW_SHOW);
-      //   m_pappearance->m_pbuttonDown->ShowWindow(SW_HIDE);
-      //   m_pwndRegion->SendMessage(WM_USER + 101, 1, ID_VMSGUI_DOWN);
-      //}
-
       bool WorkSet::Start()
       {
+
          return true;
+
       }
+
 
       void WorkSet::FrameWnd(sp(::user::interaction)pwnd)
       {
+
          UNREFERENCED_PARAMETER(pwnd);
+
       }
+
 
       void WorkSet::ChildWnd(sp(::user::interaction)pwnd, sp(::user::interaction) pwndParent)
       {
+
          UNREFERENCED_PARAMETER(pwnd);
          UNREFERENCED_PARAMETER(pwndParent);
 
       }
+
 
       void WorkSet::hover_relay_event(signal_details * pobj)
       {
@@ -1241,18 +1238,35 @@ namespace uinteraction
          ptimer->m_bRet = m_pframeschema->_000OnTimer(ptimer->m_nIDEvent);
       }
 
+
       void WorkSet::_001OnSize(signal_details * pobj)
       {
+
          SCAST_PTR(::message::size, psize, pobj)
+
          if (!m_bEnable)
          {
+
             psize->m_bRet = false;
+
             return;
+
          }
+
          if (m_pframeschema != NULL)
          {
+
             psize->m_bRet = m_pframeschema->_000OnSize(psize->m_nType, psize->m_size.cx, psize->m_size.cy);
+
          }
+
+         if (m_pappearance != NULL)
+         {
+
+            m_pdockmanager->layout();
+
+         }
+
       }
 
       void WorkSet::_001OnMove(signal_details * pobj)
@@ -1431,7 +1445,7 @@ namespace uinteraction
       return ModeNone;
       }*/
 
-      void WorkSet::AttachFrameSchema(sp(::uinteraction::frame::frame) pframeschema)
+      void WorkSet::AttachFrameSchema(sp(::user::uinteraction::frame::frame) pframeschema)
       {
 
          m_pframeschema = pframeschema;
@@ -1473,4 +1487,6 @@ namespace uinteraction
 
 
 
+
+} // namespace user
 

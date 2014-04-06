@@ -1375,7 +1375,7 @@ alt1:
          sp(::simple_frame_window) pframeApp =  (get_document()->get_typed_view < ::bergedge::pane_view >()->get_view_uie().m_p);
          if(pframeApp != NULL)
          {
-            pframeApp->WfiFullScreen(true, false);
+            pframeApp->WfiFullScreen();
          }
          sp(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::bergedge::pane_view >()->GetParentFrame());
          if(pframe != NULL)

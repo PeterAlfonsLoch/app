@@ -1,21 +1,7 @@
 #pragma once
 
 
-namespace uinteraction
-{
 
-   class uinteraction;
-
-}
-
-
-namespace user
-{
-
-   class printer;
-
-
-} // namespace user
 
 
 
@@ -127,7 +113,7 @@ public:
    //BaseIdSpaceIntegerMap      m_imapResource;
    //BaseIdSpaceStringKeyMap    m_strmapResource;
    //   id_space                   m_idspace;
-   sp(::uinteraction::uinteraction) m_puinteraction;
+   sp(::user::uinteraction::uinteraction) m_puinteraction;
    //sp(::user::user)              m_puserbase;
    //sp(::userex::userex) m_puserex;
    sp(::filemanager::filemanager)   m_pfilemanager;
@@ -633,7 +619,7 @@ public:
    virtual bool set_keyboard_layout(const char * pszPath, ::action::context actioncontext);
 
 
-   inline ::uinteraction::uinteraction          & uinteraction() { return *m_puinteraction; }
+   inline ::user::uinteraction::uinteraction          & uinteraction() { return *m_puinteraction; }
    ///inline ::user::user                  & user     () { return *m_puserbase      ; }
    //      inline ::userex::userex                      & userex       () { return *m_puserex        ; }
    inline ::filemanager::filemanager            & filemanager() { return *m_pfilemanager; }

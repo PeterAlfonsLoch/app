@@ -96,7 +96,7 @@ namespace platform
       }
       else if(nIDEvent == 1000)
       {
-         ShowWindow(SW_RESTORE);
+         WfiRestore();
          KillTimer(nIDEvent);
          m_bTimerOn = false;
       }
@@ -190,7 +190,7 @@ namespace platform
 
    void frame::OnHoverAction()
    {
-      ShowWindow(SW_RESTORE);
+      WfiRestore();
    }
 
    void frame::_001OnSize(signal_details * pobj)
@@ -268,7 +268,7 @@ namespace platform
          return;
       }
       puiParent->GetWindowRect(rectDesktop);
-      ShowWindow(SW_RESTORE);
+      WfiRestore();
       switch(m_eposition)
       {
       case position_left:
@@ -289,15 +289,19 @@ namespace platform
    }
 
 
-   sp(::uinteraction::frame::frame) frame::create_frame_schema()
+   sp(::user::uinteraction::frame::frame) frame::create_frame_schema()
    {
 
-      sp(::uinteraction::frame::frame) pframe = Application.uinteraction().get_frame_schema("app-core/uinteraction", "005");
+      sp(::user::uinteraction::frame::frame) pframe = Application.uinteraction().get_frame_schema("app-core/uinteraction", "005");
+
       pframe->m_typeinfoControlBoxButton = System.type_info < MetaButton > ();
+
       pframe->set_style("StyleTranslucidWarmGray");
+
       return pframe;
 
    }
+
 
    void frame::_000OnDraw(::draw2d::graphics * pgraphics)
    {

@@ -1,43 +1,52 @@
 #include "framework.h"
 
 
-namespace uinteraction
+namespace user
 {
 
-
-   interaction::interaction(sp(base_application) papp) :
-      element(papp)
-   {
-   }
-
-
-   interaction::~interaction()
-   {
-   }
-
-
-   void interaction::update()
-   {
-   }
-
-   void interaction::get_frame_schema_list(stringa & stra)
+   namespace uinteraction
    {
 
-      UNREFERENCED_PARAMETER(stra);
 
-   }
-
-   sp(frame::frame) interaction::get_frame_schema(const char * pszSchema)
-   {
-
-      UNREFERENCED_PARAMETER(pszSchema);
-
-      return NULL;
-
-   }
+      interaction::interaction(sp(base_application) papp) :
+         element(papp)
+      {
+      }
 
 
-} // namespace uinteraction
+      interaction::~interaction()
+      {
+      }
+
+
+      void interaction::update()
+      {
+      }
+
+      void interaction::get_frame_schema_list(stringa & stra)
+      {
+
+         UNREFERENCED_PARAMETER(stra);
+
+      }
+
+      sp(frame::frame) interaction::get_frame_schema(const char * pszSchema)
+      {
+
+         UNREFERENCED_PARAMETER(pszSchema);
+
+         return NULL;
+
+      }
+
+
+   } // namespace uinteraction
+
+
+
+} // namespace user
+
+
 
 
 

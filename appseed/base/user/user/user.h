@@ -9,19 +9,6 @@
 
 
 
-namespace user
-{
-
-
-   CLASS_DECL_BASE bool is_descendant(::user::interaction * puiParent, ::user::interaction * puiChild);
-
-
-} // namespace user
-
-
-
-
-
 // Implementation structures
 struct __SIZEPARENTPARAMS;    // control bar implementationproperca2_property.h
 
@@ -368,6 +355,21 @@ CLASS_DECL_BASE char * ::core::TaskStringW2A(const wchar_t * lpw);
 
 #include "user_menu_base_item.h"
 #include "user_menu_base.h"
+
+
+
+
+
+#include "user_inline.h"
+
+
+
+
+
+
+
+
+
 
 
 

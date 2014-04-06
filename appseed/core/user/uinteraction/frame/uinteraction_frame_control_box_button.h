@@ -1,46 +1,42 @@
 #pragma once
 
 
-
-namespace uinteraction
+namespace user
 {
 
 
-   namespace frame
+   namespace uinteraction
    {
 
 
-      class  CLASS_DECL_CORE control_box_button :
-         virtual public ::user::interaction
+      namespace frame
       {
-      public:
 
 
-
-         virtual void UpdateWndRgn() = 0;
-         virtual void SetEllipsePens(
-            ::draw2d::pen * ppen,
-            ::draw2d::pen * ppenSel = NULL,
-            ::draw2d::pen * ppenFocus = NULL,
-            ::draw2d::pen * ppenDisabled = NULL) = 0;
-         virtual void SetEllipseBrushs(
-            ::draw2d::brush * pbrush,
-            ::draw2d::brush * pbrushSel = NULL,
-            ::draw2d::brush * pbrushFocus = NULL,
-            ::draw2d::brush * pbrushDisabled = NULL) = 0;
-         virtual void SetTextColors(
-            COLORREF cr,
-            COLORREF crSel,
-            COLORREF crFocus,
-            COLORREF crDisabled) = 0;
-
-      };
+         class  CLASS_DECL_CORE control_box_button :
+            virtual public ::user::interaction
+         {
+         public:
 
 
-   } // namespace frame
+            control_box *     m_pcontrolbox;
 
-   
-} // namespace uinteraction
+
+            virtual void UpdateWndRgn();
+
+
+         };
+
+
+      } // namespace frame
+
+
+   } // namespace uinteraction
+
+
+} // namespace user
+
+
 
 
 

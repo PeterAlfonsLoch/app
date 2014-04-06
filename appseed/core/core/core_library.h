@@ -8,6 +8,15 @@ namespace user
    class view_creator_data;
 
 
+   namespace uinteraction
+   {
+
+
+      class interaction;
+
+
+   } // namespace uinteraction
+
 } // namespace user
 
 
@@ -23,14 +32,6 @@ namespace dynamic_source
 } // namespace dynamic_source
 
 
-namespace uinteraction
-{
-
-
-   class interaction;
-
-
-} // namespace uinteraction
 
 
 
@@ -76,7 +77,7 @@ namespace core
       virtual void get_app_list(stringa & stra);
 
 
-      virtual sp(::uinteraction::interaction) get_new_uinteraction();
+      virtual sp(::user::uinteraction::interaction) get_new_uinteraction();
       virtual bool is_uinteraction_library();
 
 

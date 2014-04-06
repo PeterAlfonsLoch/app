@@ -21,75 +21,10 @@ bool MetaButton::pre_create_window(CREATESTRUCT& cs)
    return ::user::button::pre_create_window(cs);
 }
 
-void MetaButton::SetEllipseBrushs(
-   ::draw2d::brush * pbrush,
-   ::draw2d::brush * pbrushSel,
-   ::draw2d::brush * pbrushFocus,
-   ::draw2d::brush * pbrushDisabled)
-{
-
-   ASSERT(pbrush != NULL);
-
-   if(pbrush == NULL)
-      return;
-
-   m_brushEllipse             = pbrush;
-   m_brushEllipseSel          = pbrushSel != NULL ? pbrushSel : (pbrushFocus != NULL ? pbrushFocus : pbrush);
-   m_brushEllipseFocus        = pbrushFocus != NULL ? pbrushFocus : (pbrushSel != NULL ? pbrushSel : pbrush);
-   m_brushEllipseDisabled     = pbrushDisabled != NULL ? pbrushDisabled : pbrush;
-
-}
-
-void MetaButton::SetEllipsePens(
-   ::draw2d::pen * ppen,
-   ::draw2d::pen * ppenSel,
-   ::draw2d::pen * ppenFocus,
-   ::draw2d::pen * ppenDisabled)
-{
-
-   ASSERT(ppen != NULL);
-
-   if(ppen == NULL)
-      return;
-
-   m_penEllipse               = ppen;
-   m_penEllipseSel            = ppenSel != NULL ? ppenSel : (ppenFocus != NULL ? ppenFocus : ppen);
-   m_penEllipseFocus          = ppenFocus != NULL ? ppenFocus : (ppenSel != NULL ? ppenSel : ppen);
-   m_penEllipseDisabled       = ppenDisabled != NULL ? ppenDisabled : ppen;
-
-}
-
-void MetaButton::SetTextColors(
-   COLORREF cr,
-   COLORREF crSel,
-   COLORREF crFocus,
-   COLORREF crDisabled)
-{
-
-   m_crText = cr;
-   m_crTextSel = crSel;
-   m_crTextFocus = crFocus;
-   m_crTextDisabled = crDisabled;
-
-
-   m_brushText.create(allocer());
-   m_brushTextSel.create(allocer());
-   m_brushTextFocus.create(allocer());
-   m_brushTextDisabled.create(allocer());
-
-   m_brushText->create_solid(cr);
-   m_brushTextSel->create_solid(crSel);
-   m_brushTextFocus->create_solid(crFocus);
-   m_brushTextDisabled->create_solid(crDisabled);
-
-
-}
 
 
 void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
 {
-
-   //return;
 
    rect rectClient;
 
@@ -98,67 +33,71 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
    if(rectClient.area() <= 0)
       return;
 
-   ::draw2d::brush_sp brushText;
+   COLORREF crText;
 
    if(!is_window_enabled())
    {
 
-      pdc->SelectObject(m_brushEllipseDisabled);
-      pdc->SelectObject(m_penEllipseDisabled);
-      brushText = m_brushTextDisabled;
+      pdc->SelectObject(m_pcontrolbox->m_brushButtonBackDisabled);
+
+      pdc->SelectObject(m_pcontrolbox->m_penButtonBackDisabled);
+
+      crText = m_pcontrolbox->m_crButtonForeDisabled;
 
    }
    else if(m_iHover >= 0)
    {
 
-      pdc->SelectObject(m_brushEllipseSel);
-      pdc->SelectObject(m_penEllipseSel);
-      brushText = m_brushTextSel;
+      pdc->SelectObject(m_pcontrolbox->m_brushButtonBackSel);
+
+      pdc->SelectObject(m_pcontrolbox->m_penButtonBackSel);
+
+      crText = m_pcontrolbox->m_crButtonForeSel;
 
    }
    else if(System.get_focus_guie() == this)
    {
 
-      pdc->SelectObject(m_brushEllipseFocus);
-      pdc->SelectObject(m_penEllipseFocus);
-      brushText = m_brushTextFocus;
+      pdc->SelectObject(m_pcontrolbox->m_brushButtonBackFocus);
+
+      pdc->SelectObject(m_pcontrolbox->m_penButtonBackFocus);
+
+      crText = m_pcontrolbox->m_crButtonForeFocus;
 
    }
    else
    {
 
-      pdc->SelectObject(m_brushEllipse);
+      pdc->SelectObject(m_pcontrolbox->m_brushButtonBack);
 
-      //m_brushEllipse->m_cr = ARGB(127, 0, 255, 0);
+      pdc->SelectObject(m_pcontrolbox->m_penButtonBack);
 
-      pdc->SelectObject(m_penEllipse);
-      brushText = m_brushText;
+      crText = m_pcontrolbox->m_crButtonFore;
 
    }
-
 
    class rect rectEllipse(rectClient);
 
    rectEllipse.deflate(0, 0, 2, 2);
 
    pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+
    pdc->FillEllipse(rectEllipse);
+
    pdc->DrawEllipse(rectEllipse);
 
    string str;
+
    GetWindowText(str);
 
-//   ::draw2d::brush_sp brushText(allocer());
-
-  // brushText->create_solid(brushText);
-
    pdc->set_font(GetFont());
-   pdc->SelectObject(brushText);
-   //pdc->set_alpha_mode(::draw2d::alpha_mode_set);
+
+   pdc->set_text_color(crText);
+   
    pdc->draw_text(str, rectClient, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
-
 }
+
 
 void MetaButton::_001OnShowWindow(signal_details * pobj)
 {
