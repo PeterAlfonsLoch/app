@@ -33,17 +33,31 @@ namespace user
       class CLASS_DECL_CORE button
       {
       public:
+
+
+         COLORREF                m_crBorderNormal;
+         COLORREF                m_crBorderHover;
+         COLORREF                m_crBorderPress;
+         COLORREF                m_crBorderDisabled;
+
+         COLORREF                m_crBkNormal;
+         COLORREF                m_crBkHover;
+         COLORREF                m_crBkPress;
+         COLORREF                m_crBkDisabled;
+
+         COLORREF                m_crTextNormal;
+         COLORREF                m_crTextHover;
+         COLORREF                m_crTextPress;
+         COLORREF                m_crTextDisabled;
+
+         ::draw2d::font_sp       m_font;
+
+         bool                    m_bBorder;
+
+
          button(sp(base_application) papp);
-         COLORREF          m_crTextNormal;
-         COLORREF          m_crTextHover;
-         COLORREF          m_crTextPress;
-         COLORREF          m_crTextDisabled;
-         COLORREF          m_crBkNormal;
-         COLORREF          m_crBkHover;
-         COLORREF          m_crBkPress;
-         COLORREF          m_crBkDisabled;
-         ::draw2d::font_sp     m_font;
-         bool              m_bBorder;
+
+
       };
 
       menu           m_menu;

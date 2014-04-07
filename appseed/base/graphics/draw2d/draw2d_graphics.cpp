@@ -1180,13 +1180,13 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::get_text_metrics(LPTEXTMETRICW lpMetrics) const
+   bool graphics::get_text_metrics(text_metric * lpMetrics) const
    {
       UNREFERENCED_PARAMETER(lpMetrics);
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::get_output_text_metrics(LPTEXTMETRICW lpMetrics) const
+   bool graphics::get_output_text_metrics(text_metric * lpMetrics) const
    {
       UNREFERENCED_PARAMETER(lpMetrics);
       throw interface_only_exception(get_app());
@@ -2996,7 +2996,7 @@ namespace draw2d
    int32_t graphics::_DrawText(const char * lpcsz, strsize iCount, LPCRECT lpcrect, UINT uiFormat, ::draw2d::font * pfontUnderline)
    {
 
-      TEXTMETRICW tm2;
+      text_metric tm2;
 
       get_text_metrics(&tm2);
 

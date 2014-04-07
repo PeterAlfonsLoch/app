@@ -438,8 +438,8 @@ namespace draw2d
       virtual int32_t GetTextFace(string & rString) const;
 
 
-      virtual bool get_text_metrics(LPTEXTMETRICW lpMetrics) const;
-      virtual bool get_output_text_metrics(LPTEXTMETRICW lpMetrics) const;
+      virtual bool get_text_metrics(text_metric * lpMetrics) const;
+      virtual bool get_output_text_metrics(text_metric * lpMetrics) const;
 
 
       virtual int32_t SetTextJustification(int32_t nBreakExtra, int32_t nBreakCount);

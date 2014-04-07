@@ -16,7 +16,7 @@ namespace visual
       };
 
 //#ifdef WINDOWS
-      TEXTMETRICW      m_tm;
+      ::draw2d::text_metric      m_tm;
 //#endif
 
       int32_t            m_iFontHiHeight;

@@ -15,8 +15,10 @@ namespace state
 
 } // namespace check
 
+
 namespace user
 {
+
 
    class CLASS_DECL_CORE button :
       virtual public control,
@@ -32,6 +34,7 @@ namespace user
       state::state                        m_state;
       index                               m_iClick;
       ::user::front_end_schema::button *  m_pschema;
+      ::user::front_end_schema::button *  m_pschemaDraw;
       bool                                m_bLButtonDown;
 
 
@@ -90,6 +93,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnMouseLeave);
       DECL_GEN_SIGNAL(_001OnSize);
       DECL_GEN_SIGNAL(on_create);
+
+      ::size calc_text_size();
 
    };
 

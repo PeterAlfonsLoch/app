@@ -34,6 +34,7 @@ namespace html
          elemental::implement_phase1(pdata, pelemental);
          m_pbutton->_001SetButtonText(pelemental->m_pbase->get_tag()->get_attr_value("value"));
          m_pbutton->m_id = pelemental->m_pbase->get_tag()->get_attr_value("id");
+         m_pbutton->SetFont(pdata->get_font(pelemental)->m_font);
          if(m_pbutton->m_id.is_empty())
          {
             m_pbutton->m_id = pelemental->m_pbase->get_tag()->get_attr_value("name");
@@ -46,7 +47,13 @@ namespace html
       void input_button::layout_phase1(data * pdata)
       {
 
-         m_box.set_cxy(200.f, 23.f);
+         m_pbutton->ResizeToFit();
+
+         rect rectClient;
+
+         m_pbutton->GetClientRect(rectClient);
+
+         m_box.set_cxy(rectClient.width(), rectClient.height());
 
       }
 

@@ -5,6 +5,35 @@ namespace draw2d
 {
 
 
+
+   class CLASS_DECL_BASE text_metric
+   {
+   public:
+
+
+      LONG        tmHeight;
+      LONG        tmAscent;
+      LONG        tmDescent;
+      LONG        tmInternalLeading;
+      LONG        tmExternalLeading;
+      LONG        tmAveCharWidth;
+      LONG        tmMaxCharWidth;
+      LONG        tmWeight;
+      LONG        tmOverhang;
+      LONG        tmDigitizedAspectX;
+      LONG        tmDigitizedAspectY;
+      WCHAR       tmFirstChar;
+      WCHAR       tmLastChar;
+      WCHAR       tmDefaultChar;
+      WCHAR       tmBreakChar;
+      BYTE        tmItalic;
+      BYTE        tmUnderlined;
+      BYTE        tmStruckOut;
+      BYTE        tmPitchAndFamily;
+      BYTE        tmCharSet;
+
+   };
+
    class CLASS_DECL_BASE font :
       virtual public ::draw2d::object
    {

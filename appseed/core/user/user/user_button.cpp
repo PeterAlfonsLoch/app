@@ -11,15 +11,15 @@ namespace user
       m_istrButtonText(papp),
       m_dib(allocer())
    {
-      
-      m_iHover    = -1;
-      m_bEnabled  = true;
-      m_echeck    = check::unchecked;
-      m_pschema   = NULL;
 
-      m_bLButtonDown = false;
+         m_iHover = -1;
+         m_bEnabled = true;
+         m_echeck = check::unchecked;
+         m_pschema = NULL;
 
-   }
+         m_bLButtonDown = false;
+
+      }
 
    button::~button()
    {
@@ -34,38 +34,35 @@ namespace user
       //::user::button::install_message_handling(pinterface);
 
       //   IGUI_WIN_MSG_LINK(WM_SIZE                    , pinterface, this, &button::OnParentSize);
-      USER_MESSAGE_LINK(message_create             , pinterface, this, &button::on_create);
-      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN             , pinterface, this, &button::_001OnLButtonDown);
-      IGUI_WIN_MSG_LINK(WM_LBUTTONUP               , pinterface, this, &button::_001OnLButtonUp);
-      IGUI_WIN_MSG_LINK(WM_MOUSEMOVE               , pinterface, this, &button::_001OnMouseMove);
-      IGUI_WIN_MSG_LINK(WM_MOUSELEAVE              , pinterface, this, &button::_001OnMouseLeave);
-      IGUI_WIN_MSG_LINK(WM_SIZE                    , pinterface, this, &button::_001OnSize);
+      USER_MESSAGE_LINK(message_create, pinterface, this, &button::on_create);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &button::_001OnLButtonDown);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &button::_001OnLButtonUp);
+      IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &button::_001OnMouseMove);
+      IGUI_WIN_MSG_LINK(WM_MOUSELEAVE, pinterface, this, &button::_001OnMouseLeave);
+      IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &button::_001OnSize);
       //IGUI_WIN_MSG_LINK(WM_CREATE                  , pinterface, this, &button::_001OnCreate);
       //   IGUI_WIN_MSG_LINK(CVmsGenApp::APPM_LANGUAGE  , pinterface, this, &button::_001OnAppLanguage);
-      IGUI_WIN_MSG_LINK(WM_CREATE                  , pinterface, this, &button::_001OnCreate);
+      IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &button::_001OnCreate);
    }
 
    void button::_001OnDraw(::draw2d::graphics * pdc)
    {
-      
+
       string strText(m_istrButtonText);
 
       rect rectClient;
       GetClientRect(rectClient);
 
 
-      ::draw2d::brush_sp brushText(allocer());
-
-      
       if(m_pschema == NULL)
       {
 
-         if (m_iHover == 0 || m_bLButtonDown)
+         if(m_iHover == 0 || m_bLButtonDown)
          {
-            
+
             pdc->FillSolidRect(rectClient, ARGB(255, 127, 127, 127));
 
-            brushText->create_solid(ARGB(255, 0, 100, 255));
+            pdc->set_text_color(ARGB(255, 0, 100, 255));
 
          }
          else
@@ -73,7 +70,7 @@ namespace user
 
             pdc->FillSolidRect(rectClient, ARGB(255, 127, 127, 127));
 
-            brushText->create_solid(ARGB(255, 0, 0, 0));
+            pdc->set_text_color(ARGB(255, 0, 0, 0));
 
          }
 
@@ -82,52 +79,34 @@ namespace user
       {
          if(m_iHover == 0 || m_bLButtonDown)
          {
-            color ca;
-            ca.set_rgb(m_pschema->m_crBkHover);
-            ca.hls_rate(0.0, -0.33, -0.23);
-            COLORREF crBorder = ca.get_rgb() | (0xff << 24);
-            pdc->Draw3dRect(rectClient, crBorder, crBorder);
+
+            pdc->Draw3dRect(rectClient, m_pschema->m_crBorderNormal, m_pschema->m_crBorderNormal);
+
             rectClient.deflate(1, 1);
-            //pdc->Draw3dRect(rectClient, crBorder, crBorder);
-            //rectClient.deflate(1, 1);
-            //pdc->Draw3dRect(rectClient, crBorder, crBorder);
-            //rectClient.deflate(1, 1);
+
             pdc->FillSolidRect(rectClient, m_pschema->m_crBkHover);
-            brushText->create_solid(m_pschema->m_crTextHover);
+
+            pdc->set_text_color(m_pschema->m_crTextHover);
+
          }
          else
          {
-            color ca;
-            ca.set_rgb(m_pschema->m_crBkNormal);
-            ca.hls_rate(0.0, -0.33, -0.23);
-            COLORREF crBorder = ca.get_rgb() | (0xff << 24);
-            pdc->Draw3dRect(rectClient, crBorder, crBorder);
+
+            pdc->Draw3dRect(rectClient, m_pschema->m_crBorderNormal, m_pschema->m_crBorderNormal);
+
             rectClient.deflate(1, 1);
-            //pdc->Draw3dRect(rectClient, crBorder, crBorder);
-            //rectClient.deflate(1, 1);
-            //pdc->Draw3dRect(rectClient, crBorder, crBorder);
-            //rectClient.deflate(1, 1);
+
             pdc->FillSolidRect(rectClient, m_pschema->m_crBkNormal);
-            brushText->create_solid(m_pschema->m_crTextNormal);
+
+            pdc->set_text_color(m_pschema->m_crTextNormal);
+
          }
 
       }
 
-      ::draw2d::font_sp font(allocer());
+      pdc->selectFont(GetFont());
 
-      *font = *_001GetFont();
-
-      font->m_dFontSize = m_rectText.height() * 0.84;
-
-      font->m_eunitFontSize = ::draw2d::unit_pixel;
-
-      font->m_bUpdated = false;
-
-      pdc->selectFont(font);
-
-      pdc->SelectObject(brushText);
-
-      pdc->draw_text(strText, m_rectText, DT_LEFT | DT_TOP);
+      pdc->TextOut(m_rectText.left, m_rectText.top, strText);
 
    }
 
@@ -166,12 +145,12 @@ namespace user
          if(get_form() != NULL)
          {
             get_form()->send_message(
-               ::message::message_event, 0, (LPARAM) &ev);
+               ::message::message_event, 0, (LPARAM)&ev);
          }
          else
          {
             get_parent()->send_message(
-               ::message::message_event, 0, (LPARAM) &ev);
+               ::message::message_event, 0, (LPARAM)&ev);
          }
          pobj->m_bRet = true;
          pmouse->set_lresult(1);
@@ -181,61 +160,65 @@ namespace user
 
    void button::_001OnMouseMove(signal_details * pobj)
    {
+
       SCAST_PTR(::message::mouse, pmouse, pobj)
-         if(get_form() == NULL)
+
+      if(get_form() == NULL)
+      {
+
+         e_element eelement;
+
+         index iHover = hit_test(pmouse->m_pt, eelement);
+         if(iHover != m_iHover)
          {
-
-            e_element eelement;
-
-            index iHover = hit_test(pmouse->m_pt, eelement);
-            if(iHover != m_iHover)
+            index iOldHover = m_iHover;
+            m_iHover = iHover;
+            _001RedrawWindow();
+            if(iOldHover == -1)
             {
-               index iOldHover = m_iHover;
-               m_iHover = iHover;
-               _001RedrawWindow();
-               if(iOldHover == -1)
-               {
-                  ::user::control_event ev;
-                  ev.m_puie = this;
-                  ev.m_eevent = ::user::event_mouse_enter;
-                  get_parent()->send_message(
-                     ::message::message_event, 0, (LPARAM) &ev);
-               }
-               else if(iHover == -1)
-               {
-                  ::user::control_event ev;
-                  ev.m_puie = this;
-                  ev.m_eevent = ::user::event_mouse_leave;
-                  get_parent()->send_message(
-                     ::message::message_event, 0, (LPARAM) &ev);
-               }
-               track_mouse_hover();
+               ::user::control_event ev;
+               ev.m_puie = this;
+               ev.m_eevent = ::user::event_mouse_enter;
+               get_parent()->send_message(
+                  ::message::message_event, 0, (LPARAM)&ev);
             }
-            pobj->m_bRet = false;
+            else if(iHover == -1)
+            {
+               ::user::control_event ev;
+               ev.m_puie = this;
+               ev.m_eevent = ::user::event_mouse_leave;
+               get_parent()->send_message(
+                  ::message::message_event, 0, (LPARAM)&ev);
+            }
+            track_mouse_hover();
          }
+         pobj->m_bRet = false;
+      }
+
    }
+
 
    void button::_001OnMouseLeave(signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj)
-         if(get_form() == NULL)
+      if(get_form() == NULL)
+      {
+         index iOldHover = m_iHover;
+         m_iHover = -1;
+         if(iOldHover >= 0)
          {
-            index iOldHover = m_iHover;
-            m_iHover = -1;
-            if(iOldHover >= 0)
+            _001RedrawWindow();
+            ::user::control_event ev;
+            ev.m_puie = this;
+            ev.m_eevent = ::user::event_mouse_leave;
+            if(get_parent() != NULL)
             {
-               _001RedrawWindow();
-               ::user::control_event ev;
-               ev.m_puie = this;
-               ev.m_eevent = ::user::event_mouse_leave;
-               if(get_parent() != NULL)
-               {
-                  get_parent()->send_message(::message::message_event, 0, (LPARAM) &ev);
-               }
-               track_mouse_leave();
+               get_parent()->send_message(::message::message_event, 0, (LPARAM)&ev);
             }
-            pbase->m_bRet = false;
+            track_mouse_leave();
          }
+         pbase->m_bRet = false;
+      }
    }
 
    index button::hit_test(point pt, e_element & eelement)
@@ -254,24 +237,46 @@ namespace user
       }
    }
 
-   void button::ResizeToFit()
+
+   ::size button::calc_text_size()
    {
 
       ::draw2d::memory_graphics pdc(allocer());
 
       if(pdc.is_null())
-         return;
+         return size(0, 0);
 
-      pdc->SelectObject(m_pschema->m_font);
+      pdc->SelectObject(GetFont());
 
       string strText(m_istrButtonText);
+
       size size = pdc->GetTextExtent(strText);
 
-      rect rect(0, 0, 0, 0);
-      rect.right = (LONG) (size.cx / 0.77 + 4);
-      rect.bottom = (LONG) (size.cy / 0.77 + 4);
+      ::draw2d::text_metric tm;
 
-      SetWindowPos(0, 0, 0, rect.width(), rect.height(), SWP_NOMOVE);
+      pdc->get_text_metrics(&tm);
+
+      ::size sizeTotal;
+
+      sizeTotal.cx = size.cx;
+
+      sizeTotal.cy = tm.tmHeight;
+
+      return sizeTotal;
+   
+   }
+
+
+   void button::ResizeToFit()
+   {
+
+      ::size sizeTotal = calc_text_size();
+
+      sizeTotal.cx += 10 * 2;
+
+      sizeTotal.cy += 5 * 2;
+
+      SetWindowPos(0, 0, 0, sizeTotal.cx, sizeTotal.cy, SWP_NOMOVE);
 
    }
 
@@ -394,12 +399,20 @@ namespace user
    {
       
       rect rectClient;
+
       GetClientRect(rectClient);
 
+      ::size sizeText = calc_text_size();
 
-      ::rect rect(rectClient);
+      ::rect rect;
 
-      rect.deflate((LONG) (rect.height() * 0.15), (LONG) (rect.height() * 0.15));
+      rect.left = rectClient.left + (rectClient.width() - sizeText.cx) / 2;
+
+      rect.top = rectClient.top + (rectClient.height() - sizeText.cy) / 2;
+
+      rect.right = rect.left + sizeText.cx;
+
+      rect.bottom = rect.top + sizeText.cy;
 
       m_rectText = rect;
 
@@ -576,7 +589,9 @@ namespace user
       pdc->SelectObject(brushText);
 
       string strText(m_istrButtonText);
-      pdc->SelectObject(m_pschema->m_font);
+
+      pdc->SelectObject(GetFont());
+
       pdc->draw_text(strText, rectText, DT_LEFT | DT_TOP);
 
    }

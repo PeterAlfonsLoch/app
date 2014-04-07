@@ -620,7 +620,7 @@ namespace user
 
             pdc->CreateCompatibleDC(NULL);
 
-            TEXTMETRICW tm;
+            ::draw2d::text_metric tm;
 
             pdc->SelectObject(m_fontMarlett);
 
