@@ -1,56 +1,56 @@
 /* ====================================================================
- * Copyright (c) 1999 The OpenSSL Project.  All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
- *
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
- * 3. All advertising materials mentioning features or use of this
- *    software must display the following acknowledgment:
- *    "This product includes software developed by the OpenSSL Project
- *    for use in the OpenSSL Toolkit. (http://www.openssl.org/)"
- *
- * 4. The names "OpenSSL Toolkit" and "OpenSSL Project" must not be used to
- *    endorse or promote products derived from this software without
- *    prior written permission. For written permission, please contact
- *    openssl-core@openssl.org.
- *
- * 5. Products derived from this software may not be called "OpenSSL"
- *    nor may "OpenSSL" appear in their names without prior written
- *    permission of the OpenSSL Project.
- *
- * 6. Redistributions of any form whatsoever must retain the following
- *    acknowledgment:
- *    "This product includes software developed by the OpenSSL Project
- *    for use in the OpenSSL Toolkit (http://www.openssl.org/)"
- *
- * THIS SOFTWARE IS PROVIDED BY THE OpenSSL PROJECT ``AS IS'' AND ANY
- * EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE OpenSSL PROJECT OR
- * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
- * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE.
- * ====================================================================
- *
- * This product includes cryptographic software written by Eric Young
- * (eay@cryptsoft.com).  This product includes software written by Tim
- * Hudson (tjh@cryptsoft.com).
- *
- */
+* Copyright (c) 1999 The OpenSSL Project.  All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions
+* are met:
+*
+* 1. Redistributions of source code must retain the above copyright
+*    notice, this list of conditions and the following disclaimer.
+*
+* 2. Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in
+*    the documentation and/or other materials provided with the
+*    distribution.
+*
+* 3. All advertising materials mentioning features or use of this
+*    software must display the following acknowledgment:
+*    "This product includes software developed by the OpenSSL Project
+*    for use in the OpenSSL Toolkit. (http://www.openssl.org/)"
+*
+* 4. The names "OpenSSL Toolkit" and "OpenSSL Project" must not be used to
+*    endorse or promote products derived from this software without
+*    prior written permission. For written permission, please contact
+*    openssl-core@openssl.org.
+*
+* 5. Products derived from this software may not be called "OpenSSL"
+*    nor may "OpenSSL" appear in their names without prior written
+*    permission of the OpenSSL Project.
+*
+* 6. Redistributions of any form whatsoever must retain the following
+*    acknowledgment:
+*    "This product includes software developed by the OpenSSL Project
+*    for use in the OpenSSL Toolkit (http://www.openssl.org/)"
+*
+* THIS SOFTWARE IS PROVIDED BY THE OpenSSL PROJECT ``AS IS'' AND ANY
+* EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+* PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE OpenSSL PROJECT OR
+* ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+* SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+* NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+* LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+* HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+* STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+* ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+* OF THE POSSIBILITY OF SUCH DAMAGE.
+* ====================================================================
+*
+* This product includes cryptographic software written by Eric Young
+* (eay@cryptsoft.com).  This product includes software written by Tim
+* Hudson (tjh@cryptsoft.com).
+*
+*/
 
 #ifndef HEADER_SYMHACKS_H
 #define HEADER_SYMHACKS_H
@@ -58,13 +58,13 @@
 #include <openssl/e_os2.h>
 
 /* Hacks to solve the problem with linkers incapable of handling very long
-   symbol names.  In the case of VMS, the limit is 31 characters on VMS for
-   VAX. */
+symbol names.  In the case of VMS, the limit is 31 characters on VMS for
+VAX. */
 /* Note that this affects util/libeay.num and util/ssleay.num...  you may
-   change those manually, but that's not recommended, as those files are
-   controlled centrally and updated on Unix, and the central definition
-   may disagree with yours, which in turn may come with shareable library
-   incompatibilities. */
+change those manually, but that's not recommended, as those files are
+controlled centrally and updated on Unix, and the central definition
+may disagree with yours, which in turn may come with shareable library
+incompatibilities. */
 #ifdef OPENSSL_SYS_VMS
 
 /* Hack a long name in crypto/ex_data.c */
@@ -204,6 +204,12 @@
 #define SSL_CTX_set_next_protos_advertised_cb	SSL_CTX_set_next_protos_adv_cb
 #undef SSL_CTX_set_next_proto_select_cb
 #define SSL_CTX_set_next_proto_select_cb	SSL_CTX_set_next_proto_sel_cb
+#undef ssl3_cbc_record_digest_supported
+#define ssl3_cbc_record_digest_supported        ssl3_cbc_record_digest_support
+#undef ssl_check_clienthello_tlsext_late
+#define ssl_check_clienthello_tlsext_late       ssl_check_clihello_tlsext_late
+#undef ssl_check_clienthello_tlsext_early
+#define ssl_check_clienthello_tlsext_early      ssl_check_clihello_tlsext_early
 
 /* Hack some long ENGINE names */
 #undef ENGINE_get_default_BN_mod_exp_crt
@@ -224,7 +230,7 @@
 #define ENGINE_get_pkey_asn1_meth_engine	ENGINE_get_pkey_asn1_meth_eng
 #undef ENGINE_set_load_ssl_client_cert_function
 #define ENGINE_set_load_ssl_client_cert_function \
-						ENGINE_set_ld_ssl_clnt_cert_fn
+   ENGINE_set_ld_ssl_clnt_cert_fn
 #undef ENGINE_get_ssl_client_cert_function
 #define ENGINE_get_ssl_client_cert_function	ENGINE_get_ssl_client_cert_fn
 
@@ -259,13 +265,13 @@
 #define EC_GROUP_clear_free_all_extra_data	EC_GROUP_clr_free_all_xtra_data
 #undef EC_KEY_set_public_key_affine_coordinates
 #define EC_KEY_set_public_key_affine_coordinates \
-						EC_KEY_set_pub_key_aff_coords
+   EC_KEY_set_pub_key_aff_coords
 #undef EC_POINT_set_Jprojective_coordinates_GFp
 #define EC_POINT_set_Jprojective_coordinates_GFp \
-                                                EC_POINT_set_Jproj_coords_GFp
+   EC_POINT_set_Jproj_coords_GFp
 #undef EC_POINT_get_Jprojective_coordinates_GFp
 #define EC_POINT_get_Jprojective_coordinates_GFp \
-                                                EC_POINT_get_Jproj_coords_GFp
+   EC_POINT_get_Jproj_coords_GFp
 #undef EC_POINT_set_affine_coordinates_GFp
 #define EC_POINT_set_affine_coordinates_GFp     EC_POINT_set_affine_coords_GFp
 #undef EC_POINT_get_affine_coordinates_GFp
@@ -278,7 +284,7 @@
 #define EC_POINT_get_affine_coordinates_GF2m    EC_POINT_get_affine_coords_GF2m
 #undef EC_POINT_set_compressed_coordinates_GF2m
 #define EC_POINT_set_compressed_coordinates_GF2m \
-                                                EC_POINT_set_compr_coords_GF2m
+   EC_POINT_set_compr_coords_GF2m
 #undef ec_GF2m_simple_group_clear_finish
 #define ec_GF2m_simple_group_clear_finish	ec_GF2m_simple_grp_clr_finish
 #undef ec_GF2m_simple_group_check_discriminant
@@ -291,13 +297,13 @@
 #define ec_GF2m_simple_points_make_affine	ec_GF2m_simple_pts_make_affine
 #undef ec_GF2m_simple_point_set_affine_coordinates
 #define ec_GF2m_simple_point_set_affine_coordinates \
-                                                ec_GF2m_smp_pt_set_af_coords
+   ec_GF2m_smp_pt_set_af_coords
 #undef ec_GF2m_simple_point_get_affine_coordinates
 #define ec_GF2m_simple_point_get_affine_coordinates \
-                                                ec_GF2m_smp_pt_get_af_coords
+   ec_GF2m_smp_pt_get_af_coords
 #undef ec_GF2m_simple_set_compressed_coordinates
 #define ec_GF2m_simple_set_compressed_coordinates \
-                                                ec_GF2m_smp_set_compr_coords
+   ec_GF2m_smp_set_compr_coords
 #undef ec_GFp_simple_group_set_curve_GFp
 #define ec_GFp_simple_group_set_curve_GFp       ec_GFp_simple_grp_set_curve_GFp
 #undef ec_GFp_simple_group_get_curve_GFp
@@ -318,28 +324,28 @@
 #define ec_GFp_simple_points_make_affine	ec_GFp_simple_pts_make_affine
 #undef ec_GFp_simple_set_Jprojective_coordinates_GFp
 #define ec_GFp_simple_set_Jprojective_coordinates_GFp \
-                                                ec_GFp_smp_set_Jproj_coords_GFp
+   ec_GFp_smp_set_Jproj_coords_GFp
 #undef ec_GFp_simple_get_Jprojective_coordinates_GFp
 #define ec_GFp_simple_get_Jprojective_coordinates_GFp \
-                                                ec_GFp_smp_get_Jproj_coords_GFp
+   ec_GFp_smp_get_Jproj_coords_GFp
 #undef ec_GFp_simple_point_set_affine_coordinates_GFp
 #define ec_GFp_simple_point_set_affine_coordinates_GFp \
-                                                ec_GFp_smp_pt_set_af_coords_GFp
+   ec_GFp_smp_pt_set_af_coords_GFp
 #undef ec_GFp_simple_point_get_affine_coordinates_GFp
 #define ec_GFp_simple_point_get_affine_coordinates_GFp \
-                                                ec_GFp_smp_pt_get_af_coords_GFp
+   ec_GFp_smp_pt_get_af_coords_GFp
 #undef ec_GFp_simple_set_compressed_coordinates_GFp
 #define ec_GFp_simple_set_compressed_coordinates_GFp \
-                                                ec_GFp_smp_set_compr_coords_GFp
+   ec_GFp_smp_set_compr_coords_GFp
 #undef ec_GFp_simple_point_set_affine_coordinates
 #define ec_GFp_simple_point_set_affine_coordinates \
-                                                ec_GFp_smp_pt_set_af_coords
+   ec_GFp_smp_pt_set_af_coords
 #undef ec_GFp_simple_point_get_affine_coordinates
 #define ec_GFp_simple_point_get_affine_coordinates \
-                                                ec_GFp_smp_pt_get_af_coords
+   ec_GFp_smp_pt_get_af_coords
 #undef ec_GFp_simple_set_compressed_coordinates
 #define ec_GFp_simple_set_compressed_coordinates \
-                                                ec_GFp_smp_set_compr_coords
+   ec_GFp_smp_set_compr_coords
 #undef ec_GFp_simple_group_check_discriminant
 #define ec_GFp_simple_group_check_discriminant	ec_GFp_simple_grp_chk_discrim
 
@@ -451,11 +457,11 @@
 #define i2d_ECPKPARAMETERS			i2d_UC_ECPKPARAMETERS
 
 /* These functions do not seem to exist!  However, I'm paranoid...
-   Original command in x509v3.h:
-   These functions are being redefined in another directory,
-   and clash when the linker is case-insensitive, so let's
-   hide them a little, by giving them an extra 'o' at the
-   beginning of the name... */
+Original command in x509v3.h:
+These functions are being redefined in another directory,
+and clash when the linker is case-insensitive, so let's
+hide them a little, by giving them an extra 'o' at the
+beginning of the name... */
 #undef X509v3_cleanup_extensions
 #define X509v3_cleanup_extensions		oX509v3_cleanup_extensions
 #undef X509v3_add_extension
