@@ -132,6 +132,11 @@
 #include <openssl/ossl_typ.h>
 #include <openssl/crypto.h>
 
+
+#ifdef WINDOWS
+#define THIRTY_TWO_BIT
+#endif
+
 #ifdef  __cplusplus
 extern "C" {
 #endif
