@@ -167,13 +167,79 @@ namespace sockets
    }
 
 
+   map < int, int, map < SSL_CTX *, SSL_CTX *, DH *, DH * >, map < SSL_CTX *, SSL_CTX *, DH *, DH * > & > g_dh;
+
+   DH * tmp_dh_callback(SSL *ssl, int is_export, int keylength)
+   {
+      switch(keylength)
+      {
+      case 512:
+      case 1024:
+      case 2048:
+      case 4096:
+         return g_dh[keylength][ssl->ctx];
+         break;
+      }
+      return NULL;
+   }
+
 
    void httpd_socket::InitSSLServer()
    {
       // here's the server.pem file we just created above
       // %! remember to change the password to the one you used for your server key
       InitializeContext(m_strCat, m_strCat, "", SSLv23_server_method());
+
+
+      FILE * paramfile = fopen(System.dir().path(System.dir().name(m_strCat), System.file().title_(m_strCat) + ".dh512.pem"), "r");
+
+      if(paramfile)
+      {
+
+         g_dh[512][m_ssl_ctx] = PEM_read_DHparams(paramfile, NULL, NULL, NULL);
+
+         fclose(paramfile);
+
+      }
+
+      paramfile = fopen(System.dir().path(System.dir().name(m_strCat), System.file().title_(m_strCat) + ".dh1024.pem"), "r");
+
+      if(paramfile)
+      {
+
+         g_dh[1024][m_ssl_ctx] = PEM_read_DHparams(paramfile, NULL, NULL, NULL);
+
+         fclose(paramfile);
+
+      }
+      
+      paramfile = fopen(System.dir().path(System.dir().name(m_strCat), System.file().title_(m_strCat) + ".dh2048.pem"), "r");
+
+      if(paramfile)
+      {
+
+         g_dh[2048][m_ssl_ctx] = PEM_read_DHparams(paramfile, NULL, NULL, NULL);
+
+         fclose(paramfile);
+
+      }
+      
+      paramfile = fopen(System.dir().path(System.dir().name(m_strCat), System.file().title_(m_strCat) + ".dh4096.pem"), "r");
+
+      if(paramfile)
+      {
+
+         g_dh[4096][m_ssl_ctx] = PEM_read_DHparams(paramfile, NULL, NULL, NULL);
+
+         fclose(paramfile);
+
+      }
+
+
+      SSL_CTX_set_tmp_dh_callback(m_ssl_ctx, &tmp_dh_callback);
+
    }
+
 
    httpd_socket & httpd_socket::operator=(const httpd_socket& s)
    {
