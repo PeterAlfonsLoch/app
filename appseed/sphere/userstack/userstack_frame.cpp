@@ -228,7 +228,7 @@ namespace userstack
       }
       else
       {
-         WfiFullScreen(true, false);
+         WfiFullScreen();
       }
    }
 
@@ -278,7 +278,7 @@ namespace userstack
            //OnHoverAction(true);
             ShowWindow(SW_SHOW);
             SetWindowPos(ZORDER_TOP, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
-            WfiFullScreen(true, true);
+            WfiFullScreen();
          }
          else if(pbase->m_lparam == 5)
          {
@@ -291,7 +291,7 @@ namespace userstack
             {
                ShowWindow(SW_SHOW);
                SetWindowPos(ZORDER_TOP, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
-               WfiFullScreen(true, true);
+               WfiFullScreen();
                BringWindowToTop();
             }
             else

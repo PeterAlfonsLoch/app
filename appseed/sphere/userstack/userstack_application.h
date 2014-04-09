@@ -33,7 +33,7 @@ namespace userstack
                                                                      
       bool                                                           m_bDrawCursor;
 
-      string_map < ::uinteraction::interaction * >     m_mapUinteraction;
+      string_map < ::user::uinteraction::interaction * >     m_mapUinteraction;
 
 
       application();

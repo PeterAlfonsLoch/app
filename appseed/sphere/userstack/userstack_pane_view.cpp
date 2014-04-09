@@ -137,7 +137,7 @@ namespace userstack
 /*            sp(::simple_frame_window) pframeApp = dynamic_cast < sp(::simple_frame_window) > (m_pviewdata->m_pwnd);
          if(pframeApp != NULL)
          {
-            pframeApp->WfiFullScreen(true, false);
+            pframeApp->WfiFullScreen();
          }*/
       }
       else if(get_view_id() == ::bergedge::PaneViewContextMenu)
