@@ -190,53 +190,57 @@ namespace sockets
       // %! remember to change the password to the one you used for your server key
       InitializeContext(m_strCat, m_strCat, "", SSLv23_server_method());
 
+      int_array ia;
 
-      FILE * paramfile = fopen(System.dir().path(System.dir().name(m_strCat), System.file().title_(m_strCat) + ".dh512.pem"), "r");
+      ia.add(512);
+      ia.add(1024);
+      ia.add(2048);
+      ia.add(4096);
 
-      if(paramfile)
+      for(index i = 0; i < ia.get_count(); i++)
       {
 
-         g_dh[512][m_ssl_ctx] = PEM_read_DHparams(paramfile, NULL, NULL, NULL);
+         int keylength = ia[i];
 
-         fclose(paramfile);
+         string strTitle = System.file().name_(m_strCat);
 
-      }
+         if(strTitle.find_ci(".") >= 0)
+         {
 
-      paramfile = fopen(System.dir().path(System.dir().name(m_strCat), System.file().title_(m_strCat) + ".dh1024.pem"), "r");
+            strTitle = strTitle.Left(strTitle.reverse_find("."));
 
-      if(paramfile)
-      {
+         }
 
-         g_dh[1024][m_ssl_ctx] = PEM_read_DHparams(paramfile, NULL, NULL, NULL);
 
-         fclose(paramfile);
+         string strFile = System.dir().path(System.dir().name(m_strCat), strTitle + ".dh" + ::str::from(keylength) + ".pem");
 
-      }
-      
-      paramfile = fopen(System.dir().path(System.dir().name(m_strCat), System.file().title_(m_strCat) + ".dh2048.pem"), "r");
+         FILE * paramfile = fopen(strFile, "r");
 
-      if(paramfile)
-      {
+         if(paramfile)
+         {
 
-         g_dh[2048][m_ssl_ctx] = PEM_read_DHparams(paramfile, NULL, NULL, NULL);
+            DH * pdh = PEM_read_DHparams(paramfile, NULL, NULL, NULL);
 
-         fclose(paramfile);
+            g_dh[keylength][m_ssl_ctx] = pdh;
 
-      }
-      
-      paramfile = fopen(System.dir().path(System.dir().name(m_strCat), System.file().title_(m_strCat) + ".dh4096.pem"), "r");
+            fclose(paramfile);
 
-      if(paramfile)
-      {
-
-         g_dh[4096][m_ssl_ctx] = PEM_read_DHparams(paramfile, NULL, NULL, NULL);
-
-         fclose(paramfile);
+         }
 
       }
-
 
       SSL_CTX_set_tmp_dh_callback(m_ssl_ctx, &tmp_dh_callback);
+
+
+      //int nid = OBJ_sn2nid(ECDHE_CURVE);
+
+      EC_KEY *ecdh = EC_KEY_new_by_curve_name(NID_secp384r1);
+
+      SSL_CTX_set_tmp_ecdh(m_ssl_ctx, ecdh);
+
+      SSL_CTX_set_options(m_ssl_ctx, SSL_CTX_get_options(m_ssl_ctx) | SSL_OP_SINGLE_DH_USE | SSL_OP_CIPHER_SERVER_PREFERENCE);
+
+      SSL_CTX_set_cipher_list(m_ssl_ctx, "ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-RC4-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:RSA:SHA:3DES:!aNULL:!eNULL:!EXP:!LOW:!MD5:@STRENGTH");
 
    }
 
