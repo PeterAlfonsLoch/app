@@ -1639,7 +1639,7 @@ synch_lock ml(&user_mutex());
 
    }
 
-   bool graphics::get_text_metrics(LPTEXTMETRICW lpMetrics) const
+   bool graphics::get_text_metrics(::draw2d::text_metric * lpMetrics) const
    {
 
       synch_lock sl(&user_mutex());
@@ -1675,7 +1675,7 @@ synch_lock ml(&user_mutex());
    }
 
 
-   bool graphics::get_output_text_metrics(LPTEXTMETRICW lpMetrics) const
+   bool graphics::get_output_text_metrics(::draw2d::text_metric * lpMetrics) const
    {
 
       throw not_implemented(get_app());

@@ -1371,6 +1371,8 @@
 		<Unit filename="user/user/user_control.h" />
 		<Unit filename="user/user/user_control_property.cpp" />
 		<Unit filename="user/user/user_control_property.h" />
+		<Unit filename="user/user/user_core.cpp" />
+		<Unit filename="user/user/user_core.h" />
 		<Unit filename="user/user/user_data_exchange.cpp" />
 		<Unit filename="user/user/user_data_exchange.h" />
 		<Unit filename="user/user/user_dock_context.h" />
