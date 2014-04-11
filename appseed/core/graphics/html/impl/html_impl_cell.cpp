@@ -340,7 +340,7 @@ namespace html
 
          float iColumnWidth = calc_width();
 
-         float iTableBorder = get_table()->m_iBorder;
+//         float iTableBorder = get_table()->m_iBorder;
 
          /*if(iTableBorder > 0)
          {
@@ -414,7 +414,7 @@ namespace html
       void cell::layout_phase1_end(data * pdata)
       {
 
-         elemental::layout_phase1_end(pdata);
+          ::html::impl::elemental::layout_phase1_end(pdata);
 
       }
 
@@ -493,7 +493,7 @@ namespace html
       float cell::get_extra_content_cy()
       {
 
-         return elemental::get_extra_content_cy();
+          return ::html::impl::elemental::get_extra_content_cy();
          /*if (m_iRowBeg == 0 || m_iRowBeg == get_table()->m_rowptra.get_upper_bound())
          {
 

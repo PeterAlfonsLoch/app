@@ -26,7 +26,7 @@ namespace libcompress
 
       static const uint32_t kSymbolReadTable = 256;
       static const uint32_t kSymbolRep = 259;
-      static const uint32_t kSymbolLen2 = kSymbolRep + kNumReps;
+//      static const uint32_t kSymbolLen2 = kSymbolRep + kNumReps;
 
       static const byte kLenStart[kLenTableSize]      = {0,1,2,3,4,5,6,7,8,10,12,14,16,20,24,28,32,40,48,56,64,80,96,112,128,160,192,224};
       static const byte kLenDirectBits[kLenTableSize] = {0,0,0,0,0,0,0,0,1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4,  4,  5,  5,  5,  5};
@@ -36,7 +36,7 @@ namespace libcompress
       16,16,16,16,16,16,16,16,16,16,16,16,16,16,
       18,18,18,18,18,18,18,18,18,18,18,18};
 
-      static const byte kLevelDirectBits[kLevelTableSize] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,7};
+//      static const byte kLevelDirectBits[kLevelTableSize] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,7};
 
       static const byte kLen2DistStarts[kNumLen2Symbols]={0,4,8,16,32,64,128,192};
       static const byte kLen2DistDirectBits[kNumLen2Symbols]={2,2,3, 4, 5, 6,  6,  6};

@@ -1021,13 +1021,13 @@ namespace draw2d
    {
       if(dRate < 0)
          return;
-      register int64_t size = area();
+      int64_t size = area();
       LPBYTE lpb = (LPBYTE) get_data();
       lpb += ((int32_t)echannel) % 4;
-      register int32_t iDiv = 256 * 256;
-      register int32_t iMul = (int32_t) (dRate * ((double) iDiv));
-      register int32_t iRes;
-      for(register int64_t i = 0; i < size; i++)
+       int32_t iDiv = 256 * 256;
+       int32_t iMul = (int32_t) (dRate * ((double) iDiv));
+       int32_t iRes;
+      for( int64_t i = 0; i < size; i++)
       {
          iRes = *lpb * iMul / iDiv;
          *lpb = (byte) (iRes > 255 ? 255 : iRes);
@@ -1048,14 +1048,14 @@ namespace draw2d
 
       lpb2 += ((int32_t)echannel) % 4;
       
-      for(register int32_t y = 0; y < m_size.cy; y++)
+      for( int32_t y = 0; y < m_size.cy; y++)
       {
 
          LPBYTE lpb1_2 = lpb1 + (m_iScan * y);
 
          LPBYTE lpb2_2 = lpb2 + (pdib->m_iScan * y);
 
-         for (register int32_t x = 0; x < m_size.cx; x++)
+         for ( int32_t x = 0; x < m_size.cx; x++)
          {
           
             *lpb2 = (BYTE)(((uint32_t)*lpb1_2 * (uint32_t)*lpb2_2) / 255);
@@ -1073,12 +1073,12 @@ namespace draw2d
 
    void dib::channel_darken(visual::rgba::echannel echannel, ::draw2d::dib * pdib)
    {
-      register int64_t size = area();
+       int64_t size = area();
       LPBYTE lpb1 = (LPBYTE) get_data();
       LPBYTE lpb2 = (LPBYTE) pdib->get_data();
       lpb1 += ((int32_t)echannel) % 4;
       lpb2 += ((int32_t)echannel) % 4;
-      for(register int64_t i = 0; i < size; i++)
+      for( int64_t i = 0; i < size; i++)
       {
          *lpb1 = *lpb1 < *lpb2 ? *lpb1 : *lpb2;
          lpb1 += 4;
@@ -1088,12 +1088,12 @@ namespace draw2d
 
    void dib::channel_lighten(visual::rgba::echannel echannel, ::draw2d::dib * pdib)
    {
-      register int64_t size = area();
+       int64_t size = area();
       LPBYTE lpb1 = (LPBYTE) get_data();
       LPBYTE lpb2 = (LPBYTE) pdib->get_data();
       lpb1 += ((int32_t)echannel) % 4;
       lpb2 += ((int32_t)echannel) % 4;
-      for(register int64_t i = 0; i < size; i++)
+      for( int64_t i = 0; i < size; i++)
       {
          *lpb1 = *lpb1 > *lpb2 ? *lpb1 : *lpb2;
          lpb1 += 4;
@@ -1106,12 +1106,12 @@ namespace draw2d
       map();
       pdib->map();
       int64_t size = area();
-      register int64_t size64 = size / 64;
+       int64_t size64 = size / 64;
       LPBYTE lpb1 = (LPBYTE) get_data();
       LPBYTE lpb2 = (LPBYTE) pdib->get_data();
       lpb1 += ((int32_t)echannel) % 4;
       lpb2 += ((int32_t)echannel) % 4;
-      register int64_t i = 0;
+       int64_t i = 0;
       for(; i < size64; i++)
       {
          lpb1[4 *  0]  =  lpb2[4 *  0];

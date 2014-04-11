@@ -85,15 +85,15 @@ void id_space::sort()
    stackLowerBound.allocate(0, 1024);
    stackUpperBound.allocate(0, 1024);
 
-   register id * pid1 = NULL;
-   register id * pid2 = NULL;
+   id * pid1 = NULL;
+    id * pid2 = NULL;
 
    id * pida = m_ida.m_pData;
    index * pia = m_iaStr.m_pData;
 
-   register index iU;
-   register index iM;
-   register index iL;
+    index iU;
+    index iM;
+    index iL;
 
    index iLowerBound;
    index iUpperBound;

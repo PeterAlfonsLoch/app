@@ -81,7 +81,8 @@ namespace user
    void menu_base::_001OnShowWindow(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::show_window, pshow, pobj);
+       UNREFERENCED_PARAMETER(pobj);
+//      SCAST_PTR(::message::show_window, pshow, pobj);
 
       //if (!pshow->m_bShow)
       //{
@@ -104,8 +105,11 @@ namespace user
 
    void menu_base::_001OnDestroy(signal_details * pobj)
    {
+       
+       UNREFERENCED_PARAMETER(pobj);
+       
 
-      SCAST_PTR(::message::show_window, pshow, pobj);
+//      SCAST_PTR(::message::show_window, pshow, pobj);
 
       //if (!pshow->m_bShow)
       //{

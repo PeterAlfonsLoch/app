@@ -111,7 +111,7 @@ int my_sync(File fd, myf my_flags)
 } /* my_sync */
 
 
-static const char cur_dir_name[]= {FN_CURLIB, 0};
+//static const char cur_dir_name[]= {FN_CURLIB, 0};
 
 
 /*

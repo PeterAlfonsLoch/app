@@ -3258,10 +3258,10 @@ namespace draw2d
 
       const wchar_t * lpwsz = wstr;
 
-      index iFind = str.find(L' ');
+//      index iFind = str.find(L' ');
 
-      size_t i = 1;
-      size_t iEnd = -1;
+      strsize i = 1;
+      strsize iEnd = -1;
 
       size sz;
 

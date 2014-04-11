@@ -1,6 +1,6 @@
 #include "framework.h"
 
-
+/*
 static const char _vfxShellOpenFmt[] = "%s\\shell\\open\\%s";
 static const char _vfxShellPrintFmt[] = "%s\\shell\\print\\%s";
 static const char _vfxShellPrintToFmt[] = "%s\\shell\\printto\\%s";
@@ -24,7 +24,7 @@ static const char _vfxDDEPrintTo[] = "[printto(\"%1\",\"%2\",\"%3\",\"%4\")]";
 static const char _vfxShellNewValueName[] = "NullFile";
 static const char _vfxShellNewValue[] = "";
 
-
+*/
 #define _wcsdec(_cpc1, _cpc2) ((_cpc1)>=(_cpc2) ? NULL : (_cpc2)-1)
 
 #define _wcsinc(_pc)    ((_pc)+1)
@@ -50,29 +50,29 @@ inline bool IsDirSep(wchar_t wch)
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
-
+/*
 static const char gen_ShellOpenFmt[] = "%s\\shell\\open\\%s";
 static const char gen_ShellPrintFmt[] = "%s\\shell\\print\\%s";
 static const char gen_ShellPrintToFmt[] = "%s\\shell\\printto\\%s";
 static const char gen_DefaultIconFmt[] = "%s\\DefaultIcon";
 static const char gen_ShellNewFmt[] = "%s\\ShellNew";
-
+*/
 #define DEFAULT_ICON_INDEX 0
 
-static const char gen_IconIndexFmt[] = ",%d";
-static const char gen_Command[] = "command";
+//static const char gen_IconIndexFmt[] = ",%d";
+//static const char gen_Command[] = "command";
 //static const char gen_OpenArg[] = _T(" \"%1\"");
 //static const char gen_PrintArg[] = _T(" /p \"%1\"");
 //static const char gen_PrintToArg[] = _T(" /pt \"%1\" \"%2\" \"%3\" \"%4\"");
-static const char gen_DDEArg[] = " /dde";
+//static const char gen_DDEArg[] = " /dde";
 
-static const char gen_DDEExec[] = "ddeexec";
+//static const char gen_DDEExec[] = "ddeexec";
 //static const char gen_DDEOpen[] = _T("[open(\"%1\")]");
 //static const char gen_DDEPrint[] = _T("[print(\"%1\")]");
 //static const char gen_DDEPrintTo[] = _T("[printto(\"%1\",\"%2\",\"%3\",\"%4\")]");
 
-static const char gen_ShellNewValueName[] = "NullFile";
-static const char gen_ShellNewValue[] = "";
+//static const char gen_ShellNewValueName[] = "NullFile";
+//static const char gen_ShellNewValue[] = "";
 
 
 

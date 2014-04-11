@@ -958,7 +958,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	FIBITMAP* dib = NULL;
 	try {
 		// Skip empty 512 byte header.
-		if ( !io->seek_proc(handle, 512, SEEK_CUR) == 0 )
+		if ( !(io->seek_proc(handle, 512, SEEK_CUR) == 0) )
 			return NULL;
 
 		// Read PICT header

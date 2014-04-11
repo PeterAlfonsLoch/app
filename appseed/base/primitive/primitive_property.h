@@ -651,6 +651,9 @@ public:
 
 
 //   DECLARE_BASE_FIXED_ALLOC(property)
+    
+    
+    void null() { m_var.null(); }
 
 
 };

@@ -3836,3 +3836,12 @@ string var::get_json()
    }
 
 }
+
+
+
+void var::null()
+{
+    
+    set_type(var::type_null);
+    
+}

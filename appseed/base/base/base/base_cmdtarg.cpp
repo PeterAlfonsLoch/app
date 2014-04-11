@@ -497,7 +497,7 @@ bool cmd_ui::DoUpdate(command_target* pTarget, bool bDisableIfNoHndler)
 // Special init
 
 
-static const BYTE gen_Dot[] = { 0x6, 0xF, 0xF, 0xF, 0x6 }; // simple byte bitmap, 1=> bit on
+//static const BYTE gen_Dot[] = { 0x6, 0xF, 0xF, 0xF, 0x6 }; // simple byte bitmap, 1=> bit on
 #define DOT_WIDTH   4
 #define DOT_HEIGHT  5
 

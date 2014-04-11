@@ -507,7 +507,7 @@ namespace zip
       "diskFull",
       "endOfFile",
    };*/
-   static const char szUnknown[] = "unknown";
+//   static const char szUnknown[] = "unknown";
    #endif
 
 

@@ -45,9 +45,9 @@
 
 void mul64(uint64_t v1, uint64_t v2, uint64_t & hi, uint64_t & lo)
 {
-  register uint64_t a, ca;
-  register uint64_t b, d;
-  register uint64_t x, y;
+  uint64_t a, ca;
+   uint64_t b, d;
+   uint64_t x, y;
 
   a = (v1 >> 32) & 0xffffffff;
   b = v1 & 0xffffffff;

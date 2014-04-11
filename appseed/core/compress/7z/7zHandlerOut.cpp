@@ -76,7 +76,7 @@ namespace n7z
       1 << 20
 #endif
       ;
-   static const uint32_t kNumFastBytesForHeaders = 273;
+//   static const uint32_t kNumFastBytesForHeaders = 273;
    static const uint32_t kAlgorithmForHeaders = kLzmaAlgorithmX5;
 
    static inline bool IsCopyMethod(const string &methodName)

@@ -179,7 +179,7 @@ static string GetStringForSizeValue(uint32_t value)
   return result;
 }
 
-static const uint64_t k_Copy = 0x0;
+//static const uint64_t k_Copy = 0x0;
 static const uint64_t k_Delta = 3;
 static const uint64_t k_LZMA2 = 0x21;
 static const uint64_t k_LZMA  = 0x030101;

@@ -372,7 +372,7 @@ namespace file
 
             property_set set(get_app());
 
-            bool bOk = true;
+//            bool bOk = true;
 
             sl.lock();
 

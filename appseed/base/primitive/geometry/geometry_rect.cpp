@@ -552,7 +552,7 @@ void rect::operator=(const RECT& srcRect) throw()
 bool rect::operator==(const RECT& rect) const throw()
    { return ::EqualRect((LPCRECT)this, (LPCRECT) &rect) != FALSE; }
 bool rect::operator!=(const RECT& rect) const throw()
-   { return !::EqualRect((LPCRECT)this, (LPCRECT) &rect) != FALSE; }
+   { return ::EqualRect((LPCRECT)this, (LPCRECT) &rect) == FALSE; }
 void rect::operator+=(POINT point) throw()
    { ::OffsetRect(this, point.x, point.y); }
 void rect::operator+=(SIZE size) throw()

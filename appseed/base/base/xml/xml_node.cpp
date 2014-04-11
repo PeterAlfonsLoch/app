@@ -12,7 +12,7 @@ namespace xml
    static const CHAR szXMLPIOpen[] = "<?";
    static const CHAR szXMLPIClose[] = "?>";
    static const CHAR szXMLDOCTYPEOpen[] = "<!DOCTYPE";
-   static const CHAR szXMLDOCTYPEClose[] = ">";
+//   static const CHAR szXMLDOCTYPEClose[] = ">";
    static const CHAR szXMLCommentOpen[] = "<!--";
    static const CHAR szXMLCommentClose[] = "-->";
    static const CHAR szXMLCDATAOpen[] = "<![CDATA[";

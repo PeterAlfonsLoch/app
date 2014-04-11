@@ -4,7 +4,7 @@ template < typename N >
 inline int32_t msb(N n)
 {
 
-   register int32_t i = sizeof(N) * 8;
+   int32_t i = sizeof(N) * 8;
 
    do
    {

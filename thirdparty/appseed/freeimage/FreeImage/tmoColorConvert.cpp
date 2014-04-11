@@ -121,7 +121,7 @@ static const float XYZ2RGB[3][3] = {
 // ----------------------------------------------------------
 
 static const float EPSILON = 1e-06F;
-static const float INF = 1e+10F;
+//static const float INF = 1e+10F;
 
 /**
 Convert in-place floating point RGB data to Yxy.<br>

@@ -79,9 +79,9 @@ namespace libcompress
    static const char *kDefaultMethodName = kLZMAMethodName;
 
 //   static const char *kLzmaMatchFinderForHeaders = "BT2";
-   static const uint32_t kDictionaryForHeaders = 1 << 20;
-   static const uint32_t kNumFastBytesForHeaders = 273;
-   static const uint32_t kAlgorithmForHeaders = kLzmaAlgoX5;
+//   static const uint32_t kDictionaryForHeaders = 1 << 20;
+//   static const uint32_t kNumFastBytesForHeaders = 273;
+//   static const uint32_t kAlgorithmForHeaders = kLzmaAlgoX5;
 
    static bool AreEqual(const string &methodName, const char *s)
    { return (methodName.CompareNoCase(s) == 0); }

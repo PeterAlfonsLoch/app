@@ -272,7 +272,7 @@ namespace user
 
       pdc->SelectObject(tameshi->get_bitmap());
 
-      int32_t dSize = (int32_t) (_001GetItemHeight() * 0.7);
+    //  int32_t dSize = (int32_t) (_001GetItemHeight() * 0.7);
 ////
 //      ((combo_list *) this)->GetFont()->m_dFontSize = dSize;
 //

@@ -6,7 +6,7 @@
 //
 
    // Patch for SetUnhandledExceptionFilter
-const BYTE PatchBytes[5] = { 0x33, 0xC0, 0xC2, 0x04, 0x00 };
+//const BYTE PatchBytes[5] = { 0x33, 0xC0, 0xC2, 0x04, 0x00 };
 
    // Original bytes at the beginning of SetUnhandledExceptionFilter
 BYTE OriginalBytes[5] = {0};

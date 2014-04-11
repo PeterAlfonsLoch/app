@@ -685,7 +685,7 @@ valid : invalid;
 #if defined(ANDROID)
 
 #ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
-   inline bool GetAsSystemTimeHelper(const time_t & timeSrc, SYSTEMTIME& timeDest);
+   bool GetAsSystemTimeHelper(const time_t & timeSrc, SYSTEMTIME& timeDest);
 #endif
 
    inline float_time& float_time::operator=(const time_t & timeSrc) RELEASENOTHROW
@@ -749,8 +749,12 @@ valid : invalid;
 
 
 #else
-#ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
-   inline bool GetAsSystemTimeHelper(const __time64_t & timeSrc, SYSTEMTIME& timeDest);
+#if !defined(_ATL_USE_WINAPI_FAMILY_DESKTOP_APP)
+#ifdef MACOS
+    inline bool GetAsSystemTimeHelper(const time_t& timeSrc, SYSTEMTIME& timeDest);
+#else
+    inline bool GetAsSystemTimeHelper(const __time64_t& timeSrc, SYSTEMTIME& timeDest);
+#endif
 #endif
 #ifndef MACOS
    inline float_time& float_time::operator=(const __time32_t& timeSrc) RELEASENOTHROW

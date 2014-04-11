@@ -123,7 +123,7 @@ namespace html
          if (m_pelemental->m_elementalptra.get_size() > 0 || m_pelemental->m_strBody.is_empty())
             return;
 
-         e_tag etag = m_pelemental->m_etag;
+//         e_tag etag = m_pelemental->m_etag;
 
          ::draw2d::graphics * pdc = pdata->m_pdc;
 
@@ -266,7 +266,7 @@ namespace html
       void text::layout_phase1(data * pdata)
       {
 
-         elemental::layout_phase1(pdata);
+          ::html::impl::elemental::layout_phase1(pdata);
 
 
          e_tag etag = m_pelemental->m_etag;
@@ -899,7 +899,7 @@ namespace html
       void text::OnMouseMove(signal_details * pobj)
       {
 
-         elemental::OnMouseMove(pobj);
+          ::html::impl::elemental::OnMouseMove(pobj);
          
          if (m_pelemental->m_pdata->m_bEdit)
          {
@@ -916,7 +916,7 @@ namespace html
       strsize text::char_hit_test(::draw2d::graphics * pdc, int32_t px, int32_t py)
       {
 
-         e_tag etag = m_pelemental->m_etag;
+//         e_tag etag = m_pelemental->m_etag;
 
          rect rect;
          m_box.get(rect);

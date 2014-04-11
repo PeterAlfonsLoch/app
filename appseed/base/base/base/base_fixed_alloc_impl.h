@@ -8,7 +8,7 @@ inline void * fixed_alloc_sync::Alloc()
    // perfectly sequential or perfectly distributed,
    // just fair well distributed
    // but very important is extremely fast
-   register int32_t i = m_i;
+   int32_t i = m_i;
    if(i >= m_iShareCount)
    {
       i = 0;
@@ -20,7 +20,7 @@ inline void * fixed_alloc_sync::Alloc()
    }
 
 
-   register void * p = NULL;
+   void * p = NULL;
    m_protectptra.get_data()[i]->lock();
    try
    {
@@ -40,7 +40,7 @@ inline void fixed_alloc_sync::Free(void * p)
 {
    if (p == NULL)
       return;
-   register int32_t i = ((int32_t *)p)[-1];
+   int32_t i = ((int32_t *)p)[-1];
    m_protectptra.get_data()[i]->lock();
    try
    {
@@ -61,7 +61,7 @@ inline void * fixed_alloc::Alloc()
    // perfectly sequential or perfectly distributed,
    // just fair well distributed
    // but very important is extremely fast
-   register int32_t i = m_i;
+   int32_t i = m_i;
    if(i >= m_iShareCount)
    {
       i = 0;
@@ -73,7 +73,7 @@ inline void * fixed_alloc::Alloc()
    }
 
 
-   register void * p  = m_allocptra.get_data()[i]->Alloc();
+   void * p  = m_allocptra.get_data()[i]->Alloc();
 
    ((int32_t *) p)[0] = i;
 
@@ -87,7 +87,7 @@ inline void fixed_alloc::Free(void * p)
    if (p == NULL)
       return;
 
-   register int32_t i = ((int32_t *)p)[-1];
+   int32_t i = ((int32_t *)p)[-1];
 
    m_allocptra.get_data()[i]->Free(&((int32_t *)p)[-1]);
 

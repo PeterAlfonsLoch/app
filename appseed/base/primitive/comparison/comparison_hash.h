@@ -35,15 +35,15 @@ namespace comparison
 
       inline static UINT HashKey (const string & key)
       {
-         register uint64_t * puiKey = (uint64_t *) (const char *) key;
-         register strsize counter = key.get_length();
-         register uint64_t nHash = 0;
+         uint64_t * puiKey = (uint64_t *) (const char *) key;
+         strsize counter = key.get_length();
+         uint64_t nHash = 0;
          while(counter >= sizeof(*puiKey))
          {
             nHash = (nHash<<5) + nHash + *puiKey++;
             counter -= sizeof(*puiKey);
          }
-         register const char * pszKey = (const char *) puiKey;
+         const char * pszKey = (const char *) puiKey;
          while(counter-- >= 0) nHash = (nHash<<5) + nHash + *pszKey++;
          return (UINT) (nHash & 0xffffffff);
       }
@@ -57,15 +57,15 @@ namespace comparison
 
       inline static UINT HashKey (const wstring & key)
       {
-         register uint64_t * puiKey = (uint64_t *) (const wchar_t *) key;
-         register strsize counter = key.get_length() * sizeof(wchar_t);
-         register uint64_t nHash = 0;
+         uint64_t * puiKey = (uint64_t *) (const wchar_t *) key;
+         strsize counter = key.get_length() * sizeof(wchar_t);
+         uint64_t nHash = 0;
          while(counter >= sizeof(*puiKey))
          {
             nHash = (nHash<<5) + nHash + *puiKey++;
             counter -= sizeof(*puiKey);
          }
-         register const wchar_t * pszKey = (const wchar_t *) puiKey;
+         const wchar_t * pszKey = (const wchar_t *) puiKey;
          while(true)
          {
             counter -= 2;
@@ -126,15 +126,15 @@ template<> inline UINT HashKey<size> (size key)
 
 template<> inline UINT HashKey<const char *> (const char * key)
 {
-   register uint64_t * puiKey = (uint64_t *) key;
-   register strsize counter = strlen(key);
-   register uint64_t nHash = 0;
+   uint64_t * puiKey = (uint64_t *) key;
+   strsize counter = strlen(key);
+   uint64_t nHash = 0;
    while(counter >= sizeof(*puiKey))
    {
       nHash = (nHash<<5) + nHash + *puiKey++;
       counter -= sizeof(*puiKey);
    }
-   register const char * pszKey = (const char *) puiKey;
+   const char * pszKey = (const char *) puiKey;
    while(counter-- >= 0) nHash = (nHash<<5) + nHash + *pszKey++;
    return (UINT) nHash;
 }

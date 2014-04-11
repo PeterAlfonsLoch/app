@@ -934,7 +934,7 @@ namespace html
       if(m_strSubClass.has_char())
          if(m_strSubClass != strSubClass)
             return false;
-      if(idName == NULL)
+      if(idName.is_null())
          return false;
       index i = m_propertyset.find_index(idName);
       if(i < 0)
@@ -955,7 +955,7 @@ namespace html
       if(m_strSubClass.has_char())
          if(m_strSubClass != strSubClass)
             return false;
-      if(idName == NULL)
+      if(idName.is_null())
          return false;
       index i = m_propertyset.find_index(idName);
       if(i < 0)

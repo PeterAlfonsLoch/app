@@ -34,13 +34,20 @@ inline void CopyElements(TYPE* pDest, const TYPE* pSrc, ::count nCount)
 
 #undef new
 
+#ifdef MACOS
+
+void * __cdecl operator new(size_t nSize) new_throw_spec;
+
+#else
 
 inline void * __cdecl operator new(size_t nSize) new_throw_spec
 {
-
-   return memory_alloc(nSize);
-
+    
+    return memory_alloc(nSize);
+    
 }
+
+#endif
 
 
 #if defined(LINUX) || defined(METROWIN) || defined(ANDROID)
@@ -68,6 +75,14 @@ inline void __cdecl operator delete(void * p, void * palloc)
 #endif
 
 
+#ifdef MACOS
+
+void __cdecl operator delete(void * p) del_throw_spec;
+void * __cdecl operator new[](size_t nSize) new_throw_spec;
+void __cdecl operator delete[](void * p) del_throw_spec;
+
+#else
+
 inline void __cdecl operator delete(void * p) del_throw_spec
 {
 
@@ -91,7 +106,7 @@ inline void __cdecl operator delete[](void * p) del_throw_spec
 
 }
 
-
+#endif
 
 
 

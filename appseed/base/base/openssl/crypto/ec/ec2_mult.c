@@ -70,6 +70,7 @@
 #include <openssl/err.h>
 
 #include "ec_lcl.h"
+#include "bn.h"
 
 #ifndef OPENSSL_NO_EC2M
 
@@ -207,6 +208,9 @@ err:
    BN_CTX_end(ctx);
    return ret;
 }
+
+
+void	BN_consttime_swap(BN_ULONG swap, BIGNUM *a, BIGNUM *b, int nwords);
 
 
 /* Computes scalar*point and stores the result in r.

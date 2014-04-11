@@ -955,7 +955,7 @@ namespace file
 
          string strFile;
 
-         if (pszRoot != NULL && pszApp != NULL && *pszRoot != '\0' && pszApp != '\0')
+         if (pszRoot != NULL && pszApp != NULL && *pszRoot != '\0' && *pszApp != '\0')
          {
 
             string strRoot(pszRoot);

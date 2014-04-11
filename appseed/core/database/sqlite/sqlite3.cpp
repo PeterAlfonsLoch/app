@@ -14082,8 +14082,8 @@ zulu_time:
                   bufpt -= 2;
                }
                {
-                  register const char *cset;      /* Use registers for speed */
-                  register int32_t base;
+                  const char *cset;      /* Use registers for speed */
+                   int32_t base;
                   cset = &aDigits[infop->charset];
                   base = infop->base;
                   do{                                           /* Convert to ascii */
@@ -14349,7 +14349,7 @@ zulu_time:
             ** the output.
             */
             if( !flag_leftjustify ){
-               register int32_t nspace;
+                int32_t nspace;
                nspace = width-length;
                if( nspace>0 ){
                   appendSpace(pAccum, nspace);
@@ -14359,7 +14359,7 @@ zulu_time:
                sqlite3StrAccumAppend(pAccum, bufpt, length);
             }
             if( flag_leftjustify ){
-               register int32_t nspace;
+                int32_t nspace;
                nspace = width-length;
                if( nspace>0 ){
                   appendSpace(pAccum, nspace);
@@ -15809,14 +15809,14 @@ translate_out:
    ** there is no consistency, we will define our own.
    */
    SQLITE_PRIVATE int32_t sqlite3StrICmp(const char *zLeft, const char *zRight){
-      register uchar *a, *b;
+       uchar *a, *b;
       a = (uchar *)zLeft;
       b = (uchar *)zRight;
       while( *a!=0 && UpperToLower[*a]==UpperToLower[*b]){ a++; b++; }
       return UpperToLower[*a] - UpperToLower[*b];
    }
    SQLITE_PRIVATE int32_t sqlite3StrNICmp(const char *zLeft, const char *zRight, int32_t N){
-      register uchar *a, *b;
+       uchar *a, *b;
       a = (uchar *)zLeft;
       b = (uchar *)zRight;
       while( N-- > 0 && *a!=0 && UpperToLower[*a]==UpperToLower[*b]){ a++; b++; }

@@ -77,9 +77,9 @@ namespace libcompress
 
       static const uint32_t kHistorySize = 1 << 20;
 
-      static const int32_t kNumStats = 11;
+//      static const int32_t kNumStats = 11;
 
-      static const uint32_t kWindowReservSize = (1 << 22) + 256;
+//      static const uint32_t kWindowReservSize = (1 << 22) + 256;
 
       decoder::decoder():
       m_IsSolid(false)

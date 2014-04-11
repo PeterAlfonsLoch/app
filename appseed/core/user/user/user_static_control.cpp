@@ -61,7 +61,8 @@ namespace user
    void static_control::_001OnLButtonDown(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pobj);
+//      SCAST_PTR(::message::mouse, pmouse, pobj);
+       UNREFERENCED_PARAMETER(pobj);
 
       m_bLButtonDown = true;
 
@@ -71,7 +72,8 @@ namespace user
    void static_control::_001OnLButtonUp(signal_details * pobj)
    {
       
-      SCAST_PTR(::message::mouse, pmouse, pobj);
+//      SCAST_PTR(::message::mouse, pmouse, pobj);
+       UNREFERENCED_PARAMETER(pobj);
 
       if (m_bLButtonDown)
       {
@@ -93,14 +95,16 @@ namespace user
    void static_control::_001OnMouseMove(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pobj);
-   }
+//      SCAST_PTR(::message::mouse, pmouse, pobj);
+       UNREFERENCED_PARAMETER(pobj);
+ }
 
 
    void static_control::_001OnMouseLeave(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::mouse, pleave, pobj);
+//      SCAST_PTR(::message::mouse, pleave, pobj);
+       UNREFERENCED_PARAMETER(pobj);
 
       m_bLButtonDown = false;
 

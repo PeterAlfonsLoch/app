@@ -563,7 +563,7 @@ namespace file
 
       ASSERT_VALID(this);
 
-      ASSERT(m_pfile != (UINT)NULL);
+      ASSERT(m_pfile != NULL);
 
       seek((LONG)dwNewLen, seek_begin);
 

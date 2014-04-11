@@ -585,6 +585,7 @@ public:
 //#undef new
   // DECLARE_BASE_FIXED_ALLOC(var)
 
+    void null();
 
 };
 
