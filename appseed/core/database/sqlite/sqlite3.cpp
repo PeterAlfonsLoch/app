@@ -154,6 +154,9 @@ namespace sqlite3
 # ifndef _FILE_OFFSET_BITS
 #   define _FILE_OFFSET_BITS 64
 # endif
+#ifdef _LARGEFILE_SOURCE
+#undef _LARGEFILE_SOURCE
+#endif
 # define _LARGEFILE_SOURCE 1
 #endif
 

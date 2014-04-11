@@ -2547,10 +2547,15 @@ namespace draw2d_xlib
    //{
    //   return cy;
    //}
-   bool dib::print_window(::user::window * pwnd, signal_details * pobj)
+
+
+   bool dib::print_window(::window * pwnd, signal_details * pobj)
    {
-   return true;
+
+      return true;
+
    }
+
 
 #if defined(WINDOWS)
 
@@ -2660,26 +2665,8 @@ namespace draw2d_xlib
 #elif defined(LINUX)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   bool dib::update_window(::user::window * pwnd, signal_details * pobj)
+   bool dib::update_window(::window * pwnd, signal_details * pobj)
    {
-
 
       rect64 rectWindow;
 

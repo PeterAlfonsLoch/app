@@ -340,7 +340,7 @@ string numeric_array < TYPE >::get_json()
 
    str += "\r\n]";
 
-   return str; 
+   return str;
 
 }
 
@@ -680,7 +680,7 @@ template < class TYPE >
 inline void numeric_array < TYPE > ::push_last()
 {
 
-   add(last_element());
+   this->add(this->last_element());
 
 }
 
@@ -689,13 +689,13 @@ template < class TYPE >
 inline TYPE numeric_array < TYPE > ::pop_max()
 {
 
-   TYPE lastelement = last_element();
+   TYPE lastelement = this->last_element();
 
-   TYPE nowpop = pop();
+   TYPE nowpop = this->pop();
 
-   last_element() = max(nowpop, lastelement);
+   this->last_element() = max(nowpop, lastelement);
 
-   return last_element();
+   return this->last_element();
 
 }
 
@@ -705,13 +705,13 @@ template < class TYPE >
 inline TYPE numeric_array < TYPE > ::pop_max_last_add_up(TYPE tLastAddUp)
 {
 
-   TYPE lastelement = last_element();
+   TYPE lastelement = this->last_element();
 
-   TYPE nowpop = pop();
+   TYPE nowpop = this->pop();
 
-   last_element() = max(nowpop, lastelement + tLastAddUp);
+   this->last_element() = max(nowpop, lastelement + tLastAddUp);
 
-   return last_element();
+   return this->last_element();
 
 }
 
@@ -721,11 +721,11 @@ template < class TYPE >
 inline TYPE numeric_array < TYPE > ::pop_to()
 {
 
-   TYPE lastelement = pop();
+   TYPE lastelement = this->pop();
 
-   last_element() = lastelement;
+   this->last_element() = lastelement;
 
-   return last_element();
+   return this->last_element();
 
 }
 

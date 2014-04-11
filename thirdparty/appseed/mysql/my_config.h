@@ -454,7 +454,9 @@
 #define NO_FCNTL_NONBLOCK 1
 
 /* #undef _LARGE_FILES */
+#ifndef _LARGEFILE_SOURCE
 #define _LARGEFILE_SOURCE 1
+#endif
 /* #undef _LARGEFILE64_SOURCE */
 /* #undef _FILE_OFFSET_BITS */
 

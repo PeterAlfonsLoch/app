@@ -109,8 +109,8 @@
 *
 */
 
-#include <stdio.h>
 #include <openssl/objects.h>
+#include <stdio.h>
 #include <openssl/evp.h>
 #include <openssl/hmac.h>
 #include <openssl/ocsp.h>

@@ -109,9 +109,9 @@
 *
 */
 
+#include <openssl/buffer.h>
 #include <stdio.h>
 #include "ssl_locl.h"
-#include <openssl/buffer.h>
 #include <openssl/rand.h>
 #include <openssl/objects.h>
 #include <openssl/evp.h>

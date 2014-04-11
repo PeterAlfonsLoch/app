@@ -152,6 +152,7 @@
 		<Unit filename="base/base/base_geometry.cpp" />
 		<Unit filename="base/base/base_heap.cpp" />
 		<Unit filename="base/base/base_heap.h" />
+		<Unit filename="base/base/base_id_pool.cpp" />
 		<Unit filename="base/base/base_id_pool.h" />
 		<Unit filename="base/base/base_international.cpp" />
 		<Unit filename="base/base/base_international.h" />
@@ -228,7 +229,6 @@
 		<Unit filename="base/base/base_system_xml.inl" />
 		<Unit filename="base/base/base_template.cpp" />
 		<Unit filename="base/base/base_template.h" />
-		<Unit filename="base/base/base_thread.cpp" />
 		<Unit filename="base/base/base_thread.h" />
 		<Unit filename="base/base/base_trace.cpp" />
 		<Unit filename="base/base/base_trace.h" />
@@ -568,6 +568,8 @@
 		<Unit filename="base/install/install_installer.h" />
 		<Unit filename="base/install/install_plugin.cpp" />
 		<Unit filename="base/install/install_plugin.h" />
+		<Unit filename="base/install/install_plugin_bare_paint_discreet.cpp" />
+		<Unit filename="base/install/install_plugin_bare_paint_full_screen.cpp" />
 		<Unit filename="base/install/install_resource.h" />
 		<Unit filename="base/install/install_small_bell.cpp" />
 		<Unit filename="base/install/install_small_bell.h" />
@@ -2036,19 +2038,7 @@
 		<Unit filename="base/openssl/crypto/rand/rand_lib.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="base/openssl/crypto/rand/rand_nw.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/rand/rand_os2.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/openssl/crypto/rand/rand_unix.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/rand/rand_vms.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/openssl/crypto/rand/rand_win.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/openssl/crypto/rand/randfile.c">
@@ -3140,6 +3130,7 @@
 		<Unit filename="multithreading/multithreading_sync_object.h" />
 		<Unit filename="multithreading/multithreading_synch_lock.cpp" />
 		<Unit filename="multithreading/multithreading_synch_lock.h" />
+		<Unit filename="multithreading/multithreading_thread.cpp" />
 		<Unit filename="multithreading/multithreading_thread.h" />
 		<Unit filename="multithreading/multithreading_thread_os.h" />
 		<Unit filename="multithreading/multithreading_wait_result.cpp" />
@@ -3161,6 +3152,68 @@
 		<Unit filename="net/http/http_status.h" />
 		<Unit filename="net/http/http_system.cpp" />
 		<Unit filename="net/http/http_system.h" />
+		<Unit filename="net/idn/ac-stdint.h" />
+		<Unit filename="net/idn/config.h" />
+		<Unit filename="net/idn/gunibreak.h" />
+		<Unit filename="net/idn/gunicomp.h" />
+		<Unit filename="net/idn/gunidecomp.h" />
+		<Unit filename="net/idn/idn-free.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="net/idn/idn-free.h" />
+		<Unit filename="net/idn/idn-int.h" />
+		<Unit filename="net/idn/idna.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="net/idn/idna.h" />
+		<Unit filename="net/idn/nfkc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="net/idn/pr29.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="net/idn/pr29.h" />
+		<Unit filename="net/idn/profiles.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="net/idn/punycode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="net/idn/punycode.h" />
+		<Unit filename="net/idn/rfc3454.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="net/idn/stdbool.h" />
+		<Unit filename="net/idn/strerror-idna.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="net/idn/strerror-pr29.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="net/idn/strerror-punycode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="net/idn/strerror-stringprep.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="net/idn/strerror-tld.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="net/idn/stringprep.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="net/idn/stringprep.h" />
+		<Unit filename="net/idn/tld.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="net/idn/tld.h" />
+		<Unit filename="net/idn/tlds.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="net/idn/toutf8.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="net/idn/unistd.h" />
 		<Unit filename="net/mail/mail.h" />
 		<Unit filename="net/mail/mail_pop3.cpp" />
 		<Unit filename="net/mail/mail_pop3.h" />
@@ -4015,6 +4068,10 @@
 		<Unit filename="user/user/user_keyboard_focus.h" />
 		<Unit filename="user/user/user_keyboard_layout.cpp" />
 		<Unit filename="user/user/user_keyboard_layout.h" />
+		<Unit filename="user/user/user_menu_base.cpp" />
+		<Unit filename="user/user/user_menu_base.h" />
+		<Unit filename="user/user/user_menu_base_item.cpp" />
+		<Unit filename="user/user/user_menu_base_item.h" />
 		<Unit filename="user/user/user_message.cpp" />
 		<Unit filename="user/user/user_message.h" />
 		<Unit filename="user/user/user_mouse_focus.cpp" />

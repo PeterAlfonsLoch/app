@@ -52,6 +52,8 @@ namespace fontopus
 
       m_picon95 = NULL;
 
+#if defined(WINDOWS)
+
       {
 
          HICON hicon95 = (HICON) ::LoadImage(::GetModuleHandle(NULL), MAKEINTRESOURCE(95), IMAGE_ICON, 95, 95, LR_VGACOLOR);
@@ -65,8 +67,7 @@ namespace fontopus
 
       }
 
-
-
+#endif
 
    }
 
@@ -276,14 +277,14 @@ namespace fontopus
          {
             Sleep(iRetry * (1984 + 1977));
          }
-         
+
          strLogin.empty_string();
 
          try
          {
 
             ::property_set set(get_app());
-            
+
             set["disable_ca2_sessid"] = true;
 
             Application.http().get(m_strLoginUrl, strLogin, set);
@@ -359,11 +360,11 @@ namespace fontopus
          }*/
 
          strAuthUrl += "&sessid=" + strSessId;
-         
+
          ::property_set set(get_app());
-         
+
          set["disable_ca2_sessid"] = true;
-         
+
          strResponse.empty_string();
 
          Application.http().get(strAuthUrl, strResponse, set);
@@ -777,7 +778,7 @@ namespace fontopus
          draw_ca2_with_border2(pgraphics, (int)(49 * r), (int)(49 * r) - 11, (int)((91 + 2 + 2) * r), 1, 1, crBk, cr, crBorderOut, crBorderIn);
 
       }
-      
+
 
    }
 

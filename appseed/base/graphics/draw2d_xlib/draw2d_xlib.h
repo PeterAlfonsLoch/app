@@ -3,6 +3,10 @@
 
 #include "app/appseed/base/base/base/base.h"
 
+
+class window;
+
+
 #ifdef _DRAW2D_CAIRO_LIBRARY
     #define CLASS_DECL_DRAW2D_XLIB  CLASS_DECL_EXPORT
 #else

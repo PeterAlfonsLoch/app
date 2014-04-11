@@ -390,7 +390,7 @@ namespace mysql
 
    var database::get_insert_id()
    {
-      return mysql_insert_id((MYSQL *) m_pmysql);
+      return (uint64_t) mysql_insert_id((MYSQL *) m_pmysql);
    }
 
 } //   namespace mysql

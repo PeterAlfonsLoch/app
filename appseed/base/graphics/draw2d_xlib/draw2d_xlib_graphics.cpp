@@ -225,13 +225,17 @@ if(psurfaceNew == xlib_keep::g_xlibsurface)
 
    }
 
-   int32_t graphics::ExcludeUpdateRgn(::user::window * pWnd)
+
+   int32_t graphics::ExcludeUpdateRgn(::window * pWnd)
    {
-  //    ASSERT(get_handle1() != NULL);
-//      return ::ExcludeUpdateRgn(get_handle1(), WIN_WINDOW(pWnd)->get_handle());
+
+//       ASSERT(get_handle1() != NULL);
+//       return ::ExcludeUpdateRgn(get_handle1(), WIN_WINDOW(pWnd)->get_handle());
          throw not_implemented(get_app());
          return 0;
+
    }
+
 
    int32_t graphics::GetDevicecaps(int32_t nIndex) const
    {

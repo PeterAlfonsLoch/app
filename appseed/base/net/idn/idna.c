@@ -338,7 +338,7 @@ idna_to_unicode_internal (char *utf8in,
    */
 
 step3:
-  if (strnicmp (utf8in, IDNA_ACE_PREFIX, strlen (IDNA_ACE_PREFIX)) != 0)
+  if (strnicmp_dup (utf8in, IDNA_ACE_PREFIX, strlen (IDNA_ACE_PREFIX)) != 0)
     {
       free (utf8in);
       return IDNA_NO_ACE_PREFIX;
@@ -380,7 +380,7 @@ step3:
    * step 3, using a case-insensitive ASCII comparison.
    */
 
-  if (stricmp (utf8in, tmpout + strlen (IDNA_ACE_PREFIX)) != 0)
+  if (stricmp_dup (utf8in, tmpout + strlen (IDNA_ACE_PREFIX)) != 0)
     {
       free (utf8in);
       return IDNA_ROUNDTRIP_VERIFY_ERROR;

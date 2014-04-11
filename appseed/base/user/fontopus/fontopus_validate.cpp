@@ -364,9 +364,12 @@ namespace fontopus
             return true;
          }
       }
+
       if(m_bInteractive)
       {
-         
+
+#ifdef WINDOWS
+
          if (get_splash() != NULL)
          {
 
@@ -374,7 +377,8 @@ namespace fontopus
 
          }
 
-         if (get_splash() != NULL)
+#endif // WINDOWS
+
          {
 
             ::PostMessage(get_splash(), WM_CLOSE, 0, 0);
@@ -863,14 +867,14 @@ namespace fontopus
       property_set set;
       for(int32_t i = 0; i < m_httpexecutea.get_size(); i++)
       {
-         
+
          strFilename = System.file().time_square(get_app());
-         
+
          set["post"] = m_httpexecutea[i].m_propertysetPost;
          set["headers"] = m_httpexecutea[i].m_propertysetHeaders;
          set["cookies"] = m_puser->m_phttpcookies;
          set["user"] = m_puser;
-         
+
          System.http().download(m_httpexecutea[i].m_strUrl, strFilename, set);
 
          strResponse = Application.file().as_string(strFilename);
@@ -973,7 +977,7 @@ namespace fontopus
 
    void validate::ensure_main_document()
    {
-/*      return;  
+/*      return;
       if(m_pdoc != NULL)
          return;
 

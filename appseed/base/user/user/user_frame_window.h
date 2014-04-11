@@ -51,6 +51,10 @@
 #define FWS_SNAPTOBARS  0x00002000L // snap size to size of contained bars
 
 
+class window;
+
+
+
 namespace user
 {
 
@@ -61,8 +65,6 @@ namespace user
    class control_bar;
    class object;
    class impact_system;
-
-
 
 
    struct PrintPreviewState;  // forward reference (see afxext.h)
@@ -93,12 +95,12 @@ namespace user
 
       enum EColumn
       {
-         
+
          ColumnWindowRect
-            
+
       };
 
-      
+
       static bool             g_bFullScreenAlt;
       bool                    m_bAutoWindowFrame;
       bool                    m_bWindowFrame;
@@ -313,7 +315,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnDestroy)
       DECL_GEN_SIGNAL(_001OnSysCommand)
-         
+
       void OnClose();
       LRESULT OnPopMessageString(WPARAM wParam, LPARAM lParam);
       LRESULT OnSetMessageString(WPARAM wParam, LPARAM lParam);

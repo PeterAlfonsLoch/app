@@ -113,10 +113,15 @@
 * [including the GNU Public Licence.]
 */
 
+#include "ssl_locl.h"
+
+
 #include <limits.h>
 #include <string.h>
 #include <stdio.h>
-#include "ssl_locl.h"
+
+
+
 #include <openssl/buffer.h>
 #include <openssl/rand.h>
 #include <openssl/objects.h>
@@ -251,7 +256,7 @@ int dtls1_do_write(SSL *s, int type)
             s->d1->mtu, NULL);
       }
    }
-#if 0 
+#if 0
    mtu = s->d1->mtu;
 
    fprintf(stderr, "using MTU = %d\n", mtu);

@@ -56,11 +56,12 @@
 * [including the GNU Public Licence.]
 */
 
+
+#include "cryptlib.h"
+
 #include <stdio.h>
 #include <time.h>
 #include <errno.h>
-
-#include "cryptlib.h"
 
 #ifndef NO_SYS_TYPES_H
 # include <sys/types.h>

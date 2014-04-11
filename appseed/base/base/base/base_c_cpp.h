@@ -106,6 +106,10 @@ class message_queue_listener;
 class image_list;
 class base_session;
 
+#ifndef WINDOWS
+typedef void * HDWP;
+#endif // WINDOWS
+
 // special struct for WM_SIZEPARENT
 struct __SIZEPARENTPARAMS
 {
@@ -207,11 +211,11 @@ namespace install
 
 enum e_extract
 {
-   
+
    extract_none,
    extract_first,
    extract_all
-           
+
 };
 
 
@@ -1085,7 +1089,7 @@ bool ::file::system::output(sp(base_application) papp, const char * pszOutput, T
    ::file::binary_buffer_sp fileOut = App(papp).file().get_file(strDownloading, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
    if(fileOut.is_null())
-      return false; 
+      return false;
 
    ::file::binary_buffer_sp fileIn = App(papp).file().get_file(lpszInput, ::file::type_binary | ::file::mode_read);
 

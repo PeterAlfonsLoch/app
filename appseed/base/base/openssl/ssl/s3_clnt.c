@@ -148,14 +148,14 @@
  * OTHERWISE.
  */
 
-//#include <stdio.h>
-#include "ssl_locl.h"
-#include "kssl_lcl.h"
 #include <openssl/buffer.h>
 #include <openssl/rand.h>
 #include <openssl/objects.h>
 #include <openssl/evp.h>
 #include <openssl/md5.h>
+#include <stdio.h>
+#include "ssl_locl.h"
+#include "kssl_lcl.h"
 #ifdef OPENSSL_FIPS
 #include <openssl/fips.h>
 #endif

@@ -151,10 +151,10 @@
 #define REUSE_CIPHER_BUG
 #define NETSCAPE_HANG_BUG
 
+#include <openssl/buffer.h>
 #include <stdio.h>
 #include "ssl_locl.h"
 #include "kssl_lcl.h"
-#include <openssl/buffer.h>
 #include <openssl/rand.h>
 #include <openssl/objects.h>
 #include <openssl/evp.h>
@@ -378,7 +378,7 @@ IMPLEMENT_ssl3_meth_func(SSLv3_server_method,
                   goto end;
                }
             }
-#endif		
+#endif
 
             s->renegotiate = 2;
             s->state = SSL3_ST_SW_SRVR_HELLO_A;
@@ -3060,7 +3060,7 @@ int ssl3_get_cert_verify(SSL *s)
       }
    }
    else
-#ifndef OPENSSL_NO_RSA 
+#ifndef OPENSSL_NO_RSA
    if(pkey->type == EVP_PKEY_RSA)
    {
       i = RSA_verify(NID_md5_sha1, s->s3->tmp.cert_verify_md,

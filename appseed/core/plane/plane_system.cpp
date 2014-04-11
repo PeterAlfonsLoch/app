@@ -1151,18 +1151,31 @@ namespace plane
       return __ca2_logging_report(i1, psz1, i2, psz2, psz3, args);
    }
 
+
    void system::on_request(sp(::create_context) pcreatecontext)
    {
+
       sp(::plane::session) psession = get_session(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+
       if (psession == NULL)
       {
 
          ::MessageBox(get_splash(), "An error that prevents the application from starting has occurred.\r\n\r\nPlease run app-removal.exe and restart the application, or contact the administrator.", "Startup Error", MB_ICONEXCLAMATION);
+
+#ifdef WINDOWS
+
          ::ExitProcess(-17);
+
+#endif
+
          return;
+
       }
+
       psession->request_create(pcreatecontext);
+
    }
+
 
    void system::open_by_file_extension(index iEdge, const char * pszFileName)
    {
@@ -2289,10 +2302,10 @@ int32_t simple_app2::main()
 #endif
 
 #if !defined(MACOS)
-   
+
    if (!main_initialize())
       return -1;
-   
+
 #endif
 
 
@@ -2300,9 +2313,9 @@ int32_t simple_app2::main()
    body();
 
 #if !defined(MACOS)
-   
+
    main_finalize();
-   
+
 #endif
 
 

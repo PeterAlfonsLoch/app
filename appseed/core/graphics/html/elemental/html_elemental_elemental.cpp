@@ -941,7 +941,7 @@ namespace html
       while (*psz != '\0' && !isspace(*psz) && *psz != '>')
          psz++;
 
-      if (pszCloseTag[0] == '/' && strnicmp(m_idTagName.m_pstr->c_str(), pszCloseTag + 1, psz - pszCloseTag - 1) == 0)
+      if (pszCloseTag[0] == '/' && strnicmp_dup(m_idTagName.m_pstr->c_str(), pszCloseTag + 1, psz - pszCloseTag - 1) == 0)
       {
          psz++;
          pszParam = psz;

@@ -135,12 +135,12 @@
 * OTHERWISE.
 */
 
-#include <stdio.h>
-#include "ssl_locl.h"
 #ifndef OPENSSL_NO_COMP
 #include <openssl/comp.h>
 #endif
 #include <openssl/evp.h>
+#include <stdio.h>
+#include "ssl_locl.h"
 #include <openssl/hmac.h>
 #include <openssl/md5.h>
 #include <openssl/rand.h>
