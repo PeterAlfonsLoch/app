@@ -70,7 +70,9 @@
 #include <openssl/err.h>
 
 #include "ec_lcl.h"
+#ifndef WINDOWS
 #include "bn.h"
+#endif
 
 #ifndef OPENSSL_NO_EC2M
 
