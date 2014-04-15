@@ -377,7 +377,7 @@ namespace user
 
             rect * prectMargin = get_margin_rect();
 
-            int32_t iCaptionHeight = get_caption_height();
+//            int32_t iCaptionHeight = get_caption_height();
 
             int32_t iButtonSize = m_spcontrolbox->get_button_size();
 

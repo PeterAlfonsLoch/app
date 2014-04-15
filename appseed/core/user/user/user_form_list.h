@@ -75,8 +75,8 @@ namespace user
       void _001SetEditControl(sp(control) pcontrol);
       virtual void _001PlaceControl(sp(control) pcontrol);
       sp(control) _001GetControlBySubItem(index iSubItem);
-      virtual void _001OnClick(UINT uiFlags, point point);
-      virtual void _001OnClick(UINT uiFlags, point point, index iItem, index iSubItem);
+      virtual void _001OnClick(uint_ptr uiFlags, point point);
+      virtual void _001OnClick(uint_ptr uiFlags, point point, index iItem, index iSubItem);
       DECL_GEN_VSIGNAL(_001OnTimer)
 
       using list::_001GetSelection;

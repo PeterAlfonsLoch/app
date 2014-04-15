@@ -762,7 +762,7 @@ void simple_menu_bar::_001OnDropDown(int32_t iItem)
    _TrackPopupMenu(iItem);
 }
 
-void simple_menu_bar::_001OnClick(int32_t iItem)
+void simple_menu_bar::_001OnClick(index iItem)
 {
    UNREFERENCED_PARAMETER(iItem);
 }

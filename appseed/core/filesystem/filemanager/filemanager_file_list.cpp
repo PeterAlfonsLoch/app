@@ -250,8 +250,8 @@ namespace filemanager
 
       }
    }
-
-   void file_list::_001OnClick(UINT nFlags, point point)
+    
+  void file_list::_001OnClick(uint_ptr nFlags, point point)
    {
       UNREFERENCED_PARAMETER(nFlags);
       index iItem;
@@ -265,7 +265,7 @@ namespace filemanager
       }
    }
 
-   void file_list::_001OnRightClick(UINT nFlags, point point)
+   void file_list::_001OnRightClick(uint_ptr nFlags, point point)
    {
       UNREFERENCED_PARAMETER(nFlags);
       index iItem;

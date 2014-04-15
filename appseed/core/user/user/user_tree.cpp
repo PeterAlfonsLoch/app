@@ -560,7 +560,7 @@ namespace user
    }
 
 
-   void tree::perform_right_click(UINT nFlags, point pointCursor)
+   void tree::perform_right_click(uint_ptr nFlags, point pointCursor)
    {
 
       _001OnRightClick(nFlags, pointCursor);
@@ -649,7 +649,7 @@ namespace user
             }
    }
 
-   void tree::_001OnClick(UINT uiFlags, point point)
+   void tree::_001OnClick(uint_ptr uiFlags, point point)
    {
       UNREFERENCED_PARAMETER(point);
       //      if(uiFlags & MK_SHIFT)
@@ -669,7 +669,7 @@ namespace user
       }
    }
 
-   void tree::_001OnRightClick(UINT uiFlags, point point)
+   void tree::_001OnRightClick(uint_ptr uiFlags, point point)
    {
       UNREFERENCED_PARAMETER(point);
       //      if(uiFlags & MK_SHIFT)

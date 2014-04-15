@@ -120,8 +120,8 @@ namespace filemanager
       DECL_GEN_SIGNAL(_001OnSpafy2)
       DECL_GEN_SIGNAL(_001OnUpdateSpafy2)
 
-      virtual void _001OnClick(UINT nFlags, point point);
-      virtual void _001OnRightClick(UINT nFlags, point point);
+      virtual void _001OnClick(uint_ptr nFlags, point point);
+      virtual void _001OnRightClick(uint_ptr nFlags, point point);
 
       virtual void _001OnAfterSort();
 

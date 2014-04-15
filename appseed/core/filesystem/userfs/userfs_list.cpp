@@ -59,7 +59,7 @@ namespace userfs
    }
 
 
-   void list::_001OnClick(UINT uiFlags, point point)
+   void list::_001OnClick(uint_ptr uiFlags, point point)
    {
       UNREFERENCED_PARAMETER(uiFlags);
       UNREFERENCED_PARAMETER(point);

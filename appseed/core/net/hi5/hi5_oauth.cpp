@@ -545,7 +545,7 @@ void CSHA1::GetHash(UINT_8 *puDest)
    {
        /* Constants */
        const int32_t OAUTHLIB_BUFFSIZE = 1024;
-       const int32_t OAUTHLIB_BUFFSIZE_LARGE = 1024;
+//       const int32_t OAUTHLIB_BUFFSIZE_LARGE = 1024;
 
 
    };

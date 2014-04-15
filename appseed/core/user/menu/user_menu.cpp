@@ -5,7 +5,7 @@ namespace user
 
    const int32_t BaseWndMenuTimer = 500;
    const int32_t BaseWndMenuCmdUi = 117;
-   const int32_t BaseWndMenuTiming = 200;
+//   const int32_t BaseWndMenuTiming = 200;
 
    menu::menu(sp(base_application) papp) :
       element(papp),

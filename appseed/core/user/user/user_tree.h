@@ -119,13 +119,13 @@ namespace user
 
       sp(::data::tree_item) _001HitTest(POINT pt, ::user::e_tree_element & eelement);
       
-      void _001OnClick(UINT uiFlags, point point);
+      void _001OnClick(uint_ptr uiFlags, point point);
 
-      void _001OnRightClick(UINT uiFlags, point point);
+      void _001OnRightClick(uint_ptr uiFlags, point point);
 
       virtual void perform_click();
 
-      virtual void perform_right_click(UINT uiFlags, point pt);
+      virtual void perform_right_click(uint_ptr uiFlags, point pt);
 
       virtual int32_t get_wheel_scroll_delta();
 

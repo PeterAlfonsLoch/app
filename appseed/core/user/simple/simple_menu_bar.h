@@ -71,7 +71,7 @@ public:
 
    virtual int32_t _001GetHoverItem();
    virtual void OnUpdateHover();
-   void _001OnClick(int32_t iItem);
+   void _001OnClick(index iItem);
    void _001OnDropDown(int32_t iItem);
    //int32_t _001GetHoverItem();
    //void _001Hover(point pt);

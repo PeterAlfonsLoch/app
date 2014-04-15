@@ -124,7 +124,7 @@ public:
    int32_t GetItemStyle(int32_t iItem);
    void _001SetImageList(sp(image_list) pimagelist);
    void _001DiscardImageList();
-   void _001OnClick(int32_t iItem);
+   void _001OnClick(index iItem);
    int32_t _001HitTest(point pt);
    void _001Hover(point pt, bool bRedraw = true);
    void _001Hover(bool bRedraw = true);

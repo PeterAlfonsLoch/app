@@ -2517,7 +2517,7 @@ namespace user
    }
 
 
-   void list::_001OnClick(UINT nFlag, point point)
+   void list::_001OnClick(uint_ptr nFlag, point point)
    {
       UNREFERENCED_PARAMETER(nFlag);
       UNREFERENCED_PARAMETER(point);
@@ -2541,7 +2541,7 @@ namespace user
 
    }
 
-   void list::_001OnRightClick(UINT nFlag, point point)
+   void list::_001OnRightClick(uint_ptr nFlag, point point)
    {
       UNREFERENCED_PARAMETER(nFlag);
       UNREFERENCED_PARAMETER(point);
@@ -3568,7 +3568,7 @@ namespace user
             m_iClick = 0;
             if(!_001IsEditing())
             {
-               UINT nFlags = m_uiLButtonUpFlags;
+               uint_ptr nFlags = m_uiLButtonUpFlags;
                point point = m_ptLButtonUp;
                _001OnClick(nFlags, point);
                Redraw();
@@ -3607,7 +3607,7 @@ namespace user
          KillTimer(8477);
          //if(!_001IsEditing())
          {
-            UINT nFlags = m_uiLButtonUpFlags;
+            uint_ptr nFlags = m_uiLButtonUpFlags;
             point point = m_ptLButtonUp;
             _001OnRightClick(nFlags, point);
             Redraw();

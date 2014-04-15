@@ -196,7 +196,7 @@ static inline int32_t FLOATTIME_DateFromJulian(int32_t dateIn)
 
 
 /* Convert a Julian date to Day/Month/Year - from PostgreSQL */
-static inline void FLOATTIME_DMYFromJulian(int32_t jd, USHORT *year, USHORT *month, USHORT *day)
+/*static inline void FLOATTIME_DMYFromJulian(int32_t jd, USHORT *year, USHORT *month, USHORT *day)
 {
   int32_t j, i, l, n;
 
@@ -210,7 +210,7 @@ static inline void FLOATTIME_DMYFromJulian(int32_t jd, USHORT *year, USHORT *mon
   l = j / 11;
   *month = (j + 2) - (12 * l);
   *year = 100 * (n - 49) + i + l;
-}
+}*/
 
 /* Convert Day/Month/Year to a Julian date - from PostgreSQL */
 static inline double FLOATTIME_JulianFromDMY(USHORT year, USHORT month, USHORT day)

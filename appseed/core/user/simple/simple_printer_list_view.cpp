@@ -80,7 +80,7 @@ void simple_printer_list_view::_001OnCreate(signal_details * pobj)
 }
 
 
-void simple_printer_list_view::_001OnClick(UINT nFlags, point point)
+void simple_printer_list_view::_001OnClick(uint_ptr nFlags, point point)
 {
    UNREFERENCED_PARAMETER(nFlags);
    index iItem;

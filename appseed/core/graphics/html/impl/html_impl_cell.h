@@ -24,8 +24,8 @@ namespace html
          public:
 
             
-            int32_t m_iCol;
-            int32_t m_iRow;
+            index m_iCol;
+            index m_iRow;
 
 
             holder();

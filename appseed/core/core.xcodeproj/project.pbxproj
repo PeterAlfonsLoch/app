@@ -107,6 +107,45 @@
 		07A30CC018F84E51007AE992 /* html_impl_table_row.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A30CA618F84E51007AE992 /* html_impl_table_row.h */; };
 		07A30CC118F84E51007AE992 /* html_impl_text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30CA718F84E51007AE992 /* html_impl_text.cpp */; };
 		07A30CC218F84E51007AE992 /* html_impl_text.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A30CA818F84E51007AE992 /* html_impl_text.h */; };
+		07A30CE318F855FD007AE992 /* uinteraction_frame_appearance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30CC318F855FD007AE992 /* uinteraction_frame_appearance.cpp */; };
+		07A30CE418F855FD007AE992 /* uinteraction_frame_appearance.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A30CC418F855FD007AE992 /* uinteraction_frame_appearance.h */; };
+		07A30CE518F855FD007AE992 /* uinteraction_frame_constants.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30CC518F855FD007AE992 /* uinteraction_frame_constants.cpp */; };
+		07A30CE618F855FD007AE992 /* uinteraction_frame_constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A30CC618F855FD007AE992 /* uinteraction_frame_constants.h */; };
+		07A30CE718F855FD007AE992 /* uinteraction_frame_control_box_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30CC718F855FD007AE992 /* uinteraction_frame_control_box_button.cpp */; };
+		07A30CE818F855FD007AE992 /* uinteraction_frame_control_box_button.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A30CC818F855FD007AE992 /* uinteraction_frame_control_box_button.h */; };
+		07A30CE918F855FD007AE992 /* uinteraction_frame_control_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30CC918F855FD007AE992 /* uinteraction_frame_control_box.cpp */; };
+		07A30CEA18F855FD007AE992 /* uinteraction_frame_control_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A30CCA18F855FD007AE992 /* uinteraction_frame_control_box.h */; };
+		07A30CEB18F855FD007AE992 /* uinteraction_frame_dock_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30CCB18F855FD007AE992 /* uinteraction_frame_dock_manager.cpp */; };
+		07A30CEC18F855FD007AE992 /* uinteraction_frame_dock_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A30CCC18F855FD007AE992 /* uinteraction_frame_dock_manager.h */; };
+		07A30CED18F855FD007AE992 /* uinteraction_frame_enum.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A30CCD18F855FD007AE992 /* uinteraction_frame_enum.h */; };
+		07A30CEE18F855FD007AE992 /* uinteraction_frame_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30CCE18F855FD007AE992 /* uinteraction_frame_frame.cpp */; };
+		07A30CEF18F855FD007AE992 /* uinteraction_frame_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A30CCF18F855FD007AE992 /* uinteraction_frame_frame.h */; };
+		07A30CF018F855FD007AE992 /* uinteraction_frame_move_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30CD018F855FD007AE992 /* uinteraction_frame_move_manager.cpp */; };
+		07A30CF118F855FD007AE992 /* uinteraction_frame_move_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A30CD118F855FD007AE992 /* uinteraction_frame_move_manager.h */; };
+		07A30CF218F855FD007AE992 /* uinteraction_frame_size_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30CD218F855FD007AE992 /* uinteraction_frame_size_manager.cpp */; };
+		07A30CF318F855FD007AE992 /* uinteraction_frame_size_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A30CD318F855FD007AE992 /* uinteraction_frame_size_manager.h */; };
+		07A30CF418F855FD007AE992 /* uinteraction_frame_sys_menu_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30CD418F855FD007AE992 /* uinteraction_frame_sys_menu_manager.cpp */; };
+		07A30CF518F855FD007AE992 /* uinteraction_frame_sys_menu_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A30CD518F855FD007AE992 /* uinteraction_frame_sys_menu_manager.h */; };
+		07A30CF618F855FD007AE992 /* uinteraction_frame_up_down_target.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30CD618F855FD007AE992 /* uinteraction_frame_up_down_target.cpp */; };
+		07A30CF718F855FD007AE992 /* uinteraction_frame_up_down_target.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A30CD718F855FD007AE992 /* uinteraction_frame_up_down_target.h */; };
+		07A30CF818F855FD007AE992 /* uinteraction_frame_work_set_client_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30CD818F855FD007AE992 /* uinteraction_frame_work_set_client_interface.cpp */; };
+		07A30CF918F855FD007AE992 /* uinteraction_frame_work_set_client_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A30CD918F855FD007AE992 /* uinteraction_frame_work_set_client_interface.h */; };
+		07A30CFA18F855FD007AE992 /* uinteraction_frame_work_set_down_up_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30CDA18F855FD007AE992 /* uinteraction_frame_work_set_down_up_interface.cpp */; };
+		07A30CFB18F855FD007AE992 /* uinteraction_frame_work_set_down_up_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A30CDB18F855FD007AE992 /* uinteraction_frame_work_set_down_up_interface.h */; };
+		07A30CFC18F855FD007AE992 /* uinteraction_frame_work_set_listener_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30CDC18F855FD007AE992 /* uinteraction_frame_work_set_listener_array.cpp */; };
+		07A30CFD18F855FD007AE992 /* uinteraction_frame_work_set_listener_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A30CDD18F855FD007AE992 /* uinteraction_frame_work_set_listener_array.h */; };
+		07A30CFE18F855FD007AE992 /* uinteraction_frame_work_set_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30CDE18F855FD007AE992 /* uinteraction_frame_work_set_listener.cpp */; };
+		07A30CFF18F855FD007AE992 /* uinteraction_frame_work_set_listener.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A30CDF18F855FD007AE992 /* uinteraction_frame_work_set_listener.h */; };
+		07A30D0018F855FD007AE992 /* uinteraction_frame_work_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30CE018F855FD007AE992 /* uinteraction_frame_work_set.cpp */; };
+		07A30D0118F855FD007AE992 /* uinteraction_frame_work_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A30CE118F855FD007AE992 /* uinteraction_frame_work_set.h */; };
+		07A30D0218F855FD007AE992 /* uinteraction_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A30CE218F855FD007AE992 /* uinteraction_frame.h */; };
+		07A30D0818F86910007AE992 /* user_menu_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30D0318F86910007AE992 /* user_menu_button.cpp */; };
+		07A30D0918F86910007AE992 /* user_menu_central.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30D0418F86910007AE992 /* user_menu_central.cpp */; };
+		07A30D0A18F86910007AE992 /* user_menu_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30D0518F86910007AE992 /* user_menu_item.cpp */; };
+		07A30D0B18F86910007AE992 /* user_menu_list_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30D0618F86910007AE992 /* user_menu_list_window.cpp */; };
+		07A30D0C18F86910007AE992 /* user_menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30D0718F86910007AE992 /* user_menu.cpp */; };
+		07A30D0F18F869BD007AE992 /* user_core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A30D0D18F869BD007AE992 /* user_core.cpp */; };
+		07A30D1018F869BD007AE992 /* user_core.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A30D0E18F869BD007AE992 /* user_core.h */; };
 		07A56819183062C500BA805E /* usermail_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A56817183062C500BA805E /* usermail_item.cpp */; };
 		07A5681A183062C500BA805E /* usermail_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A56818183062C500BA805E /* usermail_item.h */; };
 		07A5681F183065D000BA805E /* data_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A5681B183065D000BA805E /* data_item.cpp */; };
@@ -750,36 +789,7 @@
 		07A6E0B0173C27EC009E6FB8 /* simple_toolbar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D72F173C27E9009E6FB8 /* simple_toolbar.cpp */; };
 		07A6E0B1173C27EC009E6FB8 /* simple_tree_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D730173C27E9009E6FB8 /* simple_tree_view.cpp */; };
 		07A6E0B2173C27EC009E6FB8 /* simple_tree_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D731173C27E9009E6FB8 /* simple_tree_view.h */; };
-		07A6E0B3173C27EC009E6FB8 /* frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D734173C27E9009E6FB8 /* frame.h */; };
-		07A6E0B4173C27EC009E6FB8 /* frame_appearance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D735173C27E9009E6FB8 /* frame_appearance.cpp */; };
-		07A6E0B5173C27EC009E6FB8 /* frame_appearance.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D736173C27E9009E6FB8 /* frame_appearance.h */; };
-		07A6E0B6173C27EC009E6FB8 /* frame_constants.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D737173C27E9009E6FB8 /* frame_constants.cpp */; };
-		07A6E0B7173C27EC009E6FB8 /* frame_constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D738173C27E9009E6FB8 /* frame_constants.h */; };
-		07A6E0B8173C27EC009E6FB8 /* frame_control_box_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D739173C27E9009E6FB8 /* frame_control_box_button.cpp */; };
-		07A6E0B9173C27EC009E6FB8 /* frame_control_box_button.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D73A173C27E9009E6FB8 /* frame_control_box_button.h */; };
-		07A6E0BA173C27EC009E6FB8 /* frame_dock_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D73B173C27E9009E6FB8 /* frame_dock_manager.cpp */; };
-		07A6E0BB173C27EC009E6FB8 /* frame_dock_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D73C173C27E9009E6FB8 /* frame_dock_manager.h */; };
-		07A6E0BC173C27EC009E6FB8 /* frame_move_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D73D173C27E9009E6FB8 /* frame_move_manager.cpp */; };
-		07A6E0BD173C27EC009E6FB8 /* frame_move_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D73E173C27E9009E6FB8 /* frame_move_manager.h */; };
-		07A6E0BE173C27EC009E6FB8 /* frame_size_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D73F173C27E9009E6FB8 /* frame_size_manager.cpp */; };
-		07A6E0BF173C27EC009E6FB8 /* frame_size_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D740173C27E9009E6FB8 /* frame_size_manager.h */; };
-		07A6E0C0173C27EC009E6FB8 /* frame_sys_menu_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D741173C27E9009E6FB8 /* frame_sys_menu_manager.cpp */; };
-		07A6E0C1173C27EC009E6FB8 /* frame_sys_menu_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D742173C27E9009E6FB8 /* frame_sys_menu_manager.h */; };
-		07A6E0C2173C27EC009E6FB8 /* frame_up_down_target.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D743173C27E9009E6FB8 /* frame_up_down_target.cpp */; };
-		07A6E0C3173C27EC009E6FB8 /* frame_up_down_target.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D744173C27E9009E6FB8 /* frame_up_down_target.h */; };
-		07A6E0C4173C27EC009E6FB8 /* frame_work_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D745173C27E9009E6FB8 /* frame_work_set.cpp */; };
-		07A6E0C5173C27EC009E6FB8 /* frame_work_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D746173C27E9009E6FB8 /* frame_work_set.h */; };
-		07A6E0C6173C27EC009E6FB8 /* frame_work_set_client_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D747173C27E9009E6FB8 /* frame_work_set_client_interface.cpp */; };
-		07A6E0C7173C27EC009E6FB8 /* frame_work_set_client_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D748173C27E9009E6FB8 /* frame_work_set_client_interface.h */; };
-		07A6E0C8173C27EC009E6FB8 /* frame_work_set_down_up_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D749173C27E9009E6FB8 /* frame_work_set_down_up_interface.cpp */; };
-		07A6E0C9173C27EC009E6FB8 /* frame_work_set_down_up_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D74A173C27E9009E6FB8 /* frame_work_set_down_up_interface.h */; };
-		07A6E0CA173C27EC009E6FB8 /* frame_work_set_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D74B173C27E9009E6FB8 /* frame_work_set_listener.cpp */; };
-		07A6E0CB173C27EC009E6FB8 /* frame_work_set_listener.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D74C173C27E9009E6FB8 /* frame_work_set_listener.h */; };
-		07A6E0CC173C27EC009E6FB8 /* frame_work_set_listener_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D74D173C27E9009E6FB8 /* frame_work_set_listener_array.cpp */; };
-		07A6E0CD173C27EC009E6FB8 /* frame_work_set_listener_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D74E173C27EA009E6FB8 /* frame_work_set_listener_array.h */; };
 		07A6E0CE173C27EC009E6FB8 /* uinteraction.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D751173C27EA009E6FB8 /* uinteraction.h */; };
-		07A6E0CF173C27EC009E6FB8 /* uinteraction_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D752173C27EA009E6FB8 /* uinteraction_frame.cpp */; };
-		07A6E0D0173C27EC009E6FB8 /* uinteraction_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D753173C27EA009E6FB8 /* uinteraction_frame.h */; };
 		07A6E0D1173C27EC009E6FB8 /* uinteraction_interaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D754173C27EA009E6FB8 /* uinteraction_interaction.cpp */; };
 		07A6E0D2173C27EC009E6FB8 /* uinteraction_interaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D755173C27EA009E6FB8 /* uinteraction_interaction.h */; };
 		07A6E0D3173C27EC009E6FB8 /* uinteraction_uinteraction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D756173C27EA009E6FB8 /* uinteraction_uinteraction.cpp */; };
@@ -891,8 +901,6 @@
 		07AD9A9D182FF9E1005C3335 /* userfs_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A9B182FF9E1005C3335 /* userfs_item.h */; };
 		07B0B294189EED130041FCB1 /* user_meta_control_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B0B292189EED130041FCB1 /* user_meta_control_box.cpp */; };
 		07B0B295189EED130041FCB1 /* user_meta_control_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0B293189EED130041FCB1 /* user_meta_control_box.h */; };
-		07B0B298189EED360041FCB1 /* frame_control_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B0B296189EED360041FCB1 /* frame_control_box.cpp */; };
-		07B0B299189EED360041FCB1 /* frame_control_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0B297189EED360041FCB1 /* frame_control_box.h */; };
 		07F5B372184A4FA00092C3E1 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B2E6184A4FA00092C3E1 /* user.cpp */; };
 		07F5B373184A4FA00092C3E1 /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B2E7184A4FA00092C3E1 /* user.h */; };
 		07F5B374184A4FA00092C3E1 /* user1.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B2E8184A4FA00092C3E1 /* user1.h */; };
@@ -1338,6 +1346,45 @@
 		07A30CA618F84E51007AE992 /* html_impl_table_row.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_impl_table_row.h; sourceTree = "<group>"; };
 		07A30CA718F84E51007AE992 /* html_impl_text.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = html_impl_text.cpp; sourceTree = "<group>"; };
 		07A30CA818F84E51007AE992 /* html_impl_text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_impl_text.h; sourceTree = "<group>"; };
+		07A30CC318F855FD007AE992 /* uinteraction_frame_appearance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uinteraction_frame_appearance.cpp; sourceTree = "<group>"; };
+		07A30CC418F855FD007AE992 /* uinteraction_frame_appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uinteraction_frame_appearance.h; sourceTree = "<group>"; };
+		07A30CC518F855FD007AE992 /* uinteraction_frame_constants.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uinteraction_frame_constants.cpp; sourceTree = "<group>"; };
+		07A30CC618F855FD007AE992 /* uinteraction_frame_constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uinteraction_frame_constants.h; sourceTree = "<group>"; };
+		07A30CC718F855FD007AE992 /* uinteraction_frame_control_box_button.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uinteraction_frame_control_box_button.cpp; sourceTree = "<group>"; };
+		07A30CC818F855FD007AE992 /* uinteraction_frame_control_box_button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uinteraction_frame_control_box_button.h; sourceTree = "<group>"; };
+		07A30CC918F855FD007AE992 /* uinteraction_frame_control_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uinteraction_frame_control_box.cpp; sourceTree = "<group>"; };
+		07A30CCA18F855FD007AE992 /* uinteraction_frame_control_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uinteraction_frame_control_box.h; sourceTree = "<group>"; };
+		07A30CCB18F855FD007AE992 /* uinteraction_frame_dock_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uinteraction_frame_dock_manager.cpp; sourceTree = "<group>"; };
+		07A30CCC18F855FD007AE992 /* uinteraction_frame_dock_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uinteraction_frame_dock_manager.h; sourceTree = "<group>"; };
+		07A30CCD18F855FD007AE992 /* uinteraction_frame_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uinteraction_frame_enum.h; sourceTree = "<group>"; };
+		07A30CCE18F855FD007AE992 /* uinteraction_frame_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uinteraction_frame_frame.cpp; sourceTree = "<group>"; };
+		07A30CCF18F855FD007AE992 /* uinteraction_frame_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uinteraction_frame_frame.h; sourceTree = "<group>"; };
+		07A30CD018F855FD007AE992 /* uinteraction_frame_move_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uinteraction_frame_move_manager.cpp; sourceTree = "<group>"; };
+		07A30CD118F855FD007AE992 /* uinteraction_frame_move_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uinteraction_frame_move_manager.h; sourceTree = "<group>"; };
+		07A30CD218F855FD007AE992 /* uinteraction_frame_size_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uinteraction_frame_size_manager.cpp; sourceTree = "<group>"; };
+		07A30CD318F855FD007AE992 /* uinteraction_frame_size_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uinteraction_frame_size_manager.h; sourceTree = "<group>"; };
+		07A30CD418F855FD007AE992 /* uinteraction_frame_sys_menu_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uinteraction_frame_sys_menu_manager.cpp; sourceTree = "<group>"; };
+		07A30CD518F855FD007AE992 /* uinteraction_frame_sys_menu_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uinteraction_frame_sys_menu_manager.h; sourceTree = "<group>"; };
+		07A30CD618F855FD007AE992 /* uinteraction_frame_up_down_target.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uinteraction_frame_up_down_target.cpp; sourceTree = "<group>"; };
+		07A30CD718F855FD007AE992 /* uinteraction_frame_up_down_target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uinteraction_frame_up_down_target.h; sourceTree = "<group>"; };
+		07A30CD818F855FD007AE992 /* uinteraction_frame_work_set_client_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uinteraction_frame_work_set_client_interface.cpp; sourceTree = "<group>"; };
+		07A30CD918F855FD007AE992 /* uinteraction_frame_work_set_client_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uinteraction_frame_work_set_client_interface.h; sourceTree = "<group>"; };
+		07A30CDA18F855FD007AE992 /* uinteraction_frame_work_set_down_up_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uinteraction_frame_work_set_down_up_interface.cpp; sourceTree = "<group>"; };
+		07A30CDB18F855FD007AE992 /* uinteraction_frame_work_set_down_up_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uinteraction_frame_work_set_down_up_interface.h; sourceTree = "<group>"; };
+		07A30CDC18F855FD007AE992 /* uinteraction_frame_work_set_listener_array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uinteraction_frame_work_set_listener_array.cpp; sourceTree = "<group>"; };
+		07A30CDD18F855FD007AE992 /* uinteraction_frame_work_set_listener_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uinteraction_frame_work_set_listener_array.h; sourceTree = "<group>"; };
+		07A30CDE18F855FD007AE992 /* uinteraction_frame_work_set_listener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uinteraction_frame_work_set_listener.cpp; sourceTree = "<group>"; };
+		07A30CDF18F855FD007AE992 /* uinteraction_frame_work_set_listener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uinteraction_frame_work_set_listener.h; sourceTree = "<group>"; };
+		07A30CE018F855FD007AE992 /* uinteraction_frame_work_set.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uinteraction_frame_work_set.cpp; sourceTree = "<group>"; };
+		07A30CE118F855FD007AE992 /* uinteraction_frame_work_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uinteraction_frame_work_set.h; sourceTree = "<group>"; };
+		07A30CE218F855FD007AE992 /* uinteraction_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uinteraction_frame.h; sourceTree = "<group>"; };
+		07A30D0318F86910007AE992 /* user_menu_button.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_menu_button.cpp; sourceTree = "<group>"; };
+		07A30D0418F86910007AE992 /* user_menu_central.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_menu_central.cpp; sourceTree = "<group>"; };
+		07A30D0518F86910007AE992 /* user_menu_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_menu_item.cpp; sourceTree = "<group>"; };
+		07A30D0618F86910007AE992 /* user_menu_list_window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_menu_list_window.cpp; sourceTree = "<group>"; };
+		07A30D0718F86910007AE992 /* user_menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_menu.cpp; sourceTree = "<group>"; };
+		07A30D0D18F869BD007AE992 /* user_core.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_core.cpp; sourceTree = "<group>"; };
+		07A30D0E18F869BD007AE992 /* user_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_core.h; sourceTree = "<group>"; };
 		07A56817183062C500BA805E /* usermail_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = usermail_item.cpp; sourceTree = "<group>"; };
 		07A56818183062C500BA805E /* usermail_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usermail_item.h; sourceTree = "<group>"; };
 		07A5681B183065D000BA805E /* data_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_item.cpp; sourceTree = "<group>"; };
@@ -1985,37 +2032,8 @@
 		07A6D72F173C27E9009E6FB8 /* simple_toolbar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simple_toolbar.cpp; sourceTree = "<group>"; };
 		07A6D730173C27E9009E6FB8 /* simple_tree_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simple_tree_view.cpp; sourceTree = "<group>"; };
 		07A6D731173C27E9009E6FB8 /* simple_tree_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_tree_view.h; sourceTree = "<group>"; };
-		07A6D734173C27E9009E6FB8 /* frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame.h; sourceTree = "<group>"; };
-		07A6D735173C27E9009E6FB8 /* frame_appearance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_appearance.cpp; sourceTree = "<group>"; };
-		07A6D736173C27E9009E6FB8 /* frame_appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame_appearance.h; sourceTree = "<group>"; };
-		07A6D737173C27E9009E6FB8 /* frame_constants.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_constants.cpp; sourceTree = "<group>"; };
-		07A6D738173C27E9009E6FB8 /* frame_constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame_constants.h; sourceTree = "<group>"; };
-		07A6D739173C27E9009E6FB8 /* frame_control_box_button.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_control_box_button.cpp; sourceTree = "<group>"; };
-		07A6D73A173C27E9009E6FB8 /* frame_control_box_button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame_control_box_button.h; sourceTree = "<group>"; };
-		07A6D73B173C27E9009E6FB8 /* frame_dock_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_dock_manager.cpp; sourceTree = "<group>"; };
-		07A6D73C173C27E9009E6FB8 /* frame_dock_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame_dock_manager.h; sourceTree = "<group>"; };
-		07A6D73D173C27E9009E6FB8 /* frame_move_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_move_manager.cpp; sourceTree = "<group>"; };
-		07A6D73E173C27E9009E6FB8 /* frame_move_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame_move_manager.h; sourceTree = "<group>"; };
-		07A6D73F173C27E9009E6FB8 /* frame_size_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_size_manager.cpp; sourceTree = "<group>"; };
-		07A6D740173C27E9009E6FB8 /* frame_size_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame_size_manager.h; sourceTree = "<group>"; };
-		07A6D741173C27E9009E6FB8 /* frame_sys_menu_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_sys_menu_manager.cpp; sourceTree = "<group>"; };
-		07A6D742173C27E9009E6FB8 /* frame_sys_menu_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame_sys_menu_manager.h; sourceTree = "<group>"; };
-		07A6D743173C27E9009E6FB8 /* frame_up_down_target.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_up_down_target.cpp; sourceTree = "<group>"; };
-		07A6D744173C27E9009E6FB8 /* frame_up_down_target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame_up_down_target.h; sourceTree = "<group>"; };
-		07A6D745173C27E9009E6FB8 /* frame_work_set.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_work_set.cpp; sourceTree = "<group>"; };
-		07A6D746173C27E9009E6FB8 /* frame_work_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame_work_set.h; sourceTree = "<group>"; };
-		07A6D747173C27E9009E6FB8 /* frame_work_set_client_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_work_set_client_interface.cpp; sourceTree = "<group>"; };
-		07A6D748173C27E9009E6FB8 /* frame_work_set_client_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame_work_set_client_interface.h; sourceTree = "<group>"; };
-		07A6D749173C27E9009E6FB8 /* frame_work_set_down_up_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_work_set_down_up_interface.cpp; sourceTree = "<group>"; };
-		07A6D74A173C27E9009E6FB8 /* frame_work_set_down_up_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame_work_set_down_up_interface.h; sourceTree = "<group>"; };
-		07A6D74B173C27E9009E6FB8 /* frame_work_set_listener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_work_set_listener.cpp; sourceTree = "<group>"; };
-		07A6D74C173C27E9009E6FB8 /* frame_work_set_listener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame_work_set_listener.h; sourceTree = "<group>"; };
-		07A6D74D173C27E9009E6FB8 /* frame_work_set_listener_array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_work_set_listener_array.cpp; sourceTree = "<group>"; };
-		07A6D74E173C27EA009E6FB8 /* frame_work_set_listener_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame_work_set_listener_array.h; sourceTree = "<group>"; };
 		07A6D750173C27EA009E6FB8 /* window_frame.rc2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = window_frame.rc2; sourceTree = "<group>"; };
 		07A6D751173C27EA009E6FB8 /* uinteraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uinteraction.h; sourceTree = "<group>"; };
-		07A6D752173C27EA009E6FB8 /* uinteraction_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uinteraction_frame.cpp; sourceTree = "<group>"; };
-		07A6D753173C27EA009E6FB8 /* uinteraction_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uinteraction_frame.h; sourceTree = "<group>"; };
 		07A6D754173C27EA009E6FB8 /* uinteraction_interaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uinteraction_interaction.cpp; sourceTree = "<group>"; };
 		07A6D755173C27EA009E6FB8 /* uinteraction_interaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uinteraction_interaction.h; sourceTree = "<group>"; };
 		07A6D756173C27EA009E6FB8 /* uinteraction_uinteraction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uinteraction_uinteraction.cpp; sourceTree = "<group>"; };
@@ -2127,8 +2145,6 @@
 		07AD9A9B182FF9E1005C3335 /* userfs_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userfs_item.h; sourceTree = "<group>"; };
 		07B0B292189EED130041FCB1 /* user_meta_control_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_meta_control_box.cpp; sourceTree = "<group>"; };
 		07B0B293189EED130041FCB1 /* user_meta_control_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_meta_control_box.h; sourceTree = "<group>"; };
-		07B0B296189EED360041FCB1 /* frame_control_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_control_box.cpp; sourceTree = "<group>"; };
-		07B0B297189EED360041FCB1 /* frame_control_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame_control_box.h; sourceTree = "<group>"; };
 		07F5B2E5184A4FA00092C3E1 /* interaction.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = interaction.inl; sourceTree = "<group>"; };
 		07F5B2E6184A4FA00092C3E1 /* user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user.cpp; sourceTree = "<group>"; };
 		07F5B2E7184A4FA00092C3E1 /* user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user.h; sourceTree = "<group>"; };
@@ -3558,11 +3574,16 @@
 		07A6D6F2173C27E9009E6FB8 /* menu */ = {
 			isa = PBXGroup;
 			children = (
+				07A30D0718F86910007AE992 /* user_menu.cpp */,
 				07A6D6F3173C27E9009E6FB8 /* user_menu.h */,
+				07A30D0318F86910007AE992 /* user_menu_button.cpp */,
 				07A6D6F5173C27E9009E6FB8 /* user_menu_button.h */,
+				07A30D0418F86910007AE992 /* user_menu_central.cpp */,
 				07A6D6F6173C27E9009E6FB8 /* user_menu_central.h */,
+				07A30D0518F86910007AE992 /* user_menu_item.cpp */,
 				07A6D6F7173C27E9009E6FB8 /* user_menu_item.h */,
 				07A6D6F8173C27E9009E6FB8 /* user_menu_list_view.h */,
+				07A30D0618F86910007AE992 /* user_menu_list_window.cpp */,
 				07A6D6F9173C27E9009E6FB8 /* user_menu_list_window.h */,
 			);
 			path = menu;
@@ -3630,8 +3651,6 @@
 				07A6D733173C27E9009E6FB8 /* frame */,
 				07A6D74F173C27EA009E6FB8 /* res */,
 				07A6D751173C27EA009E6FB8 /* uinteraction.h */,
-				07A6D752173C27EA009E6FB8 /* uinteraction_frame.cpp */,
-				07A6D753173C27EA009E6FB8 /* uinteraction_frame.h */,
 				07A6D754173C27EA009E6FB8 /* uinteraction_interaction.cpp */,
 				07A6D755173C27EA009E6FB8 /* uinteraction_interaction.h */,
 				07A6D756173C27EA009E6FB8 /* uinteraction_uinteraction.cpp */,
@@ -3643,35 +3662,38 @@
 		07A6D733173C27E9009E6FB8 /* frame */ = {
 			isa = PBXGroup;
 			children = (
-				07A6D734173C27E9009E6FB8 /* frame.h */,
-				07A6D735173C27E9009E6FB8 /* frame_appearance.cpp */,
-				07A6D736173C27E9009E6FB8 /* frame_appearance.h */,
-				07A6D737173C27E9009E6FB8 /* frame_constants.cpp */,
-				07A6D738173C27E9009E6FB8 /* frame_constants.h */,
-				07A6D739173C27E9009E6FB8 /* frame_control_box_button.cpp */,
-				07A6D73A173C27E9009E6FB8 /* frame_control_box_button.h */,
-				07B0B296189EED360041FCB1 /* frame_control_box.cpp */,
-				07B0B297189EED360041FCB1 /* frame_control_box.h */,
-				07A6D73B173C27E9009E6FB8 /* frame_dock_manager.cpp */,
-				07A6D73C173C27E9009E6FB8 /* frame_dock_manager.h */,
-				07A6D73D173C27E9009E6FB8 /* frame_move_manager.cpp */,
-				07A6D73E173C27E9009E6FB8 /* frame_move_manager.h */,
-				07A6D73F173C27E9009E6FB8 /* frame_size_manager.cpp */,
-				07A6D740173C27E9009E6FB8 /* frame_size_manager.h */,
-				07A6D741173C27E9009E6FB8 /* frame_sys_menu_manager.cpp */,
-				07A6D742173C27E9009E6FB8 /* frame_sys_menu_manager.h */,
-				07A6D743173C27E9009E6FB8 /* frame_up_down_target.cpp */,
-				07A6D744173C27E9009E6FB8 /* frame_up_down_target.h */,
-				07A6D745173C27E9009E6FB8 /* frame_work_set.cpp */,
-				07A6D746173C27E9009E6FB8 /* frame_work_set.h */,
-				07A6D747173C27E9009E6FB8 /* frame_work_set_client_interface.cpp */,
-				07A6D748173C27E9009E6FB8 /* frame_work_set_client_interface.h */,
-				07A6D749173C27E9009E6FB8 /* frame_work_set_down_up_interface.cpp */,
-				07A6D74A173C27E9009E6FB8 /* frame_work_set_down_up_interface.h */,
-				07A6D74B173C27E9009E6FB8 /* frame_work_set_listener.cpp */,
-				07A6D74C173C27E9009E6FB8 /* frame_work_set_listener.h */,
-				07A6D74D173C27E9009E6FB8 /* frame_work_set_listener_array.cpp */,
-				07A6D74E173C27EA009E6FB8 /* frame_work_set_listener_array.h */,
+				07A30CC318F855FD007AE992 /* uinteraction_frame_appearance.cpp */,
+				07A30CC418F855FD007AE992 /* uinteraction_frame_appearance.h */,
+				07A30CC518F855FD007AE992 /* uinteraction_frame_constants.cpp */,
+				07A30CC618F855FD007AE992 /* uinteraction_frame_constants.h */,
+				07A30CC718F855FD007AE992 /* uinteraction_frame_control_box_button.cpp */,
+				07A30CC818F855FD007AE992 /* uinteraction_frame_control_box_button.h */,
+				07A30CC918F855FD007AE992 /* uinteraction_frame_control_box.cpp */,
+				07A30CCA18F855FD007AE992 /* uinteraction_frame_control_box.h */,
+				07A30CCB18F855FD007AE992 /* uinteraction_frame_dock_manager.cpp */,
+				07A30CCC18F855FD007AE992 /* uinteraction_frame_dock_manager.h */,
+				07A30CCD18F855FD007AE992 /* uinteraction_frame_enum.h */,
+				07A30CCE18F855FD007AE992 /* uinteraction_frame_frame.cpp */,
+				07A30CCF18F855FD007AE992 /* uinteraction_frame_frame.h */,
+				07A30CD018F855FD007AE992 /* uinteraction_frame_move_manager.cpp */,
+				07A30CD118F855FD007AE992 /* uinteraction_frame_move_manager.h */,
+				07A30CD218F855FD007AE992 /* uinteraction_frame_size_manager.cpp */,
+				07A30CD318F855FD007AE992 /* uinteraction_frame_size_manager.h */,
+				07A30CD418F855FD007AE992 /* uinteraction_frame_sys_menu_manager.cpp */,
+				07A30CD518F855FD007AE992 /* uinteraction_frame_sys_menu_manager.h */,
+				07A30CD618F855FD007AE992 /* uinteraction_frame_up_down_target.cpp */,
+				07A30CD718F855FD007AE992 /* uinteraction_frame_up_down_target.h */,
+				07A30CD818F855FD007AE992 /* uinteraction_frame_work_set_client_interface.cpp */,
+				07A30CD918F855FD007AE992 /* uinteraction_frame_work_set_client_interface.h */,
+				07A30CDA18F855FD007AE992 /* uinteraction_frame_work_set_down_up_interface.cpp */,
+				07A30CDB18F855FD007AE992 /* uinteraction_frame_work_set_down_up_interface.h */,
+				07A30CDC18F855FD007AE992 /* uinteraction_frame_work_set_listener_array.cpp */,
+				07A30CDD18F855FD007AE992 /* uinteraction_frame_work_set_listener_array.h */,
+				07A30CDE18F855FD007AE992 /* uinteraction_frame_work_set_listener.cpp */,
+				07A30CDF18F855FD007AE992 /* uinteraction_frame_work_set_listener.h */,
+				07A30CE018F855FD007AE992 /* uinteraction_frame_work_set.cpp */,
+				07A30CE118F855FD007AE992 /* uinteraction_frame_work_set.h */,
+				07A30CE218F855FD007AE992 /* uinteraction_frame.h */,
 			);
 			path = frame;
 			sourceTree = "<group>";
@@ -3791,6 +3813,8 @@
 				07F5B2F7184A4FA00092C3E1 /* user_control.h */,
 				07F5B2F8184A4FA00092C3E1 /* user_control_property.cpp */,
 				07F5B2F9184A4FA00092C3E1 /* user_control_property.h */,
+				07A30D0D18F869BD007AE992 /* user_core.cpp */,
+				07A30D0E18F869BD007AE992 /* user_core.h */,
 				07F5B2FA184A4FA00092C3E1 /* user_data_exchange.cpp */,
 				07F5B2FB184A4FA00092C3E1 /* user_data_exchange.h */,
 				07F5B2FC184A4FA00092C3E1 /* user_dock_context.h */,
@@ -4227,6 +4251,7 @@
 				07A6DBDC173C27EB009E6FB8 /* 7zFolderOutStream.h in Headers */,
 				07A6DBDE173C27EB009E6FB8 /* 7zHandler.h in Headers */,
 				07A6DBE1173C27EB009E6FB8 /* 7zHeader.h in Headers */,
+				07A30CE418F855FD007AE992 /* uinteraction_frame_appearance.h in Headers */,
 				07A6DBE3173C27EB009E6FB8 /* 7zIn.h in Headers */,
 				07F5B3BC184A4FA00092C3E1 /* user_notify_icon.h in Headers */,
 				07A6DBE4173C27EB009E6FB8 /* 7zItem.h in Headers */,
@@ -4250,6 +4275,7 @@
 				07A6DBF7173C27EB009E6FB8 /* compress_copy_coder.h in Headers */,
 				07A6DBF8173C27EB009E6FB8 /* compress_create_coder.h in Headers */,
 				07A6DBF9173C27EB009E6FB8 /* compress_filter_coder.h in Headers */,
+				07A30CE818F855FD007AE992 /* uinteraction_frame_control_box_button.h in Headers */,
 				07A6DBFA173C27EB009E6FB8 /* compress_filter_interface.h in Headers */,
 				07A6DBFB173C27EB009E6FB8 /* compress_get_input_stream_processed_size_interface.h in Headers */,
 				07A6DBFC173C27EB009E6FB8 /* compress_get_sub_stream_size_interface.h in Headers */,
@@ -4259,6 +4285,7 @@
 				07A6DBFF173C27EB009E6FB8 /* compress_input_stream_with_crc.h in Headers */,
 				07F5B3D7184A4FA00092C3E1 /* user_static_control.h in Headers */,
 				07A6DC00173C27EB009E6FB8 /* compress_int_to_string.h in Headers */,
+				07A30CF118F855FD007AE992 /* uinteraction_frame_move_manager.h in Headers */,
 				07A6DC01173C27EB009E6FB8 /* compress_item_name.h in Headers */,
 				07A6DC02173C27EB009E6FB8 /* compress_local_progress.h in Headers */,
 				07AD9A77182FF968005C3335 /* filemanager_file_list_callback.h in Headers */,
@@ -4275,6 +4302,7 @@
 				07A6DC0D173C27EB009E6FB8 /* compress_set_codecs_info_interface.h in Headers */,
 				07A6DC0E173C27EB009E6FB8 /* compress_set_coder_mt_interface.h in Headers */,
 				07A6DC0F173C27EB009E6FB8 /* compress_set_coder_properties_interface.h in Headers */,
+				07A30CF318F855FD007AE992 /* uinteraction_frame_size_manager.h in Headers */,
 				07A30CAE18F84E51007AE992 /* html_impl_elemental.h in Headers */,
 				07A6DC10173C27EB009E6FB8 /* compress_set_decoder_properties2_interface.h in Headers */,
 				07A6DC11173C27EB009E6FB8 /* compress_set_input_stream_interface.h in Headers */,
@@ -4297,6 +4325,7 @@
 				07A6DC1F173C27EB009E6FB8 /* compress_set_coder_mt_interface.h in Headers */,
 				07F5B3D1184A4FA00092C3E1 /* user_split_layout.h in Headers */,
 				07A6DC20173C27EB009E6FB8 /* compress_set_coder_properties_interface.h in Headers */,
+				07A30D1018F869BD007AE992 /* user_core.h in Headers */,
 				07A6DC21173C27EB009E6FB8 /* compress_set_decoder_properties2_interface.h in Headers */,
 				07A6DC22173C27EB009E6FB8 /* compress_set_input_stream_interface.h in Headers */,
 				07A6DC23173C27EB009E6FB8 /* compress_set_output_stream_interface.h in Headers */,
@@ -4328,6 +4357,7 @@
 				07A6DC54173C27EB009E6FB8 /* compress_reader_with_crc.h in Headers */,
 				07A6DC55173C27EB009E6FB8 /* compress_register_codec.h in Headers */,
 				07F5B385184A4FA00092C3E1 /* user_control_property.h in Headers */,
+				07A30CF518F855FD007AE992 /* uinteraction_frame_sys_menu_manager.h in Headers */,
 				07A6DC57173C27EB009E6FB8 /* compress_writer_with_crc.h in Headers */,
 				07AD9A79182FF968005C3335 /* filemanager_file_list.h in Headers */,
 				07A6DC58173C27EB009E6FB8 /* crypto.h in Headers */,
@@ -4388,6 +4418,7 @@
 				07A6DCD2173C27EB009E6FB8 /* simpledb_set.h in Headers */,
 				07AD9A95182FF968005C3335 /* filemanager_tree.h in Headers */,
 				07A6DCD4173C27EB009E6FB8 /* simpledb_simpledb.h in Headers */,
+				07A30CF718F855FD007AE992 /* uinteraction_frame_up_down_target.h in Headers */,
 				07F5B3ED184A4FA00092C3E1 /* user_toolbar.h in Headers */,
 				07A6DCD6173C27EB009E6FB8 /* simpledb_socket.h in Headers */,
 				07A6DCD8173C27EB009E6FB8 /* simpledb_socket_thread.h in Headers */,
@@ -4458,6 +4489,8 @@
 				07AD9A70182FF968005C3335 /* filemanager_callback.h in Headers */,
 				07A30C8318F84E45007AE992 /* html_elemental_input_text.h in Headers */,
 				07A6DDC7173C27EB009E6FB8 /* html_lite.h in Headers */,
+				07A30CFB18F855FD007AE992 /* uinteraction_frame_work_set_down_up_interface.h in Headers */,
+				07A30D0218F855FD007AE992 /* uinteraction_frame.h in Headers */,
 				07A6DDC9173C27EB009E6FB8 /* html_lite_html_attributes.h in Headers */,
 				07A6DDCA173C27EB009E6FB8 /* html_lite_html_common.h in Headers */,
 				07A6DDCC173C27EB009E6FB8 /* html_lite_html_entity_resolver.h in Headers */,
@@ -4506,6 +4539,7 @@
 				07A6DE1F173C27EB009E6FB8 /* datetime_scanner.h in Headers */,
 				07A6DE21173C27EB009E6FB8 /* datetime_token.h in Headers */,
 				07A6DE23173C27EB009E6FB8 /* numeric_element.h in Headers */,
+				07A30CE618F855FD007AE992 /* uinteraction_frame_constants.h in Headers */,
 				07A6DE25173C27EB009E6FB8 /* numeric_parser.h in Headers */,
 				07A6DE27173C27EB009E6FB8 /* numeric_scanner.h in Headers */,
 				07A6DE28173C27EB009E6FB8 /* numeric_token.h in Headers */,
@@ -4547,6 +4581,7 @@
 				07A6DF93173C27EB009E6FB8 /* nature_document.h in Headers */,
 				07A6DF95173C27EB009E6FB8 /* nature_frame.h in Headers */,
 				07A6DF97173C27EB009E6FB8 /* nature_pane_view.h in Headers */,
+				07A30D0118F855FD007AE992 /* uinteraction_frame_work_set.h in Headers */,
 				07A6DF99173C27EB009E6FB8 /* nature_pane_view_update_hint.h in Headers */,
 				07A6DF9B173C27EB009E6FB8 /* nature_view.h in Headers */,
 				07A6DF9D173C27EB009E6FB8 /* plane_session.h in Headers */,
@@ -4564,6 +4599,7 @@
 				07A6DFAB173C27EB009E6FB8 /* platform_view.h in Headers */,
 				07A6DFAF173C27EB009E6FB8 /* datetime.h in Headers */,
 				07A6DFB1173C27EB009E6FB8 /* datetime_calendar.h in Headers */,
+				07A30CEF18F855FD007AE992 /* uinteraction_frame_frame.h in Headers */,
 				07A6DFB3173C27EB009E6FB8 /* datetime_calendar_interface.h in Headers */,
 				07A6DFB5173C27EB009E6FB8 /* datetime_clock.h in Headers */,
 				07A6DFB7173C27EB009E6FB8 /* datetime_clock_interface.h in Headers */,
@@ -4621,7 +4657,6 @@
 				07A6E030173C27EC009E6FB8 /* colorertake5_hrc_parser.h in Headers */,
 				07A6E032173C27EC009E6FB8 /* colorertake5_hrc_parser_helpers.h in Headers */,
 				072AE9C11810372200F74E98 /* backview_helper.h in Headers */,
-				07B0B299189EED360041FCB1 /* frame_control_box.h in Headers */,
 				07A6E034173C27EC009E6FB8 /* colorertake5_hrc_parser_impl.h in Headers */,
 				07A6E035173C27EC009E6FB8 /* colorertake5_line_region.h in Headers */,
 				07A6E037173C27EC009E6FB8 /* colorertake5_line_regions_compact_support.h in Headers */,
@@ -4658,6 +4693,7 @@
 				07A6E05F173C27EC009E6FB8 /* colorertake5_text_parser_impl.h in Headers */,
 				07A6E060173C27EC009E6FB8 /* colorertake5_text_region.h in Headers */,
 				07A6E061173C27EC009E6FB8 /* colorertake5_Writer.h in Headers */,
+				07A30CEA18F855FD007AE992 /* uinteraction_frame_control_box.h in Headers */,
 				07A6E062173C27EC009E6FB8 /* colorertake5_xmldom.h in Headers */,
 				07F5B3C0184A4FA00092C3E1 /* user_plain_text_data.h in Headers */,
 				07F5B3F1184A4FA00092C3E1 /* user_tree.h in Headers */,
@@ -4702,25 +4738,10 @@
 				07A6E0AE173C27EC009E6FB8 /* simple_tab_view.h in Headers */,
 				07A6E0AF173C27EC009E6FB8 /* simple_tool_bar.h in Headers */,
 				07A6E0B2173C27EC009E6FB8 /* simple_tree_view.h in Headers */,
-				07A6E0B3173C27EC009E6FB8 /* frame.h in Headers */,
-				07A6E0B5173C27EC009E6FB8 /* frame_appearance.h in Headers */,
-				07A6E0B7173C27EC009E6FB8 /* frame_constants.h in Headers */,
-				07A6E0B9173C27EC009E6FB8 /* frame_control_box_button.h in Headers */,
-				07A6E0BB173C27EC009E6FB8 /* frame_dock_manager.h in Headers */,
-				07A6E0BD173C27EC009E6FB8 /* frame_move_manager.h in Headers */,
-				07A6E0BF173C27EC009E6FB8 /* frame_size_manager.h in Headers */,
 				07F5B396184A4FA00092C3E1 /* user_form_callback.h in Headers */,
 				07F5B37B184A4FA00092C3E1 /* user_button_control.h in Headers */,
-				07A6E0C1173C27EC009E6FB8 /* frame_sys_menu_manager.h in Headers */,
-				07A6E0C3173C27EC009E6FB8 /* frame_up_down_target.h in Headers */,
-				07A6E0C5173C27EC009E6FB8 /* frame_work_set.h in Headers */,
-				07A6E0C7173C27EC009E6FB8 /* frame_work_set_client_interface.h in Headers */,
-				07A6E0C9173C27EC009E6FB8 /* frame_work_set_down_up_interface.h in Headers */,
-				07A6E0CB173C27EC009E6FB8 /* frame_work_set_listener.h in Headers */,
-				07A6E0CD173C27EC009E6FB8 /* frame_work_set_listener_array.h in Headers */,
 				07A6E0CE173C27EC009E6FB8 /* uinteraction.h in Headers */,
 				07F5B38F184A4FA00092C3E1 /* user_edit_plain_text_view.h in Headers */,
-				07A6E0D0173C27EC009E6FB8 /* uinteraction_frame.h in Headers */,
 				07A6E0D2173C27EC009E6FB8 /* uinteraction_interaction.h in Headers */,
 				07A6E0D4173C27EC009E6FB8 /* uinteraction_uinteraction.h in Headers */,
 				07AD9A7D182FF968005C3335 /* filemanager_folder_list.h in Headers */,
@@ -4756,12 +4777,15 @@
 				07A6E1CB173C27EC009E6FB8 /* userex_property_sheet.h in Headers */,
 				07A6E1CD173C27EC009E6FB8 /* userex_second_list_view.h in Headers */,
 				07A6E1CF173C27EC009E6FB8 /* userex_split_view.h in Headers */,
+				07A30CF918F855FD007AE992 /* uinteraction_frame_work_set_client_interface.h in Headers */,
+				07A30CEC18F855FD007AE992 /* uinteraction_frame_dock_manager.h in Headers */,
 				07A6E1D1173C27EC009E6FB8 /* userex_wait_message_dialog.h in Headers */,
 				07F5B381184A4FA00092C3E1 /* user_combo_list.h in Headers */,
 				07A6E1D2173C27EC009E6FB8 /* userhtml.h in Headers */,
 				07A6E1D4173C27EC009E6FB8 /* userhtml_child_frame.h in Headers */,
 				07A6E1D6173C27EC009E6FB8 /* userhtml_document.h in Headers */,
 				07F5B3FA184A4FA00092C3E1 /* user_xfplayer_view_line_selection.h in Headers */,
+				07A30CED18F855FD007AE992 /* uinteraction_frame_enum.h in Headers */,
 				07A6E1D8173C27EC009E6FB8 /* userhtml_form.h in Headers */,
 				072AE9C51810372200F74E98 /* backview_interface.h in Headers */,
 				07A6E1DA173C27EC009E6FB8 /* userhtml_form_view.h in Headers */,
@@ -4862,6 +4886,7 @@
 				9AE72B5A17E85ECE003E47F9 /* MBCSGroupProber.h in Headers */,
 				9AE72B5B17E85ECE003E47F9 /* pkgInt.h in Headers */,
 				9AE72B5C17E85ECE003E47F9 /* SBCharsetProber.h in Headers */,
+				07A30CFF18F855FD007AE992 /* uinteraction_frame_work_set_listener.h in Headers */,
 				9AE72B5D17E85ECE003E47F9 /* SBCSGroupProber.h in Headers */,
 				07AD9A89182FF968005C3335 /* filemanager_manager.h in Headers */,
 				9AE72B5E17E85ECE003E47F9 /* SJISProber.h in Headers */,
@@ -4894,6 +4919,7 @@
 				9AAE85D217E921DA00F0512E /* file_bitl_decoder.h in Headers */,
 				07F5B3AE184A4FA00092C3E1 /* user_list_header.h in Headers */,
 				9AAE85D317E921DA00F0512E /* file_bitl_encoder.h in Headers */,
+				07A30CFD18F855FD007AE992 /* uinteraction_frame_work_set_listener_array.h in Headers */,
 				9AAE85D417E921DA00F0512E /* file_bitm_decoder.h in Headers */,
 				9AAE85D517E921DA00F0512E /* file_bitm_encoder.h in Headers */,
 				9AAE85DB17E921DA00F0512E /* file_clustered_file_stream.h in Headers */,
@@ -4991,6 +5017,7 @@
 				072AE9D81810372200F74E98 /* gcom_rect.cpp in Sources */,
 				07A6DC2F173C27EB009E6FB8 /* compress_coder_mixer2.cpp in Sources */,
 				07AD9A92182FF968005C3335 /* filemanager_tab_view.cpp in Sources */,
+				07A30D0F18F869BD007AE992 /* user_core.cpp in Sources */,
 				07A6DC31173C27EB009E6FB8 /* compress_coder_mixer2mt.cpp in Sources */,
 				07A6DC33173C27EB009E6FB8 /* compress_copy_coder.cpp in Sources */,
 				07A6DC35173C27EB009E6FB8 /* compress_create_coder.cpp in Sources */,
@@ -5024,6 +5051,7 @@
 				07A6DC70173C27EB009E6FB8 /* rar3_vm.cpp in Sources */,
 				07A6DC72173C27EB009E6FB8 /* rar_aes.cpp in Sources */,
 				07A6DC73173C27EB009E6FB8 /* rar_codecs_register.cpp in Sources */,
+				07A30CE318F855FD007AE992 /* uinteraction_frame_appearance.cpp in Sources */,
 				07A6DC74173C27EB009E6FB8 /* rar_handler.cpp in Sources */,
 				07A6DC75173C27EB009E6FB8 /* rar_header.cpp in Sources */,
 				07A6DC76173C27EB009E6FB8 /* rar_input_file.cpp in Sources */,
@@ -5043,6 +5071,7 @@
 				07A6DCC2173C27EB009E6FB8 /* simpledb_file_system_size.cpp in Sources */,
 				07A6DCC3173C27EB009E6FB8 /* simpledb_im_post.cpp in Sources */,
 				07A6DCC4173C27EB009E6FB8 /* simpledb_long_set.cpp in Sources */,
+				07A30CF818F855FD007AE992 /* uinteraction_frame_work_set_client_interface.cpp in Sources */,
 				07A6DCC5173C27EB009E6FB8 /* simpledb_manager.cpp in Sources */,
 				07A6DCC7173C27EB009E6FB8 /* simpledb_mysql_database.cpp in Sources */,
 				07F5B3D2184A4FA00092C3E1 /* user_split_view.cpp in Sources */,
@@ -5093,6 +5122,7 @@
 				072AE9CE1810372200F74E98 /* backview_transition_effect_tool001.cpp in Sources */,
 				07A6DD17173C27EB009E6FB8 /* filemanager_item_action.cpp in Sources */,
 				07A6DD19173C27EB009E6FB8 /* filemanager_operation_child_frame.cpp in Sources */,
+				07A30CFC18F855FD007AE992 /* uinteraction_frame_work_set_listener_array.cpp in Sources */,
 				079DBF371886784C00EFFEFB /* userfs_update_hint.cpp in Sources */,
 				07AD9A8E182FF968005C3335 /* filemanager_save_as_name_view.cpp in Sources */,
 				07A6DD1B173C27EB009E6FB8 /* filemanager_operation_document.cpp in Sources */,
@@ -5113,6 +5143,7 @@
 				07A6DD73173C27EB009E6FB8 /* userfs_list_item.cpp in Sources */,
 				07A6DD75173C27EB009E6FB8 /* userfs_list_item_array.cpp in Sources */,
 				07A6DD77173C27EB009E6FB8 /* userfs_main_view.cpp in Sources */,
+				07A30D0918F86910007AE992 /* user_menu_central.cpp in Sources */,
 				07A30C8818F84E45007AE992 /* html_elemental_table_elemental.cpp in Sources */,
 				07A6DD79173C27EB009E6FB8 /* userfs_tree.cpp in Sources */,
 				07A6DD81173C27EB009E6FB8 /* userfs_userfs.cpp in Sources */,
@@ -5145,6 +5176,7 @@
 				07A6DDED173C27EB009E6FB8 /* visual_buffered_graphics.cpp in Sources */,
 				07A6DDF2173C27EB009E6FB8 /* visual_dib.cpp in Sources */,
 				07A30C7E18F84E45007AE992 /* html_elemental_input_button.cpp in Sources */,
+				07A30D0818F86910007AE992 /* user_menu_button.cpp in Sources */,
 				07A6DDF5173C27EB009E6FB8 /* visual_fastblur.cpp in Sources */,
 				07A6DDF7173C27EB009E6FB8 /* visual_font.cpp in Sources */,
 				07A6DDF9173C27EB009E6FB8 /* visual_font_central.cpp in Sources */,
@@ -5198,10 +5230,10 @@
 				07A6DF86173C27EB009E6FB8 /* bergedge_pane_view_update_hint.cpp in Sources */,
 				07A6DF88173C27EB009E6FB8 /* bergedge_view.cpp in Sources */,
 				07A6DF8C173C27EB009E6FB8 /* nature_appearance_view.cpp in Sources */,
+				07A30D0A18F86910007AE992 /* user_menu_item.cpp in Sources */,
 				07A6DF8E173C27EB009E6FB8 /* nature_application.cpp in Sources */,
 				07F5B3DC184A4FA00092C3E1 /* user_tab.cpp in Sources */,
 				07A6DF90173C27EB009E6FB8 /* nature_database.cpp in Sources */,
-				07B0B298189EED360041FCB1 /* frame_control_box.cpp in Sources */,
 				07F5B3E0184A4FA00092C3E1 /* user_tab_view.cpp in Sources */,
 				07A6DF92173C27EB009E6FB8 /* nature_document.cpp in Sources */,
 				07A6DF94173C27EB009E6FB8 /* nature_frame.cpp in Sources */,
@@ -5240,6 +5272,7 @@
 				07A6E009173C27EB009E6FB8 /* dynamic_source_script_compiler.cpp in Sources */,
 				07A6E00B173C27EB009E6FB8 /* dynamic_source_script_instance.cpp in Sources */,
 				07A6E00D173C27EB009E6FB8 /* dynamic_source_script_interface.cpp in Sources */,
+				07A30CE718F855FD007AE992 /* uinteraction_frame_control_box_button.cpp in Sources */,
 				07F5B3BB184A4FA00092C3E1 /* user_notify_icon.cpp in Sources */,
 				07A6E00F173C27EB009E6FB8 /* dynamic_source_script_manager.cpp in Sources */,
 				07A6E011173C27EB009E6FB8 /* dynamic_source_session.cpp in Sources */,
@@ -5300,28 +5333,15 @@
 				07F5B3B7184A4FA00092C3E1 /* user_network_configuration.cpp in Sources */,
 				07A6E0B0173C27EC009E6FB8 /* simple_toolbar.cpp in Sources */,
 				07A6E0B1173C27EC009E6FB8 /* simple_tree_view.cpp in Sources */,
-				07A6E0B4173C27EC009E6FB8 /* frame_appearance.cpp in Sources */,
-				07A6E0B6173C27EC009E6FB8 /* frame_constants.cpp in Sources */,
 				07F5B3F0184A4FA00092C3E1 /* user_tree.cpp in Sources */,
-				07A6E0B8173C27EC009E6FB8 /* frame_control_box_button.cpp in Sources */,
-				07A6E0BA173C27EC009E6FB8 /* frame_dock_manager.cpp in Sources */,
-				07A6E0BC173C27EC009E6FB8 /* frame_move_manager.cpp in Sources */,
-				07A6E0BE173C27EC009E6FB8 /* frame_size_manager.cpp in Sources */,
-				07A6E0C0173C27EC009E6FB8 /* frame_sys_menu_manager.cpp in Sources */,
-				07A6E0C2173C27EC009E6FB8 /* frame_up_down_target.cpp in Sources */,
 				07F5B3CC184A4FA00092C3E1 /* user_single_document_template.cpp in Sources */,
-				07A6E0C4173C27EC009E6FB8 /* frame_work_set.cpp in Sources */,
-				07A6E0C6173C27EC009E6FB8 /* frame_work_set_client_interface.cpp in Sources */,
-				07A6E0C8173C27EC009E6FB8 /* frame_work_set_down_up_interface.cpp in Sources */,
-				07A6E0CA173C27EC009E6FB8 /* frame_work_set_listener.cpp in Sources */,
-				07A6E0CC173C27EC009E6FB8 /* frame_work_set_listener_array.cpp in Sources */,
 				07A30CB718F84E51007AE992 /* html_impl_input_text.cpp in Sources */,
 				07F5B3C9184A4FA00092C3E1 /* user_shell.cpp in Sources */,
-				07A6E0CF173C27EC009E6FB8 /* uinteraction_frame.cpp in Sources */,
 				07A6E0D1173C27EC009E6FB8 /* uinteraction_interaction.cpp in Sources */,
 				07A30C8A18F84E45007AE992 /* html_elemental_table_row.cpp in Sources */,
 				07A6E0D3173C27EC009E6FB8 /* uinteraction_uinteraction.cpp in Sources */,
 				07AD9A86182FF968005C3335 /* filemanager_main_frame.cpp in Sources */,
+				07A30D0B18F86910007AE992 /* user_menu_list_window.cpp in Sources */,
 				07A56819183062C500BA805E /* usermail_item.cpp in Sources */,
 				072AE9CF1810372200F74E98 /* backview_user_interaction.cpp in Sources */,
 				07AD9A8A182FF968005C3335 /* filemanager_path_view.cpp in Sources */,
@@ -5350,9 +5370,11 @@
 				07A6E1B6173C27EC009E6FB8 /* userex_menu_document.cpp in Sources */,
 				07A6E1B8173C27EC009E6FB8 /* userex_menu_frame.cpp in Sources */,
 				07A6E1BA173C27EC009E6FB8 /* userex_menu_view.cpp in Sources */,
+				07A30CF618F855FD007AE992 /* uinteraction_frame_up_down_target.cpp in Sources */,
 				07A6E1BC173C27EC009E6FB8 /* userex_message_box.cpp in Sources */,
 				07A6E1BE173C27EC009E6FB8 /* userex_mini_dock_frame_window.cpp in Sources */,
 				07A6E1C0173C27EC009E6FB8 /* userex_minute_list_view.cpp in Sources */,
+				07A30D0018F855FD007AE992 /* uinteraction_frame_work_set.cpp in Sources */,
 				07A6E1C2173C27EC009E6FB8 /* userex_pane_split_view.cpp in Sources */,
 				07A6E1C4173C27EC009E6FB8 /* userex_pane_tab_view.cpp in Sources */,
 				07A6E1C6173C27EC009E6FB8 /* userex_pane_view.cpp in Sources */,
@@ -5398,10 +5420,12 @@
 				07AD9A98182FF968005C3335 /* filemanager_view.cpp in Sources */,
 				9AE72AB617E85ECE003E47F9 /* core_process_section.cpp in Sources */,
 				072AE9C21810372200F74E98 /* backview_image_change.cpp in Sources */,
+				07A30CEB18F855FD007AE992 /* uinteraction_frame_dock_manager.cpp in Sources */,
 				9AE72AB717E85ECE003E47F9 /* core_profiler.cpp in Sources */,
 				9AE72ABC17E85ECE003E47F9 /* core_resource.cpp in Sources */,
 				9AE72AC017E85ECE003E47F9 /* core_section.cpp in Sources */,
 				9AE72AC117E85ECE003E47F9 /* core_service.cpp in Sources */,
+				07A30CFE18F855FD007AE992 /* uinteraction_frame_work_set_listener.cpp in Sources */,
 				9AE72AC317E85ECE003E47F9 /* core_session.cpp in Sources */,
 				9AE72ACB17E85ECE003E47F9 /* core_str_format.cpp in Sources */,
 				9AE72ACD17E85ECE003E47F9 /* core_strn.cpp in Sources */,
@@ -5445,6 +5469,7 @@
 				9AE72B5917E85ECE003E47F9 /* libcharguess_UTF8Prober.cpp in Sources */,
 				9AE72B7017E85ECE003E47F9 /* plugin_history.cpp in Sources */,
 				07A30C7618F84E45007AE992 /* html_elemental_cell.cpp in Sources */,
+				07A30D0C18F86910007AE992 /* user_menu.cpp in Sources */,
 				07AD9A96182FF968005C3335 /* filemanager_update_hint.cpp in Sources */,
 				9AE72B7217E85ECE003E47F9 /* plugin_host_interaction.cpp in Sources */,
 				9AE72B7417E85ECE003E47F9 /* plugin_instance.cpp in Sources */,
@@ -5457,18 +5482,24 @@
 				07F5B3F9184A4FA00092C3E1 /* user_xfplayer_view_line_selection.cpp in Sources */,
 				07AD9A90182FF968005C3335 /* filemanager_schema.cpp in Sources */,
 				9AE72BDC17E900B8003E47F9 /* hi5_oauth.cpp in Sources */,
+				07A30CE518F855FD007AE992 /* uinteraction_frame_constants.cpp in Sources */,
 				07A30CB918F84E51007AE992 /* html_impl_select.cpp in Sources */,
+				07A30CF018F855FD007AE992 /* uinteraction_frame_move_manager.cpp in Sources */,
 				9AE72BDE17E900B8003E47F9 /* hi5_twit.cpp in Sources */,
 				072AE9C81810372200F74E98 /* backview_main.cpp in Sources */,
 				9AE72BE017E900B8003E47F9 /* hi5_twitter_authorization.cpp in Sources */,
 				07AD9A80182FF968005C3335 /* filemanager_fs_simple_tree.cpp in Sources */,
 				9AAE85DC17E921DA00F0512E /* file_clustered_input_stream.cpp in Sources */,
 				9AAE85E317E921DA00F0512E /* file_dynamic_buffered_writer.cpp in Sources */,
+				07A30CEE18F855FD007AE992 /* uinteraction_frame_frame.cpp in Sources */,
 				9AAE85E517E921DA00F0512E /* file_edit_buffer.cpp in Sources */,
 				9AAE85E917E921DA00F0512E /* file_in_buffer.cpp in Sources */,
 				9AAE85EB17E921DA00F0512E /* file_io_temp_buffer.cpp in Sources */,
 				07AD9A9C182FF9E1005C3335 /* userfs_item.cpp in Sources */,
 				9AAE85ED17E921DA00F0512E /* file_limited_input_stream.cpp in Sources */,
+				07A30CF418F855FD007AE992 /* uinteraction_frame_sys_menu_manager.cpp in Sources */,
+				07A30CF218F855FD007AE992 /* uinteraction_frame_size_manager.cpp in Sources */,
+				07A30CE918F855FD007AE992 /* uinteraction_frame_control_box.cpp in Sources */,
 				9AAE85EF17E921DA00F0512E /* file_limited_reader.cpp in Sources */,
 				9AAE85F117E921DA00F0512E /* file_limited_writer.cpp in Sources */,
 				072AE9D11810372200F74E98 /* backview_visual_effect.cpp in Sources */,
@@ -5478,6 +5509,7 @@
 				07F5B3E8184A4FA00092C3E1 /* user_tool_tip_tool.cpp in Sources */,
 				9AAE85F917E921DA00F0512E /* file_size_count_writer.cpp in Sources */,
 				9AAE85FB17E921DA00F0512E /* file_sssociation.cpp in Sources */,
+				07A30CFA18F855FD007AE992 /* uinteraction_frame_work_set_down_up_interface.cpp in Sources */,
 				9AAE85FC17E921DA00F0512E /* file_stream.cpp in Sources */,
 				9AAE85FF17E921DA00F0512E /* file_stream_binder.cpp in Sources */,
 			);

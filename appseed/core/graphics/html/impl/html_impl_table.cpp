@@ -173,7 +173,7 @@ namespace html
 
          }
 
-         int iCol;
+         index iCol;
 
          cell * pcell;
 
@@ -272,7 +272,7 @@ namespace html
 
          set_xy(pdata);
 
-         float cx = m_iCellSpacing;
+//         float cx = m_iCellSpacing;
 
          float cy = m_iCellSpacing;
 

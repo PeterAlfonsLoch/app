@@ -219,7 +219,7 @@ namespace filemanager
             }
          }
 
-         void list_view::_001OnClick(UINT nFlags, point point)
+         void list_view::_001OnClick(uint_ptr nFlags, point point)
          {
             UNREFERENCED_PARAMETER(nFlags);
             index iItem;

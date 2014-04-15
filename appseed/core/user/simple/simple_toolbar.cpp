@@ -1487,7 +1487,7 @@ void simple_toolbar::_001OnTimer(signal_details * pobj)
       // trans ::user::control_bar::OnTimer(ptimer->m_nIDEvent);
 }
 
-void simple_toolbar::_001OnClick(int32_t iItem)
+void simple_toolbar::_001OnClick(index iItem)
 {
    sp(::user::interaction) pwnd = get_owner();
    pwnd->_001SendCommand(m_itema[iItem].m_id);

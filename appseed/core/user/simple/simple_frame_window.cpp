@@ -1785,6 +1785,10 @@ void simple_frame_window::WfiOnRestore()
          bOk = true;
 
       }
+       else
+       {
+           bOk = false;
+       }
 
    }
 

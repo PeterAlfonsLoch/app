@@ -491,7 +491,7 @@ namespace user
 
 
       index                         m_iShiftFirstSelection;
-      UINT                          m_uiLButtonUpFlags;
+      uint_ptr                          m_uiLButtonUpFlags;
       point                         m_ptLButtonUp;
       UINT                          m_uiRButtonUpFlags;
       point                         m_ptRButtonUp;
@@ -751,8 +751,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnListViewAutoArrange)
 
 
-      virtual void _001OnClick(UINT uiFlags, point point);
-      virtual void _001OnRightClick(UINT uiFlags, point point);
+      virtual void _001OnClick(uint_ptr uiFlags, point point);
+      virtual void _001OnRightClick(uint_ptr uiFlags, point point);
 
       void _001GetSelection(range & selection);
 

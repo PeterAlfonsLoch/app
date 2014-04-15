@@ -37,13 +37,20 @@ namespace html
 
       bool elemental::hit_test(data * pdata, ::point pt)
       {
-         UNREFERENCED_PARAMETER(pdata);
-         e_tag etype = m_pelemental->m_etag;
+         
+          UNREFERENCED_PARAMETER(pdata);
+          
+//          e_tag etype = m_pelemental->m_etag;
+          
          string strValue = m_pelemental->m_strBody;
+          
          if (m_box.contains(pt))
             return true;
+          
          return false;
+          
       }
+       
 
       double elemental::bound_hit_test(data * pdata, ::point pt)
       {
@@ -113,7 +120,7 @@ namespace html
 
                string strClass = m_pelemental->m_strClass;
 
-               style * pstyle = phtml->m_pdata->m_stylesheeta.rfind(etag, strClass, "hover", NULL);
+               style * pstyle = phtml->m_pdata->m_stylesheeta.rfind(etag, strClass, "hover", "");
 
                if (pstyle == NULL)
                {
@@ -168,7 +175,7 @@ namespace html
 
          UNREFERENCED_PARAMETER(pdata);
 
-         e_tag etag = pelemental->m_etag;
+//         e_tag etag = pelemental->m_etag;
 
          m_pelemental = pelemental;
 
@@ -199,7 +206,7 @@ namespace html
          if (m_pelemental->m_elementalptra.is_empty())
             return;
 
-         e_tag etag = m_pelemental->m_etag;
+//         e_tag etag = m_pelemental->m_etag;
 
          int cxMax = 0;
 
@@ -541,7 +548,7 @@ namespace html
 
          set_xy(pdata);
 
-         bool bParent = false;
+//         bool bParent = false;
 
          e_tag etag = m_pelemental->m_etag;
 
@@ -947,7 +954,7 @@ namespace html
       void elemental::layout_phase3_end(data * pdata)
       {
 
-         e_tag etag = m_pelemental->m_etag;
+//         e_tag etag = m_pelemental->m_etag;
 
          if (m_pelemental->m_elementalptra.is_empty())
             return;

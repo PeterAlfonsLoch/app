@@ -743,7 +743,7 @@ namespace html
    void elemental::_001OnDraw(data * pdata)
    {
 
-      e_tag etype = m_etag;
+//      e_tag etype = m_etag;
 
       if (m_style.m_edisplay == display_table)
       {
@@ -1095,7 +1095,7 @@ namespace html
 
    elemental * elemental::hit_test(data * pdata, ::point pt)
    {
-      e_tag etype = m_etag;
+//      e_tag etype = m_etag;
       if (m_pimpl != NULL)
       {
          if (m_pimpl->hit_test(pdata, pt))

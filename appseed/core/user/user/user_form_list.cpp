@@ -43,7 +43,7 @@ namespace user
 
    }
 
-   void form_list::_001OnClick(UINT uiFlags, point point)
+   void form_list::_001OnClick(uint_ptr uiFlags, point point)
    {
       //form::_000OnPosCreate
       list::_001OnClick(uiFlags, point);
@@ -54,7 +54,7 @@ namespace user
       }
    }
 
-   void form_list::_001OnClick(UINT uiFlags, point point, index iItem, index iSubItem)
+   void form_list::_001OnClick(uint_ptr uiFlags, point point, index iItem, index iSubItem)
    {
       UNREFERENCED_PARAMETER(uiFlags);
       UNREFERENCED_PARAMETER(point);
