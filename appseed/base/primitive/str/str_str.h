@@ -243,8 +243,8 @@ namespace str
 
    CLASS_DECL_BASE string pad(const char * psz, ::count iLen, const char * pszPattern, e_pad epad);
 
-   __inline ::count ilen(const char * psz) { return (count) strlen(psz); }
-   __inline int64_t len(const char * psz) { return (int64_t) strlen(psz); }
+   inline ::count ilen(const char * psz) { return (count) strlen(psz); }
+   inline int64_t len(const char * psz) { return (int64_t) strlen(psz); }
 
 
    template < class TYPE >

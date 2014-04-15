@@ -10,7 +10,7 @@ public:
 };
 
 class CLASS_DECL_BASE base_sort_serializable_int_ptr_array :
-   virtual public ::file::serializable_array < typename sort_int_ptr_array::type >
+   virtual public ::file::serializable_array < sort_int_ptr_array::type >
 {
 public:
 
