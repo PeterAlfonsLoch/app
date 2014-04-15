@@ -62,7 +62,7 @@ public:
 };
 
 
-__inline point null_point() { return point(0, 0); }
+inline point null_point() { return point(0, 0); }
 
 /////////////////////////////////////////////////////////////////////////////
 // point64 - A 2-D point64, similar to Windows __point64 structure.
@@ -189,4 +189,4 @@ public:
 };
 
 
-__inline pointd null_pointd() { return pointd(0.0, 0.0); }
+inline pointd null_pointd() { return pointd(0.0, 0.0); }
