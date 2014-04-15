@@ -2,6 +2,7 @@
 #include <X11/Xft/Xft.h>
 // Ubuntu apt-get install libxft-dev
 // CentOS yum install libXft-devel
+// openSUSE zypper install libxft-devel
 
 
 
