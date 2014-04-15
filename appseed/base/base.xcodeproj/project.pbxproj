@@ -464,7 +464,7 @@
 		07A224AE18F7F766002C3B39 /* punycode.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A2248F18F7F766002C3B39 /* punycode.c */; };
 		07A224AF18F7F766002C3B39 /* punycode.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A2249018F7F766002C3B39 /* punycode.h */; };
 		07A224B018F7F766002C3B39 /* rfc3454.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A2249118F7F766002C3B39 /* rfc3454.c */; };
-		07A224B118F7F766002C3B39 /* stdbool.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A2249218F7F766002C3B39 /* stdbool.h */; };
+		07A224B118F7F766002C3B39 /* idn_stdbool.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A2249218F7F766002C3B39 /* idn_stdbool.h */; };
 		07A224B218F7F766002C3B39 /* strerror-idna.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A2249318F7F766002C3B39 /* strerror-idna.c */; };
 		07A224B318F7F766002C3B39 /* strerror-pr29.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A2249418F7F766002C3B39 /* strerror-pr29.c */; };
 		07A224B418F7F766002C3B39 /* strerror-punycode.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A2249518F7F766002C3B39 /* strerror-punycode.c */; };
@@ -2956,7 +2956,7 @@
 		07A2248F18F7F766002C3B39 /* punycode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = punycode.c; sourceTree = "<group>"; };
 		07A2249018F7F766002C3B39 /* punycode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = punycode.h; sourceTree = "<group>"; };
 		07A2249118F7F766002C3B39 /* rfc3454.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rfc3454.c; sourceTree = "<group>"; };
-		07A2249218F7F766002C3B39 /* stdbool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdbool.h; sourceTree = "<group>"; };
+		07A2249218F7F766002C3B39 /* idn_stdbool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = idn_stdbool.h; sourceTree = "<group>"; };
 		07A2249318F7F766002C3B39 /* strerror-idna.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "strerror-idna.c"; sourceTree = "<group>"; };
 		07A2249418F7F766002C3B39 /* strerror-pr29.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "strerror-pr29.c"; sourceTree = "<group>"; };
 		07A2249518F7F766002C3B39 /* strerror-punycode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "strerror-punycode.c"; sourceTree = "<group>"; };
@@ -5492,7 +5492,7 @@
 				07A2248F18F7F766002C3B39 /* punycode.c */,
 				07A2249018F7F766002C3B39 /* punycode.h */,
 				07A2249118F7F766002C3B39 /* rfc3454.c */,
-				07A2249218F7F766002C3B39 /* stdbool.h */,
+				07A2249218F7F766002C3B39 /* idn_stdbool.h */,
 				07A2249318F7F766002C3B39 /* strerror-idna.c */,
 				07A2249418F7F766002C3B39 /* strerror-pr29.c */,
 				07A2249518F7F766002C3B39 /* strerror-punycode.c */,
@@ -9226,7 +9226,7 @@
 				9AE7251117E83B69003E47F9 /* multithreading_retry_multi_lock.h in Headers */,
 				07B08C0B18495B40007A0560 /* base_root.h in Headers */,
 				07B08C4118495B40007A0560 /* ioapi.h in Headers */,
-				07A224B118F7F766002C3B39 /* stdbool.h in Headers */,
+				07A224B118F7F766002C3B39 /* idn_stdbool.h in Headers */,
 				9AE7251317E83B69003E47F9 /* multithreading_retry_single_lock.h in Headers */,
 				07B08CD218495B40007A0560 /* crypto_gf2_8.h in Headers */,
 				07F5B257184A3B6A0092C3E1 /* draw2d_graphics.h in Headers */,
