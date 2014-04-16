@@ -64,13 +64,15 @@ namespace html
       }
       else if (m_pbase->get_type() == base::type_tag)
       {
-         return dynamic_cast <::html::tag *> (m_pbase);
+         return dynamic_cast < ::html::tag * > (m_pbase);
       }
       else
       {
          return NULL;
       }
+
    }
+
 
    void elemental::initialize()
    {
@@ -610,7 +612,7 @@ namespace html
 
       }
 
-      ::html::impl::cell * pcell = dynamic_cast <::html::impl::cell *> (m_pimpl);
+      ::html::impl::cell * pcell = dynamic_cast < ::html::impl::cell * > (m_pimpl);
 
       if (m_elementalptra.has_elements() && m_etag != tag_select)
       {
@@ -688,7 +690,7 @@ namespace html
             if (m_style.m_edisplay == display_table_row)
             {
 
-               ::html::impl::table_row * prow = dynamic_cast <::html::impl::table_row *> (m_pimpl);
+               ::html::impl::table_row * prow = dynamic_cast < ::html::impl::table_row * > (m_pimpl);
 
                if (prow->m_iRow == prow->get_table()->m_rowptra.get_upper_bound())
                {
@@ -786,7 +788,9 @@ namespace html
       var.set_type(var::type_string);
       if (m_pbase->get_type() == base::type_tag)
       {
-         ::html::tag * ptag = dynamic_cast <::html::tag *> (m_pbase);
+
+         ::html::tag * ptag = dynamic_cast < ::html::tag * > (m_pbase);
+
          m_idTagName = ptag->get_name();
          for (int32_t i = 0; i < ptag->attra().get_size(); i++)
          {
@@ -807,8 +811,11 @@ namespace html
       }
       else if (m_pbase->get_type() == base::type_value)
       {
-         ::html::value * pvalue = dynamic_cast <::html::value *> (m_pbase);
-         ::html::tag * ptag = dynamic_cast <::html::tag *> (m_pparent->m_pbase);
+
+         ::html::value * pvalue = dynamic_cast < ::html::value * > (m_pbase);
+
+         ::html::tag * ptag = dynamic_cast < ::html::tag * > (m_pparent->m_pbase);
+
          m_idTagName = ptag->get_name();
          m_strBody = pvalue->get_value();
          if (m_idTagName == __id(html_style))
