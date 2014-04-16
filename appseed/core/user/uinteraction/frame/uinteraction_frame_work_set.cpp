@@ -355,7 +355,7 @@ namespace uinteraction
 
          pwndRegion->SetTimer(16319, 100, NULL);
 
-         _001InstallEventHandling(dynamic_cast <::message::dispatch *>(pwndEvent->m_pimpl.m_p));
+         _001InstallEventHandling(dynamic_cast < ::message::dispatch * >(pwndEvent->m_pimpl.m_p));
 
          return true;
       }

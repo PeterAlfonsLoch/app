@@ -133,8 +133,7 @@ namespace user
 
             sp(::user::interaction) pwnd = get_window();
 
-            ::user::frame_window * pfrmwnd =
-               dynamic_cast <::user::frame_window *>(pwnd.m_p);
+            ::user::frame_window * pfrmwnd = dynamic_cast < ::user::frame_window * >(pwnd.m_p);
 
             if (pfrmwnd != NULL)
             {
