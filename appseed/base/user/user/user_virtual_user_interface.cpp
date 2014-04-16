@@ -643,7 +643,7 @@ sp(::user::frame_window) virtual_user_interface::GetParentFrame()
    sp(::user::interaction) pParentWnd = get_parent();  // start with one parent up
    while (pParentWnd != NULL)
    {
-      if (base < ::user::interaction>::bases(pParentWnd))
+      if (base_class < ::user::interaction>::bases(pParentWnd))
       {
          return pParentWnd;
       }

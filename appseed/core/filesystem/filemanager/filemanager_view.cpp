@@ -38,7 +38,7 @@ namespace filemanager
       ::user::split_view::on_update(pSender, lHint, phint);
       if (phint != NULL)
       {
-         if (base < update_hint >::bases(phint))
+         if (base_class < update_hint >::bases(phint))
          {
             update_hint * puh = (update_hint *)phint;
             if (GetFileManager() == puh->m_pmanager)
@@ -78,7 +78,7 @@ namespace filemanager
                   if (pframe != NULL)
                   {
                      ASSERT(pframe != NULL);
-                     ASSERT(base < frame > ::bases(pframe));
+                     ASSERT(base_class < frame > ::bases(pframe));
                      pframe->SetActiveView(this);
                      pframe->CreateBars();
                   }
@@ -92,7 +92,7 @@ namespace filemanager
                   if (pchildframe != NULL)
                   {
                      ASSERT(pchildframe != NULL);
-                     ASSERT(base < child_frame > ::bases(pchildframe));
+                     ASSERT(base_class < child_frame > ::bases(pchildframe));
 
                      pchildframe->SetActiveView(this);
                      pchildframe->CreateBars();
@@ -100,7 +100,7 @@ namespace filemanager
                }
                else if (puh->is_type_of(update_hint::TypeSaveAsStart))
                {
-                  if (!base < FileManagerSaveAsView >::bases(get_pane_window(0)))
+                  if (!base_class < FileManagerSaveAsView >::bases(get_pane_window(0)))
                   {
                      //create_context cc;
                      //cc.m_usercreatecontext.m_pCurrentDoc = get_document();
@@ -129,7 +129,7 @@ namespace filemanager
                }
                else if (puh->is_type_of(update_hint::TypeSaveAsCancel))
                {
-                  if (base < FileManagerSaveAsView >::bases(get_pane_window(0)))
+                  if (base_class < FileManagerSaveAsView >::bases(get_pane_window(0)))
                   {
                      RemovePaneAt(0);
                      set_position(0, 49);
@@ -195,7 +195,7 @@ namespace filemanager
 
                   GetFileManager()->get_filemanager_data()->m_pdocumentSave = NULL;
 
-                  if (base < FileManagerSaveAsView >::bases(get_pane_window(0)))
+                  if (base_class < FileManagerSaveAsView >::bases(get_pane_window(0)))
                   {
                      RemovePaneAt(0);
                      set_position(0, 49);
@@ -302,7 +302,7 @@ namespace filemanager
       ::user::split_view::on_update(pSender, lHint, phint);
       if (phint != NULL)
       {
-         if (base < update_hint >::bases(phint))
+         if (base_class < update_hint >::bases(phint))
          {
             update_hint * puh = (update_hint *)phint;
             if (GetFileManager() == puh->m_pmanager)
@@ -340,7 +340,7 @@ namespace filemanager
                   if (pframe != NULL)
                   {
                      ASSERT(pframe != NULL);
-                     ASSERT(base < frame > ::bases(pframe));
+                     ASSERT(base_class < frame > ::bases(pframe));
 
                      pframe->CreateBars();
                   }
@@ -353,7 +353,7 @@ namespace filemanager
                   if (pchildframe != NULL)
                   {
                      ASSERT(pchildframe != NULL);
-                     ASSERT(base < child_frame > ::bases(pchildframe));
+                     ASSERT(base_class < child_frame > ::bases(pchildframe));
 
 
                      pchildframe->CreateBars();

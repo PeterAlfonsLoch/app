@@ -1411,7 +1411,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base\base_system.h" />
     <ClInclude Include="base\base\base_system_str.h" />
     <ClInclude Include="base\base\base_system_trace.h" />
-    <ClInclude Include="base\base\base_template.h" />
+    <ClInclude Include="base\base\base_class.h" />
     <ClInclude Include="base\base\base_trace.h" />
     <ClInclude Include="base\base\base_types.h" />
     <ClInclude Include="base\base\base_url.h" />

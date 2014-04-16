@@ -39,7 +39,7 @@ namespace filemanager
       UNREFERENCED_PARAMETER(lhint);
       if (phint != NULL)
       {
-         if (base < ::user::view_update_hint > ::bases(phint))
+         if (base_class < ::user::view_update_hint > ::bases(phint))
          {
             sp(::user::view_update_hint) puh = phint;
             if (puh->is_type_of(::user::view_update_hint::hint_create_views))
@@ -52,7 +52,7 @@ namespace filemanager
                }
             }
          }
-         else if (base < update_hint > ::bases(phint))
+         else if (base_class < update_hint > ::bases(phint))
          {
             update_hint * puh = (update_hint *)phint;
             if (puh->is_type_of(update_hint::TypeInitialize))

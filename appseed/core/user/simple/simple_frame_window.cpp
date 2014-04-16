@@ -1540,7 +1540,7 @@ void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
       if (pframe->GetActiveView() == NULL)
       {
          sp(::user::interaction) pwindow = pframe->GetDescendantWindow("pane_first");
-         if (pwindow != NULL && base < ::user::impact >::bases(pwindow))
+         if (pwindow != NULL && base_class < ::user::impact >::bases(pwindow))
          {
             pview = (pwindow.m_p);
             pframe->SetActiveView(pview, FALSE);
@@ -1610,7 +1610,7 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
       while (pui != NULL)
       {
 
-         if (pui->IsWindowVisible() && !base < ::user::uinteraction::frame::control_box > ::bases(pui))
+         if (pui->IsWindowVisible() && !base_class < ::user::uinteraction::frame::control_box > ::bases(pui))
          {
 
             pui->_000OnDraw(pdc);
@@ -1629,7 +1629,7 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
          pui = get_bottom_child();
       while (pui != NULL)
       {
-         if (base < ::user::uinteraction::frame::control_box > ::bases(pui))
+         if (base_class < ::user::uinteraction::frame::control_box > ::bases(pui))
          {
             string str;
             pui->GetWindowText(str);

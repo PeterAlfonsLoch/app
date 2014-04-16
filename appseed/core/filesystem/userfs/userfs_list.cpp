@@ -119,7 +119,7 @@ namespace userfs
       if (phint != NULL)
       {
 
-         if (base < update_hint > ::bases(phint))
+         if (base_class < update_hint > ::bases(phint))
          {
 
             update_hint * puh = dynamic_cast <update_hint * >(phint);

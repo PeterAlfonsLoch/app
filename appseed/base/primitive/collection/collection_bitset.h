@@ -15,7 +15,7 @@ template<int32_t>
 	};
 
 template<>
-	struct _Bitset_base<8>
+	struct _Bitset_base <8>
 	{	// eight-byte bitset
 	typedef uint64_t _Ty;
 	};
@@ -23,7 +23,7 @@ template<>
 		// TEMPLATE CLASS bitset
 template<size_t _Bits>
 	class bitset
-		: public _Bitset_base<_Bits <= 8 ? 1
+		: public _Bitset_base <_Bits <= 8 ? 1
 			: _Bits <= 16 ? 2
 			: _Bits <= 32 ? 4
 			: 8>,
@@ -35,7 +35,7 @@ public:
 	enum {_EEN_BITS = _Bits};	// helper for expression evaluator
 
 
-	typedef _Bitset_base<_Bits <= 8 ? 1
+	typedef _Bitset_base <_Bits <= 8 ? 1
    : _Bits <= 16 ? 2
    : _Bits <= 32 ? 4
    : 8> _Mybase;

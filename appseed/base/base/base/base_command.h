@@ -4,6 +4,7 @@
 class command_target;
 class cmd_ui;
 
+
 class CLASS_DECL_BASE base_cmd_ui :
    public signal_details
 {

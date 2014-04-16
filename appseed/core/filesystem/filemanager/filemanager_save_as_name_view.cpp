@@ -20,7 +20,7 @@ void FileManagerSaveAsView::on_update(sp(::user::impact) pSender, LPARAM lHint, 
    ::filemanager::data_interface::on_update(pSender, lHint, phint);
    if(phint != NULL)
    {
-      if(base < filemanager::update_hint >::bases(phint))
+      if(base_class < filemanager::update_hint >::bases(phint))
       {
          filemanager::update_hint * puh = (filemanager::update_hint *) phint;
          if(puh->m_pview == this &&
@@ -57,7 +57,7 @@ void FileManagerSaveAsView::on_update(sp(::user::impact) pSender, LPARAM lHint, 
                FilterApply();
             }*/
          }
-         else if(base < form_update_hint >::bases(phint))
+         else if(base_class < form_update_hint >::bases(phint))
          {
             /*form_update_hint * puh = dynamic_cast<form_update_hint * > (phint);
             if(puh->m_etype == form_update_hint::type_after_browse)

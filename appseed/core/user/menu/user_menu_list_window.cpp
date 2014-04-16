@@ -379,7 +379,7 @@ namespace user
             {
                send_message(WM_CLOSE);
             }
-            if(base < ::user::place_holder > ::bases(get_parent()))
+            if(base_class < ::user::place_holder > ::bases(get_parent()))
             {
                get_parent()->get_parent()->send_message(m_uiMessage);
             }
@@ -402,7 +402,7 @@ namespace user
                   {
                      send_message(WM_CLOSE);
                   }
-                  if(base < ::user::place_holder > ::bases(get_parent()))
+                  if(base_class < ::user::place_holder > ::bases(get_parent()))
                   {
                      get_parent()->get_parent()->send_message(m_uiMessage);
                   }

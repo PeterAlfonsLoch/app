@@ -54,7 +54,7 @@ namespace filemanager
       if (phint != NULL)
       {
 
-         if (base < ::user::view_update_hint > ::bases(phint))
+         if (base_class < ::user::view_update_hint > ::bases(phint))
          {
 
             sp(::user::view_update_hint) puh = phint;
@@ -72,7 +72,7 @@ namespace filemanager
             }
 
          }
-         else if (base < update_hint > ::bases(phint))
+         else if (base_class < update_hint > ::bases(phint))
          {
 
             update_hint * puh = (update_hint *) phint;

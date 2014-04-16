@@ -45,7 +45,7 @@ namespace user
       SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_uiMessage == m_uiMessage)
       {
-         if(base < ::user::place_holder >::bases(get_parent()))
+         if(base_class < ::user::place_holder >::bases(get_parent()))
          {
             pbase->set_lresult(get_parent()->get_parent()->send_message(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
          }

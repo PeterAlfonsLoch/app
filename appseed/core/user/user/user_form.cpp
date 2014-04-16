@@ -44,7 +44,7 @@ namespace user
          case control::type_static:
             {
    /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) window::FromHandlePermanent(pform->get_child_by_id(pcontrol->m_id)->GetSafeoswindow_());
-               if(pstatic == NULL || !base < CTransparentStatic >::bases(pstatic))
+               if(pstatic == NULL || !base_class < CTransparentStatic >::bases(pstatic))
                {
                   pstatic = new CTransparentStatic;
                   VERIFY(pstatic->subclass_window(pform->get_child_by_id(pcontrol->m_id)->GetSafeoswindow_()));

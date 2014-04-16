@@ -35,7 +35,7 @@ namespace filemanager
       sp(document) pdoc = (GetActiveDocument());
 
       ASSERT(pdoc != NULL);
-      ASSERT(base < document >::bases(pdoc));
+      ASSERT(base_class < document >::bases(pdoc));
 
       string strToolBar;
 

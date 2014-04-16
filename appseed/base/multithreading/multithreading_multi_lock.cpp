@@ -18,11 +18,11 @@ multi_lock::multi_lock(sync_object_ptra syncobjectptra, bool bInitialLock)
       if(m_syncobjectptra(i).is_null())
          throw invalid_argument_exception(::get_thread_app());
 
-      ASSERT(base < waitable >::bases (m_syncobjectptra(i)));
+      ASSERT(base_class < waitable >::bases (m_syncobjectptra(i)));
 
       // can't wait for critical sections
 
-      ASSERT(!base < critical_section >::bases (m_syncobjectptra(i)));
+      ASSERT(!base_class < critical_section >::bases (m_syncobjectptra(i)));
 
 #ifdef WINDOWS
       m_objecta[i] = (HANDLE) m_syncobjectptra(i)->get_os_data();

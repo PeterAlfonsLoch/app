@@ -46,7 +46,7 @@ namespace filemanager
 
       if (phint != NULL)
       {
-         if (base < update_hint > ::bases(phint))
+         if (base_class < update_hint > ::bases(phint))
          {
             update_hint * puh = (update_hint *) phint;
             if (GetFileManager() == puh->m_pmanager)

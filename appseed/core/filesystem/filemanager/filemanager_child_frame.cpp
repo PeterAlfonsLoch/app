@@ -31,7 +31,7 @@ namespace filemanager
          return false;
 
       ASSERT(pdoc != NULL);
-      ASSERT(base < document >::bases(pdoc));
+      ASSERT(base_class < document >::bases(pdoc));
 
       DestroyBars();
 

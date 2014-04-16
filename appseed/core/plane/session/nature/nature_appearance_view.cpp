@@ -63,7 +63,7 @@ namespace nature
 
       if(pHint != NULL)
       {
-         if(base < ::user::view_update_hint > :: bases(pHint))
+         if(base_class < ::user::view_update_hint > :: bases(pHint))
          {
 
             ::user::view_update_hint * puh = dynamic_cast < ::user::view_update_hint * > (pHint);

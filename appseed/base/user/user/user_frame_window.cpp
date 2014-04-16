@@ -813,7 +813,7 @@ namespace user
       if (GetActiveView() == NULL)
       {
          sp(::user::interaction) pwindow = GetDescendantWindow("pane_first");
-         if (pwindow != NULL && base < ::user::impact > ::bases(pwindow))
+         if (pwindow != NULL && base_class < ::user::impact > ::bases(pwindow))
          {
             pview = pwindow;
             SetActiveView(pview, FALSE);
@@ -1230,10 +1230,13 @@ namespace user
 
    sp(::user::impact) frame_window::GetActiveView() const
    {
-      ASSERT(m_pViewActive == NULL ||
-         base < ::user::impact >::bases(m_pViewActive));
+      
+      ASSERT(m_pViewActive == NULL || base_class < ::user::impact >::bases(m_pViewActive));
+
       return m_pViewActive;
+
    }
+
 
    void frame_window::SetActiveView(sp(::user::impact) pViewNew, bool bNotify)
    {

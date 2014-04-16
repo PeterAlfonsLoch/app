@@ -362,7 +362,7 @@ namespace file
 
 
 
-#include "base_template.h"
+#include "base_class.h"
 
 #include "base/primitive/comparison/comparison_md5.h"
 

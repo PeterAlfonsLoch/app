@@ -53,7 +53,7 @@ namespace userfs
       //::filemanager::data_interface::on_update(pSender, lHint, phint);
       if (phint != NULL)
       {
-         if (base < filemanager::update_hint > ::bases(phint))
+         if (base_class < filemanager::update_hint > ::bases(phint))
          {
             filemanager::update_hint * puh = (filemanager::update_hint *)phint;
             if (puh->is_type_of(filemanager::update_hint::TypeInitialize))

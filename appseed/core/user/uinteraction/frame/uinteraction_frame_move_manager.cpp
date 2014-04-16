@@ -404,7 +404,7 @@ namespace user
             m_bPendingMove = false;
             m_dwLastMoveTime = get_tick_count();
             sp(::user::interaction) pwnd = System.window_from_os_data(oswindow);
-            //            if(base < CPlaylistInPlaceWnd >::bases(m_pWndMoving))
+            //            if(base_class < CPlaylistInPlaceWnd >::bases(m_pWndMoving))
             //          {
             //            m_pWndMoving->GetWindowRect(((CPlaylistInPlaceWnd *) m_pWndMoving)->m_rectWindow);
             //          ((CPlaylistInPlaceWnd *) m_pWndMoving)->m_rectWindow += pt - ((CPlaylistInPlaceWnd *) m_pWndMoving)->m_rectWindow.top_left();

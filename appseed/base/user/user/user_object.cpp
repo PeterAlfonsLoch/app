@@ -582,10 +582,10 @@ namespace user
 
          if (e != NULL)
          {
-            if (base < user_exception >::bases(e))
+            if (base_class < user_exception >::bases(e))
                return; // already reported
 
-            /*if (base < CArchiveException >::bases(e))
+            /*if (base_class < CArchiveException >::bases(e))
             {
             switch (((CArchiveException*)e)->m_cause)
             {
@@ -599,7 +599,7 @@ namespace user
             break;
             }
             }
-            else*/ if (base < ::file::exception >::bases(e))
+            else*/ if (base_class < ::file::exception >::bases(e))
             {
                ::file::exception * pfe = dynamic_cast < ::file::exception * > (e);
                // throw not_implemented(get_app());

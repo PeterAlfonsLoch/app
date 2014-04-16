@@ -28,7 +28,7 @@ namespace filemanager
 
       if (phint != NULL)
       {
-         if (base < update_hint >::bases(phint))
+         if (base_class < update_hint >::bases(phint))
          {
             update_hint * puh = (update_hint *) phint;
             if (puh->m_pview == this &&
@@ -66,7 +66,7 @@ namespace filemanager
                }*/
             }
          }
-         else if (base < form_update_hint >::bases(phint))
+         else if (base_class < form_update_hint >::bases(phint))
          {
             /*form_update_hint * puh = dynamic_cast<form_update_hint * > (phint);
             if(puh->m_etype == form_update_hint::type_after_browse)

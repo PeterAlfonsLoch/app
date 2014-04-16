@@ -1144,11 +1144,11 @@ void application::ProcessWndProcException(::exception::base* e, signal_details *
          nIDP = "Command Failure";
       pbase->set_lresult((LRESULT)TRUE);        // pretend the command was handled
    }
-   if (base < memory_exception >::bases(e))
+   if (base_class < memory_exception >::bases(e))
    {
       e->ReportError(MB_ICONEXCLAMATION | MB_SYSTEMMODAL, nIDP);
    }
-   else if (base < user_exception >::bases(e))
+   else if (base_class < user_exception >::bases(e))
    {
       // ::fontopus::user has not been alerted yet of this catastrophic problem
       e->ReportError(MB_ICONSTOP, nIDP);

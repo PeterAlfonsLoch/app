@@ -240,7 +240,7 @@ struct memory_state;
 
 
 
-#define ASSERT_KINDOF(class_name, object) ASSERT(base < class_name > ::bases(object))
+#define ASSERT_KINDOF(class_name, object) ASSERT(base_class < class_name > ::bases(object))
 #define DYNAMIC_DOWNCAST(class_name, object) (dynamic_cast < class_name * > (object))
 #define STATIC_DOWNCAST(class_name, object) (dynamic_cast<class_name*>(object))
 #define STATIC_DOWNCAST_T(class_name, T1, object) (static_cast<class_name<T1>*>(::core::StaticDownCast(RUNTIME_CLASS_T(class_name, T1), object)))

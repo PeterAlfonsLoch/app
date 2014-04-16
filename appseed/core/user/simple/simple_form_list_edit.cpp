@@ -32,7 +32,7 @@ void simple_form_list_edit::_001OnCreate(signal_details * pobj)
 
 
    sp(::user::interaction) pwndParent = ::user::interaction::get_parent();
-   if(base < simple_form_list_view >::bases(pwndParent))
+   if(base_class < simple_form_list_view >::bases(pwndParent))
    {
 
       simple_form_list_view * pview = dynamic_cast < simple_form_list_view * > (pwndParent.m_p);

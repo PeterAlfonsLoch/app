@@ -226,7 +226,7 @@ namespace user
       if (::user::interaction::_001OnCmdMsg(pcmdmsg))
          return TRUE;
       sp(::user::interaction) pwndex;
-      if (base < ::user::impact > ::bases(get_parent()))
+      if (base_class < ::user::impact > ::bases(get_parent()))
       {
          pwndex = get_parent();
          if (pwndex != NULL)
@@ -289,7 +289,7 @@ namespace user
    {
       if (pHint != NULL)
       {
-         if (base < ::user::view_update_hint > ::bases(pHint))
+         if (base_class < ::user::view_update_hint > ::bases(pHint))
          {
             ::user::view_update_hint * puh = dynamic_cast < ::user::view_update_hint * > (pHint);
             OnViewUpdateHint(pSender, lHint, puh);
