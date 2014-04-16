@@ -37,20 +37,20 @@ namespace html
 
       bool elemental::hit_test(data * pdata, ::point pt)
       {
-         
+
           UNREFERENCED_PARAMETER(pdata);
-          
+
 //          e_tag etype = m_pelemental->m_etag;
-          
+
          string strValue = m_pelemental->m_strBody;
-          
+
          if (m_box.contains(pt))
             return true;
-          
+
          return false;
-          
+
       }
-       
+
 
       double elemental::bound_hit_test(data * pdata, ::point pt)
       {
@@ -226,9 +226,9 @@ namespace html
 
             if (pelemental == pelemental->get_first_sibling())
             {
-               
+
                cxMaxMax = max(cxMax, cxMaxMax);
-               
+
                cxMax = pelemental->m_cxMax;
 
                cxMinMax = max(cxMin, cxMinMax);
@@ -283,7 +283,7 @@ namespace html
             }
 
          }
-         
+
          return -1;
 
       }
@@ -564,8 +564,8 @@ namespace html
          {
             return;
          }
-         
-         
+
+
          if (etag == tag_br)
          {
 
@@ -608,7 +608,7 @@ namespace html
          pdata->m_layoutstate3.m_cx = get_cx();
 
          pdata->m_layoutstate3.m_cya.last_element() = max(pdata->m_layoutstate3.m_cya.last_element(), get_cy());
-         
+
 
       }
 
@@ -625,7 +625,7 @@ namespace html
       {
 
          e_tag etag = m_pelemental->m_etag;
-         
+
          if (etag == tag_body)
          {
 
@@ -930,7 +930,7 @@ namespace html
       bool elemental::use_in_final_layout(::html::impl::elemental * pimplChild)
       {
 
-         ::html::impl::cell * pcell = dynamic_cast <::html::impl::cell *> (pimplChild);
+         ::html::impl::cell * pcell = dynamic_cast < ::html::impl::cell * > (pimplChild);
 
          if (pcell != NULL)
          {
@@ -1090,7 +1090,7 @@ namespace html
 
       }
 
-      
+
       float elemental::get_extra_content_cx()
       {
 
