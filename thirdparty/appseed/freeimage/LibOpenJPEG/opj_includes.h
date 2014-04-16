@@ -58,7 +58,7 @@
 */
 
 /* Ignore GCC attributes if this is not GCC */
-#ifndef __GNUC__
+#if !defined(__GNUC__) || !defined(LINUX)
 	#define __attribute__(x) /* __attribute__(x) */
 #endif
 
