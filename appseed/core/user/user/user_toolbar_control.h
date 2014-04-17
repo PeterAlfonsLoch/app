@@ -117,7 +117,7 @@ namespace user
       int32_t GetButtonText(UINT uiID, string &str);
       virtual ~tool_bar_control();
 
-      DECL_GEN_SIGNAL(_001OnCreate)
+      DECL_GEN_SIGNAL(_001OnCreate);
 
    };
 

@@ -52,9 +52,9 @@ namespace userstack
 
       virtual void pre_translate_message(signal_details * pobj);
 
-      DECL_GEN_SIGNAL(_001OnCreate)
-      DECL_GEN_SIGNAL(_001OnTimer)
-      DECL_GEN_SIGNAL(_001OnApp2000)
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnTimer);
+      DECL_GEN_SIGNAL(_001OnApp2000);
 
       virtual void message_handler(signal_details * pobj);
 

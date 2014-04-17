@@ -77,7 +77,7 @@ namespace userfs
       void clear(const char * lpcszPreserve1, const char * lpcszPreserve2);
       void arrange(::fs::e_arrange earrange);
 
-      DECL_GEN_SIGNAL(_001OnTimer)
+      DECL_GEN_SIGNAL(_001OnTimer);
 
 
       void _StartDelayedListUpdate();
@@ -89,10 +89,10 @@ namespace userfs
 
       virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
     
-      DECL_GEN_SIGNAL(_001OnLButtonDblClk)
-      DECL_GEN_SIGNAL(_001OnContextMenu)
-      DECL_GEN_SIGNAL(_001OnCreate)
-      DECL_GEN_SIGNAL(_001OnShellCommand)
+      DECL_GEN_SIGNAL(_001OnLButtonDblClk);
+      DECL_GEN_SIGNAL(_001OnContextMenu);
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnShellCommand);
 
    #ifdef DEBUG
       virtual void assert_valid() const;

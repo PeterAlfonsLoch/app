@@ -735,20 +735,20 @@ namespace user
 
       bool get_auto_arrange();
 
-      DECL_GEN_SIGNAL(_001OnSize)
-      DECL_GEN_SIGNAL(_001OnMouseLeave)
-      DECL_GEN_SIGNAL(_001OnMouseMove)
-      DECL_GEN_SIGNAL(_001OnLButtonDown)
-      DECL_GEN_SIGNAL(_001OnLButtonUp)
-      DECL_GEN_SIGNAL(_001OnLButtonDblClk)
-      DECL_GEN_SIGNAL(_001OnRButtonDown)
-      DECL_GEN_SIGNAL(_001OnKeyDown)
-      DECL_GEN_SIGNAL(_001OnCreate)
-      DECL_GEN_SIGNAL(_001OnTimer)
+      DECL_GEN_SIGNAL(_001OnSize);
+      DECL_GEN_SIGNAL(_001OnMouseLeave);
+      DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECL_GEN_SIGNAL(_001OnLButtonDown);
+      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(_001OnLButtonDblClk);
+      DECL_GEN_SIGNAL(_001OnRButtonDown);
+      DECL_GEN_SIGNAL(_001OnKeyDown);
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnTimer);
 
-      DECL_GEN_SIGNAL(_001OnUpdateListViewAutoArrange)
+      DECL_GEN_SIGNAL(_001OnUpdateListViewAutoArrange);
 
-      DECL_GEN_SIGNAL(_001OnListViewAutoArrange)
+      DECL_GEN_SIGNAL(_001OnListViewAutoArrange);
 
 
       virtual void _001OnClick(uint_ptr uiFlags, point point);
@@ -819,8 +819,8 @@ namespace user
 
       bool keyboard_focus_is_focusable();
 
-      DECL_GEN_SIGNAL(_001OnVScroll)
-      DECL_GEN_SIGNAL(_001OnHScroll)
+      DECL_GEN_SIGNAL(_001OnVScroll);
+      DECL_GEN_SIGNAL(_001OnHScroll);
 
 
    };

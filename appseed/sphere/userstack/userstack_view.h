@@ -78,17 +78,17 @@ namespace userstack
 
       index hit_test(point pt, e_element & eelement);
 
-      DECL_GEN_SIGNAL(_001OnInitialUpdate)
+      DECL_GEN_SIGNAL(_001OnInitialUpdate);
 
       //virtual void layout();
 
-      DECL_GEN_SIGNAL(_001OnDestroy)
-      DECL_GEN_SIGNAL(_001OnPaint)
-      DECL_GEN_SIGNAL(_001OnCreate)
-      DECL_GEN_SIGNAL(_001OnContextMenu)
-      DECL_GEN_SIGNAL(_001OnSetCursor)
-      DECL_GEN_SIGNAL(_001OnTimer)
-      DECL_GEN_SIGNAL(_001OnLButtonUp)
+      DECL_GEN_SIGNAL(_001OnDestroy);
+      DECL_GEN_SIGNAL(_001OnPaint);
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnContextMenu);
+      DECL_GEN_SIGNAL(_001OnSetCursor);
+      DECL_GEN_SIGNAL(_001OnTimer);
+      DECL_GEN_SIGNAL(_001OnLButtonUp);
 
       virtual void _001OnTabClick(int32_t iTab);
 

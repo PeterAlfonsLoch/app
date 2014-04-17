@@ -250,11 +250,11 @@ public:
       ::draw2d::pen      &            pen);
 
 
-   DECL_GEN_SIGNAL(OnMouseMove)
-   DECL_GEN_SIGNAL(OnLButtonDown)
-   DECL_GEN_SIGNAL(OnLButtonUp)
-   DECL_GEN_SIGNAL(OnTimer)
-   DECL_GEN_SIGNAL(OnSetCursor)
+   DECL_GEN_SIGNAL(OnMouseMove);
+   DECL_GEN_SIGNAL(OnLButtonDown);
+   DECL_GEN_SIGNAL(OnLButtonUp);
+   DECL_GEN_SIGNAL(OnTimer);
+   DECL_GEN_SIGNAL(OnSetCursor);
 
    XfplayerViewLineSelection::e_state GetSelectionState();
    XfplayerViewLineSelection & GetSelection();

@@ -21,7 +21,7 @@ public:
 #endif
 #endif
 
-   DECL_GEN_SIGNAL(_001OnSize)
+   DECL_GEN_SIGNAL(_001OnSize);
    void layout();
 
    void _001OnCreate(signal_details * pobj);
@@ -30,9 +30,9 @@ public:
 
    virtual void install_message_handling(::message::dispatch * pinterface);
 
-   DECL_GEN_VSIGNAL(_001OnLButtonUp)
-   DECL_GEN_VSIGNAL(_001OnMouseMove)
-   DECL_GEN_VSIGNAL(_001OnMouseLeave)
+   DECL_GEN_VSIGNAL(_001OnLButtonUp);
+   DECL_GEN_VSIGNAL(_001OnMouseMove);
+   DECL_GEN_VSIGNAL(_001OnMouseLeave);
 
 };
 

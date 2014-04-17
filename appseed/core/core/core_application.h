@@ -217,7 +217,7 @@ public:
    virtual bool on_run_install();
    virtual bool on_run_uninstall();
 
-   DECL_GEN_SIGNAL(_001OnApplicationRequest)
+   DECL_GEN_SIGNAL(_001OnApplicationRequest);
 
 
 
@@ -254,7 +254,7 @@ public:
 
    void OnUpdateRecentFileMenu(cmd_ui * pcmdui);
 
-   virtual DECL_GEN_SIGNAL(OnAppLanguage)
+   virtual DECL_GEN_SIGNAL(OnAppLanguage);
       virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
 

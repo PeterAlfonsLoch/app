@@ -52,10 +52,10 @@ public:
    virtual void layout();
 
 
-   DECL_GEN_SIGNAL(_001OnShowWindow)
-   DECL_GEN_SIGNAL(_001OnLButtonDown)
-   DECL_GEN_SIGNAL(_001OnLButtonUp)
-   DECL_GEN_SIGNAL(_001OnTimer)
+   DECL_GEN_SIGNAL(_001OnShowWindow);
+   DECL_GEN_SIGNAL(_001OnLButtonDown);
+   DECL_GEN_SIGNAL(_001OnLButtonUp);
+   DECL_GEN_SIGNAL(_001OnTimer);
    LRESULT OnAppForwardSyncMessage(WPARAM wParam, LPARAM lParam);
 
 

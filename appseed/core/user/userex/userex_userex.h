@@ -107,7 +107,7 @@ namespace userex
 
 
 
-      DECL_GEN_SIGNAL(VmsGuiiOnAppLanguage)
+      DECL_GEN_SIGNAL(VmsGuiiOnAppLanguage);
 
 
          //::user::interaction_ptr_array & frames();

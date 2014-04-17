@@ -28,7 +28,7 @@ namespace userex
       int32_t set_hour(int32_t iHour);
 
 
-      DECL_GEN_SIGNAL(_001OnCreate)
+      DECL_GEN_SIGNAL(_001OnCreate);
 
 
       

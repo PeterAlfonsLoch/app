@@ -19,13 +19,13 @@ namespace filehandler
       virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, ::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
-      DECL_GEN_SIGNAL(_001OnMenuMessage)
+      DECL_GEN_SIGNAL(_001OnMenuMessage);
       virtual ~pane_view();
    #ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
    #endif
-      DECL_GEN_SIGNAL(_001OnCreate)
+      DECL_GEN_SIGNAL(_001OnCreate);
    };
 
 

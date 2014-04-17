@@ -137,18 +137,18 @@ public:
 
    DECL_GEN_SIGNAL(_001OnCreate);
    DECL_GEN_SIGNAL(_001OnDdeInitiate);
-   DECL_GEN_SIGNAL(_001OnDestroy)
-   DECL_GEN_SIGNAL(_001OnSize)
-   DECL_GEN_SIGNAL(_001OnMove)
-   DECL_GEN_SIGNAL(_001OnClose)
+   DECL_GEN_SIGNAL(_001OnDestroy);
+   DECL_GEN_SIGNAL(_001OnSize);
+   DECL_GEN_SIGNAL(_001OnMove);
+   DECL_GEN_SIGNAL(_001OnClose);
    DECL_GEN_SIGNAL(_001OnSysCommand);
-   DECL_GEN_SIGNAL(_001OnViewFullScreen)
-   DECL_GEN_SIGNAL(_001OnMouseMove)
-   DECL_GEN_SIGNAL(_001OnUpdateViewFullScreen)
-   DECL_GEN_SIGNAL(_001OnToggleCustomFrame)
-   DECL_GEN_SIGNAL(_001OnUpdateToggleCustomFrame)
-   DECL_GEN_SIGNAL(_001OnGetMinMaxInfo)
-   DECL_GEN_SIGNAL(_001OnUser184)
+   DECL_GEN_SIGNAL(_001OnViewFullScreen);
+   DECL_GEN_SIGNAL(_001OnMouseMove);
+   DECL_GEN_SIGNAL(_001OnUpdateViewFullScreen);
+   DECL_GEN_SIGNAL(_001OnToggleCustomFrame);
+   DECL_GEN_SIGNAL(_001OnUpdateToggleCustomFrame);
+   DECL_GEN_SIGNAL(_001OnGetMinMaxInfo);
+   DECL_GEN_SIGNAL(_001OnUser184);
 
 #ifdef WINDOWSEX
    void OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp);

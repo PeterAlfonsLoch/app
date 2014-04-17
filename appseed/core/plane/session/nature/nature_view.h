@@ -35,18 +35,18 @@ namespace nature
 
       sp(::user::object) get_document();
 
-      DECL_GEN_SIGNAL(_001OnInitialUpdate)
+      DECL_GEN_SIGNAL(_001OnInitialUpdate);
 
-      DECL_GEN_SIGNAL(_001OnDestroy)
-      DECL_GEN_SIGNAL(_001OnSize)
-      DECL_GEN_SIGNAL(_001OnPaint)
-      DECL_GEN_SIGNAL(_001OnCreate)
-      DECL_GEN_SIGNAL(_001OnContextMenu)
-      DECL_GEN_SIGNAL(_001OnSetCursor)
-      DECL_GEN_SIGNAL(_001OnEraseBkgnd)
-      DECL_GEN_SIGNAL(_001OnUpdateViewEncoding)
-      DECL_GEN_SIGNAL(_001OnViewEncoding)
-      DECL_GEN_SIGNAL(_001OnWavePlayerEvent)
+      DECL_GEN_SIGNAL(_001OnDestroy);
+      DECL_GEN_SIGNAL(_001OnSize);
+      DECL_GEN_SIGNAL(_001OnPaint);
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnContextMenu);
+      DECL_GEN_SIGNAL(_001OnSetCursor);
+      DECL_GEN_SIGNAL(_001OnEraseBkgnd);
+      DECL_GEN_SIGNAL(_001OnUpdateViewEncoding);
+      DECL_GEN_SIGNAL(_001OnViewEncoding);
+      DECL_GEN_SIGNAL(_001OnWavePlayerEvent);
 
       virtual void _001OnTabClick(int32_t iTab);
       

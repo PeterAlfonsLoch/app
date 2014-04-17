@@ -165,15 +165,15 @@ public:
    size CalcSimpleLayout();
 
    void _001OnImageListAttrib();
-   DECL_GEN_SIGNAL(_001OnCreate)
-   DECL_GEN_SIGNAL(_001OnMouseMove)
-   DECL_GEN_SIGNAL(_001OnLButtonDown)
-   DECL_GEN_SIGNAL(_001OnTimer)
-   DECL_GEN_SIGNAL(_001OnLButtonUp)
-   DECL_GEN_SIGNAL(_001OnNcCalcSize)
-   DECL_GEN_SIGNAL(_001OnNcHitTest)
-   DECL_GEN_SIGNAL(_001OnMove)
-   DECL_GEN_SIGNAL(_001OnMouseLeave)
+   DECL_GEN_SIGNAL(_001OnCreate);
+   DECL_GEN_SIGNAL(_001OnMouseMove);
+   DECL_GEN_SIGNAL(_001OnLButtonDown);
+   DECL_GEN_SIGNAL(_001OnTimer);
+   DECL_GEN_SIGNAL(_001OnLButtonUp);
+   DECL_GEN_SIGNAL(_001OnNcCalcSize);
+   DECL_GEN_SIGNAL(_001OnNcHitTest);
+   DECL_GEN_SIGNAL(_001OnMove);
+   DECL_GEN_SIGNAL(_001OnMouseLeave);
 
    virtual void install_message_handling(::message::dispatch * pdispatch);
 

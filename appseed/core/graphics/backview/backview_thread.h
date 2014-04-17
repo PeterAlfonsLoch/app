@@ -90,9 +90,9 @@ namespace backview
 
 
 
-      DECL_GEN_SIGNAL(OnUserMessage)
-      DECL_GEN_SIGNAL(OnBackViewMessage)
-      DECL_GEN_SIGNAL(OnCommandMessage)
+      DECL_GEN_SIGNAL(OnUserMessage);
+      DECL_GEN_SIGNAL(OnBackViewMessage);
+      DECL_GEN_SIGNAL(OnCommandMessage);
 
    };
 

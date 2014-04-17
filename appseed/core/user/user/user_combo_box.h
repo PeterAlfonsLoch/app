@@ -70,10 +70,10 @@ namespace user
       virtual void get_simple_drop_down_open_arrow_path(point_array & pointa) const;
 
 
-      DECL_GEN_SIGNAL(_001OnLButtonDown)
-      DECL_GEN_SIGNAL(_001OnLButtonUp)
-      DECL_GEN_SIGNAL(_001OnSetFocus)
-      DECL_GEN_SIGNAL(_001OnMouseMove)
+      DECL_GEN_SIGNAL(_001OnLButtonDown);
+      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(_001OnSetFocus);
+      DECL_GEN_SIGNAL(_001OnMouseMove);
 
       virtual void _001ShowDropDown(bool bShow = true);
       virtual void _001ToggleDropDown();

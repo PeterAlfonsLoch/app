@@ -30,9 +30,9 @@ namespace filemanager
       bool DestroyBars();
       virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
-      DECL_GEN_SIGNAL(_001OnCreate)
-      DECL_GEN_SIGNAL(_001OnAppLanguage)
-      DECL_GEN_SIGNAL(_001OnShowWindow)
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnAppLanguage);
+      DECL_GEN_SIGNAL(_001OnShowWindow);
 
 
    };

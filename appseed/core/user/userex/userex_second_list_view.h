@@ -26,7 +26,7 @@ namespace userex
       int32_t get_second();
       int32_t set_second(int32_t iSecond);
 
-      DECL_GEN_SIGNAL(_001OnCreate)
+      DECL_GEN_SIGNAL(_001OnCreate);
 
 
       

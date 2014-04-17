@@ -19,7 +19,7 @@ public:
 
    virtual void _001OnClick(uint_ptr nFlags, point point);
 
-   DECL_GEN_SIGNAL(_001OnCreate)
+   DECL_GEN_SIGNAL(_001OnCreate);
 
 
 };

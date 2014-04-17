@@ -61,10 +61,10 @@ namespace userstack
       virtual void dump(dump_context & dumpcontext) const;
    #endif
 
-      DECL_GEN_SIGNAL(_001OnMenuMessage)
-      DECL_GEN_SIGNAL(_001OnCreate)
-      DECL_GEN_SIGNAL(_001OnRButtonUp)
-      DECL_GEN_SIGNAL(_001OnProperties)
+      DECL_GEN_SIGNAL(_001OnMenuMessage);
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnRButtonUp);
+      DECL_GEN_SIGNAL(_001OnProperties);
 
    };
 

@@ -42,9 +42,9 @@ namespace user
 
       bool MenuFill(sp(::user::interaction) pwndFill, sp(::user::interaction) pwndNotify);
 
-      DECL_GEN_SIGNAL(_001OnCreate)
-      DECL_GEN_SIGNAL(_001OnDestroy)
-      DECL_GEN_SIGNAL(_001OnTimer)
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnDestroy);
+      DECL_GEN_SIGNAL(_001OnTimer);
 
       void _001OnDraw(::draw2d::graphics *pdc);
 

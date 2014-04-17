@@ -99,14 +99,14 @@ namespace user
       void UpdateAllPanes(bool bUpdateRects, bool bUpdateText);
       virtual bool OnChildNotify(::message::base * pbase);
 
-      DECL_GEN_SIGNAL(_001OnNcHitTest)
-      DECL_GEN_SIGNAL(_001OnNcCalcSize)
-      DECL_GEN_SIGNAL(_001OnSize)
-      DECL_GEN_SIGNAL(_001OnWindowPosChanging)
-      DECL_GEN_SIGNAL(_001OnSetText)
-      DECL_GEN_SIGNAL(_001OnGetText)
-      DECL_GEN_SIGNAL(_001OnGetTextLength)
-      DECL_GEN_SIGNAL(_001OnSetMinHeight)
+      DECL_GEN_SIGNAL(_001OnNcHitTest);
+      DECL_GEN_SIGNAL(_001OnNcCalcSize);
+      DECL_GEN_SIGNAL(_001OnSize);
+      DECL_GEN_SIGNAL(_001OnWindowPosChanging);
+      DECL_GEN_SIGNAL(_001OnSetText);
+      DECL_GEN_SIGNAL(_001OnGetText);
+      DECL_GEN_SIGNAL(_001OnGetTextLength);
+      DECL_GEN_SIGNAL(_001OnSetMinHeight);
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);
       virtual void install_message_handling(::message::dispatch * pinterface);

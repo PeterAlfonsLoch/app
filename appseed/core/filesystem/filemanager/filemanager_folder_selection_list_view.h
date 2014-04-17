@@ -35,8 +35,8 @@ public:
 
 
 
-   DECL_GEN_SIGNAL(_001OnAdd)
-   DECL_GEN_SIGNAL(_001OnRemove)
+   DECL_GEN_SIGNAL(_001OnAdd);
+   DECL_GEN_SIGNAL(_001OnRemove);
 
    void install_message_handling(::message::dispatch * pinterface);
 

@@ -24,11 +24,11 @@ namespace command
       void on_update(sp(::user::impact) pSender, LPARAM lHint, ::object* phint);
 
 
-      DECL_GEN_SIGNAL(_001OnUpdateEditCopy)
-      DECL_GEN_SIGNAL(_001OnEditCopy)
-      DECL_GEN_SIGNAL(_001OnUpdateEditPaste)
-      DECL_GEN_SIGNAL(_001OnEditPaste)
-	   DECL_GEN_SIGNAL(_001OnContextMenu)
+      DECL_GEN_SIGNAL(_001OnUpdateEditCopy);
+      DECL_GEN_SIGNAL(_001OnEditCopy);
+      DECL_GEN_SIGNAL(_001OnUpdateEditPaste);
+      DECL_GEN_SIGNAL(_001OnEditPaste);
+	   DECL_GEN_SIGNAL(_001OnContextMenu);
 
 
    };

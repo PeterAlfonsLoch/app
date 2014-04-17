@@ -48,13 +48,13 @@ namespace command
 
 
 
-	   DECL_GEN_SIGNAL(_001OnCreate)
+	   DECL_GEN_SIGNAL(_001OnCreate);
 	   DECL_GEN_SIGNAL(_001OnTimer);
 
-      DECL_GEN_SIGNAL(_001OnClose)
-      DECL_GEN_SIGNAL(_001OnMove)
-      DECL_GEN_SIGNAL(_001OnShowWindow)
-      DECL_GEN_SIGNAL(_001OnApp2000)
+      DECL_GEN_SIGNAL(_001OnClose);
+      DECL_GEN_SIGNAL(_001OnMove);
+      DECL_GEN_SIGNAL(_001OnShowWindow);
+      DECL_GEN_SIGNAL(_001OnApp2000);
 
 
       virtual void message_queue_message_handler(signal_details * pobj);

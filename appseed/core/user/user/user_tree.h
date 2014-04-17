@@ -136,17 +136,17 @@ namespace user
       virtual COLORREF get_background_color();
 
       // Overrides
-      DECL_GEN_SIGNAL(_001OnMouseMove)
-      DECL_GEN_SIGNAL(_001OnMouseLeave)
-      DECL_GEN_SIGNAL(_001OnLButtonDown)
-      DECL_GEN_SIGNAL(_001OnLButtonUp)
-      DECL_GEN_SIGNAL(_001OnLButtonDblClk)
-      DECL_GEN_SIGNAL(_001OnRButtonDown)
-      DECL_GEN_SIGNAL(_001OnRButtonUp)
-      DECL_GEN_SIGNAL(_001OnTimer)
-      DECL_GEN_SIGNAL(_001OnCreate)
-      DECL_GEN_SIGNAL(_001OnVScroll)
-      DECL_GEN_SIGNAL(_001OnHScroll)
+      DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECL_GEN_SIGNAL(_001OnMouseLeave);
+      DECL_GEN_SIGNAL(_001OnLButtonDown);
+      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(_001OnLButtonDblClk);
+      DECL_GEN_SIGNAL(_001OnRButtonDown);
+      DECL_GEN_SIGNAL(_001OnRButtonUp);
+      DECL_GEN_SIGNAL(_001OnTimer);
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnVScroll);
+      DECL_GEN_SIGNAL(_001OnHScroll);
 
 
       virtual bool      hover(::data::tree_item * pitem);

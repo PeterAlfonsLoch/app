@@ -30,7 +30,7 @@ public:
 
 
    bool OnEraseBkgnd(::draw2d::graphics * pgraphics);
-   DECL_GEN_SIGNAL(_001OnCreate)
+   DECL_GEN_SIGNAL(_001OnCreate);
    void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
    void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
    int32_t OnMouseActivate(sp(::user::interaction) pDesktopWnd, UINT nHitTest, UINT message);

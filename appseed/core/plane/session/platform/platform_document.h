@@ -49,7 +49,7 @@ namespace platform
    #endif
 
 
-      DECL_GEN_VSIGNAL(data_on_after_change)
+      DECL_GEN_VSIGNAL(data_on_after_change);
 
 
    };

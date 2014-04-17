@@ -43,16 +43,16 @@ namespace filemanager
       void CreateViews();
       void OpenFolder(sp(::fs::item) item, ::action::context actioncontext);
       void Initialize(bool bMakeVisible);
-      DECL_GEN_SIGNAL(_001OnLevelUp)
-      DECL_GEN_SIGNAL(_001OnUpdateLevelUp)
-      DECL_GEN_SIGNAL(_001OnAddLocation)
-      DECL_GEN_SIGNAL(_001OnUpdateAddLocation)
-      DECL_GEN_SIGNAL(_001OnReplaceText)
-      DECL_GEN_SIGNAL(_001OnUpdateReplaceText)
-      DECL_GEN_SIGNAL(_001OnEditPaste)
-      DECL_GEN_SIGNAL(_001OnUpdateEditPaste)
-      DECL_GEN_SIGNAL(_001OnFileSaveAs)
-      DECL_GEN_SIGNAL(_001OnUpdateFileSaveAs)
+      DECL_GEN_SIGNAL(_001OnLevelUp);
+      DECL_GEN_SIGNAL(_001OnUpdateLevelUp);
+      DECL_GEN_SIGNAL(_001OnAddLocation);
+      DECL_GEN_SIGNAL(_001OnUpdateAddLocation);
+      DECL_GEN_SIGNAL(_001OnReplaceText);
+      DECL_GEN_SIGNAL(_001OnUpdateReplaceText);
+      DECL_GEN_SIGNAL(_001OnEditPaste);
+      DECL_GEN_SIGNAL(_001OnUpdateEditPaste);
+      DECL_GEN_SIGNAL(_001OnFileSaveAs);
+      DECL_GEN_SIGNAL(_001OnUpdateFileSaveAs);
       virtual void OnFileManagerBrowse(::action::context actioncontext);
       virtual void OpenSelectionProperties();
    #ifdef DEBUG

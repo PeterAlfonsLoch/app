@@ -9,8 +9,8 @@ public:
 
    void on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint);
    virtual bool BaseOnControlEvent(::user::control_event * pevent);
-   DECL_GEN_SIGNAL(_001OnCreate)
-   DECL_GEN_SIGNAL(_001OnTimer)
-   DECL_GEN_SIGNAL(_001OnUser123)
+   DECL_GEN_SIGNAL(_001OnCreate);
+   DECL_GEN_SIGNAL(_001OnTimer);
+   DECL_GEN_SIGNAL(_001OnUser123);
    virtual void install_message_handling(::message::dispatch * pinterface);
 };

@@ -35,9 +35,9 @@ namespace html
 
       virtual void _001SetText(const string & str, ::action::context actioncontext);
 
-      DECL_GEN_SIGNAL(OnLButtonDown)
-      DECL_GEN_SIGNAL(OnMouseMove)
-      DECL_GEN_SIGNAL(OnLButtonUp)
+      DECL_GEN_SIGNAL(OnLButtonDown);
+      DECL_GEN_SIGNAL(OnMouseMove);
+      DECL_GEN_SIGNAL(OnLButtonUp);
 
 
       virtual void delete_implementation();

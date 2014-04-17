@@ -26,7 +26,7 @@ namespace userex
       int32_t get_minute();
       int32_t set_minute(int32_t iMinute);
 
-      DECL_GEN_SIGNAL(_001OnCreate)
+      DECL_GEN_SIGNAL(_001OnCreate);
 
 
       

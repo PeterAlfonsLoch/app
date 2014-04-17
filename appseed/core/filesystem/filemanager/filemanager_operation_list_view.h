@@ -16,8 +16,8 @@ public:
 
    virtual void OnDraw(::draw2d::graphics * pdc);
 
-   DECL_GEN_SIGNAL(_001OnCreate)
-   DECL_GEN_SIGNAL(_001OnTimer)
+   DECL_GEN_SIGNAL(_001OnCreate);
+   DECL_GEN_SIGNAL(_001OnTimer);
 
    virtual count _001GetItemCount();
    virtual void _001GetItemText(::user::list_item * pitem);
@@ -27,7 +27,7 @@ public:
    ::user::list_cache               m_listcache;
    simple_list_header_control       m_headerctrl;
 
-   DECL_GEN_SIGNAL(_001OnInitialUpdate)
+   DECL_GEN_SIGNAL(_001OnInitialUpdate);
 
    uint32_t                            m_dwLast123Update;
 

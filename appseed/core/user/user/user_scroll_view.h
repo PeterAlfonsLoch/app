@@ -74,12 +74,12 @@ namespace user
       virtual void _001OnUpdateScrollPosition();
 
 
-      DECL_GEN_SIGNAL(_001OnCreate)
-      DECL_GEN_SIGNAL(_001OnSize)
-      DECL_GEN_SIGNAL(_001OnVScroll)
-      DECL_GEN_SIGNAL(_001OnHScroll)
-      DECL_GEN_SIGNAL(_001OnMouseWheel)
-      DECL_GEN_SIGNAL(_001OnUser9654)
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnSize);
+      DECL_GEN_SIGNAL(_001OnVScroll);
+      DECL_GEN_SIGNAL(_001OnHScroll);
+      DECL_GEN_SIGNAL(_001OnMouseWheel);
+      DECL_GEN_SIGNAL(_001OnUser9654);
 
 
    };

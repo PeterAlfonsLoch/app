@@ -32,16 +32,16 @@ public:
 
    virtual void install_message_handling(::message::dispatch * pinterface);
    virtual bool pre_create_window(CREATESTRUCT& cs);
-   DECL_GEN_SIGNAL(_001OnInitialUpdate)
+   DECL_GEN_SIGNAL(_001OnInitialUpdate);
    virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
 
    sp(html_document) get_document();
 
 
-   DECL_GEN_SIGNAL(_001OnDestroy)
-   DECL_GEN_SIGNAL(_001OnCreate)
-   DECL_GEN_SIGNAL(_001OnContextMenu)
-   DECL_GEN_SIGNAL(_001OnSetCursor)
+   DECL_GEN_SIGNAL(_001OnDestroy);
+   DECL_GEN_SIGNAL(_001OnCreate);
+   DECL_GEN_SIGNAL(_001OnContextMenu);
+   DECL_GEN_SIGNAL(_001OnSetCursor);
 
 };
 

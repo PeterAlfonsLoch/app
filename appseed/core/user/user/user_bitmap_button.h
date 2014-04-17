@@ -49,7 +49,7 @@ namespace user
       void ResizeToFit();
       virtual ~bitmap_button();
 
-      DECL_GEN_SIGNAL(_001OnMouseMove)
+      DECL_GEN_SIGNAL(_001OnMouseMove);
    };
 
 #ifdef WINDOWSEX

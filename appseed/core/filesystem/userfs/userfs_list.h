@@ -66,11 +66,11 @@ namespace userfs
       void _017UpdateList(const char * lpcsz, ::action::context actioncontext);
       void _017UpdateZipList(const char * lpcsz, ::action::context actioncontext);
 
-      DECL_GEN_SIGNAL(_001OnHScroll)
-         DECL_GEN_SIGNAL(_001OnVScroll)
-         DECL_GEN_SIGNAL(_001OnFileRename)
-         DECL_GEN_SIGNAL(_001OnUpdateFileRename)
-         DECL_GEN_SIGNAL(_001OnShowWindow)
+      DECL_GEN_SIGNAL(_001OnHScroll);
+         DECL_GEN_SIGNAL(_001OnVScroll);
+         DECL_GEN_SIGNAL(_001OnFileRename);
+         DECL_GEN_SIGNAL(_001OnUpdateFileRename);
+         DECL_GEN_SIGNAL(_001OnShowWindow);
 
 
          virtual void _001InitializeFormPreData();
@@ -88,10 +88,10 @@ namespace userfs
       virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
-      DECL_GEN_SIGNAL(_001OnCreate)
-      DECL_GEN_SIGNAL(_001OnTimer)
-      DECL_GEN_SIGNAL(_001OnLButtonDblClk)
-      DECL_GEN_SIGNAL(_001OnCancelMode)
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnTimer);
+      DECL_GEN_SIGNAL(_001OnLButtonDblClk);
+      DECL_GEN_SIGNAL(_001OnCancelMode);
 
 #ifdef DEBUG
       virtual void assert_valid() const;

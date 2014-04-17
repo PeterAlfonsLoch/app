@@ -243,8 +243,8 @@ namespace user
 
       virtual index hit_test(point point, e_element & eelement);
 
-      DECL_GEN_SIGNAL(_001OnMouseMove)
-      DECL_GEN_SIGNAL(_001OnMouseLeave)
+      DECL_GEN_SIGNAL(_001OnMouseMove);
+         DECL_GEN_SIGNAL(_001OnMouseLeave);
 
    };
 

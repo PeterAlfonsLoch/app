@@ -57,8 +57,8 @@ namespace filemanager
 
       
 
-      DECL_GEN_SIGNAL(_001OnLButtonDblClk)
-      DECL_GEN_SIGNAL(_001OnCancelMode)
+      DECL_GEN_SIGNAL(_001OnLButtonDblClk);
+      DECL_GEN_SIGNAL(_001OnCancelMode);
 
 #ifdef DEBUG
       virtual void assert_valid() const;

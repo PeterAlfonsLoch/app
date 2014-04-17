@@ -184,7 +184,7 @@ namespace html
 
       void implement_and_layout(html_form * pform);
 
-      DECL_GEN_SIGNAL(_001OnKeyDown)
+      DECL_GEN_SIGNAL(_001OnKeyDown);
 
       int32_t get_image_index(const char * pszUrl);
       void load_image_asynch(image * pimage);

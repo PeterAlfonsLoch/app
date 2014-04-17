@@ -435,27 +435,27 @@ namespace user
    return 0;
    }*/
 
-   bool frame_window::OnCommand(WPARAM wParam, LPARAM lParam)
-      // return TRUE if command invocation was attempted
-   {
-      //   ::oswindow oswindow_Ctrl = (::oswindow) lParam;
-      //   UINT nID = LOWORD(wParam);
+   //bool frame_window::OnCommand(WPARAM wParam, LPARAM lParam)
+   //   // return TRUE if command invocation was attempted
+   //{
+   //   //   ::oswindow oswindow_Ctrl = (::oswindow) lParam;
+   //   //   UINT nID = LOWORD(wParam);
 
-      sp(::user::frame_window) pFrameWnd = GetTopLevelFrame();
-      ENSURE_VALID(pFrameWnd);
-      /*   if (pFrameWnd->m_bHelpMode && oswindow_Ctrl == NULL &&
-      nID != ID_HELP && nID != ID_DEFAULT_HELP && nID != ID_CONTEXT_HELP)
-      {
-      // route as help
-      if (!SendMessage(WM_COMMANDHELP, 0, HID_BASE_COMMAND+nID))
-      SendMessage(WM_COMMAND, ID_DEFAULT_HELP);
-      return TRUE;
-      }
-      */
-      // route as normal command
-      // trans   return user::frame_window::OnCommand(wParam, lParam);
-      return FALSE;
-   }
+   //   sp(::user::frame_window) pFrameWnd = GetTopLevelFrame();
+   //   ENSURE_VALID(pFrameWnd);
+   //   /*   if (pFrameWnd->m_bHelpMode && oswindow_Ctrl == NULL &&
+   //   nID != ID_HELP && nID != ID_DEFAULT_HELP && nID != ID_CONTEXT_HELP)
+   //   {
+   //   // route as help
+   //   if (!SendMessage(WM_COMMANDHELP, 0, HID_BASE_COMMAND+nID))
+   //   SendMessage(WM_COMMAND, ID_DEFAULT_HELP);
+   //   return TRUE;
+   //   }
+   //   */
+   //   // route as normal command
+   //   // trans   return user::frame_window::OnCommand(wParam, lParam);
+   //   return FALSE;
+   //}
 
 
 

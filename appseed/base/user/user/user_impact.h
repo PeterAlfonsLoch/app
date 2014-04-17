@@ -221,7 +221,7 @@ namespace user
 
 
          DECL_GEN_SIGNAL(_001OnRButtonDown);
-         //         DECL_GEN_SIGNAL(_001OnLButtonDown)
+         //         DECL_GEN_SIGNAL(_001OnLButtonDown);
          DECL_GEN_SIGNAL(_001OnMButtonDown);
 
          //         virtual void install_message_handling(::message::dispatch * pinterface);

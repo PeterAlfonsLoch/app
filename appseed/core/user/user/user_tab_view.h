@@ -65,7 +65,7 @@ namespace user
       virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
-      DECL_GEN_SIGNAL(_001OnMenuMessage)
+      DECL_GEN_SIGNAL(_001OnMenuMessage);
 
       
    #ifdef DEBUG
@@ -73,8 +73,8 @@ namespace user
       virtual void dump(dump_context & dumpcontext) const;
    #endif
 
-      DECL_GEN_SIGNAL(_001OnCreate)
-      DECL_GEN_SIGNAL(_001OnSetFocus)
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnSetFocus);
    };
 
    class tab_drop_target_window : 
@@ -95,7 +95,7 @@ namespace user
 
       void _001OnDraw(::draw2d::graphics * pdc);
 
-      DECL_GEN_SIGNAL(_001OnLButtonUp)
+      DECL_GEN_SIGNAL(_001OnLButtonUp);
 
    };
 

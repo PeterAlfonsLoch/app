@@ -103,11 +103,11 @@ namespace backview
 
 
       // Windows message handler
-      DECL_GEN_VSIGNAL(OnBackViewMessage)
-      DECL_GEN_VSIGNAL(OnDequeueMessage)
-      DECL_GEN_VSIGNAL(OnWndSize)
-      DECL_GEN_VSIGNAL(OnWndTimer)
-      DECL_GEN_VSIGNAL(OnWndCreate)
+      DECL_GEN_VSIGNAL(OnBackViewMessage);
+      DECL_GEN_VSIGNAL(OnDequeueMessage);
+      DECL_GEN_VSIGNAL(OnWndSize);
+      DECL_GEN_VSIGNAL(OnWndTimer);
+      DECL_GEN_VSIGNAL(OnWndCreate);
 
 
    };

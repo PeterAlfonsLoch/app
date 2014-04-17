@@ -56,7 +56,7 @@ namespace filemanager
       //virtual void _001CreateImageList(CColumn & column);
       virtual void _001UpdateImageList(sp(::data::tree_item) pitem);
 
-      DECL_GEN_VSIGNAL(_001OnTimer)
+      DECL_GEN_VSIGNAL(_001OnTimer);
 
 
       virtual void _017Synchronize(::action::context actioncontext);
@@ -90,7 +90,7 @@ namespace filemanager
       void _017PreSynchronize(::action::context actioncontext);
       void TakeAnimationSnapshot();
       virtual void StartAnimation();
-      DECL_GEN_SIGNAL(_001OnMainPostMessage)
+      DECL_GEN_SIGNAL(_001OnMainPostMessage);
       void GetSelectedFilePath(stringa & stra);
       virtual bool _001IsTranslucent();
 
@@ -123,10 +123,10 @@ namespace filemanager
       virtual void dump(dump_context & dumpcontext) const;
 #endif
 
-      DECL_GEN_SIGNAL(_001OnLButtonDblClk)
-         DECL_GEN_SIGNAL(_001OnContextMenu)
-         DECL_GEN_SIGNAL(_001OnCreate)
-         DECL_GEN_SIGNAL(_001OnShellCommand)
+      DECL_GEN_SIGNAL(_001OnLButtonDblClk);
+         DECL_GEN_SIGNAL(_001OnContextMenu);
+         DECL_GEN_SIGNAL(_001OnCreate);
+         DECL_GEN_SIGNAL(_001OnShellCommand);
 
    };
 

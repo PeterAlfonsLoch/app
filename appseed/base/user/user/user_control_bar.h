@@ -222,7 +222,7 @@ namespace user
       //DECL_GEN_SIGNAL(_001OnShowWindow);
       //DECL_GEN_SIGNAL(_001OnCancelMode);
 
-      //   DECL_GEN_SIGNAL(_001OnPaint)
+      //   DECL_GEN_SIGNAL(_001OnPaint);
       //   virtual void _001OnDraw(::draw2d::graphics * pdc);
 
       virtual void install_message_handling(::message::dispatch * pinterface);

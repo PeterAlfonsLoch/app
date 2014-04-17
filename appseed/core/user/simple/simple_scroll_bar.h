@@ -54,15 +54,15 @@ public:
    int32_t GetTrackSize(size & size);
    bool GetTrackClientRect(LPRECT lpRect);
    bool GetTrackRect(LPRECT lpRect);
-   DECL_GEN_SIGNAL(_001OnMouseMove)
-   DECL_GEN_SIGNAL(_001OnLButtonDown)
-   DECL_GEN_SIGNAL(_001OnLButtonUp)
-   DECL_GEN_SIGNAL(_001OnHScroll)
-   DECL_GEN_SIGNAL(_001OnSize)
-   DECL_GEN_SIGNAL(_001OnTimer)
-   DECL_GEN_SIGNAL(_001OnCreate)
-   DECL_GEN_SIGNAL(_001OnShowWindow)
-   DECL_GEN_SIGNAL(_001OnDestroy)
+   DECL_GEN_SIGNAL(_001OnMouseMove);
+   DECL_GEN_SIGNAL(_001OnLButtonDown);
+   DECL_GEN_SIGNAL(_001OnLButtonUp);
+   DECL_GEN_SIGNAL(_001OnHScroll);
+   DECL_GEN_SIGNAL(_001OnSize);
+   DECL_GEN_SIGNAL(_001OnTimer);
+   DECL_GEN_SIGNAL(_001OnCreate);
+   DECL_GEN_SIGNAL(_001OnShowWindow);
+   DECL_GEN_SIGNAL(_001OnDestroy);
    LRESULT OnEconoModeChange(WPARAM wParam, LPARAM lParam);
 
 

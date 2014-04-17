@@ -7,7 +7,7 @@ namespace fontopus
 
 
    class simple_ui :
-      virtual public ::base::os::simple_ui,
+      virtual public ::os::simple_ui,
       virtual public ::simple_ui::style,
       virtual public login::callback
    {

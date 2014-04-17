@@ -717,7 +717,7 @@ void window::OnEnterIdle(UINT /*nWhy*/, ::window_sp /*pWho*/)
    throw interface_only_exception(get_app());
 }
 
-HBRUSH window::OnCtlColor(::draw2d::graphics *, ::window_sp pwindow, UINT)
+void * window::OnCtlColor(::draw2d::graphics *, ::window_sp pwindow, UINT)
 {
    UNREFERENCED_PARAMETER(pwindow);
    throw interface_only_exception(get_app());
@@ -816,7 +816,7 @@ oswindow window::unsubclass_window()
    throw interface_only_exception(get_app());
 }
 
-bool window::IsChild(sp(::user::interaction) pui)
+bool window::IsChild(::user::interaction * pui)
 {
    UNREFERENCED_PARAMETER(pui);
    throw interface_only_exception(get_app());

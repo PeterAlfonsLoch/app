@@ -41,7 +41,7 @@ namespace user
       using ::user::interaction::create;
       bool create(UINT id, notify_icon_listener * plistener, HICON hicon);
 
-      DECL_GEN_SIGNAL(_001OnNotifyIconMessage)
+      DECL_GEN_SIGNAL(_001OnNotifyIconMessage);
 
       void install_message_handling(::message::dispatch * pinterface);
 

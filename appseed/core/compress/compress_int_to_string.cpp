@@ -10,7 +10,7 @@ string uint32_to_zero_padded_hex(uint32_t value);
 
 string convert_to_string(uint64_t value, uint32_t base)
 {
-  if (base < 2 || base > 36)
+  if (base <2 || base > 36)
   {
     return "";
   }

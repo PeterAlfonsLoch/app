@@ -85,16 +85,16 @@ namespace user
             void AttachFrameSchema(sp(frame) pframeschema);
             void _001InstallEventHandling(::message::dispatch * pdispatch);
 
-            DECL_GEN_SIGNAL(_001OnLButtonDown)
-               DECL_GEN_SIGNAL(_001OnMouseMove)
-               DECL_GEN_SIGNAL(_001OnLButtonUp)
-               DECL_GEN_SIGNAL(_001OnNcLButtonDown)
-               DECL_GEN_SIGNAL(_001OnNcMouseMove)
-               DECL_GEN_SIGNAL(_001OnNcLButtonUp)
-               DECL_GEN_SIGNAL(_001OnNcHitTest)
-               DECL_GEN_SIGNAL(_001OnTimer)
-               DECL_GEN_SIGNAL(_001OnSize)
-               DECL_GEN_SIGNAL(_001OnMove)
+            DECL_GEN_SIGNAL(_001OnLButtonDown);
+               DECL_GEN_SIGNAL(_001OnMouseMove);
+               DECL_GEN_SIGNAL(_001OnLButtonUp);
+               DECL_GEN_SIGNAL(_001OnNcLButtonDown);
+               DECL_GEN_SIGNAL(_001OnNcMouseMove);
+               DECL_GEN_SIGNAL(_001OnNcLButtonUp);
+               DECL_GEN_SIGNAL(_001OnNcHitTest);
+               DECL_GEN_SIGNAL(_001OnTimer);
+               DECL_GEN_SIGNAL(_001OnSize);
+               DECL_GEN_SIGNAL(_001OnMove);
 
                // point should be in screen coordinates
                EHitTest hit_test(point ptCursor);
@@ -109,9 +109,9 @@ namespace user
             void SetDownUpInterface(CWorkSetDownUpInterface *pinterface);
             void WindowProcBefore(sp(::user::interaction) pwnd, signal_details * pobj);
             void WindowProcHover(sp(::user::interaction) pwnd, signal_details * pobj);
-            DECL_GEN_SIGNAL(_001OnActivate)
-               DECL_GEN_SIGNAL(_001OnCommand)
-               DECL_GEN_SIGNAL(_001OnNcActivate)
+            DECL_GEN_SIGNAL(_001OnActivate);
+               DECL_GEN_SIGNAL(_001OnCommand);
+               DECL_GEN_SIGNAL(_001OnNcActivate);
                void RemoveListener(WorkSetListener * plistener);
             void AddListener(WorkSetListener * plistener);
             void OnSizingGripMove(EGrip egrip);

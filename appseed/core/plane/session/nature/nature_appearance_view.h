@@ -45,10 +45,10 @@ namespace nature
       virtual void dump(dump_context & dumpcontext) const;
    #endif
 
-      DECL_GEN_SIGNAL(_001OnCreate)
-      DECL_GEN_SIGNAL(_001OnSize)
-      DECL_GEN_SIGNAL(_001OnEditAdd)
-      DECL_GEN_SIGNAL(_001OnEditRemove)
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnSize);
+      DECL_GEN_SIGNAL(_001OnEditAdd);
+      DECL_GEN_SIGNAL(_001OnEditRemove);
 
    };
 

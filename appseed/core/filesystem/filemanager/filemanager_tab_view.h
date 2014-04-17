@@ -19,7 +19,7 @@ namespace filemanager
       void FileManagerBrowse(const char * lpcwstr, ::action::context actioncontext);
 
 
-      DECL_GEN_SIGNAL(_001OnCreate)
+      DECL_GEN_SIGNAL(_001OnCreate);
       
       virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
       virtual ~tab_view();

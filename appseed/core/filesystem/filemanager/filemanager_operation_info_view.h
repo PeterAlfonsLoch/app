@@ -18,8 +18,8 @@ public:
 
    void OnFileOperationStep(int32_t iOperation, bool bFinal);
 
-   DECL_GEN_SIGNAL(_001OnCreate)
-   DECL_GEN_SIGNAL(_001OnTimer)
+   DECL_GEN_SIGNAL(_001OnCreate);
+   DECL_GEN_SIGNAL(_001OnTimer);
    virtual void install_message_handling(::message::dispatch * pdispatch);
 
    void assert_valid() const;

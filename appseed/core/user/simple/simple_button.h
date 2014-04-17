@@ -24,8 +24,8 @@ public:
 
    virtual void ResizeToFit();
 
-   DECL_GEN_SIGNAL(_001OnCtlColor)
-   DECL_GEN_SIGNAL(_001OnSetFocus)
+   DECL_GEN_SIGNAL(_001OnCtlColor);
+   DECL_GEN_SIGNAL(_001OnSetFocus);
 
 
 };

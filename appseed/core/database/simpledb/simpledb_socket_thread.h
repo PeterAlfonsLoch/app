@@ -52,7 +52,7 @@ namespace simpledb
       void install_message_handling(::message::dispatch * pinterface);
 
 
-      DECL_GEN_SIGNAL(OnApp)
+      DECL_GEN_SIGNAL(OnApp);
 
 
    };

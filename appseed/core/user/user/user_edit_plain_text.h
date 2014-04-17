@@ -82,33 +82,33 @@ namespace user
 
 
 
-      virtual DECL_GEN_SIGNAL(_002OnLButtonDown)
-      virtual DECL_GEN_SIGNAL(_002OnLButtonUp)
-      virtual DECL_GEN_SIGNAL(_002OnRButtonDown)
-      virtual DECL_GEN_SIGNAL(_002OnRButtonUp)
-      virtual DECL_GEN_SIGNAL(_002OnMouseMove)
-      virtual DECL_GEN_SIGNAL(_002OnKeyDown)
-      virtual DECL_GEN_SIGNAL(_002OnKeyUp)
-      virtual DECL_GEN_SIGNAL(_002OnTimer)
-      virtual DECL_GEN_SIGNAL(_002OnChar)
+      virtual DECL_GEN_SIGNAL(_002OnLButtonDown);
+      virtual DECL_GEN_SIGNAL(_002OnLButtonUp);
+         virtual DECL_GEN_SIGNAL(_002OnRButtonDown);
+         virtual DECL_GEN_SIGNAL(_002OnRButtonUp);
+         virtual DECL_GEN_SIGNAL(_002OnMouseMove);
+         virtual DECL_GEN_SIGNAL(_002OnKeyDown);
+         virtual DECL_GEN_SIGNAL(_002OnKeyUp);
+         virtual DECL_GEN_SIGNAL(_002OnTimer);
+         virtual DECL_GEN_SIGNAL(_002OnChar);
 
-      virtual DECL_GEN_SIGNAL(_001OnUpdateEditFocusCopy)
-      virtual DECL_GEN_SIGNAL(_001OnEditFocusCopy)
-      virtual DECL_GEN_SIGNAL(_001OnUpdateEditFocusPaste)
-      virtual DECL_GEN_SIGNAL(_001OnEditFocusPaste)
+         virtual DECL_GEN_SIGNAL(_001OnUpdateEditFocusCopy);
+         virtual DECL_GEN_SIGNAL(_001OnEditFocusCopy);
+         virtual DECL_GEN_SIGNAL(_001OnUpdateEditFocusPaste);
+         virtual DECL_GEN_SIGNAL(_001OnEditFocusPaste);
 
-      DECL_GEN_VSIGNAL(_009OnChar)
+      DECL_GEN_VSIGNAL(_009OnChar);
 
-      DECL_GEN_SIGNAL(_001OnHScroll)
+      DECL_GEN_SIGNAL(_001OnHScroll);
 
-      DECL_GEN_SIGNAL(_001OnRButtonUp)
+      DECL_GEN_SIGNAL(_001OnRButtonUp);
 
-      DECL_GEN_SIGNAL(_001OnChar)
-      DECL_GEN_SIGNAL(_001OnSysChar)
+      DECL_GEN_SIGNAL(_001OnChar);
+      DECL_GEN_SIGNAL(_001OnSysChar);
 
-      virtual DECL_GEN_SIGNAL(keyboard_focus_OnKeyDown)
-      virtual DECL_GEN_SIGNAL(keyboard_focus_OnKeyUp)
-      virtual DECL_GEN_SIGNAL(keyboard_focus_OnChar)
+      virtual DECL_GEN_SIGNAL(keyboard_focus_OnKeyDown);
+      virtual DECL_GEN_SIGNAL(keyboard_focus_OnKeyUp);
+      virtual DECL_GEN_SIGNAL(keyboard_focus_OnChar);
 
       virtual bool keyboard_focus_is_focusable();
       virtual bool keyboard_focus_OnSetFocus();
@@ -126,7 +126,7 @@ namespace user
 
       virtual void install_message_handling(::message::dispatch * pinterface);
       virtual void OnDraw(::draw2d::graphics * pgraphics);      // overridden to draw this ::user::impact
-      DECL_GEN_SIGNAL(_001OnInitialUpdate)
+      DECL_GEN_SIGNAL(_001OnInitialUpdate);
 
 
 
@@ -193,13 +193,13 @@ namespace user
       bool CanRedo();
       ::count GetRedoBranchCount();
 
-      DECL_GEN_SIGNAL(_001OnDestroy)
+      DECL_GEN_SIGNAL(_001OnDestroy);
       void VirtualOnSize();
-      DECL_GEN_SIGNAL(_001OnPaint)
-      DECL_GEN_SIGNAL(_001OnCreate)
-      DECL_GEN_SIGNAL(_001OnContextMenu)
-      DECL_GEN_SIGNAL(_001OnSetCursor)
-      DECL_GEN_SIGNAL(_001OnSize)
+      DECL_GEN_SIGNAL(_001OnPaint);
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnContextMenu);
+      DECL_GEN_SIGNAL(_001OnSetCursor);
+      DECL_GEN_SIGNAL(_001OnSize);
 
 
       virtual sp(::data::item) on_allocate_item();

@@ -136,12 +136,12 @@ namespace filemanager
             virtual void dump(dump_context & dumpcontext) const;
          #endif
 
-            DECL_GEN_SIGNAL(_001OnLButtonDblClk)
-            DECL_GEN_SIGNAL(_001OnTimer)
-            DECL_GEN_SIGNAL(_001OnSize)
-            DECL_GEN_SIGNAL(_001OnContextMenu)
-            DECL_GEN_SIGNAL(_001OnEraseBkgnd)
-            DECL_GEN_SIGNAL(_001OnFillTaskResponse)
+            DECL_GEN_SIGNAL(_001OnLButtonDblClk);
+            DECL_GEN_SIGNAL(_001OnTimer);
+            DECL_GEN_SIGNAL(_001OnSize);
+            DECL_GEN_SIGNAL(_001OnContextMenu);
+            DECL_GEN_SIGNAL(_001OnEraseBkgnd);
+            DECL_GEN_SIGNAL(_001OnFillTaskResponse);
 
          };
 

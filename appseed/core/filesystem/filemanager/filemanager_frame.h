@@ -24,8 +24,8 @@ namespace filemanager
       virtual void install_message_handling(::message::dispatch * pinterface);
 
 
-      DECL_GEN_SIGNAL(_001OnSetText)
-         DECL_GEN_SIGNAL(_001OnCreate)
+      DECL_GEN_SIGNAL(_001OnSetText);
+         DECL_GEN_SIGNAL(_001OnCreate);
 
    };
 

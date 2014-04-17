@@ -107,16 +107,16 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics * pdc);
 
       //{{__MSG(tool_bar)
-      DECL_GEN_SIGNAL(_001OnNcHitTest)
+      DECL_GEN_SIGNAL(_001OnNcHitTest);
       //DECL_GEN_SIGNAL(OnNcPaint();
       //DECL_GEN_SIGNAL(OnPaint();
-      DECL_GEN_SIGNAL(_001OnNcCalcSize)
-      DECL_GEN_SIGNAL(_001OnWindowPosChanging)
-      DECL_GEN_SIGNAL(_001OnSysColorChange)
-      DECL_GEN_SIGNAL(_001OnSetButtonSize)
-      DECL_GEN_SIGNAL(_001OnSetBitmapSize)
-      DECL_GEN_SIGNAL(_001OnPreserveZeroBorderHelper)
-      DECL_GEN_SIGNAL(_001OnNcCreate)
+      DECL_GEN_SIGNAL(_001OnNcCalcSize);
+      DECL_GEN_SIGNAL(_001OnWindowPosChanging);
+      DECL_GEN_SIGNAL(_001OnSysColorChange);
+      DECL_GEN_SIGNAL(_001OnSetButtonSize);
+      DECL_GEN_SIGNAL(_001OnSetBitmapSize);
+      DECL_GEN_SIGNAL(_001OnPreserveZeroBorderHelper);
+      DECL_GEN_SIGNAL(_001OnNcCreate);
       LRESULT OnSetSizeHelper(size& size, LPARAM lParam);
 
       virtual void install_message_handling(::message::dispatch * pinterface);

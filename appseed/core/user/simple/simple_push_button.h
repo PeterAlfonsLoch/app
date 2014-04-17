@@ -48,9 +48,9 @@ public:
    void UpdateHover();
    void _001OnDraw(::draw2d::graphics * pdc);
 
-   DECL_GEN_SIGNAL(_001OnCreate)
-   DECL_GEN_SIGNAL(_001OnDestroy)
-   DECL_GEN_SIGNAL(_001OnTimer)
+   DECL_GEN_SIGNAL(_001OnCreate);
+   DECL_GEN_SIGNAL(_001OnDestroy);
+   DECL_GEN_SIGNAL(_001OnTimer);
 
 
 };

@@ -41,7 +41,7 @@ namespace usermail
 
 
 
-      afx_msg DECL_GEN_SIGNAL(_001OnCreate)
+      afx_msg DECL_GEN_SIGNAL(_001OnCreate);
          afx_msg void OnTimer(UINT nIDEvent);
    };
 

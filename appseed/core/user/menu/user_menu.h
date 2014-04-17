@@ -58,31 +58,31 @@ namespace user
 
       virtual bool TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent, sp(::user::menu_base) * pthis);
 
-      DECL_GEN_SIGNAL(_001OnLButtonDown)
+      DECL_GEN_SIGNAL(_001OnLButtonDown);
 
       void _001OnDraw(::draw2d::graphics *pdc);
-      DECL_GEN_SIGNAL(OnMessageDestroyWindow)
+      DECL_GEN_SIGNAL(OnMessageDestroyWindow);
 
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
-      DECL_GEN_SIGNAL(_001OnCreate)
-      DECL_GEN_SIGNAL(_001OnDestroy)
-      DECL_GEN_SIGNAL(_001OnTimer)
-      DECL_GEN_SIGNAL(_001OnIdleUpdateCmdUI)
-      DECL_GEN_SIGNAL(_001OnNcActivate)
-      DECL_GEN_SIGNAL(_001OnNcCalcSize)
-      DECL_GEN_SIGNAL(_001OnEnable)
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnDestroy);
+      DECL_GEN_SIGNAL(_001OnTimer);
+      DECL_GEN_SIGNAL(_001OnIdleUpdateCmdUI);
+      DECL_GEN_SIGNAL(_001OnNcActivate);
+      DECL_GEN_SIGNAL(_001OnNcCalcSize);
+      DECL_GEN_SIGNAL(_001OnEnable);
 
 
       bool _TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent, menu * pmenuParent);
-      /*DECL_GEN_SIGNAL(OnMouseProc)*/
+      /*DECL_GEN_SIGNAL(OnMouseProc);*/
       bool pre_create_window(CREATESTRUCT& cs);
       virtual void PostNcDestroy();
       ::user::front_end_schema::menu  * m_pschema;
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-      DECL_GEN_SIGNAL(_001OnShowWindow)
+      DECL_GEN_SIGNAL(_001OnShowWindow);
 
 
       sp(menu_item) get_item();

@@ -43,9 +43,9 @@ namespace plugin
 
       virtual bool IsWindowVisible();
 
-      DECL_GEN_SIGNAL(_001OnMouseMove)
-      DECL_GEN_SIGNAL(_001OnCheck)
-      DECL_GEN_SIGNAL(_001OnCreate)
+      DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECL_GEN_SIGNAL(_001OnCheck);
+      DECL_GEN_SIGNAL(_001OnCreate);
 
       virtual bool RedrawWindow(LPCRECT lpRectUpdate, ::draw2d::region* prgnUpdate, UINT flags);
 
@@ -56,8 +56,8 @@ namespace plugin
 
       virtual void _000OnMouse(::message::mouse * pmouse);
 
-      DECL_GEN_SIGNAL(on_ignore_message)
-      DECL_GEN_SIGNAL(_001OnTimer)
+      DECL_GEN_SIGNAL(on_ignore_message);
+      DECL_GEN_SIGNAL(_001OnTimer);
 
 
       virtual LRESULT DefWindowProc(UINT uiMessage, WPARAM wparam, lparam lparam);

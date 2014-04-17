@@ -22,12 +22,12 @@ namespace user
 
       void install_message_handling(::message::dispatch * pinterface);
 
-      DECL_GEN_SIGNAL(_001OnLButtonDown)
-      DECL_GEN_SIGNAL(_001OnLButtonUp)
-      DECL_GEN_SIGNAL(_001OnMouseMove)
-      DECL_GEN_SIGNAL(_001OnKeyDown)
-      DECL_GEN_SIGNAL(_001OnKeyUp)
-      DECL_GEN_SIGNAL(_001OnTimer)
+      DECL_GEN_SIGNAL(_001OnLButtonDown);
+      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECL_GEN_SIGNAL(_001OnKeyDown);
+      DECL_GEN_SIGNAL(_001OnKeyUp);
+      DECL_GEN_SIGNAL(_001OnTimer);
 
    };
 

@@ -172,8 +172,8 @@ public:
 
    void install_message_handling(::message::dispatch * pinterface);
 
-   DECL_GEN_SIGNAL(_001OnCopyData)
-   DECL_GEN_SIGNAL(_001OnTimer)
+   DECL_GEN_SIGNAL(_001OnCopyData);
+   DECL_GEN_SIGNAL(_001OnTimer);
 
 
 };

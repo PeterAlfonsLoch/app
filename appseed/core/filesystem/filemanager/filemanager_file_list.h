@@ -86,12 +86,12 @@ namespace filemanager
       bool on_simple_update(cmd_ui * pcmdui);
       bool on_simple_action(id id);
 
-      DECL_GEN_SIGNAL(_001OnUpdateOpenWith)
-      DECL_GEN_SIGNAL(_001OnEditCopy)
-      DECL_GEN_SIGNAL(_001OnUpdateEditCopy)
-      DECL_GEN_SIGNAL(_001OnEditPaste)
-      DECL_GEN_SIGNAL(_001OnUpdateEditPaste)
-      DECL_GEN_SIGNAL(_001OnShowWindow)
+      DECL_GEN_SIGNAL(_001OnUpdateOpenWith);
+      DECL_GEN_SIGNAL(_001OnEditCopy);
+      DECL_GEN_SIGNAL(_001OnUpdateEditCopy);
+      DECL_GEN_SIGNAL(_001OnEditPaste);
+      DECL_GEN_SIGNAL(_001OnUpdateEditPaste);
+      DECL_GEN_SIGNAL(_001OnShowWindow);
 
       virtual id data_get_current_list_layout_id();
 
@@ -101,24 +101,24 @@ namespace filemanager
       virtual void dump(dump_context & dumpcontext) const;
    #endif
 
-      DECL_GEN_SIGNAL(_001OnLButtonUp)
-      DECL_GEN_SIGNAL(_001OnContextMenu)
-      DECL_GEN_SIGNAL(_001OnTimer)
+      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(_001OnContextMenu);
+      DECL_GEN_SIGNAL(_001OnTimer);
 
-      DECL_GEN_SIGNAL(_001OnShellCommand)
-      DECL_GEN_SIGNAL(_001OnFileManagerItemCommand)
-      DECL_GEN_SIGNAL(_001OnFileManagerItemUpdate)
+      DECL_GEN_SIGNAL(_001OnShellCommand);
+      DECL_GEN_SIGNAL(_001OnFileManagerItemCommand);
+      DECL_GEN_SIGNAL(_001OnFileManagerItemUpdate);
 
-      DECL_GEN_SIGNAL(_001OnFileRename)
-      DECL_GEN_SIGNAL(_001OnUpdateFileRename)
+      DECL_GEN_SIGNAL(_001OnFileRename);
+      DECL_GEN_SIGNAL(_001OnUpdateFileRename);
 
-      DECL_GEN_SIGNAL(_001OnTrashThatIsNotTrash)
-      DECL_GEN_SIGNAL(_001OnUpdateTrashThatIsNotTrash)
+      DECL_GEN_SIGNAL(_001OnTrashThatIsNotTrash);
+      DECL_GEN_SIGNAL(_001OnUpdateTrashThatIsNotTrash);
 
-      DECL_GEN_SIGNAL(_001OnSpafy)
-      DECL_GEN_SIGNAL(_001OnUpdateSpafy)
-      DECL_GEN_SIGNAL(_001OnSpafy2)
-      DECL_GEN_SIGNAL(_001OnUpdateSpafy2)
+      DECL_GEN_SIGNAL(_001OnSpafy);
+      DECL_GEN_SIGNAL(_001OnUpdateSpafy);
+      DECL_GEN_SIGNAL(_001OnSpafy2);
+      DECL_GEN_SIGNAL(_001OnUpdateSpafy2);
 
       virtual void _001OnClick(uint_ptr nFlags, point point);
       virtual void _001OnRightClick(uint_ptr nFlags, point point);
@@ -262,8 +262,8 @@ namespace filemanager
       void _017UpdateList(const char * lpcsz, ::action::context actioncontext);
       void _017UpdateZipList(const char * lpcsz, ::action::context actioncontext);
 
-      DECL_GEN_SIGNAL(_001OnHScroll)
-         DECL_GEN_SIGNAL(_001OnVScroll)
+      DECL_GEN_SIGNAL(_001OnHScroll);
+         DECL_GEN_SIGNAL(_001OnVScroll);
 
 
          virtual void _001InitializeFormPreData();

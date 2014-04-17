@@ -394,7 +394,7 @@ namespace user
       friend class ::user::interaction;  // for access to m_bModalDisable
       friend class BaseReBar; // for access to m_bInRecalcLayout
 
-      //    DECL_GEN_SIGNAL(_001OnCreate)
+      //    DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnIdleUpdateCmdUI);
       DECL_GEN_SIGNAL(_001OnSetFocus);
       DECL_GEN_SIGNAL(_001OnSize);

@@ -28,9 +28,9 @@ public:
    virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
 
 
-   DECL_GEN_SIGNAL(_001OnInitialUpdate)
-   DECL_GEN_SIGNAL(_001OnSetFocus)
-   DECL_GEN_SIGNAL(_001OnKillFocus)
+   DECL_GEN_SIGNAL(_001OnInitialUpdate);
+   DECL_GEN_SIGNAL(_001OnSetFocus);
+   DECL_GEN_SIGNAL(_001OnKillFocus);
 
 
 };

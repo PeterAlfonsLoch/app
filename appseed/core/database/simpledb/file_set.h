@@ -17,7 +17,7 @@ namespace simpledb
 
       virtual bool clear_search();
 
-      DECL_GEN_VSIGNAL(data_on_after_change)
+      DECL_GEN_VSIGNAL(data_on_after_change);
    };
 
 } // namespace simpledb

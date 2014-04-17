@@ -50,6 +50,6 @@ public:
 protected:
 
 
-   DECL_GEN_SIGNAL(_001OnCreate)
+   DECL_GEN_SIGNAL(_001OnCreate);
 };
 
