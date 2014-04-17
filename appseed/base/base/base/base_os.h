@@ -45,8 +45,8 @@
 #elif defined(SOLARIS)
 
 #include "base/os/ansios/ansios.h"
-#include "base/os_binreloc.h"
-#include "base/os/solaris/ca_os.h"
+#include "base/os/os_binreloc.h"
+#include "base/os/solaris/solaris_solaris.h"
 
 #define BSD_STYLE_SOCKETS
 #define HAVE_MYSQL

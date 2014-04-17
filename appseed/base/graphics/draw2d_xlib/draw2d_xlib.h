@@ -1,3 +1,7 @@
+#ifndef BASE_DRAW2D_XLIB_h
+#define BASE_DRAW2D_XLIB_h
+
+
 #pragma once
 
 
@@ -8,9 +12,9 @@ class window;
 
 
 #ifdef _DRAW2D_CAIRO_LIBRARY
-    #define CLASS_DECL_DRAW2D_XLIB  CLASS_DECL_EXPORT
+#define CLASS_DECL_DRAW2D_XLIB  CLASS_DECL_EXPORT
 #else
-    #define CLASS_DECL_DRAW2D_XLIB  CLASS_DECL_IMPORT
+#define CLASS_DECL_DRAW2D_XLIB  CLASS_DECL_IMPORT
 #endif
 
 
@@ -37,5 +41,16 @@ class window;
 
 
 #pragma comment(lib, "Msimg32.lib")
+
+
+#endif // BASE_DRAW2D_XLIB_h
+
+
+
+
+
+
+
+
 
 

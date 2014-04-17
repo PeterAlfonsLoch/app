@@ -95,7 +95,7 @@ namespace http
 
 
 
-      DECL_GEN_SIGNAL(get)
+      DECL_GEN_SIGNAL(get);
 
 
       bool exists(const char * pszUrl, property_set & set);

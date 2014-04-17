@@ -888,7 +888,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/1636048861/aes_ofb.o \
 	${OBJECTDIR}/_ext/298944890/pk7_lib.o \
 	${OBJECTDIR}/_ext/732927794/cms_ddec.o \
-	${OBJECTDIR}/_ext/648102609/c_os.o \
 	${OBJECTDIR}/_ext/804368095/txt_db.o \
 	${OBJECTDIR}/_ext/677356862/p12_init.o \
 	${OBJECTDIR}/_ext/2109886901/collection_object_list.o \
@@ -5044,10 +5043,6 @@ ${OBJECTDIR}/_ext/298944890/pk7_lib.o: ../base/openssl/crypto/pkcs7/pk7_lib.c
 ${OBJECTDIR}/_ext/732927794/cms_ddec.o: ../base/openssl/demos/cms/cms_ddec.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/732927794
 	$(COMPILE.c) -fast -g -KPIC  -o ${OBJECTDIR}/_ext/732927794/cms_ddec.o ../base/openssl/demos/cms/cms_ddec.c
-
-${OBJECTDIR}/_ext/648102609/c_os.o: ../base/os/solaris/c_os.c 
-	${MKDIR} -p ${OBJECTDIR}/_ext/648102609
-	$(COMPILE.c) -fast -g -KPIC  -o ${OBJECTDIR}/_ext/648102609/c_os.o ../base/os/solaris/c_os.c
 
 ${OBJECTDIR}/_ext/804368095/txt_db.o: ../base/openssl/crypto/txt_db/txt_db.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/804368095

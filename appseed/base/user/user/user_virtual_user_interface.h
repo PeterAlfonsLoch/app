@@ -113,10 +113,10 @@ public:
 
 
 
-   DECL_GEN_SIGNAL(_001OnSize)
-      DECL_GEN_SIGNAL(_001OnMove)
-      DECL_GEN_SIGNAL(_001OnDestroy)
-      DECL_GEN_SIGNAL(_001OnNcDestroy)
+   DECL_GEN_SIGNAL(_001OnSize);
+      DECL_GEN_SIGNAL(_001OnMove);
+      DECL_GEN_SIGNAL(_001OnDestroy);
+      DECL_GEN_SIGNAL(_001OnNcDestroy);
 
       void SendMessageToDescendants(UINT message, WPARAM wParam = 0, lparam lParam = 0, bool bDeep = true, bool bOnlyPerm = 0);
 

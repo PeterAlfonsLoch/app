@@ -11,7 +11,7 @@ namespace hotplugin
    class CLASS_DECL_BASE plugin :
       virtual public ::object,
       virtual public ::simple_ui::style,
-      virtual public ::os::simple_ui
+      virtual public ::base::os::simple_ui
 #ifndef METROWIN
       , virtual public ::small_ipc_channel
 #endif
@@ -82,10 +82,10 @@ namespace hotplugin
       virtual oswindow         get_host_window();
       virtual void         get_window_rect(LPRECT lprect);
 
-      using ::os::simple_ui::client_to_screen;
+      using ::base::os::simple_ui::client_to_screen;
       virtual void client_to_screen(POINT * ppt);
 
-      using ::os::simple_ui::screen_to_client;
+      using ::base::os::simple_ui::screen_to_client;
       virtual void screen_to_client(POINT * ppt);
 
       // client should implement
@@ -124,7 +124,7 @@ namespace hotplugin
       virtual void plugin_system_redraw();
 
       
-      using ::os::simple_ui::message_handler;
+      using ::base::os::simple_ui::message_handler;
 #ifdef WINDOWS
       //virtual LRESULT message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam);
 #else

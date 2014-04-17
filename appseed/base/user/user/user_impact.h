@@ -90,12 +90,11 @@ namespace user
       virtual void OnPrepareDC(::draw2d::graphics * pgraphics, CPrintInfo* pInfo = NULL);
 
       //virtual void OnInitialUpdate(); // called first time after construct
-      DECL_GEN_VSIGNAL(_001OnInitialUpdate) // called first time after construct
+      DECL_GEN_VSIGNAL(_001OnInitialUpdate); // called first time after construct
 
 
          // Activation
-         virtual void OnActivateView(bool bActivate, sp(impact) pActivateView,
-         sp(impact) pDeactiveView);
+         virtual void OnActivateView(bool bActivate, sp(impact) pActivateView, sp(impact) pDeactiveView);
       virtual void OnActivateFrame(UINT nState, sp(::user::frame_window) pFrameWnd);
 
       // General drawing/updating
@@ -143,8 +142,8 @@ namespace user
       virtual void PostNcDestroy();
 
 
-      DECL_GEN_SIGNAL(_001OnCreate)
-         DECL_GEN_SIGNAL(_001OnDestroy)
+      DECL_GEN_SIGNAL(_001OnCreate);
+         DECL_GEN_SIGNAL(_001OnDestroy);
          void OnPaint();
       //int32_t OnMouseActivate(::window_sp pDesktopWnd, UINT nHitTest, UINT message);
       // commands
@@ -161,10 +160,10 @@ namespace user
       virtual void collaborate(::job * pjob);
       virtual int32_t  get_total_page_count(::job * pjob);
 
-      DECL_GEN_SIGNAL(_001OnView)
-         DECL_GEN_SIGNAL(_001OnLButtonDown)
-         DECL_GEN_SIGNAL(_001OnLButtonUp)
-         DECL_GEN_SIGNAL(_001OnMouseMove)
+      DECL_GEN_SIGNAL(_001OnView);
+         DECL_GEN_SIGNAL(_001OnLButtonDown);
+         DECL_GEN_SIGNAL(_001OnLButtonUp);
+         DECL_GEN_SIGNAL(_001OnMouseMove);
 
          virtual ::user::interaction::e_type get_window_type();
 
@@ -211,19 +210,19 @@ namespace user
 
       //      virtual bool pre_create_window(CREATESTRUCT& cs);
 
-      DECL_GEN_SIGNAL(_001OnMouseActivate)
-         DECL_GEN_SIGNAL(_001OnUpdateSplitCmd)
-         DECL_GEN_SIGNAL(_001OnSplitCmd)
-         DECL_GEN_SIGNAL(_001OnUpdateNextPaneMenu)
-         DECL_GEN_SIGNAL(_001OnNextPaneCmd)
+      DECL_GEN_SIGNAL(_001OnMouseActivate);
+         DECL_GEN_SIGNAL(_001OnUpdateSplitCmd);
+         DECL_GEN_SIGNAL(_001OnSplitCmd);
+         DECL_GEN_SIGNAL(_001OnUpdateNextPaneMenu);
+         DECL_GEN_SIGNAL(_001OnNextPaneCmd);
 
-         DECL_GEN_SIGNAL(_001OnFilePrint)
-         DECL_GEN_SIGNAL(_001OnFilePrintPreview)
+         DECL_GEN_SIGNAL(_001OnFilePrint);
+         DECL_GEN_SIGNAL(_001OnFilePrintPreview);
 
 
-         DECL_GEN_SIGNAL(_001OnRButtonDown)
+         DECL_GEN_SIGNAL(_001OnRButtonDown);
          //         DECL_GEN_SIGNAL(_001OnLButtonDown)
-         DECL_GEN_SIGNAL(_001OnMButtonDown)
+         DECL_GEN_SIGNAL(_001OnMButtonDown);
 
          //         virtual void install_message_handling(::message::dispatch * pinterface);
 

@@ -205,22 +205,22 @@ namespace user
       void GetBarInfo(BaseControlBarInfo* pInfo);
       void SetBarInfo(BaseControlBarInfo* pInfo, sp(::user::frame_window) pFrameWnd);
 
-      DECL_GEN_SIGNAL(_001OnTimer)
-      DECL_GEN_SIGNAL(_001OnCreate)
-      DECL_GEN_SIGNAL(_001OnDestroy)
-      DECL_GEN_SIGNAL(_001OnCtlColor)
-      DECL_GEN_SIGNAL(_001OnWindowPosChanging)
-      DECL_GEN_SIGNAL(_001OnSizeParent)
-      DECL_GEN_SIGNAL(_001OnHelpHitTest)
-      DECL_GEN_SIGNAL(_001OnInitialUpdate)
-      DECL_GEN_SIGNAL(_001OnIdleUpdateCmdUI)
-      DECL_GEN_SIGNAL(_001OnLButtonDown)
-      DECL_GEN_SIGNAL(_001OnLButtonDblClk)
-      DECL_GEN_SIGNAL(_001OnMouseActivate)
-      DECL_GEN_SIGNAL(_001OnMouseMove)
-      DECL_GEN_SIGNAL(_001OnLButtonUp)
-      //DECL_GEN_SIGNAL(_001OnShowWindow)
-      //DECL_GEN_SIGNAL(_001OnCancelMode)
+      DECL_GEN_SIGNAL(_001OnTimer);
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnDestroy);
+      DECL_GEN_SIGNAL(_001OnCtlColor);
+      DECL_GEN_SIGNAL(_001OnWindowPosChanging);
+      DECL_GEN_SIGNAL(_001OnSizeParent);
+      DECL_GEN_SIGNAL(_001OnHelpHitTest);
+      DECL_GEN_SIGNAL(_001OnInitialUpdate);
+      DECL_GEN_SIGNAL(_001OnIdleUpdateCmdUI);
+      DECL_GEN_SIGNAL(_001OnLButtonDown);
+      DECL_GEN_SIGNAL(_001OnLButtonDblClk);
+      DECL_GEN_SIGNAL(_001OnMouseActivate);
+      DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      //DECL_GEN_SIGNAL(_001OnShowWindow);
+      //DECL_GEN_SIGNAL(_001OnCancelMode);
 
       //   DECL_GEN_SIGNAL(_001OnPaint)
       //   virtual void _001OnDraw(::draw2d::graphics * pdc);

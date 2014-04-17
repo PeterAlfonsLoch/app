@@ -70,7 +70,7 @@ namespace install
 
 
 
-      ::os::simple_ui * m_pwindow;
+      ::base::os::simple_ui * m_pwindow;
 
       string            m_strBuild;
       string            m_strBuildResource;

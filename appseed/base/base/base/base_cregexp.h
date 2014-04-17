@@ -108,7 +108,8 @@ enum EMetaSymbols
   ReEnd,              // \M
 #endif
 
-  ReChrLast,
+  ReChrLast
+          
 };
 
 enum EError

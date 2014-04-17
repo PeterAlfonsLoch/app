@@ -387,8 +387,8 @@ inline dispatch::signal_item * dispatch::signal_item_array::GetSignalById(signal
 }
 
 
-#define DECL_GEN_SIGNAL(function) void function(signal_details * pobj);
-#define DECL_GEN_VSIGNAL(function) virtual void function(signal_details * pobj);
+#define DECL_GEN_SIGNAL(function) void function(signal_details * pobj)
+#define DECL_GEN_VSIGNAL(function) virtual void function(signal_details * pobj)
 #define BEG_GEN_SIGNAL(cl, function, signal_impl_class) void cl::function(signal_details * pobj) \
 { SCAST_PTR(signal_impl_class, pobj, psignal);
 #define END_GEN_SIGNAL() }

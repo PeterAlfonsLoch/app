@@ -39,6 +39,4 @@
 
 #include "base/base/crypto/crypto/crypto.h"
 
-#include "base/base/geoip/geoip.h"
-
 #include "base/net/idn/idna.h"

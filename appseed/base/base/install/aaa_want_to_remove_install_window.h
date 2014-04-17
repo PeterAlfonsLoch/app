@@ -7,7 +7,7 @@ namespace install
 
 
    class CLASS_DECL_BASE window :
-      virtual public ::os::simple_ui
+      virtual public ::base::os::simple_ui
    {
    public:
 

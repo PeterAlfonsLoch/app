@@ -32,8 +32,8 @@ namespace database
 
       void initialize_data_client(server * pserver);
 
-      DECL_GEN_VSIGNAL(data_on_before_change)
-      DECL_GEN_VSIGNAL(data_on_after_change)
+      DECL_GEN_VSIGNAL(data_on_before_change);
+      DECL_GEN_VSIGNAL(data_on_after_change);
 
       virtual bool data_set(class id, bool b, update_hint * phint = NULL);
       virtual bool data_set(class id, const char * lpsz, update_hint * puh = NULL);

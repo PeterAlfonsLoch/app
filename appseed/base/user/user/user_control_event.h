@@ -18,7 +18,8 @@ namespace user
       event_tab_key,
       event_key_down,
       event_after_change_text,
-      event_after_change_cur_sel,
+      event_after_change_cur_sel
+              
    };
 
 

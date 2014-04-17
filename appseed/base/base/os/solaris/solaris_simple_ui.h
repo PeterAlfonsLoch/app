@@ -4,103 +4,107 @@
 #include "base/os/linux/linux_window_xlib.h"
 
 
-namespace os
+namespace base
 {
 
 
-   class CLASS_DECL_BASE simple_ui :
-      virtual public ::simple_ui::interaction
-   {
-   public:
-
-      HINSTANCE                  m_hinstance;
-      string                     m_strTitle;
-      string                     m_strWindowClass;
-
-      int                        m_w;
-      int                        m_h;
-      ::draw2d::dib_sp           m_dib;
-      SIZE                       m_size;
-      POINT                      m_pt;
-      window_xlib                m_xlib;
+    namespace os
+    {
 
 
-      oswindow                   m_window;
-      bool                       m_bShiftKey;
-      rect                       m_rectDesktop;
+       class CLASS_DECL_BASE simple_ui :
+          virtual public ::simple_ui::interaction
+       {
+       public:
 
-      XWindowAttributes          m_attr;
-      int32_t                    m_iDepth;
-      XVisualInfo                m_visualinfo;
-      int                        m_iScreen;
+          HINSTANCE                  m_hinstance;
+          string                     m_strTitle;
+          string                     m_strWindowClass;
 
-
-      window_graphics *          m_pgraphics;
-
-
-      bool                       m_bComposite;
-
-      mutex *                    m_pmutexGraphics;
-      mutex *                    m_pmutexDisplay;
-
-      bool                       m_bRunLoop;
-
-      rect                       m_rectWindow;
-
-      bool                       m_bNoDecorations;
+          int                        m_w;
+          int                        m_h;
+          ::draw2d::dib_sp           m_dib;
+          SIZE                       m_size;
+          POINT                      m_pt;
+          window_xlib                m_xlib;
 
 
-      simple_ui(sp(base_application) papp);
+          oswindow                   m_window;
+          bool                       m_bShiftKey;
+          rect                       m_rectDesktop;
 
-      virtual ~simple_ui();
-
-      virtual bool create_window(LPCRECT lprect);
-
-      virtual bool prepare_window(LPCRECT lprect);
-
-
-      using ::simple_ui::interaction::client_to_screen;
-      virtual void client_to_screen(POINT * ppt);
-
-      using ::simple_ui::interaction::screen_to_client;
-      virtual void screen_to_client(POINT * ppt);
-
-      virtual void GetWindowRect(RECT * prect);
-      virtual void get_client_rect(RECT * prect);
+          XWindowAttributes          m_attr;
+          int32_t                    m_iDepth;
+          XVisualInfo                m_visualinfo;
+          int                        m_iScreen;
 
 
-      virtual bool show_window(bool bShow = true);
-
-      virtual bool destroy_window();
+          window_graphics *          m_pgraphics;
 
 
-      virtual bool on_key_down(uint32_t uiKey);
-      virtual bool on_key_up(uint32_t uiKey);
+          bool                       m_bComposite;
+
+          mutex *                    m_pmutexGraphics;
+          mutex *                    m_pmutexDisplay;
+
+          bool                       m_bRunLoop;
+
+          rect                       m_rectWindow;
+
+          bool                       m_bNoDecorations;
 
 
-      virtual bool on_move(int32_t x, int32_t y);
-      virtual bool on_size(int32_t cx, int32_t cy);
+          simple_ui(sp(base_application) papp);
+
+          virtual ~simple_ui();
+
+          virtual bool create_window(LPCRECT lprect);
+
+          virtual bool prepare_window(LPCRECT lprect);
 
 
-      virtual void run_loop();
+          using ::simple_ui::interaction::client_to_screen;
+          virtual void client_to_screen(POINT * ppt);
+
+          using ::simple_ui::interaction::screen_to_client;
+          virtual void screen_to_client(POINT * ppt);
+
+          virtual void GetWindowRect(RECT * prect);
+          virtual void get_client_rect(RECT * prect);
 
 
-      virtual void on_draw_framebuffer();
+          virtual bool show_window(bool bShow = true);
 
-      virtual void set_capture();
-      virtual void release_capture();
-
-      virtual bool move_window(int32_t x, int32_t y);
-      virtual bool set_window_pos(int32_t x, int32_t y, int32_t cx, int32_t cy, bool bShow);
-
-   };
+          virtual bool destroy_window();
 
 
+          virtual bool on_key_down(uint32_t uiKey);
+          virtual bool on_key_up(uint32_t uiKey);
 
 
-} // namespace os
+          virtual bool on_move(int32_t x, int32_t y);
+          virtual bool on_size(int32_t cx, int32_t cy);
 
 
+          virtual void run_loop();
+
+
+          virtual void on_draw_framebuffer();
+
+          virtual void set_capture();
+          virtual void release_capture();
+
+          virtual bool move_window(int32_t x, int32_t y);
+          virtual bool set_window_pos(int32_t x, int32_t y, int32_t cx, int32_t cy, bool bShow);
+
+       };
+
+
+
+
+    } // namespace os
+
+} // namespace base
 
 
 

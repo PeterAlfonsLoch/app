@@ -29,7 +29,7 @@ namespace http
       ::sockets::http_client_socket * get(::sockets::socket_handler & handler, const char * pszUrl, property_set & set);
 
 
-      DECL_GEN_SIGNAL(get)
+      DECL_GEN_SIGNAL(get);
 
       property_set & process_set(property_set & set, const char * pszUrl);
 

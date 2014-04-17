@@ -4,16 +4,16 @@
 
 #include <wchar.h>
 
-#include "ca_os_graphics.h"
-#include "ca_os_http_lib.h"
-#include "ca_os_http.h"
-#include "ca_os_process.h"
-#include "ca_os_cross_win_gdi.h"
-#include "ca_os_cross_win_file.h"
-#include "ca_os_file.h"
-#include "ca_os_file_watcher.h"
-#include "ca_os_cairo_keep.h"
-#include "ca_os_window_cairo.h"
+#include "solaris_graphics.h"
+#include "solaris_http_lib.h"
+#include "solaris_http.h"
+#include "solaris_process.h"
+#include "solaris_cross_win_gdi.h"
+#include "solaris_cross_win_file.h"
+#include "solaris_file.h"
+#include "solaris_file_watcher.h"
+#include "solaris_cairo_keep.h"
+#include "solaris_window_cairo.h"
 
 
 

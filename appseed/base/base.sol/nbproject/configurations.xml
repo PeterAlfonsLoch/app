@@ -2931,8 +2931,6 @@
             <itemPath>../base/os/cross/cross.h</itemPath>
           </logicalFolder>
           <logicalFolder name="solaris" displayName="solaris" projectFiles="true">
-            <itemPath>../base/os/solaris/c_os.c</itemPath>
-            <itemPath>../base/os/solaris/ca_os.h</itemPath>
             <itemPath>../base/os/solaris/linux_internal.h</itemPath>
             <itemPath>../base/os/solaris/solaris.cpp</itemPath>
             <itemPath>../base/os/solaris/solaris.h</itemPath>
@@ -2944,6 +2942,7 @@
             <itemPath>../base/os/solaris/solaris_cross_win_gdi.cpp</itemPath>
             <itemPath>../base/os/solaris/solaris_cross_win_gdi.h</itemPath>
             <itemPath>../base/os/solaris/solaris_cross_win_gdi_internal.h</itemPath>
+            <itemPath>../base/os/solaris/solaris_debug.h</itemPath>
             <itemPath>../base/os/solaris/solaris_display.cpp</itemPath>
             <itemPath>../base/os/solaris/solaris_file.cpp</itemPath>
             <itemPath>../base/os/solaris/solaris_file.h</itemPath>
@@ -2966,6 +2965,7 @@
             <itemPath>../base/os/solaris/solaris_simple_ui.cpp</itemPath>
             <itemPath>../base/os/solaris/solaris_simple_ui.h</itemPath>
             <itemPath>../base/os/solaris/solaris_small_ipca_channel.cpp</itemPath>
+            <itemPath>../base/os/solaris/solaris_solaris.h</itemPath>
             <itemPath>../base/os/solaris/solaris_thread.cpp</itemPath>
             <itemPath>../base/os/solaris/solaris_win_base.cpp</itemPath>
             <itemPath>../base/os/solaris/solaris_window.cpp</itemPath>
@@ -4075,12 +4075,13 @@
             <pElem>../framework</pElem>
             <pElem>../..</pElem>
             <pElem>../../../..</pElem>
+            <pElem>../base/openssl/include</pElem>
+            <pElem>../../../../nodeapp/thirdparty/include</pElem>
+            <pElem>..</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>OPENSSL_NO_ASM</Elem>
-          </preprocessorList>
         </cTool>
         <ccTool>
+          <commandlineTool>CC</commandlineTool>
           <incDir>
             <pElem>../../../../include</pElem>
             <pElem>../../../include</pElem>
@@ -4088,9 +4089,12 @@
             <pElem>../..</pElem>
             <pElem>../../../..</pElem>
             <pElem>..</pElem>
+            <pElem>../base/openssl/include</pElem>
+            <pElem>../../../../nodeapp/thirdparty/include</pElem>
           </incDir>
           <standardsEvolution>3</standardsEvolution>
           <languageExtension>2</languageExtension>
+          <commandLine>-features=namespace,rtti</commandLine>
         </ccTool>
       </compileType>
     </conf>

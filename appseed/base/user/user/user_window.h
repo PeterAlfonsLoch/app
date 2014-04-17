@@ -89,7 +89,7 @@ public:
 
    virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
-   DECL_GEN_SIGNAL(_002OnDraw)
+   DECL_GEN_SIGNAL(_002OnDraw);
 
 
 #if (WINVER >= 0x0500) && defined(WINDOWSEX)
@@ -364,7 +364,7 @@ public:
    //      virtual sp(::user::interaction) GetWindow(UINT nCmd);
    virtual sp(::user::interaction) GetLastActivePopup();
 
-   virtual bool IsChild(sp(::user::interaction)  pwindow);
+   virtual bool IsChild(::user::interaction *  pwindow);
    virtual ::user::interaction * get_parent();
    ::user::interaction * set_parent(::user::interaction * pWndNewParent);
 
@@ -450,12 +450,12 @@ public:
 #ifdef WINDOWSEX
    bool OnCopyData(::window_sp pwindow, COPYDATASTRUCT* pCopyDataStruct);
 #endif
-   DECL_GEN_SIGNAL(_001OnCreate)
+   DECL_GEN_SIGNAL(_001OnCreate);
 
 
-      HBRUSH OnCtlColor(::draw2d::graphics * pgraphics, ::window_sp pwindow, UINT nCtlColor);
+   void * OnCtlColor(::draw2d::graphics * pgraphics, ::window_sp pwindow, UINT nCtlColor);
 
-   DECL_GEN_SIGNAL(_001OnDestroy)
+   DECL_GEN_SIGNAL(_001OnDestroy);
       void OnEnable(bool bEnable);
    void OnEndSession(bool bEnding);
    void OnEnterIdle(UINT nWhy, ::window_sp pWho);
@@ -473,9 +473,9 @@ public:
    LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
    void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);
    void OnMove(int32_t x, int32_t y);
-   DECL_GEN_SIGNAL(_001OnPaint)
-      DECL_GEN_SIGNAL(_001OnPrint)
-      DECL_GEN_SIGNAL(_001OnCaptureChanged)
+   DECL_GEN_SIGNAL(_001OnPaint);
+      DECL_GEN_SIGNAL(_001OnPrint);
+      DECL_GEN_SIGNAL(_001OnCaptureChanged);
       void OnParentNotify(UINT message, LPARAM lParam);
    HCURSOR OnQueryDragIcon();
    bool OnQueryEndSession();
@@ -504,7 +504,7 @@ public:
    void OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS* lpncsp);
 #endif
    bool OnNcCreate(LPCREATESTRUCT lpCreateStruct);
-   DECL_GEN_SIGNAL(_001OnNcDestroy)
+   DECL_GEN_SIGNAL(_001OnNcDestroy);
       LRESULT OnNcHitTest(point point);
    void OnNcLButtonDblClk(UINT nHitTest, point point);
    void OnNcLButtonDown(UINT nHitTest, point point);

@@ -16,7 +16,8 @@ namespace user
       AppearanceNotifyIcon,
       AppearanceUp,
       AppearanceDown,
-      AppearanceFixedSize,
+      AppearanceFixedSize
+              
 
    };
 

@@ -374,33 +374,33 @@ namespace user
 
       virtual void _000OnMouse(::message::mouse * pmouse);
       virtual void _000OnKey(::message::key * pkey);
-      DECL_GEN_SIGNAL(_001OnMouseMove)
-         DECL_GEN_SIGNAL(_001OnMouseEnter)
-         DECL_GEN_SIGNAL(_001OnMouseLeave)
-         DECL_GEN_SIGNAL(_001OnKeyDown)
-         DECL_GEN_SIGNAL(_001OnKeyUp)
-         DECL_GEN_SIGNAL(_001OnTimer)
-         DECL_GEN_SIGNAL(_001OnChar)
-         DECL_GEN_SIGNAL(_001OnDestroy)
-         DECL_GEN_SIGNAL(_001OnSize)
-         DECL_GEN_SIGNAL(_001OnCreate)
-         DECL_GEN_SIGNAL(_001OnMove)
-         DECL_GEN_SIGNAL(_001OnUser184)
-         DECL_GEN_SIGNAL(_001OnNcCalcSize)
-         DECL_GEN_SIGNAL(_001OnClose)
-         DECL_GEN_SIGNAL(_001OnCommand)
-         DECL_GEN_SIGNAL(_001OnSimpleCommand)
+      DECL_GEN_SIGNAL(_001OnMouseMove);
+         DECL_GEN_SIGNAL(_001OnMouseEnter);
+         DECL_GEN_SIGNAL(_001OnMouseLeave);
+         DECL_GEN_SIGNAL(_001OnKeyDown);
+         DECL_GEN_SIGNAL(_001OnKeyUp);
+         DECL_GEN_SIGNAL(_001OnTimer);
+         DECL_GEN_SIGNAL(_001OnChar);
+         DECL_GEN_SIGNAL(_001OnDestroy);
+         DECL_GEN_SIGNAL(_001OnSize);
+         DECL_GEN_SIGNAL(_001OnCreate);
+         DECL_GEN_SIGNAL(_001OnMove);
+         DECL_GEN_SIGNAL(_001OnUser184);
+         DECL_GEN_SIGNAL(_001OnNcCalcSize);
+         DECL_GEN_SIGNAL(_001OnClose);
+         DECL_GEN_SIGNAL(_001OnCommand);
+         DECL_GEN_SIGNAL(_001OnSimpleCommand);
 
 
 
-      virtual DECL_GEN_SIGNAL(_002OnLButtonDown)
-         virtual DECL_GEN_SIGNAL(_002OnLButtonUp)
-         virtual DECL_GEN_SIGNAL(_002OnMouseMove)
-         virtual DECL_GEN_SIGNAL(_002OnMouseEnter)
-         virtual DECL_GEN_SIGNAL(_002OnMouseLeave)
-         virtual DECL_GEN_SIGNAL(_002OnKeyDown)
-         virtual DECL_GEN_SIGNAL(_002OnKeyUp)
-         virtual DECL_GEN_SIGNAL(_002OnTimer)
+      virtual DECL_GEN_SIGNAL(_002OnLButtonDown);
+         virtual DECL_GEN_SIGNAL(_002OnLButtonUp);
+         virtual DECL_GEN_SIGNAL(_002OnMouseMove);
+         virtual DECL_GEN_SIGNAL(_002OnMouseEnter);
+         virtual DECL_GEN_SIGNAL(_002OnMouseLeave);
+         virtual DECL_GEN_SIGNAL(_002OnKeyDown);
+         virtual DECL_GEN_SIGNAL(_002OnKeyUp);
+         virtual DECL_GEN_SIGNAL(_002OnTimer);
 
 
 

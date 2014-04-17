@@ -167,8 +167,8 @@ namespace user
       //virtual void _001OnDraw(::draw2d::graphics * pdc);
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-      DECL_GEN_SIGNAL(_guserbaseOnInitialUpdate)
-      DECL_GEN_VSIGNAL(guserbaseOnInitialUpdate)
+      DECL_GEN_SIGNAL(_guserbaseOnInitialUpdate);
+      DECL_GEN_VSIGNAL(guserbaseOnInitialUpdate);
 
       virtual void on_set_parent(sp(::user::interaction) puiParent);
 
@@ -295,7 +295,7 @@ namespace user
 
       void UpdateFrameTitleForDocument(const char * lpszDocName);
       virtual bool pre_create_window(CREATESTRUCT& cs);
-      virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
+      //virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
       virtual void PostNcDestroy();   // default to delete this.
       int32_t OnCreateHelper(LPCREATESTRUCT lpcs, sp(::create_context) pContext);
       void BringToTop(int32_t nCmdShow);
@@ -312,9 +312,9 @@ namespace user
       friend class window;  // for access to m_bModalDisable
       friend class CReBar; // for access to m_bInRecalcLayout
 
-      DECL_GEN_SIGNAL(_001OnCreate)
-      DECL_GEN_SIGNAL(_001OnDestroy)
-      DECL_GEN_SIGNAL(_001OnSysCommand)
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnDestroy);
+      DECL_GEN_SIGNAL(_001OnSysCommand);
 
       void OnClose();
       LRESULT OnPopMessageString(WPARAM wParam, LPARAM lParam);
@@ -326,8 +326,8 @@ namespace user
       void OnSize(UINT nType, int32_t cx, int32_t cy);
       bool OnEraseBkgnd(::draw2d::graphics * pgraphics);
       //void OnActivate(UINT nState, sp(::user::interaction) pWndOther, bool bMinimized);
-      DECL_GEN_SIGNAL(_001OnActivate)
-         DECL_GEN_SIGNAL(_001OnNcActivate)
+      DECL_GEN_SIGNAL(_001OnActivate);
+         DECL_GEN_SIGNAL(_001OnNcActivate);
          //bool OnNcActivate(bool bActive);
          void OnSysCommand(UINT nID, LPARAM lParam);
       bool OnQueryEndSession();
@@ -395,10 +395,10 @@ namespace user
       friend class BaseReBar; // for access to m_bInRecalcLayout
 
       //    DECL_GEN_SIGNAL(_001OnCreate)
-      DECL_GEN_SIGNAL(_001OnIdleUpdateCmdUI)
-      DECL_GEN_SIGNAL(_001OnSetFocus)
-      DECL_GEN_SIGNAL(_001OnSize)
-      DECL_GEN_SIGNAL(_001OnQueryEndSession)
+      DECL_GEN_SIGNAL(_001OnIdleUpdateCmdUI);
+      DECL_GEN_SIGNAL(_001OnSetFocus);
+      DECL_GEN_SIGNAL(_001OnSize);
+      DECL_GEN_SIGNAL(_001OnQueryEndSession);
 
       friend class user;
       virtual void AddControlBar(::user::control_bar *pBar);

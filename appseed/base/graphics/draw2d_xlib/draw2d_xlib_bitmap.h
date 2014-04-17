@@ -11,7 +11,7 @@ namespace draw2d_xlib
    public:
 
 
-      ::os::simple_ui         m_ui;
+      ::base::os::simple_ui         m_ui;
       ::Pixmap                m_pixmap;
       ::primitive::memory     m_mem;
       ::size                  m_size;

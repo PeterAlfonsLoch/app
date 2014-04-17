@@ -19,7 +19,7 @@ namespace sockets
       virtual bool open(const char * lpszFileName, UINT nOpenFlags);
 
 
-      DECL_GEN_SIGNAL(on_http_request_response)
+      DECL_GEN_SIGNAL(on_http_request_response);
 
 
    };
