@@ -220,7 +220,7 @@ namespace fontopus
 
       {
 
-         string_timeout & strtimeout = ::fontopus::authentication_map::m_authmap[strUsername].m_mapServer[m_strRequestingServer];
+         string_timeout & strtimeout = Application.fontopus()->m_authmap[strUsername].m_mapServer[m_strRequestingServer];
 
          if (strtimeout.get_length() > 32 && strtimeout.valid())
          {
@@ -243,7 +243,7 @@ namespace fontopus
 
       {
 
-         string_timeout & strtimeout = ::fontopus::authentication_map::m_authmap[strUsername].m_mapFontopus[m_strFontopusServer];
+         string_timeout & strtimeout = Application.fontopus()->m_authmap[strUsername].m_mapFontopus[m_strFontopusServer];
 
          if (strtimeout.get_length() > 32 && strtimeout.valid())
          {
@@ -391,8 +391,8 @@ namespace fontopus
             if (stricmp_dup(doc.get_root()->attr("id"), "auth") == 0 && string(doc.get_root()->attr("passhash")).get_length() > 16 && atoi(doc.get_root()->attr("secureuserid")) > 0)
             {
 
-               ::fontopus::authentication_map::m_authmap[m_editUser.m_strText].m_mapServer[m_strRequestingServer] = strResponse;
-               ::fontopus::authentication_map::m_authmap[m_editUser.m_strText].m_mapFontopus[m_strFontopusServer] = strResponse;
+               Application.fontopus()->m_authmap[m_editUser.m_strText].m_mapServer[m_strRequestingServer] = strResponse;
+               Application.fontopus()->m_authmap[m_editUser.m_strText].m_mapFontopus[m_strFontopusServer] = strResponse;
 
                m_strPasshash = doc.get_root()->attr("passhash");
                m_strSessId = doc.get_root()->attr("sessid");

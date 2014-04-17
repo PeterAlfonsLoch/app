@@ -78,7 +78,7 @@ namespace net
    }
 
 
-   address::address(const string & host, const string & strService)
+   address::address(sp(base_application) papp, const string & host, const string & strService)
    {
 
       zero(this, sizeof(u.m_sa));
@@ -90,7 +90,7 @@ namespace net
 #endif
 
       set_address(host);
-      u.s.m_port = ::sockets::net::service_port(strService);
+      u.s.m_port = Sys(papp).net().service_port(strService);
       sync_os_service();
 
    }

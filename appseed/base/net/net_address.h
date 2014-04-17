@@ -61,7 +61,7 @@ namespace net
       address();
       address(int32_t family, port_t port = 0);
       address(const string & strAddress, port_t port = 0);
-      address(const string & strAddress, const string & strServiceName);
+      address(sp(base_application) papp, const string & strAddress, const string & strServiceName);
       address(const in_addr & a, port_t port = 0);
       address(const in6_addr & a, port_t port = 0);
       address(const sockaddr_in & a);

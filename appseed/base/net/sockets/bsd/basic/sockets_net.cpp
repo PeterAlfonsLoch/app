@@ -17,9 +17,6 @@
 namespace sockets
 {
 
-    mutex net::m_mutexCache;
-    string_map < net::dns_cache_item * >  net::m_mapCache;
-
 
    net::net(sp(base_application) papp) :
       element(papp)

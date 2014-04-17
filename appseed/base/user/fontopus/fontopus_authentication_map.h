@@ -10,7 +10,6 @@ namespace fontopus
    {
    public:
 
-      static authentication_map m_authmap;
 
    };
 

@@ -559,8 +559,8 @@ namespace fontopus
       {
          if(doc.get_root()->attr("id") == "auth" && doc.get_root()->attr("passhash").has_char() && doc.get_root()->attr("secureuserid").has_char())
          {
-            ::fontopus::authentication_map::m_authmap[m_strUsername].m_mapServer[m_strRequestingServer] = strResponse;
-            ::fontopus::authentication_map::m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer] = strResponse;
+            Application.fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer] = strResponse;
+            Application.fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer] = strResponse;
             m_puser->m_strLogin = m_strUsername;
             m_puser->m_strFontopusServerSessId = doc.get_root()->attr("sessid");
             m_puser->set_sessid(m_puser->m_strFontopusServerSessId, m_strLoginUrl);
@@ -690,9 +690,9 @@ namespace fontopus
    string login_thread::NetLogin(::http::e_status * pestatus)
    {
 
-      if(::fontopus::authentication_map::m_authmap[m_strUsername].m_mapServer[m_strRequestingServer].get_length() > 32)
+      if(Application.fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer].get_length() > 32)
       {
-         return ::fontopus::authentication_map::m_authmap[m_strUsername].m_mapServer[m_strRequestingServer];
+         return Application.fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer];
       }
 
       string strGetFontopus("http://" + m_strRequestingServer + "/get_fontopus");
@@ -710,9 +710,9 @@ namespace fontopus
       if(domainFontopus.m_strRadix != "ca2")
          return "";
 
-      if (::fontopus::authentication_map::m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer].get_length() > 32)
+      if (Application.fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer].get_length() > 32)
       {
-         return ::fontopus::authentication_map::m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer];
+         return Application.fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer];
       }
 
 

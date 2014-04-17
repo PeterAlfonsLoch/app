@@ -112,8 +112,8 @@ namespace sockets
 
       };
 
-      static mutex                                           m_mutexCache;
-      static string_map < dns_cache_item * >   m_mapCache;
+      mutex                                           m_mutexCache;
+      string_map < dns_cache_item * >   m_mapCache;
 
       net(sp(base_application) papp);
       virtual ~net();
@@ -130,14 +130,14 @@ namespace sockets
       */
       string rfc1738_decode(const string & src);
 
-      static bool isipv4(const string & str);
+      bool isipv4(const string & str);
 
-      static bool isipv6(const string & str);
+      bool isipv6(const string & str);
 
-      static bool convert(struct ::in_addr& l, const string & str, int32_t ai_flags = 0);
-      static bool convert(struct ::in6_addr& l, const string & str, int32_t ai_flags = 0);
-      static bool convert(string & str, const struct ::in_addr& ip);
-      static bool convert(string & str, const struct ::in6_addr& ip, bool mixed = false);
+      bool convert(struct ::in_addr& l, const string & str, int32_t ai_flags = 0);
+      bool convert(struct ::in6_addr& l, const string & str, int32_t ai_flags = 0);
+      bool convert(string & str, const struct ::in_addr& ip);
+      bool convert(string & str, const struct ::in6_addr& ip, bool mixed = false);
 
       int32_t in6_addr_compare(struct ::in6_addr a, struct ::in6_addr b);
 
@@ -157,18 +157,18 @@ namespace sockets
 
       //::net::address CreateAddress(sockaddr * psa, socklen_t sa_len);
 
-      static bool reverse(sockaddr * psa, socklen_t sa_len, string & hostname, int32_t flags = 0);
+      bool reverse(sockaddr * psa, socklen_t sa_len, string & hostname, int32_t flags = 0);
 
-      static bool reverse(sockaddr * psa, socklen_t sa_len, string & hostname, string & service, int32_t flags = 0);
+      bool reverse(sockaddr * psa, socklen_t sa_len, string & hostname, string & service, int32_t flags = 0);
 
-      static bool reverse(string & number, const string & hostname, int32_t flags);
+      bool reverse(string & number, const string & hostname, int32_t flags);
 
 
-      static bool u2service(const string & name, int32_t& service, int32_t ai_flags);
+      bool u2service(const string & name, int32_t& service, int32_t ai_flags);
 
-      static int32_t service_port(const string & str, int32_t flags = 0);
+      int32_t service_port(const string & str, int32_t flags = 0);
 
-      static string  service_name(int32_t iPort, int32_t flags = 0);
+      string  service_name(int32_t iPort, int32_t flags = 0);
 
 
       string canonical_name(const ::net::address & address);
