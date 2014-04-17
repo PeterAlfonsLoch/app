@@ -1564,6 +1564,20 @@ namespace url
    string departament::from_punycode(const char * psz)
    {
 
+      if(psz == NULL || *psz == '\0')
+         return "";
+
+      {
+       
+         string str(psz);
+
+         str.trim();
+
+         if(str.is_empty())
+            return "";
+
+      }
+
       char * p = NULL;
 
       Idna_rc rc = (Idna_rc)idna_to_unicode_lzlz(psz, &p, 0);
