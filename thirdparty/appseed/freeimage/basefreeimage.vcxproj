@@ -8970,11 +8970,8 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">ImfFramework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">ImfFramework.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="OpenEXR\IlmThread\IlmThreadMutexPosix.cpp" />
     <ClCompile Include="OpenEXR\IlmThread\IlmThreadMutexWin32.cpp" />
     <ClCompile Include="OpenEXR\IlmThread\IlmThreadPool.cpp" />
-    <ClCompile Include="OpenEXR\IlmThread\IlmThreadPosix.cpp" />
-    <ClCompile Include="OpenEXR\IlmThread\IlmThreadSemaphorePosix.cpp" />
     <ClCompile Include="OpenEXR\IlmThread\IlmThreadSemaphoreWin32.cpp" />
     <ClCompile Include="OpenEXR\IlmThread\IlmThreadWin32.cpp" />
     <ClCompile Include="OpenEXR\Imath\ImathBox.cpp" />
