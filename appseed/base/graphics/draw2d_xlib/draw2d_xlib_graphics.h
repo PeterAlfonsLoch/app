@@ -21,7 +21,7 @@ namespace draw2d_xlib
    public:
 
 
-      ::base::os::simple_ui         m_ui;
+      ::os::simple_ui         m_ui;
       device_context *        m_pdc;
       int32_t                 m_iType;
       //bool                    m_bForeColor;
