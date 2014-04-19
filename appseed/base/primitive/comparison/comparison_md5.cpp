@@ -35,7 +35,7 @@
 #include "framework.h"
 
 
-#if defined(LINUX ) || defined(ANDROID)
+#if defined(LINUX ) || defined(ANDROID) || defined(MACOS)
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <fcntl.h>

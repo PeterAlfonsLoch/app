@@ -2011,8 +2011,8 @@ namespace str
       const char * pszNext = psz;
       const char * pszQc = qc;
       string qc2;
-      register char qclen = (char) qc.get_length();
-      register char i;
+      char qclen = (char) qc.get_length();
+       char i;
       while(true)
       {
          pszNext = __utf8_inc(psz);

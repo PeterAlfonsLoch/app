@@ -19,6 +19,7 @@ void openURL(const string &url_str);
 #endif
 
 
+
 UINT base_application::APPM_LANGUAGE = WM_APP + 117;
 WPARAM base_application::WPARAM_LANGUAGE_UPDATE = 1;
 

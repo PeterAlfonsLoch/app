@@ -204,7 +204,7 @@ bool small_ipc_rx_channel::destroy()
    while(m_bRunning && iRetry > 0)
    {
       m_bRun = false;
-      sleep(1);
+      Sleep(1000);
       iRetry--;
    }
    
@@ -357,7 +357,7 @@ void * small_ipc_rx_channel::receive()
             {
                if(!on_idle())
                {
-                  sleep(84);
+                  Sleep(84 * 1000);
                }
             }
             else
