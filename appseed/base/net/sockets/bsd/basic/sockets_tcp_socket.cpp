@@ -11,7 +11,7 @@
 #define ETIMEDOUT       138
 #endif
 
-#ifdef LINUX
+#if defined(LINUX)
 #include <signal.h>
 #include <unistd.h>
 #endif
@@ -319,7 +319,9 @@ void ssl_sigpipe_handle( int x );
 
    void tcp_socket::OnResolved(int32_t id, const ::net::address & a)
    {
-      TRACE("tcp_socket::OnResolved id %d addr %s port %d\n", id, System.net().canonical_name(a), a.u.s.m_port);
+      
+       TRACE("tcp_socket::OnResolved id %d addr %s port %d\n", id, System.net().canonical_name(a).c_str(), a.u.s.m_port);
+      
       if (id == m_resolver_id)
       {
          if (a.is_valid() && a.u.s.m_port)
@@ -411,7 +413,7 @@ void ssl_sigpipe_handle( int x );
       else
    #endif // HAVE_OPENSSL
       {
-#ifdef MACOS
+#if defined(MACOS) || defined(SOLARIS)
 //         n = (int32_t) recv(GetSocket(), buf, nBufSize, SO_NOSIGPIPE);
          n = (int32_t) ::recv(GetSocket(), buf, nBufSize, 0);
 
@@ -716,9 +718,11 @@ void ssl_sigpipe_handle( int x );
       else
    #endif // HAVE_OPENSSL
       {
-#ifdef MACOS
+#if defined(MACOS)
          int iSocket = GetSocket();
          n = send(iSocket, buf, len, SO_NOSIGPIPE);
+#elif defined(SOLARIS)
+         n = send(GetSocket(), (const char *) buf, (int) len, 0);
 #else
          n = send(GetSocket(), (const char *) buf, (int) len, MSG_NOSIGNAL);
 #endif
@@ -1274,7 +1278,7 @@ void ssl_sigpipe_handle( int x );
       }
 
       m_password = password;
-      SSL_CTX_set_default_passwd_cb(m_ssl_ctx, SSL_password_cb);
+      SSL_CTX_set_default_passwd_cb(m_ssl_ctx, tcp_socket_SSL_password_cb);
       SSL_CTX_set_default_passwd_cb_userdata(m_ssl_ctx, this);
       if (!(SSL_CTX_use_PrivateKey_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
       {
@@ -1310,7 +1314,7 @@ void ssl_sigpipe_handle( int x );
       }
 
       m_password = password;
-      SSL_CTX_set_default_passwd_cb(m_ssl_ctx, SSL_password_cb);
+      SSL_CTX_set_default_passwd_cb(m_ssl_ctx, tcp_socket_SSL_password_cb);
       SSL_CTX_set_default_passwd_cb_userdata(m_ssl_ctx, this);
       if (!(SSL_CTX_use_PrivateKey_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
       {
@@ -1319,7 +1323,7 @@ void ssl_sigpipe_handle( int x );
    }
 
 
-   int32_t tcp_socket::SSL_password_cb(char *buf,int32_t num,int32_t rwflag,void *userdata)
+   int32_t tcp_socket_SSL_password_cb(char *buf,int32_t num,int32_t rwflag,void *userdata)
    {
       UNREFERENCED_PARAMETER(rwflag);
       socket *p0 = static_cast<socket *>(userdata);

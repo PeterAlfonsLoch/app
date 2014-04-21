@@ -67,6 +67,11 @@ namespace draw2d
       brush_sp()
       {
       }
+      
+      brush_sp(brush * pbrush) :
+         smart_pointer < brush > (pbrush)
+      {
+      }
 
       brush_sp(const smart_pointer < brush > & br) :
          smart_pointer < brush > (br)

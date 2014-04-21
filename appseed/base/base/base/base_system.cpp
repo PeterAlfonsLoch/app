@@ -223,6 +223,7 @@ UINT base_system::os_post_to_all_threads(UINT uiMessage, WPARAM wparam, lparam l
 
    throw interface_only_exception(this);
 
+   return -1;
 
 }
 

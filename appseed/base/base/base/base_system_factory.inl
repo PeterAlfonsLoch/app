@@ -25,6 +25,7 @@ sp(element) creatable_factory_item < CREATABLE_TYPE > ::clone(sp(element) pobjec
 {
    UNREFERENCED_PARAMETER(pobject);
    throw not_implemented(get_app());
+   return NULL;
 }
 
 

@@ -53,6 +53,7 @@ namespace sockets
       /** \return 'false' to abort */
       virtual bool OnRcptTo(const ::net::email_address & addr) = 0;
 
+      //using tcp_socket::OnHeader;
       virtual void OnHeader(id idKey, const string & value) = 0;
 
       virtual void OnHeaderComplete() = 0;

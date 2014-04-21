@@ -25,8 +25,8 @@ namespace draw2d_xlib
       UINT GetObjectType() const;
       bool CreateStockObject(int32_t nIndex);
       bool UnrealizeObject();
-      bool operator==(const object& obj) const;
-      bool operator!=(const object& obj) const;
+      //bool operator==(const object& obj) const;
+      //bool operator!=(const object& obj) const;
 
       virtual void dump(dump_context & dumpcontext) const;
       virtual void assert_valid() const;

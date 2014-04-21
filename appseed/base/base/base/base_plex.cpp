@@ -26,10 +26,10 @@ void plex::FreeDataChain()     // free this one and links
       while (p != NULL)
       {
          BYTE* bytes = (BYTE*) p;
-         plex* pNext = p->pNext;
+         plex* pNextLocal = p->pNext;
          memory_free(bytes);
          pPrevious = p;
-         p = pNext;
+         p = pNextLocal;
       }
    }
    catch(...)

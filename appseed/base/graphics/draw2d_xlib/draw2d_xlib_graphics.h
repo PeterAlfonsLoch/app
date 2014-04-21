@@ -205,6 +205,7 @@ namespace draw2d_xlib
       bool PaintRgn(::draw2d::region* pRgn);
 
    // Clipping Functions
+      using draw2d::graphics::GetClipBox;
       virtual int32_t GetClipBox(LPRECT lpRect) const;
       virtual bool PtVisible(int32_t x, int32_t y) const;
             bool PtVisible(POINT point) const;
@@ -221,11 +222,14 @@ namespace draw2d_xlib
 
    // Line-Output Functions
       point GetCurrentPosition() const;
+      using ::draw2d::graphics::MoveTo;
       point MoveTo(int32_t x, int32_t y);
       pointd MoveTo(double x, double y);
   //    point MoveTo(POINT point);
+      using ::draw2d::graphics::LineTo;
       bool LineTo(double x, double y);
     //  bool LineTo(POINT point);
+      using ::draw2d::graphics::Arc;
       bool Arc(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4);
       bool Arc(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
       bool Polyline(const POINT* lpPoints, int32_t nCount);
@@ -248,6 +252,7 @@ namespace draw2d_xlib
       void FillRect(LPCRECT lpRect, ::draw2d::brush* pBrush);
       void FrameRect(LPCRECT lpRect, ::draw2d::brush* pBrush);
 
+      using ::draw2d::graphics::DrawRect;
       bool DrawRect(LPCRECT lpRect, ::draw2d::pen * pBrush);
       bool DrawRect(int x1, int y1, int x2, int y2, ::draw2d::pen * pBrush);
 
@@ -291,6 +296,7 @@ namespace draw2d_xlib
       virtual bool draw_polygon(const POINT* lpPoints, int32_t nCount);
 
 
+      using ::draw2d::graphics::Polygon;
       bool Polygon(const POINT* lpPoints, int32_t nCount);
       bool PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int32_t nCount);
       bool Rectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
@@ -304,6 +310,7 @@ namespace draw2d_xlib
 
    // Bitmap Functions
       bool PatBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, uint32_t dwRop);
+      using ::draw2d::graphics::BitBlt;
       bool BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc,
          int32_t xSrc, int32_t ySrc, uint32_t dwRop);
       bool StretchBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc,
@@ -327,6 +334,7 @@ namespace draw2d_xlib
         ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight,
         UINT clrTransparent);
 
+      using ::draw2d::graphics::alpha_blend;
       virtual bool alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dOpacity);
 
       /*bool alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight,
@@ -347,9 +355,11 @@ namespace draw2d_xlib
             size TabbedTextOut(int32_t x, int32_t y, const string & str,
                int32_t nTabPositions, LPINT lpnTabStopPositions, int32_t nTabOrigin);
 
+      using ::draw2d::graphics::draw_text;
       virtual int32_t draw_text(const char * lpszString, int32_t nCount, LPRECT lpRect, UINT nFormat);
       virtual int32_t draw_text(const string & str, LPRECT lpRect, UINT nFormat);
 
+      using ::draw2d::graphics::draw_text_ex;
       virtual int32_t draw_text_ex(LPTSTR lpszString, int32_t nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
       virtual int32_t draw_text_ex(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
 
@@ -456,7 +466,9 @@ namespace draw2d_xlib
       bool StrokePath();
       bool WidenPath();
 
+      using ::draw2d::graphics::draw_path;
       bool draw_path(::draw2d::path * ppath);
+      using ::draw2d::graphics::fill_path;
       bool fill_path(::draw2d::path * ppath);
 
 
@@ -466,6 +478,7 @@ namespace draw2d_xlib
       bool SelectClipPath(int32_t nMode);
 
    // Misc Helper Functions
+      using ::draw2d::graphics::GetHalftoneBrush;
       static ::draw2d::brush* PASCAL GetHalftoneBrush(sp(base_application) papp);
       void DrawDragRect(LPCRECT lpRect, SIZE size,
          LPCRECT lpRectLast, SIZE sizeLast,

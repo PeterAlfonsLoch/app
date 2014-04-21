@@ -251,7 +251,6 @@ namespace sockets
       \param meth_in SSL method */
       void InitializeContext(const string & context, const string & certfile, const string & keyfile, const string & password, const SSL_METHOD *meth_in = NULL);
       /** SSL; Password callback method. */
-      static   int32_t SSL_password_cb(char *buf,int32_t num,int32_t rwflag,void *userdata);
       /** SSL; get pointer to ssl context structure. */
       virtual SSL_CTX *GetSslContext();
       /** SSL; get pointer to ssl structure. */
@@ -281,7 +280,10 @@ namespace sockets
 
    };
 
+   extern "C"
+   int32_t tcp_socket_SSL_password_cb(char *buf,int32_t num,int32_t rwflag,void *userdata);
 
+   
 } // namespace sockets
 
 

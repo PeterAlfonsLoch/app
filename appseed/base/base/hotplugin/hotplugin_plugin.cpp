@@ -2,7 +2,7 @@
 
 #undef new
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -63,7 +63,7 @@ namespace hotplugin
    plugin::~plugin()
    {
       free_memory();
-#if !defined(MACOS) && !defined(LINUX) && !defined(METROWIN) && !defined(ANDROID)
+#if !defined(MACOS) && !defined(LINUX) && !defined(METROWIN) && !defined(ANDROID) && !defined(SOLARIS)
       if(m_pbitmap != NULL)
          delete (Gdiplus::Bitmap *) m_pbitmap;
       if(m_pcolorref != NULL)

@@ -319,7 +319,9 @@ static const char szUnknown[] = "unknown";
 /*
 * Support EDEADLOCK for compatibiity with older MS-C versions.
 */
+#ifndef EDEADLOCK
 #define EDEADLOCK       EDEADLK
+#endif
 
 
 void throw_file_exception(base_application * papp, int32_t cause, LONG lOsError,   const char * lpszFileName /* == NULL */ )

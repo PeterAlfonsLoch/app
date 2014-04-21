@@ -1,3 +1,7 @@
+#ifndef BASE_SOLARIS_SOLARIS_H
+#define BASE_SOLARIS_SOLARIS_H
+
+
 #pragma once
 
 
@@ -12,8 +16,8 @@
 #include "solaris_cross_win_file.h"
 #include "solaris_file.h"
 #include "solaris_file_watcher.h"
-#include "solaris_cairo_keep.h"
-#include "solaris_window_cairo.h"
+//#include "solaris_cairo_keep.h"
+#include "solaris_window_xlib.h"
 
 
 
@@ -36,7 +40,7 @@ DWORD get_tick_count();
 #define STATUS_ABANDONED_WAIT_0  ((DWORD   ) 0x00000080L)
 #define STATUS_USER_APC          ((DWORD   ) 0x000000C0L)
 #define STATUS_TIMEOUT           ((DWORD   ) 0x00000102L)
-*/
+ */
 
 #define WAIT_FAILED              ((DWORD   ) 0xFFFFFFFFL)
 #define WAIT_OBJECT_0            ((DWORD   ) STATUS_WAIT_0 + 0)
@@ -49,17 +53,12 @@ DWORD get_tick_count();
 // based on Windows implementation and also a good limit for iterations with nanosleep and multiple locks in objects up to MAXIMUM_WAIT_OBJECTS in a single call
 #define MAXIMUM_WAIT_OBJECTS      64
 
-
-
-
-union semun
-{
-
-   int32_t val;
-   struct semid_ds * buf;
-   USHORT * array;
-
-};
+//union semun {
+//    int32_t val;
+//    struct semid_ds * buf;
+//    USHORT * array;
+//
+//};
 
 
 
@@ -81,20 +80,15 @@ oswindow SetActiveWindow(oswindow window);
 WINBOOL DestroyWindow(oswindow window);
 oswindow GetDesktopWindow();
 
-
-
 class osdisplay_dataptra :
-   public array < osdisplay_data * >
-{
+public array < osdisplay_data * > {
 public:
 
 
 };
 
-
 class oswindow_dataptra :
-   public array < oswindow_data * >
-{
+public array < oswindow_data * > {
 public:
 
 
@@ -105,3 +99,10 @@ public:
 bool c_xstart();
 
 extern oswindow g_oswindowDesktop;
+
+
+#endif // BASE_SOLARIS_SOLARIS_H
+
+
+
+

@@ -143,6 +143,8 @@ public:
 
    inline cloneable_factory_item(sp(base_application) papp, sp(factory_allocator) pallocator) : element(papp), creatable_factory_item < CLONEABLE_TYPE > (papp, pallocator) {}
 
+   
+   using creatable_factory_item < CLONEABLE_TYPE >::clone;
    virtual sp(element) clone(sp(element) pobject);
 
 };

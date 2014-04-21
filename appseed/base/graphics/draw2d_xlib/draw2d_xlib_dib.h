@@ -56,17 +56,18 @@ namespace draw2d_xlib
 
 
 
-
+      using request_interface::create;
       bool create(class size size);
       bool create(int32_t iWidth, int32_t iHeight);
       bool create(::draw2d::graphics * pdc);
       bool Destroy();
 
 
-
+      using ::draw2d::dib::from;
       bool from(::draw2d::graphics * pdc);
       bool from(point ptDest, ::draw2d::graphics * pdc, point pt, class size sz);
 
+      using ::draw2d::dib::to;
       bool to(::draw2d::graphics * pgraphics, point pt, class size size, point ptSrc);
 
       virtual bool update_window(::window * pwnd, signal_details * pobj);

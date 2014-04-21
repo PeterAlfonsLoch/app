@@ -19,7 +19,7 @@
 #include <X11/Xutil.h>
 // Ubuntu apt-get install libcairo2-dev
 
-#include "linux_cross_win_gdi.h"
+#include "solaris_cross_win_gdi.h"
 
 #include "graphics/draw2d_xlib/draw2d_xlib.h"
 
@@ -86,16 +86,6 @@ if you want to make a ARGB window using xlib/Qt here is the code i use
 void set(XColor & color, COLORREF cr);
 
 
-#include "ca_os_simple_brush.h"
-#include "ca_os_simple_bitmap.h"
-#include "ca_os_simple_font.h"
-#include "ca_os_simple_pen.h"
-
-
-#include "ca_os_simple_path.h"
-
-
-#include "ca_os_simple_graphics.h"
 
 
 

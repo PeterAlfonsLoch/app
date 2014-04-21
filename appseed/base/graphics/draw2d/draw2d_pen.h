@@ -78,6 +78,11 @@ namespace draw2d
       {
       }
 
+      pen_sp(pen * ppen) :
+         smart_pointer < pen > (ppen)
+      {
+      }
+
       pen_sp(const smart_pointer < pen > & p) :
          smart_pointer < pen > (p)
       {
