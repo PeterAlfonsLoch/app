@@ -530,9 +530,41 @@
 		9AA5E6D016F7C61B005C45CE /* Quantizers.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C36916E7F600008420D3 /* Quantizers.h */; };
 		9AA5E6D116F7C61B005C45CE /* ToneMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C4C516E7F601008420D3 /* ToneMapping.h */; };
 		9AA5E6D216F7C61B005C45CE /* Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C4C616E7F601008420D3 /* Utilities.h */; };
+		9AE24D8B1904CF46001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D8A1904CF46001AEFFB /* Foundation.framework */; };
+		9AE24D901904CF46001AEFFB /* basefreeimage_ios.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AE24D8F1904CF46001AEFFB /* basefreeimage_ios.h */; };
+		9AE24D921904CF46001AEFFB /* basefreeimage_ios.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE24D911904CF46001AEFFB /* basefreeimage_ios.m */; };
+		9AE24D991904CF46001AEFFB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D981904CF46001AEFFB /* XCTest.framework */; };
+		9AE24D9A1904CF46001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D8A1904CF46001AEFFB /* Foundation.framework */; };
+		9AE24D9C1904CF46001AEFFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D9B1904CF46001AEFFB /* UIKit.framework */; };
+		9AE24D9F1904CF46001AEFFB /* libbasefreeimage_ios.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D881904CF46001AEFFB /* libbasefreeimage_ios.dylib */; };
+		9AE24DA51904CF46001AEFFB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9AE24DA31904CF46001AEFFB /* InfoPlist.strings */; };
+		9AE24DA71904CF46001AEFFB /* basefreeimage_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE24DA61904CF46001AEFFB /* basefreeimage_iosTests.m */; };
 		9AE728E917E85A32003E47F9 /* freeimage.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE728E817E85A32003E47F9 /* freeimage.h */; };
 		9AE72B9717E88E8B003E47F9 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE72B9617E88E8B003E47F9 /* libbase.dylib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9AE24D9D1904CF46001AEFFB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1B2F7F16A2AF5C00875A94 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE24D871904CF46001AEFFB;
+			remoteInfo = basefreeimage_ios;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9AE24D861904CF46001AEFFB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				9AE24D901904CF46001AEFFB /* basefreeimage_ios.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9A86C0B216E7F5FF008420D3 /* CacheFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheFile.h; sourceTree = "<group>"; };
@@ -1078,6 +1110,17 @@
 		9A86C4C616E7F601008420D3 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		9A86CBCB16E8260D008420D3 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
 		9AA5E6D616F7C61B005C45CE /* libbasefreeimage.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbasefreeimage.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE24D881904CF46001AEFFB /* libbasefreeimage_ios.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbasefreeimage_ios.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE24D8A1904CF46001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9AE24D8E1904CF46001AEFFB /* basefreeimage_ios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "basefreeimage_ios-Prefix.pch"; sourceTree = "<group>"; };
+		9AE24D8F1904CF46001AEFFB /* basefreeimage_ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = basefreeimage_ios.h; sourceTree = "<group>"; };
+		9AE24D911904CF46001AEFFB /* basefreeimage_ios.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = basefreeimage_ios.m; sourceTree = "<group>"; };
+		9AE24D971904CF46001AEFFB /* basefreeimage_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = basefreeimage_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE24D981904CF46001AEFFB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		9AE24D9B1904CF46001AEFFB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		9AE24DA21904CF46001AEFFB /* basefreeimage_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "basefreeimage_iosTests-Info.plist"; sourceTree = "<group>"; };
+		9AE24DA41904CF46001AEFFB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9AE24DA61904CF46001AEFFB /* basefreeimage_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = basefreeimage_iosTests.m; sourceTree = "<group>"; };
 		9AE728E817E85A32003E47F9 /* freeimage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = freeimage.h; sourceTree = "<group>"; };
 		9AE72B9617E88E8B003E47F9 /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = ../../../appseed/base/build/Release/libbase.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1091,6 +1134,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9AE24D851904CF46001AEFFB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AE24D8B1904CF46001AEFFB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AE24D941904CF46001AEFFB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AE24D991904CF46001AEFFB /* XCTest.framework in Frameworks */,
+				9AE24D9F1904CF46001AEFFB /* libbasefreeimage_ios.dylib in Frameworks */,
+				9AE24D9C1904CF46001AEFFB /* UIKit.framework in Frameworks */,
+				9AE24D9A1904CF46001AEFFB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -1098,6 +1160,9 @@
 			isa = PBXGroup;
 			children = (
 				9AE72B9617E88E8B003E47F9 /* libbase.dylib */,
+				9AE24D8C1904CF46001AEFFB /* basefreeimage_ios */,
+				9AE24DA01904CF46001AEFFB /* basefreeimage_iosTests */,
+				9AE24D891904CF46001AEFFB /* Frameworks */,
 				9AEB768616F7BAA50085103B /* Products */,
 				9A86C0B716E7F5FF008420D3 /* FreeImage */,
 				9A86C10016E7F5FF008420D3 /* FreeImageLib */,
@@ -1118,6 +1183,8 @@
 				9A86C4C516E7F601008420D3 /* ToneMapping.h */,
 				9A86C4C616E7F601008420D3 /* Utilities.h */,
 				9AA5E6D616F7C61B005C45CE /* libbasefreeimage.dylib */,
+				9AE24D881904CF46001AEFFB /* libbasefreeimage_ios.dylib */,
+				9AE24D971904CF46001AEFFB /* basefreeimage_iosTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1782,6 +1849,52 @@
 			path = Imath;
 			sourceTree = "<group>";
 		};
+		9AE24D891904CF46001AEFFB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9AE24D8A1904CF46001AEFFB /* Foundation.framework */,
+				9AE24D981904CF46001AEFFB /* XCTest.framework */,
+				9AE24D9B1904CF46001AEFFB /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9AE24D8C1904CF46001AEFFB /* basefreeimage_ios */ = {
+			isa = PBXGroup;
+			children = (
+				9AE24D8F1904CF46001AEFFB /* basefreeimage_ios.h */,
+				9AE24D911904CF46001AEFFB /* basefreeimage_ios.m */,
+				9AE24D8D1904CF46001AEFFB /* Supporting Files */,
+			);
+			path = basefreeimage_ios;
+			sourceTree = "<group>";
+		};
+		9AE24D8D1904CF46001AEFFB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9AE24D8E1904CF46001AEFFB /* basefreeimage_ios-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9AE24DA01904CF46001AEFFB /* basefreeimage_iosTests */ = {
+			isa = PBXGroup;
+			children = (
+				9AE24DA61904CF46001AEFFB /* basefreeimage_iosTests.m */,
+				9AE24DA11904CF46001AEFFB /* Supporting Files */,
+			);
+			path = basefreeimage_iosTests;
+			sourceTree = "<group>";
+		};
+		9AE24DA11904CF46001AEFFB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9AE24DA21904CF46001AEFFB /* basefreeimage_iosTests-Info.plist */,
+				9AE24DA31904CF46001AEFFB /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		9AEB768616F7BAA50085103B /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -2031,6 +2144,41 @@
 			productReference = 9AA5E6D616F7C61B005C45CE /* libbasefreeimage.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
+		9AE24D871904CF46001AEFFB /* basefreeimage_ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AE24DAC1904CF46001AEFFB /* Build configuration list for PBXNativeTarget "basefreeimage_ios" */;
+			buildPhases = (
+				9AE24D841904CF46001AEFFB /* Sources */,
+				9AE24D851904CF46001AEFFB /* Frameworks */,
+				9AE24D861904CF46001AEFFB /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = basefreeimage_ios;
+			productName = basefreeimage_ios;
+			productReference = 9AE24D881904CF46001AEFFB /* libbasefreeimage_ios.dylib */;
+			productType = "com.apple.product-type.library.static";
+		};
+		9AE24D961904CF46001AEFFB /* basefreeimage_iosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AE24DAD1904CF46001AEFFB /* Build configuration list for PBXNativeTarget "basefreeimage_iosTests" */;
+			buildPhases = (
+				9AE24D931904CF46001AEFFB /* Sources */,
+				9AE24D941904CF46001AEFFB /* Frameworks */,
+				9AE24D951904CF46001AEFFB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9AE24D9E1904CF46001AEFFB /* PBXTargetDependency */,
+			);
+			name = basefreeimage_iosTests;
+			productName = basefreeimage_iosTests;
+			productReference = 9AE24D971904CF46001AEFFB /* basefreeimage_iosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -2039,6 +2187,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
+				TargetAttributes = {
+					9AE24D961904CF46001AEFFB = {
+						TestTargetID = 9AA5E4C216F7C61B005C45CE;
+					};
+				};
 			};
 			buildConfigurationList = 9A1B2F8216A2AF5C00875A94 /* Build configuration list for PBXProject "basefreeimage" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2053,9 +2206,22 @@
 			projectRoot = "";
 			targets = (
 				9AA5E4C216F7C61B005C45CE /* basefreeimage */,
+				9AE24D871904CF46001AEFFB /* basefreeimage_ios */,
+				9AE24D961904CF46001AEFFB /* basefreeimage_iosTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9AE24D951904CF46001AEFFB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AE24DA51904CF46001AEFFB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9AA5E4C316F7C61B005C45CE /* Sources */ = {
@@ -2377,7 +2543,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9AE24D841904CF46001AEFFB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AE24D921904CF46001AEFFB /* basefreeimage_ios.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AE24D931904CF46001AEFFB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AE24DA71904CF46001AEFFB /* basefreeimage_iosTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9AE24D9E1904CF46001AEFFB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9AE24D871904CF46001AEFFB /* basefreeimage_ios */;
+			targetProxy = 9AE24D9D1904CF46001AEFFB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9AE24DA31904CF46001AEFFB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9AE24DA41904CF46001AEFFB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9A1B2F8A16A2AF5C00875A94 /* Debug */ = {
@@ -2475,6 +2676,142 @@
 			};
 			name = Release;
 		};
+		9AE24DA81904CF46001AEFFB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				DSTROOT = /tmp/basefreeimage_ios.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "basefreeimage_ios/basefreeimage_ios-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		9AE24DA91904CF46001AEFFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				DSTROOT = /tmp/basefreeimage_ios.dst;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "basefreeimage_ios/basefreeimage_ios-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9AE24DAA1904CF46001AEFFB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/libbasefreeimage.dylib";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "basefreeimage_ios/basefreeimage_ios-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "basefreeimage_iosTests/basefreeimage_iosTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		9AE24DAB1904CF46001AEFFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/libbasefreeimage.dylib";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "basefreeimage_ios/basefreeimage_ios-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "basefreeimage_iosTests/basefreeimage_iosTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2495,6 +2832,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		9AE24DAC1904CF46001AEFFB /* Build configuration list for PBXNativeTarget "basefreeimage_ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AE24DA81904CF46001AEFFB /* Debug */,
+				9AE24DA91904CF46001AEFFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9AE24DAD1904CF46001AEFFB /* Build configuration list for PBXNativeTarget "basefreeimage_iosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AE24DAA1904CF46001AEFFB /* Debug */,
+				9AE24DAB1904CF46001AEFFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

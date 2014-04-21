@@ -7,7 +7,12 @@
 		<key>core.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>33</integer>
+			<integer>42</integer>
+		</dict>
+		<key>core_ios.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>libca2 copy.xcscheme</key>
 		<dict>
@@ -17,7 +22,7 @@
 		<key>libca2.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>12</integer>
+			<integer>20</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -33,6 +38,16 @@
 			<true/>
 		</dict>
 		<key>9ACA760716F7CAAC00AA1CEE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9AE24DDB1904CF6E001AEFFB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9AE24DEA1904CF6E001AEFFB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

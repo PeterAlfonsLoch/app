@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		9AAE858A17E91FFF00F0512E /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAE858917E91FFE00F0512E /* libbase.dylib */; };
+		9AE24DB51904CF5B001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24DB41904CF5B001AEFFB /* Foundation.framework */; };
+		9AE24DBA1904CF5B001AEFFB /* basemysql_ios.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AE24DB91904CF5B001AEFFB /* basemysql_ios.h */; };
+		9AE24DBC1904CF5B001AEFFB /* basemysql_ios.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE24DBB1904CF5B001AEFFB /* basemysql_ios.m */; };
+		9AE24DC31904CF5B001AEFFB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24DC21904CF5B001AEFFB /* XCTest.framework */; };
+		9AE24DC41904CF5B001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24DB41904CF5B001AEFFB /* Foundation.framework */; };
+		9AE24DC61904CF5B001AEFFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24DC51904CF5B001AEFFB /* UIKit.framework */; };
+		9AE24DC91904CF5B001AEFFB /* libbasemysql_ios.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24DB21904CF5B001AEFFB /* libbasemysql_ios.dylib */; };
+		9AE24DCF1904CF5B001AEFFB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9AE24DCD1904CF5B001AEFFB /* InfoPlist.strings */; };
+		9AE24DD11904CF5B001AEFFB /* basemysql_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE24DD01904CF5B001AEFFB /* basemysql_iosTests.m */; };
 		9AE72DA317E90B87003E47F9 /* gcc_builtins.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE72BF817E90B86003E47F9 /* gcc_builtins.h */; };
 		9AE72DA417E90B87003E47F9 /* generic-msvc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE72BF917E90B86003E47F9 /* generic-msvc.h */; };
 		9AE72DA517E90B87003E47F9 /* nolock.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE72BFA17E90B86003E47F9 /* nolock.h */; };
@@ -278,9 +287,43 @@
 		9AE72EEA17E90B87003E47F9 /* welcome_copyright_notice.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE72DA217E90B87003E47F9 /* welcome_copyright_notice.h */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		9AE24DC71904CF5B001AEFFB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1B2F7F16A2AF5C00875A94 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE24DB11904CF5B001AEFFB;
+			remoteInfo = basemysql_ios;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9AE24DB01904CF5B001AEFFB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				9AE24DBA1904CF5B001AEFFB /* basemysql_ios.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		9AA5E6D616F7C61B005C45CE /* libbasemysql.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbasemysql.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AAE858917E91FFE00F0512E /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libbase.dylib"; sourceTree = "<group>"; };
+		9AE24DB21904CF5B001AEFFB /* libbasemysql_ios.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbasemysql_ios.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE24DB41904CF5B001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9AE24DB81904CF5B001AEFFB /* basemysql_ios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "basemysql_ios-Prefix.pch"; sourceTree = "<group>"; };
+		9AE24DB91904CF5B001AEFFB /* basemysql_ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = basemysql_ios.h; sourceTree = "<group>"; };
+		9AE24DBB1904CF5B001AEFFB /* basemysql_ios.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = basemysql_ios.m; sourceTree = "<group>"; };
+		9AE24DC11904CF5B001AEFFB /* basemysql_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = basemysql_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE24DC21904CF5B001AEFFB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		9AE24DC51904CF5B001AEFFB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		9AE24DCC1904CF5B001AEFFB /* basemysql_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "basemysql_iosTests-Info.plist"; sourceTree = "<group>"; };
+		9AE24DCE1904CF5B001AEFFB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9AE24DD01904CF5B001AEFFB /* basemysql_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = basemysql_iosTests.m; sourceTree = "<group>"; };
 		9AE72BF817E90B86003E47F9 /* gcc_builtins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcc_builtins.h; sourceTree = "<group>"; };
 		9AE72BF917E90B86003E47F9 /* generic-msvc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "generic-msvc.h"; sourceTree = "<group>"; };
 		9AE72BFA17E90B86003E47F9 /* nolock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nolock.h; sourceTree = "<group>"; };
@@ -561,6 +604,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9AE24DAF1904CF5B001AEFFB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AE24DB51904CF5B001AEFFB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AE24DBE1904CF5B001AEFFB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AE24DC31904CF5B001AEFFB /* XCTest.framework in Frameworks */,
+				9AE24DC61904CF5B001AEFFB /* UIKit.framework in Frameworks */,
+				9AE24DC91904CF5B001AEFFB /* libbasemysql_ios.dylib in Frameworks */,
+				9AE24DC41904CF5B001AEFFB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -651,9 +713,60 @@
 				9AE72DA117E90B87003E47F9 /* violite.h */,
 				9AE72DA217E90B87003E47F9 /* welcome_copyright_notice.h */,
 				9AEB7ABB16F7BEB20085103B /* lib_ca2zlib.dylib */,
+				9AE24DB61904CF5B001AEFFB /* basemysql_ios */,
+				9AE24DCA1904CF5B001AEFFB /* basemysql_iosTests */,
+				9AE24DB31904CF5B001AEFFB /* Frameworks */,
 				9AEB768616F7BAA50085103B /* Products */,
 				9AA5E6D616F7C61B005C45CE /* libbasemysql.dylib */,
+				9AE24DB21904CF5B001AEFFB /* libbasemysql_ios.dylib */,
+				9AE24DC11904CF5B001AEFFB /* basemysql_iosTests.xctest */,
 			);
+			sourceTree = "<group>";
+		};
+		9AE24DB31904CF5B001AEFFB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9AE24DB41904CF5B001AEFFB /* Foundation.framework */,
+				9AE24DC21904CF5B001AEFFB /* XCTest.framework */,
+				9AE24DC51904CF5B001AEFFB /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9AE24DB61904CF5B001AEFFB /* basemysql_ios */ = {
+			isa = PBXGroup;
+			children = (
+				9AE24DB91904CF5B001AEFFB /* basemysql_ios.h */,
+				9AE24DBB1904CF5B001AEFFB /* basemysql_ios.m */,
+				9AE24DB71904CF5B001AEFFB /* Supporting Files */,
+			);
+			path = basemysql_ios;
+			sourceTree = "<group>";
+		};
+		9AE24DB71904CF5B001AEFFB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9AE24DB81904CF5B001AEFFB /* basemysql_ios-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9AE24DCA1904CF5B001AEFFB /* basemysql_iosTests */ = {
+			isa = PBXGroup;
+			children = (
+				9AE24DD01904CF5B001AEFFB /* basemysql_iosTests.m */,
+				9AE24DCB1904CF5B001AEFFB /* Supporting Files */,
+			);
+			path = basemysql_iosTests;
+			sourceTree = "<group>";
+		};
+		9AE24DCB1904CF5B001AEFFB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9AE24DCC1904CF5B001AEFFB /* basemysql_iosTests-Info.plist */,
+				9AE24DCD1904CF5B001AEFFB /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		9AE72BF717E90B86003E47F9 /* atomic */ = {
@@ -1077,6 +1190,41 @@
 			productReference = 9AA5E6D616F7C61B005C45CE /* libbasemysql.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
+		9AE24DB11904CF5B001AEFFB /* basemysql_ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AE24DD61904CF5B001AEFFB /* Build configuration list for PBXNativeTarget "basemysql_ios" */;
+			buildPhases = (
+				9AE24DAE1904CF5B001AEFFB /* Sources */,
+				9AE24DAF1904CF5B001AEFFB /* Frameworks */,
+				9AE24DB01904CF5B001AEFFB /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = basemysql_ios;
+			productName = basemysql_ios;
+			productReference = 9AE24DB21904CF5B001AEFFB /* libbasemysql_ios.dylib */;
+			productType = "com.apple.product-type.library.static";
+		};
+		9AE24DC01904CF5B001AEFFB /* basemysql_iosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AE24DD71904CF5B001AEFFB /* Build configuration list for PBXNativeTarget "basemysql_iosTests" */;
+			buildPhases = (
+				9AE24DBD1904CF5B001AEFFB /* Sources */,
+				9AE24DBE1904CF5B001AEFFB /* Frameworks */,
+				9AE24DBF1904CF5B001AEFFB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9AE24DC81904CF5B001AEFFB /* PBXTargetDependency */,
+			);
+			name = basemysql_iosTests;
+			productName = basemysql_iosTests;
+			productReference = 9AE24DC11904CF5B001AEFFB /* basemysql_iosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1085,6 +1233,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
+				TargetAttributes = {
+					9AE24DC01904CF5B001AEFFB = {
+						TestTargetID = 9AA5E4C216F7C61B005C45CE;
+					};
+				};
 			};
 			buildConfigurationList = 9A1B2F8216A2AF5C00875A94 /* Build configuration list for PBXProject "basemysql" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1099,9 +1252,22 @@
 			projectRoot = "";
 			targets = (
 				9AA5E4C216F7C61B005C45CE /* basemysql */,
+				9AE24DB11904CF5B001AEFFB /* basemysql_ios */,
+				9AE24DC01904CF5B001AEFFB /* basemysql_iosTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9AE24DBF1904CF5B001AEFFB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AE24DCF1904CF5B001AEFFB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9AA5E4C316F7C61B005C45CE /* Sources */ = {
@@ -1277,7 +1443,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9AE24DAE1904CF5B001AEFFB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AE24DBC1904CF5B001AEFFB /* basemysql_ios.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AE24DBD1904CF5B001AEFFB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AE24DD11904CF5B001AEFFB /* basemysql_iosTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9AE24DC81904CF5B001AEFFB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9AE24DB11904CF5B001AEFFB /* basemysql_ios */;
+			targetProxy = 9AE24DC71904CF5B001AEFFB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9AE24DCD1904CF5B001AEFFB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9AE24DCE1904CF5B001AEFFB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9A1B2F8A16A2AF5C00875A94 /* Debug */ = {
@@ -1377,6 +1578,142 @@
 			};
 			name = Release;
 		};
+		9AE24DD21904CF5B001AEFFB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				DSTROOT = /tmp/basemysql_ios.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "basemysql_ios/basemysql_ios-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		9AE24DD31904CF5B001AEFFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				DSTROOT = /tmp/basemysql_ios.dst;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "basemysql_ios/basemysql_ios-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9AE24DD41904CF5B001AEFFB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/libbasemysql.dylib";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "basemysql_ios/basemysql_ios-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "basemysql_iosTests/basemysql_iosTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		9AE24DD51904CF5B001AEFFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/libbasemysql.dylib";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "basemysql_ios/basemysql_ios-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "basemysql_iosTests/basemysql_iosTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1397,6 +1734,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		9AE24DD61904CF5B001AEFFB /* Build configuration list for PBXNativeTarget "basemysql_ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AE24DD21904CF5B001AEFFB /* Debug */,
+				9AE24DD31904CF5B001AEFFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9AE24DD71904CF5B001AEFFB /* Build configuration list for PBXNativeTarget "basemysql_iosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AE24DD41904CF5B001AEFFB /* Debug */,
+				9AE24DD51904CF5B001AEFFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

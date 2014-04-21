@@ -7,7 +7,12 @@
 		<key>basefreeimage.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>31</integer>
+			<integer>41</integer>
+		</dict>
+		<key>basefreeimage_ios.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -23,6 +28,16 @@
 			<true/>
 		</dict>
 		<key>9AA5E4C216F7C61B005C45CE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9AE24D871904CF46001AEFFB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9AE24D961904CF46001AEFFB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
