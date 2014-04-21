@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>base.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>40</integer>
-		</dict>
 		<key>base_ios.xcscheme</key>
 		<dict>
 			<key>orderHint</key>

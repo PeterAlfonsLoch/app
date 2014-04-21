@@ -4,17 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>install sphere userstack.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>27</integer>
-		</dict>
 		<key>install sphere/userstack.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>25</integer>
-		</dict>
-		<key>sphere.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>25</integer>
