@@ -22,7 +22,7 @@
 
 #if defined(ANDROID)
 #include "base/base/os/android/android.h"
-#elif defined(MACOS)
+#elif defined(APPLE_OS)
 #include "base/base/os/macos/macos.h"
 #elif defined(LINUX)
 #include "base/base/os/linux/linux.h"

@@ -69,7 +69,11 @@
 #if defined(__MM)
 
 
+#if defined(__cplusplus)
+#include "base_c_objcpp.h"
+#else
 #include "base_c_objc.h"
+#endif
 
 
 #elif defined(__cplusplus_winrt)
