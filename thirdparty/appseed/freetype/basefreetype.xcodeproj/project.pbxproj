@@ -168,18 +168,47 @@
 		9A1B398316A2F96000875A94 /* ftbbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B398216A2F96000875A94 /* ftbbox.c */; };
 		9A86CA4C16E8076D008420D3 /* ftgzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CA4B16E8076D008420D3 /* ftgzip.c */; };
 		9A8CCADB17EA05B000F87A02 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8CCAD917EA05B000F87A02 /* libbase.dylib */; };
+		9AA6A3771907A64C000A1F4A /* libbase_ios.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA6A2EA190732B0000A1F4A /* libbase_ios.dylib */; };
 		9AE24D611904CF2F001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D601904CF2F001AEFFB /* Foundation.framework */; };
 		9AE24D661904CF2F001AEFFB /* basefreetype_ios.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AE24D651904CF2F001AEFFB /* basefreetype_ios.h */; };
 		9AE24D681904CF2F001AEFFB /* basefreetype_ios.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE24D671904CF2F001AEFFB /* basefreetype_ios.m */; };
 		9AE24D6F1904CF30001AEFFB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D6E1904CF30001AEFFB /* XCTest.framework */; };
 		9AE24D701904CF30001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D601904CF2F001AEFFB /* Foundation.framework */; };
 		9AE24D721904CF30001AEFFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D711904CF30001AEFFB /* UIKit.framework */; };
-		9AE24D751904CF30001AEFFB /* libbasefreetype_ios.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D5E1904CF2F001AEFFB /* libbasefreetype_ios.dylib */; };
+		9AE24D751904CF30001AEFFB /* libbasefreetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D5E1904CF2F001AEFFB /* libbasefreetype.dylib */; };
 		9AE24D7B1904CF30001AEFFB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9AE24D791904CF30001AEFFB /* InfoPlist.strings */; };
 		9AE24D7D1904CF30001AEFFB /* basefreetype_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE24D7C1904CF30001AEFFB /* basefreetype_iosTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9AA6A2E7190732B0000A1F4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA6A2E1190732B0000A1F4A /* base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
+			remoteInfo = base;
+		};
+		9AA6A2E9190732B0000A1F4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA6A2E1190732B0000A1F4A /* base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AE24D341904CEFE001AEFFB;
+			remoteInfo = base_ios;
+		};
+		9AA6A2EB190732B0000A1F4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA6A2E1190732B0000A1F4A /* base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
+			remoteInfo = base_iosTests;
+		};
+		9AA6A2ED190732E8000A1F4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA6A2E1190732B0000A1F4A /* base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE24D331904CEFE001AEFFB;
+			remoteInfo = base_ios;
+		};
 		9AE24D731904CF30001AEFFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A1B358316A2D7A500875A94 /* Project object */;
@@ -365,7 +394,9 @@
 		9A1B398216A2F96000875A94 /* ftbbox.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ftbbox.c; sourceTree = "<group>"; };
 		9A86CA4B16E8076D008420D3 /* ftgzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ftgzip.c; path = src/gzip/ftgzip.c; sourceTree = "<group>"; };
 		9A8CCAD917EA05B000F87A02 /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libbase.dylib"; sourceTree = "<group>"; };
-		9AE24D5E1904CF2F001AEFFB /* libbasefreetype_ios.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbasefreetype_ios.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AA6A2A619071125000A1F4A /* libbase_ios.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase_ios.dylib; path = "../../../appseed/base/build/Debug-iphoneos/libbase_ios.dylib"; sourceTree = "<group>"; };
+		9AA6A2E1190732B0000A1F4A /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = /ios/nodeapp/seed/metaseed/../../../app/appseed/base/base.xcodeproj; sourceTree = "<absolute>"; };
+		9AE24D5E1904CF2F001AEFFB /* libbasefreetype.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbasefreetype.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24D601904CF2F001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9AE24D641904CF2F001AEFFB /* basefreetype_ios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "basefreetype_ios-Prefix.pch"; sourceTree = "<group>"; };
 		9AE24D651904CF2F001AEFFB /* basefreetype_ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = basefreetype_ios.h; sourceTree = "<group>"; };
@@ -392,6 +423,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AE24D611904CF2F001AEFFB /* Foundation.framework in Frameworks */,
+				9AA6A3771907A64C000A1F4A /* libbase_ios.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,7 +434,7 @@
 				9AE24D6F1904CF30001AEFFB /* XCTest.framework in Frameworks */,
 				9AE24D721904CF30001AEFFB /* UIKit.framework in Frameworks */,
 				9AE24D701904CF30001AEFFB /* Foundation.framework in Frameworks */,
-				9AE24D751904CF30001AEFFB /* libbasefreetype_ios.dylib in Frameworks */,
+				9AE24D751904CF30001AEFFB /* libbasefreetype.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +444,7 @@
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
+				9AA6A2E1190732B0000A1F4A /* base.xcodeproj */,
 				9A8CCAD917EA05B000F87A02 /* libbase.dylib */,
 				9A1B359916A2D80800875A94 /* autofit */,
 				9A1B35B816A2D80800875A94 /* base */,
@@ -447,7 +480,7 @@
 			isa = PBXGroup;
 			children = (
 				9A1B358C16A2D7A500875A94 /* libbasefreetype.dylib */,
-				9AE24D5E1904CF2F001AEFFB /* libbasefreetype_ios.dylib */,
+				9AE24D5E1904CF2F001AEFFB /* libbasefreetype.dylib */,
 				9AE24D6D1904CF30001AEFFB /* basefreetype_iosTests.xctest */,
 			);
 			name = Products;
@@ -796,9 +829,20 @@
 			name = gzip;
 			sourceTree = "<group>";
 		};
+		9AA6A2E2190732B0000A1F4A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AA6A2E8190732B0000A1F4A /* libbase.dylib */,
+				9AA6A2EA190732B0000A1F4A /* libbase_ios.dylib */,
+				9AA6A2EC190732B0000A1F4A /* base_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9AE24D5F1904CF2F001AEFFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AA6A2A619071125000A1F4A /* libbase_ios.dylib */,
 				9AE24D601904CF2F001AEFFB /* Foundation.framework */,
 				9AE24D6E1904CF30001AEFFB /* XCTest.framework */,
 				9AE24D711904CF30001AEFFB /* UIKit.framework */,
@@ -1014,10 +1058,11 @@
 			buildRules = (
 			);
 			dependencies = (
+				9AA6A2EE190732E8000A1F4A /* PBXTargetDependency */,
 			);
 			name = basefreetype_ios;
 			productName = basefreetype_ios;
-			productReference = 9AE24D5E1904CF2F001AEFFB /* libbasefreetype_ios.dylib */;
+			productReference = 9AE24D5E1904CF2F001AEFFB /* libbasefreetype.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
 		9AE24D6C1904CF2F001AEFFB /* basefreetype_iosTests */ = {
@@ -1062,6 +1107,12 @@
 			mainGroup = 9A1B358116A2D7A500875A94;
 			productRefGroup = 9A1B358D16A2D7A500875A94 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9AA6A2E2190732B0000A1F4A /* Products */;
+					ProjectRef = 9AA6A2E1190732B0000A1F4A /* base.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9A1B358B16A2D7A500875A94 /* basefreetype */,
@@ -1070,6 +1121,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		9AA6A2E8190732B0000A1F4A /* libbase.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libbase.dylib;
+			remoteRef = 9AA6A2E7190732B0000A1F4A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AA6A2EA190732B0000A1F4A /* libbase_ios.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libbase_ios.dylib;
+			remoteRef = 9AA6A2E9190732B0000A1F4A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AA6A2EC190732B0000A1F4A /* base_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = base_iosTests.xctest;
+			remoteRef = 9AA6A2EB190732B0000A1F4A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9AE24D6B1904CF2F001AEFFB /* Resources */ = {
@@ -1138,6 +1213,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9AA6A2EE190732E8000A1F4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = base_ios;
+			targetProxy = 9AA6A2ED190732E8000A1F4A /* PBXContainerItemProxy */;
+		};
 		9AE24D741904CF30001AEFFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9AE24D5D1904CF2F001AEFFB /* basefreetype_ios */;
@@ -1166,9 +1246,16 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = shallow;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -1182,8 +1269,9 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
@@ -1195,6 +1283,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/zlib";
 				WorkspaceDir = "$(SRCROOT)/../../../../nodeapp/seed/metaseed";
@@ -1210,7 +1299,13 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = shallow;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1220,8 +1315,9 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = FT2_BUILD_LIBRARY;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
@@ -1232,8 +1328,10 @@
 					"\"$(TARGET_BUILD_DIR)\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/zlib";
+				VALIDATE_PRODUCT = YES;
 				WorkspaceDir = "$(SRCROOT)/../../../../nodeapp/seed/metaseed";
 			};
 			name = Release;
@@ -1257,30 +1355,8 @@
 		9AE24D7E1904CF30001AEFFB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				DSTROOT = /tmp/basefreetype_ios.dst;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "basefreetype_ios/basefreetype_ios-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
@@ -1289,30 +1365,10 @@
 		9AE24D7F1904CF30001AEFFB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				DSTROOT = /tmp/basefreetype_ios.dst;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "basefreetype_ios/basefreetype_ios-Prefix.pch";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -1418,6 +1474,7 @@
 				9AE24D7F1904CF30001AEFFB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9AE24D831904CF30001AEFFB /* Build configuration list for PBXNativeTarget "basefreetype_iosTests" */ = {
 			isa = XCConfigurationList;
@@ -1426,6 +1483,7 @@
 				9AE24D811904CF30001AEFFB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

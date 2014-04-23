@@ -299,7 +299,7 @@ extern "C"
    #define _gen_InterlockedIncrement(ptr) atomic_inc_32((volatile uint32_t *) ptr)
    #define _gen_InterlockedDecrement(ptr) atomic_dec_32((volatile uint32_t *) ptr)
 #endif
-#elif defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#elif defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
    #define _gen_InterlockedIncrement(ptr) __sync_add_and_fetch(ptr, 1)
    #define _gen_InterlockedDecrement(ptr) __sync_sub_and_fetch(ptr, 1)
 #else

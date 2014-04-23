@@ -344,7 +344,7 @@ int SSL_set_srp_server_param(SSL *s, const BIGNUM *N, const BIGNUM *g,
 int SRP_generate_server_master_secret(SSL *s,unsigned char *master_key)
 	{
 	BIGNUM *K = NULL, *u = NULL;
-	int ret = -1, tmp_len;
+	int ret = -1, tmp_len = 0;
 	unsigned char *tmp = NULL;
 
 	if (!SRP_Verify_A_mod_N(s->srp_ctx.A,s->srp_ctx.N))
@@ -374,7 +374,7 @@ err:
 int SRP_generate_client_master_secret(SSL *s,unsigned char *master_key)
 	{
 	BIGNUM *x = NULL, *u = NULL, *K = NULL;
-	int ret = -1, tmp_len;
+	int ret = -1, tmp_len = 0;
 	char *passwd = NULL;
 	unsigned char *tmp = NULL;
 

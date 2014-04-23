@@ -69,8 +69,9 @@ namespace core
    {
 #ifdef WINDOWS
        return C_RUNTIME_ERROR_CHECK(::wcsncpy_s(_Dest, _SizeInChars, _Source,_Count));
-#elif defined ANDROID
+#elif defined ANDROID || defined APPLE_IOS
       wcsncpy_dup(_Dest, _Source, _Count);
+       return errno;
 #else
        wcsncpy(_Dest, _Source, _Count);
        return errno;
@@ -99,7 +100,7 @@ namespace core
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_strlwr_s(Str, _SizeInChars));
-#elif defined(ANDROID) || defined(MACOS)
+#elif defined(ANDROID) || defined(APPLEOS)
       to_lower(Str);
 #else
       strlwr(Str);
@@ -119,7 +120,7 @@ namespace core
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_strupr_s(Str, _SizeInChars));
-#elif defined(ANDROID) || defined(MACOS)
+#elif defined(ANDROID) || defined(APPLEOS)
       to_upper(Str);
 #else
       strupr(Str);

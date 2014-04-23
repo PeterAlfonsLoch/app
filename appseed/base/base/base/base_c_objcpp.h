@@ -1,7 +1,7 @@
 #pragma once
 
 
-#define __M
+#define __MM
 
 
 #include "base/os/ios/ios_mm.h"

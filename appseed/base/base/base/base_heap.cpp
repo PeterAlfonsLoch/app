@@ -617,6 +617,12 @@ extern mutex * g_pmutexThreadHandleLock;
 
 extern oswindow_dataptra * g_poswindowdataptra;
 
+#elif defined(APPLE_IOS)
+
+#include "base/os/ios/ios_window_impl.h"
+
+extern oswindow_dataptra * g_poswindowdataptra;
+
 #endif
 
 

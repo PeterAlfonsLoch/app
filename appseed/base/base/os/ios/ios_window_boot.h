@@ -49,7 +49,6 @@ bool m_bDirty;
 };
 
 
-void ns_shared_application();
-NSWindow * new_boot_window(boot_window * pwindow, CGRect rect);
-void ns_app_run();
-int ios_app_run(int argc, )
+UIWindow * new_boot_window(boot_window * pwindow, CGRect rect);
+void ios_application_main();
+int ios_app_run(int argc, char * argv[]);

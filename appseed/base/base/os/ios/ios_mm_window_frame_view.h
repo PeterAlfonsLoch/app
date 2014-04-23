@@ -16,7 +16,7 @@
 #define NS_ROUND_WINDOW_FRAME_PADDING 0
 
 
-@interface mm_window_frame_view : NSView
+@interface mm_window_frame_view : UIView
 {
    @public
    

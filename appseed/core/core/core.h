@@ -1,8 +1,8 @@
 #pragma once
 
-
 #include "app/appseed/base/base/base/base.h"
 
+#if !defined(_MM) && !defined(_M)
 
 #include "nodeapp/operational_system/operational_system.h"
 
@@ -1015,5 +1015,10 @@ class Ex1FactoryImpl;
 
 #include "core_session.h"
 #include "core_system.h"
+
+
+#endif
+
+
 
 

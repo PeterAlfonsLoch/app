@@ -28,7 +28,7 @@ bool is_debugger_attached()
    return ::is_gdb_present();
    
 
-#elif defined(MACOS)
+#elif defined(APPLEOS)
    
    
    return ::AmIBeingDebugged();

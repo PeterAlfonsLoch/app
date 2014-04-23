@@ -22,7 +22,7 @@ bool oswindow_data::is_window_visible()
 bool oswindow_data::is_iconic()
 {
    
-   [window() miniaturize : 0];
+//   [window() miniaturize : 0];
    
    return 1;
    
@@ -36,15 +36,15 @@ bool oswindow_data::show_window(int32_t nCmdShow)
    if(nCmdShow == SW_HIDE)
    {
 
-      [m_nswindow orderOut : nil];
+//      [m_nswindow orderOut : nil];
       
    }
    else
    {
    
-      [m_nswindow makeKeyAndOrderFront : nil];
+  //    [m_nswindow makeKeyAndOrderFront : nil];
       
-      [m_nswindow display];
+    //  [m_nswindow display];
       
    }
    
@@ -76,9 +76,9 @@ bool oswindow_data::screen_to_client(POINT *lppoint)
 WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT lpcrect, int iDisplay)
 {
    
-   NSRect rect;
+   CGRect rect;
    
-   NSRect frame = [[NSScreen mainScreen] frame];
+   CGRect frame = [[UIScreen mainScreen] applicationFrame];
    
    rect.origin.x     = lpcrect->left;
    rect.origin.y     = frame.size.height  -     lpcrect->bottom;
@@ -91,7 +91,7 @@ WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT lpcrect, int iDisplay)
    //   rect.size.height  = 500;
    
    
-   [hwnd->window() setFrame : rect display : iDisplay];
+//   [hwnd->window() setFrame : rect display : iDisplay];
    
    return 1;
    
@@ -106,12 +106,12 @@ WINBOOL move_nswindow(oswindow hwnd, int x, int y)
    
 //   get_nswindow_rect(hwnd, &rect);
    
-   NSPoint point;
+   CGPoint point;
    
    point.x = x;
-   point.y = [[NSScreen mainScreen] frame].size.height - y;
+   point.y = [[UIScreen mainScreen] applicationFrame].size.height - y;
    
-   [hwnd->window() setFrameTopLeftPoint : point];
+//   [hwnd->window() setFrameTopLeftPoint : point];
    
    return 1;
    
@@ -119,7 +119,7 @@ WINBOOL move_nswindow(oswindow hwnd, int x, int y)
 }
 
 
-CLASS_DECL_THREAD NSAutoreleasePool * g_ns_pool = NULL;
+//CLASS_DECL_THREAD NSAutoreleasePool * g_ns_pool = NULL;
 
 
 
@@ -144,7 +144,7 @@ void release_pool(NSAutoreleasePool * pool)
 void on_start_thread()
 {
    
-   g_ns_pool = new_ns_pool();
+   set_thread_ptr(new_ns_pool(), "g_ns_pool");
    
 }
 
@@ -152,9 +152,10 @@ void on_start_thread()
 void on_end_thread()
 {
    
-   release_pool(g_ns_pool);
+   release_pool((NSAutoreleasePool *) get_thread_ptr("g_ns_pool"));
    
-   g_ns_pool = NULL;
+//   g_ns_pool = NULL;
+    set_thread_ptr(NULL, "g_ns_pool");
    
 }
 
@@ -162,7 +163,7 @@ void on_end_thread()
 void ns_redraw_window(oswindow w)
 {
    
-   [w->window() display];
+//   [w->window() display];
    
 }
 
@@ -170,10 +171,10 @@ void ns_redraw_window(oswindow w)
 WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect)
 {
    
-   NSRect rect = [oswindow->window() frame];
+   CGRect rect = [oswindow->window() frame];
    
    lprect->left        = rect.origin.x;
-   lprect->bottom      = [[NSScreen mainScreen] frame ].size.height - rect.origin.y;
+   lprect->bottom      = [[UIScreen mainScreen] applicationFrame ].size.height - rect.origin.y;
    lprect->right       = rect.origin.x  + rect.size.width;
    lprect->top         = lprect->bottom - rect.size.height;
    

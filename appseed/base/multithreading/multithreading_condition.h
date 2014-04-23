@@ -6,7 +6,7 @@ class CLASS_DECL_BASE condition :
 {
 public:
 
-#if defined(LINUX) || defined(MACOS) || defined(SOLARIS)
+#if defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)
 
    int_ptr           m_object;
    bool              m_bManualEvent;

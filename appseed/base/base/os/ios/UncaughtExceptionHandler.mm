@@ -14,7 +14,7 @@
 
 
 #import "UncaughtExceptionHandler.h"
-#include "macos_ns_exception.h"
+#include "ios_ns_exception.h"
 #include <libkern/OSAtomic.h>
 #include <execinfo.h>
 

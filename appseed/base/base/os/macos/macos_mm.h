@@ -8,6 +8,9 @@
 #pragma once
 
 
+#import <Foundation/Foundation.h>
+
+
 #include "NSObject+DDExtensions.h"
 #include "DDInvocationGrabber.h"
 

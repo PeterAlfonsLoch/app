@@ -61,7 +61,7 @@ namespace datetime
    {
    public:
 
-#if defined(ANDROID) || defined(MACOS)
+#if defined(ANDROID) || defined(APPLEOS)
       time_t         m_time;
 #else
       __time64_t m_time;
@@ -300,7 +300,7 @@ namespace datetime
       {
          szBuffer[0] = '\0';
       }
-#elif defined(MACOS)
+#elif defined(APPLEOS)
 #if __WORDSIZE != 64
 #pragma error "error: long should 8-byte on MACOS"
 #endif
@@ -343,7 +343,7 @@ namespace datetime
 
       char szBuffer[maxTimeBufferSize];
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
       struct tm* ptmTemp = gmtime(&m_time);
       if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
       {

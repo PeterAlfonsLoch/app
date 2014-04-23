@@ -1,5 +1,5 @@
 //
-//  macos_window.h
+//  ios_window.h
 //  base
 //
 //  Created by Camilo Sasuke Tsumanuma on 2013-09-17.
@@ -14,20 +14,11 @@ typedef void * int_to_int;
 
 #else
 
-#ifdef MACOS
-struct NSWindow;
-#else
 struct UIWindow;
-#endif
-
 
 #endif
 
-#ifdef MACOS
-typedef NSWindow * nswindow;
-#else
 typedef UIWindow * nswindow;
-#endif
 
 
 namespace user

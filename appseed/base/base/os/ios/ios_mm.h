@@ -8,11 +8,19 @@
 #pragma once
 
 
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
+#import <CoreGraphics/CoreGraphics.h>
+
+#include "ios_m.h"
+
+
 #include "NSObject+DDExtensions.h"
 #include "DDInvocationGrabber.h"
 
 
-#include "macos_window.h"
-#include "macos_mm_window.h"
-#include "macos_window_boot.h"
-#include "macos_mm_window_frame_view.h"
+#include "ios_window.h"
+#include "ios_mm_window.h"
+#include "ios_window_boot.h"
+#include "ios_mm_window_frame_view.h"

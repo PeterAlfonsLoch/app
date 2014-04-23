@@ -1,7 +1,7 @@
 #pragma once
 
 
-bool AmIBeingDebugged();
+int32_t AmIBeingDebugged();
 
 
 #include "macos_ns_exception.h"

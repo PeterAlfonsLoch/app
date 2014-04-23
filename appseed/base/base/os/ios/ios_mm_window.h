@@ -14,14 +14,14 @@
 #include "app/appseed/base/user/user/user_key_enum.h"
 
 
-::user::e_key event_key(NSEvent * event);
+::user::e_key event_key(UIEvent * event);
 
 
 class boot_window;
 @class mm_window_frame_view;
 
 
-@interface mm_window : NSWindow
+@interface mm_window : UIWindow
 {
 @public
    
@@ -30,8 +30,8 @@ class boot_window;
    
    
 	mm_window_frame_view    * childContentView;
-	NSButton                * closeButton;
-   NSWindowController      * m_controller;
+	UIButton                * closeButton;
+   UIViewController      * m_controller;
    
 }
 

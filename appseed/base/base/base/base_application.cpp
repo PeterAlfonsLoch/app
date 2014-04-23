@@ -1709,7 +1709,7 @@ void base_application::get_screen_rect(LPRECT lprect)
    {
       System.get_monitor_rect(0, m_rectScreen);
    }
-#elif defined(MACOS)
+#elif defined(APPLEOS)
    if (m_bSessionSynchronizedScreen)
    {
       System.get_monitor_rect(0, m_rectScreen);

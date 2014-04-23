@@ -18,7 +18,7 @@ namespace core
       const int32_t               m_nLineNo;
       string                  m_str;
 
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
       class CLASS_DECL_BASE category_level
       {

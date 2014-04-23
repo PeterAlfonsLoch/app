@@ -505,6 +505,16 @@ namespace file
 
 #include "base/os/windows/windows.h"
 
+#elif defined(APPLE_IOS)
+
+#include "base/os/ansios/ansios.h"
+#include "base/os/ios/ios.h"
+#include "base/os/ios/ios_window.h"
+
+#else
+
+#error "not implemented!!"
+
 #endif
 
 

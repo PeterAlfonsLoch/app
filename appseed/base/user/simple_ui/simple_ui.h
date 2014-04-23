@@ -45,6 +45,12 @@
 #include "base/os/solaris/solaris_simple_ui.h"
 
 
+#elif defined(APPLE_IOS)
+
+
+#include "base/os/ios/ios_simple_ui.h"
+
+
 #else
 
 

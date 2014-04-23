@@ -11,7 +11,7 @@
 //  this copyright and permission notice. Attribution in compiled projects is
 //  appreciated but not required.
 //
-#import "macos_mm.h"
+#import "ios_mm.h"
 
 
 @implementation mm_window_frame_view
@@ -21,16 +21,16 @@
 //
 // Returns the bounds of the resize box.
 //
-- (NSRect)resizeRect
+/*- (CGRect)resizeRect
 {
    
 	const CGFloat resizeBoxSize = 16.0;
    
 	const CGFloat contentViewPadding = 5.5;
 	
-	NSRect contentViewRect = [[self window] contentRectForFrameRect:[[self window] frame]];
+	CGRect contentViewRect = [[self window] contentRectForFrameRect:[[self window] frame]];
    
-	NSRect resizeRect = NSMakeRect(
+	CGRect resizeRect = NSMakeRect(
 		NSMaxX(contentViewRect) + contentViewPadding,
 		NSMinY(contentViewRect) - resizeBoxSize - contentViewPadding,
 		resizeBoxSize,
@@ -38,60 +38,96 @@
 	
 	return resizeRect;
    
-}
+}*/
 
-- (void)mouseUp:(NSEvent *)event
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    
+    BOOL allTouchesEnded = ([touches count] == [[event touchesForView:self] count]);
    
    boot_window * p = m_roundwindow->m_pwindow;
+    
+    if ([touches count] == 1 && allTouchesEnded) {
+        
+        UITouch *touch = [touches anyObject];
+        
+        if ([touch tapCount] == 1) {
+            
+            // if touch is a single tap, store its location so we can average it with the second touch location
+            
+            CGPoint point = [touch locationInView:self];
+            
+            CGRect e = [[UIScreen mainScreen] applicationFrame];
+            
+            int H = (int) e.size.height;
+            
+            int x = point.x;
+            
+            int y = H - point.y;
+            
+            p->boot_window_mouse_up(x, y);
+            
+        } else {
+            
+//            twoFingerTapIsPossible = NO;
+            
+        }
+        
+    }
    
-   NSPoint point = [[self window] convertBaseToScreen:[event locationInWindow]];
-   
-   NSRect e = [[NSScreen mainScreen] frame];
-   
-   int H = (int) e.size.height;
-   
-   int x = point.x;
-   
-   int y = H - point.y;
-   
-   p->boot_window_mouse_up(x, y);
+//   CGPoint point = [[self window] convertBaseToScreen:[event locationInWindow]];
    
    return;
    
 }
 
 
-- (void)mouseMoved:(NSEvent *)event
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
    
    boot_window * p = m_roundwindow->m_pwindow;
    
-   NSPoint point = [[self window] convertBaseToScreen:[event locationInWindow]];
-   
-   NSRect e = [[NSScreen mainScreen] frame];
-   
-   int H = (int) e.size.height;
-   
-   int x = point.x;
-   
-   int y = H - point.y;
-   
-   p->boot_window_mouse_moved(x, y);
+    if ([touches count] == 1) {
+        
+        UITouch *touch = [touches anyObject];
+        
+        if ([touch tapCount] == 1) {
+            
+            // if touch is a single tap, store its location so we can average it with the second touch location
+            
+            CGPoint point = [touch locationInView:self];
+            
+            CGRect e = [[UIScreen mainScreen] applicationFrame];
+            
+            int H = (int) e.size.height;
+            
+            int x = point.x;
+            
+            int y = H - point.y;
+            
+            p->boot_window_mouse_moved(x, y);
+            
+        } else {
+            
+            //            twoFingerTapIsPossible = NO;
+            
+        }
+        
+    }
    
    return;
    
 }
 
 
-- (void)mouseDragged:(NSEvent *)event
+/*- (void)mouseDragged:(NSEvent *)event
 {
    
    boot_window * p = m_roundwindow->m_pwindow;
    
-   NSPoint point = [[self window] convertBaseToScreen:[event locationInWindow]];
+   CGPoint point = [[self window] convertBaseToScreen:[event locationInWindow]];
    
-   NSRect e = [[NSScreen mainScreen] frame];
+   CGRect e = [[NSScreen mainScreen] frame];
    
    int H = (int) e.size.height;
    
@@ -105,6 +141,7 @@
    
    
 }
+ */
 
 
 //
@@ -114,36 +151,57 @@
 //	- click in the resize box should resize the window
 //	- click anywhere else will drag the window.
 //
-- (void)mouseDown:(NSEvent *)event
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
    
-   boot_window * p = m_roundwindow->m_pwindow;
-   
-   NSPoint point = [[self window] convertBaseToScreen:[event locationInWindow]];
-   
-   NSRect e = [[NSScreen mainScreen] frame];
-   
-   int H = (int) e.size.height;
-   
-   int x = point.x;
-   
-   int y = H - point.y;
-   
-   p->boot_window_mouse_down(x, y);
+    
+    
+    boot_window * p = m_roundwindow->m_pwindow;
+ 
+//    BOOL allTouchesEnded = ([touches count] == [[event touchesForView:self] count]);
+
+//    if ([touches count] == 1 && allTouchesEnded) {
+    if ([touches count] == 1) {
+        
+        UITouch *touch = [touches anyObject];
+        
+        if ([touch tapCount] == 1) {
+            
+            // if touch is a single tap, store its location so we can average it with the second touch location
+            
+            CGPoint point = [touch locationInView:self];
+            
+            CGRect e = [[UIScreen mainScreen] applicationFrame];
+            
+            int H = (int) e.size.height;
+            
+            int x = point.x;
+            
+            int y = H - point.y;
+            
+            p->boot_window_mouse_down(x, y);
+            
+        } else {
+            
+            //            twoFingerTapIsPossible = NO;
+            
+        }
+        
+    }
    
    return;
    
-	NSPoint pointInView = [self convertPoint:[event locationInWindow] fromView:nil];
+/*	CGPoint pointInView = [self convertPoint:[event locationInWindow] fromView:nil];
 	
 	BOOL resize = NO;
-	if (NSPointInRect(pointInView, [self resizeRect]))
+	if (CGPointInRect(pointInView, [self resizeRect]))
 	{
 		resize = YES;
 	}
 	
 	NSWindow *window = [self window];
-	NSPoint originalMouseLocation = [window convertBaseToScreen:[event locationInWindow]];
-	NSRect originalFrame = [window frame];
+	CGPoint originalMouseLocation = [window convertBaseToScreen:[event locationInWindow]];
+	CGRect originalFrame = [window frame];
 	
     while (YES)
 	{
@@ -162,12 +220,12 @@
 		//
 		// Work out how much the mouse has moved
 		//
-		NSPoint newMouseLocation = [window convertBaseToScreen:[newEvent locationInWindow]];
-		NSPoint delta = NSMakePoint(
+		CGPoint newMouseLocation = [window convertBaseToScreen:[newEvent locationInWindow]];
+		CGPoint delta = NSMakePoint(
 			newMouseLocation.x - originalMouseLocation.x,
 			newMouseLocation.y - originalMouseLocation.y);
 		
-		NSRect newFrame = originalFrame;
+		CGRect newFrame = originalFrame;
 		
 		if (!resize)
 		{
@@ -189,7 +247,7 @@
 			//
 			// Constrain to the window's min and max size
 			//
-			NSRect newContentRect = [window contentRectForFrameRect:newFrame];
+			CGRect newContentRect = [window contentRectForFrameRect:newFrame];
 			NSSize maxSize = [window maxSize];
 			NSSize minSize = [window minSize];
 			if (newContentRect.size.width > maxSize.width)
@@ -213,7 +271,7 @@
 		}
 		
 		[window setFrame:newFrame display:YES animate:NO];
-	}
+	}*/
 }
 
 - (BOOL) isFlipped
@@ -226,11 +284,11 @@
 //
 // Draws the frame of the window.
 //
-- (void)drawRect:(NSRect)rect
+- (void)drawRect:(CGRect)rect
 {
    
    //	[[NSColor clearColor] set];
-	//NSRectFill(rect);
+	//CGRectFill(rect);
 
 /*
 	NSBezierPath * rectPath = [NSBezierPath bezierPathWithRect : [self bounds]];
@@ -242,7 +300,7 @@
 	[[NSColor whiteColor] set];
 	[rectPath stroke];
 	
-   NSRect resizeRect = [self resizeRect];
+   CGRect resizeRect = [self resizeRect];
 	NSBezierPath *resizePath = [NSBezierPath bezierPathWithRect:resizeRect];
 
 	[[NSColor lightGrayColor] set];
@@ -254,7 +312,7 @@
 
    [[NSColor blackColor] set];
 	NSString *windowTitle = [[self window] title];
-	NSRect titleRect = [self bounds];
+	CGRect titleRect = [self bounds];
 	titleRect.origin.y = titleRect.size.height - (WINDOW_FRAME_PADDING - 7);
 	titleRect.size.height = (WINDOW_FRAME_PADDING - 7);
 	NSMutableParagraphStyle *paragraphStyle =
@@ -279,7 +337,7 @@
    
 //   [m_roundwindow disableFlushWindow];
    
-   CGContextRef cgc = (CGContextRef) [[NSGraphicsContext currentContext] graphicsPort];
+   CGContextRef cgc = UIGraphicsGetCurrentContext();
    
    p->boot_window_draw(cgc);
    
@@ -295,15 +353,15 @@
    return TRUE;
 }
 
-- (BOOL) acceptsFirstMouse:(NSEvent *)theEvent
-{
-   [self mouseDown: theEvent];
-   return YES;
-}
+//- (BOOL) acceptsFirstMouse:(NSEvent *)theEvent//
+//{
+  // [self mouseDown: theEvent];
+   //return YES;
+//}
 
 
-
-- (void)keyDown:(NSEvent *)event {
+/*
+- (void)keyDown:(UIEvent *)event {
    
 
    ::user::e_key ekey = event_key(event);
@@ -395,13 +453,15 @@
 
    [super flagsChanged:event];
 }
+*/
+
 
 @end
 
 
-::user::e_key event_key(NSEvent * event)
+::user::e_key event_key(UIEvent * event)
 {
-   
+   /*
    if([event modifierFlags] & NSNumericPadKeyMask) // arrow keys have this mask
    {
       
@@ -630,7 +690,7 @@
          return ::user::key_delete;
       }
       
-   }
+   }*/
    
    return ::user::key_none;;
    

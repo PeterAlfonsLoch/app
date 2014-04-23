@@ -32,3 +32,9 @@
 @end
 
 #define ddsynthesize(_X_) @synthesize _X_ = _##_X_
+@interface NSObject (DDExtensions)
+
+- (id)dd_invokeOnMainThread;
+- (id)dd_invokeOnMainThreadAndWaitUntilDone:(BOOL)waitUntilDone;
+
+@end

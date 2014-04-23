@@ -23,7 +23,10 @@ public:
 
 };
 
-
+class ns_exception
+{
+    
+};;
 
 #endif
 

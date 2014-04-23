@@ -41,7 +41,7 @@
 #else
 
 
-#if !defined(MACOS)
+#if !defined(APPLEOS)
 #include <ucontext.h>
 #endif
 #include <sys/ucontext.h>
@@ -167,7 +167,7 @@ namespace exception
          ::standard_exception(papp, signal, psiginfo, pc)
          {}
    public:
-#elif defined(LINUX) || defined(MACOS) || defined(SOLARIS)
+#elif defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)
       standard_access_violation (sp(base_application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
          element(papp),
 #ifdef LINUX
@@ -182,6 +182,8 @@ namespace exception
 #else
 #ifdef SOLARIS
       ::call_stack(papp, 3, (void *) ((ucontext_t *) pc)->uc_mcontext.gregs[EIP]),
+#elif defined(APPLE_IOS)
+       ::call_stack(papp, 3, (void *) NULL),
 #else
         ::call_stack(papp, 3, (void *) ((ucontext_t *) pc)->uc_mcontext.eip),
 #endif

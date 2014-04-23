@@ -38,7 +38,7 @@ int32_t wprintf_dup(const wchar_t *format, ...)
 int32_t vprintf_dup(const char *format, va_list args)
 {
 
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
     return vprintf(format, args);
 
@@ -64,7 +64,7 @@ int32_t vprintf_dup(const char *format, va_list args)
 int32_t vwprintf_dup(const wchar_t *format, va_list args)
 {
 
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
     return vwprintf(format, args);
 

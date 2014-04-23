@@ -41,6 +41,12 @@ namespace exception
 } // namespace exception
 
 
+#ifdef APPLE_IOS
+
+
+
+#else
+
 #ifdef WINDOWS
 __declspec(thread) string * t_pstrNote = NULL;
 __declspec(thread) BYTE t_pdataNote[sizeof(string)];
@@ -66,5 +72,5 @@ void __set_thread_note(const char * pszNote)
    *t_pstrNote = pszNote;
 }
 
-
+#endif
 

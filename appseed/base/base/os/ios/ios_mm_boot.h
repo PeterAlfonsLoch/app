@@ -10,9 +10,9 @@
 #define boot_macos_mm_h
 
 
-#include "macos_mm_window.h"
-#include "macos_mm_window_frame_view.h"
-#include "macos_window.h"
+#include "ios_mm_window.h"
+#include "ios_mm_window_frame_view.h"
+#include "ios_window.h"
 
 
 #endif

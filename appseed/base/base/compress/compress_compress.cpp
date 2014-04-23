@@ -1,5 +1,5 @@
 #include "framework.h"
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 #define _O_BINARY 0
 #define _O_RDONLY O_RDONLY
 #else
@@ -8,7 +8,7 @@
 #include <wchar.h>
 #include <fcntl.h>
 #include <sys/stat.h>
-#if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID)
+#if !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID)
 #include <share.h>
 #endif
 

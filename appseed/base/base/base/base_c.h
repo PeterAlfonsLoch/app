@@ -22,7 +22,7 @@
 
 #if defined(ANDROID)
 #include "base/base/os/android/android.h"
-#elif defined(APPLE_OS)
+#elif defined(MACOS)
 #include "base/base/os/macos/macos.h"
 #elif defined(LINUX)
 #include "base/base/os/linux/linux.h"
@@ -32,6 +32,8 @@
 #include "base/base/os/windows/windows.h"
 #elif defined(SOLARIS)
 #include "base/base/os/solaris/solaris.h"
+#elif defined(APPLE_IOS)
+#include "base/base/os/ios/ios.h"
 #else
 #error Not Supported Operational System
 #endif

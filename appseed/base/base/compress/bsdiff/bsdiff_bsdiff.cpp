@@ -173,7 +173,7 @@ int32_t bsdiff(const char * oldfile, const char * newfile, const char * patchfil
    file_offset *  V = NULL;
    file_offset    scan;
    file_offset    len;
-   file_offset    pos;
+   file_offset    pos = 0;
    file_offset    lastscan;
    file_offset    lastoffset;
    file_offset    lastpos;

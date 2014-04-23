@@ -52,6 +52,15 @@
 #define HAVE_MYSQL
 #define HAVE_OPENSSL
 
+#elif defined(APPLE_IOS)
+
+//#include "os/ansios/ansios.h"
+#include "base/os/os_binreloc.h"
+#include "base/os/ios/ca_os.h"
+
+
+
+
 #else
 
 #error Not supported operating system

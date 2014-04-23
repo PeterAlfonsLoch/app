@@ -67,7 +67,7 @@ namespace file
 
       template < class T >
       bool output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, const char *), const char * lpszSource)
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
          ;
 #else
       {
@@ -82,7 +82,7 @@ namespace file
 
       template < class T >
       bool output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), const char * lpszInput)
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
          ;
 #else
       {

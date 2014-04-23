@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "macos_simple_ui.h"
-#include "macos_window_boot.h"
+#include "ios_simple_ui.h"
+#include "ios_window_boot.h"
 
 
 namespace os

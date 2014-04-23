@@ -12,8 +12,6 @@
 //  appreciated but not required.
 //
 
-#import <Foundation/Foundation.h>
-
 @interface UncaughtExceptionHandler : NSObject
 {
 	BOOL dismissed;
