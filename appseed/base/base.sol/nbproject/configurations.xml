@@ -1726,6 +1726,85 @@
             <itemPath>../base/openssl/engines/makeengines.com</itemPath>
             <itemPath>../base/openssl/engines/vax.opt</itemPath>
           </logicalFolder>
+          <logicalFolder name="include" displayName="include" projectFiles="true">
+            <logicalFolder name="openssl" displayName="openssl" projectFiles="true">
+              <itemPath>../base/openssl/include/openssl/aes.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/applink.c</itemPath>
+              <itemPath>../base/openssl/include/openssl/asn1.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/asn1_mac.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/asn1t.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/bio.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/blowfish.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/bn.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/buffer.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/camellia.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/cast.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/cmac.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/cms.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/comp.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/conf.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/conf_api.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/crypto.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/des.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/des_old.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/dh.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/dsa.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/dso.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/dtls1.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/e_os2.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/ebcdic.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/ec.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/ecdh.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/ecdsa.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/engine.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/err.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/evp.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/hmac.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/idea.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/krb5_asn.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/kssl.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/lhash.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/md4.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/md5.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/mdc2.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/modes.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/obj_mac.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/objects.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/ocsp.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/opensslv.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/ossl_typ.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/pem.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/pem2.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/pkcs12.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/pkcs7.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/pqueue.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/rand.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/rc2.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/rc4.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/ripemd.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/rsa.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/safestack.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/seed.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/sha.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/srp.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/srtp.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/ssl.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/ssl2.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/ssl23.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/ssl3.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/stack.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/symhacks.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/tls1.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/ts.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/txt_db.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/ui.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/ui_compat.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/whrlpool.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/x509.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/x509_vfy.h</itemPath>
+              <itemPath>../base/openssl/include/openssl/x509v3.h</itemPath>
+            </logicalFolder>
+          </logicalFolder>
           <logicalFolder name="ssl" displayName="ssl" projectFiles="true">
             <itemPath>../base/openssl/ssl/Makefile</itemPath>
             <itemPath>../base/openssl/ssl/bio_ssl.c</itemPath>
@@ -2101,14 +2180,6 @@
           <itemPath>../filesystem/fs/fs_set.h</itemPath>
         </logicalFolder>
         <itemPath>../filesystem/filesystem.h</itemPath>
-      </logicalFolder>
-      <logicalFolder name="framework" displayName="framework" projectFiles="true">
-        <itemPath>../framework/crypto_framework.c</itemPath>
-        <itemPath>../framework/crypto_framework.h</itemPath>
-        <itemPath>../framework/framework.cpp</itemPath>
-        <itemPath>../framework/framework.h</itemPath>
-        <itemPath>../framework/framework_c.c</itemPath>
-        <itemPath>../framework/framework_c.h</itemPath>
       </logicalFolder>
       <logicalFolder name="graphics" displayName="graphics" projectFiles="true">
         <logicalFolder name="draw2d" displayName="draw2d" projectFiles="true">
@@ -3244,18 +3315,18 @@
           <incDir>
             <pElem>../../../../include</pElem>
             <pElem>../../../include</pElem>
-            <pElem>../base/openssl/crypto</pElem>
-            <pElem>../base/openssl</pElem>
-            <pElem>../../../thirdparty/include</pElem>
-            <pElem>../base/openssl/crypto/asn1</pElem>
             <pElem>../framework</pElem>
             <pElem>../..</pElem>
             <pElem>../../../..</pElem>
+            <pElem>..</pElem>
             <pElem>../base/openssl/include</pElem>
             <pElem>../../../../nodeapp/thirdparty/include</pElem>
-            <pElem>..</pElem>
+            <pElem>../../../include</pElem>
+            <pElem>../base/openssl/crypto</pElem>
+            <pElem>../base/openssl</pElem>
+            <pElem>../base/openssl/crypto/asn1</pElem>
           </incDir>
-          <commandLine>-xpch=use:framework_c</commandLine>
+          <commandLine>$(FRAMEWORK_C_FLAGS)</commandLine>
           <preprocessorList>
             <Elem>DEBUG</Elem>
           </preprocessorList>
@@ -3271,30 +3342,20 @@
             <pElem>..</pElem>
             <pElem>../base/openssl/include</pElem>
             <pElem>../../../../nodeapp/thirdparty/include</pElem>
+            <pElem>../../../../../../include</pElem>
+            <pElem>../../../include</pElem>
+            <pElem>../base/openssl/crypto</pElem>
+            <pElem>../base/openssl</pElem>
+            <pElem>../base/openssl/crypto/asn1</pElem>
           </incDir>
           <standardsEvolution>3</standardsEvolution>
           <languageExtension>2</languageExtension>
-          <commandLine>-features=namespace,rtti -xpch=use:framework</commandLine>
+          <commandLine>$(FRAMEWORK_FLAGS)</commandLine>
           <preprocessorList>
             <Elem>DEBUG</Elem>
           </preprocessorList>
         </ccTool>
       </compileType>
-      <item path="../framework/crypto_framework.c" ex="false" tool="0" flavor="0">
-        <cTool>
-          <commandLine>-xpch=collect:crypto_framework</commandLine>
-        </cTool>
-      </item>
-      <item path="../framework/framework.cpp" ex="false" tool="1" flavor="0">
-        <ccTool>
-          <commandLine>-xpch=collect:framework</commandLine>
-        </ccTool>
-      </item>
-      <item path="../framework/framework_c.c" ex="false" tool="0" flavor="0">
-        <cTool>
-          <commandLine>-xpch=collect:framework_c</commandLine>
-        </cTool>
-      </item>
     </conf>
     <conf name="Release" type="2">
       <toolsSet>

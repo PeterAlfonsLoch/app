@@ -45,16 +45,55 @@
 
 
 # Environment 
+#.KEEP_STATE:
 MKDIR=mkdir
 CP=cp
+CCC=CC
+CC=cc
 CCADMIN=CCadmin
+FRAMEWORK_DIR=../framework
+FRAMEWORK_FLAGS_CORE=-features=namespace,rtti
+FRAMEWORK_FLAGS=-xpch=use:framework $(FRAMEWORK_FLAGS_CORE)
+FRAMEWORK_FLAGS_COLLECT=-xpch=collect:framework $(FRAMEWORK_FLAGS_CORE)
+FRAMEWORK_C_FLAGS_CORE= 
+FRAMEWORK_C_FLAGS=-xpch=use:framework $(FRAMEWORK_C_FLAGS_CORE)
+FRAMEWORK_C_FLAGS_COLLECT=-xpch=collect:framework $(FRAMEWORK_C_FLAGS_CORE)
+CRYPTO_FRAMEWORK_FLAGS_CORE=
+CRYPTO_FRAMEWORK_FLAGS=-xpch=use:framework $(CRYPTO_FRAMEWORK_FLAGS_CORE)
+CRYPTO_FRAMEWORK_FLAGS_COLLECT=-xpch=collect:framework $(CRYPTO_FRAMEWORK_FLAGS_CORE)
+IDN_FRAMEWORK_FLAGS_CORE=
+IDN_FRAMEWORK_FLAGS=-xpch=use:idn_framework $(IDN_FRAMEWORK_FLAGS_CORE)
+IDN_FRAMEWORK_FLAGS_COLLECT=-xpch=collect:idn_framework $(IDN_FRAMEWORK_FLAGS_CORE)
+FRAMEWORK_OBJECT_DIR=../../../../time
+
+
+
+FRAMEWORK_FILES= \
+	$(FRAMEWORK_DIR)/framework.Cpch \
+	$(FRAMEWORK_DIR)/framework_c.Cpch \
+	$(FRAMEWORK_DIR)/crypto_framework.Cpch \
+	$(FRAMEWORK_DIR)/idn_framework.Cpch 
 
 
 # build
 build: .build-post
 
-.build-pre:
-# Add your pre 'build' code here...
+
+.build-pre: ${FRAMEWORK_FILES}
+	
+$(FRAMEWORK_DIR)/framework.Cpch: $(FRAMEWORK_DIR)/framework.cpp
+	${MKDIR} -p $(FRAMEWORK_OBJECT_DIR)/_ext/framework
+	$(CCC) -features=no%anachronisms,no%transitions,tmplife -features=extensions,tmplrefstatic,iddollar -c -g -DDEBUG -I../../../../include -I../../../include -I../framework -I../.. -I../../../.. -I.. -I../base/openssl/include -I../../../../nodeapp/thirdparty/include -I../../../../../../include -I../../../include -I../base/openssl/crypto -I../base/openssl -I../base/openssl/crypto/asn1 -KPIC $(FRAMEWORK_FLAGS_COLLECT) -o $(FRAMEWORK_OBJECT_DIR)/_ext/framework/framework.o $(FRAMEWORK_DIR)/framework.cpp
+$(FRAMEWORK_DIR)/framework_c.Cpch: $(FRAMEWORK_DIR)/framework_c.c
+	${MKDIR} -p $(FRAMEWORK_OBJECT_DIR)/_ext/framework
+	$(CC) -c -g -DDEBUG -I../../../../include -I../../../include -I../framework -I../.. -I../../../.. -I.. -I../base/openssl/include -I../../../../nodeapp/thirdparty/include -I../../../../../../include -I../../../include -I../base/openssl/crypto -I../base/openssl -I../base/openssl/crypto/asn1 -KPIC $(FRAMEWORK_C_FLAGS_COLLECT) -o $(FRAMEWORK_OBJECT_DIR)/_ext/framework/framework_c.o $(FRAMEWORK_DIR)/framework_c.c
+$(FRAMEWORK_DIR)/crypto_framework.Cpch: $(FRAMEWORK_DIR)/crypto_framework.c
+	${MKDIR} -p $(FRAMEWORK_OBJECT_DIR)/_ext/framework
+	$(CC) -c -g -I../../../../include -I../../../include -I../framework -I../.. -I../../../.. -I.. -I../base/openssl/include -I../../../../nodeapp/thirdparty/include -I../../../../../../include -I../../../include -I../base/openssl/crypto -I../base/openssl -I../base/openssl/crypto/asn1 -KPIC $(CRYPTO_FRAMEWORK_FLAGS_COLLECT) -o $(FRAMEWORK_OBJECT_DIR)/_ext/framework/crypto_framework.o $(FRAMEWORK_DIR)/crypto_framework.c
+$(FRAMEWORK_DIR)/idn_framework.Cpch: $(FRAMEWORK_DIR)/idn_framework.c
+	${MKDIR} -p ${FRAMEWORK_OBJECT_DIR}/_ext/framework
+	$(CC) -c -g -I../../../../include -I../../../include -I../framework -I../.. -I../../../.. -I.. -I../base/openssl/include -I../../../../nodeapp/thirdparty/include -I../../../../../../include -I../../../include -I../base/openssl/crypto -I../base/openssl -I../base/openssl/crypto/asn1 -KPIC $(IDN_FRAMEWORK_FLAGS_COLLECT) -o ${FRAMEWORK_OBJECT_DIR}/_ext/framework/idn_framework.o $(FRAMEWORK_DIR)/idn_framework.c
+
 
 .build-post: .build-impl
 # Add your post 'build' code here...
