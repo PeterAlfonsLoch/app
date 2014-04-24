@@ -132,7 +132,7 @@ retry_license:
 
          iRetry--;
 
-         if(!Application.is_licensed(strLicense))
+         if(!Session.is_licensed(strLicense))
          {
 
             Application.license().m_mapInfo.remove_key(strLicense);
@@ -561,8 +561,8 @@ retry_license:
          if(&keyboard().layout() != NULL)
          {
 
-            if(Application.fontopus()->m_puser != NULL
-               && Application.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
+            if(Session.fontopus()->m_puser != NULL
+               && Session.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
             {
 
                // xxx data_set("keyboard_layout", keyboard().layout().m_strPath);
@@ -578,8 +578,8 @@ retry_license:
          if(!set_keyboard_layout(keyboard().get_current_system_layout(), ::action::source_database))
             return false;
 
-         if(Application.fontopus()->m_puser != NULL
-            && Application.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
+         if(Session.fontopus()->m_puser != NULL
+            && Session.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
          {
 
 // xxx            data_set("keyboard_layout", keyboard().layout().m_strPath);

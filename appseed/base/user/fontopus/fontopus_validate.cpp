@@ -91,7 +91,7 @@ namespace fontopus
 		   || command_thread()->property("app") == "app-gtech/sensible_netnode"
          || command_thread()->property("app") == "app-gtech/sensible_service")
       {
-         m_puser = Application.m_pfontopus->allocate_user();
+         m_puser = Session.fontopus()->allocate_user();
          m_puser->m_strPathPrefix = "system" + ::str::has_char(Application.command()->m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = system_user_1;
          return m_puser;
@@ -100,7 +100,7 @@ namespace fontopus
          || command_thread()->has_property("install")
          || command_thread()->has_property("uninstall"))
       {
-         m_puser = Application.m_pfontopus->allocate_user();
+         m_puser = Session.fontopus()->allocate_user();
          m_puser->m_strPathPrefix = "system" + ::str::has_char(Application.command()->m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = system_user_1;
          return m_puser;
@@ -113,7 +113,7 @@ namespace fontopus
       else if(command_thread()->property("app") == "backup"
          || command_thread()->property("app") == "winservice_filesystemsize")
       {
-         m_puser = Application.m_pfontopus->allocate_user();
+         m_puser = Session.fontopus()->allocate_user();
          m_puser->m_strPathPrefix = "system" + ::str::has_char(Application.command()->m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = system_user_2;
          return m_puser;
@@ -153,7 +153,7 @@ namespace fontopus
       if(straRequestingServer.contains(Application.command_thread()->m_varTopicQuery["fontopus"].get_string())
          && Application.command_thread()->m_varTopicQuery["sessid"].get_string().get_length() > 16)
       {
-         m_loginthread.m_puser = Application.m_pfontopus->allocate_user();
+         m_loginthread.m_puser = Session.fontopus()->allocate_user();
          m_loginthread.m_puser->m_sessionidmap[Application.command_thread()->m_varTopicQuery["fontopus"].get_string()] = Application.command_thread()->m_varTopicQuery["sessid"].get_string();
          m_loginthread.m_puser->m_sessionidmap[strHost] = Application.command_thread()->m_varTopicQuery["sessid"].get_string();
          m_loginthread.m_puser->m_strFontopusServerSessId = Application.command_thread()->m_varTopicQuery["sessid"].get_string();
@@ -181,7 +181,7 @@ namespace fontopus
          }
       }
 
-      m_loginthread.m_puser = Application.m_pfontopus->allocate_user();
+      m_loginthread.m_puser = Session.fontopus()->allocate_user();
 
       if(pszSessId != NULL && string(pszSessId).get_length() > 16)
       {
@@ -223,7 +223,7 @@ namespace fontopus
             return NULL;
          }
 
-         m_puser = Application.m_pfontopus->allocate_user();
+         m_puser = Session.fontopus()->allocate_user();
 
          m_puser->m_strLogin = strUsername;
          m_puser->m_strFontopusServerSessId = strSessId;
@@ -559,8 +559,8 @@ namespace fontopus
       {
          if(doc.get_root()->attr("id") == "auth" && doc.get_root()->attr("passhash").has_char() && doc.get_root()->attr("secureuserid").has_char())
          {
-            Application.fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer] = strResponse;
-            Application.fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer] = strResponse;
+            Session.fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer] = strResponse;
+            Session.fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer] = strResponse;
             m_puser->m_strLogin = m_strUsername;
             m_puser->m_strFontopusServerSessId = doc.get_root()->attr("sessid");
             m_puser->set_sessid(m_puser->m_strFontopusServerSessId, m_strLoginUrl);
@@ -690,9 +690,9 @@ namespace fontopus
    string login_thread::NetLogin(::http::e_status * pestatus)
    {
 
-      if(Application.fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer].get_length() > 32)
+      if(Session.fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer].get_length() > 32)
       {
-         return Application.fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer];
+         return Session.fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer];
       }
 
       string strGetFontopus("http://" + m_strRequestingServer + "/get_fontopus");
@@ -703,16 +703,16 @@ namespace fontopus
 
       url_domain domainFontopus;
 
-      m_strFontopusServer = Application.fontopus()->get_server(strGetFontopus, 8);
+      m_strFontopusServer = Session.fontopus()->get_server(strGetFontopus, 8);
 
       domainFontopus.create(m_strFontopusServer);
 
       if(domainFontopus.m_strRadix != "ca2")
          return "";
 
-      if (Application.fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer].get_length() > 32)
+      if (Session.fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer].get_length() > 32)
       {
-         return Application.fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer];
+         return Session.fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer];
       }
 
 

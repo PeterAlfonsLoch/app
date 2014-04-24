@@ -164,8 +164,32 @@ namespace plane
    bool session::initialize_instance()
    {
 
+      if (Session.m_pfontopus->m_puser == NULL &&
+         (Application.directrix()->m_varTopicQuery.has_property("install")
+         || Application.directrix()->m_varTopicQuery.has_property("uninstall")))
+      {
+
+         if (Session.m_pfontopus->create_system_user("system") == NULL)
+            return false;
+
+      }
+
+
+      if (!m_pfontopus->initialize_instance())
+         return false;
+
       if(!::application::initialize_instance())
          return false;
+
+
+      m_pfilemanager = canew(::filemanager::filemanager(this));
+
+      
+      m_pfilemanager->construct(this);
+
+      if (!m_pfilemanager->initialize())
+         return false;
+
 
       initialize_bergedge_application_interface();
 
@@ -1403,11 +1427,11 @@ alt1:
          }
       }
 
-      if(m_pappCurrent != NULL && m_pappCurrent->m_pplaneapp->fontopus()->m_puser != NULL)
+      if(m_pappCurrent != NULL && m_pappCurrent->m_pbasesession->fontopus()->m_puser != NULL)
       {
          try
          {
-            get_view()->GetParentFrame()->SetWindowText(m_pappCurrent->m_pplaneapp->fontopus()->m_puser->m_strLogin);
+            get_view()->GetParentFrame()->SetWindowText(m_pappCurrent->m_pbasesession->fontopus()->m_puser->m_strLogin);
          }
          catch(...)
          {

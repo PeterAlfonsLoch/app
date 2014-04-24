@@ -40,7 +40,7 @@ namespace fontopus
       //}
       //else
       {
-         bLicensed = Application.m_pfontopus->check_license(pszId, bInteractive);
+         bLicensed = Session.m_pfontopus->check_license(pszId, bInteractive);
       }
 
       info.m_bLicensed = bLicensed;

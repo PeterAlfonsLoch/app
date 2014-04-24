@@ -183,7 +183,7 @@ namespace file
          || ::str::begins_ci_iws(strPath, "https://"))
       {
          property_set set(papp);
-         set["user"] = papp->safe_get_user();
+         set["user"] = papp->m_pbasesession->safe_get_user();
          return App(papp).http().exists(strPath, pvarQuery, set);
       }
 

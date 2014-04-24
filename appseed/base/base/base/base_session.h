@@ -22,10 +22,13 @@ public:
    ::core::copydesk_sp                                      m_spcopydesk;
 
 
+   sp(::fontopus::fontopus)                        m_pfontopus;
 
 
+   base_session();
 
    inline ::userpresence::userpresence & userpresence() { return *m_puserpresence; }
+   inline sp(::fontopus::fontopus)           fontopus()     { return m_pfontopus; }
 
    virtual bool is_session();
 
@@ -41,7 +44,20 @@ public:
    virtual ::visual::cursor * get_default_cursor();
 
    virtual COLORREF get_default_color(uint64_t ui);
+   virtual ::fontopus::fontopus * create_fontopus();
 
+
+   virtual ::fontopus::user * safe_get_user();
+
+
+   virtual ::fontopus::user * get_user();
+   virtual ::fontopus::user * create_current_user();
+
+
+   virtual bool is_licensed(const char * pszId, bool bInteractive = true);
+
+
+   virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword);
 
 
 };

@@ -258,8 +258,8 @@ namespace plane
          return false;
 
 
-      if(fontopus()->create_system_user("system") == NULL)
-         return false;
+      //if(Session.fontopus()->create_system_user("system") == NULL)
+        // return false;
 
 
       m_puserstr = new ::user::str(this);

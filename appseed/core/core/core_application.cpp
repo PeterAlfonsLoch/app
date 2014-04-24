@@ -2002,9 +2002,9 @@ void application::on_file_open()
 bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::object) pdocument)
 // if ptemplate==NULL => all document templates
 {
-   if (m_pfilemanager != NULL)
+   if (Session.m_pfilemanager != NULL)
    {
-      return m_pfilemanager->do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
+      return Session.m_pfilemanager->do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
    }
    ENSURE(m_pdocmanager != NULL);
    /*      return m_pdocmanager->do_prompt_file_name(fileName, nIDSTitle, lFlags,
@@ -3739,14 +3739,6 @@ bool application::initialize()
    //  if(!m_puserbase->initialize())
    //return false;
 
-   m_pfilemanager = canew(::filemanager::filemanager(this));
-
-   application::m_pfilemanager = m_pfilemanager;
-
-   m_pfilemanager->construct(this);
-
-   if (!m_pfilemanager->initialize())
-      return false;
 
    xxdebug_box("m_pfilemanager::initialize ok", "m_pfilemanager::initialize ok", MB_ICONINFORMATION);
 

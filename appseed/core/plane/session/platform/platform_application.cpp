@@ -21,7 +21,7 @@ namespace platform
       if(!::application::initialize_instance())
          return false;
 
-      filemanager().std().m_strLevelUp = "levelup";
+      Session.filemanager().std().m_strLevelUp = "levelup";
 
       ::user::single_document_template* pDocTemplate;
       pDocTemplate = new ::user::single_document_template(

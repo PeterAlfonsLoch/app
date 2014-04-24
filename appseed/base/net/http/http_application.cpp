@@ -35,7 +35,7 @@ namespace http
 
       if ((bool)set["optional_ca2_sessid"])
       {
-         if (Application.fontopus()->m_puser != NULL)
+         if (Session.fontopus()->m_puser != NULL)
             set["user"] = &ApplicationUser;
       }
       else

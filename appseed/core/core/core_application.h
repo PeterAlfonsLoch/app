@@ -116,7 +116,6 @@ public:
    sp(::user::uinteraction::uinteraction) m_puinteraction;
    //sp(::user::user)              m_puserbase;
    //sp(::userex::userex) m_puserex;
-   sp(::filemanager::filemanager)   m_pfilemanager;
    sp(::usermail::usermail)         m_pusermail;
 #ifdef WINDOWSEX
    raw_array < MONITORINFO >            m_monitorinfoa;
@@ -622,7 +621,6 @@ public:
    inline ::user::uinteraction::uinteraction          & uinteraction() { return *m_puinteraction; }
    ///inline ::user::user                  & user     () { return *m_puserbase      ; }
    //      inline ::userex::userex                      & userex       () { return *m_puserex        ; }
-   inline ::filemanager::filemanager            & filemanager() { return *m_pfilemanager; }
    inline ::usermail::usermail                          & usermail() { return *m_pusermail; }
 
 

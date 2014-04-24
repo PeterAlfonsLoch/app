@@ -100,7 +100,6 @@ public:
 
    sp(::fs::fs)                                    m_spfs;
    class ::http::application                       m_http;
-   sp(::fontopus::fontopus)                        m_pfontopus;
    class ::file::dir::application                  m_dir;
    class ::file::application                       m_file;
    sp(math::math)                                  m_pmath;
@@ -210,13 +209,13 @@ public:
    virtual bool init_main_data(::core::main_init_data * pdata);
 
 
+   virtual ::user::user * create_user();
 
 
    ::core::savings &                         savings();
    inline class ::http::application &        http()         { return m_http; }
    inline class ::file::dir::application &   dir()          { return m_dir; }
    inline class ::file::application &        file()         { return m_file; }
-   inline sp(::fontopus::fontopus)           fontopus()     { return m_pfontopus; }
    inline ::sockets::sockets &               sockets()      { return *m_psockets; }
    inline sp(class ::user::user)             user()         { return m_spuser; }
    math::math &                              math();
@@ -228,14 +227,6 @@ public:
 
    ::user::str_context *                     str_context();
 
-
-   virtual ::fontopus::user * safe_get_user();
-   virtual ::fontopus::user * get_user();
-   virtual ::fontopus::user * create_current_user();
-
-
-   virtual bool is_licensed(const char * pszId, bool bInteractive = true);
-   virtual string get_license_id();
 
 
    virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::object) pdocument);
@@ -353,7 +344,7 @@ public:
 
    virtual thread * GetThread();
 
-   virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword);
+   virtual string get_license_id();
 
 
    sp(::user::interaction) get_active_guie();
@@ -493,8 +484,6 @@ public:
 
    virtual bool final_handle_exception(::exception::exception & e);
 
-   virtual ::fontopus::fontopus * create_fontopus();
-   virtual ::user::user * create_user();
 
 
    service_base * get_service();

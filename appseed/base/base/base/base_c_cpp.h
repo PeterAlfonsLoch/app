@@ -934,7 +934,7 @@ namespace numeric_info
 #include "base_core_os.h"
 
 
-#define AppUser(pbaseapp) (*App(pbaseapp).m_pfontopus->get_user())
+#define AppUser(pbaseapp) (*App(pbaseapp).m_pbasesession->m_pfontopus->get_user())
 #define ApplicationUser (AppUser(m_pbaseapp))
 #define Sess(pbaseapp) (*pbaseapp->m_pbasesession)
 #define Session (Sess(this->m_pbaseapp))

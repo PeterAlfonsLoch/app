@@ -1,6 +1,17 @@
 #include "framework.h"
 
 
+base_session::base_session()
+{
+
+   m_pfontopus = create_fontopus();
+
+   if (m_pfontopus == NULL)
+      throw simple_exception(this, "could not create fontopus for base_application (base_application::construct)");
+
+   m_pfontopus->construct(this);
+
+}
 
 bool base_session::is_session()
 {
@@ -37,6 +48,15 @@ sp(::base_application) base_session::start_application(const char * pszType, con
    return NULL;
 }
 
+::fontopus::user * base_session::safe_get_user()
+{
+
+   if (m_pfontopus == NULL)
+      return NULL;
+
+   return m_pfontopus->m_puser;
+
+}
 
 
 void base_session::set_cursor(::visual::e_cursor ecursor)
@@ -93,3 +113,66 @@ COLORREF base_session::get_default_color(uint64_t ui)
    return *m_spcopydesk;
 
 }
+
+
+::fontopus::user * base_session::get_user()
+{
+
+   return m_pfontopus->get_user();
+
+}
+
+
+bool base_session::get_auth(const string & pszForm, string & strUsername, string & strPassword)
+{
+   UNREFERENCED_PARAMETER(pszForm);
+   UNREFERENCED_PARAMETER(strUsername);
+   UNREFERENCED_PARAMETER(strPassword);
+   return false;
+}
+
+
+/*::fontopus::user * application::create_user(const string & pszLogin)
+{
+return NULL;
+}*/
+
+::fontopus::user * base_session::create_current_user()
+{
+   return NULL;
+   /*   string str = get_current_user_login();
+   return create_user(str);*/
+}
+
+/*string application::get_current_user_login()
+{
+return "";
+}*/
+
+
+
+bool base_session::is_licensed(const char * pszId, bool bInteractive)
+{
+
+   if (directrix()->m_varTopicQuery.has_property("install"))
+      return true;
+
+   if (directrix()->m_varTopicQuery.has_property("uninstall"))
+      return true;
+
+   return license().has(pszId, bInteractive);
+
+}
+
+
+::fontopus::fontopus * base_session::create_fontopus()
+{
+
+   return canew(::fontopus::fontopus(this));
+
+}
+
+
+
+
+

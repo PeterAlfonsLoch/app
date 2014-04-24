@@ -15,7 +15,7 @@ db_str_set::db_str_set(db_server * pserver) :
    m_pmysqldbUser = pserver->m_pmysqldbUser;
    m_strUser      = pserver->m_strUser;
 
-//   if((!m_pdataserver->m_bRemote && m_pmysqldbUser == NULL) || Application.fontopus().m_puser)
+//   if((!m_pdataserver->m_bRemote && m_pmysqldbUser == NULL) || Session.fontopus().m_puser)
   // {
       sp(::sqlite::base) pdb = db()->GetImplDatabase();
       //create string Table if necessary

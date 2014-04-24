@@ -118,7 +118,7 @@ retry_license:
 
          iRetry--;
 
-         if(!Application.is_licensed(strLicense))
+         if(!Session.is_licensed(strLicense))
          {
 
             Application.license().m_mapInfo.remove_key(strLicense);

@@ -593,15 +593,6 @@ element(papp),
 
 
 
-::fontopus::user * base_application::safe_get_user()
-{
-
-   if (m_pfontopus == NULL)
-      return NULL;
-
-   return m_pfontopus->m_puser;
-
-}
 
 
 bool base_application::open_link(const string & strLink, const string & pszTarget)
@@ -1157,38 +1148,7 @@ string base_application::draw2d_get_default_library_name()
 
 
 
-::fontopus::user * base_application::get_user()
-{
 
-   return m_pfontopus->get_user();
-
-}
-
-bool base_application::get_auth(const string & pszForm, string & strUsername, string & strPassword)
-{
-   UNREFERENCED_PARAMETER(pszForm);
-   UNREFERENCED_PARAMETER(strUsername);
-   UNREFERENCED_PARAMETER(strPassword);
-   return false;
-}
-
-
-/*::fontopus::user * application::create_user(const string & pszLogin)
-{
-return NULL;
-}*/
-
-::fontopus::user * base_application::create_current_user()
-{
-   return NULL;
-   /*   string str = get_current_user_login();
-   return create_user(str);*/
-}
-
-/*string application::get_current_user_login()
-{
-return "";
-}*/
 
 
 void base_application::set_locale(const string & lpcsz, ::action::context actioncontext)
@@ -1364,27 +1324,6 @@ bool base_application::get_desk_monitor_rect(index iMonitor, LPRECT lprect)
 
 }
 
-
-
-bool base_application::is_licensed(const char * pszId, bool bInteractive)
-{
-
-   if (directrix()->m_varTopicQuery.has_property("install"))
-      return true;
-
-   if (directrix()->m_varTopicQuery.has_property("uninstall"))
-      return true;
-
-   return license().has(pszId, bInteractive);
-
-}
-
-string base_application::get_license_id()
-{
-
-   return m_strAppId;
-
-}
 
 
 
@@ -1979,14 +1918,6 @@ bool base_application::final_handle_exception(::exception::exception & e)
    }
 
    return false;
-}
-
-
-::fontopus::fontopus * base_application::create_fontopus()
-{
-
-   return canew(::fontopus::fontopus(this));
-
 }
 
 
@@ -3055,16 +2986,6 @@ return NULL;
 
 
 
-::user::user * base_application::create_user()
-{
-
-   return canew(::user::user(this));
-
-}
-
-
-
-
 
 bool base_application::is_installing()
 {
@@ -3811,18 +3732,12 @@ bool base_application::process_initialize()
 
 
 
-
-   m_pfontopus = create_fontopus();
-
-   if (m_pfontopus == NULL)
-      throw simple_exception(this, "could not create fontopus for base_application (base_application::construct)");
-
-   m_pfontopus->construct(this);
-
    m_spuser = create_user();
 
    if (m_spuser == NULL)
       return false;
+
+
 
    m_spuser->construct(this);
 
@@ -3882,16 +3797,6 @@ bool base_application::initialize1()
       pset->root_ones(stra);
    }
 
-
-   if (fontopus()->m_puser == NULL &&
-      (Application.directrix()->m_varTopicQuery.has_property("install")
-      || Application.directrix()->m_varTopicQuery.has_property("uninstall")))
-   {
-
-      if (fontopus()->create_system_user("system") == NULL)
-         return false;
-
-   }
 
 
    //m_puinteraction = canew(::uinteraction::uinteraction(this));
@@ -4203,8 +4108,6 @@ bool base_application::initialize_instance()
       return false;
    }
 
-   if (!m_pfontopus->initialize_instance())
-      return false;
 
    System.install().m_progressApp()++; // 5
 
@@ -5208,3 +5111,22 @@ CLASS_DECL_BASE oswindow get_splash()
 {
    return g_oswindowSplash;
 }
+
+
+string base_application::get_license_id()
+{
+
+   return m_strAppId;
+
+}
+
+
+
+
+::user::user * base_application::create_user()
+{
+
+   return canew(::user::user(this));
+
+}
+

@@ -55,6 +55,7 @@ namespace plane
       var                                                   m_varCurrentViewFile;
 
 
+      sp(::filemanager::filemanager)   m_pfilemanager;
 
 
 
@@ -120,6 +121,9 @@ namespace plane
       virtual void request_topic_file();
 
       virtual void check_topic_file_change();
+
+      inline ::filemanager::filemanager            & filemanager() { return *m_pfilemanager; }
+
 
       void on_exclusive_instance_conflict(EExclusiveInstance eexclusive);
 
