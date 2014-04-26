@@ -9,7 +9,7 @@
 
 
 
-NSWindow * new_boot_window(boot_window * pwindow, CGRect rect)
+UIWindow * new_boot_window(boot_window * pwindow, CGRect rect)
 {
    
    rect.origin.x     = 0;
@@ -21,25 +21,27 @@ NSWindow * new_boot_window(boot_window * pwindow, CGRect rect)
    
    pwindow->m_proundwindow->m_pwindow = pwindow;
    
-   return [pwindow->m_proundwindow initWithContentRect : rect styleMask : 0 backing : NSBackingStoreBuffered  defer : false ];
+//   return [pwindow->m_proundwindow initWithContentRect : rect styleMask : 0 backing : NSBackingStoreBuffered  defer : false ];
+    
+    return NULL;
    
 }
 
 
 
 
-void ns_shared_application()
+void ui_shared_application()
 {
 
-   [NSApplication sharedApplication];
+   [UIApplication sharedApplication];
    
 }
 
 
-void ns_app_run()
+void ui_app_run()
 {
 
-   [NSApp run];
+//   [NSApp run];
    
 }
 

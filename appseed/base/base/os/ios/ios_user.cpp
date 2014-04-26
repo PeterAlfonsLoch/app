@@ -7,7 +7,7 @@
 //
 
 #include "framework.h"
-#include "macos_internal.h"
+#include "ios_internal.h"
 
 
 
@@ -104,6 +104,8 @@ public:
 
 int MessageBoxANative(oswindow hwnd, const char * message, const char * header, unsigned int message_type )
 {
+    
+    /*
    
    //convert the strings from char* to CFStringRef
    CFStringRef  header_ref  = CFStringCreateWithCString(NULL,  header, kCFStringEncodingUTF8);
@@ -281,6 +283,11 @@ int MessageBoxANative(oswindow hwnd, const char * message, const char * header, 
    {
       return MB_OK;
    }
+     
+     */
+    
+    
+    return 0;
    
 }
 

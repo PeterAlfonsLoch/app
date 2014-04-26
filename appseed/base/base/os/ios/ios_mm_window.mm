@@ -22,7 +22,7 @@
 //
 // Init method for the object.
 //
-- (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)windowStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)deferCreation
+/*- (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)windowStyle backing:(UIBackingStoreType)bufferingType defer:(BOOL)deferCreation
 {
    
 	self = [super initWithContentRect:contentRect styleMask:NSBorderlessWindowMask backing:bufferingType defer:deferCreation];
@@ -49,11 +49,11 @@
 	return self;
    
 }
-
+*/
 - (void) unsafe_boot_window_has_focus : (bool *) pbool
 {
 
-   NSWindow * pkeywindow = [NSApp keyWindow];
+  /* NSWindow * pkeywindow = [NSApp keyWindow];
    
    NSWindow * pwindow = self;
    
@@ -67,7 +67,9 @@
    else
    {
       *pbool = false;
-   }
+   }*/
+    
+    
 }
 
 
@@ -91,10 +93,10 @@
 //
 // Convert from childContentView to frameView for size.
 //
-- (void)setContentSize:(NSSize)newSize
+- (void)setContentSize:(CGSize)newSize
 {
 	
-	[super setContentSize:newSize];
+//	[super setContentSize:newSize];
    
 }
 
@@ -119,9 +121,10 @@
 - (void)create_view
 {
 
-	NSRect bounds = [self frame];
+	CGRect bounds = [self frame];
 	
-   bounds.origin = NSZeroPoint;
+//   bounds.origin = CGZeroPoint;
+    
 
 	mm_window_frame_view * frameView = [[mm_window_frame_view alloc] initWithFrame : bounds] ;
    
@@ -134,7 +137,7 @@
    childContentView = frameView;
    
 		
-	[super setContentView : frameView];
+//	[super setContentView : frameView];
 
 	[frameView setFrame : bounds];
    
@@ -147,9 +150,10 @@
 //
 // Returns the child of our frame view instead of our frame view.
 //
-- (NSView *)contentView
+- (UIView *)contentView
 {
-	return [super contentView];
+//return [super contentView];
+    return NULL;
 }
 
 //
@@ -177,11 +181,11 @@
 //
 // Returns the rect for the content rect, taking the frame.
 //
-- (NSRect)contentRectForFrameRect:(NSRect)windowFrame
+/*- (CGRect)contentRectForFrameRect:(CGRect)windowFrame
 {
   // bounds = windowFrame;
-	windowFrame.origin = NSZeroPoint;
-	return NSInsetRect(windowFrame, NS_ROUND_WINDOW_FRAME_PADDING, NS_ROUND_WINDOW_FRAME_PADDING);
+//	windowFrame.origin = NSZeroPoint;
+//	return NSInsetRect(windowFrame, NS_ROUND_WINDOW_FRAME_PADDING, NS_ROUND_WINDOW_FRAME_PADDING);
 }
 
 //
@@ -193,6 +197,7 @@
 {
 	return NSInsetRect(windowContentRect, -NS_ROUND_WINDOW_FRAME_PADDING, -NS_ROUND_WINDOW_FRAME_PADDING);
 }
+*/
 
 - (void) on_destroy;
 {

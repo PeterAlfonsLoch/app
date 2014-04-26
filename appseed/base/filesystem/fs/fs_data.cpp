@@ -46,7 +46,7 @@ namespace fs
    string data::eat_end_level(const char * pszPath, int32_t iCount)
    {
       string strPath(pszPath);
-      strsize iFind;
+      strsize iFind = 0;
       strsize iStart = strPath.get_length() - 1;
       if(iCount <= 0)
          return pszPath;

@@ -13,7 +13,7 @@
 void * get_thread_ptr(const char * pszKey)
 {
     
-    return (void *)[[[[NSThread currentThread] threadDictionary] valueForKey: [NSString stringWithUTF8String : pszKey]] inValue];
+    return (void *)[[[[NSThread currentThread] threadDictionary] valueForKey: [NSString stringWithUTF8String : pszKey]] intValue];
     
 }
 
@@ -21,7 +21,7 @@ void * get_thread_ptr(const char * pszKey)
 void set_thread_ptr(const char * pszKey, const void * p)
 {
     
-    [[[NSThread currentThread] threadDictionary] setValue: [NSNumber numberWithInt : (int_ptr) p] forKey: [NSString stringWithUTF8String : psz]];
+    [[[NSThread currentThread] threadDictionary] setValue: [NSNumber numberWithInt : (int_ptr) p] forKey: [NSString stringWithUTF8String : pszKey]];
     
 }
 
@@ -29,7 +29,7 @@ void set_thread_ptr(const char * pszKey, const void * p)
 int get_thread_int(const char * pszKey)
 {
     
-    return (int)[[[[NSThread currentThread] threadDictionary] valueForKey: [NSString stringWithUTF8String : pszKey]] inValue];
+    return (int)[[[[NSThread currentThread] threadDictionary] valueForKey: [NSString stringWithUTF8String : pszKey]] intValue];
     
 }
 

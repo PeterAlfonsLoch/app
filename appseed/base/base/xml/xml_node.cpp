@@ -1905,7 +1905,7 @@ namespace xml
    ::count node::remove_child_with_attr(const char * pszName, const char * pszAttrName, index iIndex, ::count iCount, index iDepth)
    {
 
-      ::count nRemoveCount;
+      ::count nRemoveCount = 0;
 
       if(iDepth == 0)
          return 0;

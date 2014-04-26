@@ -92,7 +92,7 @@ void id_space::sort()
    index * pia = m_iaStr.m_pData;
 
     index iU;
-    index iM;
+    index iM = 0;
     index iL;
 
    index iLowerBound;

@@ -75,7 +75,7 @@ CLASS_DECL_BASE int_bool from_string(in6_addr * addr, const char * string)
    int32_t double_colon = -1;  /* index of the departament after the first
                            * 16-bit group of zeros represented by
                            * the double colon */
-   uint32_t val;
+   uint32_t val = 0;
    int32_t len;
 
    /* Handle initial (double) colon */

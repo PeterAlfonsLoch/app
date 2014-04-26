@@ -87,7 +87,7 @@ typedef raw_array < void * > ThreadLocalData;
 
 thread_pointer < ThreadLocalData > currentThreadData("currentThreadData");
 thread_var < DWORD > currentThreadId("currentThreadId");
-thread_var < HTHREAD > currentThread("currentThread");
+thread_pointer < hthread > currentThread("currentThread");
 thread_pointer < os_thread > t_posthread("t_posthread");
 
 
