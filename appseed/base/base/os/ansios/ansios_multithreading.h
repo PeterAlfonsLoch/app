@@ -64,17 +64,6 @@ union semun {
 #define MWMO_INPUTAVAILABLE 0x0004
 
 
-#endif // BASE_ANSIOS_MULTITHREADING_H
-
-
-
-
-
-
-
-
-
-
 #ifdef cplusplus
 
 
@@ -122,6 +111,68 @@ public:
 
 
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#endif // BASE_ANSIOS_MULTITHREADING_H
+
+
+
+
+
+
+
 
 
 
