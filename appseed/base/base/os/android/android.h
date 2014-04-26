@@ -10,12 +10,12 @@ void swab(const void *from, void*to, ssize_t n);
 void* lfind( const void * key, const void * base, size_t * num, size_t width, int (*fncomparison)(const void *, const void * ) );
 
 
-struct lconv 
-{ 
-   const char * decimal_point; 
-};
-
-struct lconv *localeconv(void);
+//struct threadlocaleinfostruct_lconv
+//{ 
+//   const char * decimal_point; 
+//};
+//
+//struct threadlocaleinfostruct_lconv *localeconv(void);
 
 double rint(double x);
 

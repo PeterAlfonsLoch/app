@@ -2972,9 +2972,6 @@
     <ClInclude Include="base\base\base_system_trace.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\base_template.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
     <ClInclude Include="base\base\base_trace.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
@@ -3605,9 +3602,6 @@
     <ClInclude Include="net\idn\unistd.h">
       <Filter>Header Files\net\idn</Filter>
     </ClInclude>
-    <ClInclude Include="framework\idn_framework.h">
-      <Filter>Header Files\framework</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_menu_base.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -3619,6 +3613,21 @@
     </ClInclude>
     <ClInclude Include="user\user\user_enum.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_class.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\crypto_framework.h">
+      <Filter>Header Files\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\framework.h">
+      <Filter>Header Files\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\framework_c.h">
+      <Filter>Header Files\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\idn_framework.h">
+      <Filter>Header Files\framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -7114,15 +7123,6 @@
     <ClCompile Include="framework\framework_c.c">
       <Filter>Source Files\framework</Filter>
     </ClCompile>
-    <ClCompile Include="framework\crypto_framework.h">
-      <Filter>Header Files\framework</Filter>
-    </ClCompile>
-    <ClCompile Include="framework\framework.h">
-      <Filter>Header Files\framework</Filter>
-    </ClCompile>
-    <ClCompile Include="framework\framework_c.h">
-      <Filter>Header Files\framework</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\cross\windows\windows_crt.cpp">
       <Filter>Source Files\base\os\cross\windows</Filter>
     </ClCompile>
@@ -7691,6 +7691,15 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

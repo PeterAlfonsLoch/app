@@ -1673,15 +1673,6 @@
     <ClCompile Include="FreeImage\Utilities.cpp">
       <Filter>Source Files\FreeImage</Filter>
     </ClCompile>
-    <ClCompile Include="OpenEXR\IlmThread\IlmThreadMutexPosix.cpp">
-      <Filter>Source Files\OpenEXR\IImThread</Filter>
-    </ClCompile>
-    <ClCompile Include="OpenEXR\IlmThread\IlmThreadPosix.cpp">
-      <Filter>Source Files\OpenEXR\IImThread</Filter>
-    </ClCompile>
-    <ClCompile Include="OpenEXR\IlmThread\IlmThreadSemaphorePosix.cpp">
-      <Filter>Source Files\OpenEXR\IImThread</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="basefreeimage.def">
