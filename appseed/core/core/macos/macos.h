@@ -36,7 +36,7 @@ typedef ::file::stream_buffer * HFILE;
 
 
 
-CLASS_DECL_CORE bool AmIBeingDebugged();
+CLASS_DECL_CORE int AmIBeingDebugged();
 
 //#include "os_multithreading.h"
 

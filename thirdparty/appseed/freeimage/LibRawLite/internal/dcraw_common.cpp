@@ -3521,7 +3521,7 @@ void CLASS hat_transform (float *temp, float *base, int st, int size, int sc)
 void CLASS wavelet_denoise()
 {
   float *fimg=0, *temp, thold, mul[2], avg, diff;
-  int scale=1, size, lev, hpass, lpass, row, col, nc, c, i, wlast, blk[2];
+  int scale=1, size, lev, hpass, lpass = 0, row, col, nc, c, i, wlast, blk[2];
   ushort *window[4];
   static const float noise[] =
   { 0.8002f,0.2735f,0.1202f,0.0585f,0.0291f,0.0152f,0.0080f,0.0044f };

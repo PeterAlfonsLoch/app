@@ -415,7 +415,7 @@ copyIntoFrameBuffer (const char *& readPtr,
 
                 while (writePtr <= endPtr)
                 {
-                    float f;
+                    float f = 0.0;
 
                     for (index i = 0; i < sizeof (float); ++i)
                         ((char *)&f)[i] = readPtr[i];
@@ -439,7 +439,7 @@ copyIntoFrameBuffer (const char *& readPtr,
 
                 while (writePtr <= endPtr)
                 {
-                    unsigned int ui;
+                    unsigned int ui = 0;
 
                     for (index i = 0; i < sizeof (unsigned int); ++i)
                         ((char *)&ui)[i] = readPtr[i];
@@ -464,7 +464,7 @@ copyIntoFrameBuffer (const char *& readPtr,
 
                 while (writePtr <= endPtr)
                 {
-                    float f;
+                    float f = 0.0;
 
                     for (index i = 0; i < sizeof (float); ++i)
                         ((char *)&f)[i] = readPtr[i];
@@ -488,7 +488,7 @@ copyIntoFrameBuffer (const char *& readPtr,
 
                 while (writePtr <= endPtr)
                 {
-                    unsigned int ui;
+                    unsigned int ui = 0;
 
                     for (index i = 0; i < sizeof (unsigned int); ++i)
                         ((char *)&ui)[i] = readPtr[i];

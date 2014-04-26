@@ -145,6 +145,6 @@ void * thread_data::get()
 void thread_data::set(void * p)
 {
 
-   return pthread_setspecific(key, p);
+   pthread_setspecific(key, p);
 
 }
