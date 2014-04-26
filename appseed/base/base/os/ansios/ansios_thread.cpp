@@ -85,10 +85,10 @@ typedef raw_array < void * > ThreadLocalData;
 
 
 
-thread_pointer < ThreadLocalData > currentThreadData("currentThreadData");
-thread_var < DWORD > currentThreadId("currentThreadId");
-thread_pointer < hthread > currentThread("currentThread");
-thread_pointer < os_thread > t_posthread("t_posthread");
+thread_pointer < ThreadLocalData > currentThreadData;
+thread_var < DWORD > currentThreadId;
+thread_pointer < hthread > currentThread;
+thread_pointer < os_thread > t_posthread;
 
 
 static raw_array<DWORD> freeTlsIndices;

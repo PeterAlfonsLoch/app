@@ -134,7 +134,7 @@ public:
     operator T ()
     {
         
-        return (T)pthread_getspecific(key)(key);
+        return (T)(int_ptr)pthread_getspecific(key);
         
     }
     
