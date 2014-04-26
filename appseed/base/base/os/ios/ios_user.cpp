@@ -10,22 +10,6 @@
 #include "macos_internal.h"
 
 
-#ifdef DEBUG
-#undef DEBUG
-#define DEBUG 1
-#else
-#define DEBUG 0
-#endif
-
-#include <Carbon/Carbon.h>
-#include <CoreFoundation/CoreFoundation.h>
-
-#if DEBUG
-#undef DEBUG
-#define DEBUG
-#else
-#undef DEBUG
-#endif
 
 
 WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
