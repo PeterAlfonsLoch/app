@@ -116,7 +116,7 @@ public thread_data
 public:
     
     operator T () { return (T)(int_ptr)get(); }
-    thread_var & operator = (T t) { set((void *) (int_ptr) t); return *this; }
+    thread_int_ptr & operator = (T t) { set((void *)(int_ptr)t); return *this; }
     
 };
 
