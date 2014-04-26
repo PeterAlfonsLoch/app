@@ -3,8 +3,8 @@
 #include <X11/Xatom.h>
 
 
-extern cairo_surface_t *  g_cairosurface;
-extern cairo_t *  g_cairo;
+//extern cairo_surface_t *  g_cairosurface;
+//extern cairo_t *  g_cairo;
 
 
 oswindow_data::oswindow_data()
@@ -23,6 +23,8 @@ oswindow_data::oswindow_data()
    m_bDestroying           = false;
 
    m_osdisplay             = NULL;
+   
+   ZERO(m_visual);
 
 }
 
@@ -40,16 +42,16 @@ oswindow_data::~oswindow_data()
 #define CA2_CCVOTAGUS_WINDOW_LONG_STYLE_EX "ca2_ccvotagus_fontopu_window_long_style_ex"
 
 oswindow_dataptra * oswindow_data::s_pdataptra = new oswindow_dataptra;
-simple_mutex * oswindow_data::s_pmutex = new simple_mutex;
+mutex * oswindow_data::s_pmutex = new mutex(NULL);
 
 
-int32_t oswindow_find_message_only_window(::user::interaction_base * pui)
+int32_t oswindow_find_message_only_window(::user::interaction * pui)
 {
 
    if(pui == NULL)
       return -1;
 
-   mutex_lock slOsWindow(*oswindow_data::s_pmutex, true);
+   single_lock slOsWindow(oswindow_data::s_pmutex, true);
 
    for(int32_t i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
@@ -67,7 +69,7 @@ int32_t oswindow_find_message_only_window(::user::interaction_base * pui)
 int32_t oswindow_find(Display * pdisplay, Window window)
 {
 
-   mutex_lock slOsWindow(*::oswindow_data::s_pmutex, true);
+   single_lock slOsWindow(::oswindow_data::s_pmutex, true);
 
    for(int32_t i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
@@ -86,7 +88,7 @@ int32_t oswindow_find(Display * pdisplay, Window window)
 int32_t oswindow_find(Window window)
 {
 
-   mutex_lock slOsWindow(*::oswindow_data::s_pmutex, true);
+   single_lock slOsWindow(::oswindow_data::s_pmutex, true);
 
    for(int32_t i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
@@ -101,13 +103,13 @@ int32_t oswindow_find(Window window)
 
 }
 
-oswindow_data * oswindow_get_message_only_window(::user::interaction_base * pui)
+oswindow_data * oswindow_get_message_only_window(::user::interaction * pui)
 {
 
    if(pui == NULL)
       return NULL;
 
-   mutex_lock slOsWindow(*::oswindow_data::s_pmutex, true);
+   single_lock slOsWindow(::oswindow_data::s_pmutex, true);
 
    int_ptr iFind = oswindow_find_message_only_window(pui);
 
@@ -116,11 +118,10 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction_base * pui)
 
    ::oswindow_data * pdata = new oswindow_data;
 
-   pdata->m_bMessageOnlyWindow      = true;
-   pdata->m_window                  = None;
-   pdata->m_pui                     = pui;
-   pdata->m_osdisplay               = NULL;
-   pdata->m_pvisual                 = NULL;
+   pdata->m_bMessageOnlyWindow          = true;
+   pdata->m_window                      = None;
+   pdata->m_pui                         = pui;
+   pdata->m_osdisplay                   = NULL;
 
    ::oswindow_data::s_pdataptra->add(pdata);
 
@@ -132,7 +133,7 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction_base * pui)
 oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual)
 {
 
-   mutex_lock slOsWindow(*::oswindow_data::s_pmutex, true);
+   single_lock slOsWindow(::oswindow_data::s_pmutex, true);
 
    int_ptr iFind = oswindow_find(pdisplay, window);
 
@@ -144,7 +145,7 @@ oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual
    pdata->m_bMessageOnlyWindow      = false;
    pdata->m_osdisplay               = osdisplay_get(pdisplay);
    pdata->m_window                  = window;
-   pdata->m_pvisual                 = pvisual;
+   memcpy(&pdata->m_visual, pvisual, sizeof(Visual));
 
    ::oswindow_data::s_pdataptra->add(pdata);
 
@@ -155,7 +156,7 @@ oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual
 oswindow_data * oswindow_get(Window window)
 {
 
-   mutex_lock slOsWindow(*::oswindow_data::s_pmutex, true);
+   single_lock slOsWindow(::oswindow_data::s_pmutex, true);
 
    int_ptr iFind = oswindow_find(window);
 
@@ -174,10 +175,10 @@ oswindow::oswindow()
 
 }
 
-oswindow::oswindow(::user::interaction_base * pui)
+oswindow::oswindow(::user::interaction * pui)
 {
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   single_lock slOsWindow(s_pmutex, true);
 
    m_pdata = get_message_only_window(pui);
 
@@ -188,7 +189,7 @@ oswindow::oswindow(::user::interaction_base * pui)
 oswindow::oswindow(Display * pdisplay, Window window, Visual * pvisual)
 {
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   single_lock slOsWindow(s_pmutex, true);
 
    m_pdata = get(pdisplay, window);
 
@@ -261,7 +262,7 @@ oswindow oswindow_defer_get(Window window)
 bool oswindow_remove(Display * pdisplay, Window window)
 {
 
-   mutex_lock slOsWindow(*::oswindow_data::s_pmutex, true);
+   single_lock slOsWindow(::oswindow_data::s_pmutex, true);
 
    int_ptr iFind = oswindow_find(pdisplay, window);
 
@@ -275,10 +276,10 @@ bool oswindow_remove(Display * pdisplay, Window window)
 }
 
 
-bool oswindow_remove_message_only_window(::user::interaction_base * puibaseMessageOnlyWindow)
+bool oswindow_remove_message_only_window(::user::interaction * puibaseMessageOnlyWindow)
 {
 
-   mutex_lock slOsWindow(*::oswindow_data::s_pmutex, true);
+   single_lock slOsWindow(::oswindow_data::s_pmutex, true);
 
    int_ptr iFind = oswindow_find_message_only_window(puibaseMessageOnlyWindow);
 
@@ -295,9 +296,9 @@ bool oswindow_remove_message_only_window(::user::interaction_base * puibaseMessa
 int32_t oswindow_data::store_name(const char * psz)
 {
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   single_lock slOsWindow(s_pmutex, true);
 
    xdisplay d(display());
 
@@ -310,9 +311,9 @@ int32_t oswindow_data::select_input(int32_t iInput)
 {
 
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   single_lock slOsWindow(s_pmutex, true);
 
    xdisplay d(display());
 
@@ -335,9 +336,9 @@ int32_t oswindow_data::map_window()
 {
 
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   single_lock slOsWindow(s_pmutex, true);
 
    xdisplay d(display());
 
@@ -349,17 +350,17 @@ int32_t oswindow_data::map_window()
 void oswindow_data::post_nc_destroy()
 {
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   single_lock slOsWindow(s_pmutex, true);
 
    oswindow_remove(display(), window());
 
 }
 
 
-void oswindow_data::set_user_interaction(::user::interaction_base * pui)
+void oswindow_data::set_user_interaction(::user::interaction * pui)
 {
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   single_lock slOsWindow(s_pmutex, true);
 
    if(this == NULL)
       throw "error, m_pdata cannot be NULL to ::oswindow::set_user_interaction";
@@ -371,10 +372,10 @@ void oswindow_data::set_user_interaction(::user::interaction_base * pui)
 }
 
 
-::user::interaction_base * oswindow_data::get_user_interaction_base()
+::user::interaction * oswindow_data::get_user_interaction_base()
 {
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   single_lock slOsWindow(s_pmutex, true);
 
    if(this == NULL)
       return NULL;
@@ -383,7 +384,7 @@ void oswindow_data::set_user_interaction(::user::interaction_base * pui)
 
 }
 
-::user::interaction_base * oswindow_data::get_user_interaction_base() const
+::user::interaction * oswindow_data::get_user_interaction_base() const
 {
 
    if(this == NULL)
@@ -396,7 +397,7 @@ void oswindow_data::set_user_interaction(::user::interaction_base * pui)
 ::user::interaction * oswindow_data::get_user_interaction()
 {
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   single_lock slOsWindow(s_pmutex, true);
 
    if(this == NULL)
       return NULL;
@@ -411,7 +412,7 @@ void oswindow_data::set_user_interaction(::user::interaction_base * pui)
 ::user::interaction * oswindow_data::get_user_interaction() const
 {
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   single_lock slOsWindow(s_pmutex, true);
 
    if(this == NULL)
       return NULL;
@@ -427,9 +428,9 @@ void oswindow_data::set_user_interaction(::user::interaction_base * pui)
 bool oswindow_data::is_child(::oswindow oswindow)
 {
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   single_lock slOsWindow(s_pmutex, true);
 
    oswindow = oswindow->get_parent();
 
@@ -446,9 +447,9 @@ bool oswindow_data::is_child(::oswindow oswindow)
 oswindow oswindow_data::get_parent()
 {
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   single_lock slOsWindow(s_pmutex, true);
 
    if(this == NULL)
       return NULL;
@@ -472,9 +473,9 @@ oswindow oswindow_data::get_parent()
 oswindow oswindow_data::set_parent(oswindow oswindow)
 {
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   single_lock slOsWindow(s_pmutex, true);
 
    if(this == NULL)
       return NULL;
@@ -492,9 +493,9 @@ oswindow oswindow_data::set_parent(oswindow oswindow)
 bool oswindow_data::show_window(int32_t nCmdShow)
 {
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
-   mutex_lock slOsWindow(*s_pmutex, true);
+   single_lock slOsWindow(s_pmutex, true);
 
    xdisplay d(display());
 
@@ -510,6 +511,8 @@ bool oswindow_data::show_window(int32_t nCmdShow)
       XMapWindow(display(), window());
 
    }
+   
+   return TRUE;
 
 }
 
@@ -598,7 +601,7 @@ long oswindow_data::get_state()
 {
 
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
    xdisplay d(display());
 
@@ -643,7 +646,7 @@ bool oswindow_data::is_iconic()
 bool oswindow_data::is_window_visible()
 {
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
    xdisplay d(display());
 
    if(d.m_pdisplay == NULL)
@@ -697,151 +700,215 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 #define SIZEY  50
 
 
-void message_box_paint(cairo_surface_t * cs, stringa & stra, ::lemon_array < bool >  & baTab, ::lemon_array < int >  & ya,SIZE * psize)
+void message_box_paint(::draw2d::graphics * pdc, stringa & stra, bool_array  & baTab, int_array  & ya,SIZE * psize)
 {
-	cairo_t *c;
 
-	c=cairo_create(cs);
-	cairo_rectangle(c, 0.0, 0.0, psize->cx, psize->cy);
-	cairo_set_source_rgb(c, 0.84, 0.84, 0.77);
-	cairo_fill(c);
+	pdc->FillSolidRect(0, 0, psize->cx, psize->cy, RGB(84, 84, 77));
 
-	cairo_set_source_rgb(c, 0.0, 0.0, 0.0);
+   draw2d::brush_sp pen(pdc->allocer());
+
+	pen->create_solid(0);
 
 	for(index i = 0; i < stra.get_count(); i++)
 	{
-      cairo_move_to(c, 10.0 + 50.0 + (baTab[i] ? 25.0 : 0), 10.0 + 50.0 + ya[i]);
-      cairo_show_text(c, stra[i]);
+      pdc->TextOut(10.0 + 50.0 + (baTab[i] ? 25.0 : 0), 10.0 + 50.0 + ya[i], stra[i]);
 	}
 
 
-	cairo_show_page(c);
-
-
-	if(c ==  ::ca_cairo_keep::g_cairo)
-	{
-         printf("123");
-
-	}
-
-	cairo_destroy(c);
 
 }
 
-void message_box_show_xlib(const char * lpText, const char * lpCaption)
+
+
+class xlib_simple_message_box :
+   virtual public ::os::simple_ui
+{
+public:
+
+
+   spa(::simple_ui::label) m_labela;
+
+   rect m_rectDesktop;
+
+   xlib_simple_message_box(sp(base_application) papp) : element(papp), ::os::simple_ui(papp), ::simple_ui::interaction(papp)
+   {
+   }
+
+
+   void draw_this(::draw2d::graphics *  pdc)
+   {
+         rect rect;
+
+         get_client_rect(rect);
+
+         pdc->FillSolidRect(rect, ARGB(255, 240, 240, 240));
+   }
+
+   using ::os::simple_ui::show_window;
+      int32_t show_window(const char * lpText, const char * lpCaption)
+      {
+
+         ::GetWindowRect(::GetDesktopWindow(), &m_rectDesktop);
+
+
+         rect rect(100, 100, 200, 200);
+
+         if(!create_window(rect))
+            return 0;
+
+
+         draw2d::graphics_sp g(allocer());
+
+         g->CreateCompatibleDC(NULL);
+
+         ::draw2d::font_sp font(allocer());
+
+         font->create_point_font("helvetica", 12.0);
+
+         g->selectFont(font);
+
+         stringa stra;
+
+         stra.add_tokens(lpText, "\n");
+
+         bool_array baTab;
+
+         int_array ya;
+
+         size sz;
+
+         sz.cx = 0;
+         sz.cy = 0;
+
+         for(index i = 0; i < stra.get_count(); i++)
+         {
+
+            string str = stra[i];
+
+            bool bTab = str_begins_dup(str, "\t");
+
+            str.trim();
+
+            bool bEmpty = str.is_empty();
+
+            if(bEmpty)
+               str = "L";
+
+            SIZE sizeItem = g->GetTextExtent(str);
+
+            int x = bTab ? 25 : 0;
+
+            if(sizeItem.cx + x > sz.cx)
+            {
+
+                sz.cx = sizeItem.cx + x;
+
+            }
+
+            baTab.add(bTab);
+
+            ya.add( sz.cy);
+
+            sz.cy += sizeItem.cy;
+
+            if(bEmpty)
+            {
+               stra[i] = "";
+            }
+            else
+            {
+               stra[i] = str;
+            }
+
+         }
+
+         for(index i = 0; i < stra.get_count(); i++)
+         {
+
+            m_labela.add(canew(::simple_ui::label(get_app())));
+
+            ::simple_ui::label & label = *m_labela.last_element();
+
+            label.set_parent(this);
+
+            label.m_strText = stra[i];
+
+            label.m_bVisible = true;
+
+            label.m_rect.left = 10;
+            label.m_rect.top = 10 + (sz.cy / stra.get_count()) * i;
+            label.m_rect.right = label.m_rect.left+sz.cx - 20;
+            label.m_rect.bottom = label.m_rect.top+ (sz.cy / stra.get_count());
+
+         }
+
+         sz.cx += 20;
+         sz.cy += 20;
+
+         rect.left = m_rectDesktop.left + ((m_rectDesktop.width() - sz.cx) / 2);
+         rect.top = m_rectDesktop.top + ((m_rectDesktop.height() - sz.cy) / 4);
+         rect.right = rect.left + sz.cx;
+         rect.bottom = rect.top + sz.cy;
+
+
+         if(!prepare_window(rect))
+            return 0;
+
+
+
+         SetWindowPos(m_window, NULL, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW);
+
+         run_loop();
+
+         return 0;
+
+      }
+
+};
+
+int32_t message_box_show_xlib(base_application * papp, const char * lpText, const char * lpCaption)
 {
 
-	Window rootwin;
-	Window win;
-	XEvent e;
-	int32_t scr;
-	cairo_surface_t *cs;
+   xlib_simple_message_box box(papp);
+
+   return box.show_window(lpText, lpCaption);
 
 
-	xdisplay dpy;
-
-	dpy.open(NULL);
-
-	if(dpy== NULL)
-	{
-		fprintf(stderr, "ERROR: Could not open display\n");
-		return ;
-//		exit(1);
-	}
-
-	scr         = dpy.default_screen();
-	rootwin     = RootWindow(dpy.m_pdisplay, scr);
+}
 
 
-	simple_graphics g;
 
-	g.create(NULL);
+int32_t WINAPI MessageBoxA_x11(oswindow hWnd, const char * lpText, const char * lpCaption, UINT uType)
+{
 
-	SIZE sz;
+   base_application * papp = NULL;
 
-	sz.cx = 0;
-	sz.cy = 0;
-
-
-	stringa stra;
-
-	stra.add_tokens(lpText, "\n");
-
-	::lemon_array < bool > baTab;
-
-	::lemon_array < int > ya;
-
-	for(index i = 0; i < stra.get_count(); i++)
-	{
-
-	   string str = stra[i];
-
-	   bool bTab = str_begins_dup(str, "\t");
-
-	   str.trim();
-
-	   bool bEmpty = str.is_empty();
-
-	   if(bEmpty)
-         str = "L";
-
-	   SIZE sizeItem = g.get_text_extent(str);
-
-	   int x = bTab ? 25 : 0;
-
-	   if(sizeItem.cx + x > sz.cx)
-	   {
-
-	       sz.cx = sizeItem.cx + x;
-
-	   }
-
-	   baTab.add(bTab);
-
-	   ya.add( sz.cy);
-
-      sz.cy += sizeItem.cy;
-
-      if(bEmpty)
-      {
-         stra[i] = "";
-      }
-      else
-      {
-         stra[i] = str;
-      }
-
-	}
-
-	sz.cx += 100;
-	sz.cy += 100;
-
-
-	win=XCreateSimpleWindow(dpy.m_pdisplay, rootwin, 1, 1, sz.cx, sz.cy, 0, BlackPixel(dpy.m_pdisplay, scr), BlackPixel(dpy.m_pdisplay, scr));
-
-	XStoreName(dpy, win, lpCaption);
-	XSelectInput(dpy, win, ExposureMask|ButtonPressMask);
-	XMapWindow(dpy, win);
-
-	cs = cairo_xlib_surface_create(dpy.m_pdisplay, win, DefaultVisual(dpy.m_pdisplay, 0), sz.cx, sz.cy);
-
-	while(1) {
-		XNextEvent(dpy, &e);
-		if(e.type==Expose && e.xexpose.count<1) {
-			message_box_paint(cs, stra, baTab, ya, &sz);
-		} else if(e.type==ButtonPress) break;
-	}
-
-   if(cs == ::ca_cairo_keep::g_cairosurface)
+   if(hWnd == NULL || hWnd->get_user_interaction() == NULL || hWnd->get_user_interaction()->get_app() == NULL)
    {
 
-      printf("123");
+      papp = get_thread_app();
+
+   }
+   else
+   {
+
+      papp = hWnd->get_user_interaction()->get_app();
 
    }
 
-	cairo_surface_destroy(cs);
+   return message_box_show_xlib(get_thread_app(), lpText, lpCaption);
 
-	XCloseDisplay(dpy);
+}
+
+
+
+
+
+__attribute__((constructor))
+static void initialize_x11_message_box()
+{
+
+   g_messageboxa = &::MessageBoxA_x11;
 
 }
 
@@ -850,7 +917,7 @@ void message_box_show_xlib(const char * lpText, const char * lpCaption)
 int32_t WINAPI MessageBoxA(oswindow hWnd, const char * lpText, const char * lpCaption, UINT uType)
 {
 
-   message_box_show_xlib(lpText, lpCaption);
+   message_box_show_xlib(get_thread_app(), lpText, lpCaption);
 
    return 0;
 
@@ -868,7 +935,7 @@ oswindow GetCapture()
 oswindow SetCapture(oswindow window)
 {
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
    oswindow windowOld(g_oswindowCapture);
 
@@ -897,7 +964,7 @@ oswindow SetCapture(oswindow window)
 WINBOOL ReleaseCapture()
 {
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
    xdisplay d(g_oswindowCapture->display());
 
@@ -915,7 +982,7 @@ WINBOOL ReleaseCapture()
 oswindow SetFocus(oswindow window)
 {
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
    xdisplay display(window->display());
 
@@ -934,7 +1001,7 @@ oswindow SetFocus(oswindow window)
 oswindow GetFocus()
 {
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
    xdisplay pdisplay;
 
@@ -981,7 +1048,7 @@ oswindow SetActiveWindow(oswindow window)
 oswindow GetWindow(oswindow windowParam, int iParentHood)
 {
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
 
 
@@ -1095,7 +1162,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
 WINBOOL DestroyWindow(oswindow window)
 {
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
    if(!IsWindow(window))
       return FALSE;
@@ -1134,7 +1201,7 @@ bool oswindow_data::is_destroying()
 }
 
 
-bool IsWindow(oswindow oswindow)
+int IsWindow(oswindow oswindow)
 {
    return oswindow->get_user_interaction() != NULL && !oswindow->is_destroying();
 }

@@ -511,7 +511,13 @@ namespace file
 #include "base/os/ios/ios.h"
 #include "base/os/ios/ios_window.h"
 
+#elif defined(SOLARIS)
+
+#include "base/os/ansios/ansios.h"
+#include "base/os/solaris/solaris_user_impl.h"
+
 #else
+
 
 #error "not implemented!!"
 

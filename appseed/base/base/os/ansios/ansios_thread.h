@@ -1,3 +1,7 @@
+#ifndef BASE_ANSIOS_THREAD_H
+#define BASE_ANSIOS_THREAD_H
+
+
 #pragma once
 
 
@@ -20,40 +24,29 @@ public:
 
 
 };
-*/
+ */
 
 
 
 
 class thread;
 
-
-
-
-
-
-
-
-
-
 class CLASS_DECL_BASE message_array :
-   public array < MESSAGE >
-{
+public array < MESSAGE > {
 };
 
-class CLASS_DECL_BASE mq
-{
+class CLASS_DECL_BASE mq {
 public:
 
 
-   mutex                      m_mutex;
-   message_array              ma;
-   manual_reset_event         m_eventNewMessage;
-   HTHREAD                    m_hthread;
-   uint32_t                   m_uiId;
+    mutex m_mutex;
+    message_array ma;
+    manual_reset_event m_eventNewMessage;
+    HTHREAD m_hthread;
+    uint32_t m_uiId;
 
 
-   mq();
+    mq();
 
 
 
@@ -65,7 +58,7 @@ CLASS_DECL_BASE int_bool WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, 
 
 #define GetMessage GetMessageW
 
-CLASS_DECL_BASE int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax,UINT wRemoveMsg);
+CLASS_DECL_BASE int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
 
 #define PeekMessage PeekMessageW
 
@@ -95,18 +88,29 @@ CLASS_DECL_BASE int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 
 
 // Stored data for CREATE_SUSPENDED and ResumeThread.
-struct PendingThreadInfo
-{
 
-   DWORD (WINAPI * lpStartAddress)(LPVOID);
-   LPVOID lpParameter;
-   HTHREAD m_hthread;
-   event  * suspensionEvent;
-   int32_t nPriority;
-   int32_t cbStack;
+struct PendingThreadInfo {
+    DWORD(WINAPI * lpStartAddress)(LPVOID);
+    LPVOID lpParameter;
+    HTHREAD m_hthread;
+    event * suspensionEvent;
+    int32_t nPriority;
+    int32_t cbStack;
 
-   PendingThreadInfo()
-   {
-   }
+    PendingThreadInfo() {
+    }
 
 };
+
+
+#endif // BASE_ANSIOS_THREAD_H
+
+
+
+
+
+
+
+
+
+

@@ -1,3 +1,7 @@
+#ifndef BASE_ANSIOS_MULTITHREADING_H
+#define BASE_ANSIOS_MULTITHREADING_H
+
+
 #pragma once
 
 
@@ -29,7 +33,7 @@ DWORD WaitForSingleObjectEx(waitable * pwaitable, DWORD dwMilliseconds, WINBOOL 
 #define STATUS_ABANDONED_WAIT_0  ((DWORD   ) 0x00000080L)
 #define STATUS_USER_APC          ((DWORD   ) 0x000000C0L)
 #define STATUS_TIMEOUT           ((DWORD   ) 0x00000102L)
-*/
+ */
 
 #define WAIT_FAILED              ((DWORD   ) 0xFFFFFFFFL)
 #define WAIT_OBJECT_0            ((DWORD   ) STATUS_WAIT_0 + 0)
@@ -46,10 +50,10 @@ DWORD WaitForSingleObjectEx(waitable * pwaitable, DWORD dwMilliseconds, WINBOOL 
 #if !defined(APPLEOS)
 
 union semun {
-    int              val;    /* Value for SETVAL */
-    struct semid_ds *buf;    /* Buffer for IPC_STAT, IPC_SET */
-    unsigned short  *array;  /* Array for GETALL, SETALL */
-    struct seminfo  *__buf;  /* Buffer for IPC_INFO
+    int val; /* Value for SETVAL */
+    struct semid_ds *buf; /* Buffer for IPC_STAT, IPC_SET */
+    unsigned short *array; /* Array for GETALL, SETALL */
+    struct seminfo *__buf; /* Buffer for IPC_INFO
                                 (Linux-specific) */
 };
 
@@ -58,3 +62,16 @@ union semun {
 #define MWMO_WAITALL        0x0001
 #define MWMO_ALERTABLE      0x0002
 #define MWMO_INPUTAVAILABLE 0x0004
+
+
+#endif // BASE_ANSIOS_MULTITHREADING_H
+
+
+
+
+
+
+
+
+
+

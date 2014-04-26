@@ -159,10 +159,7 @@
         </logicalFolder>
         <logicalFolder name="compress" displayName="compress" projectFiles="true">
           <logicalFolder name="bsdiff" displayName="bsdiff" projectFiles="true">
-            <itemPath>../base/compress/bsdiff/Binary diff.txt</itemPath>
-            <itemPath>../base/compress/bsdiff/bsdiff.1</itemPath>
             <itemPath>../base/compress/bsdiff/bsdiff.h</itemPath>
-            <itemPath>../base/compress/bsdiff/bsdiff4.3-win32-src.txt</itemPath>
             <itemPath>../base/compress/bsdiff/bsdiff_blocksort.cpp</itemPath>
             <itemPath>../base/compress/bsdiff/bsdiff_bsdiff.cpp</itemPath>
             <itemPath>../base/compress/bsdiff/bsdiff_bspatch.cpp</itemPath>
@@ -173,11 +170,8 @@
             <itemPath>../base/compress/bsdiff/bsdiff_huffman.cpp</itemPath>
             <itemPath>../base/compress/bsdiff/bsdiff_private.h</itemPath>
             <itemPath>../base/compress/bsdiff/bsdiff_randtable.cpp</itemPath>
-            <itemPath>../base/compress/bsdiff/bspatch.1</itemPath>
             <itemPath>../base/compress/bsdiff/bzlib.h</itemPath>
             <itemPath>../base/compress/bsdiff/bzlib_private.h</itemPath>
-            <itemPath>../base/compress/bsdiff/main_bsdiff.cpp</itemPath>
-            <itemPath>../base/compress/bsdiff/main_bspatch.cpp</itemPath>
           </logicalFolder>
           <logicalFolder name="zip" displayName="zip" projectFiles="true">
             <itemPath>../base/compress/zip/File.h</itemPath>
@@ -443,25 +437,6 @@
         <logicalFolder name="openssl" displayName="openssl" projectFiles="true">
           <logicalFolder name="crypto" displayName="crypto" projectFiles="true">
             <logicalFolder name="aes" displayName="aes" projectFiles="true">
-              <logicalFolder name="asm" displayName="asm" projectFiles="true">
-                <itemPath>../base/openssl/crypto/aes/asm/aes-586.pl</itemPath>
-                <itemPath>../base/openssl/crypto/aes/asm/aes-armv4.pl</itemPath>
-                <itemPath>../base/openssl/crypto/aes/asm/aes-ia64.S</itemPath>
-                <itemPath>../base/openssl/crypto/aes/asm/aes-mips.pl</itemPath>
-                <itemPath>../base/openssl/crypto/aes/asm/aes-parisc.pl</itemPath>
-                <itemPath>../base/openssl/crypto/aes/asm/aes-ppc.pl</itemPath>
-                <itemPath>../base/openssl/crypto/aes/asm/aes-s390x.pl</itemPath>
-                <itemPath>../base/openssl/crypto/aes/asm/aes-sparcv9.pl</itemPath>
-                <itemPath>../base/openssl/crypto/aes/asm/aes-x86_64.pl</itemPath>
-                <itemPath>../base/openssl/crypto/aes/asm/aesni-sha1-x86_64.pl</itemPath>
-                <itemPath>../base/openssl/crypto/aes/asm/aesni-x86.pl</itemPath>
-                <itemPath>../base/openssl/crypto/aes/asm/aesni-x86_64.pl</itemPath>
-                <itemPath>../base/openssl/crypto/aes/asm/bsaes-x86_64.pl</itemPath>
-                <itemPath>../base/openssl/crypto/aes/asm/vpaes-x86.pl</itemPath>
-                <itemPath>../base/openssl/crypto/aes/asm/vpaes-x86_64.pl</itemPath>
-              </logicalFolder>
-              <itemPath>../base/openssl/crypto/aes/Makefile</itemPath>
-              <itemPath>../base/openssl/crypto/aes/README</itemPath>
               <itemPath>../base/openssl/crypto/aes/aes.h</itemPath>
               <itemPath>../base/openssl/crypto/aes/aes_cbc.c</itemPath>
               <itemPath>../base/openssl/crypto/aes/aes_cfb.c</itemPath>
@@ -476,7 +451,6 @@
               <itemPath>../base/openssl/crypto/aes/aes_x86core.c</itemPath>
             </logicalFolder>
             <logicalFolder name="asn1" displayName="asn1" projectFiles="true">
-              <itemPath>../base/openssl/crypto/asn1/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/asn1/a_bitstr.c</itemPath>
               <itemPath>../base/openssl/crypto/asn1/a_bool.c</itemPath>
               <itemPath>../base/openssl/crypto/asn1/a_bytes.c</itemPath>
@@ -515,7 +489,6 @@
               <itemPath>../base/openssl/crypto/asn1/bio_asn1.c</itemPath>
               <itemPath>../base/openssl/crypto/asn1/bio_ndef.c</itemPath>
               <itemPath>../base/openssl/crypto/asn1/charmap.h</itemPath>
-              <itemPath>../base/openssl/crypto/asn1/charmap.pl</itemPath>
               <itemPath>../base/openssl/crypto/asn1/d2i_pr.c</itemPath>
               <itemPath>../base/openssl/crypto/asn1/d2i_pu.c</itemPath>
               <itemPath>../base/openssl/crypto/asn1/evp_asn1.c</itemPath>
@@ -562,29 +535,17 @@
               <itemPath>../base/openssl/crypto/asn1/x_x509a.c</itemPath>
             </logicalFolder>
             <logicalFolder name="bf" displayName="bf" projectFiles="true">
-              <logicalFolder name="asm" displayName="asm" projectFiles="true">
-                <itemPath>../base/openssl/crypto/bf/asm/bf-586.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bf/asm/bf-686.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bf/asm/readme</itemPath>
-              </logicalFolder>
-              <itemPath>../base/openssl/crypto/bf/COPYRIGHT</itemPath>
-              <itemPath>../base/openssl/crypto/bf/INSTALL</itemPath>
-              <itemPath>../base/openssl/crypto/bf/Makefile</itemPath>
-              <itemPath>../base/openssl/crypto/bf/README</itemPath>
-              <itemPath>../base/openssl/crypto/bf/VERSION</itemPath>
               <itemPath>../base/openssl/crypto/bf/bf_cbc.c</itemPath>
               <itemPath>../base/openssl/crypto/bf/bf_cfb64.c</itemPath>
               <itemPath>../base/openssl/crypto/bf/bf_ecb.c</itemPath>
               <itemPath>../base/openssl/crypto/bf/bf_enc.c</itemPath>
               <itemPath>../base/openssl/crypto/bf/bf_locl.h</itemPath>
               <itemPath>../base/openssl/crypto/bf/bf_ofb64.c</itemPath>
-              <itemPath>../base/openssl/crypto/bf/bf_opts.c</itemPath>
               <itemPath>../base/openssl/crypto/bf/bf_pi.h</itemPath>
               <itemPath>../base/openssl/crypto/bf/bf_skey.c</itemPath>
               <itemPath>../base/openssl/crypto/bf/blowfish.h</itemPath>
             </logicalFolder>
             <logicalFolder name="bio" displayName="bio" projectFiles="true">
-              <itemPath>../base/openssl/crypto/bio/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/bio/b_dump.c</itemPath>
               <itemPath>../base/openssl/crypto/bio/b_print.c</itemPath>
               <itemPath>../base/openssl/crypto/bio/b_sock.c</itemPath>
@@ -610,56 +571,7 @@
               <itemPath>../base/openssl/crypto/bio/bss_sock.c</itemPath>
             </logicalFolder>
             <logicalFolder name="bn" displayName="bn" projectFiles="true">
-              <logicalFolder name="asm" displayName="asm" projectFiles="true">
-                <logicalFolder name="x86" displayName="x86" projectFiles="true">
-                  <itemPath>../base/openssl/crypto/bn/asm/x86/add.pl</itemPath>
-                  <itemPath>../base/openssl/crypto/bn/asm/x86/comba.pl</itemPath>
-                  <itemPath>../base/openssl/crypto/bn/asm/x86/div.pl</itemPath>
-                  <itemPath>../base/openssl/crypto/bn/asm/x86/f</itemPath>
-                  <itemPath>../base/openssl/crypto/bn/asm/x86/mul.pl</itemPath>
-                  <itemPath>../base/openssl/crypto/bn/asm/x86/mul_add.pl</itemPath>
-                  <itemPath>../base/openssl/crypto/bn/asm/x86/sqr.pl</itemPath>
-                  <itemPath>../base/openssl/crypto/bn/asm/x86/sub.pl</itemPath>
-                </logicalFolder>
-                <itemPath>../base/openssl/crypto/bn/asm/README</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/alpha-mont.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/armv4-gf2m.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/armv4-mont.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/bn-586.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/co-586.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/ia64-mont.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/ia64.S</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/mips-mont.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/mips.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/mips3-mont.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/mips3.s</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/modexp512-x86_64.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/pa-risc2.s</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/pa-risc2W.s</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/parisc-mont.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/ppc-mont.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/ppc.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/ppc64-mont.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/s390x-gf2m.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/s390x-mont.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/s390x.S</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/sparcv8.S</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/sparcv8plus.S</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/sparcv9-mont.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/sparcv9a-mont.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/via-mont.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/vms.mar</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/x86-gf2m.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/x86-mont.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/x86.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/x86_64-gcc.c</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/x86_64-gf2m.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/x86_64-mont.pl</itemPath>
-                <itemPath>../base/openssl/crypto/bn/asm/x86_64-mont5.pl</itemPath>
-              </logicalFolder>
-              <itemPath>../base/openssl/crypto/bn/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/bn/bn.h</itemPath>
-              <itemPath>../base/openssl/crypto/bn/bn.mul</itemPath>
               <itemPath>../base/openssl/crypto/bn/bn_add.c</itemPath>
               <itemPath>../base/openssl/crypto/bn/bn_asm.c</itemPath>
               <itemPath>../base/openssl/crypto/bn/bn_blind.c</itemPath>
@@ -691,22 +603,14 @@
               <itemPath>../base/openssl/crypto/bn/bn_sqrt.c</itemPath>
               <itemPath>../base/openssl/crypto/bn/bn_word.c</itemPath>
               <itemPath>../base/openssl/crypto/bn/bn_x931p.c</itemPath>
-              <itemPath>../base/openssl/crypto/bn/exp.c</itemPath>
-              <itemPath>../base/openssl/crypto/bn/todo</itemPath>
             </logicalFolder>
             <logicalFolder name="buffer" displayName="buffer" projectFiles="true">
-              <itemPath>../base/openssl/crypto/buffer/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/buffer/buf_err.c</itemPath>
               <itemPath>../base/openssl/crypto/buffer/buf_str.c</itemPath>
               <itemPath>../base/openssl/crypto/buffer/buffer.c</itemPath>
               <itemPath>../base/openssl/crypto/buffer/buffer.h</itemPath>
             </logicalFolder>
             <logicalFolder name="camellia" displayName="camellia" projectFiles="true">
-              <logicalFolder name="asm" displayName="asm" projectFiles="true">
-                <itemPath>../base/openssl/crypto/camellia/asm/cmll-x86.pl</itemPath>
-                <itemPath>../base/openssl/crypto/camellia/asm/cmll-x86_64.pl</itemPath>
-              </logicalFolder>
-              <itemPath>../base/openssl/crypto/camellia/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/camellia/camellia.c</itemPath>
               <itemPath>../base/openssl/crypto/camellia/camellia.h</itemPath>
               <itemPath>../base/openssl/crypto/camellia/cmll_cbc.c</itemPath>
@@ -719,11 +623,6 @@
               <itemPath>../base/openssl/crypto/camellia/cmll_utl.c</itemPath>
             </logicalFolder>
             <logicalFolder name="cast" displayName="cast" projectFiles="true">
-              <logicalFolder name="asm" displayName="asm" projectFiles="true">
-                <itemPath>../base/openssl/crypto/cast/asm/cast-586.pl</itemPath>
-                <itemPath>../base/openssl/crypto/cast/asm/readme</itemPath>
-              </logicalFolder>
-              <itemPath>../base/openssl/crypto/cast/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/cast/c_cfb64.c</itemPath>
               <itemPath>../base/openssl/crypto/cast/c_ecb.c</itemPath>
               <itemPath>../base/openssl/crypto/cast/c_enc.c</itemPath>
@@ -732,17 +631,14 @@
               <itemPath>../base/openssl/crypto/cast/cast.h</itemPath>
               <itemPath>../base/openssl/crypto/cast/cast_lcl.h</itemPath>
               <itemPath>../base/openssl/crypto/cast/cast_s.h</itemPath>
-              <itemPath>../base/openssl/crypto/cast/castopts.c</itemPath>
             </logicalFolder>
             <logicalFolder name="cmac" displayName="cmac" projectFiles="true">
-              <itemPath>../base/openssl/crypto/cmac/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/cmac/cm_ameth.c</itemPath>
               <itemPath>../base/openssl/crypto/cmac/cm_pmeth.c</itemPath>
               <itemPath>../base/openssl/crypto/cmac/cmac.c</itemPath>
               <itemPath>../base/openssl/crypto/cmac/cmac.h</itemPath>
             </logicalFolder>
             <logicalFolder name="cms" displayName="cms" projectFiles="true">
-              <itemPath>../base/openssl/crypto/cms/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/cms/cms.h</itemPath>
               <itemPath>../base/openssl/crypto/cms/cms_asn1.c</itemPath>
               <itemPath>../base/openssl/crypto/cms/cms_att.c</itemPath>
@@ -760,7 +656,6 @@
               <itemPath>../base/openssl/crypto/cms/cms_smime.c</itemPath>
             </logicalFolder>
             <logicalFolder name="comp" displayName="comp" projectFiles="true">
-              <itemPath>../base/openssl/crypto/comp/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/comp/c_rle.c</itemPath>
               <itemPath>../base/openssl/crypto/comp/c_zlib.c</itemPath>
               <itemPath>../base/openssl/crypto/comp/comp.h</itemPath>
@@ -768,9 +663,6 @@
               <itemPath>../base/openssl/crypto/comp/comp_lib.c</itemPath>
             </logicalFolder>
             <logicalFolder name="conf" displayName="conf" projectFiles="true">
-              <itemPath>../base/openssl/crypto/conf/Makefile</itemPath>
-              <itemPath>../base/openssl/crypto/conf/README</itemPath>
-              <itemPath>../base/openssl/crypto/conf/cnf_save.c</itemPath>
               <itemPath>../base/openssl/crypto/conf/conf.h</itemPath>
               <itemPath>../base/openssl/crypto/conf/conf_api.c</itemPath>
               <itemPath>../base/openssl/crypto/conf/conf_api.h</itemPath>
@@ -781,50 +673,16 @@
               <itemPath>../base/openssl/crypto/conf/conf_mall.c</itemPath>
               <itemPath>../base/openssl/crypto/conf/conf_mod.c</itemPath>
               <itemPath>../base/openssl/crypto/conf/conf_sap.c</itemPath>
-              <itemPath>../base/openssl/crypto/conf/keysets.pl</itemPath>
-              <itemPath>../base/openssl/crypto/conf/ssleay.cnf</itemPath>
             </logicalFolder>
             <logicalFolder name="des" displayName="des" projectFiles="true">
-              <logicalFolder name="asm" displayName="asm" projectFiles="true">
-                <itemPath>../base/openssl/crypto/des/asm/crypt586.pl</itemPath>
-                <itemPath>../base/openssl/crypto/des/asm/des-586.pl</itemPath>
-                <itemPath>../base/openssl/crypto/des/asm/des_enc.m4</itemPath>
-                <itemPath>../base/openssl/crypto/des/asm/desboth.pl</itemPath>
-                <itemPath>../base/openssl/crypto/des/asm/readme</itemPath>
-              </logicalFolder>
-              <logicalFolder name="t" displayName="t" projectFiles="true">
-                <itemPath>../base/openssl/crypto/des/t/test</itemPath>
-              </logicalFolder>
-              <logicalFolder name="times" displayName="times" projectFiles="true">
-                <itemPath>../base/openssl/crypto/des/times/486-50.sol</itemPath>
-                <itemPath>../base/openssl/crypto/des/times/586-100.lnx</itemPath>
-                <itemPath>../base/openssl/crypto/des/times/686-200.fre</itemPath>
-                <itemPath>../base/openssl/crypto/des/times/aix.cc</itemPath>
-                <itemPath>../base/openssl/crypto/des/times/alpha.cc</itemPath>
-                <itemPath>../base/openssl/crypto/des/times/hpux.cc</itemPath>
-                <itemPath>../base/openssl/crypto/des/times/sparc.gcc</itemPath>
-                <itemPath>../base/openssl/crypto/des/times/usparc.cc</itemPath>
-              </logicalFolder>
-              <itemPath>../base/openssl/crypto/des/COPYRIGHT</itemPath>
-              <itemPath>../base/openssl/crypto/des/DES.pm</itemPath>
-              <itemPath>../base/openssl/crypto/des/DES.xs</itemPath>
-              <itemPath>../base/openssl/crypto/des/FILES0</itemPath>
-              <itemPath>../base/openssl/crypto/des/INSTALL</itemPath>
-              <itemPath>../base/openssl/crypto/des/Imakefile</itemPath>
-              <itemPath>../base/openssl/crypto/des/KERBEROS</itemPath>
-              <itemPath>../base/openssl/crypto/des/Makefile</itemPath>
-              <itemPath>../base/openssl/crypto/des/README</itemPath>
-              <itemPath>../base/openssl/crypto/des/VERSION</itemPath>
               <itemPath>../base/openssl/crypto/des/cbc3_enc.c</itemPath>
               <itemPath>../base/openssl/crypto/des/cbc_cksm.c</itemPath>
               <itemPath>../base/openssl/crypto/des/cbc_enc.c</itemPath>
               <itemPath>../base/openssl/crypto/des/cfb64ede.c</itemPath>
               <itemPath>../base/openssl/crypto/des/cfb64enc.c</itemPath>
               <itemPath>../base/openssl/crypto/des/cfb_enc.c</itemPath>
-              <itemPath>../base/openssl/crypto/des/des-lib.com</itemPath>
               <itemPath>../base/openssl/crypto/des/des.c</itemPath>
               <itemPath>../base/openssl/crypto/des/des.h</itemPath>
-              <itemPath>../base/openssl/crypto/des/des.pod</itemPath>
               <itemPath>../base/openssl/crypto/des/des3s.cpp</itemPath>
               <itemPath>../base/openssl/crypto/des/des_enc.c</itemPath>
               <itemPath>../base/openssl/crypto/des/des_locl.h</itemPath>
@@ -842,12 +700,10 @@
               <itemPath>../base/openssl/crypto/des/enc_writ.c</itemPath>
               <itemPath>../base/openssl/crypto/des/fcrypt.c</itemPath>
               <itemPath>../base/openssl/crypto/des/fcrypt_b.c</itemPath>
-              <itemPath>../base/openssl/crypto/des/makefile.bc</itemPath>
               <itemPath>../base/openssl/crypto/des/ncbc_enc.c</itemPath>
               <itemPath>../base/openssl/crypto/des/ofb64ede.c</itemPath>
               <itemPath>../base/openssl/crypto/des/ofb64enc.c</itemPath>
               <itemPath>../base/openssl/crypto/des/ofb_enc.c</itemPath>
-              <itemPath>../base/openssl/crypto/des/options.txt</itemPath>
               <itemPath>../base/openssl/crypto/des/pcbc_enc.c</itemPath>
               <itemPath>../base/openssl/crypto/des/qud_cksm.c</itemPath>
               <itemPath>../base/openssl/crypto/des/rand_key.c</itemPath>
@@ -859,17 +715,10 @@
               <itemPath>../base/openssl/crypto/des/set_key.c</itemPath>
               <itemPath>../base/openssl/crypto/des/spr.h</itemPath>
               <itemPath>../base/openssl/crypto/des/str2key.c</itemPath>
-              <itemPath>../base/openssl/crypto/des/typemap</itemPath>
               <itemPath>../base/openssl/crypto/des/xcbc_enc.c</itemPath>
             </logicalFolder>
             <logicalFolder name="dh" displayName="dh" projectFiles="true">
-              <itemPath>../base/openssl/crypto/dh/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/dh/dh.h</itemPath>
-              <itemPath>../base/openssl/crypto/dh/dh1024.pem</itemPath>
-              <itemPath>../base/openssl/crypto/dh/dh192.pem</itemPath>
-              <itemPath>../base/openssl/crypto/dh/dh2048.pem</itemPath>
-              <itemPath>../base/openssl/crypto/dh/dh4096.pem</itemPath>
-              <itemPath>../base/openssl/crypto/dh/dh512.pem</itemPath>
               <itemPath>../base/openssl/crypto/dh/dh_ameth.c</itemPath>
               <itemPath>../base/openssl/crypto/dh/dh_asn1.c</itemPath>
               <itemPath>../base/openssl/crypto/dh/dh_check.c</itemPath>
@@ -880,15 +729,11 @@
               <itemPath>../base/openssl/crypto/dh/dh_lib.c</itemPath>
               <itemPath>../base/openssl/crypto/dh/dh_pmeth.c</itemPath>
               <itemPath>../base/openssl/crypto/dh/dh_prn.c</itemPath>
-              <itemPath>../base/openssl/crypto/dh/example</itemPath>
-              <itemPath>../base/openssl/crypto/dh/generate</itemPath>
               <itemPath>../base/openssl/crypto/dh/p1024.c</itemPath>
               <itemPath>../base/openssl/crypto/dh/p192.c</itemPath>
               <itemPath>../base/openssl/crypto/dh/p512.c</itemPath>
             </logicalFolder>
             <logicalFolder name="dsa" displayName="dsa" projectFiles="true">
-              <itemPath>../base/openssl/crypto/dsa/Makefile</itemPath>
-              <itemPath>../base/openssl/crypto/dsa/README</itemPath>
               <itemPath>../base/openssl/crypto/dsa/dsa.h</itemPath>
               <itemPath>../base/openssl/crypto/dsa/dsa_ameth.c</itemPath>
               <itemPath>../base/openssl/crypto/dsa/dsa_asn1.c</itemPath>
@@ -904,11 +749,8 @@
               <itemPath>../base/openssl/crypto/dsa/dsa_sign.c</itemPath>
               <itemPath>../base/openssl/crypto/dsa/dsa_vrf.c</itemPath>
               <itemPath>../base/openssl/crypto/dsa/dsagen.c</itemPath>
-              <itemPath>../base/openssl/crypto/dsa/fips186a.txt</itemPath>
             </logicalFolder>
             <logicalFolder name="dso" displayName="dso" projectFiles="true">
-              <itemPath>../base/openssl/crypto/dso/Makefile</itemPath>
-              <itemPath>../base/openssl/crypto/dso/README</itemPath>
               <itemPath>../base/openssl/crypto/dso/dso.h</itemPath>
               <itemPath>../base/openssl/crypto/dso/dso_dl.c</itemPath>
               <itemPath>../base/openssl/crypto/dso/dso_dlfcn.c</itemPath>
@@ -918,7 +760,6 @@
               <itemPath>../base/openssl/crypto/dso/dso_openssl.c</itemPath>
             </logicalFolder>
             <logicalFolder name="ec" displayName="ec" projectFiles="true">
-              <itemPath>../base/openssl/crypto/ec/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/ec/ec.h</itemPath>
               <itemPath>../base/openssl/crypto/ec/ec2_mult.c</itemPath>
               <itemPath>../base/openssl/crypto/ec/ec2_oct.c</itemPath>
@@ -947,7 +788,6 @@
               <itemPath>../base/openssl/crypto/ec/ecp_smpl.c</itemPath>
             </logicalFolder>
             <logicalFolder name="ecdh" displayName="ecdh" projectFiles="true">
-              <itemPath>../base/openssl/crypto/ecdh/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/ecdh/ecdh.h</itemPath>
               <itemPath>../base/openssl/crypto/ecdh/ecdhtest.c</itemPath>
               <itemPath>../base/openssl/crypto/ecdh/ech_err.c</itemPath>
@@ -957,7 +797,6 @@
               <itemPath>../base/openssl/crypto/ecdh/ech_ossl.c</itemPath>
             </logicalFolder>
             <logicalFolder name="ecdsa" displayName="ecdsa" projectFiles="true">
-              <itemPath>../base/openssl/crypto/ecdsa/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/ecdsa/ecdsa.h</itemPath>
               <itemPath>../base/openssl/crypto/ecdsa/ecdsatest.c</itemPath>
               <itemPath>../base/openssl/crypto/ecdsa/ecs_asn1.c</itemPath>
@@ -969,8 +808,6 @@
               <itemPath>../base/openssl/crypto/ecdsa/ecs_vrf.c</itemPath>
             </logicalFolder>
             <logicalFolder name="engine" displayName="engine" projectFiles="true">
-              <itemPath>../base/openssl/crypto/engine/Makefile</itemPath>
-              <itemPath>../base/openssl/crypto/engine/README</itemPath>
               <itemPath>../base/openssl/crypto/engine/eng_all.c</itemPath>
               <itemPath>../base/openssl/crypto/engine/eng_cnf.c</itemPath>
               <itemPath>../base/openssl/crypto/engine/eng_cryptodev.c</itemPath>
@@ -1002,15 +839,12 @@
               <itemPath>../base/openssl/crypto/engine/tb_store.c</itemPath>
             </logicalFolder>
             <logicalFolder name="err" displayName="err" projectFiles="true">
-              <itemPath>../base/openssl/crypto/err/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/err/err.c</itemPath>
               <itemPath>../base/openssl/crypto/err/err.h</itemPath>
               <itemPath>../base/openssl/crypto/err/err_all.cpp</itemPath>
               <itemPath>../base/openssl/crypto/err/err_prn.c</itemPath>
-              <itemPath>../base/openssl/crypto/err/openssl.ec</itemPath>
             </logicalFolder>
             <logicalFolder name="evp" displayName="evp" projectFiles="true">
-              <itemPath>../base/openssl/crypto/evp/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/evp/bio_b64.c</itemPath>
               <itemPath>../base/openssl/crypto/evp/bio_enc.c</itemPath>
               <itemPath>../base/openssl/crypto/evp/bio_md.c</itemPath>
@@ -1026,7 +860,6 @@
               <itemPath>../base/openssl/crypto/evp/e_cast.c</itemPath>
               <itemPath>../base/openssl/crypto/evp/e_des.c</itemPath>
               <itemPath>../base/openssl/crypto/evp/e_des3.c</itemPath>
-              <itemPath>../base/openssl/crypto/evp/e_dsa.c</itemPath>
               <itemPath>../base/openssl/crypto/evp/e_idea.c</itemPath>
               <itemPath>../base/openssl/crypto/evp/e_null.c</itemPath>
               <itemPath>../base/openssl/crypto/evp/e_old.c</itemPath>
@@ -1076,14 +909,12 @@
               <itemPath>../base/openssl/crypto/evp/pmeth_lib.c</itemPath>
             </logicalFolder>
             <logicalFolder name="hmac" displayName="hmac" projectFiles="true">
-              <itemPath>../base/openssl/crypto/hmac/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/hmac/hm_ameth.c</itemPath>
               <itemPath>../base/openssl/crypto/hmac/hm_pmeth.c</itemPath>
               <itemPath>../base/openssl/crypto/hmac/hmac.c</itemPath>
               <itemPath>../base/openssl/crypto/hmac/hmac.h</itemPath>
             </logicalFolder>
             <logicalFolder name="idea" displayName="idea" projectFiles="true">
-              <itemPath>../base/openssl/crypto/idea/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/idea/i_cbc.c</itemPath>
               <itemPath>../base/openssl/crypto/idea/i_cfb64.c</itemPath>
               <itemPath>../base/openssl/crypto/idea/i_ecb.c</itemPath>
@@ -1091,46 +922,31 @@
               <itemPath>../base/openssl/crypto/idea/i_skey.c</itemPath>
               <itemPath>../base/openssl/crypto/idea/idea.h</itemPath>
               <itemPath>../base/openssl/crypto/idea/idea_lcl.h</itemPath>
-              <itemPath>../base/openssl/crypto/idea/version</itemPath>
             </logicalFolder>
             <logicalFolder name="jpake" displayName="jpake" projectFiles="true">
-              <itemPath>../base/openssl/crypto/jpake/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/jpake/jpake.c</itemPath>
               <itemPath>../base/openssl/crypto/jpake/jpake.h</itemPath>
               <itemPath>../base/openssl/crypto/jpake/jpake_err.c</itemPath>
             </logicalFolder>
             <logicalFolder name="krb5" displayName="krb5" projectFiles="true">
-              <itemPath>../base/openssl/crypto/krb5/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/krb5/krb5_asn.c</itemPath>
               <itemPath>../base/openssl/crypto/krb5/krb5_asn.h</itemPath>
             </logicalFolder>
             <logicalFolder name="lhash" displayName="lhash" projectFiles="true">
-              <itemPath>../base/openssl/crypto/lhash/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/lhash/lh_stats.c</itemPath>
               <itemPath>../base/openssl/crypto/lhash/lh_test.c</itemPath>
               <itemPath>../base/openssl/crypto/lhash/lhash.c</itemPath>
               <itemPath>../base/openssl/crypto/lhash/lhash.h</itemPath>
-              <itemPath>../base/openssl/crypto/lhash/num.pl</itemPath>
             </logicalFolder>
             <logicalFolder name="md2" displayName="md2" projectFiles="true">
-              <itemPath>../base/openssl/crypto/md2/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/md2/md2.h</itemPath>
             </logicalFolder>
             <logicalFolder name="md4" displayName="md4" projectFiles="true">
-              <itemPath>../base/openssl/crypto/md4/Makefile</itemPath>
-              <itemPath>../base/openssl/crypto/md4/md4.c</itemPath>
-              <itemPath>../base/openssl/crypto/md4/md4.h</itemPath>
               <itemPath>../base/openssl/crypto/md4/md4_dgst.c</itemPath>
               <itemPath>../base/openssl/crypto/md4/md4_locl.h</itemPath>
               <itemPath>../base/openssl/crypto/md4/md4_one.c</itemPath>
             </logicalFolder>
             <logicalFolder name="md5" displayName="md5" projectFiles="true">
-              <logicalFolder name="asm" displayName="asm" projectFiles="true">
-                <itemPath>../base/openssl/crypto/md5/asm/md5-586.pl</itemPath>
-                <itemPath>../base/openssl/crypto/md5/asm/md5-ia64.S</itemPath>
-                <itemPath>../base/openssl/crypto/md5/asm/md5-x86_64.pl</itemPath>
-              </logicalFolder>
-              <itemPath>../base/openssl/crypto/md5/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/md5/md5.c</itemPath>
               <itemPath>../base/openssl/crypto/md5/md5.h</itemPath>
               <itemPath>../base/openssl/crypto/md5/md5_dgst.c</itemPath>
@@ -1138,23 +954,11 @@
               <itemPath>../base/openssl/crypto/md5/md5_one.c</itemPath>
             </logicalFolder>
             <logicalFolder name="mdc2" displayName="mdc2" projectFiles="true">
-              <itemPath>../base/openssl/crypto/mdc2/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/mdc2/mdc2.h</itemPath>
               <itemPath>../base/openssl/crypto/mdc2/mdc2_one.c</itemPath>
               <itemPath>../base/openssl/crypto/mdc2/mdc2dgst.c</itemPath>
             </logicalFolder>
             <logicalFolder name="modes" displayName="modes" projectFiles="true">
-              <logicalFolder name="asm" displayName="asm" projectFiles="true">
-                <itemPath>../base/openssl/crypto/modes/asm/ghash-alpha.pl</itemPath>
-                <itemPath>../base/openssl/crypto/modes/asm/ghash-armv4.pl</itemPath>
-                <itemPath>../base/openssl/crypto/modes/asm/ghash-ia64.pl</itemPath>
-                <itemPath>../base/openssl/crypto/modes/asm/ghash-parisc.pl</itemPath>
-                <itemPath>../base/openssl/crypto/modes/asm/ghash-s390x.pl</itemPath>
-                <itemPath>../base/openssl/crypto/modes/asm/ghash-sparcv9.pl</itemPath>
-                <itemPath>../base/openssl/crypto/modes/asm/ghash-x86.pl</itemPath>
-                <itemPath>../base/openssl/crypto/modes/asm/ghash-x86_64.pl</itemPath>
-              </logicalFolder>
-              <itemPath>../base/openssl/crypto/modes/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/modes/cbc128.c</itemPath>
               <itemPath>../base/openssl/crypto/modes/ccm128.c</itemPath>
               <itemPath>../base/openssl/crypto/modes/cfb128.c</itemPath>
@@ -1167,26 +971,17 @@
               <itemPath>../base/openssl/crypto/modes/xts128.c</itemPath>
             </logicalFolder>
             <logicalFolder name="objects" displayName="objects" projectFiles="true">
-              <itemPath>../base/openssl/crypto/objects/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/objects/o_names.c</itemPath>
               <itemPath>../base/openssl/crypto/objects/obj_dat.c</itemPath>
               <itemPath>../base/openssl/crypto/objects/obj_dat.h</itemPath>
-              <itemPath>../base/openssl/crypto/objects/obj_dat.pl</itemPath>
               <itemPath>../base/openssl/crypto/objects/obj_err.c</itemPath>
               <itemPath>../base/openssl/crypto/objects/obj_lib.c</itemPath>
               <itemPath>../base/openssl/crypto/objects/obj_mac.h</itemPath>
-              <itemPath>../base/openssl/crypto/objects/obj_mac.num</itemPath>
               <itemPath>../base/openssl/crypto/objects/obj_xref.c</itemPath>
               <itemPath>../base/openssl/crypto/objects/obj_xref.h</itemPath>
-              <itemPath>../base/openssl/crypto/objects/obj_xref.txt</itemPath>
-              <itemPath>../base/openssl/crypto/objects/objects.README</itemPath>
               <itemPath>../base/openssl/crypto/objects/objects.h</itemPath>
-              <itemPath>../base/openssl/crypto/objects/objects.pl</itemPath>
-              <itemPath>../base/openssl/crypto/objects/objects.txt</itemPath>
-              <itemPath>../base/openssl/crypto/objects/objxref.pl</itemPath>
             </logicalFolder>
             <logicalFolder name="ocsp" displayName="ocsp" projectFiles="true">
-              <itemPath>../base/openssl/crypto/ocsp/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/ocsp/ocsp.h</itemPath>
               <itemPath>../base/openssl/crypto/ocsp/ocsp_asn.c</itemPath>
               <itemPath>../base/openssl/crypto/ocsp/ocsp_cl.c</itemPath>
@@ -1199,8 +994,6 @@
               <itemPath>../base/openssl/crypto/ocsp/ocsp_vfy.c</itemPath>
             </logicalFolder>
             <logicalFolder name="pem" displayName="pem" projectFiles="true">
-              <itemPath>../base/openssl/crypto/pem/Makefile</itemPath>
-              <itemPath>../base/openssl/crypto/pem/message</itemPath>
               <itemPath>../base/openssl/crypto/pem/pem.h</itemPath>
               <itemPath>../base/openssl/crypto/pem/pem2.h</itemPath>
               <itemPath>../base/openssl/crypto/pem/pem_all.c</itemPath>
@@ -1214,21 +1007,9 @@
               <itemPath>../base/openssl/crypto/pem/pem_sign.c</itemPath>
               <itemPath>../base/openssl/crypto/pem/pem_x509.c</itemPath>
               <itemPath>../base/openssl/crypto/pem/pem_xaux.c</itemPath>
-              <itemPath>../base/openssl/crypto/pem/pkcs7.lis</itemPath>
               <itemPath>../base/openssl/crypto/pem/pvkfmt.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="perlasm" displayName="perlasm" projectFiles="true">
-              <itemPath>../base/openssl/crypto/perlasm/cbc.pl</itemPath>
-              <itemPath>../base/openssl/crypto/perlasm/ppc-xlate.pl</itemPath>
-              <itemPath>../base/openssl/crypto/perlasm/readme</itemPath>
-              <itemPath>../base/openssl/crypto/perlasm/x86_64-xlate.pl</itemPath>
-              <itemPath>../base/openssl/crypto/perlasm/x86asm.pl</itemPath>
-              <itemPath>../base/openssl/crypto/perlasm/x86gas.pl</itemPath>
-              <itemPath>../base/openssl/crypto/perlasm/x86masm.pl</itemPath>
-              <itemPath>../base/openssl/crypto/perlasm/x86nasm.pl</itemPath>
-            </logicalFolder>
             <logicalFolder name="pkcs12" displayName="pkcs12" projectFiles="true">
-              <itemPath>../base/openssl/crypto/pkcs12/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/pkcs12/p12_add.c</itemPath>
               <itemPath>../base/openssl/crypto/pkcs12/p12_asn.c</itemPath>
               <itemPath>../base/openssl/crypto/pkcs12/p12_attr.c</itemPath>
@@ -1247,42 +1028,12 @@
               <itemPath>../base/openssl/crypto/pkcs12/pkcs12.h</itemPath>
             </logicalFolder>
             <logicalFolder name="pkcs7" displayName="pkcs7" projectFiles="true">
-              <logicalFolder name="p7" displayName="p7" projectFiles="true">
-                <itemPath>../base/openssl/crypto/pkcs7/p7/a1</itemPath>
-                <itemPath>../base/openssl/crypto/pkcs7/p7/a2</itemPath>
-                <itemPath>../base/openssl/crypto/pkcs7/p7/cert.p7c</itemPath>
-                <itemPath>../base/openssl/crypto/pkcs7/p7/smime.p7m</itemPath>
-                <itemPath>../base/openssl/crypto/pkcs7/p7/smime.p7s</itemPath>
-              </logicalFolder>
-              <logicalFolder name="t" displayName="t" projectFiles="true">
-                <itemPath>../base/openssl/crypto/pkcs7/t/3des.pem</itemPath>
-                <itemPath>../base/openssl/crypto/pkcs7/t/3dess.pem</itemPath>
-                <itemPath>../base/openssl/crypto/pkcs7/t/c.pem</itemPath>
-                <itemPath>../base/openssl/crypto/pkcs7/t/ff</itemPath>
-                <itemPath>../base/openssl/crypto/pkcs7/t/msie-e</itemPath>
-                <itemPath>../base/openssl/crypto/pkcs7/t/msie-e.pem</itemPath>
-                <itemPath>../base/openssl/crypto/pkcs7/t/msie-enc-01</itemPath>
-                <itemPath>../base/openssl/crypto/pkcs7/t/msie-enc-01.pem</itemPath>
-                <itemPath>../base/openssl/crypto/pkcs7/t/msie-enc-02</itemPath>
-                <itemPath>../base/openssl/crypto/pkcs7/t/msie-enc-02.pem</itemPath>
-                <itemPath>../base/openssl/crypto/pkcs7/t/msie-s-a-e</itemPath>
-                <itemPath>../base/openssl/crypto/pkcs7/t/msie-s-a-e.pem</itemPath>
-                <itemPath>../base/openssl/crypto/pkcs7/t/nav-smime</itemPath>
-                <itemPath>../base/openssl/crypto/pkcs7/t/s.pem</itemPath>
-                <itemPath>../base/openssl/crypto/pkcs7/t/server.pem</itemPath>
-              </logicalFolder>
-              <itemPath>../base/openssl/crypto/pkcs7/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/pkcs7/bio_ber.c</itemPath>
               <itemPath>../base/openssl/crypto/pkcs7/bio_pk7.c</itemPath>
               <itemPath>../base/openssl/crypto/pkcs7/dec.c</itemPath>
-              <itemPath>../base/openssl/crypto/pkcs7/des.pem</itemPath>
-              <itemPath>../base/openssl/crypto/pkcs7/doc</itemPath>
               <itemPath>../base/openssl/crypto/pkcs7/enc.c</itemPath>
-              <itemPath>../base/openssl/crypto/pkcs7/es1.pem</itemPath>
               <itemPath>../base/openssl/crypto/pkcs7/example.c</itemPath>
               <itemPath>../base/openssl/crypto/pkcs7/example.h</itemPath>
-              <itemPath>../base/openssl/crypto/pkcs7/info.pem</itemPath>
-              <itemPath>../base/openssl/crypto/pkcs7/infokey.pem</itemPath>
               <itemPath>../base/openssl/crypto/pkcs7/pk7_asn1.c</itemPath>
               <itemPath>../base/openssl/crypto/pkcs7/pk7_attr.c</itemPath>
               <itemPath>../base/openssl/crypto/pkcs7/pk7_dgst.c</itemPath>
@@ -1293,15 +1044,12 @@
               <itemPath>../base/openssl/crypto/pkcs7/pk7_smime.c</itemPath>
               <itemPath>../base/openssl/crypto/pkcs7/pkcs7.h</itemPath>
               <itemPath>../base/openssl/crypto/pkcs7/pkcs7err.c</itemPath>
-              <itemPath>../base/openssl/crypto/pkcs7/server.pem</itemPath>
             </logicalFolder>
             <logicalFolder name="pqueue" displayName="pqueue" projectFiles="true">
-              <itemPath>../base/openssl/crypto/pqueue/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/pqueue/pqueue.c</itemPath>
               <itemPath>../base/openssl/crypto/pqueue/pqueue.h</itemPath>
             </logicalFolder>
             <logicalFolder name="rand" displayName="rand" projectFiles="true">
-              <itemPath>../base/openssl/crypto/rand/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/rand/md_rand.c</itemPath>
               <itemPath>../base/openssl/crypto/rand/rand.h</itemPath>
               <itemPath>../base/openssl/crypto/rand/rand_egd.c</itemPath>
@@ -1312,7 +1060,6 @@
               <itemPath>../base/openssl/crypto/rand/randfile.c</itemPath>
             </logicalFolder>
             <logicalFolder name="rc2" displayName="rc2" projectFiles="true">
-              <itemPath>../base/openssl/crypto/rc2/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/rc2/rc2.h</itemPath>
               <itemPath>../base/openssl/crypto/rc2/rc2_cbc.c</itemPath>
               <itemPath>../base/openssl/crypto/rc2/rc2_ecb.c</itemPath>
@@ -1322,15 +1069,6 @@
               <itemPath>../base/openssl/crypto/rc2/rc2ofb64.c</itemPath>
             </logicalFolder>
             <logicalFolder name="rc4" displayName="rc4" projectFiles="true">
-              <logicalFolder name="asm" displayName="asm" projectFiles="true">
-                <itemPath>../base/openssl/crypto/rc4/asm/rc4-586.pl</itemPath>
-                <itemPath>../base/openssl/crypto/rc4/asm/rc4-ia64.pl</itemPath>
-                <itemPath>../base/openssl/crypto/rc4/asm/rc4-md5-x86_64.pl</itemPath>
-                <itemPath>../base/openssl/crypto/rc4/asm/rc4-parisc.pl</itemPath>
-                <itemPath>../base/openssl/crypto/rc4/asm/rc4-s390x.pl</itemPath>
-                <itemPath>../base/openssl/crypto/rc4/asm/rc4-x86_64.pl</itemPath>
-              </logicalFolder>
-              <itemPath>../base/openssl/crypto/rc4/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/rc4/rc4.c</itemPath>
               <itemPath>../base/openssl/crypto/rc4/rc4.h</itemPath>
               <itemPath>../base/openssl/crypto/rc4/rc4_enc.c</itemPath>
@@ -1338,35 +1076,14 @@
               <itemPath>../base/openssl/crypto/rc4/rc4_skey.c</itemPath>
               <itemPath>../base/openssl/crypto/rc4/rc4_utl.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="rc5" displayName="rc5" projectFiles="true">
-              <logicalFolder name="asm" displayName="asm" projectFiles="true">
-                <itemPath>../base/openssl/crypto/rc5/asm/rc5-586.pl</itemPath>
-              </logicalFolder>
-              <itemPath>../base/openssl/crypto/rc5/Makefile</itemPath>
-              <itemPath>../base/openssl/crypto/rc5/rc5.h</itemPath>
-              <itemPath>../base/openssl/crypto/rc5/rc5_ecb.c</itemPath>
-              <itemPath>../base/openssl/crypto/rc5/rc5_enc.c</itemPath>
-              <itemPath>../base/openssl/crypto/rc5/rc5_locl.h</itemPath>
-              <itemPath>../base/openssl/crypto/rc5/rc5_skey.c</itemPath>
-              <itemPath>../base/openssl/crypto/rc5/rc5cfb64.c</itemPath>
-              <itemPath>../base/openssl/crypto/rc5/rc5ofb64.c</itemPath>
-            </logicalFolder>
             <logicalFolder name="ripemd" displayName="ripemd" projectFiles="true">
-              <logicalFolder name="asm" displayName="asm" projectFiles="true">
-                <itemPath>../base/openssl/crypto/ripemd/asm/rips.cpp</itemPath>
-                <itemPath>../base/openssl/crypto/ripemd/asm/rmd-586.pl</itemPath>
-              </logicalFolder>
-              <itemPath>../base/openssl/crypto/ripemd/Makefile</itemPath>
-              <itemPath>../base/openssl/crypto/ripemd/README</itemPath>
               <itemPath>../base/openssl/crypto/ripemd/ripemd.h</itemPath>
-              <itemPath>../base/openssl/crypto/ripemd/rmd160.c</itemPath>
               <itemPath>../base/openssl/crypto/ripemd/rmd_dgst.c</itemPath>
               <itemPath>../base/openssl/crypto/ripemd/rmd_locl.h</itemPath>
               <itemPath>../base/openssl/crypto/ripemd/rmd_one.c</itemPath>
               <itemPath>../base/openssl/crypto/ripemd/rmdconst.h</itemPath>
             </logicalFolder>
             <logicalFolder name="rsa" displayName="rsa" projectFiles="true">
-              <itemPath>../base/openssl/crypto/rsa/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/rsa/rsa.h</itemPath>
               <itemPath>../base/openssl/crypto/rsa/rsa_ameth.c</itemPath>
               <itemPath>../base/openssl/crypto/rsa/rsa_asn1.c</itemPath>
@@ -1391,7 +1108,6 @@
               <itemPath>../base/openssl/crypto/rsa/rsa_x931.c</itemPath>
             </logicalFolder>
             <logicalFolder name="seed" displayName="seed" projectFiles="true">
-              <itemPath>../base/openssl/crypto/seed/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/seed/seed.c</itemPath>
               <itemPath>../base/openssl/crypto/seed/seed.h</itemPath>
               <itemPath>../base/openssl/crypto/seed/seed_cbc.c</itemPath>
@@ -1401,33 +1117,6 @@
               <itemPath>../base/openssl/crypto/seed/seed_ofb.c</itemPath>
             </logicalFolder>
             <logicalFolder name="sha" displayName="sha" projectFiles="true">
-              <logicalFolder name="asm" displayName="asm" projectFiles="true">
-                <itemPath>../base/openssl/crypto/sha/asm/README</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha1-586.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha1-alpha.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha1-armv4-large.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha1-ia64.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha1-mips.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha1-parisc.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha1-ppc.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha1-s390x.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha1-sparcv9.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha1-sparcv9a.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha1-thumb.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha1-x86_64.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha256-586.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha256-armv4.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha512-586.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha512-armv4.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha512-ia64.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha512-mips.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha512-parisc.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha512-ppc.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha512-s390x.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha512-sparcv9.pl</itemPath>
-                <itemPath>../base/openssl/crypto/sha/asm/sha512-x86_64.pl</itemPath>
-              </logicalFolder>
-              <itemPath>../base/openssl/crypto/sha/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/sha/sha.c</itemPath>
               <itemPath>../base/openssl/crypto/sha/sha.h</itemPath>
               <itemPath>../base/openssl/crypto/sha/sha1.c</itemPath>
@@ -1440,7 +1129,6 @@
               <itemPath>../base/openssl/crypto/sha/sha_one.c</itemPath>
             </logicalFolder>
             <logicalFolder name="srp" displayName="srp" projectFiles="true">
-              <itemPath>../base/openssl/crypto/srp/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/srp/srp.h</itemPath>
               <itemPath>../base/openssl/crypto/srp/srp_grps.h</itemPath>
               <itemPath>../base/openssl/crypto/srp/srp_lcl.h</itemPath>
@@ -1448,28 +1136,15 @@
               <itemPath>../base/openssl/crypto/srp/srp_vfy.c</itemPath>
             </logicalFolder>
             <logicalFolder name="stack" displayName="stack" projectFiles="true">
-              <itemPath>../base/openssl/crypto/stack/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/stack/safestack.h</itemPath>
               <itemPath>../base/openssl/crypto/stack/stack.c</itemPath>
               <itemPath>../base/openssl/crypto/stack/stack.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="store" displayName="store" projectFiles="true">
-              <itemPath>../base/openssl/crypto/store/Makefile</itemPath>
-              <itemPath>../base/openssl/crypto/store/README</itemPath>
-              <itemPath>../base/openssl/crypto/store/store.h</itemPath>
-              <itemPath>../base/openssl/crypto/store/str_err.c</itemPath>
-              <itemPath>../base/openssl/crypto/store/str_lib.c</itemPath>
-              <itemPath>../base/openssl/crypto/store/str_locl.h</itemPath>
-              <itemPath>../base/openssl/crypto/store/str_mem.c</itemPath>
-              <itemPath>../base/openssl/crypto/store/str_meth.c</itemPath>
-            </logicalFolder>
             <logicalFolder name="threads" displayName="threads" projectFiles="true">
-              <itemPath>../base/openssl/crypto/threads/README</itemPath>
               <itemPath>../base/openssl/crypto/threads/mttest.c</itemPath>
               <itemPath>../base/openssl/crypto/threads/th-lock.c</itemPath>
             </logicalFolder>
             <logicalFolder name="ts" displayName="ts" projectFiles="true">
-              <itemPath>../base/openssl/crypto/ts/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/ts/ts.h</itemPath>
               <itemPath>../base/openssl/crypto/ts/ts_asn1.c</itemPath>
               <itemPath>../base/openssl/crypto/ts/ts_conf.c</itemPath>
@@ -1484,12 +1159,10 @@
               <itemPath>../base/openssl/crypto/ts/ts_verify_ctx.c</itemPath>
             </logicalFolder>
             <logicalFolder name="txt_db" displayName="txt_db" projectFiles="true">
-              <itemPath>../base/openssl/crypto/txt_db/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/txt_db/txt_db.c</itemPath>
               <itemPath>../base/openssl/crypto/txt_db/txt_db.h</itemPath>
             </logicalFolder>
             <logicalFolder name="ui" displayName="ui" projectFiles="true">
-              <itemPath>../base/openssl/crypto/ui/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/ui/ui.h</itemPath>
               <itemPath>../base/openssl/crypto/ui/ui_compat.c</itemPath>
               <itemPath>../base/openssl/crypto/ui/ui_compat.h</itemPath>
@@ -1500,18 +1173,12 @@
               <itemPath>../base/openssl/crypto/ui/ui_util.c</itemPath>
             </logicalFolder>
             <logicalFolder name="whrlpool" displayName="whrlpool" projectFiles="true">
-              <logicalFolder name="asm" displayName="asm" projectFiles="true">
-                <itemPath>../base/openssl/crypto/whrlpool/asm/wp-mmx.pl</itemPath>
-                <itemPath>../base/openssl/crypto/whrlpool/asm/wp-x86_64.pl</itemPath>
-              </logicalFolder>
-              <itemPath>../base/openssl/crypto/whrlpool/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/whrlpool/whrlpool.h</itemPath>
               <itemPath>../base/openssl/crypto/whrlpool/wp_block.c</itemPath>
               <itemPath>../base/openssl/crypto/whrlpool/wp_dgst.c</itemPath>
               <itemPath>../base/openssl/crypto/whrlpool/wp_locl.h</itemPath>
             </logicalFolder>
             <logicalFolder name="x509" displayName="x509" projectFiles="true">
-              <itemPath>../base/openssl/crypto/x509/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/x509/by_dir.c</itemPath>
               <itemPath>../base/openssl/crypto/x509/by_file.c</itemPath>
               <itemPath>../base/openssl/crypto/x509/x509.h</itemPath>
@@ -1540,7 +1207,6 @@
               <itemPath>../base/openssl/crypto/x509/x_all.c</itemPath>
             </logicalFolder>
             <logicalFolder name="x509v3" displayName="x509v3" projectFiles="true">
-              <itemPath>../base/openssl/crypto/x509v3/Makefile</itemPath>
               <itemPath>../base/openssl/crypto/x509v3/ext_dat.h</itemPath>
               <itemPath>../base/openssl/crypto/x509v3/pcy_cache.c</itemPath>
               <itemPath>../base/openssl/crypto/x509v3/pcy_data.c</itemPath>
@@ -1585,15 +1251,11 @@
               <itemPath>../base/openssl/crypto/x509v3/x509v3.h</itemPath>
             </logicalFolder>
             <itemPath>../base/openssl/crypto/LPdir_unix.c</itemPath>
-            <itemPath>../base/openssl/crypto/Makefile</itemPath>
-            <itemPath>../base/openssl/crypto/alphacpuid.pl</itemPath>
             <itemPath>../base/openssl/crypto/arm_arch.h</itemPath>
             <itemPath>../base/openssl/crypto/armcap.c</itemPath>
-            <itemPath>../base/openssl/crypto/armv4cpuid.S</itemPath>
             <itemPath>../base/openssl/crypto/cpt_err.c</itemPath>
             <itemPath>../base/openssl/crypto/cryptlib.c</itemPath>
             <itemPath>../base/openssl/crypto/cryptlib.h</itemPath>
-            <itemPath>../base/openssl/crypto/crypto-lib.com</itemPath>
             <itemPath>../base/openssl/crypto/crypto.h</itemPath>
             <itemPath>../base/openssl/crypto/cversion.c</itemPath>
             <itemPath>../base/openssl/crypto/ebcdic.c</itemPath>
@@ -1601,8 +1263,6 @@
             <itemPath>../base/openssl/crypto/ex_data.c</itemPath>
             <itemPath>../base/openssl/crypto/fips_err.h</itemPath>
             <itemPath>../base/openssl/crypto/fips_ers.c</itemPath>
-            <itemPath>../base/openssl/crypto/ia64cpuid.S</itemPath>
-            <itemPath>../base/openssl/crypto/install-crypto.com</itemPath>
             <itemPath>../base/openssl/crypto/md32_common.h</itemPath>
             <itemPath>../base/openssl/crypto/mem.c</itemPath>
             <itemPath>../base/openssl/crypto/mem_clr.c</itemPath>
@@ -1617,30 +1277,19 @@
             <itemPath>../base/openssl/crypto/o_time.c</itemPath>
             <itemPath>../base/openssl/crypto/o_time.h</itemPath>
             <itemPath>../base/openssl/crypto/opensslconf.h</itemPath>
-            <itemPath>../base/openssl/crypto/opensslconf.h.in</itemPath>
             <itemPath>../base/openssl/crypto/opensslv.h</itemPath>
             <itemPath>../base/openssl/crypto/ossl_typ.h</itemPath>
-            <itemPath>../base/openssl/crypto/pariscid.pl</itemPath>
             <itemPath>../base/openssl/crypto/ppccap.c</itemPath>
-            <itemPath>../base/openssl/crypto/ppccpuid.pl</itemPath>
             <itemPath>../base/openssl/crypto/s390xcap.c</itemPath>
-            <itemPath>../base/openssl/crypto/s390xcpuid.S</itemPath>
-            <itemPath>../base/openssl/crypto/sparccpuid.S</itemPath>
             <itemPath>../base/openssl/crypto/sparcv9cap.c</itemPath>
             <itemPath>../base/openssl/crypto/symhacks.h</itemPath>
             <itemPath>../base/openssl/crypto/uid.c</itemPath>
             <itemPath>../base/openssl/crypto/vms_rms.h</itemPath>
-            <itemPath>../base/openssl/crypto/x86_64cpuid.pl</itemPath>
-            <itemPath>../base/openssl/crypto/x86cpuid.pl</itemPath>
           </logicalFolder>
           <logicalFolder name="engines" displayName="engines" projectFiles="true">
             <logicalFolder name="ccgost" displayName="ccgost" projectFiles="true">
-              <itemPath>../base/openssl/engines/ccgost/Makefile</itemPath>
-              <itemPath>../base/openssl/engines/ccgost/README.gost</itemPath>
               <itemPath>../base/openssl/engines/ccgost/e_gost_err.c</itemPath>
               <itemPath>../base/openssl/engines/ccgost/e_gost_err.h</itemPath>
-              <itemPath>../base/openssl/engines/ccgost/e_gost_err.proto</itemPath>
-              <itemPath>../base/openssl/engines/ccgost/gost.ec</itemPath>
               <itemPath>../base/openssl/engines/ccgost/gost2001.c</itemPath>
               <itemPath>../base/openssl/engines/ccgost/gost2001_keyx.c</itemPath>
               <itemPath>../base/openssl/engines/ccgost/gost2001_keyx.h</itemPath>
@@ -1675,56 +1324,38 @@
               <itemPath>../base/openssl/engines/vendor_defns/hwcryptohook.h</itemPath>
               <itemPath>../base/openssl/engines/vendor_defns/sureware.h</itemPath>
             </logicalFolder>
-            <itemPath>../base/openssl/engines/Makefile</itemPath>
-            <itemPath>../base/openssl/engines/alpha.opt</itemPath>
-            <itemPath>../base/openssl/engines/axp.opt</itemPath>
             <itemPath>../base/openssl/engines/capierr.bat</itemPath>
             <itemPath>../base/openssl/engines/e_4758cca.c</itemPath>
-            <itemPath>../base/openssl/engines/e_4758cca.ec</itemPath>
             <itemPath>../base/openssl/engines/e_4758cca_err.c</itemPath>
             <itemPath>../base/openssl/engines/e_4758cca_err.h</itemPath>
             <itemPath>../base/openssl/engines/e_aep.c</itemPath>
-            <itemPath>../base/openssl/engines/e_aep.ec</itemPath>
             <itemPath>../base/openssl/engines/e_aep_err.c</itemPath>
             <itemPath>../base/openssl/engines/e_aep_err.h</itemPath>
             <itemPath>../base/openssl/engines/e_atalla.c</itemPath>
-            <itemPath>../base/openssl/engines/e_atalla.ec</itemPath>
             <itemPath>../base/openssl/engines/e_atalla_err.c</itemPath>
             <itemPath>../base/openssl/engines/e_atalla_err.h</itemPath>
             <itemPath>../base/openssl/engines/e_capi.c</itemPath>
-            <itemPath>../base/openssl/engines/e_capi.ec</itemPath>
             <itemPath>../base/openssl/engines/e_capi_err.c</itemPath>
             <itemPath>../base/openssl/engines/e_capi_err.h</itemPath>
             <itemPath>../base/openssl/engines/e_chil.c</itemPath>
-            <itemPath>../base/openssl/engines/e_chil.ec</itemPath>
             <itemPath>../base/openssl/engines/e_chil_err.c</itemPath>
             <itemPath>../base/openssl/engines/e_chil_err.h</itemPath>
             <itemPath>../base/openssl/engines/e_cswift.c</itemPath>
-            <itemPath>../base/openssl/engines/e_cswift.ec</itemPath>
             <itemPath>../base/openssl/engines/e_cswift_err.c</itemPath>
             <itemPath>../base/openssl/engines/e_cswift_err.h</itemPath>
             <itemPath>../base/openssl/engines/e_gmp.c</itemPath>
-            <itemPath>../base/openssl/engines/e_gmp.ec</itemPath>
             <itemPath>../base/openssl/engines/e_gmp_err.c</itemPath>
             <itemPath>../base/openssl/engines/e_gmp_err.h</itemPath>
             <itemPath>../base/openssl/engines/e_nuron.c</itemPath>
-            <itemPath>../base/openssl/engines/e_nuron.ec</itemPath>
             <itemPath>../base/openssl/engines/e_nuron_err.c</itemPath>
             <itemPath>../base/openssl/engines/e_nuron_err.h</itemPath>
             <itemPath>../base/openssl/engines/e_padlock.c</itemPath>
-            <itemPath>../base/openssl/engines/e_padlock.ec</itemPath>
             <itemPath>../base/openssl/engines/e_sureware.c</itemPath>
-            <itemPath>../base/openssl/engines/e_sureware.ec</itemPath>
             <itemPath>../base/openssl/engines/e_sureware_err.c</itemPath>
             <itemPath>../base/openssl/engines/e_sureware_err.h</itemPath>
             <itemPath>../base/openssl/engines/e_ubsec.c</itemPath>
-            <itemPath>../base/openssl/engines/e_ubsec.ec</itemPath>
             <itemPath>../base/openssl/engines/e_ubsec_err.c</itemPath>
             <itemPath>../base/openssl/engines/e_ubsec_err.h</itemPath>
-            <itemPath>../base/openssl/engines/engine_vector.mar</itemPath>
-            <itemPath>../base/openssl/engines/ia64.opt</itemPath>
-            <itemPath>../base/openssl/engines/makeengines.com</itemPath>
-            <itemPath>../base/openssl/engines/vax.opt</itemPath>
           </logicalFolder>
           <logicalFolder name="include" displayName="include" projectFiles="true">
             <logicalFolder name="openssl" displayName="openssl" projectFiles="true">
@@ -1806,7 +1437,6 @@
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="ssl" displayName="ssl" projectFiles="true">
-            <itemPath>../base/openssl/ssl/Makefile</itemPath>
             <itemPath>../base/openssl/ssl/bio_ssl.c</itemPath>
             <itemPath>../base/openssl/ssl/d1_both.c</itemPath>
             <itemPath>../base/openssl/ssl/d1_clnt.c</itemPath>
@@ -1817,7 +1447,6 @@
             <itemPath>../base/openssl/ssl/d1_srtp.c</itemPath>
             <itemPath>../base/openssl/ssl/d1_srvr.c</itemPath>
             <itemPath>../base/openssl/ssl/dtls1.h</itemPath>
-            <itemPath>../base/openssl/ssl/install-ssl.com</itemPath>
             <itemPath>../base/openssl/ssl/kssl.c</itemPath>
             <itemPath>../base/openssl/ssl/kssl.h</itemPath>
             <itemPath>../base/openssl/ssl/kssl_lcl.h</itemPath>
@@ -1840,7 +1469,6 @@
             <itemPath>../base/openssl/ssl/s3_pkt.c</itemPath>
             <itemPath>../base/openssl/ssl/s3_srvr.c</itemPath>
             <itemPath>../base/openssl/ssl/srtp.h</itemPath>
-            <itemPath>../base/openssl/ssl/ssl-lib.com</itemPath>
             <itemPath>../base/openssl/ssl/ssl.h</itemPath>
             <itemPath>../base/openssl/ssl/ssl2.h</itemPath>
             <itemPath>../base/openssl/ssl/ssl23.h</itemPath>
@@ -1867,8 +1495,6 @@
             <itemPath>../base/openssl/ssl/tls1.h</itemPath>
             <itemPath>../base/openssl/ssl/tls_srp.c</itemPath>
           </logicalFolder>
-          <itemPath>../base/openssl/Makefile</itemPath>
-          <itemPath>../base/openssl/config</itemPath>
           <itemPath>../base/openssl/e_os.h</itemPath>
           <itemPath>../base/openssl/e_os2.orig.h</itemPath>
         </logicalFolder>
@@ -1959,6 +1585,7 @@
             <itemPath>../base/os/solaris/solaris_small_ipca_channel.cpp</itemPath>
             <itemPath>../base/os/solaris/solaris_solaris.h</itemPath>
             <itemPath>../base/os/solaris/solaris_thread.cpp</itemPath>
+            <itemPath>../base/os/solaris/solaris_user_impl.h</itemPath>
             <itemPath>../base/os/solaris/solaris_win_base.cpp</itemPath>
             <itemPath>../base/os/solaris/solaris_window.cpp</itemPath>
             <itemPath>../base/os/solaris/solaris_window_xlib.cpp</itemPath>
@@ -2360,14 +1987,6 @@
           <itemPath>../net/mail/mail_pop3.h</itemPath>
           <itemPath>../net/mail/mail_pop3_socket.cpp</itemPath>
           <itemPath>../net/mail/mail_simple_pop3.cpp</itemPath>
-          <itemPath>../net/mail/pop3_format.cpp</itemPath>
-          <itemPath>../net/mail/pop3_objects.cpp</itemPath>
-          <itemPath>../net/mail/pop3_parsing.cpp</itemPath>
-          <itemPath>../net/mail/pop3_queries.cpp</itemPath>
-          <itemPath>../net/mail/pop3_session.cpp</itemPath>
-          <itemPath>../net/mail/pop3_socket.cpp</itemPath>
-          <itemPath>../net/mail/pop3_socket.h</itemPath>
-          <itemPath>../net/mail/simple_pop3.h</itemPath>
         </logicalFolder>
         <logicalFolder name="sockets" displayName="sockets" projectFiles="true">
           <logicalFolder name="base" displayName="base" projectFiles="true">
@@ -2959,9 +2578,6 @@
             <itemPath>../primitive/str/iconv/stdio.in.h</itemPath>
             <itemPath>../primitive/str/iconv/stdlib.in.h</itemPath>
             <itemPath>../primitive/str/iconv/streq.h</itemPath>
-            <itemPath>../primitive/str/iconv/strerror-override.c</itemPath>
-            <itemPath>../primitive/str/iconv/strerror-override.h</itemPath>
-            <itemPath>../primitive/str/iconv/strerror.c</itemPath>
             <itemPath>../primitive/str/iconv/string.in.h</itemPath>
             <itemPath>../primitive/str/iconv/sys_stat.in.h</itemPath>
             <itemPath>../primitive/str/iconv/tcvn.h</itemPath>
@@ -3325,6 +2941,7 @@
             <pElem>../base/openssl/crypto</pElem>
             <pElem>../base/openssl</pElem>
             <pElem>../base/openssl/crypto/asn1</pElem>
+            <pElem>../base/openssl/crypto/evp</pElem>
           </incDir>
           <commandLine>$(FRAMEWORK_C_FLAGS)</commandLine>
           <preprocessorList>
@@ -3347,6 +2964,7 @@
             <pElem>../base/openssl/crypto</pElem>
             <pElem>../base/openssl</pElem>
             <pElem>../base/openssl/crypto/asn1</pElem>
+            <pElem>../base/openssl/crypto/evp</pElem>
           </incDir>
           <standardsEvolution>3</standardsEvolution>
           <languageExtension>2</languageExtension>

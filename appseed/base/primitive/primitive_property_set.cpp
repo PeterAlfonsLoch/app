@@ -380,7 +380,7 @@ void property_set::_008Parse(bool bApp, const char * pszCmdLine, var & varFile, 
    {
       state_key,
       state_equal,
-      state_value,
+      state_value
    };
    
    

@@ -6,6 +6,9 @@
 #include <unistd.h>
 
 
+extern "C" void * small_ipc_rx_channel_receive_proc(void * param);
+
+
 small_ipc_channel_base::small_ipc_channel_base()
 {
       m_key = 0;
@@ -206,7 +209,7 @@ bool small_ipc_rx_channel::start_receiving()
 
    m_bRun = true;
 
-   if(pthread_create(&m_thread, NULL, &small_ipc_rx_channel::receive_proc, this) != 0)
+   if(pthread_create(&m_thread, NULL, &small_ipc_rx_channel_receive_proc, this) != 0)
    {
 
       m_bRunning = false;
@@ -221,7 +224,8 @@ bool small_ipc_rx_channel::start_receiving()
 
 }
 
-void * small_ipc_rx_channel::receive_proc(void * param)
+
+extern "C" void * small_ipc_rx_channel_receive_proc(void * param)
 {
 
    small_ipc_rx_channel * pchannel = (small_ipc_rx_channel *) param;
@@ -351,7 +355,7 @@ void * small_ipc_rx_channel::receive()
 
          }
 
-         mem.write(data.data, data.size);
+         mem.append(data.data, data.size);
 
 
          if(data.size < 512)
@@ -364,13 +368,13 @@ void * small_ipc_rx_channel::receive()
       if(data.request == 0)
       {
 
-         on_receive(this, mem.str());
+         on_receive(this, (const char *) mem.get_data());
 
       }
       else
       {
 
-         on_receive(this, data.request, mem.m_psz, mem.m_iSize);
+         on_receive(this, data.request, mem.get_data(), mem.get_size());
 
       }
 

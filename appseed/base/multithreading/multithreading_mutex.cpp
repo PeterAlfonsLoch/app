@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(SOLARIS)
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #elif defined(ANDROID)

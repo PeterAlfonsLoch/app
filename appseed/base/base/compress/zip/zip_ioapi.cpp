@@ -24,43 +24,43 @@
 #define SEEK_SET    0
 #endif
 
-voidpf ZCALLBACK fopen_file_func OF((
+extern "C" voidpf ZCALLBACK fopen_file_func OF((
    voidpf opaque,
    const char* filename,
    int32_t mode));
 
-uint_ptr ZCALLBACK fread_file_func OF((
+extern "C" uint_ptr ZCALLBACK fread_file_func OF((
    voidpf opaque,
    voidpf stream,
    void * buf,
    uint_ptr size));
 
-uint_ptr ZCALLBACK fwrite_file_func OF((
+extern "C" uint_ptr ZCALLBACK fwrite_file_func OF((
    voidpf opaque,
    voidpf stream,
    const void * buf,
    uint_ptr size));
 
-long ZCALLBACK ftell_file_func OF((
+extern "C" long ZCALLBACK ftell_file_func OF((
    voidpf opaque,
    voidpf stream));
 
-long ZCALLBACK fseek_file_func OF((
+extern "C" long ZCALLBACK fseek_file_func OF((
    voidpf opaque,
    voidpf stream,
    uint_ptr offset,
    int32_t origin));
 
-int32_t ZCALLBACK fclose_file_func OF((
+extern "C" int32_t ZCALLBACK fclose_file_func OF((
    voidpf opaque,
    voidpf stream));
 
-int32_t ZCALLBACK ferror_file_func OF((
+extern "C" int32_t ZCALLBACK ferror_file_func OF((
    voidpf opaque,
    voidpf stream));
 
 
-voidpf ZCALLBACK fopen_file_func (voidpf opaque, const char * filename, int32_t mode)
+extern "C" voidpf ZCALLBACK fopen_file_func (voidpf opaque, const char * filename, int32_t mode)
 {
     FILE* file = NULL;
     const char* mode_fopen = NULL;
@@ -76,7 +76,7 @@ voidpf ZCALLBACK fopen_file_func (voidpf opaque, const char * filename, int32_t 
 
 
     if ((filename!=NULL) && (mode_fopen != NULL))
-#if defined(APPLEOS) || defined(LINUX) || defined(ANDROID)
+#if defined(APPLEOS) || defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
     {
        file = fopen(filename, mode_fopen);
        if(file == NULL)
@@ -92,7 +92,7 @@ voidpf ZCALLBACK fopen_file_func (voidpf opaque, const char * filename, int32_t 
 }
 
 
-uint_ptr ZCALLBACK fread_file_func (voidpf opaque, voidpf stream, void * buf, uint_ptr size)
+extern "C" uint_ptr ZCALLBACK fread_file_func (voidpf opaque, voidpf stream, void * buf, uint_ptr size)
 {
     uint_ptr ret;
     ret = (uint_ptr) fread(buf, 1, (size_t) size, (FILE *)stream);
@@ -100,21 +100,21 @@ uint_ptr ZCALLBACK fread_file_func (voidpf opaque, voidpf stream, void * buf, ui
 }
 
 
-uint_ptr ZCALLBACK fwrite_file_func (voidpf opaque, voidpf stream, const void * buf, uint_ptr size)
+extern "C" uint_ptr ZCALLBACK fwrite_file_func (voidpf opaque, voidpf stream, const void * buf, uint_ptr size)
 {
     uint_ptr ret;
     ret = (uint_ptr) fwrite(buf, 1, (size_t) size, (FILE *)stream);
     return ret;
 }
 
-long ZCALLBACK ftell_file_func (voidpf opaque, voidpf stream)
+extern "C" long ZCALLBACK ftell_file_func (voidpf opaque, voidpf stream)
 {
     long ret;
     ret = ftell((FILE *)stream);
     return ret;
 }
 
-long ZCALLBACK fseek_file_func (voidpf opaque, voidpf stream, uint_ptr offset, int32_t origin)
+extern "C" long ZCALLBACK fseek_file_func (voidpf opaque, voidpf stream, uint_ptr offset, int32_t origin)
 {
    int32_t fseek_origin=0;
    long ret;
@@ -145,14 +145,14 @@ long ZCALLBACK fseek_file_func (voidpf opaque, voidpf stream, uint_ptr offset, i
    return ret;
 }
 
-int32_t ZCALLBACK fclose_file_func (voidpf opaque, voidpf stream)
+extern "C" int32_t ZCALLBACK fclose_file_func (voidpf opaque, voidpf stream)
 {
     int32_t ret;
     ret = fclose((FILE *)stream);
     return ret;
 }
 
-int32_t ZCALLBACK ferror_file_func  (voidpf opaque, voidpf stream)
+extern "C" int32_t ZCALLBACK ferror_file_func  (voidpf opaque, voidpf stream)
 {
     int32_t ret;
     ret = ferror((FILE *)stream);

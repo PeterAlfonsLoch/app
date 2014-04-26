@@ -80,19 +80,7 @@ oswindow SetActiveWindow(oswindow window);
 WINBOOL DestroyWindow(oswindow window);
 oswindow GetDesktopWindow();
 
-class osdisplay_dataptra :
-public array < osdisplay_data * > {
-public:
 
-
-};
-
-class oswindow_dataptra :
-public array < oswindow_data * > {
-public:
-
-
-};
 
 
 

@@ -50,10 +50,10 @@ namespace sockets
       void DeleteRandFile();
 
       /** SSL; mutex locking function callback. */
-      static void SSL_locking_function(int32_t mode, int32_t n, const char *file, int32_t line);
+      //static void SSL_locking_function(int32_t mode, int32_t n, const char *file, int32_t line);
 
       /** Return thread id. */
-      static unsigned long SSL_id_function();
+      //static unsigned long SSL_id_function();
 
       BIO *bio_err;
 

@@ -33,17 +33,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define DEB(x)
 #endif
 
+extern "C" void SSLInitializer_SSL_locking_function(int32_t mode, int32_t n, const char * file, int32_t line);
+extern "C" unsigned long SSLInitializer_SSL_id_function();
+extern "C" void SSLInitializer_rand_seed(const void * buf, int32_t num);
+extern "C" int32_t SSLInitializer_rand_bytes(uchar * buf, int32_t num);
+extern "C" void SSLInitializer_rand_cleanup();
+extern "C" void SSLInitializer_rand_add(const void * buf, int32_t num, double entropy);
+extern "C" int32_t SSLInitializer_rand_pseudorand(uchar * buf, int32_t num);
+extern "C" int32_t SSLInitializer_rand_status();
 
 namespace sockets
 {
 
 
-   void rand_seed(const void * buf, int32_t num);
-   int32_t rand_bytes(uchar * buf, int32_t num);
-   void rand_cleanup();
-   void rand_add(const void * buf, int32_t num, double entropy);
-   int32_t rand_pseudorand(uchar * buf, int32_t num);
-   int32_t rand_status();
 
    #ifdef LINUX
 // ssl_sigpipe_handle ---------------------------------------------------------
@@ -57,39 +59,6 @@ void ssl_sigpipe_handle( int x ) {
 
    ::base_system * g_psystem = NULL;
 
-   void rand_seed(const void * buf, int32_t num)
-   {
-      UNREFERENCED_PARAMETER(buf);
-      UNREFERENCED_PARAMETER(num);
-   }
-
-   int32_t rand_bytes(uchar * buf, int32_t num)
-   {
-      g_psystem->math().gen_rand(buf, num);
-      return num;
-   }
-
-   void rand_cleanup()
-   {
-   }
-
-   void rand_add(const void * buf, int32_t num, double entropy)
-   {
-      UNREFERENCED_PARAMETER(buf);
-      UNREFERENCED_PARAMETER(num);
-      UNREFERENCED_PARAMETER(entropy);
-   }
-
-   int32_t rand_pseudorand(uchar * buf, int32_t num)
-   {
-      g_psystem->math().gen_rand(buf, num);
-      return num;
-   }
-
-   int32_t rand_status()
-   {
-      return 1024;
-   }
 
 
    SSLInitializer::SSLInitializer(sp(base_application) papp) :
@@ -112,19 +81,19 @@ void ssl_sigpipe_handle( int x ) {
       SSL_library_init();
       SSL_load_error_strings();
       OpenSSL_add_all_algorithms();
-      CRYPTO_set_locking_callback(SSL_locking_function);
-      CRYPTO_set_id_callback(SSL_id_function);
+      CRYPTO_set_locking_callback(SSLInitializer_SSL_locking_function);
+      CRYPTO_set_id_callback(SSLInitializer_SSL_id_function);
 
 
  /* Ignore broken pipes which would cause our program to terminate
     prematurely */
 
-      rand_meth.add = &rand_add;
-      rand_meth.bytes = &rand_bytes;
-      rand_meth.cleanup = &rand_cleanup;
-      rand_meth.pseudorand = &rand_pseudorand;
-      rand_meth.seed = &rand_seed;
-      rand_meth.status = &rand_status;
+      rand_meth.add = &SSLInitializer_rand_add;
+      rand_meth.bytes = &SSLInitializer_rand_bytes;
+      rand_meth.cleanup = &SSLInitializer_rand_cleanup;
+      rand_meth.pseudorand = &SSLInitializer_rand_pseudorand;
+      rand_meth.seed = &SSLInitializer_rand_seed;
+      rand_meth.status = &SSLInitializer_rand_status;
 
       RAND_set_rand_method(&rand_meth);
 
@@ -209,7 +178,14 @@ void ssl_sigpipe_handle( int x ) {
    }
 
 
-   void SSLInitializer::SSL_locking_function(int32_t mode, int32_t n, const char * file, int32_t line)
+
+
+} // namespace sockets
+
+
+
+   
+   extern "C" void SSLInitializer_SSL_locking_function(int32_t mode, int32_t n, const char * file, int32_t line)
    {
       UNREFERENCED_PARAMETER(file);
       UNREFERENCED_PARAMETER(line);
@@ -231,7 +207,8 @@ void ssl_sigpipe_handle( int x ) {
    }
 
 
-   unsigned long SSLInitializer::SSL_id_function()
+   
+   extern "C" unsigned long SSLInitializer_SSL_id_function()
    {
 #ifdef WIN32
       return ::GetCurrentThreadId();
@@ -241,8 +218,39 @@ void ssl_sigpipe_handle( int x ) {
 #endif
    }
 
+extern "C" void SSLInitializer_rand_seed(const void * buf, int32_t num)
+{
+  UNREFERENCED_PARAMETER(buf);
+  UNREFERENCED_PARAMETER(num);
+}
 
-} // namespace sockets
+extern "C" int32_t SSLInitializer_rand_bytes(uchar * buf, int32_t num)
+{
+  ::sockets::g_psystem->math().gen_rand(buf, num);
+  return num;
+}
+
+extern "C" void SSLInitializer_rand_cleanup()
+{
+}
+
+extern "C" void SSLInitializer_rand_add(const void * buf, int32_t num, double entropy)
+{
+  UNREFERENCED_PARAMETER(buf);
+  UNREFERENCED_PARAMETER(num);
+  UNREFERENCED_PARAMETER(entropy);
+}
+
+extern "C" int32_t SSLInitializer_rand_pseudorand(uchar * buf, int32_t num)
+{
+  ::sockets::g_psystem->math().gen_rand(buf, num);
+  return num;
+}
+
+extern "C" int32_t SSLInitializer_rand_status()
+{
+  return 1024;
+}
 
 
 #endif // HAVE_OPENSSL

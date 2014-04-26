@@ -112,7 +112,9 @@ public:
    LRESULT message_queue_proc(UINT message, WPARAM wParam, LPARAM lParam);
 #else
    bool start_receiving();
+#ifndef SOLARIS
    static void * receive_proc(void * param);
+#endif
    void * receive();
 #endif
 
