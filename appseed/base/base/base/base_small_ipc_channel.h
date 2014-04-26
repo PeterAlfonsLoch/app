@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef MACOS
+#ifdef APPLEOS
 typedef int32_t key_t;
 #elif defined(LINUX)
 typedef __key_t key_t;

@@ -85,10 +85,10 @@ typedef raw_array < void * > ThreadLocalData;
 
 
 
-static __thread ThreadLocalData* currentThreadData = NULL;
-static __thread DWORD currentThreadId = -1;
-static __thread HTHREAD currentThread = NULL;
-__thread os_thread * t_posthread = NULL;
+ThreadLocalData* currentThreadData(){return (ThreadLocalData*) get_thread_ptr("currentThreadData");}
+DWORD currentThreadId(){return (DWORD) get_thread_int("currentThreadId");}
+HTHREAD currentThread(){return (HTHREAD) get_thread_ptr("currentThread");}
+os_thread * t_posthread(){return (os_thread *) get_thread_ptr("t_posthread");}
 
 
 static raw_array<DWORD> freeTlsIndices;
@@ -384,7 +384,7 @@ int_bool WINAPI TlsFree(DWORD dwTlsIndex)
 
 LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
 {
-   ThreadLocalData* threadData = currentThreadData;
+   ThreadLocalData* threadData = currentThreadData();
 
    if (threadData && threadData->get_count() > dwTlsIndex)
    {
@@ -393,10 +393,10 @@ LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
    }
    else
    {
-       threadData = allthreaddata[currentThread] ;
+       threadData = allthreaddata[currentThread()] ;
        if(threadData)
        {
-           currentThreadData = threadData;
+           set_thread_ptr("currentThreadData", threadData);
             if(threadData->get_count() > dwTlsIndex)
             {
                 return threadData->element_at(dwTlsIndex);
@@ -450,7 +450,7 @@ LPVOID WINAPI TlsGetValue(HTHREAD hthread, DWORD dwTlsIndex)
 int_bool WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
 {
 
-   ThreadLocalData* threadData = currentThreadData;
+   ThreadLocalData* threadData = currentThreadData();
 
    if (!threadData)
    {
@@ -461,9 +461,9 @@ int_bool WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
 
             synch_lock lock(g_pmutexTlsData);
 
-            allthreaddata.set_at(currentThread, threadData);
+            allthreaddata.set_at(currentThread(), threadData);
 
-            currentThreadData = threadData;
+            set_thread_ptr("currentThreadData", threadData);
 
       }
       catch (...)
@@ -517,7 +517,7 @@ int_bool WINAPI TlsSetValue(HTHREAD hthread, DWORD dwTlsIndex, LPVOID lpTlsValue
 void WINAPI TlsShutdown()
 {
 
-   ThreadLocalData * threadData = currentThreadData;
+   ThreadLocalData * threadData = currentThreadData();
 
    if (threadData)
    {

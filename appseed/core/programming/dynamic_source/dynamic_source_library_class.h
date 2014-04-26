@@ -4,7 +4,7 @@
 #include <sys/stat.h>
 
 
-#if defined(MACOS) 
+#if defined(APPLEOS) 
 
 
 #if defined(_LP64)

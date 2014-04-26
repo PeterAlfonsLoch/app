@@ -3,9 +3,9 @@
 
 
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
 #include <unistd.h>
-#if defined(MACOS)
+#if defined(APPLEOS)
 #define	NI_MAXHOST	1025
 #define	NI_MAXSERV	32
 #endif

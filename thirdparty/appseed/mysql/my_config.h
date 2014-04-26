@@ -281,7 +281,7 @@
 #endif
 
 
-#if defined(MACOS)
+#if defined(APPLEOS)
 #define SYSTEM_TYPE "OSX64"
 #define MACHINE_TYPE "x86_64"
 #define HAVE_RINT 1
@@ -466,7 +466,7 @@
 /* #undef HAVE_DTRACE */
 
 /* Windows stuff, mostly functions, that have Posix analogs but named differently */
-#if !defined(MACOS) && !defined(ANDROID)
+#if !defined(APPLEOS) && !defined(ANDROID)
 #define S_IROTH _S_IREAD
 #define S_IFIFO _S_IFIFO
 #endif

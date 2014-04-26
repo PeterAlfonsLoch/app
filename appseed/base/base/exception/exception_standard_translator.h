@@ -37,7 +37,7 @@ namespace exception
    {
    public:
 
-   #if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+   #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
       struct sigaction m_saSeg;
       struct sigaction m_saFpe;
       struct sigaction m_saPipe;

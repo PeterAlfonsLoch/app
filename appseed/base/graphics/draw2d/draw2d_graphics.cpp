@@ -1484,7 +1484,7 @@ namespace draw2d
       return -1;
    }
 
-#if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID) && !defined(SOLARIS)
+#if !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID) && !defined(SOLARIS)
 
    bool graphics::ResetDC(const DEVMODE* lpDevMode)
    {

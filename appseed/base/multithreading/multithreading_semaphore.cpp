@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #elif defined(ANDROID)
@@ -122,7 +122,7 @@ bool semaphore::lock(const duration & durationTimeout)
 
 }
 
-#elif defined(MACOS) || defined(LINUX) || defined(SOLARIS)
+#elif defined(APPLEOS) || defined(LINUX) || defined(SOLARIS)
 
 bool semaphore:: lock(const duration & durationTimeout)
 {

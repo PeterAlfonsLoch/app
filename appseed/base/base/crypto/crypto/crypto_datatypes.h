@@ -54,7 +54,7 @@
 BEGIN_EXTERN_C
 
 #ifndef SRTP_KERNEL
-# if defined(LINUX) || defined(MACOS)
+# if defined(LINUX) || defined(APPLEOS)
 # elif defined HAVE_WINSOCK2_H
 #  include <winsock2.h>
 # endif
@@ -412,7 +412,7 @@ static inline uint32_t be32_to_cpu(uint32_t v) {
    return v;
 }
 # else /* HAVE_X86 */
-#  if defined(LINUX) || defined(MACOS)
+#  if defined(LINUX) || defined(APPLEOS)
 #  elif defined HAVE_WINSOCK2_H
 #   include <winsock2.h>
 #  endif

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
 
 #include <sys/ipc.h>
 #include <sys/sem.h>

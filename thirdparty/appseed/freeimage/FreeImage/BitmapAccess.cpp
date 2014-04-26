@@ -79,7 +79,7 @@ FI_STRUCT (FREEIMAGEHEADER) {
 //  Memory allocation on a specified alignment boundary
 // ----------------------------------------------------------
 
-#if defined(ANDROID) || defined(MACOS) || defined(LINUX)
+#if defined(ANDROID) || defined(APPLEOS) || defined(LINUX)
 
 void* FreeImage_Aligned_Malloc(size_t amount, size_t alignment) {
 	ASSERT(alignment == FIBITMAP_ALIGNMENT);

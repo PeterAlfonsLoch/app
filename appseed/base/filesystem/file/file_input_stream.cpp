@@ -166,7 +166,7 @@ namespace file
       throw interface_only_exception(get_app());
    }
    
-#ifdef MACOS
+#ifdef APPLEOS
    
    void input_stream::read(unsigned long & ui)
    {

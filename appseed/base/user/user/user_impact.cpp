@@ -937,7 +937,7 @@ namespace user
 
    DROPEFFECT impact::OnDragScroll(uint32_t /*dwKeyState*/, point /*point*/)
    {
-#if !defined(___NO_OLE_SUPPORT) && !defined(METROWIN) && !defined(LINUX) && !defined(MACOS) && !defined(ANDROID)
+#if !defined(___NO_OLE_SUPPORT) && !defined(METROWIN) && !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID)
       return DROPEFFECT_SCROLL; // this means do the default
 #else
       return 0;

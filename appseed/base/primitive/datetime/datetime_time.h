@@ -302,7 +302,7 @@ namespace datetime
       }
 #elif defined(APPLEOS)
 #if __WORDSIZE != 64
-#pragma error "error: long should 8-byte on MACOS"
+#pragma error "error: long should 8-byte on APPLEOS"
 #endif
       struct tm* ptmTemp = localtime(&m_time);
       if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))

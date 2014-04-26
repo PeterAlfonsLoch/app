@@ -80,7 +80,7 @@ public:
    HTHREAD                                m_hthread;
    string                                 m_strDebug;
 
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
    pthread_t                              m_pthread;
 
@@ -94,7 +94,7 @@ public:
    virtual ~os_thread();
 
 
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
    static void * thread_proc(void * pparam);
 

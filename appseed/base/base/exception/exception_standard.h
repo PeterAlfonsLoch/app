@@ -229,7 +229,7 @@ namespace exception
      // uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
    };
 
-   #elif defined(LINUX) || defined(MACOS)
+   #elif defined(LINUX) || defined(APPLEOS)
 
    class standard_sigfpe : public standard_exception
    {
@@ -247,7 +247,11 @@ namespace exception
 #ifdef _LP64
       ::call_stack(papp, 3, (void *) ((ucontext_t *) pc)->uc_mcontext->__ss.__rip),
 #else
+#if defined(APPLE_IOS)
+       ::call_stack(papp, 3, NULL),
+#else
       ::call_stack(papp, 3, (void *) ((ucontext_t *) pc)->uc_mcontext.eip),
+#endif
 #endif
 #endif
          ::exception::base(papp),
@@ -309,7 +313,7 @@ namespace exception
 
 
 #include "translator.h"
-#if !defined(MACOS)
+#if !defined(APPLEOS)
 #include <ucontext.h>
 #include <sys/ucontext.h>
 #endif*/

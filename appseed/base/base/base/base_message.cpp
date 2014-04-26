@@ -168,7 +168,7 @@ namespace message
             pbase = canew(set_focus(get_app()));
          }
          break;
-#if !defined(METROWIN) && !defined(LINUX) && !defined(MACOS)
+#if !defined(METROWIN) && !defined(LINUX) && !defined(APPLEOS)
       case PrototypeWindowPos:
          {
             pbase = canew(window_pos(get_app()));
@@ -951,7 +951,7 @@ namespace message
       default:
          return uiMessage;
       };
-#elif defined(LINUX) ||  defined(MACOS)
+#elif defined(LINUX) ||  defined(APPLEOS)
       switch(uiMessage)
       {
       case message_create:

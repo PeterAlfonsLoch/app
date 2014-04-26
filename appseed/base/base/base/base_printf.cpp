@@ -87,7 +87,7 @@ int32_t vwprintf_dup(const wchar_t *format, va_list args)
 }
 
 
-#ifdef MACOS
+#ifdef APPLEOS
 mutex g_mutexCvt;
 int32_t ecvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
 {

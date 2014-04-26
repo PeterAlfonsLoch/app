@@ -113,7 +113,7 @@ namespace user
       sp(base_session)                  m_psession;
       bool                                m_bMessageWindow;
 
-#if defined(WINDOWS) || defined(LINUX) || defined(MACOS)
+#if defined(WINDOWS) || defined(LINUX) || defined(APPLEOS)
 
       comparable_array < int_ptr >        m_iaModalThread;
 

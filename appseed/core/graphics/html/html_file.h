@@ -7,7 +7,7 @@ namespace html
 
    class CLASS_DECL_CORE file :
       virtual public ::object
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
       , public string_format_printer
 #endif
    {

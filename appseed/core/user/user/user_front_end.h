@@ -1,7 +1,7 @@
 #pragma once
 
 
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
 typedef void * HHOOK ;
 

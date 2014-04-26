@@ -5,7 +5,7 @@
 #ifdef VARIADIC_TEMPLATE
 
 
-#ifdef MACOS
+#ifdef APPLEOS
 
 //#include <stdlib.h>
 
@@ -352,7 +352,7 @@ bool string_format::parse(const char * & s)
                 //pformat->append(::str::from(d));
                 //return;
              }
-#elif defined(MACOS)
+#elif defined(APPLEOS)
 
             char * sz2 = fcvt(d, pformat->m_iPrecision, &decimal_point, &negative);
 
@@ -406,7 +406,7 @@ bool string_format::parse(const char * & s)
   //              return;
              }
 
-#elif defined(MACOS)
+#elif defined(APPLEOS)
 
             char * sz2 = ecvt(d, sizeof(sz), &decimal_point, &negative);
 

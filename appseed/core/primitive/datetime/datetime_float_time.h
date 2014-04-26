@@ -150,7 +150,7 @@ namespace datetime
 #if defined(ANDROID)
       float_time(time_t timeSrc) RELEASENOTHROW;
 #else
-#if !defined(MACOS)
+#if !defined(APPLEOS)
       float_time(__time32_t timeSrc) RELEASENOTHROW;
 #endif
       float_time(time_t timeSrc) RELEASENOTHROW;
@@ -203,7 +203,7 @@ namespace datetime
 #if defined(ANDROID)
       float_time& operator=(const time_t & timeSrc) RELEASENOTHROW;
 #else
-#ifndef MACOS
+#ifndef APPLEOS
       float_time& operator=(const __time32_t& timeSrc) RELEASENOTHROW;
 #endif
       float_time& operator=(const time_t& timeSrc) RELEASENOTHROW;
@@ -240,7 +240,7 @@ namespace datetime
          int32_t nSec) RELEASENOTHROW;
       int32_t SetDate(int32_t nYear, int32_t nMonth, int32_t nDay) RELEASENOTHROW;
       int32_t SetTime(int32_t nHour, int32_t nMin, int32_t nSec) RELEASENOTHROW;
-#ifndef MACOS
+#ifndef APPLEOS
       bool ParseDateTime(const char * lpszDate, uint32_t dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) RELEASENOTHROW;
 #endif
 #ifdef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
@@ -557,7 +557,7 @@ namespace datetime
 
 #else
 
-#ifndef MACOS
+#ifndef APPLEOS
    inline float_time::float_time(__time32_t timeSrc) RELEASENOTHROW :
    m_dt( 0 ), m_status(valid)
    {
@@ -750,13 +750,13 @@ valid : invalid;
 
 #else
 #if !defined(_ATL_USE_WINAPI_FAMILY_DESKTOP_APP)
-#ifdef MACOS
+#ifdef APPLEOS
     inline bool GetAsSystemTimeHelper(const time_t& timeSrc, SYSTEMTIME& timeDest);
 #else
     inline bool GetAsSystemTimeHelper(const __time64_t& timeSrc, SYSTEMTIME& timeDest);
 #endif
 #endif
-#ifndef MACOS
+#ifndef APPLEOS
    inline float_time& float_time::operator=(const __time32_t& timeSrc) RELEASENOTHROW
    {
       return operator=(static_cast<__time64_t>(timeSrc));
@@ -784,7 +784,7 @@ valid : invalid;
 
    }
 #ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
-#ifdef MACOS
+#ifdef APPLEOS
    inline bool GetAsSystemTimeHelper(const time_t& timeSrc, SYSTEMTIME& timeDest)
 #else
    inline bool GetAsSystemTimeHelper(const __time64_t& timeSrc, SYSTEMTIME& timeDest)
@@ -1047,7 +1047,7 @@ valid : invalid;
       }
    }
 
-#ifndef MACOS
+#ifndef APPLEOS
    inline bool float_time::ParseDateTime(const char * lpszDate, uint32_t dwFlags, LCID lcid) RELEASENOTHROW
    {
 

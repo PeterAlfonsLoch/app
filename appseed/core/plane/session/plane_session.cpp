@@ -918,7 +918,7 @@ namespace plane
    //
    //         ::SendMessage(oswindow, WM_COPYDATA, NULL, (LPARAM) &data);*/
    //
-   //#if defined(WINDOWSEX) || defined(LINUX) || defined(MACOS)
+   //#if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
    //
    //         small_ipc_tx_channel channel;
    //

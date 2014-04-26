@@ -45,14 +45,14 @@ CLASS_DECL_BASE int32_t isxdigit_dup(int32_t ch);
 CLASS_DECL_BASE int32_t isalpha_dup(int32_t ch);
 CLASS_DECL_BASE int32_t isspace_dup(int32_t ch);
 
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID) || defined(SOLARIS)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
 
 CLASS_DECL_BASE char * strlwr(char * psz);
 CLASS_DECL_BASE char * strupr(char * psz);
 
 #endif
 
-#if defined(MACOS)
+#if defined(APPLEOS)
 
 int32_t stricmp(const char * sz1, const char * sz2);
 

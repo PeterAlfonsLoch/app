@@ -95,7 +95,7 @@ namespace user
 
 #ifdef LINUX
       strPath = Application.dir().matter("keyboard/linux/default.xml");
-#elif defined(MACOS)
+#elif defined(APPLEOS)
       strPath = Application.dir().matter("keyboard/macos/default.xml");
 #else
       strPath = Application.dir().matter("keyboard/windows/default.xml");

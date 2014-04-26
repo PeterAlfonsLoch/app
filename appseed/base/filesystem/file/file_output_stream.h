@@ -51,7 +51,7 @@ namespace file
       inline output_stream & operator << (uint32_t ui                          ) { write(ui              ); return *this;}
       inline output_stream & operator << (int64_t i                            ) { write(i               ); return *this;}
       inline output_stream & operator << (uint64_t ui                          ) { write(ui              ); return *this;}
-#if defined(MACOS)
+#if defined(APPLEOS)
       inline output_stream & operator << (unsigned long ui                     ) { write(ui              ); return *this;}
 #endif
       inline output_stream & operator << (float f                              ) { write(f               ); return *this;}
@@ -84,7 +84,7 @@ namespace file
       virtual void write (uint32_t ui);
       virtual void write (int64_t i);
       virtual void write (uint64_t ui);
-#if defined(MACOS)
+#if defined(APPLEOS)
       virtual void write (unsigned long ui);
 #endif
       virtual void write (float f);

@@ -13,7 +13,7 @@ CLASS_DECL_BASE int32_t wprintf_dup(const wchar_t *format, ...);
 CLASS_DECL_BASE int32_t vprintf_dup(const char *format, va_list args);
 CLASS_DECL_BASE int32_t vwprintf_dup(const wchar_t *format, va_list args);
 
-#ifdef MACOS
+#ifdef APPLEOS
 int32_t ecvt_r(double, int, int *__restrict, int *__restrict, char * sz, size_t size); /* LEGACY */
 int32_t fcvt_r(double, int, int *__restrict, int *__restrict, char * sz, size_t size); /* LEGACY */
 #endif

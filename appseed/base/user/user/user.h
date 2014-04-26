@@ -161,7 +161,7 @@ CLASS_DECL_BASE void __reposition_window(__SIZEPARENTPARAMS* lpLayout, sp(::user
 #endif
 
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
 struct NMHDR
 {
 

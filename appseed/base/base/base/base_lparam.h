@@ -33,7 +33,7 @@ public:
 
 #endif
    
-#ifdef MACOS
+#ifdef APPLEOS
 #ifdef OS64BIT
    
    lparam(long l)

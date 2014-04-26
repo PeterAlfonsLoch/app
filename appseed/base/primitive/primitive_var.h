@@ -111,7 +111,7 @@ public:
    var(uint32_t ui);
    var(int64_t i);
    var(uint64_t ui);
-#ifdef MACOS
+#ifdef APPLEOS
 #ifdef OS64BIT
    var(long l);
 #endif

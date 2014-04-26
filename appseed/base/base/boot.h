@@ -21,7 +21,7 @@
 class application;
 
 
-#if defined(MACOS)
+#if defined(APPLEOS)
 #include "boot/macos/ca_os_internal.h"
 #elif defined(LINUX)
 #include "boot/linux/ca_os_internal.h"

@@ -215,7 +215,7 @@ namespace plane
 
       }
 
-#ifndef MACOS
+#ifndef APPLEOS
 
       if(m_pparserfactory == NULL)
       {
@@ -430,7 +430,7 @@ namespace plane
 
       string strLibrary(pszLibrary);
 
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
       if(strLibrary == "libbase")
       {
@@ -1628,7 +1628,7 @@ namespace plane
       lprect->top = 0;
       lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
 
-#elif defined(MACOS)
+#elif defined(APPLEOS)
 
       if(i < 0 || i >= get_monitor_count())
          return false;
@@ -2301,7 +2301,7 @@ int32_t simple_app2::main()
 
 #endif
 
-#if !defined(MACOS)
+#if !defined(APPLEOS)
 
    if (!main_initialize())
       return -1;
@@ -2312,7 +2312,7 @@ int32_t simple_app2::main()
 
    body();
 
-#if !defined(MACOS)
+#if !defined(APPLEOS)
 
    main_finalize();
 

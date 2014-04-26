@@ -4,7 +4,7 @@
 DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD dwTimeout, DWORD UNUSED(dwWakeMask), DWORD dwFlags)
 {
 
-   DWORD start;
+   DWORD start = 0;
 
    if(dwTimeout != (DWORD) INFINITE)
    {

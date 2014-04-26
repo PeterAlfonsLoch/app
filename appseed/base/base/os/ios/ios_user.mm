@@ -144,7 +144,7 @@ void release_pool(NSAutoreleasePool * pool)
 void on_start_thread()
 {
    
-   set_thread_ptr(new_ns_pool(), "g_ns_pool");
+   set_thread_ptr("g_ns_pool", new_ns_pool());
    
 }
 

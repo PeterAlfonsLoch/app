@@ -98,7 +98,7 @@ namespace file
 
    }
    
-#ifdef MACOS
+#ifdef APPLEOS
    
    void output_stream:: write (unsigned long ui)
    {

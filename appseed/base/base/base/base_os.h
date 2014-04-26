@@ -1,7 +1,7 @@
 #pragma once
 
 
-#if defined(MACOS)
+#if defined(APPLEOS)
 
 //#include "os/ansios/ansios.h"
 #include "base/os/os_binreloc.h"

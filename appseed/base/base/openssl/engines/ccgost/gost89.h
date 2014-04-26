@@ -27,7 +27,7 @@ typedef unsigned int u4;
 typedef unsigned long u4;
 #endif
 /* Typedef for unsigned 8-bit integer */
-#if !defined(MACOS)
+#if !defined(APPLEOS)
 //typedef unsigned char byte;
 #endif
 

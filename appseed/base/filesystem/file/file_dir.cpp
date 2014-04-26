@@ -13,7 +13,7 @@
 #ifdef LINUX
 #define __USE_GNU
 #include <link.h>
-#elif defined(MACOS)
+#elif defined(APPLEOS)
 #include <dlfcn.h>
 #include <mach-o/dyld.h>
 #endif
@@ -474,7 +474,7 @@ string ca2_module_folder_dup()
 
    s_strCalc = "";
 
-#elif defined(MACOS)
+#elif defined(APPLEOS)
 
    {
 
@@ -705,7 +705,7 @@ string dir::path(const char * path1, const char * path2, const char * path3, con
       }
       str += strAdd;
    }
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
    str.replace("\\", "/");
 #else
    str.replace("/", "\\");
@@ -758,7 +758,7 @@ string dir::name(const char * path1)
    string str;
 
    str = path1;
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
    index iPos = str.reverse_find('/');
 #else
    index iPos = str.reverse_find('\\');
@@ -799,7 +799,7 @@ void dir::rls_dir(stringa & stra, const char *psz)
 void dir::ls(stringa & stra, const char *psz)
 {
 
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
    DIR * dirp = opendir(psz);
 
@@ -881,7 +881,7 @@ void dir::ls(stringa & stra, const char *psz)
 void dir::ls_dir(stringa & stra, const char *psz)
 {
 
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
    DIR * dirp = opendir(psz);
 

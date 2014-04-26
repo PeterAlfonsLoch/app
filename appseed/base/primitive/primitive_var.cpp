@@ -64,7 +64,7 @@ var::var(uint64_t ui )
    m_ui64 = ui;
 }
 
-#ifdef MACOS
+#ifdef APPLEOS
 #ifdef OS64BIT
 var::var(long l)
 {

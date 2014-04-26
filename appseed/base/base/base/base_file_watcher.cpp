@@ -24,7 +24,7 @@
 
 #if defined(WINDOWSEX)
 #include "base/os/windows/windows_file_watcher.h"
-#elif defined(MACOS)
+#elif defined(APPLEOS)
 #include "base/os/macos/macos_file_watcher.h"
 #elif defined(LINUX)
 #include "base/os/linux/linux_file_watcher.h"

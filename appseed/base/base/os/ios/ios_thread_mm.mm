@@ -10,20 +10,35 @@
 #include "framework.h"
 
 
-void * get_thread_ptr(const char * psz)
+void * get_thread_ptr(const char * pszKey)
 {
     
-    return [(void *)[[[NSThread currentThread] threadDictionary] valueForKey: [NSString stringWithUTF8String : psz]] inValue];
+    return (void *)[[[[NSThread currentThread] threadDictionary] valueForKey: [NSString stringWithUTF8String : pszKey]] inValue];
     
 }
 
 
-void set_thread_ptr(const void * p, const char * psz)
+void set_thread_ptr(const char * pszKey, const void * p)
 {
     
-    [[[NSThread currentThread] threadDictionary] setValue: [NSNumber numberWithInt : [(int_ptr) p] forKey: NSString stringWithUTF8String : psz]];
+    [[[NSThread currentThread] threadDictionary] setValue: [NSNumber numberWithInt : (int_ptr) p] forKey: [NSString stringWithUTF8String : psz]];
     
 }
 
+
+int get_thread_int(const char * pszKey)
+{
+    
+    return (int)[[[[NSThread currentThread] threadDictionary] valueForKey: [NSString stringWithUTF8String : pszKey]] inValue];
+    
+}
+
+
+void set_thread_int(const char * pszKey, int i)
+{
+    
+    [[[NSThread currentThread] threadDictionary] setValue: [NSNumber numberWithInt : i] forKey: [NSString stringWithUTF8String : pszKey]];
+    
+}
 
 

@@ -75,7 +75,7 @@ HANDLE _get_osfhandle(int32_t i)
 _FILE *fopen_dup(const char *path, const char *attrs)
 {
 
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
     return fopen(path, attrs);
 #elif defined(METROWIN)
@@ -656,7 +656,7 @@ int32_t ferror_dup(_FILE *fp)
 
 }
 
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 uint64_t fsize_dup(FILE * fp)
 {
    size_t pos = ftell(fp);

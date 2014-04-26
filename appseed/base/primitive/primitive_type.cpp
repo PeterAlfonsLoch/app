@@ -58,7 +58,7 @@ type::type(const std_type_info & info)
 #ifdef WINDOWS
    m_idFriendly      = info.name();
    m_id              = info.raw_name();
-#elif defined(MACOS)
+#elif defined(APPLEOS)
    m_idFriendly      = demangle(info.name());
    m_id              = info.name();
 #else
@@ -97,7 +97,7 @@ type & type::operator = (const std_type_info & info)
 #ifdef WINDOWS
    m_idFriendly      = info.name();
    m_id              = info.raw_name();
-#elif defined(MACOS)
+#elif defined(APPLEOS)
    m_idFriendly      = demangle(info.name());
    m_id              = info.name();
 #else

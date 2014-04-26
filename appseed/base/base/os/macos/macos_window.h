@@ -14,7 +14,7 @@ typedef void * int_to_int;
 
 #else
 
-#ifdef MACOS
+#ifdef APPLEOS
 struct NSWindow;
 #else
 struct UIWindow;
@@ -23,7 +23,7 @@ struct UIWindow;
 
 #endif
 
-#ifdef MACOS
+#ifdef APPLEOS
 typedef NSWindow * nswindow;
 #else
 typedef UIWindow * nswindow;

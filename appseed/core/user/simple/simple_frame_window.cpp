@@ -263,7 +263,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
          return;
       }
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
 
       m_workset.SetActiveFlag(TRUE);
 

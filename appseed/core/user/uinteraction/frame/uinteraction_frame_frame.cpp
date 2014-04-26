@@ -178,7 +178,7 @@ namespace user
             {
                pwnd->RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
 
-#if !defined(METROWIN) && !defined(LINUX) && !defined(MACOS)
+#if !defined(METROWIN) && !defined(LINUX) && !defined(APPLEOS)
                RedrawWindow(NULL,
                   m_pworkset->m_rectPending,
                   NULL,

@@ -2,24 +2,49 @@
 #define CA2_APP_BASE_BASE_BASE_BASE_H
 
 
-
-
-
 #pragma once
 
 
+#include "base_a_basic_rid_off.h"
+
+
+#ifdef THE_LANGUAGE_OF_THE_LANGUAGE
+
+
 #ifdef __cplusplus
+
+
+#define cplusplus
+
+
+#else
+
+
+#define cplus
+
+
+#endif
+
+
+#endif
+
+
+#if defined(__cplusplus)
+
+
 #define DECL_EXTERN_C	   extern "C"
 #define BEGIN_EXTERN_C		extern "C" {
 #define END_EXTERN_C		   }
+
+
 #else
+
+
 #define DECL_EXTERN_C
 #define BEGIN_EXTERN_C
 #define END_EXTERN_C
-#endif
 
-#ifdef __OBJC__
-#define __MM
+
 #endif
 
 
@@ -65,26 +90,10 @@
 #include "base/base/os/os.h"
 
 
-
-#if defined(__MM)
-
-
-#if defined(__cplusplus)
-#include "base_c_objcpp.h"
-#else
-#include "base_c_objc.h"
-#endif
+#ifdef THE_LANGUAGE_OF_THE_LANGUAGE
 
 
-#elif defined(__cplusplus_winrt)
-
-
-#include "base_c.h"
-#include "base_c_cpp.h"
-#include "base_c_winrt.h"
-
-
-#elif defined(__cplusplus)
+#ifdef cplusplus
 
 
 #include "base_c.h"
@@ -106,6 +115,46 @@ END_EXTERN_C
 #endif
 
 
+#else
+
+
+#if defined(__M)
+
+
+#include "base_c.h"
+#include "base_c_objc.h"
+
+
+#elif defined(__MM)
+
+
+#include "base_c.h"
+#include "base_c_objc.h"
+#include "base_c_objcpp.h"
+
+
+#elif defined(__cplusplus_winrt)
+
+
+#include "base_c.h"
+#include "base_c_cpp.h"
+#include "base_c_winrt.h"
+
+
+#else
+
+
+#error "This is a not supported, hope, yet, non converging babylon language."
+
+
+#endif
+
+
+#endif
 
 
 #endif // CA2_APP_BASE_BASE_BASE_BASE_H
+
+
+
+

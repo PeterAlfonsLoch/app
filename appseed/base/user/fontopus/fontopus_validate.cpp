@@ -69,7 +69,7 @@ namespace fontopus
    validate::~validate()
    {
       //m_loginthread.wait();
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
       //((HTHREAD) m_loginthread.get_os_data())->wait();
 #else
       ::WaitForSingleObjectEx((HANDLE) m_loginthread.get_os_data(), INFINITE, FALSE);

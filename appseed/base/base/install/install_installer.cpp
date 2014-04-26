@@ -6,7 +6,7 @@
 #include <Winternl.h>
 #endif
 
-#ifdef MACOS
+#ifdef APPLEOS
 #include <sys/param.h>
 #include <mach-o/dyld.h>
 #endif
@@ -3596,7 +3596,7 @@ RetryBuildNumber:
 
       strPath = System.install().app_install_get_intern_executable_path(m_strVersion, m_strBuild);
 
-#elif defined(MACOS)
+#elif defined(APPLEOS)
 
       char path[MAXPATHLEN];
 

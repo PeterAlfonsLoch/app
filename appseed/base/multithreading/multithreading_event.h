@@ -1,6 +1,6 @@
 #pragma once
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
 #include <sys/types.h>
 #include <sys/sem.h>
 #endif
@@ -10,7 +10,7 @@ class CLASS_DECL_BASE event :
 {
 public:
 
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
    bool              m_bManualEvent;
    bool              m_bSignaled;  // meaningful only when m_bManualEvent
    int32_t           m_iSignalId;  // meaningful only when m_bManualEvent

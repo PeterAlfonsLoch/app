@@ -79,7 +79,7 @@ bool window::GetTitleBarInfo(PTITLEBARINFO pti) const
 
 #endif
 
-#if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID)
+#if !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID)
 
 ::window_sp window::GetAncestor(UINT gaFlags) const
 {

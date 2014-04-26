@@ -9,7 +9,7 @@ static geoipv6_t IPV6_NULL;
 
 #define GEOIPDATADIR "/core/geoip"
 
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
 #include <sys/mman.h>
 

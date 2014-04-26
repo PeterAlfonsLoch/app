@@ -5,7 +5,7 @@
 //#include <io.h>
 //#include <fcntl.h>
 
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID) || defined(SOLARIS)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
 
 #include <unistd.h>
 #define _doserrno errno

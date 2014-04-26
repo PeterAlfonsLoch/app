@@ -395,7 +395,7 @@ size simple_toolbar::CalcSize(int32_t nCount)
    size sizeResult(0,0);
 
    //   uint32_t dwExtendedStyle = DefWindowProc(TB_GETEXTENDEDSTYLE, 0, 0);
-#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(MACOS)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(APPLEOS)
 
    int32_t buttonx, buttony;
 
@@ -564,7 +564,7 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
 
    pdc->SelectObject(System.visual().font_central().GetMenuFont());
 
-#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(MACOS) || defined(SOLARIS)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(APPLEOS) || defined(SOLARIS)
 
    simple_toolbar_item & item = m_itema[iItem];
 
@@ -863,7 +863,7 @@ bool simple_toolbar::LoadXmlToolBar(const char * lpszXml)
 
    //   sp(base_application) papp = (get_app());
 
-#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(MACOS)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(APPLEOS)
 
    simple_toolbar_item item;
 
@@ -932,7 +932,7 @@ bool simple_toolbar::_001GetItemRect(int32_t iItem, LPRECT lprect, EElement eele
 
    rect rect;
 
-#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(MACOS) || defined(SOLARIS)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(APPLEOS) || defined(SOLARIS)
 
    simple_toolbar_item & item = m_itema[iItem];
 
@@ -1241,7 +1241,7 @@ void simple_toolbar::layout()
             sizeText);
       }
 
-#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(MACOS)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(APPLEOS)
 
       BaseMenuCentral * pmenucentral = BaseMenuCentral::GetMenuCentral(get_app());
 
@@ -1573,7 +1573,7 @@ void SimpleToolCmdUI::Enable(bool bOn, ::action::context actioncontext)
    ASSERT(pToolBar != NULL);
    //   ASSERT_KINDOF(simple_toolbar, pToolBar);
    ASSERT(m_iIndex < m_iCount);
-#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(MACOS)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(APPLEOS)
    UINT nNewStyle = pToolBar->GetButtonStyle((int32_t) m_iIndex) & ~TBBS_DISABLED;
    if (!bOn)
    {
@@ -1601,7 +1601,7 @@ void SimpleToolCmdUI::_001SetCheck(check::e_check echeck, ::action::context acti
    ASSERT_KINDOF(simple_toolbar, pToolBar);
    ASSERT(m_iIndex < m_iCount);
 
-#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(MACOS)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(APPLEOS)
    UINT nNewStyle = pToolBar->GetButtonStyle((int32_t) m_iIndex) &
       ~(TBBS_CHECKED | TBBS_INDETERMINATE);
    if(echeck == check::checked)
@@ -1690,7 +1690,7 @@ void simple_toolbar::_001OnNcHitTest(signal_details * pobj)
 int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
 {
    int32_t nResult = 0;
-#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(MACOS)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(APPLEOS)
    ASSERT(nCount > 0);
    ::draw2d::memory_graphics pdc(allocer());
     int32_t x = 0;
@@ -1901,7 +1901,7 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
 
       sizeResult = CalcSize(nCount);
 
-#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(MACOS)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(APPLEOS)
       if (dwMode & LM_COMMIT)
       {
          ___CONTROLPOS* pControl = NULL;

@@ -3,7 +3,7 @@
 
 interlocked_long::interlocked_long()
 {
-#if defined(WINDOWS) || defined(MACOS)
+#if defined(WINDOWS) || defined(APPLEOS)
    m_plong = (long *) aligned_memory_alloc(sizeof(long));
 #else
    m_plong = (long *) malloc(sizeof(long));
@@ -15,7 +15,7 @@ interlocked_long::~interlocked_long()
 {
    if(m_plong != NULL)
    {
-#if defined(WINDOWS) || defined(MACOS)
+#if defined(WINDOWS) || defined(APPLEOS)
       memory_free(m_plong);
 #else
       free(m_plong);

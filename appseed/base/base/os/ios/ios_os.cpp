@@ -26,7 +26,7 @@ CLASS_DECL_BASE bool _istlead(int32_t ch)
 WINBOOL GetCursorPos(LPPOINT lpptCursor)
 {
    
-   HIPoint point;
+/*   HIPoint point;
    
    HICoordinateSpace space = kHICoordSpaceScreenPixel;
    
@@ -35,7 +35,7 @@ WINBOOL GetCursorPos(LPPOINT lpptCursor)
    
    lpptCursor->x = point.x;
    lpptCursor->y = point.y;
-   
+  */ 
    
    return TRUE;
    

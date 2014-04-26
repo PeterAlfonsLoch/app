@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#if defined(MACOS)
+#if defined(APPLEOS)
 
 void openURL(const string &url_str);
 
@@ -14,7 +14,7 @@ void openURL(const string &url_str);
 #define _GNU_SOURCE
 #define __USE_GNU
 #include <link.h>
-#elif defined(MACOS)
+#elif defined(APPLEOS)
 #include <dlfcn.h>
 #endif
 
@@ -179,7 +179,7 @@ int32_t base_application::simple_message_box(sp(::user::interaction) puiOwner, c
    //return MessageBoxW((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())),
    //   wstring(pszMessage), wstring(m_strAppName), fuStyle);
 
-#elif  defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#elif  defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
    return MessageBox(puiOwner->get_safe_handle(), pszMessage, m_strAppName, fuStyle);
    //   return MessageBox((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
@@ -201,7 +201,7 @@ int32_t application::simple_message_box(sp(::user::interaction) puiOwner, const 
    return MessageBoxW((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())),
       wstring(pszMessage), wstring(m_strAppName), fuStyle);
 
-#elif  defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#elif  defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
    return MessageBox((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
 
@@ -223,7 +223,7 @@ int32_t base_application::simple_message_box(const char * pszMessage, UINT fuSty
    //return MessageBoxW((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())),
    //   wstring(pszMessage), wstring(m_strAppName), fuStyle);
 
-#elif  defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#elif  defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
    return MessageBox(NULL, pszMessage, m_strAppName, fuStyle);
    //   return MessageBox((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
@@ -619,7 +619,7 @@ bool base_application::open_link(const string & strLink, const string & pszTarge
 #elif defined(LINUX)
       ::system("xdg-open " + strLink);
       return true;
-#elif defined(MACOS)
+#elif defined(APPLEOS)
       openURL(strLink);
       return true;
 #else
@@ -1220,7 +1220,7 @@ sp(::user::interaction) base_application::release_capture_uie()
       return NULL;
    return System.window_from_os_data(oswindowCapture)->release_capture();
 
-#elif defined(MACOS)
+#elif defined(APPLEOS)
 
    oswindow oswindowCapture = ::GetCapture();
    if (oswindowCapture == NULL)
@@ -1474,7 +1474,7 @@ uint32_t base_application::get_thread_id()
 sp(::user::interaction) base_application::get_active_guie()
 {
 
-#if defined(WINDOWSEX) || defined(LINUX) || defined(MACOS)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
 
    return window_from_os_data(::GetActiveWindow());
 
@@ -1685,6 +1685,25 @@ void openURL(const string &url_str) {
    LSOpenCFURLRef(url,0);
    CFRelease(url);
 }
+
+#elif defined(APPLE_IOS)
+
+void openURL(const string &url_str);
+
+
+void openURL(const string &url_str) {
+    CFURLRef url = CFURLCreateWithBytes (
+                                         NULL,                        // allocator
+                                         (UInt8*)url_str.c_str(),     // URLBytes
+                                         url_str.length(),            // length
+                                         kCFStringEncodingASCII,      // encoding
+                                         NULL                         // baseURL
+                                         );
+//    LSOpenCFURLRef(url,0);
+    CFRelease(url);
+}
+
+
 #endif
 
 void win_factory_exchange(sp(base_application) papp);

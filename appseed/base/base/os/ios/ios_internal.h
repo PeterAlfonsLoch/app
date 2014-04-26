@@ -177,8 +177,8 @@ class CLASS_DECL_BASE device_context
 public:
    
    
-   CGrafPtr          m_windowPort;
-   CGrafPtr          m_savedPort;
+//   CGrafPtr          m_windowPort;
+//   CGrafPtr          m_savedPort;
    oswindow             m_window;
    Rect              m_portBounds;
    bool              m_wasSwapped;

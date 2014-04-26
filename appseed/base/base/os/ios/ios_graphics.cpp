@@ -1,22 +1,7 @@
 #include "framework.h"
-#include "macos_internal.h"
+#include "ios_internal.h"
 
-#ifdef DEBUG
-#undef DEBUG
-#define DEBUG 1
-#else
-#define DEBUG 0
-#endif
 
-#include <Carbon/Carbon.h>
-#include <CoreFoundation/CoreFoundation.h>
-
-#if DEBUG
-#undef DEBUG
-#define DEBUG
-#else
-#undef DEBUG
-#endif
 
 
 device_context::device_context()
@@ -58,10 +43,10 @@ CGColorRef mac_create_color(COLORREF cr)
    
    // Create a color and add it as an attribute to the string.
    CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-   CGFloat components[] = { argb_get_r_value(cr) / 255.0, 
-      argb_get_g_value(cr) / 255.0,
-      argb_get_b_value(cr) / 255.0,
-      argb_get_a_value(cr) / 255.0};
+   CGFloat components[] = { (CGFloat) (argb_get_r_value(cr) / 255.0),
+       (CGFloat) (argb_get_g_value(cr) / 255.0),
+       (CGFloat) (argb_get_b_value(cr) / 255.0),
+      (CGFloat) ( argb_get_a_value(cr) / 255.0)};
    
    CGColorRef color = CGColorCreate(rgbColorSpace, components);
    

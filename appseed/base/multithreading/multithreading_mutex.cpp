@@ -237,7 +237,7 @@ mutex::~mutex()
    }
 
 
-#elif defined(LINUX) || defined(MACOS)
+#elif defined(LINUX) || defined(APPLEOS)
 
    if(m_semid >= 0)
    {

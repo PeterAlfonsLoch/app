@@ -241,7 +241,7 @@ bool imaging::from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMA
 
    pdib->map();
 
-#if defined(MACOS)
+#if defined(APPLEOS)
 
    byte * pbDst = (byte *) pdib->m_pcolorref;
 
@@ -870,7 +870,7 @@ bool imaging::Createcolor_blend_ImageList(sp(image_list) pilGray, sp(image_list)
 
       ::draw2d::graphics_sp spgraphics(allocer());
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
 
       spgraphics->CreateCompatibleDC(NULL);
 
@@ -6690,7 +6690,7 @@ bool imaging::read_from_file(::draw2d::dib * pdib, ::file::buffer_sp  pfile, bas
 
    /*synch_lock ml(&user_mutex());
 
-#if !defined(LINUX) && !defined(MACOS)
+#if !defined(LINUX) && !defined(APPLEOS)
 
    single_lock slDc(System.m_pmutexDc, true);
 

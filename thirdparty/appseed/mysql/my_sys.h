@@ -847,7 +847,7 @@ extern int my_getncpus();
 
 #else
 /* not a complete set of mmap() flags, but only those that nesessary */
-#if !defined(MACOS)
+#if !defined(APPLEOS)
 #define PROT_READ        1
 #define PROT_WRITE       2
 #define MAP_NORESERVE    0
@@ -856,7 +856,7 @@ extern int my_getncpus();
 #define MAP_PRIVATE      0x0002
 #define MAP_NOSYNC       0x0800
 #define MAP_FAILED       ((void *)-1)
-#if !defined(MACOS)
+#if !defined(APPLEOS)
 #define MS_SYNC          0x0000
 #endif
 

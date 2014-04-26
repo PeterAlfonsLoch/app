@@ -191,7 +191,7 @@ namespace file
          {
             char * psz = strPath.GetBufferSetLength(iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1);
             strncpy(psz, &((const char *)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
-            #if defined(LINUX) || defined(MACOS)
+            #if defined(LINUX) || defined(APPLEOS)
             psz[iFolderEnd - iFolderBeg + 1] = '/';
             #else
             psz[iFolderEnd - iFolderBeg + 1] = '\\';
@@ -327,7 +327,7 @@ namespace file
             else
             {
                string strPath;
-               #if defined(LINUX) || defined(MACOS)
+               #if defined(LINUX) || defined(APPLEOS)
                string_STRCAT2_beg_char_end(strPath, '/', strRelative, str2, iRelativeBeg, iRelativeEnd, iBeg2, iEnd2);
                #else
                string_STRCAT2_beg_char_end(strPath, '\\', strRelative, str2, iRelativeBeg, iRelativeEnd, iBeg2, iEnd2);
@@ -338,7 +338,7 @@ namespace file
          else if(str2.is_empty())
          {
             string strPath;
-            #if defined(LINUX) || defined(MACOS)
+            #if defined(LINUX) || defined(APPLEOS)
             string_STRCAT2_beg_char_end(strPath, '\\', strFolder, strRelative, iFolderBeg, iFolderEnd, iRelativeBeg, iRelativeEnd);
             #else
             string_STRCAT2_beg_char_end(strPath, '/', strFolder, strRelative, iFolderBeg, iFolderEnd, iRelativeBeg, iRelativeEnd);
@@ -350,13 +350,13 @@ namespace file
 
          char * psz = strPath.GetBufferSetLength(iEnd2 - iBeg2 + 1 + iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1 + 1);
          strncpy(psz, &((const char *)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
-         #if defined(LINUX) || defined(MACOS)
+         #if defined(LINUX) || defined(APPLEOS)
          psz[iFolderEnd - iFolderBeg + 1] = '/';
          #else
          psz[iFolderEnd - iFolderBeg + 1] = '\\';
          #endif
          strncpy(&psz[iFolderEnd - iFolderBeg + 2], &((const char *)strRelative)[iRelativeBeg], iRelativeEnd - iRelativeBeg + 1);
-         #if defined(LINUX) || defined(MACOS)
+         #if defined(LINUX) || defined(APPLEOS)
          psz[iFolderEnd - iFolderBeg + 1 + 1 + iRelativeEnd - iRelativeBeg + 1] = '/';
          #else
          psz[iFolderEnd - iFolderBeg + 1 + 1 + iRelativeEnd - iRelativeBeg + 1] = '\\';
@@ -646,7 +646,7 @@ namespace file
 
          string strLookup(strPath);
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
          if(strLookup.last_char() != '\\' && strLookup.last_char() != '/' )
             strLookup += "/";
 #else
@@ -707,7 +707,7 @@ namespace file
 
       void system::is_dir_map::set(const char * pszPath, bool bIsDir, uint32_t dwLastError)
       {
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
          static string strSep = "/";
 #else
          static string strSep = "\\";
@@ -725,7 +725,7 @@ namespace file
 
       void system::is_dir_map::set(const string & strPath, bool bIsDir, uint32_t dwLastError)
       {
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
          static string strSep = "/";
 #else
          static string strSep = "\\";

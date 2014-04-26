@@ -5,7 +5,7 @@
 #include <unistd.h>
 
 
-#ifdef MACOS
+#ifdef APPLEOS
 
 
 /* lock operations for flock(2) */

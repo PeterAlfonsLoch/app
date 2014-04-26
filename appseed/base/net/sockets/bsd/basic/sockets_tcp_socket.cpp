@@ -413,7 +413,7 @@ void ssl_sigpipe_handle( int x );
       else
    #endif // HAVE_OPENSSL
       {
-#if defined(MACOS) || defined(SOLARIS)
+#if defined(APPLEOS) || defined(SOLARIS)
 //         n = (int32_t) recv(GetSocket(), buf, nBufSize, SO_NOSIGPIPE);
          n = (int32_t) ::recv(GetSocket(), buf, nBufSize, 0);
 
@@ -718,7 +718,7 @@ void ssl_sigpipe_handle( int x );
       else
    #endif // HAVE_OPENSSL
       {
-#if defined(MACOS)
+#if defined(APPLEOS)
          int iSocket = GetSocket();
          n = send(iSocket, buf, len, SO_NOSIGPIPE);
 #elif defined(SOLARIS)

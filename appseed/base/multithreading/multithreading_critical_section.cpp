@@ -51,7 +51,7 @@ bool critical_section::Init()
 
       // set the mutex as a recursive mutex
 
-#ifdef MACOS
+#ifdef APPLEOS
 
       pthread_mutexattr_settype(&mutexattr, PTHREAD_MUTEX_RECURSIVE);
 

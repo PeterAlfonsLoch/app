@@ -43,7 +43,7 @@ DWORD WaitForSingleObjectEx(waitable * pwaitable, DWORD dwMilliseconds, WINBOOL 
 #define MAXIMUM_WAIT_OBJECTS      64
 
 
-#if !defined(MACOS)
+#if !defined(APPLEOS)
 
 union semun {
     int              val;    /* Value for SETVAL */

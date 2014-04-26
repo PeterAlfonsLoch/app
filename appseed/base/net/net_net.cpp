@@ -46,7 +46,7 @@ static const uchar index_hex[256] = {
 };
 
 
-#if defined(MACOS)
+#if defined(APPLEOS)
 #define pr_s6_addr16 __u6_addr.__u6_addr16
 #define pr_s6_addr __u6_addr.__u6_addr8
 #elif defined(LINUX)

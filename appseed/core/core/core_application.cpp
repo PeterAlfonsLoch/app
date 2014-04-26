@@ -7,7 +7,7 @@
 #include <link.h>
 #include <ctype.h>
 #include <unistd.h>
-#elif defined(MACOS)
+#elif defined(APPLEOS)
 #include <dlfcn.h>
 #include <mach-o/dyld.h>
 #endif
@@ -3465,7 +3465,7 @@ return m_pimpl->graphics_from_os_data(pdata);
 
 ::window_sp application::get_desktop_window()
 {
-#if defined(METROWIN) || defined(MACOS)
+#if defined(METROWIN) || defined(APPLEOS)
    throw todo(this);
    /*#elif defined(LINUX)
 

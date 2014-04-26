@@ -9,5 +9,3 @@
 
 
 
-void * get_thread_ptr(const char * psz);
-void set_thread_ptr(const void * p, const char * psz);

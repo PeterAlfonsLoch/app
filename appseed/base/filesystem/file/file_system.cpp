@@ -100,7 +100,7 @@ namespace file
       get_ascendants_name(lpcsz, stra);
       string str;
       bool bUrl = System.url().is_url(lpcsz);
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
       bool bLinux = true;
       str += "/";
 #else

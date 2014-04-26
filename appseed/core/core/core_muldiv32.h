@@ -132,7 +132,7 @@
     #endif
 
 
-#elif defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#elif defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
 inline int32_t MulDiv32(int32_t a, int32_t b, int32_t ca)
 {

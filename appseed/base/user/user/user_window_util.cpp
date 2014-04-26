@@ -711,7 +711,7 @@ namespace user
    {
 
 
-#if !defined(METROWIN) && !defined(MACOS)
+#if !defined(METROWIN) && !defined(APPLEOS)
 //      int32_t iOrder = 0;
       ::oswindow oswindowOrder = NULL;
       try

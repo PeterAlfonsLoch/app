@@ -753,7 +753,7 @@ namespace install
 //         bool bPreNormal = false;
          bool bStart = false;
          bool bStatus2 = false;
-         char ch;
+         char ch = '\0';
          while(iTell >= 0 && !bStart && !(bNormal && bBold))
          {
             if(iTell > 0)

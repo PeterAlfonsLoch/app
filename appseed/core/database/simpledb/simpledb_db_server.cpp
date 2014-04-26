@@ -124,7 +124,7 @@ bool db_server::initialize()
       iBufferSize = commandthread->m_varTopicQuery["filesizebuffer"] * 1024 * 1024;
    }
 
-#if !defined(METROWIN) && !defined(MACOS)
+#if !defined(METROWIN) && !defined(APPLEOS)
 //   m_pfilesystemsizeset = new DBFileSystemSizeSet(&System);
       m_pfilesystemsizeset =NULL;
 #else
@@ -135,7 +135,7 @@ bool db_server::initialize()
    //data_server_load("ca2", "database_change", "change", varChange);
    //g_idbchange = varChange;
 
-#if !defined(METROWIN) && !defined(MACOS)
+#if !defined(METROWIN) && !defined(APPLEOS)
 
    if(!create_message_queue())
       return false;

@@ -91,7 +91,7 @@ class job;
 #endif
 
 
-#if defined(MACOS)
+#if defined(APPLEOS)
 
 #include "core/macos/macos.h"
 
@@ -891,7 +891,7 @@ namespace geometry
 } // namespace geometry
 
 
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
 typedef ::visual::icon * HICON;
 

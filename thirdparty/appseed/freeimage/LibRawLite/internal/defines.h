@@ -85,7 +85,7 @@ it under the terms of the one of three licenses as you choose:
 
 #define SQR(x) ((x)*(x))
 #define ABS(x) (((int)(x) ^ ((int)(x) >> 31)) - ((int)(x) >> 31))
-#if !defined(MACOS)
+#if !defined(APPLEOS)
 #define MIN(a,b) ((a) < (b) ? (a) : (b))
 #define MAX(a,b) ((a) > (b) ? (a) : (b))
 #endif

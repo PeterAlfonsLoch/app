@@ -120,7 +120,7 @@ typedef struct tagFILE_BGR {
 //   Template utility functions
 // ==========================================================
 
-#if !defined(MACOS)
+#if !defined(APPLEOS)
 
 /// Max function
 template <class T> T MAX(T a, T b) {

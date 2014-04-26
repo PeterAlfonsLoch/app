@@ -535,7 +535,7 @@ bool base_system::assert_running_global(const char * pszAppName, const char * ps
          string strParameters;
          strParameters = ": global_mutex_id=\"" + string(pszId) + "\"";
 
-#if defined(WINDOWSEX) || defined(LINUX) || defined(MACOS)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
 
          simple_shell_launcher launcher(NULL, NULL, dir().path(get_module_folder(), strApp), strParameters, NULL, SW_SHOW);
 

@@ -13,7 +13,7 @@ public:
    LONG              m_lMaxCount;
    sem_t *           m_psem;
 
-#elif defined(LINUX) || defined(MACOS)
+#elif defined(LINUX) || defined(APPLEOS)
 
    LONG              m_lMaxCount;
    int32_t           m_object;
@@ -24,7 +24,7 @@ public:
    virtual ~semaphore();
 
    
-#if defined(MACOS) || defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
+#if defined(APPLEOS) || defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
    using object::lock;
    virtual bool lock(const duration & durationTimeout);
 #endif

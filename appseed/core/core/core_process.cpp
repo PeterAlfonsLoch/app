@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include <spawn.h>
 extern char **environ;
-#elif defined(MACOS)
+#elif defined(APPLEOS)
 #include <sys/wait.h>
 #include <unistd.h>
 #include <spawn.h>
@@ -203,7 +203,7 @@ namespace core
 
       int status = posix_spawn(&m_iPid, pszCmdLine, NULL, &attr, argv, environ);
 
-#ifdef MACOS
+#ifdef APPLEOS
 
       if(iCa2Priority != (int32_t) ::core::scheduling_priority_none)
       {

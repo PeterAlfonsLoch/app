@@ -229,7 +229,7 @@ namespace file
    #define ENOEXEC         8
    #define EBADF           9
    #define ECHILD          10
-#ifndef MACOS
+#ifndef APPLEOS
    #define EAGAIN          11
 #endif
    #define ENOMEM          12

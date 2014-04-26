@@ -124,7 +124,7 @@ HGLOBAL WINAPI GlobalAlloc(UINT uFlags, SIZE_T dwBytes)
 
    strcpy(hglobal->m_szFile, "/ca2/time/global_alloc/XXXXXX.mmap");
 
-#if defined(MACOS) || defined(ANDROID)
+#if defined(APPLEOS) || defined(ANDROID)
 
    hglobal->m_fd = mkstemps(hglobal->m_szFile, 5);
 

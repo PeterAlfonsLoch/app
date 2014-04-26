@@ -16,7 +16,9 @@ oswindow SetActiveWindow(oswindow window);
 CGContextRef get_nswindow_cgcontext(oswindow oswindow)
 {
 
-    return (CGContextRef) [[oswindow->window() graphicsContext] graphicsPort];
+//    return (CGContextRef) [[oswindow->window() graphicsContext] graphicsPort];
+    
+    return 0;
 
 }
 
@@ -24,7 +26,7 @@ CGContextRef get_nswindow_cgcontext(oswindow oswindow)
 void GetMainScreenRect(LPRECT lprect)
 {
 
-   NSRect rect = [[NSScreen mainScreen] frame];
+   CGRect rect = [[UIScreen mainScreen] applicationFrame];
 
    lprect->left        = rect.origin.x;
    lprect->bottom      = rect.size.height - rect.origin.y;

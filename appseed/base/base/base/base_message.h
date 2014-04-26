@@ -73,7 +73,7 @@ class base_command;
 
 #define USER_MESSAGE 1024
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
 #define WM_APP 0x8000
 #define WM_USER                         0x0400
 #endif
@@ -831,7 +831,7 @@ namespace message
 
 
 
-#if defined(WINDOWS) || defined(LINUX) || defined(MACOS)
+#if defined(WINDOWS) || defined(LINUX) || defined(APPLEOS)
 #define IGUI_WIN_MSG_LINK \
    ::message::os_connect
 #else

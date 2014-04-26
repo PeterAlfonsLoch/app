@@ -113,7 +113,7 @@ namespace exception
 
 #endif
    
-#ifdef MACOS
+#ifdef APPLEOS
    
    void InstallUncaughtExceptionHandler();
 
@@ -130,7 +130,7 @@ namespace exception
          //EnforceFilter(true);
 #else
          
-#ifdef MACOS
+#ifdef APPLEOS
          void InstallUncaughtExceptionHandler();
 #endif
 

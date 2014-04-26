@@ -22,7 +22,7 @@ CLASS_DECL_BASE uint32_t call_sync(
 #endif
 
 
-#if !defined(METROWIN) && !defined(LINUX) && !defined(MACOS)
+#if !defined(METROWIN) && !defined(LINUX) && !defined(APPLEOS)
 
 CLASS_DECL_BASE int32_t get_current_processor_index();
 

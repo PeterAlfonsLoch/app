@@ -237,7 +237,7 @@ namespace core
 
       string strLibraryName(get_library_name());
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
 
       if(strLibraryName == "libca2")
       {
@@ -287,7 +287,7 @@ namespace core
 
       string strLibraryName(get_library_name());
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
 
       if(strLibraryName == "libca2")
       {
@@ -390,7 +390,7 @@ namespace core
 
          string strPrefix = get_root();
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
 
          ::str::begins_eat(strAppId, "lib");
 

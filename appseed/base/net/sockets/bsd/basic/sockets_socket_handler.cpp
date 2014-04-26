@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#if defined(MACOS)
+#if defined(APPLEOS)
 
 #define bcopy(src, dest, len) memcpy(dest, src, len)
 

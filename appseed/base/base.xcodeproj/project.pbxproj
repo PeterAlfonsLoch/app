@@ -2192,6 +2192,7 @@
 		07B0981018495CBE007A0560 /* webserver_http_response.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0970918495CBE007A0560 /* webserver_http_response.h */; };
 		07B0981118495CBE007A0560 /* webserver_http_transaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0970A18495CBE007A0560 /* webserver_http_transaction.h */; };
 		07BDFB3318F7D94E00CCABA9 /* base_new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BDFB3218F7D94E00CCABA9 /* base_new.cpp */; };
+		07E7E741190B53570082F182 /* base_a_basic_rid_off.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E7E740190B53570082F182 /* base_a_basic_rid_off.h */; };
 		07F5B126184968B30092C3E1 /* macos_simple_ui.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B125184968B30092C3E1 /* macos_simple_ui.h */; };
 		07F5B128184968C20092C3E1 /* macos_simple_ui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B127184968C20092C3E1 /* macos_simple_ui.cpp */; };
 		07F5B12A18496D920092C3E1 /* des_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B12918496D920092C3E1 /* des_enc.c */; };
@@ -5447,6 +5448,7 @@
 		07B0970A18495CBE007A0560 /* webserver_http_transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webserver_http_transaction.h; sourceTree = "<group>"; };
 		07BD556C16210BD4008E31F0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		07BDFB3218F7D94E00CCABA9 /* base_new.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_new.cpp; sourceTree = "<group>"; };
+		07E7E740190B53570082F182 /* base_a_basic_rid_off.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_a_basic_rid_off.h; sourceTree = "<group>"; };
 		07F3372018111CA200A34D04 /* multithreading_set_event_on_exit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = multithreading_set_event_on_exit.h; sourceTree = "<group>"; };
 		07F5B125184968B30092C3E1 /* macos_simple_ui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_simple_ui.h; sourceTree = "<group>"; };
 		07F5B127184968C20092C3E1 /* macos_simple_ui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_simple_ui.cpp; sourceTree = "<group>"; };
@@ -6342,6 +6344,7 @@
 		07B07E2B18495B37007A0560 /* base */ = {
 			isa = PBXGroup;
 			children = (
+				07E7E740190B53570082F182 /* base_a_basic_rid_off.h */,
 				079AE0681886483600635C39 /* base_action_context.cpp */,
 				079AE0691886483600635C39 /* base_action_context.h */,
 				079AE06A1886483600635C39 /* base_action_source.h */,
@@ -10665,6 +10668,7 @@
 				07B08CC018495B40007A0560 /* crypto_aes_cbc.h in Headers */,
 				07F5B1C1184A3B430092C3E1 /* file_exception.h in Headers */,
 				07B08F8C18495B41007A0560 /* evp.h in Headers */,
+				07E7E741190B53570082F182 /* base_a_basic_rid_off.h in Headers */,
 				07B0979518495CBE007A0560 /* sockets_ssl_client_context_map.h in Headers */,
 				07B08E9C18495B41007A0560 /* cms.h in Headers */,
 				07B094D518495C2B007A0560 /* collection_point_array.h in Headers */,

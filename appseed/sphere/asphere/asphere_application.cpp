@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
 #include <dlfcn.h>
 #endif
 

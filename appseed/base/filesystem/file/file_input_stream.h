@@ -56,7 +56,7 @@ namespace file
       inline input_stream & operator >> (uint32_t        & ui              ) { read(ui             ); return *this; }
       inline input_stream & operator >> (int64_t         & i               ) { read(i              ); return *this; }
       inline input_stream & operator >> (uint64_t        & ui              ) { read(ui             ); return *this; }
-#ifdef MACOS
+#ifdef APPLEOS
       inline input_stream & operator >> (unsigned long   & ui              ) { read(ui             ); return *this; }
 #endif
       inline input_stream & operator >> (float           & f               ) { read(f              ); return *this; }
@@ -86,7 +86,7 @@ namespace file
       virtual void read (uint32_t & ui);
       virtual void read (int64_t & i);
       virtual void read (uint64_t & ui);
-#ifdef MACOS
+#ifdef APPLEOS
       virtual void read (unsigned long & ui);
 #endif
       virtual void read (float & f);

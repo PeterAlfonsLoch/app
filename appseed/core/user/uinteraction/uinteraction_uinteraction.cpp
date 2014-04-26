@@ -65,7 +65,7 @@ namespace user
 
          strLibrary.replace("/", "_");
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
 
          strLibrary = "lib" + strLibrary;
 

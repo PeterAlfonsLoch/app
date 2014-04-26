@@ -6,7 +6,7 @@ namespace core
 
 
    class CLASS_DECL_BASE trace_add_file_and_line
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
       : public string_format_printer
 #endif
    {

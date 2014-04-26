@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#ifdef MACOS
+#ifdef APPLEOS
 
 
 #define ALIGN_BYTE_COUNT (sizeof(size_t) * 2)
@@ -189,7 +189,7 @@ void * aligned_memory_alloc(size_t size)
 void * unaligned_memory_alloc(size_t size)
 {
 
-#if defined(MACOS) || defined(LINUX)
+#if defined(APPLEOS) || defined(LINUX)
 
    return aligned_memory_alloc(size);
 
@@ -236,7 +236,7 @@ void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szF
 void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
 
-#ifdef MACOS
+#ifdef APPLEOS
 
    return aligned_memory_alloc(size);
 
@@ -269,7 +269,7 @@ void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * s
 void * memory_alloc(size_t size)
 {
 
-#if defined(MACOS)
+#if defined(APPLEOS)
 
    return aligned_memory_alloc(size);
 
@@ -576,7 +576,7 @@ size_t memory_size_dbg(void * pvoid, int32_t iBlockType)
 
 
 
-#if defined(LINUX) || defined(MACOS) || defined(METROWIN)
+#if defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 
 extern mutex * g_pmutexThreadIdHandleLock;
 
@@ -586,10 +586,10 @@ extern mutex * g_pmutexPendingThreadsLock;
 
 extern mutex * g_pmutexTlsData;
 
-#endif // defined(LINUX) || defined(MACOS) || defined(METROWIN)
+#endif // defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
 
 extern mutex * g_pmutexTz;
 
@@ -597,7 +597,7 @@ extern map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo > * g_ppendi
 
 extern mutex * g_pmutexThreadHandleLock;
 
-#endif // defined(LINUX) || defined(MACOS)
+#endif // defined(LINUX) || defined(APPLEOS)
 
 
 
@@ -611,7 +611,7 @@ extern mutex * g_pmutexThreadHandleLock;
 
 
 
-#if defined(MACOS)
+#if defined(APPLEOS)
 
 #include "base/os/macos/macos_window_impl.h"
 
@@ -689,7 +689,7 @@ public:
 
 #endif
 
-#if defined(LINUX) || defined(MACOS) || defined(METROWIN)
+#if defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 
       g_pmutexThreadIdHandleLock = new mutex;
 
@@ -703,9 +703,9 @@ public:
 
       os_thread::s_pptra = new comparable_raw_array < os_thread * >::type ();
 
-#endif // defined(LINUX) || defined(MACOS) || defined(METROWIN)
+#endif // defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
 
       g_pmutexTz = new mutex();
 
@@ -714,7 +714,7 @@ public:
       g_pmutexThreadHandleLock = new mutex;
 
 
-#endif // defined(LINUX) || defined(MACOS)
+#endif // defined(LINUX) || defined(APPLEOS)
 
 
 
@@ -734,11 +734,11 @@ public:
 
 
 
-#if defined(MACOS)
+#if defined(APPLEOS)
 
       g_poswindowdataptra = new oswindow_dataptra;
 
-#endif // defined(MACOS)
+#endif // defined(APPLEOS)
 
 
 //      IMPLEMENT_BASE_FIXED_ALLOC_CONSTRUCTOR(var, 1024)
@@ -756,7 +756,7 @@ public:
 
 
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
 
 
 
@@ -774,10 +774,10 @@ public:
 
       g_pmutexTz = NULL;
 
-#endif // defined(LINUX) || defined(MACOS)
+#endif // defined(LINUX) || defined(APPLEOS)
 
 
-#if defined(LINUX) || defined(MACOS) || defined(METROWIN)
+#if defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 
       delete os_thread::s_pptra;
 
@@ -803,7 +803,7 @@ public:
 
       g_pmutexThreadIdLock = NULL;
 
-#endif  // defined(LINUX) || defined(MACOS) || defined(METROWIN)
+#endif  // defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 
 
 
@@ -831,13 +831,13 @@ public:
 
 
 
-#if defined(MACOS)
+#if defined(APPLEOS)
 
       delete g_poswindowdataptra;
 
       g_poswindowdataptra = NULL;
 
-#endif // defined(MACOS)
+#endif // defined(APPLEOS)
 
 #ifdef BSD_STYLE_SOCKETS
 

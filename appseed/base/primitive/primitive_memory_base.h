@@ -167,7 +167,7 @@ namespace primitive
       inline void set_os_crypt_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos = 0, memory_size size = -1);
       inline void set_os_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos = 0, memory_size size = -1);
 
-#elif defined(MACOS)
+#elif defined(APPLEOS)
 
        inline CFDataRef get_os_cf_data(memory_position pos = 0, memory_size size = -1) const;
        inline void set_os_cf_data(CFDataRef data, memory_position pos = 0, memory_size size = -1);
@@ -816,7 +816,7 @@ namespace primitive
       return set_os_bytes(a, pos, size);
    }
 
-#elif defined(MACOS)
+#elif defined(APPLEOS)
 
     inline CFDataRef memory_base::get_os_cf_data(memory_position pos, memory_size size) const
     {

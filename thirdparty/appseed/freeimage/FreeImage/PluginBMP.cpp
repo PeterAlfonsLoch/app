@@ -35,7 +35,7 @@ static const BYTE RLE_ENDOFLINE   = 0;
 static const BYTE RLE_ENDOFBITMAP = 1;
 static const BYTE RLE_DELTA       = 2;
 
-#if !defined(_WIN32) && !defined(LINUX) && !defined(MACOS) && !defined(ANDROID)
+#if !defined(_WIN32) && !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID)
 static const BYTE BI_RGB          = 0;
 static const BYTE BI_RLE8         = 1;
 static const BYTE BI_RLE4         = 2;
@@ -50,7 +50,7 @@ static const BYTE BI_BITFIELDS    = 3;
 #pragma pack(1)
 #endif
 
-#if !defined(WIN32) && !defined(LINUX) && !defined(MACOS) && !defined(ANDROID)
+#if !defined(WIN32) && !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID)
 typedef struct tagBITMAPCOREHEADER {
   DWORD   bcSize;
   WORD    bcWidth;

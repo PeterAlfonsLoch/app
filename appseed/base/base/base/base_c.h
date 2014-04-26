@@ -18,6 +18,15 @@
 #define ARGB(a, r, g, b)         RGBA(r, g, b, a)
 
 
+void * get_thread_ptr(const char * pszKey);
+void set_thread_ptr(const char * pszKey, const void * p);
+
+
+int get_thread_int(const char * pszKey);
+void set_thread_int(const char * pszKey, int i);
+
+
+
 #include "primitive/math/math_mkint_c.h"
 
 #if defined(ANDROID)

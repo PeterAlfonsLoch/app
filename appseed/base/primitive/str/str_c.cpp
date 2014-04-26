@@ -20,7 +20,7 @@ void strcat_dup(char * dest, const char * cat)
 }
 
 
-#ifdef MACOS
+#ifdef APPLEOS
 
 int32_t stricmp(const char * sz1, const char * sz2)
 {

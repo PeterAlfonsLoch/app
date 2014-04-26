@@ -70,7 +70,7 @@ namespace user
          bOk = false;
 
          string strMessage;
-#if defined(MACOS) || defined(LINUX)
+#if defined(APPLEOS) || defined(LINUX)
          strMessage.Format("split_view::on_create_views failed to create views for split view %s", typeid(this).name());
 #else
          strMessage.Format("split_view::on_create_views failed to create views for split view %s", typeid(this).raw_name());

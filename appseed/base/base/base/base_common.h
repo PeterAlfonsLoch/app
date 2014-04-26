@@ -1,7 +1,7 @@
 #pragma once
 
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(APPLEOS)
 #include <wchar.h>
 #endif
 

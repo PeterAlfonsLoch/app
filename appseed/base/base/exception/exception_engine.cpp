@@ -22,7 +22,7 @@ It is provided "as is" without express or implied warranty.
 #include <cxxabi.h>
 #define _BSD_SOURCE
 #include <unistd.h>
-#elif defined(MACOS)
+#elif defined(APPLEOS)
 #include <execinfo.h>
 #endif
 
@@ -112,7 +112,7 @@ int_bool __stdcall My_ReadProcessMemory (
 {
 
    SIZE_T size;
-#if defined(METROWIN) || defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(METROWIN) || defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
    throw todo(get_thread_app());
 #else
    if(!ReadProcessMemory(hProcess, (LPCVOID) qwBaseAddress, (LPVOID) lpBuffer, nSize, &size))
@@ -903,7 +903,7 @@ retry_get_base:
 
 
 
-#if defined(LINUX) || defined(METROWIN) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(METROWIN) || defined(APPLEOS) || defined(ANDROID)
    bool engine::stack_trace(string & str, uint_ptr uiSkip, void * caller_address, const char * pszFormat)
 #else
    bool engine::stack_trace(string & str, uint_ptr uiSkip, const char * pszFormat)
