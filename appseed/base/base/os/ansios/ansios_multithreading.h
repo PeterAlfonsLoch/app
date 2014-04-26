@@ -77,6 +77,7 @@ union semun {
 
 #ifdef cplusplus
 
+
 class thread_data
 {
 public:
@@ -84,14 +85,16 @@ public:
     
     pthread_key_t           key;
     
-    thread_data()
-    {
-        
-        pthread_key_create(&key, NULL);
-        
-    }
+
+    thread_data();
+
+
+    void * get();
+    void set(void * p);
     
+
 };
+
 
 template < class T >
 class thread_pointer :
@@ -99,54 +102,21 @@ public thread_data
 {
 public:
     
-    
-    operator T *()
-    {
-        
-        return (T *)pthread_getspecific(key);
-        
-    }
-    
-    T * operator ->()
-    {
-        return operator T *();
-    }
-    
-    thread_pointer & operator = (T * pt)
-    {
-        
-        pthread_setspecific(key, pt);
-        
-        return *this;
-        
-    }
+   operator T *() { return (T *)get(); }
+   T * operator ->() { return operator T *(); }
+   thread_pointer & operator = (T * pt) { set(pt); return *this; }
     
 };
 
 
 template < class T >
-class thread_var :
+class thread_int_ptr :
 public thread_data
 {
 public:
     
-    
-    operator T ()
-    {
-        
-        return (T)(int_ptr)pthread_getspecific(key);
-        
-    }
-    
-    thread_var & operator = (T t)
-    {
-        
-        pthread_setspecific(key, (void *) (int_ptr) t);
-        
-        return *this;
-        
-    }
-    
+    operator T () { return (T)(int_ptr)get(); }
+    thread_var & operator = (T t) { set((void *) (int_ptr) t); return *this; }
     
 };
 

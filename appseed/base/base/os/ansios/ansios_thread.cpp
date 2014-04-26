@@ -396,7 +396,7 @@ LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
        threadData = allthreaddata[currentThread] ;
        if(threadData)
        {
-           set_thread_ptr("currentThreadData", threadData);
+           currentThreadData = threadData;
             if(threadData->get_count() > dwTlsIndex)
             {
                 return threadData->element_at(dwTlsIndex);

@@ -123,3 +123,28 @@ DWORD WaitForSingleObject(waitable * pwaitable, DWORD dwTimeout)
 
 }
 
+
+
+
+thread_data::thread_data();
+{
+
+   pthread_key_create(&key, NULL);
+
+}
+
+
+void * thread_data::get()
+{
+
+   return pthread_getspecific(key);
+
+}
+
+
+void thread_data::set(void * p)
+{
+
+   return pthread_setspecific(key, p);
+
+}
