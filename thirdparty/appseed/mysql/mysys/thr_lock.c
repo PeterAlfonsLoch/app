@@ -100,7 +100,7 @@ void thr_set_lock_wait_callback(void (*before_wait)(void),
   after_lock_wait= after_wait;
 }
 
-static inline mysql_cond_t *get_cond(void)
+inline mysql_cond_t *get_cond(void)
 {
   return &my_thread_var->suspend;
 }
@@ -374,7 +374,7 @@ has_old_lock(THR_LOCK_DATA *data, THR_LOCK_INFO *owner)
   return 0;
 }
 
-static inline my_bool have_specific_lock(THR_LOCK_DATA *data,
+inline my_bool have_specific_lock(THR_LOCK_DATA *data,
 					 enum thr_lock_type type)
 {
   for ( ; data ; data=data->next)

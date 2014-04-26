@@ -133,7 +133,7 @@ CONVERT_TO_BYTE<Tsrc>::convert(FIBITMAP *src, int_bool scale_linear) {
 			for(x = 0; x < width; x++) {
 				// rounding
 				int q = int(src_bits[x] + 0.5);
-				dst_bits[x] = (BYTE) MIN(255, MAX(0, q));
+				dst_bits[x] = (BYTE) min(255, max(0, q));
 			}
 		}
 	}

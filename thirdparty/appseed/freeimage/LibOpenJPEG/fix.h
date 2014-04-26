@@ -53,7 +53,7 @@ Multiply two fixed-precision rational numbers.
 @param b
 @return Returns a * b
 */
-static  int fix_mul(int a, int b) {
+inline int fix_mul(int a, int b) {
     int64 temp = (int64) a * (int64) b ;
     temp += temp & 4096;
     return (int) (temp >> 13) ;

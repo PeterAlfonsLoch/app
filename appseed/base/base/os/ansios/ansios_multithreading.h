@@ -75,3 +75,83 @@ union semun {
 
 
 
+#ifdef cplusplus
+
+class thread_data
+{
+public:
+    
+    
+    pthread_key_t           key;
+    
+    thread_data()
+    {
+        
+        pthread_key_create(&key, NULL);
+        
+    }
+    
+};
+
+template < class T >
+class thread_pointer :
+public thread_data
+{
+public:
+    
+    
+    operator T *()
+    {
+        
+        return (T *)pthread_getspecific(key);
+        
+    }
+    
+    T * operator ->()
+    {
+        return operator T *();
+    }
+    
+    thread_pointer & operator = (T * pt)
+    {
+        
+        pthread_setspecific(key, pt);
+        
+        return *this;
+        
+    }
+    
+};
+
+
+template < class T >
+class thread_var :
+public thread_data
+{
+public:
+    
+    
+    operator T ()
+    {
+        
+        return (T)pthread_getspecific(key)(key);
+        
+    }
+    
+    thread_var & operator = (T t)
+    {
+        
+        pthread_setspecific(key, (void *) (int_ptr) t);
+        
+        return *this;
+        
+    }
+    
+    
+};
+
+
+#endif
+
+
+

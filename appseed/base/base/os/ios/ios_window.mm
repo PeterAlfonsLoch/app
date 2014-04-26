@@ -50,7 +50,7 @@ void ui_app_run()
 void boot_window::boot_window_show()
 {
    
-   [[m_proundwindow->m_controller dd_invokeOnMainThread] showWindow : m_proundwindow];
+//   [[m_proundwindow->m_controller dd_invokeOnMainThread] showWindow : m_proundwindow];
    
 }
 

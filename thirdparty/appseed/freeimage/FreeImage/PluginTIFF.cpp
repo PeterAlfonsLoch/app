@@ -476,7 +476,7 @@ CreateImageType(int_bool header_only, FREE_IMAGE_TYPE fit, int width, int height
 		}
 		else {
 
-			dib = FreeImage_AllocateHeader(header_only, width, height, MIN(bpp, 32), FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK);
+			dib = FreeImage_AllocateHeader(header_only, width, height, min(bpp, 32), FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK);
 		}
 
 

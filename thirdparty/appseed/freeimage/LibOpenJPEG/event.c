@@ -46,7 +46,7 @@ i2a(unsigned i, char *a, unsigned r) {
  @param r Base of value; must be in the range 2 - 36
  @return Returns a
 */
-static char *
+inline char *
 _itoa(int i, char *a, int r) {
 	r = ((r < 2) || (r > 36)) ? 10 : r;
 	if(i < 0) {

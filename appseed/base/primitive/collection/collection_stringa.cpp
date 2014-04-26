@@ -750,7 +750,7 @@ stringa & stringa::csstidy_explode_ws(char sep, const char * psz)
 
    // 1 = st // 2 = str
    int32_t status = 1;
-   char to;
+   char to = '\0';
 
    add("");
    strsize num = 0;

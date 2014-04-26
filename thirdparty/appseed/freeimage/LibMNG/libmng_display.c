@@ -6604,9 +6604,9 @@ mng_retcode mng_process_display_past (mng_datap  pData)
   {
     mng_int32      iSourceY;
     mng_int32      iSourceYinc;
-    mng_int32      iSourcerowsize;
-    mng_int32      iSourcesamples;
-    mng_bool       bSourceRGBA16;
+    mng_int32      iSourcerowsize = 0;
+    mng_int32      iSourcesamples = 0;
+    mng_bool       bSourceRGBA16 = '\0';
     mng_int32      iTargetY;
     mng_int32      iTargetrowsize;
     mng_int32      iTargetsamples;

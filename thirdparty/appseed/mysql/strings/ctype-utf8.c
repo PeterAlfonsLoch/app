@@ -5513,7 +5513,7 @@ static int my_uni_utf8_no_range(const CHARSET_INFO *cs
 }
 
 
-static inline void
+inline void
 my_tolower_utf8mb3(MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
 {
   MY_UNICASE_CHARACTER *page;
@@ -5522,7 +5522,7 @@ my_tolower_utf8mb3(MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
 }
 
 
-static inline void
+inline void
 my_toupper_utf8mb3(MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
 {
   MY_UNICASE_CHARACTER *page;
@@ -5531,7 +5531,7 @@ my_toupper_utf8mb3(MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
 }
 
 
-static inline void
+inline void
 my_tosort_utf8mb3(MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
 {
   MY_UNICASE_CHARACTER *page;
@@ -8046,7 +8046,7 @@ my_caseup_utf8mb4(const CHARSET_INFO *cs, char *src, size_t srclen,
 }
 
 
-static inline void
+inline void
 my_hash_add(ulong *n1, ulong *n2, uint ch)
 {
   n1[0]^= (((n1[0] & 63) + n2[0]) * (ch)) + (n1[0] << 8);

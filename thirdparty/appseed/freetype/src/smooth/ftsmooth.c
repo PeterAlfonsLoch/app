@@ -113,7 +113,9 @@
     FT_Memory    memory = 0;
     FT_Int       hmul = mode == FT_RENDER_MODE_LCD;
     FT_Int       vmul = mode == FT_RENDER_MODE_LCD_V;
-    FT_Pos       x_shift, y_shift, x_left, y_top;
+    FT_Pos       x_shift = 0;
+      FT_Pos       y_shift = 0;
+      FT_Pos       x_left, y_top;
 
     FT_Raster_Params  params;
 

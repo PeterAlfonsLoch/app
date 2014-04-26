@@ -701,7 +701,7 @@ FreeImage_GetTransparencyCount(FIBITMAP *dib) {
 void DLL_CALLCONV
 FreeImage_SetTransparencyTable(FIBITMAP *dib, BYTE *table, int count) {
 	if (dib) {
-		count = MIN(count, 256);
+		count = min(count, 256);
 		if (FreeImage_GetBPP(dib) <= 8) {
 			((FREEIMAGEHEADER *)dib->data)->transparent = TRUE;
 			((FREEIMAGEHEADER *)dib->data)->transparency_count = count;
