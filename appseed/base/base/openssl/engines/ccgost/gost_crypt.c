@@ -11,6 +11,7 @@
 #include <openssl/rand.h>
 #include "e_gost_err.h"
 #include "gost_lcl.h"
+#include <assert.h>
 
 #if !defined(CCGOST_DEBUG) && !defined(DEBUG)
 # ifndef NDEBUG
