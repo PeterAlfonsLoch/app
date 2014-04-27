@@ -55,7 +55,7 @@
  * copied and put under another distribution licence
  * [including the GNU Public Licence.]
  */
-
+#include "framework_c.h"
 ////#include <stdio.h>
 //#include <stdlib.h>
 //#include <string.h>

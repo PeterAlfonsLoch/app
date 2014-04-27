@@ -728,9 +728,6 @@
               <itemPath>../base/openssl/crypto/dh/dh_lib.c</itemPath>
               <itemPath>../base/openssl/crypto/dh/dh_pmeth.c</itemPath>
               <itemPath>../base/openssl/crypto/dh/dh_prn.c</itemPath>
-              <itemPath>../base/openssl/crypto/dh/p1024.c</itemPath>
-              <itemPath>../base/openssl/crypto/dh/p192.c</itemPath>
-              <itemPath>../base/openssl/crypto/dh/p512.c</itemPath>
             </logicalFolder>
             <logicalFolder name="dsa" displayName="dsa" projectFiles="true">
               <itemPath>../base/openssl/crypto/dsa/dsa.h</itemPath>
@@ -2938,9 +2935,12 @@
             <pElem>../../../../../../include</pElem>
             <pElem>../../../include</pElem>
             <pElem>../base/openssl/crypto</pElem>
+            <pElem>../base/openssl/ssl</pElem>
             <pElem>../base/openssl</pElem>
             <pElem>../base/openssl/crypto/asn1</pElem>
             <pElem>../base/openssl/crypto/evp</pElem>
+            <pElem>../base/openssl/crypto/krb5</pElem>
+            <pElem>../base/openssl/crypto/modes</pElem>
           </incDir>
           <standardsEvolution>3</standardsEvolution>
           <languageExtension>2</languageExtension>
@@ -2964,9 +2964,12 @@
             <pElem>../../../../../../include</pElem>
             <pElem>../../../include</pElem>
             <pElem>../base/openssl/crypto</pElem>
+            <pElem>../base/openssl/ssl</pElem>
             <pElem>../base/openssl</pElem>
             <pElem>../base/openssl/crypto/asn1</pElem>
             <pElem>../base/openssl/crypto/evp</pElem>
+            <pElem>../base/openssl/crypto/krb5</pElem>
+            <pElem>../base/openssl/crypto/modes</pElem>
           </incDir>
           <standardsEvolution>3</standardsEvolution>
           <languageExtension>2</languageExtension>

@@ -60,7 +60,7 @@ FRAMEWORK_C_FLAGS_CORE=
 FRAMEWORK_C_FLAGS=-xpch=use:framework_c $(FRAMEWORK_C_FLAGS_CORE)
 #FRAMEWORK_C_FLAGS=$(FRAMEWORK_C_FLAGS_CORE)
 FRAMEWORK_C_FLAGS_COLLECT=-xpch=collect:framework_c $(FRAMEWORK_C_FLAGS_CORE)
-FRAMEWORK_INCLUDES=-I../../../../include -I../../../include -I../framework -I../.. -I../../../.. -I.. -I../base/openssl/include -I../../../../nodeapp/thirdparty/include -I../../../../../../include -I../../../include -I../base/openssl/crypto -I../base/openssl -I../base/openssl/crypto/asn1 -I../base/openssl/crypto/evp
+FRAMEWORK_INCLUDES=-I../../../../include -I../../../include -I../framework -I../.. -I../../../.. -I.. -I../base/openssl/include -I../../../../nodeapp/thirdparty/include -I../../../../../../include -I../../../include -I../base/openssl/crypto -I../base/openssl/ssl -I../base/openssl -I../base/openssl/crypto/asn1 -I../base/openssl/crypto/evp -I../base/openssl/crypto/krb5 -I../base/openssl/crypto/modes
 CPP_BASE_FLAGS=-mt -features=no%anachronisms,no%transitions,tmplife -features=extensions,tmplrefstatic,iddollar
 C_BASE_FLAGS=-mt -xstrconst -xc99
 
