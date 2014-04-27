@@ -744,9 +744,6 @@
     <Filter Include="Source Files\net\idn">
       <UniqueIdentifier>{8e679719-0ed1-4584-a8be-b13c4d00dc92}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\framework\NewFilter1">
-      <UniqueIdentifier>{5b55869c-a9fd-4c54-a3cd-edaa75cfd0d2}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_wstringtou.h">
@@ -3617,16 +3614,10 @@
     <ClInclude Include="base\base\base_class.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\crypto_framework.h">
-      <Filter>Header Files\framework</Filter>
-    </ClInclude>
     <ClInclude Include="framework\framework.h">
       <Filter>Header Files\framework</Filter>
     </ClInclude>
     <ClInclude Include="framework\framework_c.h">
-      <Filter>Header Files\framework</Filter>
-    </ClInclude>
-    <ClInclude Include="framework\idn_framework.h">
       <Filter>Header Files\framework</Filter>
     </ClInclude>
   </ItemGroup>
@@ -7114,9 +7105,6 @@
     <ClCompile Include="base\os\os_binreloc.cpp">
       <Filter>Source Files\base\os</Filter>
     </ClCompile>
-    <ClCompile Include="framework\crypto_framework.c">
-      <Filter>Source Files\framework</Filter>
-    </ClCompile>
     <ClCompile Include="framework\framework.cpp">
       <Filter>Source Files\framework</Filter>
     </ClCompile>
@@ -7483,9 +7471,6 @@
     <ClCompile Include="net\idn\toutf8.c">
       <Filter>Source Files\net\idn</Filter>
     </ClCompile>
-    <ClCompile Include="framework\idn_framework.c">
-      <Filter>Source Files\framework</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_menu_base.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -7691,6 +7676,9 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
