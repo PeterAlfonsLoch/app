@@ -597,6 +597,10 @@
 /* Define to 1 if you have the `readlink' function. */
 #undef HAVE_READLINK
 
+#ifdef (ANDROID)
+#define HAVE_READLINK
+#endif
+
 /* Define to 1 if you have the `readlinkat' function. */
 #undef HAVE_READLINKAT
 

@@ -19,7 +19,7 @@
  */
 
 #include "config.h"
-#include <iconv.h>
+#include "iconv.h"
 
 //#include <stdlib.h>
 //#include <string.h>

@@ -3620,12 +3620,6 @@
     <ClInclude Include="base\base\base_class.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\framework.h">
-      <Filter>Header Files\framework</Filter>
-    </ClInclude>
-    <ClInclude Include="framework\framework_c.h">
-      <Filter>Header Files\framework</Filter>
-    </ClInclude>
     <ClInclude Include="base\os\windows\windows_multithreading.h">
       <Filter>Header Files\base\os\windows</Filter>
     </ClInclude>
@@ -8353,6 +8347,12 @@
     <ClCompile Include="primitive\str\iconv\xstrdup.c">
       <Filter>Source Files\primitive\str\iconv</Filter>
     </ClCompile>
+    <ClCompile Include="framework\framework.h">
+      <Filter>Header Files\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\framework_c.h">
+      <Filter>Header Files\framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -8540,6 +8540,24 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
