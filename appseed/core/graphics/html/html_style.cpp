@@ -172,9 +172,9 @@ namespace html
       style * pstyleRight = NULL;
       style * pstyleBottom = NULL;
       index i = 0;
-      index iLeft;
-      index iTop;
-      index iRight;
+      index iLeft = 0;
+      index iTop = 0;
+      index iRight = 0;
       index iBottom = 0;
 
       if(m_propertyset.has_property(idName))

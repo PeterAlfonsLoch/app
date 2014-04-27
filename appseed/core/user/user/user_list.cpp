@@ -3,6 +3,8 @@
 namespace user
 {
 
+    UINT c_cdecl data_update_list_visible_subitem_proc(LPVOID pparam);
+
 
 
    const UINT list::MESSAGE_ENDCOLUMNHEADERDRAG = WM_USER + 25;

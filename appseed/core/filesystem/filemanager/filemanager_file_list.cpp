@@ -1271,7 +1271,7 @@ namespace filemanager
    int32_t file_list::create_image_list_thread::run()
    {
       int32_t iStepSetCount = 84;
-      int32_t iStepSetSleep = 23;
+//      int32_t iStepSetSleep = 23;
       while (get_run())
       {
          int32_t i = iStepSetCount;

@@ -453,6 +453,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		07011FA3190CA31000C08335 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA6A2FD1907334C000A1F4A /* base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
+			remoteInfo = base;
+		};
+		07011FA5190CA31000C08335 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA6A2FD1907334C000A1F4A /* base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AE24D341904CEFE001AEFFB;
+			remoteInfo = base_ios;
+		};
+		07011FA7190CA31000C08335 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA6A2FD1907334C000A1F4A /* base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
+			remoteInfo = base_iosTests;
+		};
 		9AE24DC71904CF5B001AEFFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A1B2F7F16A2AF5C00875A94 /* Project object */;
@@ -795,6 +816,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07011F9A190CA30F00C08335 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07011FA4190CA31000C08335 /* libbase.dylib */,
+				07011FA6190CA31000C08335 /* libbase.dylib */,
+				07011FA8190CA31000C08335 /* base_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A1B2F7D16A2AF5C00875A94 = {
 			isa = PBXGroup;
 			children = (
@@ -1422,6 +1453,12 @@
 			mainGroup = 9A1B2F7D16A2AF5C00875A94;
 			productRefGroup = 9A1B2F7D16A2AF5C00875A94;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 07011F9A190CA30F00C08335 /* Products */;
+					ProjectRef = 9AA6A2FD1907334C000A1F4A /* base.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9AA5E4C216F7C61B005C45CE /* basemysql */,
@@ -1430,6 +1467,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		07011FA4190CA31000C08335 /* libbase.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libbase.dylib;
+			remoteRef = 07011FA3190CA31000C08335 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07011FA6190CA31000C08335 /* libbase.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libbase.dylib;
+			remoteRef = 07011FA5190CA31000C08335 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07011FA8190CA31000C08335 /* base_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = base_iosTests.xctest;
+			remoteRef = 07011FA7190CA31000C08335 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9AE24DBF1904CF5B001AEFFB /* Resources */ = {
