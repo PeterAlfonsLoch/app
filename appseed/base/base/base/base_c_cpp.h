@@ -363,7 +363,6 @@ namespace file
 
 
 
-
 #include "base_class.h"
 
 #include "base/primitive/comparison/comparison_md5.h"
@@ -372,21 +371,15 @@ namespace file
 
 #include "base_conv.h"
 
-
-
 #include "base_core.h"
-
 
 #include "base_library.h"
 
-
 #include "base/primitive/primitive_request_interface.h"
 
-
 #include "base/multithreading/multithreading_wait_result.h"
+
 #include "base/multithreading/multithreading_waitable.h"
-
-
 
 #include "base/primitive/primitive_object.h"
 
@@ -501,6 +494,7 @@ namespace file
 
 #elif defined(ANDROID)
 
+#include "base/os/ansios/ansios.h"
 #include "base/os/android/android.h"
 
 #elif defined(WINDOWS)
@@ -1008,30 +1002,17 @@ namespace numeric_info
 
 
 
-   //#include "base_library.h"
-
 #include "base_file_watcher.h"
 #include "base_file_watcher_impl.h"
 
 
-
-   /*#ifndef WINDOWS
-   #define VK_TAB 1
-   #define VK_RETURN 2
-   #define VK_BACK 3
-   #define VK_DELETE 6
-   #define VK_SPACE 9
-   #endif*/
-
 #include "base_os.h"
 
-   //#include "base/cross/cross.h"
 
-
+#include "base/multithreading/multithreading_data.h"
 
 
 #include "base_simple_shell_launcher.h"
-
 
 
 #include "base_file_watcher_thread.h"

@@ -18,7 +18,6 @@ class multi_lock;
 CLASS_DECL_BASE void __post_quit_message(int32_t nExitCode);
 
 
-#include "multithreading_data.h"
 #include "multithreading_sync_object.h"
 #include "multithreading_event_base.h"
 #include "multithreading_event_collection.h"
