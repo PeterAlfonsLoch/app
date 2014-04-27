@@ -189,8 +189,6 @@ namespace bergedge
    void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
 
-      ::plane::session & papp = Session;
-
       string strId = pcreatordata->m_id;
 
       if(::str::begins_eat(strId, "app:"))
@@ -217,7 +215,7 @@ namespace bergedge
          pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
 	   	if(App(Session.m_pappCurrent).file().exists(strIcon))
          {
-            ppane->m_dib.create(papp.allocer());
+            ppane->m_dib.create(allocer());
             ppane->m_dib.load_from_file(strIcon);
          }
          else
@@ -229,7 +227,7 @@ namespace bergedge
       else if(strId == "::bergedge::pane_view_application")
       {
          pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
-         sp(::filemanager::document) pdoc = papp.filemanager().std().open_child_list(false, true, this);
+         sp(::filemanager::document) pdoc = Session.filemanager().std().open_child_list(false, true, this);
          if(pdoc != NULL)
          {
             pdoc->get_filemanager_data()->m_iIconSize = 48;
@@ -288,7 +286,7 @@ namespace bergedge
          case PaneViewWinActionArea:
             {
                pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
-               ::filemanager::schema * ptemplate = &papp.filemanager().std();
+               ::filemanager::schema * ptemplate = &Session.filemanager().std();
                sp(::filemanager::document) pdoc = ptemplate->open_child_list(false, true, pcreatordata->m_pholder);
                if(pdoc != NULL)
                {
@@ -324,7 +322,7 @@ namespace bergedge
             break;
          case PaneViewThreeActionLaunch:
             {
-               sp(::filemanager::document) pdoc = papp.filemanager().std().open_child_list(false, true, pcreatordata->m_pholder);
+               sp(::filemanager::document) pdoc = Session.filemanager().std().open_child_list(false, true, pcreatordata->m_pholder);
                if(pdoc != NULL)
                {
                   pdoc->get_filemanager_data()->m_iIconSize = 48;

@@ -136,12 +136,11 @@ namespace command
 
    void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
-      sp(application) papp =  (( (GetParentFrame()))->get_app());
       switch(pcreatordata->m_id)
       {
       case PaneViewContextMenu:
          {
-            sp(::filemanager::document) pdoc = papp->filemanager().std().open_child_list(false, true);
+                                 sp(::filemanager::document) pdoc = Session.filemanager().std().open_child_list(false, true);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_iIconSize = 16;
@@ -184,7 +183,7 @@ namespace command
          break;
       case PaneViewFileManager:
          {
-            sp(::filemanager::document) pdoc = papp->filemanager().std().open_child(false, true);
+                                 sp(::filemanager::document) pdoc = Session.filemanager().std().open_child(false, true);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_strDISection = "winactionarea_filemanager";
@@ -212,7 +211,7 @@ namespace command
          break;
       case PaneViewThreeActionLaunch:
          {
-            sp(::filemanager::document) pdoc = papp->filemanager().std().open_child_list(false, true);
+                                       sp(::filemanager::document) pdoc = Session.filemanager().std().open_child_list(false, true);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_iIconSize = 48;

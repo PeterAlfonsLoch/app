@@ -99,7 +99,6 @@ namespace platform
 
    void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
-      sp(application) papp = GetParentFrame()->get_app();
       switch(pcreatordata->m_id)
       {
       case platform::PaneViewContextMenu:
@@ -147,7 +146,7 @@ namespace platform
          break;
       case platform::PaneViewFileManager:
          {
-            sp(::filemanager::document) pdoc = Sess(papp->m_pplaneapp).filemanager().std().open_child(false, true);
+            sp(::filemanager::document) pdoc = Session.filemanager().std().open_child(false, true);
             if(pdoc != NULL)
             {
                sp(::user::impact) pview = pdoc->get_view();

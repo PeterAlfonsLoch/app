@@ -206,7 +206,7 @@ namespace plane
       initialize_bergedge_application_interface();
 
 
-      //filemanager().std().m_strLevelUp = "levelup";
+      //Session.filemanager().std().m_strLevelUp = "levelup";
 
 
       SetRegistryKey("ca2core");
@@ -221,7 +221,7 @@ namespace plane
       initialize_bergedge_application_interface();
 
 
-      filemanager().std().m_strLevelUp = "levelup";
+      Session.filemanager().std().m_strLevelUp = "levelup";
 
 
       //SetRegistryKey("ca2core");
