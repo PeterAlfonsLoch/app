@@ -42,7 +42,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#include "crypto_framework.h"
+#include "framework_c.h"
 
 
 #define ALIGN_32 0

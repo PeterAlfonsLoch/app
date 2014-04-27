@@ -689,7 +689,6 @@
               <itemPath>../base/openssl/crypto/des/des_old.c</itemPath>
               <itemPath>../base/openssl/crypto/des/des_old.h</itemPath>
               <itemPath>../base/openssl/crypto/des/des_old2.c</itemPath>
-              <itemPath>../base/openssl/crypto/des/des_opts.c</itemPath>
               <itemPath>../base/openssl/crypto/des/des_ver.h</itemPath>
               <itemPath>../base/openssl/crypto/des/dess.cpp</itemPath>
               <itemPath>../base/openssl/crypto/des/destest.c</itemPath>

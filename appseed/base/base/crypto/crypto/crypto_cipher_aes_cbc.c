@@ -43,7 +43,7 @@
  *
  */
 
-#include "crypto_framework.h"
+#include "framework_c.h"
 
 
 debug_module_t mod_aes_cbc = {

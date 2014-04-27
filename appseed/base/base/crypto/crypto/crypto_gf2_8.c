@@ -44,7 +44,7 @@
  *
  */
 
-#include "crypto_framework.h"
+#include "framework_c.h"
 
 
 /* gf2_8_shift() moved to gf2_8.h as an inline function */

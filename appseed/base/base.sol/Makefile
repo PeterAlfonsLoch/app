@@ -58,21 +58,13 @@ FRAMEWORK_FLAGS_COLLECT=-xpch=collect:framework $(FRAMEWORK_FLAGS_CORE)
 FRAMEWORK_C_FLAGS_CORE= 
 FRAMEWORK_C_FLAGS=-xpch=use:framework $(FRAMEWORK_C_FLAGS_CORE)
 FRAMEWORK_C_FLAGS_COLLECT=-xpch=collect:framework $(FRAMEWORK_C_FLAGS_CORE)
-CRYPTO_FRAMEWORK_FLAGS_CORE=
-CRYPTO_FRAMEWORK_FLAGS=-xpch=use:framework $(CRYPTO_FRAMEWORK_FLAGS_CORE)
-CRYPTO_FRAMEWORK_FLAGS_COLLECT=-xpch=collect:framework $(CRYPTO_FRAMEWORK_FLAGS_CORE)
-IDN_FRAMEWORK_FLAGS_CORE=
-IDN_FRAMEWORK_FLAGS=-xpch=use:idn_framework $(IDN_FRAMEWORK_FLAGS_CORE)
-IDN_FRAMEWORK_FLAGS_COLLECT=-xpch=collect:idn_framework $(IDN_FRAMEWORK_FLAGS_CORE)
 FRAMEWORK_INCLUDES=-I../../../../include -I../../../include -I../framework -I../.. -I../../../.. -I.. -I../base/openssl/include -I../../../../nodeapp/thirdparty/include -I../../../../../../include -I../../../include -I../base/openssl/crypto -I../base/openssl -I../base/openssl/crypto/asn1 -I../base/openssl/crypto/evp
 CPP_BASE_FLAGS=-features=no%anachronisms,no%transitions,tmplife -features=extensions,tmplrefstatic,iddollar
 C_BASE_FLAGS=
 
 FRAMEWORK_FILES= \
 	framework.Cpch \
-	framework_c.Cpch \
-	crypto_framework.Cpch \
-	idn_framework.Cpch 
+	framework_c.Cpch
 
 
 # build
@@ -85,10 +77,6 @@ framework.Cpch: $(FRAMEWORK_DIR)/framework.cpp
 	$(CCC) $(CPP_BASE_FLAGS) -c -g $(FRAMEWORK_INCLUDES) -KPIC $(FRAMEWORK_FLAGS_COLLECT) -xe $(FRAMEWORK_DIR)/framework.cpp
 framework_c.Cpch: $(FRAMEWORK_DIR)/framework_c.c
 	$(CC) $(C_BASE_FLAGS) -c -g -DDEBUG $(FRAMEWORK_INCLUDES) -KPIC $(FRAMEWORK_C_FLAGS_COLLECT) -xe $(FRAMEWORK_DIR)/framework_c.c
-crypto_framework.Cpch: $(FRAMEWORK_DIR)/crypto_framework.c
-	$(CC) $(C_BASE_FLAGS) -c -g $(FRAMEWORK_INCLUDES) -KPIC $(CRYPTO_FRAMEWORK_FLAGS_COLLECT) -xe $(FRAMEWORK_DIR)/crypto_framework.c
-idn_framework.Cpch: $(FRAMEWORK_DIR)/idn_framework.c
-	$(CC) $(C_BASE_FLAGS) -c -g $(FRAMEWORK_INCLUDES) $(IDN_FRAMEWORK_FLAGS_COLLECT) -xe $(FRAMEWORK_DIR)/idn_framework.c
 
 
 .build-post: .build-impl

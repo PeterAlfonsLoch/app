@@ -41,7 +41,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#include "crypto_framework.h"
+#include "framework_c.h"
 
 int32_t
 v32_low_bit(v32_t *w);

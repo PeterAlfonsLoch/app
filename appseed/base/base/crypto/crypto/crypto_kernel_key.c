@@ -41,7 +41,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#include "crypto_framework.h"
+#include "framework_c.h"
 
 #define soft_limit 0x10000
 
