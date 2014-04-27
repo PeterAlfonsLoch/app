@@ -20,7 +20,7 @@ CLASS_DECL_BASE void dll_processes(uint_array & dwa, stringa & straProcesses, co
 #include <unistd.h>
 
 
-extern __thread os_thread * t_posthread;
+extern thread_pointer < os_thread > t_posthread;
 
 
 int32_t create_process(const char * _cmd_line, int32_t * pprocessId)

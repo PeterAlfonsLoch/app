@@ -30,6 +30,16 @@
  */
 #ifndef __INT_H
 #define __INT_H
+
+#ifndef __cplusplus
+#ifdef inline
+#undef inline
+#endif // inline
+#define inline static
+#endif
+
+
+
 /**
 @file int.h
 @brief Implementation of operations on integers (INT)
@@ -63,7 +73,7 @@ Clamp an integer inside an interval
 <ul>
 <li>Returns a if (min < a < max)
 <li>Returns max if (a > max)
-<li>Returns min if (a < min) 
+<li>Returns min if (a < min)
 </ul>
 */
 inline  int int_clamp(int a, int min, int max) {

@@ -1960,11 +1960,11 @@ typedef struct _OBJECT_ATTRIBUTES {
 
 #if defined(__i386__) && defined(__GNUC__)
 
-static inline void WINAPI DbgBreakPoint(void) {
+inline void WINAPI DbgBreakPoint(void) {
         __asm__ __volatile__("int3");
     }
 
-    static inline void WINAPI DbgUserBreakPoint(void) {
+    inline void WINAPI DbgUserBreakPoint(void) {
         __asm__ __volatile__("int3");
     }
 #else  /* __i386__ && __GNUC__ */
@@ -2564,7 +2564,7 @@ static inline void WINAPI DbgBreakPoint(void) {
 
 #ifndef METROWIN
 
-    static inline int_bool RtlCheckBit(PCRTL_BITMAP lpBits, ULONG ulBit) {
+    inline int_bool RtlCheckBit(PCRTL_BITMAP lpBits, ULONG ulBit) {
         if (lpBits && ulBit < lpBits->SizeOfBitMap &&
                 lpBits->Buffer[ulBit >> 5] & (1 << (ulBit & 31)))
             return TRUE;
@@ -2572,11 +2572,11 @@ static inline void WINAPI DbgBreakPoint(void) {
     }
 
     /* These are implemented as __fastcall, so we can't let Winelib apps link with them */
-    static inline USHORT RtlUshortByteSwap(USHORT s) {
+    inline USHORT RtlUshortByteSwap(USHORT s) {
         return (s >> 8) | (s << 8);
     }
 
-    static inline ULONG RtlUlongByteSwap(ULONG i) {
+    inline ULONG RtlUlongByteSwap(ULONG i) {
 #if defined(__i386__) && defined(__GNUC__)
         ULONG ret;
         __asm__("bswap %0" : "=r" (ret) : "0" (i));
@@ -2597,7 +2597,7 @@ static inline void WINAPI DbgBreakPoint(void) {
 
 #ifndef METROWIN
 
-static inline PLIST_ENTRY RemoveHeadList(PLIST_ENTRY le) {
+inline PLIST_ENTRY RemoveHeadList(PLIST_ENTRY le) {
         PLIST_ENTRY f, b, e;
 
         e = le->Flink;
@@ -2610,7 +2610,7 @@ static inline PLIST_ENTRY RemoveHeadList(PLIST_ENTRY le) {
         return e;
     }
 
-    static inline PLIST_ENTRY RemoveTailList(PLIST_ENTRY le) {
+    inline PLIST_ENTRY RemoveTailList(PLIST_ENTRY le) {
         PLIST_ENTRY f, b, e;
 
         e = le->Blink;
@@ -2633,7 +2633,7 @@ static inline PLIST_ENTRY RemoveHeadList(PLIST_ENTRY le) {
         DWORD vm86_pending;
     } WINE_VM86_TEB_INFO;
 
-    static inline WINE_VM86_TEB_INFO *get_vm86_teb_info(void) {
+    inline WINE_VM86_TEB_INFO *get_vm86_teb_info(void) {
         return (WINE_VM86_TEB_INFO *)&NtCurrentTeb()->GdiTebBatch;
     }
 

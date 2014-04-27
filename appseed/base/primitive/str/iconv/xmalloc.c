@@ -22,9 +22,9 @@
 //#include <stdlib.h>
 
 #include "error.h"
-#include "gettext.h"
+//#include "gettext.h"
 
-#define _(str) gettext (str)
+//#define _(str) gettext (str)
 
 
 /* Exit value when the requested amount of memory is not available.

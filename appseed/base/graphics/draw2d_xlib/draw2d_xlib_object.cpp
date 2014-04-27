@@ -37,16 +37,16 @@ namespace draw2d_xlib
       //return (UINT)::GetObjectType(get_handle());
       return 0;
    }
-   bool object::operator==(const object& obj) const
-   {
+//   bool object::operator==(const object& obj) const
+  // {
       //return ((HGDIOBJ) obj.get_os_data()) == get_handle();
-      return FALSE;
-   }
-   bool object::operator!=(const object& obj) const
-   {
+    //  return FALSE;
+  // }
+   //bool object::operator!=(const object& obj) const
+   //{
       //return ((HGDIOBJ) obj.get_os_data()) != get_handle();
-      return TRUE;
-   }
+     // return TRUE;
+   //}
 
 
    object * graphics_object_allocator(sp(base_application) papp, HANDLE h)

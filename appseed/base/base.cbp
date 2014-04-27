@@ -3005,14 +3005,6 @@
 		<Unit filename="filesystem/fs/fs_remote_native_fs.h" />
 		<Unit filename="filesystem/fs/fs_set.cpp" />
 		<Unit filename="filesystem/fs/fs_set.h" />
-		<Unit filename="framework/crypto_framework.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="framework/crypto_framework.h">
-			<Option compilerVar="CC" />
-			<Option compile="1" />
-			<Option weight="0" />
-		</Unit>
 		<Unit filename="framework/framework.cpp" />
 		<Unit filename="framework/framework.h">
 			<Option compile="1" />
