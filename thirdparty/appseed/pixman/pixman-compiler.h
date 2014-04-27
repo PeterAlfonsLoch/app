@@ -77,6 +77,9 @@
 #   define force_inline __forceinline
 #   define noinline __declspec(noinline)
 #elif defined __GNUC__ || (defined(__SUNPRO_C) && (__SUNPRO_C >= 0x590))
+#ifdef inline
+#undef inline
+#endif
 #   define inline __inline__
 #   define force_inline __inline__ __attribute__ ((__always_inline__))
 #   define noinline __attribute__((noinline))

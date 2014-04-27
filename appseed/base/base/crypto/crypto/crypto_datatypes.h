@@ -425,7 +425,7 @@ static inline uint32_t be32_to_cpu(uint32_t v) {
 #define CRYPTO_INLINE inline
 #endif
 
-static CRYPTO_INLINE uint64_t be64_to_cpu(uint64_t v) {
+CRYPTO_INLINE uint64_t be64_to_cpu(uint64_t v) {
 # ifdef NO_64BIT_MATH
    /* use the make64 functions to do 64-bit math */
    v = make64(htonl(low32(v)), htonl(high32(v)));
