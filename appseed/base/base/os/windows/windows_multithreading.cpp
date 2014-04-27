@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-_declspec(thread) void *        thread_data::t_p = NULL;
+_declspec(thread) void * thread_data_base::t_p = NULL;
 
 
 void * thread_data::get()
