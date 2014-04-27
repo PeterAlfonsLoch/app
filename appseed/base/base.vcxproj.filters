@@ -3620,6 +3620,12 @@
     <ClInclude Include="framework\framework_c.h">
       <Filter>Header Files\framework</Filter>
     </ClInclude>
+    <ClInclude Include="base\os\windows\windows_multithreading.h">
+      <Filter>Header Files\base\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_data.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -7488,6 +7494,9 @@
     </ClCompile>
     <ClCompile Include="base\install\install_plugin_bare_paint_discreet.cpp">
       <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_multithreading.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
