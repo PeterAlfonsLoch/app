@@ -13904,7 +13904,7 @@ zulu_time:
          char buf[etBUFSIZE];       /* Conversion buffer */
          char prefix;               /* Prefix character.  "+" or "-" or " " or '\0'. */
          etByte errorflag = 0;      /* True if an error is encountered */
-         etByte xtype;              /* Conversion paradigm */
+         etByte xtype = '\0';              /* Conversion paradigm */
          char *zExtra;              /* Extra primitive::memory used for etTCLESCAPE conversions */
 #ifndef SQLITE_OMIT_FLOATING_POINT
          int32_t  exp, e2;              /* exponent of real numbers */
@@ -31985,7 +31985,7 @@ create_cursor_exception:
       Pgno *pPgnoNext              /* OUT: Next overflow page number */
       ){
          Pgno next = 0;
-         int32_t rc;
+         int32_t rc = 0;
 
          assert( sqlite3_mutex_held(pBt->mutex) );
          /* One of these must not be NULL. Otherwise, why call this function? */
@@ -32535,7 +32535,7 @@ create_cursor_exception:
    static int32_t moveToRightmost(BtCursor *pCur){
       Pgno pgno;
       int32_t rc = SQLITE_OK;
-      MemPage *pPage;
+      MemPage *pPage = NULL;
 
       assert( cursorHoldsMutex(pCur) );
       assert( pCur->eState==CURSOR_VALID );
@@ -42493,7 +42493,7 @@ arithmetic_result_is_null:
                      u8 *zEndHdr;     /* Pointer to first byte after the header */
                      u32 offset;      /* Offset into the data */
                      int32_t szHdrSz;     /* Size of the header size field at start of record */
-                     int32_t avail;       /* Number of bytes of available data */
+                     int32_t avail = 0;       /* Number of bytes of available data */
 
                      aType = pC->aType;
                      if( aType==0 ){
@@ -43673,7 +43673,7 @@ op_column_out:
                      ** larger than the previous rowid.  This has been shown experimentally
                      ** to double the speed of the COPY operation.
                      */
-                     int32_t res, rx=SQLITE_OK, cnt;
+                     int32_t res = 0, rx=SQLITE_OK, cnt;
                      i64 x;
                      cnt = 0;
                      if( (sqlite3BtreeFlags(pC->pCursor)&(BTREE_INTKEY|BTREE_ZERODATA)) !=
@@ -43892,7 +43892,7 @@ op_column_out:
                                */
                case OP_Delete: {
                   int32_t i = pOp->p1;
-                  i64 iKey;
+                  i64 iKey = 0;
                   Cursor *pC;
 
                   assert( i>=0 && i<p->nCursor );
@@ -54786,10 +54786,10 @@ exit_drop_index:
          int32_t isView;                  /* True if attempting to delete from a view */
          int32_t triggers_exist = 0;      /* True if any triggers exist */
 #endif
-         int32_t iBeginAfterTrigger;      /* Address of after trigger program */
-         int32_t iEndAfterTrigger;        /* Exit of after trigger program */
-         int32_t iBeginBeforeTrigger;     /* Address of before trigger program */
-         int32_t iEndBeforeTrigger;       /* Exit of before trigger program */
+         int32_t iBeginAfterTrigger = 0;      /* Address of after trigger program */
+         int32_t iEndAfterTrigger = 0;        /* Exit of after trigger program */
+         int32_t iBeginBeforeTrigger = 0;     /* Address of before trigger program */
+         int32_t iEndBeforeTrigger = 0;       /* Exit of before trigger program */
          u32 old_col_mask = 0;        /* Mask of OLD.* columns in use */
 
          sContext.pParse = 0;
@@ -56097,7 +56097,7 @@ delete_from_cleanup:
             flags = (sqlite3_intptr_t)sqlite3_user_data(context);
             if( flags & 1 ){
                while( nIn>0 ){
-                  int32_t len;
+                  int32_t len = 0;
                   for(i=0; i<nChar; i++){
                      len = aLen[i];
                      if( memcmp(zIn, azChar[i], len)==0 ) break;
@@ -56109,7 +56109,7 @@ delete_from_cleanup:
             }
             if( flags & 2 ){
                while( nIn>0 ){
-                  int32_t len;
+                  int32_t len = 0;
                   for(i=0; i<nChar; i++){
                      len = aLen[i];
                      if( len<=nIn && memcmp(&zIn[nIn-len],azChar[i],len)==0 ) break;
@@ -57124,7 +57124,7 @@ delete_from_cleanup:
          int32_t appendFlag = 0;   /* True if the insert is likely to be an append */
 
          /* Register allocations */
-         int32_t regFromSelect;    /* Base register for data coming from SELECT */
+         int32_t regFromSelect = 0;    /* Base register for data coming from SELECT */
          int32_t regAutoinc = 0;   /* Register holding the AUTOINCREMENT counter */
          int32_t regRowCount = 0;  /* Memory cell used for the row counter */
          int32_t regIns;           /* Block of regs holding rowid+data being inserted */
@@ -57782,7 +57782,7 @@ insert_cleanup:
          Vdbe *v;
          int32_t nCol;
          int32_t onError;
-         int32_t j1, j2, j3;     /* Addresses of jump instructions */
+         int32_t j1, j2 = 0, j3;     /* Addresses of jump instructions */
          int32_t regData;        /* Register containing first data column */
          int32_t iCur;
          Index *pIdx;
@@ -66300,10 +66300,10 @@ drop_trigger_cleanup:
          int32_t isView;                  /* Trying to update a view */
          int32_t triggers_exist = 0;      /* True if any row triggers exist */
 #endif
-         int32_t iBeginAfterTrigger;      /* Address of after trigger program */
-         int32_t iEndAfterTrigger;        /* Exit of after trigger program */
-         int32_t iBeginBeforeTrigger;     /* Address of before trigger program */
-         int32_t iEndBeforeTrigger;       /* Exit of before trigger program */
+         int32_t iBeginAfterTrigger = 0;      /* Address of after trigger program */
+         int32_t iEndAfterTrigger = 0;        /* Exit of after trigger program */
+         int32_t iBeginBeforeTrigger = 0;     /* Address of before trigger program */
+         int32_t iEndBeforeTrigger = 0;       /* Exit of before trigger program */
          u32 old_col_mask = 0;        /* Mask of OLD.* columns in use */
          u32 new_col_mask = 0;        /* Mask of NEW.* columns in use */
 

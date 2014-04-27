@@ -13,7 +13,7 @@ namespace dynamic_source
 
    UINT ThreadProcRsa(LPVOID lp);
 
-   CLASS_DECL_THREAD script_instance  * t_pinstanceSeed = NULL;
+   thread_pointer < script_instance > t_pinstanceSeed;
 
    script_instance * get_seed_instance()
    {

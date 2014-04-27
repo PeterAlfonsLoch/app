@@ -300,7 +300,7 @@ namespace user
       string str;
 //      bool bLoad = !bSave;
       int32_t iOldWidth;
-      int32_t iWidth;
+      int32_t iWidth = 0;
       str.Format("::user::list_column[%d].width", iColumn);
       draw_list_item item(m_plistctrlinterface);
       if(bSave)

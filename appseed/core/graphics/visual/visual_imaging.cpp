@@ -247,7 +247,7 @@ bool imaging::from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMA
 
    byte * pbSrc = (byte *) pdata;
 
-   ::count c = pdib->area();
+   ::count c = (count) pdib->area();
 
    while(c-- > 0)
    {

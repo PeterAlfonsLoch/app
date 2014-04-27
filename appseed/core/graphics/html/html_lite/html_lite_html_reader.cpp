@@ -25,7 +25,7 @@
 *   me to keep updating it.
 */
 #include "framework.h"
-#ifdef LINUX
+#if defined(LINUX) || defined(APPLEOS)
 #include <sys/mman.h>
 #include <unistd.h>
 #endif
@@ -456,7 +456,7 @@ map_error:
 
    int64_t iRead;
 
-   int64_t iPos = 0;
+   strsize iPos = 0;
 
    while(iPos < dwBufLen && (iRead = ::read(fd, &lpsz[iPos], dwBufLen - iPos)) > 0)
    {

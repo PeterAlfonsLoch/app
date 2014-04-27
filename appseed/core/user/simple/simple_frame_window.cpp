@@ -763,7 +763,7 @@ void simple_frame_window::_001OnNcActivate(signal_details * pobj)
    {
       // do not call the base class because it will call Default()
       //  and we may have changed bActive.
-      pncactivate->set_lresult(DefWindowProc(WM_NCACTIVATE, pncactivate->m_bActive, 0L)); // bStop
+      pncactivate->set_lresult(DefWindowProc(WM_NCACTIVATE, pncactivate->m_bActive, 0)); // bStop
       pncactivate->m_bRet = pncactivate->get_lresult() != 0;
       return;
    }

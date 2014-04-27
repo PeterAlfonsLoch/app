@@ -3241,8 +3241,8 @@ namespace user
       //detects change
       int_ptr iVisibleCount = VisibleGetCount();
       int_ptr iChangeCount = 0;
-      int_ptr iNew;
-      int_ptr iOld;
+      int_ptr iNew = 0;
+      int_ptr iOld = 0;
       for(int_ptr iVisibleKey = 0; iVisibleKey < iVisibleCount; iVisibleKey++)
       {
          list_column * column = _001GetVisible(iVisibleKey);

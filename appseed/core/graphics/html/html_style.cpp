@@ -171,11 +171,11 @@ namespace html
       style * pstyleTop = NULL;
       style * pstyleRight = NULL;
       style * pstyleBottom = NULL;
-      index i;
+      index i = 0;
       index iLeft;
       index iTop;
       index iRight;
-      index iBottom;
+      index iBottom = 0;
 
       if(m_propertyset.has_property(idName))
          pstyle = this;

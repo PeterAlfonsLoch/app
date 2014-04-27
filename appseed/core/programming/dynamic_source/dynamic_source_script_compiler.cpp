@@ -1254,7 +1254,7 @@ namespace dynamic_source
       strsize iBracket = 0;
       bool bInBrace = false;
       strsize iVar = -1;
-      strsize iIdLen;
+      strsize iIdLen = 0;
       char ch;
       char chNext;
       string strResult;

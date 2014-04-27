@@ -902,7 +902,7 @@ namespace user
    void edit_plain_text::_001SetSelText(const char * psz, ::action::context actioncontext)
    {
       m_ptree->m_editfile.seek(m_ptree->m_iSelStart, ::file::seek_begin);
-      m_ptree->m_editfile.Delete((file_size) (m_ptree->m_iSelEnd - m_ptree->m_iSelStart));
+       m_ptree->m_editfile.Delete((primitive::memory_size) (m_ptree->m_iSelEnd - m_ptree->m_iSelStart));
       m_ptree->m_editfile.seek(m_ptree->m_iSelStart, ::file::seek_begin);
       m_ptree->m_editfile.Insert(psz, strlen(psz));
       _001OnUpdate(actioncontext);
@@ -1505,7 +1505,7 @@ namespace user
                psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
                ::sort::sort(i1, i2);
                m_ptree->m_editfile.seek(i1, ::file::seek_begin);
-               m_ptree->m_editfile.Delete((file_size)(i2 - i1));
+               m_ptree->m_editfile.Delete((primitive::memory_size)(i2 - i1));
                IndexRegisterDelete(i1, i2 - i1);
                m_ptree->m_iSelEnd = i1;
                m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
@@ -1533,7 +1533,7 @@ namespace user
                strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
                m_ptree->m_iSelEnd -= iMultiByteUtf8DeleteCount;
                m_ptree->m_editfile.seek(m_ptree->m_iSelEnd, ::file::seek_begin);
-               m_ptree->m_editfile.Delete((file_size) iMultiByteUtf8DeleteCount);
+               m_ptree->m_editfile.Delete((primitive::memory_size) iMultiByteUtf8DeleteCount);
                IndexRegisterDelete(m_ptree->m_iSelEnd, iMultiByteUtf8DeleteCount);
                m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
                psetsel->m_iSelStart = m_ptree->m_iSelStart;
@@ -1681,7 +1681,7 @@ namespace user
             strsize i2 = m_ptree->m_iSelEnd;
             ::sort::sort(i1, i2);
             m_ptree->m_editfile.seek(i1, ::file::seek_begin);
-            m_ptree->m_editfile.Delete((file_size) (i2 - i1));
+            m_ptree->m_editfile.Delete((primitive::memory_size) (i2 - i1));
             IndexRegisterDelete(i1, i2 - i1);
             m_ptree->m_iSelEnd = i1;
             m_ptree->m_editfile.seek(m_ptree->m_iSelEnd, ::file::seek_begin);
@@ -1749,7 +1749,7 @@ namespace user
             {
                ::sort::sort(i1, i2);
                m_ptree->m_editfile.seek(i1, ::file::seek_begin);
-               m_ptree->m_editfile.Delete((file_size) (i2 - i1));
+               m_ptree->m_editfile.Delete((primitive::memory_size) (i2 - i1));
                m_ptree->m_iSelEnd = i1;
                m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
             }
@@ -1764,7 +1764,7 @@ namespace user
                const char * psz = ::str::utf8_dec(buf, &buf[iCur]);
                strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
                m_ptree->m_editfile.seek(m_ptree->m_iSelEnd, ::file::seek_begin);
-               m_ptree->m_editfile.Delete((file_size) (iMultiByteUtf8DeleteCount));
+               m_ptree->m_editfile.Delete((primitive::memory_size) (iMultiByteUtf8DeleteCount));
                IndexRegisterDelete(m_ptree->m_iSelEnd, iMultiByteUtf8DeleteCount);
                m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
             }

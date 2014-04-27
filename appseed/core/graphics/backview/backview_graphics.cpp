@@ -309,10 +309,10 @@ namespace backview
             class size sizeSource = bmpSource->get_size();
 
 
-            int32_t finalX;
-            int32_t finalY;
-            int32_t finalW;
-            int32_t finalH;
+            int32_t finalX = 0;
+            int32_t finalY = 0;
+            int32_t finalW = 0;
+            int32_t finalH = 0;
 
             ImageChange & imagechange = main.GetImageChange();
 

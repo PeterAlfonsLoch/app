@@ -2,7 +2,11 @@
 
 #if defined(LINUX) || defined(APPLEOS)
 #if defined(APPLEOS)
+
+#ifndef APPLEOS
 #define _DARWIN_C_SOURCE
+#endif
+
 #endif
 #include <dlfcn.h>
 #include <sys/stat.h>

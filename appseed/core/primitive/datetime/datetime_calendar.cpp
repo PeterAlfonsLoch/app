@@ -190,7 +190,7 @@ void calendar::_001GetHtml(sp(::html::file) pfile)
          {
             int32_t w ;       if(pfile->m_strOptions.find("<monday-first>")>=0)
       {
-         w = atoi(System.datetime().strftime("%V", ::datetime::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
+         w = (time_t) atoi(System.datetime().strftime("%V", ::datetime::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
       }
       else
       {

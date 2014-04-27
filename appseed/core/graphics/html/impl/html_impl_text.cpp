@@ -539,7 +539,7 @@ namespace html
 
             m_box.get(rect);
 
-            COLORREF cr;
+            COLORREF cr = 0;
 
             double d;
 
@@ -592,7 +592,7 @@ namespace html
          ::html::impl::elemental::_001OnDraw(pdata);
 
 
-         COLORREF cr;
+         COLORREF cr = 0;
          bool bOpaque;
          COLORREF crBkColor;
          if(m_bHover && m_pelemental->m_style.get_color("background-color", "hover", pdata, m_pelemental, cr))
