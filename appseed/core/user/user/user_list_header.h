@@ -67,7 +67,7 @@ namespace user
       virtual void DrawItem(::draw2d::item * pdrawitem);
 
 
-      virtual bool DIDDXColumn(bool bSave, index iColumn);
+      virtual bool DIDDXColumn(bool bSave);
       virtual bool DIDDXLayout(bool bSave);
       virtual index MapItemToOrder(index iItem);
       virtual index ItemToColumnKey(index iItem);

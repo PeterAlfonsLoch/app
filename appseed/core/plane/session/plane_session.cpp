@@ -155,6 +155,18 @@ namespace plane
       if(!::application::initialize())
          return false;
 
+      if (m_bIfs)
+      {
+         
+         if (m_spfsdata.is_null())
+            m_spfsdata = new ::fs::set(this);
+
+         ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
+         pset->m_spafsdata.add(Session.m_pifs);
+         pset->m_spafsdata.add(Session.m_prfs);
+
+      }
+
 
       return true;
 

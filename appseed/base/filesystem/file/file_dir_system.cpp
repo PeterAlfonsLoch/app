@@ -1514,6 +1514,8 @@ namespace file
 
                property_set set(papp);
 
+               set["raw_http"] = true;
+
                if (bDir)
                {
                   strPath = App(papp).http().get("http://api.ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);

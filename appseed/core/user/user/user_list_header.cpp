@@ -286,51 +286,52 @@ namespace user
    bool list_header::DIDDXLayout(bool bSave)
    {
       bool bFail = false;
-      for(int32_t iColumn = 0; iColumn < m_plistctrlinterface->_001GetColumnCount(); iColumn++)
-      {
-         if(!DIDDXColumn(bSave, iColumn))
-            bFail = true;
-      }
+      if(!DIDDXColumn(bSave))
+         bFail = true;
       return !bFail;
 
    }
 
-   bool list_header::DIDDXColumn(bool bSave, index iColumn)
+   bool list_header::DIDDXColumn(bool bSave)
    {
+
       string str;
-//      bool bLoad = !bSave;
-      int32_t iOldWidth;
-      int32_t iWidth = 0;
-      str.Format("::user::list_column[%d].width", iColumn);
+
+      int_array iaWidth;
+
+      str = "::user::list_column_width";
+
       draw_list_item item(m_plistctrlinterface);
+
       if(bSave)
       {
-         item.m_iWidthColumn = iColumn;
-         m_plistctrlinterface->_001GetColumnWidth(&item);
-         if(item.m_bOk)
+         for (index iColumn = 0; iColumn < m_plistctrlinterface->_001GetColumnCount(); iColumn++)
          {
-            iWidth = item.m_iColumnWidth;
-            if(data_get(str, ::base_system::idEmpty, iOldWidth))
+            item.m_iWidthColumn = iColumn;
+            m_plistctrlinterface->_001GetColumnWidth(&item);
+            if (item.m_bOk)
             {
-               if(iOldWidth == iWidth)
-                  bSave = false;
+               iaWidth.add(item.m_iColumnWidth);
+            }
+            else
+            {
+               iaWidth.add(-1);
             }
          }
-         if(bSave)
-         {
-            if(!data_set(str, ::base_system::idEmpty, iWidth))
-               return false;
-         }
+         if(!data_set(str, ::base_system::idEmpty, iaWidth))
+            return false;
       }
       else
       {
          if(data_get(
             str,
             ::base_system::idEmpty,
-            iWidth))
+            iaWidth))
          {
-            constraint::constraint_min(iWidth, 50);
-             m_plistctrlinterface->_001SetColumnWidth(iColumn, iWidth);
+            for (index iColumn = 0; iColumn < m_plistctrlinterface->_001GetColumnCount(); iColumn++)
+            {
+               m_plistctrlinterface->_001SetColumnWidth(iColumn, max(iaWidth[iColumn], 50));
+            }
          }
          else
             return false;

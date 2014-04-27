@@ -71,35 +71,32 @@ namespace filemanager
    void filemanager::InitializeFileManager(const char * pszMatter)
    {
 
-      if(Application.is_system())
-      {
-         System.factory().creatable_small < document > ();
-         System.factory().creatable_small < child_frame > ();
-         System.factory().creatable_small < a_view > ();
-         System.factory().creatable_small < path_view > ();
-         System.factory().creatable_small < FileManagerSaveAsView > ();
-         System.factory().creatable_small < left_view > ();
-         System.factory().creatable_small < main_view > ();
-         System.factory().creatable_small < document > ();
-         System.factory().creatable_small < file_list > ();
-         System.factory().creatable_small < preview > ();
-         System.factory().creatable_small < main_frame > ();
-         System.factory().creatable_small < tab_view > ();
-         System.factory().creatable_small < file_manager_form_document > ();
-         System.factory().creatable_small < file_manager_form_child_frame > ();
-         System.factory().creatable_small < file_manager_form_view > ();
-         System.factory().creatable_small < folder_selection_list_view > ();
-         System.factory().creatable_small < folder_list_view > ();
-         System.factory().creatable_small < file_manager_operation_document > ();
-         System.factory().creatable_small < file_manager_operation_child_frame > ();
-         System.factory().creatable_small < file_manager_operation_view > ();
-         System.factory().creatable_small < file_manager_operation_info_view > ();
-         System.factory().creatable_small < file_manager_operation_list_view > ();
+      System.factory().creatable_small < document > ();
+      System.factory().creatable_small < child_frame > ();
+      System.factory().creatable_small < a_view > ();
+      System.factory().creatable_small < path_view > ();
+      System.factory().creatable_small < FileManagerSaveAsView > ();
+      System.factory().creatable_small < left_view > ();
+      System.factory().creatable_small < main_view > ();
+      System.factory().creatable_small < document > ();
+      System.factory().creatable_small < file_list > ();
+      System.factory().creatable_small < preview > ();
+      System.factory().creatable_small < main_frame > ();
+      System.factory().creatable_small < tab_view > ();
+      System.factory().creatable_small < file_manager_form_document > ();
+      System.factory().creatable_small < file_manager_form_child_frame > ();
+      System.factory().creatable_small < file_manager_form_view > ();
+      System.factory().creatable_small < folder_selection_list_view > ();
+      System.factory().creatable_small < folder_list_view > ();
+      System.factory().creatable_small < file_manager_operation_document > ();
+      System.factory().creatable_small < file_manager_operation_child_frame > ();
+      System.factory().creatable_small < file_manager_operation_view > ();
+      System.factory().creatable_small < file_manager_operation_info_view > ();
+      System.factory().creatable_small < file_manager_operation_list_view > ();
 
 
-         System.factory().creatable_small < fs::simple::view > ();
-         System.factory().creatable_small < fs::simple::list_view > ();
-      }
+      System.factory().creatable_small < fs::simple::view > ();
+      System.factory().creatable_small < fs::simple::list_view > ();
 
 
       m_ptemplateStd = new schema(this);

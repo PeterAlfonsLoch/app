@@ -533,6 +533,8 @@ namespace user
 
       ::user::list_column_array     m_columna;
 
+      mutex                            m_mutexData;
+
 
 
       list(sp(base_application) papp);
@@ -822,6 +824,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnVScroll);
       DECL_GEN_SIGNAL(_001OnHScroll);
 
+      virtual void data_update_visible_subitem();
 
    };
 

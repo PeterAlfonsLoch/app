@@ -3621,19 +3621,6 @@ bool base_application::initialize()
    }
 
 
-   if (m_bIfs)
-   {
-      if (m_pbasesession != NULL && &Session != NULL)
-      {
-         if (m_spfsdata.is_null())
-            m_spfsdata = new ::fs::set(this);
-         ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
-         pset->m_spafsdata.add(Session.m_pifs);
-         pset->m_spafsdata.add(Session.m_prfs);
-         stringa stra;
-         pset->root_ones(stra);
-      }
-   }
 
    m_dwAlive = ::get_tick_count();
 
@@ -3805,16 +3792,6 @@ bool base_application::initialize1()
    m_splicense = new class ::fontopus::license(this);
 
 
-
-   if (!is_system())
-   {
-      if (m_spfsdata.is_null())
-         m_spfsdata = new ::fs::set(this);
-      ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
-      pset->m_spafsdata.add(new ::fs::native(this));
-      stringa stra;
-      pset->root_ones(stra);
-   }
 
 
 

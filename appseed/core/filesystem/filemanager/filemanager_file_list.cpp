@@ -1282,7 +1282,7 @@ namespace filemanager
             i--;
          }
          m_plist->post_message(MessageMainPost, MessageMainPostCreateImageListItemStepSetRedraw);
-         Sleep(iStepSetSleep);
+         //Sleep(iStepSetSleep);
       }
    endloop:
       m_plist->post_message(MessageMainPost, MessageMainPostCreateImageListItemRedraw);
@@ -1697,7 +1697,7 @@ namespace filemanager
          case MessageMainPostCreateImageListItemStepSetRedraw:
          {
                                                                 uint32_t dwNow = get_tick_count();
-                                                                if (dwNow - m_dwLastRedraw > 284)
+                                                                if (dwNow - m_dwLastRedraw > 784)
                                                                 {
                                                                    m_dwLastRedraw = dwNow;
                                                                    _001RedrawWindow();

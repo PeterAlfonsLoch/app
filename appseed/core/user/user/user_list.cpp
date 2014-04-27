@@ -967,15 +967,18 @@ namespace user
 
    }
 
+
    void list::_001AddColumn(list_column & column)
    {
+
       m_columna.add(column);
-      _001OnColumnChange();
+
       column.m_bCustomDraw = false;
       column.m_iControl = (UINT) -1;
       column.m_uiSmallBitmap = (UINT) -1;
       column.m_bIcon = false;
       column.m_pil = NULL;
+
    }
 
    //
@@ -1067,49 +1070,82 @@ namespace user
    }
 
 
+   void list::data_update_visible_subitem()
+   {
+
+      synch_lock sl(&m_mutexData);
+
+      index iColumn;
+
+      int_array iaVisible;
+
+      if (m_columna.VisibleGetCount() > 0 || m_columna.NonVisibleGetCount() > 0)
+      {
+
+         data_get("VisibleSubItem", ::base_system::idEmpty, iaVisible);
+
+      }
+
+      for (iColumn = 0; iColumn < m_columna.VisibleGetCount(); iColumn++)
+      {
+
+         list_column * pcolumn = m_columna._001GetVisible(iColumn);
+
+         if (!iaVisible.contains(pcolumn->m_iSubItem))
+         {
+
+            m_columna.ShowSubItem(pcolumn->m_iSubItem, false);
+
+         }
+
+      }
+
+      for (iColumn = 0; iColumn < m_columna.NonVisibleGetCount(); iColumn++)
+      {
+
+         list_column * pcolumn = m_columna._001GetNonVisible(iColumn);
+
+         if (iaVisible.contains(pcolumn->m_iSubItem))
+         {
+
+            m_columna.ShowSubItem(pcolumn->m_iSubItem, true);
+
+         }
+
+      }
+
+   }
+
+
+   UINT c_cdecl data_update_list_visible_subitem_proc(LPVOID pparam)
+   {
+
+      list * plist = (list *) pparam;
+
+      plist->data_update_visible_subitem();
+
+      return 0;
+
+   }
+
+
    void list::_001OnColumnChange()
    {
 
       index iItemHeight = 0;
       index iItemWidth = 0;
 
-      index iColumnWidth;
       rect rect;
 
       string str;
-      bool bVisible;
-      int_ptr iColumn;
+      index iColumn;
+      int_ptr iColumnWidth;
 
-      for(iColumn = 0; iColumn < m_columna.VisibleGetCount(); iColumn++)
-      {
-         list_column * pcolumn = m_columna._001GetVisible(iColumn);
-         str.Format("SubItem[%d].Visible", pcolumn->m_iSubItem);
-         if(data_get(str, ::base_system::idEmpty, bVisible))
-         {
-            if(!bVisible)
-            {
-               m_columna.ShowSubItem(pcolumn->m_iSubItem, false);
-            }
-         }
-      }
 
-      for(iColumn = 0; iColumn < m_columna.NonVisibleGetCount(); iColumn++)
-      {
-         list_column * pcolumn = m_columna._001GetNonVisible(iColumn);
-         str.Format("SubItem[%d].Visible", pcolumn->m_iSubItem);
-         if(data_get(str, ::base_system::idEmpty, bVisible))
-         {
-            if(bVisible)
-            {
-               m_columna.ShowSubItem(pcolumn->m_iSubItem, true);
-            }
-         }
-      }
+      __begin_thread(get_app(), data_update_list_visible_subitem_proc, this);
 
 
       image_list::info ii;
-
-
 
       for(iColumn = 0; iColumn < m_columna.VisibleGetCount(); iColumn++)
       {
@@ -1194,7 +1230,7 @@ namespace user
 
       m_columna._001GetVisible(iColumn)->m_iWidth = iWidth;
 
-      m_pheaderctrl->DIDDXColumn(true, iColumn);
+      m_pheaderctrl->DIDDXColumn(true);
 
       _001OnColumnChange();
 
