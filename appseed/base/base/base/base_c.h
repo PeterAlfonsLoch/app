@@ -18,7 +18,7 @@
 #define ARGB(a, r, g, b)         RGBA(r, g, b, a)
 
 
-
+#define _(c_string_to_be_translated_from_english) c_string_to_be_translated_from_english
 
 
 #include "primitive/math/math_mkint_c.h"
