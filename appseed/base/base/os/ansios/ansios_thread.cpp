@@ -86,7 +86,7 @@ typedef raw_array < void * > ThreadLocalData;
 
 
 thread_pointer < ThreadLocalData > currentThreadData;
-thread_int_ptr < DWORD > currentThreadId;
+thread_var < DWORD > currentThreadId;
 thread_pointer < hthread > currentThread;
 thread_pointer < os_thread > t_posthread;
 
@@ -463,7 +463,7 @@ int_bool WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
 
             allthreaddata.set_at(currentThread, threadData);
 
-            set_thread_ptr("currentThreadData", threadData);
+            currentThreadData = threadData;
 
       }
       catch (...)
