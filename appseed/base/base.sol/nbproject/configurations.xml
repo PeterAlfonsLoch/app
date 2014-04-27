@@ -1116,7 +1116,6 @@
               <itemPath>../base/openssl/crypto/seed/seed_ofb.c</itemPath>
             </logicalFolder>
             <logicalFolder name="sha" displayName="sha" projectFiles="true">
-              <itemPath>../base/openssl/crypto/sha/sha.c</itemPath>
               <itemPath>../base/openssl/crypto/sha/sha.h</itemPath>
               <itemPath>../base/openssl/crypto/sha/sha1.c</itemPath>
               <itemPath>../base/openssl/crypto/sha/sha1_one.c</itemPath>
@@ -2936,16 +2935,20 @@
             <pElem>..</pElem>
             <pElem>../base/openssl/include</pElem>
             <pElem>../../../../nodeapp/thirdparty/include</pElem>
+            <pElem>../../../../../../include</pElem>
             <pElem>../../../include</pElem>
             <pElem>../base/openssl/crypto</pElem>
             <pElem>../base/openssl</pElem>
             <pElem>../base/openssl/crypto/asn1</pElem>
             <pElem>../base/openssl/crypto/evp</pElem>
           </incDir>
+          <standardsEvolution>3</standardsEvolution>
+          <languageExtension>2</languageExtension>
           <commandLine>$(FRAMEWORK_C_FLAGS)</commandLine>
           <preprocessorList>
             <Elem>DEBUG</Elem>
           </preprocessorList>
+          <mtLevel>1</mtLevel>
         </cTool>
         <ccTool>
           <commandlineTool>CC</commandlineTool>
@@ -2971,6 +2974,7 @@
           <preprocessorList>
             <Elem>DEBUG</Elem>
           </preprocessorList>
+          <mtLevel>1</mtLevel>
         </ccTool>
       </compileType>
     </conf>

@@ -54,17 +54,19 @@ CCADMIN=CCadmin
 FRAMEWORK_DIR=../framework
 FRAMEWORK_FLAGS_CORE=-features=namespace,rtti
 FRAMEWORK_FLAGS=-xpch=use:framework $(FRAMEWORK_FLAGS_CORE)
+#FRAMEWORK_FLAGS=$(FRAMEWORK_FLAGS_CORE)
 FRAMEWORK_FLAGS_COLLECT=-xpch=collect:framework $(FRAMEWORK_FLAGS_CORE)
-FRAMEWORK_C_FLAGS_CORE= 
-FRAMEWORK_C_FLAGS=-xpch=use:framework $(FRAMEWORK_C_FLAGS_CORE)
-FRAMEWORK_C_FLAGS_COLLECT=-xpch=collect:framework $(FRAMEWORK_C_FLAGS_CORE)
+FRAMEWORK_C_FLAGS_CORE=
+FRAMEWORK_C_FLAGS=-xpch=use:framework_c $(FRAMEWORK_C_FLAGS_CORE)
+#FRAMEWORK_C_FLAGS=$(FRAMEWORK_C_FLAGS_CORE)
+FRAMEWORK_C_FLAGS_COLLECT=-xpch=collect:framework_c $(FRAMEWORK_C_FLAGS_CORE)
 FRAMEWORK_INCLUDES=-I../../../../include -I../../../include -I../framework -I../.. -I../../../.. -I.. -I../base/openssl/include -I../../../../nodeapp/thirdparty/include -I../../../../../../include -I../../../include -I../base/openssl/crypto -I../base/openssl -I../base/openssl/crypto/asn1 -I../base/openssl/crypto/evp
-CPP_BASE_FLAGS=-features=no%anachronisms,no%transitions,tmplife -features=extensions,tmplrefstatic,iddollar
-C_BASE_FLAGS=
+CPP_BASE_FLAGS=-mt -features=no%anachronisms,no%transitions,tmplife -features=extensions,tmplrefstatic,iddollar
+C_BASE_FLAGS=-mt -xstrconst -xc99
 
 FRAMEWORK_FILES= \
-	framework.Cpch \
-	framework_c.Cpch
+	$(FRAMEWORK_DIR)/framework.Cpch \
+	$(FRAMEWORK_DIR)/framework_c.cpch
 
 
 # build
@@ -73,10 +75,12 @@ build: .build-post
 
 .build-pre: ${FRAMEWORK_FILES}
 	
-framework.Cpch: $(FRAMEWORK_DIR)/framework.cpp
-	$(CCC) $(CPP_BASE_FLAGS) -c -g $(FRAMEWORK_INCLUDES) -KPIC $(FRAMEWORK_FLAGS_COLLECT) -xe $(FRAMEWORK_DIR)/framework.cpp
-framework_c.Cpch: $(FRAMEWORK_DIR)/framework_c.c
-	$(CC) $(C_BASE_FLAGS) -c -g -DDEBUG $(FRAMEWORK_INCLUDES) -KPIC $(FRAMEWORK_C_FLAGS_COLLECT) -xe $(FRAMEWORK_DIR)/framework_c.c
+$(FRAMEWORK_DIR)/framework.Cpch: $(FRAMEWORK_DIR)/framework.cpp
+	cd $(FRAMEWORK_DIR) ; \
+	$(CCC) $(CPP_BASE_FLAGS) $(FRAMEWORK_FLAGS_COLLECT) -c -g -DDEBUG $(FRAMEWORK_INCLUDES) -KPIC $(FRAMEWORK_DIR)/framework.cpp
+$(FRAMEWORK_DIR)/framework_c.cpch: $(FRAMEWORK_DIR)/framework_c.c
+	cd $(FRAMEWORK_DIR) ; \
+	$(CC) $(C_BASE_FLAGS) $(FRAMEWORK_C_FLAGS_COLLECT) -c -g -DDEBUG $(FRAMEWORK_INCLUDES) -KPIC $(FRAMEWORK_DIR)/framework_c.c
 
 
 .build-post: .build-impl
@@ -87,10 +91,12 @@ framework_c.Cpch: $(FRAMEWORK_DIR)/framework_c.c
 clean: .clean-post
 
 .clean-pre:
-	rm framework.Cpch
-	rm framework_c.Cpch
-	rm crypto_framework.Cpch
-	rm idn_framework.Cpch
+	touch $(FRAMEWORK_DIR)/framework.Cpch
+	rm $(FRAMEWORK_DIR)/framework.Cpch
+	touch $(FRAMEWORK_DIR)/framework.cpch
+	rm $(FRAMEWORK_DIR)/framework.cpch
+	touch $(FRAMEWORK_DIR)/framework_c.cpch
+	rm $(FRAMEWORK_DIR)/framework_c.cpch
 # Add your pre 'clean' code here...
 
 .clean-post: .clean-impl
