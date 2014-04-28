@@ -60,6 +60,10 @@ void window_gdi::destroy()
 
       ::DeleteDC(m_hdc);
 
+      m_hdc = NULL;
+
+      m_hbitmapOld = NULL;
+
    }
 
 
@@ -67,7 +71,11 @@ void window_gdi::destroy()
    {
       ::DeleteObject(m_hbitmap);
 
+      m_hbitmap = NULL;
+
    }
+
+   m_pcolorref = NULL;
 
    window_graphics::destroy();
 
@@ -115,6 +123,8 @@ void window_gdi::update_window(oswindow window, COLORREF * pcolorref, LPCRECT lp
 
    ::SelectClipRgn(hdcScreen, NULL);
 
+   ::SelectClipRgn(m_hdc, NULL);
+
    RECT rectWindow;
    
    rectWindow = *lpcrect;
@@ -132,12 +142,19 @@ void window_gdi::update_window(oswindow window, COLORREF * pcolorref, LPCRECT lp
 
    try
    {
+
       copy_colorref(m_pcolorref, pcolorref, iStride);
+
    }
    catch (...)
    {
 
    }
+
+/*   for (int i = 1920 * 32; i < 1920 * 64; i++)
+   {
+      m_pcolorref[i] = ARGB(255, 127, 255, 127);
+   }*/
 
    ::GdiFlush();
 

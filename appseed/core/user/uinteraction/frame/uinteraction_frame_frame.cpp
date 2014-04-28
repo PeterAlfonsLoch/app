@@ -652,7 +652,12 @@ namespace user
          void frame::update_window_region(LPCRECT lpcrect)
          {
 
-            UNREFERENCED_PARAMETER(lpcrect);
+            sp(::user::interaction) pwnd = get_window();
+
+            if (pwnd == NULL)
+               return;
+
+            pwnd->SetWindowRgn(NULL, TRUE);
 
          }
 
