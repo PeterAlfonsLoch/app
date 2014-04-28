@@ -1,4 +1,5 @@
-﻿#include "framework.h"
+#include "framework.h"
+
 
 #ifdef WINDOWSEX
 

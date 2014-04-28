@@ -3,7 +3,7 @@
 #ifdef WINDOWS
 #include <gdiplus.h>
 #endif
-#if defined(LINUX) || defined(ANDROID) || defined(APPLEOS)
+#if defined(LINUX) || defined(ANDROID) || defined(APPLEOS) || defined(SOLARIS)
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <fcntl.h>

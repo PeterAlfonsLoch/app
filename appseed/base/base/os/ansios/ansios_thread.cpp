@@ -10,6 +10,11 @@ extern bool (* g_defer_process_x_message)(HTHREAD hthread, LPMESSAGE lpMsg, oswi
 #endif
 
 
+
+extern "C"
+void * os_thread_thread_proc(LPVOID lpparameter);
+
+
 mq::mq() :
    m_eventNewMessage(get_thread_app())
 {
@@ -149,7 +154,7 @@ os_thread * StartThread(LPTHREAD_START_ROUTINE pfn, LPVOID pv, HTHREAD hthread, 
 
    pthread_attr_setdetachstate(&threadAttr, PTHREAD_CREATE_DETACHED); // Set thread to detached state. No need for pthread_join
 
-   pthread_create(&thread, &threadAttr, &::os_thread::thread_proc, (LPVOID) pthread); // Create the thread
+   pthread_create(&thread, &threadAttr, &os_thread_thread_proc, (LPVOID) pthread); // Create the thread
 
    return pthread;
 
@@ -695,7 +700,8 @@ void os_thread::stop_all(uint32_t millisMaxWait)
 
 }
 
-void * os_thread::thread_proc(LPVOID lpparameter)
+extern "C"
+void * os_thread_thread_proc(LPVOID lpparameter)
 {
 
    os_thread * posthread = (os_thread *) lpparameter;
@@ -1186,6 +1192,8 @@ int32_t thread_layer::run()
 {
 
    MESSAGE msg;
+   
+   ZERO(msg);
 
    while(true)
    {

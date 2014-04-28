@@ -111,8 +111,8 @@ int_bool __stdcall My_ReadProcessMemory (
    )
 {
 
-   SIZE_T size;
-#if defined(METROWIN) || defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
+   SIZE_T size = 0;
+#if defined(METROWIN) || defined(LINUX) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
    throw todo(get_thread_app());
 #else
    if(!ReadProcessMemory(hProcess, (LPCVOID) qwBaseAddress, (LPVOID) lpBuffer, nSize, &size))
@@ -903,7 +903,7 @@ retry_get_base:
 
 
 
-#if defined(LINUX) || defined(METROWIN) || defined(APPLEOS) || defined(ANDROID)
+#if defined(LINUX) || defined(METROWIN) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
    bool engine::stack_trace(string & str, uint_ptr uiSkip, void * caller_address, const char * pszFormat)
 #else
    bool engine::stack_trace(string & str, uint_ptr uiSkip, const char * pszFormat)
@@ -978,7 +978,7 @@ retry_get_base:
       stack_trace(str, &context, uiSkip, false, pszFormat);
 
       return true;
-#elif defined(METROWIN) || defined(ANDROID)
+#elif defined(METROWIN) || defined(ANDROID) || defined(SOLARIS)
 
       return true;
 

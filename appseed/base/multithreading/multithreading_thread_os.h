@@ -80,7 +80,7 @@ public:
    HTHREAD                                m_hthread;
    string                                 m_strDebug;
 
-#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
 
    pthread_t                              m_pthread;
 
@@ -96,7 +96,7 @@ public:
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
-   static void * thread_proc(void * pparam);
+   //static void * thread_proc(void * pparam);
 
 #else
 

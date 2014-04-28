@@ -919,18 +919,12 @@
               <itemPath>../base/openssl/crypto/idea/idea.h</itemPath>
               <itemPath>../base/openssl/crypto/idea/idea_lcl.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="jpake" displayName="jpake" projectFiles="true">
-              <itemPath>../base/openssl/crypto/jpake/jpake.c</itemPath>
-              <itemPath>../base/openssl/crypto/jpake/jpake.h</itemPath>
-              <itemPath>../base/openssl/crypto/jpake/jpake_err.c</itemPath>
-            </logicalFolder>
             <logicalFolder name="krb5" displayName="krb5" projectFiles="true">
               <itemPath>../base/openssl/crypto/krb5/krb5_asn.c</itemPath>
               <itemPath>../base/openssl/crypto/krb5/krb5_asn.h</itemPath>
             </logicalFolder>
             <logicalFolder name="lhash" displayName="lhash" projectFiles="true">
               <itemPath>../base/openssl/crypto/lhash/lh_stats.c</itemPath>
-              <itemPath>../base/openssl/crypto/lhash/lh_test.c</itemPath>
               <itemPath>../base/openssl/crypto/lhash/lhash.c</itemPath>
               <itemPath>../base/openssl/crypto/lhash/lhash.h</itemPath>
             </logicalFolder>
@@ -1479,7 +1473,6 @@
             <itemPath>../base/openssl/ssl/ssl_rsa.c</itemPath>
             <itemPath>../base/openssl/ssl/ssl_sess.c</itemPath>
             <itemPath>../base/openssl/ssl/ssl_stat.c</itemPath>
-            <itemPath>../base/openssl/ssl/ssl_task.c</itemPath>
             <itemPath>../base/openssl/ssl/ssl_txt.c</itemPath>
             <itemPath>../base/openssl/ssl/t1_clnt.c</itemPath>
             <itemPath>../base/openssl/ssl/t1_enc.c</itemPath>

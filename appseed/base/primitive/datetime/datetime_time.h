@@ -61,7 +61,7 @@ namespace datetime
    {
    public:
 
-#if defined(ANDROID) || defined(APPLEOS)
+#if defined(ANDROID) || defined(APPLEOS) || defined(SOLARIS)
       time_t         m_time;
 #else
       __time64_t m_time;
@@ -316,7 +316,7 @@ namespace datetime
       {
          szBuffer[0] = '\0';
       }
-#elif defined(ANDROID)
+#elif defined(ANDROID) || defined(SOLARIS)
       struct tm* ptmTemp = localtime(&m_time);
       if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
       {

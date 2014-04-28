@@ -4,7 +4,7 @@
 bool call_stack::s_bDoStackTrace = false;
 
 
-#if defined(LINUX) || defined(APPLEOS)
+#if defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)
 call_stack::call_stack(sp(base_application) papp, uint32_t uiSkip, void * address) :
    element(papp)
    ,m_caller_address(address)

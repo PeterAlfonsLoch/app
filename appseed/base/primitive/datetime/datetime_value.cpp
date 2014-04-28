@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#ifdef ANDROID
+#if defined(ANDROID) || defined(SOLARIS)
 
 time_t
 my_timegm(struct tm *tm)
@@ -194,7 +194,7 @@ namespace datetime
                time_t tDiff = difftime(nowUtc, now);*/
 #ifdef WINDOWS
                time = ::datetime::time(_mkgmtime64(&atm));
-#elif defined(ANDROID)
+#elif defined(ANDROID) || defined(SOLARIS)
                time = ::datetime::time(my_timegm(&atm));
 #else
                time = ::datetime::time(timegm(&atm));
