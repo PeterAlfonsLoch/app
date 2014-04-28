@@ -49,12 +49,12 @@
 		072AE9DD1810372200F74E98 /* gcom_space_util.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9B91810372200F74E98 /* gcom_space_util.h */; };
 		072AE9DE1810372200F74E98 /* gcom_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE9BA1810372200F74E98 /* gcom_util.cpp */; };
 		072AE9DF1810372200F74E98 /* gcom_util.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9BB1810372200F74E98 /* gcom_util.h */; };
+		077C2A29190F198800A1F6B0 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A27190F198800A1F6B0 /* framework.cpp */; };
+		077C2A2A190F198800A1F6B0 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 077C2A28190F198800A1F6B0 /* framework.h */; };
 		07884E951898293500DC6CEB /* libbasefreetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07884E931898293500DC6CEB /* libbasefreetype.dylib */; };
 		07884E961898293500DC6CEB /* libbasemysql.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07884E941898293500DC6CEB /* libbasemysql.dylib */; };
 		07884E991898294B00DC6CEB /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07884E971898294B00DC6CEB /* libbase.dylib */; };
 		07884E9A1898294B00DC6CEB /* libbasefreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07884E981898294B00DC6CEB /* libbasefreeimage.dylib */; };
-		079DBF2D188673AF00EFFEFB /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 079DBF2B188673AF00EFFEFB /* framework.cpp */; };
-		079DBF2E188673AF00EFFEFB /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 079DBF2C188673AF00EFFEFB /* framework.h */; };
 		079DBF301886745600EFFEFB /* core.h in Headers */ = {isa = PBXBuildFile; fileRef = 079DBF2F1886745600EFFEFB /* core.h */; };
 		079DBF331886751B00EFFEFB /* filemanager_context_menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 079DBF311886751B00EFFEFB /* filemanager_context_menu.cpp */; };
 		079DBF341886751B00EFFEFB /* filemanager_operation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 079DBF321886751B00EFFEFB /* filemanager_operation.cpp */; };
@@ -365,7 +365,6 @@
 		07A4ABFB190C45F9005B6DE5 /* userfs_main_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3BC173C27E7009E6FB8 /* userfs_main_view.cpp */; };
 		07A4ABFC190C45F9005B6DE5 /* userfs_tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3BE173C27E7009E6FB8 /* userfs_tree.cpp */; };
 		07A4ABFD190C45F9005B6DE5 /* userfs_userfs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3C6173C27E7009E6FB8 /* userfs_userfs.cpp */; };
-		07A4ABFE190C45F9005B6DE5 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 079DBF2B188673AF00EFFEFB /* framework.cpp */; };
 		07A4ABFF190C45F9005B6DE5 /* backview_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE9991810372200F74E98 /* backview_graphics.cpp */; };
 		07A4AC00190C45F9005B6DE5 /* backview_helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE99B1810372200F74E98 /* backview_helper.cpp */; };
 		07A4AC01190C45F9005B6DE5 /* backview_image_change.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE99D1810372200F74E98 /* backview_image_change.cpp */; };
@@ -1946,12 +1945,12 @@
 		072AE9B91810372200F74E98 /* gcom_space_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_space_util.h; sourceTree = "<group>"; };
 		072AE9BA1810372200F74E98 /* gcom_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_util.cpp; sourceTree = "<group>"; };
 		072AE9BB1810372200F74E98 /* gcom_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_util.h; sourceTree = "<group>"; };
+		077C2A27190F198800A1F6B0 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		077C2A28190F198800A1F6B0 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		07884E931898293500DC6CEB /* libbasefreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbasefreetype.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libbasefreetype.dylib"; sourceTree = "<group>"; };
 		07884E941898293500DC6CEB /* libbasemysql.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbasemysql.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libbasemysql.dylib"; sourceTree = "<group>"; };
 		07884E971898294B00DC6CEB /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libbase.dylib"; sourceTree = "<group>"; };
 		07884E981898294B00DC6CEB /* libbasefreeimage.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbasefreeimage.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libbasefreeimage.dylib"; sourceTree = "<group>"; };
-		079DBF2B188673AF00EFFEFB /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		079DBF2C188673AF00EFFEFB /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		079DBF2F1886745600EFFEFB /* core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core.h; sourceTree = "<group>"; };
 		079DBF311886751B00EFFEFB /* filemanager_context_menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_context_menu.cpp; sourceTree = "<group>"; };
 		079DBF321886751B00EFFEFB /* filemanager_operation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_operation.cpp; sourceTree = "<group>"; };
@@ -3279,15 +3278,6 @@
 				078001E8190C9F18000DA332 /* basemysql_iosTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		079DBF2A188673AF00EFFEFB /* framework */ = {
-			isa = PBXGroup;
-			children = (
-				079DBF2B188673AF00EFFEFB /* framework.cpp */,
-				079DBF2C188673AF00EFFEFB /* framework.h */,
-			);
-			path = framework;
 			sourceTree = "<group>";
 		};
 		07A30C5B18F84E45007AE992 /* elemental */ = {
@@ -4675,6 +4665,8 @@
 		9A8897AB14C2C8DB006B4023 = {
 			isa = PBXGroup;
 			children = (
+				077C2A27190F198800A1F6B0 /* framework.cpp */,
+				077C2A28190F198800A1F6B0 /* framework.h */,
 				9AA6A3871907ACBE000A1F4A /* base.xcodeproj */,
 				9AA6A30B1907337A000A1F4A /* basefreetype.xcodeproj */,
 				9AA6A31719073388000A1F4A /* basefreeimage.xcodeproj */,
@@ -4694,7 +4686,6 @@
 				9AE728EA17E85ECD003E47F9 /* core */,
 				07A6D2C3173C27E7009E6FB8 /* database */,
 				07A6D326173C27E7009E6FB8 /* filesystem */,
-				079DBF2A188673AF00EFFEFB /* framework */,
 				07A6D3CA173C27E8009E6FB8 /* graphics */,
 				07A6D45B173C27E8009E6FB8 /* math */,
 				07A6D47F173C27E8009E6FB8 /* net */,
@@ -5096,7 +5087,6 @@
 				07A6DC18173C27EB009E6FB8 /* compress_coder2_interface.h in Headers */,
 				07A6DC19173C27EB009E6FB8 /* compress_coder_interface.h in Headers */,
 				07A6DC1A173C27EB009E6FB8 /* compress_filter_interface.h in Headers */,
-				079DBF2E188673AF00EFFEFB /* framework.h in Headers */,
 				072AE9DD1810372200F74E98 /* gcom_space_util.h in Headers */,
 				07A6DC1B173C27EB009E6FB8 /* compress_get_input_stream_processed_size_interface.h in Headers */,
 				07A6DC1C173C27EB009E6FB8 /* compress_get_sub_stream_size_interface.h in Headers */,
@@ -5603,6 +5593,7 @@
 				9AE72A9017E85ECE003E47F9 /* core_logic.h in Headers */,
 				07AD9A81182FF968005C3335 /* filemanager_fs_simple_tree.h in Headers */,
 				9AE72A9317E85ECE003E47F9 /* core_main.h in Headers */,
+				077C2A2A190F198800A1F6B0 /* framework.h in Headers */,
 				9AE72A9417E85ECE003E47F9 /* core_main_init_data.h in Headers */,
 				9AE72A9517E85ECE003E47F9 /* core_map_to_smart_pointer.h in Headers */,
 				9AE72A9717E85ECE003E47F9 /* core_match.h in Headers */,
@@ -6003,6 +5994,7 @@
 				07F5B3B3184A4FA00092C3E1 /* user_meta_button.cpp in Sources */,
 				07F5B3B9184A4FA00092C3E1 /* user_notification_area.cpp in Sources */,
 				07A6DCAE173C27EB009E6FB8 /* database_key_list_data.cpp in Sources */,
+				077C2A29190F198800A1F6B0 /* framework.cpp in Sources */,
 				07A6DCAF173C27EB009E6FB8 /* database_list_data.cpp in Sources */,
 				07A6DCBE173C27EB009E6FB8 /* simpledb_database.cpp in Sources */,
 				07F5B3AD184A4FA00092C3E1 /* user_list_header.cpp in Sources */,
@@ -6221,7 +6213,6 @@
 				07A6E01E173C27EC009E6FB8 /* colorertake5_base_editor.cpp in Sources */,
 				07A6E020173C27EC009E6FB8 /* colorertake5_colorertake5.cpp in Sources */,
 				07A6E023173C27EC009E6FB8 /* colorertake5_default_error_handler.cpp in Sources */,
-				079DBF2D188673AF00EFFEFB /* framework.cpp in Sources */,
 				07A6E027173C27EC009E6FB8 /* colorertake5_error_handler_writer.cpp in Sources */,
 				07A6E029173C27EC009E6FB8 /* colorertake5_exception.cpp in Sources */,
 				07F5B376184A4FA00092C3E1 /* user_bitmap_button.cpp in Sources */,
@@ -6676,7 +6667,6 @@
 				07A4ABFB190C45F9005B6DE5 /* userfs_main_view.cpp in Sources */,
 				07A4ABFC190C45F9005B6DE5 /* userfs_tree.cpp in Sources */,
 				07A4ABFD190C45F9005B6DE5 /* userfs_userfs.cpp in Sources */,
-				07A4ABFE190C45F9005B6DE5 /* framework.cpp in Sources */,
 				07A4ABFF190C45F9005B6DE5 /* backview_graphics.cpp in Sources */,
 				07A4AC00190C45F9005B6DE5 /* backview_helper.cpp in Sources */,
 				07A4AC01190C45F9005B6DE5 /* backview_image_change.cpp in Sources */,
@@ -7058,7 +7048,7 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework/framework.h;
+				GCC_PREFIX_HEADER = framework.h;
 				GCC_PREPROCESSOR_DEFINITIONS = _DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
@@ -7113,7 +7103,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework/framework.h;
+				GCC_PREFIX_HEADER = framework.h;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
