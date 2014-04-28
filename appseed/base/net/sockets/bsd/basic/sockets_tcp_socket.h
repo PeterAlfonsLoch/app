@@ -107,6 +107,9 @@ namespace sockets
       uint16_t m_socks4_dstport; ///< socks4 support
       uint32_t m_socks4_dstip; ///< socks4 support
 
+      string m_strConnectHost;
+      port_t m_iConnectPort;
+
       int32_t m_resolver_id; ///< Resolver id (if any) for current open call
 
       bool m_bReconnect; ///< Reconnect on lost connection flag
@@ -215,6 +218,9 @@ namespace sockets
 
       // TCP options
       bool SetTcpNodelay(bool = true);
+
+      virtual string get_connect_host();
+      virtual port_t get_connect_port();
 
       virtual int32_t Protocol();
 

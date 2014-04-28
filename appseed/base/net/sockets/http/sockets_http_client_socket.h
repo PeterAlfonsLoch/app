@@ -5,6 +5,20 @@
    {
 
 
+      enum e_http_method
+      {
+         http_method_none,
+         http_method_get,
+         http_method_post,
+         http_method_put,
+
+      };
+
+      
+      CLASS_DECL_BASE string http_method_string(e_http_method emethod);
+      CLASS_DECL_BASE e_http_method string_http_method(const string & str);
+
+
       /** get http response to file or primitive::memory.
       \ingroup http */
       class CLASS_DECL_BASE http_client_socket :
@@ -19,7 +33,7 @@
          ::file::stream_buffer *       m_pfile;
          int64_t                       m_iFinalSize;
          int_progress                  m_progress;
-         string                        m_strMethod;
+         e_http_method                 m_emethod;
 
 
          //primitive::memory    m_memoryData; ///< Ptr to buffer where to store response

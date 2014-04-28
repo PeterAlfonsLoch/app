@@ -444,6 +444,7 @@
       <SDLCheck>true</SDLCheck>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -3013,48 +3014,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="framework\framework.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCppHeader</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">CompileAsCppHeader</CompileAs>
-      <PrecompileHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompileHeader>
-      <PrecompileHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">Create</PrecompileHeader>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)framework.pch.h</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="framework\framework_c.h">
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCHeader</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">CompileAsCHeader</CompileAs>
-      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</RuntimeTypeInfo>
-      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">Default</RuntimeTypeInfo>
-      <PrecompileHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompileHeader>
-      <PrecompileHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">Create</PrecompileHeader>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)framework_c.pch.h</PrecompiledHeaderOutputFile>
-    </ClCompile>
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="framework_c.h" />
     <ClInclude Include="graphics\graphics_window_graphics.h" />
     <ClInclude Include="graphics\draw2d\draw2d.h" />
     <ClInclude Include="graphics\draw2d\draw2d_bitmap.h" />
@@ -3593,61 +3554,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\os\windows\windows_multithreading.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="framework\framework.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+    <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)/framework.pch.h</PrecompiledHeaderOutputFile>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCppHeader</CompileAs>
-    </ClCompile>
-    <ClCompile Include="framework\framework_c.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompiledHeader>
-      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
-      </RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(InttDir)/framework_c.pch.h</PrecompiledHeaderOutputFile>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCHeader</CompileAs>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClInclude Include="multithreading\multithreading.h" />
     <ClInclude Include="multithreading\multithreading_condition.h" />
@@ -13710,6 +13619,11 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="filesystem\fs\fs_remote_native_file.cpp" />
     <ClCompile Include="filesystem\fs\fs_remote_native_fs.cpp" />
     <ClCompile Include="filesystem\fs\fs_set.cpp" />
+    <ClCompile Include="framework_c.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">framework_c.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_brush.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_dib.cpp" />

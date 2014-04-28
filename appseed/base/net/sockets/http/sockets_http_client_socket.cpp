@@ -50,15 +50,17 @@ namespace sockets
 
       url_this(strUrlParam, m_protocol, m_host, m_port, strRequestUri, m_url_filename);
 
-      m_request.attr(__id(http_protocol))     = m_protocol;
-      outheader(__id(host))                   = m_host;
-      m_request.attr(__id(request_uri))       = strRequestUri;
-      m_response.attr(__id(request_uri))      = strRequestUri;
+      m_request.header(__id(host))              = m_host;
+      m_request.attr(__id(http_protocol))       = m_protocol;
+      m_request.attr(__id(request_uri))         = strRequestUri;
+      m_response.attr(__id(request_uri))        = strRequestUri;
+      m_strUrl                                  = strUrlParam;
 
-      m_strUrl = strUrlParam;
+      m_strConnectHost                          = m_host;
+      m_iConnectPort                            = m_port;
 
-      m_pfile = NULL;
-      m_iFinalSize = -1;
+      m_pfile                                   = NULL;
+      m_iFinalSize                              = -1;
 
    }
 
@@ -71,7 +73,7 @@ namespace sockets
    void http_client_socket::OnConnect()
    {
 
-      m_request.attr(__id(http_method)) = m_strMethod;
+      m_request.attr(__id(http_method)) = http_method_string(m_emethod);
 
       http_tunnel::OnConnect();
 
@@ -358,7 +360,7 @@ namespace sockets
       url_this(strUrlParam, m_protocol, m_host, m_port, strRequestUri, m_url_filename);
 
       m_request.attr(__id(http_protocol))     = m_protocol;
-      outheader(__id(host))                   = m_host;
+      m_request.header(__id(host))                   = m_host;
       m_request.attr(__id(request_uri))       = strRequestUri;
       m_response.attr(__id(request_uri))      = strRequestUri;
 
@@ -435,6 +437,66 @@ namespace sockets
       {
 
          ::int_scalar_source::get_scalar_minimum(escalar, i);
+
+      }
+
+   }
+
+   CLASS_DECL_BASE string http_method_string(e_http_method emethod)
+   {
+
+      switch (emethod)
+      {
+      case http_method_get:
+
+         return "GET";
+         
+      case http_method_post:
+
+         return "POST";
+         
+      case http_method_put:
+
+         return "PUT";
+         
+      default:
+
+         return "GET";
+
+      }
+
+   }
+
+
+   CLASS_DECL_BASE e_http_method string_http_method(const string & str)
+   {
+
+      string strMethod(str);
+
+      strMethod.make_lower();
+
+      if (strMethod == "get")
+      {
+         
+         return http_method_get;
+
+      }
+      else if (strMethod == "post")
+      {
+
+         return http_method_post;
+
+      }
+      else if (strMethod == "put")
+      {
+
+         return http_method_put;
+
+      }
+      else
+      {
+
+         return http_method_get;
 
       }
 

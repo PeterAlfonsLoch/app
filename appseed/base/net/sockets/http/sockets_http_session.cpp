@@ -39,16 +39,26 @@ namespace sockets
 
    http_session::~http_session()
    {
+
    }
 
-   void http_session::request(const char * pszMethod, const char * pszRequest)
+
+   void http_session::request(const string & strMethod, const string & strRequest)
+   {
+
+      request(string_http_method(strMethod), strRequest);
+
+   }
+
+
+   void http_session::request(e_http_method emethod, const string & strRequest)
    {
       
-      m_strMethod                   = pszMethod;
-      inattr(__id(request_uri))         = pszRequest;
-      inattr(__id(http_protocol))       = m_strProtocol;
+      m_emethod                     = emethod;
+      inattr(__id(request_uri))     = strRequest;
+      inattr(__id(http_protocol))   = m_strProtocol;
       m_strUrl                      = m_strProtocol + "://" + m_strHost + inattr("request_uri");
-      inattr(__id(http_version))        = "HTTP/1.1";
+      inattr(__id(http_version))    = "HTTP/1.1";
       m_b_keepalive                 = true;
       m_content_ptr                 = 0;
 
@@ -63,31 +73,49 @@ namespace sockets
 
    void http_session::step()
    {
+      
       inheader(__id(connection)) = "Keep-Alive";
-      inattr(__id(http_method)) = m_strMethod;
-      if (m_strMethod.CompareNoCase("GET") == 0)
+      
+      inattr(__id(http_method)) = http_method_string(m_emethod);
+      
+      switch (m_emethod)
       {
+      case http_method_get:
+
          http_get_socket::step();
-      }
-      else if(m_strMethod.CompareNoCase("POST") == 0)
-      {
+
+         break;
+
+      case http_method_post:
+
          http_post_socket::step();
-      }
-      else if(m_strMethod.CompareNoCase("PUT") == 0)
-      {
+
+         break;
+
+      case http_method_put:
+
          http_put_socket::step();
-      }
-      else
-      {
+
+         break;
+
+      default:
+
          http_get_socket::step();
+
+         break;
+
       }
+
    }
 
 
    void http_session::OnDataComplete()
    {
+
       m_bRequestComplete = true;
+      
    }
+
 
    void http_session::OnHeaderComplete()
    {
@@ -96,10 +124,9 @@ namespace sockets
 
    }
 
-   
-
 
 } // namespace sockets
+
 
 
 

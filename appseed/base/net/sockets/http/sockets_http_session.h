@@ -5,6 +5,7 @@
    {
 
 
+
       class CLASS_DECL_BASE http_session :
          virtual public http_get_socket,
          virtual public http_post_socket,
@@ -24,7 +25,9 @@
 
 
          using http_client_socket::request;
-         virtual void request(const char * pszMethod, const char * pszRequest);
+         
+         virtual void request(const string & strMethod, const string & pszRequest);
+         virtual void request(e_http_method emethod, const string & pszRequest);
 
          virtual void step();
 

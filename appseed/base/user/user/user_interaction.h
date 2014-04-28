@@ -193,7 +193,9 @@ namespace user
       virtual sp(::user::interaction) get_os_focus_uie();
 
 
+      virtual void _001WindowMinimize();
       virtual void _001WindowMaximize();
+      virtual void _001WindowFullScreen();
       virtual void _001WindowRestore();
       virtual void MoveWindow(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight,
          bool bRepaint = TRUE);

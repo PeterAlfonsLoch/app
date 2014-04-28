@@ -696,12 +696,6 @@
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{1d5d8dc4-0d8b-4334-b743-43678a161c7a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\framework">
-      <UniqueIdentifier>{ccec0149-b6e0-4798-a023-182e3ce11e41}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\framework">
-      <UniqueIdentifier>{7d1cc48a-cede-4123-9adb-5f2b00b52132}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\base\os\cross\windows">
       <UniqueIdentifier>{c2c59a3f-bfe4-4a34-af7d-9cbdd458db15}</UniqueIdentifier>
     </Filter>
@@ -4385,6 +4379,12 @@
     <ClInclude Include="primitive\str\iconv\xreadlink.h">
       <Filter>Header Files\primitive\str\iconv</Filter>
     </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework_c.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -7870,12 +7870,6 @@
     <ClCompile Include="base\os\os_binreloc.cpp">
       <Filter>Source Files\base\os</Filter>
     </ClCompile>
-    <ClCompile Include="framework\framework.cpp">
-      <Filter>Source Files\framework</Filter>
-    </ClCompile>
-    <ClCompile Include="framework\framework_c.c">
-      <Filter>Source Files\framework</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\cross\windows\windows_crt.cpp">
       <Filter>Source Files\base\os\cross\windows</Filter>
     </ClCompile>
@@ -8347,11 +8341,11 @@
     <ClCompile Include="primitive\str\iconv\xstrdup.c">
       <Filter>Source Files\primitive\str\iconv</Filter>
     </ClCompile>
-    <ClCompile Include="framework\framework.h">
-      <Filter>Header Files\framework</Filter>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework\framework_c.h">
-      <Filter>Header Files\framework</Filter>
+    <ClCompile Include="framework_c.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -8540,6 +8534,9 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

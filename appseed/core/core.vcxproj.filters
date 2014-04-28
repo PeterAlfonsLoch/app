@@ -339,12 +339,6 @@
     <Filter Include="Source Files\user\user">
       <UniqueIdentifier>{7346c89e-20fb-4d09-b049-ab363570fff2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\framework">
-      <UniqueIdentifier>{312f9e0f-09e0-4a12-92bd-598304ede50b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\framework">
-      <UniqueIdentifier>{59a690e7-7032-43a1-b6ca-f3e228253f78}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\graphics\html\impl">
       <UniqueIdentifier>{64d6255f-5a69-4231-aeb6-8d38d5bcb9af}</UniqueIdentifier>
     </Filter>
@@ -2486,6 +2480,9 @@
     <ClInclude Include="user\uinteraction\frame\uinteraction_frame_enum.h">
       <Filter>Header Files\user\uinteraction\frame</Filter>
     </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="compress\compress_archive.cpp">
@@ -3895,9 +3892,6 @@
     <ClCompile Include="compress\crypto\crypto_my_aes.cpp">
       <Filter>Source Files\compress\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="framework\framework.cpp">
-      <Filter>Source Files\framework</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_context_menu.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
@@ -3909,9 +3903,6 @@
     </ClCompile>
     <ClCompile Include="net\usermail\usermail_tree.cpp">
       <Filter>Source Files\net\usermail</Filter>
-    </ClCompile>
-    <ClCompile Include="framework\framework.h">
-      <Filter>Header Files\framework</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_operation.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
@@ -4056,6 +4047,9 @@
     </ClCompile>
     <ClCompile Include="user\uinteraction\frame\uinteraction_frame_frame.cpp">
       <Filter>Source Files\user\uinteraction\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

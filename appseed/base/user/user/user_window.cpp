@@ -869,7 +869,19 @@ id window::GetDlgCtrlId()
    throw interface_only_exception(get_app());
 }
 
+void window::_001WindowMinimize()
+{
+   throw interface_only_exception(get_app());
+}
+
+
 void window::_001WindowMaximize()
+{
+   throw interface_only_exception(get_app());
+}
+
+
+void window::_001WindowFullScreen()
 {
    throw interface_only_exception(get_app());
 }

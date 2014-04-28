@@ -2804,6 +2804,15 @@ namespace user
 
    }
 
+   void interaction::_001WindowMinimize()
+   {
+
+      m_eappearance = AppearanceIconic;
+
+      if (m_pimpl != NULL)
+         m_pimpl->_001WindowMinimize();
+
+   }
 
    void interaction::_001WindowMaximize()
    {
@@ -2815,6 +2824,15 @@ namespace user
 
    }
 
+   void interaction::_001WindowFullScreen()
+   {
+
+      m_eappearance = AppearanceFullScreen;
+
+      if (m_pimpl != NULL)
+         m_pimpl->_001WindowFullScreen();
+
+   }
 
    void interaction::_001WindowRestore()
    {

@@ -11,7 +11,7 @@ public:
 
    string         m_strRoot;
    bool           m_bInitialized;
-
+   string         m_strServer;
 
    string_map < uint32_t >    m_mapdirTimeout;
    string_map < uint32_t >    m_mapfileTimeout;

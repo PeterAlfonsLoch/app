@@ -443,53 +443,7 @@ void simple_frame_window::WfiOnFullScreen()
 
    ShowControlBars(false);
 
-   if (WfiIsIconic() || WfiIsZoomed())
-   {
-
-      ShowWindow(SW_NORMAL);
-
-   }
-
-   rect rectDesktop;
-
-   if (get_parent() != NULL)
-   {
-      get_parent()->GetClientRect(rectDesktop);
-   }
-   else
-   {
-      System.get_screen_rect(rectDesktop);
-      /*::AdjustWindowRectEx(
-         &rectDesktop,
-         dwStyle,
-         FALSE,
-         dwStyleEx);*/
-   }
-
-
-   m_FullScreenWindowRect = rectDesktop;
-
-   //if(get_parent() == NULL)
-   {
-      SetWindowPos(
-         ZORDER_TOPMOST,
-         //ZORDER_TOP,
-         rectDesktop.left, rectDesktop.top,
-         rectDesktop.width(), rectDesktop.height(),
-         SWP_FRAMECHANGED |
-         SWP_SHOWWINDOW);
-      ///SetWindowPos(
-      //   ZORDER_TOP,
-      //   //ZORDER_TOP,
-      //   0, 0, 0, 0,
-      //   SWP_FRAMECHANGED | SWP_NOSIZE | SWP_NOMOVE |
-      //   SWP_SHOWWINDOW);
-
-
-      //::SetWindowPos(oswindowTrayWindow, 0, 0, 0, 0, 0, SWP_HIDEWINDOW);
-   }
-
-   layout();
+   _001WindowFullScreen();
 
 }
 
@@ -1729,7 +1683,7 @@ void simple_frame_window::WfiOnMaximize()
 void simple_frame_window::WfiOnMinimize()
 {
 
-   ShowWindow(SW_MINIMIZE);
+   _001WindowMinimize();
 
 }
 

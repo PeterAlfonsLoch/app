@@ -1687,15 +1687,37 @@ void ssl_sigpipe_handle( int x );
       }
 
       return X509_V_ERR_APPLICATION_VERIFICATION;
+
    }
+
 
    void tcp_socket::enable_cert_common_name_check(bool bEnable)
    {
+
       m_bCertCommonNameCheckEnabled = bEnable;
+
+   }
+
+
+   string tcp_socket::get_connect_host()
+   {
+
+      return m_strConnectHost;
+
+   }
+
+
+   port_t tcp_socket::get_connect_port()
+   {
+
+      return m_iConnectPort;
+
    }
 
 
 } // namespace sockets
+
+
 
 
 

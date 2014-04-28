@@ -31,8 +31,11 @@ namespace sockets
       http_tunnel(h),
       http_client_socket(h, url_in)
    {
+      
       m_bExpectRequest = true;
-      m_strMethod = "GET";
+
+      m_emethod = http_method_get;
+
    }
 
 
@@ -46,10 +49,15 @@ namespace sockets
       http_tunnel(h),
       http_client_socket(h, url_in)
    {
+      
       m_bExpectRequest = true;
-      m_strMethod = "GET";
+
+      m_emethod = http_method_get;
+
       UNREFERENCED_PARAMETER(host);
+
       UNREFERENCED_PARAMETER(port);
+
    }
 
 
@@ -76,10 +84,11 @@ namespace sockets
       }
       inheader("Content-Length") = 0;
 
-      if (GetUrlPort() != 80 && GetUrlPort() != 443)
+/*      if (GetUrlPort() != 80 && GetUrlPort() != 443)
          inheader(__id(host)) = GetUrlHost() + ":" + ::str::from(GetUrlPort());
       else
-         inheader(__id(host)) = GetUrlHost();
+         inheader(__id(host)) = GetUrlHost();*/
+
       m_bExpectResponse = true;
       m_bExpectRequest = false;
       SendRequest();

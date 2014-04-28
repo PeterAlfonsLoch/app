@@ -7,6 +7,7 @@ ifs::ifs(sp(base_application) papp, const char * pszRoot) :
    ::fs::data(papp)
 {
    m_strRoot = pszRoot;
+   m_bInitialized = false;
 }
 
 bool ifs::fast_has_subdir(const char * pszPath)
@@ -404,8 +405,10 @@ void ifs::defer_initialize()
 
    if(!m_bInitialized)
    {
-      //Application.http().get("http://file.veriwell.net/");
+      
+      
       m_bInitialized = true;
+
    }
 
 }

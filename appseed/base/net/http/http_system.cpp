@@ -446,13 +446,7 @@ namespace http
 
 
 
-   ::sockets::http_session * system::open(
-                  ::sockets::socket_handler & handler,
-                  const char * pszHost,
-                  const char * pszProtocol,
-                  property_set & set,
-                  ::fontopus::user * puser,
-                  const char * pszVersion)
+   ::sockets::http_session * system::open(::sockets::socket_handler & handler, const char * pszHost, const char * pszProtocol, property_set & set, ::fontopus::user * puser, const char * pszVersion)
    {
 
       uint32_t dwTimeProfile1 = get_tick_count();
@@ -490,14 +484,19 @@ namespace http
 
       setQuery.parse_url_query(System.url().get_query(strUrl));
 
-
+      string strIp;
 
       string strSessId;
+
+      ::sockets::http_session * psession;
+
+      psession = new ::sockets::http_session(handler, strProtocol, pszHost);
+
       if(!(bool)set["disable_ca2_sessid"] && !setQuery.has_property("authnone"))
       {
+
          if((bool)set["optional_ca2_sessid"])
          {
-
 
             if(papp != NULL)
             {
@@ -524,7 +523,17 @@ namespace http
          if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
             if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
          {
+
             System.url().string_set(strUrl, "sessid", strSessId);
+
+            string strFontopus = Session.fontopus()->get_server(string("http://") + pszHost, 8);
+
+            ::net::address ad(strFontopus);
+
+            strIp = ad.get_display_number();;
+
+            psession->inheader(__id(host)) = pszHost;
+
          }
          else if(if_then(set.has_property("optional_ca2_login"), (bool)set["optional_ca2_login"]))
          {
@@ -535,10 +544,6 @@ namespace http
          }
       }
 
-      ::sockets::http_session * psession;
-
-
-      psession = new ::sockets::http_session(handler, strProtocol, pszHost);
 
       if(strProtocol == "https")
       {
@@ -558,8 +563,18 @@ namespace http
 #endif
          psession->EnableSSL();
       }
+
       uint32_t dw1 = ::get_tick_count();
+
       bool bConfigProxy = !set.has_property("no_proxy_config") || !(bool)set["no_proxy_config"];
+
+      if (strIp.has_char())
+      {
+
+         psession->m_strConnectHost = strIp;
+
+      }
+
       if(!psession->open(bConfigProxy))
       {
 /*            if(pestatus != NULL)
@@ -1119,7 +1134,7 @@ retry:
 
       setQuery.parse_url_query(System.url().get_query(strUrl));
 
-
+      string strIp;
 
       string strSessId;
       if ((bool)set["raw_http"])
@@ -1169,6 +1184,15 @@ retry:
                   strUrl.replace("://api.ca2.cc/", "://" + strApi + "/");
 //                  set["user"].cast < ::fontopus::user >()->set_sessid(set["user"].cast < ::fontopus::user >()->get_sessid(strApi), "api.ca2.cc");
                }
+
+               string strFontopus = Session.fontopus()->get_server(pszUrl, 8);
+
+               ::net::address ad(strFontopus);
+
+               strIp = ad.get_display_number();;
+
+               set["headers"]["host"] = System.url().get_server(pszUrl);
+
             }
             else if (if_then(set.has_property("optional_ca2_login"), (bool)set["optional_ca2_login"]))
             {
@@ -1195,7 +1219,7 @@ retry:
          bPut = true;
          psocket = new ::sockets::http_put_socket(handler, strUrl);
          dynamic_cast < ::sockets::http_put_socket * > (psocket)->m_file = set["put"].cast < ::file::stream_buffer >();
-         psocket->m_strMethod = "PUT";
+         psocket->m_emethod = ::sockets::http_method_put;
       }
       else if (set["post"].propset().m_propertya.get_count() > 0)
       {
@@ -1203,14 +1227,14 @@ retry:
          bPut = false;
          psocket = new ::sockets::http_post_socket(handler, strUrl);
          dynamic_cast < ::sockets::http_post_socket * > (psocket)->m_fields = set["post"].propset();
-         psocket->m_strMethod = "POST";
+         psocket->m_emethod = ::sockets::http_method_post;
       }
       else
       {
          bPost = false;
          bPut = false;
          psocket = new ::http::get_socket(handler, strUrl);
-         psocket->m_strMethod = set.lookup(__id(http_method), "GET");
+         psocket->m_emethod = ::sockets::string_http_method(set.lookup(__id(http_method), "GET"));
       }
 
 
@@ -1295,6 +1319,12 @@ retry:
       else
          iTimeout = iTimeout / 1000;
 
+      if (strIp.has_char())
+      {
+
+         psocket->m_strConnectHost = strIp;
+
+      }
 
       if(!psocket->open(bConfigProxy))
       {

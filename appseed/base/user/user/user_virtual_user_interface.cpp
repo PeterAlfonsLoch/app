@@ -1454,11 +1454,26 @@ sp(::user::frame_window) virtual_user_interface::GetTopLevelFrame()
    return pFrameWnd;
 }
 
+void virtual_user_interface::_001WindowMinimize()
+{
+
+   ::user::interaction::_001WindowMinimize();
+
+}
+
 
 void virtual_user_interface::_001WindowMaximize()
 {
 
    ::user::interaction::_001WindowMaximize();
+
+}
+
+
+void virtual_user_interface::_001WindowFullScreen()
+{
+
+   ::user::interaction::_001WindowFullScreen();
 
 }
 

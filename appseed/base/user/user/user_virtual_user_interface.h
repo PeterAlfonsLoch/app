@@ -26,7 +26,9 @@ public:
    bool ShowWindow(int32_t nCmdShow);
    virtual ::user::interaction * get_parent();
 
+   virtual void _001WindowMinimize();
    virtual void _001WindowMaximize();
+   virtual void _001WindowFullScreen();
    virtual void _001WindowRestore();
    virtual bool SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
    void SetWindowText(const char * psz);

@@ -165,7 +165,7 @@ namespace sockets
       }
       if(m_bDirect)
       {
-         if (!tcp_socket::open(GetUrlHost(),GetUrlPort()))
+         if (!tcp_socket::open(get_connect_host(), get_connect_port()))
          {
             if (!Connecting())
             {

@@ -18,7 +18,7 @@ namespace sockets
       m_bMultipart(false)
    {
 
-      m_strMethod = "POST";
+      m_emethod = http_method_post;
 
    }
 
@@ -36,7 +36,7 @@ namespace sockets
       m_bMultipart(false)
    {
 
-      m_strMethod = "POST";
+      m_emethod = http_method_post;
 
       single_lock lock(&System.sockets().m_mutexHttpPostBoundary, true);
 
