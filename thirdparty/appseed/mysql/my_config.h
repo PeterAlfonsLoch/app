@@ -416,6 +416,9 @@
 /* #undef C_HAS_inline */
 #if !(C_HAS_inline)
 #ifndef __cplusplus
+#ifdef inline
+#undef inline
+#endif
 # define inline __inline
 #endif
 #endif
