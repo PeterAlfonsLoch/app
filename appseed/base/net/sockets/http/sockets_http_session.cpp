@@ -23,7 +23,7 @@ namespace sockets
       m_strHost                     = host;
       m_host                        = host;
 
-      inattr(__id(http_protocol))       = protocol;
+      inattr(__id(http_protocol))   = protocol;
 
 
       m_strUrl                      = protocol + "://" + host;
@@ -32,6 +32,9 @@ namespace sockets
          m_port = 80;
       else 
          m_port = 443;
+
+      m_strConnectHost              = m_host;
+      m_iConnectPort                = m_port;
 
       m_bRequestComplete            = false;
 
