@@ -8,7 +8,7 @@
 
 #include "linux_cross_win_gdi.h"
 
-#include "graphics/draw2d_xlib/draw2d_xlib.h"
+//#include "graphics/draw2d_xlib/draw2d_xlib.h"
 
 
 void set(XColor & color, COLORREF cr);
