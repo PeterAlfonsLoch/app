@@ -9707,8 +9707,6 @@
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
-				9A98A6151771D67E000AE16E /* libbase.dylib */,
-				9AE24D341904CEFE001AEFFB /* libbase.dylib */,
 				07BD556C16210BD4008E31F0 /* AppKit.framework */,
 				CE931714155F1599005F90F6 /* Carbon.framework */,
 				9A8897A514C24736006B4023 /* Foundation.framework */,
@@ -9734,6 +9732,8 @@
 				9AE7233D17E83B69003E47F9 /* version.h */,
 				9AE7233C17E83B69003E47F9 /* version.cpp */,
 				9AE24D431904CEFE001AEFFB /* base_iosTests.xctest */,
+				9A98A6151771D67E000AE16E /* libbase.dylib */,
+				9AE24D341904CEFE001AEFFB /* libbase.dylib */,
 			);
 			sourceTree = "<group>";
 		};

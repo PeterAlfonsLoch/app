@@ -176,7 +176,6 @@
 		07B65467190F2CF9002DAADE /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07011FA6190CA31000C08335 /* libbase.dylib */; };
 		9AA6A2AD1907115B000A1F4A /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA6A2AC1907115B000A1F4A /* libbase.dylib */; };
 		9AE24DB51904CF5B001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24DB41904CF5B001AEFFB /* Foundation.framework */; };
-		9AE24DBA1904CF5B001AEFFB /* basemysql_ios.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AE24DB91904CF5B001AEFFB /* basemysql_ios.h */; };
 		9AE24DC31904CF5B001AEFFB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24DC21904CF5B001AEFFB /* XCTest.framework */; };
 		9AE24DC41904CF5B001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24DB41904CF5B001AEFFB /* Foundation.framework */; };
 		9AE24DC61904CF5B001AEFFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24DC51904CF5B001AEFFB /* UIKit.framework */; };
@@ -498,7 +497,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				9AE24DBA1904CF5B001AEFFB /* basemysql_ios.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,9 +511,6 @@
 		9AAE858917E91FFE00F0512E /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libbase.dylib"; sourceTree = "<group>"; };
 		9AE24DB21904CF5B001AEFFB /* libbasemysql.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbasemysql.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24DB41904CF5B001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		9AE24DB81904CF5B001AEFFB /* basemysql_ios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "basemysql_ios-Prefix.pch"; sourceTree = "<group>"; };
-		9AE24DB91904CF5B001AEFFB /* basemysql_ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = basemysql_ios.h; sourceTree = "<group>"; };
-		9AE24DBB1904CF5B001AEFFB /* basemysql_ios.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = basemysql_ios.m; sourceTree = "<group>"; };
 		9AE24DC11904CF5B001AEFFB /* basemysql_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = basemysql_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24DC21904CF5B001AEFFB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9AE24DC51904CF5B001AEFFB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -790,7 +785,6 @@
 		9AE72D9D17E90B87003E47F9 /* viosslfactories.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = viosslfactories.c; sourceTree = "<group>"; };
 		9AE72DA117E90B87003E47F9 /* violite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = violite.h; sourceTree = "<group>"; };
 		9AE72DA217E90B87003E47F9 /* welcome_copyright_notice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = welcome_copyright_notice.h; sourceTree = "<group>"; };
-		9AEB7ABB16F7BEB20085103B /* lib_ca2zlib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2zlib.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2zlib.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -835,21 +829,9 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9A1B2F7D16A2AF5C00875A94 = {
+		07B6586E190F3E2C002DAADE /* basemysql */ = {
 			isa = PBXGroup;
 			children = (
-				9AA6A2FD1907334C000A1F4A /* base.xcodeproj */,
-				9AAE858917E91FFE00F0512E /* libbase.dylib */,
-				9AE72BF717E90B86003E47F9 /* atomic */,
-				9AE72C0B17E90B86003E47F9 /* dbug */,
-				9AE72C2517E90B86003E47F9 /* libmysql */,
-				9AE72C5817E90B86003E47F9 /* mysql */,
-				9AE72C7B17E90B86003E47F9 /* mysys */,
-				9AE72CEB17E90B87003E47F9 /* mysys_ssl */,
-				9AE72D1F17E90B87003E47F9 /* sql */,
-				9AE72D4617E90B87003E47F9 /* sql-common */,
-				9AE72D5017E90B87003E47F9 /* strings */,
-				9AE72D8E17E90B87003E47F9 /* vio */,
 				9AE72BFE17E90B86003E47F9 /* base64.h */,
 				9AE72C0017E90B86003E47F9 /* big_endian.h */,
 				9AE72C0117E90B86003E47F9 /* byte_order_generic_x86_64.h */,
@@ -922,13 +904,31 @@
 				9AE72D8B17E90B87003E47F9 /* typelib.h */,
 				9AE72DA117E90B87003E47F9 /* violite.h */,
 				9AE72DA217E90B87003E47F9 /* welcome_copyright_notice.h */,
-				9AEB7ABB16F7BEB20085103B /* lib_ca2zlib.dylib */,
-				9AE24DB61904CF5B001AEFFB /* basemysql_ios */,
+			);
+			name = basemysql;
+			sourceTree = "<group>";
+		};
+		9A1B2F7D16A2AF5C00875A94 = {
+			isa = PBXGroup;
+			children = (
+				9AA6A2FD1907334C000A1F4A /* base.xcodeproj */,
+				07B6586E190F3E2C002DAADE /* basemysql */,
+				9AE72BF717E90B86003E47F9 /* atomic */,
+				9AE72C0B17E90B86003E47F9 /* dbug */,
+				9AE72C2517E90B86003E47F9 /* libmysql */,
+				9AE72C5817E90B86003E47F9 /* mysql */,
+				9AE72C7B17E90B86003E47F9 /* mysys */,
+				9AE72CEB17E90B87003E47F9 /* mysys_ssl */,
+				9AE72D1F17E90B87003E47F9 /* sql */,
+				9AE72D4617E90B87003E47F9 /* sql-common */,
+				9AE72D5017E90B87003E47F9 /* strings */,
+				9AE72D8E17E90B87003E47F9 /* vio */,
 				9AE24DCA1904CF5B001AEFFB /* basemysql_iosTests */,
 				9AE24DB31904CF5B001AEFFB /* Frameworks */,
 				9AEB768616F7BAA50085103B /* Products */,
 				9AA5E6D616F7C61B005C45CE /* libbasemysql.dylib */,
 				9AE24DB21904CF5B001AEFFB /* libbasemysql.dylib */,
+				9AAE858917E91FFE00F0512E /* libbase.dylib */,
 				9AE24DC11904CF5B001AEFFB /* basemysql_iosTests.xctest */,
 			);
 			sourceTree = "<group>";
@@ -944,24 +944,6 @@
 				9AE24DC51904CF5B001AEFFB /* UIKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9AE24DB61904CF5B001AEFFB /* basemysql_ios */ = {
-			isa = PBXGroup;
-			children = (
-				9AE24DB91904CF5B001AEFFB /* basemysql_ios.h */,
-				9AE24DBB1904CF5B001AEFFB /* basemysql_ios.m */,
-				9AE24DB71904CF5B001AEFFB /* Supporting Files */,
-			);
-			path = basemysql_ios;
-			sourceTree = "<group>";
-		};
-		9AE24DB71904CF5B001AEFFB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				9AE24DB81904CF5B001AEFFB /* basemysql_ios-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		9AE24DCA1904CF5B001AEFFB /* basemysql_iosTests */ = {

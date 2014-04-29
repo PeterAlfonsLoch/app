@@ -844,7 +844,6 @@
 		9AA5E6D116F7C61B005C45CE /* ToneMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C4C516E7F601008420D3 /* ToneMapping.h */; };
 		9AA5E6D216F7C61B005C45CE /* Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C4C616E7F601008420D3 /* Utilities.h */; };
 		9AE24D8B1904CF46001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D8A1904CF46001AEFFB /* Foundation.framework */; };
-		9AE24D901904CF46001AEFFB /* basefreeimage_ios.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AE24D8F1904CF46001AEFFB /* basefreeimage_ios.h */; };
 		9AE24D991904CF46001AEFFB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D981904CF46001AEFFB /* XCTest.framework */; };
 		9AE24D9A1904CF46001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D8A1904CF46001AEFFB /* Foundation.framework */; };
 		9AE24D9C1904CF46001AEFFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D9B1904CF46001AEFFB /* UIKit.framework */; };
@@ -899,7 +898,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				9AE24D901904CF46001AEFFB /* basefreeimage_ios.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1454,9 +1452,6 @@
 		9AA6A2EF190732FB000A1F4A /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../../../appseed/base/base.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AE24D881904CF46001AEFFB /* libbasefreeimage.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbasefreeimage.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24D8A1904CF46001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		9AE24D8E1904CF46001AEFFB /* basefreeimage_ios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "basefreeimage_ios-Prefix.pch"; sourceTree = "<group>"; };
-		9AE24D8F1904CF46001AEFFB /* basefreeimage_ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = basefreeimage_ios.h; sourceTree = "<group>"; };
-		9AE24D911904CF46001AEFFB /* basefreeimage_ios.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = basefreeimage_ios.m; sourceTree = "<group>"; };
 		9AE24D971904CF46001AEFFB /* basefreeimage_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = basefreeimage_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24D981904CF46001AEFFB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9AE24D9B1904CF46001AEFFB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -1508,12 +1503,25 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		07B65871190F3E83002DAADE /* basefreeimage */ = {
+			isa = PBXGroup;
+			children = (
+				9AE728E817E85A32003E47F9 /* freeimage.h */,
+				9A86C0B216E7F5FF008420D3 /* CacheFile.h */,
+				9A86C0FF16E7F5FF008420D3 /* FreeImageIO.h */,
+				9A86C36816E7F600008420D3 /* Plugin.h */,
+				9A86C36916E7F600008420D3 /* Quantizers.h */,
+				9A86C4C516E7F601008420D3 /* ToneMapping.h */,
+				9A86C4C616E7F601008420D3 /* Utilities.h */,
+			);
+			name = basefreeimage;
+			sourceTree = "<group>";
+		};
 		9A1B2F7D16A2AF5C00875A94 = {
 			isa = PBXGroup;
 			children = (
 				9AA6A2EF190732FB000A1F4A /* base.xcodeproj */,
-				9AE72B9617E88E8B003E47F9 /* libbase.dylib */,
-				9AE24D8C1904CF46001AEFFB /* basefreeimage_ios */,
+				07B65871190F3E83002DAADE /* basefreeimage */,
 				9AE24DA01904CF46001AEFFB /* basefreeimage_iosTests */,
 				9AE24D891904CF46001AEFFB /* Frameworks */,
 				9AEB768616F7BAA50085103B /* Products */,
@@ -1528,15 +1536,9 @@
 				9A86C22B16E7F600008420D3 /* LibTIFF */,
 				9A86C27A16E7F600008420D3 /* Metadata */,
 				9A86C28416E7F600008420D3 /* OpenEXR */,
-				9AE728E817E85A32003E47F9 /* freeimage.h */,
-				9A86C0B216E7F5FF008420D3 /* CacheFile.h */,
-				9A86C0FF16E7F5FF008420D3 /* FreeImageIO.h */,
-				9A86C36816E7F600008420D3 /* Plugin.h */,
-				9A86C36916E7F600008420D3 /* Quantizers.h */,
-				9A86C4C516E7F601008420D3 /* ToneMapping.h */,
-				9A86C4C616E7F601008420D3 /* Utilities.h */,
 				9AA5E6D616F7C61B005C45CE /* libbasefreeimage.dylib */,
 				9AE24D881904CF46001AEFFB /* libbasefreeimage.dylib */,
+				9AE72B9617E88E8B003E47F9 /* libbase.dylib */,
 				9AE24D971904CF46001AEFFB /* basefreeimage_iosTests.xctest */,
 			);
 			sourceTree = "<group>";
@@ -2212,24 +2214,6 @@
 				9AE24D9B1904CF46001AEFFB /* UIKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9AE24D8C1904CF46001AEFFB /* basefreeimage_ios */ = {
-			isa = PBXGroup;
-			children = (
-				9AE24D8F1904CF46001AEFFB /* basefreeimage_ios.h */,
-				9AE24D911904CF46001AEFFB /* basefreeimage_ios.m */,
-				9AE24D8D1904CF46001AEFFB /* Supporting Files */,
-			);
-			path = basefreeimage_ios;
-			sourceTree = "<group>";
-		};
-		9AE24D8D1904CF46001AEFFB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				9AE24D8E1904CF46001AEFFB /* basefreeimage_ios-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		9AE24DA01904CF46001AEFFB /* basefreeimage_iosTests */ = {

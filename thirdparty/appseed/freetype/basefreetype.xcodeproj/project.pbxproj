@@ -199,7 +199,6 @@
 		9A86CA4C16E8076D008420D3 /* ftgzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CA4B16E8076D008420D3 /* ftgzip.c */; };
 		9A8CCADB17EA05B000F87A02 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8CCAD917EA05B000F87A02 /* libbase.dylib */; };
 		9AE24D611904CF2F001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D601904CF2F001AEFFB /* Foundation.framework */; };
-		9AE24D661904CF2F001AEFFB /* basefreetype_ios.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AE24D651904CF2F001AEFFB /* basefreetype_ios.h */; };
 		9AE24D6F1904CF30001AEFFB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D6E1904CF30001AEFFB /* XCTest.framework */; };
 		9AE24D701904CF30001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D601904CF2F001AEFFB /* Foundation.framework */; };
 		9AE24D721904CF30001AEFFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D711904CF30001AEFFB /* UIKit.framework */; };
@@ -253,7 +252,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				9AE24D661904CF2F001AEFFB /* basefreetype_ios.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,9 +424,6 @@
 		9AA6A2E1190732B0000A1F4A /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../../../appseed/base/base.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AE24D5E1904CF2F001AEFFB /* libbasefreetype.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbasefreetype.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24D601904CF2F001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		9AE24D641904CF2F001AEFFB /* basefreetype_ios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "basefreetype_ios-Prefix.pch"; sourceTree = "<group>"; };
-		9AE24D651904CF2F001AEFFB /* basefreetype_ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = basefreetype_ios.h; sourceTree = "<group>"; };
-		9AE24D671904CF2F001AEFFB /* basefreetype_ios.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = basefreetype_ios.m; sourceTree = "<group>"; };
 		9AE24D6D1904CF30001AEFFB /* basefreetype_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = basefreetype_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24D6E1904CF30001AEFFB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9AE24D711904CF30001AEFFB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -483,7 +478,6 @@
 			isa = PBXGroup;
 			children = (
 				9AA6A2E1190732B0000A1F4A /* base.xcodeproj */,
-				9A8CCAD917EA05B000F87A02 /* libbase.dylib */,
 				9A1B359916A2D80800875A94 /* autofit */,
 				9A1B35B816A2D80800875A94 /* base */,
 				9A1B35E216A2D80800875A94 /* bdf */,
@@ -507,10 +501,10 @@
 				9A1B372A16A2D80800875A94 /* type1 */,
 				9A1B373D16A2D80800875A94 /* type42 */,
 				9A1B374A16A2D80800875A94 /* winfonts */,
-				9AE24D621904CF2F001AEFFB /* basefreetype_ios */,
 				9AE24D761904CF30001AEFFB /* basefreetype_iosTests */,
 				9AE24D5F1904CF2F001AEFFB /* Frameworks */,
 				9A1B358D16A2D7A500875A94 /* Products */,
+				9A8CCAD917EA05B000F87A02 /* libbase.dylib */,
 			);
 			sourceTree = "<group>";
 		};
@@ -876,24 +870,6 @@
 				9AE24D711904CF30001AEFFB /* UIKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9AE24D621904CF2F001AEFFB /* basefreetype_ios */ = {
-			isa = PBXGroup;
-			children = (
-				9AE24D651904CF2F001AEFFB /* basefreetype_ios.h */,
-				9AE24D671904CF2F001AEFFB /* basefreetype_ios.m */,
-				9AE24D631904CF2F001AEFFB /* Supporting Files */,
-			);
-			path = basefreetype_ios;
-			sourceTree = "<group>";
-		};
-		9AE24D631904CF2F001AEFFB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				9AE24D641904CF2F001AEFFB /* basefreetype_ios-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		9AE24D761904CF30001AEFFB /* basefreetype_iosTests */ = {

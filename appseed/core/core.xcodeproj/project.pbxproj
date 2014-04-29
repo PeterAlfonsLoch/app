@@ -4669,13 +4669,6 @@
 				9AA6A30B1907337A000A1F4A /* basefreetype.xcodeproj */,
 				9AA6A31719073388000A1F4A /* basefreeimage.xcodeproj */,
 				9AA6A3231907339B000A1F4A /* basemysql.xcodeproj */,
-				07884E971898294B00DC6CEB /* libbase.dylib */,
-				07884E981898294B00DC6CEB /* libbasefreeimage.dylib */,
-				07884E931898293500DC6CEB /* libbasefreetype.dylib */,
-				07884E941898293500DC6CEB /* libbasemysql.dylib */,
-				079DBF2F1886745600EFFEFB /* core.h */,
-				9AE72BEB17E90A92003E47F9 /* libbase.dylib */,
-				9AE72BEC17E90A94003E47F9 /* libbasefreeimage.dylib */,
 				9A58847D16A20D5E0061C610 /* Security.framework */,
 				9A58847B16A20D480061C610 /* Carbon.framework */,
 				9A58847916A20D360061C610 /* Foundation.framework */,
@@ -4691,16 +4684,23 @@
 				07A6D61E173C27E9009E6FB8 /* primitive */,
 				07A6D672173C27E9009E6FB8 /* programming */,
 				07A6D694173C27E9009E6FB8 /* user */,
+				9AE24DF41904CF6E001AEFFB /* core_iosTests */,
+				9AE24DDD1904CF6E001AEFFB /* Frameworks */,
+				079DBF2F1886745600EFFEFB /* core.h */,
 				077C2A27190F198800A1F6B0 /* framework.cpp */,
 				077C2A28190F198800A1F6B0 /* framework.h */,
 				07A6D1F6173C27E6009E6FB8 /* ca2_res.h */,
 				07A6D5D7173C27E9009E6FB8 /* os_cross_windows_crt_debug.cpp */,
 				07A6D693173C27E9009E6FB8 /* this_build_number.h */,
+				9AE24DEB1904CF6E001AEFFB /* core_iosTests.xctest */,
 				9A8916841751D72100E531ED /* libcore.dylib */,
 				9AE24DDC1904CF6E001AEFFB /* libcore.dylib */,
-				9AE24DF41904CF6E001AEFFB /* core_iosTests */,
-				9AE24DDD1904CF6E001AEFFB /* Frameworks */,
-				9AE24DEB1904CF6E001AEFFB /* core_iosTests.xctest */,
+				07884E971898294B00DC6CEB /* libbase.dylib */,
+				07884E981898294B00DC6CEB /* libbasefreeimage.dylib */,
+				07884E931898293500DC6CEB /* libbasefreetype.dylib */,
+				07884E941898293500DC6CEB /* libbasemysql.dylib */,
+				9AE72BEB17E90A92003E47F9 /* libbase.dylib */,
+				9AE72BEC17E90A94003E47F9 /* libbasefreeimage.dylib */,
 			);
 			sourceTree = "<group>";
 		};
@@ -5743,10 +5743,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				07011FDD190CAB1B00C08335 /* PBXTargetDependency */,
-				07011FDF190CAB1B00C08335 /* PBXTargetDependency */,
 				07011FE1190CAB1B00C08335 /* PBXTargetDependency */,
 				07A6C995190C8DA900859288 /* PBXTargetDependency */,
+				07011FDF190CAB1B00C08335 /* PBXTargetDependency */,
+				07011FDD190CAB1B00C08335 /* PBXTargetDependency */,
 			);
 			name = core_ios;
 			productName = core_ios;

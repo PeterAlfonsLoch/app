@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		07A27B131808977D005F7B47 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A27B101808977D005F7B47 /* libbase.dylib */; };
 		07A27B151808977D005F7B47 /* libcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A27B121808977D005F7B47 /* libcore.dylib */; };
+		07B657E5190F3CCB002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B657E4190F3CCB002DAADE /* Foundation.framework */; };
+		07B657F3190F3CCC002DAADE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B657F2190F3CCC002DAADE /* XCTest.framework */; };
+		07B657F4190F3CCC002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B657E4190F3CCB002DAADE /* Foundation.framework */; };
+		07B657F6190F3CCC002DAADE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B657F5190F3CCC002DAADE /* UIKit.framework */; };
+		07B657F9190F3CCC002DAADE /* libsphere_ios.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B657E2190F3CCB002DAADE /* libsphere_ios.dylib */; };
+		07B657FF190F3CCC002DAADE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07B657FD190F3CCC002DAADE /* InfoPlist.strings */; };
+		07B65801190F3CCC002DAADE /* sphere_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B65800190F3CCC002DAADE /* sphere_iosTests.m */; };
 		9A57509E16AAB9A1000CC4EF /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A574D2B16AAB99E000CC4EF /* framework.cpp */; };
 		9A57509F16AAB9A1000CC4EF /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A574D2C16AAB99E000CC4EF /* framework.h */; };
 		9ACABF2A17BD0516004C3F85 /* asphere.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ACABEAE17BD0515004C3F85 /* asphere.h */; };
@@ -80,6 +87,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		07B657F7190F3CCC002DAADE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A574B8F16AAB906000CC4EF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 07B657E1190F3CCB002DAADE;
+			remoteInfo = sphere_ios;
+		};
+		07B65808190F3CCC002DAADE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AE6986917BD2ECE009C817D /* draw2d_quartz2d.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AA6A23919070F82000A1F4A;
+			remoteInfo = draw2d_quartz2d_ios;
+		};
+		07B6580A190F3CCC002DAADE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AE6986917BD2ECE009C817D /* draw2d_quartz2d.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AA6A24819070F82000A1F4A;
+			remoteInfo = draw2d_quartz2d_iosTests;
+		};
+		07B65864190F3D15002DAADE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AE6986917BD2ECE009C817D /* draw2d_quartz2d.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AA6A23819070F82000A1F4A;
+			remoteInfo = draw2d_quartz2d_ios;
+		};
 		9AE6986D17BD2ECE009C817D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AE6986917BD2ECE009C817D /* draw2d_quartz2d.xcodeproj */;
@@ -96,9 +131,29 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		07B657E0190F3CCB002DAADE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		07A27B101808977D005F7B47 /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libbase.dylib"; sourceTree = "<group>"; };
 		07A27B121808977D005F7B47 /* libcore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcore.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libcore.dylib"; sourceTree = "<group>"; };
+		07B657E2190F3CCB002DAADE /* libsphere_ios.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsphere_ios.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B657E4190F3CCB002DAADE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		07B657F1190F3CCC002DAADE /* sphere_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sphere_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B657F2190F3CCC002DAADE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		07B657F5190F3CCC002DAADE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		07B657FC190F3CCC002DAADE /* sphere_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "sphere_iosTests-Info.plist"; sourceTree = "<group>"; };
+		07B657FE190F3CCC002DAADE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		07B65800190F3CCC002DAADE /* sphere_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sphere_iosTests.m; sourceTree = "<group>"; };
 		9A574B9816AAB906000CC4EF /* libsphere.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsphere.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A574D2B16AAB99E000CC4EF /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A574D2C16AAB99E000CC4EF /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
@@ -215,6 +270,25 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		07B657DF190F3CCB002DAADE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07B657E5190F3CCB002DAADE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07B657EE190F3CCC002DAADE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07B657F3190F3CCC002DAADE /* XCTest.framework in Frameworks */,
+				07B657F9190F3CCC002DAADE /* libsphere_ios.dylib in Frameworks */,
+				07B657F6190F3CCC002DAADE /* UIKit.framework in Frameworks */,
+				07B657F4190F3CCC002DAADE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A574B9516AAB906000CC4EF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -227,14 +301,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07B657E3190F3CCB002DAADE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				07B657E4190F3CCB002DAADE /* Foundation.framework */,
+				07B657F2190F3CCC002DAADE /* XCTest.framework */,
+				07B657F5190F3CCC002DAADE /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		07B657FA190F3CCC002DAADE /* sphere_iosTests */ = {
+			isa = PBXGroup;
+			children = (
+				07B65800190F3CCC002DAADE /* sphere_iosTests.m */,
+				07B657FB190F3CCC002DAADE /* Supporting Files */,
+			);
+			path = sphere_iosTests;
+			sourceTree = "<group>";
+		};
+		07B657FB190F3CCC002DAADE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				07B657FC190F3CCC002DAADE /* sphere_iosTests-Info.plist */,
+				07B657FD190F3CCC002DAADE /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		9A574B8D16AAB906000CC4EF = {
 			isa = PBXGroup;
 			children = (
 				9AE6986917BD2ECE009C817D /* draw2d_quartz2d.xcodeproj */,
+				9ACABEAC17BD04FF004C3F85 /* sphere */,
+				07B657FA190F3CCC002DAADE /* sphere_iosTests */,
+				07B657E3190F3CCB002DAADE /* Frameworks */,
+				9A574B9916AAB906000CC4EF /* Products */,
 				07A27B101808977D005F7B47 /* libbase.dylib */,
 				07A27B121808977D005F7B47 /* libcore.dylib */,
-				9ACABEAC17BD04FF004C3F85 /* sphere */,
-				9A574B9916AAB906000CC4EF /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -242,6 +346,8 @@
 			isa = PBXGroup;
 			children = (
 				9A574B9816AAB906000CC4EF /* libsphere.dylib */,
+				07B657E2190F3CCB002DAADE /* libsphere_ios.dylib */,
+				07B657F1190F3CCC002DAADE /* sphere_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -424,6 +530,8 @@
 			isa = PBXGroup;
 			children = (
 				9AE6986E17BD2ECE009C817D /* libdraw2d_quartz2d.dylib */,
+				07B65809190F3CCC002DAADE /* libdraw2d_quartz2d_ios.dylib */,
+				07B6580B190F3CCC002DAADE /* draw2d_quartz2d_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -479,6 +587,42 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		07B657E1190F3CCB002DAADE /* sphere_ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07B6580C190F3CCC002DAADE /* Build configuration list for PBXNativeTarget "sphere_ios" */;
+			buildPhases = (
+				07B657DE190F3CCB002DAADE /* Sources */,
+				07B657DF190F3CCB002DAADE /* Frameworks */,
+				07B657E0190F3CCB002DAADE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				07B65865190F3D15002DAADE /* PBXTargetDependency */,
+			);
+			name = sphere_ios;
+			productName = sphere_ios;
+			productReference = 07B657E2190F3CCB002DAADE /* libsphere_ios.dylib */;
+			productType = "com.apple.product-type.library.static";
+		};
+		07B657F0190F3CCC002DAADE /* sphere_iosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07B6580D190F3CCC002DAADE /* Build configuration list for PBXNativeTarget "sphere_iosTests" */;
+			buildPhases = (
+				07B657ED190F3CCC002DAADE /* Sources */,
+				07B657EE190F3CCC002DAADE /* Frameworks */,
+				07B657EF190F3CCC002DAADE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				07B657F8190F3CCC002DAADE /* PBXTargetDependency */,
+			);
+			name = sphere_iosTests;
+			productName = sphere_iosTests;
+			productReference = 07B657F1190F3CCC002DAADE /* sphere_iosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		9A574B9716AAB906000CC4EF /* sphere */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9A574B9C16AAB906000CC4EF /* Build configuration list for PBXNativeTarget "sphere" */;
@@ -505,6 +649,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
+				TargetAttributes = {
+					07B657F0190F3CCC002DAADE = {
+						TestTargetID = 9A574B9716AAB906000CC4EF;
+					};
+				};
 			};
 			buildConfigurationList = 9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "sphere" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -525,11 +674,27 @@
 			projectRoot = "";
 			targets = (
 				9A574B9716AAB906000CC4EF /* sphere */,
+				07B657E1190F3CCB002DAADE /* sphere_ios */,
+				07B657F0190F3CCC002DAADE /* sphere_iosTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		07B65809190F3CCC002DAADE /* libdraw2d_quartz2d_ios.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libdraw2d_quartz2d_ios.dylib;
+			remoteRef = 07B65808190F3CCC002DAADE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B6580B190F3CCC002DAADE /* draw2d_quartz2d_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = draw2d_quartz2d_iosTests.xctest;
+			remoteRef = 07B6580A190F3CCC002DAADE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9AE6986E17BD2ECE009C817D /* libdraw2d_quartz2d.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -539,7 +704,33 @@
 		};
 /* End PBXReferenceProxy section */
 
+/* Begin PBXResourcesBuildPhase section */
+		07B657EF190F3CCC002DAADE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07B657FF190F3CCC002DAADE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		07B657DE190F3CCB002DAADE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07B657ED190F3CCC002DAADE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07B65801190F3CCC002DAADE /* sphere_iosTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A574B9416AAB906000CC4EF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -580,6 +771,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		07B657F8190F3CCC002DAADE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 07B657E1190F3CCB002DAADE /* sphere_ios */;
+			targetProxy = 07B657F7190F3CCC002DAADE /* PBXContainerItemProxy */;
+		};
+		07B65865190F3D15002DAADE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = draw2d_quartz2d_ios;
+			targetProxy = 07B65864190F3D15002DAADE /* PBXContainerItemProxy */;
+		};
 		9AE6987017BD2ED7009C817D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = draw2d_quartz2d;
@@ -587,7 +788,150 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		07B657FD190F3CCC002DAADE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				07B657FE190F3CCC002DAADE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		07B65802190F3CCC002DAADE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				DSTROOT = /tmp/sphere_ios.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "sphere_ios/sphere_ios-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		07B65803190F3CCC002DAADE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				DSTROOT = /tmp/sphere_ios.dst;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "sphere_ios/sphere_ios-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		07B65804190F3CCC002DAADE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/libsphere.dylib";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "sphere_ios/sphere_ios-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "sphere_iosTests/sphere_iosTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		07B65805190F3CCC002DAADE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/libsphere.dylib";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "sphere_ios/sphere_ios-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "sphere_iosTests/sphere_iosTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		9A574B9A16AAB906000CC4EF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -690,6 +1034,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		07B6580C190F3CCC002DAADE /* Build configuration list for PBXNativeTarget "sphere_ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07B65802190F3CCC002DAADE /* Debug */,
+				07B65803190F3CCC002DAADE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		07B6580D190F3CCC002DAADE /* Build configuration list for PBXNativeTarget "sphere_iosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07B65804190F3CCC002DAADE /* Debug */,
+				07B65805190F3CCC002DAADE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "sphere" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
