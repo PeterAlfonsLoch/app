@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="draw2d_cairo" />
+		<Option title="draw2d_xlib" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -65,6 +65,7 @@
 			<Add option="-lpthread" />
 			<Add option="-ldl" />
 			<Add option="-lX11" />
+			<Add option="-lXft" />
 			<Add option="-lXmu" />
 			<Add option="-lbase" />
 			<Add option="-lbasefreeimage" />
@@ -74,32 +75,34 @@
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
-		<Unit filename="draw2d_cairo.h" />
-		<Unit filename="draw2d_cairo_bitmap.cpp" />
-		<Unit filename="draw2d_cairo_bitmap.h" />
-		<Unit filename="draw2d_cairo_brush.cpp" />
-		<Unit filename="draw2d_cairo_brush.h" />
-		<Unit filename="draw2d_cairo_dib.cpp" />
-		<Unit filename="draw2d_cairo_dib.h" />
-		<Unit filename="draw2d_cairo_factory_exchange.cpp" />
-		<Unit filename="draw2d_cairo_factory_exchange.h" />
-		<Unit filename="draw2d_cairo_font.cpp" />
-		<Unit filename="draw2d_cairo_font.h" />
-		<Unit filename="draw2d_cairo_graphics.cpp" />
-		<Unit filename="draw2d_cairo_graphics.h" />
-		<Unit filename="draw2d_cairo_keep.cpp" />
-		<Unit filename="draw2d_cairo_keep.h" />
-		<Unit filename="draw2d_cairo_object.cpp" />
-		<Unit filename="draw2d_cairo_object.h" />
-		<Unit filename="draw2d_cairo_palette.cpp" />
-		<Unit filename="draw2d_cairo_palette.h" />
-		<Unit filename="draw2d_cairo_path.cpp" />
-		<Unit filename="draw2d_cairo_path.h" />
-		<Unit filename="draw2d_cairo_pen.cpp" />
-		<Unit filename="draw2d_cairo_pen.h" />
-		<Unit filename="draw2d_cairo_preview_dc.cpp" />
-		<Unit filename="draw2d_cairo_region.cpp" />
-		<Unit filename="draw2d_cairo_region.h" />
+		<Unit filename="draw2d_xlib.h" />
+		<Unit filename="draw2d_xlib_bitmap.cpp" />
+		<Unit filename="draw2d_xlib_bitmap.h" />
+		<Unit filename="draw2d_xlib_brush.cpp" />
+		<Unit filename="draw2d_xlib_brush.h" />
+		<Unit filename="draw2d_xlib_color.cpp" />
+		<Unit filename="draw2d_xlib_color.h" />
+		<Unit filename="draw2d_xlib_dib.cpp" />
+		<Unit filename="draw2d_xlib_dib.h" />
+		<Unit filename="draw2d_xlib_factory_exchange.cpp" />
+		<Unit filename="draw2d_xlib_factory_exchange.h" />
+		<Unit filename="draw2d_xlib_font.cpp" />
+		<Unit filename="draw2d_xlib_font.h" />
+		<Unit filename="draw2d_xlib_graphics.cpp" />
+		<Unit filename="draw2d_xlib_graphics.h" />
+		<Unit filename="draw2d_xlib_keep.cpp" />
+		<Unit filename="draw2d_xlib_keep.h" />
+		<Unit filename="draw2d_xlib_object.cpp" />
+		<Unit filename="draw2d_xlib_object.h" />
+		<Unit filename="draw2d_xlib_palette.cpp" />
+		<Unit filename="draw2d_xlib_palette.h" />
+		<Unit filename="draw2d_xlib_path.cpp" />
+		<Unit filename="draw2d_xlib_path.h" />
+		<Unit filename="draw2d_xlib_pen.cpp" />
+		<Unit filename="draw2d_xlib_pen.h" />
+		<Unit filename="draw2d_xlib_preview_dc.cpp" />
+		<Unit filename="draw2d_xlib_region.cpp" />
+		<Unit filename="draw2d_xlib_region.h" />
 		<Unit filename="framework.cpp" />
 		<Unit filename="framework.h">
 			<Option compile="1" />
