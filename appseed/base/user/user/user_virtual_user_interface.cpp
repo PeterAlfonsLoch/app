@@ -181,27 +181,27 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
    // stay at the extreme oposite.
    // But the need, and it seems good, to use application thread where window is created.
    // Application thread englobes window lifetime. While possibly worker threads not.
-   
+
 //   m_pthread = ::get_thread();
-   
+
 //   if(m_pthread == NULL)
 
    m_pthread = get_app();
-   
+
    if(m_pthread == NULL)
       return false;
-   
+
    m_pthread->add(this);
 
    m_pui->m_pthread = m_pthread;
-   
+
    m_pui->m_pthread->add(m_pui);
 
    m_bCreate = true;
-   
+
    if(!create_message_queue())
       return false;
-   
+
    m_bVisible = (dwStyle & WS_VISIBLE) != 0;
 
 
@@ -307,11 +307,11 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
 
    if(m_bCreate)
    {
-      
+
       DestroyWindow();
-      
+
    }
-   
+
    // great change :
    // From the thread where the window is created, the window attach to this thread.
    // But this thread can be just a temporary worker thread, and just after its initial action,
@@ -322,29 +322,29 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
    // stay at the extreme oposite.
    // But the need, and it seems good, to use application thread where window is created.
    // Application thread englobes window lifetime. While possibly worker threads not.
-   
+
 //   m_pthread = ::get_thread();
-   
+
 //   if(m_pthread == NULL)
 
    m_pthread = get_app();
-   
+
    if(m_pthread == NULL)
       return false;
-   
+
    m_bCreate = true;
-   
+
    if(!create_message_queue())
       return FALSE;
-   
+
    m_pthread->add(this);
-   
+
    m_pui->m_pthread = m_pthread;
-   
+
    m_pui->m_pthread->add(m_pui);
-   
+
    m_bVisible = (dwStyle & WS_VISIBLE) != 0;
-   
+
    //m_pui = this;
 //   m_oswindow = pparent->get_handle();
 //   ::window_sp pwndThis = (this);
@@ -442,14 +442,14 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
 
 bool virtual_user_interface::create(sp(::user::interaction) pparent, id id)
 {
-   
+
    if(m_bCreate)
    {
-   
+
       DestroyWindow();
-      
+
    }
-   
+
    // great change :
    // From the thread where the window is created, the window attach to this thread.
    // But this thread can be just a temporary worker thread, and just after its initial action,
@@ -460,29 +460,29 @@ bool virtual_user_interface::create(sp(::user::interaction) pparent, id id)
    // stay at the extreme oposite.
    // But the need, and it seems good, to use application thread where window is created.
    // Application thread englobes window lifetime. While possibly worker threads not.
-   
+
 //   m_pthread = ::get_thread();
-   
+
 //   if(m_pthread == NULL)
 
    m_pthread = get_app();
-   
+
    if(m_pthread == NULL)
       return false;
-   
+
    if(!create_message_queue())
       return false;
-   
+
    m_bCreate = true;
-   
+
    m_pthread->add(this);
-   
+
    m_pui->m_pthread = m_pthread;
-   
+
    m_pui->m_pthread->add(m_pui);
-   
+
    m_bVisible = true;
-   
+
    //m_pui = this;
 //   m_oswindow = pparent->get_handle();
 //   ::window_sp pwndThis = (this);
@@ -1182,13 +1182,13 @@ bool virtual_user_interface::DestroyWindow()
 
    try
    {
-   
+
       send_message(WM_NCDESTROY);
-      
+
    }
    catch(...)
    {
-   
+
    }
 
    return TRUE;
@@ -1303,12 +1303,12 @@ bool virtual_user_interface::ShowWindow(int32_t nCmdShow)
 
       m_bVisible = false;
 
-      string str;
-      m_pui->GetWindowText(str);
-      if (str == "r")
-      {
-         TRACE0("Hiding virtual user interface with text r");
-      }
+//      string str;
+  //    m_pui->GetWindowText(str);
+//      if (str == "r")
+  //    {
+    //     TRACE0("Hiding virtual user interface with text r");
+      //}
 
       if(m_pui != NULL)
       {
@@ -1480,7 +1480,7 @@ void virtual_user_interface::_001WindowFullScreen()
 
 void virtual_user_interface::_001WindowRestore()
 {
-   
+
    ::user::interaction::_001WindowRestore();
 
 }
@@ -1498,20 +1498,20 @@ void virtual_user_interface::_001OnNcDestroy(signal_details * pobj)
    UNREFERENCED_PARAMETER(pobj);
 
    ::user::interaction * puie = m_pui;
-   
+
    m_pui = NULL;
-   
+
    PostNcDestroy();
-   
+
    if(puie != NULL)
    {
-   
+
       puie->PostNcDestroy();
-      
+
    }
-   
+
    pobj->m_bRet = true;
-   
+
 }
 
 
@@ -1574,12 +1574,12 @@ bool virtual_user_interface::IsWindowVisible()
 {
    if (!IsWindow())
    {
-      string str;
-      m_pui->GetWindowText(str);
-      if (str == "r")
-      {
-         TRACE0("Hiding virtual user interface with text r Not is window");
-      }
+//      string str;
+  //    m_pui->GetWindowText(str);
+//      if (str == "r")
+  //    {
+    //     TRACE0("Hiding virtual user interface with text r Not is window");
+      //}
       return FALSE;
 
    }
@@ -1587,36 +1587,36 @@ bool virtual_user_interface::IsWindowVisible()
    {
       if (!m_pui->m_bVisible)
       {
-         string str;
-         m_pui->GetWindowText(str);
-         if (str == "r")
-         {
-            TRACE0("Hiding virtual user interface with text r !m_pui->m_bVisible");
-         }
+//         string str;
+  //       m_pui->GetWindowText(str);
+        // if (str == "r")
+//         {
+  //          TRACE0("Hiding virtual user interface with text r !m_pui->m_bVisible");
+    //     }
          return FALSE;
 
       }
       if (m_pui->get_parent() != NULL && !m_pui->get_parent()->IsWindowVisible())
       {
-         string str;
-         m_pui->GetWindowText(str);
-         if (str == "r")
-         {
-            TRACE0("Hiding virtual user interface with text r");
-         }
+         //string str;
+         //m_pui->GetWindowText(str);
+      //   if (str == "r")
+        // {
+//            TRACE0("Hiding virtual user interface with text r");
+  //       }
 
          return FALSE;
       }
-         
+
    }
    if (!m_bVisible)
    {
-      string str;
-      m_pui->GetWindowText(str);
-      if (str == "r")
-      {
-         TRACE0("Hiding virtual user interface with text r");
-      }
+      //string str;
+    //  m_pui->GetWindowText(str);
+    //  if (str == "r")
+      //{
+//         TRACE0("Hiding virtual user interface with text r");
+  //    }
       return FALSE;
 
    }
