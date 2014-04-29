@@ -51,7 +51,7 @@ CP=cp
 CCC=CC
 CC=cc
 CCADMIN=CCadmin
-FRAMEWORK_DIR=../framework
+FRAMEWORK_DIR=..
 FRAMEWORK_FLAGS_CORE=-features=namespace,rtti
 FRAMEWORK_FLAGS=-xpch=use:framework $(FRAMEWORK_FLAGS_CORE)
 #FRAMEWORK_FLAGS=$(FRAMEWORK_FLAGS_CORE)
@@ -65,8 +65,8 @@ CPP_BASE_FLAGS=-mt -features=no%anachronisms,no%transitions,tmplife -features=ex
 C_BASE_FLAGS=-mt -xstrconst -xc99
 
 FRAMEWORK_FILES= \
-	$(FRAMEWORK_DIR)/framework.Cpch \
-	$(FRAMEWORK_DIR)/framework_c.cpch
+	framework.Cpch \
+	framework_c.cpch
 
 
 # build
@@ -75,11 +75,9 @@ build: .build-post
 
 .build-pre: ${FRAMEWORK_FILES}
 	
-$(FRAMEWORK_DIR)/framework.Cpch: $(FRAMEWORK_DIR)/framework.cpp
-	cd $(FRAMEWORK_DIR) ; \
+framework.Cpch: $(FRAMEWORK_DIR)/framework.cpp
 	$(CCC) $(CPP_BASE_FLAGS) $(FRAMEWORK_FLAGS_COLLECT) -c -g -DDEBUG $(FRAMEWORK_INCLUDES) -KPIC $(FRAMEWORK_DIR)/framework.cpp
-$(FRAMEWORK_DIR)/framework_c.cpch: $(FRAMEWORK_DIR)/framework_c.c
-	cd $(FRAMEWORK_DIR) ; \
+framework_c.cpch: $(FRAMEWORK_DIR)/framework_c.c
 	$(CC) $(C_BASE_FLAGS) $(FRAMEWORK_C_FLAGS_COLLECT) -c -g -DDEBUG $(FRAMEWORK_INCLUDES) -KPIC $(FRAMEWORK_DIR)/framework_c.c
 
 

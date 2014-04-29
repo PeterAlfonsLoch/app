@@ -268,7 +268,9 @@ namespace file
    /*
     * Support EDEADLOCK for compatibiity with older MS-C versions.
     */
+#ifndef EDEADLOCK
    #define EDEADLOCK       EDEADLK
+#endif
 
 
    /////////////////////////////////////////////////////////////////////////////

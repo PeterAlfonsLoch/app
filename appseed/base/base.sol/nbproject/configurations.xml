@@ -567,7 +567,6 @@
               <itemPath>../base/openssl/crypto/bio/bss_log.c</itemPath>
               <itemPath>../base/openssl/crypto/bio/bss_mem.c</itemPath>
               <itemPath>../base/openssl/crypto/bio/bss_null.c</itemPath>
-              <itemPath>../base/openssl/crypto/bio/bss_rtcp.c</itemPath>
               <itemPath>../base/openssl/crypto/bio/bss_sock.c</itemPath>
             </logicalFolder>
             <logicalFolder name="bn" displayName="bn" projectFiles="true">
@@ -1821,36 +1820,6 @@
           <itemPath>../graphics/draw2d/draw2d_region.cpp</itemPath>
           <itemPath>../graphics/draw2d/draw2d_region.h</itemPath>
         </logicalFolder>
-        <logicalFolder name="draw2d_xlib" displayName="draw2d_xlib" projectFiles="true">
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib.h</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_bitmap.cpp</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_bitmap.h</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_brush.cpp</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_brush.h</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_color.cpp</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_color.h</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_dib.cpp</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_dib.h</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_factory_exchange.cpp</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_factory_exchange.h</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_font.cpp</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_font.h</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_graphics.cpp</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_graphics.h</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_keep.cpp</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_keep.h</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_object.cpp</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_object.h</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_palette.cpp</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_palette.h</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_path.cpp</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_path.h</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_pen.cpp</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_pen.h</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_preview_dc.cpp</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_region.cpp</itemPath>
-          <itemPath>../graphics/draw2d_xlib/draw2d_xlib_region.h</itemPath>
-        </logicalFolder>
         <logicalFolder name="visual" displayName="visual" projectFiles="true">
           <itemPath>../graphics/visual/visual.h</itemPath>
           <itemPath>../graphics/visual/visual_const.h</itemPath>
@@ -2555,7 +2524,6 @@
             <itemPath>../primitive/str/iconv/setenv.c</itemPath>
             <itemPath>../primitive/str/iconv/shift_jisx0213.h</itemPath>
             <itemPath>../primitive/str/iconv/signal.in.h</itemPath>
-            <itemPath>../primitive/str/iconv/sigprocmask.c</itemPath>
             <itemPath>../primitive/str/iconv/sjis.h</itemPath>
             <itemPath>../primitive/str/iconv/stamp-h2</itemPath>
             <itemPath>../primitive/str/iconv/stat.c</itemPath>

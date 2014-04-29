@@ -17,8 +17,12 @@ typedef  GZIP* LPGZIP;
 //static const int32_t gz_magic[2] = {0x1f, 0x8b}; /* gzip magic header */
 
 #define BZ_SETERR(err) m_z_err = err
-typedef void *(*bzalloc)(void *,int32_t,int32_t);
-typedef void (*bzfree)(void *,void *);
+extern "C"
+{
+typedef  void *(* bzalloc)(void *,int32_t,int32_t);
+typedef  void (* bzfree)(void *,void *);
+
+}
 
 
 bzip_stream::bzip_stream(::file::stream_buffer *  pfileDest) :

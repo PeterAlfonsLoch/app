@@ -252,16 +252,29 @@ wait_result event_collection::find_next( const wait_result& result ) const
          return wait_result( static_cast<int32_t>(position), m_objecta.get_size() );
       }
    }
+   
    return wait_result( wait_result::Failure );
+   
 }
+
 
 event_collection::event_collection( const event_collection& )
 {
+    
    throw void_implementation_exception(get_app());
+   
 }
+
+
 const event_collection& event_collection::operator=( const event_collection& )
 {
-   throw void_implementation_exception(get_app());
-};
+
+    throw void_implementation_exception(get_app());
+   
+   return *this;
+   
+}
+
+
 
 

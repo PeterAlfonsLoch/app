@@ -10,7 +10,7 @@
          http_method_none,
          http_method_get,
          http_method_post,
-         http_method_put,
+         http_method_put
 
       };
 
