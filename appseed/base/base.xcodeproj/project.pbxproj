@@ -9388,7 +9388,6 @@
 		07F5B2C3184A3FA30092C3E1 /* programming */ = {
 			isa = PBXGroup;
 			children = (
-				07F5B2C4184A3FA30092C3E1 /* javascript */,
 			);
 			path = programming;
 			sourceTree = "<group>";
@@ -9405,7 +9404,8 @@
 				07F5B2CC184A3FA30092C3E1 /* javascript_tinyjs_functions.cpp */,
 				07F5B2CD184A3FA30092C3E1 /* javascript_tinyjs_functions.h */,
 			);
-			path = javascript;
+			name = javascript;
+			path = programming/javascript;
 			sourceTree = "<group>";
 		};
 		9AA6A3951907B306000A1F4A /* ios */ = {
@@ -9707,11 +9707,6 @@
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
-				077C2A17190F143F00A1F6B0 /* framework_c.c */,
-				077C2A18190F143F00A1F6B0 /* framework_c.h */,
-				077C2A19190F143F00A1F6B0 /* framework.cpp */,
-				077C2A1A190F144000A1F6B0 /* framework.h */,
-				9AE7233C17E83B69003E47F9 /* version.cpp */,
 				9A98A6151771D67E000AE16E /* libbase.dylib */,
 				9AE24D341904CEFE001AEFFB /* libbase.dylib */,
 				07BD556C16210BD4008E31F0 /* AppKit.framework */,
@@ -9719,9 +9714,6 @@
 				9A8897A514C24736006B4023 /* Foundation.framework */,
 				073EDDE1164E968100818801 /* Security.framework */,
 				073EDDE4164E96DA00818801 /* SecurityFoundation.framework */,
-				9AE7233B17E83B69003E47F9 /* version.config.h */,
-				9AE7233D17E83B69003E47F9 /* version.h */,
-				9AE24D431904CEFE001AEFFB /* base_iosTests.xctest */,
 				9AE720C617E83B68003E47F9 /* base */,
 				9AE24D4C1904CEFF001AEFFB /* base_iosTests */,
 				079AE096188648D400635C39 /* database */,
@@ -9732,7 +9724,16 @@
 				9AE7229617E83B69003E47F9 /* net */,
 				9AE722BF17E83B69003E47F9 /* primitive */,
 				07F5B2C3184A3FA30092C3E1 /* programming */,
+				07F5B2C4184A3FA30092C3E1 /* javascript */,
 				9AE7233517E83B69003E47F9 /* user */,
+				077C2A17190F143F00A1F6B0 /* framework_c.c */,
+				077C2A18190F143F00A1F6B0 /* framework_c.h */,
+				077C2A19190F143F00A1F6B0 /* framework.cpp */,
+				077C2A1A190F144000A1F6B0 /* framework.h */,
+				9AE7233B17E83B69003E47F9 /* version.config.h */,
+				9AE7233D17E83B69003E47F9 /* version.h */,
+				9AE7233C17E83B69003E47F9 /* version.cpp */,
+				9AE24D431904CEFE001AEFFB /* base_iosTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
