@@ -4665,8 +4665,6 @@
 		9A8897AB14C2C8DB006B4023 = {
 			isa = PBXGroup;
 			children = (
-				077C2A27190F198800A1F6B0 /* framework.cpp */,
-				077C2A28190F198800A1F6B0 /* framework.h */,
 				9AA6A3871907ACBE000A1F4A /* base.xcodeproj */,
 				9AA6A30B1907337A000A1F4A /* basefreetype.xcodeproj */,
 				9AA6A31719073388000A1F4A /* basefreeimage.xcodeproj */,
@@ -4693,6 +4691,8 @@
 				07A6D61E173C27E9009E6FB8 /* primitive */,
 				07A6D672173C27E9009E6FB8 /* programming */,
 				07A6D694173C27E9009E6FB8 /* user */,
+				077C2A27190F198800A1F6B0 /* framework.cpp */,
+				077C2A28190F198800A1F6B0 /* framework.h */,
 				07A6D1F6173C27E6009E6FB8 /* ca2_res.h */,
 				07A6D5D7173C27E9009E6FB8 /* os_cross_windows_crt_debug.cpp */,
 				07A6D693173C27E9009E6FB8 /* this_build_number.h */,
