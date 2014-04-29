@@ -744,8 +744,8 @@
 		<Unit filename="filesystem/userfs/userfs_update_hint.h" />
 		<Unit filename="filesystem/userfs/userfs_userfs.cpp" />
 		<Unit filename="filesystem/userfs/userfs_userfs.h" />
-		<Unit filename="framework/framework.cpp" />
-		<Unit filename="framework/framework.h">
+		<Unit filename="framework.cpp" />
+		<Unit filename="framework.h">
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>

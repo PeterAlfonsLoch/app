@@ -3005,15 +3005,15 @@
 		<Unit filename="filesystem/fs/fs_remote_native_fs.h" />
 		<Unit filename="filesystem/fs/fs_set.cpp" />
 		<Unit filename="filesystem/fs/fs_set.h" />
-		<Unit filename="framework/framework.cpp" />
-		<Unit filename="framework/framework.h">
+		<Unit filename="framework.cpp" />
+		<Unit filename="framework.h">
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
-		<Unit filename="framework/framework_c.c">
+		<Unit filename="framework_c.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="framework/framework_c.h">
+		<Unit filename="framework_c.h">
 			<Option compilerVar="CC" />
 			<Option compile="1" />
 			<Option weight="0" />
