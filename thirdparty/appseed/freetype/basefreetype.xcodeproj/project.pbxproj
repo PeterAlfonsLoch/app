@@ -36,6 +36,7 @@
 		07A4A943190C44A6005B6DE5 /* type1.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B373C16A2D80800875A94 /* type1.c */; };
 		07A4A944190C44A6005B6DE5 /* type42.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B396C16A2F49D00875A94 /* type42.c */; };
 		07A4A945190C44A6005B6DE5 /* winfnt.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B374F16A2D80800875A94 /* winfnt.c */; };
+		07B6540F190F2B4C002DAADE /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 077C29FC190F10FD00A1F6B0 /* libbase.dylib */; };
 		9A1B375216A2D80800875A94 /* afangles.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B359B16A2D80800875A94 /* afangles.h */; };
 		9A1B375416A2D80800875A94 /* afcjk.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B359D16A2D80800875A94 /* afcjk.h */; };
 		9A1B375616A2D80800875A94 /* afdummy.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B359F16A2D80800875A94 /* afdummy.h */; };
@@ -228,6 +229,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
 			remoteInfo = base_iosTests;
+		};
+		07B6540A190F2B43002DAADE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA6A2E1190732B0000A1F4A /* base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE24D331904CEFE001AEFFB;
+			remoteInfo = base_ios;
 		};
 		9AE24D731904CF30001AEFFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -443,6 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AE24D611904CF2F001AEFFB /* Foundation.framework in Frameworks */,
+				07B6540F190F2B4C002DAADE /* libbase.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1077,6 +1086,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				07B6540B190F2B43002DAADE /* PBXTargetDependency */,
 			);
 			name = basefreetype_ios;
 			productName = basefreetype_ios;
@@ -1259,6 +1269,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		07B6540B190F2B43002DAADE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = base_ios;
+			targetProxy = 07B6540A190F2B43002DAADE /* PBXContainerItemProxy */;
+		};
 		9AE24D741904CF30001AEFFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9AE24D5D1904CF2F001AEFFB /* basefreetype_ios */;

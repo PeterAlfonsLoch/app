@@ -319,6 +319,7 @@
 		07A4AA7C190C450E005B6DE5 /* tif_warning.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C26716E7F600008420D3 /* tif_warning.c */; };
 		07A4AA7D190C450E005B6DE5 /* tif_write.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C26B16E7F600008420D3 /* tif_write.c */; };
 		07A4AA7E190C450E005B6DE5 /* tif_zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C26C16E7F600008420D3 /* tif_zip.c */; };
+		07B65409190F2B37002DAADE /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65408190F2B37002DAADE /* libbase.dylib */; };
 		9AA5E4C416F7C61B005C45CE /* BitmapAccess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C0B816E7F5FF008420D3 /* BitmapAccess.cpp */; };
 		9AA5E4C516F7C61B005C45CE /* CacheFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C0B916E7F5FF008420D3 /* CacheFile.cpp */; };
 		9AA5E4C616F7C61B005C45CE /* ColorLookup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C0BA16E7F5FF008420D3 /* ColorLookup.cpp */; };
@@ -877,6 +878,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		07B65408190F2B37002DAADE /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../../appseed/base/build/Debug-iphoneos/libbase.dylib"; sourceTree = "<group>"; };
 		9A86C0B216E7F5FF008420D3 /* CacheFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheFile.h; sourceTree = "<group>"; };
 		9A86C0B816E7F5FF008420D3 /* BitmapAccess.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BitmapAccess.cpp; sourceTree = "<group>"; };
 		9A86C0B916E7F5FF008420D3 /* CacheFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CacheFile.cpp; sourceTree = "<group>"; };
@@ -1449,6 +1451,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07B65409190F2B37002DAADE /* libbase.dylib in Frameworks */,
 				9AE24D8B1904CF46001AEFFB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2164,6 +2167,7 @@
 		9AE24D891904CF46001AEFFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				07B65408190F2B37002DAADE /* libbase.dylib */,
 				9AA6A2A81907113C000A1F4A /* libbase_ios.dylib */,
 				9AE24D8A1904CF46001AEFFB /* Foundation.framework */,
 				9AE24D981904CF46001AEFFB /* XCTest.framework */,
@@ -3325,6 +3329,10 @@
 			buildSettings = {
 				DSTROOT = /tmp/basefreeimage_ios.dst;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/ios/app/appseed/base/build/Debug-iphoneos",
+				);
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
@@ -3335,6 +3343,10 @@
 			buildSettings = {
 				DSTROOT = /tmp/basefreeimage_ios.dst;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/ios/app/appseed/base/build/Debug-iphoneos",
+				);
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};

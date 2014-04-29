@@ -173,6 +173,7 @@
 		07A4AB24190C4542005B6DE5 /* my_sha2.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72CF517E90B87003E47F9 /* my_sha2.cc */; };
 		07A4AB25190C4542005B6DE5 /* net_serv.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72D2217E90B87003E47F9 /* net_serv.cc */; };
 		07A4AB26190C4542005B6DE5 /* client_authentication.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72D4817E90B87003E47F9 /* client_authentication.cc */; };
+		07B65467190F2CF9002DAADE /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07011FA6190CA31000C08335 /* libbase.dylib */; };
 		9AA6A2AD1907115B000A1F4A /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA6A2AC1907115B000A1F4A /* libbase.dylib */; };
 		9AE24DB51904CF5B001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24DB41904CF5B001AEFFB /* Foundation.framework */; };
 		9AE24DBA1904CF5B001AEFFB /* basemysql_ios.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AE24DB91904CF5B001AEFFB /* basemysql_ios.h */; };
@@ -473,6 +474,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
 			remoteInfo = base_iosTests;
+		};
+		07B65403190F2B11002DAADE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA6A2FD1907334C000A1F4A /* base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE24D331904CEFE001AEFFB;
+			remoteInfo = base_ios;
 		};
 		9AE24DC71904CF5B001AEFFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -799,6 +807,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AE24DB51904CF5B001AEFFB /* Foundation.framework in Frameworks */,
+				07B65467190F2CF9002DAADE /* libbase.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1405,6 +1414,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				07B65404190F2B11002DAADE /* PBXTargetDependency */,
 			);
 			name = basemysql_ios;
 			productName = basemysql_ios;
@@ -1861,6 +1871,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		07B65404190F2B11002DAADE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = base_ios;
+			targetProxy = 07B65403190F2B11002DAADE /* PBXContainerItemProxy */;
+		};
 		9AE24DC81904CF5B001AEFFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9AE24DB11904CF5B001AEFFB /* basemysql_ios */;
