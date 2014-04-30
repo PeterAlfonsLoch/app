@@ -27,6 +27,8 @@ namespace user
          bool        m_bHScroll;
          int32_t         m_iScrollHeight;
          int32_t         m_iScrollWidth;
+         bool        m_bVScrollBarEnable;
+         bool        m_bHScrollBarEnable;
       };
 
 

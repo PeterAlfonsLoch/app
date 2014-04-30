@@ -61,6 +61,10 @@ namespace user
       m_dwLastCaret        = get_tick_count();
       set_cursor(::visual::cursor_text_select);
 
+      m_scrollinfo.m_bVScrollBarEnable = false;
+      m_scrollinfo.m_bVScrollBarEnable = false;
+
+
    }
 
    edit_plain_text::~edit_plain_text()

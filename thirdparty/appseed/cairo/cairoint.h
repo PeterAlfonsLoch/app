@@ -174,7 +174,6 @@ do {					\
  */
 #define CAIRO_BITSWAP8(c) ((((c) * 0x0802LU & 0x22110LU) | ((c) * 0x8020LU & 0x88440LU)) * 0x10101LU >> 16)
 
-#undef inline
 
 /* Return the number of 1 bits in mask.
  *
