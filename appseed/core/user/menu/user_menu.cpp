@@ -113,6 +113,7 @@ namespace user
 
       m_buttonClose._001SetButtonText("r");
       m_buttonClose.m_pschema = m_pschema->m_pschemaSysMenuButton;
+      m_buttonClose.SetFont(m_buttonClose.m_pschema->m_font);
 
       //System.add_frame(this);
 
@@ -190,6 +191,7 @@ namespace user
          pitem->m_button.SetWindowPos(0, rect.left, rect.top, rect.width(), rect.height(), 0);
          pitem->m_button.m_etranslucency = TranslucencyPresent;
          pitem->m_button.m_pschema = m_pschema->m_pschemaItemButton;
+         pitem->m_button.SetFont(pitem->m_button.m_pschema->m_font);
          pitem->m_button.m_pitem = pitem;
          pitem->m_pbase = this;
    /*      if(pitem->IsPopup())
