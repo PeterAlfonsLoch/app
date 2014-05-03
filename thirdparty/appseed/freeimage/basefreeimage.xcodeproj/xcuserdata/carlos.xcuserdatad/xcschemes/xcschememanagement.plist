@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>basefreeimage.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>25</integer>
-		</dict>
 		<key>basefreeimage_ios.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
