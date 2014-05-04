@@ -15,7 +15,7 @@ public:
    }
 
 
-#if !defined(ANDROID) && !defined(SOLARIS) && !defined(APPLE_OS)
+#if !defined(ANDROID) && !defined(SOLARIS)
 
    lparam(int32_t i)
    {

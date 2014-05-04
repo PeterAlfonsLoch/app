@@ -13,7 +13,7 @@
 void * __get_thread_ptr(const char * psz)
 {
    
-    return (void *)[[[[NSThread currentThread] threadDictionary] valueForKey: [NSString stringWithUTF8String : psz]] intValue];
+    return (void *)[[[[NSThread currentThread] threadDictionary] valueForKey: [NSString stringWithUTF8String : psz]] longValue];
     
 }
 
