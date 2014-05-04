@@ -7071,6 +7071,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed/core/framework . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed";
 				WARNING_CFLAGS = (
 					"-Wno-comment",
@@ -7123,6 +7124,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed/core/framework . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed";
 				VALIDATE_PRODUCT = YES;
 				WARNING_CFLAGS = (
