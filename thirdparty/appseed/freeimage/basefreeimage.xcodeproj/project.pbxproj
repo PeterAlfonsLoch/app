@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		078AEF5519154A680091C065 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65545190F30F2002DAADE /* libbase.dylib */; };
 		07A4A947190C44E4005B6DE5 /* BitmapAccess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C0B816E7F5FF008420D3 /* BitmapAccess.cpp */; };
 		07A4A948190C44E4005B6DE5 /* CacheFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C0B916E7F5FF008420D3 /* CacheFile.cpp */; };
 		07A4A949190C44E4005B6DE5 /* ColorLookup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C0BA16E7F5FF008420D3 /* ColorLookup.cpp */; };
@@ -319,7 +320,6 @@
 		07A4AA7C190C450E005B6DE5 /* tif_warning.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C26716E7F600008420D3 /* tif_warning.c */; };
 		07A4AA7D190C450E005B6DE5 /* tif_write.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C26B16E7F600008420D3 /* tif_write.c */; };
 		07A4AA7E190C450E005B6DE5 /* tif_zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C26C16E7F600008420D3 /* tif_zip.c */; };
-		07B65409190F2B37002DAADE /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65408190F2B37002DAADE /* libbase.dylib */; };
 		9AA5E4C416F7C61B005C45CE /* BitmapAccess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C0B816E7F5FF008420D3 /* BitmapAccess.cpp */; };
 		9AA5E4C516F7C61B005C45CE /* CacheFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C0B916E7F5FF008420D3 /* CacheFile.cpp */; };
 		9AA5E4C616F7C61B005C45CE /* ColorLookup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C0BA16E7F5FF008420D3 /* ColorLookup.cpp */; };
@@ -1475,7 +1475,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AE24D8B1904CF46001AEFFB /* Foundation.framework in Frameworks */,
-				07B65409190F2B37002DAADE /* libbase.dylib in Frameworks */,
+				078AEF5519154A680091C065 /* libbase.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

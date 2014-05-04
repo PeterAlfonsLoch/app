@@ -87,6 +87,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		078AEEC2191547110091C065 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AE6986917BD2ECE009C817D /* draw2d_quartz2d.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A1CFD778154F5EAA007447E2;
+			remoteInfo = draw2d_quartz2d;
+		};
+		078AEEC4191547110091C065 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AE6986917BD2ECE009C817D /* draw2d_quartz2d.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AA6A23919070F82000A1F4A;
+			remoteInfo = draw2d_quartz2d_ios;
+		};
+		078AEEC6191547110091C065 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AE6986917BD2ECE009C817D /* draw2d_quartz2d.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AA6A24819070F82000A1F4A;
+			remoteInfo = draw2d_quartz2d_iosTests;
+		};
 		07B657F7190F3CCC002DAADE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A574B8F16AAB906000CC4EF /* Project object */;
@@ -266,6 +287,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		078AEEAF191547110091C065 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				078AEEC3191547110091C065 /* libdraw2d_quartz2d.dylib */,
+				078AEEC5191547110091C065 /* libdraw2d_quartz2d_ios.dylib */,
+				078AEEC7191547110091C065 /* draw2d_quartz2d_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		07B657E3190F3CCB002DAADE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -618,6 +649,12 @@
 			mainGroup = 9A574B8D16AAB906000CC4EF;
 			productRefGroup = 9A574B9916AAB906000CC4EF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 078AEEAF191547110091C065 /* Products */;
+					ProjectRef = 9AE6986917BD2ECE009C817D /* draw2d_quartz2d.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9A574B9716AAB906000CC4EF /* sphere */,
@@ -626,6 +663,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		078AEEC3191547110091C065 /* libdraw2d_quartz2d.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libdraw2d_quartz2d.dylib;
+			remoteRef = 078AEEC2191547110091C065 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		078AEEC5191547110091C065 /* libdraw2d_quartz2d_ios.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libdraw2d_quartz2d_ios.dylib;
+			remoteRef = 078AEEC4191547110091C065 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		078AEEC7191547110091C065 /* draw2d_quartz2d_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = draw2d_quartz2d_iosTests.xctest;
+			remoteRef = 078AEEC6191547110091C065 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		07B657EF190F3CCC002DAADE /* Resources */ = {
