@@ -188,9 +188,9 @@ void calendar::_001GetHtml(sp(::html::file) pfile)
          pfile->raw_print("<tr>");
          if(pfile->m_strOptions.find("<left-week-of-the-year>") >= 0)
          {
-            int32_t w ;       if(pfile->m_strOptions.find("<monday-first>")>=0)
+            time_t w ;       if(pfile->m_strOptions.find("<monday-first>")>=0)
       {
-         w = (time_t) atoi(System.datetime().strftime("%V", (time_t)::datetime::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
+         w = atoi(System.datetime().strftime("%V", (time_t)::datetime::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
       }
       else
       {
@@ -198,7 +198,7 @@ void calendar::_001GetHtml(sp(::html::file) pfile)
       }
 
             pfile->raw_print("<td>");
-            pfile->raw_print(::str::from(w));
+            pfile->raw_print(::str::from((int64_t) w));
             pfile->raw_print("</td>");
          }
          for(int32_t iWeekDay = 1; iWeekDay <=7; iWeekDay++)

@@ -1079,7 +1079,7 @@ namespace user
 
       index iColumn;
 
-      int_array iaVisible;
+      index_array iaVisible;
 
       if (m_columna.VisibleGetCount() > 0 || m_columna.NonVisibleGetCount() > 0)
       {
