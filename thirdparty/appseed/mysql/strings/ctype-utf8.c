@@ -5513,7 +5513,7 @@ static int my_uni_utf8_no_range(const CHARSET_INFO *cs
 }
 
 
-inline void
+static void
 my_tolower_utf8mb3(MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
 {
   MY_UNICASE_CHARACTER *page;
@@ -5522,7 +5522,7 @@ my_tolower_utf8mb3(MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
 }
 
 
-inline void
+static void
 my_toupper_utf8mb3(MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
 {
   MY_UNICASE_CHARACTER *page;
@@ -5531,14 +5531,15 @@ my_toupper_utf8mb3(MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
 }
 
 
-inline void
+/*
+void
 my_tosort_utf8mb3(MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
 {
   MY_UNICASE_CHARACTER *page;
   if ((page= uni_plane->page[(*wc >> 8) & 0xFF]))
     *wc= page[*wc & 0xFF].sort;
 }
-
+*/
 
 static size_t
 my_caseup_utf8(const CHARSET_INFO *cs, char *src, size_t srclen,
