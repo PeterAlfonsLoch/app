@@ -1389,6 +1389,7 @@
 			buildSettings = {
 				DSTROOT = /tmp/basefreetype_ios.dst;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
@@ -1399,6 +1400,7 @@
 			buildSettings = {
 				DSTROOT = /tmp/basefreetype_ios.dst;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};

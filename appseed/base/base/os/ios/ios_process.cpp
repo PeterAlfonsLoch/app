@@ -6,7 +6,7 @@
 #include <string.h>
 
 
-extern os_thread * t_posthread();
+extern thread_pointer < os_thread > t_posthread;
 //extern CLASS_DECL_THREAD HTHREAD currentThread;
 
 
@@ -148,7 +148,7 @@ CLASS_DECL_BASE bool main_initialize()
    
    set_thread_ptr("t_posthread", new os_thread(NULL, NULL));
    
-   t_posthread()->m_bRun = true;
+   t_posthread->m_bRun = true;
    
 //   currentThread = new hthread;
    
@@ -171,7 +171,7 @@ CLASS_DECL_BASE bool main_finalize()
       try
       {
          
-         delete t_posthread();
+         delete t_posthread;
          
       }
       catch(...)
@@ -179,7 +179,7 @@ CLASS_DECL_BASE bool main_finalize()
          
       }
       
-      set_thread_ptr("t_posthread",  NULL);
+      t_posthread = NULL;
       
    }
    

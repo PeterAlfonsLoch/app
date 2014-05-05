@@ -139,7 +139,7 @@ int EVP_DigestSignFinal(EVP_MD_CTX *ctx, unsigned char *sigret, size_t *siglen)
 		{
 		EVP_MD_CTX tmp_ctx;
 		unsigned char md[EVP_MAX_MD_SIZE];
-		unsigned int mdlen;
+		unsigned int mdlen = 0;
 		EVP_MD_CTX_init(&tmp_ctx);
 		if (!EVP_MD_CTX_copy_ex(&tmp_ctx,ctx))
 		     	return 0;
@@ -176,7 +176,7 @@ int EVP_DigestVerifyFinal(EVP_MD_CTX *ctx, unsigned char *sig, size_t siglen)
 	EVP_MD_CTX tmp_ctx;
 	unsigned char md[EVP_MAX_MD_SIZE];
 	int r;
-	unsigned int mdlen;
+	unsigned int mdlen = 0;
 	int vctx;
 
 	if (ctx->pctx->pmeth->verifyctx)

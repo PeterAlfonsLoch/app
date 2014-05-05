@@ -3391,6 +3391,7 @@
 					"$(inherited)",
 					"/ios/app/appseed/base/build/Debug-iphoneos",
 				);
+				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
@@ -3405,6 +3406,7 @@
 					"$(inherited)",
 					"/ios/app/appseed/base/build/Debug-iphoneos",
 				);
+				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
