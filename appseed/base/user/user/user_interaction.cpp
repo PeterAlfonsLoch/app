@@ -1328,7 +1328,7 @@ namespace user
    oswindow interaction::get_handle()
    {
 
-#if defined(METROWIN) || defined(APPLE_IOS)
+#if defined(METROWIN)
 
       sp(::user::interaction) pwnd = NULL;
 
@@ -1473,8 +1473,9 @@ namespace user
       m_pui = this;
       if (!m_pimpl->initialize(pinitialize))
       {
-         delete m_pimpl;
-         m_pimpl = NULL;
+       //  delete m_pimpl;
+         //m_pimpl = NULL;
+         m_pimpl.release();
          return false;
       }
       //install_message_handling(this);

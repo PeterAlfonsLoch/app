@@ -1239,7 +1239,7 @@ sp(::user::interaction) base_application::release_capture_uie()
 sp(::user::interaction) base_application::get_capture_uie()
 {
 
-#if defined(METROWIN) || defined(APPLE_IOS)
+#if defined(METROWIN)
 
    oswindow oswindowCapture = ::GetCapture();
 
@@ -1253,7 +1253,7 @@ sp(::user::interaction) base_application::get_capture_uie()
 
    return pui->get_capture();
 
-#elif defined(WINDOWS)
+#elif defined(WINDOWS) || defined(APPLE_IOS)
 
    oswindow oswindowCapture = ::GetCapture();
 

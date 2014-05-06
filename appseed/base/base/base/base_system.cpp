@@ -21,7 +21,7 @@ base_system::base_system(sp(base_application) papp) :
 
    m_psimpleui = NULL;
 
-#if defined(METROWIN) || defined(APPLE_IOS))
+#if defined(METROWIN) || defined(APPLE_IOS)
    m_posdata = new os_data();
 #endif
 

@@ -14,7 +14,7 @@ public:
 
 };
 
-#define window ::user::interaction
+//#define window ::user::interaction
 
 #elif defined(APPLE_IOS)
 
@@ -24,7 +24,7 @@ public:
 
 };
 
-#define window ::user::interaction
+//#define window ::user::interaction
 
 #else
 

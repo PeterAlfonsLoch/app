@@ -168,8 +168,7 @@ namespace user
 
 #if defined METROWIN && defined(__cplusplus_winrt)
 
-
-   class CLASS_DECL_BASE native_window_initialize
+    class CLASS_DECL_BASE native_window_initialize
    {
    public:
 
@@ -179,10 +178,15 @@ namespace user
 
 
    };
-#else if defined(APPLE_IOS)
+    
+#elif defined(APPLE_IOS)
+    
     class CLASS_DECL_BASE native_window_initialize
     {
     public:
+        
+        RECT   m_rect;
+        
     };
 
 #else
