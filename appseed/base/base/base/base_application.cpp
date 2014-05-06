@@ -782,7 +782,7 @@ void base_application::set_key_pressed(::user::e_key ekey, bool bPressed)
 
 
 
-#ifdef METROWIN
+#if defined(METROWIN) || defined(APPLE_IOS)
 sp(::user::interaction) base_application::window_from_os_data(void * pdata)
 {
 
@@ -1239,7 +1239,7 @@ sp(::user::interaction) base_application::release_capture_uie()
 sp(::user::interaction) base_application::get_capture_uie()
 {
 
-#ifdef METROWIN
+#if defined(METROWIN) || defined(APPLE_IOS)
 
    oswindow oswindowCapture = ::GetCapture();
 
@@ -1419,7 +1419,7 @@ void base_application::get_cursor_pos(LPPOINT lppoint)
 sp(::user::interaction) base_application::get_focus_guie()
 {
 
-#ifdef METROWIN
+#if defined (METROWIN)
 
    return GetFocus()->window();
 

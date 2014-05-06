@@ -16,6 +16,15 @@ public:
 
 #define window ::user::interaction
 
+#elif defined(APPLE_IOS)
+
+class CLASS_DECL_BASE native_window
+{
+public:
+
+};
+
+#define window ::user::interaction
 
 #else
 
@@ -56,7 +65,7 @@ public:
 
 
    virtual bool create_message_queue(const char * pszName, ::message_queue_listener * pcallback = NULL);
-#ifdef METROWIN
+#if defined(METROWIN) || defined(APPLE_IOS)
    virtual bool initialize(::user::native_window_initialize * pinitialize) = 0;
 #endif
 

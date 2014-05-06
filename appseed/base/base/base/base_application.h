@@ -359,7 +359,7 @@ public:
    virtual bool is_key_pressed(::user::e_key ekey);
    virtual void set_key_pressed(::user::e_key ekey, bool bPressed);
 
-#ifdef METROWIN
+#if defined(METROWIN) || defined(APPLE_IOS)
    virtual sp(::user::interaction) window_from_os_data(void * pdata);
    virtual sp(::user::interaction) window_from_os_data_permanent(void * pdata);
 #else

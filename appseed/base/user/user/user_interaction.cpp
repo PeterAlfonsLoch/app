@@ -1328,7 +1328,7 @@ namespace user
    oswindow interaction::get_handle()
    {
 
-#ifdef METROWIN
+#if defined(METROWIN) || defined(APPLE_IOS)
 
       sp(::user::interaction) pwnd = NULL;
 
@@ -1459,7 +1459,7 @@ namespace user
       return NULL;
    }
 
-#ifdef METROWIN
+#if defined(METROWIN) || defined(APPLE_IOS)
 
    bool interaction::initialize(::user::native_window_initialize * pinitialize)
    {
@@ -1668,7 +1668,7 @@ namespace user
          DestroyWindow();
       }
       m_signalptra.remove_all();
-#ifndef METROWIN
+#if !defined(METROWIN) && !defined(APPLE_IOS)
       if (pParentWnd == NULL)
       {
          m_pimpl = (Application.alloc(System.type_info < window >()));
@@ -1685,7 +1685,7 @@ namespace user
       else
 #endif
       {
-#ifdef METROWIN
+#if defined(METROWIN) || defined(APPLE_IOS)
          if (pParentWnd == NULL)
             pParentWnd = System.m_posdata->m_pui;
 #endif
@@ -2784,7 +2784,7 @@ namespace user
       ASSERT(GetTopLevelParent()->get_wnd() != NULL);
       if (GetTopLevelParent()->get_wnd() == NULL)
          return;
-#ifndef METROWIN
+#if !defined(METROWIN) && !defined(APPLE_IOS)
       GetTopLevelParent()->get_wnd()->mouse_hover_remove(this);
 #endif
    }

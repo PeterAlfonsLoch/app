@@ -213,7 +213,7 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
    {
       pwndThis->set_handle(m_oswindow);
    }*/
-#ifndef METROWIN
+#if !defined(METROWIN) && !defined(APPLE_IOS)
    if(dynamic_cast < ::message::dispatch * > (pparent.m_p) == NULL)
       return false;
 #endif

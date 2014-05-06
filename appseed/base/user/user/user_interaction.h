@@ -90,7 +90,7 @@ namespace user
 
 
       virtual bool create_message_queue(const char * pszName, ::message_queue_listener * pcallback = NULL);
-#ifdef METROWIN
+#if defined(METROWIN) || defined(APPLE_IOS)
       virtual bool initialize(::user::native_window_initialize * pinitialize);
 #endif
 

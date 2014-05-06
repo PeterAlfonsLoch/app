@@ -179,7 +179,11 @@ namespace user
 
 
    };
-
+#else if defined(APPLE_IOS)
+    class CLASS_DECL_BASE native_window_initialize
+    {
+    public:
+    };
 
 #else
 

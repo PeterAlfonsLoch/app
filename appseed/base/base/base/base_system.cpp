@@ -21,7 +21,7 @@ base_system::base_system(sp(base_application) papp) :
 
    m_psimpleui = NULL;
 
-#ifdef METROWIN
+#if defined(METROWIN) || defined(APPLE_IOS))
    m_posdata = new os_data();
 #endif
 
@@ -564,7 +564,7 @@ bool base_system::assert_running_global(const char * pszAppName, const char * ps
          string strApp = pszAppName;
          strApp += "app.exe";
 
-#ifdef METROWIN
+#if defined(METROWIN)
 
          throw todo(get_app());
 

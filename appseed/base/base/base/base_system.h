@@ -36,7 +36,16 @@ public:
 
    };
 
-
+#elif defined(APPLE_IOS)
+    class os_data
+    {
+    public:
+        
+        sp(::user::interaction)                      m_pui;
+        
+        
+    };
+    
 #else
 
    class os_data;
