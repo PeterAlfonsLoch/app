@@ -337,9 +337,32 @@
    
 //   [m_roundwindow disableFlushWindow];
    
-   CGContextRef cgc = UIGraphicsGetCurrentContext();
+   CGContextRef context = UIGraphicsGetCurrentContext();
    
-   p->boot_window_draw(cgc);
+   {
+      
+      CGRect rectangle = CGRectMake(0, 100, 100, 100);
+      CGContextSetRGBFillColor(context, 1.0, 0.0, 0.0, 0.5);
+      CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 0.5);
+      CGContextFillRect(context, rectangle);
+      CGContextSetLineWidth(context, 5.0f);
+      CGContextStrokeRect(context, rectangle);
+      
+   }
+   
+   return;
+
+   p->boot_window_draw(context);
+   
+   {
+   CGRect rectangle = CGRectMake(100, 200, 100, 100);
+   CGContextSetRGBFillColor(context, 0.0, 0.0, 1.0, 0.5);
+   CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 0.5);
+   CGContextFillRect(context, rectangle);
+   }
+
+   
+   
    
   // [m_roundwindow enableFlushWindow];
    
@@ -358,6 +381,9 @@
   // [self mouseDown: theEvent];
    //return YES;
 //}
+
+
+
 
 
 /*
@@ -454,6 +480,17 @@
    [super flagsChanged:event];
 }
 */
+
+
+-(void) redraw_view
+{
+   
+   [self setNeedsDisplay];
+   
+   
+   [[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode beforeDate: [NSDate date]];
+}
+
 
 
 @end

@@ -426,3 +426,28 @@ namespace ca2
 
 
 
+
+
+
+void * new_ns_pool();
+void release_pool(void * pool);
+
+thread_pointer < void > g_ns_pool;
+
+
+void on_start_thread()
+{
+   
+   g_ns_pool = new_ns_pool();
+   
+}
+
+
+void on_end_thread()
+{
+   
+   release_pool(g_ns_pool);
+   
+   g_ns_pool = NULL;
+   
+}

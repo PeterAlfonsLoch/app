@@ -415,7 +415,15 @@ namespace os
 
       m_evDone.ResetEvent();
       
-      m_evDone.wait();
+      while(true)
+      {
+      
+         if(m_evDone.wait(millis(777)).signaled())
+            break;
+         
+         redraw_window();
+         
+      }
 
       return true;
 
@@ -510,6 +518,14 @@ namespace os
    bool simple_ui::move_window(int32_t x, int32_t y)
    {
       
+      m_pt.x = x;
+      m_pt.y = y;
+      
+      m_rect.left = m_pt.x;
+      m_rect.top = m_pt.y;
+      m_rect.right = m_pt.x + m_size.cx;
+      m_rect.bottom = m_pt.y + m_size.cy;
+      
       SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
       
       return true;
@@ -518,6 +534,16 @@ namespace os
    
    bool simple_ui::set_window_pos(int32_t x, int32_t y, int32_t cx, int32_t cy, bool bShow)
    {
+      
+      m_pt.x = x;
+      m_pt.y = y;
+      m_size.cx = cx;
+      m_size.cy = cy;
+      
+      m_rect.left = m_pt.x;
+      m_rect.top = m_pt.y;
+      m_rect.right = m_pt.x + m_size.cx;
+      m_rect.bottom = m_pt.y + m_size.cy;
       
       SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, cx, cy, SWP_NOZORDER);
       

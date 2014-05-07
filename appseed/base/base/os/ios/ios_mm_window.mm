@@ -22,34 +22,38 @@
 //
 // Init method for the object.
 //
-/*- (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)windowStyle backing:(UIBackingStoreType)bufferingType defer:(BOOL)deferCreation
+- (id)initWithFrame:(CGRect)contentRect
 {
    
-	self = [super initWithContentRect:contentRect styleMask:NSBorderlessWindowMask backing:bufferingType defer:deferCreation];
+	self = [super initWithFrame:contentRect ];
 
 	if(self == NULL)
       return NULL;
    
+   [self setWindowLevel:UIWindowLevelAlert];
+   
 	[self setOpaque:NO];
 
-   [self setBackgroundColor:[NSColor clearColor]];
+   [self setBackgroundColor:[UIColor clearColor]];
 		
 //	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainWindowChanged:) name:NSWindowDidBecomeMainNotification object:self];
 		
 //	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainWindowChanged:) name:NSWindowDidResignMainNotification object:self];
    
-   [self setAcceptsMouseMovedEvents : YES];
+//   [self setAcceptsMouseMovedEvents : YES];
       
-   m_controller = [[NSWindowController alloc] initWithWindow:self];
+   m_controller = [[UIViewController alloc] init];
  
 
    [self create_view];
+   
+   [self setRootViewController : m_controller];
    
    
 	return self;
    
 }
-*/
+
 - (void) unsafe_boot_window_has_focus : (bool *) pbool
 {
 
@@ -87,6 +91,10 @@
    
 }
 
+-(void) display
+{
+   [childContentView setNeedsDisplay];
+}
 
 //
 // setContentSize:
@@ -142,6 +150,8 @@
 	[frameView setFrame : bounds];
    
 	[frameView setAutoresizingMask: 0];
+   
+   [ m_controller.view addSubview : frameView];
    
 }
 
@@ -213,6 +223,9 @@
    [m_controller release];
    
 }
+
+
+
 
 
 @end

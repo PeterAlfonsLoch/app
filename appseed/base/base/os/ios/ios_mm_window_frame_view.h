@@ -30,4 +30,8 @@
 }
 
 
+-(void) redraw_view;
+
+
+
 @end

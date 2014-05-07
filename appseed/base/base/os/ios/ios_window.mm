@@ -12,19 +12,17 @@
 UIWindow * new_boot_window(boot_window * pwindow, CGRect rect)
 {
    
-   rect.origin.x     = 0;
-   rect.origin.x     = 0;
-   rect.size.width   = 0;
-   rect.size.height  = 0;
+//   rect.origin.x     = 0;
+//   rect.origin.x     = 0;
+//   rect.size.width   = 0;
+//   rect.size.height  = 0;
    
    pwindow->m_proundwindow = [mm_window alloc];
    
    pwindow->m_proundwindow->m_pwindow = pwindow;
    
-//   return [pwindow->m_proundwindow initWithContentRect : rect styleMask : 0 backing : NSBackingStoreBuffered  defer : false ];
+   return [pwindow->m_proundwindow initWithFrame : rect ];
     
-    return NULL;
-   
 }
 
 
@@ -57,7 +55,9 @@ void boot_window::boot_window_show()
 void boot_window::boot_window_redraw()
 {
 
-   [[m_proundwindow dd_invokeOnMainThread] display ];
+//   [[m_proundwindow dd_invokeOnMainThread] display ];
+   
+   boot_window_invalidate();
    
 }
 
@@ -65,7 +65,7 @@ void boot_window::boot_window_redraw()
 void boot_window::boot_window_invalidate()
 {
    
-//   [[m_proundwindow->m_controller dd_invokeOnMainThread] setViewsNeedDisplay : TRUE];
+   [[m_proundwindow->childContentView dd_invokeOnMainThread] redraw_view];
    
 }
 

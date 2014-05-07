@@ -36,7 +36,7 @@ bool oswindow_data::show_window(int32_t nCmdShow)
    if(nCmdShow == SW_HIDE)
    {
 
-//      [m_nswindow orderOut : nil];
+      [m_nswindow setHidden: true];
       
    }
    else
@@ -44,7 +44,7 @@ bool oswindow_data::show_window(int32_t nCmdShow)
    
   //    [m_nswindow makeKeyAndOrderFront : nil];
       
-    //  [m_nswindow display];
+      [m_nswindow setHidden: false];
       
    }
    
@@ -91,7 +91,7 @@ WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT lpcrect, int iDisplay)
    //   rect.size.height  = 500;
    
    
-//   [hwnd->window() setFrame : rect display : iDisplay];
+   hwnd->window().frame = rect;
    
    return 1;
    
@@ -119,12 +119,9 @@ WINBOOL move_nswindow(oswindow hwnd, int x, int y)
 }
 
 
-//CLASS_DECL_THREAD NSAutoreleasePool * g_ns_pool = NULL;
 
 
-
-
-NSAutoreleasePool * new_ns_pool()
+void * new_ns_pool()
 {
    
    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
@@ -134,30 +131,15 @@ NSAutoreleasePool * new_ns_pool()
 }
 
 
-void release_pool(NSAutoreleasePool * pool)
+void release_pool(void * pool)
 {
-   
-   [pool release];
-   
-}
 
-void on_start_thread()
-{
-   
-   set_thread_ptr("g_ns_pool", new_ns_pool());
+   NSAutoreleasePool * ppool =    (NSAutoreleasePool *)pool;
+   [ppool release];
    
 }
 
 
-void on_end_thread()
-{
-   
-   release_pool((NSAutoreleasePool *) get_thread_ptr("g_ns_pool"));
-   
-//   g_ns_pool = NULL;
-    set_thread_ptr(NULL, "g_ns_pool");
-   
-}
 
 
 void ns_redraw_window(oswindow w)
