@@ -12,9 +12,7 @@ namespace fs
    link::link(sp(base_application) papp):
       element(papp),
       ::data::data(papp),
-#ifdef WINDOWSEX
-      //::fs::native(papp),
-#endif
+      ::fs::native(papp),
       ::fs::data(papp)
    {
       
@@ -59,20 +57,20 @@ namespace fs
       if(strDir == m_strRoot)
       {
 
-         for(int i = 0; i < m_straSource.get_size(); i++)
+         for(int i = 0; i < m_straPath.get_size(); i++)
          {
 
             if(pstraPath != NULL)
             {
 
-               pstraPath->add(m_straTarget[i]);
+               pstraPath->add(m_straPath[i]);
 
             }
 
             if(pstraTitle != NULL)
             {
 
-               pstraTitle->add(System.file().title_(m_straSource[i]));
+               pstraTitle->add(System.file().title_(m_straPath[i]));
 
             }
 
@@ -244,22 +242,8 @@ namespace fs
 
 #endif
 
-      Application.dir().ls(strSourceFolder,&straLink);
+      Application.dir().ls(strSourceFolder,&m_straPath);
 
-      for(int i = 0; i < straLink.get_size(); i++)
-      {
-
-         string strTarget;
-
-         string strSource = straLink[i];
-
-         System.os().resolve_link(strTarget,strSource);
-
-         m_straSource.add(strSource);
-
-         m_straTarget.add(strTarget);
-
-      }
 
    }
 

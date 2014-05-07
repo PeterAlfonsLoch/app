@@ -9,14 +9,13 @@ namespace fs
 
 
    class CLASS_DECL_BASE link:
-      virtual public ::fs::data
+      virtual public ::fs::native
    {
    public:
 
 
       string      m_strRoot;
-      stringa     m_straTarget;
-      stringa     m_straSource;
+      stringa     m_straPath;
 
 
       link(sp(base_application) papp);

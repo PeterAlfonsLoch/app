@@ -28,7 +28,7 @@ namespace fs
 
    }
 
-   item::item(const string & strPath, const flags < e_flag > & flags)
+   item::item(const string & strPath,const flags < e_flag > & flags)
    {
 
       m_strPath         = strPath;

@@ -33,7 +33,8 @@ namespace fs
       virtual bool has_subdir(const char * psz);
       virtual bool tree_show_subdir(const char * psz);
       virtual bool fast_has_subdir(const char * psz);
-      virtual void get_ascendants_path(const char * psz, stringa & stra);
+      virtual bool is_link(const char * psz);
+      virtual void get_ascendants_path(const char * psz,stringa & stra);
       virtual string eat_end_level(const char * psz, int32_t iLevel);
       virtual string dir_path(const char * pszPath1, const char * pszPath2);
 

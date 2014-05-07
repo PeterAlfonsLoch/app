@@ -195,4 +195,11 @@ namespace fs
    }
 
 
+   bool data::is_link(const char * psz)
+   {
+
+      return ::str::ends_ci(psz,".lnk");
+
+   }
+
 } // namespace fs

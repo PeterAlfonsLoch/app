@@ -47,6 +47,9 @@ namespace fs
       virtual sp(data) node_path_data(const char * psz);
 
 
+      virtual bool is_link(const char * psz);
+
+
    };
 
 

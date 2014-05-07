@@ -451,22 +451,27 @@ namespace filemanager
       int64_array iaSize;
 
 
-      bool bTreeShowSubdir;
+      bool bTreeShowSubdir = get_document()->set().tree_show_subdir(lpcsz);
 
 
       if(strlen(lpcsz) == 0)
       {
-         bTreeShowSubdir = true;
+
          get_document()->set().root_ones(straPath);
+
          straTitle = straPath;
+
       }
       else
       {
-         bTreeShowSubdir = get_document()->set().tree_show_subdir(lpcsz);
+         
          if(bTreeShowSubdir)
          {
+
             get_document()->set().ls(lpcsz,&straPath,& straTitle,&iaSize);
+
          }
+
       }
 
       pitem = pitemParent->first_child();
@@ -863,7 +868,19 @@ namespace filemanager
       if(typeid(*pitem->m_pitem) == System.type_info < ::userfs::item > ())
       {
 
-         if(pitem->m_pitem.cast < ::userfs::item >()->m_flags.is_signalized(::fs::FlagHasSubFolder))
+         if(get_document()->set().is_link(pitem->m_pitem.cast < ::userfs::item >()->m_strPath))
+         {
+
+            string strTarget;
+
+            System.os().resolve_link(strTarget,pitem->m_pitem.cast < ::userfs::item >()->m_strPath);
+
+            pitem = find_item(strTarget);
+
+            _017UpdateList(strTarget, pitem,1,actioncontext);
+
+         }
+         else
          {
 
             _017UpdateList(pitem->m_pitem.cast < ::userfs::item >()->m_strPath,pitem,1,actioncontext);
@@ -901,7 +918,24 @@ namespace filemanager
 
    void tree::_017OpenFolder(sp(::fs::item)  item, ::action::context actioncontext)
    {
-      GetFileManager()->FileManagerBrowse(item, actioncontext);
+
+      if(get_document()->set().is_link(item->m_strPath))
+      {
+
+         string strTarget;
+
+         System.os().resolve_link(strTarget, item->m_strPath);
+
+         GetFileManager()->FileManagerBrowse(strTarget,actioncontext);
+
+      }
+      else
+      {
+
+         GetFileManager()->FileManagerBrowse(item,actioncontext);
+
+      }
+
    }
 
 

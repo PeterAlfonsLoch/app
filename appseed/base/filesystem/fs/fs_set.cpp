@@ -72,7 +72,12 @@ namespace fs
    sp(data) set::node_path_data(const char * psz)
    {
 
-      return path_data(psz)->path_data(psz);
+      sp(data) pdata = path_data(psz);
+
+      if(pdata == NULL)
+         return this;
+
+      return pdata->node_path_data(psz);
 
    }
 
@@ -211,7 +216,21 @@ namespace fs
 
    }
 
-   void set::get_ascendants_path(const char * psz, stringa & stra)
+   bool set::is_link(const char * psz)
+   {
+
+      ::fs::data * pdata = path_data(psz);
+
+      if(pdata != NULL)
+      {
+         return pdata->is_link(psz);
+      }
+
+      return false;
+
+   }
+
+   void set::get_ascendants_path(const char * psz,stringa & stra)
    {
 
       ::fs::data * pdata = path_data(psz);

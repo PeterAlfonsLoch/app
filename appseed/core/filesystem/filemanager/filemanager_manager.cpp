@@ -23,7 +23,9 @@ namespace filemanager
 
       if (m_item.is_set())
       {
+         
          strOldPath = m_item->m_strPath;
+
       }
 
       try

@@ -535,6 +535,29 @@ namespace file
             return true;
 
          }
+
+#ifdef WINDOWSEX
+#ifdef WINDOWSEX
+         if(::str::ends_ci(lpcszPath,".lnk"))
+         {
+#endif
+
+            string strTarget;
+
+            if(System.os().resolve_link(strTarget,lpcszPath))
+            {
+
+               bIs = is(strTarget,papp);
+
+               return true;
+
+            }
+
+#ifdef WINDOWSEX
+         }
+#endif
+#endif
+
          return false;
 
       }
