@@ -563,8 +563,8 @@ namespace filemanager
          }
 
          if(get_document()->set().fast_has_subdir(pitemChild->m_strPath) 
-            && (get_document()->set().path_data(lpcsz) == NULL
-            || get_document()->set().path_data(lpcsz)->tree_show_subdir(pitemChild->m_strPath)))
+            && (get_document()->set().node_path_data(lpcsz) == NULL
+            || get_document()->set().node_path_data(lpcsz)->tree_show_subdir(pitemChild->m_strPath)))
          {
             pitemChild->m_flags.signalize(::fs::FlagHasSubFolder);
          }
