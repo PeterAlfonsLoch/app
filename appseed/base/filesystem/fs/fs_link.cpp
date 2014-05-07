@@ -1,4 +1,8 @@
 #include "framework.h"
+#ifdef WINDOWSEX
+#include <ShlObj.h>
+bool  SHGetSpecialFolderPath(oswindow oswindow,string &str,int32_t csidl,bool fCreate);
+#endif
 
 
 namespace fs
@@ -9,7 +13,7 @@ namespace fs
       element(papp),
       ::data::data(papp),
 #ifdef WINDOWSEX
-      ::fs::native(papp),
+      //::fs::native(papp),
 #endif
       ::fs::data(papp)
    {
@@ -31,7 +35,7 @@ namespace fs
 
       string strDir(pszDir);
 
-      if(strDir.is_empty() || strDir == "/" || strDir == "\\")
+      if(strDir == m_strRoot)
       {
 
          for(int i = 0; i < m_straSource.get_size(); i++)
@@ -78,22 +82,14 @@ namespace fs
    void link::root_ones(stringa & stra)
    {
 
-#ifdef WINDOWS
-
-      for(int i = 0; i < m_straSource.get_size(); i++)
-      {
-
-         stra.add(System.file().title_(m_straSource[i]));
-
-      }
-
-
-#endif
+      stra.add(m_strRoot);
 
    }
 
 
-/*   void link::get_ascendants_path(const char * pszPath,stringa & stra)
+/*   
+
+   void link::get_ascendants_path(const char * pszPath,stringa & stra)
    {
 
       return System.file().get_ascendants_path(pszPath,stra);
@@ -178,23 +174,61 @@ namespace fs
       return ::file_exists_dup(pszPath) != FALSE;
 
    }
-   */
+
+*/
+
+
+   bool link::tree_show_subdir(const char * pszPath)
+   {
+
+      if(pszPath == m_strRoot)
+      {
+
+         return true;
+
+      }
+      else
+      {
+
+         return false;
+
+      }
+
+   }
 
    void link::fill_os_user()
    {
 
       stringa straLink;
 
-      Application.dir().ls(Application.dir().userfolder("links"),&straLink);
+      string strSourceFolder;
+
+#ifdef WINDOWSEX
+
+      m_strRoot = "Favoritos";
+      
+      SHGetSpecialFolderPath(
+         NULL,
+         strSourceFolder,
+         CSIDL_PROFILE,
+         FALSE);
+
+      strSourceFolder = System.dir().path(strSourceFolder, "links");
+
+#endif
+
+      Application.dir().ls(strSourceFolder,&straLink);
 
       for(int i = 0; i < straLink.get_size(); i++)
       {
 
          string strTarget;
 
-         System.os().resolve_link(strTarget,straLink[i]);
+         string strSource = straLink[i];
 
-         m_straSource.add(straLink[i]);
+         System.os().resolve_link(strTarget,strSource);
+
+         m_straSource.add(strSource);
 
          m_straTarget.add(strTarget);
 

@@ -26,6 +26,9 @@ namespace fs
       virtual string eat_end_level(const char * pszPath, int32_t iCount);
 
 
+      virtual bool tree_show_subdir(const char * pszPath);
+
+
       virtual string file_name(const char * pszPath);
       virtual string dir_path(const char * psz1, const char * psz2);
 

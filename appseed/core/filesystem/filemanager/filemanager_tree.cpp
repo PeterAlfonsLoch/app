@@ -420,7 +420,8 @@ namespace filemanager
 
       if(pitemFolder != NULL && pitemFolder->m_flags.is_signalized(::fs::FlagHasSubFolderUnknown))
       {
-         if(get_document()->set().has_subdir(pitemFolder->m_strPath))
+         if(get_document()->set().has_subdir(pitemFolder->m_strPath)
+         && get_document()->set().tree_show_subdir(pitemFolder->m_strPath))
          {
             pitemFolder->m_flags.signalize(::fs::FlagHasSubFolder);
          }

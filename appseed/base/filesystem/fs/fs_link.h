@@ -9,15 +9,12 @@ namespace fs
 
 
    class CLASS_DECL_BASE link:
-#ifdef WINDOWSEX
-      virtual public ::fs::native
-#else
       virtual public ::fs::data
-#endif
    {
    public:
 
 
+      string      m_strRoot;
       stringa     m_straTarget;
       stringa     m_straSource;
 
@@ -45,6 +42,8 @@ namespace fs
       //virtual ::file::buffer_sp get_file(var varFile,UINT nOpenFlags);
 
       virtual void fill_os_user();
+
+      virtual bool tree_show_subdir(const char * pszPath);
 
    };
 

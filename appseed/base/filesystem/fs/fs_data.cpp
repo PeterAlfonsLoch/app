@@ -43,6 +43,13 @@ namespace fs
    }
 
 
+   bool data::tree_show_subdir(const char * pszPath)
+   {
+      
+      return true;
+
+   }
+
    string data::eat_end_level(const char * pszPath, int32_t iCount)
    {
       string strPath(pszPath);
