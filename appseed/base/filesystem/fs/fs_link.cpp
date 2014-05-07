@@ -51,7 +51,7 @@ namespace fs
             if(pstraTitle != NULL)
             {
 
-               pstraTitle->add(System.file().title_(m_straTarget[i]));
+               pstraTitle->add(System.file().title_(m_straSource[i]));
 
             }
 

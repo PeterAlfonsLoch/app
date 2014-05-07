@@ -552,7 +552,8 @@ namespace filemanager
             }
          }
 
-         if(get_document()->set().fast_has_subdir(pitemChild->m_strPath))
+         if(get_document()->set().fast_has_subdir(pitemChild->m_strPath)
+            && get_document()->set().tree_show_subdir(pitemChild->m_strPath))
          {
             pitemChild->m_flags.signalize(::fs::FlagHasSubFolder);
          }
