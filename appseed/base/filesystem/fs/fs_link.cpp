@@ -25,7 +25,24 @@ namespace fs
    bool link::has_subdir(const char * pszPath)
    {
 
-      return false;
+      string strDir(pszPath);
+
+      strDir.trim();
+
+      strDir.trim("/\\");
+
+      if(strDir == m_strRoot)
+      {
+
+         return true;
+
+      }
+      else
+      {
+
+         return false;
+
+      }
 
    }
 
@@ -34,6 +51,10 @@ namespace fs
    {
 
       string strDir(pszDir);
+
+      strDir.trim();
+
+      strDir.trim("/\\");
 
       if(strDir == m_strRoot)
       {
@@ -181,7 +202,13 @@ namespace fs
    bool link::tree_show_subdir(const char * pszPath)
    {
 
-      if(pszPath == m_strRoot)
+      string strDir(pszPath);
+
+      strDir.trim();
+
+      strDir.trim("/\\");
+
+      if(strDir == m_strRoot)
       {
 
          return true;

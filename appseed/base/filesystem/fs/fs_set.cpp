@@ -69,6 +69,13 @@ namespace fs
 
    }
 
+   sp(data) set::node_path_data(const char * psz)
+   {
+
+      return path_data(psz)->path_data(psz);
+
+   }
+
    bool set::ls(const char * psz, stringa * pstraPath, stringa * pstraTitle, int64_array * piaSize)
    {
 
@@ -175,7 +182,22 @@ namespace fs
 
    }
 
- bool set::fast_has_subdir(const char * psz)
+
+   bool set::tree_show_subdir(const char * psz)
+   {
+
+      ::fs::data * pdata = path_data(psz);
+
+      if(pdata != NULL)
+      {
+         return pdata->tree_show_subdir(psz);
+      }
+
+      return false;
+
+   }
+
+   bool set::fast_has_subdir(const char * psz)
    {
       
       ::fs::data * pdata = path_data(psz);

@@ -421,7 +421,7 @@ namespace filemanager
       if(pitemFolder != NULL && pitemFolder->m_flags.is_signalized(::fs::FlagHasSubFolderUnknown))
       {
          if(get_document()->set().has_subdir(pitemFolder->m_strPath)
-         && get_document()->set().tree_show_subdir(pitemFolder->m_strPath))
+            && (get_document()->set().tree_show_subdir(pitemFolder->m_strPath)))
          {
             pitemFolder->m_flags.signalize(::fs::FlagHasSubFolder);
          }
@@ -449,14 +449,24 @@ namespace filemanager
       stringa straPath;
       stringa straTitle;
       int64_array iaSize;
+
+
+      bool bTreeShowSubdir;
+
+
       if(strlen(lpcsz) == 0)
       {
+         bTreeShowSubdir = true;
          get_document()->set().root_ones(straPath);
          straTitle = straPath;
       }
       else
       {
-         get_document()->set().ls(lpcsz, &straPath, & straTitle, &iaSize);
+         bTreeShowSubdir = get_document()->set().tree_show_subdir(lpcsz);
+         if(bTreeShowSubdir)
+         {
+            get_document()->set().ls(lpcsz,&straPath,& straTitle,&iaSize);
+         }
       }
 
       pitem = pitemParent->first_child();
@@ -496,7 +506,7 @@ namespace filemanager
 
          iChildCount++;
 
-         pitemChild->m_strPath = get_document()->set().dir_path(straPath[i], "");
+         pitemChild->m_strPath =get_document()->set().dir_path(straPath[i],"");
 
          //if(m_straUpdatePtrFilter.find_first(straPath[i]) >= 0)
          //{
@@ -552,8 +562,9 @@ namespace filemanager
             }
          }
 
-         if(get_document()->set().fast_has_subdir(pitemChild->m_strPath)
-            && get_document()->set().tree_show_subdir(pitemChild->m_strPath))
+         if(get_document()->set().fast_has_subdir(pitemChild->m_strPath) 
+            && (get_document()->set().path_data(lpcsz) == NULL
+            || get_document()->set().path_data(lpcsz)->tree_show_subdir(pitemChild->m_strPath)))
          {
             pitemChild->m_flags.signalize(::fs::FlagHasSubFolder);
          }
@@ -852,7 +863,12 @@ namespace filemanager
       if(typeid(*pitem->m_pitem) == System.type_info < ::userfs::item > ())
       {
 
-         _017UpdateList(pitem->m_pitem.cast < ::userfs::item > ()->m_strPath, pitem, 1, actioncontext);
+         if(pitem->m_pitem.cast < ::userfs::item >()->m_flags.is_signalized(::fs::FlagHasSubFolder))
+         {
+
+            _017UpdateList(pitem->m_pitem.cast < ::userfs::item >()->m_strPath,pitem,1,actioncontext);
+
+         }
 
       }
       else

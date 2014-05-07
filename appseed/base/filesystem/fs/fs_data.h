@@ -43,7 +43,10 @@ namespace fs
 
       virtual bool fast_has_subdir(const char * pszPath);
 
-      
+      virtual sp(data) path_data(const char * psz);
+      virtual sp(data) node_path_data(const char * psz);
+
+
    };
 
 

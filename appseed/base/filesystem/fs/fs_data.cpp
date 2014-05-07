@@ -180,4 +180,19 @@ namespace fs
 
    }
 
+   sp(data) data::node_path_data(const char * psz)
+   {
+
+      return this;
+
+   }
+
+   sp(data) data::path_data(const char * psz)
+   {
+
+      return this;
+
+   }
+
+
 } // namespace fs

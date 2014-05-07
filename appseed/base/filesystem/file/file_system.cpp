@@ -179,12 +179,20 @@ namespace file
          return AppUser(papp).m_pifs->file_exists(strPath);
       }
 
-      if (::str::begins_ci_iws(strPath, "http://")
-         || ::str::begins_ci_iws(strPath, "https://"))
+      if (::str::begins_ci_iws(strPath, "http://") || ::str::begins_ci_iws(strPath, "https://"))
       {
+         
          property_set set(papp);
-         set["user"] = papp->m_pbasesession->safe_get_user();
+
+/*         if(papp->m_pbasesession != NULL)
+         {
+
+            set["user"] = papp->m_pbasesession->safe_get_user();
+
+         }*/
+
          return App(papp).http().exists(strPath, pvarQuery, set);
+
       }
 
 
