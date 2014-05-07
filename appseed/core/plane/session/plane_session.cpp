@@ -41,6 +41,9 @@ namespace plane
       m_psession                 = this;
 
       ::fs::set * pset = new class ::fs::set(this);
+      ::fs::link * plink = ::fs::link(this);
+      plink->fill_os_user();
+      pset->m_spafsdata.add(plink);
       pset->m_spafsdata.add(new ::fs::native(this));
       m_spfsdata = pset;
 

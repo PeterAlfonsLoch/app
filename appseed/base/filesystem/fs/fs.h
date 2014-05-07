@@ -40,7 +40,7 @@ namespace fs
 #include "fs_native_fs.h"
 #include "fs_remote_native_file.h"
 #include "fs_remote_native_fs.h"
-
+#include "fs_link.h"
 
 #include "fs_fs.h"
 
