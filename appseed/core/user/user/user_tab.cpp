@@ -1481,11 +1481,21 @@ namespace user
 
    void tab::_001SetSel(::index iSel)
    {
-      ::data::lock lock(get_data());
-      get_data()->m_iaSel.remove_all();
-      get_data()->m_iaSel.add(iSel);
+
+      {
+
+         ::data::lock lock(get_data());
+
+         get_data()->m_iaSel.remove_all();
+
+         get_data()->m_iaSel.add(iSel);
+
+      }
+      
       on_change_pane_count();
+
       on_show_view();
+
    }
 
    void tab::_001AddSel(::index iSel)
