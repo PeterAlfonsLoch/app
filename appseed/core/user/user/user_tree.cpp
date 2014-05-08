@@ -1513,14 +1513,13 @@ namespace user
 
       index iIndex = get_proper_item_index(pitem, &iLevel);
 
-      index iLastVisibleIndex = (index)(m_scrollinfo.m_ptScroll.y + _001GetVisibleItemCount() - 5);
+      index iMinVisibleIndex = (index)(m_scrollinfo.m_ptScroll.y / m_iItemHeight + 2);
+      index iMaxVisibleIndex = (index)(iMinVisibleIndex + _001GetVisibleItemCount() - 2);
 
-      index iObscured; // obscured proper descendants
-      iObscured = iIndex - iLastVisibleIndex;
 
-      if (iObscured > 0)
+      if (iIndex < iMinVisibleIndex || iIndex > iMaxVisibleIndex)
       {
-         int32_t iNewScroll = (int32_t)(m_scrollinfo.m_ptScroll.y + iIndex * _001GetItemHeight());
+         int32_t iNewScroll = (int32_t)(m_scrollinfo.m_ptScroll.y / m_iItemHeight + iIndex * _001GetItemHeight());
          m_scrollinfo.m_ptScroll.y = max(iNewScroll, 0);
       }
 
