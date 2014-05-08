@@ -59,7 +59,11 @@ namespace data
    void tree_item::set_parent(sp(tree_item) pparent)
    {
 
+      m_pparent->m_children.remove(this);
+
       m_pparent = pparent;
+
+      m_pparent->m_children.add(this);
 
    }
 
