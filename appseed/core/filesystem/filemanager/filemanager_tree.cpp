@@ -99,9 +99,9 @@ namespace filemanager
    }
 
 
-   sp(::data::tree_item) tree::find_item(const char * lpcsz)
+   sp(::data::tree_item) tree::find_item(const char * lpcsz, ::data::tree_item * pitemStart)
    {
-      return find_absolute(lpcsz);
+      return find_absolute(lpcsz, pitemStart);
    }
 
    void tree::_017Browse(const char * lpcsz, ::action::context actioncontext, bool bForceUpdate)
@@ -337,7 +337,7 @@ namespace filemanager
          else
          {
 
-            if(pitem->m_pparent != pitemParent)
+            if(pitem->m_pparent != pitemParent && !straRootPath.contains_ci(pitem->m_pitem.cast < ::fs::item >()->m_strPath))
             {
 
                pitem->set_parent(pitemParent);
@@ -451,19 +451,29 @@ namespace filemanager
 
          pitem = find_item(straPath[i]);
 
+         string strPath;
+         
          if(pitem != NULL)
          {
 
-            // reparent
+            strPath = pitem->m_pitem.cast < ::fs::item >()->m_strPath;
 
-            if(pitem->m_pparent != pitemParent)
+            strPath.trim_right(":\\/");
+
+            if(!straRootPath.contains_ci(strPath))
             {
+               // reparent
 
-               pitem->set_parent(pitemParent);
+               if(pitem->m_pparent != pitemParent)
+               {
+
+                  pitem->set_parent(pitemParent);
+
+               }
+
+               continue;
 
             }
-
-            continue;
 
          }
 
@@ -566,7 +576,7 @@ namespace filemanager
 
 #endif
 
-         pitem = find_item(pitemChild->m_strPath);
+         pitem = find_item(pitemChild->m_strPath, pitemParent);
          if(pitem != NULL)
          {
             pitem = insert_item(pitemChild, ::data::RelativeReplace, pitem);

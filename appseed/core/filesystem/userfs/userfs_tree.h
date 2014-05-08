@@ -71,9 +71,9 @@ namespace userfs
       void _017UpdateZipList(const char * lpcsz, ::data::tree_item * pitemParent, int32_t iLevel, ::action::context actioncontext);
       void _017EnsureVisible(const char * lpcsz, ::action::context actioncontext);
 
-      sp(::data::tree_item) find_item(const char * lpcsz);
+      sp(::data::tree_item) find_item(const char * lpcsz, ::data::tree_item * pitemStart = NULL);
 
-      sp(::data::tree_item) find_absolute(const char * lpcsz);
+      sp(::data::tree_item) find_absolute(const char * lpcsz,::data::tree_item * pitemStart = NULL);
       void clear(const char * lpcszPreserve1, const char * lpcszPreserve2);
       void arrange(::fs::e_arrange earrange);
 

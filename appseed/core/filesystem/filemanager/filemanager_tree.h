@@ -100,7 +100,7 @@ namespace filemanager
       void _017UpdateZipList(const char * lpcsz, int32_t iLevel, ::action::context actioncontext);
       void _017EnsureVisible(const char * lpcsz, ::action::context actioncontext);
 
-      sp(::data::tree_item) find_item(const char * lpcsz);
+      sp(::data::tree_item) find_item(const char * lpcsz, ::data::tree_item * pitemStart = NULL);
 
 
 

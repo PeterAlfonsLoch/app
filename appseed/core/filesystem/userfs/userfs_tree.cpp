@@ -544,10 +544,10 @@ namespace userfs
    }
 
 
-   sp(::data::tree_item) tree::find_item(const char * lpcsz)
+   sp(::data::tree_item) tree::find_item(const char * lpcsz, ::data::tree_item * pitemStart)
    {
 
-      return find_absolute(lpcsz);
+      return find_absolute(lpcsz, pitemStart);
 
    }
 
@@ -982,9 +982,15 @@ namespace userfs
       }
    }
 
-   sp(::data::tree_item) tree::find_absolute(const char * lpcszPath)
+   sp(::data::tree_item) tree::find_absolute(const char * lpcszPath, ::data::tree_item * pitemStart)
    {
-      sp(::data::tree_item) pitem = get_base_item();
+      sp(::data::tree_item) pitem;
+
+      if(pitemStart == NULL)
+         pitem = get_base_item();
+      else
+         pitem = pitemStart;
+
       if (lpcszPath == NULL || strlen(lpcszPath) == 0)
          return pitem;
       string strPath(lpcszPath);
@@ -1000,6 +1006,8 @@ namespace userfs
                return pitem;
          }
          pitem = pitem->get_next();
+         if(pitem == pitemStart)
+            break;
       }
       return NULL;
    }
