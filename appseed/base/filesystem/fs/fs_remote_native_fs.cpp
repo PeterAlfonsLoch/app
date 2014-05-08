@@ -68,9 +68,10 @@ namespace fs
 
    }
 
-   void remote_native::root_ones(stringa & stra)
+   void remote_native::root_ones(stringa & straPath, stringa & straTitle)
    {
-      stra.add("fs://");
+      straPath.add("fs://");
+      straTitle.add("File System");
    }
 
 

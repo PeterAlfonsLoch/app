@@ -232,9 +232,9 @@ namespace file
       }
 
 
-      void application::root_ones(stringa & stra)
+      void application::root_ones(stringa & straPath, stringa & straTitle)
       {
-         return m_pbaseapp->m_pbasesystem->m_spdir.m_p->root_ones(stra, m_pbaseapp);
+         return m_pbaseapp->m_pbasesystem->m_spdir.m_p->root_ones(straPath, straTitle, m_pbaseapp);
       }
 
 

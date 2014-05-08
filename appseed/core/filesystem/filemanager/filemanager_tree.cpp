@@ -264,6 +264,12 @@ namespace filemanager
       if(lpcsz == NULL)
          lpcsz = "";
 
+      stringa straRootPath;
+
+      stringa straRootTitle;
+
+      get_document()->set().root_ones(straRootPath, straRootTitle);
+
       ::userfs::item * pitemChild;
 
       m_strPath = lpcsz;
@@ -393,9 +399,9 @@ namespace filemanager
       if(strlen(lpcsz) == 0)
       {
 
-         get_document()->set().root_ones(straPath);
+         straPath = straRootPath;
 
-         straTitle = straPath;
+         straTitle = straRootTitle;
 
       }
       else

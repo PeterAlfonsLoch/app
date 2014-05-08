@@ -104,9 +104,10 @@ namespace fs
       return false;
    }
 
-   void data::root_ones(stringa & stra)
+   void data::root_ones(stringa & straPath, stringa & straTitle)
    {
-      UNREFERENCED_PARAMETER(stra);
+      UNREFERENCED_PARAMETER(straPath);
+      UNREFERENCED_PARAMETER(straTitle);
    }
 
    void data::get_ascendants_path(const char * lpcsz, stringa & straParam)

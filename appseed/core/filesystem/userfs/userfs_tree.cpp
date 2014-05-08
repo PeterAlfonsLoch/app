@@ -300,21 +300,30 @@ namespace userfs
    }
 
 
-   void tree::_017UpdateList(const char * lpcsz, ::data::tree_item * pitemParent, int32_t iLevel, ::action::context actioncontext)
+   void tree::_017UpdateList(const char * lpcsz, int32_t iLevel, ::action::context actioncontext)
    {
       if (lpcsz == NULL)
          lpcsz = "";
 
       m_strPath = lpcsz;
 
-      if (pitemParent == NULL)
-      {
-         pitemParent = get_base_item();
-      }
-      else if (get_base_item() == NULL)
-      {
-         m_proot = pitemParent;
-      }
+      //if (pitemParent == NULL)
+      //{
+        // pitemParent = get_base_item();
+      //}
+      //else if (get_base_item() == NULL)
+      //{
+        // m_proot = pitemParent;
+      //}
+
+      sp(::data::tree_item) pitemParent;
+
+      stringa straRootPath;
+
+      stringa straRootTitle;
+
+      get_document()->set().root_ones(straRootPath, straRootTitle);
+
 
       /*if(GetFileManager() != NULL && GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge != NULL
       && !(dynamic_cast < usersp(::tree) > (GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge))->m_treeptra.contains(this))
@@ -363,8 +372,8 @@ namespace userfs
       int64_array iaSize;
       if (strlen(lpcsz) == 0)
       {
-         get_document()->set().root_ones(straPath);
-         straTitle = straPath;
+         straPath = straRootPath;
+         straTitle = straRootTitle;
       }
       else
       {
@@ -463,7 +472,7 @@ namespace userfs
          if (iLevel > 1)
          {
 
-            _017UpdateList(pitemChild->m_strPath, pitem, iLevel - 1, actioncontext);
+            _017UpdateList(pitemChild->m_strPath, iLevel - 1, actioncontext);
 
          }
 
@@ -508,7 +517,7 @@ namespace userfs
             string str;
             str = strAscendant;
             get_document()->set().eat_end_level(str, 1);
-            _017UpdateList(str, NULL, 1, actioncontext);
+            _017UpdateList(str, 1, actioncontext);
          }
          pitem = find_item(strAscendant);
          if (pitem == NULL)
@@ -560,7 +569,7 @@ namespace userfs
       if (strlen(lpcsz) == 0)
       {
 
-         _017UpdateList("", get_base_item(), 1, actioncontext);
+         _017UpdateList("",  1, actioncontext);
 
       }
 
@@ -861,11 +870,11 @@ namespace userfs
    {
       if (typeid(*pitem->m_pitem) == System.type_info < ::userfs::item >())
       {
-         _017UpdateList(pitem->m_pitem.cast < ::userfs::item >()->m_strPath, pitem, 1, actioncontext);
+         _017UpdateList(pitem->m_pitem.cast < ::userfs::item >()->m_strPath, 1, actioncontext);
       }
       else
       {
-         _017UpdateList("", pitem, 1, actioncontext);
+         _017UpdateList("", 1, actioncontext);
       }
    }
 
@@ -947,7 +956,7 @@ namespace userfs
       if (pitem != NULL)
       {
 
-         _017UpdateList(m_straMissingUpdate[0], pitem, 1, ::action::source_system);
+         _017UpdateList(m_straMissingUpdate[0], 1, ::action::source_system);
 
       }
 

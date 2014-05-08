@@ -29,7 +29,7 @@ namespace fs
 
       strDir.trim("/\\");
 
-      if(strDir == m_strRoot)
+      if(strDir == m_strPath)
       {
 
          return true;
@@ -54,7 +54,7 @@ namespace fs
 
       strDir.trim("/\\");
 
-      if(strDir == m_strRoot)
+      if(strDir == m_strPath)
       {
 
          for(int i = 0; i < m_straPath.get_size(); i++)
@@ -99,7 +99,7 @@ namespace fs
 
       strDir.trim("/\\");
 
-      if(strDir == m_strRoot)
+      if(strDir == m_strPath)
       {
 
          return true;
@@ -115,10 +115,11 @@ namespace fs
    }
 
 
-   void link::root_ones(stringa & stra)
+   void link::root_ones(stringa & straPath, stringa & straTitle)
    {
 
-      stra.add(m_strRoot);
+      straPath.add(m_strPath);
+      straTitle.add(m_strTitle);
 
    }
 
@@ -223,7 +224,7 @@ namespace fs
 
       strDir.trim("/\\");
 
-      if(strDir == m_strRoot)
+      if(strDir == m_strPath)
       {
 
          return true;
@@ -247,7 +248,7 @@ namespace fs
 
 #ifdef WINDOWSEX
 
-      m_strRoot = "Favoritos";
+      m_strTitle = "Favoritos";
       
       SHGetSpecialFolderPath(
          NULL,
@@ -255,11 +256,11 @@ namespace fs
          CSIDL_PROFILE,
          FALSE);
 
-      strSourceFolder = System.dir().path(strSourceFolder, "links");
+      m_strPath = System.dir().path(strSourceFolder,"links");
 
 #endif
 
-      Application.dir().ls(strSourceFolder,&m_straPath);
+      Application.dir().ls(m_strPath,&m_straPath);
 
 
    }
@@ -273,15 +274,13 @@ namespace fs
 
 #ifdef WINDOWSEX
 
-      m_strRoot = "Área de Trabalho";
+      m_strTitle = "Área de Trabalho";
 
       SHGetSpecialFolderPath(
          NULL,
-         strSourceFolder,
-         CSIDL_PROFILE,
+         m_strPath,
+         CSIDL_DESKTOP,
          FALSE);
-
-      strSourceFolder = System.dir().path(strSourceFolder,"desktop");
 
 #endif
 

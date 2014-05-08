@@ -92,18 +92,19 @@ void file_size_table::item::ls(sp(base_application) papp, index & iIteration)
 {
    if(m_bDir)
    {
-      stringa               straName;
+      stringa               straPath;
+      stringa               straTitle;
       int64_array iaSize;
       bool_array baIsDir;
       if(path().is_empty())
       {
-         App(papp).dir().root_ones(straName);
-         for(int32_t i = 0; i < straName.get_size(); i++)
+         App(papp).dir().root_ones(straPath, straTitle);
+         for(int32_t i = 0; i < straPath.get_size(); i++)
          {
             item item;
             item.m_bPending = true;
             item.m_bDir = true;
-            item.m_strName = straName[i];
+            item.m_strName = straPath[i];
             item.m_pitemParent = this;
             if(item.m_strName.Right(1) == "\\")
                item.m_strName = item.m_strName.Left(item.m_strName.get_length() - 1);
@@ -113,14 +114,14 @@ void file_size_table::item::ls(sp(base_application) papp, index & iIteration)
       }
       else
       {
-         App(papp).dir().ls(path(), NULL, &straName, &baIsDir, &iaSize);
-         for(int32_t i = 0; i < straName.get_size(); i++)
+         App(papp).dir().ls(path(), &straPath, &straTitle, &baIsDir, &iaSize);
+         for(int32_t i = 0; i < straTitle.get_size(); i++)
          {
             item item;
             item.m_bPending = baIsDir[i];
             item.m_bPendingLs = baIsDir[i];
             item.m_bDir = baIsDir[i];
-            item.m_strName = straName[i];
+            item.m_strName = straTitle[i];
             item.m_pitemParent = this;
             if(baIsDir[i])
             {

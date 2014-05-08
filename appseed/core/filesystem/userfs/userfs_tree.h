@@ -34,7 +34,7 @@ namespace userfs
       void update_list();
 
       void _001OnItemExpand(::data::tree_item * pitem, ::action::context actioncontext);
-      void _017UpdateList(const char * lpcsz, ::data::tree_item * pitemParent, int32_t iLevel, ::action::context actioncontext);
+      void _017UpdateList(const char * lpcsz, int32_t iLevel, ::action::context actioncontext);
 
       sp(::userfs::document) get_document();
 

@@ -29,21 +29,24 @@ namespace fs
    }
 
 
-   void set::root_ones(stringa & stra)
+   void set::root_ones(stringa & straPath, stringa & straTitle)
    {
       
       m_fsdatamap.remove_all();
 
-      stringa straFs;
+      stringa straFsPath;
+      stringa straFsTitle;
 
       for(int32_t i = 0; i < m_spafsdata.get_count(); i++)
       {
-         straFs.remove_all();
-         m_spafsdata[i].root_ones(straFs);
-         stra.add(straFs);
-         for(int32_t j = 0; j < straFs.get_size(); j++)
+         straFsPath.remove_all();
+         straFsTitle.remove_all();
+         m_spafsdata[i].root_ones(straFsPath, straFsTitle);
+         straPath.add(straFsPath);
+         straTitle.add(straFsTitle);
+         for(int32_t j = 0; j < straFsPath.get_size(); j++)
          {
-            m_fsdatamap[straFs[j]] = m_spafsdata(i);
+            m_fsdatamap[straFsPath[j]] = m_spafsdata(i);
          }
       }
 
@@ -87,7 +90,8 @@ namespace fs
       if(psz == NULL || strlen(psz) == 0)
       {
          stringa straPath;
-         root_ones(straPath);
+         stringa straTitle;
+         root_ones(straPath, straTitle);
          for(int32_t i = 0; i < straPath.get_size(); i++)
          {
             if(pstraPath != NULL)
@@ -96,7 +100,7 @@ namespace fs
             }
             if(pstraTitle != NULL)
             {
-               pstraTitle->add(file_name(straPath[i]));
+               pstraTitle->add(straTitle[i]);
             }
             if (piaSize != NULL)
             {

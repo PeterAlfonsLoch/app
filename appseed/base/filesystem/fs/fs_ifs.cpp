@@ -78,9 +78,10 @@ bool ifs::has_subdir(const char * pszPath)
 
 }
 
-void ifs::root_ones(stringa & stra)
+void ifs::root_ones(stringa & straPath, stringa & straTitle)
 {
-   stra.add("uifs://");
+   straPath.add("uifs://");
+   straTitle.add("User Intelligent File System");
 }
 
 

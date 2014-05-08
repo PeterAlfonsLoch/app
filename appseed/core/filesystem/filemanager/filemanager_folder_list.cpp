@@ -207,16 +207,17 @@ namespace filemanager
 
          m_foldera.clear();
 
-         stringa stra;
+         stringa straPath;
+         stringa straTitle;
 
-         Application.dir().root_ones(stra);
+         Application.dir().root_ones(straPath, straTitle);
 
          Folder folder;
 
-         for (int32_t i = 0; i < stra.get_size(); i++)
+         for (int32_t i = 0; i < straPath.get_size(); i++)
          {
-            folder.m_strPath = stra[i];
-            folder.m_wstrName = stra[i];
+            folder.m_strPath = straPath[i];
+            folder.m_wstrName = straTitle[i];
             m_foldera.AddFolder(folder);
          }
 

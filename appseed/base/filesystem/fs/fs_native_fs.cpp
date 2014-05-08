@@ -1,4 +1,8 @@
 #include "framework.h"
+#ifdef WINDOWSEX
+#include <ShlObj.h>
+bool  SHGetSpecialFolderPath(oswindow oswindow,string &str,int32_t csidl,bool fCreate);
+#endif
 
 
 namespace fs
@@ -40,10 +44,22 @@ namespace fs
    }
 
 
-   void native::root_ones(stringa & stra)
+   void native::root_ones(stringa & straPath,stringa & straTitle)
    {
 
-      return System.dir().root_ones(stra, get_app());
+      System.dir().root_ones(straPath, straTitle, get_app());
+
+
+      string strDesktopFolder;
+
+      SHGetSpecialFolderPath(
+         NULL,
+         strDesktopFolder,
+         CSIDL_DESKTOP,
+         FALSE);
+
+      straPath.insert_at(0,strDesktopFolder);
+      straTitle.insert_at(0,"Área de Trabalho");
 
    }
 

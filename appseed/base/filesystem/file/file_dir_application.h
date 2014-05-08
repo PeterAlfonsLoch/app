@@ -59,7 +59,7 @@ namespace file
          virtual bool  is(const var & var);
          virtual bool  is_inside(const char * lpcszDir, const char * lpcszPath);
          virtual bool  is_inside_time(const char * lpcsz);
-         virtual void  root_ones(stringa & stra);
+         virtual void  root_ones(stringa & straPath, stringa & straTitle);
          virtual bool  mk(const char * lpcsz);
          virtual bool  rm(const char * psz, bool bRecursive = true);
 

@@ -48,8 +48,11 @@ namespace filemanager
       m_fsset.m_spafsdata.add(Application.fs());
 
 
-      stringa stra;
-      m_fsset.root_ones(stra);
+      stringa straPath;
+
+      stringa straTitle;
+
+      m_fsset.root_ones(straPath, straTitle);
 
 
       return TRUE;

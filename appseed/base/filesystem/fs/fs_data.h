@@ -20,7 +20,7 @@ namespace fs
       virtual bool has_subdir(const char * pszPath);
       virtual bool ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int64_array * piSize);
       virtual bool is_dir(const char * pszPath);
-      virtual void root_ones(stringa & stra);
+      virtual void root_ones(stringa & straPath, stringa & straTitle);
       virtual void get_ascendants_path(const char * pszPath, stringa & stra);
       virtual void get_ascendants_name(const char * lpcsz, stringa & straParam);
       virtual string eat_end_level(const char * pszPath, int32_t iCount);

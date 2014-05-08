@@ -44,9 +44,6 @@ namespace plane
       ::fs::link * plink = new ::fs::link(this);
       plink->fill_os_user();
       pset->m_spafsdata.add(plink);
-      ::fs::link * plinkDesktop = new ::fs::link(this);
-      plinkDesktop->fill_os_user_desktop();
-      pset->m_spafsdata.add(plinkDesktop);
       pset->m_spafsdata.add(new ::fs::native(this));
       m_spfsdata = pset;
 

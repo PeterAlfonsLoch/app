@@ -25,7 +25,7 @@ namespace fs
 
       virtual sp(data) path_data(const char * psz);
       virtual sp(data) node_path_data(const char * psz);
-      virtual void root_ones(stringa & stra);
+      virtual void root_ones(stringa & straPath, stringa & straTitle);
       virtual bool ls(const char * psz, stringa * pstraPath, stringa * pstraTitle, int64_array * piaSize);
       virtual bool is_dir(const char * psz);
       virtual string file_name(const char * psz);

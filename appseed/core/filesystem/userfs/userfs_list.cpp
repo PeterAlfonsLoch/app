@@ -283,13 +283,20 @@ namespace userfs
 
       _001OnUpdateItemCount();
 
+
+      stringa straRootPath;
+
+      stringa straRootTitle;
+
+      get_document()->set().root_ones(straRootPath,straRootTitle);
+
       stringa straPath;
       stringa straTitle;
       int64_array iaSize;
       if (strlen(lpcsz) == 0)
       {
-         get_document()->set().root_ones(straPath);
-         straTitle = straPath;
+         straPath = straRootPath;
+         straTitle = straRootTitle;
       }
       else
       {

@@ -377,9 +377,10 @@ namespace file
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      void system::root_ones(stringa & stra, sp(base_application) papp)
+      void system::root_ones(stringa & straPath, stringa & straTitle, sp(base_application) papp)
       {
-         UNREFERENCED_PARAMETER(stra);
+         UNREFERENCED_PARAMETER(straPath);
+         UNREFERENCED_PARAMETER(straTitle);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
