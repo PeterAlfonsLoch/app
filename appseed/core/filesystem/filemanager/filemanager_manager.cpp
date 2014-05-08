@@ -33,6 +33,12 @@ namespace filemanager
 
          m_item = canew(::fs::item(*item));
 
+         if(get_fs_data()->is_link(m_item->m_strPath))
+         {
+            
+            System.os().resolve_link(m_item->m_strPath,m_item->m_strPath);
+
+         }
 
          OnFileManagerBrowse(::action::source::sync(actioncontext));
 
