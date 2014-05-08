@@ -857,7 +857,7 @@ namespace user
       }
       else
       {
-         if (!(pitem->m_dwState & ::data::tree_item_state_expanded))
+         if ((pitem->m_dwState & ::data::tree_item_state_expanded))
          {
             
             pitem->m_dwState &= ~::data::tree_item_state_expanded;
@@ -1499,6 +1499,15 @@ namespace user
 
       if (pitem == NULL)
          return;
+
+      ::data::tree_item * pitemExpand = pitem;
+
+      while(pitemExpand != NULL)
+      {
+         pitemExpand->m_dwState |=  ::data::tree_item_state_expanded;
+
+         pitemExpand = pitemExpand->m_pparent;
+      }
 
       index iLevel = 0;
 
