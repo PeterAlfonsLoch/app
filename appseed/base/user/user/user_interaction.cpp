@@ -1704,10 +1704,18 @@ namespace user
    }
 
 
+   void interaction::BringToTop(int nCmdShow)
+   {
+
+      if(m_pimpl != NULL)
+         return m_pimpl->BringToTop(nCmdShow);
+
+   }
 
 
    bool interaction::BringWindowToTop()
    {
+
       if (m_pimpl == NULL)
          return false;
       else

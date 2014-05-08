@@ -1742,37 +1742,7 @@ namespace user
    void frame_window::BringToTop(int32_t nCmdShow)
    {
 
-#ifdef WINDOWSEX
-
-      if (get_parent() == NULL)
-      {
-
-         // place the window on top except for certain nCmdShow
-
-         if (
-            nCmdShow != SW_HIDE
-            && nCmdShow != SW_MINIMIZE
-            && nCmdShow != SW_SHOWMINNOACTIVE
-            && nCmdShow != SW_SHOWNA
-            && nCmdShow != SW_SHOWNOACTIVATE
-            )
-         {
-
-            oswindow oswindow = get_handle();
-
-            oswindow = ::GetLastActivePopup(oswindow);
-
-            ::BringWindowToTop(oswindow);
-
-         }
-
-      }
-
-#else
-
-      //throw not_implemented(get_app());
-
-#endif
+      ::user::interaction::BringToTop(nCmdShow);
 
    }
 

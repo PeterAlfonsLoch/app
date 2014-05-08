@@ -222,6 +222,7 @@ namespace user
 
       virtual void layout();
 
+      virtual void BringToTop(int32_t nCmdShow);
       virtual bool BringWindowToTop();
 
 #ifdef WINDOWSEX
