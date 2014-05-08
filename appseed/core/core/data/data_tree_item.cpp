@@ -55,6 +55,14 @@ namespace data
 
    }
 
+
+   void tree_item::set_parent(sp(tree_item) pparent)
+   {
+
+      m_pparent = pparent;
+
+   }
+
    ::count tree_item::remove_tree_item()
    {
 

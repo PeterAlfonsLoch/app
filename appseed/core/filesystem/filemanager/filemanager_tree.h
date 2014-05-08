@@ -96,8 +96,8 @@ namespace filemanager
 
       void _017Browse(const char * lpcsz, ::action::context actioncontext, bool bForceUpdate = false);
       void _017UpdateList(::action::context actioncontext);
-      void _017UpdateList(const char * lpcsz, sp(::data::tree_item) pitemParent, int32_t iLevel, ::action::context actioncontext);
-      void _017UpdateZipList(const char * lpcsz, sp(::data::tree_item) pitemParent, int32_t iLevel, ::action::context actioncontext);
+      void _017UpdateList(const char * lpcsz, int32_t iLevel, ::action::context actioncontext);
+      void _017UpdateZipList(const char * lpcsz, int32_t iLevel, ::action::context actioncontext);
       void _017EnsureVisible(const char * lpcsz, ::action::context actioncontext);
 
       sp(::data::tree_item) find_item(const char * lpcsz);
