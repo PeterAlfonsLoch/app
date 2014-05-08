@@ -71,10 +71,14 @@ namespace filemanager
    void left_view::on_create_views()
    {
 
-      SetPaneCount(2);
+      //SetPaneCount(2);
+
+      SetPaneCount(1);
 
       SetSplitOrientation(orientation_horizontal);
 
+      /*
+      
       set_position_rate(0, 0.30);
 
 
@@ -92,6 +96,8 @@ namespace filemanager
 
       SetPane(0, plist, false);
 
+      */
+
       ::user::tree * pusertree = create_view < ::user::tree >();
 
       if (pusertree == NULL)
@@ -103,7 +109,9 @@ namespace filemanager
 
       pusertree->merge(ptree, true);
 
-      SetPane(1, pusertree, false);
+      //SetPane(1, pusertree, false);
+
+      SetPane(0,pusertree,false);
 
 
    }

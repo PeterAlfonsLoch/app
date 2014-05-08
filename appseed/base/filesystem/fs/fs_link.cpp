@@ -38,7 +38,7 @@ namespace fs
       else
       {
 
-         return false;
+         return native::has_subdir(pszPath);
 
       }
 
@@ -93,7 +93,24 @@ namespace fs
    bool link::is_dir(const char * pszPath)
    {
 
-      return true;
+      string strDir(pszPath);
+
+      strDir.trim();
+
+      strDir.trim("/\\");
+
+      if(strDir == m_strRoot)
+      {
+
+         return true;
+
+      }
+      else
+      {
+
+         return native::is_dir(pszPath);
+
+      }
 
    }
 
@@ -247,6 +264,31 @@ namespace fs
 
    }
 
+   void link::fill_os_user_desktop()
+   {
+
+      stringa straLink;
+
+      string strSourceFolder;
+
+#ifdef WINDOWSEX
+
+      m_strRoot = "Área de Trabalho";
+
+      SHGetSpecialFolderPath(
+         NULL,
+         strSourceFolder,
+         CSIDL_PROFILE,
+         FALSE);
+
+      strSourceFolder = System.dir().path(strSourceFolder,"desktop");
+
+#endif
+
+      Application.dir().ls(strSourceFolder,&m_straPath);
+
+
+   }
 
 
 } // namespace fs

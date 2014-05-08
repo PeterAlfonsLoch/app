@@ -42,6 +42,8 @@ namespace fs
 
       virtual void fill_os_user();
 
+      virtual void fill_os_user_desktop();
+
       virtual bool tree_show_subdir(const char * pszPath);
 
    };
