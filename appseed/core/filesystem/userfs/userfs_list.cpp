@@ -23,6 +23,12 @@ namespace userfs
       m_pdata = new list_data(papp);
       //m_pdata->m_plist  = this;
       SetDataInterface(m_pdata);
+
+
+      m_scrollinfo.m_rectMargin.left = -23;
+      m_scrollinfo.m_rectMargin.top = -8;
+      m_scrollinfo.m_rectMargin.bottom = 0;
+      m_scrollinfo.m_rectMargin.right = 0;
       
    }
 
@@ -283,24 +289,31 @@ namespace userfs
 
       _001OnUpdateItemCount();
 
-
-      stringa straRootPath;
-
-      stringa straRootTitle;
-
-      get_document()->set().root_ones(straRootPath,straRootTitle);
-
       stringa straPath;
+
       stringa straTitle;
+
       int64_array iaSize;
+
       if (strlen(lpcsz) == 0)
       {
+
+         stringa straRootPath;
+
+         stringa straRootTitle;
+
+         get_document()->set().root_ones(straRootPath,straRootTitle);
+
          straPath = straRootPath;
+
          straTitle = straRootTitle;
+
       }
       else
       {
+
          get_document()->set().ls(lpcsz, &straPath, &straTitle, &iaSize);
+
       }
 
       for (int32_t i = 0; i < straPath.get_size(); i++)

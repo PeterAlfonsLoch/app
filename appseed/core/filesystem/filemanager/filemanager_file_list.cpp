@@ -137,20 +137,11 @@ namespace filemanager
             if(puh->is_type_of(update_hint::TypeInitialize))
             {
 
-               _001UpdateColumns();
-               _001OnUpdateItemCount();
 
                m_pbaseapp = get_app()->m_pplaneapp;
                db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
                if(pcentral == NULL)
                   return;
-               //DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
-               SetTimer(5432185, 230, NULL);
-               //window::SetTimer(5432184, 23, NULL);
-   // dbbreak            m_pserverNext = simpledb::get(get_app())->GetDataServer();
-   //            AddClient(this);
-     //          SetDataInterface(&m_datainterface);
-       //        AddClient(&m_datainterface);
                string str;
                str.Format("file_list(%s)", GetFileManager()->get_filemanager_data()->m_strDISection);
                if(GetFileManager()->get_filemanager_data()->m_bPassBk)
@@ -163,6 +154,7 @@ namespace filemanager
                }
                m_dataid = str;
                _001UpdateColumns();
+               _001OnUpdateItemCount();
 
             }
             else if(!m_bStatic && puh->is_type_of(update_hint::TypeSynchronizePath))
@@ -450,7 +442,9 @@ namespace filemanager
 
    void file_list::_001OnTimer(signal_details * pobj)
    {
+
       SCAST_PTR(::message::timer, ptimer, pobj)
+
       if(ptimer->m_nIDEvent == 198477)
       {
          if(GetFileManager()->get_filemanager_data()->m_bSetBergedgeTopicFile)
@@ -476,48 +470,7 @@ namespace filemanager
             KillTimer(198477);
          }
       }
-      else if(ptimer->m_nIDEvent == 1234567)
-      {
-         ASSERT(FALSE);
-         m_iAnimate += 2;
-         if(m_iAnimate >= 11)
-         {
-            m_iAnimate = 0;
-            KillTimer(ptimer->m_nIDEvent);
 
-         }
-         RedrawWindow();
-      }
-      else if(ptimer->m_nIDEvent == 123)
-      {
-         RedrawWindow();
-         KillTimer(123);
-      }
-      else if(ptimer->m_nIDEvent == 5432176)
-      {
-         _001CreateImageListStep();
-      }
-      else if(ptimer->m_nIDEvent == 5432185)
-      {
-/*         if(m_bPendingSize)
-         {
-            _001RedrawWindow();
-         }
-         if(::get_tick_count() - m_dwLastFileSize > 840)
-         {
-            m_dwLastFileSize = ::get_tick_count();
-            sp(::user::interaction) pwnd = GetParentFrame();
-//            bool b = pwnd->IsWindowVisible();
-            if(pwnd->IsWindowVisible() && m_bFileSize)
-            {
-               m_bShow = true;
-               file_size_add_request(false);
-            }
-         }*/
-      }
-      else if(ptimer->m_nIDEvent == 5432184)
-      {
-      }
    }
 
    void file_list::StartAnimation()
