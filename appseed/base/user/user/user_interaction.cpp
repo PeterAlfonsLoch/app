@@ -735,29 +735,6 @@ namespace user
       pgraphics->SetViewportOrg(ptViewport);
 
 
-      if (Session.m_bDrawCursor)
-      {
-         point ptCursor;
-         Session.get_cursor_pos(&ptCursor);
-         ScreenToClient(&ptCursor);
-         ::visual::cursor * pcursor = Session.get_cursor();
-         if (pcursor != NULL)
-         {
-            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-            pcursor->to(pgraphics, ptCursor);
-            //pgraphics->FillSolidRect(100, 100, 100, 100, ARGB(100, 0, 255, 0));
-         }
-         else
-         {
-            //pgraphics->FillSolidRect(100, 100, 100, 100, ARGB(100, 255, 0, 0));
-         }
-         //pgraphics->SelectObject(GetFont());
-         //string strCursor;
-         //strCursor.Format("(%d,%d)", ptCursor.x, ptCursor.y);
-         //pgraphics->TextOut(200, 200, strCursor);
-      }
-
-      //pgraphics->FillSolidRect(300, 300, 100, 100, ARGB(127, 127, 127, 0));
 
    }
 
