@@ -2886,6 +2886,11 @@
 		07B0981018495CBE007A0560 /* webserver_http_response.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0970918495CBE007A0560 /* webserver_http_response.h */; };
 		07B0981118495CBE007A0560 /* webserver_http_transaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0970A18495CBE007A0560 /* webserver_http_transaction.h */; };
 		07BDFB3318F7D94E00CCABA9 /* base_new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BDFB3218F7D94E00CCABA9 /* base_new.cpp */; };
+		07C8D688191CF0EC00137494 /* fs_link.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D686191CF0EC00137494 /* fs_link.cpp */; };
+		07C8D689191CF0EC00137494 /* fs_link.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C8D687191CF0EC00137494 /* fs_link.h */; };
+		07C8D68A191CF18600137494 /* fs_link.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D686191CF0EC00137494 /* fs_link.cpp */; };
+		07C8D68D191D685400137494 /* boot_view_controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D68C191D685400137494 /* boot_view_controller.m */; };
+		07C8D68E191D685400137494 /* boot_view_controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D68C191D685400137494 /* boot_view_controller.m */; };
 		07E7E741190B53570082F182 /* base_a_basic_rid_off.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E7E740190B53570082F182 /* base_a_basic_rid_off.h */; };
 		07F5B126184968B30092C3E1 /* macos_simple_ui.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B125184968B30092C3E1 /* macos_simple_ui.h */; };
 		07F5B128184968C20092C3E1 /* macos_simple_ui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B127184968C20092C3E1 /* macos_simple_ui.cpp */; };
@@ -6176,6 +6181,10 @@
 		07B0970A18495CBE007A0560 /* webserver_http_transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webserver_http_transaction.h; sourceTree = "<group>"; };
 		07BD556C16210BD4008E31F0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		07BDFB3218F7D94E00CCABA9 /* base_new.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_new.cpp; sourceTree = "<group>"; };
+		07C8D686191CF0EC00137494 /* fs_link.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fs_link.cpp; sourceTree = "<group>"; };
+		07C8D687191CF0EC00137494 /* fs_link.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_link.h; sourceTree = "<group>"; };
+		07C8D68B191D685400137494 /* boot_view_controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = boot_view_controller.h; sourceTree = "<group>"; };
+		07C8D68C191D685400137494 /* boot_view_controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = boot_view_controller.m; sourceTree = "<group>"; };
 		07E7E740190B53570082F182 /* base_a_basic_rid_off.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_a_basic_rid_off.h; sourceTree = "<group>"; };
 		07F3372018111CA200A34D04 /* multithreading_set_event_on_exit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = multithreading_set_event_on_exit.h; sourceTree = "<group>"; };
 		07F5B125184968B30092C3E1 /* macos_simple_ui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_simple_ui.h; sourceTree = "<group>"; };
@@ -9721,8 +9730,8 @@
 			isa = PBXGroup;
 			children = (
 				07F5B12E184A3B420092C3E1 /* file */,
-				07F5B188184A3B430092C3E1 /* filesystem.h */,
 				07F5B189184A3B430092C3E1 /* fs */,
+				07F5B188184A3B430092C3E1 /* filesystem.h */,
 			);
 			path = filesystem;
 			sourceTree = "<group>";
@@ -9841,6 +9850,8 @@
 				07F5B194184A3B430092C3E1 /* fs_item.h */,
 				07F5B195184A3B430092C3E1 /* fs_item_array.cpp */,
 				07F5B196184A3B430092C3E1 /* fs_item_array.h */,
+				07C8D686191CF0EC00137494 /* fs_link.cpp */,
+				07C8D687191CF0EC00137494 /* fs_link.h */,
 				07F5B197184A3B430092C3E1 /* fs_native_fs.cpp */,
 				07F5B198184A3B430092C3E1 /* fs_native_fs.h */,
 				07F5B199184A3B430092C3E1 /* fs_remote_native_file.cpp */,
@@ -9993,6 +10004,8 @@
 				9AA6A3D01907B307000A1F4A /* NSObject+DDExtensions.mm */,
 				9AA6A3D21907B307000A1F4A /* UncaughtExceptionHandler.mm */,
 				9AA6A7661907F4F1000A1F4A /* ios_thread_mm.mm */,
+				07C8D68B191D685400137494 /* boot_view_controller.h */,
+				07C8D68C191D685400137494 /* boot_view_controller.m */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -10954,6 +10967,7 @@
 				07B08D4618495B41007A0560 /* exception_simple.h in Headers */,
 				07884E601897EC9600DC6CEB /* ucs2internal.h in Headers */,
 				9AE7250D17E83B69003E47F9 /* multithreading_multi_lock.h in Headers */,
+				07C8D689191CF0EC00137494 /* fs_link.h in Headers */,
 				07B092A618495B43007A0560 /* windows_types.h in Headers */,
 				07B08DC818495B41007A0560 /* aes_locl.h in Headers */,
 				9AE7250F17E83B69003E47F9 /* multithreading_mutex.h in Headers */,
@@ -11651,6 +11665,7 @@
 				07A224B018F7F766002C3B39 /* rfc3454.c in Sources */,
 				07B08C1C18495B40007A0560 /* base_template.cpp in Sources */,
 				07884D7D1897EC9600DC6CEB /* c-ctype.c in Sources */,
+				07C8D688191CF0EC00137494 /* fs_link.cpp in Sources */,
 				07884C281897E9A500DC6CEB /* user_window_map.cpp in Sources */,
 				07B0978718495CBE007A0560 /* sockets_resolv_socket.cpp in Sources */,
 				07B08EA918495B41007A0560 /* cms_sd.c in Sources */,
@@ -12939,6 +12954,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07C8D68A191CF18600137494 /* fs_link.cpp in Sources */,
 				078579F21917B72100FFFE51 /* cbc128.c in Sources */,
 				078579F31917B72100FFFE51 /* ccm128.c in Sources */,
 				078579F41917B72100FFFE51 /* cfb128.c in Sources */,
@@ -13988,6 +14004,7 @@
 				9AA6A5FF1907B84C000A1F4A /* multithreading_semaphore.cpp in Sources */,
 				9AA6A6001907B84C000A1F4A /* multithreading_service_base.cpp in Sources */,
 				9AA6A6011907B84C000A1F4A /* multithreading_single_lock.cpp in Sources */,
+				07C8D68D191D685400137494 /* boot_view_controller.m in Sources */,
 				9AA6A6021907B84C000A1F4A /* multithreading_socket_event.cpp in Sources */,
 				9AA6A6031907B84C000A1F4A /* multithreading_sync_object.cpp in Sources */,
 				9AA6A6041907B84C000A1F4A /* multithreading_synch_lock.cpp in Sources */,
@@ -14235,6 +14252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07C8D68E191D685400137494 /* boot_view_controller.m in Sources */,
 				9AE24D531904CEFF001AEFFB /* base_iosTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

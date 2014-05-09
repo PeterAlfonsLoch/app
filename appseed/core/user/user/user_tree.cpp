@@ -1519,8 +1519,8 @@ namespace user
 
       if (iIndex < iMinVisibleIndex || iIndex > iMaxVisibleIndex)
       {
-         int32_t iNewScrollIndex = iIndex;
-         m_scrollinfo.m_ptScroll.y = max(iNewScrollIndex,0) * m_iItemHeight;
+         index iNewScrollIndex = iIndex;
+         m_scrollinfo.m_ptScroll.y = (int) (max(iNewScrollIndex,0) * m_iItemHeight);
       }
 
       layout();

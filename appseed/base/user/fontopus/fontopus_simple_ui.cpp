@@ -102,6 +102,32 @@ namespace fontopus
 
       m_w = m_login.m_rect.width();
       m_h = m_login.m_rect.height();
+      
+      double d = (double) m_w / (double) m_h;
+      
+      if(m_w > rectDesktop.width())
+      {
+         
+         m_w = rectDesktop.width();
+         
+         if(d != 0.0)
+         {
+
+            m_h = m_w / d;
+            
+         }
+         
+      }
+      
+      if(m_h > rectDesktop.height())
+      {
+         
+         m_h = rectDesktop.height();
+         
+         m_w = m_h  * d;
+         
+      }
+      
 
       rectFontopus.left = rectDesktop.left + (width(rectDesktop) - m_w) / 2;
       rectFontopus.top = rectDesktop.top + (height(rectDesktop) - m_h) / 3;

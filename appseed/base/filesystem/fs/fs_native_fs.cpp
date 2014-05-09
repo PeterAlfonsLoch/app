@@ -49,6 +49,8 @@ namespace fs
 
       System.dir().root_ones(straPath, straTitle, get_app());
 
+      
+#ifdef WINDOWSEX
 
       string strDesktopFolder;
 
@@ -60,6 +62,9 @@ namespace fs
 
       straPath.insert_at(0,strDesktopFolder);
       straTitle.insert_at(0,"Área de Trabalho");
+      
+#endif
+      
 
    }
 
