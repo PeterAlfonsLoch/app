@@ -14,7 +14,7 @@ namespace filemanager
       simple_toolbar           m_toolbar;
 
 
-      child_frame(sp(base_application) papp);
+      child_frame(sp(::base::application) papp);
       virtual ~child_frame();
 
       void install_message_handling(::message::dispatch * pinterface);

@@ -6,7 +6,7 @@ namespace filemanager
 
 
 
-   main_frame::main_frame(sp(base_application) papp) :
+   main_frame::main_frame(sp(::base::application) papp) :
       element(papp),
       simple_frame_window(papp),
       m_menubar(papp),

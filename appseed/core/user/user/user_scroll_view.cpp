@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   scroll_view::scroll_view(sp(base_application) papp) :
+   scroll_view::scroll_view(sp(::base::application) papp) :
       element(papp)
    {
 

@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   pane_tab_view::pane_tab_view(sp(base_application) papp) :
+   pane_tab_view::pane_tab_view(sp(::base::application) papp) :
       element(papp),
 
       ::user::tab_view(papp),

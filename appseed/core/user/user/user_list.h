@@ -90,7 +90,7 @@ namespace user
       list         *       m_plist;
 
 
-      list_column_array(sp(base_application) papp);
+      list_column_array(sp(::base::application) papp);
 
 
       void Initialize(list * plist);
@@ -537,7 +537,7 @@ namespace user
 
 
 
-      list(sp(base_application) papp);
+      list(sp(::base::application) papp);
       virtual ~list();
 
 

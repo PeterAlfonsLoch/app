@@ -9,7 +9,7 @@
 namespace user
 {
 
-   tool_cmd_ui::tool_cmd_ui(sp(base_application) papp) :
+   tool_cmd_ui::tool_cmd_ui(sp(::base::application) papp) :
       element(papp),
       cmd_ui(papp)
    {

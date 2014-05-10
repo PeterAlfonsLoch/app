@@ -162,7 +162,7 @@ namespace rar
       return true;
    }
 
-   static void RarTimeToProp(sp(base_application) papp, const CRarTime &rarTime, var &prop)
+   static void RarTimeToProp(sp(::base::application) papp, const CRarTime &rarTime, var &prop)
    {
       FILETIME localFileTime, utcFileTime;
       if (RarTimeToFileTime(rarTime, localFileTime))

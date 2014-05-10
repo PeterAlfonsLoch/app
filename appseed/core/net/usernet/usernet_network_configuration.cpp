@@ -5,7 +5,7 @@ namespace usernet // ca8 + cube
 {
 
 
-   network_configuration::network_configuration(sp(base_application) papp) :
+   network_configuration::network_configuration(sp(::base::application) papp) :
       element(papp)
    {
       m_pdoc   = NULL;

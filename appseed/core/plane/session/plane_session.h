@@ -24,7 +24,7 @@ namespace plane
          string                  m_strApp;
          string                  m_strQuery;
          sp(::plane::session)      m_pbergedgeParent;
-         sp(base_application)   m_pbaseapp;
+         sp(::base::application)   m_pbaseapp;
          bool                    m_bMakeVisible;
          sp(::user::interaction) m_puiParent;
          property_set      m_setParameters;
@@ -48,7 +48,7 @@ namespace plane
 
       bool                                                  m_bShowPlatform;
 
-      sp(base_application)                                   m_pappCurrent;
+      sp(::base::application)                                   m_pappCurrent;
 
 
       var                                                   m_varTopicFile;
@@ -72,7 +72,7 @@ namespace plane
       string_map < sp(::user::uinteraction::interaction) >     m_mapUinteraction;
 
 
-      session(base_application * papp);
+      session(::base::application * papp);
       virtual ~session();
       virtual void construct();
 
@@ -99,7 +99,7 @@ namespace plane
 
       virtual bool create_bergedge(sp(::create_context) pcreatecontext);
 
-      virtual void on_app_request_bergedge_callback(sp(base_application) papp);
+      virtual void on_app_request_bergedge_callback(sp(::base::application) papp);
 
 
 
@@ -151,10 +151,10 @@ namespace plane
 
       void on_request(sp(::create_context) pcreatecontext);
 
-      sp(base_application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, application_bias * pbiasCreate = NULL);
+      sp(::base::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, application_bias * pbiasCreate = NULL);
 
 
-      sp(base_application) get_current_application();
+      sp(::base::application) get_current_application();
 
       virtual void get_screen_rect(LPRECT lprect);
 
@@ -177,7 +177,7 @@ namespace plane
       virtual bool is_remote_session();
 
       using ::application::start_application;
-      sp(::base_application) start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext);
+      sp(::::base::application) start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext);
 
 
       virtual ::visual::cursor * get_cursor();

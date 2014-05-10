@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   tab_view::tab_view(sp(base_application) papp) :
+   tab_view::tab_view(sp(::base::application) papp) :
       element(papp),
       ::filemanager::data_interface(papp),
       ::user::tab(papp),

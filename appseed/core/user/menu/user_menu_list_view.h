@@ -12,7 +12,7 @@ namespace user
       ::user::interaction   * m_puiNotify;
 
 
-      menu_list_view(sp(base_application) papp);
+      menu_list_view(sp(::base::application) papp);
       virtual ~menu_list_view();
 
       void install_message_handling(::message::dispatch * pinterface);

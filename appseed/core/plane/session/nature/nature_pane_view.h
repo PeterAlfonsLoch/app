@@ -15,7 +15,7 @@ namespace nature
       sp(::userex::keyboard_layout)             m_pkeyboardlayout;
 
 
-      pane_view(sp(base_application) papp);
+      pane_view(sp(::base::application) papp);
       virtual ~pane_view();
 
 

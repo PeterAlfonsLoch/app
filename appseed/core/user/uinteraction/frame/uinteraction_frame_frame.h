@@ -61,7 +61,7 @@ namespace user
 
 
 
-            frame(sp(base_application) papp);
+            frame(sp(::base::application) papp);
             virtual ~frame();
 
 

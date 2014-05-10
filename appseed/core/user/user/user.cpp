@@ -6,11 +6,11 @@
 namespace user
 {
 
-   CLASS_DECL_CORE sp(::user::interaction) create_virtual_window(sp(base_application) papp, uint32_t dwExStyle, const char * lpClassName, const char * lpWindowName, uint32_t dwStyle,
+   CLASS_DECL_CORE sp(::user::interaction) create_virtual_window(sp(::base::application) papp, uint32_t dwExStyle, const char * lpClassName, const char * lpWindowName, uint32_t dwStyle,
                                                              int32_t X, int32_t Y, int32_t nWidth, int32_t nHeight, sp(::user::interaction) puiParent, id id, HINSTANCE hInstance, LPVOID lpParam);
 
 
-   CLASS_DECL_CORE sp(::user::interaction) create_virtual_window(sp(base_application) papp, uint32_t dwExStyle, const char * lpClassName, const char * lpWindowName, uint32_t dwStyle,
+   CLASS_DECL_CORE sp(::user::interaction) create_virtual_window(sp(::base::application) papp, uint32_t dwExStyle, const char * lpClassName, const char * lpWindowName, uint32_t dwStyle,
       int32_t X, int32_t Y, int32_t nWidth, int32_t nHeight, sp(::user::interaction) puiParent, id id, HINSTANCE hInstance, LPVOID lpParam)
    {
       UNREFERENCED_PARAMETER(dwExStyle);

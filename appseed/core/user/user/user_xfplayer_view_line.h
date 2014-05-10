@@ -101,7 +101,7 @@ protected:
 
 public:
 
-   XfplayerViewLine(sp(base_application) papp);
+   XfplayerViewLine(sp(::base::application) papp);
    XfplayerViewLine(const XfplayerViewLine & line);
    XfplayerViewLine(XfplayerViewLines * pContainer);
    virtual ~XfplayerViewLine();
@@ -138,7 +138,7 @@ public:
    void SetColors(COLORREF cr, COLORREF crOutline);
 
    void EmbossedTextOut(
-      sp(base_application) papp,
+      sp(::base::application) papp,
       ::draw2d::graphics * pdc,
       const char * lpcsz,
       int32_t left,
@@ -150,7 +150,7 @@ public:
       double dBlend);
 
    void EmbossedTextOut(
-      sp(base_application) papp,
+      sp(::base::application) papp,
       ::draw2d::graphics * pdc,
       ::draw2d::dib * pdibCache,
       const char * lpcsz,
@@ -164,7 +164,7 @@ public:
 
 
    void CacheEmboss(
-      sp(base_application) papp,
+      sp(::base::application) papp,
       ::draw2d::graphics * pdc,
       const char * lpcsz,
       strsize iLen,
@@ -231,7 +231,7 @@ public:
       visual::font * pFont);
 
    bool to(
-      sp(base_application) papp,
+      sp(::base::application) papp,
       ::draw2d::graphics *                  pdc,
       bool                  bDraw,
       LPRECT               lpRect,
@@ -239,7 +239,7 @@ public:
       bool                  bRecalcLayout);
 
    bool to(
-      sp(base_application) papp,
+      sp(::base::application) papp,
       ::draw2d::graphics *                  pdcForeground,
       bool                  bDraw,
       LPRECT               lpRect,

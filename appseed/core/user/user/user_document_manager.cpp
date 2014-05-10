@@ -180,7 +180,7 @@ namespace user
    }
    }
    */
-   document_manager::document_manager(sp(base_application) papp) :
+   document_manager::document_manager(sp(::base::application) papp) :
       element(papp)
    {
    }

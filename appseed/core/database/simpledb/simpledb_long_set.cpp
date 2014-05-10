@@ -48,7 +48,7 @@ db_long_set::queue_item & db_long_set::queue_item::operator = (const queue_item 
    return *this;
 }
 
-db_long_set::sync_queue::sync_queue(sp(base_application) papp) :
+db_long_set::sync_queue::sync_queue(sp(::base::application) papp) :
    element(papp),
    thread(papp),
    simple_thread(papp),

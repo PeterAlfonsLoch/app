@@ -26,10 +26,10 @@ namespace html
       LiteHTMLEntityResolver     m_entityresolver;
 
 
-      html(base_application * papp);
+      html(::base::application * papp);
       virtual ~html();
 
-      virtual void construct(sp(base_application) papp);
+      virtual void construct(sp(::base::application) papp);
 
 
       virtual bool initialize();

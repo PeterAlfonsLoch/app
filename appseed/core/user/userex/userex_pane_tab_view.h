@@ -26,7 +26,7 @@ namespace userex
       sp(pane_view) m_ppaneview;
 
 
-      pane_tab_view(sp(base_application) papp);
+      pane_tab_view(sp(::base::application) papp);
       virtual ~pane_tab_view();
 
 

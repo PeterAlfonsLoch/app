@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-file_operation::file_operation(sp(base_application) papp) :
+file_operation::file_operation(sp(::base::application) papp) :
    element(papp)
 {
 

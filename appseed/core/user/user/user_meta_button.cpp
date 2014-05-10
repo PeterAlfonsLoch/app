@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-MetaButton::MetaButton(sp(base_application) papp) :
+MetaButton::MetaButton(sp(::base::application) papp) :
    element(papp),
    ::user::button(papp),
    m_spregion(allocer())

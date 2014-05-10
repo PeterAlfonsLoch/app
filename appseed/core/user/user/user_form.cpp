@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   form::form(sp(base_application) papp) :
+   form::form(sp(::base::application) papp) :
       element(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp)

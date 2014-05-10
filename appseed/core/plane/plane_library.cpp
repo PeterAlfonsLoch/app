@@ -4,14 +4,14 @@
 #ifndef _WIN32
 extern "C"
 #endif
-::core::library * get_new_library(sp(base_application) papp);
+::core::library * get_new_library(sp(::base::application) papp);
 
 
 namespace plane
 {
 
 
-   library::library(sp(base_application) papp) :
+   library::library(sp(::base::application) papp) :
       element(papp),
       ::base_library(papp),
       ::core::library(papp, "app"),
@@ -71,7 +71,7 @@ namespace plane
 #ifndef _WIN32
 extern "C"
 #endif
-::core::library * get_new_library(sp(base_application) papp)
+::core::library * get_new_library(sp(::base::application) papp)
 {
    return canew(::plane::library(papp));
 }

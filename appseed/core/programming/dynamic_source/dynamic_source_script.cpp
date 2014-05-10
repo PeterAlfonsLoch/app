@@ -18,7 +18,7 @@ namespace dynamic_source
 
 
 
-   script::script(sp(base_application) papp) :
+   script::script(sp(::base::application) papp) :
       element(papp),
       m_memfileError(papp),
       m_mutex(papp)
@@ -43,7 +43,7 @@ namespace dynamic_source
      uint32_t dwReserved;    // must be zero
    } LOADPARMS32;
 
-   ds_script::ds_script(sp(base_application) papp) :
+   ds_script::ds_script(sp(::base::application) papp) :
       element(papp),
       script(papp),
       m_evCreationEnabled(papp),
@@ -511,7 +511,7 @@ namespace dynamic_source
    }
 
 
-   base_application * ds_script::get_app() const
+   ::base::application * ds_script::get_app() const
    {
       return m_pmanager->get_app();
    }

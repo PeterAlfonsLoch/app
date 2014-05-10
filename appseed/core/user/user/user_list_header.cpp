@@ -5,7 +5,7 @@
 namespace user
 {
 
-   list_header::list_header(sp(base_application) papp) :
+   list_header::list_header(sp(::base::application) papp) :
       element(papp),
       m_font(allocer()),
       m_dcextension(papp)

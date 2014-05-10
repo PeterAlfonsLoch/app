@@ -5,7 +5,7 @@ namespace userex // ca8 + cube
 {
 
 
-   message_box::message_box(sp(base_application) papp) :
+   message_box::message_box(sp(::base::application) papp) :
       element(papp),
       user::scroll_view(papp),
       user::form(papp),

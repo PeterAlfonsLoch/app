@@ -39,7 +39,7 @@ namespace core
 {
 
 
-   typedef class library * ( * PFN_GET_NEW_LIBRARY)(sp(base_application) papp);
+   typedef class library * ( * PFN_GET_NEW_LIBRARY)(sp(::base::application) papp);
 
 
    class CLASS_DECL_CORE library :
@@ -54,7 +54,7 @@ namespace core
       string            m_strRoot;
 
 
-      library(sp(base_application) papp, const char * pszRoot);
+      library(sp(::base::application) papp, const char * pszRoot);
       virtual ~library();
 
       virtual bool open(const char * pszPath, bool bAutoClose = true);
@@ -73,7 +73,7 @@ namespace core
 
 
       // impl
-      virtual sp(base_application) get_new_app(const char * pszId);
+      virtual sp(::base::application) get_new_app(const char * pszId);
       virtual void get_app_list(stringa & stra);
 
 
@@ -81,10 +81,10 @@ namespace core
       virtual bool is_uinteraction_library();
 
 
-      virtual ::dynamic_source::script_manager * create_script_manager(sp(base_application) papp);
+      virtual ::dynamic_source::script_manager * create_script_manager(sp(::base::application) papp);
 
       virtual void get_script_list(stringa & stra);
-      virtual ::dynamic_source::script * create_script(sp(base_application) papp, const char * pszScript);
+      virtual ::dynamic_source::script * create_script(sp(::base::application) papp, const char * pszScript);
       virtual void do_default_script_registration(::dynamic_source::script_manager * pmanager);
 
       virtual string get_library_name();
@@ -105,10 +105,10 @@ namespace core
    {
    public:
 
-      single_application_library(sp(base_application) papp, const char * pszRoot) : element(papp), ::base_library(papp), ::core::library(papp, pszRoot) {}
+      single_application_library(sp(::base::application) papp, const char * pszRoot) : element(papp), ::base_library(papp), ::core::library(papp, pszRoot) {}
 
       // impl
-      virtual sp(base_application) get_new_app(const char * pszAppId);
+      virtual sp(::base::application) get_new_app(const char * pszAppId);
 
 
    };

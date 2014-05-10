@@ -5,7 +5,7 @@ namespace usermail
 {
 
 
-   usermail::usermail(base_application * papp) : 
+   usermail::usermail(::base::application * papp) : 
       element(papp),
       base_departament(papp)
    {

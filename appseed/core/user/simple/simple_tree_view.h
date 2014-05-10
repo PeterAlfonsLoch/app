@@ -8,7 +8,7 @@ class CLASS_DECL_CORE simple_tree_view :
 public:
 
    
-   simple_tree_view(sp(base_application) papp);   
+   simple_tree_view(sp(::base::application) papp);   
    virtual ~simple_tree_view();
 
    virtual void install_message_handling(::message::dispatch * pinterface);

@@ -53,7 +53,7 @@ namespace user
       notification_area();
       virtual ~notification_area();
 
-      virtual void Initialize(sp(base_application) papp);
+      virtual void Initialize(sp(::base::application) papp);
 
       void ListTrayIcons(int32_t defindex = 0);
       void EditCopy(int32_t iItem);

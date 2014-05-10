@@ -10,7 +10,7 @@ namespace colorertake5
 
 
 
-   base_editor::base_editor(sp(base_application) papp) :
+   base_editor::base_editor(sp(::base::application) papp) :
    element(papp)
    {
       textParser = NULL;

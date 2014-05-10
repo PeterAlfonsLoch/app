@@ -4,7 +4,7 @@
 namespace filemanager
 {
 
-   preview::preview(sp(base_application) papp) :
+   preview::preview(sp(::base::application) papp) :
       element(papp),
       ::filemanager::data_interface(papp)
    {

@@ -3,7 +3,7 @@
 namespace user
 {
 
-   bitmap_button::bitmap_button(sp(base_application) papp) :
+   bitmap_button::bitmap_button(sp(::base::application) papp) :
       element(papp),
       
       ::user::button(papp)

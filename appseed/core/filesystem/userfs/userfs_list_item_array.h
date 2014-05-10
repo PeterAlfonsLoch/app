@@ -25,7 +25,7 @@ namespace userfs
    public:
 
 
-      list_item_array(sp(base_application) papp);
+      list_item_array(sp(::base::application) papp);
       virtual ~list_item_array();
 
 

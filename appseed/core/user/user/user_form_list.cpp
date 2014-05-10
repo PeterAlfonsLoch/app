@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   form_list::form_list(sp(base_application) papp) :
+   form_list::form_list(sp(::base::application) papp) :
       element(papp),
       ::user::interaction(papp),
       ::user::form(papp),

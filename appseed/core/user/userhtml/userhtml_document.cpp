@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 
 
-html_document::html_document(sp(base_application) papp) :
+html_document::html_document(sp(::base::application) papp) :
    element(papp),
    ::data::data_container_base(papp),
    ::user::object(papp)

@@ -27,8 +27,8 @@ namespace user
       int32_t                             m_iItemHeight;
       size                                m_size;
 
-      menu_list_window(sp(base_application) papp);
-      menu_list_window(sp(base_application) papp, sp(menu_item) pitem);
+      menu_list_window(sp(::base::application) papp);
+      menu_list_window(sp(::base::application) papp, sp(menu_item) pitem);
       virtual ~menu_list_window();
 
       void layout();

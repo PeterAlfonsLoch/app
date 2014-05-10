@@ -30,7 +30,7 @@ namespace bergedge
       sp(::bergedge::pane_view)     m_ppaneview;
 
 
-      frame(sp(base_application) papp);
+      frame(sp(::base::application) papp);
       virtual void install_message_handling(::message::dispatch * pinterface);
 
       DECL_GEN_SIGNAL(_001OnApp1);

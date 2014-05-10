@@ -5,7 +5,7 @@ namespace usermail
 {
 
 
-   account::account(sp(base_application) papp) :
+   account::account(sp(::base::application) papp) :
       element(papp),
       m_pop3(papp)
    {

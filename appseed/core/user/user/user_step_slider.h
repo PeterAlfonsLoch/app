@@ -17,7 +17,7 @@ namespace user
       int64_t                 m_iLButtonDown;
 
 
-      step_slider(sp(base_application) papp);
+      step_slider(sp(::base::application) papp);
       virtual ~step_slider();
 
       bool create(sp(::user::interaction) pwndParent, id id);

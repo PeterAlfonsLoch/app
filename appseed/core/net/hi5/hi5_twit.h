@@ -98,7 +98,7 @@ namespace hi5
        /* OAuth data */
        oauth m_oauth;
 
-       twit(sp(base_application) papp);
+       twit(sp(::base::application) papp);
        virtual ~twit();
 
        /* Twitter OAuth authorization methods */

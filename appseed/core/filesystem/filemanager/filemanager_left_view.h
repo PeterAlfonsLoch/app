@@ -12,7 +12,7 @@ namespace filemanager
    public:
 
 
-      left_view(sp(base_application) papp);
+      left_view(sp(::base::application) papp);
 
       void on_create_views();
 

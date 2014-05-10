@@ -8,7 +8,7 @@ namespace simpledb
 {
 
 
-   simpledb::simpledb(base_application * papp) :
+   simpledb::simpledb(::base::application * papp) :
       element(papp),
       base_departament(papp)
    {

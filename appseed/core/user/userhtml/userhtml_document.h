@@ -9,7 +9,7 @@ class CLASS_DECL_CORE html_document :
 public:
 
    
-   html_document(sp(base_application) papp);
+   html_document(sp(::base::application) papp);
    virtual ~html_document();
 
    

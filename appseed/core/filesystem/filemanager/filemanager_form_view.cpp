@@ -1,6 +1,6 @@
 #include "framework.h"
 
-file_manager_form_view::file_manager_form_view(sp(base_application) papp) :
+file_manager_form_view::file_manager_form_view(sp(::base::application) papp) :
    element(papp),
    ::filemanager::data_interface(papp),
    ::user::interaction(papp),

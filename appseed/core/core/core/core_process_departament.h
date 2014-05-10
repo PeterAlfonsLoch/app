@@ -24,7 +24,7 @@ namespace core
          manual_reset_event      m_evReady;
 
 
-         process_thread(sp(base_application) papp);
+         process_thread(sp(::base::application) papp);
          int32_t run();
 
 

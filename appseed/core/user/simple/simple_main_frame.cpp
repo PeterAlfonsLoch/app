@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_main_frame::simple_main_frame(sp(base_application) papp) :
+simple_main_frame::simple_main_frame(sp(::base::application) papp) :
    element(papp),
    simple_frame_window(papp)
 {

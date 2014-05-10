@@ -16,7 +16,7 @@ namespace html
    }
 
    
-   bool font::create(sp(base_application) papp)
+   bool font::create(sp(::base::application) papp)
    {
       
       set_app(papp);

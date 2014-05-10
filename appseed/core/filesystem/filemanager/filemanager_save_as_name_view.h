@@ -8,7 +8,7 @@ class CLASS_DECL_CORE FileManagerSaveAsView :
 public:
 
 
-   FileManagerSaveAsView(sp(base_application) papp);
+   FileManagerSaveAsView(sp(::base::application) papp);
 
 
    virtual void _001OnAfterChangeText(::action::context actioncontext);

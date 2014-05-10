@@ -640,7 +640,7 @@ namespace n7z
       uint32_t NumThreads;
 #endif
 
-      CThreadDecoder(sp(base_application) papp):
+      CThreadDecoder(sp(::base::application) papp):
       element(papp),
       thread(papp),
       Decoder(papp, true)

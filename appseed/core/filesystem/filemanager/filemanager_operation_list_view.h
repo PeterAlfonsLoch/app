@@ -8,7 +8,7 @@ class CLASS_DECL_CORE file_manager_operation_list_view :
 {
 public:
 
-   file_manager_operation_list_view(sp(base_application) papp);
+   file_manager_operation_list_view(sp(::base::application) papp);
 
    virtual void install_message_handling(::message::dispatch * pinterface);
 

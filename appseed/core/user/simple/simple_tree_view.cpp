@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_tree_view::simple_tree_view(sp(base_application) papp) :
+simple_tree_view::simple_tree_view(sp(::base::application) papp) :
    element(papp),
    
    ::user::scroll_view(papp),

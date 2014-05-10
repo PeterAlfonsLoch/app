@@ -5,7 +5,7 @@ namespace net
 {
 
 
-   email_departament::email_departament(sp(base_application) papp) :
+   email_departament::email_departament(sp(::base::application) papp) :
       element(papp),
       base_departament(papp)
    {

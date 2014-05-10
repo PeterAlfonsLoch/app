@@ -2,7 +2,7 @@
 
 const int32_t simple_list_header_control::s_iDividerWidth = 4;
 
-simple_list_header_control::simple_list_header_control(sp(base_application) papp) :
+simple_list_header_control::simple_list_header_control(sp(::base::application) papp) :
    element(papp),
    ::user::list_header(papp)
 {

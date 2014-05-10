@@ -27,7 +27,7 @@ namespace nature
       };
 
 
-      appearance_view(sp(base_application) papp);
+      appearance_view(sp(::base::application) papp);
 
 #if !core_level_1
       using ::user::tab_view::on_show_view;

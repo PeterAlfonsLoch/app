@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-menu_view::menu_view(sp(base_application) papp) :
+menu_view::menu_view(sp(::base::application) papp) :
    element(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),

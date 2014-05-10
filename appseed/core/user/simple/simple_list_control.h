@@ -5,7 +5,7 @@ class CLASS_DECL_CORE simple_list_control :
    virtual public ::user::list
 {
 public:
-   simple_list_control(sp(base_application) papp);
+   simple_list_control(sp(::base::application) papp);
 
    simple_list_header_control       m_headerctrl;
    ::user::simple_list_data         m_listctrldata;

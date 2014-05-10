@@ -5,7 +5,7 @@ namespace user
 
    const int32_t split_layout::m_iMarging = 5;
 
-   split_layout::split_layout(sp(base_application) papp) :
+   split_layout::split_layout(sp(::base::application) papp) :
       element(papp),
       m_splitbara(papp),
       m_panea(papp),
@@ -799,7 +799,7 @@ namespace user
    }
 
 
-   split_layout::Pane::Pane(sp(base_application) papp) :
+   split_layout::Pane::Pane(sp(::base::application) papp) :
       element(papp)
    {
 

@@ -209,7 +209,7 @@ bool application::is_session()
 bool application::is_installing()
 {
 
-   return base_application::is_installing();
+   return ::base::application::is_installing();
 
 }
 
@@ -217,7 +217,7 @@ bool application::is_installing()
 bool application::is_uninstalling()
 {
 
-   return base_application::is_uninstalling();
+   return ::base::application::is_uninstalling();
 
 }
 
@@ -225,7 +225,7 @@ bool application::is_uninstalling()
 bool application::is_serviceable()
 {
 
-   return base_application::is_serviceable();
+   return ::base::application::is_serviceable();
 
 }
 
@@ -243,7 +243,7 @@ bool application::init_main_data(::core::main_init_data * pdata)
 int32_t application::main()
 {
 
-   return base_application::main();
+   return ::base::application::main();
 
 }
 
@@ -320,7 +320,7 @@ bool application::process_initialize()
    //return true;
 
 
-   if (!::base_application::process_initialize())
+   if (!::::base::application::process_initialize())
       return false;
 
    m_spuserex = create_userex();
@@ -381,7 +381,7 @@ bool application::initialize1()
    }*/
 
 
-   if (!base_application::initialize1())
+   if (!::base::application::initialize1())
       return false;
 
 
@@ -581,7 +581,7 @@ bool application::initialize1()
 bool application::initialize2()
 {
 
-   if (!::base_application::initialize2())
+   if (!::::base::application::initialize2())
       return false;
 
    return true;
@@ -592,7 +592,7 @@ bool application::initialize2()
 bool application::initialize3()
 {
 
-   if (!::base_application::initialize3())
+   if (!::::base::application::initialize3())
       return false;
 
    return true;
@@ -612,7 +612,7 @@ bool application::initialize3()
 void application::on_request(sp(::create_context) pcreatecontext)
 {
    
-   base_application::on_request(pcreatecontext);
+   ::base::application::on_request(pcreatecontext);
 
 }
 
@@ -633,7 +633,7 @@ return *m_plemonarray;
 bool application::initialize_instance()
 {
 
-   if (!::base_application::initialize_instance())
+   if (!::::base::application::initialize_instance())
       return false;
    
    return true;
@@ -694,7 +694,7 @@ int32_t application::exit_instance()
    try
    {
 
-      ::base_application   * papp = m_pimpl.detach();
+      ::::base::application   * papp = m_pimpl.detach();
 
       if (papp != NULL && papp != this && !papp->is_system())
       {
@@ -744,7 +744,7 @@ int32_t application::exit_instance()
 
    try
    {
-      base_application::exit_instance();
+      ::base::application::exit_instance();
    }
    catch (...)
    {
@@ -1082,7 +1082,7 @@ int32_t application::run()
    __post_quit_message(0);
    }*/
    //      return application::run();
-   return base_application::run();
+   return ::base::application::run();
 
 }
 
@@ -3363,7 +3363,7 @@ void application::construct()
    }
 
 
-   ::base_application::construct();
+   ::::base::application::construct();
 
 }
 
@@ -3515,7 +3515,7 @@ void application::assert_valid() const
 void application::dump(dump_context & dumpcontext) const
 {
 
-   base_application::dump(dumpcontext);
+   ::base::application::dump(dumpcontext);
 
    //dumpcontext << "\nm_lpCmdLine = " << m_strCmdLine;
    //dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
@@ -3651,10 +3651,10 @@ bool Is_Vista_or_Later()
 bool application::initialize()
 {
 
-   if (!base_application::initialize())
+   if (!::base::application::initialize())
       return false;
 
-   xxdebug_box("base_application::initialize ok", "base_application::initialize ok", MB_ICONINFORMATION);
+   xxdebug_box("::base::application::initialize ok", "::base::application::initialize ok", MB_ICONINFORMATION);
 
    m_pcalculator = new ::calculator::calculator(this);
 
@@ -3888,7 +3888,7 @@ sp(::user::interaction) application::uie_from_point(point pt)
 bool application::on_install()
 {
 
-   if (!base_application::on_install())
+   if (!::base::application::on_install())
       return false;
 
    string strId = m_strId;
@@ -4259,7 +4259,7 @@ string application::file_as_string(var varFile)
 
 
 
-sp(base_application) application::get_system()
+sp(::base::application) application::get_system()
 {
    return new application();
 }
@@ -4397,7 +4397,7 @@ return papp;
 
 
 
-//typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
+//typedef  void (* PFN_ca2_factory_exchange)(sp(::base::application) papp);
 
 
 
@@ -4459,10 +4459,10 @@ return papp;
 
 
 
-sp(base_application) application::instantiate_application(const char * pszType, const char * pszId, application_bias * pbias)
+sp(::base::application) application::instantiate_application(const char * pszType, const char * pszId, application_bias * pbias)
 {
 
-   sp(base_application) papp = NULL;
+   sp(::base::application) papp = NULL;
 
    string strId(pszId);
 
@@ -4604,15 +4604,15 @@ sp(base_application) application::instantiate_application(const char * pszType, 
 }
 
 
-sp(base_application) application::create_application(const char * pszType, const char * pszId, bool bSynch, application_bias * pbias)
+sp(::base::application) application::create_application(const char * pszType, const char * pszId, bool bSynch, application_bias * pbias)
 {
 
-   sp(base_application) pbaseapp = instantiate_application(pszType, pszId, pbias);
+   sp(::base::application) pbaseapp = instantiate_application(pszType, pszId, pbias);
 
    if (pbaseapp == NULL)
       return NULL;
 
-   sp(base_application) papp = (pbaseapp);
+   sp(::base::application) papp = (pbaseapp);
 
    if (!papp->m_pplaneapp->start_application(bSynch, pbias))
    {
@@ -4702,7 +4702,7 @@ int32_t application::simple_message_box(sp(::user::interaction) puiOwner, const 
 {
 
    if (!user().is_set())
-      return ::base_application::simple_message_box(puiOwner, pszMessage, fuStyle);
+      return ::::base::application::simple_message_box(puiOwner, pszMessage, fuStyle);
 
    return userex()->simple_message_box(puiOwner, pszMessage, fuStyle);
 
@@ -4713,7 +4713,7 @@ int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwne
 {
 
    if (!user().is_set())
-      return ::base_application::simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
+      return ::::base::application::simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
 
    return userex()->simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
 

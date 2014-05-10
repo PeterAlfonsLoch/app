@@ -23,7 +23,7 @@ namespace core
    public:
 
 
-      history(sp(base_application) papp);
+      history(sp(::base::application) papp);
          
    
       virtual bool hist(const char *psz);

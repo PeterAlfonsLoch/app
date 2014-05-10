@@ -25,7 +25,7 @@ class file_operation :
    virtual public ::object
 {
 public:
-   file_operation(sp(base_application) papp);
+   file_operation(sp(::base::application) papp);
    virtual filemanager::eoperation operation();
    
    virtual bool set_copy(stringa & stra, const char * pszDestBase, const char * pszSrcBase, bool bExpand);

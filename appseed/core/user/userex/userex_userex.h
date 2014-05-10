@@ -39,7 +39,7 @@ namespace userex
 
 
 
-      userex(base_application * papp);
+      userex(::base::application * papp);
       virtual ~userex();
 
 
@@ -204,8 +204,8 @@ namespace userex
    };
 
 
-   CLASS_DECL_CORE::user::front_end_schema * GetUfeSchema(sp(base_application) papp);
-   CLASS_DECL_CORE::user::front_end * GetUfe(sp(base_application) papp);
+   CLASS_DECL_CORE::user::front_end_schema * GetUfeSchema(sp(::base::application) papp);
+   CLASS_DECL_CORE::user::front_end * GetUfe(sp(::base::application) papp);
 
 
 } // namespace core

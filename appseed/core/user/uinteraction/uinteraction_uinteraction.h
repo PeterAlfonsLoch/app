@@ -15,7 +15,7 @@ namespace user
       public:
 
 
-         uinteraction(base_application * papp);
+         uinteraction(::base::application * papp);
          virtual ~uinteraction();
 
 

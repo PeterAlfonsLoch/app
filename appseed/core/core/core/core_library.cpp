@@ -9,7 +9,7 @@ namespace core
 
    const char * psz_empty_app_id = "";
 
-   library::library(sp(base_application) papp, const char * pszRoot) :
+   library::library(sp(::base::application) papp, const char * pszRoot) :
       element(papp),
       base_library(papp)
    {
@@ -336,7 +336,7 @@ namespace core
    }
 
 
-   sp(base_application) library::get_new_app(const char * pszAppId)
+   sp(::base::application) library::get_new_app(const char * pszAppId)
    {
 
       try
@@ -350,7 +350,7 @@ namespace core
             if(strAppName.is_empty())
                return NULL;
 
-            sp(base_application) papp = m_pca2library->get_new_app(strAppName);
+            sp(::base::application) papp = m_pca2library->get_new_app(strAppName);
 
             if(papp == NULL)
                return NULL;
@@ -518,7 +518,7 @@ namespace core
    }
 
 
-   ::dynamic_source::script_manager * library::create_script_manager(sp(base_application) papp)
+   ::dynamic_source::script_manager * library::create_script_manager(sp(::base::application) papp)
    {
 
       if(m_pca2library != NULL)
@@ -541,7 +541,7 @@ namespace core
 
    }
 
-   ::dynamic_source::script * library::create_script(sp(base_application) papp, const char * pszScript)
+   ::dynamic_source::script * library::create_script(sp(::base::application) papp, const char * pszScript)
    {
 
       if(m_pca2library != NULL)

@@ -4,7 +4,7 @@
 //   ON_THREAD_MESSAGE(WM_USER, &file_manager_operation_thread::On1)
 // END_MESSAGE_MAP()
 
-file_manager_operation_thread::file_manager_operation_thread(sp(base_application) papp) :
+file_manager_operation_thread::file_manager_operation_thread(sp(::base::application) papp) :
    element(papp),
    thread(papp),
    simple_thread(papp),

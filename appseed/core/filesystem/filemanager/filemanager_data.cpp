@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   data::data(sp(base_application) papp) :
+   data::data(sp(::base::application) papp) :
       element(papp),
       ::data::data(papp)
    {

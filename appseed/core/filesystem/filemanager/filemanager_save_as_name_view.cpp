@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-FileManagerSaveAsView::FileManagerSaveAsView(sp(base_application) papp) :
+FileManagerSaveAsView::FileManagerSaveAsView(sp(::base::application) papp) :
    element(papp),
    ::filemanager::data_interface(papp),
    data::data_listener(papp),

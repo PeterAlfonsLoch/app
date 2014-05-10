@@ -12,7 +12,7 @@ namespace filemanager
    public:
    
 
-      tab_view(sp(base_application) papp);
+      tab_view(sp(::base::application) papp);
 
       virtual void on_create_view(::user::view_creator_data * pcreatordata);
       virtual void install_message_handling(::message::dispatch * pinterface);

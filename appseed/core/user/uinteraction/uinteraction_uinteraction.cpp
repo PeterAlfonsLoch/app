@@ -9,7 +9,7 @@ namespace user
    {
 
 
-      uinteraction::uinteraction(base_application * papp) :
+      uinteraction::uinteraction(::base::application * papp) :
          element(papp),
          base_departament(papp)
       {

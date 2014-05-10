@@ -5,7 +5,7 @@ class CLASS_DECL_CORE os_history :
 {
 public:
 
-   os_history(sp(base_application) papp);
+   os_history(sp(::base::application) papp);
          
    
    virtual bool hist(const char *psz);

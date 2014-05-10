@@ -58,15 +58,15 @@ public:
       item();
 
 
-      void update_size(sp(base_application) papp, index & iIteration);
-      void update_size_recursive(sp(base_application) papp, index & iIteration);
+      void update_size(sp(::base::application) papp, index & iIteration);
+      void update_size_recursive(sp(::base::application) papp, index & iIteration);
 
-      item * FindItem(sp(base_application) papp, const char * pszPath, index & iIteration);
-      index FindName(sp(base_application) papp, const char * pszName, index & iIteration);
+      item * FindItem(sp(::base::application) papp, const char * pszPath, index & iIteration);
+      index FindName(sp(::base::application) papp, const char * pszName, index & iIteration);
 
       string path();
 
-      void ls(sp(base_application) papp, index & iIteration);
+      void ls(sp(::base::application) papp, index & iIteration);
    };
 
 
@@ -85,7 +85,7 @@ public:
 
 
 
-   file_size_table(sp(base_application) papp);
+   file_size_table(sp(::base::application) papp);
    ~file_size_table();
 
    bool check_map();
@@ -104,7 +104,7 @@ public:
    index                     m_iMaxIteration;
 
 
-   DBFileSystemSizeSet(sp(base_application) papp);
+   DBFileSystemSizeSet(sp(::base::application) papp);
    ~DBFileSystemSizeSet();
 
 
@@ -127,7 +127,7 @@ class CLASS_DECL_CORE FileSystemSizeServerThread :
 {
 public:
 
-   FileSystemSizeServerThread(sp(base_application) papp);
+   FileSystemSizeServerThread(sp(::base::application) papp);
 
    bool initialize_instance();
 
@@ -160,7 +160,7 @@ public:
    size_map                         m_map;
 
 
-   FileSystemSizeWnd(sp(base_application) papp);
+   FileSystemSizeWnd(sp(::base::application) papp);
 
    bool CreateClient();
    bool CreateServer();

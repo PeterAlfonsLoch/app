@@ -82,7 +82,7 @@ namespace plane
 
       ::visual::visual                    m_visual;
 
-      system(sp(base_application) papp = NULL);
+      system(sp(::base::application) papp = NULL);
       virtual ~system();
 
 
@@ -107,8 +107,8 @@ namespace plane
 
       virtual index get_new_bergedge(application_bias * pbiasCreation = NULL);
 
-      virtual void register_bergedge_application(sp(base_application) papp);
-      virtual void unregister_bergedge_application(sp(base_application) papp);
+      virtual void register_bergedge_application(sp(::base::application) papp);
+      virtual void unregister_bergedge_application(sp(::base::application) papp);
 
 
       virtual bool base_support();
@@ -127,7 +127,7 @@ namespace plane
 
       virtual sp(::plane::session)             query_bergedge(index iEdge);
       virtual void on_request(sp(::create_context) pcreatecontext);
-      virtual sp(base_application) application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, application_bias * pbiasCreate = NULL);
+      virtual sp(::base::application) application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, application_bias * pbiasCreate = NULL);
       virtual void open_by_file_extension(index iEdge, const char * pszPathName);
       virtual bool is_system();
 
@@ -154,14 +154,14 @@ namespace plane
 
       virtual bool assert_failed_line(const char * lpszFileName, int32_t iLine);
 
-      virtual void on_allocation_error(sp(base_application) papp, sp(type) info);
+      virtual void on_allocation_error(sp(::base::application) papp, sp(type) info);
 
       // file & dir
-      virtual string matter_as_string(sp(base_application) papp, const char * pszMatter, const char * pszMatter2 = NULL);
-      virtual string dir_matter(sp(base_application) papp, const char * pszMatter, const char * pszMatter2 = NULL);
+      virtual string matter_as_string(sp(::base::application) papp, const char * pszMatter, const char * pszMatter2 = NULL);
+      virtual string dir_matter(sp(::base::application) papp, const char * pszMatter, const char * pszMatter2 = NULL);
       virtual bool is_inside_time_dir(const char * pszPath);
       virtual bool file_is_read_only(const char * pszPath);
-      virtual string file_as_string(sp(base_application) papp, const char * pszPath);
+      virtual string file_as_string(sp(::base::application) papp, const char * pszPath);
       virtual string dir_path(const char * psz1, const char * psz2, const char * psz3 = NULL);
       virtual string dir_name(const char * psz);
       virtual bool dir_mk(const char * psz);
@@ -225,7 +225,7 @@ namespace plane
 
       virtual bool verb();
 
-      virtual sp(base_application) get_new_app(sp(base_application) pappNewApplicationParent, const char * pszType, const char * pszId);
+      virtual sp(::base::application) get_new_app(sp(::base::application) pappNewApplicationParent, const char * pszType, const char * pszId);
 
       virtual bool find_applications_from_cache();
       virtual bool find_applications_to_cache();

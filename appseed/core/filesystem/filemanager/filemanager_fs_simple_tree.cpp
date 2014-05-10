@@ -13,7 +13,7 @@ namespace filemanager
       {
 
 
-         tree::tree(sp(base_application) papp) :
+         tree::tree(sp(::base::application) papp) :
             element(papp),
             ::data::data(papp),
             ::data::tree(papp)

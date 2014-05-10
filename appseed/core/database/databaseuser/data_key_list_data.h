@@ -12,7 +12,7 @@ namespace databaseuser
    public:
 
 
-      data_key_list_data(sp(base_application) papp);
+      data_key_list_data(sp(::base::application) papp);
       virtual ~data_key_list_data();
 
 

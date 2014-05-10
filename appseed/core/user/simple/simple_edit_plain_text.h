@@ -7,7 +7,7 @@ class CLASS_DECL_CORE simple_edit_plain_text :
 public:
 
    
-   simple_edit_plain_text(sp(base_application) papp);
+   simple_edit_plain_text(sp(::base::application) papp);
    virtual ~simple_edit_plain_text();
 
 

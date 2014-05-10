@@ -23,7 +23,7 @@ namespace core
    // not contain advanced initialization as the
    // papp application pointer may be incompletely
    // initialized specially its virtual functions.
-   void departament::construct(sp(base_application) papp)
+   void departament::construct(sp(::base::application) papp)
    {
 
       set_app(papp);

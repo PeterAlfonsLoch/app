@@ -1,6 +1,6 @@
 #include "framework.h"
 
-SimplePushButton::SimplePushButton(sp(base_application) papp) :
+SimplePushButton::SimplePushButton(sp(::base::application) papp) :
    element(papp),
    
    ::user::button(papp)

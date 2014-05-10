@@ -18,7 +18,7 @@ namespace user
          property_set       m_set;
 
 
-         interaction(sp(base_application) papp);
+         interaction(sp(::base::application) papp);
          virtual ~interaction();
 
          virtual void update();

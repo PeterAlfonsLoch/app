@@ -11,7 +11,7 @@ namespace net
    public:
 
 
-      email_departament(sp(base_application) papp);
+      email_departament(sp(::base::application) papp);
 
 
       bool utf8_mail(class ::net::email & email);

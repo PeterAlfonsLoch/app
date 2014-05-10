@@ -27,7 +27,7 @@ namespace filemanager
          file_list * m_plist;
 
 
-         create_image_list_thread(sp(base_application) papp);
+         create_image_list_thread(sp(::base::application) papp);
 
          virtual int32_t run();
 
@@ -62,7 +62,7 @@ namespace filemanager
       
 
 
-      file_list(sp(base_application) papp);
+      file_list(sp(::base::application) papp);
 
 
 
@@ -156,7 +156,7 @@ namespace filemanager
       public:
 
 
-      ItemArray(sp(base_application) papp);
+      ItemArray(sp(::base::application) papp);
 
 
       void add_item(Item & item);

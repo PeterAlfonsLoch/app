@@ -7,7 +7,7 @@ namespace userex
 // IMPLEMENT_DYNCREATE(pane_split_view, ::user::split_view)
 
 
-   pane_split_view::pane_split_view(sp(base_application) papp) :
+   pane_split_view::pane_split_view(sp(::base::application) papp) :
       element(papp),
       ::user::split_layout(papp),
       

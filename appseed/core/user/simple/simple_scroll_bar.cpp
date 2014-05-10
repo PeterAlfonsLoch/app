@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_scroll_bar::simple_scroll_bar(sp(base_application) papp) :
+simple_scroll_bar::simple_scroll_bar(sp(::base::application) papp) :
    element(papp),
    ::user::interaction(papp),
    m_penDraw(allocer()),

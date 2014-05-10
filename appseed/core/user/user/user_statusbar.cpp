@@ -709,13 +709,13 @@ namespace user
    {
    public: // re-implementations only
 
-      CStatusCmdUI(sp(base_application) papp);
+      CStatusCmdUI(sp(::base::application) papp);
       virtual void Enable(bool bOn);
       virtual void SetCheck(check::e_check echeck = check::checked);
       virtual void SetText(const char * lpszText);
    };
 
-   CStatusCmdUI::CStatusCmdUI(sp(base_application) papp) :
+   CStatusCmdUI::CStatusCmdUI(sp(::base::application) papp) :
    element(papp),
       cmd_ui(papp)
 

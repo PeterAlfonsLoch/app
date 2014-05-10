@@ -20,7 +20,7 @@ public:
    mutex                            m_mutexStep;
    bool                             m_bStop;
 
-   file_manager_operation_thread(sp(base_application) papp);
+   file_manager_operation_thread(sp(::base::application) papp);
 
    void queue_copy(stringa & stra, const char * pszDest, const char * pszSrcBase, bool bExpand, sp(::user::interaction) oswindowCallback = NULL, UINT uiMessage = WM_USER, WPARAM wparam = 0x1000);
    void kick();

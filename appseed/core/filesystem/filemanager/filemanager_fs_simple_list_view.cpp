@@ -10,7 +10,7 @@ namespace filemanager
       namespace simple
       {
 
-         list_view::list_view(sp(base_application) papp) :
+         list_view::list_view(sp(::base::application) papp) :
          element(papp),
             ::user::scroll_view(papp),
             ::user::list(papp),

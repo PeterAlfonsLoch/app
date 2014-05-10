@@ -3,7 +3,7 @@
 const int32_t XfplayerViewLine::AlignLeft = 1;
 const int32_t XfplayerViewLine::AlignRight = 2;
 
-XfplayerViewLine::XfplayerViewLine(sp(base_application) papp) :
+XfplayerViewLine::XfplayerViewLine(sp(::base::application) papp) :
    element(papp),
    m_dibMain(allocer()),
    m_dcextension(papp),
@@ -168,7 +168,7 @@ void XfplayerViewLine::GetPlacement(LPRECT lprect)
 }
 
 bool XfplayerViewLine::to(
-   sp(base_application) papp,
+   sp(::base::application) papp,
    ::draw2d::graphics *               pdc,
    bool               bDraw,
    LPRECT            lpRect,
@@ -413,7 +413,7 @@ bool XfplayerViewLine::to(
 }
 
 bool XfplayerViewLine::to(
-   sp(base_application)  papp,
+   sp(::base::application)  papp,
    ::draw2d::graphics *     pdc,
    bool                 bDraw,
    LPRECT               lpRect,
@@ -1193,7 +1193,7 @@ bool XfplayerViewLine::IsVisible()
 }
 
 void XfplayerViewLine::EmbossedTextOut(
-      sp(base_application) papp,
+      sp(::base::application) papp,
       ::draw2d::graphics * pdc,
       const char * lpcsz,
       int32_t iLeft,
@@ -1416,7 +1416,7 @@ void XfplayerViewLine::EmbossedTextOut(
 }
 
 void XfplayerViewLine::EmbossedTextOut(
-      sp(base_application) papp,
+      sp(::base::application) papp,
       ::draw2d::graphics * pdc,
       ::draw2d::dib * pdibCache,
       const char * lpcsz,
@@ -1508,7 +1508,7 @@ void XfplayerViewLine::GetLogFont(LOGFONTW &lf)
 }
 
 
-void XfplayerViewLine::CacheEmboss(sp(base_application) papp, ::draw2d::graphics * pdc, const char * lpcsz, strsize iLen, ::draw2d::dib * pdibCache)
+void XfplayerViewLine::CacheEmboss(sp(::base::application) papp, ::draw2d::graphics * pdc, const char * lpcsz, strsize iLen, ::draw2d::dib * pdibCache)
 {
    UNREFERENCED_PARAMETER(papp);
    if(!m_bEnhancedEmboss)

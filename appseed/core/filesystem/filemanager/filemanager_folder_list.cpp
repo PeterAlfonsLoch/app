@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   folder_list::folder_list(sp(base_application) papp) :
+   folder_list::folder_list(sp(::base::application) papp) :
       element(papp),
       ::filemanager::data_interface(papp),
       ::user::scroll_view(papp),

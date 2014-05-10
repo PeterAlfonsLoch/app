@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   core::core(sp(base_application) papp) :
+   core::core(sp(::base::application) papp) :
       element(papp),
       ::base_departament(papp)
    {

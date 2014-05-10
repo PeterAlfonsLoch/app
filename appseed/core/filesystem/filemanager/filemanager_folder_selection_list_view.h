@@ -27,7 +27,7 @@ public:
    sp(::filemanager::data)                  m_pdata;
 
 
-   folder_selection_list_view(sp(base_application) papp);
+   folder_selection_list_view(sp(::base::application) papp);
    ~folder_selection_list_view();
 
 

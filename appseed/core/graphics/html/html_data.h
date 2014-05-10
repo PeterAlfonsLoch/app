@@ -23,7 +23,7 @@ namespace html
          ::visual::dib_sp        m_spdib;
 
 
-         image(sp(base_application) papp);
+         image(sp(::base::application) papp);
          virtual bool load_image();
 
       };
@@ -163,7 +163,7 @@ namespace html
 
 
 
-      data(sp(base_application) papp);
+      data(sp(::base::application) papp);
       virtual ~data();
 
       virtual bool open_document(var varFile);

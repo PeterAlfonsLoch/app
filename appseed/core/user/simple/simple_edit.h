@@ -6,7 +6,7 @@ class CLASS_DECL_CORE simple_edit :
 public:
 
 
-   simple_edit(sp(base_application) papp);
+   simple_edit(sp(::base::application) papp);
    virtual ~simple_edit();
 
 

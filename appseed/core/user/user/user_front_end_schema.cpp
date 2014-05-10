@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   front_end_schema::front_end_schema(sp(base_application) papp) :
+   front_end_schema::front_end_schema(sp(::base::application) papp) :
       element(papp),
       m_menu(papp),
       m_sysmenu(papp),
@@ -101,7 +101,7 @@ namespace user
    {
    }
 
-   front_end_schema::system_menu::system_menu(sp(base_application) papp) :
+   front_end_schema::system_menu::system_menu(sp(::base::application) papp) :
       m_fontMarlett(papp->m_pplaneapp->allocer())
    {
       ::draw2d::graphics_sp spgraphics(papp->m_pplaneapp->allocer());
@@ -110,7 +110,7 @@ namespace user
       m_fontMarlett->create_point_font("Marlett", 11.0);
    }
 
-   front_end_schema::menu::menu(sp(base_application) papp) :
+   front_end_schema::menu::menu(sp(::base::application) papp) :
       m_font(papp->m_pplaneapp->allocer())
    {
       //m_pschemaSysMenuButton = new button();
@@ -147,7 +147,7 @@ namespace user
 
    }
 
-   front_end_schema::button::button(sp(base_application) papp) :
+   front_end_schema::button::button(sp(::base::application) papp) :
       m_font(papp->m_pplaneapp->allocer())
    {
       m_bBorder = true;

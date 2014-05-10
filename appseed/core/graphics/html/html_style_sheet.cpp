@@ -5,7 +5,7 @@ namespace html
 {
 
 
-   style_sheet::style_sheet(sp(base_application) papp) :
+   style_sheet::style_sheet(sp(::base::application) papp) :
       element(papp)
    {
 

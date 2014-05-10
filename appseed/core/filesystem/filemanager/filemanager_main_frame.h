@@ -16,7 +16,7 @@ namespace filemanager
       //   SimpleReBar             m_rebar;
 
 
-      main_frame(sp(base_application) papp);
+      main_frame(sp(::base::application) papp);
       virtual ~main_frame();
 
       bool CreateBars();

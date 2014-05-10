@@ -8,7 +8,7 @@ namespace user
    {
 
 
-      interaction::interaction(sp(base_application) papp) :
+      interaction::interaction(sp(::base::application) papp) :
          element(papp)
       {
       }

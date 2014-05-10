@@ -8,7 +8,7 @@
 namespace user
 {
 
-   tab::data::data(sp(base_application) papp) :
+   tab::data::data(sp(::base::application) papp) :
       element(papp),
       ::data::data(papp),
       m_imagelist(papp),
@@ -58,7 +58,7 @@ namespace user
       return m_panea.get_visible_count();
    }
 
-   tab::tab(sp(base_application) papp) :
+   tab::tab(sp(::base::application) papp) :
       element(papp),
       place_holder_container(papp),
       m_dcextension(papp)
@@ -1506,7 +1506,7 @@ namespace user
    }
 
 
-   tab::pane::pane(sp(base_application) papp) :
+   tab::pane::pane(sp(::base::application) papp) :
       element(papp),
       m_brushFill(allocer()),
       m_brushFillSel(allocer()),
@@ -1554,7 +1554,7 @@ namespace user
    }
 
 
-   tab::pane_array::pane_array(sp(base_application) papp) :
+   tab::pane_array::pane_array(sp(::base::application) papp) :
       element(papp)
    {
    }

@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   a_view::a_view(sp(base_application) papp) :
+   a_view::a_view(sp(::base::application) papp) :
       element(papp),
       ::filemanager::data_interface(papp),
       ::user::split_layout(papp),
@@ -254,7 +254,7 @@ namespace filemanager
 
 
 
-   main_view::main_view(sp(base_application) papp) :
+   main_view::main_view(sp(::base::application) papp) :
       element(papp),
       ::filemanager::data_interface(papp),
       ::user::split_layout(papp),

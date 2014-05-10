@@ -29,7 +29,7 @@ namespace filemanager
             request_interface *  m_prequestinterface;
 
             
-            view(sp(base_application) papp);
+            view(sp(::base::application) papp);
             virtual ~view();
 
 

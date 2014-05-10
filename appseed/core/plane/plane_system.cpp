@@ -12,7 +12,7 @@ namespace plane
 {
 
 
-   system::system(sp(base_application) papp) :
+   system::system(sp(::base::application) papp) :
       m_mutexDelete(this),
       m_mutex(this),
 #ifndef METROWIN
@@ -765,7 +765,7 @@ namespace plane
    }
 
    /*
-   sp(element) system::on_alloc(sp(base_application) papp, sp(type) info)
+   sp(element) system::on_alloc(sp(::base::application) papp, sp(type) info)
    {
       /*string str;
       str.Format("Could not alloc %s", info.name());
@@ -809,7 +809,7 @@ namespace plane
    }
 
 
-   sp(base_application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
+   sp(::base::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
       sp(::plane::session) psession = get_session(iEdge, pbiasCreate);
       return psession->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);
@@ -854,7 +854,7 @@ namespace plane
    return *m_spfilehandler;
    }*/
 
-   void system::register_bergedge_application(sp(base_application) papp)
+   void system::register_bergedge_application(sp(::base::application) papp)
    {
 
       retry_single_lock rsl(&m_mutex, millis(84), millis(84));
@@ -874,7 +874,7 @@ namespace plane
 
    }
 
-   void system::unregister_bergedge_application(sp(base_application) papp)
+   void system::unregister_bergedge_application(sp(::base::application) papp)
    {
 
       retry_single_lock rsl(&m_mutex, millis(84), millis(84));
@@ -942,14 +942,14 @@ namespace plane
    }
 
 
-   string system::matter_as_string(sp(base_application) papp, const char * pszMatter, const char * pszMatter2)
+   string system::matter_as_string(sp(::base::application) papp, const char * pszMatter, const char * pszMatter2)
    {
       var varQuery;
       varQuery["disable_ca2_sessid"] = true;
       return file().as_string(dir_matter(papp, pszMatter, pszMatter2), varQuery, papp);
    }
 
-   string system::dir_matter(sp(base_application) papp, const char * pszMatter, const char * pszMatter2)
+   string system::dir_matter(sp(::base::application) papp, const char * pszMatter, const char * pszMatter2)
    {
       return dir().matter(papp, pszMatter, pszMatter2);
    }
@@ -964,7 +964,7 @@ namespace plane
       return file().is_read_only(pszPath);
    }
 
-   string system::file_as_string(sp(base_application) papp, const char * pszPath)
+   string system::file_as_string(sp(::base::application) papp, const char * pszPath)
    {
       return file().as_string(pszPath, papp);
    }
@@ -1116,7 +1116,7 @@ namespace plane
 #endif
    }
 
-   void system::on_allocation_error(sp(base_application) papp, sp(type) info)
+   void system::on_allocation_error(sp(::base::application) papp, sp(type) info)
    {
 
       UNREFERENCED_PARAMETER(papp);
@@ -1341,7 +1341,7 @@ namespace plane
    }
 
 
-   sp(base_application) system::get_new_app(sp(base_application) pappNewApplicationParent, const char * pszType, const char * pszAppId)
+   sp(::base::application) system::get_new_app(sp(::base::application) pappNewApplicationParent, const char * pszType, const char * pszAppId)
    {
 
       string strId(pszAppId);
@@ -1418,7 +1418,7 @@ namespace plane
 
 #endif
 
-      sp(base_application) papp = NULL;
+      sp(::base::application) papp = NULL;
 
       if(!library.open(strLibrary, false))
          return NULL;
@@ -1428,7 +1428,7 @@ namespace plane
       if(papp == NULL)
          return NULL;
 
-      sp(base_application) pgenapp = (papp);
+      sp(::base::application) pgenapp = (papp);
 
       pgenapp->m_pplaneapp->m_strAppId = pszAppId;
 
@@ -1442,7 +1442,7 @@ namespace plane
 
 #endif
 
-      pgenapp->::base_application::construct();
+      pgenapp->::::base::application::construct();
 
       pgenapp->construct();
 
@@ -1971,7 +1971,7 @@ sp(::command_thread) system::command_thread()
       return pbergedge->get_nature();
    }
 
-   /*sp(base_application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
+   /*sp(::base::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
       sp(::plane::session) pbergedge = ge(iEdge, pbiasCreate);
       return pbergedge->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);
@@ -1989,7 +1989,7 @@ sp(::command_thread) system::command_thread()
 
 
 
-   //void system::register_bergedge_application(sp(base_application) papp)
+   //void system::register_bergedge_application(sp(::base::application) papp)
    //{
 
 
@@ -1998,7 +1998,7 @@ sp(::command_thread) system::command_thread()
 
    //}
 
-   //void system::unregister_bergedge_application(sp(base_application) papp)
+   //void system::unregister_bergedge_application(sp(::base::application) papp)
    //{
 
    //   System.unregister_bergedge_application(papp);
@@ -2174,7 +2174,7 @@ sp(::command_thread) system::command_thread()
       return pbergedge->get_nature();
    }
 
-   sp(base_application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
+   sp(::base::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
       sp(::plane::session) pbergedge = get_session(iEdge, pbiasCreate);
       return pbergedge->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);

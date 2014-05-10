@@ -24,7 +24,7 @@ namespace user
 {
 
 
-   edit_plain_text::edit_plain_text(sp(base_application) papp) :
+   edit_plain_text::edit_plain_text(sp(::base::application) papp) :
       element(papp),
       ::user::interaction(papp),
       scroll_view(papp),
@@ -259,7 +259,7 @@ namespace user
             m_dibBk->create(rectClient.size());
             m_dibBk->Fill(184, 184, 170);
             HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
-            ::visual::fastblur *( *pfnNew )(sp(base_application)) = (::visual::fastblur *(*)(sp(base_application))) ::GetProcAddress(hmodule, "new_fastblur");*/
+            ::visual::fastblur *( *pfnNew )(sp(::base::application)) = (::visual::fastblur *(*)(sp(::base::application))) ::GetProcAddress(hmodule, "new_fastblur");*/
 /*            m_fastblur.create(allocer());
             m_fastblur.initialize(rectClient.size(), 2);
          }
@@ -571,7 +571,7 @@ namespace user
    /*   ::user::menu menu;
       Ex1TextFile file;
 
-      sp(base_application) papp = ::core::get_app();
+      sp(::base::application) papp = ::core::get_app();
 
       string strModuleFolder;
       strModuleFolder = papp->m_pplaneapp->get_module_folder();

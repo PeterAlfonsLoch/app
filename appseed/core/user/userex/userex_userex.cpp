@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   userex::userex(base_application * papp) :
+   userex::userex(::base::application * papp) :
       element(papp),
       ::base_departament(papp),
       ::user::core(papp)
@@ -532,14 +532,14 @@ retry_license:
    }
 
 
-   ::user::front_end_schema * GetUfeSchema(sp(base_application) papp)
+   ::user::front_end_schema * GetUfeSchema(sp(::base::application) papp)
    {
       
       return App(papp).userex()->GetUfeSchema();
 
    }
 
-   ::user::front_end * GetUfe(sp(base_application) papp)
+   ::user::front_end * GetUfe(sp(::base::application) papp)
    {
       return App(papp).userex()->GetUfe();
    }

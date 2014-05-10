@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-folder_list_view::folder_list_view(sp(base_application) papp) :
+folder_list_view::folder_list_view(sp(::base::application) papp) :
    element(papp),
    ::filemanager::data_interface(papp),
    ::user::scroll_view(papp),

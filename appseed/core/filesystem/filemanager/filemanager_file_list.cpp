@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   file_list::file_list(sp(base_application) papp) :
+   file_list::file_list(sp(::base::application) papp) :
       element(papp),
       ::filemanager::data_interface(papp),
       ::user::interaction(papp),
@@ -1215,7 +1215,7 @@ namespace filemanager
       }
    }
 
-   file_list::create_image_list_thread::create_image_list_thread(sp(base_application) papp) :
+   file_list::create_image_list_thread::create_image_list_thread(sp(::base::application) papp) :
       element(papp),
       thread(papp)
    {

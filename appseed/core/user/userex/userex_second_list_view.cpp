@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   second_list_view::second_list_view(sp(base_application) papp) :
+   second_list_view::second_list_view(sp(::base::application) papp) :
       element(papp),
       user::scroll_view(papp),
       user::form(papp),

@@ -7,7 +7,7 @@ class CLASS_DECL_CORE plain_service :
 public:
 
 
-   plain_service(sp(base_application) papp);
+   plain_service(sp(::base::application) papp);
    virtual ~plain_service();
 
 

@@ -16,7 +16,7 @@ namespace user
       UINT m_nUntitledCount;   // start at 0, for "Document1" title
 
 
-      multiple_document_template(sp(base_application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass);
+      multiple_document_template(sp(::base::application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass);
       virtual ~multiple_document_template();
 
 

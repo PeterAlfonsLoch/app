@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   data_interface::data_interface(sp(base_application) papp) :
+   data_interface::data_interface(sp(::base::application) papp) :
       element(papp)
    {
 

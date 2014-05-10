@@ -19,7 +19,7 @@ namespace userfs
 
 
 
-      list(sp(base_application) appp);
+      list(sp(::base::application) appp);
       virtual ~list();
 
       virtual void _001InsertColumns();

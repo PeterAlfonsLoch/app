@@ -5,7 +5,7 @@ namespace visual
 {
 
 
-   api::api(sp(base_application) papp) :
+   api::api(sp(::base::application) papp) :
       element(papp)
    {
 

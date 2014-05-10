@@ -57,7 +57,7 @@ namespace user
       list *                        m_plistctrlinterface;
 
 
-      list_header(sp(base_application) papp);
+      list_header(sp(::base::application) papp);
       virtual ~list_header();
 
       void AddMessageHandling(::message::dispatch * pinterface);

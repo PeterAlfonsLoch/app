@@ -14,7 +14,7 @@ namespace simpledb
 
       server *       m_pserver;
 
-      session(sp(base_application) papp);
+      session(sp(::base::application) papp);
       virtual ~session();
 
       

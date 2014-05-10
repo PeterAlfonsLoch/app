@@ -3,7 +3,7 @@
 namespace colorertake5
 {
 
-   HRCParserImpl::HRCParserImpl(sp(base_application) papp) :
+   HRCParserImpl::HRCParserImpl(sp(::base::application) papp) :
       element(papp),
       fileTypeHash(papp, 200),
       schemeHash(papp, 4000),

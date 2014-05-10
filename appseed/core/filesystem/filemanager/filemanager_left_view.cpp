@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   left_view::left_view(sp(base_application) papp) :
+   left_view::left_view(sp(::base::application) papp) :
       element(papp),
       ::filemanager::data_interface(papp),
       ::user::split_layout(papp),

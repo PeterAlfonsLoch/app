@@ -14,7 +14,7 @@ namespace filemanager
       sp(::filemanager::manager) m_pfilemanagerinterface;
 
 
-      data_interface(sp(base_application) papp);
+      data_interface(sp(::base::application) papp);
       virtual ~data_interface();
 
 

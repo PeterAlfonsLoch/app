@@ -14,7 +14,7 @@ namespace plugin
       plugin * m_pplugin;
 
 
-      run_start_installer(sp(base_application) papp, plugin * pplugin);
+      run_start_installer(sp(::base::application) papp, plugin * pplugin);
          
    
       virtual void run_start_install(const char * pszStart);

@@ -32,7 +32,7 @@ namespace user
       bool                                m_bLButtonDown;
 
 
-      static_control(sp(base_application) papp);
+      static_control(sp(::base::application) papp);
       virtual ~static_control();
 
 

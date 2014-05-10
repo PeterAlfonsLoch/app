@@ -34,7 +34,7 @@ namespace visual
 {
 
 
-   visual::visual(base_application * papp) :
+   visual::visual(::base::application * papp) :
       element(papp),
       base_departament(papp)
    {
@@ -58,7 +58,7 @@ namespace visual
    }
 
 
-   void visual::construct(sp(base_application) papp)
+   void visual::construct(sp(::base::application) papp)
    {
 
       base_departament::construct(papp);

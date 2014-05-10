@@ -10,7 +10,7 @@ namespace sqlite
 
    extern int32_t callback(void * res_ptr,int32_t ncol, char** reslt,char** cols);
 
-   base::base(sp(base_application) papp) :
+   base::base(sp(::base::application) papp) :
       element(papp)
    {
 

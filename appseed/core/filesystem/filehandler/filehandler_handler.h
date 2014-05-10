@@ -15,7 +15,7 @@ namespace filehandler
       sp(tree_interface)         m_sptree;
 
 
-      handler(sp(base_application) papp);
+      handler(sp(::base::application) papp);
       virtual ~handler();
 
 

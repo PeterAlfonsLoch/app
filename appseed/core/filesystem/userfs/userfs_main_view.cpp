@@ -5,7 +5,7 @@ namespace userfs
 {
 
 
-   main_view::main_view(sp(base_application) papp) :
+   main_view::main_view(sp(::base::application) papp) :
       element(papp),
       ::user::split_layout(papp),
       

@@ -46,7 +46,7 @@ public:
    int32_t add_icon_os_data(void * pvoid);
    int32_t add_matter_icon(const char * lpcszMatter);
    int32_t add_file(const char * lpcsz);
-   int32_t add_matter(const char * lpcsz, sp(base_application) papp = NULL);
+   int32_t add_matter(const char * lpcsz, sp(::base::application) papp = NULL);
    int32_t add_std_matter(const char * lpcsz);
 
    bool draw(::draw2d::graphics * pdc, int32_t iImage, point pt, int32_t iFlag);
@@ -54,7 +54,7 @@ public:
    bool draw(::draw2d::graphics * pdc, int32_t iImage, point pt, size sz, point ptOffset, int32_t iFlag);
    int32_t get_image_count() const;
    bool create(sp(image_list) pimagelist);
-   image_list(sp(base_application) papp);
+   image_list(sp(::base::application) papp);
    virtual ~image_list();
 
    bool get_image_info(int32_t nImage, info * pinfo) const;

@@ -2,7 +2,7 @@
 #include "framework.h"
 
 
-BaseButtonControl::BaseButtonControl(sp(base_application) papp) :
+BaseButtonControl::BaseButtonControl(sp(::base::application) papp) :
    element(papp),
    ::user::button(papp)
 {

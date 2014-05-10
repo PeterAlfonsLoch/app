@@ -14,7 +14,7 @@ namespace user
       sp(::user::object) m_pdocument;
 
 
-      single_document_template(sp(base_application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass);
+      single_document_template(sp(::base::application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass);
       virtual ~single_document_template();
 
       virtual void add_document(sp(::user::object) pDoc);

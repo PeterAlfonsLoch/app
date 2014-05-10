@@ -33,7 +33,7 @@
    ID_INDICATOR_SCRL,
 };*/
 
-html_frame::html_frame(sp(base_application) papp) :
+html_frame::html_frame(sp(::base::application) papp) :
    element(papp),
    simple_frame_window(papp)
 {

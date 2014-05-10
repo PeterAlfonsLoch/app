@@ -5,7 +5,7 @@ namespace html
 {
 
 
-   html::html(base_application * papp) :
+   html::html(::base::application * papp) :
       element(papp),
       base_departament(papp),
       m_entityresolver(papp)
@@ -20,7 +20,7 @@ namespace html
    }
 
 
-   void html::construct(sp(base_application) papp)
+   void html::construct(sp(::base::application) papp)
    {
 
       base_departament::construct(papp);

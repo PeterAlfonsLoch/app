@@ -17,7 +17,7 @@ namespace filemanager
    {
    public:
 
-      a_view(sp(base_application) papp);
+      a_view(sp(::base::application) papp);
       virtual ~a_view();
 
       void on_create_views();
@@ -46,7 +46,7 @@ namespace filemanager
       file_properties_form *   m_ppropform;
       ::fs::item_array                      m_itema;
 
-      main_view(sp(base_application) papp);
+      main_view(sp(::base::application) papp);
       virtual ~main_view();
 
       void on_create_views();

@@ -7,7 +7,7 @@
 
 CLASS_DECL_CORE UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
-typedef sp(base_application) (*LPFN_instantiate_application)(sp(base_application) pappParent, const char * pszId);
+typedef sp(::base::application) (*LPFN_instantiate_application)(sp(::base::application) pappParent, const char * pszId);
 
 extern CLASS_DECL_CORE LPFN_instantiate_application g_lpfn_instantiate_application;
 
@@ -23,7 +23,7 @@ class window_draw;
 
 
 class CLASS_DECL_CORE application :
-   virtual public base_application,
+   virtual public ::base::application,
    virtual public ::database::client
 {
 public:
@@ -592,7 +592,7 @@ public:
 
    //      sp(::user::object) _001OpenDocumentFile(var varFile);
 
-   sp(base_application) get_system();
+   sp(::base::application) get_system();
 
 
 
@@ -681,8 +681,8 @@ public:
 
 
 
-   virtual sp(base_application) instantiate_application(const char * pszType, const char * pszId, application_bias * pbias);
-   virtual sp(base_application) create_application(const char * pszType, const char * pszId, bool bSynch, application_bias * pbias);
+   virtual sp(::base::application) instantiate_application(const char * pszType, const char * pszId, application_bias * pbias);
+   virtual sp(::base::application) create_application(const char * pszType, const char * pszId, bool bSynch, application_bias * pbias);
 
 
 
@@ -728,7 +728,7 @@ public:
 
    //sp(::user::object) _001OpenDocumentFile(var varFile);
 
-   //sp(base_application) get_system();
+   //sp(::base::application) get_system();
 
    //virtual sp(::application) assert_running(const char * pszAppdId);
 
@@ -768,7 +768,7 @@ public:
 
 CLASS_DECL_CORE UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
-typedef sp(base_application) (*LPFN_instantiate_application)(sp(base_application) pappParent, const char * pszId);
+typedef sp(::base::application) (*LPFN_instantiate_application)(sp(::base::application) pappParent, const char * pszId);
 
 extern CLASS_DECL_CORE LPFN_instantiate_application g_lpfn_instantiate_application;
 
@@ -778,7 +778,7 @@ namespace core
 
    // impl
    template < class APP >
-   sp(base_application) single_application_library < APP > ::get_new_app(const char * pszAppId)
+   sp(::base::application) single_application_library < APP > ::get_new_app(const char * pszAppId)
    {
 
       if (!contains_app(pszAppId))

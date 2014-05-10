@@ -14,7 +14,7 @@ namespace html
       smart_pointer_array < style > m_stylea;
       
 
-      style_sheet(sp(base_application) papp);
+      style_sheet(sp(::base::application) papp);
 
 
       void parse(data * pdoc, const char * psz);

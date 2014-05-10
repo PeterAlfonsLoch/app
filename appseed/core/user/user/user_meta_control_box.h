@@ -8,7 +8,7 @@ public:
 
 
 
-   MetaControlBox(sp(base_application) papp);
+   MetaControlBox(sp(::base::application) papp);
    virtual ~MetaControlBox();
 
 

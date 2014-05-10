@@ -94,7 +94,7 @@ namespace core
 
    }
 
-   process_departament::process_thread::process_thread(sp(base_application) papp) :
+   process_departament::process_thread::process_thread(sp(::base::application) papp) :
       element(papp),
       thread(papp),
       simple_thread(papp),

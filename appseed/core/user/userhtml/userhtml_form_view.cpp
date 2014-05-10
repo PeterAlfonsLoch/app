@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-html_form_view::html_form_view(sp(base_application) papp) :
+html_form_view::html_form_view(sp(::base::application) papp) :
    element(papp),
    html_form(papp),
    ::user::interaction(papp),

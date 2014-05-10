@@ -3,7 +3,7 @@
 namespace user
 {
 
-   tab_view::tab_view(sp(base_application) papp) :
+   tab_view::tab_view(sp(::base::application) papp) :
       element(papp),
       ::user::tab(papp),
       place_holder_container(papp)

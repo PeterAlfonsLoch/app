@@ -17,7 +17,7 @@ namespace plugin
 
 
 
-      instance(sp(base_application) papp);
+      instance(sp(::base::application) papp);
       virtual ~instance();
 
 

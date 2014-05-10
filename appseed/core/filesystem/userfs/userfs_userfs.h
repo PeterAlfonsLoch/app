@@ -11,7 +11,7 @@ namespace userfs
    public:
 
 
-      userfs(base_application * papp);
+      userfs(::base::application * papp);
       virtual ~userfs();
 
       bool initialize();

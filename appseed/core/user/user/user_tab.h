@@ -36,7 +36,7 @@ namespace user
          point                               m_pt;
 
 
-         pane(sp(base_application) papp);
+         pane(sp(::base::application) papp);
          pane(const pane & pane);
          virtual ~pane();
 
@@ -55,7 +55,7 @@ namespace user
       public:
 
 
-         pane_array(sp(base_application) papp);
+         pane_array(sp(::base::application) papp);
          virtual ~pane_array();
 
 
@@ -106,7 +106,7 @@ namespace user
          bool                             m_bEnableCloseAll;
 
 
-         data(sp(base_application) papp);
+         data(sp(::base::application) papp);
          virtual ~data();
 
          virtual pane * get_pane_by_id(id id);
@@ -139,7 +139,7 @@ namespace user
       sp(::create_context)         m_spcreatecontext;
 
 
-      tab(sp(base_application) papp);
+      tab(sp(::base::application) papp);
             virtual ~tab();
 
 

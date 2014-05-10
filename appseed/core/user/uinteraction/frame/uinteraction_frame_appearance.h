@@ -30,7 +30,7 @@ namespace user
             {
             public:
 
-               CTool001(sp(base_application) papp);
+               CTool001(sp(::base::application) papp);
 
                void Update(::draw2d::graphics * pdc, LPCRECT lpcrect,
                   COLORREF crHighlight,

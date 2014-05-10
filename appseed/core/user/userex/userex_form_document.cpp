@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-form_document::form_document(sp(base_application) papp) :
+form_document::form_document(sp(::base::application) papp) :
    element(papp),
    ::data::data_container_base(papp),
    ::user::object(papp),

@@ -48,7 +48,7 @@ namespace bergedge
       mutex m_mutexDraw;
 
 
-      view(sp(base_application) papp);
+      view(sp(::base::application) papp);
       virtual ~view();
 
    #ifdef DEBUG

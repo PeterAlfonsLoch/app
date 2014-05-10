@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_combo_list::simple_combo_list(sp(base_application) papp) :
+simple_combo_list::simple_combo_list(sp(::base::application) papp) :
    element(papp)
 {
 

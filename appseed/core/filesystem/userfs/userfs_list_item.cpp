@@ -5,7 +5,7 @@ namespace userfs
 {
 
 
-   list_item::list_item(sp(base_application) papp) :
+   list_item::list_item(sp(::base::application) papp) :
       element(papp)
    {
       m_iIndex = -1;

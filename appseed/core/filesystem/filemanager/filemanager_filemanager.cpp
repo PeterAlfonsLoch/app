@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   filemanager::filemanager(base_application * papp) :
+   filemanager::filemanager(::base::application * papp) :
       element(papp),
       base_departament(papp)
    {

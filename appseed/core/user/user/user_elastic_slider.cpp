@@ -3,7 +3,7 @@
 namespace user
 {
 
-   elastic_slider::elastic_slider(sp(base_application) papp) :
+   elastic_slider::elastic_slider(sp(::base::application) papp) :
       element(papp),
       ::user::interaction(papp)
    {

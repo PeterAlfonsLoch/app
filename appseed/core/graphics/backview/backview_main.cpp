@@ -5,7 +5,7 @@ namespace backview
 {
 
 
-   Main::Main(sp(base_application) papp, Interface * pinterface) :
+   Main::Main(sp(::base::application) papp, Interface * pinterface) :
       element(papp),
       m_pinterface(pinterface),
       m_mutexStateMachine(papp)
@@ -159,7 +159,7 @@ namespace backview
       if(!m_bInitialized)
          return false;
 
-      sp(base_application) papp = &System;
+      sp(::base::application) papp = &System;
       if(papp == NULL)
       {
          // if main application is NULL, there's no reason

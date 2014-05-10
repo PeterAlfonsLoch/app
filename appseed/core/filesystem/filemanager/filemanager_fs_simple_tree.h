@@ -50,7 +50,7 @@ namespace filemanager
             //sp(::data::simple_tree_data)           m_spdataFs;
 
 
-            tree(sp(base_application) papp);
+            tree(sp(::base::application) papp);
             virtual ~tree();
 
 

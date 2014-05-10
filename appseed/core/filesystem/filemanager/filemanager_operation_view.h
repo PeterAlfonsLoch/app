@@ -27,7 +27,7 @@ public:
    ::user::view_creator * m_pviewcreator;
 
 
-   file_manager_operation_view(sp(base_application) papp);
+   file_manager_operation_view(sp(::base::application) papp);
    virtual ~file_manager_operation_view();
 
    sp(file_manager_operation_document) get_document();

@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   tree_window::tree_window(sp(base_application) papp) :
+   tree_window::tree_window(sp(::base::application) papp) :
       element(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),

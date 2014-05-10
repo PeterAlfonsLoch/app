@@ -5,5 +5,5 @@ class CLASS_DECL_CORE menu_frame :
    virtual public form_frame
 {
 public:
-   menu_frame(sp(base_application) papp);
+   menu_frame(sp(::base::application) papp);
 };

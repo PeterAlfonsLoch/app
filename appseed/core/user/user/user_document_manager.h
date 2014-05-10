@@ -39,7 +39,7 @@ namespace user
       static const char gen_ShellNewValue[];
 
 
-      document_manager(sp(base_application) papp);
+      document_manager(sp(::base::application) papp);
       virtual ~document_manager();
 
 
