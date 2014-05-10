@@ -7,7 +7,7 @@ namespace user
 
    core::core(sp(::base::application) papp) :
       element(papp),
-      ::base_departament(papp)
+      ::base::departament(papp)
    {
 
    }
@@ -21,7 +21,7 @@ namespace user
    bool core::initialize()
    {
 
-      if (!base_departament::initialize())
+      if (!::base::departament::initialize())
          return false;
 
       if (Application.is_system())

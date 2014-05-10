@@ -13,7 +13,7 @@ namespace url
 
 
    class CLASS_DECL_BASE departament :
-      virtual public base_departament
+      virtual public ::base::departament
    {
    public:
 

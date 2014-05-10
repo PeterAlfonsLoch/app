@@ -50,13 +50,13 @@ bool file_manager_form_view::BaseOnControlEvent(::user::control_event * pevent)
          if(m_strPath == "filemanager_add_location_lfs.xhtml")
          {
             stringa stra;
-            GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_pschema->m_dataidStatic, ::::base::system::idEmpty, stra);
+            GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_pschema->m_dataidStatic, ::base::system::idEmpty, stra);
             sp(::user::interaction) pui = get_child_by_name("lfs");
             sp(text_interface) ptext =  (pui.m_p);
             string str;
             ptext->_001GetText(str);
             stra.add_unique(str);
-            GetFileManager()->data_set(GetFileManager()->get_filemanager_data()->m_pschema->m_dataidStatic, ::::base::system::idEmpty, stra);
+            GetFileManager()->data_set(GetFileManager()->get_filemanager_data()->m_pschema->m_dataidStatic, ::base::system::idEmpty, stra);
 
          }
          else if(m_strPath == "filemanager_add_location_ftp.xhtml")

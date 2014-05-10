@@ -26,6 +26,7 @@ namespace base
 
    class application;
    class system;
+   class application_signal_details;
 
 } // namespace base
 
@@ -39,7 +40,6 @@ class factory_item_base;
 class fixed_alloc_no_sync;
 class critical_section;
 class allocatorsp;
-class application_signal_details;
 class var_array;
 class pair_set_interface;
 class str_str_interface;
@@ -87,6 +87,13 @@ namespace file
 
 
 } // namespace file
+
+class machine_event_data;
+namespace html
+{
+   class html;
+} // namespace html
+
 
 
 class window;
@@ -672,6 +679,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 #include "base_application.h"
+
+#include "base_application_signal_details.h"
 
 
 #include "base_session.h"

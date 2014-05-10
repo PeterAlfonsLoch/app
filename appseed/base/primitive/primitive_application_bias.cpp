@@ -10,11 +10,11 @@ void application_bias::callback::connect_to(sp(::base::application) papp)
 
 void application_bias::callback::on_call_signal(signal_details * pobj)
 {
-   SCAST_PTR(application_signal_details, papplicationsignal, pobj);
+   SCAST_PTR(::base::application_signal_details, papplicationsignal, pobj);
    on_application_bias_callback_signal(papplicationsignal);
 }
 
-void application_bias::callback::on_application_bias_callback_signal(application_signal_details * papplicationsignal)
+void application_bias::callback::on_application_bias_callback_signal(::base::application_signal_details * papplicationsignal)
 {
    UNREFERENCED_PARAMETER(papplicationsignal);
 }

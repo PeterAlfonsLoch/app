@@ -103,7 +103,6 @@ public:
 //};
 
 // forward references required for __MODULE_STATE definition
-class application;
 
 
 class window;

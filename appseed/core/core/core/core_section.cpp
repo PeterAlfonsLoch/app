@@ -34,7 +34,7 @@ namespace core
    void departament::connect_to_application_signal()
    {
 
-      m_pbaseapp->m_psignal->connect(this, &base_departament::on_signal);
+      m_pbaseapp->m_psignal->connect(this, &::base::departament::on_signal);
 
    }
 

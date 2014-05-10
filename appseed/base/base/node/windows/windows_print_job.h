@@ -11,7 +11,7 @@ namespace windows
 	public:
 
 
-	   print_job(sp(base_application) papp);
+	   print_job(sp(::base::application) papp);
 	   virtual ~print_job();
 
 

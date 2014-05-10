@@ -13,7 +13,7 @@ namespace install
 
    install::install(sp(::base::application) papp) :
       element(papp),
-      ::base_departament(papp),
+      ::base::departament(papp),
       //m_mutex(papp, false, "Global\\spa_boot_install"),
       m_mutex(papp),
       m_trace(papp)

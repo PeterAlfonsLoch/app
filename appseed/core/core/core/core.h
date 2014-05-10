@@ -608,7 +608,6 @@ struct __system_policies
 
 //#include "core_file_manager_interface.h"
 
-class application;
 
 namespace user
 {

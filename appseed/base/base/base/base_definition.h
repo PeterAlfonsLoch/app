@@ -547,3 +547,18 @@ that we consider it dangerous to even throw an exception
 
 
 
+
+
+enum EExclusiveInstance
+{
+
+   ExclusiveInstanceNone,
+   ExclusiveInstanceLocal,
+   ExclusiveInstanceLocalId,
+   ExclusiveInstanceGlobal,
+   ExclusiveInstanceGlobalId,
+   ExclusiveInstanceLicense
+
+};
+
+

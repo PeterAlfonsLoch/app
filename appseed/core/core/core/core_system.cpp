@@ -28,7 +28,7 @@ namespace core
 
       ::application::construct();
 
-      ::::base::system::construct();
+      ::base::system::construct();
 
    }
 
@@ -57,7 +57,7 @@ namespace core
    bool system::process_initialize()
    {
 
-      if(!::::base::system::process_initialize())
+      if(!::base::system::process_initialize())
          return false;
 
       return true;
@@ -67,7 +67,7 @@ namespace core
    bool system::initialize_instance()
    {
 
-      if(!::::base::system::initialize_instance())
+      if(!::base::system::initialize_instance())
          return false;
 
       //if(!::application::initialize_instance())
@@ -81,7 +81,7 @@ namespace core
    int32_t system::exit_instance()
    {
 
-      ::::base::system::exit_instance();
+      ::base::system::exit_instance();
 
       return 0;
 

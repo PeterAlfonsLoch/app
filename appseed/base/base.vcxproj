@@ -1346,6 +1346,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base\base_action_source.h" />
     <ClInclude Include="base\base\base_allocate.h" />
     <ClInclude Include="base\base\base_application.h" />
+    <ClInclude Include="base\base\base_application_signal_details.h" />
     <ClInclude Include="base\base\base_async.h" />
     <ClInclude Include="base\base\base_auto_pointer.h" />
     <ClInclude Include="base\base\base_c.h" />

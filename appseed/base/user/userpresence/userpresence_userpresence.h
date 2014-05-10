@@ -6,7 +6,7 @@ namespace userpresence
 
 
    class CLASS_DECL_BASE userpresence :
-      virtual public ::base_departament,
+      virtual public ::base::departament,
       virtual public message_queue
    {
    public:

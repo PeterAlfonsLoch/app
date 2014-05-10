@@ -12,7 +12,7 @@ namespace html
 
 
    class CLASS_DECL_CORE html :
-      public ::base_departament
+      public ::base::departament
    {
    public:
 

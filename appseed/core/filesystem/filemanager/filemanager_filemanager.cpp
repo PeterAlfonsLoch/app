@@ -7,7 +7,7 @@ namespace filemanager
 
    filemanager::filemanager(::base::application * papp) :
       element(papp),
-      base_departament(papp)
+      ::base::departament(papp)
    {
       m_ptemplateStd       = NULL;
 
@@ -198,7 +198,7 @@ namespace filemanager
 
       string strPath;
 
-      if(data_get(dataid, "InitialBrowsePath", ::::base::system::idEmpty, strPath))
+      if(data_get(dataid, "InitialBrowsePath", ::base::system::idEmpty, strPath))
       {
 
          App(get_app()).dir().mk(strPath);
@@ -225,7 +225,7 @@ namespace filemanager
 
       }
 
-      if(data_set(dataid, "InitialBrowsePath", ::::base::system::idEmpty, strPath))
+      if(data_set(dataid, "InitialBrowsePath", ::base::system::idEmpty, strPath))
       {
 
          return strPath;

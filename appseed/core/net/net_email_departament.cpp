@@ -7,7 +7,7 @@ namespace net
 
    email_departament::email_departament(sp(::base::application) papp) :
       element(papp),
-      base_departament(papp)
+      ::base::departament(papp)
    {
 
    }

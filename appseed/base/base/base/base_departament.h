@@ -1,35 +1,47 @@
 #pragma once
 
 
-class CLASS_DECL_BASE base_departament :
-   virtual public signalizable
+
+namespace base
 {
-public:
 
 
-   base_departament(::base::application * papp);
-   virtual ~base_departament();
+
+   class CLASS_DECL_BASE departament :
+   virtual public signalizable
+   {
+   public:
 
 
-   virtual void construct(sp(::base::application) papp);
-   virtual void connect_to_application_signal();
+      departament(application * papp);
+      virtual ~departament();
 
 
-   virtual bool process_initialize();
+      virtual void construct(sp(application) papp);
+      virtual void connect_to_application_signal();
 
 
-   virtual bool initialize();
-   virtual bool initialize1();
-   virtual bool initialize2();
-   virtual bool initialize3();
-   virtual bool initialize_instance();
-
-   virtual bool finalize();
-   virtual int32_t exit_instance();
+      virtual bool process_initialize();
 
 
-   void on_signal(signal_details * pobj);
+      virtual bool initialize();
+      virtual bool initialize1();
+      virtual bool initialize2();
+      virtual bool initialize3();
+      virtual bool initialize_instance();
 
-};
+      virtual bool finalize();
+      virtual int32_t exit_instance();
+
+
+      void on_signal(signal_details * pobj);
+
+   };
+
+
+
+
+} // namespace base
+
 
 

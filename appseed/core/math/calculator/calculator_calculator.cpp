@@ -7,7 +7,7 @@ namespace calculator
 
    calculator::calculator(::base::application * papp) :
       element(papp),
-      base_departament(papp)
+      ::base::departament(papp)
    {
    
    }

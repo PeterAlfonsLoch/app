@@ -6,7 +6,7 @@ namespace fontopus
 
 
    class CLASS_DECL_BASE fontopus :
-      virtual public ::base_departament
+      virtual public ::base::departament
    {
    public:
 

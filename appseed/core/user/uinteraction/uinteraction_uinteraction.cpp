@@ -11,7 +11,7 @@ namespace user
 
       uinteraction::uinteraction(::base::application * papp) :
          element(papp),
-         base_departament(papp)
+         ::base::departament(papp)
       {
 
       }

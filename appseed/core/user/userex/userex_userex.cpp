@@ -7,7 +7,7 @@ namespace userex
 
    userex::userex(::base::application * papp) :
       element(papp),
-      ::base_departament(papp),
+      ::base::departament(papp),
       ::user::core(papp)
    {
       
@@ -46,7 +46,7 @@ namespace userex
 
       m_pshellimageset = new filemanager::_shell::ImageSet(m_pbaseapp);
 
-      if(!base_departament::initialize1())
+      if(!::base::departament::initialize1())
          return false;
 
       return true;
@@ -171,7 +171,7 @@ retry_license:
          return false;
 
 
-      if(!base_departament::initialize())
+      if(!::base::departament::initialize())
          return false;
 
       return true;
@@ -185,7 +185,7 @@ retry_license:
    {
 
 
-      if(!base_departament::initialize2())
+      if(!::base::departament::initialize2())
          return false;
 
       m_ptemplateForm = new ::user::multiple_document_template(
@@ -220,7 +220,7 @@ retry_license:
    {
       try
       {
-         base_departament::finalize();
+         ::base::departament::finalize();
       }
       catch(...)
       {

@@ -1084,7 +1084,7 @@ namespace user
       if (m_columna.VisibleGetCount() > 0 || m_columna.NonVisibleGetCount() > 0)
       {
 
-         data_get("VisibleSubItem", ::::base::system::idEmpty, iaVisible);
+         data_get("VisibleSubItem", ::base::system::idEmpty, iaVisible);
 
       }
 
@@ -2875,7 +2875,7 @@ namespace user
          width = m_columna.element_at(i)->m_iWidth;
          data_set(
             str,
-            ::::base::system::idEmpty,
+            ::base::system::idEmpty,
             width);
       }
 
@@ -2905,7 +2905,7 @@ namespace user
       str.Format("SubItem[%d].Visible", iSubItem);
       data_set(
          str,
-         ::::base::system::idEmpty,
+         ::base::system::idEmpty,
          bShow ? 1 : 0);
       m_columna.ShowSubItem(iSubItem, bShow);
       _001OnColumnChange();
@@ -3345,13 +3345,13 @@ namespace user
          str.Format("list_column[%d].Next", iKey);
          m_plist->data_set(
             str,
-            ::::base::system::idEmpty,
+            ::base::system::idEmpty,
             column->m_iNextGlobalOrderKey);
       }
       str.Format("list_column[-1].Next");
       m_plist->data_set(
          str,
-         ::::base::system::idEmpty,
+         ::base::system::idEmpty,
          m_iFirstGlobalOrderKey);
 
 
@@ -3367,13 +3367,13 @@ namespace user
          str.Format("list_column[%d].Next", iKey);
          m_plist->data_get(
             str,
-            ::::base::system::idEmpty,
+            ::base::system::idEmpty,
             column->m_iNextGlobalOrderKey);
       }
       str.Format("list_column[-1].Next");
       m_plist->data_get(
          str,
-         ::::base::system::idEmpty,
+         ::base::system::idEmpty,
          m_iFirstGlobalOrderKey);
 
       GlobalToVisibleOrder();

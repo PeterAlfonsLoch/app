@@ -53,22 +53,22 @@ namespace database
 
    bool client::data_set(class id id, bool b, update_hint * phint)
    {
-      return data_set(id, ::::base::system::idEmpty, b, phint);
+      return data_set(id, ::base::system::idEmpty, b, phint);
    }
 
    bool client::data_set(class id id, const char * lpcsz, update_hint * phint)
    {
-      return data_set(id, ::::base::system::idEmpty, lpcsz, phint);
+      return data_set(id, ::base::system::idEmpty, lpcsz, phint);
    }
 
    bool client::data_get(class id id, bool & b)
    {
-      return data_get(id, ::::base::system::idEmpty, b);
+      return data_get(id, ::base::system::idEmpty, b);
    }
 
    bool client::data_get(class id id, string & str)
    {
-      return data_get(id, ::::base::system::idEmpty, str);
+      return data_get(id, ::base::system::idEmpty, str);
    }
 
    bool client::data_set(class id id, class id idIndex, bool b, update_hint * phint)
@@ -123,22 +123,22 @@ namespace database
 
    bool client::data_set(class id id, int32_t i, update_hint * puh)
    {
-      return data_set(id, ::::base::system::idEmpty, i, puh);
+      return data_set(id, ::base::system::idEmpty, i, puh);
    }
 
    bool client::data_set(class id id, int64_t i, update_hint * puh)
    {
-      return data_set(id, ::::base::system::idEmpty, i, puh);
+      return data_set(id, ::base::system::idEmpty, i, puh);
    }
 
    bool client::data_get(class id id, int32_t & i)
    {
-      return data_get(id, ::::base::system::idEmpty, i);
+      return data_get(id, ::base::system::idEmpty, i);
    }
 
    bool client::data_get(class id id, int64_t & i)
    {
-      return data_get(id, ::::base::system::idEmpty, i);
+      return data_get(id, ::base::system::idEmpty, i);
    }
 
    bool client::data_set(class id id, class id idIndex, const char * lpsz, update_hint * puh)

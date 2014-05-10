@@ -302,7 +302,7 @@ inline array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >  & array < TYPE, ARG_TYPE, DEFCO
 // out-of-line functions
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::array(sp(base_application) papp, ::count nGrowBy) :
+array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::array(sp(::base::application) papp, ::count nGrowBy) :
 element(papp)
 {
    m_nGrowBy = max(0, nGrowBy);

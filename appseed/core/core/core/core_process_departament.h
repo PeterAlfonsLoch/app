@@ -9,7 +9,7 @@ namespace core
 
 
    class CLASS_DECL_CORE process_departament :
-      public ::base_departament
+      public ::base::departament
    {
    public:
 

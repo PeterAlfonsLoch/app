@@ -1,62 +1,9 @@
 #pragma once
 
-CLASS_DECL_BASE void set_splash(oswindow oswindow);
-CLASS_DECL_BASE oswindow get_splash();
-
-enum EExclusiveInstance
-{
-
-   ExclusiveInstanceNone,
-   ExclusiveInstanceLocal,
-   ExclusiveInstanceLocalId,
-   ExclusiveInstanceGlobal,
-   ExclusiveInstanceGlobalId,
-   ExclusiveInstanceLicense
-
-};
-
-
-enum e_application_signal
-{
-
-   application_signal_initialize1, // cgcl // first initialization
-   application_signal_initialize2, // cst  // second initialization
-   application_signal_initialize3, // third initialization and so on...
-   application_signal_initialize, // last initialization
-   application_signal_start,
-   application_signal_process_initialize,
-   application_signal_finalize,
-   application_signal_exit_instance,
-   application_signal_init_application,
-   application_signal_none
-
-};
-
-
-class machine_event_data;
-namespace html
-{
-   class html;
-} // namespace html
 
 
 
 
-class CLASS_DECL_BASE application_signal_details :
-   public signal_details
-{
-public:
-
-
-   e_application_signal             m_esignal;
-   int32_t                          m_iRet;
-   bool                             m_bOk;
-
-
-   application_signal_details(sp(application) papp, class ::signal * psignal, e_application_signal esignal);
-
-
-};
 
 
 namespace base
@@ -505,7 +452,7 @@ namespace base
 
       virtual void on_service_request(sp(::create_context) pcreatecontext);
 
-      virtual sp(::application) assert_running(const char * pszAppId);
+      virtual sp(application) assert_running(const char * pszAppId);
 
       virtual bool is_running();
 

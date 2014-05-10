@@ -10,7 +10,7 @@ namespace simpledb
 
    simpledb::simpledb(::base::application * papp) :
       element(papp),
-      base_departament(papp)
+      ::base::departament(papp)
    {
 
       m_pserver      = NULL;

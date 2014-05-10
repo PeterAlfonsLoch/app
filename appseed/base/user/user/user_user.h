@@ -10,7 +10,7 @@ namespace user
 
 
    class CLASS_DECL_BASE user :
-      virtual public ::base_departament
+      virtual public ::base::departament
    {
    public:
 

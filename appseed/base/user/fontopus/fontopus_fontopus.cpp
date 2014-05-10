@@ -7,7 +7,7 @@ namespace fontopus
 
    fontopus::fontopus(::base::application * papp) :
       element(papp),
-      base_departament(papp)
+      ::base::departament(papp)
    {
 
       m_puser                    = NULL;

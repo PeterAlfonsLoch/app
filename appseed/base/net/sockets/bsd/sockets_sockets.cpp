@@ -7,7 +7,7 @@ namespace sockets
 
    sockets::sockets(::base::application * papp) :
      element(papp),
-     base_departament(papp),
+     ::base::departament(papp),
       m_mutexHttpPostBoundary(papp),
       m_mutexResolvCache(papp)
    {
@@ -23,7 +23,7 @@ namespace sockets
    bool sockets::initialize1()
    {
 
-      if(!base_departament::initialize1())
+      if(!::base::departament::initialize1())
          return false;
 
       

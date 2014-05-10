@@ -487,7 +487,7 @@ namespace user
          return;
       ASSERT(pcontrol->descriptor().get_type() == control::type_check_box);
       int32_t i;
-      if(data_get(pcontrol->descriptor().m_dataid, ::::base::system::idEmpty, i))
+      if(data_get(pcontrol->descriptor().m_dataid, ::base::system::idEmpty, i))
       {
    /* linux      simple_button * pbutton = (simple_button *) get_child_by_id(pcontrol->m_id);
          pbutton->SetCheck((i != 0) ? 1 : 0); */
@@ -585,7 +585,7 @@ namespace user
       {
          ::user::simple_list_data * pdata = dynamic_cast < ::user::simple_list_data * > (plist->GetDataInterface());
          stringa stra;
-         data_get(pcontrol->descriptor().m_dataid, ::::base::system::idEmpty, stra);
+         data_get(pcontrol->descriptor().m_dataid, ::base::system::idEmpty, stra);
          ASSERT(plist != NULL);
          pdata->set_data(plist, stra);
       }*/
@@ -624,7 +624,7 @@ namespace user
          return false;
 
       int32_t i;
-      if(!data_get(pcontrol->descriptor().m_dataid, ::::base::system::idEmpty, i))
+      if(!data_get(pcontrol->descriptor().m_dataid, ::base::system::idEmpty, i))
          return false;
 
       bData = (i != 0) ? 1 : 0;
@@ -640,7 +640,7 @@ namespace user
          return false;
 
       int32_t i = bData ? 1 : 0;
-      data_set(pcontrol->descriptor().m_dataid, ::::base::system::idEmpty, i);
+      data_set(pcontrol->descriptor().m_dataid, ::base::system::idEmpty, i);
       return true;
 
    }
@@ -714,7 +714,7 @@ namespace user
    void form::_001GetSelection(
       ::database::id & id, ::database::selection &selection)
    {
-      selection.add_item(id, ::::base::system::idEmpty);
+      selection.add_item(id, ::base::system::idEmpty);
    }
 
    bool form::on_simple_action(id id)

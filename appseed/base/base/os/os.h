@@ -5,6 +5,10 @@
 
 
 
+CLASS_DECL_BASE void set_splash(oswindow oswindow);
+CLASS_DECL_BASE oswindow get_splash();
+
+
 
 CLASS_DECL_BASE void output_debug_string(const char * psz);
 
