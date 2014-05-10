@@ -6,7 +6,7 @@ namespace draw2d_direct2d
 {
 
 
-   printer::printer(base_application * papp) :
+   printer::printer(::base::application * papp) :
       element(papp),
       ::user::printer(papp),
       m_documentproperties(papp)
@@ -49,7 +49,7 @@ namespace draw2d_direct2d
    }
 
 
-   printer::document_properties::document_properties(base_application * papp) :
+   printer::document_properties::document_properties(::base::application * papp) :
       element(papp)
    {
       m_hdc = NULL;

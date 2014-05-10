@@ -742,7 +742,7 @@ namespace plane
    }
 
 
-   sp(::::base::application) session::start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext)
+   sp(::base::application) session::start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext)
    {
 
       string strApp(pszAppId);

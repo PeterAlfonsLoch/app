@@ -16,7 +16,7 @@ namespace draw2d_cairo
 
 
 
-      region(sp(base_application) papp);
+      region(sp(::base::application) papp);
       virtual ~region();
 
 

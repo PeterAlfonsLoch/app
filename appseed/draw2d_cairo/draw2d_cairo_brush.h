@@ -15,7 +15,7 @@ namespace draw2d_cairo
 //xxx      Gdiplus::Brush * m_pbrush;
 
 
-      brush(sp(base_application) papp);
+      brush(sp(::base::application) papp);
       //virtual void construct(COLORREF crColor);                // CreateSolidBrush
       //virtual void construct(int32_t nIndex, COLORREF crColor);    // CreateHatchBrush
       //virtual void construct(::draw2d::bitmap * pbitmap);                // CreatePatternBrush

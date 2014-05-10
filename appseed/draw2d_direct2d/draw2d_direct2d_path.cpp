@@ -9,7 +9,7 @@ namespace draw2d_direct2d
 {
 
 
-   graphics_path::graphics_path(base_application * papp) :
+   graphics_path::graphics_path(::base::application * papp) :
       ::element(papp)
    {
 

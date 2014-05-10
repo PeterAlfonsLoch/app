@@ -177,7 +177,7 @@ namespace plane
       virtual bool is_remote_session();
 
       using ::application::start_application;
-      sp(::::base::application) start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext);
+      sp(::base::application) start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext);
 
 
       virtual ::visual::cursor * get_cursor();

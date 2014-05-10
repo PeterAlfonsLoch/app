@@ -1442,7 +1442,7 @@ namespace plane
 
 #endif
 
-      pgenapp->::::base::application::construct();
+      pgenapp->::base::application::construct();
 
       pgenapp->construct();
 

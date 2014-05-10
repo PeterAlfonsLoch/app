@@ -8,7 +8,7 @@ namespace draw2d_cairo
 
    FT_Face g_ft = NULL;
 
-   graphics::graphics(sp(base_application) papp) :
+   graphics::graphics(sp(::base::application) papp) :
       element(papp)
    {
 
@@ -2868,7 +2868,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    /////////////////////////////////////////////////////////////////////////////
    // special graphics drawing primitives/helpers
 
-   ::draw2d::brush* PASCAL graphics::GetHalftoneBrush(sp(base_application) papp)
+   ::draw2d::brush* PASCAL graphics::GetHalftoneBrush(sp(::base::application) papp)
    {
 /*      ::core::LockGlobals(CRIT_HALFTONEBRUSH);
       if (gen_HalftoneBrush == NULL)

@@ -12,7 +12,7 @@ namespace draw2d_direct2d
 
 
 
-   dib::dib(sp(base_application) papp) :
+   dib::dib(sp(::base::application) papp) :
       element(papp),
       m_spbitmap(allocer()),
       m_spgraphics(allocer())

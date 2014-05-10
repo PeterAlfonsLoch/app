@@ -19,7 +19,7 @@ namespace draw2d_direct2d
       COLORREF             m_crMetro;
 
 
-      pen(base_application * papp);
+      pen(::base::application * papp);
       /*virtual void construct(int nPenStyle, double nWidth, COLORREF crColor);
       virtual void construct(int nPenStyle, double nWidth, const LOGBRUSH* pLogBrush, int nStyleCount = 0, const DWORD* lpStyle = NULL);
       bool CreatePen(int nPenStyle, double nWidth, COLORREF crColor);

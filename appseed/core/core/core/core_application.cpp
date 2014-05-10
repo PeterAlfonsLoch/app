@@ -320,7 +320,7 @@ bool application::process_initialize()
    //return true;
 
 
-   if (!::::base::application::process_initialize())
+   if (!::base::application::process_initialize())
       return false;
 
    m_spuserex = create_userex();
@@ -581,7 +581,7 @@ bool application::initialize1()
 bool application::initialize2()
 {
 
-   if (!::::base::application::initialize2())
+   if (!::base::application::initialize2())
       return false;
 
    return true;
@@ -592,7 +592,7 @@ bool application::initialize2()
 bool application::initialize3()
 {
 
-   if (!::::base::application::initialize3())
+   if (!::base::application::initialize3())
       return false;
 
    return true;
@@ -633,7 +633,7 @@ return *m_plemonarray;
 bool application::initialize_instance()
 {
 
-   if (!::::base::application::initialize_instance())
+   if (!::base::application::initialize_instance())
       return false;
    
    return true;
@@ -694,7 +694,7 @@ int32_t application::exit_instance()
    try
    {
 
-      ::::base::application   * papp = m_pimpl.detach();
+      ::base::application   * papp = m_pimpl.detach();
 
       if (papp != NULL && papp != this && !papp->is_system())
       {
@@ -3363,7 +3363,7 @@ void application::construct()
    }
 
 
-   ::::base::application::construct();
+   ::base::application::construct();
 
 }
 
@@ -4702,7 +4702,7 @@ int32_t application::simple_message_box(sp(::user::interaction) puiOwner, const 
 {
 
    if (!user().is_set())
-      return ::::base::application::simple_message_box(puiOwner, pszMessage, fuStyle);
+      return ::base::application::simple_message_box(puiOwner, pszMessage, fuStyle);
 
    return userex()->simple_message_box(puiOwner, pszMessage, fuStyle);
 
@@ -4713,7 +4713,7 @@ int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwne
 {
 
    if (!user().is_set())
-      return ::::base::application::simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
+      return ::base::application::simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
 
    return userex()->simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
 

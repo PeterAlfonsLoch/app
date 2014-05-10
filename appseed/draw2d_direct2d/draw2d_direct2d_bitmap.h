@@ -26,7 +26,7 @@ namespace draw2d_direct2d
          data_bitmap1,
       };
 
-      bitmap(base_application * papp);
+      bitmap(::base::application * papp);
       virtual ~bitmap();
 
       virtual void * get_os_data() const;

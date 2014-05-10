@@ -5,7 +5,7 @@ namespace draw2d_direct2d
 {
 
 
-   brush::brush(base_application * papp) :
+   brush::brush(::base::application * papp) :
       element(papp)
    { 
 
