@@ -131,7 +131,7 @@ class ::id_space * ::base::system::s_pidspace = NULL;
 void ::base::system::construct()
 {
 
-   ::::base::application::construct();
+   ::base::application::construct();
 
 
 
@@ -192,7 +192,7 @@ bool ::base::system::initialize_instance()
 
    m_pfactory->enable_simple_factory_request();
 
-   if (!::::base::application::initialize_instance())
+   if (!::base::application::initialize_instance())
       return false;
 
    return true;

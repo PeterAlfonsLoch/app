@@ -20,7 +20,7 @@ bool base_session::is_session()
 
 }
 
-sp(::::base::application) base_session::start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext)
+sp(::base::application) base_session::start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext)
 {
 
    throw interface_only_exception(this);

@@ -671,7 +671,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
-#include "::base::application.h"
+#include "base_application.h"
 
 
 #include "base_session.h"

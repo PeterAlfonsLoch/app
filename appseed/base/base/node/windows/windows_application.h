@@ -30,7 +30,7 @@ namespace windows
 
 
    class CLASS_DECL_BASE application :
-      virtual public ::::base::application
+      virtual public ::base::application
    {
    public:
 

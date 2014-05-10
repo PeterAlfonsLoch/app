@@ -450,7 +450,7 @@ namespace windows
 
       NODE_THREAD(thread::m_p.m_p)->m_bRun = false;
 
-      int32_t iRet = ::::base::application::exit_instance();
+      int32_t iRet = ::base::application::exit_instance();
 
       //smart_pointer < ::base::application >::destroy();
 

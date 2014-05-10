@@ -24,7 +24,7 @@ UINT ::base::application::APPM_LANGUAGE = WM_APP + 117;
 WPARAM ::base::application::WPARAM_LANGUAGE_UPDATE = 1;
 
 
-::base::application::::base::application() :
+::base::application::base::application() :
 m_allocer(this),
 m_mutexMatterLocator(this),
 m_mutexStr(this)
@@ -2938,10 +2938,10 @@ bool ::base::application::safe_is_running()
 }
 
 
-sp(::::base::application) ::base::application::assert_running(const char * pszAppId)
+sp(::base::application) ::base::application::assert_running(const char * pszAppId)
 {
 
-   sp(::::base::application) papp;
+   sp(::base::application) papp;
 
    papp = System.m_appptra.find_running_defer_try_quit_damaged(pszAppId);
 
@@ -4239,7 +4239,7 @@ int32_t ::base::application::exit_instance()
       try
       {
 
-         ::::base::application   * papp = m_pimpl.detach();
+         ::base::application   * papp = m_pimpl.detach();
 
          if (papp != NULL && papp != this && !papp->is_system())
          {
@@ -5003,7 +5003,7 @@ void ::base::application::message_queue_message_handler(signal_details * pobj)
       if (ptimer->m_nIDEvent == 123)
       {
          m_spuiMessage->KillTimer(ptimer->m_nIDEvent);
-         frames().send_message_to_descendants(::::base::application::APPM_LANGUAGE);
+         frames().send_message_to_descendants(::base::application::APPM_LANGUAGE);
          System.appa_load_string_table();
       }
    }

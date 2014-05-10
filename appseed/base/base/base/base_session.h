@@ -36,7 +36,7 @@ public:
    
    ::core::copydesk & copydesk();
 
-   virtual sp(::::base::application) start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext);
+   virtual sp(::base::application) start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext);
 
    virtual ::visual::cursor * get_cursor();
    virtual void set_cursor(::visual::e_cursor ecursor);
