@@ -1639,14 +1639,14 @@ bool virtual_user_interface::post_message(UINT uiMessage, WPARAM wparam, lparam 
 }
 
 
-   void virtual_user_interface::set_view_port_org(::draw2d::graphics * pgraphics)
+   void virtual_user_interface::set_viewport_org(::draw2d::graphics * pgraphics)
    {
       // graphics will be already set its view port to the window for linux - cairo with xlib
 
 
       rect rectWindow;
       GetWindowRect(rectWindow);
-      get_wnd()->offset_view_port_org(rectWindow);
+      get_wnd()->viewport_screen_to_client(rectWindow);
       pgraphics->SetViewportOrg(rectWindow.top_left());
       pgraphics->SelectClipRgn(NULL);
 

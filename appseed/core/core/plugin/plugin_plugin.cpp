@@ -30,8 +30,8 @@ namespace plugin
    plugin::plugin(sp(base_application) papp) :
       element(papp),
       ::simple_ui::style(papp),
-      ::simple_ui::interaction(papp),
-      ::os::simple_ui(papp),
+      ::user::interaction(papp),
+      ::user::interaction(papp),
       hotplugin::plugin(papp)
    {
 

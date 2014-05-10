@@ -1,8 +1,10 @@
 #include "framework.h"
 #include <VersionHelpers.h>
-#undef new
-#include <gdiplus.h>
-#include <winternl.h>
+
+#include <ddeml.h>
+
+
+___WIN_STATE gen_WinState;
 
 typedef bool
 (WINAPI * LPFN_ChangeWindowMessageFilter)(
@@ -35,6 +37,9 @@ int_bool os_initialize()
    ::os_thread::s_pmutex = new mutex();
 
    ::os_thread::s_pptra = new comparable_raw_array < os_thread * >::type ();
+
+
+   ::windows::thread::s_pmutex = new mutex();
 
    //Sleep(15 * 1000);
 
@@ -488,9 +493,527 @@ int_bool is_windows_native_unicode()
 
 }
 
+///////////////////////////////////////////////////
 
 
+
+//
+//_PNH CLASS_DECL_BASE __set_new_handler(_PNH pfnNewHandler)
+//{
+//   __MODULE_THREAD_STATE* pState = __get_module_thread_state();
+//   _PNH pfnOldHandler = pState->m_pfnNewHandler;
+//   pState->m_pfnNewHandler = pfnNewHandler;
+//   return pfnOldHandler;
+//}
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+// stop on a specific primitive::memory request
+
+// Obsolete API
+/*
+void CLASS_DECL_BASE __set_alloc_stop(LONG lRequestNumber)
+{
+_CrtSetBreakAlloc(lRequestNumber);
+}
+*/
+
+/*
+// -- true if block of exact size, allocated on the heap
+// -- set *plRequestNumber to request number (or 0)
+bool CLASS_DECL_BASE __is_memory_block(const void * pData, UINT nBytes,
+LONG* plRequestNumber)
+{
+return _CrtIsMemoryBlock(pData, nBytes, plRequestNumber, NULL, NULL);
+}
+
+*/
 END_EXTERN_C
 
+#ifdef DEBUG
+
+CLASS_DECL_BASE bool  __check_memory()
+{
+
+   return _CrtCheckMemory() != FALSE;
+
+}
+
+#endif
 
 
+
+
+
+// Note: in separate module so it can be replaced if needed
+
+void CLASS_DECL_BASE __abort()
+{
+   //   TRACE(::core::trace::category_AppMsg, 0, "__abort called.\n");
+
+   __win_term();
+   abort();
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+// export WinMain to force linkage to this module
+extern int32_t CLASS_DECL_BASE __win_main(HINSTANCE hInstance,HINSTANCE hPrevInstance,
+__in LPTSTR lpCmdLine,int32_t nCmdShow);
+
+
+/////////////////////////////////////////////////////////////////////////////
+// initialize cast state such that it points to this module's core state
+
+CLASS_DECL_BASE bool __initialize(bool bDLL,DWORD dwVersion)
+{
+   //   __MODULE_STATE* pModuleState = __get_module_state();
+   //   pModuleState->m_bDLL = (BYTE)bDLL;
+   ASSERT(dwVersion <= _MFC_VER);
+   UNUSED(dwVersion);  // not used in release build
+   //   pModuleState->m_dwVersion = dwVersion;
+#ifdef _MBCS
+   // set correct multi-byte code-page for Win32 apps
+   //   if (!bDLL)
+   //    _setmbcp(_MB_CP_ANSI);
+#endif //_MBCS
+   return TRUE;
+}
+
+// force initialization early
+//#pragma warning(disable: 4074)
+//#pragma init_seg(lib)
+
+
+char gen_InitAppState = (char)(__initialize(FALSE,_MFC_VER));
+
+
+
+
+
+extern CLASS_DECL_BASE oswindow_map * g_pwindowmap;
+
+
+/////////////////////////////////////////////////////////////////////////////
+// other globals (internal library use)
+
+/////////////////////////////////////////////////////////////////////////////
+// Standard cleanup called by WinMain and __abort
+
+//void CLASS_DECL_BASE __gen_unregister_window_classes(sp(base_application) papp)
+//{
+//   
+//   // unregister Window classes
+//   __MODULE_STATE* pModuleState = __get_module_state();
+//
+//   single_lock sl(&pModuleState->m_mutexRegClassList, TRUE);
+//
+//   if(pModuleState->m_pstrUnregisterList != NULL) 
+//   {
+//      strsize start = 0;
+//      string className = pModuleState->m_pstrUnregisterList->Tokenize("\n",start);
+//      while (!className.is_empty())
+//      {
+////         UnregisterClass(static_cast<const char *>(className), System.m_hInstance);
+//         className = pModuleState->m_pstrUnregisterList->Tokenize("\n",start);
+//      }
+//      pModuleState->m_pstrUnregisterList->Empty();
+//      pModuleState->m_pstrUnregisterList = NULL;
+//   }
+//
+//}
+
+extern __declspec(thread) HHOOK t_hHookOldMsgFilter;
+extern __declspec(thread) HHOOK t_hHookOldCbtFilter;
+
+void CLASS_DECL_BASE __win_term()
+{
+
+   delete g_pwindowmap;
+
+   g_pwindowmap = NULL;
+
+   /*   try
+   {
+   main_finalize();
+   }
+   catch (...)
+   {
+   }*/
+
+   //if (__get_thread_state() != NULL)
+   //{
+   //   __get_thread_state()->finalize();
+   //   gen_ThreadState = NULL;
+   //}
+
+
+   //__gen_unregister_window_classes();
+   // cleanup OLE if required
+   //   thread* pThread = &System;
+
+   // cleanup thread local tooltip window
+   //   __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
+   /*   if (pModuleThreadState->m_pToolTip != NULL)
+   {
+   if (pModuleThreadState->m_pToolTip->DestroyToolTipCtrl())
+   pModuleThreadState->m_pToolTip = NULL;
+   }*/
+
+   //   ___THREAD_STATE* pThreadState = __get_thread_state();
+   // if (!afxContextIsDLL)
+   //{
+   // unhook windows hooks
+   if(t_hHookOldMsgFilter != NULL)
+   {
+      ::UnhookWindowsHookEx(t_hHookOldMsgFilter);
+      t_hHookOldMsgFilter = NULL;
+   }
+   if(t_hHookOldCbtFilter != NULL)
+   {
+      ::UnhookWindowsHookEx(t_hHookOldCbtFilter);
+      t_hHookOldCbtFilter = NULL;
+   }
+   //}
+   // We used to suppress all exceptions here. But that's the wrong thing
+   // to do. If this process crashes, we should allow Windows to crash
+   // the process and invoke watson.
+
+
+   //try
+   //{
+   //   delete __get_module_state()->m_pmapHWND;
+   //}
+   //catch (...)
+   //{
+   //}
+   /*   try
+   {
+   delete __get_module_state()->m_pmapHDC;
+   }
+   catch(...)
+   {
+   }*/
+   /*   try
+   {
+   delete __get_module_state()->m_pmapHGDIOBJ;
+   }
+   catch(...)
+   {
+   }*/
+   //      delete __get_module_state()->m_pmapHMENU;
+
+   //try
+   //{
+   //   __get_module_state()->m_pmapHWND = NULL;
+   //}
+   //catch (...)
+   //{
+   //}
+   /*   try
+   {
+   __get_module_state()->m_pmapHDC      = NULL;
+   }
+   catch(...)
+   {
+   }*/
+   /*   try
+   {
+   __get_module_state()->m_pmapHGDIOBJ  = NULL;
+   }
+   catch(...)
+   {
+   }*/
+
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
+
+
+#include "framework.h"
+
+
+/////////////////////////////////////////////////////////////////////////////
+// ___DEBUG_STATE implementation
+
+#ifndef ___NO_DEBUG_CRT
+static _CRT_DUMP_CLIENT pfnOldCrtDumpClient = NULL;
+
+#ifdef DEBUG
+
+
+void __cdecl __crt_dump_client(void * pvData,size_t nBytes)
+{
+   char sz[1024];
+   try
+   {
+
+      if(_CrtReportBlockType(pvData) != ___CLIENT_BLOCK)
+         return;
+
+      //      object * pca = (object * ) pvData;
+
+      object * pobject = NULL;
+
+      /*for(int32_t i = 0; i < 256; i++)
+      {
+      try
+      {
+      pobject = dynamic_cast < object * > ((object *)&((int_ptr *)pca)[i]);
+      }
+      catch(std::__non_rtti_object & e)
+      {
+      pobject = NULL;
+      }
+      catch(...)
+      {
+      pobject = NULL;
+      }
+      if(pobject != NULL)
+      break;
+      }*/
+
+      if(pobject == NULL)
+      {
+         C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz,_countof(sz),_countof(sz) - 1,"unknown object at $%p, %u bytes long\n",pvData,nBytes));
+      }
+      else if(g_dumpcontext.GetDepth() > 0)
+      {
+         // long form
+         pobject->dump(g_dumpcontext);
+         g_dumpcontext << "\n";
+      }
+      if(false) // else
+      {
+         object & obj = *pobject;
+         // int16_t form
+         C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz,_countof(sz),_countof(sz) - 1,"a %hs object at $%p, %u bytes long\n",typeid(obj).name(),pvData,nBytes));
+         g_dumpcontext << sz;
+      }
+   }
+   catch(std::__non_rtti_object & e)
+   {
+      g_dumpcontext << "_gen::CrtdumpClient __non_rtti_object ";
+      g_dumpcontext << e.what();
+   }
+   catch(...)
+   {
+      // int16_t form for trashed objects
+      sprintf_s(sz,_countof(sz),"faulted while dumping object at $%p, %u bytes long\n",pvData,nBytes);
+      g_dumpcontext << sz;
+   }
+   if(pfnOldCrtDumpClient != NULL)
+      (*pfnOldCrtDumpClient)(pvData,nBytes);
+}
+
+int32_t __cdecl __crt_report_hook(int32_t nRptType,__in char *szMsg,int32_t* pResult)
+{
+   // no hook on asserts or when m_pFile is NULL
+   if(nRptType == _CRT_ASSERT || g_dumpcontext.m_pfile == NULL)
+      return FALSE;
+
+   ASSERT(pResult != NULL);
+   if(pResult == NULL)
+      throw invalid_argument_exception(get_thread_app());
+
+   ASSERT(szMsg != NULL);
+   if(szMsg == NULL)
+      throw invalid_argument_exception(get_thread_app());
+
+   // non-NULL m_pFile, so go through g_dumpcontext for the message
+   *pResult = FALSE;
+   g_dumpcontext << szMsg;
+   //Allow other report hooks to be called.
+   return FALSE;
+}
+
+#endif
+#endif // ___NO_DEBUG_CRT
+
+
+#ifdef DEBUG
+
+___DEBUG_STATE::___DEBUG_STATE()
+{
+#ifndef ___NO_DEBUG_CRT
+   ASSERT(pfnOldCrtDumpClient == NULL);
+   pfnOldCrtDumpClient = _CrtSetDumpClient(__crt_dump_client);
+
+   ASSERT(_CrtSetReportHook2(_CRT_RPTHOOK_INSTALL,__crt_report_hook) != -1);
+   _CrtSetReportMode(_CRT_ASSERT,_CRTDBG_MODE_WNDW);
+#endif // ___NO_DEBUG_CRT
+}
+
+___DEBUG_STATE::~___DEBUG_STATE()
+{
+#ifndef ___NO_DEBUG_CRT
+   if(::IsDebuggerPresent() && false)
+   {
+      try
+      {
+         _CrtDumpMemoryLeaks();
+      }
+      catch(std::__non_rtti_object & e)
+      {
+         ::OutputDebugString("~___DEBUG_STATE _CrtdumpMemoryLeaks std::__non_rtti_object\n");
+         ::OutputDebugString(e.what());
+         ::OutputDebugString("\n");
+      }
+      catch(...)
+      {
+         ::OutputDebugString("~___DEBUG_STATE _CrtdumpMemoryLeaks exception\n");
+      }
+   }
+   int32_t nOldState = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
+   _CrtSetDbgFlag(nOldState & ~_CRTDBG_LEAK_CHECK_DF);
+
+   ASSERT(_CrtSetReportHook2(_CRT_RPTHOOK_REMOVE,__crt_report_hook) != -1);
+   _CrtSetDumpClient(pfnOldCrtDumpClient);
+#endif // ___NO_DEBUG_CRT
+}
+
+CLASS_DECL_BASE ___DEBUG_STATE afxDebugState;
+
+bool CLASS_DECL_BASE __diagnostic_init()
+{
+   // just get the debug state to cause initialization
+   ___DEBUG_STATE* pState = &afxDebugState;
+   ASSERT(pState != NULL);
+
+   return TRUE;
+}
+
+#endif
+
+
+
+
+//__DATADEF bool g_bTraceEnabled = TRUE;
+//__DATADEF UINT g_uiTraceFlags = 0;
+static bool gen_DiagnosticInit = __diagnostic_init();
+
+
+
+#include "framework.h"
+
+/////////////////////////////////////////////////////////////////////////////
+// __EXCEPTION_CONTEXT (thread global state)
+
+//inline __EXCEPTION_CONTEXT* __get_exception_context()
+//{
+//   DWORD lError = GetLastError();
+//   __EXCEPTION_CONTEXT* pContext = &gen_ThreadState->m_exceptionContext;
+//   SetLastError(lError);
+//   return pContext;
+//}
+
+/////////////////////////////////////////////////////////////////////////////
+// __exception_link linked 'jmpbuf' and out-of-line helpers
+
+//__exception_link::__exception_link()
+//{
+//   // setup initial link state
+//   m_pException = NULL;    // no current exception yet
+//
+//   // wire into top of exception link stack
+//   __EXCEPTION_CONTEXT* pContext = __get_exception_context();
+//   m_pLinkPrev = pContext->m_pLinkTop;
+//   pContext->m_pLinkTop = this;
+//}
+
+
+// out-of-line cleanup called from inline __exception_link destructor
+CLASS_DECL_BASE void __try_cleanup()
+{
+   //__EXCEPTION_CONTEXT* pContext = __get_exception_context();
+   //__exception_link* pLinkTop = pContext->m_pLinkTop;
+
+   // delete current exception
+   //ASSERT(pLinkTop != NULL);
+   //if (pLinkTop == NULL)
+   //   return;
+   //if (pLinkTop->m_pException != NULL)
+   //   pLinkTop->m_pException->Delete();
+
+   //// remove ourself from the top of the chain
+   //pContext->m_pLinkTop = pLinkTop->m_pLinkPrev;
+}
+
+// special out-of-line implementation of THROW_LAST (for auto-delete behavior)
+void CLASS_DECL_BASE __throw_last_cleanup()
+{
+   //__EXCEPTION_CONTEXT* pContext = __get_exception_context();
+   //__exception_link* pLinkTop = pContext->m_pLinkTop;
+
+   //// check for THROW_LAST inside of auto-delete block
+   //if (pLinkTop != NULL)
+   //{
+   //   // make sure current exception does not get auto-deleted
+   //   pLinkTop->m_pException = NULL;
+   //}
+
+   //// THROW_LAST macro will do actual 'throw'
+}
+
+
+
+
+
+
+namespace core
+{
+
+#if defined( _CUSTOM_THROW )  // You can define your own throw hresult_exception to throw a custom exception.
+
+   CLASS_DECL_BASE void WINAPI atl_throw_impl(HRESULT hr)
+   {
+      TRACE(atlTraceException,0,"throw hresult_exception: hr = 0x%x\n",hr);
+#ifdef _AFX
+      if(hr == E_OUTOFMEMORY)
+      {
+         throw memory_exception();
+      }
+      else
+      {
+         //      ::core::ThrowOleException( hr );
+      }
+#else
+      throw atl_exception(hr);
+#endif
+   };
+
+#endif
+
+
+   // Throw a atl_exception with th given HRESULT
+#if !defined( _CUSTOM_THROW )  // You can define your own throw hresult_exception
+
+   //CLASS_DECL_BASE void WINAPI atl_throw_impl(HRESULT hr)
+   //{
+   //   TRACE("throw hresult_exception: hr = 0x%x\n", hr);
+   //  throw hresult_exception(hr);
+   /*   ::OutputDebugString("throw hresult_exception");
+   char sz[200];
+   sprintf(sz, "0x%s", hr);
+   ::OutputDebugString(sz);
+   ::OutputDebugString("\n");
+   //TRACE(trace::category_Exception, 0, "throw hresult_exception: hr = 0x%x\n", hr );
+   ASSERT( false );
+   DWORD dwExceptionCode;
+   switch(hr)
+   {
+   case E_OUTOFMEMORY:
+   dwExceptionCode = STATUS_NO_MEMORY;
+   break;
+   default:
+   dwExceptionCode = EXCEPTION_ILLEGAL_INSTRUCTION;
+   }
+   atl_raise_exception((DWORD)dwExceptionCode);*/
+   //}
+#endif
+
+
+} // namespace core

@@ -440,8 +440,77 @@ namespace user
       }
    }
 
-   bool interaction::SetWindowPos(int32_t z, int32_t x, int32_t y,
-      int32_t cx, int32_t cy, UINT nFlags)
+   bool interaction::SetPlacement(LPCRECT lpcrect, UINT nFlags)
+   {
+
+      return RepositionWindow(lpcrect->left,lpcrect->top,width(lpcrect),height(lpcrect),nFlags);
+
+   }
+
+   bool interaction::RepositionWindow(LPCRECT lpcrect,UINT nFlags)
+   {
+
+      return SetPlacement(lpcrect, nFlags);
+
+   }
+
+   bool interaction::RepositionWindow(int32_t x, int32_t y, int32_t cx, int32_t cy,UINT nFlags)
+   {
+
+      return SetWindowPos(0,x,y,cx,cy,nFlags);
+
+   }
+
+   bool interaction::MoveWindow(int32_t x,int32_t y, UINT nFlags)
+   {
+      
+      return SetWindowPos(0,x,y, 0, 0, nFlags | SWP_NOSIZE);
+
+   }
+
+   bool interaction::MoveWindow(POINT pt,UINT nFlags)
+   {
+      
+      return MoveWindow(pt.x,pt.y, nFlags);
+
+   }
+
+   bool interaction::SizeWindow(int32_t cx,int32_t cy,UINT nFlags)
+   {
+
+      return SetWindowPos(0,0,0,cx,cy,nFlags | SWP_NOSIZE);
+
+   }
+
+   bool interaction::SizeWindow(SIZE sz,UINT nFlags)
+   {
+
+      return MoveWindow(sz.cx,sz.cy,nFlags);
+
+   }
+
+   bool interaction::ResizeWindow(int32_t cx,int32_t cy,UINT nFlags)
+   {
+
+      return SetWindowPos(0,0,0,cx,cy,nFlags | SWP_NOSIZE);
+
+   }
+
+   bool interaction::ResizeWindow(SIZE sz,UINT nFlags)
+   {
+
+      return MoveWindow(sz.cx,sz.cy,nFlags);
+
+   }
+
+   bool interaction::SetWindowPos(int32_t z,LPCRECT lpcrect,UINT nFlags)
+   {
+
+      return SetWindowPos(z,lpcrect->left,lpcrect->top,width(lpcrect),height(lpcrect),nFlags);
+
+   }
+
+   bool interaction::SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags)
    {
 
       if (m_pimpl == NULL)
@@ -451,7 +520,7 @@ namespace user
    }
 
 
-   bool interaction::defer_set_window_pos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags) // only set_windows_pos if get_parent()->screen_to_client(get_window_rect) different of rect(x, y, cx, cy)
+   bool interaction::defer_set_window_pos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags) // only set_windows_pos if get_parent()->ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)
    {
 
       rect rectWindow;
@@ -616,12 +685,12 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::set_view_port_org(::draw2d::graphics * pgraphics)
+   void interaction::set_viewport_org(::draw2d::graphics * pgraphics)
    {
       if (m_pimpl == NULL)
          return;
 
-      m_pimpl->set_view_port_org(pgraphics);
+      m_pimpl->set_viewport_org(pgraphics);
       /*      rect64 rectWindow;
       GetWindowRect(rectWindow);
       get_wnd()->ScreenToClient(rectWindow);
@@ -636,7 +705,7 @@ namespace user
       {
          try
          {
-            set_view_port_org(pgraphics);
+            set_viewport_org(pgraphics);
             pgraphics->m_dFontFactor = 1.0;
             try
             {
@@ -2119,6 +2188,63 @@ namespace user
          return m_pimpl->GetDescendantWindow(iId);
    }
 
+   void interaction::viewport_client_to_screen(POINT * ppt)
+   {
+
+      if(m_pimpl == NULL)
+      {
+
+         ClientToScreen(ppt);
+
+      }
+      else
+      {
+
+         m_pimpl->viewport_client_to_screen(ppt);
+
+      }
+
+   }
+
+
+   void interaction::viewport_screen_to_client(POINT * ppt)
+   {
+
+      if(m_pimpl == NULL)
+      {
+
+         ScreenToClient(ppt);
+
+      }
+      else
+      {
+
+         m_pimpl->viewport_screen_to_client(ppt);
+
+      }
+
+   }
+
+
+   void interaction::viewport_client_to_screen(RECT * prect)
+   {
+
+      viewport_client_to_screen((POINT *)&prect->left);
+      viewport_client_to_screen((POINT *)&prect->right);
+
+   }
+
+
+   void interaction::viewport_screen_to_client(RECT * prect)
+   {
+
+      viewport_screen_to_client((POINT *)&prect->left);
+      viewport_screen_to_client((POINT *)&prect->right);
+
+   }
+
+
+
    void interaction::ScreenToClient(__rect64 * lprect)
    {
       if (m_pimpl != NULL)
@@ -2224,24 +2350,6 @@ namespace user
       else
          return m_pimpl->WfiIsIconic();
    }
-
-   void interaction::MoveWindow(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight,
-      bool bRepaint)
-   {
-      if (m_pimpl == NULL)
-         return;
-      else
-         m_pimpl->MoveWindow(x, y, nWidth, nHeight, bRepaint);
-   }
-
-   void interaction::MoveWindow(LPCRECT lpRect, bool bRepaint)
-   {
-      if (m_pimpl == NULL)
-         return;
-      else
-         m_pimpl->MoveWindow(lpRect, bRepaint);
-   }
-
 
 
    bool interaction::CheckAutoCenter()
@@ -2852,14 +2960,9 @@ namespace user
    }
 
 
-   bool interaction::set_placement(LPRECT lprect)
-   {
 
-      rect rectWindow(*lprect);
 
-      return SetWindowPos(0, rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height(), SWP_NOZORDER);
 
-   }
 
 
    void interaction::OnLinkClick(const char * psz, const char * pszTarget)
@@ -3618,15 +3721,6 @@ namespace user
 
 #endif
    */
-   void interaction::offset_view_port_org(LPRECT lprect)
-   {
-      if (m_pimpl == NULL)
-      {
-         ScreenToClient(lprect);
-      }
-      else
-         m_pimpl->offset_view_port_org(lprect);
-   }
 
 
    string interaction::get_window_default_matter()
@@ -4048,6 +4142,8 @@ namespace user
       return false;
 
    }
+
+
 
 
 } // namespace user

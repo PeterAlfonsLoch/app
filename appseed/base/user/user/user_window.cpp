@@ -848,16 +848,6 @@ bool window::SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t c
    throw interface_only_exception(get_app());
 }
 
-void window::MoveWindow(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, bool bRepaint)
-{
-   UNREFERENCED_PARAMETER(x);
-   UNREFERENCED_PARAMETER(y);
-   UNREFERENCED_PARAMETER(nWidth);
-   UNREFERENCED_PARAMETER(nHeight);
-   UNREFERENCED_PARAMETER(bRepaint);
-   throw interface_only_exception(get_app());
-}
-
 id window::SetDlgCtrlId(id id)
 {
    UNREFERENCED_PARAMETER(id);
@@ -1076,13 +1066,6 @@ sp(::user::frame_window) window::EnsureParentFrame()
 
 sp(::user::interaction) window::EnsureTopLevelParent()
 {
-   throw interface_only_exception(get_app());
-}
-
-void window::MoveWindow(LPCRECT lpRect, bool bRepaint)
-{
-   UNREFERENCED_PARAMETER(lpRect);
-   UNREFERENCED_PARAMETER(bRepaint);
    throw interface_only_exception(get_app());
 }
 

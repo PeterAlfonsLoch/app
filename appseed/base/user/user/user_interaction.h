@@ -2,6 +2,8 @@
 #define CA2_APP_BASE_USER_INTERACTION_H
 
 
+#define DRAWDD() virtual void _001OnDraw(::draw2d::graphics * pgraphics)
+
 namespace user
 {
 
@@ -91,7 +93,7 @@ namespace user
 
       virtual bool create_message_queue(const char * pszName, ::message_queue_listener * pcallback = NULL);
 #if defined(METROWIN) || defined(APPLE_IOS)
-      virtual bool initialize(::user::native_window_initialize * pinitialize);
+      virtual bool initialize(::r::native_window_initialize * pinitialize);
 #endif
 
 
@@ -197,9 +199,8 @@ namespace user
       virtual void _001WindowMaximize();
       virtual void _001WindowFullScreen();
       virtual void _001WindowRestore();
-      virtual void MoveWindow(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight,
-         bool bRepaint = TRUE);
-      virtual void MoveWindow(LPCRECT lpRect, bool bRepaint = TRUE);
+
+
       virtual void GetClientRect(LPRECT lprect);
       virtual void GetClientRect(__rect64 * lprect);
       virtual void GetWindowRect(LPRECT lprect);
@@ -214,10 +215,19 @@ namespace user
       virtual void ScreenToClient(__rect64 * lprect);
       virtual void ScreenToClient(LPPOINT lppoint);
       virtual void ScreenToClient(__point64 * lprect);
-      virtual bool SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
-      virtual bool defer_set_window_pos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags); // only set_windows_pos if get_parent()->screen_to_client(get_window_rect) different of rect(x, y, cx, cy)      virtual bool set_placement(LPRECT lprect);
-      virtual bool set_placement(LPRECT lprect);
-      virtual int32_t SetWindowRgn(HRGN hRgn, bool bRedraw);
+      virtual bool SetPlacement(LPCRECT lprect,UINT nFlags = SWP_SHOWWINDOW);
+      virtual bool RepositionWindow(LPCRECT lpcrect,UINT nFlags = SWP_SHOWWINDOW);
+      virtual bool RepositionWindow(int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
+      virtual bool MoveWindow(int32_t x,int32_t y,UINT nFlags = SWP_SHOWWINDOW);
+      virtual bool MoveWindow(POINT pt,UINT nFlags = SWP_SHOWWINDOW);
+      virtual bool SizeWindow(int32_t x,int32_t y,UINT nFlags = SWP_SHOWWINDOW);
+      virtual bool SizeWindow(SIZE sz,UINT nFlags = SWP_SHOWWINDOW);
+      virtual bool ResizeWindow(int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
+      virtual bool ResizeWindow(SIZE sz,UINT nFlags = SWP_SHOWWINDOW);
+      virtual bool SetWindowPos(int32_t z,LPCRECT lpcrect,UINT nFlags = SWP_SHOWWINDOW);
+      virtual bool SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags = SWP_SHOWWINDOW);
+      virtual bool defer_set_window_pos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags); // only set_windows_pos if get_parent()->ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)      virtual bool set_placement(LPRECT lprect);
+      virtual int32_t SetWindowRgn(HRGN hRgn,bool bRedraw);
       virtual int32_t GetWindowRgn(HRGN hRgn);
 
       virtual void layout();
@@ -283,7 +293,6 @@ namespace user
 #endif
 
 
-      virtual void set_view_port_org(::draw2d::graphics * pgraphics);
 
 
 
@@ -519,7 +528,13 @@ namespace user
 //#endif
 
 
-      void offset_view_port_org(LPRECT lprect);
+      virtual void set_viewport_org(::draw2d::graphics * pgraphics);
+
+      virtual void viewport_screen_to_client(POINT * ppt);
+      virtual void viewport_client_to_screen(POINT * ppt);
+      virtual void viewport_client_to_screen(RECT * ppt);
+      virtual void viewport_screen_to_client(RECT * ppt);
+
 
       virtual string get_window_default_matter();
       virtual string get_window_icon_matter();

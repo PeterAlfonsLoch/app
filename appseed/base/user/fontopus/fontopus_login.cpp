@@ -13,7 +13,6 @@ namespace fontopus
 
    login::login(sp(base_application) papp, int left, int top) :
       element(papp),
-      interaction(papp),
       ::thread(papp),
       m_labelUser(papp),
       m_editUser(papp),
@@ -26,39 +25,15 @@ namespace fontopus
 
       m_pcallback = NULL;
 
-      m_labelUser.set_parent(this);
-      m_editUser.set_parent(this);
-      m_labelPassword.set_parent(this);
-      m_password.set_parent(this);
-      m_tap.set_parent(this);
-
-
-      m_labelUser.m_strText = "e-mail:";
-      m_labelPassword.m_strText = "password:";
-      m_tap.m_strText = "open";
-
-      m_eresult = login::result_fail;
-
-      int stdw = 884;
-      int stdh = 177 + 23 + 184 + 49;
-
-      m_rect.left = 0;
-      m_rect.top = 0;
-      m_rect.right = m_rect.left + stdw;
-      m_rect.bottom = m_rect.top + stdh;
-
-      m_bCred = false;
-
-
       m_picon95 = NULL;
 
 #if defined(WINDOWS)
 
       {
 
-         HICON hicon95 = (HICON) ::LoadImage(::GetModuleHandle(NULL), MAKEINTRESOURCE(95), IMAGE_ICON, 95, 95, LR_VGACOLOR);
+         HICON hicon95 = (HICON) ::LoadImage(::GetModuleHandle(NULL),MAKEINTRESOURCE(95),IMAGE_ICON,95,95,LR_VGACOLOR);
 
-         if (hicon95 != NULL)
+         if(hicon95 != NULL)
          {
 
             m_picon95 = new ::visual::icon(hicon95);
@@ -68,6 +43,18 @@ namespace fontopus
       }
 
 #endif
+      m_bCred = false;
+
+
+   }
+
+
+   void login::install_message_handling(::message::dispatch * pdispatch)
+   {
+
+      ::user::interaction::install_message_handling(pdispatch);
+
+      IGUI_CREATE(login);
 
    }
 
@@ -94,17 +81,17 @@ namespace fontopus
       str = node.attr("email");
 
       if (str.has_char())
-         m_labelUser.m_strText = str;
+         m_labelUser.SetWindowText(str);
 
       str = node.attr("senha");
 
       if (str.has_char())
-         m_labelPassword.m_strText = str;
+         m_labelPassword.SetWindowText(str);
 
       str = node.attr("abrir");
 
       if (str.has_char())
-         m_tap.m_strText = str;
+         m_tap.SetWindowText(str);
 
    }
 
@@ -129,7 +116,7 @@ namespace fontopus
 
       crypto_file_get(::dir::userappdata("license_auth/00001.data"), strText, "");
 
-      m_editUser.m_strText = strText;
+      m_editUser.SetWindowText(strText);
 
       string strPasshash;
 
@@ -210,13 +197,17 @@ namespace fontopus
    login::e_result login::perform_login()
    {
 
-      if (m_editUser.m_strText.is_empty())
+      string strUsername = m_editUser.get_window_text();
+
+      if(strUsername.is_empty())
          return result_fail;
 
-      if (m_password.m_strText.is_empty() && m_strPasshash.is_empty())
+      string strPassword = m_password.get_window_text();
+
+      if(strPassword.is_empty() && m_strPasshash.is_empty())
          return result_fail;
 
-      string strUsername = m_editUser.m_strText;
+      
 
       {
 
@@ -323,7 +314,7 @@ namespace fontopus
       string strPass;
       if (m_strPasshash.is_empty())
       {
-         strPass = crypt_nessie(m_password.m_strText);
+         strPass = crypt_nessie(m_password.get_window_text());
       }
       else
       {
@@ -353,7 +344,7 @@ namespace fontopus
          }
          //string strCrypt;
 
-         strAuthUrl += "&entered_login=" + m_editUser.m_strText;
+         strAuthUrl += "&entered_login=" + m_editUser.get_window_text();
          /*if(m_strLicense.has_char())
          {
          post["entered_license"] = m_strLicense;
@@ -391,8 +382,8 @@ namespace fontopus
             if (stricmp_dup(doc.get_root()->attr("id"), "auth") == 0 && string(doc.get_root()->attr("passhash")).get_length() > 16 && atoi(doc.get_root()->attr("secureuserid")) > 0)
             {
 
-               Session.fontopus()->m_authmap[m_editUser.m_strText].m_mapServer[m_strRequestingServer] = strResponse;
-               Session.fontopus()->m_authmap[m_editUser.m_strText].m_mapFontopus[m_strFontopusServer] = strResponse;
+               Session.fontopus()->m_authmap[m_editUser.get_window_text()].m_mapServer[m_strRequestingServer] = strResponse;
+               Session.fontopus()->m_authmap[m_editUser.get_window_text()].m_mapFontopus[m_strFontopusServer] = strResponse;
 
                m_strPasshash = doc.get_root()->attr("passhash");
                m_strSessId = doc.get_root()->attr("sessid");
@@ -462,14 +453,14 @@ namespace fontopus
       if (m_bCred)
       {
 
-         set_cred(get_app(), m_strRequestingServer, false, m_editUser.m_strText, m_password.m_strText);
+         set_cred(get_app(),m_strRequestingServer,false,m_editUser.get_window_text(),m_password.get_window_text());
 
       }
       else
       {
-         string strUsername = m_editUser.m_strText;
+         string strUsername = m_editUser.get_window_text();
          string strPasshash = m_strPasshash;
-         string strPassword = m_password.m_strText;
+         string strPassword = m_password.get_window_text();
 
          string strUsernamePrevious;
          string strPasshashPrevious;
@@ -507,7 +498,7 @@ namespace fontopus
 
       layout();
 
-      show_window();
+      ShowWindow(SW_SHOW);
 
    }
 
@@ -529,14 +520,18 @@ namespace fontopus
       int h;
       int w;
 
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
       if (m_bSelfLayout)
       {
-
+         
 
          double dwh = (double)stdw / (double)stdh;
 
-         int availw = (int) (width(m_puiParent->m_rect) * (1.0 - 0.14));
-         int availh = (int) (height(m_puiParent->m_rect) * (1.0 - 0.14));
+         int availw = (int) (rectClient.width() * (1.0 - 0.14));
+         int availh = (int) (rectClient.height() * (1.0 - 0.14));
 
          double davailwh;
 
@@ -566,10 +561,12 @@ namespace fontopus
          }
 
          m_dRate = (double)w / (double)stdw;
-         m_rect.left = (width(m_puiParent->m_rect) - w) / 2;
-         m_rect.top = (height(m_puiParent->m_rect) - h) / 3;
-         m_rect.right = m_rect.left + w;
-         m_rect.bottom = m_rect.top + h;
+         rectClient.left = (rectClient.width() - w) / 2;
+         rectClient.top = (rectClient.height() - h) / 3;
+         rectClient.right = rectClient.left + w;
+         rectClient.bottom = rectClient.top + h;
+
+         SetPlacement(rectClient);
 
       }
       else
@@ -578,8 +575,8 @@ namespace fontopus
 
          double dwh = (double)stdw / (double)stdh;
 
-         int availw = (int)(width(m_rect));
-         int availh = (int)(height(m_rect));
+         int availw = (int)(rectClient.width());
+         int availh = (int)(rectClient.height());
 
          double davailwh;
 
@@ -616,51 +613,31 @@ namespace fontopus
 
 
       int32_t x1 = (int) (49 * r);
-      int32_t x2 = (int) (x1 + (m_rect.width() - 49 * 2) * r);
+      int32_t x2 = (int) (x1 + (rectClient.width() - 49 * 2) * r);
       int32_t h1 = (int) (23 * r);
       int32_t pad = (int) (5 * r);
 
-      m_labelUser.m_rect.left = x1;
-      m_labelUser.m_rect.right = x2;
-      m_editUser.m_rect.left = x1;
-      m_editUser.m_rect.right = x2;
-      m_labelPassword.m_rect.left = x1;
-      m_labelPassword.m_rect.right = x2;
-      m_password.m_rect.left = x1;
-      m_password.m_rect.right = x2;
-      m_tap.m_rect.left = x1;
-      m_tap.m_rect.right = x2;
-
       int32_t y = (int) ((49 + 86) * r);
-      m_labelUser.m_rect.top = y;
-      y += h1;
-      m_labelUser.m_rect.bottom = y;
-      y += pad;
-      m_editUser.m_rect.top = y;
-      y += h1;
-      m_editUser.m_rect.bottom = y;
-      y += pad;
-      m_labelPassword.m_rect.top = y;
-      y += h1;
-      m_labelPassword.m_rect.bottom = y;
-      y += pad;
-      m_password.m_rect.top = y;
-      y += h1;
-      m_password.m_rect.bottom = y;
+      m_labelUser.RepositionWindow(x1,y,x2,y + h1);
+      y += h1 + pad;
+      m_editUser.RepositionWindow(x1,y,x2,y + h1);
+      y += h1 + pad;
+      m_labelPassword.RepositionWindow(x1,y,x2,y + h1);
+      y += h1 + pad;
+      m_password.RepositionWindow(x1,y,x2,y + h1);
+      y += h1 + pad;
       y += pad + h1 + pad;
-      m_tap.m_rect.top = y;
-      y += h1 * 3;
-      m_tap.m_rect.bottom = y;
+      m_tap.RepositionWindow(x1,y,x2,y + h1 * 3);;
 
 
    }
 
 
 
-   void login::draw_this(::draw2d::graphics * pgraphics)
+   void login::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      draw_frame_window_rect(pgraphics);
+      simple_ui_draw_frame_window_rect(pgraphics);
 
       COLORREF crOut, crIn, crBorderOut, crBorderIn, cr, crBk;
 
@@ -791,15 +768,15 @@ namespace fontopus
          if (m_bCred)
          {
 
-            if (m_editUser.m_strText.is_empty())
+            if (m_editUser.get_window_text().is_empty())
                return true;
 
-            if (m_password.m_strText.is_empty())
+            if(m_password.get_window_text().is_empty())
                return true;
 
             login_result(::fontopus::login::result_ok);
 
-            get_top_level_parent()->destroy_window();
+            GetTopLevelParent()->DestroyWindow();
 
             return true;
 
@@ -812,7 +789,7 @@ namespace fontopus
 
                m_bVisible = false;
 
-               get_top_level_parent()->show_window(false);
+               GetTopLevelParent()->ShowWindow(SW_HIDE);
 
                ::thread::m_p.create(allocer());
 
@@ -828,7 +805,7 @@ namespace fontopus
       else if (!strcmp(pszId, "escape"))
       {
 
-         get_top_level_parent()->destroy_window();
+         GetTopLevelParent()->DestroyWindow();
 
       }
 
@@ -850,7 +827,7 @@ namespace fontopus
          if (m_eresult == ::fontopus::login::result_fail)
          {
 
-            get_top_level_parent()->show_window();
+            GetTopLevelParent()->ShowWindow(SW_SHOW);
 
             m_bVisible = true;
 
@@ -858,7 +835,7 @@ namespace fontopus
          else
          {
 
-            get_top_level_parent()->destroy_window();
+            GetTopLevelParent()->DestroyWindow();
 
          }
       }
@@ -871,6 +848,42 @@ namespace fontopus
       return 0;
 
    }
+
+   void login::_001OnCreate(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::create,pcreate,pobj);
+
+      if(pcreate->previous())
+         return;
+
+      if(!m_labelUser.create(this,"label_user")
+         || !m_editUser.create(this, "edit_user")
+         || !m_labelPassword.create(this, "label_password")
+         || !m_password.create(this, "password")
+         || !m_tap.create(this, "submit_button"))
+      {
+         pcreate->set_lresult(-1);
+         pcreate->m_bRet = true;
+         return;
+      }
+      
+
+      m_labelUser.SetWindowText("e-mail:");
+      m_labelPassword.SetWindowText("password:");
+      m_tap.SetWindowText("open");
+
+      m_eresult = login::result_fail;
+
+      int stdw = 884;
+      int stdh = 177 + 23 + 184 + 49;
+
+      RepositionWindow(0,0,stdw,stdh);
+
+
+      
+   }
+
 
 } // namespace fontopus
 

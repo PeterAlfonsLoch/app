@@ -59,6 +59,9 @@ namespace install
       virtual ~plugin();
 
 
+      virtual void install_message_handling(::message::dispatch * pdispatch);
+
+
       ::fontopus::login &     get_login();
 
 
@@ -83,21 +86,10 @@ namespace install
 
       virtual void login_result(::fontopus::login::e_result eresult);
 
-      virtual bool on_lbutton_up(int x, int y);
+      DECL_GEN_SIGNAL(_001OnLButtonUp);
       
       using ::hotplugin::plugin::message_handler;
-
-#ifdef WINDOWS
-
-      virtual LRESULT message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam);
-
-
-
-#else
-
-      virtual int32_t message_handler(XEvent * pevent);
-
-#endif
+      virtual void message_handler(signal_details * pobj);
 
       virtual void on_paint_progress(::draw2d::graphics * pgraphics, LPCRECT lprect);
 
@@ -119,7 +111,8 @@ namespace install
 
       virtual void restart_small_ipc_channel();
 
-      virtual void set_window_rect(LPCRECT lpcrect);
+      using ::hotplugin::plugin::SetWindowPos;
+      virtual bool SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
 
       virtual void on_ready();
 
@@ -133,9 +126,9 @@ namespace install
 
       virtual bool set_host(::hotplugin::host * phost);
 
-      ::simple_ui::interaction * get_focus();
+      //sp(::user::interaction) GetFocus();
 
-      void set_focus(::simple_ui::interaction * puiFocus);
+      //sp(::user::interaction) SetFocus();
 
 
    };

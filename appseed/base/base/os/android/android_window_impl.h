@@ -102,11 +102,11 @@ struct CLASS_DECL_BASE oswindow_data
    long get_state();
    bool is_iconic();
    bool is_window_visible();
-   bool show_window(int32_t nCmdShow);
+   bool ShowWindow(int nCmdShow);
    LONG get_window_long(int32_t nIndex);
    LONG set_window_long(int32_t nIndex, LONG l);
-   bool client_to_screen(LPPOINT lppoint);
-   bool screen_to_client(LPPOINT lppoint);
+   bool ClientToScreen(LPPOINT lppoint);
+   bool ScreenToClient(LPPOINT lppoint);
 
 
 

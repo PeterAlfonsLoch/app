@@ -55,7 +55,7 @@ public:
    application_ptra                             m_appptra;
 
 
-   ::os::simple_ui *                      m_psimpleui;
+   ::user::interaction *                      m_psimpleui;
    os_data *                                    m_posdata;
 
 

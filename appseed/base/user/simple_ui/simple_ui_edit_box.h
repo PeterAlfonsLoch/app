@@ -18,14 +18,16 @@ namespace simple_ui
       virtual ~edit_box();
 
 
-      virtual void draw_this(::draw2d::graphics * pgraphics);
+      virtual void install_message_handling(::message::dispatch * pdispatch);
+
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
 
-      virtual bool on_char(int32_t iKey, const string & strChar);
-      virtual bool on_lbutton_down(int32_t x, int32_t y);
-      virtual bool on_lbutton_up(int32_t x, int32_t y);
+      DECL_GEN_SIGNAL(_001OnChar);
+      DECL_GEN_SIGNAL(_001OnLButtonDown);
+      DECL_GEN_SIGNAL(_001OnLButtonUp);
 
-      virtual bool is_focusable();
+      virtual bool keyboard_focus_is_focusable();
 
 
    };

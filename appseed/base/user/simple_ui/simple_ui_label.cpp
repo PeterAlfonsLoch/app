@@ -6,8 +6,7 @@ namespace simple_ui
 
 
    label::label(sp(base_application) papp) :
-      element(papp),
-      interaction(papp)
+      element(papp)
    {
 
    }
@@ -19,7 +18,7 @@ namespace simple_ui
 
 
 
-   void label::draw_this(::draw2d::graphics * pgraphics)
+   void label::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
 
@@ -51,7 +50,7 @@ namespace simple_ui
 
       rect rectClient;
 
-      get_client_rect(rectClient);
+      GetClientRect(rectClient);
 
       ::draw2d::brush_sp b(allocer());
 
@@ -71,7 +70,11 @@ namespace simple_ui
 
       pgraphics->SelectObject(b);
 
-      pgraphics->TextOut(rectClient.left, (int32_t)(rectClient.top + fMargin), m_strText);
+      string strText;
+
+      GetWindowText(strText);
+
+      pgraphics->TextOut(rectClient.left, (int32_t)(rectClient.top + fMargin), strText);
 
    }
 

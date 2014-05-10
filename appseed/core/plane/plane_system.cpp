@@ -1614,7 +1614,7 @@ namespace plane
 
 #elif defined(METROWIN)
 
-      return System.get_window_rect(lprect);
+      return System.GetWindowRect(lprect);
 
 #elif defined(LINUX)
 
@@ -1811,7 +1811,7 @@ sp(::command_thread) system::command_thread()
 
 #ifdef METROWIN
 
-      bool system::get_window_rect(LPRECT lprect)
+   bool system::GetWindowRect(LPRECT lprect)
       {
 
          Windows::Foundation::Rect rect;

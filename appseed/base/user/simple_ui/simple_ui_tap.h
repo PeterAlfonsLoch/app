@@ -18,21 +18,21 @@ namespace simple_ui
       tap(sp(base_application) papp);
       virtual ~tap();
 
+      IMH();
+      DRAWDD();
 
-      virtual void draw_this(::draw2d::graphics * pgraphics);
+      virtual void simple_ui_draw_simple(::draw2d::graphics * pgraphics);
+      virtual void simple_ui_draw_volume(::draw2d::graphics * pgraphics);
 
-      virtual void draw_simple(::draw2d::graphics * pgraphics);
-      virtual void draw_volume(::draw2d::graphics * pgraphics);
-
-      virtual void draw_text(::draw2d::graphics * pgraphics);
+      virtual void simple_ui_draw_text(::draw2d::graphics * pgraphics);
 
 
-      virtual bool on_char(int32_t iKey, const string & strChar);
-      virtual bool on_lbutton_down(int32_t x, int32_t y);
-      virtual bool on_lbutton_up(int32_t x, int32_t y);
-      virtual bool on_mouse_move(int32_t x, int32_t y);
+      DECL_GEN_SIGNAL(_001OnChar);
+      DECL_GEN_SIGNAL(_001OnLButtonDown);
+      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(_001OnMouseMove);
 
-      virtual bool is_focusable();
+      virtual bool keyboard_focus_is_focusable();
       virtual bool is_hover();
 
    };

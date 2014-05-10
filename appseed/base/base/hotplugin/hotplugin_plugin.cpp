@@ -32,17 +32,17 @@ namespace hotplugin
    plugin::plugin(sp(base_application) papp) :
       element(papp),
       ::simple_ui::style(papp),
-      ::simple_ui::interaction(papp),
-      ::os::simple_ui(papp)
+      ::user::interaction(papp)
    {
 
+      m_pstyle          = this;
       m_phost           = NULL;
       m_bInitialized    = false;
       m_bOk             = false;
-      m_rect.left       = 0;
-      m_rect.top        = 0;
-      m_rect.bottom     = 0;
-      m_rect.right      = 0;
+      //m_rect.left       = 0;
+      //m_rect.top        = 0;
+      //m_rect.bottom     = 0;
+      //m_rect.right      = 0;
 
 
 
@@ -130,20 +130,20 @@ namespace hotplugin
       return NULL;
    }
 
-   // ca.dll-absence-(ca.dll-delay-load)-safe
-   void plugin::get_window_rect(LPRECT lprect)
-   {
+   //// ca.dll-absence-(ca.dll-delay-load)-safe
+   //void plugin::GetWindowRect(LPRECT lprect)
+   //{
 
-      *lprect = m_rect;
+   //   *lprect = m_rect;
 
-   }
+   //}
 
-   void plugin::set_window_rect(LPCRECT lpcrect)
-   {
+   //void plugin::set_window_rect(LPCRECT lpcrect)
+   //{
 
-      m_rect = *lpcrect;
+   //   m_rect = *lpcrect;
 
-   }
+   //}
 
    void plugin::set_memory(void * puchMemory, ::count c)
    {
@@ -905,17 +905,17 @@ namespace hotplugin
 
    }
 
-   void plugin::client_to_screen(POINT * ppt)
+   void plugin::ClientToScreen(POINT * ppt)
    {
 
-      ::simple_ui::interaction::client_to_screen(ppt);
+      ::user::interaction::ClientToScreen(ppt);
 
    }
 
-   void plugin::screen_to_client(POINT * ppt)
+   void plugin::ScreenToClient(POINT * ppt)
    {
 
-      ::simple_ui::interaction::screen_to_client(ppt);
+      ::user::interaction::ScreenToClient(ppt);
 
    }
 
@@ -933,34 +933,34 @@ namespace hotplugin
    }
 
 
-   bool plugin::show_window(bool bShow)
-   {
+   //bool plugin::show_window(bool bShow)
+   //{
 
-      if (m_phost != NULL)
-      {
+   //   if (m_phost != NULL)
+   //   {
 
-         return m_phost->show_window(bShow);
+   //      return m_phost->show_window(bShow);
 
-      }
+   //   }
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   bool plugin::destroy_window()
-   {
+   //bool plugin::destroy_window()
+   //{
 
-      if (m_phost != NULL)
-      {
+   //   if (m_phost != NULL)
+   //   {
 
-         return m_phost->destroy_window();
+   //      return m_phost->destroy_window();
 
-      }
-      
-      return true;
+   //   }
+   //   
+   //   return true;
 
-   }
+   //}
 
 
    bool plugin::set_host(::hotplugin::host * phost)

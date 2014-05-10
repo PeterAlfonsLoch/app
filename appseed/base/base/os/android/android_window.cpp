@@ -550,7 +550,7 @@ LONG oswindow_data::set_window_long(int32_t nIndex, LONG l)
 }
 
 
-bool oswindow_data::client_to_screen(POINT * pp)
+bool oswindow_data::ClientToScreen(POINT * pp)
 {
 
    return true;
@@ -558,7 +558,7 @@ bool oswindow_data::client_to_screen(POINT * pp)
 }
 
 
-bool oswindow_data::screen_to_client(POINT * pp)
+bool oswindow_data::ScreenToClient(POINT * pp)
 {
 
    return true;
@@ -705,7 +705,7 @@ void message_box_paint(::draw2d::graphics * pdc, stringa & stra, bool_array  & b
 
 
 class xlib_simple_message_box :
-   virtual public ::os::simple_ui
+   virtual public ::user::interaction
 {
 public:
 
@@ -714,16 +714,16 @@ public:
 
    rect m_rectDesktop;
 
-   xlib_simple_message_box(sp(base_application) papp) : element(papp), ::os::simple_ui(papp), ::simple_ui::interaction(papp)
+   xlib_simple_message_box(sp(base_application) papp) : element(papp), ::user::interaction(papp), ::user::interaction(papp)
    {
    }
 
 
-   void draw_this(::draw2d::graphics *  pdc)
+   void _001OnDraw(::draw2d::graphics *  pdc)
    {
       rect rect;
 
-      get_client_rect(rect);
+      GetClientRect(rect);
 
       pdc->FillSolidRect(rect, ARGB(255, 240, 240, 240));
    }

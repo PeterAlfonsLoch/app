@@ -7,7 +7,7 @@ namespace fontopus
 
 
    class simple_ui :
-      virtual public ::os::simple_ui,
+      virtual public ::user::interaction,
       virtual public ::simple_ui::style,
       virtual public login::callback
    {
@@ -33,18 +33,17 @@ namespace fontopus
       virtual string fontopus(LPRECT lprect);
 
 
-      virtual void get_window_rect(LPRECT lprect);
+      //virtual void GetWindowRect(LPRECT lprect);
+
+      void install_message_handling(::message::dispatch * pdispatch);
 
 
-
-
-      virtual bool on_char(int iKeyCode, const string & strChar);
-      virtual bool on_lbutton_down(int32_t x, int32_t y);
-      virtual bool on_lbutton_up(int32_t x, int32_t y);
-      virtual bool on_mouse_move(int32_t x, int32_t y);
-
-      virtual bool on_move(int32_t x, int32_t y);
-      virtual bool on_size(int32_t cx, int32_t cy);
+      DECL_GEN_SIGNAL(_001OnChar);
+      DECL_GEN_SIGNAL(_001OnLButtonDown);
+      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(_001OnMouseMove);
+      
+      virtual void layout();
 
 
    };

@@ -193,7 +193,7 @@ namespace plugin
    void host_interaction::GetWindowRect(__rect64 * lprect)
    {
       RECT rect;
-      m_pplugin->get_window_rect(&rect);
+      m_pplugin->GetWindowRect(&rect);
       ::copy(lprect, &rect);
    }
 

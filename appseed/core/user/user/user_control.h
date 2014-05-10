@@ -27,23 +27,6 @@ namespace user
    {
    public:
 
-      enum e_element
-      {
-         element_none,
-         element_tab,
-         element_close_tab_button,
-         element_status_image,
-         element_text,
-         element_icon,
-         element_border,
-         element_client,
-         element_area,
-         element_drop_down,
-         element_item,
-         element_search_edit,
-         element_search_ok
-      };
-
 
       enum EMessageParam
       {

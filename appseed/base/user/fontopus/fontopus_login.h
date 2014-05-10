@@ -65,7 +65,9 @@ namespace fontopus
       virtual ~login();
 
 
-      virtual void draw_this(::draw2d::graphics * pgraphics);
+      virtual void install_message_handling(::message::dispatch * pdispatch);
+
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
       virtual bool on_action(const char * pszId);
 
@@ -94,6 +96,7 @@ namespace fontopus
 
       virtual int32_t run();
 
+      DECL_GEN_SIGNAL(_001OnCreate);
 
    };
 

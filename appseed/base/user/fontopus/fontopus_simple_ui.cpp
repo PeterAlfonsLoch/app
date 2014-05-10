@@ -13,20 +13,18 @@ namespace fontopus
    simple_ui::simple_ui(sp(base_application) papp) :
       element(papp),
       ::simple_ui::style(papp),
-      interaction(papp),
-      ::os::simple_ui(papp),
+      ::user::interaction(papp),
       m_login(papp, 0, 0)
    {
 
       m_eschema = schema_normal;
       m_login.set_parent(this);
-      m_login.m_pstyle = this;
       m_login.m_pcallback = this;
       m_bLButtonDown = false;
-      m_w = 840;
-      m_h = 284;
+//      m_w = 840;
+  //    m_h = 284;
 
-      m_bNoDecorations = true;
+    //  m_bNoDecorations = true;
 
 
 
@@ -38,35 +36,43 @@ namespace fontopus
 
    }
 
-
-
-   bool simple_ui::on_char(int iKeyCode, const string & strChar)
+   void simple_ui::install_message_handling(::message::dispatch * pdispatch)
    {
 
-      if(iKeyCode == ::user::key_return)
+      ::user::interaction::install_message_handling(pdispatch);
+
+      IGUI_WIN_MSG_LINK(WM_CHAR,this,pdispatch,&simple_ui::_001OnChar);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,this,pdispatch,&simple_ui::_001OnLButtonDown);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONUP,this,pdispatch,&simple_ui::_001OnLButtonUp);
+      IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,this,pdispatch,&simple_ui::_001OnMouseMove);
+      IGUI_WIN_MSG_LINK(WM_MOVE,this,pdispatch,&simple_ui::_001OnMove);
+      IGUI_WIN_MSG_LINK(WM_SIZE,this,pdispatch,&simple_ui::_001OnSize);
+
+   }
+
+   void simple_ui::_001OnChar(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::key, pkey, pobj)
+
+      if(pkey->m_ekey == ::user::key_return)
       {
 
          m_login.on_action("submit");
 
-         return true;
-
-      }
-      else
-      {
-
-         return ::os::simple_ui::on_char(iKeyCode, strChar);
+         pobj->m_bRet = true;
 
       }
 
    }
 
 
-   void simple_ui::get_window_rect(LPRECT lprect)
-   {
+   //void simple_ui::GetWindowRect(LPRECT lprect)
+   //{
 
-      *lprect = m_rect;
+   //   *lprect = m_rect;
 
-   }
+   //}
 
 
 
@@ -77,78 +83,79 @@ namespace fontopus
    string simple_ui::fontopus(LPRECT lprect)
    {
 
+      ::rect rectDesktop;
+
       if (lprect == NULL)
       {
 
          //         ::GetWindowRect(::GetDesktopWindow(), &m_rectDesktop);
-         System.get_monitor_rect(0, &m_rectDesktop);
+         System.get_monitor_rect(0,&rectDesktop);
 
       }
       else
       {
 
-         m_rectDesktop = *lprect;
+         rectDesktop = *lprect;
 
       }
 
-      m_strTitle = "fontopus Auth Windows";
-      m_strWindowClass = "fontopus Auth Windows";
+      SetWindowText( "fontopus Auth Windows");
 
-      set_focus(&m_login.m_editUser);
-
-      rect & rectDesktop = m_rectDesktop;
+      m_login.m_editUser.SetFocus();
 
       rect rectFontopus;
 
-      m_w = m_login.m_rect.width();
-      m_h = m_login.m_rect.height();
+      rect rectLogin;
+
+      m_login.GetWindowRect(rectLogin);
+
+      int w = rectLogin.width();
+
+      int h = rectLogin.height();
       
-      double d = (double) m_w / (double) m_h;
+      double d = (double) w / (double) h;
       
-      if(m_w > rectDesktop.width())
+      if(w > rectDesktop.width())
       {
          
-         m_w = rectDesktop.width();
+         w = rectDesktop.width();
          
          if(d != 0.0)
          {
 
-            m_h = m_w / d;
+            h = (int) (w / d);
             
          }
          
       }
       
-      if(m_h > rectDesktop.height())
+      if(h > rectDesktop.height())
       {
          
-         m_h = rectDesktop.height();
+         h = rectDesktop.height();
          
-         m_w = m_h  * d;
+         w = (int) (h  * d);
          
       }
       
 
-      rectFontopus.left = rectDesktop.left + (width(rectDesktop) - m_w) / 2;
-      rectFontopus.top = rectDesktop.top + (height(rectDesktop) - m_h) / 3;
-      rectFontopus.right = rectFontopus.left + m_w;
-      rectFontopus.bottom = rectFontopus.top + m_h;
+      rectFontopus.left = rectDesktop.left + (width(rectDesktop) - w) / 2;
+      rectFontopus.top = rectDesktop.top + (height(rectDesktop) - h) / 3;
+      rectFontopus.right = rectFontopus.left + w;
+      rectFontopus.bottom = rectFontopus.top + h;
 
       m_login.defer_translate(this);
 
-      if (!::os::simple_ui::create_window(rectFontopus))
+      if (!::user::interaction::create(NULL, ""))
          return "";
 
       m_login.layout();
 
-      if (!::os::simple_ui::prepare_window(rectFontopus))
-         return "";
+      SetWindowPos(ZORDER_TOP, rectFontopus, SWP_SHOWWINDOW);
 
-      set_window_pos(m_pt.x, m_pt.y, m_size.cx, m_size.cy, true);
+      m_login.ShowWindow(SW_NORMAL);
 
-      m_login.m_bVisible = true;
-
-      run_loop();
+      RunModalLoop();
 
       return "";
    }
@@ -167,7 +174,7 @@ namespace fontopus
       if (m_login.m_eresult == login::result_ok)
       {
 
-         strUsername = m_login.m_editUser.m_strText;
+         strUsername = m_login.m_editUser.get_window_text();
          strSessId = m_login.m_strSessId;
          strServerId = m_login.m_strSecureId;
          strLoginUrl = m_login.m_strLoginUrl;
@@ -199,8 +206,8 @@ namespace fontopus
       if (m_login.m_eresult == login::result_ok)
       {
 
-         strUsername = m_login.m_editUser.m_strText;
-         strPassword = m_login.m_password.m_strText;
+         m_login.m_editUser.GetWindowText(strUsername);
+         m_login.m_password.GetWindowText(strPassword);
 
          return "ok";
 
@@ -215,66 +222,60 @@ namespace fontopus
 
    }
 
-   bool simple_ui::on_move(int32_t x, int32_t y)
+   void simple_ui::layout()
    {
 
-      ::os::simple_ui::on_move(x, y);
+      rect rectClient;
 
-      return true;
+      GetClientRect(rectClient);
 
-   }
-
-   bool simple_ui::on_size(int32_t cx, int32_t cy)
-   {
-
-      if(!::os::simple_ui::on_size(cx, cy))
-         return false;
-
-      m_login.m_rect.right = cx;
-      m_login.m_rect.bottom = cy;
+      m_login.SetPlacement(rectClient);
 
       m_login.layout();
-
-      return true;
 
    }
 
 
    /*
-   void simple_ui::client_to_screen(POINT * ppt)
+   void simple_ui::ClientToScreen(POINT * ppt)
    {
       ::ClientToScreen(m_window, ppt);
    }
 
-   void simple_ui::screen_to_client(POINT * ppt)
+   void simple_ui::ScreenToClient(POINT * ppt)
    {
       ::ScreenToClient(m_window, ppt);
    }
    */
 
-   bool simple_ui::on_lbutton_down(int32_t x, int32_t y)
+   void simple_ui::_001OnLButtonDown(signal_details * pobj)
    {
 
-      if (m_login.on_lbutton_down(x - m_login.m_rect.left, y - m_login.m_rect.top))
-         return true;
+      SCAST_PTR(::message::mouse,pmouse,pobj);
+
+      if (pobj->previous())
+         return;
 
       m_bLButtonDown = true;
       m_bDrag = false;
 
-      m_ptLButtonDownPos = m_pt;
+      m_ptLButtonDownPos = pmouse->m_pt;
       ::GetCursorPos(&m_ptLButtonDown);
       set_capture();
 
-      return true;
+      pmouse->m_bRet = true;
+
    }
 
-   bool simple_ui::on_lbutton_up(int32_t x, int32_t y)
+   void simple_ui::_001OnLButtonUp(signal_details * pobj)
    {
 
       m_bLButtonDown = false;
 
-      if (m_login.on_lbutton_up(x - m_login.m_rect.left, y - m_login.m_rect.top))
-         return true;
+      SCAST_PTR(::message::mouse,pmouse,pobj);
+
+      if(pobj->previous())
+         return;
 
 
 
@@ -305,34 +306,39 @@ namespace fontopus
       DestroyWindow(hWnd);
       }*/
 
-      return true;
+      pobj->m_bRet = true;
 
 
    }
 
-   bool simple_ui::on_mouse_move(int32_t x, int32_t y)
+
+   void simple_ui::_001OnMouseMove(signal_details * pobj)
    {
+
+      SCAST_PTR(::message::mouse,pmouse,pobj);
 
       if (m_bLButtonDown)
       {
          if (!m_bDrag)
          {
             m_bDrag = true;
-            POINT ptNow;
-            ::GetCursorPos(&ptNow);
-            m_pt.x = ptNow.x - m_ptLButtonDown.x + m_ptLButtonDownPos.x;
-            m_pt.y = ptNow.y - m_ptLButtonDown.y + m_ptLButtonDownPos.y;
-            move_window(m_pt.x, m_pt.y);
-//            SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+            POINT ptNow = pmouse->m_pt;
+            point pt;
+            pt.x = ptNow.x - m_ptLButtonDown.x + m_ptLButtonDownPos.x;
+            pt.y = ptNow.y - m_ptLButtonDown.y + m_ptLButtonDownPos.y;
+            MoveWindow(pt);
             m_bDrag = false;
          }
-         return true;
+         pobj->m_bRet = true;
+
       }
+      else
+      {
+         if(pobj->previous())
+            return;
 
-      if (m_login.on_mouse_move(x - m_login.m_rect.left, y - m_login.m_rect.top))
-         return true;
-
-      return true;
+         pobj->m_bRet = true;
+      }
 
    }
 
@@ -444,7 +450,7 @@ namespace fontopus
    {
       ::GetWindowRect(m_window, prect);
    }
-   void simple_ui::get_client_rect(RECT * prect)
+   void simple_ui::GetClientRect(RECT * prect)
    {
 
       ::GetClientRect(m_window, prect);

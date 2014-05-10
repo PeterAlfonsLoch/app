@@ -11,7 +11,7 @@ namespace hotplugin
    class CLASS_DECL_BASE plugin :
       virtual public ::object,
       virtual public ::simple_ui::style,
-      virtual public ::os::simple_ui
+      virtual public ::simple_ui::interaction
 #ifndef METROWIN
       , virtual public ::small_ipc_channel
 #endif
@@ -61,7 +61,6 @@ namespace hotplugin
       POINT                         m_ptCursorPhase;
 
 
-
       plugin(sp(base_application) papp);
       virtual ~plugin();
 
@@ -80,23 +79,24 @@ namespace hotplugin
       virtual void         redraw();
       virtual void         post_message(UINT uiMessage, WPARAM wparam, LPARAM lparam);
       virtual oswindow         get_host_window();
-      virtual void         get_window_rect(LPRECT lprect);
+      //virtual void         GetWindowRect(LPRECT lprect);
 
-      using ::os::simple_ui::client_to_screen;
-      virtual void client_to_screen(POINT * ppt);
+      using ::user::interaction::ClientToScreen;
+      virtual void ClientToScreen(POINT * ppt);
 
-      using ::os::simple_ui::screen_to_client;
-      virtual void screen_to_client(POINT * ppt);
+      using ::user::interaction::ScreenToClient;
+      virtual void ScreenToClient(POINT * ppt);
 
       // client should implement
-      virtual void   set_window_rect(LPCRECT lpcrect);
+      //using ::simple_ui::interaction::SetWindowPos;
+      //virtual bool SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
 
 
       virtual void translate_mouse_message(int * px, int * py);
 
-      virtual bool show_window(bool bShow = true);
-      virtual bool destroy_window();
-
+      //virtual bool ShowWindow(int nCmdShow);
+      //virtual bool destroy_window();
+      //
       // call host memory
       virtual void   set_memory(void * puchMemory, ::count c);
       virtual void   append_memory(void * puchMemory, ::count c);
@@ -124,7 +124,7 @@ namespace hotplugin
       virtual void plugin_system_redraw();
 
       
-      using ::os::simple_ui::message_handler;
+      using ::user::interaction::message_handler;
 #ifdef WINDOWS
       //virtual LRESULT message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam);
 #else

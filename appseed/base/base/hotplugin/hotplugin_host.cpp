@@ -17,8 +17,7 @@ namespace hotplugin
       element(this),
       hotplugin::plugin(this),
       ::simple_ui::style(this),
-      ::simple_ui::interaction(this),
-      ::os::simple_ui(this)
+      ::user::interaction(this)
    {
 
       m_pplugin                  = NULL;
@@ -81,48 +80,23 @@ namespace hotplugin
       return NULL;
    }
 
-   void host::get_window_rect(LPRECT lprect)
+   void host::GetWindowRect(LPRECT lprect)
    {
 
       if(m_pplugin != NULL)
       {
 
-         m_pplugin->get_window_rect(lprect);
+         m_pplugin->GetWindowRect(lprect);
 
       }
       else
       {
 
-         *lprect = m_rect;
+         ::user::interaction::GetWindowRect(lprect);
 
       }
 
    }
-
-   void host::set_window_rect(LPCRECT lpcrect)
-   {
-
-
-      if(m_pplugin != NULL)
-      {
-
-         m_pplugin->set_window_rect(lpcrect);
-
-      }
-      else
-      {
-
-         m_rect = *lpcrect;
-
-      }
-
-   }
-
-   //bool host::hist(const char * pszUrl);
-   //void host::run_start_install(const char * pszRun);
-
-
-
 
    void host::set_memory(void * puchMemory, ::count c)
    {
@@ -215,29 +189,29 @@ namespace hotplugin
    }
 
 
-#ifdef WINDOWS
-
-   LRESULT host::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
-   {
-      if(m_pplugin != NULL)
-      {
-         return m_pplugin->message_handler(uiMessage, wparam, lparam);
-      }
-      return 0;
-   }
-
-#else
-
-   int32_t host::message_handler(XEvent * pevent)
-   {
-      if(m_pplugin != NULL)
-      {
-         return m_pplugin->message_handler(pevent);
-      }
-      return 0;
-   }
-
-#endif
+//#ifdef WINDOWS
+//
+//   LRESULT host::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+//   {
+//      if(m_pplugin != NULL)
+//      {
+//         return m_pplugin->message_handler(uiMessage, wparam, lparam);
+//      }
+//      return 0;
+//   }
+//
+//#else
+//
+//   int32_t host::message_handler(XEvent * pevent)
+//   {
+//      if(m_pplugin != NULL)
+//      {
+//         return m_pplugin->message_handler(pevent);
+//      }
+//      return 0;
+//   }
+//
+//#endif
 
 
    void host::set_ready()
@@ -537,11 +511,13 @@ throw todo(get_thread_app());
    void host::blend_bitmap(::draw2d::graphics * pgraphics, LPCRECT lprectOut)
    {
 
-      LPCRECT lprect = &m_pplugin->m_rect;
+      ::rect rect;
+      
+      GetWindowRect(rect);
 
-      m_sizeBitmap.cx = abs((int32_t)width(lprect));
+      m_sizeBitmap.cx = abs((int32_t)width(rect));
 
-      m_sizeBitmap.cy = abs((int32_t)height(lprect));
+      m_sizeBitmap.cy = abs((int32_t)height(rect));
 
       ensure_bitmap_data(m_sizeBitmap.cx, m_sizeBitmap.cy, false);
 
@@ -563,7 +539,7 @@ throw todo(get_thread_app());
 
       memcpy(m_dib->m_pcolorref, m_pcolorref, (size_t) (m_dib->area() * sizeof(COLORREF)));
 
-      pgraphics->BitBlt(lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, m_dib->get_graphics());
+      pgraphics->BitBlt(rect.left,rect.top,m_sizeBitmap.cx,m_sizeBitmap.cy,m_dib->get_graphics());
 
    }
 
@@ -573,20 +549,20 @@ throw todo(get_thread_app());
    }
 
 
-   bool host::show_window(bool bShow)
-   {
+   //bool host::show_window(bool bShow)
+   //{
 
-      return ::simple_ui::interaction::show_window(bShow);
+   //   return ::user::interaction::show_window(bShow);
 
-   }
+   //}
 
 
-   bool host::destroy_window()
-   {
+   //bool host::destroy_window()
+   //{
 
-      return ::simple_ui::interaction::destroy_window();
+   //   return ::user::interaction::destroy_window();
 
-   }
+   //}
 
 } // namespace hotplugin
 

@@ -37,8 +37,7 @@ namespace install
    plugin::plugin(sp(base_application) papp) :
       element(papp),
       ::simple_ui::style(papp),
-      ::simple_ui::interaction(papp),
-      ::os::simple_ui(papp),
+      ::user::interaction(papp),
       hotplugin::plugin(papp),
       m_canvas(papp)
    {
@@ -81,6 +80,12 @@ namespace install
    plugin::~plugin()
    {
    }
+
+
+   IMPL_IMH(plugin,::simple_ui::interaction)
+      MSG_LBUTTONUP
+   END_IMH
+
 
 
    bool plugin::set_host(::hotplugin::host * phost)
@@ -410,7 +415,7 @@ namespace install
 
          plogin->m_bSelfLayout = true;
          
-         set_focus(&plogin->m_editUser);
+         plogin->m_editUser.SetFocus();
 
 
          oprop("install_plugin_fontopus_login") = plogin;
@@ -512,7 +517,7 @@ namespace install
       RECT rect;
 
       RECT rectWindow;
-      ::hotplugin::plugin::get_window_rect(&rectWindow);
+      ::hotplugin::plugin::GetWindowRect(&rectWindow);
 
       int32_t cx = rectWindow.right - rectWindow.left;
       int32_t cy = rectWindow.bottom - rectWindow.top;
@@ -524,7 +529,7 @@ namespace install
 
       //simple_bitmap b;
 
-      pgraphics->OffsetViewportOrg(::hotplugin::plugin::m_rect.left, ::hotplugin::plugin::m_rect.top);
+      pgraphics->OffsetViewportOrg(rectWindow.left, rectWindow.top);
 
       //b.create(cx, cy, pgraphics);
 
@@ -541,7 +546,7 @@ namespace install
 
       if(m_bLogin)
       {
-         get_login().draw(pgraphics);
+         //get_login().draw(pgraphics);
       }
       else if (System.install().is_installing_ca2())
       {
@@ -610,79 +615,48 @@ namespace install
    }
 
 
-   bool plugin::on_lbutton_up(int x, int y)
+   void plugin::_001OnLButtonUp(signal_details * pobj)
    {
 
-      if (get_login().m_bVisible && ::os::simple_ui::on_lbutton_up(x, y))
-         return true;
-
+      if(get_login().m_bVisible && pobj->previous())
+         return;
+      
       m_iHealingSurface = m_canvas.increment_mode();
-
-      return false;
 
    }
 
 
 
-#ifdef WINDOWS
-
-   LRESULT plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   void plugin::message_handler(signal_details * pobj)
    {
 
-      if (!is_installing() && System.install().is_ca2_installed())
+      SCAST_PTR(::message::base,pbase,pobj);
+
+      if(pbase != NULL && !is_installing() && System.install().is_ca2_installed())
       {
 
          MESSAGE msg;
 
-         memset(&msg, 0, sizeof(msg));
+         ZERO(msg);
 
          // only valid fields
-         msg.message    = uiMessage;
-         msg.wParam     = wparam;
-         msg.lParam     = lparam;
-
-#ifdef METROWIN
-
-         throw "todo";
-
-#else
+         msg.message    = pbase->m_uiMessage;
+         msg.wParam     = pbase->m_wparam;
+         msg.lParam     = pbase->m_lparam;
 
          ensure_tx(::hotplugin::message_message, &msg, sizeof(msg));
-
-#endif
-
-         return 0;
 
       }
       else
       {
 
-         return ::hotplugin::plugin::message_handler(uiMessage, wparam, lparam);
+         ::hotplugin::plugin::message_handler(pobj);
 
       }
       
    }
 
 
-#else
-   int32_t plugin::message_handler(XEvent * pevent)
-   {
-      /*      switch(uiMessage)
-      {
-      default:
-      {
-      if((uiMessage == WM_LBUTTONUP
-      || uiMessage == WM_RBUTTONUP
-      || uiMessage == WM_MBUTTONUP) &&
-      is_installing_ca2())
-      {
-      m_iHealingSurface++;
-      }
-      }
-      }*/
-      return 0;
-   }
-#endif
 
    bool plugin::initialize()
    {
@@ -693,31 +667,31 @@ namespace install
 
    }
 
-   ::simple_ui::interaction * plugin::get_focus()
-   {
+   //::user::interaction * plugin::get_focus()
+   //{
 
-      if (m_phost != NULL)
-      {
+   //   if (m_phost != NULL)
+   //   {
 
-         return m_phost->get_focus();
+   //      return m_phost->get_focus();
 
-      }
-      
-      return NULL;
+   //   }
+   //   
+   //   return NULL;
 
-   }
+   //}
 
-   void plugin::set_focus(::simple_ui::interaction * puiFocus)
-   {
+   //void plugin::set_focus(::user::interaction * puiFocus)
+   //{
 
-      if (m_phost != NULL)
-      {
+   //   if (m_phost != NULL)
+   //   {
 
-         m_phost->set_focus(puiFocus);
+   //      m_phost->set_focus(puiFocus);
 
-      }
+   //   }
 
-   }
+   //}
 
 
    void plugin::on_paint_progress(::draw2d::graphics * pgraphics, LPCRECT lprect)
@@ -903,10 +877,10 @@ namespace install
 
 #endif
 
-   void plugin::set_window_rect(LPCRECT lpcrect)
+   bool plugin::SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
    {
 
-      ::hotplugin::plugin::set_window_rect(lpcrect);
+      bool bOk = ::hotplugin::plugin::SetWindowPos(z, x, y, cx, cy, nFlags);
 
       if (!is_installing() && System.install().is_ca2_installed())
       {
@@ -917,7 +891,14 @@ namespace install
 
 #else
 
-         ensure_tx(::hotplugin::message_set_window, (void *) lpcrect, sizeof(RECT));
+         ::rect rect;
+
+         rect.left = x;
+         rect.top = y;
+         rect.right = x + cx;
+         rect.bottom = y + cy;
+
+         ensure_tx(::hotplugin::message_set_window, (void *) &rect, sizeof(RECT));
 
 #endif
 
@@ -928,6 +909,8 @@ namespace install
          get_login().layout();
 
       }
+
+      return bOk;
 
    }
 
@@ -1100,15 +1083,17 @@ restart:
 
    void plugin::viewport_screen_to_client(POINT * ppt)
    {
-      //::simple_ui::interaction::viewport_screen_to_client(ppt);
+      //::user::interaction::viewport_screen_to_client(ppt);
    }
 
 
    void plugin::viewport_client_to_screen(POINT * ppt)
    {
-      //::simple_ui::interaction::viewport_client_to_screen(ppt);
+      //::user::interaction::viewport_client_to_screen(ppt);
 
    }
+
+
 
 
 } // namespace install

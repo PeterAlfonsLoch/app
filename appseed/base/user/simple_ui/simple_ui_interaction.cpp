@@ -10,13 +10,10 @@ namespace simple_ui
    }
 
 
-   interaction::interaction(sp(base_application) papp) :
-      element(papp)
+   interaction::interaction()
    {
 
       m_pstyle       = NULL;
-      m_puiParent    = NULL;
-      m_puiFocus     = NULL;
 
    }
 
@@ -25,176 +22,42 @@ namespace simple_ui
    }
 
 
-   void interaction::set_parent(interaction * puiParent)
+   void interaction::install_message_handling(::message::dispatch * pdispatch)
    {
 
-      if (m_puiParent != NULL && m_puiParent != puiParent)
-      {
-
-         for (int32_t i = 0; i < m_puiParent->m_uiptra.get_count(); i++)
-         {
-
-            if (m_puiParent->m_uiptra[i] == this)
-            {
-
-               m_puiParent->m_uiptra.remove_at(i);
-               break;
-
-            }
-
-         }
-
-      }
-
-      m_puiParent = puiParent;
-
-      if (m_puiParent != NULL)
-      {
-
-         m_puiParent->m_uiptra.add(this);
-
-      }
-
-   }
-
-   interaction * interaction::get_top_level_parent()
-   {
-
-      if (m_puiParent == NULL)
-         return this;
-
-      return m_puiParent->get_top_level_parent();
+      ::user::interaction::install_message_handling(pdispatch);
 
    }
 
 
-   void interaction::draw(::draw2d::graphics * pgraphics)
+   void interaction::_001OnChar(signal_details * pobj)
+   {
+         
+      UNREFERENCED_PARAMETER(pobj);
+   
+   }
+
+
+   void interaction::_001OnLButtonDown(signal_details * pobj)
    {
 
-      if (m_bVisible)
-      {
+      UNREFERENCED_PARAMETER(pobj);
 
-         rect rectWindow;
+   }
 
-         get_window_rect(rectWindow);
+   void interaction::_001OnLButtonUp(signal_details * pobj)
+   {
 
-         get_top_level_parent()->viewport_screen_to_client(rectWindow);
+      UNREFERENCED_PARAMETER(pobj);
 
-         pgraphics->SetViewportOrg(rectWindow.left, rectWindow.top);
-
-         draw_this(pgraphics);
-
-         draw_children(pgraphics);
-
-      }
 
    }
 
 
-   void interaction::draw_children(::draw2d::graphics * pgraphics)
+   void interaction::_001OnMouseMove(signal_details * pobj)
    {
 
-      for (int32_t i = 0; i < m_uiptra.get_count(); i++)
-      {
-
-         try
-         {
-
-            m_uiptra[i]->draw(pgraphics);
-
-         }
-         catch (...)
-         {
-
-         }
-
-      }
-
-   }
-
-   bool interaction::on_char(int32_t iKey, const string & strChar)
-   {
-
-      if (get_focus() == NULL)
-         return false;
-
-      return get_focus()->on_char(iKey, strChar);
-
-   }
-
-
-   bool interaction::on_lbutton_down(int32_t x, int32_t y)
-   {
-
-      translate_mouse_message(&x, &y);
-
-      point pt(x, y);
-
-      for (int32_t i = 0; i < m_uiptra.get_count(); i++)
-      {
-
-         if (m_uiptra[i]->m_rect.contains(pt))
-         {
-
-            if (m_uiptra[i]->on_lbutton_down(x - m_uiptra[i]->m_rect.left, y - m_uiptra[i]->m_rect.top))
-               return true;
-
-         }
-
-      }
-
-      return false;
-
-   }
-
-   bool interaction::on_lbutton_up(int32_t x, int32_t y)
-   {
-
-      translate_mouse_message(&x, &y);
-
-      for (int32_t i = 0; i < m_uiptra.get_count(); i++)
-      {
-
-         if (x >= m_uiptra[i]->m_rect.left
-            && x <= m_uiptra[i]->m_rect.right
-            && y >= m_uiptra[i]->m_rect.top
-            && y <= m_uiptra[i]->m_rect.bottom)
-         {
-
-            if (m_uiptra[i]->on_lbutton_up(x - m_uiptra[i]->m_rect.left, y - m_uiptra[i]->m_rect.top))
-               return true;
-
-         }
-
-      }
-
-      return false;
-
-   }
-
-
-   bool interaction::on_mouse_move(int32_t x, int32_t y)
-   {
-
-      translate_mouse_message(&x, &y);
-
-      for (int32_t i = 0; i < m_uiptra.get_count(); i++)
-      {
-
-         if (x >= m_uiptra[i]->m_rect.left
-            && x <= m_uiptra[i]->m_rect.right
-            && y >= m_uiptra[i]->m_rect.top
-            && y <= m_uiptra[i]->m_rect.bottom)
-         {
-
-            if (m_uiptra[i]->on_mouse_move(x - m_uiptra[i]->m_rect.left, y - m_uiptra[i]->m_rect.top))
-               return true;
-
-         }
-
-      }
-
-      return false;
+      UNREFERENCED_PARAMETER(pobj);
 
    }
 
@@ -203,10 +66,12 @@ namespace simple_ui
    bool interaction::on_action(const char * pszId)
    {
 
-      if (m_puiParent != NULL)
+      ::simple_ui::interaction * pui = GetTypedParent < ::simple_ui::interaction >();
+
+      if (pui != NULL)
       {
 
-         if (m_puiParent->on_action(pszId))
+         if(pui->on_action(pszId))
             return true;
 
       }
@@ -217,122 +82,122 @@ namespace simple_ui
 
 
 
-   bool interaction::is_focusable()
+   bool interaction::keyboard_focus_is_focusable()
    {
       return false;
    }
 
 
 
-   void interaction::focus_next()
-   {
+   //void interaction::focus_next()
+   //{
 
-      if (m_uiptra.get_count() > 0)
-      {
+   //   if (m_uiptra.get_count() > 0)
+   //   {
 
-         set_focus(m_uiptra[0]);
+   //      set_focus(m_uiptra[0]);
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      if (m_puiParent != NULL)
-      {
+   //   if (m_puiParent != NULL)
+   //   {
 
-         ::count iFind = m_puiParent->m_uiptra.get_count() - 1;
+   //      ::count iFind = m_puiParent->m_uiptra.get_count() - 1;
 
-         for (int32_t i = 0; i < m_puiParent->m_uiptra.get_count(); i++)
-         {
+   //      for (int32_t i = 0; i < m_puiParent->m_uiptra.get_count(); i++)
+   //      {
 
-            if (m_puiParent->m_uiptra[i] == this)
-            {
+   //         if (m_puiParent->m_uiptra[i] == this)
+   //         {
 
-               iFind = i;
+   //            iFind = i;
 
-               break;
+   //            break;
 
-            }
+   //         }
 
-         }
+   //      }
 
-         for (::index i = iFind + 1; i < m_puiParent->m_uiptra.get_count(); i++)
-         {
+   //      for (::index i = iFind + 1; i < m_puiParent->m_uiptra.get_count(); i++)
+   //      {
 
-            if (m_puiParent->m_uiptra[i]->is_focusable())
-            {
+   //         if(m_puiParent->m_uiptra[i]->keyboard_focus_is_focusable())
+   //         {
 
-               m_puiParent->set_focus(m_puiParent->m_uiptra[i]);
+   //            m_puiParent->set_focus(m_puiParent->m_uiptra[i]);
 
-               return;
+   //            return;
 
-            }
+   //         }
 
-         }
+   //      }
 
-         for (int32_t i = 0; i <= iFind; i++)
-         {
+   //      for (int32_t i = 0; i <= iFind; i++)
+   //      {
 
-            if (m_puiParent->m_uiptra[i]->is_focusable())
-            {
+   //         if(m_puiParent->m_uiptra[i]->keyboard_focus_is_focusable())
+   //         {
 
-               m_puiParent->set_focus(m_puiParent->m_uiptra[i]);
+   //            m_puiParent->set_focus(m_puiParent->m_uiptra[i]);
 
-               return;
+   //            return;
 
-            }
+   //         }
 
-         }
+   //      }
 
-      }
+   //   }
 
-   }
-
-
-   void interaction::set_focus(interaction * pui)
-   {
-
-      if (m_puiParent == NULL)
-      {
-
-         m_puiFocus = pui;
-
-      }
-      else
-      {
-
-         m_puiParent->set_focus(pui);
-
-      }
-
-   }
+   //}
 
 
-   interaction * interaction::get_focus()
-   {
+   //void interaction::set_focus(interaction * pui)
+   //{
 
-      if (m_puiParent == NULL)
-      {
+   //   if (m_puiParent == NULL)
+   //   {
 
-         return m_puiFocus;
+   //      m_puiFocus = pui;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         return m_puiParent->get_focus();
+   //      m_puiParent->set_focus(pui);
 
-      }
+   //   }
+
+   //}
 
 
-   }
+   //interaction * interaction::get_focus()
+   //{
+
+   //   if (m_puiParent == NULL)
+   //   {
+
+   //      return m_puiFocus;
+
+   //   }
+   //   else
+   //   {
+
+   //      return m_puiParent->get_focus();
+
+   //   }
 
 
-   bool interaction::is_visible()
-   {
+   //}
 
-      return m_bVisible && (m_puiParent == NULL || m_puiParent->is_visible());
 
-   }
+   //bool interaction::is_visible()
+   //{
+
+   //   return m_bVisible && (m_puiParent == NULL || m_puiParent->is_visible());
+
+   //}
 
 
    style * interaction::get_style()
@@ -341,15 +206,15 @@ namespace simple_ui
       if (m_pstyle != NULL)
          return m_pstyle;
 
-      if (m_puiParent == NULL)
+      if (GetTypedParent < ::simple_ui::interaction >() == NULL)
          return NULL;
 
-      return m_puiParent->get_style();
+      return GetTypedParent < ::simple_ui::interaction >()->get_style();
 
    }
 
 
-   void interaction::draw_back_01_old(style::e_schema eschema, rect m_rect, ::draw2d::graphics * pgraphics)
+   void interaction::simple_ui_draw_back_01_old(style::e_schema eschema, rect m_rect, ::draw2d::graphics * pgraphics)
    {
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -393,7 +258,7 @@ namespace simple_ui
 
    }
 
-   void draw_back_01_new(rect m_rect, ::draw2d::graphics * pgraphics)
+   void interaction::simple_ui_draw_back_01_new(rect m_rect, ::draw2d::graphics * pgraphics)
    {
 
       /*simple_solid_brush br(g, ARGB(255, 255, 255, 255));
@@ -412,28 +277,35 @@ namespace simple_ui
 
    }
 
-   void interaction::draw_this(::draw2d::graphics * pgraphics)
+
+
+
+   void interaction::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      draw_back_01_new(m_rect, pgraphics);
+      ::rect rectWindow;
+
+      GetWindowRect(rectWindow);
+
+      simple_ui_draw_back_01_new(rectWindow,pgraphics);
 
    }
 
 
-   void interaction::draw_focus_rect(::draw2d::graphics * pgraphics)
+   void interaction::simple_ui_draw_focus_rect(::draw2d::graphics * pgraphics)
    {
 
       rect rectClient;
 
-      get_client_rect(rectClient);
+      GetClientRect(rectClient);
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       int32_t iStyle = 1;
 
-      if (get_focus() == this)
+      if (Application.get_focus_guie() == this)
       {
 
          if (iStyle == 1)
@@ -626,176 +498,143 @@ namespace simple_ui
 
 
 
-   void interaction::viewport_client_to_screen(POINT * ppt)
-   {
+   //void interaction::client_to_screen(POINT * ppt)
+   //{
 
-      client_to_screen(ppt);
+   //   ppt->x += m_rect.left;
+   //   ppt->y += m_rect.top;
 
-   }
+   //   if (m_puiParent != NULL)
+   //   {
+   //      m_puiParent->client_to_screen(ppt);
 
+   //   }
 
-   void interaction::viewport_screen_to_client(POINT * ppt)
-   {
 
-      screen_to_client(ppt);
+   //}
 
-   }
 
+   //void interaction::screen_to_client(POINT * ppt)
+   //{
 
-   void interaction::viewport_client_to_screen(RECT * prect)
-   {
+   //   ppt->x -= m_rect.left;
+   //   ppt->y -= m_rect.top;
 
-      viewport_client_to_screen((POINT *)&prect->left);
-      viewport_client_to_screen((POINT *)&prect->right);
+   //   if (m_puiParent != NULL)
+   //   {
+   //      m_puiParent->screen_to_client(ppt);
 
-   }
+   //   }
 
 
-   void interaction::viewport_screen_to_client(RECT * prect)
-   {
+   //}
 
-      viewport_screen_to_client((POINT *)&prect->left);
-      viewport_screen_to_client((POINT *)&prect->right);
 
-   }
+   //void interaction::client_to_screen(RECT * prect)
+   //{
 
-   void interaction::client_to_screen(POINT * ppt)
-   {
+   //   client_to_screen((POINT *)&prect->left);
+   //   client_to_screen((POINT *)&prect->right);
 
-      ppt->x += m_rect.left;
-      ppt->y += m_rect.top;
+   //}
 
-      if (m_puiParent != NULL)
-      {
-         m_puiParent->client_to_screen(ppt);
 
-      }
+   //void interaction::screen_to_client(RECT * prect)
+   //{
 
+   //   screen_to_client((POINT *)&prect->left);
+   //   screen_to_client((POINT *)&prect->right);
 
-   }
+   //}
 
 
-   void interaction::screen_to_client(POINT * ppt)
-   {
+   //void interaction::get_window_rect(RECT * prect)
+   //{
 
-      ppt->x -= m_rect.left;
-      ppt->y -= m_rect.top;
+   //   get_client_rect(prect);
 
-      if (m_puiParent != NULL)
-      {
-         m_puiParent->screen_to_client(ppt);
+   //   client_to_screen(prect);
 
-      }
+   //}
 
+   //void interaction::get_client_rect(RECT * prect)
+   //{
 
-   }
+   //   prect->left = 0;
+   //   prect->top = 0;
+   //   prect->right = width(m_rect);
+   //   prect->bottom = height(m_rect);
 
+   //}
 
-   void interaction::client_to_screen(RECT * prect)
-   {
 
-      client_to_screen((POINT *)&prect->left);
-      client_to_screen((POINT *)&prect->right);
+   //void interaction::layout()
+   //{
 
-   }
 
 
-   void interaction::screen_to_client(RECT * prect)
-   {
+   //}
 
-      screen_to_client((POINT *)&prect->left);
-      screen_to_client((POINT *)&prect->right);
 
-   }
+   //void interaction::set_capture()
+   //{
 
+   //   get_top_level_parent()->set_capture();
 
-   void interaction::get_window_rect(RECT * prect)
-   {
+   //}
 
-      get_client_rect(prect);
 
-      client_to_screen(prect);
+   //void interaction::release_capture()
+   //{
 
-   }
+   //   get_top_level_parent()->release_capture();
 
-   void interaction::get_client_rect(RECT * prect)
-   {
+   //}
 
-      prect->left = 0;
-      prect->top = 0;
-      prect->right = width(m_rect);
-      prect->bottom = height(m_rect);
+   //bool interaction::show_window(bool bShow)
+   //{
 
-   }
+   //   if (bShow)
+   //   {
 
+   //      m_bVisible = true;
 
-   void interaction::layout()
-   {
+   //   }
+   //   else
+   //   {
 
+   //      m_bVisible = false;
 
+   //   }
 
-   }
+   //   return true;
 
+   //}
 
-   void interaction::set_capture()
-   {
+   //void interaction::redraw_window()
+   //{
 
-      get_top_level_parent()->set_capture();
+   //   if(m_puiParent == NULL)
+   //      return;
 
-   }
+   //   m_puiParent->redraw_window();
 
+   //}
 
-   void interaction::release_capture()
-   {
+   //void interaction::get_cursor_pos(POINT * ppt)
+   //{
 
-      get_top_level_parent()->release_capture();
+   //   ui_get_cursor_pos(ppt);
 
-   }
+   //}
 
-   bool interaction::show_window(bool bShow)
-   {
 
-      if (bShow)
-      {
-
-         m_bVisible = true;
-
-      }
-      else
-      {
-
-         m_bVisible = false;
-
-      }
-
-      return true;
-
-   }
-
-   void interaction::redraw_window()
-   {
-
-      if(m_puiParent == NULL)
-         return;
-
-      m_puiParent->redraw_window();
-
-   }
-
-   void interaction::get_cursor_pos(POINT * ppt)
-   {
-
-      ui_get_cursor_pos(ppt);
-
-   }
-
-
-   void interaction::draw_frame_window_rect(::draw2d::graphics * pgraphics)
+   void interaction::simple_ui_draw_frame_window_rect(::draw2d::graphics * pgraphics)
    {
 
       rect rectClient;
 
-      get_client_rect(rectClient);
+      GetClientRect(rectClient);
 
       ::draw2d::brush_sp b(allocer());
 
@@ -814,7 +653,7 @@ namespace simple_ui
    }
 
 
-   void interaction::draw_fuzzy_color_spread(::draw2d::graphics * pgraphics)
+   void interaction::simple_ui_draw_fuzzy_color_spread(::draw2d::graphics * pgraphics)
    {
       /*
       rect rectWindow;
@@ -895,12 +734,12 @@ namespace simple_ui
    }
 
 
-   void interaction::draw_dark_glass(::draw2d::graphics * pgraphics)
+   void interaction::simple_ui_draw_dark_glass(::draw2d::graphics * pgraphics)
    {
 
       rect rectWindow;
 
-      get_window_rect(rectWindow);
+      GetClientRect(rectWindow);
 
       pgraphics->FillSolidRect(rectWindow, ARGB(84, 127, 127, 127));
 
@@ -908,12 +747,12 @@ namespace simple_ui
 
 
 
-   void interaction::draw_pestana(::draw2d::graphics * pgraphics)
+   void interaction::simple_ui_draw_pestana(::draw2d::graphics * pgraphics)
    {
 
       rect rectWindow;
 
-      get_window_rect(rectWindow);
+      GetClientRect(rectWindow);
 
       pgraphics->set_alpha_mode(draw2d::alpha_mode_blend);
 
@@ -938,12 +777,12 @@ namespace simple_ui
 
 
 
-   void interaction::draw_auth_box(::draw2d::graphics * pgraphics)
+   void interaction::simple_ui_draw_auth_box(::draw2d::graphics * pgraphics)
    {
 
       rect rect;
 
-      get_client_rect(rect);
+      GetClientRect(rect);
 
       pgraphics->set_alpha_mode(draw2d::alpha_mode_blend);
 
@@ -1139,39 +978,71 @@ namespace simple_ui
 
    }
 
-   void interaction::translate_mouse_message(int * px, int * py)
-   {
+   //void interaction::translate_mouse_message(int * px, int * py)
+   //{
 
-   }
+   //}
 
 
-   bool interaction::destroy_window()
-   {
+   //bool interaction::destroy_window()
+   //{
+   //
+   //   return true;
+
+   //}
    
-      return true;
 
-   }
-   
+   //LRESULT interaction::message_handler(UINT message, WPARAM wparam, LPARAM lparam)
+   //{
 
-   LRESULT interaction::message_handler(UINT message, WPARAM wparam, LPARAM lparam)
-   {
-
-      UNREFERENCED_PARAMETER(message);
-      UNREFERENCED_PARAMETER(wparam);
-      UNREFERENCED_PARAMETER(lparam);
+   //   UNREFERENCED_PARAMETER(message);
+   //   UNREFERENCED_PARAMETER(wparam);
+   //   UNREFERENCED_PARAMETER(lparam);
 
 
-      return 0;
+   //   return 0;
 
-   }
-      bool interaction::on_move(int32_t x, int32_t y)
+   //}
+   //   bool interaction::on_move(int32_t x, int32_t y)
+   //   {
+   //      return true;
+   //   }
+   //   bool interaction::on_size(int32_t cx, int32_t cy)
+   //   {
+   //      return true;
+   //   }
+
+
+      // the value -1 indicates outside the control,
+      // other values may be control specific and are client hits
+      index interaction::hit_test(point ptScreen,e_element & eelement)
       {
-         return true;
+
+         sp(::user::interaction) pwnd = this;
+
+         rect rectWindow;
+
+         pwnd->GetWindowRect(rectWindow);
+
+         if(rectWindow.contains(ptScreen))
+         {
+
+            eelement = element_client;
+
+            return 0;
+
+         }
+         else
+         {
+
+            eelement = element_none;
+
+            return -1;
+
+         }
+
       }
-      bool interaction::on_size(int32_t cx, int32_t cy)
-      {
-         return true;
-      }
+
 
 } // namespace simple_ui
 

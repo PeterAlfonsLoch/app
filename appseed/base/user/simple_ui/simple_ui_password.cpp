@@ -9,7 +9,6 @@ namespace simple_ui
 
    password::password(sp(base_application) papp) :
       element(papp),
-      interaction(papp),
       edit_box(papp)
    {
 
@@ -22,12 +21,12 @@ namespace simple_ui
 
 
 
-   void password::draw_this(::draw2d::graphics * pgraphics)
+   void password::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
       rect rectClient;
 
-      get_client_rect(rectClient);
+      GetClientRect(rectClient);
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -37,7 +36,7 @@ namespace simple_ui
 
       pgraphics->FillRect(rectClient, br);
 
-      draw_focus_rect(pgraphics);
+      simple_ui_draw_focus_rect(pgraphics);
 
       br->create_solid(ARGB(223, 49, 49, 23));
 
@@ -51,7 +50,11 @@ namespace simple_ui
 
       string str;
 
-      str.append(m_strText.get_length(), '*');
+      string strText;
+
+      GetWindowText(strText);
+
+      str.append(strText.get_length(), '*');
 
       pgraphics->TextOut(rectClient.left + 2, rectClient.top, str);
 

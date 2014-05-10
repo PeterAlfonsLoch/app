@@ -19,7 +19,7 @@ namespace hotplugin
 
       RECT rectWindow;
 
-      get_window_rect(&rectWindow);
+      GetWindowRect(&rectWindow);
 
       int32_t cx = rectWindow.right - rectWindow.left;
       int32_t cy = rectWindow.bottom - rectWindow.top;

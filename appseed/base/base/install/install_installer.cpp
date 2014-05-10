@@ -2419,11 +2419,11 @@ RetryHost:
 
 #else
 
-         simple_shell_launcher launcher1(m_pwindow == NULL ? NULL : m_pwindow->m_window, "open", strStage, " : remove usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
+         simple_shell_launcher launcher1(m_pwindow == NULL ? NULL : m_pwindow->get_safe_handle(), "open", strStage, " : remove usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
 
          launcher1.execute();
 
-         simple_shell_launcher launcher2(m_pwindow == NULL ? NULL : m_pwindow->m_window, "open", strStage, " : install usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
+         simple_shell_launcher launcher2(m_pwindow == NULL ? NULL : m_pwindow->get_safe_handle(),"open",strStage," : install usehostlogin",dir::name(strStage),SW_SHOWNORMAL);
 
          launcher2.execute();
 
@@ -2444,7 +2444,7 @@ RetryHost:
          throw "todo";
 
 #else
-         simple_shell_launcher launcher(m_pwindow == NULL ? NULL : m_pwindow->m_window, "open", strStage, (" : " + str2.substr(0, iPos) + " usehostlogin"), dir::name(strStage), SW_SHOWNORMAL);
+         simple_shell_launcher launcher(m_pwindow == NULL ? NULL : m_pwindow->get_safe_handle(), "open", strStage, (" : " + str2.substr(0, iPos) + " usehostlogin"), dir::name(strStage), SW_SHOWNORMAL);
 
          launcher.execute();
 
@@ -2523,7 +2523,7 @@ RetryHost:
          if(!spa_exec(strExec))
          {
             #ifdef WINDOWSEX
-            ::MessageBox(m_pwindow == NULL ? NULL :m_pwindow->m_window, "Error", "Error", MB_OK);
+            ::MessageBox(m_pwindow->get_safe_handle(), "Error", "Error", MB_OK);
             #endif
          }
          set_progress(((double) i * (0.5 - 0.2) / (double) iCount) + 0.2);
@@ -3070,12 +3070,12 @@ RetryBuildNumber:
 
 #if defined(WINDOWSEX)
 
-      if(m_pwindow != NULL)
-      {
+      //if(m_pwindow != NULL)
+      //{
 
-         m_pwindow->register_window_class(Application.m_hinstance);
+      //   m_pwindow->register_window_class(Application.m_hinstance);
 
-      }
+      //}
 
 #endif
 

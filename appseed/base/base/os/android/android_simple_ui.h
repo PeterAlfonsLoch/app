@@ -9,7 +9,7 @@ namespace os
 
 
    class CLASS_DECL_BASE simple_ui :
-      virtual public ::simple_ui::interaction
+      virtual public ::user::interaction
    {
    public:
 
@@ -47,18 +47,18 @@ namespace os
 
       virtual bool prepare_window(LPCRECT lprect);
 
-      virtual bool show_window(bool bShow = true);
+      virtual bool ShowWindow(int nCmdShow);
 
       virtual bool destroy_window();
 
-      virtual void client_to_screen(POINT * ppt);
+      virtual void ClientToScreen(POINT * ppt);
 
-      virtual void screen_to_client(POINT * ppt);
+      virtual void ScreenToClient(POINT * ppt);
 
       //virtual LRESULT message_handler(UINT message, WPARAM wParam, LPARAM lParam);
 
-      virtual void get_window_rect(RECT * prect);
-      virtual void get_client_rect(RECT * prect);
+      virtual void GetWindowRect(RECT * prect);
+      virtual void GetClientRect(RECT * prect);
 
 
 

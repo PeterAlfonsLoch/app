@@ -774,6 +774,7 @@ namespace message
 
    }
 
+
    template < class T1, class T2>
    void cmd_connect(
       UINT                             uiMessage,
@@ -847,10 +848,42 @@ namespace message
 #endif
 
 #define IGUI_MSG_LINK(param1, param2, param3, param4) \
-   ::message::_connect(param1, param2, param3, param4)
+   ::message::_connect(param1,param2,param3,param4)
 
 #define USER_MESSAGE_LINK(param1, param2, param3, param4) \
-   IGUI_MSG_LINK(::message::param1, param2, param3, param4)
+   IGUI_MSG_LINK(::message::param1,param2,param3,param4)
+
+
+#define IGUI_CREATE(class)       IGUI_MSG_LINK(WM_CREATE, pdispatch, this, &class::_001OnCreate)
+#define IGUI_CHAR(class)         IGUI_MSG_LINK(WM_CHAR, pdispatch, this, &class::_001OnLButtonDown)
+#define IGUI_LBUTTONDOWN(class)  IGUI_MSG_LINK(WM_LBUTTONDOWN, pdispatch, this, &class::_001OnLButtonDown)
+#define IGUI_LBUTTONUP(class)    IGUI_MSG_LINK(WM_LBUTTONUP, pdispatch, this, &class::_001OnLButtonUp)
+
+#define MSG_CREATE         IGUI_CREATE(this_class);
+#define MSG_CHAR           IGUI_CHAR(this_class);
+#define MSG_LBUTTONDOWN    IGUI_LBUTTONDOWN(this_class);
+#define MSG_LBUTTONUP      IGUI_LBUTTONUP(this_class);
+
+// simple declaration of install message handling
+
+
+#define IMH() \
+   virtual void install_message_handling(::message::dispatch * pdispatch)
+
+// simple implementation of install message handling
+
+#define IMPL_IMH(class, base_class) \
+   void class::install_message_handling(::message::dispatch * pdispatch) \
+{ \
+   \
+   typedef class this_class; \
+      base_class::install_message_handling(pdispatch); \
+      \
+
+
+#define END_IMH \
+   \
+   } \
 
 
 

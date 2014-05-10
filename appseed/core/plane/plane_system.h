@@ -203,7 +203,7 @@ namespace plane
 
 #ifdef METROWIN
 
-      virtual bool get_window_rect(LPRECT lprect);
+      virtual bool GetWindowRect(LPRECT lprect);
 
 #endif
 

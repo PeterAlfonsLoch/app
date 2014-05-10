@@ -1706,29 +1706,12 @@ void openURL(const string &url_str) {
 
 #endif
 
-void win_factory_exchange(sp(base_application) papp);
+void node_factory_exchange(sp(base_application) papp);
 
 void base_application::Ex1OnFactoryExchange()
 {
 
-#ifdef CUBE
-
-   win_factory_exchange(this);
-
-#else
-
-   System.factory().creatable_large < ::file::exception >();
-
-   base_library library(this);
-
-   if (!library.open("os", false))
-      throw "failed to do factory exchange";
-
-   PFN_ca2_factory_exchange pfn_ca2_factory_exchange = library.get < PFN_ca2_factory_exchange >("ca2_factory_exchange");
-
-   pfn_ca2_factory_exchange(this);
-
-#endif
+   node_factory_exchange(this);
 
 }
 

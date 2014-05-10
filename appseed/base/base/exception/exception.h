@@ -90,6 +90,11 @@ CLASS_DECL_BASE dump_context & operator<<(dump_context & dumpcontext, const ::da
 
 
 
+// Return TRUE if primitive::memory is sane or print out what is wrong
+CLASS_DECL_BASE bool __check_memory();
+
+// Return TRUE if valid primitive::memory block of nBytes
+CLASS_DECL_BASE bool __is_memory_block(const void * p,UINT nBytes,LONG* plRequestNumber = NULL);
 
 
 

@@ -6,11 +6,10 @@ namespace simple_ui
 
 
    tap::tap(sp(base_application) papp) :
-      element(papp),
-      interaction(papp)
+      element(papp)
    {
 
-      m_strId = "submit";
+      m_id = "submit";
       m_bDown = false;
       m_bMouseMove = false;
 
@@ -22,56 +21,68 @@ namespace simple_ui
    }
 
 
-   void tap::draw_this(::draw2d::graphics * pgraphics)
+   IMPL_IMH(tap, ::simple_ui::interaction)
+      MSG_CREATE
+   END_IMH
+
+
+
+   void tap::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
       //draw_simple(hdc);
 
-      draw_volume(pgraphics);
+      simple_ui_draw_volume(pgraphics);
 
    }
 
 
 
-   bool tap::on_lbutton_down(int32_t x, int32_t y)
+   void tap::_001OnLButtonDown(signal_details * pobj)
    {
 
-      set_focus(this);
+      SCAST_PTR(::message::mouse,pmouse,pobj);
+
+      pmouse->m_bRet = true;
+
+      SetFocus();
 
       m_bDown = true;
 
-      return true;
-
    }
 
-   bool tap::on_lbutton_up(int32_t x, int32_t y)
+   void tap::_001OnLButtonUp(signal_details * pobj)
    {
+
+      SCAST_PTR(::message::mouse,pmouse,pobj);
+
+      pmouse->m_bRet = true;
 
       if (m_bDown)
       {
 
          m_bDown = false;
 
-         on_action(m_strId);
+         on_action(m_id);
 
       }
 
-      return true;
-
    }
 
-   bool tap::on_mouse_move(int32_t x, int32_t y)
+   void tap::_001OnMouseMove(signal_details * pobj)
    {
 
+      SCAST_PTR(::message::mouse,pmouse,pobj);
+
+      pmouse->m_bRet = true;
       m_bMouseMove = true;
 
       //m_pplugin->redraw();
 
-      return true;
 
    }
 
-   bool tap::is_focusable()
+   bool tap::keyboard_focus_is_focusable()
    {
       return true;
    }
@@ -81,7 +92,7 @@ namespace simple_ui
 
       rect rectWindow;
 
-      get_window_rect(&rectWindow);
+      GetWindowRect(&rectWindow);
 
       POINT ptCursor;
 
@@ -99,7 +110,7 @@ namespace simple_ui
 
 
 
-   void tap::draw_simple(::draw2d::graphics * pgraphics)
+   void tap::simple_ui_draw_simple(::draw2d::graphics * pgraphics)
    {
 
       {
@@ -118,21 +129,21 @@ namespace simple_ui
 
          rect rectClient;
 
-         get_client_rect(rectClient);
+         GetClientRect(rectClient);
 
          pgraphics->FillRect(rectClient, br);
 
-         draw_focus_rect(pgraphics);
+         simple_ui_draw_focus_rect(pgraphics);
 
 
       }
 
-      draw_text(pgraphics);
+     simple_ui_draw_text(pgraphics);
 
    }
 
 
-   void tap::draw_volume(::draw2d::graphics * pgraphics)
+   void tap::simple_ui_draw_volume(::draw2d::graphics * pgraphics)
    {
 
       {
@@ -205,7 +216,7 @@ namespace simple_ui
 
          rect rectClient;
 
-         get_client_rect(rectClient);
+         GetClientRect(rectClient);
 
          int32_t iBorderH = height(&rectClient) / 2;
 
@@ -223,7 +234,7 @@ namespace simple_ui
 
          graphics2.DrawRectangle(&pen1, rectClient.left, rectClient.top, width(&rectClient), iBorderH * 2);*/
 
-         draw_focus_rect(pgraphics);
+         simple_ui_draw_focus_rect(pgraphics);
 
          ::draw2d::pen_sp pen(pgraphics, 1.0, crBorderIn);
 
@@ -231,17 +242,17 @@ namespace simple_ui
 
       }
 
-      draw_text(pgraphics);
+      simple_ui_draw_text(pgraphics);
 
    }
 
 
-   void tap::draw_text(::draw2d::graphics * pgraphics)
+   void tap::simple_ui_draw_text(::draw2d::graphics * pgraphics)
    {
 
       rect rectClient;
 
-      get_client_rect(rectClient);
+      GetClientRect(rectClient);
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -269,32 +280,43 @@ namespace simple_ui
 
       pgraphics->SelectObject(f);
 
-      pgraphics->draw_text(m_strText, rectClient, DT_LEFT | DT_BOTTOM);
+      pgraphics->draw_text(get_window_text(), rectClient, DT_LEFT | DT_BOTTOM);
 
    }
 
 
-   bool tap::on_char(int32_t iKey, const string & strChar)
+   void tap::_001OnChar(signal_details * pobj)
    {
+
+      SCAST_PTR(::message::key,pkey,pobj);
+
+      ::user::e_key iKey = pkey->m_ekey;
 
       if (iKey == ::user::key_return || iKey == ::user::key_space)
       {
 
-         on_action(m_strId);
+         on_action(m_id);
 
-         return true;
+         pkey->m_bRet = true;
 
       }
       else if (iKey == ::user::key_tab)
       {
 
-         focus_next();
+         sp(::user::interaction) pui = keyboard_get_next_focusable();
 
-         return true;
+         if(pui.is_set())
+            pui->SetFocus();
+
+         pkey->m_bRet = true;
 
       }
+      else
+      {
 
-      return false;
+         pkey->m_bRet = false;
+
+      }
 
    }
 

@@ -56,7 +56,7 @@ namespace os
    bool simple_ui::show_window(bool bShow)
    {
 
-      if(!::simple_ui::interaction::show_window(bShow))
+      if(!::user::interaction::show_window(bShow))
          return false;
 
       if(bShow)
@@ -393,16 +393,16 @@ return true;
    }
 
 
-   void simple_ui::client_to_screen(POINT * ppt)
+   void simple_ui::ClientToScreen(POINT * ppt)
    {
       //::ClientToScreen(m_window, ppt);
-      ::simple_ui::interaction::client_to_screen(ppt);
+      ::user::interaction::ClientToScreen(ppt);
    }
 
-   void simple_ui::screen_to_client(POINT * ppt)
+   void simple_ui::ScreenToClient(POINT * ppt)
    {
       //::ScreenToClient(m_window, ppt);
-      ::simple_ui::interaction::screen_to_client(ppt);
+      ::user::interaction::ScreenToClient(ppt);
    }
 
    bool simple_ui::on_key_down(uint32_t uiKey)
@@ -468,13 +468,13 @@ return true;
 
 
 
-   void simple_ui::get_window_rect(RECT * prect)
+   void simple_ui::GetWindowRect(RECT * prect)
    {
 
       *prect = m_rect;
 
    }
-   void simple_ui::get_client_rect(RECT * prect)
+   void simple_ui::GetClientRect(RECT * prect)
    {
 
       *prect = m_rect;

@@ -578,6 +578,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_departament.h"
 #include "base_departament_container.h"
 #include "base/xml/xml.h"
+#include "base/user/simple_ui/simple_ui.h"
 #include "base/database/database.h"
 #include "user/user/user_object.h"
 #include "user/user/user_impact.h"
@@ -1163,6 +1164,4 @@ bool ::file::system::output(sp(base_application) papp, const char * pszOutput, T
 
 
 
-
-
-
+#include "app/appseed/base/base/node/node.h"

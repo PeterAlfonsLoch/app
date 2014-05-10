@@ -20,7 +20,7 @@ namespace hotplugin
       static uint32_t s_dwSync = 0;
       static int32_t s_iDelta = 1984 + 1977;
       RECT rectWindow;
-      get_window_rect(&rectWindow);
+      GetWindowRect(&rectWindow);
       int32_t cx = rectWindow.right - rectWindow.left;
       int32_t cy = rectWindow.bottom - rectWindow.top;
       RECT rect;
@@ -41,7 +41,11 @@ namespace hotplugin
 
       pgraphics->SelectObject(brush);
 
-      pgraphics->Rectangle(&m_rect);
+      ::rect rectClient;
+
+      GetClientRect(rectClient);
+
+      pgraphics->Rectangle(rectClient);
 
 
 

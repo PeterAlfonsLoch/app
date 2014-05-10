@@ -6,10 +6,13 @@
 
 
 
-#include "windows_file.h"
-#include "windows_thread.h"
+#include "windows_base_file.h"
 #include "windows_multithreading.h"
 #include "windows_utils.h"
+
+
+
+CLASS_DECL_BASE int_bool __win_init();
 
 
 CLASS_DECL_BASE int_bool os_initialize();

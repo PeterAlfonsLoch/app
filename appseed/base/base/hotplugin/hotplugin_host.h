@@ -51,10 +51,12 @@ namespace hotplugin
 
       virtual void         post_message(UINT uiMessage, WPARAM wparam, LPARAM lparam);
       virtual oswindow         get_host_window();
-      virtual void         get_window_rect(LPRECT lprect);
+      virtual void         GetWindowRect(LPRECT lprect);
 
       // client should implement
-      virtual void   set_window_rect(LPCRECT lpcrect);
+      //using plugin::SetWindowPos;
+      //virtual bool SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
+
 
       // implemented here
       virtual void   set_memory(void * puchMemory, ::count c);
@@ -91,9 +93,9 @@ namespace hotplugin
       using ::hotplugin::plugin::message_handler;
 
 #ifdef WINDOWS
-      virtual LRESULT message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam);
+//      virtual LRESULT message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam);
 #else
-      virtual int32_t message_handler(XEvent * pevent);
+  //    virtual int32_t message_handler(XEvent * pevent);
 #endif
       virtual void start_ca2();
 
@@ -116,8 +118,8 @@ namespace hotplugin
 
       virtual void translate_mouse_message(int * px, int * py);
 
-      virtual bool show_window(bool bShow = true);
-      virtual bool destroy_window();
+      //virtual bool ShowWindow(int nCmdShow);
+      //virtual bool DestroyWindow();
 
 
    };

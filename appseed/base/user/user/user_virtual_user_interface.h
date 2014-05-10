@@ -30,7 +30,8 @@ public:
    virtual void _001WindowMaximize();
    virtual void _001WindowFullScreen();
    virtual void _001WindowRestore();
-   virtual bool SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
+   using ::user::interaction::SetWindowPos;
+   virtual bool SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags = SWP_SHOWWINDOW);
    void SetWindowText(const char * psz);
 
 
@@ -124,7 +125,7 @@ public:
 
    virtual bool post_message(UINT uiMessage, WPARAM wparam, lparam lparam);
 
-   virtual void set_view_port_org(::draw2d::graphics * pgraphics);
+   virtual void set_viewport_org(::draw2d::graphics * pgraphics);
 
 
 };
