@@ -2,7 +2,7 @@
 #include "signal.h"
 
 
-signal_details::signal_details(sp(base_application) papp) :
+signal_details::signal_details(sp(::base::application) papp) :
    element(papp)
 {
    m_iParam    = 0;

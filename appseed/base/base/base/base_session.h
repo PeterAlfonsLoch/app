@@ -4,13 +4,13 @@
 
 
 class CLASS_DECL_BASE base_session :
-   virtual public base_application
+   virtual public ::base::application
 {
 public:
 
 
    ::plane::session *                                       m_pplanesession;
-   string_map < sp(base_application) >                      m_mapApplication;
+   string_map < sp(::base::application) >                      m_mapApplication;
    sp(::userpresence::userpresence)                         m_puserpresence;
    sp(::ifs)                                                m_pifs;
    sp(::fs::remote_native)                                  m_prfs;
@@ -36,7 +36,7 @@ public:
    
    ::core::copydesk & copydesk();
 
-   virtual sp(::base_application) start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext);
+   virtual sp(::::base::application) start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext);
 
    virtual ::visual::cursor * get_cursor();
    virtual void set_cursor(::visual::e_cursor ecursor);

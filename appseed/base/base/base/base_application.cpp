@@ -20,11 +20,11 @@ void openURL(const string &url_str);
 
 
 
-UINT base_application::APPM_LANGUAGE = WM_APP + 117;
-WPARAM base_application::WPARAM_LANGUAGE_UPDATE = 1;
+UINT ::base::application::APPM_LANGUAGE = WM_APP + 117;
+WPARAM ::base::application::WPARAM_LANGUAGE_UPDATE = 1;
 
 
-base_application::base_application() :
+::base::application::::base::application() :
 m_allocer(this),
 m_mutexMatterLocator(this),
 m_mutexStr(this)
@@ -99,15 +99,19 @@ m_mutexStr(this)
 
    m_phtml = NULL;
 
+   m_bShouldInitializeGTwf = true;
+   m_bInitializeProDevianMode = true;
+
+
 
 }
 
-base_application::~base_application()
+::base::application::~::base::application()
 {
 }
 
 
-void base_application::assert_valid() const
+void ::base::application::assert_valid() const
 {
    thread::assert_valid();
 
@@ -122,7 +126,7 @@ void base_application::assert_valid() const
    ASSERT_VALID(m_pdocmanager);*/
 }
 
-void base_application::dump(dump_context & dumpcontext) const
+void ::base::application::dump(dump_context & dumpcontext) const
 {
 
    thread::dump(dumpcontext);
@@ -170,7 +174,7 @@ void base_application::dump(dump_context & dumpcontext) const
 }
 
 
-int32_t base_application::simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle)
+int32_t ::base::application::simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle)
 {
 
 #if defined(WINDOWSEX)
@@ -214,7 +218,7 @@ int32_t application::simple_message_box(sp(::user::interaction) puiOwner, const 
 }
 */
 
-int32_t base_application::simple_message_box(const char * pszMessage, UINT fuStyle)
+int32_t ::base::application::simple_message_box(const char * pszMessage, UINT fuStyle)
 {
 
 #if defined(WINDOWSEX)
@@ -236,7 +240,7 @@ int32_t base_application::simple_message_box(const char * pszMessage, UINT fuSty
 
 }
 
-string base_application::message_box(const string & pszMatter, property_set & propertyset)
+string ::base::application::message_box(const string & pszMatter, property_set & propertyset)
 {
 
    simple_message_box(pszMatter, 0);
@@ -245,7 +249,7 @@ string base_application::message_box(const string & pszMatter, property_set & pr
 
 }
 
-string base_application::load_string(id id)
+string ::base::application::load_string(id id)
 {
    string str;
    if (!load_string(str, id))
@@ -255,7 +259,7 @@ string base_application::load_string(id id)
    return str;
 }
 
-bool base_application::load_string(string & str, id id)
+bool ::base::application::load_string(string & str, id id)
 {
    if (!load_cached_string(str, id, true))
    {
@@ -264,7 +268,7 @@ bool base_application::load_string(string & str, id id)
    return true;
 }
 
-bool base_application::load_cached_string(string & str, id id, bool bLoadStringTable)
+bool ::base::application::load_cached_string(string & str, id id, bool bLoadStringTable)
 {
    ::xml::document doc(this);
    if (!doc.load(id))
@@ -282,7 +286,7 @@ bool base_application::load_cached_string(string & str, id id, bool bLoadStringT
    return true;
 }
 
-bool base_application::load_cached_string_by_id(string & str, id id, const string & pszFallbackValue, bool bLoadStringTable)
+bool ::base::application::load_cached_string_by_id(string & str, id id, const string & pszFallbackValue, bool bLoadStringTable)
 {
 
    synch_lock sl(&m_mutexStr);
@@ -328,7 +332,7 @@ bool base_application::load_cached_string_by_id(string & str, id id, const strin
    return true;
 }
 
-void base_application::load_string_table(const string & pszApp, const string & pszId)
+void ::base::application::load_string_table(const string & pszApp, const string & pszId)
 {
 
    synch_lock sl(&m_mutexStr);
@@ -416,30 +420,30 @@ void base_application::load_string_table(const string & pszApp, const string & p
 
 
 
-void base_application::load_string_table()
+void ::base::application::load_string_table()
 {
    load_string_table("", "");
 }
 
 
-sp(element) base_application::alloc(sp(type) info)
+sp(element) ::base::application::alloc(sp(type) info)
 {
    return System.alloc(this, info);
 }
 
-sp(element) base_application::alloc(const  id & idType)
+sp(element) ::base::application::alloc(const  id & idType)
 {
    return System.alloc(this, idType);
 }
 
-bool base_application::is_system()
+bool ::base::application::is_system()
 {
 
    return false;
 
 }
 
-bool base_application::is_session()
+bool ::base::application::is_session()
 {
 
    return false;
@@ -447,28 +451,28 @@ bool base_application::is_session()
 }
 
 
-bool base_application::is_serviceable()
+bool ::base::application::is_serviceable()
 {
 
    return false;
 
 }
 
-//string base_application::matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);
-//string base_application::dir_matter(const char * pszMatter, const char * pszMatter2 = NULL);
-bool base_application::is_inside_time_dir(const char * pszPath)
-{
-   throw not_implemented(this);
-   return false;
-}
-
-bool base_application::file_is_read_only(const char * pszPath)
+//string ::base::application::matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);
+//string ::base::application::dir_matter(const char * pszMatter, const char * pszMatter2 = NULL);
+bool ::base::application::is_inside_time_dir(const char * pszPath)
 {
    throw not_implemented(this);
    return false;
 }
 
-string base_application::file_as_string(var varFile)
+bool ::base::application::file_is_read_only(const char * pszPath)
+{
+   throw not_implemented(this);
+   return false;
+}
+
+string ::base::application::file_as_string(var varFile)
 {
 
    if (::str::begins_ci(varFile.get_string(), "http://")
@@ -496,84 +500,84 @@ string base_application::file_as_string(var varFile)
 
 }
 
-string base_application::dir_path(const char * psz1, const char * psz2, const char * psz3)
+string ::base::application::dir_path(const char * psz1, const char * psz2, const char * psz3)
 {
    return ::dir::path(psz1, psz2, psz3);
 }
 
-string base_application::dir_name(const char * psz)
+string ::base::application::dir_name(const char * psz)
 {
    return ::dir::name(psz);
 }
 
-bool base_application::dir_mk(const char * psz)
+bool ::base::application::dir_mk(const char * psz)
 {
    return ::dir::mk(psz);
 }
 
-string base_application::file_title(const char * psz)
+string ::base::application::file_title(const char * psz)
 {
    return ::file_title_dup(psz);
 }
-string base_application::file_name(const char * psz)
+string ::base::application::file_name(const char * psz)
 {
    return ::file_name_dup(psz);
 }
 
-bool base_application::app_map_lookup(const char * psz, void * & p)
+bool ::base::application::app_map_lookup(const char * psz, void * & p)
 {
    return m_appmap.Lookup(psz, p) != FALSE;
 }
 
-void base_application::app_map_set(const char * psz, void * p)
+void ::base::application::app_map_set(const char * psz, void * p)
 {
    m_appmap.set_at(psz, p);
 }
 
 
-sp(::command_thread) base_application::command_central()
+sp(::command_thread) ::base::application::command_central()
 {
    return m_pcommandthread;
 }
 
-sp(::command_thread) base_application::command_thread()
+sp(::command_thread) ::base::application::command_thread()
 {
    return m_pcommandthread;
 }
 
-sp(::command_thread) base_application::command()
+sp(::command_thread) ::base::application::command()
 {
    return m_pcommandthread;
 }
 
-sp(::command_thread) base_application::guideline()
+sp(::command_thread) ::base::application::guideline()
 {
    return m_pcommandthread;
 }
 
-sp(::command_thread) base_application::directrix()
+sp(::command_thread) ::base::application::directrix()
 {
    return m_pcommandthread;
 }
 
-sp(::command_thread) base_application::axiom()
+sp(::command_thread) ::base::application::axiom()
 {
    return m_pcommandthread;
 }
 
-bool base_application::verb()
+bool ::base::application::verb()
 {
    axiom()->run();
    return true;
 }
 
-sp(::command_thread) base_application::creation()
+sp(::command_thread) ::base::application::creation()
 {
    return m_pcommandthread;
 }
 
 
-::file::binary_buffer_sp base_application::file_get_file(var varFile, uint32_t uiFlags)
+::file::binary_buffer_sp ::base::application::file_get_file(var varFile, uint32_t uiFlags)
 {
 
    return file().get_file(varFile, uiFlags);
@@ -581,7 +585,7 @@ sp(::command_thread) base_application::creation()
 }
 
 
-application_signal_details::application_signal_details(sp(base_application) papp, class ::signal * psignal, e_application_signal esignal) :
+application_signal_details::application_signal_details(sp(::base::application) papp, class ::signal * psignal, e_application_signal esignal) :
 element(papp),
 ::signal_details(psignal)
 {
@@ -595,7 +599,7 @@ element(papp),
 
 
 
-bool base_application::open_link(const string & strLink, const string & pszTarget)
+bool ::base::application::open_link(const string & strLink, const string & pszTarget)
 {
    if (is_system())
    {
@@ -636,17 +640,17 @@ bool base_application::open_link(const string & strLink, const string & pszTarge
 }
 
 
-::user::interaction_ptr_array & base_application::frames()
+::user::interaction_ptr_array & ::base::application::frames()
 {
    return *m_pframea;
 }
 
-void base_application::add_frame(sp(::user::interaction) pwnd)
+void ::base::application::add_frame(sp(::user::interaction) pwnd)
 {
    m_pframea->add_unique(pwnd);
 }
 
-void base_application::remove_frame(sp(::user::interaction) pwnd)
+void ::base::application::remove_frame(sp(::user::interaction) pwnd)
 {
    m_pframea->remove(pwnd);
    if (GetMainWnd() == pwnd)
@@ -663,7 +667,7 @@ void base_application::remove_frame(sp(::user::interaction) pwnd)
 }
 
 
-thread * base_application::GetThread()
+thread * ::base::application::GetThread()
 {
 
    if (m_pimpl == NULL)
@@ -674,7 +678,7 @@ thread * base_application::GetThread()
 }
 
 
-bool base_application::is_key_pressed(::user::e_key ekey)
+bool ::base::application::is_key_pressed(::user::e_key ekey)
 {
 
    if (is_session())
@@ -747,7 +751,7 @@ bool base_application::is_key_pressed(::user::e_key ekey)
 
 }
 
-void base_application::set_key_pressed(::user::e_key ekey, bool bPressed)
+void ::base::application::set_key_pressed(::user::e_key ekey, bool bPressed)
 {
    if (is_session())
    {
@@ -783,28 +787,28 @@ void base_application::set_key_pressed(::user::e_key ekey, bool bPressed)
 
 
 #if defined(METROWIN) || defined(APPLE_IOS)
-sp(::user::interaction) base_application::window_from_os_data(void * pdata)
+sp(::user::interaction) ::base::application::window_from_os_data(void * pdata)
 {
 
    return m_pimpl->window_from_os_data(pdata);
 
 }
 
-sp(::user::interaction) base_application::window_from_os_data_permanent(void * pdata)
+sp(::user::interaction) ::base::application::window_from_os_data_permanent(void * pdata)
 {
 
    return m_pimpl->window_from_os_data_permanent(pdata);
 
 }
 #else
-::window_sp base_application::window_from_os_data(void * pdata)
+::window_sp ::base::application::window_from_os_data(void * pdata)
 {
 
    return m_pimpl->window_from_os_data(pdata);
 
 }
 
-::window_sp base_application::window_from_os_data_permanent(void * pdata)
+::window_sp ::base::application::window_from_os_data_permanent(void * pdata)
 {
 
    return m_pimpl->window_from_os_data_permanent(pdata);
@@ -814,7 +818,7 @@ sp(::user::interaction) base_application::window_from_os_data_permanent(void * p
 
 
 
-void base_application::DoWaitCursor(int32_t nCode)
+void ::base::application::DoWaitCursor(int32_t nCode)
 {
 
    if (nCode < 0)
@@ -861,7 +865,7 @@ void base_application::DoWaitCursor(int32_t nCode)
 
 }
 
-void base_application::ShowWaitCursor(bool bShow)
+void ::base::application::ShowWaitCursor(bool bShow)
 {
 
    if (m_pimpl == NULL)
@@ -873,7 +877,7 @@ void base_application::ShowWaitCursor(bool bShow)
 
 
 
-void base_application::construct()
+void ::base::application::construct()
 {
 
 }
@@ -887,15 +891,7 @@ void base_application::construct()
 
 
 
-void base_application::LockTempMaps()
-{
-
-   throw interface_only_exception(this);
-
-}
-
-
-bool base_application::UnlockTempMaps(bool bDeleteTemps)
+void ::base::application::LockTempMaps()
 {
 
    throw interface_only_exception(this);
@@ -903,7 +899,15 @@ bool base_application::UnlockTempMaps(bool bDeleteTemps)
 }
 
 
-void base_application::TermThread(HINSTANCE hInstTerm)
+bool ::base::application::UnlockTempMaps(bool bDeleteTemps)
+{
+
+   throw interface_only_exception(this);
+
+}
+
+
+void ::base::application::TermThread(HINSTANCE hInstTerm)
 {
 
    throw interface_only_exception(this);
@@ -912,7 +916,7 @@ void base_application::TermThread(HINSTANCE hInstTerm)
 
 
 /*#ifdef METROWIN
-sp(::user::interaction) base_application::window_from_os_data(void * pdata)
+sp(::user::interaction) ::base::application::window_from_os_data(void * pdata)
 {
 
 throw interface_only_exception(this);
@@ -920,7 +924,7 @@ throw interface_only_exception(this);
 }
 
 
-sp(::user::interaction) base_application::window_from_os_data_permanent(void * pdata)
+sp(::user::interaction) ::base::application::window_from_os_data_permanent(void * pdata)
 {
 
 throw interface_only_exception(this);
@@ -930,7 +934,7 @@ throw interface_only_exception(this);
 
 #endif*/
 
-::window_sp base_application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+::window_sp ::base::application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
 {
 
    throw interface_only_exception(this);
@@ -938,7 +942,7 @@ throw interface_only_exception(this);
 }
 
 
-::window_sp base_application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
+::window_sp ::base::application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
 {
 
    throw interface_only_exception(this);
@@ -946,7 +950,7 @@ throw interface_only_exception(this);
 }
 
 
-string base_application::get_version()
+string ::base::application::get_version()
 {
 
    throw interface_only_exception(this);
@@ -954,7 +958,7 @@ string base_application::get_version()
 }
 
 
-void base_application::set_thread(thread * pthread)
+void ::base::application::set_thread(thread * pthread)
 {
 
    m_pimpl->set_thread(pthread);
@@ -962,7 +966,7 @@ void base_application::set_thread(thread * pthread)
 }
 
 
-void base_application::SetCurrentHandles()
+void ::base::application::SetCurrentHandles()
 {
 
    m_pimpl->SetCurrentHandles();
@@ -1007,7 +1011,7 @@ void base_application::SetCurrentHandles()
 }
 
 
-void base_application::set_env_var(const string & var, const string & value)
+void ::base::application::set_env_var(const string & var, const string & value)
 {
 
    throw interface_only_exception(this);
@@ -1015,7 +1019,7 @@ void base_application::set_env_var(const string & var, const string & value)
 }
 
 
-bool base_application::set_main_init_data(::core::main_init_data * pdata)
+bool ::base::application::set_main_init_data(::core::main_init_data * pdata)
 {
 
    throw interface_only_exception(this);
@@ -1025,7 +1029,7 @@ bool base_application::set_main_init_data(::core::main_init_data * pdata)
 
 
 
-bool base_application::_001OnDDECommand(const char * lpcsz)
+bool ::base::application::_001OnDDECommand(const char * lpcsz)
 {
 
    throw interface_only_exception(this);
@@ -1033,7 +1037,7 @@ bool base_application::_001OnDDECommand(const char * lpcsz)
 }
 
 
-void base_application::_001EnableShellOpen()
+void ::base::application::_001EnableShellOpen()
 {
 
    throw interface_only_exception(this);
@@ -1041,7 +1045,7 @@ void base_application::_001EnableShellOpen()
 }
 
 
-sp(::user::object) base_application::_001OpenDocumentFile(var varFile)
+sp(::user::object) ::base::application::_001OpenDocumentFile(var varFile)
 {
 
    throw interface_only_exception(this);
@@ -1049,7 +1053,7 @@ sp(::user::object) base_application::_001OpenDocumentFile(var varFile)
 }
 
 
-void base_application::_001OnFileNew(signal_details * pobj)
+void ::base::application::_001OnFileNew(signal_details * pobj)
 {
 
    throw interface_only_exception(this);
@@ -1057,7 +1061,7 @@ void base_application::_001OnFileNew(signal_details * pobj)
 }
 
 
-sp(::user::printer) base_application::get_printer(const char * pszDeviceName)
+sp(::user::printer) ::base::application::get_printer(const char * pszDeviceName)
 {
 
    throw interface_only_exception(this);
@@ -1065,7 +1069,7 @@ sp(::user::printer) base_application::get_printer(const char * pszDeviceName)
 }
 
 
-bool base_application::update_module_paths()
+bool ::base::application::update_module_paths()
 {
 
 
@@ -1099,7 +1103,7 @@ bool base_application::update_module_paths()
 
 
 
-string base_application::veriwell_multimedia_music_midi_get_default_library_name()
+string ::base::application::veriwell_multimedia_music_midi_get_default_library_name()
 {
 
    if (m_pimpl == NULL)
@@ -1111,7 +1115,7 @@ string base_application::veriwell_multimedia_music_midi_get_default_library_name
 
 
 
-string base_application::multimedia_audio_mixer_get_default_library_name()
+string ::base::application::multimedia_audio_mixer_get_default_library_name()
 {
 
    if (m_pimpl == NULL)
@@ -1123,7 +1127,7 @@ string base_application::multimedia_audio_mixer_get_default_library_name()
 
 
 
-string base_application::multimedia_audio_get_default_library_name()
+string ::base::application::multimedia_audio_get_default_library_name()
 {
 
    if (m_pimpl == NULL)
@@ -1135,7 +1139,7 @@ string base_application::multimedia_audio_get_default_library_name()
 
 
 
-string base_application::draw2d_get_default_library_name()
+string ::base::application::draw2d_get_default_library_name()
 {
 
    if (m_pimpl == NULL)
@@ -1151,7 +1155,7 @@ string base_application::draw2d_get_default_library_name()
 
 
 
-void base_application::set_locale(const string & lpcsz, ::action::context actioncontext)
+void ::base::application::set_locale(const string & lpcsz, ::action::context actioncontext)
 {
    string strLocale(lpcsz);
    strLocale.trim();
@@ -1159,7 +1163,7 @@ void base_application::set_locale(const string & lpcsz, ::action::context action
    on_set_locale(m_strLocale, actioncontext);
 }
 
-void base_application::set_schema(const string & lpcsz, ::action::context actioncontext)
+void ::base::application::set_schema(const string & lpcsz, ::action::context actioncontext)
 {
    string strSchema(lpcsz);
    strSchema.trim();
@@ -1167,14 +1171,14 @@ void base_application::set_schema(const string & lpcsz, ::action::context action
    on_set_schema(m_strSchema, actioncontext);
 }
 
-void base_application::on_set_locale(const string & lpcsz, ::action::context actioncontext)
+void ::base::application::on_set_locale(const string & lpcsz, ::action::context actioncontext)
 {
    UNREFERENCED_PARAMETER(actioncontext);
    UNREFERENCED_PARAMETER(lpcsz);
    //System.appa_load_string_table();
 }
 
-void base_application::on_set_schema(const string & lpcsz, ::action::context actioncontext)
+void ::base::application::on_set_schema(const string & lpcsz, ::action::context actioncontext)
 {
    UNREFERENCED_PARAMETER(actioncontext);
    UNREFERENCED_PARAMETER(lpcsz);
@@ -1183,7 +1187,7 @@ void base_application::on_set_schema(const string & lpcsz, ::action::context act
 
 
 
-void base_application::process(machine_event_data * pdata)
+void ::base::application::process(machine_event_data * pdata)
 {
    if (pdata->m_fixed.m_bRequestCloseApplication)
    {
@@ -1192,7 +1196,7 @@ void base_application::process(machine_event_data * pdata)
 }
 
 
-void base_application::_001CloseApplication()
+void ::base::application::_001CloseApplication()
 {
 
    throw todo(get_app());
@@ -1203,7 +1207,7 @@ void base_application::_001CloseApplication()
 
 
 
-sp(::user::interaction) base_application::release_capture_uie()
+sp(::user::interaction) ::base::application::release_capture_uie()
 {
 
 #if defined(LINUX)
@@ -1236,7 +1240,7 @@ sp(::user::interaction) base_application::release_capture_uie()
 }
 
 
-sp(::user::interaction) base_application::get_capture_uie()
+sp(::user::interaction) ::base::application::get_capture_uie()
 {
 
 #if defined(METROWIN)
@@ -1284,7 +1288,7 @@ sp(::user::interaction) base_application::get_capture_uie()
 
 
 
-math::math & base_application::math()
+math::math & ::base::application::math()
 {
    return *m_pmath;
 }
@@ -1292,7 +1296,7 @@ math::math & base_application::math()
 
 
 
-::count base_application::get_monitor_count()
+::count ::base::application::get_monitor_count()
 {
 
    return System.get_monitor_count();
@@ -1300,7 +1304,7 @@ math::math & base_application::math()
 }
 
 
-bool base_application::get_monitor_rect(index iMonitor, LPRECT lprect)
+bool ::base::application::get_monitor_rect(index iMonitor, LPRECT lprect)
 {
 
    return System.get_monitor_rect(iMonitor, lprect);
@@ -1308,7 +1312,7 @@ bool base_application::get_monitor_rect(index iMonitor, LPRECT lprect)
 }
 
 
-::count base_application::get_desk_monitor_count()
+::count ::base::application::get_desk_monitor_count()
 {
 
    return System.get_desk_monitor_count();
@@ -1317,7 +1321,7 @@ bool base_application::get_monitor_rect(index iMonitor, LPRECT lprect)
 
 
 
-bool base_application::get_desk_monitor_rect(index iMonitor, LPRECT lprect)
+bool ::base::application::get_desk_monitor_rect(index iMonitor, LPRECT lprect)
 {
 
    return System.get_desk_monitor_rect(iMonitor, lprect);
@@ -1328,18 +1332,18 @@ bool base_application::get_desk_monitor_rect(index iMonitor, LPRECT lprect)
 
 
 
-string base_application::get_locale()
+string ::base::application::get_locale()
 {
    return m_strLocale;
 }
 
-string base_application::get_schema()
+string ::base::application::get_schema()
 {
    return m_strSchema;
 }
 
 
-::user::str_context * base_application::str_context()
+::user::str_context * ::base::application::str_context()
 {
 
    return m_puserstrcontext;
@@ -1347,14 +1351,14 @@ string base_application::get_schema()
 }
 
 
-string base_application::get_locale_schema_dir()
+string ::base::application::get_locale_schema_dir()
 {
 
    return System.dir().simple_path(get_locale(), get_schema());
 
 }
 
-string base_application::get_locale_schema_dir(const string & strLocale)
+string ::base::application::get_locale_schema_dir(const string & strLocale)
 {
 
    if (strLocale.is_empty())
@@ -1364,7 +1368,7 @@ string base_application::get_locale_schema_dir(const string & strLocale)
 
 }
 
-string base_application::get_locale_schema_dir(const string & strLocale, const string & strSchema)
+string ::base::application::get_locale_schema_dir(const string & strLocale, const string & strSchema)
 {
    if (strLocale.is_empty())
    {
@@ -1384,7 +1388,7 @@ string base_application::get_locale_schema_dir(const string & strLocale, const s
 
 
 
-void base_application::get_cursor_pos(LPPOINT lppoint)
+void ::base::application::get_cursor_pos(LPPOINT lppoint)
 {
    if (is_system())
    {
@@ -1416,7 +1420,7 @@ void base_application::get_cursor_pos(LPPOINT lppoint)
 
 
 
-sp(::user::interaction) base_application::get_focus_guie()
+sp(::user::interaction) ::base::application::get_focus_guie()
 {
 
 #if defined (METROWIN)
@@ -1463,7 +1467,7 @@ sp(::user::interaction) base_application::get_focus_guie()
 
 
 
-uint32_t base_application::get_thread_id()
+uint32_t ::base::application::get_thread_id()
 {
    return m_pimpl->get_thread_id();
 }
@@ -1471,7 +1475,7 @@ uint32_t base_application::get_thread_id()
 
 
 
-sp(::user::interaction) base_application::get_active_guie()
+sp(::user::interaction) ::base::application::get_active_guie()
 {
 
 #if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
@@ -1490,7 +1494,7 @@ sp(::user::interaction) base_application::get_active_guie()
 }
 
 
-geometry::geometry & base_application::geometry()
+geometry::geometry & ::base::application::geometry()
 {
 
    return *m_pgeometry;
@@ -1500,7 +1504,7 @@ geometry::geometry & base_application::geometry()
 
 #ifndef METROWIN
 
-void base_application::get_time(timeval *p)
+void ::base::application::get_time(timeval *p)
 {
    m_pimpl->get_time(p);
 }
@@ -1508,7 +1512,7 @@ void base_application::get_time(timeval *p)
 #endif
 
 
-bool base_application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::object) pdocument)
+bool ::base::application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::object) pdocument)
 {
 
    UNREFERENCED_PARAMETER(varFile);
@@ -1518,7 +1522,7 @@ bool base_application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32
 
 }
 
-string CLASS_DECL_BASE base_application::show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
+string CLASS_DECL_BASE ::base::application::show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
 {
 
    return ::fontopus::show_auth_window(this, lprect, strUsername, strSessId, strServerId, strLoginUrl, strFontopusServer);
@@ -1528,7 +1532,7 @@ string CLASS_DECL_BASE base_application::show_auth_window(LPRECT lprect, string 
 
 
 
-bool base_application::get_temp_file_name_template(string & strRet, const char * pszName, const char * pszExtension, const char * pszTemplate)
+bool ::base::application::get_temp_file_name_template(string & strRet, const char * pszName, const char * pszExtension, const char * pszTemplate)
 {
 
 #ifdef METROWIN
@@ -1627,7 +1631,7 @@ bool base_application::get_temp_file_name_template(string & strRet, const char *
 }
 
 
-bool base_application::get_temp_file_name(string & strRet, const char * pszName, const char * pszExtension)
+bool ::base::application::get_temp_file_name(string & strRet, const char * pszName, const char * pszExtension)
 {
 
    return get_temp_file_name_template(strRet, pszName, pszExtension, NULL);
@@ -1636,7 +1640,7 @@ bool base_application::get_temp_file_name(string & strRet, const char * pszName,
 
 
 
-void base_application::get_screen_rect(LPRECT lprect)
+void ::base::application::get_screen_rect(LPRECT lprect)
 {
 #ifdef METROWIN
    if (m_bSessionSynchronizedScreen)
@@ -1706,16 +1710,16 @@ void openURL(const string &url_str) {
 
 #endif
 
-void node_factory_exchange(sp(base_application) papp);
+void node_factory_exchange(sp(::base::application) papp);
 
-void base_application::Ex1OnFactoryExchange()
+void ::base::application::Ex1OnFactoryExchange()
 {
 
    node_factory_exchange(this);
 
 }
 
-::core::savings & base_application::savings()
+::core::savings & ::base::application::savings()
 {
 
    return *m_psavings;
@@ -1723,13 +1727,13 @@ void base_application::Ex1OnFactoryExchange()
 }
 
 
-string base_application::get_ca2_module_folder()
+string ::base::application::get_ca2_module_folder()
 {
    single_lock sl(&m_mutex, true);
    return m_strCa2ModuleFolder;
 }
 
-string base_application::get_ca2_module_file_path()
+string ::base::application::get_ca2_module_file_path()
 {
 
    string strModuleFileName;
@@ -1810,12 +1814,12 @@ finishedCa2Module:;
 
 }
 
-string base_application::get_module_folder()
+string ::base::application::get_module_folder()
 {
    return m_strModuleFolder;
 }
 
-string base_application::get_module_file_path()
+string ::base::application::get_module_file_path()
 {
 
 #ifdef WINDOWSEX
@@ -1850,18 +1854,18 @@ string base_application::get_module_file_path()
 }
 
 
-string base_application::get_module_title()
+string ::base::application::get_module_title()
 {
    return file_title(get_module_file_path());
 }
 
-string base_application::get_module_name()
+string ::base::application::get_module_name()
 {
    return file_name(get_module_file_path());
 }
 
 
-::visual::icon * base_application::set_icon(object * pobject, ::visual::icon * picon, bool bBigIcon)
+::visual::icon * ::base::application::set_icon(object * pobject, ::visual::icon * picon, bool bBigIcon)
 {
 
    ::visual::icon * piconOld = get_icon(pobject, bBigIcon);
@@ -1884,7 +1888,7 @@ string base_application::get_module_name()
 }
 
 
-::visual::icon * base_application::get_icon(object * pobject, bool bBigIcon) const
+::visual::icon * ::base::application::get_icon(object * pobject, bool bBigIcon) const
 {
 
    if (bBigIcon)
@@ -1904,7 +1908,7 @@ string base_application::get_module_name()
 
 
 
-bool base_application::final_handle_exception(::exception::exception & e)
+bool ::base::application::final_handle_exception(::exception::exception & e)
 {
    UNREFERENCED_PARAMETER(e);
    //linux      exit(-1);
@@ -1923,7 +1927,7 @@ bool base_application::final_handle_exception(::exception::exception & e)
 }
 
 
-bool base_application::init_main_data(::core::main_init_data * pdata)
+bool ::base::application::init_main_data(::core::main_init_data * pdata)
 {
 
    return false;
@@ -1933,7 +1937,7 @@ bool base_application::init_main_data(::core::main_init_data * pdata)
 
 
 
-int32_t base_application::main()
+int32_t ::base::application::main()
 {
 
    TRACE(string(typeid(*this).name()) + " main");;
@@ -2048,7 +2052,7 @@ exit_application:
 
 
 
-bool base_application::main_start()
+bool ::base::application::main_start()
 {
 
    TRACE(string(typeid(*this).name()) + " main_start");;
@@ -2105,7 +2109,7 @@ bool base_application::main_start()
 
 
 
-int32_t base_application::on_run()
+int32_t ::base::application::on_run()
 {
    int32_t m_iReturnCode = 0;
 
@@ -2306,7 +2310,7 @@ InitFailure:
 
 
 
-int32_t base_application::pre_run()
+int32_t ::base::application::pre_run()
 {
 
    //      m_dir.m_psystem      = m_psystem;
@@ -2544,7 +2548,7 @@ run:
 
 
 
-bool base_application::InitApplication()
+bool ::base::application::InitApplication()
 {
 
    return true;
@@ -2553,7 +2557,7 @@ bool base_application::InitApplication()
 
 
 
-bool base_application::initial_check_directrix()
+bool ::base::application::initial_check_directrix()
 {
 
    if (directrix()->m_varTopicQuery.has_property("install"))
@@ -2604,7 +2608,7 @@ bool base_application::initial_check_directrix()
 }
 
 
-bool base_application::on_install()
+bool ::base::application::on_install()
 {
 
    return true;
@@ -2612,7 +2616,7 @@ bool base_application::on_install()
 }
 
 
-bool base_application::on_uninstall()
+bool ::base::application::on_uninstall()
 {
 
    return true;
@@ -2620,7 +2624,7 @@ bool base_application::on_uninstall()
 }
 
 
-bool base_application::system_add_app_install(const char * pszId)
+bool ::base::application::system_add_app_install(const char * pszId)
 {
 
    string strId(pszId);
@@ -2690,7 +2694,7 @@ bool base_application::system_add_app_install(const char * pszId)
 
 
 
-bool base_application::os_native_bergedge_start()
+bool ::base::application::os_native_bergedge_start()
 {
 
    return true;
@@ -2820,7 +2824,7 @@ bool base_application::os_native_bergedge_start()
 //}
 
 
-void base_application::on_request(sp(::create_context) pcreatecontext)
+void ::base::application::on_request(sp(::create_context) pcreatecontext)
 {
 
    ::request_interface::on_request(pcreatecontext);
@@ -2863,7 +2867,7 @@ void base_application::on_request(sp(::create_context) pcreatecontext)
 //}
 
 
-int32_t base_application::run()
+int32_t ::base::application::run()
 {
 
    if ((command()->m_varTopicQuery.has_property("install")
@@ -2905,7 +2909,7 @@ int32_t base_application::run()
 }
 
 
-bool base_application::safe_is_running()
+bool ::base::application::safe_is_running()
 {
 
    bool bRunning = false;
@@ -2934,10 +2938,10 @@ bool base_application::safe_is_running()
 }
 
 
-sp(::base_application) base_application::assert_running(const char * pszAppId)
+sp(::::base::application) ::base::application::assert_running(const char * pszAppId)
 {
 
-   sp(::base_application) papp;
+   sp(::::base::application) papp;
 
    papp = System.m_appptra.find_running_defer_try_quit_damaged(pszAppId);
 
@@ -2958,7 +2962,7 @@ sp(::base_application) base_application::assert_running(const char * pszAppId)
 
 
 
-typedef  void(*PFN_ca2_factory_exchange)(sp(base_application) papp);
+typedef  void(*PFN_ca2_factory_exchange)(sp(::base::application) papp);
 
 
 
@@ -2989,7 +2993,7 @@ return NULL;
 
 
 
-bool base_application::is_installing()
+bool ::base::application::is_installing()
 {
 
    return directrix()->has_property("install");
@@ -2997,7 +3001,7 @@ bool base_application::is_installing()
 }
 
 
-bool base_application::is_uninstalling()
+bool ::base::application::is_uninstalling()
 {
 
    return directrix()->has_property("uninstall");
@@ -3005,7 +3009,7 @@ bool base_application::is_uninstalling()
 }
 
 
-bool base_application::create_new_service()
+bool ::base::application::create_new_service()
 {
 
    if (m_pservice != NULL)
@@ -3022,28 +3026,28 @@ bool base_application::create_new_service()
 
 
 
-bool base_application::create_service()
+bool ::base::application::create_service()
 {
 
    return System.os().create_service(this);
 
 }
 
-bool base_application::remove_service()
+bool ::base::application::remove_service()
 {
 
    return System.os().remove_service(this);
 
 }
 
-bool base_application::start_service()
+bool ::base::application::start_service()
 {
 
    return System.os().start_service(this);
 
 }
 
-bool base_application::stop_service()
+bool ::base::application::stop_service()
 {
 
    return System.os().stop_service(this);
@@ -3051,7 +3055,7 @@ bool base_application::stop_service()
 }
 
 
-void base_application::on_service_request(sp(::create_context) pcreatecontext)
+void ::base::application::on_service_request(sp(::create_context) pcreatecontext)
 {
 
    if (!is_serviceable())
@@ -3092,10 +3096,10 @@ void base_application::on_service_request(sp(::create_context) pcreatecontext)
 
 /*
 
-sp(base_application) application::instantiate_application(const char * pszType, const char * pszId, application_bias * pbias)
+sp(::base::application) application::instantiate_application(const char * pszType, const char * pszId, application_bias * pbias)
 {
 
-sp(base_application) papp = NULL;
+sp(::base::application) papp = NULL;
 
 string strId(pszId);
 
@@ -3237,15 +3241,15 @@ App(pbaseapp).m_puiInitialPlaceHolderContainer  = NULL;
     }*/
 
 /*
-   sp(base_application) application::create_application(const char * pszType, const char * pszId, bool bSynch, application_bias * pbias)
+   sp(::base::application) application::create_application(const char * pszType, const char * pszId, bool bSynch, application_bias * pbias)
    {
 
-   sp(base_application) pbaseapp = instantiate_application(pszType, pszId, pbias);
+   sp(::base::application) pbaseapp = instantiate_application(pszType, pszId, pbias);
 
    if (pbaseapp == NULL)
    return NULL;
 
-   sp(base_application) papp = (pbaseapp);
+   sp(::base::application) papp = (pbaseapp);
 
    if (!papp->m_pplaneapp->start_application(bSynch, pbias))
    {
@@ -3332,7 +3336,7 @@ return NULL;
    }
    */
 
-void base_application::fill_locale_schema(::str::international::locale_schema & localeschema, const char * pszLocale, const char * pszSchema)
+void ::base::application::fill_locale_schema(::str::international::locale_schema & localeschema, const char * pszLocale, const char * pszSchema)
 {
 
 
@@ -3360,7 +3364,7 @@ void base_application::fill_locale_schema(::str::international::locale_schema & 
 }
 
 
-void base_application::fill_locale_schema(::str::international::locale_schema & localeschema)
+void ::base::application::fill_locale_schema(::str::international::locale_schema & localeschema)
 {
 
 
@@ -3437,7 +3441,7 @@ void base_application::fill_locale_schema(::str::international::locale_schema & 
 
 
 
-bool base_application::initialize()
+bool ::base::application::initialize()
 {
 
    application_signal_details signal(this, m_psignal, application_signal_initialize);
@@ -3630,7 +3634,7 @@ bool base_application::initialize()
 
 }
 
-bool base_application::process_initialize()
+bool ::base::application::process_initialize()
 {
 
    if (m_bBaseProcessInitialize)
@@ -3756,18 +3760,18 @@ bool base_application::process_initialize()
    m_psockets->construct(this);
 
    if (!m_psockets->initialize1())
-      throw simple_exception(this, "could not initialize (1) sockets for base_application (base_application::construct)");
+      throw simple_exception(this, "could not initialize (1) sockets for ::base::application (::base::application::construct)");
 
 
    if (!m_psockets->initialize())
-      throw simple_exception(this, "could not initialize sockets for base_application (base_application::construct)");
+      throw simple_exception(this, "could not initialize sockets for ::base::application (::base::application::construct)");
 
 
    return true;
 
 }
 
-bool base_application::initialize1()
+bool ::base::application::initialize1()
 {
 
 
@@ -3979,7 +3983,7 @@ bool base_application::initialize1()
 }
 
 
-bool base_application::initialize2()
+bool ::base::application::initialize2()
 {
 
    if (!m_pimpl->initialize2())
@@ -3995,7 +3999,7 @@ bool base_application::initialize2()
 }
 
 
-bool base_application::initialize3()
+bool ::base::application::initialize3()
 {
 
    if (!m_pimpl->initialize3())
@@ -4009,7 +4013,7 @@ bool base_application::initialize3()
 }
 
 
-bool base_application::initialize_instance()
+bool ::base::application::initialize_instance()
 {
 
    if (m_bBaseInitializeInstance)
@@ -4096,7 +4100,7 @@ bool base_application::initialize_instance()
 }
 
 
-int32_t base_application::exit_instance()
+int32_t ::base::application::exit_instance()
 {
 
    try
@@ -4235,7 +4239,7 @@ int32_t base_application::exit_instance()
       try
       {
 
-         ::base_application   * papp = m_pimpl.detach();
+         ::::base::application   * papp = m_pimpl.detach();
 
          if (papp != NULL && papp != this && !papp->is_system())
          {
@@ -4310,12 +4314,12 @@ int32_t base_application::exit_instance()
 
 
 
-bool base_application::is_running()
+bool ::base::application::is_running()
 {
    return is_alive();
 }
 
-service_base * base_application::allocate_new_service()
+service_base * ::base::application::allocate_new_service()
 {
 
    return NULL;
@@ -4328,7 +4332,7 @@ service_base * base_application::allocate_new_service()
 
 
 
-bool base_application::ca_initialize2()
+bool ::base::application::ca_initialize2()
 {
 
    application_signal_details signal(this, m_psignal, application_signal_initialize2);
@@ -4338,7 +4342,7 @@ bool base_application::ca_initialize2()
 }
 
 
-bool base_application::ca_initialize3()
+bool ::base::application::ca_initialize3()
 {
 
    application_signal_details signal(this, m_psignal, application_signal_initialize3);
@@ -4359,7 +4363,7 @@ bool base_application::ca_initialize3()
 
 
 
-bool base_application::check_exclusive()
+bool ::base::application::check_exclusive()
 {
 
 #ifdef METROWIN
@@ -4528,7 +4532,7 @@ bool base_application::check_exclusive()
 
 }
 
-bool base_application::release_exclusive()
+bool ::base::application::release_exclusive()
 {
    if (m_pmutexGlobal.is_set())
    {
@@ -4551,14 +4555,14 @@ bool base_application::release_exclusive()
 
 
 
-bool base_application::ca_process_initialize()
+bool ::base::application::ca_process_initialize()
 {
    application_signal_details signal(this, m_psignal, application_signal_process_initialize);
    m_psignal->emit(&signal);
    return true;
 }
 
-bool base_application::ca_initialize1()
+bool ::base::application::ca_initialize1()
 {
    application_signal_details signal(this, m_psignal, application_signal_initialize1);
    m_psignal->emit(&signal);
@@ -4567,7 +4571,7 @@ bool base_application::ca_initialize1()
 
 
 
-bool base_application::ca_finalize()
+bool ::base::application::ca_finalize()
 {
    application_signal_details signal(this, m_psignal, application_signal_finalize);
    try
@@ -4586,14 +4590,14 @@ bool base_application::ca_finalize()
 
 
 
-string base_application::get_local_mutex_name(const char * pszAppName)
+string ::base::application::get_local_mutex_name(const char * pszAppName)
 {
    string strMutex;
    strMutex.Format("Local\\ca2_application_local_mutex:%s", pszAppName);
    return strMutex;
 }
 
-string base_application::get_local_id_mutex_name(const char * pszAppName, const char * pszId)
+string ::base::application::get_local_id_mutex_name(const char * pszAppName, const char * pszId)
 {
    string strId(pszId);
    string strMutex;
@@ -4601,14 +4605,14 @@ string base_application::get_local_id_mutex_name(const char * pszAppName, const 
    return strMutex;
 }
 
-string base_application::get_global_mutex_name(const char * pszAppName)
+string ::base::application::get_global_mutex_name(const char * pszAppName)
 {
    string strMutex;
    strMutex.Format("Global\\ca2_application_global_mutex:%s", pszAppName);
    return strMutex;
 }
 
-string base_application::get_global_id_mutex_name(const char * pszAppName, const char * pszId)
+string ::base::application::get_global_id_mutex_name(const char * pszAppName, const char * pszId)
 {
    string strId(pszId);
    string strMutex;
@@ -4616,22 +4620,22 @@ string base_application::get_global_id_mutex_name(const char * pszAppName, const
    return strMutex;
 }
 
-string base_application::get_local_mutex_name()
+string ::base::application::get_local_mutex_name()
 {
    return get_local_mutex_name(get_mutex_name_gen());
 }
 
-string base_application::get_local_id_mutex_name()
+string ::base::application::get_local_id_mutex_name()
 {
    return get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id());
 }
 
-string base_application::get_global_mutex_name()
+string ::base::application::get_global_mutex_name()
 {
    return get_global_mutex_name(get_mutex_name_gen());
 }
 
-string base_application::get_global_id_mutex_name()
+string ::base::application::get_global_id_mutex_name()
 {
    return get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_id());
 }
@@ -4639,7 +4643,7 @@ string base_application::get_global_id_mutex_name()
 
 
 
-void base_application::on_exclusive_instance_conflict(EExclusiveInstance eexclusive)
+void ::base::application::on_exclusive_instance_conflict(EExclusiveInstance eexclusive)
 {
    if (eexclusive == ExclusiveInstanceLocal)
    {
@@ -4647,52 +4651,52 @@ void base_application::on_exclusive_instance_conflict(EExclusiveInstance eexclus
    }
 }
 
-void base_application::on_exclusive_instance_local_conflict()
+void ::base::application::on_exclusive_instance_local_conflict()
 {
 }
 
 
-string base_application::get_mutex_name_gen()
+string ::base::application::get_mutex_name_gen()
 {
    return m_strAppName;
 }
 
-string base_application::get_local_mutex_id()
+string ::base::application::get_local_mutex_id()
 {
    return command()->m_varTopicQuery["local_mutex_id"];
 }
 
-string base_application::get_global_mutex_id()
+string ::base::application::get_global_mutex_id()
 {
    return command()->m_varTopicQuery["global_mutex_id"];
 }
 
-::mutex * base_application::get_local_mutex()
+::mutex * ::base::application::get_local_mutex()
 {
    return m_pmutexLocal;
 }
 
-::mutex * base_application::get_global_mutex()
+::mutex * ::base::application::get_global_mutex()
 {
    return m_pmutexGlobal;
 }
 
 
 
-bool base_application::Ex2OnAppInstall()
+bool ::base::application::Ex2OnAppInstall()
 {
    return true;
 }
 
-bool base_application::Ex2OnAppUninstall()
+bool ::base::application::Ex2OnAppUninstall()
 {
    return true;
 }
 
 
-void draw2d_factory_exchange(sp(base_application) papp);
+void draw2d_factory_exchange(sp(::base::application) papp);
 
-void base_application::draw2d_factory_exchange()
+void ::base::application::draw2d_factory_exchange()
 {
 
 #ifdef CUBE
@@ -4737,7 +4741,7 @@ void base_application::draw2d_factory_exchange()
 
 
 
-bool base_application::update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession, const char * pszRoot, const char * pszRelative)
+bool ::base::application::update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession, const char * pszRoot, const char * pszRelative)
 {
 
    ::str::international::locale_schema localeschema(this);
@@ -4763,7 +4767,7 @@ bool base_application::update_appmatter(::sockets::socket_handler & h, ::sockets
 
 }
 
-bool base_application::update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession, const char * pszRoot, const char * pszRelative, const char * pszLocale, const char * pszStyle)
+bool ::base::application::update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession, const char * pszRoot, const char * pszRelative, const char * pszLocale, const char * pszStyle)
 {
 
    string strLocale;
@@ -4849,7 +4853,7 @@ bool base_application::update_appmatter(::sockets::socket_handler & h, ::sockets
 
 
 
-void base_application::on_set_scalar(e_scalar escalar, int64_t iValue)
+void ::base::application::on_set_scalar(e_scalar escalar, int64_t iValue)
 {
 
    //if (escalar == scalar_app_install_progress)
@@ -4880,7 +4884,7 @@ void base_application::on_set_scalar(e_scalar escalar, int64_t iValue)
 }
 
 
-void base_application::get_scalar_minimum(e_scalar escalar, int64_t & i)
+void ::base::application::get_scalar_minimum(e_scalar escalar, int64_t & i)
 {
 
    //if (escalar == scalar_app_install_progress)
@@ -4910,7 +4914,7 @@ void base_application::get_scalar_minimum(e_scalar escalar, int64_t & i)
 
 }
 
-void base_application::get_scalar(e_scalar escalar, int64_t & i)
+void ::base::application::get_scalar(e_scalar escalar, int64_t & i)
 {
 
    //if (escalar == scalar_app_install_progress)
@@ -4940,7 +4944,7 @@ void base_application::get_scalar(e_scalar escalar, int64_t & i)
 
 }
 
-void base_application::get_scalar_maximum(e_scalar escalar, int64_t & i)
+void ::base::application::get_scalar_maximum(e_scalar escalar, int64_t & i)
 {
 
    //if (escalar == scalar_download_size)
@@ -4971,7 +4975,7 @@ void base_application::get_scalar_maximum(e_scalar escalar, int64_t & i)
 }
 
 
-int32_t base_application::simple_message_box_timeout(sp(::user::interaction) pwndOwner, const char * pszMessage, ::duration durationTimeOut, UINT fuStyle)
+int32_t ::base::application::simple_message_box_timeout(sp(::user::interaction) pwndOwner, const char * pszMessage, ::duration durationTimeOut, UINT fuStyle)
 {
    UNREFERENCED_PARAMETER(durationTimeOut);
    return simple_message_box(pwndOwner, pszMessage, fuStyle);
@@ -4979,7 +4983,7 @@ int32_t base_application::simple_message_box_timeout(sp(::user::interaction) pwn
 
 
 
-service_base * base_application::get_service()
+service_base * ::base::application::get_service()
 {
 
    return m_pservice;
@@ -4990,7 +4994,7 @@ service_base * base_application::get_service()
 
 
 
-void base_application::message_queue_message_handler(signal_details * pobj)
+void ::base::application::message_queue_message_handler(signal_details * pobj)
 {
    SCAST_PTR(::message::base, pbase, pobj);
    if (pbase->m_uiMessage == WM_TIMER)
@@ -4999,7 +5003,7 @@ void base_application::message_queue_message_handler(signal_details * pobj)
       if (ptimer->m_nIDEvent == 123)
       {
          m_spuiMessage->KillTimer(ptimer->m_nIDEvent);
-         frames().send_message_to_descendants(::base_application::APPM_LANGUAGE);
+         frames().send_message_to_descendants(::::base::application::APPM_LANGUAGE);
          System.appa_load_string_table();
       }
    }
@@ -5007,10 +5011,10 @@ void base_application::message_queue_message_handler(signal_details * pobj)
 
 
 
-base_application * application_ptra::find_by_app_name(const string & strAppName)
+::base::application * application_ptra::find_by_app_name(const string & strAppName)
 {
 
-   base_application * papp = NULL;
+   ::base::application * papp = NULL;
 
    for (int32_t i = 0; i < get_count(); i++)
    {
@@ -5043,10 +5047,10 @@ base_application * application_ptra::find_by_app_name(const string & strAppName)
 }
 
 
-base_application * application_ptra::find_running_defer_try_quit_damaged(const string & strAppName)
+::base::application * application_ptra::find_running_defer_try_quit_damaged(const string & strAppName)
 {
 
-   sp(base_application) papp = find_by_app_name(strAppName);
+   sp(::base::application) papp = find_by_app_name(strAppName);
 
    if (papp.is_null())
       return NULL;
@@ -5092,7 +5096,7 @@ CLASS_DECL_BASE oswindow get_splash()
 }
 
 
-string base_application::get_license_id()
+string ::base::application::get_license_id()
 {
 
    return m_strAppId;
@@ -5102,10 +5106,20 @@ string base_application::get_license_id()
 
 
 
-::user::user * base_application::create_user()
+::user::user * ::base::application::create_user()
 {
 
    return canew(::user::user(this));
 
+}
+
+
+
+void ::base::application::defer_initialize_twf()
+{
+   if(System.m_ptwf == NULL && (System.m_bShouldInitializeGTwf && m_bShouldInitializeGTwf && m_bInitializeProDevianMode))
+   {
+      System.create_twf();
+   }
 }
 

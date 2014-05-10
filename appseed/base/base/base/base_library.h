@@ -11,8 +11,8 @@ public:
    bool                          m_bAutoClose;
 
 
-   base_library(sp(base_application) papp);
-   base_library(sp(base_application) papp, const char * pszOpen);
+   base_library(sp(::base::application) papp);
+   base_library(sp(::base::application) papp, const char * pszOpen);
    virtual ~base_library();
 
    virtual bool open(const char * pszPath, bool bAutoClose = true);
@@ -37,8 +37,8 @@ class CLASS_DECL_BASE ca2_library :
 {
 public:
 
-   ca2_library(sp(base_application) papp);
-   ca2_library(sp(base_application) papp, const char * pszOpen);
+   ca2_library(sp(::base::application) papp);
+   ca2_library(sp(::base::application) papp, const char * pszOpen);
    virtual ~ca2_library();
 
    virtual bool open(const char * pszPath, bool bAutoClose = true);

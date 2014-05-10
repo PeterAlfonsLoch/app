@@ -9,7 +9,7 @@ namespace fs
 {
 
 
-   link::link(sp(base_application) papp):
+   link::link(sp(::base::application) papp):
       element(papp),
       ::data::data(papp),
       ::fs::native(papp),

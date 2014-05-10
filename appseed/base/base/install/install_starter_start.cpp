@@ -5,7 +5,7 @@ namespace install
 {
 
 
-   starter_start::starter_start(sp(base_application) papp) :
+   starter_start::starter_start(sp(::base::application) papp) :
       element(papp)
    {
 

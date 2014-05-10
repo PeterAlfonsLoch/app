@@ -19,7 +19,7 @@ namespace plane
       m_processsection(this),
 #endif
       m_visual(this),
-      base_system(papp),
+      ::base::system(papp),
       m_emaildepartament(this)
    {
 
@@ -1329,14 +1329,6 @@ namespace plane
    }
 
 
-   bool system::create_twf()
-   {
-      if(m_ptwf != NULL)
-         return true;
-      m_ptwf = alloc(this, System.type_info < ::user::window_draw > ());
-      m_ptwf->twf_start();
-      return true;
-   }
 
    uint32_t system::guess_code_page(const char * pszText)
    {
@@ -2237,7 +2229,7 @@ sp(::command_thread) system::command_thread()
 
 
 simple_app2::simple_app2() :
-base_system(this)
+::base::system(this)
 {
 
    m_iError = 0;

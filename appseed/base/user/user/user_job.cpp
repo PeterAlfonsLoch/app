@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   job::job(sp(base_application) papp) :
+   job::job(sp(::base::application) papp) :
       element(papp),
       ::job(papp)
    {

@@ -714,7 +714,7 @@ public:
 
    rect m_rectDesktop;
 
-   xlib_simple_message_box(sp(base_application) papp) : element(papp), ::user::interaction(papp), ::user::interaction(papp)
+   xlib_simple_message_box(sp(::base::application) papp) : element(papp), ::user::interaction(papp), ::user::interaction(papp)
    {
    }
 
@@ -849,7 +849,7 @@ public:
 
 };
 
-int32_t message_box_show_xlib(base_application * papp, const char * lpText, const char * lpCaption)
+int32_t message_box_show_xlib(::base::application * papp, const char * lpText, const char * lpCaption)
 {
 
    xlib_simple_message_box box(papp);
@@ -864,7 +864,7 @@ int32_t message_box_show_xlib(base_application * papp, const char * lpText, cons
 int32_t WINAPI MessageBoxA_x11(oswindow hWnd, const char * lpText, const char * lpCaption, UINT uType)
 {
 
-   base_application * papp = NULL;
+   ::base::application * papp = NULL;
 
    if (hWnd == NULL || hWnd->get_user_interaction() == NULL || hWnd->get_user_interaction()->get_app() == NULL)
    {

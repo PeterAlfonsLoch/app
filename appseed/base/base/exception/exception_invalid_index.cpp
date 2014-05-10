@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-invalid_index_exception::invalid_index_exception(sp(base_application) papp) :
+invalid_index_exception::invalid_index_exception(sp(::base::application) papp) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),
@@ -12,7 +12,7 @@ invalid_index_exception::invalid_index_exception(sp(base_application) papp) :
 }
 
 
-invalid_index_exception::invalid_index_exception(sp(base_application) papp, const char * pszMessage) :
+invalid_index_exception::invalid_index_exception(sp(::base::application) papp, const char * pszMessage) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),

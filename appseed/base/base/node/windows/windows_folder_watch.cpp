@@ -3,7 +3,7 @@
 namespace windows
 {
 
-   folder_watch::folder_watch(sp(base_application) papp) :
+   folder_watch::folder_watch(sp(::base::application) papp) :
       element(papp),
       thread(papp)
    {

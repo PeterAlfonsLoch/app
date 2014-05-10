@@ -5,7 +5,7 @@ namespace fontopus
 {
 
 
-   fontopus::fontopus(base_application * papp) :
+   fontopus::fontopus(::base::application * papp) :
       element(papp),
       base_departament(papp)
    {
@@ -295,7 +295,7 @@ namespace fontopus
 
          sp(::create_context) spcreatecontext(allocer());
 
-         sp(base_application) papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
+         sp(::base::application) papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
 
          if(papp == NULL)
          {

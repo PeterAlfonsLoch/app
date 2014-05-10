@@ -264,7 +264,7 @@ public:
    uint_ptr                               m_dwAlive;
    bool                                   m_bReady;
    int32_t                                m_iReturnCode;
-   sp(base_application)                   m_pappDelete;
+   sp(::base::application)                   m_pappDelete;
    sp(::user::interaction)                m_puiMain;           // main window (usually same System.GetMainWnd())
    sp(::user::interaction)                m_puiActive;         // active main window (may not be GetMainWnd())
    bool *                                 m_pbReady;
@@ -273,8 +273,8 @@ public:
 
 
    thread();
-   thread(sp(base_application) papp);
-   thread(sp(base_application) papp, __THREADPROC pfnThreadProc, LPVOID pParam);
+   thread(sp(::base::application) papp);
+   thread(sp(::base::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam);
    virtual ~thread();
 
    ///  \brief		starts thread on first call

@@ -28,7 +28,7 @@ namespace core
       flags_ex < e_resource > m_eresourceflagsWarning;
 
 
-      savings(sp(base_application) papp);
+      savings(sp(::base::application) papp);
       virtual ~savings();
 
       virtual void save(e_resource eresource);

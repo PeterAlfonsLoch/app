@@ -14,7 +14,7 @@ virtual_user_interface::virtual_user_interface()
 }
 
 
-virtual_user_interface::virtual_user_interface(sp(base_application) papp) :
+virtual_user_interface::virtual_user_interface(sp(::base::application) papp) :
    element(papp),
    ::user::interaction(papp)
 {

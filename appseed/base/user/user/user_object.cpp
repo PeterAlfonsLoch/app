@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   object::object(sp(base_application) papp) :
+   object::object(sp(::base::application) papp) :
       element(papp),
       ::data::data_container_base(papp),
       m_mutex(NULL)
@@ -127,7 +127,7 @@ namespace user
       m_viewptra.remove_all();
    }
 
-   /*void object::on_alloc(sp(base_application) papp)
+   /*void object::on_alloc(sp(::base::application) papp)
    {
       set_app(papp);
    }*/

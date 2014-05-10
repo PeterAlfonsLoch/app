@@ -13,7 +13,7 @@ namespace file
       m_iPos     = 0;
    }
 
-   string_buffer::string_buffer(sp(base_application) papp) :
+   string_buffer::string_buffer(sp(::base::application) papp) :
       element(papp)
    {
       m_psz       = NULL;

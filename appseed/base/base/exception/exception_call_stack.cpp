@@ -5,11 +5,11 @@ bool call_stack::s_bDoStackTrace = false;
 
 
 #if defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)
-call_stack::call_stack(sp(base_application) papp, uint32_t uiSkip, void * address) :
+call_stack::call_stack(sp(::base::application) papp, uint32_t uiSkip, void * address) :
    element(papp)
    ,m_caller_address(address)
 #else
-call_stack::call_stack(sp(base_application) papp, uint32_t uiSkip) :
+call_stack::call_stack(sp(::base::application) papp, uint32_t uiSkip) :
    element(papp)
 #endif
 {
@@ -39,9 +39,9 @@ string call_stack::get(uint32_t uiSkip)
    UNREFERENCED_PARAMETER(uiSkip);
 
 #ifdef LINUX
-   base_system::eengine().stack_trace(str, uiSkip, m_caller_address);
+   ::base::system::eengine().stack_trace(str, uiSkip, m_caller_address);
 #else
-   base_system::eengine().stack_trace(str, uiSkip);
+   ::base::system::eengine().stack_trace(str, uiSkip);
 #endif
 
    return str;

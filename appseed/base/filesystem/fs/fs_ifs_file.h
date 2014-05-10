@@ -12,7 +12,7 @@ public:
    var                                          m_varFile;
 
 
-   ifs_file(sp(base_application) papp, var varFile);
+   ifs_file(sp(::base::application) papp, var varFile);
    virtual ~ifs_file();
 
    using ::sockets::http_batch_buffer::read;

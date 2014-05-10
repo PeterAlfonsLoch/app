@@ -52,7 +52,7 @@ namespace zip {
         string m_strZipFile;
 
 
-        InFile(sp(base_application) papp);
+        InFile(sp(::base::application) papp);
         virtual ~InFile();
 
 

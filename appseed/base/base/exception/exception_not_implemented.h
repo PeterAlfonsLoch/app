@@ -10,7 +10,7 @@ public:
    string m_strTip;
 
 
-   not_implemented(sp(base_application) papp, const char * pszTip = NULL);
+   not_implemented(sp(::base::application) papp, const char * pszTip = NULL);
    not_implemented(const not_implemented & e);
    virtual ~not_implemented();
 

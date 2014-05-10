@@ -13,7 +13,7 @@ void itemswap(void * pswaparg, index i1, index i2)
 
 bool is_safe_set(void * p);
 
-base_factory::base_factory(sp(base_application) papp) :
+base_factory::base_factory(sp(::base::application) papp) :
    element(papp)
 {
    m_pmutex = new mutex(papp);
@@ -161,7 +161,7 @@ sp(factory_allocator) base_factory::get_allocator(const char * pszType)
 
 
 
-sp(element) base_factory::create(sp(base_application) papp, sp(type) info)
+sp(element) base_factory::create(sp(::base::application) papp, sp(type) info)
 {
 
    if(info->m_spmutex.is_null())

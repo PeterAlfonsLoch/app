@@ -102,7 +102,7 @@ namespace backview
 
             string strCurrentImagePath;
 
-            data_get("::backview::CurrentBackgroundImagePath", ::base_system::idEmpty, strCurrentImagePath);
+            data_get("::backview::CurrentBackgroundImagePath", ::::base::system::idEmpty, strCurrentImagePath);
 
             return m_spfilesetBackgroundImage->get_next_file(strCurrentImagePath);
 
@@ -116,7 +116,7 @@ namespace backview
       void interaction::BackViewSetCurrentBackgroundImagePath(const char * psz)
       {
 
-         data_set("::backview::CurrentBackgroundImagePath", ::base_system::idEmpty, psz);
+         data_set("::backview::CurrentBackgroundImagePath", ::::base::system::idEmpty, psz);
 
       }
 

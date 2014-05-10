@@ -7,7 +7,7 @@ class CLASS_DECL_BASE last_error_exception :
 public:
 
    
-   last_error_exception(sp(base_application) papp);
+   last_error_exception(sp(::base::application) papp);
    ~last_error_exception();
 
 

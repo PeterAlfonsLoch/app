@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   user::user(base_application * papp) :
+   user::user(::base::application * papp) :
       element(papp),
       ::base_departament(papp)
    {
@@ -692,12 +692,12 @@ retry_license:
    }
 
 
-   ::user::front_end_schema * GetUfeSchema(sp(base_application) papp)
+   ::user::front_end_schema * GetUfeSchema(sp(::base::application) papp)
    {
       return App(papp).user()->GetUfeSchema();
    }
 
-   ::user::front_end * GetUfe(sp(base_application) papp)
+   ::user::front_end * GetUfe(sp(::base::application) papp)
    {
       return App(papp).user()->GetUfe();
    }

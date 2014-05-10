@@ -195,7 +195,7 @@ public:
    int64_array &                    int64a();
    var_array &                      vara();
    class duration &                 duration();
-   property_set &                   propset(sp(base_application) papp = NULL);
+   property_set &                   propset(sp(::base::application) papp = NULL);
    property &                       prop();
    const class primitive::memory &  memory() const;
    const stringa &                  stra() const;

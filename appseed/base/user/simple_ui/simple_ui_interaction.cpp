@@ -258,7 +258,7 @@ namespace simple_ui
 
    }
 
-   void interaction::simple_ui_draw_back_01_new(rect m_rect, ::draw2d::graphics * pgraphics)
+   void interaction::simple_ui_draw_back_01_new(rect rect, ::draw2d::graphics * pgraphics)
    {
 
       /*simple_solid_brush br(g, ARGB(255, 255, 255, 255));
@@ -274,6 +274,10 @@ namespace simple_ui
       m_rect.deflate(0, 0, 1, 1);
 
       pgraphics->rectangle(m_rect);*/
+
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+
+      pgraphics->FillSolidRect(rect,ARGB(0,0,0,0));
 
    }
 

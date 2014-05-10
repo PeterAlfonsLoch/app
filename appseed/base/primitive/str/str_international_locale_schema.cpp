@@ -9,7 +9,7 @@ namespace str
    {
 
 
-      locale_schema::locale_schema(sp(base_application) papp) :
+      locale_schema::locale_schema(sp(::base::application) papp) :
          element(papp)
       {
 

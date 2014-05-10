@@ -19,8 +19,8 @@ typedef ::map < sp(element), sp(element), ptra, ptra > map_many;
 
 
 
-class CLASS_DECL_BASE base_system :
-   virtual public base_application
+class CLASS_DECL_BASE ::base::system :
+   virtual public ::base::application
 {
 public:
 
@@ -102,7 +102,7 @@ public:
 
 
 
-   base_system(sp(base_application) papp);
+   ::base::system(sp(::base::application) papp);
 
 
    using thread::construct;
@@ -143,11 +143,11 @@ public:
 
 
 
-   using base_application::alloc;
-   virtual sp(element) alloc(sp(base_application) papp, sp(type) info);
-   virtual sp(element) alloc(sp(base_application) papp, const class id & idType);
+   using ::base::application::alloc;
+   virtual sp(element) alloc(sp(::base::application) papp, sp(type) info);
+   virtual sp(element) alloc(sp(::base::application) papp, const class id & idType);
 
-   virtual sp(element) on_alloc(sp(base_application) papp, sp(type) info);
+   virtual sp(element) on_alloc(sp(::base::application) papp, sp(type) info);
    virtual sp(element) clone();
    virtual sp(element) clone(sp(element) pobj);
    template < typename T >
@@ -188,10 +188,10 @@ public:
    sp(::user::window_draw)               get_twf();
 
 
-   virtual void on_allocation_error(sp(base_application) papp, sp(type) info);
-   //   sp(element) alloc(sp(base_application) papp, sp(type) info);
-   sp(element) alloc(sp(base_application) papp, const std_type_info & info);
-   //   virtual sp(element) on_alloc(sp(base_application) papp, sp(type) info);
+   virtual void on_allocation_error(sp(::base::application) papp, sp(type) info);
+   //   sp(element) alloc(sp(::base::application) papp, sp(type) info);
+   sp(element) alloc(sp(::base::application) papp, const std_type_info & info);
+   //   virtual sp(element) on_alloc(sp(::base::application) papp, sp(type) info);
 
 
    static inline class id id(const ::std_type_info & info);
@@ -297,6 +297,9 @@ public:
    virtual bool assert_running_local(const char * pszAppName, const char * pszId = NULL);
 
 
+   virtual bool create_twf();
+
+
 };
 
 
@@ -328,7 +331,7 @@ inline ::file::input_stream & operator >>( ::file::input_stream &  _Istr, bitset
 
 
 
-void CLASS_DECL_BASE __start_system(base_system * psystem);
+void CLASS_DECL_BASE __start_system(::base::system * psystem);
 
 
 

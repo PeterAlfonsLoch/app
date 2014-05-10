@@ -23,7 +23,7 @@ namespace sockets
    #endif
 
 
-   socket_handler::socket_handler(sp(base_application) papp, logger *plogger) :
+   socket_handler::socket_handler(sp(::base::application) papp, logger *plogger) :
    element(papp),
    base_socket_handler(papp, plogger),
    m_pmutex(NULL),
@@ -47,7 +47,7 @@ namespace sockets
    }
 
 
-   socket_handler::socket_handler(sp(base_application) papp, mutex& mutex, logger * plogger) :
+   socket_handler::socket_handler(sp(::base::application) papp, mutex& mutex, logger * plogger) :
    element(papp),
    base_socket_handler(papp, plogger)
    ,m_pmutex(&mutex)

@@ -451,7 +451,7 @@ namespace str
 
    }
 
-   string  random_replace(sp(base_application) papp, const stringa & straReplacement, const stringa & straSearch, const char * psz)
+   string  random_replace(sp(::base::application) papp, const stringa & straReplacement, const stringa & straSearch, const char * psz)
    {
 
       string str(psz);

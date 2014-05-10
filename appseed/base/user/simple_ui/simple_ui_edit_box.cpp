@@ -5,7 +5,7 @@ namespace simple_ui
 {
 
 
-   edit_box::edit_box(sp(base_application) papp) :
+   edit_box::edit_box(sp(::base::application) papp) :
       element(papp)
    {
 

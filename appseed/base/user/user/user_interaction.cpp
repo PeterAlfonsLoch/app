@@ -46,7 +46,7 @@ namespace user
 
    }
 
-   interaction::interaction(sp(base_application) papp) :
+   interaction::interaction(sp(::base::application) papp) :
       element(papp),
       ::user::window_interface(papp)
    {
@@ -2575,8 +2575,8 @@ namespace user
       //bool bAttach = AttachThreadInput(get_wnd()->get_os_int(), ::GetCurrentThreadId(), TRUE);
 
       m_iaModalThread.add(::get_thread()->get_os_int());
-      sp(base_application) pappThis1 = (m_pthread->m_p);
-      sp(base_application) pappThis2 = (m_pthread);
+      sp(::base::application) pappThis1 = (m_pthread->m_p);
+      sp(::base::application) pappThis2 = (m_pthread);
       // acquire and dispatch messages until the modal state is done
       MESSAGE msg;
 
@@ -3288,7 +3288,7 @@ namespace user
    }
 
 
-   interaction::timer_array::timer_array(sp(base_application) papp) :
+   interaction::timer_array::timer_array(sp(::base::application) papp) :
       element(papp),
       m_mutex(papp)
    {

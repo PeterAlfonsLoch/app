@@ -32,7 +32,7 @@ namespace user
       m_bBackgroundBypass        = false;
    }
 
-   window_interface::window_interface(sp(base_application) papp) :
+   window_interface::window_interface(sp(::base::application) papp) :
       element(papp),
       command_target_interface(papp),
       m_rectParentClient(0, 0, 0, 0)

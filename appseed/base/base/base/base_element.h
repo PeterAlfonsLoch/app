@@ -26,7 +26,7 @@ public:
 
    element();
    element(const element & o);
-   element(sp(base_application) papp);
+   element(sp(::base::application) papp);
    virtual ~element();
 
    virtual void delete_this();
@@ -39,9 +39,9 @@ public:
 
    inline allocatorsp allocer();
 
-   inline base_application * get_app() const { return m_pbaseapp; }
+   inline ::base::application * get_app() const { return m_pbaseapp; }
 
-   virtual void set_app(sp(base_application) papp);
+   virtual void set_app(sp(::base::application) papp);
 
    inline bool is_set_ca_flag(element::flag eflag)
    {
@@ -83,7 +83,7 @@ class CLASS_DECL_BASE allocatorsp :
 public:
 
 
-   allocatorsp(sp(base_application) papp);
+   allocatorsp(sp(::base::application) papp);
 
 
 };

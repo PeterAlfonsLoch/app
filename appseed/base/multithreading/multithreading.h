@@ -61,14 +61,14 @@ CLASS_DECL_BASE void __post_quit_message(int32_t nExitCode);
 typedef UINT(c_cdecl *__THREADPROC)(LPVOID);
 
 
-CLASS_DECL_BASE thread* __begin_thread(sp(base_application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, int32_t epriority = ::core::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+CLASS_DECL_BASE thread* __begin_thread(sp(::base::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, int32_t epriority = ::core::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 /* xxx CLASS_DECL_BASE thread* __begin_thread(sp(::coretype) pThreadClass,
 int32_t nPriority = scheduling_priority_normal, UINT nStackSize = 0,
 uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
 
 
 template < class THREAD_TYPE >
-THREAD_TYPE * __begin_thread(sp(base_application) papp, int32_t epriority = ::core::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
+THREAD_TYPE * __begin_thread(sp(::base::application) papp, int32_t epriority = ::core::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
 {
    THREAD_TYPE * pthread = new THREAD_TYPE(papp);
    pthread->begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);

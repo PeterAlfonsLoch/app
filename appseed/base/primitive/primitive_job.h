@@ -10,7 +10,7 @@ public:
    bool        m_bCancel;
 
 
-   job(sp(base_application) papp);
+   job(sp(::base::application) papp);
    virtual ~job();
 
 

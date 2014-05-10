@@ -12,7 +12,7 @@ namespace windows
    public:
       
 
-      folder_watch(sp(base_application) papp);
+      folder_watch(sp(::base::application) papp);
 
 
       virtual bool watch(const char * pszPath);

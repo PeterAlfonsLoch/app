@@ -4,7 +4,7 @@
 namespace data
 {
 
-   data_listener::data_listener(sp(base_application) papp) :
+   data_listener::data_listener(sp(::base::application) papp) :
       element(papp)
    {
 

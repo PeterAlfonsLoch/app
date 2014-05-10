@@ -5,7 +5,7 @@ namespace windows
 {
 
 
-   file_system::file_system(sp(base_application) papp) :
+   file_system::file_system(sp(::base::application) papp) :
       element(papp)
    {
 
@@ -89,7 +89,7 @@ namespace windows
       vfxGetModuleShortFileName(hInst, strShortName);
    }
 
-   var file_system::length(const string & strPath, sp(base_application) papp)
+   var file_system::length(const string & strPath, sp(::base::application) papp)
    {
       
       var varRet;

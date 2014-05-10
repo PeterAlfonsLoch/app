@@ -12,7 +12,7 @@ namespace windows
 {
 
 
-   os::os(sp(base_application) papp) :
+   os::os(sp(::base::application) papp) :
       element(papp),
       ::core::os(papp)
    {
@@ -515,7 +515,7 @@ namespace windows
 
    }
 
-   bool os::create_service(sp(::base_application) papp)
+   bool os::create_service(sp(::::base::application) papp)
    {
 
       if(papp->m_strAppName.is_empty()
@@ -570,7 +570,7 @@ namespace windows
    }
 
 
-   bool os::remove_service(sp(::base_application) papp)
+   bool os::remove_service(sp(::::base::application) papp)
    {
 
       if(papp->m_strAppName.is_empty()
@@ -613,7 +613,7 @@ namespace windows
 
    }
 
-   bool os::start_service(sp(::base_application) papp)
+   bool os::start_service(sp(::::base::application) papp)
    {
 
       if(papp->m_strAppName.is_empty()
@@ -655,7 +655,7 @@ namespace windows
       return bOk != FALSE;
    }
 
-   bool os::stop_service(sp(::base_application) papp)
+   bool os::stop_service(sp(::::base::application) papp)
    {
 
       if(papp->m_strAppName.is_empty()

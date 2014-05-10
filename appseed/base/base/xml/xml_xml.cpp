@@ -5,7 +5,7 @@ namespace xml
 {
 
 
-   departament::departament(base_application * papp) :
+   departament::departament(::base::application * papp) :
       element(papp),
       base_departament(papp)
    {

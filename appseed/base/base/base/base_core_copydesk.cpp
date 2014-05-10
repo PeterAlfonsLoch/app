@@ -5,7 +5,7 @@ namespace core
 {
 
 
-   copydesk::copydesk(sp(base_application) papp) :
+   copydesk::copydesk(sp(::base::application) papp) :
       element(papp)
    {
    }

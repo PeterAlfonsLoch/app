@@ -8,7 +8,7 @@ namespace core
    uint32_t g_dwFirstTick = ::get_tick_count();
 
 
-   log::log(sp(base_application) papp) :
+   log::log(sp(::base::application) papp) :
       element(papp)
    {
 
@@ -93,7 +93,7 @@ namespace core
    }
 
 
-//   extern sp(base_application) g_papp;
+//   extern sp(::base::application) g_papp;
 
    CLASS_DECL_BASE int32_t SimpleDebugReport(int32_t iReportType, const char * pszFileName,int32_t iLine,const char *,const char * pszFormat, va_list list)
    {

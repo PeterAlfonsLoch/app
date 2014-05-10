@@ -53,14 +53,14 @@ public:
    bool                             m_bOk;
 
 
-   application_signal_details(sp(base_application) papp, class ::signal * psignal, e_application_signal esignal);
+   application_signal_details(sp(::base::application) papp, class ::signal * psignal, e_application_signal esignal);
 
 
 };
 
 
 
-class CLASS_DECL_BASE base_application :
+class CLASS_DECL_BASE ::base::application :
    virtual public thread,
    virtual public ::core::live_object,
    virtual public command_target_interface,
@@ -73,12 +73,12 @@ public:
 
 
 
-   smart_pointer < base_application >              m_pimpl;
+   smart_pointer < ::base::application >              m_pimpl;
    sp(service_base)                                m_pservice;
 
 
 
-   base_system *                                   m_pbasesystem;
+   ::base::system *                                   m_pbasesystem;
    base_session *                                  m_pbasesession;
    ::application *                                 m_pplaneapp; // can be used only from core and upper
    string_to_ptr                                   m_appmap;
@@ -174,10 +174,13 @@ public:
    //int64_t                                         m_iProgressInstallStart;
    //int64_t                                         m_iProgressInstallStep;
    //int64_t                                         m_iProgressInstallEnd;
+   bool                             m_bShouldInitializeGTwf;
+   sp(::user::interaction)          m_pwndMain;
+   bool                                m_bInitializeProDevianMode;
 
 
-   base_application();
-   virtual ~base_application();
+   ::base::application();
+   virtual ~::base::application();
 
 
    virtual sp(element) alloc(sp(type) info);
@@ -499,7 +502,7 @@ public:
 
    virtual void on_service_request(sp(::create_context) pcreatecontext);
 
-   virtual sp(::base_application) assert_running(const char * pszAppId);
+   virtual sp(::::base::application) assert_running(const char * pszAppId);
 
    virtual bool is_running();
 
@@ -543,6 +546,7 @@ public:
 
    virtual void on_request(sp(::create_context) pcreatecontext);
 
+   virtual void defer_initialize_twf();
 
 };
 
@@ -566,7 +570,7 @@ inline sp(::command_thread) object::command_thread()
 
 
 class CLASS_DECL_BASE application_ptra :
-   virtual public spa(base_application)
+   virtual public spa(::base::application)
 {
 public:
 
@@ -575,7 +579,7 @@ public:
 
 
    application_ptra(const application_ptra & a) :
-      spa(base_application)(a)
+      spa(::base::application)(a)
    {
 
    }
@@ -583,7 +587,7 @@ public:
    inline application_ptra & operator = (const application_ptra & a)
    {
 
-      spa(base_application)::operator = (a);
+      spa(::base::application)::operator = (a);
 
       return *this;
 
@@ -593,7 +597,7 @@ public:
 #if defined(MOVE_SEMANTICS)
 
    application_ptra(application_ptra && a) :
-      spa(base_application)(a)
+      spa(::base::application)(a)
    {
 
    }
@@ -601,7 +605,7 @@ public:
    inline application_ptra & operator = (application_ptra && a)
    {
 
-      spa(base_application)::operator = (a);
+      spa(::base::application)::operator = (a);
 
       return *this;
 
@@ -609,9 +613,9 @@ public:
 
 #endif
 
-   base_application * find_by_app_name(const string & strAppName);
+   ::base::application * find_by_app_name(const string & strAppName);
 
-   base_application * find_running_defer_try_quit_damaged(const string & strAppName);
+   ::base::application * find_running_defer_try_quit_damaged(const string & strAppName);
 
 };
 

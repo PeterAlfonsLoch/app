@@ -7,7 +7,7 @@ class strid_map :
 {
 public:
 
-   strid_map(sp(base_application) papp = NULL, ::count nBlockSize = 256);
+   strid_map(sp(::base::application) papp = NULL, ::count nBlockSize = 256);
    strid_map(const strid_map & map);
 
 
@@ -18,7 +18,7 @@ public:
 
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-strid_map < VALUE, ARG_VALUE, HASH, EQUALS >::strid_map(sp(base_application) papp, ::count nBlockSize) :
+strid_map < VALUE, ARG_VALUE, HASH, EQUALS >::strid_map(sp(::base::application) papp, ::count nBlockSize) :
    element(papp),
    map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > (papp, nBlockSize)
 {

@@ -297,7 +297,7 @@ public:
 
 
 
-   raw_array(sp(base_application) papp = NULL, ::count nGrowBy = 32);
+   raw_array(sp(::base::application) papp = NULL, ::count nGrowBy = 32);
    raw_array(const raw_array <TYPE, ARG_TYPE> & a);
    raw_array(::count n);
    raw_array(ARG_TYPE t, ::count n = 1);

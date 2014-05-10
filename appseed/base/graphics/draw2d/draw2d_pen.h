@@ -95,7 +95,7 @@ namespace draw2d
 
       pen_sp(::draw2d::graphics * pgraphics, double dWidth, COLORREF crColor);
 /*
-      pen_sp(sp(base_application) papp, int32_t nPenStyle, int32_t nWidth, const LOGBRUSH* pLogBrush,
+      pen_sp(sp(::base::application) papp, int32_t nPenStyle, int32_t nWidth, const LOGBRUSH* pLogBrush,
          int32_t nStyleCount = 0, const uint32_t* lpStyle = NULL) :
          smart_pointer < pen > (papp)
       {

@@ -40,7 +40,7 @@ namespace xml
    protected:
 
 
-      node(base_application * papp);
+      node(::base::application * papp);
       node(::xml::node * pnodeParent);
 
 

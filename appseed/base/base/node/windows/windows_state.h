@@ -124,7 +124,7 @@ class CCommDlgWrapper;
 //      bool bSystem = FALSE);
 //   ~__MODULE_STATE();
 //
-//   sp(base_application) m_pCurrentWinApp;
+//   sp(::base::application) m_pCurrentWinApp;
 //   HINSTANCE m_hCurrentInstanceHandle;
 //   HINSTANCE m_hCurrentResourceHandle;
 //   const char * m_lpszCurrentAppName;

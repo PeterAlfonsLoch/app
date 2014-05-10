@@ -18,8 +18,8 @@ namespace file
       sp(mutex)                        m_spmutex;
 
 
-      transfer_buffer(sp(base_application) papp, mutex * pmutex = NULL);
-      transfer_buffer(sp(base_application) papp, ::file::memory_buffer * pmemoryfileIn);
+      transfer_buffer(sp(::base::application) papp, mutex * pmutex = NULL);
+      transfer_buffer(sp(::base::application) papp, ::file::memory_buffer * pmemoryfileIn);
       virtual ~transfer_buffer();
 
 

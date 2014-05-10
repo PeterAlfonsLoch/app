@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-command_line::command_line(sp(base_application) papp) :
+command_line::command_line(sp(::base::application) papp) :
    element(papp),
    m_eventReady(papp)
 {

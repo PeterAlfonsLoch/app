@@ -602,7 +602,7 @@ extern CLASS_DECL_BASE oswindow_map * g_pwindowmap;
 /////////////////////////////////////////////////////////////////////////////
 // Standard cleanup called by WinMain and __abort
 
-//void CLASS_DECL_BASE __gen_unregister_window_classes(sp(base_application) papp)
+//void CLASS_DECL_BASE __gen_unregister_window_classes(sp(::base::application) papp)
 //{
 //   
 //   // unregister Window classes

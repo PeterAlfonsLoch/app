@@ -5,7 +5,7 @@ message_queue::message_queue()
 {
 }
 
-message_queue::message_queue(sp(base_application) papp) :
+message_queue::message_queue(sp(::base::application) papp) :
    element(papp)
 {
 }
@@ -14,7 +14,7 @@ message_queue::~message_queue()
 {
 }
 
-bool message_queue::create_message_queue(sp(base_application) papp, const char * pszName)
+bool message_queue::create_message_queue(sp(::base::application) papp, const char * pszName)
 {
 
    set_app(papp);

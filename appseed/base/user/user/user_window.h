@@ -730,7 +730,7 @@ public:
    sp(::user::interaction) m_puiForward;
 
 
-   guie_message_wnd(sp(base_application) papp);
+   guie_message_wnd(sp(::base::application) papp);
 
 
    using window::message_handler;

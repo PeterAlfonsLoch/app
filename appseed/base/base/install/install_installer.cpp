@@ -113,7 +113,7 @@ namespace install
 
 
 
-   installer::installer(sp(base_application) papp) :
+   installer::installer(sp(::base::application) papp) :
       element(papp),
 
       m_mutex(papp),
@@ -3548,7 +3548,7 @@ RetryBuildNumber:
    }
 
 
-   installer::launcher::launcher(sp(base_application) papp, const char * pszVersion, const char * pszBuild) :
+   installer::launcher::launcher(sp(::base::application) papp, const char * pszVersion, const char * pszBuild) :
       element(papp)
    {
 

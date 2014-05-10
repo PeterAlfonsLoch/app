@@ -61,7 +61,7 @@ namespace fontopus
 
 
 
-      login(sp(base_application) papp, int left, int top);
+      login(sp(::base::application) papp, int left, int top);
       virtual ~login();
 
 

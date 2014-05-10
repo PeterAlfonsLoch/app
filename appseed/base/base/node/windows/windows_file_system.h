@@ -18,7 +18,7 @@ namespace windows
    public:
 
 
-      file_system(sp(base_application) papp);
+      file_system(sp(::base::application) papp);
       virtual ~file_system();
 
 
@@ -26,7 +26,7 @@ namespace windows
       virtual bool FullPath(wstring & wstrFullPath, const wstring & wstrPath);
       virtual UINT GetFileName(const char * lpszPathName, string & str);
       virtual void GetModuleShortFileName(HINSTANCE hInst, string & strShortName);
-      virtual var length(const string & strPath, sp(base_application) papp);
+      virtual var length(const string & strPath, sp(::base::application) papp);
 
    };
 

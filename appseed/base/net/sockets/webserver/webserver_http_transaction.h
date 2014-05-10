@@ -17,7 +17,7 @@ namespace http
       string m_null;
 
 
-      transaction(sp(base_application) papp);
+      transaction(sp(::base::application) papp);
       transaction(const transaction & src);
       virtual ~transaction();
 

@@ -84,7 +84,7 @@ namespace windows
       m_bUpdateGraphics = false;
    }
 
-   window::window(sp(base_application) papp):
+   window::window(sp(::base::application) papp):
       element(papp),
       ::user::interaction(papp)
    {
@@ -1384,7 +1384,7 @@ namespace windows
       {
       if(pbase->m_wparam == BERGEDGE_GETAPP)
       {
-      sp(base_application)* ppapp= (sp(base_application)*) pbase->m_lparam;
+      sp(::base::application)* ppapp= (sp(::base::application)*) pbase->m_lparam;
       *ppapp = get_app();
       pbase->m_bRet = true;
       return;
@@ -3107,7 +3107,7 @@ namespace windows
       oswindow m_oswindow;
       HDC m_hdc;
 
-      print_window(sp(base_application) papp,oswindow oswindow,HDC hdc,uint32_t dwTimeout):
+      print_window(sp(::base::application) papp,oswindow oswindow,HDC hdc,uint32_t dwTimeout):
          ::element(papp),
          m_event(papp)
       {
@@ -3918,8 +3918,8 @@ namespace windows
       m_iModalCount++;
 
       m_iaModalThread.add(::GetCurrentThreadId());
-      sp(base_application) pappThis1 = (m_pthread->m_p);
-      sp(base_application) pappThis2 = (m_pthread);
+      sp(::base::application) pappThis1 = (m_pthread->m_p);
+      sp(::base::application) pappThis2 = (m_pthread);
       // acquire and dispatch messages until the modal state is done
       MSG msg;
       for(;;)
@@ -4168,7 +4168,7 @@ namespace windows
    }
 
 
-   /*   ::user::view_update_hint::::user::view_update_hint(sp(base_application) papp) :
+   /*   ::user::view_update_hint::::user::view_update_hint(sp(::base::application) papp) :
    element(papp)
    {
    }
@@ -4440,7 +4440,7 @@ namespace windows
       return m_id;
    }
 
-   /*   guie_message_wnd::guie_message_wnd(sp(base_application) papp) :
+   /*   guie_message_wnd::guie_message_wnd(sp(::base::application) papp) :
    element(papp)
    {
    m_puiForward = NULL;
@@ -6544,7 +6544,7 @@ namespace windows
          Session.get_cursor_pos(&ptCursor);
          ScreenToClient(&ptCursor);
          ::visual::cursor * pcursor = Session.get_cursor();
-         if(pcursor != NULL)
+         if(pcursor != NULL && m_spdib.is_set() && m_spdib->get_graphics() != NULL)
          {
             m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
             pcursor->to(m_spdib->get_graphics(),ptCursor);
@@ -6560,8 +6560,12 @@ namespace windows
          //pgraphics->TextOut(200, 200, strCursor);
       }
 
+      if(m_spdib.is_set() && m_spdib->get_graphics() != NULL)
+      {
 
-      m_spdib->update_window(this,NULL);
+         m_spdib->update_window(this,NULL);
+
+      }
 
       sl.unlock();
 
@@ -6745,7 +6749,7 @@ CLASS_DECL_BASE bool unhook_window_create()
 
 __declspec(thread) char t_szTempClassName[___TEMP_CLASS_NAME_SIZE] ={0};
 
-CLASS_DECL_BASE const char * __register_window_class(sp(base_application) papp,UINT nClassStyle,HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)
+CLASS_DECL_BASE const char * __register_window_class(sp(::base::application) papp,UINT nClassStyle,HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)
 {
    // Returns a temporary string name for the class
    //  Save in a string if you want to use it for a long time

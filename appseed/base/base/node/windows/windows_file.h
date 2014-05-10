@@ -58,9 +58,9 @@ namespace windows
       UINT           m_hFile;
 
 
-      file(sp(base_application) papp);
-      file(sp(base_application) papp, int32_t hFile);
-      file(sp(base_application) papp, const char * lpszFileName, UINT nOpenFlags);
+      file(sp(::base::application) papp);
+      file(sp(::base::application) papp, int32_t hFile);
+      file(sp(::base::application) papp, const char * lpszFileName, UINT nOpenFlags);
       virtual ~file();
 
 
@@ -112,8 +112,8 @@ namespace windows
 
       int32_t OsErrorToException(LONG lOsError);
       int32_t ErrnoToException(int32_t nErrno);
-      void ThrowOsError(sp(base_application) papp, LONG lOsError, const char * lpszFileName = NULL);
-      void ThrowErrno(sp(base_application) papp, int32_t nErrno, const char * lpszFileName = NULL);
+      void ThrowOsError(sp(::base::application) papp, LONG lOsError, const char * lpszFileName = NULL);
+      void ThrowErrno(sp(::base::application) papp, int32_t nErrno, const char * lpszFileName = NULL);
 
 
    }  // namespace file_exception

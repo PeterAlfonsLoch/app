@@ -73,7 +73,7 @@ namespace user
 
 
       window_interface();
-      window_interface(sp(base_application) papp);
+      window_interface(sp(::base::application) papp);
       virtual ~window_interface();
 
 

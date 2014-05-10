@@ -2,7 +2,7 @@
 
 
 simple_app::simple_app() :
-   base_system(this)
+   ::base::system(this)
 {
    
    m_iError = 0;

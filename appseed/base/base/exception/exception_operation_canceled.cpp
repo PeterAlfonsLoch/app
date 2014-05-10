@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-operation_canceled_exception::operation_canceled_exception(sp(base_application) papp) :
+operation_canceled_exception::operation_canceled_exception(sp(::base::application) papp) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),
@@ -11,7 +11,7 @@ operation_canceled_exception::operation_canceled_exception(sp(base_application) 
 }
 
 
-operation_canceled_exception::operation_canceled_exception(sp(base_application) papp, const char * pszMessage) :
+operation_canceled_exception::operation_canceled_exception(sp(::base::application) papp, const char * pszMessage) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),

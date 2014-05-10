@@ -18,7 +18,7 @@ namespace xml
       int32_t tab_base;         // internal usage
       
       
-      disp_option(sp(base_application) papp);
+      disp_option(sp(::base::application) papp);
       
       
    };

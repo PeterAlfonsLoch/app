@@ -8,7 +8,7 @@
 //IMPLEMENT_BASE_FIXED_ALLOC_STATIC(property);
 
 
-void prop_id_debug(sp(base_application) papp);
+void prop_id_debug(sp(::base::application) papp);
 
 
 
@@ -152,7 +152,7 @@ const string_composite str_str_interface::operator[](const char * pszName) const
    return str::empty_string();
 }
 
-property::property(sp(base_application) papp) :
+property::property(sp(::base::application) papp) :
 ::element(papp)
 {
 }
@@ -1338,7 +1338,7 @@ property_map::property_map()
    InitHashTable(64);
 }
 
-property_array::property_array(sp(base_application) papp) :
+property_array::property_array(sp(::base::application) papp) :
    element(papp)
 {
    set_size(0, 64);
@@ -1397,7 +1397,7 @@ string property::get_xml(::xml::disp_option * opt /*= &optDefault*/ )
 
 
 
-void prop_id_debug(sp(base_application) papp)
+void prop_id_debug(sp(::base::application) papp)
 {
 
    comparable_array < ::id > idaSchema;

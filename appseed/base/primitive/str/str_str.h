@@ -99,7 +99,7 @@ namespace str
    string CLASS_DECL_BASE replace(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
    string CLASS_DECL_BASE replace_ci(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
 
-   string CLASS_DECL_BASE random_replace(sp(base_application) papp, const stringa & straReplacement, const stringa & straSearch, const char * psz);
+   string CLASS_DECL_BASE random_replace(sp(::base::application) papp, const stringa & straReplacement, const stringa & straSearch, const char * psz);
 
    strsize CLASS_DECL_BASE find_first(const stringa & straSearch, index & iFound, const string & str, index iStart = 0);
 

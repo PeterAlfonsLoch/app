@@ -20,9 +20,9 @@ void CLASS_DECL_BASE __cdecl _ca2_purecall()
 void __cdecl _null_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers);
 
 
-//sp(base_application)     win_application_create(sp(base_application) pappSystem, const char * pszId);
-//sp(base_application)     win_instantiate_application(sp(base_application) pappSystem, const char * pszId);
-//int32_t                     win_application_procedure(sp(base_application) pappSystem)
+//sp(::base::application)     win_application_create(sp(::base::application) pappSystem, const char * pszId);
+//sp(::base::application)     win_instantiate_application(sp(::base::application) pappSystem, const char * pszId);
+//int32_t                     win_application_procedure(sp(::base::application) pappSystem)
 //UINT c_cdecl          win_application_thread_proc(LPVOID);
 /////////////////////////////////////////////////////////////////////////////
 // Standard WinMain implementation
@@ -153,7 +153,7 @@ CLASS_DECL_BASE int_bool __win_init()
 }
 
 
-CLASS_DECL_BASE int32_t __win_main(sp(base_system) psystem, ::windows::main_init_data * pmaininitdata)
+CLASS_DECL_BASE int32_t __win_main(sp(::base::system) psystem, ::windows::main_init_data * pmaininitdata)
 {
 
    psystem->construct();

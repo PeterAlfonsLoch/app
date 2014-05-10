@@ -18,7 +18,7 @@
 
 string get_error_message(DWORD dwError);
 
-//sp(base_application)     windows_instantiate_application(sp(base_application) pappSystem, const char * pszId);
+//sp(::base::application)     windows_instantiate_application(sp(::base::application) pappSystem, const char * pszId);
 
 /////////////////////////////////////////////////////////////////////////////
 // explicit initialization for general purpose classes
@@ -123,7 +123,7 @@ void CLASS_DECL_BASE __cdecl _null_se_translator(uint32_t uiCode, EXCEPTION_POIN
 
 bool CLASS_DECL_BASE __windows_init();
 
-int32_t CLASS_DECL_BASE __windows_main(sp(base_system) psystem, ::windows::main_init_data * pmaininitdata);
+int32_t CLASS_DECL_BASE __windows_main(sp(::base::system) psystem, ::windows::main_init_data * pmaininitdata);
 
 
 

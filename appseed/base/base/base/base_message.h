@@ -216,7 +216,7 @@ namespace message
 
       virtual void _on_start_user_message_handler();
 
-      virtual sp(base_application) calc_app();
+      virtual sp(::base::application) calc_app();
 
       virtual sp(base) peek_message(LPMESSAGE lpmsg, sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
       virtual sp(base) get_message(LPMESSAGE lpmsg, sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
@@ -323,8 +323,8 @@ namespace message
       bool                       m_bConditional;
       bool                       m_bReflect;
 
-      base(sp(base_application) papp, class ::signal * psignal = NULL);
-      base(sp(base_application) papp, sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
+      base(sp(::base::application) papp, class ::signal * psignal = NULL);
+      base(sp(::base::application) papp, sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
 
 
 
@@ -341,7 +341,7 @@ namespace message
    {
    public:
 
-      create(sp(base_application) papp) : element(papp), message::base(papp) {}
+      create(sp(::base::application) papp) : element(papp), message::base(papp) {}
       LPCREATESTRUCT m_lpcreatestruct;
 
       virtual void set_lresult(LRESULT lresult);
@@ -356,7 +356,7 @@ namespace message
    public:
 
 
-      timer(sp(base_application) papp) : element(papp), message::base(papp) {}
+      timer(sp(::base::application) papp) : element(papp), message::base(papp) {}
       using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
       UINT m_nIDEvent;
@@ -372,7 +372,7 @@ namespace message
       bool  m_bMinimized;
 
 
-      activate(sp(base_application) papp);
+      activate(sp(::base::application) papp);
       using ::message::base::set;
 
       virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
@@ -383,7 +383,7 @@ namespace message
    public:
 
 
-      move(sp(base_application) papp) : element(papp), message::base(papp) {}
+      move(sp(::base::application) papp) : element(papp), message::base(papp) {}
       point m_pt;
    };
 
@@ -392,7 +392,7 @@ namespace message
    public:
 
 
-      size(sp(base_application) papp) : element(papp), message::base(papp) {}
+      size(sp(::base::application) papp) : element(papp), message::base(papp) {}
       UINT     m_nType;
       ::size   m_size;
       using ::message::base::set;
@@ -405,7 +405,7 @@ namespace message
    public:
 
 
-      scroll(sp(base_application) papp) : element(papp), message::base(papp) {}
+      scroll(sp(::base::application) papp) : element(papp), message::base(papp) {}
       UINT              m_nSBCode;
       int32_t           m_nPos;
       sp(::user::interaction)  m_pScrollBar;
@@ -424,7 +424,7 @@ namespace message
       ::visual::e_cursor      m_ecursor;
       bool                    m_bTranslated;
 
-      mouse(sp(base_application) papp);
+      mouse(sp(::base::application) papp);
       virtual ~mouse();
       using ::message::base::set;
 
@@ -437,7 +437,7 @@ namespace message
    public:
 
 
-      mouse_wheel(sp(base_application) papp) : element(papp), mouse(papp) {}
+      mouse_wheel(sp(::base::application) papp) : element(papp), mouse(papp) {}
       UINT     GetFlags();
       int16_t    GetDelta();
       point    GetPoint();
@@ -452,7 +452,7 @@ namespace message
    public:
 
 
-      mouse_activate(sp(base_application) papp) : element(papp), message::base(papp) {}
+      mouse_activate(sp(::base::application) papp) : element(papp), message::base(papp) {}
       sp(::user::interaction) GetDesktopWindow();
       UINT GetHitTest();
       UINT get_message();
@@ -463,7 +463,7 @@ namespace message
    public:
 
 
-      context_menu(sp(base_application) papp) : element(papp), message::base(papp) {}
+      context_menu(sp(::base::application) papp) : element(papp), message::base(papp) {}
       ::window_sp GetWindow();
       point GetPoint();
    };
@@ -474,7 +474,7 @@ namespace message
    public:
 
 
-      set_cursor(sp(base_application) papp) : element(papp), message::base(papp) {}
+      set_cursor(sp(::base::application) papp) : element(papp), message::base(papp) {}
       sp(::user::interaction) m_pWnd;
       UINT m_nHitTest;
       UINT m_message;
@@ -485,7 +485,7 @@ namespace message
    public:
 
 
-      show_window(sp(base_application) papp) : element(papp), message::base(papp) {}
+      show_window(sp(::base::application) papp) : element(papp), message::base(papp) {}
       bool m_bShow;
       UINT  m_nStatus;
       using ::message::base::set;
@@ -497,7 +497,7 @@ namespace message
    public:
 
 
-      on_draw(sp(base_application) papp) : element(papp), message::base(papp) {}
+      on_draw(sp(::base::application) papp) : element(papp), message::base(papp) {}
       ::draw2d::graphics * m_pdc;
    };
 
@@ -509,7 +509,7 @@ namespace message
       ::draw2d::graphics * m_pdc;
 
 
-      erase_bkgnd(sp(base_application) papp);
+      erase_bkgnd(sp(::base::application) papp);
 
       void set_result(bool bResult);
 
@@ -523,7 +523,7 @@ namespace message
    public:
 
 
-      nchittest(sp(base_application) papp) : element(papp), message::base(papp) {}
+      nchittest(sp(::base::application) papp) : element(papp), message::base(papp) {}
       point m_pt;
    };
 
@@ -546,7 +546,7 @@ namespace message
       #endif*/
 
 
-      key(sp(base_application) papp);
+      key(sp(::base::application) papp);
 
       using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
@@ -560,7 +560,7 @@ namespace message
       bool m_bActive;
 
 
-      nc_activate(sp(base_application) papp);
+      nc_activate(sp(::base::application) papp);
 
       using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
@@ -573,7 +573,7 @@ namespace message
    public:
 
 
-      notify(sp(base_application) papp) : element(papp), message::base(papp) {}
+      notify(sp(::base::application) papp) : element(papp), message::base(papp) {}
       LPNMHDR get_lpnmhdr();
       int32_t get_ctrl_id();
    };
@@ -585,7 +585,7 @@ namespace message
    public:
 
 
-      update_cmd_ui(sp(base_application) papp) : element(papp), message::base(papp) {}
+      update_cmd_ui(sp(::base::application) papp) : element(papp), message::base(papp) {}
       cmd_ui *    m_pcmdui;
    };
 
@@ -594,7 +594,7 @@ namespace message
    public:
 
 
-      command(sp(base_application) papp) : element(papp), message::base(papp) {}
+      command(sp(::base::application) papp) : element(papp), message::base(papp) {}
       UINT GetNotifyCode();
       UINT GetId();
       oswindow get_oswindow();
@@ -605,7 +605,7 @@ namespace message
    public:
 
 
-      ctl_color(sp(base_application) papp) : element(papp), message::base(papp) {}
+      ctl_color(sp(::base::application) papp) : element(papp), message::base(papp) {}
       HBRUSH      m_hbrush;
       ::draw2d::graphics *       m_pdc;
       ::window_sp      m_pwnd;
@@ -617,7 +617,7 @@ namespace message
    public:
 
 
-      set_focus(sp(base_application) papp) : element(papp), message::base(papp) {}
+      set_focus(sp(::base::application) papp) : element(papp), message::base(papp) {}
       using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
    };
@@ -628,7 +628,7 @@ namespace message
    {
    public:
 
-      window_pos(sp(base_application) papp) : element(papp), message::base(papp) {}
+      window_pos(sp(::base::application) papp) : element(papp), message::base(papp) {}
       WINDOWPOS * m_pwindowpos;
       using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
@@ -644,7 +644,7 @@ namespace message
    public:
 
 
-      measure_item(sp(base_application) papp) : element(papp), message::base(papp) {}
+      measure_item(sp(::base::application) papp) : element(papp), message::base(papp) {}
       int32_t m_i;
       LPMEASUREITEMSTRUCT m_lpmis;
    };
@@ -656,7 +656,7 @@ namespace message
    public:
 
 
-      nc_calc_size(sp(base_application) papp) : element(papp), message::base(papp) {}
+      nc_calc_size(sp(::base::application) papp) : element(papp), message::base(papp) {}
       NCCALCSIZE_PARAMS * m_pparams;
       bool GetCalcValidRects();
       using ::message::base::set;
@@ -670,7 +670,7 @@ namespace message
    public:
 
 
-      enable(sp(base_application) papp) : element(papp), message::base(papp) {}
+      enable(sp(::base::application) papp) : element(papp), message::base(papp) {}
       bool get_enable();
    };
 

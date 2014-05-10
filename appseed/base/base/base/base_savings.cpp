@@ -3,7 +3,7 @@
 namespace core
 {
 
-   savings::savings(sp(base_application) papp) :
+   savings::savings(sp(::base::application) papp) :
       element(papp)
    {
 

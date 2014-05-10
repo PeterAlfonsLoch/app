@@ -15,7 +15,7 @@ namespace sockets
 
 
 
-      http_batch_buffer(sp(base_application) papp);
+      http_batch_buffer(sp(::base::application) papp);
 
       virtual bool open(const char * lpszFileName, UINT nOpenFlags);
       virtual void close();

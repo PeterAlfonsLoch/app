@@ -20,7 +20,7 @@ namespace file
 {
 
 
-   simple_binary_buffer::simple_binary_buffer(sp(base_application) papp) :
+   simple_binary_buffer::simple_binary_buffer(sp(::base::application) papp) :
       element(papp)
    {
 
@@ -365,7 +365,7 @@ namespace file
    static const char szUnknown[] = "unknown";
 #endif
 
-   void CLASS_DECL_BASE throw_exception(sp(base_application) papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+   void CLASS_DECL_BASE throw_exception(sp(::base::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
    {
    #ifdef DEBUG
       const char * lpsz;

@@ -399,7 +399,7 @@ bool __cdecl __is_idle_message(MSG* pMsg)
 }
 
 
-/*thread* CLASS_DECL_BASE __begin_thread(sp(base_application) papp, __THREADPROC pfnThreadProc, LPVOID pParam,
+/*thread* CLASS_DECL_BASE __begin_thread(sp(::base::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam,
 int32_t nPriority, UINT nStackSize, DWORD dwCreateFlags,
 LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
@@ -420,7 +420,7 @@ VERIFY(pThread->ResumeThread() != (DWORD)-1);
 
 return pThread;
 }*/
-void CLASS_DECL_BASE __end_thread(sp(base_application) papp,UINT nExitCode,bool bDelete)
+void CLASS_DECL_BASE __end_thread(sp(::base::application) papp,UINT nExitCode,bool bDelete)
 {
    // remove current thread object from primitive::memory
    //__MODULE_THREAD_STATE* pState = __get_module_thread_state();
@@ -435,7 +435,7 @@ void CLASS_DECL_BASE __end_thread(sp(base_application) papp,UINT nExitCode,bool 
       }
 
       ASSERT_VALID(pThread);
-      //ASSERT(pThread != System::smart_pointer < sp(base_application)>::m_p);
+      //ASSERT(pThread != System::smart_pointer < sp(::base::application)>::m_p);
 
       if(bDelete)
          pThread->Delete();
@@ -448,7 +448,7 @@ void CLASS_DECL_BASE __end_thread(sp(base_application) papp,UINT nExitCode,bool 
 }
 
 
-void CLASS_DECL_BASE __term_thread(sp(base_application) papp,HINSTANCE hInstTerm)
+void CLASS_DECL_BASE __term_thread(sp(::base::application) papp,HINSTANCE hInstTerm)
 {
    UNREFERENCED_PARAMETER(papp);
    try
@@ -521,7 +521,7 @@ namespace windows
       CommonConstruct();
    }
 
-   thread::thread(sp(base_application) papp):
+   thread::thread(sp(::base::application) papp):
       element(papp),
       message_queue(papp),//,
       //m_evFinish(FALSE, TRUE)
@@ -1958,7 +1958,7 @@ namespace windows
 
 
          //#ifndef ___PORTABLE
-         //         sp(base_application) papp = (get_app());
+         //         sp(::base::application) papp = (get_app());
          //         ___THREAD_STATE* pThreadState = __get_thread_state();
          //         if( pThreadState != NULL )
          //         {
@@ -2019,7 +2019,7 @@ namespace windows
 
       ::windows::thread* pThread = pStartup->pThread;
 
-      //      sp(base_application) papp = (get_app());
+      //      sp(::base::application) papp = (get_app());
       m_evFinish.ResetEvent();
       install_message_handling(pThread);
       m_p->install_message_handling(pThread);

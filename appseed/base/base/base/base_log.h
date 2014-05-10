@@ -77,7 +77,7 @@ namespace core
       int32_t                     m_iDay;
 
 
-      log(sp(base_application) papp);
+      log(sp(::base::application) papp);
       virtual ~log();
 
       virtual void print(const char * psz, ...);

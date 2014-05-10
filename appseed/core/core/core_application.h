@@ -39,7 +39,6 @@ public:
 
 
 
-   bool                                m_bInitializeProDevianMode;
    ::core::main_init_data *            m_pinitmaindata;
    bool                                m_bService;
    ::plane::system *                   m_psystem;
@@ -104,8 +103,6 @@ public:
    //typedef map < object *, object *, property_set, property_set > oset;
    //oset                             m_mapObjectSet;
 
-   bool                             m_bShouldInitializeGTwf;
-   sp(::user::interaction)          m_pwndMain;
 
 
    int32_t                          m_iResourceId;
@@ -681,7 +678,6 @@ public:
 
 
 
-   virtual void defer_initialize_twf();
 
 
 

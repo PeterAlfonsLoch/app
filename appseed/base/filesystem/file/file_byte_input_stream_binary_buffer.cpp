@@ -6,7 +6,7 @@ namespace file
 
 
 
-   byte_input_stream_binary_buffer::byte_input_stream_binary_buffer(sp(base_application) papp, const char * pszFilePath, uint32_t uiFlags) :
+   byte_input_stream_binary_buffer::byte_input_stream_binary_buffer(sp(::base::application) papp, const char * pszFilePath, uint32_t uiFlags) :
       element(papp)
    {
 

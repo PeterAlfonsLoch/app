@@ -17,8 +17,8 @@ namespace zip
       zlib_filefunc_def_s m_filefuncdef;
 
 
-      memory_buffer(sp(base_application) papp);
-      memory_buffer(sp(base_application) papp, ::primitive::memory_base * pmemory);
+      memory_buffer(sp(::base::application) papp);
+      memory_buffer(sp(::base::application) papp, ::primitive::memory_base * pmemory);
       virtual ~memory_buffer();
 
 

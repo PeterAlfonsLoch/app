@@ -7,11 +7,11 @@ class CLASS_DECL_BASE base_departament :
 public:
 
 
-   base_departament(base_application * papp);
+   base_departament(::base::application * papp);
    virtual ~base_departament();
 
 
-   virtual void construct(sp(base_application) papp);
+   virtual void construct(sp(::base::application) papp);
    virtual void connect_to_application_signal();
 
 

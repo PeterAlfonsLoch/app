@@ -111,7 +111,7 @@ public:
    var               m_var;
 
 
-   property(sp(base_application) papp);
+   property(sp(::base::application) papp);
    property();
    property(const property & prop);
    property(id strName);
@@ -666,7 +666,7 @@ class CLASS_DECL_BASE property_array :
 public:
 
 
-   property_array(sp(base_application) papp = NULL);
+   property_array(sp(::base::application) papp = NULL);
 
 
 

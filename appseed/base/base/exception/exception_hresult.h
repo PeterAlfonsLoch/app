@@ -10,7 +10,7 @@ public:
    HRESULT     m_hresult;
 
 
-   hresult_exception(sp(base_application) papp, HRESULT hr);
+   hresult_exception(sp(::base::application) papp, HRESULT hr);
    virtual ~hresult_exception();
 
 

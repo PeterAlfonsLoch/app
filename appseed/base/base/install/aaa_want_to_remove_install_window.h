@@ -28,7 +28,7 @@ namespace install
       RECT                    m_rectWindowDragStart;
 
 
-      window(sp(base_application) papp);
+      window(sp(::base::application) papp);
       ~window();
 
 

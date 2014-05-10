@@ -15,7 +15,7 @@ namespace zip
 
    }
 
-   void Util::ls(sp(base_application) papp, const char * lpszFileName, bool bRecursive, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
+   void Util::ls(sp(::base::application) papp, const char * lpszFileName, bool bRecursive, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
    {
       string strZip;
       string strRemain;
@@ -114,7 +114,7 @@ namespace zip
       }
    }
 
-   void Util::ls_dir(sp(base_application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+   void Util::ls_dir(sp(::base::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
       stringa straPath;
       stringa straTitle;
@@ -148,7 +148,7 @@ namespace zip
 
 
 
-   bool Util::HasSubFolder(sp(base_application) papp, const char * lpszFileName)
+   bool Util::HasSubFolder(sp(::base::application) papp, const char * lpszFileName)
    {
       string strZip;
       if(::str::ends_ci(lpszFileName, ".zip"))
@@ -271,12 +271,12 @@ namespace zip
       return false;
    }
 
-   bool Util::exists(sp(base_application) papp, const char * pszPath)
+   bool Util::exists(sp(::base::application) papp, const char * pszPath)
    {
       return extract(papp, pszPath, NULL);
    }
 
-   bool Util::extract(sp(base_application) papp, const char * lpszFileName, const char * lpszExtractFileName)
+   bool Util::extract(sp(::base::application) papp, const char * lpszFileName, const char * lpszExtractFileName)
    {
 
       InFile infile(papp);
@@ -367,7 +367,7 @@ namespace zip
 
    }
 
-   bool Util::IsUnzipable(sp(base_application) papp, const char * lpszFileName)
+   bool Util::IsUnzipable(sp(::base::application) papp, const char * lpszFileName)
    {
       string str(lpszFileName);
       if(str.get_length() < 4)

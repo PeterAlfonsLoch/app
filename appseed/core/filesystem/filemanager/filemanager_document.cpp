@@ -288,7 +288,7 @@ namespace filemanager
 
       uh.m_pmanager = this;
 
-      if(data_get("InitialBrowsePath", ::base_system::idEmpty, str))
+      if(data_get("InitialBrowsePath", ::::base::system::idEmpty, str))
       {
 
          if(str == "machinefs://")

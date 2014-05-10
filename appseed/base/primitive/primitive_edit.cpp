@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-base_edit::base_edit(sp(base_application) papp) :
+base_edit::base_edit(sp(::base::application) papp) :
    element(papp)
 {
 }

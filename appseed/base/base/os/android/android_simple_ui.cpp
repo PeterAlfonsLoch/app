@@ -6,7 +6,7 @@ namespace os
 
    map < oswindow, oswindow, simple_ui *, simple_ui * > m_windowmap;
 
-   simple_ui::simple_ui(sp(base_application) papp) :
+   simple_ui::simple_ui(sp(::base::application) papp) :
       element(papp),
       interaction(papp)
    {

@@ -2,7 +2,7 @@
 
 
 
-hresult_exception::hresult_exception(sp(base_application) papp, HRESULT hr) :
+hresult_exception::hresult_exception(sp(::base::application) papp, HRESULT hr) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp)

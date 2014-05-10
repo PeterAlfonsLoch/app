@@ -7,7 +7,7 @@ class int_map :
 {
 public:
 
-   int_map(sp(base_application) papp = NULL, ::count nBlockSize = 10);
+   int_map(sp(::base::application) papp = NULL, ::count nBlockSize = 10);
    int_map(const int_map & map);
 
 
@@ -16,7 +16,7 @@ public:
 };
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-int_map < VALUE, ARG_VALUE, HASH, EQUALS >::int_map(sp(base_application) papp, ::count nBlockSize) :
+int_map < VALUE, ARG_VALUE, HASH, EQUALS >::int_map(sp(::base::application) papp, ::count nBlockSize) :
    element(papp),
    map < int32_t, int32_t, VALUE, ARG_VALUE, HASH, EQUALS > (papp, nBlockSize)
 {

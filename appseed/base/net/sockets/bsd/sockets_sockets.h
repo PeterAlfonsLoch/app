@@ -24,7 +24,7 @@
 
 
 
-         sockets(base_application * papp);
+         sockets(::base::application * papp);
          virtual ~sockets();
 
 

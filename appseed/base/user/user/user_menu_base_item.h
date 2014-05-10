@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      menu_base_item(sp(base_application) papp);
+      menu_base_item(sp(::base::application) papp);
       virtual ~menu_base_item();
 
 

@@ -5,7 +5,7 @@ namespace simple_ui
 {
 
 
-   tap::tap(sp(base_application) papp) :
+   tap::tap(sp(::base::application) papp) :
       element(papp)
    {
 

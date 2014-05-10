@@ -19,7 +19,7 @@ public:
 #endif
 
 
-   event(sp(base_application) papp, bool bInitiallyOwn = FALSE, bool bManualReset = FALSE, const char * lpszNAme = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
+   event(sp(::base::application) papp, bool bInitiallyOwn = FALSE, bool bManualReset = FALSE, const char * lpszNAme = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
    virtual ~event()
 #ifdef METROWIN
        { }

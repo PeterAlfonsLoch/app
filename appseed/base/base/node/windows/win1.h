@@ -22,7 +22,7 @@ namespace windows
    CLASS_DECL_BASE HICON       ExtractIcon(HINSTANCE hInst, const char * lpszExeFileName, UINT nIconIndex);
    CLASS_DECL_BASE bool        DeleteFile(const char * lpFileName);
    CLASS_DECL_BASE int32_t         GetMenuStringW(HMENU hMenu, UINT uIDItem, string & str, UINT flags);
-   CLASS_DECL_BASE void        TimeToFileTime(sp(base_application) papp, const ::datetime::time& time, LPFILETIME pFileTime);
+   CLASS_DECL_BASE void        TimeToFileTime(sp(::base::application) papp, const ::datetime::time& time, LPFILETIME pFileTime);
 
 
 } // namespace windows
@@ -61,7 +61,7 @@ void CLASS_DECL_BASE __abort();
 
 
 // helpers for registering your own WNDCLASSes
-CLASS_DECL_BASE const char * __register_window_class(sp(base_application) papp, UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
+CLASS_DECL_BASE const char * __register_window_class(sp(::base::application) papp, UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
 
 CLASS_DECL_BASE bool __register_class(WNDCLASS* lpWndClass);
 
@@ -90,10 +90,10 @@ CLASS_DECL_BASE ::windows::thread * __get_thread();
 CLASS_DECL_BASE void __set_thread(thread * pthread);
 //CLASS_DECL_BASE MSG* __get_current_message();
 
-CLASS_DECL_BASE void __end_thread(sp(base_application) papp, UINT nExitCode, bool bDelete = TRUE);
+CLASS_DECL_BASE void __end_thread(sp(::base::application) papp, UINT nExitCode, bool bDelete = TRUE);
 
 CLASS_DECL_BASE void __init_thread();
-CLASS_DECL_BASE void __term_thread(sp(base_application) papp, HINSTANCE hInstTerm = NULL);
+CLASS_DECL_BASE void __term_thread(sp(::base::application) papp, HINSTANCE hInstTerm = NULL);
 
 /////////////////////////////////////////////////////////////////////////////
 // Global functions for access to the one and only application
@@ -112,7 +112,7 @@ CLASS_DECL_BASE void __term_thread(sp(base_application) papp, HINSTANCE hInstTer
   // __in_z LPTSTR lpCmdLine, __in int32_t nCmdShow);
 CLASS_DECL_BASE void __win_term();
 
-CLASS_DECL_BASE sp(base_application) __get_app();
+CLASS_DECL_BASE sp(::base::application) __get_app();
 //CLASS_DECL_BASE sp(::user::interaction) __get_main_window();
 //CLASS_DECL_BASE HINSTANCE CLASS_DECL_BASE System.m_hInstance;
 CLASS_DECL_BASE HINSTANCE __get_resource_handle();

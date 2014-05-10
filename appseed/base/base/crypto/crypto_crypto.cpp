@@ -18,7 +18,7 @@ namespace crypto
 {
 
 
-   crypto::crypto(sp(base_application) papp) :
+   crypto::crypto(sp(::base::application) papp) :
       element(papp)
    {
    }
@@ -703,7 +703,7 @@ namespace crypto
    }
 
 
-   bool crypto::file_set(var varFile, const char * pszData, const char * pszSalt, sp(base_application) papp)
+   bool crypto::file_set(var varFile, const char * pszData, const char * pszSalt, sp(::base::application) papp)
    {
       primitive::memory memoryEncrypt;
       encrypt(memoryEncrypt, pszData, pszSalt);
@@ -711,7 +711,7 @@ namespace crypto
       return true;
    }
 
-   bool crypto::file_get(var varFile, string & str, const char * pszSalt, sp(base_application) papp)
+   bool crypto::file_get(var varFile, string & str, const char * pszSalt, sp(::base::application) papp)
    {
       primitive::memory memoryEncrypt;
       App(papp).file().as_memory(varFile, memoryEncrypt);
@@ -982,7 +982,7 @@ namespace crypto
    }
 
 
-   rsa::rsa(sp(base_application) papp) :
+   rsa::rsa(sp(::base::application) papp) :
       element(papp),
       m_mutex(papp)
    {
@@ -992,7 +992,7 @@ namespace crypto
    }
 
 
-   rsa::rsa(sp(base_application) papp, const string & nParam)
+   rsa::rsa(sp(::base::application) papp, const string & nParam)
    {
 
 #ifdef MACOS_DEPRECATED
@@ -1123,7 +1123,7 @@ namespace crypto
    }
 
 
-   rsa::rsa(sp(base_application) papp,
+   rsa::rsa(sp(::base::application) papp,
       const string & n,
       const string & e,
       const string & d,

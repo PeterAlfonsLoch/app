@@ -2,7 +2,7 @@
 
 
 
-create_context::create_context(sp(base_application) papp) :
+create_context::create_context(sp(::base::application) papp) :
    element(papp),
    command(papp),
    m_spApplicationBias(allocer()),

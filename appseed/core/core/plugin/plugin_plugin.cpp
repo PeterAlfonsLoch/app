@@ -31,7 +31,6 @@ namespace plugin
       element(papp),
       ::simple_ui::style(papp),
       ::user::interaction(papp),
-      ::user::interaction(papp),
       hotplugin::plugin(papp)
    {
 
@@ -244,12 +243,14 @@ namespace plugin
 
       UNREFERENCED_PARAMETER(lprectOut);
 
-      LPCRECT lprect = &m_rect;
+      ::rect rectClient;
+
+      GetClientRect(rectClient);
 
       try
       {
 
-         ensure_bitmap_data(lprect->right - lprect->left, lprect->bottom - lprect->top, true);
+         ensure_bitmap_data(rectClient.width(), rectClient.height(), true);
 
          if(m_puiHost == NULL)
             return;
@@ -260,7 +261,7 @@ namespace plugin
          if(m_dib.is_null())
             return;
 
-         m_dib->create(lprect->right - lprect->left, lprect->bottom - lprect->top);
+         m_dib->create(rectClient.size());
 
          m_dib->Fill(0, 0, 0, 0);
 
@@ -299,9 +300,9 @@ namespace plugin
 
 #endif
 
-         m_sizeBitmap.cx = abs_dup(lprect->right - lprect->left);
+         m_sizeBitmap.cx = abs_dup(rectClient.width());
 
-         m_sizeBitmap.cy = abs_dup(lprect->bottom - lprect->top);
+         m_sizeBitmap.cy = abs_dup(rectClient.height());
 
          {
 
@@ -1053,7 +1054,7 @@ namespace plugin
    void plugin::set_window_rect(LPCRECT lpcrect)
    {
 
-      m_rect = *lpcrect;
+      SetPlacement(lpcrect);
 
       if(m_puiHost != NULL)
       {
@@ -1062,7 +1063,7 @@ namespace plugin
 
          m_puiHost->m_pimpl->m_bRectOk = true;
 
-         m_puiHost->m_rectParentClient =  m_rect;
+         m_puiHost->m_rectParentClient =  *lpcrect;
 
          m_puiHost->m_rectParentClient.offset(-point64(m_puiHost->m_rectParentClient.top_left()));
 

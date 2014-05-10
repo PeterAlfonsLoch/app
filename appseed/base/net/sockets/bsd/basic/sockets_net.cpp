@@ -18,7 +18,7 @@ namespace sockets
 {
 
 
-   net::net(sp(base_application) papp) :
+   net::net(sp(::base::application) papp) :
       element(papp)
    {
 

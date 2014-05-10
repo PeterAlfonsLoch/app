@@ -7,7 +7,7 @@ class CLASS_DECL_BASE relation_set :
 public:
 
 
-   relation_set(sp(base_application) papp = NULL);
+   relation_set(sp(::base::application) papp = NULL);
    virtual ~relation_set();
 
 

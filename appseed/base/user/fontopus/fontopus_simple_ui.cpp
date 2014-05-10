@@ -10,7 +10,7 @@ namespace fontopus
 {
 
 
-   simple_ui::simple_ui(sp(base_application) papp) :
+   simple_ui::simple_ui(sp(::base::application) papp) :
       element(papp),
       ::simple_ui::style(papp),
       ::user::interaction(papp),
@@ -41,12 +41,12 @@ namespace fontopus
 
       ::user::interaction::install_message_handling(pdispatch);
 
-      IGUI_WIN_MSG_LINK(WM_CHAR,this,pdispatch,&simple_ui::_001OnChar);
-      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,this,pdispatch,&simple_ui::_001OnLButtonDown);
-      IGUI_WIN_MSG_LINK(WM_LBUTTONUP,this,pdispatch,&simple_ui::_001OnLButtonUp);
-      IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,this,pdispatch,&simple_ui::_001OnMouseMove);
-      IGUI_WIN_MSG_LINK(WM_MOVE,this,pdispatch,&simple_ui::_001OnMove);
-      IGUI_WIN_MSG_LINK(WM_SIZE,this,pdispatch,&simple_ui::_001OnSize);
+      IGUI_WIN_MSG_LINK(WM_CHAR,pdispatch,this,&simple_ui::_001OnChar);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pdispatch,this,&simple_ui::_001OnLButtonDown);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONUP,pdispatch,this,&simple_ui::_001OnLButtonUp);
+      IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,pdispatch,this,&simple_ui::_001OnMouseMove);
+      IGUI_WIN_MSG_LINK(WM_MOVE,pdispatch,this,&simple_ui::_001OnMove);
+      IGUI_WIN_MSG_LINK(WM_SIZE,pdispatch,this,&simple_ui::_001OnSize);
 
    }
 
@@ -82,6 +82,11 @@ namespace fontopus
 
    string simple_ui::fontopus(LPRECT lprect)
    {
+
+      Application.defer_initialize_twf();
+
+      if(!CreateEx(WS_EX_LAYERED, NULL, NULL, 0, null_rect(), NULL, "fontopus"))
+         return "";
 
       ::rect rectDesktop;
 
@@ -144,10 +149,10 @@ namespace fontopus
       rectFontopus.right = rectFontopus.left + w;
       rectFontopus.bottom = rectFontopus.top + h;
 
+
+
       m_login.defer_translate(this);
 
-      if (!::user::interaction::create(NULL, ""))
-         return "";
 
       m_login.layout();
 
@@ -566,7 +571,7 @@ namespace fontopus
 
 
 
-   string CLASS_DECL_BASE show_auth_window(base_application * papp, LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
+   string CLASS_DECL_BASE show_auth_window(::base::application * papp, LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
    {
 
       ::fontopus::simple_ui ui(papp);
@@ -576,7 +581,7 @@ namespace fontopus
    }
 
 
-   string CLASS_DECL_BASE get_cred(base_application * papp, LPRECT lprect, string & strUsername, string & strPassword, string strToken, string strTitle)
+   string CLASS_DECL_BASE get_cred(::base::application * papp, LPRECT lprect, string & strUsername, string & strPassword, string strToken, string strTitle)
    {
 
       ::fontopus::simple_ui ui(papp);
@@ -591,7 +596,7 @@ namespace fontopus
 
    }
 
-   string CLASS_DECL_BASE get_cred(base_application * papp, string & strUsername, string & strPassword, string strToken)
+   string CLASS_DECL_BASE get_cred(::base::application * papp, string & strUsername, string & strPassword, string strToken)
    {
 
       string str;
@@ -603,7 +608,7 @@ namespace fontopus
 
    }
 
-   void set_cred(base_application * papp, string strToken, bool bOk, const char * pszUsername, const char * pszPassword)
+   void set_cred(::base::application * papp, string strToken, bool bOk, const char * pszUsername, const char * pszPassword)
    {
 
       if (!bOk)

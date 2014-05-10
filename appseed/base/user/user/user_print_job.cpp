@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   print_job::print_job(sp(base_application) papp) :
+   print_job::print_job(sp(::base::application) papp) :
       element(papp),
       ::print_job(papp),
       ::job(papp),

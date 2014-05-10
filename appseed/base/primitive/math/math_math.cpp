@@ -8,7 +8,7 @@ namespace math
 
 
 
-   math::math(sp(base_application) papp) :
+   math::math(sp(::base::application) papp) :
       element(papp),
       m_mutex(papp)
    {

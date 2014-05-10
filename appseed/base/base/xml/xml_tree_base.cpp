@@ -3,14 +3,14 @@
 namespace xml
 {
 
-   tree_base::tree_base(sp(base_application) papp) :
+   tree_base::tree_base(sp(::base::application) papp) :
       element(papp),
       m_varexchange(papp)
    {
       m_pschema = NULL;
    }
 
-   tree_base::tree_base(sp(base_application) papp, tree_schema * pschema) :
+   tree_base::tree_base(sp(::base::application) papp, tree_schema * pschema) :
       element(papp),
       m_varexchange(papp)
    {

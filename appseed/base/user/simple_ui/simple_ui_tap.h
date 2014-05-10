@@ -15,7 +15,7 @@ namespace simple_ui
       bool m_bMouseMove;
 
 
-      tap(sp(base_application) papp);
+      tap(sp(::base::application) papp);
       virtual ~tap();
 
       IMH();

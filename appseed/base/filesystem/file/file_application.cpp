@@ -484,7 +484,7 @@ namespace file
       else if(::str::begins_eat_ci(strPath, "matter://"))
       {
 
-         sp(base_application) papp = NULL;
+         sp(::base::application) papp = NULL;
 
          if(System.url().get_server("matter://" + strPath) == m_pbaseapp->m_strAppName)
          {

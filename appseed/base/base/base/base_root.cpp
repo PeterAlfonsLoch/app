@@ -10,7 +10,7 @@ root::root()
 }
 
 
-root::root(sp(base_application) papp) :
+root::root(sp(::base::application) papp) :
    m_pbaseapp(papp)
 {
 

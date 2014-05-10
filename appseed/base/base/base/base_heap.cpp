@@ -964,16 +964,16 @@ END_EXTERN_C
 void create_id_space()
 {
 
-   base_system::s_pidspace = new id_space();
+   ::base::system::s_pidspace = new id_space();
 
 }
 
 void destroy_id_space()
 {
 
-   delete base_system::s_pidspace;
+   delete ::base::system::s_pidspace;
 
-   base_system::s_pidspace = NULL;
+   ::base::system::s_pidspace = NULL;
 
 }
 

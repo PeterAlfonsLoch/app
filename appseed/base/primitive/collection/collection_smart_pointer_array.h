@@ -44,7 +44,7 @@ public:
    }
 
 
-   smart_pointer_array(sp(base_application) papp) :
+   smart_pointer_array(sp(::base::application) papp) :
       element(papp),
       array < smart_pointer < T > >(papp)
    {

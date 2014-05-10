@@ -13,7 +13,7 @@ namespace core
    public:
 
 
-      sp(base_application)     m_pbaseapp;
+      sp(::base::application)     m_pbaseapp;
       const char * const      m_pszFileName;
       const int32_t               m_nLineNo;
       string                  m_str;
@@ -33,17 +33,17 @@ namespace core
 
 #endif
 
-      trace_add_file_and_line(sp(base_application) papp, const char *pszFileName, int32_t nLineNo)
+      trace_add_file_and_line(sp(::base::application) papp, const char *pszFileName, int32_t nLineNo)
          : m_pbaseapp(papp), m_pszFileName(pszFileName), m_nLineNo(nLineNo)
       {
       }
 
-      inline sp(base_application) get_app() const
+      inline sp(::base::application) get_app() const
       {
          return m_pbaseapp;
       }
 
-      inline sp(base_application) get_app()
+      inline sp(::base::application) get_app()
       {
          return m_pbaseapp;
       }

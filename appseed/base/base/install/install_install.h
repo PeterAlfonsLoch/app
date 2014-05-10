@@ -46,7 +46,7 @@ namespace install
 
 
 
-      install(sp(base_application) papp);
+      install(sp(::base::application) papp);
       virtual ~install();
 
 

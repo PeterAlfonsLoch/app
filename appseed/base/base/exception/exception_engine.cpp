@@ -156,7 +156,7 @@ namespace exception
 
 #endif
 
-   engine::engine(sp(base_application) papp) :
+   engine::engine(sp(::base::application) papp) :
       element(papp)
 #ifdef WINDOWSEX
       ,m_bOk(false)
@@ -394,7 +394,7 @@ retry_get_base:
 
          }
 
-         base_system::eengine().reset();
+         ::base::system::eengine().reset();
 
          bRetry = true;
 

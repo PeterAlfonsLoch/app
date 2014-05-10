@@ -23,7 +23,7 @@ namespace install
          string   m_strBuild;
 
 
-         launcher(sp(base_application) papp, const char * pszVersion, const char * pszBuild);
+         launcher(sp(::base::application) papp, const char * pszVersion, const char * pszBuild);
 
          virtual bool ensure_executable();
 
@@ -145,7 +145,7 @@ namespace install
 
       string            m_strVersion;
 
-      installer(sp(base_application) papp);
+      installer(sp(::base::application) papp);
       ~installer();
 
       uint32_t run();

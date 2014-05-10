@@ -5,7 +5,7 @@ namespace simple_ui
 {
 
 
-   label::label(sp(base_application) papp) :
+   label::label(sp(::base::application) papp) :
       element(papp)
    {
 

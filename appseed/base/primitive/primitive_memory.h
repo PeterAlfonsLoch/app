@@ -17,8 +17,8 @@ namespace primitive
       bool m_bAligned;
 
 
-      memory(sp(base_application) papp);
-      memory(sp(base_application) papp, bool bAligned);
+      memory(sp(::base::application) papp);
+      memory(sp(::base::application) papp, bool bAligned);
       memory(const void *, memory_size iCount);
       memory(const memory_base & memorybase);
       memory(const memory & memory);

@@ -6,7 +6,7 @@ namespace file
 
 
 
-   plain_text_stream_string_buffer::plain_text_stream_string_buffer(sp(base_application) papp) :
+   plain_text_stream_string_buffer::plain_text_stream_string_buffer(sp(::base::application) papp) :
       element(papp.is_set() ? papp.m_p : get_thread_app())
    {
 

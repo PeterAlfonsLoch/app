@@ -14,9 +14,9 @@ namespace file
       memory_buffer_sp        m_spmemorybuffer;
 
 
-      plain_text_stream_memory_buffer(base_application * papp);
+      plain_text_stream_memory_buffer(::base::application * papp);
       plain_text_stream_memory_buffer(::primitive::memory_base * pbase);
-      plain_text_stream_memory_buffer(base_application * papp, const void * data, ::primitive::memory_size c);
+      plain_text_stream_memory_buffer(::base::application * papp, const void * data, ::primitive::memory_size c);
       virtual ~plain_text_stream_memory_buffer();
 
 

@@ -3,7 +3,7 @@
 
 
 template < class CREATABLE_TYPE >
-sp(element) creatable_factory_item < CREATABLE_TYPE > ::create(sp(base_application) papp)
+sp(element) creatable_factory_item < CREATABLE_TYPE > ::create(sp(::base::application) papp)
 {
 
    if(m_pallocator == NULL)

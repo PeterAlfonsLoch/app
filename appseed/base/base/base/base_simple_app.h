@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_BASE simple_app :
-   virtual public base_system
+   virtual public ::base::system
 {
 public:
 

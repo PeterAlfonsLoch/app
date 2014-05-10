@@ -11,11 +11,11 @@ public:
 
 
    message_queue();
-   message_queue(sp(base_application) papp);
+   message_queue(sp(::base::application) papp);
    virtual ~message_queue();
 
 
-   bool create_message_queue(sp(base_application) papp, const char * pszName);
+   bool create_message_queue(sp(::base::application) papp, const char * pszName);
    bool create_message_queue(const char * pszName);
    bool destroy_message_queue();
 

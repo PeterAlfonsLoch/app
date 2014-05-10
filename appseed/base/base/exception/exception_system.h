@@ -7,7 +7,7 @@ class CLASS_DECL_BASE system_exception :
 {
 public:
    HRESULT ErrorCode;
-   system_exception(sp(base_application) papp, HRESULT errorCode) :
+   system_exception(sp(::base::application) papp, HRESULT errorCode) :
       element(papp),
       ::call_stack(papp),
       ::exception::base(papp),

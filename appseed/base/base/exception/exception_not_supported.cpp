@@ -11,7 +11,7 @@ not_supported_exception::not_supported_exception(const not_supported_exception &
 
 }
 
-not_supported_exception::not_supported_exception(sp(base_application) papp, const char * pszTip) :
+not_supported_exception::not_supported_exception(sp(::base::application) papp, const char * pszTip) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),

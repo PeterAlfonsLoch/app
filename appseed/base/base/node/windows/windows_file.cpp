@@ -13,7 +13,7 @@ namespace windows
 {
 
 
-   file::file(sp(base_application) papp) :
+   file::file(sp(::base::application) papp) :
       element(papp)
    {
 
@@ -23,7 +23,7 @@ namespace windows
 
    }
 
-   file::file(sp(base_application) papp, int32_t hFile) :
+   file::file(sp(::base::application) papp, int32_t hFile) :
       element(papp)
    {
 
@@ -33,7 +33,7 @@ namespace windows
 
    }
 
-   file::file(sp(base_application) papp, const char * lpszFileName, UINT nOpenFlags) :
+   file::file(sp(::base::application) papp, const char * lpszFileName, UINT nOpenFlags) :
       element(papp)
    {
 
@@ -552,13 +552,13 @@ namespace windows
 
 
 
-   void file_exception::ThrowOsError(sp(base_application) papp, LONG lOsError, const char * lpszFileName /* = NULL */)
+   void file_exception::ThrowOsError(sp(::base::application) papp, LONG lOsError, const char * lpszFileName /* = NULL */)
    {
       if (lOsError != 0)
          throw_file_exception(papp, file_exception::OsErrorToException(lOsError), lOsError, lpszFileName);
    }
 
-   void file_exception::ThrowErrno(sp(base_application) papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
+   void file_exception::ThrowErrno(sp(::base::application) papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
    {
       if (nErrno != 0)
          throw_file_exception(papp, file_exception::ErrnoToException(nErrno), _doserrno, lpszFileName);

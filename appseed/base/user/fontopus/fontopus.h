@@ -13,10 +13,10 @@ namespace fontopus
 {
 
 
-   string CLASS_DECL_BASE show_auth_window(base_application * papp, LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer);
-   string CLASS_DECL_BASE get_cred(base_application * papp, LPRECT lprect, string & strUsername, string & strPassword, string strToken, string strTitle);
-   string CLASS_DECL_BASE get_cred(base_application * papp, string & strUsername, string & strPassword, string strToken);
-   void CLASS_DECL_BASE set_cred(base_application * papp, string strToken, bool bOk, const char * pszUsername = NULL, const char * pszPassword = NULL);
+   string CLASS_DECL_BASE show_auth_window(::base::application * papp, LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer);
+   string CLASS_DECL_BASE get_cred(::base::application * papp, LPRECT lprect, string & strUsername, string & strPassword, string strToken, string strTitle);
+   string CLASS_DECL_BASE get_cred(::base::application * papp, string & strUsername, string & strPassword, string strToken);
+   void CLASS_DECL_BASE set_cred(::base::application * papp, string strToken, bool bOk, const char * pszUsername = NULL, const char * pszPassword = NULL);
 
 
 } // namespace fontopus

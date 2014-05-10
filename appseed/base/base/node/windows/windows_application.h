@@ -30,7 +30,7 @@ namespace windows
 
 
    class CLASS_DECL_BASE application :
-      virtual public ::base_application
+      virtual public ::::base::application
    {
    public:
 
@@ -42,7 +42,7 @@ namespace windows
       main_init_data *     m_pmaininitdata;
 
 
-      application(sp(base_application) papp);
+      application(sp(::base::application) papp);
       virtual ~application();
 
 

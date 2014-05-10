@@ -535,7 +535,7 @@ namespace message
       }
    }
 
-   base::base(sp(base_application) papp, class ::signal * psignal) :
+   base::base(sp(::base::application) papp, class ::signal * psignal) :
       element(papp),
       signal_details(psignal)
    {
@@ -543,7 +543,7 @@ namespace message
       m_plresult = &m_lresult;
    }
 
-   base::base(sp(base_application) papp, sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult) :
+   base::base(sp(::base::application) papp, sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult) :
       element(papp),
       signal_details(papp)
    {
@@ -608,7 +608,7 @@ namespace message
       m_nIDEvent = static_cast<UINT>(wparam);
    }
 
-   activate::activate(sp(base_application) papp) :
+   activate::activate(sp(::base::application) papp) :
       element(papp),
       message::base(papp)
    {
@@ -624,7 +624,7 @@ namespace message
 
 
 
-   erase_bkgnd::erase_bkgnd(sp(base_application) papp) :
+   erase_bkgnd::erase_bkgnd(sp(::base::application) papp) :
       element(papp),
       message::base(papp)
    {
@@ -635,7 +635,7 @@ namespace message
       set_lresult(bResult);
    }
 
-   key::key(sp(base_application) papp) :
+   key::key(sp(::base::application) papp) :
       element(papp),
       message::base(papp)
    {
@@ -656,7 +656,7 @@ namespace message
 
    }
 
-   nc_activate::nc_activate(sp(base_application) papp) :
+   nc_activate::nc_activate(sp(::base::application) papp) :
       element(papp),
       message::base(papp)
    {
@@ -675,7 +675,7 @@ namespace message
       m_size      = ::size(LOWORD(lparam), HIWORD(lparam));
    }
 
-   mouse::mouse(sp(base_application) papp) :
+   mouse::mouse(sp(::base::application) papp) :
       element(papp),
       base(papp),
       m_ecursor(::visual::cursor_unmodified)
@@ -927,7 +927,7 @@ namespace message
    {
    }
 
-   sp(base_application) dispatch::calc_app()
+   sp(::base::application) dispatch::calc_app()
    {
       return NULL;
    }

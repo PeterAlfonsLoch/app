@@ -7,7 +7,7 @@ base_session::base_session()
    m_pfontopus = create_fontopus();
 
    if (m_pfontopus == NULL)
-      throw simple_exception(this, "could not create fontopus for base_application (base_application::construct)");
+      throw simple_exception(this, "could not create fontopus for ::base::application (::base::application::construct)");
 
    m_pfontopus->construct(this);
 
@@ -20,7 +20,7 @@ bool base_session::is_session()
 
 }
 
-sp(::base_application) base_session::start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext)
+sp(::::base::application) base_session::start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext)
 {
 
    throw interface_only_exception(this);

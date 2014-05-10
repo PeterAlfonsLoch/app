@@ -33,7 +33,7 @@ namespace mail
       critical_section              m_csDataset;
 
       
-      pop3(sp(base_application) papp);
+      pop3(sp(::base::application) papp);
 
 
       virtual string get_user();

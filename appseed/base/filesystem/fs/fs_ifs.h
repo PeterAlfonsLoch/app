@@ -24,7 +24,7 @@ public:
    strsp(int64_array)         m_mapdirFolderSize; // by now, always store item count?
 
 
-   ifs(sp(base_application) papp, const char * pszRoot);
+   ifs(sp(::base::application) papp, const char * pszRoot);
 
    
    virtual bool has_subdir(const char * pszPath);

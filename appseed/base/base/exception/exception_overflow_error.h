@@ -9,7 +9,7 @@ class CLASS_DECL_BASE overflow_error :
 public:
 
 
-   overflow_error(sp(base_application) papp, const char * pszError);
+   overflow_error(sp(::base::application) papp, const char * pszError);
    virtual ~overflow_error();
 
 

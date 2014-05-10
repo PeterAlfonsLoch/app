@@ -8,7 +8,7 @@ class string_map :
 public:
 
 
-   string_map(sp(base_application) papp = NULL, ::count nBlockSize = 10);
+   string_map(sp(::base::application) papp = NULL, ::count nBlockSize = 10);
    string_map(const string_map & map);
 
 
@@ -18,7 +18,7 @@ public:
 };
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-string_map < VALUE, ARG_VALUE, HASH, EQUALS >::string_map(sp(base_application) papp, ::count nBlockSize) :
+string_map < VALUE, ARG_VALUE, HASH, EQUALS >::string_map(sp(::base::application) papp, ::count nBlockSize) :
    element(papp),
    map < string, const string &, VALUE, ARG_VALUE, HASH, EQUALS > (papp, nBlockSize)
 {

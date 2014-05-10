@@ -25,7 +25,7 @@ namespace mail
       int32_t                     m_iListSize;
 
 
-      simple_pop3(sp(base_application) papp);
+      simple_pop3(sp(::base::application) papp);
 
 
       virtual string get_user();

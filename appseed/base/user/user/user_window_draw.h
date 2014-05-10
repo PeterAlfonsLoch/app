@@ -30,7 +30,7 @@ namespace user
       event                m_eventFree;
 
 
-      window_draw(sp(base_application) papp);
+      window_draw(sp(::base::application) papp);
 
       virtual bool UpdateBuffer();
       virtual bool ScreenOutput();

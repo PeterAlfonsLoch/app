@@ -102,9 +102,9 @@ namespace core
       {
       public:
 
-         sp(base_application) m_pbaseapp;
+         sp(::base::application) m_pbaseapp;
 
-         trace(sp(base_application) papp)
+         trace(sp(::base::application) papp)
          {
             m_pbaseapp = papp;
          }

@@ -44,7 +44,7 @@ namespace user
       object_data                      m_datamap;
 
 
-      object(sp(base_application) papp);
+      object(sp(::base::application) papp);
       virtual ~object();
 
 
@@ -182,7 +182,7 @@ namespace user
 
 
 
-//      virtual void on_alloc(sp(base_application) papp);
+//      virtual void on_alloc(sp(::base::application) papp);
 
 //      virtual void dump(dump_context &) const;
   //    virtual void assert_valid() const;

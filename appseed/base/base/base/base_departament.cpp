@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-base_departament::base_departament(base_application * papp) :
+base_departament::base_departament(::base::application * papp) :
    element(papp)
 {
 
@@ -18,7 +18,7 @@ base_departament::~base_departament()
 // not contain advanced initialization as the
 // papp application pointer may be incompletely
 // initialized specially its virtual functions.
-void base_departament::construct(sp(base_application) papp)
+void base_departament::construct(sp(::base::application) papp)
 {
 
    set_app(papp);

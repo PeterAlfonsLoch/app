@@ -15,7 +15,7 @@ namespace userpresence
       bool                    m_bUserPresenceFeatureRequired;
 
 
-      userpresence(sp(base_application) papp);
+      userpresence(sp(::base::application) papp);
       virtual ~userpresence();
 
 

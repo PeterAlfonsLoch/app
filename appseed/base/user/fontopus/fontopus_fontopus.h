@@ -18,7 +18,7 @@ namespace fontopus
 
 
 
-      fontopus(base_application * papp);
+      fontopus(::base::application * papp);
       virtual ~fontopus();
 
 

@@ -9,7 +9,7 @@ namespace file
 {
 
 
-   exception::exception(sp(base_application) papp, int32_t cause , LONG lOsError, const char * lpszArchiveName) :
+   exception::exception(sp(::base::application) papp, int32_t cause , LONG lOsError, const char * lpszArchiveName) :
       element(papp),
       ::call_stack(papp),
       ::exception::base(papp),
@@ -324,7 +324,7 @@ static const char szUnknown[] = "unknown";
 #endif
 
 
-void throw_file_exception(base_application * papp, int32_t cause, LONG lOsError,   const char * lpszFileName /* == NULL */ )
+void throw_file_exception(::base::application * papp, int32_t cause, LONG lOsError,   const char * lpszFileName /* == NULL */ )
 {
 
 #ifdef DEBUG

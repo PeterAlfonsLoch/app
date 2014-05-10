@@ -7,7 +7,7 @@ namespace fontopus
 
 
    class simple_ui :
-      virtual public ::user::interaction,
+      virtual public ::simple_ui::interaction,
       virtual public ::simple_ui::style,
       virtual public login::callback
    {
@@ -22,7 +22,7 @@ namespace fontopus
       bool                       m_bDrag;
 
 
-      simple_ui(sp(base_application) papp);
+      simple_ui(sp(::base::application) papp);
       virtual ~simple_ui();
 
 

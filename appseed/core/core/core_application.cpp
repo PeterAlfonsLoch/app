@@ -53,7 +53,6 @@ m_simpledb(this)
       set_app(this);
    }
 
-   m_bInitializeProDevianMode = true;
 
    // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
    ::add_ref(this);
@@ -86,7 +85,6 @@ m_simpledb(this)
 
    m_pwndMain = NULL;
    m_puserstrcontext = NULL;
-   m_bShouldInitializeGTwf = true;
    m_bSessionSynchronizedCursor = true;
    m_bSessionSynchronizedScreen = true;
 
@@ -4456,13 +4454,6 @@ return papp;
 
 
 
-void application::defer_initialize_twf()
-{
-   if (System.m_ptwf == NULL && (System.m_bShouldInitializeGTwf && m_bShouldInitializeGTwf && m_bInitializeProDevianMode))
-   {
-      System.create_twf();
-   }
-}
 
 
 

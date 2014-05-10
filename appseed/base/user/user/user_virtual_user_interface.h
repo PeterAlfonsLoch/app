@@ -17,7 +17,7 @@ public:
 
 
    virtual_user_interface();
-   virtual_user_interface(sp(base_application) papp);
+   virtual_user_interface(sp(::base::application) papp);
    virtual ~virtual_user_interface();
 
    using ::user::interaction::message_handler;

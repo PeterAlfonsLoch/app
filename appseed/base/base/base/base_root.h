@@ -9,12 +9,12 @@ public:
 
    int64_t                    m_countReference;
    bool                       m_bHeap;
-   sp(base_application)       m_pbaseapp;
+   sp(::base::application)       m_pbaseapp;
 
 
 
    root();
-   root(sp(base_application) papp);
+   root(sp(::base::application) papp);
    virtual ~root();
 
 

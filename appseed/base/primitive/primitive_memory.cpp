@@ -4,7 +4,7 @@
 namespace primitive
 {
 
-   memory::memory(sp(base_application) papp) :
+   memory::memory(sp(::base::application) papp) :
       element(papp)
    {
 
@@ -19,7 +19,7 @@ namespace primitive
 
    }
 
-   memory::memory(sp(base_application) papp, bool bAligned) :
+   memory::memory(sp(::base::application) papp, bool bAligned) :
       element(papp)
    {
 

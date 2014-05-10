@@ -55,7 +55,7 @@ namespace install
 
 
 
-      plugin(sp(base_application) papp);
+      plugin(sp(::base::application) papp);
       virtual ~plugin();
 
 

@@ -23,7 +23,7 @@ namespace install
       int32_t              m_iLastGlsStatus;
       
       
-      trace(sp(base_application) papp);
+      trace(sp(::base::application) papp);
       virtual ~trace();
 
       

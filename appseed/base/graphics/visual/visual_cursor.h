@@ -18,7 +18,7 @@ namespace visual
       size                    m_szHotspotOffset;
 
 
-      cursor(sp(base_application) papp);
+      cursor(sp(::base::application) papp);
 
       bool to(::draw2d::graphics * pgraphics, point pt);
 

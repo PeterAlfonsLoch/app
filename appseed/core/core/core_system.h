@@ -7,7 +7,7 @@ namespace core
 
    class CLASS_DECL_CORE system :
       virtual public ::application,
-      virtual public base_system
+      virtual public ::base::system
       #ifdef LINUX
       , virtual public ::exception::translator
       #endif

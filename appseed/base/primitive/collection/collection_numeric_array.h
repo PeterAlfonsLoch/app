@@ -33,7 +33,7 @@ class numeric_array :
 public:
 
    numeric_array();
-   numeric_array(sp(base_application) papp);
+   numeric_array(sp(::base::application) papp);
    numeric_array(const numeric_array & array);
 
    index find_first_maximum_value();
@@ -200,7 +200,7 @@ class unique_number_sort_array :
    public numeric_array < TYPE >
 {
 public:
-   unique_number_sort_array(sp(base_application) papp = NULL);
+   unique_number_sort_array(sp(::base::application) papp = NULL);
    unique_number_sort_array(const unique_number_sort_array & array);
 
    index add(const TYPE & newElement)
@@ -301,7 +301,7 @@ numeric_array < TYPE >::
 
 template < class TYPE >
 numeric_array < TYPE >::
-   numeric_array(sp(base_application) papp) :
+   numeric_array(sp(::base::application) papp) :
    element(papp)
 {
 }
@@ -733,7 +733,7 @@ inline TYPE numeric_array < TYPE > ::pop_to()
 
 template < class TYPE >
 unique_number_sort_array < TYPE >::
-   unique_number_sort_array(sp(base_application) papp) :
+   unique_number_sort_array(sp(::base::application) papp) :
    element(papp)
 {
 }

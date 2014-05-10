@@ -11,7 +11,7 @@ namespace fontopus
 {
 
 
-   login::login(sp(base_application) papp, int left, int top) :
+   login::login(sp(::base::application) papp, int left, int top) :
       element(papp),
       ::thread(papp),
       m_labelUser(papp),

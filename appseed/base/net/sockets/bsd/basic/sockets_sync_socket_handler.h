@@ -18,7 +18,7 @@ namespace sockets
       int32_t                 m_iDefaultTimeout;
 
       
-      sync_socket_handler(sp(base_application) papp, logger *log = NULL);
+      sync_socket_handler(sp(::base::application) papp, logger *log = NULL);
       virtual ~sync_socket_handler();
 
 

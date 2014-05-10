@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   remote_native_file::remote_native_file(sp(base_application) papp, var varFile) :
+   remote_native_file::remote_native_file(sp(::base::application) papp, var varFile) :
       element(papp),
       ::sockets::http_batch_buffer(papp),
       m_httpfile(canew(::sockets::http_buffer(papp))),

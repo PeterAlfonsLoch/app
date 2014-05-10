@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-class ::id base_system::idEmpty;
-class ::id_space * base_system::s_pidspace = NULL;
+class ::id ::base::system::idEmpty;
+class ::id_space * ::base::system::s_pidspace = NULL;
 
 
-base_system::base_system(sp(base_application) papp) :
+::base::system::::base::system(sp(::base::application) papp) :
    m_urldepartament(this),
    //m_mutexDelete(this),
    m_httpsystem(this),
@@ -116,10 +116,10 @@ base_system::base_system(sp(base_application) papp) :
    m_pxml->construct(this);
 
    if (!m_pxml->initialize1())
-      throw simple_exception(this, "failed to construct base_system");
+      throw simple_exception(this, "failed to construct ::base::system");
 
    if (!m_pxml->initialize())
-      throw simple_exception(this, "failed to construct base_system");
+      throw simple_exception(this, "failed to construct ::base::system");
 
    
    m_compress.set_app(this);
@@ -128,22 +128,22 @@ base_system::base_system(sp(base_application) papp) :
 }
 
 
-void base_system::construct()
+void ::base::system::construct()
 {
 
-   ::base_application::construct();
+   ::::base::application::construct();
 
 
 
 
 }
-base_factory & base_system::factory()
+base_factory & ::base::system::factory()
 {
    return *m_pfactory;
 }
 
 
-::exception::engine & base_system::eengine()
+::exception::engine & ::base::system::eengine()
 {
 
    static ::exception::engine s_eengine(NULL);
@@ -153,7 +153,7 @@ base_factory & base_system::factory()
 }
 
 
-bool base_system::process_initialize()
+bool ::base::system::process_initialize()
 {
 
    m_pfactory->cloneable_large < create_context > ();
@@ -163,7 +163,7 @@ bool base_system::process_initialize()
    m_pfactory->cloneable_large < mutex > ();
    m_pfactory->cloneable_large < event > ();
 
-   if (!base_application::process_initialize())
+   if (!::base::application::process_initialize())
       return false;
    
    m_spos.create(allocer());
@@ -187,12 +187,12 @@ bool base_system::process_initialize()
 
 
 
-bool base_system::initialize_instance()
+bool ::base::system::initialize_instance()
 {
 
    m_pfactory->enable_simple_factory_request();
 
-   if (!::base_application::initialize_instance())
+   if (!::::base::application::initialize_instance())
       return false;
 
    return true;
@@ -200,10 +200,10 @@ bool base_system::initialize_instance()
 }
 
 
-int32_t base_system::exit_instance()
+int32_t ::base::system::exit_instance()
 {
 
-   base_application::exit_instance();
+   ::base::application::exit_instance();
 
 #ifdef WINDOWS
 
@@ -218,7 +218,7 @@ int32_t base_system::exit_instance()
 }
 
 
-UINT base_system::os_post_to_all_threads(UINT uiMessage, WPARAM wparam, lparam lparam)
+UINT ::base::system::os_post_to_all_threads(UINT uiMessage, WPARAM wparam, lparam lparam)
 {
 
    throw interface_only_exception(this);
@@ -227,19 +227,19 @@ UINT base_system::os_post_to_all_threads(UINT uiMessage, WPARAM wparam, lparam l
 
 }
 
-sp(element) base_system::clone()
+sp(element) ::base::system::clone()
 {
-   // by the time, it is not possible to clone a base_system
+   // by the time, it is not possible to clone a ::base::system
    return NULL;
 }
 
-sp(element) base_system::clone(sp(element) pobj)
+sp(element) ::base::system::clone(sp(element) pobj)
 {
    return System.factory().base_clone(pobj);
 }
 
 
-void base_system::discard_to_factory(sp(element) pca)
+void ::base::system::discard_to_factory(sp(element) pca)
 {
 
    if(m_pfactory == NULL)
@@ -251,12 +251,12 @@ void base_system::discard_to_factory(sp(element) pca)
 
 
 
-void base_system::wait_twf()
+void ::base::system::wait_twf()
 {
 
 }
 
-bool base_system::is_system()
+bool ::base::system::is_system()
 {
 
    return true;
@@ -271,7 +271,7 @@ bool base_system::is_system()
 
 
 
-bool base_system::assert_failed_line(const char * lpszFileName, int32_t iLine)
+bool ::base::system::assert_failed_line(const char * lpszFileName, int32_t iLine)
 {
    UNREFERENCED_PARAMETER(lpszFileName);
    UNREFERENCED_PARAMETER(iLine);
@@ -279,7 +279,7 @@ bool base_system::assert_failed_line(const char * lpszFileName, int32_t iLine)
 }
 
 
-bool base_system::on_assert_failed_line(const char * lpszFileName, int32_t iLine)
+bool ::base::system::on_assert_failed_line(const char * lpszFileName, int32_t iLine)
 {
    UNREFERENCED_PARAMETER(lpszFileName);
    UNREFERENCED_PARAMETER(iLine);
@@ -289,7 +289,7 @@ bool base_system::on_assert_failed_line(const char * lpszFileName, int32_t iLine
 
 
 
-sp(element) base_system::on_alloc(sp(base_application) papp, sp(type) info)
+sp(element) ::base::system::on_alloc(sp(::base::application) papp, sp(type) info)
 {
    /*string str;
    str.Format("Could not alloc %s", info.name());
@@ -301,29 +301,29 @@ sp(element) base_system::on_alloc(sp(base_application) papp, sp(type) info)
    return NULL;
 }
 
-sp(element) base_system::alloc(sp(base_application) papp, sp(type) info)
+sp(element) ::base::system::alloc(sp(::base::application) papp, sp(type) info)
 {
    return on_alloc(papp, info);
 }
 
-sp(element) base_system::alloc(sp(base_application) papp, const std_type_info & info)
+sp(element) ::base::system::alloc(sp(::base::application) papp, const std_type_info & info)
 {
    return on_alloc(papp, canew(type(info)));
 }
 
-void base_system::on_allocation_error(sp(base_application) papp, sp(type) info)
+void ::base::system::on_allocation_error(sp(::base::application) papp, sp(type) info)
 {
    UNREFERENCED_PARAMETER(papp);
    UNREFERENCED_PARAMETER(info);
 }
 
-sp(element) base_system::alloc(sp(base_application) papp, const class id & idType)
+sp(element) ::base::system::alloc(sp(::base::application) papp, const class id & idType)
 {
    return on_alloc(papp, get_type_info(idType));
 }
 
 
-sp(type) base_system::get_type_info(const ::std_type_info & info)
+sp(type) ::base::system::get_type_info(const ::std_type_info & info)
 {
 
 #ifdef WINDOWS
@@ -340,14 +340,14 @@ sp(type) base_system::get_type_info(const ::std_type_info & info)
 }
 
 
-::xml::departament & base_system::xml()
+::xml::departament & ::base::system::xml()
 {
    return *m_pxml;
 }
 
 
 
-class ::str::base64 & base_system::base64()
+class ::str::base64 & ::base::system::base64()
 {
 
    return m_base64;
@@ -358,35 +358,35 @@ class ::str::base64 & base_system::base64()
 
 
 
-::sockets::net & base_system::net()
+::sockets::net & ::base::system::net()
 {
    return m_net;
 }
 
 
 
-class ::crypto::crypto & base_system::crypto()
+class ::crypto::crypto & ::base::system::crypto()
 {
    return *m_spcrypto;
 }
 
 
 
-::datetime::departament & base_system::datetime()
+::datetime::departament & ::base::system::datetime()
 {
    return *m_pdatetime;
 }
 
 
 
-sp(::user::window_draw) base_system::get_twf()
+sp(::user::window_draw) ::base::system::get_twf()
 {
 
    return m_ptwf;
 
 }
 
-::core::log & base_system::log()
+::core::log & ::base::system::log()
 {
    return *m_plog;
 }
@@ -394,27 +394,27 @@ sp(::user::window_draw) base_system::get_twf()
 
 
 
-::fontopus::user_set & base_system::userset()
+::fontopus::user_set & ::base::system::userset()
 {
    return m_userset;
 }
 
 
 
-::core::compress & base_system::compress()
+::core::compress & ::base::system::compress()
 {
    return m_compress;
 }
 
 
 
-machine_event_central & base_system::machine_event_central()
+machine_event_central & ::base::system::machine_event_central()
 {
    return *m_pmachineeventcentral;
 }
 
 
-::user::str & base_system::str()
+::user::str & ::base::system::str()
 {
 
    return *m_puserstr;
@@ -422,7 +422,7 @@ machine_event_central & base_system::machine_event_central()
 }
 
 
-sp(::user::object) base_system::place_hold(sp(::user::interaction) pui)
+sp(::user::object) ::base::system::place_hold(sp(::user::interaction) pui)
 {
 
 
@@ -436,7 +436,7 @@ sp(::user::object) base_system::place_hold(sp(::user::interaction) pui)
 }
 
 
-sp(::base_session) base_system::query_session(index iEdge)
+sp(::base_session) ::base::system::query_session(index iEdge)
 {
 
    return NULL;
@@ -444,7 +444,7 @@ sp(::base_session) base_system::query_session(index iEdge)
 }
 
 
-::core::os & base_system::os()
+::core::os & ::base::system::os()
 {
 
    return *m_spos;
@@ -454,7 +454,7 @@ sp(::base_session) base_system::query_session(index iEdge)
 
 
 
-bool base_system::initialize_log(const char * pszId)
+bool ::base::system::initialize_log(const char * pszId)
 {
    if (m_plog != NULL)
       return true;
@@ -471,7 +471,7 @@ bool base_system::initialize_log(const char * pszId)
 }
 
 
-application_ptra & base_system::appptra()
+application_ptra & ::base::system::appptra()
 {
    return m_appptra;
 }
@@ -479,40 +479,40 @@ application_ptra & base_system::appptra()
 
 
 
-void base_system::appa_load_string_table()
+void ::base::system::appa_load_string_table()
 {
 
    retry_single_lock rsl(&m_mutex, millis(84), millis(84));
 
    for (int32_t i = 0; i < appptra().get_size(); i++)
    {
-      sp(base_application) papp = appptra()(i);
+      sp(::base::application) papp = appptra()(i);
       papp->load_string_table();
    }
 
 }
 
-void base_system::appa_set_locale(const char * pszLocale, ::action::context actioncontext)
+void ::base::system::appa_set_locale(const char * pszLocale, ::action::context actioncontext)
 {
 
    retry_single_lock rsl(&m_mutex, millis(84), millis(84));
 
    for (int32_t i = 0; i < appptra().get_size(); i++)
    {
-      sp(base_application) papp = appptra()(i);
+      sp(::base::application) papp = appptra()(i);
       papp->set_locale(pszLocale, actioncontext);
    }
 
 }
 
-void base_system::appa_set_schema(const char * pszStyle, ::action::context actioncontext)
+void ::base::system::appa_set_schema(const char * pszStyle, ::action::context actioncontext)
 {
 
    retry_single_lock rsl(&m_mutex, millis(84), millis(84));
 
    for (int32_t i = 0; i < appptra().get_size(); i++)
    {
-      sp(base_application) papp = appptra()(i);
+      sp(::base::application) papp = appptra()(i);
       papp->set_schema(pszStyle, actioncontext);
    }
 
@@ -520,7 +520,7 @@ void base_system::appa_set_schema(const char * pszStyle, ::action::context actio
 
 
 
-bool base_system::assert_running_global(const char * pszAppName, const char * pszId)
+bool ::base::system::assert_running_global(const char * pszAppName, const char * pszId)
 {
    if (string(pszId).has_char())
    {
@@ -587,7 +587,7 @@ bool base_system::assert_running_global(const char * pszAppName, const char * ps
    }
 }
 
-bool base_system::assert_running_local(const char * pszAppName, const char * pszId)
+bool ::base::system::assert_running_local(const char * pszAppName, const char * pszId)
 {
    string strAppName(pszAppName);
    string strId(pszId);
@@ -662,13 +662,13 @@ bool base_system::assert_running_local(const char * pszAppName, const char * psz
 uint32_t _thread_proc_start_system(void * p)
 {
 
-   base_system * psystem = (base_system *)p;
+   ::base::system * psystem = (::base::system *)p;
 
    return psystem->main();
 
 }
 
-void __start_system(base_system * psystem)
+void __start_system(::base::system * psystem)
 {
 
    ::create_thread(NULL, 0, &_thread_proc_start_system, (LPVOID)psystem, 0, 0);
@@ -676,3 +676,18 @@ void __start_system(base_system * psystem)
 }
 
 
+
+
+bool system::create_twf()
+{
+   if(m_ptwf != NULL)
+      return true;
+   m_ptwf = alloc(this,System.type_info < ::user::window_draw >());
+   m_ptwf->twf_start();
+   return true;
+}
+
+
+
+
+namespace ba

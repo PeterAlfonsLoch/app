@@ -7,7 +7,7 @@ namespace simple_ui
 
 
 
-   password::password(sp(base_application) papp) :
+   password::password(sp(::base::application) papp) :
       element(papp),
       edit_box(papp)
    {

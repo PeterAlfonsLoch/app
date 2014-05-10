@@ -2434,7 +2434,7 @@ void window::update_graphics_resources()
 }
 
 
-guie_message_wnd::guie_message_wnd(sp(base_application) papp) :
+guie_message_wnd::guie_message_wnd(sp(::base::application) papp) :
 element(papp)
 {
    m_puiForward = NULL;

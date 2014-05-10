@@ -7,8 +7,8 @@ class CLASS_DECL_BASE invalid_index_exception :
 public:
 
 
-   invalid_index_exception(sp(base_application) papp);
-   invalid_index_exception(sp(base_application) papp, const char * pszMessage);
+   invalid_index_exception(sp(::base::application) papp);
+   invalid_index_exception(sp(::base::application) papp, const char * pszMessage);
    virtual ~invalid_index_exception();
 
 

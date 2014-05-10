@@ -33,14 +33,14 @@ public:
 #endif
 
 
-   mutex(sp(base_application) papp = NULL, bool bInitiallyOwn = FALSE, const char * lpszName = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
+   mutex(sp(::base::application) papp = NULL, bool bInitiallyOwn = FALSE, const char * lpszName = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
 
 
 protected:
 
 #ifdef WINDOWS
 
-   mutex(sp(base_application) pappp, const char * pstrName, HANDLE h);
+   mutex(sp(::base::application) pappp, const char * pstrName, HANDLE h);
 
 #elif defined(ANDROID)
 
@@ -75,7 +75,7 @@ public:
    virtual bool unlock();
 
 
-   static mutex * open_mutex(sp(base_application) papp, const char * pstrName);
+   static mutex * open_mutex(sp(::base::application) papp, const char * pstrName);
 
 
 };

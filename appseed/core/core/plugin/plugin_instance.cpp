@@ -13,7 +13,6 @@ namespace plugin
       hotplugin::plugin(papp),
       ::simple_ui::style(papp),
       ::user::interaction(papp),
-      ::user::interaction(papp),
       plugin(papp)
    {
 

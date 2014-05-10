@@ -16,7 +16,7 @@ namespace xml
       parse_info *   m_pparseinfoDefault;
 
 
-      departament(base_application * papp);
+      departament(::base::application * papp);
       virtual ~departament();
 
       virtual bool initialize1();

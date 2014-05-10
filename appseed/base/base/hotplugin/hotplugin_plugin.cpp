@@ -29,7 +29,7 @@ namespace hotplugin
 {
 
 
-   plugin::plugin(sp(base_application) papp) :
+   plugin::plugin(sp(::base::application) papp) :
       element(papp),
       ::simple_ui::style(papp),
       ::user::interaction(papp)

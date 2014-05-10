@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   transaction::transaction(sp(base_application) papp) :
+   transaction::transaction(sp(::base::application) papp) :
       element(papp)
    {
 

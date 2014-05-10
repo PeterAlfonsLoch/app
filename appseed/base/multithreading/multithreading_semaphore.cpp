@@ -11,7 +11,7 @@
 #endif
 
 
-semaphore::semaphore(sp(base_application) papp, LONG lInitialCount, LONG lMaxCount, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttributes) :
+semaphore::semaphore(sp(::base::application) papp, LONG lInitialCount, LONG lMaxCount, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttributes) :
    element(papp),
    sync_object(pstrName)
 {

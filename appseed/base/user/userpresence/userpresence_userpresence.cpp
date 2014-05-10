@@ -5,7 +5,7 @@ namespace userpresence
 {
 
 
-   userpresence::userpresence(sp(base_application) papp) :
+   userpresence::userpresence(sp(::base::application) papp) :
       element(papp),
       base_departament(papp),
       message_queue(papp)

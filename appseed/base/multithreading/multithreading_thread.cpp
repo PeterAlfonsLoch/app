@@ -45,7 +45,7 @@ thread * get_thread()
 }
 
 
-base_application * get_thread_app()
+::base::application * get_thread_app()
 {
 
    thread * pthread = get_thread();
@@ -80,7 +80,7 @@ bool thread::s_bAllocReady = false;
 
 
 
-thread::thread(sp(base_application) papp) :
+thread::thread(sp(::base::application) papp) :
 element(papp),
 m_set(papp),
 m_mutex(papp)
@@ -99,7 +99,7 @@ m_mutex(papp)
 
 }
 
-thread::thread(sp(base_application) papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
+thread::thread(sp(::base::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
 element(papp),
 m_mutex(papp)
 {
@@ -843,7 +843,7 @@ bool thread::on_run_step()
 
    step_timer();
 
-   sp(base_application) papp = (this);
+   sp(::base::application) papp = (this);
 
    m_dwAlive = m_dwAlive = ::get_tick_count();
 
@@ -854,7 +854,7 @@ bool thread::on_run_step()
 
    }
 
-   sp(base_application) pappP = (this);
+   sp(::base::application) pappP = (this);
 
    m_p->m_dwAlive = m_dwAlive = ::get_tick_count();
 
@@ -965,7 +965,7 @@ int thread::get_x_window_count() const
 
 
 
-thread* __begin_thread(sp(base_application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, int32_t epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+thread* __begin_thread(sp(::base::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, int32_t epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
    ASSERT(pfnThreadProc != NULL);

@@ -20,8 +20,16 @@ class property;
 class property_set;
 class object;
 class type;
-class base_application;
-class base_system;
+
+namespace base
+{
+
+   class application;
+   class system;
+
+} // namespace base
+
+
 class dump_context;
 class string_interface;
 class id_space;
@@ -305,7 +313,7 @@ typedef void * HDWP;
 #endif
 
 
-typedef  void(*PFN_ca2_factory_exchange)(sp(base_application) papp);
+typedef  void(*PFN_ca2_factory_exchange)(sp(::base::application) papp);
 
 
 
@@ -319,7 +327,7 @@ namespace core
 
 } // namespace core
 
-CLASS_DECL_BASE base_application * get_thread_app();
+CLASS_DECL_BASE ::base::application * get_thread_app();
 
 #include "base_definition.h"
 
@@ -663,7 +671,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
-#include "base_application.h"
+#include "::base::application.h"
 
 
 #include "base_session.h"
@@ -742,7 +750,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_core_os.h"
 
 
-#include "base_system.h"
+#include "::base::system.h"
 
 #include "base/hotplugin/hotplugin.h"
 
@@ -1071,7 +1079,7 @@ namespace numeric_info
 
 
 template < class T >
-bool ::file::system::output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, const char *), const char * lpszSource)
+bool ::file::system::output(sp(::base::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, const char *), const char * lpszSource)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
@@ -1089,7 +1097,7 @@ bool ::file::system::output(sp(base_application) papp, const char * pszOutput, T
 
 
 template < class T >
-bool ::file::system::output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), const char * lpszInput)
+bool ::file::system::output(sp(::base::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), const char * lpszInput)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));

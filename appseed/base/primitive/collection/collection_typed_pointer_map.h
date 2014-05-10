@@ -7,7 +7,7 @@ class typed_pointer_map :
 {
 public:
 
-   typed_pointer_map(sp(base_application) papp = NULL, ::count nBlockSize = 10) :
+   typed_pointer_map(sp(::base::application) papp = NULL, ::count nBlockSize = 10) :
       element(papp),
       BASE_CLASS(papp, nBlockSize)
    {

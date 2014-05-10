@@ -220,7 +220,6 @@ namespace plane
       virtual bool wait_twf(uint32_t dwTimeOut = INFINITE);
 
 
-      virtual bool create_twf();
 
       //virtual void discard_to_factory(sp(element) pca);
 
@@ -312,7 +311,7 @@ namespace plane
 
 
 class CLASS_DECL_CORE simple_app2 :
-   virtual public base_system
+   virtual public ::base::system
 {
 public:
 

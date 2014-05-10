@@ -117,7 +117,7 @@ command_target_interface::command_target_interface()
 {
 }
 
-command_target_interface::command_target_interface(sp(base_application) papp)
+command_target_interface::command_target_interface(sp(::base::application) papp)
 : element(papp)
 {
 }

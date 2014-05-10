@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-resource_exception::resource_exception(sp(base_application) papp) :
+resource_exception::resource_exception(sp(::base::application) papp) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),

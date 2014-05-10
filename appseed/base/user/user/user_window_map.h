@@ -32,7 +32,7 @@ namespace user
       map < int_ptr, int_ptr, ::user::window_interface *, ::user::window_interface * > m_map;
 
 
-      window_map(sp(base_application) papp);
+      window_map(sp(::base::application) papp);
       virtual ~window_map();
 
 

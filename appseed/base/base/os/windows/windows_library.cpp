@@ -1,14 +1,14 @@
 #include "framework.h"
 
 
-base_library::base_library(sp(base_application) papp):
+base_library::base_library(sp(::base::application) papp):
 element(papp)
 {
    m_bAutoClose = true;
    m_plibrary = NULL;
 }
 
-base_library::base_library(sp(base_application) papp,const char * pszOpen):
+base_library::base_library(sp(::base::application) papp,const char * pszOpen):
 element(papp)
 {
    m_bAutoClose = true;
@@ -196,13 +196,13 @@ void * base_library::raw_get(const char * pszElement)
    return ::GetProcAddress((HINSTANCE)m_plibrary,pszElement);
 }
 
-ca2_library::ca2_library(sp(base_application) papp):
+ca2_library::ca2_library(sp(::base::application) papp):
 element(papp),
 base_library(papp)
 {
 }
 
-ca2_library::ca2_library(sp(base_application) papp,const char * pszOpen):
+ca2_library::ca2_library(sp(::base::application) papp,const char * pszOpen):
 element(papp),
 base_library(papp,pszOpen)
 {

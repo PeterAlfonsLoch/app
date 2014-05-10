@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-command_thread::command_thread(sp(base_application) papp) :
+command_thread::command_thread(sp(::base::application) papp) :
    element(papp),
    m_mutex(papp)
 {

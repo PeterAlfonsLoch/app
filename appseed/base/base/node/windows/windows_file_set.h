@@ -17,7 +17,7 @@ namespace windows
       stringa        m_straFile;
 
 
-      file_set(sp(base_application) papp);
+      file_set(sp(::base::application) papp);
       virtual ~file_set();
 
 

@@ -76,7 +76,7 @@ namespace user
       return true;
    }
 
-   keyboard_layout::keyboard_layout(sp(base_application) papp) :
+   keyboard_layout::keyboard_layout(sp(::base::application) papp) :
       element(papp)
    {
 

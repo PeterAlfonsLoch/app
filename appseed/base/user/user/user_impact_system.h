@@ -91,7 +91,7 @@ namespace user
       // The ::user::object names sub-strings are represented as _one_ string:
       // windowTitle\ndocName\n ... (see DocStringIndex enum)
 
-      impact_system(sp(base_application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass);
+      impact_system(sp(::base::application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass);
 
       virtual void load_template();
 

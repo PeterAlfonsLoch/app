@@ -19,7 +19,7 @@ namespace user
    id view_container::get_view_id()
    {
    return id(var::type_empty);
-//      return ::base_system::idEmpty;
+//      return ::::base::system::idEmpty;
    }
 
    sp(::user::object) view_container::get_view_document()

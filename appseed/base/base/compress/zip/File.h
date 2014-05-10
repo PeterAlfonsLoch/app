@@ -21,7 +21,7 @@ namespace zip
       zlib_filefunc_def_s        m_filefuncdef;
       bool                       m_bOwnFile;
 
-      File(sp(base_application) papp);
+      File(sp(::base::application) papp);
       virtual ~File();
 
 

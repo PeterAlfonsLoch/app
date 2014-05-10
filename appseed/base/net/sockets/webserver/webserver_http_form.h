@@ -11,7 +11,7 @@ namespace http
       virtual public ::object
    {
    public:
-      form(sp(base_application) papp);
+      form(sp(::base::application) papp);
       /**
        * Default constructor (used in POST operations).
        * Input is read from stdin. Number of characters to read

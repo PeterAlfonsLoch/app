@@ -5,7 +5,7 @@ namespace user
 
    CLASS_DECL_BASE bool window_draw::s_bRunning = false;
 
-   window_draw::window_draw(sp(base_application) papp) :
+   window_draw::window_draw(sp(::base::application) papp) :
       element(papp),
       thread(papp),
       m_eventFree(papp, TRUE, TRUE)

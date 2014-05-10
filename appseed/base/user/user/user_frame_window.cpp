@@ -844,7 +844,7 @@ namespace user
          // finally, activate the frame
          // (send the default show command unless the main desktop window)
          int32_t nCmdShow = -1;      // default
-         base_application* pApp = &System;
+         ::base::application* pApp = &System;
          if (pApp != NULL && pApp->GetMainWnd() == this)
          {
 //            nCmdShow = pApp->m_nCmdShow; // use the parameter from WinMain

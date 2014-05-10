@@ -13,10 +13,10 @@ departament_container_base::~departament_container_base()
 }
 
 
-base_application * departament_container_base::get_departament_app()
+::base::application * departament_container_base::get_departament_app()
 {
 
-   base_application * papp = dynamic_cast < base_application * > (this);
+   ::base::application * papp = dynamic_cast < ::base::application * > (this);
 
    if(papp != NULL)
       return papp;

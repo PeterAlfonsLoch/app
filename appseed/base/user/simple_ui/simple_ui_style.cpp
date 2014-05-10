@@ -5,7 +5,7 @@ namespace simple_ui
 {
 
 
-   style::style(sp(base_application) papp) :
+   style::style(sp(::base::application) papp) :
       element(papp)
    {
 
