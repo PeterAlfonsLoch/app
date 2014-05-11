@@ -20,6 +20,7 @@ namespace fontopus
       m_eschema = schema_normal;
       m_login.set_parent(this);
       m_login.m_pcallback = this;
+      m_login.m_pstyle = this;
       m_bLButtonDown = false;
 //      m_w = 840;
   //    m_h = 284;

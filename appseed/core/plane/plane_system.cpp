@@ -538,7 +538,7 @@ namespace plane
       if(!m_bDoNotExitIfNoApplications)
       {
 
-         application_ptra appptra;
+         ::base::application_ptra appptra;
 
          appptra = this->appptra();
 

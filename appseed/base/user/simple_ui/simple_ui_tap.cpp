@@ -21,8 +21,12 @@ namespace simple_ui
    }
 
 
-   IMPL_IMH(tap, ::simple_ui::interaction)
+   IMPL_IMH(tap,::simple_ui::interaction)
       MSG_CREATE
+      MSG_KEYDOWN
+      MSG_LBUTTONDOWN
+      MSG_LBUTTONUP
+      MSG_MOUSEMOVE
    END_IMH
 
 
@@ -45,7 +49,7 @@ namespace simple_ui
 
       pmouse->m_bRet = true;
 
-      SetFocus();
+      keyboard_set_focus();
 
       m_bDown = true;
 
@@ -285,7 +289,7 @@ namespace simple_ui
    }
 
 
-   void tap::_001OnChar(signal_details * pobj)
+   void tap::_001OnKeyDown(signal_details * pobj)
    {
 
       SCAST_PTR(::message::key,pkey,pobj);
@@ -306,7 +310,7 @@ namespace simple_ui
          sp(::user::interaction) pui = keyboard_get_next_focusable();
 
          if(pui.is_set())
-            pui->SetFocus();
+            pui->keyboard_set_focus();
 
          pkey->m_bRet = true;
 

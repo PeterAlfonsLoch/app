@@ -80,7 +80,7 @@ class job;
 
 
 
-#include "api/api_rotate.h"
+#include "core/api/api_rotate.h"
 
 
 
@@ -109,7 +109,7 @@ class job;
 //#include "primitive/count.h"
 
 
-#include "api/api.h"
+#include "core/api/api.h"
 
 
 
@@ -643,8 +643,8 @@ namespace user
 
 
 // services
-#include "service/service_plain_service.h"
-#include "service/service_thread_pool.h"
+#include "core/service/service_plain_service.h"
+#include "core/service/service_thread_pool.h"
 
 
 

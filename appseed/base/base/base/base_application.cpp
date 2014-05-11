@@ -1,6 +1,7 @@
 #include "framework.h"
 
 
+
 #if defined(APPLEOS)
 
 void openURL(const string &url_str);
@@ -1710,8 +1711,6 @@ namespace base
 
 
 #endif
-
-   void node_factory_exchange(sp(application) papp);
 
    void application::Ex1OnFactoryExchange()
    {
@@ -5085,16 +5084,7 @@ namespace base
 
    }
 
-   static oswindow g_oswindowSplash = NULL;
 
-   CLASS_DECL_BASE void set_splash(oswindow oswindow)
-   {
-      g_oswindowSplash = oswindow;
-   }
-   CLASS_DECL_BASE oswindow get_splash()
-   {
-      return g_oswindowSplash;
-   }
 
 
    string application::get_license_id()

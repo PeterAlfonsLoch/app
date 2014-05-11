@@ -855,14 +855,18 @@ namespace message
 
 
 #define IGUI_CREATE(class)       IGUI_MSG_LINK(WM_CREATE, pdispatch, this, &class::_001OnCreate)
-#define IGUI_CHAR(class)         IGUI_MSG_LINK(WM_CHAR, pdispatch, this, &class::_001OnLButtonDown)
+#define IGUI_KEYDOWN(class)      IGUI_MSG_LINK(WM_KEYDOWN, pdispatch, this, &class::_001OnKeyDown)
+#define IGUI_CHAR(class)         IGUI_MSG_LINK(WM_CHAR, pdispatch, this, &class::_001OnChar)
 #define IGUI_LBUTTONDOWN(class)  IGUI_MSG_LINK(WM_LBUTTONDOWN, pdispatch, this, &class::_001OnLButtonDown)
 #define IGUI_LBUTTONUP(class)    IGUI_MSG_LINK(WM_LBUTTONUP, pdispatch, this, &class::_001OnLButtonUp)
+#define IGUI_MOUSEMOVE(class)    IGUI_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &class::_001OnMouseMove)
 
 #define MSG_CREATE         IGUI_CREATE(this_class);
+#define MSG_KEYDOWN        IGUI_KEYDOWN(this_class);
 #define MSG_CHAR           IGUI_CHAR(this_class);
 #define MSG_LBUTTONDOWN    IGUI_LBUTTONDOWN(this_class);
 #define MSG_LBUTTONUP      IGUI_LBUTTONUP(this_class);
+#define MSG_MOUSEMOVE      IGUI_MOUSEMOVE(this_class);
 
 // simple declaration of install message handling
 

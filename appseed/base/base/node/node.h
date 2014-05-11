@@ -1,6 +1,9 @@
 #pragma once
 
 
+void node_factory_exchange(sp(::base::application) papp);
+
+
 #ifdef WINDOWSEX
 
 #include "windows/os.h"

@@ -275,9 +275,9 @@ namespace simple_ui
 
       pgraphics->rectangle(m_rect);*/
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+      //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      pgraphics->FillSolidRect(rect,ARGB(0,0,0,0));
+      //pgraphics->FillSolidRect(rect,ARGB(0,0,0,0));
 
    }
 

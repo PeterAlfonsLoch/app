@@ -24,7 +24,7 @@ namespace simple_ui
 
       ::simple_ui::interaction::install_message_handling(pdispatch);
 
-      IGUI_CHAR(edit_box);
+      IGUI_WIN_MSG_LINK(WM_KEYDOWN, pdispatch, this, &edit_box::_001OnKeyDown);
       IGUI_LBUTTONDOWN(edit_box);
       IGUI_LBUTTONUP(edit_box);
 
@@ -37,7 +37,7 @@ namespace simple_ui
 
       SCAST_PTR(::message::mouse,pmouse,pobj);
 
-      SetFocus();
+      keyboard_set_focus();
 
       pmouse->m_bRet = true;
 
@@ -130,7 +130,7 @@ namespace simple_ui
 
    }
 
-   void edit_box::_001OnChar(signal_details * pobj)
+   void edit_box::_001OnKeyDown(signal_details * pobj)
    {
 
       SCAST_PTR(::message::key,pkey,pobj);
@@ -157,7 +157,7 @@ namespace simple_ui
          sp(::user::interaction) pui = keyboard_get_next_focusable();
 
          if(pui != NULL)
-            pui->SetFocus();
+            pui->keyboard_set_focus();
 
          pkey->m_bRet = true;
 

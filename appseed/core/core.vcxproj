@@ -1286,7 +1286,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core\core_history.h" />
     <ClInclude Include="core\core\core_insert_iterator.h" />
     <ClInclude Include="core\core\core_iterator.h" />
-    <ClInclude Include="core\core\core_keeper.h" />
     <ClInclude Include="core\core\core_less.h" />
     <ClInclude Include="core\core\core_library.h" />
     <ClInclude Include="core\core\core_listener.h" />

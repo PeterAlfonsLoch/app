@@ -2351,9 +2351,6 @@
     <ClInclude Include="core\core\core_iterator.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core\core_keeper.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_less.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>

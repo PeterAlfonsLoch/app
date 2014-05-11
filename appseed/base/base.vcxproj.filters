@@ -4502,6 +4502,9 @@
     <ClInclude Include="base\base\base_application_signal_details.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
+    <ClInclude Include="base\base\base_keeper.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -8544,6 +8547,9 @@
     </ClCompile>
     <ClCompile Include="base\os\windows\windows_process.cpp">
       <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\node.cpp">
+      <Filter>Source Files\base\node</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

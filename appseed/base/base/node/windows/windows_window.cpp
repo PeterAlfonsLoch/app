@@ -6489,54 +6489,46 @@ namespace windows
       if(!sl.lock(millis(84)))
          return;
 
-      static DWORD s_last_update = 0;
 
-      if(GetTickCount() - s_last_update >= 25)
+      win_update_graphics();
+
+      if(m_spdib.is_null() || m_spdib->get_graphics() == NULL)
+         return;
+
+      m_spdib->map();
+
+      if(m_spdib->get_data() == NULL)
+         return;
+
+      rect64 rectWindow;
+
+      rectWindow = m_rectParentClient;
+
+      if(GetExStyle() & WS_EX_LAYERED)
       {
 
-         s_last_update = GetTickCount();
-
-         win_update_graphics();
-
-         if(m_spdib.is_null() || m_spdib->get_graphics() == NULL)
-            return;
-
-         m_spdib->map();
-
-         if(m_spdib->get_data() == NULL)
-            return;
-
-         rect64 rectWindow;
-
-         rectWindow = m_rectParentClient;
-
-         if(GetExStyle() & WS_EX_LAYERED)
-         {
-
-            m_spdib->Fill(0,0,0,0);
-
-         }
-         else
-         {
-
-            m_spdib->Fill(255,255,255,255);
-
-         }
-
-
-         m_spdib->get_graphics()->SetViewportOrg(0,0);
-
-         //m_spdib->get_graphics()->FillSolidRect(00, 00, 100, 100, ARGB(127, 0, 127, 0));
-         _001Print(m_spdib->get_graphics());
-
-
-         //pgraphics->FillSolidRect(300, 300, 100, 100, ARGB(127, 127, 127, 0));
-
-         //m_spdib->get_graphics()->SetViewportOrg(0, 0);
-         //m_spdib->get_graphics()->FillSolidRect(100, 100, 100, 100, ARGB(127, 127, 0, 0));
-
+         m_spdib->Fill(0,0,0,0);
 
       }
+      else
+      {
+
+         m_spdib->Fill(255,255,255,255);
+
+      }
+
+
+      m_spdib->get_graphics()->SetViewportOrg(0,0);
+
+      //m_spdib->get_graphics()->FillSolidRect(00, 00, 100, 100, ARGB(127, 0, 127, 0));
+      _001Print(m_spdib->get_graphics());
+
+
+      //pgraphics->FillSolidRect(300, 300, 100, 100, ARGB(127, 127, 127, 0));
+
+      //m_spdib->get_graphics()->SetViewportOrg(0, 0);
+      //m_spdib->get_graphics()->FillSolidRect(100, 100, 100, 100, ARGB(127, 127, 0, 0));
+
 
       if(Session.m_bDrawCursor)
       {

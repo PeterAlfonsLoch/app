@@ -21,7 +21,7 @@ public:
 
       void on_call_signal(signal_details * pobj);
 
-      virtual void on_application_bias_callback_signal(application_signal_details * pobj);
+      virtual void on_application_bias_callback_signal(::base::application_signal_details * pobj);
 
    };
 

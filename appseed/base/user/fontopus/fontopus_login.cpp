@@ -507,12 +507,6 @@ namespace fontopus
    void login::layout()
    {
 
-      m_labelUser.m_bVisible = true;
-      m_labelPassword.m_bVisible = true;
-      m_editUser.m_bVisible = true;
-      m_password.m_bVisible = true;
-      m_tap.m_bVisible = true;
-
 
       int stdw = 884;
       int stdh = 184 + 23 + 184;
@@ -613,21 +607,21 @@ namespace fontopus
 
 
       int32_t x1 = (int) (49 * r);
-      int32_t x2 = (int) (x1 + (rectClient.width() - 49 * 2) * r);
+      int32_t w2 = (int) ((rectClient.width() - 49 * 2) * r);
       int32_t h1 = (int) (23 * r);
       int32_t pad = (int) (5 * r);
 
       int32_t y = (int) ((49 + 86) * r);
-      m_labelUser.RepositionWindow(x1,y,x2,y + h1);
+      m_labelUser.RepositionWindow(x1,y,w2,h1);
       y += h1 + pad;
-      m_editUser.RepositionWindow(x1,y,x2,y + h1);
+      m_editUser.RepositionWindow(x1,y,w2, h1);
       y += h1 + pad;
-      m_labelPassword.RepositionWindow(x1,y,x2,y + h1);
+      m_labelPassword.RepositionWindow(x1,y,w2, h1);
       y += h1 + pad;
-      m_password.RepositionWindow(x1,y,x2,y + h1);
+      m_password.RepositionWindow(x1,y,w2,h1);
       y += h1 + pad;
       y += pad + h1 + pad;
-      m_tap.RepositionWindow(x1,y,x2,y + h1 * 3);;
+      m_tap.RepositionWindow(x1,y,w2,h1 * 3);;
 
 
    }
@@ -776,7 +770,7 @@ namespace fontopus
 
             login_result(::fontopus::login::result_ok);
 
-            GetTopLevelParent()->DestroyWindow();
+            GetTopLevelParent()->EndModalLoop("succeeded");
 
             return true;
 
@@ -805,7 +799,7 @@ namespace fontopus
       else if (!strcmp(pszId, "escape"))
       {
 
-         GetTopLevelParent()->DestroyWindow();
+         GetTopLevelParent()->EndModalLoop("cancelled");
 
       }
 
@@ -835,7 +829,7 @@ namespace fontopus
          else
          {
 
-            GetTopLevelParent()->DestroyWindow();
+            GetTopLevelParent()->EndModalLoop("succeeded");
 
          }
       }
@@ -861,7 +855,7 @@ namespace fontopus
          || !m_editUser.create(this, "edit_user")
          || !m_labelPassword.create(this, "label_password")
          || !m_password.create(this, "password")
-         || !m_tap.create(this, "submit_button"))
+         || !m_tap.create(this, "submit"))
       {
          pcreate->set_lresult(-1);
          pcreate->m_bRet = true;
