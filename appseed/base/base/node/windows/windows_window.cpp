@@ -2203,7 +2203,7 @@ namespace windows
 
    }
 
-   sp(::user::interaction) window::GetParentOwner()
+   sp(::user::interaction) window::GetParentOwner() const
    {
       if(get_handle() == NULL) // no Window attached
          return NULL;
@@ -2243,7 +2243,7 @@ namespace windows
       }
    }
 
-   sp(::user::frame_window) window::GetTopLevelFrame()
+   sp(::user::frame_window) window::GetTopLevelFrame() const
    {
       if(get_handle() == NULL) // no Window attached
          return NULL;
@@ -2251,10 +2251,10 @@ namespace windows
       ASSERT_VALID(this);
 
       sp(::user::frame_window) pFrameWnd = NULL;
-      if(m_pui != this)
+      if(m_pui.m_p != this)
          pFrameWnd = m_pui;
       else
-         pFrameWnd = (this);
+         pFrameWnd = (window * ) (this);
 
       bool bNull = pFrameWnd == NULL;
 
@@ -4614,7 +4614,7 @@ namespace windows
    }
 
 
-   ::user::interaction * window::get_parent()
+   ::user::interaction * window::get_parent() const
    {
 
       if(!::IsWindow(get_handle()))
@@ -4718,7 +4718,7 @@ namespace windows
       return (NODE_WINDOW((window *)&wnd)->get_handle()) != ((window *) this)->get_handle();
    }
 
-   uint32_t window::GetStyle()
+   uint32_t window::GetStyle() const
    {
 
       if(!::IsWindow(get_handle()))
@@ -4728,7 +4728,7 @@ namespace windows
 
    }
 
-   uint32_t window::GetExStyle()
+   uint32_t window::GetExStyle() const
    {
 
       if(!::IsWindow(get_handle()))
@@ -5079,10 +5079,14 @@ namespace windows
       }
    }
 
-   sp(::user::interaction) window::GetDescendantWindow(id id)
+
+   sp(::user::interaction) window::GetDescendantWindow(id id) const
    {
+
       ASSERT(::IsWindow(get_handle()));
-      return window::GetDescendantWindow(this,id);
+
+      
+      return window::GetDescendantWindow((::windows::window *) this,id);
    }
 
 
@@ -5090,11 +5094,16 @@ namespace windows
    {
 
       ASSERT(::IsWindow(get_handle()));
+
       ::draw2d::graphics_sp g(allocer());
+
       g->attach(::GetDCEx(get_handle(),(HRGN)prgnClip->get_os_data(),flags));
+
       return g.detach();
 
+
    }
+
 
    bool window::LockWindowUpdate()
    {

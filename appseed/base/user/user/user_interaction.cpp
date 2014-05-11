@@ -1771,16 +1771,6 @@ namespace user
 
    bool interaction::IsWindow() const
    {
-      try
-      {
-         sp(::user::interaction) pui = (this);
-         if (pui == NULL)
-            return FALSE;
-      }
-      catch (...)
-      {
-         return FALSE;
-      }
       if (m_pimpl == NULL)
          return FALSE;
       else
@@ -2180,7 +2170,7 @@ namespace user
          m_pimpl->set_owner(pui);
    }
 
-   sp(interaction) interaction::GetDescendantWindow(id iId)
+   sp(interaction) interaction::GetDescendantWindow(id iId) const
    {
       if (m_pimpl == NULL)
          return NULL;
