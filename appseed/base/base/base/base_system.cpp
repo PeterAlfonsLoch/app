@@ -663,21 +663,6 @@ namespace base
 
 
 
-   uint32_t _thread_proc_start_system(void * p)
-   {
-
-      system * psystem = (system *)p;
-
-      return psystem->main();
-
-   }
-
-   void __start_system(system * psystem)
-   {
-
-      ::create_thread(NULL,0,&_thread_proc_start_system,(LPVOID)psystem,0,0);
-
-   }
 
 
 
@@ -696,3 +681,19 @@ namespace base
 
 } // namespace base
 
+
+uint32_t _thread_proc_start_system(void * p)
+{
+
+   ::base::system * psystem = (::base::system *)p;
+
+   return psystem->main();
+
+}
+
+CLASS_DECL_BASE void __start_system(::base::system * psystem)
+{
+
+   ::create_thread(NULL,0,&_thread_proc_start_system,(LPVOID)psystem,0,0);
+
+}
