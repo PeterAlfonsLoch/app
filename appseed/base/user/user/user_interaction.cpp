@@ -146,7 +146,7 @@ namespace user
 
 
 
-   bool interaction::IsChild(interaction * pui)
+   bool interaction::IsChild(interaction * pui) const
    {
       
       if (m_pimpl == NULL)
@@ -157,7 +157,7 @@ namespace user
    }
 
 
-   window_interface * interaction::window_interface_get_parent()
+   window_interface * interaction::window_interface_get_parent() const
    {
 
       return get_parent();
@@ -165,7 +165,7 @@ namespace user
    }
 
 
-   interaction * interaction::get_parent()
+   interaction * interaction::get_parent() const
    {
       
       if (m_pimpl == NULL || m_pimpl == this)
@@ -177,7 +177,7 @@ namespace user
    }
 
 
-   oswindow interaction::get_parent_handle()
+   oswindow interaction::get_parent_handle() const
    {
 
       interaction * puiParent = get_parent();
@@ -200,7 +200,7 @@ namespace user
    }
 
 
-   interaction * interaction::get_parent_base()
+   interaction * interaction::get_parent_base() const
    {
 
       return get_parent();
@@ -561,7 +561,7 @@ namespace user
 
    }
 
-   id interaction::GetDlgCtrlId()
+   id interaction::GetDlgCtrlId() const
    {
       if (m_pimpl == NULL)
          return "";
@@ -1371,7 +1371,7 @@ namespace user
          return m_pimpl->pre_translate_message(pobj);
    }
 
-   oswindow interaction::get_handle()
+   oswindow interaction::get_handle() const
    {
 
 #if defined(METROWIN)
@@ -1769,7 +1769,7 @@ namespace user
 
    }
 
-   bool interaction::IsWindow()
+   bool interaction::IsWindow() const
    {
       try
       {
@@ -2059,7 +2059,7 @@ namespace user
          return m_pimpl->Default();
    }
 
-   uint32_t interaction::GetStyle()
+   uint32_t interaction::GetStyle() const
    {
       if (m_pimpl == NULL)
          return 0;
@@ -2067,7 +2067,7 @@ namespace user
          return m_pimpl->GetStyle();
    }
 
-   uint32_t interaction::GetExStyle()
+   uint32_t interaction::GetExStyle() const
    {
       if (m_pimpl == NULL)
          return 0;
@@ -3575,7 +3575,7 @@ namespace user
    }
 
 
-   window * interaction::get_wnd()
+   window * interaction::get_wnd() const
    {
 
       if (m_pimpl != NULL)

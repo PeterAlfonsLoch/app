@@ -35,7 +35,7 @@ public:
    void SetWindowText(const char * psz);
 
 
-   virtual sp(::user::interaction) GetDescendantWindow(id id);
+   virtual sp(::user::interaction) GetDescendantWindow(id id) const;
 
    id SetDlgCtrlId(id id);
    id GetDlgCtrlId();
@@ -56,8 +56,8 @@ public:
 
    virtual bool DestroyWindow();
 
-   virtual uint32_t GetStyle();
-   virtual uint32_t GetExStyle();
+   virtual uint32_t GetStyle() const;
+   virtual uint32_t GetExStyle() const;
    virtual LRESULT Default();
 
    virtual void SetFont(::draw2d::font* pFont, bool bRedraw = TRUE);
@@ -86,7 +86,7 @@ public:
    virtual bool KillTimer(uint_ptr nIDEvent);
 
 
-   virtual bool IsWindow();
+   virtual bool IsWindow() const;
    virtual bool is_window_enabled();
    virtual bool IsWindowVisible();
 

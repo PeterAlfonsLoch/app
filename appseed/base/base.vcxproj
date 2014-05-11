@@ -1396,7 +1396,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base\base_machine_event_data.h" />
     <ClInclude Include="base\base\base_main_init_data.h" />
     <ClInclude Include="base\base\base_math.h" />
-    <ClInclude Include="base\base\base_message.h" />
     <ClInclude Include="base\base\base_message_loop.h" />
     <ClInclude Include="base\base\base_message_queue.h" />
     <ClInclude Include="base\base\base_message_queue_listener.h" />
@@ -1558,6 +1557,12 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\install\install_starter_start.h" />
     <ClInclude Include="base\install\install_trace.h" />
     <ClInclude Include="base\install\aaa_want_to_remove_install_window.h" />
+    <ClInclude Include="base\message\message.h" />
+    <ClInclude Include="base\message\message_base.h" />
+    <ClInclude Include="base\message\message_cross_windows.h" />
+    <ClInclude Include="base\message\message_definition.h" />
+    <ClInclude Include="base\message\message_dispatch.h" />
+    <ClInclude Include="base\message\message_user.h" />
     <ClInclude Include="base\node\node.h" />
     <ClInclude Include="base\node\windows\factory_exchange.h" />
     <ClInclude Include="base\node\windows\os.h" />
@@ -2324,6 +2329,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\geoip\geoip_update.cpp" />
     <ClCompile Include="base\install\install_plugin_bare_paint_discreet.cpp" />
     <ClCompile Include="base\install\install_plugin_bare_paint_full_screen.cpp" />
+    <ClCompile Include="base\message\message.cpp" />
+    <ClCompile Include="base\message\message_base.cpp" />
+    <ClCompile Include="base\message\message_dispatch.cpp" />
+    <ClCompile Include="base\message\message_user.cpp" />
     <ClCompile Include="base\node\node.cpp" />
     <ClCompile Include="base\node\windows\win1.cpp" />
     <ClCompile Include="base\node\windows\windows_application.cpp" />
@@ -3811,7 +3820,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\base\base_machine_event_central.cpp" />
     <ClCompile Include="base\base\base_machine_event_data.cpp" />
     <ClCompile Include="base\base\base_math.cpp" />
-    <ClCompile Include="base\base\base_message.cpp" />
     <ClCompile Include="base\base\base_message_queue.cpp" />
     <ClCompile Include="base\base\base_microtimer.cpp" />
     <ClCompile Include="base\base\base_mktime.cpp" />
@@ -14812,6 +14820,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <None Include="base\base\base_system_primitive_var.inl" />
     <None Include="base\base\base_system_smart_pointer.inl" />
     <None Include="base\base\base_system_xml.inl" />
+    <None Include="base\message\message.inl" />
     <None Include="multithreading\multithreading.inl" />
     <None Include="primitive\primitive_factory_impl.inl" />
     <None Include="primitive\str\str.inl" />

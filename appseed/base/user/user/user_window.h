@@ -75,8 +75,8 @@ public:
    bool operator==(const window& wnd) const;
    bool operator!=(const window& wnd) const;
 
-   virtual uint32_t GetStyle();
-   virtual uint32_t GetExStyle();
+   virtual uint32_t GetStyle() const;
+   virtual uint32_t GetExStyle() const;
    virtual bool ModifyStyle(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);
    virtual bool ModifyStyleEx(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);
 
@@ -143,17 +143,17 @@ public:
    // get immediate child with given ID
    //void get_child_by_id(id id, int32_t iLevelHWND* poswindow_) const;
    // as above, but returns oswindow
-   virtual sp(::user::interaction) GetDescendantWindow(id id);
+   virtual sp(::user::interaction) GetDescendantWindow(id id) const;
    // like get_child_by_id but recursive
    void SendMessageToDescendants(UINT message, WPARAM wParam = 0, lparam lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
-   virtual sp(::user::frame_window) GetParentFrame();
+   virtual sp(::user::frame_window) GetParentFrame() const;
    virtual sp(::user::frame_window) EnsureParentFrame();
    virtual sp(::user::interaction) EnsureTopLevelParent();
-   virtual sp(::user::interaction) GetTopLevelOwner();
-   virtual sp(::user::interaction) GetParentOwner();
-   virtual sp(::user::frame_window) GetTopLevelFrame();
+   virtual sp(::user::interaction) GetTopLevelOwner() const;
+   virtual sp(::user::interaction) GetParentOwner() const;
+   virtual sp(::user::frame_window) GetTopLevelFrame() const;
 
-   virtual bool IsWindow();
+   virtual bool IsWindow() const;
 
 #if(WINVER >= 0x0500)
 
@@ -374,8 +374,8 @@ public:
    //      virtual sp(::user::interaction) GetWindow(UINT nCmd);
    virtual sp(::user::interaction) GetLastActivePopup();
 
-   virtual bool IsChild(::user::interaction *  pwindow);
-   virtual ::user::interaction * get_parent();
+   virtual bool IsChild(::user::interaction * pwindow) const;
+   virtual ::user::interaction * get_parent() const;
    ::user::interaction * set_parent(::user::interaction * pWndNewParent);
 
    // Alert Functions

@@ -3585,7 +3585,7 @@ namespace draw2d
       int iLastSpaceStart = -1;
       int iLastSpaceEnd = -1;
 
-      while (i <= wcslen(wstr))
+      while (i <= (strsize) wcslen(wstr))
       {
 
          sz = pdc->GetTextExtent(string(lpwsz, i));

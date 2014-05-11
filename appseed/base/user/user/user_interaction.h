@@ -150,7 +150,7 @@ namespace user
       void set_timer(spa(timer_item) timera);
 
 
-      virtual bool IsWindow();
+      virtual bool IsWindow() const;
 
       virtual LONG GetWindowLong(int32_t nIndex);
       virtual LONG SetWindowLong(int32_t nIndex, LONG lValue);
@@ -308,8 +308,8 @@ namespace user
       virtual void ShowOwnedPopups(bool bShow = TRUE);
 
 
-      virtual uint32_t GetStyle();
-      virtual uint32_t GetExStyle();
+      virtual uint32_t GetStyle() const;
+      virtual uint32_t GetExStyle() const;
       virtual LRESULT Default();
 
       virtual LRESULT send(::message::base * pbase);
@@ -344,15 +344,15 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics *pdc);
       virtual void draw_control_background(::draw2d::graphics *pdc);
 
-      virtual bool IsChild(interaction * pui);
-      virtual window_interface * window_interface_get_parent();
-      virtual ::user::interaction * get_parent();
+      virtual bool IsChild(interaction * pui) const;
+      virtual window_interface * window_interface_get_parent() const;
+      virtual ::user::interaction * get_parent() const;
       virtual ::user::interaction * set_parent(::user::interaction * puiParent);
-      virtual oswindow get_parent_handle();
-      virtual ::user::interaction * get_parent_base();
+      virtual oswindow get_parent_handle() const;
+      virtual ::user::interaction * get_parent_base() const;
       virtual ::user::interaction * set_parent_base(::user::interaction * puiParent);
 
-      virtual id GetDlgCtrlId();
+      virtual id GetDlgCtrlId() const;
       virtual id SetDlgCtrlId(class id id);
 
       virtual sp(interaction) set_capture(sp(interaction) pinterface = NULL);
@@ -369,7 +369,7 @@ namespace user
       virtual void WalkPreTranslateTree(signal_details * pobj);
       virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop, signal_details * pobj);
 
-      virtual sp(interaction) GetDescendantWindow(id id);
+      virtual sp(interaction) GetDescendantWindow(id id) const;
 
       virtual void SetWindowText(const char * lpszString);
       virtual strsize GetWindowText(LPTSTR lpszStringBuf, int32_t nMaxCount);
@@ -437,7 +437,7 @@ namespace user
       virtual sp(::user::interaction) get_focusable_descendant(sp(::user::interaction) pui = NULL);
 
 
-      virtual window * get_wnd();
+      virtual window * get_wnd() const;
 
       
       enum RepositionFlags
@@ -490,14 +490,14 @@ namespace user
       virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc);
 
 
-      oswindow get_safe_handle();
-      virtual oswindow get_handle();
+      oswindow get_safe_handle() const;
+      virtual oswindow get_handle() const;
       virtual bool attach(oswindow oswindow_New);
       virtual oswindow detach();
 
 
       template < class T >
-      T * GetTypedParent()
+      T * GetTypedParent() const
       {
          ASSERT_VALID(this);
 

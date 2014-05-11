@@ -756,6 +756,12 @@
     <Filter Include="Header Files\base\node\windows">
       <UniqueIdentifier>{8a9f35dd-3924-4dfe-bc44-6a823f0200b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\base\message">
+      <UniqueIdentifier>{6ea91d16-af59-4653-ad87-aaa3548a7437}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\message">
+      <UniqueIdentifier>{b9bf68d4-d81e-4040-a63c-b2b470c06acd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_wstringtou.h">
@@ -2882,9 +2888,6 @@
     <ClInclude Include="base\base\base_math.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\base_message.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
     <ClInclude Include="base\base\base_message_loop.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
@@ -4504,6 +4507,24 @@
     </ClInclude>
     <ClInclude Include="base\base\base_keeper.h">
       <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\message\message_dispatch.h">
+      <Filter>Header Files\base\message</Filter>
+    </ClInclude>
+    <ClInclude Include="base\message\message_definition.h">
+      <Filter>Header Files\base\message</Filter>
+    </ClInclude>
+    <ClInclude Include="base\message\message.h">
+      <Filter>Header Files\base\message</Filter>
+    </ClInclude>
+    <ClInclude Include="base\message\message_cross_windows.h">
+      <Filter>Header Files\base\message</Filter>
+    </ClInclude>
+    <ClInclude Include="base\message\message_base.h">
+      <Filter>Header Files\base\message</Filter>
+    </ClInclude>
+    <ClInclude Include="base\message\message_user.h">
+      <Filter>Header Files\base\message</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -7726,9 +7747,6 @@
     <ClCompile Include="base\base\base_math.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
-    <ClCompile Include="base\base\base_message.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
     <ClCompile Include="base\base\base_message_queue.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
@@ -8551,6 +8569,18 @@
     <ClCompile Include="base\node\node.cpp">
       <Filter>Source Files\base\node</Filter>
     </ClCompile>
+    <ClCompile Include="base\message\message.cpp">
+      <Filter>Source Files\base\message</Filter>
+    </ClCompile>
+    <ClCompile Include="base\message\message_base.cpp">
+      <Filter>Source Files\base\message</Filter>
+    </ClCompile>
+    <ClCompile Include="base\message\message_dispatch.cpp">
+      <Filter>Source Files\base\message</Filter>
+    </ClCompile>
+    <ClCompile Include="base\message\message_user.cpp">
+      <Filter>Source Files\base\message</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -9059,6 +9089,12 @@
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base\message\message.inl">
+      <Filter>Header Files\base\message</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -429,17 +429,17 @@ bool window::OnNotify(::message::base * pbase)
 }
 
 
-sp(::user::frame_window) window::GetParentFrame()
+sp(::user::frame_window) window::GetParentFrame() const
 {
    throw interface_only_exception(get_app());
 }
 
-sp(::user::interaction) window::GetTopLevelOwner()
+sp(::user::interaction) window::GetTopLevelOwner() const
 {
    throw interface_only_exception(get_app());
 }
 
-sp(::user::interaction) window::GetParentOwner()
+sp(::user::interaction) window::GetParentOwner() const
 {
    throw interface_only_exception(get_app());
 }
@@ -454,7 +454,7 @@ void window::ActivateTopParent()
    throw interface_only_exception(get_app());
 }
 
-sp(::user::frame_window) window::GetTopLevelFrame()
+sp(::user::frame_window) window::GetTopLevelFrame() const
 {
    throw interface_only_exception(get_app());
 }
@@ -816,13 +816,13 @@ oswindow window::unsubclass_window()
    throw interface_only_exception(get_app());
 }
 
-bool window::IsChild(::user::interaction * pui)
+bool window::IsChild(::user::interaction * pui) const
 {
    UNREFERENCED_PARAMETER(pui);
    throw interface_only_exception(get_app());
 }
 
-bool window::IsWindow()
+bool window::IsWindow() const
 {
    throw interface_only_exception(get_app());
 }
@@ -910,7 +910,7 @@ bool window::WfiIsZoomed()
 }
 
 
-::user::interaction * window::get_parent()
+::user::interaction * window::get_parent() const
 {
 
    return NULL;
@@ -959,15 +959,22 @@ bool window::operator!=(const window& wnd) const
    throw interface_only_exception(get_app());
 }
 
-uint32_t window::GetStyle()
+
+uint32_t window::GetStyle() const
 {
+
    throw interface_only_exception(get_app());
+
 }
 
-uint32_t window::GetExStyle()
+
+uint32_t window::GetExStyle() const
 {
+
    throw interface_only_exception(get_app());
+
 }
+
 
 bool window::ModifyStyle(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags)
 {
@@ -1185,7 +1192,7 @@ void window::SendMessageToDescendants(UINT message, WPARAM wParam, lparam lParam
    throw interface_only_exception(get_app());
 }
 
-sp(::user::interaction) window::GetDescendantWindow(id id)
+sp(::user::interaction) window::GetDescendantWindow(id id) const
 {
    UNREFERENCED_PARAMETER(id);
    throw interface_only_exception(get_app());

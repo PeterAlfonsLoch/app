@@ -1030,7 +1030,7 @@ namespace windows
    int32_t window::OnCompareItem(int32_t /*nIDCtl*/,LPCOMPAREITEMSTRUCT lpCompareItemStruct)
    {
       // reflect notification to child window control
-      LRESULT lResult;
+//      LRESULT lResult;
       //      if (ReflectLastMsg(lpCompareItemStruct->hwndItem, &lResult))
       //       return (int32_t)lResult;        // eat it
 
@@ -2165,7 +2165,7 @@ namespace windows
    /////////////////////////////////////////////////////////////////////////////
    // window extensions
 
-   sp(::user::frame_window) window::GetParentFrame()
+   sp(::user::frame_window) window::GetParentFrame() const
    {
       if(get_handle() == NULL) // no Window attached
       {
@@ -2186,7 +2186,7 @@ namespace windows
       return NULL;
    }
 
-   sp(::user::interaction) window::GetTopLevelOwner()
+   sp(::user::interaction) window::GetTopLevelOwner() const
    {
 
       if(get_handle() == NULL) // no Window attached
@@ -3048,7 +3048,7 @@ namespace windows
       LPDRAGLISTINFO lpInfo = (LPDRAGLISTINFO)lParam;
       ASSERT(lpInfo != NULL);
 
-      LRESULT lResult;
+//      LRESULT lResult;
       //if (ReflectLastMsg(lpInfo->hWnd, &lResult))
       //   return (int32_t)lResult;    // eat it
 
@@ -3556,7 +3556,7 @@ namespace windows
    HBRUSH window::OnCtlColor(::draw2d::graphics *,::window_sp pwindow,UINT)
    {
       ASSERT(pwindow != NULL && NODE_WINDOW(pwindow)->get_handle() != NULL);
-      LRESULT lResult;
+//      LRESULT lResult;
       //if (NODE_WINDOW(pwindow)->OnChildNotify(&lResult))
       //   return (HBRUSH)lResult;     // eat it
       return (HBRUSH)Default();
@@ -4176,26 +4176,26 @@ namespace windows
 
 
 
-   bool window::IsChild(sp(::user::interaction) pwindow)
+   bool window::IsChild(::user::interaction * pwindow) const
    {
       ASSERT(::IsWindow(get_handle()));
-      if(NODE_WINDOW(pwindow.m_p)->get_handle() == NULL)
+      if(pwindow->get_handle() == NULL)
       {
          return ::user::interaction::IsChild(pwindow);
       }
       else
       {
-         return ::IsChild(get_handle(),NODE_WINDOW(pwindow.m_p)->get_handle()) != FALSE;
+         return ::IsChild(get_handle(),pwindow->get_handle()) != FALSE;
       }
    }
 
-   bool window::IsWindow()
+   bool window::IsWindow() const
    {
       return ::IsWindow(get_handle()) != FALSE;
    }
 
 
-   oswindow window::get_handle()
+   oswindow window::get_handle() const
    {
 
       return ::windows::oswindow_handle::get_handle();

@@ -763,7 +763,7 @@ sp(::user::frame_window) virtual_user_interface::EnsureParentFrame()
 }
 
 
-uint32_t virtual_user_interface::GetStyle()
+uint32_t virtual_user_interface::GetStyle() const 
 {
    uint32_t dwStyle = 0;
    if(m_bVisible)
@@ -771,7 +771,7 @@ uint32_t virtual_user_interface::GetStyle()
    return dwStyle;
 }
 
-uint32_t virtual_user_interface::GetExStyle()
+uint32_t virtual_user_interface::GetExStyle() const
 {
    return 0;
 }
@@ -1267,7 +1267,7 @@ void virtual_user_interface::message_handler(signal_details * pobj)
 }
 
 
-bool virtual_user_interface::IsWindow()
+bool virtual_user_interface::IsWindow() const
 {
    return
       m_bCreate
@@ -1402,7 +1402,7 @@ bool virtual_user_interface::KillTimer(uint_ptr nIDEvent)
 }
 
 
-sp(::user::interaction) virtual_user_interface::GetDescendantWindow(id id)
+sp(::user::interaction) virtual_user_interface::GetDescendantWindow(id id) const
 {
    single_lock sl(&m_pthread->m_mutex, TRUE);
    for(int32_t i = 0; i < m_pui->m_uiptraChild.get_count(); i++)

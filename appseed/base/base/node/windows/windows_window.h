@@ -36,6 +36,8 @@ namespace windows
       size m_size;
       point m_pt;
 
+      ::user::window_interface *      m_pbasewnd;
+      sp(::user::interaction)        m_puiCapture;
 
 
 
@@ -63,15 +65,15 @@ namespace windows
       bool operator==(const window& wnd) const;
       bool operator!=(const window& wnd) const;
 
-      uint32_t GetStyle();
-      uint32_t GetExStyle();
+      uint32_t GetStyle() const;
+      uint32_t GetExStyle() const;
       bool ModifyStyle(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
       bool ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
 
       //virtual sp(::user::interaction) get_owner();
       virtual void set_owner(sp(::user::interaction) pOwnerWnd);
 
-      virtual oswindow get_handle();
+      virtual oswindow get_handle() const;
 
       virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
@@ -85,8 +87,6 @@ namespace windows
       DECL_GEN_SIGNAL(_001OnShowWindow);
       DECL_GEN_SIGNAL(_001OnProdevianSynch);
 
-      ::user::window_interface *      m_pbasewnd;
-      sp(::user::interaction)        m_puiCapture;
 
       virtual void win_update_graphics();
 
@@ -151,18 +151,18 @@ namespace windows
       void get_child_by_id(id id,oswindow* poswindow_) const;
       // as above, but returns oswindow
       using ::user::interaction::GetDescendantWindow;
-      sp(::user::interaction) GetDescendantWindow(id id);
+      sp(::user::interaction) GetDescendantWindow(id id) const;
       // like get_child_by_id but recursive
       void SendMessageToDescendants(UINT message,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = TRUE,bool bOnlyPerm = FALSE);
-      sp(::user::frame_window) GetParentFrame();
+      sp(::user::frame_window) GetParentFrame() const;
       sp(::user::frame_window) EnsureParentFrame();
       sp(::user::interaction) EnsureTopLevelParent();
-      sp(::user::interaction) GetTopLevelOwner();
-      sp(::user::interaction) GetParentOwner();
-      sp(::user::frame_window) GetTopLevelFrame();
+      sp(::user::interaction) GetTopLevelOwner() const;
+      sp(::user::interaction) GetParentOwner() const;
+      sp(::user::frame_window) GetTopLevelFrame() const;
       static ::window_sp get_safe_owner(::window_sp pParent = NULL,oswindow* pWndTop = NULL);
 
-      virtual bool IsWindow();
+      virtual bool IsWindow() const;
 
 #if(WINVER >= 0x0500)
 
@@ -381,8 +381,8 @@ namespace windows
       virtual sp(::user::interaction) GetWindow(UINT nCmd);
       virtual sp(::user::interaction) GetLastActivePopup();
 
-      virtual bool IsChild(sp(::user::interaction)  pwindow);
-      virtual ::user::interaction * get_parent();
+      virtual bool IsChild(::user::interaction * pwindow) const;
+      virtual ::user::interaction * get_parent() const;
       using ::user::interaction::set_parent;
       ::window_sp set_parent(::window_sp pWndNewParent);
       static ::window_sp WindowFromPoint(POINT point);

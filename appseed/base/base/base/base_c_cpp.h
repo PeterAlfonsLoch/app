@@ -74,7 +74,20 @@ namespace plane
 
 } // namespace plane
 
+class cmd_ui;
 
+
+namespace draw2d
+{
+
+
+   class graphics;
+
+
+} // namespace draw2d
+
+
+class base_command;
 
 namespace file
 {
@@ -567,7 +580,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_command.h"
 #include "graphics/visual/visual_const.h"
 #include "user/user/user_key_enum.h"
-#include "base_message.h"
+#include "base/base/message/message.h"
 #include "base_command_target.h"
 #include "user/user/user_text_interface.h"
 #include "user/user/user_draw_interface.h"

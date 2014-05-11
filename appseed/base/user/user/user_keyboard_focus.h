@@ -16,11 +16,11 @@ namespace user
       virtual void keyboard_focus_OnSysChar(signal_details * pobj);
       virtual void keyboard_focus_OnKeyDown(signal_details * pobj);
       virtual void keyboard_focus_OnKeyUp(signal_details * pobj);
-      virtual ::user::interaction * get_parent() = 0;
+      virtual ::user::interaction * get_parent() const = 0;
 #ifdef METROWIN
-      virtual interaction * get_wnd() = 0;
+      virtual interaction * get_wnd() const = 0;
 #else
-      virtual window * get_wnd() = 0;
+      virtual window * get_wnd() const = 0;
 #endif
       virtual bool BaseOnControlEvent(control_event * pevent) = 0;
       virtual keyboard_focus * keyboard_get_next_focusable();
