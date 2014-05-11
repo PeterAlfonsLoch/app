@@ -678,7 +678,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
-#include "::base::application.h"
+#include "base_application.h"
 
 #include "base_application_signal_details.h"
 
@@ -758,18 +758,13 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 #include "base_core_os.h"
 
-
-#include "::base::system.h"
+#include "base_system.h"
 
 #include "base/hotplugin/hotplugin.h"
 
 #include "base/install/install.h"
 
-
-
 #include "base_system_str.h"
-
-
 
 #include "base/os/os_process.h"
 
