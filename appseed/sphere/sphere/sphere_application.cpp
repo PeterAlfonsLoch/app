@@ -23,7 +23,7 @@ namespace sphere
    {
    }
 
-   sp(base_application) application::get_system()
+   sp(::base::application) application::get_system()
    {
       return new application();
    }

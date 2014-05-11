@@ -12,7 +12,7 @@ namespace sphere
    public:
 
 
-      library(sp(base_application) papp);
+      library(sp(::base::application) papp);
       
 
       virtual void get_app_list(stringa & stra);
@@ -21,7 +21,7 @@ namespace sphere
 
       virtual void get_extension_app(stringa & straApp, const char * pszExtension);
 
-//      virtual sp(base_application) get_new_app(const char * pszAppId);
+//      virtual sp(::base::application) get_new_app(const char * pszAppId);
 
 
    };

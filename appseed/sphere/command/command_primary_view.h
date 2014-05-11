@@ -14,7 +14,7 @@ namespace command
       strsize m_iCompromised;
 
 
-      primary_view(sp(base_application) papp);
+      primary_view(sp(::base::application) papp);
 
 
       virtual void install_message_handling(::message::dispatch * pinterface);

@@ -5,7 +5,7 @@ namespace sphere
 {
 
 
-   library::library(sp(base_application) papp) :
+   library::library(sp(::base::application) papp) :
       element(papp),
       ::base_library(papp),
       ::core::library(papp, "app"),
@@ -54,7 +54,7 @@ namespace sphere
    }
 
 
-/*   sp(base_application) library::get_new_app(const char * pszAppId)
+/*   sp(::base::application) library::get_new_app(const char * pszAppId)
    {
 
       if(::str::equals_ci(pszAppId, "calculator"))
@@ -85,7 +85,7 @@ namespace sphere
 #ifndef _WIN32
 extern "C"
 #endif
-::core::library * get_new_library(sp(base_application) papp)
+::core::library * get_new_library(sp(::base::application) papp)
 {
 
    return new ::sphere::library(papp);

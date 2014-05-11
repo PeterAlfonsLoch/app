@@ -27,7 +27,7 @@ namespace filehandler
          rect           m_rectStatusImage;
          rect           m_rectName;
 
-         item(sp(base_application) papp);
+         item(sp(::base::application) papp);
 
          void parse(const char * pszApp);
 
@@ -42,7 +42,7 @@ namespace filehandler
 
          int32_t m_iItemHeight;
 
-         list(sp(base_application) papp);
+         list(sp(::base::application) papp);
 
 
          void parse(handler * phandler, const char * pszTopic);
@@ -59,7 +59,7 @@ namespace filehandler
       sp(list)                m_plist;
 
 
-      view(sp(base_application) papp);
+      view(sp(::base::application) papp);
 
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);

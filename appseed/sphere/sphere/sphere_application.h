@@ -41,7 +41,7 @@ namespace sphere
 
       sp(::user::object) _001OpenDocumentFile(var varFile);
 
-      sp(base_application) get_system();
+      sp(::base::application) get_system();
 
    };
 

@@ -17,7 +17,7 @@ namespace calculator
       bool                       m_bTimerOn;
 
 
-      frame(sp(base_application) papp);
+      frame(sp(::base::application) papp);
       virtual ~frame();
 
       virtual bool pre_create_window(CREATESTRUCT& cs);

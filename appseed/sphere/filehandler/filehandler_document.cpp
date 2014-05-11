@@ -5,7 +5,7 @@ namespace filehandler
 {
 
 
-   document::document(sp(base_application) papp) :
+   document::document(sp(::base::application) papp) :
       element(papp),
       ::data::data_container_base(papp),
       ::user::object(papp),

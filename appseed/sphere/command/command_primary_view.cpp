@@ -5,7 +5,7 @@ namespace command
 {
 
 
-   primary_view::primary_view(sp(base_application) papp) :
+   primary_view::primary_view(sp(::base::application) papp) :
       element(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),

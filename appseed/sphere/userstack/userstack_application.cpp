@@ -69,7 +69,7 @@ namespace userstack
       }
 
       string strId;
-      sp(base_application) pcaapp;
+      sp(::base::application) pcaapp;
 
       POSITION pos = m_mapApplication.get_start_position();
 
@@ -81,7 +81,7 @@ namespace userstack
 
          m_mapApplication.get_next_assoc(pos, strId, pcaapp);
 
-         sp(base_application) papp =  (pcaapp);
+         sp(::base::application) papp =  (pcaapp);
 
          papp->m_pplaneapp->post_thread_message(WM_QUIT);
       }
@@ -265,9 +265,9 @@ namespace userstack
    }
 
 
-   sp(base_application) application::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
+   sp(::base::application) application::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
-      sp(base_application) papp = NULL;
+      sp(::base::application) papp = NULL;
 
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszId), papp))
          return papp;
@@ -296,7 +296,7 @@ namespace userstack
       }
    }
 
-   sp(base_application) application::get_current_application()
+   sp(::base::application) application::get_current_application()
    {
       return m_pappCurrent;
    }
@@ -477,7 +477,7 @@ namespace userstack
    void application::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
    {
 
-      sp(base_application) papp = NULL;
+      sp(::base::application) papp = NULL;
 
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
       {

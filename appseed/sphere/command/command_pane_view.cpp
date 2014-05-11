@@ -5,7 +5,7 @@ namespace command
 {
 
 
-   pane_view::pane_view(sp(base_application) papp) :
+   pane_view::pane_view(sp(::base::application) papp) :
       element(papp),
       ::user::tab(papp),
 
