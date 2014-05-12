@@ -73,6 +73,9 @@
 
 #ifdef _MSC_VER
 /* 'inline' is available only in C++ in MSVC */
+#ifdef inline
+#undef inline
+#endif
 #   define inline __inline
 #   define force_inline __forceinline
 #   define noinline __declspec(noinline)

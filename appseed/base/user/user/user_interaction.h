@@ -274,7 +274,7 @@ namespace user
          LPVOID lpParam = NULL);
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
       virtual void CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder);
-      virtual sp(::user::frame_window) GetParentFrame();
+      virtual sp(::user::frame_window) GetParentFrame() const;
 
       virtual bool IsTopParentActive();
       virtual void ActivateTopParent();
@@ -425,9 +425,9 @@ namespace user
       sp(interaction) get_child_by_id(id id, int32_t iLevel = -1);
 
       virtual sp(::user::frame_window) EnsureParentFrame();
-      virtual sp(interaction) GetTopLevelParent();
+      virtual sp(interaction) GetTopLevelParent() const;
       virtual sp(interaction) EnsureTopLevelParent();
-      virtual sp(::user::frame_window) GetTopLevelFrame();
+      virtual sp(::user::frame_window) GetTopLevelFrame() const;
       virtual void SendMessageToDescendants(UINT message, WPARAM wParam = 0, lparam lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
       virtual void pre_translate_message(signal_details * pobj);
 

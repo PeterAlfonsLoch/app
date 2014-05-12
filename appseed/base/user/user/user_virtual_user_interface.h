@@ -24,7 +24,7 @@ public:
    virtual void message_handler(signal_details * pobj);
    ::user::interaction * set_parent(::user::interaction * puiParent);
    bool ShowWindow(int32_t nCmdShow);
-   virtual ::user::interaction * get_parent();
+   virtual ::user::interaction * get_parent() const;
 
    virtual void _001WindowMinimize();
    virtual void _001WindowMaximize();
@@ -107,7 +107,7 @@ public:
 
    virtual sp(::user::frame_window) EnsureParentFrame();
    virtual sp(::user::interaction) EnsureTopLevelParent();
-   virtual sp(::user::frame_window) GetTopLevelFrame();
+   virtual sp(::user::frame_window) GetTopLevelFrame() const;
 
    using ::user::interaction::GetWindowText;
    strsize GetWindowText(LPTSTR lpszStringBuf, int32_t nMaxCount);

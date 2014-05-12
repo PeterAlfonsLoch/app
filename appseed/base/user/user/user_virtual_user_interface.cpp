@@ -32,7 +32,7 @@ virtual_user_interface::~virtual_user_interface()
 
 
 
-::user::interaction * virtual_user_interface::get_parent()
+::user::interaction * virtual_user_interface::get_parent() const
 {
 
    return m_pparent;

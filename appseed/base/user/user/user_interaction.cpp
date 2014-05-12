@@ -1346,7 +1346,7 @@ namespace user
          return m_pimpl->is_window_enabled();
    }
 
-   sp(::user::frame_window) interaction::GetTopLevelFrame()
+   sp(::user::frame_window) interaction::GetTopLevelFrame() const
    {
       if (m_pimpl == NULL)
          return NULL;
@@ -2017,10 +2017,10 @@ namespace user
          return m_pimpl->EnsureTopLevelParent();
    }
 
-   sp(interaction) interaction::GetTopLevelParent()
+   sp(interaction) interaction::GetTopLevelParent() const
    {
 
-      ::user::interaction * puiParent = this;
+      ::user::interaction * puiParent = (::user::interaction *) this;
 
       ::user::interaction * puiOwner;
 
@@ -2113,7 +2113,7 @@ namespace user
 
 
 
-   sp(::user::frame_window) interaction::GetParentFrame()
+   sp(::user::frame_window) interaction::GetParentFrame() const
    {
       ASSERT_VALID(this);
 
