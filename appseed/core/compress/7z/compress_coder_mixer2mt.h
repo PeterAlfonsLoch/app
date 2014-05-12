@@ -15,7 +15,7 @@ namespace libcompress
          array < ::ca::reader * > InStreamPointers;
          array < ::ca::writer * > OutStreamPointers;
 
-         CCoder2(::cabase_application * papp, uint32 numInStreams, uint32 numOutStreams);
+         CCoder2(::ca::base::application * papp, uint32 numInStreams, uint32 numOutStreams);
          void SetCoderInfo(const file_size **inSizes, const file_size **outSizes);
          virtual int32_t run();
          void Code(progress_info_interface *progress);

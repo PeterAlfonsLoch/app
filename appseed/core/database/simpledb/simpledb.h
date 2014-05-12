@@ -1,10 +1,6 @@
 #pragma once
 
 
-#include "core/core/core.h"
-
-
-
 //////////////////////////////////////////////////////////
 // simpledb - non-meta-non-orto-non-para remark
 // Thank youyuuu!!

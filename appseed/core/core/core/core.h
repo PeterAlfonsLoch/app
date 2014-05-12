@@ -80,7 +80,7 @@ class job;
 
 
 
-#include "core/api/api_rotate.h"
+#include "core/core/api/api_rotate.h"
 
 
 
@@ -93,15 +93,15 @@ class job;
 
 #if defined(APPLEOS)
 
-#include "core/macos/macos.h"
+#include "core/core/macos/macos.h"
 
 #elif defined(METROWIN)
 
-#include "core/metrowin/metrowin.h"
+#include "core/core/metrowin/metrowin.h"
 
 #elif defined(LINUX)
 
-#include "core/linux/os.h"
+#include "core/core/linux/os.h"
 
 #endif
 
@@ -109,7 +109,7 @@ class job;
 //#include "primitive/count.h"
 
 
-#include "core/api/api.h"
+#include "core/core/api/api.h"
 
 
 
@@ -619,8 +619,8 @@ namespace user
 
 
 //#include "user_element_2d.h"
-#include "user/user/user_control_property.h"
-#include "user/user/user_window_id.h"
+#include "core/user/user/user_control_property.h"
+#include "core/user/user/user_window_id.h"
 
 
 #include "database/database_id.h"
@@ -643,8 +643,8 @@ namespace user
 
 
 // services
-#include "core/service/service_plain_service.h"
-#include "core/service/service_thread_pool.h"
+#include "core/core/service/service_plain_service.h"
+#include "core/core/service/service_thread_pool.h"
 
 
 
@@ -716,24 +716,24 @@ namespace core
 #include "core_process_data.h"
 
 
-#include "core/data/data_item.h"
-#include "core/data/data_tree_item.h"
-#include "core/data/data_tree.h"
+#include "core/core/data/data_item.h"
+#include "core/core/data/data_tree_item.h"
+#include "core/core/data/data_tree.h"
 
 #include "core_fs_interface.h"
 
 
 // memory primitives
-#include "primitive/primitive_shared_file.h"
+#include "core/primitive/primitive_shared_file.h"
 
 
 
-#include "include/zlib.h"
-#include "database/sqlite/sqlite.h"
+//#include "include/zlib.h"
+#include "core/database/sqlite/sqlite.h"
 
 
 
-#include "core/libcharguess/libcharguess.h"
+#include "core/core/libcharguess/libcharguess.h"
 
 
 
@@ -752,34 +752,34 @@ namespace core
 
 
 // from 7-zip
-#include "filesystem/file/file_dynamic_buffer.h"
-#include "filesystem/file/file_in_buffer.h"
-#include "filesystem/file/file_out_buffer.h"
-#include "filesystem/file/file_circular_buffer.h"
-#include "filesystem/file/file_bitl_decoder.h"
-#include "filesystem/file/file_bitl_encoder.h"
-#include "filesystem/file/file_bitm_decoder.h"
-#include "filesystem/file/file_bitm_encoder.h"
-#include "filesystem/file/file_limited_reader.h"
-#include "filesystem/file/file_limited_input_stream.h"
-#include "filesystem/file/file_clustered_input_stream.h"
-#include "filesystem/file/file_limited_writer.h"
+#include "core/filesystem/file/file_dynamic_buffer.h"
+#include "core/filesystem/file/file_in_buffer.h"
+#include "core/filesystem/file/file_out_buffer.h"
+//#include "core/filesystem/file/file_circular_buffer.h"
+#include "core/filesystem/file/file_bitl_decoder.h"
+#include "core/filesystem/file/file_bitl_encoder.h"
+#include "core/filesystem/file/file_bitm_decoder.h"
+#include "core/filesystem/file/file_bitm_encoder.h"
+#include "core/filesystem/file/file_limited_reader.h"
+#include "core/filesystem/file/file_limited_input_stream.h"
+#include "core/filesystem/file/file_clustered_input_stream.h"
+#include "core/filesystem/file/file_limited_writer.h"
 
-#include "filesystem/file/file_stream_binder.h"
-#include "filesystem/file/file_locked_in_stream.h"
-#include "filesystem/file/file_io_temp_buffer.h"
-#include "filesystem/file/file_size_count_writer.h"
-#include "filesystem/file/file_dynamic_buffered_writer.h"
+#include "core/filesystem/file/file_stream_binder.h"
+#include "core/filesystem/file/file_locked_in_stream.h"
+#include "core/filesystem/file/file_io_temp_buffer.h"
+#include "core/filesystem/file/file_size_count_writer.h"
+#include "core/filesystem/file/file_dynamic_buffered_writer.h"
 
 
-#include "filesystem/file/file_buffered_buffer.h"
-#include "filesystem/file/file_timeout_buffer.h"
-#include "filesystem/file/file_edit_buffer.h"
-#include "filesystem/file/file_text_buffer.h"
+//#include "core/filesystem/file/file_buffered_buffer.h"
+//#include "core/filesystem/file/file_timeout_buffer.h"
+#include "core/filesystem/file/file_edit_buffer.h"
+//#include "core/filesystem/file/file_text_buffer.h"
 //#include "core_file_system.h"
 #include "core_resource.h"
 
-#include "core/data/data_simple_item.h"
+#include "core/core/data/data_simple_item.h"
 
 
 
@@ -787,7 +787,7 @@ namespace core
 
 #include "core_debug.h"
 
-#include "math/math_math.h"
+#include "core/math/math_math.h"
 
 
 #include "core_iterator.h"
@@ -813,7 +813,7 @@ namespace core
 
 #include "core_util1.h"
 
-#include "primitive/primitive_int_biunique.h"
+#include "core/primitive/primitive_int_biunique.h"
 
 template <class TYPE>
 inline bool is_null(const TYPE & ref)
@@ -834,11 +834,11 @@ inline bool is_null(const TYPE & ref)
 
 #include "core_timer.h"
 
-#include "filesystem/file/file_set.h"
+//#include "core/filesystem/file/file_set.h"
 
-#include "filesystem/file/file_folder_watch.h"
+//#include "core/filesystem/file/file_folder_watch.h"
 
-#include "filesystem/file/file_transfer_buffer.h"
+//#include "core/filesystem/file/file_transfer_buffer.h"
 
 
 class document;
@@ -907,7 +907,7 @@ class Ex1FactoryImpl;
 
 
 
-#include "math/calculator/calculator.h"
+#include "core/math/calculator/calculator.h"
 
 
 #include "net/http/http_output_stream.h"
@@ -917,9 +917,9 @@ class Ex1FactoryImpl;
 
 
 
-#include "user/colorertake5/colorertake5.h"
+#include "core/user/colorertake5/colorertake5.h"
 
-#include "graphics/html/html.h"
+#include "core/graphics/html/html.h"
 
 
 #include "core_debug.h"
@@ -928,11 +928,11 @@ class Ex1FactoryImpl;
 
 
 
-#include "filesystem/file/file_application.h"
-#include "filesystem/file/file_system.h"
-#include "filesystem/file/file_dir_application.h"
-#include "filesystem/file/file_dir_system.h"
-#include "filesystem/file/file_edit_buffer.h"
+//#include "core/filesystem/file/file_application.h"
+//#include "core/filesystem/file/file_system.h"
+//#include "core/filesystem/file/file_dir_application.h"
+//#include "core/filesystem/file/file_dir_system.h"
+#include "core/filesystem/file/file_edit_buffer.h"
 #include "core_stra.h"
 #include "net/net_url_domain.h"
 
@@ -943,7 +943,7 @@ class Ex1FactoryImpl;
 #include "core_library.h"
 
 
-#include "filesystem/filehandler/filehandler.h"
+#include "core/filesystem/filehandler/filehandler.h"
 
 
 
@@ -952,8 +952,8 @@ class Ex1FactoryImpl;
 
 
 
-#include "compress/compress.h"
-#include "programming/javascript/javascript.h"
+#include "core/compress/compress.h"
+//#include "core/programming/javascript/javascript.h"
 
 // former core - changed to core on 2013-02-21
 ////////////////////////////////////////////////////////////////
@@ -968,11 +968,11 @@ class Ex1FactoryImpl;
 #include "core_patch.h"
 
 
-#include "net/net_email_departament.h"
+#include "core/net/net_email_departament.h"
 
 
-#include "net/hi5/hi5_oauth.h"
-#include "net/hi5/hi5_twit.h"
+#include "core/net/hi5/hi5_oauth.h"
+#include "core/net/hi5/hi5_twit.h"
 
 
 #include "core_process_departament.h"
@@ -982,10 +982,10 @@ class Ex1FactoryImpl;
 
 
 
-#include "programming/dynamic_source/dynamic_source.h"
+#include "core/programming/dynamic_source/dynamic_source.h"
 
 
-#include "graphics/visual/visual.h"
+#include "core/graphics/visual/visual.h"
 
 
 #include "core/user/user/user.h"
@@ -993,19 +993,19 @@ class Ex1FactoryImpl;
 
 
 
-#include "graphics/html/html2.h"
-#include "user/userex/userex.h"
+#include "core/graphics/html/html2.h"
+#include "core/user/userex/userex.h"
 
 
 
-#include "filesystem/filemanager/filemanager.h"
+#include "core/filesystem/filemanager/filemanager.h"
 
-#include "net/usernet/usernet.h"
-#include "user/fontopus/fontopus.h"
-#include "net/usermail/usermail.h"
+#include "core/net/usernet/usernet.h"
+//#include "core/user/fontopus/fontopus.h"
+#include "core/net/usermail/usermail.h"
 
 
-#include "net/hi5/hi5.h"
+#include "core/net/hi5/hi5.h"
 
 #include "core_application.h"
 

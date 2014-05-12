@@ -96,7 +96,7 @@ namespace ios
    }
    
    
-   window::window(base_application * papp) :
+   window::window(::base::application * papp) :
    element(papp),
    ::user::interaction(papp)
    {
@@ -3179,7 +3179,7 @@ namespace ios
       oswindow m_hwnd;
       HDC m_hdc;
       
-      print_window(base_application * papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
+      print_window(::base::application * papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
       element(papp),
       m_event(papp)
       
@@ -4202,7 +4202,7 @@ namespace ios
    }
    
    
-   /*   view_update_hint::view_update_hint(base_application * papp) :
+   /*   view_update_hint::view_update_hint(::base::application * papp) :
     element(papp)
     {
     }
@@ -4543,7 +4543,7 @@ namespace ios
       return m_id;
    }
    
-   /*   guie_message_wnd::guie_message_wnd(base_application * papp) :
+   /*   guie_message_wnd::guie_message_wnd(::base::application * papp) :
     element(papp)
     {
     m_pguieForward = NULL;

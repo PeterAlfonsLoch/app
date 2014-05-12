@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "core/graphics/visual/visual.h"
+
+
+
 namespace html
 {
 
@@ -124,7 +128,7 @@ class mini_dock_frame_window;    // forward reference (see afxpriv.h)
 class CDockState;           // forward reference (see afxpriv.h)
 
 
-#include "user/uinteraction/uinteraction.h"
+#include "core/user/uinteraction/uinteraction.h"
 
 
 
@@ -217,7 +221,7 @@ class COleDataObject;   // forward reference (see afxole.h)
 //#include "user_job.h"
 
 
-#include "user/menu/user_menu_central.h"
+#include "core/user/menu/user_menu_central.h"
 
 
 #include "user_xfplayer_view_line.h"
@@ -304,18 +308,18 @@ namespace user
 #include "user_single_document_template.h"
 #include "user_multiple_document_template.h"
 
-#include "user/menu/user_menu_button.h"
-#include "user/menu/user_menu_item.h"
-#include "user/menu/user_menu.h"
-#include "user/menu/user_menu_list_window.h"
-#include "user/menu/user_menu_list_view.h"
+#include "core/user/menu/user_menu_button.h"
+#include "core/user/menu/user_menu_item.h"
+#include "core/user/menu/user_menu.h"
+#include "core/user/menu/user_menu_list_window.h"
+#include "core/user/menu/user_menu_list_view.h"
 
 #include "user_step_slider.h"
 #include "user_elastic_slider.h"
 
 
 // user simple
-#include "user/simple/simple.h"
+#include "core/user/simple/simple.h"
 
 
 // user after simple

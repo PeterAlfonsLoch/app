@@ -12,7 +12,7 @@ namespace ios
    public:
 
 
-      copydesk(base_application * papp);
+      copydesk(::base::application * papp);
       virtual ~copydesk();
 
 

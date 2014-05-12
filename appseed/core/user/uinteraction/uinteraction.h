@@ -30,7 +30,7 @@ namespace user
 #include "uinteraction_interaction.h"
 
 
-#include "database/databaseuser/databaseuser.h"
+#include "core/database/databaseuser/databaseuser.h"
 
 
 #include "frame/uinteraction_frame.h"

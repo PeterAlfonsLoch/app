@@ -7,7 +7,7 @@ int32_t AmIBeingDebugged();
 #include "ios_ns_exception.h"
 
 
-#include "ios_thread.h"
+#include "ios_multithreading.h"
 
 /*#ifdef cplusplus
 

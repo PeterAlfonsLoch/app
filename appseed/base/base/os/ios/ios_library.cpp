@@ -2,7 +2,7 @@
 #include <dlfcn.h>
 
 
-   base_library::base_library(sp(base_application) papp) :
+   base_library::base_library(sp(::base::application) papp) :
       element(papp)
    {
       
@@ -13,7 +13,7 @@
    }
 
    
-   base_library::base_library(sp(base_application) papp, const char * pszOpen) :
+   base_library::base_library(sp(::base::application) papp, const char * pszOpen) :
       element(papp)
    {
       
@@ -114,7 +114,7 @@
    }
 
    
-   ca2_library::ca2_library(sp(base_application) papp) :
+   ca2_library::ca2_library(sp(::base::application) papp) :
       element(papp),
       base_library(papp)
    {
@@ -122,7 +122,7 @@
    }
 
    
-   ca2_library::ca2_library(sp(base_application) papp, const char * pszOpen) :
+   ca2_library::ca2_library(sp(::base::application) papp, const char * pszOpen) :
       element(papp),
       base_library(papp, pszOpen)
    {

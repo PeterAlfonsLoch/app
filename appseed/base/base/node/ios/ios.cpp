@@ -21,9 +21,9 @@ namespace ios
 
 
 // Global helper functions
-CLASS_DECL_ios base_application * __get_app()
+CLASS_DECL_ios ::base::application * __get_app()
 {
-   return dynamic_cast < base_application * > (afxCurrentWinApp);
+   return dynamic_cast < ::base::application * > (afxCurrentWinApp);
 }
 
 CLASS_DECL_ios HINSTANCE __get_instance_handle()

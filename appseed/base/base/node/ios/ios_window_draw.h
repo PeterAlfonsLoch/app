@@ -36,7 +36,7 @@ namespace ios
       DWORD                                  m_dwLastDelay;
       
       
-      window_draw(base_application * papp);
+      window_draw(::base::application * papp);
       virtual ~window_draw();
       
       

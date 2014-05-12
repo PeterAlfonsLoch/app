@@ -24,7 +24,7 @@ namespace ios
 {
    
    
-   file::file(base_application * papp) :
+   file::file(::base::application * papp) :
    element(papp)
    {
       
@@ -34,7 +34,7 @@ namespace ios
       
    }
    
-   file::file(base_application * papp, int32_t hFile) :
+   file::file(::base::application * papp, int32_t hFile) :
    element(papp)
    {
       
@@ -44,7 +44,7 @@ namespace ios
       
    }
    
-   file::file(base_application * papp, const char * lpszFileName, UINT nOpenFlags) :
+   file::file(::base::application * papp, const char * lpszFileName, UINT nOpenFlags) :
    element(papp)
    {
       
@@ -575,13 +575,13 @@ namespace ios
    namespace file_exception
    {
    
-   void ThrowOsError(base_application * papp, LONG lOsError, const char * lpszFileName /* = NULL */)
+   void ThrowOsError(::base::application * papp, LONG lOsError, const char * lpszFileName /* = NULL */)
    {
       if (lOsError != 0)
          vfxThrowFileException(papp, ::ios::file_exception::OsErrorToException(lOsError), lOsError, lpszFileName);
    }
    
-   void ThrowErrno(base_application * papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
+   void ThrowErrno(::base::application * papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
    {
       if (nErrno != 0)
          vfxThrowFileException(papp, ::ios::file_exception::ErrnoToException(nErrno), errno, lpszFileName);
@@ -1680,7 +1680,7 @@ CLASS_DECL_ios bool vfxResolveShortcut(string & strTarget, const char * pszSourc
 /////////////////////////////////////////////////////////////////////////////
 // WinFileException helpers
 
-void CLASS_DECL_ios vfxThrowFileException(base_application * papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+void CLASS_DECL_ios vfxThrowFileException(::base::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
 {
 #ifdef DEBUG
    const char * lpsz;

@@ -416,7 +416,7 @@ bool CLASS_DECL_ios __is_module_dll()
 
 bool CLASS_DECL_ios __init_current_state_app()
 {
-   base_application * pApp = __get_module_state()->m_pCurrentWinApp;
+   ::base::application * pApp = __get_module_state()->m_pCurrentWinApp;
    if (pApp != NULL && !pApp->m_pbaseapp->initialize_instance())
    {
       // Init Failed

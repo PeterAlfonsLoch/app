@@ -20,7 +20,7 @@ namespace ios
    public:
 
 
-      ip_enum(base_application * papp);
+      ip_enum(::base::application * papp);
       virtual ~ip_enum();
 
 

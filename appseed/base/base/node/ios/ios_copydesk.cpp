@@ -5,7 +5,7 @@ namespace ios
 {
 
 
-   copydesk::copydesk(base_application * papp) :
+   copydesk::copydesk(::base::application * papp) :
       element(papp),
       ::core::copydesk(papp),
       window_sp(papp)

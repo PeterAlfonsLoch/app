@@ -93,7 +93,7 @@ namespace user
 
       virtual bool create_message_queue(const char * pszName, ::message_queue_listener * pcallback = NULL);
 #if defined(METROWIN) || defined(APPLE_IOS)
-      virtual bool initialize(::r::native_window_initialize * pinitialize);
+      virtual bool initialize(native_window_initialize * pinitialize);
 #endif
 
 
@@ -499,7 +499,10 @@ namespace user
       template < class T >
       T * GetTypedParent() const
       {
-         ASSERT_VALID(this);
+         
+         ::user::interaction * pthis = (::user::interaction *)this;
+         
+         ASSERT_VALID(pthis);
 
          sp(interaction) pParentWnd = get_parent();  // start with one parent up
          while (pParentWnd != NULL)

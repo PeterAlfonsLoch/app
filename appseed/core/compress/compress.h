@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "compress/crypto/crypto.h"
-#include "compress/compress.h"
+#include "core/compress/crypto/crypto.h"
+#include "core/compress/compress/compress.h"
 
 
 

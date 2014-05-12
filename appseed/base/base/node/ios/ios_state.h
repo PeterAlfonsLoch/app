@@ -11,23 +11,20 @@ namespace ios
 //#include "types.h"
 //#include "template.h"
 
-#ifndef __AFXTLS_H__
-#include "ios_thread_slots.h"
-#endif
 
 /////////////////////////////////////////////////////////////////////////////
 // ___DEBUG_STATE
 
 #ifdef DEBUG
 
-class ___DEBUG_STATE : public ios::no_track_object
+class ___DEBUG_STATE
 {
 public:
    ___DEBUG_STATE();
    virtual ~___DEBUG_STATE();
 };
 
-EXTERN_PROCESS_LOCAL(___DEBUG_STATE, afxDebugState)
+extern ___DEBUG_STATE afxDebugState;
 
 #endif //DEBUG
 
@@ -35,14 +32,14 @@ EXTERN_PROCESS_LOCAL(___DEBUG_STATE, afxDebugState)
 // ___IOS_STATE
 
 
-class ___IOS_STATE : public ::ios::no_track_object
+class ___IOS_STATE
 {
 public:
    // printing abort
    bool m_bUserAbort;
 };
 
-EXTERN_PROCESS_LOCAL(___IOS_STATE, gen_WinState)
+extern ___IOS_STATE gen_WinState;
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -80,8 +77,7 @@ public:
 };
 
 // __MODULE_THREAD_STATE (local to thread *and* module)
-class CLASS_DECL_ios __MODULE_THREAD_STATE :
-public ::ios::no_track_object
+class CLASS_DECL_ios __MODULE_THREAD_STATE
 {
 public:
    __MODULE_THREAD_STATE();
@@ -120,7 +116,7 @@ class CComCtlWrapper;
 class CCommDlgWrapper;
 
 // __MODULE_STATE (global data for a module)
-class CLASS_DECL_ios __MODULE_STATE : public ::ios::no_track_object
+class CLASS_DECL_ios __MODULE_STATE
 {
 public:
    // xxx  __MODULE_STATE(bool bDLL, WNDPROC pfn_window_procedure, DWORD dwVersion,
@@ -128,7 +124,7 @@ public:
    __MODULE_STATE(bool bDLL, DWORD dwVersion, bool bSystem = FALSE);
    ~__MODULE_STATE();
    
-   base_application * m_pCurrentWinApp;
+   ::base::application * m_pCurrentWinApp;
    HINSTANCE m_hCurrentInstanceHandle;
    HINSTANCE m_hCurrentResourceHandle;
    const char * m_lpszCurrentAppName;
@@ -166,7 +162,7 @@ public:
    
    
    // define thread local portions of module state
-   ios::thread_slot < __MODULE_THREAD_STATE, slot___MODULE_THREAD_STATE > m_thread;
+   thread_pointer < __MODULE_THREAD_STATE > t_pthread;
    
    //Fusion: declare pointer to array of pointers to isolation aware dll wrappers (ex: comctl32).
    CDllIsolationWrapperBase** m_pDllIsolationWrappers;
@@ -227,7 +223,6 @@ class CPushRoutingView;
 
 #define ___TEMP_CLASS_NAME_SIZE 96
 class CLASS_DECL_ios ___THREAD_STATE :
-public ::ios::no_track_object,
 public ::thread_state
 {
 public:
@@ -246,7 +241,7 @@ public:
    void * m_pSafetyPoolBuffer;    // current buffer
    
    // thread local exception context
-   __EXCEPTION_CONTEXT m_exceptionContext;
+   _EXCEPTION_POINTERS m_exceptionContext;
    
    // ::window create, gray dialog hook, and other hook data
    ::user::interaction * m_pWndInit;
@@ -286,7 +281,7 @@ public:
    bool m_bNeedTerm;       // TRUE if OleUninitialize needs to be called
 };
 
-EXTERN_THREAD_LOCAL(___THREAD_STATE, gen_ThreadState, slot___THREAD_STATE)
+extern thread_pointer < ___THREAD_STATE > gen_ThreadState;
 
 CLASS_DECL_ios ___THREAD_STATE * __get_thread_state();
 

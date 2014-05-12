@@ -5,7 +5,7 @@ namespace ios
 {
 
 
-   ip_enum::ip_enum(base_application * papp) :
+   ip_enum::ip_enum(::base::application * papp) :
       element(papp),
       ::net::ip_enum(papp)
    {

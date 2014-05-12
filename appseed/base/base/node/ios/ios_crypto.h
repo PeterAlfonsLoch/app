@@ -11,7 +11,7 @@ namespace ios
    public:
 
 
-      crypto(base_application * papp);
+      crypto(::base::application * papp);
       virtual ~crypto();
 
 

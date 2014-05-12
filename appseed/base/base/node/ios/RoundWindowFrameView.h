@@ -28,17 +28,6 @@
    
    
 }
-{
-   @public
-
-
-   mm_window *    m_roundwindow;
-   bool           m_bShift;
-   bool           m_bControl;
-   bool           m_bAlt;
-
-
-}
 
 
 -(void)redraw_view;

@@ -26,7 +26,7 @@ struct plane_system
 
 string get_error_message(DWORD dwError);
 
-base_application *     ios_instantiate_application(base_application * pappSystem, const char * pszId);
+::base::application *     ios_instantiate_application(::base::application * pappSystem, const char * pszId);
 
 /////////////////////////////////////////////////////////////////////////////
 // explicit initialization for general purpose classes
@@ -67,7 +67,7 @@ CLASS_DECL_ios void AfxResetMsgCache();
 #define _AfxHookWindowCreate    AfxHookWindowCreate
 #define _AfxUnhookWindowCreate  AfxUnhookWindowCreate
 
-#include "ios1.h"
+//#include "ios1.h"
 #include "ios_implementation.h"
 #include "ios_state.h"
 //#include "ios_handle.h"
@@ -126,7 +126,7 @@ WINBOOL GetMessage(
 int32_t CLASS_DECL_ios __ios_main(int32_t argc, char * argv[]);
 
 
-CLASS_DECL_ios void vfxThrowFileException(base_application * papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
+CLASS_DECL_ios void vfxThrowFileException(::base::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
 
 
@@ -217,10 +217,10 @@ namespace ios
 }
 CLASS_DECL_ios MESSAGE * __get_current_message();
 
-CLASS_DECL_ios void __end_thread(base_application * papp,UINT nExitCode,bool bDelete = TRUE);
+CLASS_DECL_ios void __end_thread(::base::application * papp,UINT nExitCode,bool bDelete = TRUE);
 
 CLASS_DECL_ios void __init_thread();
-CLASS_DECL_ios void __term_thread(base_application * papp,HINSTANCE hInstTerm = NULL);
+CLASS_DECL_ios void __term_thread(::base::application * papp,HINSTANCE hInstTerm = NULL);
 
 /////////////////////////////////////////////////////////////////////////////
 // Global functions for access to the one and only application
@@ -239,7 +239,7 @@ CLASS_DECL_ios void __term_thread(base_application * papp,HINSTANCE hInstTerm = 
 // __in_z LPTSTR lpCmdLine, __in int32_t nCmdShow);
 CLASS_DECL_ios void __ios_term();
 
-CLASS_DECL_ios base_application * __get_app();
+CLASS_DECL_ios ::base::application * __get_app();
 CLASS_DECL_ios sp(::user::interaction) __get_main_window();
 //CLASS_DECL_ios HINSTANCE CLASS_DECL_ios System.m_hInstance;
 CLASS_DECL_ios HINSTANCE __get_resource_handle();

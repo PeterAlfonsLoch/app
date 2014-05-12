@@ -8,7 +8,7 @@ namespace ios
 {
    
    
-   os::os(base_application * papp) :
+   os::os(::base::application * papp) :
    element(papp),
    ::core::os(papp)
    {
@@ -570,7 +570,7 @@ namespace ios
       
    }
    
-   bool os::create_service(sp(base_application) papp)
+   bool os::create_service(sp(::base::application) papp)
    {
       
   //    throw not_implemented(get_app());
@@ -623,7 +623,7 @@ namespace ios
    }
    
    
-   bool os::remove_service(sp(base_application) papp)
+   bool os::remove_service(sp(::base::application) papp)
    {
    //   throw not_implemented(get_app());
       return false;
@@ -664,7 +664,7 @@ namespace ios
        */
    }
    
-   bool os::start_service(sp(base_application) papp)
+   bool os::start_service(sp(::base::application) papp)
    {
     //  throw not_implemented(get_app());
       return false;
@@ -705,7 +705,7 @@ namespace ios
        */
    }
    
-   bool os::stop_service(sp(base_application) papp)
+   bool os::stop_service(sp(::base::application) papp)
    {
   //    throw not_implemented(get_app());
       return false;

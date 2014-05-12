@@ -5,7 +5,7 @@ namespace ios
 {
 
 
-   crypto::crypto(base_application * papp) :
+   crypto::crypto(::base::application * papp) :
       element(papp),
       ::crypto::crypto(papp)
    {

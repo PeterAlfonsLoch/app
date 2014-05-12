@@ -29,7 +29,7 @@ namespace ios
       main_init_data *     m_pmaininitdata;
       
       
-      application(base_application * papp);
+      application(::base::application * papp);
       virtual ~application();
       
       virtual HINSTANCE GetHinstance();

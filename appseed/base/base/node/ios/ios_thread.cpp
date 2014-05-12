@@ -422,7 +422,7 @@ WINBOOL __cdecl __is_idle_message(MESSAGE* pMsg)
 
 
 
-/*thread* CLASS_DECL_ios AfxBeginThread(base_application * papp, __THREADPROC pfnThreadProc, LPVOID pParam,
+/*thread* CLASS_DECL_ios AfxBeginThread(::base::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam,
  int32_t nPriority, UINT nStackSize, DWORD dwCreateFlags,
  LPSECURITY_ATTRIBUTES lpSecurityAttrs)
  {
@@ -443,7 +443,7 @@ WINBOOL __cdecl __is_idle_message(MESSAGE* pMsg)
  
  return pThread;
  }*/
-void CLASS_DECL_ios __end_thread(base_application * papp, UINT nExitCode, bool bDelete)
+void CLASS_DECL_ios __end_thread(::base::application * papp, UINT nExitCode, bool bDelete)
 {
    // remove current thread object from primitive::memory
 //   __MODULE_THREAD_STATE* pState = __get_module_thread_state();
@@ -468,7 +468,7 @@ void CLASS_DECL_ios __end_thread(base_application * papp, UINT nExitCode, bool b
    //   _endthreadex(nExitCode);
 }
 
-void CLASS_DECL_ios __term_thread(base_application * papp, HINSTANCE hInstTerm)
+void CLASS_DECL_ios __term_thread(::base::application * papp, HINSTANCE hInstTerm)
 {
    
    try
@@ -557,7 +557,7 @@ namespace ios
       CommonConstruct();
    }
    
-   thread::thread(base_application * papp) :
+   thread::thread(::base::application * papp) :
    element(papp),
    message_queue(papp),//,
    m_evFinish(papp, FALSE, TRUE),
@@ -1790,7 +1790,7 @@ namespace ios
          
          
 #ifndef _AFX_PORTABLE
-         /*base_application * papp = dynamic_cast < ::application * > (get_app());
+         /*::base::application * papp = dynamic_cast < ::application * > (get_app());
           ___THREAD_STATE* pThreadState = gen_ThreadState.GetDataNA();
           if( pThreadState != NULL )
           {

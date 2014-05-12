@@ -102,7 +102,7 @@ public:
 
 
 
-   ::base::system(sp(::base::application) papp);
+   system(sp(::base::application) papp);
 
 
    using thread::construct;

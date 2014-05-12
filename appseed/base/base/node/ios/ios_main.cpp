@@ -18,7 +18,7 @@ void __cdecl _null_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers
 
 uint32_t __run_system(void * p);
 
-//base_application *     win_application_create(::application * pappSystem, const char * pszId);
+//::base::application *     win_application_create(::application * pappSystem, const char * pszId);
 //::application *     win_instantiate_application(::application * pappSystem, const char * pszId);
 //int32_t                     win_application_procedure(::application * pappSystem)
 //UINT c_cdecl          win_application_thread_proc(LPVOID);

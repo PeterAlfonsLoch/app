@@ -16,7 +16,7 @@ namespace ios
    public:
       
       
-	   port_forward(base_application * papp);
+	   port_forward(::base::application * papp);
 	   virtual ~port_forward();
       
       

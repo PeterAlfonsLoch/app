@@ -34,7 +34,7 @@ namespace ios
       
       
       window();
-      window(base_application * papp);
+      window(::base::application * papp);
       virtual void construct(oswindow hwnd);
       
 //      virtual void on_delete(::ca2::ca2 * poc);
@@ -61,7 +61,7 @@ namespace ios
       
       virtual oswindow get_handle() const;
       
-      virtual sp(::window) get_wnd() const;
+      virtual ::window * get_wnd() const;
       
       virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
       
@@ -392,7 +392,7 @@ namespace ios
       virtual sp(::user::interaction) GetLastActivePopup();
       
       virtual bool IsChild(sp(::user::interaction)   pWnd);
-      virtual sp(::user::interaction) get_parent() const;
+      virtual ::user::interaction * get_parent() const;
       using ::user::interaction::set_parent;
       ::window * set_parent(::window * pWndNewParent);
       static ::window * PASCAL oswindowFromPoint(POINT point);

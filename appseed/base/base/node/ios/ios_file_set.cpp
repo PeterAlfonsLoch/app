@@ -5,7 +5,7 @@ namespace ios
 {
    
    
-   file_set::file_set(base_application * papp) :
+   file_set::file_set(::base::application * papp) :
    element(papp)
    {
       

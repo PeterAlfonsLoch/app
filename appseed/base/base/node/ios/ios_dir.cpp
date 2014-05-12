@@ -5,7 +5,7 @@ namespace ios
 {
    
    
-   dir::dir(sp(base_application)  papp) :
+   dir::dir(sp(::base::application)  papp) :
       ::element(papp),
       ::file::dir::system(papp),
    m_path(papp)
@@ -19,7 +19,7 @@ namespace ios
       
    }
    
-   path::path(sp(base_application)  papp) :
+   path::path(sp(::base::application)  papp) :
    element(papp)
    {
    }
@@ -189,7 +189,7 @@ namespace ios
       return strcmp(lpcsz1, lpcsz2) == 0;
    }
    
-   void dir::root_ones(stringa & stra, sp(base_application)  papp)
+   void dir::root_ones(stringa & stra, sp(::base::application)  papp)
    {
       stra.add("/");
       /*      DWORD dwSize = ::GetLogicalDriveStrings(0, NULL);
@@ -213,7 +213,7 @@ namespace ios
        free(lpszAlloc);*/
    }
    
-   void dir::ls_pattern(sp(base_application)  papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+   void dir::ls_pattern(sp(::base::application)  papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
    {
       
       if(::file::dir::system::is(lpcsz, papp)) // if base class "already" "says" it is a dir, let it handle it: may be not a operational system dir, e.g., zip or compressed directory...
@@ -301,12 +301,12 @@ namespace ios
       
    }
    
-   void dir::rls(sp(base_application)  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
+   void dir::rls(sp(::base::application)  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
    {
       rls_pattern(papp, lpcsz, "*.*", pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract);
    }
    
-   void dir::rls_pattern(sp(base_application)  papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
+   void dir::rls_pattern(sp(::base::application)  papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
    {
       
       stringa straDir;
@@ -422,7 +422,7 @@ namespace ios
       
    }
    
-   void dir::rls_dir(sp(base_application)  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
+   void dir::rls_dir(sp(::base::application)  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
    {
       
       stringa stra;
@@ -501,7 +501,7 @@ namespace ios
    }
    
    
-   void dir::ls_dir(sp(base_application)  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+   void dir::ls_dir(sp(::base::application)  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
       
       stringa stra;
@@ -549,7 +549,7 @@ namespace ios
       
    }
    
-   void dir::ls_file(sp(base_application)  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+   void dir::ls_file(sp(::base::application)  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
       
       stringa stra;
@@ -598,7 +598,7 @@ namespace ios
       
    }
    
-   void dir::ls(sp(base_application)  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+   void dir::ls(sp(::base::application)  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
    {
       
       stringa stra;
@@ -679,7 +679,7 @@ namespace ios
       
    }
    
-   bool dir::is(const char * lpcszPath, sp(base_application)  papp)
+   bool dir::is(const char * lpcszPath, sp(::base::application)  papp)
    {
       
       bool bIsDir;
@@ -725,7 +725,7 @@ namespace ios
       return bIsDir;
    }
    
-   bool dir::is(const string & strPath, sp(base_application)  papp)
+   bool dir::is(const string & strPath, sp(::base::application)  papp)
    {
       
       if(::file::dir::system::is(strPath, papp))
@@ -774,7 +774,7 @@ namespace ios
       return bIsDir;
    }
    
-   bool dir::name_is(const string & str, sp(base_application)  papp)
+   bool dir::name_is(const string & str, sp(::base::application)  papp)
    {
       //OutputDebugString(str);
       strsize iLast = str.get_length() - 1;
@@ -972,7 +972,7 @@ namespace ios
       return path(strLogBaseDir, pszId);
    }
    
-   bool dir::mk(const char * lpcsz, sp(base_application)  papp)
+   bool dir::mk(const char * lpcsz, sp(::base::application)  papp)
    {
       
       if(is(lpcsz, papp))
@@ -1043,7 +1043,7 @@ namespace ios
       return true;
    }
    
-   bool dir::rm(sp(base_application)  papp, const char * psz, bool bRecursive)
+   bool dir::rm(sp(::base::application)  papp, const char * psz, bool bRecursive)
    {
       if(bRecursive)
       {
@@ -1245,23 +1245,23 @@ namespace ios
       return path(path(str, "ca2", strRelative), lpcsz, lpcsz2);
    }
    
-   string dir::usersystemappdata(sp(base_application)  papp, const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)
+   string dir::usersystemappdata(sp(::base::application)  papp, const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)
    {
       UNREFERENCED_PARAMETER(papp);
       return path(appdata(lpcszPrefix), lpcsz, lpcsz2);
    }
    
-   string dir::userappdata(sp(base_application)  papp, const char * lpcsz, const char * lpcsz2)
+   string dir::userappdata(sp(::base::application)  papp, const char * lpcsz, const char * lpcsz2)
    {
       return path(userfolder(papp, "appdata"), lpcsz, lpcsz2);
    }
    
-   string dir::userdata(sp(base_application)  papp, const char * lpcsz, const char * lpcsz2)
+   string dir::userdata(sp(::base::application)  papp, const char * lpcsz, const char * lpcsz2)
    {
       return path(userfolder(papp, "data"), lpcsz, lpcsz2);
    }
    
-   string dir::userfolder(sp(base_application)  papp, const char * lpcsz, const char * lpcsz2)
+   string dir::userfolder(sp(::base::application)  papp, const char * lpcsz, const char * lpcsz2)
    {
       
       string str;
@@ -1314,7 +1314,7 @@ namespace ios
        }*/
    }
    
-   string dir::default_os_user_path_prefix(sp(base_application)  papp)
+   string dir::default_os_user_path_prefix(sp(::base::application)  papp)
    {
       /*UNREFERENCED_PARAMETER(papp);
        wchar_t buf[MAX_PATH];
@@ -1330,17 +1330,17 @@ namespace ios
       return ::getlogin();
    }
    
-   string dir::default_userappdata(sp(base_application)  papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
+   string dir::default_userappdata(sp(::base::application)  papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
    {
       return path(default_userfolder(papp, lpcszPrefix, lpcszLogin, "appdata"), pszRelativePath);
    }
    
-   string dir::default_userdata(sp(base_application)  papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
+   string dir::default_userdata(sp(::base::application)  papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
    {
       return path(default_userfolder(papp, lpcszPrefix, lpcszLogin, "data"), pszRelativePath);
    }
    
-   string dir::default_userfolder(sp(base_application)  papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
+   string dir::default_userfolder(sp(::base::application)  papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
    {
       
       return userfolder(papp, pszRelativePath);
@@ -1355,7 +1355,7 @@ namespace ios
        return path(path(str, "ca2\\user", lpcszPrefix), lpcszLogin, pszRelativePath);*/
    }
    
-   string dir::userquicklaunch(sp(base_application)  papp, const char * lpcszRelativePath, const char * lpcsz2)
+   string dir::userquicklaunch(sp(::base::application)  papp, const char * lpcszRelativePath, const char * lpcsz2)
    {
       UNREFERENCED_PARAMETER(papp);
       string str;
@@ -1368,7 +1368,7 @@ namespace ios
       return path(str, lpcszRelativePath, lpcsz2);
    }
    
-   string dir::userprograms(sp(base_application)  papp, const char * lpcszRelativePath, const char * lpcsz2)
+   string dir::userprograms(sp(::base::application)  papp, const char * lpcszRelativePath, const char * lpcsz2)
    {
       UNREFERENCED_PARAMETER(papp);
       string str;
@@ -1394,17 +1394,17 @@ namespace ios
       return path(str, lpcszRelativePath, lpcsz2);
    }
    
-   bool dir::is_inside_time(const char * pszPath, sp(base_application)  papp)
+   bool dir::is_inside_time(const char * pszPath, sp(::base::application)  papp)
    {
       return is_inside(time(), pszPath, papp);
    }
    
-   bool dir::is_inside(const char * pszDir, const char * pszPath, sp(base_application)  papp)
+   bool dir::is_inside(const char * pszDir, const char * pszPath, sp(::base::application)  papp)
    {
       return ::str::begins_ci(pszDir, pszPath);
    }
    
-   bool dir::has_subdir(sp(base_application)  papp, const char * pszDir)
+   bool dir::has_subdir(sp(::base::application)  papp, const char * pszDir)
    {
       stringa stra;
       ls_dir(papp, pszDir, &stra);

@@ -7,7 +7,7 @@ namespace ios
    
    
    
-   stdio_file::stdio_file(base_application * papp) :
+   stdio_file::stdio_file(::base::application * papp) :
    element(papp),
    ::ios::file(papp)
    {

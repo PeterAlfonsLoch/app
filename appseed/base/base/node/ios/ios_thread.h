@@ -80,7 +80,7 @@ namespace ios
       UINT                                m_dwFinishTimeout;
       
       
-      thread(base_application * papp);
+      thread(::base::application * papp);
       virtual ~thread();
       
       
