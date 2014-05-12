@@ -26,7 +26,7 @@ namespace database
       void interaction::install_message_handling(::message::dispatch * pinterface)
       {
 
-         ::user::interaction::install_message_handling(pinterface);
+         ::simple_ui::interaction::install_message_handling(pinterface);
 
          IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &interaction::_001OnCreate);
          IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &interaction::_001OnSize);

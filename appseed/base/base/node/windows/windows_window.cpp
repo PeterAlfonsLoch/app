@@ -635,7 +635,6 @@ namespace windows
 
 
 
-      m_pui->layout();
 
 
 
@@ -4435,10 +4434,14 @@ namespace windows
       return m_id;
    }
 
-   id window::GetDlgCtrlId()
+
+   id window::GetDlgCtrlId() const
    {
+
       return m_id;
+
    }
+
 
    /*   guie_message_wnd::guie_message_wnd(sp(::base::application) papp) :
    element(papp)

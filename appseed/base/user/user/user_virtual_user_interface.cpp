@@ -1422,28 +1422,34 @@ sp(::user::interaction) virtual_user_interface::GetDescendantWindow(id id) const
 
 id virtual_user_interface::SetDlgCtrlId(id id)
 {
+
    m_id = id;
+
    return m_id;
+
 }
 
 
-id virtual_user_interface::GetDlgCtrlId()
+id virtual_user_interface::GetDlgCtrlId() const
 {
+
    return m_id;
+
 }
 
 
-sp(::user::frame_window) virtual_user_interface::GetTopLevelFrame()
+sp(::user::frame_window) virtual_user_interface::GetTopLevelFrame() const
 {
+
    ASSERT_VALID(this);
 
    sp(::user::interaction) pFrameWnd = NULL;
-   if(m_pui != this)
-      pFrameWnd = m_pui;
+   if(m_pui.m_p != this)
+      pFrameWnd = m_pui.m_p;
    else
-      pFrameWnd = this;
+      pFrameWnd = (::virtual_user_interface *) this;
    if (pFrameWnd == NULL || !pFrameWnd->is_frame_window())
-      pFrameWnd = GetParentFrame();
+      pFrameWnd = ((virtual_user_interface *)(this))->GetParentFrame();
 
    if (pFrameWnd != NULL)
    {
@@ -1563,10 +1569,6 @@ void virtual_user_interface::_001OnMove(signal_details * pobj)
 void virtual_user_interface::_001OnSize(signal_details * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-   if(m_pui != NULL)
-   {
-      m_pui->layout();
-   }
 }
 
 

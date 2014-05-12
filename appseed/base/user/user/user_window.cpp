@@ -848,26 +848,38 @@ bool window::SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t c
    throw interface_only_exception(get_app());
 }
 
+
 id window::SetDlgCtrlId(id id)
 {
+
    UNREFERENCED_PARAMETER(id);
+
    throw interface_only_exception(get_app());
+
 }
 
-id window::GetDlgCtrlId()
+
+id window::GetDlgCtrlId() const
 {
+
    throw interface_only_exception(get_app());
+
 }
+
 
 void window::_001WindowMinimize()
 {
+
    throw interface_only_exception(get_app());
+
 }
 
 
 void window::_001WindowMaximize()
 {
+
    throw interface_only_exception(get_app());
+
 }
 
 

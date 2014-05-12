@@ -299,7 +299,7 @@ namespace windows
       static ::window_sp GetForegroundWindow();
 
       virtual id SetDlgCtrlId(id id);
-      virtual id GetDlgCtrlId();
+      virtual id GetDlgCtrlId() const;
 
 
 

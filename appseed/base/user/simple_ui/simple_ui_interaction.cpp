@@ -287,13 +287,7 @@ namespace simple_ui
    void interaction::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
-
-      ::rect rectWindow;
-
-      GetWindowRect(rectWindow);
-
-      simple_ui_draw_back_01_new(rectWindow,pgraphics);
+      ::user::interaction::_001OnDraw(pgraphics);
 
    }
 

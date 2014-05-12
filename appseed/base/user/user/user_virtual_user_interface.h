@@ -38,7 +38,7 @@ public:
    virtual sp(::user::interaction) GetDescendantWindow(id id) const;
 
    id SetDlgCtrlId(id id);
-   id GetDlgCtrlId();
+   id GetDlgCtrlId() const;
 
 
    // Advanced: virtual AdjustWindowRect

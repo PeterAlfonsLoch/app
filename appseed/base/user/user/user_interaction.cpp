@@ -478,28 +478,28 @@ namespace user
    bool interaction::SizeWindow(int32_t cx,int32_t cy,UINT nFlags)
    {
 
-      return SetWindowPos(0,0,0,cx,cy,nFlags | SWP_NOSIZE);
+      return SetWindowPos(0,0,0,cx,cy,nFlags | SWP_NOMOVE);
 
    }
 
    bool interaction::SizeWindow(SIZE sz,UINT nFlags)
    {
 
-      return MoveWindow(sz.cx,sz.cy,nFlags);
+      return SizeWindow(sz.cx,sz.cy,nFlags);
 
    }
 
    bool interaction::ResizeWindow(int32_t cx,int32_t cy,UINT nFlags)
    {
 
-      return SetWindowPos(0,0,0,cx,cy,nFlags | SWP_NOSIZE);
+      return SetWindowPos(0,0,0,cx,cy,nFlags | SWP_NOMOVE);
 
    }
 
    bool interaction::ResizeWindow(SIZE sz,UINT nFlags)
    {
 
-      return MoveWindow(sz.cx,sz.cy,nFlags);
+      return ResizeWindow(sz.cx,sz.cy,nFlags);
 
    }
 
@@ -676,8 +676,11 @@ namespace user
 
    void interaction::_001OnSize(signal_details * pobj)
    {
+
       pobj->previous();
-      UNREFERENCED_PARAMETER(pobj);
+      
+      layout();
+
    }
 
    void interaction::_001OnMove(signal_details * pobj)

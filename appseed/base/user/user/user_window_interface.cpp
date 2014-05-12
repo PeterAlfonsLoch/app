@@ -80,12 +80,13 @@ namespace user
       UNREFERENCED_PARAMETER(lprect);
    //   TwfRender(pdc, GetSafeoswindow_(), lprect, NULL, true);
    }
+   
 
-
-
-   window_interface * window_interface::window_interface_get_parent()
+   window_interface * window_interface::window_interface_get_parent() const
    {
+
       return NULL;
+
    }
 
 

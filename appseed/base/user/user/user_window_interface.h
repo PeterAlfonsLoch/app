@@ -98,7 +98,7 @@ namespace user
       virtual void ScreenToClient(__point64 * lppoint);
 
 
-      virtual window_interface * window_interface_get_parent();
+      virtual window_interface * window_interface_get_parent() const;
 
 
 

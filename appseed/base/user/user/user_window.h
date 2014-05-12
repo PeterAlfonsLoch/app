@@ -292,7 +292,7 @@ public:
    virtual bool SetForegroundWindow();
 
    virtual id SetDlgCtrlId(id id);
-   virtual id GetDlgCtrlId();
+   virtual id GetDlgCtrlId() const;
 
 
 
