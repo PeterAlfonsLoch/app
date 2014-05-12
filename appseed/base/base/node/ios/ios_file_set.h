@@ -5,7 +5,7 @@ namespace ios
 {
    
    
-   class CLASS_DECL_ios file_set :
+   class CLASS_DECL_BASE file_set :
       public ::file::set
    {
    public:

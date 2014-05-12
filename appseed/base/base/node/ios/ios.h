@@ -7,7 +7,7 @@
 #include "app/appseed/core/core.h"
 
 
-#define CLASS_DECL_ios
+#define CLASS_DECL_BASE
 
 struct plane_system
 {
@@ -31,37 +31,37 @@ string get_error_message(DWORD dwError);
 /////////////////////////////////////////////////////////////////////////////
 // explicit initialization for general purpose classes
 
-//CLASS_DECL_ios WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = _MFC_VER);
-CLASS_DECL_ios WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = 0);
+//CLASS_DECL_BASE WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = _MFC_VER);
+CLASS_DECL_BASE WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = 0);
 
 /////////////////////////////////////////////////////////////////////////////
 // stop on a specific primitive::memory request
 
 // Debugger hook on specified allocation request - Obsolete
-CLASS_DECL_ios void AfxSetAllocStop(LONG lRequestNumber);
+CLASS_DECL_BASE void AfxSetAllocStop(LONG lRequestNumber);
 
 // Return TRUE if primitive::memory is sane or print out what is wrong
-CLASS_DECL_ios bool __check_memory();
+CLASS_DECL_BASE bool __check_memory();
 
 // Return TRUE if valid primitive::memory block of nBytes
-CLASS_DECL_ios WINBOOL AfxIsMemoryBlock(const void * p, UINT nBytes,
+CLASS_DECL_BASE WINBOOL AfxIsMemoryBlock(const void * p, UINT nBytes,
                                         LONG* plRequestNumber = NULL);
 
 // helper routines for non-C++ EH implementations
 // for THROW_LAST auto-delete backward compatiblity
-CLASS_DECL_ios void AfxThrowLastCleanup();
+CLASS_DECL_BASE void AfxThrowLastCleanup();
 
 // other out-of-line helper functions
-CLASS_DECL_ios void AfxTryCleanup();
+CLASS_DECL_BASE void AfxTryCleanup();
 
 
 /////////////////////////////////////////////////////////////////////////////
 // Global implementation helpers
 
 // window creation hooking
-CLASS_DECL_ios void AfxHookWindowCreate(::user::interaction * pWnd);
-CLASS_DECL_ios WINBOOL AfxUnhookWindowCreate();
-CLASS_DECL_ios void AfxResetMsgCache();
+CLASS_DECL_BASE void AfxHookWindowCreate(::user::interaction * pWnd);
+CLASS_DECL_BASE WINBOOL AfxUnhookWindowCreate();
+CLASS_DECL_BASE void AfxResetMsgCache();
 
 // for backward compatibility to previous versions
 #define _AfxHookWindowCreate    AfxHookWindowCreate
@@ -85,7 +85,7 @@ CLASS_DECL_ios void AfxResetMsgCache();
 #include "ios_ip_enum.h"
 
 #define NULL_REF(class) (*((class *) NULL))
-// xxx CLASS_DECL_ios WNDPROC AfxGetAfxWndProc();
+// xxx CLASS_DECL_BASE WNDPROC AfxGetAfxWndProc();
 #define AfxWndProc (*AfxGetAfxWndProc())
 
 #define IOS_THREAD(pthread) (dynamic_cast < ::ios::thread * > (dynamic_cast < ::thread * >(pthread)))
@@ -93,15 +93,15 @@ CLASS_DECL_ios void AfxResetMsgCache();
 
 #include "ios_shell.h"
 
-CLASS_DECL_ios void __trace_message(const char * lpszPrefix, signal_details * pobj);
-CLASS_DECL_ios void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
+CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, signal_details * pobj);
+CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
-CLASS_DECL_ios WINBOOL __cdecl __is_idle_message(signal_details * pobj);
-CLASS_DECL_ios WINBOOL __cdecl __is_idle_message(MESSAGE* pMsg);
+CLASS_DECL_BASE WINBOOL __cdecl __is_idle_message(signal_details * pobj);
+CLASS_DECL_BASE WINBOOL __cdecl __is_idle_message(MESSAGE* pMsg);
 
 
-CLASS_DECL_ios void AfxProcessWndProcException(::exception::base*, signal_details * pobj);
-CLASS_DECL_ios void __cdecl __pre_translate_message(signal_details * pobj);
+CLASS_DECL_BASE void AfxProcessWndProcException(::exception::base*, signal_details * pobj);
+CLASS_DECL_BASE void __cdecl __pre_translate_message(signal_details * pobj);
 #include "ios_printer.h"
 
 #include "ios_application.h"
@@ -123,10 +123,10 @@ WINBOOL GetMessage(
 
 
 
-int32_t CLASS_DECL_ios __ios_main(int32_t argc, char * argv[]);
+int32_t CLASS_DECL_BASE __ios_main(int32_t argc, char * argv[]);
 
 
-CLASS_DECL_ios void vfxThrowFileException(::base::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
+CLASS_DECL_BASE void vfxThrowFileException(::base::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
 
 
@@ -151,7 +151,7 @@ namespace ios
 
 
 // Placed on frame for EXCEPTION linkage, or ::exception::base cleanup
-struct CLASS_DECL_ios __exception_link
+struct CLASS_DECL_BASE __exception_link
 {
    __exception_link* m_pLinkPrev;    // previous top, next in handler chain
    ::exception::base * m_pException;   // current exception (NULL in try block)
@@ -164,7 +164,7 @@ struct CLASS_DECL_ios __exception_link
 };
 
 // Exception global state - never access directly
-struct CLASS_DECL_ios __EXCEPTION_CONTEXT
+struct CLASS_DECL_BASE __EXCEPTION_CONTEXT
 {
    __exception_link* m_pLinkTop;
 
@@ -176,23 +176,23 @@ typedef int32_t(__cdecl * _PNH)(size_t);
 #define _PNH_DEFINED
 #endif
 
-_PNH CLASS_DECL_ios __get_new_handler();
-_PNH CLASS_DECL_ios __set_new_handler(_PNH pfnNewHandler);
-CLASS_DECL_ios int32_t c_cdecl __new_handler(size_t nSize);
+_PNH CLASS_DECL_BASE __get_new_handler();
+_PNH CLASS_DECL_BASE __set_new_handler(_PNH pfnNewHandler);
+CLASS_DECL_BASE int32_t c_cdecl __new_handler(size_t nSize);
 
-void CLASS_DECL_ios __abort();
+void CLASS_DECL_BASE __abort();
 
 //typedef void * HICON;
 
 
 // helpers for registering your own WNDCLASSes
-CLASS_DECL_ios const char * __register_window_class(UINT nClassStyle,HCURSOR hCursor = 0,HBRUSH hbrBackground = 0,HICON hIcon = 0);
+CLASS_DECL_BASE const char * __register_window_class(UINT nClassStyle,HCURSOR hCursor = 0,HBRUSH hbrBackground = 0,HICON hIcon = 0);
 
-// xxx CLASS_DECL_ios bool __register_class(WNDCLASS* lpWndClass);
+// xxx CLASS_DECL_BASE bool __register_class(WNDCLASS* lpWndClass);
 
 
-CLASS_DECL_ios LRESULT CALLBACK __window_procedure(oswindow hWnd,UINT nMsg,WPARAM wParam,LPARAM lParam);
-// xxx CLASS_DECL_ios WNDPROC __get_window_procedure();
+CLASS_DECL_BASE LRESULT CALLBACK __window_procedure(oswindow hWnd,UINT nMsg,WPARAM wParam,LPARAM lParam);
+// xxx CLASS_DECL_BASE WNDPROC __get_window_procedure();
 // xxx #define __window_procedure (*__get_window_procedure())
 
 typedef void (__MSG_CALL ::window::*__PMSGW)();
@@ -204,23 +204,23 @@ typedef void (__MSG_CALL ::thread::*__PMSGT)();
 
 
 
-// xxx CLASS_DECL_ios LONG delete_registry_tree_helper(HKEY hParentKey, const string & strKeyName);
+// xxx CLASS_DECL_BASE LONG delete_registry_tree_helper(HKEY hParentKey, const string & strKeyName);
 
 
 // Advanced initialization: for overriding default diagnostics
-//CLASS_DECL_ios bool __diagnostic_init();
+//CLASS_DECL_BASE bool __diagnostic_init();
 
 namespace ios
 {
-   CLASS_DECL_ios ::thread * __get_thread();
-   CLASS_DECL_ios void __set_thread(::thread * pthread);
+   CLASS_DECL_BASE ::thread * __get_thread();
+   CLASS_DECL_BASE void __set_thread(::thread * pthread);
 }
-CLASS_DECL_ios MESSAGE * __get_current_message();
+CLASS_DECL_BASE MESSAGE * __get_current_message();
 
-CLASS_DECL_ios void __end_thread(::base::application * papp,UINT nExitCode,bool bDelete = TRUE);
+CLASS_DECL_BASE void __end_thread(::base::application * papp,UINT nExitCode,bool bDelete = TRUE);
 
-CLASS_DECL_ios void __init_thread();
-CLASS_DECL_ios void __term_thread(::base::application * papp,HINSTANCE hInstTerm = NULL);
+CLASS_DECL_BASE void __init_thread();
+CLASS_DECL_BASE void __term_thread(::base::application * papp,HINSTANCE hInstTerm = NULL);
 
 /////////////////////////////////////////////////////////////////////////////
 // Global functions for access to the one and only application
@@ -235,20 +235,20 @@ CLASS_DECL_ios void __term_thread(::base::application * papp,HINSTANCE hInstTerm
 
 
 // Advanced initialization: for overriding default WinMain
-//CLASS_DECL_ios bool ::ca2::WinInit(__in HINSTANCE hInstance, __in HINSTANCE hPrevInstance,
+//CLASS_DECL_BASE bool ::ca2::WinInit(__in HINSTANCE hInstance, __in HINSTANCE hPrevInstance,
 // __in_z LPTSTR lpCmdLine, __in int32_t nCmdShow);
-CLASS_DECL_ios void __ios_term();
+CLASS_DECL_BASE void __ios_term();
 
-CLASS_DECL_ios ::base::application * __get_app();
-CLASS_DECL_ios sp(::user::interaction) __get_main_window();
-//CLASS_DECL_ios HINSTANCE CLASS_DECL_ios System.m_hInstance;
-CLASS_DECL_ios HINSTANCE __get_resource_handle();
-CLASS_DECL_ios void __set_resource_handle(HINSTANCE hInstResource);
-CLASS_DECL_ios const char * __get_app_name();
+CLASS_DECL_BASE ::base::application * __get_app();
+CLASS_DECL_BASE sp(::user::interaction) __get_main_window();
+//CLASS_DECL_BASE HINSTANCE CLASS_DECL_BASE System.m_hInstance;
+CLASS_DECL_BASE HINSTANCE __get_resource_handle();
+CLASS_DECL_BASE void __set_resource_handle(HINSTANCE hInstResource);
+CLASS_DECL_BASE const char * __get_app_name();
 
-CLASS_DECL_ios HINSTANCE __get_resource_handle();
-CLASS_DECL_ios HINSTANCE __find_string_resource_handle(UINT nID);
+CLASS_DECL_BASE HINSTANCE __get_resource_handle();
+CLASS_DECL_BASE HINSTANCE __find_string_resource_handle(UINT nID);
 
-CLASS_DECL_ios void __delete_object(HGDIOBJ* pObject);
+CLASS_DECL_BASE void __delete_object(HGDIOBJ* pObject);
 
-void CLASS_DECL_ios __global_free(HGLOBAL hGlobal);
+void CLASS_DECL_BASE __global_free(HGLOBAL hGlobal);

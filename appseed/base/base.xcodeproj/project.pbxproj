@@ -2897,7 +2897,6 @@
 		07C8D705191D98F300137494 /* ios_ip_enum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D6B6191D98F300137494 /* ios_ip_enum.cpp */; };
 		07C8D706191D98F300137494 /* ios_ip_enum.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C8D6B7191D98F300137494 /* ios_ip_enum.h */; };
 		07C8D708191D98F300137494 /* ios_mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C8D6B9191D98F300137494 /* ios_mm.h */; };
-		07C8D711191D98F300137494 /* ios_state.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C8D6C2191D98F300137494 /* ios_state.h */; };
 		07C8D718191D98F300137494 /* ios_trace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D6C9191D98F300137494 /* ios_trace.cpp */; };
 		07C8D719191D98F300137494 /* ios_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D6CA191D98F300137494 /* ios_util.cpp */; };
 		07C8D71E191D98F300137494 /* ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C8D6CF191D98F300137494 /* ios.h */; };
@@ -2955,7 +2954,6 @@
 		07D1C95419211FEA00B99496 /* ios_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91119211FEA00B99496 /* ios_util.cpp */; };
 		07D1C95519211FEA00B99496 /* ios_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91219211FEA00B99496 /* ios_window.cpp */; };
 		07D1C95619211FEA00B99496 /* ios_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C91319211FEA00B99496 /* ios_window.h */; };
-		07D1C95719211FEA00B99496 /* ios_window.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91419211FEA00B99496 /* ios_window.mm */; };
 		07D1C95819211FEA00B99496 /* ios_window_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91519211FEA00B99496 /* ios_window_draw.cpp */; };
 		07D1C95919211FEA00B99496 /* ios_window_draw.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C91619211FEA00B99496 /* ios_window_draw.h */; };
 		07D1C95A19211FEA00B99496 /* ios_window_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C91719211FEA00B99496 /* ios_window_impl.h */; };
@@ -2984,7 +2982,6 @@
 		07D1C99F1921201D00B99496 /* ios_file_watcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C9711921201D00B99496 /* ios_file_watcher.h */; };
 		07D1C9A01921201D00B99496 /* ios_fontopus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9721921201D00B99496 /* ios_fontopus.cpp */; };
 		07D1C9A11921201D00B99496 /* ios_graphics_mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C9731921201D00B99496 /* ios_graphics_mm.h */; };
-		07D1C9A21921201D00B99496 /* ios_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9741921201D00B99496 /* ios_graphics.cpp */; };
 		07D1C9A31921201D00B99496 /* ios_launcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9751921201D00B99496 /* ios_launcher.cpp */; };
 		07D1C9A41921201D00B99496 /* ios_library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9761921201D00B99496 /* ios_library.cpp */; };
 		07D1C9A51921201D00B99496 /* ios_lock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9771921201D00B99496 /* ios_lock.cpp */; };
@@ -3051,7 +3048,6 @@
 		07D1C9E21921207E00B99496 /* ios_debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C96F1921201D00B99496 /* ios_debug.cpp */; };
 		07D1C9E31921207E00B99496 /* ios_file_watcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9701921201D00B99496 /* ios_file_watcher.cpp */; };
 		07D1C9E41921207E00B99496 /* ios_fontopus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9721921201D00B99496 /* ios_fontopus.cpp */; };
-		07D1C9E51921207E00B99496 /* ios_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9741921201D00B99496 /* ios_graphics.cpp */; };
 		07D1C9E61921207E00B99496 /* ios_launcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9751921201D00B99496 /* ios_launcher.cpp */; };
 		07D1C9E71921207E00B99496 /* ios_library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9761921201D00B99496 /* ios_library.cpp */; };
 		07D1C9E81921207E00B99496 /* ios_lock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9771921201D00B99496 /* ios_lock.cpp */; };
@@ -3075,7 +3071,6 @@
 		07D1C9FA1921207E00B99496 /* ios_trace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D6C9191D98F300137494 /* ios_trace.cpp */; };
 		07D1C9FB1921207E00B99496 /* ios_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D6CA191D98F300137494 /* ios_util.cpp */; };
 		07D1C9FC192120B000B99496 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8DF19211FEA00B99496 /* AppDelegate.mm */; };
-		07D1C9FD192120B000B99496 /* ios_window.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91419211FEA00B99496 /* ios_window.mm */; };
 		07D1C9FE192120B000B99496 /* round_window.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91A19211FEA00B99496 /* round_window.mm */; };
 		07D1C9FF192120B000B99496 /* RoundWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91C19211FEA00B99496 /* RoundWindow.mm */; };
 		07D1CA00192120B000B99496 /* RoundWindowFrameView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91E19211FEA00B99496 /* RoundWindowFrameView.mm */; };
@@ -6345,7 +6340,6 @@
 		07C8D6B6191D98F300137494 /* ios_ip_enum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_ip_enum.cpp; sourceTree = "<group>"; };
 		07C8D6B7191D98F300137494 /* ios_ip_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_ip_enum.h; sourceTree = "<group>"; };
 		07C8D6B9191D98F300137494 /* ios_mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_mm.h; sourceTree = "<group>"; };
-		07C8D6C2191D98F300137494 /* ios_state.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_state.h; sourceTree = "<group>"; };
 		07C8D6C9191D98F300137494 /* ios_trace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_trace.cpp; sourceTree = "<group>"; };
 		07C8D6CA191D98F300137494 /* ios_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_util.cpp; sourceTree = "<group>"; };
 		07C8D6CF191D98F300137494 /* ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios.h; sourceTree = "<group>"; };
@@ -6403,7 +6397,6 @@
 		07D1C91119211FEA00B99496 /* ios_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_util.cpp; sourceTree = "<group>"; };
 		07D1C91219211FEA00B99496 /* ios_window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_window.cpp; sourceTree = "<group>"; };
 		07D1C91319211FEA00B99496 /* ios_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_window.h; sourceTree = "<group>"; };
-		07D1C91419211FEA00B99496 /* ios_window.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios_window.mm; sourceTree = "<group>"; };
 		07D1C91519211FEA00B99496 /* ios_window_draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_window_draw.cpp; sourceTree = "<group>"; };
 		07D1C91619211FEA00B99496 /* ios_window_draw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_window_draw.h; sourceTree = "<group>"; };
 		07D1C91719211FEA00B99496 /* ios_window_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_window_impl.h; sourceTree = "<group>"; };
@@ -6432,7 +6425,6 @@
 		07D1C9711921201D00B99496 /* ios_file_watcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_file_watcher.h; sourceTree = "<group>"; };
 		07D1C9721921201D00B99496 /* ios_fontopus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_fontopus.cpp; sourceTree = "<group>"; };
 		07D1C9731921201D00B99496 /* ios_graphics_mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_graphics_mm.h; sourceTree = "<group>"; };
-		07D1C9741921201D00B99496 /* ios_graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_graphics.cpp; sourceTree = "<group>"; };
 		07D1C9751921201D00B99496 /* ios_launcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_launcher.cpp; sourceTree = "<group>"; };
 		07D1C9761921201D00B99496 /* ios_library.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_library.cpp; sourceTree = "<group>"; };
 		07D1C9771921201D00B99496 /* ios_lock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_lock.cpp; sourceTree = "<group>"; };
@@ -10020,7 +10012,6 @@
 				07D1C91119211FEA00B99496 /* ios_util.cpp */,
 				07D1C91219211FEA00B99496 /* ios_window.cpp */,
 				07D1C91319211FEA00B99496 /* ios_window.h */,
-				07D1C91419211FEA00B99496 /* ios_window.mm */,
 				07D1C91519211FEA00B99496 /* ios_window_draw.cpp */,
 				07D1C91619211FEA00B99496 /* ios_window_draw.h */,
 				07D1C91719211FEA00B99496 /* ios_window_impl.h */,
@@ -10289,7 +10280,6 @@
 				07D1C9711921201D00B99496 /* ios_file_watcher.h */,
 				07D1C9721921201D00B99496 /* ios_fontopus.cpp */,
 				07D1C9731921201D00B99496 /* ios_graphics_mm.h */,
-				07D1C9741921201D00B99496 /* ios_graphics.cpp */,
 				07D1C9751921201D00B99496 /* ios_launcher.cpp */,
 				07D1C9761921201D00B99496 /* ios_library.cpp */,
 				07D1C9771921201D00B99496 /* ios_lock.cpp */,
@@ -10329,7 +10319,6 @@
 				07C8D6B6191D98F300137494 /* ios_ip_enum.cpp */,
 				07C8D6B7191D98F300137494 /* ios_ip_enum.h */,
 				07C8D6B9191D98F300137494 /* ios_mm.h */,
-				07C8D6C2191D98F300137494 /* ios_state.h */,
 				07C8D6C9191D98F300137494 /* ios_trace.cpp */,
 				07C8D6CA191D98F300137494 /* ios_util.cpp */,
 				07C8D6CF191D98F300137494 /* ios.h */,
@@ -11766,7 +11755,6 @@
 				07884DFB1897EC9600DC6CEB /* intprops.h in Headers */,
 				07884C121897E9A500DC6CEB /* user_server.h in Headers */,
 				07B0951B18495C2B007A0560 /* geometry_size.h in Headers */,
-				07C8D711191D98F300137494 /* ios_state.h in Headers */,
 				07B0929618495B43007A0560 /* windows_crt.h in Headers */,
 				07B0911218495B41007A0560 /* x509_vfy.h in Headers */,
 				07884E111897EC9600DC6CEB /* iso8859_7.h in Headers */,
@@ -12525,7 +12513,6 @@
 				07B08DE418495B41007A0560 /* a_time.c in Sources */,
 				07B092EC18495B43007A0560 /* macos_graphics.cpp in Sources */,
 				07B08E0618495B41007A0560 /* t_bitst.c in Sources */,
-				07D1C9A21921201D00B99496 /* ios_graphics.cpp in Sources */,
 				07B08E1618495B41007A0560 /* x_bignum.c in Sources */,
 				07B0903918495B41007A0560 /* p12_attr.c in Sources */,
 				07D1C9B31921201D00B99496 /* ios_user.cpp in Sources */,
@@ -12846,7 +12833,6 @@
 				07B0913F18495B41007A0560 /* v3_sxnet.c in Sources */,
 				07F5B1CC184A3B430092C3E1 /* file_plain_text_output_stream.cpp in Sources */,
 				07B08F6418495B41007A0560 /* tb_dh.c in Sources */,
-				07D1C95719211FEA00B99496 /* ios_window.mm in Sources */,
 				07B08E6A18495B41007A0560 /* bn_print.c in Sources */,
 				07B08C2D18495B40007A0560 /* bsdiff_crctable.cpp in Sources */,
 				07884BE41897E9A400DC6CEB /* user_control_bar.cpp in Sources */,
@@ -13394,7 +13380,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				07D1C9FC192120B000B99496 /* AppDelegate.mm in Sources */,
-				07D1C9FD192120B000B99496 /* ios_window.mm in Sources */,
 				07D1C9FE192120B000B99496 /* round_window.mm in Sources */,
 				07D1C9FF192120B000B99496 /* RoundWindow.mm in Sources */,
 				07D1CA00192120B000B99496 /* RoundWindowFrameView.mm in Sources */,
@@ -13442,7 +13427,6 @@
 				07D1C9E21921207E00B99496 /* ios_debug.cpp in Sources */,
 				07D1C9E31921207E00B99496 /* ios_file_watcher.cpp in Sources */,
 				07D1C9E41921207E00B99496 /* ios_fontopus.cpp in Sources */,
-				07D1C9E51921207E00B99496 /* ios_graphics.cpp in Sources */,
 				07D1C9E61921207E00B99496 /* ios_launcher.cpp in Sources */,
 				07D1C9E71921207E00B99496 /* ios_library.cpp in Sources */,
 				07D1C9E81921207E00B99496 /* ios_lock.cpp in Sources */,

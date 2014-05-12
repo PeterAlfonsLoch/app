@@ -82,13 +82,13 @@ namespace exception
       // nHelpContext should come with the message "<helpcontext id=\"123\" />"
 
       if (get_error_message(strErrorMessage, &nHelpContext))
-         nDisposition = Application.simple_message_box(strErrorMessage, nType);
+         nDisposition = Application.simple_message_box(NULL, strErrorMessage, nType);
       else
       {
          if (pszMessageId == 0)
             //pszMessageId = __IDP_NO_ERROR_AVAILABLE;
                pszMessageId = "Error message not available";
-         nDisposition = Application.simple_message_box(pszMessageId, nType);
+         nDisposition = Application.simple_message_box(NULL, pszMessageId, nType);
       }
       return nDisposition;
    }

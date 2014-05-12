@@ -37,7 +37,7 @@ namespace ca
 #include "base/vms/vms.h"
 
 
-#define argb_get_a_value(rgb)      (LOBYTE((rgb)>>24))
+//#define argb_get_a_value(rgb)      (LOBYTE((rgb)>>24))
 //#define ARGB(a, r, g, b)          ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16)|(((DWORD)(BYTE)(a))<<24)))
 #define if_then(p, q)  ((!(p))||((q)))
 

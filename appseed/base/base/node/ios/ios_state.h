@@ -77,7 +77,7 @@ public:
 };
 
 // __MODULE_THREAD_STATE (local to thread *and* module)
-class CLASS_DECL_ios __MODULE_THREAD_STATE
+class CLASS_DECL_BASE __MODULE_THREAD_STATE
 {
 public:
    __MODULE_THREAD_STATE();
@@ -116,7 +116,7 @@ class CComCtlWrapper;
 class CCommDlgWrapper;
 
 // __MODULE_STATE (global data for a module)
-class CLASS_DECL_ios __MODULE_STATE
+class CLASS_DECL_BASE __MODULE_STATE
 {
 public:
    // xxx  __MODULE_STATE(bool bDLL, WNDPROC pfn_window_procedure, DWORD dwVersion,
@@ -173,21 +173,21 @@ public:
    void CreateActivationContext();
 };
 
-CLASS_DECL_ios __MODULE_STATE* __set_module_state(__MODULE_STATE* pNewState);
-CLASS_DECL_ios __MODULE_STATE* __get_module_state();
-CLASS_DECL_ios bool __is_module_dll();
-CLASS_DECL_ios bool __init_current_state_app();
-CLASS_DECL_ios __MODULE_STATE* __get_static_module_state();
-CLASS_DECL_ios HINSTANCE __get_instance_handle_helper();
+CLASS_DECL_BASE __MODULE_STATE* __set_module_state(__MODULE_STATE* pNewState);
+CLASS_DECL_BASE __MODULE_STATE* __get_module_state();
+CLASS_DECL_BASE bool __is_module_dll();
+CLASS_DECL_BASE bool __init_current_state_app();
+CLASS_DECL_BASE __MODULE_STATE* __get_static_module_state();
+CLASS_DECL_BASE HINSTANCE __get_instance_handle_helper();
 
-CLASS_DECL_ios __MODULE_THREAD_STATE* __get_module_thread_state();
+CLASS_DECL_BASE __MODULE_THREAD_STATE* __get_module_thread_state();
 
 #define ___CMDTARGET_GETSTATE() (m_pModuleState)
 
 /////////////////////////////////////////////////////////////////////////////
 // iosros & classes to manage pushing/popping the module state
 
-struct CLASS_DECL_ios __MAINTAIN_STATE
+struct CLASS_DECL_BASE __MAINTAIN_STATE
 {
    explicit __MAINTAIN_STATE(__MODULE_STATE* pModuleState) throw();
    ~__MAINTAIN_STATE();
@@ -197,7 +197,7 @@ protected:
 };
 
 class ___THREAD_STATE;
-struct CLASS_DECL_ios __MAINTAIN_STATE2
+struct CLASS_DECL_BASE __MAINTAIN_STATE2
 {
    explicit __MAINTAIN_STATE2(__MODULE_STATE* pModuleState);
    ~__MAINTAIN_STATE2();
@@ -222,7 +222,7 @@ class push_routing_frame;
 class CPushRoutingView;
 
 #define ___TEMP_CLASS_NAME_SIZE 96
-class CLASS_DECL_ios ___THREAD_STATE :
+class CLASS_DECL_BASE ___THREAD_STATE :
 public ::thread_state
 {
 public:
@@ -283,12 +283,12 @@ public:
 
 extern thread_pointer < ___THREAD_STATE > gen_ThreadState;
 
-CLASS_DECL_ios ___THREAD_STATE * __get_thread_state();
+CLASS_DECL_BASE ___THREAD_STATE * __get_thread_state();
 
 
 namespace ios
 {
    
-   CLASS_DECL_ios ::thread_state * __get_thread_state();
+   CLASS_DECL_BASE ::thread_state * __get_thread_state();
    
 } // namespace ios

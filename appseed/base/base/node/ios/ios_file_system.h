@@ -15,13 +15,13 @@ namespace ios
 {
    
    
-   class CLASS_DECL_ios file_system :
+   class CLASS_DECL_BASE file_system :
       public ::file::system
    {
    public:
       
       
-      class CLASS_DECL_ios path :
+      class CLASS_DECL_BASE path :
          public ::file::system::path
       {
       public:

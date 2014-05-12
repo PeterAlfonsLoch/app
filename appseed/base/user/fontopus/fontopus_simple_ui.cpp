@@ -280,7 +280,7 @@ namespace fontopus
 
       SCAST_PTR(::message::mouse,pmouse,pobj);
 
-      if(pobj->previous())
+      if(pmouse->previous())
          return;
 
 

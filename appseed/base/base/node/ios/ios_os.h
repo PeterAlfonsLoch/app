@@ -5,7 +5,7 @@ namespace ios
 {
    
    
-   class CLASS_DECL_ios os :
+   class CLASS_DECL_BASE os :
    public ::core::os
    {
    public:

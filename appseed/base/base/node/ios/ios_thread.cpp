@@ -60,12 +60,12 @@ namespace ios
    class thread;
 } // namespace ios
 
-WINBOOL CLASS_DECL_ios AfxInternalPumpMessage();
-LRESULT CLASS_DECL_ios AfxInternalProcessWndProcException(::exception::base*, const MESSAGE* pMsg);
+WINBOOL CLASS_DECL_BASE AfxInternalPumpMessage();
+LRESULT CLASS_DECL_BASE AfxInternalProcessWndProcException(::exception::base*, const MESSAGE* pMsg);
 WINBOOL AfxInternalPreTranslateMessage(MESSAGE* pMsg);
 WINBOOL AfxInternalIsIdleMessage(MESSAGE* pMsg);
-__STATIC void CLASS_DECL_ios __pre_init_dialog(::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
-__STATIC void CLASS_DECL_ios __post_init_dialog(::user::interaction * pWnd, const RECT& rectOld, DWORD dwStyleOld);
+__STATIC void CLASS_DECL_BASE __pre_init_dialog(::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
+__STATIC void CLASS_DECL_BASE __post_init_dialog(::user::interaction * pWnd, const RECT& rectOld, DWORD dwStyleOld);
 
 namespace ios
 {
@@ -127,7 +127,7 @@ UINT APIENTRY __thread_entry(void * pParam)
       
       // set current thread pointer for System.GetThread
       __MODULE_STATE* pModuleState = __get_module_state();
-      __MODULE_THREAD_STATE* pState = pModuleState->m_thread;
+      __MODULE_THREAD_STATE* pState = pModuleState->t_pthread;
       pState->m_pCurrentWinThread = pThread;
       
       // forced initialization of the thread
@@ -181,7 +181,7 @@ namespace ios
 {
 
    
-   CLASS_DECL_ios ::thread * __get_thread()
+   CLASS_DECL_BASE ::thread * __get_thread()
    {
       
       // check for current thread in module thread state
@@ -195,7 +195,7 @@ namespace ios
    }
    
    
-   CLASS_DECL_ios void __set_thread(::thread * pthread)
+   CLASS_DECL_BASE void __set_thread(::thread * pthread)
    {
       
       // check for current thread in module thread state
@@ -213,7 +213,7 @@ namespace ios
 
 
 
-CLASS_DECL_ios MESSAGE * AfxGetCurrentMessage()
+CLASS_DECL_BASE MESSAGE * AfxGetCurrentMessage()
 {
    ___THREAD_STATE* pState = __get_thread_state();
    ASSERT(pState);
@@ -222,7 +222,7 @@ CLASS_DECL_ios MESSAGE * AfxGetCurrentMessage()
 
 
 
-CLASS_DECL_ios void AfxInternalProcessWndProcException(::exception::base*, signal_details * pobj)
+CLASS_DECL_BASE void AfxInternalProcessWndProcException(::exception::base*, signal_details * pobj)
 {
    SCAST_PTR(::message::base, pbase, pobj);
    if (pbase->m_uiMessage == WM_CREATE)
@@ -240,7 +240,7 @@ CLASS_DECL_ios void AfxInternalProcessWndProcException(::exception::base*, signa
    return;   // sensible default for rest of commands
 }
 
-CLASS_DECL_ios void AfxProcessWndProcException(::exception::base* e, signal_details * pobj)
+CLASS_DECL_BASE void AfxProcessWndProcException(::exception::base* e, signal_details * pobj)
 {
    ::thread *pThread = App(pobj->get_app()).GetThread();
    if( pThread )
@@ -328,7 +328,7 @@ void AfxInternalPreTranslateMessage(signal_details * pobj)
    {
    }
     
-    extern ios::thread_local_storage * __thread_data;
+//    extern ios::thread_local_storage * __thread_data;
 
    
    // no special processing
@@ -422,7 +422,7 @@ WINBOOL __cdecl __is_idle_message(MESSAGE* pMsg)
 
 
 
-/*thread* CLASS_DECL_ios AfxBeginThread(::base::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam,
+/*thread* CLASS_DECL_BASE AfxBeginThread(::base::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam,
  int32_t nPriority, UINT nStackSize, DWORD dwCreateFlags,
  LPSECURITY_ATTRIBUTES lpSecurityAttrs)
  {
@@ -443,7 +443,7 @@ WINBOOL __cdecl __is_idle_message(MESSAGE* pMsg)
  
  return pThread;
  }*/
-void CLASS_DECL_ios __end_thread(::base::application * papp, UINT nExitCode, bool bDelete)
+void CLASS_DECL_BASE __end_thread(::base::application * papp, UINT nExitCode, bool bDelete)
 {
    // remove current thread object from primitive::memory
 //   __MODULE_THREAD_STATE* pState = __get_module_thread_state();
@@ -468,7 +468,7 @@ void CLASS_DECL_ios __end_thread(::base::application * papp, UINT nExitCode, boo
    //   _endthreadex(nExitCode);
 }
 
-void CLASS_DECL_ios __term_thread(::base::application * papp, HINSTANCE hInstTerm)
+void CLASS_DECL_BASE __term_thread(::base::application * papp, HINSTANCE hInstTerm)
 {
    
    try
@@ -487,8 +487,8 @@ void CLASS_DECL_ios __term_thread(::base::application * papp, HINSTANCE hInstTer
    try
    {
       // cleanup the rest of the thread local data
-      if (ios::__thread_data != NULL)
-         ios::__thread_data->delete_data();
+//      if (ios::__thread_data != NULL)
+  //       ios::__thread_data->delete_data();
       //__thread_data->DeleteValues(hInstTerm, FALSE);
    }
    catch( ::exception::base* e )
@@ -503,7 +503,7 @@ void CLASS_DECL_ios __term_thread(::base::application * papp, HINSTANCE hInstTer
 
 LRESULT CALLBACK _AfxMsgFilterHook(int32_t code, WPARAM wParam, LPARAM lParam);
 
-void CLASS_DECL_ios AfxInitThread()
+void CLASS_DECL_BASE AfxInitThread()
 {
    if (!afxContextIsDLL)
    {
@@ -1649,7 +1649,7 @@ namespace ios
        return;
        }*/
       
-      ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
+      ___THREAD_STATE* pThreadState = gen_ThreadState;
       MESSAGE oldState = pThreadState->m_lastSentMsg;   // save for nesting
       //pThreadState->m_lastSentMsg.       = pbase->m_hwnd;
       pThreadState->m_lastSentMsg.message    = pbase->m_uiMessage;
@@ -1762,7 +1762,7 @@ namespace ios
    }
    
    
-   CLASS_DECL_ios ::thread * get_thread()
+   CLASS_DECL_BASE ::thread * get_thread()
    {
       ::thread * pthread = ::get_thread();
       if(pthread == NULL)
@@ -2449,14 +2449,14 @@ namespace ios
 
 
 
-WINBOOL CLASS_DECL_ios AfxInternalPumpMessage();
-LRESULT CLASS_DECL_ios AfxInternalProcessWndProcException(::exception::base*, const MESSAGE* pMsg);
+WINBOOL CLASS_DECL_BASE AfxInternalPumpMessage();
+LRESULT CLASS_DECL_BASE AfxInternalProcessWndProcException(::exception::base*, const MESSAGE* pMsg);
 void AfxInternalPreTranslateMessage(signal_details * pobj);
 WINBOOL AfxInternalIsIdleMessage(signal_details * pobj);
 WINBOOL AfxInternalIsIdleMessage(LPMESSAGE lpmsg);
 
 
-/*thread* CLASS_DECL_ios System.GetThread()
+/*thread* CLASS_DECL_BASE System.GetThread()
  {
  // check for current thread in module thread state
  __MODULE_THREAD_STATE* pState = __get_module_thread_state();
@@ -2464,14 +2464,14 @@ WINBOOL AfxInternalIsIdleMessage(LPMESSAGE lpmsg);
  return pThread;
  }
  
- MESSAGE* CLASS_DECL_ios AfxGetCurrentMessage()
+ MESSAGE* CLASS_DECL_BASE AfxGetCurrentMessage()
  {
  ___THREAD_STATE* pState = __get_thread_state();
  ASSERT(pState);
  return &(pState->m_msgCur);
  }
  
- WINBOOL CLASS_DECL_ios AfxInternalPumpMessage()
+ WINBOOL CLASS_DECL_BASE AfxInternalPumpMessage()
  {
  ___THREAD_STATE *pState = __get_thread_state();
  
@@ -2508,7 +2508,7 @@ WINBOOL AfxInternalIsIdleMessage(LPMESSAGE lpmsg);
  return TRUE;
  }
  
- WINBOOL CLASS_DECL_ios AfxPumpMessage()
+ WINBOOL CLASS_DECL_BASE AfxPumpMessage()
  {
  thread *pThread = System.GetThread();
  if( pThread )
@@ -2517,7 +2517,7 @@ WINBOOL AfxInternalIsIdleMessage(LPMESSAGE lpmsg);
  return AfxInternalPumpMessage();
  }
  
- LRESULT CLASS_DECL_ios AfxInternalProcessWndProcException(::exception::base*, const MESSAGE* pMsg)
+ LRESULT CLASS_DECL_BASE AfxInternalProcessWndProcException(::exception::base*, const MESSAGE* pMsg)
  {
  if (pMsg->message == WM_CREATE)
  {
@@ -2532,7 +2532,7 @@ WINBOOL AfxInternalIsIdleMessage(LPMESSAGE lpmsg);
  return 0;   // sensible default for rest of commands
  }
  
- LRESULT CLASS_DECL_ios AfxProcessWndProcException(::exception::base* e, const MESSAGE* pMsg)
+ LRESULT CLASS_DECL_BASE AfxProcessWndProcException(::exception::base* e, const MESSAGE* pMsg)
  {
  thread *pThread = System.GetThread();
  if( pThread )
@@ -2611,7 +2611,7 @@ WINBOOL AfxInternalIsIdleMessage(LPMESSAGE lpmsg);
  return AfxInternalIsIdleMessage( pMsg );
  }
  
- thread* CLASS_DECL_ios AfxBeginThread(::ca2::type_info pThreadClass,
+ thread* CLASS_DECL_BASE AfxBeginThread(::ca2::type_info pThreadClass,
  int32_t nPriority, UINT nStackSize, DWORD dwCreateFlags,
  LPSECURITY_ATTRIBUTES lpSecurityAttrs)
  {
@@ -2645,7 +2645,7 @@ WINBOOL AfxInternalIsIdleMessage(LPMESSAGE lpmsg);
  }*/
 
 /*
- void CLASS_DECL_ios __end_thread(UINT nExitCode, bool bDelete)
+ void CLASS_DECL_BASE __end_thread(UINT nExitCode, bool bDelete)
  {
  #ifndef _MT
  nExitCode;
@@ -2679,7 +2679,7 @@ WINBOOL AfxInternalIsIdleMessage(LPMESSAGE lpmsg);
 
 //LRESULT CALLBACK _AfxMsgFilterHook(int32_t code, WPARAM wParam, LPARAM lParam);
 
-void CLASS_DECL_ios __init_thread()
+void CLASS_DECL_BASE __init_thread()
 {
    
    /*if (!afxContextIsDLL)
@@ -3056,7 +3056,7 @@ namespace ios
  return lresult;
  }
  
- __STATIC WINBOOL CLASS_DECL_ios IsHelpKey(LPMESSAGE lpMsg)
+ __STATIC WINBOOL CLASS_DECL_BASE IsHelpKey(LPMESSAGE lpMsg)
  // return TRUE only for non-repeat F1 keydowns.
  {
  return lpMsg->message == WM_KEYDOWN &&

@@ -5,13 +5,13 @@ namespace ios2
 {
 
 
-   class CLASS_DECL_ios printer :
+   class CLASS_DECL_BASE printer :
       virtual public ::user::printer
    {
    public:
 
 
-      class CLASS_DECL_ios document_properties :
+      class CLASS_DECL_BASE document_properties :
          virtual public ::object
       {
       public:

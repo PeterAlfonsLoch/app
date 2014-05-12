@@ -87,3 +87,10 @@ public:
 
 
 */
+
+
+#ifdef __OBJC__
+
+#import "ios_m.h"
+
+#endif

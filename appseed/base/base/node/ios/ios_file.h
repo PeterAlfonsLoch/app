@@ -4,7 +4,7 @@
 class FileException;
 struct FileStatus;
 
-void CLASS_DECL_ios vfxGetRoot(const wchar_t * lpszPath, string& wstrRoot);
+void CLASS_DECL_BASE vfxGetRoot(const wchar_t * lpszPath, string& wstrRoot);
 
 namespace ios
 {
@@ -12,7 +12,7 @@ namespace ios
    /////////////////////////////////////////////////////////////////////////////
    // File - raw unbuffered disk file I/O
 
-   class CLASS_DECL_ios file :
+   class CLASS_DECL_BASE file :
       virtual public ::file::binary_buffer
    {
    public:

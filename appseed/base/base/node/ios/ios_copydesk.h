@@ -5,7 +5,7 @@ namespace ios
 {
 
 
-   class CLASS_DECL_ios copydesk :
+   class CLASS_DECL_BASE copydesk :
       virtual public ::core::copydesk,
       virtual public ::window_sp
    {

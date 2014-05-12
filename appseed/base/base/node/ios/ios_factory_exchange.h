@@ -5,7 +5,7 @@ namespace ios
 {
 
    
-   class CLASS_DECL_ios factory_exchange :
+   class CLASS_DECL_BASE factory_exchange :
       virtual public ::object
    {
    public:

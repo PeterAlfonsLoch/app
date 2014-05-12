@@ -6,7 +6,7 @@
 namespace ios
 {
    
-   class CLASS_DECL_ios shell
+   class CLASS_DECL_BASE shell
    {
    public:
       shell();

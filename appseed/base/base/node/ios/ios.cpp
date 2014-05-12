@@ -21,40 +21,40 @@ namespace ios
 
 
 // Global helper functions
-CLASS_DECL_ios ::base::application * __get_app()
+CLASS_DECL_BASE ::base::application * __get_app()
 {
    return dynamic_cast < ::base::application * > (afxCurrentWinApp);
 }
 
-CLASS_DECL_ios HINSTANCE __get_instance_handle()
+CLASS_DECL_BASE HINSTANCE __get_instance_handle()
 {
    ASSERT(afxCurrentInstanceHandle != NULL);
    return afxCurrentInstanceHandle;
 }
-CLASS_DECL_ios HINSTANCE __get_resource_handle()
+CLASS_DECL_BASE HINSTANCE __get_resource_handle()
 {
    ASSERT(afxCurrentResourceHandle != NULL);
    return afxCurrentResourceHandle;
 }
-CLASS_DECL_ios void __set_resource_handle(HINSTANCE hInstResource)
+CLASS_DECL_BASE void __set_resource_handle(HINSTANCE hInstResource)
 {
    ASSERT(hInstResource != NULL); afxCurrentResourceHandle = hInstResource;
 }
-CLASS_DECL_ios const char * __get_app_name()
+CLASS_DECL_BASE const char * __get_app_name()
 {
    ASSERT(afxCurrentAppName != NULL); return afxCurrentAppName;
 }
-CLASS_DECL_ios sp(::user::interaction) __get_main_window()
+CLASS_DECL_BASE sp(::user::interaction) __get_main_window()
 {
    ::thread* pThread = dynamic_cast < ::thread * > (::ios::get_thread());
    return pThread != NULL ? pThread->GetMainWnd() : NULL;
 }
 
-CLASS_DECL_ios bool __gen_get_ambient_act_ctx()
+CLASS_DECL_BASE bool __gen_get_ambient_act_ctx()
 {
    return afxAmbientActCtx;
 }
-CLASS_DECL_ios void __set_ambient_act_ctx(bool bSet)
+CLASS_DECL_BASE void __set_ambient_act_ctx(bool bSet)
 {
    afxAmbientActCtx = bSet;
 }

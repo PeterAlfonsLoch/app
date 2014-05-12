@@ -4,7 +4,7 @@
 namespace ios
 {
    
-   class CLASS_DECL_ios path :
+   class CLASS_DECL_BASE path :
    virtual public ::file::path
    {
    public:
@@ -12,7 +12,7 @@ namespace ios
       virtual bool  is_equal(const char * lpszFilPathA, const char * lpszFilPathB);
    };
    
-   class CLASS_DECL_ios dir :
+   class CLASS_DECL_BASE dir :
    virtual public ::file::dir::system
    {
    public:

@@ -14,7 +14,7 @@ namespace ios
 {
 
 
-   class CLASS_DECL_ios ip_enum :
+   class CLASS_DECL_BASE ip_enum :
       virtual public ::net::ip_enum
    {
    public:

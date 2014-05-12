@@ -1207,7 +1207,7 @@ restart:
       }
       if(strFail.has_char())
       {
-         Application.simple_message_box(strFail, MB_ICONEXCLAMATION);
+         Application.simple_message_box(NULL, strFail, MB_ICONEXCLAMATION);
       }
    }
 

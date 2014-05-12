@@ -8,7 +8,7 @@ namespace gen
 namespace ios
 {
 
-   class CLASS_DECL_ios main_init_data :
+   class CLASS_DECL_BASE main_init_data :
       public ::core::main_init_data
    {
    public:
@@ -18,7 +18,7 @@ namespace ios
       int         m_nCmdShow;
    };
 
-   class CLASS_DECL_ios application :
+   class CLASS_DECL_BASE application :
       virtual public ::application
    {
    public:

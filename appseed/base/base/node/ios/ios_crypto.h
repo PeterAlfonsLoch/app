@@ -5,7 +5,7 @@ namespace ios
 {
 
 
-   class CLASS_DECL_ios crypto :
+   class CLASS_DECL_BASE crypto :
       virtual public ::crypto::crypto
    {
    public:

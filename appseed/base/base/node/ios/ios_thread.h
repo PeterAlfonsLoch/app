@@ -24,7 +24,7 @@ namespace ios
    };
    
    
-   class CLASS_DECL_ios thread :
+   class CLASS_DECL_BASE thread :
       virtual public ::thread,
       virtual public ::message_queue
    {
@@ -198,7 +198,7 @@ namespace ios
    };
    
    
-   CLASS_DECL_ios ::thread * get_thread();
+   CLASS_DECL_BASE ::thread * get_thread();
    
    
 } // namespace ios

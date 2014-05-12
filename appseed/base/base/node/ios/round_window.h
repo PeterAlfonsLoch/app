@@ -12,6 +12,10 @@
 #include "app/appseed/base/user/user/user_key_enum.h"
 
 
+#ifdef __OBJC__
+@class RoundWindow;
+#endif
+
 class round_window
 {
 public:
