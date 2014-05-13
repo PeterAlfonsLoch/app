@@ -104,6 +104,23 @@ struct _AFX_THREAD_STARTUP : ::ios::thread_startup
    WINBOOL bError;    // TRUE if error during startup
 };
 
+
+void __node_init_app_thread(::thread * pthread)
+{
+   
+   ::ios::thread * pnodethread = pthread->m_p.cast < ::ios::thread >();
+   
+   __MODULE_STATE* pModuleState = __get_module_state();
+   
+   pModuleState->t_pthread = new __MODULE_THREAD_STATE;
+   
+   __MODULE_THREAD_STATE* pState = pModuleState->t_pthread;
+   
+   pState->m_pCurrentWinThread = pnodethread;
+   
+}
+
+
 UINT APIENTRY __thread_entry(void * pParam)
 {
    _AFX_THREAD_STARTUP* pStartup = (_AFX_THREAD_STARTUP*)pParam;
@@ -127,6 +144,7 @@ UINT APIENTRY __thread_entry(void * pParam)
       
       // set current thread pointer for System.GetThread
       __MODULE_STATE* pModuleState = __get_module_state();
+      pModuleState->t_pthread = new __MODULE_THREAD_STATE;
       __MODULE_THREAD_STATE* pState = pModuleState->t_pthread;
       pState->m_pCurrentWinThread = pThread;
       

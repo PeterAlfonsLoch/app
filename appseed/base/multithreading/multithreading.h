@@ -82,6 +82,17 @@ CLASS_DECL_BASE HTHREAD get_current_thread();
 
 
 
+CLASS_DECL_BASE void on_init_thread();
+CLASS_DECL_BASE void on_term_thread();
+
+
+
+CLASS_DECL_BASE void __node_init_thread_state();
+CLASS_DECL_BASE void __node_term_thread_state();
+
+
+CLASS_DECL_BASE void __node_init_thread();
+CLASS_DECL_BASE void __node_term_thread();
 
 
 

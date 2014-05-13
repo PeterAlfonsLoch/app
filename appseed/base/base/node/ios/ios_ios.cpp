@@ -41,74 +41,10 @@ char gen_InitAppState = (char)(__initialize(FALSE, 1));
 
 
 
-/////////////////////////////////////////////////////////////////////////////
-// other globals (internal library use)
-
-/////////////////////////////////////////////////////////////////////////////
-// Standard cleanup called by WinMain and __abort
-
-void CLASS_DECL_BASE __gen_unregister_window_classes()
-{
-   
-   // unregister Window classes
-   __MODULE_STATE* pModuleState = __get_module_state();
-   
-   single_lock sl(&pModuleState->m_mutexRegClassList, TRUE);
-   
-   if(pModuleState->m_pstrUnregisterList != NULL)
-   {
-      strsize start = 0;
-      string className = pModuleState->m_pstrUnregisterList->Tokenize("\n",start);
-      while (!className.is_empty())
-      {
-         //         UnregisterClass(static_cast<const char *>(className), System.m_hInstance);
-         className = pModuleState->m_pstrUnregisterList->Tokenize("\n",start);
-      }
-      pModuleState->m_pstrUnregisterList->Empty();
-      pModuleState->m_pstrUnregisterList = NULL;
-   }
-   
-}
 void CLASS_DECL_BASE __ios_term()
 {
-   __gen_unregister_window_classes();
-   // cleanup OLE if required
-   //   thread* pThread = &System;
-   
-   // cleanup thread local tooltip ::window
-   //   __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
-   /*   if (pModuleThreadState->m_pToolTip != NULL)
-    {
-    if (pModuleThreadState->m_pToolTip->DestroyToolTipCtrl())
-    pModuleThreadState->m_pToolTip = NULL;
-    }*/
-   
-   //   ___THREAD_STATE* pThreadState = __get_thread_state();
-   if (!afxContextIsDLL)
-   {
-      // unhook windows hooks
-      /*
-       if (pThreadState->m_hHookOldMsgFilter != NULL)
-       {
-       ::UnhookWindowsHookEx(pThreadState->m_hHookOldMsgFilter);
-       pThreadState->m_hHookOldMsgFilter = NULL;
-       }
-       if (pThreadState->m_hHookOldCbtFilter != NULL)
-       {
-       ::UnhookWindowsHookEx(pThreadState->m_hHookOldCbtFilter);
-       pThreadState->m_hHookOldCbtFilter = NULL;
-       }
-       */
-      
-   }
-   
-   
-   // We used to suppress all exceptions here. But that's the wrong thing
-   // to do. If this process crashes, we should allow Windows to crash
-   // the process and invoke watson.
+
 }
-
-
 
 
 CLASS_DECL_BASE __MODULE_STATE * __set_module_state(__MODULE_STATE* pNewState)
@@ -203,11 +139,29 @@ ___THREAD_STATE::~___THREAD_STATE()
    
 }
 
+
+void CLASS_DECL_BASE __node_init_thread_state()
+{
+   
+   gen_ThreadState = new ___THREAD_STATE;
+   
+}
+
+void CLASS_DECL_BASE __node_term_thread_state()
+{
+   
+   delete gen_ThreadState;
+   
+   gen_ThreadState = NULL;
+   
+}
+
+
 CLASS_DECL_BASE ___THREAD_STATE * __get_thread_state()
 {
-   ___THREAD_STATE *pState =gen_ThreadState;
-   ENSURE(pState != NULL);
-   return pState;
+   
+   return gen_ThreadState;
+   
 }
 
 
@@ -221,62 +175,15 @@ namespace ios
       return pState;
    }
    
+   
 } // namespace ios
 
 
 thread_pointer < ___THREAD_STATE >  gen_ThreadState;
 
-/////////////////////////////////////////////////////////////////////////////
-// __MODULE_STATE implementation
 
-/*
- __MODULE_STATE::__MODULE_STATE(bool bDLL, WNDPROC pfn_window_procedure,
- DWORD dwVersion, bool bSystem)
- {
- m_pmapHWND              = NULL;
- //   m_pmapHDC               = NULL;
- //   m_pmapHGDIOBJ           = NULL;
- m_pmapHMENU             = NULL;
- m_pstrUnregisterList    = NULL;
-  xxx xxx xxx
- m_classList.Construct(offsetof(::ca2::type_info, m_pNextClass)); */
-
-/* m_fRegisteredClasses = 0;
- m_bDLL = (BYTE)bDLL;
- m_pfn_window_procedure = pfn_window_procedure;
- m_dwVersion = dwVersion;
- m_bSystem = (BYTE)bSystem;
- //   bool bEnable = TRUE;
- try
- {
- //Preallocate the registered classes string, but CRT primitive::memory leak report is
- //called before the string frees primitive::memory, so need to disable tracking.
- //bEnable = __enable_memory_tracking(FALSE);
- //m_pstrUnregisterList->Preallocate(4096);
- //__enable_memory_tracking(bEnable);
- }
- catch(memory_exception * pe)
- {
- //__enable_memory_tracking(bEnable);
- pe->Delete();
- }
- 
- // cast starts out in "::fontopus::user control"
- m_bUserCtrl = TRUE;
- 
- 
- 
- //bEnable = __enable_memory_tracking(FALSE);
- //Fusion: allocate dll wrappers array.
- m_pDllIsolationWrappers = NULL;
- //__enable_memory_tracking(bEnable);
- m_bSetAmbientActCtx = TRUE;
- m_hActCtx = NULL;
- }*/
-
-
-__MODULE_STATE::__MODULE_STATE(bool bDLL, DWORD dwVersion, bool bSystem) :
-   m_mutexRegClassList(NULL)
+__MODULE_STATE::__MODULE_STATE(bool bDLL, DWORD dwVersion, bool bSystem) //:
+//   m_mutexRegClassList(NULL)
 {
    m_pmapHWND              = NULL;
    //   m_pmapHDC               = NULL;

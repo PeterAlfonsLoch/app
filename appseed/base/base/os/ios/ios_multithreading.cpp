@@ -435,7 +435,7 @@ void release_pool(void * pool);
 thread_pointer < void > g_ns_pool;
 
 
-void on_start_thread()
+void __node_init_thread()
 {
    
    g_ns_pool = new_ns_pool();
@@ -443,7 +443,7 @@ void on_start_thread()
 }
 
 
-void on_end_thread()
+void __node_term_thread()
 {
    
    release_pool(g_ns_pool);

@@ -24,6 +24,7 @@ int AmIBeingDebugged()
 // Returns true if the current process is being debugged (either
 // running under the debugger or has a debugger attached post facto).
 {
+   return 1;
    int                 junk;
    int                 mib[4];
    struct kinfo_proc   info;

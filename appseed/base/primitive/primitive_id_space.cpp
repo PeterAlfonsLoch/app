@@ -4,7 +4,7 @@
 
 id_space::id_space()
 {
-   m_pmutex = new mutex(get_thread_app());
+   m_pmutex = new mutex(NULL);
 }
 
 // id_space is static, it goes aways only and with the application

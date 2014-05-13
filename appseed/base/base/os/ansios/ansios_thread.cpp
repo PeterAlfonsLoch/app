@@ -22,8 +22,6 @@ mq::mq() :
 }
 
 
-void on_start_thread();
-void on_end_thread();
 
 
 
@@ -721,7 +719,7 @@ void * os_thread_thread_proc(LPVOID lpparameter)
 uint32_t os_thread::run()
 {
 
-   on_start_thread();
+   on_init_thread();
 
    synch_lock mlThreadHandle(g_pmutexThreadHandleLock);
 
@@ -761,7 +759,7 @@ uint32_t os_thread::run()
 
    currentThread->release();
 
-   on_end_thread();
+   on_term_thread();
 
    return dwRet;
 
@@ -1278,17 +1276,21 @@ namespace core
 
 
 
-#if defined(LINUX) || defined(ANDROID)
-
-void on_start_thread()
+void on_init_thread()
 {
+   
+   __node_init_thread();
+
+   __node_init_thread_state();
 
 }
 
 
-void on_end_thread()
+void on_term_thread()
 {
+   
+   __node_term_thread_state();
+   
+   __node_term_thread();
 
 }
-
-#endif

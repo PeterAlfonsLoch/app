@@ -134,8 +134,6 @@ public:
    
    DWORD m_fRegisteredClasses; // flags for registered ::window classes
    
-   mutex       m_mutexRegClassList;
-   
    hwnd_map       * m_pmapHWND;
    mutex             * m_pmutexHwnd;
    //   hdc_map        * m_pmapHDC;
@@ -222,6 +220,8 @@ class push_routing_frame;
 class CPushRoutingView;
 
 class __EXCEPTION_CONTEXT;
+
+
 
 #define ___TEMP_CLASS_NAME_SIZE 96
 class CLASS_DECL_BASE ___THREAD_STATE :
