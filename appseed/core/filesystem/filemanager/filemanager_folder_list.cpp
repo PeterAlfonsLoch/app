@@ -251,19 +251,13 @@ namespace filemanager
 #endif
          {
 
-#ifdef WINDOWSEX
             string str;
-            HICON hicon = NULL;
+            ::visual::icon * hicon = NULL;
             int32_t iIndex;
-            for (POSITION pos = m_iconmap.get_start_position();
-               pos != NULL;
-               m_iconmap.get_next_assoc(pos, hicon, iIndex))
+            for (POSITION pos = m_iconmap.get_start_position(); pos != NULL; m_iconmap.get_next_assoc(pos, hicon, iIndex))
             {
-               DestroyIcon(hicon);
+               delete hicon;
             }
-#else
-            throw todo(get_app());
-#endif
             m_iconmap.remove_all();
             //         int32_t iIcon;
             //         int32_t iImage;

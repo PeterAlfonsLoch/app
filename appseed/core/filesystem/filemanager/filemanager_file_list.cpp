@@ -1197,11 +1197,9 @@ namespace filemanager
       icon icon;
 
 #ifdef WINDOWSEX
-      for (POSITION pos = m_iconmap.get_start_position();
-         pos != NULL;
-         m_iconmap.get_next_assoc(pos, iconkey, icon))
+      for (POSITION pos = m_iconmap.get_start_position(); pos != NULL; m_iconmap.get_next_assoc(pos, iconkey, icon))
       {
-         DestroyIcon(icon.m_hicon);
+         DestroyIcon((HICON) icon.m_hicon->get_os_data());
       }
 #endif
 
