@@ -19,7 +19,7 @@ namespace ios
    };
 
    class CLASS_DECL_BASE application :
-      virtual public ::application
+   virtual public ::base::application
    {
    public:
 
@@ -50,15 +50,7 @@ namespace ios
       
       virtual void ShowWaitCursor(bool bShow);
       
-      // Loads an icon resource.
-      HICON LoadIcon(const char * lpszResourceName) const;
-      HICON LoadIcon(UINT nIDResource) const;
       
-      // Loads an icon resource; for stock IDI_ values.
-      HICON LoadStandardIcon(const char * lpszIconName) const;
-      
-      // Loads an OEM icon resource; for all OIC_* values.
-      HICON LoadOEMIcon(UINT nIDIcon) const;
       
       virtual string get_version();
       
@@ -69,8 +61,6 @@ namespace ios
       virtual void LockTempMaps();
       virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
       virtual void TermThread(HINSTANCE hInstTerm);
-      virtual const char * RegisterWndClass(UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
-      
       
       virtual void SetCurrentHandles();
       

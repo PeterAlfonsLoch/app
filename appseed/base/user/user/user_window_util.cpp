@@ -497,7 +497,7 @@ namespace user
 
    void window_util::ContraintPosToParent(oswindow oswindow)
    {
-#ifndef METROWIN
+#if !defined(METROWIN) && !defined(APPLE_IOS)
       rect rectMajor;
       ::oswindow oswindowParent = ::GetParent(oswindow);
       if(oswindowParent == NULL)

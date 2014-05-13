@@ -568,7 +568,7 @@ namespace ios
    window::~window()
    {
       
-      if(m_pbaseapp != NULL && m_pbaseapp->m_pplaneapp != NULL && m_pbaseapp->m_pplaneapp->m_psystem != NULL && Sys(m_pbaseapp).user()->m_pwindowmap != NULL)
+      if(m_pbaseapp != NULL && m_pbaseapp->m_pplaneapp != NULL && m_pbaseapp->m_pbasesystem != NULL && Sys(m_pbaseapp).user()->m_pwindowmap != NULL)
       {
          Sys(m_pbaseapp).user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
       }
@@ -1429,18 +1429,18 @@ namespace ios
          ::message::mouse * pmouse = (::message::mouse *) pbase;
          
          Application.m_ptCursor = pmouse->m_pt;
-         if(m_pbaseapp->m_pplaneapp->m_psession != NULL)
+         if(m_pbaseapp->m_pbasesession != NULL)
          {
             Session.m_ptCursor = pmouse->m_pt;
          }
-         if(m_pui != NULL && m_pui != this && m_pui->m_pbaseapp->m_pplaneapp->m_psession != NULL && m_pui->m_pbaseapp->m_pplaneapp->m_psession != m_pbaseapp->m_pplaneapp->m_psession)
+         if(m_pui != NULL && m_pui != this && m_pui->m_pbaseapp->m_pbasesession != NULL && m_pui->m_pbaseapp->m_pbasesession != m_pbaseapp->m_pbasesession)
          {
-            Sess(m_pui->m_pbaseapp->m_pplaneapp->m_psession).m_ptCursor = pmouse->m_pt;
+            Sess(m_pui->m_pbaseapp->m_pbasesession).m_ptCursor = pmouse->m_pt;
          }
          
          sp(base_session) psession;
          
-         if(m_pbaseapp->m_pplaneapp->is_system())
+         if(m_pbaseapp->is_system())
          {
             psession = System.query_session(0);
             if(psession != NULL && psession->m_bSessionSynchronizedCursor)
@@ -2857,7 +2857,7 @@ namespace ios
    
    bool window::SendChildNotifyLastMsg(LRESULT* pResult)
    {
-      ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
+      ___THREAD_STATE* pThreadState = gen_ThreadState;
       return OnChildNotify(pThreadState->m_lastSentMsg.message, pThreadState->m_lastSentMsg.wParam, pThreadState->m_lastSentMsg.lParam, pResult);
    }
    
@@ -3942,8 +3942,8 @@ namespace ios
       m_iModalCount++;
       
                   m_iaModalThread.add(::GetCurrentThreadId());
-            ::application * pappThis1 = dynamic_cast < ::application * > (m_pthread->m_p.m_p);
-            ::application * pappThis2 = dynamic_cast < ::application * > (m_pthread.m_p);
+      ::base::application * pappThis1 = dynamic_cast < ::base::application * > (m_pthread->m_p.m_p);
+      ::base::application * pappThis2 = dynamic_cast < ::base::application * > (m_pthread.m_p);
             // acquire and dispatch messages until the modal state is done
             MESSAGE msg;
             for (;;)
@@ -4236,7 +4236,7 @@ namespace ios
       
    }
    
-   sp(::window) window::get_wnd() const
+   ::window * window::get_wnd() const
    {
       
       return (::window *) this;
@@ -4504,13 +4504,13 @@ namespace ios
       if(!::IsWindow(get_handle()))
          throw simple_exception(get_app(), "no more a window");
       // if it is temporary window - probably not ca2 wrapped window
-      if(m_pui == NULL || m_pui == this)
-      {
-         rect rect32;
-         ::GetWindowRect(get_handle(), rect32);
-         ::copy(lprect, rect32);
-      }
-      else
+//      if(m_pui == NULL || m_pui == this)
+  //    {
+    //     rect rect32;
+      //   ::GetWindowRect(get_handle(), rect32);
+        // ::copy(lprect, rect32);
+      //}
+      //else
       {
          interaction::GetWindowRect(lprect);
       }
@@ -4520,13 +4520,13 @@ namespace ios
    {
       ASSERT(::IsWindow(get_handle()));
       // if it is temporary window - probably not ca2 wrapped window
-      if(m_pui == NULL || m_pui == this)
-      {
-         rect rect32;
-         ::GetClientRect(get_handle(), rect32);
-         ::copy(lprect, rect32);
-      }
-      else
+//      if(m_pui == NULL || m_pui == this)
+  //    {
+    //     rect rect32;
+      //   ::GetClientRect(get_handle(), rect32);
+        // ::copy(lprect, rect32);
+      //}
+//      else
       {
          interaction::GetClientRect(lprect);
       }
@@ -4647,7 +4647,7 @@ namespace ios
    }
    
    
-   sp(::user::interaction) window::get_parent() const
+   ::user::interaction * window::get_parent() const
    {
       return NULL;
 //      if(!::IsWindow(get_handle()))
@@ -4980,10 +4980,12 @@ namespace ios
    
    ::draw2d::graphics * window::GetWindowDC()
    {
-      ASSERT(::IsWindow(get_handle()));
+/*      ASSERT(::IsWindow(get_handle()));
       ::draw2d::graphics_sp g(allocer());
       g->attach(::GetWindowDC(get_handle()));
-      return g.detach();
+      return g.detach();*/
+      throw not_implemented(get_app());
+      return NULL;
    }
    
    bool window::ReleaseDC(::draw2d::graphics * pgraphics)
@@ -5766,6 +5768,8 @@ namespace ios
    }
    
    // Win4
+   
+   /*
    HICON window::SetIcon(HICON hIcon, bool bBigIcon)
    {
       
@@ -5782,6 +5786,8 @@ namespace ios
       //      return (HICON)const_cast < window * > (this)->send_message(WM_GETICON, bBigIcon, 0);
       
    }
+    
+    */
    
    void window::Print(::draw2d::graphics * pgraphics, DWORD dwFlags) const
    {
@@ -6214,7 +6220,7 @@ namespace ios
    
    CLASS_DECL_BASE LRESULT __call_window_procedure(::user::interaction * pinteraction, oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam)
    {
-      ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
+      ___THREAD_STATE* pThreadState = gen_ThreadState;
 //      MESSAGE oldState = pThreadState->m_lastSentMsg;   // save for nesting
       
       throw not_implemented(pinteraction->get_app());
@@ -6769,7 +6775,7 @@ CLASS_DECL_BASE void hook_window_create(::user::interaction * pWnd)
 {
    
    //      throw not_implemented(::get_thread_app());
-   ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
+   ___THREAD_STATE* pThreadState = gen_ThreadState;
    if (pThreadState->m_pWndInit == pWnd)
       return;
    
@@ -6791,7 +6797,7 @@ CLASS_DECL_BASE void hook_window_create(::user::interaction * pWnd)
 
 CLASS_DECL_BASE bool unhook_window_create()
 {
-   ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
+   ___THREAD_STATE* pThreadState = gen_ThreadState;
    if (pThreadState->m_pWndInit != NULL)
    {
       pThreadState->m_pWndInit = NULL;
@@ -6800,7 +6806,7 @@ CLASS_DECL_BASE bool unhook_window_create()
    return TRUE;
 }
 
-
+/*
 
 CLASS_DECL_BASE const char * __register_window_class(UINT nClassStyle,
                                                     HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
@@ -6859,7 +6865,7 @@ CLASS_DECL_BASE const char * __register_window_class(UINT nClassStyle,
    //   return lpszName;
 }
 
-
+*/
 __STATIC void CLASS_DECL_BASE
 __handle_activate(::window * pWnd, WPARAM nState, ::window * pWndOther)
 {
@@ -7228,91 +7234,5 @@ namespace ios
 
 
 } // ::ios::namespace
-
-
-round_window * ios_start_window(plane_system * psystem, CGRect rect)
-{
-   
-   ::user::interaction * pui = psystem->m_psystem->m_posdata->m_pui;
-   
-   ::user::native_window_initialize initialize;
-   
-   initialize.m_rect.left = rect.origin.x;
-   initialize.m_rect.top = rect.origin.y;
-   initialize.m_rect.right = rect.origin.x + rect.size.width;
-   initialize.m_rect.bottom = rect.origin.x + rect.size.height;
-   
-   pui->initialize(&initialize);
-   
-   return pui->m_pimpl.cast < ::ios::window > ();
-   
-}
-
-int ios_initialize_window(round_window * proundwindow, UIWindow * window)
-{
-   
-   ::ios::window * pwindow = dynamic_cast < ::ios::window * > (proundwindow);
-                                                               
-   pwindow->m_oswindow = oswindow_get(window);
-   
-   pwindow->m_oswindow->set_user_interaction(pwindow->m_pui);
-   CREATESTRUCT cs;
-   cs.dwExStyle = 0;
-   cs.lpszClass = 0;
-   cs.lpszName = NULL;
-   cs.style = 0;
-   cs.x = 0;
-   cs.y = 0;
-   cs.cx = 0;
-   cs.cy = 0;
-   //      cs.hwndParent = hWndParent;
-   //   cs.hMenu = hWndParent == NULL ? NULL : nIDorHMenu;
-   cs.hMenu = NULL;
-   //      cs.hInstance = System.m_hInstance;
-   cs.lpCreateParams = NULL;
-   
-   if(pwindow->m_pui != NULL && pwindow->m_pui != pwindow)
-   {
-      
-      if(!pwindow->m_pui->pre_create_window(cs))
-      {
-         
-         pwindow->PostNcDestroy();
-         
-         return FALSE;
-         
-      }
-      
-   }
-   else
-   {
-      
-      if (!pwindow->pre_create_window(cs))
-      {
-         
-         pwindow->PostNcDestroy();
-         
-         return FALSE;
-         
-      }
-      
-   }
-   
-   if(cs.hwndParent == NULL)
-   {
-      
-      cs.style &= ~WS_CHILD;
-      
-   }
-   
-   pwindow->m_pui->m_pthread = ::get_thread();
-   
-   pwindow->send_message(WM_CREATE, 0, (LPARAM) &cs);
-   
-   return TRUE;
-
-}
-
-
 
 

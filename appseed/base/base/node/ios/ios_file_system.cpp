@@ -337,7 +337,7 @@ namespace ios
       else
       {
          string strFilePath(varFile);
-         if(papp->m_pplaneapp->m_bZipIsDir && (::str::find_ci(".zip:", strFilePath) >= 0))
+         if(papp->m_bZipIsDir && (::str::find_ci(".zip:", strFilePath) >= 0))
          {
             ::file::memory_buffer memfile(papp, &storage);
             zip::InFile infile(get_app());
@@ -690,7 +690,7 @@ namespace ios
          string strSrc;
          string strDirSrc(psz);
          string strDirDst(pszNew);
-         if(papp->m_pplaneapp->m_bZipIsDir && (::str::ends(strDirSrc, ".zip")))
+         if(papp->m_bZipIsDir && (::str::ends(strDirSrc, ".zip")))
          {
             strDirSrc += ":";
          }
@@ -954,7 +954,7 @@ namespace ios
          
       }
       
-      if(papp->m_pplaneapp->m_bZipIsDir)
+      if(papp->m_bZipIsDir)
       {
          
          strsize iFind = ::str::find_ci(".zip:", pszPath);
@@ -1009,7 +1009,7 @@ namespace ios
       }
       
       
-      if(papp->m_pplaneapp->m_bZipIsDir)
+      if(papp->m_bZipIsDir)
       {
          
          strsize iFind = ::str::find_ci(".zip:", strPath);

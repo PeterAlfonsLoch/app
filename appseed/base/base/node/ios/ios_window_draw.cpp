@@ -215,8 +215,8 @@ namespace ios
       for(int_ptr i = hwndtreea.get_size() - 1; i >= 0; i--)
       {
          user::oswindow_tree & hwndtreeChild = hwndtreea[i];
-         void * hwndChild = hwndtreeChild.m_oswindow;
-         ::GetWindowRect((oswindow) hwndChild, rectChild);
+//         void * hwndChild = hwndtreeChild.m_oswindow;
+//         ::GetWindowRect((oswindow) hwndChild, rectChild);
          if(rectNewUpdate.intersect(rectChild, rectUpdate))
          {
             to(pdc, rectNewUpdate, hwndtreeChild, true, false);
@@ -271,7 +271,7 @@ namespace ios
          ::user::window_interface * ptwi = System.user()->window_map().get((int_ptr) hwndParam);
          ::user::interaction * pguie = dynamic_cast < ::user::interaction * > (ptwi);
          rect rectWindow;
-         ::GetWindowRect((oswindow) hwndParam, rectWindow);
+//         ::GetWindowRect((oswindow) hwndParam, rectWindow);
          //::GetClientRect(hwndParam, rectWindow);
          //::ClientToScreen(hwndParam, &rectWindow.top_left());
          //::ClientToScreen(hwndParam, &rectWindow.bottom_right());
@@ -741,9 +741,9 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
       for(int32_t i = iIndex; i < hwndtreea.get_size();)
       {
          user::oswindow_tree & hwndtree = hwndtreea[i];
-         ::oswindow oswindow = hwndtree.m_oswindow;
+//         ::oswindow oswindow = hwndtree.m_oswindow;
          rect rect;
-         ::GetClientRect((::oswindow) oswindow, rect);
+//         ::GetClientRect((::oswindow) oswindow, rect);
          throw todo(::get_thread_app());
 //         ::ClientToScreen((::oswindow) oswindow, &rect.top_left());
   //       ::ClientToScreen((::oswindow) oswindow, &rect.bottom_right());
@@ -894,7 +894,7 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
       
       rect rectWindow;
       
-      ::GetWindowRect((::oswindow) oswindow, rectWindow);
+//      ::GetWindowRect((::oswindow) oswindow, rectWindow);
       
       
       //   ::window * pwnd = ::lnx::window::from_handle(oswindow);
@@ -1005,7 +1005,7 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
       
       //   ::window * pwndOpaque = window::FromHandlePermanent(hwndOpaque);
       
-      ::GetWindowRect((oswindow) hwndOpaque, rectWindow);
+//      ::GetWindowRect((oswindow) hwndOpaque, rectWindow);
       
       throw not_implemented(get_app());
       //      HRGN hrgnOpaque = ::CreateRectRgnIndirect(rectWindow);

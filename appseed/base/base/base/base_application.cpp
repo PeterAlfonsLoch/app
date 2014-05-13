@@ -1675,42 +1675,6 @@ namespace base
 
 
 
-#if defined(MACOS)
-
-   void openURL(const string &url_str);
-
-
-   void openURL(const string &url_str) {
-      CFURLRef url = CFURLCreateWithBytes (
-         NULL,                        // allocator
-         (UInt8*)url_str.c_str(),     // URLBytes
-         url_str.length(),            // length
-         kCFStringEncodingASCII,      // encoding
-         NULL                         // baseURL
-         );
-      LSOpenCFURLRef(url,0);
-      CFRelease(url);
-   }
-
-#elif defined(APPLE_IOS)
-
-   void openURL(const string &url_str);
-
-
-   void openURL(const string &url_str) {
-      CFURLRef url = CFURLCreateWithBytes (
-         NULL,                        // allocator
-         (UInt8*)url_str.c_str(),     // URLBytes
-         url_str.length(),            // length
-         kCFStringEncodingASCII,      // encoding
-         NULL                         // baseURL
-         );
-      //    LSOpenCFURLRef(url,0);
-      CFRelease(url);
-   }
-
-
-#endif
 
    void application::Ex1OnFactoryExchange()
    {
@@ -5117,3 +5081,43 @@ namespace base
 
 
 } // namespace base
+
+
+
+
+#if defined(MACOS)
+
+void openURL(const string &url_str);
+
+
+void openURL(const string &url_str) {
+   CFURLRef url = CFURLCreateWithBytes (
+                                        NULL,                        // allocator
+                                        (UInt8*)url_str.c_str(),     // URLBytes
+                                        url_str.length(),            // length
+                                        kCFStringEncodingASCII,      // encoding
+                                        NULL                         // baseURL
+                                        );
+   LSOpenCFURLRef(url,0);
+   CFRelease(url);
+}
+
+#elif defined(APPLE_IOS)
+
+void openURL(const string &url_str);
+
+
+void openURL(const string &url_str) {
+   CFURLRef url = CFURLCreateWithBytes (
+                                        NULL,                        // allocator
+                                        (UInt8*)url_str.c_str(),     // URLBytes
+                                        url_str.length(),            // length
+                                        kCFStringEncodingASCII,      // encoding
+                                        NULL                         // baseURL
+                                        );
+   //    LSOpenCFURLRef(url,0);
+   CFRelease(url);
+}
+
+
+#endif

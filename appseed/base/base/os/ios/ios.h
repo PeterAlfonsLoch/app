@@ -9,6 +9,11 @@ int32_t AmIBeingDebugged();
 
 #include "ios_multithreading.h"
 
+
+#include "ios_base_internal.h"
+
+
+
 /*#ifdef cplusplus
 
 template < class T >

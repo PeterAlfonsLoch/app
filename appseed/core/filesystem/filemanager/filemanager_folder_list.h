@@ -40,7 +40,7 @@ namespace filemanager
       };
 
       FolderArray         m_foldera;
-      map < HICON, HICON, int32_t, int32_t > m_iconmap;
+      map < ::visual::icon *, ::visual::icon *, int32_t, int32_t > m_iconmap;
 
 
       simple_list_header_control    m_headerctrl;

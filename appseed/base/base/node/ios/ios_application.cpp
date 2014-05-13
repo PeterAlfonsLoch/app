@@ -1,7 +1,6 @@
 #include "framework.h"
 #include <mach-o/dyld.h>
 
-extern ios::thread_local_storage * __thread_data;
 
 
 namespace ios
@@ -16,16 +15,16 @@ namespace ios
 
       IOS_THREAD(::thread::m_p.m_p)->m_pAppThread = this;
 
-      m_psystem = papp->m_pplaneapp->m_psystem;
+//      m_psystem = papp->m_pplaneapp->m_psystem;
 
       // in non-running state until WinMain
       // xxx      m_hInstance = NULL;
       //      m_hLangResourceDLL = NULL;
-      m_pszHelpFilePath = NULL;
-      m_pszProfileName = NULL;
-      m_pszRegistryKey = NULL;
+  //    m_pszHelpFilePath = NULL;
+    //  m_pszProfileName = NULL;
+     // m_pszRegistryKey = NULL;
       //      m_pRecentFileList = NULL;
-      m_pdocmanager = NULL;
+    //  m_pdocmanager = NULL;
       // xxx       m_atomApp = m_atomSystemTopic = NULL;
       //m_lpCmdLine = NULL;
       //      m_pCmdInfo = NULL;
@@ -37,10 +36,10 @@ namespace ios
       // initialize current printer state
       // xxx       m_hDevMode = NULL;
       // xxx       m_hDevNames = NULL;
-      m_nNumPreviewPages = 0;     // not specified (defaults to 1)
+    //  m_nNumPreviewPages = 0;     // not specified (defaults to 1)
 
       // other initialization
-      m_bHelpMode = FALSE;
+    //  m_bHelpMode = FALSE;
       //      m_eHelpType = afxWinHelp;
       m_nSafetyPoolSize = 512;        // default size
 
@@ -252,24 +251,7 @@ namespace ios
          e->Delete();
       }
 
-      try
-      {
-         // cleanup the rest of the thread local data
-         if (__thread_data != NULL)
-            __thread_data->delete_data();
-      }
-      catch( ::exception::base* e )
-      {
-         e->Delete();
-      }
    }
-
-
-   const char * application::RegisterWndClass(UINT nClassStyle, HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
-   {
-      return __register_window_class(nClassStyle, hCursor, hbrBackground, hIcon);
-   }
-
 
 
 
@@ -297,32 +279,7 @@ namespace ios
       return NULL;
 
    }
-
-   HICON application::LoadIcon(const char * lpszResourceName) const
-   {
-      return NULL;
-   }
-
-   HICON application::LoadIcon(UINT nIDResource) const
-   {
-      return NULL;
-   }
-
-   HICON application::LoadStandardIcon(const char * lpszIconName) const
-   {
-      // xxx  return ::LoadIcon(NULL, lpszIconName);
-      return NULL;
-   }
-
-   HICON application::LoadOEMIcon(UINT nIDIcon) const
-   {
-      // xxx       return ::LoadIcon(NULL, MAKEINTRESOURCE(nIDIcon));
-      return NULL;
-   }
-
-
-
-
+   
 
    /*void application::construct(__THREADPROC pfnThreadProc, LPVOID pParam)
    {
@@ -488,7 +445,7 @@ namespace ios
       IOS_THREAD(::thread::m_p.m_p)->m_bRun = false;
 //      IOS_THREAD(::application_base::m_p.m_p->::thread::m_p.m_p)->m_bRun = false;
 
-      int32_t iRet = ::application::exit_instance();
+      int32_t iRet = ::base::application::exit_instance();
 
       //::ca2::smart_pointer<::application>::destroy();
 
@@ -632,7 +589,7 @@ namespace ios
       ENSURE(pModuleState);
       if(pModuleState->m_pCurrentWinApp == NULL)
       {
-         __MODULE_THREAD_STATE* pThreadState = pModuleState->m_thread;
+         __MODULE_THREAD_STATE* pThreadState = pModuleState->t_pthread;
          ENSURE(pThreadState);
          //         ASSERT(System.GetThread() == NULL);
          pThreadState->m_pCurrentWinThread = dynamic_cast < class ::ios::thread * > (::thread::m_p.m_p);
@@ -894,158 +851,4 @@ namespace ios
 } // namespace ios
 
 
-
-UIWindow * new_round_window(struct plane_system * psystem, CGRect rect);
-
-
-plane_system * new_system(const char * pszId)
-{
-   
-   return new ::plane_system(pszId);
-   
-   
-   
-}
-
-plane_system::plane_system(const char * pszId)
-{
-   
-   m_psystem = new ::plane::system();
-   
-
-   m_psystem->m_posdata->m_pui = new ::user::interaction(m_psystem);
-   
-   
-   ::ios::main_init_data * pinitmaindata  = new ::ios::main_init_data;
-   
-   
-   
-   pinitmaindata->m_hInstance             = NULL;
-   pinitmaindata->m_hPrevInstance         = NULL;
-   pinitmaindata->m_vssCommandLine        = pszId;
-   pinitmaindata->m_nCmdShow              = 0;
-   
-   m_psystem->init_main_data(pinitmaindata);
-   
-
-
-}
-
-void init_part_2ex(plane_system * psystem, CGRect rect)
-{
-   
-   psystem->init_part_2ex(rect);
-   
-}
-
-
-UINT system_main(LPVOID lp)
-{
-   ::plane::system * m_psystem = (::plane::system *) lp;
-   try
-   {
-      m_psystem->set_thread(m_psystem);
-      m_psystem->m_iReturnCode = 0;
-      m_psystem->m_bReady = true;
-      m_psystem->m_bRun = true;
-      m_psystem->thread::m_p->m_bRun= true;
-      m_psystem->m_iReturnCode = m_psystem->on_run();
-      if(m_psystem->m_iReturnCode != 0)
-      {
-         ::OutputDebugStringW(L"application::main on_run termination failure");
-      }
-      if(m_psystem->is_system())
-      {
-         m_psystem->os().post_to_all_threads(WM_QUIT, 0, 0);
-      }
-      try
-      {
-         m_psystem->m_iReturnCode = m_psystem->exit();
-      }
-      catch(...)
-      {
-         m_psystem->m_iReturnCode = -1;
-      }
-      
-   }
-   catch(::exit_exception &)
-   {
-      
-      m_psystem->os().post_to_all_threads(WM_QUIT, 0, 0);
-      
-   }
-   
-   return 0;
-}
-
-
-UIWindow * plane_system::init_part_2ex(CGRect rect)
-{
-   
-//m_psystem->m_window = ios_start_window(this, rect);
-
-int nReturnCode = 0;
-
-nReturnCode = m_psystem->main_start();
-
-   UIWindow * pwindow = new_round_window(this, rect);
-
-//::user::native_window_initialize initialize;
-
-//initialize.pwindow = this;
-//initialize.window = m_window.Get();
-
-//m_psystem->m_posdata->m_pui->initialize(&initialize);
-
-//m_psystem->m_ptwf = create_twf_2ex();
-
-//m_psystem->m_ptwf->twf_start();
-
-stringa straLibrary = m_psystem->command()->m_varTopicQuery["app"];
-
-for(int i = 0; i < m_psystem->command()->m_varTopicQuery["app"].get_count(); i++)
-{
-   string strApp = m_psystem->command()->m_varTopicQuery["app"][i];
-}
-
-straLibrary.replace("\\", "_");
-straLibrary.replace("-", "_");
-
-for(int i = 0; i < straLibrary.get_count(); i++)
-{
-   string strLibrary = straLibrary[i];
-   strsize iFind = strLibrary.find("/");
-   if(iFind >= 0)
-      strLibrary = strLibrary.Left(iFind) + '_' + strLibrary.Mid(iFind + 1);
-      iFind = strLibrary.find("/", iFind + 1);
-      if(iFind >= 0)
-         strLibrary.Truncate(iFind);
-         m_psystem->m_mapAppLibrary[m_psystem->command()->m_varTopicQuery["app"][i]] = strLibrary;
-         }
-
-for(int i = 0; i < m_psystem->command()->m_varTopicQuery["app"].get_count(); i++)
-{
-   string strApp = m_psystem->command()->m_varTopicQuery["app"][i];
-}
-
-m_psystem->m_mapAppLibrary["app/ca2/cube"] = "ca2";
-m_psystem->m_mapAppLibrary["app/ca2/bergedge"] = "ca2";
-
-   return pwindow;
-}
-
-
-void system_begin_main(plane_system * psystem)
-{
-   
-   psystem->begin();
-   
-}
-
-void plane_system::begin()
-{
-
-   __begin_thread(m_psystem, &system_main, m_psystem);
-   
-}
 

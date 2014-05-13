@@ -140,7 +140,7 @@ ___DEBUG_STATE::~___DEBUG_STATE()
 //#endif // ___NO_DEBUG_CRT
 }
 
-PROCESS_LOCAL(___DEBUG_STATE, afxDebugState)
+___DEBUG_STATE afxDebugState;
 
 bool CLASS_DECL_BASE __diagnostic_init()
 {

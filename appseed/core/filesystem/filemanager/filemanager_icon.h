@@ -22,6 +22,6 @@ class icon
 {
 public:
    icon();
-   HICON         m_hicon;
+   ::visual::icon *         m_hicon;
    int32_t         m_iImage;
 };

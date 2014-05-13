@@ -29,41 +29,7 @@ UIWindow * new_round_window(round_window * pwindow, CGRect rect)
 
 
 
-UIWindow * new_round_window(struct plane_system * psystem, CGRect rect)
-{
-   
-   round_window * pwindow = ios_start_window(psystem, rect);
-   
-   UIWindow * window = new_round_window(pwindow, rect);
-   
-   ios_initialize_window(pwindow, window);
-                       
-   return window;
-   
-}
 
-
-void ui_application_main(int argc, char * argv[])
-{
-    
-    @autoreleasepool
-    {
-        
-//        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
-
-        UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
-
-    }
-    
-}
-
-
-
-void ui_app_run(int argc, char * argv[])
-{
-    
-    
-}
 
 
 

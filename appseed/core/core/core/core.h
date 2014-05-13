@@ -890,11 +890,6 @@ namespace geometry
 } // namespace geometry
 
 
-#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-
-typedef ::visual::icon * HICON;
-
-#endif
 
 
 

@@ -430,9 +430,6 @@ namespace ios
       // Shell Interaction Functions
       virtual void DragAcceptFiles(bool bAccept = TRUE);
       
-      // icon Functions
-      virtual HICON SetIcon(HICON hIcon, bool bBigIcon);
-      virtual HICON GetIcon(bool bBigIcon) const;
       
       // Context Help Functions
       virtual bool SetWindowContextHelpId(DWORD dwContextHelpId);

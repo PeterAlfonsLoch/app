@@ -4,10 +4,10 @@
 #define SECURITY_WIN32
 
 
-#include "app/appseed/core/core.h"
+#include "app/appseed/base/base/base/base.h"
 
 
-#define CLASS_DECL_BASE
+////#define CLASS_DECL_BASE
 
 struct plane_system
 {
@@ -21,7 +21,6 @@ struct plane_system
    void begin();
    
 };
-
 
 
 string get_error_message(DWORD dwError);
@@ -182,13 +181,8 @@ CLASS_DECL_BASE int32_t c_cdecl __new_handler(size_t nSize);
 
 void CLASS_DECL_BASE __abort();
 
-//typedef void * HICON;
 
 
-// helpers for registering your own WNDCLASSes
-CLASS_DECL_BASE const char * __register_window_class(UINT nClassStyle,HCURSOR hCursor = 0,HBRUSH hbrBackground = 0,HICON hIcon = 0);
-
-// xxx CLASS_DECL_BASE bool __register_class(WNDCLASS* lpWndClass);
 
 
 CLASS_DECL_BASE LRESULT CALLBACK __window_procedure(oswindow hWnd,UINT nMsg,WPARAM wParam,LPARAM lParam);

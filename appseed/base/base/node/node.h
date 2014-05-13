@@ -1,6 +1,7 @@
 #pragma once
 
 
+extern "C"
 void node_factory_exchange(sp(::base::application) papp);
 
 

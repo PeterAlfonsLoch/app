@@ -37,7 +37,7 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int 
       
       RECT rect;
       
-      GetWindowRect(hwnd, &rect);
+      hwnd->get_user_interaction()->GetWindowRect(&rect);
 
       rect.right     = rect.left + cx;
       rect.bottom    = rect.top + cy;

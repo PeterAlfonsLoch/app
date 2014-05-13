@@ -152,7 +152,7 @@ UINT APIENTRY __thread_entry(void * pParam)
       //         threadWnd.Detach();
       pStartup->bError = TRUE;
       pStartup->hEvent.set_event();
-      __end_thread(dynamic_cast < ::application * > (pThread->m_pbaseapp->m_pplaneapp->m_p.m_p), (UINT)-1, FALSE);
+      __end_thread(pThread->m_pbaseapp, (UINT)-1, FALSE);
       ASSERT(FALSE);  // unreachable
    }
    
@@ -516,10 +516,6 @@ void CLASS_DECL_BASE AfxInitThread()
 }
 
 
-   extern CLASS_DECL_CORE PFN_get_thread g_pfn_get_thread;
-   extern CLASS_DECL_CORE PFN_get_thread_state g_pfn_get_thread_state;
-
-
 
 __attribute__((constructor))
 static void initialize_navigationBarImages()
@@ -878,9 +874,9 @@ namespace ios
       step_timer();
      
       
-      ::application * pappThis1 = dynamic_cast < ::application * > (this);
+      ::base::application * pappThis1 = dynamic_cast < ::base::application * > (this);
 
-      ::application * pappThis2 = dynamic_cast < ::application * > (m_p.m_p);
+      ::base::application * pappThis2 = dynamic_cast < ::base::application * > (m_p.m_p);
       
       m_p->m_dwAlive = m_dwAlive = ::get_tick_count();
       
@@ -1964,7 +1960,7 @@ namespace ios
       {
          // cleanup and shutdown the thread
          //         threadWnd.Detach();
-         __end_thread(dynamic_cast < ::application * > (m_pbaseapp->m_pplaneapp->m_p.m_p), nResult);
+         __end_thread(m_pbaseapp, nResult);
       }
       catch(...)
       {

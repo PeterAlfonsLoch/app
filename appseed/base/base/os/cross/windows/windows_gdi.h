@@ -7,3 +7,5 @@
 #define COLORONCOLOR                 3
 #define HALFTONE                     4
 #define MAXSTRETCHBLTMODE            4
+
+

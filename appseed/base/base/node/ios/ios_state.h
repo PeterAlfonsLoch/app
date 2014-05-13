@@ -221,6 +221,8 @@ class CToolTipCtrl;
 class push_routing_frame;
 class CPushRoutingView;
 
+class __EXCEPTION_CONTEXT;
+
 #define ___TEMP_CLASS_NAME_SIZE 96
 class CLASS_DECL_BASE ___THREAD_STATE :
 public ::thread_state
@@ -241,7 +243,7 @@ public:
    void * m_pSafetyPoolBuffer;    // current buffer
    
    // thread local exception context
-   _EXCEPTION_POINTERS m_exceptionContext;
+   __EXCEPTION_CONTEXT * m_exceptionContext;
    
    // ::window create, gray dialog hook, and other hook data
    ::user::interaction * m_pWndInit;

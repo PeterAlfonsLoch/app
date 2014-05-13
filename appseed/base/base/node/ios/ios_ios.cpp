@@ -1,9 +1,114 @@
 #include "framework.h"
-#include "ios_thread_slots.h"
 
 
-#pragma warning(disable: 4074)
-#pragma init_seg(compiler)
+
+___IOS_STATE gen_MacState;
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+// export WinMain to force linkage to this module
+extern int32_t CLASS_DECL_BASE __win_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int32_t nCmdShow);
+
+
+/////////////////////////////////////////////////////////////////////////////
+// initialize cast state such that it points to this module's core state
+
+CLASS_DECL_BASE bool __initialize(bool bDLL, DWORD dwVersion)
+{
+   __MODULE_STATE* pModuleState = __get_module_state();
+   pModuleState->m_bDLL = (BYTE)bDLL;
+   // xxx   ASSERT(dwVersion <= _MFC_VER);
+   // xxx   UNUSED(dwVersion);  // not used in release build
+   pModuleState->m_dwVersion = dwVersion;
+#ifdef _MBCS
+   // set correct multi-byte code-page for Win32 apps
+   if (!bDLL)
+      _setmbcp(_MB_CP_ANSI);
+#endif //_MBCS
+   return TRUE;
+}
+
+// force initialization early
+//#pragma warning(disable: 4074)
+//#pragma init_seg(lib)
+
+
+//char gen_InitAppState = (char)(__initialize(FALSE, _MFC_VER));
+char gen_InitAppState = (char)(__initialize(FALSE, 1));
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+// other globals (internal library use)
+
+/////////////////////////////////////////////////////////////////////////////
+// Standard cleanup called by WinMain and __abort
+
+void CLASS_DECL_BASE __gen_unregister_window_classes()
+{
+   
+   // unregister Window classes
+   __MODULE_STATE* pModuleState = __get_module_state();
+   
+   single_lock sl(&pModuleState->m_mutexRegClassList, TRUE);
+   
+   if(pModuleState->m_pstrUnregisterList != NULL)
+   {
+      strsize start = 0;
+      string className = pModuleState->m_pstrUnregisterList->Tokenize("\n",start);
+      while (!className.is_empty())
+      {
+         //         UnregisterClass(static_cast<const char *>(className), System.m_hInstance);
+         className = pModuleState->m_pstrUnregisterList->Tokenize("\n",start);
+      }
+      pModuleState->m_pstrUnregisterList->Empty();
+      pModuleState->m_pstrUnregisterList = NULL;
+   }
+   
+}
+void CLASS_DECL_BASE __ios_term()
+{
+   __gen_unregister_window_classes();
+   // cleanup OLE if required
+   //   thread* pThread = &System;
+   
+   // cleanup thread local tooltip ::window
+   //   __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
+   /*   if (pModuleThreadState->m_pToolTip != NULL)
+    {
+    if (pModuleThreadState->m_pToolTip->DestroyToolTipCtrl())
+    pModuleThreadState->m_pToolTip = NULL;
+    }*/
+   
+   //   ___THREAD_STATE* pThreadState = __get_thread_state();
+   if (!afxContextIsDLL)
+   {
+      // unhook windows hooks
+      /*
+       if (pThreadState->m_hHookOldMsgFilter != NULL)
+       {
+       ::UnhookWindowsHookEx(pThreadState->m_hHookOldMsgFilter);
+       pThreadState->m_hHookOldMsgFilter = NULL;
+       }
+       if (pThreadState->m_hHookOldCbtFilter != NULL)
+       {
+       ::UnhookWindowsHookEx(pThreadState->m_hHookOldCbtFilter);
+       pThreadState->m_hHookOldCbtFilter = NULL;
+       }
+       */
+      
+   }
+   
+   
+   // We used to suppress all exceptions here. But that's the wrong thing
+   // to do. If this process crashes, we should allow Windows to crash
+   // the process and invoke watson.
+}
+
+
 
 
 CLASS_DECL_BASE __MODULE_STATE * __set_module_state(__MODULE_STATE* pNewState)
@@ -100,7 +205,7 @@ ___THREAD_STATE::~___THREAD_STATE()
 
 CLASS_DECL_BASE ___THREAD_STATE * __get_thread_state()
 {
-   ___THREAD_STATE *pState =gen_ThreadState.get_data();
+   ___THREAD_STATE *pState =gen_ThreadState;
    ENSURE(pState != NULL);
    return pState;
 }
@@ -111,7 +216,7 @@ namespace ios
    
    CLASS_DECL_BASE ::thread_state * __get_thread_state()
    {
-      ___THREAD_STATE *pState =gen_ThreadState.get_data();
+      ___THREAD_STATE *pState =gen_ThreadState;
       ENSURE(pState != NULL);
       return pState;
    }
@@ -119,7 +224,7 @@ namespace ios
 } // namespace ios
 
 
-THREAD_LOCAL ( ___THREAD_STATE, gen_ThreadState, slot___THREAD_STATE )
+thread_pointer < ___THREAD_STATE >  gen_ThreadState;
 
 /////////////////////////////////////////////////////////////////////////////
 // __MODULE_STATE implementation
@@ -368,7 +473,7 @@ public:
    { }
 };
 
-PROCESS_LOCAL(___BASE_MODULE_STATE, gen_BaseModuleState)
+___BASE_MODULE_STATE gen_BaseModuleState;
 
 #undef __window_procedure
 LRESULT CALLBACK
@@ -382,7 +487,7 @@ __window_procedure_base(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
 
 CLASS_DECL_BASE __MODULE_STATE * __get_app_module_state()
 {
-   return gen_BaseModuleState.get_data();
+   return &gen_BaseModuleState;
 }
 
 CLASS_DECL_BASE __MODULE_STATE * __get_module_state()
@@ -398,7 +503,7 @@ CLASS_DECL_BASE __MODULE_STATE * __get_module_state()
    else
    {
       // otherwise, use global cast state
-      pResult = gen_BaseModuleState.get_data();
+      pResult = &gen_BaseModuleState;
    }
    ENSURE(pResult != NULL);
    return pResult;
@@ -435,7 +540,72 @@ bool CLASS_DECL_BASE __init_current_state_app()
 
 CLASS_DECL_BASE __MODULE_THREAD_STATE * __get_module_thread_state()
 {
-   __MODULE_THREAD_STATE* pResult=__get_module_state()->m_thread.get_data();
+   __MODULE_THREAD_STATE* pResult=__get_module_state()->t_pthread;
    ENSURE(pResult != NULL);
    return pResult;
 }
+
+
+
+
+// Note: in separate module so it can be replaced if needed
+
+void CLASS_DECL_BASE __abort()
+{
+   //   TRACE(::ca2::trace::category_AppMsg, 0, "__abort called.\n");
+   
+   __ios_term();
+   abort();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+/*
+ 
+ _PNH CLASS_DECL_BASE __set_new_handler(_PNH pfnNewHandler)
+ {
+ __MODULE_THREAD_STATE* pState = __get_module_thread_state();
+ _PNH pfnOldHandler = pState->m_pfnNewHandler;
+ pState->m_pfnNewHandler = pfnNewHandler;
+ return pfnOldHandler;
+ }
+ 
+ */
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+// stop on a specific primitive::memory request
+
+// Obsolete API
+/*
+ void CLASS_DECL_BASE __set_alloc_stop(LONG lRequestNumber)
+ {
+ _CrtSetBreakAlloc(lRequestNumber);
+ }
+ */
+#ifdef DEBUG
+bool CLASS_DECL_BASE __check_memory()
+// check all of primitive::memory (look for primitive::memory tromps)
+{
+   //   return _CrtCheckMemory() != FALSE;
+   return false;
+}
+#endif
+/*
+ // -- true if block of exact size, allocated on the heap
+ // -- set *plRequestNumber to request number (or 0)
+ bool CLASS_DECL_BASE __is_memory_block(const void * pData, UINT nBytes,
+ LONG* plRequestNumber)
+ {
+ return _CrtIsMemoryBlock(pData, nBytes, plRequestNumber, NULL, NULL);
+ }
+ 
+ */
+
+
+
+
+

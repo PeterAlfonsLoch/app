@@ -24,7 +24,7 @@ namespace user
       IGUI_WIN_MSG_LINK(MessageNotifyIcon, pinterface, this, &notify_icon::_001OnNotifyIconMessage);
    }
 
-   bool notify_icon::create(UINT uiId, notify_icon_listener * plistener, HICON hicon)
+   bool notify_icon::create(UINT uiId, notify_icon_listener * plistener, ::visual::icon * hicon)
    {
 
       if(m_bCreated)
@@ -41,7 +41,7 @@ namespace user
 #ifdef WINDOWSEX
       m_nid.hWnd                 = get_safe_handle();
       m_nid.uID                  = uiId;
-      m_nid.hIcon                = hicon;
+      m_nid.hIcon                = (HICON)hicon->get_os_data();
       m_nid.uFlags               = NIF_ICON | NIF_MESSAGE;
       m_nid.uCallbackMessage     = MessageNotifyIcon;
 #else
@@ -65,14 +65,14 @@ namespace user
 
    }
 
-   bool notify_icon::ModifyIcon(HICON hicon)
+   bool notify_icon::ModifyIcon(::visual::icon * hicon)
    {
 
       if(!m_bCreated)
          return false;
 
 #ifdef WINDOWSEX
-      m_nid.hIcon       = hicon;
+      m_nid.hIcon       = (HICON) hicon->get_os_data();
       m_nid.uFlags      = NIF_ICON;
 
 

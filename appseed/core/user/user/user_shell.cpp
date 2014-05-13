@@ -1542,7 +1542,8 @@ namespace filemanager
 
    }
 
-
+      
+#ifdef WINDOWSEX
 
    bool ImageSet::GetIcon(
       oswindow oswindow,
@@ -1555,24 +1556,14 @@ namespace filemanager
 
       single_lock sl(&m_mutex, true);
 
-#ifdef WINDOWSEX
-
+      
       LPITEMIDLIST lpiidlAbsolute;
       _017ItemIDListParsePath(&lpiidlAbsolute, psz);
       bool bGet = GetIcon(oswindow, lpiidlAbsolute, lpcszExtra, eicon, phicon16, phicon48);
       _017ItemIDListFree(lpiidlAbsolute);
       return bGet;
 
-#else
-
-      throw todo(get_app());
-
-#endif
-
    }
-
-
-#ifdef WINDOWSEX
 
    bool ImageSet::GetIcon(
       oswindow oswindow,

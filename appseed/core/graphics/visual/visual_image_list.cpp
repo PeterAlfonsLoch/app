@@ -152,7 +152,7 @@ bool image_list::draw(::draw2d::graphics * pdc, int32_t iImage, point pt, size s
 
 int32_t image_list::add_icon_os_data(void * pvoid)
 {
-   ::visual::icon icon((HICON) pvoid);
+   ::visual::icon icon(pvoid);
    return add(&icon);
 }
 
