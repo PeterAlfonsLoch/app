@@ -9096,6 +9096,9 @@
     <None Include="base\message\message.inl">
       <Filter>Header Files\base\message</Filter>
     </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\msvcr120d.dll">
