@@ -54,6 +54,27 @@ struct ___THREAD_STARTUP: ::core::thread_startup
    bool bError;    // TRUE if error during startup
 };
 
+
+void __node_init_app_thread(::thread * pthread)
+{
+
+   /*
+   
+   ::windows::thread * pnodethread = pthread->m_p.cast < ::windows::thread >();
+
+   __MODULE_STATE* pModuleState = __get_module_state();
+
+   pModuleState->t_pthread = new __MODULE_THREAD_STATE;
+
+   __MODULE_THREAD_STATE* pState = pModuleState->t_pthread;
+
+   pState->m_pCurrentWinThread = pnodethread;
+
+   */
+
+}
+
+
 uint32_t __thread_entry(void * pParam)
 {
    UINT uiRet = 0;
