@@ -22,14 +22,30 @@ namespace user
 
 
       interaction_ptr_array(sp(::base::application) papp);
-      interaction_ptr_array(const ::user::interaction_ptr_array & a) : spa(::user::interaction)(a) { }
+      interaction_ptr_array(const ::user::interaction_ptr_array & a)
+      {
+
+         operator = (a);
+      
+      }
+
+#ifdef MOVE_SEMANTICS
+
+      interaction_ptr_array(const ::user::interaction_ptr_array && a)
+      { 
+      
+         operator = (a);
+
+      }
+
+#endif
 
 
       using spa(::user::interaction)::find_first;
       sp(::user::interaction) find_first_typed(sp(type) info);
       sp(::user::interaction) find_first(oswindow oswindow);
 
-      void get_wnda(::user::oswindow_array & oswindowa);
+      ::user::oswindow_array get_hwnda();
       void send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
       void send_message_to_descendants(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0, bool bRecursive = true);
 

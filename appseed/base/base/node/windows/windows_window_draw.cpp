@@ -426,7 +426,7 @@ namespace windows
 
       user::interaction_ptr_array wndpa(get_app());
 
-      get_wnda(wndpa);
+      wndpa = get_wnda();
 
       //user::window_util::SortByZOrder(oswindowa);
 
@@ -1044,22 +1044,26 @@ namespace windows
    }
 
 
-   void window_draw::get_wnda(user::interaction_ptr_array & wndpa)
+   user::interaction_ptr_array window_draw::get_wnda()
    {
-      wndpa = System.frames();
+      
+      return System.frames();
+
    }
 
-   void window_draw::get_wnda(user::oswindow_array & oswindowa)
+
+   user::oswindow_array window_draw::get_hwnda()
    {
-      System.frames().get_wnda(oswindowa);
+
+      return System.frames().get_hwnda();
+
    }
+
 
    // Both the device context and clip region
    // should be in screen coordinates
 
-   bool window_draw::ScreenOutput(
-      user::buffer * pbuffer,
-      ::draw2d::region & rgnUpdate)
+   bool window_draw::ScreenOutput(user::buffer * pbuffer, ::draw2d::region & rgnUpdate)
    {
       UNREFERENCED_PARAMETER(pbuffer);
       UNREFERENCED_PARAMETER(rgnUpdate);
@@ -1071,7 +1075,7 @@ namespace windows
 
       user::oswindow_array oswindowa;
 
-      get_wnda(oswindowa);
+      oswindowa = get_hwnda();
 
       user::window_util::SortByZOrder(oswindowa);
 

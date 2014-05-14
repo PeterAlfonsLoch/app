@@ -61,6 +61,7 @@ namespace base
       sp(::user::str_context)                         m_puserstrcontext;
       string                                          m_strLibraryName;
       string                                          m_strAppId;
+      mutex                                           m_mutexFrame;
       sp(::user::interaction_ptr_array)               m_pframea;
       sp(::user::user)                                m_spuser;
       sp(::database::server)                          m_spdataserver;
@@ -200,7 +201,7 @@ namespace base
 
 
 
-      ::user::interaction_ptr_array & frames();
+      ::user::interaction_ptr_array frames();
       virtual void add_frame(sp(::user::interaction) pwnd);
       virtual void remove_frame(sp(::user::interaction) pwnd);
 

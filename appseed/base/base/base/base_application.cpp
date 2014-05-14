@@ -633,30 +633,51 @@ namespace base
    }
 
 
-   ::user::interaction_ptr_array & application::frames()
+   ::user::interaction_ptr_array application::frames()
    {
+
+      synch_lock sl(&m_mutexFrame);
+
       return *m_pframea;
+
    }
+
 
    void application::add_frame(sp(::user::interaction) pwnd)
    {
+
+      synch_lock sl(&m_mutexFrame);
+
       m_pframea->add_unique(pwnd);
+
    }
+
 
    void application::remove_frame(sp(::user::interaction) pwnd)
    {
+
+      synch_lock sl(&m_mutexFrame);
+
       m_pframea->remove(pwnd);
+
       if(GetMainWnd() == pwnd)
       {
+
          if(m_pframea->get_size() > 0)
          {
+
             SetMainWnd(m_pframea->element_at(0));
+
          }
          else
          {
+            
             SetMainWnd(NULL);
+
          }
+
       }
+
    }
 
 

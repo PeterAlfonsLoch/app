@@ -136,24 +136,6 @@ void __cdecl _null_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers
 }
 
 
-CLASS_DECL_BASE int_bool __win_init()
-{
-
-   ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
-
-   if(!os_initialize())
-      return FALSE;
-
-   if (!main_initialize())
-      return FALSE;
-
-   //Sleep(15 * 1000);
-
-   _set_purecall_handler(_ca2_purecall);
-
-   return TRUE;
-
-}
 
 
 CLASS_DECL_BASE int32_t __win_main(sp(::base::system) psystem, ::windows::main_init_data * pmaininitdata)

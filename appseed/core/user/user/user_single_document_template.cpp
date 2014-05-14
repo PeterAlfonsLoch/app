@@ -108,7 +108,7 @@ namespace user
          if (pFrame == NULL)
          {
             // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
-            System.simple_message_box(NULL, "Failed to create ::user::object");
+            // System.simple_message_box(NULL, "Failed to create ::user::object");
             pdocument.release();       // explicit delete on error
             return;
          }

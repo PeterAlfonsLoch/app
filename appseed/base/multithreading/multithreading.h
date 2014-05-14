@@ -86,7 +86,6 @@ CLASS_DECL_BASE void on_init_thread();
 CLASS_DECL_BASE void on_term_thread();
 
 
-
 CLASS_DECL_BASE void __node_init_thread_state();
 CLASS_DECL_BASE void __node_term_thread_state();
 
@@ -94,5 +93,15 @@ CLASS_DECL_BASE void __node_term_thread_state();
 CLASS_DECL_BASE void __node_init_thread();
 CLASS_DECL_BASE void __node_term_thread();
 
+
+CLASS_DECL_BASE void __init_threading_count();
+CLASS_DECL_BASE void __term_threading_count();
+
+
+CLASS_DECL_BASE void __inc_threading_count();
+CLASS_DECL_BASE void __dec_threading_count();
+
+
+CLASS_DECL_BASE bool __wait_threading_count(::duration dur);
 
 

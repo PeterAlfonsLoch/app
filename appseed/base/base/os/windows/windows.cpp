@@ -33,6 +33,8 @@ LPFN_RegGetValueW g_pfnRegGetValueW = NULL;
 int_bool os_initialize()
 {
 
+   __init_threading_count();
+
    ::os_thread::s_pmutex = new mutex();
 
    ::os_thread::s_pptra = new comparable_raw_array < os_thread * >::type ();
@@ -73,6 +75,8 @@ int_bool os_finalize()
    ::windows::thread::s_pthreadptra = NULL;
 
    //psystem->install().trace().finalize();
+
+   __term_threading_count();
 
    return TRUE;
 
@@ -637,8 +641,31 @@ extern CLASS_DECL_BASE oswindow_map * g_pwindowmap;
 extern __declspec(thread) HHOOK t_hHookOldMsgFilter;
 extern __declspec(thread) HHOOK t_hHookOldCbtFilter;
 
-void CLASS_DECL_BASE __win_term()
+
+CLASS_DECL_BASE int_bool __win_init()
 {
+
+   ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
+
+   if(!os_initialize())
+      return FALSE;
+
+   if(!main_initialize())
+      return FALSE;
+
+   //Sleep(15 * 1000);
+
+   _set_purecall_handler(_ca2_purecall);
+
+   return TRUE;
+
+}
+
+
+CLASS_DECL_BASE void __win_term()
+{
+
+   __wait_threading_count(::millis((1984 + 1977) * 8));
 
    delete g_pwindowmap;
 

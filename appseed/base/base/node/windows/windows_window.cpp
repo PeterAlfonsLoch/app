@@ -338,6 +338,10 @@ namespace windows
 #ifdef DEBUG
       if(oswindow == NULL)
       {
+
+         if(m_pbaseapp.is_null())
+            return FALSE;
+
          uint32_t dwLastError = GetLastError();
          string strLastError = FormatMessageFromSystem(dwLastError);
          string strMessage;
@@ -1564,7 +1568,7 @@ namespace windows
          user::oswindow_array oswindowa;
          user::interaction_ptr_array wnda(get_app());
          wnda = System.frames();
-         wnda.get_wnda(oswindowa);
+         oswindowa = wnda.get_hwnda();
          user::window_util::SortByZOrder(oswindowa);
          for(int32_t i = 0; i < oswindowa.get_size(); i++)
          {

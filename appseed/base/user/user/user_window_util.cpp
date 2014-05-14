@@ -914,14 +914,23 @@ namespace user
 
    }
 
-   void interaction_ptr_array::get_wnda(oswindow_array & oswindowa)
+
+   oswindow_array interaction_ptr_array::get_hwnda()
    {
-      oswindowa.remove_all();
+      
+      oswindow_array oswindowa;
+
       for(int32_t i = 0; i < this->get_size(); i++)
       {
+
          oswindowa.add(this->element_at(i)->get_handle());
+
       }
+
+      return oswindowa;
+
    }
+
 
    void interaction_ptr_array::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {

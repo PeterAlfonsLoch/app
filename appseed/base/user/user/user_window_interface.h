@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE window_interface :
+   class CLASS_DECL_BASE window_interface:
       virtual public elemental,
       virtual public command_target,
       virtual public text_interface,
@@ -14,48 +14,48 @@ namespace user
    {
    public:
 
-      
+
       enum ETranslucency
       {
-         
+
          TranslucencyNone,
          TranslucencyPresent,
          TranslucencyTotal
-         
+
       };
 
-      
+
       enum e_message
       {
-      
+
          MessageBaseWndGetProperty = WM_USER + 96,
          MessageProperty,
          MessageGeneralEvent
-            
+
       };
 
-      
+
       enum EProperty
       {
-         
+
          PropertyBaseWndInterface = 0,
          PropertyDrawBaseWndInterface
-            
+
       };
 
-      
+
       enum EGeneralEvent
       {
-         
+
          GeneralEventPosCreate1,
          GeneralEventPosCreate2,
          GeneralEventPosCreate3,
          GeneralEventPosCreate4,
          GeneralEventPosCreate5
-            
+
       };
 
-      
+
       sp(interaction)                     m_pui;
       // window rectangle relative to the parent
       // this rectangle comes before in importance compared to m_rectWindow
@@ -114,7 +114,7 @@ namespace user
       virtual void Invalidate(bool bErase = TRUE);
 
 
-      virtual bool RedrawOptimize(LPRECT lprectOut, LPCRECT lpcrect1, LPCRECT lpcrect2);
+      virtual bool RedrawOptimize(LPRECT lprectOut,LPCRECT lpcrect1,LPCRECT lpcrect2);
       virtual void RedrawOptimize(rect_array & array);
       virtual bool _001IsBackgroundBypass();
       virtual bool _001IsTransparent();
@@ -129,25 +129,25 @@ namespace user
 
 
       virtual void _001RedrawWindow();
-      virtual void _001DrawBackground(::draw2d::graphics * pdc, LPRECT lprect);
+      virtual void _001DrawBackground(::draw2d::graphics * pdc,LPRECT lprect);
 
 
       DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_VSIGNAL(_001OnBaseWndGetProperty);
 
-     virtual LRESULT _001BaseWndGetProperty(EProperty eproperty, LPARAM lparam);
+      virtual LRESULT _001BaseWndGetProperty(EProperty eproperty,LPARAM lparam);
 
-      virtual window * get_wnd();
+      virtual window * get_wnd() const;
 
-      
+
       enum EOptimize
       {
-         
+
          OptimizeNone,
          OptimizeThis
-            
+
       };
-      
+
 
       void Optimize008(
          ::user::oswindow_tree::Array & oswindowtreea,
@@ -167,14 +167,17 @@ namespace user
       void TwfGetWndArray(::user::oswindow_array & oswindowa);
 
       virtual bool Redraw(rect_array & recta);
-      virtual bool Redraw(LPCRECT lprect = NULL, ::draw2d::region * prgn = NULL);
+      virtual bool Redraw(LPCRECT lprect = NULL,::draw2d::region * prgn = NULL);
       virtual bool Redraw(::draw2d::graphics * pdc);
 
       void _001BaseWndInterfaceMap();
 
    };
-   
+
 
 } // namespace user
+
+
+
 
 

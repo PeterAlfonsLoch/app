@@ -580,6 +580,8 @@ namespace plane
    int32_t system::exit_instance()
    {
 
+      __wait_threading_count(::millis((1984 + 1977) * 8));
+
       try
       {
          if(m_ptwf != NULL)
@@ -887,6 +889,8 @@ namespace plane
 
    bool system::finalize()
    {
+
+      __wait_threading_count(::millis((1984 + 1977) * 8));
 
       try
       {

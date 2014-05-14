@@ -11,9 +11,10 @@ public:
 
 #if defined(MOVE_SEMANTICS)
 
-   smart_pointer_array(smart_pointer_array && a) :
-      array < smart_pointer < T > >(a)
+   smart_pointer_array(smart_pointer_array && a) 
    {
+      
+      array < smart_pointer < T > >::operator = (a);
 
    }
 
@@ -31,6 +32,8 @@ public:
    smart_pointer_array(const smart_pointer_array & a) :
       array < smart_pointer < T > >(a)
    {
+
+      array < smart_pointer < T > >::operator = (a);
 
    }
 

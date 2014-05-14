@@ -167,6 +167,10 @@ unsigned int WINAPI os_thread::thread_proc(void * lpparameter)
 uint32_t os_thread::run()
 {
 
+   
+   on_init_thread();
+
+
    Gdiplus::GdiplusStartupInput     * pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
    Gdiplus::GdiplusStartupOutput    * pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
    DWORD_PTR gdiplusToken                                      = NULL;
@@ -196,6 +200,10 @@ uint32_t os_thread::run()
    }
 
    Gdiplus::GdiplusShutdown(gdiplusToken);
+
+   
+   on_term_thread();
+
 
    return dwRet;
 
@@ -535,6 +543,23 @@ int32_t get_os_class_scheduling_priority(int32_t nPriority)
    }
 
    return iCa2Priority;
+
+}
+
+
+
+void on_init_thread()
+{
+
+   __inc_threading_count();
+
+}
+
+
+void on_term_thread()
+{
+
+   __dec_threading_count();
 
 }
 

@@ -3870,18 +3870,29 @@ void application::EnableShellOpen()
 
 sp(::user::interaction) application::uie_from_point(point pt)
 {
+   
    user::interaction_ptr_array wnda = frames();
+   
    user::oswindow_array oswindowa;
-   wnda.get_wnda(oswindowa);
+   
+   oswindowa = wnda.get_hwnda();
+
    user::window_util::SortByZOrder(oswindowa);
+
    for (int32_t i = 0; i < oswindowa.get_count(); i++)
    {
+
       sp(::user::interaction) puieWindow = wnda.find_first(oswindowa[i]);
+
       sp(::user::interaction) puie = puieWindow->_001FromPoint(pt);
+
       if (puie != NULL)
          return puie;
+
    }
+
    return NULL;
+
 }
 
 
