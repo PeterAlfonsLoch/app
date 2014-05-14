@@ -2610,12 +2610,14 @@ namespace user
 
       for (;;)
       {
-         ASSERT(ContinueModal(iLevel));
+         if(!ContinueModal(iLevel))
+            goto ExitModal;
 
          // phase1: check to see if we can do idle work
          while (bIdle && !::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))
          {
-            ASSERT(ContinueModal(iLevel));
+            if(!ContinueModal(iLevel))
+               goto ExitModal;
 
             // show the dialog when the message queue goes idle
             if (bShowIdle)

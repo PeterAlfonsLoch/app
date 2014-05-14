@@ -137,8 +137,8 @@ uint32_t __thread_entry(void * pParam)
 
       {
          single_lock sl(::windows::thread::s_pmutex,true);
-         ::windows::thread::s_haThread.add(::GetCurrentThread());
-         ::windows::thread::s_threadptra.add(pThread);
+         ::windows::thread::s_phaThread->add(::GetCurrentThread());
+         ::windows::thread::s_pthreadptra->add(pThread);
       }
 
 
@@ -451,8 +451,8 @@ void CLASS_DECL_BASE __end_thread(sp(::base::application) papp,UINT nExitCode,bo
 
       {
          single_lock sl(::windows::thread::s_pmutex,true);
-         ::windows::thread::s_haThread.remove(::GetCurrentThread());
-         ::windows::thread::s_threadptra.remove(pThread);
+         ::windows::thread::s_phaThread->remove(::GetCurrentThread());
+         ::windows::thread::s_pthreadptra->remove(pThread);
       }
 
       ASSERT_VALID(pThread);
@@ -510,8 +510,8 @@ namespace windows
 {
 
 
-   comparable_array < HANDLE > thread::s_haThread;
-   comparable_array < thread * > thread::s_threadptra;
+   comparable_array < HANDLE > * thread::s_phaThread = NULL;
+   comparable_array < thread * > * thread::s_pthreadptra = NULL;
    mutex * thread::s_pmutex = NULL;
 
 
@@ -1193,12 +1193,14 @@ namespace windows
       {
 #ifdef DEBUG
          // Check for missing LockTempMap calls
+/*
          if(m_nTempMapLock != 0)
          {
             TRACE(::core::trace::category_AppMsg,0,"Warning: Temp map lock ::count non-zero (%ld).\n",m_nTempMapLock);
          }
          LockTempMaps();
          UnlockTempMaps(true);
+*/
 #endif
       }
       catch(...)

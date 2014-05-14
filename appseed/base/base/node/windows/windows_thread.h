@@ -36,8 +36,8 @@ namespace windows
       uint32_t  m_nThreadID;      // this thread's ID
 
 
-      static comparable_array < HANDLE > s_haThread;
-      static comparable_array < thread * > s_threadptra;
+      static comparable_array < HANDLE > * s_phaThread;
+      static comparable_array < thread * > * s_pthreadptra;
       static mutex * s_pmutex;
 
 

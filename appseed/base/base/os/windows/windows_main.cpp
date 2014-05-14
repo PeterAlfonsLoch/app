@@ -141,6 +141,9 @@ CLASS_DECL_BASE int_bool __win_init()
 
    ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
 
+   if(!os_initialize())
+      return FALSE;
+
    if (!main_initialize())
       return FALSE;
 

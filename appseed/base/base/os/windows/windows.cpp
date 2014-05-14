@@ -33,13 +33,13 @@ LPFN_RegGetValueW g_pfnRegGetValueW = NULL;
 int_bool os_initialize()
 {
 
-
    ::os_thread::s_pmutex = new mutex();
 
    ::os_thread::s_pptra = new comparable_raw_array < os_thread * >::type ();
 
-
    ::windows::thread::s_pmutex = new mutex();
+   ::windows::thread::s_phaThread = new comparable_array < HANDLE >;
+   ::windows::thread::s_pthreadptra = new comparable_array < ::windows::thread * >;
 
    //Sleep(15 * 1000);
 
@@ -62,6 +62,15 @@ int_bool os_initialize()
 
 int_bool os_finalize()
 {
+
+   delete ::windows::thread::s_pmutex;
+   ::windows::thread::s_pmutex = NULL;
+
+   delete ::windows::thread::s_phaThread;
+   ::windows::thread::s_phaThread = NULL;
+   
+   delete ::windows::thread::s_pthreadptra;
+   ::windows::thread::s_pthreadptra = NULL;
 
    //psystem->install().trace().finalize();
 
@@ -635,13 +644,9 @@ void CLASS_DECL_BASE __win_term()
 
    g_pwindowmap = NULL;
 
-   /*   try
-   {
    main_finalize();
-   }
-   catch (...)
-   {
-   }*/
+
+   os_finalize();
 
    //if (__get_thread_state() != NULL)
    //{

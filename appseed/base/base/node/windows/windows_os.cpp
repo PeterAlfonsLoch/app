@@ -730,7 +730,7 @@ namespace windows
 
       thread * pthread;
 
-      ca = ::windows::thread::s_threadptra.get_size();
+      ca = ::windows::thread::s_pthreadptra->get_size();
 
       bool bOk;
 
@@ -738,7 +738,7 @@ namespace windows
       {
          
          single_lock sl(::windows::thread::s_pmutex, true);
-         comparable_array < thread * > threadptra = ::windows::thread::s_threadptra;
+         comparable_array < thread * > threadptra = *::windows::thread::s_pthreadptra;
 
          for(index i = 0; i < threadptra.get_size(); i++)
          {
@@ -762,7 +762,7 @@ namespace windows
 
       single_lock sl(::windows::thread::s_pmutex);
 
-      for(index i = 0; i < ::windows::thread::s_haThread.get_size(); )
+      for(index i = 0; i < ::windows::thread::s_phaThread->get_size(); )
       {
 
          bOk = true;
@@ -772,22 +772,22 @@ namespace windows
 
 repeat:
 
-            if(::PostThreadMessageA(::GetThreadId(::windows::thread::s_haThread[i]), message, wparam, lparam))
+            if(::PostThreadMessageA(::GetThreadId(::windows::thread::s_phaThread->element_at(i)), message, wparam, lparam))
             {
 
                if(message == WM_QUIT)
                {
 
-                  if(::windows::thread::s_haThread[i] != ::GetCurrentThread())
+                  if(::windows::thread::s_phaThread->element_at(i) != ::GetCurrentThread())
                   {
 
                      sl.unlock();
 
-                     DWORD dwRet = ::WaitForSingleObject(::windows::thread::s_haThread[i], (1984 + 1977) * 2);
+                     DWORD dwRet = ::WaitForSingleObject(::windows::thread::s_phaThread->element_at(i), (1984 + 1977) * 2);
 
                      sl.lock();
 
-                     if((dwRet != WAIT_OBJECT_0) && (dwRet != WAIT_FAILED) && i < ::windows::thread::s_haThread.get_size())
+                     if((dwRet != WAIT_OBJECT_0) && (dwRet != WAIT_FAILED) && i < ::windows::thread::s_phaThread->get_size())
                         goto repeat;
 
 
@@ -813,16 +813,16 @@ repeat:
             if(bOk)
             {
 
-               if(ca == ::windows::thread::s_haThread.get_size())
+               if(ca == ::windows::thread::s_phaThread->get_size())
                   i++;
                else
-                  ca = ::windows::thread::s_haThread.get_size();
+                  ca = ::windows::thread::s_phaThread->get_size();
 
             }
             else
             {
 
-               ca = ::windows::thread::s_haThread.get_size();
+               ca = ::windows::thread::s_phaThread->get_size();
 
             }
 
