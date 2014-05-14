@@ -505,6 +505,7 @@ retry_license:
          if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
          {
             m_pkeyboardfocus = pkeyboardfocus;
+            m_pkeyboardfocus->get_wnd()->on_keyboard_focus(m_pkeyboardfocus);
          }
          if(Application.m_pbasesystem != NULL)
          {

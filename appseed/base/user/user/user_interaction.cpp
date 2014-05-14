@@ -2549,9 +2549,43 @@ namespace user
       else
          m_pimpl->pre_subclass_window();
    }
+   
+
+   id interaction::run_modal_loop(::user::interaction * pui, uint32_t dwFlags, ::core::live_object * pliveobject)
+   {
+      
+      return pui->_001RunModalLoop(dwFlags, pliveobject);
+      
+   }
 
 
    id interaction::RunModalLoop(uint32_t dwFlags, ::core::live_object * pliveobject)
+   {
+      
+      if(get_wnd() != NULL)
+      {
+         
+         return get_wnd()->run_modal_loop(this, dwFlags, pliveobject);
+         
+      }
+      else if(m_pimpl.is_null())
+      {
+       
+         return _001RunModalLoop(dwFlags, pliveobject);
+         
+      }
+      else
+      {
+         
+         return m_pimpl->RunModalLoop(dwFlags, pliveobject);
+         
+      }
+      
+      
+   }
+   
+   
+   id interaction::_001RunModalLoop(uint32_t dwFlags, ::core::live_object * pliveobject)
    {
 
       // for tracking the idle time state
@@ -3561,6 +3595,19 @@ namespace user
          pbase->m_bRet = true;*/
       }
    }
+   
+   void interaction::on_keyboard_focus(::user::keyboard_focus * pfocus)
+   {
+      
+      if(m_pimpl == NULL)
+         return;
+      
+      
+      m_pimpl->on_keyboard_focus(pfocus);
+      
+      
+   }
+
 
    sp(::user::interaction) interaction::get_os_focus_uie()
    {
@@ -4137,6 +4184,15 @@ namespace user
    }
 
 
+   void interaction::show_keyboard(bool bShow)
+   {
+      
+      if(m_pimpl == NULL)
+         return;
+      
+      m_pimpl->show_keyboard(bShow);
+      
+   }
 
 
 } // namespace user

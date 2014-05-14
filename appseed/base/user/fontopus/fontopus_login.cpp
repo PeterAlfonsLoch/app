@@ -554,7 +554,6 @@ namespace fontopus
 
          }
 
-         m_dRate = (double)w / (double)stdw;
          rectClient.left = (rectClient.width() - w) / 2;
          rectClient.top = (rectClient.height() - h) / 3;
          rectClient.right = rectClient.left + w;
@@ -565,53 +564,30 @@ namespace fontopus
       }
       else
       {
+         
+         GetClientRect(rectClient);
 
-
-         double dwh = (double)stdw / (double)stdh;
-
-         int availw = (int)(rectClient.width());
-         int availh = (int)(rectClient.height());
-
-         double davailwh;
-
-         if (availh == 0.0)
-         {
-            davailwh = 1.0;
-         }
-         else
-         {
-            davailwh = (double)availw / (double)availh;
-         }
-
-
-         if (davailwh > dwh) // remaining width
-         {
-
-            h = (int)min(stdh, availh);
-            w = (int)min(stdw, h  * dwh);
-
-         }
-         else // remaining height
-         {
-
-            w = (int)min(stdw, availw);
-            h = (int)min(stdh, w / dwh);
-
-         }
-
-         m_dRate = (double)w / (double)stdw;
       }
 
-      double r = m_dRate;
+      
+      w = (int)(rectClient.width());
 
+      h = (int)(rectClient.height());
+      
+      m_dRateX = (double)w / (double)stdw;
 
+      m_dRateY = (double)h / (double)stdh;
+      
+      double rx = m_dRateX;
 
-      int32_t x1 = (int) (49 * r);
-      int32_t w2 = (int) ((rectClient.width() - 49 * 2) * r);
-      int32_t h1 = (int) (23 * r);
-      int32_t pad = (int) (5 * r);
+      double ry = m_dRateY;
 
-      int32_t y = (int) ((49 + 86) * r);
+      int32_t x1 = (int) (49 * rx);
+      int32_t w2 = (int) ((rectClient.width() - 49 * 2 * rx));
+      int32_t h1 = (int) (23 * ry);
+      int32_t pad = (int) (5 * ry);
+
+      int32_t y = (int) ((49 + 86) * ry);
       m_labelUser.RepositionWindow(x1,y,w2,h1);
       y += h1 + pad;
       m_editUser.RepositionWindow(x1,y,w2, h1);
@@ -715,7 +691,9 @@ namespace fontopus
          (argb_get_g_value(crOut) + argb_get_g_value(crIn)) / 2,
          (argb_get_b_value(crOut) + argb_get_b_value(crIn)) / 2);
 
-      double r = m_dRate;
+      double rx = m_dRateX;
+
+      double ry = m_dRateY;
 
       if (m_bCred && m_strCred.has_char())
       {
@@ -733,20 +711,20 @@ namespace fontopus
          pgraphics->SelectObject(f);
 
          pgraphics->set_text_color(crBorderOut);
-         pgraphics->TextOut((int)(49 * r), (int)(49 * r), m_strCred);
+         pgraphics->TextOut((int)(49 * rx), (int)(49 * ry), m_strCred);
       }
       else if (m_picon95)
       {
 
-         draw_ca2_border2(pgraphics, (int)(49 * r), (int)(49 * r) - 11, (int)((91 + 2 + 2) * r), 1, 1, crBk, cr, crBorderOut, crBorderIn);
+         draw_ca2_border2(pgraphics, (int)(49 * rx), (int)(49 * ry) - 11, (int)((91 + 2 + 2) * ry), 1, 1, crBk, cr, crBorderOut, crBorderIn);
 
-         pgraphics->DrawIcon((int)(49 * r) + 2, (int)(49 * r) + 2 - 11, m_picon95, (int)((91 + 2 + 2) * r), (int)((91 + 2 + 2) * r), 0, NULL, 0);
+         pgraphics->DrawIcon((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11, m_picon95, (int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry), 0, NULL, 0);
 
       }
       else
       {
 
-         draw_ca2_with_border2(pgraphics, (int)(49 * r), (int)(49 * r) - 11, (int)((91 + 2 + 2) * r), 1, 1, crBk, cr, crBorderOut, crBorderIn);
+         draw_ca2_with_border2(pgraphics, (int)(49 * rx), (int)(49 * ry) - 11, (int)((91 + 2 + 2) * ry), 1, 1, crBk, cr, crBorderOut, crBorderIn);
 
       }
 

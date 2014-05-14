@@ -29,6 +29,9 @@ struct __CTLCOLOR
    UINT nCtlType;
 };
 
+void __ios_do_events()
+;
+
 WINBOOL PeekMessage(
                     LPMESSAGE lpMsg,
                     oswindow hWnd,
@@ -3929,8 +3932,58 @@ namespace ios
    }
    
    
+   
+   id window::run_modal_loop(::user::interaction * pui, uint32_t dwFlags, ::core::live_object * pliveobject)
+   {
+
+      // for tracking the idle time state
+      
+      //bool bIdle = TRUE;
+      
+      //LONG lIdleCount = 0;
+      
+      //bool bShowIdle = (dwFlags & MLF_SHOWONIDLE) && !(pui->GetStyle() & WS_VISIBLE);
+      
+      //oswindow hWndParent = ::GetParent(pui->get_handle());
+      
+      m_iModal = pui->m_iModalCount;
+      
+      int32_t iLevel = pui->m_iModal;
+      
+      pui->oprop(string("RunModalLoop.thread(") + ::str::from(iLevel) + ")") = System.GetThread();
+      
+      pui->m_iModalCount++;
+      
+      pui->m_iaModalThread.add(::GetCurrentThreadId());
+      
+      //::base::application * pappThis1 = dynamic_cast < ::base::application * > (pui->m_pthread->m_p.m_p);
+      
+      //::base::application * pappThis2 = dynamic_cast < ::base::application * > (pui->m_pthread.m_p);
+      
+      while(true)
+      {
+         
+         if (!pui->ContinueModal(iLevel))
+            break;
+         
+         Sleep(33);
+         
+         __ios_do_events();
+         
+      }
+      
+      return "ok";
+      
+   }
+
+   
+   
    id window::RunModalLoop(DWORD dwFlags, ::core::live_object * pliveobject)
    {
+      
+      
+      
+      
       // for tracking the idle time state
       bool bIdle = TRUE;
       LONG lIdleCount = 0;
@@ -3944,7 +3997,22 @@ namespace ios
                   m_iaModalThread.add(::GetCurrentThreadId());
       ::base::application * pappThis1 = dynamic_cast < ::base::application * > (m_pthread->m_p.m_p);
       ::base::application * pappThis2 = dynamic_cast < ::base::application * > (m_pthread.m_p);
-            // acquire and dispatch messages until the modal state is done
+
+      while(true)
+      {
+      
+         if (!ContinueModal(iLevel))
+            break;
+         
+         __ios_do_events();
+         
+      }
+      
+      
+      return "ok";
+
+      
+      // acquire and dispatch messages until the modal state is done
             MESSAGE msg;
             for (;;)
             {
@@ -3987,6 +4055,8 @@ namespace ios
                   {
                      pliveobject->keep_alive();
                   }
+                  __ios_do_events();
+
                   {
                      m_pui->m_pthread->step_timer();
                   }               }
@@ -4034,10 +4104,13 @@ namespace ios
                   {
                   pliveobject->keep();
                   }*/
+                  __ios_do_events();
                      }
                while (::PeekMessage(&msg, NULL, NULL, NULL, PM_NOREMOVE) != FALSE);
                            if(m_pui->m_pthread != NULL)
                {
+                  __ios_do_events();
+
                   m_pui->m_pthread->step_timer();
                }
                if (!ContinueModal(iLevel))
@@ -6538,6 +6611,51 @@ namespace ios
    }
    
    
+   bool window::round_window_on_text(const char * pszText)
+   {
+      
+      sp(::message::base) spbase;
+      
+      ::message::key * pkey = canew(::message::key(get_app()));
+      
+      pkey->m_uiMessage = WM_KEYDOWN;
+      
+      if(pszText == NULL || strlen(pszText) <= 0)
+      {
+         
+         pkey->m_ekey = ::user::key_back;
+         
+      }
+      else
+      {
+      
+         pkey->m_ekey = ::user::key_refer_to_text_member;
+         
+         pkey->m_strText = pszText;
+         
+      }
+      
+      spbase = pkey;
+      
+      send(spbase);
+      
+      return spbase->m_bRet;
+      
+   }
+   
+   
+   void window::on_keyboard_focus(::user::keyboard_focus * pfocus)
+   {
+      
+      UNREFERENCED_PARAMETER(pfocus);
+      
+      round_window_show_keyboard();
+
+      
+   }
+
+   
+   
    void window::round_window_mouse_down(double x, double y)
    {
       
@@ -7209,6 +7327,8 @@ namespace ios
       
       ::window::_001UpdateWindow();
       
+      _001RedrawWindow();
+      
    }
    
    void window::offset_view_port_org(LPRECT lprectScreen)
@@ -7231,6 +7351,13 @@ namespace ios
       
    }
    
+
+   void window::show_keyboard(bool bShow)
+   {
+    
+      round_window_show_keyboard(bShow);
+      
+   }
 
 
 } // ::ios::namespace

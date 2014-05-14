@@ -32,7 +32,7 @@
    
    [self setWindowLevel:UIWindowLevelNormal];
 
-	[self setOpaque:NO];
+	[self setOpaque:YES];
 
    [self setBackgroundColor:[UIColor greenColor]];
 		
@@ -42,7 +42,7 @@
    
 // [self setAcceptsMouseMovedEvents : YES];
       
-   m_controller = [[UIViewController alloc] init];
+   m_controller = [[RoundViewController alloc] init];
 
    [self create_view];
    
@@ -145,6 +145,8 @@
     bounds.origin.y = 0;
 
 	RoundWindowFrameView * frameView = [[RoundWindowFrameView alloc] initWithFrame : bounds] ;
+   
+  	m_controller->childContentView = frameView;
    
    frameView->m_roundwindow =  self;
    
@@ -294,7 +296,13 @@
 
 -(void) display
 {
-   [childContentView setNeedsDisplay];
+//   [childContentView redraw_view];
+   
+   [m_controller->childContentView setNeedsDisplay];
+   
+   
+   [[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode beforeDate: [NSDate date]];
+
 }
 
 
@@ -328,9 +336,9 @@
    
    m_pwindow = NULL;
    
-   childContentView->m_roundwindow = nil;
+   m_controller->childContentView->m_roundwindow = nil;
    
-   childContentView = nil;
+   m_controller->childContentView = nil;
    
    closeButton = nil;
    

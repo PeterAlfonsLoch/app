@@ -113,25 +113,29 @@ namespace fontopus
 
       rect rectLogin;
 
-      m_login.GetWindowRect(rectLogin);
-
-      int w = rectLogin.width();
-
-      int h = rectLogin.height();
+//      m_login.GetWindowRect(rectLogin);
       
-      double d = (double) w / (double) h;
+      int stdw = 884;
+
+      int stdh = 184 + 23 + 184;
+      
+      int w = stdw;
+
+      int h = stdh;
+      
+      //double d = (double) w / (double) h;
       
       if(w > rectDesktop.width())
       {
          
          w = rectDesktop.width();
          
-         if(d != 0.0)
-         {
+//         if(d != 0.0)
+  //       {
 
-            h = (int) (w / d);
+    //        h = (int) (w / d);
             
-         }
+      //   }
          
       }
       
@@ -140,7 +144,7 @@ namespace fontopus
          
          h = rectDesktop.height();
          
-         w = (int) (h  * d);
+        // w = (int) (h  * d);
          
       }
       
@@ -160,6 +164,7 @@ namespace fontopus
       SetWindowPos(ZORDER_TOP, rectFontopus, SWP_SHOWWINDOW);
 
       m_login.ShowWindow(SW_NORMAL);
+      
 
       RunModalLoop();
 
@@ -261,6 +266,8 @@ namespace fontopus
 
       if (pobj->previous())
          return;
+      
+      get_wnd()->show_keyboard(false);
 
       m_bLButtonDown = true;
       m_bDrag = false;

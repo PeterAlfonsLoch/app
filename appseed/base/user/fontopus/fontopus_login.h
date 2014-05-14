@@ -52,7 +52,8 @@ namespace fontopus
       string                        m_strRequestingServer;
 
       bool                          m_bSelfLayout;
-      double                        m_dRate;
+      double                        m_dRateX;
+      double                        m_dRateY;
 
       bool                          m_bCred;
       string                        m_strCred;

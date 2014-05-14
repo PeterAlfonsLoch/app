@@ -246,7 +246,11 @@ namespace ios
       virtual void round_window_mouse_dragged(double x, double y);
       virtual bool round_window_key_down(::user::e_key ekey);
       virtual bool round_window_key_up(::user::e_key ekey);
+      virtual bool round_window_on_text(const char * pszText);
       
+      virtual void show_keyboard(bool bShow = true);
+      
+      virtual void on_keyboard_focus(::user::keyboard_focus * pfocus);
       
       void set_view_port_org(::draw2d::graphics * pgraphics);
       void offset_view_port_org(LPRECT lprectScreen);
@@ -461,6 +465,7 @@ namespace ios
       // dialog support
       void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);
       void CenterWindow(sp(::user::interaction)  pAlternateOwner = NULL);
+      virtual id   run_modal_loop(::user::interaction * pui, uint32_t dwFlags = 0, ::core::live_object * pliveobject = NULL);
       virtual id   RunModalLoop(DWORD dwFlags = 0, ::core::live_object * pliveobject = NULL);
       virtual bool ContinueModal(int32_t iLevel);
       virtual void EndModalLoop(id nResult);

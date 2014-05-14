@@ -1057,6 +1057,10 @@
 		079AE0D6188648D400635C39 /* database_user_interaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 079AE0B6188648D400635C39 /* database_user_interaction.h */; };
 		079DBF3B1886788000EFFEFB /* file_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 079DBF391886788000EFFEFB /* file_set.cpp */; };
 		079DBF3C1886788000EFFEFB /* file_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 079DBF3A1886788000EFFEFB /* file_set.h */; };
+		07A0D7B31923356B00039222 /* RoundViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A0D7B11923356B00039222 /* RoundViewController.h */; };
+		07A0D7B41923356B00039222 /* RoundViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07A0D7B21923356B00039222 /* RoundViewController.mm */; };
+		07A0D7B51923356B00039222 /* RoundViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07A0D7B21923356B00039222 /* RoundViewController.mm */; };
+		07A0D7B61923356B00039222 /* RoundViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07A0D7B21923356B00039222 /* RoundViewController.mm */; };
 		07A2246D18F7F0BD002C3B39 /* multithreading_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A2246C18F7F0BD002C3B39 /* multithreading_thread.cpp */; };
 		07A2247418F7F3F8002C3B39 /* user_enum.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A2246E18F7F3F8002C3B39 /* user_enum.h */; };
 		07A2247518F7F3F8002C3B39 /* user_inline.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A2246F18F7F3F8002C3B39 /* user_inline.h */; };
@@ -4449,6 +4453,8 @@
 		079AE0B6188648D400635C39 /* database_user_interaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_user_interaction.h; sourceTree = "<group>"; };
 		079DBF391886788000EFFEFB /* file_set.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_set.cpp; sourceTree = "<group>"; };
 		079DBF3A1886788000EFFEFB /* file_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_set.h; sourceTree = "<group>"; };
+		07A0D7B11923356B00039222 /* RoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundViewController.h; sourceTree = "<group>"; };
+		07A0D7B21923356B00039222 /* RoundViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundViewController.mm; sourceTree = "<group>"; };
 		07A2246C18F7F0BD002C3B39 /* multithreading_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = multithreading_thread.cpp; sourceTree = "<group>"; };
 		07A2246E18F7F3F8002C3B39 /* user_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_enum.h; sourceTree = "<group>"; };
 		07A2246F18F7F3F8002C3B39 /* user_inline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_inline.h; sourceTree = "<group>"; };
@@ -9968,6 +9974,8 @@
 				07D1C91C19211FEA00B99496 /* RoundWindow.mm */,
 				07D1C91D19211FEA00B99496 /* RoundWindowFrameView.h */,
 				07D1C91E19211FEA00B99496 /* RoundWindowFrameView.mm */,
+				07A0D7B11923356B00039222 /* RoundViewController.h */,
+				07A0D7B21923356B00039222 /* RoundViewController.mm */,
 			);
 			name = ios;
 			path = node/ios;
@@ -11380,6 +11388,7 @@
 				07B08EC118495B41007A0560 /* cryptlib.h in Headers */,
 				07B0908F18495B41007A0560 /* ripemd.h in Headers */,
 				07B08CE418495B40007A0560 /* crypto_null_auth.h in Headers */,
+				07A0D7B31923356B00039222 /* RoundViewController.h in Headers */,
 				07B0950718495C2B007A0560 /* comparison_md5.h in Headers */,
 				07B08D6118495B41007A0560 /* install.h in Headers */,
 				07884E671897EC9600DC6CEB /* ucs4swapped.h in Headers */,
@@ -12750,6 +12759,7 @@
 				07B08BC318495B40007A0560 /* base_debug.cpp in Sources */,
 				07D1C93419211FEA00B99496 /* ios_dumpinit.cpp in Sources */,
 				07B090C118495B41007A0560 /* sha512.c in Sources */,
+				07A0D7B41923356B00039222 /* RoundViewController.mm in Sources */,
 				07B08DF018495B41007A0560 /* asn1_par.c in Sources */,
 				07D1C93219211FEA00B99496 /* ios_dir.cpp in Sources */,
 				07B08C5118495B40007A0560 /* adler32.c in Sources */,
@@ -14126,6 +14136,7 @@
 				9AA6A4BF1907B84B000A1F4A /* base_international.cpp in Sources */,
 				9AA6A4C01907B84B000A1F4A /* base_live_object.cpp in Sources */,
 				9AA6A4C11907B84B000A1F4A /* base_live_signal.cpp in Sources */,
+				07A0D7B51923356B00039222 /* RoundViewController.mm in Sources */,
 				9AA6A4C21907B84B000A1F4A /* base_log.cpp in Sources */,
 				9AA6A4C31907B84B000A1F4A /* base_machine_event.cpp in Sources */,
 				9AA6A4C41907B84B000A1F4A /* base_machine_event_central.cpp in Sources */,
@@ -14630,6 +14641,7 @@
 				07D1CA21192121BF00B99496 /* message_dispatch.cpp in Sources */,
 				9AE24D531904CEFF001AEFFB /* base_iosTests.m in Sources */,
 				07D1CA16192121BF00B99496 /* message.cpp in Sources */,
+				07A0D7B61923356B00039222 /* RoundViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,6 +17,7 @@ namespace user
    {
       
       key_none,
+      key_refer_to_text_member,
       key_0,
       key_1,
       key_2,

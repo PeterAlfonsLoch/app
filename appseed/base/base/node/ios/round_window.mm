@@ -54,3 +54,28 @@ void round_window::round_window_invalidate()
 //   [[m_proundwindow->m_controller dd_invokeOnMainThread] setViewsNeedDisplay : TRUE];
    
 }
+
+
+void round_window::round_window_show_keyboard(bool bShow)
+{
+   
+   if(bShow)
+   {
+    
+      [m_proundwindow->m_controller->childContentView roundBecomeFirstResponder];
+      
+   }
+   else
+   {
+      
+      if(m_proundwindow->m_controller->childContentView.isFirstResponder)
+      {
+      
+         [m_proundwindow->m_controller->childContentView resignFirstResponder];
+         
+      }
+      
+   }
+   
+}
+

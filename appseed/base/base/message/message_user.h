@@ -205,6 +205,8 @@ namespace message
       UINT m_nFlags;
 
       ::user::e_key     m_ekey;
+      
+      string   m_strText;
 
       /*#ifdef METROWIN
 

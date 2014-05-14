@@ -181,7 +181,9 @@ namespace user
       // dialog support
       void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);
       virtual void CenterWindow(sp(interaction) pAlternateOwner = NULL);
+      virtual id   run_modal_loop(::user::interaction * pui, uint32_t dwFlags = 0, ::core::live_object * pliveobject = NULL);
       virtual id   RunModalLoop(uint32_t dwFlags = 0, ::core::live_object * pliveobject = NULL);
+      virtual id   _001RunModalLoop(uint32_t dwFlags = 0, ::core::live_object * pliveobject = NULL);
       virtual bool ContinueModal(int32_t iLevel);
       virtual void EndModalLoop(id nResult);
       virtual void EndAllModalLoops(id nResult);
@@ -193,6 +195,9 @@ namespace user
 
 
       virtual sp(::user::interaction) get_os_focus_uie();
+      
+      
+      virtual void on_keyboard_focus(::user::keyboard_focus * pfocus);
 
 
       virtual void _001WindowMinimize();
@@ -613,6 +618,10 @@ namespace user
 
       virtual bool set_appearance(EAppearance eappearance);
       virtual bool set_appearance_before(EAppearance eappearance);
+      
+      
+      virtual void show_keyboard(bool bShow = true);
+      
 
    };
 

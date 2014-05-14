@@ -26,7 +26,7 @@ CGContextRef get_nswindow_cgcontext(oswindow oswindow)
 void GetMainScreenRect(LPRECT lprect)
 {
 
-   CGRect rect = [[UIScreen mainScreen] applicationFrame];
+   CGRect rect = [[UIScreen mainScreen] bounds];
 
    lprect->left        = rect.origin.x;
    lprect->bottom      = rect.size.height - rect.origin.y;

@@ -17,7 +17,7 @@
 
 @class RoundWindow;
 
-@interface RoundWindowFrameView : UIView
+@interface RoundWindowFrameView : UITextView
 {
 @public
    
@@ -31,7 +31,8 @@
 
 
 -(void)redraw_view;
-
+-(void)on_text : (NSString *) text;
+- (BOOL)roundBecomeFirstResponder;
 
 
 @end

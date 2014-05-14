@@ -206,6 +206,22 @@ namespace simple_ui
          }
          pkey->m_bRet = true;
       }
+      else if(iKey == ::user::key_refer_to_text_member)
+      {
+         
+         string strText;
+         
+         GetWindowText(strText);
+         
+         string strChar = pkey->m_strText;
+         
+         SetWindowText(strText.substr(0,m_iPos) + strChar + strText.substr(m_iPos + 1));
+         
+         m_iPos++;
+         
+         pkey->m_bRet = true;
+         
+      }
       else
       {
 

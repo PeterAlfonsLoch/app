@@ -2324,7 +2324,7 @@ void window::_001BaseWndInterfaceMap()
 void window::_001UpdateWindow()
 {
 
-   if (m_bUpdateGraphics)
+//   if (m_bUpdateGraphics)
    {
       update_graphics_resources();
    }
