@@ -597,6 +597,7 @@ namespace user
 
    void interaction::_001OnDestroy(signal_details * pobj)
    {
+      
       UNREFERENCED_PARAMETER(pobj);
 
       try
@@ -632,7 +633,23 @@ namespace user
       {
       }
 
+      try
+      {
 
+         if(m_pthread != NULL)
+         {
+
+            m_pthread->remove(this);
+            m_pthread->remove(m_pui);
+            m_pthread->remove(m_pimpl);
+
+         }
+         
+      }
+      catch(...)
+      {
+
+      }
 
       array < ::user::interaction  * > uiptra;
       single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);

@@ -52,7 +52,7 @@ namespace fontopus
    void login::install_message_handling(::message::dispatch * pdispatch)
    {
 
-      ::user::interaction::install_message_handling(pdispatch);
+      ::simple_ui::interaction::install_message_handling(pdispatch);
 
       IGUI_CREATE(login);
 
@@ -852,7 +852,7 @@ namespace fontopus
 
       RepositionWindow(0,0,stdw,stdh);
 
-
+      m_editUser.keyboard_set_focus();
       
    }
 

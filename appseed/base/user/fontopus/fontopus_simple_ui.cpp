@@ -6,6 +6,7 @@ CLASS_DECL_BASE void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y
 CLASS_DECL_BASE void draw_ca2_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
 CLASS_DECL_BASE void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
 
+
 namespace fontopus
 {
 
@@ -18,16 +19,9 @@ namespace fontopus
    {
 
       m_eschema = schema_normal;
-      m_login.set_parent(this);
       m_login.m_pcallback = this;
       m_login.m_pstyle = this;
       m_bLButtonDown = false;
-//      m_w = 840;
-  //    m_h = 284;
-
-    //  m_bNoDecorations = true;
-
-
 
    }
 
@@ -40,8 +34,9 @@ namespace fontopus
    void simple_ui::install_message_handling(::message::dispatch * pdispatch)
    {
 
-      ::user::interaction::install_message_handling(pdispatch);
+      ::simple_ui::interaction::install_message_handling(pdispatch);
 
+      IGUI_WIN_MSG_LINK(WM_CREATE,pdispatch,this,&simple_ui::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_CHAR,pdispatch,this,&simple_ui::_001OnChar);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pdispatch,this,&simple_ui::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP,pdispatch,this,&simple_ui::_001OnLButtonUp);
@@ -50,6 +45,29 @@ namespace fontopus
       IGUI_WIN_MSG_LINK(WM_SIZE,pdispatch,this,&simple_ui::_001OnSize);
 
    }
+
+   
+   void simple_ui::_001OnCreate(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::create,pcreate,pobj);
+
+      if(pcreate->previous())
+         return;
+
+      if(!m_login.create(this,"pane_first"))
+      {
+
+         pcreate->set_lresult(-1);
+
+         pcreate->m_bRet = true;
+
+         return;
+
+      }
+
+   }
+
 
    void simple_ui::_001OnChar(signal_details * pobj)
    {
@@ -190,11 +208,16 @@ namespace fontopus
          strServerId = m_login.m_strSecureId;
          strLoginUrl = m_login.m_strLoginUrl;
 
+
+         DestroyWindow();
+
          return "ok";
 
       }
       else
       {
+
+         DestroyWindow();
 
          return "fail";
 
