@@ -1,6 +1,16 @@
 #include "framework.h"
 
+
 void __node_init_app_thread(::thread * pthread);
+
+
+#if defined(CUBE)
+
+
+void draw2d_factory_exchange(sp(::base::application) papp);
+
+
+#endif
 
 
 #if defined(APPLEOS)
@@ -4672,8 +4682,6 @@ namespace base
       return true;
    }
 
-
-   void draw2d_factory_exchange(sp(application) papp);
 
    void application::draw2d_factory_exchange()
    {

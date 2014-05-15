@@ -26,19 +26,13 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
    if (dwReason == DLL_PROCESS_ATTACH)
    {
 
-      ::g_pfn_get_thread = &::windows::get_thread;
-
-
-
       OutputDebugStringW(L"base.dll initializing!\n");
 
       xxdebug_box("base.dll DllMain", "box", MB_OK);
       
-
    }
    else if (dwReason == DLL_PROCESS_DETACH)
    {
-
 
       HMODULE hmodule;
 

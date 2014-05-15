@@ -573,15 +573,9 @@ public:
 
 };
 
+
 CLASS_DECL_BASE thread * get_thread();
-//CLASS_DECL_BASE thread_state * get_thread_state();
 
-
-typedef thread * (*PFN_get_thread)();
-typedef thread_state * (*PFN_get_thread_state)();
-
-extern CLASS_DECL_BASE PFN_get_thread g_pfn_get_thread;
-extern CLASS_DECL_BASE PFN_get_thread_state g_pfn_get_thread_state;
 
 CLASS_DECL_BASE mutex & user_mutex();
 

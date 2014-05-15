@@ -3009,3 +3009,13 @@ __begin_thread(puie->get_app(), &ThreadProcSendMessage, pmessage, nPriority);
 
 // thread
 
+
+
+
+thread * get_thread()
+{
+
+   return ::windows::get_thread();
+
+}
+

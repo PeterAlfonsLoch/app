@@ -36,10 +36,10 @@ namespace user
 
 
 
-      bool ModifyIcon(::visual::icon * picon);
+      bool ModifyIcon(sp(::visual::icon)  picon);
 
       using ::user::interaction::create;
-      bool create(UINT id, notify_icon_listener * plistener, ::visual::icon * picon);
+      bool create(UINT id, notify_icon_listener * plistener, sp(::visual::icon) picon);
 
       DECL_GEN_SIGNAL(_001OnNotifyIconMessage);
 

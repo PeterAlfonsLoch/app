@@ -30,20 +30,6 @@ mutex & user_mutex()
 
 
 
-CLASS_DECL_BASE PFN_get_thread g_pfn_get_thread = NULL;
-CLASS_DECL_BASE PFN_get_thread_state g_pfn_get_thread_state = NULL;
-
-
-thread * get_thread()
-{
-
-   if (g_pfn_get_thread == NULL)
-      return NULL;
-
-   return g_pfn_get_thread();
-
-}
-
 
 ::base::application * get_thread_app()
 {

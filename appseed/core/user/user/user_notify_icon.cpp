@@ -24,7 +24,7 @@ namespace user
       IGUI_WIN_MSG_LINK(MessageNotifyIcon, pinterface, this, &notify_icon::_001OnNotifyIconMessage);
    }
 
-   bool notify_icon::create(UINT uiId, notify_icon_listener * plistener, ::visual::icon * hicon)
+   bool notify_icon::create(UINT uiId, notify_icon_listener * plistener, sp(::visual::icon) hicon)
    {
 
       if(m_bCreated)
@@ -65,7 +65,7 @@ namespace user
 
    }
 
-   bool notify_icon::ModifyIcon(::visual::icon * hicon)
+   bool notify_icon::ModifyIcon(sp(::visual::icon) hicon)
    {
 
       if(!m_bCreated)
