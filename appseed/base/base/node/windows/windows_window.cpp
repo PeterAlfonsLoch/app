@@ -3184,7 +3184,7 @@ namespace windows
       try
       {
 
-         if(GetWindowLong(GWL_EXSTYLE) & WS_EX_LAYERED)
+         if(get_window_long(GWL_EXSTYLE) & WS_EX_LAYERED)
          {
             rect rect5;
             rect rect9;
@@ -3682,7 +3682,7 @@ namespace windows
          // don't center against invisible or minimized windows
          if(oswindow_Center != NULL)
          {
-            uint32_t dwAlternateStyle = oswindow_Center->GetWindowLong(GWL_STYLE);
+            uint32_t dwAlternateStyle = oswindow_Center->get_window_long(GWL_STYLE);
             if(!(dwAlternateStyle & WS_VISIBLE) || (dwAlternateStyle & WS_MINIMIZE))
                oswindow_Center = NULL;
          }
@@ -4639,22 +4639,22 @@ namespace windows
 
    }
 
-   LONG window::GetWindowLong(int32_t nIndex)
+   LONG window::get_window_long(int32_t nIndex)
    {
       return ::GetWindowLong(get_handle(),nIndex);
    }
 
-   LONG window::SetWindowLong(int32_t nIndex,LONG lValue)
+   LONG window::set_window_long(int32_t nIndex,LONG lValue)
    {
       return ::SetWindowLong(get_handle(),nIndex,lValue);
    }
 
-   LONG_PTR window::GetWindowLongPtr(int32_t nIndex)
+   LONG_PTR window::get_window_long_ptr(int32_t nIndex)
    {
       return ::GetWindowLongPtr(get_handle(),nIndex);
    }
 
-   LONG_PTR window::SetWindowLongPtr(int32_t nIndex,LONG_PTR lValue)
+   LONG_PTR window::set_window_long_ptr(int32_t nIndex,LONG_PTR lValue)
    {
       return ::SetWindowLongPtr(get_handle(),nIndex,lValue);
    }

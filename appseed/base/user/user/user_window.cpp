@@ -930,7 +930,7 @@ bool window::WfiIsZoomed()
 }
 
 
-LONG window::GetWindowLong(int32_t nIndex)
+LONG window::get_window_long(int32_t nIndex)
 {
 
    UNREFERENCED_PARAMETER(nIndex);
@@ -939,7 +939,7 @@ LONG window::GetWindowLong(int32_t nIndex)
 }
 
 
-LONG window::SetWindowLong(int32_t nIndex, LONG lValue)
+LONG window::set_window_long(int32_t nIndex, LONG lValue)
 {
    UNREFERENCED_PARAMETER(nIndex);
    UNREFERENCED_PARAMETER(lValue);
@@ -947,7 +947,7 @@ LONG window::SetWindowLong(int32_t nIndex, LONG lValue)
 }
 
 
-LONG_PTR window::GetWindowLongPtr(int32_t nIndex)
+LONG_PTR window::get_window_long_ptr(int32_t nIndex)
 {
 
    UNREFERENCED_PARAMETER(nIndex);
@@ -956,7 +956,7 @@ LONG_PTR window::GetWindowLongPtr(int32_t nIndex)
 }
 
 
-LONG_PTR window::SetWindowLongPtr(int32_t nIndex,LONG_PTR lValue)
+LONG_PTR window::set_window_long_ptr(int32_t nIndex,LONG_PTR lValue)
 {
    UNREFERENCED_PARAMETER(nIndex);
    UNREFERENCED_PARAMETER(lValue);

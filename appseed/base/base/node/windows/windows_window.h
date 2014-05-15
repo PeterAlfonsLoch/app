@@ -694,10 +694,10 @@ namespace windows
 
       virtual void _001DeferPaintLayeredWindowBackground(HDC hdc);
 
-      virtual LONG GetWindowLong(int32_t nIndex);
-      virtual LONG SetWindowLong(int32_t nIndex,LONG lValue);
-      virtual LONG_PTR GetWindowLongPtr(int32_t nIndex);
-      virtual LONG_PTR SetWindowLongPtr(int32_t nIndex,LONG_PTR lValue);
+      virtual LONG get_window_long(int32_t nIndex);
+      virtual LONG set_window_long(int32_t nIndex,LONG lValue);
+      virtual LONG_PTR get_window_long_ptr(int32_t nIndex);
+      virtual LONG_PTR set_window_long_ptr(int32_t nIndex,LONG_PTR lValue);
 
       virtual void _001BaseWndInterfaceMap();
 

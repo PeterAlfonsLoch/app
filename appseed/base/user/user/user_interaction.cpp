@@ -250,7 +250,7 @@ namespace user
             m_pimpl = pimplNew;
             string strName;
             GetWindowText(strName);
-            int32_t iStyle = GetWindowLong(GWL_STYLE);
+            int32_t iStyle = get_window_long(GWL_STYLE);
             iStyle &= ~WS_CHILD;
             if (m_bVisible)
             {
@@ -311,7 +311,7 @@ namespace user
             ::count cFrame = System.frames().remove(this); // no more a top level frame if it were one
             m_pimpl = pimplNew;
             string strName;
-            int32_t iStyle = GetWindowLong(GWL_STYLE);
+            int32_t iStyle = get_window_long(GWL_STYLE);
             iStyle |= WS_CHILD;
             if (m_bVisible)
             {
@@ -1797,36 +1797,36 @@ namespace user
          return m_pimpl->IsWindow();
    }
 
-   LONG interaction::GetWindowLong(int32_t nIndex)
+   LONG interaction::get_window_long(int32_t nIndex)
    {
       if (m_pimpl == NULL)
          return 0;
       else
-         return m_pimpl->GetWindowLong(nIndex);
+         return m_pimpl->get_window_long(nIndex);
    }
 
-   LONG interaction::SetWindowLong(int32_t nIndex, LONG lValue)
+   LONG interaction::set_window_long(int32_t nIndex, LONG lValue)
    {
       if (m_pimpl == NULL)
          return 0;
       else
-         return m_pimpl->SetWindowLong(nIndex, lValue);
+         return m_pimpl->set_window_long(nIndex, lValue);
    }
 
-   LONG_PTR interaction::GetWindowLongPtr(int32_t nIndex)
+   LONG_PTR interaction::get_window_long_ptr(int32_t nIndex)
    {
       if(m_pimpl == NULL)
          return 0;
       else
-         return m_pimpl->GetWindowLongPtr(nIndex);
+         return m_pimpl->get_window_long_ptr(nIndex);
    }
 
-   LONG_PTR interaction::SetWindowLongPtr(int32_t nIndex,LONG_PTR lValue)
+   LONG_PTR interaction::set_window_long_ptr(int32_t nIndex,LONG_PTR lValue)
    {
       if(m_pimpl == NULL)
          return 0;
       else
-         return m_pimpl->SetWindowLongPtr(nIndex,lValue);
+         return m_pimpl->set_window_long_ptr(nIndex,lValue);
    }
 
    bool interaction::RedrawWindow(LPCRECT lpRectUpdate,

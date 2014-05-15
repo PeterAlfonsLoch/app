@@ -1275,7 +1275,7 @@ throw todo(get_app());
          size = (uint32_t) lParam;
 
       if (bModify)
-         SetWindowLong(GWL_STYLE, dwStyle);
+         set_window_long(GWL_STYLE, dwStyle);
 #else
       throw todo(get_app());
 #endif
