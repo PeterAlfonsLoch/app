@@ -1075,6 +1075,8 @@ namespace user
    void list::data_update_visible_subitem()
    {
 
+      return;
+
       synch_lock sl(&m_mutexData);
 
       index iColumn;
