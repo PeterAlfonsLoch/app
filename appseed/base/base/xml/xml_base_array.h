@@ -5,7 +5,7 @@ namespace xml
 {
 
 
-   template < int32_t m_iNodeNameIndex, class TYPE, class ARG_TYPE = const TYPE &, class ARRAY = smart_pointer_array < TYPE > >
+   template < int32_t m_iNodeNameIndex, class TYPE, class ARG_TYPE = const TYPE &, class ARRAY = ::smart_pointer_array < TYPE > >
    class array :
       public ARRAY,
       public exportable,

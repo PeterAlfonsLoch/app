@@ -44,12 +44,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       public:
          /** socket_handler constructor.
          \param log Optional log class pointer */
-         socket_handler(base_application * papp, logger *log = NULL);
+         socket_handler(::base::application * papp, logger *log = NULL);
 
          /** socket_handler threadsafe constructor.
          \param mutex Externally declared mutex var
          \param log Optional log class pointer */
-         socket_handler(base_application * papp, mutex & mutex,logger *log = NULL);
+         socket_handler(::base::application * papp, mutex & mutex,logger *log = NULL);
 
          ~socket_handler();
 

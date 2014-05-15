@@ -10,7 +10,7 @@ namespace draw2d_xlib
    {
    public:
 
-      palette(sp(base_application) papp);
+      palette(sp(::base::application) papp);
       virtual ~palette();
 
 

@@ -5,7 +5,7 @@ namespace lnx
 {
 
 
-   crypto::crypto(sp(base_application) papp) :
+   crypto::crypto(sp(::base::application) papp) :
       element(papp),
       ::crypto::crypto(papp)
    {

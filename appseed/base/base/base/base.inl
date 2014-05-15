@@ -42,9 +42,9 @@ void * __cdecl operator new(size_t nSize) new_throw_spec;
 
 inline void * __cdecl operator new(size_t nSize) new_throw_spec
 {
-    
+
     return memory_alloc(nSize);
-    
+
 }
 
 #endif
@@ -272,3 +272,40 @@ namespace user
 
 } //   namespace user
 
+
+
+namespace xml
+{
+
+
+   template < int32_t m_iNodeNameIndex,class TYPE >
+   void
+      smart_pointer_array<m_iNodeNameIndex,TYPE>::
+      xml_export(output_tree & xmlof)
+   {
+         xmlof.set_attr("count",this->get_size());
+         for(int32_t i = 0; i < this->get_size(); i++)
+         {
+            node * pnode = xmlof.export_node(xmlof.get_node_name(m_iNodeNameIndex),this->operator[](i));
+            pnode->add_attr("array_index",i);
+         }
+      }
+
+
+   template < int32_t m_iNodeNameIndex,class TYPE >
+   void
+      smart_pointer_array<m_iNodeNameIndex,TYPE>::
+      xml_import(input_tree & xmlif)
+   {
+         int32_t iSize;
+         xmlif.get_attr("count",iSize);
+         this->set_size_create(iSize);
+         for(int32_t i = 0; i < this->get_size(); i++)
+         {
+            attr_array attra(this->get_app());
+            attra.add("array_index",i);
+            xmlif.import_node(xmlif.get_node_name(m_iNodeNameIndex),attra,this->operator[](i));
+         }
+      }
+
+} // namespace xml

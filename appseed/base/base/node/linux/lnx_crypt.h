@@ -11,7 +11,7 @@ namespace lnx
    public:
 
 
-      crypto(sp(base_application) papp);
+      crypto(sp(::base::application) papp);
       virtual ~crypto();
 
 

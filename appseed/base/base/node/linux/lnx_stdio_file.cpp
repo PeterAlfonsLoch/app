@@ -7,7 +7,7 @@ namespace lnx
 
 
 
-stdio_file::stdio_file(sp(base_application) papp) :
+stdio_file::stdio_file(sp(::base::application) papp) :
    element(papp),
    ::lnx::file(papp)
 {

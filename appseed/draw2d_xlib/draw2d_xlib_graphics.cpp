@@ -10,7 +10,7 @@ namespace draw2d_xlib
 {
 
 
-   graphics::graphics(sp(base_application) papp) :
+   graphics::graphics(sp(::base::application) papp) :
       element(papp),
       m_ui(papp)
    {
@@ -3161,7 +3161,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    /////////////////////////////////////////////////////////////////////////////
    // special graphics drawing primitives/helpers
 
-   ::draw2d::brush* PASCAL graphics::GetHalftoneBrush(sp(base_application) papp)
+   ::draw2d::brush* PASCAL graphics::GetHalftoneBrush(sp(::base::application) papp)
    {
 /*      ::core::LockGlobals(CRIT_HALFTONEBRUSH);
       if (gen_HalftoneBrush == NULL)
@@ -3496,7 +3496,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
    }
 
-//   object* PASCAL graphics::SelectGdiObject(sp(base_application) papp, HDC hDC, HGDIOBJ h)
+//   object* PASCAL graphics::SelectGdiObject(sp(::base::application) papp, HDC hDC, HGDIOBJ h)
   // {
 //      return ::win::object::from_handle(papp, ::SelectObject(hDC, h));
    //}

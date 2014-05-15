@@ -206,15 +206,15 @@ namespace user
 
 
    };
-    
+
 #elif defined(APPLE_IOS)
-    
+
     class CLASS_DECL_BASE native_window_initialize
     {
     public:
-        
+
         RECT   m_rect;
-        
+
     };
 
 #else

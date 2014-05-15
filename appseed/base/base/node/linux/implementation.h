@@ -6,8 +6,8 @@ CLASS_DECL_LINUX WINBOOL AfxEndDeferRegisterClass(LONG fToRegister, const char *
 
 
 // Temporary ::collection::map management (locks temp ::collection::map on current thread)
-//CLASS_DECL_LINUX void AfxLockTempMaps(sp(base_application) papp);
-//CLASS_DECL_LINUX WINBOOL AfxUnlockTempMaps(sp(base_application) papp, WINBOOL bDeleteTemps = TRUE);
+//CLASS_DECL_LINUX void AfxLockTempMaps(sp(::base::application) papp);
+//CLASS_DECL_LINUX WINBOOL AfxUnlockTempMaps(sp(::base::application) papp, WINBOOL bDeleteTemps = TRUE);
 
 
 

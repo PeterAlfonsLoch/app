@@ -8,7 +8,7 @@ namespace lnx
       virtual public ::object
    {
    public:
-      factory_exchange(sp(base_application) papp);
+      factory_exchange(sp(::base::application) papp);
       virtual ~factory_exchange();
    };
 

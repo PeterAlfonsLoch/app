@@ -49,7 +49,7 @@ namespace draw2d_xlib
    //}
 
 
-   object * graphics_object_allocator(sp(base_application) papp, HANDLE h)
+   object * graphics_object_allocator(sp(::base::application) papp, HANDLE h)
    {
       /*switch(::GetObjectType(h))
       {
@@ -70,7 +70,7 @@ namespace draw2d_xlib
       return NULL;
    }
 
-   /*object* PASCAL object::from_handle(sp(base_application) papp, HGDIOBJ h)
+   /*object* PASCAL object::from_handle(sp(::base::application) papp, HGDIOBJ h)
    {
       hgdiobj_map* pMap = afxMapHGDIOBJ(TRUE); //create ::collection::map if not exist
       ASSERT(pMap != NULL);

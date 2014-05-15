@@ -1,7 +1,7 @@
 #include "framework.h"
 
 // Global helper functions
- CLASS_DECL_LINUX sp(base_application) __get_app()
+ CLASS_DECL_LINUX sp(::base::application) __get_app()
 { return afxCurrentWinApp; }
 
  CLASS_DECL_LINUX HINSTANCE __get_instance_handle()

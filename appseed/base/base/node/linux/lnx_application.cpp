@@ -9,7 +9,7 @@ extern __thread ::lnx::thread_local_storage * __thread_data;
 namespace lnx
 {
 
-   application::application(sp(base_application) papp) :
+   application::application(sp(::base::application) papp) :
       element(papp)
    {
       ::thread::m_p.create(allocer());
@@ -776,7 +776,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
          // fill in the initial state for the application
          // Windows specific initialization (not done if no application)
 // xxx         m_hInstance = hInstance;
-// xxx          (dynamic_cast < sp(base_application) >(m_papp))->m_hInstance = hInstance;
+// xxx          (dynamic_cast < sp(::base::application) >(m_papp))->m_hInstance = hInstance;
          //hPrevInstance; // Obsolete.
          m_strCmdLine = strCmdLine;
          m_nCmdShow = nCmdShow;

@@ -8,7 +8,7 @@ namespace lnx
 {
 
 
-   os::os(sp(base_application) papp) :
+   os::os(sp(::base::application) papp) :
       element(papp),
       ::core::os(papp)
    {
@@ -574,7 +574,7 @@ namespace lnx
 
    }
 
-   bool os::create_service(sp(base_application) papp)
+   bool os::create_service(sp(::base::application) papp)
    {
 
       //throw not_implemented(get_app());
@@ -627,7 +627,7 @@ namespace lnx
    }
 
 
-   bool os::remove_service(sp(base_application) papp)
+   bool os::remove_service(sp(::base::application) papp)
    {
 //      throw not_implemented(get_app());
       return false;
@@ -668,7 +668,7 @@ namespace lnx
 */
    }
 
-   bool os::start_service(sp(base_application) papp)
+   bool os::start_service(sp(::base::application) papp)
    {
       //throw not_implemented(get_app());
       return false;
@@ -709,7 +709,7 @@ namespace lnx
       */
    }
 
-   bool os::stop_service(sp(base_application) papp)
+   bool os::stop_service(sp(::base::application) papp)
    {
       throw not_implemented(get_app());
       return false;

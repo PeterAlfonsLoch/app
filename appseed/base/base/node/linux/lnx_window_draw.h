@@ -36,7 +36,7 @@ namespace lnx
       DWORD                                  m_dwLastDelay;
 
 
-      window_draw(sp(base_application) papp);
+      window_draw(sp(::base::application) papp);
       virtual ~window_draw();
 
 

@@ -15,7 +15,7 @@ namespace draw2d_xlib
 
 
 
-      path(sp(base_application) papp);
+      path(sp(::base::application) papp);
       virtual ~path();
 
 

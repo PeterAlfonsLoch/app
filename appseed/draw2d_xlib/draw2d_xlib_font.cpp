@@ -12,7 +12,7 @@ namespace draw2d_xlib
 {
 
 
-   font::font(sp(base_application) papp) :
+   font::font(sp(::base::application) papp) :
    element(papp)
    {
 

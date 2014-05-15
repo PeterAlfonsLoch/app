@@ -5,7 +5,7 @@ namespace draw2d_xlib
 {
 
 
-   region::region(sp(base_application) papp) :
+   region::region(sp(::base::application) papp) :
       element(papp)
    {
 
@@ -23,7 +23,7 @@ namespace draw2d_xlib
    {
       return (HRGN)(this == NULL ? NULL : get_os_data());
    }
-   region* PASCAL region::from_handle(sp(base_application) papp, HRGN hRgn)
+   region* PASCAL region::from_handle(sp(::base::application) papp, HRGN hRgn)
    {
       return dynamic_cast < region * > (::win::object::from_handle(papp, hRgn));
    }

@@ -83,7 +83,7 @@ namespace lnx
       UINT                                m_dwFinishTimeout;
 
 
-      thread(sp(base_application) papp);
+      thread(sp(::base::application) papp);
       virtual ~thread();
 
 

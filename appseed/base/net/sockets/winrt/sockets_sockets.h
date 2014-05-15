@@ -26,7 +26,7 @@ namespace sockets
 
 
 
-      sockets(sp(base_application) papp);
+      sockets(sp(::base::application) papp);
 
 
       bool initialize1();

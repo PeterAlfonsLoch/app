@@ -8,7 +8,7 @@ Copyright (C) 2005,2007  Anders Hedstrom
 This library is made available under the terms of the GNU GPL.
 
 If you would like to use this library in a closed-source application,
-a separate license agreement is available. For information about 
+a separate license agreement is available. For information about
 the closed-source license agreement for the C++ sockets library,
 please visit http://www.alhem.net/Sockets/license.html and/or
 email license@alhem.net.
@@ -53,15 +53,15 @@ namespace sockets
       port_t                        m_port;
 
 
-      EventHandler(base_application * papp, const EventHandler& ) : element(papp), socket_handler(papp) {} // copy constructor
+      EventHandler(::base::application * papp, const EventHandler& ) : element(papp), socket_handler(papp) {} // copy constructor
       EventHandler& operator=(const EventHandler& ) { return *this; } // assignment operator
 
 
    public:
 
 
-      EventHandler(base_application * papp, logger * = NULL);
-      EventHandler(base_application * papp, mutex &,logger * = NULL);
+      EventHandler(::base::application * papp, logger * = NULL);
+      EventHandler(::base::application * papp, mutex &,logger * = NULL);
       ~EventHandler();
 
       bool GetTimeUntilNextEvent(struct timeval *tv);

@@ -20,7 +20,7 @@ namespace lnx
    public:
 
 
-      ip_enum(sp(base_application) papp);
+      ip_enum(sp(::base::application) papp);
       virtual ~ip_enum();
 
 

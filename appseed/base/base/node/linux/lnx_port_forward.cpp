@@ -15,7 +15,7 @@ namespace lnx
    // Construction/Destruction
    //////////////////////////////////////////////////////////////////////
 
-   port_forward::port_forward(sp(base_application) papp) :
+   port_forward::port_forward(sp(::base::application) papp) :
       element(papp)
    {
 //	   InitializeMembersToNull();

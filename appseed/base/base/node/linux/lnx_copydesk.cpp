@@ -626,7 +626,7 @@ namespace lnx
 {
 
 
-   copydesk::copydesk(sp(base_application) papp) :
+   copydesk::copydesk(sp(::base::application) papp) :
       element(papp),
       ::core::copydesk(papp)
    {

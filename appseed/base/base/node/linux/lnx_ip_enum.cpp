@@ -24,7 +24,7 @@ namespace lnx
 {
 
 
-   ip_enum::ip_enum(sp(base_application) papp) :
+   ip_enum::ip_enum(sp(::base::application) papp) :
       element(papp),
       ::net::ip_enum(papp)
    {

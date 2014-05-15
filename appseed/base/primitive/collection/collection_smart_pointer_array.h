@@ -11,9 +11,9 @@ public:
 
 #if defined(MOVE_SEMANTICS)
 
-   smart_pointer_array(smart_pointer_array && a) 
+   smart_pointer_array(smart_pointer_array && a)
    {
-      
+
       array < smart_pointer < T > >::operator = (a);
 
    }
@@ -607,7 +607,7 @@ namespace xml
 
 
       smart_pointer_array();
-      smart_pointer_array(const array & xmla);
+      smart_pointer_array(const smart_pointer_array & xmla);
 
 
       virtual void xml_export(output_tree & xmlof);
@@ -625,42 +625,12 @@ namespace xml
 
    template < int32_t m_iNodeNameIndex,class TYPE >
    smart_pointer_array<m_iNodeNameIndex,TYPE>::
-      smart_pointer_array(const array & xmla)
+      smart_pointer_array(const smart_pointer_array & xmla)
    {
 
-      operator = (xmla);
+      copy(xmla);
 
    }
-
-   template < int32_t m_iNodeNameIndex,class TYPE >
-   void
-      smart_pointer_array<m_iNodeNameIndex,TYPE>::
-      xml_export(output_tree & xmlof)
-   {
-         xmlof.set_attr("count",this->get_size());
-         for(int32_t i = 0; i < this->get_size(); i++)
-         {
-            node * pnode = xmlof.export_node(xmlof.get_node_name(m_iNodeNameIndex),this->operator[](i));
-            pnode->add_attr("array_index",i);
-         }
-      }
-
-
-   template < int32_t m_iNodeNameIndex,class TYPE >
-   void
-      smart_pointer_array<m_iNodeNameIndex,TYPE>::
-      xml_import(input_tree & xmlif)
-   {
-         int32_t iSize;
-         xmlif.get_attr("count",iSize);
-         set_size_create(iSize);
-         for(int32_t i = 0; i < this->get_size(); i++)
-         {
-            attr_array attra(this->get_app());
-            attra.add("array_index",i);
-            xmlif.import_node(xmlif.get_node_name(m_iNodeNameIndex),attra,this->operator[](i));
-         }
-      }
 
 
 

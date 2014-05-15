@@ -5,7 +5,7 @@ namespace lnx
 {
 
 
-   file_set::file_set(sp(base_application) papp) :
+   file_set::file_set(sp(::base::application) papp) :
       element(papp)
    {
 

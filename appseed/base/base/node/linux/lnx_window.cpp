@@ -113,7 +113,7 @@ namespace lnx
 
    }
 
-   window::window(sp(base_application) papp) :
+   window::window(sp(::base::application) papp) :
       element(papp),
       ::user::interaction(papp)
    {
@@ -3184,7 +3184,7 @@ return 0;
       oswindow m_hwnd;
       HDC m_hdc;
 
-      print_window(sp(base_application) papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
+      print_window(sp(::base::application) papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
          element(papp),
          m_event(papp)
 
@@ -3950,8 +3950,8 @@ throw not_implemented(get_app());
       m_iModalCount++;
 
       m_iaModalThread.add(::GetCurrentThreadId());
-      sp(base_application) pappThis1 =  (m_pthread->m_p);
-      sp(base_application) pappThis2 =  (m_pthread);
+      sp(::base::application) pappThis1 =  (m_pthread->m_p);
+      sp(::base::application) pappThis2 =  (m_pthread);
 
             //Display * d = XOpenDisplay(NULL);
             //XEvent  e;
@@ -4220,7 +4220,7 @@ throw not_implemented(get_app());
    }
 
 
-   /*   view_update_hint::view_update_hint(sp(base_application) papp) :
+   /*   view_update_hint::view_update_hint(sp(::base::application) papp) :
    element(papp)
    {
    }
@@ -4557,7 +4557,7 @@ throw not_implemented(get_app());
       return m_id;
    }
 
-   /*   guie_message_wnd::guie_message_wnd(sp(base_application) papp) :
+   /*   guie_message_wnd::guie_message_wnd(sp(::base::application) papp) :
    element(papp)
    {
    m_puiForward = NULL;

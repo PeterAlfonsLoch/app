@@ -35,7 +35,7 @@ namespace lnx
 
 
       window();
-      window(sp(base_application) papp);
+      window(sp(::base::application) papp);
       virtual void construct(oswindow hwnd);
 
       virtual void on_delete(element * poc);
@@ -350,7 +350,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
             bool bRedraw = TRUE);
       virtual void ShowScrollBar(UINT nBar, bool bShow = TRUE);
       virtual void EnableScrollBarCtrl(int32_t nBar, bool bEnable = TRUE);
-      virtual CScrollBar* GetScrollBarCtrl(int32_t nBar) const;
+//      virtual CScrollBar* GetScrollBarCtrl(int32_t nBar) const;
             // return sibling scrollbar control (or NULL if none)
 
       virtual int32_t ScrollWindowEx(int32_t dx, int32_t dy,
@@ -419,8 +419,8 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       virtual void DragAcceptFiles(bool bAccept = TRUE);
 
    // icon Functions
-      virtual HICON SetIcon(HICON hIcon, bool bBigIcon);
-      virtual HICON GetIcon(bool bBigIcon) const;
+//      virtual HICON SetIcon(HICON hIcon, bool bBigIcon);
+  //    virtual HICON GetIcon(bool bBigIcon) const;
 
    // Context Help Functions
       virtual bool SetWindowContextHelpId(DWORD dwContextHelpId);
@@ -544,8 +544,8 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
    // Input message handler member functions
       void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
       void OnDeadChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-      void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
-      void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+//      void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+  //    void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
       void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
       void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
       void OnLButtonDblClk(UINT nFlags, point point);

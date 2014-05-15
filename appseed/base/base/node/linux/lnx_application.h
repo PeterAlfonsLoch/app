@@ -20,7 +20,7 @@ namespace lnx
 
 
    class CLASS_DECL_LINUX application :
-      virtual public ::application
+      virtual public ::base::application
    {
    public:
 
@@ -32,7 +32,7 @@ namespace lnx
       main_init_data *     m_pmaininitdata;
 
 
-      application(sp(base_application) papp);
+      application(sp(::base::application) papp);
       virtual ~application();
 
       virtual HINSTANCE GetHinstance();
@@ -52,14 +52,14 @@ namespace lnx
       HCURSOR LoadOEMCursor(UINT nIDCursor) const;
 
       // Loads an icon resource.
-      HICON LoadIcon(const char * lpszResourceName) const;
-      HICON LoadIcon(UINT nIDResource) const;
+      //HICON LoadIcon(const char * lpszResourceName) const;
+      ///HICON LoadIcon(UINT nIDResource) const;
 
       // Loads an icon resource; for stock IDI_ values.
-      HICON LoadStandardIcon(const char * lpszIconName) const;
+      //HICON LoadStandardIcon(const char * lpszIconName) const;
 
       // Loads an OEM icon resource; for all OIC_* values.
-      HICON LoadOEMIcon(UINT nIDIcon) const;
+      //HICON LoadOEMIcon(UINT nIDIcon) const;
 
       virtual string get_version();
 
@@ -70,7 +70,7 @@ namespace lnx
       virtual void LockTempMaps();
       virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
       virtual void TermThread(HINSTANCE hInstTerm);
-      virtual const char * RegisterWndClass(UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
+      //virtual const char * RegisterWndClass(UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
 
 
       virtual void SetCurrentHandles();

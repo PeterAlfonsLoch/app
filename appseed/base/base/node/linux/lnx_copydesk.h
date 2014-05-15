@@ -13,7 +13,7 @@ namespace lnx
 
 
 
-      copydesk(sp(base_application) papp);
+      copydesk(sp(::base::application) papp);
       virtual ~copydesk();
 
 

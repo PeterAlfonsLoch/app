@@ -25,16 +25,16 @@ namespace user
       interaction_ptr_array(const ::user::interaction_ptr_array & a)
       {
 
-         operator = (a);
-      
+         copy(a);
+
       }
 
 #ifdef MOVE_SEMANTICS
 
       interaction_ptr_array(const ::user::interaction_ptr_array && a)
-      { 
-      
-         operator = (a);
+      {
+
+         copy(a);
 
       }
 

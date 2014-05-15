@@ -15,11 +15,11 @@ typedef ::map < sp(element), sp(element), sp(element), sp(element) > element_map
 typedef ::map < sp(element), sp(element), ptra, ptra > map_many;
 
 
+namespace base
+{
 
 
-
-
-class CLASS_DECL_BASE ::base::system :
+class CLASS_DECL_BASE system :
    virtual public ::base::application
 {
 public:
@@ -40,12 +40,12 @@ public:
     class os_data
     {
     public:
-        
+
         sp(::user::interaction)                      m_pui;
-        
-        
+
+
     };
-    
+
 #else
 
    class os_data;
@@ -303,6 +303,7 @@ public:
 };
 
 
+} // namespace base
 
 
 

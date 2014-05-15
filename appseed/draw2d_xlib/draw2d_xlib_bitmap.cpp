@@ -4,7 +4,7 @@
 namespace draw2d_xlib
 {
 
-   bitmap::bitmap(sp(base_application) papp) :
+   bitmap::bitmap(sp(::base::application) papp) :
       element(papp),
       m_ui(papp)
    {

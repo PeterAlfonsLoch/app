@@ -16,10 +16,10 @@ namespace draw2d_xlib
 
 // xxx     Gdiplus::Region *       m_pregion;
 
-      //static region * PASCAL from_handle(sp(base_application) papp, HRGN hRgn);
+      //static region * PASCAL from_handle(sp(::base::application) papp, HRGN hRgn);
       //operator HRGN() const;
 
-      region(sp(base_application) papp);
+      region(sp(::base::application) papp);
       virtual ~region();
 
 

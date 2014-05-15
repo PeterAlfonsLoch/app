@@ -42,7 +42,7 @@ namespace os
 
 
 
-      simple_ui(sp(base_application) papp);
+      simple_ui(sp(::base::application) papp);
 
       virtual ~simple_ui();
 

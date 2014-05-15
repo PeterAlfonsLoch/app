@@ -11,7 +11,7 @@ namespace sip
    public:
 
 
-      response(base_application * papp, const string & version = "HTTP/1.0");
+      response(::base::application * papp, const string & version = "HTTP/1.0");
       response(const response& src);
       ~response();
 

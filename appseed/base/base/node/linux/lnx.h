@@ -4,15 +4,12 @@
 #define SECURITY_WIN32
 
 
-#include "core.h"
-
-
 #define CLASS_DECL_LINUX
 
 
 string get_error_message(DWORD dwError);
 
-sp(base_application)     lnx_instantiate_application(sp(base_application) pappSystem, const char * pszId);
+sp(::base::application)     lnx_instantiate_application(sp(::base::application) pappSystem, const char * pszId);
 
 /////////////////////////////////////////////////////////////////////////////
 // explicit initialization for general purpose classes
@@ -117,4 +114,4 @@ WINBOOL GetMessage(
 int32_t CLASS_DECL_LINUX __lnx_main(int32_t argc, char * argv[]);
 
 
-CLASS_DECL_LINUX void vfxThrowFileException(sp(base_application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
+CLASS_DECL_LINUX void vfxThrowFileException(sp(::base::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);

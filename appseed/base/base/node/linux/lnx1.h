@@ -52,7 +52,7 @@ void CLASS_DECL_LINUX __abort();
 
 
 // helpers for registering your own WNDCLASSes
-CLASS_DECL_LINUX const char * __register_window_class(UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
+//CLASS_DECL_LINUX const char * __register_window_class(UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
 
 // xxx CLASS_DECL_LINUX bool __register_class(WNDCLASS* lpWndClass);
 
@@ -81,10 +81,10 @@ CLASS_DECL_LINUX ::lnx::thread * __get_thread();
 CLASS_DECL_LINUX void __set_thread(::thread * pthread);
 CLASS_DECL_LINUX MESSAGE * __get_current_message();
 
-CLASS_DECL_LINUX void __end_thread(sp(base_application) papp, UINT nExitCode, bool bDelete = TRUE);
+CLASS_DECL_LINUX void __end_thread(sp(::base::application) papp, UINT nExitCode, bool bDelete = TRUE);
 
 CLASS_DECL_LINUX void __init_thread();
-CLASS_DECL_LINUX void __term_thread(sp(base_application) papp, HINSTANCE hInstTerm = NULL);
+CLASS_DECL_LINUX void __term_thread(sp(::base::application) papp, HINSTANCE hInstTerm = NULL);
 
 /////////////////////////////////////////////////////////////////////////////
 // Global functions for access to the one and only application
@@ -103,7 +103,7 @@ CLASS_DECL_LINUX void __term_thread(sp(base_application) papp, HINSTANCE hInstTe
   // __in_z LPTSTR lpCmdLine, __in int32_t nCmdShow);
 CLASS_DECL_LINUX void __lnx_term();
 
-CLASS_DECL_LINUX sp(base_application)  __get_app();
+CLASS_DECL_LINUX sp(::base::application)  __get_app();
 CLASS_DECL_LINUX sp(::user::interaction) __get_main_window();
 //CLASS_DECL_LINUX HINSTANCE CLASS_DECL_LINUX System.m_hInstance;
 CLASS_DECL_LINUX HINSTANCE __get_resource_handle();
