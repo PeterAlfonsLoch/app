@@ -1837,22 +1837,34 @@ namespace user
          else
             return id();
       }
+
    }
 
-   void tab::set_cur_tab_by_id(id id, sp(::create_context) pcreatecontext)
+
+   bool tab::set_cur_tab_by_id(id id, sp(::create_context) pcreatecontext)
    {
+
       try
       {
+
          m_spcreatecontext = pcreatecontext;
+
          ::index iPane = get_tab_by_id(id);
+
          if(iPane == -1)
          {
+
             add_tab("", id);
+
             iPane = get_tab_by_id(id);
+
             if(iPane == -1)
-               return;
+               return false;
+
          }
+
          _001SetSel(iPane);
+
       }
       catch(::exit_exception & e)
       {
@@ -1860,18 +1872,22 @@ namespace user
          throw e;
 
       }
-      catch(::exception::exception & e)
+      catch(::exception::exception &)
       {
 
-         if(!Application.on_run_exception(e))
-            throw exit_exception(get_app());
+         return false;
 
       }
       catch(...)
       {
+
+         return false;
+
       }
 
       m_spcreatecontext = (sp(::create_context)) NULL;
+
+      return true;
 
    }
 

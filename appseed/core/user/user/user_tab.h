@@ -163,7 +163,7 @@ namespace user
       virtual void _001SetTabCallback(tab_callback * pcallback);
       virtual bool _001IsAddTab(::index iTab);
       virtual void _001OnDropTab(::index iTab, e_position eposition);
-      virtual void set_cur_tab_by_id(id id, sp(::create_context) pcreatecontext = NULL);
+      virtual bool set_cur_tab_by_id(id id, sp(::create_context) pcreatecontext = NULL);
 
       virtual id get_cur_tab_id();
       virtual id get_current_id();

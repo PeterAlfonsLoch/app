@@ -395,33 +395,57 @@ namespace user
 
    }
 
+
    void window_interface::Invalidate(bool bErase)
    {
+
       UNREFERENCED_PARAMETER(bErase);
+
       //ASSERT(::IsWindow(GetHandle()));
       //::InvalidateRect(GetHandle(), NULL, bErase);
+
    }
+
 
    bool window_interface::Redraw(rect_array & recta)
    {
+
+      bool bOk = true;
+
       for(int32_t i = 0; i < recta.get_size(); i++)
       {
-         get_wnd()->RedrawWindow(recta[i]);
+
+         if(!get_wnd()->RedrawWindow(recta[i]))
+            bOk = false;
+
       }
-      return true;
+
+      return bOk;
+
    }
+
 
    bool window_interface::Redraw(LPCRECT lprect, ::draw2d::region * prgn)
    {
-      get_wnd()->RedrawWindow(lprect, prgn, RDW_INVALIDATE);
-      return true;
+      
+      if(get_wnd() == NULL)
+         return false;
+
+      return get_wnd()->RedrawWindow(lprect, prgn, RDW_INVALIDATE);
+      
    }
+
 
    bool window_interface::Redraw(::draw2d::graphics * pdc)
    {
+
       UNREFERENCED_PARAMETER(pdc);
-      get_wnd()->RedrawWindow();
-      return true;
+
+      if(get_wnd() == NULL)
+         return false;
+
+      return get_wnd()->RedrawWindow();
+
    }
 
 
