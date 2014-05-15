@@ -696,6 +696,8 @@ namespace windows
 
       virtual LONG GetWindowLong(int32_t nIndex);
       virtual LONG SetWindowLong(int32_t nIndex,LONG lValue);
+      virtual LONG_PTR GetWindowLongPtr(int32_t nIndex);
+      virtual LONG_PTR SetWindowLongPtr(int32_t nIndex,LONG_PTR lValue);
 
       virtual void _001BaseWndInterfaceMap();
 

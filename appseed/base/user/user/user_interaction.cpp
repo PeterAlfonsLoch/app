@@ -1813,6 +1813,21 @@ namespace user
          return m_pimpl->SetWindowLong(nIndex, lValue);
    }
 
+   LONG_PTR interaction::GetWindowLongPtr(int32_t nIndex)
+   {
+      if(m_pimpl == NULL)
+         return 0;
+      else
+         return m_pimpl->GetWindowLongPtr(nIndex);
+   }
+
+   LONG_PTR interaction::SetWindowLongPtr(int32_t nIndex,LONG_PTR lValue)
+   {
+      if(m_pimpl == NULL)
+         return 0;
+      else
+         return m_pimpl->SetWindowLongPtr(nIndex,lValue);
+   }
 
    bool interaction::RedrawWindow(LPCRECT lpRectUpdate,
       ::draw2d::region* prgnUpdate,

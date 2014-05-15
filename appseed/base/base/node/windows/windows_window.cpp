@@ -4649,6 +4649,15 @@ namespace windows
       return ::SetWindowLong(get_handle(),nIndex,lValue);
    }
 
+   LONG_PTR window::GetWindowLongPtr(int32_t nIndex)
+   {
+      return ::GetWindowLongPtr(get_handle(),nIndex);
+   }
+
+   LONG_PTR window::SetWindowLongPtr(int32_t nIndex,LONG_PTR lValue)
+   {
+      return ::SetWindowLongPtr(get_handle(),nIndex,lValue);
+   }
 
    sp(::user::interaction) window::release_capture()
    {
