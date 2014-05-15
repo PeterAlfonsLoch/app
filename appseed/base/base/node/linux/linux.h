@@ -9,7 +9,7 @@
 
 string get_error_message(DWORD dwError);
 
-sp(::base::application)     lnx_instantiate_application(sp(::base::application) pappSystem, const char * pszId);
+sp(::base::application)     linux_instantiate_application(sp(::base::application) pappSystem, const char * pszId);
 
 /////////////////////////////////////////////////////////////////////////////
 // explicit initialization for general purpose classes
@@ -50,36 +50,36 @@ CLASS_DECL_LINUX void AfxResetMsgcache();
 #define _AfxHookWindowCreate    AfxHookWindowCreate
 #define _AfxUnhookWindowCreate  AfxUnhookWindowCreate
 
-#include "lnx1.h"
+#include "linux1.h"
 #include "implementation.h"
-#include "lnx_state.h"
+//#include "linux_state.h"
 // xxx #include "handle.h"
-// xxx #include "lnx_file_find.h"
-#include "lnx_dir.h"
-// xxx #include "lnx_folder_watch.h"
-#include "lnx_factory_exchange.h"
-#include "lnx_window_draw.h"
-#include "lnx_thread.h"
-#include "lnx_window.h"
-#include "lnx_os.h"
-#include "lnx_port_forward.h"
-#include "lnx_copydesk.h"
-#include "lnx_crypt.h"
-#include "lnx_ip_enum.h"Ķ
+// xxx #include "linux_file_find.h"
+#include "linux_dir.h"
+// xxx #include "linux_folder_watch.h"
+#include "linux_factory_exchange.h"
+#include "linux_window_draw.h"
+#include "linux_thread.h"
+#include "linux_window.h"
+#include "linux_os.h"
+#include "linux_port_forward.h"
+#include "linux_copydesk.h"
+#include "linux_crypt.h"
+#include "linux_ip_enum.h"
 
 #define NULL_REF(class) (*((class *) NULL))
 // xxx CLASS_DECL_LINUX WNDPROC AfxGetAfxWndProc();
 #define AfxWndProc (*AfxGetAfxWndProc())
 
-#define LNX_THREAD(pthread) (dynamic_cast < ::linux::thread * > (dynamic_cast < ::thread * >(pthread)))
-#define LNX_WINDOW(pwnd) (dynamic_cast < ::linux::window * > (((sp(::window))(pwnd)).m_p))
-#define LNX_DC(pgraphics) (dynamic_cast < ::linux::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics)))
+#define linux_THREAD(pthread) (dynamic_cast < ::linux::thread * > (dynamic_cast < ::thread * >(pthread)))
+#define linux_WINDOW(pwnd) (dynamic_cast < ::linux::window * > (((sp(::window))(pwnd)).m_p))
+#define linux_DC(pgraphics) (dynamic_cast < ::linux::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics)))
 #define SP_DC(pgraphics) (dynamic_cast < ::linux::graphics * > (( ::draw2d::graphics * )(pgraphics)))
-#define LNX_HDC(pgraphics) ((HDC)*(dynamic_cast < ::linux::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics))))
+#define linux_HDC(pgraphics) ((HDC)*(dynamic_cast < ::linux::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics))))
 #define SP_HDC(pgraphics) ((HDC)*(dynamic_cast < ::linux::graphics * > ((::draw2d::graphics *)(pgraphics))))
-#define LNX_DIB(pdib) (dynamic_cast < ::linux::dib * > (dynamic_cast < ::draw2d::dib * >(pdib)))
+#define linux_DIB(pdib) (dynamic_cast < ::linux::dib * > (dynamic_cast < ::draw2d::dib * >(pdib)))
 
-#include "lnx_shell.h"
+#include "linux_shell.h"
 
 CLASS_DECL_LINUX void __trace_message(const char * lpszPrefix, ::signal_details * pobj);
 CLASS_DECL_LINUX void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
@@ -92,7 +92,7 @@ CLASS_DECL_LINUX void AfxProcessWndProcException(::exception::base*, ::signal_de
 CLASS_DECL_LINUX void __cdecl __pre_translate_message(::signal_details * pobj);
 
 
-#include "lnx_application.h"
+#include "linux_application.h"
 
 
 
@@ -111,10 +111,10 @@ WINBOOL GetMessage(
 
 
 
-int32_t CLASS_DECL_LINUX __lnx_main(int32_t argc, char * argv[]);
+int32_t CLASS_DECL_LINUX __linux_main(int32_t argc, char * argv[]);
 
 
 CLASS_DECL_LINUX void vfxThrowFileException(sp(::base::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
 
-#include "lnx_internal.h"
+#include "linux_internal.h"

@@ -11,7 +11,7 @@ namespace linux
 //#include "types.h"
 //#include "template.h"
 
-#include "lnx_thread_slots.h"
+#include "linux_thread_slots.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // ___DEBUG_STATE
