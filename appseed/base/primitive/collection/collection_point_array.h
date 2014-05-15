@@ -4,7 +4,9 @@
 
 
 class CLASS_DECL_BASE point_array :
-   public array < point >
+   public array < point >,
+   virtual public ::xml::exportable,
+   virtual public ::xml::importable
 {
 public:
    __inline point_array() : array < point >() {}
@@ -25,6 +27,9 @@ public:
    __inline index add(int32_t x, int32_t y) {return array < point >::add(point(x, y)); }
    __inline index add(POINT point) {return add(point.x, point.y); }
    __inline point_array & operator =(const point_array & pointset) { copy(pointset); return *this; }
+
+   virtual void xml_import(::xml::input_tree & xmlif);
+   virtual void xml_export(::xml::output_tree & xmlof);
 
 };
 

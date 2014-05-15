@@ -39,6 +39,51 @@ void point_array::rotate(double dAngle)
 
 }
 
+
+
+
+void point_array::xml_import(::xml::input_tree & xmlif)
+{
+
+   remove_all();
+
+   var varCount;
+
+   xmlif.import_node("count",varCount);
+
+   for(index i = 0; i < varCount.int32(); i++)
+   {
+
+      var x;
+
+      xmlif.import_node("x" + str::from(i),x);
+
+      var y;
+
+      xmlif.import_node("y" + str::from(i),y);
+
+      add(point(x.int32(),y.int32()));
+
+   }
+
+}
+
+void point_array::xml_export(::xml::output_tree & xmlof)
+{
+
+   xmlof.export_node("count",get_size());
+
+   for(index i = 0; i < get_count(); i++)
+   {
+
+      xmlof.export_node("x" + str::from(i),element_at(i).x);
+
+      xmlof.export_node("y" + str::from(i),element_at(i).y);
+
+   }
+
+}
+
 	/*public void translatePolygonD(PolygonD p, int32_t dx, int32_t dy)
 		{
 		double lx, ly;

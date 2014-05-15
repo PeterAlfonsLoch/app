@@ -5,7 +5,8 @@ namespace xml
 {
 
 
-   class CLASS_DECL_BASE tree_schema  
+   class CLASS_DECL_BASE tree_schema :
+      virtual public ::object
    {
    public:
    

@@ -478,7 +478,7 @@ public:
 
       for(index i = 0; i < c; i++)
       {
-         this->add(a.operator[](i));
+         this->add(a.element_at(i));
       }
 
       return *this;
@@ -593,6 +593,86 @@ public:
 };
 
 
-#define spa(TYPE) smart_pointer_array < TYPE >
+namespace xml
+{
+
+
+   template < int32_t m_iNodeNameIndex, class TYPE >
+   class smart_pointer_array :
+      public ::smart_pointer_array < TYPE >,
+      public exportable,
+      public importable
+   {
+   public:
+
+
+      smart_pointer_array();
+      smart_pointer_array(const array & xmla);
+
+
+      virtual void xml_export(output_tree & xmlof);
+      virtual void xml_import(input_tree & xmlif);
+
+
+   };
+
+
+   template < int32_t m_iNodeNameIndex,class TYPE >
+   smart_pointer_array<m_iNodeNameIndex,TYPE>::
+      smart_pointer_array()
+   {
+      }
+
+   template < int32_t m_iNodeNameIndex,class TYPE >
+   smart_pointer_array<m_iNodeNameIndex,TYPE>::
+      smart_pointer_array(const array & xmla)
+   {
+
+      operator = (xmla);
+
+   }
+
+   template < int32_t m_iNodeNameIndex,class TYPE >
+   void
+      smart_pointer_array<m_iNodeNameIndex,TYPE>::
+      xml_export(output_tree & xmlof)
+   {
+         xmlof.set_attr("count",this->get_size());
+         for(int32_t i = 0; i < this->get_size(); i++)
+         {
+            node * pnode = xmlof.export_node(xmlof.get_node_name(m_iNodeNameIndex),this->operator[](i));
+            pnode->add_attr("array_index",i);
+         }
+      }
+
+
+   template < int32_t m_iNodeNameIndex,class TYPE >
+   void
+      smart_pointer_array<m_iNodeNameIndex,TYPE>::
+      xml_import(input_tree & xmlif)
+   {
+         int32_t iSize;
+         xmlif.get_attr("count",iSize);
+         set_size_create(iSize);
+         for(int32_t i = 0; i < this->get_size(); i++)
+         {
+            attr_array attra(this->get_app());
+            attra.add("array_index",i);
+            xmlif.import_node(xmlif.get_node_name(m_iNodeNameIndex),attra,this->operator[](i));
+         }
+      }
+
+
+
+} // namespace xml
+
+
+
+
+
+
+
+#define spa(TYPE) ::smart_pointer_array < TYPE >
+#define xmlspa(TYPE) ::smart_pointer_array < TYPE >
 
 typedef spa(waitable) sync_object_ptra;
