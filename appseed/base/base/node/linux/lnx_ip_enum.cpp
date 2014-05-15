@@ -20,7 +20,7 @@ http://www.doctort.org/adam/
 #include <stdio.h>
 #include <arpa/inet.h>
 
-namespace lnx
+namespace linux
 {
 
 

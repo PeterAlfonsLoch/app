@@ -3,7 +3,7 @@
 #define WH_SHSTDAPI(type) type
 
 
-namespace lnx
+namespace linux
 {
 
 class CLASS_DECL_LINUX shell
@@ -492,5 +492,5 @@ inline WINBOOL shell::MoveFile(const char * lpExistingFileName, const char * lpN
 */
 
 
-} // namespace lnx
+} // namespace linux
 

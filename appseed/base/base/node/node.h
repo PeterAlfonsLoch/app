@@ -15,7 +15,7 @@ void node_factory_exchange(sp(::base::application) papp);
 
 #elif defined(LINUX)
 
-#include "linux/lnx.h"
+#include "linux/linux.h"
 
 #endif
 

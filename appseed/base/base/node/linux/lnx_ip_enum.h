@@ -10,7 +10,7 @@ Copyright (c) 1998 by PJ Naughter.
 */
 
 
-namespace lnx
+namespace linux
 {
 
 
@@ -30,7 +30,7 @@ namespace lnx
    };
 
 
-} // namespace lnx
+} // namespace linux
 
 
 

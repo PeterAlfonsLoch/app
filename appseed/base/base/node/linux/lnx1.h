@@ -1,20 +1,20 @@
 #pragma once
 
 
-namespace lnx
+namespace linux
 {
 
 
    class thread;
 
-   class lnx
+   class linux
    {
       int32_t function();
    };
 
 
 
-} // namespace lnx
+} // namespace linux
 
 
 
@@ -77,7 +77,7 @@ typedef void (__MSG_CALL ::thread::*__PMSGT)();
 //CLASS_DECL_LINUX bool __diagnostic_init();
 
 
-CLASS_DECL_LINUX ::lnx::thread * __get_thread();
+CLASS_DECL_LINUX ::linux::thread * __get_thread();
 CLASS_DECL_LINUX void __set_thread(::thread * pthread);
 CLASS_DECL_LINUX MESSAGE * __get_current_message();
 

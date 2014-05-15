@@ -100,7 +100,7 @@ int32_t CLASS_DECL_LINUX __lnx_main(int32_t argc, char * argv[])
    int32_t nReturnCode = 0;
 
 
-   ::lnx::main_init_data * pinitmaindata  = new ::lnx::main_init_data;
+   ::linux::main_init_data * pinitmaindata  = new ::linux::main_init_data;
 
 
    pinitmaindata->m_hInstance             = NULL;
@@ -235,7 +235,7 @@ int32_t CLASS_DECL_LINUX ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, 
 
       int32_t nReturnCode = 0;
 
-      ::lnx::main_init_data * pinitmaindata  = new ::lnx::main_init_data;
+      ::linux::main_init_data * pinitmaindata  = new ::linux::main_init_data;
 
       pinitmaindata->m_hInstance             = hInstance;
       pinitmaindata->m_hPrevInstance         = hPrevInstance;

@@ -3,7 +3,7 @@
 //const UINT UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION = ::RegisterWindowMessageA("UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION-{7C29C80A_5712_40e8_A124_A82E4B2795A7}");
 #define UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION (WM_APP + 123)
 
-namespace lnx
+namespace linux
 {
 
    // forward declaration of global function which is included at the end of this file

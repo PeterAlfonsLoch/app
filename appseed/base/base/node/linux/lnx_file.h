@@ -13,7 +13,7 @@ void CLASS_DECL_LINUX vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 // File - raw unbuffered disk file I/O
 
 
-namespace lnx
+namespace linux
 {
 
 
@@ -119,7 +119,7 @@ namespace lnx
    }  // namespace file_exception
 
 
-} // namepsace lnx
+} // namepsace linux
 
 
 

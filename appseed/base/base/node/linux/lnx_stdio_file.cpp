@@ -2,14 +2,14 @@
 
 #include <fcntl.h>
 
-namespace lnx
+namespace linux
 {
 
 
 
 stdio_file::stdio_file(sp(::base::application) papp) :
    element(papp),
-   ::lnx::file(papp)
+   ::linux::file(papp)
 {
    m_pStream = NULL;
 }
@@ -35,7 +35,7 @@ bool stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
    }
 
    m_pStream = NULL;
-   //if (!::lnx::file::open(lpszFileName, (nOpenFlags & ~::file::type_text)))
+   //if (!::linux::file::open(lpszFileName, (nOpenFlags & ~::file::type_text)))
      // return FALSE;
 
 //   ASSERT(m_hFile != hFileNull);
@@ -94,7 +94,7 @@ bool stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
 //         pException->m_cause = ::file::exception::OsErrorToException(errno);
       }
 
-      ::lnx::file::Abort(); // close m_hFile
+      ::linux::file::Abort(); // close m_hFile
       return FALSE;
    }
 
@@ -338,7 +338,7 @@ void stdio_file::UnlockRange(DWORD_PTR /* dwPos */, DWORD_PTR /* dwCount */)
 #ifdef _DEBUG
 void stdio_file::dump(dump_context & dumpcontext) const
 {
-   ::lnx::file::dump(dumpcontext);
+   ::linux::file::dump(dumpcontext);
 
    dumpcontext << "m_pStream = " << (void *)m_pStream;
    dumpcontext << "\n";
@@ -378,4 +378,4 @@ DWORD_PTR stdio_file::get_length() const
 }
 
 
-} // namespace lnx
+} // namespace linux

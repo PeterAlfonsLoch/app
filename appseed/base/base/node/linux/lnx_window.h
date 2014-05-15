@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace lnx
+namespace linux
 {
 
 
@@ -710,7 +710,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
    };
 
 
-} // namespace lnx
+} // namespace linux
 
 
 

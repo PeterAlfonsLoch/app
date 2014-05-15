@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace lnx
+namespace linux
 {
 
 
@@ -64,6 +64,6 @@ namespace lnx
    }
 
 
-} // namespace lnx
+} // namespace linux
 
 

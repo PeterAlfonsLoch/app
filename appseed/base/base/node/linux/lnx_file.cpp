@@ -23,7 +23,7 @@ __STATIC inline bool IsDirSep(WCHAR ch)
 }
 
 
-namespace lnx
+namespace linux
 {
 
 
@@ -1677,16 +1677,16 @@ void CLASS_DECL_LINUX vfxThrowFileException(sp(::base::application) papp, int32_
 {
 #ifdef DEBUG
    const char * lpsz;
-   if (cause >= 0 && cause < _countof(::lnx::rgszFileExceptioncause))
-      lpsz = ::lnx::rgszFileExceptioncause[cause];
+   if (cause >= 0 && cause < _countof(::linux::rgszFileExceptioncause))
+      lpsz = ::linux::rgszFileExceptioncause[cause];
    else
-      lpsz = ::lnx::szUnknown;
+      lpsz = ::linux::szUnknown;
    //   TRACE3("file exception: %hs, file %s, App error information = %ld.\n", lpsz, (lpszFileName == NULL) ? "Unknown" : lpszFileName, lOsError);
 #endif
    throw ::file::exception(papp, cause, lOsError, lpszFileName);
 }
 
-namespace lnx
+namespace linux
 {
 
 
@@ -1717,5 +1717,5 @@ namespace lnx
     }
 
 
-} // namespace lnx
+} // namespace linux
 

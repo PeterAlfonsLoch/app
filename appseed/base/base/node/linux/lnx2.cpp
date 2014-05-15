@@ -16,7 +16,7 @@
    { ASSERT(afxCurrentAppName != NULL); return afxCurrentAppName; }
  CLASS_DECL_LINUX sp(::user::interaction) __get_main_window()
 {
-      ::thread* pThread = dynamic_cast < ::thread * > (::lnx::get_thread());
+      ::thread* pThread = dynamic_cast < ::thread * > (::linux::get_thread());
       return pThread != NULL ? pThread->GetMainWnd().m_p : NULL;
  }
 

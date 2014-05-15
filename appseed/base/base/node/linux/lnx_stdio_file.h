@@ -5,12 +5,12 @@
 // STDIO file implementation
 
 
-namespace lnx
+namespace linux
 {
 
 
    class stdio_file :
-      virtual public ::lnx::file,
+      virtual public ::linux::file,
       virtual public ::file::text_buffer
    {
    public:
@@ -50,6 +50,6 @@ namespace lnx
 
 
 
-} // namespace lnx
+} // namespace linux
 
 

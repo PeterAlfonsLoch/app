@@ -397,24 +397,7 @@ bool CLASS_DECL_LINUX __is_module_dll()
    return __get_module_state()->m_bDLL;
 }
 
-bool CLASS_DECL_LINUX __init_current_state_app()
-{
-   sp(::base::application) pApp = __get_module_state()->m_pCurrentWinApp;
-   if (pApp != NULL && !pApp->m_pplaneapp->initialize_instance())
-   {
-      // Init Failed
-      try
-      {
-         pApp->m_pplaneapp->exit();
-      }
-      catch(...)
-      {
-      }
-      __lnx_term();
-      return FALSE;
-   }
-   return TRUE;
-}
+
 
 CLASS_DECL_LINUX __MODULE_THREAD_STATE * __get_module_thread_state()
 {

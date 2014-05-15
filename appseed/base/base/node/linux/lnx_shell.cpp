@@ -234,7 +234,7 @@ int32_t __cdecl _validdrive (
         return 1;
 }*/
 
-namespace lnx
+namespace linux
 {
 
 
@@ -749,4 +749,4 @@ oswindow shell::_CreateWindowEx(
 }
 */
 
-} // namespace lnx
+} // namespace linux

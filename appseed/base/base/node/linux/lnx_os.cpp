@@ -4,7 +4,7 @@
 #undef USERNAME_LENGTH // mysql one
 
 
-namespace lnx
+namespace linux
 {
 
 
@@ -909,7 +909,7 @@ namespace lnx
    }
 
 
-} // namespace lnx
+} // namespace linux
 
 
 

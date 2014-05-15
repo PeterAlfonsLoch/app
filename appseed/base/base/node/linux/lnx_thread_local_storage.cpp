@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace lnx{
+namespace linux{
 
 /////////////////////////////////////////////////////////////////////////////
 // no_track_object
@@ -227,4 +227,4 @@ __thread BYTE _gen_ThreadData[sizeof(thread_local_storage)];
 __thread thread_local_storage * __thread_data;
 
 
-} // namespace lnx
+} // namespace linux

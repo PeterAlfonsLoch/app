@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace lnx
+namespace linux
 {
 
 
@@ -62,7 +62,7 @@ namespace lnx
    };
 
 
-} // namespace lnx
+} // namespace linux
 
 
 

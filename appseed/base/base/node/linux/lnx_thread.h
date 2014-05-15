@@ -4,7 +4,7 @@
 WINBOOL AfxInternalPreTranslateMessage(MESSAGE* pMsg);
 
 
-namespace lnx
+namespace linux
 {
 
 
@@ -210,7 +210,7 @@ namespace lnx
    CLASS_DECL_LINUX ::thread * get_thread();
 
 
-} // namespace lnx
+} // namespace linux
 
 
 

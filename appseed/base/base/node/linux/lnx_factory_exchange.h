@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace lnx
+namespace linux
 {
 
    class CLASS_DECL_LINUX factory_exchange :
@@ -13,5 +13,5 @@ namespace lnx
    };
 
 
-} // namespace lnx
+} // namespace linux
 

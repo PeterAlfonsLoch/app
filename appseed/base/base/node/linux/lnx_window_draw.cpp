@@ -22,7 +22,7 @@ public:
 };
 
 
-namespace lnx
+namespace linux
 {
 
 
@@ -274,7 +274,7 @@ namespace lnx
          //::ClientToScreen(hwndParam, &rectWindow.top_left());
          //::ClientToScreen(hwndParam, &rectWindow.bottom_right());
 
-         //(dynamic_cast < ::lnx::graphics * >(pdc))->SetViewportOrg(rectWindow.left, rectWindow.top);
+         //(dynamic_cast < ::linux::graphics * >(pdc))->SetViewportOrg(rectWindow.left, rectWindow.top);
 
 
          if(ptwi != NULL)
@@ -296,7 +296,7 @@ namespace lnx
 /*            ::DefWindowProc(
                (oswindow) hwndParam,
                (bWin4 ? WM_PRINT : WM_PAINT),
-               (WPARAM)((dynamic_cast<::lnx::graphics * >(pdc))->get_os_data()),
+               (WPARAM)((dynamic_cast<::linux::graphics * >(pdc))->get_os_data()),
                (LPARAM)(bWin4 ? PRF_CHILDREN | PRF_CLIENT : 0));*/
             //::RedrawWindow(hwndParam, NULL, rgnClient, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOCHILDREN);
          }
@@ -421,7 +421,7 @@ namespace lnx
       if(m_pbuffer->GetBuffer()->get_os_data() == NULL)
          return true;
 
-      ::draw2d::graphics * pdc = (dynamic_cast < ::lnx::graphics * > (m_pbuffer->GetBuffer()));
+      ::draw2d::graphics * pdc = (dynamic_cast < ::linux::graphics * > (m_pbuffer->GetBuffer()));
 
       if(pdc == NULL)
       {
@@ -902,7 +902,7 @@ namespace lnx
       ::GetWindowRect((::oswindow) oswindow, rectWindow);
 
 
-   //   sp(::window) pwnd = ::lnx::window::from_handle(oswindow);
+   //   sp(::window) pwnd = ::linux::window::from_handle(oswindow);
 
       if(!TwfGetTopWindow(
             hwndParam,
@@ -1268,7 +1268,7 @@ throw not_implemented(get_app());
 ////         m_pbuffer->m_spdib->fill_channel(0xc0, visual::rgba::channel_alpha);
 //
 //         ::UpdateLayeredWindow((oswindow) hwndParam, hdcScreen, &pt, &sz,
-//            (HDC)(dynamic_cast<::lnx::graphics * >(m_pbuffer->GetBuffer()))->get_os_data(),
+//            (HDC)(dynamic_cast<::linux::graphics * >(m_pbuffer->GetBuffer()))->get_os_data(),
 //            &pt, 0, &blendPixelFunction, ULW_ALPHA);
 //
 //         class rect rectWin;
@@ -1308,7 +1308,7 @@ throw not_implemented(get_app());
 //         (int32_t) rectOutputClient.top,
 //         (int32_t) rectOutputClient.width(),
 //         (int32_t) rectOutputClient.height(),
-//         (HDC)(dynamic_cast<::lnx::graphics * >(m_pbuffer->GetBuffer()))->get_os_data(),
+//         (HDC)(dynamic_cast<::linux::graphics * >(m_pbuffer->GetBuffer()))->get_os_data(),
 //         (int32_t) rectWindow.left,
 //         (int32_t) rectWindow.top,
 //         SRCCOPY);
@@ -1351,4 +1351,4 @@ throw not_implemented(get_app());
 
 
 
-} // namespace lnx
+} // namespace linux

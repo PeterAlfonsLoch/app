@@ -18,11 +18,11 @@
 	//{
 
 
-struct ___THREAD_STARTUP : ::lnx::thread_startup
+struct ___THREAD_STARTUP : ::linux::thread_startup
 {
    // following are "in" parameters to thread startup
    ___THREAD_STATE* pThreadState;    // thread state of parent thread
-   ::lnx::thread* pThread;    // thread for new thread
+   ::linux::thread* pThread;    // thread for new thread
    DWORD dwCreateFlags;    // thread creation flags
    _PNH pfnNewHandler;     // new handler for new thread
 
@@ -55,10 +55,10 @@ WINBOOL GetMessage(
        return TRUE;
     }
 */
-namespace lnx
+namespace linux
 {
    class thread;
-} // namespace lnx
+} // namespace linux
 
 WINBOOL CLASS_DECL_LINUX AfxInternalPumpMessage();
 LRESULT CLASS_DECL_LINUX AfxInternalProcessWndProcException(::exception::base*, const MESSAGE* pMsg);
@@ -67,7 +67,7 @@ WINBOOL AfxInternalIsIdleMessage(MESSAGE* pMsg);
 __STATIC void CLASS_DECL_LINUX __pre_init_dialog(sp(::user::interaction )pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
 __STATIC void CLASS_DECL_LINUX __post_init_dialog(sp(::user::interaction) pWnd, const RECT& rectOld, DWORD dwStyleOld);
 
-namespace lnx
+namespace linux
 {
 
    thread_startup::thread_startup() :
@@ -96,7 +96,7 @@ UINT APIENTRY __thread_entry(void * pParam)
    //ASSERT(pStartup->hEvent != NULL);
    ASSERT(!pStartup->bError);
 
-   ::lnx::thread* pThread = pStartup->pThread;
+   ::linux::thread* pThread = pStartup->pThread;
 
 //   pThread->::se_translator::attach();
 
@@ -159,11 +159,11 @@ UINT APIENTRY __thread_entry(void * pParam)
 }
 
 
-CLASS_DECL_LINUX ::lnx::thread * __get_thread()
+CLASS_DECL_LINUX ::linux::thread * __get_thread()
 {
    // check for current thread in module thread state
    __MODULE_THREAD_STATE* pState = __get_module_thread_state();
-   ::lnx::thread* pThread = pState->m_pCurrentWinThread;
+   ::linux::thread* pThread = pState->m_pCurrentWinThread;
    return pThread;
 }
 
@@ -172,7 +172,7 @@ CLASS_DECL_LINUX void __set_thread(::thread * pthread)
 {
    // check for current thread in module thread state
    __MODULE_THREAD_STATE* pState = __get_module_thread_state();
-   pState->m_pCurrentWinThread = dynamic_cast < ::lnx::thread * > (pthread->::thread::m_p.m_p);
+   pState->m_pCurrentWinThread = dynamic_cast < ::linux::thread * > (pthread->::thread::m_p.m_p);
 }
 
 
@@ -223,7 +223,7 @@ void AfxInternalPreTranslateMessage(::signal_details * pobj)
 
       //   ASSERT_VALID(this);
 
-      ::thread *pThread = dynamic_cast < ::thread * > (::lnx::get_thread());
+      ::thread *pThread = dynamic_cast < ::thread * > (::linux::get_thread());
       if( pThread )
       {
          // if this is a thread-message, short-circuit this function
@@ -382,7 +382,7 @@ WINBOOL __cdecl __is_idle_message(::signal_details * pobj)
 
 WINBOOL __cdecl __is_idle_message(MESSAGE* pMsg)
 {
-   lnx::thread * pThread = __get_thread();
+   linux::thread * pThread = __get_thread();
    if(pThread)
       return pThread->is_idle_message( pMsg );
    else
@@ -415,7 +415,7 @@ void CLASS_DECL_LINUX __end_thread(sp(::base::application) papp, UINT nExitCode,
 {
    // remove current thread object from primitive::memory
    __MODULE_THREAD_STATE* pState = __get_module_thread_state();
-   ::lnx::thread* pThread = pState->m_pCurrentWinThread;
+   ::linux::thread* pThread = pState->m_pCurrentWinThread;
    if (pThread != NULL)
    {
       ASSERT_VALID(pThread);
@@ -433,7 +433,7 @@ void CLASS_DECL_LINUX __end_thread(sp(::base::application) papp, UINT nExitCode,
 //   _endthreadex(nExitCode);
 }
 
-extern __thread ::lnx::thread_local_storage * __thread_data;
+extern __thread ::linux::thread_local_storage * __thread_data;
 void CLASS_DECL_LINUX __term_thread(sp(::base::application) papp, HINSTANCE hInstTerm)
 {
 
@@ -453,8 +453,8 @@ void CLASS_DECL_LINUX __term_thread(sp(::base::application) papp, HINSTANCE hIns
    try
    {
       // cleanup the rest of the thread local data
-      if (::lnx::__thread_data != NULL)
-         ::lnx::__thread_data->delete_data();
+      if (::linux::__thread_data != NULL)
+         ::linux::__thread_data->delete_data();
          //__thread_data->DeleteValues(hInstTerm, FALSE);
    }
    catch( ::exception::base* e )
@@ -481,7 +481,7 @@ void CLASS_DECL_LINUX AfxInitThread()
    }
 }
 
-namespace lnx
+namespace linux
 {
 
    void thread::set_p(::thread * p)
@@ -1790,7 +1790,7 @@ return false;
 
    CLASS_DECL_LINUX ::thread * get_thread()
    {
-      ::lnx::thread * pwinthread = __get_thread();
+      ::linux::thread * pwinthread = __get_thread();
       if(pwinthread == NULL)
          return NULL;
       return pwinthread->m_p;
@@ -1866,7 +1866,7 @@ return false;
       return m_nTempMapLock != 0;
    }
 
-   int32_t thread::thread_entry(::lnx::thread_startup * pstartup)
+   int32_t thread::thread_entry(::linux::thread_startup * pstartup)
    {
 
       ASSERT(pstartup != NULL);
@@ -1883,7 +1883,7 @@ return false;
 }
 
 
-      ::lnx::thread* pThread = dynamic_cast < ::lnx::thread * > (pstartup->m_pthread);
+      ::linux::thread* pThread = dynamic_cast < ::linux::thread * > (pstartup->m_pthread);
 
       sp(::base::application) papp =  (get_app());
       m_evFinish.ResetEvent();
@@ -2492,7 +2492,7 @@ return false;
 ///////
 
 
-} // namespace lnx
+} // namespace linux
 
 
 
@@ -2609,7 +2609,7 @@ return TRUE; */
 //   ::window's accelerator table
 /*   if (pMainWnd != NULL)
 {
-sp(::window) pWnd = ::lnx::window::from_handle(pMsg->hwnd);
+sp(::window) pWnd = ::linux::window::from_handle(pMsg->hwnd);
 if (pWnd != NULL && LNX_WINDOW(pWnd)->GetTopLevelParent() != pMainWnd)
 return pMainWnd->pre_translate_message(pMsg);
 }
@@ -2742,7 +2742,7 @@ void CLASS_DECL_LINUX __init_thread()
 
 }
 
-namespace lnx
+namespace linux
 {
 
 /*
@@ -3000,7 +3000,7 @@ WINBOOL thread::DispatchThreadMessageEx(MESSAGE* pmsg)
 {
 if(pmsg->message == WM_APP + 1984 && pmsg->wParam == 77)
 {
-::ca2::scoped_ptr < lnx::message > spmessage(pmsg->lParam);
+::ca2::scoped_ptr < linux::message > spmessage(pmsg->lParam);
 spmessage->send();
 return TRUE;
 }
@@ -3113,7 +3113,7 @@ return AfxInternalProcessWndProcException( e, pMsg );
             if(e.type == Expose)
             {
 
-               ::lnx::window * pw = LNX_WINDOW(w.get_user_interaction()->m_pimpl);
+               ::linux::window * pw = LNX_WINDOW(w.get_user_interaction()->m_pimpl);
 
                rect rectWindow32;
 
@@ -3309,7 +3309,7 @@ return AfxInternalProcessWndProcException( e, pMsg );
    }
 
 
-} // namespace lnx
+} // namespace linux
 
 
 
@@ -3319,7 +3319,7 @@ return AfxInternalProcessWndProcException( e, pMsg );
 /*LRESULT CALLBACK _AfxMsgFilterHook(int32_t code, WPARAM wParam, LPARAM lParam)
 {
    ::thread* pthread;
-   if (afxContextIsDLL || (code < 0 && code != MESSAGEF_DDEMGR) || (pthread = dynamic_cast < ::thread * > (::lnx::get_thread())) == NULL)
+   if (afxContextIsDLL || (code < 0 && code != MESSAGEF_DDEMGR) || (pthread = dynamic_cast < ::thread * > (::linux::get_thread())) == NULL)
    {
       return ::callNextHookEx(_afxThreadState->m_hHookOldMsgFilter, code, wParam, lParam);
    }
@@ -3361,7 +3361,7 @@ __attribute__((constructor))
 static void initialize_navigationBarImages()
 {
 
-   ::g_pfn_get_thread = &::lnx::get_thread;
+   ::g_pfn_get_thread = &::linux::get_thread;
 
    ::g_pfn_get_thread_state = (::thread_state *(*)() ) & __get_thread_state;
 

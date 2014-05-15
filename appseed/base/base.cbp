@@ -577,7 +577,6 @@
 		<Unit filename="base/install/windows/install_windows_boot.cpp" />
 		<Unit filename="base/install/windows/install_windows_service.cpp" />
 		<Unit filename="base/install/windows/install_windows_win.cpp" />
-		<Unit filename="base/node/linux/framework.h" />
 		<Unit filename="base/node/linux/gen_1.h" />
 		<Unit filename="base/node/linux/implementation.h" />
 		<Unit filename="base/node/linux/lnx.h" />

@@ -622,7 +622,7 @@ break;
 }
 
 
-namespace lnx
+namespace linux
 {
 
 
@@ -945,7 +945,7 @@ return "";
    }
 
 
-} // namespace lnx
+} // namespace linux
 
 
 

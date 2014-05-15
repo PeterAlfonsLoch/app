@@ -10,7 +10,7 @@ struct PROCESS_INFO_t
 };
 
 
-namespace lnx
+namespace linux
 {
 
 
@@ -1265,7 +1265,7 @@ namespace lnx
    }
 
 
-} // namespace lnx
+} // namespace linux
 
 
 

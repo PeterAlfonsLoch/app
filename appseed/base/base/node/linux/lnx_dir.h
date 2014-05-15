@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace lnx
+namespace linux
 {
 
    class CLASS_DECL_LINUX path :
@@ -96,6 +96,6 @@ namespace lnx
       string         m_strNetSeedFolder;
    };
 
-} // namespace lnx
+} // namespace linux
 
 

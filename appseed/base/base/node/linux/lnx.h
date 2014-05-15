@@ -65,19 +65,19 @@ CLASS_DECL_LINUX void AfxResetMsgcache();
 #include "lnx_port_forward.h"
 #include "lnx_copydesk.h"
 #include "lnx_crypt.h"
-#include "lnx_ip_enum.h"
+#include "lnx_ip_enum.h"Ķ
 
 #define NULL_REF(class) (*((class *) NULL))
 // xxx CLASS_DECL_LINUX WNDPROC AfxGetAfxWndProc();
 #define AfxWndProc (*AfxGetAfxWndProc())
 
-#define LNX_THREAD(pthread) (dynamic_cast < ::lnx::thread * > (dynamic_cast < ::thread * >(pthread)))
-#define LNX_WINDOW(pwnd) (dynamic_cast < ::lnx::window * > (((sp(::window))(pwnd)).m_p))
-#define LNX_DC(pgraphics) (dynamic_cast < ::lnx::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics)))
-#define SP_DC(pgraphics) (dynamic_cast < ::lnx::graphics * > (( ::draw2d::graphics * )(pgraphics)))
-#define LNX_HDC(pgraphics) ((HDC)*(dynamic_cast < ::lnx::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics))))
-#define SP_HDC(pgraphics) ((HDC)*(dynamic_cast < ::lnx::graphics * > ((::draw2d::graphics *)(pgraphics))))
-#define LNX_DIB(pdib) (dynamic_cast < ::lnx::dib * > (dynamic_cast < ::draw2d::dib * >(pdib)))
+#define LNX_THREAD(pthread) (dynamic_cast < ::linux::thread * > (dynamic_cast < ::thread * >(pthread)))
+#define LNX_WINDOW(pwnd) (dynamic_cast < ::linux::window * > (((sp(::window))(pwnd)).m_p))
+#define LNX_DC(pgraphics) (dynamic_cast < ::linux::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics)))
+#define SP_DC(pgraphics) (dynamic_cast < ::linux::graphics * > (( ::draw2d::graphics * )(pgraphics)))
+#define LNX_HDC(pgraphics) ((HDC)*(dynamic_cast < ::linux::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics))))
+#define SP_HDC(pgraphics) ((HDC)*(dynamic_cast < ::linux::graphics * > ((::draw2d::graphics *)(pgraphics))))
+#define LNX_DIB(pdib) (dynamic_cast < ::linux::dib * > (dynamic_cast < ::draw2d::dib * >(pdib)))
 
 #include "lnx_shell.h"
 
@@ -115,3 +115,6 @@ int32_t CLASS_DECL_LINUX __lnx_main(int32_t argc, char * argv[]);
 
 
 CLASS_DECL_LINUX void vfxThrowFileException(sp(::base::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
+
+
+#include "lnx_internal.h"

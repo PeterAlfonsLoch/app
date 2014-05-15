@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace lnx
+namespace linux
 {
 
 
@@ -39,7 +39,7 @@ namespace lnx
 extern "C"
 void ca2_factory_exchange(sp(::base::application) papp)
 {
-   lnx::factory_exchange factoryexchange(papp);
+   linux::factory_exchange factoryexchange(papp);
 }
 
 

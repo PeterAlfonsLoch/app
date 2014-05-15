@@ -2,7 +2,7 @@
 #include "lnx1.h"
 
 
-namespace lnx
+namespace linux
 {
 
    int32_t function()
@@ -16,6 +16,6 @@ namespace lnx
       return ::GetTempPathW(MAX_PATH * 8, wtostring(str, MAX_PATH * 8));
    }
 
-} // namespace lnx
+} // namespace linux
 
 

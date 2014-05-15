@@ -4,9 +4,9 @@
 #define __USE_GNU
 #include <link.h>
 
-extern __thread ::lnx::thread_local_storage * __thread_data;
+extern __thread ::linux::thread_local_storage * __thread_data;
 
-namespace lnx
+namespace linux
 {
 
    application::application(sp(::base::application) papp) :
@@ -21,11 +21,11 @@ namespace lnx
       // in non-running state until WinMain
 // xxx      m_hInstance = NULL;
 //      m_hLangResourceDLL = NULL;
-      m_pszHelpFilePath = NULL;
-      m_pszProfileName = NULL;
-      m_pszRegistryKey = NULL;
+      //m_pszHelpFilePath = NULL;
+      //m_pszProfileName = NULL;
+      //m_pszRegistryKey = NULL;
 //      m_pRecentFileList = NULL;
-      m_pdocmanager = NULL;
+      //m_pdocmanager = NULL;
 // xxx       m_atomApp = m_atomSystemTopic = NULL;
       //m_lpCmdLine = NULL;
 //      m_pCmdInfo = NULL;
@@ -34,10 +34,10 @@ namespace lnx
       // initialize current printer state
 // xxx       m_hDevMode = NULL;
 // xxx       m_hDevNames = NULL;
-      m_nNumPreviewPages = 0;     // not specified (defaults to 1)
+      //m_nNumPreviewPages = 0;     // not specified (defaults to 1)
 
       // other initialization
-      m_bHelpMode = FALSE;
+      //m_bHelpMode = FALSE;
 //      m_eHelpType = afxWinHelp;
       m_nSafetyPoolSize = 512;        // default size
 
@@ -256,10 +256,6 @@ namespace lnx
    }
 
 
-   const char * application::RegisterWndClass(UINT nClassStyle, HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
-   {
-      return __register_window_class(nClassStyle, hCursor, hbrBackground, hIcon);
-   }
 
 
 
@@ -287,28 +283,6 @@ return NULL;
 // xxx       return ::LoadCursor(NULL, MAKEINTRESOURCE(nIDCursor));
 return NULL;
 
-   }
-
-   HICON application::LoadIcon(const char * lpszResourceName) const
-   {
-      return NULL;
-   }
-
-   HICON application::LoadIcon(UINT nIDResource) const
-   {
-      return NULL;
-   }
-
-   HICON application::LoadStandardIcon(const char * lpszIconName) const
-   {
-// xxx  return ::LoadIcon(NULL, lpszIconName);
-return NULL;
-   }
-
-   HICON application::LoadOEMIcon(UINT nIDIcon) const
-   {
-// xxx       return ::LoadIcon(NULL, MAKEINTRESOURCE(nIDIcon));
-return NULL;
    }
 
 
@@ -478,7 +452,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
       LNX_THREAD(::thread::m_p.m_p)->m_bRun = false;
       //LNX_THREAD(m_pimpl->::thread_sp::m_p)->m_bRun = false;
 
-      int32_t iRet = ::application::exit_instance();
+      int32_t iRet = ::base::application::exit_instance();
 
       //::ca2::smart_pointer<::ca2::application>::destroy();
 
@@ -584,12 +558,12 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
    sp(::window) application::window_from_os_data(void * pdata)
    {
-      return ::lnx::window::from_handle((oswindow) pdata);
+      return ::linux::window::from_handle((oswindow) pdata);
    }
 
    sp(::window) application::window_from_os_data_permanent(void * pdata)
    {
-      sp(::window) pwnd = ::lnx::window::FromHandlePermanent((oswindow) pdata);
+      sp(::window) pwnd = ::linux::window::FromHandlePermanent((oswindow) pdata);
       if(pwnd != NULL)
          return pwnd;
       user::interaction_ptr_array wndptra = System.frames();
@@ -667,7 +641,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
          __MODULE_THREAD_STATE* pThreadState = pModuleState->m_thread;
          ENSURE(pThreadState);
 //         ASSERT(System.GetThread() == NULL);
-         pThreadState->m_pCurrentWinThread = dynamic_cast < class ::lnx::thread * > (::thread::m_p.m_p);
+         pThreadState->m_pCurrentWinThread = dynamic_cast < class ::linux::thread * > (::thread::m_p.m_p);
   //       ASSERT(System.GetThread() == this);
 
          // initialize application state
@@ -677,9 +651,9 @@ if(__get_module_state()->m_pmapHWND == NULL)
       }
 
 
-//      dynamic_cast < ::lnx::thread * > ((smart_pointer < ::ca2::application >::m_p->::thread_sp::m_p))->m_hThread = __get_thread()->m_hThread;
-  //    dynamic_cast < ::lnx::thread * > ((smart_pointer < ::ca2::application >::m_p->::thread_sp::m_p))->m_nThreadID = __get_thread()->m_nThreadID;
-      dynamic_cast < class ::lnx::thread * > (::thread::m_p.m_p)->m_hThread      =  ::GetCurrentThread();
+//      dynamic_cast < ::linux::thread * > ((smart_pointer < ::ca2::application >::m_p->::thread_sp::m_p))->m_hThread = __get_thread()->m_hThread;
+  //    dynamic_cast < ::linux::thread * > ((smart_pointer < ::ca2::application >::m_p->::thread_sp::m_p))->m_nThreadID = __get_thread()->m_nThreadID;
+      dynamic_cast < class ::linux::thread * > (::thread::m_p.m_p)->m_hThread      =  ::GetCurrentThread();
 
 
    }
@@ -743,7 +717,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
    bool application::set_main_init_data(::core::main_init_data * pdata)
    {
 
-      m_pmaininitdata = (::lnx::main_init_data *) pdata;
+      m_pmaininitdata = (::linux::main_init_data *) pdata;
 
       if(m_pmaininitdata != NULL && m_pimpl->is_system())
       {
@@ -885,4 +859,4 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
    }
 
-} // namespace lnx
+} // namespace linux
