@@ -1860,7 +1860,7 @@ void application::DevModeChange(LPTSTR lpDeviceName)
 bool application::on_run_exception(::exception::exception & e)
 {
 
-   TRACE("An unexpected error has occurred and no special exception handling is available.");
+   ::OutputDebugString("An unexpected error has occurred and no special exception handling is available.");
 
    if (typeid(e) == typeid(not_installed))
    {

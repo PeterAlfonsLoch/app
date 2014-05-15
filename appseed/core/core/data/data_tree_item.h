@@ -101,7 +101,8 @@ namespace data
 
       virtual void on_fill_children();
 
-
+      virtual bool is_descendant(sp(tree_item) pitem);
+      virtual bool is_ascendant(sp(tree_item) pitem);
 
    };
 

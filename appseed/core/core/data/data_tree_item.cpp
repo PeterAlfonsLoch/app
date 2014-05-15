@@ -59,6 +59,9 @@ namespace data
    void tree_item::set_parent(sp(tree_item) pparent)
    {
 
+      if(pparent == this || is_descendant(pparent) || is_ascendant(pparent))
+         return;
+
       m_pparent->m_children.remove(this);
 
       m_pparent = pparent;
@@ -421,6 +424,43 @@ namespace data
    {
 
       return (m_dwState & ::data::tree_item_state_expandable) != 0;
+
+   }
+
+
+   bool tree_item::is_descendant(sp(tree_item) pitem)
+   {
+
+      if(pitem.is_null())
+         return false;
+      
+      return pitem->is_ascendant(this);
+
+   }
+
+
+   bool tree_item::is_ascendant(sp(tree_item) pitem)
+   {
+
+      if(pitem.is_null())
+         return false;
+
+      sp(tree_item) pparent = m_pparent;
+
+      if(pparent.is_null())
+         return false;
+
+      while(pparent.is_set())
+      {
+
+         if(pparent == pitem)
+            return true;
+
+         pparent = pparent->m_pparent;
+
+      }
+      
+      return false;
 
    }
 
