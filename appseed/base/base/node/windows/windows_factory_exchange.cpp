@@ -43,7 +43,7 @@ namespace windows
 } // namespace windows
 
 
-void node_factory_exchange(sp(::base::application) papp)
+void __node_factory_exchange(sp(::base::application) papp)
 {
    windows::factory_exchange factoryexchange(papp);
 }

@@ -8398,9 +8398,6 @@
     <ClCompile Include="base\os\windows\windows_base_file.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\windows\windows_base_internal.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\windows\windows_base_registry.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
@@ -8580,6 +8577,9 @@
     </ClCompile>
     <ClCompile Include="base\message\message_user.cpp">
       <Filter>Source Files\base\message</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_debug.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -9095,6 +9095,9 @@
     </None>
     <None Include="base\message\message.inl">
       <Filter>Header Files\base\message</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

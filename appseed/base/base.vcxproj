@@ -3632,9 +3632,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\os\windows\win2.cpp" />
     <ClCompile Include="base\os\windows\windows.cpp" />
     <ClCompile Include="base\os\windows\windows_base_file.cpp" />
-    <ClCompile Include="base\os\windows\windows_base_internal.cpp" />
     <ClCompile Include="base\os\windows\windows_base_registry.cpp" />
     <ClCompile Include="base\os\windows\windows_crypto.cpp" />
+    <ClCompile Include="base\os\windows\windows_debug.cpp" />
     <ClCompile Include="base\os\windows\windows_dll.cpp" />
     <ClCompile Include="base\os\windows\windows_error.cpp" />
     <ClCompile Include="base\os\windows\windows_file_std.cpp" />

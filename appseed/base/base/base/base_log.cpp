@@ -13,13 +13,13 @@ namespace core
    {
 
 #if defined(WINDOWSEX)
-      m_bTrace          = ::file_exists_dup("C:\\core\\trace.txt") || ::IsDebuggerPresent();
+      m_bTrace          = ::file_exists_dup("C:\\core\\trace.txt") || ::is_debugger_attached();
 #elif defined(METROWIN)
-      m_bTrace          = ::file_exists_dup(::dir::appdata("trace.txt")) || ::IsDebuggerPresent();
+      m_bTrace          = ::file_exists_dup(::dir::appdata("trace.txt")) || ::is_debugger_attached();
 #elif defined(LINUX)
-      m_bTrace          = ::file_exists_dup("/etc/core/trace.txt") || ::gdb_check();
+      m_bTrace          = ::file_exists_dup("/etc/core/trace.txt") || ::is_debugger_attached();
 #elif defined(ANDROID)
-      m_bTrace = ::file_exists_dup("/etc/core/trace.txt");
+      m_bTrace = ::file_exists_dup("/etc/core/trace.txt") || ::is_debugger_attached();
 #else
       m_bTrace          = ::file_exists_dup("/etc/core/trace.txt") || ::is_debugger_attached();
 #endif
