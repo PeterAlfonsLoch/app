@@ -490,7 +490,6 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       DECL_GEN_SIGNAL(_001OnPrint);
       DECL_GEN_SIGNAL(_001OncaptureChanged);
       void OnParentNotify(UINT message, LPARAM lParam);
-      HCURSOR OnQueryDragIcon();
       bool OnQueryEndSession();
       bool OnQueryNewPalette();
       bool OnQueryOpen();

@@ -5800,8 +5800,6 @@ if(psurface == g_cairosurface)
    { Default(); }
    void window::OnMove(int32_t, int32_t)
    { Default(); }
-   HCURSOR window::OnQueryDragIcon()
-   { return (HCURSOR)Default(); }
 
    bool window::OnQueryEndSession()
    {

@@ -78,7 +78,6 @@ namespace base
       string                                          m_strBaseSupportId;
       sp(class ::fontopus::license)                   m_splicense;
       int32_t                                         m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
-      HCURSOR                                         m_hcurWaitCursorRestore; // old cursor to restore after wait cursor
 
 
       string                                          m_strRoot;

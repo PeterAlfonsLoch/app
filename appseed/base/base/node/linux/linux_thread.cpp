@@ -814,21 +814,6 @@ stop_run:
       ASSERT_VALID(this);
 
 
-      try
-      {
-   #ifdef DEBUG
-         // Check for missing LockTempMap calls
-         if(m_nTempMapLock != 0)
-         {
-            TRACE(::core::trace::category_AppMsg, 0, "Warning: Temp ::collection::map lock count non-zero (%ld).\n", m_nTempMapLock);
-         }
-         LockTempMaps();
-         UnlockTempMaps(-1);
-   #endif
-      }
-      catch(...)
-      {
-      }
 
 
       try
@@ -1283,62 +1268,6 @@ stop_run:
    {
       if (m_nTempMapLock != 0 && --m_nTempMapLock == 0)
    {
-      if (bDeleteTemp)
-      {
-         // clean up temp objects
-//         m_pmapHGDIOBJ->delete_temp();
-  //       m_pmapHDC->delete_temp();
-       //  window::DeleteTempMap();
-      }
-
-
-
-#ifndef _AFX_PORTABLE
-      /*sp(::base::application) papp =  (get_app());
-      ___THREAD_STATE* pThreadState = gen_ThreadState.GetDataNA();
-      if( pThreadState != NULL )
-      {
-         // restore safety pool after temp objects destroyed
-         if(papp != NULL &&
-             (pThreadState->m_pSafetyPoolBuffer == NULL ||
-             _msize(pThreadState->m_pSafetyPoolBuffer) < papp->m_nSafetyPoolSize) &&
-            papp->m_nSafetyPoolSize != 0)
-         {
-            // attempt to restore the safety pool to its max size
-            size_t nOldSize = 0;
-            if (pThreadState->m_pSafetyPoolBuffer != NULL)
-            {
-               nOldSize = _msize(pThreadState->m_pSafetyPoolBuffer);
-               free(pThreadState->m_pSafetyPoolBuffer);
-            }
-
-            // undo handler trap for the following allocation
-            WINBOOL bEnable = AfxEnableMemoryTracking(FALSE);
-            try
-            {
-               pThreadState->m_pSafetyPoolBuffer = malloc(papp->m_nSafetyPoolSize);
-               if (pThreadState->m_pSafetyPoolBuffer == NULL)
-               {
-//                  TRACE(::ca2::trace::category_AppMsg, 0, "Warning: failed to reclaim %d bytes for primitive::memory safety pool.\n",
-  //                   pApp->m_nSafetyPoolSize);
-                  // at least get the old buffer back
-                  if (nOldSize != 0)
-                  {
-                     //get it back
-                     pThreadState->m_pSafetyPoolBuffer = malloc(nOldSize);
-                     ASSERT(pThreadState->m_pSafetyPoolBuffer != NULL);
-                  }
-               }
-            }
-            catch( ::exception::base * )
-            {
-               AfxEnableMemoryTracking(bEnable);
-               throw;
-            }
-            AfxEnableMemoryTracking(bEnable);
-         }
-      }*/
-#endif  // !_AFX_PORTABLE
    }
    // return TRUE if temp maps still locked
       return m_nTempMapLock != 0;

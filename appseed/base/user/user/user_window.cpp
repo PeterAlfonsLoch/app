@@ -1719,10 +1719,6 @@ void window::OnMove(int32_t, int32_t)
    throw interface_only_exception(get_app());
 }
 
-HCURSOR window::OnQueryDragIcon()
-{
-   throw interface_only_exception(get_app());
-}
 
 bool window::OnQueryEndSession()
 {

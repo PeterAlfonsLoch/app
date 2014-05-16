@@ -487,7 +487,6 @@ public:
       DECL_GEN_SIGNAL(_001OnPrint);
       DECL_GEN_SIGNAL(_001OnCaptureChanged);
       void OnParentNotify(UINT message, LPARAM lParam);
-   HCURSOR OnQueryDragIcon();
    bool OnQueryEndSession();
    bool OnQueryNewPalette();
    bool OnQueryOpen();
