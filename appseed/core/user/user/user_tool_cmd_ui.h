@@ -51,16 +51,3 @@ namespace user
 
 
 
-/////////////////////////////////////////////////////////////////////////////
-// Thread global state
-
-// forward references required for ___THREAD_STATE definition
-class FrameWnd;
-class SimpleView;
-class CToolTipCtrl;
-class ::user::control_bar;
-
-
-CLASS_DECL_CORE UINT _::core::GetMouseScrollLines();
-
-*/

@@ -4469,9 +4469,6 @@
     <ClInclude Include="base\node\windows\windows_simple_hold_handle.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="base\node\windows\windows_state.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="base\node\windows\windows_stdio_file.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
@@ -9095,6 +9092,9 @@
     </None>
     <None Include="base\message\message.inl">
       <Filter>Header Files\base\message</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

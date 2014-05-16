@@ -506,19 +506,6 @@ int_bool is_windows_native_unicode()
 
 }
 
-///////////////////////////////////////////////////
-
-
-
-//
-//_PNH CLASS_DECL_BASE __set_new_handler(_PNH pfnNewHandler)
-//{
-//   __MODULE_THREAD_STATE* pState = __get_module_thread_state();
-//   _PNH pfnOldHandler = pState->m_pfnNewHandler;
-//   pState->m_pfnNewHandler = pfnNewHandler;
-//   return pfnOldHandler;
-//}
-
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -577,31 +564,6 @@ extern int32_t CLASS_DECL_BASE __win_main(HINSTANCE hInstance,HINSTANCE hPrevIns
 __in LPTSTR lpCmdLine,int32_t nCmdShow);
 
 
-/////////////////////////////////////////////////////////////////////////////
-// initialize cast state such that it points to this module's core state
-
-CLASS_DECL_BASE bool __initialize(bool bDLL,DWORD dwVersion)
-{
-   //   __MODULE_STATE* pModuleState = __get_module_state();
-   //   pModuleState->m_bDLL = (BYTE)bDLL;
-   ASSERT(dwVersion <= _MFC_VER);
-   UNUSED(dwVersion);  // not used in release build
-   //   pModuleState->m_dwVersion = dwVersion;
-#ifdef _MBCS
-   // set correct multi-byte code-page for Win32 apps
-   //   if (!bDLL)
-   //    _setmbcp(_MB_CP_ANSI);
-#endif //_MBCS
-   return TRUE;
-}
-
-// force initialization early
-//#pragma warning(disable: 4074)
-//#pragma init_seg(lib)
-
-
-char gen_InitAppState = (char)(__initialize(FALSE,_MFC_VER));
-
 
 
 
@@ -609,34 +571,6 @@ char gen_InitAppState = (char)(__initialize(FALSE,_MFC_VER));
 extern CLASS_DECL_BASE oswindow_map * g_pwindowmap;
 
 
-/////////////////////////////////////////////////////////////////////////////
-// other globals (internal library use)
-
-/////////////////////////////////////////////////////////////////////////////
-// Standard cleanup called by WinMain and __abort
-
-//void CLASS_DECL_BASE __gen_unregister_window_classes(sp(::base::application) papp)
-//{
-//   
-//   // unregister Window classes
-//   __MODULE_STATE* pModuleState = __get_module_state();
-//
-//   single_lock sl(&pModuleState->m_mutexRegClassList, TRUE);
-//
-//   if(pModuleState->m_pstrUnregisterList != NULL) 
-//   {
-//      strsize start = 0;
-//      string className = pModuleState->m_pstrUnregisterList->Tokenize("\n",start);
-//      while (!className.is_empty())
-//      {
-////         UnregisterClass(static_cast<const char *>(className), System.m_hInstance);
-//         className = pModuleState->m_pstrUnregisterList->Tokenize("\n",start);
-//      }
-//      pModuleState->m_pstrUnregisterList->Empty();
-//      pModuleState->m_pstrUnregisterList = NULL;
-//   }
-//
-//}
 
 extern __declspec(thread) HHOOK t_hHookOldMsgFilter;
 extern __declspec(thread) HHOOK t_hHookOldCbtFilter;
@@ -675,29 +609,7 @@ CLASS_DECL_BASE void __win_term()
 
    os_finalize();
 
-   //if (__get_thread_state() != NULL)
-   //{
-   //   __get_thread_state()->finalize();
-   //   gen_ThreadState = NULL;
-   //}
 
-
-   //__gen_unregister_window_classes();
-   // cleanup OLE if required
-   //   thread* pThread = &System;
-
-   // cleanup thread local tooltip window
-   //   __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
-   /*   if (pModuleThreadState->m_pToolTip != NULL)
-   {
-   if (pModuleThreadState->m_pToolTip->DestroyToolTipCtrl())
-   pModuleThreadState->m_pToolTip = NULL;
-   }*/
-
-   //   ___THREAD_STATE* pThreadState = __get_thread_state();
-   // if (!afxContextIsDLL)
-   //{
-   // unhook windows hooks
    if(t_hHookOldMsgFilter != NULL)
    {
       ::UnhookWindowsHookEx(t_hHookOldMsgFilter);

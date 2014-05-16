@@ -226,18 +226,6 @@ namespace windows
          e->Delete();
       }*/
 
-      try
-      {
-         // cleanup thread local tooltip window
-         if (hInstTerm == NULL)
-         {
-//            __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
-         }
-      }
-      catch( ::exception::base* e )
-      {
-         e->Delete();
-      }
 
    }
 
@@ -589,22 +577,6 @@ namespace windows
 
 //      __get_module_state()->m_lpszCurrentAppName = _tcsdup(m_strAppName);
 
-      // initialize thread state
-//      __MODULE_STATE* pModuleState = __get_module_state();
-//      ENSURE(pModuleState);
-//      if(pModuleState->m_pCurrentWinApp == NULL)
-//      {
-//         __MODULE_THREAD_STATE* pThreadState = pModuleState->m_thread;
-//         ENSURE(pThreadState);
-////         ASSERT(System.GetThread() == NULL);
-//         pThreadState->m_pCurrentWinThread = dynamic_cast < class ::windows::thread * > (thread::m_p.m_p);
-//  //       ASSERT(System.GetThread() == this);
-//
-//         // initialize application state
-//         //ASSERT(afxCurrentWinApp == NULL); // only one application object please
-//         pModuleState->m_pCurrentWinApp =  (this);
-//         //ASSERT(&System == this);
-//      }
 
 
 //      dynamic_cast < ::windows::thread * > ((smart_pointer < ::base::application >::m_p->thread::m_p))->m_hThread = __get_thread()->m_hThread;
@@ -701,14 +673,6 @@ namespace windows
          // handle critical errors and avoid Windows message boxes
          SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 
-         // set resource handles
-         //__MODULE_STATE* pModuleState = __get_module_state();
-         //pModuleState->m_hCurrentInstanceHandle = hInstance;
-         //pModuleState->m_hCurrentResourceHandle = hInstance;
-         //pModuleState->CreateActivationContext();
-
-         // fill in the initial state for the application
-         // Windows specific initialization (not done if no application)
          m_hinstance = hInstance;
          m_pbaseapp->m_hinstance = hInstance;
          m_pimpl->m_hinstance = hInstance;

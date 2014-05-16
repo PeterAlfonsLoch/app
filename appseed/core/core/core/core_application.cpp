@@ -3540,16 +3540,6 @@ void application::dump(dump_context & dumpcontext) const
    dumpcontext << "\nm_hcurWaitCursorRestore = " << (void *)m_hcurWaitCursorRestore;
    dumpcontext << "\nm_nNumPreviewPages = " << m_nNumPreviewPages;
 
-   /*   ___THREAD_STATE* pState = __get_thread_state();
-   dumpcontext << "\nm_msgCur = {";
-   dumpcontext << "\n\toswindow = " << (void *)pState->m_msgCur.oswindow;
-   dumpcontext << "\n\tmessage = " << (UINT)pState->m_msgCur.message;
-   dumpcontext << "\n\twParam = " << (UINT)pState->m_msgCur.wParam;
-   dumpcontext << "\n\tlParam = " << (void *)pState->m_msgCur.lParam;
-   dumpcontext << "\n\ttime = " << pState->m_msgCur.time;
-   dumpcontext << "\n\tpt = " << point(pState->m_msgCur.pt);
-   dumpcontext << "\n}";
-   */
    dumpcontext << "\n";
 }
 

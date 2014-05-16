@@ -133,27 +133,6 @@ void thread::CommonConstruct()
    m_pappDelete = NULL;
    m_pbReady = NULL;
    m_bReady = false;
-   /*      m_ptimera = NULL;
-   m_puieptra = NULL;
-   GetMainWnd() = NULL;
-   m_pActiveWnd = NULL;*/
-
-   // no HTHREAD until it is created
-   //      m_hThread = NULL;
-   //      m_nThreadID = 0;
-
-   /*      ___THREAD_STATE* pState = __get_thread_state();
-   // initialize message pump
-   #ifdef DEBUG
-   pState->m_nDisablePumpCount = 0;
-   #endif
-   pState->m_msgCur.message = WM_NULL;
-   pState->m_nMsgLast = WM_NULL;
-   System.get_cursor_pos(&(pState->m_ptCursorLast));*/
-
-   // most threads are deleted when not needed
-   /*      m_bAutoDelete = TRUE;
-   m_bRun = false;*/
 
 }
 

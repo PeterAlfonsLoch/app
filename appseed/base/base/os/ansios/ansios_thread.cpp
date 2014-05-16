@@ -1285,15 +1285,11 @@ void on_init_thread()
    
    __node_init_thread();
 
-   __node_init_thread_state();
-
 }
 
 
 void on_term_thread()
 {
-   
-   __node_term_thread_state();
    
    __node_term_thread();
 

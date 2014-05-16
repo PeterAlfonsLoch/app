@@ -172,22 +172,8 @@ namespace windows
       return __modify_style(oswindow,GWL_EXSTYLE,dwRemove,dwAdd,nFlags);
    }
 
-
-
-   //   const MSG* window::GetCurrentMessage()
-   //   {
-   //      // fill in time and position when asked for
-   ////      ___THREAD_STATE* pThreadState = __get_thread_state();
-   //  //    pThreadState->m_lastSentMsg.time = ::GetMessageTime();
-   //    //  pThreadState->m_lastSentMsg.pt = point((LPARAM) ::GetMessagePos());
-   //      //return &pThreadState->m_lastSentMsg;
-   //   }
-
    LRESULT window::Default()
    {
-      // call DefWindowProc with the last message
-      //___THREAD_STATE* pThreadState = __get_thread_state();
-      //      return DefWindowProc(m_pthread->m_message.message, m_pthread->m_message.wParam, m_pthread->m_message.lParam);
       return 0;
    }
 
@@ -1161,17 +1147,6 @@ namespace windows
       __CTLCOLOR ctl;
       ctl.hDC = (HDC)wParam;
       ctl.oswindow = (oswindow)lParam;
-      //___THREAD_STATE* pThreadState = __get_thread_state();
-      //ctl.nCtlType = pThreadState->m_lastSentMsg.message - WM_CTLCOLORMSGBOX;
-      //ASSERT(ctl.nCtlType >= CTLCOLOR_MSGBOX);
-      //      ASSERT(ctl.nCtlType <= CTLCOLOR_STATIC);
-
-      // Note: We call the virtual message_handler for this window directly,
-      //  instead of calling ::core::CallWindowProc, so that Default()
-      //  will still work (it will call the Default window proc with
-      //  the original Win32 WM_CTLCOLOR message).
-      /*
-      return message_handler(WM_CTLCOLOR, 0, (LPARAM)&ctl);*/
       return 0;
    }
 
@@ -2824,12 +2799,6 @@ namespace windows
       // no special processing
    }
 
-   //   bool window::SendChildNotifyLastMsg(LRESULT* pResult)
-   // {
-   //      ___THREAD_STATE* pThreadState = __get_thread_state();
-   //  return OnChildNotify(m_pthread->m_message.message, m_pthread->m_message.wParam, m_pthread->m_message.lParam, pResult);
-   //}
-
    bool window::ReflectMessage(oswindow oswindow_Child,::message::base * pbase)
    {
       // get the map, and if no map, then this message does not need reflection
@@ -2951,15 +2920,14 @@ namespace windows
       }
    }
 
+   
    LRESULT window::OnActivateTopLevel(WPARAM wParam,LPARAM)
    {
-      if(LOWORD(wParam) == WA_INACTIVE)
-      {
-         //         __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
-      }
 
       return 0;
+
    }
+
 
    void window::OnSysColorChange()
    {
@@ -3604,50 +3572,6 @@ namespace windows
       return TRUE;
    }
 
-   /////////////////////////////////////////////////////////////////////////////
-   // 'dialog data' support
-
-   /*bool window::update_data(bool bSaveAndValidate)
-   {
-   ASSERT(::IsWindow(get_handle())); // calling update_data before DoModal?
-
-   CDataExchange dx(this, bSaveAndValidate);
-
-   // prevent control notifications from being dispatched during update_data
-   ___THREAD_STATE* pThreadState = __get_thread_state();
-   oswindow oswindow_OldLockout = pThreadState->m_hLockoutNotifyWindow;
-   ASSERT(oswindow_OldLockout != get_handle());   // must not recurse
-   pThreadState->m_hLockoutNotifyWindow = get_handle();
-
-   bool bOK = FALSE;       // assume failure
-   try
-   {
-   do_data_exchange(&dx);
-   bOK = TRUE;         // it worked
-   }
-   catch(user_exception * pe)
-   {
-   // validation failed - ::fontopus::user already alerted, fall through
-   ASSERT(!bOK);
-   // Note: DELETE_EXCEPTION_(e) not required
-   }
-   catch(::exception::base * pe)
-   {
-   // validation failed due to OOM or other resource failure
-   //e->ReportError(MB_ICONEXCLAMATION, __IDP_INTERNAL_FAILURE);
-   pe->ReportError(MB_ICONEXCLAMATION, "falha interna");
-   ASSERT(!bOK);
-   pe->Delete();
-   }
-
-
-   pThreadState->m_hLockoutNotifyWindow = oswindow_OldLockout;
-   return bOK;
-   }*/
-
-
-   /////////////////////////////////////////////////////////////////////////////
-   // Centering dialog support (works for any non-child window)
 
    void window::CenterWindow(sp(::user::interaction) pAlternateOwner)
    {
@@ -6208,15 +6132,7 @@ namespace windows
 
    CLASS_DECL_BASE LRESULT __call_window_procedure(sp(::user::interaction) pinteraction,oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM lParam)
    {
-      //___THREAD_STATE* pThreadState = __get_thread_state();
-      //MSG oldState = t->m_messageLast;   // save for nesting
-      //pThreadState->m_lastSentMsg.hwnd = oswindow;
-      //pThreadState->m_lastSentMsg.message = nMsg;
-      //pThreadState->m_lastSentMsg.wParam = wParam;
-      //pThreadState->m_lastSentMsg.lParam = lParam;
 
-      // Catch exceptions thrown outside the scope of a callback
-      // in debug builds and warn the ::fontopus::user.
       smart_pointer < message::base > spbase;
 
       spbase = pinteraction->get_base(pinteraction,nMsg,wParam,lParam);
@@ -6312,7 +6228,6 @@ namespace windows
 
    LRESULT CALLBACK __cbt_filter_hook(int32_t code,WPARAM wParam,LPARAM lParam)
    {
-      //      ___THREAD_STATE* pThreadState = __get_thread_state();
       if(code != HCBT_CREATEWND)
       {
          // wait for HCBT_CREATEWND just pass others on...
@@ -6755,7 +6670,6 @@ CLASS_DECL_BASE void hook_window_create(sp(::windows::window) pwindow)
 
 CLASS_DECL_BASE bool unhook_window_create()
 {
-   //___THREAD_STATE* pThreadState = __get_thread_state();
    if(t_pwndInit != NULL)
    {
       t_pwndInit = NULL;
@@ -6884,110 +6798,16 @@ __STATIC bool CLASS_DECL_BASE __register_with_icon(WNDCLASS* pWndCls,
 
 string CLASS_DECL_BASE get_user_interaction_window_class(sp(::user::interaction) pui)
 {
+
    ::user::interaction::e_type etype = pui->get_window_type();
-   // mask off all classes that are already registered
-   //__MODULE_STATE* pModuleState = __get_module_state();
-   /*   LONG fToRegister = fToRegisterParam & ~pModuleState->m_fRegisteredClasses;
-   if (fToRegister == 0)
-   {
-   fToRegister = fToRegisterParam;
-   if(ppszClass != NULL)
-   {
-   if(fToRegister & __WND_REG)
-   {
-   *ppszClass = gen_Wnd;
-   }
-   else if (fToRegister & __WNDOLECONTROL_REG)
-   {
-   *ppszClass = gen_WndOleControl;
-   }
-   else if (fToRegister & __WNDCONTROLBAR_REG)
-   {
-   *ppszClass = gen_WndControlBar;
-   }
-   else if(fToRegister & __WNDMDIFRAME_REG)
-   {
-   *ppszClass = gen_WndMDIFrame;
-   }
-   else if(fToRegister & __WNDFRAMEORVIEW_REG)
-   {
-   *ppszClass = gen_WndFrameOrView;
-   }
-   }
-   return TRUE;
-   }
 
-   LONG fRegisteredClasses = 0;
-
-   // common initialization
-   */
    WNDCLASS wndcls;
    memset(&wndcls,0,sizeof(WNDCLASS));   // start with NULL defaults
    wndcls.lpfnWndProc = DefWindowProc;
    wndcls.hInstance = pui->m_pbaseapp->m_hinstance;
-   //wndcls.hCursor = afxData.hcurArrow;
 
    INITCOMMONCONTROLSEX init;
    init.dwSize = sizeof(init);
-   /*
-   // work to register classes as specified by fToRegister, populate fRegisteredClasses as we go
-   if (fToRegister & __WND_REG)
-   {
-   // Child windows - no brush, no icon, safest default class styles
-   wndcls.style = CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW;
-   wndcls.lpszClassName = gen_Wnd;
-   if (__register_class(&wndcls))
-   {
-   if(ppszClass != NULL)
-   {
-   *ppszClass = wndcls.lpszClassName;
-   }
-   fRegisteredClasses |= __WND_REG;
-   }
-   }
-   if (fToRegister & __WNDOLECONTROL_REG)
-   {
-   // OLE control windows - use parent DC for speed
-   wndcls.style |= CS_PARENTDC | CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW;
-   wndcls.lpszClassName = gen_WndOleControl;
-   if (__register_class(&wndcls))
-   {
-   if(ppszClass != NULL)
-   {
-   *ppszClass = wndcls.lpszClassName;
-   }
-   fRegisteredClasses |= __WNDOLECONTROL_REG;
-   }
-   }
-   if (fToRegister & __WNDCONTROLBAR_REG)
-   {
-   // control bar windows
-   wndcls.style = 0;   // control bars don't handle double click
-   wndcls.lpszClassName = gen_WndControlBar;
-   wndcls.hbrBackground = (HBRUSH)(COLOR_BTNFACE + 1);
-   if (__register_class(&wndcls))
-   {
-   if(ppszClass != NULL)
-   {
-   *ppszClass = wndcls.lpszClassName;
-   }
-   fRegisteredClasses |= __WNDCONTROLBAR_REG;
-   }
-   }
-   if (fToRegister & __WNDMDIFRAME_REG)
-   {
-   // MDI Frame window (also used for splitter window)
-   wndcls.style = CS_DBLCLKS;
-   wndcls.hbrBackground = NULL;
-   /*      if (__register_with_icon(&wndcls, gen_WndMDIFrame, __IDI_STD_MDIFRAME))
-   {
-   if(ppszClass != NULL)
-   {
-   *ppszClass = gen_WndMDIFrame;
-   }
-   fRegisteredClasses |= __WNDMDIFRAME_REG;
-   }
-   }*/
    if(etype == ::user::interaction::type_frame || etype == ::user::interaction::type_view)
    {
       // SDI Frame or MDI Child windows or views - normal colors
@@ -7001,19 +6821,7 @@ string CLASS_DECL_BASE get_user_interaction_window_class(sp(::user::interaction)
    }
 
    return __register_window_class(pui->get_app(),0);
-   /*
-   // save new state of registered controls
-   pModuleState->m_fRegisteredClasses |= fRegisteredClasses;
 
-   // special case for all common controls registered, turn on __WNDCOMMCTLS_REG
-   if ((pModuleState->m_fRegisteredClasses & __WIN95CTLS_MASK) == __WIN95CTLS_MASK)
-   {
-   pModuleState->m_fRegisteredClasses |= __WNDCOMMCTLS_REG;
-   fRegisteredClasses |= __WNDCOMMCTLS_REG;
-   }
-
-   // must have registered at least as mamy classes as requested
-   return (fToRegister & fRegisteredClasses) == fToRegister;*/
 }
 
 
@@ -7111,26 +6919,6 @@ bool CLASS_DECL_BASE __register_class(WNDCLASS* lpWndClass)
 
    bool bRet = TRUE;
 
-   //if (afxContextIsDLL)
-   //{
-
-   //try
-   //{
-   //   // class registered successfully, add to registered list
-   //   __MODULE_STATE* pModuleState = __get_module_state();
-   //   single_lock sl(&pModuleState->m_mutexRegClassList, TRUE);
-   //   if(pModuleState->m_pstrUnregisterList == NULL)
-   //      pModuleState->m_pstrUnregisterList = new string;
-   //   *pModuleState->m_pstrUnregisterList += lpWndClass->lpszClassName;
-   //   *pModuleState->m_pstrUnregisterList +='\n';
-   //}
-   //catch(::exception::base * pe)
-   //{
-   //   ::exception::rethrow(pe);
-   //   // Note: DELETE_EXCEPTION not required.
-   //}
-
-   //}
 
    return bRet;
 }

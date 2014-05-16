@@ -233,21 +233,16 @@ namespace user
       throw todo(get_app());
 #endif
 
-   //   __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
-
    }
 
    bool control_bar::SetStatusText(int32_t nHit)
    {
       sp(::user::interaction) pOwner = get_owner();
 
-   //   ___THREAD_STATE* pModuleThreadState = __get_thread_state();
       if (nHit == -1)
       {
-         // handle reset case
          if (m_nStateFlags & statusSet)
          {
-/*            pOwner->SendMessage(WM_POPMESSAGESTRING, __IDS_IDLEMESSAGE);*/
             m_nStateFlags &= ~statusSet;
             return TRUE;
          }
@@ -294,8 +289,6 @@ namespace user
          ((message >= WM_MOUSEFIRST && message <= WM_MOUSELAST)))
 //          (message >= WM_NCMOUSEFIRST && message <= WM_NCMOUSELAST)))
       {
-   //      __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
-
          // gather information about current mouse position
          point point;
          System.get_cursor_pos(&point);
@@ -423,10 +416,11 @@ namespace user
 
    }
 
+
    void control_bar::_001OnDestroy(signal_details * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
-   //   ___THREAD_STATE* pModuleThreadState = __get_thread_state();
 
       if (m_pDockSite != NULL)
       {
@@ -434,8 +428,8 @@ namespace user
          m_pDockSite = NULL;
       }
 
-   //   ::user::interaction::OnDestroy();
    }
+
 
    bool control_bar::DestroyWindow()
    {

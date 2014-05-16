@@ -205,7 +205,6 @@ namespace windows
 
 
    CLASS_DECL_BASE ::thread * get_thread();
-   //CLASS_DECL_BASE ::thread_state * get_thread_state();
 
 
 } // namespace windows

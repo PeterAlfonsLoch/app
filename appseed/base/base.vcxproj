@@ -1587,7 +1587,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\node\windows\windows_registry.h" />
     <ClInclude Include="base\node\windows\windows_shell.h" />
     <ClInclude Include="base\node\windows\windows_simple_hold_handle.h" />
-    <ClInclude Include="base\node\windows\windows_state.h" />
     <ClInclude Include="base\node\windows\windows_stdio_file.h" />
     <ClInclude Include="base\node\windows\windows_thread.h" />
     <ClInclude Include="base\node\windows\windows_uac_tools.h" />
