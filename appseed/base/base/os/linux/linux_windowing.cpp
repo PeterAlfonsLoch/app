@@ -1,7 +1,16 @@
 #include "framework.h"
-
 #include <X11/Xatom.h>
 
+
+/* MWM decorations values */
+#define MWM_DECOR_NONE          0
+#define MWM_DECOR_ALL           (1L << 0)
+#define MWM_DECOR_BORDER        (1L << 1)
+#define MWM_DECOR_RESIZEH       (1L << 2)
+#define MWM_DECOR_TITLE         (1L << 3)
+#define MWM_DECOR_MENU          (1L << 4)
+#define MWM_DECOR_MINIMIZE      (1L << 5)
+#define MWM_DECOR_MAXIMIZE      (1L << 6)
 
 
 oswindow_data::oswindow_data()
@@ -1361,3 +1370,69 @@ static void initialize_x11_message_box()
 
 
 
+
+
+
+void wm_nodecorations(oswindow w,int map)
+{
+   Atom WM_HINTS;
+   int set;
+
+
+   single_lock sl(&user_mutex(),true);
+
+   xdisplay d(w->display());
+   Display * dpy = w->display();
+   Window window = w->window();
+
+   int scr=DefaultScreen(dpy);
+   Window rootw=RootWindow(dpy,scr);
+
+   WM_HINTS = XInternAtom(dpy,"_MOTIF_WM_HINTS",True);
+   if(WM_HINTS != None) {
+#define MWM_HINTS_DECORATIONS   (1L << 1)
+      struct {
+         unsigned long flags;
+         unsigned long functions;
+         unsigned long decorations;
+         long input_mode;
+         unsigned long status;
+      } MWMHints ={MWM_HINTS_DECORATIONS,0,
+         MWM_DECOR_NONE,0,0};
+      XChangeProperty(dpy,window,WM_HINTS,WM_HINTS,32,
+         PropModeReplace,(unsigned char *)&MWMHints,
+         sizeof(MWMHints) / 4);
+   }
+   WM_HINTS = XInternAtom(dpy,"KWM_WIN_DECORATION",True);
+   if(WM_HINTS != None) {
+      long KWMHints = KDE_tinyDecoration;
+      XChangeProperty(dpy,window,WM_HINTS,WM_HINTS,32,
+         PropModeReplace,(unsigned char *)&KWMHints,
+         sizeof(KWMHints) / 4);
+   }
+
+   WM_HINTS = XInternAtom(dpy,"_WIN_HINTS",True);
+   if(WM_HINTS != None) {
+      long GNOMEHints = 0;
+      XChangeProperty(dpy,window,WM_HINTS,WM_HINTS,32,
+         PropModeReplace,(unsigned char *)&GNOMEHints,
+         sizeof(GNOMEHints) / 4);
+   }
+   WM_HINTS = XInternAtom(dpy,"_NET_WM_WINDOW_TYPE",True);
+   if(WM_HINTS != None) {
+      Atom NET_WMHints[2];
+      NET_WMHints[0] = XInternAtom(dpy,
+         "_KDE_NET_WM_WINDOW_TYPE_OVERRIDE",True);
+      NET_WMHints[1] = XInternAtom(dpy,"_NET_WM_WINDOW_TYPE_NORMAL",True);
+      XChangeProperty(dpy,window,
+         WM_HINTS,XA_ATOM,32,PropModeReplace,
+         (unsigned char *)&NET_WMHints,2);
+   }
+   XSetTransientForHint(dpy,window,rootw);
+   if(map)
+   {
+      XUnmapWindow(dpy,window);
+      XMapWindow(dpy,window);
+
+   }
+}
