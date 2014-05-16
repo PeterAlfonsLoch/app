@@ -475,6 +475,17 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
 
 
 
+void __node_init_thread()
+{
+
+}
+
+void __node_term_thread()
+{
+
+}
+
+
 
 
 

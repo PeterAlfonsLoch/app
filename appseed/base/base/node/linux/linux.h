@@ -71,13 +71,13 @@ CLASS_DECL_LINUX void AfxResetMsgcache();
 // xxx CLASS_DECL_LINUX WNDPROC AfxGetAfxWndProc();
 #define AfxWndProc (*AfxGetAfxWndProc())
 
-#define linux_THREAD(pthread) (dynamic_cast < ::linux::thread * > (dynamic_cast < ::thread * >(pthread)))
-#define linux_WINDOW(pwnd) (dynamic_cast < ::linux::window * > (((sp(::window))(pwnd)).m_p))
-#define linux_DC(pgraphics) (dynamic_cast < ::linux::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics)))
+#define LNX_THREAD(pthread) (dynamic_cast < ::linux::thread * > (dynamic_cast < ::thread * >(pthread)))
+#define LNX_WINDOW(pwnd) (dynamic_cast < ::linux::window * > (((sp(::window))(pwnd)).m_p))
+#define LNX_DC(pgraphics) (dynamic_cast < ::linux::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics)))
 #define SP_DC(pgraphics) (dynamic_cast < ::linux::graphics * > (( ::draw2d::graphics * )(pgraphics)))
-#define linux_HDC(pgraphics) ((HDC)*(dynamic_cast < ::linux::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics))))
+#define LNX_HDC(pgraphics) ((HDC)*(dynamic_cast < ::linux::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics))))
 #define SP_HDC(pgraphics) ((HDC)*(dynamic_cast < ::linux::graphics * > ((::draw2d::graphics *)(pgraphics))))
-#define linux_DIB(pdib) (dynamic_cast < ::linux::dib * > (dynamic_cast < ::draw2d::dib * >(pdib)))
+#define LNX_DIB(pdib) (dynamic_cast < ::linux::dib * > (dynamic_cast < ::draw2d::dib * >(pdib)))
 
 #include "linux_shell.h"
 

@@ -108,7 +108,7 @@ UINT APIENTRY __thread_entry(void * pParam)
 
       // set current thread pointer for System.GetThread
       __MODULE_STATE* pModuleState = __get_module_state();
-      __MODULE_THREAD_STATE* pState = pModuleState->m_thread;
+      __MODULE_THREAD_STATE* pState = pModuleState->t_pthread;
       pState->m_pCurrentWinThread = pThread;
 
       // forced initialization of the thread
@@ -433,7 +433,7 @@ void CLASS_DECL_LINUX __end_thread(sp(::base::application) papp, UINT nExitCode,
 //   _endthreadex(nExitCode);
 }
 
-extern __thread ::linux::thread_local_storage * __thread_data;
+
 void CLASS_DECL_LINUX __term_thread(sp(::base::application) papp, HINSTANCE hInstTerm)
 {
 
@@ -450,17 +450,6 @@ void CLASS_DECL_LINUX __term_thread(sp(::base::application) papp, HINSTANCE hIns
       e->Delete();
    }
 
-   try
-   {
-      // cleanup the rest of the thread local data
-      if (::linux::__thread_data != NULL)
-         ::linux::__thread_data->delete_data();
-         //__thread_data->DeleteValues(hInstTerm, FALSE);
-   }
-   catch( ::exception::base* e )
-   {
-      e->Delete();
-   }
 }
 
 
@@ -520,7 +509,7 @@ namespace linux
 
       m_evFinish.SetEvent();
 
-      m_pAppThread = papp->m_pplaneapp;
+      m_pAppThread = papp;
       m_pThreadParams = NULL;
       m_pfnThreadProc = NULL;
 
@@ -842,11 +831,11 @@ namespace linux
             m_p->m_dwAlive = m_dwAlive = ::get_tick_count();
             if(pappThis1 != NULL)
             {
-               pappThis1->m_pplaneapp->m_dwAlive = m_dwAlive;
+               pappThis1->m_dwAlive = m_dwAlive;
             }
             if(pappThis2 != NULL)
             {
-               pappThis2->m_pplaneapp->m_dwAlive = m_dwAlive;
+               pappThis2->m_dwAlive = m_dwAlive;
             }
       step_timer();
 
@@ -1683,7 +1672,7 @@ stop_run:
          return;
       }*/
 
-      ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
+      ___THREAD_STATE* pThreadState = gen_ThreadState;
       MESSAGE oldState = pThreadState->m_lastSentMsg;   // save for nesting
       //pThreadState->m_lastSentMsg.       = pbase->m_hwnd;
       pThreadState->m_lastSentMsg.message    = pbase->m_uiMessage;
@@ -3351,19 +3340,13 @@ __STATIC inline WINBOOL IsButtonUp(LPMESSAGE lpMsg)
 */
 
 
-extern CLASS_DECL_LINUX PFN_get_thread g_pfn_get_thread;
-
-
-extern CLASS_DECL_LINUX PFN_get_thread_state g_pfn_get_thread_state;
-
-
 __attribute__((constructor))
 static void initialize_navigationBarImages()
 {
 
-   ::g_pfn_get_thread = &::linux::get_thread;
+//   ::g_pfn_get_thread = &::linux::get_thread;
 
-   ::g_pfn_get_thread_state = (::thread_state *(*)() ) & __get_thread_state;
+//   ::g_pfn_get_thread_state = (::thread_state *(*)() ) & __get_thread_state;
 
 }
 

@@ -4,7 +4,6 @@
 #define __USE_GNU
 #include <link.h>
 
-extern __thread ::linux::thread_local_storage * __thread_data;
 
 namespace linux
 {
@@ -243,16 +242,6 @@ namespace linux
          e->Delete();
       }
 
-      try
-      {
-         // cleanup the rest of the thread local data
-         if (__thread_data != NULL)
-            __thread_data->delete_data();
-      }
-      catch( ::exception::base* e )
-      {
-         e->Delete();
-      }
    }
 
 
@@ -638,7 +627,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
       ENSURE(pModuleState);
       if(pModuleState->m_pCurrentWinApp == NULL)
       {
-         __MODULE_THREAD_STATE* pThreadState = pModuleState->m_thread;
+         __MODULE_THREAD_STATE* pThreadState = pModuleState->t_pthread;
          ENSURE(pThreadState);
 //         ASSERT(System.GetThread() == NULL);
          pThreadState->m_pCurrentWinThread = dynamic_cast < class ::linux::thread * > (::thread::m_p.m_p);
