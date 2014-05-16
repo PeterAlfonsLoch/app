@@ -49,13 +49,8 @@ CLASS_DECL_BASE void __post_quit_message(int32_t nExitCode);
 #include <Winsvc.h>
 #endif
 
-// services
 #include "multithreading_service_status.h"
 #include "multithreading_service_base.h"
-//#include "multithreading_plain_service.h"
-//#include "multithreading_thread_pool.h"
-
-
 #include "multithreading_thread_os.h"
 
 typedef UINT(c_cdecl *__THREADPROC)(LPVOID);
@@ -86,10 +81,6 @@ CLASS_DECL_BASE void on_init_thread();
 CLASS_DECL_BASE void on_term_thread();
 
 
-CLASS_DECL_BASE void __node_init_thread_state();
-CLASS_DECL_BASE void __node_term_thread_state();
-
-
 CLASS_DECL_BASE void __node_init_thread();
 CLASS_DECL_BASE void __node_term_thread();
 
@@ -103,5 +94,12 @@ CLASS_DECL_BASE void __dec_threading_count();
 
 
 CLASS_DECL_BASE bool __wait_threading_count(::duration dur);
+
+
+CLASS_DECL_BASE ::thread * get_thread();
+CLASS_DECL_BASE void set_thread(::thread * pthread);
+
+
+
 
 

@@ -239,18 +239,6 @@ namespace mac
       e->Delete();
       }*/
 
-      try
-      {
-         // cleanup thread local tooltip ::window
-         if (hInstTerm == NULL)
-         {
-            //            __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
-         }
-      }
-      catch( ::exception::base* e )
-      {
-         e->Delete();
-      }
 
    }
 
@@ -588,24 +576,6 @@ namespace mac
       // get the exe title from the full path name [no extension]
       strExeName = System.get_module_title();
 
-      __get_module_state()->m_lpszCurrentAppName = strdup(m_strAppName);
-
-      // initialize thread state
-      __MODULE_STATE* pModuleState = __get_module_state();
-      ENSURE(pModuleState);
-      if(pModuleState->m_pCurrentWinApp == NULL)
-      {
-         __MODULE_THREAD_STATE* pThreadState = pModuleState->t_pthread;
-         ENSURE(pThreadState);
-         //         ASSERT(System.GetThread() == NULL);
-         pThreadState->m_pCurrentWinThread = dynamic_cast < class ::mac::thread * > (::thread::m_p.m_p);
-         //       ASSERT(System.GetThread() == this);
-
-         // initialize application state
-         //ASSERT(afxCurrentWinApp == NULL); // only one application object please
-         pModuleState->m_pCurrentWinApp = dynamic_cast < application * > (this);
-         //ASSERT(&System == this);
-      }
 
 
       //      dynamic_cast < ::mac::thread * > ((smart_pointer < ::application >::m_p->::ca2::thread_sp::m_p))->m_hThread = __get_thread()->m_hThread;
@@ -690,40 +660,18 @@ namespace mac
    {
       ASSERT(pdata->m_hPrevInstance == NULL);
 
-      HINSTANCE hInstance        = pdata->m_hInstance;
-      //         HINSTANCE hPrevInstance    = pdata->m_hPrevInstance;
       string strCmdLine          = pdata->m_strCommandLine;
       UINT nCmdShow              = pdata->m_nCmdShow;
 
       // handle critical errors and avoid Windows message boxes
       // xxx         SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 
-      // set resource handles
-      __MODULE_STATE* pModuleState = __get_module_state();
-      pModuleState->m_hCurrentInstanceHandle = hInstance;
-      pModuleState->m_hCurrentResourceHandle = hInstance;
-      pModuleState->CreateActivationContext();
-
-      // fill in the initial state for the application
-      // Windows specific initialization (not done if no application)
-      // xxx         m_hInstance = hInstance;
-      // xxx          (dynamic_cast < ::application * >(m_papp))->m_hInstance = hInstance;
-      //hPrevInstance; // Obsolete.
       m_strCmdLine = strCmdLine;
       m_nCmdShow = nCmdShow;
       //pApp->SetCurrentHandles();
       SetCurrentHandles();
 
-      // initialize thread specific data (for main thread)
-      if (!afxContextIsDLL)
-         __init_thread();
-
-      // Initialize ::window::m_pfnNotifyWinEvent
-      /*   HMODULE hModule = ::GetModuleHandle("user32.dll");
-      if (hModule != NULL)
-      {
-      ::window::m_pfnNotifyWinEvent = (::window::PFNNOTIFYWINEVENT)::GetProcAddress(hModule, "NotifyWinEvent");
-      }*/
+      __init_thread();
 
       return true;
 

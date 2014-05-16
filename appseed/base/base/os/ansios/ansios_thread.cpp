@@ -723,8 +723,6 @@ void * os_thread_thread_proc(LPVOID lpparameter)
 uint32_t os_thread::run()
 {
 
-   on_init_thread();
-
    synch_lock mlThreadHandle(g_pmutexThreadHandleLock);
 
    currentThread =  m_hthread;
@@ -762,8 +760,6 @@ uint32_t os_thread::run()
    currentThread->m_pevent->set_event();
 
    currentThread->release();
-
-   on_term_thread();
 
    return dwRet;
 

@@ -53,11 +53,7 @@ CLASS_DECL_mac void AfxResetMsgCache();
 
 #include "mac1.h"
 #include "mac_implementation.h"
-#include "mac_state.h"
-//#include "mac_handle.h"
-// xxx #include "mac_file_find.h"
 #include "mac_dir.h"
-// xxx #include "mac_folder_watch.h"
 #include "mac_factory_exchange.h"
 #include "mac_window_draw.h"
 #include "mac_thread.h"

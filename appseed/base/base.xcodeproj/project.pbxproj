@@ -22,7 +22,6 @@
 		0722EC7C192556D8003E99F4 /* mac.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC2F192556D8003E99F4 /* mac.h */; };
 		0722EC7D192556D8003E99F4 /* mac1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC30192556D8003E99F4 /* mac1.cpp */; };
 		0722EC7E192556D8003E99F4 /* mac1.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC31192556D8003E99F4 /* mac1.h */; };
-		0722EC7F192556D8003E99F4 /* mac2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC32192556D8003E99F4 /* mac2.cpp */; };
 		0722EC85192556D8003E99F4 /* mac_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC38192556D8003E99F4 /* mac_application.cpp */; };
 		0722EC86192556D8003E99F4 /* mac_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC39192556D8003E99F4 /* mac_application.h */; };
 		0722EC89192556D8003E99F4 /* mac_copydesk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC3C192556D8003E99F4 /* mac_copydesk.cpp */; };
@@ -42,7 +41,6 @@
 		0722EC97192556D8003E99F4 /* mac_file_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC4A192556D8003E99F4 /* mac_file_set.h */; };
 		0722EC98192556D8003E99F4 /* mac_file_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC4B192556D8003E99F4 /* mac_file_system.cpp */; };
 		0722EC99192556D8003E99F4 /* mac_file_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC4C192556D8003E99F4 /* mac_file_system.h */; };
-		0722EC9A192556D8003E99F4 /* mac_gen_1.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC4D192556D8003E99F4 /* mac_gen_1.h */; };
 		0722EC9B192556D8003E99F4 /* mac_genResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC4E192556D8003E99F4 /* mac_genResource.cpp */; };
 		0722EC9C192556D8003E99F4 /* mac_implementation.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC4F192556D8003E99F4 /* mac_implementation.h */; };
 		0722EC9D192556D8003E99F4 /* mac_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC50192556D8003E99F4 /* mac_internal.h */; };
@@ -58,7 +56,6 @@
 		0722ECA7192556D8003E99F4 /* mac_printer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC5A192556D8003E99F4 /* mac_printer.h */; };
 		0722ECA8192556D8003E99F4 /* mac_shell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC5B192556D8003E99F4 /* mac_shell.cpp */; };
 		0722ECA9192556D8003E99F4 /* mac_shell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC5C192556D8003E99F4 /* mac_shell.h */; };
-		0722ECAA192556D8003E99F4 /* mac_state.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC5D192556D8003E99F4 /* mac_state.h */; };
 		0722ECAB192556D8003E99F4 /* mac_stdio_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC5E192556D8003E99F4 /* mac_stdio_file.cpp */; };
 		0722ECAC192556D8003E99F4 /* mac_stdio_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC5F192556D8003E99F4 /* mac_stdio_file.h */; };
 		0722ECAD192556D8003E99F4 /* mac_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC60192556D8003E99F4 /* mac_thread.cpp */; };
@@ -2982,7 +2979,6 @@
 		07C8D688191CF0EC00137494 /* fs_link.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D686191CF0EC00137494 /* fs_link.cpp */; };
 		07C8D689191CF0EC00137494 /* fs_link.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C8D687191CF0EC00137494 /* fs_link.h */; };
 		07C8D68A191CF18600137494 /* fs_link.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D686191CF0EC00137494 /* fs_link.cpp */; };
-		07C8D701191D98F300137494 /* ios_gen_1.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C8D6B2191D98F300137494 /* ios_gen_1.h */; };
 		07C8D703191D98F300137494 /* ios_implementation.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C8D6B4191D98F300137494 /* ios_implementation.h */; };
 		07C8D704191D98F300137494 /* ios_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C8D6B5191D98F300137494 /* ios_internal.h */; };
 		07C8D708191D98F300137494 /* ios_mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C8D6B9191D98F300137494 /* ios_mm.h */; };
@@ -3005,7 +3001,6 @@
 		07D1C94819211FEA00B99496 /* ios_port_forward.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C90519211FEA00B99496 /* ios_port_forward.h */; };
 		07D1C94A19211FEA00B99496 /* ios_printer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C90719211FEA00B99496 /* ios_printer.h */; };
 		07D1C94C19211FEA00B99496 /* ios_shell.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C90919211FEA00B99496 /* ios_shell.h */; };
-		07D1C94D19211FEA00B99496 /* ios_state.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C90A19211FEA00B99496 /* ios_state.h */; };
 		07D1C94F19211FEA00B99496 /* ios_stdio_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C90C19211FEA00B99496 /* ios_stdio_file.h */; };
 		07D1C95119211FEA00B99496 /* ios_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C90E19211FEA00B99496 /* ios_thread.h */; };
 		07D1C95619211FEA00B99496 /* ios_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C91319211FEA00B99496 /* ios_window.h */; };
@@ -4009,7 +4004,6 @@
 		0722EC2F192556D8003E99F4 /* mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac.h; sourceTree = "<group>"; };
 		0722EC30192556D8003E99F4 /* mac1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac1.cpp; sourceTree = "<group>"; };
 		0722EC31192556D8003E99F4 /* mac1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac1.h; sourceTree = "<group>"; };
-		0722EC32192556D8003E99F4 /* mac2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac2.cpp; sourceTree = "<group>"; };
 		0722EC38192556D8003E99F4 /* mac_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_application.cpp; sourceTree = "<group>"; };
 		0722EC39192556D8003E99F4 /* mac_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_application.h; sourceTree = "<group>"; };
 		0722EC3C192556D8003E99F4 /* mac_copydesk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_copydesk.cpp; sourceTree = "<group>"; };
@@ -4029,7 +4023,6 @@
 		0722EC4A192556D8003E99F4 /* mac_file_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_file_set.h; sourceTree = "<group>"; };
 		0722EC4B192556D8003E99F4 /* mac_file_system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_file_system.cpp; sourceTree = "<group>"; };
 		0722EC4C192556D8003E99F4 /* mac_file_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_file_system.h; sourceTree = "<group>"; };
-		0722EC4D192556D8003E99F4 /* mac_gen_1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_gen_1.h; sourceTree = "<group>"; };
 		0722EC4E192556D8003E99F4 /* mac_genResource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_genResource.cpp; sourceTree = "<group>"; };
 		0722EC4F192556D8003E99F4 /* mac_implementation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_implementation.h; sourceTree = "<group>"; };
 		0722EC50192556D8003E99F4 /* mac_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_internal.h; sourceTree = "<group>"; };
@@ -4045,7 +4038,6 @@
 		0722EC5A192556D8003E99F4 /* mac_printer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_printer.h; sourceTree = "<group>"; };
 		0722EC5B192556D8003E99F4 /* mac_shell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_shell.cpp; sourceTree = "<group>"; };
 		0722EC5C192556D8003E99F4 /* mac_shell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_shell.h; sourceTree = "<group>"; };
-		0722EC5D192556D8003E99F4 /* mac_state.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_state.h; sourceTree = "<group>"; };
 		0722EC5E192556D8003E99F4 /* mac_stdio_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_stdio_file.cpp; sourceTree = "<group>"; };
 		0722EC5F192556D8003E99F4 /* mac_stdio_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_stdio_file.h; sourceTree = "<group>"; };
 		0722EC60192556D8003E99F4 /* mac_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_thread.cpp; sourceTree = "<group>"; };
@@ -6328,7 +6320,6 @@
 		07C8D686191CF0EC00137494 /* fs_link.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fs_link.cpp; sourceTree = "<group>"; };
 		07C8D687191CF0EC00137494 /* fs_link.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_link.h; sourceTree = "<group>"; };
 		07C8D6A8191D98F300137494 /* ios_error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_error.cpp; sourceTree = "<group>"; };
-		07C8D6B2191D98F300137494 /* ios_gen_1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_gen_1.h; sourceTree = "<group>"; };
 		07C8D6B3191D98F300137494 /* ios_genResource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_genResource.cpp; sourceTree = "<group>"; };
 		07C8D6B4191D98F300137494 /* ios_implementation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_implementation.h; sourceTree = "<group>"; };
 		07C8D6B5191D98F300137494 /* ios_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_internal.h; sourceTree = "<group>"; };
@@ -6370,7 +6361,6 @@
 		07D1C90719211FEA00B99496 /* ios_printer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_printer.h; sourceTree = "<group>"; };
 		07D1C90819211FEA00B99496 /* ios_shell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_shell.cpp; sourceTree = "<group>"; };
 		07D1C90919211FEA00B99496 /* ios_shell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_shell.h; sourceTree = "<group>"; };
-		07D1C90A19211FEA00B99496 /* ios_state.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_state.h; sourceTree = "<group>"; };
 		07D1C90B19211FEA00B99496 /* ios_stdio_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_stdio_file.cpp; sourceTree = "<group>"; };
 		07D1C90C19211FEA00B99496 /* ios_stdio_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_stdio_file.h; sourceTree = "<group>"; };
 		07D1C90D19211FEA00B99496 /* ios_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_thread.cpp; sourceTree = "<group>"; };
@@ -6796,7 +6786,6 @@
 				0722EC2F192556D8003E99F4 /* mac.h */,
 				0722EC30192556D8003E99F4 /* mac1.cpp */,
 				0722EC31192556D8003E99F4 /* mac1.h */,
-				0722EC32192556D8003E99F4 /* mac2.cpp */,
 				0722EC38192556D8003E99F4 /* mac_application.cpp */,
 				0722EC39192556D8003E99F4 /* mac_application.h */,
 				0722EC3C192556D8003E99F4 /* mac_copydesk.cpp */,
@@ -6816,7 +6805,6 @@
 				0722EC4A192556D8003E99F4 /* mac_file_set.h */,
 				0722EC4B192556D8003E99F4 /* mac_file_system.cpp */,
 				0722EC4C192556D8003E99F4 /* mac_file_system.h */,
-				0722EC4D192556D8003E99F4 /* mac_gen_1.h */,
 				0722EC4E192556D8003E99F4 /* mac_genResource.cpp */,
 				0722EC4F192556D8003E99F4 /* mac_implementation.h */,
 				0722EC50192556D8003E99F4 /* mac_internal.h */,
@@ -6832,7 +6820,6 @@
 				0722EC5A192556D8003E99F4 /* mac_printer.h */,
 				0722EC5B192556D8003E99F4 /* mac_shell.cpp */,
 				0722EC5C192556D8003E99F4 /* mac_shell.h */,
-				0722EC5D192556D8003E99F4 /* mac_state.h */,
 				0722EC5E192556D8003E99F4 /* mac_stdio_file.cpp */,
 				0722EC5F192556D8003E99F4 /* mac_stdio_file.h */,
 				0722EC60192556D8003E99F4 /* mac_thread.cpp */,
@@ -10026,7 +10013,6 @@
 				07D1C90719211FEA00B99496 /* ios_printer.h */,
 				07D1C90819211FEA00B99496 /* ios_shell.cpp */,
 				07D1C90919211FEA00B99496 /* ios_shell.h */,
-				07D1C90A19211FEA00B99496 /* ios_state.h */,
 				07D1C90B19211FEA00B99496 /* ios_stdio_file.cpp */,
 				07D1C90C19211FEA00B99496 /* ios_stdio_file.h */,
 				07D1C90D19211FEA00B99496 /* ios_thread.cpp */,
@@ -10334,7 +10320,6 @@
 				07D1C9901921201D00B99496 /* UncaughtExceptionHandler.h */,
 				07D1C9911921201D00B99496 /* UncaughtExceptionHandler.mm */,
 				07C8D6A8191D98F300137494 /* ios_error.cpp */,
-				07C8D6B2191D98F300137494 /* ios_gen_1.h */,
 				07C8D6B3191D98F300137494 /* ios_genResource.cpp */,
 				07C8D6B4191D98F300137494 /* ios_implementation.h */,
 				07C8D6B5191D98F300137494 /* ios_internal.h */,
@@ -11339,9 +11324,7 @@
 				07C8D689191CF0EC00137494 /* fs_link.h in Headers */,
 				07B092A618495B43007A0560 /* windows_types.h in Headers */,
 				07D1C95B19211FEA00B99496 /* os.h in Headers */,
-				0722EC9A192556D8003E99F4 /* mac_gen_1.h in Headers */,
 				07B08DC818495B41007A0560 /* aes_locl.h in Headers */,
-				0722ECAA192556D8003E99F4 /* mac_state.h in Headers */,
 				9AE7250F17E83B69003E47F9 /* multithreading_mutex.h in Headers */,
 				07B097CB18495CBE007A0560 /* Ajp13Socket.h in Headers */,
 				9AE7251117E83B69003E47F9 /* multithreading_retry_multi_lock.h in Headers */,
@@ -11453,7 +11436,6 @@
 				07B0980518495CBE007A0560 /* sockets_logger.h in Headers */,
 				07B08BC518495B40007A0560 /* base_definition.h in Headers */,
 				07B094B218495C2A007A0560 /* collection_bit_array.h in Headers */,
-				07D1C94D19211FEA00B99496 /* ios_state.h in Headers */,
 				07B08CC518495B40007A0560 /* crypto_c_crypto.h in Headers */,
 				07A6C876190C4D2500859288 /* bn.h in Headers */,
 				07F5B2D3184A3FA30092C3E1 /* javascript_tinyjs.h in Headers */,
@@ -11913,7 +11895,6 @@
 				07B094DB18495C2B007A0560 /* collection_raw_array_decl.h in Headers */,
 				07B08BEF18495B40007A0560 /* base_machine_event_central.h in Headers */,
 				07B08D2F18495B41007A0560 /* exception_memory_state.h in Headers */,
-				07C8D701191D98F300137494 /* ios_gen_1.h in Headers */,
 				07884E581897EC9600DC6CEB /* sys_stat.in.h in Headers */,
 				07884DEF1897EC9600DC6CEB /* georgian_ps.h in Headers */,
 				07A224A218F7F766002C3B39 /* gunibreak.h in Headers */,
@@ -12089,7 +12070,6 @@
 				07B08D5318495B41007A0560 /* exception_void_implementation.cpp in Sources */,
 				07A2247B18F7F55F002C3B39 /* base_id_pool.cpp in Sources */,
 				07B0950B18495C2B007A0560 /* datetime_departament.cpp in Sources */,
-				0722EC7F192556D8003E99F4 /* mac2.cpp in Sources */,
 				07B097FD18495CBE007A0560 /* sockets_http_batch_buffer.cpp in Sources */,
 				079AE0BF188648D400635C39 /* database_definition.cpp in Sources */,
 				07884BF01897E9A500DC6CEB /* user_frame_window.cpp in Sources */,

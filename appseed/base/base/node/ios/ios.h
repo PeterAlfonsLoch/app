@@ -66,13 +66,8 @@ CLASS_DECL_BASE void AfxResetMsgCache();
 #define _AfxHookWindowCreate    AfxHookWindowCreate
 #define _AfxUnhookWindowCreate  AfxUnhookWindowCreate
 
-//#include "ios1.h"
 #include "ios_implementation.h"
-#include "ios_state.h"
-//#include "ios_handle.h"
-// xxx #include "ios_file_find.h"
 #include "ios_dir.h"
-// xxx #include "ios_folder_watch.h"
 #include "ios_factory_exchange.h"
 #include "ios_window_draw.h"
 #include "ios_thread.h"
@@ -186,29 +181,13 @@ void CLASS_DECL_BASE __abort();
 
 
 CLASS_DECL_BASE LRESULT CALLBACK __window_procedure(oswindow hWnd,UINT nMsg,WPARAM wParam,LPARAM lParam);
-// xxx CLASS_DECL_BASE WNDPROC __get_window_procedure();
-// xxx #define __window_procedure (*__get_window_procedure())
 
 typedef void (__MSG_CALL ::window::*__PMSGW)();
-// like '__PMSG' but for ::window derived classes only
-
 typedef void (__MSG_CALL ::thread::*__PMSGT)();
-// like '__PMSG' but for thread-derived classes only
 
 
 
 
-// xxx CLASS_DECL_BASE LONG delete_registry_tree_helper(HKEY hParentKey, const string & strKeyName);
-
-
-// Advanced initialization: for overriding default diagnostics
-//CLASS_DECL_BASE bool __diagnostic_init();
-
-namespace ios
-{
-   CLASS_DECL_BASE ::thread * __get_thread();
-   CLASS_DECL_BASE void __set_thread(::thread * pthread);
-}
 CLASS_DECL_BASE MESSAGE * __get_current_message();
 
 CLASS_DECL_BASE void __end_thread(::base::application * papp,UINT nExitCode,bool bDelete = TRUE);
@@ -216,29 +195,9 @@ CLASS_DECL_BASE void __end_thread(::base::application * papp,UINT nExitCode,bool
 CLASS_DECL_BASE void __init_thread();
 CLASS_DECL_BASE void __term_thread(::base::application * papp,HINSTANCE hInstTerm = NULL);
 
-/////////////////////////////////////////////////////////////////////////////
-// Global functions for access to the one and only application
 
-#define afxCurrentWinApp    __get_module_state()->m_pCurrentWinApp
-#define afxCurrentInstanceHandle    __get_module_state()->m_hCurrentInstanceHandle
-#define afxCurrentResourceHandle    __get_module_state()->m_hCurrentResourceHandle
-#define afxCurrentAppName   __get_module_state()->m_lpszCurrentAppName
-#define afxContextIsDLL     __get_module_state()->m_bDLL
-#define afxRegisteredClasses    __get_module_state()->m_fRegisteredClasses
-#define afxAmbientActCtx    __get_module_state()->m_bSetAmbientActCtx
-
-
-// Advanced initialization: for overriding default WinMain
-//CLASS_DECL_BASE bool ::ca2::WinInit(__in HINSTANCE hInstance, __in HINSTANCE hPrevInstance,
-// __in_z LPTSTR lpCmdLine, __in int32_t nCmdShow);
 CLASS_DECL_BASE void __ios_term();
 
-CLASS_DECL_BASE ::base::application * __get_app();
-CLASS_DECL_BASE sp(::user::interaction) __get_main_window();
-//CLASS_DECL_BASE HINSTANCE CLASS_DECL_BASE System.m_hInstance;
-CLASS_DECL_BASE HINSTANCE __get_resource_handle();
-CLASS_DECL_BASE void __set_resource_handle(HINSTANCE hInstResource);
-CLASS_DECL_BASE const char * __get_app_name();
 
 CLASS_DECL_BASE HINSTANCE __get_resource_handle();
 CLASS_DECL_BASE HINSTANCE __find_string_resource_handle(UINT nID);

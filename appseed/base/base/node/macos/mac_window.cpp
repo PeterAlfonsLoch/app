@@ -203,21 +203,16 @@ namespace mac
    
    const MESSAGE* PASCAL window::GetCurrentMessage()
    {
-      // fill in time and position when asked for
-      /*    ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
-       pThreadState->m_lastSentMsg.time = ::GetMessageTime();
-       pThreadState->m_lastSentMsg.pt = point(::GetMessagePos());
-       return &pThreadState->m_lastSentMsg;*/
+      
       return NULL;
+      
    }
    
    LRESULT window::Default()
    {
-      // call DefWindowProc with the last message
-      /*      ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
-       return DefWindowProc(pThreadState->m_lastSentMsg.message,
-       pThreadState->m_lastSentMsg.wparam, pThreadState->m_lastSentMsg.lparam);*/
+      
       return 0;
+      
    }
    
    
@@ -682,12 +677,9 @@ namespace mac
       {
          if (pThread->GetMainWnd() == this)
          {
-            if (!afxContextIsDLL)
-            {
                // shut down current thread if possible
                if (pThread != &System)
                   __post_quit_message(0);
-            }
             pThread->SetMainWnd(NULL);
          }
          if (pThread->get_active_ui() == this)
@@ -844,7 +836,6 @@ namespace mac
    {
       single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
       ::window * pWnd;
-      hwnd_map * pMap;
       oswindow hWndOrig;
       bool bResult;
       
@@ -852,8 +843,6 @@ namespace mac
          return FALSE;
       
       bResult = FALSE;
-      pMap = NULL;
-      pWnd = NULL;
       hWndOrig = NULL;
       if (get_handle() != NULL)
       {
@@ -1118,82 +1107,9 @@ namespace mac
     */
    LRESULT window::OnNTCtlColor(WPARAM wparam, LPARAM lparam)
    {
-      // fill in special struct for compatiblity with 16-bit WM_CTLCOLOR
-      /*    __CTLCOLOR ctl;
-       ctl.hDC = (HDC)wparam;
-       ctl.hWnd = (oswindow)lparam;
-       ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
-       ctl.nCtlType = pThreadState->m_lastSentMsg.message - WM_CTLCOLORMSGBOX;
-       //ASSERT(ctl.nCtlType >= CTLCOLOR_MSGBOX);
-       ASSERT(ctl.nCtlType <= CTLCOLOR_STATIC);
-       
-       // Note: We call the virtual message_handler for this window directly,
-       //  instead of calling ::ca2::CallWindowProc, so that Default()
-       //  will still work (it will call the Default window proc with
-       //  the original Win32 WM_CTLCOLOR message).
-       
-       return message_handler(WM_CTLCOLOR, 0, (LPARAM)&ctl);*/
       return 0;
    }
    
-   /////////////////////////////////////////////////////////////////////////////
-   // window extensions for help support
-   
-   /*   void window::WinHelp(dword_ptr dwData, UINT nCmd)
-    {
-    UNREFERENCED_PARAMETER(dwData);
-    UNREFERENCED_PARAMETER(nCmd);
-    throw not_implemented(get_app());
-    
-         application* pApp = &System;
-    ASSERT_VALID(pApp);
-    ASSERT(pApp->m_pszHelpFilePath != NULL);
-    ASSERT(pApp->m_eHelpType == afxWinHelp);
-    
-    wait_cursor wait(get_app());
-    
-    PrepareForHelp();
-    
-    // need to use top level parent (for the case where get_handle() is in DLL)
-    ::user::interaction * pWnd = EnsureTopLevelParent();
-    
-    TRACE(::ca2::trace::category_AppMsg, 0, "WinHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
-    
-    // finally, run the oswindows Help engine
-     trans   if (!::WinHelp(MAC_WINDOW(pWnd)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
-    {
-    // linux System.simple_message_box(__IDP_FAILED_TO_LAUNCH_HELP);
-    System.simple_message_box("Failed to launch help");
-    }*/
-   //}
-   
-   //void window::HtmlHelp(dword_ptr dwData, UINT nCmd)
-   //{
-   // throw not_implemented(get_app());
-   /*
-    application* pApp = &System;
-    ASSERT_VALID(pApp);
-    ASSERT(pApp->m_pszHelpFilePath != NULL);
-    // to call HtmlHelp the m_fUseHtmlHelp must be set in
-    // the application's constructor
-    ASSERT(pApp->m_eHelpType == afxHTMLHelp);
-    
-    wait_cursor wait(get_app());
-    
-    PrepareForHelp();
-    
-    // need to use top level parent (for the case where get_handle() is in DLL)
-    ::user::interaction * pWnd = EnsureTopLevelParent();
-    
-    TRACE(::ca2::trace::category_AppMsg, 0, "HtmlHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
-    
-    // run the HTML Help engine
-     trans   if (!::ca2::HtmlHelp(MAC_WINDOW(pWnd)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
-    {
-    // linux System.simple_message_box(__IDP_FAILED_TO_LAUNCH_HELP);
-    System.simple_message_box("Failed to launch help");
-    }*/
-   //}
    
    void window::PrepareForHelp()
    {
@@ -2264,19 +2180,23 @@ namespace mac
       return pFrameWnd;
    }
    
-   /*   ::window * window::GetSafeOwner(::window * pParent, oswindow* pWndTop)
-    {
-    oswindow hWnd = GetSafeOwner_((oswindow) pParent->get_handle(), pWndTop);
-    return ::mac::window::from_handle(hWnd);
-    }
-    */
+
    int32_t window::message_box(const char * lpszText, const char * lpszCaption, UINT nType)
    {
+   
+      string strCaption;
+      
       if (lpszCaption == NULL)
-         lpszCaption = __get_app_name();
+         lpszCaption = Application.m_strAppName;
+      else
+         lpszCaption = strCaption;
+      
       int32_t nResult = ::MessageBox((oswindow)get_handle(), lpszText, lpszCaption, nType);
+      
       return nResult;
+      
    }
+   
    
    sp(::user::interaction) PASCAL window::GetDescendantWindow(sp(::user::interaction) hWnd, id id)
    {
@@ -2832,10 +2752,12 @@ namespace mac
       // no special processing
    }
    
+   
    bool window::SendChildNotifyLastMsg(LRESULT* pResult)
    {
-      ___THREAD_STATE* pThreadState = gen_ThreadState;
-      return OnChildNotify(pThreadState->m_lastSentMsg.message, pThreadState->m_lastSentMsg.wParam, pThreadState->m_lastSentMsg.lParam, pResult);
+      
+      return false;
+      
    }
    
    bool PASCAL window::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
@@ -2961,14 +2883,12 @@ namespace mac
       }
    }
    
+   
    LRESULT window::OnActivateTopLevel(WPARAM wparam, LPARAM)
    {
-      if (LOWORD(wparam) == WA_INACTIVE)
-      {
-         //         __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
-      }
       
       return 0;
+      
    }
    
    void window::OnSysColorChange()
@@ -3595,47 +3515,7 @@ namespace mac
       //      return TRUE;
    }
    
-   /////////////////////////////////////////////////////////////////////////////
-   // 'dialog data' support
-   
-   /*bool window::UpdateData(bool bSaveAndValidate)
-    {
-    ASSERT(::IsWindow(get_handle())); // calling UpdateData before DoModal?
-    
-    CDataExchange dx(this, bSaveAndValidate);
-    
-    // prevent control notifications from being dispatched during UpdateData
-    ___THREAD_STATE* pThreadState = __get_thread_state();
-    oswindow hWndOldLockout = pThreadState->m_hLockoutNotifyWindow;
-    ASSERT(hWndOldLockout != get_handle());   // must not recurse
-    pThreadState->m_hLockoutNotifyWindow = get_handle();
-    
-    bool bOK = FALSE;       // assume failure
-    try
-    {
-    DoDataExchange(&dx);
-    bOK = TRUE;         // it worked
-    }
-    catch(user_exception * pe)
-    {
-    // validation failed - ::fontopus::user already alerted, fall through
-    ASSERT(!bOK);
-    // Note: DELETE_EXCEPTION_(e) not required
-    }
-    catch(::exception::base * pe)
-    {
-    // validation failed due to OOM or other resource failure
-    //e->ReportError(MB_ICONEXCLAMATION, __IDP_INTERNAL_FAILURE);
-    pe->ReportError(MB_ICONEXCLAMATION, "falha interna");
-    ASSERT(!bOK);
-    pe->Delete();
-    }
-    
-    
-    pThreadState->m_hLockoutNotifyWindow = hWndOldLockout;
-    return bOK;
-    }*/
-   
+
    
    /////////////////////////////////////////////////////////////////////////////
    // Centering dialog support (works for any non-child window)
@@ -3643,94 +3523,6 @@ namespace mac
    void window::CenterWindow(sp(::user::interaction) pAlternateOwner)
    {
       throw not_implemented(get_app());
-      //      ASSERT(::IsWindow(get_handle()));
-      //
-      //      // determine owner window to center against
-      //      DWORD dwStyle = GetStyle();
-      //      ::user::interaction * hWndCenter = pAlternateOwner;
-      //      if (pAlternateOwner == NULL)
-      //      {
-      //         if (dwStyle & WS_CHILD)
-      //            hWndCenter = GetParent();
-      //         else
-      //            hWndCenter = GetWindow(GW_OWNER);
-      //         if (hWndCenter != NULL)
-      //         {
-      //            // let parent determine alternate center window
-      //            ::user::interaction * hWndTemp =
-      //               (::user::interaction * )hWndCenter->send_message(WM_QUERYCENTERWND, 0, 0);
-      //            if (hWndTemp != NULL)
-      //               hWndCenter = hWndTemp;
-      //         }
-      //      }
-      //
-      //      // get coordinates of the window relative to its parent
-      //      rect rcDlg;
-      //      GetWindowRect(&rcDlg);
-      //      rect rcArea;
-      //      rect rcCenter;
-      //      ::user::interaction * hWndParent;
-      //      if (!(dwStyle & WS_CHILD))
-      //      {
-      //         // don't center against invisible or minimized windows
-      //         if (hWndCenter != NULL)
-      //         {
-      //            DWORD dwAlternateStyle = hWndCenter->GetWindowLong(GWL_STYLE);
-      //            if (!(dwAlternateStyle & WS_VISIBLE) || (dwAlternateStyle & WS_MINIMIZE))
-      //               hWndCenter = NULL;
-      //         }
-      //
-      //         MONITORINFO mi;
-      //         mi.cbSize = sizeof(mi);
-      //
-      //         // center within appropriate monitor coordinates
-      //         if (hWndCenter == NULL)
-      //         {
-      //            oswindow hwDefault = System.GetMainWnd()->get_handle();
-      //
-      //            GetMonitorInfo(
-      //               MonitorFromWindow(hwDefault, MONITOR_DEFAULTTOPRIMARY), &mi);
-      //            rcCenter = mi.rcWork;
-      //            rcArea = mi.rcWork;
-      //         }
-      //         else
-      //         {
-      //            hWndCenter->GetWindowRect(&rcCenter);
-      //            GetMonitorInfo(
-      //               MonitorFromWindow(hWndCenter->get_handle(), MONITOR_DEFAULTTONEAREST), &mi);
-      //            rcArea = mi.rcWork;
-      //         }
-      //      }
-      //      else
-      //      {
-      //         // center within parent client coordinates
-      //         hWndParent = GetParent();
-      //         ASSERT(hWndParent->IsWindow());
-      //
-      //         hWndParent->GetClientRect(&rcArea);
-      //         ASSERT(hWndCenter->IsWindow());
-      //         hWndCenter->GetClientRect(&rcCenter);
-      //         ::MapWindowPoints(hWndCenter->get_handle(), hWndParent->get_handle(), (POINT*)&rcCenter, 2);
-      //      }
-      //
-      //      // find dialog's upper left based on rcCenter
-      //      int32_t xLeft = (rcCenter.left + rcCenter.right) / 2 - rcDlg.width() / 2;
-      //      int32_t yTop = (rcCenter.top + rcCenter.bottom) / 2 - rcDlg.height() / 2;
-      //
-      //      // if the dialog is outside the screen, move it inside
-      //      if (xLeft < rcArea.left)
-      //         xLeft = rcArea.left;
-      //      else if (xLeft + rcDlg.width() > rcArea.right)
-      //         xLeft = rcArea.right - rcDlg.width();
-      //
-      //      if (yTop < rcArea.top)
-      //         yTop = rcArea.top;
-      //      else if (yTop + rcDlg.height() > rcArea.bottom)
-      //         yTop = rcArea.bottom - rcDlg.height();
-      //
-      //      // ::collection::map screen coordinates to child coordinates
-      //      SetWindowPos(NULL, xLeft, yTop, -1, -1,
-      //         SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE);
    }
    
    bool window::CheckAutoCenter()
@@ -6161,238 +5953,11 @@ namespace mac
       return hWnd;    // return the owner as oswindow
    }
    
-   /*
-   void window::on_delete(::ca2::ca2 * pui)
-   {
-      UNREFERENCED_PARAMETER(pui);
-   }
-   */
-   
-   /////////////////////////////////////////////////////////////////////////////
-   // Official way to send message to a window
-   
-   CLASS_DECL_mac LRESULT __call_window_procedure(::user::interaction * pinteraction, oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam)
-   {
-      ___THREAD_STATE* pThreadState = gen_ThreadState;
-//      MESSAGE oldState = pThreadState->m_lastSentMsg;   // save for nesting
-      
-      throw not_implemented(pinteraction->get_app());
-      
-      //      pThreadState->m_lastSentMsg.m_pwnd = pinteraction;
-      pThreadState->m_lastSentMsg.message = nMsg;
-      pThreadState->m_lastSentMsg.wParam = wparam;
-      pThreadState->m_lastSentMsg.lParam = lparam;
-      
-      // Catch exceptions thrown outside the scope of a callback
-      // in debug builds and warn the ::fontopus::user.
-      //      ::ca2::smart_pointer < ::message::base > spbase;
-      //
-      //      spbase(pinteraction->get_base(pinteraction, nMsg, wparam, lparam));
-      //
-      //      __trace_message("WndProc", spbase);
-      //
-      //      try
-      //      {
-      //
-      //         // special case for WM_INITDIALOG
-      //         rect rectOld;
-      //         DWORD dwStyle = 0;
-      //         if (nMsg == WM_INITDIALOG)
-      //            __pre_init_dialog(pinteraction, &rectOld, &dwStyle);
-      //
-      //         // delegate to object's message_handler
-      //         if(pinteraction->m_pui != NULL && pinteraction->m_pui != pinteraction)
-      //         {
-      //            pinteraction->m_pui->message_handler(spbase);
-      //         }
-      //         else
-      //         {
-      //            pinteraction->message_handler(spbase);
-      //         }
-      //         // more special case for WM_INITDIALOG
-      //         if (nMsg == WM_INITDIALOG)
-      //            __post_init_dialog(pinteraction, rectOld, dwStyle);
-      //      }
-      //      catch(const ::exception::exception & e)
-      //      {
-      //         try
-      //         {
-      //            if(App(pinteraction->m_pbaseapp->m_pplaneapp).on_run_exception((::exception::exception &) e))
-      //               goto run;
-      //         }
-      //         catch(...)
-      //         {
-      //         }
-      //         return -1;
-      //      }
-      //      catch(::exception::base * pe)
-      //      {
-      //         __process_window_procedure_exception(pe, spbase);
-      //         //         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Uncaught exception in message_handler (returning %ld).\n", spbase->get_lresult());
-      //         pe->Delete();
-      //      }
-      //      catch(...)
-      //      {
-      //      }
-      //run:
-      //      try
-      //      {
-      //         pThreadState->m_lastSentMsg = oldState;
-      //         LRESULT lresult = spbase->get_lresult();
-      //         return lresult;
-      //      }
-      //      catch(...)
-      //      {
-      //         return 0;
-      //      }
-   }
-   
-   
-   /*CDataExchange::CDataExchange(::window * pDlgWnd, bool bSaveAndValidate)
-    {
-    ASSERT_VALID(pDlgWnd);
-    m_bSaveAndValidate = bSaveAndValidate;
-    m_pDlgWnd = pDlgWnd;
-    m_idLastControl = 0;
-    }*/
-   
-   /////////////////////////////////////////////////////////////////////////////
-   // oswindow creation hooks
-   
    LRESULT CALLBACK __cbt_filter_hook(int32_t code, WPARAM wparam, LPARAM lparam)
    {
       
       throw not_implemented(::get_thread_app());
       
-      //      ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
-      //      if (code != HCBT_CREATEWND)
-      //      {
-      //         // wait for HCBT_CREATEWND just pass others on...
-      //         return CallNextHookEx(pThreadState->m_hHookOldCbtFilter, code,
-      //            wparam, lparam);
-      //      }
-      //
-      //      ASSERT(lparam != NULL);
-      //      LPCREATESTRUCT lpcs = ((LPCBT_CREATEWND)lparam)->lpcs;
-      //      ASSERT(lpcs != NULL);
-      //
-      //      ::user::interaction * pWndInit = pThreadState->m_pWndInit;
-      //      bool bContextIsDLL = afxContextIsDLL;
-      //      if (pWndInit != NULL || (!(lpcs->style & WS_CHILD) && !bContextIsDLL))
-      //      {
-      //         // Note: special check to avoid subclassing the IME window
-      //         //if (gen_DBCS)
-      //         {
-      //            // check for cheap CS_IME style first...
-      //            if (GetClassLong((oswindow)wparam, GCL_STYLE) & CS_IME)
-      //               goto lCallNextHook;
-      //
-      //            // get class name of the window that is being created
-      //            const char * pszClassName;
-      //            char szClassName[_countof("ime")+1];
-      //            if (dword_ptr(lpcs->lpszClass) > 0xffff)
-      //            {
-      //               pszClassName = lpcs->lpszClass;
-      //            }
-      //            else
-      //            {
-      //               szClassName[0] = '\0';
-      //               GlobalGetAtomName((ATOM)lpcs->lpszClass, szClassName, _countof(szClassName));
-      //               pszClassName = szClassName;
-      //            }
-      //
-      //            // a little more expensive to test this way, but necessary...
-      //            if (::__invariant_stricmp(pszClassName, "ime") == 0)
-      //               goto lCallNextHook;
-      //         }
-      //
-      //         ASSERT(wparam != NULL); // should be non-NULL oswindow
-      //         oswindow hWnd = (oswindow)wparam;
-      //         WNDPROC oldWndProc;
-      //         if (pWndInit != NULL)
-      //         {
-      //            // the window should not be in the permanent ::collection::map at this time
-      //            ASSERT(::mac::window::FromHandlePermanent(hWnd) == NULL);
-      //
-      //            pWndInit->m_pthread = dynamic_cast < ::thread * > (::mac::get_thread());
-      //            pWndInit->m_pthread->add(pWndInit);
-      //            pWndInit->m_pui->m_pthread = pWndInit->m_pthread;
-      //            pWndInit->m_pui->m_pthread->add(pWndInit->m_pui);
-      //            pWndInit->m_pui->m_pimpl = pWndInit;
-      //
-      //            // connect the oswindow to pWndInit...
-      //            pWndInit->Attach(hWnd);
-      //            // allow other subclassing to occur first
-      //            pWndInit->pre_subclass_window();
-      //
-      //            WNDPROC *pOldWndProc = pWndInit->GetSuperWndProcAddr();
-      //            ASSERT(pOldWndProc != NULL);
-      //
-      //            // subclass the window with standard __window_procedure
-      //            WNDPROC afxWndProc = __get_window_procedure();
-      //            oldWndProc = (WNDPROC)SetWindowLongPtr(hWnd, GWLP_WNDPROC,
-      //               (dword_ptr)afxWndProc);
-      //            ASSERT(oldWndProc != NULL);
-      //            if (oldWndProc != afxWndProc)
-      //               *pOldWndProc = oldWndProc;
-      //
-      //            pThreadState->m_pWndInit = NULL;
-      //         }
-      //         else
-      //         {
-      //            ASSERT(!bContextIsDLL);   // should never get here
-      //
-      //            static ATOM s_atomMenu = 0;
-      //            bool bSubclass = true;
-      //
-      //            if (s_atomMenu == 0)
-      //            {
-      //               WNDCLASSEX wc;
-      //               memset(&wc, 0, sizeof(WNDCLASSEX));
-      //               wc.cbSize = sizeof(WNDCLASSEX);
-      //               s_atomMenu = (ATOM)::GetClassInfoEx(NULL, "#32768", &wc);
-      //            }
-      //
-      //            // Do not subclass menus.
-      //            if (s_atomMenu != 0)
-      //            {
-      //               ATOM atomWnd = (ATOM)::GetClassLongPtr(hWnd, GCW_ATOM);
-      //               if (atomWnd == s_atomMenu)
-      //                  bSubclass = false;
-      //            }
-      //            else
-      //            {
-      //               char szClassName[256];
-      //               if (::GetClassName(hWnd, szClassName, 256))
-      //               {
-      //                  szClassName[255] = NULL;
-      //                  if (_tcscmp(szClassName, "#32768") == 0)
-      //                     bSubclass = false;
-      //               }
-      //            }
-      //            if (bSubclass)
-      //            {
-      //               // subclass the window with the proc which does gray backgrounds
-      //               oldWndProc = (WNDPROC)GetWindowLongPtr(hWnd, GWLP_WNDPROC);
-      //               if (oldWndProc != NULL && GetProp(hWnd, gen_OldWndProc) == NULL)
-      //               {
-      //                  SetProp(hWnd, gen_OldWndProc, oldWndProc);
-      //                  if ((WNDPROC)GetProp(hWnd, gen_OldWndProc) == oldWndProc)
-      //                  {
-      //                     GlobalAddAtom(gen_OldWndProc);
-      //                     SetWindowLongPtr(hWnd, GWLP_WNDPROC, (dword_ptr)__activation_window_procedure);
-      //                     ASSERT(oldWndProc != NULL);
-      //                  }
-      //               }
-      //            }
-      //         }
-      //      }
-      //
-      //lCallNextHook:
-      //      LRESULT lResult = CallNextHookEx(pThreadState->m_hHookOldCbtFilter, code,
-      //         wparam, lparam);
-      //
-      //      return lResult;
    }
    
    
@@ -6618,40 +6183,6 @@ namespace mac
 
 
 
-/////////////////////////////////////////////////////////////////////////////
-// Map from oswindow to ::window *
-
-hwnd_map* PASCAL afxMapHWND(bool bCreate)
-{
-   UNREFERENCED_PARAMETER(bCreate);
-   try
-   {
-      __MODULE_STATE* pState = __get_module_state();
-      if(pState == NULL)
-         return NULL;
-      return pState->m_pmapHWND;
-   }
-   catch(...)
-   {
-      return NULL;
-   }
-}
-
-
-mutex * PASCAL afxMutexHwnd()
-{
-   try
-   {
-      __MODULE_STATE* pState = __get_module_state();
-      if(pState == NULL)
-         return NULL;
-      return pState->m_pmutexHwnd;
-   }
-   catch(...)
-   {
-      return NULL;
-   }
-}
 
 /////////////////////////////////////////////////////////////////////////////
 // The WndProc for all window's and derived classes
@@ -6727,36 +6258,16 @@ __STATIC void CLASS_DECL_mac __post_init_dialog(
 CLASS_DECL_mac void hook_window_create(::user::interaction * pWnd)
 {
    
-   //      throw not_implemented(::get_thread_app());
-   ___THREAD_STATE* pThreadState = gen_ThreadState;
-   if (pThreadState->m_pWndInit == pWnd)
-      return;
+   UNREFERENCED_PARAMETER(pWnd);
    
-   //   if (pThreadState->m_hHookOldCbtFilter == NULL)
-   //   {
-   //      pThreadState->m_hHookOldCbtFilter = ::SetWindowsHookEx(WH_CBT,
-   //         mac::__cbt_filter_hook, NULL, ::GetCurrentThreadId());
-   //      if (pThreadState->m_hHookOldCbtFilter == NULL)
-   //         throw memory_exception();
-   //   }
-   //   ASSERT(pThreadState->m_hHookOldCbtFilter != NULL);
-   //   ASSERT(pWnd != NULL);
-   //   // trans   ASSERT(MAC_WINDOW(pWnd)->get_handle() == NULL);   // only do once
-   //
-   ASSERT(pThreadState->m_pWndInit == NULL);   // hook not already in progress
-   //pThreadState->m_pWndInit = pWnd;
 }
 
 
 CLASS_DECL_mac bool unhook_window_create()
 {
-   ___THREAD_STATE* pThreadState = gen_ThreadState;
-   if (pThreadState->m_pWndInit != NULL)
-   {
-      pThreadState->m_pWndInit = NULL;
-      return FALSE;   // was not successfully hooked
-   }
+   
    return TRUE;
+   
 }
 
 
@@ -6832,140 +6343,6 @@ __handle_set_cursor(::window * pWnd, UINT nHitTest, UINT nMsg)
 //}
 
 
-//bool CLASS_DECL_mac __end_defer_register_class(LONG fToRegisterParam, const char ** ppszClass)
-//{
-//   // mask off all classes that are already registered
-//   __MODULE_STATE* pModuleState = __get_module_state();
-//   LONG fToRegister = fToRegisterParam & ~pModuleState->m_fRegisteredClasses;
-//   if (fToRegister == 0)
-//   {
-//      fToRegister = fToRegisterParam;
-//      if(ppszClass != NULL)
-//      {
-//         if(fToRegister & __WND_REG)
-//         {
-//            *ppszClass = gen_Wnd;
-//         }
-//         else if (fToRegister & __WNDOLECONTROL_REG)
-//         {
-//            *ppszClass = gen_WndOleControl;
-//         }
-//         else if (fToRegister & __WNDCONTROLBAR_REG)
-//         {
-//            *ppszClass = gen_WndControlBar;
-//         }
-//         else if(fToRegister & __WNDMDIFRAME_REG)
-//         {
-//            *ppszClass = gen_WndMDIFrame;
-//         }
-//         else if(fToRegister & __WNDFRAMEORVIEW_REG)
-//         {
-//            *ppszClass = gen_WndFrameOrView;
-//         }
-//      }
-//      return TRUE;
-//   }
-//
-//   LONG fRegisteredClasses = 0;
-//
-//   // common initialization
-//   WNDCLASS wndcls;
-//   memset(&wndcls, 0, sizeof(WNDCLASS));   // start with NULL defaults
-//   wndcls.lpfnWndProc = DefWindowProc;
-//   wndcls.hInstance = Sys(::mac::get_thread()->m_pbaseapp->m_pplaneapp).m_hInstance;
-//   //wndcls.hCursor = afxData.hcurArrow;
-//
-//   INITCOMMONCONTROLSEX init;
-//   init.dwSize = sizeof(init);
-//
-//   // work to register classes as specified by fToRegister, populate fRegisteredClasses as we go
-//   if (fToRegister & __WND_REG)
-//   {
-//      // Child windows - no brush, no icon, safest default class styles
-//      wndcls.style = CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW;
-//      wndcls.lpszClassName = gen_Wnd;
-//      if (__register_class(&wndcls))
-//      {
-//         if(ppszClass != NULL)
-//         {
-//            *ppszClass = wndcls.lpszClassName;
-//         }
-//         fRegisteredClasses |= __WND_REG;
-//      }
-//   }
-//   if (fToRegister & __WNDOLECONTROL_REG)
-//   {
-//      // OLE control windows - use parent DC for speed
-//      wndcls.style |= CS_PARENTDC | CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW;
-//      wndcls.lpszClassName = gen_WndOleControl;
-//      if (__register_class(&wndcls))
-//      {
-//         if(ppszClass != NULL)
-//         {
-//            *ppszClass = wndcls.lpszClassName;
-//         }
-//         fRegisteredClasses |= __WNDOLECONTROL_REG;
-//      }
-//   }
-//   if (fToRegister & __WNDCONTROLBAR_REG)
-//   {
-//      // control bar windows
-//      wndcls.style = 0;   // control bars don't handle double click
-//      wndcls.lpszClassName = gen_WndControlBar;
-//      wndcls.hbrBackground = (HBRUSH)(COLOR_BTNFACE + 1);
-//      if (__register_class(&wndcls))
-//      {
-//         if(ppszClass != NULL)
-//         {
-//            *ppszClass = wndcls.lpszClassName;
-//         }
-//         fRegisteredClasses |= __WNDCONTROLBAR_REG;
-//      }
-//   }
-//   if (fToRegister & __WNDMDIFRAME_REG)
-//   {
-//      // MDI Frame window (also used for splitter window)
-//      wndcls.style = CS_DBLCLKS;
-//      wndcls.hbrBackground = NULL;
-//      /*      if (__register_with_icon(&wndcls, gen_WndMDIFrame, __IDI_STD_MDIFRAME))
-//      {
-//      if(ppszClass != NULL)
-//      {
-//      *ppszClass = gen_WndMDIFrame;
-//      }
-//      fRegisteredClasses |= __WNDMDIFRAME_REG;
-//      }*/
-//   }
-//   if (fToRegister & __WNDFRAMEORVIEW_REG)
-//   {
-//      // SDI Frame or MDI Child windows or views - normal colors
-//      wndcls.style = CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW;
-//      wndcls.hbrBackground = (HBRUSH) (COLOR_WINDOW + 1);
-//      if (__register_with_icon(&wndcls, gen_WndFrameOrView, 123))
-//      {
-//         if(ppszClass != NULL)
-//         {
-//            *ppszClass = gen_WndFrameOrView;
-//         }
-//         fRegisteredClasses |= __WNDFRAMEORVIEW_REG;
-//      }
-//   }
-//
-//
-//   // save new state of registered controls
-//   pModuleState->m_fRegisteredClasses |= fRegisteredClasses;
-//
-//   // special case for all common controls registered, turn on __WNDCOMMCTLS_REG
-//   if ((pModuleState->m_fRegisteredClasses & __WIN95CTLS_MASK) == __WIN95CTLS_MASK)
-//   {
-//      pModuleState->m_fRegisteredClasses |= __WNDCOMMCTLS_REG;
-//      fRegisteredClasses |= __WNDCOMMCTLS_REG;
-//   }
-//
-//   // must have registered at least as mamy classes as requested
-//   return (fToRegister & fRegisteredClasses) == fToRegister;
-//}
-
 
 /////////////////////////////////////////////////////////////////////////////
 // Special WndProcs (activation handling & gray dialogs)
@@ -7040,66 +6417,11 @@ __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lp
 
 
 
-/////////////////////////////////////////////////////////////////////////////
-// Additional helpers for WNDCLASS init
 
-// like RegisterClass, except will automatically call UnregisterClass
-//bool CLASS_DECL_mac __register_class(WNDCLASS* lpWndClass)
-//{
-//   WNDCLASS wndcls;
-//   if (GetClassInfo(lpWndClass->hInstance, lpWndClass->lpszClassName,
-//      &wndcls))
-//   {
-//      // class already registered
-//      return TRUE;
-//   }
-//
-//   if (!::RegisterClass(lpWndClass))
-//   {
-//      //      TRACE(::ca2::trace::category_AppMsg, 0, "Can't register window class named %s\n",
-//      //       lpWndClass->lpszClassName);
-//      return FALSE;
-//   }
-//
-//   bool bRet = TRUE;
-//
-//   if (afxContextIsDLL)
-//   {
-//
-//      try
-//      {
-//         // class registered successfully, add to registered list
-//         __MODULE_STATE* pModuleState = __get_module_state();
-//         single_lock sl(&pModuleState->m_mutexRegClassList, TRUE);
-//         if(pModuleState->m_pstrUnregisterList == NULL)
-//            pModuleState->m_pstrUnregisterList = new string;
-//         *pModuleState->m_pstrUnregisterList += lpWndClass->lpszClassName;
-//         *pModuleState->m_pstrUnregisterList +='\n';
-//      }
-//      catch(::exception::base * pe)
-//      {
-//         ::exception::rethrow(pe);
-//         // Note: DELETE_EXCEPTION not required.
-//      }
-//
-//   }
-//
-//   return bRet;
-//}
-
-
-//#u//ndef new
-//#include <gdiplus.h>
 
 
 namespace mac
 {
-   
-   /*   void window::_001DeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
-    {
-    
-    
-    }*/
    
    void window::_001UpdateWindow()
    {
@@ -7115,16 +6437,10 @@ namespace mac
    
    void window::set_view_port_org(::draw2d::graphics * pgraphics)
    {
+
       // graphics will be already set its view port to the window for linux - cairo with xlib
       
       pgraphics->SetViewportOrg(point(0, 0));
-      
-      /*      rect64 rectWindow;
-       GetWindowRect(rectWindow);
-       get_wnd()->ScreenToClient(rectWindow);
-       pgraphics->SetViewportOrg(point(rectWindow.top_left()));
-       pgraphics->SelectClipRgn(NULL);
-       */
       
    }
    

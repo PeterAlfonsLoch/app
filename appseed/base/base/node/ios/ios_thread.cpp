@@ -20,8 +20,6 @@
 
 struct ___THREAD_STARTUP : ::ios::thread_startup
 {
-   // following are "in" parameters to thread startup
-   ___THREAD_STATE* pThreadState;    // thread state of parent thread
    ::ios::thread* pThread;    // thread for new thread
    DWORD dwCreateFlags;    // thread creation flags
    _PNH pfnNewHandler;     // new handler for new thread
@@ -91,8 +89,6 @@ namespace ios
 
 struct _AFX_THREAD_STARTUP : ::ios::thread_startup
 {
-   // following are "in" parameters to thread startup
-   ___THREAD_STATE* pThreadState;    // thread state of parent thread
    ::ios::thread* pThread;    // thread for new thread
    DWORD dwCreateFlags;    // thread creation flags
    _PNH pfnNewHandler;     // new handler for new thread
@@ -108,15 +104,6 @@ struct _AFX_THREAD_STARTUP : ::ios::thread_startup
 void __node_init_app_thread(::thread * pthread)
 {
    
-   ::ios::thread * pnodethread = pthread->m_p.cast < ::ios::thread >();
-   
-   __MODULE_STATE* pModuleState = __get_module_state();
-   
-   pModuleState->t_pthread = new __MODULE_THREAD_STATE;
-   
-   __MODULE_THREAD_STATE* pState = pModuleState->t_pthread;
-   
-   pState->m_pCurrentWinThread = pnodethread;
    
 }
 
@@ -136,28 +123,9 @@ UINT APIENTRY __thread_entry(void * pParam)
    
    try
    {
-      // inherit parent's module state
-      ___THREAD_STATE* pThreadState = __get_thread_state();
       
-      pThreadState->m_pModuleState = pStartup->pThreadState->m_pModuleState;
-      pThreadState->m_pCurrentWinThread = pThread;
-      
-      // set current thread pointer for System.GetThread
-      __MODULE_STATE* pModuleState = __get_module_state();
-      pModuleState->t_pthread = new __MODULE_THREAD_STATE;
-      __MODULE_THREAD_STATE* pState = pModuleState->t_pthread;
-      pState->m_pCurrentWinThread = pThread;
-      
-      // forced initialization of the thread
       __init_thread();
-
-      // thread inherits cast's main ::window if not already set
-      //if (papp != NULL && GetMainWnd() == NULL)
-      {
-         // just attach the oswindow
-         // trans         threadWnd.Attach(pApp->GetMainWnd()->get_handle());
-         //GetMainWnd() = pApp->GetMainWnd();
-      }
+      
    }
    catch(::exception::base *)
    {
@@ -198,29 +166,21 @@ UINT APIENTRY __thread_entry(void * pParam)
 namespace ios
 {
 
+   thread_pointer < ::thread > t_pthread;
+
    
    CLASS_DECL_BASE ::thread * __get_thread()
    {
       
-      // check for current thread in module thread state
-      
-      ___THREAD_STATE* pState = ::__get_thread_state();
-      
-      thread * pThread = pState->m_pCurrentWinThread;
-      
-      return pThread == NULL ? NULL : pThread->m_p;
+      return t_pthread;
       
    }
    
    
    CLASS_DECL_BASE void __set_thread(::thread * pthread)
    {
-      
-      // check for current thread in module thread state
-      
-      ___THREAD_STATE* pState = ::__get_thread_state();
-      
-      pState->m_pCurrentWinThread = dynamic_cast < ::ios::thread * > (pthread->m_p.m_p);
+
+      t_pthread = pthread;
       
    }
    
@@ -230,13 +190,6 @@ namespace ios
 
 
 
-
-CLASS_DECL_BASE MESSAGE * AfxGetCurrentMessage()
-{
-   ___THREAD_STATE* pState = __get_thread_state();
-   ASSERT(pState);
-   return &(pState->m_msgCur);
-}
 
 
 
@@ -375,15 +328,6 @@ WINBOOL AfxInternalIsIdleMessage(signal_details * pobj)
    // redundant WM_MOUSEMOVE and WM_NCMOUSEMOVE
    if (pbase->m_uiMessage == WM_MOUSEMOVE || pbase->m_uiMessage == WM_NCMOUSEMOVE)
    {
-      // mouse move at same position as last mouse move?
-      ___THREAD_STATE *pState = __get_thread_state();
-      point ptCursor;
-      App(pobj->get_app()).get_cursor_pos(&ptCursor);
-      if (pState->m_ptCursorLast == ptCursor && pbase->m_uiMessage == pState->m_nMsgLast)
-         return FALSE;
-      
-      pState->m_ptCursorLast = ptCursor;  // remember for next time
-      pState->m_nMsgLast = pbase->m_uiMessage;
       return TRUE;
    }
    
@@ -406,13 +350,6 @@ WINBOOL AfxInternalIsIdleMessage(LPMESSAGE lpmsg)
    // redundant WM_MOUSEMOVE and WM_NCMOUSEMOVE
    if (lpmsg->message == WM_MOUSEMOVE || lpmsg->message == WM_NCMOUSEMOVE)
    {
-      // mouse move at same position as last mouse move?
-      ___THREAD_STATE *pState = __get_thread_state();
-      if (pState->m_ptCursorLast == lpmsg->pt && lpmsg->message == pState->m_nMsgLast)
-         return FALSE;
-      
-      pState->m_ptCursorLast = lpmsg->pt;  // remember for next time
-      pState->m_nMsgLast = lpmsg->message;
       return TRUE;
    }
    
@@ -463,11 +400,8 @@ WINBOOL __cdecl __is_idle_message(MESSAGE* pMsg)
  }*/
 void CLASS_DECL_BASE __end_thread(::base::application * papp, UINT nExitCode, bool bDelete)
 {
-   // remove current thread object from primitive::memory
-//   __MODULE_THREAD_STATE* pState = __get_module_thread_state();
 
-   ___THREAD_STATE* pState = __get_thread_state();
-::ios::thread* pThread = pState->m_pCurrentWinThread;
+   ::ios::thread* pThread = ::ios::__get_thread();
    
    if (pThread != NULL)
    {
@@ -489,18 +423,6 @@ void CLASS_DECL_BASE __end_thread(::base::application * papp, UINT nExitCode, bo
 void CLASS_DECL_BASE __term_thread(::base::application * papp, HINSTANCE hInstTerm)
 {
    
-   try
-   {
-      // cleanup thread local tooltip window
-      if (hInstTerm == NULL)
-      {
-         //         __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
-      }
-   }
-   catch( ::exception::base* e )
-   {
-      e->Delete();
-   }
    
    try
    {
@@ -516,31 +438,6 @@ void CLASS_DECL_BASE __term_thread(::base::application * papp, HINSTANCE hInstTe
 }
 
 
-/////////////////////////////////////////////////////////////////////////////
-// Global functions for thread initialization and thread cleanup
-
-LRESULT CALLBACK _AfxMsgFilterHook(int32_t code, WPARAM wParam, LPARAM lParam);
-
-void CLASS_DECL_BASE AfxInitThread()
-{
-   if (!afxContextIsDLL)
-   {
-      // set message filter proc
-//      ___THREAD_STATE* pThreadState = __get_thread_state();
-      //      ASSERT(pThreadState->m_hHookOldMsgFilter == NULL);
-      //    pThreadState->m_hHookOldMsgFilter = ::SetWindowsHookEx(WH_MSGFILTER,
-      //     _AfxMsgFilterHook, NULL, ::GetCurrentThreadId());
-   }
-}
-
-
-
-__attribute__((constructor))
-static void initialize_navigationBarImages()
-{
-   ::g_pfn_get_thread = &::ios::__get_thread;
-   ::g_pfn_get_thread_state = &::ios::__get_thread_state;
-}
 
 namespace ios
 {
@@ -604,8 +501,6 @@ namespace ios
       //  m_hThread = NULL;
       //m_nThreadID = 0;
       
-      ___THREAD_STATE* pState = ::__get_thread_state();
-      // initialize message pump
       m_nDisablePumpCount = 0;
       pState->m_nMsgLast = WM_NULL;
       System.get_cursor_pos(&(pState->m_ptCursorLast));
@@ -654,30 +549,6 @@ namespace ios
          sl.unlock();
       }*/
       
-      __MODULE_THREAD_STATE* pState = __get_module_thread_state();
-      /*      // clean up temp objects
-       pState->m_pmapHGDIOBJ->delete_temp();
-       pState->m_pmapHDC->delete_temp();
-       pState->m_pmapHWND->delete_temp();*/
-      
-/*      for(int32_t i = 0; i < m_captraDeletePool.get_count(); i++)
-      {
-         try
-         {
-            ::ca2::ca2 * pca = m_captraDeletePool[i];
-            if(dynamic_cast < ::application * > (pca) == m_papp)
-            {
-               m_papp = NULL;
-            }
-         }
-         catch(...)
-         {
-         }
-      } */
-      
-      // free thread object
-      //      if (m_hThread != NULL)
-      //       CloseHandle(m_hThread);
       
       
       
@@ -1054,7 +925,6 @@ namespace ios
    {
       
       ASSERT_VALID(this);
-      //      ___THREAD_STATE* pState = __get_thread_state();
       
       // for tracking the idle time state
       WINBOOL bIdle = TRUE;
@@ -1277,7 +1147,9 @@ namespace ios
           }
           */
          // send WM_IDLEUPDATECMDUI to all frame windows
-         /* linux __MODULE_THREAD_STATE* pState = _AFX_CMDTARGET_GETSTATE()->m_thread;
+         /* 
+          
+          
           frame_window* pFrameWnd = pState->m_frameList;
           while (pFrameWnd != NULL)
           {
@@ -1302,7 +1174,7 @@ namespace ios
       }
       else if (lCount >= 0)
       {
-         /*         __MODULE_THREAD_STATE* pState = __get_module_thread_state();
+         /*
           if (pState->m_nTempMapLock == 0)
           {
           // free temp maps, OLE DLLs, etc.
@@ -1465,14 +1337,6 @@ namespace ios
              }
              // fall through...
              
-             case MESSAGEF_DIALOGBOX:    // handles message boxes as well.
-             pMainWnd = AfxGetMainWnd();
-             if (code == MESSAGEF_DIALOGBOX && m_puiActive != NULL &&
-             pbase->m_uiMessage >= WM_KEYFIRST && pbase->m_uiMessage <= WM_KEYLAST)
-             {
-             // need to translate messages for the in-place container
-             ___THREAD_STATE* pThreadState = _afxThreadState.get_data();
-             ENSURE(pThreadState);
              
              if (pThreadState->m_bInMsgFilter)
              return;
@@ -1593,32 +1457,6 @@ namespace ios
    void thread::dump(dump_context & dumpcontext) const
    {
       command_target::dump(dumpcontext);
-      ___THREAD_STATE *pState = ::__get_thread_state();
-      
-      dumpcontext << "m_pThreadParams = " << m_pThreadParams;
-      dumpcontext << "\nm_pfnThreadProc = " << (void *)m_pfnThreadProc;
-      dumpcontext << "\nm_bAutoDelete = " << m_bAutoDelete;
-      //   dumpcontext << "\nm_hThread = " << (void *)m_hThread;
-      // dumpcontext << "\nm_nThreadID = " << m_nThreadID;
-      dumpcontext << "\nm_nDisablePumpCount = " << pState->m_nDisablePumpCount;
-      if (__get_thread() == this)
-         dumpcontext << "\nm_pMainWnd = " << m_puiMain.m_p;
-      
-      dumpcontext << "\nm_msgCur = {";
-      /*   dumpcontext << "\n\thwnd = " << (void *)pState->m_msgCur.hwnd;
-       dumpcontext << "\n\tmessage = " << (UINT)pState->m_msgCur.message;
-       dumpcontext << "\n\twParam = " << (UINT)pState->m_msgCur.wParam;
-       dumpcontext << "\n\tlParam = " << (void *)pState->m_msgCur.lParam;
-       dumpcontext << "\n\ttime = " << pState->m_msgCur.time;
-       dumpcontext << "\n\tpt = " << point(pState->m_msgCur.pt);*/
-      dumpcontext << "\n}";
-      
-      dumpcontext << "\nm_pThreadParams = " << m_pThreadParams;
-      dumpcontext << "\nm_pfnThreadProc = " << (void *)m_pfnThreadProc;
-      dumpcontext << "\nm_ptCursorLast = " << pState->m_ptCursorLast;
-      dumpcontext << "\nm_nMsgLast = " << pState->m_nMsgLast;
-      
-      dumpcontext << "\n";
    }
 #endif
    
@@ -1663,14 +1501,6 @@ namespace ios
        return;
        }*/
       
-      ___THREAD_STATE* pThreadState = gen_ThreadState;
-      MESSAGE oldState = pThreadState->m_lastSentMsg;   // save for nesting
-      //pThreadState->m_lastSentMsg.       = pbase->m_hwnd;
-      pThreadState->m_lastSentMsg.message    = pbase->m_uiMessage;
-      pThreadState->m_lastSentMsg.wParam     = pbase->m_wparam;
-      pThreadState->m_lastSentMsg.lParam     = pbase->m_lparam;
-      
-      __trace_message("message_handler", pobj);
       
       // Catch exceptions thrown outside the scope of a callback
       // in debug builds and warn the ::fontopus::user.
@@ -1803,52 +1633,6 @@ namespace ios
          
          
          
-#ifndef _AFX_PORTABLE
-         /*::base::application * papp = dynamic_cast < ::application * > (get_app());
-          ___THREAD_STATE* pThreadState = gen_ThreadState.GetDataNA();
-          if( pThreadState != NULL )
-          {
-          // restore safety pool after temp objects destroyed
-          if(papp != NULL &&
-          (pThreadState->m_pSafetyPoolBuffer == NULL ||
-          _msize(pThreadState->m_pSafetyPoolBuffer) < papp->m_nSafetyPoolSize) &&
-          papp->m_nSafetyPoolSize != 0)
-          {
-          // attempt to restore the safety pool to its max size
-          size_t nOldSize = 0;
-          if (pThreadState->m_pSafetyPoolBuffer != NULL)
-          {
-          nOldSize = _msize(pThreadState->m_pSafetyPoolBuffer);
-          free(pThreadState->m_pSafetyPoolBuffer);
-          }
-          
-          // undo handler trap for the following allocation
-          WINBOOL bEnable = AfxEnableMemoryTracking(FALSE);
-          try
-          {
-          pThreadState->m_pSafetyPoolBuffer = malloc(papp->m_nSafetyPoolSize);
-          if (pThreadState->m_pSafetyPoolBuffer == NULL)
-          {
-          //                  TRACE(::ca2::trace::category_AppMsg, 0, "Warning: failed to reclaim %d bytes for primitive::memory safety pool.\n",
-          //                   pApp->m_nSafetyPoolSize);
-          // at least get the old buffer back
-          if (nOldSize != 0)
-          {
-          //get it back
-          pThreadState->m_pSafetyPoolBuffer = malloc(nOldSize);
-          ASSERT(pThreadState->m_pSafetyPoolBuffer != NULL);
-          }
-          }
-          }
-          catch( ::exception::base * )
-          {
-          AfxEnableMemoryTracking(bEnable);
-          throw;
-          }
-          AfxEnableMemoryTracking(bEnable);
-          }
-          }*/
-#endif  // !_AFX_PORTABLE
       }
       // return TRUE if temp maps still locked
       return m_nTempMapLock != 0;
@@ -2470,223 +2254,6 @@ WINBOOL AfxInternalIsIdleMessage(signal_details * pobj);
 WINBOOL AfxInternalIsIdleMessage(LPMESSAGE lpmsg);
 
 
-/*thread* CLASS_DECL_BASE System.GetThread()
- {
- // check for current thread in module thread state
- __MODULE_THREAD_STATE* pState = __get_module_thread_state();
- //thread* pThread = pState->m_pCurrentWinThread;
- return pThread;
- }
- 
- MESSAGE* CLASS_DECL_BASE AfxGetCurrentMessage()
- {
- ___THREAD_STATE* pState = __get_thread_state();
- ASSERT(pState);
- return &(pState->m_msgCur);
- }
- 
- WINBOOL CLASS_DECL_BASE AfxInternalPumpMessage()
- {
- ___THREAD_STATE *pState = __get_thread_state();
- 
- if (!::GetMessage(&(pState->m_msgCur), NULL, NULL, NULL))
- {
- #ifdef DEBUG
- TRACE(::ca2::trace::category_AppMsg, 1, "thread::pump_message - Received WM_QUIT.\n");
- pState->m_nDisablePumpCount++; // application must die
- #endif
- // Note: prevents calling message loop things in 'exit_instance'
- // will never be decremented
- return FALSE;
- }
- 
- #ifdef DEBUG
- if (pState->m_nDisablePumpCount != 0)
- {
- TRACE(::ca2::trace::category_AppMsg, 0, "Error: thread::pump_message called when not permitted.\n");
- ASSERT(FALSE);
- }
- #endif
- 
- #ifdef DEBUG
- __trace_message("pump_message", &(pState->m_msgCur));
- #endif
- 
- // process this message
- 
- if (pState->m_msgCur.message != WM_KICKIDLE && !__pre_translate_message(&(pState->m_msgCur)))
- {
- ::TranslateMessage(&(pState->m_msgCur));
- ::DispatchMessage(&(pState->m_msgCur));
- }
- return TRUE;
- }
- 
- WINBOOL CLASS_DECL_BASE AfxPumpMessage()
- {
- thread *pThread = System.GetThread();
- if( pThread )
- return pThread->pump_message();
- else
- return AfxInternalPumpMessage();
- }
- 
- LRESULT CLASS_DECL_BASE AfxInternalProcessWndProcException(::exception::base*, const MESSAGE* pMsg)
- {
- if (pMsg->message == WM_CREATE)
- {
- return -1;  // just fail
- }
- else if (pMsg->message == WM_PAINT)
- {
- // force validation of ::window to prevent getting WM_PAINT again
- ValidateRect(pMsg->hwnd, NULL);
- return 0;
- }
- return 0;   // sensible default for rest of commands
- }
- 
- LRESULT CLASS_DECL_BASE AfxProcessWndProcException(::exception::base* e, const MESSAGE* pMsg)
- {
- thread *pThread = System.GetThread();
- if( pThread )
- return pThread->ProcessWndProcException( e, pMsg );
- else
- return AfxInternalProcessWndProcException( e, pMsg );
- }
- WINBOOL AfxInternalPreTranslateMessage(MESSAGE* pMsg)
- {
- //   ASSERT_VALID(this);
- 
- thread *pThread = System.GetThread();
- if( pThread )
- {
- // if this is a thread-message, short-circuit this function
- if (pMsg->hwnd == NULL && pThread->DispatchThreadMessageEx(pMsg))
- return TRUE;
- }
- 
- // walk from target to main ::window
- ::user::interaction* pMainWnd = System.GetMainWnd();
- trans   if (::window::WalkPreTranslateTree(pMainWnd->GetSafeHwnd(), pMsg))
- return TRUE; */
-
-// in case of modeless dialogs, last chance route through main
-//   ::ca2::window's accelerator table
-/*   if (pMainWnd != NULL)
- {
- ::window * pWnd = ::ios::window::from_handle(pMsg->hwnd);
- if (pWnd != NULL && IOS_WINDOW(pWnd)->GetTopLevelParent() != pMainWnd)
- return pMainWnd->pre_translate_message(pMsg);
- }
- 
- return FALSE;   // no special processing
- }
- 
- WINBOOL __cdecl __pre_translate_message(MESSAGE* pMsg)
- {
- thread *pThread = System.GetThread();
- if( pThread )
- return pThread->pre_translate_message( pMsg );
- else
- return AfxInternalPreTranslateMessage( pMsg );
- }
- 
- WINBOOL AfxInternalIsIdleMessage(MESSAGE* pMsg)
- {
- // Return FALSE if the message just dispatched should _not_
- // cause on_idle to be run.  Messages which do not usually
- // affect the state of the ::fontopus::user interface and happen very
- // often are checked for.
- 
- // redundant WM_MOUSEMOVE and WM_NCMOUSEMOVE
- if (pMsg->message == WM_MOUSEMOVE || pMsg->message == WM_NCMOUSEMOVE)
- {
- // mouse move at same position as last mouse move?
- ___THREAD_STATE *pState = __get_thread_state();
- if (pState->m_ptCursorLast == pMsg->pt && pMsg->message == pState->m_nMsgLast)
- return FALSE;
- 
- pState->m_ptCursorLast = pMsg->pt;  // remember for next time
- pState->m_nMsgLast = pMsg->message;
- return TRUE;
- }
- 
- // WM_PAINT and WM_SYSTIMER (caret blink)
- return pMsg->message != WM_PAINT && pMsg->message != 0x0118;
- }
- 
- WINBOOL __cdecl __is_idle_message(MESSAGE* pMsg)
- {
- thread *pThread = System.GetThread();
- if( pThread )
- return pThread->is_idle_message( pMsg );
- else
- return AfxInternalIsIdleMessage( pMsg );
- }
- 
- thread* CLASS_DECL_BASE AfxBeginThread(::ca2::type_info pThreadClass,
- int32_t nPriority, UINT nStackSize, DWORD dwCreateFlags,
- LPSECURITY_ATTRIBUTES lpSecurityAttrs)
- {
- #ifndef _MT
- pThreadClass;
- nPriority;
- nStackSize;
- dwCreateFlags;
- lpSecurityAttrs;
- 
- return NULL;
- #else
- ASSERT(pThreadClass != NULL);
- ASSERT(pThreadClass->IsDerivedFrom(&typeid(thread)));
- 
- thread* pThread = dynamic_cast < thread * > (App(get_app()).alloc(pThreadClass));
- if (pThread == NULL)
- AfxThrowMemoryException();
- ASSERT_VALID(pThread);
- 
- pThread->m_pThreadParams = NULL;
- if(pThread->Begin(
- nPriority,
- nStackSize,
- dwCreateFlags,
- lpSecurityAttrs))
- return pThread;
- else
- return NULL;
- #endif //!_MT
- }*/
-
-/*
- void CLASS_DECL_BASE __end_thread(UINT nExitCode, bool bDelete)
- {
- #ifndef _MT
- nExitCode;
- bDelete;
- #else
- // remove current thread object from primitive::memory
- __MODULE_THREAD_STATE* pState = __get_module_thread_state();
- // thread* pThread = pState->m_pCurrentWinThread;
- if (pThread != NULL)
- {
- ASSERT_VALID(pThread);
- ASSERT(pThread != &System);
- 
- if (bDelete)
- pThread->Delete();
- // pState->m_pCurrentWinThread = NULL;
- }
- 
- // allow cleanup of any thread local objects
- __term_thread();
- 
- // allow C-runtime to cleanup, and exit the thread
- _endthreadex(nExitCode);
- #endif //!_MT
- }
- 
- */
 
 /////////////////////////////////////////////////////////////////////////////
 // Global functions for thread initialization and thread cleanup
@@ -2696,395 +2263,6 @@ WINBOOL AfxInternalIsIdleMessage(LPMESSAGE lpmsg);
 void CLASS_DECL_BASE __init_thread()
 {
    
-   /*if (!afxContextIsDLL)
-    {
-    // set message filter proc
-    ___THREAD_STATE* pThreadState = __get_thread_state();
-    ASSERT(pThreadState->m_hHookOldMsgFilter == NULL);
-    pThreadState->m_hHookOldMsgFilter = ::SetWindowsHookEx(WH_MSGFILTER,
-    _AfxMsgFilterHook, NULL, ::GetCurrentThreadId());
-    }*/
    
 }
 
-namespace ios
-{
-   
-   /*
-    
-    
-    WINBOOL thread::CreateThread(DWORD dwCreateFlags, UINT nStackSize,
-    LPSECURITY_ATTRIBUTES lpSecurityAttrs)
-    {
-    #ifndef _MT
-    dwCreateFlags;
-    nStackSize;
-    lpSecurityAttrs;
-    
-    return FALSE;
-    #else
-    ENSURE(m_hThread == NULL);  // already created?
-    
-    // setup startup structure for thread initialization
-    _AFX_THREAD_STARTUP startup; memset(&startup, 0, sizeof(startup));
-    startup.pThreadState = __get_thread_state();
-    startup.pThread = this;
-    startup.hEvent = ::CreateEvent(NULL, TRUE, FALSE, NULL);
-    startup.hEvent2 = ::CreateEvent(NULL, TRUE, FALSE, NULL);
-    startup.dwCreateFlags = dwCreateFlags;
-    if (startup.hEvent == NULL || startup.hEvent2 == NULL)
-    {
-    TRACE(::ca2::trace::category_AppMsg, 0, "Warning: CreateEvent failed in thread::CreateThread.\n");
-    if (startup.hEvent != NULL)
-    ::CloseHandle(startup.hEvent);
-    if (startup.hEvent2 != NULL)
-    ::CloseHandle(startup.hEvent2);
-    return FALSE;
-    }
-    
-    #ifdef _WIN32
-    //   m_thread = ::CreateThread(NULL, 0, StartThread, this, 0, &m_dwThreadId);
-    // create the thread (it may or may not start to run)
-    m_hThread = (HANDLE)(ulong_ptr)_beginthreadex(lpSecurityAttrs, nStackSize,
-    &_AfxThreadEntry, &startup, dwCreateFlags | CREATE_SUSPENDED, (UINT*)&m_nThreadID);
-    #else
-    pthread_attr_t attr;
-    
-    pthread_attr_init(&attr);
-    pthread_attr_setdetachstate(&attr,PTHREAD_CREATE_DETACHED);
-    if (pthread_create(&m_thread,&attr, StartThread,this) == -1)
-    {
-    perror("thread: create failed");
-    SetRunning(false);
-    }
-    //   pthread_attr_destroy(&attr);
-    #endif
-    
-    if (m_hThread == NULL)
-    return FALSE;
-    
-    // start the thread just for ca2 API initialization
-    VERIFY(ResumeThread() != (DWORD)-1);
-    VERIFY(::WaitForSingleObject(startup.hEvent, INFINITE) == WAIT_OBJECT_0);
-    ::CloseHandle(startup.hEvent);
-    
-    // if created suspended, suspend it until resume thread wakes it up
-    if (dwCreateFlags & CREATE_SUSPENDED)
-    VERIFY(::SuspendThread(m_hThread) != (DWORD)-1);
-    
-    // if error during startup, shut things down
-    if (startup.bError)
-    {
-    VERIFY(::WaitForSingleObject(m_hThread, INFINITE) == WAIT_OBJECT_0);
-    ::CloseHandle(m_hThread);
-    m_hThread = NULL;
-    ::CloseHandle(startup.hEvent2);
-    return FALSE;
-    }
-    
-    // allow thread to continue, once resumed (it may already be resumed)
-    ::SetEvent(startup.hEvent2);
-    return TRUE;
-    #endif //!_MT
-    }
-    
-    void thread::Delete()
-    {
-    
-    // delete thread if it is auto-deleting
-    if(m_bAutoDelete)
-    {
-    m_evFinish.SetEvent();
-    delete this;
-    }
-    else
-    {
-    m_hThread = NULL;
-    m_evFinish.SetEvent();
-    }
-    }
-    
-    /////////////////////////////////////////////////////////////////////////////
-    // thread default implementation
-    
-    bool thread::PreInitInstance()
-    {
-    return true;
-    }
-    
-    bool thread::initialize_instance()
-    {
-    ASSERT_VALID(this);
-    
-    return true;   // by default enter run loop
-    }
-    
-    // main running routine until thread exits
-    int32_t thread::run()
-    {
-    ASSERT_VALID(this);
-    ___THREAD_STATE* pState = __get_thread_state();
-    
-    // for tracking the idle time state
-    WINBOOL bIdle = TRUE;
-    LONG lIdleCount = 0;
-    
-    // acquire and dispatch messages until a WM_QUIT message is received.
-    while(m_bRun)
-    {
-    // phase1: check to see if we can do idle work
-    while (bIdle &&
-    !::PeekMessage(&(pState->m_msgCur), NULL, NULL, NULL, PM_NOREMOVE))
-    {
-    // call on_idle while in bIdle state
-    if (!on_idle(lIdleCount++))
-    bIdle = FALSE; // assume "no idle" state
-    }
-    
-    // phase2: pump messages while available
-    do
-    {
-    // pump message, but quit on WM_QUIT
-    if (!pump_message())
-    return exit_instance();
-    
-    // reset "no idle" state after pumping "normal" message
-    //if (is_idle_message(&m_msgCur))
-    if (is_idle_message(&(pState->m_msgCur)))
-    {
-    bIdle = TRUE;
-    lIdleCount = 0;
-    }
-    
-    
-    } while (::PeekMessage(&(pState->m_msgCur), NULL, NULL, NULL, PM_NOREMOVE));
-    
-    m_ptimera->check();
-    }
-    }
-    
-    */
-   
-   WINBOOL thread::is_idle_message(MESSAGE* pMsg)
-   {
-      return AfxInternalIsIdleMessage(pMsg);
-   }
-   
-   /*
-    
-    int32_t thread::exit_instance()
-    {
-    ASSERT_VALID(this);
-    ASSERT(&System != this);
-    
-    for(int32_t i = 0; i < m_puieptra->get_count(); i++)
-    {
-    m_puieptra->element_at(i)->m_pthread = NULL;
-    }
-    
-    delete m_ptimera;
-    delete m_puieptra;
-    
-    int32_t nResult = (int32_t)AfxGetCurrentMessage()->wParam;  // returns the value from PostQuitMessage
-    return nResult;
-    }
-    
-    WINBOOL thread::on_idle(LONG lCount)
-    {
-    ASSERT_VALID(this);
-    
-    #if defined(DEBUG) && !defined(_AFX_NO_DEBUG_CRT)
-    // check ca2 API's allocator (before idle)
-    if (_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & _CRTDBG_CHECK_ALWAYS_DF)
-    ASSERT(__check_memory());
-    #endif
-    
-    if (lCount <= 0)
-    {
-    // send WM_IDLEUPDATECMDUI to the main ::window
-    ::user::interaction* pMainWnd = GetMainWnd();
-    if (pMainWnd != NULL && pMainWnd->IsWindowVisible())
-    {
-    AfxCallWndProc(pMainWnd, pMainWnd->get_handle(),
-    WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0);*/
-   /*       pMainWnd->SendMessage(WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0);
-    pMainWnd->SendMessageToDescendants(WM_IDLEUPDATECMDUI,
-    (WPARAM)TRUE, 0, TRUE, TRUE);
-    }
-    // send WM_IDLEUPDATECMDUI to all frame windows
-     linux __MODULE_THREAD_STATE* pState = _AFX_CMDTARGET_GETSTATE()->m_thread;
-    frame_window* pFrameWnd = pState->m_frameList;
-    while (pFrameWnd != NULL)
-    {
-    if (pFrameWnd->get_handle() != NULL && pFrameWnd != pMainWnd)
-    {
-    if (pFrameWnd->m_nShowDelay == SW_HIDE)
-    pFrameWnd->ShowWindow(pFrameWnd->m_nShowDelay);
-    if (pFrameWnd->IsWindowVisible() ||
-    pFrameWnd->m_nShowDelay >= 0)
-    {
-    AfxCallWndProc(pFrameWnd, pFrameWnd->get_handle(),
-    WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0);
-    pFrameWnd->SendMessageToDescendants(WM_IDLEUPDATECMDUI,
-    (WPARAM)TRUE, 0, TRUE, TRUE);
-    }
-    if (pFrameWnd->m_nShowDelay > SW_HIDE)
-    pFrameWnd->ShowWindow(pFrameWnd->m_nShowDelay);
-    pFrameWnd->m_nShowDelay = -1;
-    }
-    pFrameWnd = pFrameWnd->m_pNextFrameWnd;
-    }*/
-   /*}
-    else if (lCount >= 0)
-    {
-    __MODULE_THREAD_STATE* pState = __get_module_thread_state();
-    if (pState->m_nTempMapLock == 0)
-    {
-    // free temp maps, OLE DLLs, etc.
-    AfxLockTempMaps();
-    AfxUnlockTempMaps();
-    }
-    }
-    
-    #if defined(DEBUG) && !defined(_AFX_NO_DEBUG_CRT)
-    // check ca2 API's allocator (after idle)
-    if (_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & _CRTDBG_CHECK_ALWAYS_DF)
-    ASSERT(__check_memory());
-    #endif
-    
-    return lCount < 0;  // nothing more to do if lCount >= 0
-    }
-    
-    ::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
-    {
-    return ::message::PrototypeNone;
-    }
-    
-    
-    WINBOOL thread::DispatchThreadMessageEx(MESSAGE* pmsg)
-    {
-    if(pmsg->message == WM_APP + 1984 && pmsg->wParam == 77)
-    {
-    ::ca2::scoped_ptr < ios::message > spmessage(pmsg->lParam);
-    spmessage->send();
-    return TRUE;
-    }
-       const __MSGMAP* pMessageMap; pMessageMap = GetMessageMap();
-    const __MSGMAP_ENTRY* lpEntry;
-    
-    for ( pMessageMap already init'ed *//*; pMessageMap->pfnGetBaseMap != NULL;
-                                           pMessageMap = (*pMessageMap->pfnGetBaseMap)())
-                                           {
-                                           // Note: catch not so common but fatal mistake!!
-                                           //       // BEGIN_MESSAGE_MAP(CMyThread, CMyThread)
-                                           
-                                           ASSERT(pMessageMap != (*pMessageMap->pfnGetBaseMap)());
-                                           if (pMsg->message < 0xC000)
-                                           {
-                                           // constant ::window message
-                                           if ((lpEntry = AfxFindMessageEntry(pMessageMap->lpEntries,
-                                           pMsg->message, 0, 0)) != NULL)
-                                           goto LDispatch;
-                                           }
-                                           else
-                                           {
-                                           // registered windows message
-                                           lpEntry = pMessageMap->lpEntries;
-                                           while ((lpEntry = AfxFindMessageEntry(lpEntry, 0xC000, 0, 0)) != NULL)
-                                           {
-                                           UINT* pnID = (UINT*)(lpEntry->nSig);
-                                           ASSERT(*pnID >= 0xC000);
-                                           // must be successfully registered
-                                           if (*pnID == pMsg->message)
-                                           goto LDispatch;
-                                           lpEntry++;      // keep looking past this one
-                                           }
-                                           }
-                                           }
-                                           return FALSE;
-                                           
-                                           LDispatch:
-                                           union MessageMapFunctions mmf;
-                                           mmf.pfn = lpEntry->pfn;
-                                           
-                                           // always posted, so return value is meaningless
-                                           
-                                           (this->*mmf.pfn_THREAD)(pMsg->wParam, pMsg->lParam);*/
-   
-   /*LRESULT lresult;
-    SignalPtrArray signalptra;
-    m_signala.GetSignalsByMessage(signalptra, pmsg->message, 0, 0);
-    for(int32_t i = 0; i < signalptra.get_size(); i++)
-    {
-    Signal & signal = *signalptra[i];
-    ::ca2::signal * psignal = signal.m_psignal;
-    ::message::e_prototype eprototype = signal.m_eprototype;
-    if(eprototype == ::message::PrototypeNone)
-    {
-    ::message::base base;
-    base.m_psignal = psignal;
-    lresult = 0;
-    base.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
-    psignal->emit(&base);
-    if(base.m_bRet)
-    return true;
-    }
-    break;
-    }
-    return true;
-    }
-    
-    WINBOOL thread::pre_translate_message(signal_details * pobj)
-    {
-    ASSERT_VALID(this);
-    return AfxInternalPreTranslateMessage( pMsg );
-    }
-    
-    LRESULT thread::ProcessWndProcException(::exception::base* e, const MESSAGE* pMsg)
-    {
-    return AfxInternalProcessWndProcException( e, pMsg );
-    }
-    */
-   
-   
-   
-} // namespace ios
-
-
-
-/////////////////////////////////////////////////////////////////////////////
-// Message Filter processing (WH_MSGFILTER)
-
-/*LRESULT CALLBACK _AfxMsgFilterHook(int32_t code, WPARAM wParam, LPARAM lParam)
- {
- ::thread* pthread;
- if (afxContextIsDLL || (code < 0 && code != MESSAGEF_DDEMGR) || (pthread = dynamic_cast < ::thread * > (::ios::get_thread())) == NULL)
- {
- return ::CallNextHookEx(_afxThreadState->m_hHookOldMsgFilter, code, wParam, lParam);
- }
- ASSERT(pthread != NULL);
- ::ca2::smart_pointer < ::message::base > spbase;
- spbase(pthread->get_base((LPMESSAGE)lParam));
- pthread->ProcessMessageFilter(code, spbase);
- LRESULT lresult = spbase->m_bRet ? 1 : 0;
- return lresult;
- }
- 
- __STATIC WINBOOL CLASS_DECL_BASE IsHelpKey(LPMESSAGE lpMsg)
- // return TRUE only for non-repeat F1 keydowns.
- {
- return lpMsg->message == WM_KEYDOWN &&
- lpMsg->wParam == VK_F1 &&
- !(HIWORD(lpMsg->lParam) & KF_REPEAT) &&
- GetKeyState(VK_SHIFT) >= 0 &&
- GetKeyState(VK_CONTROL) >= 0 &&
- GetKeyState(VK_MENU) >= 0;
- }
- 
- __STATIC inline WINBOOL IsEnterKey(LPMESSAGE lpMsg)
- { return lpMsg->message == WM_KEYDOWN && lpMsg->wParam == VK_RETURN; }
- 
- __STATIC inline WINBOOL IsButtonUp(LPMESSAGE lpMsg)
- { return lpMsg->message == WM_LBUTTONUP; }
- 
- */
