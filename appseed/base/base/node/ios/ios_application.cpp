@@ -91,120 +91,11 @@ namespace ios
       
       return "";
 
-//      throw todo(get_app());
-
-      /*      char lpszModuleFilePath[MAX_PATH + 1];
-      GetModuleFileName(NULL, lpszModuleFilePath, MAX_PATH + 1);
-
-      DWORD dw;
-
-      DWORD dwResSize = GetFileVersionInfoSize(
-      lpszModuleFilePath,
-      &dw);
-
-
-      if(dwResSize > 0)
-      {
-      LPVOID lpdata = new BYTE[dwResSize];
-      if(GetFileVersionInfo(
-      lpszModuleFilePath,
-      0,
-      dwResSize,
-      lpdata))
-      {
-      UINT cbTranslate;
-      struct LANGANDCODEPAGE {
-      WORD wLanguage;
-      WORD wCodePage;
-      } *lpTranslate;
-
-      // read the list of languages and code pages.
-
-      VerQueryValue(lpdata,
-      TEXT("\\VarFileInfo\\Translation"),
-      (LPVOID*)&lpTranslate,
-      &cbTranslate);
-
-      string strKey;
-      //for( i=0; i < (cbTranslate/sizeof(struct LANGANDCODEPAGE)); i++ )
-      for(int32_t i=0; i < 1; i++ )
-      {
-      LPTSTR lpsz;
-      UINT uiSize;
-
-      strKey.Format(
-      TEXT("\\StringFileInfo\\%04x%04x\\FileDescription"),
-      lpTranslate[i].wLanguage,
-      lpTranslate[i].wCodePage);
-
-
-
-
-      strKey.Format(
-      TEXT("\\StringFileInfo\\%04x%04x\\FileVersion"),
-      lpTranslate[i].wLanguage,
-      lpTranslate[i].wCodePage);
-
-      // Retrieve file description for language and code page "i".
-      VerQueryValue(lpdata,
-      (LPTSTR) (const char *) strKey,
-      (LPVOID *)&lpsz,
-      &uiSize);
-
-
-      string strVersion(lpsz, uiSize);
-
-      return strVersion;
-      }
-      }
-      delete [] (LPBYTE) lpdata;
-      }
-      */
 
       return "";
 
    }
 
-
-   bool application::Ex2OnAppInstall()
-   {
-#ifdef IMPLEMENT_VISTA_TOOLS
-      if(VistaTools::IsVista())
-      {
-         if(VistaTools::IsElevated() != S_OK)
-         {
-            TRACE0("Error! Installing application ( : (un)install run parameter ) without Elevation (required since Vista Windows version)");
-            return false;
-         }
-      }
-#endif
-      return true;
-   }
-
-
-   bool application::Ex2OnAppUninstall()
-   {
-
-      throw todo(get_app());
-
-      // xxx       if(VistaTools::IsVista())
-      // xxx       {
-      // xxx          if(VistaTools::IsElevated() != S_OK)
-      // xxx          {
-      // xxx             TRACE0("Error! Installing application ( : (un)install run parameter ) without Elevation (required since Vista Windows version)");
-      // xxx             return false;
-      // xxx          }
-      // xxx       }
-      return true;
-   }
-
-   bool application::DeferRegisterClass(LONG fToRegister, const char ** ppszClass)
-   {
-
-      throw todo(get_app());
-      // xxx       return __end_defer_register_class(fToRegister, ppszClass);
-      return false;
-   }
 
 
 
@@ -217,30 +108,7 @@ namespace ios
 
 
 
-   // application
-   HCURSOR application::LoadCursor(const char * lpszResourceName) const
-   {
-      return NULL;
-   }
 
-   HCURSOR application::LoadCursor(UINT nIDResource) const
-   {
-      return NULL;
-   }
-
-   HCURSOR application::LoadStandardCursor(const char * lpszCursorName) const
-   {
-      // xxx       return ::LoadCursor(NULL, lpszCursorName);
-      return NULL;
-   }
-
-   HCURSOR application::LoadOEMCursor(UINT nIDCursor) const
-   {
-
-      // xxx       return ::LoadCursor(NULL, MAKEINTRESOURCE(nIDCursor));
-      return NULL;
-
-   }
    
    bool application::process_initialize()
    {

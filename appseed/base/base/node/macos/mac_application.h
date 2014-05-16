@@ -49,34 +49,9 @@ namespace mac
       virtual sp(::user::object) _001OpenDocumentFile(var varFile);
       virtual void _001OnFileNew();
       
-      // Loads a cursor resource.
-      HCURSOR LoadCursor(const char * lpszResourceName) const;
-      HCURSOR LoadCursor(UINT nIDResource) const;
-      
-      // Loads a stock cursor resource; for for IDC_* values.
-      HCURSOR LoadStandardCursor(const char * lpszCursorName) const;
-      
-      // Loads an OEM cursor; for all OCR_* values.
-      HCURSOR LoadOEMCursor(UINT nIDCursor) const;
-      
-      virtual void ShowWaitCursor(bool bShow);
-      
-      // Loads an icon resource.
-//      HICON LoadIcon(const char * lpszResourceName) const;
-//      HICON LoadIcon(UINT nIDResource) const;
 
-      // Loads an icon resource; for stock IDI_ values.
-//      HICON LoadStandardIcon(const char * lpszIconName) const;
-      
-      // Loads an OEM icon resource; for all OIC_* values.
-//      HICON LoadOEMIcon(UINT nIDIcon) const;
-      
       virtual string get_version();
       
-      virtual bool Ex2OnAppInstall();
-      virtual bool Ex2OnAppUninstall();
-      
-      virtual bool DeferRegisterClass(LONG fToRegister, const char ** ppszClass);
       virtual void TermThread(HINSTANCE hInstTerm);
       
       

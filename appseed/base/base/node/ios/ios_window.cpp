@@ -5884,8 +5884,6 @@ namespace ios
    { Default(); }
    void window::OnMove(int32_t, int32_t)
    { Default(); }
-   HCURSOR window::OnQueryDragIcon()
-   { return (HCURSOR)Default(); }
    
    bool window::OnQueryEndSession()
    {
@@ -6554,196 +6552,6 @@ CLASS_DECL_BASE bool unhook_window_create()
    return TRUE;
 }
 
-/*
-
-CLASS_DECL_BASE const char * __register_window_class(UINT nClassStyle,
-                                                    HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
-{
-   
-   return NULL;
-   
-   throw not_implemented(::get_thread_app());
-   
-   //   // Returns a temporary string name for the class
-   //   //  Save in a string if you want to use it for a long time
-   //   LPTSTR lpszName = __get_thread_state()->m_szTempClassName;
-   //
-   //   // generate a synthetic name for this class
-   //   HINSTANCE hInst = Sys(::ios::get_thread()->m_pbaseapp->m_pplaneapp).m_hInstance;
-   //
-   //   if (hCursor == NULL && hbrBackground == NULL && hIcon == NULL)
-   //   {
-   //      C_RUNTIME_ERRORCHECK_SPRINTF(_sntprintf_s(lpszName, ___TEMP_CLASS_NAME_SIZE, ___TEMP_CLASS_NAME_SIZE - 1, "::ca2:::%p:%x", hInst, nClassStyle));
-   //   }
-   //   else
-   //   {
-   //      C_RUNTIME_ERRORCHECK_SPRINTF(_sntprintf_s(lpszName, ___TEMP_CLASS_NAME_SIZE, ___TEMP_CLASS_NAME_SIZE - 1, "::ca2:::%p:%x:%p:%p:%p", hInst, nClassStyle,
-   //         hCursor, hbrBackground, hIcon));
-   //   }
-   //
-   //   // see if the class already exists
-   //   WNDCLASS wndcls;
-   //   if (::GetClassInfo(hInst, lpszName, &wndcls))
-   //   {
-   //      // already registered, assert everything is good
-   //      ASSERT(wndcls.style == nClassStyle);
-   //
-   //      // NOTE: We have to trust that the hIcon, hbrBackground, and the
-   //      //  hCursor are semantically the same, because sometimes oswindows does
-   //      //  some internal translation or copying of those handles before
-   //      //  storing them in the internal WNDCLASS retrieved by GetClassInfo.
-   //      return lpszName;
-   //   }
-   //
-   //   // otherwise we need to register a new class
-   //   wndcls.style = nClassStyle;
-   //   wndcls.lpfnWndProc = DefWindowProc;
-   //   wndcls.cbClsExtra = wndcls.cbWndExtra = 0;
-   //   wndcls.hInstance = hInst;
-   //   wndcls.hIcon = hIcon;
-   //   //wndcls.hCursor = hCursor;
-   //   wndcls.hCursor = NULL;
-   //   wndcls.hbrBackground = hbrBackground;
-   //   wndcls.lpszMenuName = NULL;
-   //   wndcls.lpszClassName = lpszName;
-   //   if (!__register_class(&wndcls))
-   //      throw resource_exception();
-   //
-   //   // return thread-local pointer
-   //   return lpszName;
-}
-
-*/
-__STATIC void CLASS_DECL_BASE
-__handle_activate(::window * pWnd, WPARAM nState, ::window * pWndOther)
-{
-   
-   throw not_implemented(::get_thread_app());
-   //   ASSERT(pWnd != NULL);
-   //
-   //   // send WM_ACTIVATETOPLEVEL when top-level parents change
-   //   if (!(IOS_WINDOW(pWnd)->GetStyle() & WS_CHILD))
-   //   {
-   //      ::user::interaction * pTopLevel= IOS_WINDOW(pWnd)->GetTopLevelParent();
-   //      if (pTopLevel && (pWndOther == NULL || !::IsWindow(IOS_WINDOW(pWndOther)->get_handle()) || pTopLevel != IOS_WINDOW(pWndOther)->GetTopLevelParent()))
-   //      {
-   //         // lparam points to window getting the WM_ACTIVATE message and
-   //         //  hWndOther from the WM_ACTIVATE.
-   //         oswindow hWnd2[2];
-   //         hWnd2[0] = IOS_WINDOW(pWnd)->get_handle();
-   //         if(pWndOther == NULL || IOS_WINDOW(pWndOther) == NULL)
-   //         {
-   //            hWnd2[1] = NULL;
-   //         }
-   //         else
-   //         {
-   //            hWnd2[1] = IOS_WINDOW(pWndOther)->get_handle();
-   //         }
-   //         // send it...
-   //         pTopLevel->send_message(WM_ACTIVATETOPLEVEL, nState, (LPARAM)&hWnd2[0]);
-   //      }
-   //   }
-}
-
-__STATIC bool CLASS_DECL_BASE
-__handle_set_cursor(::window * pWnd, UINT nHitTest, UINT nMsg)
-{
-   
-   throw not_implemented(::get_thread_app());
-   //   if (nHitTest == HTERROR &&
-   //      (nMsg == WM_LBUTTONDOWN || nMsg == WM_MBUTTONDOWN ||
-   //      nMsg == WM_RBUTTONDOWN))
-   //   {
-   //      // activate the last active window if not active
-   //      ::user::interaction * pLastActive = IOS_WINDOW(pWnd)->GetTopLevelParent();
-   //      if (pLastActive != NULL)
-   //         pLastActive = pLastActive->GetLastActivePopup();
-   //      if (pLastActive != NULL &&
-   //         pLastActive != ::ios::window::GetForegroundWindow() &&
-   //         pLastActive->IsWindowEnabled())
-   //      {
-   //         pLastActive->SetForegroundWindow();
-   //         return TRUE;
-   //      }
-   //   }
-   //   return FALSE;
-}
-
-
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////
-// Special WndProcs (activation handling & gray dialogs)
-
-
-LRESULT CALLBACK
-__activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam)
-{
-   
-   throw not_implemented(::get_thread_app());
-   //   WNDPROC oldWndProc = (WNDPROC)::GetProp(hWnd, gen_OldWndProc);
-   //   ASSERT(oldWndProc != NULL);
-   //
-   //   LRESULT lResult = 0;
-   //   try
-   //   {
-   //      bool bCallDefault = TRUE;
-   //      switch (nMsg)
-   //      {
-   //      case WM_INITDIALOG:
-   //         {
-   //            DWORD dwStyle;
-   //            rect rectOld;
-   //            ::window * pWnd = ::ios::window::from_handle(hWnd);
-   //            __pre_init_dialog(pWnd, &rectOld, &dwStyle);
-   //            bCallDefault = FALSE;
-   //            lResult = CallWindowProc(oldWndProc, hWnd, nMsg, wparam, lparam);
-   //            __post_init_dialog(pWnd, rectOld, dwStyle);
-   //         }
-   //         break;
-   //
-   //      case WM_ACTIVATE:
-   //         __handle_activate(::ios::window::from_handle(hWnd), wparam,
-   //            ::ios::window::from_handle((oswindow)lparam));
-   //         break;
-   //
-   //      case WM_SETCURSOR:
-   //         bCallDefault = !__handle_set_cursor(::ios::window::from_handle(hWnd),
-   //            (short)LOWORD(lparam), HIWORD(lparam));
-   //         break;
-   //
-   //      case WM_NCDESTROY:
-   //         SetWindowLongPtr(hWnd, GWLP_WNDPROC, reinterpret_cast<int_ptr>(oldWndProc));
-   //         RemoveProp(hWnd, gen_OldWndProc);
-   //         GlobalDeleteAtom(GlobalFindAtom(gen_OldWndProc));
-   //         break;
-   //      }
-   //
-   //      // call original wndproc for default handling
-   //      if (bCallDefault)
-   //         lResult = CallWindowProc(oldWndProc, hWnd, nMsg, wparam, lparam);
-   //   }
-   //   catch(::exception::base * pe)
-   //   {
-   //      // handle exception
-   //      MESSAGE msg;
-   //      msg.hwnd = hWnd;
-   //      msg.message = nMsg;
-   //      msg.wparam = wparam;
-   //      msg.lparam = lparam;
-   //
-   //      //lResult = __process_window_procedure_exception(pe, &msg);
-   //      //      TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Uncaught exception in __activation_window_procedure (returning %ld).\n",
-   //      //       lResult);
-   //      pe->Delete();
-   //   }
-   //
-   //
-   //   return lResult;
-}
-
 
 
 
@@ -6769,16 +6577,8 @@ namespace ios
    
    void window::set_view_port_org(::draw2d::graphics * pgraphics)
    {
-      // graphics will be already set its view port to the window for linux - cairo with xlib
       
       pgraphics->SetViewportOrg(point(0, 0));
-      
-      /*      rect64 rectWindow;
-       GetWindowRect(rectWindow);
-       get_wnd()->ScreenToClient(rectWindow);
-       pgraphics->SetViewportOrg(point(rectWindow.top_left()));
-       pgraphics->SelectClipRgn(NULL);
-       */
       
    }
    

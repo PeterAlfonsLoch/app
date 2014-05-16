@@ -763,7 +763,7 @@ namespace fontopus
 
                GetTopLevelParent()->ShowWindow(SW_HIDE);
 
-               ::thread::m_p.create(allocer());
+               ::thread::m_pimpl.create(allocer());
 
                begin();
 

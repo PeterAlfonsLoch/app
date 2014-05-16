@@ -3710,7 +3710,7 @@ namespace mac
       m_iModalCount++;
       
                   m_iaModalThread.add(::GetCurrentThreadId());
-      ::base::application * pappThis1 = dynamic_cast < ::base::application * > (m_pthread->m_p.m_p);
+      ::base::application * pappThis1 = dynamic_cast < ::base::application * > (m_pthread->m_pimpl.m_p);
       ::base::application * pappThis2 = dynamic_cast < ::base::application * > (m_pthread.m_p);
             // acquire and dispatch messages until the modal state is done
             MESSAGE msg;
@@ -3742,7 +3742,7 @@ namespace mac
           //           // stop idle processing next time
             //         bIdle = FALSE;
               //    }
-                        m_pthread->m_p->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
+                        m_pthread->m_pimpl->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
                   if(pappThis1 != NULL)
                   {
                      pappThis1->m_dwAlive = m_pthread->m_dwAlive;
@@ -3785,7 +3785,7 @@ namespace mac
                      bIdle = TRUE;
                      lIdleCount = 0;
                   }
-                        m_pthread->m_p->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
+                        m_pthread->m_pimpl->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
                   if(pappThis1 != NULL)
                   {
                      pappThis1->m_dwAlive = m_pthread->m_dwAlive;
