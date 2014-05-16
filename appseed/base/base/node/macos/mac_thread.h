@@ -25,7 +25,7 @@ namespace mac
    
    
    class CLASS_DECL_mac thread :
-      virtual public ::thread,
+      virtual public ::thread_impl,
       virtual public ::message_queue
    {
    public:

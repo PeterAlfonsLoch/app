@@ -1274,6 +1274,10 @@
 		07A6C8B7190C4D2500859288 /* x509.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6C86C190C4D2500859288 /* x509.h */; };
 		07A6C8B8190C4D2500859288 /* x509_vfy.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6C86D190C4D2500859288 /* x509_vfy.h */; };
 		07A6C8B9190C4D2500859288 /* x509v3.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6C86E190C4D2500859288 /* x509v3.h */; };
+		07AAB14B1926B2C20050A443 /* multithreading_thread_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AAB14A1926B2C20050A443 /* multithreading_thread_impl.h */; };
+		07AAB14D1926B2EF0050A443 /* multithreading_thread_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AAB14C1926B2EF0050A443 /* multithreading_thread_impl.cpp */; };
+		07AAB14E1926B2EF0050A443 /* multithreading_thread_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AAB14C1926B2EF0050A443 /* multithreading_thread_impl.cpp */; };
+		07AAB14F1926B2EF0050A443 /* multithreading_thread_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AAB14C1926B2EF0050A443 /* multithreading_thread_impl.cpp */; };
 		07B08BA418495B40007A0560 /* base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B07E2C18495B37007A0560 /* base.cpp */; };
 		07B08BA518495B40007A0560 /* base.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B07E2D18495B37007A0560 /* base.h */; };
 		07B08BA618495B40007A0560 /* base_allocate.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B07E2F18495B37007A0560 /* base_allocate.h */; };
@@ -4591,6 +4595,8 @@
 		07A6C86C190C4D2500859288 /* x509.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509.h; sourceTree = "<group>"; };
 		07A6C86D190C4D2500859288 /* x509_vfy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509_vfy.h; sourceTree = "<group>"; };
 		07A6C86E190C4D2500859288 /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
+		07AAB14A1926B2C20050A443 /* multithreading_thread_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multithreading_thread_impl.h; sourceTree = "<group>"; };
+		07AAB14C1926B2EF0050A443 /* multithreading_thread_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = multithreading_thread_impl.cpp; sourceTree = "<group>"; };
 		07B07E2C18495B37007A0560 /* base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base.cpp; sourceTree = "<group>"; };
 		07B07E2D18495B37007A0560 /* base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base.h; sourceTree = "<group>"; };
 		07B07E2E18495B37007A0560 /* base.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = base.inl; sourceTree = "<group>"; };
@@ -10434,6 +10440,8 @@
 				9AE7228F17E83B69003E47F9 /* multithreading_synch_lock.h */,
 				07A2246C18F7F0BD002C3B39 /* multithreading_thread.cpp */,
 				9AE7229017E83B69003E47F9 /* multithreading_thread.h */,
+				07AAB14C1926B2EF0050A443 /* multithreading_thread_impl.cpp */,
+				07AAB14A1926B2C20050A443 /* multithreading_thread_impl.h */,
 				9AE7229117E83B69003E47F9 /* multithreading_thread_os.h */,
 				9AE7229217E83B69003E47F9 /* multithreading_wait_result.cpp */,
 				9AE7229317E83B69003E47F9 /* multithreading_wait_result.h */,
@@ -11073,6 +11081,7 @@
 				07884DE61897EC9600DC6CEB /* gbk.h in Headers */,
 				07F5B1B0184A3B430092C3E1 /* file_byte_stream.h in Headers */,
 				07884DC51897EC9600DC6CEB /* cp865.h in Headers */,
+				07AAB14B1926B2C20050A443 /* multithreading_thread_impl.h in Headers */,
 				07B08BAD18495B40007A0560 /* base_async.h in Headers */,
 				07B08FE618495B41007A0560 /* md4_locl.h in Headers */,
 				07D1C9BA1921201D00B99496 /* ios_windowing.h in Headers */,
@@ -12629,6 +12638,7 @@
 				07B095DC18495C5F007A0560 /* fontopus_contact_list.cpp in Sources */,
 				07B08CF918495B40007A0560 /* crypto_hmac_sha1.cpp in Sources */,
 				07B0903E18495B41007A0560 /* p12_key.c in Sources */,
+				07AAB14D1926B2EF0050A443 /* multithreading_thread_impl.cpp in Sources */,
 				07B0931218495B43007A0560 /* macos_base_user_mm.mm in Sources */,
 				07B0911F18495B41007A0560 /* pcy_lib.c in Sources */,
 				079AE0861886488800635C39 /* http_status.cpp in Sources */,
@@ -13781,6 +13791,7 @@
 				078578561917B6BD00FFFE51 /* eng_err.c in Sources */,
 				078578571917B6BD00FFFE51 /* eng_fat.c in Sources */,
 				078578581917B6BD00FFFE51 /* eng_init.c in Sources */,
+				07AAB14E1926B2EF0050A443 /* multithreading_thread_impl.cpp in Sources */,
 				078578591917B6BD00FFFE51 /* eng_lib.c in Sources */,
 				0785785A1917B6BD00FFFE51 /* eng_list.c in Sources */,
 				0785785B1917B6BD00FFFE51 /* eng_openssl.c in Sources */,
@@ -14661,6 +14672,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07AAB14F1926B2EF0050A443 /* multithreading_thread_impl.cpp in Sources */,
 				07D1CA1B192121BF00B99496 /* message_base.cpp in Sources */,
 				07D1CA25192121BF00B99496 /* message_user.cpp in Sources */,
 				07D1CA21192121BF00B99496 /* message_dispatch.cpp in Sources */,

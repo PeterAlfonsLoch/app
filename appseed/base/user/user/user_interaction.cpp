@@ -262,10 +262,10 @@ namespace user
             }
             smart_pointer_array < timer_item > timera;
             if (pimplOld->m_pthread != NULL
-               && pimplOld->m_pthread->m_p != NULL
-               && pimplOld->m_pthread->m_p->m_ptimera != NULL)
+               && pimplOld->m_pthread->m_pimpl != NULL
+               && pimplOld->m_pthread->m_pimpl->m_ptimera != NULL)
             {
-               pimplOld->m_pthread->m_p->m_ptimera->detach(timera, this);
+               pimplOld->m_pthread->m_pimpl->m_ptimera->detach(timera, this);
             }
             if (!pimplNew->CreateEx(0, NULL, strName, iStyle, rect(0, 0, 0, 0), NULL, GetDlgCtrlId()))
             {
@@ -2634,7 +2634,7 @@ namespace user
       //bool bAttach = AttachThreadInput(get_wnd()->get_os_int(), ::GetCurrentThreadId(), TRUE);
 
       m_iaModalThread.add(::get_thread()->get_os_int());
-      sp(::base::application) pappThis1 = (m_pthread->m_p);
+      sp(::base::application) pappThis1 = (m_pthread->m_pimpl);
       sp(::base::application) pappThis2 = (m_pthread);
       // acquire and dispatch messages until the modal state is done
       MESSAGE msg;
@@ -2672,7 +2672,7 @@ namespace user
             bIdle = FALSE;
             }*/
 
-            m_pthread->m_p->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
+            m_pthread->m_pimpl->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
             if (pappThis1 != NULL)
             {
                pappThis1->m_dwAlive = m_pthread->m_dwAlive;
@@ -2724,7 +2724,7 @@ namespace user
             lIdleCount = 0;
             }*/
 
-            m_pthread->m_p->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
+            m_pthread->m_pimpl->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
             if (pappThis1 != NULL)
             {
                pappThis1->m_dwAlive = m_pthread->m_dwAlive;

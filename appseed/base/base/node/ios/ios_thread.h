@@ -25,7 +25,7 @@ namespace ios
    
    
    class CLASS_DECL_BASE thread :
-      virtual public ::thread,
+      virtual public ::thread_impl,
       virtual public ::message_queue
    {
    public:

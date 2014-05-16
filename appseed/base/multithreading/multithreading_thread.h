@@ -202,6 +202,12 @@ class thread;
 typedef smart_pointer < thread > thread_sp;
 
 
+class thread_impl;
+
+
+typedef smart_pointer < thread_impl > thread_impl_sp;
+
+
 class CLASS_DECL_BASE thread :
    virtual public command_target,
 #ifdef WINDOWS
@@ -212,18 +218,13 @@ class CLASS_DECL_BASE thread :
    virtual public event_base
 {
 public:
-   /// thread ID, used to ensure that the thread that calls one of the
-   /// wait methods is really the thread represented by the Thread class
-   //	uint32_t threadId_;
 
-
-   //	private:
-
+   
    static bool                            s_bAllocReady;
    mutex                                  m_mutex;
    bool                                   m_bRun;
 
-   thread_sp                              m_pimpl;
+   thread_impl_sp                         m_pimpl;
    thread_sp                              m_puser;
    
    sp(::user::interaction_ptr_array)      m_puiptra;
@@ -383,18 +384,6 @@ CLASS_DECL_BASE void thread_alloc_ready(bool bReady);
 
 
 
-
-
-
-class CLASS_DECL_BASE thread_state
-{
-public:
-
-
-   //heap_item_array                     m_heapitema;
-
-
-};
 
 
 

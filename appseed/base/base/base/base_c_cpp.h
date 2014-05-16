@@ -617,6 +617,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_live_object.h"
 #include "base_live_signal.h"
 #include "multithreading/multithreading_thread.h"
+#include "multithreading/multithreading_thread_impl.h"
 #include "multithreading/multithreading_simple_thread.h"
 #include "multithreading/multithreading_go_thread.h"
 #include "multithreading/multithreading_signal_thread.h"
