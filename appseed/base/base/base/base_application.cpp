@@ -1663,7 +1663,7 @@ namespace base
       __node_factory_exchange(this);
 
    }
-   
+
 
    ::core::savings & application::savings()
    {
@@ -1921,13 +1921,13 @@ namespace base
          TRACE(string(typeid(*this).name()) + " on_run");;
          m_iReturnCode = 0;
          m_bReady = true;
-         m_p->m_bReady = true;
+         m_pimpl->m_bReady = true;
          thread::m_bReady = true;
-         thread::m_p->m_bReady = true;
+         thread::m_pimpl->m_bReady = true;
          m_bRun = true;
-         m_p->m_bRun = true;
+         m_pimpl->m_bRun = true;
          thread::m_bRun = true;
-         thread::m_p->m_bRun = true;
+         thread::m_pimpl->m_bRun = true;
          m_iReturnCode = on_run();
          if(m_iReturnCode != 0)
          {
@@ -2070,7 +2070,7 @@ namespace base
 
       thread * pthread = System.GetThread();
 
-      install_message_handling(pthread->m_p);
+      install_message_handling(pthread->m_pimpl);
       try
       {
          try
@@ -2226,7 +2226,7 @@ namespace base
       }
       try
       {
-         thread * pthread = thread::m_p;
+         thread * pthread = thread::m_pimpl;
          if(pthread != NULL && pthread->m_pbReady != NULL)
          {
             *pthread->m_pbReady = true;
@@ -3627,11 +3627,11 @@ namespace base
 
       thread::s_bAllocReady = true;
 
-      if(thread::m_p == NULL)
+      if(thread::m_pimpl == NULL)
       {
 
-         thread::m_p.create(allocer());
-         thread::m_p->m_p = this;
+         thread::m_pimpl.create(allocer());
+         thread::m_pimpl->m_puser = this;
 
       }
 
@@ -4154,7 +4154,7 @@ namespace base
          try
          {
 
-            thread         * pthread = thread::m_p.detach();
+            thread         * pthread = thread::m_pimpl.detach();
 
             if(pthread != NULL)
             {

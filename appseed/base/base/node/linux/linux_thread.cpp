@@ -79,9 +79,10 @@ UINT APIENTRY __thread_entry(void * pParam)
 
 
 
-   int32_t n = pThread->m_p->main();
+   int32_t n = pThread->m_puser->main();
 
    return pThread->thread_term(n);
+
 }
 
 
