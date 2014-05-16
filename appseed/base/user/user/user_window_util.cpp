@@ -879,6 +879,32 @@ namespace user
 #endif
    }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      interaction_ptr_array::interaction_ptr_array(sp(::base::application) papp) :
+      element(papp)
+   {
+
+   }
+
+
    sp(::user::interaction) interaction_ptr_array::find_first_typed(sp(type) info)
    {
       for(int32_t i = 0; i < this->get_size(); i++)
@@ -908,16 +934,21 @@ namespace user
 
    }
 
-   interaction_ptr_array::interaction_ptr_array(sp(::base::application) papp) :
-      element(papp)
-   {
 
-   }
+         interaction_ptr_array & interaction_ptr_array::operator = (const interaction_ptr_array & a)
+      {
+
+         copy(a);
+
+         return *this;
+
+      }
+
 
 
    oswindow_array interaction_ptr_array::get_hwnda()
    {
-      
+
       oswindow_array oswindowa;
 
       for(int32_t i = 0; i < this->get_size(); i++)

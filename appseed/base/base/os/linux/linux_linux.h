@@ -12,6 +12,7 @@
 #include "linux_file_watcher.h"
 #include "linux_window_xlib.h"
 #include "linux_cross_win_gdi_internal.h"
+#include "linux_windowing.h"
 
 
 #define ENABLE_BINRELOC
@@ -48,3 +49,6 @@ extern oswindow g_oswindowDesktop;
 
 CLASS_DECL_BASE bool main_initialize();
 CLASS_DECL_BASE bool main_finalize();
+
+
+

@@ -1111,161 +1111,8 @@ void message_box_paint(::draw2d::graphics * pdc, stringa & stra, bool_array  & b
 }
 
 
-class xlib_simple_message_box :
-   virtual public ::os::simple_ui
-{
-public:
 
-
-   spa(::simple_ui::label) m_labela;
-
-   rect m_rectDesktop;
-
-   xlib_simple_message_box(sp(::base::application) papp) : element(papp), ::os::simple_ui(papp), ::simple_ui::interaction(papp)
-   {
-   }
-
-
-   void draw_this(::draw2d::graphics *  pdc)
-   {
-         rect rect;
-
-         get_client_rect(rect);
-
-         pdc->FillSolidRect(rect, ARGB(255, 240, 240, 240));
-   }
-
-      int32_t show_window(const char * lpText, const char * lpCaption)
-      {
-
-         ::GetWindowRect(::GetDesktopWindow(), &m_rectDesktop);
-
-
-         rect rect(100, 100, 200, 200);
-
-         if(!create_window(rect))
-            return 0;
-
-
-         draw2d::graphics_sp g(allocer());
-
-         g->CreateCompatibleDC(NULL);
-
-         ::draw2d::font_sp font(allocer());
-
-         font->create_point_font("helvetica", 12.0);
-
-         g->selectFont(font);
-
-         stringa stra;
-
-         stra.add_tokens(lpText, "\n");
-
-         bool_array baTab;
-
-         int_array ya;
-
-         size sz;
-
-         sz.cx = 0;
-         sz.cy = 0;
-
-         for(index i = 0; i < stra.get_count(); i++)
-         {
-
-            string str = stra[i];
-
-            bool bTab = str_begins_dup(str, "\t");
-
-            str.trim();
-
-            bool bEmpty = str.is_empty();
-
-            if(bEmpty)
-               str = "L";
-
-            SIZE sizeItem = g->GetTextExtent(str);
-
-            int x = bTab ? 25 : 0;
-
-            if(sizeItem.cx + x > sz.cx)
-            {
-
-                sz.cx = sizeItem.cx + x;
-
-            }
-
-            baTab.add(bTab);
-
-            ya.add( sz.cy);
-
-            sz.cy += sizeItem.cy;
-
-            if(bEmpty)
-            {
-               stra[i] = "";
-            }
-            else
-            {
-               stra[i] = str;
-            }
-
-         }
-
-         for(index i = 0; i < stra.get_count(); i++)
-         {
-
-            m_labela.add(canew(::simple_ui::label(get_app())));
-
-            ::simple_ui::label & label = *m_labela.last_element();
-
-            label.set_parent(this);
-
-            label.m_strText = stra[i];
-
-            label.m_bVisible = true;
-
-            label.m_rect.left = 10;
-            label.m_rect.top = 10 + (sz.cy / stra.get_count()) * i;
-            label.m_rect.right = label.m_rect.left+sz.cx - 20;
-            label.m_rect.bottom = label.m_rect.top+ (sz.cy / stra.get_count());
-
-         }
-
-         sz.cx += 20;
-         sz.cy += 20;
-
-         rect.left = m_rectDesktop.left + ((m_rectDesktop.width() - sz.cx) / 2);
-         rect.top = m_rectDesktop.top + ((m_rectDesktop.height() - sz.cy) / 4);
-         rect.right = rect.left + sz.cx;
-         rect.bottom = rect.top + sz.cy;
-
-
-         if(!prepare_window(rect))
-            return 0;
-
-
-
-         SetWindowPos(m_window, NULL, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW);
-
-         run_loop();
-
-         return 0;
-
-      }
-
-};
-
-int32_t message_box_show_xlib(::base::application * papp, const char * lpText, const char * lpCaption)
-{
-
-   xlib_simple_message_box box(papp);
-
-   return box.show_window(lpText, lpCaption);
-
-
-}
-
+int32_t message_box_show_xlib(::base::application * papp, const char * lpText, const char * lpCaption);
 
 
 int32_t WINAPI MessageBoxA_x11(oswindow hWnd, const char * lpText, const char * lpCaption, UINT uType)
@@ -1403,13 +1250,13 @@ void wm_nodecorations(oswindow w,int map)
          PropModeReplace,(unsigned char *)&MWMHints,
          sizeof(MWMHints) / 4);
    }
-   WM_HINTS = XInternAtom(dpy,"KWM_WIN_DECORATION",True);
-   if(WM_HINTS != None) {
-      long KWMHints = KDE_tinyDecoration;
-      XChangeProperty(dpy,window,WM_HINTS,WM_HINTS,32,
-         PropModeReplace,(unsigned char *)&KWMHints,
-         sizeof(KWMHints) / 4);
-   }
+//   WM_HINTS = XInternAtom(dpy,"KWM_WIN_DECORATION",True);
+  // if(WM_HINTS != None) {
+    //  long KWMHints = KDE_tinyDecoration;
+      //XChangeProperty(dpy,window,WM_HINTS,WM_HINTS,32,
+        // PropModeReplace,(unsigned char *)&KWMHints,
+        // sizeof(KWMHints) / 4);
+   //}
 
    WM_HINTS = XInternAtom(dpy,"_WIN_HINTS",True);
    if(WM_HINTS != None) {

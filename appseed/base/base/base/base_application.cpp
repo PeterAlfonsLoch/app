@@ -681,7 +681,7 @@ namespace base
          }
          else
          {
-            
+
             SetMainWnd(NULL);
 
          }
@@ -3675,7 +3675,7 @@ namespace base
          thread::m_p->m_p = this;
 
       }
-      
+
       __node_init_app_thread(this);
 
 

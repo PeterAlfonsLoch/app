@@ -430,11 +430,11 @@ namespace linux
 
       user::oswindow_array hwnda;
 
-      get_wnda(hwnda);
+      hwnda = get_hwnda();
 
       user::interaction_ptr_array wndpa(get_app());
 
-      get_wnda(wndpa);
+      wndpa = get_wnda();
 
       user::window_util::SortByZOrder(hwnda);
 
@@ -1042,22 +1042,22 @@ throw not_implemented(get_app());
    }
 
 
-   void window_draw::get_wnda(user::interaction_ptr_array & wndpa)
+   user::interaction_ptr_array window_draw::get_wnda()
    {
 
       single_lock sl(&user_mutex(), true);
 
-      wndpa = System.frames();
+      return System.frames();
 
    }
 
 
-   void window_draw::get_wnda(user::oswindow_array & hwnda)
+   user::oswindow_array window_draw::get_hwnda()
    {
 
       single_lock sl(&user_mutex(), true);
 
-      System.frames().get_wnda(hwnda);
+      return System.frames().get_hwnda();
 
    }
 
@@ -1077,7 +1077,7 @@ throw not_implemented(get_app());
 
       user::oswindow_array hwnda;
 
-      get_wnda(hwnda);
+      hwnda = get_hwnda();
 
       user::window_util::SortByZOrder(hwnda);
 

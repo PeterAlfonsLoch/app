@@ -49,6 +49,8 @@ namespace user
       void send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
       void send_message_to_descendants(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0, bool bRecursive = true);
 
+      interaction_ptr_array & operator = (const interaction_ptr_array & a);
+
       };
 
 

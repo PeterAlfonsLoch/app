@@ -1526,25 +1526,21 @@ d.unlock();
 
          Application.m_ptCursor = pmouse->m_pt;
 
-         if(m_pbaseapp->m_pplaneapp->m_psession != NULL)
+         if(m_pbaseapp->m_pbasesession != NULL)
          {
             Session.m_ptCursor = pmouse->m_pt;
-            if(m_pbaseapp->m_pplaneapp->m_psession != NULL)
-            {
-               m_pbaseapp->m_pplaneapp->m_psession->m_pplanesession->m_ptCursor = pmouse->m_pt;
-            }
          }
 
-         if(m_pui != NULL && m_pui != this && m_pui->m_pbaseapp->m_pplaneapp->m_psession->m_pplanesession != NULL && m_pui->m_pbaseapp->m_pplaneapp->m_psession != m_pbaseapp->m_pplaneapp->m_psession)
+         if(m_pui != NULL && m_pui != this && m_pui->m_pbaseapp->m_pbasesession != NULL && m_pui->m_pbaseapp->m_pbasesession != m_pbaseapp->m_pbasesession)
          {
 
-            Sess(m_pui->m_pbaseapp->m_pplaneapp->m_psession).m_ptCursor = pmouse->m_pt;
+            Sess(m_pui->m_pbaseapp->m_pbasesession).m_ptCursor = pmouse->m_pt;
 
          }
 
          sp(base_session) psession;
 
-         if(m_pbaseapp->m_pplaneapp->is_system())
+         if(m_pbaseapp->is_system())
          {
 
             psession = System.query_session(0);
@@ -1650,7 +1646,7 @@ restart_mouse_hover_check:
          user::oswindow_array hwnda;
          user::interaction_ptr_array wnda(get_app());
          wnda = System.frames();
-         wnda.get_wnda(hwnda);
+         hwnda = wnda.get_hwnda();
          user::window_util::SortByZOrder(hwnda);
          for(int32_t i = 0; i < hwnda.get_size(); i++)
          {
@@ -2462,10 +2458,6 @@ restart_mouse_hover_check:
    // if the window doesn't have a _visible_ windows scrollbar - then
    //   look for a sibling with the appropriate ID
 
-   CScrollBar* window::GetScrollBarCtrl(int32_t) const
-   {
-      return NULL;        // no special scrollers supported
-   }
 
    int32_t window::SetScrollPos(int32_t nBar, int32_t nPos, bool bRedraw)
    {
@@ -2896,7 +2888,7 @@ return 0;
 
    bool window::SendChildNotifyLastMsg(LRESULT* pResult)
    {
-      ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
+      ___THREAD_STATE* pThreadState = gen_ThreadState;
       return OnChildNotify(pThreadState->m_lastSentMsg.message, pThreadState->m_lastSentMsg.wParam, pThreadState->m_lastSentMsg.lParam, pResult);
    }
 
@@ -3142,17 +3134,7 @@ return 0;
       Default();
    }
 
-   void window::OnHScroll(UINT, UINT, CScrollBar* pScrollBar)
-   {
-      UNREFERENCED_PARAMETER(pScrollBar);
-      Default();
-   }
 
-   void window::OnVScroll(UINT, UINT, CScrollBar* pScrollBar)
-   {
-      UNREFERENCED_PARAMETER(pScrollBar);
-      Default();
-   }
 
    bool CALLBACK window::GetAppsEnumWindowsProc(oswindow hwnd, LPARAM lparam)
    {
@@ -4000,11 +3982,11 @@ throw not_implemented(get_app());
             m_pthread->m_p->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
             if(pappThis1 != NULL)
             {
-               pappThis1->m_pplaneapp->m_dwAlive = m_pthread->m_dwAlive;
+               pappThis1->m_dwAlive = m_pthread->m_dwAlive;
             }
             if(pappThis2 != NULL)
             {
-               pappThis2->m_pplaneapp->m_dwAlive = m_pthread->m_dwAlive;
+               pappThis2->m_dwAlive = m_pthread->m_dwAlive;
             }
             if(pliveobject != NULL)
             {
@@ -4054,11 +4036,11 @@ throw not_implemented(get_app());
             m_pthread->m_p->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
             if(pappThis1 != NULL)
             {
-               pappThis1->m_pplaneapp->m_dwAlive = m_pthread->m_dwAlive;
+               pappThis1->m_dwAlive = m_pthread->m_dwAlive;
             }
             if(pappThis2 != NULL)
             {
-               pappThis2->m_pplaneapp->m_dwAlive = m_pthread->m_dwAlive;
+               pappThis2->m_dwAlive = m_pthread->m_dwAlive;
             }
             if(pliveobject != NULL)
             {
@@ -5860,24 +5842,6 @@ if(psurface == g_cairosurface)
 
    }
 
-   // Win4
-   HICON window::SetIcon(HICON hIcon, bool bBigIcon)
-   {
-
-      throw not_implemented(get_app());
-      //return (HICON)send_message(WM_SETICON, bBigIcon, (LPARAM)hIcon);
-
-   }
-
-   HICON window::GetIcon(bool bBigIcon) const
-   {
-
-      throw not_implemented(get_app());
-//      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return (HICON)const_cast < window * > (this)->send_message(WM_GETICON, bBigIcon, 0);
-
-   }
-
    void window::Print(::draw2d::graphics * pgraphics, DWORD dwFlags) const
    {
 
@@ -6308,7 +6272,7 @@ if(psurface == g_cairosurface)
 
    CLASS_DECL_LINUX LRESULT __call_window_procedure(sp(::user::interaction) pinteraction, oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam)
    {
-      ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
+      ___THREAD_STATE* pThreadState = gen_ThreadState;
       MESSAGE oldState = pThreadState->m_lastSentMsg;   // save for nesting
 
       throw not_implemented(pinteraction->get_app());
@@ -6672,7 +6636,7 @@ CLASS_DECL_LINUX void hook_window_create(sp(::user::interaction) pWnd)
 {
 
 //      throw not_implemented(::get_thread_app());
-   ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
+   ___THREAD_STATE* pThreadState = gen_ThreadState;
    if (pThreadState->m_pWndInit == pWnd)
       return;
 
@@ -6694,7 +6658,7 @@ CLASS_DECL_LINUX void hook_window_create(sp(::user::interaction) pWnd)
 
 CLASS_DECL_LINUX bool unhook_window_create()
 {
-   ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
+   ___THREAD_STATE* pThreadState = gen_ThreadState;
    if (pThreadState->m_pWndInit != NULL)
    {
       pThreadState->m_pWndInit = NULL;
@@ -6705,62 +6669,6 @@ CLASS_DECL_LINUX bool unhook_window_create()
 
 
 
-CLASS_DECL_LINUX const char * __register_window_class(UINT nClassStyle,
-                                                    HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
-{
-
-   return NULL;
-
-   throw not_implemented(::get_thread_app());
-
-//   // Returns a temporary string name for the class
-//   //  Save in a string if you want to use it for a long time
-//   LPTSTR lpszName = __get_thread_state()->m_szTempClassName;
-//
-//   // generate a synthetic name for this class
-//   HINSTANCE hInst = Sys(::linux::get_thread()->m_papp).m_hInstance;
-//
-//   if (hCursor == NULL && hbrBackground == NULL && hIcon == NULL)
-//   {
-//      C_RUNTIME_ERRORCHECK_SPRINTF(_sntprintf_s(lpszName, ___TEMP_CLASS_NAME_SIZE, ___TEMP_CLASS_NAME_SIZE - 1, "::ca2:::%p:%x", hInst, nClassStyle));
-//   }
-//   else
-//   {
-//      C_RUNTIME_ERRORCHECK_SPRINTF(_sntprintf_s(lpszName, ___TEMP_CLASS_NAME_SIZE, ___TEMP_CLASS_NAME_SIZE - 1, "::ca2:::%p:%x:%p:%p:%p", hInst, nClassStyle,
-//         hCursor, hbrBackground, hIcon));
-//   }
-//
-//   // see if the class already exists
-//   WNDCLASS wndcls;
-//   if (::GetClassInfo(hInst, lpszName, &wndcls))
-//   {
-//      // already registered, assert everything is good
-//      ASSERT(wndcls.style == nClassStyle);
-//
-//      // NOTE: We have to trust that the hIcon, hbrBackground, and the
-//      //  hCursor are semantically the same, because sometimes oswindows does
-//      //  some internal translation or copying of those handles before
-//      //  storing them in the internal WNDCLASS retrieved by GetClassInfo.
-//      return lpszName;
-//   }
-//
-//   // otherwise we need to register a new class
-//   wndcls.style = nClassStyle;
-//   wndcls.lpfnWndProc = DefWindowProc;
-//   wndcls.cbClsExtra = wndcls.cbWndExtra = 0;
-//   wndcls.hInstance = hInst;
-//   wndcls.hIcon = hIcon;
-//   //wndcls.hCursor = hCursor;
-//   wndcls.hCursor = NULL;
-//   wndcls.hbrBackground = hbrBackground;
-//   wndcls.lpszMenuName = NULL;
-//   wndcls.lpszClassName = lpszName;
-//   if (!__register_class(&wndcls))
-//      throw resource_exception();
-//
-//   // return thread-local pointer
-//   return lpszName;
-}
 
 
 __STATIC void CLASS_DECL_LINUX
