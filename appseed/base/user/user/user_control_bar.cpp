@@ -235,8 +235,10 @@ namespace user
 
    }
 
+
    bool control_bar::SetStatusText(int32_t nHit)
    {
+
       sp(::user::interaction) pOwner = get_owner();
 
       if (nHit == -1)
@@ -289,13 +291,6 @@ namespace user
          ((message >= WM_MOUSEFIRST && message <= WM_MOUSELAST)))
 //          (message >= WM_NCMOUSEFIRST && message <= WM_NCMOUSELAST)))
       {
-         // gather information about current mouse position
-         point point;
-         System.get_cursor_pos(&point);
-         ScreenToClient(&point);
-//         TOOLINFO ti; 
-         //memset(&ti, 0, sizeof(TOOLINFO));
-         //ti.cbSize = sizeof(__OLDTOOLINFO);
       }
 #else
 //      throw todo(get_app());
@@ -397,7 +392,7 @@ namespace user
 
    void control_bar::_001OnCreate(signal_details * pobj)
    {
-      
+
       if(pobj->previous())
          return;
 
