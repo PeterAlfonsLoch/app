@@ -660,7 +660,7 @@ int32_t application::exit_instance()
    try
    {
 
-      thread         * pthread = thread::m_p.detach();
+      thread         * pthread = thread::m_pimpl.detach();
 
       if (pthread != NULL)
       {
@@ -3519,7 +3519,6 @@ void application::dump(dump_context & dumpcontext) const
    m_pdocmanager->dump(dumpcontext);*/
 
    dumpcontext << "\nm_nWaitCursorCount = " << m_iWaitCursorCount;
-   dumpcontext << "\nm_hcurWaitCursorRestore = " << (void *)m_hcurWaitCursorRestore;
    dumpcontext << "\nm_nNumPreviewPages = " << m_nNumPreviewPages;
 
    dumpcontext << "\n";
@@ -3975,9 +3974,9 @@ bool application::start_application(bool bSynch, application_bias * pbias)
       peventReady->ResetEvent();
    }
 
-   thread::m_p.create(allocer());
+   thread::m_pimpl.create(allocer());
    //dynamic_cast < thread * > (papp->m_pplaneapp->thread::m_p)->m_p = papp->m_pplaneapp->thread::m_p;
-   thread::m_p->m_p = this;
+   thread::m_pimpl->m_puser = this;
    if (pbias != NULL)
    {
       m_biasCalling = *pbias;

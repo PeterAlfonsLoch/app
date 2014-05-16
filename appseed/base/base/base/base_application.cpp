@@ -113,7 +113,6 @@ namespace base
 
       // initialize wait cursor state
       m_iWaitCursorCount         = 0;
-      m_hcurWaitCursorRestore    = NULL;
 
       m_bBaseProcessInitialize   = false;
       m_bBaseInitializeInstance  = false;
@@ -162,27 +161,9 @@ namespace base
       dumpcontext << "\nm_strCmdLine = " << m_strCmdLine;
       dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
       dumpcontext << "\nm_bHelpMode = " << m_strAppName;
-      //   dumpcontext << "\nm_bHelpMode = " << m_bHelpMode;
-      // dumpcontext << "\nm_pszHelpFilePath = " << m_pszHelpFilePath;
-      //dumpcontext << "\nm_pszProfileName = " << m_pszProfileName;
-
-#ifdef WINDOWS
-      //   dumpcontext << "\nm_hDevMode = " << (void *)m_hDevMode;
-      // dumpcontext << "\nm_hDevNames = " << (void *)m_hDevNames;
-#endif
-
-      //dumpcontext << "\nm_dwPromptContext = " << (UINT)m_dwPromptContext;
-      //      dumpcontext << "\nm_eHelpType = " << m_eHelpType;
-
-
-      /*      if (m_pdocmanager != NULL)
-      m_pdocmanager->dump(dumpcontext);*/
-
-      //dumpcontext << "\nm_nWaitCursorCount = " << m_iWaitCursorCount;
-      dumpcontext << "\nm_hcurWaitCursorRestore = " << (void *)m_hcurWaitCursorRestore;
-      //dumpcontext << "\nm_nNumPreviewPages = " << m_nNumPreviewPages;
 
       dumpcontext << "\n";
+      
    }
 
 

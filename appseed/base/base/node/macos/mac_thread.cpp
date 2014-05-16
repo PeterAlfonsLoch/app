@@ -930,7 +930,7 @@ namespace mac
                lIdleCount = 0;
             }
             
-            m_p->on_run_step();
+            m_puser->on_run_step();
             
          }
          while (::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE) != FALSE);
@@ -969,9 +969,7 @@ namespace mac
                ::user::interaction * pui = puiptra->element_at(i);
                if(pui->m_pthread != NULL)
                {
-                  if(MAC_THREAD(pui->m_pthread.m_p) == this
-                     || MAC_THREAD(pui->m_pthread->m_p.m_p) == MAC_THREAD(m_p.m_p)
-                     || MAC_THREAD(pui->m_pthread.m_p) == MAC_THREAD(m_p.m_p))
+                  if(MAC_THREAD(pui->m_pthread.m_p) == this || MAC_THREAD(pui->m_pthread->m_pimpl.m_p) == MAC_THREAD(m_pimpl.m_p))
                   {
                      pui->m_pthread = NULL;
                   }
@@ -1229,9 +1227,9 @@ namespace mac
                
                spbase = get_base(&msg);
                
-               if(m_p != NULL)
+               if(m_puser != NULL)
                {
-                  m_p->pre_translate_message(spbase);
+                  m_puser->pre_translate_message(spbase);
                   if(spbase->m_bRet)
                      return TRUE;
                }
@@ -1441,14 +1439,6 @@ namespace mac
    }
    
    
-   CLASS_DECL_mac ::thread * get_thread()
-   {
-      ::thread * pthread = ::get_thread();
-      if(pthread == NULL)
-         return NULL;
-      return MAC_THREAD(pthread->m_p.m_p);
-   }
-   
    
    
    int32_t thread::thread_entry(::mac::thread_startup * pstartup)
@@ -1464,7 +1454,7 @@ namespace mac
 //      ::application* papp = dynamic_cast < ::application * > (get_app());
       m_evFinish.ResetEvent();
       install_message_handling(pThread);
-      m_p->install_message_handling(pThread);
+      m_puser->install_message_handling(pThread);
       
 //      ::window threadWnd;
       
@@ -1494,7 +1484,7 @@ namespace mac
        ASSERT(pStartup->pThread != NULL);
        ASSERT(!pStartup->bError);*/
       
-      if(!m_p->PreInitInstance())
+      if(!m_puser->PreInitInstance())
       {
          return 0;
       }
@@ -1506,7 +1496,7 @@ namespace mac
          nResult = (*m_pfnThreadProc)(m_pThreadParams);
       }
       // else -- check for thread with message loop
-      else if (!m_p->initialize_instance())
+      else if (!m_puser->initialize_instance())
       {
          try
          {
@@ -1528,10 +1518,10 @@ namespace mac
             try
             {
                m_bReady = true;
-               m_p->m_bReady = true;
+               m_puser->m_bReady = true;
                m_bRun = true;
-               m_p->m_bRun = true;
-               nResult = m_p->run();
+               m_puser->m_bRun = true;
+               nResult = m_puser->run();
             }
             catch(const ::exception::exception & e)
             {
@@ -2094,18 +2084,11 @@ void __node_init_app_thread(::thread * pthread)
 
 
 
-void __node_init_thread_state()
-{
-   
-}
+} // namespace mac
 
 
 
 
-void __node_term_thread_state()
-{
-   
-}
 
 
 

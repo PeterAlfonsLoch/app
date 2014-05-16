@@ -317,7 +317,7 @@ public:
    virtual bool pump_message();     // low level message pump
    virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
    virtual bool is_idle_message(signal_details * pobj);  // checks for special messages
-   virtual bool is_idle_message(LPMESSAGE * lpmessage);  // checks for special messages
+   virtual bool is_idle_message(LPMESSAGE lpmessage);  // checks for special messages
 
    // thread termination
    virtual int32_t exit_instance(); // default will 'delete this'
