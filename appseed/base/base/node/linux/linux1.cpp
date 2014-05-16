@@ -18,17 +18,6 @@ namespace linux
 } // namespace linux
 
 
-#undef __window_procedure
-LRESULT CALLBACK
-__window_procedure_base(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
-{
-   return __window_procedure(hWnd, nMsg, wParam, lParam);
-}
-
-
-LRESULT CALLBACK __window_procedure_base(oswindow, UINT, WPARAM, LPARAM);
-
-
 
 
 void CLASS_DECL_LINUX __lnx_term()

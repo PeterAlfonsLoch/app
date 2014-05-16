@@ -78,8 +78,6 @@ namespace linux
       UINT                                m_nDisablePumpCount;
       mutex                               m_mutexUiPtra;
 
-      ::thread *                      m_pAppThread;
-
       UINT                                m_dwFinishTimeout;
 
 
@@ -131,7 +129,6 @@ namespace linux
       virtual void set_run(bool bRun = true);
       virtual event & get_finish_event();
       virtual bool get_run();
-      virtual ::thread * get_app_thread();
       virtual sp(::user::interaction) get_active_ui();
       virtual sp(::user::interaction) set_active_ui(sp(::user::interaction) pui);
       virtual void step_timer();

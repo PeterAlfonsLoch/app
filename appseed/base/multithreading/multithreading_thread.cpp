@@ -759,15 +759,6 @@ bool thread::get_run()
 }
 
 
-thread * thread::get_app_thread()
-{
-
-   if (m_p == NULL)
-      return NULL;
-
-   return m_p->get_app_thread();
-
-}
 
 
 sp(::user::interaction) thread::get_active_ui()

@@ -517,7 +517,6 @@ public:
    virtual void set_run(bool bRun = true);
    virtual event & get_finish_event();
    virtual bool get_run();
-   virtual thread * get_app_thread();
    virtual sp(::user::interaction) get_active_ui();
    virtual sp(::user::interaction) set_active_ui(sp(::user::interaction) pui);
    virtual void step_timer();
@@ -549,8 +548,6 @@ public:
 
    virtual bool verb();
 
-
-
 };
 
 CLASS_DECL_BASE void thread_alloc_ready(bool bReady);
@@ -573,8 +570,6 @@ public:
 
 };
 
-
-CLASS_DECL_BASE thread * get_thread();
 
 
 CLASS_DECL_BASE mutex & user_mutex();

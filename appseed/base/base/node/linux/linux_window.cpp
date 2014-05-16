@@ -753,15 +753,8 @@ d.unlock();
          if (pThread->GetMainWnd() == this)
          {
 
-            if (!afxContextIsDLL)
-            {
-
-               // shut down current thread if possible
-
-               if (pThread != &System)
-                  __post_quit_message(0);
-
-            }
+            if (pThread != &System)
+               __post_quit_message(0);
 
             pThread->SetMainWnd(NULL);
 
@@ -951,13 +944,11 @@ d.unlock();
 
       single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
       sp(::window) pWnd;
-      hwnd_map * pMap;
       oswindow hWndOrig;
       bool bResult;
 
 
       bResult = FALSE;
-      pMap = NULL;
       pWnd = NULL;
       hWndOrig = NULL;
       if (get_handle() != NULL)
@@ -2255,10 +2246,18 @@ restart_mouse_hover_check:
 */
    int32_t window::message_box(const char * lpszText, const char * lpszcaption, UINT nType)
    {
+
+      string strCaption;
+
       if (lpszcaption == NULL)
-         lpszcaption = __get_app_name();
-      int32_t nResult = ::MessageBox((oswindow)get_handle(), lpszText, lpszcaption, nType);
+         strCaption = Application.m_strAppName;
+      else
+         strCaption = lpszcaption;
+
+      int32_t nResult = ::MessageBox((oswindow)get_handle(), lpszText, strCaption, nType);
+
       return nResult;
+
    }
 
    sp(::user::interaction) PASCAL window::GetDescendantWindow(sp(::user::interaction) hWnd, id id)
@@ -2760,11 +2759,14 @@ return 0;
       // no special processing
    }
 
+
    bool window::SendChildNotifyLastMsg(LRESULT* pResult)
    {
-      ___THREAD_STATE* pThreadState = gen_ThreadState;
-      return OnChildNotify(pThreadState->m_lastSentMsg.message, pThreadState->m_lastSentMsg.wParam, pThreadState->m_lastSentMsg.lParam, pResult);
+
+      return false;
+
    }
+
 
    bool PASCAL window::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
    {
@@ -3901,7 +3903,7 @@ throw not_implemented(get_app());
                goto ExitModal;
 
             // reset "no idle" state after pumping "normal" message
-            if (__is_idle_message(&msg))
+            if (m_pthread->is_idle_message(&msg))
             {
                bIdle = TRUE;
                lIdleCount = 0;
@@ -6141,233 +6143,6 @@ if(psurface == g_cairosurface)
    }
 
 
-   /////////////////////////////////////////////////////////////////////////////
-   // Official way to send message to a window
-
-   CLASS_DECL_LINUX LRESULT __call_window_procedure(sp(::user::interaction) pinteraction, oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam)
-   {
-      ___THREAD_STATE* pThreadState = gen_ThreadState;
-      MESSAGE oldState = pThreadState->m_lastSentMsg;   // save for nesting
-
-      throw not_implemented(pinteraction->get_app());
-
-//      pThreadState->m_lastSentMsg.m_pwnd = pinteraction;
-      pThreadState->m_lastSentMsg.message = nMsg;
-      pThreadState->m_lastSentMsg.wParam = wparam;
-      pThreadState->m_lastSentMsg.lParam = lparam;
-
-      // catch exceptions thrown outside the scope of a CALLBACK
-      // in debug builds and warn the ::fontopus::user.
-//      ::ca2::smart_pointer < ::message::base > spbase;
-//
-//      spbase(pinteraction->get_base(pinteraction, nMsg, wparam, lparam));
-//
-//      __trace_message("WndProc", spbase);
-//
-//      try
-//      {
-//
-//         // special case for WM_INITDIALOG
-//         rect rectOld;
-//         DWORD dwStyle = 0;
-//         if (nMsg == WM_INITDIALOG)
-//            __pre_init_dialog(pinteraction, &rectOld, &dwStyle);
-//
-//         // delegate to object's message_handler
-//         if(pinteraction->m_pui != NULL && pinteraction->m_pui != pinteraction)
-//         {
-//            pinteraction->m_pui->message_handler(spbase);
-//         }
-//         else
-//         {
-//            pinteraction->message_handler(spbase);
-//         }
-//         // more special case for WM_INITDIALOG
-//         if (nMsg == WM_INITDIALOG)
-//            __post_init_dialog(pinteraction, rectOld, dwStyle);
-//      }
-//      catch(const ::exception::exception & e)
-//      {
-//         try
-//         {
-//            if(App(pinteraction->m_papp).on_run_exception((::exception::exception &) e))
-//               goto run;
-//         }
-//         catch(...)
-//         {
-//         }
-//         return -1;
-//      }
-//      catch(::exception::base * pe)
-//      {
-//         __process_window_procedure_exception(pe, spbase);
-//         //         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Uncaught exception in message_handler (returning %ld).\n", spbase->get_lresult());
-//         pe->Delete();
-//      }
-//      catch(...)
-//      {
-//      }
-//run:
-//      try
-//      {
-//         pThreadState->m_lastSentMsg = oldState;
-//         LRESULT lresult = spbase->get_lresult();
-//         return lresult;
-//      }
-//      catch(...)
-//      {
-//         return 0;
-//      }
-   }
-
-
-   /*CDataExchange::CDataExchange(::window * pDlgWnd, bool bSaveAndValidate)
-   {
-   ASSERT_VALID(pDlgWnd);
-   m_bSaveAndValidate = bSaveAndValidate;
-   m_pDlgWnd = pDlgWnd;
-   m_idLastControl = 0;
-   }*/
-
-   /////////////////////////////////////////////////////////////////////////////
-   // oswindow creation hooks
-
-   LRESULT CALLBACK __cbt_filter_hook(int32_t code, WPARAM wparam, LPARAM lparam)
-   {
-
-      throw not_implemented(::get_thread_app());
-
-//      ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
-//      if (code != HCBT_CREATEWND)
-//      {
-//         // wait for HCBT_CREATEWND just pass others on...
-//         return callNextHookEx(pThreadState->m_hHookOldCbtFilter, code,
-//            wparam, lparam);
-//      }
-//
-//      ASSERT(lparam != NULL);
-//      LPCREATESTRUCT lpcs = ((LPCBT_CREATEWND)lparam)->lpcs;
-//      ASSERT(lpcs != NULL);
-//
-//      sp(::user::interaction) pWndInit = pThreadState->m_pWndInit;
-//      bool bContextIsDLL = afxContextIsDLL;
-//      if (pWndInit != NULL || (!(lpcs->style & WS_CHILD) && !bContextIsDLL))
-//      {
-//         // Note: special check to avoid subclassing the IME window
-//         //if (gen_DBCS)
-//         {
-//            // check for cheap CS_IME style first...
-//            if (GetClassLong((oswindow)wparam, GCL_STYLE) & CS_IME)
-//               goto lcallNextHook;
-//
-//            // get class name of the window that is being created
-//            const char * pszClassName;
-//            char szClassName[_countof("ime")+1];
-//            if (dword_ptr(lpcs->lpszClass) > 0xffff)
-//            {
-//               pszClassName = lpcs->lpszClass;
-//            }
-//            else
-//            {
-//               szClassName[0] = '\0';
-//               GlobalGetAtomName((ATOM)lpcs->lpszClass, szClassName, _countof(szClassName));
-//               pszClassName = szClassName;
-//            }
-//
-//            // a little more expensive to test this way, but necessary...
-//            if (::__invariant_stricmp(pszClassName, "ime") == 0)
-//               goto lcallNextHook;
-//         }
-//
-//         ASSERT(wparam != NULL); // should be non-NULL oswindow
-//         oswindow hWnd = (oswindow)wparam;
-//         WNDPROC oldWndProc;
-//         if (pWndInit != NULL)
-//         {
-//            // the window should not be in the permanent ::collection::map at this time
-//            ASSERT(::linux::window::FromHandlePermanent(hWnd) == NULL);
-//
-//            pWndInit->m_pthread = dynamic_cast < ::thread * > (::linux::get_thread());
-//            pWndInit->m_pthread->add(pWndInit);
-//            pWndInit->m_pui->m_pthread = pWndInit->m_pthread;
-//            pWndInit->m_pui->m_pthread->add(pWndInit->m_pui);
-//            pWndInit->m_pui->m_pimpl = pWndInit;
-//
-//            // connect the oswindow to pWndInit...
-//            pWndInit->Attach(hWnd);
-//            // allow other subclassing to occur first
-//            pWndInit->pre_subclass_window();
-//
-//            WNDPROC *pOldWndProc = pWndInit->GetSuperWndProcaddr();
-//            ASSERT(pOldWndProc != NULL);
-//
-//            // subclass the window with standard __window_procedure
-//            WNDPROC afxWndProc = __get_window_procedure();
-//            oldWndProc = (WNDPROC)SetWindowLongPtr(hWnd, GWLP_WNDPROC,
-//               (dword_ptr)afxWndProc);
-//            ASSERT(oldWndProc != NULL);
-//            if (oldWndProc != afxWndProc)
-//               *pOldWndProc = oldWndProc;
-//
-//            pThreadState->m_pWndInit = NULL;
-//         }
-//         else
-//         {
-//            ASSERT(!bContextIsDLL);   // should never get here
-//
-//            static ATOM s_atomMenu = 0;
-//            bool bSubclass = true;
-//
-//            if (s_atomMenu == 0)
-//            {
-//               WNDCLASSEX wc;
-//               memset(&wc, 0, sizeof(WNDCLASSEX));
-//               wc.cbSize = sizeof(WNDCLASSEX);
-//               s_atomMenu = (ATOM)::GetClassInfoEx(NULL, "#32768", &wc);
-//            }
-//
-//            // Do not subclass menus.
-//            if (s_atomMenu != 0)
-//            {
-//               ATOM atomWnd = (ATOM)::GetClassLongPtr(hWnd, GCW_ATOM);
-//               if (atomWnd == s_atomMenu)
-//                  bSubclass = false;
-//            }
-//            else
-//            {
-//               char szClassName[256];
-//               if (::GetClassName(hWnd, szClassName, 256))
-//               {
-//                  szClassName[255] = NULL;
-//                  if (_tcscmp(szClassName, "#32768") == 0)
-//                     bSubclass = false;
-//               }
-//            }
-//            if (bSubclass)
-//            {
-//               // subclass the window with the proc which does gray backgrounds
-//               oldWndProc = (WNDPROC)GetWindowLongPtr(hWnd, GWLP_WNDPROC);
-//               if (oldWndProc != NULL && GetProp(hWnd, gen_OldWndProc) == NULL)
-//               {
-//                  SetProp(hWnd, gen_OldWndProc, oldWndProc);
-//                  if ((WNDPROC)GetProp(hWnd, gen_OldWndProc) == oldWndProc)
-//                  {
-//                     GlobalAddAtom(gen_OldWndProc);
-//                     SetWindowLongPtr(hWnd, GWLP_WNDPROC, (dword_ptr)__activation_window_procedure);
-//                     ASSERT(oldWndProc != NULL);
-//                  }
-//               }
-//            }
-//         }
-//      }
-//
-//lcallNextHook:
-//      LRESULT lResult = callNextHookEx(pThreadState->m_hHookOldCbtFilter, code,
-//         wparam, lparam);
-//
-//      return lResult;
-   }
-
 
 
    void window::_001OnEraseBkgnd(::signal_details * pobj)
@@ -6387,12 +6162,7 @@ if(psurface == g_cairosurface)
    {
 
 
-      //throw not_implemented(get_app());
       m_bMouseHover = true;
-    //  TRACKMOUSEEVENT tme = { sizeof(tme) };
-  //    tme.dwFlags = TME_LEAVE;
-//      tme.hwndTrack = get_handle();
-//      TrackMouseEvent(&tme);
 
    }
 
@@ -6403,25 +6173,6 @@ if(psurface == g_cairosurface)
 
 /////////////////////////////////////////////////////////////////////////////
 // The WndProc for all window's and derived classes
-
-#undef __window_procedure
-
-LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam)
-{
-   // special message which identifies the window as using __window_procedure
-//   if (nMsg == WM_QUERYAFXWNDPROC)
-  //    return 1;
-
-   throw not_implemented(::get_thread_app());
-
-//   // all other messages route through message ::collection::map
-//   sp(::window) pWnd = ::linux::window::FromHandlePermanent(hWnd);
-//   //ASSERT(pWnd != NULL);
-//   //ASSERT(pWnd==NULL || LNX_WINDOW(pWnd)->get_handle() == hWnd);
-//   if (pWnd == NULL || LNX_WINDOW(pWnd)->get_handle() != hWnd)
-//      return ::DefWindowProc(hWnd, nMsg, wparam, lparam);
-//   return linux::__call_window_procedure(pWnd, hWnd, nMsg, wparam, lparam);
-}
 
 
 __STATIC void CLASS_DECL_LINUX __pre_init_dialog(
@@ -6465,169 +6216,7 @@ __STATIC void CLASS_DECL_LINUX __post_init_dialog(
 
 
 
-CLASS_DECL_LINUX void hook_window_create(sp(::user::interaction) pWnd)
-{
 
-//      throw not_implemented(::get_thread_app());
-   ___THREAD_STATE* pThreadState = gen_ThreadState;
-   if (pThreadState->m_pWndInit == pWnd)
-      return;
-
-//   if (pThreadState->m_hHookOldCbtFilter == NULL)
-//   {
-//      pThreadState->m_hHookOldCbtFilter = ::SetWindowsHookEx(WH_CBT,
-//         linux::__cbt_filter_hook, NULL, ::GetCurrentThreadId());
-//      if (pThreadState->m_hHookOldCbtFilter == NULL)
-//         throw memory_exception();
-//   }
-//   ASSERT(pThreadState->m_hHookOldCbtFilter != NULL);
-//   ASSERT(pWnd != NULL);
-//   // trans   ASSERT(LNX_WINDOW(pWnd)->get_handle() == NULL);   // only do once
-//
-   ASSERT(pThreadState->m_pWndInit == NULL);   // hook not already in progress
-   //pThreadState->m_pWndInit = pWnd;
-}
-
-
-CLASS_DECL_LINUX bool unhook_window_create()
-{
-   ___THREAD_STATE* pThreadState = gen_ThreadState;
-   if (pThreadState->m_pWndInit != NULL)
-   {
-      pThreadState->m_pWndInit = NULL;
-      return FALSE;   // was not successfully hooked
-   }
-   return TRUE;
-}
-
-
-
-
-
-__STATIC void CLASS_DECL_LINUX
-   __handle_activate(::window * pWnd, WPARAM nState, sp(::window) pWndOther)
-{
-
-      throw not_implemented(::get_thread_app());
-//   ASSERT(pWnd != NULL);
-//
-//   // send WM_ACTIVATETOPLEVEL when top-level parents change
-//   if (!(LNX_WINDOW(pWnd)->GetStyle() & WS_CHILD))
-//   {
-//      sp(::user::interaction) pTopLevel= LNX_WINDOW(pWnd)->GetTopLevelParent();
-//      if (pTopLevel && (pWndOther == NULL || !::IsWindow(LNX_WINDOW(pWndOther)->get_handle()) || pTopLevel != LNX_WINDOW(pWndOther)->GetTopLevelParent()))
-//      {
-//         // lparam points to window getting the WM_ACTIVATE message and
-//         //  hWndOther from the WM_ACTIVATE.
-//         oswindow hWnd2[2];
-//         hWnd2[0] = LNX_WINDOW(pWnd)->get_handle();
-//         if(pWndOther == NULL || LNX_WINDOW(pWndOther) == NULL)
-//         {
-//            hWnd2[1] = NULL;
-//         }
-//         else
-//         {
-//            hWnd2[1] = LNX_WINDOW(pWndOther)->get_handle();
-//         }
-//         // send it...
-//         pTopLevel->send_message(WM_ACTIVATETOPLEVEL, nState, (LPARAM)&hWnd2[0]);
-//      }
-//   }
-}
-
-__STATIC bool CLASS_DECL_LINUX
-   __handle_set_cursor(::window * pWnd, UINT nHitTest, UINT nMsg)
-{
-
-      throw not_implemented(::get_thread_app());
-//   if (nHitTest == HTERROR &&
-//      (nMsg == WM_LBUTTONDOWN || nMsg == WM_MBUTTONDOWN ||
-//      nMsg == WM_RBUTTONDOWN))
-//   {
-//      // activate the last active window if not active
-//      sp(::user::interaction) pLastActive = LNX_WINDOW(pWnd)->GetTopLevelParent();
-//      if (pLastActive != NULL)
-//         pLastActive = pLastActive->GetLastActivePopup();
-//      if (pLastActive != NULL &&
-//         pLastActive != ::linux::window::GetForegroundWindow() &&
-//         pLastActive->IsWindowEnabled())
-//      {
-//         pLastActive->SetForegroundWindow();
-//         return TRUE;
-//      }
-//   }
-//   return FALSE;
-}
-
-
-
-
-
-LRESULT CALLBACK
-   __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam)
-{
-
-      throw not_implemented(::get_thread_app());
-//   WNDPROC oldWndProc = (WNDPROC)::GetProp(hWnd, gen_OldWndProc);
-//   ASSERT(oldWndProc != NULL);
-//
-//   LRESULT lResult = 0;
-//   try
-//   {
-//      bool bcallDefault = TRUE;
-//      switch (nMsg)
-//      {
-//      case WM_INITDIALOG:
-//         {
-//            DWORD dwStyle;
-//            rect rectOld;
-//            sp(::window) pWnd = ::linux::window::from_handle(hWnd);
-//            __pre_init_dialog(pWnd, &rectOld, &dwStyle);
-//            bcallDefault = FALSE;
-//            lResult = callWindowProc(oldWndProc, hWnd, nMsg, wparam, lparam);
-//            __post_init_dialog(pWnd, rectOld, dwStyle);
-//         }
-//         break;
-//
-//      case WM_ACTIVATE:
-//         __handle_activate(::linux::window::from_handle(hWnd), wparam,
-//            ::linux::window::from_handle((oswindow)lparam));
-//         break;
-//
-//      case WM_SETCURSOR:
-//         bcallDefault = !__handle_set_cursor(::linux::window::from_handle(hWnd),
-//            (short)LOWORD(lparam), HIWORD(lparam));
-//         break;
-//
-//      case WM_NCDESTROY:
-//         SetWindowLongPtr(hWnd, GWLP_WNDPROC, reinterpret_cast<int_ptr>(oldWndProc));
-//         RemoveProp(hWnd, gen_OldWndProc);
-//         GlobalDeleteAtom(GlobalFindAtom(gen_OldWndProc));
-//         break;
-//      }
-//
-//      // call original wndproc for default handling
-//      if (bcallDefault)
-//         lResult = callWindowProc(oldWndProc, hWnd, nMsg, wparam, lparam);
-//   }
-//   catch(::exception::base * pe)
-//   {
-//      // handle exception
-//      MESSAGE msg;
-//      msg.hwnd = hWnd;
-//      msg.message = nMsg;
-//      msg.wparam = wparam;
-//      msg.lparam = lparam;
-//
-//      //lResult = __process_window_procedure_exception(pe, &msg);
-//      //      TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Uncaught exception in __activation_window_procedure (returning %ld).\n",
-//      //       lResult);
-//      pe->Delete();
-//   }
-//
-//
-//   return lResult;
-}
 
 
 

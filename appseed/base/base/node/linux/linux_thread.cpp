@@ -1,62 +1,13 @@
 #include "framework.h"
-//#include <process.h>    // for _beginthreadex and _endthreadex
-//#include <ddeml.h>  // for MESSAGEF_DDEMGR
-
-/**
-* \file		src/lib/pal/src/linux/thread_linux.cpp
-* \brief	Platform independent threads and synchronization objects (linux version)
-* \author	Thomas Nass
-*/
-
-//#include "internal_linux.hpp"
-
 #include <fcntl.h>
-
-//namespace gen { namespace pal {
-
-	//namespace internal
-	//{
-
 
 struct ___THREAD_STARTUP : ::linux::thread_startup
 {
    ::linux::thread* pThread;    // thread for new thread
    DWORD dwCreateFlags;    // thread creation flags
-   _PNH pfnNewHandler;     // new handler for new thread
-
-   //HANDLE hEvent;          // event triggered after success/non-success
-   //HANDLE hEvent2;         // event triggered after thread is resumed
-
-   // strictly "out" -- set after hEvent is triggered
    bool bError;    // TRUE if error during startup
 };
 
-/*
-WINBOOL PeekMessage(
-    LPMESSAGE lpMsg,
-    oswindow hWnd,
-    UINT wMsgFilterMin,
-    UINT wMsgFilterMax,
-    UINT wRemoveMsg)
-    {
-
-       return TRUE;
-    }
-
-WINBOOL GetMessage(
-    LPMESSAGE lpMsg,
-    oswindow hWnd,
-    UINT wMsgFilterMin,
-    UINT wMsgFilterMax)
-    {
-
-       return TRUE;
-    }
-*/
-namespace linux
-{
-   class thread;
-} // namespace linux
 
 WINBOOL CLASS_DECL_LINUX AfxInternalPumpMessage();
 LRESULT CLASS_DECL_LINUX AfxInternalProcessWndProcException(::exception::base*, const MESSAGE* pMsg);
@@ -106,13 +57,6 @@ UINT APIENTRY __thread_entry(void * pParam)
    }
    catch(::exception::base *)
    {
-      // Note: DELETE_EXCEPTION(e) not required.
-
-      // exception happened during thread initialization!!
-      //TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Error during thread initialization!\n");
-
-      // set error flag and allow the creating thread to notice the error
-//         threadWnd.Detach();
       pStartup->bError = TRUE;
       pStartup->hEvent.set_event();
       __end_thread(pThread->m_pbaseapp, (UINT)-1, FALSE);
@@ -180,7 +124,7 @@ void AfxInternalPreTranslateMessage(::signal_details * pobj)
 
       //   ASSERT_VALID(this);
 
-      ::thread *pThread = dynamic_cast < ::thread * > (::linux::get_thread());
+      ::thread *pThread = ::get_thread();
       if( pThread )
       {
          // if this is a thread-message, short-circuit this function
@@ -316,23 +260,6 @@ WINBOOL AfxInternalIsIdleMessage(LPMESSAGE lpmsg)
    return lpmsg->message != WM_PAINT && lpmsg->message != 0x0118;
 }
 
-WINBOOL __cdecl __is_idle_message(::signal_details * pobj)
-{
-   ::thread *pThread = App(pobj->get_app()).GetThread();
-   if( pThread )
-      return pThread->is_idle_message(pobj);
-   else
-      return AfxInternalIsIdleMessage(pobj);
-}
-
-WINBOOL __cdecl __is_idle_message(MESSAGE* pMsg)
-{
-   linux::thread * pThread = __get_thread();
-   if(pThread)
-      return pThread->is_idle_message( pMsg );
-   else
-      return AfxInternalIsIdleMessage( pMsg );
-}
 
 
 void CLASS_DECL_LINUX __end_thread(sp(::base::application) papp, UINT nExitCode, bool bDelete)
@@ -354,27 +281,6 @@ void CLASS_DECL_LINUX __term_thread(sp(::base::application) papp, HINSTANCE hIns
 namespace linux
 {
 
-   void thread::set_p(::thread * p)
-   {
-      m_p = p;
-   }
-
-   void thread::construct(__THREADPROC pfnThreadProc, LPVOID pParam)
-   {
-      m_evFinish.SetEvent();
-      if(System.GetThread() != NULL)
-      {
-         m_pAppThread = __get_thread()->m_pAppThread;
-      }
-      else
-      {
-         m_pAppThread = NULL;
-      }
-      m_pfnThreadProc = pfnThreadProc;
-      m_pThreadParams = pParam;
-
-      CommonConstruct();
-   }
 
    thread::thread(sp(::base::application) papp) :
       element(papp),
@@ -386,7 +292,6 @@ namespace linux
 
       m_evFinish.SetEvent();
 
-      m_pAppThread = papp;
       m_pThreadParams = NULL;
       m_pfnThreadProc = NULL;
 
@@ -400,27 +305,11 @@ namespace linux
       m_puiptra      = NULL;
 
 
-//      m_peventReady  = NULL;
-
-//      m_pmapHDC      = NULL;
-  //    m_pmapHGDIOBJ  = NULL;
-
       m_nDisablePumpCount  = 0;
 
-      // no HTHREAD until it is created
-    //  m_hThread = NULL;
-      //m_nThreadID = 0;
-      // initialize message pump
-      m_nDisablePumpCount = 0;
-
-
-      // most threads are deleted when not needed
       m_bAutoDelete = TRUE;
       m_bRun = false;
 
-//      m_pmapHDC = new hdc_map;
-  //    m_pmapHGDIOBJ = new hgdiobj_map;
-//      m_frameList.Construct(offsetof(frame_window, m_pNextFrameWnd));
       m_ptimera = new ::user::interaction::timer_array(get_app());
       m_puiptra = new user::interaction_ptr_array(get_app());
 
@@ -428,20 +317,26 @@ namespace linux
 
    }
 
+   void thread::set_p(::thread * p)
+   {
+      m_p = p;
+   }
+
+   void thread::construct(__THREADPROC pfnThreadProc, LPVOID pParam)
+   {
+
+      m_evFinish.SetEvent();
+
+      m_pfnThreadProc = pfnThreadProc;
+      m_pThreadParams = pParam;
+
+      CommonConstruct();
+   }
+
 
    thread::~thread()
    {
 
-/*      if(m_spuiMessage->m_pimpl != NULL)
-      {
-         m_spuiMessage->m_pimpl->m_pthread = NULL;
-         m_spuiMessage->m_pimpl->m_signalptra.remove_all();
-         m_spuiMessage->m_pimpl->m_signala.remove_all();
-      }
-
-      m_spuiMessage->m_pthread = NULL;
-      m_spuiMessage->m_signalptra.remove_all();
-      m_spuiMessage->m_signala.remove_all();*/
 
       if(m_puiptra != NULL)
       {
@@ -597,25 +492,7 @@ namespace linux
 
    void thread::set_timer(sp(::user::interaction) pui, uint_ptr nIDEvent, UINT nEllapse)
    {
-    /*  if(!m_spuiMessage->IsWindow())
-      {
-         return;
-      }*/
       m_ptimera->set(pui, nIDEvent, nEllapse);
-  //    single_lock sl(&m_ptimera->m_mutex, TRUE);
-/*      int32_t iMin = 100;
-      for(int32_t i = 0; i < m_ptimera->m_timera.get_count(); i++)
-      {
-         if(m_ptimera->m_timera[i].m_uiElapse < natural(iMin))
-         {
-            iMin = m_ptimera->m_timera[i].m_uiElapse;
-         }
-      }
-      sl.unlock();
-      if(m_spuiMessage->IsWindow())
-      {
-         m_spuiMessage->SetTimer((uint_ptr)-2, iMin, NULL);
-      }*/
    }
 
    void thread::unset_timer(sp(::user::interaction) pui, uint_ptr nIDEvent)
@@ -641,11 +518,6 @@ namespace linux
    bool thread::get_run()
    {
       return m_bRun && ::os_thread::get_run();
-   }
-
-   ::thread * thread::get_app_thread()
-   {
-      return m_pAppThread;
    }
 
    sp(::user::interaction) thread::get_active_ui()
@@ -697,11 +569,6 @@ namespace linux
          Delete();
          return false;
       }
-      //VERIFY(SetThreadPriority(epriority));
-      //if (!(dwCreateFlags & CREATE_SUSPENDED))
-      //{
-        // ENSURE(ResumeThread() != (DWORD)-1);
-      //}
       return true;
    }
 
@@ -723,23 +590,9 @@ namespace linux
       // setup startup structure for thread initialization
       ___THREAD_STARTUP * pstartup = new ___THREAD_STARTUP;
       pstartup->bError = FALSE;
-      pstartup->pfnNewHandler = NULL;
-      //memset(&startup, 0, sizeof(startup));
-      pstartup->pThreadState = __get_thread_state();
       pstartup->pThread = this;
       pstartup->m_pthread = NULL;
-//      startup.hEvent = ::CreateEvent(NULL, TRUE, FALSE, NULL);
-  //    startup.hEvent2 = ::CreateEvent(NULL, TRUE, FALSE, NULL);
       pstartup->dwCreateFlags = dwCreateFlags;
-/*      if (startup.hEvent == NULL || startup.hEvent2 == NULL)
-      {
-         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: CreateEvent failed in thread::create_thread.\n");
-         if (startup.hEvent != NULL)
-            ::CloseHandle(startup.hEvent);
-         if (startup.hEvent2 != NULL)
-            ::CloseHandle(startup.hEvent2);
-         return FALSE;
-      }*/
 
       m_hThread = (HTHREAD) (ulong_ptr) ::create_thread(lpSecurityAttrs, nStackSize, (DWORD (__stdcall *)(LPVOID)) &::__thread_entry, pstartup, dwCreateFlags | CREATE_SUSPENDED, &m_nID);
 
@@ -1015,21 +868,15 @@ stop_run:
       {
       }
 
+      return 0;
 
-
-      int32_t nResult = (int32_t)AfxGetCurrentMessage()->wParam;  // returns the value from PostQuitMessage
-      return nResult;
    }
+
 
    bool thread::on_idle(LONG lCount)
    {
       ASSERT_VALID(this);
 
-   #if defined(DEBUG) && !defined(_AFX_NO_DEBUG_CRT)
-      // check ca2 API's allocator (before idle)
-      //if (_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & _CRTDBG_CHECK_ALWAYS_DF)
-        // ASSERT(__check_memory());
-   #endif
 
       if(lCount <= 0 && m_puiptra != NULL)
       {
@@ -1079,47 +926,6 @@ stop_run:
          pbase->m_bRet = true;
          return;
       }
-   /*   const __MSGMAP* pMessageMap; pMessageMap = GetMessageMap();
-      const __MSGMAP_ENTRY* lpEntry;
-
-      for (/* pMessageMap already init'ed *//*; pMessageMap->pfnGetBaseMap != NULL;
-         pMessageMap = (*pMessageMap->pfnGetBaseMap)())
-      {
-         // Note: catch not so common but fatal mistake!!
-         //       // BEGIN_MESSAGE_MAP(CMyThread, CMyThread)
-
-         ASSERT(pMessageMap != (*pMessageMap->pfnGetBaseMap)());
-         if (pMsg->message < 0xC000)
-         {
-            // constant window message
-            if ((lpEntry = AfxFindMessageEntry(pMessageMap->lpEntries,
-               pMsg->message, 0, 0)) != NULL)
-               goto LDispatch;
-         }
-         else
-         {
-            // registered windows message
-            lpEntry = pMessageMap->lpEntries;
-            while ((lpEntry = AfxFindMessageEntry(lpEntry, 0xC000, 0, 0)) != NULL)
-            {
-               UINT* pnID = (UINT*)(lpEntry->nSig);
-               ASSERT(*pnID >= 0xC000);
-                  // must be successfully registered
-               if (*pnID == pMsg->message)
-                  goto LDispatch;
-               lpEntry++;      // keep looking past this one
-            }
-         }
-      }
-      return FALSE;
-
-   LDispatch:
-      union MessageMapFunctions mmf;
-      mmf.pfn = lpEntry->pfn;
-
-      // always posted, so return value is meaningless
-
-      (this->*mmf.pfn_THREAD)(pMsg->wParam, pMsg->lParam);*/
 
       LRESULT lresult;
 
@@ -1341,7 +1147,7 @@ stop_run:
    void thread::dump(dump_context & dumpcontext) const
   {
   }
-}
+
 #endif
 
    bool thread::post_message(sp(::user::interaction) pguie, UINT uiMessage, WPARAM wparam, lparam lparam)
@@ -1368,35 +1174,9 @@ stop_run:
    void thread::message_handler(::signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
-      // special message which identifies the window as using AfxWndProc
-      //if(pbase->m_uiMessage == WM_QUERYAFXWNDPROC)
-      {
-        // pbase->set_lresult(0);
-         //return;
-      }
 
-      // all other messages route through message ::collection::map
       sp(::window) pwindow = pbase->m_pwnd->get_wnd();
 
-/*      ASSERT(pwindow == NULL || LNX_WINDOW(pwindow)->get_handle() == pbase->m_hwnd);
-
-      if(pwindow == NULL || LNX_WINDOW(pwindow)->get_handle() != pbase->m_hwnd)
-      {
-         pbase->set_lresult(::DefWindowProc(pbase->m_hwnd, pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
-         return;
-      }*/
-
-      ___THREAD_STATE* pThreadState = gen_ThreadState;
-      MESSAGE oldState = pThreadState->m_lastSentMsg;   // save for nesting
-      //pThreadState->m_lastSentMsg.       = pbase->m_hwnd;
-      pThreadState->m_lastSentMsg.message    = pbase->m_uiMessage;
-      pThreadState->m_lastSentMsg.wParam     = pbase->m_wparam;
-      pThreadState->m_lastSentMsg.lParam     = pbase->m_lparam;
-
-      __trace_message("message_handler", pobj);
-
-      // catch exceptions thrown outside the scope of a CALLBACK
-      // in debug builds and warn the ::fontopus::user.
       try
       {
 
@@ -1423,9 +1203,9 @@ stop_run:
       catch(const ::exception::exception & e)
       {
          if(App(get_app()).on_run_exception((::exception::exception &) e))
-            goto run;
+            return;
          if(App(get_app()).final_handle_exception((::exception::exception &) e))
-            goto run;
+            return;
          __post_quit_message(-1);
          pbase->set_lresult(-1);
          return;
@@ -1436,31 +1216,33 @@ stop_run:
          TRACE(::core::trace::category_AppMsg, 0, "Warning: Uncaught exception in message_handler (returning %ld).\n", pbase->get_lresult());
          pe->Delete();
       }
-   run:
-      pThreadState->m_lastSentMsg = oldState;
    }
 
 
-//   thread::operator HANDLE() const
-  // { return this == NULL ? NULL : m_hThread; }
    bool thread::set_thread_priority(int32_t  nPriority)
    {
-      //throw not_implemented(get_app());
-//       return ::SetThreadPriority(thread_ nPriority);
-return false;
-      }
+
+      return false;
+
+   }
+
+
    int32_t thread::GetThreadPriority()
    {
-      throw not_implemented(get_app());
-      //ASSERT(m_hThread != NULL);
-      //return ::GetThreadPriority(m_hThread);
+
+      return 0;
+
    }
+
    DWORD thread::ResumeThread()
    {
-      //throw not_implemented(get_app());
+
       ASSERT(m_hThread != NULL);
+
       return ::ResumeThread(m_hThread);
-}
+
+   }
+
    DWORD thread::SuspendThread()
    {
    throw not_implemented(get_app());
@@ -1490,14 +1272,6 @@ return false;
    {
    }
 
-
-   CLASS_DECL_LINUX ::thread * get_thread()
-   {
-      ::linux::thread * pwinthread = __get_thread();
-      if(pwinthread == NULL)
-         return NULL;
-      return pwinthread->m_p;
-   }
 
 
    void thread::LockTempMaps()
@@ -1573,17 +1347,7 @@ return false;
    {
 
       ASSERT(pstartup != NULL);
-//      ASSERT(pstartup->pThreadState != NULL);
       ASSERT(pstartup->m_pthread != NULL);
-      //ASSERT(!pstartup->bError);
-
-{
-
-      ___THREAD_STATE* pState = __get_thread_state();
-      pState->m_nMsgLast = WM_NULL;
-      //System.get_cursor_pos(&(pState->m_ptCursorLast));
-
-}
 
 
       ::linux::thread* pThread = dynamic_cast < ::linux::thread * > (pstartup->m_pthread);
@@ -2901,33 +2665,6 @@ void __node_init_app_thread(::thread * pthread)
 
 
 
-
-::thread * get_thread()
-{
-
-   return ::linux::get_thread();
-
-}
-
-
-
-
-void __node_init_thread_state()
-{
-
-   gen_ThreadState = new ___THREAD_STATE;
-
-}
-
-
-void __node_term_thread_state()
-{
-
-   delete gen_ThreadState;
-
-   gen_ThreadState = NULL;
-
-}
 
 
 

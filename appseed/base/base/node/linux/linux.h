@@ -84,8 +84,6 @@ CLASS_DECL_LINUX void AfxResetMsgcache();
 CLASS_DECL_LINUX void __trace_message(const char * lpszPrefix, ::signal_details * pobj);
 CLASS_DECL_LINUX void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
-CLASS_DECL_LINUX WINBOOL __cdecl __is_idle_message(::signal_details * pobj);
-CLASS_DECL_LINUX WINBOOL __cdecl __is_idle_message(MESSAGE* pMsg);
 
 
 CLASS_DECL_LINUX void AfxProcessWndProcException(::exception::base*, ::signal_details * pobj);

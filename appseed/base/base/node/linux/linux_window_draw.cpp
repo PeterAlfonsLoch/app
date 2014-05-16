@@ -356,7 +356,7 @@ namespace linux
 //         while(::PeekMessage(&msg, ::ca2::null(), NULL, NULL, PM_NOREMOVE))
          while(::PeekMessage(&msg, NULL, 0, 0, 0))
          {
-            __get_thread()->pump_message();
+            get_thread()->pump_message();
          }
          int32_t iUiDataWriteWindowTimeForTheApplicationInThisMachine = 84;
          if(m_iFramesPerSecond == 0)

@@ -24,3 +24,22 @@
 #include "message.inl"
 
 
+namespace message
+{
+
+
+
+
+   CLASS_DECL_LINUX bool is_idle_message(::signal_details * pobj);
+
+
+   CLASS_DECL_LINUX bool is_idle_message(MESSAGE* pMsg);
+
+
+
+
+} // namespace message
+
+
+
+
