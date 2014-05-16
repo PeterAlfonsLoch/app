@@ -36,10 +36,13 @@ namespace linux
 } // namespace win
 
 
-extern "C"
-void ca2_factory_exchange(sp(::base::application) papp)
+void __node_factory_exchange(sp(::base::application) papp)
 {
+
    linux::factory_exchange factoryexchange(papp);
+
 }
+
+
 
 

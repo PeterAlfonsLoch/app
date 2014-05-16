@@ -39,46 +39,18 @@ struct CLASS_DECL_LINUX __EXCEPTION_CONTEXT
    // Note: most of the exception context is now in the __exception_link
 };
 
-#ifndef _PNH_DEFINED
-typedef int32_t (__cdecl * _PNH)( size_t );
-#define _PNH_DEFINED
-#endif
-
-_PNH CLASS_DECL_LINUX __get_new_handler();
-_PNH CLASS_DECL_LINUX __set_new_handler(_PNH pfnNewHandler);
-CLASS_DECL_LINUX int32_t c_cdecl __new_handler(size_t nSize);
 
 void CLASS_DECL_LINUX __abort();
 
 
-// helpers for registering your own WNDCLASSes
-//CLASS_DECL_LINUX const char * __register_window_class(UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
-
-// xxx CLASS_DECL_LINUX bool __register_class(WNDCLASS* lpWndClass);
-
 
 CLASS_DECL_LINUX LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
-// xxx CLASS_DECL_LINUX WNDPROC __get_window_procedure();
-// xxx #define __window_procedure (*__get_window_procedure())
 
 typedef void (__MSG_CALL ::window::*__PMSGW)();
-   // like '__PMSG' but for ::window derived classes only
 
 typedef void (__MSG_CALL ::thread::*__PMSGT)();
-   // like '__PMSG' but for thread-derived classes only
 
 
-
-
-// xxx CLASS_DECL_LINUX LONG delete_registry_tree_helper(HKEY hParentKey, const string & strKeyName);
-
-
-// Advanced initialization: for overriding default diagnostics
-//CLASS_DECL_LINUX bool __diagnostic_init();
-
-
-CLASS_DECL_LINUX ::linux::thread * __get_thread();
-CLASS_DECL_LINUX void __set_thread(::thread * pthread);
 CLASS_DECL_LINUX MESSAGE * __get_current_message();
 
 CLASS_DECL_LINUX void __end_thread(sp(::base::application) papp, UINT nExitCode, bool bDelete = TRUE);
@@ -86,21 +58,6 @@ CLASS_DECL_LINUX void __end_thread(sp(::base::application) papp, UINT nExitCode,
 CLASS_DECL_LINUX void __init_thread();
 CLASS_DECL_LINUX void __term_thread(sp(::base::application) papp, HINSTANCE hInstTerm = NULL);
 
-/////////////////////////////////////////////////////////////////////////////
-// Global functions for access to the one and only application
-
-#define afxCurrentWinApp    __get_module_state()->m_pCurrentWinApp
-#define afxCurrentInstanceHandle    __get_module_state()->m_hCurrentInstanceHandle
-#define afxCurrentResourceHandle    __get_module_state()->m_hCurrentResourceHandle
-#define afxCurrentAppName   __get_module_state()->m_lpszCurrentAppName
-#define afxContextIsDLL     __get_module_state()->m_bDLL
-#define afxRegisteredClasses    __get_module_state()->m_fRegisteredClasses
-#define afxAmbientActCtx    __get_module_state()->m_bSetAmbientActCtx
-
-
-// Advanced initialization: for overriding default WinMain
-//CLASS_DECL_LINUX bool ::ca2::WinInit(__in HINSTANCE hInstance, __in HINSTANCE hPrevInstance,
-  // __in_z LPTSTR lpCmdLine, __in int32_t nCmdShow);
 CLASS_DECL_LINUX void __lnx_term();
 
 CLASS_DECL_LINUX sp(::base::application)  __get_app();

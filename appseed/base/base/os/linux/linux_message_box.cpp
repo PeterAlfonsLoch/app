@@ -32,7 +32,7 @@ void message_box_paint(Display *dpy, Window win, const char * lpText)
 
 }
 
-void message_box_show_xlib(const char * lpText,const char * lpCaption)
+void message_box_show_xlib(::base::application * papp, const char * lpText,const char * lpCaption)
 {
    Display *dpy;
    Window rootwin;

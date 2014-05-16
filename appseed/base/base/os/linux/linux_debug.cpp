@@ -7,7 +7,7 @@
 
 
 
-int32_t is_gdb_present()
+int32_t __node_is_debugger_attached()
 {
 
    return gdb_check();

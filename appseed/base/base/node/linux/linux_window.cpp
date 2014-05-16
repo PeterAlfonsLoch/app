@@ -223,20 +223,11 @@ namespace linux
 
    const MESSAGE* PASCAL window::GetCurrentMessage()
    {
-      // fill in time and position when asked for
-  /*    ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
-      pThreadState->m_lastSentMsg.time = ::GetMessageTime();
-      pThreadState->m_lastSentMsg.pt = point(::GetMessagePos());
-      return &pThreadState->m_lastSentMsg;*/
       return NULL;
    }
 
    LRESULT window::Default()
    {
-      // call DefWindowProc with the last message
-/*      ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
-      return DefWindowProc(pThreadState->m_lastSentMsg.message,
-         pThreadState->m_lastSentMsg.wparam, pThreadState->m_lastSentMsg.lparam);*/
          return 0;
    }
 
@@ -1232,131 +1223,14 @@ d.unlock();
 */
    LRESULT window::OnNTCtlColor(WPARAM wparam, LPARAM lparam)
    {
-      // fill in special struct for compatiblity with 16-bit WM_CTLCOLOR
-  /*    __CTLCOLOR ctl;
-      ctl.hDC = (HDC)wparam;
-      ctl.hWnd = (oswindow)lparam;
-      ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
-      ctl.nCtlType = pThreadState->m_lastSentMsg.message - WM_CTLCOLORMSGBOX;
-      //ASSERT(ctl.nCtlType >= CTLCOLOR_MSGBOX);
-      ASSERT(ctl.nCtlType <= CTLCOLOR_STATIC);
-
-      // Note: We call the virtual message_handler for this window directly,
-      //  instead of calling ::ca2::callWindowProc, so that Default()
-      //  will still work (it will call the Default window proc with
-      //  the original Win32 WM_CTLCOLOR message).
-      /*
-      return message_handler(WM_CTLCOLOR, 0, (LPARAM)&ctl);*/
       return 0;
    }
 
-   /////////////////////////////////////////////////////////////////////////////
-   // window extensions for help support
-
-/*   void window::WinHelp(dword_ptr dwData, UINT nCmd)
-   {
-      UNREFERENCED_PARAMETER(dwData);
-      UNREFERENCED_PARAMETER(nCmd);
-      throw not_implemented(get_app());
-
-      /*      application* pApp = &System;
-      ASSERT_VALID(pApp);
-      ASSERT(pApp->m_pszHelpFilePath != NULL);
-      ASSERT(pApp->m_eHelpType == afxWinHelp);
-
-      wait_cursor wait(get_app());
-
-      PrepareForHelp();
-
-      // need to use top level parent (for the case where get_handle() is in DLL)
-      sp(::user::interaction) pWnd = EnsureTopLevelParent();
-
-      TRACE(::ca2::trace::category_AppMsg, 0, "WinHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
-
-      // finally, run the oswindows Help engine
-      /* trans   if (!::WinHelp(LNX_WINDOW(pWnd)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
-      {
-      // linux System.simple_message_box(__IDP_FAILED_TO_LAUNCH_HELP);
-      System.simple_message_box("Failed to launch help");
-      }*/
-   //}
-
-   //void window::HtmlHelp(dword_ptr dwData, UINT nCmd)
-   //{
-   // throw not_implemented(get_app());
-   /*
-   application* pApp = &System;
-   ASSERT_VALID(pApp);
-   ASSERT(pApp->m_pszHelpFilePath != NULL);
-   // to call HtmlHelp the m_fUseHtmlHelp must be set in
-   // the application's constructor
-   ASSERT(pApp->m_eHelpType == afxHTMLHelp);
-
-   wait_cursor wait(get_app());
-
-   PrepareForHelp();
-
-   // need to use top level parent (for the case where get_handle() is in DLL)
-   sp(::user::interaction) pWnd = EnsureTopLevelParent();
-
-   TRACE(::ca2::trace::category_AppMsg, 0, "HtmlHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
-
-   // run the HTML Help engine
-   /* trans   if (!::ca2::HtmlHelp(LNX_WINDOW(pWnd)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
-   {
-   // linux System.simple_message_box(__IDP_FAILED_TO_LAUNCH_HELP);
-   System.simple_message_box("Failed to launch help");
-   }*/
-   //}
 
    void window::PrepareForHelp()
    {
-      /*if (is_frame_window())
-      {
-         // frame_window windows should be allowed to exit help mode first
-         sp(frame_window) pFrameWnd = dynamic_cast < sp(frame_window) >(this);
-         pFrameWnd->ExitHelpMode();
-      }
-
-      // cancel any tracking modes
-      send_message(WM_CANCELMODE);
-      SendMessageToDescendants(WM_CANCELMODE, 0, 0, TRUE, TRUE);
-
-      // need to use top level parent (for the case where get_handle() is in DLL)
-      sp(::user::interaction) pWnd = EnsureTopLevelParent();
-      LNX_WINDOW(pWnd)->send_message(WM_CANCELMODE);
-      LNX_WINDOW(pWnd)->SendMessageToDescendants(WM_CANCELMODE, 0, 0, TRUE, TRUE);
-
-      // attempt to cancel capture
-      oswindow hWndcapture = ::GetCapture();
-      if (hWndcapture != NULL)
-         ::SendMessage(hWndcapture, WM_CANCELMODE, 0, 0);*/
    }
 
-
-   /*void window::WinHelpInternal(dword_ptr dwData, UINT nCmd)
-   {
-      UNREFERENCED_PARAMETER(dwData);
-      UNREFERENCED_PARAMETER(nCmd);
-      throw not_implemented(get_app());
-      /*
-      application* pApp = &System;
-      ASSERT_VALID(pApp);
-      if (pApp->m_eHelpType == afxHTMLHelp)
-      {
-      // translate from WinHelp commands and data to to HtmlHelp
-      ASSERT((nCmd == HELP_CONTEXT) || (nCmd == HELP_CONTENTS) || (nCmd == HELP_FINDER));
-      if (nCmd == HELP_CONTEXT)
-      nCmd = HH_HELP_CONTEXT;
-      else if (nCmd == HELP_CONTENTS)
-      nCmd = HH_DISPLAY_TOC;
-      else if (nCmd == HELP_FINDER)
-      nCmd = HH_HELP_FINDER;
-      HtmlHelp(dwData, nCmd);
-      }
-      else
-      WinHelp(dwData, nCmd);*/
-   //}
 
 
 
@@ -6526,40 +6400,6 @@ if(psurface == g_cairosurface)
 } // namespace linux
 
 
-/////////////////////////////////////////////////////////////////////////////
-// Map from oswindow to sp(::window)
-
-hwnd_map* PASCAL afxMapHWND(bool bCreate)
-{
-   UNREFERENCED_PARAMETER(bCreate);
-   try
-   {
-      __MODULE_STATE* pState = __get_module_state();
-      if(pState == NULL)
-         return NULL;
-      return pState->m_pmapHWND;
-   }
-   catch(...)
-   {
-      return NULL;
-   }
-}
-
-
-mutex * PASCAL afxMutexHwnd()
-{
-   try
-   {
-      __MODULE_STATE* pState = __get_module_state();
-      if(pState == NULL)
-         return NULL;
-      return pState->m_pmutexHwnd;
-   }
-   catch(...)
-   {
-      return NULL;
-   }
-}
 
 /////////////////////////////////////////////////////////////////////////////
 // The WndProc for all window's and derived classes
@@ -6583,13 +6423,6 @@ LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPA
 //   return linux::__call_window_procedure(pWnd, hWnd, nMsg, wparam, lparam);
 }
 
-// always indirectly accessed via __get_window_procedure
-//WNDPROC CLASS_DECL_LINUX __get_window_procedure()
-//{
-//   return __get_module_state()->m_pfn_window_procedure;
-//}
-/////////////////////////////////////////////////////////////////////////////
-// Special helpers for certain windows messages
 
 __STATIC void CLASS_DECL_LINUX __pre_init_dialog(
    sp(::user::interaction) pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld)
@@ -6728,155 +6561,6 @@ __STATIC bool CLASS_DECL_LINUX
 
 
 
-/////////////////////////////////////////////////////////////////////////////
-// Standard init called by WinMain
-
-//__STATIC bool CLASS_DECL_LINUX __register_with_icon(WNDCLASS* pWndCls,
-//                                                  const char * lpszClassName, UINT nIDIcon)
-//{
-//   pWndCls->lpszClassName = lpszClassName;
-//   pWndCls->hIcon = ::LoadIcon(NULL, IDI_APPLIcaTION);
-//   return __register_class(pWndCls);
-//}
-
-
-//bool CLASS_DECL_LINUX __end_defer_register_class(LONG fToRegisterParam, const char ** ppszClass)
-//{
-//   // mask off all classes that are already registered
-//   __MODULE_STATE* pModuleState = __get_module_state();
-//   LONG fToRegister = fToRegisterParam & ~pModuleState->m_fRegisteredClasses;
-//   if (fToRegister == 0)
-//   {
-//      fToRegister = fToRegisterParam;
-//      if(ppszClass != NULL)
-//      {
-//         if(fToRegister & __WND_REG)
-//         {
-//            *ppszClass = gen_Wnd;
-//         }
-//         else if (fToRegister & __WNDOLECONTROL_REG)
-//         {
-//            *ppszClass = gen_WndOleControl;
-//         }
-//         else if (fToRegister & __WNDCONTROLBAR_REG)
-//         {
-//            *ppszClass = gen_WndControlBar;
-//         }
-//         else if(fToRegister & __WNDMDIFRAME_REG)
-//         {
-//            *ppszClass = gen_WndMDIFrame;
-//         }
-//         else if(fToRegister & __WNDFRAMEORVIEW_REG)
-//         {
-//            *ppszClass = gen_WndFrameOrView;
-//         }
-//      }
-//      return TRUE;
-//   }
-//
-//   LONG fRegisteredClasses = 0;
-//
-//   // common initialization
-//   WNDCLASS wndcls;
-//   memset(&wndcls, 0, sizeof(WNDCLASS));   // start with NULL defaults
-//   wndcls.lpfnWndProc = DefWindowProc;
-//   wndcls.hInstance = Sys(::linux::get_thread()->m_papp).m_hInstance;
-//   //wndcls.hCursor = afxData.hcurArrow;
-//
-//   INITCOMMONCONTROLSEX init;
-//   init.dwSize = sizeof(init);
-//
-//   // work to register classes as specified by fToRegister, populate fRegisteredClasses as we go
-//   if (fToRegister & __WND_REG)
-//   {
-//      // Child windows - no brush, no icon, safest default class styles
-//      wndcls.style = CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW;
-//      wndcls.lpszClassName = gen_Wnd;
-//      if (__register_class(&wndcls))
-//      {
-//         if(ppszClass != NULL)
-//         {
-//            *ppszClass = wndcls.lpszClassName;
-//         }
-//         fRegisteredClasses |= __WND_REG;
-//      }
-//   }
-//   if (fToRegister & __WNDOLECONTROL_REG)
-//   {
-//      // OLE control windows - use parent DC for speed
-//      wndcls.style |= CS_PARENTDC | CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW;
-//      wndcls.lpszClassName = gen_WndOleControl;
-//      if (__register_class(&wndcls))
-//      {
-//         if(ppszClass != NULL)
-//         {
-//            *ppszClass = wndcls.lpszClassName;
-//         }
-//         fRegisteredClasses |= __WNDOLECONTROL_REG;
-//      }
-//   }
-//   if (fToRegister & __WNDCONTROLBAR_REG)
-//   {
-//      // control bar windows
-//      wndcls.style = 0;   // control bars don't handle double click
-//      wndcls.lpszClassName = gen_WndControlBar;
-//      wndcls.hbrBackground = (HBRUSH)(COLOR_BTNFACE + 1);
-//      if (__register_class(&wndcls))
-//      {
-//         if(ppszClass != NULL)
-//         {
-//            *ppszClass = wndcls.lpszClassName;
-//         }
-//         fRegisteredClasses |= __WNDCONTROLBAR_REG;
-//      }
-//   }
-//   if (fToRegister & __WNDMDIFRAME_REG)
-//   {
-//      // MDI Frame window (also used for splitter window)
-//      wndcls.style = CS_DBLCLKS;
-//      wndcls.hbrBackground = NULL;
-//      /*      if (__register_with_icon(&wndcls, gen_WndMDIFrame, __IDI_STD_MDIFRAME))
-//      {
-//      if(ppszClass != NULL)
-//      {
-//      *ppszClass = gen_WndMDIFrame;
-//      }
-//      fRegisteredClasses |= __WNDMDIFRAME_REG;
-//      }*/
-//   }
-//   if (fToRegister & __WNDFRAMEORVIEW_REG)
-//   {
-//      // SDI Frame or MDI Child windows or views - normal colors
-//      wndcls.style = CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW;
-//      wndcls.hbrBackground = (HBRUSH) (COLOR_WINDOW + 1);
-//      if (__register_with_icon(&wndcls, gen_WndFrameOrView, 123))
-//      {
-//         if(ppszClass != NULL)
-//         {
-//            *ppszClass = gen_WndFrameOrView;
-//         }
-//         fRegisteredClasses |= __WNDFRAMEORVIEW_REG;
-//      }
-//   }
-//
-//
-//   // save new state of registered controls
-//   pModuleState->m_fRegisteredClasses |= fRegisteredClasses;
-//
-//   // special case for all common controls registered, turn on __WNDCOMMCTLS_REG
-//   if ((pModuleState->m_fRegisteredClasses & __WIN95CTLS_MASK) == __WIN95CTLS_MASK)
-//   {
-//      pModuleState->m_fRegisteredClasses |= __WNDCOMMCTLS_REG;
-//      fRegisteredClasses |= __WNDCOMMCTLS_REG;
-//   }
-//
-//   // must have registered at least as mamy classes as requested
-//   return (fToRegister & fRegisteredClasses) == fToRegister;
-//}
-
-
-/////////////////////////////////////////////////////////////////////////////
-// Special WndProcs (activation handling & gray dialogs)
 
 
 LRESULT CALLBACK
@@ -6948,56 +6632,6 @@ LRESULT CALLBACK
 
 
 
-/////////////////////////////////////////////////////////////////////////////
-// Additional helpers for WNDCLASS init
-
-// like RegisterClass, except will automatically call UnregisterClass
-//bool CLASS_DECL_LINUX __register_class(WNDCLASS* lpWndClass)
-//{
-//   WNDCLASS wndcls;
-//   if (GetClassInfo(lpWndClass->hInstance, lpWndClass->lpszClassName,
-//      &wndcls))
-//   {
-//      // class already registered
-//      return TRUE;
-//   }
-//
-//   if (!::RegisterClass(lpWndClass))
-//   {
-//      //      TRACE(::ca2::trace::category_AppMsg, 0, "can't register window class named %s\n",
-//      //       lpWndClass->lpszClassName);
-//      return FALSE;
-//   }
-//
-//   bool bRet = TRUE;
-//
-//   if (afxContextIsDLL)
-//   {
-//
-//      try
-//      {
-//         // class registered successfully, add to registered list
-//         __MODULE_STATE* pModuleState = __get_module_state();
-//         single_lock sl(&pModuleState->m_mutexRegClassList, TRUE);
-//         if(pModuleState->m_pstrUnregisterList == NULL)
-//            pModuleState->m_pstrUnregisterList = new string;
-//         *pModuleState->m_pstrUnregisterList += lpWndClass->lpszClassName;
-//         *pModuleState->m_pstrUnregisterList +='\n';
-//      }
-//      catch(::exception::base * pe)
-//      {
-//         ::ca2::rethrow(pe);
-//         // Note: DELETE_EXCEPTION not required.
-//      }
-//
-//   }
-//
-//   return bRet;
-//}
-
-
-//#u//ndef new
-//#include <gdiplus.h>
 
 
 namespace linux

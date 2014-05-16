@@ -229,18 +229,6 @@ namespace linux
          e->Delete();
       }*/
 
-      try
-      {
-         // cleanup thread local tooltip ::window
-         if (hInstTerm == NULL)
-         {
-//            __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
-         }
-      }
-      catch( ::exception::base* e )
-      {
-         e->Delete();
-      }
 
    }
 
@@ -568,15 +556,15 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
    ::thread * application::GetThread()
    {
-      if(__get_thread() == NULL)
+      if(::get_thread() == NULL)
          return NULL;
       else
-         return dynamic_cast < ::thread * > (__get_thread()->m_p.m_p);
+         return ::get_thread();
    }
 
    void application::set_thread(::thread * pthread)
    {
-      __set_thread(pthread);
+      ::set_thread(pthread);
    }
 
    ///////////////////////////////////////////////////////////////////////////
@@ -620,30 +608,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
       // get the exe title from the full path name [no extension]
       strExeName = System.get_module_title();
 
-      __get_module_state()->m_lpszCurrentAppName = strdup(m_strAppName);
-
-      // initialize thread state
-      __MODULE_STATE* pModuleState = __get_module_state();
-      ENSURE(pModuleState);
-      if(pModuleState->m_pCurrentWinApp == NULL)
-      {
-         __MODULE_THREAD_STATE* pThreadState = pModuleState->t_pthread;
-         ENSURE(pThreadState);
-//         ASSERT(System.GetThread() == NULL);
-         pThreadState->m_pCurrentWinThread = dynamic_cast < class ::linux::thread * > (::thread::m_p.m_p);
-  //       ASSERT(System.GetThread() == this);
-
-         // initialize application state
-         //ASSERT(afxCurrentWinApp == NULL); // only one application object please
-         pModuleState->m_pCurrentWinApp = dynamic_cast < application * > (this);
-         //ASSERT(&System == this);
-      }
-
-
-//      dynamic_cast < ::linux::thread * > ((smart_pointer < ::ca2::application >::m_p->::thread_sp::m_p))->m_hThread = __get_thread()->m_hThread;
-  //    dynamic_cast < ::linux::thread * > ((smart_pointer < ::ca2::application >::m_p->::thread_sp::m_p))->m_nThreadID = __get_thread()->m_nThreadID;
       dynamic_cast < class ::linux::thread * > (::thread::m_p.m_p)->m_hThread      =  ::GetCurrentThread();
-
 
    }
 
@@ -727,14 +692,6 @@ if(__get_module_state()->m_pmapHWND == NULL)
          string strCmdLine          = pdata->m_vssCommandLine;
          UINT nCmdShow              = pdata->m_nCmdShow;
 
-         // handle critical errors and avoid Windows message boxes
-// xxx         SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
-
-         // set resource handles
-         __MODULE_STATE* pModuleState = __get_module_state();
-         pModuleState->m_hCurrentInstanceHandle = hInstance;
-         pModuleState->m_hCurrentResourceHandle = hInstance;
-         pModuleState->CreateActivationContext();
 
          // fill in the initial state for the application
          // Windows specific initialization (not done if no application)
@@ -746,9 +703,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
          //pApp->SetCurrentHandles();
          SetCurrentHandles();
 
-         // initialize thread specific data (for main thread)
-         if (!afxContextIsDLL)
-            __init_thread();
+        __init_thread();
 
          // Initialize ::windowm_pfnNotifyWinEvent
       /*   HMODULE hModule = ::GetModuleHandle("user32.dll");
