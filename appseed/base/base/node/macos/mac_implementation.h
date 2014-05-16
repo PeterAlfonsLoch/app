@@ -1,15 +1,5 @@
 #pragma once
 
-#define AfxDeferRegisterClass(fClass) AfxEndDeferRegisterClass(fClass)
-
-CLASS_DECL_mac WINBOOL AfxEndDeferRegisterClass(LONG fToRegister, const char ** ppszClass);
-
-
-// Temporary ::collection::map management (locks temp ::collection::map on current thread)
-//CLASS_DECL_mac void AfxLockTempMaps(::base::application * papp);
-//CLASS_DECL_mac WINBOOL AfxUnlockTempMaps(::base::application * papp, WINBOOL bDeleteTemps = TRUE);
-
-
 
 // from wincore.cpp
 extern CLASS_DECL_mac const char _afxWnd[];           // simple child windows/controls

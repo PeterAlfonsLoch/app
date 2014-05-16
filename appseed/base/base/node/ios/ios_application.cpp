@@ -207,36 +207,10 @@ namespace ios
    }
 
 
-   void application::LockTempMaps()
-   {
-      IOS_THREAD(::thread::m_p.m_p)->LockTempMaps();
-   }
-
-   bool application::UnlockTempMaps(bool bDeleteTemp)
-   {
-      return IOS_THREAD(::thread::m_p.m_p)->UnlockTempMaps(bDeleteTemp);
-   }
 
 
    void application::TermThread(HINSTANCE hInstTerm)
    {
-      /*      try
-      {
-      #ifdef DEBUG
-      // check for missing ::ca2::LockTempMap calls
-      if (__get_module_thread_state()->m_pCurrentWinThread->m_nTempMapLock != 0)
-      {
-      TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Temp ::collection::map lock count non-zero (%ld).\n",
-      __get_module_thread_state()->m_pCurrentWinThread->m_nTempMapLock);
-      }
-      #endif
-      ::ca2::LockTempMaps(::ca2::smart_pointer < ::application_base >::m_p);
-      ::ca2::UnlockTempMaps(::ca2::smart_pointer < ::application_base >::m_p, -1);
-      }
-      catch( ::exception::base* e )
-      {
-      e->Delete();
-      }*/
 
 
    }

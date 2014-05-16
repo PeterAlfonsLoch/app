@@ -58,8 +58,6 @@ namespace ios
       virtual bool Ex2OnAppUninstall();
       
       virtual bool DeferRegisterClass(LONG fToRegister, const char ** ppszClass);
-      virtual void LockTempMaps();
-      virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
       virtual void TermThread(HINSTANCE hInstTerm);
       
       virtual void SetCurrentHandles();

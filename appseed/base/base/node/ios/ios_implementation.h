@@ -1,14 +1,5 @@
 #pragma once
 
-#define AfxDeferRegisterClass(fClass) AfxEndDeferRegisterClass(fClass)
-
-CLASS_DECL_BASE WINBOOL AfxEndDeferRegisterClass(LONG fToRegister, const char ** ppszClass);
-
-
-// Temporary ::collection::map management (locks temp ::collection::map on current thread)
-//CLASS_DECL_BASE void AfxLockTempMaps(::base::application * papp);
-//CLASS_DECL_BASE WINBOOL AfxUnlockTempMaps(::base::application * papp, WINBOOL bDeleteTemps = TRUE);
-
 
 
 // from wincore.cpp

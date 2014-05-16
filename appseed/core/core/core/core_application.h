@@ -520,13 +520,7 @@ public:
 
 
 
-   // Temporary map management (locks temp map on current thread)
-   virtual void LockTempMaps();
-   virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
    virtual void TermThread(HINSTANCE hInstTerm);
-
-   //virtual ::draw2d::graphics * graphics_from_os_data(void * pdata);
-
 
    virtual ::window_sp FindWindow(const char * lpszClassName, const char * lpszWindowName);
    virtual ::window_sp FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);

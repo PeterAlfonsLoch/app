@@ -3239,28 +3239,10 @@ int32_t application::get_document_count()
 
 
 
-// Temporary map management (locks temp map on current thread)
-void application::LockTempMaps()
-{
-   m_pimpl->LockTempMaps();
-}
-
-bool application::UnlockTempMaps(bool bDeleteTemp)
-{
-   return m_pimpl->UnlockTempMaps(bDeleteTemp);
-}
-
 void application::TermThread(HINSTANCE hInstTerm)
 {
    UNREFERENCED_PARAMETER(hInstTerm);
 }
-
-/*   ::draw2d::graphics * application::graphics_from_os_data(void * pdata)
-{
-UNREFERENCED_PARAMETER(pdata);
-return NULL;
-}*/
-
 
 
 ::window_sp application::FindWindow(const char * lpszClassName, const char * lpszWindowName)

@@ -185,9 +185,6 @@ namespace ios
       virtual void delete_temp();
       
       
-      virtual void LockTempMaps();
-      virtual WINBOOL UnlockTempMaps(WINBOOL bDeleteTemp);
-      
       operator pthread_t() const;
       
       

@@ -374,8 +374,6 @@ namespace base
       virtual bool update_appmatter(::sockets::socket_handler & h,::sockets::http_session * & psession,const char * pszRoot,const char * pszRelative,const char * pszLocale,const char * pszStyle);
 
 
-      virtual void LockTempMaps();
-      virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
       virtual void TermThread(HINSTANCE hInstTerm);
 
 

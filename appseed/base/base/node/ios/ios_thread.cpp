@@ -981,24 +981,9 @@ namespace ios
    
    int32_t thread::exit_instance()
    {
+
       ASSERT_VALID(this);
       
-      
-      try
-      {
-#ifdef DEBUG
-         // Check for missing LockTempMap calls
-         if(m_nTempMapLock != 0)
-         {
-            TRACE(::core::trace::category_AppMsg, 0, "Warning: Temp ::collection::map lock count non-zero (%ld).\n", m_nTempMapLock);
-         }
-         LockTempMaps();
-         UnlockTempMaps(-1);
-#endif
-      }
-      catch(...)
-      {
-      }
       
       
       try
@@ -1048,11 +1033,6 @@ namespace ios
    {
       ASSERT_VALID(this);
       
-#if defined(DEBUG) && !defined(_AFX_NO_DEBUG_CRT)
-      // check ca2 API's allocator (before idle)
-//      if (_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & _CRTDBG_CHECK_ALWAYS_DF)
-  //       ASSERT(__check_memory());
-#endif
       
       if(lCount <= 0 && m_puiptra != NULL)
       {
@@ -1063,11 +1043,7 @@ namespace ios
             {
                if (pui != NULL && pui->IsWindowVisible())
                {
-                  /*AfxCallWndProc(pMainWnd, pMainWnd->get_handle(),
-                   WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0);*/
                   pui->send_message(WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0);
-                  /*   pui->SendMessageToDescendants(WM_IDLEUPDATECMDUI,
-                   (WPARAM)TRUE, 0, TRUE, TRUE);*/
                }
             }
             catch(...)
@@ -1076,62 +1052,13 @@ namespace ios
          }
          
          
-         // send WM_IDLEUPDATECMDUI to the main window
-         /*
-          ::user::interaction* pMainWnd = GetMainWnd();
-          if (pMainWnd != NULL && pMainWnd->IsWindowVisible())
-          {
-          AfxCallWndProc(pMainWnd, pMainWnd->get_handle(),
-          WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0);*/
-         /* pMainWnd->SendMessage(WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0);
-          pMainWnd->SendMessageToDescendants(WM_IDLEUPDATECMDUI,
-          (WPARAM)TRUE, 0, TRUE, TRUE);
-          }
-          */
-         // send WM_IDLEUPDATECMDUI to all frame windows
-         /* 
-          
-          
-          frame_window* pFrameWnd = pState->m_frameList;
-          while (pFrameWnd != NULL)
-          {
-          if (pFrameWnd->get_handle() != NULL && pFrameWnd != pMainWnd)
-          {
-          if (pFrameWnd->m_nShowDelay == SW_HIDE)
-          pFrameWnd->ShowWindow(pFrameWnd->m_nShowDelay);
-          if (pFrameWnd->IsWindowVisible() ||
-          pFrameWnd->m_nShowDelay >= 0)
-          {
-          AfxCallWndProc(pFrameWnd, pFrameWnd->get_handle(),
-          WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0);
-          pFrameWnd->SendMessageToDescendants(WM_IDLEUPDATECMDUI,
-          (WPARAM)TRUE, 0, TRUE, TRUE);
-          }
-          if (pFrameWnd->m_nShowDelay > SW_HIDE)
-          pFrameWnd->ShowWindow(pFrameWnd->m_nShowDelay);
-          pFrameWnd->m_nShowDelay = -1;
-          }
-          pFrameWnd = pFrameWnd->m_pNextFrameWnd;
-          }*/
       }
       else if (lCount >= 0)
       {
-         /*
-          if (pState->m_nTempMapLock == 0)
-          {
-          // free temp maps, OLE DLLs, etc.
-          AfxLockTempMaps(dynamic_cast < ::application * > (m_p->m_papp));
-          AfxUnlockTempMaps(dynamic_cast < ::application * > (m_p->m_papp));
-          }*/
       }
       
-#if defined(DEBUG) && !defined(_AFX_NO_DEBUG_CRT)
-      // check ca2 API's allocator (after idle)
-//      if (_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & _CRTDBG_CHECK_ALWAYS_DF)
-  //       ASSERT(__check_memory());
-#endif
-      
       return lCount < 0;  // nothing more to do if lCount >= 0
+      
    }
    
    ::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
@@ -1152,47 +1079,6 @@ namespace ios
          pbase->m_bRet = true;
          return;
       }
-      /*   const __MSGMAP* pMessageMap; pMessageMap = GetMessageMap();
-       const __MSGMAP_ENTRY* lpEntry;
-       
-       for ( pMessageMap already init'ed *//*; pMessageMap->pfnGetBaseMap != NULL;
-                                              pMessageMap = (*pMessageMap->pfnGetBaseMap)())
-                                              {
-                                              // Note: catch not so common but fatal mistake!!
-                                              //       // BEGIN_MESSAGE_MAP(CMyThread, CMyThread)
-                                              
-                                              ASSERT(pMessageMap != (*pMessageMap->pfnGetBaseMap)());
-                                              if (pMsg->message < 0xC000)
-                                              {
-                                              // constant window message
-                                              if ((lpEntry = AfxFindMessageEntry(pMessageMap->lpEntries,
-                                              pMsg->message, 0, 0)) != NULL)
-                                              goto LDispatch;
-                                              }
-                                              else
-                                              {
-                                              // registered windows message
-                                              lpEntry = pMessageMap->lpEntries;
-                                              while ((lpEntry = AfxFindMessageEntry(lpEntry, 0xC000, 0, 0)) != NULL)
-                                              {
-                                              UINT* pnID = (UINT*)(lpEntry->nSig);
-                                              ASSERT(*pnID >= 0xC000);
-                                              // must be successfully registered
-                                              if (*pnID == pMsg->message)
-                                              goto LDispatch;
-                                              lpEntry++;      // keep looking past this one
-                                              }
-                                              }
-                                              }
-                                              return FALSE;
-                                              
-                                              LDispatch:
-                                              union MessageMapFunctions mmf;
-                                              mmf.pfn = lpEntry->pfn;
-                                              
-                                              // always posted, so return value is meaningless
-                                              
-                                              (this->*mmf.pfn_THREAD)(pMsg->wParam, pMsg->lParam);*/
       
       LRESULT lresult;
       SignalPtrArray signalptra;
@@ -1556,29 +1442,6 @@ namespace ios
       return IOS_THREAD(pthread->m_p.m_p);
    }
    
-   
-   void thread::LockTempMaps()
-   {
-      ++m_nTempMapLock;
-   }
-   WINBOOL thread::UnlockTempMaps(WINBOOL bDeleteTemp)
-   {
-      if (m_nTempMapLock != 0 && --m_nTempMapLock == 0)
-      {
-         if (bDeleteTemp)
-         {
-            // clean up temp objects
-            //         m_pmapHGDIOBJ->delete_temp();
-            //       m_pmapHDC->delete_temp();
-            //  window::DeleteTempMap();
-         }
-         
-         
-         
-      }
-      // return TRUE if temp maps still locked
-      return m_nTempMapLock != 0;
-   }
    
    int32_t thread::thread_entry(::ios::thread_startup * pstartup)
    {

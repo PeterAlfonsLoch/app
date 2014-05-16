@@ -959,23 +959,6 @@ namespace mac
       
       try
       {
-#ifdef DEBUG
-         // Check for missing LockTempMap calls
-         if(m_nTempMapLock != 0)
-         {
-            TRACE(::core::trace::category_AppMsg, 0, "Warning: Temp ::collection::map lock count non-zero (%ld).\n", m_nTempMapLock);
-         }
-         LockTempMaps();
-         UnlockTempMaps(-1);
-#endif
-      }
-      catch(...)
-      {
-      }
-      
-      
-      try
-      {
          if(m_puiptra != NULL)
          {
             single_lock sl(&m_mutexUiPtra, TRUE);
@@ -1467,28 +1450,6 @@ namespace mac
    }
    
    
-   void thread::LockTempMaps()
-   {
-      ++m_nTempMapLock;
-   }
-   WINBOOL thread::UnlockTempMaps(WINBOOL bDeleteTemp)
-   {
-      if (m_nTempMapLock != 0 && --m_nTempMapLock == 0)
-      {
-         if (bDeleteTemp)
-         {
-            // clean up temp objects
-            //         m_pmapHGDIOBJ->delete_temp();
-            //       m_pmapHDC->delete_temp();
-            //  window::DeleteTempMap();
-         }
-         
-         
-         
-      }
-      // return TRUE if temp maps still locked
-      return m_nTempMapLock != 0;
-   }
    
    int32_t thread::thread_entry(::mac::thread_startup * pstartup)
    {

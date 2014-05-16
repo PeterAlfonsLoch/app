@@ -908,29 +908,6 @@ namespace base
 
 
 
-
-
-
-
-
-
-
-   void application::LockTempMaps()
-   {
-
-      throw interface_only_exception(this);
-
-   }
-
-
-   bool application::UnlockTempMaps(bool bDeleteTemps)
-   {
-
-      throw interface_only_exception(this);
-
-   }
-
-
    void application::TermThread(HINSTANCE hInstTerm)
    {
 
@@ -939,24 +916,6 @@ namespace base
    }
 
 
-   /*#ifdef METROWIN
-   sp(::user::interaction) application::window_from_os_data(void * pdata)
-   {
-
-   throw interface_only_exception(this);
-
-   }
-
-
-   sp(::user::interaction) application::window_from_os_data_permanent(void * pdata)
-   {
-
-   throw interface_only_exception(this);
-
-   }
-
-
-   #endif*/
 
    ::window_sp application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
    {
