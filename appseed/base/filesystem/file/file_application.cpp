@@ -372,6 +372,8 @@ namespace file
 
             property_set set(get_app());
 
+            set["raw_http"] = true;
+
 //            bool bOk = true;
 
             sl.lock();

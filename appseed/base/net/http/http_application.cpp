@@ -164,6 +164,11 @@ namespace http
          }
       }
 
+      if(::str::find_wwci("ca2", System.url().get_server(pszUrl)) >= 0 && System.url().get_object(pszUrl).find_ci("/matter/") >= 0)
+      {
+         set["raw_http"] = true;
+      }
+
       bool bExists = System.http().exists(strUrl, process_set(set, pszUrl));
 
       if(bExists)
