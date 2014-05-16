@@ -90,12 +90,9 @@ CLASS_DECL_BASE void AfxResetMsgCache();
 CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, signal_details * pobj);
 CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
-CLASS_DECL_BASE WINBOOL __cdecl __is_idle_message(signal_details * pobj);
-CLASS_DECL_BASE WINBOOL __cdecl __is_idle_message(MESSAGE* pMsg);
-
-
 CLASS_DECL_BASE void AfxProcessWndProcException(::exception::base*, signal_details * pobj);
 CLASS_DECL_BASE void __cdecl __pre_translate_message(signal_details * pobj);
+
 #include "ios_printer.h"
 
 #include "ios_application.h"

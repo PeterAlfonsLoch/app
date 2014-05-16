@@ -76,10 +76,6 @@ CLASS_DECL_mac void AfxResetMsgCache();
 CLASS_DECL_mac void __trace_message(const char * lpszPrefix, signal_details * pobj);
 CLASS_DECL_mac void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
-CLASS_DECL_mac WINBOOL __cdecl __is_idle_message(signal_details * pobj);
-CLASS_DECL_mac WINBOOL __cdecl __is_idle_message(MESSAGE* pMsg);
-
-
 CLASS_DECL_mac void AfxProcessWndProcException(::exception::base*, signal_details * pobj);
 CLASS_DECL_mac void __cdecl __pre_translate_message(signal_details * pobj);
 #include "mac_printer.h"

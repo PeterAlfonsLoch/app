@@ -4022,7 +4022,7 @@ namespace ios
                         if (!ContinueModal(iLevel))
                      goto ExitModal;
                         // reset "no idle" state after pumping "normal" message
-                  if (__is_idle_message(&msg))
+                  if (m_pthread->is_idle_message(&msg))
                   {
                      bIdle = TRUE;
                      lIdleCount = 0;
@@ -6499,32 +6499,6 @@ namespace ios
 
 
 
-#undef __window_procedure
-
-LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam)
-{
-   // special message which identifies the window as using __window_procedure
-//   if (nMsg == WM_QUERYAFXWNDPROC)
-  //    return 1;
-   
-   throw not_implemented(::get_thread_app());
-   
-   //   // all other messages route through message ::collection::map
-   //   ::window * pWnd = ::ios::window::FromHandlePermanent(hWnd);
-   //   //ASSERT(pWnd != NULL);
-   //   //ASSERT(pWnd==NULL || IOS_WINDOW(pWnd)->get_handle() == hWnd);
-   //   if (pWnd == NULL || IOS_WINDOW(pWnd)->get_handle() != hWnd)
-   //      return ::DefWindowProc(hWnd, nMsg, wparam, lparam);
-   //   return ios::__call_window_procedure(pWnd, hWnd, nMsg, wparam, lparam);
-}
-
-// always indirectly accessed via __get_window_procedure
-//WNDPROC CLASS_DECL_BASE __get_window_procedure()
-//{
-//   return __get_module_state()->m_pfn_window_procedure;
-//}
-/////////////////////////////////////////////////////////////////////////////
-// Special helpers for certain windows messages
 
 __STATIC void CLASS_DECL_BASE __pre_init_dialog(
                                                ::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld)

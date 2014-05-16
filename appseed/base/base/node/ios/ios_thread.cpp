@@ -61,7 +61,6 @@ namespace ios
 WINBOOL CLASS_DECL_BASE AfxInternalPumpMessage();
 LRESULT CLASS_DECL_BASE AfxInternalProcessWndProcException(::exception::base*, const MESSAGE* pMsg);
 WINBOOL AfxInternalPreTranslateMessage(MESSAGE* pMsg);
-WINBOOL AfxInternalIsIdleMessage(MESSAGE* pMsg);
 __STATIC void CLASS_DECL_BASE __pre_init_dialog(::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
 __STATIC void CLASS_DECL_BASE __post_init_dialog(::user::interaction * pWnd, const RECT& rectOld, DWORD dwStyleOld);
 
@@ -314,66 +313,7 @@ void __cdecl __pre_translate_message(signal_details * pobj)
       return AfxInternalPreTranslateMessage( pobj );
 }
 
-WINBOOL AfxInternalIsIdleMessage(signal_details * pobj)
-{
-   SCAST_PTR(::message::base, pbase, pobj);
-   // Return FALSE if the message just dispatched should _not_
-   // cause on_idle to be run.  Messages which do not usually
-   // affect the state of the ::fontopus::user interface and happen very
-   // often are checked for.
-   
-   if(pbase == NULL)
-      return FALSE;
-   
-   // redundant WM_MOUSEMOVE and WM_NCMOUSEMOVE
-   if (pbase->m_uiMessage == WM_MOUSEMOVE || pbase->m_uiMessage == WM_NCMOUSEMOVE)
-   {
-      return TRUE;
-   }
-   
-   // WM_PAINT and WM_SYSTIMER (caret blink)
-   return pbase->m_uiMessage != WM_PAINT && pbase->m_uiMessage != 0x0118;
-}
 
-
-
-WINBOOL AfxInternalIsIdleMessage(LPMESSAGE lpmsg)
-{
-   // Return FALSE if the message just dispatched should _not_
-   // cause on_idle to be run.  Messages which do not usually
-   // affect the state of the ::fontopus::user interface and happen very
-   // often are checked for.
-   
-   if(lpmsg == NULL)
-      return FALSE;
-   
-   // redundant WM_MOUSEMOVE and WM_NCMOUSEMOVE
-   if (lpmsg->message == WM_MOUSEMOVE || lpmsg->message == WM_NCMOUSEMOVE)
-   {
-      return TRUE;
-   }
-   
-   // WM_PAINT and WM_SYSTIMER (caret blink)
-   return lpmsg->message != WM_PAINT && lpmsg->message != 0x0118;
-}
-
-WINBOOL __cdecl __is_idle_message(signal_details * pobj)
-{
-   ::thread *pThread = App(pobj->get_app()).GetThread();
-   if( pThread )
-      return pThread->is_idle_message(pobj);
-   else
-      return AfxInternalIsIdleMessage(pobj);
-}
-
-WINBOOL __cdecl __is_idle_message(MESSAGE* pMsg)
-{
-   ::thread * pThread = ::get_thread();
-   if(pThread)
-      return IOS_THREAD(pThread->m_p.m_p)->is_idle_message( pMsg );
-   else
-      return AfxInternalIsIdleMessage( pMsg );
-}
 
 
 
@@ -993,7 +933,6 @@ namespace ios
             }
             
             // reset "no idle" state after pumping "normal" message
-            //if (is_idle_message(&m_msgCur))
             if (is_idle_message(&msg))
             {
                bIdle = TRUE;
@@ -1018,8 +957,11 @@ namespace ios
    
    bool thread::is_idle_message(signal_details * pobj)
    {
-      return AfxInternalIsIdleMessage(pobj);
+      
+      return ::message::is_idle_message(pobj);
+      
    }
+   
    
    /*
     bool thread::is_idle_message(LPMESSAGE lpmsg)

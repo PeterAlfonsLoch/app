@@ -22,40 +22,6 @@ typedef hthread * HTHREAD;
 
 
 
-/*namespace win
-{
-class CLASS_DECL_BASE message
-{
-public:
-sp(::user::interaction)  m_pui;
-UINT              m_uiMessage;
-WPARAM            m_wparam;
-LPARAM            m_lparam;
-LRESULT send();
-static UINT ThreadProcSendMessage(LPVOID lp);
-static void post(sp(::user::interaction) puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, int32_t nPriority = 0);
-};
-
-} // namespace win*/
-
-/**
-* \file		src/lib/pal/windows/thread_windows.hpp
-* \brief	Platform independent threads and synchronization objects (windows version)
-*/
-/**
-* \file		src/lib/pal/linux/thread_linux.hpp
-* \brief	Platform independent threads and synchronization objects (linux version)
-*/
-
-//#ifndef GEN_PAL_THREAD_WINDOWS_HPP
-//#define GEN_PAL_THREAD_WINDOWS_HPP
-
-// xxx #include "../waitable.hpp"
-
-//#include <process.h>
-
-//#include <stdexcept>
-//#include <limits>
 
 
 class event;
@@ -257,14 +223,16 @@ public:
    mutex                                  m_mutex;
    bool                                   m_bRun;
 
-   thread_sp                              m_p;
+   thread_sp                              m_pimpl;
+   thread_sp                              m_puser;
+   
    sp(::user::interaction_ptr_array)      m_puiptra;
    sp(::user::interaction::timer_array)   m_ptimera;
    bool                                   m_bAutoDelete;       // enables 'delete this' after thread termination
    uint_ptr                               m_dwAlive;
    bool                                   m_bReady;
    int32_t                                m_iReturnCode;
-   sp(::base::application)                   m_pappDelete;
+   sp(::base::application)                m_pappDelete;
    sp(::user::interaction)                m_puiMain;           // main window (usually same System.GetMainWnd())
    sp(::user::interaction)                m_puiActive;         // active main window (may not be GetMainWnd())
    bool *                                 m_pbReady;

@@ -22,27 +22,8 @@ void CLASS_DECL_BASE __ios_term()
 
 
 
-
-
-LRESULT CALLBACK __window_procedure_base(oswindow, UINT, WPARAM, LPARAM);
-
-
-#undef __window_procedure
-LRESULT CALLBACK
-__window_procedure_base(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
-{
-   return __window_procedure(hWnd, nMsg, wParam, lParam);
-}
-
-
-
-// Note: in separate module so it can be replaced if needed
-
-
 void CLASS_DECL_BASE __abort()
 {
-   //   TRACE(::ca2::trace::category_AppMsg, 0, "__abort called.\n");
-   
    __ios_term();
    abort();
 }

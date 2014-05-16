@@ -104,9 +104,6 @@ namespace mac
       void set_os_data(void * pvoidOsData);
       void set_os_int(int_ptr iData);
       
-      virtual void set_p(::thread * p);
-      
-      
       virtual bool begin(int32_t epriority = get_scheduling_priority_normal(), uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
       
       virtual bool create_thread(int32_t epriority = get_scheduling_priority_normal(), uint32_t dwCreateFlagsParam = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
@@ -163,8 +160,6 @@ namespace mac
       virtual void pre_translate_message(signal_details * pobj);
       virtual bool pump_message();     // low level message pump
       virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
-      virtual bool is_idle_message(signal_details * pobj);  // checks for special messages
-      virtual WINBOOL is_idle_message(LPMESSAGE lpmsg);  // checks for special messages
       virtual void message_handler(signal_details * pobj);
       
       // thread termination

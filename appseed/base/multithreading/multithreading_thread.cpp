@@ -235,108 +235,6 @@ int32_t thread::exit()
 
 }
 
-// main running routine until thread exits
-/*   int32_t thread::run()
-{
-throw interface_only_exception(get_app());
-}
-
-bool thread::is_idle_message(signal_details * pobj)
-{
-UNREFERENCED_PARAMETER(pobj);
-throw interface_only_exception(get_app());
-}
-
-int32_t thread::exit_instance()
-{
-throw interface_only_exception(get_app());
-}
-
-bool thread::on_idle(LONG lCount)
-{
-UNREFERENCED_PARAMETER(lCount);
-throw interface_only_exception(get_app());
-}
-
-message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
-{
-UNREFERENCED_PARAMETER(uiMessage);
-UNREFERENCED_PARAMETER(uiCode);
-throw interface_only_exception(get_app());
-}
-
-void thread::DispatchThreadMessageEx(signal_details * pobj)
-{
-UNREFERENCED_PARAMETER(pobj);
-throw interface_only_exception(get_app());
-}*/
-
-/*   void thread::pre_translate_message(signal_details * pobj)
-{
-UNREFERENCED_PARAMETER(pobj);
-}*
-
-/*   void thread::ProcessWndProcException(::exception::base* e, signal_details * pobj)
-{
-UNREFERENCED_PARAMETER(e);
-UNREFERENCED_PARAMETER(pobj);
-throw interface_only_exception(get_app());
-}*/
-
-/*   void thread::ProcessMessageFilter(int32_t code, signal_details * pobj)
-{
-UNREFERENCED_PARAMETER(code);
-UNREFERENCED_PARAMETER(pobj);
-throw interface_only_exception(get_app());
-}*/
-
-/////////////////////////////////////////////////////////////////////////////
-// Access to GetMainWnd() & m_pActiveWnd
-
-/*   sp(::user::interaction) thread::GetMainWnd()
-{
-throw interface_only_exception(get_app());
-}*/
-
-/////////////////////////////////////////////////////////////////////////////
-// thread implementation helpers
-
-/*   bool thread::pump_message()
-{
-throw interface_only_exception(get_app());
-}*/
-
-/////////////////////////////////////////////////////////////////////////////
-// thread diagnostics
-
-/*   void thread::assert_valid() const
-{
-throw interface_only_exception(get_app());
-}
-
-void thread::dump(dump_context & dumpcontext) const
-{
-UNREFERENCED_PARAMETER(dumpcontext);
-throw interface_only_exception(get_app());
-}
-
-bool thread::post_message(sp(::user::interaction) pui, UINT uiMessage, WPARAM wparam, LPARAM lparam)
-{
-UNREFERENCED_PARAMETER(pui);
-UNREFERENCED_PARAMETER(uiMessage);
-UNREFERENCED_PARAMETER(wparam);
-UNREFERENCED_PARAMETER(lparam);
-throw interface_only_exception(get_app());
-}
-
-bool thread::on_run_exception(::exception::exception &)
-{
-
-UNREFERENCED_PARAMETER(e);
-
-return false;
-
-}*/
 
 
 int32_t thread::get_thread_priority()
@@ -565,6 +463,14 @@ bool thread::on_idle(LONG lCount) // return TRUE if more idle processing
 {
    return m_p->on_idle(lCount);
 }
+
+bool thread::is_idle_message(signal_details * pobj)  // checks for special messages
+{
+   
+   if(m_p.is_null())
+   return m_p->is_idle_message(pobj);
+}
+
 
 bool thread::is_idle_message(signal_details * pobj)  // checks for special messages
 {
