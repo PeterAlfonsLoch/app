@@ -521,19 +521,23 @@ namespace mac
       }
       return NULL;
    }
+   
 
    ::thread * application::GetThread()
    {
-      if(__get_thread() == NULL)
-         return NULL;
-      else
-         return __get_thread();
+
+      return ::get_thread();
+      
    }
+   
 
    void application::set_thread(::thread * pthread)
    {
-      __set_thread(pthread);
+      
+      ::set_thread(pthread);
+      
    }
+   
 
    ///////////////////////////////////////////////////////////////////////////
    // application Initialization
