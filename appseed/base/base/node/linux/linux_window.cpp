@@ -2891,32 +2891,18 @@ return 0;
       }
    }
 
+
    LRESULT window::OnActivateTopLevel(WPARAM wparam, LPARAM)
    {
-      if (LOWORD(wparam) == WA_INACTIVE)
-      {
-         //         __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
-      }
 
       return 0;
+
    }
+
 
    void window::OnSysColorChange()
    {
-      throw not_implemented(get_app());
 
-      /*      application* pApp = &System;
-      if (pApp != NULL && pApp->GetMainWnd() == this)
-      {
-      // recolor global brushes used by control bars
-      afxData.UpdateSysColors();
-      }
-
-      // forward this message to all other child windows
-      if (!(GetStyle() & WS_CHILD))
-      SendMessageToDescendants(WM_SYSCOLORCHANGE, 0, 0L, TRUE, TRUE);
-
-      Default();*/
    }
 
    bool gen_GotScrollLines;

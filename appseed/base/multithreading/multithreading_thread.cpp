@@ -47,17 +47,9 @@ mutex & user_mutex()
 }
 
 
-//thread_state * get_thread_state()
-//{
-//   if(g_pfn_get_thread_state == NULL)
-//      return NULL;
-//   return g_pfn_get_thread_state();
-//}
-//
 
 
-
-bool thread::verb()
+bool thread::verb()F
 {
 
    return true; // continue execution ... go on...
@@ -517,7 +509,7 @@ bool thread::on_idle(LONG lCount)
 
 bool thread::is_idle_message(signal_details * pobj)
 {
-   
+
    if(m_pimpl.is_null())
       return false;
    
