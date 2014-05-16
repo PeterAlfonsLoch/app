@@ -82,13 +82,8 @@ typedef void (__MSG_CALL thread::*__PMSGT)();
 CLASS_DECL_BASE LONG delete_registry_tree_helper(HKEY hParentKey, const string & strKeyName);
 
 
-// Advanced initialization: for overriding default diagnostics
-//CLASS_DECL_BASE bool __diagnostic_init();
-
-
 CLASS_DECL_BASE ::windows::thread * __get_thread();
 CLASS_DECL_BASE void __set_thread(thread * pthread);
-//CLASS_DECL_BASE MSG* __get_current_message();
 
 CLASS_DECL_BASE void __end_thread(sp(::base::application) papp, UINT nExitCode, bool bDelete = TRUE);
 

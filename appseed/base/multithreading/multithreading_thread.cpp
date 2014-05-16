@@ -1,6 +1,9 @@
 #include "framework.h"
 
 
+thread_pointer < ::thread > t_pthread;
+
+
 thread::thread() :
 m_mutex(NULL)
 {
@@ -948,5 +951,22 @@ thread* __begin_thread(sp(::base::application) papp, __THREADPROC pfnThreadProc,
 
 }
 
+
+
+::thread * get_thread()
+{
+
+   return t_pthread;
+
+}
+
+
+
+void set_thread(::thread* pthread)
+{
+
+   t_pthread = pthread;
+
+}
 
 

@@ -145,12 +145,6 @@ void ::core::DoForAllClasses(void (c_cdecl *pfn)(sp(type) pClass,
 #define __enable_memory_leak_override(bEnable) TRUE
 #define __output_debug_string(lpsz) ::OutputDebugString(lpsz)
 
-// diagnostic initialization
-#ifndef DEBUG
-#define __diagnostic_init() TRUE
-#else
-bool __diagnostic_init();
-#endif
 
 #endif // DEBUG
 

@@ -65,7 +65,6 @@ CLASS_DECL_BASE void reset_message_cache();
 
 #include "win1.h"
 #include "windows_implementation.h"
-#include "windows_state.h"
 #include "windows_handle.h"
 #include "windows_dir.h"
 #include "windows_folder_watch.h"

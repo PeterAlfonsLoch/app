@@ -6678,6 +6678,8 @@ CLASS_DECL_BASE bool unhook_window_create()
    return TRUE;
 }
 
+#define ___TEMP_CLASS_NAME_SIZE 4096
+
 __declspec(thread) char t_szTempClassName[___TEMP_CLASS_NAME_SIZE] ={0};
 
 CLASS_DECL_BASE const char * __register_window_class(sp(::base::application) papp,UINT nClassStyle,HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)

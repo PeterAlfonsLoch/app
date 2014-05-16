@@ -4,8 +4,6 @@
 #include <ddeml.h>
 
 
-___WIN_STATE gen_WinState;
-
 typedef bool
 (WINAPI * LPFN_ChangeWindowMessageFilter)(
     _In_ UINT message,
@@ -674,19 +672,6 @@ CLASS_DECL_BASE void __win_term()
 
 }
 
-/////////////////////////////////////////////////////////////////////////////
-
-
-#include "framework.h"
-
-
-/////////////////////////////////////////////////////////////////////////////
-// ___DEBUG_STATE implementation
-
-#ifndef ___NO_DEBUG_CRT
-static _CRT_DUMP_CLIENT pfnOldCrtDumpClient = NULL;
-
-#ifdef DEBUG
 
 
 void __cdecl __crt_dump_client(void * pvData,size_t nBytes)
@@ -749,8 +734,6 @@ void __cdecl __crt_dump_client(void * pvData,size_t nBytes)
       sprintf_s(sz,_countof(sz),"faulted while dumping object at $%p, %u bytes long\n",pvData,nBytes);
       g_dumpcontext << sz;
    }
-   if(pfnOldCrtDumpClient != NULL)
-      (*pfnOldCrtDumpClient)(pvData,nBytes);
 }
 
 int32_t __cdecl __crt_report_hook(int32_t nRptType,__in char *szMsg,int32_t* pResult)
@@ -774,132 +757,20 @@ int32_t __cdecl __crt_report_hook(int32_t nRptType,__in char *szMsg,int32_t* pRe
    return FALSE;
 }
 
-#endif
-#endif // ___NO_DEBUG_CRT
-
-
-#ifdef DEBUG
-
-___DEBUG_STATE::___DEBUG_STATE()
-{
-#ifndef ___NO_DEBUG_CRT
-   ASSERT(pfnOldCrtDumpClient == NULL);
-   pfnOldCrtDumpClient = _CrtSetDumpClient(__crt_dump_client);
-
-   ASSERT(_CrtSetReportHook2(_CRT_RPTHOOK_INSTALL,__crt_report_hook) != -1);
-   _CrtSetReportMode(_CRT_ASSERT,_CRTDBG_MODE_WNDW);
-#endif // ___NO_DEBUG_CRT
-}
-
-___DEBUG_STATE::~___DEBUG_STATE()
-{
-#ifndef ___NO_DEBUG_CRT
-   if(::IsDebuggerPresent() && false)
-   {
-      try
-      {
-         _CrtDumpMemoryLeaks();
-      }
-      catch(std::__non_rtti_object & e)
-      {
-         ::OutputDebugString("~___DEBUG_STATE _CrtdumpMemoryLeaks std::__non_rtti_object\n");
-         ::OutputDebugString(e.what());
-         ::OutputDebugString("\n");
-      }
-      catch(...)
-      {
-         ::OutputDebugString("~___DEBUG_STATE _CrtdumpMemoryLeaks exception\n");
-      }
-   }
-   int32_t nOldState = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
-   _CrtSetDbgFlag(nOldState & ~_CRTDBG_LEAK_CHECK_DF);
-
-   ASSERT(_CrtSetReportHook2(_CRT_RPTHOOK_REMOVE,__crt_report_hook) != -1);
-   _CrtSetDumpClient(pfnOldCrtDumpClient);
-#endif // ___NO_DEBUG_CRT
-}
-
-CLASS_DECL_BASE ___DEBUG_STATE afxDebugState;
-
-bool CLASS_DECL_BASE __diagnostic_init()
-{
-   // just get the debug state to cause initialization
-   ___DEBUG_STATE* pState = &afxDebugState;
-   ASSERT(pState != NULL);
-
-   return TRUE;
-}
-
-#endif
 
 
 
 
-//__DATADEF bool g_bTraceEnabled = TRUE;
-//__DATADEF UINT g_uiTraceFlags = 0;
-static bool gen_DiagnosticInit = __diagnostic_init();
-
-
-
-#include "framework.h"
-
-/////////////////////////////////////////////////////////////////////////////
-// __EXCEPTION_CONTEXT (thread global state)
-
-//inline __EXCEPTION_CONTEXT* __get_exception_context()
-//{
-//   DWORD lError = GetLastError();
-//   __EXCEPTION_CONTEXT* pContext = &gen_ThreadState->m_exceptionContext;
-//   SetLastError(lError);
-//   return pContext;
-//}
-
-/////////////////////////////////////////////////////////////////////////////
-// __exception_link linked 'jmpbuf' and out-of-line helpers
-
-//__exception_link::__exception_link()
-//{
-//   // setup initial link state
-//   m_pException = NULL;    // no current exception yet
-//
-//   // wire into top of exception link stack
-//   __EXCEPTION_CONTEXT* pContext = __get_exception_context();
-//   m_pLinkPrev = pContext->m_pLinkTop;
-//   pContext->m_pLinkTop = this;
-//}
 
 
 // out-of-line cleanup called from inline __exception_link destructor
 CLASS_DECL_BASE void __try_cleanup()
 {
-   //__EXCEPTION_CONTEXT* pContext = __get_exception_context();
-   //__exception_link* pLinkTop = pContext->m_pLinkTop;
-
-   // delete current exception
-   //ASSERT(pLinkTop != NULL);
-   //if (pLinkTop == NULL)
-   //   return;
-   //if (pLinkTop->m_pException != NULL)
-   //   pLinkTop->m_pException->Delete();
-
-   //// remove ourself from the top of the chain
-   //pContext->m_pLinkTop = pLinkTop->m_pLinkPrev;
 }
 
 // special out-of-line implementation of THROW_LAST (for auto-delete behavior)
 void CLASS_DECL_BASE __throw_last_cleanup()
 {
-   //__EXCEPTION_CONTEXT* pContext = __get_exception_context();
-   //__exception_link* pLinkTop = pContext->m_pLinkTop;
-
-   //// check for THROW_LAST inside of auto-delete block
-   //if (pLinkTop != NULL)
-   //{
-   //   // make sure current exception does not get auto-deleted
-   //   pLinkTop->m_pException = NULL;
-   //}
-
-   //// THROW_LAST macro will do actual 'throw'
 }
 
 
