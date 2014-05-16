@@ -1,5 +1,8 @@
 #pragma once
 
+
+CLASS_DECL_BASE int __node_is_debugger_attached();
+
 CLASS_DECL_BASE bool is_debugger_attached();
 
 

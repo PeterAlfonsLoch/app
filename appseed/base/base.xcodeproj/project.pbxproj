@@ -19,6 +19,110 @@
 		0715B92C189EE65700B3EBD9 /* geoip_update.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0715B922189EE65700B3EBD9 /* geoip_update.cpp */; };
 		0715B92D189EE65700B3EBD9 /* geoip_update.h in Headers */ = {isa = PBXBuildFile; fileRef = 0715B923189EE65700B3EBD9 /* geoip_update.h */; };
 		0715B92E189EE65700B3EBD9 /* global.h in Headers */ = {isa = PBXBuildFile; fileRef = 0715B924189EE65700B3EBD9 /* global.h */; };
+		0722EC7C192556D8003E99F4 /* mac.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC2F192556D8003E99F4 /* mac.h */; };
+		0722EC7D192556D8003E99F4 /* mac1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC30192556D8003E99F4 /* mac1.cpp */; };
+		0722EC7E192556D8003E99F4 /* mac1.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC31192556D8003E99F4 /* mac1.h */; };
+		0722EC7F192556D8003E99F4 /* mac2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC32192556D8003E99F4 /* mac2.cpp */; };
+		0722EC85192556D8003E99F4 /* mac_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC38192556D8003E99F4 /* mac_application.cpp */; };
+		0722EC86192556D8003E99F4 /* mac_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC39192556D8003E99F4 /* mac_application.h */; };
+		0722EC89192556D8003E99F4 /* mac_copydesk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC3C192556D8003E99F4 /* mac_copydesk.cpp */; };
+		0722EC8A192556D8003E99F4 /* mac_copydesk.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC3D192556D8003E99F4 /* mac_copydesk.h */; };
+		0722EC8B192556D8003E99F4 /* mac_crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC3E192556D8003E99F4 /* mac_crypto.cpp */; };
+		0722EC8C192556D8003E99F4 /* mac_crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC3F192556D8003E99F4 /* mac_crypto.h */; };
+		0722EC8D192556D8003E99F4 /* mac_dir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC40192556D8003E99F4 /* mac_dir.cpp */; };
+		0722EC8E192556D8003E99F4 /* mac_dir.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC41192556D8003E99F4 /* mac_dir.h */; };
+		0722EC8F192556D8003E99F4 /* mac_dumpinit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC42192556D8003E99F4 /* mac_dumpinit.cpp */; };
+		0722EC90192556D8003E99F4 /* mac_error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC43192556D8003E99F4 /* mac_error.cpp */; };
+		0722EC91192556D8003E99F4 /* mac_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC44192556D8003E99F4 /* mac_exception.cpp */; };
+		0722EC92192556D8003E99F4 /* mac_factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC45192556D8003E99F4 /* mac_factory_exchange.cpp */; };
+		0722EC93192556D8003E99F4 /* mac_factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC46192556D8003E99F4 /* mac_factory_exchange.h */; };
+		0722EC94192556D8003E99F4 /* mac_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC47192556D8003E99F4 /* mac_file.cpp */; };
+		0722EC95192556D8003E99F4 /* mac_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC48192556D8003E99F4 /* mac_file.h */; };
+		0722EC96192556D8003E99F4 /* mac_file_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC49192556D8003E99F4 /* mac_file_set.cpp */; };
+		0722EC97192556D8003E99F4 /* mac_file_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC4A192556D8003E99F4 /* mac_file_set.h */; };
+		0722EC98192556D8003E99F4 /* mac_file_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC4B192556D8003E99F4 /* mac_file_system.cpp */; };
+		0722EC99192556D8003E99F4 /* mac_file_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC4C192556D8003E99F4 /* mac_file_system.h */; };
+		0722EC9A192556D8003E99F4 /* mac_gen_1.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC4D192556D8003E99F4 /* mac_gen_1.h */; };
+		0722EC9B192556D8003E99F4 /* mac_genResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC4E192556D8003E99F4 /* mac_genResource.cpp */; };
+		0722EC9C192556D8003E99F4 /* mac_implementation.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC4F192556D8003E99F4 /* mac_implementation.h */; };
+		0722EC9D192556D8003E99F4 /* mac_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC50192556D8003E99F4 /* mac_internal.h */; };
+		0722EC9E192556D8003E99F4 /* mac_ip_enum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC51192556D8003E99F4 /* mac_ip_enum.cpp */; };
+		0722EC9F192556D8003E99F4 /* mac_ip_enum.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC52192556D8003E99F4 /* mac_ip_enum.h */; };
+		0722ECA0192556D8003E99F4 /* mac_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC53192556D8003E99F4 /* mac_main.cpp */; };
+		0722ECA1192556D8003E99F4 /* mac_mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC54192556D8003E99F4 /* mac_mm.h */; };
+		0722ECA2192556D8003E99F4 /* mac_os.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC55192556D8003E99F4 /* mac_os.cpp */; };
+		0722ECA3192556D8003E99F4 /* mac_os.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC56192556D8003E99F4 /* mac_os.h */; };
+		0722ECA4192556D8003E99F4 /* mac_port_forward.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC57192556D8003E99F4 /* mac_port_forward.cpp */; };
+		0722ECA5192556D8003E99F4 /* mac_port_forward.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC58192556D8003E99F4 /* mac_port_forward.h */; };
+		0722ECA6192556D8003E99F4 /* mac_printer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC59192556D8003E99F4 /* mac_printer.cpp */; };
+		0722ECA7192556D8003E99F4 /* mac_printer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC5A192556D8003E99F4 /* mac_printer.h */; };
+		0722ECA8192556D8003E99F4 /* mac_shell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC5B192556D8003E99F4 /* mac_shell.cpp */; };
+		0722ECA9192556D8003E99F4 /* mac_shell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC5C192556D8003E99F4 /* mac_shell.h */; };
+		0722ECAA192556D8003E99F4 /* mac_state.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC5D192556D8003E99F4 /* mac_state.h */; };
+		0722ECAB192556D8003E99F4 /* mac_stdio_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC5E192556D8003E99F4 /* mac_stdio_file.cpp */; };
+		0722ECAC192556D8003E99F4 /* mac_stdio_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC5F192556D8003E99F4 /* mac_stdio_file.h */; };
+		0722ECAD192556D8003E99F4 /* mac_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC60192556D8003E99F4 /* mac_thread.cpp */; };
+		0722ECAE192556D8003E99F4 /* mac_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC61192556D8003E99F4 /* mac_thread.h */; };
+		0722ECB1192556D8003E99F4 /* mac_trace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC64192556D8003E99F4 /* mac_trace.cpp */; };
+		0722ECB2192556D8003E99F4 /* mac_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC65192556D8003E99F4 /* mac_util.cpp */; };
+		0722ECB3192556D8003E99F4 /* mac_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC66192556D8003E99F4 /* mac_window.cpp */; };
+		0722ECB4192556D8003E99F4 /* mac_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC67192556D8003E99F4 /* mac_window.h */; };
+		0722ECB5192556D8003E99F4 /* mac_window_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC68192556D8003E99F4 /* mac_window_draw.cpp */; };
+		0722ECB6192556D8003E99F4 /* mac_window_draw.h in Headers */ = {isa = PBXBuildFile; fileRef = 0722EC69192556D8003E99F4 /* mac_window_draw.h */; };
+		0722ECB8192556D8003E99F4 /* round_window.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC6E192556D8003E99F4 /* round_window.mm */; };
+		0722ECBA192556D8003E99F4 /* RoundWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC70192556D8003E99F4 /* RoundWindow.mm */; };
+		0722ECBC192556D8003E99F4 /* RoundWindowFrameView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0722EC72192556D8003E99F4 /* RoundWindowFrameView.mm */; };
+		0722ECC61925640E003E99F4 /* ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8E019211FEA00B99496 /* ios.cpp */; };
+		0722ECC71925640F003E99F4 /* ios_ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8E519211FEA00B99496 /* ios_ios.cpp */; };
+		0722ECC81925640F003E99F4 /* ios_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8E719211FEA00B99496 /* ios_application.cpp */; };
+		0722ECC91925640F003E99F4 /* ios_copydesk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8EB19211FEA00B99496 /* ios_copydesk.cpp */; };
+		0722ECCA1925640F003E99F4 /* ios_crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8ED19211FEA00B99496 /* ios_crypto.cpp */; };
+		0722ECCB1925640F003E99F4 /* ios_dir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8EF19211FEA00B99496 /* ios_dir.cpp */; };
+		0722ECCC1925640F003E99F4 /* ios_dumpinit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8F119211FEA00B99496 /* ios_dumpinit.cpp */; };
+		0722ECCD1925640F003E99F4 /* ios_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8F219211FEA00B99496 /* ios_exception.cpp */; };
+		0722ECCE1925640F003E99F4 /* ios_factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8F319211FEA00B99496 /* ios_factory_exchange.cpp */; };
+		0722ECCF1925640F003E99F4 /* ios_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8F519211FEA00B99496 /* ios_file.cpp */; };
+		0722ECD01925640F003E99F4 /* ios_file_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8F719211FEA00B99496 /* ios_file_set.cpp */; };
+		0722ECD11925640F003E99F4 /* ios_file_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8F919211FEA00B99496 /* ios_file_system.cpp */; };
+		0722ECD21925640F003E99F4 /* ios_ip_enum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8FD19211FEA00B99496 /* ios_ip_enum.cpp */; };
+		0722ECD31925640F003E99F4 /* ios_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90019211FEA00B99496 /* ios_main.cpp */; };
+		0722ECD41925640F003E99F4 /* ios_os.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90219211FEA00B99496 /* ios_os.cpp */; };
+		0722ECD51925640F003E99F4 /* ios_port_forward.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90419211FEA00B99496 /* ios_port_forward.cpp */; };
+		0722ECD61925640F003E99F4 /* ios_printer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90619211FEA00B99496 /* ios_printer.cpp */; };
+		0722ECD71925640F003E99F4 /* ios_shell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90819211FEA00B99496 /* ios_shell.cpp */; };
+		0722ECD81925640F003E99F4 /* ios_stdio_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90B19211FEA00B99496 /* ios_stdio_file.cpp */; };
+		0722ECD91925640F003E99F4 /* ios_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90D19211FEA00B99496 /* ios_thread.cpp */; };
+		0722ECDA1925640F003E99F4 /* ios_trace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91019211FEA00B99496 /* ios_trace.cpp */; };
+		0722ECDB1925640F003E99F4 /* ios_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91119211FEA00B99496 /* ios_util.cpp */; };
+		0722ECDC1925640F003E99F4 /* ios_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91219211FEA00B99496 /* ios_window.cpp */; };
+		0722ECDD1925640F003E99F4 /* ios_window_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91519211FEA00B99496 /* ios_window_draw.cpp */; };
+		0722ECDE19256436003E99F4 /* ios_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C96A1921201D00B99496 /* ios_cross_gdi.mm */; };
+		0722ECDF19256436003E99F4 /* ios_thread_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9831921201D00B99496 /* ios_thread_mm.mm */; };
+		0722ECE019256436003E99F4 /* ios_user.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9861921201D00B99496 /* ios_user.mm */; };
+		0722ECE119256472003E99F4 /* ios_cross_win_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C96B1921201D00B99496 /* ios_cross_win_file.cpp */; };
+		0722ECE219256472003E99F4 /* ios_cross_win.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C96D1921201D00B99496 /* ios_cross_win.cpp */; };
+		0722ECE319256472003E99F4 /* ios_crypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C96E1921201D00B99496 /* ios_crypt.cpp */; };
+		0722ECE419256472003E99F4 /* ios_debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C96F1921201D00B99496 /* ios_debug.cpp */; };
+		0722ECE519256472003E99F4 /* ios_file_watcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9701921201D00B99496 /* ios_file_watcher.cpp */; };
+		0722ECE619256472003E99F4 /* ios_fontopus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9721921201D00B99496 /* ios_fontopus.cpp */; };
+		0722ECE719256472003E99F4 /* ios_launcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9751921201D00B99496 /* ios_launcher.cpp */; };
+		0722ECE819256472003E99F4 /* ios_library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9761921201D00B99496 /* ios_library.cpp */; };
+		0722ECE919256472003E99F4 /* ios_lock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9771921201D00B99496 /* ios_lock.cpp */; };
+		0722ECEA19256472003E99F4 /* ios_message_loop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9791921201D00B99496 /* ios_message_loop.cpp */; };
+		0722ECEB19256472003E99F4 /* ios_multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C97A1921201D00B99496 /* ios_multithreading.cpp */; };
+		0722ECEC19256472003E99F4 /* ios_ns_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C97C1921201D00B99496 /* ios_ns_exception.cpp */; };
+		0722ECED19256472003E99F4 /* ios_process_pid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C97E1921201D00B99496 /* ios_process_pid.cpp */; };
+		0722ECEE19256472003E99F4 /* ios_process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C97F1921201D00B99496 /* ios_process.cpp */; };
+		0722ECEF19256472003E99F4 /* ios_simple_shell_launcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9811921201D00B99496 /* ios_simple_shell_launcher.cpp */; };
+		0722ECF019256472003E99F4 /* ios_small_ipca_channel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9821921201D00B99496 /* ios_small_ipca_channel.cpp */; };
+		0722ECF119256472003E99F4 /* ios_time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9841921201D00B99496 /* ios_time.cpp */; };
+		0722ECF219256472003E99F4 /* ios_base_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9851921201D00B99496 /* ios_base_user.cpp */; };
+		0722ECF319256472003E99F4 /* ios_win_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9871921201D00B99496 /* ios_win_base.cpp */; };
+		0722ECF419256472003E99F4 /* ios_windowing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C98B1921201D00B99496 /* ios_windowing.cpp */; };
+		0722ECF519256472003E99F4 /* ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C98D1921201D00B99496 /* ios.cpp */; };
+		0722ECF619256472003E99F4 /* ios_error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D6A8191D98F300137494 /* ios_error.cpp */; };
+		0722ECF719256472003E99F4 /* ios_genResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D6B3191D98F300137494 /* ios_genResource.cpp */; };
+		0722ECF819256C67003E99F4 /* ansios_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08A4618495B40007A0560 /* ansios_file.cpp */; };
 		077C2A1B190F144000A1F6B0 /* framework_c.c in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A17190F143F00A1F6B0 /* framework_c.c */; };
 		077C2A1C190F144000A1F6B0 /* framework_c.h in Headers */ = {isa = PBXBuildFile; fileRef = 077C2A18190F143F00A1F6B0 /* framework_c.h */; };
 		077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A19190F143F00A1F6B0 /* framework.cpp */; };
@@ -1057,8 +1161,6 @@
 		079AE0D6188648D400635C39 /* database_user_interaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 079AE0B6188648D400635C39 /* database_user_interaction.h */; };
 		079DBF3B1886788000EFFEFB /* file_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 079DBF391886788000EFFEFB /* file_set.cpp */; };
 		079DBF3C1886788000EFFEFB /* file_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 079DBF3A1886788000EFFEFB /* file_set.h */; };
-		07A0D7B31923356B00039222 /* RoundViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A0D7B11923356B00039222 /* RoundViewController.h */; };
-		07A0D7B41923356B00039222 /* RoundViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07A0D7B21923356B00039222 /* RoundViewController.mm */; };
 		07A0D7B51923356B00039222 /* RoundViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07A0D7B21923356B00039222 /* RoundViewController.mm */; };
 		07A0D7B61923356B00039222 /* RoundViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07A0D7B21923356B00039222 /* RoundViewController.mm */; };
 		07A2246D18F7F0BD002C3B39 /* multithreading_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A2246C18F7F0BD002C3B39 /* multithreading_thread.cpp */; };
@@ -2371,7 +2473,6 @@
 		07B0928518495B43007A0560 /* ansios_cross_win.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08A4318495B40007A0560 /* ansios_cross_win.cpp */; };
 		07B0928618495B43007A0560 /* ansios_cross_win_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08A4418495B40007A0560 /* ansios_cross_win_file.cpp */; };
 		07B0928718495B43007A0560 /* ansios_cross_windows_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08A4518495B40007A0560 /* ansios_cross_windows_user.cpp */; };
-		07B0928818495B43007A0560 /* ansios_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08A4618495B40007A0560 /* ansios_file.cpp */; };
 		07B0928918495B43007A0560 /* ansios_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08A4718495B40007A0560 /* ansios_file.h */; };
 		07B0928A18495B43007A0560 /* ansios_file_std.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08A4818495B40007A0560 /* ansios_file_std.cpp */; };
 		07B0928B18495B43007A0560 /* ansios_multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08A4918495B40007A0560 /* ansios_multithreading.cpp */; };
@@ -2403,9 +2504,7 @@
 		07B092A818495B43007A0560 /* windows_user.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08A6A18495B40007A0560 /* windows_user.h */; };
 		07B092A918495B43007A0560 /* windows_winnt.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08A6B18495B40007A0560 /* windows_winnt.h */; };
 		07B092AA18495B43007A0560 /* cross.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08A6C18495B40007A0560 /* cross.h */; };
-		07B092D918495B43007A0560 /* ca_mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08A9E18495B40007A0560 /* ca_mm.h */; };
-		07B092DA18495B43007A0560 /* ca_os.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08A9F18495B40007A0560 /* ca_os.h */; };
-		07B092DB18495B43007A0560 /* ca_os_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08AA018495B40007A0560 /* ca_os_thread.h */; };
+		07B092DA18495B43007A0560 /* os.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08A9F18495B40007A0560 /* os.h */; };
 		07B092DC18495B43007A0560 /* DDInvocationGrabber.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08AA118495B40007A0560 /* DDInvocationGrabber.h */; };
 		07B092DD18495B43007A0560 /* DDInvocationGrabber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AA218495B40007A0560 /* DDInvocationGrabber.mm */; };
 		07B092DE18495B43007A0560 /* macos.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AA318495B40007A0560 /* macos.cpp */; };
@@ -2421,7 +2520,6 @@
 		07B092E818495B43007A0560 /* macos_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08AAE18495B40007A0560 /* macos_file.h */; };
 		07B092E918495B43007A0560 /* macos_file_watcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AAF18495B40007A0560 /* macos_file_watcher.cpp */; };
 		07B092EA18495B43007A0560 /* macos_file_watcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08AB018495B40007A0560 /* macos_file_watcher.h */; };
-		07B092EB18495B43007A0560 /* macos_fontopus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AB118495B40007A0560 /* macos_fontopus.cpp */; };
 		07B092EC18495B43007A0560 /* macos_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AB218495B40007A0560 /* macos_graphics.cpp */; };
 		07B092EE18495B43007A0560 /* macos_graphics_mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08AB418495B40007A0560 /* macos_graphics_mm.h */; };
 		07B092EF18495B43007A0560 /* macos_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08AB518495B40007A0560 /* macos_internal.h */; };
@@ -2430,11 +2528,6 @@
 		07B092F218495B43007A0560 /* macos_lock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AB818495B40007A0560 /* macos_lock.cpp */; };
 		07B092F318495B43007A0560 /* macos_message_loop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AB918495B40007A0560 /* macos_message_loop.cpp */; };
 		07B092F418495B43007A0560 /* macos_mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08ABA18495B40007A0560 /* macos_mm.h */; };
-		07B092F518495B43007A0560 /* macos_mm_boot.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08ABB18495B40007A0560 /* macos_mm_boot.h */; };
-		07B092F618495B43007A0560 /* macos_mm_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08ABC18495B40007A0560 /* macos_mm_window.h */; };
-		07B092F718495B43007A0560 /* macos_mm_window.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07B08ABD18495B40007A0560 /* macos_mm_window.mm */; };
-		07B092F818495B43007A0560 /* macos_mm_window_frame_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08ABE18495B40007A0560 /* macos_mm_window_frame_view.h */; };
-		07B092F918495B43007A0560 /* macos_mm_window_frame_view.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07B08ABF18495B40007A0560 /* macos_mm_window_frame_view.mm */; };
 		07B092FA18495B43007A0560 /* macos_ns_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AC018495B40007A0560 /* macos_ns_exception.cpp */; };
 		07B092FB18495B43007A0560 /* macos_ns_exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08AC118495B40007A0560 /* macos_ns_exception.h */; };
 		07B092FC18495B43007A0560 /* macos_os.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AC218495B40007A0560 /* macos_os.cpp */; };
@@ -2443,16 +2536,14 @@
 		07B092FF18495B43007A0560 /* macos_process_pid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AC518495B40007A0560 /* macos_process_pid.cpp */; };
 		07B0930C18495B43007A0560 /* macos_simple_shell_launcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AD218495B40007A0560 /* macos_simple_shell_launcher.cpp */; };
 		07B0930D18495B43007A0560 /* macos_small_ipca_channel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AD318495B40007A0560 /* macos_small_ipca_channel.cpp */; };
-		07B0930E18495B43007A0560 /* macos_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AD418495B40007A0560 /* macos_thread.cpp */; };
-		07B0930F18495B43007A0560 /* macos_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08AD518495B40007A0560 /* macos_thread.h */; };
+		07B0930E18495B43007A0560 /* macos_multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AD418495B40007A0560 /* macos_multithreading.cpp */; };
+		07B0930F18495B43007A0560 /* macos_multithreading.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08AD518495B40007A0560 /* macos_multithreading.h */; };
 		07B0931018495B43007A0560 /* macos_time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AD618495B40007A0560 /* macos_time.cpp */; };
-		07B0931118495B43007A0560 /* macos_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AD718495B40007A0560 /* macos_user.cpp */; };
-		07B0931218495B43007A0560 /* macos_user.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AD818495B40007A0560 /* macos_user.mm */; };
+		07B0931118495B43007A0560 /* macos_base_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AD718495B40007A0560 /* macos_base_user.cpp */; };
+		07B0931218495B43007A0560 /* macos_base_user_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AD818495B40007A0560 /* macos_base_user_mm.mm */; };
 		07B0931318495B43007A0560 /* macos_win_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AD918495B40007A0560 /* macos_win_base.cpp */; };
-		07B0931418495B43007A0560 /* macos_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08ADA18495B40007A0560 /* macos_window.cpp */; };
-		07B0931518495B43007A0560 /* macos_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08ADB18495B40007A0560 /* macos_window.h */; };
-		07B0931618495B43007A0560 /* macos_window.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07B08ADC18495B40007A0560 /* macos_window.mm */; };
-		07B0931718495B43007A0560 /* macos_window_boot.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08ADD18495B40007A0560 /* macos_window_boot.h */; };
+		07B0931418495B43007A0560 /* macos_windowing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08ADA18495B40007A0560 /* macos_windowing.cpp */; };
+		07B0931518495B43007A0560 /* macos_windowing.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08ADB18495B40007A0560 /* macos_windowing.h */; };
 		07B0931818495B43007A0560 /* macos_window_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08ADE18495B40007A0560 /* macos_window_impl.h */; };
 		07B0931918495B43007A0560 /* NSObject+DDExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B08ADF18495B40007A0560 /* NSObject+DDExtensions.h */; };
 		07B0931A18495B43007A0560 /* NSObject+DDExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07B08AE018495B40007A0560 /* NSObject+DDExtensions.mm */; };
@@ -2891,171 +2982,56 @@
 		07C8D688191CF0EC00137494 /* fs_link.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D686191CF0EC00137494 /* fs_link.cpp */; };
 		07C8D689191CF0EC00137494 /* fs_link.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C8D687191CF0EC00137494 /* fs_link.h */; };
 		07C8D68A191CF18600137494 /* fs_link.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D686191CF0EC00137494 /* fs_link.cpp */; };
-		07C8D6F7191D98F300137494 /* ios_error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D6A8191D98F300137494 /* ios_error.cpp */; };
 		07C8D701191D98F300137494 /* ios_gen_1.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C8D6B2191D98F300137494 /* ios_gen_1.h */; };
-		07C8D702191D98F300137494 /* ios_genResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D6B3191D98F300137494 /* ios_genResource.cpp */; };
 		07C8D703191D98F300137494 /* ios_implementation.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C8D6B4191D98F300137494 /* ios_implementation.h */; };
 		07C8D704191D98F300137494 /* ios_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C8D6B5191D98F300137494 /* ios_internal.h */; };
 		07C8D708191D98F300137494 /* ios_mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C8D6B9191D98F300137494 /* ios_mm.h */; };
 		07C8D71E191D98F300137494 /* ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C8D6CF191D98F300137494 /* ios.h */; };
-		07D1C92319211FEA00B99496 /* ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8E019211FEA00B99496 /* ios.cpp */; };
 		07D1C92419211FEA00B99496 /* ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C8E119211FEA00B99496 /* ios.h */; };
-		07D1C92819211FEA00B99496 /* ios_ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8E519211FEA00B99496 /* ios_ios.cpp */; };
-		07D1C92A19211FEA00B99496 /* ios_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8E719211FEA00B99496 /* ios_application.cpp */; };
 		07D1C92B19211FEA00B99496 /* ios_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C8E819211FEA00B99496 /* ios_application.h */; };
-		07D1C92E19211FEA00B99496 /* ios_copydesk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8EB19211FEA00B99496 /* ios_copydesk.cpp */; };
 		07D1C92F19211FEA00B99496 /* ios_copydesk.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C8EC19211FEA00B99496 /* ios_copydesk.h */; };
-		07D1C93019211FEA00B99496 /* ios_crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8ED19211FEA00B99496 /* ios_crypto.cpp */; };
 		07D1C93119211FEA00B99496 /* ios_crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C8EE19211FEA00B99496 /* ios_crypto.h */; };
-		07D1C93219211FEA00B99496 /* ios_dir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8EF19211FEA00B99496 /* ios_dir.cpp */; };
 		07D1C93319211FEA00B99496 /* ios_dir.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C8F019211FEA00B99496 /* ios_dir.h */; };
-		07D1C93419211FEA00B99496 /* ios_dumpinit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8F119211FEA00B99496 /* ios_dumpinit.cpp */; };
-		07D1C93519211FEA00B99496 /* ios_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8F219211FEA00B99496 /* ios_exception.cpp */; };
-		07D1C93619211FEA00B99496 /* ios_factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8F319211FEA00B99496 /* ios_factory_exchange.cpp */; };
 		07D1C93719211FEA00B99496 /* ios_factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C8F419211FEA00B99496 /* ios_factory_exchange.h */; };
-		07D1C93819211FEA00B99496 /* ios_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8F519211FEA00B99496 /* ios_file.cpp */; };
 		07D1C93919211FEA00B99496 /* ios_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C8F619211FEA00B99496 /* ios_file.h */; };
-		07D1C93A19211FEA00B99496 /* ios_file_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8F719211FEA00B99496 /* ios_file_set.cpp */; };
 		07D1C93B19211FEA00B99496 /* ios_file_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C8F819211FEA00B99496 /* ios_file_set.h */; };
-		07D1C93C19211FEA00B99496 /* ios_file_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8F919211FEA00B99496 /* ios_file_system.cpp */; };
 		07D1C93D19211FEA00B99496 /* ios_file_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C8FA19211FEA00B99496 /* ios_file_system.h */; };
 		07D1C93E19211FEA00B99496 /* ios_implementation.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C8FB19211FEA00B99496 /* ios_implementation.h */; };
 		07D1C93F19211FEA00B99496 /* ios_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C8FC19211FEA00B99496 /* ios_internal.h */; };
-		07D1C94019211FEA00B99496 /* ios_ip_enum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8FD19211FEA00B99496 /* ios_ip_enum.cpp */; };
 		07D1C94119211FEA00B99496 /* ios_ip_enum.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C8FE19211FEA00B99496 /* ios_ip_enum.h */; };
 		07D1C94219211FEA00B99496 /* ios_m.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C8FF19211FEA00B99496 /* ios_m.h */; };
-		07D1C94319211FEA00B99496 /* ios_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90019211FEA00B99496 /* ios_main.cpp */; };
 		07D1C94419211FEA00B99496 /* ios_mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C90119211FEA00B99496 /* ios_mm.h */; };
-		07D1C94519211FEA00B99496 /* ios_os.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90219211FEA00B99496 /* ios_os.cpp */; };
 		07D1C94619211FEA00B99496 /* ios_os.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C90319211FEA00B99496 /* ios_os.h */; };
-		07D1C94719211FEA00B99496 /* ios_port_forward.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90419211FEA00B99496 /* ios_port_forward.cpp */; };
 		07D1C94819211FEA00B99496 /* ios_port_forward.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C90519211FEA00B99496 /* ios_port_forward.h */; };
-		07D1C94919211FEA00B99496 /* ios_printer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90619211FEA00B99496 /* ios_printer.cpp */; };
 		07D1C94A19211FEA00B99496 /* ios_printer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C90719211FEA00B99496 /* ios_printer.h */; };
-		07D1C94B19211FEA00B99496 /* ios_shell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90819211FEA00B99496 /* ios_shell.cpp */; };
 		07D1C94C19211FEA00B99496 /* ios_shell.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C90919211FEA00B99496 /* ios_shell.h */; };
 		07D1C94D19211FEA00B99496 /* ios_state.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C90A19211FEA00B99496 /* ios_state.h */; };
-		07D1C94E19211FEA00B99496 /* ios_stdio_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90B19211FEA00B99496 /* ios_stdio_file.cpp */; };
 		07D1C94F19211FEA00B99496 /* ios_stdio_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C90C19211FEA00B99496 /* ios_stdio_file.h */; };
-		07D1C95019211FEA00B99496 /* ios_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90D19211FEA00B99496 /* ios_thread.cpp */; };
 		07D1C95119211FEA00B99496 /* ios_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C90E19211FEA00B99496 /* ios_thread.h */; };
-		07D1C95319211FEA00B99496 /* ios_trace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91019211FEA00B99496 /* ios_trace.cpp */; };
-		07D1C95419211FEA00B99496 /* ios_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91119211FEA00B99496 /* ios_util.cpp */; };
-		07D1C95519211FEA00B99496 /* ios_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91219211FEA00B99496 /* ios_window.cpp */; };
 		07D1C95619211FEA00B99496 /* ios_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C91319211FEA00B99496 /* ios_window.h */; };
-		07D1C95819211FEA00B99496 /* ios_window_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91519211FEA00B99496 /* ios_window_draw.cpp */; };
 		07D1C95919211FEA00B99496 /* ios_window_draw.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C91619211FEA00B99496 /* ios_window_draw.h */; };
 		07D1C95A19211FEA00B99496 /* ios_window_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C91719211FEA00B99496 /* ios_window_impl.h */; };
 		07D1C95B19211FEA00B99496 /* os.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C91819211FEA00B99496 /* os.h */; };
-		07D1C95C19211FEA00B99496 /* round_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C91919211FEA00B99496 /* round_window.h */; };
-		07D1C95D19211FEA00B99496 /* round_window.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91A19211FEA00B99496 /* round_window.mm */; };
-		07D1C95E19211FEA00B99496 /* RoundWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C91B19211FEA00B99496 /* RoundWindow.h */; };
-		07D1C95F19211FEA00B99496 /* RoundWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91C19211FEA00B99496 /* RoundWindow.mm */; };
-		07D1C96019211FEA00B99496 /* RoundWindowFrameView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C91D19211FEA00B99496 /* RoundWindowFrameView.h */; };
-		07D1C96119211FEA00B99496 /* RoundWindowFrameView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91E19211FEA00B99496 /* RoundWindowFrameView.mm */; };
 		07D1C96219211FEA00B99496 /* node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91F19211FEA00B99496 /* node.cpp */; };
 		07D1C96319211FEA00B99496 /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C92019211FEA00B99496 /* node.h */; };
 		07D1C9921921201D00B99496 /* ca_os_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C9641921201D00B99496 /* ca_os_thread.h */; };
 		07D1C9931921201D00B99496 /* ca_os.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C9651921201D00B99496 /* ca_os.h */; };
 		07D1C9941921201D00B99496 /* DDInvocationGrabber.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C9661921201D00B99496 /* DDInvocationGrabber.h */; };
-		07D1C9951921201D00B99496 /* DDInvocationGrabber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9671921201D00B99496 /* DDInvocationGrabber.mm */; };
 		07D1C9961921201D00B99496 /* ios_base_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C9681921201D00B99496 /* ios_base_internal.h */; };
 		07D1C9971921201D00B99496 /* ios_base_mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C9691921201D00B99496 /* ios_base_mm.h */; };
-		07D1C9981921201D00B99496 /* ios_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C96A1921201D00B99496 /* ios_cross_gdi.mm */; };
-		07D1C9991921201D00B99496 /* ios_cross_win_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C96B1921201D00B99496 /* ios_cross_win_file.cpp */; };
 		07D1C99A1921201D00B99496 /* ios_cross_win_gdi.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C96C1921201D00B99496 /* ios_cross_win_gdi.h */; };
-		07D1C99B1921201D00B99496 /* ios_cross_win.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C96D1921201D00B99496 /* ios_cross_win.cpp */; };
-		07D1C99C1921201D00B99496 /* ios_crypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C96E1921201D00B99496 /* ios_crypt.cpp */; };
-		07D1C99D1921201D00B99496 /* ios_debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C96F1921201D00B99496 /* ios_debug.cpp */; };
-		07D1C99E1921201D00B99496 /* ios_file_watcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9701921201D00B99496 /* ios_file_watcher.cpp */; };
 		07D1C99F1921201D00B99496 /* ios_file_watcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C9711921201D00B99496 /* ios_file_watcher.h */; };
-		07D1C9A01921201D00B99496 /* ios_fontopus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9721921201D00B99496 /* ios_fontopus.cpp */; };
 		07D1C9A11921201D00B99496 /* ios_graphics_mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C9731921201D00B99496 /* ios_graphics_mm.h */; };
-		07D1C9A31921201D00B99496 /* ios_launcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9751921201D00B99496 /* ios_launcher.cpp */; };
-		07D1C9A41921201D00B99496 /* ios_library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9761921201D00B99496 /* ios_library.cpp */; };
-		07D1C9A51921201D00B99496 /* ios_lock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9771921201D00B99496 /* ios_lock.cpp */; };
 		07D1C9A61921201D00B99496 /* ios_m.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C9781921201D00B99496 /* ios_m.h */; };
-		07D1C9A71921201D00B99496 /* ios_message_loop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9791921201D00B99496 /* ios_message_loop.cpp */; };
-		07D1C9A81921201D00B99496 /* ios_multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C97A1921201D00B99496 /* ios_multithreading.cpp */; };
 		07D1C9A91921201D00B99496 /* ios_multithreading.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C97B1921201D00B99496 /* ios_multithreading.h */; };
-		07D1C9AA1921201D00B99496 /* ios_ns_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C97C1921201D00B99496 /* ios_ns_exception.cpp */; };
 		07D1C9AB1921201D00B99496 /* ios_ns_exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C97D1921201D00B99496 /* ios_ns_exception.h */; };
-		07D1C9AC1921201D00B99496 /* ios_process_pid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C97E1921201D00B99496 /* ios_process_pid.cpp */; };
-		07D1C9AD1921201D00B99496 /* ios_process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C97F1921201D00B99496 /* ios_process.cpp */; };
 		07D1C9AE1921201D00B99496 /* ios_process.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C9801921201D00B99496 /* ios_process.h */; };
-		07D1C9AF1921201D00B99496 /* ios_simple_shell_launcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9811921201D00B99496 /* ios_simple_shell_launcher.cpp */; };
-		07D1C9B01921201D00B99496 /* ios_small_ipca_channel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9821921201D00B99496 /* ios_small_ipca_channel.cpp */; };
-		07D1C9B11921201D00B99496 /* ios_thread_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9831921201D00B99496 /* ios_thread_mm.mm */; };
-		07D1C9B21921201D00B99496 /* ios_time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9841921201D00B99496 /* ios_time.cpp */; };
-		07D1C9B31921201D00B99496 /* ios_base_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9851921201D00B99496 /* ios_base_user.cpp */; };
-		07D1C9B41921201D00B99496 /* ios_user.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9861921201D00B99496 /* ios_user.mm */; };
-		07D1C9B51921201D00B99496 /* ios_win_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9871921201D00B99496 /* ios_win_base.cpp */; };
 		07D1C9B61921201D00B99496 /* ios_window_boot.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C9881921201D00B99496 /* ios_window_boot.h */; };
 		07D1C9B71921201D00B99496 /* ios_window_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C9891921201D00B99496 /* ios_window_impl.h */; };
-		07D1C9B91921201D00B99496 /* ios_windowing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C98B1921201D00B99496 /* ios_windowing.cpp */; };
 		07D1C9BA1921201D00B99496 /* ios_windowing.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C98C1921201D00B99496 /* ios_windowing.h */; };
-		07D1C9BB1921201D00B99496 /* ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C98D1921201D00B99496 /* ios.cpp */; };
 		07D1C9BC1921201D00B99496 /* NSObject+DDExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C98E1921201D00B99496 /* NSObject+DDExtensions.h */; };
 		07D1C9BD1921201D00B99496 /* NSObject+DDExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C98F1921201D00B99496 /* NSObject+DDExtensions.mm */; };
 		07D1C9BE1921201D00B99496 /* UncaughtExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1C9901921201D00B99496 /* UncaughtExceptionHandler.h */; };
-		07D1C9BF1921201D00B99496 /* UncaughtExceptionHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9911921201D00B99496 /* UncaughtExceptionHandler.mm */; };
-		07D1C9C01921207E00B99496 /* ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8E019211FEA00B99496 /* ios.cpp */; };
-		07D1C9C31921207E00B99496 /* ios_ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8E519211FEA00B99496 /* ios_ios.cpp */; };
-		07D1C9C51921207E00B99496 /* ios_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8E719211FEA00B99496 /* ios_application.cpp */; };
-		07D1C9C81921207E00B99496 /* ios_copydesk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8EB19211FEA00B99496 /* ios_copydesk.cpp */; };
-		07D1C9C91921207E00B99496 /* ios_crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8ED19211FEA00B99496 /* ios_crypto.cpp */; };
-		07D1C9CA1921207E00B99496 /* ios_dir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8EF19211FEA00B99496 /* ios_dir.cpp */; };
-		07D1C9CB1921207E00B99496 /* ios_dumpinit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8F119211FEA00B99496 /* ios_dumpinit.cpp */; };
-		07D1C9CC1921207E00B99496 /* ios_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8F219211FEA00B99496 /* ios_exception.cpp */; };
-		07D1C9CD1921207E00B99496 /* ios_factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8F319211FEA00B99496 /* ios_factory_exchange.cpp */; };
-		07D1C9CE1921207E00B99496 /* ios_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8F519211FEA00B99496 /* ios_file.cpp */; };
-		07D1C9CF1921207E00B99496 /* ios_file_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8F719211FEA00B99496 /* ios_file_set.cpp */; };
-		07D1C9D01921207E00B99496 /* ios_file_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8F919211FEA00B99496 /* ios_file_system.cpp */; };
-		07D1C9D11921207E00B99496 /* ios_ip_enum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C8FD19211FEA00B99496 /* ios_ip_enum.cpp */; };
-		07D1C9D21921207E00B99496 /* ios_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90019211FEA00B99496 /* ios_main.cpp */; };
-		07D1C9D31921207E00B99496 /* ios_os.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90219211FEA00B99496 /* ios_os.cpp */; };
-		07D1C9D41921207E00B99496 /* ios_port_forward.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90419211FEA00B99496 /* ios_port_forward.cpp */; };
-		07D1C9D51921207E00B99496 /* ios_printer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90619211FEA00B99496 /* ios_printer.cpp */; };
-		07D1C9D61921207E00B99496 /* ios_shell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90819211FEA00B99496 /* ios_shell.cpp */; };
-		07D1C9D71921207E00B99496 /* ios_stdio_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90B19211FEA00B99496 /* ios_stdio_file.cpp */; };
-		07D1C9D81921207E00B99496 /* ios_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C90D19211FEA00B99496 /* ios_thread.cpp */; };
-		07D1C9DA1921207E00B99496 /* ios_trace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91019211FEA00B99496 /* ios_trace.cpp */; };
-		07D1C9DB1921207E00B99496 /* ios_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91119211FEA00B99496 /* ios_util.cpp */; };
-		07D1C9DC1921207E00B99496 /* ios_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91219211FEA00B99496 /* ios_window.cpp */; };
-		07D1C9DD1921207E00B99496 /* ios_window_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91519211FEA00B99496 /* ios_window_draw.cpp */; };
-		07D1C9DE1921207E00B99496 /* node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91F19211FEA00B99496 /* node.cpp */; };
-		07D1C9DF1921207E00B99496 /* ios_cross_win_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C96B1921201D00B99496 /* ios_cross_win_file.cpp */; };
-		07D1C9E01921207E00B99496 /* ios_cross_win.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C96D1921201D00B99496 /* ios_cross_win.cpp */; };
-		07D1C9E11921207E00B99496 /* ios_crypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C96E1921201D00B99496 /* ios_crypt.cpp */; };
-		07D1C9E21921207E00B99496 /* ios_debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C96F1921201D00B99496 /* ios_debug.cpp */; };
-		07D1C9E31921207E00B99496 /* ios_file_watcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9701921201D00B99496 /* ios_file_watcher.cpp */; };
-		07D1C9E41921207E00B99496 /* ios_fontopus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9721921201D00B99496 /* ios_fontopus.cpp */; };
-		07D1C9E61921207E00B99496 /* ios_launcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9751921201D00B99496 /* ios_launcher.cpp */; };
-		07D1C9E71921207E00B99496 /* ios_library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9761921201D00B99496 /* ios_library.cpp */; };
-		07D1C9E81921207E00B99496 /* ios_lock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9771921201D00B99496 /* ios_lock.cpp */; };
-		07D1C9E91921207E00B99496 /* ios_message_loop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9791921201D00B99496 /* ios_message_loop.cpp */; };
-		07D1C9EA1921207E00B99496 /* ios_multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C97A1921201D00B99496 /* ios_multithreading.cpp */; };
-		07D1C9EB1921207E00B99496 /* ios_ns_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C97C1921201D00B99496 /* ios_ns_exception.cpp */; };
-		07D1C9EC1921207E00B99496 /* ios_process_pid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C97E1921201D00B99496 /* ios_process_pid.cpp */; };
-		07D1C9ED1921207E00B99496 /* ios_process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C97F1921201D00B99496 /* ios_process.cpp */; };
-		07D1C9EE1921207E00B99496 /* ios_simple_shell_launcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9811921201D00B99496 /* ios_simple_shell_launcher.cpp */; };
-		07D1C9EF1921207E00B99496 /* ios_small_ipca_channel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9821921201D00B99496 /* ios_small_ipca_channel.cpp */; };
-		07D1C9F01921207E00B99496 /* ios_time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9841921201D00B99496 /* ios_time.cpp */; };
-		07D1C9F11921207E00B99496 /* ios_base_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9851921201D00B99496 /* ios_base_user.cpp */; };
-		07D1C9F21921207E00B99496 /* ios_win_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9871921201D00B99496 /* ios_win_base.cpp */; };
-		07D1C9F31921207E00B99496 /* ios_windowing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C98B1921201D00B99496 /* ios_windowing.cpp */; };
-		07D1C9F41921207E00B99496 /* ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C98D1921201D00B99496 /* ios.cpp */; };
-		07D1C9F61921207E00B99496 /* ios_error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D6A8191D98F300137494 /* ios_error.cpp */; };
-		07D1C9F81921207E00B99496 /* ios_genResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D6B3191D98F300137494 /* ios_genResource.cpp */; };
-		07D1C9FE192120B000B99496 /* round_window.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91A19211FEA00B99496 /* round_window.mm */; };
-		07D1C9FF192120B000B99496 /* RoundWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91C19211FEA00B99496 /* RoundWindow.mm */; };
-		07D1CA00192120B000B99496 /* RoundWindowFrameView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C91E19211FEA00B99496 /* RoundWindowFrameView.mm */; };
-		07D1CA01192120B000B99496 /* DDInvocationGrabber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9671921201D00B99496 /* DDInvocationGrabber.mm */; };
-		07D1CA02192120B000B99496 /* ios_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C96A1921201D00B99496 /* ios_cross_gdi.mm */; };
-		07D1CA03192120B000B99496 /* ios_thread_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9831921201D00B99496 /* ios_thread_mm.mm */; };
-		07D1CA04192120B000B99496 /* ios_user.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9861921201D00B99496 /* ios_user.mm */; };
-		07D1CA06192120B000B99496 /* NSObject+DDExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C98F1921201D00B99496 /* NSObject+DDExtensions.mm */; };
-		07D1CA07192120B000B99496 /* UncaughtExceptionHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D1C9911921201D00B99496 /* UncaughtExceptionHandler.mm */; };
 		07D1CA14192121BF00B99496 /* message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1CA09192121BF00B99496 /* message.cpp */; };
 		07D1CA15192121BF00B99496 /* message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1CA09192121BF00B99496 /* message.cpp */; };
 		07D1CA16192121BF00B99496 /* message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1CA09192121BF00B99496 /* message.cpp */; };
@@ -3076,8 +3052,6 @@
 		07D1CA25192121BF00B99496 /* message_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D1CA12192121BF00B99496 /* message_user.cpp */; };
 		07D1CA26192121BF00B99496 /* message_user.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D1CA13192121BF00B99496 /* message_user.h */; };
 		07E7E741190B53570082F182 /* base_a_basic_rid_off.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E7E740190B53570082F182 /* base_a_basic_rid_off.h */; };
-		07F5B126184968B30092C3E1 /* macos_simple_ui.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B125184968B30092C3E1 /* macos_simple_ui.h */; };
-		07F5B128184968C20092C3E1 /* macos_simple_ui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B127184968C20092C3E1 /* macos_simple_ui.cpp */; };
 		07F5B12A18496D920092C3E1 /* des_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B12918496D920092C3E1 /* des_enc.c */; };
 		07F5B12C184A3ADE0092C3E1 /* dsa_gen.c in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B12B184A3ADE0092C3E1 /* dsa_gen.c */; };
 		07F5B19F184A3B430092C3E1 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B12F184A3B420092C3E1 /* file.h */; };
@@ -4032,6 +4006,62 @@
 		0715B922189EE65700B3EBD9 /* geoip_update.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoip_update.cpp; sourceTree = "<group>"; };
 		0715B923189EE65700B3EBD9 /* geoip_update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geoip_update.h; sourceTree = "<group>"; };
 		0715B924189EE65700B3EBD9 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
+		0722EC2F192556D8003E99F4 /* mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac.h; sourceTree = "<group>"; };
+		0722EC30192556D8003E99F4 /* mac1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac1.cpp; sourceTree = "<group>"; };
+		0722EC31192556D8003E99F4 /* mac1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac1.h; sourceTree = "<group>"; };
+		0722EC32192556D8003E99F4 /* mac2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac2.cpp; sourceTree = "<group>"; };
+		0722EC38192556D8003E99F4 /* mac_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_application.cpp; sourceTree = "<group>"; };
+		0722EC39192556D8003E99F4 /* mac_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_application.h; sourceTree = "<group>"; };
+		0722EC3C192556D8003E99F4 /* mac_copydesk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_copydesk.cpp; sourceTree = "<group>"; };
+		0722EC3D192556D8003E99F4 /* mac_copydesk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_copydesk.h; sourceTree = "<group>"; };
+		0722EC3E192556D8003E99F4 /* mac_crypto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_crypto.cpp; sourceTree = "<group>"; };
+		0722EC3F192556D8003E99F4 /* mac_crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_crypto.h; sourceTree = "<group>"; };
+		0722EC40192556D8003E99F4 /* mac_dir.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_dir.cpp; sourceTree = "<group>"; };
+		0722EC41192556D8003E99F4 /* mac_dir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_dir.h; sourceTree = "<group>"; };
+		0722EC42192556D8003E99F4 /* mac_dumpinit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_dumpinit.cpp; sourceTree = "<group>"; };
+		0722EC43192556D8003E99F4 /* mac_error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_error.cpp; sourceTree = "<group>"; };
+		0722EC44192556D8003E99F4 /* mac_exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_exception.cpp; sourceTree = "<group>"; };
+		0722EC45192556D8003E99F4 /* mac_factory_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_factory_exchange.cpp; sourceTree = "<group>"; };
+		0722EC46192556D8003E99F4 /* mac_factory_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_factory_exchange.h; sourceTree = "<group>"; };
+		0722EC47192556D8003E99F4 /* mac_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_file.cpp; sourceTree = "<group>"; };
+		0722EC48192556D8003E99F4 /* mac_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_file.h; sourceTree = "<group>"; };
+		0722EC49192556D8003E99F4 /* mac_file_set.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_file_set.cpp; sourceTree = "<group>"; };
+		0722EC4A192556D8003E99F4 /* mac_file_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_file_set.h; sourceTree = "<group>"; };
+		0722EC4B192556D8003E99F4 /* mac_file_system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_file_system.cpp; sourceTree = "<group>"; };
+		0722EC4C192556D8003E99F4 /* mac_file_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_file_system.h; sourceTree = "<group>"; };
+		0722EC4D192556D8003E99F4 /* mac_gen_1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_gen_1.h; sourceTree = "<group>"; };
+		0722EC4E192556D8003E99F4 /* mac_genResource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_genResource.cpp; sourceTree = "<group>"; };
+		0722EC4F192556D8003E99F4 /* mac_implementation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_implementation.h; sourceTree = "<group>"; };
+		0722EC50192556D8003E99F4 /* mac_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_internal.h; sourceTree = "<group>"; };
+		0722EC51192556D8003E99F4 /* mac_ip_enum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_ip_enum.cpp; sourceTree = "<group>"; };
+		0722EC52192556D8003E99F4 /* mac_ip_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_ip_enum.h; sourceTree = "<group>"; };
+		0722EC53192556D8003E99F4 /* mac_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_main.cpp; sourceTree = "<group>"; };
+		0722EC54192556D8003E99F4 /* mac_mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_mm.h; sourceTree = "<group>"; };
+		0722EC55192556D8003E99F4 /* mac_os.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_os.cpp; sourceTree = "<group>"; };
+		0722EC56192556D8003E99F4 /* mac_os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_os.h; sourceTree = "<group>"; };
+		0722EC57192556D8003E99F4 /* mac_port_forward.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_port_forward.cpp; sourceTree = "<group>"; };
+		0722EC58192556D8003E99F4 /* mac_port_forward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_port_forward.h; sourceTree = "<group>"; };
+		0722EC59192556D8003E99F4 /* mac_printer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_printer.cpp; sourceTree = "<group>"; };
+		0722EC5A192556D8003E99F4 /* mac_printer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_printer.h; sourceTree = "<group>"; };
+		0722EC5B192556D8003E99F4 /* mac_shell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_shell.cpp; sourceTree = "<group>"; };
+		0722EC5C192556D8003E99F4 /* mac_shell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_shell.h; sourceTree = "<group>"; };
+		0722EC5D192556D8003E99F4 /* mac_state.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_state.h; sourceTree = "<group>"; };
+		0722EC5E192556D8003E99F4 /* mac_stdio_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_stdio_file.cpp; sourceTree = "<group>"; };
+		0722EC5F192556D8003E99F4 /* mac_stdio_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_stdio_file.h; sourceTree = "<group>"; };
+		0722EC60192556D8003E99F4 /* mac_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_thread.cpp; sourceTree = "<group>"; };
+		0722EC61192556D8003E99F4 /* mac_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_thread.h; sourceTree = "<group>"; };
+		0722EC64192556D8003E99F4 /* mac_trace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_trace.cpp; sourceTree = "<group>"; };
+		0722EC65192556D8003E99F4 /* mac_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_util.cpp; sourceTree = "<group>"; };
+		0722EC66192556D8003E99F4 /* mac_window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_window.cpp; sourceTree = "<group>"; };
+		0722EC67192556D8003E99F4 /* mac_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_window.h; sourceTree = "<group>"; };
+		0722EC68192556D8003E99F4 /* mac_window_draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mac_window_draw.cpp; sourceTree = "<group>"; };
+		0722EC69192556D8003E99F4 /* mac_window_draw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_window_draw.h; sourceTree = "<group>"; };
+		0722EC6D192556D8003E99F4 /* round_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = round_window.h; sourceTree = "<group>"; };
+		0722EC6E192556D8003E99F4 /* round_window.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = round_window.mm; sourceTree = "<group>"; };
+		0722EC6F192556D8003E99F4 /* RoundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindow.h; sourceTree = "<group>"; };
+		0722EC70192556D8003E99F4 /* RoundWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindow.mm; sourceTree = "<group>"; };
+		0722EC71192556D8003E99F4 /* RoundWindowFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindowFrameView.h; sourceTree = "<group>"; };
+		0722EC72192556D8003E99F4 /* RoundWindowFrameView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindowFrameView.mm; sourceTree = "<group>"; };
 		073EDDE1164E968100818801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		073EDDE4164E96DA00818801 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		077C2A17190F143F00A1F6B0 /* framework_c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = framework_c.c; sourceTree = "<group>"; };
@@ -5806,9 +5836,7 @@
 		07B08A6A18495B40007A0560 /* windows_user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_user.h; sourceTree = "<group>"; };
 		07B08A6B18495B40007A0560 /* windows_winnt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_winnt.h; sourceTree = "<group>"; };
 		07B08A6C18495B40007A0560 /* cross.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cross.h; sourceTree = "<group>"; };
-		07B08A9E18495B40007A0560 /* ca_mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca_mm.h; sourceTree = "<group>"; };
-		07B08A9F18495B40007A0560 /* ca_os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca_os.h; sourceTree = "<group>"; };
-		07B08AA018495B40007A0560 /* ca_os_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca_os_thread.h; sourceTree = "<group>"; };
+		07B08A9F18495B40007A0560 /* os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = os.h; sourceTree = "<group>"; };
 		07B08AA118495B40007A0560 /* DDInvocationGrabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDInvocationGrabber.h; sourceTree = "<group>"; };
 		07B08AA218495B40007A0560 /* DDInvocationGrabber.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DDInvocationGrabber.mm; sourceTree = "<group>"; };
 		07B08AA318495B40007A0560 /* macos.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos.cpp; sourceTree = "<group>"; };
@@ -5824,7 +5852,6 @@
 		07B08AAE18495B40007A0560 /* macos_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_file.h; sourceTree = "<group>"; };
 		07B08AAF18495B40007A0560 /* macos_file_watcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_file_watcher.cpp; sourceTree = "<group>"; };
 		07B08AB018495B40007A0560 /* macos_file_watcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_file_watcher.h; sourceTree = "<group>"; };
-		07B08AB118495B40007A0560 /* macos_fontopus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_fontopus.cpp; sourceTree = "<group>"; };
 		07B08AB218495B40007A0560 /* macos_graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_graphics.cpp; sourceTree = "<group>"; };
 		07B08AB418495B40007A0560 /* macos_graphics_mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_graphics_mm.h; sourceTree = "<group>"; };
 		07B08AB518495B40007A0560 /* macos_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_internal.h; sourceTree = "<group>"; };
@@ -5833,11 +5860,6 @@
 		07B08AB818495B40007A0560 /* macos_lock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_lock.cpp; sourceTree = "<group>"; };
 		07B08AB918495B40007A0560 /* macos_message_loop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_message_loop.cpp; sourceTree = "<group>"; };
 		07B08ABA18495B40007A0560 /* macos_mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_mm.h; sourceTree = "<group>"; };
-		07B08ABB18495B40007A0560 /* macos_mm_boot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_mm_boot.h; sourceTree = "<group>"; };
-		07B08ABC18495B40007A0560 /* macos_mm_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_mm_window.h; sourceTree = "<group>"; };
-		07B08ABD18495B40007A0560 /* macos_mm_window.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_mm_window.mm; sourceTree = "<group>"; };
-		07B08ABE18495B40007A0560 /* macos_mm_window_frame_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_mm_window_frame_view.h; sourceTree = "<group>"; };
-		07B08ABF18495B40007A0560 /* macos_mm_window_frame_view.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_mm_window_frame_view.mm; sourceTree = "<group>"; };
 		07B08AC018495B40007A0560 /* macos_ns_exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_ns_exception.cpp; sourceTree = "<group>"; };
 		07B08AC118495B40007A0560 /* macos_ns_exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_ns_exception.h; sourceTree = "<group>"; };
 		07B08AC218495B40007A0560 /* macos_os.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_os.cpp; sourceTree = "<group>"; };
@@ -5846,16 +5868,14 @@
 		07B08AC518495B40007A0560 /* macos_process_pid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_process_pid.cpp; sourceTree = "<group>"; };
 		07B08AD218495B40007A0560 /* macos_simple_shell_launcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_simple_shell_launcher.cpp; sourceTree = "<group>"; };
 		07B08AD318495B40007A0560 /* macos_small_ipca_channel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_small_ipca_channel.cpp; sourceTree = "<group>"; };
-		07B08AD418495B40007A0560 /* macos_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_thread.cpp; sourceTree = "<group>"; };
-		07B08AD518495B40007A0560 /* macos_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_thread.h; sourceTree = "<group>"; };
+		07B08AD418495B40007A0560 /* macos_multithreading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_multithreading.cpp; sourceTree = "<group>"; };
+		07B08AD518495B40007A0560 /* macos_multithreading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_multithreading.h; sourceTree = "<group>"; };
 		07B08AD618495B40007A0560 /* macos_time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_time.cpp; sourceTree = "<group>"; };
-		07B08AD718495B40007A0560 /* macos_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_user.cpp; sourceTree = "<group>"; };
-		07B08AD818495B40007A0560 /* macos_user.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_user.mm; sourceTree = "<group>"; };
+		07B08AD718495B40007A0560 /* macos_base_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_base_user.cpp; sourceTree = "<group>"; };
+		07B08AD818495B40007A0560 /* macos_base_user_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_base_user_mm.mm; sourceTree = "<group>"; };
 		07B08AD918495B40007A0560 /* macos_win_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_win_base.cpp; sourceTree = "<group>"; };
-		07B08ADA18495B40007A0560 /* macos_window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_window.cpp; sourceTree = "<group>"; };
-		07B08ADB18495B40007A0560 /* macos_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_window.h; sourceTree = "<group>"; };
-		07B08ADC18495B40007A0560 /* macos_window.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_window.mm; sourceTree = "<group>"; };
-		07B08ADD18495B40007A0560 /* macos_window_boot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_window_boot.h; sourceTree = "<group>"; };
+		07B08ADA18495B40007A0560 /* macos_windowing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_windowing.cpp; sourceTree = "<group>"; };
+		07B08ADB18495B40007A0560 /* macos_windowing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_windowing.h; sourceTree = "<group>"; };
 		07B08ADE18495B40007A0560 /* macos_window_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_window_impl.h; sourceTree = "<group>"; };
 		07B08ADF18495B40007A0560 /* NSObject+DDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DDExtensions.h"; sourceTree = "<group>"; };
 		07B08AE018495B40007A0560 /* NSObject+DDExtensions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSObject+DDExtensions.mm"; sourceTree = "<group>"; };
@@ -6428,8 +6448,6 @@
 		07D1CA13192121BF00B99496 /* message_user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message_user.h; sourceTree = "<group>"; };
 		07E7E740190B53570082F182 /* base_a_basic_rid_off.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_a_basic_rid_off.h; sourceTree = "<group>"; };
 		07F3372018111CA200A34D04 /* multithreading_set_event_on_exit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = multithreading_set_event_on_exit.h; sourceTree = "<group>"; };
-		07F5B125184968B30092C3E1 /* macos_simple_ui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_simple_ui.h; sourceTree = "<group>"; };
-		07F5B127184968C20092C3E1 /* macos_simple_ui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_simple_ui.cpp; sourceTree = "<group>"; };
 		07F5B12918496D920092C3E1 /* des_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = des_enc.c; sourceTree = "<group>"; };
 		07F5B12B184A3ADE0092C3E1 /* dsa_gen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dsa_gen.c; sourceTree = "<group>"; };
 		07F5B12F184A3B420092C3E1 /* file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file.h; sourceTree = "<group>"; };
@@ -6770,6 +6788,70 @@
 				0715B924189EE65700B3EBD9 /* global.h */,
 			);
 			path = geoip;
+			sourceTree = "<group>";
+		};
+		0722EC1F192556D7003E99F4 /* macos */ = {
+			isa = PBXGroup;
+			children = (
+				0722EC2F192556D8003E99F4 /* mac.h */,
+				0722EC30192556D8003E99F4 /* mac1.cpp */,
+				0722EC31192556D8003E99F4 /* mac1.h */,
+				0722EC32192556D8003E99F4 /* mac2.cpp */,
+				0722EC38192556D8003E99F4 /* mac_application.cpp */,
+				0722EC39192556D8003E99F4 /* mac_application.h */,
+				0722EC3C192556D8003E99F4 /* mac_copydesk.cpp */,
+				0722EC3D192556D8003E99F4 /* mac_copydesk.h */,
+				0722EC3E192556D8003E99F4 /* mac_crypto.cpp */,
+				0722EC3F192556D8003E99F4 /* mac_crypto.h */,
+				0722EC40192556D8003E99F4 /* mac_dir.cpp */,
+				0722EC41192556D8003E99F4 /* mac_dir.h */,
+				0722EC42192556D8003E99F4 /* mac_dumpinit.cpp */,
+				0722EC43192556D8003E99F4 /* mac_error.cpp */,
+				0722EC44192556D8003E99F4 /* mac_exception.cpp */,
+				0722EC45192556D8003E99F4 /* mac_factory_exchange.cpp */,
+				0722EC46192556D8003E99F4 /* mac_factory_exchange.h */,
+				0722EC47192556D8003E99F4 /* mac_file.cpp */,
+				0722EC48192556D8003E99F4 /* mac_file.h */,
+				0722EC49192556D8003E99F4 /* mac_file_set.cpp */,
+				0722EC4A192556D8003E99F4 /* mac_file_set.h */,
+				0722EC4B192556D8003E99F4 /* mac_file_system.cpp */,
+				0722EC4C192556D8003E99F4 /* mac_file_system.h */,
+				0722EC4D192556D8003E99F4 /* mac_gen_1.h */,
+				0722EC4E192556D8003E99F4 /* mac_genResource.cpp */,
+				0722EC4F192556D8003E99F4 /* mac_implementation.h */,
+				0722EC50192556D8003E99F4 /* mac_internal.h */,
+				0722EC51192556D8003E99F4 /* mac_ip_enum.cpp */,
+				0722EC52192556D8003E99F4 /* mac_ip_enum.h */,
+				0722EC53192556D8003E99F4 /* mac_main.cpp */,
+				0722EC54192556D8003E99F4 /* mac_mm.h */,
+				0722EC55192556D8003E99F4 /* mac_os.cpp */,
+				0722EC56192556D8003E99F4 /* mac_os.h */,
+				0722EC57192556D8003E99F4 /* mac_port_forward.cpp */,
+				0722EC58192556D8003E99F4 /* mac_port_forward.h */,
+				0722EC59192556D8003E99F4 /* mac_printer.cpp */,
+				0722EC5A192556D8003E99F4 /* mac_printer.h */,
+				0722EC5B192556D8003E99F4 /* mac_shell.cpp */,
+				0722EC5C192556D8003E99F4 /* mac_shell.h */,
+				0722EC5D192556D8003E99F4 /* mac_state.h */,
+				0722EC5E192556D8003E99F4 /* mac_stdio_file.cpp */,
+				0722EC5F192556D8003E99F4 /* mac_stdio_file.h */,
+				0722EC60192556D8003E99F4 /* mac_thread.cpp */,
+				0722EC61192556D8003E99F4 /* mac_thread.h */,
+				0722EC64192556D8003E99F4 /* mac_trace.cpp */,
+				0722EC65192556D8003E99F4 /* mac_util.cpp */,
+				0722EC66192556D8003E99F4 /* mac_window.cpp */,
+				0722EC67192556D8003E99F4 /* mac_window.h */,
+				0722EC68192556D8003E99F4 /* mac_window_draw.cpp */,
+				0722EC69192556D8003E99F4 /* mac_window_draw.h */,
+				0722EC6D192556D8003E99F4 /* round_window.h */,
+				0722EC6E192556D8003E99F4 /* round_window.mm */,
+				0722EC6F192556D8003E99F4 /* RoundWindow.h */,
+				0722EC70192556D8003E99F4 /* RoundWindow.mm */,
+				0722EC71192556D8003E99F4 /* RoundWindowFrameView.h */,
+				0722EC72192556D8003E99F4 /* RoundWindowFrameView.mm */,
+			);
+			name = macos;
+			path = node/macos;
 			sourceTree = "<group>";
 		};
 		07884B8F1897E9A400DC6CEB /* user */ = {
@@ -9213,9 +9295,7 @@
 		07B08A9D18495B40007A0560 /* macos */ = {
 			isa = PBXGroup;
 			children = (
-				07B08A9E18495B40007A0560 /* ca_mm.h */,
-				07B08A9F18495B40007A0560 /* ca_os.h */,
-				07B08AA018495B40007A0560 /* ca_os_thread.h */,
+				07B08A9F18495B40007A0560 /* os.h */,
 				07B08AA118495B40007A0560 /* DDInvocationGrabber.h */,
 				07B08AA218495B40007A0560 /* DDInvocationGrabber.mm */,
 				07B08AA318495B40007A0560 /* macos.cpp */,
@@ -9231,7 +9311,6 @@
 				07B08AAE18495B40007A0560 /* macos_file.h */,
 				07B08AAF18495B40007A0560 /* macos_file_watcher.cpp */,
 				07B08AB018495B40007A0560 /* macos_file_watcher.h */,
-				07B08AB118495B40007A0560 /* macos_fontopus.cpp */,
 				07B08AB218495B40007A0560 /* macos_graphics.cpp */,
 				07B08AB418495B40007A0560 /* macos_graphics_mm.h */,
 				07B08AB518495B40007A0560 /* macos_internal.h */,
@@ -9240,11 +9319,6 @@
 				07B08AB818495B40007A0560 /* macos_lock.cpp */,
 				07B08AB918495B40007A0560 /* macos_message_loop.cpp */,
 				07B08ABA18495B40007A0560 /* macos_mm.h */,
-				07B08ABB18495B40007A0560 /* macos_mm_boot.h */,
-				07B08ABC18495B40007A0560 /* macos_mm_window.h */,
-				07B08ABD18495B40007A0560 /* macos_mm_window.mm */,
-				07B08ABE18495B40007A0560 /* macos_mm_window_frame_view.h */,
-				07B08ABF18495B40007A0560 /* macos_mm_window_frame_view.mm */,
 				07B08AC018495B40007A0560 /* macos_ns_exception.cpp */,
 				07B08AC118495B40007A0560 /* macos_ns_exception.h */,
 				07B08AC218495B40007A0560 /* macos_os.cpp */,
@@ -9252,19 +9326,15 @@
 				07B08AC418495B40007A0560 /* macos_process.h */,
 				07B08AC518495B40007A0560 /* macos_process_pid.cpp */,
 				07B08AD218495B40007A0560 /* macos_simple_shell_launcher.cpp */,
-				07F5B127184968C20092C3E1 /* macos_simple_ui.cpp */,
-				07F5B125184968B30092C3E1 /* macos_simple_ui.h */,
 				07B08AD318495B40007A0560 /* macos_small_ipca_channel.cpp */,
-				07B08AD418495B40007A0560 /* macos_thread.cpp */,
-				07B08AD518495B40007A0560 /* macos_thread.h */,
+				07B08AD418495B40007A0560 /* macos_multithreading.cpp */,
+				07B08AD518495B40007A0560 /* macos_multithreading.h */,
 				07B08AD618495B40007A0560 /* macos_time.cpp */,
-				07B08AD718495B40007A0560 /* macos_user.cpp */,
-				07B08AD818495B40007A0560 /* macos_user.mm */,
+				07B08AD718495B40007A0560 /* macos_base_user.cpp */,
+				07B08AD818495B40007A0560 /* macos_base_user_mm.mm */,
 				07B08AD918495B40007A0560 /* macos_win_base.cpp */,
-				07B08ADA18495B40007A0560 /* macos_window.cpp */,
-				07B08ADB18495B40007A0560 /* macos_window.h */,
-				07B08ADC18495B40007A0560 /* macos_window.mm */,
-				07B08ADD18495B40007A0560 /* macos_window_boot.h */,
+				07B08ADA18495B40007A0560 /* macos_windowing.cpp */,
+				07B08ADB18495B40007A0560 /* macos_windowing.h */,
 				07B08ADE18495B40007A0560 /* macos_window_impl.h */,
 				07B08ADF18495B40007A0560 /* NSObject+DDExtensions.h */,
 				07B08AE018495B40007A0560 /* NSObject+DDExtensions.mm */,
@@ -9910,6 +9980,7 @@
 			isa = PBXGroup;
 			children = (
 				07D1C8DD19211FEA00B99496 /* ios */,
+				0722EC1F192556D7003E99F4 /* macos */,
 				07D1C91F19211FEA00B99496 /* node.cpp */,
 				07D1C92019211FEA00B99496 /* node.h */,
 			);
@@ -10614,6 +10685,7 @@
 				07884E231897EC9600DC6CEB /* loop_unicode.h in Headers */,
 				07B094AD18495C2A007A0560 /* collection_array_decl.h in Headers */,
 				07B08D0918495B40007A0560 /* exception_base.h in Headers */,
+				0722EC95192556D8003E99F4 /* mac_file.h in Headers */,
 				07B097B918495CBE007A0560 /* smtpd_socket.h in Headers */,
 				07884D731897EC9600DC6CEB /* armscii_8.h in Headers */,
 				07B0954418495C2B007A0560 /* str_international2.h in Headers */,
@@ -10627,10 +10699,10 @@
 				07B093C318495B43007A0560 /* xml_input_tree.h in Headers */,
 				07B0902818495B41007A0560 /* pem.h in Headers */,
 				07B08BED18495B40007A0560 /* base_machine_event.h in Headers */,
+				0722EC7E192556D8003E99F4 /* mac1.h in Headers */,
 				07884DA31897EC9600DC6CEB /* converters.h in Headers */,
 				07F5B1B2184A3B430092C3E1 /* file_byte_stream_memory_buffer.h in Headers */,
 				07B08BBC18495B40007A0560 /* base_core.h in Headers */,
-				07B092D918495B43007A0560 /* ca_mm.h in Headers */,
 				07B08CBD18495B40007A0560 /* crypto.h in Headers */,
 				07F5B1D5184A3B430092C3E1 /* file_plain_text_stream_memory_buffer.h in Headers */,
 				07B08F2118495B41007A0560 /* ec.h in Headers */,
@@ -10643,6 +10715,7 @@
 				07B08D4218495B41007A0560 /* exception_resource.h in Headers */,
 				07A6C878190C4D2500859288 /* camellia.h in Headers */,
 				07884E101897EC9600DC6CEB /* iso8859_6.h in Headers */,
+				0722ECA9192556D8003E99F4 /* mac_shell.h in Headers */,
 				07884DEE1897EC9600DC6CEB /* georgian_academy.h in Headers */,
 				07B08C0218495B40007A0560 /* base_os.h in Headers */,
 				07B094C318495C2A007A0560 /* collection_iterator.h in Headers */,
@@ -10651,7 +10724,6 @@
 				07B093B118495B43007A0560 /* xml_base_array.h in Headers */,
 				07B091B818495B42007A0560 /* e_capi_err.h in Headers */,
 				07B08BCA18495B40007A0560 /* base_draw2d.h in Headers */,
-				07B092DB18495B43007A0560 /* ca_os_thread.h in Headers */,
 				07B091CD18495B42007A0560 /* aep.h in Headers */,
 				07B091CB18495B42007A0560 /* e_ubsec_err.h in Headers */,
 				07884E7E1897EC9600DC6CEB /* xreadlink.h in Headers */,
@@ -10661,6 +10733,7 @@
 				07B08E9A18495B41007A0560 /* cmac.h in Headers */,
 				07F5B1C6184A3B430092C3E1 /* file_opened.h in Headers */,
 				07884D781897EC9600DC6CEB /* big5hkscs1999.h in Headers */,
+				0722EC9D192556D8003E99F4 /* mac_internal.h in Headers */,
 				07B0964418495C5F007A0560 /* userpresence_user_presence.h in Headers */,
 				07B0920918495B42007A0560 /* ssl2.h in Headers */,
 				07A6C87D190C4D2500859288 /* conf.h in Headers */,
@@ -10746,6 +10819,7 @@
 				07A6C879190C4D2500859288 /* cast.h in Headers */,
 				07C8D708191D98F300137494 /* ios_mm.h in Headers */,
 				07B08EA618495B41007A0560 /* cms_lcl.h in Headers */,
+				0722ECB6192556D8003E99F4 /* mac_window_draw.h in Headers */,
 				07B08C3F18495B40007A0560 /* File.h in Headers */,
 				07B0900C18495B41007A0560 /* o_str.h in Headers */,
 				07A6C8AA190C4D2500859288 /* srtp.h in Headers */,
@@ -10755,6 +10829,7 @@
 				07B092A218495B43007A0560 /* windows_thread.h in Headers */,
 				07A6C875190C4D2500859288 /* blowfish.h in Headers */,
 				07B097AB18495CBE007A0560 /* sip_tcp_client_socket.h in Headers */,
+				0722ECAE192556D8003E99F4 /* mac_thread.h in Headers */,
 				079AE0CB188648D400635C39 /* database_selection_item.h in Headers */,
 				07884D7C1897EC9600DC6CEB /* binary-io.h in Headers */,
 				07B0952918495C2B007A0560 /* math_static_numeric_info.h in Headers */,
@@ -10789,6 +10864,7 @@
 				07B08CFE18495B40007A0560 /* crypto_nessie.h in Headers */,
 				07B08BCD18495B40007A0560 /* base_enum.h in Headers */,
 				07A6C890190C4D2500859288 /* krb5_asn.h in Headers */,
+				0722EC93192556D8003E99F4 /* mac_factory_exchange.h in Headers */,
 				07F5B1F3184A3B430092C3E1 /* file_transfer_buffer.h in Headers */,
 				07F5B285184A3B6A0092C3E1 /* visual_cursor.h in Headers */,
 				07B094AE18495C2A007A0560 /* collection_attrib_map.h in Headers */,
@@ -10901,8 +10977,9 @@
 				07F5B1EB184A3B430092C3E1 /* file_string_buffer.h in Headers */,
 				07884E441897EC9600DC6CEB /* rk1048.h in Headers */,
 				07884C0E1897E9A500DC6CEB /* user_print_job.h in Headers */,
-				07B092DA18495B43007A0560 /* ca_os.h in Headers */,
+				07B092DA18495B43007A0560 /* os.h in Headers */,
 				07B08C3C18495B40007A0560 /* compress_gzip_stream.h in Headers */,
+				0722EC99192556D8003E99F4 /* mac_file_system.h in Headers */,
 				07B094E918495C2B007A0560 /* collection_stack.h in Headers */,
 				07884C2F1897EC2A00DC6CEB /* base_print_job.h in Headers */,
 				07B08C2218495B40007A0560 /* base_types.h in Headers */,
@@ -10938,7 +11015,6 @@
 				07884D691897EC9600DC6CEB /* aliases_osf1_sysosf1.h in Headers */,
 				07884E6A1897EC9600DC6CEB /* unistd.in.h in Headers */,
 				07B08BEB18495B40007A0560 /* base_lparam.h in Headers */,
-				07B0931718495B43007A0560 /* macos_window_boot.h in Headers */,
 				07B0979118495CBE007A0560 /* sockets_socket_handler.h in Headers */,
 				07B094DD18495C2B007A0560 /* collection_rect_array.h in Headers */,
 				07B08BB318495B40007A0560 /* base_c_winrt.h in Headers */,
@@ -10968,7 +11044,6 @@
 				079AE08D1886489D00635C39 /* net_byte_order.h in Headers */,
 				07F5B283184A3B6A0092C3E1 /* visual_const.h in Headers */,
 				07B091C418495B42007A0560 /* e_nuron_err.h in Headers */,
-				07B092F818495B43007A0560 /* macos_mm_window_frame_view.h in Headers */,
 				0715B929189EE65700B3EBD9 /* geoip_internal.h in Headers */,
 				07D1CA17192121BF00B99496 /* message.h in Headers */,
 				07884E221897EC9600DC6CEB /* localcharset.h in Headers */,
@@ -11062,10 +11137,11 @@
 				07B08D5B18495B41007A0560 /* hotplugin_plugin.h in Headers */,
 				07B08D6618495B41007A0560 /* install_cube_run.h in Headers */,
 				07884E681897EC9600DC6CEB /* uhc_1.h in Headers */,
-				07B0930F18495B43007A0560 /* macos_thread.h in Headers */,
+				07B0930F18495B43007A0560 /* macos_multithreading.h in Headers */,
 				07B0977918495CBE007A0560 /* net_address.h in Headers */,
 				07884D681897EC9600DC6CEB /* aliases_osf1.h in Headers */,
 				07884D861897EC9600DC6CEB /* canonical_local_sysaix.h in Headers */,
+				0722ECA5192556D8003E99F4 /* mac_port_forward.h in Headers */,
 				07D1C9A61921201D00B99496 /* ios_m.h in Headers */,
 				07B093B418495B43007A0560 /* xml_departament.h in Headers */,
 				07D1C9941921201D00B99496 /* DDInvocationGrabber.h in Headers */,
@@ -11077,6 +11153,7 @@
 				07884E1C1897EC9600DC6CEB /* johab_hangul.h in Headers */,
 				07B0950418495C2B007A0560 /* comparison_hash.h in Headers */,
 				07B08C2418495B40007A0560 /* boot_debug.h in Headers */,
+				0722ECAC192556D8003E99F4 /* mac_stdio_file.h in Headers */,
 				079DBF3C1886788000EFFEFB /* file_set.h in Headers */,
 				07B090B618495B41007A0560 /* seed_locl.h in Headers */,
 				07B0954118495C2B007A0560 /* str_interface.h in Headers */,
@@ -11086,12 +11163,12 @@
 				07B094CB18495C2B007A0560 /* collection_map_association.h in Headers */,
 				07884DD41897EC9600DC6CEB /* dosname.h in Headers */,
 				07B093D418495B43007A0560 /* xml_xmlite.h in Headers */,
-				07D1C95E19211FEA00B99496 /* RoundWindow.h in Headers */,
 				07884DB91897EC9600DC6CEB /* cp850.h in Headers */,
-				07D1C96019211FEA00B99496 /* RoundWindowFrameView.h in Headers */,
 				07B0979918495CBE007A0560 /* sockets_sync_socket_handler.h in Headers */,
 				07B094D718495C2B007A0560 /* collection_pointer_list.h in Headers */,
 				07B0954D18495C2B007A0560 /* str_simple.h in Headers */,
+				0722EC86192556D8003E99F4 /* mac_application.h in Headers */,
+				0722EC8E192556D8003E99F4 /* mac_dir.h in Headers */,
 				07884DFE1897EC9600DC6CEB /* iso2022_jp.h in Headers */,
 				07B0902918495B41007A0560 /* pem2.h in Headers */,
 				07884C1A1897E9A500DC6CEB /* user_view_container.h in Headers */,
@@ -11179,13 +11256,13 @@
 				07A2247918F7F3F8002C3B39 /* user_menu_base.h in Headers */,
 				07884DDA1897EC9600DC6CEB /* euc_jp.h in Headers */,
 				07B097F918495CBE007A0560 /* sockets_http_socket.h in Headers */,
+				0722EC7C192556D8003E99F4 /* mac.h in Headers */,
 				07B0952118495C2B007A0560 /* math_index.h in Headers */,
 				07B08ECE18495B41007A0560 /* des_locl.h in Headers */,
 				07A6C889190C4D2500859288 /* ecdh.h in Headers */,
 				07884E2D1897EC9600DC6CEB /* mac_iceland.h in Headers */,
 				07B08CAA18495B40007A0560 /* inffixed.h in Headers */,
 				07A6C894190C4D2500859288 /* md5.h in Headers */,
-				07B092F618495B43007A0560 /* macos_mm_window.h in Headers */,
 				07884E781897EC9600DC6CEB /* verify.h in Headers */,
 				07B0951018495C2B007A0560 /* datetime_time.h in Headers */,
 				07F5B1D9184A3B430092C3E1 /* file_reader.h in Headers */,
@@ -11230,6 +11307,7 @@
 				9AE7250217E83B69003E47F9 /* multithreading_event.h in Headers */,
 				07884E551897EC9600DC6CEB /* strerror-override.h in Headers */,
 				9AE7250417E83B69003E47F9 /* multithreading_event_base.h in Headers */,
+				0722EC8A192556D8003E99F4 /* mac_copydesk.h in Headers */,
 				9AE7250617E83B69003E47F9 /* multithreading_event_collection.h in Headers */,
 				07A6C88E190C4D2500859288 /* hmac.h in Headers */,
 				9AE7250817E83B69003E47F9 /* multithreading_file_change_event.h in Headers */,
@@ -11261,7 +11339,9 @@
 				07C8D689191CF0EC00137494 /* fs_link.h in Headers */,
 				07B092A618495B43007A0560 /* windows_types.h in Headers */,
 				07D1C95B19211FEA00B99496 /* os.h in Headers */,
+				0722EC9A192556D8003E99F4 /* mac_gen_1.h in Headers */,
 				07B08DC818495B41007A0560 /* aes_locl.h in Headers */,
+				0722ECAA192556D8003E99F4 /* mac_state.h in Headers */,
 				9AE7250F17E83B69003E47F9 /* multithreading_mutex.h in Headers */,
 				07B097CB18495CBE007A0560 /* Ajp13Socket.h in Headers */,
 				9AE7251117E83B69003E47F9 /* multithreading_retry_multi_lock.h in Headers */,
@@ -11388,7 +11468,6 @@
 				07B08EC118495B41007A0560 /* cryptlib.h in Headers */,
 				07B0908F18495B41007A0560 /* ripemd.h in Headers */,
 				07B08CE418495B40007A0560 /* crypto_null_auth.h in Headers */,
-				07A0D7B31923356B00039222 /* RoundViewController.h in Headers */,
 				07B0950718495C2B007A0560 /* comparison_md5.h in Headers */,
 				07B08D6118495B41007A0560 /* install.h in Headers */,
 				07884E671897EC9600DC6CEB /* ucs4swapped.h in Headers */,
@@ -11404,7 +11483,6 @@
 				07B08DEE18495B41007A0560 /* asn1_locl.h in Headers */,
 				07884E511897EC9600DC6CEB /* stdio.in.h in Headers */,
 				07B0906418495B41007A0560 /* rand_lcl.h in Headers */,
-				07D1C95C19211FEA00B99496 /* round_window.h in Headers */,
 				07B0922018495B42007A0560 /* tls1.h in Headers */,
 				07884DC81897EC9600DC6CEB /* cp874.h in Headers */,
 				07F5B2E1184A403C0092C3E1 /* multithreading_simple_thread.h in Headers */,
@@ -11438,7 +11516,6 @@
 				07B0952A18495C2B007A0560 /* primitive_check.h in Headers */,
 				07B097AA18495CBE007A0560 /* sip_socket.h in Headers */,
 				07B0919818495B42007A0560 /* gost2001_keyx.h in Headers */,
-				07F5B126184968B30092C3E1 /* macos_simple_ui.h in Headers */,
 				07D1CA1D192121BF00B99496 /* message_cross_windows.h in Headers */,
 				07B08CA318495B40007A0560 /* gzguts.h in Headers */,
 				07B094B718495C2A007A0560 /* collection_comparable_eq_array.h in Headers */,
@@ -11583,11 +11660,13 @@
 				07884C271897E9A500DC6CEB /* user_window_interface.h in Headers */,
 				07B095FC18495C5F007A0560 /* simple_ui_tap.h in Headers */,
 				9AE7257017E83B69003E47F9 /* primitive_memory_container.h in Headers */,
+				0722ECB4192556D8003E99F4 /* mac_window.h in Headers */,
 				079AE0751886483600635C39 /* base_action_source.h in Headers */,
 				07884E2C1897EC9600DC6CEB /* mac_hebrew.h in Headers */,
 				07884E651897EC9600DC6CEB /* ucs4internal.h in Headers */,
 				07B0929E18495B43007A0560 /* windows_ole_automation.h in Headers */,
 				07F5B1B8184A3B430092C3E1 /* file_composite.h in Headers */,
+				0722ECA1192556D8003E99F4 /* mac_mm.h in Headers */,
 				07F5B27F184A3B6A0092C3E1 /* graphics.h in Headers */,
 				07B091D118495B42007A0560 /* hw_ubsec.h in Headers */,
 				07B094BD18495C2A007A0560 /* collection_deque.h in Headers */,
@@ -11690,6 +11769,7 @@
 				07B08CB918495B40007A0560 /* zconf.h in Headers */,
 				07B0950518495C2B007A0560 /* comparison_less.h in Headers */,
 				07B095F018495C5F007A0560 /* simple_ui.h in Headers */,
+				0722ECA7192556D8003E99F4 /* mac_printer.h in Headers */,
 				07B0978D18495CBE007A0560 /* sockets_sctp_socket.h in Headers */,
 				07884DDB1897EC9600DC6CEB /* euc_kr.h in Headers */,
 				07884DF41897EC9600DC6CEB /* hkscs2008.h in Headers */,
@@ -11703,9 +11783,12 @@
 				07B0929618495B43007A0560 /* windows_crt.h in Headers */,
 				07B0911218495B41007A0560 /* x509_vfy.h in Headers */,
 				07884E111897EC9600DC6CEB /* iso8859_7.h in Headers */,
+				0722ECA3192556D8003E99F4 /* mac_os.h in Headers */,
+				0722EC9F192556D8003E99F4 /* mac_ip_enum.h in Headers */,
 				07B0931918495B43007A0560 /* NSObject+DDExtensions.h in Headers */,
 				07884DA61897EC9600DC6CEB /* cp1125.h in Headers */,
 				07B08CCE18495B40007A0560 /* crypto_err.h in Headers */,
+				0722EC97192556D8003E99F4 /* mac_file_set.h in Headers */,
 				07F5B24D184A3B6A0092C3E1 /* draw2d.h in Headers */,
 				07B08D6C18495B41007A0560 /* install_install.h in Headers */,
 				07B08CDC18495B40007A0560 /* crypto_kernel_compat.h in Headers */,
@@ -11735,7 +11818,7 @@
 				07B08D3618495B41007A0560 /* exception_not_licensed.h in Headers */,
 				07884D811897EC9600DC6CEB /* canonical_aix.h in Headers */,
 				07B0904618495B41007A0560 /* pkcs12.h in Headers */,
-				07B0931518495B43007A0560 /* macos_window.h in Headers */,
+				07B0931518495B43007A0560 /* macos_windowing.h in Headers */,
 				07884E041897EC9600DC6CEB /* iso646_jp.h in Headers */,
 				07B08BBB18495B40007A0560 /* base_conv.h in Headers */,
 				07B0908318495B41007A0560 /* rc5.h in Headers */,
@@ -11779,7 +11862,6 @@
 				07B0900218495B41007A0560 /* modes.h in Headers */,
 				07B092A918495B43007A0560 /* windows_winnt.h in Headers */,
 				07B0920A18495B42007A0560 /* ssl23.h in Headers */,
-				07B092F518495B43007A0560 /* macos_mm_boot.h in Headers */,
 				07B094E318495C2B007A0560 /* collection_smart_pointer_array.h in Headers */,
 				07B0956018495C2B007A0560 /* x_charcategory.h in Headers */,
 				079AE0BD188648D400635C39 /* database_client.h in Headers */,
@@ -11838,6 +11920,8 @@
 				07B08DF118495B41007A0560 /* asn1t.h in Headers */,
 				07A224A318F7F766002C3B39 /* gunicomp.h in Headers */,
 				07B08CBA18495B40007A0560 /* zlib.h in Headers */,
+				0722EC8C192556D8003E99F4 /* mac_crypto.h in Headers */,
+				0722EC9C192556D8003E99F4 /* mac_implementation.h in Headers */,
 				07B094FE18495C2B007A0560 /* collection_unique_array.h in Headers */,
 				07B0911E18495B41007A0560 /* pcy_int.h in Headers */,
 				07B0976D18495CBE007A0560 /* mail_pop3.h in Headers */,
@@ -11954,13 +12038,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0722ECF819256C67003E99F4 /* ansios_file.cpp in Sources */,
 				07B0964318495C5F007A0560 /* userpresence_user_presence.cpp in Sources */,
 				07B08F0918495B41007A0560 /* dsa_key.c in Sources */,
 				07B08F7C18495B41007A0560 /* e_bf.c in Sources */,
 				079AE0BC188648D400635C39 /* database_client.cpp in Sources */,
 				07B0928518495B43007A0560 /* ansios_cross_win.cpp in Sources */,
 				07A224B018F7F766002C3B39 /* rfc3454.c in Sources */,
-				07D1C94919211FEA00B99496 /* ios_printer.cpp in Sources */,
 				07B08C1C18495B40007A0560 /* base_template.cpp in Sources */,
 				07884D7D1897EC9600DC6CEB /* c-ctype.c in Sources */,
 				07C8D688191CF0EC00137494 /* fs_link.cpp in Sources */,
@@ -11986,7 +12070,6 @@
 				07B08D5618495B41007A0560 /* hotplugin_container_launcher.cpp in Sources */,
 				07B0913718495B41007A0560 /* v3_pci.c in Sources */,
 				07B08F6B18495B41007A0560 /* tb_rsa.c in Sources */,
-				07D1C94B19211FEA00B99496 /* ios_shell.cpp in Sources */,
 				07A2247E18F7F6EC002C3B39 /* install_plugin_bare_paint_discreet.cpp in Sources */,
 				07B093D318495B43007A0560 /* xml_xmlite.cpp in Sources */,
 				07B0911018495B41007A0560 /* x509_v3.c in Sources */,
@@ -11995,6 +12078,8 @@
 				07B08E0A18495B41007A0560 /* t_spki.c in Sources */,
 				07B08E1018495B41007A0560 /* tasn_new.c in Sources */,
 				07B094ED18495C2B007A0560 /* collection_string_list.cpp in Sources */,
+				0722EC94192556D8003E99F4 /* mac_file.cpp in Sources */,
+				0722EC96192556D8003E99F4 /* mac_file_set.cpp in Sources */,
 				07B0910418495B41007A0560 /* x509_cmp.c in Sources */,
 				07B08E8A18495B41007A0560 /* c_cfb64.c in Sources */,
 				07B0976918495CBE007A0560 /* http_system.cpp in Sources */,
@@ -12004,6 +12089,7 @@
 				07B08D5318495B41007A0560 /* exception_void_implementation.cpp in Sources */,
 				07A2247B18F7F55F002C3B39 /* base_id_pool.cpp in Sources */,
 				07B0950B18495C2B007A0560 /* datetime_departament.cpp in Sources */,
+				0722EC7F192556D8003E99F4 /* mac2.cpp in Sources */,
 				07B097FD18495CBE007A0560 /* sockets_http_batch_buffer.cpp in Sources */,
 				079AE0BF188648D400635C39 /* database_definition.cpp in Sources */,
 				07884BF01897E9A500DC6CEB /* user_frame_window.cpp in Sources */,
@@ -12028,7 +12114,6 @@
 				07B0921B18495B42007A0560 /* t1_enc.c in Sources */,
 				07B08C2018495B40007A0560 /* base_trace.cpp in Sources */,
 				07B08E5A18495B41007A0560 /* bn_div.c in Sources */,
-				07B092F918495B43007A0560 /* macos_mm_window_frame_view.mm in Sources */,
 				07B08F7818495B41007A0560 /* c_alld.c in Sources */,
 				07B090F218495B41007A0560 /* ui_err.c in Sources */,
 				07B08DF218495B41007A0560 /* asn_mime.c in Sources */,
@@ -12036,7 +12121,6 @@
 				07884C051897E9A500DC6CEB /* user_mouse_focus.cpp in Sources */,
 				07B08CD518495B40007A0560 /* crypto_hash_null_auth.c in Sources */,
 				07B08F5A18495B41007A0560 /* eng_openssl.c in Sources */,
-				07D1C9BB1921201D00B99496 /* ios.cpp in Sources */,
 				07B08E0418495B41007A0560 /* p5_pbev2.c in Sources */,
 				07B090BD18495B41007A0560 /* sha1dgst.c in Sources */,
 				07B08DD418495B41007A0560 /* a_bytes.c in Sources */,
@@ -12057,7 +12141,6 @@
 				07F5B1BC184A3B430092C3E1 /* file_dir_application.cpp in Sources */,
 				07B0980318495CBE007A0560 /* sockets_link_out_socket.cpp in Sources */,
 				07B08EC918495B41007A0560 /* cfb_enc.c in Sources */,
-				07D1C96119211FEA00B99496 /* RoundWindowFrameView.mm in Sources */,
 				07B097B418495CBE007A0560 /* sockets_sip_server.cpp in Sources */,
 				07B08F0F18495B41007A0560 /* dsa_sign.c in Sources */,
 				07B094CE18495C2B007A0560 /* collection_numeric_array.cpp in Sources */,
@@ -12069,6 +12152,7 @@
 				07B08EA418495B41007A0560 /* cms_ess.c in Sources */,
 				07B0935118495B43007A0560 /* os_file.cpp in Sources */,
 				07B0909118495B41007A0560 /* rmd_dgst.c in Sources */,
+				0722ECAD192556D8003E99F4 /* mac_thread.cpp in Sources */,
 				07B08F3718495B41007A0560 /* ecp_nistp521.c in Sources */,
 				07B08DC618495B41007A0560 /* aes_ecb.c in Sources */,
 				07B0909F18495B41007A0560 /* rsa_gen.c in Sources */,
@@ -12081,9 +12165,9 @@
 				07884C171897E9A500DC6CEB /* user_user.cpp in Sources */,
 				07A224B718F7F766002C3B39 /* stringprep.c in Sources */,
 				07B0931318495B43007A0560 /* macos_win_base.cpp in Sources */,
+				0722EC89192556D8003E99F4 /* mac_copydesk.cpp in Sources */,
 				0715B917189EDE4500B3EBD9 /* evp_cnf.c in Sources */,
 				07F5B24E184A3B6A0092C3E1 /* draw2d_bitmap.cpp in Sources */,
-				07D1C95019211FEA00B99496 /* ios_thread.cpp in Sources */,
 				07B0910018495B41007A0560 /* by_file.c in Sources */,
 				07B092FC18495B43007A0560 /* macos_os.cpp in Sources */,
 				07B08FAF18495B41007A0560 /* p_verify.c in Sources */,
@@ -12091,7 +12175,7 @@
 				07B08CAB18495B40007A0560 /* inflate.c in Sources */,
 				07B08DC218495B41007A0560 /* aes_cbc.c in Sources */,
 				07B0912418495B41007A0560 /* v3_addr.c in Sources */,
-				07B0930E18495B43007A0560 /* macos_thread.cpp in Sources */,
+				07B0930E18495B43007A0560 /* macos_multithreading.cpp in Sources */,
 				07B08D7318495B41007A0560 /* install_plugin.cpp in Sources */,
 				07B08D3B18495B41007A0560 /* exception_os.cpp in Sources */,
 				07B08F2318495B41007A0560 /* ec2_oct.c in Sources */,
@@ -12106,7 +12190,6 @@
 				07B0903B18495B41007A0560 /* p12_crt.c in Sources */,
 				07B0920518495B42007A0560 /* s3_pkt.c in Sources */,
 				07B08D5118495B41007A0560 /* exception_user.cpp in Sources */,
-				07D1C9AC1921201D00B99496 /* ios_process_pid.cpp in Sources */,
 				07B08EAA18495B41007A0560 /* cms_smime.c in Sources */,
 				07B08F3F18495B41007A0560 /* ech_err.c in Sources */,
 				07B090EA18495B41007A0560 /* ts_verify_ctx.c in Sources */,
@@ -12119,14 +12202,12 @@
 				07BDFB3318F7D94E00CCABA9 /* base_new.cpp in Sources */,
 				07B08E7A18495B41007A0560 /* buf_err.c in Sources */,
 				07A2247F18F7F6EC002C3B39 /* install_plugin_bare_paint_full_screen.cpp in Sources */,
-				07D1C9A71921201D00B99496 /* ios_message_loop.cpp in Sources */,
 				07B08DC518495B41007A0560 /* aes_ctr.c in Sources */,
 				07F5B1A2184A3B430092C3E1 /* file_binary_buffer.cpp in Sources */,
 				07884BEC1897E9A500DC6CEB /* user_draw_interface.cpp in Sources */,
 				07B094C418495C2A007A0560 /* collection_key_sort_array.cpp in Sources */,
 				07B08EC518495B41007A0560 /* cbc_cksm.c in Sources */,
 				07B08E4418495B41007A0560 /* bss_file.c in Sources */,
-				07C8D702191D98F300137494 /* ios_genResource.cpp in Sources */,
 				07B08DF418495B41007A0560 /* asn_pack.c in Sources */,
 				07B0911D18495B41007A0560 /* pcy_data.c in Sources */,
 				07B08CCA18495B40007A0560 /* crypto_cipher_cipher.c in Sources */,
@@ -12137,7 +12218,6 @@
 				07B08EBB18495B41007A0560 /* conf_mod.c in Sources */,
 				07B08FF518495B41007A0560 /* mdc2_one.c in Sources */,
 				07B08D0818495B40007A0560 /* exception_base.cpp in Sources */,
-				07D1C9A31921201D00B99496 /* ios_launcher.cpp in Sources */,
 				07B08E0D18495B41007A0560 /* tasn_dec.c in Sources */,
 				07B092E318495B43007A0560 /* macos_cross_win_file.cpp in Sources */,
 				07B0903118495B41007A0560 /* pem_seal.c in Sources */,
@@ -12154,7 +12234,6 @@
 				07B08BAC18495B40007A0560 /* base_assert.cpp in Sources */,
 				07B08CDD18495B40007A0560 /* crypto_kernel_crypto_kernel.c in Sources */,
 				07B08E6818495B41007A0560 /* bn_prime.c in Sources */,
-				07D1C95319211FEA00B99496 /* ios_trace.cpp in Sources */,
 				07B08C4718495B40007A0560 /* zip_api.cpp in Sources */,
 				07B08F8218495B41007A0560 /* e_idea.c in Sources */,
 				07B08BA918495B40007A0560 /* base_application.cpp in Sources */,
@@ -12165,6 +12244,8 @@
 				07B0921418495B42007A0560 /* ssl_rsa.c in Sources */,
 				07B08D7D18495B41007A0560 /* install_windows_service.cpp in Sources */,
 				07B08F8718495B41007A0560 /* e_rc4_hmac_md5.c in Sources */,
+				0722ECB5192556D8003E99F4 /* mac_window_draw.cpp in Sources */,
+				0722EC92192556D8003E99F4 /* mac_factory_exchange.cpp in Sources */,
 				07B0912518495B41007A0560 /* v3_akey.c in Sources */,
 				07B08BF818495B40007A0560 /* base_message_queue.cpp in Sources */,
 				07B0906B18495B41007A0560 /* randfile.c in Sources */,
@@ -12182,7 +12263,6 @@
 				07B08E6518495B41007A0560 /* bn_mpi.c in Sources */,
 				07B092F018495B43007A0560 /* macos_launcher.cpp in Sources */,
 				07B0978E18495CBE007A0560 /* sockets_Socket.cpp in Sources */,
-				07D1C94519211FEA00B99496 /* ios_os.cpp in Sources */,
 				07B091BF18495B42007A0560 /* e_gmp.c in Sources */,
 				07B08CD318495B40007A0560 /* crypto_hash_auth.c in Sources */,
 				07B0900B18495B41007A0560 /* o_str.c in Sources */,
@@ -12247,6 +12327,7 @@
 				07F5B1C2184A3B430092C3E1 /* file_input_stream.cpp in Sources */,
 				079AE0D3188648D400635C39 /* database_update_hint.cpp in Sources */,
 				07B091A718495B42007A0560 /* gost_pmeth.c in Sources */,
+				0722ECB2192556D8003E99F4 /* mac_util.cpp in Sources */,
 				07B08E6718495B41007A0560 /* bn_nist.c in Sources */,
 				07B0909E18495B41007A0560 /* rsa_err.c in Sources */,
 				07F5B12A18496D920092C3E1 /* des_enc.c in Sources */,
@@ -12258,7 +12339,6 @@
 				07B08D6B18495B41007A0560 /* install_install.cpp in Sources */,
 				07B08EC718495B41007A0560 /* cfb64ede.c in Sources */,
 				07B08C4B18495B40007A0560 /* zip_ioapi.cpp in Sources */,
-				07D1C95D19211FEA00B99496 /* round_window.mm in Sources */,
 				07B08E8218495B41007A0560 /* cmll_cfb.c in Sources */,
 				07B08CE318495B40007A0560 /* crypto_math_stat.c in Sources */,
 				07B08C4D18495B40007A0560 /* zip_unzip.cpp in Sources */,
@@ -12306,7 +12386,6 @@
 				07B08DFF18495B41007A0560 /* i2d_pu.c in Sources */,
 				07B08E0518495B41007A0560 /* p8_pkey.c in Sources */,
 				07B0910818495B41007A0560 /* x509_ext.c in Sources */,
-				07B0928818495B43007A0560 /* ansios_file.cpp in Sources */,
 				07884BF41897E9A500DC6CEB /* user_impact_system.cpp in Sources */,
 				07B08F6D18495B41007A0560 /* err.c in Sources */,
 				079AE05E1886429400635C39 /* windows_datetime.cpp in Sources */,
@@ -12322,7 +12401,7 @@
 				07B08C2A18495B40007A0560 /* bsdiff_bspatch.cpp in Sources */,
 				07B08D7E18495B41007A0560 /* install_windows_win.cpp in Sources */,
 				07B08E8318495B41007A0560 /* cmll_ctr.c in Sources */,
-				07B0931118495B43007A0560 /* macos_user.cpp in Sources */,
+				07B0931118495B43007A0560 /* macos_base_user.cpp in Sources */,
 				07B08E1E18495B41007A0560 /* x_pubkey.c in Sources */,
 				07A224B518F7F766002C3B39 /* strerror-stringprep.c in Sources */,
 				07B0955718495C2B007A0560 /* str_strx.cpp in Sources */,
@@ -12338,7 +12417,6 @@
 				07B0910A18495B41007A0560 /* x509_obj.c in Sources */,
 				07B08EA818495B41007A0560 /* cms_pwri.c in Sources */,
 				079AE0601886429400635C39 /* windows_threading.cpp in Sources */,
-				07B092EB18495B43007A0560 /* macos_fontopus.cpp in Sources */,
 				07B0976818495CBE007A0560 /* http_signal.cpp in Sources */,
 				07B08BAF18495B40007A0560 /* base_c.c in Sources */,
 				07884D711897EC9600DC6CEB /* areadlink.c in Sources */,
@@ -12353,10 +12431,8 @@
 				07884C091897E9A500DC6CEB /* user_place_holder.cpp in Sources */,
 				07B08DD918495B41007A0560 /* a_gentm.c in Sources */,
 				07B08CAD18495B40007A0560 /* inftrees.c in Sources */,
-				07D1C9991921201D00B99496 /* ios_cross_win_file.cpp in Sources */,
 				07B08BEC18495B40007A0560 /* base_machine_event.cpp in Sources */,
 				0715B927189EE65700B3EBD9 /* geoip_city.cpp in Sources */,
-				07D1C99D1921201D00B99496 /* ios_debug.cpp in Sources */,
 				07B08CDB18495B40007A0560 /* crypto_kernel_alloc.c in Sources */,
 				07B08F6918495B41007A0560 /* tb_pkmeth.c in Sources */,
 				07B0910E18495B41007A0560 /* x509_trs.c in Sources */,
@@ -12367,7 +12443,6 @@
 				07B0954518495C2B007A0560 /* str_international_locale_schema.cpp in Sources */,
 				07B08F8618495B41007A0560 /* e_rc4.c in Sources */,
 				07B090E318495B41007A0560 /* ts_lib.c in Sources */,
-				07D1C92A19211FEA00B99496 /* ios_application.cpp in Sources */,
 				07B0953418495C2B007A0560 /* str_ch.cpp in Sources */,
 				07F5B1DA184A3B430092C3E1 /* file_seekable.cpp in Sources */,
 				07B090FC18495B41007A0560 /* wp_dgst.c in Sources */,
@@ -12379,7 +12454,6 @@
 				07B08FAC18495B41007A0560 /* p_open.c in Sources */,
 				07B0931018495B43007A0560 /* macos_time.cpp in Sources */,
 				07B090E218495B41007A0560 /* ts_err.c in Sources */,
-				07D1C92819211FEA00B99496 /* ios_ios.cpp in Sources */,
 				07F5B1A7184A3B430092C3E1 /* file_byte_input_stream.cpp in Sources */,
 				07B08BC118495B40007A0560 /* base_cregexp_util.cpp in Sources */,
 				07B08E1118495B41007A0560 /* tasn_prn.c in Sources */,
@@ -12389,6 +12463,7 @@
 				07B08F9D18495B41007A0560 /* m_mdc2.c in Sources */,
 				07B08E6E18495B41007A0560 /* bn_sqr.c in Sources */,
 				07B08E1918495B41007A0560 /* x_info.c in Sources */,
+				0722EC90192556D8003E99F4 /* mac_error.cpp in Sources */,
 				07B08E2A18495B41007A0560 /* bf_ofb64.c in Sources */,
 				07B0911718495B41007A0560 /* x509spki.c in Sources */,
 				07B08E6C18495B41007A0560 /* bn_recp.c in Sources */,
@@ -12405,7 +12480,7 @@
 				07B0909818495B41007A0560 /* rsa_ameth.c in Sources */,
 				07B08E3418495B41007A0560 /* b_print.c in Sources */,
 				07B095F518495C5F007A0560 /* simple_ui_label.cpp in Sources */,
-				07D1C9B91921201D00B99496 /* ios_windowing.cpp in Sources */,
+				0722ECA6192556D8003E99F4 /* mac_printer.cpp in Sources */,
 				07B08E5518495B41007A0560 /* bn_asm.c in Sources */,
 				07B08FA318495B41007A0560 /* m_wp.c in Sources */,
 				07B0919B18495B42007A0560 /* gost94_keyx.c in Sources */,
@@ -12422,11 +12497,11 @@
 				07B08BB518495B40007A0560 /* base_cmdtarg.cpp in Sources */,
 				07D1CA23192121BF00B99496 /* message_user.cpp in Sources */,
 				07B08F7918495B41007A0560 /* digest.c in Sources */,
+				0722ECB3192556D8003E99F4 /* mac_window.cpp in Sources */,
 				07B0912818495B41007A0560 /* v3_asid.c in Sources */,
 				07B0922118495B42007A0560 /* tls_srp.c in Sources */,
 				07F5B1D4184A3B430092C3E1 /* file_plain_text_stream_memory_buffer.cpp in Sources */,
 				07B0914218495B41007A0560 /* v3err.c in Sources */,
-				07D1C93019211FEA00B99496 /* ios_crypto.cpp in Sources */,
 				07B094C018495C2A007A0560 /* collection_id_array.cpp in Sources */,
 				07B097C918495CBE007A0560 /* sockets_IEventOwner.cpp in Sources */,
 				07B091F118495B42007A0560 /* kssl.c in Sources */,
@@ -12439,13 +12514,13 @@
 				07B08DED18495B41007A0560 /* asn1_lib.c in Sources */,
 				07B08D3918495B41007A0560 /* exception_operation_canceled.cpp in Sources */,
 				07B097F218495CBE007A0560 /* sockets_http_put_socket.cpp in Sources */,
+				0722ECA2192556D8003E99F4 /* mac_os.cpp in Sources */,
 				07884C261897E9A500DC6CEB /* user_window_interface.cpp in Sources */,
 				07B08D6418495B41007A0560 /* install_canvas.cpp in Sources */,
 				07B08E8718495B41007A0560 /* cmll_ofb.c in Sources */,
 				07F5B1DD184A3B430092C3E1 /* file_simple_binary_buffer.cpp in Sources */,
 				07B0903218495B41007A0560 /* pem_sign.c in Sources */,
 				07B08CC818495B40007A0560 /* crypto_cipher_aes_cbc.c in Sources */,
-				07B0931618495B43007A0560 /* macos_window.mm in Sources */,
 				07B08BCB18495B40007A0560 /* base_element.cpp in Sources */,
 				07B0904318495B41007A0560 /* p12_p8e.c in Sources */,
 				07884C221897E9A500DC6CEB /* user_window.cpp in Sources */,
@@ -12455,7 +12530,6 @@
 				07B08E0618495B41007A0560 /* t_bitst.c in Sources */,
 				07B08E1618495B41007A0560 /* x_bignum.c in Sources */,
 				07B0903918495B41007A0560 /* p12_attr.c in Sources */,
-				07D1C9B31921201D00B99496 /* ios_base_user.cpp in Sources */,
 				07B08F4C18495B41007A0560 /* ecs_sign.c in Sources */,
 				07B094D018495C2B007A0560 /* collection_object_list.cpp in Sources */,
 				07B08CD618495B40007A0560 /* crypto_hash_sha1.c in Sources */,
@@ -12472,6 +12546,7 @@
 				07F5B1FA184A3B430092C3E1 /* fs_data.cpp in Sources */,
 				07B091B318495B42007A0560 /* e_atalla.c in Sources */,
 				07B097B518495CBE007A0560 /* sockets_sip_tcp_client_socket.cpp in Sources */,
+				0722ECA8192556D8003E99F4 /* mac_shell.cpp in Sources */,
 				07B0910918495B41007A0560 /* x509_lu.c in Sources */,
 				07B08D0518495B40007A0560 /* exception_archive.cpp in Sources */,
 				07B092E718495B43007A0560 /* macos_file.cpp in Sources */,
@@ -12508,6 +12583,7 @@
 				07B08DFD18495B41007A0560 /* f_string.c in Sources */,
 				07F5B1BE184A3B430092C3E1 /* file_dir_system.cpp in Sources */,
 				07B08CBB18495B40007A0560 /* zutil.c in Sources */,
+				0722EC9B192556D8003E99F4 /* mac_genResource.cpp in Sources */,
 				07B091F518495B42007A0560 /* s23_clnt.c in Sources */,
 				07B08EF818495B41007A0560 /* dh_err.c in Sources */,
 				07B08EE318495B41007A0560 /* qud_cksm.c in Sources */,
@@ -12526,7 +12602,6 @@
 				07B0906218495B41007A0560 /* rand_egd.c in Sources */,
 				07B08D6F18495B41007A0560 /* install_installer.cpp in Sources */,
 				07F5B254184A3B6A0092C3E1 /* draw2d_font.cpp in Sources */,
-				07D1C92E19211FEA00B99496 /* ios_copydesk.cpp in Sources */,
 				07B08F9218495B41007A0560 /* evp_lib.c in Sources */,
 				07B08BB418495B40007A0560 /* base_checked.cpp in Sources */,
 				07F5B2CE184A3FA30092C3E1 /* javascript.cpp in Sources */,
@@ -12544,20 +12619,16 @@
 				07B08E4218495B41007A0560 /* bss_dgram.c in Sources */,
 				07B0912218495B41007A0560 /* pcy_tree.c in Sources */,
 				07B08BE718495B40007A0560 /* base_live_signal.cpp in Sources */,
-				07D1C92319211FEA00B99496 /* ios.cpp in Sources */,
 				07B08FA718495B41007A0560 /* p5_crpt.c in Sources */,
 				07B08F9018495B41007A0560 /* evp_fips.c in Sources */,
 				07B097D018495CBE007A0560 /* sockets_AjpBaseSocket.cpp in Sources */,
 				079AE0CE188648D400635C39 /* database_set.cpp in Sources */,
 				07A224AD18F7F766002C3B39 /* profiles.c in Sources */,
 				07B0913818495B41007A0560 /* v3_pcia.c in Sources */,
-				07D1C9B51921201D00B99496 /* ios_win_base.cpp in Sources */,
 				07B08F3118495B41007A0560 /* ec_print.c in Sources */,
 				07B091A818495B42007A0560 /* gost_sign.c in Sources */,
 				07B091ED18495B42007A0560 /* d1_pkt.c in Sources */,
-				07D1C94019211FEA00B99496 /* ios_ip_enum.cpp in Sources */,
 				07B08EA218495B41007A0560 /* cms_env.c in Sources */,
-				07D1C9B11921201D00B99496 /* ios_thread_mm.mm in Sources */,
 				07B08E0C18495B41007A0560 /* t_x509a.c in Sources */,
 				07B0955818495C2B007A0560 /* str_to_integer.cpp in Sources */,
 				07B08FFB18495B41007A0560 /* cbc128.c in Sources */,
@@ -12576,15 +12647,15 @@
 				07B08DDF18495B41007A0560 /* a_print.c in Sources */,
 				07B08F1818495B41007A0560 /* dso_err.c in Sources */,
 				07B095DC18495C5F007A0560 /* fontopus_contact_list.cpp in Sources */,
-				07D1C9BF1921201D00B99496 /* UncaughtExceptionHandler.mm in Sources */,
 				07B08CF918495B40007A0560 /* crypto_hmac_sha1.cpp in Sources */,
 				07B0903E18495B41007A0560 /* p12_key.c in Sources */,
-				07B0931218495B43007A0560 /* macos_user.mm in Sources */,
+				07B0931218495B43007A0560 /* macos_base_user_mm.mm in Sources */,
 				07B0911F18495B41007A0560 /* pcy_lib.c in Sources */,
 				079AE0861886488800635C39 /* http_status.cpp in Sources */,
 				07884C111897E9A500DC6CEB /* user_server.cpp in Sources */,
 				07B0900518495B41007A0560 /* xts128.c in Sources */,
 				07F5B1C4184A3B430092C3E1 /* file_memory_buffer.cpp in Sources */,
+				0722ECA4192556D8003E99F4 /* mac_port_forward.cpp in Sources */,
 				07B08E1D18495B41007A0560 /* x_pkey.c in Sources */,
 				07B08E5D18495B41007A0560 /* bn_exp2.c in Sources */,
 				07B08FE718495B41007A0560 /* md4_one.c in Sources */,
@@ -12598,7 +12669,6 @@
 				07B08BE918495B40007A0560 /* base_log.cpp in Sources */,
 				07F5B252184A3B6A0092C3E1 /* draw2d_dib.cpp in Sources */,
 				07B0907018495B41007A0560 /* rc2_ecb.c in Sources */,
-				07D1C9AA1921201D00B99496 /* ios_ns_exception.cpp in Sources */,
 				079AE07C1886483600635C39 /* base_savings.cpp in Sources */,
 				07B08D3318495B41007A0560 /* exception_not_installed.cpp in Sources */,
 				07B08F7218495B41007A0560 /* bio_b64.c in Sources */,
@@ -12642,7 +12712,6 @@
 				07B091F618495B42007A0560 /* s23_lib.c in Sources */,
 				07B093CE18495B43007A0560 /* xml_tree_schema.cpp in Sources */,
 				07B0955A18495C2B007A0560 /* str_tokenizer.cpp in Sources */,
-				07D1C9981921201D00B99496 /* ios_cross_gdi.mm in Sources */,
 				07F5B1F2184A3B430092C3E1 /* file_transfer_buffer.cpp in Sources */,
 				07A224A818F7F766002C3B39 /* idna.c in Sources */,
 				07B08BEE18495B40007A0560 /* base_machine_event_central.cpp in Sources */,
@@ -12670,8 +12739,8 @@
 				07B08DE918495B41007A0560 /* ameth_lib.c in Sources */,
 				07884BF61897E9A500DC6CEB /* user_impact_update_hint.cpp in Sources */,
 				07B08BF318495B40007A0560 /* base_math.cpp in Sources */,
+				0722ECBC192556D8003E99F4 /* RoundWindowFrameView.mm in Sources */,
 				07B0921E18495B42007A0560 /* t1_reneg.c in Sources */,
-				07D1C94319211FEA00B99496 /* ios_main.cpp in Sources */,
 				07B0903018495B41007A0560 /* pem_pkey.c in Sources */,
 				07B097B218495CBE007A0560 /* sockets_sip_request.cpp in Sources */,
 				07B08DDB18495B41007A0560 /* a_int.c in Sources */,
@@ -12714,6 +12783,7 @@
 				07B08DD218495B41007A0560 /* a_bitstr.c in Sources */,
 				07B0910618495B41007A0560 /* x509_def.c in Sources */,
 				07B097F818495CBE007A0560 /* sockets_http_socket.cpp in Sources */,
+				0722ECBA192556D8003E99F4 /* RoundWindow.mm in Sources */,
 				07B090B518495B41007A0560 /* seed_ecb.c in Sources */,
 				07B08C2818495B40007A0560 /* bsdiff_blocksort.cpp in Sources */,
 				07B08F4918495B41007A0560 /* ecs_lib.c in Sources */,
@@ -12727,7 +12797,6 @@
 				07B0976118495CBE007A0560 /* http_application.cpp in Sources */,
 				07B08E5C18495B41007A0560 /* bn_exp.c in Sources */,
 				07B093C018495B43007A0560 /* xml_importable.cpp in Sources */,
-				07D1C93519211FEA00B99496 /* ios_exception.cpp in Sources */,
 				07B090FF18495B41007A0560 /* by_dir.c in Sources */,
 				07B08BC618495B40007A0560 /* base_departament.cpp in Sources */,
 				07B0976318495CBE007A0560 /* http_get_socket.cpp in Sources */,
@@ -12739,6 +12808,8 @@
 				07884C2A1897E9A500DC6CEB /* user_window_util.cpp in Sources */,
 				07B091AD18495B42007A0560 /* e_4758cca.c in Sources */,
 				07F5B1A5184A3B430092C3E1 /* file_buffered_buffer.cpp in Sources */,
+				0722ECB8192556D8003E99F4 /* round_window.mm in Sources */,
+				0722EC98192556D8003E99F4 /* mac_file_system.cpp in Sources */,
 				07B08DE318495B41007A0560 /* a_strnid.c in Sources */,
 				07B097B318495CBE007A0560 /* sockets_sip_response.cpp in Sources */,
 				07B097AE18495CBE007A0560 /* sockets_sip_base.cpp in Sources */,
@@ -12755,13 +12826,11 @@
 				07884E3E1897EC9600DC6CEB /* read.c in Sources */,
 				07B091E918495B42007A0560 /* d1_clnt.c in Sources */,
 				07B0920018495B42007A0560 /* s3_both.c in Sources */,
+				0722EC85192556D8003E99F4 /* mac_application.cpp in Sources */,
 				07D1CA14192121BF00B99496 /* message.cpp in Sources */,
 				07B08BC318495B40007A0560 /* base_debug.cpp in Sources */,
-				07D1C93419211FEA00B99496 /* ios_dumpinit.cpp in Sources */,
 				07B090C118495B41007A0560 /* sha512.c in Sources */,
-				07A0D7B41923356B00039222 /* RoundViewController.mm in Sources */,
 				07B08DF018495B41007A0560 /* asn1_par.c in Sources */,
-				07D1C93219211FEA00B99496 /* ios_dir.cpp in Sources */,
 				07B08C5118495B40007A0560 /* adler32.c in Sources */,
 				079AE0731886483600635C39 /* base_action_context.cpp in Sources */,
 				07B08E0218495B41007A0560 /* nsseq.c in Sources */,
@@ -12790,7 +12859,6 @@
 				07B0951818495C2B007A0560 /* geometry_rect.cpp in Sources */,
 				07B08BA718495B40007A0560 /* base_allocate_mid_big.cpp in Sources */,
 				07B090F318495B41007A0560 /* ui_lib.c in Sources */,
-				07D1C9A51921201D00B99496 /* ios_lock.cpp in Sources */,
 				07B08EB918495B41007A0560 /* conf_lib.c in Sources */,
 				07B08FAE18495B41007A0560 /* p_sign.c in Sources */,
 				07B08D7618495B41007A0560 /* install_small_bell.cpp in Sources */,
@@ -12808,14 +12876,13 @@
 				07B094B518495C2A007A0560 /* collection_comparable_array.cpp in Sources */,
 				9AE7250517E83B69003E47F9 /* multithreading_event_collection.cpp in Sources */,
 				07B08DF918495B41007A0560 /* d2i_pu.c in Sources */,
-				07F5B128184968C20092C3E1 /* macos_simple_ui.cpp in Sources */,
 				07B090A218495B41007A0560 /* rsa_none.c in Sources */,
 				07B0905518495B41007A0560 /* pk7_smime.c in Sources */,
 				9AE7250717E83B69003E47F9 /* multithreading_file_change_event.cpp in Sources */,
 				07B08EE118495B41007A0560 /* ofb_enc.c in Sources */,
 				9AE7250A17E83B69003E47F9 /* multithreading_manual_reset_event.cpp in Sources */,
+				0722EC8F192556D8003E99F4 /* mac_dumpinit.cpp in Sources */,
 				07B097F618495CBE007A0560 /* sockets_http_session.cpp in Sources */,
-				07D1C9AD1921201D00B99496 /* ios_process.cpp in Sources */,
 				07B08FFE18495B41007A0560 /* ctr128.c in Sources */,
 				07B08C5318495B40007A0560 /* compress.c in Sources */,
 				07B08DFA18495B41007A0560 /* evp_asn1.c in Sources */,
@@ -12824,7 +12891,6 @@
 				9AE7250C17E83B69003E47F9 /* multithreading_multi_lock.cpp in Sources */,
 				07B0919C18495B42007A0560 /* gost_ameth.c in Sources */,
 				07B0979618495CBE007A0560 /* sockets_stream_socket.cpp in Sources */,
-				07D1C95519211FEA00B99496 /* ios_window.cpp in Sources */,
 				9AE7250E17E83B69003E47F9 /* multithreading_mutex.cpp in Sources */,
 				9AE7251017E83B69003E47F9 /* multithreading_retry_multi_lock.cpp in Sources */,
 				07B08E6618495B41007A0560 /* bn_mul.c in Sources */,
@@ -12835,18 +12901,16 @@
 				07B0903718495B41007A0560 /* p12_add.c in Sources */,
 				07B0976E18495CBE007A0560 /* mail_pop3_socket.cpp in Sources */,
 				9AE7251417E83B69003E47F9 /* multithreading_semaphore.cpp in Sources */,
-				07D1C99E1921201D00B99496 /* ios_file_watcher.cpp in Sources */,
 				07B08FB018495B41007A0560 /* pmeth_fn.c in Sources */,
 				07B08EAD18495B41007A0560 /* c_zlib.c in Sources */,
 				07884BF81897E9A500DC6CEB /* user_interaction.cpp in Sources */,
 				07B0907318495B41007A0560 /* rc2cfb64.c in Sources */,
+				0722EC8D192556D8003E99F4 /* mac_dir.cpp in Sources */,
 				9AE7251617E83B69003E47F9 /* multithreading_service_base.cpp in Sources */,
 				07B094EB18495C2B007A0560 /* collection_string_array.cpp in Sources */,
 				07B08F6C18495B41007A0560 /* tb_store.c in Sources */,
 				07B08F8818495B41007A0560 /* e_rc5.c in Sources */,
-				07D1C94E19211FEA00B99496 /* ios_stdio_file.cpp in Sources */,
 				9AE7251917E83B69003E47F9 /* multithreading_single_lock.cpp in Sources */,
-				07D1C9B41921201D00B99496 /* ios_user.mm in Sources */,
 				07B08FF018495B41007A0560 /* md5_one.c in Sources */,
 				9AE7251B17E83B69003E47F9 /* multithreading_socket_event.cpp in Sources */,
 				07B08BDB18495B40007A0560 /* base_geometry.cpp in Sources */,
@@ -12863,8 +12927,8 @@
 				07B08D6318495B41007A0560 /* install_bz.cpp in Sources */,
 				07B090CE18495B41007A0560 /* srp_vfy.c in Sources */,
 				07B08D7C18495B41007A0560 /* install_windows_boot.cpp in Sources */,
-				07D1C9951921201D00B99496 /* DDInvocationGrabber.mm in Sources */,
 				07B08EF918495B41007A0560 /* dh_gen.c in Sources */,
+				0722ECB1192556D8003E99F4 /* mac_trace.cpp in Sources */,
 				07B08DE718495B41007A0560 /* a_utf8.c in Sources */,
 				07B08F4F18495B41007A0560 /* eng_all.c in Sources */,
 				07B08EA118495B41007A0560 /* cms_enc.c in Sources */,
@@ -12878,7 +12942,6 @@
 				07B0901118495B41007A0560 /* obj_dat.c in Sources */,
 				079DBF3B1886788000EFFEFB /* file_set.cpp in Sources */,
 				07B090BF18495B41007A0560 /* sha256.c in Sources */,
-				07D1C9AF1921201D00B99496 /* ios_simple_shell_launcher.cpp in Sources */,
 				07B0978A18495CBE007A0560 /* sockets_net.cpp in Sources */,
 				07B090AA18495B41007A0560 /* rsa_sign.c in Sources */,
 				07B0910B18495B41007A0560 /* x509_r2x.c in Sources */,
@@ -12909,7 +12972,6 @@
 				07B08F5318495B41007A0560 /* eng_dyn.c in Sources */,
 				07B08F5018495B41007A0560 /* eng_cnf.c in Sources */,
 				07B0928D18495B43007A0560 /* ansios_thread.cpp in Sources */,
-				07D1C9B01921201D00B99496 /* ios_small_ipca_channel.cpp in Sources */,
 				07B097BF18495CBE007A0560 /* sockets_sockets.cpp in Sources */,
 				07B08F5918495B41007A0560 /* eng_list.c in Sources */,
 				07B08ED618495B41007A0560 /* ecb3_enc.c in Sources */,
@@ -12932,12 +12994,12 @@
 				07B0909C18495B41007A0560 /* rsa_depr.c in Sources */,
 				07B097BB18495CBE007A0560 /* sockets_smtpd_socket.cpp in Sources */,
 				07B0953618495C2B007A0560 /* str_ch_class.cpp in Sources */,
+				0722EC8B192556D8003E99F4 /* mac_crypto.cpp in Sources */,
 				07B0929118495B43007A0560 /* metrowin_user.cpp in Sources */,
 				07884C1B1897E9A500DC6CEB /* user_view_creator.cpp in Sources */,
 				07B08EBC18495B41007A0560 /* conf_sap.c in Sources */,
 				07B0951C18495C2B007A0560 /* geometry_types.cpp in Sources */,
 				07B0912718495B41007A0560 /* v3_alt.c in Sources */,
-				07D1C93619211FEA00B99496 /* ios_factory_exchange.cpp in Sources */,
 				07B0978618495CBE007A0560 /* sockets_resolv_server.cpp in Sources */,
 				07B08FA518495B41007A0560 /* names.c in Sources */,
 				07B08E3518495B41007A0560 /* b_sock.c in Sources */,
@@ -12952,7 +13014,6 @@
 				07B0912118495B41007A0560 /* pcy_node.c in Sources */,
 				07F5B1FE184A3B430092C3E1 /* fs_ifs.cpp in Sources */,
 				07B097B718495CBE007A0560 /* sockets_sip_udp_client_socket.cpp in Sources */,
-				07D1C99C1921201D00B99496 /* ios_crypt.cpp in Sources */,
 				07B08D0118495B40007A0560 /* crypto_whirpool.cpp in Sources */,
 				9AE7254C17E83B69003E47F9 /* primitive_bit.cpp in Sources */,
 				07B08D1018495B40007A0560 /* exception_dump_context.cpp in Sources */,
@@ -12965,6 +13026,7 @@
 				9AE7255017E83B69003E47F9 /* primitive_command_line.cpp in Sources */,
 				07F5B1E6184A3B430092C3E1 /* file_stream_buffer.cpp in Sources */,
 				07B08F9B18495B41007A0560 /* m_md4.c in Sources */,
+				0722ECA0192556D8003E99F4 /* mac_main.cpp in Sources */,
 				07B090A618495B41007A0560 /* rsa_pmeth.c in Sources */,
 				07B0902118495B41007A0560 /* ocsp_prn.c in Sources */,
 				07B094FF18495C2B007A0560 /* collection_var_array.cpp in Sources */,
@@ -12983,6 +13045,7 @@
 				9AE7255817E83B69003E47F9 /* primitive_data_container.cpp in Sources */,
 				9AE7255A17E83B69003E47F9 /* primitive_data_listener.cpp in Sources */,
 				9AE7255C17E83B69003E47F9 /* primitive_edit.cpp in Sources */,
+				0722ECAB192556D8003E99F4 /* mac_stdio_file.cpp in Sources */,
 				07B0903A18495B41007A0560 /* p12_crpt.c in Sources */,
 				07B08CEC18495B40007A0560 /* crypto_replay_ut_sim.c in Sources */,
 				07A224BB18F7F766002C3B39 /* tlds.c in Sources */,
@@ -13014,9 +13077,7 @@
 				07B0902018495B41007A0560 /* ocsp_lib.c in Sources */,
 				9AE7256617E83B69003E47F9 /* primitive_interlocked_long_pulse.cpp in Sources */,
 				07B08CD418495B40007A0560 /* crypto_hash_hmac.c in Sources */,
-				07D1C9A81921201D00B99496 /* ios_multithreading.cpp in Sources */,
 				07B08F2E18495B41007A0560 /* ec_mult.c in Sources */,
-				07D1C9A41921201D00B99496 /* ios_library.cpp in Sources */,
 				07B0920E18495B42007A0560 /* ssl_cert.c in Sources */,
 				07B0920F18495B42007A0560 /* ssl_ciph.c in Sources */,
 				07A2246D18F7F0BD002C3B39 /* multithreading_thread.cpp in Sources */,
@@ -13026,8 +13087,6 @@
 				07B08F3918495B41007A0560 /* ecp_oct.c in Sources */,
 				07B08CEF18495B40007A0560 /* crypto_rng_rand_source.c in Sources */,
 				07B08E1C18495B41007A0560 /* x_nx509.c in Sources */,
-				07D1C95419211FEA00B99496 /* ios_util.cpp in Sources */,
-				07D1C95819211FEA00B99496 /* ios_window_draw.cpp in Sources */,
 				07B08E8D18495B41007A0560 /* c_ofb64.c in Sources */,
 				07F5B1A9184A3B430092C3E1 /* file_byte_input_stream_binary_buffer.cpp in Sources */,
 				07B08D0618495B40007A0560 /* exception_archive_exception.cpp in Sources */,
@@ -13098,12 +13157,10 @@
 				9AE7257F17E83B69003E47F9 /* primitive_type.cpp in Sources */,
 				07F5B1C7184A3B430092C3E1 /* file_output_stream.cpp in Sources */,
 				07884BEE1897E9A500DC6CEB /* user_elemental.cpp in Sources */,
-				07D1C95F19211FEA00B99496 /* RoundWindow.mm in Sources */,
 				07B0902E18495B41007A0560 /* pem_oth.c in Sources */,
 				07B08E1718495B41007A0560 /* x_crl.c in Sources */,
-				07B0931418495B43007A0560 /* macos_window.cpp in Sources */,
+				07B0931418495B43007A0560 /* macos_windowing.cpp in Sources */,
 				07B08DDD18495B41007A0560 /* a_object.c in Sources */,
-				07D1C9B21921201D00B99496 /* ios_time.cpp in Sources */,
 				9AE7258117E83B69003E47F9 /* primitive_var.cpp in Sources */,
 				07B08DCA18495B41007A0560 /* aes_ofb.c in Sources */,
 				07B0930C18495B43007A0560 /* macos_simple_shell_launcher.cpp in Sources */,
@@ -13154,13 +13211,13 @@
 				07B0977E18495CBE007A0560 /* net_url_domain.cpp in Sources */,
 				07B0929D18495B43007A0560 /* windows_locale.cpp in Sources */,
 				07F5B1AF184A3B430092C3E1 /* file_byte_stream.cpp in Sources */,
+				0722EC91192556D8003E99F4 /* mac_exception.cpp in Sources */,
 				07B0920218495B42007A0560 /* s3_enc.c in Sources */,
 				07B08E6318495B41007A0560 /* bn_mod.c in Sources */,
 				07B08D7A18495B41007A0560 /* install_trace.cpp in Sources */,
 				07F5B1B3184A3B430092C3E1 /* file_c.cpp in Sources */,
 				07D1C9BD1921201D00B99496 /* NSObject+DDExtensions.mm in Sources */,
 				07B08F5618495B41007A0560 /* eng_init.c in Sources */,
-				07D1C99B1921201D00B99496 /* ios_cross_win.cpp in Sources */,
 				07B08F8E18495B41007A0560 /* evp_enc.c in Sources */,
 				07B0901318495B41007A0560 /* obj_err.c in Sources */,
 				07B0980618495CBE007A0560 /* sockets_trace_logger.cpp in Sources */,
@@ -13180,18 +13237,17 @@
 				07B097B118495CBE007A0560 /* sockets_sip_client.cpp in Sources */,
 				07B0904218495B41007A0560 /* p12_p8d.c in Sources */,
 				07B08E7118495B41007A0560 /* bn_x931p.c in Sources */,
+				0722EC9E192556D8003E99F4 /* mac_ip_enum.cpp in Sources */,
 				07F5B1D8184A3B430092C3E1 /* file_reader.cpp in Sources */,
 				07B0912E18495B41007A0560 /* v3_enum.c in Sources */,
 				07B0900A18495B41007A0560 /* o_init.c in Sources */,
 				07B08C9618495B40007A0560 /* deflate.c in Sources */,
-				07D1C93819211FEA00B99496 /* ios_file.cpp in Sources */,
 				07B090E718495B41007A0560 /* ts_rsp_sign.c in Sources */,
 				07B08FB518495B41007A0560 /* fips_ers.c in Sources */,
 				07B092DD18495B43007A0560 /* DDInvocationGrabber.mm in Sources */,
 				07B0902218495B41007A0560 /* ocsp_srv.c in Sources */,
 				07B0935218495B43007A0560 /* os_http.cpp in Sources */,
 				07B08F6218495B41007A0560 /* tb_asnmth.c in Sources */,
-				07C8D6F7191D98F300137494 /* ios_error.cpp in Sources */,
 				07B0976618495CBE007A0560 /* http_output_stream.cpp in Sources */,
 				07B093CA18495B43007A0560 /* xml_property_exchange.cpp in Sources */,
 				07B091E818495B42007A0560 /* d1_both.c in Sources */,
@@ -13211,7 +13267,6 @@
 				07B0953B18495C2B007A0560 /* str_format.cpp in Sources */,
 				07B091EB18495B42007A0560 /* d1_lib.c in Sources */,
 				07B091B918495B42007A0560 /* e_chil.c in Sources */,
-				07D1C9A01921201D00B99496 /* ios_fontopus.cpp in Sources */,
 				07B0955418495C2B007A0560 /* str_stringtow.cpp in Sources */,
 				07884C131897E9A500DC6CEB /* user_str.cpp in Sources */,
 				07B08DF818495B41007A0560 /* d2i_pr.c in Sources */,
@@ -13222,7 +13277,6 @@
 				07B0920318495B42007A0560 /* s3_lib.c in Sources */,
 				07B08CE118495B40007A0560 /* crypto_math.c in Sources */,
 				07F5B1CE184A3B430092C3E1 /* file_plain_text_output_stream_string_buffer.cpp in Sources */,
-				07D1C93C19211FEA00B99496 /* ios_file_system.cpp in Sources */,
 				07B08E8618495B41007A0560 /* cmll_misc.c in Sources */,
 				07B08D2718495B41007A0560 /* exception_invalid_index.cpp in Sources */,
 				07B08E3618495B41007A0560 /* bf_buff.c in Sources */,
@@ -13235,7 +13289,6 @@
 				07B091F818495B42007A0560 /* s23_pkt.c in Sources */,
 				07B08F1F18495B41007A0560 /* ebcdic.c in Sources */,
 				07B0904818495B41007A0560 /* bio_pk7.c in Sources */,
-				07B092F718495B43007A0560 /* macos_mm_window.mm in Sources */,
 				07B08BD618495B40007A0560 /* base_fixed_alloc.cpp in Sources */,
 				07B08FAB18495B41007A0560 /* p_lib.c in Sources */,
 				07884C191897E9A500DC6CEB /* user_view_container.cpp in Sources */,
@@ -13245,6 +13298,7 @@
 				07B08F7B18495B41007A0560 /* e_aes_cbc_hmac_sha1.c in Sources */,
 				07B08D1F18495B41007A0560 /* exception_interface_only.cpp in Sources */,
 				07B0913118495B41007A0560 /* v3_ia5.c in Sources */,
+				0722EC7D192556D8003E99F4 /* mac1.cpp in Sources */,
 				07B08FF618495B41007A0560 /* mdc2dgst.c in Sources */,
 				07F5B208184A3B430092C3E1 /* fs_remote_native_file.cpp in Sources */,
 				07B08E2118495B41007A0560 /* x_spki.c in Sources */,
@@ -13258,7 +13312,6 @@
 				07B08CA418495B40007A0560 /* gzlib.c in Sources */,
 				07B08D2D18495B41007A0560 /* exception_memory.cpp in Sources */,
 				07B08EAC18495B41007A0560 /* c_rle.c in Sources */,
-				07D1C93A19211FEA00B99496 /* ios_file_set.cpp in Sources */,
 				07F5B1F0184A3B430092C3E1 /* file_timeout_buffer.cpp in Sources */,
 				07A2247818F7F3F8002C3B39 /* user_menu_base.cpp in Sources */,
 				07B0979418495CBE007A0560 /* sockets_ssl_client_context_map.cpp in Sources */,
@@ -13280,7 +13333,6 @@
 				07B08ED918495B41007A0560 /* enc_read.c in Sources */,
 				07B08E2018495B41007A0560 /* x_sig.c in Sources */,
 				07884BFF1897E9A500DC6CEB /* user_keyboard_focus.cpp in Sources */,
-				07D1C94719211FEA00B99496 /* ios_port_forward.cpp in Sources */,
 				07F5B261184A3B6A0092C3E1 /* draw2d_region.cpp in Sources */,
 				07B08E5E18495B41007A0560 /* bn_gcd.c in Sources */,
 				07B08D0F18495B40007A0560 /* exception_dump.cpp in Sources */,
@@ -13312,63 +13364,56 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07D1C9FE192120B000B99496 /* round_window.mm in Sources */,
-				07D1C9FF192120B000B99496 /* RoundWindow.mm in Sources */,
-				07D1CA00192120B000B99496 /* RoundWindowFrameView.mm in Sources */,
-				07D1CA01192120B000B99496 /* DDInvocationGrabber.mm in Sources */,
-				07D1CA02192120B000B99496 /* ios_cross_gdi.mm in Sources */,
-				07D1CA03192120B000B99496 /* ios_thread_mm.mm in Sources */,
-				07D1CA04192120B000B99496 /* ios_user.mm in Sources */,
-				07D1CA06192120B000B99496 /* NSObject+DDExtensions.mm in Sources */,
-				07D1CA07192120B000B99496 /* UncaughtExceptionHandler.mm in Sources */,
-				07D1C9C01921207E00B99496 /* ios.cpp in Sources */,
-				07D1C9C31921207E00B99496 /* ios_ios.cpp in Sources */,
-				07D1C9C51921207E00B99496 /* ios_application.cpp in Sources */,
-				07D1C9C81921207E00B99496 /* ios_copydesk.cpp in Sources */,
-				07D1C9C91921207E00B99496 /* ios_crypto.cpp in Sources */,
-				07D1C9CA1921207E00B99496 /* ios_dir.cpp in Sources */,
-				07D1C9CB1921207E00B99496 /* ios_dumpinit.cpp in Sources */,
-				07D1C9CC1921207E00B99496 /* ios_exception.cpp in Sources */,
-				07D1C9CD1921207E00B99496 /* ios_factory_exchange.cpp in Sources */,
-				07D1C9CE1921207E00B99496 /* ios_file.cpp in Sources */,
-				07D1C9CF1921207E00B99496 /* ios_file_set.cpp in Sources */,
-				07D1C9D01921207E00B99496 /* ios_file_system.cpp in Sources */,
-				07D1C9D11921207E00B99496 /* ios_ip_enum.cpp in Sources */,
-				07D1C9D21921207E00B99496 /* ios_main.cpp in Sources */,
-				07D1C9D31921207E00B99496 /* ios_os.cpp in Sources */,
-				07D1C9D41921207E00B99496 /* ios_port_forward.cpp in Sources */,
-				07D1C9D51921207E00B99496 /* ios_printer.cpp in Sources */,
-				07D1C9D61921207E00B99496 /* ios_shell.cpp in Sources */,
-				07D1C9D71921207E00B99496 /* ios_stdio_file.cpp in Sources */,
-				07D1C9D81921207E00B99496 /* ios_thread.cpp in Sources */,
-				07D1C9DA1921207E00B99496 /* ios_trace.cpp in Sources */,
-				07D1C9DB1921207E00B99496 /* ios_util.cpp in Sources */,
-				07D1C9DC1921207E00B99496 /* ios_window.cpp in Sources */,
-				07D1C9DD1921207E00B99496 /* ios_window_draw.cpp in Sources */,
-				07D1C9DE1921207E00B99496 /* node.cpp in Sources */,
-				07D1C9DF1921207E00B99496 /* ios_cross_win_file.cpp in Sources */,
-				07D1C9E01921207E00B99496 /* ios_cross_win.cpp in Sources */,
-				07D1C9E11921207E00B99496 /* ios_crypt.cpp in Sources */,
-				07D1C9E21921207E00B99496 /* ios_debug.cpp in Sources */,
-				07D1C9E31921207E00B99496 /* ios_file_watcher.cpp in Sources */,
-				07D1C9E41921207E00B99496 /* ios_fontopus.cpp in Sources */,
-				07D1C9E61921207E00B99496 /* ios_launcher.cpp in Sources */,
-				07D1C9E71921207E00B99496 /* ios_library.cpp in Sources */,
-				07D1C9E81921207E00B99496 /* ios_lock.cpp in Sources */,
-				07D1C9E91921207E00B99496 /* ios_message_loop.cpp in Sources */,
-				07D1C9EA1921207E00B99496 /* ios_multithreading.cpp in Sources */,
-				07D1C9EB1921207E00B99496 /* ios_ns_exception.cpp in Sources */,
-				07D1C9EC1921207E00B99496 /* ios_process_pid.cpp in Sources */,
-				07D1C9ED1921207E00B99496 /* ios_process.cpp in Sources */,
-				07D1C9EE1921207E00B99496 /* ios_simple_shell_launcher.cpp in Sources */,
-				07D1C9EF1921207E00B99496 /* ios_small_ipca_channel.cpp in Sources */,
-				07D1C9F01921207E00B99496 /* ios_time.cpp in Sources */,
-				07D1C9F11921207E00B99496 /* ios_base_user.cpp in Sources */,
-				07D1C9F21921207E00B99496 /* ios_win_base.cpp in Sources */,
-				07D1C9F31921207E00B99496 /* ios_windowing.cpp in Sources */,
-				07D1C9F41921207E00B99496 /* ios.cpp in Sources */,
-				07D1C9F61921207E00B99496 /* ios_error.cpp in Sources */,
-				07D1C9F81921207E00B99496 /* ios_genResource.cpp in Sources */,
+				0722ECE119256472003E99F4 /* ios_cross_win_file.cpp in Sources */,
+				0722ECE219256472003E99F4 /* ios_cross_win.cpp in Sources */,
+				0722ECE319256472003E99F4 /* ios_crypt.cpp in Sources */,
+				0722ECE419256472003E99F4 /* ios_debug.cpp in Sources */,
+				0722ECE519256472003E99F4 /* ios_file_watcher.cpp in Sources */,
+				0722ECE619256472003E99F4 /* ios_fontopus.cpp in Sources */,
+				0722ECE719256472003E99F4 /* ios_launcher.cpp in Sources */,
+				0722ECE819256472003E99F4 /* ios_library.cpp in Sources */,
+				0722ECE919256472003E99F4 /* ios_lock.cpp in Sources */,
+				0722ECEA19256472003E99F4 /* ios_message_loop.cpp in Sources */,
+				0722ECEB19256472003E99F4 /* ios_multithreading.cpp in Sources */,
+				0722ECEC19256472003E99F4 /* ios_ns_exception.cpp in Sources */,
+				0722ECED19256472003E99F4 /* ios_process_pid.cpp in Sources */,
+				0722ECEE19256472003E99F4 /* ios_process.cpp in Sources */,
+				0722ECEF19256472003E99F4 /* ios_simple_shell_launcher.cpp in Sources */,
+				0722ECF019256472003E99F4 /* ios_small_ipca_channel.cpp in Sources */,
+				0722ECF119256472003E99F4 /* ios_time.cpp in Sources */,
+				0722ECF219256472003E99F4 /* ios_base_user.cpp in Sources */,
+				0722ECF319256472003E99F4 /* ios_win_base.cpp in Sources */,
+				0722ECF419256472003E99F4 /* ios_windowing.cpp in Sources */,
+				0722ECF519256472003E99F4 /* ios.cpp in Sources */,
+				0722ECF619256472003E99F4 /* ios_error.cpp in Sources */,
+				0722ECF719256472003E99F4 /* ios_genResource.cpp in Sources */,
+				0722ECDE19256436003E99F4 /* ios_cross_gdi.mm in Sources */,
+				0722ECDF19256436003E99F4 /* ios_thread_mm.mm in Sources */,
+				0722ECE019256436003E99F4 /* ios_user.mm in Sources */,
+				0722ECC61925640E003E99F4 /* ios.cpp in Sources */,
+				0722ECC71925640F003E99F4 /* ios_ios.cpp in Sources */,
+				0722ECC81925640F003E99F4 /* ios_application.cpp in Sources */,
+				0722ECC91925640F003E99F4 /* ios_copydesk.cpp in Sources */,
+				0722ECCA1925640F003E99F4 /* ios_crypto.cpp in Sources */,
+				0722ECCB1925640F003E99F4 /* ios_dir.cpp in Sources */,
+				0722ECCC1925640F003E99F4 /* ios_dumpinit.cpp in Sources */,
+				0722ECCD1925640F003E99F4 /* ios_exception.cpp in Sources */,
+				0722ECCE1925640F003E99F4 /* ios_factory_exchange.cpp in Sources */,
+				0722ECCF1925640F003E99F4 /* ios_file.cpp in Sources */,
+				0722ECD01925640F003E99F4 /* ios_file_set.cpp in Sources */,
+				0722ECD11925640F003E99F4 /* ios_file_system.cpp in Sources */,
+				0722ECD21925640F003E99F4 /* ios_ip_enum.cpp in Sources */,
+				0722ECD31925640F003E99F4 /* ios_main.cpp in Sources */,
+				0722ECD41925640F003E99F4 /* ios_os.cpp in Sources */,
+				0722ECD51925640F003E99F4 /* ios_port_forward.cpp in Sources */,
+				0722ECD61925640F003E99F4 /* ios_printer.cpp in Sources */,
+				0722ECD71925640F003E99F4 /* ios_shell.cpp in Sources */,
+				0722ECD81925640F003E99F4 /* ios_stdio_file.cpp in Sources */,
+				0722ECD91925640F003E99F4 /* ios_thread.cpp in Sources */,
+				0722ECDA1925640F003E99F4 /* ios_trace.cpp in Sources */,
+				0722ECDB1925640F003E99F4 /* ios_util.cpp in Sources */,
+				0722ECDC1925640F003E99F4 /* ios_window.cpp in Sources */,
+				0722ECDD1925640F003E99F4 /* ios_window_draw.cpp in Sources */,
 				07C8D68A191CF18600137494 /* fs_link.cpp in Sources */,
 				078579F21917B72100FFFE51 /* cbc128.c in Sources */,
 				078579F31917B72100FFFE51 /* ccm128.c in Sources */,

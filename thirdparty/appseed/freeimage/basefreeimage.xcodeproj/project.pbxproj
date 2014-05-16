@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0722ECFD192576DD003E99F4 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65543190F30F2002DAADE /* libbase.dylib */; };
 		078AEF5519154A680091C065 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65545190F30F2002DAADE /* libbase.dylib */; };
 		07A4A947190C44E4005B6DE5 /* BitmapAccess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C0B816E7F5FF008420D3 /* BitmapAccess.cpp */; };
 		07A4A948190C44E4005B6DE5 /* CacheFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C0B916E7F5FF008420D3 /* CacheFile.cpp */; };
@@ -854,6 +855,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0722ECF9192576D1003E99F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA6A2EF190732FB000A1F4A /* base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
+			remoteInfo = base;
+		};
 		07B65542190F30F2002DAADE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AA6A2EF190732FB000A1F4A /* base.xcodeproj */;
@@ -1467,6 +1475,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0722ECFD192576DD003E99F4 /* libbase.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2477,6 +2486,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0722ECFA192576D1003E99F4 /* PBXTargetDependency */,
 			);
 			name = basefreeimage;
 			productName = FreeImage;
@@ -3243,6 +3253,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0722ECFA192576D1003E99F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = base;
+			targetProxy = 0722ECF9192576D1003E99F4 /* PBXContainerItemProxy */;
+		};
 		07B655E5190F337D002DAADE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = base_ios;

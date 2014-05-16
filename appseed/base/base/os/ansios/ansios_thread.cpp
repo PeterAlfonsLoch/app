@@ -705,10 +705,14 @@ void * os_thread_thread_proc(LPVOID lpparameter)
    os_thread * posthread = (os_thread *) lpparameter;
 
    t_posthread = posthread;
+   
+   on_init_thread();
 
    void * pvRet = (void *) (int_ptr) posthread->run();
 
    t_posthread = NULL;
+   
+   on_term_thread();
 
    delete posthread;
 

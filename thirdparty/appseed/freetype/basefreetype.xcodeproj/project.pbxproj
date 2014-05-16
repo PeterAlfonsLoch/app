@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0722ED02192576FE003E99F4 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 077C29FA190F10FD00A1F6B0 /* libbase.dylib */; };
 		07A4A929190C44A6005B6DE5 /* autofit.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B35B416A2D80800875A94 /* autofit.c */; };
 		07A4A92A190C44A6005B6DE5 /* ftbbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B398216A2F96000875A94 /* ftbbox.c */; };
 		07A4A92B190C44A6005B6DE5 /* ftsystem.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B398016A2F94200875A94 /* ftsystem.c */; };
@@ -197,7 +198,6 @@
 		9A1B398116A2F94200875A94 /* ftsystem.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B398016A2F94200875A94 /* ftsystem.c */; };
 		9A1B398316A2F96000875A94 /* ftbbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B398216A2F96000875A94 /* ftbbox.c */; };
 		9A86CA4C16E8076D008420D3 /* ftgzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CA4B16E8076D008420D3 /* ftgzip.c */; };
-		9A8CCADB17EA05B000F87A02 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8CCAD917EA05B000F87A02 /* libbase.dylib */; };
 		9AE24D611904CF2F001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D601904CF2F001AEFFB /* Foundation.framework */; };
 		9AE24D6F1904CF30001AEFFB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D6E1904CF30001AEFFB /* XCTest.framework */; };
 		9AE24D701904CF30001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D601904CF2F001AEFFB /* Foundation.framework */; };
@@ -208,6 +208,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0722ECFE192576EF003E99F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA6A2E1190732B0000A1F4A /* base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
+			remoteInfo = base;
+		};
 		077C29F9190F10FD00A1F6B0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AA6A2E1190732B0000A1F4A /* base.xcodeproj */;
@@ -437,7 +444,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A8CCADB17EA05B000F87A02 /* libbase.dylib in Frameworks */,
+				0722ED02192576FE003E99F4 /* libbase.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1045,6 +1052,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0722ECFF192576EF003E99F4 /* PBXTargetDependency */,
 			);
 			name = basefreetype;
 			productName = freetype;
@@ -1245,6 +1253,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0722ECFF192576EF003E99F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = base;
+			targetProxy = 0722ECFE192576EF003E99F4 /* PBXContainerItemProxy */;
+		};
 		07B6540B190F2B43002DAADE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = base_ios;

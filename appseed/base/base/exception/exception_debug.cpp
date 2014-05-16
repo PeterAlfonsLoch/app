@@ -11,69 +11,11 @@
    // Original bytes at the beginning of SetUnhandledExceptionFilter
 BYTE OriginalBytes[5] = {0};
 
-
-
 bool is_debugger_attached()
 {
+   
+   return __node_is_debugger_attached() != FALSE;
 
-#ifdef WINDOWS
-
-   
-   return ::IsDebuggerPresent() != FALSE;
-
-   
-#elif defined(LINUX)
-   
-    
-   return ::is_gdb_present();
-   
-
-#elif defined(APPLEOS)
-   
-   
-   return ::AmIBeingDebugged();
-   
-   
-#elif defined(ANDROID)
-   
-   
-   return false;
-   
-   
-#else
-   
-   
-   throw not_implemented(get_app());
-   
-   
-#endif
-/*    uint32_t dw;
-
-    __asm
-    {
-        push eax    // Preserve the registers
-
-        push ecx
-        mov eax, fs:[0x18]  // get the TIB's linear address
-
-        mov eax, dword ptr [eax + 0x30]
-        mov ecx, dword ptr [eax]    // get the whole uint32_t
-
-        mov dw, ecx // Save it
-
-        pop ecx // Restore the registers
-
-        pop eax
-    }
-
-
-    // The 3rd byte is the byte we really need to check for the
-
-    // presence of a debugger.
-
-    // Check the 3rd byte
-
-    return ((dw & 0x00010000) != 0) ? true : false;*/
 }
 
 

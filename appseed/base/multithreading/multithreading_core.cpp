@@ -49,13 +49,13 @@ CLASS_DECL_BASE void __dec_threading_count()
 CLASS_DECL_BASE bool __wait_threading_count(::duration dur)
 {
 
-   DWORD dwStart = ::GetTickCount();
+   DWORD dwStart = ::get_tick_count();
 
    DWORD dwDelay = dur.get_total_milliseconds();
 
    single_lock sl(g_pmutexThreading, false);
 
-   while(::GetTickCount() - dwStart < dwDelay)
+   while(::get_tick_count() - dwStart < dwDelay)
    {
 
       sl.lock();

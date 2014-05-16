@@ -1701,9 +1701,10 @@ namespace base
    void application::Ex1OnFactoryExchange()
    {
 
-      node_factory_exchange(this);
+      __node_factory_exchange(this);
 
    }
+   
 
    ::core::savings & application::savings()
    {

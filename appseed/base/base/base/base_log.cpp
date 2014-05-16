@@ -21,7 +21,7 @@ namespace core
 #elif defined(ANDROID)
       m_bTrace = ::file_exists_dup("/etc/core/trace.txt");
 #else
-      m_bTrace          = ::file_exists_dup("/etc/core/trace.txt") || ::AmIBeingDebugged();
+      m_bTrace          = ::file_exists_dup("/etc/core/trace.txt") || ::is_debugger_attached();
 #endif
 
       m_pcsTrace        = new critical_section();

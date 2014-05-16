@@ -1,8 +1,7 @@
 #pragma once
 
 
-extern "C"
-void node_factory_exchange(sp(::base::application) papp);
+void __node_factory_exchange(sp(::base::application) papp);
 
 
 #ifdef WINDOWSEX
@@ -17,5 +16,8 @@ void node_factory_exchange(sp(::base::application) papp);
 
 #include "linux/linux.h"
 
-#endif
+#elif defined(MACOS)
 
+#include "macos/mac.h"
+
+#endif

@@ -6,7 +6,8 @@
 //  Copyright (c) 2011 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 
-#include "ca_mm.h"
+#import "macos_mm.h"
+#import "macos_windowing.h"
 
 
 oswindow SetActiveWindow(oswindow window);

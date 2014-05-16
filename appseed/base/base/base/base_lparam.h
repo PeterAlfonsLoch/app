@@ -24,7 +24,7 @@ public:
 
 #endif
 
-#if !defined(LINUX) && !(defined(OS64BIT) && defined(WINDOWS)) && !defined(APPLE_OS)
+#if !defined(LINUX) && !(defined(OS64BIT) && defined(WINDOWS)) && !defined(APPLEOS)
 
    lparam(int64_t i)
    {

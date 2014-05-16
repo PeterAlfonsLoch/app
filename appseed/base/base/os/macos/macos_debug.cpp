@@ -20,7 +20,7 @@
 #define user user_struct
 #include <sys/sysctl.h>
 
-bool AmIBeingDebugged()
+int __node_is_debugger_attached()
 // Returns true if the current process is being debugged (either
 // running under the debugger or has a debugger attached post facto).
 {

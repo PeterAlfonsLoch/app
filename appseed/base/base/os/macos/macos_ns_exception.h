@@ -10,7 +10,7 @@
 #pragma once
 
 
-#if defined(__cplusplus) || defined(__OBJC__)
+#if defined(__cplusplus) 
 
 class ns_exception
 {
@@ -22,11 +22,6 @@ public:
    ~ns_exception();
 
 };
-
-class ns_exception
-{
-    
-};;
 
 #endif
 

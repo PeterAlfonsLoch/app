@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0722ED1819257779003E99F4 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07011FA4190CA31000C08335 /* libbase.dylib */; };
 		07A4AA81190C452A005B6DE5 /* dbug.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72C0D17E90B86003E47F9 /* dbug.c */; };
 		07A4AA82190C452A005B6DE5 /* factorial.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72C1417E90B86003E47F9 /* factorial.c */; };
 		07A4AA83190C452A005B6DE5 /* errmsg.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72C3217E90B86003E47F9 /* errmsg.c */; };
@@ -174,7 +175,6 @@
 		07A4AB25190C4542005B6DE5 /* net_serv.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72D2217E90B87003E47F9 /* net_serv.cc */; };
 		07A4AB26190C4542005B6DE5 /* client_authentication.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72D4817E90B87003E47F9 /* client_authentication.cc */; };
 		07B65467190F2CF9002DAADE /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07011FA6190CA31000C08335 /* libbase.dylib */; };
-		9AA6A2AD1907115B000A1F4A /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA6A2AC1907115B000A1F4A /* libbase.dylib */; };
 		9AE24DB51904CF5B001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24DB41904CF5B001AEFFB /* Foundation.framework */; };
 		9AE24DC31904CF5B001AEFFB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24DC21904CF5B001AEFFB /* XCTest.framework */; };
 		9AE24DC41904CF5B001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24DB41904CF5B001AEFFB /* Foundation.framework */; };
@@ -473,6 +473,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
 			remoteInfo = base_iosTests;
+		};
+		0722ED141925776E003E99F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA6A2FD1907334C000A1F4A /* base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
+			remoteInfo = base;
 		};
 		07B65403190F2B11002DAADE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -792,7 +799,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AA6A2AD1907115B000A1F4A /* libbase.dylib in Frameworks */,
+				0722ED1819257779003E99F4 /* libbase.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1379,6 +1386,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0722ED151925776E003E99F4 /* PBXTargetDependency */,
 			);
 			name = basemysql;
 			productName = FreeImage;
@@ -1853,6 +1861,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0722ED151925776E003E99F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = base;
+			targetProxy = 0722ED141925776E003E99F4 /* PBXContainerItemProxy */;
+		};
 		07B65404190F2B11002DAADE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = base_ios;
@@ -1921,6 +1934,7 @@
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",
 				);
+				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
@@ -1968,6 +1982,7 @@
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",
 				);
+				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
@@ -1981,12 +1996,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/ios/app/appseed/base/build/Debug-iphoneos",
-					/ios/app/appseed/base/build/Debug,
-				);
-				PRODUCT_NAME = basemysql;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 			};
 			name = Debug;
 		};
@@ -1994,12 +2004,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/ios/app/appseed/base/build/Debug-iphoneos",
-					/ios/app/appseed/base/build/Debug,
-				);
-				PRODUCT_NAME = basemysql;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 			};
 			name = Release;
 		};
@@ -2008,7 +2013,6 @@
 			buildSettings = {
 				DSTROOT = /tmp/basemysql_ios.dst;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
@@ -2019,7 +2023,6 @@
 			buildSettings = {
 				DSTROOT = /tmp/basemysql_ios.dst;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};

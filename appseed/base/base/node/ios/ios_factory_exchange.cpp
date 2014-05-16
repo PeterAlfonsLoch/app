@@ -39,7 +39,13 @@ namespace ios
 } // namespace ios
 
 
-extern "C" void node_factory_exchange(sp(::base::application) papp)
+
+void __node_factory_exchange(sp(::base::application) papp)
 {
+   
    ios::factory_exchange factoryexchange(papp);
+   
 }
+
+
+

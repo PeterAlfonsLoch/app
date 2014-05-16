@@ -530,7 +530,7 @@ namespace file
 
 #include "base/os/ansios/ansios.h"
 #include "base/os/macos/macos.h"
-#include "base/os/macos/macos_window.h"
+#include "base/os/macos/macos_windowing.h"
 
 #elif defined(ANDROID)
 
