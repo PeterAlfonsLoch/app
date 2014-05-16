@@ -75,8 +75,6 @@ namespace ios
       UINT                                m_nDisablePumpCount;
       mutex                               m_mutexUiPtra;
       
-      ::thread *                      m_pAppThread;
-      
       UINT                                m_dwFinishTimeout;
       
       

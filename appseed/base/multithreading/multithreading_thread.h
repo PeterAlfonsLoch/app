@@ -267,87 +267,13 @@ public:
    virtual void construct();
    virtual void construct(__THREADPROC pfnThreadProc, LPVOID pParam);
 
-   //      virtual int32_t main();
-
    virtual void CommonConstruct();
 
-   //      virtual bool begin(int32_t epriority = scheduling_priority_normal, uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
-
-   //      virtual bool create_thread(int32_t epriority = ::get_scheduling_priority_normal(), uint32_t dwCreateFlags = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
-
-   //      virtual int32_t get_thread_priority();
-   //    virtual bool set_thread_priority(int32_t epriority);
-
-   //virtual uint32_t SuspendThread();
-   //      virtual uint32_t ResumeThread();
-   //    virtual bool post_thread_message(UINT message, WPARAM wParam, LPARAM lParam);
-   //  virtual bool post_message(sp(::user::interaction) pui, UINT message, WPARAM wParam, LPARAM lParam);
-
-   //      virtual bool PreInitInstance();
-
-   // called when occurs an standard_exception exception in run
-   // return true to call run again
-   //    virtual bool on_run_exception(::exception::exception &);
-
-   // Overridables
-   // thread initialization
-   //  virtual bool initialize_instance();
 
    virtual bool finalize();
 
    virtual int32_t exit();
 
-   //virtual message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
-
-   // running and idle processing
-   //      virtual int32_t run();
-   //      virtual void pre_translate_message(signal_details * pobj);
-   //      virtual bool pump_message();     // low level message pump
-   //      virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
-   //      virtual bool is_idle_message(signal_details * pobj);  // checks for special messages
-
-   // thread termination
-   //      virtual int32_t exit_instance(); // default will 'delete this'
-
-   // Advanced: exception handling
-   //      virtual void ProcessWndProcException(::exception::base * e, signal_details * pobj);
-
-   // Advanced: handling messages sent to message filter hook
-   //      virtual void ProcessMessageFilter(int32_t code, signal_details * pobj);
-
-   // Advanced: virtual access to GetMainWnd()
-   //      virtual sp(::user::interaction) GetMainWnd();
-   //      virtual sp(::user::interaction) SetMainWnd(sp(::user::interaction) pui);
-
-   //using spa(::user::interaction)::add;
-   //      virtual void add(sp(::user::interaction) pui);
-
-   //using spa(::user::interaction)::remove;
-   //      virtual void remove(sp(::user::interaction) pui);
-
-   //      virtual ::count get_ui_count();
-   //      virtual ::user::interaction * get_ui(index iIndex);
-   //      virtual void set_timer(sp(::user::interaction) pui, uint_ptr nIDEvent, UINT nEllapse);
-   //      virtual void unset_timer(sp(::user::interaction) pui, uint_ptr nIDEvent);
-   ////      virtual void set_auto_delete(bool bAutoDelete = true);
-   ////      virtual void set_run(bool bRun = true);
-   //      virtual event & get_finish_event();
-   //      virtual bool get_run();
-   //      virtual thread * get_app_thread();
-   //      virtual sp(::user::interaction) get_active_ui();
-   //      virtual sp(::user::interaction) set_active_ui(sp(::user::interaction) pui);
-   //      virtual void step_timer();
-
-
-
-
-   //      virtual void assert_valid() const;
-   //    virtual void dump(dump_context & dumpcontext) const;
-
-   //      virtual void Delete();
-   // 'delete this' only if m_bAutoDelete == TRUE
-
-   //      virtual void DispatchThreadMessageEx(signal_details * pobj);  // helper
 
    virtual void on_keep_alive();
    virtual bool is_alive();
@@ -357,78 +283,14 @@ public:
 
    virtual int get_x_window_count() const;
 
-
-   /// This class represents a thread which can be put into a WaitableCollection also.
-   //	class Thread : public WaitableItem
-   //{
-   //public:
-   ///  \brief		default constructor
-   //		Thread ();
-
-   ///  \brief		waits on a waitable item for a specified time in this thread
-   ///  \param		waitableItem item to wait for (can be event, socket, file, semaphore, ...)
-   ///  \param		duration time period to wait for item (default: infinite)
-   ///  \return	result of waiting action as defined in wait_result
-   //wait_result wait(WaitableItem & waitableItem, const boost::posix_time::time_duration& duration=InfiniteTime);
-
-   ///  \brief		waits on multiple waitable items for a specified time in this thread
-   ///  \param		numberOfItems number of items to wait for
-   ///  \param		waitableItems items to wait for (can be events, sockets, files, semaphores, ...)
-   ///  \param		duration time period to wait for item (default: infinite)
-   ///  \return	result of waiting action as defined in wait_result
-   //wait_result wait(size_t numberOfItems, WaitableItem * waitableItems[], const boost::posix_time::time_duration& duration=InfiniteTime, bool waitForAll = false);
-   // int32_t wait (uint32_t TimeoutMs, uint32_t NumberOfEvents, ...);
-
-   //void suspend ()
-   //{ ::SuspendThread(item()); }
-   //
-   //void resume ()
-   //{ ::ResumeThread(item()); }
-
-   ///  \brief		waits for signaling the thread forever
-   //		virtual void wait();
-
-   ///  \brief		waits for signaling the thread for a specified time
-   ///  \param		duration time period to wait for thread
-   ///  \return	result of waiting action as defined in wait_result
    virtual wait_result wait(const duration & duration);
 
-   ///  \brief		sets thread priority
-   ///  \param		new priority
    void set_priority(int32_t priority);
 
-   ///  \brief		gets thread priority
-   ///  \param		priority
    int32_t priority();
 
-   ///  \brief		destructor
-   //		virtual ~Thread()
-   //	{}
-   //
-   //	Thread (const Thread &);				// no copy constructor
-   //Thread & operator= (const Thread &);	// no assignment operator
-
-   /*static uint32_t __stdcall startExecution_ (thread * thisThread)
-   {
-   thisThread->threadId_ = ::GetCurrentThreadId();
-   uint32_t result = (*thisThread)();
-   if (result == autodelete)
-   delete thisThread;
-   return result;
-   }*/
-
-   //virtual uint32_t operator() () = 0;
 
    virtual bool is_auto_delete();
-   //};
-
-
-   //#endif // #define GEN_PAL_THREAD_WINDOWS_HPP
-
-
-
-
-
 
    virtual bool begin(int32_t epriority = ::get_scheduling_priority_normal(), uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
@@ -437,19 +299,14 @@ public:
    virtual int32_t get_thread_priority();
    virtual bool set_thread_priority(int32_t epriority);
 
-   //      virtual uint32_t SuspendThread();
    virtual uint32_t ResumeThread();
    virtual bool post_thread_message(UINT message, WPARAM wParam = 0, lparam lParam = 0);
    virtual bool post_message(sp(::user::interaction) pui, UINT message, WPARAM wParam = 0, lparam lParam = 0);
 
    virtual bool PreInitInstance();
 
-   // called when occurs an standard_exception exception in run
-   // return true to call run again
    virtual bool on_run_exception(::exception::exception &);
 
-   // Overridables
-   // thread initialization
    virtual bool initialize_instance();
 
    virtual message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
@@ -460,6 +317,7 @@ public:
    virtual bool pump_message();     // low level message pump
    virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
    virtual bool is_idle_message(signal_details * pobj);  // checks for special messages
+   virtual bool is_idle_message(LPMESSAGE * lpmessage);  // checks for special messages
 
    // thread termination
    virtual int32_t exit_instance(); // default will 'delete this'

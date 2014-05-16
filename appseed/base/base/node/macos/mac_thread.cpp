@@ -396,31 +396,8 @@ void CLASS_DECL_mac __term_thread(::base::application * papp, HINSTANCE hInstTer
 namespace mac
 {
    
-   void thread::set_p(::thread * p)
-   {
-      m_p = p;
-   }
+
    
-   /////////////////////////////////////////////////////////////////////////////
-   // thread construction
-   
-   
-   void thread::construct(__THREADPROC pfnThreadProc, LPVOID pParam)
-   {
-      m_evFinish.SetEvent();
-      if(System.GetThread() != NULL)
-      {
-         m_pAppThread = MAC_THREAD(::get_thread()->m_p.m_p)->m_pAppThread;
-      }
-      else
-      {
-         m_pAppThread = NULL;
-      }
-      m_pfnThreadProc = pfnThreadProc;
-      m_pThreadParams = pParam;
-      
-      CommonConstruct();
-   }
    
    thread::thread(::base::application * papp) :
    element(papp),
@@ -430,12 +407,27 @@ namespace mac
    m_mutexUiPtra(papp)
    {
       m_evFinish.SetEvent();
-      m_pAppThread = dynamic_cast < ::thread * > (papp);
       m_pThreadParams = NULL;
       m_pfnThreadProc = NULL;
       
+      
+      CommonConstruct();
+      
+      
+   }
+   
+   
+   
+   
+   void thread::construct(__THREADPROC pfnThreadProc, LPVOID pParam)
+   {
+      m_evFinish.SetEvent();
+      m_pfnThreadProc = pfnThreadProc;
+      m_pThreadParams = pParam;
+      
       CommonConstruct();
    }
+   
    
    void thread::CommonConstruct()
    {
@@ -679,11 +671,6 @@ namespace mac
       return m_bRun;
    }
    
-   ::thread * thread::get_app_thread()
-   {
-      return m_pAppThread;
-   }
-   
    sp(::user::interaction) thread::get_active_ui()
    {
       return m_puiActive;
@@ -714,9 +701,9 @@ namespace mac
       
       ::base::application * pappThis1 = dynamic_cast < ::base::application * > (this);
 
-      ::base::application * pappThis2 = dynamic_cast < ::base::application * > (m_p.m_p);
+      ::base::application * pappThis2 = dynamic_cast < ::base::application * > (m_pimpl.m_p);
       
-      m_p->m_dwAlive = m_dwAlive = ::get_tick_count();
+      m_pimpl->m_dwAlive = m_dwAlive = ::get_tick_count();
       
       if(pappThis1 != NULL)
       {
@@ -828,39 +815,37 @@ namespace mac
       // delete thread if it is auto-deleting
       if(m_bAutoDelete)
       {
+         
          if(m_pappDelete != NULL)
             m_pappDelete.release();
+         
          m_evFinish.SetEvent();
-//         ::thread * pthread = dynamic_cast < ::thread * > (m_p);
-         //      if(pthread->m_peventReady != NULL)
-         //    {
-         //     ::SetEvent((HANDLE) pthread->m_peventReady);
-         // }
-         //      if(m_peventReady != NULL)
-         //    {
-         //     ::SetEvent((HANDLE) m_peventReady);
-         //}
-         //pthread->::ca2::smart_pointer < ::thread >::m_p = NULL;
-         m_p.release();
-         //      delete_this();
+         
+         m_pimpl.release();
+         
       }
       else
       {
          m_hThread = 0;
+         
          m_evFinish.SetEvent();
+         
       }
+      
    }
    
-   /////////////////////////////////////////////////////////////////////////////
-   // thread default implementation
    
    bool thread::PreInitInstance()
    {
+      
       return true;
+      
    }
+   
    
    bool thread::initialize_instance()
    {
+      
       ASSERT_VALID(this);
       
       return true;   // by default enter run loop
@@ -894,11 +879,11 @@ namespace mac
             if (!on_idle(lIdleCount++))
                bIdle = FALSE; // assume "no idle" state
             
-            m_p->on_run_step();
+            m_pimpl->on_run_step();
             
             try
             {
-               if(!m_p->verb())
+               if(!m_pimpl->verb())
                   goto stop_run;
             }
             catch(::exit_exception & e)
