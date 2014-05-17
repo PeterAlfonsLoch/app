@@ -55,7 +55,6 @@ namespace windows
    {
       m_pcallback = NULL;
       m_pui = this;
-      set_handle(NULL);
       m_puiOwner = NULL;
       m_pui->m_nFlags = 0;
       m_pfnSuper = NULL;
@@ -70,19 +69,33 @@ namespace windows
 
    void window::construct(oswindow oswindow)
    {
+
       m_pcallback = NULL;
+
       m_pui = this;
+
       set_handle(oswindow);
+
       m_pui->m_nFlags = 0;
+
       m_pfnSuper = NULL;
+
       m_nModalResult = 0;
+
       m_bMouseHover = false;
+
       m_puiCapture = NULL;
+
       ZERO(m_size);
+
       ZERO(m_pt);
+
       m_pmutexGraphics = NULL;
+
       m_bUpdateGraphics = false;
+
    }
+
 
    window::window(sp(::base::application) papp):
       element(papp),
@@ -180,72 +193,12 @@ namespace windows
 
    ::window_sp window::from_handle(oswindow oswindow)
    {
-      oswindow_map* pMap = get_oswindow_map(TRUE); //create map if not exist
-      single_lock sl(&pMap->m_mutex,true);
-      try
-      {
-         ASSERT(pMap != NULL);
-         ::window_sp pwindow =  pMap->from_handle(oswindow);
-         if(pwindow != NULL && NODE_WINDOW(pwindow.m_p)->get_handle() != oswindow)
-            return NULL;
-         return pwindow;
-      }
-      catch(...)
-      {
-         return NULL;
-      }
+      
+      return ::window_from_handle(oswindow);
+
    }
 
-   ::window_sp window::FromHandlePermanent(oswindow oswindow)
-   {
-      oswindow_map* pMap = get_oswindow_map();
-      single_lock sl(&pMap->m_mutex,true);
-      ::window_sp pwindow = NULL;
-      if(pMap != NULL)
-      {
-         // only look in the permanent map - does no allocations
-         pwindow = pMap->lookup_permanent(oswindow);
-         if(pwindow != NULL && NODE_WINDOW(pwindow)->get_handle() != oswindow)
-            return NULL;
-      }
-      return pwindow;
-   }
 
-   bool window::attach(oswindow oswindow_New)
-   {
-      ASSERT(get_handle() == NULL);     // only attach once, detach on destroy
-      ASSERT(FromHandlePermanent(oswindow_New) == NULL);
-      // must not already be in permanent map
-
-      if(oswindow_New == NULL)
-         return FALSE;
-      oswindow_map * pMap = get_oswindow_map(TRUE); // create map if not exist
-      single_lock sl(&pMap->m_mutex,true);
-      ASSERT(pMap != NULL);
-
-      pMap->set_permanent(set_handle(oswindow_New),this);
-      if(m_pui == NULL)
-      {
-         m_pui = this;
-      }
-
-      return TRUE;
-   }
-
-   oswindow window::detach()
-   {
-      oswindow oswindow = get_handle();
-      if(oswindow != NULL)
-      {
-         oswindow_map * pMap = get_oswindow_map(); // don't create if not exist
-         single_lock sl(&pMap->m_mutex,true);
-         if(pMap != NULL)
-            pMap->remove_handle(get_handle());
-         set_handle(NULL);
-      }
-
-      return oswindow;
-   }
 
    void window::pre_subclass_window()
    {
@@ -2333,7 +2286,7 @@ namespace windows
             if(pwindow != NULL)
             {
                // call window proc directly since it is a C++ window
-               __call_window_procedure(pwindow,NODE_WINDOW(pwindow)->get_handle(),message,wParam,lParam);
+               pwindow->message_handler(NDOW(pwindow)->get_handle(),message,wParam,lParam);
             }
          }
          else
@@ -3841,7 +3794,7 @@ namespace windows
       oswindow oswindow_Parent = ::GetParent(get_handle());
       m_iModal = m_iModalCount;
       int32_t iLevel = m_iModal;
-      oprop(string("RunModalLoop.thread(") + ::str::from(iLevel) + ")") = System.GetThread();
+      oprop(string("RunModalLoop.thread(") + ::str::from(iLevel) + ")") = ::get_thread();
       m_iModalCount++;
 
       m_iaModalThread.add(::GetCurrentThreadId());
@@ -3986,7 +3939,7 @@ namespace windows
             ::PostThreadMessageA((DWORD)m_iaModalThread[i],WM_NULL,0,0);
          }
          post_message(WM_NULL);
-         System.GetThread()->post_thread_message(WM_NULL);
+         get_thread()->post_thread_message(WM_NULL);
       }
    }
 
@@ -4003,7 +3956,7 @@ namespace windows
          int32_t iLevel = m_iModalCount - 1;
          m_iModalCount = 0;
          post_message(WM_NULL);
-         System.GetThread()->post_thread_message(WM_NULL);
+         get_thread()->post_thread_message(WM_NULL);
          for(int32_t i = iLevel; i >= 0; i--)
          {
             ::thread * pthread = oprop(string("RunModalLoop.thread(") + ::str::from(i) + ")").cast < ::thread >();
@@ -6127,92 +6080,6 @@ namespace windows
       return oswindow;    // return the owner as oswindow
    }
 
-   /////////////////////////////////////////////////////////////////////////////
-   // Official way to send message to a window
-
-   CLASS_DECL_BASE LRESULT __call_window_procedure(sp(::user::interaction) pinteraction,oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM lParam)
-   {
-
-      smart_pointer < message::base > spbase;
-
-      spbase = pinteraction->get_base(pinteraction,nMsg,wParam,lParam);
-
-      __trace_message("WndProc",spbase);
-
-      message::mouse * pmouse = dynamic_cast < message::mouse * >(spbase.m_p);
-
-      if(pmouse != NULL)
-      {
-         ::GetCursorPos(&pmouse->m_pt);
-         pmouse->m_bTranslated = true;
-      }
-
-      try
-      {
-
-         // special case for WM_INITDIALOG
-         rect rectOld;
-         uint32_t dwStyle = 0;
-         if(nMsg == WM_INITDIALOG)
-            __pre_init_dialog(pinteraction,&rectOld,&dwStyle);
-
-         // delegate to object's message_handler
-         if(pinteraction->m_pui != NULL && pinteraction->m_pui != pinteraction)
-         {
-            pinteraction->m_pui->message_handler(spbase);
-         }
-         else
-         {
-            pinteraction->message_handler(spbase);
-         }
-         // more special case for WM_INITDIALOG
-         if(nMsg == WM_INITDIALOG)
-            __post_init_dialog(pinteraction,rectOld,dwStyle);
-      }
-      catch(::exit_exception &)
-      {
-
-         Sys(pinteraction->m_pbaseapp).os().post_to_all_threads(WM_QUIT,0,0);
-
-         return -1;
-
-      }
-      catch(const ::exception::exception & e)
-      {
-
-         if(!App(pinteraction->m_pbaseapp).on_run_exception((::exception::exception &) e))
-         {
-
-            Sys(pinteraction->m_pbaseapp).os().post_to_all_threads(WM_QUIT,0,0);
-
-            return -1;
-
-         }
-
-         return -1;
-
-      }
-      catch(::exception::base * pe)
-      {
-         __process_window_procedure_exception(pe,spbase);
-         //         TRACE(::core::trace::category_AppMsg, 0, "Warning: Uncaught exception in message_handler (returning %ld).\n", spbase->get_lresult());
-         pe->Delete();
-      }
-      catch(...)
-      {
-      }
-
-      try
-      {
-         //pThreadState->m_lastSentMsg = oldState;
-         LRESULT lresult = spbase->get_lresult();
-         return lresult;
-      }
-      catch(...)
-      {
-         return 0;
-      }
-   }
 
 
    /*CDataExchange::CDataExchange(::window_sp pDlgWnd, bool bSaveAndValidate)
@@ -6924,6 +6791,9 @@ bool CLASS_DECL_BASE __register_class(WNDCLASS* lpWndClass)
 
    return bRet;
 }
+
+
+
 
 
 

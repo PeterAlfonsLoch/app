@@ -3,10 +3,6 @@
 CLASS_DECL_BASE string get_user_interaction_window_class(sp(::user::interaction) pui);
 
 
-// Temporary map management (locks temp map on current thread)
-//CLASS_DECL_BASE void ::core::LockTempMaps(sp(::base::application) papp);
-//CLASS_DECL_BASE bool ::core::UnlockTempMaps(sp(::base::application) papp, bool bDeleteTemps = TRUE);
-
 
 
 // from wincore.cpp

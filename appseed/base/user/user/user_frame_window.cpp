@@ -1052,21 +1052,16 @@ namespace user
 
 
       // deactivate current active ::user::impact
-      thread *pThread = System.GetThread();
+      thread *pThread = get_thread();
       ASSERT(pThread);
-      if (pThread->GetMainWnd() == this)
-      {
-         sp(::user::impact) pActiveView = GetActiveView();
-         if (pActiveView == NULL)
-            pActiveView = GetActiveFrame()->GetActiveView();
-         if (pActiveView != NULL)
-            pActiveView->OnActivateView(FALSE, pActiveView, pActiveView);
-      }
-
-      // force idle processing to update any key state indicators
-      // trans   PostMessage(WM_KICKIDLE);
+      sp(::user::impact) pActiveView = GetActiveView();
+      if (pActiveView == NULL)
+         pActiveView = GetActiveFrame()->GetActiveView();
+      if (pActiveView != NULL)
+         pActiveView->OnActivateView(FALSE, pActiveView, pActiveView);
 
       return 0;
+
    }
 
    void frame_window::_001OnActivate(signal_details * pobj)

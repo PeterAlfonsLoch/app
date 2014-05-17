@@ -295,8 +295,6 @@ namespace base
       virtual void _001CloseApplication();
 
 
-      virtual thread * GetThread();
-
       virtual string get_license_id();
 
 
@@ -314,10 +312,8 @@ namespace base
 
 #if defined(METROWIN) || defined(APPLE_IOS)
       virtual sp(::user::interaction) window_from_os_data(void * pdata);
-      virtual sp(::user::interaction) window_from_os_data_permanent(void * pdata);
 #else
       virtual ::window_sp window_from_os_data(void * pdata);
-      virtual ::window_sp window_from_os_data_permanent(void * pdata);
 #endif
 
 

@@ -327,7 +327,7 @@ namespace windows
          TRACE("Could not initialize ::core::twf - core Transparent Window Framework!");
          return 0;
       }
-      ::AttachThreadInput(::GetCurrentThreadId(),NODE_THREAD(System.thread::m_p.m_p)->m_nThreadID,TRUE);
+      ::AttachThreadInput(::GetCurrentThreadId(), m_puser->get_os_int(),TRUE);
       MSG msg;
       s_bRunning = true;
       while(m_bRun)

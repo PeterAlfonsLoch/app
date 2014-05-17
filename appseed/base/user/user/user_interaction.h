@@ -488,6 +488,9 @@ namespace user
       virtual void PostNcDestroy();
 
       virtual LRESULT DefWindowProc(UINT uiMessage, WPARAM wparam, lparam lparam);
+
+      virtual LRESULT call_message_handler(UINT message,WPARAM wparam,LPARAM lparam);
+
       virtual void message_handler(signal_details * pobj);
       virtual LRESULT message_handler(LPMESSAGE lpmessage);
       virtual void GuieProc(signal_details * pobj);

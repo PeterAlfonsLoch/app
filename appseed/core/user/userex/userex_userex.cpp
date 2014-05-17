@@ -17,7 +17,7 @@ namespace userex
       m_pufe            = NULL;
 
 
-      //::core::user * papp = dynamic_cast <::core::user *>(System.GetThread()->m_pAppThread);
+      //::core::user * papp = dynamic_cast <::core::user *>(::get_thread()->m_pAppThread);
       //::core::connect(papp->m_pplaneapp->m_signalAppLanguageChange, this, &userex::VmsGuiiOnAppLanguage);
 
       //m_pwindowmap = NULL;

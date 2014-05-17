@@ -103,3 +103,16 @@ CLASS_DECL_BASE void set_thread(::thread * pthread);
 
 
 
+namespace multithreading
+{
+
+
+   CLASS_DECL_BASE void init_multithreading();
+   CLASS_DECL_BASE void term_multithreading();
+
+   CLASS_DECL_BASE void __node_on_init_thread(HTHREAD hthread,thread * pthread);
+   CLASS_DECL_BASE void __node_on_term_thread(HTHREAD hthread,thread * pthread);
+
+
+} // namespace multithreading
+

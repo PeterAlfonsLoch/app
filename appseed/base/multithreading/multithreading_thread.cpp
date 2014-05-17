@@ -49,7 +49,7 @@ mutex & user_mutex()
 
 
 
-bool thread::verb()F
+bool thread::verb()
 {
 
    return true; // continue execution ... go on...
@@ -378,13 +378,13 @@ CLASS_DECL_BASE void thread_alloc_ready(bool bReady)
 }
 
 
-void thread::ProcessMessageFilter(int32_t code, signal_details * pobj)
+void thread::process_message_filter(int32_t code, signal_details * pobj)
 {
    
    if(m_pimpl.is_null())
       return;
    
-   return  m_pimpl->ProcessMessageFilter(code, pobj);
+   return  m_pimpl->process_message_filter(code, pobj);
    
 }
 
@@ -399,13 +399,13 @@ bool thread::post_message(sp(::user::interaction) pui, UINT message, WPARAM wPar
 
 }
 
-bool thread::PreInitInstance()
+bool thread::pre_init_instance()
 {
    
    if(m_pimpl.is_null())
       return false;
    
-   return m_pimpl->PreInitInstance();
+   return m_pimpl->pre_init_instance();
    
 }
 
@@ -540,37 +540,16 @@ int32_t thread::exit_instance()
 }
 
 
-void thread::ProcessWndProcException(::exception::base* e, signal_details * pobj)
+void thread::process_window_procedure_exception(::exception::base* e, signal_details * pobj)
 {
    
    if(m_pimpl.is_null())
       return;
    
-   return m_pimpl->ProcessWndProcException(e, pobj);
+   return m_pimpl->process_window_procedure_exception(e,pobj);
    
 }
 
-
-sp(::user::interaction) thread::GetMainWnd()
-{
-
-   if (m_pimpl.is_null())
-      return NULL;
-
-   return m_pimpl->GetMainWnd();
-
-}
-
-
-sp(::user::interaction) thread::SetMainWnd(sp(::user::interaction) pui)
-{
-   
-   if (m_pimpl.is_null())
-      return NULL;
-
-   return m_pimpl->SetMainWnd(pui);
-
-}
 
 
 void thread::add(sp(::user::interaction) pui)
@@ -591,13 +570,6 @@ void thread::remove(::user::interaction * pui)
       return;
    
    m_pimpl->remove(pui);
-
-   if (pui == GetMainWnd()
-      || pui->m_pui == GetMainWnd()
-      || pui->m_pimpl == GetMainWnd())
-   {
-      SetMainWnd(NULL);
-   }
 
 }
 
@@ -824,13 +796,13 @@ void thread::Delete()
 }
 
 
-void thread::DispatchThreadMessageEx(signal_details * pobj)  // helper
+void thread::dispatch_thread_message(signal_details * pobj)  // helper
 {
    
    if(m_pimpl.is_null())
       return;
    
-   return m_pimpl->DispatchThreadMessageEx(pobj);
+   return m_pimpl->dispatch_thread_message(pobj);
    
 }
 
@@ -920,3 +892,51 @@ void set_thread(::thread* pthread)
 }
 
 
+
+
+
+namespace multithreading
+{
+
+   comparable_array < HTHREAD > * s_phaThread = NULL;
+   comparable_array < thread * > * s_pthreadptra = NULL;
+   mutex * s_pmutex = NULL;
+
+   CLASS_DECL_BASE void init_multithreading()
+   {
+      s_pmutex = new mutex(NULL);
+      s_phaThread = new comparable_array < HTHREAD >;
+      s_pthreadptra = new comparable_array < thread * >;
+   }
+
+
+   CLASS_DECL_BASE void term_multithreading()
+   {
+
+      delete s_pthreadptra;
+      s_pthreadptra = NULL;
+
+      delete s_phaThread;
+      s_phaThread = NULL;
+
+      delete s_pmutex;
+      s_pmutex = NULL;
+
+   }
+
+   CLASS_DECL_BASE void __node_on_init_thread(HTHREAD hthread,thread * pthread)
+   {
+
+      synch_lock sl(&s_pmutex);
+
+      s_phaThread->add(hthread);
+
+      s_pthreadptra->add(pthread);
+
+   }
+
+
+   CLASS_DECL_BASE void __node_on_term_thread(HTHREAD hthread,thread * pthread);
+
+
+} // namespace multithreading

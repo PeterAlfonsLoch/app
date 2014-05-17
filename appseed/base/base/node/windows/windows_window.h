@@ -6,38 +6,27 @@ namespace windows
 
 
    CLASS_DECL_BASE LRESULT CALLBACK __send_message_hook(int32_t,WPARAM,LPARAM);
-   //CLASS_DECL_BASE void _gen::StandardSubclass;
    CLASS_DECL_BASE LRESULT CALLBACK __cbt_filter_hook(int32_t,WPARAM,LPARAM);
-   CLASS_DECL_BASE LRESULT __call_window_procedure(sp(::user::interaction) pwindow,oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM lParam);
 
 
    class CLASS_DECL_BASE window:
-      virtual public ::window,
-      virtual public oswindow_handle
+      virtual public ::window
    {
    public:
 
 
       spa(::user::interaction)         m_guieptraMouseHover;
-      ::message_queue_listener *         m_pcallback;
+      ::message_queue_listener *       m_pcallback;
       string                           m_strWindowText;
       bool                             m_bUpdateGraphics;
-      //visual::dib_sp                 m_spdib;
-      //visual::dib_sp                 m_spdibMultAlphaWork;
 
       mutex *                          m_pmutexGraphics;
       ::draw2d::dib_sp                 m_spdib;
-      //HBITMAP                       m_hbitmap;
-      //Gdiplus::Bitmap *             m_pbitmap;
-      //::draw2d::graphics_sp             m_spg;
-      //::draw2d::bitmap_sp               m_spb;
-      //BITMAPINFO m_bitmapinfo;
-      //COLORREF * m_pcolorref;
-      size m_size;
-      point m_pt;
+      size                             m_size;
+      point                            m_pt;
 
-      ::user::window_interface *      m_pbasewnd;
-      sp(::user::interaction)        m_puiCapture;
+      ::user::window_interface *       m_pbasewnd;
+      sp(::user::interaction)          m_puiCapture;
 
 
 
@@ -101,10 +90,6 @@ namespace windows
       virtual void * get_os_data() const;
 
       static ::window_sp from_handle(oswindow oswindow);
-      static ::window_sp FromHandlePermanent(oswindow oswindow);
-      static void DeleteTempMap();
-      bool attach(oswindow oswindow_New);
-      oswindow detach();
 
       // subclassing/unsubclassing functions
       virtual void pre_subclass_window();
@@ -670,17 +655,11 @@ namespace windows
 
       friend class frame_window;
 
-      // for creating dialogs and dialog-like windows
       bool CreateDlg(const char * lpszTemplateName,::window_sp pParentWnd);
-      //bool CreateDlgIndirect(LPCDLGTEMPLATE lpDialogTemplate, ::window_sp pParentWnd,
-      // HINSTANCE hInst);
 
 
-      // implementation of message dispatch/hooking
       CLASS_DECL_BASE friend LRESULT CALLBACK __send_message_hook(int32_t,WPARAM,LPARAM);
-      //CLASS_DECL_BASE friend void _gen::StandardSubclass;
       CLASS_DECL_BASE friend LRESULT CALLBACK __cbt_filter_hook(int32_t,WPARAM,LPARAM);
-      CLASS_DECL_BASE friend LRESULT __call_window_procedure(sp(::user::interaction) pwindow,oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM lParam);
 
       // standard message implementation
       LRESULT OnNTCtlColor(WPARAM wParam,LPARAM lParam);
@@ -713,6 +692,9 @@ namespace windows
       string calc_window_class();
 
       void on_set_parent(sp(::user::interaction) pui);
+
+
+      
 
 
    };

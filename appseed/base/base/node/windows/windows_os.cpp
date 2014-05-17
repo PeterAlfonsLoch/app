@@ -747,7 +747,7 @@ namespace windows
             {
                pthread = dynamic_cast < thread * >(threadptra[i]);
                pthread->m_bRun = false;
-               pthread->m_p->m_bRun = false;
+               pthread->m_pimpl->m_bRun = false;
             }
             catch(...)
             {

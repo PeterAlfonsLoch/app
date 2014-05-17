@@ -131,17 +131,10 @@ namespace base
 
    void application::assert_valid() const
    {
+
       thread::assert_valid();
 
 
-      if(System.GetThread() != (thread*)this)
-         return;     // only do subset if called from different thread
-
-      ASSERT(System.GetThread() == this);
-      //ASSERT(afxCurrentInstanceHandle == m_hInstance);
-
-      /*      if (m_pdocmanager != NULL)
-      ASSERT_VALID(m_pdocmanager);*/
    }
 
    void application::dump(dump_context & dumpcontext) const
@@ -648,35 +641,6 @@ namespace base
 
       m_pframea->remove(pwnd);
 
-      if(GetMainWnd() == pwnd)
-      {
-
-         if(m_pframea->get_size() > 0)
-         {
-
-            SetMainWnd(m_pframea->element_at(0));
-
-         }
-         else
-         {
-
-            SetMainWnd(NULL);
-
-         }
-
-      }
-
-   }
-
-
-   thread * application::GetThread()
-   {
-
-      if(m_pimpl == NULL)
-         return NULL;
-
-      return m_pimpl->GetThread();
-
    }
 
 
@@ -789,33 +753,23 @@ namespace base
 
 
 #if defined(METROWIN) || defined(APPLE_IOS)
+
    sp(::user::interaction) application::window_from_os_data(void * pdata)
    {
 
-      return m_pimpl->window_from_os_data(pdata);
+      return window_from_handle((oswindow)pdata);
 
    }
 
-   sp(::user::interaction) application::window_from_os_data_permanent(void * pdata)
-   {
-
-      return m_pimpl->window_from_os_data_permanent(pdata);
-
-   }
 #else
+
    ::window_sp application::window_from_os_data(void * pdata)
    {
 
-      return m_pimpl->window_from_os_data(pdata);
+      return window_from_handle((oswindow)pdata);
 
    }
 
-   ::window_sp application::window_from_os_data_permanent(void * pdata)
-   {
-
-      return m_pimpl->window_from_os_data_permanent(pdata);
-
-   }
 #endif
 
 
@@ -929,6 +883,10 @@ namespace base
 
    void application::SetCurrentHandles()
    {
+
+      m_pimpl->set_os_data(::get_current_thread());
+
+      m_pimpl->set_os_int(::get_current_thread_id());
 
       m_pimpl->SetCurrentHandles();
 
@@ -2046,7 +2004,7 @@ namespace base
       {
       }
 
-      thread * pthread = System.GetThread();
+      thread * pthread = ::get_thread();
 
       install_message_handling(pthread->m_pimpl);
       try
@@ -2237,9 +2195,6 @@ namespace base
    int32_t application::pre_run()
    {
 
-      //      m_dir.m_psystem      = m_psystem;
-      //    m_file.m_psystem     = m_psystem;
-
 #ifdef WINDOWSEX
 
       MESSAGE msg;
@@ -2249,33 +2204,24 @@ namespace base
 
       if(!is_system() && (bool)oprop("SessionSynchronizedInput"))
       {
-         ::AttachThreadInput(GetCurrentThreadId(),(uint32_t)System.thread::m_p->get_os_int(),TRUE);
+         ::AttachThreadInput(GetCurrentThreadId(),(uint32_t)System.thread::m_pimpl->get_os_int(),TRUE);
       }
 
 #endif
-      /*
 
-      if(is_system())
-      {
-      translator::attach();
-      }
-      */
       m_iReturnCode = 0;
 
       m_dwAlive = ::get_tick_count();
 
-      // App global initializations (rare)
       if(!InitApplication())
          goto InitFailure;
 
       m_dwAlive = ::get_tick_count();
-      // Perform specific initializations
-      //#if !defined(DEBUG) || defined(WINDOWS)
+
       try
       {
          try
          {
-            //#endif
             if(!process_initialize())
             {
                if(GetMainWnd() != NULL)
@@ -2285,7 +2231,6 @@ namespace base
                }
                goto InitFailure;
             }
-            //#if !defined(DEBUG) || defined(WINDOWS)
          }
          catch(::exit_exception & e)
          {
@@ -2302,13 +2247,10 @@ namespace base
             }
             goto InitFailure;
          }
-         System.install().m_progressApp()++; // 1
-         //#endif
+         System.install().m_progressApp()++;
          m_dwAlive = ::get_tick_count();
-         //#if !defined(DEBUG) || defined(WINDOWS)
          try
          {
-            //#endif
             if(!initialize_instance())
             {
                if(GetMainWnd() != NULL)
@@ -2317,20 +2259,15 @@ namespace base
                   GetMainWnd()->DestroyWindow();
                }
 
-               //#if !defined(DEBUG) || defined(WINDOWS)
                try
                {
-                  //#endif
                   exit();
-                  //#if !defined(DEBUG) || defined(WINDOWS)
                }
                catch(...)
                {
                }
-               //#endif
                goto InitFailure;
             }
-            //#if !defined(DEBUG) || defined(WINDOWS)
          }
          catch(::exit_exception & e)
          {
@@ -2401,67 +2338,7 @@ namespace base
       }
       catch(...)
       {
-         // linux-like exit style on crash, differently from general windows error message approach
-         // to prevent or correct from crash, should:
-         // - look at dumps - to do;
-         // - look at trace and log - always doing;
-         // - look at debugger with the visual or other tool atashed - to doing;
-         // - fill other possibilities;
-         // - restart and send information in the holy back, and stateful or self-heal as feedback from below;
-         // - ...
-         // - ..
-         // - .
-         // - .
-         // - .
-         // - .
-         // -  .
-         // - ...
-         // - ...
-         // - ...
-         // to pro-activia and overall benefits workaround:
-         // - stateful applications:
-         //      - browser urls, tabs, entire history, in the ca2computing cloud;
-         //      - uint16_t - html document to simplify here - with all history of undo and redos per document optimized by cvs, svn, syllomatter;
-         //           - not directly related but use date and title to name document;
-         //      - save forms after every key press in .undo.redo.form file parallel to appmatter / form/undo.redo.file parity;
-         //      - last ::ikaraoke::karaoke song and scoring, a little less motivated at time of writing;
-         //
-         // - ex-new-revolut-dynamic-news-self-healing
-         //      - pre-history, antecendentes
-         //            - sometimes we can't recover from the last state
-         //            - to start from the beggining can be too heavy, waity, worky, bory(ing)
-         //      - try to creativetily under-auto-domain with constrained-learning, or heuristcally recover from restart, shutdown, login, logoff;
-         //           - reification :
-         //           - if the document is corrupted, try to open the most of it
-         //           - if can only detect that the document cannot be opened or damaged, should creatively workarounds as it comes, as could it be
-         //              done, for example search in the web for a proper solution?
-         //           - ::ikaraoke::karaoke file does not open? can open next? do it... may animate with a temporary icon...
-         //           - import a little as pepper for the meal, prodevian technology into estamira, so gaming experience relativity can open ligh
-         //               speed into cartesian dimensions of
-         //               core, estamira and prodevian. Take care not to flood prodevian brand black ink over the floor of the estamira office...
-         //               black letters, or colorful and pink are accepted and sometimes desired, for example, hello kity prodevian, pirarucu games,
-         //               I think no one likes to be boring, but a entire background in black... I don't know... only for your personal office, may be...
-         //           - could an online colaborator investigate crashes promptly in a funny way, and make news and jokes? Like terra and UOL for the real world?
-         //               - new crash, two documents lost, weathers fault, too hot, can't think, my mother was angry with me, lead to buggy code;
-         //               - new version with bug fixes;
-         //      - new versions
-         //      - automatic updates
-         //      - upgrades
-         //      - rearrangemntes
-         //      - downgrade in the form of retro
-         // - ...
-         // - ..
-         // - .
-         // - .
-         // - .
-         // - .
-         // -  .
-         // - ...
-         // - ...
-         // - ...
-
       }
-      //#endif
       goto run;
    InitFailure:
       if(m_iReturnCode == 0)

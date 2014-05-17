@@ -304,7 +304,7 @@ public:
    virtual bool post_thread_message(UINT message, WPARAM wParam = 0, lparam lParam = 0);
    virtual bool post_message(sp(::user::interaction) pui, UINT message, WPARAM wParam = 0, lparam lParam = 0);
 
-   virtual bool PreInitInstance();
+   virtual bool pre_init_instance();
 
    virtual bool on_run_exception(::exception::exception &);
 
@@ -323,16 +323,9 @@ public:
    // thread termination
    virtual int32_t exit_instance(); // default will 'delete this'
 
-   // Advanced: exception handling
-   virtual void ProcessWndProcException(::exception::base* e, signal_details * pobj);
+   virtual void process_window_procedure_exception(::exception::base*,signal_details * pobj);
 
-   // Advanced: handling messages sent to message filter hook
-   virtual void ProcessMessageFilter(int32_t code, signal_details * pobj);
-
-   // Advanced: virtual access to GetMainWnd()
-   virtual sp(::user::interaction) GetMainWnd();
-
-   virtual sp(::user::interaction) SetMainWnd(sp(::user::interaction) pui);
+   virtual void process_message_filter(int32_t code, signal_details * pobj);
 
    virtual void add(sp(::user::interaction) pui);
    virtual void remove(::user::interaction * pui);
@@ -355,7 +348,7 @@ public:
    virtual void Delete();
    // 'delete this' only if m_bAutoDelete == TRUE
 
-   virtual void DispatchThreadMessageEx(signal_details * pobj);  // helper
+   virtual void dispatch_thread_message(signal_details * pobj);  // helper
 
    virtual int32_t main();
 
@@ -374,6 +367,8 @@ public:
 
 
    virtual bool verb();
+
+   
 
 };
 

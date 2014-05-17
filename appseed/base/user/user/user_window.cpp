@@ -2512,3 +2512,48 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
 
 
 
+
+void window::set_handle(oswindow oswindow)
+{
+   
+   oswindow_remove(this);
+
+}
+
+
+
+bool window::attach(oswindow oswindow_New)
+{
+   ASSERT(get_handle() == NULL);     // only attach once, detach on destroy
+   ASSERT(from_handle(oswindow_New) == NULL);
+   // must not already be in permanent map
+
+   if(oswindow_New == NULL)
+      return FALSE;
+   oswindow_map * pMap = get_oswindow_map(TRUE); // create map if not exist
+   single_lock sl(&pMap->m_mutex,true);
+   ASSERT(pMap != NULL);
+
+   pMap->set_permanent(set_handle(oswindow_New),this);
+   if(m_pui == NULL)
+   {
+      m_pui = this;
+   }
+
+   return TRUE;
+}
+
+oswindow window::detach()
+{
+   oswindow oswindow = get_handle();
+   if(oswindow != NULL)
+   {
+      oswindow_map * pMap = get_oswindow_map(); // don't create if not exist
+      single_lock sl(&pMap->m_mutex,true);
+      if(pMap != NULL)
+         pMap->remove_handle(get_handle());
+      set_handle(NULL);
+   }
+
+   return oswindow;
+}

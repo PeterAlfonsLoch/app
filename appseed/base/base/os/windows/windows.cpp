@@ -33,6 +33,10 @@ int_bool os_initialize()
 
    __init_threading_count();
 
+   ::multithreading::init_multithreading();
+
+   ::user::init_windowing();
+
    ::os_thread::s_pmutex = new mutex();
 
    ::os_thread::s_pptra = new comparable_raw_array < os_thread * >::type ();
@@ -73,6 +77,10 @@ int_bool os_finalize()
    ::windows::thread::s_pthreadptra = NULL;
 
    //psystem->install().trace().finalize();
+
+   ::user::term_windowing();
+
+   ::multithreading::term_multithreading();
 
    __term_threading_count();
 

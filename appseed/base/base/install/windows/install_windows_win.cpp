@@ -5,39 +5,6 @@
 
 
 
-bool __internal_pump_message()
-{
-#ifdef WINDOWS
-#ifdef METROWIN
-
-   throw "todo";
-
-#else
-MESSAGE g_msgSpaAdminWindow;
-	if (!::GetMessage(&g_msgSpaAdminWindow, 0, 0, 0))
-	{
-#ifdef DEBUG
-/*		TRACE(traceAppMsg, 1, "CWinThread::PumpMessage - Received WM_QUIT.\n");
-			pState->m_nDisablePumpCount++; // application must die*/
-#endif
-		// Note: prevents calling message loop things in 'ExitInstance'
-		// will never be decremented
-		return FALSE;
-	}
-
-  // process this message
-
-///*	if (!__pre_translate_message(&(pState->m_msgCur)))
-//	{
-		::TranslateMessage(&g_msgSpaAdminWindow);
-		::DispatchMessage(&g_msgSpaAdminWindow);
-//	}*/
-#endif
-#endif
-  return TRUE;
-}
-
-
 
 
 

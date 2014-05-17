@@ -21,18 +21,10 @@
 
 
 
-//int32_t nibble_to_low_hex(byte nibble);
-
-
-
-
 const char application::gen_FileSection[] = "Recent File List";
 const char application::gen_FileEntry[] = "File%d";
 const char application::gen_PreviewSection[] = "Settings";
 const char application::gen_PreviewEntry[] = "PreviewPages";
-
-
-//namespace _001ca1api00001 + [core = (//namespace cube // ca8 + cube)]
 
 
 application::application() :
@@ -258,66 +250,6 @@ bool application::process_initialize()
 
 
 
-   //if(is_system())
-   //{
-   //   System.factory().cloneable_large < stringa > ();
-   //   System.factory().cloneable_large < ::primitive::memory > ();
-   //   System.factory().cloneable_large < int_array > ();
-   //   //System.factory().cloneable_large < property > ();
-   //}
-
-   //m_pframea = new ::user::interaction_ptr_array(this);
-
-   ////if(is_system())
-   ////{
-   //  // Ex1OnFactoryExchange();
-   ////}
-
-   //thread::s_bAllocReady = true;
-
-   //if(thread::m_p == NULL)
-   //{
-
-   //   thread::m_p.create(allocer());
-   //   thread::m_p->m_p = this;
-
-   //}
-
-   //m_pimpl.create(allocer());
-   //m_pimpl->construct();
-   //m_pimpl->m_pimpl = this;
-
-   //if(::get_thread() == NULL)
-   //{
-   //   set_thread(dynamic_cast < thread * > (this));
-   //}
-
-   //if(!update_module_paths())
-   //   return false;
-
-   //m_spfs = canew(::fs::fs(this));
-
-   //if(m_spfs == NULL)
-   //   return false;
-
-   //m_spfs->construct(this);
-
-
-   //if(!m_spfs->initialize())
-   //   return false;
-
-   //if(!ca_process_initialize())
-   //   return false;
-
-   //if(is_system())
-   //{
-   //   draw2d_factory_exchange();
-   //}
-
-   //if(!m_pimpl->process_initialize())
-   //   return false;
-
-   //return true;
 
 
    if (!::base::application::process_initialize())
@@ -1962,21 +1894,6 @@ return false;
 
 
 
-void application::delete_temp()
-{
-
-}
-
-// This is core API library.
-//
-//
-//
-//
-//
-//
-//
-//
-
 
 void application::_001OnFileNew()
 {
@@ -3420,26 +3337,6 @@ bool application::Ex2OnAppUninstall()
 }
 
 
-//thread * application::GetThread()
-//{
-//
-//   if (m_pimpl == NULL)
-//      return NULL;
-//
-//   return m_pimpl->GetThread();
-//
-//}
-
-
-//void application::set_thread(thread * pthread)
-//{
-  // m_pimpl->set_thread(pthread);
-//}
-
-/*   ::draw2d::graphics * application::graphics_from_os_data(void * pdata)
-{
-return m_pimpl->graphics_from_os_data(pdata);
-}*/
 
 
 
@@ -3484,10 +3381,10 @@ void application::assert_valid() const
    thread::assert_valid();
 
 
-   if (System.GetThread() != (thread*)this)
+   if (::get_thread() != (thread*)this)
       return;     // only do subset if called from different thread
 
-   ASSERT(System.GetThread() == this);
+   ASSERT(::get_thread() == this);
    //ASSERT(afxCurrentInstanceHandle == m_hInstance);
 
    /*      if (m_pdocmanager != NULL)

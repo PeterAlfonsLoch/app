@@ -32,12 +32,15 @@ class native_window;
 
 #endif
 
+
+
 class CLASS_DECL_BASE window :
    virtual public ::user::interaction
 {
 public:
 
 
+   oswindow                      m_oswindow;
    bool                          m_bMouseHover;
    bool                          m_bOSNativeMouseMessagePosition;
    bool                          m_bTranslateMouseMessageCursor;
@@ -92,7 +95,8 @@ public:
    virtual ::window_sp from_os_data(void * pdata);
    virtual void * get_os_data() const;
 
-
+   bool attach(oswindow oswindow_New);
+   oswindow detach();
 
    virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
@@ -711,9 +715,8 @@ public:
    inline mutex * mutex_display() { return m_pmutexDisplay; }
 
 
+   virtual void set_handle(oswindow oswindow);
 
-
-   //static oswindow get_safe_owner(oswindow hParent, oswindow* pWndTop);
 
 };
 

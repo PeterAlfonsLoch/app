@@ -458,17 +458,7 @@ public:
 
 
 
-   virtual void delete_temp();
-
-   //using thread::propset;
-   //property_set & propset(object * pobject);
-   //property_set * existing_propset(object * pobject);
-
    virtual oswindow get_ca2_app_wnd(const char * psz);
-
-
-   //   virtual void get_screen_rect(LPRECT lprect);
-
 
 
    virtual int32_t get_document_count();
@@ -550,47 +540,11 @@ public:
    virtual bool Ex2OnAppInstall();
    virtual bool Ex2OnAppUninstall();
 
-   //virtual thread * GetThread();
-   //virtual void set_thread(thread * pthread);
-
-
    virtual ::window_sp get_desktop_window();
-
-
-
-   //      virtual void construct();
-
-
-   //virtual bool final_handle_exception(::exception::exception &);
-   //virtual bool initialize();
-   //virtual bool initialize1();
-   //virtual bool initialize2();
-
-   //virtual bool initialize_instance();
-   //virtual int32_t  exit_instance();
-
-   //virtual void _001OnFileNew();
-   //virtual bool bergedge_start();
-
-
-   //virtual bool is_serviceable();
-   //virtual service_base * allocate_new_service();
-
-
-   //virtual bool on_install();
-   //virtual bool on_uninstall();
 
    virtual int32_t run();
 
-   //      virtual void on_request(sp(::create_context) pcreatecontext);
-
-   //      sp(::user::object) _001OpenDocumentFile(var varFile);
-
    sp(::base::application) get_system();
-
-
-
-   //      virtual void defer_add_document_template(sp(::user::impact_system) ptemplate);
 
    void enum_display_monitors();
 
@@ -602,23 +556,14 @@ public:
 
 #endif
 
-
-
-
-
    virtual bool set_keyboard_layout(const char * pszPath, ::action::context actioncontext);
 
-
    inline ::user::uinteraction::uinteraction          & uinteraction() { return *m_puinteraction; }
-   ///inline ::user::user                  & user     () { return *m_puserbase      ; }
-   //      inline ::userex::userex                      & userex       () { return *m_puserex        ; }
    inline ::usermail::usermail                          & usermail() { return *m_pusermail; }
 
 
    string message_box(const char * pszMatter, property_set & propertyset);
-   //using application::simple_message_box;
-   //virtual int32_t simple_message_box_timeout(sp(::user::interaction) puiOwner, const char * pszMessage, ::duration durationTimeout, UINT fuStyle = MB_OK);
-   //virtual int32_t simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
+
    virtual int32_t track_popup_menu(const char * pszMatter, point pt, sp(::user::interaction) puie);
 
    virtual bool get_fs_size(string & strSize, const char * pszPath, bool & bPending);
