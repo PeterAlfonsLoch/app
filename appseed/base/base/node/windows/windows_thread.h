@@ -6,8 +6,7 @@ namespace windows
 
 
    class CLASS_DECL_BASE thread :
-      virtual public ::thread_impl,
-      virtual public message_queue
+      virtual public ::thread_impl
    {
    public:
 
@@ -80,8 +79,6 @@ namespace windows
 
       virtual HANDLE item() const;
 
-      void _001PostCreateMessageWindow();
-      DECL_GEN_SIGNAL(_001OnCreateMessageWindow);
 
    };
 

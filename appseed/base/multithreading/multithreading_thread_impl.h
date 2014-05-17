@@ -29,7 +29,8 @@ public:
 
 
 class CLASS_DECL_BASE thread_impl :
-   virtual public thread
+   virtual public thread,
+   virtual public message_queue
 {
 public:
 
@@ -109,6 +110,10 @@ public:
    virtual void set_os_data(void * pvoidOsData);
    virtual void set_os_int(int_ptr iData);
    virtual void message_queue_message_handler(signal_details * pobj);
+
+   void _001PostCreateMessageWindow();
+   DECL_GEN_SIGNAL(_001OnCreateMessageWindow);
+
 
 };
 

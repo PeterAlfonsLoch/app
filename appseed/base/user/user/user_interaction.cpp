@@ -4164,46 +4164,33 @@ namespace user
    LRESULT interaction::call_message_handler(UINT message, WPARAM wparam, LPARAM lparam)
    {
 
-      smart_pointer < message::base > spbase;
+      smart_pointer < ::message::base > spbase;
 
-      spbase = pinteraction->get_base(pinteraction,nMsg,wParam,lParam);
+      spbase = get_base(this,message,wparam,lparam);
 
-      __trace_message("WndProc",spbase);
-
-      message::mouse * pmouse = dynamic_cast < message::mouse * >(spbase.m_p);
-
-      if(pmouse != NULL)
-      {
-         ::GetCursorPos(&pmouse->m_pt);
-         pmouse->m_bTranslated = true;
-      }
+      __trace_message("window_procedure",spbase);
 
       try
       {
 
-         // special case for WM_INITDIALOG
-         rect rectOld;
-         uint32_t dwStyle = 0;
-         if(nMsg == WM_INITDIALOG)
-            __pre_init_dialog(pinteraction,&rectOld,&dwStyle);
-
-         // delegate to object's message_handler
-         if(pinteraction->m_pui != NULL && pinteraction->m_pui != pinteraction)
+         if(m_pui != NULL && m_pui != this)
          {
-            pinteraction->m_pui->message_handler(spbase);
+
+            m_pui->message_handler(spbase);
+
          }
          else
          {
-            pinteraction->message_handler(spbase);
+
+            message_handler(spbase);
+
          }
-         // more special case for WM_INITDIALOG
-         if(nMsg == WM_INITDIALOG)
-            __post_init_dialog(pinteraction,rectOld,dwStyle);
+
       }
       catch(::exit_exception &)
       {
 
-         Sys(pinteraction->m_pbaseapp).os().post_to_all_threads(WM_QUIT,0,0);
+         get_thread()->post_to_all_threads(WM_QUIT,0,0);
 
          return -1;
 
@@ -4211,10 +4198,10 @@ namespace user
       catch(const ::exception::exception & e)
       {
 
-         if(!App(pinteraction->m_pbaseapp).on_run_exception((::exception::exception &) e))
+         if(!Application.on_run_exception((::exception::exception &) e))
          {
 
-            Sys(pinteraction->m_pbaseapp).os().post_to_all_threads(WM_QUIT,0,0);
+            get_thread()->post_to_all_threads(WM_QUIT,0,0);
 
             return -1;
 
@@ -4225,26 +4212,57 @@ namespace user
       }
       catch(::exception::base * pe)
       {
-         __process_window_procedure_exception(pe,spbase);
-         //         TRACE(::core::trace::category_AppMsg, 0, "Warning: Uncaught exception in message_handler (returning %ld).\n", spbase->get_lresult());
+
+         m_pthread->process_window_procedure_exception(pe,spbase);
+         
          pe->Delete();
+
       }
       catch(...)
       {
+
       }
 
       try
       {
-         //pThreadState->m_lastSentMsg = oldState;
          LRESULT lresult = spbase->get_lresult();
+
          return lresult;
+
       }
       catch(...)
       {
+
          return 0;
+
       }
+
    }
 
+
+   void interaction::keep_alive(::core::live_object * pliveobject)
+   {
+
+      m_pthread->keep_alive();
+
+      if(get_app() != NULL)
+      {
+         get_app()->keep_alive();
+      }
+
+      if(m_pthread->get_app() != NULL)
+      {
+         m_pthread->get_app()->keep_alive();
+      }
+
+      if(pliveobject != NULL)
+      {
+
+         pliveobject->keep_alive();
+
+      }
+
+   }
 
 
 } // namespace user

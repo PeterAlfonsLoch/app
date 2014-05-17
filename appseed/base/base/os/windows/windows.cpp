@@ -563,9 +563,6 @@ __in LPTSTR lpCmdLine,int32_t nCmdShow);
 
 
 
-extern CLASS_DECL_BASE oswindow_map * g_pwindowmap;
-
-
 
 extern __declspec(thread) HHOOK t_hHookOldMsgFilter;
 extern __declspec(thread) HHOOK t_hHookOldCbtFilter;
@@ -595,10 +592,6 @@ CLASS_DECL_BASE void __win_term()
 {
 
    __wait_threading_count(::millis((1984 + 1977) * 8));
-
-   delete g_pwindowmap;
-
-   g_pwindowmap = NULL;
 
    main_finalize();
 

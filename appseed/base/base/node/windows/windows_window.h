@@ -62,8 +62,6 @@ namespace windows
       //virtual sp(::user::interaction) get_owner();
       virtual void set_owner(sp(::user::interaction) pOwnerWnd);
 
-      virtual oswindow get_handle() const;
-
       virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);

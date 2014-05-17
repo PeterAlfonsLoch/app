@@ -88,55 +88,6 @@ namespace windows
    }
 
 
-   void thread::_001PostCreateMessageWindow()
-   {
-
-      post_thread_message(WM_USER + 123);
-
-   }
-
-
-   void thread::_001OnCreateMessageWindow(signal_details * pobj)
-   {
-
-      if(m_bCreatingMessageWindow)
-         return;
-
-      if(m_spuiMessage.is_set() && m_spuiMessage->IsWindow())
-         return;
-
-      keeper < bool > keepCreating(&m_bCreatingMessageWindow,true,false,true);
-
-      try
-      {
-
-         if(!create_message_queue(get_app(),""))
-            return;
-
-      }
-      catch(...)
-      {
-         return;
-      }
-
-      if(m_spuiMessage->IsWindow())
-      {
-         single_lock sl(&m_ptimera->m_mutex,TRUE);
-         int32_t iMin = 100;
-         for(int32_t i = 0; i < m_ptimera->m_timera.get_count(); i++)
-         {
-            if(m_ptimera->m_timera.element_at(i)->m_uiElapse < natural(iMin))
-            {
-               iMin = m_ptimera->m_timera.element_at(i)->m_uiElapse;
-            }
-         }
-         sl.unlock();
-         m_spuiMessage->SetTimer((uint_ptr)-2,iMin,NULL);
-      }
-
-   }
-
-
 
 
    void thread::Delete()

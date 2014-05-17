@@ -1348,7 +1348,7 @@ namespace base
 
 #elif defined(WINDOWSEX) || defined(LINUX)
 
-      ::window_sp pwnd = System.window_from_os_data_permanent(::GetFocus());
+      ::window_sp pwnd = ::window_from_handle(::GetFocus());
       if(pwnd != NULL)
       {
          if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
@@ -2034,38 +2034,8 @@ namespace base
          {
             if(on_run_exception((::exception::exception &) e))
                goto run;
-            if(GetMainWnd() != NULL)
-            {
-               TRACE(::core::trace::category_AppMsg,0,"Warning: Destroying non-NULL GetMainWnd()\n");
-               try
-               {
-                  GetMainWnd()->DestroyWindow();
-               }
-               catch(::exception::exception &)
-               {
-               }
-               SetMainWnd(NULL);
-            }
             if(final_handle_exception((::exception::exception &) e))
                goto run;
-            if(GetMainWnd() != NULL)
-            {
-               TRACE(::core::trace::category_AppMsg,0,"Warning: Destroying non-NULL GetMainWnd()\n");
-               try
-               {
-                  GetMainWnd()->DestroyWindow();
-               }
-               catch(::exit_exception & e)
-               {
-
-                  throw e;
-
-               }
-               catch(::exception::exception &)
-               {
-               }
-               SetMainWnd(NULL);
-            }
             try
             {
                m_iReturnCode = exit();
@@ -2224,11 +2194,6 @@ namespace base
          {
             if(!process_initialize())
             {
-               if(GetMainWnd() != NULL)
-               {
-                  TRACE(::core::trace::category_AppMsg,0,"Warning: Destroying non-NULL GetMainWnd()\n");
-                  GetMainWnd()->DestroyWindow();
-               }
                goto InitFailure;
             }
          }
@@ -2240,11 +2205,6 @@ namespace base
          }
          catch(const ::exception::exception &)
          {
-            if(GetMainWnd() != NULL)
-            {
-               GetMainWnd()->DestroyWindow();
-               SetMainWnd(NULL);
-            }
             goto InitFailure;
          }
          System.install().m_progressApp()++;
@@ -2253,12 +2213,6 @@ namespace base
          {
             if(!initialize_instance())
             {
-               if(GetMainWnd() != NULL)
-               {
-                  TRACE(::core::trace::category_AppMsg,0,"Warning: Destroying non-NULL GetMainWnd()\n");
-                  GetMainWnd()->DestroyWindow();
-               }
-
                try
                {
                   exit();
@@ -2279,44 +2233,8 @@ namespace base
          {
             if(on_run_exception((::exception::exception &) e))
                goto run;
-            if(GetMainWnd() != NULL)
-            {
-               TRACE(::core::trace::category_AppMsg,0,"Warning: Destroying non-NULL GetMainWnd()\n");
-               try
-               {
-                  GetMainWnd()->DestroyWindow();
-               }
-               catch(::exit_exception & e)
-               {
-
-                  throw e;
-
-               }
-               catch(::exception::exception &)
-               {
-               }
-               SetMainWnd(NULL);
-            }
             if(final_handle_exception((::exception::exception &) e))
                goto run;
-            if(GetMainWnd() != NULL)
-            {
-               TRACE(::core::trace::category_AppMsg,0,"Warning: Destroying non-NULL GetMainWnd()\n");
-               try
-               {
-                  GetMainWnd()->DestroyWindow();
-               }
-               catch(::exit_exception & e)
-               {
-
-                  throw e;
-
-               }
-               catch(::exception::exception &)
-               {
-               }
-               SetMainWnd(NULL);
-            }
             try
             {
                m_iReturnCode = exit();

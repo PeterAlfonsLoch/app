@@ -629,15 +629,10 @@ namespace windows
    // WM_NCDESTROY is the absolute LAST message sent.
    void window::_001OnNcDestroy(signal_details * pobj)
    {
+
       single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex,TRUE);
 
       ::window_sp pwindow;
-      oswindow oswindow_Orig;
-      bool bResult;
-
-      if((get_handle() == NULL))
-         return FALSE;
-
 
       if(m_pthread.is_set())
       {
@@ -790,6 +785,8 @@ namespace windows
 
    bool window::DestroyWindow()
    {
+
+      bool bResult = false;
 
       if(get_handle() != NULL)
          bResult = ::DestroyWindow(get_handle()) != FALSE;
@@ -1687,7 +1684,7 @@ namespace windows
    wndTemp.set_handle(pCtl->oswindow);
    UINT nCtlType = pCtl->nCtlType;
    // if not coming from a permanent window, use stack temporary
-   ::window_sp pwindow = ::windows::window::FromHandlePermanent(wndTemp.get_handle());
+   ::window_sp pwindow = ::window_from_handle(wndTemp.get_handle());
    if (pwindow == NULL)
    {
    pwindow = &wndTemp;
@@ -2201,11 +2198,11 @@ namespace windows
          // if bOnlyPerm is TRUE, don't send to non-permanent windows
          if(bOnlyPerm)
          {
-            ::window_sp pwindow = ::windows::window::FromHandlePermanent(oswindow_Child);
+            ::window_sp pwindow = ::window_from_handle(oswindow_Child);
             if(pwindow != NULL)
             {
                // call window proc directly since it is a C++ window
-               pwindow->message_handler(NDOW(pwindow)->get_handle(),message,wParam,lParam);
+               pwindow->call_message_handler(message,wParam,lParam);
             }
          }
          else
@@ -2673,14 +2670,9 @@ namespace windows
 
    bool window::ReflectMessage(oswindow oswindow_Child,::message::base * pbase)
    {
-      // get the map, and if no map, then this message does not need reflection
-      oswindow_map * pMap = get_oswindow_map();
-      single_lock sl(&pMap->m_mutex,true);
-      if(pMap == NULL)
-         return FALSE;
 
       // check if in permanent map, if it is reflect it (could be OLE control)
-      ::window_sp pwindow = (pMap->lookup_permanent(oswindow_Child));
+      ::window_sp pwindow = ::window_from_handle(oswindow_Child);
       ASSERT(pwindow == NULL || NODE_WINDOW(pwindow)->get_handle() == oswindow_Child);
       if(pwindow == NULL)
       {
@@ -2852,29 +2844,11 @@ namespace windows
 
    bool window::OnHelpInfo(HELPINFO* /*pHelpInfo*/)
    {
-      if(!(GetStyle() & WS_CHILD))
-      {
-         sp(::user::interaction) pMainWnd = System.GetMainWnd();
-         if(pMainWnd != NULL &&
-            GetKeyState(VK_SHIFT) >= 0 &&
-            GetKeyState(VK_CONTROL) >= 0 &&
-            GetKeyState(VK_MENU) >= 0)
-         {
-            //            pMainWnd->SendMessage(WM_COMMAND, ID_HELP);
-            return TRUE;
-         }
-      }
       return Default() != 0;
    }
 
    LRESULT window::OnDisplayChange(WPARAM wparam,LPARAM lparam)
    {
-      // update metrics if this window is the main window
-      if(System.GetMainWnd() == this)
-      {
-         // update any system metrics cache
-         //         afxData.UpdateSysMetrics();
-      }
 
       // forward this message to all other child windows
       if(!(GetStyle() & WS_CHILD))
@@ -3483,13 +3457,13 @@ namespace windows
                oswindow_Center = NULL;
          }
 
+         /*
          MONITORINFO mi;
          mi.cbSize = sizeof(mi);
 
          // center within appropriate monitor coordinates
          if(oswindow_Center == NULL)
          {
-            oswindow hwDefault = System.GetMainWnd()->get_handle();
 
             :: GetMonitorInfo(::MonitorFromWindow(hwDefault,MONITOR_DEFAULTTOPRIMARY),&mi);
             rcCenter = mi.rcWork;
@@ -3501,6 +3475,7 @@ namespace windows
             ::GetMonitorInfo(::MonitorFromWindow(oswindow_Center->get_handle(),MONITOR_DEFAULTTONEAREST),&mi);
             rcArea = mi.rcWork;
          }
+         */
       }
       else
       {
@@ -3662,7 +3637,7 @@ namespace windows
       state.m_pOther = &wndTemp;
 
       // check for reflect handlers in the child window
-      ::window_sp pwindow = ::windows::window::FromHandlePermanent(oswindow_Child);
+      ::window_sp pwindow = ::window_from_handle(oswindow_Child);
       if (pwindow != NULL)
       {
       // call it directly to disable any routing
@@ -3717,8 +3692,6 @@ namespace windows
       m_iModalCount++;
 
       m_iaModalThread.add(::GetCurrentThreadId());
-      sp(::base::application) pappThis1 = (m_pthread->m_p);
-      sp(::base::application) pappThis2 = (m_pthread);
       // acquire and dispatch messages until the modal state is done
       MSG msg;
       for(;;)
@@ -3744,26 +3717,13 @@ namespace windows
                // send WM_ENTERIDLE to the parent
                ::SendMessage(oswindow_Parent,WM_ENTERIDLE,MSGF_DIALOGBOX,(LPARAM)get_handle());
             }
-            if((dwFlags & MLF_NOKICKIDLE) ||
-               !__call_window_procedure(this,get_handle(),WM_KICKIDLE,MSGF_DIALOGBOX,lIdleCount++))
+            if((dwFlags & MLF_NOKICKIDLE) || !call_message_handler(WM_KICKIDLE,MSGF_DIALOGBOX,lIdleCount++))
             {
                // stop idle processing next time
                bIdle = FALSE;
             }
 
-            m_pthread->m_p->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
-            if(pappThis1 != NULL)
-            {
-               pappThis1->m_dwAlive = m_pthread->m_dwAlive;
-            }
-            if(pappThis2 != NULL)
-            {
-               pappThis2->m_dwAlive = m_pthread->m_dwAlive;
-            }
-            if(pliveobject != NULL)
-            {
-               pliveobject->keep_alive();
-            }
+            keep_alive(pliveobject);
          }
 
 
@@ -3799,24 +3759,7 @@ namespace windows
                lIdleCount = 0;
             }
 
-            m_pthread->m_p->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
-            if(pappThis1 != NULL)
-            {
-               pappThis1->m_dwAlive = m_pthread->m_dwAlive;
-            }
-            if(pappThis2 != NULL)
-            {
-               pappThis2->m_dwAlive = m_pthread->m_dwAlive;
-            }
-            if(pliveobject != NULL)
-            {
-               pliveobject->keep_alive();
-            }
-
-            /*            if(pliveobject != NULL)
-            {
-            pliveobject->keep();
-            }*/
+            keep_alive(pliveobject);
 
          } while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE);
 
@@ -3832,10 +3775,15 @@ namespace windows
       }
 
    ExitModal:
+
       m_iaModalThread.remove_first(::GetCurrentThreadId());
+
       m_iModal = m_iModalCount;
+
       return m_nModalResult;
+
    }
+
 
    bool window::ContinueModal(int32_t iLevel)
    {
@@ -3991,14 +3939,6 @@ namespace windows
    bool window::IsWindow() const
    {
       return ::IsWindow(get_handle()) != FALSE;
-   }
-
-
-   oswindow window::get_handle() const
-   {
-
-      return ::windows::oswindow_handle::get_handle();
-
    }
 
 
@@ -6061,7 +6001,7 @@ namespace windows
          if(pWndInit != NULL)
          {
             // the window should not be in the permanent map at this time
-            ASSERT(::windows::window::FromHandlePermanent(oswindow) == NULL);
+            ASSERT(::window_from_handle(oswindow) == NULL);
 
             pWndInit->m_pthread = dynamic_cast < ::thread * > (::windows::get_thread());
             if(pWndInit->m_pthread != NULL)
@@ -6334,49 +6274,20 @@ namespace windows
 } // namespace windows
 
 
-CLASS_DECL_BASE oswindow_map * g_pwindowmap = NULL;
-
-
-
-
-#include "framework.h"
-
-
-extern CLASS_DECL_BASE oswindow_map * g_pwindowmap;
-extern const char * gen_OldWndProc;
-
-
-
-/////////////////////////////////////////////////////////////////////////////
-// Map from oswindow to ::window_sp
-
-oswindow_map* get_oswindow_map(bool bCreate)
-{
-
-   return g_pwindowmap;
-
-}
-
-
-/////////////////////////////////////////////////////////////////////////////
-// The WndProc for all window's and derived classes
-
 #undef __window_procedure
 
-LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM lParam)
+LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam,LPARAM lparam)
 {
-   // special message which identifies the window as using __window_procedure
-   //   if (nMsg == WM_QUERYAFXWNDPROC)
-   //    return 1;
 
-   // all other messages route through message map
-   ::window_sp pwindow = ::windows::window::FromHandlePermanent(oswindow);
-   //ASSERT(pwindow != NULL);               
-   //ASSERT(pwindow==NULL || NODE_WINDOW(pwindow)->get_handle() == oswindow);
-   if(pwindow == NULL || NODE_WINDOW(pwindow)->get_handle() != oswindow)
-      return ::DefWindowProc(oswindow,nMsg,wParam,lParam);
-   return windows::__call_window_procedure(pwindow,oswindow,nMsg,wParam,lParam);
+   ::window_sp pwindow = ::window_from_handle(oswindow);
+
+   if(pwindow == NULL || pwindow->get_safe_handle() != oswindow)
+      return ::DefWindowProc(oswindow,message,wparam,lparam);
+
+   return pwindow->call_message_handler(message,wparam,lparam);
+
 }
+
 
 // always indirectly accessed via __get_window_procedure
 WNDPROC CLASS_DECL_BASE __get_window_procedure()
@@ -6384,50 +6295,11 @@ WNDPROC CLASS_DECL_BASE __get_window_procedure()
    //return __get_module_state()->m_pfn_window_procedure;
    return &::__window_procedure;
 }
-/////////////////////////////////////////////////////////////////////////////
-// Special helpers for certain windows messages
 
-__STATIC void CLASS_DECL_BASE __pre_init_dialog(
-   sp(::user::interaction) pwindow,LPRECT lpRectOld,uint32_t* pdwStyleOld)
-{
-   ASSERT(lpRectOld != NULL);
-   ASSERT(pdwStyleOld != NULL);
-
-   NODE_WINDOW(pwindow.m_p)->GetWindowRect(lpRectOld);
-   *pdwStyleOld = NODE_WINDOW(pwindow.m_p)->GetStyle();
-}
-
-__STATIC void CLASS_DECL_BASE __post_init_dialog(
-   sp(::user::interaction) pwindow,const RECT& rectOld,uint32_t dwStyleOld)
-{
-   // must be hidden to start with      
-   if(dwStyleOld & WS_VISIBLE)
-      return;
-
-   // must not be visible after WM_INITDIALOG
-   if(NODE_WINDOW(pwindow.m_p)->GetStyle() & (WS_VISIBLE | WS_CHILD))
-      return;
-
-   // must not move during WM_INITDIALOG
-   rect rect;
-   NODE_WINDOW(pwindow.m_p)->GetWindowRect(rect);
-   if(rectOld.left != rect.left || rectOld.top != rect.top)
-      return;
-
-   // must be unowned or owner disabled
-   sp(::user::interaction) pParent = NODE_WINDOW(pwindow.m_p)->GetWindow(GW_OWNER);
-   if(pParent != NULL && pParent->is_window_enabled())
-      return;
-
-   if(!NODE_WINDOW(pwindow.m_p)->CheckAutoCenter())
-      return;
-
-   // center modal dialog boxes/message boxes
-   //NODE_WINDOW(pwindow)->CenterWindow();
-}
 
 __declspec(thread) ::user::interaction * t_pwndInit = NULL;
 __declspec(thread) HHOOK t_hHookOldCbtFilter = NULL;
+
 
 CLASS_DECL_BASE void hook_window_create(sp(::windows::window) pwindow)
 {

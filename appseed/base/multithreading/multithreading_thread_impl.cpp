@@ -241,32 +241,7 @@ void thread_impl::process_message_filter(int32_t code,signal_details * pobj)
 }
 
 
-int32_t thread_impl::thread_entry(::thread_startup * pstartup)
-{
 
-   UNREFERENCED_PARAMETER(pstartup);
-
-   return -1;
-
-}
-
-
-int32_t thread_impl::main()
-{
-
-   return -1;
-
-}
-
-
-int32_t thread_impl::thread_term(int32_t nResult)
-{
-
-   UNREFERENCED_PARAMETER(nResult);
-
-   return -1;
-
-}
 
 
 thread_startup::thread_startup(sp(::base::application) papp) :
@@ -812,20 +787,20 @@ int32_t thread_impl::thread_entry(::thread_startup * pstartup)
    ASSERT(pstartup->m_pthreadimpl != NULL);
    ASSERT(!pstartup->m_bError);
    ASSERT(pstartup->m_pthreadimpl == pstartup->m_pthread->m_pimpl);
-   ASSERT(pstartup->m_pthread == pstartup->m_pthreadimpl->m_puse);
+   ASSERT(pstartup->m_pthread == pstartup->m_pthreadimpl->m_puser);
    ASSERT(pstartup->m_pthreadimpl->m_pimpl.is_null());
    ASSERT(pstartup->m_pthread->m_puser.is_null());
 
-   ::thread * pthreadimpl = pstartup->m_pthread;
+   ::thread * pthread = pstartup->m_pthread;
 
    ::thread_impl * pthreadimpl = pstartup->m_pthreadimpl;
 
    //      sp(::base::application) papp = (get_app());
    m_evFinish.ResetEvent();
    install_message_handling(pthreadimpl);
-   m_puser->install_message_handling(pthread);
+   m_puser->install_message_handling(pthreadimpl);
 
-   IGUI_WIN_MSG_LINK(WM_USER + 123,pThread,pThread,&thread::_001OnCreateMessageWindow);
+   IGUI_WIN_MSG_LINK(WM_USER + 123,pthreadimpl,pthreadimpl,&thread_impl::_001OnCreateMessageWindow);
 
    return 0;   // not reached
 
@@ -841,7 +816,7 @@ int32_t thread_impl::main()
    ASSERT(pStartup->pThread != NULL);
    ASSERT(!pStartup->bError);*/
 
-   if(!m_p->pre_init_instance())
+   if(!m_puser->pre_init_instance())
    {
       return 0;
    }
@@ -853,7 +828,7 @@ int32_t thread_impl::main()
       nResult = (*m_pfnThreadProc)(m_pThreadParams);
    }
    // else -- check for thread with message loop
-   else if(!m_p->initialize_instance())
+   else if(!m_puser->initialize_instance())
    {
       try
       {
@@ -874,10 +849,10 @@ int32_t thread_impl::main()
       try
       {
          m_bReady = true;
-         m_p->m_bReady = true;
+         m_puser->m_bReady = true;
          m_bRun = true;
-         m_p->m_bRun = true;
-         nResult = m_p->run();
+         m_puser->m_bRun = true;
+         nResult = m_puser->run();
       }
       catch(::exit_exception & e)
       {
@@ -887,8 +862,10 @@ int32_t thread_impl::main()
       }
       catch(const ::exception::exception & e)
       {
+
          if(on_run_exception((::exception::exception &) e))
             goto run;
+
          if(App(get_app()).final_handle_exception((::exception::exception &) e))
             goto run;
          try
@@ -1096,10 +1073,61 @@ void thread_impl::step_timer()
 
 
 
-thread::operator HTHREAD() const
+thread_impl::operator HTHREAD() const
 {
 
    return this == NULL ? NULL : m_hthread;
 
 }
+
+
+
+void thread_impl::_001PostCreateMessageWindow()
+{
+
+   post_thread_message(WM_USER + 123);
+
+}
+
+
+void thread_impl::_001OnCreateMessageWindow(signal_details * pobj)
+{
+
+   if(m_bCreatingMessageWindow)
+      return;
+
+   if(m_spuiMessage.is_set() && m_spuiMessage->IsWindow())
+      return;
+
+   keeper < bool > keepCreating(&m_bCreatingMessageWindow,true,false,true);
+
+   try
+   {
+
+      if(!create_message_queue(get_app(),""))
+         return;
+
+   }
+   catch(...)
+   {
+      return;
+   }
+
+   if(m_spuiMessage->IsWindow())
+   {
+      single_lock sl(&m_ptimera->m_mutex,TRUE);
+      int32_t iMin = 100;
+      for(int32_t i = 0; i < m_ptimera->m_timera.get_count(); i++)
+      {
+         if(m_ptimera->m_timera.element_at(i)->m_uiElapse < natural(iMin))
+         {
+            iMin = m_ptimera->m_timera.element_at(i)->m_uiElapse;
+         }
+      }
+      sl.unlock();
+      m_spuiMessage->SetTimer((uint_ptr)-2,iMin,NULL);
+   }
+
+}
+
 

@@ -2524,36 +2524,41 @@ void window::set_handle(oswindow oswindow)
 
 bool window::attach(oswindow oswindow_New)
 {
-   ASSERT(get_handle() == NULL);     // only attach once, detach on destroy
-   ASSERT(from_handle(oswindow_New) == NULL);
-   // must not already be in permanent map
+
+   ASSERT(get_handle() == NULL);   
+
+   ASSERT(::window_from_handle(oswindow_New) == NULL);
 
    if(oswindow_New == NULL)
       return FALSE;
-   oswindow_map * pMap = get_oswindow_map(TRUE); // create map if not exist
-   single_lock sl(&pMap->m_mutex,true);
-   ASSERT(pMap != NULL);
 
-   pMap->set_permanent(set_handle(oswindow_New),this);
+   oswindow_assign(oswindow_New,this);
+
    if(m_pui == NULL)
    {
       m_pui = this;
    }
 
-   return TRUE;
+   return true;
+
 }
+
 
 oswindow window::detach()
 {
+   
    oswindow oswindow = get_handle();
+   
    if(oswindow != NULL)
    {
-      oswindow_map * pMap = get_oswindow_map(); // don't create if not exist
-      single_lock sl(&pMap->m_mutex,true);
-      if(pMap != NULL)
-         pMap->remove_handle(get_handle());
+
+      
+      oswindow_remove(this);
+
       set_handle(NULL);
+
    }
 
    return oswindow;
+
 }

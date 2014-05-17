@@ -627,6 +627,7 @@ namespace user
       
       virtual void show_keyboard(bool bShow = true);
       
+      virtual void keep_alive(::core::live_object * pliveobject = NULL);
 
    };
 

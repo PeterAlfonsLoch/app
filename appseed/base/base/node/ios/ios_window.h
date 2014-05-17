@@ -59,8 +59,6 @@ namespace ios
       //virtual sp(::user::interaction)  GetOwner();
       virtual void set_owner(sp(::user::interaction)  pOwnerWnd);
       
-      virtual oswindow get_handle() const;
-      
       virtual ::window * get_wnd() const;
       
       virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);

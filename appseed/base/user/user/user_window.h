@@ -716,6 +716,8 @@ public:
 
 
    virtual void set_handle(oswindow oswindow);
+   virtual oswindow get_handle() const;
+
 
 
 };

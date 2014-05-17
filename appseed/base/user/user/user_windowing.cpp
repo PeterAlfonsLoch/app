@@ -68,11 +68,11 @@ CLASS_DECL_BASE bool oswindow_remove(::user::interaction * pui)
 
    synch_lock slOsWindow(::user::g_pmutexUi);
 
-   ::user::g_pmapUi->remove(::user::g_pmapHandle->operator[](pui));
+   ::user::g_pmapUi->remove_key(::user::g_pmapHandle->operator[](pui));
 
-   ::user::g_pmapUi->remove(pui->get_safe_handle());
+   ::user::g_pmapUi->remove_key(pui->get_safe_handle());
 
-   ::user::g_pmapHandle->remove(pui);
+   ::user::g_pmapHandle->remove_key(pui);
 
    return true;
 
