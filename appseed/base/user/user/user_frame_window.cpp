@@ -693,25 +693,6 @@ namespace user
 
       thread * pappthread = m_pthread;
 
-      if (pappthread != NULL)
-      {
-
-         if (pappthread->GetMainWnd() == NULL)
-         {
-
-            pappthread->SetMainWnd(this);
-
-         }
-
-      }
-
-      if (Application.GetMainWnd() == NULL)
-      {
-
-         Application.SetMainWnd(this);
-
-      }
-
       if (pobj->previous())
          return;
 
@@ -844,12 +825,6 @@ namespace user
          // finally, activate the frame
          // (send the default show command unless the main desktop window)
          int32_t nCmdShow = -1;      // default
-         ::base::application* pApp = &System;
-         if (pApp != NULL && pApp->GetMainWnd() == this)
-         {
-//            nCmdShow = pApp->m_nCmdShow; // use the parameter from WinMain
-  //          pApp->m_nCmdShow = -1; // set to default after first time
-         }
          ActivateFrame(nCmdShow);
          if (pview != NULL)
             pview->OnActivateView(TRUE, pview, pview);

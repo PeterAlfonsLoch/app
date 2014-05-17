@@ -630,21 +630,31 @@ namespace windows
    void window::_001OnNcDestroy(signal_details * pobj)
    {
       single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex,TRUE);
+
+      ::window_sp pwindow;
+      oswindow oswindow_Orig;
+      bool bResult;
+
+      if((get_handle() == NULL))
+         return FALSE;
+
+
+      if(m_pthread.is_set())
+      {
+         if(m_pthread->m_puiptra.is_set())
+         {
+            m_pthread->m_puiptra->remove(this);
+            m_pthread->m_puiptra->remove(m_pui);
+         }
+      }
+
+
+
       pobj->m_bRet = true;
       // cleanup main and active windows
       ::thread* pThread = ::get_thread();
       if(pThread != NULL)
       {
-         if(pThread->GetMainWnd() == this)
-         {
-            //            if (!afxContextIsDLL)
-            {
-               // shut down current thread if possible
-               if(pThread != &System)
-               __post_quit_message(0);
-            }
-            pThread->SetMainWnd(NULL);
-         }
          if(pThread->get_active_ui() == this)
             pThread->set_active_ui(NULL);
       }
@@ -717,35 +727,6 @@ namespace windows
          // should be a normal window
          ASSERT(::IsWindow(((::windows::window *)this)->get_handle()));
 
-         // should also be in the permanent or temporary handle map
-         oswindow_map * pMap = get_oswindow_map();
-         single_lock sl(&pMap->m_mutex,true);
-         if(pMap == NULL) // inside thread not having windows
-            return; // let go
-         ASSERT(pMap != NULL);
-
-         //         object* p=NULL;
-         /*if(pMap)
-         {
-         ASSERT( (p = pMap->lookup_permanent(get_handle())) != NULL ||
-         (p = pMap->lookup_temporary(get_handle())) != NULL);
-         }*/
-
-         //ASSERT((p) == this);   // must be us
-
-         // Note: if either of the above asserts fire and you are
-         // writing a multithreaded application, it is likely that
-         // you have passed a C++ object from one thread to another
-         // and have used that object in a way that was not intended.
-         // (only simple inline wrapper functions should be used)
-         //
-         // In general, window objects should be passed by oswindow from
-         // one thread to another.  The receiving thread can wrap
-         // the oswindow with a window object by using ::windows::window::from_handle.
-         //
-         // It is dangerous to pass C++ objects from one thread to
-         // another, unless the objects are designed to be used in
-         // such a manner.
       }
    }
 
@@ -770,7 +751,7 @@ namespace windows
          return; // don't do anything more
       }
 
-      ::window_sp pwindow = ::windows::window::FromHandlePermanent(((::windows::window *)this)->get_handle());
+      ::window_sp pwindow = ::windows::window::from_handle(((::windows::window *)this)->get_handle());
       if(pwindow.m_p != this)
          dumpcontext << " (Detached or temporary window)";
       else
@@ -809,74 +790,12 @@ namespace windows
 
    bool window::DestroyWindow()
    {
-      //single_lock sl(m_spmutex, TRUE);
-      ::window_sp pwindow;
-      oswindow_map * pMap;
-      oswindow oswindow_Orig;
-      bool bResult;
 
-      if((get_handle() == NULL))
-         return FALSE;
-
-
-      if(m_pthread.is_set())
-      {
-         if(m_pthread->m_puiptra.is_set())
-         {
-            m_pthread->m_puiptra->remove(this);
-            m_pthread->m_puiptra->remove(m_pui);
-         }
-      }
-
-      bResult = FALSE;
-      pMap = NULL;
-      pwindow = NULL;
-      oswindow_Orig = NULL;
-      if(get_handle() != NULL)
-      {
-         pMap = get_oswindow_map();
-         single_lock sl(&pMap->m_mutex,true);
-         if(pMap != NULL)
-         {
-            pwindow = (pMap->lookup_permanent(get_handle()));
-#ifdef DEBUG
-            oswindow_Orig = get_handle();
-#endif
-         }
-      }
-
-      bool bHasGuie = m_pui != NULL;
-
-      //sl.unlock();
       if(get_handle() != NULL)
          bResult = ::DestroyWindow(get_handle()) != FALSE;
-      //sl.lock();
-      if(oswindow_Orig != NULL)
-      {
-         // Note that 'this' may have been deleted at this point,
-         //  (but only if pwindow != NULL)
-         if(pwindow != NULL && bResult && bHasGuie)
-         {
-            // Should have been detached by OnNcDestroy
-#ifdef DEBUG
-            ::window_sp pWndPermanent = (pMap->lookup_permanent(oswindow_Orig));;
-            ASSERT(pWndPermanent == NULL);
-            // It is important to call base class, including core core
-            // base classes implementation of install_message_handling
-            // inside derived class install_message_handling
-#endif
-         }
-         else
-         {
-#ifdef DEBUG
-            ASSERT(get_handle() == oswindow_Orig);
-#endif
-            // detach after DestroyWindow called just in case
-            detach();
-         }
-      }
 
       return bResult;
+
    }
 
    /////////////////////////////////////////////////////////////////////////////

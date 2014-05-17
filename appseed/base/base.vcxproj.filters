@@ -8581,6 +8581,9 @@
     <ClCompile Include="user\user\user_windowing.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="multithreading\multithreading.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -9095,6 +9098,9 @@
     </None>
     <None Include="base\message\message.inl">
       <Filter>Header Files\base\message</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

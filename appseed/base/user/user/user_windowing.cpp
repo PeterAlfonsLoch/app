@@ -5,11 +5,11 @@ namespace user
 {
 
    mutex * g_pmutexUi = NULL;
-   map < oswindow,oswindow,::user::interaction *,::user::interaction * > g_pmapUi = NULL;
-   map < ::user::interaction *,::user::interaction *, oswindow,oswindow > g_pmapHandle = NULL;
+   map < oswindow,oswindow,::user::interaction *,::user::interaction * > * g_pmapUi = NULL;
+   map < ::user::interaction *,::user::interaction *, oswindow,oswindow > * g_pmapHandle = NULL;
 
 
-   CLASS_DECL_BASE init_windowing()
+   CLASS_DECL_BASE void init_windowing()
    {
 
       g_pmutexUi = new mutex(NULL);
@@ -21,7 +21,7 @@ namespace user
 
    }
 
-   CLASS_DECL_BASE term_windowing()
+   CLASS_DECL_BASE void term_windowing()
    {
 
       delete g_pmapUi;
@@ -31,12 +31,13 @@ namespace user
       g_pmapHandle = NULL;
 
       delete g_pmutexUi;
-      g_pmutexUi = NULL
-
+      g_pmutexUi = NULL;
 
    }
 
+
 } // namespace user
+
 
 ::user::interaction * window_from_handle(oswindow oswindow)
 {

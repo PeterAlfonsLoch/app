@@ -114,5 +114,10 @@ namespace multithreading
    CLASS_DECL_BASE void __node_on_term_thread(HTHREAD hthread,thread * pthread);
 
 
+   CLASS_DECL_BASE extern comparable_array < HTHREAD > * s_phaThread;
+   CLASS_DECL_BASE extern comparable_array < thread * > * s_pthreadptra;
+   CLASS_DECL_BASE extern mutex * s_pmutex;
+
+
 } // namespace multithreading
 
