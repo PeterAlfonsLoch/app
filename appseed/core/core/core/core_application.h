@@ -33,7 +33,7 @@ public:
 
 
    sp(::userfs::userfs)                m_spuserfs;
-   
+
    ::simpledb::simpledb                m_simpledb;
    sp(::userex::userex)                m_spuserex;
 
@@ -300,28 +300,6 @@ public:
 
    // call after all doc templates are registered
    void UnregisterShellFileTypes();
-
-   // Loads a cursor resource.
-   HCURSOR LoadCursor(const char * lpszResourceName) const;
-   HCURSOR LoadCursor(UINT nIDResource) const;
-
-   // Loads a stock cursor resource; for for IDC_* values.
-   HCURSOR LoadStandardCursor(const char * lpszCursorName) const;
-
-   // Loads an OEM cursor; for all OCR_* values.
-   HCURSOR LoadOEMCursor(UINT nIDCursor) const;
-
-#ifdef WINDOWS
-   // Loads an icon resource.
-   HICON LoadIcon(const char * lpszResourceName) const;
-   HICON LoadIcon(UINT nIDResource) const;
-
-   // Loads an icon resource; for stock IDI_ values.
-   HICON LoadStandardIcon(const char * lpszIconName) const;
-
-   // Loads an OEM icon resource; for all OIC_* values.
-   HICON LoadOEMIcon(UINT nIDIcon) const;
-#endif
 
    /*
    // Retrieve an integer value from INI file or registry.

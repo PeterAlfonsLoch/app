@@ -35,48 +35,6 @@ inline int_ptr GetWindowLongPtrW( oswindow oswindow, int32_t nIndex )
 
 /////////////////////////////////////////////////////////////////////////////
 // Auxiliary System/Screen metrics
-/*
-struct CLASS_DECL_CORE AUX_DATA
-{
-   // system metrics
-   int32_t cxVScroll, cyHScroll;
-   int32_t cxIcon, cyIcon;
-
-   int32_t cxBorder2, cyBorder2;
-
-   // device metrics for screen
-   int32_t cxPixelsPerInch, cyPixelsPerInch;
-
-   // convenient system color
-   HBRUSH hbrWindowFrame;
-   HBRUSH hbrBtnFace;
-
-   // color values of system colors used for simple_toolbar
-   COLORREF clrBtnFace, clrBtnShadow, clrBtnHilite;
-   COLORREF clrBtnText, clrWindowFrame;
-
-   // standard cursors
-   HCURSOR hcurWait;
-   HCURSOR hcurArrow;
-   HCURSOR hcurHelp;       // cursor used in Shift+F1 help
-
-   // special GDI objects allocated on demand
-   HFONT   hStatusFont;
-   HFONT   hToolTipsFont;
-   HBITMAP hbmMenuDot;
-
-   // other system information
-   bool    bWin95;         // TRUE if Windows 95 (not NT)
-   bool    bWin4;
-
-// Implementation
-   AUX_DATA();
-   ~AUX_DATA();
-   void UpdateSysColors();
-   void UpdateSysMetrics();
-};
-
-extern CLASS_DECL_CORE AUX_DATA afxData;*/
 
 
 

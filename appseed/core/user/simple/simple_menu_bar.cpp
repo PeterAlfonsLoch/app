@@ -157,12 +157,6 @@ bool simple_menu_bar::_TrackPopupMenu(int32_t iItem)
     tpm.rcExclude.bottom = rect.bottom;
     tpm.rcExclude.right  = rect.right;
 #endif
-//    smart_pointer_array <SimpleMenu , SimpleMenu &> * psma = NULL;
-
-
-
-//    oswindow oswindowOld = __get_thread_state()->m_hTrackingWindow;
-//    m_oswindowFilter = NULL;
     return true;
 
 }

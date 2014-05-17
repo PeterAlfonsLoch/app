@@ -1548,7 +1548,7 @@ void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
 
 void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
 {
-   
+
    if (!m_bVisible)
       return;
 
@@ -1621,7 +1621,7 @@ void simple_frame_window::_011OnDraw(::draw2d::graphics *pdc)
 
    if ((m_bWindowFrame || m_etranslucency == TranslucencyTotal || m_etranslucency == TranslucencyPresent) && !Session.savings().is_trying_to_save(::core::resource_display_bandwidth))
    {
-      
+
       ::user::uinteraction::frame::WorkSetClientInterface::_001OnDraw(pdc);
 
    }
@@ -1821,35 +1821,6 @@ bool simple_frame_window::DeferFullScreen(bool bFullScreen, bool bRestore)
    }
 }
 
-/*
-const char * simple_frame_window::GetIconWndClass(uint32_t dwDefaultStyle, const char * pszMatter)
-{
-HICON hIcon = ::ExtractIcon(
-System.m_hInstance,
-System.dir().path(Application.dir().matter(pszMatter), "icon.ico"),
-1);
-if (hIcon != NULL)
-{
-CREATESTRUCT cs;
-memset(&cs, 0, sizeof(CREATESTRUCT));
-cs.style = dwDefaultStyle;
-pre_create_window(cs);
-// will fill lpszClassName with default WNDCLASS name
-// ignore instance handle from pre_create_window.
-
-WNDCLASS wndcls;
-if (cs.lpszClass != NULL &&
-GetClassInfo(System.m_hInstance, cs.lpszClass, &wndcls) &&
-wndcls.hIcon != hIcon)
-{
-// register a very similar WNDCLASS
-return System.RegisterWndClass(wndcls.style,
-wndcls.hCursor, wndcls.hbrBackground, hIcon);
-}
-}
-return NULL;        // just use the default
-}
-*/
 
 bool simple_frame_window::calc_layered()
 {
