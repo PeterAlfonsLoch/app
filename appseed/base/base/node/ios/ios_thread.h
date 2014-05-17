@@ -1,7 +1,6 @@
 #pragma once
 
 
-WINBOOL AfxInternalPreTranslateMessage(MESSAGE* pMsg);
 
 
 namespace ios

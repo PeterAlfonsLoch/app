@@ -1,9 +1,6 @@
 #include "framework.h"
 
 
-void __node_init_app_thread(::thread * pthread);
-
-
 #if defined(CUBE)
 
 
@@ -3615,9 +3612,6 @@ namespace base
          thread::m_pimpl->m_puser = this;
 
       }
-
-      __node_init_app_thread(this);
-
 
       m_pimpl.create(allocer());
       m_pimpl->construct();

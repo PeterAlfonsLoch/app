@@ -1,66 +1,17 @@
 #include "framework.h"
-//#include <process.h>    // for _beginthreadex and _endthreadex
-//#include <ddeml.h>  // for MESSAGEF_DDEMGR
-
-/**
- * \file		src/lib/pal/src/linux/thread_linux.cpp
- * \brief	Platform independent threads and synchronization objects (linux version)
- * \author	Thomas Nass
- */
-
-//#include "internal_linux.hpp"
-
 #include <fcntl.h>
-
-//namespace gen { namespace pal {
-
-//namespace internal
-//{
 
 
 struct ___THREAD_STARTUP : ::ios::thread_startup
 {
    ::ios::thread* pThread;    // thread for new thread
    DWORD dwCreateFlags;    // thread creation flags
-   _PNH pfnNewHandler;     // new handler for new thread
-   
-   //HANDLE hEvent;          // event triggered after success/non-success
-   //HANDLE hEvent2;         // event triggered after thread is resumed
-   
-   // strictly "out" -- set after hEvent is triggered
    bool bError;    // TRUE if error during startup
 };
 
-/*
- WINBOOL PeekMessage(
- LPMESSAGE lpMsg,
- oswindow hWnd,
- UINT wMsgFilterMin,
- UINT wMsgFilterMax,
- UINT wRemoveMsg)
- {
- 
- return TRUE;
- }
- 
- WINBOOL GetMessage(
- LPMESSAGE lpMsg,
- oswindow hWnd,
- UINT wMsgFilterMin,
- UINT wMsgFilterMax)
- {
- 
- return TRUE;
- }
- */
-namespace ios
-{
-   class thread;
-} // namespace ios
 
 WINBOOL CLASS_DECL_BASE AfxInternalPumpMessage();
 LRESULT CLASS_DECL_BASE AfxInternalProcessWndProcException(::exception::base*, const MESSAGE* pMsg);
-WINBOOL AfxInternalPreTranslateMessage(MESSAGE* pMsg);
 __STATIC void CLASS_DECL_BASE __pre_init_dialog(::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
 __STATIC void CLASS_DECL_BASE __post_init_dialog(::user::interaction * pWnd, const RECT& rectOld, DWORD dwStyleOld);
 
@@ -83,42 +34,22 @@ namespace ios
 
 
 
-/////////////////////////////////////////////////////////////////////////////
-// thread entry point
-
 struct _AFX_THREAD_STARTUP : ::ios::thread_startup
 {
    ::ios::thread* pThread;    // thread for new thread
    DWORD dwCreateFlags;    // thread creation flags
-   _PNH pfnNewHandler;     // new handler for new thread
-   
-   //HANDLE hEvent;          // event triggered after success/non-success
-   //HANDLE hEvent2;         // event triggered after thread is resumed
-   
-   // strictly "out" -- set after hEvent is triggered
    WINBOOL bError;    // TRUE if error during startup
 };
-
-
-void __node_init_app_thread(::thread * pthread)
-{
-   
-   
-}
 
 
 UINT APIENTRY __thread_entry(void * pParam)
 {
    _AFX_THREAD_STARTUP* pStartup = (_AFX_THREAD_STARTUP*)pParam;
    ASSERT(pStartup != NULL);
-   ASSERT(pStartup->pThreadState != NULL);
    ASSERT(pStartup->pThread != NULL);
-   //ASSERT(pStartup->hEvent != NULL);
    ASSERT(!pStartup->bError);
    
    ::ios::thread* pThread = pStartup->pThread;
-   
-   //   pThread->::se_translator::attach();
    
    try
    {
@@ -128,13 +59,6 @@ UINT APIENTRY __thread_entry(void * pParam)
    }
    catch(::exception::base *)
    {
-      // Note: DELETE_EXCEPTION(e) not required.
-      
-      // exception happened during thread initialization!!
-      //TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Error during thread initialization!\n");
-      
-      // set error flag and allow the creating thread to notice the error
-      //         threadWnd.Detach();
       pStartup->bError = TRUE;
       pStartup->hEvent.set_event();
       __end_thread(pThread->m_pbaseapp, (UINT)-1, FALSE);
@@ -192,152 +116,6 @@ namespace ios
 
 
 
-CLASS_DECL_BASE void AfxInternalProcessWndProcException(::exception::base*, signal_details * pobj)
-{
-   SCAST_PTR(::message::base, pbase, pobj);
-   if (pbase->m_uiMessage == WM_CREATE)
-   {
-      pbase->set_lresult(-1);
-      return;  // just fail
-   }
-   else if (pbase->m_uiMessage == WM_PAINT)
-   {
-      // force validation of ::window to prevent getting WM_PAINT again
-      //      ValidateRect(pbase->m_hwnd, NULL);
-      pbase->set_lresult(0);
-      return;
-   }
-   return;   // sensible default for rest of commands
-}
-
-CLASS_DECL_BASE void AfxProcessWndProcException(::exception::base* e, signal_details * pobj)
-{
-   ::thread *pThread = App(pobj->get_app()).GetThread();
-   if( pThread )
-      return pThread->ProcessWndProcException( e, pobj );
-   else
-      return AfxInternalProcessWndProcException( e, pobj );
-}
-
-void AfxInternalPreTranslateMessage(signal_details * pobj)
-{
-   try
-   {
-      SCAST_PTR(::message::base, pbase, pobj);
-      
-      //   ASSERT_VALID(this);
-      
-      ::thread *pThread = dynamic_cast < ::thread * > (::ios::get_thread());
-      if( pThread )
-      {
-         // if this is a thread-message, short-circuit this function
-         if (pbase->m_pwnd == NULL)
-         {
-            pThread->DispatchThreadMessageEx(pobj);
-            if(pobj->m_bRet)
-               return;
-         }
-      }
-      
-      // walk from target to main ::window
-      ::user::interaction* pMainWnd = pThread->GetMainWnd();
-      if(pMainWnd != NULL && pMainWnd->IsWindow())
-      {
-         pMainWnd->WalkPreTranslateTree(pobj);
-         if(pobj->m_bRet)
-            return;
-      }
-      
-      // in case of modeless dialogs, last chance route through main
-      //   ::ca2::window's accelerator table
-      ::window * pWnd = pbase->m_pwnd->get_wnd();
-      if (pMainWnd != NULL)
-      {
-         if (pWnd != NULL && IOS_WINDOW(pWnd)->GetTopLevelParent() != pMainWnd)
-         {
-            pMainWnd->pre_translate_message(pobj);
-            if(pobj->m_bRet)
-               return;
-         }
-      }
-      user::interaction_ptr_array wnda = Sys(pThread->get_app()).frames();
-      for(int32_t i = 0; i < wnda.get_count(); i++)
-      {
-         ::user::interaction * pui = &wnda[i];
-         try
-         {
-            if(pui != NULL)
-            {
-               if(pui->m_pui != NULL)
-               {
-                  if(pui->m_pui != pMainWnd
-                     && pui != pMainWnd)
-                  {
-                     pui->m_pui->pre_translate_message(pobj);
-                     if(pobj->m_bRet)
-                        return;
-                  }
-               }
-               else
-               {
-                  if(pui != pMainWnd)
-                  {
-                     pui->pre_translate_message(pobj);
-                     if(pobj->m_bRet)
-                        return;
-                  }
-               }
-            }
-         }
-         catch(...)
-         {
-         }
-      }
-   }
-   catch(...)
-   {
-   }
-    
-//    extern ios::thread_local_storage * __thread_data;
-
-   
-   // no special processing
-}
-
-void __cdecl __pre_translate_message(signal_details * pobj)
-{
-   ::thread *pThread = App(pobj->get_app()).GetThread();
-   if( pThread )
-      return pThread->pre_translate_message( pobj );
-   else
-      return AfxInternalPreTranslateMessage( pobj );
-}
-
-
-
-
-
-/*thread* CLASS_DECL_BASE AfxBeginThread(::base::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam,
- int32_t nPriority, UINT nStackSize, DWORD dwCreateFlags,
- LPSECURITY_ATTRIBUTES lpSecurityAttrs)
- {
- ASSERT(pfnThreadProc != NULL);
- 
- thread* pThread = BASE_NEW thread(papp, pfnThreadProc, pParam);
- ASSERT_VALID(pThread);
- 
- if (!pThread->CreateThread(dwCreateFlags|CREATE_SUSPENDED, nStackSize,
- lpSecurityAttrs))
- {
- pThread->Delete();
- return NULL;
- }
- VERIFY(pThread->SetThreadPriority(nPriority));
- if (!(dwCreateFlags & CREATE_SUSPENDED))
- VERIFY(pThread->ResumeThread() != (DWORD)-1);
- 
- return pThread;
- }*/
 void CLASS_DECL_BASE __end_thread(::base::application * papp, UINT nExitCode, bool bDelete)
 {
 

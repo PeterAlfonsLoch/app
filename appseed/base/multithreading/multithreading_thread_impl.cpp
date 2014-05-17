@@ -9,7 +9,7 @@
 #include "framework.h"
 
 
-bool thread::PreInitInstance()
+bool thread_impl::PreInitInstance()
 {
    
    return true;
@@ -17,7 +17,7 @@ bool thread::PreInitInstance()
 }
 
 
-bool thread::initialize_instance()
+bool thread_impl::initialize_instance()
 {
    
    return true;
