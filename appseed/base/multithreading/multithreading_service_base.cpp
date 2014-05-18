@@ -331,6 +331,8 @@ void service_base::call_server()
       ::os_thread::set(posthreadNew = new ::os_thread(NULL, NULL));
 
 
+   ::set_thread(m_pbaseapp);
+
    serve();
 
 
