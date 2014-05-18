@@ -234,8 +234,8 @@ public:
    bool                                   m_bReady;
    int32_t                                m_iReturnCode;
    sp(::base::application)                m_pappDelete;
-   sp(::user::interaction)                m_puiMain;           // main window (usually same System.GetMainWnd())
-   sp(::user::interaction)                m_puiActive;         // active main window (may not be GetMainWnd())
+   sp(::user::interaction)                m_puiMain;           // main window (usually same System.m_puiMain)
+   sp(::user::interaction)                m_puiActive;         // active main window (may not be m_puiMain)
    bool *                                 m_pbReady;
    property_set                           m_set;
    string                                 m_strWorkUrl;
@@ -254,9 +254,6 @@ public:
 
 
    virtual HTHREAD get_os_handle() const;
-
-
-   virtual void set_p(thread * p);
 
 
    virtual void set_os_data(void * pvoidOsData);
@@ -320,8 +317,7 @@ public:
    virtual bool is_idle_message(signal_details * pobj);  // checks for special messages
    virtual bool is_idle_message(LPMESSAGE lpmessage);  // checks for special messages
 
-   // thread termination
-   virtual int32_t exit_instance(); // default will 'delete this'
+   virtual int32_t exit_instance();
 
    virtual void process_window_procedure_exception(::exception::base*,signal_details * pobj);
 

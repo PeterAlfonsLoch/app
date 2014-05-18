@@ -20,7 +20,6 @@ int32_t simple_app::main()
 
    //Sleep(15 * 1000);
 
-   
    __argc = _init_args();
 	__targv = _argv;
 	_init_file();
@@ -58,10 +57,15 @@ int32_t simple_app::main()
    //initialize_primitive_trace();
 
    if(!os_initialize())
+   {
       return -1;
+   }
+    
        
    if(!main_initialize()) 
+   {
       return -1;
+   }
 
    body();
    
@@ -86,7 +90,6 @@ void simple_app::body()
    {
       if ((m_iError = simple_app_pre_run()) != 0)
       {
-
          if (m_iError != 0)
             m_iError = -1;
 
@@ -127,7 +130,6 @@ void simple_app::body()
    }
    catch (...)
    {
-
       if (m_iError > 0)
          m_iError = -1;
 
@@ -141,7 +143,6 @@ void simple_app::body()
 
       if(!intro())
       {
-         
          if(m_iError > 0)
             m_iError = -1;
 
@@ -152,7 +153,6 @@ void simple_app::body()
    }
    catch(...)
    {
-         
       if(m_iError > 0)
          m_iError = -1;
 
@@ -168,7 +168,6 @@ void simple_app::body()
    }
    catch(...)
    {
-         
       if(m_iError > 0)
          m_iError = -1;
 

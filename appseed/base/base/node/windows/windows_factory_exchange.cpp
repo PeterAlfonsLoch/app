@@ -18,7 +18,7 @@ namespace windows
       System.factory().cloneable          < dir                >  (System.type_info < ::file::dir::system         > ()  , 1   );
       System.factory().cloneable_small    < folder_watch       >  (System.type_info < ::file::folder_watch        > ()        );
       System.factory().creatable          < window_draw        >  (System.type_info < ::user::window_draw         > ()  , 1   );
-      System.factory().creatable_large    < thread             >  (System.type_info < ::thread                    > ()        );
+      System.factory().creatable_large    < thread             >  (System.type_info < ::thread_impl                 > ()        );
       System.factory().creatable_large    < window             >  (System.type_info < ::window              > ()        );
       System.factory().creatable          < os                 >  (System.type_info < ::core::os                  > ()  , 1   );
       System.factory().creatable          < port_forward       >  (System.type_info < ::net::port_forward         > ()  , 1   );

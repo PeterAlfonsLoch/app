@@ -1,16 +1,9 @@
 #include "framework.h"
 
-#define COMPILE_MULTIMON_STUBS
-//#include <multimon.h>
 
-#include "sal.h"
+thread_int_ptr < HHOOK > t_hHookOldCbtFilter;
+thread_pointer < ::windows::window  > t_pwndInit;
 
-extern __declspec(thread) HHOOK t_hHookOldMsgFilter;
-extern __declspec(thread) HHOOK t_hHookOldCbtFilter;
-extern __declspec(thread) ::user::interaction * t_pwndInit;
-
-__STATIC void CLASS_DECL_BASE __pre_init_dialog(sp(::user::interaction) pwindow,LPRECT lpRectOld,uint32_t* pdwStyleOld);
-__STATIC void CLASS_DECL_BASE __post_init_dialog(sp(::user::interaction) pwindow,const RECT& rec_001tOld,uint32_t dwStyleOld);
 LRESULT CALLBACK __activation_window_procedure(oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM lParam);
 
 const char * gen_OldWndProc = "::core::OldWndProc423";
@@ -224,6 +217,8 @@ namespace windows
       int32_t x,int32_t y,int32_t nWidth,int32_t nHeight,
       oswindow oswindow_Parent,id id,LPVOID lpParam)
    {
+
+      //::MessageBox(NULL,"h1","h1",MB_OK);
       UNREFERENCED_PARAMETER(id);
       ASSERT(lpszClassName == NULL || __is_valid_string(lpszClassName) ||
          __is_valid_atom(lpszClassName));
@@ -274,9 +269,15 @@ namespace windows
 
       oswindow oswindow = ::CreateWindowEx(cs.dwExStyle,cs.lpszClass,cs.lpszName,cs.style,cs.x,cs.y,cs.cx,cs.cy,cs.hwndParent,cs.hMenu,cs.hInstance,cs.lpCreateParams);
 
-#ifdef DEBUG
+      if(!unhook_window_create())
+         PostNcDestroy();        // cleanup if CreateWindowEx fails too soon
+
+      //::MessageBox(NULL,"h2","h2",MB_OK);
+
       if(oswindow == NULL)
       {
+
+         //::MessageBox(NULL,"h3","h3",MB_OK);
 
          if(m_pbaseapp.is_null())
             return FALSE;
@@ -286,27 +287,34 @@ namespace windows
          string strMessage;
          strMessage.Format("%s\n\nSystem Error Code: %d",strLastError,dwLastError);
 
+
          TRACE(::core::trace::category_AppMsg,0,"Warning: Window creation failed: GetLastError returned:\n");
+
          TRACE(::core::trace::category_AppMsg,0,"%s\n",strMessage);
+
          try
          {
+
             if(dwLastError == 0x0000057e)
             {
+
                System.simple_message_box(NULL,"Cannot create a top-level child window.");
+
             }
             else
             {
+
                System.simple_message_box(NULL,strMessage);
+
             }
+
          }
          catch(...)
          {
-         }
-      }
-#endif
 
-      if(!unhook_window_create())
-         PostNcDestroy();        // cleanup if CreateWindowEx fails too soon
+         }
+
+      }
 
       if(oswindow == NULL)
          return FALSE;
@@ -318,11 +326,17 @@ namespace windows
          Application.set_icon(m_pui,new ::visual::icon(wndcls.hIcon),false);
          Application.set_icon(m_pui,new ::visual::icon(wndcls.hIcon),true);
       }
+      //::MessageBox(NULL,"h4","h4",MB_OK);
       //      oswindow oswindowHandle = get_handle();
       if(oswindow != get_handle())
       {
+         //::MessageBox(NULL,"h4.dame","h4.dame",MB_OK);
+
          ASSERT(FALSE); // should have been set in send msg hook
+
       }
+      //::MessageBox(NULL,"h4.ok","h4.ok",MB_OK);
+
       return TRUE;
    }
 
@@ -492,56 +506,6 @@ namespace windows
          m_size = rectWindow.size();
 
       }
-
-      /*  m_dib->
-
-      //m_spg.release();
-
-      //m_spb.release();
-
-      //if(m_pbitmap != NULL)
-      //{
-      // delete m_pbitmap;
-      //}
-
-      if(m_hbitmap != NULL)
-      ::DeleteObject(m_hbitmap);
-
-      m_size = rectWindow.size();
-
-      ZeroMemory(&m_bitmapinfo, sizeof (BITMAPINFO));
-
-      m_bitmapinfo.bmiHeader.biSize          = sizeof (BITMAPINFOHEADER);
-      m_bitmapinfo.bmiHeader.biWidth         = m_size.cx;
-      m_bitmapinfo.bmiHeader.biHeight        = -m_size.cy;
-      m_bitmapinfo.bmiHeader.biPlanes        = 1;
-      m_bitmapinfo.bmiHeader.biBitCount      = 32;
-      m_bitmapinfo.bmiHeader.biCompression   = BI_RGB;
-      m_bitmapinfo.bmiHeader.biSizeImage     = m_size.cx * m_size.cy * 4;
-
-
-      m_hbitmap = CreateDIBSection(NULL, &m_bitmapinfo, DIB_RGB_COLORS, (void **) &m_pcolorref, NULL, 0);
-
-
-
-      #undef new
-      m_pbitmap =  new  Gdiplus::Bitmap(m_size.cx, m_size.cy, m_size.cx *4 , PixelFormat32bppARGB, (BYTE *) m_pcolorref);
-      #define new BASE_NEW
-
-
-      m_spg.create(allocer());
-
-      #undef new
-      (dynamic_cast < ::windows::graphics * > (m_spg.m_p))->attach(new Gdiplus::Graphics(m_pbitmap));
-      #define new BASE_NEW
-
-      m_spb.create(allocer());
-
-      m_spb->attach(m_pbitmap);
-
-      m_spg->SelectObject(m_spb);
-
-      }*/
 
 
 
@@ -2798,7 +2762,7 @@ namespace windows
       throw not_implemented(get_app());
 
       /*      application* pApp = &System;
-      if (pApp != NULL && pApp->GetMainWnd() == this)
+      if (pApp != NULL && pApp->m_puiMain == this)
       {
       // recolor global brushes used by control bars
       afxData.UpdateSysColors();
@@ -2830,7 +2794,7 @@ namespace windows
       UNREFERENCED_PARAMETER(lpDeviceName);
       throw not_implemented(get_app());
       /*application* pApp = &System;
-      if (pApp != NULL && pApp->GetMainWnd() == this)
+      if (pApp != NULL && pApp->m_puiMain == this)
       pApp->DevModeChange(lpDeviceName);
 
       // forward this message to all other child windows
@@ -3627,55 +3591,7 @@ namespace windows
       cmd_ui state(get_app());
       window wndTemp;       // very temporary window just for CmdUI update
 
-      // walk all the kids - assume the IDs are for buttons
-      /* xxx   for (oswindow oswindow_Child = ::GetTopWindow(get_handle()); oswindow_Child != NULL;
-      oswindow_Child = ::GetNextWindow(oswindow_Child, GW_HWNDNEXT))
-      {
-      // send to buttons
-      wndTemp.set_handle(oswindow_Child); // quick and dirty attach
-      state.m_nID = __get_dialog_control_id(oswindow_Child);
-      state.m_pOther = &wndTemp;
-
-      // check for reflect handlers in the child window
-      ::window_sp pwindow = ::window_from_handle(oswindow_Child);
-      if (pwindow != NULL)
-      {
-      // call it directly to disable any routing
-      if (NODE_WINDOW(pwindow)->window::_001OnCommand(0, MAKELONG(0xffff,
-      WM_COMMAND+WM_REFLECT_BASE), &state, NULL))
-      continue;
-      }
-
-      // check for handlers in the parent window
-      if (window::_001OnCommand((UINT)state.m_nID, CN_UPDATE_COMMAND_UI, &state, NULL))
-      continue;
-
-      // determine whether to disable when no handler exists
-      bool bDisableTemp = bDisableIfNoHndler;
-      if (bDisableTemp)
-      {
-      if ((wndTemp.SendMessage(WM_GETDLGCODE) & DLGC_BUTTON) == 0)
-      {
-      // non-button controls don't get automagically disabled
-      bDisableTemp = FALSE;
-      }
-      else
-      {
-      // only certain button controls get automagically disabled
-      UINT nStyle = (UINT)(wndTemp.GetStyle() & 0x0F);
-      if (nStyle == (UINT)BS_AUTOCHECKBOX ||
-      nStyle == (UINT)BS_AUTO3STATE ||
-      nStyle == (UINT)BS_GROUPBOX ||
-      nStyle == (UINT)BS_AUTORADIOBUTTON)
-      {
-      bDisableTemp = FALSE;
-      }
-      }
-      }
-      // check for handlers in the target (owner)
-      state.DoUpdate(pTarget, bDisableTemp);
-      }
-      wndTemp.set_handle(NULL);      // quick and dirty detach */
+      
    }
 
 
@@ -3753,7 +3669,7 @@ namespace windows
                goto ExitModal;
 
             // reset "no idle" state after pumping "normal" message
-            if(__is_idle_message(&msg))
+            if(m_pthread->is_idle_message(&msg))
             {
                bIdle = TRUE;
                lIdleCount = 0;
@@ -5901,7 +5817,7 @@ namespace windows
          if (pFrame != NULL)
          oswindow = pFrame->get_handle();
          else
-         oswindow = System.GetMainWnd()->get_handle();*/
+         oswindow = System.m_puiMain->get_handle();*/
       }
 
       // a popup window cannot be owned by a child window
@@ -5940,41 +5856,37 @@ namespace windows
    }
 
 
-
-   /*CDataExchange::CDataExchange(::window_sp pDlgWnd, bool bSaveAndValidate)
-   {
-   ASSERT_VALID(pDlgWnd);
-   m_bSaveAndValidate = bSaveAndValidate;
-   m_pDlgWnd = pDlgWnd;
-   m_idLastControl = 0;
-   }*/
-
-   /////////////////////////////////////////////////////////////////////////////
-   // Window creation hooks
-
    LRESULT CALLBACK __cbt_filter_hook(int32_t code,WPARAM wParam,LPARAM lParam)
    {
+
       if(code != HCBT_CREATEWND)
       {
+         
          // wait for HCBT_CREATEWND just pass others on...
-         return CallNextHookEx(t_hHookOldCbtFilter,code,
-            wParam,lParam);
+
+         return CallNextHookEx(t_hHookOldCbtFilter,code,wParam,lParam);
+
       }
 
       ASSERT(lParam != NULL);
+
       LPCREATESTRUCT lpcs = ((LPCBT_CREATEWND)lParam)->lpcs;
+
       ASSERT(lpcs != NULL);
 
-      sp(::windows::window) pWndInit = t_pwndInit;
-      //      bool bContextIsDLL = afxContextIsDLL;
-      if(pWndInit != NULL || (!(lpcs->style & WS_CHILD)))
+      ::windows::window * pwnd = t_pwndInit;
+
+      if(pwnd != NULL || (!(lpcs->style & WS_CHILD)))
       {
+
+         t_pwndInit = NULL;
+
          // Note: special check to avoid subclassing the IME window
          //if (gen_DBCS)
          {
             // check for cheap CS_IME style first...
             if(GetClassLong((oswindow)wParam,GCL_STYLE) & CS_IME)
-            goto lCallNextHook;
+               goto lCallNextHook;
 
             // get class name of the window that is being created
             const char * pszClassName;
@@ -5993,34 +5905,45 @@ namespace windows
             // a little more expensive to test this way, but necessary...
             if(::__invariant_stricmp(pszClassName,"ime") == 0)
                goto lCallNextHook;
+
          }
 
-         ASSERT(wParam != NULL); // should be non-NULL oswindow
+         ASSERT(wParam != NULL);
+
          ::oswindow oswindow = (::oswindow) wParam;
+
          WNDPROC oldWndProc;
-         if(pWndInit != NULL)
+
+         if(pwnd != NULL)
          {
-            // the window should not be in the permanent map at this time
+
             ASSERT(::window_from_handle(oswindow) == NULL);
 
-            pWndInit->m_pthread = dynamic_cast < ::thread * > (::windows::get_thread());
-            if(pWndInit->m_pthread != NULL)
-            {
-               pWndInit->m_pthread->add(pWndInit);
-            }
-            pWndInit->m_pui->m_pthread = pWndInit->m_pthread;
-            if(pWndInit->m_pui->m_pthread != NULL)
-            {
-               pWndInit->m_pui->m_pthread->add(pWndInit->m_pui);
-            }
-            pWndInit->m_pui->m_pimpl = pWndInit;
+            pwnd->m_pthread = ::get_thread();
 
-            // connect the oswindow to pWndInit...
-            pWndInit->attach(oswindow);
-            // allow other subclassing to occur first
-            pWndInit->pre_subclass_window();
+            if(pwnd->m_pthread != NULL)
+            {
 
-            WNDPROC *pOldWndProc = pWndInit->GetSuperWndProcAddr();
+               pwnd->m_pthread->add(pwnd);
+
+            }
+
+            pwnd->m_pui->m_pthread = pwnd->m_pthread;
+
+            if(pwnd->m_pui->m_pthread != NULL)
+            {
+
+               pwnd->m_pui->m_pthread->add(pwnd->m_pui);
+
+            }
+
+            pwnd->m_pui->m_pimpl = pwnd;
+
+            pwnd->attach(oswindow);
+
+            pwnd->pre_subclass_window();
+
+            WNDPROC *pOldWndProc = pwnd->GetSuperWndProcAddr();
             ASSERT(pOldWndProc != NULL);
 
             // subclass the window with standard __window_procedure
@@ -6031,56 +5954,9 @@ namespace windows
             if(oldWndProc != afxWndProc)
                *pOldWndProc = oldWndProc;
 
-            t_pwndInit = NULL;
+            
+
          }
-         //else
-         //{
-         //   ASSERT(!bContextIsDLL);   // should never get here
-
-         //   static ATOM s_atomMenu = 0;
-         //   bool bSubclass = true;         
-
-         //   if (s_atomMenu == 0)
-         //   {
-         //      WNDCLASSEX wc;
-         //      memset(&wc, 0, sizeof(WNDCLASSEX));
-         //      wc.cbSize = sizeof(WNDCLASSEX);
-         //      s_atomMenu = (ATOM)::GetClassInfoEx(NULL, "#32768", &wc);
-         //   }
-
-         //   // Do not subclass menus.
-         //   if (s_atomMenu != 0)
-         //   {
-         //      ATOM atomWnd = (ATOM)::GetClassLongPtr(oswindow, GCW_ATOM);
-         //      if (atomWnd == s_atomMenu)
-         //         bSubclass = false;
-         //   }
-         //   else
-         //   {         
-         //      char szClassName[256];
-         //      if (::GetClassName(oswindow, szClassName, 256))
-         //      {
-         //         szClassName[255] = NULL;
-         //         if (_tcscmp(szClassName, "#32768") == 0)
-         //            bSubclass = false;
-         //      }
-         //   }         
-         //   if (bSubclass)
-         //   {
-         //      // subclass the window with the proc which does gray backgrounds
-         //      oldWndProc = (WNDPROC)GetWindowLongPtr(oswindow, GWLP_WNDPROC);
-         //      if (oldWndProc != NULL && GetProp(oswindow, gen_OldWndProc) == NULL)
-         //      {
-         //         SetProp(oswindow, gen_OldWndProc, oldWndProc);
-         //         if ((WNDPROC)GetProp(oswindow, gen_OldWndProc) == oldWndProc)
-         //         {
-         //            GlobalAddAtom(gen_OldWndProc);
-         //            SetWindowLongPtr(oswindow, GWLP_WNDPROC, (uint_ptr)__activation_window_procedure);
-         //            ASSERT(oldWndProc != NULL);
-         //         }
-         //      }
-         //   }
-         //}
       }
 
    lCallNextHook:
@@ -6297,37 +6173,45 @@ WNDPROC CLASS_DECL_BASE __get_window_procedure()
 }
 
 
-__declspec(thread) ::user::interaction * t_pwndInit = NULL;
-__declspec(thread) HHOOK t_hHookOldCbtFilter = NULL;
 
 
-CLASS_DECL_BASE void hook_window_create(sp(::windows::window) pwindow)
+CLASS_DECL_BASE void hook_window_create(::windows::window * pwindow)
 {
-
+   
    if(t_pwndInit == pwindow)
       return;
 
    if(t_hHookOldCbtFilter == NULL)
    {
+
       t_hHookOldCbtFilter = ::SetWindowsHookEx(WH_CBT,windows::__cbt_filter_hook,NULL,::GetCurrentThreadId());
+
       if(t_hHookOldCbtFilter == NULL)
+      {
+
          throw memory_exception(pwindow->get_app());
+
+      }
+
    }
 
    ASSERT(t_hHookOldCbtFilter != NULL);
 
    ASSERT(pwindow != NULL);
 
-   ASSERT(NODE_WINDOW(pwindow)->get_handle() == NULL);   // only do once
+   ASSERT(pwindow->get_handle() == NULL);   // only do once
 
    ASSERT(t_pwndInit == NULL);   // hook not already in progress
 
    t_pwndInit = pwindow;
 
+   ASSERT(t_pwndInit != NULL);   // hook not already in progress
+
 }
 
 CLASS_DECL_BASE bool unhook_window_create()
 {
+
    if(t_pwndInit != NULL)
    {
       t_pwndInit = NULL;
@@ -6503,13 +6387,10 @@ __activation_window_procedure(oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM l
       {
       case WM_INITDIALOG:
       {
-                           uint32_t dwStyle;
                            rect rectOld;
                            ::window_sp pwindow = ::windows::window::from_handle(oswindow);
-                           __pre_init_dialog(pwindow,&rectOld,&dwStyle);
                            bCallDefault = FALSE;
                            lResult = CallWindowProc(oldWndProc,oswindow,nMsg,wParam,lParam);
-                           __post_init_dialog(pwindow,rectOld,dwStyle);
       }
          break;
 
@@ -6562,18 +6443,16 @@ __activation_window_procedure(oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM l
 // like RegisterClass, except will automatically call UnregisterClass
 bool CLASS_DECL_BASE __register_class(WNDCLASS* lpWndClass)
 {
+
    WNDCLASS wndcls;
-   if(GetClassInfo(lpWndClass->hInstance,lpWndClass->lpszClassName,
-      &wndcls))
+   
+   if(GetClassInfo(lpWndClass->hInstance,lpWndClass->lpszClassName,  &wndcls))
    {
-      // class already registered
       return TRUE;
    }
 
    if(!::RegisterClass(lpWndClass))
    {
-      //      TRACE(::core::trace::category_AppMsg, 0, "Can't register window class named %s\n",
-      //       lpWndClass->lpszClassName);
       return FALSE;
    }
 
@@ -6588,3 +6467,15 @@ bool CLASS_DECL_BASE __register_class(WNDCLASS* lpWndClass)
 
 
 
+
+
+
+void __term_windowing()
+{
+   if(t_hHookOldCbtFilter != NULL)
+   {
+      ::UnhookWindowsHookEx(t_hHookOldCbtFilter);
+      t_hHookOldCbtFilter = NULL;
+   }
+
+}

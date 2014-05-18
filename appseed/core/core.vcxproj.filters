@@ -3994,9 +3994,6 @@
     <ClCompile Include="core\core\core_resource.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core\core_section.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core\core_service.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>

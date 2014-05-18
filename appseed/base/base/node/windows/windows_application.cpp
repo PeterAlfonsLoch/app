@@ -196,7 +196,7 @@ namespace windows
    bool application::initialize1()
    {
 
-      m_puser->set_run();
+      set_run();
 
       return true;
 
@@ -216,9 +216,9 @@ namespace windows
    int32_t application::exit_instance() // default will 'delete this'
    {
 
-      m_puser->set_os_data(NULL);
+      set_os_data(NULL);
 
-      m_puser->set_run(false);
+      set_run(false);
 
       int32_t iRet = ::base::application::exit_instance();
 

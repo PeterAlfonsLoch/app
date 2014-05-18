@@ -600,7 +600,7 @@ namespace user
       if (cmdInfo.m_nShellCommand == command_line::FileOpen)
       {
       // show the application window
-      sp(::user::interaction) pMainWnd = System.GetMainWnd();
+      sp(::user::interaction) pMainWnd = System.m_puiMain;
       int32_t nCmdShow = System.m_nCmdShow;
       if (nCmdShow == -1 || nCmdShow == SW_SHOWNORMAL)
       {
@@ -694,7 +694,7 @@ namespace user
       // open the document, then print it.
       pDoc = System.open_document_file(cmdInfo.m_varFile);
       //System.m_pCmdInfo = &cmdInfo;
-      System.GetMainWnd()->SendMessage(WM_COMMAND, ID_FILE_PRINT_DIRECT);
+      System.m_puiMain->SendMessage(WM_COMMAND, ID_FILE_PRINT_DIRECT);
       //System.m_pCmdInfo = NULL;
 
       // close the document if it wasn't open previously (based on doc count)
@@ -818,7 +818,7 @@ namespace user
       //}
 
       /*   char szLinkName[_MAX_PATH];
-      if (::core::ResolveShortcut(System.GetMainWnd(), szPath, szLinkName, _MAX_PATH))
+      if (::core::ResolveShortcut(System.m_puiMain, szPath, szLinkName, _MAX_PATH))
       ::core::tcscpy_s(szPath, _countof(szPath), szLinkName);
       */
 
@@ -856,11 +856,8 @@ namespace user
                if (pFrame->get_parent() != NULL)
                {
                   sp(::user::frame_window) pAppFrame;
-                  if (pFrame != (pAppFrame = System.GetMainWnd()))
-                  {
-                     ASSERT_KINDOF(frame_window, pAppFrame);
-                     pAppFrame->ActivateFrame();
-                  }
+                  ASSERT_KINDOF(frame_window, pAppFrame);
+                  pAppFrame->ActivateFrame();
                }
             }
          }

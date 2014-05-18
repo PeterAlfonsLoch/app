@@ -2645,35 +2645,8 @@ namespace user
             if (!ContinueModal(iLevel))
                goto ExitModal;
 
-            // reset "no idle" state after pumping "normal" message
-            /*
 
-            todo: enable again to update menu enabled/and other states
-
-            if (__is_idle_message(&msg))
-            {
-            bIdle = TRUE;
-            lIdleCount = 0;
-            }*/
-
-            m_pthread->m_pimpl->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
-            if (pappThis1 != NULL)
-            {
-               pappThis1->m_dwAlive = m_pthread->m_dwAlive;
-            }
-            if (pappThis2 != NULL)
-            {
-               pappThis2->m_dwAlive = m_pthread->m_dwAlive;
-            }
-            if (pliveobject != NULL)
-            {
-               pliveobject->keep_alive();
-            }
-
-            /*            if(pliveobject != NULL)
-            {
-            pliveobject->keep();
-            }*/
+            keep_alive(pliveobject);
 
          } while (::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE) != FALSE);
 
@@ -2682,6 +2655,7 @@ namespace user
          {
             m_pui->m_pthread->step_timer();
          }
+
          if (!ContinueModal(iLevel))
             goto ExitModal;
 
@@ -3048,6 +3022,9 @@ namespace user
          m_pimpl->release();
          return false;
       }
+
+      //::MessageBox(NULL,"t3=","t3=",MB_OK);
+
 
       m_pimpl->m_pthread = ::get_thread();
 

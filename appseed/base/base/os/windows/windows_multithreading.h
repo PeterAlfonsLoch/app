@@ -4,22 +4,18 @@
 #ifdef cplusplus
 
 
-class thread_data_base
+
+
+class CLASS_DECL_BASE thread_data
 {
 public:
 
-
-   static _declspec(thread) void *        t_p;
-
-
-};
+   
+   DWORD g_dwTlsIndex;
 
 
-class CLASS_DECL_BASE thread_data :
-   public thread_data_base
-{
-public:
-
+   thread_data();
+   ~thread_data();
 
    void * get();
    void set(void * p);

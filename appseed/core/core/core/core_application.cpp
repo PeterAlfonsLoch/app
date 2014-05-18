@@ -667,7 +667,7 @@ int32_t application::exit_instance()
    }
    catch (...)
    {
-
+      ::MessageBox(NULL,"a","b",MB_OK);
       m_iReturnCode = -1;
 
    }
@@ -968,7 +968,7 @@ void application::EnableModelessEx(bool bEnable)
 #endif
 
    // no-op if main window is NULL or not a frame_window
-   /*      sp(::user::interaction) pMainWnd = System.GetMainWnd();
+   /*      sp(::user::interaction) pMainWnd = System.m_puiMain;
    if (pMainWnd == NULL || !pMainWnd->is_frame_window())
    return;*/
 
@@ -1007,10 +1007,10 @@ return str;
 // Main running routine until application exits
 int32_t application::run()
 {
-   /*   if (GetMainWnd() == NULL) // may be a service or console application window
+   /*   if (m_puiMain == NULL) // may be a service or console application window
    {
    // Not launched /Embedding or /Automation, but has no main window!
-   TRACE(::core::trace::category_AppMsg, 0, "Warning: GetMainWnd() is NULL in application::run - quitting application.\n");
+   TRACE(::core::trace::category_AppMsg, 0, "Warning: m_puiMain is NULL in application::run - quitting application.\n");
    __post_quit_message(0);
    }*/
    //      return application::run();
@@ -1050,7 +1050,7 @@ bool application::on_idle(LONG lCount)
 /////////////////////////////////////////////////////////////////////////////
 // Special exception handling
 
-void application::ProcessWndProcException(::exception::base* e, signal_details * pobj)
+void application::process_window_procedure_exception(::exception::base* e, signal_details * pobj)
 {
    ENSURE_ARG(e != NULL);
    ENSURE_ARG(pobj != NULL);
@@ -1060,7 +1060,7 @@ void application::ProcessWndProcException(::exception::base* e, signal_details *
    {
    case WM_CREATE:
    case WM_PAINT:
-      return thread::ProcessWndProcException(e, pobj);
+      return thread::process_window_procedure_exception(e, pobj);
    }
 
    // handle all the rest
@@ -1458,102 +1458,12 @@ bool application::GetSysPolicyValue(uint32_t dwPolicyID, bool *pbValue)
 
 bool application::InitApplication()
 {
-   /*if(::get_app() == NULL)
-   {
-   ::set_app(get_system());
-   systemsp(::application) pApp = dynamic_cast < systemsp(::application) > (::get_app());
-   thread * pThread = ::get_app();
-   // App global initializations (rare)
-   if (pApp != NULL && !pApp->InitApplication())
-   goto InitFailure;
 
-   pThread->translator::attach();
-
-   // Perform specific initializations
-   try
-   {
-   try
-   {
-   if(!pApp->process_initialize())
-   {
-   if (pThread->GetMainWnd() != NULL)
-   {
-   TRACE(::core::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
-   pThread->GetMainWnd()->DestroyWindow();
-   }
-   goto InitFailure;
-   }
-   }
-   catch(const ::exception::exception &)
-   {
-   if (pThread->GetMainWnd() != NULL)
-   {
-   pThread->GetMainWnd()->DestroyWindow();
-   pThread->SetMainWnd(NULL);
-   }
-   goto InitFailure;
-   }
-   try
-   {
-   if(!pThread->initialize_instance())
-   {
-   if (pThread->GetMainWnd() != NULL)
-   {
-   TRACE(::core::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
-   pThread->GetMainWnd()->DestroyWindow();
-   }
-   pThread->exit_instance();
-   goto InitFailure;
-   }
-   }
-   catch(const ::exception::exception &)
-   {
-   if(pThread->on_run_exception((::exception::exception &) e))
-   goto run;
-   if (pThread->GetMainWnd() != NULL)
-   {
-   TRACE(::core::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
-   try
-   {
-   pThread->GetMainWnd()->DestroyWindow();
-   }
-   catch(::exception::exception &)
-   {
-   }
-   pThread->SetMainWnd(NULL);
-   }
-   if(pApp->final_handle_exception((::exception::exception &) e))
-   goto run;
-   if (pThread->GetMainWnd() != NULL)
-   {
-   TRACE(::core::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
-   try
-   {
-   pThread->GetMainWnd()->DestroyWindow();
-   }
-   catch(::exception::exception &)
-   {
-   }
-   pThread->SetMainWnd(NULL);
-   }
-   pThread->exit_instance();
-   goto InitFailure;
-   }
-
-   }
-   catch(...)
-   {
-   }
-   }
-   run:*/
 
    LoadSysPolicies();
 
    return TRUE;
 
-   /*InitFailure:
-
-   return FALSE;*/
 
 }
 
@@ -1724,8 +1634,6 @@ void application::WinHelp(uint_ptr dwData, UINT nCmd)
 {
    UNREFERENCED_PARAMETER(dwData);
    UNREFERENCED_PARAMETER(nCmd);
-   sp(::user::interaction) pMainWnd = System.GetMainWnd();
-   ENSURE_VALID(pMainWnd);
 
    // return global cast help mode state to FALSE (backward compatibility)
    m_bHelpMode = FALSE;
@@ -1739,10 +1647,10 @@ void application::WinHelp(uint_ptr dwData, UINT nCmd)
 
 void application::HtmlHelp(uint_ptr dwData, UINT nCmd)
 {
+
    UNREFERENCED_PARAMETER(dwData);
+
    UNREFERENCED_PARAMETER(nCmd);
-   sp(::user::interaction) pMainWnd = System.GetMainWnd();
-   ENSURE_VALID(pMainWnd);
 
    // return global cast help mode state to FALSE (backward compatibility)
    m_bHelpMode = FALSE;
@@ -1756,7 +1664,7 @@ void application::WinHelpInternal(uint_ptr dwData, UINT nCmd)
 {
    UNREFERENCED_PARAMETER(dwData);
    UNREFERENCED_PARAMETER(nCmd);
-   //   sp(::user::interaction) pMainWnd = System.GetMainWnd();
+   //   sp(::user::interaction) pMainWnd = System.m_puiMain;
    //   ENSURE_VALID(pMainWnd);
 
    // return global cast help mode state to FALSE (backward compatibility)
@@ -1839,21 +1747,6 @@ bool application::on_run_exception(::exception::exception & e)
 }
 
 
-
-HCURSOR application::LoadStandardCursor(const char * lpszCursorName) const
-{
-
-#ifdef WINDOWSEX
-
-   return ::LoadCursor(NULL, lpszCursorName);
-
-#else
-
-   return NULL;
-
-#endif
-
-}
 
 
 
@@ -1971,7 +1864,7 @@ void application::OnHelp()  // use context to derive help context
    }
 
    // otherwise, use window::OnHelp implementation
-   /* trans ::window_sp pwindow = System.GetMainWnd();
+   /* trans ::window_sp pwindow = System.m_puiMain;
    ENSURE_VALID(pwindow);
    if (!pwindow->is_frame_window())
    pwindow->OnHelp();
@@ -2023,7 +1916,7 @@ void application::OnContextHelp()
 {
    // just use frame_window::OnContextHelp implementation
    /* trans   m_bHelpMode = HELP_ACTIVE;
-   sp(::user::frame_window) pMainWnd = (System.GetMainWnd());
+   sp(::user::frame_window) pMainWnd = (System.m_puiMain);
    ENSURE_VALID(pMainWnd);
    ENSURE(pMainWnd->is_frame_window());
    pMainWnd->OnContextHelp();
@@ -2134,9 +2027,9 @@ void application::OnAppExit()
 
    // same as double-clicking on main window close box
 
-   ASSERT(GetMainWnd() != NULL);
+   ASSERT(m_puiMain != NULL);
 
-   GetMainWnd()->send_message(WM_CLOSE);
+   m_puiMain->send_message(WM_CLOSE);
 
 }
 
@@ -2145,15 +2038,15 @@ void application::HideApplication()
 {
    try
    {
-      if (GetMainWnd() == NULL)
+      if (m_puiMain == NULL)
          return;
 
       // hide the application's windows before closing all the documents
-      GetMainWnd()->ShowWindow(SW_HIDE);
-      // trans    GetMainWnd()->ShowOwnedPopups(FALSE);
+      m_puiMain->ShowWindow(SW_HIDE);
+      // trans    m_puiMain->ShowOwnedPopups(FALSE);
 
       // put the window at the bottom of zorder, so it isn't activated
-      GetMainWnd()->SetWindowPos(ZORDER_BOTTOM, 0, 0, 0, 0,
+      m_puiMain->SetWindowPos(ZORDER_BOTTOM, 0, 0, 0, 0,
          SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
    }
    catch (...)
@@ -2203,7 +2096,7 @@ void application::DoEnableModeless(bool bEnable)
 #endif
 
    // no-op if main window is NULL or not a frame_window
-   /*   sp(::user::interaction) pMainWnd = System.GetMainWnd();
+   /*   sp(::user::interaction) pMainWnd = System.m_puiMain;
    if (pMainWnd == NULL || !pMainWnd->is_frame_window())
    return;*/
 
@@ -2406,7 +2299,7 @@ switch (rCmdInfo.m_nShellCommand)
 case CCommandLineInfo::FileNew:
 if (!System._001SendCommand("file::new"))
 _001OnFileNew();
-if (GetMainWnd() == NULL)
+if (m_puiMain == NULL)
 bResult = FALSE;
 break;
 
@@ -2427,8 +2320,8 @@ ASSERT(m_pCmdInfo == NULL);
 if(open_document_file(rCmdInfo.m_strFileName))
 {
 m_pCmdInfo = &rCmdInfo;
-ENSURE_VALID(GetMainWnd());
-GetMainWnd()->SendMessage(WM_COMMAND, ID_FILE_PRINT_DIRECT);
+ENSURE_VALID(m_puiMain);
+m_puiMain->SendMessage(WM_COMMAND, ID_FILE_PRINT_DIRECT);
 m_pCmdInfo = NULL;
 }
 bResult = FALSE;
@@ -3016,9 +2909,9 @@ bool application::does_launch_window_on_startup()
 
 bool application::activate_app()
 {
-   if (GetMainWnd() != NULL)
+   if (m_puiMain != NULL)
    {
-      GetMainWnd()->ShowWindow(SW_SHOWNORMAL);
+      m_puiMain->ShowWindow(SW_SHOWNORMAL);
    }
    return true;
 }

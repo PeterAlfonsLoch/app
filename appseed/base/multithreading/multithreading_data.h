@@ -23,6 +23,11 @@ public:
    operator T () { return (T)(int_ptr)get(); }
    thread_int_ptr & operator = (T t) { set((void *)(int_ptr)t); return *this; }
 
+   bool operator == (int_ptr i)
+   {
+      return ((int_ptr)get()) == i;
+   }
+
 };
 
 

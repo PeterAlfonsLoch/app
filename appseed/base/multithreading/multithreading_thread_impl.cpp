@@ -202,7 +202,7 @@ void thread_impl::process_message_filter(int32_t code,signal_details * pobj)
             pTopFrameWnd->m_bHelpMode)
          {
             //pMainWnd = __get_main_window();
-            //if((GetMainWnd() != NULL) && (IsEnterKey(pbase) || IsButtonUp(pbase)))
+            //if((m_puiMain != NULL) && (IsEnterKey(pbase) || IsButtonUp(pbase)))
             //{
             //   //                  pMainWnd->SendMessage(WM_COMMAND, ID_HELP);
             //   pbase->m_bRet = true;
@@ -303,7 +303,7 @@ bool thread_impl::create_thread(int32_t epriority,uint32_t dwCreateFlagsParam,ui
    }
 
    // allow thread to continue, once resumed (it may already be resumed)
-   startup.m_event2.wait();
+   startup.m_event2.SetEvent();
 
    if(epriority != ::core::scheduling_priority_normal)
    {
@@ -361,6 +361,10 @@ uint32_t __thread_entry(void * pparam)
       ASSERT(pstartup->m_pthreadimpl != NULL);
       ASSERT(!pstartup->m_bError);
 
+
+      ::thread * pthread = pstartup->m_pthread;
+
+
       ::thread_impl * pthreadimpl = pstartup->m_pthreadimpl;
 
       ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
@@ -370,7 +374,7 @@ uint32_t __thread_entry(void * pparam)
       try
       {
 
-         __init_thread();
+         ::multithreading::__node_on_init_thread(::GetCurrentThread(),pthread);
 
       }
       catch(::exception::base *)
@@ -380,27 +384,23 @@ uint32_t __thread_entry(void * pparam)
 
          pstartup->m_event.set_event();
 
-         __end_thread(pthreadimpl->m_pbaseapp,(UINT)-1,FALSE);
+         ::multithreading::__node_on_term_thread(::GetCurrentThread(),pthread,-1);
 
          ASSERT(FALSE);  // unreachable
 
       }
 
 
-      ::multithreading::__node_on_init_thread(::GetCurrentThread(),pthreadimpl->m_puser);
 
 
       pthreadimpl->thread_entry(pstartup);
 
-      HANDLE hEvent2 = pstartup->m_event2.get_os_data();
 
       // allow the creating thread to return from thread::create_thread
       pstartup->m_event.set_event();
 
       // wait for thread to be resumed
-      VERIFY(::WaitForSingleObject(hEvent2,INFINITE) == WAIT_OBJECT_0);
-
-      ::CloseHandle(hEvent2);
+      pstartup->m_event2.wait();
 
       int32_t n;
 
@@ -413,7 +413,7 @@ uint32_t __thread_entry(void * pparam)
       catch(::exit_exception &)
       {
 
-         Sys(pthreadimpl->get_app()).os().post_to_all_threads(WM_QUIT,0,0);
+         pthreadimpl->m_puser->post_to_all_threads(WM_QUIT,0,0);
 
          return -1;
 
@@ -445,8 +445,6 @@ void CLASS_DECL_BASE __end_thread(sp(::base::application) papp,UINT nExitCode,bo
 
       if(pthreadimpl != NULL)
       {
-
-         ::multithreading::__node_on_term_thread(::GetCurrentThread(),pthread);
 
          ASSERT_VALID(pthreadimpl);
 
@@ -901,12 +899,11 @@ int32_t thread_impl::thread_term(int32_t nResult)
 
    try
    {
-      // cleanup and shutdown the thread
-      //         threadWnd.detach();
-      __end_thread((m_pbaseapp),nResult);
+      ::multithreading::__node_on_term_thread(GetCurrentThread(), m_puser,nResult);
    }
    catch(...)
    {
+
    }
 
 
@@ -1128,6 +1125,311 @@ void thread_impl::_001OnCreateMessageWindow(signal_details * pobj)
       m_spuiMessage->SetTimer((uint_ptr)-2,iMin,NULL);
    }
 
+}
+
+
+
+
+
+// main running routine until thread exits
+int32_t thread_impl::run()
+{
+
+   ASSERT_VALID(this);
+
+   // for tracking the idle time state
+   bool bIdle = TRUE;
+   LONG lIdleCount = 0;
+
+   // acquire and dispatch messages until a WM_QUIT message is received.
+   MSG msg;
+   while(m_bRun)
+   {
+      // phase1: check to see if we can do idle work
+      while(bIdle && !::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE))
+      {
+         // call on_idle while in bIdle state
+         if(!on_idle(lIdleCount++))
+         {
+            Sleep(10);
+            lIdleCount = 0;
+            bIdle = FALSE; // assume "no idle" state
+         }
+
+
+
+         if(!m_puser->on_run_step())
+            goto stop_run;
+
+      }
+
+      // phase2: pump messages while available
+      while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
+      {
+
+         // pump message, but quit on WM_QUIT
+         if(!m_bRun || !pump_message())
+         {
+            try
+            {
+               return exit();
+            }
+            catch(...)
+            {
+               return -1;
+            }
+         }
+
+         // reset "no idle" state after pumping "normal" message
+         //if (is_idle_message(&m_msgCur))
+         if(is_idle_message(&msg))
+         {
+            bIdle = TRUE;
+            lIdleCount = 0;
+         }
+
+         if(!m_puser->on_run_step())
+            goto stop_run;
+
+      }
+
+      bIdle = true;
+
+   }
+stop_run:
+
+   return 0;
+}
+
+
+
+
+void thread_impl::message_handler(signal_details * pobj)
+{
+
+   SCAST_PTR(::message::base,pbase,pobj);
+
+   ::window_sp pwindow = pbase->m_pwnd->get_wnd();
+
+   ASSERT(pwindow == NULL || pwindow == pbase->m_pwnd->m_pimpl);
+
+   if(pwindow == NULL || pwindow != pbase->m_pwnd->m_pimpl)
+   {
+      pbase->set_lresult(::DefWindowProc(pbase->m_pwnd->get_safe_handle(),pbase->m_uiMessage,pbase->m_wparam,pbase->m_lparam));
+      return;
+   }
+
+   __trace_message("message_handler",pobj);
+
+   try
+   {
+
+      if(pwindow->m_pui != NULL && pwindow->m_pui != pwindow)
+      {
+         pwindow->m_pui->message_handler(pobj);
+      }
+      else
+      {
+         pwindow->message_handler(pobj);
+      }
+
+   }
+   catch(const ::exception::exception & e)
+   {
+
+      if(App(get_app()).on_run_exception((::exception::exception &) e))
+         goto run;
+
+      if(App(get_app()).final_handle_exception((::exception::exception &) e))
+         goto run;
+
+      __post_quit_message(-1);
+
+      pbase->set_lresult(-1);
+
+      return;
+
+   }
+   catch(::exception::base * pe)
+   {
+
+      process_window_procedure_exception(pe,pbase);
+
+      TRACE(::core::trace::category_AppMsg,0,"Warning: Uncaught exception in message_handler (returning %ld).\n",pbase->get_lresult());
+
+      pe->Delete();
+
+   }
+
+run:;
+
+}
+
+
+
+
+bool thread_impl::pump_message()
+{
+   try
+   {
+      MSG msg;
+      if(!::GetMessage(&msg,NULL,0,0))
+      {
+         TRACE(::core::trace::category_AppMsg,1,"thread::pump_message - Received WM_QUIT.\n");
+         m_nDisablePumpCount++; // application must die
+         // Note: prevents calling message loop things in 'exit_instance'
+         // will never be decremented
+         return FALSE;
+      }
+      //m_message = msg;
+      //m_p->m_message = msg;
+
+      if(m_nDisablePumpCount != 0)
+      {
+         TRACE(::core::trace::category_AppMsg,0,"Error: thread::pump_message called when not permitted.\n");
+         ASSERT(FALSE);
+      }
+
+      __trace_message("pump_message",&msg);
+
+      if(msg.message != WM_KICKIDLE)
+      {
+
+         {
+
+            smart_pointer < message::base > spbase;
+
+            spbase = get_base(&msg);
+
+            if(spbase.is_set())
+            {
+
+               try
+               {
+                  if(m_puser != NULL)
+                  {
+                     m_puser->pre_translate_message(spbase);
+                     if(spbase->m_bRet)
+                        return TRUE;
+                  }
+               }
+               catch(exit_exception & e)
+               {
+                  throw e;
+               }
+               catch(...)
+               {
+               }
+
+               if(true)
+               {
+                  try
+                  {
+                     if(m_pbaseapp != NULL)
+                     {
+                        try
+                        {
+                           if(m_pbaseapp->m_pbasesystem != NULL)
+                           {
+                              m_pbaseapp->m_pbasesystem->pre_translate_message(spbase);
+                              if(spbase->m_bRet)
+                                 return TRUE;
+                              /*                                 try
+                              {
+                              if(m_pbaseapp->m_pbasesystem->m_pcube != NULL)
+                              {
+                              m_pbaseapp->m_pbasesystem->m_pcubeInterface->pre_translate_message(spbase);
+                              if(spbase->m_bRet)
+                              return TRUE;
+                              }
+                              }
+                              catch(...)
+                              {
+                              }
+
+                              */
+                           }
+                        }
+                        catch(...)
+                        {
+                        }
+                        if(m_pbaseapp->m_pbasesession != NULL)
+                        {
+                           try
+                           {
+                              m_pbaseapp->m_pbasesession->pre_translate_message(spbase);
+                              if(spbase->m_bRet)
+                                 return TRUE;
+                           }
+                           catch(...)
+                           {
+                           }
+                           /*                              try
+                           {
+                           if(m_pbaseapp->m_pbasesession->m_pbergedge != NULL)
+                           {
+                           m_pbaseapp->m_pbasesession->m_pbergedgeInterface->pre_translate_message(spbase);
+                           if(spbase->m_bRet)
+                           return TRUE;
+                           }
+                           }
+                           catch(...)
+                           {
+                           }*/
+                        }
+                     }
+                  }
+                  catch(...)
+                  {
+                  }
+                  try
+                  {
+                     if(!m_pbaseapp->is_system() && m_pbaseapp->is_session())
+                     {
+                        m_pbaseapp->pre_translate_message(spbase);
+                        if(spbase->m_bRet)
+                           return TRUE;
+                     }
+                  }
+                  catch(...)
+                  {
+                  }
+
+               }
+
+
+
+               //__pre_translate_message(spbase);
+               //if(spbase->m_bRet)
+                 // return TRUE;
+
+          //     spbase.release();
+            }
+         }
+         {
+            ::TranslateMessage(&msg);
+            ::DispatchMessage(&msg);
+         }
+      }
+      return TRUE;
+   }
+   catch(exit_exception & e)
+   {
+      throw e;
+   }
+   catch(const ::exception::exception & e)
+   {
+      if(on_run_exception((::exception::exception &) e))
+         return TRUE;
+      // get_app() may be it self, it is ok...
+      if(App(get_app()).final_handle_exception((::exception::exception &) e))
+         return TRUE;
+      return FALSE;
+   }
+   catch(...)
+   {
+      return FALSE;
+   }
 }
 
 

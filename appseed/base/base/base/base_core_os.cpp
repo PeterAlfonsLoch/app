@@ -275,13 +275,6 @@ namespace core
    }
 
 
-   void os::post_to_all_threads(UINT message, WPARAM wparam, LPARAM lparam)
-   {
-
-      throw interface_only_exception(get_app());
-
-   }
-
    void os::set_file_status(const char * lpszFileName, const ::file::file_status& status)
    {
 

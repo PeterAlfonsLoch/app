@@ -883,7 +883,7 @@ namespace plugin
 
       try
       {
-         System.os().post_to_all_threads(WM_QUIT, 0, 0);
+         get_thread()->post_to_all_threads(WM_QUIT, 0, 0);
       }
       catch(...)
       {
@@ -894,7 +894,7 @@ namespace plugin
       try
       {
 
-         thread * pthread = System.thread::m_p;
+         thread * pthread = System.thread::m_pimpl;
 
          if(pthread->get_run())
          {

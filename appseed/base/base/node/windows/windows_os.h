@@ -62,8 +62,6 @@ namespace windows
 
       virtual bool is_remote_session();
 
-      virtual void post_to_all_threads(UINT message, WPARAM wParam, LPARAM lParam);
-
       virtual void set_file_status(const char * lpszFileName, const ::file::file_status& status);
 
    };

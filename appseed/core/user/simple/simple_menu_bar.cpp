@@ -108,8 +108,8 @@ bool simple_menu_bar::pre_create_window(CREATESTRUCT& cs)
 
 //    m_pwthreadTracking = (CMenuTrackingThreadV033*) __begin_thread(System.type_info < CMenuTrackingThreadV033 > ());
   //  m_pwthreadTracking->m_evInitialized.lock();
-    //m_pwthreadTracking->GetMainWnd()->SendMessage(WM_USER, 3, (LPARAM) this);
-    //m_pwthreadTracking->GetMainWnd()->SendMessage(WM_USER, 4, lpnmtb->iItem);
+    //m_pwthreadTracking->m_puiMain->SendMessage(WM_USER, 3, (LPARAM) this);
+    //m_pwthreadTracking->m_puiMain->SendMessage(WM_USER, 4, lpnmtb->iItem);
     TRACE("MenuBarV033::OnDropDown simple_menu_bar::_TrackPopupMenu % d\n", lpnmtb->iItem);
     _TrackPopupMenu(lpnmtb->iItem);
 

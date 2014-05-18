@@ -229,7 +229,7 @@ public:
 
    // overrides for implementation
    virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
-   virtual void ProcessWndProcException(::exception::base* e, signal_details * pobj);
+   virtual void process_window_procedure_exception(::exception::base* e, signal_details * pobj);
 
 
    void EnableModelessEx(bool bEnable);

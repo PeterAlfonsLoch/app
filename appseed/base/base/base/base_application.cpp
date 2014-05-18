@@ -873,14 +873,6 @@ namespace base
    }
 
 
-   void application::set_thread(thread * pthread)
-   {
-
-      m_pimpl->set_thread(pthread);
-
-   }
-
-
    void application::SetCurrentHandles()
    {
 
@@ -1838,7 +1830,7 @@ namespace base
       catch(::exit_exception &)
       {
 
-         System.os().post_to_all_threads(WM_QUIT,0,0);
+         post_to_all_threads(WM_QUIT,0,0);
 
          goto exit_application;
 
@@ -1874,7 +1866,7 @@ namespace base
       catch(::exit_exception &)
       {
 
-         System.os().post_to_all_threads(WM_QUIT,0,0);
+         post_to_all_threads(WM_QUIT,0,0);
 
          goto exit_application;
 
@@ -1892,7 +1884,7 @@ namespace base
          if(is_system())
          {
 
-            System.os().post_to_all_threads(WM_QUIT,0,0);
+            post_to_all_threads(WM_QUIT,0,0);
 
             Sleep(1984 + 1977);
 
@@ -1915,7 +1907,7 @@ namespace base
       catch(::exit_exception &)
       {
 
-         System.os().post_to_all_threads(WM_QUIT,0,0);
+         post_to_all_threads(WM_QUIT,0,0);
 
          m_iReturnCode = -1;
 
@@ -1980,7 +1972,7 @@ namespace base
       catch(::exit_exception &)
       {
 
-         System.os().post_to_all_threads(WM_QUIT,0,0);
+         post_to_all_threads(WM_QUIT,0,0);
 
       }
 
@@ -2186,6 +2178,8 @@ namespace base
       if(!InitApplication())
          goto InitFailure;
 
+      //::MessageBox(NULL,"e1","e1",MB_OK);
+
       m_dwAlive = ::get_tick_count();
 
       try
@@ -2207,10 +2201,16 @@ namespace base
          {
             goto InitFailure;
          }
+
+
+
+         //::MessageBox(NULL,"e2","e2",MB_OK);
+
          System.install().m_progressApp()++;
          m_dwAlive = ::get_tick_count();
          try
          {
+
             if(!initialize_instance())
             {
                try
@@ -3752,9 +3752,14 @@ namespace base
 
       m_dwAlive = ::get_tick_count();
 
+      //::MessageBox(NULL,"e2.b","e2.b",MB_OK);
 
       if(!initialize1())
          return false;
+
+
+      //::MessageBox(NULL,"e3","e3",MB_OK);
+
 
       System.install().m_progressApp()++; // 2
 
@@ -3774,7 +3779,13 @@ namespace base
          return false;
       }
 
+
+
 #endif
+
+      //::MessageBox(NULL,"e4","e4",MB_OK);
+      //::MessageBox(NULL,"t3=" + ::str::from(m_iReturnCode),"t3=" + ::str::from(m_iReturnCode),MB_OK);
+
 
       m_dwAlive = ::get_tick_count();
 
@@ -3798,6 +3809,8 @@ namespace base
 
       try
       {
+
+
          if(!initialize())
             return false;
       }
@@ -3983,13 +3996,7 @@ namespace base
          }
 
          return 0;
-         /*      int32_t nReturnValue=0;
-         if(__get_current_message())
-         {
-         nReturnValue=static_cast<int32_t>(__get_current_message()->wParam);
-         }*/
-         //      return nReturnValue; // returns the value from PostQuitMessage
-
+         
 
       }
       catch(...)

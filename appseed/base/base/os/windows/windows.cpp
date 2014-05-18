@@ -3,6 +3,9 @@
 
 #include <ddeml.h>
 
+void __term_threading();
+void __term_windowing();
+
 
 typedef bool
 (WINAPI * LPFN_ChangeWindowMessageFilter)(
@@ -564,8 +567,6 @@ __in LPTSTR lpCmdLine,int32_t nCmdShow);
 
 
 
-extern __declspec(thread) HHOOK t_hHookOldMsgFilter;
-extern __declspec(thread) HHOOK t_hHookOldCbtFilter;
 
 
 CLASS_DECL_BASE int_bool __win_init()
@@ -598,16 +599,8 @@ CLASS_DECL_BASE void __win_term()
    os_finalize();
 
 
-   if(t_hHookOldMsgFilter != NULL)
-   {
-      ::UnhookWindowsHookEx(t_hHookOldMsgFilter);
-      t_hHookOldMsgFilter = NULL;
-   }
-   if(t_hHookOldCbtFilter != NULL)
-   {
-      ::UnhookWindowsHookEx(t_hHookOldCbtFilter);
-      t_hHookOldCbtFilter = NULL;
-   }
+
+
    //}
    // We used to suppress all exceptions here. But that's the wrong thing
    // to do. If this process crashes, we should allow Windows to crash

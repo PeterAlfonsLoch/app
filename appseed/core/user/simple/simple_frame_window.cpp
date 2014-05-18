@@ -1072,7 +1072,7 @@ void simple_frame_window::GetClientRect(LPRECT lprect)
 
 bool simple_frame_window::is_application_main_window()
 {
-   return Application.GetMainWnd() == this;
+   return Application.m_puiMain == this;
 }
 
 
@@ -1249,34 +1249,31 @@ void simple_frame_window::OnDropFiles(HDROP hDropInfo)
 bool simple_frame_window::OnQueryEndSession()
 {
    application* pApp = &System;
-   if (pApp != NULL && pApp->GetMainWnd() == this)
+   if (pApp != NULL && pApp->m_puiMain == this)
       return pApp->save_all_modified();
 
    return TRUE;
 }
 
 
-
-// when Windows session ends, close all documents
 void simple_frame_window::OnEndSession(bool bEnding)
 {
+
    if (!bEnding)
       return;
 
    application* pApp = &System;
-   if (pApp != NULL && pApp->GetMainWnd() == this)
+   if (pApp != NULL && pApp->m_puiMain == this)
    {
+
       pApp->close_all_documents(TRUE);
 
-      // allow application to save settings, etc.
       pApp->exit_instance();
+
    }
+
 }
 
-
-
-/////////////////////////////////////////////////////////////////////////////
-// Support for Shell DDE Execute messages
 
 LRESULT simple_frame_window::OnDDEInitiate(WPARAM wParam, LPARAM lParam)
 {
@@ -1449,7 +1446,7 @@ void simple_frame_window::NotifyFloatingWindows(uint32_t dwFlags)
 void simple_frame_window::_001OnQueryEndSession(signal_details * pobj)
 {
    SCAST_PTR(::message::base, pbase, pobj);
-   if (&System != NULL && System.GetMainWnd() == this)
+   if (&System != NULL && System.m_puiMain == this)
    {
       pbase->set_lresult(System.save_all_modified());
       pbase->m_bRet = true;
@@ -1514,7 +1511,7 @@ void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
          // (send the default show command unless the main desktop window)
          int32_t nCmdShow = -1;      // default
          application* pApp = &System;
-         if (pApp != NULL && pApp->GetMainWnd() == pframe)
+         if (pApp != NULL && pApp->m_puiMain == pframe)
          {
             nCmdShow = pApp->m_nCmdShow; // use the parameter from WinMain
             pApp->m_nCmdShow = -1; // set to default after first time

@@ -5,13 +5,27 @@
 #include <gdiplus.h>
 
 
-_declspec(thread) void * thread_data_base::t_p = NULL;
+
+thread_data::thread_data()
+{
+
+   g_dwTlsIndex = TlsAlloc();
+
+}
+
+
+thread_data::~thread_data()
+{
+
+   TlsFree(g_dwTlsIndex);
+
+}
 
 
 void * thread_data::get()
 {
    
-   return t_p;
+   return TlsGetValue(g_dwTlsIndex);
 
 }
    
@@ -19,7 +33,7 @@ void * thread_data::get()
 void thread_data::set(void * p)
 {
 
-   t_p = p;
+   TlsSetValue(g_dwTlsIndex, (LPVOID) p);
 
 }
 

@@ -58,7 +58,7 @@ namespace windows
 
 
 // window creation hooking
-CLASS_DECL_BASE void hook_window_create(sp(::windows::window) pwindow);
+CLASS_DECL_BASE void hook_window_create(::windows::window * pwindow);
 CLASS_DECL_BASE bool unhook_window_create();
 CLASS_DECL_BASE void reset_message_cache();
 
@@ -101,12 +101,7 @@ CLASS_DECL_BASE WNDPROC __get_window_procedure();
 CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, signal_details * pobj);
 CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, LPMSG lpmsg);
 
-CLASS_DECL_BASE bool __cdecl __is_idle_message(signal_details * pobj);
-CLASS_DECL_BASE bool __cdecl __is_idle_message(MSG* pMsg);
 
-
-CLASS_DECL_BASE void __process_window_procedure_exception(::exception::base*, signal_details * pobj);
-CLASS_DECL_BASE void __cdecl __pre_translate_message(signal_details * pobj);
 
 //#include "windows_printer.h"
 #include "windows_print_job.h"

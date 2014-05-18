@@ -909,7 +909,7 @@ namespace user
       return;
       }
       application* pApp = &System;
-      if (pApp != NULL && pApp->GetMainWnd() == this)
+      if (pApp != NULL && pApp->m_puiMain == this)
       {
       // attempt to save all documents
       if (pdocument == NULL && !pApp->save_all_modified())
@@ -924,7 +924,7 @@ namespace user
 
       // there are cases where destroying the documents may destroy the
       //  main window of the application.
-      if (!afxContextIsDLL && pApp->GetMainWnd() == NULL)
+      if (!afxContextIsDLL && pApp->m_puiMain == NULL)
       {
       __post_quit_message(0);
       return;
@@ -973,7 +973,7 @@ namespace user
 
       // Automatically quit when the main window is destroyed.
       /* trans application* pApp = &System;
-      if (pApp != NULL && pApp->GetMainWnd() == this && pApp->m_eHelpType == afxWinHelp)
+      if (pApp != NULL && pApp->m_puiMain == this && pApp->m_eHelpType == afxWinHelp)
       {
       // closing the main application window
       ::WinHelp(get_handle(), NULL, HELP_QUIT, 0L);

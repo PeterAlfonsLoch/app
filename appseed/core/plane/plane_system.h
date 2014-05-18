@@ -272,7 +272,6 @@ namespace plane
       void dump(dump_context & context) const;
 
 
-      virtual UINT os_post_to_all_threads(UINT uiMessage, WPARAM wparam, lparam lparam);
 
 
    };

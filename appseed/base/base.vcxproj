@@ -3854,7 +3854,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\compress\zip\zip_unzip.cpp" />
     <ClCompile Include="base\compress\zip\zip_util.cpp" />
     <ClCompile Include="base\compress\zip\zip_zip.cpp" />
-    <ClCompile Include="base\compress\zlib\adler32.c">
+    <ClCompile Include="base\compress\zlib\zlib_adler32.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
@@ -3884,7 +3884,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
       <Permissive Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">Default</Permissive>
     </ClCompile>
-    <ClCompile Include="base\compress\zlib\compress.c">
+    <ClCompile Include="base\compress\zlib\zlib_compress.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
@@ -3914,7 +3914,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
       <Permissive Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">Default</Permissive>
     </ClCompile>
-    <ClCompile Include="base\compress\zlib\crc32.c">
+    <ClCompile Include="base\compress\zlib\zlib_crc32.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
@@ -3944,7 +3944,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
       <Permissive Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">Default</Permissive>
     </ClCompile>
-    <ClCompile Include="base\compress\zlib\deflate.c">
+    <ClCompile Include="base\compress\zlib\zlib_deflate.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
@@ -3974,7 +3974,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
       <Permissive Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">Default</Permissive>
     </ClCompile>
-    <ClCompile Include="base\compress\zlib\gzclose.c">
+    <ClCompile Include="base\compress\zlib\zlib_gzclose.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
@@ -4004,7 +4004,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
       <Permissive Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">Default</Permissive>
     </ClCompile>
-    <ClCompile Include="base\compress\zlib\gzlib.c">
+    <ClCompile Include="base\compress\zlib\zlib_gzlib.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
@@ -4034,7 +4034,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
       <Permissive Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">Default</Permissive>
     </ClCompile>
-    <ClCompile Include="base\compress\zlib\gzread.c">
+    <ClCompile Include="base\compress\zlib\zlib_gzread.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
@@ -4064,7 +4064,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
       <Permissive Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">Default</Permissive>
     </ClCompile>
-    <ClCompile Include="base\compress\zlib\gzwrite.c">
+    <ClCompile Include="base\compress\zlib\zlib_gzwrite.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
@@ -4094,7 +4094,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
       <Permissive Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">Default</Permissive>
     </ClCompile>
-    <ClCompile Include="base\compress\zlib\infback.c">
+    <ClCompile Include="base\compress\zlib\zlib_infback.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
@@ -4124,7 +4124,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
       <Permissive Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">Default</Permissive>
     </ClCompile>
-    <ClCompile Include="base\compress\zlib\inffast.c">
+    <ClCompile Include="base\compress\zlib\zlib_inffast.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
@@ -4154,7 +4154,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
       <Permissive Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">Default</Permissive>
     </ClCompile>
-    <ClCompile Include="base\compress\zlib\inflate.c">
+    <ClCompile Include="base\compress\zlib\zlib_inflate.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
@@ -4184,7 +4184,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
       <Permissive Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">Default</Permissive>
     </ClCompile>
-    <ClCompile Include="base\compress\zlib\inftrees.c">
+    <ClCompile Include="base\compress\zlib\zlib_inftrees.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
@@ -4214,7 +4214,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
       <Permissive Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">Default</Permissive>
     </ClCompile>
-    <ClCompile Include="base\compress\zlib\trees.c">
+    <ClCompile Include="base\compress\zlib\zlib_trees.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
@@ -4244,7 +4244,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
       <Permissive Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">Default</Permissive>
     </ClCompile>
-    <ClCompile Include="base\compress\zlib\uncompr.c">
+    <ClCompile Include="base\compress\zlib\zlib_uncompr.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
@@ -4274,7 +4274,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <Permissive Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Default</Permissive>
       <Permissive Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">Default</Permissive>
     </ClCompile>
-    <ClCompile Include="base\compress\zlib\zutil.c">
+    <ClCompile Include="base\compress\zlib\zlib_zutil.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>

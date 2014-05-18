@@ -50,20 +50,10 @@ namespace user
       class keyboard & keyboard();
 
 
-      //virtual int32_t GetVisibleTopLevelFrameCountExcept(sp(::user::interaction) pwndExcept);
-
-
       virtual void SendMessageToWindows(UINT message, WPARAM wParam, LPARAM lParam);
-
-      //virtual void AddToRecentFileList(const char * lpszPathName);
 
       virtual bool finalize();
 
-      //virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
-
-      //virtual void _001OnFileNew();
-
-      //virtual int32_t exit_instance();
 
    };
 

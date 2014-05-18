@@ -20,9 +20,10 @@ namespace simpledb
 
    void service::serve()
    {
+
       sp(::base::application) pbaseapp = get_app();
 
-      Sys(pbaseapp).set_thread(&Sys(pbaseapp->m_pplaneapp->m_psystem));
+      ::set_thread(&Sys(pbaseapp->m_pplaneapp->m_psystem));
 
 
       m_pmanager = new ::simpledb::manager(pbaseapp);

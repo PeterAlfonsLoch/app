@@ -1,7 +1,6 @@
 #include "framework.h"
 
 
-thread_pointer < ::thread > t_pthread;
 
 
 thread::thread() :
@@ -88,7 +87,7 @@ m_mutex(papp)
    construct();
 
    thread::m_pimpl.create(allocer());
-   m_pimpl->set_p(this);
+   m_pimpl->m_puser = this;
    m_pimpl->construct(pfnThreadProc, pParam);
 
 }
@@ -96,12 +95,6 @@ m_mutex(papp)
 
 
 
-
-void thread::set_p(thread * p)
-{
-   UNREFERENCED_PARAMETER(p);
-   throw interface_only_exception(get_app());
-}
 
 void thread::construct()
 {
@@ -128,6 +121,8 @@ void thread::CommonConstruct()
    m_pappDelete = NULL;
    m_pbReady = NULL;
    m_bReady = false;
+
+   m_iReturnCode = 0;
 
 }
 
@@ -533,7 +528,7 @@ int32_t thread::exit_instance()
 {
 
    if (m_pimpl.is_null())
-      return -1;
+      return 0;
 
    return m_pimpl->exit_instance();
 
@@ -855,43 +850,14 @@ int thread::get_x_window_count() const
 }
 
 
-thread* __begin_thread(sp(::base::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, int32_t epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+
+
+void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
 {
+   
+   if(m_pimpl.is_null())
+      return;
 
-   ASSERT(pfnThreadProc != NULL);
-
-   thread* pThread = new thread(papp, pfnThreadProc, pParam);
-   ASSERT_VALID(pThread);
-
-   if (!pThread->create_thread(epriority, dwCreateFlags, nStackSize, lpSecurityAttrs))
-   {
-      pThread->Delete();
-      return NULL;
-   }
-
-   return pThread;
+   m_pimpl->post_to_all_threads(message,wparam,lparam);
 
 }
-
-
-
-::thread * get_thread()
-{
-
-   return t_pthread;
-
-}
-
-
-
-void set_thread(::thread* pthread)
-{
-
-   t_pthread = pthread;
-
-}
-
-
-
-
-

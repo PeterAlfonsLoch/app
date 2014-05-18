@@ -588,9 +588,9 @@ namespace plane
          {
 
             m_ptwf->m_bRun = false;
-            if(m_ptwf->m_p != NULL)
+            if(m_ptwf->m_pimpl != NULL)
             {
-               m_ptwf->m_p->m_bRun = false;
+               m_ptwf->m_pimpl->m_bRun = false;
             }
          }
       }
@@ -655,21 +655,6 @@ namespace plane
 
 
       int32_t iRet = 0;
-/*
-
-      try
-      {
-
-         iRet = ::application::exit_instance();
-
-      }
-      catch(...)
-      {
-
-      }
-
-*/
-
 
       try
       {
@@ -680,18 +665,6 @@ namespace plane
       }
 
 
-/*      try
-      {
-         if(m_ptwf != NULL)
-         {
-            m_ptwf->twf_stop();
-            ::core::del(m_ptwf);
-            m_ptwf = NULL;
-         }
-      }
-      catch(...)
-      {
-      }*/
 
       try
       {
@@ -890,7 +863,7 @@ namespace plane
    bool system::finalize()
    {
 
-      __wait_threading_count(::millis((1984 + 1977) * 8));
+      //__wait_threading_count(::millis((1984 + 1977) * 8));
 
       try
       {
@@ -1833,135 +1806,6 @@ sp(::command_thread) system::command_thread()
 
 
 
-   /*bool system::InitApplication()
-   {
-
-      if(!::application::InitApplication())
-         return FALSE;
-
-      return TRUE;
-
-   }
-
-
-   bool system::process_initialize()
-   {
-
-      if(!::application::process_initialize())
-         return false;
-
-      return true;
-
-   }
-
-
-   bool system::initialize()
-   {
-
-
-      if(!::application::initialize())
-         return false;
-
-      return true;
-
-   }
-
-
-
-   bool system::initialize1()
-   {
-
-      if(!::application::initialize1())
-         return false;
-
-      return true;
-
-   }
-
-
-
-   bool system::initialize3()
-   {
-
-      if(!::application::initialize3())
-         return false;
-
-      return true;
-
-   }
-
-   bool system::initialize_instance()
-   {
-
-      if(!::application::initialize_instance())
-         return false;
-
-      return true;
-
-   }
-
-
-   bool system::bergedge_start()
-   {
-
-      if(!::application::bergedge_start())
-         return false;
-
-      return true;
-   }
-
-
-   int32_t system::exit_instance()
-   {
-
-      int32_t iRet = -1;
-
-      try
-      {
-         iRet = ::application::exit_instance();
-      }
-      catch(...)
-      {
-      }
-
-
-
-      return iRet;
-
-
-   }*/
-
-
-
-   /*sp(::plane::session) system::query_session(index iEdge)
-   {
-      sp(::plane::session) psession = NULL;
-      if(m_pbergedgemap == NULL)
-         return NULL;
-      if(!m_pbergedgemap->Lookup(iEdge, psession))
-      {
-         return NULL;
-      }
-      return dynamic_cast < ::sp(::plane::session) > (psession->m_pbergedge);
-   }
-
-
-   sp(::plane::session) system::get_session(index iEdge, application_bias * pbiasCreation)
-   {
-      sp(::plane::session) psession = NULL;
-      if(m_pbergedgemap == NULL)
-         return NULL;
-      if(!m_pbergedgemap->Lookup(iEdge, psession))
-      {
-         psession =  (create_application("application", "session", true, pbiasCreation));
-         if(psession == NULL)
-            return NULL;
-         psession->m_iEdge = iEdge;
-         m_pbergedgemap->set_at(iEdge, psession);
-      }
-      return dynamic_cast < ::sp(::plane::session) > (psession->m_pbergedge);
-   }*/
-
 
    sp(::platform::document) system::get_platform(index iEdge, application_bias * pbiasCreation)
    {
@@ -1975,95 +1819,6 @@ sp(::command_thread) system::command_thread()
       return pbergedge->get_nature();
    }
 
-   /*sp(::base::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
-   {
-      sp(::plane::session) pbergedge = ge(iEdge, pbiasCreate);
-      return pbergedge->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);
-   }*/
-
-
-   /*bool system::set_history(::core::history * phistory)
-   {
-
-      UNREFERENCED_PARAMETER(phistory);
-
-      return true;
-
-   }*/
-
-
-
-   //void system::register_bergedge_application(sp(::base::application) papp)
-   //{
-
-
-   //   System.register_bergedge_application(papp);
-
-
-   //}
-
-   //void system::unregister_bergedge_application(sp(::base::application) papp)
-   //{
-
-   //   System.unregister_bergedge_application(papp);
-
-
-   //}
-
-
-
-
-
-
-   //bool system::finalize()
-   //{
-
-   //   bool bOk = false;
-
-   //   try
-   //   {
-   //      bOk = system::application::finalize();
-   //   }
-   //   catch(...)
-   //   {
-   //   }
-
-
-   //   return bOk;
-   //}
-
-
-   //void system::on_request(sp(::create_context) pcreatecontext)
-   //{
-   //   ::sp(::plane::session) pbergedge = get_bergedge(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
-   //   pbergedge->request_create(pcreatecontext);
-   //}
-
-   //void system::open_by_file_extension(index iEdge, const char * pszFileName)
-   //{
-   //   System.get_session(iEdge)->open_by_file_extension(pszFileName);
-   //}
-
-
-   //index system::get_new_bergedge(application_bias * pbiasCreation)
-   //{
-   //   index iNewEdge = m_iNewEdge;
-   //   sp(::plane::session) psession;
-   //   while(m_pbergedgemap->Lookup(iNewEdge, psession))
-   //   {
-   //      iNewEdge++;
-   //   }
-   //   if(get_bergedge(iNewEdge, pbiasCreation) == NULL)
-   //      return -1;
-   //   m_iNewEdge = iNewEdge + 1;
-   //   return iNewEdge;
-   //}
-
-
-   //bool system::is_system()
-   //{
-   //   return false;
-   //}
 
    bool system::is_system()
    {
@@ -2203,15 +1958,6 @@ sp(::command_thread) system::command_thread()
    }
 
 
-   UINT system::os_post_to_all_threads(UINT uiMessage, WPARAM wparam, lparam lparam)
-   {
-
-      os().post_to_all_threads(uiMessage, wparam, lparam);
-
-      return 0;
-
-   }
-
    ::exception::engine & system::eengine()
    {
 
@@ -2297,6 +2043,8 @@ int32_t simple_app2::main()
 
 #endif
 
+   //::MessageBox(NULL,"b.1","b.1",MB_OK);
+
 #if !defined(APPLEOS)
 
    if (!main_initialize())
@@ -2304,7 +2052,7 @@ int32_t simple_app2::main()
 
 #endif
 
-
+   //::MessageBox(NULL,"b","b",MB_OK);
 
    body();
 
@@ -2354,7 +2102,7 @@ void simple_app2::body()
       return;
 
    }
-
+   //::MessageBox(NULL,"f1","f1",MB_OK);
 
    try
    {
@@ -2382,14 +2130,14 @@ void simple_app2::body()
    }
    catch (...)
    {
-
       if (m_iError > 0)
          m_iError = -1;
 
       return;
 
    }
-
+   
+   //::MessageBox(NULL,"f2","f2",MB_OK);
 
    try
    {
@@ -2414,7 +2162,7 @@ void simple_app2::body()
       return;
 
    }
-
+   //::MessageBox(NULL,"f3","f3",MB_OK);
    try
    {
 

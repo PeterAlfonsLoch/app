@@ -12,6 +12,7 @@ window::window()
    m_pmutexGraphics = NULL;
    m_pmutexDisplay = NULL;
    m_rectParentClient = ::null_rect();
+   m_oswindow = NULL;
 
 }
 
@@ -2202,60 +2203,10 @@ bool window::OpenIcon()
 // window command handling
 
 bool window::OnCommand(::message::base * pbase)
-// return TRUE if command invocation was attempted
 {
    UNREFERENCED_PARAMETER(pbase);
-   //UNREFERENCED_PARAMETER(lParam);
-   /*   UINT nID = LOWORD(wParam);
-   oswindow oswindow_Ctrl = lParam;
-   int32_t nCode = HIWORD(wParam);
-
-   // default routing for command messages (through closure table)
-
-   if (oswindow_Ctrl == NULL)
-   {
-   // zero IDs for normal commands are not allowed
-   if (nID == 0)
    return FALSE;
 
-   // make sure command has not become disabled before routing
-   CTestCmdUI state;
-   state.m_id = nID;
-   on_simple_action(nID, CN_UPDATE_COMMAND_UI, &state, NULL);
-   if (!state.m_bEnabled)
-   {
-   TRACE(::core::trace::category_AppMsg, 0, "Warning: not executing disabled command %d\n", nID);
-   return TRUE;
-   }
-
-   // menu or accelerator
-   nCode = CN_COMMAND;
-   }
-   else
-   {
-   // control notification
-   ASSERT(nID == 0 || ::IsWindow(oswindow_Ctrl));
-
-   if (gen_ThreadState->m_hLockoutNotifyWindow == get_handle())
-   return TRUE;        // locked out - ignore control notification
-
-   // reflect notification to child window control
-   if (ReflectLastMsg(oswindow_Ctrl))
-   return TRUE;    // eaten by child
-
-   // zero IDs for normal commands are not allowed
-   if (nID == 0)
-   return FALSE;
-   }
-
-   #ifdef DEBUG
-   if (nCode < 0 && nCode != (int32_t)0x8000)
-   TRACE(::core::trace::category_AppMsg, 0, "Implementation Warning: control notification = $%X.\n",
-   nCode);
-   #endif
-
-   return on_simple_action(nID, nCode, NULL, NULL);*/
-   return FALSE;
 }
 
 // Helper for radio buttons
@@ -2292,7 +2243,7 @@ trans      sp(::user::frame_window) pFrame = command_target::GetRoutingFrame_();
 if (pFrame != NULL)
 oswindow = pFrame->GetSafeoswindow_();
 else
-oswindow = System.GetMainWnd()->GetSafeoswindow_();
+oswindow = System.m_puiMain->GetSafeoswindow_();
 }
 
 // a popup window cannot be owned by a child window
@@ -2518,6 +2469,10 @@ void window::set_handle(oswindow oswindow)
    
    oswindow_remove(this);
 
+   oswindow_assign(oswindow,this);
+
+   m_oswindow = oswindow;
+
 }
 
 
@@ -2525,19 +2480,44 @@ void window::set_handle(oswindow oswindow)
 bool window::attach(oswindow oswindow_New)
 {
 
+   //::MessageBox(NULL, "d1.a", "d1.a", MB_OK);
+
    ASSERT(get_handle() == NULL);   
+   
+   //::MessageBox(NULL,"d1.b","d1.b",MB_OK);
 
    ASSERT(::window_from_handle(oswindow_New) == NULL);
+
+   //::MessageBox(NULL,"d1.c","d1.c",MB_OK);
 
    if(oswindow_New == NULL)
       return FALSE;
 
-   oswindow_assign(oswindow_New,this);
+
+   //::MessageBox(NULL,"d1.d","d1.d",MB_OK);
+
+
+   
+   //::MessageBox(NULL,"d1.e","d1.e",MB_OK);
+
+
+   set_handle(oswindow_New);
+
+   //::MessageBox(NULL,"d1.f","d1.f",MB_OK);
+
+
+   ASSERT(::window_from_handle(get_handle()) == this);
+
+   //::MessageBox(NULL,"d1.g","d1.g",MB_OK);
+
 
    if(m_pui == NULL)
    {
       m_pui = this;
    }
+
+  // ::MessageBox(NULL,"d1.h","d1.h",MB_OK);
+//
 
    return true;
 
@@ -2560,5 +2540,13 @@ oswindow window::detach()
    }
 
    return oswindow;
+
+}
+
+
+oswindow window::get_handle() const
+{
+   
+   return m_oswindow; 
 
 }

@@ -361,6 +361,7 @@ namespace visual
       catch(...)
       {
 
+         ::MessageBox(NULL,"except","except",MB_OK);
          iExitCode = -1;
 
       }

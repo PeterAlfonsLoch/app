@@ -115,6 +115,13 @@ public:
    DECL_GEN_SIGNAL(_001OnCreateMessageWindow);
 
 
+   virtual int32_t run();
+
+   void message_handler(signal_details * pobj);
+
+
+   virtual bool pump_message();
+
 };
 
 

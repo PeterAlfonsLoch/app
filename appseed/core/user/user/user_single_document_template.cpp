@@ -180,13 +180,6 @@ namespace user
          if(bCreated)
          {
             
-            if(pThread->GetMainWnd() == NULL)
-            {
-            
-               // set as main frame (InitialUpdateFrame will show the window)
-               pThread->SetMainWnd(pFrame);
-               
-            }
             
             if(Application.m_puiMain == NULL)
             {

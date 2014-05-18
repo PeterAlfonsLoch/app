@@ -5053,51 +5053,6 @@
     <ClCompile Include="base\compress\zip\zip_zip.cpp">
       <Filter>Source Files\base\compress\zip</Filter>
     </ClCompile>
-    <ClCompile Include="base\compress\zlib\adler32.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\compress.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\crc32.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\deflate.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\gzclose.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\gzlib.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\gzread.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\gzwrite.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\infback.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\inffast.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\inflate.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\inftrees.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\trees.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\uncompr.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\zutil.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_application.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -8584,6 +8539,51 @@
     <ClCompile Include="multithreading\multithreading.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
+    <ClCompile Include="base\compress\zlib\zlib_adler32.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\zlib_compress.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\zlib_crc32.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\zlib_deflate.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\zlib_gzclose.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\zlib_gzlib.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\zlib_gzread.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\zlib_gzwrite.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\zlib_infback.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\zlib_inffast.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\zlib_inflate.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\zlib_inftrees.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\zlib_trees.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\zlib_uncompr.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="base\compress\zlib\zlib_zutil.c">
+      <Filter>Source Files\base\compress\zlib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -9098,6 +9098,9 @@
     </None>
     <None Include="base\message\message.inl">
       <Filter>Header Files\base\message</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

@@ -378,8 +378,6 @@ namespace base
 
       virtual string get_version();
 
-      virtual void set_thread(thread * pthread);
-
       virtual void SetCurrentHandles();
 
       virtual void set_env_var(const string & var,const string & value);
