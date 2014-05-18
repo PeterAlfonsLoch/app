@@ -49,6 +49,10 @@ namespace base
       m_mutexStr(this)
    {
 
+
+      m_pframea = new ::user::interaction_ptr_array(this);
+
+
 #ifdef WINDOWS
 
       m_hinstance                = NULL;
@@ -3389,7 +3393,6 @@ namespace base
          //System.factory().cloneable_large < property > ();
       }
 
-      m_pframea = new ::user::interaction_ptr_array(this);
 
       if(is_system())
       {

@@ -71,7 +71,6 @@ m_simpledb(this)
    m_pszRegistryKey = NULL;
    m_pszHelpFilePath = NULL;
    m_pszProfileName = NULL;
-   m_pframea = NULL;
 
    m_pplaneapp = this;
 
