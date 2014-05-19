@@ -245,6 +245,7 @@ void thread_impl::process_message_filter(int32_t code,signal_details * pobj)
 
 
 thread_startup::thread_startup(sp(::base::application) papp) :
+   element(papp),
    m_event(papp),
    m_event2(papp)
 {
@@ -267,43 +268,54 @@ bool thread_impl::create_thread(int32_t epriority,uint32_t dwCreateFlagsParam,ui
 
    if(epriority != ::core::scheduling_priority_normal)
    {
+
       dwCreateFlags |= CREATE_SUSPENDED;
+
    }
 
    ENSURE(m_hthread == NULL);  // already created?
 
    // setup startup structure for thread initialization
-   thread_startup startup(get_app());
+   sp(thread_startup) pstartup = canew(thread_startup(get_app()));
 
-   startup.m_bError = FALSE;
-   startup.m_pthreadimpl = this;
-   startup.m_pthread = m_puser;
-   startup.m_dwCreateFlags = dwCreateFlags;
+   pstartup->m_bError = FALSE;
 
-   m_hthread = (HANDLE)(uint_ptr) ::create_thread(lpSecurityAttrs,nStackSize,&__thread_entry,&startup,dwCreateFlags | CREATE_SUSPENDED,&m_uiThread);
+   pstartup->m_pthreadimpl = this;
+
+   pstartup->m_pthread = m_puser;
+
+   pstartup->m_dwCreateFlags = dwCreateFlags;
+
+   m_hthread = (HANDLE)(uint_ptr) ::create_thread(lpSecurityAttrs,nStackSize,&__thread_entry,pstartup.m_p,dwCreateFlags | CREATE_SUSPENDED,&m_uiThread);
 
    if(m_hthread == NULL)
-      return FALSE;
+      return false;
 
    // start the thread just for core API initialization
    VERIFY(::ResumeThread(m_hthread) != (DWORD)-1);
-   startup.m_event.wait();
+
+   pstartup->m_event.wait();
 
    // if created suspended, suspend it until resume thread wakes it up
    if(dwCreateFlags & CREATE_SUSPENDED)
       VERIFY(::SuspendThread(m_hthread) != (DWORD)-1);
 
    // if error during startup, shut things down
-   if(startup.m_bError)
+   if(pstartup->m_bError)
    {
+
       VERIFY(::WaitForSingleObject(m_hthread,INFINITE) == WAIT_OBJECT_0);
+
       ::CloseHandle(m_hthread);
+
       m_hthread = NULL;
-      return FALSE;
+
+      return false;
+
    }
 
    // allow thread to continue, once resumed (it may already be resumed)
-   startup.m_event2.SetEvent();
+   pstartup->m_event2.SetEvent();
 
    if(epriority != ::core::scheduling_priority_normal)
    {
@@ -312,12 +324,14 @@ bool thread_impl::create_thread(int32_t epriority,uint32_t dwCreateFlagsParam,ui
 
       if(!(dwCreateFlagsParam & CREATE_SUSPENDED))
       {
+
          ENSURE(ResumeThread() != (DWORD)-1);
+
       }
 
    }
 
-   return TRUE;
+   return true;
 
 }
 
@@ -354,7 +368,7 @@ uint32_t __thread_entry(void * pparam)
    try
    {
 
-      ::thread_startup * pstartup = (::thread_startup *) pparam;
+      sp(::thread_startup) pstartup = (::thread_startup *) pparam;
 
       ASSERT(pstartup != NULL);
       ASSERT(pstartup->m_pthread != NULL);
@@ -401,6 +415,8 @@ uint32_t __thread_entry(void * pparam)
 
       // wait for thread to be resumed
       pstartup->m_event2.wait();
+
+      pstartup.release();
 
       int32_t n;
 

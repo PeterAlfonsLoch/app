@@ -8,7 +8,8 @@
 #pragma once
 
 
-class thread_startup
+class thread_startup :
+   virtual public object
 {
 public:
 
