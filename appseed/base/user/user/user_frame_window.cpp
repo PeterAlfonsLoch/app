@@ -691,8 +691,6 @@ namespace user
    void frame_window::_001OnCreate(signal_details * pobj)
    {
 
-      thread * pappthread = m_pthread;
-
       if (pobj->previous())
          return;
 

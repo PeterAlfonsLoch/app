@@ -120,6 +120,51 @@
 		0722ECF619256472003E99F4 /* ios_error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D6A8191D98F300137494 /* ios_error.cpp */; };
 		0722ECF719256472003E99F4 /* ios_genResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D6B3191D98F300137494 /* ios_genResource.cpp */; };
 		0722ECF819256C67003E99F4 /* ansios_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08A4618495B40007A0560 /* ansios_file.cpp */; };
+		0751A46F192A99B700CFD2B0 /* zlib_adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A460192A99B700CFD2B0 /* zlib_adler32.c */; };
+		0751A470192A99B700CFD2B0 /* zlib_adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A460192A99B700CFD2B0 /* zlib_adler32.c */; };
+		0751A471192A99B700CFD2B0 /* zlib_adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A460192A99B700CFD2B0 /* zlib_adler32.c */; };
+		0751A472192A99B700CFD2B0 /* zlib_compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A461192A99B700CFD2B0 /* zlib_compress.c */; };
+		0751A473192A99B700CFD2B0 /* zlib_compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A461192A99B700CFD2B0 /* zlib_compress.c */; };
+		0751A474192A99B700CFD2B0 /* zlib_compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A461192A99B700CFD2B0 /* zlib_compress.c */; };
+		0751A475192A99B700CFD2B0 /* zlib_crc32.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A462192A99B700CFD2B0 /* zlib_crc32.c */; };
+		0751A476192A99B700CFD2B0 /* zlib_crc32.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A462192A99B700CFD2B0 /* zlib_crc32.c */; };
+		0751A477192A99B700CFD2B0 /* zlib_crc32.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A462192A99B700CFD2B0 /* zlib_crc32.c */; };
+		0751A478192A99B700CFD2B0 /* zlib_deflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A463192A99B700CFD2B0 /* zlib_deflate.c */; };
+		0751A479192A99B700CFD2B0 /* zlib_deflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A463192A99B700CFD2B0 /* zlib_deflate.c */; };
+		0751A47A192A99B700CFD2B0 /* zlib_deflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A463192A99B700CFD2B0 /* zlib_deflate.c */; };
+		0751A47B192A99B700CFD2B0 /* zlib_gzclose.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A464192A99B700CFD2B0 /* zlib_gzclose.c */; };
+		0751A47C192A99B700CFD2B0 /* zlib_gzclose.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A464192A99B700CFD2B0 /* zlib_gzclose.c */; };
+		0751A47D192A99B700CFD2B0 /* zlib_gzclose.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A464192A99B700CFD2B0 /* zlib_gzclose.c */; };
+		0751A47E192A99B700CFD2B0 /* zlib_gzlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A465192A99B700CFD2B0 /* zlib_gzlib.c */; };
+		0751A47F192A99B700CFD2B0 /* zlib_gzlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A465192A99B700CFD2B0 /* zlib_gzlib.c */; };
+		0751A480192A99B700CFD2B0 /* zlib_gzlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A465192A99B700CFD2B0 /* zlib_gzlib.c */; };
+		0751A481192A99B700CFD2B0 /* zlib_gzread.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A466192A99B700CFD2B0 /* zlib_gzread.c */; };
+		0751A482192A99B700CFD2B0 /* zlib_gzread.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A466192A99B700CFD2B0 /* zlib_gzread.c */; };
+		0751A483192A99B700CFD2B0 /* zlib_gzread.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A466192A99B700CFD2B0 /* zlib_gzread.c */; };
+		0751A484192A99B700CFD2B0 /* zlib_gzwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A467192A99B700CFD2B0 /* zlib_gzwrite.c */; };
+		0751A485192A99B700CFD2B0 /* zlib_gzwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A467192A99B700CFD2B0 /* zlib_gzwrite.c */; };
+		0751A486192A99B700CFD2B0 /* zlib_gzwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A467192A99B700CFD2B0 /* zlib_gzwrite.c */; };
+		0751A487192A99B700CFD2B0 /* zlib_infback.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A468192A99B700CFD2B0 /* zlib_infback.c */; };
+		0751A488192A99B700CFD2B0 /* zlib_infback.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A468192A99B700CFD2B0 /* zlib_infback.c */; };
+		0751A489192A99B700CFD2B0 /* zlib_infback.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A468192A99B700CFD2B0 /* zlib_infback.c */; };
+		0751A48A192A99B700CFD2B0 /* zlib_inffast.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A469192A99B700CFD2B0 /* zlib_inffast.c */; };
+		0751A48B192A99B700CFD2B0 /* zlib_inffast.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A469192A99B700CFD2B0 /* zlib_inffast.c */; };
+		0751A48C192A99B700CFD2B0 /* zlib_inffast.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A469192A99B700CFD2B0 /* zlib_inffast.c */; };
+		0751A48D192A99B700CFD2B0 /* zlib_inflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A46A192A99B700CFD2B0 /* zlib_inflate.c */; };
+		0751A48E192A99B700CFD2B0 /* zlib_inflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A46A192A99B700CFD2B0 /* zlib_inflate.c */; };
+		0751A48F192A99B700CFD2B0 /* zlib_inflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A46A192A99B700CFD2B0 /* zlib_inflate.c */; };
+		0751A490192A99B700CFD2B0 /* zlib_inftrees.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A46B192A99B700CFD2B0 /* zlib_inftrees.c */; };
+		0751A491192A99B700CFD2B0 /* zlib_inftrees.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A46B192A99B700CFD2B0 /* zlib_inftrees.c */; };
+		0751A492192A99B700CFD2B0 /* zlib_inftrees.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A46B192A99B700CFD2B0 /* zlib_inftrees.c */; };
+		0751A493192A99B700CFD2B0 /* zlib_trees.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A46C192A99B700CFD2B0 /* zlib_trees.c */; };
+		0751A494192A99B700CFD2B0 /* zlib_trees.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A46C192A99B700CFD2B0 /* zlib_trees.c */; };
+		0751A495192A99B700CFD2B0 /* zlib_trees.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A46C192A99B700CFD2B0 /* zlib_trees.c */; };
+		0751A496192A99B700CFD2B0 /* zlib_uncompr.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A46D192A99B700CFD2B0 /* zlib_uncompr.c */; };
+		0751A497192A99B700CFD2B0 /* zlib_uncompr.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A46D192A99B700CFD2B0 /* zlib_uncompr.c */; };
+		0751A498192A99B700CFD2B0 /* zlib_uncompr.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A46D192A99B700CFD2B0 /* zlib_uncompr.c */; };
+		0751A499192A99B700CFD2B0 /* zlib_zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A46E192A99B700CFD2B0 /* zlib_zutil.c */; };
+		0751A49A192A99B700CFD2B0 /* zlib_zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A46E192A99B700CFD2B0 /* zlib_zutil.c */; };
+		0751A49B192A99B700CFD2B0 /* zlib_zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A46E192A99B700CFD2B0 /* zlib_zutil.c */; };
 		077C2A1B190F144000A1F6B0 /* framework_c.c in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A17190F143F00A1F6B0 /* framework_c.c */; };
 		077C2A1C190F144000A1F6B0 /* framework_c.h in Headers */ = {isa = PBXBuildFile; fileRef = 077C2A18190F143F00A1F6B0 /* framework_c.h */; };
 		077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A19190F143F00A1F6B0 /* framework.cpp */; };
@@ -1445,31 +1490,16 @@
 		07B08C4E18495B40007A0560 /* zip_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B07EE518495B37007A0560 /* zip_util.cpp */; };
 		07B08C4F18495B40007A0560 /* zip_zip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B07EE618495B37007A0560 /* zip_zip.cpp */; };
 		07B08C5018495B40007A0560 /* zipImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B07EE718495B37007A0560 /* zipImpl.h */; };
-		07B08C5118495B40007A0560 /* adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07EEE18495B37007A0560 /* adler32.c */; };
-		07B08C5318495B40007A0560 /* compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07EFD18495B37007A0560 /* compress.c */; };
-		07B08C9418495B40007A0560 /* crc32.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07F9F18495B38007A0560 /* crc32.c */; };
 		07B08C9518495B40007A0560 /* crc32.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B07FA018495B38007A0560 /* crc32.h */; };
-		07B08C9618495B40007A0560 /* deflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FA118495B38007A0560 /* deflate.c */; };
 		07B08C9718495B40007A0560 /* deflate.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B07FA218495B38007A0560 /* deflate.h */; };
-		07B08CA218495B40007A0560 /* gzclose.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FB718495B38007A0560 /* gzclose.c */; };
 		07B08CA318495B40007A0560 /* gzguts.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B07FB818495B38007A0560 /* gzguts.h */; };
-		07B08CA418495B40007A0560 /* gzlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FB918495B38007A0560 /* gzlib.c */; };
-		07B08CA518495B40007A0560 /* gzread.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FBA18495B38007A0560 /* gzread.c */; };
-		07B08CA618495B40007A0560 /* gzwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FBB18495B38007A0560 /* gzwrite.c */; };
-		07B08CA718495B40007A0560 /* infback.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FBD18495B38007A0560 /* infback.c */; };
-		07B08CA818495B40007A0560 /* inffast.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FBE18495B38007A0560 /* inffast.c */; };
 		07B08CA918495B40007A0560 /* inffast.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B07FBF18495B38007A0560 /* inffast.h */; };
 		07B08CAA18495B40007A0560 /* inffixed.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B07FC018495B38007A0560 /* inffixed.h */; };
-		07B08CAB18495B40007A0560 /* inflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FC118495B38007A0560 /* inflate.c */; };
 		07B08CAC18495B40007A0560 /* inflate.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B07FC218495B38007A0560 /* inflate.h */; };
-		07B08CAD18495B40007A0560 /* inftrees.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FC318495B38007A0560 /* inftrees.c */; };
 		07B08CAE18495B40007A0560 /* inftrees.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B07FC418495B38007A0560 /* inftrees.h */; };
-		07B08CB418495B40007A0560 /* trees.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FE218495B38007A0560 /* trees.c */; };
 		07B08CB518495B40007A0560 /* trees.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B07FE318495B38007A0560 /* trees.h */; };
-		07B08CB618495B40007A0560 /* uncompr.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FE418495B38007A0560 /* uncompr.c */; };
 		07B08CB918495B40007A0560 /* zconf.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B07FF118495B38007A0560 /* zconf.h */; };
 		07B08CBA18495B40007A0560 /* zlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B07FF718495B38007A0560 /* zlib.h */; };
-		07B08CBB18495B40007A0560 /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FFC18495B38007A0560 /* zutil.c */; };
 		07B08CBC18495B40007A0560 /* zutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B07FFD18495B38007A0560 /* zutil.h */; };
 		07B08CBD18495B40007A0560 /* crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0800018495B38007A0560 /* crypto.h */; };
 		07B08CBE18495B40007A0560 /* crypto_ae_xfm.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B0800118495B38007A0560 /* crypto_ae_xfm.c */; };
@@ -3737,21 +3767,6 @@
 		9AA6A6EA1907B84E000A1F4A /* user_window_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07884BDC1897E9A400DC6CEB /* user_window_util.cpp */; };
 		9AA6A6EB1907B84E000A1F4A /* userpresence_user_presence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B095D418495C5F007A0560 /* userpresence_user_presence.cpp */; };
 		9AA6A6EC1907B84E000A1F4A /* userpresence_userpresence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B095D618495C5F007A0560 /* userpresence_userpresence.cpp */; };
-		9AA6A6ED1907B866000A1F4A /* adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07EEE18495B37007A0560 /* adler32.c */; };
-		9AA6A6EE1907B866000A1F4A /* compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07EFD18495B37007A0560 /* compress.c */; };
-		9AA6A6EF1907B866000A1F4A /* crc32.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07F9F18495B38007A0560 /* crc32.c */; };
-		9AA6A6F01907B866000A1F4A /* deflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FA118495B38007A0560 /* deflate.c */; };
-		9AA6A6F11907B866000A1F4A /* gzclose.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FB718495B38007A0560 /* gzclose.c */; };
-		9AA6A6F21907B866000A1F4A /* gzlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FB918495B38007A0560 /* gzlib.c */; };
-		9AA6A6F31907B866000A1F4A /* gzread.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FBA18495B38007A0560 /* gzread.c */; };
-		9AA6A6F41907B866000A1F4A /* gzwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FBB18495B38007A0560 /* gzwrite.c */; };
-		9AA6A6F51907B866000A1F4A /* infback.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FBD18495B38007A0560 /* infback.c */; };
-		9AA6A6F61907B866000A1F4A /* inffast.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FBE18495B38007A0560 /* inffast.c */; };
-		9AA6A6F71907B866000A1F4A /* inflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FC118495B38007A0560 /* inflate.c */; };
-		9AA6A6F81907B866000A1F4A /* inftrees.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FC318495B38007A0560 /* inftrees.c */; };
-		9AA6A6F91907B866000A1F4A /* trees.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FE218495B38007A0560 /* trees.c */; };
-		9AA6A6FA1907B866000A1F4A /* uncompr.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FE418495B38007A0560 /* uncompr.c */; };
-		9AA6A6FB1907B866000A1F4A /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B07FFC18495B38007A0560 /* zutil.c */; };
 		9AA6A6FC1907B866000A1F4A /* crypto_ae_xfm.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B0800118495B38007A0560 /* crypto_ae_xfm.c */; };
 		9AA6A6FD1907B866000A1F4A /* crypto_cipher_aes.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B0800A18495B38007A0560 /* crypto_cipher_aes.c */; };
 		9AA6A6FE1907B866000A1F4A /* crypto_cipher_aes_cbc.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B0800B18495B38007A0560 /* crypto_cipher_aes_cbc.c */; };
@@ -4060,6 +4075,21 @@
 		0722EC72192556D8003E99F4 /* RoundWindowFrameView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindowFrameView.mm; sourceTree = "<group>"; };
 		073EDDE1164E968100818801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		073EDDE4164E96DA00818801 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
+		0751A460192A99B700CFD2B0 /* zlib_adler32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_adler32.c; sourceTree = "<group>"; };
+		0751A461192A99B700CFD2B0 /* zlib_compress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_compress.c; sourceTree = "<group>"; };
+		0751A462192A99B700CFD2B0 /* zlib_crc32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_crc32.c; sourceTree = "<group>"; };
+		0751A463192A99B700CFD2B0 /* zlib_deflate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_deflate.c; sourceTree = "<group>"; };
+		0751A464192A99B700CFD2B0 /* zlib_gzclose.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_gzclose.c; sourceTree = "<group>"; };
+		0751A465192A99B700CFD2B0 /* zlib_gzlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_gzlib.c; sourceTree = "<group>"; };
+		0751A466192A99B700CFD2B0 /* zlib_gzread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_gzread.c; sourceTree = "<group>"; };
+		0751A467192A99B700CFD2B0 /* zlib_gzwrite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_gzwrite.c; sourceTree = "<group>"; };
+		0751A468192A99B700CFD2B0 /* zlib_infback.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_infback.c; sourceTree = "<group>"; };
+		0751A469192A99B700CFD2B0 /* zlib_inffast.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_inffast.c; sourceTree = "<group>"; };
+		0751A46A192A99B700CFD2B0 /* zlib_inflate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_inflate.c; sourceTree = "<group>"; };
+		0751A46B192A99B700CFD2B0 /* zlib_inftrees.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_inftrees.c; sourceTree = "<group>"; };
+		0751A46C192A99B700CFD2B0 /* zlib_trees.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_trees.c; sourceTree = "<group>"; };
+		0751A46D192A99B700CFD2B0 /* zlib_uncompr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_uncompr.c; sourceTree = "<group>"; };
+		0751A46E192A99B700CFD2B0 /* zlib_zutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_zutil.c; sourceTree = "<group>"; };
 		077C2A17190F143F00A1F6B0 /* framework_c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = framework_c.c; sourceTree = "<group>"; };
 		077C2A18190F143F00A1F6B0 /* framework_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework_c.h; sourceTree = "<group>"; };
 		077C2A19190F143F00A1F6B0 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
@@ -4772,31 +4802,16 @@
 		07B07EE518495B37007A0560 /* zip_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zip_util.cpp; sourceTree = "<group>"; };
 		07B07EE618495B37007A0560 /* zip_zip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zip_zip.cpp; sourceTree = "<group>"; };
 		07B07EE718495B37007A0560 /* zipImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zipImpl.h; sourceTree = "<group>"; };
-		07B07EEE18495B37007A0560 /* adler32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = adler32.c; sourceTree = "<group>"; };
-		07B07EFD18495B37007A0560 /* compress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compress.c; sourceTree = "<group>"; };
-		07B07F9F18495B38007A0560 /* crc32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crc32.c; sourceTree = "<group>"; };
 		07B07FA018495B38007A0560 /* crc32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crc32.h; sourceTree = "<group>"; };
-		07B07FA118495B38007A0560 /* deflate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = deflate.c; sourceTree = "<group>"; };
 		07B07FA218495B38007A0560 /* deflate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deflate.h; sourceTree = "<group>"; };
-		07B07FB718495B38007A0560 /* gzclose.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gzclose.c; sourceTree = "<group>"; };
 		07B07FB818495B38007A0560 /* gzguts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gzguts.h; sourceTree = "<group>"; };
-		07B07FB918495B38007A0560 /* gzlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gzlib.c; sourceTree = "<group>"; };
-		07B07FBA18495B38007A0560 /* gzread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gzread.c; sourceTree = "<group>"; };
-		07B07FBB18495B38007A0560 /* gzwrite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gzwrite.c; sourceTree = "<group>"; };
-		07B07FBD18495B38007A0560 /* infback.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = infback.c; sourceTree = "<group>"; };
-		07B07FBE18495B38007A0560 /* inffast.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inffast.c; sourceTree = "<group>"; };
 		07B07FBF18495B38007A0560 /* inffast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inffast.h; sourceTree = "<group>"; };
 		07B07FC018495B38007A0560 /* inffixed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inffixed.h; sourceTree = "<group>"; };
-		07B07FC118495B38007A0560 /* inflate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inflate.c; sourceTree = "<group>"; };
 		07B07FC218495B38007A0560 /* inflate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inflate.h; sourceTree = "<group>"; };
-		07B07FC318495B38007A0560 /* inftrees.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inftrees.c; sourceTree = "<group>"; };
 		07B07FC418495B38007A0560 /* inftrees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inftrees.h; sourceTree = "<group>"; };
-		07B07FE218495B38007A0560 /* trees.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = trees.c; sourceTree = "<group>"; };
 		07B07FE318495B38007A0560 /* trees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trees.h; sourceTree = "<group>"; };
-		07B07FE418495B38007A0560 /* uncompr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = uncompr.c; sourceTree = "<group>"; };
 		07B07FF118495B38007A0560 /* zconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zconf.h; sourceTree = "<group>"; };
 		07B07FF718495B38007A0560 /* zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zlib.h; sourceTree = "<group>"; };
-		07B07FFC18495B38007A0560 /* zutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zutil.c; sourceTree = "<group>"; };
 		07B07FFD18495B38007A0560 /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zutil.h; sourceTree = "<group>"; };
 		07B0800018495B38007A0560 /* crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto.h; sourceTree = "<group>"; };
 		07B0800118495B38007A0560 /* crypto_ae_xfm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crypto_ae_xfm.c; sourceTree = "<group>"; };
@@ -7610,31 +7625,31 @@
 		07B07EE818495B37007A0560 /* zlib */ = {
 			isa = PBXGroup;
 			children = (
-				07B07EEE18495B37007A0560 /* adler32.c */,
-				07B07EFD18495B37007A0560 /* compress.c */,
-				07B07F9F18495B38007A0560 /* crc32.c */,
+				0751A460192A99B700CFD2B0 /* zlib_adler32.c */,
+				0751A461192A99B700CFD2B0 /* zlib_compress.c */,
+				0751A462192A99B700CFD2B0 /* zlib_crc32.c */,
+				0751A463192A99B700CFD2B0 /* zlib_deflate.c */,
+				0751A464192A99B700CFD2B0 /* zlib_gzclose.c */,
+				0751A465192A99B700CFD2B0 /* zlib_gzlib.c */,
+				0751A466192A99B700CFD2B0 /* zlib_gzread.c */,
+				0751A467192A99B700CFD2B0 /* zlib_gzwrite.c */,
+				0751A468192A99B700CFD2B0 /* zlib_infback.c */,
+				0751A469192A99B700CFD2B0 /* zlib_inffast.c */,
+				0751A46A192A99B700CFD2B0 /* zlib_inflate.c */,
+				0751A46B192A99B700CFD2B0 /* zlib_inftrees.c */,
+				0751A46C192A99B700CFD2B0 /* zlib_trees.c */,
+				0751A46D192A99B700CFD2B0 /* zlib_uncompr.c */,
+				0751A46E192A99B700CFD2B0 /* zlib_zutil.c */,
 				07B07FA018495B38007A0560 /* crc32.h */,
-				07B07FA118495B38007A0560 /* deflate.c */,
 				07B07FA218495B38007A0560 /* deflate.h */,
-				07B07FB718495B38007A0560 /* gzclose.c */,
 				07B07FB818495B38007A0560 /* gzguts.h */,
-				07B07FB918495B38007A0560 /* gzlib.c */,
-				07B07FBA18495B38007A0560 /* gzread.c */,
-				07B07FBB18495B38007A0560 /* gzwrite.c */,
-				07B07FBD18495B38007A0560 /* infback.c */,
-				07B07FBE18495B38007A0560 /* inffast.c */,
 				07B07FBF18495B38007A0560 /* inffast.h */,
 				07B07FC018495B38007A0560 /* inffixed.h */,
-				07B07FC118495B38007A0560 /* inflate.c */,
 				07B07FC218495B38007A0560 /* inflate.h */,
-				07B07FC318495B38007A0560 /* inftrees.c */,
 				07B07FC418495B38007A0560 /* inftrees.h */,
-				07B07FE218495B38007A0560 /* trees.c */,
 				07B07FE318495B38007A0560 /* trees.h */,
-				07B07FE418495B38007A0560 /* uncompr.c */,
 				07B07FF118495B38007A0560 /* zconf.h */,
 				07B07FF718495B38007A0560 /* zlib.h */,
-				07B07FFC18495B38007A0560 /* zutil.c */,
 				07B07FFD18495B38007A0560 /* zutil.h */,
 			);
 			path = zlib;
@@ -12124,7 +12139,6 @@
 				07B08F9418495B41007A0560 /* evp_pbe.c in Sources */,
 				07B08BB718495B40007A0560 /* base_command_target.cpp in Sources */,
 				07B0911518495B41007A0560 /* x509name.c in Sources */,
-				07B08C9418495B40007A0560 /* crc32.c in Sources */,
 				07F5B1BB184A3B430092C3E1 /* file_dir2.cpp in Sources */,
 				07B0909B18495B41007A0560 /* rsa_crpt.c in Sources */,
 				07F5B1BC184A3B430092C3E1 /* file_dir_application.cpp in Sources */,
@@ -12161,7 +12175,6 @@
 				07B092FC18495B43007A0560 /* macos_os.cpp in Sources */,
 				07B08FAF18495B41007A0560 /* p_verify.c in Sources */,
 				07B091FF18495B42007A0560 /* s2_srvr.c in Sources */,
-				07B08CAB18495B40007A0560 /* inflate.c in Sources */,
 				07B08DC218495B41007A0560 /* aes_cbc.c in Sources */,
 				07B0912418495B41007A0560 /* v3_addr.c in Sources */,
 				07B0930E18495B43007A0560 /* macos_multithreading.cpp in Sources */,
@@ -12268,6 +12281,7 @@
 				07B0913418495B41007A0560 /* v3_lib.c in Sources */,
 				07B0950D18495C2B007A0560 /* datetime_duration.cpp in Sources */,
 				07B08C0C18495B40007A0560 /* base_session.cpp in Sources */,
+				0751A48A192A99B700CFD2B0 /* zlib_inffast.c in Sources */,
 				07B08E4118495B41007A0560 /* bss_conn.c in Sources */,
 				07B0902A18495B41007A0560 /* pem_all.c in Sources */,
 				07B0913918495B41007A0560 /* v3_pcons.c in Sources */,
@@ -12275,7 +12289,6 @@
 				07B0919F18495B42007A0560 /* gost_ctl.c in Sources */,
 				07B090E918495B41007A0560 /* ts_rsp_verify.c in Sources */,
 				07884C2E1897EC2A00DC6CEB /* base_print_job.cpp in Sources */,
-				07B08CB418495B40007A0560 /* trees.c in Sources */,
 				07B08E5B18495B41007A0560 /* bn_err.c in Sources */,
 				07B08D2118495B41007A0560 /* exception_invalid_argument.cpp in Sources */,
 				07B08CFD18495B40007A0560 /* crypto_nessie.cpp in Sources */,
@@ -12340,6 +12353,7 @@
 				07B08BFD18495B40007A0560 /* base_mktime.cpp in Sources */,
 				07B08EF618495B41007A0560 /* dh_check.c in Sources */,
 				07B08D3D18495B41007A0560 /* exception_overflow_error.cpp in Sources */,
+				0751A493192A99B700CFD2B0 /* zlib_trees.c in Sources */,
 				07B08FA618495B41007A0560 /* openbsd_hw.c in Sources */,
 				07B0913318495B41007A0560 /* v3_int.c in Sources */,
 				07B08EFD18495B41007A0560 /* dh_prn.c in Sources */,
@@ -12382,7 +12396,6 @@
 				07B08C4818495B40007A0560 /* zip_file.cpp in Sources */,
 				07B08F4B18495B41007A0560 /* ecs_ossl.c in Sources */,
 				07B095ED18495C5F007A0560 /* fontopus_validate.cpp in Sources */,
-				07B08CA718495B40007A0560 /* infback.c in Sources */,
 				07F5B2DE184A403C0092C3E1 /* multithreading_signal_thread.cpp in Sources */,
 				07B08DE618495B41007A0560 /* a_utctm.c in Sources */,
 				07B08EBA18495B41007A0560 /* conf_mall.c in Sources */,
@@ -12419,11 +12432,11 @@
 				07F5B1B7184A3B430092C3E1 /* file_composite.cpp in Sources */,
 				07884C091897E9A500DC6CEB /* user_place_holder.cpp in Sources */,
 				07B08DD918495B41007A0560 /* a_gentm.c in Sources */,
-				07B08CAD18495B40007A0560 /* inftrees.c in Sources */,
 				07B08BEC18495B40007A0560 /* base_machine_event.cpp in Sources */,
 				0715B927189EE65700B3EBD9 /* geoip_city.cpp in Sources */,
 				07B08CDB18495B40007A0560 /* crypto_kernel_alloc.c in Sources */,
 				07B08F6918495B41007A0560 /* tb_pkmeth.c in Sources */,
+				0751A47E192A99B700CFD2B0 /* zlib_gzlib.c in Sources */,
 				07B0910E18495B41007A0560 /* x509_trs.c in Sources */,
 				07B090B118495B41007A0560 /* seed.c in Sources */,
 				07B0935518495B43007A0560 /* os_thread.cpp in Sources */,
@@ -12456,7 +12469,6 @@
 				07B08E2A18495B41007A0560 /* bf_ofb64.c in Sources */,
 				07B0911718495B41007A0560 /* x509spki.c in Sources */,
 				07B08E6C18495B41007A0560 /* bn_recp.c in Sources */,
-				07B08CA818495B40007A0560 /* inffast.c in Sources */,
 				07B08E0E18495B41007A0560 /* tasn_enc.c in Sources */,
 				07B0910D18495B41007A0560 /* x509_set.c in Sources */,
 				07B08F7718495B41007A0560 /* c_allc.c in Sources */,
@@ -12479,7 +12491,6 @@
 				07B08D0218495B40007A0560 /* exception.cpp in Sources */,
 				07B090C318495B41007A0560 /* sha_dgst.c in Sources */,
 				07B08E3C18495B41007A0560 /* bio_err.c in Sources */,
-				07B08CA218495B40007A0560 /* gzclose.c in Sources */,
 				079AE0D5188648D400635C39 /* database_user_interaction.cpp in Sources */,
 				07B093B218495B43007A0560 /* xml_data.cpp in Sources */,
 				07B0979818495CBE007A0560 /* sockets_sync_socket_handler.cpp in Sources */,
@@ -12565,13 +12576,13 @@
 				07B092DE18495B43007A0560 /* macos.cpp in Sources */,
 				07B0901F18495B41007A0560 /* ocsp_ht.c in Sources */,
 				07B091EA18495B42007A0560 /* d1_enc.c in Sources */,
+				0751A490192A99B700CFD2B0 /* zlib_inftrees.c in Sources */,
 				07B08F3A18495B41007A0560 /* ecp_smpl.c in Sources */,
 				079AE0611886429400635C39 /* windows_windows.cpp in Sources */,
 				07B08FFD18495B41007A0560 /* cfb128.c in Sources */,
 				07B0921F18495B42007A0560 /* t1_srvr.c in Sources */,
 				07B08DFD18495B41007A0560 /* f_string.c in Sources */,
 				07F5B1BE184A3B430092C3E1 /* file_dir_system.cpp in Sources */,
-				07B08CBB18495B40007A0560 /* zutil.c in Sources */,
 				0722EC9B192556D8003E99F4 /* mac_genResource.cpp in Sources */,
 				07B091F518495B42007A0560 /* s23_clnt.c in Sources */,
 				07B08EF818495B41007A0560 /* dh_err.c in Sources */,
@@ -12634,6 +12645,7 @@
 				079AE0C6188648D400635C39 /* database_key.cpp in Sources */,
 				07B08FD118495B41007A0560 /* lhash.c in Sources */,
 				07B08DDF18495B41007A0560 /* a_print.c in Sources */,
+				0751A487192A99B700CFD2B0 /* zlib_infback.c in Sources */,
 				07B08F1818495B41007A0560 /* dso_err.c in Sources */,
 				07B095DC18495C5F007A0560 /* fontopus_contact_list.cpp in Sources */,
 				07B08CF918495B40007A0560 /* crypto_hmac_sha1.cpp in Sources */,
@@ -12681,6 +12693,7 @@
 				07B08BBA18495B40007A0560 /* base_conv.cpp in Sources */,
 				07B08D6718495B41007A0560 /* install_focus.cpp in Sources */,
 				07B08F2818495B41007A0560 /* ec_curve.c in Sources */,
+				0751A46F192A99B700CFD2B0 /* zlib_adler32.c in Sources */,
 				07B0929F18495B43007A0560 /* windows_shared_memory.cpp in Sources */,
 				07B0906018495B41007A0560 /* md_rand.c in Sources */,
 				07B08EC618495B41007A0560 /* cbc_enc.c in Sources */,
@@ -12763,6 +12776,7 @@
 				07B0904118495B41007A0560 /* p12_npas.c in Sources */,
 				07B08FBE18495B41007A0560 /* i_cfb64.c in Sources */,
 				07B08E0118495B41007A0560 /* n_pkey.c in Sources */,
+				0751A475192A99B700CFD2B0 /* zlib_crc32.c in Sources */,
 				07B095E418495C5F007A0560 /* fontopus_simple_ui.cpp in Sources */,
 				07B08E1F18495B41007A0560 /* x_req.c in Sources */,
 				07B0954C18495C2B007A0560 /* str_simple.cpp in Sources */,
@@ -12798,6 +12812,7 @@
 				07884C2A1897E9A500DC6CEB /* user_window_util.cpp in Sources */,
 				07B091AD18495B42007A0560 /* e_4758cca.c in Sources */,
 				07F5B1A5184A3B430092C3E1 /* file_buffered_buffer.cpp in Sources */,
+				0751A478192A99B700CFD2B0 /* zlib_deflate.c in Sources */,
 				0722ECB8192556D8003E99F4 /* round_window.mm in Sources */,
 				0722EC98192556D8003E99F4 /* mac_file_system.cpp in Sources */,
 				07B08DE318495B41007A0560 /* a_strnid.c in Sources */,
@@ -12821,7 +12836,6 @@
 				07B08BC318495B40007A0560 /* base_debug.cpp in Sources */,
 				07B090C118495B41007A0560 /* sha512.c in Sources */,
 				07B08DF018495B41007A0560 /* asn1_par.c in Sources */,
-				07B08C5118495B40007A0560 /* adler32.c in Sources */,
 				079AE0731886483600635C39 /* base_action_context.cpp in Sources */,
 				07B08E0218495B41007A0560 /* nsseq.c in Sources */,
 				07B091C618495B42007A0560 /* e_sureware.c in Sources */,
@@ -12874,7 +12888,6 @@
 				0722EC8F192556D8003E99F4 /* mac_dumpinit.cpp in Sources */,
 				07B097F618495CBE007A0560 /* sockets_http_session.cpp in Sources */,
 				07B08FFE18495B41007A0560 /* ctr128.c in Sources */,
-				07B08C5318495B40007A0560 /* compress.c in Sources */,
 				07B08DFA18495B41007A0560 /* evp_asn1.c in Sources */,
 				07B0911918495B41007A0560 /* x_all.c in Sources */,
 				07B092F118495B43007A0560 /* macos_library.cpp in Sources */,
@@ -12893,6 +12906,7 @@
 				9AE7251417E83B69003E47F9 /* multithreading_semaphore.cpp in Sources */,
 				07B08FB018495B41007A0560 /* pmeth_fn.c in Sources */,
 				07B08EAD18495B41007A0560 /* c_zlib.c in Sources */,
+				0751A484192A99B700CFD2B0 /* zlib_gzwrite.c in Sources */,
 				07884BF81897E9A500DC6CEB /* user_interaction.cpp in Sources */,
 				07B0907318495B41007A0560 /* rc2cfb64.c in Sources */,
 				0722EC8D192556D8003E99F4 /* mac_dir.cpp in Sources */,
@@ -12922,6 +12936,7 @@
 				07B08DE718495B41007A0560 /* a_utf8.c in Sources */,
 				07B08F4F18495B41007A0560 /* eng_all.c in Sources */,
 				07B08EA118495B41007A0560 /* cms_enc.c in Sources */,
+				0751A496192A99B700CFD2B0 /* zlib_uncompr.c in Sources */,
 				07884BE21897E9A400DC6CEB /* user_check_interface.cpp in Sources */,
 				07B08F1B18495B41007A0560 /* dso_openssl.c in Sources */,
 				07B091E718495B42007A0560 /* bio_ssl.c in Sources */,
@@ -13049,6 +13064,7 @@
 				9AE7255E17E83B69003E47F9 /* primitive_factory.cpp in Sources */,
 				07B0901C18495B41007A0560 /* ocsp_cl.c in Sources */,
 				07B08F6F18495B41007A0560 /* err_all.cpp in Sources */,
+				0751A481192A99B700CFD2B0 /* zlib_gzread.c in Sources */,
 				07B0904E18495B41007A0560 /* pk7_asn1.c in Sources */,
 				07B08EC818495B41007A0560 /* cfb64enc.c in Sources */,
 				07B0904018495B41007A0560 /* p12_mutl.c in Sources */,
@@ -13120,7 +13136,6 @@
 				07B08DF618495B41007A0560 /* bio_ndef.c in Sources */,
 				07B08C3918495B40007A0560 /* compress_compress.cpp in Sources */,
 				07B093C418495B43007A0560 /* xml_node.cpp in Sources */,
-				07B08CA618495B40007A0560 /* gzwrite.c in Sources */,
 				07B091A518495B42007A0560 /* gost_params.c in Sources */,
 				07B0979A18495CBE007A0560 /* sockets_tcp_socket.cpp in Sources */,
 				07B08DD718495B41007A0560 /* a_dup.c in Sources */,
@@ -13160,6 +13175,7 @@
 				07A224AB18F7F766002C3B39 /* pr29.c in Sources */,
 				07B08E0818495B41007A0560 /* t_pkey.c in Sources */,
 				07B08C4F18495B40007A0560 /* zip_zip.cpp in Sources */,
+				0751A472192A99B700CFD2B0 /* zlib_compress.c in Sources */,
 				07B08BCE18495B40007A0560 /* base_file_watcher.cpp in Sources */,
 				07B091B018495B42007A0560 /* e_aep.c in Sources */,
 				07B091F718495B42007A0560 /* s23_meth.c in Sources */,
@@ -13176,6 +13192,7 @@
 				07B08F1D18495B41007A0560 /* dso_win32.c in Sources */,
 				07B091C518495B42007A0560 /* e_padlock.c in Sources */,
 				07884E3A1897EC9600DC6CEB /* progname.c in Sources */,
+				0751A499192A99B700CFD2B0 /* zlib_zutil.c in Sources */,
 				07B092E918495B43007A0560 /* macos_file_watcher.cpp in Sources */,
 				07A224BC18F7F766002C3B39 /* toutf8.c in Sources */,
 				07B0980918495CBE007A0560 /* sockets_http_form.cpp in Sources */,
@@ -13213,10 +13230,11 @@
 				07B0980618495CBE007A0560 /* sockets_trace_logger.cpp in Sources */,
 				07884C241897E9A500DC6CEB /* user_window_draw.cpp in Sources */,
 				07B0951118495C2B007A0560 /* datetime_value.cpp in Sources */,
+				0751A47B192A99B700CFD2B0 /* zlib_gzclose.c in Sources */,
 				07B0905D18495B41007A0560 /* pqueue.c in Sources */,
 				07B091EF18495B42007A0560 /* d1_srvr.c in Sources */,
 				07884E3C1897EC9600DC6CEB /* progreloc.c in Sources */,
-				07B08CB618495B40007A0560 /* uncompr.c in Sources */,
+				0751A48D192A99B700CFD2B0 /* zlib_inflate.c in Sources */,
 				07B092F218495B43007A0560 /* macos_lock.cpp in Sources */,
 				07B08BF018495B40007A0560 /* base_machine_event_data.cpp in Sources */,
 				07B08EC018495B41007A0560 /* cryptlib.c in Sources */,
@@ -13231,7 +13249,6 @@
 				07F5B1D8184A3B430092C3E1 /* file_reader.cpp in Sources */,
 				07B0912E18495B41007A0560 /* v3_enum.c in Sources */,
 				07B0900A18495B41007A0560 /* o_init.c in Sources */,
-				07B08C9618495B40007A0560 /* deflate.c in Sources */,
 				07B090E718495B41007A0560 /* ts_rsp_sign.c in Sources */,
 				07B08FB518495B41007A0560 /* fips_ers.c in Sources */,
 				07B092DD18495B43007A0560 /* DDInvocationGrabber.mm in Sources */,
@@ -13251,7 +13268,6 @@
 				07B092E018495B43007A0560 /* macos_cross_gdi.mm in Sources */,
 				07B0911318495B41007A0560 /* x509_vpm.c in Sources */,
 				07B08E1A18495B41007A0560 /* x_long.c in Sources */,
-				07B08CA518495B40007A0560 /* gzread.c in Sources */,
 				07884E451897EC9600DC6CEB /* safe-read.c in Sources */,
 				07B0912918495B41007A0560 /* v3_bcons.c in Sources */,
 				07B0953B18495C2B007A0560 /* str_format.cpp in Sources */,
@@ -13299,7 +13315,6 @@
 				07B08D1B18495B41007A0560 /* exception_hresult.cpp in Sources */,
 				07B097C718495CBE007A0560 /* sockets_EventHandler.cpp in Sources */,
 				07B0951A18495C2B007A0560 /* geometry_size.cpp in Sources */,
-				07B08CA418495B40007A0560 /* gzlib.c in Sources */,
 				07B08D2D18495B41007A0560 /* exception_memory.cpp in Sources */,
 				07B08EAC18495B41007A0560 /* c_rle.c in Sources */,
 				07F5B1F0184A3B430092C3E1 /* file_timeout_buffer.cpp in Sources */,
@@ -13381,6 +13396,7 @@
 				0722ECDF19256436003E99F4 /* ios_thread_mm.mm in Sources */,
 				0722ECE019256436003E99F4 /* ios_user.mm in Sources */,
 				0722ECC61925640E003E99F4 /* ios.cpp in Sources */,
+				0751A485192A99B700CFD2B0 /* zlib_gzwrite.c in Sources */,
 				0722ECC71925640F003E99F4 /* ios_ios.cpp in Sources */,
 				0722ECC81925640F003E99F4 /* ios_application.cpp in Sources */,
 				0722ECC91925640F003E99F4 /* ios_copydesk.cpp in Sources */,
@@ -13562,6 +13578,7 @@
 				078579C61917B6F700FFFE51 /* rc2ofb64.c in Sources */,
 				078579C71917B6F700FFFE51 /* rc4_enc.c in Sources */,
 				078579C81917B6F700FFFE51 /* rc4_skey.c in Sources */,
+				0751A497192A99B700CFD2B0 /* zlib_uncompr.c in Sources */,
 				078579C91917B6F700FFFE51 /* rc4_utl.c in Sources */,
 				078579CA1917B6F700FFFE51 /* sha1_one.c in Sources */,
 				078579CB1917B6F700FFFE51 /* sha1dgst.c in Sources */,
@@ -13646,6 +13663,7 @@
 				078577C51917B6BC00FFFE51 /* i2d_pr.c in Sources */,
 				078577C61917B6BC00FFFE51 /* i2d_pu.c in Sources */,
 				078577C71917B6BC00FFFE51 /* n_pkey.c in Sources */,
+				0751A49A192A99B700CFD2B0 /* zlib_zutil.c in Sources */,
 				078577C81917B6BC00FFFE51 /* nsseq.c in Sources */,
 				078577C91917B6BC00FFFE51 /* p5_pbe.c in Sources */,
 				078577CA1917B6BC00FFFE51 /* p5_pbev2.c in Sources */,
@@ -13688,6 +13706,7 @@
 				078577EF1917B6BD00FFFE51 /* bf_skey.c in Sources */,
 				078577F01917B6BD00FFFE51 /* camellia.c in Sources */,
 				078577F11917B6BD00FFFE51 /* cmll_cbc.c in Sources */,
+				0751A473192A99B700CFD2B0 /* zlib_compress.c in Sources */,
 				078577F21917B6BD00FFFE51 /* cmll_cfb.c in Sources */,
 				078577F31917B6BD00FFFE51 /* cmll_ctr.c in Sources */,
 				078577F41917B6BD00FFFE51 /* cmll_ecb.c in Sources */,
@@ -13738,6 +13757,7 @@
 				078578211917B6BD00FFFE51 /* dh_check.c in Sources */,
 				078578221917B6BD00FFFE51 /* dh_depr.c in Sources */,
 				078578231917B6BD00FFFE51 /* dh_err.c in Sources */,
+				0751A48B192A99B700CFD2B0 /* zlib_inffast.c in Sources */,
 				078578241917B6BD00FFFE51 /* dh_gen.c in Sources */,
 				078578251917B6BD00FFFE51 /* dh_key.c in Sources */,
 				078578261917B6BD00FFFE51 /* dh_lib.c in Sources */,
@@ -13937,6 +13957,7 @@
 				078578E71917B6BD00FFFE51 /* rsa_sign.c in Sources */,
 				078578E81917B6BD00FFFE51 /* rsa_ssl.c in Sources */,
 				078578E91917B6BD00FFFE51 /* rsa_x931.c in Sources */,
+				0751A479192A99B700CFD2B0 /* zlib_deflate.c in Sources */,
 				078578EA1917B6BD00FFFE51 /* seed.c in Sources */,
 				078578EB1917B6BD00FFFE51 /* seed_cbc.c in Sources */,
 				078578EC1917B6BD00FFFE51 /* seed_cfb.c in Sources */,
@@ -14027,21 +14048,6 @@
 				078579401917B6BE00FFFE51 /* o_time.c in Sources */,
 				078579411917B6BE00FFFE51 /* uid.c in Sources */,
 				078579421917B6BE00FFFE51 /* framework_c.c in Sources */,
-				9AA6A6ED1907B866000A1F4A /* adler32.c in Sources */,
-				9AA6A6EE1907B866000A1F4A /* compress.c in Sources */,
-				9AA6A6EF1907B866000A1F4A /* crc32.c in Sources */,
-				9AA6A6F01907B866000A1F4A /* deflate.c in Sources */,
-				9AA6A6F11907B866000A1F4A /* gzclose.c in Sources */,
-				9AA6A6F21907B866000A1F4A /* gzlib.c in Sources */,
-				9AA6A6F31907B866000A1F4A /* gzread.c in Sources */,
-				9AA6A6F41907B866000A1F4A /* gzwrite.c in Sources */,
-				9AA6A6F51907B866000A1F4A /* infback.c in Sources */,
-				9AA6A6F61907B866000A1F4A /* inffast.c in Sources */,
-				9AA6A6F71907B866000A1F4A /* inflate.c in Sources */,
-				9AA6A6F81907B866000A1F4A /* inftrees.c in Sources */,
-				9AA6A6F91907B866000A1F4A /* trees.c in Sources */,
-				9AA6A6FA1907B866000A1F4A /* uncompr.c in Sources */,
-				9AA6A6FB1907B866000A1F4A /* zutil.c in Sources */,
 				9AA6A6FC1907B866000A1F4A /* crypto_ae_xfm.c in Sources */,
 				9AA6A6FD1907B866000A1F4A /* crypto_cipher_aes.c in Sources */,
 				9AA6A6FE1907B866000A1F4A /* crypto_cipher_aes_cbc.c in Sources */,
@@ -14100,6 +14106,7 @@
 				9AA6A7331907B866000A1F4A /* s3_both.c in Sources */,
 				9AA6A7341907B866000A1F4A /* s3_cbc.c in Sources */,
 				9AA6A7351907B866000A1F4A /* s3_clnt.c in Sources */,
+				0751A47F192A99B700CFD2B0 /* zlib_gzlib.c in Sources */,
 				9AA6A7361907B866000A1F4A /* s3_enc.c in Sources */,
 				9AA6A7371907B866000A1F4A /* s3_lib.c in Sources */,
 				9AA6A7381907B866000A1F4A /* s3_meth.c in Sources */,
@@ -14135,6 +14142,7 @@
 				9AA6A7551907B866000A1F4A /* progname.c in Sources */,
 				9AA6A7561907B866000A1F4A /* progreloc.c in Sources */,
 				9AA6A7571907B866000A1F4A /* read.c in Sources */,
+				0751A482192A99B700CFD2B0 /* zlib_gzread.c in Sources */,
 				9AA6A7581907B866000A1F4A /* readlink.c in Sources */,
 				9AA6A7591907B866000A1F4A /* safe-read.c in Sources */,
 				9AA6A75A1907B866000A1F4A /* stdio-write.c in Sources */,
@@ -14225,6 +14233,7 @@
 				9AA6A4F41907B84B000A1F4A /* exception.cpp in Sources */,
 				9AA6A4F51907B84B000A1F4A /* exception_archive.cpp in Sources */,
 				9AA6A4F61907B84B000A1F4A /* exception_archive_exception.cpp in Sources */,
+				0751A48E192A99B700CFD2B0 /* zlib_inflate.c in Sources */,
 				9AA6A4F71907B84B000A1F4A /* exception_base.cpp in Sources */,
 				9AA6A4F81907B84B000A1F4A /* exception_call_stack.cpp in Sources */,
 				9AA6A4F91907B84B000A1F4A /* exception_debug.cpp in Sources */,
@@ -14409,6 +14418,7 @@
 				9AA6A5ED1907B84C000A1F4A /* visual_cursor.cpp in Sources */,
 				9AA6A5EE1907B84C000A1F4A /* visual_icon.cpp in Sources */,
 				9AA6A5EF1907B84C000A1F4A /* graphics_window_graphics.cpp in Sources */,
+				0751A47C192A99B700CFD2B0 /* zlib_gzclose.c in Sources */,
 				9AA6A5F01907B84C000A1F4A /* multithreading_go_thread.cpp in Sources */,
 				9AA6A5F11907B84C000A1F4A /* multithreading_signal_thread.cpp in Sources */,
 				9AA6A5F21907B84C000A1F4A /* multithreading_simple_thread.cpp in Sources */,
@@ -14460,6 +14470,7 @@
 				9AA6A6201907B84D000A1F4A /* sockets_sync_socket_handler.cpp in Sources */,
 				9AA6A6211907B84D000A1F4A /* sockets_tcp_socket.cpp in Sources */,
 				9AA6A6221907B84D000A1F4A /* sockets_tls_socket.cpp in Sources */,
+				0751A488192A99B700CFD2B0 /* zlib_infback.c in Sources */,
 				9AA6A6231907B84D000A1F4A /* sockets_udp_socket.cpp in Sources */,
 				9AA6A6241907B84D000A1F4A /* sockets_SSLInitializer.cpp in Sources */,
 				9AA6A6251907B84D000A1F4A /* sockets_sip_base.cpp in Sources */,
@@ -14498,6 +14509,7 @@
 				9AA6A6451907B84D000A1F4A /* sockets_http_form.cpp in Sources */,
 				9AA6A6461907B84D000A1F4A /* sockets_http_request.cpp in Sources */,
 				9AA6A6471907B84D000A1F4A /* sockets_http_response.cpp in Sources */,
+				0751A470192A99B700CFD2B0 /* zlib_adler32.c in Sources */,
 				9AA6A6481907B84D000A1F4A /* sockets_http_transaction.cpp in Sources */,
 				9AA6A6491907B84D000A1F4A /* sockets_http_batch_buffer.cpp in Sources */,
 				9AA6A64A1907B84D000A1F4A /* sockets_http_buffer.cpp in Sources */,
@@ -14563,6 +14575,7 @@
 				9AA6A6861907B84D000A1F4A /* str_str.cpp in Sources */,
 				9AA6A6871907B84D000A1F4A /* str_string.cpp in Sources */,
 				9AA6A6881907B84D000A1F4A /* str_stringtow.cpp in Sources */,
+				0751A491192A99B700CFD2B0 /* zlib_inftrees.c in Sources */,
 				9AA6A6891907B84D000A1F4A /* str_strw.cpp in Sources */,
 				9AA6A68A1907B84D000A1F4A /* str_strx.cpp in Sources */,
 				9AA6A68B1907B84D000A1F4A /* str_to_integer.cpp in Sources */,
@@ -14593,6 +14606,7 @@
 				9AA6A6A31907B84D000A1F4A /* primitive_memory_container.cpp in Sources */,
 				9AA6A6A41907B84D000A1F4A /* primitive_object.cpp in Sources */,
 				9AA6A6A51907B84D000A1F4A /* primitive_property.cpp in Sources */,
+				0751A494192A99B700CFD2B0 /* zlib_trees.c in Sources */,
 				9AA6A6A61907B84D000A1F4A /* primitive_property_set.cpp in Sources */,
 				9AA6A6A71907B84D000A1F4A /* primitive_relation_set.cpp in Sources */,
 				9AA6A6A81907B84D000A1F4A /* primitive_request_interface.cpp in Sources */,
@@ -14643,6 +14657,7 @@
 				9AA6A6D51907B84E000A1F4A /* user_menu_base.cpp in Sources */,
 				9AA6A6D61907B84E000A1F4A /* user_menu_base_item.cpp in Sources */,
 				9AA6A6D71907B84E000A1F4A /* user_message.cpp in Sources */,
+				0751A476192A99B700CFD2B0 /* zlib_crc32.c in Sources */,
 				9AA6A6D81907B84E000A1F4A /* user_mouse_focus.cpp in Sources */,
 				9AA6A6D91907B84E000A1F4A /* user_object.cpp in Sources */,
 				9AA6A6DA1907B84E000A1F4A /* user_place_holder.cpp in Sources */,
@@ -14673,11 +14688,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				07AAB14F1926B2EF0050A443 /* multithreading_thread_impl.cpp in Sources */,
+				0751A474192A99B700CFD2B0 /* zlib_compress.c in Sources */,
+				0751A48F192A99B700CFD2B0 /* zlib_inflate.c in Sources */,
+				0751A498192A99B700CFD2B0 /* zlib_uncompr.c in Sources */,
 				07D1CA1B192121BF00B99496 /* message_base.cpp in Sources */,
+				0751A47A192A99B700CFD2B0 /* zlib_deflate.c in Sources */,
 				07D1CA25192121BF00B99496 /* message_user.cpp in Sources */,
 				07D1CA21192121BF00B99496 /* message_dispatch.cpp in Sources */,
+				0751A47D192A99B700CFD2B0 /* zlib_gzclose.c in Sources */,
+				0751A49B192A99B700CFD2B0 /* zlib_zutil.c in Sources */,
+				0751A495192A99B700CFD2B0 /* zlib_trees.c in Sources */,
+				0751A471192A99B700CFD2B0 /* zlib_adler32.c in Sources */,
 				9AE24D531904CEFF001AEFFB /* base_iosTests.m in Sources */,
 				07D1CA16192121BF00B99496 /* message.cpp in Sources */,
+				0751A492192A99B700CFD2B0 /* zlib_inftrees.c in Sources */,
+				0751A480192A99B700CFD2B0 /* zlib_gzlib.c in Sources */,
+				0751A483192A99B700CFD2B0 /* zlib_gzread.c in Sources */,
+				0751A48C192A99B700CFD2B0 /* zlib_inffast.c in Sources */,
+				0751A477192A99B700CFD2B0 /* zlib_crc32.c in Sources */,
+				0751A489192A99B700CFD2B0 /* zlib_infback.c in Sources */,
+				0751A486192A99B700CFD2B0 /* zlib_gzwrite.c in Sources */,
 				07A0D7B61923356B00039222 /* RoundViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
