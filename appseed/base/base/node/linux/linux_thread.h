@@ -25,17 +25,6 @@ namespace linux
       virtual void construct(__THREADPROC pfnThreadProc, LPVOID pParam);
 
 
-   #ifdef DEBUG
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
-   #endif
-
-
-
-
-  //    virtual bool begin(int32_t epriority = get_scheduling_priority_normal(), uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
-
-//      virtual bool create_thread(int32_t epriority = get_scheduling_priority_normal(), uint32_t dwCreateFlagsParam = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
 
       virtual void add(sp(::user::interaction) pui);
@@ -56,19 +45,10 @@ namespace linux
       virtual void defer_process_windows_messages();
 
 
-      int32_t get_thread_priority();
-      bool set_thread_priority(int32_t nPriority);
-
-   // Operations
-      DWORD SuspendThread();
-      DWORD ResumeThread();
 
       virtual int32_t get_x_window_count() const;
 
 
-
-
-      virtual void delete_temp();
 
 
       operator pthread_t() const;
@@ -79,8 +59,6 @@ namespace linux
 
    };
 
-
-   CLASS_DECL_LINUX ::thread * get_thread();
 
 
 } // namespace linux

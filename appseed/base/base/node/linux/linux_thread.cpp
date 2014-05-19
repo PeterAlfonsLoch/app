@@ -290,26 +290,6 @@ void thread::Delete()
 }
 
 
-   DWORD thread::ResumeThread()
-   {
-
-      ASSERT(m_hthread != NULL);
-
-      return ::ResumeThread(m_hthread);
-
-   }
-
-
-   DWORD thread::SuspendThread()
-   {
-
-      throw not_implemented(get_app());
-
-      // ASSERT(m_hThread != NULL);
-
-      // return ::SuspendThread(m_hThread);
-
-   }
 
 
    void thread::defer_process_windows_messages()

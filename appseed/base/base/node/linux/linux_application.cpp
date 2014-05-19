@@ -459,15 +459,6 @@ namespace linux
          //pApp->SetCurrentHandles();
          SetCurrentHandles();
 
-        __init_thread();
-
-         // Initialize ::windowm_pfnNotifyWinEvent
-      /*   HMODULE hModule = ::GetModuleHandle("user32.dll");
-         if (hModule != NULL)
-         {
-            ::windowm_pfnNotifyWinEvent = (::window::PFNNOTIFYWINEVENT)::GetProcaddress(hModule, "NotifyWinEvent");
-         }*/
-
       return true;
 
    }

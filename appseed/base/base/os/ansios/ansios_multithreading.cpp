@@ -148,3 +148,20 @@ void thread_data::set(void * p)
    pthread_setspecific(key, p);
 
 }
+
+
+
+CLASS_DECL_BASE HTHREAD get_current_thread()
+{
+
+   return ::GetCurrentThread();
+
+}
+
+
+CLASS_DECL_BASE DWORD get_current_thread_id()
+{
+
+   return ::GetCurrentThreadId();
+
+}
