@@ -219,14 +219,14 @@ class CLASS_DECL_BASE thread :
 {
 public:
 
-   
+
    static bool                            s_bAllocReady;
    mutex                                  m_mutex;
    bool                                   m_bRun;
 
    thread_impl_sp                         m_pimpl;
    thread_sp                              m_puser;
-   
+
    sp(::user::interaction_ptr_array)      m_puiptra;
    sp(::user::interaction::timer_array)   m_ptimera;
    bool                                   m_bAutoDelete;       // enables 'delete this' after thread termination
@@ -354,11 +354,8 @@ public:
 
    virtual void wait();
 
-#ifdef WINDOWS
-   virtual HANDLE item() const;
-#else
+
    virtual int_ptr item() const;
-#endif
 
 
 
@@ -367,7 +364,7 @@ public:
 
    virtual void post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam);
 
-   
+
 
 };
 

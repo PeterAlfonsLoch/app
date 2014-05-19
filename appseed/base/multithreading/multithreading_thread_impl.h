@@ -57,11 +57,11 @@ public:
    virtual ~thread_impl();
 
    virtual bool pre_init_instance();
-   
+
    virtual bool initialize_instance();
 
    virtual void pre_translate_message(signal_details * pobj);
-   
+
    virtual void process_window_procedure_exception(::exception::base*,signal_details * pobj);
 
    virtual void process_message_filter(int32_t code,signal_details * pobj);
@@ -83,17 +83,17 @@ public:
 
    operator HTHREAD() const;
 
-   virtual HTHREAD item() const;
+   virtual int_ptr item() const;
 
    virtual void add(sp(::user::interaction) pui);
    virtual void remove(::user::interaction * pui);
 
    virtual bool is_idle_message(signal_details * pobj);
-   virtual bool is_idle_message(LPMSG lpmsg);
+   virtual bool is_idle_message(LPMESSAGE lpmsg);
 
    virtual void post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam);
-   virtual bool post_thread_message(UINT message,WPARAM wParam = 0,lparam lParam = NULL);
-   virtual bool post_message(sp(::user::interaction) pui,UINT message,WPARAM wParam = 0,lparam lParam = NULL);
+   virtual bool post_thread_message(UINT message,WPARAM wParam = 0,lparam lParam = 0);
+   virtual bool post_message(sp(::user::interaction) pui,UINT message,WPARAM wParam = 0,lparam lParam = 0);
 
    virtual ::count get_ui_count();
    virtual ::user::interaction * get_ui(::index iIndex);
