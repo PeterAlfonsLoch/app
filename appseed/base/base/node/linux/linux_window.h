@@ -418,46 +418,22 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
    // Shell Interaction Functions
       virtual void DragAcceptFiles(bool bAccept = TRUE);
 
-   // icon Functions
-//      virtual HICON SetIcon(HICON hIcon, bool bBigIcon);
-  //    virtual HICON GetIcon(bool bBigIcon) const;
-
-   // Context Help Functions
       virtual bool SetWindowContextHelpId(DWORD dwContextHelpId);
       virtual DWORD GetWindowContextHelpId() const;
 
-   // Dialog Data support
-      //virtual bool update_data(bool bSaveAndValidate = TRUE);
-            // data wnd must be same type as this
-
-   // Help Command Handlers
       void OnHelp();          // F1 (uses current context)
       void OnHelpIndex();     // ID_HELP_INDEX
       void OnHelpFinder();    // ID_HELP_FINDER, ID_DEFAULT_HELP
       void OnHelpUsing();     // ID_HELP_USING
-      // xxx virtual void WinHelp(dword_ptr dwData, UINT nCmd = HELP_CONTEXT);
-      //virtual void HtmlHelp(dword_ptr dwData, UINT nCmd = 0x000F);
-      // xxx virtual void WinHelpInternal(dword_ptr dwData, UINT nCmd = HELP_CONTEXT);
-
-   // layout and other functions
-   /*   void RepositionBars(const char * pszPrefix, const char * pszIdLeftOver,
-         UINT nFlag = reposDefault, LPRECT lpRectParam = NULL,
-         LPCRECT lpRectClient = NULL, bool bStretch = TRUE);*/
 
       void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver,
          UINT nFlags = reposDefault, LPRECT lpRectParam = NULL,
          LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
 
 
-      // dialog support
       void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);
       void CenterWindow(sp(::user::interaction) pAlternateOwner = NULL);
-      virtual id   RunModalLoop(DWORD dwFlags = 0, ::core::live_object * pliveobject = NULL);
-      virtual bool ContinueModal(int32_t iLevel);
-      virtual void EndModalLoop(id nResult);
-      virtual void EndAllModalLoops(id nResult);
 
-   // oswindow-Management message handler member functions
       virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
       virtual bool OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
@@ -659,13 +635,6 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       static oswindow PASCAL GetSafeOwner_(oswindow hWnd, oswindow* pWndTop);
       void PrepareForHelp();
 
-      //UINT m_nFlags;      // see WF_ flags above
-
-// xxx      WNDPROC m_pfnSuper; // for subclassing of controls
-      static const UINT m_nMsgDragList;
-      int32_t m_nModalResult; // for return values from ::windowRunModalLoop
-
-      ::draw2d::font * m_pfont;
 
       friend class frame_window;
 

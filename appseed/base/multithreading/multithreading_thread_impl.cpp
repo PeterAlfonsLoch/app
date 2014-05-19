@@ -33,17 +33,17 @@ thread_impl::~thread_impl()
 
 bool thread_impl::pre_init_instance()
 {
-   
+
    return true;
-   
+
 }
 
 
 bool thread_impl::initialize_instance()
 {
-   
+
    return true;
-   
+
 }
 
 
@@ -69,8 +69,7 @@ void thread_impl::pre_translate_message(signal_details * pobj)
 
       try
       {
-         if(m_pbaseapp->m_pbasesession != NULL &&
-            &m_pbaseapp->m_pbasesession->frames() != NULL)
+         if(m_pbaseapp->m_pbasesession != NULL)
          {
             try
             {
@@ -148,7 +147,9 @@ void thread_impl::process_window_procedure_exception(::exception::base*,signal_d
    else if(pbase->m_uiMessage == WM_PAINT)
    {
       // force validation of window to prevent getting WM_PAINT again
+      #ifdef WIDOWSEX
       ValidateRect(pbase->m_pwnd->get_safe_handle(),NULL);
+      #endif
       pbase->set_lresult(0);
       return;
    }
@@ -286,7 +287,7 @@ bool thread_impl::create_thread(int32_t epriority,uint32_t dwCreateFlagsParam,ui
 
    pstartup->m_dwCreateFlags = dwCreateFlags;
 
-   m_hthread = (HANDLE)(uint_ptr) ::create_thread(lpSecurityAttrs,nStackSize,&__thread_entry,pstartup.m_p,dwCreateFlags | CREATE_SUSPENDED,&m_uiThread);
+   m_hthread = (HTHREAD)(uint_ptr) ::create_thread(lpSecurityAttrs,nStackSize,&__thread_entry,pstartup.m_p,dwCreateFlags | CREATE_SUSPENDED,&m_uiThread);
 
    if(m_hthread == NULL)
       return false;
@@ -296,17 +297,22 @@ bool thread_impl::create_thread(int32_t epriority,uint32_t dwCreateFlagsParam,ui
 
    pstartup->m_event.wait();
 
+#ifdef WINDOWSEX
    // if created suspended, suspend it until resume thread wakes it up
    if(dwCreateFlags & CREATE_SUSPENDED)
       VERIFY(::SuspendThread(m_hthread) != (DWORD)-1);
+      #endif
 
    // if error during startup, shut things down
    if(pstartup->m_bError)
    {
 
+#ifdef WINDOWSEX
       VERIFY(::WaitForSingleObject(m_hthread,INFINITE) == WAIT_OBJECT_0);
 
       ::CloseHandle(m_hthread);
+
+      #endif
 
       m_hthread = NULL;
 
@@ -353,10 +359,10 @@ int_ptr thread_impl::get_os_int() const
 }
 
 
-HTHREAD thread_impl::item() const
+int_ptr thread_impl::item() const
 {
 
-   return m_hthread;
+   return (int_ptr)m_hthread;
 
 }
 
@@ -380,10 +386,12 @@ uint32_t __thread_entry(void * pparam)
 
 
       ::thread_impl * pthreadimpl = pstartup->m_pthreadimpl;
+      #ifdef WINDOWSEX
 
       ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
 
       pthreadimpl->::exception::translator::attach();
+      #endif
 
       try
       {
@@ -492,7 +500,7 @@ bool thread_impl::is_idle_message(signal_details * pobj)
 
 }
 
-bool thread_impl::is_idle_message(LPMSG lpmsg)
+bool thread_impl::is_idle_message(LPMESSAGE lpmsg)
 {
 
    return ::message::is_idle_message(lpmsg);
@@ -550,7 +558,7 @@ void thread_impl::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
 
       repeat:
 
-         if(::PostThreadMessageA(::GetThreadId(::multithreading::s_phaThread->element_at(i)),message,wparam,lparam))
+         if(::PostThreadMessage(::GetThreadId(::multithreading::s_phaThread->element_at(i)),message,wparam,lparam))
          {
 
             if(message == WM_QUIT)
@@ -558,11 +566,11 @@ void thread_impl::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
 
                if(::multithreading::s_phaThread->element_at(i) != ::GetCurrentThread())
                {
-
+DWORD dwRet = 0;
                   sl.unlock();
-
-                  DWORD dwRet = ::WaitForSingleObject(::multithreading::s_phaThread->element_at(i),(1984 + 1977) * 2);
-
+#ifdef WINDOWSEX
+                  dwRet = ::WaitForSingleObject(::multithreading::s_phaThread->element_at(i),(1984 + 1977) * 2);
+#endif
                   sl.lock();
 
                   if((dwRet != WAIT_OBJECT_0) && (dwRet != WAIT_FAILED) && i < ::multithreading::s_phaThread->get_size())
@@ -640,7 +648,7 @@ int32_t thread_impl::exit_instance()
             if(pui->m_pthread != NULL)
             {
 
-               if(NODE_THREAD(pui->m_pthread.m_p) == this || NODE_THREAD(pui->m_pthread->m_pimpl.m_p) == this)
+               if(pui->m_pthread->m_pimpl == this)
                {
 
                   pui->m_pthread = NULL;
@@ -674,14 +682,14 @@ int32_t thread_impl::exit_instance()
 
    return m_iReturnCode;
 
-} 
+}
 
 bool thread_impl::on_idle(LONG lCount)
 {
 
    ASSERT_VALID(this);
 
-#if defined(DEBUG) && !defined(___NO_DEBUG_CRT)
+#if defined(WINDOWS) && defined(DEBUG) && !defined(___NO_DEBUG_CRT)
    // check core API's allocator (before idle)
    if(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & _CRTDBG_CHECK_ALWAYS_DF)
       ASSERT(__check_memory());
@@ -725,7 +733,7 @@ bool thread_impl::on_idle(LONG lCount)
    {
    }
 
-#if defined(DEBUG) && !defined(___NO_DEBUG_CRT)
+#if defined(WINDOWS) && defined(DEBUG) && !defined(___NO_DEBUG_CRT)
    // check core API's allocator (after idle)
    if(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & _CRTDBG_CHECK_ALWAYS_DF)
       ASSERT(__check_memory());
@@ -741,7 +749,7 @@ bool thread_impl::on_idle(LONG lCount)
 
 bool thread_impl::post_message(sp(::user::interaction) pui,UINT uiMessage,WPARAM wparam,lparam lparam)
 {
-   
+
    if(m_hthread == NULL)
       return false;
 
@@ -765,7 +773,7 @@ bool thread_impl::post_thread_message(UINT message,WPARAM wParam,lparam lParam)
    if(m_hthread == NULL)
       return false;
 
-   return ::PostThreadMessageA(m_uiThread,message,wParam,lParam) != FALSE;
+   return ::PostThreadMessage(m_uiThread,message,wParam,lParam) != FALSE;
 
 }
 
@@ -775,7 +783,7 @@ bool thread_impl::post_thread_message(UINT message,WPARAM wParam,lparam lParam)
 
 void thread_impl::set_os_data(void * pvoidOsData)
 {
-   m_hthread = (HANDLE)pvoidOsData;
+   m_hthread = (HTHREAD)pvoidOsData;
 }
 
 void thread_impl::set_os_int(int_ptr iData)
@@ -857,7 +865,7 @@ int32_t thread_impl::main()
    {
       // will stop after PostQuitMessage called
       ASSERT_VALID(this);
-      // let upper framework attach translator    
+      // let upper framework attach translator
       //         translator::attach();
    run:
       try
@@ -966,7 +974,7 @@ void thread_impl::remove(::user::interaction * pui)
 
    try
    {
-      if(NODE_THREAD(pui->m_pthread.m_p) == this)
+      if(pui->m_pthread->m_pimpl == this)
       {
          pui->m_pthread = NULL;
       }
@@ -978,7 +986,7 @@ void thread_impl::remove(::user::interaction * pui)
    {
       if(pui->m_pimpl != NULL && pui->m_pimpl != pui)
       {
-         if(NODE_THREAD(pui->m_pimpl->m_pthread.m_p) == this)
+         if(pui->m_pimpl->m_pthread->m_pimpl == this)
          {
             pui->m_pimpl->m_pthread = NULL;
          }
@@ -991,7 +999,7 @@ void thread_impl::remove(::user::interaction * pui)
    {
       if(pui->m_pui != NULL && pui->m_pui != pui)
       {
-         if(NODE_THREAD(pui->m_pui->m_pthread.m_p) == this)
+         if(pui->m_pui->m_pthread->m_pimpl == this)
          {
             pui->m_pui->m_pthread = NULL;
          }
@@ -1158,7 +1166,7 @@ int32_t thread_impl::run()
    LONG lIdleCount = 0;
 
    // acquire and dispatch messages until a WM_QUIT message is received.
-   MSG msg;
+   MESSAGE msg;
    while(m_bRun)
    {
       // phase1: check to see if we can do idle work
@@ -1231,7 +1239,11 @@ void thread_impl::message_handler(signal_details * pobj)
 
    if(pwindow == NULL || pwindow != pbase->m_pwnd->m_pimpl)
    {
+   #ifdef WINDOWSEX
       pbase->set_lresult(::DefWindowProc(pbase->m_pwnd->get_safe_handle(),pbase->m_uiMessage,pbase->m_wparam,pbase->m_lparam));
+      #else
+      pbase->set_lresult(0);
+      #endif
       return;
    }
 
@@ -1288,7 +1300,7 @@ bool thread_impl::pump_message()
 {
    try
    {
-      MSG msg;
+      MESSAGE msg;
       if(!::GetMessage(&msg,NULL,0,0))
       {
          TRACE(::core::trace::category_AppMsg,1,"thread::pump_message - Received WM_QUIT.\n");
@@ -1422,10 +1434,12 @@ bool thread_impl::pump_message()
           //     spbase.release();
             }
          }
+         #ifdef WINDOWSEX
          {
             ::TranslateMessage(&msg);
             ::DispatchMessage(&msg);
          }
+         #endif
       }
       return TRUE;
    }

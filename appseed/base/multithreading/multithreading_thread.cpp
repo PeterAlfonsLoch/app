@@ -51,7 +51,7 @@ mutex & user_mutex()
 bool thread::verb()
 {
 
-   return true; // continue execution ... go on...
+   return true;
 
 }
 
@@ -153,12 +153,12 @@ HTHREAD thread::get_os_handle() const
 
 void thread::start()
 {
-   
+
    if(m_pimpl.is_null())
       return;
-   
+
    m_pimpl->start();
-   
+
 }
 
 
@@ -188,9 +188,9 @@ bool thread::create_thread(int32_t epriority, uint32_t dwCreateFlags, uint_ptr n
 
 bool thread::finalize()
 {
-   
+
    return true;
-   
+
 }
 
 
@@ -199,18 +199,18 @@ int32_t thread::exit()
 
    try
    {
-      
+
       if (!finalize())
       {
-         
+
          TRACE("There occurred errors durring application::finalize virtual member function");
-         
+
       }
-      
+
    }
    catch (...)
    {
-      
+
    }
 
    return exit_instance();
@@ -221,7 +221,7 @@ int32_t thread::exit()
 
 int32_t thread::get_thread_priority()
 {
-   
+
    if(m_pimpl.is_null())
       return -1;
 
@@ -232,7 +232,7 @@ int32_t thread::get_thread_priority()
 
 bool thread::set_thread_priority(int32_t epriority)
 {
-   
+
    if(m_pimpl.is_null())
       return false;
 
@@ -243,7 +243,7 @@ bool thread::set_thread_priority(int32_t epriority)
 
 uint32_t thread::ResumeThread()
 {
-   
+
    if(m_pimpl.is_null())
       return false;
 
@@ -254,7 +254,7 @@ uint32_t thread::ResumeThread()
 
 bool thread::post_thread_message(UINT message, WPARAM wParam, lparam lParam)
 {
-   
+
    if (m_pimpl.is_null())
       return false;
 
@@ -265,12 +265,12 @@ bool thread::post_thread_message(UINT message, WPARAM wParam, lparam lParam)
 
 void thread::set_os_data(void * pvoidOsData)
 {
-   
+
    if(m_pimpl.is_null())
       return;
-   
+
    m_pimpl->set_os_data(pvoidOsData);
-   
+
 }
 
 
@@ -281,52 +281,52 @@ void thread::set_os_int(int_ptr iData)
       return;
 
    m_pimpl->set_os_int(iData);
-   
+
 }
 
 
 void thread::on_keep_alive()
 {
-   
+
    m_dwAlive = ::get_tick_count();
-   
+
 }
 
 
 bool thread::is_alive()
 {
-   
+
    if(m_pimpl.is_null())
       return false;
 
    if (!get_run() || !m_pimpl->get_run())
       return false;
-   
+
    //if ((::get_tick_count() - m_dwAlive) > ((1984 + 1977) * 91))
      // return false;
-   
+
    return true;
-   
+
 }
 
 bool thread::has_message()
 {
-   
+
    if(m_pimpl.is_null())
       return false;
-   
+
    return m_pimpl->has_message();
-   
-   
+
+
 }
 
 
 bool thread::is_auto_delete()
 {
-   
+
    if(m_pimpl.is_null())
       return false;
-   
+
    return m_pimpl->is_auto_delete();
 
 }
@@ -334,59 +334,59 @@ bool thread::is_auto_delete()
 
 wait_result thread::wait(const duration & duration)
 {
-   
+
    if(m_pimpl.is_null())
       return wait_result();
-   
+
    return m_pimpl->wait(duration);
-   
+
 }
 
 
 void thread::set_priority(int32_t priority)
 {
-   
+
    if(m_pimpl.is_null())
       return;
-   
+
    m_pimpl->set_priority(priority);
-   
+
 }
 
 int32_t thread::priority()
 {
-   
+
    if(m_pimpl.is_null())
       return 0x80000000;
-   
+
    return m_pimpl->priority();
-   
+
 }
 
 
 
 CLASS_DECL_BASE void thread_alloc_ready(bool bReady)
 {
-   
+
    thread::s_bAllocReady = bReady;
-   
+
 }
 
 
 void thread::process_message_filter(int32_t code, signal_details * pobj)
 {
-   
+
    if(m_pimpl.is_null())
       return;
-   
+
    return  m_pimpl->process_message_filter(code, pobj);
-   
+
 }
 
 
 bool thread::post_message(sp(::user::interaction) pui, UINT message, WPARAM wParam, lparam lParam)
 {
-   
+
    if(m_pimpl.is_null())
       return false;
 
@@ -396,12 +396,12 @@ bool thread::post_message(sp(::user::interaction) pui, UINT message, WPARAM wPar
 
 bool thread::pre_init_instance()
 {
-   
+
    if(m_pimpl.is_null())
       return false;
-   
+
    return m_pimpl->pre_init_instance();
-   
+
 }
 
 bool thread::on_run_exception(::exception::exception & e)
@@ -439,66 +439,66 @@ bool thread::on_run_exception(::exception::exception & e)
 
 bool thread::initialize_instance()
 {
-   
+
    if(m_pimpl.is_null())
       return false;
-   
+
    return m_pimpl->initialize_instance();
-   
+
 }
 
 
 message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
 {
-   
+
    if(m_pimpl.is_null())
       return ::message::PrototypeNone;
-   
+
    return m_pimpl->GetMessagePrototype(uiMessage, uiCode);
-   
+
 }
 
 int32_t thread::run()
 {
-   
+
    if(m_pimpl.is_null())
       return -1;
-   
+
    return m_pimpl->run();
-   
+
 }
 
 
 void thread::pre_translate_message(signal_details * pobj)
 {
-   
+
    if (m_pimpl.is_null())
       return;
-   
+
    return m_pimpl->pre_translate_message(pobj);
-   
+
 }
 
 
 bool thread::pump_message()
 {
-   
+
    if(m_pimpl.is_null())
       return false;
-   
+
    return m_pimpl->pump_message();
-   
+
 }
 
 
 bool thread::on_idle(LONG lCount)
 {
-   
+
    if(m_pimpl.is_null())
       return false;
-   
+
    return m_pimpl->on_idle(lCount);
-   
+
 }
 
 
@@ -507,20 +507,20 @@ bool thread::is_idle_message(signal_details * pobj)
 
    if(m_pimpl.is_null())
       return false;
-   
+
    return m_pimpl->is_idle_message(pobj);
-   
+
 }
 
 
 bool thread::is_idle_message(LPMESSAGE lpmsg)
 {
-   
+
    if(m_pimpl.is_null())
       return false;
 
    return m_pimpl->is_idle_message(lpmsg);
-   
+
 }
 
 
@@ -537,33 +537,33 @@ int32_t thread::exit_instance()
 
 void thread::process_window_procedure_exception(::exception::base* e, signal_details * pobj)
 {
-   
+
    if(m_pimpl.is_null())
       return;
-   
+
    return m_pimpl->process_window_procedure_exception(e,pobj);
-   
+
 }
 
 
 
 void thread::add(sp(::user::interaction) pui)
 {
-   
+
    if (m_pimpl.is_null())
       return;
-   
+
    m_pimpl->add(pui);
-   
+
 }
 
 
 void thread::remove(::user::interaction * pui)
 {
-   
+
    if (m_pimpl.is_null())
       return;
-   
+
    m_pimpl->remove(pui);
 
 }
@@ -756,30 +756,30 @@ int32_t thread::main()
 {
 
    return m_pimpl->main();
-   
+
 }
 
 
 
 void thread::assert_valid() const
 {
-   
+
    if(m_pimpl.is_null())
       return;
-   
+
    m_pimpl->assert_valid();
-   
+
 }
 
 
 void thread::dump(dump_context & dumpcontext) const
 {
-   
+
    if(m_pimpl.is_null())
       return;
-   
+
    m_pimpl->dump(dumpcontext);
-   
+
 }
 
 
@@ -793,17 +793,17 @@ void thread::Delete()
 
 void thread::dispatch_thread_message(signal_details * pobj)  // helper
 {
-   
+
    if(m_pimpl.is_null())
       return;
-   
+
    return m_pimpl->dispatch_thread_message(pobj);
-   
+
 }
 
 void thread::wait()
 {
-   
+
    if(m_pimpl.is_null())
       return;
 
@@ -816,22 +816,22 @@ void thread::wait()
 
 HANDLE thread::item() const
 {
-   
+
    if(m_pimpl.is_null())
       return NULL;
 
    return m_pimpl->item();
-   
+
 }
 
 #else
 
 int_ptr thread::item() const
 {
-   
+
    if(m_pimpl.is_null())
       return -1;
-   
+
    return m_pimpl->item();
 
 }
@@ -854,7 +854,7 @@ int thread::get_x_window_count() const
 
 void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
 {
-   
+
    if(m_pimpl.is_null())
       return;
 

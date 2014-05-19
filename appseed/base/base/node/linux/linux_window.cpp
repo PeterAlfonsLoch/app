@@ -559,7 +559,7 @@ d.unlock();
 
          send_message(WM_SIZE);
 
-         LNX_THREAD(m_pthread->m_p.m_p)->m_oswindowa.add(m_oswindow);
+         //LNX_THREAD(m_pthread->m_p.m_p)->m_oswindowa.add(m_oswindow);
 
       }
 
@@ -725,7 +725,7 @@ d.unlock();
          pdraw->m_wndpaOut.remove(this);
          pdraw->m_wndpaOut.remove(m_pui);
       }
-      LNX_THREAD(m_pthread.m_p)->m_oswindowa.remove(m_oswindow);
+//      LNX_THREAD(m_pthread.m_p)->m_oswindowa.remove(m_oswindow);
       oswindow_remove(m_oswindow->display(), m_oswindow->window());
    }
 
@@ -745,27 +745,15 @@ d.unlock();
 
       // cleanup main and active windows
 
-      ::thread* pThread = System.GetThread();
+      ::thread* pThread = ::get_thread();
 
       if (pThread != NULL)
       {
-
-         if (pThread->GetMainWnd() == this)
-         {
-
-            if (pThread != &System)
-               __post_quit_message(0);
-
-            pThread->SetMainWnd(NULL);
-
-         }
 
          if (pThread->get_active_ui() == this)
             pThread->set_active_ui(NULL);
 
       }
-
-      // cleanup tooltip support
 
       if(m_pui != NULL)
       {
@@ -777,26 +765,11 @@ d.unlock();
 
       }
 
-      // call default, unsubclass, and detach from the ::collection::map
-
-/*
-      WNDPROC pfnWndProc = WNDPROC(GetWindowLongPtr(get_handle(), GWLP_WNDPROC));
-      Default();
-      if (WNDPROC(GetWindowLongPtr(get_handle(), GWLP_WNDPROC)) == pfnWndProc)
-      {
-         WNDPROC pfnSuper = *GetSuperWndProcaddr();
-         if (pfnSuper != NULL)
-            SetWindowLongPtr(get_handle(), GWLP_WNDPROC, reinterpret_cast<int_ptr>(pfnSuper));
-      }
-*/
-
       Detach();
 
       ASSERT(get_handle() == NULL);
 
       m_pfnDispatchWindowProc = &window::_start_user_message_handler;
-
-      // call special post-cleanup routine
 
       PostNcDestroy();
 
@@ -807,72 +780,31 @@ d.unlock();
 
    }
 
+
    void window::PostNcDestroy()
    {
-      //set_handle(NULL);
+
       m_oswindow->post_nc_destroy();
-      // default to nothing
+
    }
 
    void window::on_final_release()
    {
+
       if (get_handle() != NULL)
-         DestroyWindow();    // will call PostNcDestroy
+         DestroyWindow();
       else
          PostNcDestroy();
+
    }
+
 
    void window::assert_valid() const
    {
+
       if (((window *) this)->get_handle() == NULL)
-         return;     // null (unattached) windows are valid
+         return;
 
-      // check for special wnd??? values
-//      ASSERT(oswindow_TOP == NULL);       // same as desktop
-/*      if (get_handle() == oswindow_BOTTOM)
-      {
-      }
-      else if (get_handle() == oswindow_TOPMOST)
-      {
-      }
-      else if (get_handle() == oswindow_NOTOPMOST)
-      {
-      }
-      else
-      {
-         // should be a normal window
-         ASSERT(::IsWindow((oswindow) get_handle()));
-
-         // should also be in the permanent or temporary handle ::collection::map
-         single_lock sl(afxMutexHwnd(), TRUE);
-         hwnd_map * pMap = afxMapHWND();
-         if(pMap == NULL) // inside thread not having windows
-            return; // let go
-         ASSERT(pMap != NULL);
-
-         //         ::object* p=NULL;
-         /*if(pMap)
-         {
-         ASSERT( (p = pMap->lookup_permanent(get_handle())) != NULL ||
-         (p = pMap->lookup_temporary(get_handle())) != NULL);
-         }*/
-
-         //ASSERT( (p) == this);   // must be us
-
-         // Note: if either of the above asserts fire and you are
-         // writing a multithreaded application, it is likely that
-         // you have passed a C++ object from one thread to another
-         // and have used that object in a way that was not intended.
-         // (only simple inline wrapper functions should be used)
-         //
-         // In general, window objects should be passed by oswindow from
-         // one thread to another.  The receiving thread can wrap
-         // the oswindow with a window object by using ::linux::window::from_handle.
-         //
-         // It is dangerous to pass C++ objects from one thread to
-         // another, unless the objects are designed to be used in
-         // such a manner.
-//      }*/
    }
 
 
@@ -2905,74 +2837,36 @@ return 0;
 
    }
 
+
    bool gen_GotScrollLines;
+
 
    void window::OnSettingChange(UINT uFlags, const char * lpszSection)
    {
-//      UNUSED_ALWAYS(uFlags);
-  //    UNUSED_ALWAYS(lpszSection);
 
-      // force refresh of settings that we cache
       gen_GotScrollLines = FALSE;
 
+      window::OnDisplayChange(0, 0);
 
-      window::OnDisplayChange(0, 0);    // to update system metrics, etc.
    }
 
-/*   void window::OnDevModeChange(__in LPTSTR lpDeviceName)
-   {
-      UNREFERENCED_PARAMETER(lpDeviceName);
-      throw not_implemented(get_app());
-      /*application* pApp = &System;
-      if (pApp != NULL && pApp->GetMainWnd() == this)
-      pApp->DevModeChange(lpDeviceName);
 
-      // forward this message to all other child windows
-      if (!(GetStyle() & WS_CHILD))
-      {
-      const MESSAGE* pMsg = GetCurrentMessage();
-      SendMessageToDescendants(pMsg->message, pMsg->wparam, pMsg->lparam,
-      TRUE, TRUE);
-      }*/
-   //}
-
-
-//
-//   bool window::OnHelpInfo(HELPINFO* /*pHelpInfo*/)
-//   {
-//      if (!(GetStyle() & WS_CHILD))
-//      {
-//         sp(::user::interaction) pMainWnd = System.GetMainWnd();
-//         if (pMainWnd != NULL &&
-//            GetKeyState(VK_SHIFT) >= 0 &&
-//            GetKeyState(VK_CONTROL) >= 0 &&
-//            GetKeyState(VK_MENU) >= 0)
-//         {
-//            //            pMainWnd->SendMessage(WM_COMMAND, ID_HELP);
-//            return TRUE;
-//         }
-//      }
-//      return Default() != 0;
-//   }
-//
    LRESULT window::OnDisplayChange(WPARAM, LPARAM)
    {
-      // update metrics if this window is the main window
-      if (System.GetMainWnd() == this)
-      {
-         // update any system metrics cache
-         //         afxData.UpdateSysMetrics();
-      }
 
-      // forward this message to all other child windows
       if (!(GetStyle() & WS_CHILD))
       {
+
          const MESSAGE* pMsg = GetCurrentMessage();
+
          SendMessageToDescendants(pMsg->message, pMsg->wParam, pMsg->lParam, TRUE, TRUE);
+
       }
 
       return Default();
+
    }
+
 
    LRESULT window::OnDragList(WPARAM, LPARAM lparam)
    {
@@ -3776,216 +3670,6 @@ throw not_implemented(get_app());
       state.DoUpdate(pTarget, bDisableTemp);
       }
       wndTemp.set_handle(NULL);      // quick and dirty detach */
-   }
-
-
-
-
-   id window::RunModalLoop(DWORD dwFlags, ::core::live_object * pliveobject)
-   {
-      // for tracking the idle time state
-      bool bIdle = TRUE;
-      LONG lIdleCount = 0;
-      bool bShowIdle = (dwFlags & MLF_SHOWONIDLE) && !(GetStyle() & WS_VISIBLE);
-      oswindow hWndParent = ::GetParent((oswindow)get_handle());
-      m_iModal = m_iModalCount;
-      int32_t iLevel = m_iModal;
-      oprop(string("RunModalLoop.thread(") + ::str::from(iLevel) + ")") = System.GetThread();
-      m_iModalCount++;
-
-      m_iaModalThread.add(::GetCurrentThreadId());
-      sp(::base::application) pappThis1 =  (m_pthread->m_p);
-      sp(::base::application) pappThis2 =  (m_pthread);
-
-            //Display * d = XOpenDisplay(NULL);
-            //XEvent  e;
-
-      // acquire and dispatch messages until the modal state is done
-      MESSAGE msg;
-      for (;;)
-      {
-         ASSERT(ContinueModal(iLevel));
-
-         bIdle = FALSE;
-
-         // phase1: check to see if we can do idle work
-         while (bIdle && !::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))
-         {
-            LNX_THREAD(m_pthread->m_p.m_p)->defer_process_windows_messages();
-//            if(XCheckTypedEvent(d, -1, &e))
-            {
-
-            }
-
-            ASSERT(ContinueModal(iLevel));
-
-            // show the dialog when the message queue goes idle
-            if (bShowIdle)
-            {
-               ShowWindow(SW_SHOWNORMAL);
-               UpdateWindow();
-               bShowIdle = FALSE;
-            }
-
-            // call on_idle while in bIdle state
-            if (!(dwFlags & MLF_NOIDLEMSG) && hWndParent != NULL && lIdleCount == 0)
-            {
-               // send WM_ENTERIDLE to the parent
-//               ::SendMessage(hWndParent, WM_ENTERIDLE, MESSAGEF_DIALOGBOX, (LPARAM)get_handle());
-            }
-            //if ((dwFlags & MLF_NOKICKIDLE) ||
-              // !__call_window_procedure(this, get_handle(), WM_KICKIDLE, MESSAGEF_DIALOGBOX, lIdleCount++))
-            {
-               // stop idle processing next time
-               //bIdle = FALSE;
-
-            }
-
-            m_pthread->m_p->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
-            if(pappThis1 != NULL)
-            {
-               pappThis1->m_dwAlive = m_pthread->m_dwAlive;
-            }
-            if(pappThis2 != NULL)
-            {
-               pappThis2->m_dwAlive = m_pthread->m_dwAlive;
-            }
-            if(pliveobject != NULL)
-            {
-               pliveobject->keep_alive();
-            }
-         }
-
-
-         // phase2: pump messages while available
-         do
-         {
-            LNX_THREAD(m_pthread->m_p.m_p)->defer_process_windows_messages();
-//            if(XCheckTypedEvent(d, -1, &e))
-            {
-
-            }
-
-            if (!ContinueModal(iLevel))
-               goto ExitModal;
-
-            // pump message, but quit on WM_QUIT
-            if (!m_pthread->pump_message())
-            {
-               __post_quit_message(0);
-               return -1;
-            }
-
-            // show the window when certain special messages rec'd
-            if (bShowIdle &&
-               (msg.message == 0x118 || msg.message == WM_SYSKEYDOWN))
-            {
-               ShowWindow(SW_SHOWNORMAL);
-               UpdateWindow();
-               bShowIdle = FALSE;
-            }
-
-            if (!ContinueModal(iLevel))
-               goto ExitModal;
-
-            // reset "no idle" state after pumping "normal" message
-            if (m_pthread->is_idle_message(&msg))
-            {
-               bIdle = TRUE;
-               lIdleCount = 0;
-            }
-
-            m_pthread->m_p->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
-            if(pappThis1 != NULL)
-            {
-               pappThis1->m_dwAlive = m_pthread->m_dwAlive;
-            }
-            if(pappThis2 != NULL)
-            {
-               pappThis2->m_dwAlive = m_pthread->m_dwAlive;
-            }
-            if(pliveobject != NULL)
-            {
-               pliveobject->keep_alive();
-            }
-
-            /*            if(pliveobject != NULL)
-            {
-            pliveobject->keep();
-            }*/
-
-         }
-         while (::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE) != FALSE);
-
-
-         if(m_pui->m_pthread != NULL)
-         {
-            m_pui->m_pthread->step_timer();
-         }
-         if (!ContinueModal(iLevel))
-            goto ExitModal;
-
-
-      }
-
-ExitModal:
-//XCloseDisplay(d);
-      m_iaModalThread.remove_first(::GetCurrentThreadId());
-      m_iModal = m_iModalCount;
-      return m_nModalResult;
-   }
-
-   bool window::ContinueModal(int32_t iLevel)
-   {
-      return iLevel < m_iModalCount;
-   }
-
-   void window::EndModalLoop(id nResult)
-   {
-      ASSERT(::IsWindow((oswindow) get_handle()));
-
-      // this result will be returned from window::RunModalLoop
-      m_nModalResult = (int32_t) nResult;
-
-      // make sure a message goes through to exit the modal loop
-      if(m_iModalCount > 0)
-      {
-         m_iModalCount--;
-         for(index i = 0; i < m_iaModalThread.get_count(); i++)
-         {
-            //::post_thread_message((DWORD) m_iaModalThread[i], WM_NULL, 0, 0);
-         }
-         post_message(WM_NULL);
-         System.GetThread()->post_thread_message(WM_NULL);
-      }
-   }
-
-   void window::EndAllModalLoops(id nResult)
-   {
-      ASSERT(::IsWindow((oswindow) get_handle()));
-
-      // this result will be returned from window::RunModalLoop
-      m_idModalResult = nResult;
-
-      // make sure a message goes through to exit the modal loop
-      if(m_iModalCount > 0)
-      {
-         int32_t iLevel = m_iModalCount - 1;
-         m_iModalCount = 0;
-         post_message(WM_NULL);
-         System.GetThread()->post_thread_message(WM_NULL);
-         for(int32_t i = iLevel; i >= 0; i--)
-         {
-            ::thread * pthread = oprop(string("RunModalLoop.thread(") + ::str::from(i) + ")").cast < ::thread > ();
-            try
-            {
-               pthread->post_thread_message(WM_NULL);
-            }
-            catch(...)
-            {
-            }
-         }
-      }
    }
 
 

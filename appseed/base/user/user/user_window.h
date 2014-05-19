@@ -62,6 +62,7 @@ public:
    ::draw2d::dib_sp              m_spdib;
    ::draw2d::dib_sp              m_spdibFlip;
 
+   int32_t                       m_nModalResult;
 
 
    window();
@@ -445,11 +446,6 @@ public:
    virtual void CenterWindow(sp(::user::interaction) pAlternateOwner = NULL);
 
 
-   //virtual int32_t RunModalLoop(uint32_t dwFlags = 0, ::core::live_object * pliveobject = NULL);
-   //virtual bool ContinueModal(id iLevel);
-   //virtual void EndModalLoop(id nResult);
-
-   // Window-Management message handler member functions
    virtual bool OnCommand(::message::base * pbase);
    virtual bool OnNotify(::message::base * pbase);
 

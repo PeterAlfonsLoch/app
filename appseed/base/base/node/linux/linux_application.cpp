@@ -157,7 +157,7 @@ namespace linux
    bool application::initialize1()
    {
 
-      ::thread::m_p->set_run();
+      ::thread::m_pimpl->set_run();
 
       return true;
 
@@ -180,7 +180,7 @@ namespace linux
 
       // avoid calling CloseHandle() on our own thread handle
       // during the thread destructor
-      ::thread::m_p->set_os_data(NULL);
+      ::thread::m_pimpl->set_os_data(NULL);
 
       LNX_THREAD(m_pimpl.m_p)->m_bRun = false;
       //LNX_THREAD(m_pimpl->::thread_sp::m_p)->m_bRun = false;
@@ -364,7 +364,7 @@ namespace linux
       // get the exe title from the full path name [no extension]
       strExeName = System.get_module_title();
 
-      dynamic_cast < class ::linux::thread * > (::thread::m_p.m_p)->m_hThread      =  ::GetCurrentThread();
+      ::thread::m_pimpl->m_hthread      =  ::GetCurrentThread();
 
    }
 

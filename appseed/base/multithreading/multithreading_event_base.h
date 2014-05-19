@@ -22,7 +22,7 @@ public:
 	virtual int_ptr item() const;
    operator int_ptr () { return m_object; }
    operator int_ptr () const { return m_object; }
-	void item( int_ptr item );
+	void set_item( int_ptr item );
 
 	virtual void init_wait ();
 	virtual void exit_wait ();
