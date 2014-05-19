@@ -165,3 +165,31 @@ CLASS_DECL_BASE DWORD get_current_thread_id()
    return ::GetCurrentThreadId();
 
 }
+
+
+CLASS_DECL_BASE void __init_thread()
+{
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
