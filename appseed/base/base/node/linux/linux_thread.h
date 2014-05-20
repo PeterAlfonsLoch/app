@@ -11,9 +11,6 @@ namespace linux
    public:
 
 
-      manual_reset_event m_evFinish;
-
-
       thread(sp(::base::application) papp);
       virtual ~thread();
 

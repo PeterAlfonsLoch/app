@@ -46,7 +46,7 @@ public:
    LPVOID                                    m_pThreadParams;
    __THREADPROC                              m_pfnThreadProc;
 
-   event                                     m_evFinish;
+   manual_reset_event                        m_evFinish;
    UINT                                      m_nDisablePumpCount;
    mutex                                     m_mutexUiPtra;
 
@@ -122,6 +122,10 @@ public:
 
 
    virtual bool pump_message();
+
+   bool set_thread_priority(int32_t priority);
+   int32_t get_thread_priority();
+
 
 };
 

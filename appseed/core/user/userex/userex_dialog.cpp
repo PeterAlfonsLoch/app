@@ -57,7 +57,7 @@ bool dialog::show(const char * pszMatter, property_set  * ppropertyset)
 
    set["hold"] = false;
 
-   m_pdocument = Application.userex()->create_form(this, NULL, Session.get_view(), set);
+  m_pdocument = Application.userex()->create_form(this, NULL, Session.get_view(), set);
    if(m_pdocument == NULL)
    {
       string str;
@@ -72,9 +72,9 @@ bool dialog::show(const char * pszMatter, property_set  * ppropertyset)
       m_pdocument->get_html_data()->m_propertyset = *ppropertyset;
 
    }
-   
+
    m_pdocument->on_open_document(Application.dir().matter(m_strMatter));
-   
+
    m_pframe =  (m_pdocument->get_view()->GetParentFrame());
    m_pframe->m_bWindowFrame         = true;
    m_pframe->m_bblur_Background     = true;
@@ -92,9 +92,9 @@ bool dialog::show(const char * pszMatter, property_set  * ppropertyset)
 
 void dialog::on_show(const char * pszMatter, property_set  * ppropertyset)
 {
-   
+
    UNREFERENCED_PARAMETER(pszMatter);
-   
+
    UNREFERENCED_PARAMETER(ppropertyset);
 
 }

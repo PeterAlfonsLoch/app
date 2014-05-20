@@ -2,8 +2,8 @@
 
 #include <X11/Xlib.h>
 
-#define SIZEX 100
-#define SIZEY  50
+#define SIZEX 584
+#define SIZEY 384
 
 
 void message_box_paint(Display *dpy, Window win, const char * lpText)

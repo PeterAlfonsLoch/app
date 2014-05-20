@@ -60,7 +60,7 @@ namespace linux
       //virtual sp(::user::interaction) GetOwner();
       virtual void set_owner(sp(::user::interaction) pOwnerWnd);
 
-      virtual oswindow get_handle();
+      virtual oswindow get_handle() const;
 
       virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
 
@@ -148,7 +148,7 @@ namespace linux
       sp(::user::frame_window) GetTopLevelFrame();
       static sp(::window) PASCAL GetSafeOwner(::window * pParent = NULL, oswindow* pWndTop = NULL);
 
-      virtual bool IsWindow();
+      virtual bool IsWindow() const;
 
    #if(WINVER >= 0x0500)
 

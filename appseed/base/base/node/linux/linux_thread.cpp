@@ -13,8 +13,7 @@ namespace linux
       element(papp),
       message_queue(papp),
       ::thread(NULL),
-      ::thread_impl(papp),
-      m_evFinish(papp)
+      ::thread_impl(papp)
    {
 
       m_evFinish.SetEvent();

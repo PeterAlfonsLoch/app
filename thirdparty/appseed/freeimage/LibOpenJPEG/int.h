@@ -31,12 +31,9 @@
 #ifndef __INT_H
 #define __INT_H
 
-#ifndef __cplusplus
-#ifdef inline
-#undef inline
-#endif // inline
+#pragma once
+
 #define inline static
-#endif
 
 
 

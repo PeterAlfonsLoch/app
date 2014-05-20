@@ -3769,12 +3769,12 @@ throw not_implemented(get_app());
       }
    }
 
-   bool window::IsWindow()
+   bool window::IsWindow() const
    {
       return ::IsWindow((oswindow) get_handle()) != FALSE;
    }
 
-   oswindow window::get_handle()
+   oswindow window::get_handle() const
    {
       return (oswindow) get_os_data();
    }

@@ -816,9 +816,9 @@ int32_t thread_impl::thread_entry(::thread_startup * pstartup)
    ::thread_impl * pthreadimpl = pstartup->m_pthreadimpl;
 
    m_evFinish.ResetEvent();
-   
+
    install_message_handling(pthreadimpl);
-   
+
    m_puser->install_message_handling(pthreadimpl);
 
    IGUI_WIN_MSG_LINK(WM_USER + 123,pthreadimpl,pthreadimpl,&thread_impl::_001OnCreateMessageWindow);
@@ -1454,5 +1454,22 @@ bool thread_impl::pump_message()
       return FALSE;
    }
 }
+
+
+bool thread_impl::set_thread_priority(int32_t priority)
+{
+
+   return ::SetThreadPriority(m_hthread, priority) != 0;
+
+}
+
+
+int32_t thread_impl::get_thread_priority()
+{
+
+   return ::GetThreadPriority(m_hthread);
+
+}
+
 
 
