@@ -127,6 +127,12 @@ public:
    int32_t get_thread_priority();
 
 
+
+   bool begin(int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs);
+   void Delete();
+
+
+
 };
 
 

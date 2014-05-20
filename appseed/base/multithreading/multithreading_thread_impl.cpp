@@ -1473,3 +1473,107 @@ int32_t thread_impl::get_thread_priority()
 
 
 
+
+bool thread_impl::begin(int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+{
+
+   if(!create_thread(epriority,dwCreateFlags,nStackSize,lpSecurityAttrs))
+   {
+      Delete();
+      return false;
+   }
+
+   return true;
+
+}
+
+
+void thread_impl::Delete()
+{
+   if(m_bAutoDelete)
+   {
+      try
+      {
+         if(m_pappDelete != NULL)
+            delete m_pappDelete;
+      }
+      catch(...)
+      {
+      }
+   }
+   else
+   {
+      try
+      {
+         m_hthread = NULL;
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+         m_evFinish.SetEvent();
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+         m_bRun = false;
+      }
+      catch(...)
+      {
+      }
+   }
+   try
+   {
+      if(m_puser != NULL)
+      {
+         ::thread * pthread = thread::m_puser;
+         if(pthread != NULL && pthread->m_pbReady != NULL)
+         {
+            *pthread->m_pbReady = true;
+         }
+      }
+   }
+   catch(...)
+   {
+   }
+   try
+   {
+      if(m_pbReady != NULL)
+      {
+         *m_pbReady = true;
+      }
+   }
+   catch(...)
+   {
+   }
+   try
+   {
+      m_evFinish.SetEvent();
+   }
+   catch(...)
+   {
+   }
+
+   if(m_bAutoDelete)
+   {
+      // delete thread if it is auto-deleting
+      //pthread->smart_pointer < thread >::m_p = NULL;
+      m_puser.release();
+      // delete_this();
+   }
+   else
+   {
+      try
+      {
+         m_puser->m_bRun = false;
+      }
+      catch(...)
+      {
+      }
+   }
+}
+
+
