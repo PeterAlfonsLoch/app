@@ -1495,7 +1495,7 @@ void thread_impl::Delete()
       try
       {
          if(m_pappDelete != NULL)
-            delete m_pappDelete;
+            m_pappDelete.release();
       }
       catch(...)
       {
