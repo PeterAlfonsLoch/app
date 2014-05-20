@@ -275,12 +275,6 @@
 		<Unit filename="base/compress/zip/zip_unzip.cpp" />
 		<Unit filename="base/compress/zip/zip_util.cpp" />
 		<Unit filename="base/compress/zip/zip_zip.cpp" />
-		<Unit filename="base/compress/zlib/adler32.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/compress/zlib/compress.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/contrib/blast/blast.h" />
 		<Unit filename="base/compress/zlib/contrib/infback9/infback9.h" />
 		<Unit filename="base/compress/zlib/contrib/infback9/inffix9.h" />
@@ -296,54 +290,60 @@
 		<Unit filename="base/compress/zlib/contrib/minizip/unzip.h" />
 		<Unit filename="base/compress/zlib/contrib/minizip/zip.h" />
 		<Unit filename="base/compress/zlib/contrib/puff/puff.h" />
-		<Unit filename="base/compress/zlib/crc32.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/crc32.h" />
-		<Unit filename="base/compress/zlib/deflate.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/deflate.h" />
 		<Unit filename="base/compress/zlib/examples/gzlog.h" />
-		<Unit filename="base/compress/zlib/gzclose.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/gzguts.h" />
-		<Unit filename="base/compress/zlib/gzlib.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/compress/zlib/gzread.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/compress/zlib/gzwrite.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/compress/zlib/infback.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="base/compress/zlib/inffast.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/inffast.h" />
 		<Unit filename="base/compress/zlib/inffixed.h" />
-		<Unit filename="base/compress/zlib/inflate.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/inflate.h" />
-		<Unit filename="base/compress/zlib/inftrees.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/inftrees.h" />
-		<Unit filename="base/compress/zlib/trees.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/trees.h" />
-		<Unit filename="base/compress/zlib/uncompr.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="base/compress/zlib/zconf.h" />
 		<Unit filename="base/compress/zlib/zlib.h" />
-		<Unit filename="base/compress/zlib/zutil.c">
+		<Unit filename="base/compress/zlib/zlib_adler32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="base/compress/zlib/zlib_compress.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="base/compress/zlib/zlib_crc32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="base/compress/zlib/zlib_deflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="base/compress/zlib/zlib_gzclose.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="base/compress/zlib/zlib_gzlib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="base/compress/zlib/zlib_gzread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="base/compress/zlib/zlib_gzwrite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="base/compress/zlib/zlib_infback.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="base/compress/zlib/zlib_inffast.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="base/compress/zlib/zlib_inflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="base/compress/zlib/zlib_inftrees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="base/compress/zlib/zlib_trees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="base/compress/zlib/zlib_uncompr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="base/compress/zlib/zlib_zutil.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/compress/zlib/zutil.h" />
@@ -3111,12 +3111,15 @@
 		<Unit filename="graphics/visual/visual_cursor.h" />
 		<Unit filename="graphics/visual/visual_icon.cpp" />
 		<Unit filename="graphics/visual/visual_icon.h" />
+		<Unit filename="multithreading/multithreading.cpp" />
 		<Unit filename="multithreading/multithreading.h" />
+		<Unit filename="multithreading/multithreading.inl" />
 		<Unit filename="multithreading/multithreading_condition.cpp" />
 		<Unit filename="multithreading/multithreading_condition.h" />
 		<Unit filename="multithreading/multithreading_core.cpp" />
 		<Unit filename="multithreading/multithreading_critical_section.cpp" />
 		<Unit filename="multithreading/multithreading_critical_section.h" />
+		<Unit filename="multithreading/multithreading_data.h" />
 		<Unit filename="multithreading/multithreading_event.cpp" />
 		<Unit filename="multithreading/multithreading_event.h" />
 		<Unit filename="multithreading/multithreading_event_base.cpp" />
@@ -3158,6 +3161,8 @@
 		<Unit filename="multithreading/multithreading_synch_lock.h" />
 		<Unit filename="multithreading/multithreading_thread.cpp" />
 		<Unit filename="multithreading/multithreading_thread.h" />
+		<Unit filename="multithreading/multithreading_thread_impl.cpp" />
+		<Unit filename="multithreading/multithreading_thread_impl.h" />
 		<Unit filename="multithreading/multithreading_thread_os.h" />
 		<Unit filename="multithreading/multithreading_wait_result.cpp" />
 		<Unit filename="multithreading/multithreading_wait_result.h" />
@@ -4075,6 +4080,7 @@
 		<Unit filename="user/user/user_draw_interface.h" />
 		<Unit filename="user/user/user_elemental.cpp" />
 		<Unit filename="user/user/user_elemental.h" />
+		<Unit filename="user/user/user_enum.h" />
 		<Unit filename="user/user/user_frame_window.cpp" />
 		<Unit filename="user/user/user_frame_window.h" />
 		<Unit filename="user/user/user_impact.cpp" />
@@ -4083,6 +4089,7 @@
 		<Unit filename="user/user/user_impact_system.h" />
 		<Unit filename="user/user/user_impact_update_hint.cpp" />
 		<Unit filename="user/user/user_impact_update_hint.h" />
+		<Unit filename="user/user/user_inline.h" />
 		<Unit filename="user/user/user_interaction.cpp" />
 		<Unit filename="user/user/user_interaction.h" />
 		<Unit filename="user/user/user_job.cpp" />
@@ -4139,6 +4146,8 @@
 		<Unit filename="user/user/user_window_map.h" />
 		<Unit filename="user/user/user_window_util.cpp" />
 		<Unit filename="user/user/user_window_util.h" />
+		<Unit filename="user/user/user_windowing.cpp" />
+		<Unit filename="user/user/user_windowing.h" />
 		<Unit filename="user/userpresence/userpresence.h" />
 		<Unit filename="user/userpresence/userpresence_user_presence.cpp" />
 		<Unit filename="user/userpresence/userpresence_user_presence.h" />

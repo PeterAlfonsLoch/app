@@ -330,7 +330,6 @@
 		<Unit filename="core/core/core_reference.h" />
 		<Unit filename="core/core/core_resource.cpp" />
 		<Unit filename="core/core/core_resource.h" />
-		<Unit filename="core/core/core_section.cpp" />
 		<Unit filename="core/core/core_service.cpp" />
 		<Unit filename="core/core/core_service.h" />
 		<Unit filename="core/core/core_session.cpp" />
