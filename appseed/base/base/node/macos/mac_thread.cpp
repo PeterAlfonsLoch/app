@@ -339,14 +339,6 @@ WINBOOL CLASS_DECL_mac AfxInternalPumpMessage();
 LRESULT CLASS_DECL_mac AfxInternalProcessWndProcException(::exception::base*, const MESSAGE* pMsg);
 void AfxInternalPreTranslateMessage(signal_details * pobj);
 
-void CLASS_DECL_mac __init_thread()
-{
-   
-   
-}
-
-
-
 
 
 

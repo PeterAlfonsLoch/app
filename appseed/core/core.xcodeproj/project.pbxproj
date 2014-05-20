@@ -149,9 +149,6 @@
 		078C368E1921910C00354453 /* core_resource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078C36191921910B00354453 /* core_resource.cpp */; };
 		078C368F1921910C00354453 /* core_resource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078C36191921910B00354453 /* core_resource.cpp */; };
 		078C36901921910C00354453 /* core_resource.h in Headers */ = {isa = PBXBuildFile; fileRef = 078C361A1921910B00354453 /* core_resource.h */; };
-		078C36911921910C00354453 /* core_section.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078C361B1921910B00354453 /* core_section.cpp */; };
-		078C36921921910C00354453 /* core_section.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078C361B1921910B00354453 /* core_section.cpp */; };
-		078C36931921910C00354453 /* core_section.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078C361B1921910B00354453 /* core_section.cpp */; };
 		078C36941921910C00354453 /* core_service.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078C361C1921910B00354453 /* core_service.cpp */; };
 		078C36951921910C00354453 /* core_service.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078C361C1921910B00354453 /* core_service.cpp */; };
 		078C36961921910C00354453 /* core_service.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078C361C1921910B00354453 /* core_service.cpp */; };
@@ -2064,7 +2061,6 @@
 		078C36181921910B00354453 /* core_reference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core_reference.h; sourceTree = "<group>"; };
 		078C36191921910B00354453 /* core_resource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = core_resource.cpp; sourceTree = "<group>"; };
 		078C361A1921910B00354453 /* core_resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core_resource.h; sourceTree = "<group>"; };
-		078C361B1921910B00354453 /* core_section.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = core_section.cpp; sourceTree = "<group>"; };
 		078C361C1921910B00354453 /* core_service.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = core_service.cpp; sourceTree = "<group>"; };
 		078C361D1921910B00354453 /* core_service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core_service.h; sourceTree = "<group>"; };
 		078C361E1921910B00354453 /* core_session.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = core_session.cpp; sourceTree = "<group>"; };
@@ -3395,7 +3391,6 @@
 				078C36181921910B00354453 /* core_reference.h */,
 				078C36191921910B00354453 /* core_resource.cpp */,
 				078C361A1921910B00354453 /* core_resource.h */,
-				078C361B1921910B00354453 /* core_section.cpp */,
 				078C361C1921910B00354453 /* core_service.cpp */,
 				078C361D1921910B00354453 /* core_service.h */,
 				078C361E1921910B00354453 /* core_session.cpp */,
@@ -6423,7 +6418,6 @@
 				07F5B38E184A4FA00092C3E1 /* user_edit_plain_text_view.cpp in Sources */,
 				07F5B3AF184A4FA00092C3E1 /* user_main_frame.cpp in Sources */,
 				07AD9A82182FF968005C3335 /* filemanager_left_view.cpp in Sources */,
-				078C36911921910C00354453 /* core_section.cpp in Sources */,
 				07F5B401184A50E50092C3E1 /* userex_userex.cpp in Sources */,
 				07AD9A98182FF968005C3335 /* filemanager_view.cpp in Sources */,
 				072AE9C21810372200F74E98 /* backview_image_change.cpp in Sources */,
@@ -6646,7 +6640,6 @@
 				07A4ABBC190C45F8005B6DE5 /* file_limited_reader.cpp in Sources */,
 				07A4ABBD190C45F8005B6DE5 /* file_limited_writer.cpp in Sources */,
 				07A4ABBE190C45F8005B6DE5 /* file_locked_in_stream.cpp in Sources */,
-				078C36921921910C00354453 /* core_section.cpp in Sources */,
 				07A4ABBF190C45F8005B6DE5 /* file_out_buffer.cpp in Sources */,
 				07A4ABC0190C45F8005B6DE5 /* file_size_count_writer.cpp in Sources */,
 				07A4ABC1190C45F8005B6DE5 /* file_sssociation.cpp in Sources */,
@@ -7070,7 +7063,6 @@
 				078C36B41921910C00354453 /* core_timer_listener.cpp in Sources */,
 				078C36771921910C00354453 /* core_patch.cpp in Sources */,
 				078C36AC1921910C00354453 /* core_Timer.cpp in Sources */,
-				078C36931921910C00354453 /* core_section.cpp in Sources */,
 				078C36721921910C00354453 /* core_os_history.cpp in Sources */,
 				078C365E1921910C00354453 /* core_library.cpp in Sources */,
 				9AE24DFB1904CF6F001AEFFB /* core_iosTests.m in Sources */,
