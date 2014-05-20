@@ -16,7 +16,7 @@ event::event(sp(::base::application) papp, bool bInitiallyOwn, bool bManualReset
 
 #ifdef WINDOWSEX
 
-   m_object = ::CreateEvent(lpsaAttribute, bManualReset, bInitiallyOwn, pstrName);
+   m_object = (int_ptr)::CreateEvent(lpsaAttribute, bManualReset, bInitiallyOwn, pstrName);
 
    if(m_object == NULL)
       throw resource_exception(papp);
@@ -149,7 +149,7 @@ bool event::SetEvent()
    try
    {
 
-      return ::SetEvent(m_object) != FALSE;
+      return ::SetEvent((HANDLE)m_object) != FALSE;
 
    }
    catch(...)
@@ -251,7 +251,7 @@ bool event::ResetEvent()
 
    ASSERT(m_object != NULL);
 
-   return ::ResetEvent(m_object) != FALSE;
+   return ::ResetEvent((HANDLE)m_object) != FALSE;
 
 #else
 
@@ -285,7 +285,7 @@ void event::wait ()
 #ifdef WINDOWS
 
 
-	if ( ::WaitForSingleObjectEx(item(), INFINITE, FALSE) != WAIT_OBJECT_0 )
+   if(::WaitForSingleObjectEx((HANDLE)item(),INFINITE,FALSE) != WAIT_OBJECT_0)
 		throw runtime_error(get_app(), "::core::pal::Event::wait: failure");
 
 #elif defined(ANDROID)
@@ -359,7 +359,7 @@ wait_result event::wait (const duration & durationTimeout)
 
 #ifdef WINDOWS
 
-	return wait_result((uint32_t) ::WaitForSingleObjectEx(item(), durationTimeout.os_lock_duration(), FALSE));
+   return wait_result((uint32_t) ::WaitForSingleObjectEx((HANDLE)item(),durationTimeout.os_lock_duration(),FALSE));
 
 #elif defined(ANDROID)
 
@@ -533,7 +533,7 @@ bool event::is_signaled() const
 
 #ifdef WINDOWS
 
-    return WAIT_OBJECT_0 == ::WaitForSingleObjectEx(m_object, 0, FALSE);
+   return WAIT_OBJECT_0 == ::WaitForSingleObjectEx((HANDLE)m_object,0,FALSE);
 
 #elif defined(ANDROID)
 
@@ -606,7 +606,7 @@ bool event::lock(const duration & durationTimeout)
 
 #ifdef WINDOWS
 
-   uint32_t dwRet = ::WaitForSingleObjectEx(m_object, durationTimeout.os_lock_duration(), FALSE);
+   uint32_t dwRet = ::WaitForSingleObjectEx((HANDLE)m_object,durationTimeout.os_lock_duration(),FALSE);
 
    if (dwRet == WAIT_OBJECT_0 || dwRet == WAIT_ABANDONED)
       return true;

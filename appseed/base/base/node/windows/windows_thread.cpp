@@ -380,13 +380,13 @@ namespace windows
    ///  \brief		starts thread on first call
    void thread::start()
    {
-      ::ResumeThread(item());
+      ::ResumeThread(m_hthread);
    }
 
 
    void thread::wait()
    {
-      ::WaitForSingleObject(item(),INFINITE);
+      ::WaitForSingleObject(m_hthread,INFINITE);
    }
 
    ///  \brief		waits for signaling the thread for a specified time
@@ -395,14 +395,14 @@ namespace windows
    wait_result thread::wait(const duration & duration)
    {
       DWORD timeout = duration.is_pos_infinity() ? INFINITE : static_cast<DWORD>(duration.total_milliseconds());
-      return wait_result((uint32_t) ::WaitForSingleObject(item(),timeout));
+      return wait_result((uint32_t) ::WaitForSingleObject(m_hthread,timeout));
    }
 
    ///  \brief		sets thread priority
    ///  \param		new priority
    void thread::set_priority(int32_t priority)
    {
-      if(::SetThreadPriority(item(),priority) == 0)
+      if(::SetThreadPriority(m_hthread,priority) == 0)
          throw runtime_error(get_app(),"Thread::set_priority: Couldn't set thread priority.");
    }
 
@@ -410,7 +410,7 @@ namespace windows
    ///  \param		priority
    int32_t thread::priority()
    {
-      return ::GetThreadPriority(item());
+      return ::GetThreadPriority(m_hthread);
    }
 
 

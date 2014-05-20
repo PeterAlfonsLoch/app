@@ -812,20 +812,6 @@ void thread::wait()
 }
 
 
-#ifdef WINDOWS
-
-HANDLE thread::item() const
-{
-
-   if(m_pimpl.is_null())
-      return NULL;
-
-   return m_pimpl->item();
-
-}
-
-#else
-
 int_ptr thread::item() const
 {
 
@@ -835,8 +821,6 @@ int_ptr thread::item() const
    return m_pimpl->item();
 
 }
-
-#endif
 
 
 int thread::get_x_window_count() const
