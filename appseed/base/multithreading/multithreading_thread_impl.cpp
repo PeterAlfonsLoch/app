@@ -813,30 +813,23 @@ int32_t thread_impl::thread_entry(::thread_startup * pstartup)
    ASSERT(pstartup->m_pthreadimpl->m_pimpl.is_null());
    ASSERT(pstartup->m_pthread->m_puser.is_null());
 
-   ::thread * pthread = pstartup->m_pthread;
-
    ::thread_impl * pthreadimpl = pstartup->m_pthreadimpl;
 
-   //      sp(::base::application) papp = (get_app());
    m_evFinish.ResetEvent();
+   
    install_message_handling(pthreadimpl);
+   
    m_puser->install_message_handling(pthreadimpl);
 
    IGUI_WIN_MSG_LINK(WM_USER + 123,pthreadimpl,pthreadimpl,&thread_impl::_001OnCreateMessageWindow);
 
-   return 0;   // not reached
+   return 0;
 
 }
 
 
 int32_t thread_impl::main()
 {
-
-   /*      ___THREAD_STARTUP* pStartup = (___THREAD_STARTUP*)pstartup;
-   ASSERT(pStartup != NULL);
-   ASSERT(pStartup->pThreadState != NULL);
-   ASSERT(pStartup->pThread != NULL);
-   ASSERT(!pStartup->bError);*/
 
    if(!m_puser->pre_init_instance())
    {

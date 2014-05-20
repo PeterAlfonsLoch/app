@@ -165,6 +165,14 @@
 		0751A499192A99B700CFD2B0 /* zlib_zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A46E192A99B700CFD2B0 /* zlib_zutil.c */; };
 		0751A49A192A99B700CFD2B0 /* zlib_zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A46E192A99B700CFD2B0 /* zlib_zutil.c */; };
 		0751A49B192A99B700CFD2B0 /* zlib_zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A46E192A99B700CFD2B0 /* zlib_zutil.c */; };
+		0751A49E192AB15000CFD2B0 /* multithreading_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 0751A49C192AB15000CFD2B0 /* multithreading_data.h */; };
+		0751A49F192AB15000CFD2B0 /* multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0751A49D192AB15000CFD2B0 /* multithreading.cpp */; };
+		0751A4A0192AB15000CFD2B0 /* multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0751A49D192AB15000CFD2B0 /* multithreading.cpp */; };
+		0751A4A1192AB15000CFD2B0 /* multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0751A49D192AB15000CFD2B0 /* multithreading.cpp */; };
+		0751A4A4192AB3F900CFD2B0 /* user_windowing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0751A4A2192AB3F900CFD2B0 /* user_windowing.cpp */; };
+		0751A4A5192AB3F900CFD2B0 /* user_windowing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0751A4A2192AB3F900CFD2B0 /* user_windowing.cpp */; };
+		0751A4A6192AB3F900CFD2B0 /* user_windowing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0751A4A2192AB3F900CFD2B0 /* user_windowing.cpp */; };
+		0751A4A7192AB3F900CFD2B0 /* user_windowing.h in Headers */ = {isa = PBXBuildFile; fileRef = 0751A4A3192AB3F900CFD2B0 /* user_windowing.h */; };
 		077C2A1B190F144000A1F6B0 /* framework_c.c in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A17190F143F00A1F6B0 /* framework_c.c */; };
 		077C2A1C190F144000A1F6B0 /* framework_c.h in Headers */ = {isa = PBXBuildFile; fileRef = 077C2A18190F143F00A1F6B0 /* framework_c.h */; };
 		077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A19190F143F00A1F6B0 /* framework.cpp */; };
@@ -4090,6 +4098,10 @@
 		0751A46C192A99B700CFD2B0 /* zlib_trees.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_trees.c; sourceTree = "<group>"; };
 		0751A46D192A99B700CFD2B0 /* zlib_uncompr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_uncompr.c; sourceTree = "<group>"; };
 		0751A46E192A99B700CFD2B0 /* zlib_zutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_zutil.c; sourceTree = "<group>"; };
+		0751A49C192AB15000CFD2B0 /* multithreading_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multithreading_data.h; sourceTree = "<group>"; };
+		0751A49D192AB15000CFD2B0 /* multithreading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = multithreading.cpp; sourceTree = "<group>"; };
+		0751A4A2192AB3F900CFD2B0 /* user_windowing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_windowing.cpp; sourceTree = "<group>"; };
+		0751A4A3192AB3F900CFD2B0 /* user_windowing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_windowing.h; sourceTree = "<group>"; };
 		077C2A17190F143F00A1F6B0 /* framework_c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = framework_c.c; sourceTree = "<group>"; };
 		077C2A18190F143F00A1F6B0 /* framework_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework_c.h; sourceTree = "<group>"; };
 		077C2A19190F143F00A1F6B0 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
@@ -6865,6 +6877,8 @@
 		07884B8F1897E9A400DC6CEB /* user */ = {
 			isa = PBXGroup;
 			children = (
+				0751A4A2192AB3F900CFD2B0 /* user_windowing.cpp */,
+				0751A4A3192AB3F900CFD2B0 /* user_windowing.h */,
 				07884B901897E9A400DC6CEB /* user.cpp */,
 				07884B911897E9A400DC6CEB /* user.h */,
 				07884B921897E9A400DC6CEB /* user_buffer.cpp */,
@@ -10407,6 +10421,8 @@
 		9AE7226817E83B68003E47F9 /* multithreading */ = {
 			isa = PBXGroup;
 			children = (
+				0751A49C192AB15000CFD2B0 /* multithreading_data.h */,
+				0751A49D192AB15000CFD2B0 /* multithreading.cpp */,
 				07F5B2D6184A403C0092C3E1 /* multithreading_go_thread.cpp */,
 				07F5B2D7184A403C0092C3E1 /* multithreading_go_thread.h */,
 				07F5B2D8184A403C0092C3E1 /* multithreading_signal_thread.cpp */,
@@ -10948,6 +10964,7 @@
 				07F5B203184A3B430092C3E1 /* fs_item.h in Headers */,
 				07884E051897EC9600DC6CEB /* iso8859_1.h in Headers */,
 				07B094CD18495C2B007A0560 /* collection_map_to_smart_pointer.h in Headers */,
+				0751A49E192AB15000CFD2B0 /* multithreading_data.h in Headers */,
 				07B094FB18495C2B007A0560 /* collection_typed_pointer_map.h in Headers */,
 				07B097A618495CBE007A0560 /* sip_event.h in Headers */,
 				07B08D0418495B40007A0560 /* exception2.h in Headers */,
@@ -11386,6 +11403,7 @@
 				079AE0C9188648D400635C39 /* database_selection.h in Headers */,
 				07B0964618495C5F007A0560 /* userpresence_userpresence.h in Headers */,
 				07884BF71897E9A500DC6CEB /* user_impact_update_hint.h in Headers */,
+				0751A4A7192AB3F900CFD2B0 /* user_windowing.h in Headers */,
 				07B08BDE18495B40007A0560 /* base_id_pool.h in Headers */,
 				07B08BB918495B40007A0560 /* base_common.h in Headers */,
 				079AE0C5188648D400635C39 /* database_id.h in Headers */,
@@ -12410,6 +12428,7 @@
 				07B08D3118495B41007A0560 /* exception_not_implemented.cpp in Sources */,
 				07F5B2E0184A403C0092C3E1 /* multithreading_simple_thread.cpp in Sources */,
 				07B08D6018495B41007A0560 /* install.cpp in Sources */,
+				0751A4A4192AB3F900CFD2B0 /* user_windowing.cpp in Sources */,
 				07B08F3218495B41007A0560 /* eck_prn.c in Sources */,
 				07B08EB618495B41007A0560 /* conf_def.c in Sources */,
 				07B08F7618495B41007A0560 /* c_all.c in Sources */,
@@ -12583,6 +12602,7 @@
 				07B0921F18495B42007A0560 /* t1_srvr.c in Sources */,
 				07B08DFD18495B41007A0560 /* f_string.c in Sources */,
 				07F5B1BE184A3B430092C3E1 /* file_dir_system.cpp in Sources */,
+				0751A49F192AB15000CFD2B0 /* multithreading.cpp in Sources */,
 				0722EC9B192556D8003E99F4 /* mac_genResource.cpp in Sources */,
 				07B091F518495B42007A0560 /* s23_clnt.c in Sources */,
 				07B08EF818495B41007A0560 /* dh_err.c in Sources */,
@@ -13533,6 +13553,7 @@
 				078579991917B6F700FFFE51 /* dso_openssl.c in Sources */,
 				0785799A1917B6F700FFFE51 /* dso_vms.c in Sources */,
 				0785799B1917B6F700FFFE51 /* dso_win32.c in Sources */,
+				0751A4A0192AB15000CFD2B0 /* multithreading.cpp in Sources */,
 				0785799C1917B6F700FFFE51 /* ecs_asn1.c in Sources */,
 				0785799D1917B6F700FFFE51 /* ecs_err.c in Sources */,
 				0785799E1917B6F700FFFE51 /* ecs_lib.c in Sources */,
@@ -14452,6 +14473,7 @@
 				9AA6A60E1907B84C000A1F4A /* http_output_stream.cpp in Sources */,
 				9AA6A60F1907B84C000A1F4A /* http_signal.cpp in Sources */,
 				9AA6A6101907B84C000A1F4A /* http_system.cpp in Sources */,
+				0751A4A5192AB3F900CFD2B0 /* user_windowing.cpp in Sources */,
 				9AA6A6111907B84C000A1F4A /* mail_pop3.cpp in Sources */,
 				9AA6A6121907B84C000A1F4A /* mail_pop3_socket.cpp in Sources */,
 				9AA6A6131907B84C000A1F4A /* mail_simple_pop3.cpp in Sources */,
@@ -14702,12 +14724,14 @@
 				9AE24D531904CEFF001AEFFB /* base_iosTests.m in Sources */,
 				07D1CA16192121BF00B99496 /* message.cpp in Sources */,
 				0751A492192A99B700CFD2B0 /* zlib_inftrees.c in Sources */,
+				0751A4A6192AB3F900CFD2B0 /* user_windowing.cpp in Sources */,
 				0751A480192A99B700CFD2B0 /* zlib_gzlib.c in Sources */,
 				0751A483192A99B700CFD2B0 /* zlib_gzread.c in Sources */,
 				0751A48C192A99B700CFD2B0 /* zlib_inffast.c in Sources */,
 				0751A477192A99B700CFD2B0 /* zlib_crc32.c in Sources */,
 				0751A489192A99B700CFD2B0 /* zlib_infback.c in Sources */,
 				0751A486192A99B700CFD2B0 /* zlib_gzwrite.c in Sources */,
+				0751A4A1192AB15000CFD2B0 /* multithreading.cpp in Sources */,
 				07A0D7B61923356B00039222 /* RoundViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -353,3 +353,16 @@ void CLASS_DECL_mac __init_thread()
 
 
 
+
+
+void __end_thread(base::application*, unsigned int, bool)
+
+{
+   
+}
+
+
+void __term_thread(base::application*, HINSTANCE__*)
+{
+}
+
