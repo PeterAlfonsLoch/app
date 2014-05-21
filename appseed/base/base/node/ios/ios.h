@@ -162,10 +162,6 @@ struct CLASS_DECL_BASE __EXCEPTION_CONTEXT
    // Note: most of the exception context is now in the __exception_link
 };
 
-#ifndef _PNH_DEFINED
-typedef int32_t(__cdecl * _PNH)(size_t);
-#define _PNH_DEFINED
-#endif
 
 _PNH CLASS_DECL_BASE __get_new_handler();
 _PNH CLASS_DECL_BASE __set_new_handler(_PNH pfnNewHandler);
@@ -179,18 +175,10 @@ void CLASS_DECL_BASE __abort();
 
 CLASS_DECL_BASE LRESULT CALLBACK __window_procedure(oswindow hWnd,UINT nMsg,WPARAM wParam,LPARAM lParam);
 
-typedef void (__MSG_CALL ::window::*__PMSGW)();
-typedef void (__MSG_CALL ::thread::*__PMSGT)();
-
 
 
 
 CLASS_DECL_BASE MESSAGE * __get_current_message();
-
-CLASS_DECL_BASE void __end_thread(::base::application * papp,UINT nExitCode,bool bDelete = TRUE);
-
-CLASS_DECL_BASE void __init_thread();
-CLASS_DECL_BASE void __term_thread(::base::application * papp,HINSTANCE hInstTerm = NULL);
 
 
 CLASS_DECL_BASE void __ios_term();
