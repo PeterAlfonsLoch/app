@@ -1,0 +1,67 @@
+#pragma once
+
+
+namespace android
+{
+
+
+   class thread;
+
+   class android
+   {
+
+      int32_t function();
+
+   };
+
+
+
+} // namespace android
+
+
+
+struct CLASS_DECL_BASE __exception_link
+{
+
+
+   __exception_link * m_pLinkPrev;
+
+   __exception_link();
+
+   ~__exception_link() 
+   {
+
+   }
+
+
+};
+
+struct CLASS_DECL_BASE __EXCEPTION_CONTEXT
+{
+
+   __exception_link* m_pLinkTop;
+
+};
+
+void CLASS_DECL_BASE __abort();
+
+
+CLASS_DECL_BASE LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+
+CLASS_DECL_BASE MESSAGE * __get_current_message();
+
+CLASS_DECL_BASE void __end_thread(sp(::base::application) papp, UINT nExitCode, bool bDelete = TRUE);
+
+CLASS_DECL_BASE void __init_thread();
+CLASS_DECL_BASE void __term_thread(sp(::base::application) papp, HINSTANCE hInstTerm = NULL);
+
+CLASS_DECL_BASE void __android_term();
+
+CLASS_DECL_BASE sp(::base::application)  __get_app();
+CLASS_DECL_BASE sp(::user::interaction) __get_main_window();
+CLASS_DECL_BASE const char * __get_app_name();
+
+
+CLASS_DECL_BASE void __delete_object(HGDIOBJ* pObject);
+
+void CLASS_DECL_BASE __global_free(HGLOBAL hGlobal);

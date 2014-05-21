@@ -559,7 +559,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DEBUG;__C__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(ProjectDir)framework;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/base/base;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../app/appseed/base/base/openssl;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto;$(SolutionDir)../../../app/appseed/base/base/openssl/ssl;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/asn1;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/evp;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/krb5;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/modes;$(SolutionDir)../../../app/appseed/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -1563,6 +1563,28 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\message\message_definition.h" />
     <ClInclude Include="base\message\message_dispatch.h" />
     <ClInclude Include="base\message\message_user.h" />
+    <ClInclude Include="base\node\android\android.h" />
+    <ClInclude Include="base\node\android\android1.h" />
+    <ClInclude Include="base\node\android\android_application.h" />
+    <ClInclude Include="base\node\android\android_copydesk.h" />
+    <ClInclude Include="base\node\android\android_crypt.h" />
+    <ClInclude Include="base\node\android\android_dir.h" />
+    <ClInclude Include="base\node\android\android_factory_exchange.h" />
+    <ClInclude Include="base\node\android\android_file.h" />
+    <ClInclude Include="base\node\android\android_file_set.h" />
+    <ClInclude Include="base\node\android\android_file_system.h" />
+    <ClInclude Include="base\node\android\android_implementation.h" />
+    <ClInclude Include="base\node\android\android_internal.h" />
+    <ClInclude Include="base\node\android\android_ip_enum.h" />
+    <ClInclude Include="base\node\android\android_os.h" />
+    <ClInclude Include="base\node\android\android_port_forward.h" />
+    <ClInclude Include="base\node\android\android_shell.h" />
+    <ClInclude Include="base\node\android\android_stdio_file.h" />
+    <ClInclude Include="base\node\android\android_thread.h" />
+    <ClInclude Include="base\node\android\android_window.h" />
+    <ClInclude Include="base\node\android\android_window_draw.h" />
+    <ClInclude Include="base\node\ansios\ansios.h" />
+    <ClInclude Include="base\node\ansios\ansios_thread.h" />
     <ClInclude Include="base\node\node.h" />
     <ClInclude Include="base\node\windows\factory_exchange.h" />
     <ClInclude Include="base\node\windows\os.h" />
@@ -1899,18 +1921,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="base\os\android\android_process.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_simple_ui.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2330,6 +2340,32 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\message\message_base.cpp" />
     <ClCompile Include="base\message\message_dispatch.cpp" />
     <ClCompile Include="base\message\message_user.cpp" />
+    <ClCompile Include="base\node\android\android.cpp" />
+    <ClCompile Include="base\node\android\android1.cpp" />
+    <ClCompile Include="base\node\android\android2.cpp" />
+    <ClCompile Include="base\node\android\android_application.cpp" />
+    <ClCompile Include="base\node\android\android_copydesk.cpp" />
+    <ClCompile Include="base\node\android\android_crypt.cpp" />
+    <ClCompile Include="base\node\android\android_dir.cpp" />
+    <ClCompile Include="base\node\android\android_dumpinit.cpp" />
+    <ClCompile Include="base\node\android\android_error.cpp" />
+    <ClCompile Include="base\node\android\android_exception.cpp" />
+    <ClCompile Include="base\node\android\android_factory_exchange.cpp" />
+    <ClCompile Include="base\node\android\android_file.cpp" />
+    <ClCompile Include="base\node\android\android_file_set.cpp" />
+    <ClCompile Include="base\node\android\android_file_system.cpp" />
+    <ClCompile Include="base\node\android\android_ip_enum.cpp" />
+    <ClCompile Include="base\node\android\android_main.cpp" />
+    <ClCompile Include="base\node\android\android_os.cpp" />
+    <ClCompile Include="base\node\android\android_port_forward.cpp" />
+    <ClCompile Include="base\node\android\android_shell.cpp" />
+    <ClCompile Include="base\node\android\android_stdio_file.cpp" />
+    <ClCompile Include="base\node\android\android_thread.cpp" />
+    <ClCompile Include="base\node\android\android_thread_local_storage.cpp" />
+    <ClCompile Include="base\node\android\android_trace.cpp" />
+    <ClCompile Include="base\node\android\android_util.cpp" />
+    <ClCompile Include="base\node\android\android_window.cpp" />
+    <ClCompile Include="base\node\android\android_window_draw.cpp" />
     <ClCompile Include="base\node\node.cpp" />
     <ClCompile Include="base\node\windows\win1.cpp" />
     <ClCompile Include="base\node\windows\windows_application.cpp" />
@@ -2883,18 +2919,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_simple_ui.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="base\os\ansios\ansios_cross_win.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3673,6 +3697,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCppHeader</CompileAs>
     </ClCompile>
     <ClInclude Include="multithreading\multithreading.h" />
     <ClInclude Include="multithreading\multithreading_condition.h" />
@@ -13678,6 +13704,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">framework_c.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)framework_c.pch.h</PrecompiledHeaderOutputFile>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCHeader</CompileAs>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_brush.cpp" />
