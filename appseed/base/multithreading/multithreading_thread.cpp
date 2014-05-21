@@ -96,18 +96,6 @@ m_mutex(papp)
 
 
 
-void thread::construct()
-{
-   CommonConstruct();
-}
-
-void thread::construct(__THREADPROC pfnThreadProc, LPVOID pParam)
-{
-   UNREFERENCED_PARAMETER(pfnThreadProc);
-   UNREFERENCED_PARAMETER(pParam);
-   throw interface_only_exception(get_app());
-}
-
 
 void thread::CommonConstruct()
 {

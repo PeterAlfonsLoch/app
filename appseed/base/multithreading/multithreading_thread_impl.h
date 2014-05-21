@@ -56,9 +56,12 @@ public:
    thread_impl(sp(::base::application) papp);
    virtual ~thread_impl();
    
+   
+   void construct();
+   
    void construct(__THREADPROC pfnthread_implProc, LPVOID pParam);
-   void CommonConstruct();
 
+   void CommonConstruct();
 
    virtual bool pre_init_instance();
 

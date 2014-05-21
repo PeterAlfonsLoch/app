@@ -37,6 +37,16 @@ thread_impl::~thread_impl()
 }
 
 
+
+void thread_impl::construct()
+{
+   
+   CommonConstruct();
+   
+}
+
+
+
 void thread_impl::construct(__THREADPROC pfnThreadProc, LPVOID pParam)
 {
    m_evFinish.SetEvent();
