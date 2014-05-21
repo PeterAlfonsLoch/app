@@ -87,6 +87,7 @@
 		<Unit filename="base/base/base.cpp" />
 		<Unit filename="base/base/base.h" />
 		<Unit filename="base/base/base.inl" />
+		<Unit filename="base/base/base_a_basic_rid_off.h" />
 		<Unit filename="base/base/base_action_context.cpp" />
 		<Unit filename="base/base/base_action_context.h" />
 		<Unit filename="base/base/base_action_source.h" />
@@ -95,6 +96,7 @@
 		<Unit filename="base/base/base_allocate_system_heap.cpp" />
 		<Unit filename="base/base/base_application.cpp" />
 		<Unit filename="base/base/base_application.h" />
+		<Unit filename="base/base/base_application_signal_details.h" />
 		<Unit filename="base/base/base_argcargv.cpp" />
 		<Unit filename="base/base/base_assert.cpp" />
 		<Unit filename="base/base/base_async.h" />
@@ -105,8 +107,10 @@
 		<Unit filename="base/base/base_c.h" />
 		<Unit filename="base/base/base_c_cpp.h" />
 		<Unit filename="base/base/base_c_objc.h" />
+		<Unit filename="base/base/base_c_objcpp.h" />
 		<Unit filename="base/base/base_c_winrt.h" />
 		<Unit filename="base/base/base_checked.cpp" />
+		<Unit filename="base/base/base_class.h" />
 		<Unit filename="base/base/base_cmdtarg.cpp" />
 		<Unit filename="base/base/base_command.h" />
 		<Unit filename="base/base/base_command_target.cpp" />
@@ -157,6 +161,7 @@
 		<Unit filename="base/base/base_international.cpp" />
 		<Unit filename="base/base/base_international.h" />
 		<Unit filename="base/base/base_keep_true.h" />
+		<Unit filename="base/base/base_keeper.h" />
 		<Unit filename="base/base/base_launcher.h" />
 		<Unit filename="base/base/base_libc.h" />
 		<Unit filename="base/base/base_library.h" />
@@ -215,6 +220,8 @@
 		<Unit filename="base/base/base_smart_pointer2.h" />
 		<Unit filename="base/base/base_sprintf.cpp" />
 		<Unit filename="base/base/base_sprintf.h" />
+		<Unit filename="base/base/base_static_start.cpp" />
+		<Unit filename="base/base/base_static_start.h" />
 		<Unit filename="base/base/base_system.cpp" />
 		<Unit filename="base/base/base_system.h" />
 		<Unit filename="base/base/base_system_factory.inl" />

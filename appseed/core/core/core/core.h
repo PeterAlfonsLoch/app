@@ -16,7 +16,7 @@
 #endif
 
 
-extern CLASS_DECL_CORE string g_strNote;
+//extern CLASS_DECL_CORE string g_strNote;
 
 
 class image_list;
@@ -1013,6 +1013,19 @@ class Ex1FactoryImpl;
 
 #endif
 
+
+
+
+namespace core
+{
+
+
+   CLASS_DECL_CORE void init_core();
+
+   CLASS_DECL_CORE void term_core();
+
+
+} // namespace core
 
 
 

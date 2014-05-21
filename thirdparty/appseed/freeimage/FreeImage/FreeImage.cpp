@@ -30,6 +30,8 @@ static const char *s_copyright = "This program uses FreeImage, a free, open sour
 
 //----------------------------------------------------------------------
 
+#if FALSE
+
 #if defined(_WIN32) && !defined(__MINGW32__)
 #ifndef FREEIMAGE_LIB
 
@@ -70,6 +72,8 @@ void FreeImage_SO_DeInitialise() {
 #endif // FREEIMAGE_LIB
 
 #endif // _WIN32
+
+#endif
 
 //----------------------------------------------------------------------
 

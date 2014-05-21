@@ -31,7 +31,7 @@ struct CLASS_DECL_LINUX __exception_link
       };
 };
 
-// Exception global state - never access directly
+// Exception global state - never Ķaccess directly
 struct CLASS_DECL_LINUX __EXCEPTION_CONTEXT
 {
    __exception_link* m_pLinkTop;

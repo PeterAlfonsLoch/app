@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "freeimage/freeimage.h"
 
 #ifdef WINDOWS
 #include <cderr.h>      // Commdlg Error definitions
@@ -113,6 +114,22 @@ namespace core
       rString.ReleaseBuffer();   // Need to call ReleaseBuffer after calling GetBufferSetLength
 
       return TRUE;
+   }
+
+
+   CLASS_DECL_CORE void init_core()
+   {
+
+      FreeImage_Initialise(FALSE);
+
+   }
+
+
+   CLASS_DECL_CORE void term_core()
+   {
+
+      FreeImage_DeInitialise();
+
    }
 
 
