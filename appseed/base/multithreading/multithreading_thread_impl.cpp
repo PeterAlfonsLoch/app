@@ -267,16 +267,8 @@ bool thread_impl::create_thread(int32_t epriority,uint32_t dwCreateFlagsParam,ui
 
    DWORD dwCreateFlags = dwCreateFlagsParam;
 
-   if(epriority != ::core::scheduling_priority_normal)
-   {
+   ENSURE(m_hthread == NULL);
 
-      dwCreateFlags |= CREATE_SUSPENDED;
-
-   }
-
-   ENSURE(m_hthread == NULL);  // already created?
-
-   // setup startup structure for thread initialization
    sp(thread_startup) pstartup = canew(thread_startup(get_app()));
 
    pstartup->m_bError = FALSE;
@@ -292,50 +284,13 @@ bool thread_impl::create_thread(int32_t epriority,uint32_t dwCreateFlagsParam,ui
    if(m_hthread == NULL)
       return false;
 
-   // start the thread just for core API initialization
    VERIFY(::ResumeThread(m_hthread) != (DWORD)-1);
 
    pstartup->m_event.wait();
 
-#ifdef WINDOWSEX
-   // if created suspended, suspend it until resume thread wakes it up
-   if(dwCreateFlags & CREATE_SUSPENDED)
-      VERIFY(::SuspendThread(m_hthread) != (DWORD)-1);
-      #endif
-
-   // if error during startup, shut things down
-   if(pstartup->m_bError)
-   {
-
-#ifdef WINDOWSEX
-      VERIFY(::WaitForSingleObject(m_hthread,INFINITE) == WAIT_OBJECT_0);
-
-      ::CloseHandle(m_hthread);
-
-      #endif
-
-      m_hthread = NULL;
-
-      return false;
-
-   }
-
-   // allow thread to continue, once resumed (it may already be resumed)
    pstartup->m_event2.SetEvent();
 
-   if(epriority != ::core::scheduling_priority_normal)
-   {
-
-      VERIFY(set_thread_priority(epriority));
-
-      if(!(dwCreateFlagsParam & CREATE_SUSPENDED))
-      {
-
-         ENSURE(ResumeThread() != (DWORD)-1);
-
-      }
-
-   }
+   VERIFY(set_thread_priority(epriority));
 
    return true;
 

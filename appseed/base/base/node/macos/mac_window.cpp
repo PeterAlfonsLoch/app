@@ -3766,7 +3766,7 @@ namespace mac
       }
    }
    
-   bool window::IsWindow()
+   bool window::IsWindow() const
    {
       return ::IsWindow(m_oswindow) != FALSE;
    }

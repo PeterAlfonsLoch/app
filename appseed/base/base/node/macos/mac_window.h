@@ -148,7 +148,7 @@ namespace mac
       sp(::user::frame_window) GetTopLevelFrame();
       static ::window * PASCAL GetSafeOwner(::window * pParent = NULL, oswindow* pWndTop = NULL);
       
-      virtual bool IsWindow();
+      virtual bool IsWindow() const;
       
 #if(WINVER >= 0x0500)
       
