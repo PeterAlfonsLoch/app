@@ -120,6 +120,13 @@
 		0722ECF619256472003E99F4 /* ios_error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D6A8191D98F300137494 /* ios_error.cpp */; };
 		0722ECF719256472003E99F4 /* ios_genResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D6B3191D98F300137494 /* ios_genResource.cpp */; };
 		0722ECF819256C67003E99F4 /* ansios_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B08A4618495B40007A0560 /* ansios_file.cpp */; };
+		073DBD64192D0A44008EEB76 /* base_application_signal_details.h in Headers */ = {isa = PBXBuildFile; fileRef = 073DBD5F192D0A44008EEB76 /* base_application_signal_details.h */; };
+		073DBD65192D0A44008EEB76 /* base_class.h in Headers */ = {isa = PBXBuildFile; fileRef = 073DBD60192D0A44008EEB76 /* base_class.h */; };
+		073DBD66192D0A44008EEB76 /* base_keeper.h in Headers */ = {isa = PBXBuildFile; fileRef = 073DBD61192D0A44008EEB76 /* base_keeper.h */; };
+		073DBD67192D0A44008EEB76 /* base_static_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 073DBD62192D0A44008EEB76 /* base_static_start.cpp */; };
+		073DBD68192D0A44008EEB76 /* base_static_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 073DBD62192D0A44008EEB76 /* base_static_start.cpp */; };
+		073DBD69192D0A44008EEB76 /* base_static_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 073DBD62192D0A44008EEB76 /* base_static_start.cpp */; };
+		073DBD6A192D0A44008EEB76 /* base_static_start.h in Headers */ = {isa = PBXBuildFile; fileRef = 073DBD63192D0A44008EEB76 /* base_static_start.h */; };
 		0751A46F192A99B700CFD2B0 /* zlib_adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A460192A99B700CFD2B0 /* zlib_adler32.c */; };
 		0751A470192A99B700CFD2B0 /* zlib_adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A460192A99B700CFD2B0 /* zlib_adler32.c */; };
 		0751A471192A99B700CFD2B0 /* zlib_adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A460192A99B700CFD2B0 /* zlib_adler32.c */; };
@@ -4081,6 +4088,11 @@
 		0722EC70192556D8003E99F4 /* RoundWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindow.mm; sourceTree = "<group>"; };
 		0722EC71192556D8003E99F4 /* RoundWindowFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindowFrameView.h; sourceTree = "<group>"; };
 		0722EC72192556D8003E99F4 /* RoundWindowFrameView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindowFrameView.mm; sourceTree = "<group>"; };
+		073DBD5F192D0A44008EEB76 /* base_application_signal_details.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_application_signal_details.h; sourceTree = "<group>"; };
+		073DBD60192D0A44008EEB76 /* base_class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_class.h; sourceTree = "<group>"; };
+		073DBD61192D0A44008EEB76 /* base_keeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_keeper.h; sourceTree = "<group>"; };
+		073DBD62192D0A44008EEB76 /* base_static_start.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_static_start.cpp; sourceTree = "<group>"; };
+		073DBD63192D0A44008EEB76 /* base_static_start.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_static_start.h; sourceTree = "<group>"; };
 		073EDDE1164E968100818801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		073EDDE4164E96DA00818801 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		0751A460192A99B700CFD2B0 /* zlib_adler32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_adler32.c; sourceTree = "<group>"; };
@@ -7423,7 +7435,9 @@
 				079AE0681886483600635C39 /* base_action_context.cpp */,
 				079AE0691886483600635C39 /* base_action_context.h */,
 				079AE06A1886483600635C39 /* base_action_source.h */,
+				073DBD5F192D0A44008EEB76 /* base_application_signal_details.h */,
 				079AE06B1886483600635C39 /* base_core_copydesk.cpp */,
+				073DBD60192D0A44008EEB76 /* base_class.h */,
 				079AE06C1886483600635C39 /* base_core_copydesk.h */,
 				079AE06D1886483600635C39 /* base_core_os.cpp */,
 				079AE06E1886483600635C39 /* base_core_os.h */,
@@ -7496,6 +7510,7 @@
 				07B07E6818495B37007A0560 /* base_international.cpp */,
 				07B07E6918495B37007A0560 /* base_international.h */,
 				07B07E6A18495B37007A0560 /* base_keep_true.h */,
+				073DBD61192D0A44008EEB76 /* base_keeper.h */,
 				07B07E6B18495B37007A0560 /* base_launcher.h */,
 				07B07E6C18495B37007A0560 /* base_libc.h */,
 				07B07E6D18495B37007A0560 /* base_library.h */,
@@ -7551,6 +7566,8 @@
 				07B07E9E18495B37007A0560 /* base_smart_pointer2.h */,
 				07B07E9F18495B37007A0560 /* base_sprintf.cpp */,
 				07B07EA018495B37007A0560 /* base_sprintf.h */,
+				073DBD62192D0A44008EEB76 /* base_static_start.cpp */,
+				073DBD63192D0A44008EEB76 /* base_static_start.h */,
 				07B07EA118495B37007A0560 /* base_system.cpp */,
 				07B07EA218495B37007A0560 /* base_system.h */,
 				07B07EA318495B37007A0560 /* base_system_factory.inl */,
@@ -10659,6 +10676,7 @@
 				07A6C8A1190C4D2500859288 /* rand.h in Headers */,
 				07F5B1A4184A3B430092C3E1 /* file_buffer.h in Headers */,
 				07B094F518495C2B007A0560 /* collection_stringa.h in Headers */,
+				073DBD66192D0A44008EEB76 /* base_keeper.h in Headers */,
 				07B08C0718495B40007A0560 /* base_plex_heap_impl.h in Headers */,
 				07B093CD18495B43007A0560 /* xml_tree_base.h in Headers */,
 				07884DD31897EC9600DC6CEB /* dec_kanji.h in Headers */,
@@ -11081,6 +11099,7 @@
 				07B08D1C18495B41007A0560 /* exception_hresult.h in Headers */,
 				07884E301897EC9600DC6CEB /* mac_thai.h in Headers */,
 				07B090C418495B41007A0560 /* sha_locl.h in Headers */,
+				073DBD65192D0A44008EEB76 /* base_class.h in Headers */,
 				07B08C0918495B40007A0560 /* base_printf.h in Headers */,
 				07D1CA26192121BF00B99496 /* message_user.h in Headers */,
 				07884E321897EC9600DC6CEB /* mac_ukraine.h in Headers */,
@@ -11491,6 +11510,7 @@
 				07F5B1F8184A3B430092C3E1 /* filesystem.h in Headers */,
 				07B08EC118495B41007A0560 /* cryptlib.h in Headers */,
 				07B0908F18495B41007A0560 /* ripemd.h in Headers */,
+				073DBD6A192D0A44008EEB76 /* base_static_start.h in Headers */,
 				07B08CE418495B40007A0560 /* crypto_null_auth.h in Headers */,
 				07B0950718495C2B007A0560 /* comparison_md5.h in Headers */,
 				07B08D6118495B41007A0560 /* install.h in Headers */,
@@ -11803,6 +11823,7 @@
 				07B0902618495B41007A0560 /* ossl_typ.h in Headers */,
 				07884DFB1897EC9600DC6CEB /* intprops.h in Headers */,
 				07884C121897E9A500DC6CEB /* user_server.h in Headers */,
+				073DBD64192D0A44008EEB76 /* base_application_signal_details.h in Headers */,
 				07B0951B18495C2B007A0560 /* geometry_size.h in Headers */,
 				07B0929618495B43007A0560 /* windows_crt.h in Headers */,
 				07B0911218495B41007A0560 /* x509_vfy.h in Headers */,
@@ -12760,6 +12781,7 @@
 				07B08CEE18495B40007A0560 /* crypto_rng_prng.c in Sources */,
 				07B08DD318495B41007A0560 /* a_bool.c in Sources */,
 				07B08DE918495B41007A0560 /* ameth_lib.c in Sources */,
+				073DBD67192D0A44008EEB76 /* base_static_start.cpp in Sources */,
 				07884BF61897E9A500DC6CEB /* user_impact_update_hint.cpp in Sources */,
 				07B08BF318495B40007A0560 /* base_math.cpp in Sources */,
 				0722ECBC192556D8003E99F4 /* RoundWindowFrameView.mm in Sources */,
@@ -14172,6 +14194,7 @@
 				9AA6A4A21907B84A000A1F4A /* base_core_os.cpp in Sources */,
 				9AA6A4A31907B84A000A1F4A /* base_progress.cpp in Sources */,
 				9AA6A4A41907B84A000A1F4A /* base_savings.cpp in Sources */,
+				073DBD68192D0A44008EEB76 /* base_static_start.cpp in Sources */,
 				9AA6A4A51907B84A000A1F4A /* base.cpp in Sources */,
 				9AA6A4A61907B84B000A1F4A /* base_allocate_mid_big.cpp in Sources */,
 				9AA6A4A71907B84B000A1F4A /* base_allocate_system_heap.cpp in Sources */,
@@ -14716,6 +14739,7 @@
 				07D1CA1B192121BF00B99496 /* message_base.cpp in Sources */,
 				0751A47A192A99B700CFD2B0 /* zlib_deflate.c in Sources */,
 				07D1CA25192121BF00B99496 /* message_user.cpp in Sources */,
+				073DBD69192D0A44008EEB76 /* base_static_start.cpp in Sources */,
 				07D1CA21192121BF00B99496 /* message_dispatch.cpp in Sources */,
 				0751A47D192A99B700CFD2B0 /* zlib_gzclose.c in Sources */,
 				0751A49B192A99B700CFD2B0 /* zlib_zutil.c in Sources */,

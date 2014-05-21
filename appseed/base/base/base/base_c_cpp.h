@@ -1072,6 +1072,8 @@ namespace numeric_info
 
 #include "base_international.h"
 
+#include "base_static_start.h"
+
 
 
 #define return_(y, x) {y = x; return;}
