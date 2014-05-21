@@ -127,6 +127,11 @@
 		073DBD68192D0A44008EEB76 /* base_static_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 073DBD62192D0A44008EEB76 /* base_static_start.cpp */; };
 		073DBD69192D0A44008EEB76 /* base_static_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 073DBD62192D0A44008EEB76 /* base_static_start.cpp */; };
 		073DBD6A192D0A44008EEB76 /* base_static_start.h in Headers */ = {isa = PBXBuildFile; fileRef = 073DBD63192D0A44008EEB76 /* base_static_start.h */; };
+		073DBD6E192D356D008EEB76 /* ansios.h in Headers */ = {isa = PBXBuildFile; fileRef = 073DBD6C192D356D008EEB76 /* ansios.h */; };
+		073DBD6F192D356D008EEB76 /* ansios_thread_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 073DBD6D192D356D008EEB76 /* ansios_thread_impl.h */; };
+		073DBD71192D36A7008EEB76 /* ansios_thread_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 073DBD70192D36A7008EEB76 /* ansios_thread_impl.cpp */; };
+		073DBD72192D36A7008EEB76 /* ansios_thread_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 073DBD70192D36A7008EEB76 /* ansios_thread_impl.cpp */; };
+		073DBD73192D36A7008EEB76 /* ansios_thread_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 073DBD70192D36A7008EEB76 /* ansios_thread_impl.cpp */; };
 		0751A46F192A99B700CFD2B0 /* zlib_adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A460192A99B700CFD2B0 /* zlib_adler32.c */; };
 		0751A470192A99B700CFD2B0 /* zlib_adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A460192A99B700CFD2B0 /* zlib_adler32.c */; };
 		0751A471192A99B700CFD2B0 /* zlib_adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = 0751A460192A99B700CFD2B0 /* zlib_adler32.c */; };
@@ -4093,6 +4098,9 @@
 		073DBD61192D0A44008EEB76 /* base_keeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_keeper.h; sourceTree = "<group>"; };
 		073DBD62192D0A44008EEB76 /* base_static_start.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_static_start.cpp; sourceTree = "<group>"; };
 		073DBD63192D0A44008EEB76 /* base_static_start.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_static_start.h; sourceTree = "<group>"; };
+		073DBD6C192D356D008EEB76 /* ansios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ansios.h; sourceTree = "<group>"; };
+		073DBD6D192D356D008EEB76 /* ansios_thread_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ansios_thread_impl.h; sourceTree = "<group>"; };
+		073DBD70192D36A7008EEB76 /* ansios_thread_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ansios_thread_impl.cpp; sourceTree = "<group>"; };
 		073EDDE1164E968100818801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		073EDDE4164E96DA00818801 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		0751A460192A99B700CFD2B0 /* zlib_adler32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_adler32.c; sourceTree = "<group>"; };
@@ -6884,6 +6892,17 @@
 			);
 			name = macos;
 			path = node/macos;
+			sourceTree = "<group>";
+		};
+		073DBD6B192D356D008EEB76 /* ansios */ = {
+			isa = PBXGroup;
+			children = (
+				073DBD6C192D356D008EEB76 /* ansios.h */,
+				073DBD6D192D356D008EEB76 /* ansios_thread_impl.h */,
+				073DBD70192D36A7008EEB76 /* ansios_thread_impl.cpp */,
+			);
+			name = ansios;
+			path = node/ansios;
 			sourceTree = "<group>";
 		};
 		07884B8F1897E9A400DC6CEB /* user */ = {
@@ -10018,6 +10037,7 @@
 		07D1C8DC19211FD100B99496 /* node */ = {
 			isa = PBXGroup;
 			children = (
+				073DBD6B192D356D008EEB76 /* ansios */,
 				07D1C8DD19211FEA00B99496 /* ios */,
 				0722EC1F192556D7003E99F4 /* macos */,
 				07D1C91F19211FEA00B99496 /* node.cpp */,
@@ -10984,6 +11004,7 @@
 				07B094CD18495C2B007A0560 /* collection_map_to_smart_pointer.h in Headers */,
 				0751A49E192AB15000CFD2B0 /* multithreading_data.h in Headers */,
 				07B094FB18495C2B007A0560 /* collection_typed_pointer_map.h in Headers */,
+				073DBD6E192D356D008EEB76 /* ansios.h in Headers */,
 				07B097A618495CBE007A0560 /* sip_event.h in Headers */,
 				07B08D0418495B40007A0560 /* exception2.h in Headers */,
 				07884E481897EC9600DC6CEB /* shift_jisx0213.h in Headers */,
@@ -11962,6 +11983,7 @@
 				07884DEF1897EC9600DC6CEB /* georgian_ps.h in Headers */,
 				07A224A218F7F766002C3B39 /* gunibreak.h in Headers */,
 				07B08DF118495B41007A0560 /* asn1t.h in Headers */,
+				073DBD6F192D356D008EEB76 /* ansios_thread_impl.h in Headers */,
 				07A224A318F7F766002C3B39 /* gunicomp.h in Headers */,
 				07B08CBA18495B40007A0560 /* zlib.h in Headers */,
 				0722EC8C192556D8003E99F4 /* mac_crypto.h in Headers */,
@@ -12680,6 +12702,7 @@
 				07B08CBE18495B40007A0560 /* crypto_ae_xfm.c in Sources */,
 				07B08F5218495B41007A0560 /* eng_ctrl.c in Sources */,
 				07B090AD18495B41007A0560 /* rsa_x931.c in Sources */,
+				073DBD71192D36A7008EEB76 /* ansios_thread_impl.cpp in Sources */,
 				07F5B1AB184A3B430092C3E1 /* file_byte_output_stream.cpp in Sources */,
 				07B0913D18495B41007A0560 /* v3_purp.c in Sources */,
 				07B08BBF18495B40007A0560 /* base_cregexp.cpp in Sources */,
@@ -14063,6 +14086,7 @@
 				078579241917B6BD00FFFE51 /* v3_info.c in Sources */,
 				078579251917B6BD00FFFE51 /* v3_int.c in Sources */,
 				078579261917B6BD00FFFE51 /* v3_lib.c in Sources */,
+				073DBD72192D36A7008EEB76 /* ansios_thread_impl.cpp in Sources */,
 				078579271917B6BD00FFFE51 /* v3_ncons.c in Sources */,
 				078579281917B6BD00FFFE51 /* v3_ocsp.c in Sources */,
 				078579291917B6BD00FFFE51 /* v3_pci.c in Sources */,
@@ -14734,6 +14758,7 @@
 			files = (
 				07AAB14F1926B2EF0050A443 /* multithreading_thread_impl.cpp in Sources */,
 				0751A474192A99B700CFD2B0 /* zlib_compress.c in Sources */,
+				073DBD73192D36A7008EEB76 /* ansios_thread_impl.cpp in Sources */,
 				0751A48F192A99B700CFD2B0 /* zlib_inflate.c in Sources */,
 				0751A498192A99B700CFD2B0 /* zlib_uncompr.c in Sources */,
 				07D1CA1B192121BF00B99496 /* message_base.cpp in Sources */,

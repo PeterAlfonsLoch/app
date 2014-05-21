@@ -5,7 +5,7 @@ namespace ansios
 {
 
 
-   class CLASS_DECL_BASE thread:
+   class CLASS_DECL_BASE thread_impl:
       virtual public ::thread_impl
    {
    public:
@@ -13,8 +13,8 @@ namespace ansios
 
 
 
-      thread(sp(::base::application) papp);
-      virtual ~thread();
+      thread_impl(sp(::base::application) papp);
+      virtual ~thread_impl();
 
 
       void CommonConstruct();
@@ -42,7 +42,6 @@ namespace ansios
       virtual void set_run(bool bRun = true);
       virtual event & get_finish_event();
       virtual bool get_run();
-      virtual ::ca2::thread * get_app_thread();
       virtual sp(::user::interaction) get_active_ui();
       virtual sp(::user::interaction) set_active_ui(sp(::user::interaction) pui);
       virtual void step_timer();
@@ -56,7 +55,9 @@ namespace ansios
    };
 
 
-} // namespace android
+} // namespace ansios
+
+
 
 
 
