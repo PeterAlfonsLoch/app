@@ -260,32 +260,8 @@ namespace linux
 void thread::Delete()
 {
 
-   // delete thread if it is auto-deleting
-   if(m_bAutoDelete)
-   {
-      if(m_pappDelete != NULL)
-         m_pappDelete.release();
-      m_evFinish.SetEvent();
-//      ::thread * pthread = dynamic_cast < ::thread * > (m_p.m_p);
-//      if(pthread->m_peventReady != NULL)
-  //    {
-    //     ::SetEvent((HANDLE) pthread->m_peventReady);
-     // }
-//      if(m_peventReady != NULL)
-  //    {
-    //     ::SetEvent((HANDLE) m_peventReady);
-      //}
-      //pthread->::ca2::smart_pointer < ::thread >::m_p = NULL;
-//      m_p.release();
-//      delete_this();
-        ::root::release();
+   thread_impl::Delete();
 
-   }
-   else
-   {
-      m_hthread = 0;
-      m_evFinish.SetEvent();
-   }
 }
 
 
