@@ -21,8 +21,8 @@ m_mutexUiPtra(papp)
    m_uiThread = 0;
 
    m_evFinish.SetEvent();
-   m_pthreadParams = NULL;
-   m_pfnthreadProc = NULL;
+   m_pThreadParams = NULL;
+   m_pfnThreadProc = NULL;
    
    
    CommonConstruct();
@@ -37,11 +37,11 @@ thread_impl::~thread_impl()
 }
 
 
-void thread_impl::construct(__thread_implPROC pfnthread_implProc, LPVOID pParam)
+void thread_impl::construct(__THREADPROC pfnThreadProc, LPVOID pParam)
 {
    m_evFinish.SetEvent();
-   m_pfnthreadProc = pfnthread_implProc;
-   m_pthreadParams = pParam;
+   m_pfnThreadProc = pfnThreadProc;
+   m_pThreadParams = pParam;
    
    CommonConstruct();
 }
@@ -70,7 +70,7 @@ void thread_impl::CommonConstruct()
    m_ptimera = canew(::user::interaction::timer_array(get_app()));
    m_puiptra = canew(::user::interaction_ptr_array(get_app()));
    
-   m_hthread_impl = NULL;
+   m_hthread = NULL;
    
 }
 
@@ -1581,65 +1581,4 @@ void thread_impl::Delete()
 
 
 
-void thread_impl::add(sp(::user::interaction) pui)
-{
-   single_lock sl(&m_mutexUiPtra, TRUE);
-   m_puiptra->add(pui);
-}
 
-void thread_impl::remove(::user::interaction * pui)
-{
-   if(pui == NULL)
-      return;
-   single_lock sl(&m_mutexUiPtra, TRUE);
-   if(m_puiptra != NULL)
-   {
-      m_puiptra->remove(pui);
-      m_puiptra->remove(pui->m_pui);
-      m_puiptra->remove(pui->m_pimpl);
-   }
-   sl.unlock();
-   if(m_ptimera != NULL)
-   {
-      m_ptimera->unset(pui);
-      m_ptimera->unset(pui->m_pui);
-      m_ptimera->unset(pui->m_pimpl);
-   }
-   
-   try
-   {
-      if(MAC_thread_impl(pui->m_pthread_impl.m_p) == this)
-      {
-         pui->m_pthread_impl = NULL;
-      }
-   }
-   catch(...)
-   {
-   }
-   try
-   {
-      if(pui->m_pimpl != NULL && pui->m_pimpl != pui)
-      {
-         if(MAC_thread_impl(pui->m_pimpl->m_pthread_impl.m_p) == this)
-         {
-            pui->m_pimpl->m_pthread_impl = NULL;
-         }
-      }
-   }
-   catch(...)
-   {
-   }
-   try
-   {
-      if(pui->m_pui != NULL && pui->m_pui != pui)
-      {
-         if(MAC_thread_impl(pui->m_pui->m_pthread_impl.m_p) == this)
-         {
-            pui->m_pui->m_pthread_impl = NULL;
-         }
-      }
-   }
-   catch(...)
-   {
-   }
-}
