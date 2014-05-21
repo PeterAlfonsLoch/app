@@ -63,7 +63,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E000FFAF-392F-4E32-BF51-FD7ED638991F}</ProjectGuid>
+    <ProjectGuid>{AFC48570-75E4-46BD-B8AB-4590B257E1C8}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>core</RootNamespace>
@@ -2589,7 +2589,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <None Include="user\user\user_interaction.inl" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\thirdparty\appseed\FreeImage\basefreeimage.vcxproj">
+    <ProjectReference Include="..\..\thirdparty\appseed\freeimage\basefreeimage.vcxproj">
       <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\thirdparty\appseed\freetype\basefreetype.vcxproj">
