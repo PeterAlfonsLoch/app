@@ -771,6 +771,9 @@
     <Filter Include="Header Files\base\node\ansios">
       <UniqueIdentifier>{69195050-6ed5-49b9-b26e-60f94ca26561}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\base\node\ansios">
+      <UniqueIdentifier>{a082445c-e80b-4002-8250-1fd29ecad1d1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_wstringtou.h">
@@ -4592,7 +4595,7 @@
     <ClInclude Include="base\node\ansios\ansios.h">
       <Filter>Header Files\base\node\ansios</Filter>
     </ClInclude>
-    <ClInclude Include="base\node\ansios\ansios_thread.h">
+    <ClInclude Include="base\node\ansios\ansios_thread_impl.h">
       <Filter>Header Files\base\node\ansios</Filter>
     </ClInclude>
   </ItemGroup>
@@ -7915,9 +7918,6 @@
     <ClCompile Include="base\os\android\android_cross_win_gdi.cpp">
       <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\android\android_file.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\android\android_file_watcher.cpp">
       <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
@@ -7945,13 +7945,7 @@
     <ClCompile Include="base\os\android\android_small_ipca_channel.cpp">
       <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\android\android_thread.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\android\android_win_base.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_window.cpp">
       <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
     <ClCompile Include="base\os\android\android_window_android.cpp">
@@ -7972,16 +7966,10 @@
     <ClCompile Include="base\os\ansios\crypto\ansios_crypt.cpp">
       <Filter>Source Files\base\os\ansios</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\ansios\ansios_file.cpp">
-      <Filter>Source Files\base\os\ansios</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\ansios\ansios_file_std.cpp">
       <Filter>Source Files\base\os\ansios</Filter>
     </ClCompile>
     <ClCompile Include="base\os\ansios\ansios_multithreading.cpp">
-      <Filter>Source Files\base\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\ansios\ansios_thread.cpp">
       <Filter>Source Files\base\os\ansios</Filter>
     </ClCompile>
     <ClCompile Include="base\os\android\android_c.c">
@@ -8653,9 +8641,6 @@
     <ClCompile Include="base\compress\zlib\zlib_zutil.c">
       <Filter>Source Files\base\compress\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\android\android.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\android\android_application.cpp">
       <Filter>Source Files\base\node\android</Filter>
     </ClCompile>
@@ -8730,6 +8715,24 @@
     </ClCompile>
     <ClCompile Include="base\node\android\android2.cpp">
       <Filter>Source Files\base\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ansios\ansios_thread_impl.cpp">
+      <Filter>Source Files\base\node\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\android\android_android.cpp">
+      <Filter>Source Files\base\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\ansios_base_file.cpp">
+      <Filter>Source Files\base\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_multithreading.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_base_file.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_windowing.cpp">
+      <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -8924,6 +8927,9 @@
     </None>
     <None Include="base\message\message.inl">
       <Filter>Header Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
