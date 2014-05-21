@@ -50,11 +50,6 @@ CLASS_DECL_BASE LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WP
 
 CLASS_DECL_BASE MESSAGE * __get_current_message();
 
-CLASS_DECL_BASE void __end_thread(sp(::base::application) papp, UINT nExitCode, bool bDelete = TRUE);
-
-CLASS_DECL_BASE void __init_thread();
-CLASS_DECL_BASE void __term_thread(sp(::base::application) papp, HINSTANCE hInstTerm = NULL);
-
 CLASS_DECL_BASE void __android_term();
 
 CLASS_DECL_BASE sp(::base::application)  __get_app();
