@@ -69,4 +69,11 @@ void __term_thread_impl(base::application*, HINSTANCE__*)
 {
 }
 
-Ķ
+
+
+
+
+
+
+
+

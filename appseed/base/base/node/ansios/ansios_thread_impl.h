@@ -17,15 +17,8 @@ namespace ansios
       virtual ~thread_impl();
 
 
-
-
-
-
-
-      virtual void defer_process_windows_messages();
-
-
       operator pthread_t() const;
+      
 
    };
 
