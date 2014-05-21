@@ -82,34 +82,11 @@ typedef void (__MSG_CALL thread::*__PMSGT)();
 CLASS_DECL_BASE LONG delete_registry_tree_helper(HKEY hParentKey, const string & strKeyName);
 
 
-CLASS_DECL_BASE void __end_thread(sp(::base::application) papp, UINT nExitCode, bool bDelete = TRUE);
-
-CLASS_DECL_BASE void __init_thread();
-CLASS_DECL_BASE void __term_thread(sp(::base::application) papp, HINSTANCE hInstTerm = NULL);
-
-/////////////////////////////////////////////////////////////////////////////
-// Global functions for access to the one and only application
-
-#define afxCurrentWinApp    __get_module_state()->m_pCurrentWinApp
-#define afxCurrentInstanceHandle    __get_module_state()->m_hCurrentInstanceHandle
-#define afxCurrentResourceHandle    __get_module_state()->m_hCurrentResourceHandle
-#define afxCurrentAppName   __get_module_state()->m_lpszCurrentAppName
-#define afxContextIsDLL     __get_module_state()->m_bDLL
-#define afxRegisteredClasses    __get_module_state()->m_fRegisteredClasses
-#define afxAmbientActCtx    __get_module_state()->m_bSetAmbientActCtx
-
-
-// Advanced initialization: for overriding default WinMain
-//CLASS_DECL_BASE bool ::core::WinInit(__in HINSTANCE hInstance, __in HINSTANCE hPrevInstance,
-  // __in_z LPTSTR lpCmdLine, __in int32_t nCmdShow);
 CLASS_DECL_BASE void __win_term();
 
 CLASS_DECL_BASE sp(::base::application) __get_app();
-//CLASS_DECL_BASE sp(::user::interaction) __get_main_window();
-//CLASS_DECL_BASE HINSTANCE CLASS_DECL_BASE System.m_hInstance;
 CLASS_DECL_BASE HINSTANCE __get_resource_handle();
 CLASS_DECL_BASE void __set_resource_handle(HINSTANCE hInstResource);
-//CLASS_DECL_BASE const char * __get_app_name();
 
 CLASS_DECL_BASE HINSTANCE __get_resource_handle();
 CLASS_DECL_BASE HINSTANCE __find_string_resource_handle(UINT nID);
