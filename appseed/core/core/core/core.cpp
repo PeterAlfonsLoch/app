@@ -6,7 +6,7 @@
 #endif
 
 
-CLASS_DECL_CORE string g_strNote;
+// CLASS_DECL_CORE string g_strNote;
 
 
 namespace core

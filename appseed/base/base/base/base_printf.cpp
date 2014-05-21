@@ -88,28 +88,45 @@ int32_t vwprintf_dup(const wchar_t *format, va_list args)
 
 
 #ifdef APPLEOS
-mutex g_mutexCvt;
+
+mutex * g_pmutexCvt = NULL;
+
 int32_t ecvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
 {
-   synch_lock ml(&g_mutexCvt);
+   
+   synch_lock ml(g_pmutexCvt);
+   
    char * psz = ecvt(d, i, pi1, pi2);
+   
    if(psz == NULL)
       return -1;
+   
    if(strlen(psz) > (size - 1))
       return -1;
+   
    strcpy(sz, psz);
+   
    return 0;
 
 }
+
 int32_t fcvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
 {
-   synch_lock ml(&g_mutexCvt);
+   
+   synch_lock ml(g_pmutexCvt);
+   
    char * psz = fcvt(d, i, pi1, pi2);
+   
    if(psz == NULL)
       return -1;
+   
    if(strlen(psz) > (size - 1))
       return -1;
+   
    strcpy(sz, psz);
+   
    return 0;
+   
 }
+
 #endif

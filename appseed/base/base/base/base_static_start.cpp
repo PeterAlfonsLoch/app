@@ -68,6 +68,12 @@ extern oswindow_dataptra * g_poswindowdataptra;
 
 #endif
 
+#ifdef APPLEOS
+
+extern mutex * g_pmutexCvt;
+
+#endif
+
 #undef new
 
 
@@ -83,6 +89,7 @@ namespace base
       {
    
          xxdebug_box("base.dll base_static_start (0)", "box", MB_OK);
+         
    
          /*
     
@@ -114,7 +121,13 @@ namespace base
          s_pstringmanager = new string_manager();
    
          create_id_space();
-   
+         
+#ifdef APPLEOS
+         
+         g_pmutexCvt = new mutex(NULL);
+         
+#endif
+
          //g_pstrLastStatus = new string();
    
          //g_pstrLastGlsStatus = new string();
@@ -187,6 +200,50 @@ namespace base
          // IMPLEMENT_BASE_FIXED_ALLOC_CONSTRUCTOR(property, 1024)
    
       }
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
 
       
       CLASS_DECL_BASE void term()
@@ -295,6 +352,14 @@ namespace base
          // delete g_pstrLastStatus;
    
          // g_pstrLastStatus = NULL;
+         
+#ifdef APPLEOS
+         
+         delete g_pmutexCvt;
+         
+         g_pmutexCvt = NULL;
+         
+#endif
    
          destroy_id_space();
    
