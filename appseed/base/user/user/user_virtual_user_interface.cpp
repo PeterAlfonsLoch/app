@@ -1112,71 +1112,83 @@ bool virtual_user_interface::DestroyWindow()
 
    if (m_pthread.is_set())
    {
-      single_lock sl(&m_pthread->m_pimpl->m_mutexUiPtra, TRUE);
+      
+      synch_lock sl(&m_pthread->m_pimpl->m_mutexUiPtra);
 
-      if (m_pthread->m_puiptra.is_set())
+      if (m_pthread->m_pimpl->m_puiptra.is_set())
       {
-         m_pthread->m_puiptra->remove(this);
+
+         m_pthread->m_pimpl->m_puiptra->remove(this);
+
       }
+
    }
-
-
 
    try
    {
+
       send_message(WM_DESTROY);
+
    }
    catch(...)
    {
+
    }
-
-
-//#else
-
-  // throw todo(get_app());
-
-//#endif
-
 
    m_bCreate = false;
 
-
-
-
-
    try
    {
+
       single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex, TRUE);
+
       try
       {
+
          if(m_pthread != NULL)
          {
+
             m_pthread->remove(m_pui);
+
          }
+
       }
       catch(...)
       {
+
       }
+
       try
       {
+
          if(m_pthread != NULL)
          {
+
             m_pthread->remove(this);
+
          }
+
       }
       catch(...)
       {
+
       }
+
       try
       {
+
          m_pthread = NULL;
+
       }
       catch(...)
       {
+
       }
+
    }
    catch(...)
    {
+
    }
 
    try

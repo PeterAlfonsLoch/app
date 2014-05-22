@@ -598,13 +598,18 @@ namespace windows
 
       ::window_sp pwindow;
 
-      if(m_pthread.is_set())
+      if(m_pthread.is_set() && m_pthread->m_pimpl.is_set())
       {
-         if(m_pthread->m_puiptra.is_set())
+         
+         synch_lock sl(&m_pthread->m_pimpl->m_mutexUiPtra);
+
+         if(m_pthread->m_pimpl->m_puiptra.is_set())
          {
-            m_pthread->m_puiptra->remove(this);
-            m_pthread->m_puiptra->remove(m_pui);
+
+            m_pthread->m_pimpl->m_puiptra->remove(this);
+            
          }
+
       }
 
 

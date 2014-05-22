@@ -221,36 +221,57 @@ namespace fontopus
       {
          if(m_puser == NULL)
          {
+
             if(m_pthreadCreatingUser == ::get_thread())
                return NULL;
+
             if(m_pthreadCreatingUser != NULL)
             {
+
                while(m_pthreadCreatingUser != NULL)
                {
-                  Sleep(84);
+
+                  m_pthreadCreatingUser->m_evReady.wait(millis(84));
+
                }
+            
                if(m_puser != NULL)
                   return m_puser;
+
                return NULL;
+
             }
-            keeper < thread * > keepCreatingUser(&m_pthreadCreatingUser, ::get_thread(), NULL, true);
-            user * puser = create_current_user();
-            if(!puser->initialize())
+
+            m_pthreadCreatingUser = __begin_thread < create_user_thread >(get_app());
+
+            while(m_pthreadCreatingUser != NULL)
             {
-               delete puser;
-               m_puser = NULL;
-               return NULL;
+
+               m_pthreadCreatingUser->m_evReady.wait(millis(84));
+
             }
-            m_puser = puser;
+
+            if(m_puser != NULL)
+               return m_puser;
+
+            return NULL;
+
          }
+
          if(m_puser != NULL)
          {
+
             if(m_puser->m_pifs == NULL)
             {
+
                m_puser->create_ifs();
+
             }
+
          }
+
          return m_puser;
+
       }
       else if(m_pbaseapp == NULL || m_pbaseapp->m_pbasesession == NULL)
       {
@@ -385,7 +406,53 @@ namespace fontopus
 
    }
 
+   create_user_thread::create_user_thread(sp(::base::application) papp) :
+      element(papp),
+      ::thread(papp),
+      m_evReady(papp)
+   {
+         m_evReady.ResetEvent();
+   }
+
+
+   create_user_thread::~create_user_thread()
+   {
+
+
+   }
+
+   int32_t create_user_thread::run()
+   {
+
+      ::AttachThreadInput(GetCurrentThreadId(),(uint32_t)System.thread::m_pimpl->get_os_int(),TRUE);
+
+      ::fontopus::user * puser = Session.fontopus()->create_current_user();
+
+      if(!puser->initialize())
+      {
+
+         delete puser;
+
+         Session.fontopus()->m_puser = NULL;
+
+      }
+      else
+      {
+
+         Session.fontopus()->m_puser = puser;
+
+      }
+
+      m_evReady.SetEvent();
+
+      Session.fontopus()->m_pthreadCreatingUser = NULL;
+
+      return 0;
+
+   }
 
 
 } // namespace fontopus
+
+
 

@@ -11,7 +11,7 @@ namespace fontopus
    public:
 
 
-      thread *                               m_pthreadCreatingUser;
+      class create_user_thread *             m_pthreadCreatingUser;
       user *                                 m_puser;
       string_to_string                       m_mapFontopusServer;
       authentication_map                     m_authmap;
@@ -48,6 +48,23 @@ namespace fontopus
 
 
       virtual string get_server(const char * pszUrl, int32_t iRetry);
+
+   };
+
+
+
+   class CLASS_DECL_BASE create_user_thread:
+      virtual public thread
+   {
+   public:
+
+
+      manual_reset_event m_evReady;
+
+      create_user_thread(sp(::base::application) papp);
+      virtual ~create_user_thread();
+
+      int32_t run();
 
    };
 

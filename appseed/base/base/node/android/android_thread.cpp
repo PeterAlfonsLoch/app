@@ -563,78 +563,7 @@ namespace android
    thread::~thread()
    {
 
-/*      if(m_spuiMessage->m_pimpl != NULL)
-      {
-         m_spuiMessage->m_pimpl->m_pthread = NULL;
-         m_spuiMessage->m_pimpl->m_signalptra.remove_all();
-         m_spuiMessage->m_pimpl->m_signala.remove_all();
-      }
 
-      m_spuiMessage->m_pthread = NULL;
-      m_spuiMessage->m_signalptra.remove_all();
-      m_spuiMessage->m_signala.remove_all();*/
-
-      if(m_puiptra != NULL)
-      {
-         single_lock sl(&m_mutexUiPtra, TRUE);
-         ::user::interaction_ptr_array * puiptra = m_puiptra;
-         m_puiptra = NULL;
-         for(int32_t i = 0; i < puiptra->get_size(); i++)
-         {
-            sp(::user::interaction) pui = puiptra->element_at(i);
-            if(pui->m_pthread != NULL)
-            {
-#ifndef DEBUG
-               try
-               {
-#endif
-                  if(ANDROID_THREAD(pui->m_pthread->m_pthread) == this
-                  || ANDROID_THREAD(pui->m_pthread->m_pthread->m_p.m_p) == ANDROID_THREAD(m_p.m_p)
-                  || ANDROID_THREAD(pui->m_pthread->m_pthread) == ANDROID_THREAD(m_p.m_p))
-                  {
-                     pui->m_pthread = NULL;
-                  }
-#ifndef DEBUG
-               }
-               catch(...)
-               {
-               }
-#endif
-            }
-         }
-         sl.unlock();
-      }
-
-      __MODULE_THREAD_STATE* pState = __get_module_thread_state();
-/*      // clean up temp objects
-      pState->m_pmapHGDIOBJ->delete_temp();
-      pState->m_pmapHDC->delete_temp();
-      pState->m_pmapHWND->delete_temp();*/
-
-
-      // free thread object
-//      if (m_hThread != NULL)
-  //       CloseHandle(m_hThread);
-
-
-
-      // cleanup module state
-      if (pState->m_pCurrentWinThread == this)
-         pState->m_pCurrentWinThread = NULL;
-
-      //window::DeleteTempMap();
-//      m_pmapHDC->delete_temp();
-  //    m_pmapHGDIOBJ->delete_temp();
-
-      try
-      {
-         // cleanup temp/permanent maps (just the maps themselves)
-         //delete m_pmapHDC;
-         //delete m_pmapHGDIOBJ;
-      }
-      catch(...)
-      {
-      }
 
    }
 
@@ -656,11 +585,13 @@ namespace android
    int thread::get_x_window_count() const
    {
 
-         if(m_puiptra == NULL)
-            return 0;
+      if(m_puiptra == NULL)
+         return 0;
 
-            return m_puiptra->get_count();
+      return m_puiptra->get_count();
+
    }
+
 
    sp(::user::interaction) thread::SetMainWnd(sp(::user::interaction) pui)
    {
@@ -671,8 +602,11 @@ namespace android
 
    void thread::add(sp(::user::interaction) pui)
    {
+
       single_lock sl(&m_mutexUiPtra, TRUE);
+
       m_puiptra->add(pui);
+
    }
 
    void thread::remove(::user::interaction * pui)
@@ -745,11 +679,16 @@ namespace android
       }
    }
 
+
    ::count thread::get_ui_count()
    {
+
       single_lock sl(&m_mutexUiPtra, TRUE);
+
       return m_puiptra->get_count();
+
    }
+
 
    sp(::user::interaction) thread::get_ui(int32_t iIndex)
    {
@@ -759,25 +698,9 @@ namespace android
 
    void thread::set_timer(sp(::user::interaction) pui, uint_ptr nIDEvent, UINT nEllapse)
    {
-    /*  if(!m_spuiMessage->IsWindow())
-      {
-         return;
-      }*/
+
       m_ptimera->set(pui, nIDEvent, nEllapse);
-  //    single_lock sl(&m_ptimera->m_mutex, TRUE);
-/*      int32_t iMin = 100;
-      for(int32_t i = 0; i < m_ptimera->m_timera.get_count(); i++)
-      {
-         if(m_ptimera->m_timera[i].m_uiElapse < natural(iMin))
-         {
-            iMin = m_ptimera->m_timera[i].m_uiElapse;
-         }
-      }
-      sl.unlock();
-      if(m_spuiMessage->IsWindow())
-      {
-         m_spuiMessage->SetTimer((uint_ptr)-2, iMin, NULL);
-      }*/
+
    }
 
    void thread::unset_timer(sp(::user::interaction) pui, uint_ptr nIDEvent)
@@ -1164,12 +1087,6 @@ stop_run:
    {
       ASSERT_VALID(this);
 
-/*   #if defined(DEBUG) && !defined(_AFX_NO_DEBUG_CRT)
-      // check ca2 API's allocator (before idle)
-      if (_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & _CRTDBG_CHECK_ALWAYS_DF)
-         ASSERT(__check_memory());
-   #endif*/
-
       if(lCount <= 0 && m_puiptra != NULL)
       {
          for(int32_t i = 0; i < m_puiptra->get_count(); i++)
@@ -1179,11 +1096,7 @@ stop_run:
             {
                if (pui != NULL && pui->IsWindowVisible())
                {
-                  /*AfxcallWndProc(pMainWnd, pMainWnd->get_handle(),
-                     WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0);*/
                   pui->send_message(WM_IDLEUPDATECMDUI, (WPARAM)TRUE);
-               /*   pui->SendMessageToDescendants(WM_IDLEUPDATECMDUI,
-                     (WPARAM)TRUE, 0, TRUE, TRUE);*/
                }
             }
             catch(...)
@@ -1192,60 +1105,11 @@ stop_run:
          }
 
 
-         // send WM_IDLEUPDATECMDUI to the main window
-         /*
-         sp(::user::interaction) pMainWnd = GetMainWnd();
-         if (pMainWnd != NULL && pMainWnd->IsWindowVisible())
-         {
-            /*AfxcallWndProc(pMainWnd, pMainWnd->get_handle(),
-               WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0);*/
-           /* pMainWnd->SendMessage(WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0);
-            pMainWnd->SendMessageToDescendants(WM_IDLEUPDATECMDUI,
-               (WPARAM)TRUE, 0, TRUE, TRUE);
-         }
-         */
-         // send WM_IDLEUPDATECMDUI to all frame windows
-         /* linux __MODULE_THREAD_STATE* pState = _AFX_CMDTARGET_GETSTATE()->m_thread;
-         sp(frame_window) pFrameWnd = pState->m_frameList;
-         while (pFrameWnd != NULL)
-         {
-            if (pFrameWnd->get_handle() != NULL && pFrameWnd != pMainWnd)
-            {
-               if (pFrameWnd->m_nShowDelay == SW_HIDE)
-                  pFrameWnd->ShowWindow(pFrameWnd->m_nShowDelay);
-               if (pFrameWnd->IsWindowVisible() ||
-                  pFrameWnd->m_nShowDelay >= 0)
-               {
-                  AfxcallWndProc(pFrameWnd, pFrameWnd->get_handle(),
-                     WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0);
-                  pFrameWnd->SendMessageToDescendants(WM_IDLEUPDATECMDUI,
-                     (WPARAM)TRUE, 0, TRUE, TRUE);
-               }
-               if (pFrameWnd->m_nShowDelay > SW_HIDE)
-                  pFrameWnd->ShowWindow(pFrameWnd->m_nShowDelay);
-               pFrameWnd->m_nShowDelay = -1;
-            }
-            pFrameWnd = pFrameWnd->m_pNextFrameWnd;
-         }*/
       }
       else if (lCount >= 0)
       {
-/*         __MODULE_THREAD_STATE* pState = __get_module_thread_state();
-         if (pState->m_nTempMapLock == 0)
-         {
-            // free temp maps, OLE DLLs, etc.
-            AfxLockTempMaps( (m_p->m_papp));
-            AfxUnlockTempMaps( (m_p->m_papp));
-         }*/
       }
 
-   /*
-   #if defined(DEBUG) && !defined(_AFX_NO_DEBUG_CRT)
-      // check ca2 API's allocator (after idle)
-      if (_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & _CRTDBG_CHECK_ALWAYS_DF)
-         ASSERT(__check_memory());
-   #endif
-   */
       return lCount < 0;  // nothing more to do if lCount >= 0
    }
 
