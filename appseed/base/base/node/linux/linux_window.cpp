@@ -739,7 +739,7 @@ d.unlock();
    void window::_001OnNcDestroy(::signal_details * pobj)
    {
 
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex, TRUE);
 
       pobj->m_bRet = true;
 
@@ -874,7 +874,7 @@ d.unlock();
 
       }
 
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex, TRUE);
       sp(::window) pWnd;
       oswindow hWndOrig;
       bool bResult;
@@ -2195,7 +2195,7 @@ restart_mouse_hover_check:
    sp(::user::interaction) PASCAL window::GetDescendantWindow(sp(::user::interaction) hWnd, id id)
    {
 
-      single_lock sl(&hWnd->m_pthread->m_mutex, TRUE);
+      single_lock sl(hWnd->m_pthread->m_pmutex, TRUE);
 
       for(int32_t i = 0; i < hWnd->m_uiptraChild.get_count(); i++)
       {

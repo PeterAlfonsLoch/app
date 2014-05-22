@@ -15,7 +15,10 @@ namespace linux
       virtual ~thread();
 
 
+   };
 
 
+
+} // namespace linux
 
 
