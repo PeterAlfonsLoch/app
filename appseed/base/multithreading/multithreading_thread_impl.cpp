@@ -17,12 +17,6 @@ m_mutexUiPtra(papp)
 
 {
 
-   m_hthread = NULL;
-   m_uiThread = 0;
-
-   m_evFinish.SetEvent();
-   m_pThreadParams = NULL;
-   m_pfnThreadProc = NULL;
    
    
    CommonConstruct();
@@ -49,16 +43,25 @@ void thread_impl::construct()
 
 void thread_impl::construct(__THREADPROC pfnThreadProc, LPVOID pParam)
 {
-   m_evFinish.SetEvent();
+
+   CommonConstruct();
+
    m_pfnThreadProc = pfnThreadProc;
    m_pThreadParams = pParam;
    
-   CommonConstruct();
 }
 
 
 void thread_impl::CommonConstruct()
 {
+
+   m_hthread = NULL;
+   m_uiThread = 0;
+
+   m_evFinish.SetEvent();
+   m_pThreadParams = NULL;
+   m_pfnThreadProc = NULL;
+
    m_ptimera      = NULL;
    m_puiptra      = NULL;
    m_puiMain      = NULL;
@@ -81,6 +84,8 @@ void thread_impl::CommonConstruct()
    m_puiptra = canew(::user::interaction_ptr_array(get_app()));
    
    m_hthread = NULL;
+
+   m_iReturnCode = 0;
    
 }
 

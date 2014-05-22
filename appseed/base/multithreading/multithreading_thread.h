@@ -59,7 +59,7 @@ public:
    friend bool __internal_pre_translate_message(MESSAGE * pMsg);
 
 
-   virtual void CommonConstruct();
+   void CommonConstruct();
 
 
    virtual bool finalize();
