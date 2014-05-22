@@ -2807,7 +2807,6 @@
 		<Unit filename="base/os/ansios/ansios_http_lib.h" />
 		<Unit filename="base/os/ansios/ansios_multithreading.cpp" />
 		<Unit filename="base/os/ansios/ansios_multithreading.h" />
-		<Unit filename="base/os/ansios/ansios_thread.cpp" />
 		<Unit filename="base/os/ansios/ansios_thread.h" />
 		<Unit filename="base/os/ansios/crypto/ansios_crypt.cpp" />
 		<Unit filename="base/os/cross.h" />
