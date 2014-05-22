@@ -167,14 +167,7 @@ CLASS_DECL_BASE DWORD get_current_thread_id()
 }
 
 
-CLASS_DECL_BASE void __init_thread()
-{
 
-
-}
-
-
-// Thread local storage.
 typedef raw_array < void * > ThreadLocalData;
 
 
