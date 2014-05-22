@@ -167,7 +167,7 @@ namespace command
 
    void primary_view::_001OnUpdateEditCopy(signal_details * pobj)
    {
-      SCAST_PTR(base_cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable(TRUE);
    }
 
@@ -179,7 +179,7 @@ namespace command
 
    void primary_view::_001OnUpdateEditPaste(signal_details * pobj)
    {
-      SCAST_PTR(base_cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable(TRUE);
    }
 
