@@ -1607,7 +1607,7 @@ namespace base
 
    string application::get_ca2_module_folder()
    {
-      single_lock sl(&m_mutex,true);
+      single_lock sl(m_pmutex,true);
       return m_strCa2ModuleFolder;
    }
 

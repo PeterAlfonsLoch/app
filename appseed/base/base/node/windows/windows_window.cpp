@@ -118,7 +118,7 @@ namespace windows
          Sys(m_pbaseapp).user()->m_pwindowmap->m_map.remove_key((int_ptr)get_handle());
       }
 
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex,TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex,TRUE);
 
       m_pfont.release();
 
@@ -594,7 +594,7 @@ namespace windows
    void window::_001OnNcDestroy(signal_details * pobj)
    {
 
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex,TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex,TRUE);
 
       ::window_sp pwindow;
 
@@ -2109,7 +2109,7 @@ namespace windows
 
    sp(::user::interaction) window::GetDescendantWindow(sp(::user::interaction) oswindow,id id)
    {
-      single_lock sl(&oswindow->m_pthread->m_mutex,TRUE);
+      single_lock sl(oswindow->m_pthread->m_pmutex,TRUE);
       // get_child_by_id recursive (return first found)
       // breadth-first for 1 level, then depth-first for next level
 

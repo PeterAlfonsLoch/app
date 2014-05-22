@@ -17,7 +17,7 @@ public:
 
 
    static bool                            s_bAllocReady;
-   mutex                                  m_mutex;
+   mutex *                                m_pmutex;
    bool                                   m_bRun;
 
    thread_impl_sp                         m_pimpl;

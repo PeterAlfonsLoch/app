@@ -123,7 +123,7 @@ bool virtual_user_interface::SetWindowPos(int32_t z, int32_t x, int32_t y, int32
       {
          if(z == ZORDER_TOP || z == ZORDER_TOPMOST)
          {
-            single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex);
+            single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex);
             if(sl.lock(millis(84)))
             {
                index iFind = get_parent()->m_uiptraChild.find_first(m_pui);
@@ -1147,7 +1147,7 @@ bool virtual_user_interface::DestroyWindow()
 
    try
    {
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex, TRUE);
       try
       {
          if(m_pthread != NULL)
@@ -1404,7 +1404,7 @@ bool virtual_user_interface::KillTimer(uint_ptr nIDEvent)
 
 sp(::user::interaction) virtual_user_interface::GetDescendantWindow(id id) const
 {
-   single_lock sl(&m_pthread->m_mutex, TRUE);
+   single_lock sl(m_pthread->m_pmutex, TRUE);
    for(int32_t i = 0; i < m_pui->m_uiptraChild.get_count(); i++)
    {
       if(m_pui->m_uiptraChild[i].GetDlgCtrlId() == id)

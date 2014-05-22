@@ -7,12 +7,12 @@ class CLASS_DECL_BASE simple_app :
 public:
 
 
-   //HINSTANCE                  m_hinstance;
-   int32_t                        __argc;
-   TCHAR **                   __targv;
+   //HINSTANCE                   m_hinstance;
+   int32_t                       __argc;
+   TCHAR **                      __targv;
 
-   MESSAGE                    m_msg;
-   int32_t                        m_iError;
+   MESSAGE                       m_msg;
+   int32_t                       m_iError;
 
 
    simple_app();
@@ -31,8 +31,49 @@ public:
    template < class APP >
    static int32_t s_main()
    {
+
+      //Sleep(15 * 1000);
+
+
+
+      STARTUPINFO si;
+      si.dwFlags = 0;
+      GetStartupInfo(&si);
+
+      //initialize_primitive_heap(); 
+
+
+      //	_init_atexit();
+      //	_initterm(__xc_a, __xc_z);			// call C++ constructors
+
+      //initialize_primitive_trace();
+
+      if(!os_initialize())
+      {
+         return -1;
+      }
+
+
+      if(!main_initialize())
+      {
+         return -1;
+      }
+
       APP app;
-      return app.main();
+      
+      int32_t iRet = app.main();
+
+      main_finalize();
+
+      os_finalize();
+
+      //finalize_primitive_heap(); 
+
+      //_doexit();
+      _term_args();
+
+      return iRet;
+
    }
 
 };

@@ -584,7 +584,7 @@ namespace user
       }
 
       array < ::user::interaction  * > uiptra;
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex, TRUE);
       if (get_parent() != NULL)
       {
          try { get_parent()->m_uiptraChild.remove(this); }
@@ -1614,7 +1614,7 @@ namespace user
             {
                pwindowOld->install_message_handling(pimplOld);
             }
-            single_lock sl(&m_pthread->m_mutex, TRUE);
+            single_lock sl(m_pthread->m_pmutex, TRUE);
             pimplNew->m_uiptraChild = pimplOld->m_uiptraChild;
             pimplOld->m_uiptraChild.remove_all();
             sl.unlock();
@@ -2948,9 +2948,9 @@ namespace user
          if (puiParent != NULL)
          {
 
-            single_lock sl(puiParent->m_pthread == NULL ? NULL : &puiParent->m_pthread->m_mutex, TRUE);
+            single_lock sl(puiParent->m_pthread == NULL ? NULL : puiParent->m_pthread->m_pmutex, TRUE);
 
-            single_lock sl2(m_pui->m_pthread == NULL ? NULL : &m_pui->m_pthread->m_mutex, TRUE);
+            single_lock sl2(m_pui->m_pthread == NULL ? NULL : m_pui->m_pthread->m_pmutex, TRUE);
 
             puiParent->m_uiptraChild.add_unique(m_pui);
 
@@ -2970,9 +2970,9 @@ namespace user
             if (pholder.is_set())
             {
 
-               single_lock sl(puiParent->m_pthread == NULL ? NULL : &puiParent->m_pthread->m_mutex, TRUE);
+               single_lock sl(puiParent->m_pthread == NULL ? NULL :puiParent->m_pthread->m_pmutex, TRUE);
 
-               single_lock sl2(m_pui->m_pthread == NULL ? NULL : &m_pui->m_pthread->m_mutex, TRUE);
+               single_lock sl2(m_pui->m_pthread == NULL ? NULL : m_pui->m_pthread->m_pmutex, TRUE);
 
                if (!pholder->is_holding(m_pui))
                {
@@ -3402,7 +3402,7 @@ namespace user
 
    sp(interaction) interaction::get_bottom_child()
    {
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex, TRUE);
       if (m_uiptraChild.get_count() <= 0)
          return NULL;
       else
@@ -3411,7 +3411,7 @@ namespace user
 
    sp(interaction) interaction::get_top_child()
    {
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex, TRUE);
       if (m_uiptraChild.get_count() <= 0)
          return NULL;
       else
@@ -3420,7 +3420,7 @@ namespace user
 
    sp(interaction) interaction::under_sibling()
    {
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex, TRUE);
       sp(interaction) pui = NULL;
       try
       {
@@ -3444,7 +3444,7 @@ namespace user
 
    sp(interaction) interaction::under_sibling(sp(interaction) pui)
    {
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex, TRUE);
       index i = m_uiptraChild.find_first(pui);
       if (i < 0)
          return NULL;
@@ -3468,7 +3468,7 @@ namespace user
 
    sp(interaction) interaction::above_sibling()
    {
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex, TRUE);
       sp(interaction) pui = NULL;
       try
       {
@@ -3502,7 +3502,7 @@ namespace user
 
    sp(interaction) interaction::above_sibling(sp(interaction) pui)
    {
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex, TRUE);
       index i = m_uiptraChild.find_first(pui);
       if (i < 0)
          return NULL;

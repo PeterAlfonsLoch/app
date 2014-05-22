@@ -3,65 +3,23 @@
 
 
 
-thread::thread() :
-m_mutex(NULL)
-{
-
-}
-
-
-thread::~thread()
-{
-
-}
-
-
-
-
-
-mutex & user_mutex()
-{
-
-   static mutex * s_pmutexUser = new mutex();
-
-   return *s_pmutexUser;
-
-}
-
-
-
-
-::base::application * get_thread_app()
-{
-
-   thread * pthread = get_thread();
-
-   if (pthread == NULL)
-      return NULL;
-
-   return pthread->get_app();
-
-}
-
-
-
-
-bool thread::verb()
-{
-
-   return true;
-
-}
-
 
 bool thread::s_bAllocReady = false;
+
+
+thread::thread()
+{
+
+   CommonConstruct();
+
+}
+
 
 
 
 thread::thread(sp(::base::application) papp) :
 element(papp),
-m_set(papp),
-m_mutex(papp)
+m_set(papp)
 {
 
    CommonConstruct();
@@ -78,8 +36,7 @@ m_mutex(papp)
 }
 
 thread::thread(sp(::base::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
-element(papp),
-m_mutex(papp)
+element(papp)
 {
 
    CommonConstruct();
@@ -99,6 +56,9 @@ void thread::CommonConstruct()
 {
 
    m_dwAlive = ::get_tick_count();
+
+   m_pmutex = new mutex();
+
    m_bReady = false;
    m_bRun = true;
    m_pappDelete = NULL;
@@ -111,6 +71,22 @@ void thread::CommonConstruct()
    m_iReturnCode = 0;
 
 }
+
+
+
+thread::~thread()
+{
+
+   if(m_pmutex != NULL)
+      delete m_pmutex;
+
+}
+
+
+
+
+
+
 
 
 void * thread::get_os_data() const
@@ -144,6 +120,14 @@ void thread::start()
       return;
 
    m_pimpl->start();
+
+}
+
+
+bool thread::verb()
+{
+
+   return true;
 
 }
 
@@ -771,6 +755,7 @@ void thread::dump(dump_context & dumpcontext) const
 
 void thread::Delete()
 {
+
 
    release();
 

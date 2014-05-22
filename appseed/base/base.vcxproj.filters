@@ -4604,6 +4604,9 @@
     <ClInclude Include="base\base\base_heap_item_array.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
+    <ClInclude Include="base\base\base_static_start.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -8739,6 +8742,9 @@
     </ClCompile>
     <ClCompile Include="base\os\android\android_windowing.cpp">
       <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_static_start.cpp">
+      <Filter>Source Files\base\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

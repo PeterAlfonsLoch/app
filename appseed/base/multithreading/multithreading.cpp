@@ -121,3 +121,29 @@ thread* __begin_thread(sp(::base::application) papp,__THREADPROC pfnThreadProc,L
 
 
 
+
+
+mutex & user_mutex()
+{
+
+   static mutex * s_pmutexUser = new mutex();
+
+   return *s_pmutexUser;
+
+}
+
+
+
+
+::base::application * get_thread_app()
+{
+
+   thread * pthread = get_thread();
+
+   if(pthread == NULL)
+      return NULL;
+
+   return pthread->get_app();
+
+}
+

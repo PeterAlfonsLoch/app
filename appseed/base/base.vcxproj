@@ -1420,6 +1420,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base\base_smart_pointer1.h" />
     <ClInclude Include="base\base\base_smart_pointer2.h" />
     <ClInclude Include="base\base\base_sprintf.h" />
+    <ClInclude Include="base\base\base_static_start.h" />
     <ClInclude Include="base\base\base_system.h" />
     <ClInclude Include="base\base\base_system_str.h" />
     <ClInclude Include="base\base\base_system_trace.h" />
@@ -2573,6 +2574,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="filesystem\fs\fs_set.h" />
     <ClCompile Include="base\base\base_id_pool.cpp" />
     <ClCompile Include="base\base\base_print_job.cpp" />
+    <ClCompile Include="base\base\base_static_start.cpp" />
     <ClCompile Include="base\geoip\geoip.cpp" />
     <ClCompile Include="base\geoip\geoip_city.cpp" />
     <ClCompile Include="base\geoip\geoip_region_name.cpp" />

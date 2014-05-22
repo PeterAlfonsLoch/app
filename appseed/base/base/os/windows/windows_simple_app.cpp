@@ -18,66 +18,32 @@ simple_app::~simple_app()
 int32_t simple_app::main()
 {
 
-   //Sleep(15 * 1000);
-
    __argc = _init_args();
-	__targv = _argv;
-	_init_file();
+   __targv = _argv;
+   _init_file();
 
-	TCHAR *cmd = GetCommandLine();
+   TCHAR *cmd = GetCommandLine();
 
-	// Skip program name
-	if (*cmd == _T('"'))
-	{
-	    while (*cmd && *cmd != _T('"'))
-	        cmd++;
-	    if (*cmd == _T('"'))
-	        cmd++;
-	}
-	else
-	{
-	    while (*cmd > _T(' '))
-	        cmd++;
-	}
-
-	// Skip any white space
-	while (*cmd && *cmd <= _T(' '))
-	    cmd++;
-
-	STARTUPINFO si;
-	si.dwFlags = 0;
-	GetStartupInfo(&si);
-
-   //initialize_primitive_heap(); 
-
-
-//	_init_atexit();
-//	_initterm(__xc_a, __xc_z);			// call C++ constructors
-
-   //initialize_primitive_trace();
-
-   if(!os_initialize())
+   // Skip program name
+   if(*cmd == _T('"'))
    {
-      return -1;
+      while(*cmd && *cmd != _T('"'))
+         cmd++;
+      if(*cmd == _T('"'))
+         cmd++;
    }
-    
-       
-   if(!main_initialize()) 
+   else
    {
-      return -1;
+      while(*cmd > _T(' '))
+         cmd++;
    }
+
+   // Skip any white space
+   while(*cmd && *cmd <= _T(' '))
+      cmd++;
 
    body();
    
-   main_finalize();
-    
-   os_finalize(); 
-    
-   //finalize_primitive_heap(); 
-
-	//_doexit();
-	_term_args();
-
    return m_iError;
 
 }

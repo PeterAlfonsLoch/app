@@ -486,7 +486,7 @@ namespace base
    void system::appa_load_string_table()
    {
 
-      retry_single_lock rsl(&m_mutex,millis(84),millis(84));
+      retry_single_lock rsl(m_pmutex,millis(84),millis(84));
 
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
@@ -499,7 +499,7 @@ namespace base
    void system::appa_set_locale(const char * pszLocale,::action::context actioncontext)
    {
 
-      retry_single_lock rsl(&m_mutex,millis(84),millis(84));
+      retry_single_lock rsl(m_pmutex,millis(84),millis(84));
 
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
@@ -512,7 +512,7 @@ namespace base
    void system::appa_set_schema(const char * pszStyle,::action::context actioncontext)
    {
 
-      retry_single_lock rsl(&m_mutex,millis(84),millis(84));
+      retry_single_lock rsl(m_pmutex,millis(84),millis(84));
 
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
