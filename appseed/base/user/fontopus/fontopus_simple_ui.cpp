@@ -183,6 +183,11 @@ namespace fontopus
 
       m_login.ShowWindow(SW_NORMAL);
       
+      SetForegroundWindow();
+
+      BringWindowToTop();
+
+      BringToTop(SW_NORMAL);
 
       RunModalLoop();
 
