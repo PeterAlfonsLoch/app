@@ -100,6 +100,8 @@ CLASS_DECL_BASE ::thread * get_thread();
 CLASS_DECL_BASE void set_thread(::thread * pthread);
 
 
+CLASS_DECL_BASE void __node_init_multithreading();
+CLASS_DECL_BASE void __node_term_multithreading();
 
 
 

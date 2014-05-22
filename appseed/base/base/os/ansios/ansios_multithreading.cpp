@@ -174,14 +174,73 @@ CLASS_DECL_BASE void __init_thread()
 }
 
 
+// Thread local storage.
+typedef raw_array < void * > ThreadLocalData;
+
+
+
+thread_pointer < ThreadLocalData > currentThreadData;
+thread_int_ptr < DWORD > currentThreadId;
+thread_pointer < hthread > currentThread;
+thread_pointer < os_thread > t_posthread;
+
+
+raw_array<DWORD> * freeTlsIndices = NULL;
+mutex * g_pmutexTlsData = NULL;
+
+
+map < HTHREAD,HTHREAD,HTHREAD,HTHREAD > * s_pmapHthreadHthread = NULL;
+map < DWORD,DWORD,HTHREAD,HTHREAD > * s_pmapDwordHthread = NULL;
+map < HTHREAD,HTHREAD,DWORD,DWORD > * s_pmapHthreadDword = NULL;
+map < HTHREAD,HTHREAD,ThreadLocalData *,ThreadLocalData * > * allthreaddata = NULL;
 
 
 
 
 
 
+void __node_init_multithreading()
+{
+   
+   s_pmapHthreadHthread = new map < HTHREAD,HTHREAD,HTHREAD,HTHREAD >();
+   
+   s_pmapDwordHthread = new map < DWORD,DWORD,HTHREAD,HTHREAD >();
+   
+   s_pmapHthreadDword = new map < HTHREAD,HTHREAD,DWORD,DWORD >();
+   
+   allthreaddata = new map < HTHREAD,HTHREAD,ThreadLocalData *,ThreadLocalData * >();
+   
+   freeTlsIndices = new raw_array<DWORD>();
+   
+   
+}
 
 
+
+void __node_term_multithreading()
+{
+   
+   delete freeTlsIndices;
+   
+   freeTlsIndices = NULL;
+   
+   delete allthreaddata;
+   
+   allthreaddata = NULL;
+   
+   delete s_pmapHthreadDword;
+   
+   s_pmapHthreadDword = NULL;
+   
+   delete s_pmapDwordHthread;
+   
+   s_pmapDwordHthread = NULL;
+   
+   delete s_pmapHthreadHthread;
+   
+   s_pmapHthreadHthread = NULL;
+   
+}
 
 
 
@@ -239,18 +298,14 @@ map < HTHREAD,HTHREAD,PendingThreadInfo,PendingThreadInfo > & pendingThreads()
 map < HTHREAD,HTHREAD,HTHREAD,HTHREAD > & thread_handle_map()
 {
 
-   static map < HTHREAD,HTHREAD,HTHREAD,HTHREAD > * s_pmap = new map < HTHREAD,HTHREAD,HTHREAD,HTHREAD >();
-
-   return *s_pmap;
+   return *s_pmapHthreadHthread;
 
 }
 
 map < DWORD,DWORD,HTHREAD,HTHREAD > & thread_id_handle_map()
 {
 
-   static map < DWORD,DWORD,HTHREAD,HTHREAD > * s_pmap = new map < DWORD,DWORD,HTHREAD,HTHREAD >();
-
-   return *s_pmap;
+   return *s_pmapDwordHthread;
 
 }
 
@@ -258,9 +313,7 @@ map < DWORD,DWORD,HTHREAD,HTHREAD > & thread_id_handle_map()
 map < HTHREAD,HTHREAD,DWORD,DWORD > & thread_id_map()
 {
 
-   static map < HTHREAD,HTHREAD,DWORD,DWORD > * s_pmap = new map < HTHREAD,HTHREAD,DWORD,DWORD >();
-
-   return *s_pmap;
+   return *s_pmapHthreadDword;
 
 }
 
@@ -274,20 +327,6 @@ DWORD DwThreadId()
    return g_dw_thread_id++;
 }
 
-// Thread local storage.
-typedef raw_array < void * > ThreadLocalData;
-
-
-
-thread_pointer < ThreadLocalData > currentThreadData;
-thread_int_ptr < DWORD > currentThreadId;
-thread_pointer < hthread > currentThread;
-thread_pointer < os_thread > t_posthread;
-
-
-static raw_array<DWORD> freeTlsIndices;
-static map < HTHREAD,HTHREAD,ThreadLocalData *,ThreadLocalData * > allthreaddata;
-mutex * g_pmutexTlsData = NULL;
 
 
 static DWORD nextTlsIndex = 0;
@@ -521,10 +560,10 @@ DWORD WINAPI TlsAlloc()
    synch_lock lock(g_pmutexTlsData);
 
    // Can we reuse a previously freed TLS slot?
-   if(freeTlsIndices.get_count() > 0)
+   if(freeTlsIndices->get_count() > 0)
    {
-      DWORD result = freeTlsIndices.element_at(freeTlsIndices.get_count() - 1);
-      freeTlsIndices.remove_at(freeTlsIndices.get_count() - 1);
+      DWORD result = freeTlsIndices->element_at(freeTlsIndices->get_count() - 1);
+      freeTlsIndices->remove_at(freeTlsIndices->get_count() - 1);
       return result;
    }
 
@@ -547,7 +586,7 @@ int_bool WINAPI TlsFree(DWORD dwTlsIndex)
    // Store this slot for reuse by TlsAlloc.
    try
    {
-      freeTlsIndices.add(dwTlsIndex);
+      freeTlsIndices->add(dwTlsIndex);
    }
    catch(...)
    {
@@ -556,7 +595,7 @@ int_bool WINAPI TlsFree(DWORD dwTlsIndex)
 
    // Zero the value for all threads that might be using this now freed slot.
 
-   POSITION pos = allthreaddata.get_start_position();
+   POSITION pos = allthreaddata->get_start_position();
    while(pos != NULL)
    {
 
@@ -564,7 +603,7 @@ int_bool WINAPI TlsFree(DWORD dwTlsIndex)
 
       ThreadLocalData * pdata;
 
-      allthreaddata.get_next_assoc(pos,hThread,pdata);
+      allthreaddata->get_next_assoc(pos,hThread,pdata);
 
       if(pdata->get_count() > dwTlsIndex)
       {
@@ -587,7 +626,7 @@ LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
    }
    else
    {
-      threadData = allthreaddata[currentThread] ;
+      threadData = allthreaddata->operator[](currentThread);
       if(threadData)
       {
          currentThreadData = threadData;
@@ -610,10 +649,10 @@ LPVOID WINAPI TlsGetValue(HTHREAD hthread,DWORD dwTlsIndex)
 
       synch_lock lock(g_pmutexTlsData);
 
-      if(allthreaddata.is_empty())
+      if(allthreaddata->is_empty())
          return NULL;
 
-      ThreadLocalData * threadData = allthreaddata[hthread];
+      ThreadLocalData * threadData = allthreaddata->operator [] (hthread);
 
       if(threadData && threadData->get_count() > dwTlsIndex)
       {
@@ -655,7 +694,7 @@ int_bool WINAPI TlsSetValue(DWORD dwTlsIndex,LPVOID lpTlsValue)
 
          synch_lock lock(g_pmutexTlsData);
 
-         allthreaddata.set_at(currentThread,threadData);
+         allthreaddata->set_at(currentThread,threadData);
 
          currentThreadData = threadData;
 
@@ -680,7 +719,7 @@ int_bool WINAPI TlsSetValue(HTHREAD hthread,DWORD dwTlsIndex,LPVOID lpTlsValue)
 
    synch_lock lock(g_pmutexTlsData);
 
-   ThreadLocalData * threadData = allthreaddata[hthread];
+   ThreadLocalData * threadData = allthreaddata->operator [] (hthread);
 
    if(!threadData)
    {
@@ -689,7 +728,7 @@ int_bool WINAPI TlsSetValue(HTHREAD hthread,DWORD dwTlsIndex,LPVOID lpTlsValue)
       {
          threadData = new ThreadLocalData;
 
-         allthreaddata.set_at(hthread,threadData);
+         allthreaddata->set_at(hthread,threadData);
 
       }
       catch(...)
@@ -754,7 +793,7 @@ void WINAPI TlsShutdown()
 
       synch_lock ml(g_pmutexTlsData);
 
-      allthreaddata.remove_key(currentThread);
+      allthreaddata->remove_key(currentThread);
 
       currentThreadData = NULL;
 
@@ -1481,3 +1520,9 @@ void on_term_thread()
    __node_term_thread();
 
 }
+
+
+
+
+
+

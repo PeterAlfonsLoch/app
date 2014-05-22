@@ -1985,7 +1985,7 @@ sp(::command_thread) system::command_thread()
 
 
 
-
+uint32_t _thread_proc_start_core_system(void * p);
 
 
 
