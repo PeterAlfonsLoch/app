@@ -1843,9 +1843,4 @@ WINBOOL AfxInternalIsIdleMessage(LPMESSAGE lpmsg);
 
 //LRESULT CALLBACK _AfxMsgFilterHook(int32_t code, WPARAM wParam, LPARAM lParam);
 
-void CLASS_DECL_BASE __init_thread()
-{
-   
-   
-}
 

@@ -45,13 +45,13 @@ namespace multithreading
       ::set_thread(pthread);
 
       __init_thread();
-
-
-
+      
       s_phaThread->add(hthread);
 
       s_pthreadptra->add(pthread);
 
+      __inc_threading_count();
+      
    }
 
 
@@ -60,11 +60,13 @@ namespace multithreading
 
       synch_lock sl(s_pmutex);
 
+      __dec_threading_count();
+      
       s_phaThread->remove(hthread);
 
       s_pthreadptra->remove(pthread);
 
-      //__term_thread();
+      __term_thread();
 
       __end_thread(pthread->m_pbaseapp,(UINT)nExitCode,bDelete);
 

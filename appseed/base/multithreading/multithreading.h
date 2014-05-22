@@ -126,8 +126,6 @@ namespace multithreading
 
 
 
-CLASS_DECL_BASE void __init_thread();
-
 CLASS_DECL_BASE void __end_thread(sp(::base::application) papp,UINT nExitCode,bool bDelete = TRUE);
 
 CLASS_DECL_BASE void __term_thread(sp(::base::application) papp,HINSTANCE hInstTerm = NULL);
