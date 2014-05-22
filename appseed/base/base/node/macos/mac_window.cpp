@@ -545,7 +545,7 @@ namespace mac
          Sys(m_pbaseapp).user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
       }
       
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex, TRUE);
       if(m_pfont != NULL)
       {
          delete m_pfont;
@@ -669,7 +669,7 @@ namespace mac
    // WM_NCDESTROY is the absolute LAST message sent.
    void window::_001OnNcDestroy(signal_details * pobj)
    {
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex, TRUE);
       pobj->m_bRet = true;
       // cleanup main and active windows
       ::thread* pThread = ::get_thread();
@@ -819,7 +819,7 @@ namespace mac
    
    bool window::DestroyWindow()
    {
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex, TRUE);
       ::window * pWnd;
       oswindow hWndOrig;
       bool bResult;
@@ -2185,7 +2185,7 @@ namespace mac
    
    sp(::user::interaction) PASCAL window::GetDescendantWindow(sp(::user::interaction) hWnd, id id)
    {
-      single_lock sl(&hWnd->m_pthread->m_mutex, TRUE);
+      single_lock sl(hWnd->m_pthread->m_pmutex, TRUE);
       // GetDlgItem recursive (return first found)
       // breadth-first for 1 level, then depth-first for next level
       
@@ -4691,7 +4691,7 @@ namespace mac
 //      ASSERT(::IsWindow(get_handle()));
   //    return window::GetDescendantWindow(this, id);
       
-      single_lock sl(&m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread->m_pmutex, TRUE);
       for(int32_t i = 0; i < m_pui->m_uiptraChild.get_count(); i++)
       {
          if(m_pui->m_uiptraChild[i].GetDlgCtrlId() == id)

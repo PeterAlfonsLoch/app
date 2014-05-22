@@ -121,8 +121,6 @@ CLASS_DECL_BASE void vfxThrowFileException(::base::application * papp, int32_t c
 
 
 
-#pragma once
-
 
 namespace ios
 {
@@ -163,30 +161,6 @@ struct CLASS_DECL_BASE __EXCEPTION_CONTEXT
 };
 
 
-_PNH CLASS_DECL_BASE __get_new_handler();
-_PNH CLASS_DECL_BASE __set_new_handler(_PNH pfnNewHandler);
-CLASS_DECL_BASE int32_t c_cdecl __new_handler(size_t nSize);
-
-void CLASS_DECL_BASE __abort();
 
 
 
-
-
-CLASS_DECL_BASE LRESULT CALLBACK __window_procedure(oswindow hWnd,UINT nMsg,WPARAM wParam,LPARAM lParam);
-
-
-
-
-CLASS_DECL_BASE MESSAGE * __get_current_message();
-
-
-CLASS_DECL_BASE void __ios_term();
-
-
-CLASS_DECL_BASE HINSTANCE __get_resource_handle();
-CLASS_DECL_BASE HINSTANCE __find_string_resource_handle(UINT nID);
-
-CLASS_DECL_BASE void __delete_object(HGDIOBJ* pObject);
-
-void CLASS_DECL_BASE __global_free(HGLOBAL hGlobal);

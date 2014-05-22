@@ -225,48 +225,4 @@ CLASS_DECL_CORE bool defer_core_term()
 
 
 
-bool main_initialize()
-{
-
-   if(!__node_pre_init())
-      return false;
-
-   ::base::static_start::init();
-
-   __init_threading_count();
-
-   ::multithreading::init_multithreading();
-
-   ::user::init_windowing();
-
-   ::os_thread::s_pmutex = new mutex();
-
-   ::os_thread::s_pptra = new comparable_raw_array < os_thread * >::type();
-
-
-   if(!__node_pos_init())
-      return false;
-
-   return true;
-
-}
-
-
-bool main_finalize()
-{
-
-   __wait_threading_count(::millis((1984 + 1977) * 8));
-
-   __node_pre_term();
-
-   ::user::term_windowing();
-
-   ::multithreading::term_multithreading();
-
-   __term_threading_count();
-
-   return true;
-
-}
-
 
