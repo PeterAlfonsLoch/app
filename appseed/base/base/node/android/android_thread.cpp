@@ -186,7 +186,7 @@ CLASS_DECL_BASE MESSAGE * AfxGetCurrentMessage()
 
 
 
-CLASS_DECL_BASE void AfxInternalProcessWndProcException(base_exception*, ::ca2::signal_object * pobj)
+CLASS_DECL_BASE void AfxInternalProcessWndProcException(base_exception*, ::signal_details * pobj)
 {
    SCAST_PTR(::message::base, pbase, pobj);
    if (pbase->m_uiMessage == WM_CREATE)
@@ -204,7 +204,7 @@ CLASS_DECL_BASE void AfxInternalProcessWndProcException(base_exception*, ::ca2::
    return;   // sensible default for rest of commands
 }
 
-CLASS_DECL_BASE void AfxProcessWndProcException(base_exception* e, ::ca2::signal_object * pobj)
+CLASS_DECL_BASE void AfxProcessWndProcException(base_exception* e, ::signal_details * pobj)
 {
    ::ca2::thread *pThread = App(pobj->get_app()).GetThread();
    if( pThread )
@@ -213,7 +213,7 @@ CLASS_DECL_BASE void AfxProcessWndProcException(base_exception* e, ::ca2::signal
       return AfxInternalProcessWndProcException( e, pobj );
 }
 
-void AfxInternalPreTranslateMessage(::ca2::signal_object * pobj)
+void AfxInternalPreTranslateMessage(::signal_details * pobj)
 {
 #ifndef DEBUG
    try
@@ -303,7 +303,7 @@ void AfxInternalPreTranslateMessage(::ca2::signal_object * pobj)
    // no special processing
 }
 
-void __cdecl __pre_translate_message(::ca2::signal_object * pobj)
+void __cdecl __pre_translate_message(::signal_details * pobj)
 {
    ::ca2::thread *pThread = App(pobj->get_app()).GetThread();
    if( pThread )
@@ -312,7 +312,7 @@ void __cdecl __pre_translate_message(::ca2::signal_object * pobj)
       return AfxInternalPreTranslateMessage( pobj );
 }
 
-WINBOOL AfxInternalIsIdleMessage(::ca2::signal_object * pobj)
+WINBOOL AfxInternalIsIdleMessage(::signal_details * pobj)
 {
    SCAST_PTR(::message::base, pbase, pobj);
    // Return FALSE if the message just dispatched should _not_
@@ -371,7 +371,7 @@ WINBOOL AfxInternalIsIdleMessage(LPMESSAGE lpmsg)
    return lpmsg->message != WM_PAINT && lpmsg->message != 0x0118;
 }
 
-WINBOOL __cdecl __is_idle_message(::ca2::signal_object * pobj)
+WINBOOL __cdecl __is_idle_message(::signal_details * pobj)
 {
    ::ca2::thread *pThread = App(pobj->get_app()).GetThread();
    if( pThread )
@@ -511,7 +511,7 @@ namespace android
    }
 
    thread::thread(sp(::base::application) papp) :
-      ca2(papp),
+      element(papp),
       message_window_simple_callback(papp),//,
       m_evFinish(papp, FALSE, TRUE),
       ::ca2::thread(NULL),
@@ -1087,7 +1087,7 @@ stop_run:
       return 0;
    }
 
-   bool thread::is_idle_message(::ca2::signal_object * pobj)
+   bool thread::is_idle_message(::signal_details * pobj)
    {
       return AfxInternalIsIdleMessage(pobj);
    }
@@ -1257,7 +1257,7 @@ stop_run:
    }
 
 
-   void thread::DispatchThreadMessageEx(::ca2::signal_object * pobj)
+   void thread::DispatchThreadMessageEx(::signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_APP + 1984 && pbase->m_wparam == 77)
@@ -1332,31 +1332,31 @@ stop_run:
       pbase->m_bRet = true;
    }
 
-   void thread::pre_translate_message(::ca2::signal_object * pobj)
+   void thread::pre_translate_message(::signal_details * pobj)
    {
       ASSERT_VALID(this);
       return AfxInternalPreTranslateMessage(pobj);
    }
 
-   void thread::ProcessWndProcException(base_exception* e, ::ca2::signal_object * pobj)
+   void thread::ProcessWndProcException(base_exception* e, ::signal_details * pobj)
    {
       return AfxInternalProcessWndProcException(e, pobj);
    }
 
-   __STATIC inline WINBOOL IsEnterKey(::ca2::signal_object * pobj)
+   __STATIC inline WINBOOL IsEnterKey(::signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
       SCAST_PTR(::message::key, pkey, pobj);
       return pbase->m_uiMessage == WM_KEYDOWN && pkey->m_ekey == ::user::key_return;
    }
 
-   __STATIC inline WINBOOL IsButtonUp(::ca2::signal_object * pobj)
+   __STATIC inline WINBOOL IsButtonUp(::signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
       return pbase->m_uiMessage == WM_LBUTTONUP;
    }
 
-   void thread::ProcessMessageFilter(int32_t code, ::ca2::signal_object * pobj)
+   void thread::ProcessMessageFilter(int32_t code, ::signal_details * pobj)
    {
 
       if(pobj == NULL)
@@ -1608,7 +1608,7 @@ stop_run:
    }
 
 
-   void thread::message_handler(::ca2::signal_object * pobj)
+   void thread::message_handler(::signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
       // special message which identifies the window as using AfxWndProc
@@ -1729,7 +1729,7 @@ return false;
       //m_nThreadID = (dword_ptr) iData;
    }
 
-   void thread::message_window_message_handler(::ca2::signal_object * pobj)
+   void thread::message_window_message_handler(::signal_details * pobj)
    {
    }
 
@@ -2445,8 +2445,8 @@ return false;
 
 WINBOOL CLASS_DECL_BASE AfxInternalPumpMessage();
 LRESULT CLASS_DECL_BASE AfxInternalProcessWndProcException(base_exception*, const MESSAGE* pMsg);
-void AfxInternalPreTranslateMessage(::ca2::signal_object * pobj);
-WINBOOL AfxInternalIsIdleMessage(::ca2::signal_object * pobj);
+void AfxInternalPreTranslateMessage(::signal_details * pobj);
+WINBOOL AfxInternalIsIdleMessage(::signal_details * pobj);
 WINBOOL AfxInternalIsIdleMessage(LPMESSAGE lpmsg);
 
 
@@ -3015,7 +3015,7 @@ break;
 return true;
 }
 
-WINBOOL thread::pre_translate_message(::ca2::signal_object * pobj)
+WINBOOL thread::pre_translate_message(::signal_details * pobj)
 {
 ASSERT_VALID(this);
 return AfxInternalPreTranslateMessage( pMsg );

@@ -27,7 +27,7 @@ namespace android
 
 
    window_draw::window_draw(sp(::base::application) papp) :
-      ca2(papp),
+      element(papp),
       ::ca2::thread(papp),
       ::ca2::window_draw(papp),
       message_window_simple_callback(papp),
@@ -63,7 +63,7 @@ namespace android
    }
    */
 
-   void window_draw::message_window_message_handler(::ca2::signal_object * pobj)
+   void window_draw::message_window_message_handler(::signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_uiMessage == (WM_USER + 1984 + 1977))

@@ -6,7 +6,7 @@ namespace android
 
 
    crypt::crypt(sp(::base::application) papp) :
-      ca2(papp),
+      element(papp),
       ::ca2::crypt(papp)
    {
    }

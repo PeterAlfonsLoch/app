@@ -9,7 +9,7 @@ namespace android
 
 
    dir::dir(sp(::base::application) papp) :
-      ::ca2::ca2(papp),
+      ::ca2::element(papp),
       ::ca2::dir::system(papp),
       m_path(papp)
    {
@@ -23,7 +23,7 @@ namespace android
    }
 
    path::path(sp(::base::application) papp) :
-      ca2(papp)
+      element(papp)
    {
    }
 

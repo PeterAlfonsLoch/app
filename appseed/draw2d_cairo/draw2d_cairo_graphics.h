@@ -251,20 +251,14 @@ namespace draw2d_cairo
          HBRUSH hBrush = NULL);
       bool DrawState(point pt, size size, ::draw2d::bitmap* pBitmap, UINT nFlags,
          ::draw2d::brush* pBrush = NULL);
-/*      bool DrawState(point pt, size size, HICON hIcon, UINT nFlags,
-         HBRUSH hBrush = NULL);
-      bool DrawState(point pt, size size, HICON hIcon, UINT nFlags,
-         ::draw2d::brush* pBrush = NULL);*/
       bool DrawState(point pt, size size, const char * lpszText, UINT nFlags,
          bool bPrefixText = TRUE, int32_t nTextLen = 0, HBRUSH hBrush = NULL);
       bool DrawState(point pt, size size, const char * lpszText, UINT nFlags,
          bool bPrefixText = TRUE, int32_t nTextLen = 0, ::draw2d::brush* pBrush = NULL);
-//xxx      bool DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc,
-//xxx         LPARAM lData, UINT nFlags, HBRUSH hBrush = NULL);
-//xxx      bool DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc,
-//xxx         LPARAM lData, UINT nFlags, ::draw2d::brush* pBrush = NULL);
 
-   // Ellipse and Polygon Functions
+
+
+
       bool Chord(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3,
          int32_t x4, int32_t y4);
       bool Chord(LPCRECT lpRect, POINT ptStart, POINT ptEnd);

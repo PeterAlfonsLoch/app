@@ -15,7 +15,7 @@ namespace android
 
 
    file_system::file_system(sp(::base::application) papp) :
-      ca2(papp)
+      element(papp)
    {
    }
 

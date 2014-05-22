@@ -6,7 +6,7 @@ namespace android
 
 
    class CLASS_DECL_BASE crypt :
-      virtual public ::ca2::crypt
+      virtual public ::base::crypt
    {
    public:
 

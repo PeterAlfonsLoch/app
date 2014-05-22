@@ -6,7 +6,7 @@ namespace android
 
 
    class CLASS_DECL_BASE copydesk :
-      virtual public ::ca2::copydesk
+      virtual public ::base::copydesk
    {
    public:
 

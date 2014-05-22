@@ -9,7 +9,7 @@ namespace android
 
 
    application::application(sp(::base::application) papp) :
-      ca2(papp)
+      element(papp)
    {
       ::ca2::thread::m_p.create(allocer());
       ::ca2::thread::m_p->m_p = this;
@@ -307,7 +307,7 @@ post_thread_message
    {
       return ::win::thread::run();
    }
-   bool application::pre_translate_message(::ca2::signal_object * pobj)
+   bool application::pre_translate_message(::signal_details * pobj)
    {
       return ::win::thread::pre_translate_message(pMsg);
    }

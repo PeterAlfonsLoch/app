@@ -6,7 +6,7 @@ namespace android
 
 
    copydesk::copydesk(sp(::base::application) papp) :
-      ca2(papp),
+      element(papp),
       ::ca2::copydesk(papp)
    {
 

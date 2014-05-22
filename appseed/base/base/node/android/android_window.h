@@ -346,9 +346,8 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       virtual sp(::user::interaction) GetLastActivePopup();
 
       virtual bool IsChild(sp(::user::interaction)  pWnd);
-      virtual sp(::user::interaction) get_parent() const;
-      using ::user::interaction::set_parent;
-      sp(::window) set_parent(::window * pWndNewParent);
+      virtual ::user::interaction * get_parent() const;
+      ::user::interaction * set_parent(::user::interaction * pWndNewParent);
       static sp(::window) PASCAL oswindowFromPoint(POINT point);
 
    // Alert Functions
@@ -415,7 +414,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       // dialog support
       void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);
       void CenterWindow(sp(::user::interaction) pAlternateOwner = NULL);
-      virtual id   RunModalLoop(DWORD dwFlags = 0, ::ca2::live_object * pliveobject = NULL);
+      virtual id   RunModalLoop(DWORD dwFlags = 0, ::base::live_object * pliveobject = NULL);
       virtual bool ContinueModal(int32_t iLevel);
       virtual void EndModalLoop(id nResult);
       virtual void EndAllModalLoops(id nResult);
@@ -449,9 +448,9 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
       void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);
       void OnMove(int32_t x, int32_t y);
-      DECL_GEN_SIGNAL(_001OnPaint)
-      DECL_GEN_SIGNAL(_001OnPrint)
-      DECL_GEN_SIGNAL(_001OncaptureChanged)
+      DECL_GEN_SIGNAL(_001OnPaint);
+      DECL_GEN_SIGNAL(_001OnPrint);
+      DECL_GEN_SIGNAL(_001OncaptureChanged);
       void OnParentNotify(UINT message, LPARAM lParam);
       HCURSOR OnQueryDragIcon();
       bool OnQueryEndSession();
@@ -472,7 +471,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       bool OnNcActivate(bool bActive);
       void OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS* lpncsp);
       bool OnNcCreate(LPCREATESTRUCT lpCreateStruct);
-      DECL_GEN_SIGNAL(_001OnNcDestroy)
+      DECL_GEN_SIGNAL(_001OnNcDestroy);
       LRESULT OnNcHitTest(point point);
       void OnNcLButtonDblClk(UINT nHitTest, point point);
       void OnNcLButtonDown(UINT nHitTest, point point);
@@ -507,8 +506,6 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
    // Input message handler member functions
       void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
       void OnDeadChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-      void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
-      void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
       void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
       void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
       void OnLButtonDblClk(UINT nFlags, point point);
@@ -524,7 +521,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       void OnRButtonDblClk(UINT nFlags, point point);
       void OnRButtonDown(UINT nFlags, point point);
       void OnRButtonUp(UINT nFlags, point point);
-      DECL_GEN_SIGNAL(_001OnSetCursor)
+      DECL_GEN_SIGNAL(_001OnSetCursor);
       void OnTimer(uint_ptr nIDEvent);
 
    // Initialization message handler member functions
@@ -578,11 +575,11 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       virtual void EndModalState();
 
       // for translating oswindows messages in main message pump
-      virtual void pre_translate_message(::ca2::signal_object * pobj);
+      virtual void pre_translate_message(::signal_details * pobj);
 
 
       // for processing oswindows messages
-      virtual void message_handler(::ca2::signal_object * pobj);
+      virtual void message_handler(::signal_details * pobj);
       //virtual bool OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
       // for handling default processing
@@ -611,7 +608,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       bool HandleFloatingSysCommand(UINT nID, LPARAM lParam);
       bool IsTopParentActive();
       void ActivateTopParent();
-      virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop, ::ca2::signal_object * pobj);
+      virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop, ::signal_details * pobj);
       static sp(::user::interaction) PASCAL GetDescendantWindow(sp(::user::interaction) hWnd, id id);
       static void PASCAL SendMessageToDescendants(void*  hWnd, UINT message, WPARAM wParam, lparam lParam, bool bDeep, bool bOnlyPerm);
       virtual bool is_frame_window(); // is_kind_of(System.type_info < frame_window > ()))

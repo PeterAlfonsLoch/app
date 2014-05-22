@@ -6,7 +6,7 @@ namespace android
 
 
    class CLASS_DECL_BASE os :
-      public ::ca2::os
+      public ::base::os
    {
    public:
 
@@ -22,7 +22,7 @@ namespace android
       virtual string get_module_path(HMODULE hmodule);
       virtual bool get_pid_by_path(const char * pszName, DWORD & dwPid);
       virtual bool get_pid_by_title(const char * pszName, DWORD & dwPid);
-      virtual void get_all_processes(uint32_array & dwa);
+      virtual void get_all_processes(uint_array & dwa);
       virtual string get_process_path(DWORD dwPid);
 
       virtual bool connection_settings_get_auto_detect();
@@ -45,11 +45,11 @@ namespace android
 
       virtual bool open_in_ie(const char * lpcsz);
 
-      virtual bool create_service(::plane::application * papp);
-      virtual bool remove_service(::plane::application * papp);
+      virtual bool create_service(sp(::base::application) papp);
+      virtual bool remove_service(sp(::base::application) papp);
 
-      virtual bool start_service(::plane::application * papp);
-      virtual bool stop_service(::plane::application * papp);
+      virtual bool start_service(sp(::base::application) papp);
+      virtual bool stop_service(sp(::base::application) papp);
 
       virtual bool resolve_link(string & strTarget, const char * pszSource, sp(::user::interaction) puiMessageParentOptional = NULL);
 

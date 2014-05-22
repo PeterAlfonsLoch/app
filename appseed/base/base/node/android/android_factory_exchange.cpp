@@ -6,7 +6,7 @@ namespace android
 
 
    factory_exchange::factory_exchange(sp(::base::application) papp) :
-      ca2(papp)
+      element(papp)
    {
 
       System.factory().cloneable_large <stdio_file             >  (System. type_info < ::ca2::text_file         > ());

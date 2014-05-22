@@ -8,7 +8,7 @@ namespace android
 
 
 stdio_file::stdio_file(sp(::base::application) papp) :
-   ca2(papp),
+   element(papp),
    ::android::file(papp)
 {
    m_pStream = NULL;

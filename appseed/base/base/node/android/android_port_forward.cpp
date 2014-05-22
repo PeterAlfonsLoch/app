@@ -16,7 +16,7 @@ namespace android
    //////////////////////////////////////////////////////////////////////
 
    port_forward::port_forward(sp(::base::application) papp) :
-      ca2(papp)
+      element(papp)
    {
 //	   InitializeMembersToNull();
 	//   ::InitializeCriticalSection( &m_cs );

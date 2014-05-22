@@ -71,15 +71,15 @@ CLASS_DECL_BASE void AfxResetMsgCache();
 
 #include "android_shell.h"
 
-CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, ::ca2::signal_object * pobj);
+CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, ::signal_details * pobj);
 CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
-CLASS_DECL_BASE WINBOOL __cdecl __is_idle_message(::ca2::signal_object * pobj);
+CLASS_DECL_BASE WINBOOL __cdecl __is_idle_message(::signal_details * pobj);
 CLASS_DECL_BASE WINBOOL __cdecl __is_idle_message(MESSAGE* pMsg);
 
 
-CLASS_DECL_BASE void AfxProcessWndProcException(base_exception*, ::ca2::signal_object * pobj);
-CLASS_DECL_BASE void __cdecl __pre_translate_message(::ca2::signal_object * pobj);
+CLASS_DECL_BASE void AfxProcessWndProcException(base_exception*, ::signal_details * pobj);
+CLASS_DECL_BASE void __cdecl __pre_translate_message(::signal_details * pobj);
 
 
 #include "android_application.h"

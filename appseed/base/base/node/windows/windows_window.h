@@ -335,8 +335,6 @@ namespace windows
          bool bRedraw = TRUE);
       virtual void ShowScrollBar(UINT nBar,bool bShow = TRUE);
       virtual void EnableScrollBarCtrl(int32_t nBar,bool bEnable = TRUE);
-      //      virtual CScrollBar* GetScrollBarCtrl(int32_t nBar) const;
-      // return sibling scrollbar control (or NULL if none)
 
       virtual int32_t ScrollWindowEx(int32_t dx,int32_t dy,
          LPCRECT lpRectScroll,LPCRECT lpRectClip,

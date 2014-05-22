@@ -689,13 +689,6 @@ synch_lock ml(&user_mutex());
       return false;
 
 
-  //    ASSERT(get_handle1() != NULL);
-
-    //  if(picon == NULL)
-      //   return false;
-
-//      return ::DrawIcon(get_handle1(), x, y, (HICON) picon->m_picon) != FALSE;
-
    }
 
    bool graphics::DrawIcon(POINT point, ::visual::icon * picon)
@@ -703,12 +696,6 @@ synch_lock ml(&user_mutex());
 
       throw not_implemented(get_app());
       return false;
-/*      ASSERT(get_handle1() != NULL);
-
-      if(picon == NULL)
-         return false;
-
-      return ::DrawIcon(get_handle1(), point.x, point.y, (HICON) picon->m_picon) != FALSE;*/
 
    }
 
@@ -845,39 +832,11 @@ synch_lock ml(&user_mutex());
    }
 
 
-/*
-
-   bool graphics::DrawState(point pt, size size, HICON hIcon, UINT nFlags, HBRUSH hBrush)
-   {
-
-      throw not_implemented(get_app());
-      return false;
-//      ASSERT(get_handle1() != NULL);
-//      return ::DrawState(get_handle1(), hBrush, NULL, (LPARAM)hIcon, 0, pt.x, pt.y, size.cx, size.cy, nFlags|DST_ICON) != FALSE;
-
-   }
-
-
-   bool graphics::DrawState(point pt, size size, HICON hIcon, UINT nFlags, ::draw2d::brush* pBrush)
-   {
-
-      throw not_implemented(get_app());
-      return false;
-//      ASSERT(get_handle1() != NULL);
-//      return ::DrawState(get_handle1(), (HBRUSH)pBrush->get_os_data(), NULL, (LPARAM)hIcon, 0, pt.x, pt.y, size.cx, size.cy, nFlags|DST_ICON) != FALSE;
-
-   }
-
-*/
-
-
    bool graphics::DrawState(point pt, size size, const char * lpszText, UINT nFlags, bool bPrefixText, int32_t nTextLen, HBRUSH hBrush)
    {
 
       throw not_implemented(get_app());
       return false;
-//      ASSERT(get_handle1() != NULL);
-//      return ::DrawState(get_handle1(), hBrush,  NULL, (LPARAM)lpszText, (WPARAM)nTextLen, pt.x, pt.y, size.cx, size.cy, nFlags|(bPrefixText ? DST_PREFIXTEXT : DST_TEXT)) != FALSE;
 
    }
 
@@ -886,36 +845,8 @@ synch_lock ml(&user_mutex());
 
       throw not_implemented(get_app());
       return false;
-//      ASSERT(get_handle1() != NULL);
-//      return ::DrawState(get_handle1(), (HBRUSH)pBrush->get_os_data(), NULL, (LPARAM)lpszText, (WPARAM)nTextLen, pt.x, pt.y, size.cx, size.cy, nFlags|(bPrefixText ? DST_PREFIXTEXT : DST_TEXT)) != FALSE;
 
    }
-
-/*
-
-   bool graphics::DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc, LPARAM lData, UINT nFlags, HBRUSH hBrush)
-   {
-
-      throw not_implemented(get_app());
-      return false;
-
-//      ASSERT(get_handle1() != NULL);
-//      return ::DrawState(get_handle1(), hBrush, lpDrawProc, lData, 0, pt.x, pt.y, size.cx, size.cy, nFlags|DST_COMPLEX) != FALSE;
-
-   }
-
-   bool graphics::DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc, LPARAM lData, UINT nFlags, ::draw2d::brush* pBrush)
-   {
-
-      throw not_implemented(get_app());
-      return false;
-
-//      ASSERT(get_handle1() != NULL);
-//      return ::DrawState(get_handle1(), (HBRUSH)pBrush->get_os_data(), lpDrawProc, lData, 0, pt.x, pt.y, size.cx, size.cy, nFlags|DST_COMPLEX) != FALSE;
-
-   }
-
-*/
 
    bool graphics::DrawEdge(LPRECT lpRect, UINT nEdge, UINT nFlags)
    {

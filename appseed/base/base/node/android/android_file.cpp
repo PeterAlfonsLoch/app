@@ -23,7 +23,7 @@ namespace android
 
 
    file::file(sp(::base::application) papp) :
-      ca2(papp)
+      element(papp)
    {
 
       m_iFile = (UINT) hFileNull;
@@ -33,7 +33,7 @@ namespace android
    }
 
    file::file(sp(::base::application) papp, int32_t hFile) :
-      ca2(papp)
+      element(papp)
    {
 
       m_iFile = hFile;
@@ -43,7 +43,7 @@ namespace android
    }
 
    file::file(sp(::base::application) papp, const char * lpszFileName, UINT nOpenFlags) :
-      ca2(papp)
+      element(papp)
    {
 
       ASSERT(__is_valid_string(lpszFileName));

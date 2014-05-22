@@ -6,7 +6,7 @@ namespace android
 
 
    file_set::file_set(sp(::base::application) papp) :
-      ca2(papp)
+      element(papp)
    {
 
    }

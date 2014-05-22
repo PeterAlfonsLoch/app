@@ -112,7 +112,7 @@ namespace android
    }
 
    window::window(sp(::base::application) papp) :
-      ca2(papp),
+      element(papp),
       ::user::interaction(papp)
    {
       m_pcallback = NULL;
@@ -748,7 +748,7 @@ d.unlock();
       IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH , pinterface, this, &window::_001OnProdevianSynch);
    }
 
-   void window::_001OnMove(::ca2::signal_object * pobj)
+   void window::_001OnMove(::signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 /*      if(!m_bRectOk && !(GetExStyle() & WS_EX_LAYERED))
@@ -760,7 +760,7 @@ d.unlock();
       }*/
    }
 
-   void window::_001OnSize(::ca2::signal_object * pobj)
+   void window::_001OnSize(::signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 
@@ -794,7 +794,7 @@ d.unlock();
 
    }
 
-   void window::_001OnShowWindow(::ca2::signal_object * pobj)
+   void window::_001OnShowWindow(::signal_details * pobj)
    {
       SCAST_PTR(::message::show_window, pshowwindow, pobj);
       m_bVisible = pshowwindow->m_bShow != FALSE;
@@ -802,7 +802,7 @@ d.unlock();
          m_pguie->m_bVisible = m_bVisible;
    }
 
-   void window::_001OnDestroy(::ca2::signal_object * pobj)
+   void window::_001OnDestroy(::signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       Default();
@@ -817,14 +817,14 @@ d.unlock();
       //oswindow_remove(m_oswindow->display(), m_oswindow->window());
    }
 
-   void window::_001OncaptureChanged(::ca2::signal_object * pobj)
+   void window::_001OncaptureChanged(::signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       m_pguiecapture = NULL;
    }
 
    // WM_NCDESTROY is the absolute LAST message sent.
-   void window::_001OnNcDestroy(::ca2::signal_object * pobj)
+   void window::_001OnNcDestroy(::signal_details * pobj)
    {
 
       single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
@@ -1121,7 +1121,7 @@ d.unlock();
       return &m_pfnSuper;
    }
 */
-   void window::pre_translate_message(::ca2::signal_object * pobj)
+   void window::pre_translate_message(::signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       // no default processing
@@ -1470,7 +1470,7 @@ d.unlock();
    /////////////////////////////////////////////////////////////////////////////
    // main message_handler implementation
 
-   void window::message_handler(::ca2::signal_object * pobj)
+   void window::message_handler(::signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
 
@@ -1685,7 +1685,7 @@ restart_mouse_hover_check:
                //m_pguiecapture->m_pimpl->SendMessage(pbase);
                try
                {
-                  (m_pguiecapture->m_pimpl->*m_pguiecapture->m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::ca2::signal_object * > (pmouse));
+                  (m_pguiecapture->m_pimpl->*m_pguiecapture->m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::signal_details * > (pmouse));
                   if(pmouse->get_lresult() != 0)
                      return;
                }
@@ -1699,7 +1699,7 @@ restart_mouse_hover_check:
                //m_pguiecapture->SendMessage(pbase);
                try
                {
-                  (m_pguiecapture->*m_pguiecapture->m_pfnDispatchWindowProc)(dynamic_cast < ::ca2::signal_object * > (pmouse));
+                  (m_pguiecapture->*m_pguiecapture->m_pfnDispatchWindowProc)(dynamic_cast < ::signal_details * > (pmouse));
                   if(pmouse->get_lresult() != 0)
                      return;
                }
@@ -2931,7 +2931,7 @@ return 0;
       return false;*/
    }
 
-   void window::WalkPreTranslateTree(sp(::user::interaction) puiStop, ::ca2::signal_object * pobj)
+   void window::WalkPreTranslateTree(sp(::user::interaction) puiStop, ::signal_details * pobj)
    {
       ASSERT(puiStop == NULL || puiStop->IsWindow());
       ASSERT(pobj != NULL);
@@ -3198,7 +3198,7 @@ return 0;
 //      return (int32_t)Default();
    }
 
-   void window::_001OnCreate(::ca2::signal_object * pobj)
+   void window::_001OnCreate(::signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       Default();
@@ -3247,7 +3247,7 @@ return 0;
       HDC m_hdc;
 
       print_window(sp(::base::application) papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
-         ca2(papp),
+         element(papp),
          m_event(papp)
 
       {
@@ -3459,14 +3459,14 @@ throw not_implemented(get_app());
 //      ::DeleteObject(rgnUpdate);
    }
 
-   void window::_001OnProdevianSynch(::ca2::signal_object * pobj)
+   void window::_001OnProdevianSynch(::signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      System.get_event(m_pthread->m_pthread)->SetEvent();
   //    System.get_event(System.get_twf())->wait(millis(8400));
    }
 
-   void window::_001OnPaint(::ca2::signal_object * pobj)
+   void window::_001OnPaint(::signal_details * pobj)
    {
 
       _001Expose();
@@ -3545,7 +3545,7 @@ throw not_implemented(get_app());
    }
 
 
-   void window::_001OnPrint(::ca2::signal_object * pobj)
+   void window::_001OnPrint(::signal_details * pobj)
    {
 throw not_implemented(get_app());
 //      SCAST_PTR(::message::base, pbase, pobj);
@@ -3999,7 +3999,7 @@ throw not_implemented(get_app());
 
 
 
-   id window::RunModalLoop(DWORD dwFlags, ::ca2::live_object * pliveobject)
+   id window::RunModalLoop(DWORD dwFlags, ::base::live_object * pliveobject)
    {
       // for tracking the idle time state
       bool bIdle = TRUE;
@@ -4283,7 +4283,7 @@ throw not_implemented(get_app());
 
 
    /*   view_update_hint::view_update_hint(sp(::base::application) papp) :
-   ca2(papp)
+   element(papp)
    {
    }
    */
@@ -4621,12 +4621,12 @@ throw not_implemented(get_app());
    }
 
    /*   guie_message_wnd::guie_message_wnd(sp(::base::application) papp) :
-   ca2(papp)
+   element(papp)
    {
    m_pguieForward = NULL;
    }
 
-   LRESULT guie_message_wnd::message_handler(::ca2::signal_object * pobj)
+   LRESULT guie_message_wnd::message_handler(::signal_details * pobj)
    {
    if(m_pguieForward != NULL)
    {
@@ -5923,23 +5923,6 @@ if(psurface == g_cairosurface)
 
    }
 
-   // Win4
-   HICON window::SetIcon(HICON hIcon, bool bBigIcon)
-   {
-
-      throw not_implemented(get_app());
-      //return (HICON)send_message(WM_SETICON, bBigIcon, (LPARAM)hIcon);
-
-   }
-
-   HICON window::GetIcon(bool bBigIcon) const
-   {
-
-      throw not_implemented(get_app());
-//      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return (HICON)const_cast < window * > (this)->send_message(WM_GETICON, bBigIcon, 0);
-
-   }
 
    void window::Print(::draw2d::graphics * pgraphics, DWORD dwFlags) const
    {
@@ -6047,7 +6030,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   void window::_001OnSetCursor(::ca2::signal_object * pobj)
+   void window::_001OnSetCursor(::signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
       if(Session.get_cursor() != NULL
@@ -6595,7 +6578,7 @@ if(psurface == g_cairosurface)
 
 
 
-   void window::_001OnEraseBkgnd(::ca2::signal_object * pobj)
+   void window::_001OnEraseBkgnd(::signal_details * pobj)
    {
       SCAST_PTR(::message::erase_bkgnd, perasebkgnd, pobj);
       perasebkgnd->m_bRet = true;
@@ -6626,7 +6609,7 @@ if(psurface == g_cairosurface)
 
 
 CTestCmdUI::CTestCmdUI(sp(::base::application) papp) :
-   ca2(papp),
+   element(papp),
    cmd_ui(papp)
 {
    m_bEnabled = TRUE;  // assume it is enabled
