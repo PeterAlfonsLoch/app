@@ -303,7 +303,7 @@ namespace simple_ui
 
       int32_t iStyle = 1;
 
-      if (Application.get_focus_guie() == this)
+      if(Application.user()->get_keyboard_focus() == this)
       {
 
          if (iStyle == 1)
