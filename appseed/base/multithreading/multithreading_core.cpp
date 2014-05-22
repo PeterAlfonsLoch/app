@@ -97,8 +97,10 @@ CLASS_DECL_BASE bool __wait_threading_count_except(::thread * pthread, ::duratio
          
          if(::multithreading::s_pthreadptra->get_count() == 1)
          {
+
+            ::thread * pthreadOne = ::multithreading::s_pthreadptra->element_at(0);
             
-            if(::multithreading::s_pthreadptra->element_at(0) == pthread)
+            if(pthreadOne == pthread)
                return true;
             
          }

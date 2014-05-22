@@ -61,7 +61,7 @@ namespace core
 
 #endif
 
-         ::plane::system::eengine().reset();
+         System.eengine().reset();
 
          PFN_GET_NEW_LIBRARY pfn_get_new_library = NULL;
 

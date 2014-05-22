@@ -340,12 +340,14 @@ bool thread_impl::create_thread(int32_t epriority,uint32_t dwCreateFlagsParam,ui
 
    pstartup->m_dwCreateFlags = dwCreateFlags;
 
-   m_hthread = (HTHREAD)(uint_ptr) ::create_thread(lpSecurityAttrs,nStackSize,&__thread_entry,pstartup.m_p,dwCreateFlags | CREATE_SUSPENDED,&m_uiThread);
+   pstartup->m_event2.ResetEvent();
+
+   m_hthread = (HTHREAD)(uint_ptr) ::create_thread(lpSecurityAttrs,nStackSize,&__thread_entry,pstartup.m_p,dwCreateFlags,&m_uiThread);
 
    if(m_hthread == NULL)
       return false;
 
-   VERIFY(::ResumeThread(m_hthread) != (DWORD)-1);
+   pstartup->m_event2.SetEvent();
 
    pstartup->m_event.wait();
 
@@ -409,10 +411,14 @@ uint32_t __thread_entry(void * pparam)
       pthreadimpl->::exception::translator::attach();
       #endif
 
+      pstartup->m_event2.wait();
+
+      pstartup->m_event2.ResetEvent();
+
       try
       {
 
-         ::multithreading::__node_on_init_thread(::GetCurrentThread(),pthread);
+         ::multithreading::__node_on_init_thread(pthreadimpl->m_hthread,pthread);
 
       }
       catch(::exception::base *)
@@ -422,7 +428,7 @@ uint32_t __thread_entry(void * pparam)
 
          pstartup->m_event.set_event();
 
-         ::multithreading::__node_on_term_thread(::GetCurrentThread(),pthread,-1);
+         ::multithreading::__node_on_term_thread(pthreadimpl->m_hthread,pthread,-1);
 
          ASSERT(FALSE);  // unreachable
 
@@ -580,7 +586,9 @@ void thread_impl::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
             if(message == WM_QUIT)
             {
 
-               if(::multithreading::s_phaThread->element_at(i) != ::GetCurrentThread())
+               if(::get_thread() == NULL
+                  || ::get_thread()->m_pimpl.is_null()
+                  || ::multithreading::s_phaThread->element_at(i) != ::get_thread()->m_pimpl->m_hthread)
                {
 DWORD dwRet = 0;
                   sl.unlock();
@@ -665,6 +673,13 @@ int32_t thread_impl::exit_instance()
             {
 
                if(pui->m_pthread->m_pimpl == this)
+               {
+
+                  pui->m_pthread = NULL;
+
+               }
+
+               if(pui->m_pthread == m_puser)
                {
 
                   pui->m_pthread = NULL;
@@ -932,7 +947,7 @@ int32_t thread_impl::thread_term(int32_t nResult)
 
    try
    {
-      ::multithreading::__node_on_term_thread(GetCurrentThread(), m_puser,nResult);
+      ::multithreading::__node_on_term_thread(m_hthread, m_puser,nResult);
    }
    catch(...)
    {
@@ -964,22 +979,6 @@ void thread_impl::remove(::user::interaction * pui)
       return;
 
    single_lock sl(&m_mutexUiPtra,TRUE);
-
-   if(m_puiptra != NULL)
-   {
-      m_puiptra->remove(pui);
-      m_puiptra->remove(pui->m_pui);
-      m_puiptra->remove(pui->m_pimpl);
-   }
-
-   sl.unlock();
-
-   if(m_ptimera != NULL)
-   {
-      m_ptimera->unset(pui);
-      m_ptimera->unset(pui->m_pui);
-      m_ptimera->unset(pui->m_pimpl);
-   }
 
    try
    {
@@ -1017,6 +1016,24 @@ void thread_impl::remove(::user::interaction * pui)
    catch(...)
    {
    }
+
+
+   if(m_puiptra != NULL)
+   {
+      m_puiptra->remove(pui);
+      m_puiptra->remove(pui->m_pui);
+      m_puiptra->remove(pui->m_pimpl);
+   }
+
+   sl.unlock();
+
+   if(m_ptimera != NULL)
+   {
+      m_ptimera->unset(pui);
+      m_ptimera->unset(pui->m_pui);
+      m_ptimera->unset(pui->m_pimpl);
+   }
+
 
 }
 

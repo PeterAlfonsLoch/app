@@ -572,8 +572,6 @@ namespace user
          {
 
             m_pthread->remove(this);
-            m_pthread->remove(m_pui);
-            m_pthread->remove(m_pimpl);
 
          }
          

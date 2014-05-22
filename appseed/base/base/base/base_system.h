@@ -52,6 +52,9 @@ namespace base
 
 #endif
 
+      ::sockets::SSLInitializer *                    m_psslinit;
+
+
       application_ptra                             m_appptra;
 
 
@@ -66,6 +69,9 @@ namespace base
       sp(class ::xml::departament)                 m_pxml;
       const id_pool                                m_cidpool;
       sp(class ::base::log)                        m_plog;
+
+
+      ::exception::engine *                        m_peengine;
 
 
       static id_space *                            s_pidspace;
@@ -171,7 +177,7 @@ namespace base
       virtual void discard_to_factory(sp(element) pca);
 
 
-      static ::exception::engine & eengine();
+      ::exception::engine & eengine();
 
 
       virtual UINT os_post_to_all_threads(UINT uiMessage,WPARAM wparam,lparam lparam);

@@ -10,6 +10,8 @@
       {
       public:
 
+
+
 #if defined(BSD_STYLE_SOCKETS)
          ssl_client_context_map                       m_clientcontextmap;
 #endif

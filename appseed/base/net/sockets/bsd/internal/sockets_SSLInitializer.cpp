@@ -46,6 +46,8 @@ namespace sockets
 {
 
 
+   map < int32_t,int32_t,mutex *,mutex *>  * g_pmapMutex = NULL;
+
 
    #ifdef LINUX
 // ssl_sigpipe_handle ---------------------------------------------------------
@@ -76,6 +78,8 @@ void ssl_sigpipe_handle( int x ) {
 
       /* An error write context */
       bio_err = BIO_new_fp(stderr, BIO_NOCLOSE);
+
+      g_pmapMutex = new map < int32_t,int32_t,mutex *,mutex *>;
 
       /* Global system initialization*/
       SSL_library_init();
@@ -163,9 +167,17 @@ void ssl_sigpipe_handle( int x ) {
 
    SSLInitializer::~SSLInitializer()
    {
-      TRACE("~SSLInitializer()\n");
+//      TRACE("~SSLInitializer()\n");
       //DeleteRandFile();
       // %! delete mutexes
+
+
+      if(g_pmapMutex != NULL)
+      {
+         delete g_pmapMutex;
+
+         g_pmapMutex = NULL;
+      }
    }
 
 
@@ -190,19 +202,19 @@ void ssl_sigpipe_handle( int x ) {
       UNREFERENCED_PARAMETER(file);
       UNREFERENCED_PARAMETER(line);
 
-      static map < int32_t, int32_t, mutex *, mutex *> mmap;
+      
       mutex * pmutex;
-      if(!mmap.Lookup(n, pmutex))
+      if(!::sockets::g_pmapMutex->Lookup(n,pmutex))
       {
-         mmap[n] = new mutex(get_thread_app());
+         ::sockets::g_pmapMutex->operator [](n) = new mutex(get_thread_app());
       }
       if (mode & CRYPTO_LOCK)
       {
-         mmap[n]->lock();
+         ::sockets::g_pmapMutex->operator [](n)->lock();
       }
       else
       {
-         mmap[n]->unlock();
+         ::sockets:: g_pmapMutex->operator [](n)->unlock();
       }
    }
 
@@ -211,7 +223,11 @@ void ssl_sigpipe_handle( int x ) {
    extern "C" unsigned long SSLInitializer_SSL_id_function()
    {
 #ifdef WIN32
-      return ::GetCurrentThreadId();
+      if(::get_thread() == NULL)
+         return ::GetCurrentThreadId();
+      if(::get_thread()->m_pimpl.is_null())
+         return ::GetCurrentThreadId();
+      return ::get_thread()->m_pimpl->get_os_int();
 #else
       return (unsigned long) (int_ptr) ::pthread_self();
       //return System.get_thread_id();

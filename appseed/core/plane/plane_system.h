@@ -185,7 +185,6 @@ namespace plane
 
       ::colorertake5::ParserFactory          & parser_factory();
 
-      static ::exception::engine             & eengine();
       inline class ::visual::visual          & visual()     { return m_visual       ; }
 
 

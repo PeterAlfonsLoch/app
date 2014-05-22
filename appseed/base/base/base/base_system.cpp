@@ -46,7 +46,7 @@ namespace base
 
       }
 
-
+      m_peengine = NULL;
 
       //::ca::application::m_file.set_app(this);
       //::ca::application::m_dir.set_app(this);
@@ -137,28 +137,32 @@ namespace base
 
       ::base::application::construct();
 
-
-
-
    }
+
+
+
    base_factory & system::factory()
    {
+
       return *m_pfactory;
+
    }
 
 
    ::exception::engine & system::eengine()
    {
 
-      static ::exception::engine s_eengine(NULL);
-
-      return s_eengine;
+      return *m_peengine;
 
    }
 
 
    bool system::process_initialize()
    {
+
+      m_peengine = new ::exception::engine(this);
+
+      m_psslinit = new ::sockets::SSLInitializer(this);
 
       m_pfactory->cloneable_large < create_context >();
       m_pfactory->cloneable_large < application_bias >();
@@ -217,6 +221,25 @@ namespace base
 
 #endif
 
+
+      if(m_psslinit != NULL)
+      {
+
+         delete m_psslinit;
+
+         m_psslinit = NULL;
+
+      }
+
+      if(m_peengine != NULL)
+      {
+
+         delete m_peengine;
+
+         m_peengine = NULL;
+
+      }
+
       return 0;
 
    }
@@ -225,9 +248,9 @@ namespace base
    UINT system::os_post_to_all_threads(UINT uiMessage,WPARAM wparam,lparam lparam)
    {
 
-      throw interface_only_exception(this);
+      post_to_all_threads(uiMessage,wparam,lparam);
 
-      return -1;
+      return 0;
 
    }
 

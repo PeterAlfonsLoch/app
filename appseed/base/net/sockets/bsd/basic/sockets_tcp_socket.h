@@ -95,7 +95,6 @@ namespace sockets
       size_t m_transfer_limit;
       size_t m_output_length;
 
-      //static   SSLInitializer m_ssl_init;
       SSL_CTX *m_ssl_ctx; ///< ssl context
       SSL *m_ssl; ///< ssl 'socket'
       BIO *m_sbio; ///< ssl bio

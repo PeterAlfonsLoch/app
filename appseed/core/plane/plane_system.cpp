@@ -863,7 +863,7 @@ namespace plane
    bool system::finalize()
    {
 
-      __wait_threading_count_except(this, ::millis((1984 + 1977) * 8));
+      __wait_threading_count_except(this, ::millis((1984 + 1977) * 77));
 
       try
       {
@@ -1960,15 +1960,6 @@ sp(::command_thread) system::command_thread()
 
    }
 
-
-   ::exception::engine & system::eengine()
-   {
-
-      static ::exception::engine s_eengine(NULL);
-
-      return s_eengine;
-
-   }
 
 
 
