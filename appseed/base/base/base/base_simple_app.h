@@ -32,22 +32,6 @@ public:
    static int32_t s_main()
    {
 
-      //Sleep(15 * 1000);
-
-
-
-      STARTUPINFO si;
-      si.dwFlags = 0;
-      GetStartupInfo(&si);
-
-      //initialize_primitive_heap(); 
-
-
-      //	_init_atexit();
-      //	_initterm(__xc_a, __xc_z);			// call C++ constructors
-
-      //initialize_primitive_trace();
-
       if(!os_initialize())
       {
          return -1;
