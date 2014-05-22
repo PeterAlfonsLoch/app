@@ -36,6 +36,9 @@ class CLASS_DECL_BASE thread_impl :
 public:
 
 
+   sp(::user::interaction_ptr_array)      m_puiptra;
+   sp(::user::interaction::timer_array)   m_ptimera;
+   
    HTHREAD                                   m_hthread;
    uint32_t                                  m_uiThread;
 

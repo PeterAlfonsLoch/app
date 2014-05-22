@@ -67,19 +67,11 @@ void thread_impl::CommonConstruct()
    m_puiMain      = NULL;
    m_puiActive    = NULL;
    
-   //      m_peventReady  = NULL;
-   
-   //      m_pmapHDC      = NULL;
-   //    m_pmapHGDIOBJ  = NULL;
-   
    m_nDisablePumpCount  = 0;
    
    m_bAutoDelete = TRUE;
    m_bRun = false;
-   
-   //      m_pmapHDC = new hdc_map;
-   //    m_pmapHGDIOBJ = new hgdiobj_map;
-   //      m_frameList.Construct(offsetof(frame_window, m_pNextFrameWnd));
+
    m_ptimera = canew(::user::interaction::timer_array(get_app()));
    m_puiptra = canew(::user::interaction_ptr_array(get_app()));
    
@@ -655,12 +647,12 @@ int32_t thread_impl::exit_instance()
    try
    {
 
+      single_lock sl(&m_mutexUiPtra,TRUE);
+      
       if(m_puiptra != NULL)
       {
 
-         single_lock sl(&m_mutexUiPtra,TRUE);
-
-         ::user::interaction_ptr_array * puiptra = m_puiptra;
+         sp(::user::interaction_ptr_array) puiptra = m_puiptra;
 
          m_puiptra = NULL;
 
@@ -725,6 +717,9 @@ bool thread_impl::on_idle(LONG lCount)
    if(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & _CRTDBG_CHECK_ALWAYS_DF)
       ASSERT(__check_memory());
 #endif
+   
+   single_lock sl(&m_mutexUiPtra, TRUE);
+
 
    if(lCount <= 0 && m_puiptra != NULL)
    {

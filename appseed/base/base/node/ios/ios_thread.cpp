@@ -240,53 +240,6 @@ namespace ios
    
    thread::~thread()
    {
-/*      if(m_puiptra != NULL)
-      {
-         single_lock sl(&m_mutexUiPtra, TRUE);
-         ::user::interaction_ptr_array * puiptra = m_puiptra;
-         m_puiptra = NULL;
-         for(int32_t i = 0; i < puiptra->get_size(); i++)
-         {
-            ::user::interaction * pui = puiptra->element_at(i);
-            if(pui->m_pthread != NULL)
-            {
-               try
-               {
-                  if(IOS_THREAD(pui->m_pthread->m_pthread) == this
-                     || IOS_THREAD(pui->m_pthread->m_pthread->m_p.m_p) == IOS_THREAD(m_p.m_p)
-                     || IOS_THREAD(pui->m_pthread->m_pthread) == IOS_THREAD(m_p.m_p))
-                  {
-                     pui->m_pthread = NULL;
-                  }
-               }
-               catch(...)
-               {
-               }
-            }
-         }
-         sl.unlock();
-      }*/
-      
-      
-      
-      
-      // cleanup module state
-      if (pState->m_pCurrentWinThread == this)
-         pState->m_pCurrentWinThread = NULL;
-      
-      //window::DeleteTempMap();
-      //      m_pmapHDC->delete_temp();
-      //    m_pmapHGDIOBJ->delete_temp();
-      
-      try
-      {
-         // cleanup temp/permanent maps (just the maps themselves)
-         //delete m_pmapHDC;
-         //delete m_pmapHGDIOBJ;
-      }
-      catch(...)
-      {
-      }
       
    }
    
@@ -336,20 +289,6 @@ namespace ios
          SetMainWnd(NULL);
       }
       single_lock sl(&m_mutexUiPtra, TRUE);
-      if(m_puiptra != NULL)
-      {
-         m_puiptra->remove(pui);
-         m_puiptra->remove(pui->m_pui);
-         m_puiptra->remove(pui->m_pimpl);
-      }
-      sl.unlock();
-      if(m_ptimera != NULL)
-      {
-         m_ptimera->unset(pui);
-         m_ptimera->unset(pui->m_pui);
-         m_ptimera->unset(pui->m_pimpl);
-      }
-      
       try
       {
          if(IOS_THREAD(pui->m_pthread.m_p) == this)
@@ -386,6 +325,21 @@ namespace ios
       catch(...)
       {
       }
+      if(m_puiptra != NULL)
+      {
+         m_puiptra->remove(pui);
+         m_puiptra->remove(pui->m_pui);
+         m_puiptra->remove(pui->m_pimpl);
+      }
+      sl.unlock();
+      if(m_ptimera != NULL)
+      {
+         m_ptimera->unset(pui);
+         m_ptimera->unset(pui->m_pui);
+         m_ptimera->unset(pui->m_pimpl);
+      }
+      
+
    }
    
    ::count thread::get_ui_count()
@@ -766,9 +720,12 @@ namespace ios
       
       try
       {
+
+         
+         single_lock sl(&m_mutexUiPtra, TRUE);
+         
          if(m_puiptra != NULL)
          {
-            single_lock sl(&m_mutexUiPtra, TRUE);
             sp(::user::interaction_ptr_array) puiptra = m_puiptra;
             m_puiptra = NULL;
             for(int32_t i = 0; i < puiptra->get_size(); i++)
@@ -811,6 +768,8 @@ namespace ios
    {
       ASSERT_VALID(this);
       
+      single_lock sl(&m_mutexUiPtra, TRUE);
+
       
       if(lCount <= 0 && m_puiptra != NULL)
       {
@@ -1238,8 +1197,6 @@ namespace ios
       
 //      ::window threadWnd;
       
-//      m_ptimera            = new ::user::interaction::timer_array(get_app());
-//      m_puiptra            = new user::interaction_ptr_array;
       m_bRun               = true;
       
       m_ptimera->m_pbaseapp    = m_pbaseapp;

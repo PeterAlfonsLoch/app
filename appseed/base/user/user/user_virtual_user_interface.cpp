@@ -1110,14 +1110,13 @@ bool virtual_user_interface::DestroyWindow()
    if(m_pui == NULL)
       return FALSE;
 
-//#ifdef WINDOWS
-
    if (m_pthread.is_set())
    {
+      single_lock sl(&m_pthread->m_pimpl->m_mutexUiPtra, TRUE);
+
       if (m_pthread->m_puiptra.is_set())
       {
          m_pthread->m_puiptra->remove(this);
-         m_pthread->m_puiptra->remove(m_pui);
       }
    }
 

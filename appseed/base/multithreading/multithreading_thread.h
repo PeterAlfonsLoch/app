@@ -23,8 +23,6 @@ public:
    thread_impl_sp                         m_pimpl;
    thread_sp                              m_puser;
 
-   sp(::user::interaction_ptr_array)      m_puiptra;
-   sp(::user::interaction::timer_array)   m_ptimera;
    bool                                   m_bAutoDelete;       // enables 'delete this' after thread termination
    uint_ptr                               m_dwAlive;
    bool                                   m_bReady;
