@@ -1,8 +1,9 @@
 #include "framework.h"
 #include <dlfcn.h>
 
-
-base_library::base_library(sp(::base::application) papp) :
+namespace base
+{
+library::library(sp(::base::application) papp) :
 element(papp)
 {
 
@@ -13,7 +14,7 @@ element(papp)
 }
 
 
-base_library::base_library(sp(::base::application) papp, const char * pszOpen) :
+library::library(sp(::base::application) papp, const char * pszOpen) :
 element(papp)
 {
 
@@ -26,7 +27,7 @@ element(papp)
 }
 
 
-base_library::~base_library()
+library::~library()
 {
 
    if(m_bAutoClose)
@@ -39,7 +40,7 @@ base_library::~base_library()
 }
 
 
-bool base_library::open(const char * pszPath, bool bAutoClose)
+bool library::open(const char * pszPath, bool bAutoClose)
 {
 
    if(m_bAutoClose)
@@ -98,7 +99,7 @@ bool base_library::open(const char * pszPath, bool bAutoClose)
 }
 
 
-bool base_library::close()
+bool library::close()
 {
    if(m_plibrary != NULL)
    {
@@ -107,20 +108,44 @@ bool base_library::close()
 }
 
 
-void * base_library::raw_get(const char * pszElement)
+void * library::raw_get(const char * pszElement)
 {
    return dlsym(m_plibrary, pszElement);
 }
 
+
+
+
+bool library::is_opened()
+{
+
+   return m_plibrary != NULL;
+
+}
+
+
+bool library::is_closed()
+{
+
+   return !is_opened();
+
+}
+
+
+
+} // namespace base
+
+
+
 ca2_library::ca2_library(sp(::base::application) papp) :
 element(papp),
-base_library(papp)
+::base::library(papp)
 {
 }
 
 ca2_library::ca2_library(sp(::base::application) papp, const char * pszOpen) :
    element(papp),
-   base_library(papp, pszOpen)
+   ::base::library(papp, pszOpen)
 {
 
 }
@@ -134,25 +159,6 @@ ca2_library::~ca2_library()
 bool ca2_library::open(const char * pszPath, bool bAutoClose)
 {
 
-   return base_library::open(pszPath, bAutoClose);
+   return ::base::library::open(pszPath, bAutoClose);
 
 }
-
-
-bool base_library::is_opened()
-{
-
-   return m_plibrary != NULL;
-
-}
-
-
-bool base_library::is_closed()
-{
-
-   return !is_opened();
-
-}
-
-
-

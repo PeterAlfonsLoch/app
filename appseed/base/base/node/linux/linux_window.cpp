@@ -156,7 +156,7 @@ namespace linux
       if(m_oswindow != NULL)
       {
 
-         TRACE(::core::trace::category_AppMsg, 0, "Warning: calling DestroyWindow in window::~window; OnDestroy or PostNcDestroy in derived class will not be called.\n");
+         TRACE(::base::trace::category_AppMsg, 0, "Warning: calling DestroyWindow in window::~window; OnDestroy or PostNcDestroy in derived class will not be called.\n");
 
          m_pcallback = NULL;
 
@@ -493,8 +493,8 @@ namespace linux
             string strMessage;
             strMessage.Format("%s\n\nSystem Error Code: %d", strLastError, dwLastError);
 
-            TRACE(::core::trace::category_AppMsg, 0, "Warning: oswindow creation failed: GetLastError returned:\n");
-            TRACE(::core::trace::category_AppMsg, 0, "%s\n", strMessage);
+            TRACE(::base::trace::category_AppMsg, 0, "Warning: oswindow creation failed: GetLastError returned:\n");
+            TRACE(::base::trace::category_AppMsg, 0, "%s\n", strMessage);
             try
             {
                if(dwLastError == 0x0000057e)
@@ -2930,7 +2930,7 @@ return 0;
          m_event.ResetEvent();
          m_hwnd = hwnd;
          m_hdc = hdc;
-         __begin_thread(papp, &print_window::s_print_window, (LPVOID) this, ::core::scheduling_priority_normal);
+         __begin_thread(papp, &print_window::s_print_window, (LPVOID) this, ::base::scheduling_priority_normal);
          if(m_event.wait(millis(dwTimeout)).timeout())
          {
             TRACE("print_window::time_out");

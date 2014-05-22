@@ -6,7 +6,7 @@ namespace linux
 
 
    class CLASS_DECL_LINUX copydesk :
-      virtual public ::core::copydesk
+      virtual public ::base::copydesk
    {
    public:
 
