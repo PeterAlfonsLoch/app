@@ -14,7 +14,7 @@ namespace mac
 
    
    class CLASS_DECL_mac main_init_data :
-      public ::core::main_init_data
+      public ::base::main_init_data
    {
    public:
        
@@ -57,7 +57,7 @@ namespace mac
       
       virtual void SetCurrentHandles();
       
-      virtual bool set_main_init_data(::core::main_init_data * pdata);
+      virtual bool set_main_init_data(::base::main_init_data * pdata);
       
       virtual bool process_initialize();
       virtual bool initialize1();

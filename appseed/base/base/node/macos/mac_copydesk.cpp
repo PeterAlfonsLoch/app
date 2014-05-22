@@ -7,7 +7,7 @@ namespace mac
 
    copydesk::copydesk(::base::application * papp) :
       element(papp),
-      ::core::copydesk(papp),
+      ::base::copydesk(papp),
       window_sp(papp)
    {
    }
@@ -115,7 +115,7 @@ namespace mac
    bool copydesk::initialize()
    {
 
-      if(!::core::copydesk::initialize())
+      if(!::base::copydesk::initialize())
          return false;
 
   //    if(!m_p->CreateEx(0, System.RegisterWndClass(0), NULL, 0, rect(0, 0, 0, 0), NULL, id()))
@@ -134,7 +134,7 @@ namespace mac
 
       bool bOk;
 
-      bOk = ::core::copydesk::finalize();
+      bOk = copydesk::finalize();
 
       if(window_sp::is_set() && window_sp::m_p->IsWindow())
       {

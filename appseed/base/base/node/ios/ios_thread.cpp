@@ -527,7 +527,7 @@ namespace ios
       
       uint32_t dwCreateFlags = dwCreateFlagsParam;
       
-      if(epriority != ::core::scheduling_priority_normal)
+      if(epriority != ::base::scheduling_priority_normal)
       {
    dwCreateFlags |= CREATE_SUSPENDED;
       }
@@ -579,7 +579,7 @@ namespace ios
       // allow thread to continue, once resumed (it may already be resumed)
       pstartup->hEvent2.set_event();
       
-      if(epriority != ::core::scheduling_priority_normal)
+      if(epriority != ::base::scheduling_priority_normal)
       {
          
          //VERIFY(set_thread_priority(epriority));

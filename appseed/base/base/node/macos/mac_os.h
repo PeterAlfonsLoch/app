@@ -6,7 +6,7 @@ namespace mac
    
    
    class CLASS_DECL_mac os :
-   public ::core::os
+      virtual public ::base::os
    {
    public:
       

@@ -232,26 +232,26 @@ void thread_get_os_priority(int32_t * piPolicy, sched_param * pparam, int32_t nC
    
    int iOsMin = sched_get_priority_min(SCHED_RR);
    
-   if(nCa2Priority == ::core::scheduling_priority_normal)
+   if(nCa2Priority == ::base::scheduling_priority_normal)
    {
       
       iOsPolicy = SCHED_RR; // iOsPolicy = SCHED_OTHER;
       
-      iCa2Min = (int) ::core::scheduling_priority_normal;
+      iCa2Min = (int) ::base::scheduling_priority_normal;
       
-      iCa2Max = (int) ::core::scheduling_priority_normal;
+      iCa2Max = (int) ::base::scheduling_priority_normal;
       
       iOsMin = (iOsMin + iOsMax) / 2;
       
       iOsMax = iOsMin;
       
    }
-   else if(nCa2Priority > ::core::scheduling_priority_normal)
+   else if(nCa2Priority > ::base::scheduling_priority_normal)
    {
       
       iOsPolicy = SCHED_RR;
       
-      iCa2Min = (int) ::core::scheduling_priority_normal;
+      iCa2Min = (int) ::base::scheduling_priority_normal;
       
       iCa2Max = 99;
       
@@ -265,7 +265,7 @@ void thread_get_os_priority(int32_t * piPolicy, sched_param * pparam, int32_t nC
       
       iCa2Min = 0;
       
-      iCa2Max = (int) ::core::scheduling_priority_normal;
+      iCa2Max = (int) ::base::scheduling_priority_normal;
       
       iOsMax = (iOsMin + iOsMax) / 2;
       
@@ -302,7 +302,7 @@ int32_t thread_get_scheduling_priority(int32_t iOsPolicy, const sched_param * pp
 //   if(iOsPolicy == SCHED_RR)
    {
       
-      iCa2Min = ::core::scheduling_priority_idle;
+      iCa2Min = ::base::scheduling_priority_idle;
       
       iCa2Max = 99;
       
@@ -313,15 +313,15 @@ int32_t thread_get_scheduling_priority(int32_t iOsPolicy, const sched_param * pp
       
       iCa2Min = 0;
       
-      iCa2Max = (int) ::core::scheduling_priority_normal;
+      iCa2Max = (int) ::base::scheduling_priority_normal;
       
    }
    else
    {
       
-      iCa2Min = (int) ::core::scheduling_priority_normal;
+      iCa2Min = (int) ::base::scheduling_priority_normal;
       
-      iCa2Max = (int) ::core::scheduling_priority_normal;
+      iCa2Max = (int) ::base::scheduling_priority_normal;
       
    }
 */
@@ -334,7 +334,7 @@ int32_t thread_get_scheduling_priority(int32_t iOsPolicy, const sched_param * pp
    
    if(iOsMax == iOsMin)
    {
-      iCa2Priority = (int32_t) ::core::scheduling_priority_normal;
+      iCa2Priority = (int32_t) ::base::scheduling_priority_normal;
    }
    else
    {
@@ -366,13 +366,13 @@ int32_t process_get_scheduling_priority(int32_t iOsPolicy, const sched_param * p
 int32_t process_get_os_priority(int32_t nCa2Priority)
 {
    
-   if(nCa2Priority <= (int) ::core::scheduling_priority_none)
+   if(nCa2Priority <= (int) ::base::scheduling_priority_none)
       return 0;
    
-   if(nCa2Priority <= (int) ::core::scheduling_priority_normal)
-      return max(-20, min(0, -20 * ((int) ::core::scheduling_priority_normal - nCa2Priority) / ((int) ::core::scheduling_priority_normal - (int) ::core::scheduling_priority_idle)));
+   if(nCa2Priority <= (int) ::base::scheduling_priority_normal)
+      return max(-20, min(0, -20 * ((int) ::base::scheduling_priority_normal - nCa2Priority) / ((int) ::base::scheduling_priority_normal - (int) ::base::scheduling_priority_idle)));
    
-   return max(0, min(20, 20 * (nCa2Priority - (int) ::core::scheduling_priority_normal) / ((int) ::core::scheduling_priority_time_critical - (int) ::core::scheduling_priority_normal)));
+   return max(0, min(20, 20 * (nCa2Priority - (int) ::base::scheduling_priority_normal) / ((int) ::base::scheduling_priority_time_critical - (int) ::base::scheduling_priority_normal)));
    
 }
 
@@ -381,24 +381,24 @@ int32_t process_get_scheduling_priority(int32_t iOsPriority)
 {
    
    if(iOsPriority < -15)
-      return ::core::scheduling_priority_idle;
+      return ::base::scheduling_priority_idle;
    
    if(iOsPriority < -10)
-      return ::core::scheduling_priority_lowest;
+      return ::base::scheduling_priority_lowest;
 
    if(iOsPriority < 0)
-      return ::core::scheduling_priority_below_normal;
+      return ::base::scheduling_priority_below_normal;
    
    if(iOsPriority == 0)
-      return ::core::scheduling_priority_normal;
+      return ::base::scheduling_priority_normal;
    
    if(iOsPriority < 10)
-      return ::core::scheduling_priority_above_normal;
+      return ::base::scheduling_priority_above_normal;
    
    if(iOsPriority < 15)
-      return ::core::scheduling_priority_highest;
+      return ::base::scheduling_priority_highest;
    
-   return ::core::scheduling_priority_time_critical;
+   return ::base::scheduling_priority_time_critical;
 
    
 }

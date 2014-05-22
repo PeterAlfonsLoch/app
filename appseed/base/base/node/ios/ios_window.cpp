@@ -1248,7 +1248,7 @@ namespace ios
    
    
    
-   bool window::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
+   bool window::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
    {
       if(command_target_interface::_001OnCmdMsg(pcmdmsg))
          return TRUE;
@@ -3169,7 +3169,7 @@ namespace ios
          m_event.ResetEvent();
          m_hwnd = hwnd;
          m_hdc = hdc;
-         __begin_thread(papp, &print_window::s_print_window, (LPVOID) this, ::core::scheduling_priority_normal);
+         __begin_thread(papp, &print_window::s_print_window, (LPVOID) this, ::base::scheduling_priority_normal);
          if(m_event.wait(millis(dwTimeout)).timeout())
          {
             TRACE("print_window::time_out");
