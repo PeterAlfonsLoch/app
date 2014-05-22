@@ -81,6 +81,10 @@ CLASS_DECL_BASE void on_init_thread();
 CLASS_DECL_BASE void on_term_thread();
 
 
+CLASS_DECL_BASE void __init_thread();
+CLASS_DECL_BASE void __term_thread();
+
+
 CLASS_DECL_BASE void __node_init_thread();
 CLASS_DECL_BASE void __node_term_thread();
 
