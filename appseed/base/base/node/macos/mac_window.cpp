@@ -553,7 +553,7 @@ namespace mac
       sl.unlock();
       if (get_handle() != NULL)
       {
-         TRACE(::core::trace::category_AppMsg, 0, "Warning: calling DestroyWindow in window::~window; "
+         TRACE(::base::trace::category_AppMsg, 0, "Warning: calling DestroyWindow in window::~window; "
                "OnDestroy or PostNcDestroy in derived class will not be called.\n");
          m_pcallback = NULL;
          DestroyWindow();

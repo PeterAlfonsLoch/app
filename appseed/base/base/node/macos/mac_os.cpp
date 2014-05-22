@@ -10,7 +10,7 @@ namespace mac
    
    os::os(::base::application * papp) :
    element(papp),
-   ::core::os(papp)
+   ::base::os(papp)
    {
    }
    
