@@ -105,7 +105,6 @@ public:
    system(sp(::base::application) papp);
 
 
-   using thread::construct;
    virtual void construct();
 
    virtual bool initialize_instance();

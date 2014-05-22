@@ -7,8 +7,6 @@ thread::thread() :
 m_mutex(NULL)
 {
 
-   construct();
-
 }
 
 
@@ -66,7 +64,7 @@ m_set(papp),
 m_mutex(papp)
 {
 
-   construct();
+   CommonConstruct();
 
    if (papp == NULL)
       return;
@@ -84,7 +82,7 @@ element(papp),
 m_mutex(papp)
 {
 
-   construct();
+   CommonConstruct();
 
    thread::m_pimpl.create(allocer());
    m_pimpl->m_puser = this;

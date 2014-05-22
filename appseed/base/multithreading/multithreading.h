@@ -132,3 +132,56 @@ CLASS_DECL_BASE void __term_thread(sp(::base::application) papp,HINSTANCE hInstT
 
 
 
+
+
+#ifdef WINDOWS
+
+///  \brief		global function to wait on a waitable item for a specified time
+///  \param		waitableItem item to wait for (can be event, socket, file, semaphore, ...)
+///  \param		duration time period to wait for item (default: infinite)
+///  \return	result of waiting action as defined in wait_result
+inline wait_result wait(event_base & waitableItem,const duration & duration = duration::infinite())
+{
+   return waitableItem.wait(duration);
+}
+
+///  \brief		global function to wait on a waitable item for a specified time
+///  \param		waitableItem item to wait for (item can be thread, event, socket, file, semaphore, ...)
+///  \param		duration time period to wait for item (default: infinite)
+///  \return	result of waiting action as defined in wait_result
+wait_result wait(size_t numberOfItems,event_base * waitableItems[],const duration & duration = duration::infinite(),bool waitForAll = false);
+
+#else
+
+///  \brief		global function to wait on a waitable item for a specified time
+///  \param		waitableItem item to wait for (can be event, socket, file, semaphore, ...)
+///  \param		duration time period to wait for item (default: infinite)
+///  \return	result of waiting action as defined in wait_result
+wait_result wait(event_base & waitableItem,const duration & duration = duration::infinite());
+
+///  \brief		global function to wait on a waitable item for a specified time
+///  \param		waitableItem item to wait for (item can be thread, event, socket, file, semaphore, ...)
+///  \param		duration time period to wait for item (default: infinite)
+///  \return	result of waiting action as defined in wait_result
+wait_result wait(size_t numberOfItems,event_base * waitableItems[],const duration& duration = duration::infinite(),bool waitForAll = false);
+
+#endif
+
+
+
+
+CLASS_DECL_BASE void thread_alloc_ready(bool bReady);
+
+
+
+
+
+
+
+
+
+CLASS_DECL_BASE mutex & user_mutex();
+
+
+
+

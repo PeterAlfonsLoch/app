@@ -4598,6 +4598,12 @@
     <ClInclude Include="base\node\ansios\ansios_thread_impl.h">
       <Filter>Header Files\base\node\ansios</Filter>
     </ClInclude>
+    <ClInclude Include="base\base\base_heap_item.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_heap_item_array.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -8927,6 +8933,9 @@
     </None>
     <None Include="base\message\message.inl">
       <Filter>Header Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

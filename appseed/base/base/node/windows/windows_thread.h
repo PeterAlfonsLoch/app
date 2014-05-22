@@ -19,7 +19,7 @@ namespace windows
       virtual void construct(__THREADPROC pfnThreadProc, LPVOID pParam);
 
 
-      virtual bool begin(int32_t epriority = get_scheduling_priority_normal(), uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+      //virtual bool begin(int32_t epriority = get_scheduling_priority_normal(), uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
 
       virtual void start();
@@ -52,7 +52,7 @@ namespace windows
       void CommonConstruct();
 
 
-      virtual void Delete();
+      //virtual void Delete();
 
 
       virtual void dispatch_thread_message(signal_details * pobj); 

@@ -317,7 +317,6 @@ namespace base
 #endif
 
 
-      using ::thread::construct;
       virtual void construct();
 
 

@@ -1378,6 +1378,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base\base_fixed_alloc_impl.h" />
     <ClInclude Include="base\base\base_flags.h" />
     <ClInclude Include="base\base\base_heap.h" />
+    <ClInclude Include="base\base\base_heap_item.h" />
+    <ClInclude Include="base\base\base_heap_item_array.h" />
     <ClInclude Include="base\base\base_id_pool.h" />
     <ClInclude Include="base\base\base_international.h" />
     <ClInclude Include="base\base\base_keeper.h" />

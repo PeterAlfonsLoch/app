@@ -289,7 +289,35 @@ namespace draw2d
 class random_access_iterator { public: };
 
 
+#ifdef WINDOWSEX
 
+typedef HANDLE HTHREAD;
+
+#else
+
+typedef hthread * HTHREAD;
+
+#endif
+
+
+class event;
+
+
+class thread;
+
+
+
+
+class thread;
+
+
+typedef smart_pointer < thread > thread_sp;
+
+
+class thread_impl;
+
+
+typedef smart_pointer < thread_impl > thread_impl_sp;
 
 
 
