@@ -6,8 +6,8 @@ namespace android
 
 
    class CLASS_DECL_BASE window_draw :
-      virtual public ::ca2::window_draw,
-      virtual public ::ca2::message_window_simple_callback
+      virtual public ::user::window_draw,
+      virtual public ::message_queue_listener
    {
    public:
 
@@ -133,7 +133,7 @@ namespace android
       virtual void synch_redraw();
       virtual void _synch_redraw();
 
-      virtual void message_window_message_handler(::ca2::signal_object * pobj);
+      virtual void message_window_message_handler(::signal_details * pobj);
 
    };
 

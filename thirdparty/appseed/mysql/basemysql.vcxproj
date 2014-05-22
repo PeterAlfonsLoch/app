@@ -603,7 +603,7 @@
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <RuntimeTypeInfo>EnableRuntimeTypeInfo</RuntimeTypeInfo>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <GccExceptionHandling>true</GccExceptionHandling>
       <AdditionalOptions>-Wnarrowing -std=c++11</AdditionalOptions>
       <CppStandard>CppStandard11</CppStandard>

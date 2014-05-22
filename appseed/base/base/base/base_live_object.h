@@ -1,8 +1,9 @@
 #pragma once
 
 
-namespace core
+namespace base
 {
+
 
    class CLASS_DECL_BASE live_object :
       virtual public element
@@ -24,4 +25,11 @@ namespace core
 
    };
 
-} // namespace core
+
+} // namespace base
+
+
+
+
+
+

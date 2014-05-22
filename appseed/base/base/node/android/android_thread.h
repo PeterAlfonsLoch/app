@@ -10,18 +10,8 @@ namespace android
    public:
 
 
-
-
       thread(sp(::base::application) papp);
       virtual ~thread();
-
-
-
-
-
-
-
-      virtual void defer_process_windows_messages();
 
 
    };

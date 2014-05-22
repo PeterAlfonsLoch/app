@@ -28,8 +28,8 @@ namespace android
       dir(sp(::base::application) papp);
 
 
-      using ::ca2::dir::system::path;
-      virtual class ::ca2::path & path();
+      using ::file::dir::system::path;
+      virtual class ::file::path & path();
       virtual string path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, const char * psz2, strsize iLen2, bool bUrl);
 
       virtual string relpath(const char * lpcszSource, const char * lpcszRelative, const char * lpcsz2 = NULL);

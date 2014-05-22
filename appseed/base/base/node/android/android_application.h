@@ -41,36 +41,13 @@ namespace android
       virtual sp(::user::document_interface) _001OpenDocumentFile(var varFile);
       virtual void _001OnFileNew();
 
-      // Loads a cursor resource.
-      HCURSOR LoadCursor(const char * lpszResourceName) const;
-      HCURSOR LoadCursor(UINT nIDResource) const;
-
-      // Loads a stock cursor resource; for for IDC_* values.
-      HCURSOR LoadStandardCursor(const char * lpszCursorName) const;
-
-      // Loads an OEM cursor; for all OCR_* values.
-      HCURSOR LoadOEMCursor(UINT nIDCursor) const;
-
-      // Loads an icon resource.
-      HICON LoadIcon(const char * lpszResourceName) const;
-      HICON LoadIcon(UINT nIDResource) const;
-
-      // Loads an icon resource; for stock IDI_ values.
-      HICON LoadStandardIcon(const char * lpszIconName) const;
-
-      // Loads an OEM icon resource; for all OIC_* values.
-      HICON LoadOEMIcon(UINT nIDIcon) const;
 
       virtual string get_version();
 
       virtual bool Ex2OnAppInstall();
       virtual bool Ex2OnAppUninstall();
 
-      virtual bool DeferRegisterClass(LONG fToRegister, const char ** ppszClass);
-      virtual void LockTempMaps();
-      virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
       virtual void TermThread(HINSTANCE hInstTerm);
-      virtual const char * RegisterWndClass(UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
 
 
       virtual void SetCurrentHandles();
@@ -151,7 +128,7 @@ namespace android
       // thread initialization
       virtual bool initialize_instance();
 
-      virtual ::ca2::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
+      virtual ::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
 
       // running and idle processing
       virtual int32_t run();
@@ -186,14 +163,14 @@ namespace android
 
       virtual void ShowWaitCursor(bool bShow = true);
 
-      sp(::ca2::window) window_from_os_data(void * pdata);
-      sp(::ca2::window) window_from_os_data_permanent(void * pdata);
+      sp(::window) window_from_os_data(void * pdata);
+      sp(::window) window_from_os_data_permanent(void * pdata);
 
       virtual ::ca2::thread * GetThread();
       virtual void set_thread(::ca2::thread * pthread);
 
-      virtual sp(::ca2::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      virtual sp(::ca2::window) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+      virtual sp(::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
+      virtual sp(::window) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
       virtual void get_time(struct timeval *p);
       virtual void set_env_var(const string & var,const string & value);

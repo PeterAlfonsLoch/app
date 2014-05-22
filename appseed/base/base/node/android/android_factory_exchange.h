@@ -6,7 +6,7 @@ namespace android
 
 
    class CLASS_DECL_BASE factory_exchange :
-      virtual public ::ca2::object
+      virtual public ::object
    {
    public:
       

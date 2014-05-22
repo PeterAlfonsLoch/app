@@ -1,13 +1,12 @@
 #pragma once
 
 
-
-
-namespace core
+namespace base
 {
 
+
    class CLASS_DECL_BASE live_signal :
-      virtual public ::core::live_object,
+      virtual public ::base::live_object,
       virtual protected ::comparable_array < live_object * >
    {
    public:
@@ -25,7 +24,14 @@ namespace core
 
    };
 
-} // namespace core
+
+} // namespace base
+
+
+
+
+
+
 
 
 

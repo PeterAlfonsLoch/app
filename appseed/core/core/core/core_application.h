@@ -14,7 +14,6 @@ extern CLASS_DECL_CORE LPFN_instantiate_application g_lpfn_instantiate_applicati
 
 class type;
 class system;
-class window_draw;
 
 
 

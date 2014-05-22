@@ -114,7 +114,7 @@ UINT APIENTRY __thread_entry(void * pParam)
       // forced initialization of the thread
       __init_thread();
 
-      // thread inherits cast's main ::ca2::window if not already set
+      // thread inherits cast's main ::window if not already set
       //if (papp != NULL && GetMainWnd() == NULL)
       {
          // just attach the oswindow
@@ -188,7 +188,7 @@ CLASS_DECL_BASE MESSAGE * AfxGetCurrentMessage()
 
 CLASS_DECL_BASE void AfxInternalProcessWndProcException(base_exception*, ::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca2::message::base, pbase, pobj);
+   SCAST_PTR(::message::base, pbase, pobj);
    if (pbase->m_uiMessage == WM_CREATE)
    {
       pbase->set_lresult(-1);
@@ -196,7 +196,7 @@ CLASS_DECL_BASE void AfxInternalProcessWndProcException(base_exception*, ::ca2::
    }
    else if (pbase->m_uiMessage == WM_PAINT)
    {
-      // force validation of ::ca2::window to prevent getting WM_PAINT again
+      // force validation of ::window to prevent getting WM_PAINT again
 //      ValidateRect(pbase->m_hwnd, NULL);
       pbase->set_lresult(0);
       return;
@@ -219,7 +219,7 @@ void AfxInternalPreTranslateMessage(::ca2::signal_object * pobj)
    try
    {
 #endif
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
 
       //   ASSERT_VALID(this);
 
@@ -235,7 +235,7 @@ void AfxInternalPreTranslateMessage(::ca2::signal_object * pobj)
          }
       }
 
-      // walk from target to main ::ca2::window
+      // walk from target to main ::window
       sp(::user::interaction) pMainWnd = pThread->GetMainWnd();
       if(pMainWnd != NULL && pMainWnd->IsWindow())
       {
@@ -245,8 +245,8 @@ void AfxInternalPreTranslateMessage(::ca2::signal_object * pobj)
       }
 
       // in case of modeless dialogs, last chance route through main
-      //   ::ca2::window's accelerator table
-      sp(::ca2::window) pWnd = pbase->m_pwnd->get_wnd();
+      //   ::window's accelerator table
+      sp(::window) pWnd = pbase->m_pwnd->get_wnd();
       if (pMainWnd != NULL)
       {
          if (pWnd != NULL && ANDROID_WINDOW(pWnd)->GetTopLevelParent() != pMainWnd)
@@ -314,7 +314,7 @@ void __cdecl __pre_translate_message(::ca2::signal_object * pobj)
 
 WINBOOL AfxInternalIsIdleMessage(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca2::message::base, pbase, pobj);
+   SCAST_PTR(::message::base, pbase, pobj);
    // Return FALSE if the message just dispatched should _not_
    // cause on_idle to be run.  Messages which do not usually
    // affect the state of the ::fontopus::user interface and happen very
@@ -1113,21 +1113,7 @@ stop_run:
       ASSERT_VALID(this);
 
 
-      try
-      {
-   #ifdef DEBUG
-         // Check for missing LockTempMap calls
-         if(m_nTempMapLock != 0)
-         {
-            TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Temp ::collection::map lock count non-zero (%ld).\n", m_nTempMapLock);
-         }
-         LockTempMaps();
-         UnlockTempMaps(-1);
-   #endif
-      }
-      catch(...)
-      {
-      }
+
 
 
       try
@@ -1263,17 +1249,17 @@ stop_run:
       return lCount < 0;  // nothing more to do if lCount >= 0
    }
 
-   ::ca2::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
+   ::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
    {
       UNREFERENCED_PARAMETER(uiMessage);
       UNREFERENCED_PARAMETER(uiCode);
-    return ::ca2::message::PrototypeNone;
+    return ::message::PrototypeNone;
    }
 
 
    void thread::DispatchThreadMessageEx(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_APP + 1984 && pbase->m_wparam == 77)
       {
          sp(::user::message) spmessage(pbase->m_lparam);
@@ -1330,10 +1316,10 @@ stop_run:
       {
          Signal & signal = *signalptra[i];
          ::ca2::signal * psignal = signal.m_psignal;
-         ::ca2::message::e_prototype eprototype = signal.m_eprototype;
-         if(eprototype == ::ca2::message::PrototypeNone)
+         ::message::e_prototype eprototype = signal.m_eprototype;
+         if(eprototype == ::message::PrototypeNone)
          {
-            //::ca2::message::base base(get_app());
+            //::message::base base(get_app());
             pbase->m_psignal = psignal;
             lresult = 0;
             //base.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
@@ -1359,14 +1345,14 @@ stop_run:
 
    __STATIC inline WINBOOL IsEnterKey(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
-      SCAST_PTR(::ca2::message::key, pkey, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
+      SCAST_PTR(::message::key, pkey, pobj);
       return pbase->m_uiMessage == WM_KEYDOWN && pkey->m_ekey == ::user::key_return;
    }
 
    __STATIC inline WINBOOL IsButtonUp(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       return pbase->m_uiMessage == WM_LBUTTONUP;
    }
 
@@ -1376,7 +1362,7 @@ stop_run:
       if(pobj == NULL)
          return;   // not handled
 
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
 
       sp(::user::frame_window) pTopFrameWnd;
       sp(::user::interaction) pMainWnd;
@@ -1489,7 +1475,7 @@ stop_run:
          if(msg.message != WM_KICKIDLE)
          {
 
-            ::ca::smart_pointer < ::ca2::message::base > spbase;
+            ::ca::smart_pointer < ::message::base > spbase;
 
             if(msg.message == 126)
             {
@@ -1624,7 +1610,7 @@ stop_run:
 
    void thread::message_handler(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       // special message which identifies the window as using AfxWndProc
       //if(pbase->m_uiMessage == WM_QUERYAFXWNDPROC)
       {
@@ -1633,7 +1619,7 @@ stop_run:
       }
 
       // all other messages route through message ::collection::map
-      sp(::ca2::window) pwindow = pbase->m_pwnd->get_wnd();
+      sp(::window) pwindow = pbase->m_pwnd->get_wnd();
 
 /*      ASSERT(pwindow == NULL || ANDROID_WINDOW(pwindow)->get_handle() == pbase->m_hwnd);
 
@@ -2533,7 +2519,7 @@ return -1;  // just fail
 }
 else if (pMsg->message == WM_PAINT)
 {
-// force validation of ::ca2::window to prevent getting WM_PAINT again
+// force validation of ::window to prevent getting WM_PAINT again
 ValidateRect(pMsg->hwnd, NULL);
 return 0;
 }
@@ -2560,16 +2546,16 @@ if (pMsg->hwnd == NULL && pThread->DispatchThreadMessageEx(pMsg))
 return TRUE;
 }
 
-// walk from target to main ::ca2::window
+// walk from target to main ::window
 sp(::user::interaction) pMainWnd = System.GetMainWnd();
-/* trans   if (::ca2::window::WalkPreTranslateTree(pMainWnd->GetSafeHwnd(), pMsg))
+/* trans   if (::window::WalkPreTranslateTree(pMainWnd->GetSafeHwnd(), pMsg))
 return TRUE; */
 
 // in case of modeless dialogs, last chance route through main
-//   ::ca2::window's accelerator table
+//   ::window's accelerator table
 /*   if (pMainWnd != NULL)
 {
-sp(::ca2::window) pWnd = ::android::window::from_handle(pMsg->hwnd);
+sp(::window) pWnd = ::android::window::from_handle(pMsg->hwnd);
 if (pWnd != NULL && ANDROID_WINDOW(pWnd)->GetTopLevelParent() != pMainWnd)
 return pMainWnd->pre_translate_message(pMsg);
 }
@@ -2896,7 +2882,7 @@ ASSERT(__check_memory());
 
 if (lCount <= 0)
 {
-// send WM_IDLEUPDATECMDUI to the main ::ca2::window
+// send WM_IDLEUPDATECMDUI to the main ::window
 sp(::user::interaction) pMainWnd = GetMainWnd();
 if (pMainWnd != NULL && pMainWnd->IsWindowVisible())
 {
@@ -2950,9 +2936,9 @@ ASSERT(__check_memory());
 return lCount < 0;  // nothing more to do if lCount >= 0
 }
 
-::ca2::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
+::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
 {
-return ::ca2::message::PrototypeNone;
+return ::message::PrototypeNone;
 }
 
 
@@ -2976,7 +2962,7 @@ pMessageMap = (*pMessageMap->pfnGetBaseMap)())
 ASSERT(pMessageMap != (*pMessageMap->pfnGetBaseMap)());
 if (pMsg->message < 0xC000)
 {
-// constant ::ca2::window message
+// constant ::window message
 if ((lpEntry = AfxFindMessageEntry(pMessageMap->lpEntries,
 pMsg->message, 0, 0)) != NULL)
 goto LDispatch;
@@ -3013,10 +2999,10 @@ for(int32_t i = 0; i < signalptra.get_size(); i++)
 {
 Signal & signal = *signalptra[i];
 ::ca2::signal * psignal = signal.m_psignal;
-::ca2::message::e_prototype eprototype = signal.m_eprototype;
-if(eprototype == ::ca2::message::PrototypeNone)
+::message::e_prototype eprototype = signal.m_eprototype;
+if(eprototype == ::message::PrototypeNone)
 {
-::ca2::message::base base;
+::message::base base;
 base.m_psignal = psignal;
 lresult = 0;
 base.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
@@ -3284,7 +3270,7 @@ return AfxInternalProcessWndProcException( e, pMsg );
       return ::callNextHookEx(_afxThreadState->m_hHookOldMsgFilter, code, wParam, lParam);
    }
    ASSERT(pthread != NULL);
-   ::ca2::smart_pointer < ::ca2::message::base > spbase;
+   ::ca2::smart_pointer < ::message::base > spbase;
    spbase(pthread->get_base((LPMESSAGE)lParam));
    pthread->ProcessMessageFilter(code, spbase);
    LRESULT lresult = spbase->m_bRet ? 1 : 0;

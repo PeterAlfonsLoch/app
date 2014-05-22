@@ -2,10 +2,11 @@
 #include <dlfcn.h>
 #include <link.h>
 
-extern __thread thread_local_storage * __thread_data;
 
 namespace android
 {
+
+
 
    application::application(sp(::base::application) papp) :
       ca2(papp)
@@ -190,49 +191,12 @@ namespace android
       return true;
    }
 
-   bool application::DeferRegisterClass(LONG fToRegister, const char ** ppszClass)
-   {
-
-      throw todo(get_app());
-// xxx       return __end_defer_register_class(fToRegister, ppszClass);
-      return false;
-   }
-
-
-   void application::LockTempMaps()
-   {
-      ANDROID_THREAD(::ca2::thread::m_p.m_p)->LockTempMaps();
-   }
-
-   bool application::UnlockTempMaps(bool bDeleteTemp)
-   {
-      return ANDROID_THREAD(::ca2::thread::m_p.m_p)->UnlockTempMaps(bDeleteTemp);
-   }
-
-
    void application::TermThread(HINSTANCE hInstTerm)
    {
-/*      try
-      {
-   #ifdef DEBUG
-         // check for missing ::ca2::LockTempMap calls
-         if (__get_module_thread_state()->m_pCurrentWinThread->m_nTempMapLock != 0)
-         {
-            TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Temp ::collection::map lock count non-zero (%ld).\n",
-               __get_module_thread_state()->m_pCurrentWinThread->m_nTempMapLock);
-         }
-   #endif
-         ::ca2::LockTempMaps(::ca2::smart_pointer < ::ca2::application_base >::m_p);
-         ::ca2::UnlockTempMaps(::ca2::smart_pointer < ::ca2::application_base >::m_p, -1);
-      }
-      catch( base_exception* e )
-      {
-         e->Delete();
-      }*/
 
       try
       {
-         // cleanup thread local tooltip ::ca2::window
+         // cleanup thread local tooltip ::window
          if (hInstTerm == NULL)
          {
 //            __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
@@ -256,65 +220,7 @@ namespace android
    }
 
 
-   const char * application::RegisterWndClass(UINT nClassStyle, HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
-   {
-      return __register_window_class(nClassStyle, hCursor, hbrBackground, hIcon);
-   }
-
-
-
-
-   // application
-   HCURSOR application::LoadCursor(const char * lpszResourceName) const
-   {
-      return NULL;
-   }
-
-   HCURSOR application::LoadCursor(UINT nIDResource) const
-   {
-      return NULL;
-   }
-
-   HCURSOR application::LoadStandardCursor(const char * lpszCursorName) const
-   {
-// xxx       return ::LoadCursor(NULL, lpszCursorName);
-return NULL;
-   }
-
-   HCURSOR application::LoadOEMCursor(UINT nIDCursor) const
-   {
-
-// xxx       return ::LoadCursor(NULL, MAKEINTRESOURCE(nIDCursor));
-return NULL;
-
-   }
-
-   HICON application::LoadIcon(const char * lpszResourceName) const
-   {
-      return NULL;
-   }
-
-   HICON application::LoadIcon(UINT nIDResource) const
-   {
-      return NULL;
-   }
-
-   HICON application::LoadStandardIcon(const char * lpszIconName) const
-   {
-// xxx  return ::LoadIcon(NULL, lpszIconName);
-return NULL;
-   }
-
-   HICON application::LoadOEMIcon(UINT nIDIcon) const
-   {
-// xxx       return ::LoadIcon(NULL, MAKEINTRESOURCE(nIDIcon));
-return NULL;
-   }
-
-
-
-
-
+   
    /*void application::construct(__THREADPROC pfnThreadProc, LPVOID pParam)
    {
       ::win::thread::construct(pfnThreadProc, pParam);
@@ -391,7 +297,7 @@ return NULL;
       return ::win::thread::initialize_instance();
    }
 
-   ::ca2::message::e_prototype application::GetMessagePrototype(UINT uiMessage, UINT uiCode)
+   ::message::e_prototype application::GetMessagePrototype(UINT uiMessage, UINT uiCode)
    {
       return ::win::thread::GetMessagePrototype(uiMessage, uiCode);
    }
@@ -590,14 +496,14 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
    }
 
-   sp(::ca2::window) application::window_from_os_data(void * pdata)
+   sp(::window) application::window_from_os_data(void * pdata)
    {
       return ::android::window::from_handle((oswindow) pdata);
    }
 
-   sp(::ca2::window) application::window_from_os_data_permanent(void * pdata)
+   sp(::window) application::window_from_os_data_permanent(void * pdata)
    {
-      sp(::ca2::window) pwnd = ::android::window::FromHandlePermanent((oswindow) pdata);
+      sp(::window) pwnd = ::android::window::FromHandlePermanent((oswindow) pdata);
       if(pwnd != NULL)
          return pwnd;
       user::interaction_ptr_array wndptra = System.frames();
@@ -692,12 +598,12 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
    }
 
-   sp(::ca2::window) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+   sp(::window) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
       return window::FindWindow(lpszClassName, lpszWindowName);
    }
 
-   sp(::ca2::window) application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
+   sp(::window) application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
    {
       return window::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow);
    }
@@ -795,11 +701,11 @@ if(__get_module_state()->m_pmapHWND == NULL)
          if (!afxContextIsDLL)
             __init_thread();
 
-         // Initialize ::ca2::window::m_pfnNotifyWinEvent
+         // Initialize ::window::m_pfnNotifyWinEvent
       /*   HMODULE hModule = ::GetModuleHandle("user32.dll");
          if (hModule != NULL)
          {
-            ::ca2::window::m_pfnNotifyWinEvent = (::ca2::window::PFNNOTIFYWINEVENT)::GetProcaddress(hModule, "NotifyWinEvent");
+            ::window::m_pfnNotifyWinEvent = (::window::PFNNOTIFYWINEVENT)::GetProcaddress(hModule, "NotifyWinEvent");
          }*/
 
       return true;

@@ -65,7 +65,7 @@ namespace android
 
    void window_draw::message_window_message_handler(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_uiMessage == (WM_USER + 1984 + 1977))
       {
          _synch_redraw();
@@ -522,7 +522,7 @@ namespace android
          {
             if(wndpa[l].oprop("session").is_new())
             {
-               wndpa[l].m_pimpl.cast < ::ca2::window >()->_001UpdateWindow();
+               wndpa[l].m_pimpl.cast < ::window >()->_001UpdateWindow();
             }
             l++;
          }
@@ -547,8 +547,8 @@ namespace android
       {
          oswindow hwndTopic = wndaApp[j];
 
-         sp(::ca2::window) pwnd = NULL;
-         //::ca2::window * pwnd =  (System.window_map().get((int_ptr) hwndTopic));
+         sp(::window) pwnd = NULL;
+         //::window * pwnd =  (System.window_map().get((int_ptr) hwndTopic));
          //if(pwnd == NULL)
          //{
          for(int32_t l = 0; l < wndpa.get_count(); l++)
@@ -676,8 +676,8 @@ namespace android
       return &m_semaphoreBuffer;
    }
 
-   // The first ::ca2::window handle in the array must belong
-   // to the higher z order ::ca2::window.
+   // The first ::window handle in the array must belong
+   // to the higher z order ::window.
    // The rectangle must contain all update region.
    // It must be in screen coordinates.
 
@@ -685,7 +685,7 @@ namespace android
 
    // Remark: this optimization eliminates top level lnxdows
    // that are lower z order siblings of a higher z order
-   // top level ::ca2::window that contains all
+   // top level ::window that contains all
    // the update region in a opaque area.
    // It doesn´t eliminates from the update parent lnxdows
    // obscured by opaque children.
@@ -811,7 +811,7 @@ namespace android
          return OptimizeNone;
       }
 
-   //    sp(::ca2::window) pwnd = window::FromHandlePermanent(hwnd);
+   //    sp(::window) pwnd = window::FromHandlePermanent(hwnd);
 
 
       if(ptwi == NULL)
@@ -902,7 +902,7 @@ namespace android
       ::GetWindowRect((::oswindow) oswindow, rectWindow);
 
 
-   //   sp(::ca2::window) pwnd = ::android::window::from_handle(oswindow);
+   //   sp(::window) pwnd = ::android::window::from_handle(oswindow);
 
       if(!TwfGetTopWindow(
             hwndParam,
@@ -1008,7 +1008,7 @@ throw not_implemented(get_app());
    {
       rect rectWindow;
 
-   //   sp(::ca2::window) pwndOpaque = window::FromHandlePermanent(hwndOpaque);
+   //   sp(::window) pwndOpaque = window::FromHandlePermanent(hwndOpaque);
 
       ::GetWindowRect((oswindow) hwndOpaque, rectWindow);
 
@@ -1104,7 +1104,7 @@ throw not_implemented(get_app());
       // pdc is the source primitive::memory device context
       // from which bitmap the screen is updated.
       user::buffer * pbuffer,
-      // hwndParam ::ca2::window device context
+      // hwndParam ::window device context
       // is used from screen output
       sp(::user::interaction) pwnd)
    {
@@ -1139,7 +1139,7 @@ throw not_implemented(get_app());
 //
 //      if(hdcScreen == NULL)
 //      {
-//         // If it has failed to get ::ca2::window
+//         // If it has failed to get ::window
 //         // owned device context, try to get
 //         // a device context from the cache.
 //         hdcScreen = ::GetDCEx((oswindow) hwndParam, NULL, DCX_caCHE | DCX_CLIPSIBLINGS | DCX_WINDOW);
@@ -1167,13 +1167,13 @@ throw not_implemented(get_app());
 //      // rect rectUpdate;
 //      // rgnUpdate.get_bounding_box(rectUpdate);
 //
-//      // get the ::ca2::window client area box
+//      // get the ::window client area box
 //      // in screen coordinates.
 //      rect64 rectWindow;
 //      rectWindow = pwnd->m_rectParentClient;
 //
 //      // Output rectangle receive the intersection
-//      // of ::ca2::window box and update box.
+//      // of ::window box and update box.
 //      //rect rectOutput;
 //      //rectOutput.intersect(rectWnd, rectUpdate);
 //
@@ -1187,9 +1187,9 @@ throw not_implemented(get_app());
 //      rect64 rectOutputClient(rectWindow);
 //      rectOutputClient -= rectWindow.top_left();
 //
-//      // The ::ca2::window owned device context is clipped
+//      // The ::window owned device context is clipped
 //      // with the update region in screen coordinates
-//      // translated to ::ca2::window client coordinates.
+//      // translated to ::window client coordinates.
 //      //_sp rgnClip(get_app());
 //      //rgnClip->create_rect(0, 0, 0, 0);
 //      //rgnClip->CopyRgn(&rgnUpdate);
@@ -1334,8 +1334,8 @@ throw not_implemented(get_app());
 
 
 
-   // The first ::ca2::window handle in the array must belong
-   // to the higher z order ::ca2::window.
+   // The first ::window handle in the array must belong
+   // to the higher z order ::window.
    // The rectangle must contain all update region.
    // It must be in screen coordinates.
 
@@ -1343,7 +1343,7 @@ throw not_implemented(get_app());
 
    // Remark: this optimization eliminates top level lnxdows
    // that are lower z order siblings of a higher z order
-   // top level ::ca2::window that contains all
+   // top level ::window that contains all
    // the update region in a opaque area.
    // It doesn´t eliminates from the update parent lnxdows
    // obscured by opaque children.
