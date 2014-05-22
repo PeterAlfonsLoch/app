@@ -2651,16 +2651,7 @@ namespace draw2d_direct2d
 
 
 
-   //__STATIC_DATA HBRUSH gen_HalftoneBrush = 0;
-
-   //void c_cdecl __win_gdi_x_term()
-   //{
-      //__delete_object((HGDIOBJ*)&gen_HalftoneBrush);
-   //}
-   //char gen_WingdixTerm = 0;
-
-   /////////////////////////////////////////////////////////////////////////////
-   // More coordinate transforms (in separate file to avoid transitive refs)
+   
 
 #define HIMETRIC_INCH   2540    // HIMETRIC units per inch
 

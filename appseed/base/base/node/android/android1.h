@@ -57,6 +57,3 @@ CLASS_DECL_BASE sp(::user::interaction) __get_main_window();
 CLASS_DECL_BASE const char * __get_app_name();
 
 
-CLASS_DECL_BASE void __delete_object(HGDIOBJ* pObject);
-
-void CLASS_DECL_BASE __global_free(HGLOBAL hGlobal);

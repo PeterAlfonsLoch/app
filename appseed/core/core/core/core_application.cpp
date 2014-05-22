@@ -1973,34 +1973,11 @@ void application::SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld
    UNREFERENCED_PARAMETER(hDevMode);
    UNREFERENCED_PARAMETER(bFreeOld);
    throw not_implemented(get_app());
-   /*if (m_hDevNames != hDevNames)
-   {
-   if (m_hDevNames != NULL && bFreeOld)
-   __global_free(m_hDevNames);
-   m_hDevNames = hDevNames;
-   }
-   if (m_hDevMode != hDevMode)
-   {
-   if (m_hDevMode != NULL && bFreeOld)
-   __global_free(m_hDevMode);
-   m_hDevMode = hDevMode;
-   }*/
 }
 
 ::draw2d::graphics * application::CreatePrinterDC()
 {
-   //      UNREFERENCED_PARAMETER(spgraphics);
    throw not_implemented(get_app());
-   /*
-   HDC hDC = ::core::CreateDC(m_hDevNames, m_hDevMode);
-   if (hDC != NULL)
-   {
-   spgraphics->DeleteDC();
-   bool bRet = spgraphics->attach(hDC);
-   ASSERT(bRet);
-   return bRet;
-   }*/
-   //return FALSE;
 }
 
 /////////////////////////////////////////////////////////////////////////////

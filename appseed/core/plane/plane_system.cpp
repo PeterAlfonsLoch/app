@@ -1968,6 +1968,17 @@ sp(::command_thread) system::command_thread()
    }
 
 
+
+   int32_t system::main()
+   {
+
+      int iRet = ::core::system::main();
+
+      return iRet;
+
+   }
+
+
 } // namespace plane
 
 
@@ -1978,248 +1989,21 @@ sp(::command_thread) system::command_thread()
 
 
 
-simple_app2::simple_app2() :
-::base::system(this)
+uint32_t _thread_proc_start_core_system(void * p)
 {
 
-   m_iError = 0;
+   ::base::system * psystem = (::base::system *)p;
 
-}
+   ::plane::system * pplanesystem = dynamic_cast <::plane::system *> (psystem);
 
-simple_app2::~simple_app2()
-{
-
-}
-
-
-int32_t simple_app2::main()
-{
-
-   //Sleep(15 * 1000);
-
-#ifdef WINDOWS
-   __argc = _init_args();
-   __targv = _argv;
-   _init_file();
-
-   TCHAR *cmd = GetCommandLine();
-
-   // Skip program name
-   if (*cmd == _T('"'))
-   {
-      while (*cmd && *cmd != _T('"'))
-         cmd++;
-      if (*cmd == _T('"'))
-         cmd++;
-   }
-   else
-   {
-      while (*cmd > _T(' '))
-         cmd++;
-   }
-
-   // Skip any white space
-   while (*cmd && *cmd <= _T(' '))
-      cmd++;
-
-   STARTUPINFO si;
-   si.dwFlags = 0;
-   GetStartupInfo(&si);
-
-   //initialize_primitive_heap();
-
-
-   //	_init_atexit();
-   //	_initterm(__xc_a, __xc_z);			// call C++ constructors
-
-   //initialize_primitive_trace();
-
-#endif // WINDOWS
-
-#ifdef WINDOWS
-
-   if (!os_initialize())
-      return -1;
-
-#endif
-
-   //::MessageBox(NULL,"b.1","b.1",MB_OK);
-
-#if !defined(APPLEOS)
-
-   if (!main_initialize())
-      return -1;
-
-#endif
-
-   //::MessageBox(NULL,"b","b",MB_OK);
-
-   body();
-
-#if !defined(APPLEOS)
-
-   main_finalize();
-
-#endif
-
-
-#ifdef WINDOWS
-   os_finalize();
-
-   //finalize_primitive_heap();
-
-   //_doexit();
-   _term_args();
-
-#endif
-
-   return m_iError;
+   return pplanesystem->::core::system::main();
 
 }
 
 
-void simple_app2::body()
+CLASS_DECL_CORE void __start_core_system(::base::system * psystem)
 {
 
-   try
-   {
-      if ((m_iError = simple_app_pre_run()) != 0)
-      {
+   ::create_thread(NULL,0,&_thread_proc_start_core_system,(LPVOID)psystem,0,0);
 
-         if (m_iError != 0)
-            m_iError = -1;
-
-         return;
-
-      }
-   }
-   catch (...)
-   {
-
-      if (m_iError > 0)
-         m_iError = -1;
-
-      return;
-
-   }
-   //::MessageBox(NULL,"f1","f1",MB_OK);
-
-   try
-   {
-
-#ifdef WINDOWS
-
-      set_main_thread(GetCurrentThread());
-
-      set_main_thread_id(GetCurrentThreadId());
-
-#endif
-
-      if ((m_iError = pre_run()) != 0)
-      {
-
-         if (m_iError != 0)
-            m_iError = -1;
-
-         return;
-
-      }
-
-      SetCurrentHandles();
-
-   }
-   catch (...)
-   {
-      if (m_iError > 0)
-         m_iError = -1;
-
-      return;
-
-   }
-   
-   //::MessageBox(NULL,"f2","f2",MB_OK);
-
-   try
-   {
-
-      if (!intro())
-      {
-
-         if (m_iError > 0)
-            m_iError = -1;
-
-         return;
-
-      }
-
-   }
-   catch (...)
-   {
-
-      if (m_iError > 0)
-         m_iError = -1;
-
-      return;
-
-   }
-   //::MessageBox(NULL,"f3","f3",MB_OK);
-   try
-   {
-
-      m_iError = run();
-
-   }
-   catch (...)
-   {
-
-      if (m_iError > 0)
-         m_iError = -1;
-
-      return;
-
-   }
-
-   try
-   {
-
-      end();
-
-   }
-   catch (...)
-   {
-   }
-
-}
-
-bool simple_app2::intro()
-{
-   return true;
-}
-
-int32_t simple_app2::refrain()
-{
-
-#ifdef WINDOWS
-
-   while (true)
-   {
-      GetMessage(&m_msg, NULL, 0, 0xffffffffu);
-      TranslateMessage(&m_msg);
-      DispatchMessage(&m_msg);
-   }
-
-#endif
-
-   return 0;
-}
-
-bool simple_app2::end()
-{
-   return true;
-}
-
-
-int32_t simple_app2::simple_app_pre_run()
-{
-   return 0;
 }

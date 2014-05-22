@@ -134,10 +134,11 @@ CLASS_DECL_BASE DWORD call_sync(
 CLASS_DECL_BASE bool main_initialize()
 {
 
-   //initialize_primitive_heap();
+   t_posthread = new os_thread(NULL,NULL);
 
-   //if(!os_initialize())
-     // return false;
+   t_posthread->m_bRun = true;
+
+   ::windowing::init_windowing();
 
    return true;
 
@@ -147,38 +148,7 @@ CLASS_DECL_BASE bool main_initialize()
 CLASS_DECL_BASE bool main_finalize()
 {
 
-   bool bOk = true;
-
-   //if(!os_finalize())
-   //   bOk = false;
-
-   //finalize_primitive_trace();
-
-   return bOk;
-
-}
-
-
-
-
-bool os_initialize()
-{
-
-
-   //if(!initialize_primitive_trace())
-   //   return false;
-
-   t_posthread = new os_thread(NULL, NULL);
-
-   t_posthread->m_bRun = true;
-
-   return TRUE;
-
-}
-
-
-bool os_finalize()
-{
+   ::windowing::term_windowing();
 
    if(t_posthread != NULL)
    {
@@ -205,3 +175,7 @@ bool os_finalize()
    return true;
 
 }
+
+
+
+

@@ -1309,6 +1309,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core\core_resource.h" />
     <ClInclude Include="core\core\core_service.h" />
     <ClInclude Include="core\core\core_session.h" />
+    <ClInclude Include="core\core\core_simple_app.h" />
     <ClInclude Include="core\core\core_smart_pointer_query.h" />
     <ClInclude Include="core\core\core_std_pair.h" />
     <ClInclude Include="core\core\core_stra.h" />
@@ -1582,6 +1583,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="core\core\core_resource.cpp" />
     <ClCompile Include="core\core\core_service.cpp" />
     <ClCompile Include="core\core\core_session.cpp" />
+    <ClCompile Include="core\core\core_simple_app.cpp" />
     <ClCompile Include="core\core\core_strn.cpp" />
     <ClCompile Include="core\core\core_str_format.cpp" />
     <ClCompile Include="core\core\core_system.cpp" />

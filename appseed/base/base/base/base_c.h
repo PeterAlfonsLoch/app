@@ -45,3 +45,7 @@
 #include "base/base/crypto/crypto/crypto.h"
 
 #include "base/net/idn/idna.h"
+
+
+CLASS_DECL_BASE int_bool defer_base_init();
+CLASS_DECL_BASE int_bool defer_base_term();

@@ -375,6 +375,17 @@ namespace core
 
 } // namespace core
 
+
+CLASS_DECL_BASE bool base_init();
+CLASS_DECL_BASE bool base_term();
+
+CLASS_DECL_BASE bool __node_pre_init();
+CLASS_DECL_BASE bool __node_pos_init();
+
+CLASS_DECL_BASE bool __node_pre_term();
+CLASS_DECL_BASE bool __node_pos_term();
+
+
 CLASS_DECL_BASE ::base::application * get_thread_app();
 
 #include "base_definition.h"

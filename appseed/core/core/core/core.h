@@ -1020,12 +1020,21 @@ namespace core
 {
 
 
-   CLASS_DECL_CORE void init_core();
+   CLASS_DECL_CORE bool init_core();
 
-   CLASS_DECL_CORE void term_core();
+   CLASS_DECL_CORE bool term_core();
 
 
 } // namespace core
+
+CLASS_DECL_CORE bool defer_core_init();
+
+CLASS_DECL_CORE bool defer_core_term();
+
+
+#include "core_simple_app.h"
+
+
 
 
 

@@ -42,7 +42,3 @@ bool CLASS_DECL_BASE __check_memory()
 
 
 
-void CLASS_DECL_BASE __android_term()
-{
-}
-

@@ -732,9 +732,9 @@ namespace file
       void system::is_dir_map::set(const char * pszPath, bool bIsDir, uint32_t dwLastError)
       {
 #if defined(LINUX) || defined(APPLEOS)
-         static string strSep = "/";
+         static const char * strSep = "/";
 #else
-         static string strSep = "\\";
+         static const char * strSep = "\\";
 #endif
          is_dir isdir;
          isdir.m_bIsDir = bIsDir;
@@ -750,9 +750,9 @@ namespace file
       void system::is_dir_map::set(const string & strPath, bool bIsDir, uint32_t dwLastError)
       {
 #if defined(LINUX) || defined(APPLEOS)
-         static string strSep = "/";
+         static const char * strSep = "/";
 #else
-         static string strSep = "\\";
+         static const char * strSep = "\\";
 #endif
          is_dir isdir;
          isdir.m_bIsDir = bIsDir;

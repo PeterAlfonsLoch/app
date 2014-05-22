@@ -20,7 +20,6 @@ namespace plane
 
 
    class CLASS_DECL_CORE system :
-      virtual public ::application,
       virtual public ::core::system
    {
    public:
@@ -271,7 +270,7 @@ namespace plane
       void assert_valid() const;
       void dump(dump_context & context) const;
 
-
+      virtual int32_t main();
 
 
    };
@@ -308,41 +307,8 @@ namespace plane
 
 
 
-
-class CLASS_DECL_CORE simple_app2 :
-   virtual public ::base::system
-{
-public:
+void CLASS_DECL_CORE __start_core_system(::base::system * psystem);
 
 
-   //HINSTANCE                  m_hinstance;
-   int32_t                        __argc;
-   TCHAR **                   __targv;
-
-   MESSAGE                    m_msg;
-   int32_t                        m_iError;
-
-
-   simple_app2();
-   virtual ~simple_app2();
-
-   virtual int32_t main();
-
-   virtual void body();
-
-   virtual int32_t simple_app_pre_run();
-
-   virtual bool intro();
-   virtual int32_t refrain();
-   virtual bool end();
-
-   template < class APP >
-   static int32_t s_main()
-   {
-      APP app;
-      return app.main();
-   }
-
-};
 
 

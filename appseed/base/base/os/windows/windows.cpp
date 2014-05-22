@@ -29,27 +29,31 @@ LSTATUS
 
 LPFN_RegGetValueW g_pfnRegGetValueW = NULL;
 
+Gdiplus::GdiplusStartupInput *   g_pgdiplusStartupInput     = NULL;
+Gdiplus::GdiplusStartupOutput *  g_pgdiplusStartupOutput    = NULL;
+DWORD_PTR                        g_gdiplusToken             = NULL;
+DWORD_PTR                        g_gdiplusHookToken         = NULL;
 
-
-int_bool os_initialize()
+bool __node_pre_init()
 {
 
-   __init_threading_count();
+   if(FAILED(::CoInitializeEx(NULL,COINIT_MULTITHREADED)))
+   {
 
-   ::multithreading::init_multithreading();
+      ::MessageBox(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_MULTITHREADED) at __node_pre_initialize","__node_pre_initialize failure",MB_ICONEXCLAMATION);
 
-   ::user::init_windowing();
+      return false;
 
-   ::os_thread::s_pmutex = new mutex();
+   }
 
-   ::os_thread::s_pptra = new comparable_raw_array < os_thread * >::type ();
+   return true;
 
+}
 
-   //Sleep(15 * 1000);
+bool __node_pos_init()
+{
 
-   //if(!psystem->install().trace().initialize())
-     // return FALSE;
-
+   _set_purecall_handler(_ca2_purecall);
 
    HMODULE hmoduleUser32 = ::LoadLibrary("User32");
    g_pfnChangeWindowMessageFilter = (LPFN_ChangeWindowMessageFilter) ::GetProcAddress(hmoduleUser32, "ChangeWindowMessageFilter");
@@ -58,28 +62,56 @@ int_bool os_initialize()
    HMODULE hmoduleAdvApi32 = ::LoadLibrary("AdvApi32");
    g_pfnRegGetValueW = (LPFN_RegGetValueW) ::GetProcAddress(hmoduleAdvApi32, "RegGetValueW");
 
+   g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
+   g_pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
+   g_gdiplusToken             = NULL;
+   g_gdiplusHookToken         = NULL;
 
-   return TRUE;
+   g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
+
+   Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken,g_pgdiplusStartupInput,g_pgdiplusStartupOutput);
+
+   if(statusStartup != Gdiplus::Ok)
+   {
+
+      MessageBox(NULL,"Gdiplus Failed to Startup. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
+
+      return false;
+
+   }
+
+   statusStartup = g_pgdiplusStartupOutput->NotificationHook(&g_gdiplusHookToken);
+
+
+   if(statusStartup != Gdiplus::Ok)
+   {
+
+      MessageBox(NULL,"Gdiplus Failed to Hook. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
+
+      return false;
+
+   }
+
+   return true;
 
 } 
 
 
-int_bool os_finalize()
+bool __node_pre_term()
 {
 
+   g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
 
-   //psystem->install().trace().finalize();
-
-   ::user::term_windowing();
-
-   ::multithreading::term_multithreading();
-
-   __term_threading_count();
-
-   return TRUE;
+   return true;
 
 }
 
+bool __node_pos_term()
+{
+
+   return true;
+
+}
 
 
 int WinRegGetValueW(HKEY hkey, LPCWSTR lpSubKey, LPCWSTR lpValue, DWORD dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData)
@@ -103,70 +135,6 @@ int WinRegGetValueW(HKEY hkey, LPCWSTR lpSubKey, LPCWSTR lpValue, DWORD dwFlags,
    }
 }
 
-
-
-Gdiplus::GdiplusStartupInput *   g_pgdiplusStartupInput     = NULL;
-Gdiplus::GdiplusStartupOutput *  g_pgdiplusStartupOutput    = NULL;
-DWORD_PTR                        g_gdiplusToken             = NULL;
-DWORD_PTR                        g_gdiplusHookToken         = NULL;
-
-
-int_bool main_initialize()
-{
-
-   //Sleep(15 * 1000);
-
-   g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
-   g_pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
-   g_gdiplusToken             = NULL;
-   g_gdiplusHookToken         = NULL;
-
-   //MessageBox(NULL, "Gdiplus Failed to Startup. ca cannot continue.", "Gdiplus Failure", MB_ICONERROR);
-
-   g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
-
-   // Initialize GDI+.
-   Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken, g_pgdiplusStartupInput, g_pgdiplusStartupOutput);
-
-   if(statusStartup != Gdiplus::Ok)
-   {
-      
-      MessageBox(NULL, "Gdiplus Failed to Startup. ca cannot continue.", "Gdiplus Failure", MB_ICONERROR);
-      
-      return FALSE;
-
-   }
-
-   statusStartup = g_pgdiplusStartupOutput->NotificationHook(&g_gdiplusHookToken);
-   
-
-   if(statusStartup != Gdiplus::Ok)
-   {
-      
-      MessageBox(NULL, "Gdiplus Failed to Hook. ca cannot continue.", "Gdiplus Failure", MB_ICONERROR);
-      
-      return FALSE;
-
-   }
-
-   
-
-   return TRUE;
-
-} 
-
-
-int_bool main_finalize()
-{
-
-   g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
-
-   Gdiplus::GdiplusShutdown(g_gdiplusToken);
-
-
-   return TRUE;
-
-}
 
 
 
@@ -539,122 +507,6 @@ CLASS_DECL_BASE bool  __check_memory()
 }
 
 #endif
-
-
-
-
-
-// Note: in separate module so it can be replaced if needed
-
-void CLASS_DECL_BASE __abort()
-{
-   //   TRACE(::core::trace::category_AppMsg, 0, "__abort called.\n");
-
-   __win_term();
-   abort();
-}
-
-
-
-/////////////////////////////////////////////////////////////////////////////
-// export WinMain to force linkage to this module
-extern int32_t CLASS_DECL_BASE __win_main(HINSTANCE hInstance,HINSTANCE hPrevInstance,
-__in LPTSTR lpCmdLine,int32_t nCmdShow);
-
-
-
-
-
-
-
-
-
-CLASS_DECL_BASE int_bool __win_init()
-{
-
-   ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
-
-   if(!os_initialize())
-      return FALSE;
-
-   if(!main_initialize())
-      return FALSE;
-
-   //Sleep(15 * 1000);
-
-   _set_purecall_handler(_ca2_purecall);
-
-   return TRUE;
-
-}
-
-
-CLASS_DECL_BASE void __win_term()
-{
-
-   __wait_threading_count(::millis((1984 + 1977) * 8));
-
-   main_finalize();
-
-   os_finalize();
-
-
-
-
-   //}
-   // We used to suppress all exceptions here. But that's the wrong thing
-   // to do. If this process crashes, we should allow Windows to crash
-   // the process and invoke watson.
-
-
-   //try
-   //{
-   //   delete __get_module_state()->m_pmapHWND;
-   //}
-   //catch (...)
-   //{
-   //}
-   /*   try
-   {
-   delete __get_module_state()->m_pmapHDC;
-   }
-   catch(...)
-   {
-   }*/
-   /*   try
-   {
-   delete __get_module_state()->m_pmapHGDIOBJ;
-   }
-   catch(...)
-   {
-   }*/
-   //      delete __get_module_state()->m_pmapHMENU;
-
-   //try
-   //{
-   //   __get_module_state()->m_pmapHWND = NULL;
-   //}
-   //catch (...)
-   //{
-   //}
-   /*   try
-   {
-   __get_module_state()->m_pmapHDC      = NULL;
-   }
-   catch(...)
-   {
-   }*/
-   /*   try
-   {
-   __get_module_state()->m_pmapHGDIOBJ  = NULL;
-   }
-   catch(...)
-   {
-   }*/
-
-
-}
-
 
 
 void __cdecl __crt_dump_client(void * pvData,size_t nBytes)

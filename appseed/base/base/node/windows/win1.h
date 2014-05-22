@@ -82,8 +82,6 @@ typedef void (__MSG_CALL thread::*__PMSGT)();
 CLASS_DECL_BASE LONG delete_registry_tree_helper(HKEY hParentKey, const string & strKeyName);
 
 
-CLASS_DECL_BASE void __win_term();
-
 CLASS_DECL_BASE sp(::base::application) __get_app();
 CLASS_DECL_BASE HINSTANCE __get_resource_handle();
 CLASS_DECL_BASE void __set_resource_handle(HINSTANCE hInstResource);
@@ -91,6 +89,3 @@ CLASS_DECL_BASE void __set_resource_handle(HINSTANCE hInstResource);
 CLASS_DECL_BASE HINSTANCE __get_resource_handle();
 CLASS_DECL_BASE HINSTANCE __find_string_resource_handle(UINT nID);
 
-CLASS_DECL_BASE void __delete_object(HGDIOBJ* pObject);
-
-void CLASS_DECL_BASE __global_free(HGLOBAL hGlobal);

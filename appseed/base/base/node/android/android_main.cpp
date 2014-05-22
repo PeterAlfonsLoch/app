@@ -18,66 +18,14 @@ void __cdecl _null_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers
 
 
 
-//sp(::base::application)     win_application_create(sp(::base::application) pappSystem, const char * pszId);
-//sp(::base::application)     win_instantiate_application(sp(::base::application) pappSystem, const char * pszId);
-//int32_t                     win_application_procedure(sp(::base::application) pappSystem)
-//UINT c_cdecl          win_application_thread_proc(LPVOID);
-/////////////////////////////////////////////////////////////////////////////
-// Standard WinMain implementation
-//  can be replaced as long as '::ca2::WinInit' is called first
-
-extern char gen_InitAppState;
-
-CLASS_DECL_BASE bool __initialize(bool bDLL, DWORD dwVersion);
 
 int32_t CLASS_DECL_BASE __android_main(int32_t argc, char * argv[])
 {
 
-   //if(!XInitThreads())
-     // return -1;
-
-
-   gen_InitAppState = (char)(__initialize(FALSE, 1));
-
-//   UNREFERENCED_PARAMETER(lpCmdLine);
-
-   c_xstart();
-
-
-
-   ///XSetErrorHandler(xlib_error_handler);
-
-
-//   ::CoInitialize(NULL);
-//{
-//int * pi = NULL;
-//*pi = 0;
-//}
-
-//throw todo(::ca2::get_thread_app());
-
-   if(!main_initialize())
+   if(!defer_base_init())
       return -1;
 
-
-//   _set_purecall_handler(_ca2_purecall);
-
    ::plane::system * psystem = new ::plane::system();
-
-    //psystem->::exception::translator::attach();
-
-           //sigset_t set;
-           //sigemptyset(&set);
-           //sigaddset(&set, SIGSEGV);
-           //sigprocmask(SIG_BLOCK, &set, ::null());
-
-//{
-//int * pi = NULL;
-//*pi = 0;
-//}
-
-
-//   ASSERT(hPrevInstance == NULL);
 
    int32_t nReturnCode = 0;
 
@@ -118,23 +66,6 @@ int32_t CLASS_DECL_BASE __android_main(int32_t argc, char * argv[])
 
    try
    {
-      main_finalize();
-   }
-   catch(...)
-   {
-   }
-
-   try
-   {
-      __android_term();
-   }
-   catch(...)
-   {
-   }
-
-
-   try
-   {
       delete psystem;
    }
    catch(...)
@@ -146,54 +77,14 @@ int32_t CLASS_DECL_BASE __android_main(int32_t argc, char * argv[])
 
    try
    {
-//      delete __get_module_state()->m_pmapHWND;
+      defer_core_term();
    }
    catch(...)
    {
-   }
-/*   try
-   {
-      delete __get_module_state()->m_pmapHDC;
-   }
-   catch(...)
-   {
-   }*/
-/*   try
-   {
-      delete __get_module_state()->m_pmapHGDIOBJ;
-   }
-   catch(...)
-   {
-   }*/
-//      delete __get_module_state()->m_pmapHMENU;
 
-   try
-   {
-      __get_module_state()->m_pmapHWND     = NULL;
    }
-   catch(...)
-   {
-   }
-/*   try
-   {
-      __get_module_state()->m_pmapHDC      = NULL;
-   }
-   catch(...)
-   {
-   }*/
-/*   try
-   {
-      __get_module_state()->m_pmapHGDIOBJ  = NULL;
-   }
-   catch(...)
-   {
-   }*/
-
-
-   set_heap_mutex(NULL);
 
    return nReturnCode;
-
 
 }
 

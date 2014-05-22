@@ -1,113 +1,109 @@
 #include "framework.h"
 
 
-simple_app::simple_app() :
-   ::base::system(this)
-{
-   
-   m_iError = 0;
-
-}
-
-simple_app::~simple_app()
+namespace base
 {
 
-}
 
-
-int32_t simple_app::main()
-{
-
-   __argc = _init_args();
-   __targv = _argv;
-   _init_file();
-
-   TCHAR *cmd = GetCommandLine();
-
-   // Skip program name
-   if(*cmd == _T('"'))
+   simple_app::simple_app():
+      ::base::system(this)
    {
-      while(*cmd && *cmd != _T('"'))
-         cmd++;
+
+         m_iError = 0;
+
+      }
+
+   simple_app::~simple_app()
+   {
+
+   }
+
+
+   int32_t simple_app::main()
+   {
+
+      __argc = _init_args();
+      __targv = _argv;
+      _init_file();
+
+      TCHAR *cmd = GetCommandLine();
+
+      // Skip program name
       if(*cmd == _T('"'))
-         cmd++;
-   }
-   else
-   {
-      while(*cmd > _T(' '))
-         cmd++;
-   }
-
-   // Skip any white space
-   while(*cmd && *cmd <= _T(' '))
-      cmd++;
-
-   body();
-   
-   return m_iError;
-
-}
-
-
-void simple_app::body()
-{
-
-   try
-   {
-      if ((m_iError = simple_app_pre_run()) != 0)
       {
-         if (m_iError != 0)
-            m_iError = -1;
-
-         return;
-
+         while(*cmd && *cmd != _T('"'))
+            cmd++;
+         if(*cmd == _T('"'))
+            cmd++;
       }
+      else
+      {
+         while(*cmd > _T(' '))
+            cmd++;
+      }
+
+      // Skip any white space
+      while(*cmd && *cmd <= _T(' '))
+         cmd++;
+
+      body();
+
+      _term_args();
+
+      //::MessageBox(NULL,"t3=" + ::str::from(m_iError),"t3",MB_OK);
+
+
+      return m_iError;
+
    }
-   catch (...)
+
+
+   void simple_app::body()
    {
 
-      if (m_iError > 0)
-         m_iError = -1;
+      try
+      {
+         if((m_iError = simple_app_pre_run()) != 0)
+         {
+            if(m_iError != 0)
+               m_iError = -1;
 
-      return;
+            return;
 
-   }
-
-
-   try
-   {
-
-      set_main_thread(GetCurrentThread());
-
-      set_main_thread_id(GetCurrentThreadId());
-
-      if ((m_iError = pre_run()) != 0)
+         }
+      }
+      catch(...)
       {
 
-         if (m_iError != 0)
+         if(m_iError > 0)
             m_iError = -1;
 
          return;
 
       }
 
-      SetCurrentHandles();
 
-   }
-   catch (...)
-   {
-      if (m_iError > 0)
-         m_iError = -1;
+      try
+      {
 
-      return;
+         set_main_thread(GetCurrentThread());
 
-   }
+         set_main_thread_id(GetCurrentThreadId());
 
+         if((m_iError = pre_run()) != 0)
+         {
 
-   try
-   {
+            if(m_iError != 0)
+               m_iError = -1;
 
-      if(!intro())
+            return;
+
+         }
+
+         SetCurrentHandles();
+
+      }
+      catch(...)
       {
          if(m_iError > 0)
             m_iError = -1;
@@ -116,68 +112,87 @@ void simple_app::body()
 
       }
 
+
+      try
+      {
+
+         if(!intro())
+         {
+            if(m_iError > 0)
+               m_iError = -1;
+
+            return;
+
+         }
+
+      }
+      catch(...)
+      {
+         if(m_iError > 0)
+            m_iError = -1;
+
+         return;
+
+      }
+
+      try
+      {
+
+         m_iError = run();
+
+      }
+      catch(...)
+      {
+         if(m_iError > 0)
+            m_iError = -1;
+
+         return;
+
+      }
+
+      try
+      {
+
+         end();
+
+      }
+      catch(...)
+      {
+      }
+
    }
-   catch(...)
+
+   bool simple_app::intro()
    {
-      if(m_iError > 0)
-         m_iError = -1;
-
-      return;
-
+      return true;
    }
 
-   try
+   int32_t simple_app::refrain()
    {
 
-      m_iError = run();
+      while(true)
+      {
+         GetMessage(&m_msg,NULL,0,0xffffffffu);
+         TranslateMessage(&m_msg);
+         DispatchMessage(&m_msg);
+      }
 
+      return 0;
    }
-   catch(...)
+
+   bool simple_app::end()
    {
-      if(m_iError > 0)
-         m_iError = -1;
-
-      return;
-
+      return true;
    }
 
-   try
+
+   int32_t simple_app::simple_app_pre_run()
    {
-
-      end();
-
-   }
-   catch(...)
-   {
+      return 0;
    }
 
-}
 
-bool simple_app::intro()
-{
-   return true;
-}
-
-int32_t simple_app::refrain()
-{
-
-	while(true)
-	{
-      GetMessage(&m_msg, NULL, 0, 0xffffffffu);
-		TranslateMessage(&m_msg);
-		DispatchMessage(&m_msg);
-	}
-
-   return 0;
-}
-
-bool simple_app::end()
-{
-   return true;
-}
+} // namespace base
 
 
-int32_t simple_app::simple_app_pre_run()
-{
-   return 0;
-}
+
