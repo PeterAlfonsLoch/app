@@ -16,6 +16,12 @@ void CLASS_DECL_BASE __init_thread()
 
 }
 
+void CLASS_DECL_BASE __term_thread()
+{
+
+
+}
+
 namespace windows
 {
 
