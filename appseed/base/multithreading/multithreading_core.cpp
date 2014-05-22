@@ -74,4 +74,46 @@ CLASS_DECL_BASE bool __wait_threading_count(::duration dur)
 }
 
 
+CLASS_DECL_BASE bool __wait_threading_count_except(::thread * pthread, ::duration dur)
+{
+   
+   DWORD dwStart = ::get_tick_count();
+   
+   DWORD dwDelay = (DWORD) (dur.get_total_milliseconds());
+   
+   single_lock sl(g_pmutexThreading, false);
+   
+   while(::get_tick_count() - dwStart < dwDelay)
+   {
+      
+      sl.lock();
+      
+      if(g_iThreadingCount <= 0)
+         return true;
+      
+      {
+         
+         synch_lock sl(::multithreading::s_pmutex);
+         
+         if(::multithreading::s_pthreadptra->get_count() == 1)
+         {
+            
+            if(::multithreading::s_pthreadptra->element_at(0) == pthread)
+               return true;
+            
+         }
+         
+      }
+      
+      sl.unlock();
+      
+      Sleep(84);
+      
+   }
+   
+   return false;
+   
+}
+
+
 

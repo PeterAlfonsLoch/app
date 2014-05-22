@@ -94,6 +94,7 @@ CLASS_DECL_BASE void __dec_threading_count();
 
 
 CLASS_DECL_BASE bool __wait_threading_count(::duration dur);
+CLASS_DECL_BASE bool __wait_threading_count_except(::thread * pthread, ::duration dur);
 
 
 CLASS_DECL_BASE ::thread * get_thread();
