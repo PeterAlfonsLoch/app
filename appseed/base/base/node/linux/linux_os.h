@@ -6,7 +6,7 @@ namespace linux
 
 
    class CLASS_DECL_LINUX os :
-      public ::core::os
+      public ::base::os
    {
    public:
 

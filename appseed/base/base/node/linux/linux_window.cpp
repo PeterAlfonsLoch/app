@@ -1157,7 +1157,7 @@ d.unlock();
 
 
 
-   bool window::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
+   bool window::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
    {
       if(command_target_interface::_001OnCmdMsg(pcmdmsg))
          return TRUE;
