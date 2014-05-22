@@ -6,7 +6,7 @@
 #endif
 
 
-namespace core
+namespace base
 {
 
 

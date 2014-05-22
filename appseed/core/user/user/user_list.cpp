@@ -565,7 +565,7 @@ namespace user
 
       if(pdrawitem->m_bListItemSelected)
       {
-         if(System.savings().is_trying_to_save(::core::resource_processing))
+         if(System.savings().is_trying_to_save(::base::resource_processing))
          {
             pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem, ARGB(255, 96,96,96));
          }
@@ -5184,7 +5184,7 @@ namespace user
 
    void list::_001OnUpdateListViewAutoArrange(signal_details * pobj)
    {
-      SCAST_PTR(base_cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->_001SetCheck(get_auto_arrange());
       pcmdui->m_pcmdui->Enable();
    }

@@ -70,7 +70,7 @@ namespace nature
    }
 
 
-   bool application::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
+   bool application::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
    {
 
       return ::application::_001OnCmdMsg(pcmdmsg);

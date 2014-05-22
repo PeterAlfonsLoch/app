@@ -152,10 +152,10 @@ public:
    virtual bool on_simple_update(cmd_ui * pcmdui);
 
    //virtual bool on_simple_update(cmd_ui * pcmdui);
-   virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
+   virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
    //virtual bool _001HasCommandHandler(const char * pszId);
 
-   void get_command_signal_array(base_cmd_msg::e_type etype, ::dispatch::signal_item_ptr_array & signalptra, id id);
+   void get_command_signal_array(::base::cmd_msg::e_type etype, ::dispatch::signal_item_ptr_array & signalptra, id id);
 
 
    virtual void install_message_handling(::message::dispatch * pdispatch);
@@ -179,13 +179,13 @@ public:
    void RestoreWaitCursor();       // call after messagebox
 
 
-   virtual bool handle(base_cmd_msg * pcmdmsg);
+   virtual bool handle(::base::cmd_msg * pcmdmsg);
 
 
    // Overridables
    // route and dispatch standard command message types
    //   (more sophisticated than OnCommand)
-   //   virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
+   //   virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
 
 
    // Implementation

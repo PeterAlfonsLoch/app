@@ -40,8 +40,9 @@ FILE * my_fopen(const char * psz, const char * pszMode)
 
 
 
-namespace core
+namespace base
 {
+
 
    bool compress::ungz(::file::output_stream & ostreamUncompressed, const char * lpcszGzFileCompressed)
    {

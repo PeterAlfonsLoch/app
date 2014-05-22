@@ -353,7 +353,7 @@ namespace comparison
    };
 
 
-} // namespace core - for class ::comparison::hash const < ::draw2d::dib::descriptor & >
+} // namespace base - for class ::comparison::hash const < ::draw2d::dib::descriptor & >
 
 
 

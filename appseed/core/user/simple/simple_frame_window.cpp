@@ -474,7 +474,7 @@ void simple_frame_window::_001OnMouseMove(signal_details * pobj)
 
 void simple_frame_window::_001OnUpdateViewFullScreen(signal_details * pobj)
 {
-   SCAST_PTR(base_cmd_ui, pcmdui, pobj)
+   SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable();
    pcmdui->m_pcmdui->_001SetCheck(WfiIsFullScreen());
    pcmdui->m_bRet = true;
@@ -559,7 +559,7 @@ void simple_frame_window::_001OnToggleCustomFrame(signal_details * pobj)
 
 void simple_frame_window::_001OnUpdateToggleCustomFrame(signal_details * pobj)
 {
-   SCAST_PTR(base_cmd_ui, pcmdui, pobj)
+   SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable();
    pcmdui->m_pcmdui->_001SetCheck(m_bWindowFrame);
 }
@@ -866,8 +866,8 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
 void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
 {
-   if (System.savings().is_trying_to_save(::core::resource_processing)
-      || System.savings().is_trying_to_save(::core::resource_translucent_background))
+   if (System.savings().is_trying_to_save(::base::resource_processing)
+      || System.savings().is_trying_to_save(::base::resource_translucent_background))
    {
       rect rectClient;
       GetClientRect(rectClient);
@@ -889,9 +889,9 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdc)
       _001DrawThis(pdc);
       _001DrawChildren(pdc);
    }
-   else if(!Session.savings().is_trying_to_save(::core::resource_processing)
-      && !Session.savings().is_trying_to_save(::core::resource_display_bandwidth)
-      && !Session.savings().is_trying_to_save(::core::resource_memory))
+   else if(!Session.savings().is_trying_to_save(::base::resource_processing)
+      && !Session.savings().is_trying_to_save(::base::resource_display_bandwidth)
+      && !Session.savings().is_trying_to_save(::base::resource_memory))
       //&& (get_parent() != NULL || (this->GetExStyle() & WS_EX_LAYERED) != 0))
    {
 #if TEST
@@ -932,12 +932,12 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
       rect rectClient;
       GetClientRect(rectClient);
       //rectClient.offset(rectClient.top_left());
-      if (System.savings().is_trying_to_save(::core::resource_translucent_background))
+      if (System.savings().is_trying_to_save(::base::resource_translucent_background))
       {
          //pdc->FillSolidRect(rectClient, RGB(150, 220, 140));
       }
-      else if (System.savings().is_trying_to_save(::core::resource_processing)
-         || System.savings().is_trying_to_save(::core::resource_blur_background))
+      else if (System.savings().is_trying_to_save(::base::resource_processing)
+         || System.savings().is_trying_to_save(::base::resource_blur_background))
       {
          imaging.color_blend(pdc, rectClient, RGB(150, 180, 140), 150);
       }
@@ -1161,7 +1161,7 @@ bool simple_frame_window::create(const char * lpszClassName,
 
 
 
-bool simple_frame_window::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
+bool simple_frame_window::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
 {
 
    if (m_workset._001OnCmdMsg(pcmdmsg))
@@ -1348,7 +1348,7 @@ LRESULT simple_frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
    // don't execute the command when the window is disabled
    if (!is_window_enabled())
    {
-      TRACE(::core::trace::category_AppMsg, 0, "Warning: DDE command '%s' ignored because window is disabled.\n",
+      TRACE(::base::trace::category_AppMsg, 0, "Warning: DDE command '%s' ignored because window is disabled.\n",
          strCommand.GetString());
       return 0;
    }
@@ -1356,7 +1356,7 @@ LRESULT simple_frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
    // execute the command
    LPTSTR lpszCommand = strCommand.GetBuffer();
    if (!System.OnDDECommand(lpszCommand))
-      TRACE(::core::trace::category_AppMsg, 0, "Error: failed to execute DDE command '%s'.\n", lpszCommand);
+      TRACE(::base::trace::category_AppMsg, 0, "Error: failed to execute DDE command '%s'.\n", lpszCommand);
    strCommand.ReleaseBuffer();
 
 #else
@@ -1616,7 +1616,7 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
 void simple_frame_window::_011OnDraw(::draw2d::graphics *pdc)
 {
 
-   if ((m_bWindowFrame || m_etranslucency == TranslucencyTotal || m_etranslucency == TranslucencyPresent) && !Session.savings().is_trying_to_save(::core::resource_display_bandwidth))
+   if ((m_bWindowFrame || m_etranslucency == TranslucencyTotal || m_etranslucency == TranslucencyPresent) && !Session.savings().is_trying_to_save(::base::resource_display_bandwidth))
    {
 
       ::user::uinteraction::frame::WorkSetClientInterface::_001OnDraw(pdc);
@@ -1823,8 +1823,8 @@ bool simple_frame_window::calc_layered()
 {
    if (m_bLayered && m_etranslucency != TranslucencyNone)
    {
-      return !Session.savings().is_trying_to_save(::core::resource_processing)
-         && !Session.savings().is_trying_to_save(::core::resource_display_bandwidth);
+      return !Session.savings().is_trying_to_save(::base::resource_processing)
+         && !Session.savings().is_trying_to_save(::base::resource_display_bandwidth);
    }
    else
    {

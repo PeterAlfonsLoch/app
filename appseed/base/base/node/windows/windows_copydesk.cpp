@@ -11,7 +11,7 @@ namespace windows
 
    copydesk::copydesk(sp(::base::application) papp) :
       element(papp),
-      ::core::copydesk(papp),
+      ::base::copydesk(papp),
       ::window_sp(allocer())
    {
    }
@@ -107,7 +107,7 @@ namespace windows
    bool copydesk::initialize()
    {
       
-      if(!::core::copydesk::initialize())
+      if(!::base::copydesk::initialize())
          return false;
 
       if(!m_p->CreateEx(0, NULL, NULL, 0, rect(0, 0, 0, 0), NULL, id()))
@@ -123,7 +123,7 @@ namespace windows
 
       bool bOk;
       
-      bOk = ::core::copydesk::finalize();
+      bOk = ::base::copydesk::finalize();
 
       if(::window_sp::is_set() && ::window_sp::m_p->IsWindow())
       {

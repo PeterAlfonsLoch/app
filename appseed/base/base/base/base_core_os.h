@@ -2,45 +2,15 @@
 #define BASE_BASE_CORE_OS_H
 
 
-#pragma once
-
-namespace xxx {
-
-    namespace xxx2 {
-
-        class xxx23teste {
-        public:
-
-            xxx23teste() {
-            }
-
-            ~xxx23teste() {
-            }
-        };
-    }
-}
-
-namespace xxx2 {
-    namespace xxx {
-
-        class xxx2teste {
-        public:
-
-            xxx2teste() {
-            };
-
-            ~xxx2teste() {
-            };
-        };
-
-    }
-}
 
 
-namespace core {
+namespace base
+{
+
 
     class CLASS_DECL_BASE os :
-    public object {
+      virtual public object 
+    {
     public:
 
 
@@ -111,7 +81,7 @@ namespace core {
     typedef smart_pointer < os > os_sp;
 
 
-} // namespace core
+} // namespace base
 
 
 #endif // BASE_BASE_CORE_OS_H

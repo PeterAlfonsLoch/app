@@ -126,7 +126,7 @@ namespace visual
       if(!::base::departament::initialize())
          return false;
 
-      __begin_thread(get_app(), &visual::thread_proc_parallel_initialize, this, ::core::scheduling_priority_highest);
+      __begin_thread(get_app(), &visual::thread_proc_parallel_initialize, this, ::base::scheduling_priority_highest);
 
       return true;
 

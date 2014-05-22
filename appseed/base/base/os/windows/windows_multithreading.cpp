@@ -376,11 +376,9 @@ uint32_t thread_layer::proc(void * lp)
 }
 
 
-namespace core
+namespace base
 {
 
-   ///  \brief		global function to set thread priority for current thread
-   ///  \param		new priority
    bool set_thread_priority(int32_t priority)
    {
 
@@ -392,9 +390,6 @@ namespace core
 
       return (::SetPriorityClass(::GetCurrentProcess(),get_os_priority_class(priority)) != 0);
    }
-
-   ///  \brief		global function to get thread priority for current thread
-   ///  \return	priority of current thread
 
    int32_t thread_priority()
    {
@@ -426,25 +421,25 @@ DWORD get_current_thread_id()
 int32_t get_os_thread_priority(int32_t iCa2Priority)
 {
 
-   if(iCa2Priority <= (int) ::core::scheduling_priority_none)
+   if(iCa2Priority <= (int) ::base::scheduling_priority_none)
       return THREAD_PRIORITY_NORMAL;
 
-   if(iCa2Priority <= (int) ::core::scheduling_priority_idle)
+   if(iCa2Priority <= (int) ::base::scheduling_priority_idle)
       return THREAD_PRIORITY_IDLE;
 
-   if(iCa2Priority <= (int) ::core::scheduling_priority_lowest)
+   if(iCa2Priority <= (int) ::base::scheduling_priority_lowest)
       return THREAD_PRIORITY_LOWEST;
 
-   if(iCa2Priority <= (int) ::core::scheduling_priority_below_normal)
+   if(iCa2Priority <= (int) ::base::scheduling_priority_below_normal)
       return THREAD_PRIORITY_BELOW_NORMAL;
 
-   if(iCa2Priority <= (int) ::core::scheduling_priority_normal)
+   if(iCa2Priority <= (int) ::base::scheduling_priority_normal)
       return THREAD_PRIORITY_NORMAL;
 
-   if(iCa2Priority <= (int) ::core::scheduling_priority_above_normal)
+   if(iCa2Priority <= (int) ::base::scheduling_priority_above_normal)
       return THREAD_PRIORITY_ABOVE_NORMAL;
 
-   if(iCa2Priority <= (int) ::core::scheduling_priority_highest)
+   if(iCa2Priority <= (int) ::base::scheduling_priority_highest)
       return THREAD_PRIORITY_HIGHEST;
 
    return THREAD_PRIORITY_TIME_CRITICAL;
@@ -456,25 +451,25 @@ int32_t get_os_thread_priority(int32_t iCa2Priority)
 int32_t get_os_priority_class(int32_t iCa2Priority)
 {
 
-   if(iCa2Priority <= (int) ::core::scheduling_priority_none)
+   if(iCa2Priority <= (int) ::base::scheduling_priority_none)
       return 0;
 
-   if(iCa2Priority <= (int) ::core::scheduling_priority_idle)
+   if(iCa2Priority <= (int) ::base::scheduling_priority_idle)
       return IDLE_PRIORITY_CLASS;
 
-   if(iCa2Priority <= (int) ::core::scheduling_priority_lowest)
+   if(iCa2Priority <= (int) ::base::scheduling_priority_lowest)
       return BELOW_NORMAL_PRIORITY_CLASS;
 
-   if(iCa2Priority <= (int) ::core::scheduling_priority_below_normal)
+   if(iCa2Priority <= (int) ::base::scheduling_priority_below_normal)
       return BELOW_NORMAL_PRIORITY_CLASS;
 
-   if(iCa2Priority <= (int) ::core::scheduling_priority_normal)
+   if(iCa2Priority <= (int) ::base::scheduling_priority_normal)
       return NORMAL_PRIORITY_CLASS;
 
-   if(iCa2Priority <= (int) ::core::scheduling_priority_above_normal)
+   if(iCa2Priority <= (int) ::base::scheduling_priority_above_normal)
       return ABOVE_NORMAL_PRIORITY_CLASS;
 
-   if(iCa2Priority <= (int) ::core::scheduling_priority_highest)
+   if(iCa2Priority <= (int) ::base::scheduling_priority_highest)
       return HIGH_PRIORITY_CLASS;
 
    return REALTIME_PRIORITY_CLASS;
@@ -494,31 +489,31 @@ int32_t get_os_thread_scheduling_priority(int32_t nPriority)
 
    if(nPriority <= THREAD_PRIORITY_IDLE)
    {
-      iCa2Priority = ::core::scheduling_priority_idle;
+      iCa2Priority = ::base::scheduling_priority_idle;
    }
    else if(nPriority <= THREAD_PRIORITY_LOWEST)
    {
-      iCa2Priority = ::core::scheduling_priority_lowest;
+      iCa2Priority = ::base::scheduling_priority_lowest;
    }
    else if(nPriority <= THREAD_PRIORITY_BELOW_NORMAL)
    {
-      iCa2Priority = ::core::scheduling_priority_below_normal;
+      iCa2Priority = ::base::scheduling_priority_below_normal;
    }
    else if(nPriority <= THREAD_PRIORITY_NORMAL)
    {
-      iCa2Priority = ::core::scheduling_priority_normal;
+      iCa2Priority = ::base::scheduling_priority_normal;
    }
    else if(nPriority <= THREAD_PRIORITY_ABOVE_NORMAL)
    {
-      iCa2Priority = ::core::scheduling_priority_above_normal;
+      iCa2Priority = ::base::scheduling_priority_above_normal;
    }
    else if(nPriority <= THREAD_PRIORITY_HIGHEST)
    {
-      iCa2Priority = ::core::scheduling_priority_highest;
+      iCa2Priority = ::base::scheduling_priority_highest;
    }
    else
    {
-      iCa2Priority = ::core::scheduling_priority_time_critical;
+      iCa2Priority = ::base::scheduling_priority_time_critical;
    }
 
    return iCa2Priority;
@@ -533,27 +528,27 @@ int32_t get_os_class_scheduling_priority(int32_t nPriority)
 
    if(nPriority <= IDLE_PRIORITY_CLASS)
    {
-      iCa2Priority = ::core::scheduling_priority_idle;
+      iCa2Priority = ::base::scheduling_priority_idle;
    }
    else if(nPriority <= BELOW_NORMAL_PRIORITY_CLASS)
    {
-      iCa2Priority = ::core::scheduling_priority_below_normal;
+      iCa2Priority = ::base::scheduling_priority_below_normal;
    }
    else if(nPriority <= NORMAL_PRIORITY_CLASS)
    {
-      iCa2Priority = ::core::scheduling_priority_normal;
+      iCa2Priority = ::base::scheduling_priority_normal;
    }
    else if(nPriority <= ABOVE_NORMAL_PRIORITY_CLASS)
    {
-      iCa2Priority = ::core::scheduling_priority_above_normal;
+      iCa2Priority = ::base::scheduling_priority_above_normal;
    }
    else if(nPriority <= HIGH_PRIORITY_CLASS)
    {
-      iCa2Priority = ::core::scheduling_priority_highest;
+      iCa2Priority = ::base::scheduling_priority_highest;
    }
    else
    {
-      iCa2Priority = ::core::scheduling_priority_time_critical;
+      iCa2Priority = ::base::scheduling_priority_time_critical;
    }
 
    return iCa2Priority;

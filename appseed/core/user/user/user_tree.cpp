@@ -98,7 +98,7 @@ namespace user
 
       pdc->FillSolidRect(rectClient, get_background_color());
 
-      //      ::core::savings & savings = System.savings();
+      //      ::base::savings & savings = System.savings();
       /*rect rectClientOffset = rectClient;
 
       rect rectClipBox;
@@ -114,7 +114,7 @@ namespace user
 
       class imaging & imaging = System.visual().imaging();
 
-      if(System.savings().is_trying_to_save(::core::resource_processing))
+      if(System.savings().is_trying_to_save(::base::resource_processing))
       {
          pdc->FillSolidRect(
             rectClipBox,
@@ -196,7 +196,7 @@ namespace user
                m_uchHoverAlpha = (BYTE) (m_uchHoverAlphaInit - dwCurve);
          }
       }
-      //      ::core::savings & savings = System.savings();
+      //      ::base::savings & savings = System.savings();
 
       ///      ::draw2d::graphics * pDCBuffer = pdc;
 
@@ -322,10 +322,10 @@ namespace user
       }
 
 
-      //      ::core::savings & savings = System.savings();
+      //      ::base::savings & savings = System.savings();
       if(bSelected) // selected
       {
-         if(System.savings().is_trying_to_save(::core::resource_processing))
+         if(System.savings().is_trying_to_save(::base::resource_processing))
          {
             data.m_pdc->FillSolidRect(
                data.m_rect,

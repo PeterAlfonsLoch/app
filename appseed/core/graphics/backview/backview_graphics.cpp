@@ -147,7 +147,7 @@ namespace backview
 
       Main & main = HelperGetMain();
 
-      //         ::core::savings & savings = System.savings();
+      //         ::base::savings & savings = System.savings();
 
       bool bOk = false;
       // 2004-08-24

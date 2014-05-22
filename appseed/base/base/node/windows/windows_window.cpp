@@ -126,7 +126,7 @@ namespace windows
 
       if(get_handle() != NULL)
       {
-         TRACE(::core::trace::category_AppMsg,0,"Warning: calling DestroyWindow in window::~window; "
+         TRACE(::base::trace::category_AppMsg,0,"Warning: calling DestroyWindow in window::~window; "
             "OnDestroy or PostNcDestroy in derived class will not be called.\n");
          m_pcallback = NULL;
          DestroyWindow();
@@ -288,9 +288,9 @@ namespace windows
          strMessage.Format("%s\n\nSystem Error Code: %d",strLastError,dwLastError);
 
 
-         TRACE(::core::trace::category_AppMsg,0,"Warning: Window creation failed: GetLastError returned:\n");
+         TRACE(::base::trace::category_AppMsg,0,"Warning: Window creation failed: GetLastError returned:\n");
 
-         TRACE(::core::trace::category_AppMsg,0,"%s\n",strMessage);
+         TRACE(::base::trace::category_AppMsg,0,"%s\n",strMessage);
 
          try
          {
@@ -1004,7 +1004,7 @@ namespace windows
       // need to use top level parent (for the case where get_handle() is in DLL)
       sp(::user::interaction) pwindow = EnsureTopLevelParent();
 
-      TRACE(::core::trace::category_AppMsg, 0, "WinHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
+      TRACE(::base::trace::category_AppMsg, 0, "WinHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
 
       // finally, run the Windows Help engine
       /* trans   if (!::WinHelp(NODE_WINDOW(pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
@@ -1032,7 +1032,7 @@ namespace windows
    // need to use top level parent (for the case where get_handle() is in DLL)
    sp(::user::interaction) pwindow = EnsureTopLevelParent();
 
-   TRACE(::core::trace::category_AppMsg, 0, "HtmlHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
+   TRACE(::base::trace::category_AppMsg, 0, "HtmlHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
 
    // run the HTML Help engine
    /* trans   if (!::core::HtmlHelp(NODE_WINDOW(pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
@@ -1093,7 +1093,7 @@ namespace windows
 
 
 
-   bool window::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
+   bool window::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
    {
       if(command_target_interface::_001OnCmdMsg(pcmdmsg))
          return TRUE;
@@ -1910,7 +1910,7 @@ namespace windows
       on_simple_action(nID, CN_UPDATE_COMMAND_UI, &state, NULL);
       if (!state.m_bEnabled)
       {
-      TRACE(::core::trace::category_AppMsg, 0, "Warning: not executing disabled command %d\n", nID);
+      TRACE(::base::trace::category_AppMsg, 0, "Warning: not executing disabled command %d\n", nID);
       return TRUE;
       }
 
@@ -1936,7 +1936,7 @@ namespace windows
 
       #ifdef DEBUG
       if (nCode < 0 && nCode != (int32_t)0x8000)
-      TRACE(::core::trace::category_AppMsg, 0, "Implementation Warning: control notification = $%X.\n",
+      TRACE(::base::trace::category_AppMsg, 0, "Implementation Warning: control notification = $%X.\n",
       nCode);
       #endif
 
@@ -2422,7 +2422,7 @@ namespace windows
 
    // move and resize all the windows at once!
    if (layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
-   TRACE(::core::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");
+   TRACE(::base::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");
    }
 
    */
@@ -2546,7 +2546,7 @@ namespace windows
 
       // move and resize all the windows at once!
       if(layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
-         TRACE(::core::trace::category_AppMsg,0,"Warning: DeferWindowPos failed - low system resources.\n");
+         TRACE(::base::trace::category_AppMsg,0,"Warning: DeferWindowPos failed - low system resources.\n");
    }
 
 
@@ -2895,7 +2895,7 @@ namespace windows
             m_event.ResetEvent();
             m_oswindow = oswindow;
             m_hdc = hdc;
-            __begin_thread(papp,&print_window::s_print_window,(LPVOID) this,::core::scheduling_priority_above_normal);
+            __begin_thread(papp,&print_window::s_print_window,(LPVOID) this,::base::scheduling_priority_above_normal);
             if(m_event.wait(millis(dwTimeout)).timeout())
             {
                TRACE("print_window::time_out");
@@ -3353,7 +3353,7 @@ namespace windows
       if(hDC == NULL)
       {
          // sometimes Win32 passes a NULL hDC in the WM_CTLCOLOR message.
-         //         TRACE(::core::trace::category_AppMsg, 0, "Warning: hDC is NULL in window::GrayCtlColor; WM_CTLCOLOR not processed.\n");
+         //         TRACE(::base::trace::category_AppMsg, 0, "Warning: hDC is NULL in window::GrayCtlColor; WM_CTLCOLOR not processed.\n");
          return FALSE;
       }
 
@@ -3595,7 +3595,7 @@ namespace windows
    }
 
 
-   id window::RunModalLoop(uint32_t dwFlags,::core::live_object * pliveobject)
+   id window::RunModalLoop(uint32_t dwFlags,::base::live_object * pliveobject)
    {
       // for tracking the idle time state
       bool bIdle = TRUE;
@@ -3786,9 +3786,9 @@ namespace windows
       else if(*lplpfn != oldWndProc)
       {
 
-         TRACE(::core::trace::category_AppMsg,0,"p: Trying to use subclass_window with incorrect window\n");
-         TRACE(::core::trace::category_AppMsg,0,"\tderived class.\n");
-         TRACE(::core::trace::category_AppMsg,0,"\toswindow_ = $%08X (nIDC=$%08X) is not a %hs.\n",(UINT)(uint_ptr)oswindow,__get_dialog_control_id(oswindow),typeid(*this).name());
+         TRACE(::base::trace::category_AppMsg,0,"p: Trying to use subclass_window with incorrect window\n");
+         TRACE(::base::trace::category_AppMsg,0,"\tderived class.\n");
+         TRACE(::base::trace::category_AppMsg,0,"\toswindow_ = $%08X (nIDC=$%08X) is not a %hs.\n",(UINT)(uint_ptr)oswindow,__get_dialog_control_id(oswindow),typeid(*this).name());
 
          ASSERT(FALSE);
 
@@ -6425,7 +6425,7 @@ __activation_window_procedure(oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM l
       msg.lParam = lParam;
 
       //lResult = __process_window_procedure_exception(pe, &msg);
-      //      TRACE(::core::trace::category_AppMsg, 0, "Warning: Uncaught exception in __activation_window_procedure (returning %ld).\n",
+      //      TRACE(::base::trace::category_AppMsg, 0, "Warning: Uncaught exception in __activation_window_procedure (returning %ld).\n",
       //       lResult);
       pe->Delete();
    }

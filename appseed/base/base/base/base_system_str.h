@@ -69,17 +69,17 @@ namespace str
 } // namespace str
 
 
-inline static string log_level_name(::core::log::e_level elevel)
+inline static string log_level_name(::base::log::e_level elevel)
 {
    switch (elevel)
    {
-   case ::core::log::level_warning:
+   case ::base::log::level_warning:
       return "warning";
-   case ::core::log::level_error:
+   case ::base::log::level_error:
       return "error";
-   case ::core::log::level_fatal:
+   case ::base::log::level_fatal:
       return "fatal";
-   case ::core::log::level_info:
+   case ::base::log::level_info:
       return "info";
    default:
       return "undefined log error";

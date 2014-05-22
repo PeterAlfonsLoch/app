@@ -102,7 +102,7 @@ namespace base
 
       m_pcommandthread           = canew(::command_thread(this));
 
-      m_psavings                 = canew(class ::core::savings(this));
+      m_psavings                 = canew(class ::base::savings(this));
       m_pmath                    = canew(math::math(this));
       m_pgeometry                = canew(geometry::geometry(this));
 
@@ -934,7 +934,7 @@ namespace base
    }
 
 
-   bool application::set_main_init_data(::core::main_init_data * pdata)
+   bool application::set_main_init_data(::base::main_init_data * pdata)
    {
 
       throw interface_only_exception(this);
@@ -1597,7 +1597,7 @@ namespace base
    }
 
 
-   ::core::savings & application::savings()
+   ::base::savings & application::savings()
    {
 
       return *m_psavings;
@@ -1805,7 +1805,7 @@ namespace base
    }
 
 
-   bool application::init_main_data(::core::main_init_data * pdata)
+   bool application::init_main_data(::base::main_init_data * pdata)
    {
 
       return false;
@@ -3193,15 +3193,15 @@ namespace base
       {
          if(guideline()->m_varTopicQuery.propset().has_property("save_processing"))
          {
-            System.savings().save(::core::resource_processing);
+            System.savings().save(::base::resource_processing);
          }
          if(guideline()->m_varTopicQuery.propset().has_property("save_blur_back"))
          {
-            System.savings().save(::core::resource_blur_background);
+            System.savings().save(::base::resource_blur_background);
          }
          if(guideline()->m_varTopicQuery.propset().has_property("save_transparent_back"))
          {
-            System.savings().save(::core::resource_translucent_background);
+            System.savings().save(::base::resource_translucent_background);
          }
       }
 
@@ -4437,7 +4437,7 @@ namespace base
       if(strLibrary.is_empty())
          strLibrary = "draw2d_cairo";
 
-      base_library & library = System.m_libraryDraw2d;
+      ::base::library & library = System.m_libraryDraw2d;
 
       if(library.is_opened())
          return;

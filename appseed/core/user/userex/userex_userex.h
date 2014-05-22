@@ -87,7 +87,7 @@ namespace userex
       void add_document_template(sp(::user::impact_system) ptemplate);
       virtual sp(::user::object) _vmsguserbaseOpenDocumentFile(const char * lpszFileName);
 
-      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
 
 
       virtual void _001OnFileNew();

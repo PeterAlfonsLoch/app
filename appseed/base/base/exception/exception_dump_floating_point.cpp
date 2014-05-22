@@ -10,7 +10,7 @@
 dump_context & dump_context::operator<<(float f)
 {
    char szBuffer[32];
-   ::core::gcvt_s(szBuffer, 32, f, FLT_DIG);
+   ::base::gcvt_s(szBuffer, 32, f, FLT_DIG);
 
    *this << szBuffer;
    return *this;
@@ -19,7 +19,7 @@ dump_context & dump_context::operator<<(float f)
 dump_context & dump_context::operator<<(double d)
 {
    char szBuffer[32];
-   ::core::gcvt_s(szBuffer, 32, d, DBL_DIG);
+   ::base::gcvt_s(szBuffer, 32, d, DBL_DIG);
 
    *this << szBuffer;
    return *this;

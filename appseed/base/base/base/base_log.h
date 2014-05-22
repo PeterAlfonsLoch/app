@@ -1,47 +1,9 @@
 #pragma once
 
 
-class critical_section;
-class mutex;
-class stringa;
-class string;
-class id;
-
-
-namespace core
+namespace base
 {
 
-
-   class file;
-
-
-   namespace trace
-   {
-
-      class trace;
-
-   }
-
-
-
-   CLASS_DECL_BASE int32_t SimpleDebugReport(int32_t, const char *, int32_t, const char *, const char * pszFormat, va_list list);
-
-   /*   CLASS_DECL_BASE int32_t __cdecl ca2_logging_report(
-   int32_t iReportType,
-   const char * pszFileName,
-   int32_t iLineNumber,
-   const char * pszModuleName,
-   const char * pszFormat,
-   va_list list);
-
-
-   extern CLASS_DECL_BASE int32_t  ( __cdecl *  __ca2_logging_report)(
-   int32_t iReportType,
-   const char * pszFileName,
-   int32_t iLineNumber,
-   const char * pszModuleName,
-   const char * pszFormat,
-   va_list list);*/
 
    class CLASS_DECL_BASE log :
       virtual public element
@@ -64,7 +26,7 @@ namespace core
 
 
       bool                    m_bTrace;
-      ::core::trace::trace *     m_ptrace;
+      ::base::trace::trace *     m_ptrace;
       critical_section *      m_pcsTrace;
       stringa *               m_pstraSeparator;
       FILE *                  m_pfile;
@@ -121,10 +83,13 @@ namespace core
    };
 
 
-
-} // namespace core
-
+   CLASS_DECL_BASE int32_t SimpleDebugReport(int32_t,const char *,int32_t,const char *,const char * pszFormat,va_list list);
 
 
+} // namespace base
 
-inline ::core::log::e_level ca_get_level_warning() { return ::core::log::level_warning; }
+
+inline ::base::log::e_level ca_get_level_warning() { return ::base::log::level_warning; }
+
+
+

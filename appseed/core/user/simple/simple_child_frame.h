@@ -7,7 +7,7 @@ public:
    simple_child_frame(sp(::base::application) papp);
    virtual ~simple_child_frame();
 
-   virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg); 
+   virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg); 
    virtual bool pre_create_window(CREATESTRUCT& cs);
 };
 

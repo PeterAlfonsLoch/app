@@ -214,7 +214,7 @@ namespace math
       else
       {
 
-         ::core::microtimer timer;
+         ::base::microtimer timer;
 
          double d1 = timer.getTimeInMicroSec();
 

@@ -57,7 +57,7 @@ namespace sockets
       else
       {
 
-         log("SetFile", Errno, StrError(Errno), ::core::log::level_fatal);
+         log("SetFile", Errno, StrError(Errno), ::base::log::level_fatal);
 
          SetCloseAndDelete();
 

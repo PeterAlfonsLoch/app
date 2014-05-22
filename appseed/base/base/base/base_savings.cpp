@@ -1,7 +1,9 @@
 #include "framework.h"
 
-namespace core
+
+namespace base
 {
+
 
    savings::savings(sp(::base::application) papp) :
       element(papp)

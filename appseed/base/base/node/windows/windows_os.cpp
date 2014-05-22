@@ -14,7 +14,7 @@ namespace windows
 
    os::os(sp(::base::application) papp) :
       element(papp),
-      ::core::os(papp)
+      ::base::os(papp)
    {
    }
 

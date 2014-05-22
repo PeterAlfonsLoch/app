@@ -156,7 +156,7 @@ namespace message
       void (dispatch::*m_pfnDispatchWindowProc)(signal_details * pobj);
 
       virtual void _user_message_handler(signal_details * pobj);
-      //bool _iguimessageDispatchCommandMessage(base_command * pcommand, bool & b);
+      //bool _iguimessageDispatchCommandMessage(::base::command * pcommand, bool & b);
       // return TRUE to stop routing
 #ifdef WINDOWS
       virtual bool igui_RelayEvent(LPMESSAGE lpmsg);

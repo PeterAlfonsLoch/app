@@ -9,7 +9,7 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 #endif
 
 
-namespace core
+namespace base
 {
 
    //typedef void ( * PFN_trace_v)(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
@@ -200,5 +200,5 @@ namespace core
    } // namespace trace
 
 
-};  // namespace core
+};  // namespace base
 

@@ -26,7 +26,7 @@ namespace sockets
 
    }
 
-   void base_socket_handler::log(base_socket * psocket, const string & strUser, int iError,const string & strSystem, ::core::log::e_level elevel)
+   void base_socket_handler::log(base_socket * psocket, const string & strUser, int iError,const string & strSystem, ::base::log::e_level elevel)
    {
 
       if(m_splogger.is_null())

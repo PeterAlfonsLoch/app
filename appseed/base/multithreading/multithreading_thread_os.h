@@ -14,16 +14,10 @@ typedef hthread * HTHREAD;
 #endif
 
 
-
-/**
-* \file		src/lib/pal/linux/thread_linux.hpp
-*/
-
-namespace core
+namespace base
 {
 
 
-	// An enum representing thread priorities.
 	enum e_scheduling_priority
    {
 
@@ -38,23 +32,19 @@ namespace core
 
 	};
 
-	//  \brief		global function to set thread priority for current thread
-	//  \param		new priority
 	CLASS_DECL_BASE bool set_thread_priority(int32_t priority);
 	CLASS_DECL_BASE bool set_priority_class(int32_t priority);
 
-	//  \brief		global function to get thread priority for current thread
-	//  \return	priority of current thread
 	CLASS_DECL_BASE int32_t thread_priority();
 
 
-} // namespace core
+} // namespace base
 
 
 inline int32_t get_scheduling_priority_none()
 {
 
-      return ::core::scheduling_priority_none;
+      return ::base::scheduling_priority_none;
 
 }
 
@@ -62,7 +52,7 @@ inline int32_t get_scheduling_priority_none()
 inline int32_t get_scheduling_priority_normal()
 {
 
-      return ::core::scheduling_priority_normal;
+      return ::base::scheduling_priority_normal;
 
 }
 

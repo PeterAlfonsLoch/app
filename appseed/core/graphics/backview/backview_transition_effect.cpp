@@ -1826,7 +1826,7 @@ true);
    ::thread * TransitionEffect::CreateRunStepThread()
    {
 
-      return __begin_thread(get_app(), ThreadProcRunStep, this, ::core::scheduling_priority_normal, 0, 0, NULL);
+      return __begin_thread(get_app(), ThreadProcRunStep, this, ::base::scheduling_priority_normal, 0, 0, NULL);
 
    }
 

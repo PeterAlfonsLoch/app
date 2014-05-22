@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace core
+namespace base
 {
 
 
@@ -26,4 +26,9 @@ namespace core
 
    #endif  // no exception handling
 
-}  // namespace core
+
+}  // namespace base
+
+
+
+

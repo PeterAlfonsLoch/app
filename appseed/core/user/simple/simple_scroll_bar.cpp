@@ -821,7 +821,7 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 
    GetClientRect(rectClient);
 
-   if(System.savings().is_trying_to_save(::core::resource_processing))
+   if(System.savings().is_trying_to_save(::base::resource_processing))
    {
 
       pdc->FillSolidRect(rectClient, RGB(255,255,255));

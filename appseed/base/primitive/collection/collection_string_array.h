@@ -1,16 +1,6 @@
 #pragma once
 
 
-namespace core
-{
-
-
-   class property;
-
-
-} // namespace core
-
-
 class CLASS_DECL_BASE string_array :
    virtual public ::object
 {

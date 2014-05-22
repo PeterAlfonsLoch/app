@@ -65,7 +65,7 @@ namespace base
       ::url::departament                           m_urldepartament;
       sp(class ::xml::departament)                 m_pxml;
       const id_pool                                m_cidpool;
-      sp(class ::core::log)                        m_plog;
+      sp(class ::base::log)                        m_plog;
 
 
       static id_space *                            s_pidspace;
@@ -84,10 +84,10 @@ namespace base
       string_map < int_to_string >                 m_mapEnumToName;
       string_map < string_to_int >                 m_mapNameToEnum;
       sp(::user::window_draw)                      m_ptwf;
-      class ::core::compress                       m_compress;
+      class ::base::compress                       m_compress;
       sp(::user::str)                              m_puserstr;
       sp(::install::install)                       m_spinstall;
-      ::core::os_sp                                m_spos;
+      ::base::os_sp                                m_spos;
 
 
 
@@ -96,7 +96,7 @@ namespace base
       sp(mutex)                                    m_pmutexDc;
 #endif
 
-      base_library                                 m_libraryDraw2d;
+      ::base::library                              m_libraryDraw2d;
 
 
 
@@ -114,19 +114,19 @@ namespace base
       application_ptra                             & appptra();
 
 
-      class ::core::os                             & os();
+      class ::base::os                             & os();
       class base_factory                           & factory();
       inline ::url::departament                    & url()     { return m_urldepartament; }
       ::xml::departament                           & xml();
       class ::str::base64                          & base64();
 
-      class ::core::log                            & log();
+      class ::base::log                            & log();
 
       inline class ::http::system                  & http()    { return m_httpsystem; }
       inline ::file::system                        & file()    { return *m_spfile; }
       inline ::file::dir::system                   & dir()     { return *m_spdir; }
       class ::sockets::net                         & net();
-      class ::core::compress                       & compress();
+      class ::base::compress                       & compress();
       class ::machine_event_central                & machine_event_central();
       ::fontopus::user_set                         & userset();
 

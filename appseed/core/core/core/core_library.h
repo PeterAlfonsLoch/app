@@ -43,7 +43,7 @@ namespace core
 
 
    class CLASS_DECL_CORE library :
-      virtual public base_library
+      virtual public ::base::library
    {
    public:
 
@@ -94,7 +94,7 @@ namespace core
 
    private:
 
-      using base_library::open;
+      using ::base::library::open;
 
    };
 
@@ -105,7 +105,7 @@ namespace core
    {
    public:
 
-      single_application_library(sp(::base::application) papp, const char * pszRoot) : element(papp), ::base_library(papp), ::core::library(papp, pszRoot) {}
+      single_application_library(sp(::base::application) papp, const char * pszRoot) : element(papp), ::base::library(papp), ::core::library(papp, pszRoot) {}
 
       // impl
       virtual sp(::base::application) get_new_app(const char * pszAppId);

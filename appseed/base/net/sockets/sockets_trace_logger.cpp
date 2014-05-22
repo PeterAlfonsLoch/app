@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   void trace_logger::log(base_socket_handler * phandler, base_socket * sock, const string & strUser, int32_t iError, const string & strSystem, ::core::log::e_level elevel)
+   void trace_logger::log(base_socket_handler * phandler, base_socket * sock, const string & strUser, int32_t iError, const string & strSystem, ::base::log::e_level elevel)
    {
 
       string strLevel = ::log_level_name(elevel);

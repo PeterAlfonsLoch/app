@@ -9,7 +9,7 @@ namespace filehandler
 
    library::library(sp(::base::application) papp) :
       element(papp),
-      ::base_library(papp),
+      ::base::library(papp),
       ::core::library(papp, "app")
    {
    }

@@ -392,7 +392,7 @@ void window::WinHelpInternal(uint_ptr dwData, UINT nCmd)
 }
 #endif
 
-bool window::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
+bool window::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
 {
    UNREFERENCED_PARAMETER(pcmdmsg);
    throw interface_only_exception(get_app());
@@ -771,7 +771,7 @@ void window::UpdateDialogControls(command_target * pTarget, bool bDisableIfNoHnd
 }
 
 
-/*   id window::RunModalLoop(uint32_t dwFlags, ::core::live_object * pliveobject)
+/*   id window::RunModalLoop(uint32_t dwFlags, ::base::live_object * pliveobject)
 {
 UNREFERENCED_PARAMETER(dwFlags);
 UNREFERENCED_PARAMETER(pliveobject);

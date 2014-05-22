@@ -30,7 +30,7 @@ namespace sockets
    #ifdef HAVE_OPENSSL
          EnableSSL();
    #else
-         log("url_this", -1, "SSL not available", ::core::log::level_warning);
+         log("url_this", -1, "SSL not available", ::base::log::level_warning);
    #endif
       }
    }

@@ -19,7 +19,7 @@ public:
 
    ::visual::e_cursor                                       m_ecursor;
    ::visual::e_cursor                                       m_ecursorDefault;
-   ::core::copydesk_sp                                      m_spcopydesk;
+   ::base::copydesk_sp                                      m_spcopydesk;
 
 
    sp(::fontopus::fontopus)                        m_pfontopus;
@@ -34,7 +34,7 @@ public:
 
 
    
-   ::core::copydesk & copydesk();
+   ::base::copydesk & copydesk();
 
    virtual sp(::base::application) start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext);
 

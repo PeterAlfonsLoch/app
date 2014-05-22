@@ -434,7 +434,7 @@ namespace user
       _001DrawThis(pdc);
    }
 
-   bool tab_view::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
+   bool tab_view::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
    {
       if(!handle(pcmdmsg))
          return false;

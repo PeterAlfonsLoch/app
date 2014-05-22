@@ -720,7 +720,7 @@ namespace draw2d
 
 
 
-} // namespace core
+} // namespace base
 
 
 

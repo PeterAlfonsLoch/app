@@ -162,5 +162,5 @@ namespace windows
    };
 
 
-} // namespace core
+} // namespace base
 

@@ -199,7 +199,7 @@ namespace platform
       m_dibBkImage.load_from_matter("casweden1.png");
 
       m_dibBk->create(1280, 1024);
-      //::core::savings & savings = System.savings();
+      //::base::savings & savings = System.savings();
       //if(
 
       const char * pszSessionName = NULL;
@@ -345,7 +345,7 @@ namespace platform
       rectDesktop.top = 0;
       rectDesktop.bottom = ::GetSystemMetrics(SM_CYSCREEN);
       }*/
-      if(System.savings().is_trying_to_save(::core::resource_processing))
+      if(System.savings().is_trying_to_save(::base::resource_processing))
       {
          pdc->FillRect(&rectClient, m_brushBk);
       }
@@ -555,7 +555,7 @@ namespace platform
    void view::mt_show_window(oswindow oswindow, int32_t iShow)
    {
 
-      __begin_thread(get_app(), &view::ThreadProcShowWindow, new show_window(oswindow, iShow), ::core::scheduling_priority_highest);
+      __begin_thread(get_app(), &view::ThreadProcShowWindow, new show_window(oswindow, iShow), ::base::scheduling_priority_highest);
 
    }
 

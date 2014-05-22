@@ -27,6 +27,12 @@ namespace base
    class application;
    class system;
    class application_signal_details;
+   class copydesk;
+
+   typedef smart_pointer < copydesk > copydesk_sp;
+   class command;
+
+
 
 } // namespace base
 
@@ -46,6 +52,14 @@ class str_str_interface;
 class command_thread;
 class thread;
 class application;
+class command_target;
+class cmd_ui;
+class critical_section;
+class mutex;
+class stringa;
+class string;
+class id;
+
 
 
 namespace visual
@@ -86,8 +100,6 @@ namespace draw2d
 
 } // namespace draw2d
 
-
-class base_command;
 
 namespace file
 {
@@ -151,7 +163,7 @@ struct __SIZEPARENTPARAMS
 
 };
 
-namespace core
+namespace base
 {
 
 
@@ -167,7 +179,21 @@ namespace core
 
 #endif
 
-} // namespace core
+
+   class file;
+
+
+   namespace trace
+   {
+
+      class trace;
+
+   }
+
+
+} // namespace base
+
+
 
 
 namespace data
@@ -365,15 +391,6 @@ typedef  void(*PFN_ca2_factory_exchange)(sp(::base::application) papp);
 
 
 
-namespace core
-{
-
-   class copydesk;
-
-   typedef smart_pointer < copydesk > copydesk_sp;
-
-
-} // namespace core
 
 
 CLASS_DECL_BASE bool base_init();

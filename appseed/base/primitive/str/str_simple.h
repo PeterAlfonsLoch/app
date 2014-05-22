@@ -232,14 +232,18 @@ inline string_data * string_manager::GetNilString()
 
 
 
-namespace core
+namespace base
 {
+
    namespace str
    {
+
       CLASS_DECL_BASE inline void copy(char * pszDest, const char * pszSrc) { strcpy(pszDest, pszSrc); }
       CLASS_DECL_BASE inline void copy(wchar_t * pszDest, const wchar_t * pszSrc) { wcscpy_dup(pszDest, pszSrc); }
+
    } // namespace str
-} // namespace core
+
+} // namespace base
 
 
 

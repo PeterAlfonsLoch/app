@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace core
+namespace base
 {
 
 
@@ -41,7 +41,7 @@ namespace core
    };
 
 
-} // namespace compress
+} // namespace base
 
 
 

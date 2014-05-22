@@ -14,7 +14,7 @@ namespace file {
     class stream_buffer;
 
 
-} // namespace core
+} // namespace file
 
 
 

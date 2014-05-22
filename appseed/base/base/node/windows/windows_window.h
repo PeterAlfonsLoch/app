@@ -62,7 +62,7 @@ namespace windows
       //virtual sp(::user::interaction) get_owner();
       virtual void set_owner(sp(::user::interaction) pOwnerWnd);
 
-      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
@@ -437,7 +437,7 @@ namespace windows
       // dialog support
       void UpdateDialogControls(command_target* pTarget,bool bDisableIfNoHndler);
       void CenterWindow(sp(::user::interaction) pAlternateOwner = NULL);
-      virtual id   RunModalLoop(uint32_t dwFlags = 0,::core::live_object * pliveobject = NULL);
+      virtual id   RunModalLoop(uint32_t dwFlags = 0,::base::live_object * pliveobject = NULL);
       virtual bool ContinueModal(int32_t iLevel);
       virtual void EndModalLoop(id nResult);
       virtual void EndAllModalLoops(id nResult);

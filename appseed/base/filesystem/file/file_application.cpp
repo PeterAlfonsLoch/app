@@ -413,7 +413,7 @@ namespace file
 
                      ::file::input_stream is(spfile);
 
-                     System.file().output(m_pbaseapp, strFile, &System.compress(), &::core::compress::null, is);
+                     System.file().output(m_pbaseapp, strFile, &System.compress(), &::base::compress::null, is);
 
                   }
                   catch (...)

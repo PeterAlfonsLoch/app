@@ -157,13 +157,13 @@ void ssl_sigpipe_handle( int x );
    {
       if (!ad.is_valid())
       {
-         log("open", 0, "Invalid ::net::address", ::core::log::level_fatal);
+         log("open", 0, "Invalid ::net::address", ::base::log::level_fatal);
          SetCloseAndDelete();
          return false;
       }
       if (Handler().get_count() >= FD_SETSIZE)
       {
-         log("open", 0, "no space left in fd_set", ::core::log::level_fatal);
+         log("open", 0, "no space left in fd_set", ::base::log::level_fatal);
          SetCloseAndDelete();
          return false;
       }
@@ -180,7 +180,7 @@ void ssl_sigpipe_handle( int x );
 
             SetIsClient();
             SetCallOnConnect(); // base_socket_handler must call OnConnect
-            log("SetCallOnConnect", 0, "Found pooled connection", ::core::log::level_info);
+            log("SetCallOnConnect", 0, "Found pooled connection", ::base::log::level_info);
             return true;
          }
       }
@@ -211,7 +211,7 @@ void ssl_sigpipe_handle( int x );
          {
             string sockshost;
             System.net().convert(sockshost, GetSocks4Host());
-            log("open", 0, "Connecting to socks4 server @ " + sockshost + ":" + ::str::from(GetSocks4Port()), ::core::log::level_info);
+            log("open", 0, "Connecting to socks4 server @ " + sockshost + ":" + ::str::from(GetSocks4Port()), ::base::log::level_info);
          }
          SetSocks4();
          n = connect(s, sa.sa(), sa.sa_len());
@@ -246,14 +246,14 @@ void ssl_sigpipe_handle( int x );
          if (Reconnect())
          {
             string strError = StrError(iError);
-            log("connect: failed, reconnect pending", iError, StrError(iError), ::core::log::level_info);
+            log("connect: failed, reconnect pending", iError, StrError(iError), ::base::log::level_info);
             attach(s);
             SetConnecting( true ); // this flag will control fd_set's
          }
          else
          {
             string strError = StrError(iError);
-            log("connect: failed", iError, StrError(iError), ::core::log::level_fatal);
+            log("connect: failed", iError, StrError(iError), ::base::log::level_fatal);
             SetCloseAndDelete();
             ::closesocket(s);
             return false;
@@ -337,13 +337,13 @@ void ssl_sigpipe_handle( int x );
          }
          else
          {
-            log("OnResolved", 0, "Resolver failed", ::core::log::level_fatal);
+            log("OnResolved", 0, "Resolver failed", ::base::log::level_fatal);
             SetCloseAndDelete();
          }
       }
       else
       {
-         log("OnResolved", id, "Resolver returned wrong job id", ::core::log::level_fatal);
+         log("OnResolved", id, "Resolver returned wrong job id", ::base::log::level_fatal);
          SetCloseAndDelete();
       }
    }
@@ -406,7 +406,7 @@ void ssl_sigpipe_handle( int x );
          }
          else
          {
-            log("tcp_socket::recv(ssl)", (int) n, "abnormal value from SSL_read", ::core::log::level_error);
+            log("tcp_socket::recv(ssl)", (int) n, "abnormal value from SSL_read", ::base::log::level_error);
             throw io_exception(get_app());
          }
       }
@@ -422,7 +422,7 @@ void ssl_sigpipe_handle( int x );
 #endif
          if (n == -1)
          {
-            log("recv", Errno, StrError(Errno), ::core::log::level_fatal);
+            log("recv", Errno, StrError(Errno), ::base::log::level_fatal);
             OnDisconnect();
             SetCloseAndDelete(true);
             SetFlushBeforeClose(false);
@@ -446,7 +446,7 @@ void ssl_sigpipe_handle( int x );
          }
          else
          {
-            log("tcp_socket::recv", (int32_t) n, "abnormal value from recv", ::core::log::level_error);
+            log("tcp_socket::recv", (int32_t) n, "abnormal value from recv", ::base::log::level_error);
             throw io_exception(get_app());
          }
 
@@ -487,7 +487,7 @@ void ssl_sigpipe_handle( int x );
             catch(...)
             {
 
-               log("tcp_socket::read", 0, "ibuf overflow", ::core::log::level_warning);
+               log("tcp_socket::read", 0, "ibuf overflow", ::base::log::level_warning);
 
             }
          }
@@ -495,7 +495,7 @@ void ssl_sigpipe_handle( int x );
       }
       else
       {
-         log("tcp_socket::read", (int32_t) n, "abnormal value from SSL_read", ::core::log::level_error);
+         log("tcp_socket::read", (int32_t) n, "abnormal value from SSL_read", ::base::log::level_error);
       }
 
       return n;
@@ -591,7 +591,7 @@ void ssl_sigpipe_handle( int x );
             SetCallOnConnect();
             return;
          }
-         log("tcp: connect failed", err, StrError(err), ::core::log::level_fatal);
+         log("tcp: connect failed", err, StrError(err), ::base::log::level_fatal);
          set(false, false); // no more monitoring because connection failed
 
          // failed
@@ -699,7 +699,7 @@ void ssl_sigpipe_handle( int x );
                SetFlushBeforeClose(false);
                SetLost();
                const char *errbuf = ERR_error_string(errnr, NULL);
-               log("OnWrite/SSL_write", errnr, errbuf, ::core::log::level_fatal);
+               log("OnWrite/SSL_write", errnr, errbuf, ::base::log::level_fatal);
             }
             return 0;
          }
@@ -737,7 +737,7 @@ void ssl_sigpipe_handle( int x );
             if (Errno != EWOULDBLOCK)
    #endif
             {
-               log("send", Errno, StrError(Errno), ::core::log::level_fatal);
+               log("send", Errno, StrError(Errno), ::base::log::level_fatal);
                OnDisconnect();
                SetCloseAndDelete(true);
                SetFlushBeforeClose(false);
@@ -816,11 +816,11 @@ void ssl_sigpipe_handle( int x );
       {
          log("write", -1, "Attempt to write to a non-ready socket" ); // warning
          if (GetSocket() == INVALID_SOCKET)
-            log("write", 0, " * GetSocket() == INVALID_SOCKET", ::core::log::level_info);
+            log("write", 0, " * GetSocket() == INVALID_SOCKET", ::base::log::level_info);
          if (Connecting())
-            log("write", 0, " * Connecting()", ::core::log::level_info);
+            log("write", 0, " * Connecting()", ::base::log::level_info);
          if (CloseAndDelete())
-            log("write", 0, " * CloseAndDelete()", ::core::log::level_info);
+            log("write", 0, " * CloseAndDelete()", ::base::log::level_info);
          return;
       }
       if (!IsConnected())
@@ -918,7 +918,7 @@ void ssl_sigpipe_handle( int x );
 
    void tcp_socket::OnSocks4ConnectFailed()
    {
-      Handler().log(this,"OnSocks4ConnectFailed",0,"connection to socks4 server failed, trying direct connection",::core::log::level_warning);
+      Handler().log(this,"OnSocks4ConnectFailed",0,"connection to socks4 server failed, trying direct connection",::base::log::level_warning);
       if (!Handler().Socks4TryDirect())
       {
          SetConnecting(false);
@@ -965,18 +965,18 @@ void ssl_sigpipe_handle( int x );
             {
             case 90:
                OnConnect();
-               log("OnSocks4Read", 0, "Connection established", ::core::log::level_info);
+               log("OnSocks4Read", 0, "Connection established", ::base::log::level_info);
                break;
             case 91:
             case 92:
             case 93:
-               Handler().log(this,"OnSocks4Read",m_socks4_cd,"socks4 server reports connect failed",::core::log::level_fatal);
+               Handler().log(this,"OnSocks4Read",m_socks4_cd,"socks4 server reports connect failed",::base::log::level_fatal);
                SetConnecting(false);
                SetCloseAndDelete();
                OnConnectFailed();
                break;
             default:
-               Handler().log(this,"OnSocks4Read",m_socks4_cd,"socks4 server unrecognized response",::core::log::level_fatal);
+               Handler().log(this,"OnSocks4Read",m_socks4_cd,"socks4 server unrecognized response",::base::log::level_fatal);
                SetCloseAndDelete();
                break;
             }
@@ -1094,7 +1094,7 @@ void ssl_sigpipe_handle( int x );
             && x509_err != X509_V_ERR_APPLICATION_VERIFICATION
             && x509_err != X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY)
             {
-               log("SSLNegotiate/cert_common_name_check", 0, "cert_common_name_check failed", ::core::log::level_info);
+               log("SSLNegotiate/cert_common_name_check", 0, "cert_common_name_check failed", ::base::log::level_info);
                SetSSLNegotiate(false);
                SetCloseAndDelete();
                OnSSLConnectFailed();
@@ -1118,7 +1118,7 @@ void ssl_sigpipe_handle( int x );
             {
                OnConnect();
             }
-            log("SSLNegotiate/SSL_connect", 0, "Connection established", ::core::log::level_info);
+            log("SSLNegotiate/SSL_connect", 0, "Connection established", ::base::log::level_info);
             if(m_spsslclientcontext->m_psession == NULL)
             {
                m_spsslclientcontext->m_psession = SSL_get1_session(m_ssl);
@@ -1144,7 +1144,7 @@ void ssl_sigpipe_handle( int x );
                }
             }
             r = SSL_get_error(m_ssl, r);
-            log("SSLNegotiate/SSL_connect", 0, "Connection failed", ::core::log::level_info);
+            log("SSLNegotiate/SSL_connect", 0, "Connection failed", ::base::log::level_info);
             SetSSLNegotiate(false);
             SetCloseAndDelete();
             OnSSLConnectFailed();
@@ -1155,7 +1155,7 @@ void ssl_sigpipe_handle( int x );
             r = SSL_get_error(m_ssl, r);
             if (r != SSL_ERROR_WANT_READ && r != SSL_ERROR_WANT_WRITE)
             {
-               log("SSLNegotiate/SSL_connect", -1, "Connection failed", ::core::log::level_info);
+               log("SSLNegotiate/SSL_connect", -1, "Connection failed", ::base::log::level_info);
    TRACE("SSL_connect() failed - closing socket, return code: %d\n",r);
                SetSSLNegotiate(false);
                SetCloseAndDelete(true);
@@ -1181,13 +1181,13 @@ void ssl_sigpipe_handle( int x );
                }
             }
             OnAccept();
-            log("SSLNegotiate/SSL_accept", 0, "Connection established", ::core::log::level_info);
+            log("SSLNegotiate/SSL_accept", 0, "Connection established", ::base::log::level_info);
             return true;
          }
          else
          if (!r)
          {
-            log("SSLNegotiate/SSL_accept", 0, "Connection failed", ::core::log::level_info);
+            log("SSLNegotiate/SSL_accept", 0, "Connection failed", ::base::log::level_info);
             SetSSLNegotiate(false);
             SetCloseAndDelete();
             OnSSLAcceptFailed();
@@ -1197,7 +1197,7 @@ void ssl_sigpipe_handle( int x );
             r = SSL_get_error(m_ssl, r);
             if (r != SSL_ERROR_WANT_READ && r != SSL_ERROR_WANT_WRITE)
             {
-               log("SSLNegotiate/SSL_accept", -1, "Connection failed", ::core::log::level_info);
+               log("SSLNegotiate/SSL_accept", -1, "Connection failed", ::base::log::level_info);
    TRACE("SSL_accept() failed - closing socket, return code: %d\n",r);
                SetSSLNegotiate(false);
                SetCloseAndDelete(true);
@@ -1217,7 +1217,7 @@ void ssl_sigpipe_handle( int x );
 
    void tcp_socket::InitSSLServer()
    {
-      log("InitSSLServer", 0, "You MUST implement your own InitSSLServer method", ::core::log::level_fatal);
+      log("InitSSLServer", 0, "You MUST implement your own InitSSLServer method", ::base::log::level_fatal);
       SetCloseAndDelete();
    }
 
@@ -1273,7 +1273,7 @@ void ssl_sigpipe_handle( int x );
          /* Load our keys and certificates*/
          if (!(SSL_CTX_use_certificate_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
          {
-            log("tcp_socket InitializeContext", 0, "Couldn't read certificate file " + keyfile, ::core::log::level_fatal);
+            log("tcp_socket InitializeContext", 0, "Couldn't read certificate file " + keyfile, ::base::log::level_fatal);
          }
       }
 
@@ -1282,7 +1282,7 @@ void ssl_sigpipe_handle( int x );
       SSL_CTX_set_default_passwd_cb_userdata(m_ssl_ctx, this);
       if (!(SSL_CTX_use_PrivateKey_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
       {
-         log("tcp_socket InitializeContext", 0, "Couldn't read private key file " + keyfile, ::core::log::level_fatal);
+         log("tcp_socket InitializeContext", 0, "Couldn't read private key file " + keyfile, ::base::log::level_fatal);
       }
    }
 
@@ -1310,7 +1310,7 @@ void ssl_sigpipe_handle( int x );
       /* Load our keys and certificates*/
       if (!(SSL_CTX_use_certificate_file(m_ssl_ctx, certfile, SSL_FILETYPE_PEM)))
       {
-         log("tcp_socket InitializeContext", 0, "Couldn't read certificate file " + keyfile, ::core::log::level_fatal);
+         log("tcp_socket InitializeContext", 0, "Couldn't read certificate file " + keyfile, ::base::log::level_fatal);
       }
 
       m_password = password;
@@ -1318,7 +1318,7 @@ void ssl_sigpipe_handle( int x );
       SSL_CTX_set_default_passwd_cb_userdata(m_ssl_ctx, this);
       if (!(SSL_CTX_use_PrivateKey_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
       {
-         log("tcp_socket InitializeContext", 0, "Couldn't read private key file " + keyfile, ::core::log::level_fatal);
+         log("tcp_socket InitializeContext", 0, "Couldn't read private key file " + keyfile, ::base::log::level_fatal);
       }
    }
 
@@ -1342,7 +1342,7 @@ void ssl_sigpipe_handle( int x );
    {
       if (GetSocket() == INVALID_SOCKET) // this could happen
       {
-         log("socket::close", 0, "file descriptor invalid", ::core::log::level_warning);
+         log("socket::close", 0, "file descriptor invalid", ::base::log::level_warning);
          return;
       }
       int32_t n;
@@ -1352,7 +1352,7 @@ void ssl_sigpipe_handle( int x );
          if (shutdown(GetSocket(), SHUT_WR) == -1)
          {
             // failed...
-            log("shutdown", Errno, StrError(Errno), ::core::log::level_error);
+            log("shutdown", Errno, StrError(Errno), ::base::log::level_error);
          }
       }
       //
@@ -1361,7 +1361,7 @@ void ssl_sigpipe_handle( int x );
       {
          if (n)
          {
-            log("read() after shutdown", n, "bytes read", ::core::log::level_warning);
+            log("read() after shutdown", n, "bytes read", ::base::log::level_warning);
          }
       }
    #ifdef HAVE_OPENSSL
@@ -1412,14 +1412,14 @@ void ssl_sigpipe_handle( int x );
    SSL_CTX *tcp_socket::GetSslContext()
    {
       if (!m_ssl_ctx)
-         log("GetSslContext", 0, "SSL Context is NULL; check InitSSLServer/InitSSLClient", ::core::log::level_warning);
+         log("GetSslContext", 0, "SSL Context is NULL; check InitSSLServer/InitSSLClient", ::base::log::level_warning);
       return m_ssl_ctx;
    }
 
    SSL *tcp_socket::GetSsl()
    {
       if (!m_ssl)
-         log("GetSsl", 0, "SSL is NULL; check InitSSLServer/InitSSLClient", ::core::log::level_warning);
+         log("GetSsl", 0, "SSL is NULL; check InitSSLServer/InitSSLClient", ::base::log::level_warning);
       return m_ssl;
    }
    #endif
@@ -1533,12 +1533,12 @@ void ssl_sigpipe_handle( int x );
       int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_TCP, TCP_NODELAY, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(IPPROTO_TCP, TCP_NODELAY)", Errno, StrError(Errno), ::core::log::level_fatal);
+         log("setsockopt(IPPROTO_TCP, TCP_NODELAY)", Errno, StrError(Errno), ::base::log::level_fatal);
          return false;
       }
       return true;
    #else
-      log("socket option not available", 0, "TCP_NODELAY", ::core::log::level_info);
+      log("socket option not available", 0, "TCP_NODELAY", ::base::log::level_info);
       return false;
    #endif
    }
@@ -1547,7 +1547,7 @@ void ssl_sigpipe_handle( int x );
 
    void tcp_socket::OnConnectTimeout()
    {
-      log("connect", -1, "connect timeout", ::core::log::level_fatal);
+      log("connect", -1, "connect timeout", ::base::log::level_fatal);
       m_estatus = status_connection_timed_out;
       if (Socks4())
       {
@@ -1617,7 +1617,7 @@ void ssl_sigpipe_handle( int x );
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
       int32_t err = SoError();
-      log("exception on select", err, StrError(err), ::core::log::level_fatal);
+      log("exception on select", err, StrError(err), ::base::log::level_fatal);
       SetCloseAndDelete();
    }
    #endif // _WIN32

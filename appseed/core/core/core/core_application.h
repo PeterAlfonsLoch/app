@@ -38,7 +38,7 @@ public:
 
 
 
-   ::core::main_init_data *            m_pinitmaindata;
+   ::base::main_init_data *            m_pinitmaindata;
    bool                                m_bService;
    ::plane::system *                   m_psystem;
    sp(base_session)                    m_psession;
@@ -127,8 +127,8 @@ public:
    virtual ~application();
 
 
-   virtual bool init_main_data(::core::main_init_data * pdata);
-   virtual bool set_main_init_data(::core::main_init_data * pdata);
+   virtual bool init_main_data(::base::main_init_data * pdata);
+   virtual bool set_main_init_data(::base::main_init_data * pdata);
 
    virtual void construct(const char * pszId);
    virtual void construct();
@@ -250,7 +250,7 @@ public:
    void OnUpdateRecentFileMenu(cmd_ui * pcmdui);
 
    virtual DECL_GEN_SIGNAL(OnAppLanguage);
-      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
 
 
 

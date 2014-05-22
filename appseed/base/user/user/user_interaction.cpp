@@ -2515,7 +2515,7 @@ namespace user
    }
    
 
-   id interaction::run_modal_loop(::user::interaction * pui, uint32_t dwFlags, ::core::live_object * pliveobject)
+   id interaction::run_modal_loop(::user::interaction * pui, uint32_t dwFlags, ::base::live_object * pliveobject)
    {
       
       return pui->_001RunModalLoop(dwFlags, pliveobject);
@@ -2523,7 +2523,7 @@ namespace user
    }
 
 
-   id interaction::RunModalLoop(uint32_t dwFlags, ::core::live_object * pliveobject)
+   id interaction::RunModalLoop(uint32_t dwFlags, ::base::live_object * pliveobject)
    {
       
       if(get_wnd() != NULL)
@@ -2549,7 +2549,7 @@ namespace user
    }
    
    
-   id interaction::_001RunModalLoop(uint32_t dwFlags, ::core::live_object * pliveobject)
+   id interaction::_001RunModalLoop(uint32_t dwFlags, ::base::live_object * pliveobject)
    {
 
       // for tracking the idle time state
@@ -4217,7 +4217,7 @@ namespace user
    }
 
 
-   void interaction::keep_alive(::core::live_object * pliveobject)
+   void interaction::keep_alive(::base::live_object * pliveobject)
    {
 
       m_pthread->keep_alive();

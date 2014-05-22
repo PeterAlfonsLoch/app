@@ -97,7 +97,7 @@ namespace sockets
       {
          return Bind(ad, depth);
       }
-      log("Bind", 0, "name resolution of interface name failed", ::core::log::level_fatal);
+      log("Bind", 0, "name resolution of interface name failed", ::base::log::level_fatal);
       return -1;
    }
 
@@ -113,7 +113,7 @@ namespace sockets
       {
          return Bind(ad, protocol, depth);
       }
-      log("Bind", 0, "name resolution of interface name failed", ::core::log::level_fatal);
+      log("Bind", 0, "name resolution of interface name failed", ::base::log::level_fatal);
       return -1;
    }
 
@@ -184,13 +184,13 @@ namespace sockets
       }
       if (bind(s, ad.sa(), ad.sa_len()) == -1)
       {
-         log("bind() failed for port " + ::str::from(ad.get_service_number()), Errno, StrError(Errno), ::core::log::level_fatal);
+         log("bind() failed for port " + ::str::from(ad.get_service_number()), Errno, StrError(Errno), ::base::log::level_fatal);
          close_socket(s);
          return -1;
       }
       if (listen(s, depth) == -1)
       {
-         log("listen", Errno, StrError(Errno), ::core::log::level_fatal);
+         log("listen", Errno, StrError(Errno), ::base::log::level_fatal);
          close_socket(s);
          throw simple_exception(get_app(), "listen() failed for port " + ::str::from(ad.get_service_number()) + ": " + StrError(Errno));
          return -1;
@@ -222,18 +222,18 @@ namespace sockets
 
       if (a_s == INVALID_SOCKET)
       {
-         log("accept", Errno, StrError(Errno), ::core::log::level_error);
+         log("accept", Errno, StrError(Errno), ::base::log::level_error);
          return;
       }
       if (!Handler().OkToAccept(this))
       {
-         log("accept", -1, "Not OK to accept", ::core::log::level_warning);
+         log("accept", -1, "Not OK to accept", ::base::log::level_warning);
          close_socket(a_s);
          return;
       }
       if (Handler().get_count() >= FD_SETSIZE)
       {
-         log("accept", (int32_t)Handler().get_count(), "base_socket_handler fd_set limit reached", ::core::log::level_fatal);
+         log("accept", (int32_t)Handler().get_count(), "base_socket_handler fd_set limit reached", ::base::log::level_fatal);
          close_socket(a_s);
          return;
       }

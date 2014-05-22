@@ -10,7 +10,7 @@ class CLASS_DECL_BASE thread :
    virtual public ::exception::translator,
 #endif
    virtual public spa(::user::interaction),
-   virtual public ::core::live_object,
+   virtual public ::base::live_object,
    virtual public event_base
 {
 public:

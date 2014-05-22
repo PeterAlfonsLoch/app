@@ -52,7 +52,7 @@ namespace android
 
       virtual oswindow get_handle() const;
 
-      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 

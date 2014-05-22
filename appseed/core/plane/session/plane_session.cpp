@@ -238,10 +238,10 @@ namespace plane
 
       if(Session.is_remote_session())
       {
-         /*Session.savings().save(::core::resource_display_bandwidth);
-         Session.savings().save(::core::resource_blur_background);
-         Session.savings().save(::core::resource_blurred_text_embossing);
-         Session.savings().save(::core::resource_translucent_background);*/
+         /*Session.savings().save(::base::resource_display_bandwidth);
+         Session.savings().save(::base::resource_blur_background);
+         Session.savings().save(::base::resource_blurred_text_embossing);
+         Session.savings().save(::base::resource_translucent_background);*/
       }
 
       /*      if(System.directrix()->m_varTopicQuery.has_property("install")
@@ -321,7 +321,7 @@ namespace plane
    }
 
 
-   bool session::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
+   bool session::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
 
    {
       return application::_001OnCmdMsg(pcmdmsg);

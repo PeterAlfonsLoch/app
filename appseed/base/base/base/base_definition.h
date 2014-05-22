@@ -3,7 +3,7 @@
 
 // from 7-zip
 
-namespace core
+namespace base
 {
 
    template <class T> inline T MyMin(T a, T b)

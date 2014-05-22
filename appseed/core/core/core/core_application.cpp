@@ -221,7 +221,7 @@ bool application::is_serviceable()
 }
 
 
-bool application::init_main_data(::core::main_init_data * pdata)
+bool application::init_main_data(::base::main_init_data * pdata)
 {
 
    m_pinitmaindata = pdata;
@@ -1009,7 +1009,7 @@ int32_t application::run()
    /*   if (m_puiMain == NULL) // may be a service or console application window
    {
    // Not launched /Embedding or /Automation, but has no main window!
-   TRACE(::core::trace::category_AppMsg, 0, "Warning: m_puiMain is NULL in application::run - quitting application.\n");
+   TRACE(::base::trace::category_AppMsg, 0, "Warning: m_puiMain is NULL in application::run - quitting application.\n");
    __post_quit_message(0);
    }*/
    //      return application::run();
@@ -1084,7 +1084,7 @@ void application::process_window_procedure_exception(::exception::base* e, signa
    }
 }
 
-bool application::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
+bool application::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
 
 {
    if (command_target_interface::_001OnCmdMsg(pcmdmsg))
@@ -2185,7 +2185,7 @@ int32_t application::ShowAppMessageBox(sp(application)pApp, const char * lpszPro
 
    #ifdef DEBUG
    //    if ((nType & MB_ICONMASK) == 0)
-   //         TRACE(::core::trace::category_AppMsg, 0, "Warning: no icon specified for message box.\n");
+   //         TRACE(::base::trace::category_AppMsg, 0, "Warning: no icon specified for message box.\n");
    #endif
 
    char szAppName[_MAX_PATH];
@@ -2252,7 +2252,7 @@ return application::ShowAppMessageBox(NULL, lpszText, nType, nIDHelp);
 string string;
 if (!string.load_string(nIDPrompt))
 {
-TRACE(::core::trace::category_AppMsg, 0, "Error: failed to load message box prompt string 0x%04x.\n",
+TRACE(::base::trace::category_AppMsg, 0, "Error: failed to load message box prompt string 0x%04x.\n",
 nIDPrompt);
 ASSERT(FALSE);
 }
@@ -3239,7 +3239,7 @@ void application::set_env_var(const string & var, const string & value)
 }
 
 
-bool application::set_main_init_data(::core::main_init_data * pdata)
+bool application::set_main_init_data(::base::main_init_data * pdata)
 {
    return m_pimpl->set_main_init_data(pdata);
 }

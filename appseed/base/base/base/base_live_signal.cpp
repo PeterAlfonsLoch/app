@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace core
+namespace base
 {
 
 

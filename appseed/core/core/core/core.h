@@ -674,7 +674,7 @@ extern CLASS_DECL_CORE UINT g_uiTraceFlags;
 #endif // DEBUG
 
 #ifdef DEBUG
-#define DECLARE___TRACE_CATEGORY( name ) extern CLASS_DECL_CORE ::core::trace::category name;
+#define DECLARE___TRACE_CATEGORY( name ) extern CLASS_DECL_CORE ::base::trace::category name;
 #else
 #define DECLARE___TRACE_CATEGORY( name ) const uint_ptr name = 0;
 #endif

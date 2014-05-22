@@ -117,7 +117,7 @@ namespace user
             {
    /* xxx            if (!pSBP->strText.load_string(pSBP->strId))
                {
-                  TRACE(::core::trace::category_AppMsg, 0, "Warning: failed to load indicator string 0x%04X.\n",
+                  TRACE(::base::trace::category_AppMsg, 0, "Warning: failed to load indicator string 0x%04X.\n",
                      pSBP->strId);
                   bResult = FALSE;
                   break;

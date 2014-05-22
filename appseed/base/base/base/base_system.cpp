@@ -390,7 +390,7 @@ namespace base
 
    }
 
-   ::core::log & system::log()
+   ::base::log & system::log()
    {
       return *m_plog;
    }
@@ -405,7 +405,7 @@ namespace base
 
 
 
-   ::core::compress & system::compress()
+   ::base::compress & system::compress()
    {
       return m_compress;
    }
@@ -448,7 +448,7 @@ namespace base
    }
 
 
-   ::core::os & system::os()
+   ::base::os & system::os()
    {
 
       return *m_spos;
@@ -462,7 +462,7 @@ namespace base
    {
       if(m_plog != NULL)
          return true;
-      m_plog = new ::core::log(this);
+      m_plog = new ::base::log(this);
       m_plog->set_extended_log();
       m_plog->set_app(this);
       if(!m_plog->initialize(pszId))

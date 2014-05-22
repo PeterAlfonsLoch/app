@@ -442,13 +442,18 @@ namespace dynamic_source
          return NULL;
       if(ShouldBuild())
       {
+
          try
          {
-            ::core::set_thread_priority(::core::scheduling_priority_highest);
+
+            ::base::set_thread_priority(::base::scheduling_priority_highest);
+
          }
          catch(...)
          {
+
          }
+
          string str;
          int32_t iRetry = 0;
          do
@@ -485,13 +490,18 @@ namespace dynamic_source
          m_bShouldBuild = false;
          m_bCalcHasTempError = true;
          m_bHasTempError = false;
+
          // don't bother with sleeps if not compiling even if there are errors
+
          try
          {
-            ::core::set_thread_priority(::core::scheduling_priority_normal);
+
+            ::base::set_thread_priority(::base::scheduling_priority_normal);
+
          }
          catch(...)
          {
+
          }
 
       }

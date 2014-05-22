@@ -209,8 +209,8 @@ CLASS_DECL_BASE void __dump(const object* pOb); // dump an object from CodeView
 // extern ::core::CTrace TRACE;
 #ifdef DEBUG
 #ifndef TRACE
-#define TRACE ::core::trace_add_file_and_line(m_pbaseapp, __FILE__, __LINE__)
-#define APPTRACE(papp) ::core::trace_add_file_and_line(papp, __FILE__, __LINE__)
+#define TRACE ::base::trace_add_file_and_line(m_pbaseapp, __FILE__, __LINE__)
+#define APPTRACE(papp) ::base::trace_add_file_and_line(papp, __FILE__, __LINE__)
 //#define TRACE2 TRACE
 #endif
 #define THIS_FILE          __FILE__
@@ -311,9 +311,9 @@ inline void c_cdecl __trace(...) { }
    do { \
       string str; \
       if (pException->get_error_message(str, 0)) \
-         TRACE(::core::trace::category_AppMsg, 0, "%s (%s:%d)\n%s\n", szMsg, __FILE__, __LINE__, str); \
+         TRACE(::base::trace::category_AppMsg, 0, "%s (%s:%d)\n%s\n", szMsg, __FILE__, __LINE__, str); \
       else \
-         TRACE(::core::trace::category_AppMsg, 0, "%s (%s:%d)\n", szMsg, __FILE__, __LINE__); \
+         TRACE(::base::trace::category_AppMsg, 0, "%s (%s:%d)\n", szMsg, __FILE__, __LINE__); \
       ASSERT(FALSE); \
    } while (0)
 #else

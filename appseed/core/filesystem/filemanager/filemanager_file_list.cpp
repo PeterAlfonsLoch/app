@@ -480,7 +480,7 @@ namespace filemanager
       //SetTimer(1234567, 50, NULL);
    }
 
-   bool file_list::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
+   bool file_list::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
    {
       ::fs::item_array itema;
       GetSelected(itema);
@@ -497,7 +497,7 @@ namespace filemanager
 
    void file_list::_001OnFileManagerItemCommand(signal_details * pobj)
    {
-      SCAST_PTR(base_command, pcommand, pobj)
+      SCAST_PTR(::base::command, pcommand, pobj)
       ::fs::item_array itema;
       index iItemRange, iItem;
       range range;
@@ -626,11 +626,11 @@ namespace filemanager
 
    void file_list::_001OnUpdateFileRename(signal_details * pobj)
    {
-//      SCAST_PTR(base_cmd_ui, pcmdui, pobj)
+//      SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
   //    pcmdui->m_pcmdui->Enable(_001GetSelectedItemCount() == 1);
     //  pobj->m_bRet = true;
 
-      SCAST_PTR(base_cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
          range range;
       _001GetSelection(range);
       pcmdui->m_pcmdui->Enable(
@@ -643,7 +643,7 @@ namespace filemanager
 
    void file_list::_001OnUpdateEditCopy(signal_details * pobj)
    {
-      SCAST_PTR(base_cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
       range range;
       _001GetSelection(range);
       pcmdui->m_pcmdui->Enable(range.get_item_count() > 0);
@@ -681,7 +681,7 @@ namespace filemanager
 
    void file_list::_001OnUpdateEditPaste(signal_details * pobj)
    {
-      SCAST_PTR(base_cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable(Session.copydesk().get_file_count() > 0);
       pobj->m_bRet = true;
    }
@@ -719,7 +719,7 @@ namespace filemanager
 
    void file_list::_001OnUpdateTrashThatIsNotTrash(signal_details * pobj)
    {
-      SCAST_PTR(base_cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
       range range;
       _001GetSelection(range);
       pcmdui->m_pcmdui->Enable(range.get_item_count() > 0);
@@ -742,7 +742,7 @@ namespace filemanager
 
    void file_list::_001OnUpdateOpenWith(signal_details * pobj)
    {
-      SCAST_PTR(base_cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
 
          ::user::menu_button_cmd_ui * pcmdui1 = dynamic_cast < ::user::menu_button_cmd_ui * > (pcmdui->m_pcmdui);
          if(pcmdui1 != NULL)
@@ -863,7 +863,7 @@ namespace filemanager
 
    void file_list::_001OnUpdateSpafy(signal_details * pobj)
    {
-      SCAST_PTR(base_cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
       range range;
       _001GetSelection(range);
       pcmdui->m_pcmdui->Enable(range.get_item_count() > 0);
@@ -928,7 +928,7 @@ namespace filemanager
 
    void file_list::_001OnUpdateSpafy2(signal_details * pobj)
    {
-      SCAST_PTR(base_cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable(TRUE);
       pobj->m_bRet = true;
    }

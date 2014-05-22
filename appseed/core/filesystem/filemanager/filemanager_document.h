@@ -35,7 +35,7 @@ namespace filemanager
 
       virtual bool on_new_document();
    
-      virtual bool HandleDefaultFileManagerItemCmdMsg(base_cmd_msg * pcmdmsg, ::fs::item_array & itema);
+      virtual bool HandleDefaultFileManagerItemCmdMsg(::base::cmd_msg * pcmdmsg, ::fs::item_array & itema);
 
       virtual void GetActiveViewSelection(::fs::item_array & itema);
 

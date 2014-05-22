@@ -21,7 +21,7 @@ category traceSocket("socket");
 //extern CLASS_DECL_BASE fixed_alloc_array * g_pfixedallocaWstring;
 
 
-namespace core
+namespace base
 {
 
    namespace trace
@@ -50,7 +50,7 @@ namespace core
          category & category = ((trace *) this)->m_map[(uint32_t ) dwCategory];
 
          //if(ShouldTraceOutput(dwModule, dwCategory, nLevel, &pCategory, &pmodule))
-         if(category.m_estatus == ::core::trace::status_disabled || nLevel > category.m_uiLevel)
+         if(category.m_estatus == ::base::trace::status_disabled || nLevel > category.m_uiLevel)
             return;
          /*      if (nLen >= 0 && nLen < nCount)
          {

@@ -589,11 +589,11 @@ namespace install
          // os.dll, is not a good indicator anymore, and worst, can potentially make
          // os.dll to be unloaded and make the dependant instatiated browser plugins
          // to malfunction. Using only core.dll test only by now.
-         //base_library libraryOs(get_app());
+         //::base::library libraryOs(get_app());
          //m_bCa2Installed = libraryOs.open(dir::path(strStage, "os")); 
          //if (m_bCa2Installed)
          //{
-         base_library libraryCa2(get_app());
+         ::base::library libraryCa2(get_app());
          m_bCa2Installed = libraryCa2.open(dir::path(strStage, "core"));
          if (m_bCa2Installed)
          {

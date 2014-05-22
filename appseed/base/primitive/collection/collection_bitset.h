@@ -1,11 +1,6 @@
 // bitset standard header
 #pragma once
 
-/*namespace core
-{
-   class input_stream;
-   class output_stream;
-}*/
 
 		// TEMPLATE CLASS _Bitset_base
 template<int32_t>

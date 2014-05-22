@@ -16,7 +16,7 @@ namespace user
    {
 #ifdef DEBUG
       if (m_pdocument != NULL)
-         TRACE(::core::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live ::user::object.\n");
+         TRACE(::base::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live ::user::object.\n");
 #endif
    }
 
@@ -126,7 +126,7 @@ namespace user
          if (!pdocument->on_new_document())
          {
             // user has been alerted to what failed in on_new_document
-            TRACE(::core::trace::category_AppMsg, 0, "::user::object::on_new_document returned FALSE.\n");
+            TRACE(::base::trace::category_AppMsg, 0, "::user::object::on_new_document returned FALSE.\n");
             if (bCreated)
                pFrame->DestroyWindow();    // will destroy ::user::object
             return;
@@ -143,7 +143,7 @@ namespace user
          if (!pdocument->on_open_document(pcreatecontext->m_spCommandLine->m_varFile))
          {
             // user has been alerted to what failed in on_open_document
-            TRACE(::core::trace::category_AppMsg, 0, "::user::object::on_open_document returned FALSE.\n");
+            TRACE(::base::trace::category_AppMsg, 0, "::user::object::on_open_document returned FALSE.\n");
             if (bCreated)
             {
                pFrame->DestroyWindow();    // will destroy ::user::object
@@ -160,7 +160,7 @@ namespace user
 
                if (!pdocument->on_new_document())
                {
-                  TRACE(::core::trace::category_AppMsg, 0, "Error: on_new_document failed after trying "
+                  TRACE(::base::trace::category_AppMsg, 0, "Error: on_new_document failed after trying "
                      "to open a ::user::object - trying to continue.\n");
                   // assume we can continue
                }

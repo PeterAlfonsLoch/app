@@ -31,6 +31,6 @@ namespace xml
    };
 
 
-} // namespace core
+} // namespace bas
 
 

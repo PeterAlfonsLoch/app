@@ -19,7 +19,7 @@ command_target::~command_target()
 {
 }
 
-bool command_target::handle(base_cmd_msg * pcmdmsg)
+bool command_target::handle(::base::cmd_msg * pcmdmsg)
 {
    return pcmdmsg->handle(this);
 }
@@ -275,7 +275,7 @@ __STATIC bool _::core::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t
       IsEqualGUID(*(pGuid1), *(pGuid2))))
 
 /*
-bool command_target::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
+bool command_target::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
 
 {
 
@@ -539,7 +539,7 @@ __STATIC void __load_dot_bitmap()
          (LPVOID)rgbBitmap);
    if (afxData.hbmMenuDot == NULL)
    {
-//      TRACE(::core::trace::category_AppMsg, 0, "Warning: using system arrow bitmap instead of dot.\n");
+//      TRACE(::base::trace::category_AppMsg, 0, "Warning: using system arrow bitmap instead of dot.\n");
       #define OBM_MNARROW         32739
       afxData.hbmMenuDot = ::LoadBitmap(NULL, MAKEINTRESOURCE(OBM_MNARROW));
    }

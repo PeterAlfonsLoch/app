@@ -245,8 +245,8 @@ namespace user
             pdc->FillSolidRect(rectClient, get_background_color());
          }
       }
-      /*else if(!System.savings().is_trying_to_save(::core::resource_processing)
-      && !System.savings().is_trying_to_save(::core::resource_blur_background))
+      /*else if(!System.savings().is_trying_to_save(::base::resource_processing)
+      && !System.savings().is_trying_to_save(::base::resource_blur_background))
       {
 
          pdc->blur(true, 4, rectClient);
@@ -2289,7 +2289,7 @@ namespace user
 
    void edit_plain_text::_001OnUpdateEditFocusCopy(signal_details * pobj)
    {
-      SCAST_PTR(base_cmd_ui, pupdatecmdui, pobj)
+      SCAST_PTR(::base::cmd_ui, pupdatecmdui, pobj)
       string str;
       _001GetSelText(str);
       pupdatecmdui->m_pcmdui->Enable(str.has_char());
@@ -2308,7 +2308,7 @@ namespace user
 
    void edit_plain_text::_001OnUpdateEditFocusPaste(signal_details * pobj)
    {
-      SCAST_PTR(base_cmd_ui, pupdatecmdui, pobj)
+      SCAST_PTR(::base::cmd_ui, pupdatecmdui, pobj)
       pupdatecmdui->m_pcmdui->Enable(Session.copydesk().get_plain_text().has_char());
    }
 

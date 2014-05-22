@@ -254,7 +254,7 @@ namespace plane
       virtual void get_cursor_pos(LPPOINT lppoint);
 
 
-      virtual bool set_main_init_data(::core::main_init_data * pdata);
+      virtual bool set_main_init_data(::base::main_init_data * pdata);
 
 
       void enum_display_monitors();

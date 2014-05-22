@@ -156,7 +156,7 @@ namespace user
       }
       else
       {
-         TRACE(::core::trace::category_AppMsg, 0, "Warning: Creating a pane with no ::user::object.\n");
+         TRACE(::base::trace::category_AppMsg, 0, "Warning: Creating a pane with no ::user::object.\n");
       }
 
       pcreate->set_lresult(0);
@@ -218,7 +218,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Command routing
 
-   bool impact::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
+   bool impact::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
 
    {
 

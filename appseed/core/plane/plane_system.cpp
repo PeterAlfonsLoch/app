@@ -173,7 +173,7 @@ namespace plane
       ::core::profiler::initialize();
 
 
-//      System.factory().creatable < ::core::log >(System.type_info < ::core::log > (), 1);
+//      System.factory().creatable < ::base::log >(System.type_info < ::base::log > (), 1);
 
 /*      if(!::application::process_initialize())
       {
@@ -1002,9 +1002,12 @@ namespace plane
       const char * pszModuleName,
       const char * pszFormat, va_list list)
    {
+
       if(m_plog == NULL || !m_plog->m_bExtendedLog)
       {
-         return ::core::SimpleDebugReport(iReportType, pszFileName, iLineNumber, pszModuleName, pszFormat, list);
+
+         return ::base::SimpleDebugReport(iReportType, pszFileName, iLineNumber, pszModuleName, pszFormat, list);
+
       }
 
       string str;
@@ -1428,7 +1431,7 @@ namespace plane
    }
 
 /*
-   bool system::set_main_init_data(::core::main_init_data * pdata)
+   bool system::set_main_init_data(::base::main_init_data * pdata)
    {
 
       if(pdata == NULL)
@@ -1825,7 +1828,7 @@ sp(::command_thread) system::command_thread()
       return true;
    }
 
-   bool system::set_main_init_data(::core::main_init_data * pdata)
+   bool system::set_main_init_data(::base::main_init_data * pdata)
    {
 
       if(pdata != NULL)

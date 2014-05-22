@@ -779,7 +779,7 @@ namespace user
 
 
    control_cmd_ui::control_cmd_ui(class ::signal * psignal) :
-      base_cmd_ui(psignal)
+      ::base::cmd_ui(psignal)
    {
    }
 

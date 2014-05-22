@@ -821,7 +821,7 @@ retry:
          handler.add(psession);
 
          int32_t iIteration = 0;
-         ::core::live_signal keeplive;
+         ::base::live_signal keeplive;
 
          if(papp != NULL)
          {
@@ -1339,7 +1339,7 @@ retry:
       handler.add(psocket);
 
       int32_t iIteration = 0;
-      ::core::live_signal keeplive;
+      ::base::live_signal keeplive;
 
       if((bool)set["noloop"])
          return psocket;

@@ -11,7 +11,7 @@ namespace core
 
    library::library(sp(::base::application) papp, const char * pszRoot) :
       element(papp),
-      base_library(papp)
+      ::base::library(papp)
    {
 
       m_pca2library     = NULL;
@@ -48,7 +48,7 @@ namespace core
          try
          {
 
-            if(!base_library::open(strCa2Name, bAutoClose))
+            if(!::base::library::open(strCa2Name, bAutoClose))
                return false;
 
          }
@@ -203,7 +203,7 @@ namespace core
          try
          {
 
-            if(!base_library::close())
+            if(!::base::library::close())
                bOk = false;
 
          }

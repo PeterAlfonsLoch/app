@@ -12,7 +12,7 @@ namespace base
 
    class CLASS_DECL_BASE application :
    virtual public thread,
-      virtual public ::core::live_object,
+      virtual public ::base::live_object,
       virtual public command_target_interface,
       virtual public request_interface,
       virtual public message_queue,
@@ -89,7 +89,7 @@ namespace base
       point                                           m_ptCursor;
       rect                                            m_rectScreen;
       bool                                            m_bSessionSynchronizedScreen;
-      sp(core::savings)                               m_psavings;
+      sp(::base::savings)                               m_psavings;
 
       string                                          m_strCa2ModulePath;
       string                                          m_strCa2ModuleFolder;
@@ -159,13 +159,13 @@ namespace base
       virtual bool is_serviceable();
 
 
-      virtual bool init_main_data(::core::main_init_data * pdata);
+      virtual bool init_main_data(::base::main_init_data * pdata);
 
 
       virtual ::user::user * create_user();
 
 
-      ::core::savings &                         savings();
+      ::base::savings &                         savings();
       inline class ::http::application &        http()         { return m_http; }
       inline class ::file::dir::application &   dir()          { return m_dir; }
       inline class ::file::application &        file()         { return m_file; }
@@ -383,7 +383,7 @@ namespace base
       virtual uint32_t get_thread_id();
 
 
-      virtual bool set_main_init_data(::core::main_init_data * pdata);
+      virtual bool set_main_init_data(::base::main_init_data * pdata);
 
 
       virtual bool _001OnDDECommand(const char * lpcsz);

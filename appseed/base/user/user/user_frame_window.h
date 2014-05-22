@@ -272,7 +272,7 @@ namespace user
 #endif
 
       virtual bool is_frame_window();
-      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
       virtual void on_update_frame_title(bool bAddToTitle);
       virtual void OnUpdateFrameMenu(HMENU hMenuAlt);
       virtual HACCEL GetDefaultAccelerator();
@@ -364,7 +364,7 @@ namespace user
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
 
-      //      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
+      //      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
 
       //      void OnUpdateControlBarMenu(cmd_ui * pcmdui);
       //      bool OnBarCheck(UINT nID);

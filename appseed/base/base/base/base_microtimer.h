@@ -15,7 +15,7 @@
 
 
 
-namespace core
+namespace base
 {
 
 
@@ -57,7 +57,7 @@ namespace core
 
 
 
-} // namespace core
+} // namespace base
 
 
 

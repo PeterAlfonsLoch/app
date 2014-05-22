@@ -73,7 +73,7 @@ namespace sockets
       {
          if(!is_null(Handler()))
          {
-            log("socket::close", 0, "file descriptor invalid", ::core::log::level_warning);
+            log("socket::close", 0, "file descriptor invalid", ::base::log::level_warning);
          }
          return;
       }
@@ -83,7 +83,7 @@ namespace sockets
          if(!is_null(Handler()))
          {
             // failed...
-            log("close", Errno, StrError(Errno), ::core::log::level_error);
+            log("close", Errno, StrError(Errno), ::base::log::level_error);
          }
       }
       if(!is_null(Handler()))
@@ -112,7 +112,7 @@ namespace sockets
          p = getprotobyname( strProtocol );
          if (!p)
          {
-            log("getprotobyname", Errno, StrError(Errno), ::core::log::level_fatal);
+            log("getprotobyname", Errno, StrError(Errno), ::base::log::level_fatal);
             SetCloseAndDelete();
             throw simple_exception(get_app(), string("getprotobyname() failed: ") + StrError(Errno));
             return INVALID_SOCKET;
@@ -123,7 +123,7 @@ namespace sockets
       s = ::socket(af, iType, protno);
       if (s == INVALID_SOCKET)
       {
-         log("socket", Errno, StrError(Errno), ::core::log::level_fatal);
+         log("socket", Errno, StrError(Errno), ::base::log::level_fatal);
          SetCloseAndDelete();
          throw simple_exception(get_app(), string("socket() failed: ") + StrError(Errno));
          return INVALID_SOCKET;
@@ -175,7 +175,7 @@ namespace sockets
       {
          if (fcntl(s, F_SETFL, O_NONBLOCK) == -1)
          {
-            log("fcntl(F_SETFL, O_NONBLOCK)", Errno, StrError(Errno), ::core::log::level_error);
+            log("fcntl(F_SETFL, O_NONBLOCK)", Errno, StrError(Errno), ::base::log::level_error);
             return false;
          }
       }
@@ -183,7 +183,7 @@ namespace sockets
       {
          if (fcntl(s, F_SETFL, 0) == -1)
          {
-            log("fcntl(F_SETFL, 0)", Errno, StrError(Errno), ::core::log::level_error);
+            log("fcntl(F_SETFL, 0)", Errno, StrError(Errno), ::base::log::level_error);
             return false;
          }
       }

@@ -1292,7 +1292,7 @@ void thread_impl::message_handler(signal_details * pobj)
 
       process_window_procedure_exception(pe,pbase);
 
-      TRACE(::core::trace::category_AppMsg,0,"Warning: Uncaught exception in message_handler (returning %ld).\n",pbase->get_lresult());
+      TRACE(::base::trace::category_AppMsg,0,"Warning: Uncaught exception in message_handler (returning %ld).\n",pbase->get_lresult());
 
       pe->Delete();
 
@@ -1312,7 +1312,7 @@ bool thread_impl::pump_message()
       MESSAGE msg;
       if(!::GetMessage(&msg,NULL,0,0))
       {
-         TRACE(::core::trace::category_AppMsg,1,"thread::pump_message - Received WM_QUIT.\n");
+         TRACE(::base::trace::category_AppMsg,1,"thread::pump_message - Received WM_QUIT.\n");
          m_nDisablePumpCount++; // application must die
          // Note: prevents calling message loop things in 'exit_instance'
          // will never be decremented
@@ -1323,7 +1323,7 @@ bool thread_impl::pump_message()
 
       if(m_nDisablePumpCount != 0)
       {
-         TRACE(::core::trace::category_AppMsg,0,"Error: thread::pump_message called when not permitted.\n");
+         TRACE(::base::trace::category_AppMsg,0,"Error: thread::pump_message called when not permitted.\n");
          ASSERT(FALSE);
       }
 

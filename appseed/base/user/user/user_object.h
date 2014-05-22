@@ -160,7 +160,7 @@ namespace user
       virtual void on_idle();
       virtual void on_final_release();
 
-      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
 
       friend class impact_system;
 
@@ -187,7 +187,7 @@ namespace user
 //      virtual void dump(dump_context &) const;
   //    virtual void assert_valid() const;
 
-//      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
+//      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
 
       template < class DOCUMENT >
       DOCUMENT * get_typed_document()

@@ -29,7 +29,7 @@ namespace backview
 
       m_pthreadHighestPriority   = new thread(get_app());
       m_pthreadHighestPriority->SetMain(this);
-      m_pthreadHighestPriority->begin(::core::scheduling_priority_highest);
+      m_pthreadHighestPriority->begin(::base::scheduling_priority_highest);
 
       m_bPendingLayout = true;
 
@@ -80,7 +80,7 @@ namespace backview
 
    void Main::update_drawing_objects()
    {
-      //::core::savings & savings = System.savings();
+      //::base::savings & savings = System.savings();
       Graphics & graphics = GetGraphics();
 
       graphics.UpdateObjects();
@@ -139,7 +139,7 @@ namespace backview
       ImageChange & imagechange = GetImageChange();
       Graphics & graphics = GetGraphics();
       EImagePlacement eplacement;
-      //::core::savings & savings = System.savings();
+      //::base::savings & savings = System.savings();
 
       TRACE("\nCXfplayerView::OnAfterImageLoaded\n");
 
@@ -169,7 +169,7 @@ namespace backview
 
       ASSERT(papp != NULL);
 
-      //         ::core::savings & savings = System.savings();
+      //         ::base::savings & savings = System.savings();
 
       Graphics & graphics = GetGraphics();
 

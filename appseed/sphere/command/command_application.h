@@ -25,7 +25,7 @@ namespace command
       virtual int32_t exit_instance();
 
 
-	   virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);
+	   virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
 
 
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);

@@ -102,8 +102,7 @@ public:
 
 
 
-// generic
-namespace core
+namespace base
 {
 
 
@@ -118,7 +117,7 @@ namespace core
    } // namespace pal - platform abstraction layer
 
 
-} // namespace core - generic
+} // namespace base
 
 
 

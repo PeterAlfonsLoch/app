@@ -9,7 +9,7 @@ namespace windows
 
 
    class CLASS_DECL_BASE os :
-      public ::core::os
+      virtual public ::base::os
    {
    public:
    

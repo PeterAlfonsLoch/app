@@ -82,7 +82,7 @@ namespace filemanager
       return true;
    }
 
-   bool child_frame::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
+   bool child_frame::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
    {
 
       //file_list_callback * pcallback = GetFileManager()->get_filemanager_data()->m_pschema->m_pfilelistcallback;
