@@ -21,9 +21,6 @@ namespace nature
       application();
       virtual ~application();
 
-      using thread::construct;
-      using ::application::construct;
-
       virtual void construct();
 
       virtual bool initialize_instance();
