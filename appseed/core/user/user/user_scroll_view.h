@@ -49,6 +49,8 @@ namespace user
       virtual void _001LayoutScrollBars();
 
       virtual void _001DeferCreateScrollBars();
+      virtual void _001OnDeferCreateScrollBars();
+      static  UINT c_cdecl thread_proc_defer_create_scroll_bars(LPVOID lpparam);
 
       virtual void GetClientRect(LPRECT lprect);
 

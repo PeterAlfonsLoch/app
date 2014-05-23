@@ -109,8 +109,7 @@ namespace user
 
    }
 
-
-   void scroll_view::_001DeferCreateScrollBars()
+   void scroll_view::_001OnDeferCreateScrollBars()
    {
 
       if(m_scrollinfo.m_bHScroll)
@@ -125,6 +124,25 @@ namespace user
          if(m_pscrollbarVert == NULL)
             create_scroll_bar(scroll_bar::orientation_vertical);
       }
+
+   }
+
+   UINT c_cdecl scroll_view::thread_proc_defer_create_scroll_bars(LPVOID lpparam)
+   {
+
+      scroll_view * pview = (scroll_view *)lpparam;
+
+      pview->_001OnDeferCreateScrollBars();
+
+      return 0;
+
+   }
+
+   void scroll_view::_001DeferCreateScrollBars()
+   {
+
+
+      __begin_thread(get_app(),thread_proc_defer_create_scroll_bars,this);
 
    }
 
