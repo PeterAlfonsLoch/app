@@ -834,6 +834,9 @@ namespace plane
 
       retry_single_lock rsl(&m_mutex, millis(84), millis(84));
 
+      if(papp.is_null() || papp->m_pplaneapp == NULL)
+         return;
+      
       appptra().add_unique(papp->m_pplaneapp);
 
       if(System.is_installing() || System.is_uninstalling())
