@@ -682,7 +682,7 @@ int32_t thread_impl::exit_instance()
 
          }
 
-         delete puiptra;
+         puiptra.release();
 
          sl.unlock();
 

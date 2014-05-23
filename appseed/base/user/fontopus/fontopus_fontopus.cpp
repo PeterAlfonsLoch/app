@@ -424,7 +424,12 @@ namespace fontopus
    int32_t create_user_thread::run()
    {
 
+      
+#ifdef WINDOWSEX
+      
       ::AttachThreadInput(GetCurrentThreadId(),(uint32_t)System.thread::m_pimpl->get_os_int(),TRUE);
+      
+#endif
 
       ::fontopus::user * puser = Session.fontopus()->create_current_user();
 
