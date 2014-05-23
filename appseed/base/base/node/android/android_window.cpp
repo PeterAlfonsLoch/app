@@ -833,7 +833,7 @@ d.unlock();
 
       // cleanup main and active windows
 
-      ::ca2::thread* pThread = System.GetThread();
+      ::thread* pThread = System.GetThread();
 
       if (pThread != NULL)
       {
@@ -4194,7 +4194,7 @@ ExitModal:
          System.GetThread()->post_thread_message(WM_NULL);
          for(int32_t i = iLevel; i >= 0; i--)
          {
-            ::ca2::thread * pthread = oprop(string("RunModalLoop.thread(") + ::ca2::str::from(i) + ")").ca2 < ::ca2::thread > ();
+            ::thread * pthread = oprop(string("RunModalLoop.thread(") + ::ca2::str::from(i) + ")").ca2 < ::thread > ();
             try
             {
                pthread->post_thread_message(WM_NULL);
@@ -6495,7 +6495,7 @@ if(psurface == g_cairosurface)
 //            // the window should not be in the permanent ::collection::map at this time
 //            ASSERT(::android::window::FromHandlePermanent(hWnd) == NULL);
 //
-//            pWndInit->m_pthread = dynamic_cast < ::ca2::thread * > (::android::get_thread());
+//            pWndInit->m_pthread = dynamic_cast < ::thread * > (::android::get_thread());
 //            pWndInit->m_pthread->add(pWndInit);
 //            pWndInit->m_pguie->m_pthread = pWndInit->m_pthread;
 //            pWndInit->m_pguie->m_pthread->add(pWndInit->m_pguie);

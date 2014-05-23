@@ -28,7 +28,7 @@ namespace android
 
    window_draw::window_draw(sp(::base::application) papp) :
       element(papp),
-      ::ca2::thread(papp),
+      ::thread(papp),
       ::ca2::window_draw(papp),
       message_window_simple_callback(papp),
       m_mutexRendering(papp),

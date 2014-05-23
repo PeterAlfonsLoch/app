@@ -16,7 +16,7 @@
    { ASSERT(afxCurrentAppName != NULL); return afxCurrentAppName; }
  CLASS_DECL_BASE sp(::user::interaction) __get_main_window()
 {
-      ::ca2::thread* pThread = dynamic_cast < ::ca2::thread * > (::android::get_thread());
+      ::thread* pThread = dynamic_cast < ::thread * > (::android::get_thread());
       return pThread != NULL ? pThread->GetMainWnd().m_p : NULL;
  }
 

@@ -404,7 +404,7 @@
       <ConversionNull>NoConversionNull</ConversionNull>
       <Attributes>NoAttributes</Attributes>
       <Permissive>Yes</Permissive>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -1012,6 +1012,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Create</PrecompiledHeader>
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCppHeader</CompileAs>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompiledHeader>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

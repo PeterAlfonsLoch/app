@@ -2138,7 +2138,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -2185,7 +2185,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -2232,7 +2232,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -2279,7 +2279,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -2326,7 +2326,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -2373,7 +2373,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -2420,7 +2420,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -2467,7 +2467,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -2514,7 +2514,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -2561,7 +2561,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -2608,7 +2608,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -2655,7 +2655,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -2702,7 +2702,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -2749,7 +2749,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -2796,7 +2796,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -2853,7 +2853,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -2895,7 +2895,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -2942,7 +2942,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -2989,7 +2989,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3036,7 +3036,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3083,7 +3083,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3130,7 +3130,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3177,7 +3177,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3224,7 +3224,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3271,7 +3271,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3318,7 +3318,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3365,7 +3365,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3412,7 +3412,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3459,7 +3459,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3506,7 +3506,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3553,7 +3553,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3600,7 +3600,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3647,7 +3647,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3694,7 +3694,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3741,7 +3741,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3788,7 +3788,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3835,7 +3835,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3882,7 +3882,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3929,7 +3929,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -3976,7 +3976,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4023,7 +4023,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4070,7 +4070,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4117,7 +4117,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4164,7 +4164,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4211,7 +4211,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4258,7 +4258,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4305,7 +4305,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4352,7 +4352,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4399,7 +4399,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4446,7 +4446,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4493,7 +4493,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4540,7 +4540,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4587,7 +4587,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4634,7 +4634,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4681,7 +4681,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4728,7 +4728,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4775,7 +4775,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4822,7 +4822,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4869,7 +4869,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4916,7 +4916,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4963,7 +4963,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -4996,7 +4996,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">FreeImageFramework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">FreeImageFramework.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="FreeImage\Utilities.cpp" />
+    <ClCompile Include="FreeImage\Utilities.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="FreeImage\WuQuantizer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">Use</PrecompiledHeader>
@@ -5011,7 +5014,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -5058,7 +5061,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -5212,7 +5215,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$png_framework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
@@ -5259,7 +5262,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$png_framework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
@@ -5306,7 +5309,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$png_framework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
@@ -5353,7 +5356,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$png_framework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
@@ -5400,7 +5403,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$png_framework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
@@ -5447,7 +5450,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$png_framework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
@@ -5494,7 +5497,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$png_framework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
@@ -5541,7 +5544,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$png_framework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
@@ -5588,7 +5591,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$png_framework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
@@ -5635,7 +5638,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$png_framework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
@@ -5682,7 +5685,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$png_framework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
@@ -5729,7 +5732,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$png_framework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
@@ -5776,7 +5779,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$png_framework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
@@ -5823,7 +5826,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$png_framework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
@@ -5870,7 +5873,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$png_framework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
@@ -5917,7 +5920,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$png_framework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$png_framework.pch</PrecompiledHeaderOutputFile>
@@ -6131,7 +6134,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -6178,7 +6181,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -6225,7 +6228,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -6272,7 +6275,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -6319,7 +6322,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -6366,7 +6369,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -6413,7 +6416,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -6460,7 +6463,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -6507,7 +6510,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -6554,7 +6557,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -6601,7 +6604,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -6648,7 +6651,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -6695,7 +6698,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -6742,7 +6745,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -6789,7 +6792,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -6836,7 +6839,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -6883,7 +6886,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -6930,7 +6933,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -6977,7 +6980,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7025,7 +7028,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7072,7 +7075,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7119,7 +7122,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7166,7 +7169,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7213,7 +7216,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7260,7 +7263,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7307,7 +7310,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7354,7 +7357,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7401,7 +7404,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7448,7 +7451,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7495,7 +7498,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7542,7 +7545,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7589,7 +7592,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7636,7 +7639,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7683,7 +7686,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7730,7 +7733,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7777,7 +7780,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7824,7 +7827,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7871,7 +7874,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7918,7 +7921,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -7965,7 +7968,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8012,7 +8015,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8059,7 +8062,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8106,7 +8109,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8153,7 +8156,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8200,7 +8203,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8247,7 +8250,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8294,7 +8297,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8341,7 +8344,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8388,7 +8391,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8435,7 +8438,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8482,7 +8485,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8529,7 +8532,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8576,7 +8579,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8623,7 +8626,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8670,7 +8673,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8717,7 +8720,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8764,7 +8767,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8811,7 +8814,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8858,7 +8861,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8905,7 +8908,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
@@ -8952,7 +8955,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)$ImfFramework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)$ImfFramework.pch</PrecompiledHeaderOutputFile>

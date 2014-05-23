@@ -539,7 +539,7 @@
       <ConversionNull>NoConversionNull</ConversionNull>
       <Attributes>NoAttributes</Attributes>
       <Permissive>Yes</Permissive>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

@@ -15,7 +15,7 @@ namespace android
 
 
    class CLASS_DECL_BASE ip_enum :
-      virtual public ::ca2::ip_enum
+      virtual public ::net::ip_enum
    {
    public:
 

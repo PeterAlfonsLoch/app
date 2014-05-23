@@ -589,7 +589,7 @@
       <ConversionNull>NoConversionNull</ConversionNull>
       <Attributes>NoAttributes</Attributes>
       <Permissive>Yes</Permissive>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -14236,7 +14236,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">framework_c.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)framework_c.pch.h</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCHeader</CompileAs>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp" />

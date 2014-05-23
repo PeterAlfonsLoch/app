@@ -11,10 +11,10 @@ namespace android
    application::application(sp(::base::application) papp) :
       element(papp)
    {
-      ::ca2::thread::m_p.create(allocer());
-      ::ca2::thread::m_p->m_p = this;
+      ::thread::m_p.create(allocer());
+      ::thread::m_p->m_p = this;
 
-      ANDROID_THREAD(::ca2::thread::m_p.m_p)->m_pAppThread = this;
+      ANDROID_THREAD(::thread::m_p.m_p)->m_pAppThread = this;
 
       m_pfilemanager = NULL;
 
@@ -57,7 +57,7 @@ namespace android
       ::ca2::application_base::m_p->_001OnFileNew(NULL);
    }
 
-   sp(::user::document_interface) application::_001OpenDocumentFile(var varFile)
+   sp(::user::object) application::_001OpenDocumentFile(var varFile)
    {
       return ::ca2::application_base::m_p->_001OpenDocumentFile(varFile);
    }
@@ -356,7 +356,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
    bool application::initialize1()
    {
 
-      ::ca2::thread::m_p->set_run();
+      ::thread::m_p->set_run();
 
       return true;
 
@@ -379,9 +379,9 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
       // avoid calling CloseHandle() on our own thread handle
       // during the thread destructor
-      ::ca2::thread::m_p->set_os_data(NULL);
+      ::thread::m_p->set_os_data(NULL);
 
-      ANDROID_THREAD(::ca2::thread::m_p.m_p)->m_bRun = false;
+      ANDROID_THREAD(::thread::m_p.m_p)->m_bRun = false;
       //ANDROID_THREAD(::ca2::application_base::m_p->::ca2::thread_sp::m_p)->m_bRun = false;
 
       int32_t iRet = ::base::application::exit_instance();
@@ -517,15 +517,15 @@ if(__get_module_state()->m_pmapHWND == NULL)
       return NULL;
    }
 
-   ::ca2::thread * application::GetThread()
+   ::thread * application::GetThread()
    {
       if(__get_thread() == NULL)
          return NULL;
       else
-         return dynamic_cast < ::ca2::thread * > (__get_thread()->m_p.m_p);
+         return dynamic_cast < ::thread * > (__get_thread()->m_p.m_p);
    }
 
-   void application::set_thread(::ca2::thread * pthread)
+   void application::set_thread(::thread * pthread)
    {
       __set_thread(pthread);
    }
@@ -580,9 +580,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
       {
          __MODULE_THREAD_STATE* pThreadState = pModuleState->m_thread;
          ENSURE(pThreadState);
-//         ASSERT(System.GetThread() == NULL);
-         pThreadState->m_pCurrentWinThread = dynamic_cast < class ::android::thread * > (::ca2::thread::m_p.m_p);
-  //       ASSERT(System.GetThread() == this);
+         pThreadState->m_pCurrentWinThread = dynamic_cast < class ::android::thread * > (::thread::m_p.m_p);
 
          // initialize application state
          //ASSERT(afxCurrentWinApp == NULL); // only one application object please
@@ -593,7 +591,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
 //      dynamic_cast < ::android::thread * > ((smart_pointer < ::base::application >::m_p->::ca2::thread_sp::m_p))->m_hThread = __get_thread()->m_hThread;
   //    dynamic_cast < ::android::thread * > ((smart_pointer < ::base::application >::m_p->::ca2::thread_sp::m_p))->m_nThreadID = __get_thread()->m_nThreadID;
-      dynamic_cast < class ::android::thread * > (::ca2::thread::m_p.m_p)->m_hThread      =  ::GetCurrentThread();
+      dynamic_cast < class ::android::thread * > (::thread::m_p.m_p)->m_hThread      =  ::GetCurrentThread();
 
 
    }

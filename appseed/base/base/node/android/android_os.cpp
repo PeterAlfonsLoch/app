@@ -792,7 +792,7 @@ namespace android
 /*
       ::count c;
 
-      ::ca2::thread * pthread;
+      ::thread * pthread;
 
       c = ::win::thread::s_threadptra.get_size();
 
@@ -808,7 +808,7 @@ namespace android
 
             try
             {
-               pthread = dynamic_cast < ::ca2::thread * >(::win::thread::s_threadptra[i]);
+               pthread = dynamic_cast < ::thread * >(::win::thread::s_threadptra[i]);
                pthread->m_bRun = false;
                pthread->m_p->m_bRun = false;
             }

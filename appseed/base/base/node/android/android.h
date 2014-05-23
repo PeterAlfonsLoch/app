@@ -24,25 +24,8 @@ CLASS_DECL_BASE BOOL AfxCheckMemory();
 CLASS_DECL_BASE BOOL AfxIsMemoryBlock(const void * p, UINT nBytes,
    LONG* plRequestNumber = NULL);
 
-// helper routines for non-C++ EH implementations
-// for THROW_LAST auto-delete backward compatiblity
-CLASS_DECL_BASE void AfxThrowLastCleanup();
-
-// other out-of-line helper functions
-CLASS_DECL_BASE void AfxTryCleanup();
-
-
-/////////////////////////////////////////////////////////////////////////////
-// Global implementation helpers
-
-// window creation hooking
-CLASS_DECL_BASE void AfxHookWindowCreate(::user::interaction * pWnd);
-CLASS_DECL_BASE BOOL AfxUnhookWindowCreate();
 CLASS_DECL_BASE void AfxResetMsgCache();
 
-// for backward compatibility to previous versions
-#define _AfxHookWindowCreate    AfxHookWindowCreate
-#define _AfxUnhookWindowCreate  AfxUnhookWindowCreate
 
 #include "android1.h"
 #include "android_implementation.h"
@@ -54,14 +37,14 @@ CLASS_DECL_BASE void AfxResetMsgCache();
 #include "android_os.h"
 #include "android_port_forward.h"
 #include "android_copydesk.h"
-#include "android_crypt.h"
+#include "android_crypto.h"
 #include "android_ip_enum.h"
 
 #define NULL_REF(class) (*((class *) NULL))
 // xxx CLASS_DECL_BASE WNDPROC AfxGetAfxWndProc();
 #define AfxWndProc (*AfxGetAfxWndProc())
 
-#define ANDROID_THREAD(pthread) (dynamic_cast < ::android::thread * > (dynamic_cast < ::ca2::thread * >(pthread)))
+#define ANDROID_THREAD(pthread) (dynamic_cast < ::android::thread * > (dynamic_cast < ::thread * >(pthread)))
 #define ANDROID_WINDOW(pwnd) (dynamic_cast < ::android::window * > (((sp(::window))(pwnd)).m_p))
 #define ANDROID_DC(pgraphics) (dynamic_cast < ::android::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics)))
 #define SP_DC(pgraphics) (dynamic_cast < ::android::graphics * > (( ::draw2d::graphics * )(pgraphics)))
@@ -74,11 +57,6 @@ CLASS_DECL_BASE void AfxResetMsgCache();
 CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, ::signal_details * pobj);
 CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
-CLASS_DECL_BASE WINBOOL __cdecl __is_idle_message(::signal_details * pobj);
-CLASS_DECL_BASE WINBOOL __cdecl __is_idle_message(MESSAGE* pMsg);
-
-
-CLASS_DECL_BASE void AfxProcessWndProcException(base_exception*, ::signal_details * pobj);
 CLASS_DECL_BASE void __cdecl __pre_translate_message(::signal_details * pobj);
 
 

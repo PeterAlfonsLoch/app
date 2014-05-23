@@ -6,7 +6,7 @@ namespace android
 
 
    class CLASS_DECL_BASE main_init_data :
-      public ::ca2::main_init_data
+      public ::base::main_init_data
    {
    public:
 
@@ -38,7 +38,7 @@ namespace android
       virtual HINSTANCE GetHinstance();
       bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual sp(::user::document_interface) _001OpenDocumentFile(var varFile);
+      virtual sp(::user::object) _001OpenDocumentFile(var varFile);
       virtual void _001OnFileNew();
 
 
@@ -52,7 +52,7 @@ namespace android
 
       virtual void SetCurrentHandles();
 
-      virtual bool set_main_init_data(::ca2::main_init_data * pdata);
+      virtual bool set_main_init_data(::base::main_init_data * pdata);
 
       virtual bool process_initialize();
       virtual bool initialize1();
@@ -165,9 +165,6 @@ namespace android
 
       sp(::window) window_from_os_data(void * pdata);
       sp(::window) window_from_os_data_permanent(void * pdata);
-
-      virtual ::ca2::thread * GetThread();
-      virtual void set_thread(::ca2::thread * pthread);
 
       virtual sp(::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
       virtual sp(::window) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
