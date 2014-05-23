@@ -5,14 +5,14 @@ namespace windows
 {
 
 
-   class CLASS_DECL_BASE crypt :
+   class CLASS_DECL_BASE crypto :
       virtual public ::crypto::crypto
    {
    public:
 
 
-      crypt(sp(::base::application) papp);
-      virtual ~crypt();
+      crypto(sp(::base::application) papp);
+      virtual ~crypto();
 
 
       virtual bool encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt);

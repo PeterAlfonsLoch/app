@@ -345,7 +345,7 @@ bool thread_impl::create_thread(int32_t epriority,uint32_t dwCreateFlagsParam,ui
 
    pstartup->m_event2.SetEvent();
 
-   VERIFY(set_thread_priority(epriority));
+   set_thread_priority(epriority);
 
    return true;
 

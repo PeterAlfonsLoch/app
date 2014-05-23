@@ -5092,12 +5092,17 @@ namespace windows
       return ::windows::window::from_handle(::FindWindowEx(oswindowParent,oswindowChildAfter,lpszClass,lpszWindow));
    }
 
+
    sp(::user::interaction) window::GetNextWindow(UINT nFlag)
    {
-      ASSERT(::IsWindow(get_handle()));
+
+      if(!::IsWindow(get_handle()))
+         return NULL;
 
       return (sp(::user::interaction)) ::windows::window::from_handle(::GetNextWindow(get_handle(),nFlag)).m_p;
+
    }
+
 
    sp(::user::interaction) window::GetTopWindow()
    {

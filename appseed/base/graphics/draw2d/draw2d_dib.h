@@ -99,7 +99,7 @@ namespace draw2d
 
       virtual void stretch_dib(dib * pdib);
 
-
+      void rate_rgb(int iMul,int iDiv);
       virtual bool dc_select(bool bSelect = true);
 
       virtual COLORREF GetAverageColor();

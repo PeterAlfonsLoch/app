@@ -4424,9 +4424,6 @@
     <ClInclude Include="base\node\windows\windows_copydesk.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="base\node\windows\windows_crypt.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="base\node\windows\windows_dir.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
@@ -4606,6 +4603,9 @@
     </ClInclude>
     <ClInclude Include="base\node\android\android_crypto.h">
       <Filter>Header Files\base\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\windows\windows_crypto.h">
+      <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -8419,9 +8419,6 @@
     <ClCompile Include="base\os\windows\windows_base_registry.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\windows\windows_crypto.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\windows\windows_dll.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
@@ -8746,6 +8743,9 @@
     <ClCompile Include="base\node\android\android_crypto.cpp">
       <Filter>Source Files\base\node\android</Filter>
     </ClCompile>
+    <ClCompile Include="base\os\windows\windows_base_crypto.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -8939,6 +8939,12 @@
     </None>
     <None Include="base\message\message.inl">
       <Filter>Header Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

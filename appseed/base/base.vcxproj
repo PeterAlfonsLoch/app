@@ -1837,7 +1837,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\node\windows\win1.h" />
     <ClInclude Include="base\node\windows\windows_application.h" />
     <ClInclude Include="base\node\windows\windows_copydesk.h" />
-    <ClInclude Include="base\node\windows\windows_crypt.h" />
+    <ClInclude Include="base\node\windows\windows_crypto.h" />
     <ClInclude Include="base\node\windows\windows_dir.h" />
     <ClInclude Include="base\node\windows\windows_exception.h" />
     <ClInclude Include="base\node\windows\windows_factory_exchange.h" />
@@ -4186,7 +4186,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\os\windows\windows.cpp" />
     <ClCompile Include="base\os\windows\windows_base_file.cpp" />
     <ClCompile Include="base\os\windows\windows_base_registry.cpp" />
-    <ClCompile Include="base\os\windows\windows_crypto.cpp" />
+    <ClCompile Include="base\os\windows\windows_base_crypto.cpp" />
     <ClCompile Include="base\os\windows\windows_debug.cpp" />
     <ClCompile Include="base\os\windows\windows_dll.cpp" />
     <ClCompile Include="base\os\windows\windows_error.cpp" />

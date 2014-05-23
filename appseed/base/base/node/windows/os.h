@@ -143,7 +143,7 @@ int32_t CLASS_DECL_BASE __windows_main(sp(::base::system) psystem, ::windows::ma
 #include "windows_file_set.h"
 
 #include "windows_copydesk.h"
-#include "windows_crypt.h"
+#include "windows_crypto.h"
 #include "windows_ip_enum.h"
 #include "windows_registry.h"
 

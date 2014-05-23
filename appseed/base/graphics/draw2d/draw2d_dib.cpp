@@ -3840,6 +3840,28 @@ namespace draw2d
    }
 
 
+   void dib::rate_rgb(int iMul,int iDiv)
+   {
+      map();
+      try
+      {
+         byte * puch = (byte *)get_data();
+         int64_t iArea = area();
+         while(iArea > 0)
+         {
+            puch[0] = max(0,min(255,puch[0] * iMul / iDiv));
+            puch[1] = max(0,min(255,puch[1] * iMul / iDiv));
+            puch[2] = max(0,min(255,puch[2] * iMul / iDiv));
+            puch+=4;
+            iArea--;
+         }
+      }
+      catch(...)
+      {
+      }
+   }
+
+
    void dib::map(bool bApplyAlphaTransform)
    {
 
