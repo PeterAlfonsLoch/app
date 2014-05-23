@@ -194,45 +194,45 @@ map < HTHREAD,HTHREAD,ThreadLocalData *,ThreadLocalData * > * allthreaddata = NU
 
 void __node_init_multithreading()
 {
-   
+
    s_pmapHthreadHthread = new map < HTHREAD,HTHREAD,HTHREAD,HTHREAD >();
-   
+
    s_pmapDwordHthread = new map < DWORD,DWORD,HTHREAD,HTHREAD >();
-   
+
    s_pmapHthreadDword = new map < HTHREAD,HTHREAD,DWORD,DWORD >();
-   
+
    allthreaddata = new map < HTHREAD,HTHREAD,ThreadLocalData *,ThreadLocalData * >();
-   
+
    freeTlsIndices = new raw_array<DWORD>();
-   
-   
+
+
 }
 
 
 
 void __node_term_multithreading()
 {
-   
+
    delete freeTlsIndices;
-   
+
    freeTlsIndices = NULL;
-   
+
    delete allthreaddata;
-   
+
    allthreaddata = NULL;
-   
+
    delete s_pmapHthreadDword;
-   
+
    s_pmapHthreadDword = NULL;
-   
+
    delete s_pmapDwordHthread;
-   
+
    s_pmapDwordHthread = NULL;
-   
+
    delete s_pmapHthreadHthread;
-   
+
    s_pmapHthreadHthread = NULL;
-   
+
 }
 
 
@@ -247,8 +247,6 @@ void __node_term_multithreading()
 #if defined(LINUX) // || defined(ANDROID)
 
 bool defer_process_x_message(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek);
-
-extern bool(* g_defer_process_x_message)(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek);
 
 #endif
 
@@ -1174,17 +1172,11 @@ restart:
       if(!hthread->m_pthread->get_run())
          return FALSE;
 
-      if(g_defer_process_x_message != NULL && hthread->m_pthread->get_x_window_count() > 0)
-      {
-
-         if((*g_defer_process_x_message)(hthread,lpMsg,oswindow,false))
-            return TRUE;
-
-         if(!hthread->m_pthread->get_run())
-            return FALSE;
-      }
-
    }
+
+   if(defer_process_x_message(hthread,lpMsg,oswindow,false))
+      return TRUE;
+
 #endif
 
    if(bFirst)
@@ -1257,12 +1249,8 @@ CLASS_DECL_BASE int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg,oswindow oswindow,U
    ml.unlock();
 
 #if defined(LINUX) // || defined(ANDROID)
-   if(g_defer_process_x_message != NULL && hthread != NULL && hthread->m_pthread != NULL && hthread->m_pthread->get_x_window_count() > 0)
-   {
-
-      if((*g_defer_process_x_message)(hthread,lpMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
-         return TRUE;
-   }
+   if(defer_process_x_message(hthread,lpMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
+      return TRUE;
 #endif
 
    return FALSE;

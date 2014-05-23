@@ -517,6 +517,10 @@ namespace linux
 
          m_oswindow->set_user_interaction(m_pui);
 
+         HTHREAD hthread = ::GetCurrentThread();
+
+         m_oswindow->m_hthread = hthread;
+
          XGetWindowAttributes(m_oswindow->display(), m_oswindow->window(), &m_attr);
 
          m_pgraphics = new window_xlib();

@@ -610,8 +610,8 @@
 		<Unit filename="base/node/linux/linux_application.h" />
 		<Unit filename="base/node/linux/linux_copydesk.cpp" />
 		<Unit filename="base/node/linux/linux_copydesk.h" />
-		<Unit filename="base/node/linux/linux_crypt.cpp" />
 		<Unit filename="base/node/linux/linux_crypt.h" />
+		<Unit filename="base/node/linux/linux_crypto.cpp" />
 		<Unit filename="base/node/linux/linux_dir.cpp" />
 		<Unit filename="base/node/linux/linux_dir.h" />
 		<Unit filename="base/node/linux/linux_dumpinit.cpp" />
@@ -2797,10 +2797,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="base/os/ansios/ansios.h" />
+		<Unit filename="base/os/ansios/ansios_base_file.cpp" />
 		<Unit filename="base/os/ansios/ansios_cross_win.cpp" />
 		<Unit filename="base/os/ansios/ansios_cross_win_file.cpp" />
 		<Unit filename="base/os/ansios/ansios_cross_windows_user.cpp" />
-		<Unit filename="base/os/ansios/ansios_file.cpp" />
 		<Unit filename="base/os/ansios/ansios_file.h" />
 		<Unit filename="base/os/ansios/ansios_file_std.cpp" />
 		<Unit filename="base/os/ansios/ansios_http.h" />

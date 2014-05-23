@@ -8,8 +8,6 @@
 # define SCHED_RESET_ON_FORK	0x40000000
 #endif
 
-bool (* g_defer_process_x_message)(HTHREAD hthread, LPMESSAGE lpMsg, oswindow oswindow, bool bPeek) = NULL;
-
 
 
 void get_os_priority(int32_t * piPolicy, sched_param * pparam, int32_t nCa2Priority)
@@ -193,26 +191,12 @@ namespace core
 
 
 
-#include "framework.h"
-
-
-bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, bool bPeek);
-
-extern bool (* g_defer_process_x_message)(HTHREAD hthread, LPMESSAGE lpMsg, oswindow oswindow, bool bPeek);
-
-__attribute__((constructor))
-static void initialize_g_defer_process_x_message()
-{
-
-   ::g_defer_process_x_message = &::defer_process_x_message;
-
-}
 
 
 bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, bool bPeek)
 {
 
-   if(hthread == NULL || hthread->m_pthread == NULL || hthread->m_pthread->get_x_window_count() <= 0)
+   if(hthread == NULL)
       return false;
 
    single_lock sl(&user_mutex(), true);
@@ -234,7 +218,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
          if(pdata == NULL || pdata->m_bMessageOnlyWindow)
             continue;
 
-         if(pdata->m_hthread != hthread && g_oswindowDesktop != pdata)
+         if(pdata->m_hthread != hthread)
             continue;
 
          Display * display = pdata->display();

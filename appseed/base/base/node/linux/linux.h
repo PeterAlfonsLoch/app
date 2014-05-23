@@ -64,7 +64,7 @@ CLASS_DECL_LINUX void AfxResetMsgcache();
 #include "linux_os.h"
 #include "linux_port_forward.h"
 #include "linux_copydesk.h"
-#include "linux_crypt.h"
+#include "linux_crypto.h"
 #include "linux_ip_enum.h"
 
 #define NULL_REF(class) (*((class *) NULL))

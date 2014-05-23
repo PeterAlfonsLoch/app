@@ -1,6 +1,7 @@
 #include "framework.h"
 
 extern thread_pointer < os_thread > t_posthread;
+extern thread_pointer < os_thread > currentThread;
 
 CLASS_DECL_BASE bool __node_pre_init()
 {
@@ -14,6 +15,8 @@ CLASS_DECL_BASE bool __node_pos_init()
 {
 
    t_posthread = new os_thread(NULL, NULL);
+
+   currentThread = t_posthread;
 
    t_posthread->m_bRun = true;
 
