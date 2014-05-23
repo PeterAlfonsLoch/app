@@ -1614,7 +1614,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="base\node\android\android_crypt.h">
+    <ClInclude Include="base\node\android\android_crypto.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2646,7 +2646,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="base\node\android\android_crypt.cpp">
+    <ClCompile Include="base\node\android\android_crypto.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2914,7 +2914,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\node\windows\win1.cpp" />
     <ClCompile Include="base\node\windows\windows_application.cpp" />
     <ClCompile Include="base\node\windows\windows_copydesk.cpp" />
-    <ClCompile Include="base\node\windows\windows_crypt.cpp" />
+    <ClCompile Include="base\node\windows\windows_crypto.cpp" />
     <ClCompile Include="base\node\windows\windows_dir.cpp" />
     <ClCompile Include="base\node\windows\windows_factory_exchange.cpp" />
     <ClCompile Include="base\node\windows\windows_file.cpp" />

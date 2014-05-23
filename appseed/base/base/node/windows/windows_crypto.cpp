@@ -5,19 +5,19 @@ namespace windows
 {
 
 
-   crypt::crypt(sp(::base::application) papp) :
+   crypto::crypto(sp(::base::application) papp) :
       element(papp),
       ::crypto::crypto(papp)
    {
    }
 
 
-   crypt::~crypt()
+   crypto::~crypto()
    {
    }
 
 
-   bool crypt::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
+   bool crypto::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
    {
       DATA_BLOB DataIn;
       DATA_BLOB DataOut;
@@ -55,7 +55,7 @@ namespace windows
          0,
          &DataOut))
       {
-         TRACE("crypt::decrypt The encryption phase worked. \n");
+         TRACE("crypto::decrypt The encryption phase worked. \n");
          storageDecrypt.allocate(DataOut.cbData);
          memcpy(storageDecrypt.get_data(), DataOut.pbData, DataOut.cbData);
          LocalFree(lpwsz);
@@ -65,12 +65,12 @@ namespace windows
       else
       {
 //         TRACELASTERROR();
-         TRACE("crypt::decrypt Decryption error! (1)");
+         TRACE("crypto::decrypt Decryption error! (1)");
          return false;
       }
    }
 
-   bool crypt::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt)
+   bool crypto::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt)
    {
       DATA_BLOB DataIn;
       DATA_BLOB DataOut;
@@ -109,7 +109,7 @@ namespace windows
            0,
            &DataOut))
       {
-         TRACE("crypt::encrypt The encryption phase worked. \n");
+         TRACE("crypto::encrypt The encryption phase worked. \n");
          storageEncrypt.allocate(DataOut.cbData);
          memcpy(storageEncrypt.get_data(), DataOut.pbData, DataOut.cbData);
          LocalFree(DataOut.pbData);
@@ -117,7 +117,7 @@ namespace windows
       }
       else
       {
-         TRACE("crypt::encrypt Encryption error! (1)");
+         TRACE("crypto::encrypt Encryption error! (1)");
           return false;
       }
 

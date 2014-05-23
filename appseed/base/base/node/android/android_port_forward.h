@@ -11,7 +11,7 @@ namespace android
 
 
    class port_forward :
-      virtual public ::base::port_forward
+      virtual public ::net::port_forward
    {
    public:
 

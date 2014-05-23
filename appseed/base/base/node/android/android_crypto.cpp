@@ -5,19 +5,19 @@ namespace android
 {
 
 
-   crypt::crypt(sp(::base::application) papp) :
+   crypto::crypto(sp(::base::application) papp) :
       element(papp),
-      ::ca2::crypt(papp)
+      ::ca2::crypto(papp)
    {
    }
 
 
-   crypt::~crypt()
+   crypto::~crypto()
    {
    }
 
 
-   string crypt::get_crypt_key_file_path()
+   string crypto::get_crypt_key_file_path()
    {
 
       return System.dir().path(getenv("home"), ".ca2/cryptkey");
@@ -25,7 +25,7 @@ namespace android
    }
 
 
-   bool crypt::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
+   bool crypto::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
    {
 
       simple_memory memOut;
@@ -44,7 +44,7 @@ namespace android
 
    }
 
-   bool crypt::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt)
+   bool crypto::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt)
    {
 
       simple_memory memOut;

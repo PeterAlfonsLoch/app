@@ -4541,9 +4541,6 @@
     <ClInclude Include="base\node\android\android_copydesk.h">
       <Filter>Header Files\base\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="base\node\android\android_crypt.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
     <ClInclude Include="base\node\android\android_dir.h">
       <Filter>Header Files\base\node\android</Filter>
     </ClInclude>
@@ -4606,6 +4603,9 @@
     </ClInclude>
     <ClInclude Include="base\base\base_static_start.h">
       <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\android\android_crypto.h">
+      <Filter>Header Files\base\node\android</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -8503,9 +8503,6 @@
     <ClCompile Include="base\node\windows\windows_copydesk.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\windows\windows_crypt.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\windows\windows_dir.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
@@ -8656,9 +8653,6 @@
     <ClCompile Include="base\node\android\android_copydesk.cpp">
       <Filter>Source Files\base\node\android</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\android\android_crypt.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\android\android_dir.cpp">
       <Filter>Source Files\base\node\android</Filter>
     </ClCompile>
@@ -8745,6 +8739,12 @@
     </ClCompile>
     <ClCompile Include="base\base\base_static_start.cpp">
       <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\windows\windows_crypto.cpp">
+      <Filter>Source Files\base\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\android\android_crypto.cpp">
+      <Filter>Source Files\base\node\android</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -8939,6 +8939,9 @@
     </None>
     <None Include="base\message\message.inl">
       <Filter>Header Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
