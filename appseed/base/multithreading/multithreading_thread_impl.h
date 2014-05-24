@@ -141,7 +141,7 @@ public:
    bool begin(int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs);
    void Delete();
 
-
+   virtual void dispatch_thread_message(signal_details * pobj);
 
 };
 

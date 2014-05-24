@@ -55,7 +55,7 @@ namespace windows
       //virtual void Delete();
 
 
-      virtual void dispatch_thread_message(signal_details * pobj); 
+      //virtual void dispatch_thread_message(signal_details * pobj); 
 
 
 		virtual void wait();

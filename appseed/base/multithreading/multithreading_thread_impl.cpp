@@ -99,6 +99,82 @@ bool thread_impl::initialize_instance()
 
 }
 
+void thread_impl::dispatch_thread_message(signal_details * pobj)
+{
+   SCAST_PTR(::message::base,pbase,pobj);
+   if(!pbase->m_bRet && pbase->m_uiMessage == WM_APP + 1984 && pbase->m_wparam == 77)
+   {
+      smart_pointer < ::user::message > spmessage(pbase->m_lparam);
+      spmessage->send();
+      pbase->m_uiMessage   = 0;    // ssshhhh.... - self-healing - sh...
+      pbase->m_wparam      = 0;    // ssshhhh.... - self-healing - sh...
+      pbase->m_bRet        = true;
+      return;
+   }
+   /*   const __MSGMAP* pMessageMap; pMessageMap = GetMessageMap();
+   const __MSGMAP_ENTRY* lpEntry;
+
+   for (/* pMessageMap already init'ed *//*; pMessageMap->pfnGetBaseMap != NULL;
+   pMessageMap = (*pMessageMap->pfnGetBaseMap)())
+   {
+   // Note: catch not so common but fatal mistake!!
+   //       // BEGIN_MESSAGE_MAP(CMyThread, CMyThread)
+
+   ASSERT(pMessageMap != (*pMessageMap->pfnGetBaseMap)());
+   if (pMsg->message < 0xC000)
+   {
+   // constant window message
+   if ((lpEntry = ::core::FindMessageEntry(pMessageMap->lpEntries,
+   pMsg->message, 0, 0)) != NULL)
+   goto LDispatch;
+   }
+   else
+   {
+   // registered windows message
+   lpEntry = pMessageMap->lpEntries;
+   while ((lpEntry = ::core::FindMessageEntry(lpEntry, 0xC000, 0, 0)) != NULL)
+   {
+   UINT* pnID = (UINT*)(lpEntry->nSig);
+   ASSERT(*pnID >= 0xC000);
+   // must be successfully registered
+   if (*pnID == pMsg->message)
+   goto LDispatch;
+   lpEntry++;      // keep looking past this one
+   }
+   }
+   }
+   return FALSE;
+
+   LDispatch:
+   union MessageMapFunctions mmf;
+   mmf.pfn = lpEntry->pfn;
+
+   // always posted, so return value is meaningless
+
+   (this->*mmf.pfn_THREAD)(pMsg->wParam, pMsg->lParam);*/
+
+   LRESULT lresult;
+   SignalPtrArray signalptra;
+   m_signala.GetSignalsByMessage(signalptra,pbase->m_uiMessage,0,0);
+   for(int32_t i = 0; i < signalptra.get_size(); i++)
+   {
+      Signal & signal = *signalptra[i];
+      ::signal * psignal = signal.m_psignal;
+      message::e_prototype eprototype = signal.m_eprototype;
+      if(eprototype == message::PrototypeNone)
+      {
+         //message::base base(get_app());
+         pbase->m_psignal = psignal;
+         lresult = 0;
+         //base.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
+         psignal->emit(pbase);
+         if(pbase->m_bRet)
+            return;
+      }
+      break;
+   }
+   pbase->m_bRet = true;
+}
 
 
 void thread_impl::pre_translate_message(signal_details * pobj)
