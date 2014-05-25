@@ -24,7 +24,7 @@ namespace ios
       spa(::user::interaction)      m_guieptraMouseHover;
       ::message_queue_listener *   m_pcallback;
       string                        m_strWindowText;
-      oswindow                      m_oswindow;
+//      oswindow                      m_oswindow;
       ::user::window_interface *    m_pbasewnd;
       sp(::user::interaction)       m_pguieCapture;
       bool                          m_bNeedsUpdate;

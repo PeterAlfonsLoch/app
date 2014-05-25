@@ -623,7 +623,10 @@ void thread_impl::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
          {
             pthread = dynamic_cast < thread * >(threadptra[i]);
             pthread->m_bRun = false;
-            pthread->m_pimpl->m_bRun = false;
+            if(pthread->m_pimpl != NULL)
+            {
+               pthread->m_pimpl->m_bRun = false;
+            }
          }
          catch(...)
          {

@@ -92,8 +92,6 @@ namespace ios
       return "";
 
 
-      return "";
-
    }
 
 
@@ -525,6 +523,13 @@ namespace ios
    {
       
       return "music_midi_core_audio";
+      
+   }
+ 
+   void application::ShowWaitCursor(bool bShow)
+   {
+      
+      UNREFERENCED_PARAMETER(bShow);
       
    }
    

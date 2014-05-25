@@ -468,6 +468,15 @@ namespace mac
    }
    
    
+   void application::ShowWaitCursor(bool bShow)
+   {
+      
+      UNREFERENCED_PARAMETER(bShow);
+      
+   }
+
+   
+   
 } // namespace mac
 
 
