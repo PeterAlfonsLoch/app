@@ -536,7 +536,7 @@ namespace user
       {
          if (m_pbaseapp != NULL)
          {
-            Application.remove_frame(this);
+            m_pbaseapp->remove_frame(this);
          }
       }
       catch (...)
@@ -545,9 +545,9 @@ namespace user
 
       try
       {
-         if (m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && &Session != NULL)
+         if (m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL)
          {
-            Session.remove_frame(this);
+            m_pbaseapp->m_pbasesession->remove_frame(this);
          }
       }
       catch (...)
@@ -556,9 +556,9 @@ namespace user
 
       try
       {
-         if (m_pbaseapp != NULL && m_pbaseapp->m_pbasesystem != NULL && &System != NULL)
+         if (m_pbaseapp != NULL && m_pbaseapp->m_pbasesystem != NULL)
          {
-            System.remove_frame(this);
+            m_pbaseapp->m_pbasesystem->remove_frame(this);
          }
       }
       catch (...)

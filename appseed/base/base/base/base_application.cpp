@@ -157,7 +157,7 @@ namespace base
       dumpcontext << "\nm_bHelpMode = " << m_strAppName;
 
       dumpcontext << "\n";
-      
+
    }
 
 
@@ -3895,10 +3895,14 @@ namespace base
          {
 
             m_psignal->emit(&signal);
+
          }
          catch(...)
          {
+
          }
+
+         m_psignal.release();
 
          //try
          //{
@@ -3999,7 +4003,7 @@ namespace base
          }
 
          return 0;
-         
+
 
       }
       catch(...)

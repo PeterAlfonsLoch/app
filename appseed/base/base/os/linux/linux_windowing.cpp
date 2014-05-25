@@ -939,6 +939,10 @@ WINBOOL DestroyWindow(oswindow window)
 
    bool bIs = IsWindow(window);
 
+   window->get_user_interaction()->send_message(WM_DESTROY, 0, 0);
+
+   window->get_user_interaction()->send_message(WM_NCDESTROY, 0, 0);
+
    XDestroyWindow(pdisplay, win);
 
    return true;

@@ -182,7 +182,7 @@ namespace linux
       // during the thread destructor
       ::thread::m_pimpl->set_os_data(NULL);
 
-      LNX_THREAD(m_pimpl.m_p)->m_bRun = false;
+      m_pimpl->m_bRun = false;
       //LNX_THREAD(m_pimpl->::thread_sp::m_p)->m_bRun = false;
 
       int32_t iRet = ::base::application::exit_instance();

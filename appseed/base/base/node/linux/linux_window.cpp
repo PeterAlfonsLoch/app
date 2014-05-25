@@ -4048,7 +4048,11 @@ throw not_implemented(get_app());
    void window::GetWindowRect(__rect64 * lprect)
    {
       if(!::IsWindow((oswindow) get_handle()))
+      {
+
          throw simple_exception(get_app(), "no more a window");
+
+      }
       // if it is temporary window - probably not ca2 wrapped window
       //if(m_pui == NULL || m_pui == this)
       {

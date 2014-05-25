@@ -223,9 +223,11 @@ void message_box_show_xlib(::base::application * papp, const char * lpText,const
 
 
 
-   ::simple_ui::message_box m(papp);
+   sp(::simple_ui::message_box) pmessagebox = canew(::simple_ui::message_box(papp));
 
-   m.show(lpText, 0);
+   pmessagebox->show(lpText, 0);
+
+   pmessagebox->DestroyWindow();
 
    return;
 
