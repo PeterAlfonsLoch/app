@@ -15,7 +15,7 @@ namespace simple_ui
 
       stringa m_stra;
 
-      tap m_tap;
+      sp(tap) m_ptap;
 
      message_box(sp(::base::application) papp);
      virtual ~message_box();
@@ -39,9 +39,9 @@ namespace simple_ui
 {
 
    message_box::message_box(sp(::base::application) papp) :
-      element(papp),
-      m_tap(papp)
+      element(papp)
    {
+   m_ptap = new ::simple_ui::tap(get_app());
    }
 
    message_box::~message_box()
@@ -56,9 +56,9 @@ namespace simple_ui
          return "";
 
 
-         m_tap.create(this, "ok");
+         m_ptap->create(this, "ok");
 
-         m_tap.SetWindowText("OK");
+         m_ptap->SetWindowText("OK");
 
       ::rect rectDesktop;
 
@@ -175,7 +175,7 @@ namespace simple_ui
       GetClientRect(rectClient);
 
 
-      m_tap.SetWindowPos(ZORDER_TOP, rectClient.left + 10, rectClient.bottom - 94, 200, 84, SWP_SHOWWINDOW);
+      m_ptap->SetWindowPos(ZORDER_TOP, rectClient.left + 10, rectClient.bottom - 94, 200, 84, SWP_SHOWWINDOW);
 
 
    }

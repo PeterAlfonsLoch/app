@@ -284,6 +284,10 @@ namespace userex
    int32_t userex::simple_message_box(sp(::user::interaction) pwndOwner,const char * pszMessage,UINT fuStyle)
    {
 
+   int iRet = ::MessageBox(pwndOwner->get_handle(), pszMessage, "ca2", fuStyle);
+
+   return iRet;
+
       //if(m_pbaseapp->m_pplaneapp->m_psession != NULL)
       //{
       // return m_pbaseapp->m_pplaneapp->m_psession->m_pplanesession->m_pplanesession->simple_message_box(pwndOwner, pszMessage, fuStyle);

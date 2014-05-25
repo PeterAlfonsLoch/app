@@ -80,10 +80,10 @@ namespace user
 
    bool interaction::IsChild(interaction * pui) const
    {
-      
+
       if (m_pimpl == NULL)
          return false;
-      
+
       return m_pimpl->IsChild(pui);
 
    }
@@ -99,11 +99,11 @@ namespace user
 
    interaction * interaction::get_parent() const
    {
-      
+
       if (m_pimpl == NULL || m_pimpl == this)
          return NULL;
 
-      
+
       return m_pimpl->get_parent();
 
    }
@@ -156,7 +156,7 @@ namespace user
 
    interaction * interaction::set_parent(interaction * puiParent)
    {
-      
+
       if (puiParent == this || puiParent == m_pui || puiParent == m_pimpl || puiParent == get_parent())
       {
 
@@ -395,14 +395,14 @@ namespace user
 
    bool interaction::MoveWindow(int32_t x,int32_t y, UINT nFlags)
    {
-      
+
       return SetWindowPos(0,x,y, 0, 0, nFlags | SWP_NOSIZE);
 
    }
 
    bool interaction::MoveWindow(POINT pt,UINT nFlags)
    {
-      
+
       return MoveWindow(pt.x,pt.y, nFlags);
 
    }
@@ -529,7 +529,7 @@ namespace user
 
    void interaction::_001OnDestroy(signal_details * pobj)
    {
-      
+
       UNREFERENCED_PARAMETER(pobj);
 
       try
@@ -574,7 +574,7 @@ namespace user
             m_pthread->remove(this);
 
          }
-         
+
       }
       catch(...)
       {
@@ -625,7 +625,7 @@ namespace user
    {
 
       pobj->previous();
-      
+
       layout();
 
    }
@@ -2511,42 +2511,42 @@ namespace user
       else
          m_pimpl->pre_subclass_window();
    }
-   
+
 
    id interaction::run_modal_loop(::user::interaction * pui, uint32_t dwFlags, ::base::live_object * pliveobject)
    {
-      
+
       return pui->_001RunModalLoop(dwFlags, pliveobject);
-      
+
    }
 
 
    id interaction::RunModalLoop(uint32_t dwFlags, ::base::live_object * pliveobject)
    {
-      
+
       if(get_wnd() != NULL)
       {
-         
+
          return get_wnd()->run_modal_loop(this, dwFlags, pliveobject);
-         
+
       }
       else if(m_pimpl.is_null())
       {
-       
+
          return _001RunModalLoop(dwFlags, pliveobject);
-         
+
       }
       else
       {
-         
+
          return m_pimpl->RunModalLoop(dwFlags, pliveobject);
-         
+
       }
-      
-      
+
+
    }
-   
-   
+
+
    id interaction::_001RunModalLoop(uint32_t dwFlags, ::base::live_object * pliveobject)
    {
 
@@ -2699,15 +2699,15 @@ namespace user
          for (index i = 0; i < m_iaModalThread.get_count(); i++)
          {
 
-#ifdef WINDOWSEX
+//#ifdef WINDOWSEX
 
-            ::PostThreadMessageA((uint32_t)m_iaModalThread[i], WM_NULL, 0, 0);
+            ::PostThreadMessage((uint32_t)m_iaModalThread[i], WM_NULL, 0, 0);
 
-#else
+//#else
 
-            throw not_implemented(get_app());
+  //          throw not_implemented(get_app());
 
-#endif
+//#endif
 
          }
 
@@ -2850,7 +2850,7 @@ namespace user
 
    void interaction::track_mouse_hover()
    {
-      
+
       ::user::interaction * pui = GetTopLevelParent();
 
       if (pui == NULL)
@@ -2895,9 +2895,9 @@ namespace user
 
    void interaction::_001WindowRestore()
    {
-      
+
       m_eappearance = AppearanceNormal;
-      
+
       if (m_pimpl != NULL)
          m_pimpl->_001WindowRestore();
 
@@ -3536,17 +3536,17 @@ namespace user
          pbase->m_bRet = true;*/
       }
    }
-   
+
    void interaction::on_keyboard_focus(::user::keyboard_focus * pfocus)
    {
-      
+
       if(m_pimpl == NULL)
          return;
-      
-      
+
+
       m_pimpl->on_keyboard_focus(pfocus);
-      
-      
+
+
    }
 
 
@@ -3773,7 +3773,7 @@ namespace user
          return m_pimpl->OnCommand(pbase);
 
       return false;
-   
+
    }
 
    bool interaction::OnNotify(::message::base * pbase)
@@ -3786,7 +3786,7 @@ namespace user
 
    }
 
-   
+
    bool interaction::OnChildNotify(::message::base * pbase)
    {
 
@@ -3938,7 +3938,7 @@ namespace user
 
       if (!m_spmenuPopup->TrackPopupMenu(iFlags, x, y, this, &m_spmenuPopup))
       {
-         
+
          m_spmenuPopup.release();
 
          return false;
@@ -4127,12 +4127,12 @@ namespace user
 
    void interaction::show_keyboard(bool bShow)
    {
-      
+
       if(m_pimpl == NULL)
          return;
-      
+
       m_pimpl->show_keyboard(bShow);
-      
+
    }
 
 
@@ -4189,7 +4189,7 @@ namespace user
       {
 
          m_pthread->process_window_procedure_exception(pe,spbase);
-         
+
          pe->Delete();
 
       }
