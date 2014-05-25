@@ -7,13 +7,13 @@ namespace android
 
 
    class CLASS_DECL_BASE file_system :
-      public ::ca2::file_system
+      virtual public ::file::system
    {
    public:
 
 
       class CLASS_DECL_BASE path :
-        public ::ca2::file_system::path
+        virtual public ::file::system::path
       {
       public:
          bool is_equal(const char * lpszFilPathA, const char * lpszFilPathB);
@@ -57,8 +57,8 @@ namespace android
       string time_square(sp(::base::application) papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
       string time_log(sp(::base::application) papp, const char * pszId);
 
-      virtual ::ca2::filesp time_square_file(sp(::base::application) papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      virtual ::ca2::filesp get(const char * name, sp(::base::application) papp);
+      virtual ::file::buffer_sp time_square_file(sp(::base::application) papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+      virtual ::file::buffer_sp get(const char * name, sp(::base::application) papp);
 
 
       int32_t filterex_time_square(const char * pszPrefix, stringa & stra);
@@ -71,7 +71,7 @@ namespace android
 
       bool put_contents(var varFile, const void * pvoidContents, count count, sp(::base::application) papp);
       bool put_contents(var varFile, const char * lpcszContents, sp(::base::application) papp);
-      bool put_contents(var varFile, ::ca2::file & file, sp(::base::application) papp);
+      bool put_contents(var varFile, ::file::reader & file, sp(::base::application) papp);
       bool put_contents(var varFile, primitive::memory & mem, sp(::base::application) papp);
       bool put_contents_utf8(var varFile, const char * lpcszContents, sp(::base::application) papp);
 

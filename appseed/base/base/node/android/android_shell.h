@@ -285,7 +285,7 @@ namespace android
    free(pwszPath);
    return FALSE;
    }
-   ::ca2::international::unicode_to_utf8(str, pwszPath);
+   ::str::international::unicode_to_utf8(str, pwszPath);
    free(pwszPath);
    return TRUE;
    }
@@ -470,15 +470,15 @@ namespace android
    {
    wchar_t * pwsz = (wchar_t *) malloc(sizeof(wchar_t) * MAX_PATH * 4);
    DWORD dwResult = (*theLinuxShell.m_pfnGetTempPath)(sizeof(wchar_t) * MAX_PATH * 4, pwsz);
-   ::ca2::international::unicode_to_utf8(str, pwsz);
+   ::str::international::unicode_to_utf8(str, pwsz);
    free(pwsz);
    return dwResult;
    }
 
    inline UINT shell::GetTempFileName(const char * lpPathName, const char * lpPrefixString, UINT uUnique, string & str)
    {
-   wstring wstrPathName = ::ca2::international::utf8_to_unicode(lpPathName);
-   wstring wstrPrefixString = ::ca2::international::utf8_to_unicode(lpPrefixString);
+   wstring wstrPathName = ::str::international::utf8_to_unicode(lpPathName);
+   wstring wstrPrefixString = ::str::international::utf8_to_unicode(lpPrefixString);
    wstring wstr;
    wstr.alloc(MAX_PATH * 4);
    UINT uiResult = (*theLinuxShell.m_pfnGetTempFileName)(
@@ -486,13 +486,13 @@ namespace android
    wstrPrefixString,
    uUnique,
    wstr);
-   ::ca2::international::unicode_to_utf8(str, wstr);
+   ::str::international::unicode_to_utf8(str, wstr);
    return uiResult;
    }
 
    inline WINBOOL shell::MoveFile(const char * lpExistingFileName, const char * lpNewFileName)
    {
-   return MoveFile(::ca2::international::utf8_to_unicode(lpExistingFileName), ::ca2::international::utf8_to_unicode(lpNewFileName));
+   return MoveFile(::str::international::utf8_to_unicode(lpExistingFileName), ::str::international::utf8_to_unicode(lpNewFileName));
    }
 
    */

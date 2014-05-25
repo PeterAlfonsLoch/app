@@ -24,8 +24,8 @@ namespace android
       string stra(lpszFilPathA);
       string wstrb(lpszFilPathB);
 
-   //   ::ca2::international::ACPToUnicode(stra, lpszFilPathA);
-   //   ::ca2::international::ACPToUnicode(wstrb, lpszFilPathB);
+   //   ::str::international::ACPToUnicode(stra, lpszFilPathA);
+   //   ::str::international::ACPToUnicode(wstrb, lpszFilPathB);
       if(stra == wstrb)
          return true;
 
@@ -148,7 +148,7 @@ namespace android
 
       WIN32_FILE_ATTRIBUTE_DATA data;
 
-      if(!GetFileAttributesExW(::ca2::international::utf8_to_unicode(pszPath), GetFileExInfoStandard, &data))
+      if(!GetFileAttributesExW(::str::international::utf8_to_unicode(pszPath), GetFileExInfoStandard, &data))
       {
          varRet.set_type(var::type_null);
       }
@@ -276,7 +276,7 @@ namespace android
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
          string str = stra[i];
-         if(::ca2::str::begins_eat_ci(str, pszPrefix))
+         if(::str::begins_eat_ci(str, pszPrefix))
          {
             if(str.get_length() < 2)
             {
@@ -301,12 +301,12 @@ namespace android
    // fail if exists, create if not exists
    bool file_system::mk_time(const char * lpcszcandidate)
    {
-      ::ca2::filesp spfile(get_app());
+      ::file::buffer_sp spfile(get_app());
       if(System.file().exists(lpcszcandidate, get_app()))
          return false;
       try
       {
-         if(!spfile->open(lpcszcandidate, ::ca2::file::mode_create | ::ca2::file::type_binary))
+         if(!spfile->open(lpcszcandidate, ::file::mode_create | ::file::type_binary))
             return false;
       }
       catch(...)
@@ -325,16 +325,16 @@ namespace android
    string file_system::as_string(var varFile, var & varQuery, sp(::base::application) papp)
    {
       primitive::memory storage;
-      if(varFile.ca2 < ::ca2::file > () != NULL)
+      if(varFile.ca2 < ::file::buffer > () != NULL)
       {
-         storage.FullLoad(*varFile.ca2 < ::ca2::file >());
+         storage.FullLoad(*varFile.ca2 < ::file::buffer >());
       }
       else
       {
          string strFilePath(varFile);
          if(!exists(strFilePath, papp))
             return "";
-         if(papp->m_bZipIsDir && (::ca2::str::find_ci(".zip:", strFilePath) >= 0))
+         if(papp->m_bZipIsDir && (::str::find_ci(".zip:", strFilePath) >= 0))
          {
             ::primitive::memory_file memfile(papp, &storage);
             zip::InFile infile(get_app());
@@ -343,16 +343,16 @@ namespace android
             if(!infile.dump(&memfile))
                return "";
          }
-         else if(::ca2::str::begins_eat_ci(strFilePath, "file:///"))
+         else if(::str::begins_eat_ci(strFilePath, "file:///"))
          {
             as_memory(strFilePath, storage, papp);
          }
-         else if(::ca2::str::begins_eat_ci(strFilePath, "file:\\\\\\"))
+         else if(::str::begins_eat_ci(strFilePath, "file:\\\\\\"))
          {
             as_memory(strFilePath, storage, papp);
          }
-         else if(::ca2::str::begins_ci(strFilePath, "http://")
-         || ::ca2::str::begins_ci(strFilePath, "https://"))
+         else if(::str::begins_ci(strFilePath, "http://")
+         || ::str::begins_ci(strFilePath, "https://"))
          {
             ::ca2::property_set post;
             ::ca2::property_set headers;
@@ -376,7 +376,7 @@ namespace android
             {
                try
                {
-                  storage.FullLoad(App(papp).file().get_file(strFilePath, ::ca2::file::type_binary | ::ca2::file::mode_read));
+                  storage.FullLoad(App(papp).file().get_file(strFilePath, ::file::type_binary | ::file::mode_read));
                }
                catch(...)
                {
@@ -398,7 +398,7 @@ namespace android
       && storage.get_data()[0] == 255
       && storage.get_data()[1] == 60)
       {
-         ::ca2::international::unicode_to_utf8(strResult, (const wchar_t *) &storage.get_data()[2], (int32_t)(storage.get_size() - 2));
+         ::str::international::unicode_to_utf8(strResult, (const wchar_t *) &storage.get_data()[2], (int32_t)(storage.get_size() - 2));
       }
       else if(storage.get_size() >= 3
       && storage.get_data()[0] == 0xef
@@ -428,7 +428,7 @@ namespace android
          if(strPath.is_empty())
          {
 
-            TRACE("::ca2::file::file_system::as_memory varFile is a empty file name!!");
+            TRACE("::file::buffer::file_system::as_memory varFile is a empty file name!!");
 
             return;
 
@@ -436,7 +436,7 @@ namespace android
 
          strPath.trim("\"'");
 
-         if((::ca2::str::begins(strPath, "http://") || ::ca2::str::begins(strPath, "https://")))
+         if((::str::begins(strPath, "http://") || ::str::begins(strPath, "https://")))
          {
 
             App(papp).http().get(strPath, mem, &AppUser(papp));
@@ -447,12 +447,12 @@ namespace android
 
       }
 
-      ::ca2::filesp spfile;
+      ::file::buffer_sp spfile;
 
       try
       {
 
-         spfile = App(papp).file().get_file(varFile, ::ca2::file::type_binary | ::ca2::file::mode_read | ::ca2::file::shareDenyNone);
+         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::buffer::shareDenyNone);
 
          mem.FullLoad(spfile);
 
@@ -472,7 +472,7 @@ namespace android
 
       try
       {
-         if(!spfile->open(varFile, ::ca2::file::type_text | ::ca2::file::mode_read))
+         if(!spfile->open(varFile, ::file::type_text | ::file::mode_read))
          {
             return;
          }
@@ -492,9 +492,9 @@ namespace android
    bool file_system::put_contents(var varFile, const void * pvoidContents, count count, sp(::base::application) papp)
    {
 
-      ::ca2::filesp spfile;
+      ::file::buffer_sp spfile;
 
-      spfile = App(papp).file().get_file(varFile, ::ca2::file::type_binary | ::ca2::file::mode_write | ::ca2::file::mode_create | ::ca2::file::shareDenyNone | ::ca2::file::defer_create_directory);
+      spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::buffer::shareDenyNone | ::file::buffer::defer_create_directory);
 
       if(spfile.is_null())
          return false;
@@ -517,10 +517,10 @@ namespace android
       }
    }
 
-   bool file_system::put_contents(var varFile, ::ca2::file & file, sp(::base::application) papp)
+   bool file_system::put_contents(var varFile, ::file::buffer & file, sp(::base::application) papp)
    {
-      ::ca2::filesp spfile;
-      spfile = App(papp).file().get_file(varFile, ::ca2::file::type_binary | ::ca2::file::mode_write | ::ca2::file::mode_create | ::ca2::file::shareDenyNone | ::ca2::file::defer_create_directory);
+      ::file::buffer_sp spfile;
+      spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::buffer::shareDenyNone | ::file::buffer::defer_create_directory);
       if(spfile.is_null())
          return false;
       primitive::memory mem;
@@ -540,8 +540,8 @@ namespace android
 
    bool file_system::put_contents_utf8(var varFile, const char * lpcszContents, sp(::base::application) papp)
    {
-      ::ca2::filesp spfile;
-      spfile = App(papp).file().get_file(varFile, ::ca2::file::type_binary | ::ca2::file::mode_write | ::ca2::file::mode_create | ::ca2::file::shareDenyNone | ::ca2::file::defer_create_directory);
+      ::file::buffer_sp spfile;
+      spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::buffer::shareDenyNone | ::file::buffer::defer_create_directory);
       if(spfile.is_null())
          return false;
       ::ca2::byte_output_stream(spfile) << "\xef\xbb\xbf";
@@ -585,9 +585,9 @@ namespace android
 
       string str(path);
 
-      while(::ca2::str::ends_eat(str, "\\"));
+      while(::str::ends_eat(str, "\\"));
 
-      while(::ca2::str::ends_eat(str, "/"));
+      while(::str::ends_eat(str, "/"));
 
       strsize iPos;
 
@@ -664,7 +664,7 @@ namespace android
          if(exists(pszNew, papp))
             throw "Failed to copy file";
       }
-      if(System.dir().is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(::ca2::str::ends_ci(psz, ".zip"))))
+      if(System.dir().is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(::str::ends_ci(psz, ".zip"))))
       {
          stringa straPath;
          System.dir().rls(papp, psz, &straPath);
@@ -672,7 +672,7 @@ namespace android
          string strSrc;
          string strDirSrc(psz);
          string strDirDst(pszNew);
-         if(papp->m_bZipIsDir && (::ca2::str::ends(strDirSrc, ".zip")))
+         if(papp->m_bZipIsDir && (::str::ends(strDirSrc, ".zip")))
          {
             strDirSrc += ":";
          }
@@ -680,11 +680,11 @@ namespace android
          {
             strSrc = straPath[i];
             strDst = strSrc;
-            ::ca2::str::begins_eat_ci(strDst, strDirSrc);
+            ::str::begins_eat_ci(strDst, strDirSrc);
             strDst = System.dir().path(strDirDst, strDst);
             if(System.dir().is(strSrc, papp))
             {
-               if((eextract == extract_first || eextract == extract_none) && (::ca2::str::ends_ci(psz, ".zip")))
+               if((eextract == extract_first || eextract == extract_none) && (::str::ends_ci(psz, ".zip")))
                {
                }
                else
@@ -716,8 +716,8 @@ namespace android
             strNew = pszNew;
          }
 
-         ::ca2::filesp ofile;
-         ofile = App(papp).file().get_file(strNew, ::ca2::file::mode_write | ::ca2::file::type_binary | ::ca2::file::mode_create | ::ca2::file::defer_create_directory | ::ca2::file::shareDenyWrite);
+         ::file::buffer_sp ofile;
+         ofile = App(papp).file().get_file(strNew, ::file::mode_write | ::file::type_binary | ::file::mode_create | ::file::buffer::defer_create_directory | ::file::buffer::shareDenyWrite);
          if(ofile.is_null())
          {
             string strError;
@@ -725,8 +725,8 @@ namespace android
             throw strError;
          }
 
-         ::ca2::filesp ifile;
-         ifile = App(papp).file().get_file(psz, ::ca2::file::mode_read | ::ca2::file::type_binary | ::ca2::file::shareDenyNone);
+         ::file::buffer_sp ifile;
+         ifile = App(papp).file().get_file(psz, ::file::mode_read | ::file::type_binary | ::file::buffer::shareDenyNone);
          if(ifile.is_null())
          {
             string strError;
@@ -749,7 +749,7 @@ namespace android
             bOutputFail = true;
          }
 
-         ::ca2::file_status st;
+         ::file::file_status st;
 
          ifile->GetStatus(st);
 
@@ -793,8 +793,8 @@ namespace android
    {
 #ifdef WINDOWSEX
       if(!::MoveFileW(
-         ::ca2::international::utf8_to_unicode(psz),
-         ::ca2::international::utf8_to_unicode(pszNew)))
+         ::str::international::utf8_to_unicode(psz),
+         ::str::international::utf8_to_unicode(pszNew)))
       {
          uint32_t dwError = ::GetLastError();
          string strError;
@@ -853,7 +853,7 @@ namespace android
    {
 #ifdef WINDOWS
       if(!::DeleteFileW(
-         ::ca2::international::utf8_to_unicode(psz)))
+         ::str::international::utf8_to_unicode(psz)))
       {
          uint32_t dwError = ::GetLastError();
          if(dwError == 2) // the file does not exist, so delete "failed"
@@ -919,11 +919,11 @@ namespace android
    bool file_system::exists(const char * pszPath, sp(::base::application) papp)
    {
 
-      if(::ca2::str::begins_ci_iws(pszPath, "uifs://"))
+      if(::str::begins_ci_iws(pszPath, "uifs://"))
       {
          return AppUser(papp).m_pifs->file_exists(pszPath);
       }
-      else if(::ca2::str::begins_ci_iws(pszPath, "http://") || ::ca2::str::begins_ci_iws(pszPath, "https://"))
+      else if(::str::begins_ci_iws(pszPath, "http://") || ::str::begins_ci_iws(pszPath, "https://"))
       {
          return App(papp).http().exists(pszPath);
       }
@@ -931,7 +931,7 @@ namespace android
       if(papp->m_bZipIsDir)
       {
 
-         strsize iFind = ::ca2::str::find_ci(".zip:", pszPath);
+         strsize iFind = ::str::find_ci(".zip:", pszPath);
 
          zip::Util ziputil;
 
@@ -948,7 +948,7 @@ namespace android
 
       return file_exists_dup(pszPath);
 
-      //return ::GetFileAttributesW(::ca2::international::utf8_to_unicode(pszPath)) != INVALID_FILE_ATTRIBUTES;
+      //return ::GetFileAttributesW(::str::international::utf8_to_unicode(pszPath)) != INVALID_FILE_ATTRIBUTES;
 
 #else
 
@@ -967,13 +967,13 @@ namespace android
    bool file_system::exists(const string & strPath, sp(::base::application) papp)
    {
 
-      if(::ca2::str::begins_ci_iws(strPath, "uifs://"))
+      if(::str::begins_ci_iws(strPath, "uifs://"))
       {
          return AppUser(papp).m_pifs->file_exists(strPath);
       }
 
-      if(::ca2::str::begins_ci_iws(strPath, "http://")
-      || ::ca2::str::begins_ci_iws(strPath, "https://"))
+      if(::str::begins_ci_iws(strPath, "http://")
+      || ::str::begins_ci_iws(strPath, "https://"))
       {
          return App(papp).http().exists(strPath);
       }
@@ -982,7 +982,7 @@ namespace android
       if(papp->m_bZipIsDir)
       {
 
-         strsize iFind = ::ca2::str::find_ci(".zip:", strPath);
+         strsize iFind = ::str::find_ci(".zip:", strPath);
 
          zip::Util ziputil;
 
@@ -1009,7 +1009,7 @@ namespace android
         // return true;
 
       //return App(papp).m_spfsdata->file_exists(strPath);
-      //return ::GetFileAttributesW(::ca2::international::utf8_to_unicode(strPath)) != INVALID_FILE_ATTRIBUTES;
+      //return ::GetFileAttributesW(::str::international::utf8_to_unicode(strPath)) != INVALID_FILE_ATTRIBUTES;
 
 #else
 
@@ -1093,8 +1093,8 @@ namespace android
          {
 #ifdef WINDOWS
 //               ::MoveFileW(
-//                ::ca2::international::utf8_to_unicode(System.dir().path(pszContext, strOld)),
- //              ::ca2::international::utf8_to_unicode(System.dir().path(pszContext, strNew)));
+//                ::str::international::utf8_to_unicode(System.dir().path(pszContext, strOld)),
+ //              ::str::international::utf8_to_unicode(System.dir().path(pszContext, strNew)));
             move(System.dir().path(pszContext, strNew), System.dir().path(pszContext, strOld));
 #else
             ::rename(
@@ -1110,7 +1110,7 @@ namespace android
 
 #ifdef WINDOWSEX
 
-      uint32_t dwAttrib = GetFileAttributesW(::ca2::international::utf8_to_unicode(psz));
+      uint32_t dwAttrib = GetFileAttributesW(::str::international::utf8_to_unicode(psz));
       if(dwAttrib & FILE_ATTRIBUTE_READONLY)
          return true;
       return false;
@@ -1137,7 +1137,7 @@ namespace android
 
       string strTempDir = get_sys_temp_path();
 
-      if(!::ca2::str::ends(strTempDir, "\\") && !::ca2::str::ends(strTempDir, "/"))
+      if(!::str::ends(strTempDir, "\\") && !::str::ends(strTempDir, "/"))
       {
 
          strTempDir += "\\";
@@ -1174,19 +1174,19 @@ namespace android
 
    }
 
-   ::ca2::filesp file_system::time_square_file(sp(::base::application) papp, const char * pszPrefix, const char * pszSuffix)
+   ::file::buffer_sp file_system::time_square_file(sp(::base::application) papp, const char * pszPrefix, const char * pszSuffix)
    {
 
       return get(time_square(papp, pszPrefix, pszSuffix), papp);
 
    }
 
-   ::ca2::filesp file_system::get(const char * name, sp(::base::application) papp)
+   ::file::buffer_sp file_system::get(const char * name, sp(::base::application) papp)
    {
 
       System.dir().mk(System.dir().name(name), papp);
 
-      ::ca2::filesp fileOut = App(papp).file().get_file(name, ::ca2::file::mode_create | ::ca2::file::type_binary | ::ca2::file::mode_write);
+      ::file::buffer_sp fileOut = App(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
       if(fileOut.is_null())
          throw ::ca2::file_exception(papp, -1, ::ca2::file_exception::none, name);
@@ -1207,7 +1207,7 @@ namespace android
       strsize iEnd = strFile.reverse_find('.');
       if(iEnd < 0)
          iEnd = strFile.get_length();
-      strFile = strFile.Left(iEnd) + ::ca2::str::has_char(pszExtension, ".");
+      strFile = strFile.Left(iEnd) + ::str::has_char(pszExtension, ".");
    }
 
 

@@ -6,7 +6,7 @@ namespace android
 
 
    class CLASS_DECL_BASE file_set :
-      public ::ca2::file_set
+      virtual public ::file::set
    {
    public:
 

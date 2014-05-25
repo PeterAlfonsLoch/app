@@ -11,23 +11,23 @@ namespace android
    application::application(sp(::base::application) papp) :
       element(papp)
    {
-      ::thread::m_p.create(allocer());
-      ::thread::m_p->m_p = this;
+      ::thread::m_pimpl.create(allocer());
+      ::thread::m_pimpl->m_puser = this;
 
-      ANDROID_THREAD(::thread::m_p.m_p)->m_pAppThread = this;
+      //ANDROID_THREAD(::thread::m_p.m_p)->m_pAppThread = this;
 
-      m_pfilemanager = NULL;
-
-
-
-      // in non-running state until WinMain
-// xxx      m_hInstance = NULL;
-//      m_hLangResourceDLL = NULL;
-      m_pszHelpFilePath = NULL;
-      m_pszProfileName = NULL;
-      m_pszRegistryKey = NULL;
+//      m_pfilemanager = NULL;
+//
+//
+//
+//      // in non-running state until WinMain
+//// xxx      m_hInstance = NULL;
+////      m_hLangResourceDLL = NULL;
+//      m_pszHelpFilePath = NULL;
+//      m_pszProfileName = NULL;
+//      m_pszRegistryKey = NULL;
 //      m_pRecentFileList = NULL;
-      m_pdocmanager = NULL;
+      //m_pdocmanager = NULL;
 // xxx       m_atomApp = m_atomSystemTopic = NULL;
       //m_lpCmdLine = NULL;
 //      m_pCmdInfo = NULL;
@@ -36,10 +36,10 @@ namespace android
       // initialize current printer state
 // xxx       m_hDevMode = NULL;
 // xxx       m_hDevNames = NULL;
-      m_nNumPreviewPages = 0;     // not specified (defaults to 1)
+      //m_nNumPreviewPages = 0;     // not specified (defaults to 1)
 
-      // other initialization
-      m_bHelpMode = FALSE;
+      //// other initialization
+      //m_bHelpMode = FALSE;
 //      m_eHelpType = afxWinHelp;
       m_nSafetyPoolSize = 512;        // default size
 
@@ -54,19 +54,19 @@ namespace android
 
    void application::_001OnFileNew()
    {
-      ::ca2::application_base::m_p->_001OnFileNew(NULL);
+      //::ca2::application_base::m_p->_001OnFileNew(NULL);
    }
 
    sp(::user::object) application::_001OpenDocumentFile(var varFile)
    {
-      return ::ca2::application_base::m_p->_001OpenDocumentFile(varFile);
+     // return ::ca2::application_base::m_p->_001OpenDocumentFile(varFile);
    }
 
    void application::_001EnableShellOpen()
    {
 // xxx       ASSERT(m_atomApp == NULL && m_atomSystemTopic == NULL); // do once
 
-// xxx       m_atomApp            = ::GlobalAddAtomW(::ca2::international::utf8_to_unicode(m_strAppName));
+// xxx       m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
 // xxx       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
    }
 
@@ -194,29 +194,29 @@ namespace android
    void application::TermThread(HINSTANCE hInstTerm)
    {
 
-      try
-      {
-         // cleanup thread local tooltip ::window
-         if (hInstTerm == NULL)
-         {
-//            __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
-         }
-      }
-      catch( base_exception* e )
-      {
-         e->Delete();
-      }
-
-      try
-      {
-         // cleanup the rest of the thread local data
-         if (__thread_data != NULL)
-            __thread_data->delete_data();
-      }
-      catch( base_exception* e )
-      {
-         e->Delete();
-      }
+//      try
+//      {
+//         // cleanup thread local tooltip ::window
+//         if (hInstTerm == NULL)
+//         {
+////            __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
+//         }
+//      }
+//      catch( ::exception::base* e )
+//      {
+//         e->Delete();
+//      }
+//
+      //try
+      //{
+      //   // cleanup the rest of the thread local data
+      //   if (__thread_data != NULL)
+      //      __thread_data->delete_data();
+      //}
+      //catch( ::exception::base* e )
+      //{
+      //   e->Delete();
+      //}
    }
 
 
@@ -326,7 +326,7 @@ post_thread_message
 */
    bool application::process_initialize()
    {
-      if(::ca2::application_base::m_p->is_system())
+      //if(::ca2::application_base::m_p->is_system())
       {
 /*
 if(__get_module_state()->m_pmapHWND == NULL)
@@ -356,7 +356,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
    bool application::initialize1()
    {
 
-      ::thread::m_p->set_run();
+      ::thread::m_pimpl->set_run();
 
       return true;
 
@@ -379,9 +379,9 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
       // avoid calling CloseHandle() on our own thread handle
       // during the thread destructor
-      ::thread::m_p->set_os_data(NULL);
+      ::thread::m_pimpl->set_os_data(NULL);
 
-      ANDROID_THREAD(::thread::m_p.m_p)->m_bRun = false;
+      //ANDROID_THREAD(::thread::m_pimpl.m_p)->m_bRun = false;
       //ANDROID_THREAD(::ca2::application_base::m_p->::ca2::thread_sp::m_p)->m_bRun = false;
 
       int32_t iRet = ::base::application::exit_instance();
@@ -394,7 +394,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
    }
 /*
    // Advanced: exception handling
-   LRESULT application::ProcessWndProcException(base_exception* e, const MESSAGE* pMsg)
+   LRESULT application::ProcessWndProcException(::exception::base* e, const MESSAGE* pMsg)
    {
       return   ::win::thread::ProcessWndProcException(e, pMsg);
    }
@@ -449,9 +449,9 @@ if(__get_module_state()->m_pmapHWND == NULL)
    void application::ShowWaitCursor(bool bShow)
    {
 
-      mutex_lock mlUser(user_mutex(), true);
+      synch_lock mlUser(&user_mutex());
 
-      mutex_lock mlOsWindow(*::oswindow_data::s_pmutex, true);
+      synch_lock mlOsWindow(::oswindow_data::s_pmutex);
 
       unsigned int uiShape = 0;
 
@@ -498,12 +498,12 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
    sp(::window) application::window_from_os_data(void * pdata)
    {
-      return ::android::window::from_handle((oswindow) pdata);
+      return ::window_from_handle((oswindow) pdata);
    }
 
    sp(::window) application::window_from_os_data_permanent(void * pdata)
    {
-      sp(::window) pwnd = ::android::window::FromHandlePermanent((oswindow) pdata);
+      sp(::window) pwnd = ::window_from_handle((oswindow) pdata);
       if(pwnd != NULL)
          return pwnd;
       user::interaction_ptr_array wndptra = System.frames();
@@ -517,21 +517,6 @@ if(__get_module_state()->m_pmapHWND == NULL)
       return NULL;
    }
 
-   ::thread * application::GetThread()
-   {
-      if(__get_thread() == NULL)
-         return NULL;
-      else
-         return dynamic_cast < ::thread * > (__get_thread()->m_p.m_p);
-   }
-
-   void application::set_thread(::thread * pthread)
-   {
-      __set_thread(pthread);
-   }
-
-   ///////////////////////////////////////////////////////////////////////////
-   // application Initialization
 
    void application::SetCurrentHandles()
    {
@@ -571,27 +556,10 @@ if(__get_module_state()->m_pmapHWND == NULL)
       // get the exe title from the full path name [no extension]
       strExeName = System.get_module_title();
 
-      __get_module_state()->m_lpszCurrentAppName = strdup(m_strAppName);
-
-      // initialize thread state
-      __MODULE_STATE* pModuleState = __get_module_state();
-      ENSURE(pModuleState);
-      if(pModuleState->m_pCurrentWinApp == NULL)
-      {
-         __MODULE_THREAD_STATE* pThreadState = pModuleState->m_thread;
-         ENSURE(pThreadState);
-         pThreadState->m_pCurrentWinThread = dynamic_cast < class ::android::thread * > (::thread::m_p.m_p);
-
-         // initialize application state
-         //ASSERT(afxCurrentWinApp == NULL); // only one application object please
-         pModuleState->m_pCurrentWinApp = dynamic_cast < application * > (this);
-         //ASSERT(&System == this);
-      }
-
 
 //      dynamic_cast < ::android::thread * > ((smart_pointer < ::base::application >::m_p->::ca2::thread_sp::m_p))->m_hThread = __get_thread()->m_hThread;
   //    dynamic_cast < ::android::thread * > ((smart_pointer < ::base::application >::m_p->::ca2::thread_sp::m_p))->m_nThreadID = __get_thread()->m_nThreadID;
-      dynamic_cast < class ::android::thread * > (::thread::m_p.m_p)->m_hThread      =  ::GetCurrentThread();
+      //m_pimpl->m_hthread      =  ::GetCurrentThread();
 
 
    }
@@ -652,12 +620,12 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
 
 
-   bool application::set_main_init_data(::ca2::main_init_data * pdata)
+   bool application::set_main_init_data(::base::main_init_data * pdata)
    {
 
       m_pmaininitdata = (::android::main_init_data *) pdata;
 
-      if(m_pmaininitdata != NULL && ::ca2::application_base::m_p->is_system())
+      if(m_pmaininitdata != NULL && is_system())
       {
          if(!win_init(m_pmaininitdata))
             return false;
@@ -680,10 +648,10 @@ if(__get_module_state()->m_pmapHWND == NULL)
 // xxx         SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 
          // set resource handles
-         __MODULE_STATE* pModuleState = __get_module_state();
-         pModuleState->m_hCurrentInstanceHandle = hInstance;
-         pModuleState->m_hCurrentResourceHandle = hInstance;
-         pModuleState->CreateActivationContext();
+         //__MODULE_STATE* pModuleState = __get_module_state();
+         //pModuleState->m_hCurrentInstanceHandle = hInstance;
+         //pModuleState->m_hCurrentResourceHandle = hInstance;
+         //pModuleState->CreateActivationContext();
 
          // fill in the initial state for the application
          // Windows specific initialization (not done if no application)
@@ -696,7 +664,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
          SetCurrentHandles();
 
          // initialize thread specific data (for main thread)
-         if (!afxContextIsDLL)
+         //if (!afxContextIsDLL)
             __init_thread();
 
          // Initialize ::window::m_pfnNotifyWinEvent

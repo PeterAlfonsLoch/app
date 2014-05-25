@@ -7,7 +7,7 @@ namespace android
 
    crypto::crypto(sp(::base::application) papp) :
       element(papp),
-      ::ca2::crypto(papp)
+      ::crypto::crypto(papp)
    {
    }
 
@@ -28,13 +28,13 @@ namespace android
    bool crypto::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
    {
 
-      simple_memory memOut;
+      ::primitive::memory memOut;
 
-      simple_memory memIn;
+      ::primitive::memory memIn;
 
-      memIn.write(storageEncrypt.get_data(), storageEncrypt.get_size());
+      memIn.assign(storageEncrypt.get_data(), storageEncrypt.get_size());
 
-      if(!::crypt_decrypt(memOut, memIn, pszSalt))
+      if(!::crypto_decrypt(memOut, memIn, pszSalt))
          return false;
 
 
@@ -47,13 +47,13 @@ namespace android
    bool crypto::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt)
    {
 
-      simple_memory memOut;
+      ::primitive::memory memOut;
 
-      simple_memory memIn;
+      ::primitive::memory memIn;
 
-      memIn.write(storageDecrypt.get_data(), storageDecrypt.get_size());
+      memIn.assign(storageDecrypt.get_data(), storageDecrypt.get_size());
 
-      if(!::crypt_encrypt(memOut, memIn, pszSalt))
+      if(!::crypto_encrypt(memOut, memIn, pszSalt))
          return false;
 
 

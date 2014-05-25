@@ -11,16 +11,16 @@
 
 //#include "sal.h"
 
-CLASS_DECL_BASE void hook_window_create(sp(::user::interaction) pWnd);
-CLASS_DECL_BASE bool unhook_window_create();
-void CLASS_DECL_BASE __pre_init_dialog(
-   sp(::user::interaction) pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
-void CLASS_DECL_BASE __post_init_dialog(
-   sp(::user::interaction) pWnd, const RECT& rectOld, DWORD dwStyleOld);
-LRESULT CALLBACK
-   __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam);
-
-const char gen_OldWndProc[] = "::ca2::OldWndProc423";
+//CLASS_DECL_BASE void hook_window_create(sp(::user::interaction) pWnd);
+//CLASS_DECL_BASE bool unhook_window_create();
+//void CLASS_DECL_BASE __pre_init_dialog(
+//   sp(::user::interaction) pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
+//void CLASS_DECL_BASE __post_init_dialog(
+//   sp(::user::interaction) pWnd, const RECT& rectOld, DWORD dwStyleOld);
+//LRESULT CALLBACK
+//   __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam);
+//
+//const char gen_OldWndProc[] = "::ca2::OldWndProc423";
 
 /*const char gen_WndControlBar[] = __WNDCONTROLBAR;
 const char gen_WndMDIFrame[] = __WNDMDIFRAME;
@@ -68,10 +68,10 @@ namespace android
    window::window()
    {
       m_pcallback = NULL;
-      m_pguie = this;
-//      set_handle(NULL);
-      m_pguieOwner = NULL;
-      m_pguie->m_nFlags = 0;
+//      m_pguie = this;
+////      set_handle(NULL);
+//      m_pguieOwner = NULL;
+      //m_pguie->m_nFlags = 0;
 //      m_pfnSuper = NULL;
       m_nModalResult = 0;
       m_bMouseHover = false;
@@ -91,10 +91,10 @@ namespace android
    void window::construct(oswindow hWnd)
    {
       m_pcallback = NULL;
-      m_pguie = this;
+      //m_pguie = this;
       m_oswindow = hWnd;
       //set_handle(hWnd);
-      m_pguie->m_nFlags = 0;
+      //m_pguie->m_nFlags = 0;
 //      m_pfnSuper = NULL;
       m_nModalResult = 0;
       m_bMouseHover = false;
@@ -945,7 +945,7 @@ d.unlock();
             return; // let go
          ASSERT(pMap != NULL);
 
-         //         ::ca2::object* p=NULL;
+         //         ::object* p=NULL;
          /*if(pMap)
          {
          ASSERT( (p = pMap->lookup_permanent(get_handle())) != NULL ||
@@ -973,7 +973,7 @@ d.unlock();
 
    void window::dump(dump_context & dumpcontext) const
    {
-      ::ca2::object::dump(dumpcontext);
+      ::object::dump(dumpcontext);
 
       dumpcontext << "\nm_hWnd = " << (void *)get_handle();
 
@@ -2670,7 +2670,7 @@ return 0;
    sp(::user::interaction) pWnd = hWndChild;
    if (strIdc == pszIdLeftOver)
    hWndLeftOver = hWndChild;
-   else if (::ca2::str::begins(strIdc, pszPrefix) && pWnd != NULL)
+   else if (::str::begins(strIdc, pszPrefix) && pWnd != NULL)
    hWndChild->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
    }
    for (int32_t i = 0; i < m_pguie->m_uiptra.get_count();   i++)
@@ -2680,7 +2680,7 @@ return 0;
    sp(::user::interaction) pWnd = hWndChild;
    if (strIdc == pszIdLeftOver)
    hWndLeftOver = hWndChild;
-   else if (::ca2::str::begins(strIdc, pszPrefix) && pWnd != NULL)
+   else if (::str::begins(strIdc, pszPrefix) && pWnd != NULL)
    hWndChild->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
    }
    }
@@ -2693,7 +2693,7 @@ return 0;
    sp(::user::interaction) pWnd = hWndChild;
    if (strIdc == pszIdLeftOver)
    hWndLeftOver = hWndChild;
-   else if (::ca2::str::begins(strIdc, pszPrefix) && pWnd != NULL)
+   else if (::str::begins(strIdc, pszPrefix) && pWnd != NULL)
    hWndChild->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
    }
    for (int32_t i = 0; i < m_uiptra.get_count();   i++)
@@ -2703,7 +2703,7 @@ return 0;
    sp(::user::interaction) pWnd = hWndChild;
    if (strIdc == pszIdLeftOver)
    hWndLeftOver = hWndChild;
-   else if (::ca2::str::begins(strIdc, pszPrefix) && pWnd != NULL)
+   else if (::str::begins(strIdc, pszPrefix) && pWnd != NULL)
    hWndChild->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
    }
    }
@@ -3225,7 +3225,7 @@ return 0;
 
    void window::get_app_wnda(user::oswindow_array & wnda)
    {
-      throw not_implemented(::ca2::get_thread_app());
+      throw not_implemented(::get_thread_app());
 //      EnumWindows(GetAppsEnumWindowsProc, (LPARAM) &wnda);
    }
 
@@ -3236,7 +3236,7 @@ return 0;
 
 
    class print_window :
-      virtual ::ca2::object
+      virtual ::object
    {
    public:
 
@@ -3654,7 +3654,7 @@ throw not_implemented(get_app());
    bool PASCAL window::GrayCtlColor(HDC hDC, oswindow hWnd, UINT nCtlColor,
       HBRUSH hbrGray, COLORREF clrText)
    {
-      throw not_implemented(::ca2::get_thread_app());
+      throw not_implemented(::get_thread_app());
 //      if (hDC == NULL)
 //      {
 //         // sometimes Win32 passes a NULL hDC in the WM_CTLCOLOR message.
@@ -3714,7 +3714,7 @@ throw not_implemented(get_app());
    ASSERT(!bOK);
    // Note: DELETE_EXCEPTION_(e) not required
    }
-   catch(base_exception * pe)
+   catch(::exception::base * pe)
    {
    // validation failed due to OOM or other resource failure
    //e->ReportError(MB_ICONEXCLAMATION, __IDP_INTERNAL_FAILURE);
@@ -4008,7 +4008,7 @@ throw not_implemented(get_app());
       oswindow hWndParent = ::GetParent((oswindow)get_handle());
       m_iModal = m_iModalCount;
       int32_t iLevel = m_iModal;
-      oprop(string("RunModalLoop.thread(") + ::ca2::str::from(iLevel) + ")") = System.GetThread();
+      oprop(string("RunModalLoop.thread(") + ::str::from(iLevel) + ")") = System.GetThread();
       m_iModalCount++;
 
       m_iaModalThread.add(::GetCurrentThreadId());
@@ -4194,7 +4194,7 @@ ExitModal:
          System.GetThread()->post_thread_message(WM_NULL);
          for(int32_t i = iLevel; i >= 0; i--)
          {
-            ::thread * pthread = oprop(string("RunModalLoop.thread(") + ::ca2::str::from(i) + ")").ca2 < ::thread > ();
+            ::thread * pthread = oprop(string("RunModalLoop.thread(") + ::str::from(i) + ")").ca2 < ::thread > ();
             try
             {
                pthread->post_thread_message(WM_NULL);
@@ -5713,7 +5713,7 @@ if(psurface == g_cairosurface)
    sp(::window) window::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
    {
 
-      throw not_implemented(::ca2::get_thread_app());
+      throw not_implemented(::get_thread_app());
 //      return ::android::window::from_handle(::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow));
 
    }
@@ -5771,7 +5771,7 @@ if(psurface == g_cairosurface)
    {
 
 
-      throw not_implemented(::ca2::get_thread_app());
+      throw not_implemented(::get_thread_app());
 //      return ::android::window::from_handle(::oswindowFromPoint(point));
 
    }
@@ -5816,7 +5816,7 @@ if(psurface == g_cairosurface)
    sp(::window) PASCAL window::GetOpenClipboardWindow()
    {
 
-      throw not_implemented(::ca2::get_thread_app());
+      throw not_implemented(::get_thread_app());
 //      return ::android::window::from_handle(::GetOpenClipboardWindow());
 
    }
@@ -5824,7 +5824,7 @@ if(psurface == g_cairosurface)
    sp(::window) PASCAL window::GetClipboardOwner()
    {
 
-      throw not_implemented(::ca2::get_thread_app());
+      throw not_implemented(::get_thread_app());
 //      return ::android::window::from_handle(::GetClipboardOwner());
 
    }
@@ -5832,7 +5832,7 @@ if(psurface == g_cairosurface)
    sp(::window) PASCAL window::GetClipboardViewer()
    {
 
-      throw not_implemented(::ca2::get_thread_app());
+      throw not_implemented(::get_thread_app());
 //      return ::android::window::from_handle(::GetClipboardViewer());
 
    }
@@ -5867,7 +5867,7 @@ if(psurface == g_cairosurface)
    point PASCAL window::GetcaretPos()
    {
 
-      throw not_implemented(::ca2::get_thread_app());
+      throw not_implemented(::get_thread_app());
 //      point point;
 //      ::GetcaretPos((LPPOINT)&point); return point;
 
@@ -5876,7 +5876,7 @@ if(psurface == g_cairosurface)
    void PASCAL window::SetcaretPos(POINT point)
    {
 
-    throw not_implemented(::ca2::get_thread_app());
+    throw not_implemented(::get_thread_app());
 //      ::SetcaretPos(point.x, point.y);
 
    }
@@ -5910,7 +5910,7 @@ if(psurface == g_cairosurface)
 
       return NULL;
 
-         throw not_implemented(::ca2::get_thread_app());
+         throw not_implemented(::get_thread_app());
 //      return ::android::window::from_handle(::GetForegroundWindow());
 
    }
@@ -6323,7 +6323,7 @@ if(psurface == g_cairosurface)
          hWndTemp = ::GetParent(hWndTop);
       }
 
-      throw todo(::ca2::get_thread_app());
+      throw todo(::get_thread_app());
       // get last active popup of first non-child that was found
   //    if (hParent == NULL && hWnd != NULL)
   //       hWnd = ::GetLastActivePopup(hWnd);
@@ -6406,7 +6406,7 @@ if(psurface == g_cairosurface)
 //         }
 //         return -1;
 //      }
-//      catch(base_exception * pe)
+//      catch(::exception::base * pe)
 //      {
 //         __process_window_procedure_exception(pe, spbase);
 //         //         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Uncaught exception in message_handler (returning %ld).\n", spbase->get_lresult());
@@ -6443,7 +6443,7 @@ if(psurface == g_cairosurface)
    LRESULT CALLBACK __cbt_filter_hook(int32_t code, WPARAM wparam, LPARAM lparam)
    {
 
-      throw not_implemented(::ca2::get_thread_app());
+      throw not_implemented(::get_thread_app());
 
 //      ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
 //      if (code != HCBT_CREATEWND)
@@ -6683,7 +6683,7 @@ LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPA
 //   if (nMsg == WM_QUERYAFXWNDPROC)
   //    return 1;
 
-   throw not_implemented(::ca2::get_thread_app());
+   throw not_implemented(::get_thread_app());
 
 //   // all other messages route through message ::collection::map
 //   sp(::window) pWnd = ::android::window::FromHandlePermanent(hWnd);
@@ -6746,7 +6746,7 @@ __STATIC void CLASS_DECL_BASE __post_init_dialog(
 CLASS_DECL_BASE void hook_window_create(sp(::user::interaction) pWnd)
 {
 
-//      throw not_implemented(::ca2::get_thread_app());
+//      throw not_implemented(::get_thread_app());
    ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
    if (pThreadState->m_pWndInit == pWnd)
       return;
@@ -6786,7 +6786,7 @@ CLASS_DECL_BASE const char * __register_window_class(UINT nClassStyle,
 
    return NULL;
 
-   throw not_implemented(::ca2::get_thread_app());
+   throw not_implemented(::get_thread_app());
 
 //   // Returns a temporary string name for the class
 //   //  Save in a string if you want to use it for a long time
@@ -6842,7 +6842,7 @@ __STATIC void CLASS_DECL_BASE
    __handle_activate(::window * pWnd, WPARAM nState, sp(::window) pWndOther)
 {
 
-      throw not_implemented(::ca2::get_thread_app());
+      throw not_implemented(::get_thread_app());
 //   ASSERT(pWnd != NULL);
 //
 //   // send WM_ACTIVATETOPLEVEL when top-level parents change
@@ -6873,7 +6873,7 @@ __STATIC bool CLASS_DECL_BASE
    __handle_set_cursor(::window * pWnd, UINT nHitTest, UINT nMsg)
 {
 
-      throw not_implemented(::ca2::get_thread_app());
+      throw not_implemented(::get_thread_app());
 //   if (nHitTest == HTERROR &&
 //      (nMsg == WM_LBUTTONDOWN || nMsg == WM_MBUTTONDOWN ||
 //      nMsg == WM_RBUTTONDOWN))
@@ -7050,7 +7050,7 @@ LRESULT CALLBACK
    __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam)
 {
 
-      throw not_implemented(::ca2::get_thread_app());
+      throw not_implemented(::get_thread_app());
 //   WNDPROC oldWndProc = (WNDPROC)::GetProp(hWnd, gen_OldWndProc);
 //   ASSERT(oldWndProc != NULL);
 //
@@ -7093,7 +7093,7 @@ LRESULT CALLBACK
 //      if (bcallDefault)
 //         lResult = callWindowProc(oldWndProc, hWnd, nMsg, wparam, lparam);
 //   }
-//   catch(base_exception * pe)
+//   catch(::exception::base * pe)
 //   {
 //      // handle exception
 //      MESSAGE msg;
@@ -7151,7 +7151,7 @@ LRESULT CALLBACK
 //         *pModuleState->m_pstrUnregisterList += lpWndClass->lpszClassName;
 //         *pModuleState->m_pstrUnregisterList +='\n';
 //      }
-//      catch(base_exception * pe)
+//      catch(::exception::base * pe)
 //      {
 //         ::ca2::rethrow(pe);
 //         // Note: DELETE_EXCEPTION not required.

@@ -2456,6 +2456,9 @@
     <ClInclude Include="core\core\core_util1.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
+    <ClInclude Include="core\core\core_simple_app.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="compress\compress_archive.cpp">
@@ -4020,6 +4023,9 @@
     </ClCompile>
     <ClCompile Include="core\core\core_timer_window.cpp">
       <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_simple_app.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

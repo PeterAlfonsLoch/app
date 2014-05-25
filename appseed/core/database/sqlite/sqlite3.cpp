@@ -20810,7 +20810,7 @@ afp_end_lock:
    ** error message.
    */
    static void unixDlError(sqlite3_vfs *pVfs, int32_t nBuf, char *zBufOut){
-      char *zErr;
+      const char *zErr;
       enterMutex();
       zErr = dlerror();
       if( zErr ){

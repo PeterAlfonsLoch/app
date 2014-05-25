@@ -61,7 +61,7 @@ namespace android
 
    }
 
-   sp(::ca2::file) file::Duplicate() const
+   ::file::buffer_sp file::Duplicate() const
    {
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
@@ -92,7 +92,7 @@ namespace android
       nOpenFlags &= ~(UINT)type_binary;
 
 
-      if(nOpenFlags & ::ca2::file::defer_create_directory)
+      if(nOpenFlags & ::file::buffer::defer_create_directory)
       {
          System.dir_mk(System.dir_name(lpszFileName));
       }
@@ -102,7 +102,7 @@ namespace android
       m_strFileName.Empty();
 
       m_strFileName     = lpszFileName;
-      m_wstrFileName    = ::ca2::international::utf8_to_unicode(m_strFileName);
+      m_wstrFileName    = ::str::international::utf8_to_unicode(m_strFileName);
 
       ASSERT(sizeof(HANDLE) == sizeof(uint_ptr));
       ASSERT(shareCompat == 0);
@@ -160,7 +160,7 @@ namespace android
       dwPermission |= S_IRGRP | S_IWGRP | S_IXGRP;
 
       // attempt file creation
-      //HANDLE hFile = shell::CreateFile(::ca2::international::utf8_to_unicode(m_strFileName), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
+      //HANDLE hFile = shell::CreateFile(::str::international::utf8_to_unicode(m_strFileName), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
       int32_t hFile = ::open(m_strFileName, dwFlags, dwPermission); //::open(m_strFileName, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
       if(hFile == -1)
       {
@@ -200,7 +200,7 @@ namespace android
             return FALSE;
          }
 
-         m_strFileName = ::ca2::international::unicode_to_utf8(m_wstrFileName);
+         m_strFileName = ::str::international::unicode_to_utf8(m_wstrFileName);
 
          hFile = ::open(m_strFileName, nOpenFlags);*/
 
@@ -305,7 +305,7 @@ namespace android
          //vfxThrowFileException(get_app(), ::ca2::file_exception::diskFull, -1, m_strFileName);
    }
 
-   file_position file::seek(file_offset lOff, ::ca2::e_seek nFrom)
+   file_position file::seek(file_offset lOff, ::file::e_seek nFrom)
    {
 
       if(m_iFile == (UINT)hFileNull)
@@ -415,7 +415,7 @@ namespace android
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
 
-      seek((LONG)dwNewLen, (::ca2::e_seek)::ca2::seek_begin);
+      seek((LONG)dwNewLen, (::file::e_seek)::ca2::seek_begin);
 
 #ifdef __LP64
       if (!::ftruncate64(m_iFile, dwNewLen))
@@ -475,13 +475,13 @@ namespace android
 
    void file::assert_valid() const
    {
-      ::ca2::object::assert_valid();
+      ::object::assert_valid();
       // we permit the descriptor m_iFile to be any value for derived classes
    }
 
    void file::dump(dump_context & dumpcontext) const
    {
-      ::ca2::object::dump(dumpcontext);
+      ::object::dump(dumpcontext);
 
       dumpcontext << "with handle " << (UINT)m_iFile;
       dumpcontext << " and name \"" << m_strFileName << "\"";
@@ -542,7 +542,7 @@ namespace android
    {
       ASSERT_VALID(this);
 
-      ::ca2::file_status status;
+      ::file::file_status status;
       GetStatus(status);
       return System.file().name_(status.m_strFullName);
    }
@@ -551,7 +551,7 @@ namespace android
    {
       ASSERT_VALID(this);
 
-      ::ca2::file_status status;
+      ::file::file_status status;
       GetStatus(status);
       return System.file().title_(status.m_strFullName);
    }
@@ -560,7 +560,7 @@ namespace android
    {
       ASSERT_VALID(this);
 
-      ::ca2::file_status status;
+      ::file::file_status status;
       GetStatus(status);
       return status.m_strFullName;
    }
@@ -757,7 +757,7 @@ namespace android
    }
 
 
-   // IMPLEMENT_DYNAMIC(WinFileException, base_exception)
+   // IMPLEMENT_DYNAMIC(WinFileException, ::exception::base)
 
    /////////////////////////////////////////////////////////////////////////////
 
@@ -767,11 +767,11 @@ namespace android
    /////////////////////////////////////////////////////////////////////////////
    // file Status implementation
 
-   bool file::GetStatus(::ca2::file_status& rStatus) const
+   bool file::GetStatus(::file::file_status& rStatus) const
    {
       ASSERT_VALID(this);
 
-      //memset(&rStatus, 0, sizeof(::ca2::file_status));
+      //memset(&rStatus, 0, sizeof(::file::file_status));
 
       // copy file name from cached m_strFileName
       rStatus.m_strFullName = m_strFileName;
@@ -797,7 +797,7 @@ namespace android
             rStatus.m_attribute = 0;
 /*         else
          {
-            DWORD dwAttribute = ::GetFileAttributesW(::ca2::international::utf8_to_unicode(m_strFileName));
+            DWORD dwAttribute = ::GetFileAttributesW(::str::international::utf8_to_unicode(m_strFileName));
 
             // don't return an error for this because previous versions of ca2 API didn't
             if (dwAttribute == 0xFFFFFFFF)
@@ -831,18 +831,18 @@ namespace android
    }
 
 
-   bool PASCAL file::GetStatus(const char * lpszFileName, ::ca2::file_status& rStatus)
+   bool PASCAL file::GetStatus(const char * lpszFileName, ::file::file_status& rStatus)
    {
       // attempt to fully qualify path first
       wstring wstrFullName;
       wstring wstrFileName;
-      wstrFileName = ::ca2::international::utf8_to_unicode(lpszFileName);
+      wstrFileName = ::str::international::utf8_to_unicode(lpszFileName);
       if (!vfxFullPath(wstrFullName, wstrFileName))
       {
          rStatus.m_strFullName.Empty();
          return FALSE;
       }
-      ::ca2::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
+      ::str::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
 
       struct stat st;
       if(stat(lpszFileName, &st) == -1)
@@ -959,7 +959,7 @@ namespace android
    */
 
    /*
-   void PASCAL file::SetStatus(const char * lpszFileName, const ::ca2::file_status& status)
+   void PASCAL file::SetStatus(const char * lpszFileName, const ::file::file_status& status)
    {
    DWORD wAttr;
    FILETIME creationTime;
@@ -1292,12 +1292,12 @@ CLASS_DECL_BASE void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
    if(::GetShortPathNameW(szLongPathName, wstrShortName.alloc(_MAX_PATH * 4), _MAX_PATH * 4) == 0)
    {
       // rare failure case (especially on not-so-modern file systems)
-      ::ca2::international::unicode_to_utf8(strShortName, szLongPathName);
+      ::str::international::unicode_to_utf8(strShortName, szLongPathName);
    }
    else
    {
       wstrShortName.release_buffer();
-      ::ca2::international::unicode_to_utf8(strShortName, wstrShortName);
+      ::str::international::unicode_to_utf8(strShortName, wstrShortName);
    }*/
 //}
 
@@ -1366,7 +1366,7 @@ CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSour
    sp(::user::interaction) pui = puiMessageParentOptional;
 
    wstring wstrFileOut;
-   wstring wstrFileIn = ::ca2::international::utf8_to_unicode(pszSource);
+   wstring wstrFileIn = ::str::international::utf8_to_unicode(pszSource);
 
    DWORD dwVersion = GetVersion();
 
@@ -1428,7 +1428,7 @@ CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSour
             {
                bOk = true;
                wstrFileOut.release_buffer();
-               strTarget = ::ca2::international::unicode_to_utf8((LPCWSTR) wstrFileOut);
+               strTarget = ::str::international::unicode_to_utf8((LPCWSTR) wstrFileOut);
             }
             else
             {
@@ -1472,7 +1472,7 @@ CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSour
 
    // get file system information for the volume
    DWORD dwFlags, dwDummy;
-   if (!GetVolumeInformationW(::ca2::international::utf8_to_unicode(strRoot), NULL, 0, NULL, &dwDummy, &dwFlags, NULL, 0))
+   if (!GetVolumeInformationW(::str::international::utf8_to_unicode(strRoot), NULL, 0, NULL, &dwDummy, &dwFlags, NULL, 0))
    {
       //      TRACE1("Warning: could not get volume information '%s'.\n", strRoot);
       return FALSE;   // preserving case may not be correct
@@ -1583,7 +1583,7 @@ void CLASS_DECL_BASE vfxGetRoot(const wchar_t * lpszPath, string& strRoot)
       if (*lpsz != '\0')
          lpsz[1] = '\0';
    }
-   ::ca2::international::unicode_to_utf8(strRoot, wstrRoot);
+   ::str::international::unicode_to_utf8(strRoot, wstrRoot);
 }
 */
 

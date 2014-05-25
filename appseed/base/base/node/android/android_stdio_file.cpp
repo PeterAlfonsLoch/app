@@ -29,13 +29,13 @@ bool stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
    ASSERT(lpszFileName != NULL);
    //ASSERT(AfxIsValidString(lpszFileName));
 
-   if(nOpenFlags  & ::ca2::file::defer_create_directory)
+   if(nOpenFlags  & ::file::buffer::defer_create_directory)
    {
       Application.dir().mk(System.dir().name(lpszFileName));
    }
 
    m_pStream = NULL;
-   //if (!::android::file::open(lpszFileName, (nOpenFlags & ~::ca2::file::type_text)))
+   //if (!::android::file::open(lpszFileName, (nOpenFlags & ~::file::type_text)))
      // return FALSE;
 
 //   ASSERT(m_hFile != hFileNull);
@@ -44,7 +44,7 @@ bool stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
    char szMode[4]; // C-runtime open string
    int32_t nMode = 0;
 
-   // determine read/write mode depending on ::ca2::filesp mode
+   // determine read/write mode depending on ::file::buffer_sp mode
    if (nOpenFlags & mode_create)
    {
       if (nOpenFlags & modeNoTruncate)
@@ -225,7 +225,7 @@ UINT stdio_file::read_string(string & rString)
    return lpszResult;
 }*/
 
-file_position stdio_file::seek(file_offset lOff, ::ca2::e_seek eseek)
+file_position stdio_file::seek(file_offset lOff, ::file::e_seek eseek)
 {
    ASSERT_VALID(this);
    ASSERT(eseek == ::ca2::seek_begin || eseek== ::ca2::seek_end || eseek== ::ca2::seek_current);
@@ -306,7 +306,7 @@ void stdio_file::Abort()
    m_bCloseOnDelete = FALSE;
 }
 
-sp(::ca2::file) stdio_file::Duplicate() const
+::file::buffer_sp stdio_file::Duplicate() const
 {
    ASSERT_VALID(this);
    ASSERT(m_pStream != NULL);

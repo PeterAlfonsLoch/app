@@ -9,8 +9,8 @@ namespace android
 
 
    dir::dir(sp(::base::application) papp) :
-      ::ca2::element(papp),
-      ::ca2::dir::system(papp),
+      ::element(papp),
+      ::file::dir::system(papp),
       m_path(papp)
    {
 
@@ -159,13 +159,13 @@ namespace android
    string dir::relpath(const char * lpcszSource, const char * lpcszRelative, const char * psz2)
    {
       const char * pszRequest;
-      if(::ca2::is_url(lpcszSource, &pszRequest))
+      if(::url::is_url(lpcszSource, &pszRequest))
       {
-         if(::ca2::str::begins(lpcszRelative, "/"))
+         if(::str::begins(lpcszRelative, "/"))
          {
             return path((const char *) string(lpcszSource, pszRequest - lpcszSource), lpcszRelative);
          }
-         else if(*pszRequest == '\0' || ::ca2::str::ends(lpcszSource, "/"))
+         else if(*pszRequest == '\0' || ::str::ends(lpcszSource, "/"))
          {
             return path(lpcszSource, lpcszRelative, psz2);
          }
@@ -176,7 +176,7 @@ namespace android
       }
       else
       {
-         if(::ca2::str::ends(lpcszSource, "\\") || ::ca2::str::ends(lpcszSource, "/"))
+         if(::str::ends(lpcszSource, "\\") || ::str::ends(lpcszSource, "/"))
          {
             return path(lpcszSource, lpcszRelative, psz2);
          }
@@ -216,26 +216,26 @@ namespace android
       free(lpszAlloc);*/
    }
 
-   void dir::ls_pattern(sp(::base::application) papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize)
+   void dir::ls_pattern(sp(::base::application) papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
    {
 
-      if(::ca2::dir::system::is(lpcsz, papp)) // if base class "already" "says" it is a dir, let it handle it: may be not a operational system dir, e.g., zip or compressed directory...
+      if(::file::dir::system::is(lpcsz, papp)) // if base class "already" "says" it is a dir, let it handle it: may be not a operational system dir, e.g., zip or compressed directory...
       {
 
-         return ::ca2::dir::system::ls_pattern(papp, lpcsz, pszPattern, pstraPath, pstraTitle, pbaIsDir, piaSize);
+         return ::file::dir::system::ls_pattern(papp, lpcsz, pszPattern, pstraPath, pstraTitle, pbaIsDir, piaSize);
 
       }
 
       string strDir(lpcsz);
 
-      if(!::ca2::str::ends(strDir, "/"))
+      if(!::str::ends(strDir, "/"))
       {
 
          strDir += "/";
 
       }
 
-      stra_dup stra;
+      stringa stra;
 
       ::dir::ls(stra, lpcsz);
 
@@ -246,7 +246,7 @@ namespace android
 
          string strName = strPath;
 
-         if(!::ca2::str::begins_eat(strName, strDir))
+         if(!::str::begins_eat(strName, strDir))
             continue;
 
          if(!matches_wildcard_criteria(pszPattern, strName))
@@ -309,10 +309,10 @@ namespace android
       rls_pattern(papp, lpcsz, "*.*", pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract);
    }
 
-   void dir::rls_pattern(sp(::base::application) papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize, e_extract eextract)
+   void dir::rls_pattern(sp(::base::application) papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
    {
 
-      stra_dup straDir;
+      stringa straDir;
 
       ::dir::ls_dir(straDir, lpcsz);
 
@@ -349,14 +349,14 @@ namespace android
 
       string strDir(lpcsz);
 
-      if(!::ca2::str::ends(strDir, "/"))
+      if(!::str::ends(strDir, "/"))
       {
 
          strDir += "/";
 
       }
 
-      stra_dup stra;
+      stringa stra;
 
       ::dir::ls(stra, lpcsz);
 
@@ -367,7 +367,7 @@ namespace android
 
          string strName = strPath;
 
-         if(!::ca2::str::begins_eat(strName, strDir))
+         if(!::str::begins_eat(strName, strDir))
             continue;
 
          if(!matches_wildcard_criteria(pszPattern, strName))
@@ -435,13 +435,13 @@ namespace android
    void dir::rls_dir(sp(::base::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
    {
 
-      stra_dup stra;
+      stringa stra;
 
       ::dir::ls(stra, lpcsz);
 
       string strDir(lpcsz);
 
-      if(!::ca2::str::ends(strDir, "/"))
+      if(!::str::ends(strDir, "/"))
       {
 
          strDir += "/";
@@ -456,7 +456,7 @@ namespace android
 
          string strName = strPath;
 
-         if(!::ca2::str::begins_eat(strName, strDir))
+         if(!::str::begins_eat(strName, strDir))
             continue;
 
          if(!System.dir().is(strPath, papp))
@@ -514,13 +514,13 @@ namespace android
    void dir::ls_dir(sp(::base::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
 
-      stra_dup stra;
+      stringa stra;
 
       ::dir::ls(stra, lpcsz);
 
       string strDir(lpcsz);
 
-      if(!::ca2::str::ends(strDir, "/"))
+      if(!::str::ends(strDir, "/"))
       {
 
          strDir += "/";
@@ -535,7 +535,7 @@ namespace android
 
          string strName = strPath;
 
-         if(!::ca2::str::begins_eat(strName, strDir))
+         if(!::str::begins_eat(strName, strDir))
             continue;
 
          if(!System.dir().is(strPath, papp))
@@ -562,13 +562,13 @@ namespace android
    void dir::ls_file(sp(::base::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
 
-      stra_dup stra;
+      stringa stra;
 
       ::dir::ls(stra, lpcsz);
 
       string strDir(lpcsz);
 
-      if(!::ca2::str::ends(strDir, "/"))
+      if(!::str::ends(strDir, "/"))
       {
 
          strDir += "/";
@@ -583,7 +583,7 @@ namespace android
 
          string strName = strPath;
 
-         if(!::ca2::str::begins_eat(strName, strDir))
+         if(!::str::begins_eat(strName, strDir))
             continue;
 
          if(System.dir().is(strPath, papp))
@@ -608,16 +608,16 @@ namespace android
 
    }
 
-   void dir::ls(sp(::base::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize)
+   void dir::ls(sp(::base::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
    {
 
-      stra_dup stra;
+      stringa stra;
 
       ::dir::ls(stra, lpcsz);
 
       string strDir(lpcsz);
 
-      if(!::ca2::str::ends(strDir, "/"))
+      if(!::str::ends(strDir, "/"))
       {
 
          strDir += "/";
@@ -632,7 +632,7 @@ namespace android
 
          string strName = strPath;
 
-         if(!::ca2::str::begins_eat(strName, strDir))
+         if(!::str::begins_eat(strName, strDir))
             continue;
 
          if(pstraPath != NULL)
@@ -711,14 +711,14 @@ namespace android
       }
 
 
-      if(::ca2::dir::system::is(lpcszPath, papp))
+      if(::file::dir::system::is(lpcszPath, papp))
          return true;
 
 
       string strPath(lpcszPath);
       if(strPath.get_length() >= MAX_PATH)
       {
-         if(::ca2::str::begins(strPath, "\\\\"))
+         if(::str::begins(strPath, "\\\\"))
          {
             strPath = "\\\\?\\UNC" + strPath.Mid(1);
          }
@@ -738,7 +738,7 @@ namespace android
    bool dir::is(const string & strPath, sp(::base::application) papp)
    {
 
-      if(::ca2::dir::system::is(strPath, papp))
+      if(::file::dir::system::is(strPath, papp))
          return true;
 
       bool bIsDir;
@@ -762,22 +762,22 @@ namespace android
 
       wstring wstrPath;
 
-      //strsize iLen = ::ca2::international::utf8_to_unicode_count(strPath);
+      //strsize iLen = ::str::international::utf8_to_unicode_count(strPath);
       //wstrPath.alloc(iLen + 32);
-      wstrPath = ::ca2::international::utf8_to_unicode(strPath);
+      wstrPath = ::str::international::utf8_to_unicode(strPath);
       if(wstrPath.get_length() >= MAX_PATH)
       {
-         if(::ca2::str::begins(wstrPath, L"\\\\"))
+         if(::str::begins(wstrPath, L"\\\\"))
          {
-            ::ca2::str::begin(wstrPath, L"\\\\?\\UNC");
+            ::str::begin(wstrPath, L"\\\\?\\UNC");
          }
          else
          {
-            ::ca2::str::begin(wstrPath, L"\\\\?\\");
+            ::str::begin(wstrPath, L"\\\\?\\");
          }
       }
 
-      bIsDir = ::dir::is(::ca2::international::unicode_to_utf8(wstrPath));
+      bIsDir = ::dir::is(::str::international::unicode_to_utf8(wstrPath));
 
       m_isdirmap.set(strPath, bIsDir, bIsDir ? 0 : ::GetLastError());
 
@@ -832,7 +832,7 @@ namespace android
          return true;
       }
 
-      strsize iFind = ::ca2::str::find_ci(".zip:", str);
+      strsize iFind = ::str::find_ci(".zip:", str);
 
       if(papp->m_bZipIsDir && iFind >= 0 && iFind < iLast)
       {
@@ -847,27 +847,27 @@ namespace android
 
       wstring wstrPath;
 
-      //strsize iLen = ::ca2::international::utf8_to_unicode_count(str, iLast + 1);
+      //strsize iLen = ::str::international::utf8_to_unicode_count(str, iLast + 1);
 
       //wstrPath.alloc(iLen + 32);
 
-      wstrPath = ::ca2::international::utf8_to_unicode(str, iLast + 1);
+      wstrPath = ::str::international::utf8_to_unicode(str, iLast + 1);
 
       //OutputDebugStringW(wstrPath);
 
       if(wstrPath.get_length() >= MAX_PATH)
       {
-         if(::ca2::str::begins(wstrPath, L"\\\\"))
+         if(::str::begins(wstrPath, L"\\\\"))
          {
-            ::ca2::str::begin(wstrPath, L"\\\\?\\UNC");
+            ::str::begin(wstrPath, L"\\\\?\\UNC");
          }
          else
          {
-            ::ca2::str::begin(wstrPath, L"\\\\?\\");
+            ::str::begin(wstrPath, L"\\\\?\\");
          }
       }
 
-      bIsDir = ::dir::is(::ca2::international::unicode_to_utf8(wstrPath));
+      bIsDir = ::dir::is(::str::international::unicode_to_utf8(wstrPath));
 
       m_isdirmap.set(str.Left(iLast + 1), bIsDir, bIsDir ? 0 : ::GetLastError());
 
@@ -1019,7 +1019,7 @@ namespace android
                   catch(...)
                   {
                   }
-                  //if(::CreateDirectory(::ca2::international::utf8_to_unicode("\\\\?\\" + stra[i]), NULL))
+                  //if(::CreateDirectory(::str::international::utf8_to_unicode("\\\\?\\" + stra[i]), NULL))
                   if(::dir::mk("\\\\?\\" + stra[i]))
                   {
                      m_isdirmap.set(stra[i], true, 0);
@@ -1142,7 +1142,7 @@ namespace android
    }
 
 
-   class ::ca2::path & dir::path()
+   class ::file::path & dir::path()
    {
       return m_path;
    }
@@ -1323,7 +1323,7 @@ namespace android
             memset(buf, 0, sizeof(buf));
          }
       }*/
-      /*return ::ca2::international::unicode_to_utf8(buf);*/
+      /*return ::str::international::unicode_to_utf8(buf);*/
       return ::getlogin();
    }
 
@@ -1398,7 +1398,7 @@ namespace android
 
    bool dir::is_inside(const char * pszDir, const char * pszPath, sp(::base::application) papp)
    {
-      return ::ca2::str::begins_ci(pszDir, pszPath);
+      return ::str::begins_ci(pszDir, pszPath);
    }
 
    bool dir::has_subdir(sp(::base::application) papp, const char * pszDir)

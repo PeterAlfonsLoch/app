@@ -7,7 +7,7 @@ namespace android
 
    copydesk::copydesk(sp(::base::application) papp) :
       element(papp),
-      ::ca2::copydesk(papp)
+      ::base::copydesk(papp)
    {
 
    }
@@ -47,7 +47,7 @@ namespace android
 
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
-         iLen += ::ca2::international::utf8_to_unicode_count(stra[i]) + 1;
+         iLen += ::str::international::utf8_to_unicode_count(stra[i]) + 1;
       }
 
       throw todo(get_app());
@@ -58,7 +58,7 @@ namespace android
    bool copydesk::initialize()
    {
 
-      if(!::ca2::copydesk::initialize())
+      if(!::base::copydesk::initialize())
          return false;
 
 
@@ -72,7 +72,7 @@ namespace android
 
       bool bOk;
 
-      bOk = ::ca2::copydesk::finalize();
+      bOk = ::base::copydesk::finalize();
 
       return bOk;
 
@@ -83,7 +83,7 @@ namespace android
 
       string str;
 
-      str = ::ca2::international::utf8_to_unicode(psz);
+      str = ::str::international::utf8_to_unicode(psz);
 
 
    }

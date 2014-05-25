@@ -16,18 +16,18 @@ void __cdecl __crt_dump_client(void * pvData, size_t nBytes)
    try
    {
 
-      if(_CrtReportBlockType(pvData) != ___CLIENT_BLOCK)
-         return;
+//      if(_CrtReportBlockType(pvData) != ___CLIENT_BLOCK)
+  //       return;
 
-//      ::ca2::object * pca = (::ca2::object * ) pvData;
+//      ::object * pca = (::object * ) pvData;
 
-      ::ca2::object * pobject = NULL;
+      ::object * pobject = NULL;
 
       /*for(int32_t i = 0; i < 256; i++)
       {
          try
          {
-            pobject = dynamic_cast < ::ca2::object * > ((::ca2::object *)&((int_ptr *)pca)[i]);
+            pobject = dynamic_cast < ::object * > ((::object *)&((int_ptr *)pca)[i]);
          }
          catch(std::__non_rtti_object & e)
          {
@@ -53,7 +53,7 @@ void __cdecl __crt_dump_client(void * pvData, size_t nBytes)
       }
       if(false) // else
       {
-         ::ca2::object & obj = *pobject;
+         ::object & obj = *pobject;
          // short form
 // xxx         C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz, _countof(sz), _countof(sz) - 1, "a %hs object at $%p, %u bytes long\n", typeid(obj).name(), pvData, nBytes));
          g_dumpcontext << sz;
@@ -82,11 +82,11 @@ int32_t __cdecl __crt_report_hook(int32_t nRptType, char *szMsg, int32_t* pResul
 
    ASSERT( pResult != NULL );
    if( pResult == NULL )
-      throw invalid_argument_exception(::ca2::get_thread_app());
+      throw invalid_argument_exception(::get_thread_app());
 
    ASSERT( szMsg != NULL );
    if( szMsg == NULL )
-      throw invalid_argument_exception(::ca2::get_thread_app());
+      throw invalid_argument_exception(::get_thread_app());
 
    // non-NULL m_pFile, so go through g_dumpcontext for the message
    *pResult = FALSE;
@@ -101,55 +101,55 @@ int32_t __cdecl __crt_report_hook(int32_t nRptType, char *szMsg, int32_t* pResul
 
 #ifdef DEBUG
 
-___DEBUG_STATE::___DEBUG_STATE()
-{
-#ifndef ___NO_DEBUG_CRT
-   ASSERT(pfnOldCrtDumpClient == NULL);
-   pfnOldCrtDumpClient = _CrtSetDumpClient(__crt_dump_client);
-
-   ASSERT(_CrtSetReportHook2(_CRT_RPTHOOK_INSTALL,__crt_report_hook) != -1);
-   _CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_WNDW);
-#endif // ___NO_DEBUG_CRT
-}
-
-___DEBUG_STATE::~___DEBUG_STATE()
-{
-#ifndef ___NO_DEBUG_CRT
-   if(::is_debugger_attached() && false)
-   {
-      try
-      {
-         _CrtDumpMemoryLeaks();
-      }
-/*  xxx     catch(std::__non_rtti_object & e)
-      {
-         ::OutputDebugString("~___DEBUG_STATE _CrtdumpMemoryLeaks std::__non_rtti_object\n");
-         ::OutputDebugString(e.what());
-         ::OutputDebugString("\n");
-      } */
-      catch(...)
-      {
-         ::OutputDebugString("~___DEBUG_STATE _CrtdumpMemoryLeaks exception\n");
-      }
-   }
-   int32_t nOldState = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
-   _CrtSetDbgFlag(nOldState & ~_CRTDBG_LEAK_CHECK_DF);
-
-   ASSERT(_CrtSetReportHook2(_CRT_RPTHOOK_REMOVE,__crt_report_hook) != -1);
-   _CrtSetDumpClient(pfnOldCrtDumpClient);
-#endif // ___NO_DEBUG_CRT
-}
-
-PROCESS_LOcaL(___DEBUG_STATE, afxDebugState)
-
-bool CLASS_DECL_BASE __diagnostic_init()
-{
-   // just get the debug state to cause initialization
-   ___DEBUG_STATE* pState = afxDebugState.get_data();
-   ASSERT(pState != NULL);
-
-   return TRUE;
-}
+//___DEBUG_STATE::___DEBUG_STATE()
+//{
+//#ifndef ___NO_DEBUG_CRT
+//   ASSERT(pfnOldCrtDumpClient == NULL);
+//   pfnOldCrtDumpClient = _CrtSetDumpClient(__crt_dump_client);
+//
+//   ASSERT(_CrtSetReportHook2(_CRT_RPTHOOK_INSTALL,__crt_report_hook) != -1);
+//   _CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_WNDW);
+//#endif // ___NO_DEBUG_CRT
+//}
+//
+//___DEBUG_STATE::~___DEBUG_STATE()
+//{
+//#ifndef ___NO_DEBUG_CRT
+//   if(::is_debugger_attached() && false)
+//   {
+//      try
+//      {
+//         _CrtDumpMemoryLeaks();
+//      }
+///*  xxx     catch(std::__non_rtti_object & e)
+//      {
+//         ::OutputDebugString("~___DEBUG_STATE _CrtdumpMemoryLeaks std::__non_rtti_object\n");
+//         ::OutputDebugString(e.what());
+//         ::OutputDebugString("\n");
+//      } */
+//      catch(...)
+//      {
+//         ::OutputDebugString("~___DEBUG_STATE _CrtdumpMemoryLeaks exception\n");
+//      }
+//   }
+//   int32_t nOldState = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
+//   _CrtSetDbgFlag(nOldState & ~_CRTDBG_LEAK_CHECK_DF);
+//
+//   ASSERT(_CrtSetReportHook2(_CRT_RPTHOOK_REMOVE,__crt_report_hook) != -1);
+//   _CrtSetDumpClient(pfnOldCrtDumpClient);
+//#endif // ___NO_DEBUG_CRT
+//}
+//
+//PROCESS_LOcaL(___DEBUG_STATE, afxDebugState)
+//
+//bool CLASS_DECL_BASE __diagnostic_init()
+//{
+//   // just get the debug state to cause initialization
+//   ___DEBUG_STATE* pState = afxDebugState.get_data();
+//   ASSERT(pState != NULL);
+//
+//   return TRUE;
+//}
 
 #endif
 
@@ -157,4 +157,4 @@ bool CLASS_DECL_BASE __diagnostic_init()
 
 //__DATADEF bool g_bTraceEnabled = TRUE;
 //__DATADEF UINT g_uiTraceFlags = 0;
-static bool gen_DiagnosticInit = __diagnostic_init();
+//static bool gen_DiagnosticInit = __diagnostic_init();
