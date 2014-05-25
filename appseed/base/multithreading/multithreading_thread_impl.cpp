@@ -159,7 +159,7 @@ void thread_impl::dispatch_thread_message(signal_details * pobj)
    for(int32_t i = 0; i < signalptra.get_size(); i++)
    {
       Signal & signal = *signalptra[i];
-      ::signal * psignal = signal.m_psignal;
+      class signal * psignal = signal.m_psignal;
       message::e_prototype eprototype = signal.m_eprototype;
       if(eprototype == message::PrototypeNone)
       {
@@ -189,7 +189,7 @@ void thread_impl::pre_translate_message(signal_details * pobj)
       // if this is a thread-message, int16_t-circuit this function
       if(pbase->m_pwnd == NULL)
       {
-         dispatch_thread_message(pobj);
+         m_puser->dispatch_thread_message(pobj);
          if(pobj->m_bRet)
             return;
       }
