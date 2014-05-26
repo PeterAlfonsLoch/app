@@ -1534,25 +1534,8 @@ bool thread_impl::pump_message()
           //     spbase.release();
             }
          }
-         #ifdef WINDOWSEX
-         {
-            ::TranslateMessage(&msg);
-            ::DispatchMessage(&msg);
-         }
-         #else
-         if(msg.hwnd != NULL)
-         {
-
-            if(msg.hwnd->get_user_interaction() != NULL)
-            {
-
-               msg.hwnd->get_user_interaction()->send_message(msg.message,msg.wParam,msg.lParam);
-
-            }
-
-
-         }
-         #endif
+         ::TranslateMessage(&msg);
+         ::DispatchMessage(&msg);
       }
       return TRUE;
    }

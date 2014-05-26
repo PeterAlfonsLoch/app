@@ -1496,3 +1496,5 @@ CLASS_DECL_BASE int_bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prec
 
 
 
+BOOL TranslateMessage(const MESSAGE * pmsg);
+BOOL DispatchMessage(const MESSAGE * pmsg);

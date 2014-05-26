@@ -400,3 +400,40 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError)
 
 #endif
 
+
+
+BOOL TranslateMessage(const MESSAGE * pmsg)
+{
+
+   if(pmsg == NULL)
+      return FALSE;
+
+   if(pmsg->hwnd == NULL)
+      return FALSE;
+
+   if(pmsg->hwnd->get_user_interaction() == NULL)
+      return FALSE;
+
+   return FALSE;
+
+}
+
+
+
+BOOL DispatchMessage(const MESSAGE * pmsg)
+{
+
+   if(pmsg == NULL)
+      return FALSE;
+   
+   if(pmsg->hwnd == NULL)
+      return FALSE;
+
+   if(pmsg->hwnd->get_user_interaction() == NULL)
+      return FALSE;
+
+
+   pmsg->hwnd->get_user_interaction()->send_message(pmsg->message,pmsg->wParam,pmsg->lParam);
+
+
+}
