@@ -185,19 +185,19 @@ uint32_t os_thread::run()
    on_init_thread();
 
 
-   Gdiplus::GdiplusStartupInput     * pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
-   Gdiplus::GdiplusStartupOutput    * pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
-   DWORD_PTR gdiplusToken                                      = NULL;
-   DWORD_PTR gdiplusHookToken                                  = NULL;
+   //Gdiplus::GdiplusStartupInput     * pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
+   //Gdiplus::GdiplusStartupOutput    * pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
+   //DWORD_PTR gdiplusToken                                      = NULL;
+   //DWORD_PTR gdiplusHookToken                                  = NULL;
 
-   Gdiplus::Status statusStartup = GdiplusStartup(&gdiplusToken,pgdiplusStartupInput,pgdiplusStartupOutput);
+   //Gdiplus::Status statusStartup = GdiplusStartup(&gdiplusToken,pgdiplusStartupInput,pgdiplusStartupOutput);
 
-   if(statusStartup != Gdiplus::Ok)
-   {
+   //if(statusStartup != Gdiplus::Ok)
+   //{
 
-      return -1;
+     // return -1;
 
-   }
+   //}
 
    attach_thread_input_to_main_thread();
 
@@ -213,9 +213,6 @@ uint32_t os_thread::run()
    {
    }
 
-   Gdiplus::GdiplusShutdown(gdiplusToken);
-
-   
    on_term_thread();
 
 

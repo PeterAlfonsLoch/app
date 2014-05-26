@@ -1,6 +1,6 @@
 #include "framework.h"
 #include <VersionHelpers.h>
-
+#include <Gdiplus.h>
 #include <ddeml.h>
 
 void __term_threading();
@@ -101,6 +101,9 @@ bool __node_pre_term()
 {
 
    g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
+
+
+   ::Gdiplus::GdiplusShutdown(g_gdiplusToken);
 
    return true;
 
