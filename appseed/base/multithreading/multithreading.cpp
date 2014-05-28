@@ -68,7 +68,12 @@ namespace multithreading
 
       __term_thread();
 
-      __end_thread(pthread->m_pbaseapp,(UINT)nExitCode,bDelete);
+      if(pthread != NULL)
+      {
+
+         __end_thread(pthread->m_pbaseapp,(UINT)nExitCode,bDelete);
+
+      }
 
 
    }
