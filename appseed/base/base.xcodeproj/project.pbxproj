@@ -3259,6 +3259,8 @@
 		07F5B2E0184A403C0092C3E1 /* multithreading_simple_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B2DA184A403C0092C3E1 /* multithreading_simple_thread.cpp */; };
 		07F5B2E1184A403C0092C3E1 /* multithreading_simple_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B2DB184A403C0092C3E1 /* multithreading_simple_thread.h */; };
 		07F5B2E3184A46BC0092C3E1 /* aes_misc.c in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B2E2184A46BC0092C3E1 /* aes_misc.c */; };
+		9A24EE7D19377EED00ECBAD3 /* user_simple_message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A24EE7B19377EED00ECBAD3 /* user_simple_message_box.cpp */; };
+		9A24EE7E19377EED00ECBAD3 /* user_simple_message_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24EE7C19377EED00ECBAD3 /* user_simple_message_box.h */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
@@ -6638,6 +6640,8 @@
 		07F5B2DA184A403C0092C3E1 /* multithreading_simple_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = multithreading_simple_thread.cpp; sourceTree = "<group>"; };
 		07F5B2DB184A403C0092C3E1 /* multithreading_simple_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multithreading_simple_thread.h; sourceTree = "<group>"; };
 		07F5B2E2184A46BC0092C3E1 /* aes_misc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aes_misc.c; sourceTree = "<group>"; };
+		9A24EE7B19377EED00ECBAD3 /* user_simple_message_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_simple_message_box.cpp; sourceTree = "<group>"; };
+		9A24EE7C19377EED00ECBAD3 /* user_simple_message_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_simple_message_box.h; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A98A6151771D67E000AE16E /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA6A7641907F26E000A1F4A /* exception_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = exception_mm.mm; sourceTree = "<group>"; };
@@ -6957,6 +6961,8 @@
 				07884BC21897E9A400DC6CEB /* user_printer.h */,
 				07884BC31897E9A400DC6CEB /* user_server.cpp */,
 				07884BC41897E9A400DC6CEB /* user_server.h */,
+				9A24EE7B19377EED00ECBAD3 /* user_simple_message_box.cpp */,
+				9A24EE7C19377EED00ECBAD3 /* user_simple_message_box.h */,
 				07884BC51897E9A400DC6CEB /* user_str.cpp */,
 				07884BC61897E9A400DC6CEB /* user_str.h */,
 				07884BC71897E9A400DC6CEB /* user_text_interface.cpp */,
@@ -11219,6 +11225,7 @@
 				07B094D718495C2B007A0560 /* collection_pointer_list.h in Headers */,
 				07B0954D18495C2B007A0560 /* str_simple.h in Headers */,
 				0722EC86192556D8003E99F4 /* mac_application.h in Headers */,
+				9A24EE7E19377EED00ECBAD3 /* user_simple_message_box.h in Headers */,
 				0722EC8E192556D8003E99F4 /* mac_dir.h in Headers */,
 				07884DFE1897EC9600DC6CEB /* iso2022_jp.h in Headers */,
 				07B0902918495B41007A0560 /* pem2.h in Headers */,
@@ -12843,6 +12850,7 @@
 				07B0920C18495B42007A0560 /* ssl_algs.c in Sources */,
 				079AE0801886486300635C39 /* primitive_relation_set.cpp in Sources */,
 				07B0901D18495B41007A0560 /* ocsp_err.c in Sources */,
+				9A24EE7D19377EED00ECBAD3 /* user_simple_message_box.cpp in Sources */,
 				07B0954718495C2B007A0560 /* str_istring.cpp in Sources */,
 				07B095EB18495C5F007A0560 /* fontopus_usera.cpp in Sources */,
 				07B095E618495C5F007A0560 /* fontopus_user.cpp in Sources */,
