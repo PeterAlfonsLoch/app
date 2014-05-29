@@ -1407,7 +1407,7 @@ int32_t thread_layer::run()
    while(true)
    {
 
-      //      if(!PeekMessage(&msg, NULL, 0, 0xffffffffu, TRUE))
+      if(!PeekMessage(&msg, NULL, 0, 0xffffffffu, TRUE))
       {
 
          if(!on_idle())
@@ -1417,7 +1417,6 @@ int32_t thread_layer::run()
 
          }
 
-
          continue;
 
       }
@@ -1425,8 +1424,10 @@ int32_t thread_layer::run()
       if(msg.message == WM_QUIT)
          break;
 
-      //      TranslateMessage(&msg);
-      //      DispatchMessage(&msg);
+      
+      TranslateMessage(&msg);
+      
+      DispatchMessage(&msg);
 
    }
 
