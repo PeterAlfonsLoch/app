@@ -141,8 +141,38 @@ namespace user
    void scroll_view::_001DeferCreateScrollBars()
    {
 
+      bool bCreate = false;
 
-      __begin_thread(get_app(),thread_proc_defer_create_scroll_bars,this);
+      if(m_scrollinfo.m_bHScroll)
+      {
+
+         if(m_pscrollbarHorz == NULL)
+         {
+
+            bCreate = true;
+
+         }
+
+      }
+
+      if(m_scrollinfo.m_bVScroll)
+      {
+
+         if(m_pscrollbarVert == NULL)
+         {
+
+            bCreate = true;
+
+         }
+
+      }
+
+      if(bCreate)
+      {
+
+         __begin_thread(get_app(),thread_proc_defer_create_scroll_bars,this);
+
+      }
 
    }
 
