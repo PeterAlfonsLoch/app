@@ -1,71 +1,54 @@
 #include "framework.h"
 
-#include <X11/Xlib.h>
 
 #define SIZEX 584
 #define SIZEY 384
 
-namespace simple_ui
-{
-
-   class CLASS_DECL_BASE message_box :
-      virtual public ::simple_ui::interaction
-   {
-   public:
-
-      stringa m_stra;
-
-      sp(tap) m_ptap;
-
-     message_box(sp(::base::application) papp);
-     virtual ~message_box();
-
-
-     bool show(const char * pszMessage, uint32_t uiFlags);
-
-     DRAWDD();
-
-     virtual void layout();
-
-      bool on_action(const char * pszId);
-
-   };
-
-
-} // namespace simple_ui
-
 
 namespace simple_ui
 {
 
+   
    message_box::message_box(sp(::base::application) papp) :
       element(papp)
    {
-   m_ptap = new ::simple_ui::tap(get_app());
+      
+      m_uiFlags      = 0;
+      m_iResult      = 0;
+      
    }
 
+   
    message_box::~message_box()
    {
+      
    }
 
-   bool message_box::show(const char * pszMessage, uint32_t uiFlags)
+   
+   int32_t message_box::show(const char * pszMessage, uint32_t uiFlags)
    {
+      
+      m_uiFlags = uiFlags;
+      
       Application.defer_initialize_twf();
 
       if(!CreateEx(WS_EX_LAYERED, NULL, NULL, 0, null_rect(), NULL, "fontopus"))
-         return "";
+         throw simple_exception(get_app(), "not excepted! Failing Message box!!");
 
+      m_ptapOk = new ::simple_ui::tap(get_app());
+      
+      m_ptapOk->create(this, "ok");
 
-         m_ptap->create(this, "ok");
-
-         m_ptap->SetWindowText("OK");
+      m_ptapOk->SetWindowText("OK");
 
       ::rect rectDesktop;
 
       stringa stra;
+      
       stra.add("\r");
 
       stra.add("\n");
+      
       stra.add("\r\n");
 
       m_stra.add_smallest_tokens(pszMessage, stra);
@@ -84,19 +67,10 @@ namespace simple_ui
 
       int h = stdh;
 
-      //double d = (double) w / (double) h;
-
       if(w > rectDesktop.width())
       {
 
          w = rectDesktop.width();
-
-//         if(d != 0.0)
-  //       {
-
-    //        h = (int) (w / d);
-
-      //   }
 
       }
 
@@ -105,17 +79,15 @@ namespace simple_ui
 
          h = rectDesktop.height();
 
-        // w = (int) (h  * d);
-
       }
 
-
       rectFontopus.left = rectDesktop.left + (width(rectDesktop) - w) / 2;
+      
       rectFontopus.top = rectDesktop.top + (height(rectDesktop) - h) / 3;
+      
       rectFontopus.right = rectFontopus.left + w;
+
       rectFontopus.bottom = rectFontopus.top + h;
-
-
 
       SetWindowPos(ZORDER_TOP, rectFontopus, SWP_SHOWWINDOW);
 
@@ -126,8 +98,9 @@ namespace simple_ui
       BringToTop(SW_NORMAL);
 
       RunModalLoop();
-
-      return "";
+      
+      return m_iResult;
+      
    }
 
 
@@ -164,110 +137,84 @@ namespace simple_ui
       }
 
 
-
    }
+
 
    void message_box::layout()
    {
 
-         rect rectClient;
+      rect rectClient;
 
       GetClientRect(rectClient);
 
-
-      m_ptap->SetWindowPos(ZORDER_TOP, rectClient.left + 10, rectClient.bottom - 94, 200, 84, SWP_SHOWWINDOW);
-
+      m_ptapOk->SetWindowPos(ZORDER_TOP, rectClient.left + 10, rectClient.bottom - 94, 200, 84, SWP_SHOWWINDOW);
 
    }
 
+   
    bool message_box::on_action(const char * pszId)
    {
-      if(stricmp_dup(pszId, "ok") ==         0)
+      
+      if(stricmp_dup(pszId, "ok") == 0)
       {
-      EndModalLoop(IDOK);
+         
+         m_iResult = IDOK;
+         
+         EndModalLoop(IDOK);
+         
+         return true;
+         
       }
+      else if(stricmp_dup(pszId, "yes") == 0)
+      {
+         
+         m_iResult = IDYES;
+         
+         EndModalLoop(IDOK);
+         
+         return true;
+         
+      }
+      else if(stricmp_dup(pszId, "no") == 0)
+      {
+         
+         m_iResult = IDNO;
+         
+         EndModalLoop(IDOK);
+         
+         return true;
+         
+      }
+      else if(stricmp_dup(pszId, "cancel") == 0)
+      {
+         
+         m_iResult = IDCANCEL;
+         
+         EndModalLoop(IDOK);
+         
+         return true;
+         
+      }
+      
+      return false;
+      
    }
 
 
 } // namespace simple_ui
-/*
-void message_box_paint(Display *dpy, Window win;, const char * lpText)
+
+
+int32_t show_simple_ui_message_box(::base::application * papp, const char * lpText,const char * lpCaption, uint32_t uiFlags)
 {
-
-   GC gc = XCreateGC(dpy, win, 0, NULL);
-
-   int blackColor = BlackPixel(dpy, DefaultScreen(dpy));
-   int whiteColor = WhitePixel(dpy, DefaultScreen(dpy));
-
-
-   XSetForeground(dpy, gc, whiteColor);
-   XSetBackground(dpy, gc, whiteColor);
-
-   XFillRectangle(dpy, win, gc, 0, 0, SIZEX, SIZEY);
-
-   XSetForeground(dpy, gc, blackColor);
-   XSetBackground(dpy, gc, blackColor);
-
-   XDrawString(dpy, win, gc, 10, 10, lpText, strlen(lpText));
-
-   XFlush(dpy);
-
-
-   XFreeGC(dpy, gc);
-
-}
-*/
-
-void message_box_show_xlib(::base::application * papp, const char * lpText,const char * lpCaption)
-{
-
-
 
    sp(::simple_ui::message_box) pmessagebox = canew(::simple_ui::message_box(papp));
 
-   pmessagebox->show(lpText, 0);
+   int32_t iResult = pmessagebox->show(lpText, uiFlags);
 
    pmessagebox->DestroyWindow();
 
-   return;
+   return iResult;
 
-/*
-
-
-
-   Display *dpy;
-   Window rootwin;
-   Window win;
-   XEvent e;
-   int scr;
-
-   if(!(dpy=XOpenDisplay(NULL))) {
-      fprintf(stderr,"ERROR: Could not open display\n");
-      exit(1);
-   }
-
-   scr=DefaultScreen(dpy);
-   rootwin=RootWindow(dpy,scr);
-
-   win=XCreateSimpleWindow(dpy,rootwin,1,1,SIZEX,SIZEY,0,
-      BlackPixel(dpy,scr),BlackPixel(dpy,scr));
-
-   XStoreName(dpy,win,lpCaption);
-   XSelectInput(dpy,win,ExposureMask | ButtonPressMask);
-   XMapWindow(dpy,win);
-
-
-   while(1) {
-      XNextEvent(dpy,&e);
-      if(e.type == Expose && e.xexpose.count<1) {
-         message_box_paint(dpy, win,lpText);
-      }
-      else if(e.type == ButtonPress) break;
-   }
-
-   XCloseDisplay(dpy);
-
-*/
 }
 
 

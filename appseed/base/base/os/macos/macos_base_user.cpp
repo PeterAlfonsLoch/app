@@ -101,8 +101,8 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int 
    
 }
 
-int MessageBoxANative(oswindow hwnd, const char * message, const char * header, unsigned int message_type );
-
+//int MessageBoxANative(oswindow hwnd, const char * message, const char * header, unsigned int message_type );
+/*
 
 class set_boot_native_message_box
 {
@@ -116,7 +116,6 @@ public:
    }
    
 } g_set_boot_native_message_box;
-
 
 int MessageBoxANative(oswindow hwnd, const char * message, const char * header, unsigned int message_type )
 {
@@ -299,7 +298,7 @@ int MessageBoxANative(oswindow hwnd, const char * message, const char * header, 
    }
    
 }
-
+*/
 
 WINBOOL RedrawWindow(oswindow hWnd, CONST RECT *lprcUpdate, HRGN hrgnUpdate, UINT flags)
 {

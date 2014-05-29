@@ -85,6 +85,8 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int 
    
 }
 
+/*
+
 int MessageBoxANative(oswindow hwnd, const char * message, const char * header, unsigned int message_type );
 
 
@@ -105,7 +107,7 @@ public:
 int MessageBoxANative(oswindow hwnd, const char * message, const char * header, unsigned int message_type )
 {
     
-    /*
+ 
    
    //convert the strings from char* to CFStringRef
    CFStringRef  header_ref  = CFStringCreateWithCString(NULL,  header, kCFStringEncodingUTF8);
@@ -284,12 +286,13 @@ int MessageBoxANative(oswindow hwnd, const char * message, const char * header, 
       return MB_OK;
    }
      
-     */
+ 
     
     
     return 0;
    
 }
+*/
 
 
 WINBOOL RedrawWindow(oswindow hWnd, CONST RECT *lprcUpdate, HRGN hrgnUpdate, UINT flags)
