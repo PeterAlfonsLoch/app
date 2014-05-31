@@ -284,7 +284,7 @@ namespace userex
    int32_t userex::simple_message_box(sp(::user::interaction) pwndOwner,const char * pszMessage,UINT fuStyle)
    {
 
-   int iRet = ::MessageBox(pwndOwner->get_handle(), pszMessage, "ca2", fuStyle);
+   int iRet = ::simple_message_box(pwndOwner->get_handle(), pszMessage, "ca2", fuStyle);
 
    return iRet;
 
@@ -314,14 +314,14 @@ namespace userex
          {
             string strMessage = pszMessage;
             strMessage.replace("<br>","\r\n");
-            return MessageBox((oswindow)(pwndOwner.is_null() ? NULL : pwndOwner->get_wnd()->get_os_data()),strMessage,Application.m_strAppName,fuStyle);
+            return ::simple_message_box((oswindow)(pwndOwner.is_null() ? NULL : pwndOwner->get_wnd()->get_os_data()),strMessage,Application.m_strAppName,fuStyle);
          }
       }
       catch(...)
       {
          string strMessage = pszMessage;
          strMessage.replace("<br>","\r\n");
-         return MessageBox(pwndOwner == NULL ? NULL : pwndOwner->get_handle(),strMessage,Application.m_strAppName,fuStyle);
+         return ::simple_message_box(pwndOwner == NULL ? NULL : pwndOwner->get_handle(),strMessage,Application.m_strAppName,fuStyle);
       }
       if(box.m_strResponse == "ok")
       {

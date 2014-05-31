@@ -2449,7 +2449,7 @@ restart_mouse_hover_check:
    {
       if (lpszcaption == NULL)
          lpszcaption = __get_app_name();
-      int32_t nResult = ::MessageBox((oswindow)get_handle(), lpszText, lpszcaption, nType);
+      int32_t nResult = ::simple_message_box((oswindow)get_handle(),lpszText,lpszcaption,nType);
       return nResult;
    }
 

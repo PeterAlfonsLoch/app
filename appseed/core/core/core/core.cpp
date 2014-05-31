@@ -132,7 +132,7 @@ namespace core
       catch(...)
       {
 
-         ::MessageBox(NULL, "Failure to initialize FreeImage (::core::init_core)", "FreeImage_Initialise failure", MB_ICONEXCLAMATION);
+         ::simple_message_box(NULL,"Failure to initialize FreeImage (::core::init_core)","FreeImage_Initialise failure",MB_ICONEXCLAMATION);
 
          return false;
 

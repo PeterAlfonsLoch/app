@@ -681,7 +681,7 @@ extern CLASS_DECL_CORE UINT g_uiTraceFlags;
 
 
 //////////////////////////////////////////////////////////////////////////////
-// MessageBox helpers
+// simple_message_box helpers
 
 //CLASS_DECL_CORE void ::core::FormatString1(string & rString, UINT nIDS, const char * lpsz1);
 //CLASS_DECL_CORE void ::core::FormatString2(string & rString, UINT nIDS,

@@ -40,7 +40,7 @@ namespace simple_ui
 
 
 
-CLASS_DECL_BASE int32_t show_simple_ui_message_box(::base::application * papp, const char * lpText,const char * lpCaption, uint32_t iFlags);
+CLASS_DECL_BASE int32_t simple_ui_message_box(oswindow window, const char * lpText,const char * lpCaption, uint32_t uiFlags);
 
 
 

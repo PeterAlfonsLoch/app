@@ -567,7 +567,7 @@ namespace plane
                   strType.Empty();
 
 
-               //MessageBox(NULL, "create", strApp, MB_ICONEXCLAMATION);
+               //simple_message_box(NULL, "create", strApp, MB_ICONEXCLAMATION);
 
                if(strApp.is_empty() || strApp == "bergedge")
                {
@@ -590,7 +590,7 @@ namespace plane
                if(papp == NULL)
                   return;
 
-               //MessageBox(NULL, "appok", strApp, MB_ICONEXCLAMATION);
+               //simple_message_box(NULL, "appok", strApp, MB_ICONEXCLAMATION);
 
                if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
                   || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
@@ -1008,13 +1008,13 @@ alt1:
                get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL
                && (!pcreatecontext->m_spApplicationBias.is_set() || pcreatecontext->m_spApplicationBias->m_puiParent == NULL))
             {
-               //MessageBox(NULL, "request3", "request3", MB_ICONEXCLAMATION);
+               //simple_message_box(NULL, "request3", "request3", MB_ICONEXCLAMATION);
                get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
                App(m_pappCurrent).request_create(pcreatecontext);
             }
             else
             {
-               //MessageBox(NULL, "request4", "request4", MB_ICONEXCLAMATION);
+               //simple_message_box(NULL, "request4", "request4", MB_ICONEXCLAMATION);
                on_request(pcreatecontext);
             }
          }

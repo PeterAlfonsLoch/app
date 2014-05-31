@@ -218,7 +218,7 @@ namespace windows
       oswindow oswindow_Parent,id id,LPVOID lpParam)
    {
 
-      //::MessageBox(NULL,"h1","h1",MB_OK);
+      //::simple_message_box(NULL,"h1","h1",MB_OK);
       UNREFERENCED_PARAMETER(id);
       ASSERT(lpszClassName == NULL || __is_valid_string(lpszClassName) ||
          __is_valid_atom(lpszClassName));
@@ -272,12 +272,12 @@ namespace windows
       if(!unhook_window_create())
          PostNcDestroy();        // cleanup if CreateWindowEx fails too soon
 
-      //::MessageBox(NULL,"h2","h2",MB_OK);
+      //::simple_message_box(NULL,"h2","h2",MB_OK);
 
       if(oswindow == NULL)
       {
 
-         //::MessageBox(NULL,"h3","h3",MB_OK);
+         //::simple_message_box(NULL,"h3","h3",MB_OK);
 
          if(m_pbaseapp.is_null())
             return FALSE;
@@ -326,16 +326,16 @@ namespace windows
          Application.set_icon(m_pui,new ::visual::icon(wndcls.hIcon),false);
          Application.set_icon(m_pui,new ::visual::icon(wndcls.hIcon),true);
       }
-      //::MessageBox(NULL,"h4","h4",MB_OK);
+      //::simple_message_box(NULL,"h4","h4",MB_OK);
       //      oswindow oswindowHandle = get_handle();
       if(oswindow != get_handle())
       {
-         //::MessageBox(NULL,"h4.dame","h4.dame",MB_OK);
+         //::simple_message_box(NULL,"h4.dame","h4.dame",MB_OK);
 
          ASSERT(FALSE); // should have been set in send msg hook
 
       }
-      //::MessageBox(NULL,"h4.ok","h4.ok",MB_OK);
+      //::simple_message_box(NULL,"h4.ok","h4.ok",MB_OK);
 
       return TRUE;
    }
@@ -2108,7 +2108,7 @@ namespace windows
    {
       if(lpszCaption == NULL)
          lpszCaption = Application.m_strAppName;
-      int32_t nResult = ::MessageBox(get_handle(),lpszText,lpszCaption,nType);
+      int32_t nResult = ::simple_message_box(get_handle(),lpszText,lpszCaption,nType);
       return nResult;
    }
 

@@ -223,7 +223,7 @@ namespace install
       if(System.install().is_installing_ca2())
          return -1;
 
-      // ::MessageBox(g_oswindow, "Start", "Start", MB_OK);
+      // ::simple_message_box(g_oswindow, "Start", "Start", MB_OK);
 
       //keep_true keeptrueInstalling(m_bInstalling);
 
@@ -669,7 +669,7 @@ RetryHost:
                str += strPath;
                str += "\"?";
                strCommand += str;
-               if(!bAsk || ::MessageBox(NULL, str, "need to terminate process to install", MB_ICONEXCLAMATION | MB_YESNO) == IDYES)
+               if(!bAsk || ::simple_message_box(NULL,str,"need to terminate process to install",MB_ICONEXCLAMATION | MB_YESNO) == IDYES)
                {
                   HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_TERMINATE | PROCESS_VM_READ, FALSE, dwa[i]);
                   if(hProcess == NULL)
@@ -678,7 +678,7 @@ RetryHost:
                      str = "Failed to open process for termination - ";
                      str += m_straTerminateProcesses.element_at(i);
                      str += ".";
-                     ::MessageBox(NULL, "Failed to open process for termination", str, MB_OK);
+                     ::simple_message_box(NULL,"Failed to open process for termination",str,MB_OK);
 
                      return -1;
                   }
@@ -709,7 +709,7 @@ RetryHost:
                      str = "Timeout while waiting for process - ";
                      str += m_straTerminateProcesses.element_at(i);
                      str += " - to exit.";
-                     ::MessageBox(NULL, "Failed to open process for termination", str, MB_OK);
+                     ::simple_message_box(NULL,"Failed to open process for termination",str,MB_OK);
                      return -1;
                   }
                   ::CloseHandle(hProcess);
@@ -801,7 +801,7 @@ RetryHost:
          {
             add_spa_start(m_strCommandLine);
 
-            if(::MessageBox(NULL, "The computer need to be restarted!!\n\nDo you want to restart now?\n\nWe recommend you to close all other applications first and then agree with this question using the buttons below.", "spa - Restart Needed!!", MB_ICONEXCLAMATION | MB_YESNO)
+            if(::simple_message_box(NULL,"The computer need to be restarted!!\n\nDo you want to restart now?\n\nWe recommend you to close all other applications first and then agree with this question using the buttons below.","spa - Restart Needed!!",MB_ICONEXCLAMATION | MB_YESNO)
                == IDYES)
             {
                m_reboot();
@@ -2523,7 +2523,7 @@ RetryHost:
          if(!spa_exec(strExec))
          {
             #ifdef WINDOWSEX
-            ::MessageBox(m_pwindow->get_safe_handle(), "Error", "Error", MB_OK);
+            ::simple_message_box(m_pwindow->get_safe_handle(),"Error","Error",MB_OK);
             #endif
          }
          set_progress(((double) i * (0.5 - 0.2) / (double) iCount) + 0.2);
@@ -2601,7 +2601,7 @@ RetryHost:
                }
             }
 
-            ::MessageBox(NULL, str, "You may restart the applications ...", MB_ICONINFORMATION | MB_OK);
+            ::simple_message_box(NULL,str,"You may restart the applications ...",MB_ICONINFORMATION | MB_OK);
 
          }
 
@@ -2646,7 +2646,7 @@ RetryHost:
 
       ::xml::document node(get_app());
 
-      // MessageBox(NULL, "BegInstall", "Caption", MB_OK);
+      // simple_message_box(NULL, "BegInstall", "Caption", MB_OK);
       if(m_iStart != 4)
       {
          string strCa2sp = file_as_string_dup(m_strFile);
@@ -3212,7 +3212,7 @@ RetryBuildNumber:
             m_strInstallFilter = str.substr(iStart);
          }
       }
-      // MessageBox(NULL, "xxx", "yyy", MB_OK);
+      // simple_message_box(NULL, "xxx", "yyy", MB_OK);
       i = str.find("install=");
       if(i >= 0)
       {

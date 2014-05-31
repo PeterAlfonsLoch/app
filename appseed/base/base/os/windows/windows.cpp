@@ -40,7 +40,7 @@ bool __node_pre_init()
    if(FAILED(::CoInitializeEx(NULL,COINIT_MULTITHREADED)))
    {
 
-      ::MessageBox(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_MULTITHREADED) at __node_pre_initialize","__node_pre_initialize failure",MB_ICONEXCLAMATION);
+      ::simple_message_box(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_MULTITHREADED) at __node_pre_initialize","__node_pre_initialize failure",MB_ICONEXCLAMATION);
 
       return false;
 
@@ -74,7 +74,7 @@ bool __node_pos_init()
    if(statusStartup != Gdiplus::Ok)
    {
 
-      MessageBox(NULL,"Gdiplus Failed to Startup. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
+      simple_message_box(NULL,"Gdiplus Failed to Startup. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
 
       return false;
 
@@ -86,7 +86,7 @@ bool __node_pos_init()
    if(statusStartup != Gdiplus::Ok)
    {
 
-      MessageBox(NULL,"Gdiplus Failed to Hook. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
+      simple_message_box(NULL,"Gdiplus Failed to Hook. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
 
       return false;
 

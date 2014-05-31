@@ -107,7 +107,7 @@ output_message (j_common_ptr cinfo)
 
 #ifdef USE_WINDOWS_MESSAGEBOX
   /* Display it in a message dialog box */
-  MessageBox(GetActiveWindow(), buffer, "JPEG Library Error",
+  simple_message_box(GetActiveWindow(),buffer,"JPEG Library Error",
 	     MB_OK | MB_ICONERROR);
 #else
   /* Send it to stderr, adding a newline */

@@ -206,7 +206,7 @@ namespace bergedge
 
             string str;
             str = ::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent);
-            //MessageBox(NULL, str, str, MB_ICONEXCLAMATION);
+            //simple_message_box(NULL, str, str, MB_ICONEXCLAMATION);
             Session.request_create(createcontext);
 
          }

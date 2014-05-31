@@ -689,7 +689,7 @@ HANDLE OnlyGetDrv()
 
         if( !PathFileExists( csFilePath ))
         {
-            MessageBox(NULL, "Cannot find driver " + csFilePath, "Cannot find driver " + csFilePath, MB_OK );
+           simple_message_box(NULL,"Cannot find driver " + csFilePath,"Cannot find driver " + csFilePath,MB_OK);
             return 0;
         }
 

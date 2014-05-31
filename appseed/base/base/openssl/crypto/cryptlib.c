@@ -899,7 +899,7 @@ void OPENSSL_showfatal (const char *fmta,...)
     }
     else
 #endif
-	MessageBox (NULL,buf,_T("OpenSSL: FATAL"),MB_OK|MB_ICONSTOP);
+       simple_message_box(NULL,buf,_T("OpenSSL: FATAL"),MB_OK | MB_ICONSTOP);
 }
 #else
 void OPENSSL_showfatal (const char *fmta,...)

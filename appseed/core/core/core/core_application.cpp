@@ -666,7 +666,7 @@ int32_t application::exit_instance()
    }
    catch (...)
    {
-      ::MessageBox(NULL,"a","b",MB_OK);
+      ::simple_message_box(NULL,"a","b",MB_OK);
       m_iReturnCode = -1;
 
    }
@@ -1715,7 +1715,7 @@ bool application::on_run_exception(::exception::exception & e)
             if (!(bool)System.oprop("not_installed_message_already_shown"))
             {
 
-               MessageBox(NULL, "Debug only message, please install:\n\n\n\t" + notinstalled.m_strId + "\n\ttype = " + notinstalled.m_strType + "\n\tlocale = " + notinstalled.m_strLocale + "\n\tschema = " + notinstalled.m_strSchema + "\n\tbuild number = " + notinstalled.m_strBuild + "\n\n\nThere are helper scripts under <solution directory>/nodeapp/stage/install/", "Debug only message, please install.", MB_ICONINFORMATION | MB_OK);
+               ::simple_message_box(NULL, "Debug only message, please install:\n\n\n\t" + notinstalled.m_strId + "\n\ttype = " + notinstalled.m_strType + "\n\tlocale = " + notinstalled.m_strLocale + "\n\tschema = " + notinstalled.m_strSchema + "\n\tbuild number = " + notinstalled.m_strBuild + "\n\n\nThere are helper scripts under <solution directory>/nodeapp/stage/install/", "Debug only message, please install.", MB_ICONINFORMATION | MB_OK);
 
                System.oprop("not_installed_message_already_shown") = true;
 
@@ -2211,7 +2211,7 @@ int32_t application::ShowAppMessageBox(sp(application)pApp, const char * lpszPro
    int32_t nResult;
    if(pApp == NULL)
    {
-   nResult = ::MessageBox(oswindow, lpszPrompt, pszAppName, nType);
+   nResult = ::simple_message_box(oswindow, lpszPrompt, pszAppName, nType);
    }
    else
    {
@@ -2233,7 +2233,7 @@ int32_t application::ShowAppMessageBox(sp(application)pApp, const char * lpszPro
 }
 
 
-/* int32_t ::core::MessageBox(const char * lpszText, UINT nType, UINT nIDHelp)
+/* int32_t ::core::simple_message_box(const char * lpszText, UINT nType, UINT nIDHelp)
 {
 application* papp = &System;
 if (papp != NULL)

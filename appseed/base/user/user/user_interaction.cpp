@@ -3021,7 +3021,7 @@ namespace user
          return false;
       }
 
-      //::MessageBox(NULL,"t3=","t3=",MB_OK);
+      //::simple_message_box(NULL,"t3=","t3=",MB_OK);
 
 
       m_pimpl->m_pthread = ::get_thread();

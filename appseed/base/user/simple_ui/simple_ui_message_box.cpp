@@ -204,10 +204,10 @@ namespace simple_ui
 } // namespace simple_ui
 
 
-int32_t show_simple_ui_message_box(::base::application * papp, const char * lpText,const char * lpCaption, uint32_t uiFlags)
+int32_t simple_ui_message_box(oswindow window, const char * lpText,const char * lpCaption, uint32_t uiFlags)
 {
 
-   sp(::simple_ui::message_box) pmessagebox = canew(::simple_ui::message_box(papp));
+   sp(::simple_ui::message_box) pmessagebox = canew(::simple_ui::message_box(::get_thread_app()));
 
    int32_t iResult = pmessagebox->show(lpText, uiFlags);
 
@@ -218,3 +218,10 @@ int32_t show_simple_ui_message_box(::base::application * papp, const char * lpTe
 }
 
 
+extern "C"
+CLASS_DECL_BASE int32_t simple_message_box(oswindow window,const char * lpText,const char * lpCaption,uint32_t uiFlags)
+{
+
+   return simple_ui_message_box(window,lpText,lpCaption,uiFlags);
+
+}

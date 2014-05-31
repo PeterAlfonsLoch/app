@@ -60,7 +60,7 @@ int32_t CLASS_DECL_BASE __android_main(int32_t argc, char * argv[])
 
    psystem->init_main_data(pinitmaindata);
 
-   //MessageBox(NULL, "box1", "box1", MB_ICONINFORMATION);
+   //simple_message_box(NULL, "box1", "box1", MB_ICONINFORMATION);
 
    nReturnCode = psystem->main();
 

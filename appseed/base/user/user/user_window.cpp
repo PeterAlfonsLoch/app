@@ -2480,35 +2480,35 @@ void window::set_handle(oswindow oswindow)
 bool window::attach(oswindow oswindow_New)
 {
 
-   //::MessageBox(NULL, "d1.a", "d1.a", MB_OK);
+   //::simple_message_box(NULL, "d1.a", "d1.a", MB_OK);
 
    ASSERT(get_handle() == NULL);   
    
-   //::MessageBox(NULL,"d1.b","d1.b",MB_OK);
+   //::simple_message_box(NULL,"d1.b","d1.b",MB_OK);
 
    ASSERT(::window_from_handle(oswindow_New) == NULL);
 
-   //::MessageBox(NULL,"d1.c","d1.c",MB_OK);
+   //::simple_message_box(NULL,"d1.c","d1.c",MB_OK);
 
    if(oswindow_New == NULL)
       return FALSE;
 
 
-   //::MessageBox(NULL,"d1.d","d1.d",MB_OK);
+   //::simple_message_box(NULL,"d1.d","d1.d",MB_OK);
 
 
    
-   //::MessageBox(NULL,"d1.e","d1.e",MB_OK);
+   //::simple_message_box(NULL,"d1.e","d1.e",MB_OK);
 
 
    set_handle(oswindow_New);
 
-   //::MessageBox(NULL,"d1.f","d1.f",MB_OK);
+   //::simple_message_box(NULL,"d1.f","d1.f",MB_OK);
 
 
    ASSERT(::window_from_handle(get_handle()) == this);
 
-   //::MessageBox(NULL,"d1.g","d1.g",MB_OK);
+   //::simple_message_box(NULL,"d1.g","d1.g",MB_OK);
 
 
    if(m_pui == NULL)
@@ -2516,7 +2516,7 @@ bool window::attach(oswindow oswindow_New)
       m_pui = this;
    }
 
-  // ::MessageBox(NULL,"d1.h","d1.h",MB_OK);
+  // ::simple_message_box(NULL,"d1.h","d1.h",MB_OK);
 //
 
    return true;

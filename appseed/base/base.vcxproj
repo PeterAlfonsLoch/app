@@ -4893,6 +4893,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\simple_ui\simple_ui_edit_box.h" />
     <ClInclude Include="user\simple_ui\simple_ui_interaction.h" />
     <ClInclude Include="user\simple_ui\simple_ui_label.h" />
+    <ClInclude Include="user\simple_ui\simple_ui_message_box.h" />
     <ClInclude Include="user\simple_ui\simple_ui_password.h" />
     <ClInclude Include="user\simple_ui\simple_ui_style.h" />
     <ClInclude Include="user\simple_ui\simple_ui_tap.h" />
@@ -18308,6 +18309,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\simple_ui\simple_ui_edit_box.cpp" />
     <ClCompile Include="user\simple_ui\simple_ui_interaction.cpp" />
     <ClCompile Include="user\simple_ui\simple_ui_label.cpp" />
+    <ClCompile Include="user\simple_ui\simple_ui_message_box.cpp" />
     <ClCompile Include="user\simple_ui\simple_ui_password.cpp" />
     <ClCompile Include="user\simple_ui\simple_ui_style.cpp" />
     <ClCompile Include="user\simple_ui\simple_ui_tap.cpp" />

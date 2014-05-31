@@ -50,7 +50,7 @@ namespace base
 
       _term_args();
 
-      //::MessageBox(NULL,"t3=" + ::str::from(m_iError),"t3",MB_OK);
+      //::simple_message_box(NULL,"t3=" + ::str::from(m_iError),"t3",MB_OK);
 
 
       return m_iError;

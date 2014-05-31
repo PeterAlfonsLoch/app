@@ -166,18 +166,19 @@ namespace base
 
 #if defined(WINDOWSEX)
 
-      return MessageBoxW(puiOwner->get_safe_handle(),wstring(pszMessage),wstring(m_strAppName),fuStyle);
+      return ::simple_message_box(puiOwner->get_safe_handle(),pszMessage,m_strAppName,fuStyle);
+      //return MessageBoxW(puiOwner->get_safe_handle(),wstring(pszMessage),wstring(m_strAppName),fuStyle);
       //return MessageBoxW((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())),
       //   wstring(pszMessage), wstring(m_strAppName), fuStyle);
 
 #elif  defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
-      return MessageBox(puiOwner->get_safe_handle(), pszMessage, m_strAppName, fuStyle);
-      //   return MessageBox((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
+      return ::simple_message_box(puiOwner->get_safe_handle(),pszMessage,m_strAppName,fuStyle);
+      //   return simple_message_box((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
 
 #else
 
-      return MessageBox(puiOwner->get_safe_handle(), pszMessage, m_strAppName, fuStyle);
+      return ::simple_message_box(puiOwner->get_safe_handle(), pszMessage, m_strAppName, fuStyle);
 
 #endif
 
@@ -194,11 +195,11 @@ namespace base
 
    #elif  defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
-   return MessageBox((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
+   return simple_message_box((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
 
    #else
 
-   return MessageBox(m_psystem->m_posdata->m_pui->get_handle(), pszMessage, m_strAppName, fuStyle);
+   return simple_message_box(m_psystem->m_posdata->m_pui->get_handle(), pszMessage, m_strAppName, fuStyle);
 
    #endif
 
@@ -210,18 +211,19 @@ namespace base
 
 #if defined(WINDOWSEX)
 
-      return MessageBoxW(NULL,wstring(pszMessage),wstring(m_strAppName),fuStyle);
+      return ::simple_message_box(NULL,pszMessage,m_strAppName,fuStyle);
+      //return MessageBoxW(NULL,wstring(pszMessage),wstring(m_strAppName),fuStyle);
       //return MessageBoxW((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())),
       //   wstring(pszMessage), wstring(m_strAppName), fuStyle);
 
 #elif  defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
-      return MessageBox(NULL, pszMessage, m_strAppName, fuStyle);
-      //   return MessageBox((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
+      return ::simple_message_box(NULL, pszMessage, m_strAppName, fuStyle);
+      //   return simple_message_box((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
 
 #else
 
-      return MessageBox(NULL, pszMessage, m_strAppName, fuStyle);
+      return ::simple_message_box(NULL, pszMessage, m_strAppName, fuStyle);
 
 #endif
 
@@ -2182,7 +2184,7 @@ namespace base
       if(!InitApplication())
          goto InitFailure;
 
-      //::MessageBox(NULL,"e1","e1",MB_OK);
+      //::simple_message_box(NULL,"e1","e1",MB_OK);
 
       m_dwAlive = ::get_tick_count();
 
@@ -2208,7 +2210,7 @@ namespace base
 
 
 
-         //::MessageBox(NULL,"e2","e2",MB_OK);
+         //::simple_message_box(NULL,"e2","e2",MB_OK);
 
          System.install().m_progressApp()++;
          m_dwAlive = ::get_tick_count();
@@ -3755,13 +3757,13 @@ namespace base
 
       m_dwAlive = ::get_tick_count();
 
-      //::MessageBox(NULL,"e2.b","e2.b",MB_OK);
+      //::simple_message_box(NULL,"e2.b","e2.b",MB_OK);
 
       if(!initialize1())
          return false;
 
 
-      //::MessageBox(NULL,"e3","e3",MB_OK);
+      //::simple_message_box(NULL,"e3","e3",MB_OK);
 
 
       System.install().m_progressApp()++; // 2
@@ -3786,8 +3788,8 @@ namespace base
 
 #endif
 
-      //::MessageBox(NULL,"e4","e4",MB_OK);
-      //::MessageBox(NULL,"t3=" + ::str::from(m_iReturnCode),"t3=" + ::str::from(m_iReturnCode),MB_OK);
+      //::simple_message_box(NULL,"e4","e4",MB_OK);
+      //::simple_message_box(NULL,"t3=" + ::str::from(m_iReturnCode),"t3=" + ::str::from(m_iReturnCode),MB_OK);
 
 
       m_dwAlive = ::get_tick_count();

@@ -119,7 +119,7 @@ namespace base
             strCaption = "Assertion Failed";
 
             OutputDebugStringW(wstring(str));
-            /*if(MessageBox(NULL, str, strCaption, MB_ICONINFORMATION | MB_OKCANCEL | MB_DEFBUTTON1) == IDCANCEL)
+            /*if(simple_message_box(NULL, str, strCaption, MB_ICONINFORMATION | MB_OKCANCEL | MB_DEFBUTTON1) == IDCANCEL)
             {
                string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+::str::from(iLine)+"\"";
                ::system(strCmdLine);
