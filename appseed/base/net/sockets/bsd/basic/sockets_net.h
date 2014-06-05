@@ -102,21 +102,31 @@ namespace sockets
    public:
 
 
-      class CLASS_DECL_BASE dns_cache_item
+      class CLASS_DECL_BASE dns_cache_item :
+         virtual public ::file::serializable
       {
       public:
 
-         in_addr       m_ipaddr;
+
+         in_addr           m_ipaddr;
          uint32_t          m_dwLastChecked;
-         bool           r;
+         bool              r;
+
+
+         virtual void write(::file::output_stream & ostream);
+         virtual void read(::file::input_stream & istream);
 
       };
 
-      mutex                                           m_mutexCache;
-      string_map < dns_cache_item * >   m_mapCache;
+      mutex                                                                m_mutexCache;
+      ::file::byte_serializable_map < string_map < dns_cache_item > >      m_mapCache;
 
       net(sp(::base::application) papp);
       virtual ~net();
+
+
+      virtual bool initialize();
+
 
       /*
       * Encode string per RFC1738 URL encoding rules

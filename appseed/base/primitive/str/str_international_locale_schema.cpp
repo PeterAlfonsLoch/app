@@ -543,13 +543,13 @@ step2:
 
       }
 
-      ::map < ::id, const ::id &, ::id, const ::id & > g_mapRTL;
+      ::map < ::id, const ::id &, ::id, const ::id & > * g_pmapRTL;
 
       inline id rl_id(const ::id & id)
       {
 
 
-         ::map < ::id, const ::id &, ::id, const ::id & >::pair * ppair = g_mapRTL.PLookup(id);
+         ::map < ::id, const ::id &, ::id, const ::id & >::pair * ppair = g_pmapRTL->PLookup(id);
 
          if(ppair != NULL)
             return ppair->m_element2;
@@ -560,7 +560,7 @@ step2:
 
          ::id idRl = str + "_rl";
 
-         g_mapRTL.set_at(id, idRl);
+         g_pmapRTL->set_at(id, idRl);
 
          return idRl;
 

@@ -794,21 +794,23 @@ retry:
             psession->request().header(__id(cookie)) = set[__id(cookie)];
          }
 
+         psession->m_request.m_propertysetHeader[__id(host)] = System.url().get_server(pszRequest);
+
          bool bPost;
          bool bPut;
          if (set["put"].cast < ::file::binary_buffer >() != NULL || set.lookup(__id(http_method)) == "PUT")
          {
             bPost = false;
             bPut = true;
-            psession->request("PUT", strRequest);
             dynamic_cast < ::sockets::http_put_socket * > (psession)->m_file = set["put"].cast < ::file::binary_buffer >();
+            psession->request("PUT",strRequest);
          }
          else if (set["post"].propset().m_propertya.get_count() > 0 || set.lookup(__id(http_method)) == "POST")
          {
             bPost = true;
             bPut = false;
-            psession->request("POST", strRequest);
             dynamic_cast < ::sockets::http_post_socket * > (psession)->m_fields = set["post"].propset();
+            psession->request("POST",strRequest);
          }
          else
          {

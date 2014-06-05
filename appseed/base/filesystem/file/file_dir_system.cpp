@@ -1077,11 +1077,11 @@ namespace file
 
                   if (bDir)
                   {
-                     strPath = App(papp).http().get("http://api.ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                     strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
                   }
                   else
                   {
-                     strPath = App(papp).http().get("http://api.ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                     strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
                   }
 
                   if (strPath.has_char())
@@ -1272,11 +1272,11 @@ namespace file
 
                if(bDir)
                {
-                  strPath = App(papp).http().get("http://api.ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                  strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
                }
                else
                {
-                  strPath = App(papp).http().get("http://api.ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                  strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
                }
 
                if(strPath.has_char())
@@ -1542,11 +1542,11 @@ namespace file
 
                if (bDir)
                {
-                  strPath = App(papp).http().get("http://api.ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                  strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
                }
                else
                {
-                  strPath = App(papp).http().get("http://api.ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                  strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
                }
 
                strPath.trim();
@@ -1707,11 +1707,11 @@ namespace file
 
             if(bDir)
             {
-               strPath = App(papp).http().get("http://api.ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+               strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
             }
             else
             {
-               strPath = App(papp).http().get("http://api.ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+               strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
             }
 
             strPath.trim();
@@ -2396,6 +2396,33 @@ ret:
          }
 
          return "";
+
+      }
+
+      string system::get_api_cc()
+      {
+
+         if(m_strApiCc.has_char())
+            return m_strApiCc;
+
+         synch_lock sl(&m_mutex);
+
+         if(&Session == NULL || Session.fontopus().is_null())
+            return "api.ca2.cc";
+
+         string strApiServer;
+
+         string strGetFontopus("http://api.ca2.cc/get_fontopus");
+
+         string strFontopusServer = Session.fontopus()->get_server(strGetFontopus,8);
+
+         strApiServer = strFontopusServer;
+
+         strApiServer.replace("account", "api");
+
+         m_strApiCc = strApiServer;
+
+         return m_strApiCc;
 
       }
 

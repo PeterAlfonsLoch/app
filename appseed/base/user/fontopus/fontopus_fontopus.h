@@ -14,6 +14,7 @@ namespace fontopus
       class create_user_thread *             m_pthreadCreatingUser;
       user *                                 m_puser;
       string_to_string                       m_mapFontopusServer;
+      string                                 m_strFirstFontopusServer;
       authentication_map                     m_authmap;
 
 

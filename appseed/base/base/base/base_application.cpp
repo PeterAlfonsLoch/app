@@ -4847,6 +4847,64 @@ namespace base
       }
    }
 
+   void application::gudo_get(const string & strKey,::file::serializable & obj)
+   {
+
+      string strPath(strKey);
+
+      strPath.replace("::","/");
+
+      ::file::binary_buffer_sp file = Application.file_get_file(Application.dir().userappdata(strPath),::file::mode_read);
+
+      if(file.is_set())
+      {
+
+         ::file::byte_input_stream is(file);
+
+         try
+         {
+
+            obj.read(is);
+
+         }
+         catch(...)
+         {
+
+         }
+
+      }
+
+
+   }
+
+   void application::gudo_set(const string & strKey,::file::serializable & obj)
+   {
+
+      string strPath(strKey);
+
+      strPath.replace("::","/");
+
+      ::file::binary_buffer_sp file = Application.file_get_file(Application.dir().userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
+
+      if(file.is_set())
+      {
+
+         ::file::byte_output_stream os(file);
+
+         try
+         {
+
+            obj.write(os);
+
+         }
+         catch(...)
+         {
+
+         }
+
+      }
+
+   }
 
 
 } // namespace base

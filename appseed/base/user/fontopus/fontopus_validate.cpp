@@ -493,7 +493,7 @@ namespace fontopus
    // return hash and check if hash is valid
    bool validate::check_ca2_hash()
    {
-      string strUrl("https://api.ca2.cc/account/check_hash");
+      string strUrl("https://" + System.dir().get_api_cc() + "/account/check_hash");
       property_set set;
       string strResponse;
       stringa straHash;
@@ -695,6 +695,8 @@ namespace fontopus
          return Session.fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer];
       }
 
+      DWORD dwGetFontopusBeg = ::GetTickCount();
+
       string strGetFontopus("http://" + m_strRequestingServer + "/get_fontopus");
 
       m_strFontopusServer.Empty();
@@ -703,20 +705,29 @@ namespace fontopus
 
       url_domain domainFontopus;
 
-      m_strFontopusServer = Session.fontopus()->get_server(strGetFontopus, 8);
+      m_strFontopusServer = Session.fontopus()->get_server(strGetFontopus,8);
 
       domainFontopus.create(m_strFontopusServer);
 
       if(domainFontopus.m_strRadix != "ca2")
          return "";
 
-      if (Session.fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer].get_length() > 32)
+      if(Session.fontopus()->m_strFirstFontopusServer.is_empty())
+      {
+         
+         Session.fontopus()->m_strFirstFontopusServer = m_strFontopusServer;
+
+      }
+
+      if(Session.fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer].get_length() > 32)
       {
          return Session.fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer];
       }
 
 
+      DWORD dwGetFontopusEnd = ::GetTickCount();
 
+      TRACE("NetLogin: Get Fontopus Millis = %d",dwGetFontopusEnd - dwGetFontopusBeg);
 
       string strLogin;
 
@@ -724,7 +735,7 @@ namespace fontopus
 
       strApiServer = m_strFontopusServer;
 
-      strApiServer.replace("account", "api");
+      strApiServer.replace("account","api");
 
       m_strLoginUrl = "https://" + strApiServer + "/account/login";
 
@@ -733,6 +744,21 @@ namespace fontopus
       string strSessId;
 
       string strRsaModulus;
+
+      DWORD dwGetLoginBeg = ::GetTickCount();
+      property_set set;
+
+
+      ::sockets::socket_handler h(get_app());
+      {
+         //m_puser->set_sessid("not_auth", m_strLoginUrl);
+         set["disable_ca2_sessid"] = true;
+      }
+
+      set["app"] = papp;
+
+      sp(::sockets::http_session) psession = m_mapFontopusSession[m_strFontopusServer];
+
 
       for(int32_t iRetry = 0; iRetry <= 8; iRetry++)
       {
@@ -745,30 +771,13 @@ namespace fontopus
          try
          {
 
+            set["get_response"] = "";
 
-            property_set set;
+            psession = System.http().request(h,psession,m_strLoginUrl,set);
 
-            //Sleep(15 * 1000);
+            m_mapFontopusSession.set_at(m_strFontopusServer,psession);
 
-            //string strSessid = System.url().get_param(System.directrix()->m_varTopicQuery["ruri"], "sessid");
-
-            //if(strSessid.has_char())
-            //{
-              // m_puser->set_sessid(strSessid, m_strLoginUrl);
-            //}
-            //else if(m_puser->m_sessionidmap[m_strRequestingServer].get_length() > 16)
-            //{
-              // m_puser->set_sessid(m_puser->m_sessionidmap[m_strRequestingServer], m_strLoginUrl);
-            //}
-            //else
-            {
-               //m_puser->set_sessid("not_auth", m_strLoginUrl);
-               set["disable_ca2_sessid"] = true;
-            }
-
-            set["app"] = papp;
-
-            Application.http().get(m_strLoginUrl, strLogin, set);
+            strLogin = set["get_response"];
 
          }
          catch(...)
@@ -801,6 +810,9 @@ namespace fontopus
       if(strRsaModulus.is_empty())
          return "";
 
+      DWORD dwGetLoginEnd = ::GetTickCount();
+
+      TRACE("NetLogin: Get Login Millis = %d",dwGetLoginEnd - dwGetLoginBeg);
 
       string strPass;
       if(m_strPasshash.is_empty())
@@ -819,6 +831,7 @@ namespace fontopus
 
       string strAuth;
 
+      DWORD dwAuthBeg = ::GetTickCount();
       {
 
          string strAuthUrl("https://" + strApiServer + "/account/auth?" + m_pcallback->oprop("defer_registration").get_string()
@@ -848,17 +861,26 @@ namespace fontopus
          set["app"] = papp;
          set["user"] = m_puser;
          set["cookies"] = m_puser->m_phttpcookies;
+         set["get_response"] = "";
          uint32_t dwTimeProfile1 = get_tick_count();
-         Application.http().get(strAuthUrl, strAuth, set);
+         psession = System.http().request(h, psession, strAuthUrl, set);
+
+         strAuth = set["get_response"];
+
          *pestatus = (::http::e_status) set["get_status"].int64();
          uint32_t dwTimeProfile2 = get_tick_count();
 
          TRACE0("login_thread::NetLogin Total time Application.http().get(\"" + strAuthUrl + "\") : " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
 
       }
+      DWORD dwAuthEnd = ::GetTickCount();
+
+      TRACE("NetLogin: Authentication Millis = %d",dwAuthEnd - dwAuthBeg);
 
       return strAuth;
+
    }
+
 
    void login_thread::execute()
    {

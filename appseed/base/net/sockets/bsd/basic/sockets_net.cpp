@@ -29,6 +29,15 @@ namespace sockets
 
    }
 
+   bool net::initialize()
+   {
+
+      Application.gudo_get("sockets::net::m_mapCache",m_mapCache);
+
+      return true;
+
+   }
+
 
    /*
    * Encode string per RFC1738 URL encoding rules
@@ -162,10 +171,10 @@ namespace sockets
 //      uint32_t dwTimeProfile1 = get_tick_count();
 
       single_lock sl(&m_mutexCache, true);
-      dns_cache_item * pitem = NULL;
-      if(m_mapCache.Lookup(str, pitem) && ((::get_tick_count() - pitem->m_dwLastChecked) < (((84 + 77) * 1000))))
+      dns_cache_item item;
+      if(m_mapCache.Lookup(str, item) && ((::get_tick_count() - item.m_dwLastChecked) < (((84 + 77) * 1000))))
       {
-         l = pitem->m_ipaddr;
+         l = item.m_ipaddr;
          //         uint32_t dwTimeProfile2 = get_tick_count();
          /*TRACE("Got from cache net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
          (uint32_t)((byte*)&pitem->m_ipaddr)[0],
@@ -173,10 +182,8 @@ namespace sockets
          (uint32_t)((byte*)&pitem->m_ipaddr)[2],
          (uint32_t)((byte*)&pitem->m_ipaddr)[3],
          (dwTimeProfile2 - dwTimeProfile1));*/
-         return pitem->r;
+         return item.r;
       }
-      if(pitem == NULL)
-         pitem = new dns_cache_item;
       struct sockaddr_in sa;
       memset(&sa, 0, sizeof(sa));
       sa.sin_family = AF_INET;
@@ -250,7 +257,7 @@ namespace sockets
          return false;
    #endif // NO_GETADDRINFO
       }
-      pitem->r = true;
+      item.r = true;
       comparable_array < addrinfo * > vec;
       addrinfo *ai = res;
       while (ai)
@@ -266,9 +273,12 @@ namespace sockets
          memcpy(&sa, ai -> ai_addr, ai -> ai_addrlen);
       }
       freeaddrinfo(res);
-      pitem->m_ipaddr = sa.sin_addr;
-      pitem->m_dwLastChecked = ::get_tick_count();
-      m_mapCache.set_at(str, pitem);
+      item.m_ipaddr = sa.sin_addr;
+      item.m_dwLastChecked = ::get_tick_count();
+      m_mapCache.set_at(str, item);
+
+      Application.gudo_set("sockets::net::m_mapCache",m_mapCache);
+
 //      uint32_t dwTimeProfile2 = get_tick_count();
 //      TRACE("DNS Lookup net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
   //       (uint32_t)((byte*)&pitem->m_ipaddr)[0],
@@ -276,9 +286,9 @@ namespace sockets
       //   (uint32_t)((byte*)&pitem->m_ipaddr)[2],
         // (uint32_t)((byte*)&pitem->m_ipaddr)[3],
          //(dwTimeProfile2 - dwTimeProfile1));
-      l = pitem->m_ipaddr;
+      l = item.m_ipaddr;
 
-      return pitem->r;
+      return item.r;
    }
 
 
@@ -952,6 +962,29 @@ namespace sockets
 
 
 
+   in_addr           m_ipaddr;
+   uint32_t          m_dwLastChecked;
+   bool              r;
+
+
+   void net::dns_cache_item::write(::file::output_stream & ostream)
+   {
+
+      ostream.write(&m_ipaddr, sizeof(m_ipaddr));
+      ostream.write(&m_dwLastChecked,sizeof(m_dwLastChecked));
+      ostream.write(&r,sizeof(r));
+
+   }
+
+
+   void net::dns_cache_item::read(::file::input_stream & istream)
+   {
+
+      istream.read(&m_ipaddr,sizeof(m_ipaddr));
+      istream.read(&m_dwLastChecked,sizeof(m_dwLastChecked));
+      istream.read(&r,sizeof(r));
+
+   }
 
 
 } // namespace sockets

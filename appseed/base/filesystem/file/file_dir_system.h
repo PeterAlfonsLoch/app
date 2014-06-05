@@ -81,6 +81,7 @@ namespace file
          zip::Util *       m_pziputil;
          is_dir_map        m_isdirmap;
          mutex             m_mutex;
+         string            m_strApiCc;
 
 
          system(sp(::base::application) papp);
@@ -201,6 +202,9 @@ namespace file
          virtual string pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode, sp(::base::application) papp);
 
          virtual bool initialize();
+
+         virtual string get_api_cc();
+
       };
 
       typedef smart_pointer < system > system_sp;

@@ -99,7 +99,7 @@ repeat:;
 
           set["interactive_user"] = true;
 
-          strUrl = "https://api.ca2.cc/account/long_set_save?key=";
+          strUrl = "https://" + System.dir().get_api_cc() + "/account/long_set_save?key=";
           strUrl += System.url().url_encode(m_itema[0].m_strKey);
           strUrl += "&value=";
           strUrl += ::str::from(m_itema[0].m_l);
@@ -164,7 +164,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
 
       set["interactive_user"] = true;
 
-      strUrl = "https://api.ca2.cc/account/long_set_load?key=";
+      strUrl = "https://" + System.dir().get_api_cc() + "/account/long_set_load?key=";
       strUrl += System.url().url_encode(lpKey);
 
       //m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);

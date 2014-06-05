@@ -8,6 +8,19 @@
 
 #include "framework.h"
 
+namespace str
+{
+
+
+   namespace international
+   {
+      extern ::map < ::id,const ::id &,::id,const ::id & > * g_pmapRTL;
+   } // namespace international
+
+} // namespace str
+
+extern string_map < INT_PTR,INT_PTR > * g_pmapLibrary;
+
 extern plex_heap_alloc_array * g_pheap;
 
 extern string_manager * s_pstringmanager;
@@ -198,6 +211,10 @@ namespace base
    
          // IMPLEMENT_BASE_FIXED_ALLOC_CONSTRUCTOR(var, 1024)
          // IMPLEMENT_BASE_FIXED_ALLOC_CONSTRUCTOR(property, 1024)
+
+         ::str::international::g_pmapRTL = new ::map < ::id,const ::id &,::id,const ::id & >();
+
+         g_pmapLibrary = new string_map < INT_PTR,INT_PTR >();
    
       }
       
@@ -248,7 +265,14 @@ namespace base
       
       CLASS_DECL_BASE void term()
       {
+
+         delete g_pmapLibrary;
+
+         g_pmapLibrary = NULL;
    
+         delete ::str::international::g_pmapRTL;
+
+         ::str::international::g_pmapRTL = NULL;
    
          // IMPLEMENT_BASE_FIXED_ALLOC_DESTRUCTOR(property)
          // IMPLEMENT_BASE_FIXED_ALLOC_DESTRUCTOR(var)

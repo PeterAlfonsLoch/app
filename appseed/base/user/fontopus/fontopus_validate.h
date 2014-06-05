@@ -68,6 +68,7 @@ namespace fontopus
       string                     m_strLoginUrl;
       string                     m_strRequestingServer;
       string                     m_strFontopusServer;
+      string_map < sp(::sockets::http_session) > m_mapFontopusSession;
       string                     m_strUsername;
       string                     m_strPassword;
       string                     m_strPasshash;

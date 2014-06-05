@@ -188,6 +188,9 @@ namespace base
       if(!m_spcrypto.is_set())
          return false;
 
+      if(!m_net.initialize())
+         return false;
+
       return true;
 
    }

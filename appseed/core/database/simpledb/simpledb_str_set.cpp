@@ -97,8 +97,6 @@ db_str_set::sync_queue::~sync_queue()
 int32_t db_str_set::sync_queue::run()
 {
 
-   string strApiServer;
-
    single_lock sl(&m_mutex, false);
 
    m_bRun = true;
@@ -152,17 +150,9 @@ repeat:;
              set["interactive_user"] = true;
 
 
-             if(strApiServer.is_empty())
-             {
-
-                strApiServer = ApplicationUser.get_ca2_server("api");
 
 
-             }
-
-
-
-             strUrl = "https://" + strApiServer +"/account/str_set_save?key=";
+             strUrl = "https://" + System.dir().get_api_cc() + "/account/str_set_save?key=";
              strUrl += System.url().url_encode(m_itema[0].m_strKey);
              strUrl += "&value=";
              strUrl += System.url().url_encode(m_itema[0].m_str);
@@ -178,7 +168,7 @@ repeat:;
              if(m_phttpsession == NULL || ::http::status_failed(set["get_status"]))
              {
                 Sleep(1984);
-                strApiServer = "";
+                System.dir().m_strApiCc = "";
                 goto repeat;
              }
 
@@ -250,7 +240,8 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       string strUrl;
 
-      strUrl = "https://api.ca2.cc/account/str_set_load?key=";
+      strUrl = "https://" + System.dir().get_api_cc() + "/account/str_set_load?key=";
+
       strUrl += System.url().url_encode(lpKey);
 
       set["user"] = &ApplicationUser;

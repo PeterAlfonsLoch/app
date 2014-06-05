@@ -489,6 +489,11 @@ namespace base
 
       virtual void defer_initialize_twf();
 
+      // name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
+      // get/set serializables to user directory
+      void gudo_get(const string & strKey,::file::serializable & obj);
+      void gudo_set(const string & strKey,::file::serializable & obj);
+
    };
 
 
