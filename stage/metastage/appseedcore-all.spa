@@ -12,4 +12,3 @@ stage\basis\core.dll
 stage\basis\draw2d_gdiplus.dll
 stage\basis\msvcp120d.dll
 stage\basis\msvcr120d.dll
-stage\basis\os.dll
