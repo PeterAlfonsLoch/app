@@ -102,8 +102,6 @@ namespace fontopus
    string simple_ui::fontopus(LPRECT lprect)
    {
 
-      Application.defer_initialize_twf();
-
       if(!CreateEx(WS_EX_LAYERED, NULL, NULL, 0, null_rect(), NULL, "fontopus"))
          return "";
 

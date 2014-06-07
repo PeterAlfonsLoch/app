@@ -1583,6 +1583,10 @@ namespace user
       if (pParentWnd == NULL)
 #endif
       {
+
+         Application.defer_initialize_twf();
+
+
          pimplNew = (Application.alloc(System.type_info < window >()));
          pimplNew->m_pui = this;
          m_pimpl = pimplNew;
@@ -2682,7 +2686,7 @@ namespace user
 
    bool interaction::ContinueModal(int32_t iLevel)
    {
-      return iLevel < m_iModalCount;
+      return iLevel < m_iModalCount && m_pthread->m_bRun;
    }
 
    void interaction::EndModalLoop(id nResult)

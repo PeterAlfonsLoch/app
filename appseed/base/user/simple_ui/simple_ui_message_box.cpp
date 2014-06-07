@@ -30,8 +30,6 @@ namespace simple_ui
       
       m_uiFlags = uiFlags;
       
-      Application.defer_initialize_twf();
-
       if(!CreateEx(WS_EX_LAYERED, NULL, NULL, 0, null_rect(), NULL, "fontopus"))
          throw simple_exception(get_app(), "not excepted! Failing Message box!!");
 

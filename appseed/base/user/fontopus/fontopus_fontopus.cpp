@@ -230,7 +230,7 @@ namespace fontopus
             if(m_pthreadCreatingUser != NULL)
             {
 
-               while(m_pthreadCreatingUser != NULL)
+               while(m_pthreadCreatingUser != NULL && m_pthreadCreatingUser->m_bRun)
                {
 
                   m_pthreadCreatingUser->m_evReady.wait(millis(84));
@@ -246,7 +246,7 @@ namespace fontopus
 
             m_pthreadCreatingUser = __begin_thread < create_user_thread >(get_app());
 
-            while(m_pthreadCreatingUser != NULL)
+            while(m_pthreadCreatingUser != NULL && m_pthreadCreatingUser->m_bRun)
             {
 
                m_pthreadCreatingUser->m_evReady.wait(millis(84));

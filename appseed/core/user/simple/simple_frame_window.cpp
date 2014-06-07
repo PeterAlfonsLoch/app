@@ -730,8 +730,6 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
 
    UNREFERENCED_PARAMETER(pParentWnd);
 
-   Application.defer_initialize_twf();
-
    // only do this once
    //   ASSERT_VALID_IDR(nIDResource);
    //   ASSERT(m_nIDHelp == 0 || m_nIDHelp == nIDResource);
