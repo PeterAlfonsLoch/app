@@ -163,7 +163,6 @@ namespace sockets
    {
       if (m_bFirst)
       {
-         m_request.attr(__id(remote_addr)) = GetRemoteAddress().get_display_number();
          {
 #ifdef WINDOWS
 
@@ -192,6 +191,7 @@ namespace sockets
          string str = pa.getword();
          if (str.get_length() > 4 &&  ::str::begins_ci(str, "http/")) // response
          {
+            m_response.attr(__id(remote_addr)) = GetRemoteAddress().get_display_number();
             m_response.attr(__id(http_version)) = str;
             m_response.attr(__id(http_status_code)) = pa.getword();
             m_response.attr(__id(http_status)) = pa.getrest();
