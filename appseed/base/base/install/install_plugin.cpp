@@ -94,7 +94,7 @@ namespace install
       if (!::hotplugin::plugin::set_host(phost))
          return false;
 
-      get_login().m_strRequestingServer = System.url().get_server(m_phost->m_strHostPluginLocation);
+      m_strLoginRequestingServer = System.url().get_server(m_phost->m_strHostPluginLocation);
 
       return true;
 
@@ -315,8 +315,7 @@ namespace install
          xxdebug_box("plugin::start_ca2 not logged", "not logged", 0);
 
          m_bLogin = true;
-         get_login().m_bVisible = false;
-         m_bLogged = calc_logged();
+         m_bLogged = &ApplicationUser != NULL;
 
          return;
 
@@ -333,7 +332,7 @@ namespace install
          property_set set(get_app());
          set.parse_url_query(System.url().get_query(m_phost->m_strPluginUrl));
          string strUrl;
-         System.url().set_param(strUrl, set["ruri"], "sessid", get_login().m_strSessId);
+         System.url().set_param(strUrl, set["ruri"], "sessid", ApplicationUser.get_sessid(set["ruri"]));
          m_phost->open_url(strUrl);
          return;
       }
@@ -394,38 +393,6 @@ namespace install
    bool plugin::hist(const char * pszUrl)
    {
       return open_url(pszUrl);
-   }
-
-
-   ::fontopus::login &     plugin::get_login()
-   {
-      
-      ::fontopus::login * plogin = oprop("install_plugin_fontopus_login").cast < ::fontopus::login >();
-      
-      if (plogin == NULL)
-      {
-         
-         plogin = new fontopus::login(get_app(), 49, 23);
-
-         plogin->set_parent(this);
-
-         plogin->m_pcallback = this;
-
-         plogin->m_pstyle = this;
-
-         plogin->m_bSelfLayout = true;
-         
-         plogin->m_editUser.SetFocus();
-
-
-         oprop("install_plugin_fontopus_login") = plogin;
-
-
-
-      }
-
-      return *plogin;
-
    }
 
 
@@ -602,7 +569,7 @@ namespace install
 
 #endif
 
-      if((!m_bLogin || !get_login().m_bVisible) && bInstallingCa2)
+      if((!m_bLogin) && bInstallingCa2)
       {
 
          on_update_progress();
@@ -618,7 +585,7 @@ namespace install
    void plugin::_001OnLButtonUp(signal_details * pobj)
    {
 
-      if(get_login().m_bVisible && pobj->previous())
+      if(pobj->previous())
          return;
       
       m_iHealingSurface = m_canvas.increment_mode();
@@ -903,12 +870,6 @@ namespace install
 #endif
 
       }
-      else if (m_bLogin)
-      {
-
-         get_login().layout();
-
-      }
 
       return bOk;
 
@@ -992,24 +953,15 @@ namespace install
 
    }
 
-   bool plugin::calc_logged()
+
+   void plugin::on_login_result(::fontopus::e_result eresult, const char * pszResponse)
    {
 
-      get_login().initialize();
-
-      get_login().start_login();
-
-      return m_bLogged;
-
-   }
-
-   void plugin::login_result(::fontopus::login::e_result eresult)
-   {
-
-      if(eresult == ::fontopus::login::result_ok)
+      if(eresult == ::fontopus::result_auth)
       {
 
          m_bLogged   = true;
+
          m_bLogin    = false;
 
          start_ca2();
@@ -1018,12 +970,7 @@ namespace install
       else
       {
 
-         get_login().defer_translate(this);
-
          m_bLogin    = true;
-         //get_login().m_editUser.m_strText = "";
-         //get_login().m_password.m_strText = "";
-         get_login().m_bVisible = true;
 
       }
 

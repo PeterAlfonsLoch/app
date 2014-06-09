@@ -20,7 +20,7 @@ namespace install
 
    class CLASS_DECL_BASE plugin :
       virtual public ::hotplugin::plugin,
-      virtual public ::fontopus::login::callback
+      virtual public ::fontopus::login_callback
    {
    public:
 
@@ -52,6 +52,8 @@ namespace install
 
       bool                 m_bPluginShiftKey;
 
+      string               m_strLoginRequestingServer;
+
 
 
 
@@ -62,8 +64,6 @@ namespace install
       virtual void install_message_handling(::message::dispatch * pdispatch);
 
 
-      ::fontopus::login &     get_login();
-
 
       virtual bool hist(const char * pszUrl);
       virtual void run_start_install(const char * pszType, const char * pszRun, const char * pszLocale, const char * pszSchema);
@@ -73,18 +73,13 @@ namespace install
 
       virtual bool thread_start_ca2_on_idle();
 
-      virtual bool calc_logged();
-
-      //int32_t starter_start(const char * pszId);
-
       virtual bool initialize();
 
-      //virtual void on_bare_paint(HDC hdc, LPCRECT lprect);
       virtual void on_paint(::draw2d::graphics * pgraphics, LPCRECT lprect);
 
       virtual void on_prepare_memory();
 
-      virtual void login_result(::fontopus::login::e_result eresult);
+      virtual void on_login_result(::fontopus::e_result eresult, const char * pszResponse);
 
       DECL_GEN_SIGNAL(_001OnLButtonUp);
       

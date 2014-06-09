@@ -11,11 +11,12 @@ namespace fontopus
    public:
 
 
-      class create_user_thread *             m_pthreadCreatingUser;
-      user *                                 m_puser;
-      string_to_string                       m_mapFontopusServer;
-      string                                 m_strFirstFontopusServer;
-      authentication_map                     m_authmap;
+      class create_user_thread *                   m_pthreadCreatingUser;
+      user *                                       m_puser;
+      string_to_string                             m_mapFontopusServer;
+      string                                       m_strFirstFontopusServer;
+      authentication_map                           m_authmap;
+      string_map < sp(::sockets::http_session) >   m_mapFontopusSession;
 
 
 
@@ -48,7 +49,9 @@ namespace fontopus
       virtual void on_request(sp(::create_context) pcreatecontext);
 
 
-      virtual string get_server(const char * pszUrl, int32_t iRetry);
+      virtual string get_server(const char * pszSourceUrl, int32_t iRetry = 8);
+
+      virtual string get_fontopus_server(const char * pszRequestingServerOrUrl,int iRetry = 8);
 
    };
 

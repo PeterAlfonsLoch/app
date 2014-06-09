@@ -8,8 +8,7 @@ namespace fontopus
 
    class simple_ui :
       virtual public ::simple_ui::interaction,
-      virtual public ::simple_ui::style,
-      virtual public login::callback
+      virtual public ::simple_ui::style
    {
    public:
 
@@ -26,14 +25,9 @@ namespace fontopus
       virtual ~simple_ui();
 
 
-      virtual string interactive_auth(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
+      virtual string get_cred(LPCRECT lprect, string & strUsername, string & strPassword, string strToken, string strTitle);
 
-      virtual string get_cred(LPRECT lprect, string & strUsername, string & strPassword, string strToken, string strTitle);
-
-      virtual string fontopus(LPRECT lprect);
-
-
-      //virtual void GetWindowRect(LPRECT lprect);
+      virtual string fontopus(LPCRECT lprect);
 
       void install_message_handling(::message::dispatch * pdispatch);
 

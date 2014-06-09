@@ -1439,10 +1439,10 @@ namespace base
 
    }
 
-   string CLASS_DECL_BASE application::show_auth_window(LPRECT lprect,string & strUsername,string & strSessId,string & strServerId,string & strLoginUrl,string strFontopusServer)
+   string CLASS_DECL_BASE application::get_cred(LPCRECT lprect,string & strUsername,string & strPassword, string strToken, string strTitle, bool bInteractive)
    {
 
-      return ::fontopus::show_auth_window(this,lprect,strUsername,strSessId,strServerId,strLoginUrl,strFontopusServer);
+      return ::fontopus::get_cred(this,lprect,strUsername,strPassword, strToken, strTitle, bInteractive);
 
    }
 
@@ -3506,34 +3506,6 @@ namespace base
 
 
 
-      //m_puinteraction = canew(::uinteraction::uinteraction(this));
-
-      //m_puinteraction->construct(this);
-
-      //if (!m_puinteraction->initialize())
-      //   return false;
-
-      /*
-      if(is_system())
-      {
-      m_strFontopusServer     = System.get_fontopus_server("http://account.ca2.cc/get_fontopus", this, 8);
-      if(m_strFontopusServer.is_empty())
-      m_strFontopusServer = "server.ca2.cc";
-      else
-      {
-      m_strFontopusServer.replace("account", "server");
-      }
-      m_strMatterUrl          = "http://" + m_strFontopusServer + "/matter/";
-      m_strMatterSecureUrl    = "https://" + m_strFontopusServer + "/matter/";
-      }
-      else
-      {
-      m_strFontopusServer     = System.m_strFontopusServer;
-      m_strMatterUrl          = System.m_strMatterUrl;
-      m_strMatterSecureUrl    = System.m_strMatterSecureUrl;
-      }
-      */
-
 
       m_dwAlive = ::get_tick_count();
 
@@ -4474,7 +4446,7 @@ namespace base
 
 
 
-   bool application::update_appmatter(::sockets::socket_handler & h,::sockets::http_session * & psession,const char * pszRoot,const char * pszRelative)
+   bool application::update_appmatter(::sockets::http_session * & psession,const char * pszRoot,const char * pszRelative)
    {
 
       ::str::international::locale_schema localeschema(this);
@@ -4491,7 +4463,7 @@ namespace base
       {
          if(localeschema.m_idaLocale[i] == __id(std) && localeschema.m_idaSchema[i] == __id(std) && bIgnoreStdStd)
             continue;
-         update_appmatter(h,psession,pszRoot,pszRelative,localeschema.m_idaLocale[i],localeschema.m_idaSchema[i]);
+         update_appmatter(psession,pszRoot,pszRelative,localeschema.m_idaLocale[i],localeschema.m_idaSchema[i]);
          System.install().m_progressApp()++;
       }
 
@@ -4500,7 +4472,7 @@ namespace base
 
    }
 
-   bool application::update_appmatter(::sockets::socket_handler & h,::sockets::http_session * & psession,const char * pszRoot,const char * pszRelative,const char * pszLocale,const char * pszStyle)
+   bool application::update_appmatter(::sockets::http_session * & psession,const char * pszRoot,const char * pszRelative,const char * pszLocale,const char * pszStyle)
    {
 
       string strLocale;
@@ -4529,7 +4501,7 @@ namespace base
 
             property_set setEmpty(get_app());
 
-            psession = System.http().open(h,System.url().get_server(strUrl),System.url().get_protocol(strUrl),setEmpty,NULL,NULL);
+            psession = System.http().open(System.url().get_server(strUrl),System.url().get_protocol(strUrl),setEmpty,NULL,NULL);
 
             if(psession != NULL)
                break;
@@ -4544,7 +4516,7 @@ namespace base
 
       set["get_memory"] = "";
 
-      psession = System.http().request(h,psession,strUrl,set);
+      psession = System.http().request(psession,strUrl,set);
 
       ::file::memory_buffer file(get_app(),set["get_memory"].cast < primitive::memory >());
 

@@ -323,26 +323,6 @@ bool application::initialize1()
    if (!m_puinteraction->initialize())
       return false;
 
-   /*
-   if(is_system())
-   {
-   m_strFontopusServer     = System.get_fontopus_server("http://account.ca2.cc/get_fontopus", this, 8);
-   if(m_strFontopusServer.is_empty())
-   m_strFontopusServer = "server.ca2.cc";
-   else
-   {
-   m_strFontopusServer.replace("account", "server");
-   }
-   m_strMatterUrl          = "http://" + m_strFontopusServer + "/matter/";
-   m_strMatterSecureUrl    = "https://" + m_strFontopusServer + "/matter/";
-   }
-   else
-   {
-   m_strFontopusServer     = System.m_strFontopusServer;
-   m_strMatterUrl          = System.m_strMatterUrl;
-   m_strMatterSecureUrl    = System.m_strMatterSecureUrl;
-   }
-   */
 
 
 

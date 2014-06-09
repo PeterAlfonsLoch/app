@@ -163,7 +163,7 @@ repeat:;
 
              set["user"] = &ApplicationUser;
 
-             m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, set);
+             m_phttpsession = System.http().request(m_phttpsession, strUrl, set);
 
              if(m_phttpsession == NULL || ::http::status_failed(set["get_status"]))
              {
@@ -248,7 +248,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       set["get_response"] = "";
 
-      m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, set);
+      m_phttpsession = System.http().request(m_phttpsession, strUrl, set);
 
       if(m_phttpsession == NULL || ::http::status_failed(set["get_status"]))
       {

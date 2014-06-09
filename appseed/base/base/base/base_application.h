@@ -364,8 +364,8 @@ namespace base
       virtual void fill_locale_schema(::str::international::locale_schema & localeschema,const char * pszLocale,const char * pszSchema);
 
 
-      virtual bool update_appmatter(::sockets::socket_handler & h,::sockets::http_session * & psession,const char * pszRoot,const char * pszRelative);
-      virtual bool update_appmatter(::sockets::socket_handler & h,::sockets::http_session * & psession,const char * pszRoot,const char * pszRelative,const char * pszLocale,const char * pszStyle);
+      virtual bool update_appmatter(::sockets::http_session * & psession,const char * pszRoot,const char * pszRelative);
+      virtual bool update_appmatter(::sockets::http_session * & psession,const char * pszRoot,const char * pszRelative,const char * pszLocale,const char * pszStyle);
 
 
       virtual void TermThread(HINSTANCE hInstTerm);
@@ -401,7 +401,8 @@ namespace base
       virtual string multimedia_audio_mixer_get_default_library_name();
       virtual string veriwell_multimedia_music_midi_get_default_library_name();
 
-      virtual string show_auth_window(LPRECT lprect,string & strUsername,string & strSessId,string & strServerId,string & strLoginUrl,string strFontopusServer);
+      virtual string get_cred(LPCRECT lpcrect, string & strUsername,string & strPassword, string strToken, string strTitle, bool bInteractive);
+
       virtual bool get_temp_file_name_template(string & str,const char * pszName,const char * pszExtension,const char * pszTemplate);
 
       virtual bool get_temp_file_name(string & str,const char * pszName,const char * pszExtension);

@@ -446,7 +446,7 @@ namespace http
 
 
 
-   ::sockets::http_session * system::open(::sockets::socket_handler & handler, const char * pszHost, const char * pszProtocol, property_set & set, ::fontopus::user * puser, const char * pszVersion)
+   ::sockets::http_session * system::open(const char * pszHost, const char * pszProtocol, property_set & set, ::fontopus::user * puser, const char * pszVersion)
    {
 
       uint32_t dwTimeProfile1 = get_tick_count();
@@ -490,7 +490,7 @@ namespace http
 
       ::sockets::http_session * psession;
 
-      psession = new ::sockets::http_session(handler, strProtocol, pszHost);
+      psession = new ::sockets::http_session(canew(::sockets::socket_handler(get_app())), strProtocol, pszHost);
 
       if(!(bool)set["disable_ca2_sessid"] && !setQuery.has_property("authnone"))
       {
@@ -636,7 +636,7 @@ namespace http
 
 
 
-   ::sockets::http_session * system::request(::sockets::socket_handler & handler, ::sockets::http_session * psession, const char * pszRequest, property_set & set)
+   ::sockets::http_session * system::request(::sockets::http_session * psession, const char * pszRequest, property_set & set)
    {
 
       uint32_t dw1;
@@ -673,7 +673,7 @@ retry:
       {
          try
          {
-            psession = open(handler, System.url().get_server(pszRequest), System.url().get_protocol(pszRequest), set, set["user"].cast < ::fontopus::user > (), set["http_protocol_version"]);
+            psession = open(System.url().get_server(pszRequest), System.url().get_protocol(pszRequest), set, set["user"].cast < ::fontopus::user > (), set["http_protocol_version"]);
             if(psession == NULL)
                return NULL;
          }
@@ -689,7 +689,7 @@ retry:
 
          uint32_t dwTimeProfile1 = get_tick_count();
 
-         sp(::base::application) papp = handler.get_app();
+         sp(::base::application) papp = psession->get_app();
 
 
          string strRequest = System.url().get_object(pszRequest);
@@ -820,7 +820,7 @@ retry:
          }
 
 
-         handler.add(psession);
+         psession->m_phandler->add(psession);
 
          int32_t iIteration = 0;
          ::base::live_signal keeplive;
@@ -837,10 +837,10 @@ retry:
 
          TRACE("intertime system::request time(%d) = %d, %d, %d\n", iIteration, dw1, dw2, dw2 - dw1);
 
-         while(handler.get_count() > 0 && !psession->m_bRequestComplete)
+         while(psession->m_phandler->get_count() > 0 && !psession->m_bRequestComplete)
          {
             dw1 = ::get_tick_count();
-            handler.select(240, 0);
+            psession->m_phandler->select(240, 0);
             keeplive.keep_alive();
             if(psession->m_estatus == ::sockets::socket::status_connection_timed_out)
             {

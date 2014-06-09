@@ -65,6 +65,15 @@ CLASS_DECL_BASE bool __wait_threading_count(::duration dur)
 
       sl.unlock();
 
+      for(index i = 0; i < ::multithreading::s_pthreadptra->get_count(); i++)
+      {
+
+         ::multithreading::s_pthreadptra->element_at(i)->m_bRun = false;
+
+         ::multithreading::s_pthreadptra->element_at(i)->m_pimpl->m_bRun = false;
+
+      }
+
       Sleep(84);
 
    }
@@ -104,7 +113,16 @@ CLASS_DECL_BASE bool __wait_threading_count_except(::thread * pthread, ::duratio
                return true;
             
          }
-         
+
+         for(index i = 0; i < ::multithreading::s_pthreadptra->get_count(); i++)
+         {
+
+            ::multithreading::s_pthreadptra->element_at(i)->m_bRun = false;
+
+            ::multithreading::s_pthreadptra->element_at(i)->m_pimpl->m_bRun = false;
+
+         }
+
       }
       
       sl.unlock();

@@ -252,7 +252,7 @@ namespace http
 
 
 
-   string application::defer_locale_schema_get(const char * pszUrl, const char * pszLocale, const char * pszSchema)
+   string application::locale_schema_url(const char * pszUrl, const char * pszLocale, const char * pszSchema)
    {
 
       string str;
@@ -276,14 +276,56 @@ namespace http
 
       strUrl += "lang=" + string(pszLocale) + "&styl=" + string(pszSchema);
 
-      property_set set(get_app());
+      return strUrl;
 
-      while ((str = get(strUrl, set)).is_empty())
+   }
+
+
+   string application::get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema)
+   {
+
+      string strUrl = locale_schema_url(pszUrl, pszLocale, pszSchema);
+
+      string str;
+
+      int iAttempt = 0;
+
+      string strFontopusServer = Session.fontopus()->get_fontopus_server(pszUrl);
+
+      sp(::sockets::http_session) psession = Session.fontopus()->m_mapFontopusSession[strFontopusServer];
+
+      while(true)
       {
+
+         {
+
+            property_set set(get_app());
+
+            set["get_response"] = "";
+
+            psession = System.http().request(psession,strUrl,set);
+
+            if(psession.is_set())
+            {
+
+               Session.fontopus()->m_mapFontopusSession.set_at(strFontopusServer,psession);
+
+            }
+
+            str = set["get_response"];
+
+            if(str.has_char())
+               return str;
+
+         }
+
          iAttempt++;
-         if (iAttempt > 11)
+
+         if(iAttempt > 11)
             return "";
+
          Sleep(iAttempt * 840);
+
       }
 
       return str;

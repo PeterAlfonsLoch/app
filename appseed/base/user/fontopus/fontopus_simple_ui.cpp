@@ -19,7 +19,6 @@ namespace fontopus
    {
 
       m_eschema = schema_normal;
-      m_login.m_pcallback = this;
       m_login.m_pstyle = this;
       m_bLButtonDown = false;
 
@@ -99,7 +98,7 @@ namespace fontopus
 
 
 
-   string simple_ui::fontopus(LPRECT lprect)
+   string simple_ui::fontopus(LPCRECT lprect)
    {
 
       if(!CreateEx(WS_EX_LAYERED, NULL, NULL, 0, null_rect(), NULL, "fontopus"))
@@ -110,7 +109,6 @@ namespace fontopus
       if (lprect == NULL)
       {
 
-         //         ::GetWindowRect(::GetDesktopWindow(), &m_rectDesktop);
          System.get_monitor_rect(0,&rectDesktop);
 
       }
@@ -129,8 +127,6 @@ namespace fontopus
 
       rect rectLogin;
 
-//      m_login.GetWindowRect(rectLogin);
-      
       int stdw = 884;
 
       int stdh = 184 + 23 + 184;
@@ -139,19 +135,10 @@ namespace fontopus
 
       int h = stdh;
       
-      //double d = (double) w / (double) h;
-      
       if(w > rectDesktop.width())
       {
          
          w = rectDesktop.width();
-         
-//         if(d != 0.0)
-  //       {
-
-    //        h = (int) (w / d);
-            
-      //   }
          
       }
       
@@ -160,10 +147,7 @@ namespace fontopus
          
          h = rectDesktop.height();
          
-        // w = (int) (h  * d);
-         
       }
-      
 
       rectFontopus.left = rectDesktop.left + (width(rectDesktop) - w) / 2;
       rectFontopus.top = rectDesktop.top + (height(rectDesktop) - h) / 3;
@@ -187,63 +171,40 @@ namespace fontopus
 
       BringToTop(SW_NORMAL);
 
-      RunModalLoop();
+      id idResult = RunModalLoop();
 
-      return "";
+      return idResult;
+
    }
 
 
-   string simple_ui::interactive_auth(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
+   string simple_ui::get_cred(LPCRECT lprect, string & strUsername, string & strPassword, string strToken, string strTitle)
    {
 
-      m_login.m_bCred = false;
-
-      m_login.m_strRequestingServer = strRequestingServer;
-
-
-      fontopus(lprect);
-
-      if (m_login.m_eresult == login::result_ok)
+      if(strTitle == "ca2")
       {
 
-         strUsername = m_login.m_editUser.get_window_text();
-         strSessId = m_login.m_strSessId;
-         strServerId = m_login.m_strSecureId;
-         strLoginUrl = m_login.m_strLoginUrl;
+         m_login.m_bCred = false;
 
-
-         DestroyWindow();
-
-         return "ok";
+         m_login.m_strCred = "";
 
       }
       else
       {
 
-         DestroyWindow();
+         m_login.m_bCred = true;
 
-         return "fail";
+         m_login.m_strCred = strTitle;
 
       }
 
+      id idResult = fontopus(lprect);
 
-   }
-
-   string simple_ui::get_cred(LPRECT lprect, string & strUsername, string & strPassword, string strToken, string strTitle)
-   {
-
-      m_login.m_bCred = true;
-
-      m_login.m_strCred = strTitle;
-
-      m_login.m_strRequestingServer = strToken;
-
-      fontopus(lprect);
-
-      if (m_login.m_eresult == login::result_ok)
+      if(idResult == "ok")
       {
 
          m_login.m_editUser.GetWindowText(strUsername);
+
          m_login.m_password.GetWindowText(strPassword);
 
          return "ok";
@@ -256,8 +217,8 @@ namespace fontopus
 
       }
 
-
    }
+
 
    void simple_ui::layout()
    {
@@ -272,18 +233,6 @@ namespace fontopus
 
    }
 
-
-   /*
-   void simple_ui::ClientToScreen(POINT * ppt)
-   {
-      ::ClientToScreen(m_window, ppt);
-   }
-
-   void simple_ui::ScreenToClient(POINT * ppt)
-   {
-      ::ScreenToClient(m_window, ppt);
-   }
-   */
 
    void simple_ui::_001OnLButtonDown(signal_details * pobj)
    {
@@ -322,29 +271,6 @@ namespace fontopus
 
          m_bDrag = false;
 
-      /*
-      rect rectLogin;
-
-      m_login.GetWindowRect(rectLogin);
-
-      point pt(x, y);
-
-      if (!rectLogin.contains(pt))
-      {
-      ReleaseCapture();
-      DestroyWindow(m_window);
-      }
-      */
-
-      /*      {
-      rect rectWindow;
-      m_login.GetWindowRect(&rectWindow);
-      POINT ptCursor;
-      ::GetCursorPos(&ptCursor);
-      if (!rectWindow.contains(ptCursor))
-      DestroyWindow(hWnd);
-      }*/
-
       pobj->m_bRet = true;
 
 
@@ -381,252 +307,30 @@ namespace fontopus
 
    }
 
-/*   bool simple_ui::on_windows_key_down(WPARAM wparam, LPARAM lparam)
-   {
-      if (wparam == VK_SHIFT)
-      {
-         m_bShiftKey = true;
-      }
-      else if (wparam == VK_ESCAPE)
-      {
-         on_action("escape");
-      }
-
-      return false;
-
-   }
-
-   bool simple_ui::on_windows_key_up(WPARAM wparam, LPARAM lparam)
-   {
-
-      string str;
-      wchar_t wsz[32];
-
-      BYTE baState[256];
-
-      ZERO(baState);
-      for (int i = 0; i < 256; i++)
-      {
-         baState[i] = (BYTE)GetAsyncKeyState(i);
-      }
-
-      baState[wparam & 0xff] = 0x80;
-
-      /*if((GetAsyncKeyState(::user::key_shift) & 0x80000000) != 0)
-      {
-      baState[::user::key_shift] |= 0x80;
-      }
-      */
-/*      if (m_bShiftKey)
-      {
-         baState[VK_SHIFT] |= 0x80;
-      }
-
-      int32_t iRet = ToUnicodeEx((UINT)wparam, 0, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
-      str = wsz;
-      m_login.on_char(static_cast<UINT>(wparam), str);
-
-      if (m_bShiftKey && wparam == VK_SHIFT)
-      {
-         m_bShiftKey = false;
-      }
 
 
-      return false;
-
-   }
-   */
-
-   /*LRESULT simple_ui::window_procedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-   {
-
-      switch (message)
-      {
-      case WM_DESTROY:
-         PostQuitMessage(0);
-         break;
-      case WM_LBUTTONDOWN:
-         on_lbutton_down(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-         break;
-      case WM_LBUTTONUP:
-         on_lbutton_up(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-         break;
-      case WM_MOUSEMOVE:
-         on_mouse_move(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-         break;
-      case WM_KEYDOWN:
-         if (!on_windows_key_down(wParam, lParam))
-            goto default_window_procedure;
-         break;
-      case WM_KEYUP:
-         if (!on_windows_key_up(wParam, lParam))
-            goto default_window_procedure;
-         break;
-      case WM_TIMER:
-         on_windows_gdi_draw_framebuffer();
-         goto default_window_procedure;
-      case WM_MOVE:
-         if (!on_windows_move(LOWORD(lParam), HIWORD(lParam)))
-            goto default_window_procedure;
-         break;
-      case WM_SIZE:
-         if (!on_windows_size(LOWORD(lParam), HIWORD(lParam)))
-            goto default_window_procedure;
-         break;
-      default:
-         goto default_window_procedure;
-      }
-
-      return 0;
-
-   default_window_procedure:
-
-      return DefWindowProc(hWnd, message, wParam, lParam);
-
-   }*/
-
-/*   void simple_ui::GetWindowRect(RECT * prect)
-   {
-      ::GetWindowRect(m_window, prect);
-   }
-   void simple_ui::GetClientRect(RECT * prect)
-   {
-
-      ::GetClientRect(m_window, prect);
-
-   }*/
-
-
-
-
-
-   /*void simple_ui::on_windows_gdi_draw_framebuffer()
-   {
-      if (m_dib->get_graphics() != NULL)
-      {
-         RECT rectClient;
-         rectClient.left = 0;
-         rectClient.top = 0;
-         rectClient.right = m_size.cx;
-         rectClient.bottom = m_size.cy;
-         m_dib->get_graphics()->set_alpha_mode(draw2d::alpha_mode_set);
-         m_dib->get_graphics()->FillSolidRect(&rectClient, ARGB(0, 0, 0, 0));
-         draw(m_dib->get_graphics());
-         RECT rect;
-         rect.left = m_pt.x;
-         rect.top = m_pt.y;
-
-         rect.right = m_pt.x + m_size.cx;
-         rect.bottom = m_pt.y + m_size.cy;
-
-         BYTE *dst = (BYTE*)m_dib->get_data();
-         int64_t size = m_size.cx * m_size.cy;
-
-
-         // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
-
-
-         while (size >= 8)
-         {
-            dst[0] = LOBYTE(((int32_t)dst[0] * (int32_t)dst[3]) >> 8);
-            dst[1] = LOBYTE(((int32_t)dst[1] * (int32_t)dst[3]) >> 8);
-            dst[2] = LOBYTE(((int32_t)dst[2] * (int32_t)dst[3]) >> 8);
-
-            dst[4 + 0] = LOBYTE(((int32_t)dst[4 + 0] * (int32_t)dst[4 + 3]) >> 8);
-            dst[4 + 1] = LOBYTE(((int32_t)dst[4 + 1] * (int32_t)dst[4 + 3]) >> 8);
-            dst[4 + 2] = LOBYTE(((int32_t)dst[4 + 2] * (int32_t)dst[4 + 3]) >> 8);
-
-            dst[8 + 0] = LOBYTE(((int32_t)dst[8 + 0] * (int32_t)dst[8 + 3]) >> 8);
-            dst[8 + 1] = LOBYTE(((int32_t)dst[8 + 1] * (int32_t)dst[8 + 3]) >> 8);
-            dst[8 + 2] = LOBYTE(((int32_t)dst[8 + 2] * (int32_t)dst[8 + 3]) >> 8);
-
-            dst[12 + 0] = LOBYTE(((int32_t)dst[12 + 0] * (int32_t)dst[12 + 3]) >> 8);
-            dst[12 + 1] = LOBYTE(((int32_t)dst[12 + 1] * (int32_t)dst[12 + 3]) >> 8);
-            dst[12 + 2] = LOBYTE(((int32_t)dst[12 + 2] * (int32_t)dst[12 + 3]) >> 8);
-
-            dst[16 + 0] = LOBYTE(((int32_t)dst[16 + 0] * (int32_t)dst[16 + 3]) >> 8);
-            dst[16 + 1] = LOBYTE(((int32_t)dst[16 + 1] * (int32_t)dst[16 + 3]) >> 8);
-            dst[16 + 2] = LOBYTE(((int32_t)dst[16 + 2] * (int32_t)dst[16 + 3]) >> 8);
-
-            dst[20 + 0] = LOBYTE(((int32_t)dst[20 + 0] * (int32_t)dst[20 + 3]) >> 8);
-            dst[20 + 1] = LOBYTE(((int32_t)dst[20 + 1] * (int32_t)dst[20 + 3]) >> 8);
-            dst[20 + 2] = LOBYTE(((int32_t)dst[20 + 2] * (int32_t)dst[20 + 3]) >> 8);
-
-            dst[24 + 0] = LOBYTE(((int32_t)dst[24 + 0] * (int32_t)dst[24 + 3]) >> 8);
-            dst[24 + 1] = LOBYTE(((int32_t)dst[24 + 1] * (int32_t)dst[24 + 3]) >> 8);
-            dst[24 + 2] = LOBYTE(((int32_t)dst[24 + 2] * (int32_t)dst[24 + 3]) >> 8);
-
-            dst[28 + 0] = LOBYTE(((int32_t)dst[28 + 0] * (int32_t)dst[28 + 3]) >> 8);
-            dst[28 + 1] = LOBYTE(((int32_t)dst[28 + 1] * (int32_t)dst[28 + 3]) >> 8);
-            dst[28 + 2] = LOBYTE(((int32_t)dst[28 + 2] * (int32_t)dst[28 + 3]) >> 8);
-
-            dst += 4 * 8;
-            size -= 8;
-         }
-         while (size--)
-         {
-            dst[0] = LOBYTE(((int32_t)dst[0] * (int32_t)dst[3]) >> 8);
-            dst[1] = LOBYTE(((int32_t)dst[1] * (int32_t)dst[3]) >> 8);
-            dst[2] = LOBYTE(((int32_t)dst[2] * (int32_t)dst[3]) >> 8);
-            dst += 4;
-         }
-
-         m_gdi.update_window(m_window, (COLORREF *)m_dib->get_data(), &rect);
-
-      }
-
-   }*/
-
-   /*bool simple_ui::on_windows_move(int32_t x, int32_t y)
-   {
-
-      m_pt.x = x;
-      m_pt.y = y;
-
-      return true;
-
-   }
-
-   bool simple_ui::on_windows_size(int32_t cx, int32_t cy)
-   {
-
-      m_size.cx = cx;
-      m_size.cy = cy;
-
-      m_dib.create(::get_thread_app()->allocer());
-      m_dib->create(m_size.cx, m_size.cy);
-
-      layout();
-
-      return true;
-
-   }
-   */
-
-
-
-   string CLASS_DECL_BASE show_auth_window(::base::application * papp, LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
-   {
-
-      ::fontopus::simple_ui ui(papp);
-
-      return ui.interactive_auth(lprect, strUsername, strSessId, strServerId, strLoginUrl, strFontopusServer);
-
-   }
-
-
-   string CLASS_DECL_BASE get_cred(::base::application * papp, LPRECT lprect, string & strUsername, string & strPassword, string strToken, string strTitle)
+   string CLASS_DECL_BASE get_cred(::base::application * papp, LPCRECT lprect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
    {
 
       ::fontopus::simple_ui ui(papp);
 
       string str = get_cred(papp, strUsername, strPassword, strToken);
 
-      if (str == "yes")
+      if (str == "ok")
          return "ok";
-         
 
-      return ui.get_cred(lprect, strUsername, strPassword, strToken, strTitle);
+      if(!bInteractive)
+         return "failed";
+
+      ui.m_login.m_editUser.SetWindowText(strUsername);
+
+      ui.m_login.m_password.SetWindowText(strPassword);
+
+      string strResult = ui.get_cred(lprect, strUsername, strPassword, strToken, strTitle);
+
+      ui.DestroyWindow();
+
+      return strResult;
 
    }
 
@@ -642,36 +346,39 @@ namespace fontopus
 
    }
 
-   void set_cred(::base::application * papp, string strToken, bool bOk, const char * pszUsername, const char * pszPassword)
+   void set_cred(::base::application * papp, string strToken, const char * pszUsername, const char * pszPassword)
    {
 
-      if (!bOk)
+      string strUsername(pszUsername);
+      string strPassword(pszPassword);
+      string strUsernamePrevious;
+      string strPasswordPrevious;
+
+      get_cred(papp, strUsernamePrevious, strPasswordPrevious, strToken);
+
+      if ((strUsername.has_char() && strPassword.has_char())
+         && (strUsernamePrevious != strUsername || strPasswordPrevious != strPassword))
       {
-         string strUsername(pszUsername);
-         string strPassword(pszPassword);
-         string strUsernamePrevious;
-         string strPasswordPrevious;
-
-         get_cred(papp, strUsernamePrevious, strPasswordPrevious, strToken);
-
-         if ((strUsername.has_char() && strPassword.has_char())
-            && (strUsernamePrevious != strUsername || strPasswordPrevious != strPassword))
-         {
-            dir::mk(::dir::userappdata("cred"));
-            crypto_file_set(::dir::userappdata("cred/" + strToken + "_a.data"), strUsername, "");
-            crypto_file_set(::dir::userappdata("cred/" + strToken + "_b.data"), strPassword, strToken);
-         }
+         dir::mk(::dir::userappdata("cred"));
+         crypto_file_set(::dir::userappdata("cred/" + strToken + "_a.data"), strUsername, "");
+         crypto_file_set(::dir::userappdata("cred/" + strToken + "_b.data"), strPassword, strToken);
       }
 
-      if (bOk)
+   }
+
+
+   void set_cred_ok(::base::application * papp,string strToken,bool bOk)
+   {
+
+      if(bOk)
       {
 
-         crypto_file_set(::dir::userappdata("cred/" + strToken + "_c.data"), "yes", strToken);
+         crypto_file_set(::dir::userappdata("cred/" + strToken + "_c.data"),"ok",strToken);
 
       }
       else
       {
-         crypto_file_set(::dir::userappdata("cred/" + strToken + "_c.data"), "no", strToken);
+         crypto_file_set(::dir::userappdata("cred/" + strToken + "_c.data"),"failed",strToken);
 
       }
 

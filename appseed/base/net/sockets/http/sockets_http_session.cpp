@@ -5,19 +5,21 @@ namespace sockets
 {
 
 
-   http_session::http_session(base_socket_handler & h, const string & protocol, const string & host) :
-      element(h.get_app()),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
-      http_socket(h),
-      http_tunnel(h),
-      http_client_socket(h),
-      http_get_socket(h),
-      http_post_socket(h),
-      http_put_socket(h)
+   http_session::http_session(sp(::sockets::base_socket_handler) phandler,const string & protocol,const string & host) :
+      element(phandler->get_app()),
+      base_socket(*phandler),
+      socket(*phandler),
+      stream_socket(*phandler),
+      tcp_socket(*phandler),
+      http_socket(*phandler),
+      http_tunnel(*phandler),
+      http_client_socket(*phandler),
+      http_get_socket(*phandler),
+      http_post_socket(*phandler),
+      http_put_socket(*phandler)
    {
+
+      m_phandler                    = phandler;
 
       m_strProtocol                 = protocol,
       m_strHost                     = host;

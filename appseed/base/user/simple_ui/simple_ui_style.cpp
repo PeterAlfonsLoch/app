@@ -117,22 +117,23 @@ namespace simple_ui
       }
       catch (...)
       {
+
       }
 
       if (m_strLocale.is_empty())
       {
          iAttempt++;
+
          if (iAttempt > 3)
             goto default_case;
-         goto restart;
-      }
 
+         goto restart;
+
+      }
 
    default_case:
 
       xxdebug_box("plugin::defer_get not logged", "defer get", 0);
-
-
 
       if (str_begins_ci_dup(m_strSchema, "darker;") || str_ends_ci_dup(m_strSchema, ";darker") || stristr_dup(m_strSchema, ";darker;")
          || str_begins_ci_dup(m_strSchema, "darker%3B") || str_ends_ci_dup(m_strSchema, "%3Bdarker") || stristr_dup(m_strSchema, "%3Bdarker%3B"))
@@ -150,17 +151,19 @@ namespace simple_ui
 
       if (m_strLocale.is_empty())
       {
+
          m_strLocale = calc_locale();
+
       }
 
       if (m_strSchema.is_empty())
       {
+
          m_strSchema = calc_schema();
+
       }
 
-      str = Application.http().defer_locale_schema_get(pszUrl, m_strLocale, m_strSchema);
-
-      return str;
+      return Application.http().get_locale_schema(pszUrl,m_strLocale,m_strSchema);
 
    }
 

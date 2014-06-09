@@ -38,7 +38,7 @@ namespace url
       string str(psz);
       index iPos = str.find(":");
       if(iPos == -1)
-         return "";
+         return psz;
       iPos++;
       while(iPos < str.get_length() && str[iPos] == '/')
       {

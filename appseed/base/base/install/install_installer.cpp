@@ -2774,7 +2774,7 @@ RetryHost:
 
       m_strInstall               = "http://ca2os.com/stage/";
 
-      m_strInstallStatusTemplate = Application.http().defer_locale_schema_get("http://account.ca2.cc/defer_ls_get?sessid=noauth&id=spa::InstallStatusTemplate", m_strInstallLocale, m_strInstallSchema);
+      m_strInstallStatusTemplate = Application.http().get_locale_schema("http://account.ca2.cc/defer_ls_get?sessid=noauth&id=spa::InstallStatusTemplate", m_strInstallLocale, m_strInstallSchema);
 
       m_bForceUpdatedBuild       = true;
 
@@ -2800,7 +2800,7 @@ RetryHost:
       int32_t iRetry = 0;
       while(true)
       {
-         strName = Application.http().defer_locale_schema_get(strUrl, m_strInstallLocale, m_strInstallSchema);
+         strName = Application.http().get_locale_schema(strUrl, m_strInstallLocale, m_strInstallSchema);
          if(strName.length() > 0)
             break;
          else if(iRetry < 84)

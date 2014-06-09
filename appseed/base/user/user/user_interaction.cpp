@@ -1672,6 +1672,9 @@ namespace user
 #if !defined(METROWIN) && !defined(APPLE_IOS)
       if (pParentWnd == NULL)
       {
+
+         Application.defer_initialize_twf();
+
          m_pimpl = (Application.alloc(System.type_info < window >()));
          m_pimpl->m_pui = this;
          dwStyle &= ~WS_CHILD;

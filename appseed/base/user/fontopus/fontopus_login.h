@@ -6,33 +6,9 @@ namespace fontopus
 
 
    class CLASS_DECL_BASE login :
-      virtual public ::simple_ui::interaction,
-      virtual public thread
+      virtual public ::simple_ui::interaction
    {
    public:
-
-
-
-      enum e_result
-      {
-
-         result_ok,
-         result_wrong_password,
-         result_fail,
-         result_registration_deferred
-
-      };
-
-      class CLASS_DECL_BASE callback
-      {
-      public:
-
-         virtual void login_result(e_result eresult);
-
-      };
-
-
-      login::e_result            m_eresult;
 
 
       ::simple_ui::label            m_labelUser;
@@ -41,15 +17,8 @@ namespace fontopus
       ::simple_ui::password         m_password;
       ::simple_ui::tap              m_tap;
 
-      string                        m_strPasshash;
-
-      callback *                    m_pcallback;
-      string                        m_strKeyHash;
-      string                        m_strSessId;
-      string                        m_strSecureId;
-      string                        m_strLoginUrl;
-      string                        m_strFontopusServer;
-      string                        m_strRequestingServer;
+      string                        m_strUsername;
+      string                        m_strPassword;
 
       bool                          m_bSelfLayout;
       double                        m_dRateX;
@@ -59,7 +28,6 @@ namespace fontopus
       string                        m_strCred;
 
       visual::icon *                m_picon95; // the best size to fit current ca2 icon (as of 2014)
-
 
 
       login(sp(::base::application) papp, int left, int top);
@@ -76,26 +44,7 @@ namespace fontopus
 
       void defer_translate(::simple_ui::style * pstyle);
 
-      void start_login();
-
-      static uint32_t thread_proc_login(void * lpParam);
-
-      e_result perform_login();
-
-      string calc_key_hash();
-
-
-      virtual void login_result(e_result eresult);
-
-      virtual void authentication_succeeded();
-
-      virtual void authentication_failed();
-
       virtual void layout();
-
-      virtual ::fontopus::login::e_result process_response(string strResponse);
-
-      virtual int32_t run();
 
       DECL_GEN_SIGNAL(_001OnCreate);
 

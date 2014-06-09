@@ -78,14 +78,13 @@ namespace http
 
 
       ::sockets::http_session * open(
-         ::sockets::socket_handler & handler,
          const char * pszHost,
          const char * pszProtocol,
          property_set & set,
          ::fontopus::user * puser,
          const char * pszVersion);
 
-      ::sockets::http_session * request(::sockets::socket_handler & handler, ::sockets::http_session * psession, const char * pszUrl, property_set & set);
+      ::sockets::http_session * request(::sockets::http_session * psession, const char * pszUrl, property_set & set);
 
 
 

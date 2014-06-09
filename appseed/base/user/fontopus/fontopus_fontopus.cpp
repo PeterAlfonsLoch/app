@@ -377,12 +377,16 @@ namespace fontopus
          return strFontopusServer;
       }
 
+      ::sockets::socket_handler h(get_app());
+
    retry:
 
       if (iRetry < 0)
          return ""; // should not retry or lookup is valid and strFontopusServer is really empty
 
       string strGetFontopus("http://" + strHost + "/get_fontopus");
+
+      sp(::sockets::http_session) psession;
       try
       {
 
@@ -390,12 +394,18 @@ namespace fontopus
 
          set["raw_http"] = true;
 
-         if(!Application.http().get(strGetFontopus, strFontopusServer, set))
-            strFontopusServer.Empty();
+         set["get_response"] = "";
+
+         psession = System.http().request(psession,strGetFontopus,set);
+
+         strFontopusServer = set["get_response"];
+
       }
       catch (...)
       {
       }
+
+      m_mapFontopusSession.set_at(strFontopusServer, psession);
 
       m_mapFontopusServer.set_at(strHost, strFontopusServer);
 
@@ -410,12 +420,43 @@ namespace fontopus
 
    }
 
+   string fontopus::get_fontopus_server(const char * pszRequestingServerOrUrl,int32_t iRetry)
+   {
+
+      string strRequestingServer = System.url().get_server(pszRequestingServerOrUrl);
+
+      DWORD dwGetFontopusBeg = ::GetTickCount();
+
+      string strGetFontopus("http://" + strRequestingServer + "/get_fontopus");
+
+      sp(::base::application) papp = get_app();
+
+      url_domain domainFontopus;
+
+      string strFontopusServer = Session.fontopus()->get_server(strGetFontopus,8);
+
+      domainFontopus.create(strFontopusServer);
+
+      if(domainFontopus.m_strRadix != "ca2")
+         return "";
+
+      DWORD dwGetFontopusEnd = ::GetTickCount();
+
+      TRACE("NetLogin: Get Fontopus Millis = %d",dwGetFontopusEnd - dwGetFontopusBeg);
+
+      return strFontopusServer;
+
+   }
+
+
    create_user_thread::create_user_thread(sp(::base::application) papp) :
       element(papp),
       ::thread(papp),
       m_evReady(papp)
    {
-         m_evReady.ResetEvent();
+
+      m_evReady.ResetEvent();
+
    }
 
 

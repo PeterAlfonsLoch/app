@@ -13,7 +13,6 @@ namespace fontopus
 
    login::login(sp(::base::application) papp, int left, int top) :
       element(papp),
-      ::thread(papp),
       m_labelUser(papp),
       m_editUser(papp),
       m_labelPassword(papp),
@@ -22,8 +21,6 @@ namespace fontopus
    {
 
       m_bSelfLayout = false;
-
-      m_pcallback = NULL;
 
       m_picon95 = NULL;
 
@@ -64,7 +61,9 @@ namespace fontopus
 
       xxdebug_box("defer_translate", "login", 0);
 
-      string strForm = pstyle->defer_get("http://account.ca2.cc/login_form");
+      string strFontopusServer = Session.fontopus()->get_fontopus_server("account.ca2.cc");
+
+      string strForm = pstyle->defer_get("http://" + strFontopusServer + "/login_form");
 
       if (strForm.is_empty())
          return;
@@ -101,406 +100,13 @@ namespace fontopus
    }
 
 
-   void login::callback::login_result(e_result eresult)
-   {
-
-      UNREFERENCED_PARAMETER(eresult);
-
-   }
-
-
    void login::initialize()
    {
 
-      string strText;
-
-      crypto_file_get(::dir::userappdata("license_auth/00001.data"), strText, "");
-
-      m_editUser.SetWindowText(strText);
-
-      string strPasshash;
-
-      crypto_file_get(::dir::userappdata("license_auth/00002.data"), strPasshash, calc_key_hash());
-
-      m_strPasshash = strPasshash;
-
-      //crypt_file_get(dir::usersystemappdata(dir::default_os_user_path_prefix(), "license_auth", "00001.data"), m_editUser.m_strText, "");
-
-      //crypt_file_get(dir::default_userappdata(dir::default_os_user_path_prefix(), m_editUser.m_strText, "license_auth/00002.data"), m_strPasshash, calc_key_hash());
-
-   }
-
-
-   string login::calc_key_hash()
-   {
-      if (m_strKeyHash.has_char())
-         return m_strKeyHash;
-      /*#if !core_level_1 && !core_level_2
-      ::SetDllDirectoryA(System.get_ca2_module_folder());
-      #endif
-      HMODULE hmoduleSalt = ::LoadLibraryA("salt.dll");
-      SALT salt = (SALT) ::GetProcAddress(hmoduleSalt, "salt");
-      stringa straSource;
-      if(m_loginthread.m_strUsername.has_char())
-      {
-      m_loginthread.m_strKeyHash = salt(get_app(), m_loginthread.m_strUsername, straSource);
-      return m_loginthread.m_strKeyHash;
-      }
-      else */
-      {
-         m_strKeyHash = "ca2_12n";
-         return "ca2_12n";
-      }
-   }
-
-
-   /*bool login::on_action(const char * pszId)
-   {
-
-      if (m_puiParent != NULL && m_puiParent->on_action(pszId))
-         return true;
-
-      if (strcmp(pszId, "submit") == 0)
-      {
-
-         start_login();
-
-         return true;
-
-      }
-
-      return false;
-
-   }*/
-
-   void login::start_login()
-   {
-
-      ::create_thread(NULL, 0, &login::thread_proc_login, (LPVOID) this, 0, 0);
-
-   }
-
-
-   uint32_t login::thread_proc_login(void * lpParam)
-   {
-
-      login * plogin = (login *)lpParam;
-
-      plogin->login_result(plogin->perform_login());
-
-      return 0;
-
    }
 
 
 
-   login::e_result login::perform_login()
-   {
-
-      string strUsername = m_editUser.get_window_text();
-
-      if(strUsername.is_empty())
-         return result_fail;
-
-      string strPassword = m_password.get_window_text();
-
-      if(strPassword.is_empty() && m_strPasshash.is_empty())
-         return result_fail;
-
-      
-
-      {
-
-         string_timeout & strtimeout = Session.fontopus()->m_authmap[strUsername].m_mapServer[m_strRequestingServer];
-
-         if (strtimeout.get_length() > 32 && strtimeout.valid())
-         {
-
-            return process_response(strtimeout);
-
-         }
-
-      }
-
-      if (m_strRequestingServer.is_empty())
-         m_strRequestingServer = "https://account.ca2.cc";
-
-      string strGetFontopus("http://" + m_strRequestingServer + "/get_fontopus");
-
-      m_strFontopusServer = Session.fontopus()->get_server(strGetFontopus, 8);
-
-      if (!str::ends(m_strFontopusServer, ".ca2.cc"))
-         return ::fontopus::login::result_fail;
-
-      {
-
-         string_timeout & strtimeout = Session.fontopus()->m_authmap[strUsername].m_mapFontopus[m_strFontopusServer];
-
-         if (strtimeout.get_length() > 32 && strtimeout.valid())
-         {
-
-            return process_response(strtimeout);
-
-         }
-
-      }
-
-      string strLogin;
-
-      string strApiServer;
-
-      strApiServer = m_strFontopusServer;
-
-      strApiServer.replace("account", "api");
-
-      m_strLoginUrl = "https://" + strApiServer + "/account/login";
-
-      ::xml::document doc(get_app());
-
-      string strSessId;
-
-      string strRsaModulus;
-
-      for (int32_t iRetry = 0; iRetry <= 8; iRetry++)
-      {
-
-         if (iRetry > 0)
-         {
-            Sleep(iRetry * (1984 + 1977));
-         }
-
-         strLogin.empty_string();
-
-         try
-         {
-
-            ::property_set set(get_app());
-
-            set["disable_ca2_sessid"] = true;
-
-            Application.http().get(m_strLoginUrl, strLogin, set);
-
-         }
-         catch (...)
-         {
-         }
-
-         strLogin.trim();
-
-         if (strLogin.is_empty())
-            continue;
-
-         if (!doc.load(strLogin))
-            continue;
-
-         if (doc.get_root()->get_name() != "login")
-            continue;
-
-         strSessId = doc.get_root()->attr("sessid");
-
-         if (strSessId.is_empty())
-            continue;
-
-         strRsaModulus = doc.get_root()->attr("rsa_modulus");
-
-         if (strRsaModulus.has_char())
-            break;
-
-      }
-
-      if (strRsaModulus.is_empty())
-         return result_fail;
-
-      string strPass;
-      if (m_strPasshash.is_empty())
-      {
-         strPass = crypt_nessie(m_password.get_window_text());
-      }
-      else
-      {
-         strPass = m_strPasshash;
-      }
-
-
-      string strHex;
-
-      strHex = System.crypto().spa_login_crypt(strPass, strRsaModulus);
-
-
-
-      string strResponse;
-
-      {
-
-         string strAuthUrl("https://" + strApiServer + "/account/auth?defer_registration&ruri=" + m_pstyle->m_strRuri);
-
-         if (m_strPasshash.is_empty())
-         {
-            strAuthUrl += "&entered_password=" + strHex;
-         }
-         else
-         {
-            strAuthUrl += "&entered_passhash=" + strHex;
-         }
-         //string strCrypt;
-
-         strAuthUrl += "&entered_login=" + m_editUser.get_window_text();
-         /*if(m_strLicense.has_char())
-         {
-         post["entered_license"] = m_strLicense;
-         }*/
-
-         strAuthUrl += "&sessid=" + strSessId;
-
-         ::property_set set(get_app());
-
-         set["disable_ca2_sessid"] = true;
-
-         strResponse.empty_string();
-
-         Application.http().get(strAuthUrl, strResponse, set);
-
-      }
-
-      return process_response(strResponse);
-
-   }
-
-   login::e_result login::process_response(string strResponse)
-   {
-
-      e_result eresult;
-
-      ::xml::document doc(get_app());
-
-      if (doc.load(strResponse))
-      {
-
-         if (doc.get_root()->get_name() == "response")
-         {
-            // Heuristical check
-            if (stricmp_dup(doc.get_root()->attr("id"), "auth") == 0 && string(doc.get_root()->attr("passhash")).get_length() > 16 && atoi(doc.get_root()->attr("secureuserid")) > 0)
-            {
-
-               Session.fontopus()->m_authmap[m_editUser.get_window_text()].m_mapServer[m_strRequestingServer] = strResponse;
-               Session.fontopus()->m_authmap[m_editUser.get_window_text()].m_mapFontopus[m_strFontopusServer] = strResponse;
-
-               m_strPasshash = doc.get_root()->attr("passhash");
-               m_strSessId = doc.get_root()->attr("sessid");
-               m_strSecureId = doc.get_root()->attr("secureuserid");
-               eresult = result_ok;
-            }
-            else if (stricmp_dup(doc.get_root()->attr("id"), "registration_deferred") == 0)
-            {
-               eresult = result_registration_deferred;
-            }
-            else
-            {
-               eresult = result_fail;
-            }
-         }
-         else
-         {
-
-            eresult = result_fail;
-
-         }
-
-      }
-      else
-      {
-
-         eresult = result_fail;
-
-      }
-
-      return eresult;
-
-   }
-
-
-   void login::login_result(e_result eresult)
-   {
-
-      m_eresult = eresult;
-
-      if (eresult == result_ok)
-      {
-
-         authentication_succeeded();
-
-      }
-      else
-      {
-
-         authentication_failed();
-
-      }
-
-
-      if (m_pcallback != NULL)
-      {
-
-         m_pcallback->login_result(eresult);
-
-      }
-
-   }
-
-
-   void login::authentication_succeeded()
-   {
-      if (m_bCred)
-      {
-
-         set_cred(get_app(),m_strRequestingServer,false,m_editUser.get_window_text(),m_password.get_window_text());
-
-      }
-      else
-      {
-         string strUsername = m_editUser.get_window_text();
-         string strPasshash = m_strPasshash;
-         string strPassword = m_password.get_window_text();
-
-         string strUsernamePrevious;
-         string strPasshashPrevious;
-         crypto_file_get(dir::userappdata("license_auth/00001.data"), strUsernamePrevious, "");
-         crypto_file_get(dir::userappdata("license_auth/00002.data"), strPasshashPrevious, calc_key_hash());
-
-         if ((strUsername.has_char() && strPasshash.has_char())
-            && (strUsernamePrevious != strUsername || strPasshashPrevious != strPasshash))
-         {
-            dir::mk(::dir::userappdata("license_auth"));
-            crypto_file_set(::dir::userappdata("license_auth/00001.data"), strUsername, "");
-            crypto_file_set(::dir::userappdata("license_auth/00002.data"), strPasshash, calc_key_hash());
-            /*if(strPassword.has_char())
-            {
-            string strSalt = System.crypto().v5_get_password_salt();
-            System.crypto().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00005.data"), strSalt, calc_key_hash(), get_app());
-            string strPasshash2 = System.crypto().v5_get_password_hash(strSalt, strPassword);
-            crypto_file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00010.data"), strPasshash2, calc_key_hash(), get_app());
-            }*/
-         }
-         /*if(m_loginthread.m_strLicense.has_char())
-         {
-         stringa straLicense;
-         straLicense.add(m_loginthread.m_strValidUntil);
-         straLicense.add(System.datetime().international().get_gmt_date_time());
-         crypto_file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/" + m_loginthread.m_strLicense + ".data"), straLicense.implode(";"), calc_ca2_hash(), get_app());
-         }*/
-
-      }
-
-   }
-
-   void login::authentication_failed()
-   {
-
-      layout();
-
-      ShowWindow(SW_SHOW);
-
-   }
 
 
 
@@ -731,45 +337,14 @@ namespace fontopus
 
    }
 
+
    bool login::on_action(const char * pszId)
    {
 
       if (!strcmp(pszId, "submit"))
       {
 
-         if (m_bCred)
-         {
-
-            if (m_editUser.get_window_text().is_empty())
-               return true;
-
-            if(m_password.get_window_text().is_empty())
-               return true;
-
-            login_result(::fontopus::login::result_ok);
-
-            GetTopLevelParent()->EndModalLoop("succeeded");
-
-            return true;
-
-         }
-         else
-         {
-
-            if (get_os_data() == NULL)
-            {
-
-               m_bVisible = false;
-
-               GetTopLevelParent()->ShowWindow(SW_HIDE);
-
-               ::thread::m_pimpl.create(allocer());
-
-               begin();
-
-            }
-
-         }
+         GetTopLevelParent()->EndModalLoop("ok");
 
          return true;
 
@@ -777,7 +352,9 @@ namespace fontopus
       else if (!strcmp(pszId, "escape"))
       {
 
-         GetTopLevelParent()->EndModalLoop("cancelled");
+         GetTopLevelParent()->EndModalLoop("cancel");
+
+         return true;
 
       }
 
@@ -787,39 +364,6 @@ namespace fontopus
    }
 
 
-
-   int32_t login::run()
-   {
-
-      try
-      {
-
-         login_result(perform_login());
-
-         if (m_eresult == ::fontopus::login::result_fail)
-         {
-
-            GetTopLevelParent()->ShowWindow(SW_SHOW);
-
-            m_bVisible = true;
-
-         }
-         else
-         {
-
-            GetTopLevelParent()->EndModalLoop("succeeded");
-
-         }
-      }
-      catch (...)
-      {
-      }
-
-      set_os_data(NULL);
-
-      return 0;
-
-   }
 
    void login::_001OnCreate(signal_details * pobj)
    {
@@ -844,8 +388,6 @@ namespace fontopus
       m_labelUser.SetWindowText("e-mail:");
       m_labelPassword.SetWindowText("password:");
       m_tap.SetWindowText("open");
-
-      m_eresult = login::result_fail;
 
       int stdw = 884;
       int stdh = 177 + 23 + 184 + 49;
