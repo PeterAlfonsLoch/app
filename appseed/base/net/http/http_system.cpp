@@ -691,16 +691,11 @@ retry:
 
          sp(::base::application) papp = psession->get_app();
 
-
          string strRequest = System.url().get_object(pszRequest);
 
+         string strServer = System.url().get_server(pszRequest);
 
-
-
-
-         string strUrl = psession->m_strProtocol + "://" + psession->m_strHost + strRequest;
-
-
+         string strUrl = psession->m_strProtocol + "://" + strServer + strRequest;
 
       // Format of script name example "system://server.com/the rain.mp3" => "system://server.com/the%20rain.mp3"
       {

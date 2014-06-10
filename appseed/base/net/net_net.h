@@ -5,6 +5,7 @@ CLASS_DECL_BASE int_bool from_string(in6_addr * addr, const char * string);
 CLASS_DECL_BASE string to_vsstring(const in6_addr *addr);
 CLASS_DECL_BASE int_bool from_string(in_addr * addr, const char * string);
 CLASS_DECL_BASE string to_vsstring(const in_addr *addr);
+CLASS_DECL_BASE string to_vsstring(const sockaddr *addr);
 
 
 CLASS_DECL_BASE uint32_t c_inet_addr(const char *src);

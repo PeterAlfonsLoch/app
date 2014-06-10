@@ -373,7 +373,29 @@ CLASS_DECL_BASE string to_vsstring(const in_addr * addrParam)
 
 }
 
+CLASS_DECL_BASE string to_vsstring(const sockaddr *addr)
+{
 
+   if(addr->sa_family == AF_INET)
+   {
+      
+      return to_vsstring((in_addr *)addr->sa_data);
+
+   }
+   else if(addr->sa_family == AF_INET6)
+   {
+      
+      return to_vsstring((in_addr6 *)addr->sa_data);
+
+   }
+   else
+   {
+      
+      throw "unexpected address family";
+
+   }
+
+}
 
 
 CLASS_DECL_BASE int32_t c_inet_pton(int32_t af, const char *src, void *dst)

@@ -34,6 +34,8 @@ namespace sockets
 
       Application.gudo_get("sockets::net::m_mapCache",m_mapCache);
 
+      Application.gudo_get("sockets::net::m_mapReverseCache",m_mapReverseCache);
+
       return true;
 
    }
@@ -172,7 +174,7 @@ namespace sockets
 
       single_lock sl(&m_mutexCache, true);
       dns_cache_item item;
-      if(m_mapCache.Lookup(str, item) && ((::get_tick_count() - item.m_dwLastChecked) < (((84 + 77) * 1000))))
+      if(m_mapCache.Lookup(str, item) && ((::get_tick_count() - item.m_dwLastChecked) < (11 *((84 + 77) * 1000))))
       {
          l = item.m_ipaddr;
          //         uint32_t dwTimeProfile2 = get_tick_count();
@@ -740,6 +742,20 @@ namespace sockets
    bool net::reverse(struct sockaddr *sa, socklen_t sa_len, string & hostname, string & service, int32_t flags)
    {
 
+      single_lock sl(&m_mutexCache,true);
+      reverse_cache_item item;
+      string strIpString = to_vsstring(sa);
+      if(m_mapReverseCache.Lookup(strIpString,item) && ((::get_tick_count() - item.m_dwLastChecked) < (11 * ((84 + 77) * 1000))))
+      {
+         hostname = item.m_strReverse;
+         return item.r;
+      }
+      else
+      {
+         item.m_ipaddr = *((in_addr*)sa->sa_data);
+      }
+
+
       hostname = "";
       service = "";
 #ifdef NO_GETADDRINFO
@@ -849,6 +865,10 @@ namespace sockets
       }
       hostname = host;
       service = serv;
+      item.m_strReverse = hostname;
+      item.m_dwLastChecked = ::get_tick_count();
+      m_mapReverseCache.set_at(strIpString,item);
+
       return true;
 #endif // NO_GETADDRINFO
    }
@@ -1008,6 +1028,26 @@ namespace sockets
 
    }
 
+   void net::reverse_cache_item::write(::file::output_stream & ostream)
+   {
+
+      ostream.write(&m_ipaddr,sizeof(m_ipaddr));
+      ostream.write(m_strReverse);
+      ostream.write(&m_dwLastChecked,sizeof(m_dwLastChecked));
+      ostream.write(&r,sizeof(r));
+
+   }
+
+
+   void net::reverse_cache_item::read(::file::input_stream & istream)
+   {
+
+      istream.read(&m_ipaddr,sizeof(m_ipaddr));
+      istream.read(m_strReverse);
+      istream.read(&m_dwLastChecked,sizeof(m_dwLastChecked));
+      istream.read(&r,sizeof(r));
+
+   }
 
 } // namespace sockets
 
