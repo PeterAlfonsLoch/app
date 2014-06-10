@@ -185,6 +185,10 @@ namespace sockets
 
       string service_name(const ::net::address & address);
 
+      string reverse_name(const ::net::address & address);
+
+      string reverse_name(const string & address);
+
    };
 
 

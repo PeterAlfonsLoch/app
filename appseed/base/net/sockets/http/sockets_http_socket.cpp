@@ -201,6 +201,7 @@ namespace sockets
          else // request
          {
             str.make_lower();
+            m_request.attr(__id(remote_addr)) = GetRemoteAddress().get_display_number();
             m_request.m_idHttpMethod = str;
             m_request.attr(__id(http_method)) = str;
             m_request.attr(__id(https)) = IsSSL();

@@ -853,6 +853,28 @@ namespace sockets
 #endif // NO_GETADDRINFO
    }
 
+   string net::reverse_name(const ::net::address & address)
+   {
+
+      string strHostname;
+
+      reverse((sockaddr *) &address.u.m_sa,sizeof(address.u.m_sa), strHostname, 0);
+
+      return strHostname;
+
+   }
+
+
+   string net::reverse_name(const string & strAddress)
+   {
+
+      ::net::address address(strAddress);
+
+      return reverse_name(address);
+
+   }
+
+
 
    bool net::u2service(const string & name, int32_t& service, int32_t ai_flags)
    {
