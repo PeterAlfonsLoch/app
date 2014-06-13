@@ -191,7 +191,9 @@ namespace database
 
             rect rectRestore;
 
-            if(Session.get_good_restore(rectRestore,rectWindow))
+            index iMatchingMonitor = Session.get_good_restore(rectRestore,rectWindow);
+
+            if(iMatchingMonitor >= 0)
             {
 
                SetWindowPos(
@@ -331,7 +333,7 @@ namespace database
 
          rect rectScreen;
 
-         Session.get_best_monitor(rectScreen);
+         best_monitor(rectScreen);
 
          strDisplay.Format("Display(%d, %d)", rectScreen.width(), rectScreen.height());
 

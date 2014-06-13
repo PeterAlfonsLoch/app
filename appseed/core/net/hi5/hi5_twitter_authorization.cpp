@@ -136,16 +136,11 @@ namespace hi5
 
       void authorization::display_main_frame()
       {
+         
          rect rectOpen;
-         if(m_ptabview->GetParentFrame()->get_parent() == NULL)
-         {
 
-            Session.get_best_monitor(rectOpen);
-         }
-         else
-         {
-            m_ptabview->GetParentFrame()->get_parent()->GetClientRect(rectOpen);
-         }
+         best_top_level_parent(rectOpen);
+
          int32_t iWidth = rectOpen.width();
          int32_t iHeight = rectOpen.height();
          rectOpen.deflate(iWidth / 5, iHeight / 50);

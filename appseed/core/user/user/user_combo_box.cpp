@@ -624,13 +624,9 @@ namespace user
 
          m_plist->query_full_size(sizeFull);
 
-         rect rectWindow;
-
-         GetWindowRect(rectWindow);
-
          rect rectMonitor;
 
-         Session.get_best_monitor(rectMonitor, rectWindow);
+         best_monitor(rectMonitor);
 
          bool bDown = true;
 

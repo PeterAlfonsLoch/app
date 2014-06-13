@@ -231,11 +231,17 @@ namespace user
 
          void SizeManager::SizeWindow(sp(::user::interaction)pwnd, point pt, bool bTracking)
          {
+            
             UNREFERENCED_PARAMETER(pwnd);
+            
             bool bSize = true;
+            
             rect rectWindow;
+
             class rect rectMonitor;
-            Session.get_best_monitor(rectMonitor);
+
+            pwnd->best_monitor(rectMonitor);
+
             if(m_ehittestMode == HitTestSizingTopLeft)
             {
                rectWindow.top = pt.y;

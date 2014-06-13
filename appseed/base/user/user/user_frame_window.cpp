@@ -859,15 +859,20 @@ namespace user
 
          rect rectRestore;
 
-         Session.get_good_restore(rectRestore,rectWindow);
+         index iMatchingMonitor = Session.get_good_restore(rectRestore,rectWindow);
+         
+         if(iMatchingMonitor >= 0)
+         {
 
-         SetWindowPos(
-            -3,
-            rectRestore.left,
-            rectRestore.top,
-            rectRestore.width(),
-            rectRestore.height(),
-            0);
+            SetWindowPos(
+               -3,
+               rectRestore.left,
+               rectRestore.top,
+               rectRestore.width(),
+               rectRestore.height(),
+               0);
+
+         }
 
       }
       ActivateTopParent();

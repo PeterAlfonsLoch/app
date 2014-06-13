@@ -4327,7 +4327,7 @@ throw not_implemented(get_app());
       */
       rect rectScreen;
 
-      Session.get_best_monitor(rectScreen);
+      best_monitor(rectScreen);
 
       int iPalaceGuard = 256;
 

@@ -433,7 +433,7 @@ namespace user
 
                prectControlBox = &m_rectControlBoxFullScreen;
 
-               Session.get_best_monitor(rectParent);
+               pwndDraw->best_monitor(rectParent);
 
 
             }

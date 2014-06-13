@@ -406,19 +406,6 @@ namespace windows
 
 
 
-/*      rect rectScreen;
-      Session.get_best_monitor(&rectScreen);
-      m_pbuffer->UpdateBuffer(rectScreen.bottom_right());
-      if(m_pbuffer->GetBuffer()->get_os_data() == NULL)
-         return true;*/
-
-      /*::draw2d::graphics * pdc = m_pbuffer->GetBuffer();
-
-      if(pdc == NULL)
-      {
-         return false;
-      }
-      */
 
       synch_lock slUser(&user_mutex());
       //user::oswindow_array oswindowa;

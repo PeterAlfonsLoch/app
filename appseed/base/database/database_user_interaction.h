@@ -54,7 +54,6 @@ namespace database
          virtual bool on_before_set_parent(sp(::user::interaction) pinterface);
 
 
-         virtual index get_best_monitor(LPRECT lprectMonitor);
 
       };
 

@@ -116,14 +116,21 @@ void dialog::EndModalLoop(id nResult)
 
 void dialog::on_position_parent_frame()
 {
+   
    rect rectOpen;
-   Session.get_best_monitor(rectOpen);
+   
+   best_monitor(rectOpen);
+
    int32_t iWidth = rectOpen.width();
+
    int32_t iHeight = rectOpen.height();
+
    rectOpen.deflate(iWidth / 5, iHeight / 5);
+
    m_pframe->SetWindowPos(ZORDER_TOP, rectOpen.left,
       rectOpen.top,
       rectOpen.width(), rectOpen.height(), SWP_SHOWWINDOW);
+
    m_pframe->RedrawWindow();
 
 }

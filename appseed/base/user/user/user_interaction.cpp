@@ -4247,6 +4247,119 @@ namespace user
    }
 
 
+   sp(::user::interaction) interaction::best_top_level_parent(LPRECT lprect)
+   {
+
+      sp(::user::interaction) pui = GetTopLevelParent();
+      
+      if(pui.is_null())
+      {
+
+         best_monitor(lprect);
+
+      }
+      else
+      {
+
+         pui->GetWindowRect(lprect);
+
+      }
+
+      return pui;
+
+   }
+
+
+   index interaction::best_monitor(LPRECT lprect,bool bSet,UINT uiSwpFlags,int_ptr iZOrder)
+   {
+
+      ::rect rectWindow;
+
+      GetWindowRect(rectWindow);
+
+      ::rect rect;
+
+      index iMatchingMonitor = Session.get_good_restore(rect,rectWindow);
+
+      if(bSet && iMatchingMonitor >= 0)
+      {
+
+         SetWindowPos(iZOrder,rect,uiSwpFlags);
+
+      }
+
+      if(lprect != NULL)
+      {
+
+         *lprect = rect;
+
+      }
+
+      return iMatchingMonitor;
+
+   }
+
+
+   index interaction::good_restore(LPRECT lprect,bool bSet,UINT uiSwpFlags,int_ptr iZOrder)
+   {
+
+      ::rect rectWindow;
+
+      GetWindowRect(rectWindow);
+
+      ::rect rect;
+
+      index iMatchingMonitor = Session.get_good_restore(rect,rectWindow);
+
+      if(bSet && iMatchingMonitor >= 0)
+      {
+         
+         SetWindowPos(iZOrder,rect,uiSwpFlags);
+
+      }
+
+      if(lprect != NULL)
+      {
+
+         *lprect = rect;
+
+      }
+
+      return iMatchingMonitor;
+
+   }
+
+
+   index interaction::good_iconify(LPRECT lprect,bool bSet,UINT uiSwpFlags,int_ptr iZOrder)
+   {
+      
+      ::rect rectWindow;
+
+      GetWindowRect(rectWindow);
+
+      ::rect rect;
+
+      index iMatchingMonitor = Session.get_good_restore(rect,rectWindow);
+
+      if(bSet && iMatchingMonitor >= 0)
+      {
+
+         SetWindowPos(iZOrder,rect,uiSwpFlags);
+
+      }
+
+      if(lprect != NULL)
+      {
+
+         *lprect = rect;
+
+      }
+
+      return iMatchingMonitor;
+
+   }
+
+
 } // namespace user
 
 

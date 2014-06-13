@@ -447,18 +447,6 @@ namespace userstack
 
    */
 
-   void application::get_screen_rect(LPRECT lprect)
-   {
-      //if(get_document() != NULL && get_view() != NULL)
-      //{
-         //get_view()->GetWindowRect(lprect);
-      //}
-      //else
-      {
-         Session.get_best_monitor(lprect);
-      }
-   }
-
    bool application::on_install()
    {
 

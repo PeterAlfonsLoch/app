@@ -156,8 +156,6 @@ namespace plane
 
       sp(::base::application) get_current_application();
 
-      virtual void get_screen_rect(LPRECT lprect);
-
       virtual bool on_install();
 
       virtual void set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle);
@@ -182,6 +180,9 @@ namespace plane
 
       virtual ::visual::cursor * get_cursor();
       virtual ::visual::cursor * get_default_cursor();
+
+      virtual ::count   get_monitor_count();
+      virtual bool      get_monitor_rect(index iMonitor,LPRECT lprect);
 
    };
 

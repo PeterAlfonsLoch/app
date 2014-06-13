@@ -259,7 +259,7 @@ namespace base
 
    }
 
-   bool session::get_best_monitor(LPRECT lprect,LPCRECT lpcrect)
+   index session::get_best_monitor(LPRECT lprect,LPCRECT lpcrect)
    {
 
       index iMatchingMonitor = -1;
@@ -301,24 +301,24 @@ namespace base
 
          *lprect = rectMatch;
 
-         return true;
+         return iMatchingMonitor;
 
       }
 
       get_monitor_rect(0,lprect);
 
-      return true;
+      return 0;
 
    }
 
-   bool session::get_good_restore(LPRECT lprect,LPCRECT lpcrect)
+   index session::get_good_restore(LPRECT lprect,LPCRECT lpcrect)
    {
 
       rect rectRestore = *lpcrect;
 
       rect rectMonitor;
 
-      get_best_monitor(rectMonitor,lpcrect);
+      index iMatchingMonitor = get_best_monitor(rectMonitor,lpcrect);
 
       rect rectIntersect;
 
@@ -379,13 +379,13 @@ namespace base
 
          *lprect = rectRestore;
 
-         return true;
+         return iMatchingMonitor;
 
       }
       else
       {
 
-         return false;
+         return -1;
 
       }
 
@@ -393,19 +393,19 @@ namespace base
    }
 
 
-   bool session::get_good_iconify(LPRECT lprect,LPCRECT lpcrect)
+   index session::get_good_iconify(LPRECT lprect,LPCRECT lpcrect)
    {
 
       rect rectMonitor;
 
-      get_best_monitor(rectMonitor,lpcrect);
+      index iMatchingMonitor = get_best_monitor(rectMonitor,lpcrect);
 
       lprect->left = rectMonitor.left;
       lprect->top = rectMonitor.top;
       lprect->right = rectMonitor.left;
       lprect->bottom = rectMonitor.top;
 
-      return true;
+      return iMatchingMonitor;
 
    }
 

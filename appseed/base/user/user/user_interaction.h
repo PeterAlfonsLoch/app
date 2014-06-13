@@ -629,6 +629,14 @@ namespace user
       
       virtual void keep_alive(::base::live_object * pliveobject = NULL);
 
+      virtual sp(::user::interaction) best_top_level_parent(LPRECT lprect);
+
+      virtual index best_monitor(LPRECT lprect,bool bSet = false,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
+      virtual index good_restore(LPRECT lprect,bool bSet = false,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
+      virtual index good_iconify(LPRECT lprect,bool bSet = false,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
+
+
+
    };
 
 

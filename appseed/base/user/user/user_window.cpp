@@ -891,15 +891,7 @@ void window::_001WindowMaximize()
 
    m_eappearance = ::user::AppearanceZoomed;
 
-   rect rectWindow;
-
-   GetWindowRect(rectWindow);
-
-   rect rectMonitor;
-
-   Session.get_best_monitor(rectMonitor,rectWindow);
-
-   m_pui->SetWindowPos(ZORDER_TOP,rectMonitor.left,rectMonitor.top,rectMonitor.width(),rectMonitor.height(),SWP_SHOWWINDOW | SWP_FRAMECHANGED);
+   best_monitor(NULL, true);
 
 }
 
@@ -909,15 +901,9 @@ void window::_001WindowFullScreen()
 
    m_eappearance = ::user::AppearanceFullScreen;
 
-   rect rectWindow;
-
-   GetWindowRect(rectWindow);
-
    rect rectMonitor;
 
-   Session.get_best_monitor(rectMonitor,rectWindow);
-
-   m_pui->SetWindowPos(ZORDER_TOP,rectMonitor.left,rectMonitor.top,rectMonitor.width(),rectMonitor.height(),SWP_SHOWWINDOW | SWP_FRAMECHANGED);
+   best_monitor(NULL, true);
 
 }
 

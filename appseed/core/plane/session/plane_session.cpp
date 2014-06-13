@@ -1740,16 +1740,43 @@ alt1:
 
    }
 
-   void session::get_screen_rect(LPRECT lprect)
+   ::count session::get_monitor_count()
    {
+
       if(get_document() != NULL && get_view() != NULL)
       {
-         get_view()->GetWindowRect(lprect);
+         
+         return 1;
+
       }
       else
       {
-         Session.get_best_monitor(lprect);
+
+         return ::core::session::get_monitor_count();
+
       }
+
+   }
+
+
+   bool session::get_monitor_rect(index iMonitor, LPRECT lprect)
+   {
+      
+      if(get_document() != NULL && get_view() != NULL)
+      {
+         
+         get_view()->GetWindowRect(lprect);
+
+         return true;
+
+      }
+      else
+      {
+
+         return ::core::session::get_monitor_rect(iMonitor, lprect);
+
+      }
+
    }
 
 

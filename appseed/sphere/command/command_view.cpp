@@ -111,11 +111,12 @@ namespace command
 
    void view::_001OnSize(signal_details * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
-   //   SCAST_PTR(::message::size, psize, pobj)
 
       rect rectDesktop;
-      Session.get_best_monitor(rectDesktop);
+      
+      best_monitor(rectDesktop);
 
       rect rectClient;
       GetClientRect(rectClient);

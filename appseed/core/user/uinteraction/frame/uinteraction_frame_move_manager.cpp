@@ -151,7 +151,9 @@ namespace user
 
             rect rectRestore;
 
-            if(Session.get_good_restore(rectRestore,rectEvent))
+            index iMatchingMonitor = Session.get_good_restore(rectRestore,rectEvent);
+
+            if(iMatchingMonitor >= 0)
             {
 
                bMove = false;
