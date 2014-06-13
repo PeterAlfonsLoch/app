@@ -9,6 +9,118 @@ int64_t MulDiv(int64_t nNumber, int64_t nNumerator, int64_t nDenominator)
    return muldiv64(nNumber, nNumerator, nDenominator);
 }
 
+
+bool null(LPRECT prectDest)
+{
+
+   prectDest->left      = 0;
+   prectDest->top       = 0;
+   prectDest->right     = 0;
+   prectDest->bottom    = 0;
+   return true;
+
+}
+
+
+bool x_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
+{
+   lprect->left    = max(lpcrect1->left,lpcrect2->left);
+   lprect->right   = min(lpcrect1->right,lpcrect2->right);
+   if(lprect->right >= lprect->left)
+   {
+      return true;
+   }
+   else
+   {
+      lprect->left = 0;
+      lprect->right = 0;
+      return false;
+   }
+}
+
+
+bool y_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
+{
+   lprect->top     = max(lpcrect1->top,lpcrect2->top);
+   lprect->bottom  = min(lpcrect1->bottom,lpcrect2->bottom);
+   if(lprect->top <= lprect->bottom)
+   {
+      return true;
+   }
+   else
+   {
+      lprect->top = 0;
+      lprect->bottom= 0;
+      return false;
+   }
+
+}
+
+
+CLASS_DECL_BASE bool null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
+{
+   if(x_null_intersect_rect(lprect,lpcrect1,lpcrect2)
+      && y_null_intersect_rect(lprect,lpcrect1,lpcrect2))
+   {
+      return true;
+   }
+   else
+   {
+      null(lprect);
+      return false;
+   }
+}
+
+
+bool x_left_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
+{
+   lprect->left    = max(lpcrect1->left,lpcrect2->left);
+   lprect->right   = min(lpcrect1->right,lpcrect2->right);
+   if(lprect->right > lprect->left || (lprect->right == lprect->left && lpcrect1->left == lpcrect2->left))
+   {
+      return true;
+   }
+   else
+   {
+      lprect->left = 0;
+      lprect->right = 0;
+      return false;
+   }
+}
+
+
+bool y_top_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
+{
+   lprect->top     = max(lpcrect1->top,lpcrect2->top);
+   lprect->bottom  = min(lpcrect1->bottom,lpcrect2->bottom);
+   if(lprect->top < lprect->bottom || (lprect->top == lprect->bottom && lpcrect1->top == lpcrect2->top))
+   {
+      return true;
+   }
+   else
+   {
+      lprect->top = 0;
+      lprect->bottom= 0;
+      return false;
+   }
+
+}
+
+
+CLASS_DECL_BASE bool top_left_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
+{
+   if(x_left_null_intersect_rect(lprect,lpcrect1,lpcrect2)
+      && y_top_null_intersect_rect(lprect,lpcrect1,lpcrect2))
+   {
+      return true;
+   }
+   else
+   {
+      null(lprect);
+      return false;
+   }
+}
+
 bool copy(tagRECTD * prectDest, const tagRECTD * prectSrc)
 {
    *prectDest = *prectSrc;
@@ -162,6 +274,39 @@ bool y_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD 
 }
 
 
+
+
+bool x_null_intersect_rect(tagRECTD * prect,const tagRECTD * prect1,const tagRECTD * prect2)
+{
+   prect->left    = max(prect1->left,prect2->left);
+   prect->right   = min(prect1->right,prect2->right);
+   if(prect->right >= prect->left)
+   {
+      return true;
+   }
+   else
+   {
+      return false;
+   }
+}
+
+
+bool y_null_intersect_rect(tagRECTD * prect,const tagRECTD * prect1,const tagRECTD * prect2)
+{
+   prect->top     = max(prect1->top,prect2->top);
+   prect->bottom  = min(prect1->bottom,prect2->bottom);
+   if(prect->top <= prect->bottom)
+   {
+      return true;
+   }
+   else
+   {
+      null(prect);
+      return false;
+   }
+}
+
+
 bool intersect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2)
 {
    if(x_intersect_rect(prect, prect1, prect2)
@@ -175,6 +320,7 @@ bool intersect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect
       return false;
    }
 }
+
 
 bool unite(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2)
 {

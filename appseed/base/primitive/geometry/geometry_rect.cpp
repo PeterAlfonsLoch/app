@@ -545,7 +545,15 @@ void rect::move_to(POINT pt) throw()
    { move_to_x(pt.x); move_to_y(pt.y); }
 bool rect::intersect(LPCRECT lpRect1, LPCRECT lpRect2) throw()
    { return ::IntersectRect(this, lpRect1, lpRect2) != FALSE;}
-bool rect::unite(LPCRECT lpRect1, LPCRECT lpRect2) throw()
+bool rect::null_intersect(LPCRECT lpRect1,LPCRECT lpRect2) throw()
+{
+   return ::null_intersect_rect(this,lpRect1,lpRect2) != FALSE;
+}
+bool rect::top_left_null_intersect(LPCRECT lpRect1,LPCRECT lpRect2) throw()
+{
+   return ::top_left_null_intersect_rect(this,lpRect1,lpRect2) != FALSE;
+}
+bool rect::unite(LPCRECT lpRect1,LPCRECT lpRect2) throw()
    { return ::UnionRect(this, lpRect1, lpRect2) != FALSE; }
 void rect::operator=(const RECT& srcRect) throw()
    { ::CopyRect(this, (LPCRECT) &srcRect); }

@@ -106,6 +106,10 @@ public:
    // set this rectangle to intersection of two others
    bool intersect(LPCRECT lpRect1, LPCRECT lpRect2) throw();
 
+   bool null_intersect(LPCRECT lpRect1,LPCRECT lpRect2) throw();
+
+   bool top_left_null_intersect(LPCRECT lpRect1,LPCRECT lpRect2) throw();
+
    // set this rectangle to bounding union of two others
    bool unite(LPCRECT lpRect1, LPCRECT lpRect2) throw();
 

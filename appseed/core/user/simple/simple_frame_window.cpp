@@ -1694,57 +1694,12 @@ void simple_frame_window::WfiOnRestore()
 
    bool bOk;
 
-   if (rectWindow.area() <= 0)
+   rect rectRestore;
+
+   if(Session.get_good_restore(rectRestore,rectWindow))
    {
 
-      bOk = false;
-
-   }
-   else if (Session.get_monitor_count() > 0)
-   {
-
-      bOk = false;
-
-      class rect rectSession;
-
-      for (int32_t i = 0; i < Session.get_monitor_count(); i++)
-      {
-
-         Session.get_monitor_rect(i, rectSession);
-
-         if (rectSession.contains(rectWindow))
-         {
-            bOk = true;
-            break;
-         }
-
-      }
-
-   }
-   else
-   {
-
-      rect rectScreen;
-
-      Application.get_screen_rect(rectScreen);
-
-      if (rectScreen.contains(rectWindow))
-      {
-
-         bOk = true;
-
-      }
-       else
-       {
-           bOk = false;
-       }
-
-   }
-
-   if (!bOk)
-   {
-
-      SetWindowPos(ZORDER_TOP, 200, 200, 500, 400, SWP_SHOWWINDOW);
+      SetWindowPos(ZORDER_TOP, rectRestore, SWP_SHOWWINDOW);
 
    }
 

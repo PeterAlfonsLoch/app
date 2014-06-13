@@ -1305,7 +1305,7 @@ namespace windows
             {
                m_pui->GetWindowRect(rectWindow);
             }
-            if(System.get_monitor_count() > 0)
+            /*if(System.get_monitor_count() > 0)
             {
                rect rcMonitor;
                System.get_monitor_rect(0,&rcMonitor);
@@ -1314,7 +1314,7 @@ namespace windows
                if(rectWindow.top >= rcMonitor.top)
                   pmouse->m_pt.y += (LONG)rectWindow.top;
             }
-            else
+            else*/
             {
                if(rectWindow.left >= 0)
                   pmouse->m_pt.x += (LONG)rectWindow.left;
@@ -4132,7 +4132,7 @@ namespace windows
       if(GetExStyle() & WS_EX_LAYERED)
       {
 
-         m_pui->SetWindowPos(ZORDER_TOP,0,0,0,0,SWP_SHOWWINDOW | SWP_FRAMECHANGED);
+         ::window::_001WindowMinimize();
 
       }
 
@@ -4149,14 +4149,9 @@ namespace windows
       if(GetExStyle() & WS_EX_LAYERED)
       {
 
-         rect rectDesktop;
-
-         ::GetWindowRect(::GetDesktopWindow(),rectDesktop);
-
-         m_pui->SetWindowPos(ZORDER_TOP,rectDesktop.left,rectDesktop.top,rectDesktop.width(),rectDesktop.height(),SWP_SHOWWINDOW | SWP_FRAMECHANGED);
+         ::window::_001WindowMaximize();
 
       }
-
 
    }
 
@@ -4171,11 +4166,7 @@ namespace windows
       if(GetExStyle() & WS_EX_LAYERED)
       {
 
-         rect rectDesktop;
-
-         ::GetWindowRect(::GetDesktopWindow(),rectDesktop);
-
-         m_pui->SetWindowPos(ZORDER_TOP,rectDesktop.left,rectDesktop.top,rectDesktop.width(),rectDesktop.height(),SWP_SHOWWINDOW | SWP_FRAMECHANGED);
+         ::window::_001WindowFullScreen();
 
       }
 

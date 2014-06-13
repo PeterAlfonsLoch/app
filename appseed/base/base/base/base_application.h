@@ -306,6 +306,11 @@ namespace base
       virtual ::count get_desk_monitor_count();
       virtual bool  get_desk_monitor_rect(index i,LPRECT lprect);
 
+      virtual bool  get_best_monitor(LPRECT lprect,LPCRECT lpcrect);
+      virtual bool  get_good_restore(LPRECT lprect,LPCRECT lpcrect);
+      virtual bool  get_good_iconify(LPRECT lprect,LPCRECT lpcrect);
+
+      virtual bool  get_window_minimum_size(LPSIZE lpsize);
 
       virtual bool is_key_pressed(::user::e_key ekey);
       virtual void set_key_pressed(::user::e_key ekey,bool bPressed);
@@ -494,6 +499,9 @@ namespace base
       // get/set serializables to user directory
       void gudo_get(const string & strKey,::file::serializable & obj);
       void gudo_set(const string & strKey,::file::serializable & obj);
+
+
+      void assert_user_logged_in();
 
    };
 

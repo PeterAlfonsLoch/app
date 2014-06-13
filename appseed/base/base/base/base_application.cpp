@@ -1245,8 +1245,167 @@ namespace base
 
    }
 
+   bool application::get_best_monitor(LPRECT lprect,LPCRECT lpcrect)
+   {
+
+      index iMatchingMonitor = -1;
+      index iBestArea = -1;
+      rect rectMatch;
+
+      for(index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
+      {
+
+         rect rectIntersect;
+
+         rect rectMonitor;
+
+         if(get_monitor_rect(iMonitor,rectMonitor))
+         {
+
+            if(rectIntersect.top_left_null_intersect(lpcrect,rectMonitor))
+            {
+
+               if(rectIntersect.area() > iBestArea)
+               {
+
+                  iMatchingMonitor = iMonitor;
+
+                  iBestArea = rectIntersect.area();
+
+                  rectMatch = rectMonitor;
+
+               }
+
+            }
+
+         }
+
+      }
+
+      if(iMatchingMonitor >= 0)
+      {
+         
+         *lprect = rectMatch;
+
+         return true;
+
+      }
+
+      System.get_screen_rect(lprect);
+
+      return true;
+
+   }
+
+   bool application::get_good_restore(LPRECT lprect,LPCRECT lpcrect)
+   {
+
+      rect rectRestore = *lpcrect;
+
+      rect rectMonitor;
+
+      get_best_monitor(rectMonitor, lpcrect);
+
+      rect rectIntersect;
+
+      rectIntersect.intersect(rectMonitor,rectRestore);
+
+      ::size sizeMin;
+
+      get_window_minimum_size(&sizeMin);
+
+      if(rectIntersect.width() < sizeMin.cx
+         || rectIntersect.height() < sizeMin.cy)
+      {
+
+         if(rectMonitor.width() / 7 + max(sizeMin.cx,rectMonitor.width() * 2 / 5) > rectMonitor.width()
+            || rectMonitor.height() / 7 + max(sizeMin.cy,rectMonitor.height() * 2 / 5) > rectMonitor.width())
+         {
+
+            rectRestore = rectMonitor;
+
+         }
+         else
+         {
+
+            rectRestore.left = rectMonitor.left + rectMonitor.width() / 7;
+
+            rectRestore.top = rectMonitor.top + rectMonitor.height() / 7;
+
+            rectRestore.right = rectRestore.left + max(sizeMin.cx,rectMonitor.width() * 2 / 5);
+
+            rectRestore.bottom = rectRestore.top + max(sizeMin.cy,rectMonitor.height() * 2 / 5);
+
+            if(rectRestore.right > rectMonitor.right - rectMonitor.width() / 7)
+            {
+
+               rectRestore.offset(rectMonitor.right - rectMonitor.width() / 7 - rectRestore.right,0);
+
+            }
+
+            if(rectRestore.bottom > rectMonitor.bottom - rectMonitor.height() / 7)
+            {
+
+               rectRestore.offset(0,rectMonitor.bottom - rectMonitor.height() / 7 - rectRestore.bottom);
+
+            }
+
+         }
+
+      }
+      else
+      {
+
+         rectRestore = rectIntersect;
+
+      }
+
+      if(rectRestore != lprect)
+      {
+
+         *lprect = rectRestore;
+
+         return true;
+
+      }
+      else
+      {
+
+         return false;
+
+      }
 
 
+   }
+
+
+   bool application::get_good_iconify(LPRECT lprect,LPCRECT lpcrect)
+   {
+
+      rect rectMonitor;
+
+      get_best_monitor(rectMonitor,lpcrect);
+
+      lprect->left = rectMonitor.left;
+      lprect->top = rectMonitor.top;
+      lprect->right = rectMonitor.left;
+      lprect->bottom = rectMonitor.top;
+
+      return true;
+
+   }
+
+
+   bool  application::get_window_minimum_size(LPSIZE lpsize)
+   {
+
+      lpsize->cx = 184 + 177;
+
+      lpsize->cy = 184 + 177;
+
+      return true;
+
+   }
 
 
    string application::get_locale()
@@ -4877,6 +5036,16 @@ namespace base
       }
 
    }
+
+
+   void application::assert_user_logged_in()
+   {
+
+      if(&AppUser(this) == NULL)
+         throw exit_exception(get_app(),"You have not logged in!! db_str_set::load");
+
+   }
+
 
 
 } // namespace base

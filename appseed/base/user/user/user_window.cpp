@@ -871,7 +871,17 @@ id window::GetDlgCtrlId() const
 void window::_001WindowMinimize()
 {
 
-   throw interface_only_exception(get_app());
+   m_eappearance = ::user::AppearanceIconic;
+
+   rect rectWindow;
+
+   GetWindowRect(rectWindow);
+
+   rect rectNull;
+
+   Session.get_good_iconify(rectNull,rectWindow);
+
+   m_pui->SetWindowPos(ZORDER_TOP,rectNull.left,rectNull.top,rectNull.width(),rectNull.height(),SWP_SHOWWINDOW | SWP_FRAMECHANGED);
 
 }
 
@@ -879,14 +889,36 @@ void window::_001WindowMinimize()
 void window::_001WindowMaximize()
 {
 
-   throw interface_only_exception(get_app());
+   m_eappearance = ::user::AppearanceZoomed;
+
+   rect rectWindow;
+
+   GetWindowRect(rectWindow);
+
+   rect rectMonitor;
+
+   Session.get_best_monitor(rectMonitor,rectWindow);
+
+   m_pui->SetWindowPos(ZORDER_TOP,rectMonitor.left,rectMonitor.top,rectMonitor.width(),rectMonitor.height(),SWP_SHOWWINDOW | SWP_FRAMECHANGED);
 
 }
 
 
 void window::_001WindowFullScreen()
 {
-   throw interface_only_exception(get_app());
+
+   m_eappearance = ::user::AppearanceFullScreen;
+
+   rect rectWindow;
+
+   GetWindowRect(rectWindow);
+
+   rect rectMonitor;
+
+   Session.get_best_monitor(rectMonitor,rectWindow);
+
+   m_pui->SetWindowPos(ZORDER_TOP,rectMonitor.left,rectMonitor.top,rectMonitor.width(),rectMonitor.height(),SWP_SHOWWINDOW | SWP_FRAMECHANGED);
+
 }
 
 
@@ -2550,3 +2582,5 @@ oswindow window::get_handle() const
    return m_oswindow; 
 
 }
+
+

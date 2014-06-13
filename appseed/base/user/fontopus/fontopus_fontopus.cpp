@@ -67,7 +67,8 @@ namespace fontopus
          {
             //System.simple_message_box(NULL, "<h1>You have not logged in!</h1><h2>Exiting</h2>");
             TRACE("<error>You have not logged in! Exiting!</error>");
-            throw string("You have not logged in! Exiting!");
+            //throw string("You have not logged in! Exiting!");
+            debug_box("You have not logged in!","Debug Message",MB_OK);
             return NULL;
          }
          m_puser = create_user(puser);
@@ -478,18 +479,29 @@ namespace fontopus
 
       ::fontopus::user * puser = Session.fontopus()->create_current_user();
 
-      if(!puser->initialize())
+      if(puser != NULL)
       {
 
-         delete puser;
+         if(!puser->initialize())
+         {
 
-         Session.fontopus()->m_puser = NULL;
+            delete puser;
+
+            Session.fontopus()->m_puser = NULL;
+
+         }
+         else
+         {
+
+            Session.fontopus()->m_puser = puser;
+
+         }
 
       }
       else
       {
 
-         Session.fontopus()->m_puser = puser;
+         Session.fontopus()->m_puser = NULL;
 
       }
 

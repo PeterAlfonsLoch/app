@@ -160,7 +160,7 @@ namespace database
 
             ::file::byte_stream_memory_buffer memstream(get_app());
 
-            if (!data_get(key, idIndex, memstream))
+            if(!data_get(key,idIndex,memstream))
                return false;
 
             memstream.seek_to_begin();
@@ -175,84 +175,69 @@ namespace database
 
             memstream >> bZoomed;
 
-            if (!bForceRestore && bZoomed)
-            {
-
-               pwindow->WfiMaximize();
-
-            }
-
             bool bFullScreen = false;
 
             memstream >> bFullScreen;
 
-            if (!bForceRestore && bFullScreen)
-            {
-
-               pwindow->WfiFullScreen();
-
-            }
 
             bool bIconic = false;
 
             memstream >> bIconic;
 
-            if (!bForceRestore && bIconic)
+
+            rect rectWindow;
+
+            memstream >> rectWindow;
+
+            rect rectRestore;
+
+            if(Session.get_good_restore(rectRestore,rectWindow))
             {
 
-               pwindow->WfiMinimize();
+               SetWindowPos(
+                  ZORDER_TOP,
+                  rectRestore.left,
+                  rectRestore.top,
+                  rectRestore.width(),
+                  rectRestore.height(),
+                  bForceRestore && (!bZoomed && !bFullScreen && !bIconic) ? SWP_SHOWWINDOW : 0);
 
             }
 
-            if (bForceRestore || (!bZoomed && !bFullScreen && !bIconic))
+            if(!bForceRestore)
             {
 
-               rect rectWindow;
-
-               memstream >> rectWindow;
-
-               rect rectDesktop;
-               if (get_parent() != NULL)
+               if(bZoomed)
                {
-                  get_parent()->GetClientRect(rectDesktop);
-                  get_parent()->ScreenToClient(rectWindow);
-               }
-               else
-               {
-                  System.get_screen_rect(rectDesktop);
-               }
-               rect rectIntersect;
-               rectIntersect.intersect(rectDesktop, rectWindow);
-               if (rectIntersect.width() < rectDesktop.width() / 64
-                  || rectIntersect.height() < rectDesktop.height() / 64
-                  || rectDesktop.width() * 2 / 5 < 100
-                  || rectDesktop.height() * 2 / 5 < 100)
-               {
-                  SetWindowPos(
-                     ZORDER_TOP,
-                     rectDesktop.left + rectDesktop.width() / 7,
-                     rectDesktop.top + rectDesktop.height() / 7,
-                     rectDesktop.width() * 2 / 5,
-                     rectDesktop.height() * 2 / 5, SWP_SHOWWINDOW);
-               }
-               else
-               {
-                  SetWindowPos(
-                     ZORDER_TOP,
-                     rectIntersect.left,
-                     rectIntersect.top,
-                     rectIntersect.width(),
-                     rectIntersect.height(),
-                     SWP_SHOWWINDOW);
-               }
 
+                  pwindow->WfiMaximize();
 
-               //pwindow->SetWindowPos(0, rect.left, rect.top, rect.width(), rect.height(), SWP_NOZORDER | SWP_NOACTIVATE);
+               }
+               else if(bFullScreen)
+               {
+
+                  pwindow->WfiFullScreen();
+
+               }
+               else if(bIconic)
+               {
+
+                  pwindow->WfiMinimize();
+
+               }
 
             }
+
+
+
+
 
             return true;
 
+         }
+         catch(exit_exception & e)
+         {
+            throw e;
          }
          catch (...)
          {

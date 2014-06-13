@@ -4374,14 +4374,14 @@ sp(::user::object) application::place_hold(sp(::user::interaction) pui)
 count application::get_monitor_count()
 {
 
-   return 0;
+   return System.get_monitor_count();
 
 }
 
 bool application::get_monitor_rect(index i, LPRECT lprect)
 {
 
-   return false;
+   return System.get_monitor_rect(i, lprect);
 
 }
 

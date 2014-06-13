@@ -847,43 +847,28 @@ namespace user
 
    void frame_window::InitialFramePosition(bool bForceRestore)
    {
+      
       UNREFERENCED_PARAMETER(bForceRestore);
+      
       if (m_bFrameMoveEnable)
       {
+      
          rect rectWindow;
+
          GetWindowRect(rectWindow);
-         rect rectDesktop;
-         if (get_parent() != NULL)
-         {
-            get_parent()->GetClientRect(rectDesktop);
-            get_parent()->ScreenToClient(rectWindow);
-         }
-         else
-         {
-            System.get_screen_rect(rectDesktop);
-         }
-         if (!rectDesktop.contains(rectWindow)
-            || rectWindow.width() < 100
-            || rectWindow.height() < 100)
-         {
-            SetWindowPos(
-               -3,
-               rectDesktop.left + rectDesktop.width() / 7,
-               rectDesktop.top + rectDesktop.height() / 7,
-               rectDesktop.width() * 2 / 5,
-               rectDesktop.height() * 2 / 5,
-               0);
-         }
-         else
-         {
-            SetWindowPos(
-               -3,
-               rectWindow.left,
-               rectWindow.top,
-               rectWindow.width(),
-               rectWindow.height(),
-               0);
-         }
+
+         rect rectRestore;
+
+         Session.get_good_restore(rectRestore,rectWindow);
+
+         SetWindowPos(
+            -3,
+            rectRestore.left,
+            rectRestore.top,
+            rectRestore.width(),
+            rectRestore.height(),
+            0);
+
       }
       ActivateTopParent();
       ActivateFrame();

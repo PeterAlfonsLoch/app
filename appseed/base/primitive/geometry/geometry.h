@@ -166,6 +166,16 @@ CLASS_DECL_BASE inline bool is_double(uint64_t ui)
 {
    return (ui & 0xfff0000000000000 ) == 0;
 }
+
+CLASS_DECL_BASE bool null(LPRECT prectDest);
+CLASS_DECL_BASE bool x_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2);
+CLASS_DECL_BASE bool y_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2);
+CLASS_DECL_BASE bool null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2);
+CLASS_DECL_BASE bool x_left_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2);
+CLASS_DECL_BASE bool y_top_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2);
+CLASS_DECL_BASE bool top_left_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2);
+
+
 CLASS_DECL_BASE bool copy(tagRECTD * prectDest, const tagRECTD * prectSrc);
 CLASS_DECL_BASE bool copy(tagRECTD * prectDest, const RECT * prectSrc);
 CLASS_DECL_BASE bool copy(RECT * prectDest, const tagRECTD * prectSrc);
@@ -181,7 +191,9 @@ CLASS_DECL_BASE bool deflate(tagRECTD * prect, double x, double y);
 CLASS_DECL_BASE bool offset(tagRECTD * prect, double x, double y);
 CLASS_DECL_BASE bool x_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
 CLASS_DECL_BASE bool y_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
-CLASS_DECL_BASE bool intersect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
+CLASS_DECL_BASE bool x_null_intersect_rect(tagRECTD * prect,const tagRECTD * prect1,const tagRECTD * prect2);
+CLASS_DECL_BASE bool y_null_intersect_rect(tagRECTD * prect,const tagRECTD * prect1,const tagRECTD * prect2);
+CLASS_DECL_BASE bool intersect(tagRECTD * prect,const tagRECTD * prect1,const tagRECTD * prect2);
 CLASS_DECL_BASE bool unite(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
 CLASS_DECL_BASE double width(LPRECTD lpcrect);
 CLASS_DECL_BASE double height(LPCRECTD lpcrect);
@@ -204,6 +216,7 @@ CLASS_DECL_BASE bool unite(__rect64 * prect, const __rect64 * prect1, const __re
 
 
 CLASS_DECL_BASE bool deflate(LPRECT prect, LPCRECT lpcrect);
+
 
 
 #include "geometry_point.h"
