@@ -25,7 +25,7 @@ namespace user
 
 
       bool                 m_bProDevianMode;
-      ::user::buffer *     m_pbuffer;
+      //::user::buffer *     m_pbuffer;
       uint32_t             m_iFramesPerSecond;
       event                m_eventFree;
 

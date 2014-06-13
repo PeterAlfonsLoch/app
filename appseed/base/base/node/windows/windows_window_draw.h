@@ -58,7 +58,7 @@ namespace windows
          user::buffer *,
          ::draw2d::region & rgnUpdate);
 
-      virtual bool ScreenOutput();
+      //virtual bool ScreenOutput();
 
       virtual bool ScreenOutput(user::buffer *,sp(::user::interaction) pwnd);
 

@@ -331,7 +331,7 @@ namespace database
 
          rect rectScreen;
 
-         Session.get_screen_rect(rectScreen);
+         Session.get_best_monitor(rectScreen);
 
          strDisplay.Format("Display(%d, %d)", rectScreen.width(), rectScreen.height());
 

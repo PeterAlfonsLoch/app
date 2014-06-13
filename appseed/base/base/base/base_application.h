@@ -397,7 +397,7 @@ namespace base
       virtual bool get_temp_file_name(string & str,const char * pszName,const char * pszExtension);
 
 
-      virtual void get_screen_rect(LPRECT lprect);
+      //virtual void get_screen_rect(LPRECT lprect);
 
       virtual void Ex1OnFactoryExchange();
 

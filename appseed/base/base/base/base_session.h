@@ -83,13 +83,13 @@ namespace base
 #endif
 
       virtual ::count get_monitor_count();
-      virtual bool  get_monitor_rect(index i,LPRECT lprect);
+      virtual bool  get_monitor_rect(index iMonitor,LPRECT lprect);
       virtual ::count get_desk_monitor_count();
-      virtual bool  get_desk_monitor_rect(index i,LPRECT lprect);
+      virtual bool  get_desk_monitor_rect(index iMonitor,LPRECT lprect);
 
-      virtual bool  get_best_monitor(LPRECT lprect,LPCRECT lpcrect);
-      virtual bool  get_good_restore(LPRECT lprect,LPCRECT lpcrect);
-      virtual bool  get_good_iconify(LPRECT lprect,LPCRECT lpcrect);
+      virtual index get_best_monitor(LPRECT lprect,LPCRECT lpcrect);
+      virtual index get_good_restore(LPRECT lprect,LPCRECT lpcrect);
+      virtual index get_good_iconify(LPRECT lprect,LPCRECT lpcrect);
 
       virtual bool  get_window_minimum_size(LPSIZE lpsize);
 

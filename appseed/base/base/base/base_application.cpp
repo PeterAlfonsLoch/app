@@ -1493,7 +1493,7 @@ namespace base
    }
 
 
-
+   /*
    void application::get_screen_rect(LPRECT lprect)
    {
 #ifdef METROWIN
@@ -1523,7 +1523,7 @@ namespace base
          *lprect = m_rectScreen;
       }
    }
-
+   */
 
 
 

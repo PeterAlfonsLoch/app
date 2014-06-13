@@ -41,8 +41,8 @@ namespace windows
    {
          m_dwLastRedrawRequest = ::get_tick_count();
          m_bRender = false;
-         m_pbuffer = new user::buffer(papp);
-         m_pbuffer->m_spdib.create(papp);
+//         m_pbuffer = new user::buffer(papp);
+  //       m_pbuffer->m_spdib.create(papp);
          m_dwLastUpdate = false;
       }
 
@@ -124,11 +124,11 @@ namespace windows
       m_dwLastUpdate = ::get_tick_count();
       UpdateBuffer();
       return;
-      if(m_pbuffer->GetBuffer()->get_os_data() != NULL)
-      {
+//      if(m_pbuffer->GetBuffer()->get_os_data() != NULL)
+  //    {
          //m_pbuffer->m_spdib->fill_channel(255, visual::rgba::channel_alpha);
          //ScreenOutput();
-      }
+    //  }
       DWORD dwTakeTime = ::get_tick_count() - m_dwLastUpdate;
       m_dwLastDelay = dwTakeTime;
       if(dwTakeTime > iFailureTime)
@@ -406,18 +406,19 @@ namespace windows
 
 
 
-      rect rectScreen;
+/*      rect rectScreen;
       Session.get_best_monitor(&rectScreen);
       m_pbuffer->UpdateBuffer(rectScreen.bottom_right());
       if(m_pbuffer->GetBuffer()->get_os_data() == NULL)
-         return true;
+         return true;*/
 
-      ::draw2d::graphics * pdc = m_pbuffer->GetBuffer();
+      /*::draw2d::graphics * pdc = m_pbuffer->GetBuffer();
 
       if(pdc == NULL)
       {
          return false;
       }
+      */
 
       synch_lock slUser(&user_mutex());
       //user::oswindow_array oswindowa;
@@ -437,13 +438,13 @@ namespace windows
 
 
 
-      rect rectUpdate;
+//      rect rectUpdate;
 
-      rectUpdate = rectScreen;
+//      rectUpdate = rectScreen;
 
-      rect rectOptimize;
+//      rect rectOptimize;
 
-      rectOptimize = rectUpdate;
+//      rectOptimize = rectUpdate;
 
       rect rectWindow;
       rect rect9;
@@ -648,7 +649,7 @@ namespace windows
       return true;
    }
 
-   bool window_draw::ScreenOutput()
+   /*bool window_draw::ScreenOutput()
    {
 
       if(m_bRender)
@@ -673,7 +674,7 @@ namespace windows
 
       return true;
 
-   }
+   }*/
 
 
    semaphore * window_draw::TwfGetBufferSemaphore()

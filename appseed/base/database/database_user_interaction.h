@@ -53,6 +53,9 @@ namespace database
          virtual void on_set_parent(sp(::user::interaction) puiParent);
          virtual bool on_before_set_parent(sp(::user::interaction) pinterface);
 
+
+         virtual index get_best_monitor(LPRECT lprectMonitor);
+
       };
 
 
