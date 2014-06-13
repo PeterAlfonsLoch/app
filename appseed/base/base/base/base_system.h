@@ -289,7 +289,7 @@ namespace base
 
       virtual sp(::user::object) place_hold(sp(::user::interaction) pui);
 
-      virtual sp(::base_session) query_session(index iEdge);
+      virtual sp(::base::session) query_session(index iEdge);
 
       virtual bool initialize_log(const char * pszId);
 

@@ -182,7 +182,12 @@ uint32_t os_thread::run()
 {
 
    
-   on_init_thread();
+   if(!on_init_thread())
+   {
+      
+      return 34;
+
+   }
 
 
    //Gdiplus::GdiplusStartupInput     * pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
@@ -554,18 +559,33 @@ int32_t get_os_class_scheduling_priority(int32_t nPriority)
 
 
 
-void on_init_thread()
+bool on_init_thread()
 {
 
    __inc_threading_count();
 
+   if(!__os_init_thread())
+   {
+
+      __dec_threading_count();
+
+      return false;
+
+   }
+
+   return true;
+
 }
 
 
-void on_term_thread()
+bool on_term_thread()
 {
 
+   bool bOk1 = __os_term_thread();
+
    __dec_threading_count();
+
+   return bOk1;
 
 }
 
@@ -588,5 +608,59 @@ void __node_term_multithreading()
 
 
 
+thread_int_ptr < HRESULT > t_hresultCoInitialize;
 
 
+bool __os_init_thread()
+{
+
+   t_hresultCoInitialize = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
+
+   if(FAILED(t_hresultCoInitialize))
+   {
+
+      if(t_hresultCoInitialize.operator HRESULT() == RPC_E_CHANGED_MODE)
+      {
+
+         t_hresultCoInitialize = ::CoInitializeEx(NULL,COINIT_APARTMENTTHREADED);
+
+         if(FAILED(t_hresultCoInitialize))
+         {
+
+            ::simple_message_box(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
+
+            return false;
+
+         }
+
+      }
+      else
+      {
+
+         ::simple_message_box(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
+
+         return false;
+
+      }
+
+   }
+
+   return true;
+
+}
+
+
+
+bool __os_term_thread()
+{
+
+   if(SUCCEEDED(t_hresultCoInitialize))
+   {
+      
+      CoUninitialize();
+
+   }
+
+   return true;
+
+}

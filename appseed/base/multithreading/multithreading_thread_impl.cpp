@@ -470,14 +470,34 @@ uint32_t __thread_entry(void * pparam)
 
       ::thread * pthread = pstartup->m_pthread;
 
-
       ::thread_impl * pthreadimpl = pstartup->m_pthreadimpl;
-      #ifdef WINDOWSEX
 
-      ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
+      try
+      {
 
-      pthreadimpl->::exception::translator::attach();
-      #endif
+         __node_init_thread(pthread);
+
+      }
+      catch(::exception::base *)
+      {
+
+         pstartup->m_event2.wait();
+
+         pstartup->m_event2.ResetEvent();
+
+         __node_term_thread(pthread);
+
+         pstartup->m_bError = TRUE;
+
+         pstartup->m_event.set_event();
+
+         ::multithreading::__node_on_term_thread(pthreadimpl->m_hthread,pthread,-1);
+
+         ASSERT(FALSE);  // unreachable
+
+         return -1; // anyway...
+
+      }
 
       pstartup->m_event2.wait();
 
@@ -492,6 +512,8 @@ uint32_t __thread_entry(void * pparam)
       catch(::exception::base *)
       {
 
+         __node_term_thread(pthread);
+
          pstartup->m_bError = TRUE;
 
          pstartup->m_event.set_event();
@@ -499,6 +521,8 @@ uint32_t __thread_entry(void * pparam)
          ::multithreading::__node_on_term_thread(pthreadimpl->m_hthread,pthread,-1);
 
          ASSERT(FALSE);  // unreachable
+
+         return -1; // anyway...
 
       }
 
@@ -527,11 +551,15 @@ uint32_t __thread_entry(void * pparam)
       catch(::exit_exception &)
       {
 
+         __node_term_thread(pthread);
+
          pthreadimpl->m_puser->post_to_all_threads(WM_QUIT,0,0);
 
          return -1;
 
       }
+
+      __node_term_thread(pthread);
 
       uiRet =  pthreadimpl->thread_term(n);
 

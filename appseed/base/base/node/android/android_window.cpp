@@ -1636,7 +1636,7 @@ d.unlock();
             {
                m_pguie->GetWindowRect(rectWindow);
             }
-            if(System.get_monitor_count() > 0)
+            if(Session.get_monitor_count() > 0)
             {
                rect rcMonitor;
                System.get_monitor_rect(0, &rcMonitor);
@@ -4327,7 +4327,7 @@ throw not_implemented(get_app());
       */
       rect rectScreen;
 
-      System.get_screen_rect(rectScreen);
+      Session.get_best_monitor(rectScreen);
 
       int iPalaceGuard = 256;
 

@@ -32,7 +32,7 @@ namespace user
             if(ptool->BaseToolTipGetWnd()->GetTopLevelParent() == pbase->m_pwnd)
             {
                point pt;
-               System.get_cursor_pos(&pt);
+               Session.get_cursor_pos(&pt);
                if(m_iEventTool != ptool->BaseToolTipGetIndex()
                   || pt != m_pt)
                {
@@ -64,7 +64,7 @@ namespace user
       if(!bForce)
       {
          point pt;
-         System.get_cursor_pos(&pt);
+         Session.get_cursor_pos(&pt);
          if(pt != m_pt)
             return;
       }

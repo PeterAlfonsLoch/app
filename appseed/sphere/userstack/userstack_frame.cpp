@@ -114,7 +114,7 @@ namespace userstack
          {
             OnHoverAction();
          }
-         System.get_cursor_pos(&pt);
+         Session.get_cursor_pos(&pt);
          if(!m_bHoverMouse && pt.x == 0 && pt.y == 0)
          {
             m_dwLastHover = ::get_tick_count();

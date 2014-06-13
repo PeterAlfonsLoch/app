@@ -115,7 +115,7 @@ namespace command
    //   SCAST_PTR(::message::size, psize, pobj)
 
       rect rectDesktop;
-      Application.get_screen_rect(rectDesktop);
+      Session.get_best_monitor(rectDesktop);
 
       rect rectClient;
       GetClientRect(rectClient);

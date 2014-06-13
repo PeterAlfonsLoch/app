@@ -433,7 +433,7 @@ namespace user
 
                prectControlBox = &m_rectControlBoxFullScreen;
 
-               Application.get_screen_rect(rectParent);
+               Session.get_best_monitor(rectParent);
 
 
             }

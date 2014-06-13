@@ -109,10 +109,10 @@ namespace user
       UINT                                m_nFlags;      // see WF_ flags above
       bool                                m_bCursorInside;
       ::visual::e_cursor                  m_ecursor;
-      int32_t                                 m_iModal;
-      int32_t                                 m_iModalCount;
+      int32_t                             m_iModal;
+      int32_t                             m_iModalCount;
       bool                                m_bRectOk;
-      sp(base_session)                  m_psession;
+      sp(::base::session)                 m_psession;
       bool                                m_bMessageWindow;
 
 #if defined(WINDOWS) || defined(LINUX) || defined(APPLEOS)

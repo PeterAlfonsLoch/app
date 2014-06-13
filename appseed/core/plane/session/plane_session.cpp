@@ -1748,7 +1748,7 @@ alt1:
       }
       else
       {
-         System.get_screen_rect(lprect);
+         Session.get_best_monitor(lprect);
       }
    }
 
@@ -1798,6 +1798,9 @@ alt1:
 
    bool session::initialize1()
    {
+
+      if(!::core::session::initialize1())
+         return false;
 
       m_puserpresence = canew(::userpresence::userpresence(this));
 

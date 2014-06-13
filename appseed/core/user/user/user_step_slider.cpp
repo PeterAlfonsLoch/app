@@ -206,7 +206,7 @@ namespace user
    void step_slider::UpdateHover()
    {
       point pt;
-      System.get_cursor_pos(&pt);
+      Session.get_cursor_pos(&pt);
       ScreenToClient(&pt);
       m_iHover = hit_test(pt);
       _001RedrawWindow();

@@ -13,7 +13,6 @@ public:
    
    DWORD g_dwTlsIndex;
 
-
    thread_data();
    ~thread_data();
 

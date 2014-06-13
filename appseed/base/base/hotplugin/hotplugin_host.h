@@ -30,6 +30,9 @@ namespace hotplugin
       ::draw2d::dib_sp              m_dib;
 
 
+
+
+
       host();
       virtual ~host();
 

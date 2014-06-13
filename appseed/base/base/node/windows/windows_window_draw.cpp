@@ -407,7 +407,7 @@ namespace windows
 
 
       rect rectScreen;
-      System.get_screen_rect(&rectScreen);
+      Session.get_best_monitor(&rectScreen);
       m_pbuffer->UpdateBuffer(rectScreen.bottom_right());
       if(m_pbuffer->GetBuffer()->get_os_data() == NULL)
          return true;

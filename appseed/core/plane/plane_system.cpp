@@ -240,8 +240,6 @@ namespace plane
 
 
 
-      enum_display_monitors();
-
       m_visual.construct(this);
 
       if(!m_visual.initialize1())
@@ -754,7 +752,7 @@ namespace plane
    */
 
 
-   sp(::base_session) system::query_session(index iEdge)
+   sp(::base::session) system::query_session(index iEdge)
    {
       sp(::plane::session) pbergedge = NULL;
       if(m_pbergedgemap == NULL)
@@ -1506,123 +1504,25 @@ namespace plane
 
    }
 
-   void system::enum_display_monitors()
-   {
-
-#ifdef WINDOWSEX
-
-      m_monitorinfoa.remove_all();
-
-      ::EnumDisplayMonitors(NULL, NULL, &system::monitor_enum_proc, (LPARAM) ( dynamic_cast < ::plane::system * > (this)));
-
-#else
-
-      // todo
-//      m_monitorinfoa.remove_all();
-
-
-#endif
-
-   }
-
-#ifdef WINDOWSEX
-   BOOL CALLBACK system::monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, LPRECT lprcMonitor, LPARAM dwData)
-   {
-      ::plane::system * psystem = (::plane::system *) dwData;
-      psystem->monitor_enum(hmonitor, hdcMonitor, lprcMonitor);
-      return TRUE; // to enumerate all
-   }
-
-   void system::monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, LPRECT lprcMonitor)
-   {
-
-      UNREFERENCED_PARAMETER(hdcMonitor);
-      UNREFERENCED_PARAMETER(lprcMonitor);
-
-      m_monitorinfoa.allocate(m_monitorinfoa.get_size() + 1);
-
-      ZERO(m_monitorinfoa.last_element());
-
-      m_monitorinfoa.last_element().cbSize = sizeof(MONITORINFO);
-
-      ::GetMonitorInfo(hmonitor, &m_monitorinfoa.last_element());
-
-      MONITORINFO mi = m_monitorinfoa.last_element();
-
-      TRACE0("application::monitor_enum\n");
-      TRACE("upper_bound %d\n", m_monitorinfoa.get_upper_bound());
-      TRACE("rcMonitor(left, top, right, bottom) %d, %d, %d, %d\n", mi.rcMonitor.left, mi.rcMonitor.top, mi.rcMonitor.right, mi.rcMonitor.bottom);
-      TRACE("rcWork(left, top, right, bottom) %d, %d, %d, %d\n", mi.rcWork.left, mi.rcWork.top, mi.rcWork.right, mi.rcWork.bottom);
-
-   }
-
-
-#endif
 
 
 
+   /*
    ::count system::get_monitor_count()
    {
 
-#ifdef WINDOWSEX
-
-      return m_monitorinfoa.get_count();
-
-#else
-
-      return 1;
-
-#endif
-
+      return ::base::system::get_monitor_count();
    }
 
    bool system::get_monitor_rect(index i, LPRECT lprect)
    {
 
-
-#ifdef WINDOWSEX
-
-      if(i < 0 || i >= get_monitor_count())
-         return false;
-
-      *lprect = m_monitorinfoa[i].rcMonitor;
-
-#elif defined(METROWIN)
-
-      return System.GetWindowRect(lprect);
-
-#elif defined(LINUX)
-
-      xdisplay  d;
-
-      if(!d.open(NULL))
-         return false;
-
-      lprect->left = 0;
-      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
-      lprect->top = 0;
-      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
-
-#elif defined(APPLEOS)
-
-      if(i < 0 || i >= get_monitor_count())
-         return false;
-
-      GetMainScreenRect(lprect);
-
-#else
-
-      throw todo(get_app());
-
-      ::GetWindowRect(::GetDesktopWindow(), lprect);
-
-#endif
-
-      return true;
+      return ::base::system::get_monitor_rect(i,lprect);
 
    }
+   */
 
-
+   /*
    index system::get_best_intersection_monitor(LPRECT lprect)
    {
 
@@ -1656,7 +1556,8 @@ namespace plane
          return 0;
 
    }
-
+   */
+   /*
 
    ::count system::get_desk_monitor_count()
    {
@@ -1673,6 +1574,7 @@ namespace plane
       return false;
 
    }
+   */
 
 /*
 sp(::command_thread) system::command_thread()
@@ -1719,18 +1621,6 @@ sp(::command_thread) system::command_thread()
    }
 
 
-
-   void system::get_cursor_pos(LPPOINT lppoint)
-   {
-#ifdef METROWIN
-      Windows::Foundation::Point p;
-      p = m_posdata->m_pwindow->get_cursor_pos();
-      lppoint->x = (LONG) p.X;
-      lppoint->y = (LONG) p.Y;
-#else
-      ::GetCursorPos(lppoint);
-#endif
-   }
 
 
    string system::get_host_location_url()

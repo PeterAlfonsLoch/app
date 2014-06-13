@@ -146,7 +146,8 @@ namespace user
 
 class message_queue_listener;
 class image_list;
-class base_session;
+
+
 
 #ifndef WINDOWS
 typedef void * HDWP;
@@ -165,7 +166,6 @@ struct __SIZEPARENTPARAMS
 
 namespace base
 {
-
 
    class live_object;
 
@@ -190,6 +190,7 @@ namespace base
 
    }
 
+   class session;
 
 } // namespace base
 

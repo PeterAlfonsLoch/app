@@ -1063,7 +1063,7 @@ namespace user
    void tree::UpdateHover()
    {
       point pt;
-      System.get_cursor_pos(&pt);
+      Session.get_cursor_pos(&pt);
       ScreenToClient(&pt);
       ::user::e_tree_element eelement;
       sp(::data::tree_item) pitem = _001HitTest(pt, eelement);

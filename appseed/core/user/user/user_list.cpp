@@ -3690,7 +3690,7 @@ namespace user
          index iItemSel;
          index iSubItemSel;
          point point;
-         Application.get_cursor_pos(&point);
+         Session.get_cursor_pos(&point);
          ScreenToClient(&point);
          try
          {
@@ -4838,7 +4838,7 @@ namespace user
          index iItemEnter;
          index iSubItemEnter;
          point point;
-         //Application.get_cursor_pos(&point);
+         //Session.get_cursor_pos(&point);
          //ScreenToClient(&point);
 
          if (_001DisplayHitTest(pt, iItemEnter, iSubItemEnter))
@@ -4864,7 +4864,7 @@ namespace user
       index iItemHover;
       index iSubItemHover;
       point point;
-      Application.get_cursor_pos(&point);
+      Session.get_cursor_pos(&point);
       ScreenToClient(&point);
 
       if(_001DisplayHitTest(point, iItemHover, iSubItemHover))

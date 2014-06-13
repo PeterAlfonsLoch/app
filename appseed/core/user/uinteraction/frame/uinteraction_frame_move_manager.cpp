@@ -146,64 +146,22 @@ namespace user
             //::ReleaseCapture();
             //::ShowWindow(m_pworkset->GetWndDraw()->get_wnd()->get_os_data(), SW_HIDE);
             rect rectEvent = rectWindow;
+
             rectEvent.move_to(pt);
 
-            const int32_t iMinIntersectSize = 33;
-            int32_t iMatchMonitor = -1;
-            size sizeMatch(0, 0);
-            int32_t iMaxMonitor = -1;
-            size sizeMax(0, 0);
-            for(int32_t iMonitor = 0; iMonitor < System.get_monitor_count(); iMonitor++)
-            {
-               rect rectParentClient;
-               System.get_monitor_rect(iMonitor, rectParentClient);
-               class rect rectIntersect;
-               rectIntersect.intersect(rectParentClient, rectEvent);
-               class size sizeIntersect;
-               sizeIntersect = rectIntersect.size();
-               if(sizeIntersect.cx > sizeMax.cx
-                  && sizeIntersect.cy > sizeMax.cy)
-               {
-                  sizeMax = sizeIntersect;
-                  iMaxMonitor = iMonitor;
-               }
-               if(sizeIntersect.cx > iMinIntersectSize
-                  && sizeIntersect.cy > iMinIntersectSize)
-               {
-                  if(sizeIntersect.area() > sizeMatch.area())
-                  {
-                     sizeMatch = sizeIntersect;
-                     iMatchMonitor = iMonitor;
-                  }
-               }
-            }
+            rect rectRestore;
 
-            if(iMatchMonitor >= 0)
+            if(Session.get_good_restore(rectRestore,rectEvent))
             {
-               // nothing to do, window will be moved to a location that matchs iMinIntersectSize
-               // with iMatchMonitor
-            }
-            else
-            {
+
                bMove = false;
-               // TODO: should use iMaxMonitor information to set window
-               // to a more visible position in the monitor iMaxMonitor with greatest
-               // area.
-               sp(simple_frame_window) pframe = (m_pworkset->GetWndDraw().m_p);
-               if(pframe != NULL)
-               {
-                  pframe->InitialFramePosition(true);
-               }
-               else
-               {
-                  class rect rect;
-                  System.get_monitor_rect(0, rect);
-                  rect.deflate(rect.width() / 4, rect.height() / 4);
-                  m_pworkset->GetWndDraw()->SetWindowPos(ZORDER_TOP, rect.left, rect.top, rect.width(), rect.height(), 0);
-               }
-               class rect rectResetWindow;
-               m_pworkset->GetWndDraw()->GetWindowRect(rectResetWindow);
-               ptCursor = -m_ptWindowOrigin + rectResetWindow.top_left() + m_ptCursorOrigin;
+
+               GetMoveWindow()->MoveWindow(ZORDER_TOP,rectRestore,SWP_SHOWWINDOW);
+
+               m_pworkset->GetWndDraw()->GetWindowRect(rectRestore);
+
+               ptCursor = -m_ptWindowOrigin + rectRestore.top_left() + m_ptCursorOrigin;
+
                if(System.m_bSessionSynchronizedCursor)
                {
 #ifdef WINDOWSEX
@@ -212,7 +170,9 @@ namespace user
                   throw todo(get_app());
 #endif
                }
+
                System.m_ptCursor = ptCursor;
+
             }
 
             if(bMove && rectWindow.top_left() != pt)

@@ -33,16 +33,39 @@ Gdiplus::GdiplusStartupInput *   g_pgdiplusStartupInput     = NULL;
 Gdiplus::GdiplusStartupOutput *  g_pgdiplusStartupOutput    = NULL;
 DWORD_PTR                        g_gdiplusToken             = NULL;
 DWORD_PTR                        g_gdiplusHookToken         = NULL;
+bool                             g_bCoInitialize            = false;
 
 bool __node_pre_init()
 {
+   
+   HRESULT hresult = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
 
-   if(FAILED(::CoInitializeEx(NULL,COINIT_MULTITHREADED)))
+   if(FAILED(hresult))
    {
 
-      ::simple_message_box(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_MULTITHREADED) at __node_pre_initialize","__node_pre_initialize failure",MB_ICONEXCLAMATION);
+      if(hresult == RPC_E_CHANGED_MODE)
+      {
 
-      return false;
+         hresult = ::CoInitializeEx(NULL,COINIT_APARTMENTTHREADED);
+         
+         if(FAILED(hresult))
+         {
+
+            ::simple_message_box(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
+
+            return false;
+
+         }
+
+      }
+      else
+      {
+
+         ::simple_message_box(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
+
+         return false;
+
+      }
 
    }
 
@@ -111,6 +134,8 @@ bool __node_pre_term()
 
 bool __node_pos_term()
 {
+
+   ::CoUninitialize();
 
    return true;
 

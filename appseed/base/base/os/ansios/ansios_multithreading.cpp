@@ -927,7 +927,12 @@ void * os_thread_thread_proc(LPVOID lpparameter)
 
    t_posthread = posthread;
 
-   on_init_thread();
+   if(!on_init_thread())
+   {
+      
+      return (void *) (int_ptr) 34;
+
+   }
 
    void * pvRet = (void *)(int_ptr)posthread->run();
 
@@ -1483,18 +1488,23 @@ namespace base
 
 
 
-void on_init_thread()
+bool on_init_thread()
 {
 
-   __node_init_thread();
+   if(!__os_init_thread())
+      return false;
+
+   return true;
 
 }
 
 
-void on_term_thread()
+bool on_term_thread()
 {
 
-   __node_term_thread();
+   bool bOk1 = __os_term_thread();
+
+   return bOk1;
 
 }
 

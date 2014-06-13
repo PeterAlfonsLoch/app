@@ -1265,30 +1265,21 @@ namespace windows
                }
             }
          }
+
          message::mouse * pmouse = (::message::mouse *) pbase;
 
-         Application.m_ptCursor = pmouse->m_pt;
-         if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL)
+         if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL  && m_pbaseapp->m_pbasesession->m_bSessionSynchronizedCursor)
          {
-            Session.m_ptCursor = pmouse->m_pt;
-            if(m_pbaseapp->m_pbasesession != NULL)
-            {
-               m_pbaseapp->m_pbasesession->m_ptCursor = pmouse->m_pt;
-            }
-         }
-         if(m_pui != NULL && m_pui != this && m_pui->m_pbaseapp->m_pbasesession != NULL && m_pui->m_pbaseapp->m_pbasesession != m_pbaseapp->m_pbasesession)
-         {
-            Sess(m_pui->m_pbaseapp->m_pbasesession).m_ptCursor = pmouse->m_pt;
+
+            m_pbaseapp->m_pbasesession->m_ptCursor = pmouse->m_pt;
+
          }
 
-         sp(::base_session) psession = NULL;
-         if(m_pbaseapp->is_system())
+         if(m_pui != NULL && m_pui != this && m_pui->m_pbaseapp->m_pbasesession != NULL && m_pui->m_pbaseapp->m_pbasesession != m_pbaseapp->m_pbasesession && m_pui->m_pbaseapp->m_pbasesession->m_bSessionSynchronizedCursor)
          {
-            psession = System.query_session(0);
-            if(psession != NULL && psession->m_bSessionSynchronizedCursor)
-            {
-               psession->m_ptCursor = pmouse->m_pt;
-            }
+
+            m_pui->m_pbaseapp->m_pbasesession->m_ptCursor = pmouse->m_pt;
+
          }
 
          if(m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)

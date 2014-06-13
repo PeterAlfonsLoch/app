@@ -90,7 +90,7 @@ namespace userstack
 
       sp(::base::application) get_current_application();
 
-      virtual void get_screen_rect(LPRECT lprect);
+      //virtual void get_screen_rect(LPRECT lprect);
 
       virtual bool on_install();
 

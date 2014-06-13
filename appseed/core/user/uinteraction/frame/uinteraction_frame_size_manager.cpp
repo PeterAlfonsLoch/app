@@ -235,7 +235,7 @@ namespace user
             bool bSize = true;
             rect rectWindow;
             class rect rectMonitor;
-            System.get_screen_rect(rectMonitor);
+            Session.get_best_monitor(rectMonitor);
             if(m_ehittestMode == HitTestSizingTopLeft)
             {
                rectWindow.top = pt.y;

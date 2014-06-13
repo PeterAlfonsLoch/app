@@ -18,6 +18,19 @@ namespace core
    
    }
 
+   bool session::initialize1()
+   {
+
+      if(!::base::session::initialize1())
+         return false;
+
+      if(!::application::initialize1())
+         return false;
+
+      return true;
+
+   }
+
    
    bool session::is_remote_session()
    {
@@ -34,6 +47,7 @@ namespace core
    }
 
    
+
 } // namespace core
 
 

@@ -912,7 +912,7 @@ namespace user
    void interaction::_000OnKey(::message::key * pkey)
    {
       point ptCursor;
-      System.get_cursor_pos(&ptCursor);
+      Session.get_cursor_pos(&ptCursor);
       if (!pkey->m_bRet)
       {
          // these try catchs are needed for multi threading : multi threaded windows: the hell
@@ -3862,7 +3862,7 @@ namespace user
 
       point pt;
 
-      Application.get_cursor_pos(&pt);
+      Session.get_cursor_pos(&pt);
 
       return track_popup_menu(pitem, iFlags, pt.x, pt.y);
 
@@ -3874,7 +3874,7 @@ namespace user
 
       point pt;
 
-      Application.get_cursor_pos(&pt);
+      Session.get_cursor_pos(&pt);
 
       return track_popup_menu(lpnode, iFlags, pt.x, pt.y);
 
@@ -3886,7 +3886,7 @@ namespace user
 
       point pt;
 
-      Application.get_cursor_pos(&pt);
+      Session.get_cursor_pos(&pt);
 
       return track_popup_xml_matter_menu(pszMatter, iFlags, pt.x, pt.y);
 

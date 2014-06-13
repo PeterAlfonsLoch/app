@@ -4360,42 +4360,10 @@ sp(::base::application) application::create_application(const char * pszType, co
 }
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// System/System
-//
 sp(::user::object) application::place_hold(sp(::user::interaction) pui)
 {
 
    return NULL;
-
-}
-
-
-count application::get_monitor_count()
-{
-
-   return System.get_monitor_count();
-
-}
-
-bool application::get_monitor_rect(index i, LPRECT lprect)
-{
-
-   return System.get_monitor_rect(i, lprect);
-
-}
-
-count application::get_desk_monitor_count()
-{
-
-   return 0;
-
-}
-
-bool application::get_desk_monitor_rect(index i, LPRECT lprect)
-{
-
-   return false;
 
 }
 

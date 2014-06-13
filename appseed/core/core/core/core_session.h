@@ -6,7 +6,7 @@ namespace core
 
 
    class CLASS_DECL_CORE session :
-      virtual public base_session,
+      virtual public ::base::session,
       virtual public ::application
    {
    public:
@@ -14,6 +14,9 @@ namespace core
 
       session();
       virtual ~session();
+
+
+      virtual bool initialize1();
 
 
       virtual bool is_remote_session();

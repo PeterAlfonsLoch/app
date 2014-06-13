@@ -619,12 +619,6 @@ namespace simple_ui
 
    //}
 
-   //void interaction::get_cursor_pos(POINT * ppt)
-   //{
-
-   //   ui_get_cursor_pos(ppt);
-
-   //}
 
 
    void interaction::simple_ui_draw_frame_window_rect(::draw2d::graphics * pgraphics)

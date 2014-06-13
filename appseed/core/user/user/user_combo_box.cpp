@@ -628,11 +628,9 @@ namespace user
 
          GetWindowRect(rectWindow);
 
-         index iMonitor = System.get_best_intersection_monitor(rectWindow);
-
          rect rectMonitor;
 
-         System.get_monitor_rect(iMonitor, rectMonitor);
+         Session.get_best_monitor(rectMonitor, rectWindow);
 
          bool bDown = true;
 

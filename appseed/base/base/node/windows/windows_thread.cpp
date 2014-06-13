@@ -300,3 +300,50 @@ void __term_threading()
    }
 
 }
+
+
+
+bool __node_init_thread(::thread * pthread)
+{
+
+   try
+   {
+
+      pthread->m_pimpl->::exception::translator::attach();
+
+   }
+   catch(...)
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
+
+
+bool __node_term_thread(::thread * pthread)
+{
+
+   bool bOk1 = false;
+
+   try
+   {
+
+      pthread->m_pimpl->::exception::translator::detach();
+
+      bOk1 = true;
+
+   }
+   catch(...)
+   {
+
+   }
+
+   return bOk1;
+
+}

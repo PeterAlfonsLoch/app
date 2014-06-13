@@ -466,7 +466,7 @@ namespace base
    }
 
 
-   sp(::base_session) system::query_session(index iEdge)
+   sp(::base::session) system::query_session(index iEdge)
    {
 
       return NULL;

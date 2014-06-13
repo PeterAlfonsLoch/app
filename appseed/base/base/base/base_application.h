@@ -29,7 +29,7 @@ namespace base
 
 
       ::base::system *                                   m_pbasesystem;
-      base_session *                                  m_pbasesession;
+      ::base::session *                                  m_pbasesession;
       ::application *                                 m_pplaneapp; // can be used only from core and upper
       string_to_ptr                                   m_appmap;
       string                                          m_strAppName;
@@ -85,10 +85,6 @@ namespace base
       string                                          m_strLocale;
       string                                          m_strSchema;
 
-      bool                                            m_bSessionSynchronizedCursor;
-      point                                           m_ptCursor;
-      rect                                            m_rectScreen;
-      bool                                            m_bSessionSynchronizedScreen;
       sp(::base::savings)                               m_psavings;
 
       string                                          m_strCa2ModulePath;
@@ -184,8 +180,6 @@ namespace base
 
       virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate,sp(::user::object) pdocument);
 
-
-      virtual void get_cursor_pos(LPPOINT lppoint);
 
       virtual sp(::user::interaction) release_capture_uie();
       virtual sp(::user::interaction) get_capture_uie();
@@ -301,16 +295,6 @@ namespace base
       sp(::user::interaction) get_active_guie();
       sp(::user::interaction) get_focus_guie();
 
-      virtual ::count get_monitor_count();
-      virtual bool  get_monitor_rect(index i,LPRECT lprect);
-      virtual ::count get_desk_monitor_count();
-      virtual bool  get_desk_monitor_rect(index i,LPRECT lprect);
-
-      virtual bool  get_best_monitor(LPRECT lprect,LPCRECT lpcrect);
-      virtual bool  get_good_restore(LPRECT lprect,LPCRECT lpcrect);
-      virtual bool  get_good_iconify(LPRECT lprect,LPCRECT lpcrect);
-
-      virtual bool  get_window_minimum_size(LPSIZE lpsize);
 
       virtual bool is_key_pressed(::user::e_key ekey);
       virtual void set_key_pressed(::user::e_key ekey,bool bPressed);

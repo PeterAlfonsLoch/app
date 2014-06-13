@@ -140,7 +140,7 @@ namespace hi5
          if(m_ptabview->GetParentFrame()->get_parent() == NULL)
          {
 
-            System.get_screen_rect(rectOpen);
+            Session.get_best_monitor(rectOpen);
          }
          else
          {

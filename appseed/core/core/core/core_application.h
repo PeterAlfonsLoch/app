@@ -41,7 +41,7 @@ public:
    ::base::main_init_data *            m_pinitmaindata;
    bool                                m_bService;
    ::plane::system *                   m_psystem;
-   sp(base_session)                    m_psession;
+   sp(::base::session)                    m_psession;
 
    class signal                        m_signalAppLanguageChange;
    string                              m_strHelpFilePath;
@@ -113,10 +113,6 @@ public:
    //sp(::user::user)              m_puserbase;
    //sp(::userex::userex) m_puserex;
    sp(::usermail::usermail)         m_pusermail;
-#ifdef WINDOWSEX
-   raw_array < MONITORINFO >            m_monitorinfoa;
-   raw_array < MONITORINFO >            m_monitorinfoaDesk;
-#endif
 
    stringa                          m_straAppInterest;
    string_map < oswindow, oswindow > m_mapAppInterest;
@@ -523,16 +519,6 @@ public:
 
    sp(::base::application) get_system();
 
-   void enum_display_monitors();
-
-#if defined(WINDOWS)
-
-   static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, LPRECT lprcMonitor, LPARAM dwData);
-
-   void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, LPRECT lprcMonitor);
-
-#endif
-
    virtual bool set_keyboard_layout(const char * pszPath, ::action::context actioncontext);
 
    inline ::user::uinteraction::uinteraction          & uinteraction() { return *m_puinteraction; }
@@ -608,11 +594,12 @@ public:
    //
    sp(::user::object) place_hold(sp(::user::interaction) pui);
 
+   /*
    virtual ::count get_monitor_count();
    virtual bool  get_monitor_rect(index i, LPRECT lprect);
    virtual ::count get_desk_monitor_count();
    virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
-
+   */
 
 
    //////////////////////////////////////////////////////////////////////////////////////////////////

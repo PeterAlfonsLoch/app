@@ -209,7 +209,7 @@ namespace plane
 
 
       //      sp(::plane::session) get_session(index iEdge, application_bias * pbiasCreation = NULL);
-      sp(::base_session) query_session(index iEdge);
+      sp(::base::session) query_session(index iEdge);
 
 
       //static void register_delete(sp(element) plistened, sp(element) plistener);
@@ -230,18 +230,8 @@ namespace plane
       virtual bool map_application_library(const char * pszLibrary);
 
 
-      //////////////////////////////////////////////////////////////////////////////////////////////////
-      // System/System
-      //
       sp(::user::object) place_hold(sp(::user::interaction) pui);
 
-      virtual ::count get_monitor_count();
-      virtual bool  get_monitor_rect(index i, LPRECT lprect);
-      virtual index get_best_intersection_monitor(LPRECT lprect);
-      virtual ::count get_desk_monitor_count();
-      virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
-
-      //virtual sp(::command_thread) command_thread();
 
 
       virtual bool on_install();
@@ -256,15 +246,6 @@ namespace plane
       virtual bool set_main_init_data(::base::main_init_data * pdata);
 
 
-      void enum_display_monitors();
-
-#if defined(WINDOWS)
-
-      static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, LPRECT lprcMonitor, LPARAM dwData);
-
-      void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, LPRECT lprcMonitor);
-
-#endif
 
       void assert_valid() const;
       void dump(dump_context & context) const;

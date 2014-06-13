@@ -130,7 +130,7 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, signal_
                {
                   string str;
                   point pt;
-                  System.get_cursor_pos(&pt);
+                  Session.get_cursor_pos(&pt);
                   if(viewline.GetLink(str, pt))
                   {
                      //usersp(::user::impact) pview = viewline.get_interaction();
@@ -144,7 +144,7 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, signal_
          else if(message == WM_MOUSEMOVE)
          {
             point pt;
-            System.get_cursor_pos(&pt);
+            Session.get_cursor_pos(&pt);
             viewline.UpdateHover(pt);
          }
       }
@@ -155,7 +155,7 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, signal_
       if(nIDEvent == ::timer::ID_HOVER)
       {
          point pt;
-         System.get_cursor_pos(&pt);
+         Session.get_cursor_pos(&pt);
          viewline.UpdateHover(pt);
          if(!viewline.IsInHover())
          {

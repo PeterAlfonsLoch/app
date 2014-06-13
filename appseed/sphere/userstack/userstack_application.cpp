@@ -455,7 +455,7 @@ namespace userstack
       //}
       //else
       {
-         System.get_screen_rect(lprect);
+         Session.get_best_monitor(lprect);
       }
    }
 

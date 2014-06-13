@@ -51,7 +51,7 @@ namespace simple_ui
 
       m_stra.add_smallest_tokens(pszMessage, stra);
 
-      System.get_monitor_rect(0,&rectDesktop);
+      Session.get_monitor_rect(0,&rectDesktop);
 
       SetWindowText( "fontopus Auth Windows");
 
@@ -204,6 +204,13 @@ namespace simple_ui
 
 int32_t simple_ui_message_box(oswindow window, const char * lpText,const char * lpCaption, uint32_t uiFlags)
 {
+
+   if(::get_thread_app() == NULL)
+   {
+
+      return MessageBox(window,lpText,lpCaption,uiFlags);
+
+   }
 
    sp(::simple_ui::message_box) pmessagebox = canew(::simple_ui::message_box(::get_thread_app()));
 
