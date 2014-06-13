@@ -240,7 +240,7 @@ namespace plane
 
       virtual bool add_library(::core::library * plibrary);
 
-      virtual void get_cursor_pos(LPPOINT lppoint);
+      //virtual void get_cursor_pos(LPPOINT lppoint);
 
 
       virtual bool set_main_init_data(::base::main_init_data * pdata);

@@ -151,20 +151,18 @@ namespace user
 
             rect rectRestore;
 
-            index iMatchingMonitor = Session.get_good_restore(rectRestore,rectEvent);
+            index iMatchingMonitor = m_pworkset->GetWndDraw()->good_restore(rectRestore, true);
 
             if(iMatchingMonitor >= 0)
             {
 
                bMove = false;
 
-               GetMoveWindow()->MoveWindow(ZORDER_TOP,rectRestore,SWP_SHOWWINDOW);
-
                m_pworkset->GetWndDraw()->GetWindowRect(rectRestore);
 
                ptCursor = -m_ptWindowOrigin + rectRestore.top_left() + m_ptCursorOrigin;
 
-               if(System.m_bSessionSynchronizedCursor)
+               if(Session.m_bSessionSynchronizedCursor)
                {
 #ifdef WINDOWSEX
                   ::SetCursorPos(ptCursor.x, ptCursor.y);
@@ -173,7 +171,7 @@ namespace user
 #endif
                }
 
-               System.m_ptCursor = ptCursor;
+               Session.m_ptCursor = ptCursor;
 
             }
 

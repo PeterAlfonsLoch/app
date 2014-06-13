@@ -4279,7 +4279,7 @@ namespace user
 
       ::rect rect;
 
-      index iMatchingMonitor = Session.get_good_restore(rect,rectWindow);
+      index iMatchingMonitor = Session.get_best_monitor(rect,rectWindow);
 
       if(bSet && iMatchingMonitor >= 0)
       {
@@ -4339,7 +4339,7 @@ namespace user
 
       ::rect rect;
 
-      index iMatchingMonitor = Session.get_good_restore(rect,rectWindow);
+      index iMatchingMonitor = Session.get_good_iconify(rect,rectWindow);
 
       if(bSet && iMatchingMonitor >= 0)
       {

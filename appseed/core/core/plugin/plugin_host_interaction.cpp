@@ -60,18 +60,24 @@ namespace plugin
 
    }
 
+
    void host_interaction::_001OnMouseMove(signal_details * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
+
    }
+
 
    void host_interaction::_001OnCreate(signal_details * pobj)
    {
+      
       UNREFERENCED_PARAMETER(pobj);
-      Application.m_bSessionSynchronizedCursor = false;
+      
       Session.m_bSessionSynchronizedCursor = false;
-      System.m_bSessionSynchronizedCursor = false;
+
    }
+
 
    void host_interaction::_001OnCheck(signal_details * pobj)
    {

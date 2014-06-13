@@ -139,33 +139,50 @@ namespace hi5
          
          rect rectOpen;
 
-         best_top_level_parent(rectOpen);
+         m_ptabview->best_top_level_parent(rectOpen);
 
          int32_t iWidth = rectOpen.width();
+
          int32_t iHeight = rectOpen.height();
+
          rectOpen.deflate(iWidth / 5, iHeight / 50);
+
          rectOpen.top = iHeight * 2 / 3;
-         sp(simple_frame_window) pframe =  (m_pviewAuth->GetTopLevelParent().m_p);
+
+         sp(simple_frame_window) pframe = m_pviewAuth->GetTopLevelParent();
+
          if(pframe != NULL)
          {
+
             pframe->m_etranslucency = ::user::interaction::TranslucencyPresent;
+
             pframe->m_bblur_Background = true;
+
          }
+
          if(&Session != NULL && Session.get_document() != NULL && Session.get_document()->get_bergedge_view() != NULL)
          {
+
             Session.get_document()->get_bergedge_view()->ShowWindow(SW_SHOW);
+
          }
          else
          {
+
             m_ptabview->GetTopLevelFrame()->ShowWindow(SW_SHOW);
+
          }
+
          m_ptabview->GetParentFrame()->SetWindowPos(
             ZORDER_TOP,
             rectOpen.left, rectOpen.top,
             rectOpen.width(), rectOpen.height(),
             SWP_SHOWWINDOW);
+
          m_pviewAuth->GetTopLevelParent()->SetForegroundWindow();
+
          m_pviewAuth->GetTopLevelParent()->BringWindowToTop();
+
       }
 
       void authorization::pageMessage(const char * pszMatter, property_set & set)

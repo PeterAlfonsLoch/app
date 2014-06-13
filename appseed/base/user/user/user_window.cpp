@@ -873,15 +873,7 @@ void window::_001WindowMinimize()
 
    m_eappearance = ::user::AppearanceIconic;
 
-   rect rectWindow;
-
-   GetWindowRect(rectWindow);
-
-   rect rectNull;
-
-   Session.get_good_iconify(rectNull,rectWindow);
-
-   m_pui->SetWindowPos(ZORDER_TOP,rectNull.left,rectNull.top,rectNull.width(),rectNull.height(),SWP_SHOWWINDOW | SWP_FRAMECHANGED);
+   good_iconify(NULL,true);
 
 }
 

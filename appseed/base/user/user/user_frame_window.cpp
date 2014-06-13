@@ -853,26 +853,7 @@ namespace user
       if (m_bFrameMoveEnable)
       {
       
-         rect rectWindow;
-
-         GetWindowRect(rectWindow);
-
-         rect rectRestore;
-
-         index iMatchingMonitor = Session.get_good_restore(rectRestore,rectWindow);
-         
-         if(iMatchingMonitor >= 0)
-         {
-
-            SetWindowPos(
-               -3,
-               rectRestore.left,
-               rectRestore.top,
-               rectRestore.width(),
-               rectRestore.height(),
-               0);
-
-         }
+         good_restore(NULL, true);
 
       }
       ActivateTopParent();

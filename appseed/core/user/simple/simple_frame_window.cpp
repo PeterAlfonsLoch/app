@@ -1688,22 +1688,7 @@ void simple_frame_window::WfiOnRestore()
 
    _001WindowRestore();
 
-   class rect rectWindow;
-
-   GetWindowRect(rectWindow);
-
-   bool bOk;
-
-   rect rectRestore;
-
-   index iMatchingMonitor = Session.get_good_restore(rectRestore,rectWindow)
-
-   if(iMatchingMonitor >= 0)
-   {
-
-      SetWindowPos(ZORDER_TOP, rectRestore, SWP_SHOWWINDOW);
-
-   }
+   good_restore(NULL,true);
 
 }
 

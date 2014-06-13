@@ -76,8 +76,6 @@ m_simpledb(this)
 
    m_pwndMain = NULL;
    m_puserstrcontext = NULL;
-   m_bSessionSynchronizedCursor = true;
-   m_bSessionSynchronizedScreen = true;
 
    m_pdocmanager = NULL;
 
@@ -4288,7 +4286,7 @@ sp(::base::application) application::instantiate_application(const char * pszTyp
 
    papp->m_pplaneapp->command_central()->consolidate(command_central());
 
-   papp->m_pplaneapp->m_bSessionSynchronizedCursor = m_bSessionSynchronizedCursor;
+//   papp->m_pplaneapp->m_bSessionSynchronizedCursor = m_bSessionSynchronizedCursor;
 
    if (pbias != NULL)
    {

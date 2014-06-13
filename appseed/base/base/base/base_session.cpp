@@ -15,6 +15,10 @@ namespace base
 
       m_pfontopus->construct(this);
 
+      m_bSessionSynchronizedCursor = true;
+//      m_bSessionSynchronizedScreen = true;
+
+
    }
 
    bool session::is_session()
