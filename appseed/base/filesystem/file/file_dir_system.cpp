@@ -902,16 +902,16 @@ namespace file
 
             string strDomain(pszApp);
 
-#ifdef MATTER_CACHE_FROM_HTTP_SERVER
+            if(BaseSession.m_bMatterFromHttpCache)
+            {
 
-            return path(simple_path(strRoot, "appmatter", strDomain), papp->get_locale_schema_dir(strLocale, strSchema));
+               return path(simple_path(strRoot,"appmatter",strDomain),papp->get_locale_schema_dir(strLocale,strSchema));
+            }
+            else
+            {
+               return path(element(simple_path(strRoot,"appmatter",strDomain)),papp->get_locale_schema_dir(strLocale,strSchema));
 
-#else
-
-            return path(element(simple_path(strRoot, "appmatter", strDomain)), papp->get_locale_schema_dir(strLocale, strSchema));
-
-#endif
-
+            }
 
          }
          else
@@ -995,11 +995,9 @@ namespace file
 
             ::user::str_context * pcontext = App(papp).str_context();
 
-
-#ifdef MATTER_CACHE_FROM_HTTP_SERVER
-
             string strFile;
 
+            if(BaseSession.m_bMatterFromHttpCache)
             {
 
 
@@ -1014,7 +1012,7 @@ namespace file
 
                   strLs = straLs[l];
 
-                  strFile = System.dir().appdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), stra.implode(",") + ".map_question"));
+                  strFile = System.dir().commonappdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), stra.implode(",") + ".map_question"));
 
                   strsize iFind = strFile.find(DIR_SEPARATOR);
 
@@ -1091,8 +1089,7 @@ namespace file
 
             }
 
-#else
-
+            else
             {
 
                strLocale = pcontext->m_plocaleschema->m_idLocale;
@@ -1160,7 +1157,7 @@ namespace file
             }
 
 
-#endif
+
 
             straLs = locale_schema_matter(papp, "en", "en", strRoot, strApp);
 
@@ -1197,7 +1194,7 @@ namespace file
          }
 
 
-#ifdef MATTER_CACHE_FROM_HTTP_SERVER
+         if(BaseSession.m_bMatterFromHttpCache)
 
          {
 
@@ -1212,7 +1209,7 @@ namespace file
             {
                strLs = straLs[l];
 
-               strFile = System.dir().appdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), stra.implode(",") + ".map_question"));
+               strFile = System.dir().commonappdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), stra.implode(",") + ".map_question"));
 
                strsize iFind = strFile.find(DIR_SEPARATOR);
 
@@ -1286,7 +1283,7 @@ namespace file
 
          }
 
-#else
+else
 
             {
 
@@ -1357,7 +1354,6 @@ namespace file
 
             }
 
-#endif
 
             straLs = locale_schema_matter(papp, "en", "en");
 
@@ -1424,10 +1420,10 @@ namespace file
 
          ret:
 
-#ifdef MATTER_CACHE_FROM_HTTP_SERVER
-
-            Application.file().put_contents(strFile, strPath);
-#endif
+            if(BaseSession.m_bMatterFromHttpCache)
+            {
+               Application.file().put_contents(strFile,strPath);
+            }
 
             return strPath;
 
@@ -1474,7 +1470,7 @@ namespace file
             string strApp(pszApp);
 
 
-#ifdef MATTER_CACHE_FROM_HTTP_SERVER
+            if(BaseSession.m_bMatterFromHttpCache)
 
             {
 
@@ -1485,7 +1481,7 @@ namespace file
                strSchema = pcontext->m_plocaleschema->m_idSchema;
                straLs = locale_schema_matter(papp, strLocale, strSchema, pszRoot, pszApp);
 
-               strFile = System.dir().appdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), str + ::str::has_char(str2, ",") + ".map_question"));
+               strFile = System.dir().commonappdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), str + ::str::has_char(str2, ",") + ".map_question"));
 
                strsize iFind = strFile.find(DIR_SEPARATOR);
 
@@ -1556,7 +1552,7 @@ namespace file
 
             }
 
-#else
+else
 
             {
 
@@ -1631,15 +1627,13 @@ namespace file
 
             }
 
-#endif
 
 
 
          }
 
 
-#ifdef MATTER_CACHE_FROM_HTTP_SERVER
-
+         if(BaseSession.m_bMatterFromHttpCache)
          {
 
 
@@ -1649,7 +1643,7 @@ namespace file
             strSchema  = pcontext->m_plocaleschema->m_idSchema;
             straLs      = locale_schema_matter(papp, strLocale, strSchema);
 
-            strFile = System.dir().appdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), str + ::str::has_char(str2, ",") + ".map_question"));
+            strFile = System.dir().commonappdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), str + ::str::has_char(str2, ",") + ".map_question"));
 
             strsize iFind = strFile.find(DIR_SEPARATOR);
 
@@ -1721,7 +1715,7 @@ namespace file
 
          }
 
-#else
+else
 
          {
 
@@ -1815,7 +1809,6 @@ namespace file
 
          }
 
-#endif
 
 
          if(papp->m_pbasesystem != NULL && papp->m_pbasesystem != papp &&
@@ -1839,10 +1832,10 @@ namespace file
 
 ret:
 
-#ifdef MATTER_CACHE_FROM_HTTP_SERVER
-
-         Application.file().put_contents(strFile, strPath);
-#endif
+         if(BaseSession.m_bMatterFromHttpCache)
+         {
+            Application.file().put_contents(strFile,strPath);
+         }
 
          return strPath;
 
@@ -2178,17 +2171,18 @@ ret:
          string strRoot;
          string strDomain;
 
-         appmatter_locators(strRoot, strDomain, papp);
+         appmatter_locators(strRoot,strDomain,papp);
 
-#ifdef MATTER_CACHE_FROM_HTTP_SERVER
+         if(BaseSession.m_bMatterFromHttpCache)
+         {
+            return simple_path(strRoot, "appmatter", strDomain);
 
-         return simple_path(strRoot, "appmatter", strDomain);
+         }
+         else
+         {
+            return element(simple_path(strRoot,"appmatter",strDomain));
 
-#else
-
-         return element(simple_path(strRoot, "appmatter", strDomain));
-
-#endif
+         }
 
       }
 
@@ -2270,6 +2264,13 @@ ret:
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(lpcsz2);
          throw interface_only_exception(get_app(), "this is an interface");
+      }
+
+      string system::commonappdata(const char * lpcsz,const char * lpcsz2)
+      {
+         UNREFERENCED_PARAMETER(lpcsz);
+         UNREFERENCED_PARAMETER(lpcsz2);
+         throw interface_only_exception(get_app(),"this is an interface");
       }
 
       string system::usersystemappdata(sp(::base::application) papp, const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)

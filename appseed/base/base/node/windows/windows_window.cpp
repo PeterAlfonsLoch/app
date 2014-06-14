@@ -4049,39 +4049,53 @@ namespace windows
    void window::GetWindowRect(__rect64 * lprect)
    {
 
-      if(!::IsWindow(get_handle()))
-         return;
-
-      //if(!::IsWindow(get_handle()))
-      //throw simple_exception(get_app(), "no more a window");
-      // if it is temporary window - probably not core wrapped window
       if(m_pui == NULL || m_pui == this)
       {
+
+         if(!::IsWindow(get_handle()))
+            return;
+
          rect rect32;
+
          ::GetWindowRect(get_handle(),rect32);
+
          ::copy(lprect,rect32);
+
       }
       else
       {
+
          interaction::GetWindowRect(lprect);
+
       }
+
    }
 
    void window::GetClientRect(__rect64 * lprect)
    {
-      ASSERT(::IsWindow(get_handle()));
-      // if it is temporary window - probably not core wrapped window
+
       if(m_pui == NULL || m_pui == this)
       {
+
+         if(!::IsWindow(get_handle()))
+            return;
+
          rect rect32;
+
          ::GetClientRect(get_handle(),rect32);
+
          ::copy(lprect,rect32);
+
       }
       else
       {
+
          interaction::GetClientRect(lprect);
+
       }
+
    }
+
 
    id window::SetDlgCtrlId(id id)
    {

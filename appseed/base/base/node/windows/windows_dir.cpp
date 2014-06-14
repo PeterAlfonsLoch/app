@@ -1078,6 +1078,14 @@ namespace windows
       return path(path(str, "ca2", strRelative), lpcsz, lpcsz2);
    }
 
+   string dir::commonappdata(const char * lpcsz,const char * lpcsz2)
+   {
+      string str;
+      str = m_strAppData;
+
+      return path(path(str,"ca2common"),lpcsz,lpcsz2);
+   }
+
    string dir::usersystemappdata(sp(::base::application) papp, const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)
    {
       UNREFERENCED_PARAMETER(papp);

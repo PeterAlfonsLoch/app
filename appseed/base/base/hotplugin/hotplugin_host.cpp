@@ -98,6 +98,8 @@ namespace hotplugin
 
    }
 
+
+
    void host::set_memory(void * puchMemory, ::count c)
    {
 
@@ -183,6 +185,13 @@ namespace hotplugin
       {
 
          plugin::on_paint(pgraphics, lprect);
+
+      }
+
+      if(m_pimpl.is_set())
+      {
+
+         m_pimpl->_001Print(pgraphics);
 
       }
 

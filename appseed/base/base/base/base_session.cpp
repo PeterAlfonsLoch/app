@@ -43,6 +43,8 @@ namespace base
 
       }
 
+      m_bMatterFromHttpCache = m_pbasesystem->m_bMatterFromHttpCache;
+
       m_bSessionSynchronizedCursor = true;
 //      m_bSessionSynchronizedScreen = true;
 

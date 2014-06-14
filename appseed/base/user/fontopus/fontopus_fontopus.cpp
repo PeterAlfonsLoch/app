@@ -219,8 +219,9 @@ namespace fontopus
 
 
 
-   user * fontopus::get_user()
+   user * fontopus::get_user(bool bSynch)
    {
+
       if(m_puser == NULL)
       {
 
@@ -229,6 +230,9 @@ namespace fontopus
 
          if(m_pthreadCreatingUser != NULL)
          {
+
+            if(!bSynch)
+               return m_puser;
 
             while(m_pthreadCreatingUser != NULL && m_pthreadCreatingUser->m_bRun)
             {
@@ -245,6 +249,9 @@ namespace fontopus
          }
 
          m_pthreadCreatingUser = __begin_thread < create_user_thread >(get_app());
+
+         if(!bSynch)
+            return m_puser;
 
          while(m_pthreadCreatingUser != NULL && m_pthreadCreatingUser->m_bRun)
          {

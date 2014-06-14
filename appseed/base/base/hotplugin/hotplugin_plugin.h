@@ -78,7 +78,6 @@ namespace hotplugin
       virtual void         redraw();
       virtual void         post_message(UINT uiMessage, WPARAM wparam, LPARAM lparam);
       virtual oswindow         get_host_window();
-      //virtual void         GetWindowRect(LPRECT lprect);
 
       using ::user::interaction::ClientToScreen;
       virtual void ClientToScreen(POINT * ppt);

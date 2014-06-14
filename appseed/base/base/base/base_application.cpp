@@ -1283,7 +1283,7 @@ namespace base
 
 #elif defined(WINDOWSEX) || defined(LINUX)
 
-      ::window_sp pwnd = ::window_from_handle(::GetFocus());
+      ::user::interaction * pwnd = ::window_from_handle(::GetFocus());
       if(pwnd != NULL)
       {
          if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()

@@ -131,8 +131,8 @@ namespace userstack
          sp(::base::application) pappTab;
          if(BaseSession.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
-            BaseSession.m_pappCurrent = pappTab;
-            //BaseSession.m_pappCurrent = pappTab;
+            PlaneSession.m_pappCurrent = pappTab;
+            //PlaneSession.m_pappCurrent = pappTab;
          }
 /*            sp(::simple_frame_window) pframeApp = dynamic_cast < sp(::simple_frame_window) > (m_pviewdata->m_pwnd);
          if(pframeApp != NULL)
@@ -239,7 +239,7 @@ namespace userstack
 
          }
 
-         sp(::base::application) pappCurrent = BaseSession.m_pappCurrent;
+         sp(::base::application) pappCurrent = PlaneSession.m_pappCurrent;
 
          Application.m_mapApplication[strId] = pappCurrent;
 
@@ -248,7 +248,7 @@ namespace userstack
      		string strIcon = planeApp(pappCurrent).dir().matter("mainframe/icon48.png");
          pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
 
-         pappCurrent = BaseSession.m_pappCurrent;
+         pappCurrent = PlaneSession.m_pappCurrent;
 
 	   	if(planeApp(pappCurrent).file().exists(strIcon))
          {

@@ -315,9 +315,7 @@ namespace install
          xxdebug_box("plugin::start_ca2 not logged", "not logged", 0);
 
          m_bLogin = true;
-         m_bLogged = &BaseSession != NULL && &ApplicationUser != NULL;
-
-         return;
+         m_bLogged = BaseSession.fontopus()->get_user(false) != NULL;
 
       }
 

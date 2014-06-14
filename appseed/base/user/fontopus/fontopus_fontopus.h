@@ -32,7 +32,7 @@ namespace fontopus
 
       virtual void logout();
 
-      virtual user * get_user();
+      virtual user * get_user(bool bSynch = true);
       virtual void set_user(const char * psz);
       virtual void set_user(::fontopus::user * psz);
 

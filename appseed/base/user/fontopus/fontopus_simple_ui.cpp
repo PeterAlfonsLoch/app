@@ -101,7 +101,7 @@ namespace fontopus
    string simple_ui::fontopus(LPCRECT lprect)
    {
 
-      if(!CreateEx(WS_EX_LAYERED, NULL, NULL, 0, null_rect(), NULL, "fontopus"))
+      if(!CreateEx(WS_EX_LAYERED, NULL, NULL, 0, null_rect(), BaseSession.oprop("plugin_parent").cast < ::user::interaction > (), "fontopus"))
          return "";
 
       ::rect rectDesktop;

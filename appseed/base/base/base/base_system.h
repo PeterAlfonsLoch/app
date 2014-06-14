@@ -103,7 +103,7 @@ namespace base
 #endif
 
       ::base::library                              m_libraryDraw2d;
-
+      bool                                         m_bMatterFromHttpCache;
 
 
 

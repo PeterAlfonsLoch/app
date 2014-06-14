@@ -185,6 +185,7 @@ namespace file
          virtual string trash_that_is_not_trash(const char * psz);
 
          virtual string appdata(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
+         virtual string commonappdata(const char * lpcsz = NULL,const char * lpcsz2 = NULL);
 
          virtual string usersystemappdata(sp(::base::application) papp, const char * lpcszPrefix, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual string userappdata(sp(::base::application) papp, const char * lpcsz = NULL, const char * lpcsz2 = NULL);

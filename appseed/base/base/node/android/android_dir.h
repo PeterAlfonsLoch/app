@@ -78,6 +78,7 @@ namespace android
 
       virtual string appdata(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
 
+
       virtual string usersystemappdata(sp(::base::application) papp, const char * lpcszPrefix, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
       virtual string userappdata(sp(::base::application) papp, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
       virtual string userdata(sp(::base::application) papp, const char * lpcsz = NULL, const char * lpcsz2 = NULL);

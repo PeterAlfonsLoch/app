@@ -129,6 +129,17 @@ namespace base
       m_compress.set_app(this);
 
 
+#ifdef MATTER_CACHE_FROM_HTTP_SERVER
+      
+      m_bMatterFromHttpCache = true;
+
+#else
+
+      m_bMatterFromHttpCache = false;
+
+#endif
+
+
    }
 
 

@@ -10,6 +10,9 @@ namespace base
    {
    public:
 
+      
+      bool                                                     m_bMatterFromHttpCache;
+
       bool                                                     m_bSessionSynchronizedCursor;
       point                                                    m_ptCursor;
       //rect                                                     m_rectScreen;

@@ -42,6 +42,9 @@ namespace user
 ::user::interaction * window_from_handle(oswindow oswindow)
 {
 
+   if(oswindow == NULL)
+      return NULL;
+
    synch_lock slOsWindow(::user::g_pmutexUi);
 
    return ::user::g_pmapUi->operator[](oswindow);
