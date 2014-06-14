@@ -36,6 +36,7 @@ namespace database
 
          virtual string calc_display();
          virtual bool does_display_match();
+         virtual void defer_update_display();
 
          virtual bool IsFullScreen();
          void WindowDataEnableSaveWindowRect(bool bEnable);

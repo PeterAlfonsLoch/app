@@ -18,17 +18,10 @@ namespace plugin
          }
          
       
-         if (m_pbasesession == NULL)
+      if (m_pbasesession == NULL)
       {
          
             m_pbasesession = m_pbaseapp->m_pbasesession;
-
-      }
-
-      if (m_psession == NULL)
-      {
-
-         m_psession = m_pplaneapp->m_psession;
 
       }
 

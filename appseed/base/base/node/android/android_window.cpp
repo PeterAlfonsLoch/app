@@ -1600,7 +1600,7 @@ d.unlock();
          Application.m_ptCursor = pmouse->m_pt;
          if(m_papp->m_psession != NULL)
          {
-            Session.m_ptCursor = pmouse->m_pt;
+            BaseSession.m_ptCursor = pmouse->m_pt;
             if(m_papp->m_psession != NULL)
             {
                m_papp->m_psession->m_ptCursor = pmouse->m_pt;
@@ -1608,7 +1608,7 @@ d.unlock();
          }
          if(m_pguie != NULL && m_pguie != this && m_pguie->m_papp->m_psession != NULL && m_pguie->m_papp->m_psession != m_papp->m_psession)
          {
-            Sess(m_pguie->m_papp->m_psession).m_ptCursor = pmouse->m_pt;
+            BaseSess(m_pguie->m_papp->m_psession).m_ptCursor = pmouse->m_pt;
          }
 
          ::plane::session * psession = NULL;
@@ -1636,10 +1636,10 @@ d.unlock();
             {
                m_pguie->GetWindowRect(rectWindow);
             }
-            if(Session.get_monitor_count() > 0)
+            if(BaseSession.get_monitor_count() > 0)
             {
                rect rcMonitor;
-               System.get_monitor_rect(0, &rcMonitor);
+               BaseSession.get_main_monitor(rcMonitor);
                if(rectWindow.left >= rcMonitor.left)
                   pmouse->m_pt.x += (LONG) rectWindow.left;
                if(rectWindow.top >= rcMonitor.top)
@@ -6033,8 +6033,8 @@ if(psurface == g_cairosurface)
    void window::_001OnSetCursor(::signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
-      if(Session.get_cursor() != NULL
-         && Session.get_cursor()->m_ecursor != ::visual::cursor_system)
+      if(BaseSession.get_cursor() != NULL
+         && BaseSession.get_cursor()->m_ecursor != ::visual::cursor_system)
       {
 
          throw not_implemented(get_app());

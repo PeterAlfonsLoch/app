@@ -223,10 +223,6 @@ namespace file
 
 
       return file_exists_dup(strPath) != FALSE;
-      // return true;
-
-      //return App(papp).m_spfsdata->file_exists(strPath);
-      //return ::GetFileAttributesW(::str::international::utf8_to_unicode(strPath)) != INVALID_FILE_ATTRIBUTES;
 
 #else
 

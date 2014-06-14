@@ -753,6 +753,27 @@ namespace user
 
       pgraphics->SetViewportOrg(ptViewport);
 
+      if(BaseSession.m_bDrawCursor)
+      {
+         
+         point ptCursor;
+         
+         BaseSession.get_cursor_pos(&ptCursor);
+         
+         ScreenToClient(&ptCursor);
+
+         ::visual::cursor * pcursor = BaseSession.get_cursor();
+         
+         if(pcursor != NULL && pgraphics != NULL)
+         {
+            
+            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            
+            pcursor->to(pgraphics,ptCursor);
+
+         }
+
+      }
 
 
    }
@@ -912,7 +933,7 @@ namespace user
    void interaction::_000OnKey(::message::key * pkey)
    {
       point ptCursor;
-      Session.get_cursor_pos(&ptCursor);
+      BaseSession.get_cursor_pos(&ptCursor);
       if (!pkey->m_bRet)
       {
          // these try catchs are needed for multi threading : multi threaded windows: the hell
@@ -3862,7 +3883,7 @@ namespace user
 
       point pt;
 
-      Session.get_cursor_pos(&pt);
+      BaseSession.get_cursor_pos(&pt);
 
       return track_popup_menu(pitem, iFlags, pt.x, pt.y);
 
@@ -3874,7 +3895,7 @@ namespace user
 
       point pt;
 
-      Session.get_cursor_pos(&pt);
+      BaseSession.get_cursor_pos(&pt);
 
       return track_popup_menu(lpnode, iFlags, pt.x, pt.y);
 
@@ -3886,7 +3907,7 @@ namespace user
 
       point pt;
 
-      Session.get_cursor_pos(&pt);
+      BaseSession.get_cursor_pos(&pt);
 
       return track_popup_xml_matter_menu(pszMatter, iFlags, pt.x, pt.y);
 
@@ -4040,8 +4061,10 @@ namespace user
    }
 
 
-   bool interaction::WfiRestore()
+   bool interaction::WfiRestore(bool bForceNormal)
    {
+
+      UNREFERENCED_PARAMETER(bForceNormal);
 
       return false;
 
@@ -4279,7 +4302,7 @@ namespace user
 
       ::rect rect;
 
-      index iMatchingMonitor = Session.get_best_monitor(rect,rectWindow);
+      index iMatchingMonitor = BaseSession.get_best_monitor(rect,rectWindow);
 
       if(bSet && iMatchingMonitor >= 0)
       {
@@ -4309,7 +4332,7 @@ namespace user
 
       ::rect rect;
 
-      index iMatchingMonitor = Session.get_good_restore(rect,rectWindow);
+      index iMatchingMonitor = BaseSession.get_good_restore(rect,rectWindow);
 
       if(bSet && iMatchingMonitor >= 0)
       {
@@ -4339,9 +4362,39 @@ namespace user
 
       ::rect rect;
 
-      index iMatchingMonitor = Session.get_good_iconify(rect,rectWindow);
+      index iMatchingMonitor = BaseSession.get_good_iconify(rect,rectWindow);
 
       if(bSet && iMatchingMonitor >= 0)
+      {
+
+         SetWindowPos(iZOrder,rect,uiSwpFlags);
+
+      }
+
+      if(lprect != NULL)
+      {
+
+         *lprect = rect;
+
+      }
+
+      return iMatchingMonitor;
+
+   }
+
+
+   index interaction::good_move(LPRECT lprect,UINT uiSwpFlags,int_ptr iZOrder)
+   {
+
+      ::rect rectWindow;
+
+      GetWindowRect(rectWindow);
+
+      ::rect rect;
+
+      index iMatchingMonitor = BaseSession.get_good_move(rect,rectWindow);
+
+      if(iMatchingMonitor >= 0)
       {
 
          SetWindowPos(iZOrder,rect,uiSwpFlags);

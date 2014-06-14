@@ -15,7 +15,7 @@ db_str_set::db_str_set(db_server * pserver) :
    m_pmysqldbUser = pserver->m_pmysqldbUser;
    m_strUser      = pserver->m_strUser;
 
-//   if((!m_pdataserver->m_bRemote && m_pmysqldbUser == NULL) || Session.fontopus().m_puser)
+//   if((!m_pdataserver->m_bRemote && m_pmysqldbUser == NULL) || BaseSession.fontopus().m_puser)
   // {
       sp(::sqlite::base) pdb = db()->GetImplDatabase();
       //create string Table if necessary
@@ -122,7 +122,7 @@ repeat:;
              goto repeat;
           }
 
-          if(Session.fontopus()->m_puser == NULL)
+          if(BaseSession.fontopus()->m_puser == NULL)
           {
              sl.unlock();
              Sleep(1984 + 1977);
@@ -220,7 +220,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
    if(m_pdataserver == NULL)
       return false;
 
-   if(m_pdataserver->m_bRemote)
+   if(m_pdataserver->m_bRemote && string(lpKey).find(".local://") < 0)
    {
       
       Application.assert_user_logged_in();
@@ -326,7 +326,7 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
    if(m_pdataserver == NULL)
       return false;
 
-   if(!m_pdataserver->m_bRemote)
+   if(!m_pdataserver->m_bRemote || string(lpKey).find(".local://") >= 0)
    {
       if(db() == NULL)
          return false;

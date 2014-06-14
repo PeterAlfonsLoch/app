@@ -41,10 +41,11 @@ _br_find_exe (BrInitError *error)
 	return NULL;
 #elif (defined(_WIN32) || defined(WIN32))
         /* Use GetModuleFileName */
-        char* path;
-        path = (char*) malloc (MAX_PATH * sizeof(char));
-        GetModuleFileName(NULL, path, MAX_PATH);
-        return path;
+        wstring path;
+        path.alloc(MAX_PATH);
+        GetModuleFileNameW(NULL, path, MAX_PATH);
+        path.release_buffer();
+        return strdup_dup(::str::international::unicode_to_utf8(path));
 #else
 	char *path, *path2, *line, *result;
 	size_t buf_size;

@@ -115,7 +115,7 @@ namespace nature
 
    void appearance_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
-      ::filemanager::filemanager & filemanager = Session.filemanager();
+      ::filemanager::filemanager & filemanager = PlaneSession.filemanager();
       sp(folder_selection_list_view) pview;
       pview =  (::user::impact::create_view(
          System.type_info < folder_selection_list_view > (),

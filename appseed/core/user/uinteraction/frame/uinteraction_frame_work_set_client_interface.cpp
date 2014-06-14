@@ -87,12 +87,20 @@ namespace user
          }
 
 
-         bool WorkSetClientInterface::WfiRestore()
+         bool WorkSetClientInterface::WfiRestore(bool bForceNormal)
          {
 
             ::user::EAppearance eappearanceRestore;
 
-            if(m_workset.GetAppearance() == AppearanceIconic)
+            if(bForceNormal)
+            {
+
+               eappearanceRestore = AppearanceNormal;
+
+            }
+            else if(m_workset.GetAppearance() == AppearanceIconic
+               || (m_workset.GetAppearance() == AppearanceFullScreen
+               && m_eappearanceBefore != AppearanceIconic))
             {
 
                eappearanceRestore = m_eappearanceBefore;
@@ -361,6 +369,8 @@ namespace user
 
          void WorkSetClientInterface::WfiOnExitFullScreen()
          {
+
+            m_workset.m_pframeschema->get_control_box()->ShowWindow(SW_SHOW);
 
          }
 

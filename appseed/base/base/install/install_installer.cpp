@@ -2274,17 +2274,13 @@ RetryHost:
                   if(string(lpnode->child_at(ui)->attr("type")) == "parse_file_name")
                   {
                      m_iStart = 4;
-                     char buf[2048];
-                     ::GetModuleFileName(NULL, buf, sizeof(buf));
-                     char * psz = strrchr_dup(buf, '\\');
-                     string str;
-                     if(psz == NULL)
+                     wchar_t buf[2048];
+                     ::GetModuleFileNameW(NULL, buf, sizeof(buf));
+                     string str = ::str::international::unicode_to_utf8(buf);
+                     index iFind = str.reverse_find('\\');
+                     if(iFind >= 0)
                      {
-                        str = buf;
-                     }
-                     else
-                     {
-                        str = psz;
+                        str = str.Mid(iFind + 1);
                      }
                      if(!stricmp_dup(str.substr(str.length()  - 4, 4), ".exe"))
                      {

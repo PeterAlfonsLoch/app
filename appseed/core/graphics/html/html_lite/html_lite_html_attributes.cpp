@@ -423,7 +423,7 @@ COLORREF LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
 
          // is this a system named color value?
          if (crTemp >= 0x80000000 && crTemp <= 0x80000018)
-            crTemp = Sess(preader->m_pbaseapp).get_default_color(crTemp & 0x7FFFFFFF);
+            crTemp = BaseSess(preader->m_pbaseapp).get_default_color(crTemp & 0x7FFFFFFF);
       }
 
    }

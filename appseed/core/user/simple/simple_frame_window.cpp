@@ -113,9 +113,9 @@ void simple_frame_window::_001OnDestroy(signal_details * pobj)
 
    try
    {
-      if (&Session != NULL)
+      if (&BaseSession != NULL)
       {
-         Session.remove_frame(this);
+         BaseSession.remove_frame(this);
       }
    }
    catch (...)
@@ -453,6 +453,8 @@ void simple_frame_window::WfiOnExitFullScreen()
 
    ShowControlBars(true);
 
+   WorkSetClientInterface::WfiOnExitFullScreen();
+
 }
 
 
@@ -487,7 +489,7 @@ void simple_frame_window::ToggleFullScreen()
    if (WfiIsFullScreen())
    {
 
-      WfiRestore();
+      WfiRestore(false);
 
    }
    else
@@ -535,7 +537,7 @@ void simple_frame_window::_001OnSysCommand(signal_details * pobj)
          }
          else
          {
-            WfiRestore();
+            WfiRestore(false);
          }
          pbase->m_bRet = true;
          pbase->set_lresult(0);
@@ -853,7 +855,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
    if (m_workset.get_appearance() != NULL && m_workset.GetAppearance() == ::user::AppearanceIconic)
    {
 
-      WfiRestore();
+      WfiRestore(false);
 
    }
 
@@ -887,9 +889,9 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdc)
       _001DrawThis(pdc);
       _001DrawChildren(pdc);
    }
-   else if(!Session.savings().is_trying_to_save(::base::resource_processing)
-      && !Session.savings().is_trying_to_save(::base::resource_display_bandwidth)
-      && !Session.savings().is_trying_to_save(::base::resource_memory))
+   else if(!BaseSession.savings().is_trying_to_save(::base::resource_processing)
+      && !BaseSession.savings().is_trying_to_save(::base::resource_display_bandwidth)
+      && !BaseSession.savings().is_trying_to_save(::base::resource_memory))
       //&& (get_parent() != NULL || (this->GetExStyle() & WS_EX_LAYERED) != 0))
    {
 #if TEST
@@ -1614,7 +1616,7 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
 void simple_frame_window::_011OnDraw(::draw2d::graphics *pdc)
 {
 
-   if ((m_bWindowFrame || m_etranslucency == TranslucencyTotal || m_etranslucency == TranslucencyPresent) && !Session.savings().is_trying_to_save(::base::resource_display_bandwidth))
+   if ((m_bWindowFrame || m_etranslucency == TranslucencyTotal || m_etranslucency == TranslucencyPresent) && !BaseSession.savings().is_trying_to_save(::base::resource_display_bandwidth))
    {
 
       ::user::uinteraction::frame::WorkSetClientInterface::_001OnDraw(pdc);
@@ -1741,7 +1743,7 @@ bool simple_frame_window::DeferFullScreen(bool bFullScreen, bool bRestore)
    {
       if (WfiIsFullScreen())
       {
-         WfiRestore();
+         WfiRestore(false);
          return true;
       }
       sp(::user::interaction) pwndParentFrame = GetParentFrame();
@@ -1763,8 +1765,8 @@ bool simple_frame_window::calc_layered()
 {
    if (m_bLayered && m_etranslucency != TranslucencyNone)
    {
-      return !Session.savings().is_trying_to_save(::base::resource_processing)
-         && !Session.savings().is_trying_to_save(::base::resource_display_bandwidth);
+      return !BaseSession.savings().is_trying_to_save(::base::resource_processing)
+         && !BaseSession.savings().is_trying_to_save(::base::resource_display_bandwidth);
    }
    else
    {

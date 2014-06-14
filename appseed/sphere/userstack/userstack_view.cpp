@@ -168,7 +168,7 @@ namespace userstack
       m_dib_veriwell.load_from_matter("veriwell_2008_green_h49.png");
       m_dib_winactionarea.load_from_matter("winactionarea.png");
 
-      if(!Session.m_bShowPlatform)
+      if(!BaseSession.m_bShowPlatform)
       {
          return;
       }
@@ -232,7 +232,7 @@ namespace userstack
       }
       else if(ptimer->m_nIDEvent == 198477)
       {
-         Session.check_topic_file_change();
+         BaseSession.check_topic_file_change();
       }
 
    }

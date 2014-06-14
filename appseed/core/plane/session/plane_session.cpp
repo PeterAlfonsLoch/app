@@ -6,61 +6,36 @@ namespace plane
 
 
    session::session(::base::application * papp) :
-      element(papp)
+      element(papp),
+      ::thread(papp),
+      ::core::session(papp)
    {
 
-      m_pplanesession            = this;
+      m_pplanecomposite                   = this;
+         
+      m_pbasesession                      = papp->m_pbasesession;
 
-      m_pbasesession             = this;
+      m_pbasesession->m_pplanesession     = this;
+
+      m_pbasesystem                       = papp->m_pbasesystem;
+
+      m_pbasesession->m_pplanecomposite   = this;
+
+      m_pbaseapp                          = this;
       
-      m_pbasesystem              = papp->m_pbasesystem;
+      m_pplaneapp                         = this;
       
-
-      if (m_pbasesystem != NULL)
-      {
-
-         if (m_pbasesystem->m_pbasesession == NULL)
-         {
-
-            m_pbasesystem->m_pbasesession = this;
-
-         }
-
-      }
-
-      m_pbaseapp                 = this;
-      
-      m_pplaneapp                = this;
-      
-      m_bDrawCursor              = true;
       m_pnaturedocument          = NULL;
       m_pplatformdocument        = NULL;
       m_pbergedgedocument        = NULL;
       m_bShowPlatform            = false;
       m_pappCurrent              = NULL;
-      m_psession                 = this;
-
-      ::fs::set * pset = new class ::fs::set(this);
-      ::fs::link * plink = new ::fs::link(this);
-      plink->fill_os_user();
-      pset->m_spafsdata.add(plink);
-      pset->m_spafsdata.add(new ::fs::native(this));
-      m_spfsdata = pset;
-
-
-      m_pifs                     = new ifs(this, "");
-      m_prfs                     = new ::fs::remote_native(this, "");
-
-      m_ecursorDefault  = ::visual::cursor_arrow;
-      m_ecursor         = ::visual::cursor_default;
-
-      m_bDrawCursor              = true;
       m_pnaturedocument          = NULL;
       m_pplatformdocument        = NULL;
       m_pbergedgedocument        = NULL;
       m_bShowPlatform            = false;
       m_pappCurrent              = NULL;
-      m_bLicense				= false;
+      m_bLicense				      = false;
 
       m_strAppName               = "bergedge";
 
@@ -68,8 +43,6 @@ namespace plane
 
    session::~session()
    {
-
-      POSITION pos = m_mapApplication.get_start_position();
 
       if(m_pnaturedocument != NULL)
       {
@@ -84,57 +57,6 @@ namespace plane
       if(m_pbergedgedocument != NULL)
       {
          m_pbergedgedocument->on_close_document();
-      }
-
-      string strId;
-      sp(::base::application) pbaseapp;
-
-      while(pos != NULL)
-      {
-
-         strId.Empty();
-         pbaseapp = NULL;
-
-         m_mapApplication.get_next_assoc(pos, strId, pbaseapp);
-
-         sp(::base::application) papp = (pbaseapp);
-
-         papp->m_pplaneapp->post_thread_message(WM_QUIT);
-      }
-
-
-      /*      if(m_pnaturedocument != NULL)
-      {
-      m_pnaturedocument->on_close_document();
-      }
-
-      if(m_pplatformdocument != NULL)
-      {
-      m_pplatformdocument->on_close_document();
-      }
-
-      if(m_pbergedgedocument != NULL)
-      {
-      m_pbergedgedocument->on_close_document();
-      }
-      */
-      //      string strId;
-      sp(::base::application) papp;
-
-
-      //      POSITION pos = m_mapApplication.get_start_position();
-
-      pos = m_mapApplication.get_start_position();
-
-      while(pos != NULL)
-      {
-
-         strId.Empty();
-
-         m_mapApplication.get_next_assoc(pos, strId, papp);
-
-         papp->m_pplaneapp->post_thread_message(WM_QUIT);
-
       }
 
    }
@@ -158,17 +80,6 @@ namespace plane
       if(!::application::initialize())
          return false;
 
-      if (m_bIfs)
-      {
-         
-         if (m_spfsdata.is_null())
-            m_spfsdata = new ::fs::set(this);
-
-         ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
-         pset->m_spafsdata.add(Session.m_pifs);
-         pset->m_spafsdata.add(Session.m_prfs);
-
-      }
 
 
       return true;
@@ -179,69 +90,39 @@ namespace plane
    bool session::initialize_instance()
    {
 
-      if (Session.m_pfontopus->m_puser == NULL &&
-         (Application.directrix()->m_varTopicQuery.has_property("install")
-         || Application.directrix()->m_varTopicQuery.has_property("uninstall")))
-      {
-
-         if (Session.m_pfontopus->create_system_user("system") == NULL)
-            return false;
-
-      }
-
-
-      if (!m_pfontopus->initialize_instance())
-         return false;
-
       if(!::application::initialize_instance())
          return false;
 
-
       m_pfilemanager = canew(::filemanager::filemanager(this));
 
-      
       m_pfilemanager->construct(this);
 
       if (!m_pfilemanager->initialize())
          return false;
 
-
       initialize_bergedge_application_interface();
-
-
-      //Session.filemanager().std().m_strLevelUp = "levelup";
-
 
       SetRegistryKey("ca2core");
 
-
       if(!InitializeLocalDataCentral())
       {
+
          simple_message_box(NULL, "Could not initialize Local data central");
+
          return false;
+
       }
 
       initialize_bergedge_application_interface();
 
+      PlaneSession.filemanager().std().m_strLevelUp = "levelup";
 
-      Session.filemanager().std().m_strLevelUp = "levelup";
-
-
-      //SetRegistryKey("ca2core");
-
-
-      if(!InitializeLocalDataCentral())
+      if(PlaneSession.is_remote_session())
       {
-         simple_message_box(NULL, "Could not initialize Local data central");
-         return false;
-      }
-
-      if(Session.is_remote_session())
-      {
-         /*Session.savings().save(::base::resource_display_bandwidth);
-         Session.savings().save(::base::resource_blur_background);
-         Session.savings().save(::base::resource_blurred_text_embossing);
-         Session.savings().save(::base::resource_translucent_background);*/
+         /*BaseSession.savings().save(::base::resource_display_bandwidth);
+         BaseSession.savings().save(::base::resource_blur_background);
+         BaseSession.savings().save(::base::resource_blurred_text_embossing);
+         BaseSession.savings().save(::base::resource_translucent_background);*/
       }
 
       /*      if(System.directrix()->m_varTopicQuery.has_property("install")
@@ -254,12 +135,8 @@ namespace plane
       find_uinteractions_from_cache(m_mapUInteractionToLibrary);
       }*/
 
-
       return true;
 
-
-
-      return true;
    }
 
 
@@ -267,18 +144,6 @@ namespace plane
    {
 
       bool bOk = true;
-
-      try
-      {
-
-         bOk = m_puserpresence->finalize();
-
-      }
-      catch(...)
-      {
-
-         bOk = false;
-      }
 
       try
       {
@@ -296,107 +161,107 @@ namespace plane
 
    }
 
+
    int32_t session::exit_instance()
    {
+
       try
       {
+
          ::application::exit_instance();
+
       }
       catch(...)
       {
+
       }
+
       return 0;
+
    }
+
 
    bool session::bergedge_start()
    {
-      return true;
-   }
 
+      return true;
+
+   }
 
 
    void session::_001OnFileNew()
    {
+
       //m_pdocmanager->_001OnFileNew();
+
    }
 
 
    bool session::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
-
    {
+
       return application::_001OnCmdMsg(pcmdmsg);
+
    }
 
-   /*
-   application * session::get_app() const
-   {
-      return ::application::get_app();
-   }
-   */
 
    void session::load_string_table()
    {
+
       application::load_string_table();
       application::load_string_table("plane", "");
       application::load_string_table();
       application::load_string_table("platform", "");
 
-
    }
-
-   /*   bool session::file_manager_open_file(
-   ::filemanager::data * pdata,
-   ::fs::item_array & itema)
-   {
-   UNREFERENCED_PARAMETER(pdata);
-   if(itema.get_size() > 0)
-   {
-   return true;
-   }
-   return false;
-   }*/
-
 
 
    bool session::create_bergedge(sp(::create_context) pcreatecontext)
    {
-      //m_psession->m_pplanesession->m_pbergedge = this;
-      //m_psession->m_pplanesession->m_pbergedgeInterface = this;
-
 
       if(m_pbergedgedocument == NULL)
       {
 
          sp(::create_context) createcontextBergedge(allocer());
+
          createcontextBergedge.oattrib(pcreatecontext);
+
          createcontextBergedge->m_spCommandLine->m_varFile.set_type(var::type_empty);
+         
          createcontextBergedge->m_bMakeVisible = false;
 
          m_pbergedgedocument =  (m_ptemplate_bergedge->open_document_file(createcontextBergedge).m_p);
-         m_pbergedgedocument->m_pbaseapp->m_pplaneapp->m_psession = m_psession;
+
+         //m_pbergedgedocument->m_pbaseapp->m_pbasesession->m_pplanesession = this;
 
       }
+
       if(m_bShowPlatform)
       {
+
          if(m_pplatformdocument == NULL)
          {
 
             sp(::create_context) createcontextPlatform;
+
             createcontextPlatform.oattrib(pcreatecontext);
+
             createcontextPlatform->m_spCommandLine->m_varFile.set_type(var::type_empty);
+
             createcontextPlatform->m_bMakeVisible = true;
+
             createcontextPlatform->m_puiParent = m_pbergedgedocument->get_bergedge_view();
 
             m_pplatformdocument  =  (m_ptemplate_platform->open_document_file(createcontextPlatform).m_p);
+
             m_pplatformdocument->m_pbergedgedocument =  m_pbergedgedocument;
-            //m_pnaturedocument    =
-            // dynamic_cast < sp(::nature::document) > (
-            //  papp->m_pplaneapp->m_ptemplate_nature->open_document_file(NULL, false, m_pbergedgedocument->get_bergedge_view()));
 
             m_pbergedgedocument->set_platform(m_pplatformdocument);
-            //m_pbergedgedocument->set_nature(m_pnaturedocument);
+
          }
+
       }
+
       return m_pbergedgedocument != NULL;
 
 
@@ -612,7 +477,7 @@ namespace plane
 
                   m_pappCurrent = papp;
 
-                  Session.m_pappCurrent = papp;
+                  PlaneSession.m_pappCurrent = papp;
 
                   //pcreatecontext->m_spCommandLine->m_eventReady.wait();
 
@@ -1185,7 +1050,7 @@ alt1:
    //
    ///*      if(pui == NULL && m_bShowPlatform && m_pbergedge->get_document() != NULL)
    //      {
-   //         pui = Session.get_document()->get_bergedge_view();
+   //         pui = BaseSession.get_document()->get_bergedge_view();
    //      }
    //
    //      return pui;
@@ -1442,11 +1307,11 @@ alt1:
          }
       }
 
-      if(m_pappCurrent != NULL && m_pappCurrent->m_pbasesession->fontopus()->m_puser != NULL)
+      if(m_pappCurrent != NULL && m_pappCurrent->m_pbasesession->m_pfontopus->m_puser != NULL)
       {
          try
          {
-            get_view()->GetParentFrame()->SetWindowText(m_pappCurrent->m_pbasesession->fontopus()->m_puser->m_strLogin);
+            get_view()->GetParentFrame()->SetWindowText(m_pappCurrent->m_pbasesession->m_pfontopus->m_puser->m_strLogin);
          }
          catch(...)
          {
@@ -1543,18 +1408,28 @@ alt1:
 
    sp(::base::application) session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
+
       sp(::base::application) papp = NULL;
 
-      if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszId), papp))
+      if(m_pbasesession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszId),papp))
+      {
+         
          return papp;
+
+      }
       else
       {
+
          if(!bCreate)
             return NULL;
+
          papp = NULL;
+
          try
          {
+
             papp = create_application(pszType, pszId, bSynch, pbiasCreate);
+
          }
          catch(::exit_exception & e)
          {
@@ -1571,25 +1446,38 @@ alt1:
          }
          catch(...)
          {
+
             papp = NULL;
+
          }
+
          if(papp == NULL)
             return NULL;
+
          if(&App(papp) == NULL)
          {
+
             try
             {
+
                papp.release();
+
             }
             catch(...)
             {
+
             }
+
             return NULL;
+
          }
-         m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
-         Session.m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
+         
+         m_pbasesession->m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
+
          return papp;
+
       }
+
    }
 
 
@@ -1635,7 +1523,7 @@ alt1:
 
       /*      if(pui == NULL && m_bShowPlatform && m_pbergedge->get_document() != NULL)
       {
-      pui = Session.get_document()->get_bergedge_view();
+      pui = BaseSession.get_document()->get_bergedge_view();
       }
 
       return pui;
@@ -1786,7 +1674,7 @@ alt1:
 
       sp(::base::application) papp = NULL;
 
-      if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
+      if(m_pbasesession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
       {
 
          sp(::bergedge::pane_view) ppaneview = get_document()->get_typed_view < ::bergedge::pane_view >();
@@ -1829,44 +1717,8 @@ alt1:
       if(!::core::session::initialize1())
          return false;
 
-      m_puserpresence = canew(::userpresence::userpresence(this));
-
-
       if(!::platform::application::initialize1())
          return false;
-
-
-      if(m_puserpresence.is_null())
-      {
-         TRACE("Failed to create new User Presence");
-         return false;
-      }
-
-      try
-      {
-
-         m_puserpresence->construct(this);
-
-      }
-      catch(...)
-      {
-
-         TRACE("Failed to construct User Presence");
-
-         return false;
-
-      }
-
-
-      if(!m_puserpresence->initialize())
-      {
-
-         TRACE("Failed to initialize User Presence");
-
-         return false;
-
-      }
-
 
 
 
@@ -1932,18 +1784,21 @@ alt1:
    ::visual::cursor * session::get_cursor()
    {
       
-      if (m_ecursor == ::visual::cursor_none)
+      if(m_pbasesession->m_ecursor == ::visual::cursor_none)
          return NULL;
-      else if (m_ecursor == ::visual::cursor_default)
-         return System.visual().get_cursor(m_ecursorDefault);
+      else if(m_pbasesession->m_ecursor == ::visual::cursor_default)
+         return System.visual().get_cursor(m_pbasesession->m_ecursorDefault);
       else
-         return System.visual().get_cursor(m_ecursor);
+         return System.visual().get_cursor(m_pbasesession->m_ecursor);
 
    }
 
+
    ::visual::cursor * session::get_default_cursor()
    {
-      return System.visual().get_cursor(m_ecursorDefault);
+      
+      return System.visual().get_cursor(m_pbasesession->m_ecursorDefault);
+
    }
 
 

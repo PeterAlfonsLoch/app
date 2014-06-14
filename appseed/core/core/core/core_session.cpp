@@ -5,7 +5,9 @@ namespace core
 {
 
 
-   session::session()
+   session::session(sp(::base::application) papp) :
+      element(papp),
+      ::thread(papp)
    {
    
    
@@ -21,13 +23,29 @@ namespace core
    bool session::initialize1()
    {
 
-      if(!::base::session::initialize1())
-         return false;
-
       if(!::application::initialize1())
          return false;
 
       return true;
+
+   }
+
+   bool session::initialize()
+   {
+
+      if(!::application::initialize())
+         return false;
+
+      return true;
+
+   }
+
+   int32_t session::exit_instance()
+   {
+      
+      ::application::exit_instance();
+
+      return 0;
 
    }
 
@@ -45,6 +63,8 @@ namespace core
       return true;
 
    }
+
+
 
    
 

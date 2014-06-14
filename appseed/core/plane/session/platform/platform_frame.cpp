@@ -96,7 +96,7 @@ namespace platform
       }
       else if(nIDEvent == 1000)
       {
-         WfiRestore();
+         WfiRestore(true);
          KillTimer(nIDEvent);
          m_bTimerOn = false;
       }
@@ -116,7 +116,7 @@ namespace platform
          {
             OnHoverAction();
          }
-         Session.get_cursor_pos(&pt);
+         BaseSession.get_cursor_pos(&pt);
          if(!m_bHoverMouse && pt.x <= 0)
          {
             m_dwLastHover = ::get_tick_count();
@@ -190,7 +190,9 @@ namespace platform
 
    void frame::OnHoverAction()
    {
-      WfiRestore();
+
+      WfiRestore(true);
+
    }
 
    void frame::_001OnSize(signal_details * pobj)
@@ -250,7 +252,7 @@ namespace platform
 
    void frame::super_dock_on_bergedge()
    {
-      if(!Session.m_bShowPlatform)
+      if(!PlaneSession.m_bShowPlatform)
       {
          return;
       }
@@ -267,8 +269,11 @@ namespace platform
          // There is no place to dock on to.
          return;
       }
+      
       puiParent->GetWindowRect(rectDesktop);
-      WfiRestore();
+      
+      WfiRestore(true);
+
       switch(m_eposition)
       {
       case position_left:

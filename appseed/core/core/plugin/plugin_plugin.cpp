@@ -395,7 +395,7 @@ namespace plugin
 
       while(puser == NULL)
       {
-         puser = Session.fontopus()->login(setLogin);
+         puser = BaseSession.fontopus()->login(setLogin);
       }
 
       if(strSessId == puser->m_strFontopusServerSessId || puser->m_strFontopusServerSessId.get_length() < 16)
@@ -420,7 +420,7 @@ namespace plugin
    void plugin::ca2_logout()
    {
 
-      Session.fontopus()->logout();
+      BaseSession.fontopus()->logout();
 
       property_set set(get_app());
 
@@ -737,7 +737,7 @@ namespace plugin
                      }
                      if(!m_bApp)
                      {
-                        printf("Session application is not initialized. Cannot start mplite.");
+                        printf("BaseSession application is not initialized. Cannot start mplite.");
                         return;
                      }
                   }

@@ -61,7 +61,7 @@ namespace fontopus
 
       xxdebug_box("defer_translate", "login", 0);
 
-      string strFontopusServer = Session.fontopus()->get_fontopus_server("account.ca2.cc");
+      string strFontopusServer = BaseSession.fontopus()->get_fontopus_server("account.ca2.cc");
 
       string strForm = pstyle->defer_get("http://" + strFontopusServer + "/login_form");
 

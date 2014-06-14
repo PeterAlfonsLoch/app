@@ -181,7 +181,7 @@ namespace userex
          else
             pfilemanagerdata->m_strToolBarSave = "file_manager_toolbar_save.xml";
 
-         sp(::filemanager::document) pdoc = Session.filemanager().std().open_child(true, pfilemanagerdata->m_bTransparentBackground, pcreatordata->m_pholder, pfilemanagerdata);
+         sp(::filemanager::document) pdoc = PlaneSession.filemanager().std().open_child(true,pfilemanagerdata->m_bTransparentBackground,pcreatordata->m_pholder,pfilemanagerdata);
          if(pdoc != NULL)
          {
             sp(::user::impact) pview = pdoc->get_view();
@@ -203,7 +203,7 @@ namespace userex
          cc->m_bMakeVisible               = true;
          cc->m_puiParent                  = pcreatordata->m_pholder;
 
-         sp(::filemanager::document) pdoc = Session.filemanager().std().open(cc);
+         sp(::filemanager::document) pdoc = PlaneSession.filemanager().std().open(cc);
 
          if(pdoc != NULL)
          {

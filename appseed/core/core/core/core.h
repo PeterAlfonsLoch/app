@@ -52,9 +52,9 @@ namespace user
 #define Mathematics(papp) (Sys(papp).math())
 #define Math (Mathematics(this->m_pbaseapp))
 
-#undef Sess
-#define Sess(pbaseapp) (*pbaseapp->m_pplaneapp->m_psession->m_pplanesession->m_pplanesession->m_pplanesession)
-#define Session (Sess(this->m_pbaseapp))
+#undef PlaneSess
+#define PlaneSess(pbaseapp) (*pbaseapp->m_pplaneapp->m_pbasesession->m_pplanesession)
+#define PlaneSession (PlaneSess(this->m_pbaseapp))
 
 
 #if defined(WIN32) && !defined(VC6) && ! defined(VC71)

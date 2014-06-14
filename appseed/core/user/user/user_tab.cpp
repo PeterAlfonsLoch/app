@@ -312,7 +312,7 @@ namespace user
       {
          rect rectTab(get_data()->m_rectTab);
          ClientToScreen(rectTab);
-         point ptCursor = Session.m_ptCursor;
+         point ptCursor = BaseSession.m_ptCursor;
          m_bShowTabs = rectTab.contains(ptCursor);
          post_simple_command(simple_command_layout);
          if(!m_bShowTabs)
@@ -556,7 +556,7 @@ namespace user
       {
          rect rectTab(get_data()->m_rectTab);
          ClientToScreen(rectTab);
-         point ptCursor = Session.m_ptCursor;
+         point ptCursor = BaseSession.m_ptCursor;
          m_bShowTabs = rectTab.contains(ptCursor);
          if(!m_bShowTabs)
          {

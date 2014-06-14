@@ -109,7 +109,7 @@ namespace fontopus
       if (lprect == NULL)
       {
 
-         Session.get_monitor_rect(0,&rectDesktop);
+         BaseSession.get_main_monitor(rectDesktop);
 
       }
       else

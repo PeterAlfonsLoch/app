@@ -83,7 +83,7 @@ namespace user
       {
 
 //         int32_t   fwKeys = (int32_t) lpMsg->wParam;        // key flags
-         if(Session.is_mouse_button_pressed(::user::mouse_left_button))
+         if(PlaneSession.is_mouse_button_pressed(::user::mouse_left_button))
          {
             ::user::split_bar & splitbar = *m_splitbara.element_at(iIndex);
             splitbar.set_capture();

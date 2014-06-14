@@ -501,7 +501,7 @@ namespace http
             if(papp != NULL)
             {
 
-               string strFontopusServer = Session.fontopus()->get_server(strUrl, 8);
+               string strFontopusServer = BaseSession.fontopus()->get_server(strUrl, 8);
 
                url_domain domainFontopus;
 
@@ -526,7 +526,7 @@ namespace http
 
             System.url().string_set(strUrl, "sessid", strSessId);
 
-            string strFontopus = Session.fontopus()->get_server(string("http://") + pszHost, 8);
+            string strFontopus = BaseSession.fontopus()->get_server(string("http://") + pszHost, 8);
 
             ::net::address ad(strFontopus);
 
@@ -723,7 +723,7 @@ retry:
             if(papp != NULL)
             {
 
-               string strFontopusServer = Session.fontopus()->get_server(strUrl, 8);
+               string strFontopusServer = BaseSession.fontopus()->get_server(strUrl, 8);
 
                url_domain domainFontopus;
 
@@ -823,7 +823,7 @@ retry:
          if(papp != NULL)
          {
             keeplive.keep(papp);
-            keeplive.keep(&Sess(papp));
+            keeplive.keep(&BaseSess(papp));
             keeplive.keep(&Sys(papp));
          }
          oprop("dw").get_value().set_type(var::type_uint32);
@@ -1149,7 +1149,7 @@ retry:
                if (papp != NULL)
                {
 
-                  string strFontopusServer = Session.fontopus()->get_server(strUrl, 8);
+                  string strFontopusServer = BaseSession.fontopus()->get_server(strUrl, 8);
 
                   url_domain domainFontopus;
 
@@ -1176,13 +1176,13 @@ retry:
                System.url().string_set(strUrl, "sessid", strSessId);
                if (strUrl.find_ci("://api.ca2.cc/") > 0)
                {
-                  string strApi(Session.fontopus()->get_server(strUrl, 8));
+                  string strApi(BaseSession.fontopus()->get_server(strUrl, 8));
                   strApi.replace("account", "api");
                   strUrl.replace("://api.ca2.cc/", "://" + strApi + "/");
 //                  set["user"].cast < ::fontopus::user >()->set_sessid(set["user"].cast < ::fontopus::user >()->get_sessid(strApi), "api.ca2.cc");
                }
 
-               string strFontopus = Session.fontopus()->get_server(pszUrl, 8);
+               string strFontopus = BaseSession.fontopus()->get_server(pszUrl, 8);
 
                ::net::address ad(strFontopus);
 
@@ -1344,7 +1344,7 @@ retry:
       if(papp != NULL)
       {
          keeplive.keep(papp);
-         keeplive.keep(&Sess(papp));
+         keeplive.keep(&BaseSess(papp));
          keeplive.keep(&Sys(papp));
       }
 
@@ -1761,7 +1761,7 @@ retry:
       else
       {
          //SPECIFY AUTHENTICATION USERNAME
-         if(Session.get_auth("system\\::fontopus::user\\proxy_authenticate.xhtml", strUserName, strPassword))
+         if(BaseSession.get_auth("system\\::fontopus::user\\proxy_authenticate.xhtml", strUserName, strPassword))
          {
             System.crypto().file_set(strUserNameFile, strUserName, NULL, get_app());
             System.crypto().file_set(strPasswordFile, strPassword, NULL, get_app());

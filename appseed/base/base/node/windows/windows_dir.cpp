@@ -967,7 +967,12 @@ namespace windows
 
          m_strCa2 = strCa2Module;
 
+#ifndef CUBE
+
          System.file().path().eat_end_level(m_strCa2, 2, "\\");
+
+#endif
+
          /*      SHGetSpecialFolderPath(
          NULL,
          m_strCommonAppData,

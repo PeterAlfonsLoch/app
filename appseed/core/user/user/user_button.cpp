@@ -459,7 +459,7 @@ namespace user
       POINT pt;
       // netshare
       // System.get_cursor_position(&pt);
-      Session.get_cursor_pos(&pt);
+      BaseSession.get_cursor_pos(&pt);
       e_element eelement;
       return hit_test(pt, eelement);
 

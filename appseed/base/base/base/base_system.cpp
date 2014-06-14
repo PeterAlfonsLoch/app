@@ -191,6 +191,21 @@ namespace base
       if(!m_net.initialize())
          return false;
 
+      if(!set_main_init_data(m_pinitmaindata))
+         return false;
+
+      m_pbasesession = new ::base::session(this);
+
+      if(m_pbasesession == NULL)
+         return false;
+
+      m_pbasesession->begin();
+
+      while(!m_pbasesession->m_bReady)
+      {
+         Sleep(23);
+      }
+
       return true;
 
    }

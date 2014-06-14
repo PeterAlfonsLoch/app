@@ -10,7 +10,8 @@ namespace fontopus
       ::base::departament(papp)
    {
 
-      m_puser                    = NULL;
+      m_puser                       = NULL;
+
       m_pthreadCreatingUser      = NULL;
 
       Application.gudo_get("fontopus::fontopus::m_mapFontopusServer",m_mapFontopusServer);
@@ -220,32 +221,14 @@ namespace fontopus
 
    user * fontopus::get_user()
    {
-     if(m_pbaseapp->is_session())
+      if(m_puser == NULL)
       {
-         if(m_puser == NULL)
+
+         if(m_pthreadCreatingUser == ::get_thread())
+            return NULL;
+
+         if(m_pthreadCreatingUser != NULL)
          {
-
-            if(m_pthreadCreatingUser == ::get_thread())
-               return NULL;
-
-            if(m_pthreadCreatingUser != NULL)
-            {
-
-               while(m_pthreadCreatingUser != NULL && m_pthreadCreatingUser->m_bRun)
-               {
-
-                  m_pthreadCreatingUser->m_evReady.wait(millis(84));
-
-               }
-            
-               if(m_puser != NULL)
-                  return m_puser;
-
-               return NULL;
-
-            }
-
-            m_pthreadCreatingUser = __begin_thread < create_user_thread >(get_app());
 
             while(m_pthreadCreatingUser != NULL && m_pthreadCreatingUser->m_bRun)
             {
@@ -253,7 +236,7 @@ namespace fontopus
                m_pthreadCreatingUser->m_evReady.wait(millis(84));
 
             }
-
+            
             if(m_puser != NULL)
                return m_puser;
 
@@ -261,29 +244,36 @@ namespace fontopus
 
          }
 
-         if(m_puser != NULL)
+         m_pthreadCreatingUser = __begin_thread < create_user_thread >(get_app());
+
+         while(m_pthreadCreatingUser != NULL && m_pthreadCreatingUser->m_bRun)
          {
 
-            if(m_puser->m_pifs == NULL)
-            {
-
-               m_puser->create_ifs();
-
-            }
+            m_pthreadCreatingUser->m_evReady.wait(millis(84));
 
          }
 
-         return m_puser;
+         if(m_puser != NULL)
+            return m_puser;
+
+         return NULL;
 
       }
-      else if(m_pbaseapp == NULL || m_pbaseapp->m_pbasesession == NULL)
+
+      if(m_puser != NULL)
       {
-         return NULL;
+
+         if(m_puser->m_pifs == NULL)
+         {
+
+            m_puser->create_ifs();
+
+         }
+
       }
-      else
-      {
-         return Sess(m_pbaseapp).get_user();
-      }
+
+      return m_puser;
+
    }
 
    void fontopus::set_user(const char * psz)
@@ -319,7 +309,7 @@ namespace fontopus
 
          sp(::create_context) spcreatecontext(allocer());
 
-         sp(::base::application) papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
+         sp(::base::application) papp = BaseSession.start_application("application", "app-core/deepfish", spcreatecontext);
 
          if(papp == NULL)
          {
@@ -434,7 +424,7 @@ namespace fontopus
 
       url_domain domainFontopus;
 
-      string strFontopusServer = Session.fontopus()->get_server(strGetFontopus,8);
+      string strFontopusServer = BaseSession.fontopus()->get_server(strGetFontopus,8);
 
       domainFontopus.create(strFontopusServer);
 
@@ -477,7 +467,7 @@ namespace fontopus
       
 #endif
 
-      ::fontopus::user * puser = Session.fontopus()->create_current_user();
+      ::fontopus::user * puser = BaseSession.fontopus()->create_current_user();
 
       if(puser != NULL)
       {
@@ -487,13 +477,13 @@ namespace fontopus
 
             delete puser;
 
-            Session.fontopus()->m_puser = NULL;
+            BaseSession.fontopus()->m_puser = NULL;
 
          }
          else
          {
 
-            Session.fontopus()->m_puser = puser;
+            BaseSession.fontopus()->m_puser = puser;
 
          }
 
@@ -501,13 +491,13 @@ namespace fontopus
       else
       {
 
-         Session.fontopus()->m_puser = NULL;
+         BaseSession.fontopus()->m_puser = NULL;
 
       }
 
       m_evReady.SetEvent();
 
-      Session.fontopus()->m_pthreadCreatingUser = NULL;
+      BaseSession.fontopus()->m_pthreadCreatingUser = NULL;
 
       return 0;
 

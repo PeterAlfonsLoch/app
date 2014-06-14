@@ -327,7 +327,7 @@ namespace user
       else
       {
 #ifdef WINDOWSEX
-         pdc->FillSolidRect(rectClient, Session.get_default_color(COLOR_WINDOW));
+         pdc->FillSolidRect(rectClient, BaseSession.get_default_color(COLOR_WINDOW));
 #else
          throw todo(get_app());
 #endif

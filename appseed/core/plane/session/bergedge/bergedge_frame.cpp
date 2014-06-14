@@ -100,9 +100,13 @@ namespace bergedge
       }
       else if(nIDEvent == 1000)
       {
-         WfiRestore();
+
+         WfiRestore(true);
+
          KillTimer(nIDEvent);
+
          m_bTimerOn = false;
+
       }
       else if(nIDEvent == 8913)
       {
@@ -114,7 +118,7 @@ namespace bergedge
          {
             OnHoverAction();
          }
-         Session.get_cursor_pos(&pt);
+         BaseSession.get_cursor_pos(&pt);
          if(!m_bHoverMouse && pt.x == 0 && pt.y == 0)
          {
             m_dwLastHover = ::get_tick_count();
@@ -172,7 +176,7 @@ namespace bergedge
 
    void frame::_000OnMouse(::message::mouse * pmouse)
    {
-      Session.m_ptCursor = pmouse->m_pt;
+      BaseSession.m_ptCursor = pmouse->m_pt;
 //      sp(::application) pappParent = &App(Application.m_pbaseapp);
 //      sp(::application) papp = &Application;
       if(pmouse->m_uiMessage == WM_MOUSEMOVE

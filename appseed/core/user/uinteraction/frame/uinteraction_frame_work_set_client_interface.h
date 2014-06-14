@@ -39,7 +39,7 @@ namespace user
 
 
             virtual bool WfiClose();
-            virtual bool WfiRestore();
+            virtual bool WfiRestore(bool bForceNormal = false);
             virtual bool WfiMinimize();
             virtual bool WfiMaximize();
             virtual bool WfiFullScreen();

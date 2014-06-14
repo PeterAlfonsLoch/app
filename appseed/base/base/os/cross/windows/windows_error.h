@@ -14818,7 +14818,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// You do not have the proper encryption level to access this Session.
+// You do not have the proper encryption level to access this BaseSession.
 //
 #define ERROR_CTX_ENCRYPTION_LEVEL_REQUIRED 7061L
 

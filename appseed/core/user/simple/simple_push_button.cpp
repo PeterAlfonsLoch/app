@@ -217,7 +217,7 @@ void SimplePushButton::UpdateHover()
 {
    point ptCursor;
 
-   Session.get_cursor_pos(&ptCursor);
+   BaseSession.get_cursor_pos(&ptCursor);
 
    rect rectWindow;
 

@@ -167,7 +167,7 @@ namespace filemanager
 
                   if (bSave && GetFileManagerDoc()->get_fs_data()->file_exists(strPath))
                   {
-                     if (System.simple_message_box(Session.get_view(), "Do you want to replace the existing file " + strPath + "?", MB_YESNO) == IDNO)
+                     if (System.simple_message_box(PlaneSession.get_view(), "Do you want to replace the existing file " + strPath + "?", MB_YESNO) == IDNO)
                      {
                         bSave = false;
                      }

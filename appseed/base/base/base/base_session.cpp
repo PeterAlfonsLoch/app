@@ -1,25 +1,103 @@
 #include "framework.h"
 
 
+#ifdef WINDOWSEX
+
+HMONITOR GetPrimaryMonitorHandle()
+{
+
+   const POINT ptZero = { 0 , 0 };
+
+   return MonitorFromPoint(ptZero,MONITOR_DEFAULTTOPRIMARY);
+
+}
+
+#endif
+
 namespace base
 {
 
 
-   session::session()
+   session::session(sp(::base::application) papp) :
+      element(papp),
+      ::thread(papp)
    {
 
-      m_pfontopus = create_fontopus();
+      m_pbasesession = this;
 
-      if(m_pfontopus == NULL)
-         throw simple_exception(this,"could not create fontopus for ::base::session (::base::session::construct)");
+      if(papp->is_system())
+      {
 
-      m_pfontopus->construct(this);
+         m_pfontopus = create_fontopus();
+
+         if(m_pfontopus == NULL)
+            throw simple_exception(this,"could not create fontopus for ::base::session (::base::session::construct)");
+
+         m_pfontopus->construct(this);
+
+      }
+      else
+      {
+
+         m_pfontopus = m_pbaseapp->m_pbasesession->m_pfontopus;
+
+      }
 
       m_bSessionSynchronizedCursor = true;
 //      m_bSessionSynchronizedScreen = true;
 
+      if(m_hinstance == NULL)
+
+      {
+
+         m_hinstance = m_pbaseapp->m_hinstance;
+
+      }
+
+      m_pifs                     = new ifs(this,"");
+      m_prfs                     = new ::fs::remote_native(this,"");
+
+      ::fs::set * pset = new class ::fs::set(this);
+      ::fs::link * plink = new ::fs::link(this);
+      plink->fill_os_user();
+      pset->m_spafsdata.add(plink);
+      pset->m_spafsdata.add(new ::fs::native(this));
+      m_spfsdata = pset;
+
+      m_bDrawCursor              = true;
+      m_ecursorDefault  = ::visual::cursor_arrow;
+      m_ecursor         = ::visual::cursor_default;
+
+
 
    }
+
+   session::~session()
+   {
+
+      POSITION pos = m_mapApplication.get_start_position();
+
+      string strId;
+
+      sp(::base::application) pbaseapp;
+
+      while(pos != NULL)
+      {
+
+         strId.Empty();
+
+         pbaseapp = NULL;
+
+         m_mapApplication.get_next_assoc(pos,strId,pbaseapp);
+
+         sp(::base::application) papp = (pbaseapp);
+
+         papp->post_thread_message(WM_QUIT);
+
+      }
+
+   }
+
 
    bool session::is_session()
    {
@@ -27,6 +105,7 @@ namespace base
       return true;
 
    }
+
 
    sp(::base::application) session::start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext)
    {
@@ -38,23 +117,6 @@ namespace base
    }
 
 
-   ::visual::cursor * session::get_cursor()
-   {
-      return NULL;
-      /*   if (m_ecursor == ::visual::cursor_none)
-            return NULL;
-            else if (m_ecursor == ::visual::cursor_default)
-            return System.visual().get_cursor(m_ecursorDefault);
-            else
-            return System.visual().get_cursor(m_ecursor);*/
-   }
-
-
-
-   ::visual::cursor * session::get_default_cursor()
-   {
-      return NULL;
-   }
 
    ::fontopus::user * session::safe_get_user()
    {
@@ -69,19 +131,28 @@ namespace base
 
    void session::set_cursor(::visual::e_cursor ecursor)
    {
+
       m_ecursor = ecursor;
+
    }
+
 
    void session::set_default_cursor(::visual::e_cursor ecursor)
    {
+
       if(ecursor == ::visual::cursor_default)
       {
+
          m_ecursorDefault = ::visual::cursor_arrow;
+
       }
       else
       {
+
          m_ecursorDefault = ecursor;
+
       }
+
    }
 
 
@@ -181,7 +252,42 @@ namespace base
    }
 
 
+   index session::get_main_monitor(LPRECT lprect)
+   {
 
+      int iMainMonitor = 0;
+
+#ifdef WINDOWSEX
+
+      HMONITOR hmonitorPrimary = GetPrimaryMonitorHandle();
+
+      for(index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
+      {
+
+         if(m_hmonitora[iMonitor] == hmonitorPrimary)
+         {
+
+            iMainMonitor = iMonitor;
+
+            break;
+
+         }
+
+      }
+
+
+#endif
+
+      if(lprect != NULL)
+      {
+
+         get_monitor_rect(iMainMonitor,lprect);
+
+      }
+
+      return iMainMonitor;
+
+   }
 
 
 
@@ -263,6 +369,134 @@ namespace base
 
    }
 
+
+   index session::initial_frame_position(LPRECT lprect,LPCRECT lpcrect, bool bMove)
+   {
+
+      rect rectRestore(lpcrect);
+
+      rect rectMonitor;
+
+      index iMatchingMonitor = get_best_monitor(rectMonitor,lpcrect);
+
+      ::size sizeMin;
+
+      get_window_minimum_size(&sizeMin);
+
+      rect rectIntersect;
+
+      if(bMove)
+      {
+
+         rect_array rectaMonitor;
+
+         rect_array rectaIntersect;
+
+         get_monitor(rectaMonitor,rectaIntersect,lpcrect);
+
+         rectaIntersect.get_box(rectIntersect);
+
+      }
+      else
+      {
+
+         rectIntersect.intersect(rectMonitor,lpcrect);
+
+      }
+
+      if(rectIntersect.width() < sizeMin.cx
+         || rectIntersect.height() < sizeMin.cy)
+      {
+
+         if(rectMonitor.width() / 7 + max(sizeMin.cx,rectMonitor.width() * 2 / 5) > rectMonitor.width()
+            || rectMonitor.height() / 7 + max(sizeMin.cy,rectMonitor.height() * 2 / 5) > rectMonitor.width())
+         {
+
+            rectRestore = rectMonitor;
+
+         }
+         else
+         {
+
+            rectRestore.left = rectMonitor.left + rectMonitor.width() / 7;
+
+            rectRestore.top = rectMonitor.top + rectMonitor.height() / 7;
+
+            rectRestore.right = rectRestore.left + max(sizeMin.cx,rectMonitor.width() * 2 / 5);
+
+            rectRestore.bottom = rectRestore.top + max(sizeMin.cy,rectMonitor.height() * 2 / 5);
+
+            if(rectRestore.right > rectMonitor.right - rectMonitor.width() / 7)
+            {
+
+               rectRestore.offset(rectMonitor.right - rectMonitor.width() / 7 - rectRestore.right,0);
+
+            }
+
+            if(rectRestore.bottom > rectMonitor.bottom - rectMonitor.height() / 7)
+            {
+
+               rectRestore.offset(0,rectMonitor.bottom - rectMonitor.height() / 7 - rectRestore.bottom);
+
+            }
+
+         }
+
+         *lprect = rectRestore;
+
+         return iMatchingMonitor;
+
+      }
+      else
+      {
+
+         if(!bMove)
+         {
+
+            *lprect = rectIntersect;
+
+         }
+
+         return -1;
+
+      }
+
+   }
+
+   void session::get_monitor(rect_array & rectaMonitor,rect_array & rectaIntersect,LPCRECT lpcrect)
+   {
+
+      for(index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
+      {
+
+         rect rectIntersect;
+
+         rect rectMonitor;
+
+         if(get_monitor_rect(iMonitor,rectMonitor))
+         {
+
+            if(rectIntersect.top_left_null_intersect(lpcrect,rectMonitor))
+            {
+
+               if(rectIntersect.area() >= 0)
+               {
+
+                  rectaMonitor.add(rectMonitor);
+
+                  rectaIntersect.add(rectIntersect);
+
+               }
+
+            }
+
+         }
+
+      }
+
+   }
+
+
    index session::get_best_monitor(LPRECT lprect,LPCRECT lpcrect)
    {
 
@@ -309,90 +543,18 @@ namespace base
 
       }
 
-      get_monitor_rect(0,lprect);
+      iMatchingMonitor = get_main_monitor(lprect);
 
-      return 0;
+      return iMatchingMonitor;
 
    }
+
+
 
    index session::get_good_restore(LPRECT lprect,LPCRECT lpcrect)
    {
 
-      rect rectRestore = *lpcrect;
-
-      rect rectMonitor;
-
-      index iMatchingMonitor = get_best_monitor(rectMonitor,lpcrect);
-
-      rect rectIntersect;
-
-      rectIntersect.intersect(rectMonitor,rectRestore);
-
-      ::size sizeMin;
-
-      get_window_minimum_size(&sizeMin);
-
-      if(rectIntersect.width() < sizeMin.cx
-         || rectIntersect.height() < sizeMin.cy)
-      {
-
-         if(rectMonitor.width() / 7 + max(sizeMin.cx,rectMonitor.width() * 2 / 5) > rectMonitor.width()
-            || rectMonitor.height() / 7 + max(sizeMin.cy,rectMonitor.height() * 2 / 5) > rectMonitor.width())
-         {
-
-            rectRestore = rectMonitor;
-
-         }
-         else
-         {
-
-            rectRestore.left = rectMonitor.left + rectMonitor.width() / 7;
-
-            rectRestore.top = rectMonitor.top + rectMonitor.height() / 7;
-
-            rectRestore.right = rectRestore.left + max(sizeMin.cx,rectMonitor.width() * 2 / 5);
-
-            rectRestore.bottom = rectRestore.top + max(sizeMin.cy,rectMonitor.height() * 2 / 5);
-
-            if(rectRestore.right > rectMonitor.right - rectMonitor.width() / 7)
-            {
-
-               rectRestore.offset(rectMonitor.right - rectMonitor.width() / 7 - rectRestore.right,0);
-
-            }
-
-            if(rectRestore.bottom > rectMonitor.bottom - rectMonitor.height() / 7)
-            {
-
-               rectRestore.offset(0,rectMonitor.bottom - rectMonitor.height() / 7 - rectRestore.bottom);
-
-            }
-
-         }
-
-      }
-      else
-      {
-
-         rectRestore = rectIntersect;
-
-      }
-
-      if(rectRestore != lprect)
-      {
-
-         *lprect = rectRestore;
-
-         return iMatchingMonitor;
-
-      }
-      else
-      {
-
-         return -1;
-
-      }
-
+      return initial_frame_position(lprect,lpcrect, false);
 
    }
 
@@ -414,6 +576,28 @@ namespace base
    }
 
 
+   index session::get_good_move(LPRECT lprect,LPCRECT lpcrect)
+   {
+
+      index iMatchingMonitor = initial_frame_position(lprect,lpcrect, true);
+
+      if(memcmp(lprect,lpcrect,sizeof(RECT)))
+      {
+
+         return iMatchingMonitor;
+
+      }
+      else
+      {
+
+         return -1;
+
+      }
+
+
+   }
+
+
    bool  session::get_window_minimum_size(LPSIZE lpsize)
    {
 
@@ -426,15 +610,172 @@ namespace base
    }
 
 
+   bool session::initialize_instance()
+   {
+
+      if(m_pfontopus->m_puser == NULL &&
+         (Application.directrix()->m_varTopicQuery.has_property("install")
+         || Application.directrix()->m_varTopicQuery.has_property("uninstall")))
+      {
+
+         if(m_pfontopus->create_system_user("system") == NULL)
+            return false;
+
+      }
+
+      if(!m_pfontopus->initialize_instance())
+         return false;
+
+
+      if(!::base::application::initialize_instance())
+         return false;
+
+
+      return true;
+
+   }
+
+
    bool session::initialize1()
    {
 
+      m_spfs = canew(::fs::fs(this));
+
+      if(m_spfs == NULL)
+         return false;
+
+      m_spfs->construct(this);
+
+      if(!m_spfs->initialize())
+         return false;
+
       enum_display_monitors();
+
+      m_spcopydesk.create(allocer());
+
+      if(!m_spcopydesk->initialize())
+         return false;
 
       if(!::base::application::initialize1())
          return false;
     
+      m_puserpresence = canew(::userpresence::userpresence(this));
+
+      if(m_puserpresence.is_null())
+      {
+         TRACE("Failed to create new User Presence");
+         return false;
+      }
+
+      try
+      {
+
+         m_puserpresence->construct(this);
+
+      }
+      catch(...)
+      {
+
+         TRACE("Failed to construct User Presence");
+
+         return false;
+
+      }
+
+
+      if(!m_puserpresence->initialize())
+      {
+
+         TRACE("Failed to initialize User Presence");
+
+         return false;
+
+      }
+
       return true;
+
+   }
+
+
+   bool session::initialize()
+   {
+
+      if(!::base::application::initialize())
+         return false;
+
+      if(m_bIfs)
+      {
+
+         if(m_spfsdata.is_null())
+            m_spfsdata = new ::fs::set(this);
+
+         ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
+         pset->m_spafsdata.add(BaseSession.m_pifs);
+         pset->m_spafsdata.add(BaseSession.m_prfs);
+
+      }
+
+
+      return true;
+
+   }
+
+
+   bool session::finalize()
+   {
+
+      bool bOk = true;
+
+      try
+      {
+
+         bOk = m_puserpresence->finalize();
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+      }
+
+      try
+      {
+
+         bOk = ::base::application::finalize();
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+      }
+
+      return bOk;
+
+   }
+
+
+   int32_t session::exit_instance()
+   {
+
+      try
+      {
+         if(m_spcopydesk.is_set())
+         {
+            m_spcopydesk->finalize();
+            m_spcopydesk.release();
+         }
+         m_splicense.release();
+      }
+      catch(...)
+      {
+
+      }
+
+      ::base::application::exit_instance();
+
+      return 0;
+
    }
 
 
@@ -462,9 +803,13 @@ namespace base
 #ifdef WINDOWSEX
    BOOL CALLBACK session::monitor_enum_proc(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor,LPARAM dwData)
    {
+      
       ::base::session * psession = (::base::session *) dwData;
+      
       psession->monitor_enum(hmonitor,hdcMonitor,lprcMonitor);
+      
       return TRUE; // to enumerate all
+
    }
 
    void session::monitor_enum(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor)
@@ -476,6 +821,8 @@ namespace base
       m_monitorinfoa.allocate(m_monitorinfoa.get_size() + 1);
 
       ZERO(m_monitorinfoa.last_element());
+
+      m_hmonitora.add(hmonitor);
 
       m_monitorinfoa.last_element().cbSize = sizeof(MONITORINFO);
 

@@ -93,13 +93,6 @@ namespace hotplugin
       virtual void deferred_prodevian_redraw();
 
       
-      using ::hotplugin::plugin::message_handler;
-
-#ifdef WINDOWS
-//      virtual LRESULT message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam);
-#else
-  //    virtual int32_t message_handler(XEvent * pevent);
-#endif
       virtual void start_ca2();
 
       virtual void set_progress_rate(double dRate);

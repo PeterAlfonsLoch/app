@@ -2407,14 +2407,14 @@ ret:
 
          synch_lock sl(&m_mutex);
 
-         if(&Session == NULL || Session.fontopus().is_null())
+         if(&BaseSession == NULL || BaseSession.fontopus().is_null())
             return "api.ca2.cc";
 
          string strApiServer;
 
          string strGetFontopus("http://api.ca2.cc/get_fontopus");
 
-         string strFontopusServer = Session.fontopus()->get_server(strGetFontopus,8);
+         string strFontopusServer = BaseSession.fontopus()->get_server(strGetFontopus,8);
 
          strApiServer = strFontopusServer;
 

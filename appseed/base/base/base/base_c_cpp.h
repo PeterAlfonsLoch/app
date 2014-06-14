@@ -358,8 +358,6 @@ typedef smart_pointer < thread_impl > thread_impl_sp;
 #define System (Sys(this->m_pbaseapp))
 #define threadSystem (Sys(get_thread_app()))
 
-//#define Sess(papp) (*papp->m_pplaneapp->m_psession)
-//#define Session (Sess(this->m_pbaseapp))
 
 #undef App
 #define App(pbaseapp) (*pbaseapp)
@@ -754,12 +752,12 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_savings.h"
 
 
-
+#include "base_application_interface.h"
 #include "base_application.h"
 
 #include "base_application_signal_details.h"
 
-
+#include "base_session_interface.h"
 #include "base_session.h"
 
 #include "base/net/net_url_departament.h"
@@ -1034,10 +1032,10 @@ namespace numeric_info
 #include "base_core_os.h"
 
 
-#define AppUser(pbaseapp) (*pbaseapp->m_pbasesession->m_pfontopus->get_user())
+#define AppUser(pbaseapp) (*pbaseapp->m_pbasesession->fontopus()->get_user())
 #define ApplicationUser (AppUser(m_pbaseapp))
-#define Sess(pbaseapp) (*pbaseapp->m_pbasesession)
-#define Session (Sess(this->m_pbaseapp))
+#define BaseSess(pbaseapp) (*pbaseapp->m_pbasesession)
+#define BaseSession (BaseSess(this->m_pbaseapp))
 
 
 

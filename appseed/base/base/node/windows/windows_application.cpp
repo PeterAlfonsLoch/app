@@ -74,12 +74,12 @@ namespace windows
    string application::get_version()
    {
 
-      char lpszModuleFilePath[MAX_PATH + 1];
-      GetModuleFileName(NULL, lpszModuleFilePath, MAX_PATH + 1);
+      wchar_t lpszModuleFilePath[MAX_PATH + 1];
+      GetModuleFileNameW(NULL, lpszModuleFilePath, MAX_PATH + 1);
 
       DWORD dw;
 
-      DWORD dwResSize = GetFileVersionInfoSize(      
+      DWORD dwResSize = GetFileVersionInfoSizeW(      
          lpszModuleFilePath,
          &dw);
 
@@ -87,7 +87,7 @@ namespace windows
       if(dwResSize > 0)
       {
          LPVOID lpdata = new BYTE[dwResSize];
-         if(GetFileVersionInfo(      
+         if(GetFileVersionInfoW(      
             lpszModuleFilePath,
             0,
             dwResSize,
@@ -355,12 +355,12 @@ namespace windows
 
       {
 
-         char lpszModuleFilePath[MAX_PATH + 1];
-         GetModuleFileName(NULL, lpszModuleFilePath, MAX_PATH + 1);
+         wchar_t lpszModuleFilePath[MAX_PATH + 1];
+         GetModuleFileNameW(NULL, lpszModuleFilePath, MAX_PATH + 1);
          m_strModulePath = lpszModuleFilePath;
-         char lpszModuleFolder[MAX_PATH + 1];
-         LPTSTR lpszModuleFileName;
-         GetFullPathName(lpszModuleFilePath, MAX_PATH + 1, lpszModuleFolder, &lpszModuleFileName);
+         wchar_t lpszModuleFolder[MAX_PATH + 1];
+         LPWSTR lpszModuleFileName;
+         GetFullPathNameW(lpszModuleFilePath, MAX_PATH + 1, lpszModuleFolder, &lpszModuleFileName);
          string strModuleFolder(lpszModuleFolder, lpszModuleFileName - lpszModuleFolder);
          m_strModuleFolder = strModuleFolder;
 
@@ -368,13 +368,13 @@ namespace windows
 
       {
 
-         char lpszModuleFilePath[MAX_PATH + 1];
-         GetModuleFileName(::GetModuleHandleA("core.dll"), lpszModuleFilePath, MAX_PATH + 1);
+         wchar_t lpszModuleFilePath[MAX_PATH + 1];
+         GetModuleFileNameW(::GetModuleHandleA("core.dll"), lpszModuleFilePath, MAX_PATH + 1);
          m_strCa2ModulePath = lpszModuleFilePath;
 
-         char lpszModuleFolder[MAX_PATH + 1];
-         LPTSTR lpszModuleFileName;
-         GetFullPathName(lpszModuleFilePath, MAX_PATH + 1, lpszModuleFolder, &lpszModuleFileName);
+         wchar_t lpszModuleFolder[MAX_PATH + 1];
+         LPWSTR lpszModuleFileName;
+         GetFullPathNameW(lpszModuleFilePath, MAX_PATH + 1, lpszModuleFolder, &lpszModuleFileName);
          string strModuleFolder(lpszModuleFolder, lpszModuleFileName - lpszModuleFolder);
          m_strCa2ModuleFolder = strModuleFolder;
 

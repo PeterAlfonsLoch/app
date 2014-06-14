@@ -399,11 +399,16 @@ namespace user
                //if(pwnd->get_parent() == NULL)
                if(true)
                {
+                  
                   m_pworkset->_000OnBeforeSize(rectWindow);
+                  
                   if(m_pworkset->GetWndDraw()->WfiIsZoomed())
                   {
-                     m_pworkset->GetWndDraw()->WfiRestore();
+                  
+                     m_pworkset->GetWndDraw()->WfiRestore(true);
+
                   }
+
                   rect rectBefore;
                   pwnd->GetWindowRect(rectBefore);
                   rect rectAfter = rectWindow;

@@ -610,7 +610,7 @@ namespace user
 
 
       virtual bool WfiClose();
-      virtual bool WfiRestore();
+      virtual bool WfiRestore(bool bForceNormal = false);
       virtual bool WfiMinimize();
       virtual bool WfiMaximize();
       virtual bool WfiFullScreen();
@@ -635,6 +635,7 @@ namespace user
       virtual index good_restore(LPRECT lprect,bool bSet = false,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
       virtual index good_iconify(LPRECT lprect,bool bSet = false,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
 
+      virtual index good_move(LPRECT lprect,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
 
 
    };

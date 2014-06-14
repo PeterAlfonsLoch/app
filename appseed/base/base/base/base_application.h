@@ -1,17 +1,13 @@
 #pragma once
 
 
-
-
-
-
-
 namespace base
 {
 
 
    class CLASS_DECL_BASE application :
-   virtual public thread,
+      virtual public application_interface,
+      virtual public thread,
       virtual public ::base::live_object,
       virtual public command_target_interface,
       virtual public request_interface,
@@ -23,14 +19,21 @@ namespace base
 
 
 
-      smart_pointer < application >              m_pimpl;
+      smart_pointer < application >                   m_pimpl;
       sp(service_base)                                m_pservice;
 
+      bool                                            m_bBaseProcessInitialize;
+      bool                                            m_bBaseProcessInitializeResult;
 
+      bool                                            m_bBaseInitializeInstance;
+      bool                                            m_bBaseInitializeInstanceResult;
 
-      ::base::system *                                   m_pbasesystem;
-      ::base::session *                                  m_pbasesession;
-      ::application *                                 m_pplaneapp; // can be used only from core and upper
+      bool                                            m_bBaseInitialize1;
+      bool                                            m_bBaseInitialize1Result;
+
+      bool                                            m_bBaseInitialize;
+      bool                                            m_bBaseInitializeResult;
+
       string_to_ptr                                   m_appmap;
       string                                          m_strAppName;
       allocatorsp                                     m_allocer;
@@ -38,6 +41,7 @@ namespace base
       sp(class signal)                                m_psignal;
 
       ::html::html *                                  m_phtml; // only defined  in core;
+      ::base::main_init_data *            m_pinitmaindata;
 
 
       EExclusiveInstance                              m_eexclusiveinstance;
@@ -48,14 +52,12 @@ namespace base
       sp(::mutex)                                     m_pmutexGlobalId;
 
 
-      sp(::fs::fs)                                    m_spfs;
       class ::http::application                       m_http;
       class ::file::dir::application                  m_dir;
       class ::file::application                       m_file;
       sp(math::math)                                  m_pmath;
       sp(geometry::geometry)                          m_pgeometry;
       sp(::sockets::sockets)                          m_psockets;
-      sp(class ::fs::data)                            m_spfsdata;
       bool                                            m_bZipIsDir;
       stringa                                         m_straMatterLocator;
       sp(::user::str_context)                         m_puserstrcontext;
@@ -113,8 +115,6 @@ namespace base
       static UINT                                     APPM_LANGUAGE;
       static WPARAM                                   WPARAM_LANGUAGE_UPDATE;
 
-      bool                                            m_bBaseProcessInitialize;
-      bool                                            m_bBaseInitializeInstance;
 
 
       //int64_t                                         m_iProgressInstallStart;
@@ -155,9 +155,6 @@ namespace base
       virtual bool is_serviceable();
 
 
-      virtual bool init_main_data(::base::main_init_data * pdata);
-
-
       virtual ::user::user * create_user();
 
 
@@ -170,7 +167,6 @@ namespace base
       math::math &                              math();
       geometry::geometry &                      geometry();
       inline class ::fontopus::license &        license()      { return *m_splicense; }
-      inline sp(class ::fs::data)               fs()           { return m_spfsdata; }
       inline ::database::server &               dataserver()   { return *m_spdataserver; }
 
 
@@ -372,9 +368,6 @@ namespace base
       virtual uint32_t get_thread_id();
 
 
-      virtual bool set_main_init_data(::base::main_init_data * pdata);
-
-
       virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
       virtual sp(::user::object) _001OpenDocumentFile(var varFile);
@@ -487,6 +480,11 @@ namespace base
 
       void assert_user_logged_in();
 
+      virtual bool init_main_data(::base::main_init_data * pdata);
+
+      virtual bool set_main_init_data(::base::main_init_data * pdata);
+
+
    };
 
 
@@ -541,6 +539,7 @@ namespace base
       application * find_by_app_name(const string & strAppName);
 
       application * find_running_defer_try_quit_damaged(const string & strAppName);
+
 
       };
 

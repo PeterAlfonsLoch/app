@@ -118,14 +118,14 @@ namespace user
       {
          pdc->FillSolidRect(
             rectClipBox,
-            Session.get_default_color(COLOR_WINDOW));
+            BaseSession.get_default_color(COLOR_WINDOW));
       }
       else
       {
          imaging.color_blend(
             pdc,
             rectClipBox,
-            Session.get_default_color(COLOR_WINDOW),
+            BaseSession.get_default_color(COLOR_WINDOW),
             196);
       }*/
    }
@@ -148,7 +148,7 @@ namespace user
 
       point ptCursor;
 
-      Session.get_cursor_pos(&ptCursor);
+      BaseSession.get_cursor_pos(&ptCursor);
       DWORD dwHoverIn = 384;
       DWORD dwHoverOut = 1284;
       ScreenToClient(&ptCursor);
@@ -1063,7 +1063,7 @@ namespace user
    void tree::UpdateHover()
    {
       point pt;
-      Session.get_cursor_pos(&pt);
+      BaseSession.get_cursor_pos(&pt);
       ScreenToClient(&pt);
       ::user::e_tree_element eelement;
       sp(::data::tree_item) pitem = _001HitTest(pt, eelement);

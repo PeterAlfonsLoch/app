@@ -28,7 +28,7 @@ namespace nature
       if(!::application::initialize_instance())
          return false;
 
-      Session.filemanager().std().m_strLevelUp = "levelup";
+      PlaneSession.filemanager().std().m_strLevelUp = "levelup";
 
 
       SetRegistryKey("ca2core");

@@ -49,22 +49,13 @@ m_simpledb(this)
    // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
    ::add_ref(this);
 
-   //_setmbcp(CP_UTF8);
-   //      uint32_t dw = ::_getmbcp();
    srand(::get_tick_count());
 
-   m_pinitmaindata = NULL;
    m_bService = false;
 
-   m_psession = NULL;
    m_psystem = NULL;
 
-
-   //      m_plemonarray              = new ::lemon::array(this);
-   //    m_base64.set_app(this);
-   //m_pidspace = new id_space("veribell-{E856818A-2447-4a4e-B9CC-4400C803EE7A}", NULL);
    m_iResourceId = 8001;
-   //   m_pcommandthread           = new command_thread(this);
 
    ::core::profiler::initialize();
 
@@ -83,8 +74,6 @@ m_simpledb(this)
 
    m_strInstallType = "application";
 
-   m_pinitmaindata = NULL;
-
    m_psignal->connect(this, &application::on_application_signal);
 
    m_eexclusiveinstance = ExclusiveInstanceNone;
@@ -95,7 +84,6 @@ m_simpledb(this)
    m_pcalculator = NULL;
    m_pcolorertake5 = NULL;
    m_psockets = NULL;
-
 
 
 }
@@ -219,15 +207,6 @@ bool application::is_serviceable()
 }
 
 
-bool application::init_main_data(::base::main_init_data * pdata)
-{
-
-   m_pinitmaindata = pdata;
-
-   return true;
-
-}
-
 
 int32_t application::main()
 {
@@ -284,31 +263,8 @@ bool application::process_initialize()
 
 bool application::initialize1()
 {
+
    m_splicense = new class ::fontopus::license(this);
-
-
-
-   /*if(!is_system())
-   {
-   if(m_spfsdata.is_null())
-   m_spfsdata = new ::fs::set(this);
-   ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
-   pset->m_spafsdata.add(new ::fs::native(this));
-   stringa stra;
-   pset->root_ones(stra);
-   }*/
-
-
-   /*      if(fontopus()->m_puser == NULL &&
-   (Application.directrix()->m_varTopicQuery.has_property("install")
-   || Application.directrix()->m_varTopicQuery.has_property("uninstall")))
-   {
-
-   if(fontopus()->create_system_user("system") == NULL)
-   return false;
-
-   }*/
-
 
    if (!::base::application::initialize1())
       return false;
@@ -1787,9 +1743,9 @@ void application::on_file_open()
 bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::object) pdocument)
 // if ptemplate==NULL => all document templates
 {
-   if (Session.m_pfilemanager != NULL)
+   if (PlaneSession.m_pfilemanager != NULL)
    {
-      return Session.m_pfilemanager->do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
+      return PlaneSession.m_pfilemanager->do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
    }
    ENSURE(m_pdocmanager != NULL);
    /*      return m_pdocmanager->do_prompt_file_name(fileName, nIDSTitle, lFlags,
@@ -2093,121 +2049,6 @@ int32_t application::ShowAppMessageBox(sp(application)pApp, const char * lpszPro
 
    throw not_implemented(pApp);
 
-   /*
-   // disable windows for modal dialog
-   DoEnableModeless(FALSE);
-   ::oswindow oswindow_Top;
-   ::oswindow oswindow = window::get_safe_owner(NULL, &oswindow_Top);
-
-   // re-enable the parent window, so that focus is restored
-   // correctly when the dialog is dismissed.
-   if (oswindow != oswindow_Top)
-   enable_window(oswindow, TRUE);
-
-   // set help context if possible
-   uint32_t* pdwContext = NULL;
-
-   #ifdef WINDOWS
-
-   {
-
-   uint32_t dwWndPid=0;
-   GetWindowThreadProcessId(oswindow, &dwWndPid);
-
-   if (oswindow != NULL && dwWndPid==GetCurrentProcessId() )
-   {
-   // use cast-level context or frame level context
-   LRESULT lResult = ::SendMessage(oswindow, WM_HELPPROMPTADDR, 0, 0);
-   if (lResult != 0)
-   pdwContext = (uint32_t*)lResult;
-   }
-
-   }
-
-   #endif
-   // for backward compatibility use cast context if possible
-   if (pdwContext == NULL && pApp != NULL)
-   pdwContext = &pApp->m_dwPromptContext;
-
-   uint32_t dwOldPromptContext = 0;
-   if (pdwContext != NULL)
-   {
-   // save old prompt context for restoration later
-   dwOldPromptContext = *pdwContext;
-   if (nIDPrompt != 0)
-   *pdwContext = HID_BASE_PROMPT+nIDPrompt;
-   }
-
-   // determine icon based on type specified
-   if ((nType & MB_ICONMASK) == 0)
-   {
-   switch (nType & MB_TYPEMASK)
-   {
-   case MB_OK:
-   case MB_OKCANCEL:
-   nType |= MB_ICONEXCLAMATION;
-   break;
-
-   case MB_YESNO:
-   case MB_YESNOCANCEL:
-   nType |= MB_ICONQUESTION;
-   break;
-
-   case MB_ABORTRETRYIGNORE:
-   case MB_RETRYCANCEL:
-   // No default icon for these types, since they are rarely used.
-   // The caller should specify the icon.
-   break;
-   }
-   }
-
-   #ifdef DEBUG
-   //    if ((nType & MB_ICONMASK) == 0)
-   //         TRACE(::base::trace::category_AppMsg, 0, "Warning: no icon specified for message box.\n");
-   #endif
-
-   char szAppName[_MAX_PATH];
-   szAppName[0] = '\0';
-   const char * pszAppName;
-   if (pApp != NULL)
-   pszAppName = pApp->m_strAppName;
-   else
-   {
-
-   #ifdef WINDOWS
-   pszAppName = szAppName;
-   uint32_t dwLen = GetModuleFileName(NULL, szAppName, _MAX_PATH);
-   if (dwLen == _MAX_PATH)
-   szAppName[_MAX_PATH - 1] = '\0';
-   #else
-
-   throw not_implemented(get_thread_app());
-
-   #endif
-   }
-
-   int32_t nResult;
-   if(pApp == NULL)
-   {
-   nResult = ::simple_message_box(oswindow, lpszPrompt, pszAppName, nType);
-   }
-   else
-   {
-   nResult = pApp->simple_message_box(pApp->window_from_os_data, lpszPrompt, nType);
-   }
-
-   // restore prompt context if possible
-   if (pdwContext != NULL)
-   *pdwContext = dwOldPromptContext;
-
-   // re-enable windows
-   if (oswindow_Top != NULL)
-   ::enable_window(oswindow_Top, TRUE);
-
-   DoEnableModeless(TRUE);
-
-   return nResult;
-   */
 }
 
 
@@ -3039,35 +2880,6 @@ bool application::finalize()
 }
 
 
-/*   sp(::user::interaction) application::get_place_holder_container()
-{
-if(m_puiInitialPlaceHolderContainer != NULL)
-return m_puiInitialPlaceHolderContainer;
-if(m_psession != NULL)
-{
-try
-{
-if(m_psession->m_pplanesession->m_puiInitialPlaceHolderContainer != NULL)
-return m_psession->m_pplanesession->m_puiInitialPlaceHolderContainer;
-}
-catch(...)
-{
-}
-}
-if(m_psystem != NULL)
-{
-try
-{
-if(m_psystem->m_puiInitialPlaceHolderContainer != NULL)
-return m_psystem->m_puiInitialPlaceHolderContainer;
-}
-catch(...)
-{
-}
-}
-return NULL;
-}
-*/
 
 
 sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create_context) pcreatecontext)
@@ -3085,10 +2897,10 @@ sp(::user::interaction) application::get_request_parent_ui(sp(::user::interactio
       puiParent = pcreatecontext->m_spApplicationBias->m_puiParent;
    }
 
-   if (puiParent == NULL && m_psession != NULL && !pcreatecontext->m_bClientOnly
-      && !pcreatecontext->m_bOuterPopupAlertLike && m_psession != this)
+   if (puiParent == NULL && m_pbasesession != NULL && m_pbasesession->m_pplanesession != NULL && !pcreatecontext->m_bClientOnly
+      && !pcreatecontext->m_bOuterPopupAlertLike && m_pbasesession->m_pplanesession != this)
    {
-      puiParent = Sess(this).get_request_parent_ui(pinteraction, pcreatecontext);
+      puiParent = PlaneSess(this).get_request_parent_ui(pinteraction, pcreatecontext);
    }
 
    return puiParent;
@@ -3216,11 +3028,6 @@ void application::set_env_var(const string & var, const string & value)
    m_pimpl->set_env_var(var, value);
 }
 
-
-bool application::set_main_init_data(::base::main_init_data * pdata)
-{
-   return m_pimpl->set_main_init_data(pdata);
-}
 
 
 void application::assert_valid() const
@@ -3880,7 +3687,7 @@ bool application::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bP
 void application::set_title(const char * pszTitle)
 {
 
-   Session.set_app_title(m_strInstallType, m_strAppName, pszTitle);
+   PlaneSession.set_app_title(m_strInstallType,m_strAppName,pszTitle);
 
 }
 
@@ -4088,7 +3895,7 @@ if(bCreate)
 
 sp(::create_context) spcreatecontext(allocer());
 
-papp = Session.start_application("application", pszAppId, spcreatecontext);
+papp = BaseSession.start_application("application", pszAppId, spcreatecontext);
 
 }
 
@@ -4195,18 +4002,11 @@ sp(::base::application) application::instantiate_application(const char * pszTyp
    if (strId.CompareNoCase("session") == 0)
    {
 
-      ::plane::session * psession = new ::plane::session(this);
+      ::plane::session * psession = new ::plane::session(m_pbaseapp->m_pbasesession);
 
       papp = psession;
 
       psession->construct();
-
-      if (m_psystem != NULL && m_psystem->m_psession == NULL)
-      {
-
-         m_psystem->m_psession = psession;
-
-      }
 
       psession->m_strAppId = "session";
 
@@ -4240,28 +4040,12 @@ sp(::base::application) application::instantiate_application(const char * pszTyp
       if (papp == NULL)
          return NULL;
 
-      papp->m_pplaneapp->m_psession = m_psession;
-      papp->m_pplaneapp->m_pbasesession = m_psession;
-
-      /*if(pbaseapp->m_bService)
-      {
-
-      App(pbaseapp).m_puiInitialPlaceHolderContainer  = NULL;
-
-      }*/
-
-      if (m_psystem != NULL && m_psystem->m_psession == NULL)
-      {
-
-         m_psystem->m_psession = m_psession;
-
-      }
+      papp->m_pplaneapp->m_pbasesession = m_pbasesession;
 
       if (papp != NULL)
       {
 
-         if (strId == "bergedge"
-            || strId == "cube")
+         if (strId == "bergedge" || strId == "cube")
          {
 
             papp->m_pplaneapp->m_strAppId = strId;

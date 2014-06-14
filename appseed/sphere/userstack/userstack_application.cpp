@@ -47,7 +47,7 @@ namespace userstack
       initialize_bergedge_application_interface();
 
 
-      Session.filemanager().std().m_strLevelUp = "levelup";
+      BaseSession.filemanager().std().m_strLevelUp = "levelup";
 
 
       SetRegistryKey("ca2core");
@@ -291,7 +291,7 @@ namespace userstack
             return NULL;
          }
          m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
-         Session.m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
+         BaseSession.m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
          return papp;
       }
    }
@@ -350,7 +350,7 @@ namespace userstack
 
 /*      if(pui == NULL && m_bShowPlatform && m_pbergedge->get_document() != NULL)
       {
-         pui = Session.get_document()->get_bergedge_view();
+         pui = BaseSession.get_document()->get_bergedge_view();
       }
 
       return pui;

@@ -132,7 +132,7 @@ retry_license:
 
          iRetry--;
 
-         if(!Session.is_licensed(strLicense))
+         if(!BaseSession.is_licensed(strLicense))
          {
 
             Application.license().m_mapInfo.remove_key(strLicense);
@@ -486,7 +486,7 @@ retry_license:
       }
       else if(Application.m_pbasesession != NULL)
       {
-         return Sess(get_app()).user()->get_keyboard_focus();
+         return BaseSess(get_app()).user()->get_keyboard_focus();
       }
       else if(Application.m_pbasesystem != NULL)
       {
@@ -533,7 +533,7 @@ retry_license:
       }
       else if(Application.m_pbasesession != NULL)
       {
-         return Sess(get_app()).user()->set_keyboard_focus(pkeyboardfocus);
+         return BaseSess(get_app()).user()->set_keyboard_focus(pkeyboardfocus);
       }
       else if(Application.m_pbasesystem != NULL)
       {
@@ -574,8 +574,8 @@ retry_license:
          if(&keyboard().layout() != NULL)
          {
 
-            if(Session.fontopus()->m_puser != NULL
-               && Session.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
+            if(BaseSession.fontopus()->m_puser != NULL
+               && BaseSession.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
             {
 
                // xxx data_set("keyboard_layout", keyboard().layout().m_strPath);
@@ -591,8 +591,8 @@ retry_license:
          if(!set_keyboard_layout(keyboard().get_current_system_layout(), ::action::source_database))
             return false;
 
-         if(Session.fontopus()->m_puser != NULL
-            && Session.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
+         if(BaseSession.fontopus()->m_puser != NULL
+            && BaseSession.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
          {
 
 // xxx            data_set("keyboard_layout", keyboard().layout().m_strPath);
@@ -602,7 +602,7 @@ retry_license:
          return true;
       }
 
-      if(!Session.user()->keyboard().load_layout(pszPath, actioncontext))
+      if(!BaseSession.user()->keyboard().load_layout(pszPath, actioncontext))
          return false;
 
       // xxx Application.simpledb().on_set_keyboard_layout(pszPath, actioncontext);
@@ -615,7 +615,7 @@ retry_license:
    {
       if(!Application.is_session())
       {
-         return Session.user()->keyboard();
+         return BaseSession.user()->keyboard();
       }
       return *m_pkeyboard;
    }

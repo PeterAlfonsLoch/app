@@ -334,7 +334,12 @@ bool __node_term_thread(::thread * pthread)
    try
    {
 
-      pthread->m_pimpl->::exception::translator::detach();
+      if(pthread != NULL && pthread->m_pimpl.is_set())
+      {
+
+         pthread->m_pimpl->::exception::translator::detach();
+
+      }
 
       bOk1 = true;
 

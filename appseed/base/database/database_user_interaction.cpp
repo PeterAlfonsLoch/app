@@ -101,7 +101,7 @@ namespace database
          if(m_bEnableSaveWindowRect)
          {
 
-            m_strDisplay = calc_display();
+            defer_update_display();
 
             ::database::id idWindow    = m_dataidWindow;
 
@@ -129,7 +129,7 @@ namespace database
 
          keeper < bool > keepEnable(&m_bEnableSaveWindowRect, false, m_bEnableSaveWindowRect, true);
 
-         m_strDisplay = calc_display();
+         defer_update_display();
 
          ::database::id idWindow       = m_dataidWindow;
 
@@ -191,20 +191,15 @@ namespace database
 
             rect rectRestore;
 
-            index iMatchingMonitor = Session.get_good_restore(rectRestore,rectWindow);
+            index iMatchingMonitor = BaseSession.get_good_restore(rectRestore,rectWindow);
 
-            if(iMatchingMonitor >= 0)
-            {
-
-               SetWindowPos(
-                  ZORDER_TOP,
-                  rectRestore.left,
-                  rectRestore.top,
-                  rectRestore.width(),
-                  rectRestore.height(),
-                  bForceRestore && (!bZoomed && !bFullScreen && !bIconic) ? SWP_SHOWWINDOW : 0);
-
-            }
+            SetWindowPos(
+               ZORDER_TOP,
+               rectRestore.left,
+               rectRestore.top,
+               rectRestore.width(),
+               rectRestore.height(),
+               bForceRestore && (!bZoomed && !bFullScreen && !bIconic) ? SWP_SHOWWINDOW : 0);
 
             if(!bForceRestore)
             {
@@ -346,9 +341,39 @@ namespace database
 
          single_lock sl(m_spmutex, true);
 
+         if(m_strDisplay.is_empty())
+            return false;
+
          return m_strDisplay == calc_display();
 
       }
+
+      void interaction::defer_update_display()
+      {
+
+         if(m_strDisplay.is_empty())
+         {
+
+            if(!data_get(m_dataidWindow,"local://lastdisplay",m_strDisplay) || m_strDisplay.is_empty())
+            {
+
+               m_strDisplay = calc_display();
+
+            }
+
+         }
+         else
+         {
+
+            m_strDisplay = calc_display();
+
+            data_set(m_dataidWindow,"local://lastdisplay",m_strDisplay);
+
+         }
+
+      }
+
+
 
       bool interaction::on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult)
       {

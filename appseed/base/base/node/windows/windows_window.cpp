@@ -113,9 +113,16 @@ namespace windows
    window::~window()
    {
 
-      if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesystem != NULL && Sys(m_pbaseapp).user().is_set() && Sys(m_pbaseapp).user()->m_pwindowmap != NULL)
+      if(m_pbaseapp != NULL &&  m_pbaseapp->m_pbasesession != NULL &&  m_pbaseapp->m_pbasesession->m_spuser.is_set())
       {
-         Sys(m_pbaseapp).user()->m_pwindowmap->m_map.remove_key((int_ptr)get_handle());
+
+         if(BaseSession.user()->m_pwindowmap != NULL)
+         {
+
+            BaseSession.user()->m_pwindowmap->m_map.remove_key((int_ptr)get_handle());
+
+         }
+
       }
 
       single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex,TRUE);
@@ -1238,37 +1245,33 @@ namespace windows
             || pbase->m_uiMessage == WM_MBUTTONDOWN
             || pbase->m_uiMessage == WM_MOUSEMOVE)
          {
-            if(Session.fontopus()->m_puser != NULL)
+
+            if(&BaseSession != NULL && BaseSession.fontopus() != NULL && BaseSession.fontopus()->m_puser != NULL)
             {
-               if(&Session.fontopus() != NULL)
-               if(&ApplicationUser != NULL)
+
+               if(ApplicationUser.m_ppresence != NULL)
                {
-                  if(Session.fontopus()->m_puser != NULL)
+
+                  try
                   {
-                     if(ApplicationUser.m_ppresence != NULL)
-                     {
-                        if(&ApplicationUser != NULL)
-                        {
-                           if(ApplicationUser.m_ppresence != NULL)
-                           {
-                              try
-                              {
-                                 ApplicationUser.m_ppresence->report_activity();
-                              }
-                              catch(...)
-                              {
-                              }
-                           }
-                        }
-                     }
+
+                     ApplicationUser.m_ppresence->report_activity();
+
                   }
+                  catch(...)
+                  {
+
+                  }
+
                }
+
             }
+
          }
 
          message::mouse * pmouse = (::message::mouse *) pbase;
 
-         if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL  && m_pbaseapp->m_pbasesession->m_bSessionSynchronizedCursor)
+         if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && m_pbaseapp->m_pbasesession->m_bSessionSynchronizedCursor)
          {
 
             m_pbaseapp->m_pbasesession->m_ptCursor = pmouse->m_pt;
@@ -3373,7 +3376,7 @@ namespace windows
       VERIFY(::GetObject(hbrGray,sizeof(LOGBRUSH),(LPVOID)&logbrush));
       ::SetBkColor(hDC,logbrush.lbColor);
       if(clrText == (COLORREF)-1)
-         clrText = Session.get_default_color(COLOR_WINDOWTEXT);  // normal text
+         clrText = BaseSession.get_default_color(COLOR_WINDOWTEXT);  // normal text
       ::SetTextColor(hDC,clrText);
       return TRUE;
    }
@@ -4120,7 +4123,7 @@ namespace windows
 
       ::ShowWindow(get_handle(),SW_MINIMIZE);
 
-      if(GetExStyle() & WS_EX_LAYERED)
+      //if(GetExStyle() & WS_EX_LAYERED)
       {
 
          ::window::_001WindowMinimize();
@@ -4137,7 +4140,7 @@ namespace windows
 
       ::ShowWindow(get_handle(),SW_MAXIMIZE);
 
-      if(GetExStyle() & WS_EX_LAYERED)
+      //if(GetExStyle() & WS_EX_LAYERED)
       {
 
          ::window::_001WindowMaximize();
@@ -4154,7 +4157,7 @@ namespace windows
 
       ::ShowWindow(get_handle(),SW_MAXIMIZE);
 
-      if(GetExStyle() & WS_EX_LAYERED)
+      //if(GetExStyle() & WS_EX_LAYERED)
       {
 
          ::window::_001WindowFullScreen();
@@ -4178,7 +4181,8 @@ namespace windows
    {
       if(!::IsWindow(get_handle()))
          return false;
-      if(GetExStyle() & WS_EX_LAYERED)
+      //if(GetExStyle() & WS_EX_LAYERED)
+      if(true)
       {
          if(nCmdShow == SW_HIDE)
          {
@@ -5405,7 +5409,7 @@ namespace windows
    void window::_001OnSetCursor(signal_details * pobj)
    {
       SCAST_PTR(::message::base,pbase,pobj);
-      if(Session.get_cursor() != NULL && Session.get_cursor()->m_ecursor != ::visual::cursor_system)
+      if(BaseSession.get_cursor() != NULL && BaseSession.get_cursor()->m_ecursor != ::visual::cursor_system)
       {
          ::SetCursor(NULL);
       }
@@ -6064,27 +6068,6 @@ namespace windows
       //m_spdib->get_graphics()->FillSolidRect(100, 100, 100, 100, ARGB(127, 127, 0, 0));
 
 
-      if(Session.m_bDrawCursor)
-      {
-         point ptCursor;
-         Session.get_cursor_pos(&ptCursor);
-         ScreenToClient(&ptCursor);
-         ::visual::cursor * pcursor = Session.get_cursor();
-         if(pcursor != NULL && m_spdib.is_set() && m_spdib->get_graphics() != NULL)
-         {
-            m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
-            pcursor->to(m_spdib->get_graphics(),ptCursor);
-            //pgraphics->FillSolidRect(100, 100, 100, 100, ARGB(100, 0, 255, 0));
-         }
-         else
-         {
-            //pgraphics->FillSolidRect(100, 100, 100, 100, ARGB(100, 255, 0, 0));
-         }
-         //pgraphics->SelectObject(GetFont());
-         //string strCursor;
-         //strCursor.Format("(%d,%d)", ptCursor.x, ptCursor.y);
-         //pgraphics->TextOut(200, 200, strCursor);
-      }
 
       if(m_spdib.is_set() && m_spdib->get_graphics() != NULL)
       {

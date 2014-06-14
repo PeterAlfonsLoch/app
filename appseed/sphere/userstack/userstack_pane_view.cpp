@@ -129,10 +129,10 @@ namespace userstack
       if(::str::begins_eat(strId, "app:"))
       {
          sp(::base::application) pappTab;
-         if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
+         if(BaseSession.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
-            Session.m_pappCurrent = pappTab;
-            //Session.m_pappCurrent = pappTab;
+            BaseSession.m_pappCurrent = pappTab;
+            //BaseSession.m_pappCurrent = pappTab;
          }
 /*            sp(::simple_frame_window) pframeApp = dynamic_cast < sp(::simple_frame_window) > (m_pviewdata->m_pwnd);
          if(pframeApp != NULL)
@@ -202,7 +202,7 @@ namespace userstack
       if(::str::begins_eat(strId, "app:"))
       {
          sp(::base::application) pappTab;
-         if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
+         if(!BaseSession.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
 
             application_bias * pbiasCreate = new application_bias;
@@ -233,13 +233,13 @@ namespace userstack
 
             createcontext->m_spCommandLine->m_eventReady.ResetEvent();
 
-            Session.on_request(createcontext);
+            BaseSession.on_request(createcontext);
 
             createcontext->m_spCommandLine->m_eventReady.wait();
 
          }
 
-         sp(::base::application) pappCurrent = Session.m_pappCurrent;
+         sp(::base::application) pappCurrent = BaseSession.m_pappCurrent;
 
          Application.m_mapApplication[strId] = pappCurrent;
 
@@ -248,7 +248,7 @@ namespace userstack
      		string strIcon = planeApp(pappCurrent).dir().matter("mainframe/icon48.png");
          pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
 
-         pappCurrent = Session.m_pappCurrent;
+         pappCurrent = BaseSession.m_pappCurrent;
 
 	   	if(planeApp(pappCurrent).file().exists(strIcon))
          {

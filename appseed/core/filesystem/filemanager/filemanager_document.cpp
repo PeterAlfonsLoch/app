@@ -45,7 +45,7 @@ namespace filemanager
       m_fsset.m_spafsdata.remove_all();
 
 
-      m_fsset.m_spafsdata.add(Application.fs());
+      m_fsset.m_spafsdata.add(BaseSession.fs());
 
 
       stringa straPath;

@@ -74,7 +74,7 @@ namespace plugin
       
       UNREFERENCED_PARAMETER(pobj);
       
-      Session.m_bSessionSynchronizedCursor = false;
+      BaseSession.m_bSessionSynchronizedCursor = false;
 
    }
 
@@ -137,9 +137,9 @@ namespace plugin
       //pdc->SetViewportOrg(ptPreviousViewportOrg);
       //pdc->SelectClipRgn(NULL);
       point ptCursor;
-      Session.get_cursor_pos(&ptCursor);
+      BaseSession.get_cursor_pos(&ptCursor);
       ScreenToClient(&ptCursor);
-      ::visual::cursor * pcursor = Session.get_cursor();
+      ::visual::cursor * pcursor = BaseSession.get_cursor();
       if(pcursor != NULL)
       {
          pcursor->to(pdc, ptCursor);
@@ -244,13 +244,13 @@ namespace plugin
 
    void host_interaction::_000OnMouse(::message::mouse * pmouse)
    {
-      if(&Session != NULL)
+      if(&BaseSession != NULL)
       {
-         Session.m_ptCursor = pmouse->m_pt;
+         BaseSession.m_ptCursor = pmouse->m_pt;
       }
       else
       {
-         if(m_uiptraChild.get_size() > 0 && m_uiptraChild[0].m_pbaseapp != NULL && m_uiptraChild[0].m_pbaseapp->m_pplaneapp->m_psession != NULL)
+         if(m_uiptraChild.get_size() > 0 && m_uiptraChild[0].m_pbaseapp != NULL && m_uiptraChild[0].m_pbaseapp->m_pbasesession->m_pplanesession != NULL)
          {
             set_app(m_uiptraChild[0].m_pbaseapp);
          }

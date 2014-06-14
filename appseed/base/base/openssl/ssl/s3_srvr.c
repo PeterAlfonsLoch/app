@@ -1359,7 +1359,7 @@ int ssl3_get_client_hello(SSL *s)
    }
    else
    {
-      /* Session-id reuse */
+      /* BaseSession-id reuse */
 #ifdef REUSE_CIPHER_BUG
       STACK_OF(SSL_CIPHER) *sk;
       SSL_CIPHER *nc = NULL;

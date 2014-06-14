@@ -9,7 +9,6 @@ namespace hotplugin
 
 
    class CLASS_DECL_BASE plugin :
-      virtual public ::object,
       virtual public ::simple_ui::style,
       virtual public ::simple_ui::interaction
 #ifndef METROWIN
@@ -124,10 +123,8 @@ namespace hotplugin
       virtual void plugin_system_redraw();
 
       
+#ifndef WINDOWS
       using ::user::interaction::message_handler;
-#ifdef WINDOWS
-      //virtual LRESULT message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam);
-#else
       virtual int32_t message_handler(XEvent * pevent);
 #endif
 

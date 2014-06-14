@@ -35,7 +35,7 @@ namespace http
 
       if ((bool)set["optional_ca2_sessid"])
       {
-         if (Session.fontopus()->m_puser != NULL)
+         if (BaseSession.fontopus()->m_puser != NULL)
             set["user"] = &ApplicationUser;
       }
       else
@@ -290,9 +290,9 @@ namespace http
 
       int iAttempt = 0;
 
-      string strFontopusServer = Session.fontopus()->get_fontopus_server(pszUrl);
+      string strFontopusServer = BaseSession.fontopus()->get_fontopus_server(pszUrl);
 
-      sp(::sockets::http_session) psession = Session.fontopus()->m_mapFontopusSession[strFontopusServer];
+      sp(::sockets::http_session) psession = BaseSession.fontopus()->m_mapFontopusSession[strFontopusServer];
 
       while(true)
       {
@@ -308,7 +308,7 @@ namespace http
             if(psession.is_set())
             {
 
-               Session.fontopus()->m_mapFontopusSession.set_at(strFontopusServer,psession);
+               BaseSession.fontopus()->m_mapFontopusSession.set_at(strFontopusServer,psession);
 
             }
 

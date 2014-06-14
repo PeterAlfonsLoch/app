@@ -96,9 +96,6 @@ namespace plane
 
 
 
-      m_spfsdata = new ::fs::native(this);
-
-
 
       m_bInitApplication         = false;
       m_bInitApplicationResult   = FALSE;
@@ -155,6 +152,8 @@ namespace plane
    bool system::process_initialize()
    {
 
+
+
       if(m_bProcessInitialize)
          return m_bProcessInitializeResult;
 
@@ -181,8 +180,6 @@ namespace plane
       }*/
 
 
-      if(!set_main_init_data(m_pinitmaindata))
-         return false;
 
       m_spportforward.create(allocer());
 
@@ -256,7 +253,7 @@ namespace plane
          return false;
 
 
-      //if(Session.fontopus()->create_system_user("system") == NULL)
+      //if(BaseSession.fontopus()->create_system_user("system") == NULL)
         // return false;
 
 
@@ -1431,66 +1428,6 @@ namespace plane
 
    }
 
-/*
-   bool system::set_main_init_data(::base::main_init_data * pdata)
-   {
-
-      if(pdata == NULL)
-      {
-         if(!::application::set_main_init_data(pdata))
-            return false;
-         return true;
-      }
-
-      property_set set(this);
-
-      var varFile;
-      string strApp;
-
-      set._008ParseCommandFork(pdata->m_vssCommandLine, varFile, strApp);
-
-      if((varFile.is_empty() && ((!set.has_property("app") && !set.has_property("show_platform"))
-         || (set["app"] == "session" && !set.has_property("session_start")))) &&
-         !(set.has_property("install") || set.has_property("uninstall")))
-      {
-         if(!set.has_property("show_platform") || set["show_platform"] == 1)
-         {
-            command()->add_line(" : show_platform=1");
-            m_bDoNotExitIfNoApplications = true;
-         }
-      }
-      else
-      {
-         string strCommandLine = pdata->m_vssCommandLine;
-         strCommandLine.trim();
-         if(strCommandLine[0] == '\"')
-         {
-            strsize iFind = strCommandLine.find("\"", 1);
-            strCommandLine = strCommandLine.Mid(iFind + 1);
-         }
-         else
-         {
-            strsize iFind = strCommandLine.find(" ", 1);
-            strCommandLine = strCommandLine.Mid(iFind + 1);
-         }
-         command()->add_line(strCommandLine);
-      }
-
-      if(!::application::set_main_init_data(pdata))
-         return false;
-
-      return true;
-
-   }*/
-
-
-
-
-
-
-   //////////////////////////////////////////////////////////////////////////////////////////////////
-   // System/System
-   //
    sp(::user::object) system::place_hold(sp(::user::interaction) pui)
    {
 
@@ -1507,81 +1444,6 @@ namespace plane
 
 
 
-   /*
-   ::count system::get_monitor_count()
-   {
-
-      return ::base::system::get_monitor_count();
-   }
-
-   bool system::get_monitor_rect(index i, LPRECT lprect)
-   {
-
-      return ::base::system::get_monitor_rect(i,lprect);
-
-   }
-   */
-
-   /*
-   index system::get_best_intersection_monitor(LPRECT lprect)
-   {
-
-      ::count ca   = get_monitor_count();
-
-      rect        rectIntersect;
-      rect        rectMonitor;
-      int64_t     iBestArea = 0;
-      index       iBestAreaIndex = -1;
-      int64_t     iArea;
-
-      for(index i = 0; i < ca; i++)
-      {
-         get_monitor_rect(i, rectMonitor);
-         if(rectIntersect.intersect(rectMonitor, lprect))
-         {
-            iArea = rectIntersect.area();
-            if(iArea > iBestArea)
-            {
-               iBestAreaIndex = i;
-               iBestArea = iArea;
-            }
-         }
-      }
-
-      if(iBestAreaIndex >= 0)
-         return iBestAreaIndex;
-      else if(get_monitor_count() <= 0)
-         return -1;
-      else
-         return 0;
-
-   }
-   */
-   /*
-
-   ::count system::get_desk_monitor_count()
-   {
-
-
-      return 0;
-
-   }
-
-   bool system::get_desk_monitor_rect(index i, LPRECT lprect)
-   {
-
-
-      return false;
-
-   }
-   */
-
-/*
-sp(::command_thread) system::command_thread()
-   {
-      return m_pcommandthread;
-   }
-*/
 
    bool system::on_install()
    {

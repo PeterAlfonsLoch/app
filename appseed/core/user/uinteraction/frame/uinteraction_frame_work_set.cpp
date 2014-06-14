@@ -401,7 +401,7 @@ namespace uinteraction
                pinterface->WfiMaximize();
                return TRUE;
             case ::user::uinteraction::frame::button_restore:
-               pinterface->WfiRestore();
+               pinterface->WfiRestore(true);
                return TRUE;
             case ::user::uinteraction::frame::button_up:
                pinterface->WfiUp();
@@ -444,7 +444,7 @@ namespace uinteraction
                pinterface->WfiMaximize();
                return TRUE;
             case ::user::uinteraction::frame::button_restore:
-               pinterface->WfiRestore();
+               pinterface->WfiRestore(true);
                return TRUE;
             case ::user::uinteraction::frame::button_up:
                pinterface->WfiUp();
@@ -621,7 +621,7 @@ namespace uinteraction
                sp(::user::interaction) pwnd = GetWndRegion();
                pwnd->GetWindowRect(rectWindow);
                point ptCursor;
-               Session.get_cursor_pos(&ptCursor);
+               BaseSession.get_cursor_pos(&ptCursor);
                if (rectWindow.contains(ptCursor))
                {
                   if (!IsHoverActive())
@@ -900,7 +900,7 @@ namespace uinteraction
                sp(::user::interaction) pwnd = GetWndRegion();
                pwnd->GetWindowRect(rectWindow);
                point ptCursor;
-               Session.get_cursor_pos(&ptCursor);
+               BaseSession.get_cursor_pos(&ptCursor);
                if (rectWindow.contains(ptCursor))
                {
                   if (!IsHoverActive())

@@ -2089,14 +2089,14 @@ namespace user
    {
       string str;
       _001GetSelText(str);
-      Session.copydesk().set_plain_text(str);
+      BaseSession.copydesk().set_plain_text(str);
    }
 
    void edit_plain_text::clipboard_paste()
    {
 
       string str;
-      str = Session.copydesk().get_plain_text();
+      str = BaseSession.copydesk().get_plain_text();
       str.replace("\r\n", "\n");
       _001SetSelText(str, ::action::source::user());
       MacroBegin();
@@ -2309,7 +2309,7 @@ namespace user
    void edit_plain_text::_001OnUpdateEditFocusPaste(signal_details * pobj)
    {
       SCAST_PTR(::base::cmd_ui, pupdatecmdui, pobj)
-      pupdatecmdui->m_pcmdui->Enable(Session.copydesk().get_plain_text().has_char());
+      pupdatecmdui->m_pcmdui->Enable(BaseSession.copydesk().get_plain_text().has_char());
    }
 
    void edit_plain_text::_001OnEditFocusPaste(signal_details * pobj)

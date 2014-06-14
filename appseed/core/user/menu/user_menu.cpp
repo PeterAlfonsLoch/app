@@ -102,7 +102,7 @@ namespace user
       //      const char * lpcsz = NULL;
 
       LPVOID lpvoid = NULL;
-      if(!CreateEx(WS_EX_LAYERED | WS_EX_TOOLWINDOW, NULL, NULL, 0, rect(0, 0, 0, 0), Session.get_view(), id(), lpvoid))
+      if(!CreateEx(WS_EX_LAYERED | WS_EX_TOOLWINDOW,NULL,NULL,0,rect(0,0,0,0),PlaneSession.get_view(),id(),lpvoid))
          return false;
 
       set_owner(oswindowParent);
@@ -245,7 +245,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-         pdc->FillSolidRect(rectClient, Session.get_default_color(COLOR_WINDOW));
+         pdc->FillSolidRect(rectClient, BaseSession.get_default_color(COLOR_WINDOW));
 
 #else
 

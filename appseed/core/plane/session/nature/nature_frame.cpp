@@ -111,9 +111,13 @@ namespace nature
       }
       else if(nIDEvent == 1000)
       {
-         WfiRestore();
+         
+         WfiRestore(true);
+
          KillTimer(nIDEvent);
+
          m_bTimerOn = false;
+
       }
       else if(nIDEvent == 8913)
       {
@@ -125,7 +129,7 @@ namespace nature
          {
             OnHoverAction();
          }
-         Session.get_cursor_pos(&pt);
+         BaseSession.get_cursor_pos(&pt);
          if(!m_bHoverMouse && pt.x == 0 && pt.y == 0)
          {
             m_dwLastHover = ::get_tick_count();
@@ -208,7 +212,9 @@ namespace nature
 
    void frame::OnHoverAction()
    {
-      WfiRestore();
+
+      WfiRestore(true);
+
    }
 
 

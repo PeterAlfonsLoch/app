@@ -45,7 +45,7 @@ void simple_status_bar::_001OnDraw(::draw2d::graphics *pdc)
       rectClient.top,
       rectClient.width(),
       rectClient.height(),
-      Session.get_default_color(COLOR_3DFACE),
+      BaseSession.get_default_color(COLOR_3DFACE),
       208);
 #else
    imaging.color_blend(

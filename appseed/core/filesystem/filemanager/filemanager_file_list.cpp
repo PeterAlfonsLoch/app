@@ -453,15 +453,15 @@ namespace filemanager
             GetSelectedFilePath(stra);
             if(stra.get_count() <= 0)
             {
-               Session.m_varTopicFile.unset();
+               PlaneSession.m_varTopicFile.unset();
             }
             else if(stra.get_count() == 1)
             {
-               Session.m_varTopicFile = stra[0];
+               PlaneSession.m_varTopicFile = stra[0];
             }
             else
             {
-               Session.m_varTopicFile = stra;
+               PlaneSession.m_varTopicFile = stra;
             }
 
          }
@@ -556,7 +556,7 @@ namespace filemanager
          
          point ptCursor;
          
-         Session.get_cursor_pos(&ptCursor);
+         BaseSession.get_cursor_pos(&ptCursor);
       
          if(m_spmenuPopup->create_menu(straCommand, straCommandTitle))
          {
@@ -675,14 +675,14 @@ namespace filemanager
    */
 
 
-      Session.copydesk().set_filea(stra);
+      BaseSession.copydesk().set_filea(stra);
 
    }
 
    void file_list::_001OnUpdateEditPaste(signal_details * pobj)
    {
       SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
-      pcmdui->m_pcmdui->Enable(Session.copydesk().get_file_count() > 0);
+      pcmdui->m_pcmdui->Enable(BaseSession.copydesk().get_file_count() > 0);
       pobj->m_bRet = true;
    }
 
@@ -692,7 +692,7 @@ namespace filemanager
       UNREFERENCED_PARAMETER(pobj);
       stringa stra;
 
-      Session.copydesk().get_filea(stra);
+      BaseSession.copydesk().get_filea(stra);
       string strDir;
       strDir = GetFileManagerItem().m_strPath;
 

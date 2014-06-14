@@ -38,10 +38,8 @@ public:
 
 
 
-   ::base::main_init_data *            m_pinitmaindata;
    bool                                m_bService;
    ::plane::system *                   m_psystem;
-   sp(::base::session)                    m_psession;
 
    class signal                        m_signalAppLanguageChange;
    string                              m_strHelpFilePath;
@@ -123,8 +121,6 @@ public:
    virtual ~application();
 
 
-   virtual bool init_main_data(::base::main_init_data * pdata);
-   virtual bool set_main_init_data(::base::main_init_data * pdata);
 
    virtual void construct(const char * pszId);
    virtual void construct();
@@ -603,7 +599,7 @@ public:
 
 
    //////////////////////////////////////////////////////////////////////////////////////////////////
-   // Session/Session
+   // BaseSession/BaseSession
    //
    //         virtual sp(::bergedge::view) get_view();
    //       virtual sp(::bergedge::document) get_document();

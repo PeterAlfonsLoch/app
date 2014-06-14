@@ -111,14 +111,14 @@ namespace user
 
          }
 
-         sp(::user::uinteraction::interaction) pinteraction = Session.m_mapUinteraction[pszUinteraction];
+         sp(::user::uinteraction::interaction) pinteraction = PlaneSession.m_mapUinteraction[pszUinteraction];
 
-         if(Session.m_mapUinteraction[pszUinteraction] == NULL)
+         if(PlaneSession.m_mapUinteraction[pszUinteraction] == NULL)
          {
 
-            Session.m_mapUinteraction[pszUinteraction] = Session.uinteraction().get_new_uinteraction(pszUinteraction);
+            PlaneSession.m_mapUinteraction[pszUinteraction] = PlaneSession.uinteraction().get_new_uinteraction(pszUinteraction);
 
-            pinteraction = Session.m_mapUinteraction[pszUinteraction];
+            pinteraction = PlaneSession.m_mapUinteraction[pszUinteraction];
 
          }
 

@@ -49,7 +49,7 @@ namespace base
       m_mutexStr(this)
    {
 
-
+      m_peventReady = NULL;
       m_pframea = new ::user::interaction_ptr_array(this);
 
 
@@ -87,8 +87,6 @@ namespace base
 
       m_pplaneapp                = NULL;
 
-      m_pbasesession             = NULL;
-
       m_nSafetyPoolSize          = 512;        // default size
 
       m_bIfs                     = true;
@@ -115,8 +113,17 @@ namespace base
       // initialize wait cursor state
       m_iWaitCursorCount         = 0;
 
-      m_bBaseProcessInitialize   = false;
-      m_bBaseInitializeInstance  = false;
+      m_bBaseProcessInitialize         = false;
+      m_bBaseProcessInitializeResult   = false;
+
+      m_bBaseInitialize1               = false;
+      m_bBaseInitialize1Result         = false;
+
+      m_bBaseInitialize                = false;
+      m_bBaseInitializeResult          = false;
+
+      m_bBaseInitializeInstance        = false;
+      m_bBaseInitializeInstanceResult  = false;
 
 
       m_phtml = NULL;
@@ -124,6 +131,7 @@ namespace base
       m_bShouldInitializeGTwf = true;
       m_bInitializeProDevianMode = true;
 
+      m_pinitmaindata = NULL;
 
 
    }
@@ -705,7 +713,7 @@ namespace base
       }
       else if(m_pbasesession != NULL)
       {
-         return Sess(this).is_key_pressed(ekey);
+         return BaseSess(this).is_key_pressed(ekey);
       }
       else if(m_pbasesystem != NULL)
       {
@@ -735,7 +743,7 @@ namespace base
       }
       else if(m_pbasesession != NULL)
       {
-         return Sess(this).set_key_pressed(ekey,bPressed);
+         return BaseSess(this).set_key_pressed(ekey,bPressed);
       }
       else if(m_pbasesystem != NULL)
       {
@@ -929,14 +937,6 @@ namespace base
 
 
    void application::set_env_var(const string & var,const string & value)
-   {
-
-      throw interface_only_exception(this);
-
-   }
-
-
-   bool application::set_main_init_data(::base::main_init_data * pdata)
    {
 
       throw interface_only_exception(this);
@@ -1493,37 +1493,6 @@ namespace base
    }
 
 
-   /*
-   void application::get_screen_rect(LPRECT lprect)
-   {
-#ifdef METROWIN
-      if (m_bSessionSynchronizedScreen)
-      {
-         System.get_monitor_rect(0, m_rectScreen);
-      }
-#elif defined(LINUX)
-      if (m_bSessionSynchronizedScreen)
-      {
-         System.get_monitor_rect(0, m_rectScreen);
-      }
-#elif defined(APPLEOS)
-      if (m_bSessionSynchronizedScreen)
-      {
-         System.get_monitor_rect(0, m_rectScreen);
-      }
-#else
-      if(m_bSessionSynchronizedScreen)
-      {
-         oswindow oswindowDesktop = ::GetDesktopWindow();
-         ::GetWindowRect(oswindowDesktop,&m_rectScreen);
-      }
-#endif
-      if(lprect != NULL)
-      {
-         *lprect = m_rectScreen;
-      }
-   }
-   */
 
 
 
@@ -1557,9 +1526,9 @@ namespace base
 
 #ifdef WINDOWSEX
 
-      char lpszModuleFilePath[MAX_PATH + 1];
+      wchar_t lpszModuleFilePath[MAX_PATH + 1];
 
-      if(GetModuleFileName(::GetModuleHandleA("core.dll"),lpszModuleFilePath,MAX_PATH + 1))
+      if(GetModuleFileNameW(::GetModuleHandleA("core.dll"),lpszModuleFilePath,MAX_PATH + 1))
       {
 
          strModuleFileName = lpszModuleFilePath;
@@ -1641,9 +1610,9 @@ namespace base
 
 #ifdef WINDOWSEX
 
-      char lpszModuleFilePath[MAX_PATH + 1];
+      wchar_t lpszModuleFilePath[MAX_PATH + 1];
 
-      GetModuleFileName(NULL,lpszModuleFilePath,MAX_PATH + 1);
+      GetModuleFileNameW(NULL,lpszModuleFilePath,MAX_PATH + 1);
 
       string strModuleFileName(lpszModuleFilePath);
 
@@ -1743,13 +1712,6 @@ namespace base
       return false;
    }
 
-
-   bool application::init_main_data(::base::main_init_data * pdata)
-   {
-
-      return false;
-
-   }
 
 
 
@@ -2612,7 +2574,7 @@ namespace base
 
          sp(::create_context) spcreatecontext(allocer());
 
-         papp = Session.start_application("application",pszAppId,spcreatecontext);
+         papp = BaseSession.start_application("application",pszAppId,spcreatecontext);
 
       }
 
@@ -2851,28 +2813,405 @@ namespace base
 
 
 
+   bool application::process_initialize()
+   {
+
+      if(m_bBaseProcessInitialize)
+         return m_bBaseProcessInitializeResult;
+
+      m_bBaseProcessInitialize = true;
+      m_bBaseProcessInitializeResult = false;
+
+      if(is_system())
+      {
+         System.factory().cloneable_large < stringa >();
+         System.factory().cloneable_large < ::primitive::memory >();
+         System.factory().cloneable_large < int_array >();
+      }
+
+      if(is_system())
+      {
+
+         Ex1OnFactoryExchange();
+
+      }
+
+      thread::s_bAllocReady = true;
+
+      if(thread::m_pimpl == NULL)
+      {
+
+         thread::m_pimpl.create(allocer());
+
+         thread::m_pimpl->m_puser = this;
+
+      }
+
+      m_pimpl.create(allocer());
+
+      m_pimpl->construct();
+
+      m_pimpl->m_pimpl = this;
+
+      if(::get_thread() == NULL)
+      {
+         set_thread(dynamic_cast <thread *> (this));
+      }
+
+      if(!update_module_paths())
+         return false;
+
+
+      if(!ca_process_initialize())
+         return false;
+
+      if(is_system())
+      {
+
+         draw2d_factory_exchange();
+
+      }
+
+      if(!m_pimpl->process_initialize())
+         return false;
+
+      m_spuser = create_user();
+
+      if(m_spuser == NULL)
+         return false;
+
+      m_spuser->construct(this);
+
+      m_psockets = canew(::sockets::sockets(this));
+
+      m_psockets->construct(this);
+
+      if(!m_psockets->initialize1())
+         throw simple_exception(this,"could not initialize (1) sockets for application (application::construct)");
+
+      if(!m_psockets->initialize())
+         throw simple_exception(this,"could not initialize sockets for application (application::construct)");
+
+      m_bBaseProcessInitializeResult = true;
+
+      return true;
+
+   }
+
+
+   bool application::initialize_instance()
+   {
+
+      if(m_bBaseInitializeInstance)
+         return m_bBaseInitializeInstanceResult;
+
+      m_bBaseInitializeInstance = true;
+      m_bBaseInitializeInstanceResult = false;
+
+      xxdebug_box("check_exclusive","check_exclusive",MB_ICONINFORMATION);
+
+      if(!is_system())
+      {
+         if(!check_exclusive())
+            return false;
+      }
+
+      xxdebug_box("check_exclusive ok","check_exclusive ok",MB_ICONINFORMATION);
+
+      m_dwAlive = ::get_tick_count();
+
+      //::simple_message_box(NULL,"e2.b","e2.b",MB_OK);
+
+      if(!initialize1())
+         return false;
+
+
+      //::simple_message_box(NULL,"e3","e3",MB_OK);
+
+
+      System.install().m_progressApp()++; // 2
+
+      xxdebug_box("initialize1 ok","initialize1 ok",MB_ICONINFORMATION);
+
+      string strWindow;
+
+      if(m_strAppName.has_char())
+         strWindow = m_strAppName;
+      else
+         strWindow = typeid(*this).name();
+
+#ifndef METROWIN
+
+      if(!create_message_queue(this,strWindow))
+      {
+         TRACE("Fatal error: could not initialize application message window (name=\"%s\").",strWindow.c_str());
+         return false;
+      }
+
+
+
+#endif
+
+      m_dwAlive = ::get_tick_count();
+
+      if(!initialize2())
+         return false;
+
+      System.install().m_progressApp()++; // 3
+
+      xxdebug_box("initialize2 ok","initialize2 ok",MB_ICONINFORMATION);
+
+      m_dwAlive = ::get_tick_count();
+
+      if(!initialize3())
+         return false;
+
+      System.install().m_progressApp()++; // 4
+
+      xxdebug_box("initialize3 ok","initialize3 ok",MB_ICONINFORMATION);
+
+      m_dwAlive = ::get_tick_count();
+
+      try
+      {
+
+         if(!initialize())
+            return false;
+      }
+      catch(const char * psz)
+      {
+         if(!strcmp(psz,"You have not logged in! Exiting!"))
+         {
+            return false;
+         }
+         return false;
+      }
+
+
+      System.install().m_progressApp()++; // 5
+
+      m_bBaseInitializeInstanceResult = true;
+
+      return true;
+
+   }
+
+
+   bool application::initialize1()
+   {
+
+      if(m_bBaseInitialize1)
+         return m_bBaseInitialize1Result;
+
+      m_bBaseInitialize1 = true;
+      m_bBaseInitialize1Result = false;
+
+      m_splicense = new class ::fontopus::license(this);
+
+      m_dwAlive = ::get_tick_count();
+
+      m_straMatterLocator.add_unique(System.dir().appmatter_locator(this));
+
+      m_puserstrcontext = canew(::user::str_context(this));
+
+      if(m_puserstrcontext == NULL)
+         return false;
+
+      if(!ca_initialize1())
+         return false;
+
+
+      string strLocaleSystem;
+      string strSchemaSystem;
+
+
+      string strPath = System.dir().appdata("langstyle_settings.xml");
+
+      if(Application.file().exists(strPath))
+      {
+
+         string strSystem = Application.file().as_string(strPath);
+
+         ::xml::document docSystem(get_app());
+
+         if(docSystem.load(strSystem))
+         {
+
+            if(docSystem.get_child("lang") != NULL)
+            {
+
+               strLocaleSystem = docSystem.get_child("lang")->get_value();
+
+            }
+
+            if(docSystem.get_child("style") != NULL)
+            {
+
+               strSchemaSystem = docSystem.get_child("style")->get_value();
+
+            }
+
+         }
+
+      }
+
+
+      string strLocale;
+      string strSchema;
+
+#ifdef METROWIN
+
+      stringa stra;
+
+      try
+      {
+
+         stra.explode("-", ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
+
+      }
+      catch (long)
+      {
+
+
+      }
+
+      strLocale = stra[0];
+
+      strSchema = stra[0];
+
+#elif defined(WINDOWS)
+
+      LANGID langid = ::GetUserDefaultLangID();
+
+#define SPR_DEUTSCH LANG_GERMAN
+
+      if(langid == LANG_SWEDISH)
+      {
+         strLocale = "se";
+         strSchema = "se";
+      }
+      else if(langid == MAKELANGID(LANG_PORTUGUESE,SUBLANG_PORTUGUESE_BRAZILIAN))
+      {
+         strLocale = "pt-br";
+         strSchema = "pt-br";
+      }
+      else if(PRIMARYLANGID(langid) == SPR_DEUTSCH)
+      {
+         strLocale = "de";
+         strSchema = "de";
+      }
+      else if(PRIMARYLANGID(langid) == LANG_ENGLISH)
+      {
+         strLocale = "en";
+         strSchema = "en";
+      }
+      else if(PRIMARYLANGID(langid) == LANG_JAPANESE)
+      {
+         strLocale = "jp";
+         strSchema = "jp";
+      }
+      else if(PRIMARYLANGID(langid) == LANG_POLISH)
+      {
+         strLocale = "pl";
+         strSchema = "pl";
+      }
+
+#endif
+
+      if(strLocale.is_empty())
+         strLocale = "se";
+
+      if(strSchema.is_empty())
+         strSchema = "se";
+
+      if(strLocaleSystem.has_char())
+         strLocale = strLocaleSystem;
+
+      if(strSchemaSystem.has_char())
+         strSchema = strSchemaSystem;
+
+      if(Sys(this).directrix()->m_varTopicQuery["locale"].get_count() > 0)
+         strLocale = Sys(this).directrix()->m_varTopicQuery["locale"].stra()[0];
+
+      if(Sys(this).directrix()->m_varTopicQuery["schema"].get_count() > 0)
+         strSchema = Sys(this).directrix()->m_varTopicQuery["schema"].stra()[0];
+
+      if(App(this).directrix()->m_varTopicQuery["locale"].get_count() > 0)
+         strLocale = App(this).directrix()->m_varTopicQuery["locale"].stra()[0];
+
+      if(App(this).directrix()->m_varTopicQuery["schema"].get_count() > 0)
+         strSchema = App(this).directrix()->m_varTopicQuery["schema"].stra()[0];
+
+
+      set_locale(strLocale,::action::source::database());
+      set_schema(strSchema,::action::source::database());
+
+
+      str_context()->localeschema().m_idaLocale.add(strLocale);
+      str_context()->localeschema().m_idaSchema.add(strSchema);
+
+
+      if(!m_pimpl->initialize1())
+         return false;
+
+      if(!m_spuser->initialize1())
+         return false;
+
+      if(!m_spuser->initialize2())
+         return false;
+
+      m_bBaseInitialize1Result = true;
+
+      return true;
+
+   }
+
+
+   bool application::initialize2()
+   {
+
+      if(!m_pimpl->initialize2())
+         return false;
+
+      if(!ca_initialize2())
+         return false;
+
+      fill_locale_schema(*str_context()->m_plocaleschema);
+
+      return true;
+
+   }
+
+
+   bool application::initialize3()
+   {
+
+      if(!m_pimpl->initialize3())
+         return false;
+
+      if(!ca_initialize3())
+         return false;
+
+      return true;
+
+   }
+
+
    bool application::initialize()
    {
 
+      if(m_bBaseInitialize)
+         return m_bBaseInitializeResult;
+
+      m_bBaseInitialize = true;
+      m_bBaseInitializeResult = false;
+
       application_signal_details signal(this,m_psignal,application_signal_initialize);
+      
       m_psignal->emit(&signal);
+
       if(!signal.m_bOk)
          return false;
-
-      //m_pcalculator = new ::calculator::calculator(this);
-
-      //m_pcalculator->construct(this);
-
-      //if (!m_pcalculator->initialize())
-      //   return false;
-
-
-      //m_pcolorertake5 = new ::colorertake5::colorertake5(this);
-
-      //m_pcolorertake5->construct(this);
-
-      //if (!m_pcolorertake5->initialize())
-      //   return false;
 
       m_dwAlive = ::get_tick_count();
 
@@ -2929,18 +3268,7 @@ namespace base
 #endif
       }
 
-
       m_dwAlive = ::get_tick_count();
-
-      if(is_session())
-      {
-
-         Session.m_spcopydesk.create(allocer());
-
-         if(!Session.m_spcopydesk->initialize())
-            return false;
-
-      }
 
       if(is_system()
          && command_thread()->m_varTopicQuery["app"] != "app-core/netnodelite"
@@ -2951,63 +3279,7 @@ namespace base
          System.http().defer_auto_initialize_proxy_configuration();
       }
 
-
-
-
-      //      if(!::cubebase::application::initialize())
-      //       return false;
-
-
-      //      m_puserbase = new ::user::user();
-
-      //    m_puserbase->construct(this);
-
-      //  if(!m_puserbase->initialize())
-      //return false;
-
-      //m_pfilemanager = canew(::filemanager::filemanager(this));
-
-      //application::m_pfilemanager = m_pfilemanager;
-
-      //m_pfilemanager->construct(this);
-
-      //if (!m_pfilemanager->initialize())
-      //   return false;
-
-      //m_pusermail = canew(::usermail::usermail(this));
-
-      //m_pusermail->construct(this);
-
-      //if (!m_pusermail->initialize())
-      //   return false;
-
-      //m_dwAlive = ::get_tick_count();
-
-
-
-
-
       m_dwAlive = ::get_tick_count();
-
-      //m_splicense(new class ::fontopus::license(this));
-
-
-      //if (!is_system())
-      //{
-      //   System.register_bergedge_application(this);
-      //}
-
-
-      //m_dwAlive = ::get_tick_count();
-
-      //ensure_app_interest();
-
-      //application_signal_details signal(this, m_psignal, application_signal_initialize);
-      //m_psignal->emit(&signal);
-      //if (!signal.m_bOk)
-      //   return false;
-      //return true;
-
 
       if(!is_installing() && !is_uninstalling() && !is_system() && m_pbasesession != NULL)
       {
@@ -3017,479 +3289,14 @@ namespace base
 
       }
 
-
-
       m_dwAlive = ::get_tick_count();
-
-      /*      if (!is_system())
-            {
-            System.register_bergedge_application(this);
-            }*/
-
-
-
-      //if (!m_spuserfs->initialize())
-      //   return false;
-
-
-      //if (!m_simpledb.initialize())
-      //   return false;
 
       if(!m_spuser->initialize())
          return false;
 
-
-
-      return true;
-
-   }
-
-   bool application::process_initialize()
-   {
-
-      if(m_bBaseProcessInitialize)
-         return true;
-
-      m_bBaseProcessInitialize = true;
-
-
-
-      /*      if (::thread::m_p.is_null())
-            {
-
-            ::thread::m_p.create(allocer());
-
-            ::thread::m_p->m_p = this;
-
-            }
-
-            if (m_pimpl.is_null())
-            {
-
-            m_pimpl.create(allocer());
-
-            m_pimpl->m_pimpl = this;
-
-            }*/
-
-      if(is_system())
-      {
-         System.factory().cloneable_large < stringa >();
-         System.factory().cloneable_large < ::primitive::memory >();
-         System.factory().cloneable_large < int_array >();
-         //System.factory().cloneable_large < property > ();
-      }
-
-
-      if(is_system())
-      {
-
-         Ex1OnFactoryExchange();
-
-      }
-
-      thread::s_bAllocReady = true;
-
-      if(thread::m_pimpl == NULL)
-      {
-
-         thread::m_pimpl.create(allocer());
-         thread::m_pimpl->m_puser = this;
-
-      }
-
-      m_pimpl.create(allocer());
-      m_pimpl->construct();
-      m_pimpl->m_pimpl = this;
-
-      if(::get_thread() == NULL)
-      {
-         set_thread(dynamic_cast <thread *> (this));
-      }
-
-      if(!update_module_paths())
-         return false;
-
-      m_spfs = canew(::fs::fs(this));
-
-      if(m_spfs == NULL)
-         return false;
-
-      m_spfs->construct(this);
-
-
-      if(!m_spfs->initialize())
-         return false;
-
-      if(!ca_process_initialize())
-         return false;
-
-      if(is_system())
-      {
-         draw2d_factory_exchange();
-      }
-
-      if(!m_pimpl->process_initialize())
-         return false;
-
-
-
-      m_spuser = create_user();
-
-      if(m_spuser == NULL)
-         return false;
-
-
-
-      m_spuser->construct(this);
-
-      //m_spuserex = create_userex();
-
-      //if (m_spuserex == NULL)
-      //   return false;
-
-      //m_spuserex->construct(this);
-
-      //m_spuserfs = create_userfs();
-
-      //if (m_spuserfs == NULL)
-      //   return false;
-
-      //m_spuserfs->construct(this);
-
-      //m_phtml = create_html();
-
-      //if (m_phtml == NULL)
-      //   return false;
-
-      //m_phtml->construct(this);
-
-      m_psockets = canew(::sockets::sockets(this));
-
-      m_psockets->construct(this);
-
-      if(!m_psockets->initialize1())
-         throw simple_exception(this,"could not initialize (1) sockets for application (application::construct)");
-
-
-      if(!m_psockets->initialize())
-         throw simple_exception(this,"could not initialize sockets for application (application::construct)");
-
+      m_bBaseInitializeResult = true;
 
       return true;
-
-   }
-
-   bool application::initialize1()
-   {
-
-
-
-      m_splicense = new class ::fontopus::license(this);
-
-
-
-
-
-
-      m_dwAlive = ::get_tick_count();
-
-
-      m_straMatterLocator.add_unique(System.dir().appmatter_locator(this));
-
-
-      m_puserstrcontext = canew(::user::str_context(this));
-      if(m_puserstrcontext == NULL)
-         return false;
-
-
-      if(!ca_initialize1())
-         return false;
-
-      string strLocaleSystem;
-
-      string strSchemaSystem;
-
-      string strPath = System.dir().appdata("langstyle_settings.xml");
-
-      if(Application.file().exists(strPath))
-      {
-
-         string strSystem = Application.file().as_string(strPath);
-
-         ::xml::document docSystem(get_app());
-
-         if(docSystem.load(strSystem))
-         {
-
-            if(docSystem.get_child("lang") != NULL)
-            {
-
-               strLocaleSystem = docSystem.get_child("lang")->get_value();
-
-            }
-
-            if(docSystem.get_child("style") != NULL)
-            {
-
-               strSchemaSystem = docSystem.get_child("style")->get_value();
-
-            }
-
-         }
-
-      }
-
-
-
-      string strLocale;
-
-      string strSchema;
-
-#ifdef METROWIN
-
-      stringa stra;
-
-      try
-      {
-
-         stra.explode("-", ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
-
-      }
-      catch (long)
-      {
-
-
-      }
-
-      strLocale = stra[0];
-
-      strSchema = stra[0];
-
-#elif defined(WINDOWS)
-      LANGID langid = ::GetUserDefaultLangID();
-#define SPR_DEUTSCH LANG_GERMAN
-      if(langid == LANG_SWEDISH)
-      {
-         strLocale = "se";
-         strSchema = "se";
-      }
-      else if(langid == MAKELANGID(LANG_PORTUGUESE,SUBLANG_PORTUGUESE_BRAZILIAN))
-      {
-         strLocale = "pt-br";
-         strSchema = "pt-br";
-      }
-      else if(PRIMARYLANGID(langid) == SPR_DEUTSCH)
-      {
-         strLocale = "de";
-         strSchema = "de";
-      }
-      else if(PRIMARYLANGID(langid) == LANG_ENGLISH)
-      {
-         strLocale = "en";
-         strSchema = "en";
-      }
-      else if(PRIMARYLANGID(langid) == LANG_JAPANESE)
-      {
-         strLocale = "jp";
-         strSchema = "jp";
-      }
-      else if(PRIMARYLANGID(langid) == LANG_POLISH)
-      {
-         strLocale = "pl";
-         strSchema = "pl";
-      }
-#endif
-
-      if(strLocale.is_empty())
-         strLocale = "se";
-
-      if(strSchema.is_empty())
-         strSchema = "se";
-
-      if(strLocaleSystem.has_char())
-         strLocale = strLocaleSystem;
-
-      if(strSchemaSystem.has_char())
-         strSchema = strSchemaSystem;
-
-      if(Sys(this).directrix()->m_varTopicQuery["locale"].get_count() > 0)
-         strLocale = Sys(this).directrix()->m_varTopicQuery["locale"].stra()[0];
-
-      if(Sys(this).directrix()->m_varTopicQuery["schema"].get_count() > 0)
-         strSchema = Sys(this).directrix()->m_varTopicQuery["schema"].stra()[0];
-
-      if(App(this).directrix()->m_varTopicQuery["locale"].get_count() > 0)
-         strLocale = App(this).directrix()->m_varTopicQuery["locale"].stra()[0];
-
-      if(App(this).directrix()->m_varTopicQuery["schema"].get_count() > 0)
-         strSchema = App(this).directrix()->m_varTopicQuery["schema"].stra()[0];
-
-
-
-      set_locale(strLocale,::action::source::database());
-      set_schema(strSchema,::action::source::database());
-
-
-      str_context()->localeschema().m_idaLocale.add(strLocale);
-      str_context()->localeschema().m_idaSchema.add(strSchema);
-
-      //Sleep(15 * 1000);
-
-
-
-      if(!m_pimpl->initialize1())
-         return false;
-
-
-      if(!m_spuser->initialize1())
-         return false;
-
-      if(!m_spuser->initialize2())
-         return false;
-
-      //if (!m_spuserex->initialize1())
-      //   return false;
-      //if (!m_spuserex->initialize2())
-      //   return false;
-
-      //m_simpledb.construct(this);
-
-      //if (!m_simpledb.initialize2())
-      //   return false;
-
-
-      return true;
-
-   }
-
-
-   bool application::initialize2()
-   {
-
-      if(!m_pimpl->initialize2())
-         return false;
-
-      if(!ca_initialize2())
-         return false;
-
-      fill_locale_schema(*str_context()->m_plocaleschema);
-
-      return true;
-
-   }
-
-
-   bool application::initialize3()
-   {
-
-      if(!m_pimpl->initialize3())
-         return false;
-
-      if(!ca_initialize3())
-         return false;
-
-      return true;
-
-   }
-
-
-   bool application::initialize_instance()
-   {
-
-      if(m_bBaseInitializeInstance)
-         return true;
-
-      m_bBaseInitializeInstance = true;
-
-      xxdebug_box("check_exclusive","check_exclusive",MB_ICONINFORMATION);
-
-      if(!is_system())
-      {
-         if(!check_exclusive())
-            return false;
-      }
-
-      xxdebug_box("check_exclusive ok","check_exclusive ok",MB_ICONINFORMATION);
-
-      m_dwAlive = ::get_tick_count();
-
-      //::simple_message_box(NULL,"e2.b","e2.b",MB_OK);
-
-      if(!initialize1())
-         return false;
-
-
-      //::simple_message_box(NULL,"e3","e3",MB_OK);
-
-
-      System.install().m_progressApp()++; // 2
-
-      xxdebug_box("initialize1 ok","initialize1 ok",MB_ICONINFORMATION);
-
-      string strWindow;
-      if(m_strAppName.has_char())
-         strWindow = m_strAppName;
-      else
-         strWindow = typeid(*this).name();
-
-#ifndef METROWIN
-
-      if(!create_message_queue(this,strWindow))
-      {
-         TRACE("Fatal error: could not initialize application message window (name=\"%s\").",strWindow.c_str());
-         return false;
-      }
-
-
-
-#endif
-
-      //::simple_message_box(NULL,"e4","e4",MB_OK);
-      //::simple_message_box(NULL,"t3=" + ::str::from(m_iReturnCode),"t3=" + ::str::from(m_iReturnCode),MB_OK);
-
-
-      m_dwAlive = ::get_tick_count();
-
-      if(!initialize2())
-         return false;
-
-      System.install().m_progressApp()++; // 3
-
-      xxdebug_box("initialize2 ok","initialize2 ok",MB_ICONINFORMATION);
-
-      m_dwAlive = ::get_tick_count();
-
-      if(!initialize3())
-         return false;
-
-      System.install().m_progressApp()++; // 4
-
-      xxdebug_box("initialize3 ok","initialize3 ok",MB_ICONINFORMATION);
-
-      m_dwAlive = ::get_tick_count();
-
-      try
-      {
-
-
-         if(!initialize())
-            return false;
-      }
-      catch(const char * psz)
-      {
-         if(!strcmp(psz,"You have not logged in! Exiting!"))
-         {
-            return false;
-         }
-         return false;
-      }
-
-
-      System.install().m_progressApp()++; // 5
-
-      return true;
-
 
    }
 
@@ -3499,22 +3306,6 @@ namespace base
 
       try
       {
-
-         try
-         {
-            if(is_session())
-            {
-               if(Session.m_spcopydesk.is_set())
-               {
-                  Session.m_spcopydesk->finalize();
-                  Session.m_spcopydesk.release();
-               }
-               Session.m_splicense.release();
-            }
-         }
-         catch(...)
-         {
-         }
 
 
          /*      try
@@ -3541,27 +3332,38 @@ namespace base
 
          release_exclusive();
 
-         if(!destroy_message_queue())
+         if(m_spuiMessage.is_set())
          {
 
-            TRACE("Could not finalize message window");
+            //if(!destroy_message_queue())
+            {
+             
+              // TRACE("Could not finalize message window");
+
+            }
 
          }
 
-         application_signal_details signal(this,m_psignal,application_signal_exit_instance);
 
-         try
+         if(m_psignal != NULL)
          {
 
-            m_psignal->emit(&signal);
+            application_signal_details signal(this,m_psignal,application_signal_exit_instance);
+
+            try
+            {
+
+               m_psignal->emit(&signal);
+
+            }
+            catch(...)
+            {
+
+            }
+
+            m_psignal.release();
 
          }
-         catch(...)
-         {
-
-         }
-
-         m_psignal.release();
 
          //try
          //{
@@ -4569,6 +4371,22 @@ namespace base
 
       if(&AppUser(this) == NULL)
          throw exit_exception(get_app(),"You have not logged in!! db_str_set::load");
+
+   }
+
+   bool application::init_main_data(::base::main_init_data * pdata)
+   {
+
+      m_pinitmaindata = pdata;
+
+      return true;
+
+   }
+
+   bool application::set_main_init_data(::base::main_init_data * pdata)
+   {
+
+      return m_pimpl->set_main_init_data(pdata);
 
    }
 

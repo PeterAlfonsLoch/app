@@ -326,11 +326,11 @@ bool command_target::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
 // command_target routines that delegate to the WinApp
 
 void command_target::BeginWaitCursor()
-   { Session.DoWaitCursor(1); }
+   { BaseSession.DoWaitCursor(1); }
 void command_target::EndWaitCursor()
-   { Session.DoWaitCursor(-1); }
+   { BaseSession.DoWaitCursor(-1); }
 void command_target::RestoreWaitCursor()
-   { Session.DoWaitCursor(0); }
+   { BaseSession.DoWaitCursor(0); }
 
 /////////////////////////////////////////////////////////////////////////////
 // Root of message maps

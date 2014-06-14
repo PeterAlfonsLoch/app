@@ -1,6 +1,6 @@
 #include "framework.h"
 
-//CLASS_DECL_CORE COLORREF Session.get_default_color(uint32_t dw);
+//CLASS_DECL_CORE COLORREF BaseSession.get_default_color(uint32_t dw);
 
 namespace user
 {
@@ -533,7 +533,7 @@ namespace user
          GetItemRect(&drawitem.rcItem, ElementItemBox, iItem);
          DrawItem(&drawitem);
          GetItemRect(rectDivider, ElementDivider, iItem);
-         pdc->Draw3dRect(rectDivider, Session.get_default_color(COLOR_BTNSHADOW), Session.get_default_color(COLOR_BTNHIGHLIGHT));
+         pdc->Draw3dRect(rectDivider, BaseSession.get_default_color(COLOR_BTNSHADOW), BaseSession.get_default_color(COLOR_BTNHIGHLIGHT));
       }
 
    }

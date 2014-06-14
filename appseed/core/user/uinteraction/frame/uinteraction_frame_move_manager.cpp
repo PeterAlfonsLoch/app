@@ -149,20 +149,18 @@ namespace user
 
             rectEvent.move_to(pt);
 
-            rect rectRestore;
-
-            index iMatchingMonitor = m_pworkset->GetWndDraw()->good_restore(rectRestore, true);
+            index iMatchingMonitor = m_pworkset->GetWndDraw()->good_move(rectEvent, true);
 
             if(iMatchingMonitor >= 0)
             {
 
                bMove = false;
 
-               m_pworkset->GetWndDraw()->GetWindowRect(rectRestore);
+               m_pworkset->GetWndDraw()->GetWindowRect(rectEvent);
 
-               ptCursor = -m_ptWindowOrigin + rectRestore.top_left() + m_ptCursorOrigin;
+               ptCursor = -m_ptWindowOrigin + rectEvent.top_left() + m_ptCursorOrigin;
 
-               if(Session.m_bSessionSynchronizedCursor)
+               if(BaseSession.m_bSessionSynchronizedCursor)
                {
 #ifdef WINDOWSEX
                   ::SetCursorPos(ptCursor.x, ptCursor.y);
@@ -171,7 +169,7 @@ namespace user
 #endif
                }
 
-               Session.m_ptCursor = ptCursor;
+               BaseSession.m_ptCursor = ptCursor;
 
             }
 

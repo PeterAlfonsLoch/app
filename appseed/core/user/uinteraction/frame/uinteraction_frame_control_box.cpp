@@ -176,7 +176,7 @@ namespace user
 
                         GetWindowRect(rectWindow);
 
-                        if (rectWindow.contains(Session.m_ptCursor))
+                        if (rectWindow.contains(BaseSession.m_ptCursor))
                         {
                            m_dwShowTime = ::get_tick_count();
                         }
@@ -213,7 +213,7 @@ namespace user
 
                         GetWindowRect(rectWindow);
 
-                        if (Session.m_ptCursor.x >= rectWindow.left && Session.m_ptCursor.y <= rectWindow.right && Session.m_ptCursor.y == 0)
+                        if (BaseSession.m_ptCursor.x >= rectWindow.left && BaseSession.m_ptCursor.y <= rectWindow.right && BaseSession.m_ptCursor.y == 0)
                         {
 
                            ShowWindow(SW_SHOW);
@@ -243,7 +243,7 @@ namespace user
                   try
                   {
 
-                     pt = Session.m_ptCursor;
+                     pt = BaseSession.m_ptCursor;
 
                   }
                   catch (...)

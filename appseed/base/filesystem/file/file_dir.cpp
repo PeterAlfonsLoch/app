@@ -64,7 +64,7 @@ bool __win_file_find_is_dots(WIN32_FIND_DATA & data)
 
 string dir::get_ca2_module_folder()
 {
-   char lpszModuleFolder[MAX_PATH * 8];
+   wchar_t lpszModuleFolder[MAX_PATH * 8];
 #if defined(METROWIN)
 
    return "";
@@ -136,7 +136,7 @@ string dir::get_ca2_module_folder()
 
 #elif defined(WINDOWS)
 
-   char lpszModuleFilePath[MAX_PATH * 8];
+   wchar_t lpszModuleFilePath[MAX_PATH * 8];
 
    HMODULE hmodule = ::GetModuleHandleA("core.dll");
 
@@ -146,46 +146,46 @@ string dir::get_ca2_module_folder()
    if(hmodule == NULL)
    {
 
-      SHGetSpecialFolderPath(
+      SHGetSpecialFolderPathW(
          NULL,
          lpszModuleFilePath,
          CSIDL_PROGRAM_FILES,
          FALSE);
-      if(lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '\\'
-         || lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '/')
+      if(lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '\\'
+         || lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '/')
       {
-         lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] = '\0';
+         lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] = '\0';
       }
-      strcat_dup(lpszModuleFilePath, "\\ca2\\");
+      wcscat(lpszModuleFilePath, L"\\ca2\\");
 #ifdef X86
-      strcat_dup(lpszModuleFilePath, "stage\\x86\\");
+      wcscat(lpszModuleFilePath,L"stage\\x86\\");
 #else
       strcat_dup(lpszModuleFilePath, "stage\\x64\\");
 #endif
 
-      strcpy_dup(lpszModuleFolder, lpszModuleFilePath);
+      wcscpy(lpszModuleFolder, lpszModuleFilePath);
 
       return lpszModuleFolder;
 
    }
 
-   if (!GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath)))
+   if(!GetModuleFileNameW(hmodule,lpszModuleFilePath,sizeof(lpszModuleFilePath) / sizeof(wchar_t)))
       return "";
 
-   LPTSTR lpszModuleFileName;
+   LPWSTR lpszModuleFileName;
 
-   if (!GetFullPathName(lpszModuleFilePath, sizeof(lpszModuleFilePath), lpszModuleFolder, &lpszModuleFileName))
+   if (!GetFullPathNameW(lpszModuleFilePath, sizeof(lpszModuleFilePath) / sizeof(wchar_t), lpszModuleFolder, &lpszModuleFileName))
       return "";
 
    lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';
 
-   if(strlen_dup(lpszModuleFolder) > 0)
+   if(wcslen(lpszModuleFolder) > 0)
    {
 
-      if(lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '\\' || lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '/')
+      if(lpszModuleFolder[wcslen(lpszModuleFolder) - 1] == '\\' || lpszModuleFolder[wcslen(lpszModuleFolder) - 1] == '/')
       {
 
-         lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] = '\0';
+         lpszModuleFolder[wcslen(lpszModuleFolder) - 1] = '\0';
 
       }
 
@@ -224,7 +224,7 @@ string dir::get_ca2_module_folder()
 
 string dir::get_base_module_folder()
 {
-   char lpszModuleFolder[MAX_PATH * 8];
+   wchar_t lpszModuleFolder[MAX_PATH * 8];
 #if defined(METROWIN)
 
    return "";
@@ -296,7 +296,7 @@ string dir::get_base_module_folder()
 
 #elif defined(WINDOWS)
 
-   char lpszModuleFilePath[MAX_PATH * 8];
+   wchar_t lpszModuleFilePath[MAX_PATH * 8];
 
    HMODULE hmodule = ::GetModuleHandleA("base.dll");
 
@@ -306,46 +306,46 @@ string dir::get_base_module_folder()
    if (hmodule == NULL)
    {
 
-      SHGetSpecialFolderPath(
+      SHGetSpecialFolderPathW(
          NULL,
          lpszModuleFilePath,
          CSIDL_PROGRAM_FILES,
          FALSE);
-      if (lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '\\'
-         || lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '/')
+      if(lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '\\'
+         || lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '/')
       {
-         lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] = '\0';
+         lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] = '\0';
       }
-      strcat_dup(lpszModuleFilePath, "\\ca2\\");
+      wcscat(lpszModuleFilePath, L"\\ca2\\");
 #ifdef X86
-      strcat_dup(lpszModuleFilePath, "stage\\x86\\");
+      wcscat(lpszModuleFilePath,L"stage\\x86\\");
 #else
       strcat_dup(lpszModuleFilePath, "stage\\x64\\");
 #endif
 
-      strcpy_dup(lpszModuleFolder, lpszModuleFilePath);
+      wcscpy(lpszModuleFolder, lpszModuleFilePath);
 
       return lpszModuleFolder;
 
    }
 
-   if (!GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath)))
+   if(!GetModuleFileNameW(hmodule,lpszModuleFilePath,sizeof(lpszModuleFilePath) / sizeof(wchar_t)))
       return "";
 
-   LPTSTR lpszModuleFileName;
+   LPWSTR lpszModuleFileName;
 
-   if (!GetFullPathName(lpszModuleFilePath, sizeof(lpszModuleFilePath), lpszModuleFolder, &lpszModuleFileName))
+   if (!GetFullPathNameW(lpszModuleFilePath, sizeof(lpszModuleFilePath) / sizeof(wchar_t), lpszModuleFolder, &lpszModuleFileName))
       return "";
 
    lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';
 
-   if (strlen_dup(lpszModuleFolder) > 0)
+   if (wcslen_dup(lpszModuleFolder) > 0)
    {
 
-      if (lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '\\' || lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '/')
+      if(lpszModuleFolder[wcslen_dup(lpszModuleFolder) - 1] == '\\' || lpszModuleFolder[wcslen_dup(lpszModuleFolder) - 1] == '/')
       {
 
-         lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] = '\0';
+         lpszModuleFolder[wcslen_dup(lpszModuleFolder) - 1] = '\0';
 
       }
 
@@ -446,11 +446,11 @@ string ca2_module_folder_dup()
 
 #ifdef WINDOWSEX
 
-   char lpszModuleFilePath[MAX_PATH + 1];
-   GetModuleFileName(::GetModuleHandleA("ca.dll"), lpszModuleFilePath, MAX_PATH + 1);
-   char lpszModuleFolder[MAX_PATH + 1];
-   LPTSTR lpszModuleFileName;
-   GetFullPathName(lpszModuleFilePath, MAX_PATH + 1, lpszModuleFolder, &lpszModuleFileName);
+   wchar_t lpszModuleFilePath[MAX_PATH + 1];
+   GetModuleFileNameW(::GetModuleHandleA("ca.dll"), lpszModuleFilePath, MAX_PATH + 1);
+   wchar_t lpszModuleFolder[MAX_PATH + 1];
+   LPWSTR lpszModuleFileName;
+   GetFullPathNameW(lpszModuleFilePath, MAX_PATH + 1, lpszModuleFolder, &lpszModuleFileName);
    s_strCalc = string(lpszModuleFolder, lpszModuleFileName - lpszModuleFolder);
 
 #elif defined(LINUX)
@@ -639,14 +639,14 @@ string dir::module_folder(const char * path1)
 
 #ifdef WINDOWSEX
 
-   char path[MAX_PATH * 4];
-   if(!GetModuleFileName(NULL, path, sizeof(path)))
+   wchar_t path[MAX_PATH * 4];
+   if(!GetModuleFileNameW(NULL,path,sizeof(path) / sizeof(wchar_t)))
    {
       return path1;
    }
    else
    {
-      return dir::path(name(path), path1);
+      return dir::path(name(string(path)), path1);
    }
 
 #elif defined(METROWIN)

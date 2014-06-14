@@ -125,15 +125,6 @@ namespace windows
       
       bOk = ::base::copydesk::finalize();
 
-      if(::window_sp::is_set() && ::window_sp::m_p->IsWindow())
-      {
-         bOk = ::window_sp::m_p->DestroyWindow() != FALSE;
-      }
-      else
-      {
-         bOk = false;
-      }
-
       return bOk;
 
    }

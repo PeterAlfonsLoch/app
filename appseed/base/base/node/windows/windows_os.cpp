@@ -210,17 +210,17 @@ namespace windows
 
    string os::get_module_path(HMODULE hmodule)
    {
-      string strPath;
+      wstring wstrPath;
       DWORD dwSize = 1;
-      while(natural(strPath.get_length() + 1) == dwSize)
+      while(natural(wstrPath.get_length() + 1) == dwSize)
       {
-         dwSize = ::GetModuleFileName(
+         dwSize = ::GetModuleFileNameW(
             hmodule,
-            strPath.GetBufferSetLength(dwSize + 1024),
+            wstrPath.alloc(dwSize + 1024),
             (dwSize + 1024));
-         strPath.ReleaseBuffer();
+         wstrPath.release_buffer();
       }
-      return strPath;
+      return ::str::international::unicode_to_utf8(wstrPath);
    }
 
 
