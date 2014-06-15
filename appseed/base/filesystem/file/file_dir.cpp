@@ -160,7 +160,7 @@ string dir::get_ca2_module_folder()
 #ifdef X86
       wcscat(lpszModuleFilePath,L"stage\\x86\\");
 #else
-      strcat_dup(lpszModuleFilePath, "stage\\x64\\");
+      wcscat(lpszModuleFilePath,L"stage\\x64\\");
 #endif
 
       wcscpy(lpszModuleFolder, lpszModuleFilePath);
@@ -320,7 +320,7 @@ string dir::get_base_module_folder()
 #ifdef X86
       wcscat(lpszModuleFilePath,L"stage\\x86\\");
 #else
-      strcat_dup(lpszModuleFilePath, "stage\\x64\\");
+      wcscat(lpszModuleFilePath,L"stage\\x64\\");
 #endif
 
       wcscpy(lpszModuleFolder, lpszModuleFilePath);

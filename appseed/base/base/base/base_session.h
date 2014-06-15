@@ -15,8 +15,8 @@ namespace base
 
       bool                                                     m_bSessionSynchronizedCursor;
       point                                                    m_ptCursor;
-      //rect                                                     m_rectScreen;
-      //bool                                                     m_bSessionSynchronizedScreen;
+      rect                                                     m_rectScreen;
+      bool                                                     m_bSessionSynchronizedScreen;
 
 
 #ifdef WINDOWSEX
