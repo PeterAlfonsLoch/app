@@ -14,20 +14,34 @@ void rect_array::offset(int32_t cx, int32_t cy)
       rect.top    += cy;
       rect.right  += cx;
       rect.bottom += cy;
+
    }
+
 }
+
+
+::rect rect_array::union_rect()
+{
+
+   rect rectUnion(0,0,0,0);
+
+   for(int32_t i = 0; i < this->get_size(); i++)
+   {
+      rectUnion.unite(rectUnion,this->element_at(i));
+   }
+
+   return rectUnion;
+
+}
+
 
 void rect_array::get_box(LPRECT lprect)
 {
-   rect rectUnion(0, 0, 0, 0);
-   for(int32_t i = 0; i < this->get_size(); i++)
-   {
-      rectUnion.unite(rectUnion, this->element_at(i));
-   }
 
-   *lprect = rectUnion;
+   *lprect = union_rect();
 
 }
+
 
 void rect_array::intersect(LPCRECT lpcrect)
 {
