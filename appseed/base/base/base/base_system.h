@@ -108,8 +108,34 @@ namespace base
 
 
       bool                                         m_bMatterFromHttpCache;
-      bool                                         m_bSessionSynchronizedCursor;
+      bool                                         m_bSystemSynchronizedCursor;
+      bool                                         m_bSystemSynchronizedScreen;
 
+#ifdef WINDOWSEX
+
+      class window:
+         virtual public ::user::interaction
+      {
+      public:
+
+         window(sp(::base::application) papp);
+
+         void install_message_handling(::message::dispatch * pdispath);
+
+         DECL_GEN_SIGNAL(_001MessageHub);
+
+
+      };
+
+      sp(window)                                   m_spwindow;
+
+      raw_array < MONITORINFO >                    m_monitorinfoa;
+      raw_array < HMONITOR >                       m_hmonitora;
+      raw_array < MONITORINFO >                    m_monitorinfoaDesk;
+
+
+
+#endif
 
 
       system(sp(::base::application) papp);
@@ -307,6 +333,21 @@ namespace base
 
 
       virtual bool create_twf();
+
+
+      void enum_display_monitors();
+
+#if defined(WINDOWS)
+      static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor,LPARAM dwData);
+      void monitor_enum(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor);
+#endif
+
+      virtual index get_main_monitor(LPRECT lprect = NULL);
+      virtual ::count get_monitor_count();
+      virtual bool  get_monitor_rect(index iMonitor,LPRECT lprect);
+      virtual ::count get_desk_monitor_count();
+      virtual bool  get_desk_monitor_rect(index iMonitor,LPRECT lprect);
+
 
 
    };

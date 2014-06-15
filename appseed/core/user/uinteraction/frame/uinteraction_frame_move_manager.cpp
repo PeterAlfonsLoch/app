@@ -160,7 +160,7 @@ namespace user
 
                ptCursor = -m_ptWindowOrigin + rectEvent.top_left() + m_ptCursorOrigin;
 
-               if(BaseSession.m_bSessionSynchronizedCursor)
+               if(BaseSession.m_bSystemSynchronizedCursor)
                {
 #ifdef WINDOWSEX
                   ::SetCursorPos(ptCursor.x, ptCursor.y);

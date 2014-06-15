@@ -4070,7 +4070,7 @@ sp(::base::application) application::instantiate_application(const char * pszTyp
 
    papp->m_pplaneapp->command_central()->consolidate(command_central());
 
-//   papp->m_pplaneapp->m_bSessionSynchronizedCursor = m_bSessionSynchronizedCursor;
+//   papp->m_pplaneapp->m_bSystemSynchronizedCursor = m_bSystemSynchronizedCursor;
 
    if (pbias != NULL)
    {

@@ -13,17 +13,12 @@ namespace base
       
       bool                                                     m_bMatterFromHttpCache;
 
-      bool                                                     m_bSessionSynchronizedCursor;
+      bool                                                     m_bSystemSynchronizedCursor;
       point                                                    m_ptCursor;
-      rect                                                     m_rectScreen;
-      bool                                                     m_bSessionSynchronizedScreen;
+      bool                                                     m_bSystemSynchronizedScreen;
+      rect_array                                               m_rectaScreen;
+      index                                                    m_iMainMonitor;
 
-
-#ifdef WINDOWSEX
-      raw_array < MONITORINFO >                                m_monitorinfoa;
-      raw_array < HMONITOR >                                   m_hmonitora;
-      raw_array < MONITORINFO >                                m_monitorinfoaDesk;
-#endif
 
 
       ::plane::session *                                       m_pplanesession;
@@ -42,7 +37,7 @@ namespace base
       ::base::copydesk_sp                                      m_spcopydesk;
 
 
-      sp(::fontopus::fontopus)                        m_pfontopus;
+      sp(::fontopus::fontopus)                                 m_pfontopus;
 
 
       session(sp(::base::application) papp);
@@ -92,14 +87,9 @@ namespace base
       virtual bool get_auth(const string & pszForm,string & strUsername,string & strPassword);
 
 
-      void enum_display_monitors();
-
-#if defined(WINDOWS)
-      static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor,LPARAM dwData);
-      void monitor_enum(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor);
-#endif
 
       virtual index get_main_monitor(LPRECT lprect = NULL);
+      virtual bool set_main_monitor(index iMonitor);
       virtual ::count get_monitor_count();
       virtual bool  get_monitor_rect(index iMonitor,LPRECT lprect);
       virtual ::count get_desk_monitor_count();

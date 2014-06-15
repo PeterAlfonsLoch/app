@@ -1,6 +1,20 @@
 #include "framework.h"
 
 
+#ifdef WINDOWSEX
+
+HMONITOR GetPrimaryMonitorHandle()
+{
+
+   const POINT ptZero ={0,0};
+
+   return MonitorFromPoint(ptZero,MONITOR_DEFAULTTOPRIMARY);
+
+}
+
+#endif
+
+
 namespace base
 {
 
@@ -139,7 +153,8 @@ namespace base
 
 #endif
 
-      m_bSessionSynchronizedCursor = true;
+      m_bSystemSynchronizedCursor = true;
+      m_bSystemSynchronizedScreen = true;
 
    }
 
@@ -172,6 +187,8 @@ namespace base
    bool system::process_initialize()
    {
 
+      enum_display_monitors();
+
       m_peengine = new ::exception::engine(this);
 
       m_psslinit = new ::sockets::SSLInitializer(this);
@@ -185,6 +202,8 @@ namespace base
 
       if(!::base::application::process_initialize())
          return false;
+
+      m_spwindow = canew(window(this));
 
       m_spos.create(allocer());
 
@@ -205,6 +224,10 @@ namespace base
 
       if(!set_main_init_data(m_pinitmaindata))
          return false;
+
+      if(!m_spwindow->CreateEx(0,NULL,NULL,0,null_rect(),NULL,"::base::system::window"))
+         return false;
+
 
       m_pbasesession = new ::base::session(this);
 
@@ -730,9 +753,177 @@ namespace base
    }
 
 
+   index system::get_main_monitor(LPRECT lprect)
+   {
+
+      int iMainMonitor = 0;
+
+#ifdef WINDOWSEX
+
+      HMONITOR hmonitorPrimary = GetPrimaryMonitorHandle();
+
+      for(index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
+      {
+
+         if(m_hmonitora[iMonitor] == hmonitorPrimary)
+         {
+
+            iMainMonitor = iMonitor;
+
+            break;
+
+         }
+
+      }
+
+
+#endif
+
+      if(lprect != NULL)
+      {
+
+         get_monitor_rect(iMainMonitor,lprect);
+
+      }
+
+      return iMainMonitor;
+
+   }
+
+
+   ::count system::get_monitor_count()
+   {
+
+#ifdef WINDOWSEX
+
+      return m_monitorinfoa.get_count();
+
+#else
+
+      return 1;
+
+#endif
+
+   }
+
+
+   bool system::get_monitor_rect(index iMonitor,LPRECT lprect)
+   {
+
+#ifdef WINDOWSEX
+
+      if(iMonitor < 0 || iMonitor >= get_monitor_count())
+         return false;
+
+      *lprect = m_monitorinfoa[iMonitor].rcMonitor;
+
+#elif defined(METROWIN)
+
+      return System.GetWindowRect(lprect);
+
+#elif defined(LINUX)
+
+      xdisplay  d;
+
+      if(!d.open(NULL))
+         return false;
+
+      lprect->left = 0;
+      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
+      lprect->top = 0;
+      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
+
+#elif defined(APPLEOS)
+
+      if(iMonitor < 0 || iMonitor >= get_monitor_count())
+         return false;
+
+      GetMainScreenRect(lprect);
+
+#else
+
+      throw todo(get_app());
+
+      ::GetWindowRect(::GetDesktopWindow(),lprect);
+
+#endif
+
+      return true;
+
+   }
+
+
+   ::count system::get_desk_monitor_count()
+   {
+
+      return get_monitor_count();
+
+   }
+
+
+   bool system::get_desk_monitor_rect(index iMonitor,LPRECT lprect)
+   {
+
+      return get_monitor_rect(iMonitor,lprect);
+
+   }
+
+   system::window::window(sp(::base::application) papp):
+      element(papp)
+   {
+
+   }
+
+   void system::window::install_message_handling(::message::dispatch * pdispatch)
+   {
+
+      ::user::interaction::install_message_handling(pdispatch);
+
+      IGUI_WIN_MSG_LINK(WM_DISPLAYCHANGE,pdispatch,this,&::base::system::window::_001MessageHub);
+
+   }
+
+   void system::window::_001MessageHub(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::base,pbase,pobj);
+
+      if(pbase != NULL)
+      {
+
+         if(pbase->m_uiMessage == WM_DISPLAYCHANGE)
+         {
+
+            System.enum_display_monitors();
+
+            for(index i = 0; i < System.frames().get_count(); i++)
+            {
+
+               try
+               {
+                  
+                  System.frames()[i].WfiRestore(true);
+
+               }
+               catch(...)
+               {
+               }
+               
+            }
+            
+
+         }
+
+      }
+
+   }
 
 
 } // namespace base
+
+
+
+
 
 
 uint32_t _thread_proc_start_system(void * p)

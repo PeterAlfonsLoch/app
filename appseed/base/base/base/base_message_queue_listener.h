@@ -6,6 +6,6 @@ class CLASS_DECL_BASE message_queue_listener :
 {
 public:
 
-   virtual void message_queue_message_handler(signal_details * pobj) = 0;
+   virtual void message_queue_message_handler(signal_details * pobj) { UNREFERENCED_PARAMETER(pobj); };
 
 };

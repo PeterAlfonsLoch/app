@@ -1,18 +1,6 @@
 #include "framework.h"
 
 
-#ifdef WINDOWSEX
-
-HMONITOR GetPrimaryMonitorHandle()
-{
-
-   const POINT ptZero = { 0 , 0 };
-
-   return MonitorFromPoint(ptZero,MONITOR_DEFAULTTOPRIMARY);
-
-}
-
-#endif
 
 namespace base
 {
@@ -45,8 +33,10 @@ namespace base
 
       m_bMatterFromHttpCache = m_pbasesystem->m_bMatterFromHttpCache;
 
-      m_bSessionSynchronizedCursor = m_pbasesystem->m_bSessionSynchronizedCursor;
-//      m_bSessionSynchronizedScreen = true;
+      m_bSystemSynchronizedCursor = m_pbasesystem->m_bSystemSynchronizedCursor;
+      m_bSystemSynchronizedScreen = m_pbasesystem->m_bSystemSynchronizedScreen;
+      m_iMainMonitor = 0;
+
 
       if(m_hinstance == NULL)
 
@@ -69,8 +59,6 @@ namespace base
       m_bDrawCursor              = true;
       m_ecursorDefault  = ::visual::cursor_arrow;
       m_ecursor         = ::visual::cursor_default;
-
-
 
    }
 
@@ -257,100 +245,136 @@ namespace base
    index session::get_main_monitor(LPRECT lprect)
    {
 
-      int iMainMonitor = 0;
-
-#ifdef WINDOWSEX
-
-      HMONITOR hmonitorPrimary = GetPrimaryMonitorHandle();
-
-      for(index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
+      if(m_bSystemSynchronizedScreen)
       {
 
-         if(m_hmonitora[iMonitor] == hmonitorPrimary)
+         if(m_iMainMonitor < 0 || m_iMainMonitor >= System.get_monitor_count())
          {
 
-            iMainMonitor = iMonitor;
+            return System.get_main_monitor(lprect);
 
-            break;
+         }
+         else
+         {
+
+            if(System.get_monitor_rect(m_iMainMonitor,lprect))
+            {
+
+               return m_iMainMonitor;
+
+            }
+            else
+            {
+
+               System.get_monitor_rect(0,lprect);
+
+               return 0;
+
+            }
 
          }
 
       }
-
-
-#endif
-
-      if(lprect != NULL)
+      else
       {
 
-         get_monitor_rect(iMainMonitor,lprect);
+         int iMainMonitor = m_iMainMonitor;
+
+         if(iMainMonitor < 0 || iMainMonitor >= m_rectaScreen.get_count())
+         {
+          
+            iMainMonitor = 0;
+
+         }
+
+         if(m_rectaScreen.get_count() <= 0)
+         {
+
+            return -1;
+
+         }
+
+         *lprect = m_rectaScreen[iMainMonitor];
+
+         return iMainMonitor;
 
       }
-
-      return iMainMonitor;
 
    }
 
 
+   bool session::set_main_monitor(index iMonitor)
+   {
+
+      if(iMonitor == -1)
+      {
+
+         m_iMainMonitor = -1;
+
+         return true;
+
+      }
+      else if(iMonitor < 0 || iMonitor >= get_monitor_count())
+      {
+
+         return false;
+
+      }
+      else
+      {
+
+         m_iMainMonitor = iMonitor;
+
+         return true;
+
+      }
+
+   }
+
 
    ::count session::get_monitor_count()
    {
+      
+      if(m_bSystemSynchronizedScreen)
+      {
 
-#ifdef WINDOWSEX
+         return System.get_monitor_count();
 
-      return m_monitorinfoa.get_count();
+      }
+      else
+      {
 
-#else
+         return m_rectaScreen.get_count();
 
-      return 1;
-
-#endif
+      }
 
    }
 
 
    bool session::get_monitor_rect(index iMonitor,LPRECT lprect)
    {
+   
+      if(m_bSystemSynchronizedScreen)
+      {
 
-#ifdef WINDOWSEX
+         return System.get_monitor_rect(iMonitor, lprect);
 
-      if(iMonitor < 0 || iMonitor >= get_monitor_count())
-         return false;
+      }
+      else
+      {
 
-      *lprect = m_monitorinfoa[iMonitor].rcMonitor;
+         if(iMonitor < 0 || iMonitor >= m_rectaScreen.get_count())
+         {
 
-#elif defined(METROWIN)
+            return false;
 
-      return System.GetWindowRect(lprect);
+         }
 
-#elif defined(LINUX)
+         *lprect = m_rectaScreen[iMonitor];
 
-      xdisplay  d;
+         return true;
 
-      if(!d.open(NULL))
-         return false;
-
-      lprect->left = 0;
-      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
-      lprect->top = 0;
-      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
-
-#elif defined(APPLEOS)
-
-      if(iMonitor < 0 || iMonitor >= get_monitor_count())
-         return false;
-
-      GetMainScreenRect(lprect);
-
-#else
-
-      throw todo(get_app());
-
-      ::GetWindowRect(::GetDesktopWindow(),lprect);
-
-#endif
-
-      return true;
+      }
 
    }
 
@@ -361,7 +385,6 @@ namespace base
       return get_monitor_count();
 
    }
-
 
 
    bool session::get_desk_monitor_rect(index iMonitor,LPRECT lprect)
@@ -651,8 +674,6 @@ namespace base
       if(!m_spfs->initialize())
          return false;
 
-      enum_display_monitors();
-
       m_spcopydesk.create(allocer());
 
       if(!m_spcopydesk->initialize())
@@ -781,14 +802,14 @@ namespace base
    }
 
 
-   void session::enum_display_monitors()
+   void system::enum_display_monitors()
    {
 
 #ifdef WINDOWSEX
 
       m_monitorinfoa.remove_all();
 
-      ::EnumDisplayMonitors(NULL,NULL,&session::monitor_enum_proc,(LPARAM)(dynamic_cast < ::base::session * > (this)));
+      ::EnumDisplayMonitors(NULL,NULL,&system::monitor_enum_proc,(LPARAM)(dynamic_cast < ::base::system * > (this)));
 
 #else
 
@@ -803,18 +824,18 @@ namespace base
 
 
 #ifdef WINDOWSEX
-   BOOL CALLBACK session::monitor_enum_proc(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor,LPARAM dwData)
+   BOOL CALLBACK system::monitor_enum_proc(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor,LPARAM dwData)
    {
       
-      ::base::session * psession = (::base::session *) dwData;
+      ::base::system * psystem = (::base::system *) dwData;
       
-      psession->monitor_enum(hmonitor,hdcMonitor,lprcMonitor);
+      psystem->monitor_enum(hmonitor,hdcMonitor,lprcMonitor);
       
       return TRUE; // to enumerate all
 
    }
 
-   void session::monitor_enum(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor)
+   void system::monitor_enum(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor)
    {
 
       UNREFERENCED_PARAMETER(hdcMonitor);
@@ -846,7 +867,7 @@ namespace base
    void session::get_cursor_pos(LPPOINT lppoint)
    {
 
-      if(m_bSessionSynchronizedCursor)
+      if(m_bSystemSynchronizedCursor)
       {
 
 #ifdef METROWIN

@@ -1615,7 +1615,7 @@ d.unlock();
          if(m_papp->is_system())
          {
             psession = System.query_session(0);
-            if(psession != NULL && psession->m_bSessionSynchronizedCursor)
+            if(psession != NULL && psession->m_bSystemSynchronizedCursor)
             {
                psession->m_ptCursor = pmouse->m_pt;
             }

@@ -1271,14 +1271,14 @@ namespace windows
 
          message::mouse * pmouse = (::message::mouse *) pbase;
 
-         if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && !m_pbaseapp->m_pbasesession->m_bSessionSynchronizedCursor)
+         if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && !m_pbaseapp->m_pbasesession->m_bSystemSynchronizedCursor)
          {
 
             m_pbaseapp->m_pbasesession->m_ptCursor = pmouse->m_pt;
 
          }
 
-         if(m_pui != NULL && m_pui != this && m_pui->m_pbaseapp->m_pbasesession != NULL && m_pui->m_pbaseapp->m_pbasesession != m_pbaseapp->m_pbasesession && !m_pui->m_pbaseapp->m_pbasesession->m_bSessionSynchronizedCursor)
+         if(m_pui != NULL && m_pui != this && m_pui->m_pbaseapp->m_pbasesession != NULL && m_pui->m_pbaseapp->m_pbasesession != m_pbaseapp->m_pbasesession && !m_pui->m_pbaseapp->m_pbasesession->m_bSystemSynchronizedCursor)
          {
 
             m_pui->m_pbaseapp->m_pbasesession->m_ptCursor = pmouse->m_pt;

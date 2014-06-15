@@ -74,7 +74,7 @@ namespace plugin
       
       UNREFERENCED_PARAMETER(pobj);
       
-      BaseSession.m_bSessionSynchronizedCursor = false;
+      BaseSession.m_bSystemSynchronizedCursor = false;
 
    }
 
