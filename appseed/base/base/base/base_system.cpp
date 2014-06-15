@@ -139,6 +139,7 @@ namespace base
 
 #endif
 
+      m_bSessionSynchronizedCursor = true;
 
    }
 

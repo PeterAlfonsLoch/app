@@ -167,6 +167,10 @@ CLASS_DECL_BASE inline bool is_double(uint64_t ui)
    return (ui & 0xfff0000000000000 ) == 0;
 }
 
+CLASS_DECL_BASE bool copy(__point64 * lpptDest,const POINT * lpptSrc);
+CLASS_DECL_BASE bool copy(LPPOINT lpptDest,const __point64 * lpptSrc);
+
+
 CLASS_DECL_BASE bool null(LPRECT prectDest);
 CLASS_DECL_BASE bool x_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2);
 CLASS_DECL_BASE bool y_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2);

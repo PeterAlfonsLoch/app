@@ -30,6 +30,8 @@ namespace install
 
 #endif
 
+      ::set_thread(m_pplugin);
+
       string strId = get_command_line_param(m_strCommandLine, "app", "session", "session_start").trimmed();
 
       string strType = get_command_line_param(m_strCommandLine, "app_type").trimmed();

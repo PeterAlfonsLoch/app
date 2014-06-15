@@ -139,8 +139,6 @@ namespace install
    CLASS_DECL_BASE bool install::app_install_send_short_message(const char * psz, bool bLaunch, const char * pszBuild)
    {
 
-
-
 #ifdef METROWIN
 
       throw "todo";

@@ -123,7 +123,7 @@ namespace simple_ui
 
       POINT ptCursor;
 
-      ui_get_cursor_pos(&ptCursor);
+      BaseSession.get_cursor_pos(&ptCursor);
 
       bool bHover = rectWindow.contains(ptCursor);
 

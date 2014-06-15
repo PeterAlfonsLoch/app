@@ -84,11 +84,11 @@ namespace hotplugin
 
       virtual void on_paint(::draw2d::graphics * pgraphics, LPCRECT lprect);
 
-      virtual int32_t starter_start(const char * pszCommandLine);
+      virtual int32_t host_starter_start(const char * pszCommandLine);
 
-      static int32_t starter_start(const char * pszCommandLine, ::base::application * papp, plugin * pplugin = NULL);
+      static int32_t host_starter_start(const char * pszCommandLine, ::base::application * papp, plugin * pplugin = NULL);
 
-      static int32_t starter_start_sync(const char * pszCommandLine, ::base::application * papp, plugin * pplugin = NULL);
+      static int32_t host_starter_start_sync(const char * pszCommandLine, ::base::application * papp, plugin * pplugin = NULL);
 
       virtual void deferred_prodevian_redraw();
 

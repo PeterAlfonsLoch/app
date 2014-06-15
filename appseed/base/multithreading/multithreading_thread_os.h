@@ -120,6 +120,7 @@ public:
    int32_t              m_iResult;
    HTHREAD              m_hthread;
    UINT                 m_nId;
+   bool                 m_bRun;
 
 
    thread_layer();

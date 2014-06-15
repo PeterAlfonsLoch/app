@@ -83,18 +83,7 @@ namespace hotplugin
    void host::GetWindowRect(LPRECT lprect)
    {
 
-      if(m_pplugin != NULL)
-      {
-
-         m_pplugin->GetWindowRect(lprect);
-
-      }
-      else
-      {
-
-         ::user::interaction::GetWindowRect(lprect);
-
-      }
+      ::user::interaction::GetWindowRect(lprect);
 
    }
 
@@ -188,10 +177,10 @@ namespace hotplugin
 
       }
 
-      if(m_pimpl.is_set())
+      if(::user::interaction::m_pimpl.is_set())
       {
 
-         m_pimpl->_001Print(pgraphics);
+         ::user::interaction::m_pimpl->_001Print(pgraphics);
 
       }
 
@@ -346,17 +335,17 @@ namespace hotplugin
    }
 
 
-   int32_t host::starter_start(const char * pszCommandLine)
+   int32_t host::host_starter_start(const char * pszCommandLine)
    {
 
-      return starter_start(pszCommandLine, get_app(), this);
+      return host_starter_start(pszCommandLine, get_app(), this);
 
    }
 
 
-   int32_t host::starter_start(const char * pszCommandLine, ::base::application * papp, plugin * pplugin)
+   int32_t host::host_starter_start(const char * pszCommandLine, ::base::application * papp, plugin * pplugin)
    {
-
+      
       ::install::starter_start * pstart    = new ::install::starter_start(papp);
 
       pstart->m_pplugin             = pplugin;
@@ -386,7 +375,7 @@ throw todo(get_thread_app());
       return 0;
    }
 
-   int32_t host::starter_start_sync(const char * pszCommandLine, ::base::application * papp, plugin * pplugin)
+   int32_t host::host_starter_start_sync(const char * pszCommandLine, ::base::application * papp, plugin * pplugin)
    {
 
       ::install::starter_start * pstart = new ::install::starter_start(papp);

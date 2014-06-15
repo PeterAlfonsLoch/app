@@ -46,6 +46,8 @@ namespace install
       bool                 m_bLogged;
       // in login process, login screen should be shown
       bool                 m_bLogin;
+      bool                 m_bCa2Login;
+      bool                 m_bCa2Logout;
       bool                 m_bRestartCa2;
       bool                 m_bPendingStream;
       uint32_t             m_dwLastOk;
@@ -125,6 +127,7 @@ namespace install
 
       //sp(::user::interaction) SetFocus();
 
+      virtual void on_host_timer();
 
    };
 

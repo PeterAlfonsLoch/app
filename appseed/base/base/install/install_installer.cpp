@@ -247,7 +247,6 @@ namespace install
 
       new_progress_end(0.02);
 
-
       System.install().app_install_get_extern_executable_path(m_strVersion, m_strBuild, this); // defer install install extern app.install.exe executable
 
       m_bProgressModeAppInstall = false;

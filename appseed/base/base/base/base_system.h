@@ -54,6 +54,8 @@ namespace base
 
       ::sockets::SSLInitializer *                    m_psslinit;
 
+      sp(::user::interaction)                      m_spuiFocus;
+
 
       application_ptra                             m_appptra;
 
@@ -103,8 +105,10 @@ namespace base
 #endif
 
       ::base::library                              m_libraryDraw2d;
-      bool                                         m_bMatterFromHttpCache;
 
+
+      bool                                         m_bMatterFromHttpCache;
+      bool                                         m_bSessionSynchronizedCursor;
 
 
 

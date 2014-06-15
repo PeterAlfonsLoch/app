@@ -615,3 +615,29 @@ bool polygon_contains(LPPOINT lppt, LPPOINT lpptPolygon, int iCount)
    return oddNodes;
 
 }
+
+
+CLASS_DECL_BASE bool copy(__point64 * lpptDst,const POINT * lpptSrc)
+{
+   
+   lpptDst->x = lpptSrc->x;
+   
+   lpptDst->y = lpptSrc->y;
+
+   return true;
+
+}
+
+
+CLASS_DECL_BASE bool copy(LPPOINT lpptDst,const __point64 * lpptSrc)
+{
+
+   lpptDst->x = (LONG)lpptSrc->x;
+
+   lpptDst->y = (LONG)lpptSrc->y;
+
+   return true;
+
+
+}
+

@@ -101,12 +101,20 @@ namespace fontopus
    string simple_ui::fontopus(LPCRECT lprect)
    {
 
-      if(!CreateEx(WS_EX_LAYERED, NULL, NULL, 0, null_rect(), BaseSession.oprop("plugin_parent").cast < ::user::interaction > (), "fontopus"))
+      ::user::interaction * puiParent = BaseSession.oprop("plugin_parent").cast < ::user::interaction >();
+
+      if(!CreateEx(WS_EX_LAYERED, NULL, NULL, 0, null_rect(), puiParent, "fontopus"))
          return "";
 
       ::rect rectDesktop;
 
-      if (lprect == NULL)
+      if(puiParent != NULL)
+      {
+
+         puiParent->GetWindowRect(rectDesktop);
+
+      }
+      else if (lprect == NULL)
       {
 
          BaseSession.get_main_monitor(rectDesktop);

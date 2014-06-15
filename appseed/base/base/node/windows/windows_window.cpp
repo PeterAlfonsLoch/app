@@ -1271,14 +1271,14 @@ namespace windows
 
          message::mouse * pmouse = (::message::mouse *) pbase;
 
-         if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && m_pbaseapp->m_pbasesession->m_bSessionSynchronizedCursor)
+         if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && !m_pbaseapp->m_pbasesession->m_bSessionSynchronizedCursor)
          {
 
             m_pbaseapp->m_pbasesession->m_ptCursor = pmouse->m_pt;
 
          }
 
-         if(m_pui != NULL && m_pui != this && m_pui->m_pbaseapp->m_pbasesession != NULL && m_pui->m_pbaseapp->m_pbasesession != m_pbaseapp->m_pbasesession && m_pui->m_pbaseapp->m_pbasesession->m_bSessionSynchronizedCursor)
+         if(m_pui != NULL && m_pui != this && m_pui->m_pbaseapp->m_pbasesession != NULL && m_pui->m_pbaseapp->m_pbasesession != m_pbaseapp->m_pbasesession && !m_pui->m_pbaseapp->m_pbasesession->m_bSessionSynchronizedCursor)
          {
 
             m_pui->m_pbaseapp->m_pbasesession->m_ptCursor = pmouse->m_pt;
@@ -3862,7 +3862,7 @@ namespace windows
 
       single_lock sl(mutex_graphics());
 
-      ASSERT(::IsWindow(get_handle()));
+      //ASSERT(::IsWindow(get_handle()));
 
       rect64 rectWindowOld = m_rectParentClient;
 
@@ -3961,22 +3961,18 @@ namespace windows
    {
 
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
-
-      lprect->left   += (LONG)rectWindow.left;
-      lprect->right  += (LONG)rectWindow.left;
-      lprect->top    += (LONG)rectWindow.top;
-      lprect->bottom += (LONG)rectWindow.top;
+      ::copy(rectWindow,lprect);
+      ClientToScreen(rectWindow);
+      ::copy(lprect,rectWindow);
 
    }
 
    void window::ClientToScreen(LPPOINT lppoint)
    {
-      class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
-
-      lppoint->x     += (LONG)rectWindow.left;
-      lppoint->y     += (LONG)rectWindow.top;
+      class point64 pt;
+      ::copy(pt,lppoint);
+      ClientToScreen(pt);
+      ::copy(lppoint,pt);
    }
 
 
@@ -4004,23 +4000,20 @@ namespace windows
 
    void window::ScreenToClient(LPRECT lprect)
    {
-      class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
 
-      lprect->left   -= (LONG)rectWindow.left;
-      lprect->right  -= (LONG)rectWindow.left;
-      lprect->top    -= (LONG)rectWindow.top;
-      lprect->bottom -= (LONG)rectWindow.top;
+      class rect64 rectWindow;
+      ::copy(rectWindow,lprect);
+      ScreenToClient(rectWindow);
+      ::copy(lprect,rectWindow);
 
    }
 
    void window::ScreenToClient(LPPOINT lppoint)
    {
-      class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
-
-      lppoint->x     -= (LONG)rectWindow.left;
-      lppoint->y     -= (LONG)rectWindow.top;
+      class point64 pt;
+      ::copy(pt,lppoint);
+      ScreenToClient(pt);
+      ::copy(lppoint,pt);
    }
 
 
@@ -4320,11 +4313,9 @@ namespace windows
    {
       oswindow oswindowCapture = ::GetCapture();
       if(oswindowCapture == NULL)
-         return NULL;
-      if(oswindowCapture == get_handle())
       {
          sp(::user::interaction) puieCapture = get_capture();
-         if(::ReleaseCapture())
+         if(puieCapture.is_set())
          {
             m_puiCapture = NULL;
             return puieCapture;
@@ -4336,7 +4327,23 @@ namespace windows
       }
       else
       {
-         return window::GetCapture()->release_capture();
+         if(oswindowCapture == get_handle())
+         {
+            sp(::user::interaction) puieCapture = get_capture();
+            if(::ReleaseCapture())
+            {
+               m_puiCapture = NULL;
+               return puieCapture;
+            }
+            else
+            {
+               return NULL;
+            }
+         }
+         else
+         {
+            return window::GetCapture()->release_capture();
+         }
       }
    }
 
@@ -4673,9 +4680,6 @@ namespace windows
       try
       {
 
-         if(!::IsWindow(get_handle()))
-            return false;
-
          if(m_pui != NULL)
          {
 
@@ -4686,6 +4690,9 @@ namespace windows
                return false;
 
          }
+
+         if(!::IsWindow(get_handle()))
+            return true;
 
          if(!::IsWindowVisible(get_handle()))
             return false;

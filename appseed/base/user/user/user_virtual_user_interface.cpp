@@ -1659,7 +1659,7 @@ bool virtual_user_interface::post_message(UINT uiMessage, WPARAM wparam, lparam 
 
       rect rectWindow;
       GetWindowRect(rectWindow);
-      get_wnd()->viewport_screen_to_client(rectWindow);
+      get_wnd()->m_pui->viewport_screen_to_client(rectWindow);
       pgraphics->SetViewportOrg(rectWindow.top_left());
       pgraphics->SelectClipRgn(NULL);
 

@@ -32,7 +32,8 @@ namespace hotplugin
    plugin::plugin(sp(::base::application) papp) :
       element(papp),
       ::simple_ui::style(papp),
-      ::user::interaction(papp)
+      ::user::interaction(papp),
+      ::thread(papp)
    {
 
       m_pstyle          = this;
@@ -970,6 +971,12 @@ namespace hotplugin
 
       return true;
 
+
+   }
+
+
+   void plugin::on_host_timer()
+   {
 
    }
 

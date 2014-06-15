@@ -1409,13 +1409,13 @@ int32_t thread_layer::run()
 
    ZERO(msg);
 
-   while(true)
+   while(m_bRun)
    {
 
-      if(!PeekMessage(&msg, NULL, 0, 0xffffffffu, TRUE))
+      if(m_bRun && !PeekMessage(&msg,NULL,0,0xffffffffu,TRUE))
       {
 
-         if(!on_idle())
+         if(m_bRun && !on_idle())
          {
 
             Sleep(m_iSleepiness);

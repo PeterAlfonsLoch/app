@@ -9,6 +9,7 @@ thread_layer::thread_layer()
    m_iResult         = 0;
    m_hthread         = NULL;
    m_nId             = 0;
+   m_bRun            = true;
 
 }
 

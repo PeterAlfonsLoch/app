@@ -7,7 +7,20 @@ namespace user
 
    LRESULT message::send()
    {
-      return m_pui->send_message(m_uiMessage, m_wparam, m_lparam);
+
+      try
+      {
+
+         return m_pui->send_message(m_uiMessage,m_wparam,m_lparam);
+
+      }
+      catch(...)
+      {
+
+      }
+
+      return 0;
+
    }
 
    UINT message::ThreadProcSendMessage(LPVOID lp)

@@ -10,7 +10,8 @@ namespace hotplugin
 
    class CLASS_DECL_BASE plugin :
       virtual public ::simple_ui::style,
-      virtual public ::simple_ui::interaction
+      virtual public ::simple_ui::interaction,
+      virtual public ::thread
 #ifndef METROWIN
       , virtual public ::small_ipc_channel
 #endif
@@ -156,6 +157,8 @@ namespace hotplugin
       virtual bool set_host(::hotplugin::host * phost);
 
       virtual void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int32_t iProfile);
+
+      virtual void on_host_timer();
       
    };
 

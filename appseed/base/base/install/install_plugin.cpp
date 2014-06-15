@@ -176,6 +176,9 @@ namespace install
    bool plugin::thread_start_ca2_on_idle()
    {
 
+      if (m_bLogin || !m_bLogged || m_bCa2Login || m_bCa2Logout)
+         return false;
+
 #ifdef METROWIN
 
       throw "todo";
@@ -306,8 +309,8 @@ namespace install
    void plugin::start_ca2()
    {
 
-      //return;
-
+      if(m_bCa2Login || m_bCa2Logout)
+         return;
 
       if(!m_bLogged)
       {
@@ -317,29 +320,48 @@ namespace install
          m_bLogin = true;
          m_bLogged = BaseSession.fontopus()->get_user(false) != NULL;
 
+         m_bCa2Login = false;
+         m_bCa2Logout = false;
+
       }
 
 
       if (!m_phost->m_bOk)
          return;
 
-      string strScript = System.url().get_script(m_phost->m_strPluginUrl);
 
-      if (strScript == "/ca2login")
+      if(m_bLogged)
       {
-         property_set set(get_app());
-         set.parse_url_query(System.url().get_query(m_phost->m_strPluginUrl));
-         string strUrl;
-         System.url().set_param(strUrl, set["ruri"], "sessid", ApplicationUser.get_sessid(set["ruri"]));
-         m_phost->open_url(strUrl);
-         return;
-      }
-      else if (strScript == "/ca2logout")
-      {
-         property_set set(get_app());
-         set.parse_url_query(System.url().get_query(m_phost->m_strPluginUrl));
-         //ca2logout(set);
-         return;
+
+
+
+         string strScript = System.url().get_script(m_phost->m_strPluginUrl);
+
+         if(!m_bCa2Login && strScript == "/ca2login")
+         {
+            m_bCa2Login = true;
+            m_bOk = false;
+            m_phost->m_bOk = false;
+            property_set set(get_app());
+            set.parse_url_query(System.url().get_query(m_phost->m_strPluginUrl));
+            string strUrl;
+            System.url().set_param(strUrl,set["ruri"],"sessid",ApplicationUser.get_sessid(set["ruri"]));
+            m_phost->open_url(strUrl);
+            m_startca2.m_bRun = false;
+            return;
+         }
+         else if(!m_bCa2Logout && strScript == "/ca2logout")
+         {
+            m_bCa2Logout = true;
+            m_bOk = false;
+            m_phost->m_bOk = false;
+            property_set set(get_app());
+            set.parse_url_query(System.url().get_query(m_phost->m_strPluginUrl));
+            //ca2logout(set);
+            m_startca2.m_bRun = false;
+            return;
+         }
+
       }
 
 
@@ -445,7 +467,7 @@ namespace install
 
    run_install:
 
-      m_phost->starter_start(pszInstall);
+      m_phost->host_starter_start(pszInstall);
 
 
    }
@@ -462,7 +484,7 @@ namespace install
 
 #else
 
-      if (!is_installing() && System.install().is_ca2_installed())
+      if (!m_bLogin && m_bLogged && !m_bCa2Login && !m_bCa2Logout && !is_installing() && System.install().is_ca2_installed())
       {
 
          if(ensure_tx(::hotplugin::message_paint, (void *) lprect, sizeof(*lprect)))
@@ -597,8 +619,9 @@ namespace install
 
       SCAST_PTR(::message::base,pbase,pobj);
 
-      if(pbase != NULL && !is_installing() && System.install().is_ca2_installed())
+      if(!m_bLogin && m_bLogged && !m_bCa2Login && !m_bCa2Logout && pbase != NULL && !is_installing() && System.install().is_ca2_installed())
       {
+
 
          MESSAGE msg;
 
@@ -847,7 +870,7 @@ namespace install
 
       bool bOk = ::hotplugin::plugin::SetWindowPos(z, x, y, cx, cy, nFlags);
 
-      if (!is_installing() && System.install().is_ca2_installed())
+      if (!m_bLogin && m_bLogged && !m_bCa2Login && !m_bCa2Logout && !is_installing() && System.install().is_ca2_installed())
       {
 
 #ifdef METROWIN
@@ -876,6 +899,18 @@ namespace install
 
    void plugin::on_ready()
    {
+
+      if(m_phost == NULL)
+         return;
+
+      if(!m_phost->m_bOk)
+         return;
+
+      if(m_bLogin)
+         return;
+
+      if(!m_bLogged)
+         return;
 
       string strScript = System.url().get_script(m_phost->m_strPluginUrl);
 
@@ -945,7 +980,7 @@ namespace install
          if (strSchema.is_empty())
             strSchema = "en";
 
-         m_phost->starter_start(": app=session session_start=session app_type=application install locale=" + strLocale + " schema=" + strSchema);
+         m_phost->host_starter_start(": app=session session_start=session app_type=application install locale=" + strLocale + " schema=" + strSchema);
 
       }
 
@@ -1039,7 +1074,29 @@ restart:
    }
 
 
+   void plugin::on_host_timer()
+   {
 
+      if(m_bLogin)
+      {
+
+         if(!m_bLogged)
+         {
+
+            if((get_tick_count() - m_dwLastRestart) > (84 + 77))
+            {
+
+               m_dwLastRestart = get_tick_count();
+
+               start_ca2();
+
+            }
+
+         }
+
+      }
+
+   }
 
 } // namespace install
 

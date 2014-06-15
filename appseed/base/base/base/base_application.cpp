@@ -1309,8 +1309,7 @@ namespace base
             return NULL;
          }
       }
-      return NULL;
-
+      return System.m_spuiFocus;
 #else
 
       return System.get_active_guie();
@@ -3293,6 +3292,8 @@ namespace base
 
       if(!m_spuser->initialize())
          return false;
+
+      user()->set_keyboard_layout(NULL,::action::source::database());
 
       m_bBaseInitializeResult = true;
 
