@@ -395,7 +395,7 @@ thread_startup::~thread_startup()
 
 
 
-bool thread_impl::begin_thread(bool bSynch, int32_t * piStartupError, int32_t epriority,uint32_t dwCreateFlagsParam,uint_ptr nStackSize,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+bool thread_impl::begin_thread(bool bSynch,int32_t * piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlagsParam,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
    DWORD dwCreateFlags = dwCreateFlagsParam;
