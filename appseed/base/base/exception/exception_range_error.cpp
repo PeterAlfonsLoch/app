@@ -7,6 +7,14 @@ range_error::range_error(sp(::base::application) papp, const char * pszError) :
    ::exception::base(papp),
    error_exception(papp, pszError)
 {
+      if(pszError == NULL)
+      {
+         printf(":range_error(NULL)");
+      }
+      else
+      {
+         printf(":range_error(\"%s\")",pszError);
+      }
 }
 
 range_error::~range_error()

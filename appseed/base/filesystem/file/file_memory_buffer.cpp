@@ -145,7 +145,7 @@ namespace file
    file_position memory_buffer::get_position() const
    {
       if(!IsValid())
-         throw io_exception(get_app());
+         throw io_exception(get_app(), "memory_buffer::get_position");
       return (file_position) m_dwPosition;
    }
 

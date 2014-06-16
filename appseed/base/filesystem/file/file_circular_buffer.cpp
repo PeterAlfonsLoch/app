@@ -64,7 +64,7 @@ namespace file
 
       if (l > m_q)
       {
-         throw io_exception(get_app());
+         throw io_exception(get_app(), "circular_buffer::read");
       }
 
       if (m_b + l > m_max) // block crosses circular border

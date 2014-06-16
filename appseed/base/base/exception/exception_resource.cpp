@@ -7,7 +7,7 @@ resource_exception::resource_exception(sp(::base::application) papp) :
    ::exception::base(papp),
    simple_exception(papp)
 {
-
+   printf(":resource_exception");
 }
 
 

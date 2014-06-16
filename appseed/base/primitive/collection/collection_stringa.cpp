@@ -654,7 +654,7 @@ void stringa::read(::file::input_stream & istream)
    }
 
    if(this->get_size() != iSize)
-      throw io_exception(get_app());
+      throw io_exception(get_app(), "stringa::read");
 
 }
 

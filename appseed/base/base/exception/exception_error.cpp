@@ -6,6 +6,15 @@ error_exception::error_exception(sp(::base::application) papp, const char * pszE
    ::call_stack(papp),
    ::exception::base(papp)
 {
+      if(pszError == NULL)
+      {
+         printf(":error(NULL)");
+      }
+      else
+      {
+         printf(":error(\"%s\")",pszError);
+      }
+      
    m_strError = pszError;
 }
 

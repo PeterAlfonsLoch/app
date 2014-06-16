@@ -78,8 +78,8 @@ public:
 
    virtual void process_message_filter(int32_t code,signal_details * pobj);
 
-
-   virtual int32_t thread_entry(::thread_startup * pstartup);
+   virtual int32_t thread_startup(::thread_startup * pstartup);
+   virtual bool thread_entry(int32_t * piReturnCode);
    virtual int32_t main();
    virtual int32_t thread_term(int32_t nResult);
 

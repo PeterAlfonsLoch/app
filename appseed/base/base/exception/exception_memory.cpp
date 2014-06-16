@@ -7,7 +7,7 @@ memory_exception::memory_exception(sp(::base::application) papp) :
    ::exception::base(papp),
    simple_exception(papp)
 {
-
+      printf(":memory");
 }
 
 
@@ -17,6 +17,14 @@ memory_exception::memory_exception(sp(::base::application) papp, const char * ps
    ::exception::base(papp),
    simple_exception(papp, pszMessage) 
 {
+      if(pszMessage == NULL)
+      {
+         printf(":memory(NULL)");
+      }
+      else
+      {
+         printf(":memory(\"%s\")",pszMessage);
+      }
 
 }
 

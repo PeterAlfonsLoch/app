@@ -6,10 +6,12 @@ not_licensed::not_licensed(sp(::base::application) papp, const char * pszRealm, 
    ::call_stack(papp),
    ::exception::base(papp)
 {
-
+      string str;
    m_strRealm     = pszRealm;
+   str += "realm=" + m_strRealm + ";";
    m_strUrl       = pszUrl;
-
+   str += "url=" + m_strUrl + ";";
+   printf(":not_licensed(\"%s\"", str);
 }
 
 
@@ -19,6 +21,7 @@ not_licensed::not_licensed(const not_licensed & e) :
    ::exception::base(e)
 {
 
+      printf(":not_licensed(copy)");
    m_strRealm     = e.m_strRealm;
    m_strUrl       = e.m_strUrl;
 

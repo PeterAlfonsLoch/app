@@ -7,7 +7,8 @@ user_exception::user_exception(sp(::base::application) papp) :
    ::exception::base(papp),
    ::simple_exception(papp)
 {
-   
+         printf(":user");
+
 }
 
 

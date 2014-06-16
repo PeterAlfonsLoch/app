@@ -6,6 +6,7 @@ temporary_exception::temporary_exception(const temporary_exception & e) :
    ::exception::base(e),
    m_strTip(e.m_strTip)
 {
+      printf(":temporary");
 }
 
 temporary_exception::temporary_exception(sp(::base::application) papp, const char * pszTip) : 
@@ -14,6 +15,14 @@ temporary_exception::temporary_exception(sp(::base::application) papp, const cha
    ::exception::base(papp),
    m_strTip(pszTip)
 {
+      if(pszTip == NULL)
+      {
+         printf(":temporary(NULL)");
+      }
+      else
+      {
+         printf(":temporary(\"%s\")",pszTip);
+      }
 }
 
 temporary_exception::~temporary_exception()

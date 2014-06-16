@@ -51,6 +51,8 @@ namespace file
          ::io_exception(e.get_app()),
          ::call_stack(e.get_app())
       {
+
+            printf(":file");
       }
 
       exception(sp(::base::application) papp, int32_t cause = exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);

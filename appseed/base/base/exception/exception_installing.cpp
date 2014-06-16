@@ -6,6 +6,7 @@ installing_exception::installing_exception(const installing_exception & e) :
    ::exception::base(e.get_app()),
    temporary_exception(e.get_app(), e.m_strTip)
 {
+      printf(":installing(copy)");
 }
 
 installing_exception::installing_exception(sp(::base::application) papp, const char * pszTip) : 
@@ -14,6 +15,14 @@ installing_exception::installing_exception(sp(::base::application) papp, const c
    ::exception::base(papp),
    temporary_exception(papp, pszTip)
 {
+      if(pszTip == NULL)
+      {
+         printf(":installing(NULL)");
+      }
+      else
+      {
+         printf(":installing(\"%s\")",pszTip);
+      }
 }
 
 installing_exception::~installing_exception()

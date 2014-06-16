@@ -20,7 +20,8 @@ namespace colorertake5
       ::call_stack(papp),
       ::exception::base(papp)
    {
-      
+         printf(":colorertake5");
+
       m_strMessage = "colorertake5::exception";
 
    }
@@ -30,6 +31,7 @@ namespace colorertake5
       ::call_stack(papp),
       ::exception::base(papp)
    {
+         printf(":colorertake5(%s)", msg);
       m_strMessage = "colorertake5::exception: ";
       m_strMessage += msg;
    }

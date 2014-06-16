@@ -7,7 +7,14 @@ invalid_character::invalid_character(sp(::base::application) papp, const char * 
    ::exception::base(papp),
    simple_exception(papp, pszMessage)
 {
-
+      if(pszMessage == NULL)
+      {
+         printf(":invalid_character(NULL)");
+      }
+      else
+      {
+         printf(":invalid_character(\"%s\")",pszMessage);
+      }
 }
 
 

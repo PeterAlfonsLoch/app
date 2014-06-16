@@ -7,6 +7,7 @@ hresult_exception::hresult_exception(sp(::base::application) papp, HRESULT hr) :
    ::call_stack(papp),
    ::exception::base(papp)
 {
+      printf(":hresult(%d)", hr);
    m_hresult = hr;
 }
    

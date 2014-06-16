@@ -34,25 +34,7 @@ mutex::mutex(sp(::base::application) papp, bool bInitiallyOwn, const char * pstr
    if(m_object == NULL)
    {
 
-      if(pstrName == NULL)
-      {
-
-         throw resource_exception(papp);
-
-      }
-      else
-      {
-
-         m_object = ::OpenMutexW(SYNCHRONIZE, TRUE, ::str::international::utf8_to_unicode(pstrName));
-
-         if(m_object == NULL)
-         {
-#ifndef METROWIN
-            throw resource_exception(papp);
-#endif
-         }
-
-      }
+      throw simple_exception(papp, "failed to create exception");
 
    }
 

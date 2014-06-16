@@ -76,7 +76,7 @@ namespace file
          uiRead = read(&buf[uiPos], nCount);
 
          if(uiRead <= 0)
-            throw io_exception(get_app());
+            throw io_exception(get_app(), "stream_buffer::full_read");
 
          nCount   -= uiRead;
          uiPos    += uiRead;

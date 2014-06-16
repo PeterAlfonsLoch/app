@@ -16,6 +16,7 @@ namespace file
       ::simple_exception(papp),
       ::io_exception(papp)
    {
+         printf(":file(%d,%d,%s)", cause, lOsError, string(lpszArchiveName));
       Construct(cause, lOsError, lpszArchiveName);
    }
 

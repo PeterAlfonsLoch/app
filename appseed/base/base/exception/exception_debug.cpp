@@ -26,6 +26,7 @@ assert_exception::assert_exception(const assert_exception & e) :
    ::exception::base(e),
    simple_exception(e)
 {
+      printf(":assert(copy)");
 }
 
 assert_exception::assert_exception(sp(::base::application) papp, const char * pszFile, long lLine) :
@@ -34,6 +35,15 @@ assert_exception::assert_exception(sp(::base::application) papp, const char * ps
    ::exception::base(papp),
    simple_exception(papp)
 {
+      if(pszFile == NULL)
+      {
+         printf(":assert(NULL, %d)",lLine);
+      }
+      else
+      {
+         printf(":assert(\"%s\":%d)",pszFile,lLine);
+      }
+      
    m_strFile = pszFile;
    m_lLine = lLine;
 }
@@ -49,6 +59,7 @@ misc_exception::misc_exception(const misc_exception & e) :
    simple_exception(e),
    m_strMessage(e.m_strMessage)
 {
+      printf(":misc(copy)");
 }
 
 misc_exception::misc_exception(sp(::base::application) papp, const char * pszMessage) :
@@ -57,6 +68,15 @@ misc_exception::misc_exception(sp(::base::application) papp, const char * pszMes
    ::exception::base(papp),
    simple_exception(papp)
 {
+      if(pszMessage == NULL)
+      {
+         printf(":misc(NULL)");
+      }
+      else
+      {
+         printf(":misc(\"%s\")",pszMessage);
+      }
+      
    m_strMessage = pszMessage;
 }
 

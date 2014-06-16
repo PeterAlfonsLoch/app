@@ -6,6 +6,7 @@ simple_exception::simple_exception(sp(::base::application) papp) :
    ::call_stack(papp),
    ::exception::base(papp)
 {
+      printf(":simple");
 }
 
 simple_exception::simple_exception(sp(::base::application) papp, const char * pszMessage) :
@@ -13,6 +14,14 @@ simple_exception::simple_exception(sp(::base::application) papp, const char * ps
    ::call_stack(papp),
    ::exception::base(papp)
 {
+      if(pszMessage == NULL)
+      {
+         printf(":simple(NULL)");
+      }
+      else
+      {
+         printf(":simple(\"%s\")",pszMessage);
+      }
 
    m_strMessage = pszMessage;
 

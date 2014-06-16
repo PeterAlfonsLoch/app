@@ -15,7 +15,6 @@ namespace base
       TCHAR **                      __targv;
 
       MESSAGE                       m_msg;
-      int32_t                       m_iError;
 
 
       simple_app();

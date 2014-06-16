@@ -402,7 +402,7 @@ bool thread_impl::begin_thread(bool bSynch,int32_t * piStartupError,int32_t epri
 
    ENSURE(m_hthread == NULL);
 
-   sp(thread_startup) pstartup = canew(thread_startup(get_app()));
+   sp(::thread_startup) pstartup = canew(::thread_startup(get_app()));
 
    pstartup->m_bError = FALSE;
 
@@ -597,24 +597,10 @@ uint32_t __thread_entry(void * pparam)
 
       }
 
-      if(!pstartup->m_bSynch)
-      {
-
-         // allow the creating thread to return from thread::create_thread
-         pstartup->m_event.set_event();
-
-         // wait for thread to be resumed
-         pstartup->m_event2.wait();
-
-         pstartup.release();
-
-      }
-
-
       try
       {
 
-         pthreadimpl->thread_entry(pstartup);
+         pthreadimpl->thread_startup(pstartup);
 
       }
       catch(...)
@@ -646,8 +632,85 @@ uint32_t __thread_entry(void * pparam)
 
       }
 
+      bool bSynch = pstartup->m_bSynch;
 
-      if(pstartup->m_bSynch)
+      if(!bSynch)
+      {
+
+         // allow the creating thread to return from thread::create_thread
+         pstartup->m_event.set_event();
+
+         // wait for thread to be resumed
+         pstartup->m_event2.wait();
+
+         pstartup.release();
+
+      }
+
+      int32_t iError = 0;
+      bool bError = false;
+
+      try
+      {
+
+         if(!pthreadimpl->thread_entry(&iError))
+         {
+
+            bError = true;
+
+         }
+
+      }
+      catch(::exit_exception &)
+      {
+
+         bError = true;
+      
+      }
+
+
+      if(bError)
+      {
+
+         if(bSynch)
+         {
+
+            pstartup->m_iError = iError;
+
+            pstartup->m_bError = true;
+
+            pstartup->m_event.set_event();
+
+            __node_term_thread(pthread);
+
+            ::multithreading::__node_on_term_thread(pthreadimpl->m_hthread,pthread,-1);
+
+            ASSERT(FALSE);  // unreachable
+
+            return -1; // anyway...
+
+         }
+         else
+         {
+
+            __node_term_thread(pthread);
+
+            ::multithreading::__node_on_term_thread(pthreadimpl->m_hthread,pthread,-1);
+
+            ASSERT(FALSE);  // unreachable
+
+            return -1; // anyway...
+
+         }
+
+      }
+
+
+
+
+
+
+      if(bSynch)
       {
 
          // allow the creating thread to return from thread::create_thread
@@ -1051,10 +1114,7 @@ void thread_impl::message_queue_message_handler(signal_details * pobj)
 
 
 
-
-
-
-int32_t thread_impl::thread_entry(::thread_startup * pstartup)
+int32_t thread_impl::thread_startup(::thread_startup * pstartup)
 {
 
    ASSERT(pstartup != NULL);
@@ -1076,13 +1136,26 @@ int32_t thread_impl::thread_entry(::thread_startup * pstartup)
 
    IGUI_WIN_MSG_LINK(WM_USER + 123,pthreadimpl,pthreadimpl,&thread_impl::_001OnCreateMessageWindow);
 
+   return 0;
+
+}
+
+
+
+
+bool thread_impl::thread_entry(int32_t * piStartupError)
+{
+
+   bool bError = false;
+   int iError = 0;
+
    try
    {
 
       if(!m_puser->pre_run())
       {
 
-         pstartup->m_bError = true;
+         bError = true;
 
       }
 
@@ -1090,16 +1163,16 @@ int32_t thread_impl::thread_entry(::thread_startup * pstartup)
    catch(...)
    {
       
-      pstartup->m_bError = true;
+      bError = true;
 
    }
 
-   if(pstartup->m_bError)
+   if(bError)
    {
 
       if(m_iReturnCode != 0)
       {
-         pstartup->m_iError = m_iReturnCode;
+         iError = m_iReturnCode;
          if(m_puser->m_iReturnCode == 0)
          {
             m_puser->m_iReturnCode = m_iReturnCode;
@@ -1107,7 +1180,7 @@ int32_t thread_impl::thread_entry(::thread_startup * pstartup)
       }
       else if(m_puser->m_iReturnCode != 0)
       {
-         pstartup->m_iError = m_puser->m_iReturnCode;
+         iError = m_puser->m_iReturnCode;
          if(m_iReturnCode == 0)
          {
             m_iReturnCode = m_puser->m_iReturnCode;
@@ -1115,14 +1188,34 @@ int32_t thread_impl::thread_entry(::thread_startup * pstartup)
       }
       else
       {
-         pstartup->m_iError = -1;
+         iError = -1;
          m_iReturnCode = -1;
          m_puser->m_iReturnCode = -1;
       }
 
    }
 
-   return 0;
+
+   if(piStartupError != NULL)
+   {
+      
+      *piStartupError = iError;
+
+   }
+
+
+   if(bError)
+   {
+
+      return false;
+
+   }
+   else
+   {
+
+      return true;
+
+   }
 
 }
 

@@ -4348,6 +4348,10 @@ namespace base
 
       strPath.replace("::","/");
 
+      mutex mutex(get_app(),false,"Global\\gudo/" + strPath);
+
+      synch_lock sl(&mutex);
+
       ::file::binary_buffer_sp file = Application.file_get_file(Application.dir().userappdata(strPath),::file::mode_read);
 
       if(file.is_set())
@@ -4377,6 +4381,10 @@ namespace base
       string strPath(strKey);
 
       strPath.replace("::","/");
+
+      mutex mutex(get_app(),false,"Global\\gudo/" + strPath);
+
+      synch_lock sl(&mutex);
 
       ::file::binary_buffer_sp file = Application.file_get_file(Application.dir().userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
 

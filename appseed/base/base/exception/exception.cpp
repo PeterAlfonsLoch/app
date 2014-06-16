@@ -7,12 +7,13 @@ namespace exception
 
    exception::exception()
    {
-
+      printf("log:exception");
    }
 
 
    exception::~exception()
    {
+      printf("\n");
 
    }
 

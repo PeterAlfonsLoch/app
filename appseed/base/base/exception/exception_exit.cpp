@@ -7,7 +7,10 @@ exit_exception::exit_exception(sp(::base::application) papp, const char * pszMes
    ::exception::base(papp),
    ::simple_exception(papp, pszMessage)
 {
-
+      if(pszMessage == NULL)
+         printf(":exit(NULL)");
+      else
+         printf(":exit(\"%s\")", pszMessage);
 }
 
 
@@ -17,7 +20,7 @@ exit_exception::exit_exception(const exit_exception & e) :
    ::exception::base(e),
    ::simple_exception(e)
 {
-
+      printf(":exit(copy)");
 }
 
 

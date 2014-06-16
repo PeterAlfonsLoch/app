@@ -119,7 +119,7 @@ thread* __begin_thread(sp(::base::application) papp,__THREADPROC pfnThreadProc,L
    thread* pThread = new thread(papp,pfnThreadProc,pParam);
    ASSERT_VALID(pThread);
 
-   if(!pThread->create_thread(epriority,dwCreateFlags,nStackSize,lpSecurityAttrs))
+   if(!pThread->create_thread(epriority,nStackSize, dwCreateFlags,lpSecurityAttrs))
    {
       pThread->Delete();
       return NULL;

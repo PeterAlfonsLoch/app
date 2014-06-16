@@ -7,6 +7,7 @@ todo::todo(sp(::base::application) papp, const char * pszTip) :
    ::exception::base(papp),
    not_implemented(papp, pszTip)
 {
+      printf(":todo");
 }
 
 
@@ -16,6 +17,7 @@ todo::todo(const todo & e) :
    ::exception::base(e),
    not_implemented(e)
 {
+      printf(":todo(copy)");
 }
 
 

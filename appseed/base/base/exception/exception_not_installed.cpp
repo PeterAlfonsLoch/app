@@ -6,13 +6,20 @@ not_installed::not_installed(sp(::base::application) papp, const char * pszVersi
    ::call_stack(papp),
    ::exception::base(papp)
 {
-
+      string str;
    m_strVersion         = pszVersion;
+   str += "version=" + m_strVersion + ";";
    m_strBuild           = pszBuild;
+   str += "build=" + m_strBuild + ";";
    m_strType            = pszType;
+   str += "type=" + m_strType + ";";
    m_strId              = pszId;
+   str += "idn=" + m_strId + ";";
    m_strLocale          = pszLocale;
+   str += "locale=" + m_strLocale + ";";
    m_strSchema          = pszSchema;
+   str += "schema=" + m_strSchema + ";";
+   printf(":not_installed(\"%s\")", str);
 
 }
 
@@ -21,7 +28,7 @@ not_installed::not_installed(const not_installed & e) :
    ::call_stack(e),
    ::exception::base(e)
 {
-
+      printf(":not_installed(copy)");
    m_strVersion         = e.m_strVersion;
    m_strBuild           = e.m_strBuild;  
    m_strType            = e.m_strType;   

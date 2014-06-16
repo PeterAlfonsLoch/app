@@ -7,7 +7,7 @@ os_exception::os_exception(sp(::base::application) papp) :
    ::exception::base(papp),
    ::simple_exception(papp)
 {
-
+      printf(":os_exception");
 }
 
 
@@ -17,7 +17,14 @@ os_exception::os_exception(sp(::base::application) papp, const char * pszMessage
    ::exception::base(papp),
    ::simple_exception(papp, pszMessage)
 {
-
+      if(pszMessage == NULL)
+      {
+         printf(":os_exception(NULL)");
+      }
+      else
+      {
+         printf(":os_exception(\"%s\")",pszMessage);
+      }
 }
 
 

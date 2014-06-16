@@ -7,7 +7,8 @@ not_implemented::not_implemented(const not_implemented & e) :
    ::exception::base(e),
    m_strTip(e.m_strTip)
 {
-}
+      printf(":not_implemented(copy)");
+   }
 
 not_implemented::not_implemented(sp(::base::application) papp, const char * pszTip) : 
    element(papp),
@@ -15,6 +16,14 @@ not_implemented::not_implemented(sp(::base::application) papp, const char * pszT
    ::exception::base(papp),
    m_strTip(pszTip)
 {
+      if(pszTip == NULL)
+      {
+         printf(":not_implemented(NULL)");
+      }
+      else
+      {
+         printf(":not_implemented(\"%s\")",pszTip);
+      }
 }
 
 not_implemented::~not_implemented()

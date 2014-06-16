@@ -77,7 +77,7 @@ namespace file
    {
 
       if(m_spbuffer->read(&ch, sizeof(ch)) != sizeof(ch))
-         throw io_exception(get_app());
+         throw io_exception(get_app(), "byte_input_stream::read");
 
 
 
@@ -88,7 +88,7 @@ namespace file
    {
 
       if(m_spbuffer->read(&uch, sizeof(uch)) != sizeof(uch))
-         throw io_exception(get_app());
+         throw io_exception(get_app(), "byte_input_stream::read");
 
 
 

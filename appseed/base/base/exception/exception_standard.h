@@ -35,7 +35,7 @@
       ::call_stack(papp), \
       ::exception::base(papp), \
       ::standard_exception(papp, ppointers) \
-      {} \
+      {printf(":" #name);} \
    };
 
 #else
@@ -94,6 +94,8 @@ public:
       ::exception::base(papp),
       m_ppointers(ppointers)
    {
+         
+      printf(":standard");
 
       _ASSERTE(ppointers != 0);
 
@@ -105,7 +107,7 @@ public:
       ::exception::base(se),
       m_ppointers(se.m_ppointers)
    {
-
+     printf(":standard(copy)");
    }
 
 #else
@@ -165,7 +167,7 @@ namespace exception
          ::call_stack(papp),
          ::exception::base(papp),
          ::standard_exception(papp, signal, psiginfo, pc)
-         {}
+      {printf(":standard");}
    public:
 #elif defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)
       standard_access_violation (sp(::base::application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
@@ -191,7 +193,7 @@ namespace exception
 #endif
          ::exception::base(papp),
          ::standard_exception(papp, signal, psiginfo, pc)
-         {}
+      {printf(":standard");}
 
 /*       sig_ucontext_t * uc = (sig_ucontext_t *)ucontext;
 
@@ -207,7 +209,9 @@ namespace exception
          ::call_stack(papp),
          ::exception::base(papp),
          ::standard_exception(papp, ppointers)
-         {}
+      {
+            printf(":standard");
+         }
    public:
       bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
       uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
@@ -223,7 +227,7 @@ namespace exception
          element(papp),
       ::call_stack(papp),
          ::exception::base(papp),
-          standard_exception(papp, iSignal, psiginfo, pc) {}
+         standard_exception(papp, iSignal, psiginfo, pc) {printf(":sigfpe");}
    public:
    //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
      // uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
@@ -255,7 +259,7 @@ namespace exception
 #endif
 #endif
          ::exception::base(papp),
-          standard_exception(papp, iSignal, psiginfo, pc) {}
+         standard_exception(papp, iSignal, psiginfo, pc) {printf(":sigfpe");}
    public:
    //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
      // uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
@@ -275,7 +279,9 @@ namespace exception
          ::call_stack(papp),
          ::exception::base(papp),
          ::standard_exception(papp, ppointers)
-         {}
+      {
+            printf(":nomem");
+         }
    public:
       size_t mem_size() const { return info()->ExceptionRecord->ExceptionInformation [0]; }
    };

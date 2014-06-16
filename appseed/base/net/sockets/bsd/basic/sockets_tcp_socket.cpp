@@ -362,7 +362,7 @@ void ssl_sigpipe_handle( int x );
       {
 
          if (!Ready())
-            throw io_exception(get_app());
+            throw io_exception(get_app(), "not ready");
 
          n = SSL_read(m_ssl, buf, (int) nBufSize);
          if (n == -1)
@@ -388,7 +388,7 @@ void ssl_sigpipe_handle( int x );
                SetFlushBeforeClose(false);
                SetLost();
             }
-            throw io_exception(get_app());
+            throw io_exception(get_app(), "ssl error");
          }
          else
          if (!n)
@@ -398,7 +398,7 @@ void ssl_sigpipe_handle( int x );
             SetFlushBeforeClose(false);
             SetLost();
             SetShutdown(SHUT_WR);
-            throw io_exception(get_app());
+            throw io_exception(get_app(), "ssl disconnect");
          }
          else if (n > 0 && n <= nBufSize)
          {
@@ -407,7 +407,7 @@ void ssl_sigpipe_handle( int x );
          else
          {
             log("tcp_socket::recv(ssl)", (int) n, "abnormal value from SSL_read", ::base::log::level_error);
-            throw io_exception(get_app());
+            throw io_exception(get_app(),"abnormal value from SSL_read");
          }
       }
       else
@@ -427,7 +427,7 @@ void ssl_sigpipe_handle( int x );
             SetCloseAndDelete(true);
             SetFlushBeforeClose(false);
             SetLost();
-            throw io_exception(get_app());
+            throw io_exception(get_app(), "recv error (" + string(StrError(Errno)) + ")");
          }
          else
          if (!n)
@@ -437,7 +437,7 @@ void ssl_sigpipe_handle( int x );
             SetFlushBeforeClose(false);
             SetLost();
             SetShutdown(SHUT_WR);
-            throw io_exception(get_app());
+            throw io_exception(get_app(),"recv disconnect");
          }
          else
          if (n > 0 && n <= nBufSize)
@@ -447,7 +447,7 @@ void ssl_sigpipe_handle( int x );
          else
          {
             log("tcp_socket::recv", (int32_t) n, "abnormal value from recv", ::base::log::level_error);
-            throw io_exception(get_app());
+            throw io_exception(get_app(),"abnormal value from recv");
          }
 
       }

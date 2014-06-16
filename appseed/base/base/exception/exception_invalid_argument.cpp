@@ -7,6 +7,7 @@ invalid_argument_exception::invalid_argument_exception(sp(::base::application) p
    ::exception::base(papp),
    simple_exception(papp)
 {
+   printf(":invalid_argument_exception");
 
 }
 
@@ -17,8 +18,15 @@ invalid_argument_exception::invalid_argument_exception(sp(::base::application) p
    ::exception::base(papp),
    simple_exception(papp, pszMessage)
 {
-
-}
+      if(pszMessage == NULL)
+      {
+         printf(":invalid_argument_exception(NULL)");
+      }
+      else
+      {
+         printf(":invalid_argument_exception(\"%s\")",pszMessage);
+      }
+   }
 
 
 invalid_argument_exception::~invalid_argument_exception()

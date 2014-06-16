@@ -46,6 +46,13 @@ CLASS_DECL_BASE int32_t __win_main(sp(::base::system) psystem, ::windows::main_i
 
    set_main_thread_id(GetCurrentThreadId());
 
+   if(!psystem->pre_run())
+   {
+      
+      return psystem->m_iReturnCode;
+
+   }
+
    int32_t nReturnCode = psystem->main();
 
    return nReturnCode;

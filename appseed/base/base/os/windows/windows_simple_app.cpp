@@ -10,9 +10,7 @@ namespace base
       ::base::system(this)
    {
 
-         m_iError = 0;
-
-      }
+   }
 
    simple_app::~simple_app()
    {
@@ -51,10 +49,10 @@ namespace base
 
       _term_args();
 
-      //::simple_message_box(NULL,"t3=" + ::str::from(m_iError),"t3",MB_OK);
+      //::simple_message_box(NULL,"t3=" + ::str::from(m_iReturnCode),"t3",MB_OK);
 
 
-      return m_iError;
+      return m_iReturnCode;
 
    }
 
@@ -64,11 +62,8 @@ namespace base
 
       try
       {
-         if((m_iError = simple_app_pre_run()) != 0)
+         if((m_iReturnCode = simple_app_pre_run()) != 0)
          {
-            if(m_iError != 0)
-               m_iError = -1;
-
             return;
 
          }
@@ -76,8 +71,8 @@ namespace base
       catch(...)
       {
 
-         if(m_iError > 0)
-            m_iError = -1;
+         if(m_iReturnCode == 0)
+            m_iReturnCode = -1;
 
          return;
 
@@ -94,8 +89,8 @@ namespace base
          if(!pre_run())
          {
 
-            if(m_iError != 0)
-               m_iError = -1;
+            if(m_iReturnCode == 0)
+               m_iReturnCode = -1;
 
             return;
 
@@ -110,8 +105,9 @@ namespace base
       }
       catch(...)
       {
-         if(m_iError > 0)
-            m_iError = -1;
+
+         if(m_iReturnCode == 0)
+            m_iReturnCode = -1;
 
          return;
 
@@ -125,8 +121,9 @@ namespace base
 
          if(!intro())
          {
-            if(m_iError > 0)
-               m_iError = -1;
+
+            if(m_iReturnCode == 0)
+               m_iReturnCode = -1;
 
             return;
 
@@ -137,8 +134,9 @@ namespace base
       }
       catch(...)
       {
-         if(m_iError > 0)
-            m_iError = -1;
+
+         if(m_iReturnCode == 0)
+            m_iReturnCode = -1;
 
          return;
 
@@ -147,13 +145,14 @@ namespace base
       try
       {
 
-         m_iError = run();
+         m_iReturnCode = run();
 
       }
       catch(...)
       {
-         if(m_iError > 0)
-            m_iError = -1;
+
+         if(m_iReturnCode == 0)
+            m_iReturnCode = -1;
 
          return;
 

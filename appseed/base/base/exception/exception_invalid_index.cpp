@@ -8,6 +8,7 @@ invalid_index_exception::invalid_index_exception(sp(::base::application) papp) :
    ::simple_exception(papp),
    invalid_argument_exception(papp)
 {
+         printf(":invalid_index_exception");
 
 }
 
@@ -19,6 +20,14 @@ invalid_index_exception::invalid_index_exception(sp(::base::application) papp, c
    ::simple_exception(papp, pszMessage),
    invalid_argument_exception(papp, pszMessage)
 {
+      if(pszMessage == NULL)
+      {
+         printf(":invalid_index_exception(NULL)");
+      }
+      else
+      {
+         printf(":invalid_index_exception(\"%s\")",pszMessage);
+      }
 
 }
 

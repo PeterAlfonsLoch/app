@@ -8,7 +8,7 @@ not_supported_exception::not_supported_exception(const not_supported_exception &
    not_implemented(e),
    interface_only_exception(e)
 {
-
+      printf(":not_supported");
 }
 
 not_supported_exception::not_supported_exception(sp(::base::application) papp, const char * pszTip) :
@@ -18,6 +18,14 @@ not_supported_exception::not_supported_exception(sp(::base::application) papp, c
    not_implemented(papp, pszTip),
    interface_only_exception(papp, pszTip)
 {
+      if(pszTip == NULL)
+      {
+         printf(":not_supported_exception(NULL)");
+      }
+      else
+      {
+         printf(":not_supported_exception(\"%s\")",pszTip);
+      }
 
 }
 
