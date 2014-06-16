@@ -16,6 +16,9 @@ namespace http
    property_set & application::process_set(property_set & set, const char * pszUrl)
    {
 
+      if(Application.is_serviceable())
+         return set;
+
       if ((bool)set["raw_http"] || (bool)set["disable_ca2_sessid"]
          || ::str::find_ci("/matter.ca2.cc/", pszUrl) >= 0 || ::str::find_ci("-matter.ca2.cc/", pszUrl) >= 0
          || ::str::find_ci("sessid=noauth", pszUrl) >= 0
