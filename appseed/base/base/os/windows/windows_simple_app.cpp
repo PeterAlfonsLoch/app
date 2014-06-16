@@ -1,5 +1,6 @@
 #include "framework.h"
 
+void dappy(const char * psz);
 
 namespace base
 {
@@ -100,7 +101,11 @@ namespace base
 
          }
 
+         dappy(string(typeid(*this).name()) + " : s_app pre_runned : " + ::str::from(m_iReturnCode));
+
          SetCurrentHandles();
+
+         dappy(string(typeid(*this).name()) + " : handles set s_app : " + ::str::from(m_iReturnCode));
 
       }
       catch(...)
@@ -116,6 +121,8 @@ namespace base
       try
       {
 
+         dappy(string(typeid(*this).name()) + " : s_app going to intro : " + ::str::from(m_iReturnCode));
+
          if(!intro())
          {
             if(m_iError > 0)
@@ -124,6 +131,8 @@ namespace base
             return;
 
          }
+
+         dappy(string(typeid(*this).name()) + " : s_app introduced : " + ::str::from(m_iReturnCode));
 
       }
       catch(...)

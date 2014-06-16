@@ -1,5 +1,6 @@
 #include "framework.h"
 
+void dappy(const char * psz);
 
 namespace windows
 {
@@ -234,6 +235,7 @@ namespace windows
 
       string strExeName;
       strExeName = System.get_module_title();
+      dappy(string(typeid(*this).name()) + " : got module title windows application : " + ::str::from(m_iReturnCode));
 
       __init_thread();
 

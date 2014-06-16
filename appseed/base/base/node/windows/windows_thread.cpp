@@ -9,9 +9,10 @@ LRESULT CALLBACK __message_filter_hook(int32_t code,WPARAM wParam,LPARAM lParam)
 void CLASS_DECL_BASE __init_thread()
 {
 
-   ASSERT(t_hHookOldMsgFilter == NULL);
-
-   t_hHookOldMsgFilter = ::SetWindowsHookEx(WH_MSGFILTER,__message_filter_hook,NULL,::GetCurrentThreadId());
+   if(t_hHookOldMsgFilter == NULL)
+   {
+      t_hHookOldMsgFilter = ::SetWindowsHookEx(WH_MSGFILTER,__message_filter_hook,NULL,::GetCurrentThreadId());
+   }
 
 
 }

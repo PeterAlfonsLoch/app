@@ -899,11 +899,14 @@ namespace base
    void application::SetCurrentHandles()
    {
 
+      dappy(string(typeid(*this).name()) + " : SetCurrentHandles 1 : " + ::str::from(m_iReturnCode));
       m_pimpl->set_os_data(::get_current_thread());
+      dappy(string(typeid(*this).name()) + " : SetCurrentHandles 2 : " + ::str::from(m_iReturnCode));
 
       m_pimpl->set_os_int(::get_current_thread_id());
 
       m_pimpl->SetCurrentHandles();
+      dappy(string(typeid(*this).name()) + " : SetCurrentHandles impled : " + ::str::from(m_iReturnCode));
 
       if(is_installing() || is_uninstalling())
       {
@@ -1767,6 +1770,7 @@ namespace base
       {
 
          TRACE(string(typeid(*this).name()) + " on_run");;
+         dappy(string(typeid(*this).name()) + " : going to on_run : " + ::str::from(m_iReturnCode));
          m_iReturnCode = 0;
          m_bReady = true;
          m_pimpl->m_bReady = true;
@@ -1872,7 +1876,7 @@ namespace base
          }
 
          xxdebug_box("pre_runnned","pre_runnned",MB_ICONINFORMATION);
-
+         dappy(string(typeid(*this).name()) + " : pre_runned : " + ::str::from(m_iReturnCode));
          TRACE(string(typeid(*this).name()) + " initial_check_directrix");;
          if(!initial_check_directrix())
          {
@@ -1927,10 +1931,15 @@ namespace base
       catch(...)
       {
       }
+      
+      dappy(string(typeid(*this).name()) + " : starting on_run : " + ::str::from(m_iReturnCode));
 
       thread * pthread = ::get_thread();
 
       install_message_handling(pthread->m_pimpl);
+
+      dappy(string(typeid(*this).name()) + " : starting on_run 2 : " + ::str::from(m_iReturnCode));
+
       try
       {
          try
@@ -2140,7 +2149,7 @@ namespace base
          }
 
 
-
+         dappy(string(typeid(*this).name()) + " : e2 : " + ::str::from(m_iReturnCode));
          //::simple_message_box(NULL,"e2","e2",MB_OK);
 
          System.install().m_progressApp()++;
@@ -3019,6 +3028,8 @@ namespace base
 
       m_dwAlive = ::get_tick_count();
 
+
+      dappy(string(typeid(*this).name()) + " : initialize3 ok : " + ::str::from(m_iReturnCode));
       try
       {
 
@@ -3347,6 +3358,8 @@ namespace base
       user()->set_keyboard_layout(NULL,::action::source::database());
 
       m_bBaseInitializeResult = true;
+
+      dappy(string(typeid(*this).name()) + " : initialize ok : " + ::str::from(m_iReturnCode));
 
       return true;
 
