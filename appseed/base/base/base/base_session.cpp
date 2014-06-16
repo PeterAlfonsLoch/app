@@ -738,10 +738,6 @@ namespace base
 
       }
 
-      m_iReturnCode = -1100;
-
-      return false;
-
       return true;
 
    }

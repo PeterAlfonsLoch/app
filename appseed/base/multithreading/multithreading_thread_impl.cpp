@@ -406,6 +406,8 @@ bool thread_impl::begin_thread(bool bSynch, int32_t * piStartupError, int32_t ep
 
    pstartup->m_bError = FALSE;
 
+   pstartup->m_bSynch = bSynch;
+
    pstartup->m_pthreadimpl = this;
 
    pstartup->m_pthread = m_puser;
@@ -435,6 +437,20 @@ bool thread_impl::begin_thread(bool bSynch, int32_t * piStartupError, int32_t ep
 
    pstartup->m_event.wait();
 
+   if(pstartup->m_bError)
+   {
+      try
+      {
+
+         if(piStartupError != NULL)
+            *piStartupError = pstartup->m_iError;
+      }
+      catch(...)
+      {
+      }
+      return false;
+   }
+
    pstartup->m_event2.SetEvent();
 
    set_thread_priority(epriority);
@@ -446,14 +462,14 @@ bool thread_impl::begin_thread(bool bSynch, int32_t * piStartupError, int32_t ep
 bool thread_impl::create_thread(int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
-   return begin_thread(false,NULL,epriority,dwCreateFlags,nStackSize,lpSecurityAttrs);
+   return begin_thread(false,NULL,epriority,nStackSize, dwCreateFlags,lpSecurityAttrs);
 
 }
 
 bool thread_impl::create_thread_synch(int32_t * piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
-   return begin_thread(true,piStartupError,epriority,dwCreateFlags,nStackSize,lpSecurityAttrs);
+   return begin_thread(true,piStartupError,epriority,nStackSize, dwCreateFlags,lpSecurityAttrs);
 
 }
 
@@ -461,7 +477,7 @@ bool thread_impl::create_thread_synch(int32_t * piStartupError,int32_t epriority
 bool thread_impl::begin(int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
-   if(!create_thread(epriority,dwCreateFlags,nStackSize,lpSecurityAttrs))
+   if(!create_thread(epriority,nStackSize,dwCreateFlags, lpSecurityAttrs))
    {
       Delete();
       return false;
@@ -474,7 +490,7 @@ bool thread_impl::begin(int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateF
 bool thread_impl::begin_synch(int32_t * piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
-   if(!create_thread_synch(piStartupError, epriority,dwCreateFlags,nStackSize,lpSecurityAttrs))
+   if(!create_thread_synch(piStartupError, epriority,nStackSize, dwCreateFlags,lpSecurityAttrs))
    {
       Delete();
       return false;
@@ -598,12 +614,17 @@ uint32_t __thread_entry(void * pparam)
       try
       {
 
-         throw 0;
-
          pthreadimpl->thread_entry(pstartup);
 
       }
       catch(...)
+      {
+
+         pstartup->m_bError = true;
+
+      }
+
+      if(pstartup->m_bError)
       {
 
          pstartup->m_bError = TRUE;

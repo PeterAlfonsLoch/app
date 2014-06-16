@@ -17,9 +17,16 @@ namespace user
 
    bool window_draw::twf_start()
    {
-      begin();
+
+      int iReturnCode;
+
+      if(begin_synch(&iReturnCode))
+         return false;
+
       return true;
+
    }
+
 
    bool window_draw::UpdateBuffer()
    {

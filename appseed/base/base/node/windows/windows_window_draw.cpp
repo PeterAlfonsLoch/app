@@ -322,10 +322,6 @@ namespace windows
    bool window_draw::pre_run()
    {
 
-      m_iReturnCode = -1003;
-
-      return false;
-
       if(!create_message_queue("::core::twf - core Transparent Window Framework"))
       {
          m_iReturnCode = -1000;
