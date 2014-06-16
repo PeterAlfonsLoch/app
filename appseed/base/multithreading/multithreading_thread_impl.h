@@ -20,6 +20,8 @@ public:
    manual_reset_event      m_event2;
    DWORD                   m_dwCreateFlags;
    bool                    m_bError;
+   int32_t                 m_iError;
+   bool                    m_bSynch;
 
 
    thread_startup(sp(::base::application) papp);
@@ -86,8 +88,6 @@ public:
    virtual bool on_idle(LONG lCount);
 
 
-   virtual bool create_thread(int32_t epriority,uint32_t dwCreateFlagsParam,uint_ptr nStackSize,LPSECURITY_ATTRIBUTES lpSecurityAttrs);
-
    virtual void * get_os_data() const;
    virtual int_ptr get_os_int() const;
 
@@ -138,7 +138,12 @@ public:
 
 
 
-   bool begin(int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs);
+   virtual bool begin(int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs);
+   virtual bool create_thread(int32_t epriority,uint32_t dwCreateFlagsParam,uint_ptr nStackSize,LPSECURITY_ATTRIBUTES lpSecurityAttrs);
+   virtual bool begin_synch(int32_t *piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs);
+   virtual bool create_thread_synch(int32_t *piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs);
+   virtual bool begin_thread(bool bSynchStartup, int32_t *piStartupError,int32_t epriority,uint32_t dwCreateFlagsParam,uint_ptr nStackSize,LPSECURITY_ATTRIBUTES lpSecurityAttrs);
+
    void Delete();
 
    virtual void dispatch_thread_message(signal_details * pobj);

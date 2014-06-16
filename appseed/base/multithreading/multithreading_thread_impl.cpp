@@ -380,6 +380,10 @@ thread_startup::thread_startup(sp(::base::application) papp) :
    m_event2(papp)
 {
 
+   m_iError = 0;
+   m_bSynch = false;
+
+
 }
 
 
@@ -391,7 +395,7 @@ thread_startup::~thread_startup()
 
 
 
-bool thread_impl::create_thread(int32_t epriority,uint32_t dwCreateFlagsParam,uint_ptr nStackSize,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+bool thread_impl::begin_thread(bool bSynch, int32_t * piStartupError, int32_t epriority,uint32_t dwCreateFlagsParam,uint_ptr nStackSize,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
    DWORD dwCreateFlags = dwCreateFlagsParam;
@@ -413,7 +417,19 @@ bool thread_impl::create_thread(int32_t epriority,uint32_t dwCreateFlagsParam,ui
    m_hthread = (HTHREAD)(uint_ptr) ::create_thread(lpSecurityAttrs,nStackSize,&__thread_entry,pstartup.m_p,dwCreateFlags,&m_uiThread);
 
    if(m_hthread == NULL)
+   {
+      try
+      {
+
+         if(piStartupError != NULL)
+            *piStartupError = pstartup->m_iError;
+      }
+      catch(...)
+      {
+      }
       return false;
+   }
+      
 
    pstartup->m_event2.SetEvent();
 
@@ -427,7 +443,46 @@ bool thread_impl::create_thread(int32_t epriority,uint32_t dwCreateFlagsParam,ui
 
 }
 
+bool thread_impl::create_thread(int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+{
 
+   return begin_thread(false,NULL,epriority,dwCreateFlags,nStackSize,lpSecurityAttrs);
+
+}
+
+bool thread_impl::create_thread_synch(int32_t * piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+{
+
+   return begin_thread(true,piStartupError,epriority,dwCreateFlags,nStackSize,lpSecurityAttrs);
+
+}
+
+
+bool thread_impl::begin(int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+{
+
+   if(!create_thread(epriority,dwCreateFlags,nStackSize,lpSecurityAttrs))
+   {
+      Delete();
+      return false;
+   }
+
+   return true;
+
+}
+
+bool thread_impl::begin_synch(int32_t * piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+{
+
+   if(!create_thread_synch(piStartupError, epriority,dwCreateFlags,nStackSize,lpSecurityAttrs))
+   {
+      Delete();
+      return false;
+   }
+
+   return true;
+
+}
 
 void * thread_impl::get_os_data() const
 {
@@ -478,18 +533,18 @@ uint32_t __thread_entry(void * pparam)
          __node_init_thread(pthread);
 
       }
-      catch(::exception::base *)
+      catch(...)
       {
 
          pstartup->m_event2.wait();
 
          pstartup->m_event2.ResetEvent();
 
-         __node_term_thread(pthread);
-
          pstartup->m_bError = TRUE;
 
          pstartup->m_event.set_event();
+
+         __node_term_thread(pthread);
 
          ::multithreading::__node_on_term_thread(pthreadimpl->m_hthread,pthread,-1);
 
@@ -509,14 +564,58 @@ uint32_t __thread_entry(void * pparam)
          ::multithreading::__node_on_init_thread(pthreadimpl->m_hthread,pthread);
 
       }
-      catch(::exception::base *)
+      catch(...)
       {
-
-         __node_term_thread(pthread);
 
          pstartup->m_bError = TRUE;
 
          pstartup->m_event.set_event();
+
+         __node_term_thread(pthread);
+
+         ::multithreading::__node_on_term_thread(pthreadimpl->m_hthread,pthread,-1);
+
+         ASSERT(FALSE);  // unreachable
+
+         return -1; // anyway...
+
+      }
+
+      if(!pstartup->m_bSynch)
+      {
+
+         // allow the creating thread to return from thread::create_thread
+         pstartup->m_event.set_event();
+
+         // wait for thread to be resumed
+         pstartup->m_event2.wait();
+
+         pstartup.release();
+
+      }
+
+
+      try
+      {
+
+         throw 0;
+
+         pthreadimpl->thread_entry(pstartup);
+
+      }
+      catch(...)
+      {
+
+         pstartup->m_bError = TRUE;
+
+         if(pstartup->m_iError == 0)
+         {
+            pstartup->m_iError = -1;
+         }
+
+         pstartup->m_event.set_event();
+
+         __node_term_thread(pthread);
 
          ::multithreading::__node_on_term_thread(pthreadimpl->m_hthread,pthread,-1);
 
@@ -527,18 +626,18 @@ uint32_t __thread_entry(void * pparam)
       }
 
 
+      if(pstartup->m_bSynch)
+      {
 
+         // allow the creating thread to return from thread::create_thread
+         pstartup->m_event.set_event();
 
-      pthreadimpl->thread_entry(pstartup);
+         // wait for thread to be resumed
+         pstartup->m_event2.wait();
 
+         pstartup.release();
 
-      // allow the creating thread to return from thread::create_thread
-      pstartup->m_event.set_event();
-
-      // wait for thread to be resumed
-      pstartup->m_event2.wait();
-
-      pstartup.release();
+      }
 
       int32_t n;
 
@@ -955,6 +1054,52 @@ int32_t thread_impl::thread_entry(::thread_startup * pstartup)
    m_puser->install_message_handling(pthreadimpl);
 
    IGUI_WIN_MSG_LINK(WM_USER + 123,pthreadimpl,pthreadimpl,&thread_impl::_001OnCreateMessageWindow);
+
+   try
+   {
+
+      if(!m_puser->pre_run())
+      {
+
+         pstartup->m_bError = true;
+
+      }
+
+   }
+   catch(...)
+   {
+      
+      pstartup->m_bError = true;
+
+   }
+
+   if(pstartup->m_bError)
+   {
+
+      if(m_iReturnCode != 0)
+      {
+         pstartup->m_iError = m_iReturnCode;
+         if(m_puser->m_iReturnCode == 0)
+         {
+            m_puser->m_iReturnCode = m_iReturnCode;
+         }
+      }
+      else if(m_puser->m_iReturnCode != 0)
+      {
+         pstartup->m_iError = m_puser->m_iReturnCode;
+         if(m_iReturnCode == 0)
+         {
+            m_iReturnCode = m_puser->m_iReturnCode;
+         }
+      }
+      else
+      {
+         pstartup->m_iError = -1;
+         m_iReturnCode = -1;
+         m_puser->m_iReturnCode = -1;
+      }
+
+   }
 
    return 0;
 
@@ -1605,18 +1750,6 @@ int32_t thread_impl::get_thread_priority()
 
 
 
-bool thread_impl::begin(int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
-{
-
-   if(!create_thread(epriority,dwCreateFlags,nStackSize,lpSecurityAttrs))
-   {
-      Delete();
-      return false;
-   }
-
-   return true;
-
-}
 
 
 void thread_impl::Delete()

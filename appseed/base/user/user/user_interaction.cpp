@@ -1605,8 +1605,8 @@ namespace user
 #endif
       {
 
-         Application.defer_initialize_twf();
-
+         if(Application.defer_initialize_twf())
+            return false;
 
          pimplNew = (Application.alloc(System.type_info < window >()));
          pimplNew->m_pui = this;
@@ -1694,7 +1694,8 @@ namespace user
       if (pParentWnd == NULL)
       {
 
-         Application.defer_initialize_twf();
+         if(!Application.defer_initialize_twf())
+            return false;
 
          m_pimpl = (Application.alloc(System.type_info < window >()));
          m_pimpl->m_pui = this;

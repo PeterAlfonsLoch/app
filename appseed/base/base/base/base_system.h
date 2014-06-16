@@ -332,7 +332,7 @@ namespace base
       virtual bool assert_running_local(const char * pszAppName,const char * pszId = NULL);
 
 
-      virtual bool create_twf();
+      virtual bool initialize_twf();
 
 
       void enum_display_monitors();

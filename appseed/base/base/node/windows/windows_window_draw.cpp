@@ -41,8 +41,8 @@ namespace windows
    {
          m_dwLastRedrawRequest = ::get_tick_count();
          m_bRender = false;
-//         m_pbuffer = new user::buffer(papp);
-  //       m_pbuffer->m_spdib.create(papp);
+         //         m_pbuffer = new user::buffer(papp);
+         //       m_pbuffer->m_spdib.create(papp);
          m_dwLastUpdate = false;
       }
 
@@ -124,11 +124,11 @@ namespace windows
       m_dwLastUpdate = ::get_tick_count();
       UpdateBuffer();
       return;
-//      if(m_pbuffer->GetBuffer()->get_os_data() != NULL)
-  //    {
-         //m_pbuffer->m_spdib->fill_channel(255, visual::rgba::channel_alpha);
-         //ScreenOutput();
-    //  }
+      //      if(m_pbuffer->GetBuffer()->get_os_data() != NULL)
+      //    {
+      //m_pbuffer->m_spdib->fill_channel(255, visual::rgba::channel_alpha);
+      //ScreenOutput();
+      //  }
       DWORD dwTakeTime = ::get_tick_count() - m_dwLastUpdate;
       m_dwLastDelay = dwTakeTime;
       if(dwTakeTime > iFailureTime)
@@ -319,17 +319,34 @@ namespace windows
 
    }
 
+   bool window_draw::pre_run()
+   {
+
+      m_iReturnCode = -1003;
+
+      return false;
+
+      if(!create_message_queue("::core::twf - core Transparent Window Framework"))
+      {
+         m_iReturnCode = -1000;
+         TRACE("Could not initialize ::core::twf - core Transparent Window Framework!");
+         return false;
+      }
+
+      ::AttachThreadInput(::GetCurrentThreadId(),get_os_int(),TRUE);
+
+      return true;
+
+   }
+
 
    UINT window_draw::RedrawProc()
    {
-      if(!create_message_queue("::core::twf - core Transparent Window Framework"))
-      {
-         TRACE("Could not initialize ::core::twf - core Transparent Window Framework!");
-         return 0;
-      }
-      ::AttachThreadInput(::GetCurrentThreadId(), get_os_int(),TRUE);
+
       MSG msg;
+
       s_bRunning = true;
+
       while(m_bRun)
       {
          try

@@ -107,7 +107,8 @@ namespace user
          if(System.get_twf() == NULL)
          {
 
-            System.defer_initialize_twf();
+            if(!System.defer_initialize_twf())
+               return NULL;
 
          }
 

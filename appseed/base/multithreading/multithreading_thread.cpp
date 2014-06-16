@@ -140,18 +140,42 @@ bool thread::begin(int32_t epriority, uint_ptr nStackSize, uint32_t dwCreateFlag
 
    m_pimpl->m_puser = this;
 
-   return m_pimpl->begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
+   return m_pimpl->begin(epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);
 
 }
 
 
-bool thread::create_thread(int32_t epriority, uint32_t dwCreateFlags, uint_ptr nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+bool thread::create_thread(int32_t epriority,uint32_t dwCreateFlags,uint_ptr nStackSize,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
    if (m_pimpl.is_null())
       return false;
 
-   return m_pimpl->create_thread(epriority, dwCreateFlags, nStackSize, lpSecurityAttrs);
+   return m_pimpl->create_thread(epriority,dwCreateFlags,nStackSize,lpSecurityAttrs);
+
+}
+
+
+bool thread::begin_synch(int32_t * piStartupError, int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+{
+
+   if(m_pimpl.is_null())
+      return false;
+
+   m_pimpl->m_puser = this;
+
+   return m_pimpl->begin_synch(piStartupError, epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);
+
+}
+
+
+bool thread::create_thread_synch(int32_t * piStartupError,int32_t epriority,uint32_t dwCreateFlags,uint_ptr nStackSize,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+{
+
+   if(m_pimpl.is_null())
+      return false;
+
+   return m_pimpl->create_thread_synch(piStartupError, epriority,dwCreateFlags,nStackSize,lpSecurityAttrs);
 
 }
 
@@ -425,6 +449,16 @@ message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
       return ::message::PrototypeNone;
 
    return m_pimpl->GetMessagePrototype(uiMessage, uiCode);
+
+}
+
+bool thread::pre_run()
+{
+
+   if(m_pimpl.is_null())
+      return true;
+
+   return m_pimpl->pre_run();
 
 }
 
@@ -816,3 +850,5 @@ void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
    m_pimpl->post_to_all_threads(message,wparam,lparam);
 
 }
+
+

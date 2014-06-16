@@ -226,20 +226,6 @@ namespace base
       if(!set_main_init_data(m_pinitmaindata))
          return false;
 
-      string strWindow;
-
-      strWindow = typeid(*this).name();
-
-#ifndef METROWIN
-
-      if(!create_message_queue(this,strWindow))
-      {
-         dappy(string(typeid(*this).name()) + " : create_message_queue failure : " + ::str::from(m_iReturnCode));
-         TRACE("Fatal error: could not initialize application message window (name=\"%s\").",strWindow.c_str());
-         return false;
-      }
-
-#endif
 
 
       dappy(string(typeid(*this).name()) + " : Going to ::base::system::m_spwindow->CreateEx : " + ::str::from(m_iReturnCode));
@@ -256,11 +242,9 @@ namespace base
       if(m_pbasesession == NULL)
          return false;
 
-      m_pbasesession->begin();
-
-      while(!m_pbasesession->m_bReady)
+      if(!m_pbasesession->begin_synch(&m_iReturnCode))
       {
-         Sleep(23);
+         return false;
       }
 
       dappy(string(typeid(*this).name()) + " : ::base::session OK " + ::str::from(m_iReturnCode));
@@ -767,13 +751,19 @@ namespace base
 
 
 
-   bool system::create_twf()
+   bool system::initialize_twf()
    {
+
       if(m_ptwf != NULL)
          return true;
+
       m_ptwf = alloc(this,System.type_info < ::user::window_draw >());
-      m_ptwf->twf_start();
+
+      if(m_ptwf->twf_start())
+         return false;
+
       return true;
+
    }
 
 

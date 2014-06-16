@@ -107,6 +107,11 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 	inline bool wait_result::signaled() const
 	{ return m_iWaitResult >= Event0; }
 
+   inline bool wait_result::succeeded() const
+   {
+      return signaled();
+   }
+
 	inline size_t wait_result::signaled_index() const
 	{
 		if ( !signaled() )

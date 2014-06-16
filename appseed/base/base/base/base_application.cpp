@@ -1283,7 +1283,7 @@ namespace base
 
 
 
-   
+
 
 
    sp(::user::interaction) application::get_focus_guie()
@@ -1387,10 +1387,10 @@ namespace base
 
    }
 
-   string CLASS_DECL_BASE application::get_cred(LPCRECT lprect,string & strUsername,string & strPassword, string strToken, string strTitle, bool bInteractive)
+   string CLASS_DECL_BASE application::get_cred(LPCRECT lprect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 
-      return ::fontopus::get_cred(this,lprect,strUsername,strPassword, strToken, strTitle, bInteractive);
+      return ::fontopus::get_cred(this,lprect,strUsername,strPassword,strToken,strTitle,bInteractive);
 
    }
 
@@ -1737,38 +1737,6 @@ namespace base
       try
       {
 
-         if(!main_start())
-         {
-            m_bReady = true;
-            TRACE("application::start failure");
-            dappy(string(typeid(*this).name()) + " : main_start failure");
-            return m_iReturnCode;
-         }
-
-      }
-      catch(::exit_exception &)
-      {
-
-         dappy(string(typeid(*this).name()) + " : main_start exit_exception");
-
-         post_to_all_threads(WM_QUIT,0,0);
-
-         goto exit_application;
-
-      }
-      catch(...)
-      {
-
-         dappy(string(typeid(*this).name()) + " : main_start general exception");
-
-         goto exit_application;
-
-      }
-
-
-      try
-      {
-
          TRACE(string(typeid(*this).name()) + " on_run");;
          dappy(string(typeid(*this).name()) + " : going to on_run : " + ::str::from(m_iReturnCode));
          m_iReturnCode = 0;
@@ -1857,7 +1825,7 @@ namespace base
 
 
 
-   bool application::main_start()
+   bool application::pre_run()
    {
 
       TRACE(string(typeid(*this).name()) + " main_start");;
@@ -1865,13 +1833,13 @@ namespace base
       {
 
          m_dwAlive = ::get_tick_count();
-         TRACE(string(typeid(*this).name()) + "pre_run");;
-         int32_t m_iReturnCode = pre_run();
+         TRACE(string(typeid(*this).name()) + "application_pre_run");;
+         int32_t m_iReturnCode = application_pre_run();
          if(m_iReturnCode != 0)
          {
-            dappy(string(typeid(*this).name()) + " : pre_run failure : " + ::str::from(m_iReturnCode));
+            dappy(string(typeid(*this).name()) + " : applicationpre_run failure : " + ::str::from(m_iReturnCode));
             m_bReady = true;
-            TRACE("application::main pre_run failure");
+            TRACE("application::main application_pre_run failure");
             return false;
          }
 
@@ -1931,7 +1899,7 @@ namespace base
       catch(...)
       {
       }
-      
+
       dappy(string(typeid(*this).name()) + " : starting on_run : " + ::str::from(m_iReturnCode));
 
       thread * pthread = ::get_thread();
@@ -2095,7 +2063,7 @@ namespace base
 
 
 
-   int32_t application::pre_run()
+   int32_t application::application_pre_run()
    {
 
 #ifdef WINDOWSEX
@@ -2969,7 +2937,7 @@ namespace base
          dappy(string(typeid(*this).name()) + " : initialize1 failure : " + ::str::from(m_iReturnCode));
          return false;
       }
-         
+
 
 
       //::simple_message_box(NULL,"e3","e3",MB_OK);
@@ -2979,28 +2947,23 @@ namespace base
 
       xxdebug_box("initialize1 ok","initialize1 ok",MB_ICONINFORMATION);
 
-      if(!is_system())
-      {
+      string strWindow;
 
-         string strWindow;
-
-         if(m_strAppName.has_char())
-            strWindow = m_strAppName;
-         else
-            strWindow = typeid(*this).name();
+      if(m_strAppName.has_char())
+         strWindow = m_strAppName;
+      else
+         strWindow = typeid(*this).name();
 
 #ifndef METROWIN
 
-         if(!create_message_queue(this,strWindow))
-         {
-            dappy(string(typeid(*this).name()) + " : create_message_queue failure : " + ::str::from(m_iReturnCode));
-            TRACE("Fatal error: could not initialize application message window (name=\"%s\").",strWindow.c_str());
-            return false;
-         }
+      if(!create_message_queue(this,strWindow))
+      {
+         dappy(string(typeid(*this).name()) + " : create_message_queue failure : " + ::str::from(m_iReturnCode));
+         TRACE("Fatal error: could not initialize application message window (name=\"%s\").",strWindow.c_str());
+         return false;
+      }
 
 #endif
-
-      }
 
       m_dwAlive = ::get_tick_count();
 
@@ -3268,7 +3231,7 @@ namespace base
       m_bBaseInitializeResult = false;
 
       application_signal_details signal(this,m_psignal,application_signal_initialize);
-      
+
       m_psignal->emit(&signal);
 
       if(!signal.m_bOk)
@@ -3402,8 +3365,8 @@ namespace base
 
             //if(!destroy_message_queue())
             {
-             
-              // TRACE("Could not finalize message window");
+
+               // TRACE("Could not finalize message window");
 
             }
 
@@ -4363,12 +4326,19 @@ namespace base
 
 
 
-   void application::defer_initialize_twf()
+   bool application::defer_initialize_twf()
    {
+
       if(System.m_ptwf == NULL && (System.m_bShouldInitializeGTwf && m_bShouldInitializeGTwf && m_bInitializeProDevianMode))
       {
-         System.create_twf();
+
+         if(!System.initialize_twf())
+            return false;
+
       }
+
+      return true;
+
    }
 
    void application::gudo_get(const string & strKey,::file::serializable & obj)
@@ -4469,12 +4439,12 @@ void openURL(const string &url_str);
 
 void openURL(const string &url_str) {
    CFURLRef url = CFURLCreateWithBytes (
-                                        NULL,                        // allocator
-                                        (UInt8*)url_str.c_str(),     // URLBytes
-                                        url_str.length(),            // length
-                                        kCFStringEncodingASCII,      // encoding
-                                        NULL                         // baseURL
-                                        );
+      NULL,                        // allocator
+      (UInt8*)url_str.c_str(),     // URLBytes
+      url_str.length(),            // length
+      kCFStringEncodingASCII,      // encoding
+      NULL                         // baseURL
+      );
    LSOpenCFURLRef(url,0);
    CFRelease(url);
 }
@@ -4486,12 +4456,12 @@ void openURL(const string &url_str);
 
 void openURL(const string &url_str) {
    CFURLRef url = CFURLCreateWithBytes (
-                                        NULL,                        // allocator
-                                        (UInt8*)url_str.c_str(),     // URLBytes
-                                        url_str.length(),            // length
-                                        kCFStringEncodingASCII,      // encoding
-                                        NULL                         // baseURL
-                                        );
+      NULL,                        // allocator
+      (UInt8*)url_str.c_str(),     // URLBytes
+      url_str.length(),            // length
+      kCFStringEncodingASCII,      // encoding
+      NULL                         // baseURL
+      );
    //    LSOpenCFURLRef(url,0);
    CFRelease(url);
 }

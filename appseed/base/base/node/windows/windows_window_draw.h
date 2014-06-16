@@ -132,6 +132,7 @@ namespace windows
       user::interaction_ptr_array get_wnda();
       user::oswindow_array get_hwnda();
 
+      virtual bool pre_run();
       virtual int32_t run();
 
       virtual UINT RedrawProc();

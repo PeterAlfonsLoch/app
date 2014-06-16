@@ -73,6 +73,8 @@ public:
 	///  \return	true if last result == Event0
 	inline bool signaled() const;
 
+   inline bool succeeded() const;
+
 	///  \brief		returns index of signaled thread
 	///  \return	signaled thread index
 	inline size_t signaled_index() const;

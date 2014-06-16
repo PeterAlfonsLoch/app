@@ -91,7 +91,7 @@ namespace base
 
          set_main_thread_id(GetCurrentThreadId());
 
-         if((m_iError = pre_run()) != 0)
+         if(!pre_run())
          {
 
             if(m_iError != 0)

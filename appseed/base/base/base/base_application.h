@@ -329,10 +329,10 @@ namespace base
 
       virtual int32_t run();
 
+      virtual bool pre_run();
       virtual int32_t main();
-      virtual bool main_start();
       virtual int32_t on_run();
-      virtual int32_t pre_run();
+      virtual int32_t application_pre_run();
       virtual bool initial_check_directrix();
       virtual bool os_native_bergedge_start();
 
@@ -470,7 +470,7 @@ namespace base
 
       virtual void on_request(sp(::create_context) pcreatecontext);
 
-      virtual void defer_initialize_twf();
+      virtual bool defer_initialize_twf();
 
       // name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
       // get/set serializables to user directory
