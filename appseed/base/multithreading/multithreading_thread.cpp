@@ -145,13 +145,13 @@ bool thread::begin(int32_t epriority, uint_ptr nStackSize, uint32_t dwCreateFlag
 }
 
 
-bool thread::create_thread(int32_t epriority,uint32_t dwCreateFlags,uint_ptr nStackSize,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+bool thread::create_thread(int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
    if (m_pimpl.is_null())
       return false;
 
-   return m_pimpl->create_thread(epriority,dwCreateFlags,nStackSize,lpSecurityAttrs);
+   return m_pimpl->create_thread(epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);
 
 }
 
@@ -169,13 +169,13 @@ bool thread::begin_synch(int32_t * piStartupError, int32_t epriority,uint_ptr nS
 }
 
 
-bool thread::create_thread_synch(int32_t * piStartupError,int32_t epriority,uint32_t dwCreateFlags,uint_ptr nStackSize,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+bool thread::create_thread_synch(int32_t * piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
    if(m_pimpl.is_null())
       return false;
 
-   return m_pimpl->create_thread_synch(piStartupError, epriority,dwCreateFlags,nStackSize,lpSecurityAttrs);
+   return m_pimpl->create_thread_synch(piStartupError,epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);
 
 }
 
