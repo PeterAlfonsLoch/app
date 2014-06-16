@@ -1,5 +1,6 @@
 #include "framework.h"
 
+void dappy(const char * psz);
 
 #ifdef WINDOWSEX
 
@@ -225,9 +226,30 @@ namespace base
       if(!set_main_init_data(m_pinitmaindata))
          return false;
 
-      if(!m_spwindow->CreateEx(0,NULL,NULL,0,null_rect(),NULL,"::base::system::window"))
-         return false;
+      string strWindow;
 
+      strWindow = typeid(*this).name();
+
+#ifndef METROWIN
+
+      if(!create_message_queue(this,strWindow))
+      {
+         dappy(string(typeid(*this).name()) + " : create_message_queue failure : " + ::str::from(m_iReturnCode));
+         TRACE("Fatal error: could not initialize application message window (name=\"%s\").",strWindow.c_str());
+         return false;
+      }
+
+#endif
+
+
+      dappy(string(typeid(*this).name()) + " : Going to ::base::system::m_spwindow->CreateEx : " + ::str::from(m_iReturnCode));
+      if(!m_spwindow->CreateEx(0,NULL,NULL,0,null_rect(),NULL,"::base::system::window::no_twf"))
+      {
+         dappy(string(typeid(*this).name()) + " : ::base::system::m_spwindow->CreateEx failure : " + ::str::from(m_iReturnCode));
+         return false;
+      }
+         
+      dappy(string(typeid(*this).name()) + " : Going to ::base::session " + ::str::from(m_iReturnCode));
 
       m_pbasesession = new ::base::session(this);
 
@@ -240,6 +262,8 @@ namespace base
       {
          Sleep(23);
       }
+
+      dappy(string(typeid(*this).name()) + " : ::base::session OK " + ::str::from(m_iReturnCode));
 
       return true;
 

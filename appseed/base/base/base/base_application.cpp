@@ -27,6 +27,15 @@ void openURL(const string &url_str);
 #include <dlfcn.h>
 #endif
 
+
+void dappy(const char * psz)
+{
+
+   //printf("app._ : %s : %s\n",_argv[2],psz);
+
+}
+
+
 namespace base
 {
    application_signal_details::application_signal_details(sp(::base::application) papp,class ::signal * psignal,e_application_signal esignal):
@@ -1720,6 +1729,8 @@ namespace base
 
       TRACE(string(typeid(*this).name()) + " main");;
 
+      dappy(string(typeid(*this).name()) + " : application::main 1");
+
       try
       {
 
@@ -1727,12 +1738,15 @@ namespace base
          {
             m_bReady = true;
             TRACE("application::start failure");
+            dappy(string(typeid(*this).name()) + " : main_start failure");
             return m_iReturnCode;
          }
 
       }
       catch(::exit_exception &)
       {
+
+         dappy(string(typeid(*this).name()) + " : main_start exit_exception");
 
          post_to_all_threads(WM_QUIT,0,0);
 
@@ -1741,6 +1755,8 @@ namespace base
       }
       catch(...)
       {
+
+         dappy(string(typeid(*this).name()) + " : main_start general exception");
 
          goto exit_application;
 
@@ -1763,12 +1779,15 @@ namespace base
          m_iReturnCode = on_run();
          if(m_iReturnCode != 0)
          {
+            dappy(string(typeid(*this).name()) + " : on_run failure : " + ::str::from(m_iReturnCode));
             ::OutputDebugStringW(L"application::main on_run termination failure");
          }
 
       }
       catch(::exit_exception &)
       {
+
+         dappy(string(typeid(*this).name()) + " : on_run exit_exception");
 
          post_to_all_threads(WM_QUIT,0,0);
 
@@ -1777,6 +1796,8 @@ namespace base
       }
       catch(...)
       {
+
+         dappy(string(typeid(*this).name()) + " : on_run general exception");
 
          goto exit_application;
 
@@ -1787,6 +1808,8 @@ namespace base
 
          if(is_system())
          {
+
+            dappy(string(typeid(*this).name()) + " : quiting main");
 
             post_to_all_threads(WM_QUIT,0,0);
 
@@ -1842,6 +1865,7 @@ namespace base
          int32_t m_iReturnCode = pre_run();
          if(m_iReturnCode != 0)
          {
+            dappy(string(typeid(*this).name()) + " : pre_run failure : " + ::str::from(m_iReturnCode));
             m_bReady = true;
             TRACE("application::main pre_run failure");
             return false;
@@ -1852,6 +1876,7 @@ namespace base
          TRACE(string(typeid(*this).name()) + " initial_check_directrix");;
          if(!initial_check_directrix())
          {
+            dappy(string(typeid(*this).name()) + " : initial_check_directrix failure");
             exit();
             m_iReturnCode = -1;
             m_bReady = true;
@@ -1864,6 +1889,7 @@ namespace base
          m_dwAlive = ::get_tick_count();
          if(!os_native_bergedge_start())
          {
+            dappy(string(typeid(*this).name()) + " : os_native_bergedge_start failure");
             exit();
             m_iReturnCode = -1;
             m_bReady = true;
@@ -1875,6 +1901,8 @@ namespace base
       }
       catch(::exit_exception &)
       {
+
+         dappy(string(typeid(*this).name()) + " : main_start exit_exception");
 
          post_to_all_threads(WM_QUIT,0,0);
 
@@ -2080,7 +2108,11 @@ namespace base
       m_dwAlive = ::get_tick_count();
 
       if(!InitApplication())
+      {
+         dappy(string(typeid(*this).name()) + " : InitApplication failure : " + ::str::from(m_iReturnCode));
          goto InitFailure;
+      }
+
 
       //::simple_message_box(NULL,"e1","e1",MB_OK);
 
@@ -2092,6 +2124,7 @@ namespace base
          {
             if(!process_initialize())
             {
+               dappy(string(typeid(*this).name()) + " : process_initialize failure : " + ::str::from(m_iReturnCode));
                goto InitFailure;
             }
          }
@@ -2117,6 +2150,7 @@ namespace base
 
             if(!initialize_instance())
             {
+               dappy(string(typeid(*this).name()) + " : initialize_instance failure : " + ::str::from(m_iReturnCode));
                try
                {
                   exit();
@@ -2922,7 +2956,11 @@ namespace base
       //::simple_message_box(NULL,"e2.b","e2.b",MB_OK);
 
       if(!initialize1())
+      {
+         dappy(string(typeid(*this).name()) + " : initialize1 failure : " + ::str::from(m_iReturnCode));
          return false;
+      }
+         
 
 
       //::simple_message_box(NULL,"e3","e3",MB_OK);
@@ -2932,29 +2970,36 @@ namespace base
 
       xxdebug_box("initialize1 ok","initialize1 ok",MB_ICONINFORMATION);
 
-      string strWindow;
+      if(!is_system())
+      {
 
-      if(m_strAppName.has_char())
-         strWindow = m_strAppName;
-      else
-         strWindow = typeid(*this).name();
+         string strWindow;
+
+         if(m_strAppName.has_char())
+            strWindow = m_strAppName;
+         else
+            strWindow = typeid(*this).name();
 
 #ifndef METROWIN
 
-      if(!create_message_queue(this,strWindow))
-      {
-         TRACE("Fatal error: could not initialize application message window (name=\"%s\").",strWindow.c_str());
-         return false;
-      }
-
-
+         if(!create_message_queue(this,strWindow))
+         {
+            dappy(string(typeid(*this).name()) + " : create_message_queue failure : " + ::str::from(m_iReturnCode));
+            TRACE("Fatal error: could not initialize application message window (name=\"%s\").",strWindow.c_str());
+            return false;
+         }
 
 #endif
+
+      }
 
       m_dwAlive = ::get_tick_count();
 
       if(!initialize2())
+      {
+         dappy(string(typeid(*this).name()) + " : initialize2 failure : " + ::str::from(m_iReturnCode));
          return false;
+      }
 
       System.install().m_progressApp()++; // 3
 
@@ -2963,7 +3008,10 @@ namespace base
       m_dwAlive = ::get_tick_count();
 
       if(!initialize3())
+      {
+         dappy(string(typeid(*this).name()) + " : initialize3 failure : " + ::str::from(m_iReturnCode));
          return false;
+      }
 
       System.install().m_progressApp()++; // 4
 
@@ -2975,7 +3023,10 @@ namespace base
       {
 
          if(!initialize())
+         {
+            dappy(string(typeid(*this).name()) + " : initialize failure : " + ::str::from(m_iReturnCode));
             return false;
+         }
       }
       catch(const char * psz)
       {

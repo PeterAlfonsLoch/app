@@ -31,36 +31,6 @@ namespace base
       virtual int32_t refrain();
       virtual bool end();
 
-      template < class APP >
-      static int32_t s_main()
-      {
-
-         if(!defer_base_init())
-         {
-            return -1;
-         }
-
-         APP  * papp = new APP;
-
-         int32_t iRet = papp->main();
-
-         try
-         {
-
-            delete papp;
-
-            papp = NULL;
-
-         }
-         catch(...)
-         {
-         }
-
-         defer_base_term();
-
-         return iRet;
-
-      }
 
    };
 

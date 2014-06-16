@@ -89,3 +89,44 @@ CLASS_DECL_BASE void __set_resource_handle(HINSTANCE hInstResource);
 CLASS_DECL_BASE HINSTANCE __get_resource_handle();
 CLASS_DECL_BASE HINSTANCE __find_string_resource_handle(UINT nID);
 
+
+
+template < class APP >
+static int32_t s_main(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR lpCmdLine,int32_t nCmdShow)
+{
+
+   if(!defer_base_init())
+   {
+      return -1;
+   }
+
+   APP  * papp = new APP;
+   ::windows::main_init_data * pmaininitdata = new ::windows::main_init_data;
+
+
+   pmaininitdata->m_hInstance = hInstance;
+   pmaininitdata->m_hPrevInstance = hPrevInstance;
+   pmaininitdata->m_vssCommandLine = ::str::international::unicode_to_utf8(::GetCommandLineW());
+   pmaininitdata->m_nCmdShow = nCmdShow;
+
+   papp->init_main_data(pmaininitdata);
+
+   int32_t iRet = papp->main();
+
+   try
+   {
+
+      delete papp;
+
+      papp = NULL;
+
+   }
+   catch(...)
+   {
+   }
+
+   defer_base_term();
+
+   return iRet;
+
+}
