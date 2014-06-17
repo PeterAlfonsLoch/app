@@ -1430,12 +1430,14 @@ namespace install
 
       string strUrl;
 
-      strUrl = "http://" + strVersion + ".spaignition.api.server.ca2.cc/md5?authnone&version=basis&stage=";
+      strUrl = "http://" + strVersion + ".spaignition.api.server.ca2.cc/md5?version=basis&stage=";
       strUrl += pszTemplate;
       strUrl += "&build=";
       strUrl += strFormatBuild;
 
       property_set set(get_app());
+
+      set["raw_http"] = true;
 
       bool bOk = file_exists_dup(path1) && !stricmp_dup(get_file_md5(path1), Application.http().get(strUrl, set));
 
