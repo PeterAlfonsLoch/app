@@ -98,7 +98,7 @@ namespace fontopus
 
 
 
-   string simple_ui::fontopus(LPCRECT lprect)
+   string simple_ui::do_fontopus(LPCRECT lprect)
    {
 
       ::user::interaction * puiParent = BaseSession.oprop("plugin_parent").cast < ::user::interaction >();
@@ -206,7 +206,7 @@ namespace fontopus
 
       }
 
-      id idResult = fontopus(lprect);
+      id idResult = do_fontopus(lprect);
 
       if(idResult == "ok")
       {

@@ -27,7 +27,7 @@ namespace fontopus
 
       virtual string get_cred(LPCRECT lprect, string & strUsername, string & strPassword, string strToken, string strTitle);
 
-      virtual string fontopus(LPCRECT lprect);
+      virtual string do_fontopus(LPCRECT lprect);
 
       void install_message_handling(::message::dispatch * pdispatch);
 

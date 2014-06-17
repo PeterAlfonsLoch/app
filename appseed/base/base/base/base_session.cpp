@@ -35,7 +35,7 @@ namespace base
 
       m_bSystemSynchronizedCursor = m_pbasesystem->m_bSystemSynchronizedCursor;
       m_bSystemSynchronizedScreen = m_pbasesystem->m_bSystemSynchronizedScreen;
-      m_iMainMonitor = 0;
+      m_iMainMonitor = -1;
 
 
       if(m_hinstance == NULL)
