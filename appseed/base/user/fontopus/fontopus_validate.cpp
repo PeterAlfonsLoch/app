@@ -78,17 +78,19 @@ namespace fontopus
    ::fontopus::user * validate::get_user(const char * pszRequestingParty,const char * pszSessId)
    {
       m_loginthread.m_strSalt.Empty();
-      if(command_thread()->property("app") == "simpledbcfg"
-         || (command_thread()->property("app") == "app-core/netnodelite" && command_thread()->property("root_handler") == "webserver")
-         || (command_thread()->property("app") == "app-core/netnodelite")
-         || command_thread()->property("app") == "veievserver"
-         || command_thread()->property("app") == "simpledbcfg"
+
+      string strApp = command_thread()->property("app");
+      if(strApp == "simpledbcfg"
+         || (strApp == "app-core/netnodelite" && command_thread()->property("root_handler") == "webserver")
+         || (strApp == "app-core/netnodelite")
+         || strApp == "veievserver"
+         || strApp == "simpledbcfg"
          //|| command_thread()->property("app") == "veriwell_mplite"      // churrasco 2011 m_strLicense
-         || command_thread()->property("app") == "app-core/netnodecfg"
-         || command_thread()->property("app") == "app-core/netnode_dynamic_web_server"
-         || command_thread()->property("app") == "app-core/netnode_dynamic_web_server_cfg"
-         || command_thread()->property("app") == "app-gtech/sensible_netnode"
-         || command_thread()->property("app") == "app-gtech/sensible_service")
+         || strApp == "app-core/netnodecfg"
+         || strApp == "app-core/netnode_dynamic_web_server"
+         || strApp == "app-core/netnode_dynamic_web_server_cfg"
+         || strApp == "app-gtech/sensible_netnode"
+         || strApp == "app-gtech/sensible_service")
       {
          m_puser = BaseSession.fontopus()->allocate_user();
          m_puser->m_strPathPrefix = "system" + ::str::has_char(Application.command()->m_varTopicQuery["systemid"],"-");

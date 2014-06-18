@@ -13,7 +13,8 @@ namespace plugin
       hotplugin::plugin(papp),
       ::simple_ui::style(papp),
       ::user::interaction(papp),
-      plugin(papp)
+      plugin(papp),
+      ::base::session(papp)
    {
 
       m_pfile           = NULL;

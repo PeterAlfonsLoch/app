@@ -39,7 +39,8 @@ namespace install
       ::simple_ui::style(papp),
       ::user::interaction(papp),
       hotplugin::plugin(papp),
-      m_canvas(papp)
+      m_canvas(papp),
+      ::base::session(papp)
    {
 
 
@@ -646,7 +647,7 @@ namespace install
 
 
 
-   bool plugin::initialize()
+   bool plugin::plugin_initialize()
    {
 
       start_ca2();

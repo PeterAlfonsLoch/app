@@ -11,7 +11,7 @@ namespace hotplugin
    class CLASS_DECL_BASE plugin :
       virtual public ::simple_ui::style,
       virtual public ::simple_ui::interaction,
-      virtual public ::thread
+      virtual public ::base::session
 #ifndef METROWIN
       , virtual public ::small_ipc_channel
 #endif
@@ -109,8 +109,8 @@ namespace hotplugin
       virtual void set_ready();
       virtual void on_ready();
 
-      virtual bool initialize();
-      virtual bool finalize();
+      virtual bool plugin_initialize();
+      virtual bool plugin_finalize();
 
       virtual void start_plugin();
 

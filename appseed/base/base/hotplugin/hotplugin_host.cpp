@@ -17,7 +17,8 @@ namespace hotplugin
       element(this),
       hotplugin::plugin(this),
       ::simple_ui::style(this),
-      ::user::interaction(this)
+      ::user::interaction(this),
+      ::base::session(this)
    {
 
       m_pplugin                  = NULL;
@@ -239,13 +240,13 @@ namespace hotplugin
 
    }
 
-   bool host::initialize()
+   bool host::plugin_initialize()
    {
 
       if(m_pplugin != NULL)
       {
 
-         return m_pplugin->initialize();
+         return m_pplugin->plugin_initialize();
 
       }
 
@@ -253,7 +254,7 @@ namespace hotplugin
 
    }
 
-   bool host::finalize()
+   bool host::plugin_finalize()
    {
 
       if(m_pplugin != NULL)
@@ -263,7 +264,7 @@ namespace hotplugin
 
          m_pplugin = NULL;
 
-         pplugin->finalize();
+         pplugin->plugin_finalize();
 
          return true;
 

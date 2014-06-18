@@ -954,7 +954,42 @@ namespace file
 
          string strDir = matter(papp, str, true);
 
-         ls_file(papp, strDir, &stra);
+         if(BaseSess(papp).m_bMatterFromHttpCache)
+         {
+
+            property_set set(get_app());
+
+            string strLs = App(papp).http().get("http://" + get_api_cc() + "/api/matter/list_dir?dir=" + System.url().url_encode(strDir),set);
+
+            stringa straLs;
+
+            stringa straSep;
+
+            straSep.add("\r");
+            straSep.add("\n");
+            straSep.add("\r\n");
+
+            straLs.add_smallest_tokens(strLs,straSep,false);
+
+            for(index i = 0; i < straLs.get_count(); i++)
+            {
+
+               if(!::str::ends(straLs[i],"/"))
+               {
+                  string strPath  = System.dir().path(strDir,straLs[i]);
+                  stra.add(strPath);
+               }
+
+            }
+
+         }
+         else
+         {
+            
+            ls_file(papp,strDir,&stra);
+
+         }
+         
 
       }
 
@@ -1461,6 +1496,8 @@ else
          string strFile;
 
          stringa straLs;
+
+         string strExistsQuestion;
          
          if (pszRoot != NULL && pszApp != NULL && *pszRoot != '\0' && *pszApp != '\0')
          {
@@ -1833,8 +1870,20 @@ else
 ret:
 
          if(BaseSession.m_bMatterFromHttpCache)
+
          {
             Application.file().put_contents(strFile,strPath);
+
+            strFile = strPath;
+
+            strFile.replace(":","_");
+            strFile.replace("//","/");
+            strFile.replace("?","%19");
+            strFile = System.dir().appdata("cache/" + strFile + ".exists_question");
+
+            Application.file().put_contents(strFile, "yes");
+
+
          }
 
          return strPath;

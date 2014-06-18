@@ -31,7 +31,8 @@ namespace plugin
       element(papp),
       ::simple_ui::style(papp),
       ::user::interaction(papp),
-      hotplugin::plugin(papp)
+      hotplugin::plugin(papp),
+      ::base::session(papp)
    {
 
       //m_pbaseapp                  = NULL;

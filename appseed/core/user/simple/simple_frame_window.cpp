@@ -654,10 +654,12 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
       // TODO: instead of closing all applications in process System.m_apptra, should close application that make part of
       // cube, bergedge, session or system.
 
-      for (int32_t i = 0; Sys(papp).m_appptra.get_count(); i++)
+      ::base::application_ptra appptra = System.get_appptra();
+
+      for (int32_t i = 0; i <  appptra.get_count(); i++)
       {
 
-         sp(::application) pappChild = &App(Sys(papp).m_appptra(i).m_p);
+         sp(::application) pappChild = &appptra[i];
 
          if (!pappChild->_001CloseApplicationByUser(this))
             return;

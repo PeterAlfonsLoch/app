@@ -188,7 +188,11 @@ namespace base
 #endif
 
       m_bSystemSynchronizedCursor = true;
+
       m_bSystemSynchronizedScreen = true;
+
+      m_spmutexUserAppData = canew(mutex(get_app(),false,"Local\\ca2.UserAppData"));
+      m_spmutexSystemAppData = canew(mutex(get_app(),false,"Global\\ca2.SystemAppData"));
 
    }
 
@@ -573,7 +577,12 @@ namespace base
    }
 
 
+   spa(::base::session) & system::basesessionptra()
+   {
 
+      return m_basesessionptra;
+
+   }
 
    bool system::initialize_log(const char * pszId)
    {
@@ -592,10 +601,6 @@ namespace base
    }
 
 
-   application_ptra & system::appptra()
-   {
-      return m_appptra;
-   }
 
 
 
@@ -605,11 +610,11 @@ namespace base
 
       retry_single_lock rsl(m_pmutex,millis(84),millis(84));
 
-      for(int32_t i = 0; i < appptra().get_size(); i++)
-      {
-         sp(::base::application) papp = appptra()(i);
-         papp->load_string_table();
-      }
+//      for(int32_t i = 0; i < appptra().get_size(); i++)
+  //    {
+    //     sp(::base::application) papp = appptra()(i);
+      //   papp->load_string_table();
+      //}
 
    }
 
@@ -618,11 +623,11 @@ namespace base
 
       retry_single_lock rsl(m_pmutex,millis(84),millis(84));
 
-      for(int32_t i = 0; i < appptra().get_size(); i++)
-      {
-         sp(::base::application) papp = appptra()(i);
-         papp->set_locale(pszLocale,actioncontext);
-      }
+//      for(int32_t i = 0; i < appptra().get_size(); i++)
+ //     {
+  //       sp(::base::application) papp = appptra()(i);
+  //       papp->set_locale(pszLocale,actioncontext);
+  //    }
 
    }
 
@@ -631,11 +636,11 @@ namespace base
 
       retry_single_lock rsl(m_pmutex,millis(84),millis(84));
 
-      for(int32_t i = 0; i < appptra().get_size(); i++)
-      {
-         sp(::base::application) papp = appptra()(i);
-         papp->set_schema(pszStyle,actioncontext);
-      }
+//      for(int32_t i = 0; i < appptra().get_size(); i++)
+  //    {
+  //       sp(::base::application) papp = appptra()(i);
+  //       papp->set_schema(pszStyle,actioncontext);
+  //    }
 
    }
 
@@ -964,6 +969,142 @@ namespace base
       }
 
    }
+
+
+   sp(::user::interaction) system::get_active_guie()
+   {
+
+#if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
+
+      return window_from_os_data(::GetActiveWindow());
+
+#else
+
+      if(frames().get_size() <= 0)
+         return NULL;
+
+      return frames()(0);
+
+#endif
+
+   }
+
+
+   sp(::user::interaction) system::get_focus_guie()
+   {
+
+#if defined (METROWIN)
+
+      return GetFocus()->window();
+
+#elif defined(WINDOWSEX) || defined(LINUX)
+
+      ::user::interaction * pwnd = ::window_from_handle(::GetFocus());
+      if(pwnd != NULL)
+      {
+         if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
+            || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
+         {
+            return pwnd;
+         }
+         else
+         {
+            return NULL;
+         }
+      }
+      pwnd = System.window_from_os_data(::GetFocus());
+      if(pwnd != NULL)
+      {
+         if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
+            || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
+         {
+            return pwnd;
+         }
+         else
+         {
+            return NULL;
+         }
+      }
+      return NULL;
+#else
+
+      return System.get_active_guie();
+
+#endif
+
+   }
+
+
+   ::count system::get_application_count()
+   {
+
+      ::count c = 0;
+
+      try
+      {
+
+         for(index iBaseSession = 0; iBaseSession < m_basesessionptra.get_count(); iBaseSession++)
+         {
+
+            try
+            {
+
+               c += m_basesessionptra[iBaseSession].appptra().get_count();
+
+            }
+            catch(...)
+            {
+
+            }
+
+         }
+
+      }
+      catch(...)
+      {
+
+      }
+
+      return c;
+
+   }
+
+
+   application_ptra system::get_appptra()
+   {
+
+      application_ptra appptra;
+
+      try
+      {
+
+         for(index iBaseSession = 0; iBaseSession < m_basesessionptra.get_count(); iBaseSession++)
+         {
+
+            try
+            {
+
+               appptra += m_basesessionptra[iBaseSession].appptra();
+
+            }
+            catch(...)
+            {
+
+            }
+
+         }
+
+      }
+      catch(...)
+      {
+
+
+      }
+
+      return appptra;
+
+   }
+
 
 
 } // namespace base

@@ -32,6 +32,8 @@ void dappy(const char * psz)
 {
 
    //printf("app._ : %s : %s\n",_argv[2],psz);
+   //printf("hello!!    : %s\n",psz);
+   //::OutputDebugString("hello!!    : " + string(psz) + "\n");
 
 }
 
@@ -1253,82 +1255,67 @@ namespace base
 
    }
 
+
    string application::get_locale_schema_dir(const string & strLocale)
    {
 
       if(strLocale.is_empty())
+      {
+
          return System.dir().simple_path(get_locale(),get_schema());
+
+      }
       else
+      {
+
          return System.dir().simple_path(strLocale,get_schema());
 
+      }
+
    }
+
 
    string application::get_locale_schema_dir(const string & strLocale,const string & strSchema)
    {
+
       if(strLocale.is_empty())
       {
+
          if(strSchema.is_empty())
+         {
+          
             return System.dir().simple_path(get_locale(),get_schema());
+
+         }
          else
+         {
+
             return System.dir().simple_path(get_locale(),strSchema);
+
+         }
+          
       }
       else
       {
+
          if(strSchema.is_empty())
+         {
+
             return System.dir().simple_path(strLocale,get_schema());
+
+         }
          else
+         {
+
             return System.dir().simple_path(strLocale,strSchema);
+
+         }
+
       }
+
    }
 
 
-
-
-
-
-   sp(::user::interaction) application::get_focus_guie()
-   {
-
-#if defined (METROWIN)
-
-      return GetFocus()->window();
-
-#elif defined(WINDOWSEX) || defined(LINUX)
-
-      ::user::interaction * pwnd = ::window_from_handle(::GetFocus());
-      if(pwnd != NULL)
-      {
-         if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-            || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-         {
-            return pwnd;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      pwnd = System.window_from_os_data(::GetFocus());
-      if(pwnd != NULL)
-      {
-         if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-            || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-         {
-            return pwnd;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      return System.m_spuiFocus;
-#else
-
-      return System.get_active_guie();
-
-#endif
-
-   }
 
 
 
@@ -1339,24 +1326,6 @@ namespace base
 
 
 
-
-   sp(::user::interaction) application::get_active_guie()
-   {
-
-#if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
-
-      return window_from_os_data(::GetActiveWindow());
-
-#else
-
-      if (frames().get_size() <= 0)
-         return NULL;
-
-      return frames()(0);
-
-#endif
-
-   }
 
 
    geometry::geometry & application::geometry()
@@ -2261,6 +2230,8 @@ namespace base
    bool application::system_add_app_install(const char * pszId)
    {
 
+      synch_lock sl(System.m_spmutexSystemAppData);
+
       string strId(pszId);
       string strSystemLocale = System.m_strLocale;
       string strSystemSchema = System.m_strSchema;
@@ -2504,7 +2475,13 @@ namespace base
    int32_t application::run()
    {
 
-      if((command()->m_varTopicQuery.has_property("install")
+      if(is_system() || is_session())
+      {
+       
+         return ::thread::run();
+
+      }
+      else if((command()->m_varTopicQuery.has_property("install")
          || command()->m_varTopicQuery.has_property("uninstall"))
          &&
          ((is_session() && command()->m_varTopicQuery["session_start"] == "session")))
@@ -2577,7 +2554,7 @@ namespace base
 
       sp(application) papp;
 
-      papp = System.m_appptra.find_running_defer_try_quit_damaged(pszAppId);
+      papp = BaseSession.m_appptra.find_running_defer_try_quit_damaged(pszAppId);
 
       if(papp.is_null())
       {
@@ -3505,7 +3482,7 @@ namespace base
       try
       {
 
-         if(System.appptra().get_count() <= 1)
+         if(BaseSession.appptra().get_count() <= 1)
          {
 
             if(System.thread::get_os_data() != NULL)
@@ -4341,70 +4318,73 @@ namespace base
 
    }
 
-   void application::gudo_get(const string & strKey,::file::serializable & obj)
+   bool application::gudo_get(const string & strKey,::file::serializable & obj)
    {
 
       string strPath(strKey);
 
       strPath.replace("::","/");
 
-      mutex mutex(get_app(),false,"Global\\gudo/" + strPath);
-
-      synch_lock sl(&mutex);
+      synch_lock sl(System.m_spmutexUserAppData);
 
       ::file::binary_buffer_sp file = Application.file_get_file(Application.dir().userappdata(strPath),::file::mode_read);
 
-      if(file.is_set())
+      if(file.is_null())
       {
 
-         ::file::byte_input_stream is(file);
-
-         try
-         {
-
-            obj.read(is);
-
-         }
-         catch(...)
-         {
-
-         }
+         return false;
 
       }
 
+      ::file::byte_input_stream is(file);
+
+      try
+      {
+
+         obj.read(is);
+
+      }
+      catch(...)
+      {
+
+      }
+
+      return true;
 
    }
 
-   void application::gudo_set(const string & strKey,::file::serializable & obj)
+   bool application::gudo_set(const string & strKey,::file::serializable & obj)
    {
 
       string strPath(strKey);
 
       strPath.replace("::","/");
 
-      mutex mutex(get_app(),false,"Global\\gudo/" + strPath);
-
-      synch_lock sl(&mutex);
+      synch_lock sl(System.m_spmutexUserAppData);
 
       ::file::binary_buffer_sp file = Application.file_get_file(Application.dir().userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
 
-      if(file.is_set())
+      if(file.is_null())
       {
 
-         ::file::byte_output_stream os(file);
-
-         try
-         {
-
-            obj.write(os);
-
-         }
-         catch(...)
-         {
-
-         }
+         return false;
 
       }
+
+      ::file::byte_output_stream os(file);
+
+      try
+      {
+
+         obj.write(os);
+
+      }
+      catch(...)
+      {
+
+      }
+
+      return true;
 
    }
 
@@ -4433,6 +4413,21 @@ namespace base
 
    }
 
+
+   sp(::user::interaction) application::get_active_guie()
+   {
+
+      return BaseSession.get_active_guie();
+
+   }
+
+
+   sp(::user::interaction) application::get_focus_guie()
+   {
+
+      return BaseSession.get_focus_guie();
+
+   }
 
 
 } // namespace base

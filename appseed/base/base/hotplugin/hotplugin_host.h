@@ -74,8 +74,8 @@ namespace hotplugin
       virtual void on_ready();
 
 
-      virtual bool initialize();
-      virtual bool finalize();
+      virtual bool plugin_initialize();
+      virtual bool plugin_finalize();
 
 
       virtual void start_plugin();

@@ -587,7 +587,7 @@ namespace plane
                if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
                   || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
                {
-                  System.appptra().remove(this);
+                  System.planesessionptra().remove(this);
                   return;
                }
                return;
@@ -619,7 +619,7 @@ namespace plane
       if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
          || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
       {
-         System.appptra().remove(papp);
+         BaseSession.appptra().remove(papp);
          return NULL;
       }
 
@@ -1811,6 +1811,172 @@ alt1:
 
    }
 
+   /*   ::core::filehandler::handler & system::filehandler()
+   {
+   return *m_spfilehandler;
+   }*/
+
+
+
+   void session::register_bergedge_application(sp(::base::application) papp)
+   {
+
+      retry_single_lock rsl(&m_mutex,millis(84),millis(84));
+
+      if(papp.is_null() || papp->m_pplaneapp == NULL)
+         return;
+
+      BaseSession.m_appptra.add_unique(papp.m_p);
+
+      if(System.is_installing() || System.is_uninstalling())
+         System.m_bDoNotExitIfNoApplications = false;
+      else if(!papp->is_session()
+         && !papp->is_system()
+         && !papp->is_serviceable())
+      {
+
+         System.m_bDoNotExitIfNoApplications = false;
+
+      }
+
+   }
+
+   void session::unregister_bergedge_application(sp(::base::application) papp)
+   {
+
+      retry_single_lock rsl(&m_mutex,millis(84),millis(84));
+
+      BaseSession.m_appptra.remove(papp);
+
+   }
+
+
+   sp(::base::application) session::get_new_app(sp(::base::application) pappNewApplicationParent,const char * pszType,const char * pszAppId)
+   {
+
+      string strId(pszAppId);
+
+      string strApplicationId;
+
+      if(strId == "app/core/bergedge")
+      {
+
+         strApplicationId = "bergedge";
+
+      }
+      else if(strId == "app/core/system")
+      {
+
+         strApplicationId = "system";
+
+      }
+      else
+      {
+
+         strApplicationId = strId;
+
+      }
+
+
+      string strBuildNumber = System.command()->m_varTopicQuery["build_number"];
+
+      if(strBuildNumber.is_empty())
+      {
+
+         strBuildNumber = "latest";
+
+      }
+
+#ifdef CUBE
+
+      // Criar novo meio de instalação
+
+#elif !defined(METROWIN)
+
+      if(!System.directrix()->m_varTopicQuery.has_property("install")
+         && !System.directrix()->m_varTopicQuery.has_property("uninstall")
+         && strId.has_char()
+         && !System.install().is(NULL,strBuildNumber,pszType,strApplicationId,m_strLocale,m_strSchema))
+      {
+
+         throw not_installed(get_app(),NULL,strBuildNumber,pszType,strApplicationId,m_strLocale,m_strSchema);
+
+      }
+
+#endif
+
+      ::core::library library(pappNewApplicationParent,NULL);
+
+#ifdef CUBE
+
+      string strLibrary = pszAppId;
+
+      strLibrary.replace("/","_");
+      strLibrary.replace("-","_");
+
+
+#else
+
+      string strLibrary = System.m_mapAppLibrary[pszAppId];
+
+      if(strLibrary.is_empty())
+      {
+
+         throw not_installed(get_app(),NULL,strBuildNumber,pszType,strApplicationId,m_strLocale,m_strSchema);
+
+      }
+
+#endif
+
+      sp(::base::application) papp = NULL;
+
+      if(!library.open(strLibrary,false))
+         return NULL;
+
+      papp = library.get_new_app(pszAppId);
+
+      if(papp == NULL)
+         return NULL;
+
+      sp(::base::application) pgenapp = (papp);
+
+      pgenapp->m_pplaneapp->m_strAppId = pszAppId;
+
+      pgenapp->m_pbasesystem = m_pbasesystem;
+
+      pgenapp->m_pplaneapp->m_psystem = &System;
+
+#ifdef WINDOWS
+
+      pgenapp->m_hinstance = m_hinstance;
+
+#endif
+
+      pgenapp->::base::application::construct();
+
+      pgenapp->construct();
+
+      return papp;
+
+   }
+
+
+   sp(::plane::session) session::query_bergedge()
+   {
+
+      sp(::plane::session) psession = NULL;
+
+      if(System.m_pbergedgemap == NULL)
+         return NULL;
+
+      if(!System.m_pbergedgemap->Lookup(0,psession))
+      {
+         return NULL;
+      }
+
+      return psession;
+
+   }
 
 } // namespace plane
 

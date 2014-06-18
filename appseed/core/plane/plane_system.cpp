@@ -535,36 +535,58 @@ namespace plane
 
          ::base::application_ptra appptra;
 
-         appptra = this->appptra();
+         appptra = get_appptra();
 
          for(int32_t i = 0; i < appptra.get_size(); )
          {
+
             try
             {
+
                if(appptra[i].is_session() || appptra[i].is_system())
                {
+
                   appptra.remove_at(i);
+
                   continue;
+
                }
                else if(appptra[i].is_serviceable() && appptra[i].m_strAppId != directrix()->m_varTopicQuery["app"].get_string())
                {
+
                   appptra.remove_at(i);
+
                   continue;
+
                }
+
             }
             catch(...)
             {
+
                appptra.remove_at(i);
+
                continue;
+
             }
+
             i++;
+
          }
 
          if(appptra.get_size() <= 0)
+         {
+
             return false;
 
+         }
+
          if(appptra.get_size() == 1 && appptra.contains(this))
+         {
+
             return false;
+
+         }
 
       }
 
@@ -779,13 +801,6 @@ namespace plane
    }
 
 
-   sp(::base::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
-   {
-      sp(::plane::session) psession = get_session(iEdge, pbiasCreate);
-      return psession->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);
-   }
-
-
    ::core::history & system::hist()
    {
       return *m_phistory;
@@ -819,42 +834,6 @@ namespace plane
 #endif
 
 
-   /*   ::core::filehandler::handler & system::filehandler()
-   {
-   return *m_spfilehandler;
-   }*/
-
-   void system::register_bergedge_application(sp(::base::application) papp)
-   {
-
-      retry_single_lock rsl(&m_mutex, millis(84), millis(84));
-
-      if(papp.is_null() || papp->m_pplaneapp == NULL)
-         return;
-      
-      appptra().add_unique(papp->m_pplaneapp);
-
-      if(System.is_installing() || System.is_uninstalling())
-         m_bDoNotExitIfNoApplications = false;
-      else if(!papp->m_pplaneapp->is_session()
-      && !papp->m_pplaneapp->is_system()
-      && !papp->m_pplaneapp->is_serviceable())
-      {
-
-            m_bDoNotExitIfNoApplications = false;
-
-      }
-
-   }
-
-   void system::unregister_bergedge_application(sp(::base::application) papp)
-   {
-
-      retry_single_lock rsl(&m_mutex, millis(84), millis(84));
-
-      appptra().remove(papp->m_pplaneapp);
-
-   }
 
 
 
@@ -1155,12 +1134,6 @@ namespace plane
    }
 
 
-   void system::open_by_file_extension(index iEdge, const char * pszFileName)
-   {
-      sp(::plane::session) psession = get_session(iEdge);
-      psession->open_by_file_extension(pszFileName);
-   }
-
    bool system::sync_load_url(string & str, const char * lpszUrl, ::fontopus::user * puser, ::http::cookies * pcookies)
    {
       string filename = System.file().time_square(get_app());
@@ -1319,114 +1292,6 @@ namespace plane
    }
 
 
-   sp(::base::application) system::get_new_app(sp(::base::application) pappNewApplicationParent, const char * pszType, const char * pszAppId)
-   {
-
-      string strId(pszAppId);
-
-      string strApplicationId;
-
-      if(strId == "app/core/bergedge")
-      {
-
-         strApplicationId = "bergedge";
-
-      }
-      else if(strId == "app/core/system")
-      {
-
-         strApplicationId = "system";
-
-      }
-      else
-      {
-
-         strApplicationId = strId;
-
-      }
-
-
-      string strBuildNumber = System.command()->m_varTopicQuery["build_number"];
-
-      if(strBuildNumber.is_empty())
-      {
-
-         strBuildNumber = "latest";
-
-      }
-
-#ifdef CUBE
-
-      // Criar novo meio de instalação
-
-#elif !defined(METROWIN)
-
-      if(!System.directrix()->m_varTopicQuery.has_property("install")
-         && !System.directrix()->m_varTopicQuery.has_property("uninstall")
-         && strId.has_char()
-         && !install().is(NULL, strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema))
-      {
-
-         throw not_installed(get_app(), NULL, strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema);
-
-      }
-
-#endif
-
-      ::core::library library(pappNewApplicationParent, NULL);
-
-#ifdef CUBE
-
-      string strLibrary = pszAppId;
-
-      strLibrary.replace("/", "_");
-      strLibrary.replace("-", "_");
-
-
-#else
-
-      string strLibrary = m_mapAppLibrary[pszAppId];
-
-      if (strLibrary.is_empty())
-      {
-
-         throw not_installed(get_app(), NULL, strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema);
-
-      }
-
-#endif
-
-      sp(::base::application) papp = NULL;
-
-      if(!library.open(strLibrary, false))
-         return NULL;
-
-      papp = library.get_new_app(pszAppId);
-
-      if(papp == NULL)
-         return NULL;
-
-      sp(::base::application) pgenapp = (papp);
-
-      pgenapp->m_pplaneapp->m_strAppId = pszAppId;
-
-      pgenapp->m_pbasesystem = this;
-
-      pgenapp->m_pplaneapp->m_psystem = this;
-
-#ifdef WINDOWS
-
-      pgenapp->m_hinstance = m_hinstance;
-
-#endif
-
-      pgenapp->::base::application::construct();
-
-      pgenapp->construct();
-
-      return papp;
-
-   }
 
    sp(::user::object) system::place_hold(sp(::user::interaction) pui)
    {
@@ -1563,21 +1428,6 @@ namespace plane
 #endif
 
 
-
-
-   sp(::platform::document) system::get_platform(index iEdge, application_bias * pbiasCreation)
-   {
-      sp(::plane::session) pbergedge = get_session(iEdge, pbiasCreation);
-      return pbergedge->get_platform();
-   }
-
-   sp(::nature::document) system::get_nature(index iEdge, application_bias * pbiasCreation)
-   {
-      sp(::plane::session) pbergedge = get_session(iEdge, pbiasCreation);
-      return pbergedge->get_nature();
-   }
-
-
    bool system::is_system()
    {
       return true;
@@ -1649,17 +1499,6 @@ namespace plane
 
    }
    */
-   sp(::plane::session) system::query_bergedge(index iEdge)
-   {
-      sp(::plane::session) psession = NULL;
-      if(m_pbergedgemap == NULL)
-         return NULL;
-      if(!m_pbergedgemap->Lookup(iEdge, psession))
-      {
-         return NULL;
-      }
-      return psession;
-   }
 
 
 /*   sp(::plane::session) system::get_session(index iEdge, application_bias * pbiasCreation)
@@ -1724,6 +1563,14 @@ namespace plane
       int iRet = ::core::system::main();
 
       return iRet;
+
+   }
+
+
+   spa(::plane::session) & system::planesessionptra()
+   {
+
+      return m_planesessionptra;
 
    }
 

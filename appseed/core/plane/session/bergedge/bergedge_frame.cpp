@@ -261,7 +261,7 @@ namespace bergedge
             ::file::memory_buffer file(get_app(), pstruct->lpData, pstruct->cbData);
             string strPath;
             file.to_string(strPath);
-            System.open_by_file_extension(iEdge, strPath);
+            PlaneSession.open_by_file_extension(strPath);
          }
       }
 

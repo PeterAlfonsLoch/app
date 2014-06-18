@@ -49,6 +49,7 @@ namespace plane
 
       sp(::plane::session::run_start_installer)      m_prunstartinstaller;
       sp(::plane::session::map)                      m_pbergedgemap;
+      spa(::plane::session)                           m_planesessionptra;
 
 
       sp(class ::core::history)                      m_phistory;
@@ -104,10 +105,10 @@ namespace plane
       virtual bool finalize();
       virtual int32_t exit_instance();
 
+
       virtual index get_new_bergedge(application_bias * pbiasCreation = NULL);
 
-      virtual void register_bergedge_application(sp(::base::application) papp);
-      virtual void unregister_bergedge_application(sp(::base::application) papp);
+      spa(::plane::session) &    planesessionptra();
 
 
       virtual bool base_support();
@@ -121,13 +122,9 @@ namespace plane
 
 
       virtual sp(::plane::session)             get_session(index iEdge, application_bias * pbiasCreation = NULL);
-      virtual sp(::platform::document)             get_platform(index iEdge, application_bias * pbiasCreation = NULL);
-      virtual sp(::nature::document)               get_nature(index iEdge, application_bias * pbiasCreation = NULL);
 
-      virtual sp(::plane::session)             query_bergedge(index iEdge);
+      
       virtual void on_request(sp(::create_context) pcreatecontext);
-      virtual sp(::base::application) application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, application_bias * pbiasCreate = NULL);
-      virtual void open_by_file_extension(index iEdge, const char * pszPathName);
       virtual bool is_system();
 
 //      virtual sp(::command_thread) command_thread();
@@ -223,7 +220,7 @@ namespace plane
 
       virtual bool verb();
 
-      virtual sp(::base::application) get_new_app(sp(::base::application) pappNewApplicationParent, const char * pszType, const char * pszId);
+      
 
       virtual bool find_applications_from_cache();
       virtual bool find_applications_to_cache();

@@ -75,7 +75,7 @@ namespace install
 
       virtual bool thread_start_ca2_on_idle();
 
-      virtual bool initialize();
+      virtual bool plugin_initialize();
 
       virtual void on_paint(::draw2d::graphics * pgraphics, LPCRECT lprect);
 

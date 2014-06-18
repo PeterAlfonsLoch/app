@@ -8,7 +8,7 @@ class CLASS_DECL_BASE ptra:
 public:
 
 
-   };
+};
 
 
 typedef ::map < sp(element),sp(element),sp(element),sp(element) > element_map;
@@ -54,12 +54,6 @@ namespace base
 
       ::sockets::SSLInitializer *                    m_psslinit;
 
-      sp(::user::interaction)                      m_spuiFocus;
-
-
-      application_ptra                             m_appptra;
-
-
       ::user::interaction *                      m_psimpleui;
       os_data *                                    m_posdata;
 
@@ -96,7 +90,10 @@ namespace base
       sp(::user::str)                              m_puserstr;
       sp(::install::install)                       m_spinstall;
       ::base::os_sp                                m_spos;
+      spa(::base::session)                         m_basesessionptra;
 
+      sp(mutex)                                    m_spmutexUserAppData;
+      sp(mutex)                                    m_spmutexSystemAppData;
 
 
 #ifdef WINDOWS
@@ -147,7 +144,9 @@ namespace base
 
       virtual int32_t exit_instance();
 
-      application_ptra                             & appptra();
+      spa(::base::session)                         & basesessionptra();
+      application_ptra                                get_appptra();
+
 
 
       class ::base::os                             & os();
@@ -170,6 +169,9 @@ namespace base
       ::datetime::departament                      & datetime();
       ::user::str                                  & str();
       ::install::install                           & install()  { return *m_spinstall; }
+
+
+//      application_ptra           get_appptra();
 
 
 
@@ -348,6 +350,12 @@ namespace base
       virtual ::count get_desk_monitor_count();
       virtual bool  get_desk_monitor_rect(index iMonitor,LPRECT lprect);
 
+
+      virtual sp(::user::interaction) get_active_guie();
+      virtual sp(::user::interaction) get_focus_guie();
+
+
+      virtual ::count get_application_count();
 
 
    };

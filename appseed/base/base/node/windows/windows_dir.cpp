@@ -448,6 +448,15 @@ namespace windows
 
    void dir::ls_file(sp(::base::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
+
+
+      if(::file::dir::system::is(lpcsz,papp)) // if base class "already" "says" it is a dir, let it handle it: may be not a operational system dir, e.g., zip or compressed directory...
+      {
+
+         return ::file::dir::system::ls_pattern(papp,lpcsz,"*.*", pstraPath,pstraTitle);
+
+      }
+
       file_find file_find;
       bool bWorking;
       bWorking = file_find.FindFile(System.dir().path(lpcsz, "*.*"));
@@ -1083,7 +1092,7 @@ namespace windows
       string str;
       str = m_strAppData;
 
-      return path(path(str,"ca2common"),lpcsz,lpcsz2);
+      return path(path(str,"ca2\\common"),lpcsz,lpcsz2);
    }
 
    string dir::usersystemappdata(sp(::base::application) papp, const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)

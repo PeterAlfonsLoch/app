@@ -124,7 +124,6 @@ namespace base
       sp(::user::interaction)          m_pwndMain;
       bool                                m_bInitializeProDevianMode;
 
-
       application();
       virtual ~application();
 
@@ -288,8 +287,8 @@ namespace base
       virtual string get_license_id();
 
 
-      sp(::user::interaction) get_active_guie();
-      sp(::user::interaction) get_focus_guie();
+      virtual sp(::user::interaction) get_active_guie();
+      virtual sp(::user::interaction) get_focus_guie();
 
 
       virtual bool is_key_pressed(::user::e_key ekey);
@@ -474,8 +473,8 @@ namespace base
 
       // name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
       // get/set serializables to user directory
-      void gudo_get(const string & strKey,::file::serializable & obj);
-      void gudo_set(const string & strKey,::file::serializable & obj);
+      bool gudo_get(const string & strKey,::file::serializable & obj);
+      bool gudo_set(const string & strKey,::file::serializable & obj);
 
 
       void assert_user_logged_in();

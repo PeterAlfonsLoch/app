@@ -60,10 +60,15 @@ namespace base
       m_ecursorDefault  = ::visual::cursor_arrow;
       m_ecursor         = ::visual::cursor_default;
 
+
+      m_pbasesystem->m_basesessionptra.add_unique(this);
+
    }
 
    session::~session()
    {
+
+      m_pbasesystem->m_basesessionptra.remove(this);
 
       POSITION pos = m_mapApplication.get_start_position();
 
@@ -895,6 +900,81 @@ namespace base
       }
 
    }
+
+
+   sp(::user::interaction) session::get_active_guie()
+   {
+
+      return System.get_active_guie();
+
+   }
+
+
+   sp(::user::interaction) session::get_focus_guie()
+   {
+
+#if defined (METROWIN)
+
+      return GetFocus()->window();
+
+#elif defined(WINDOWSEX) || defined(LINUX)
+
+      ::user::interaction * pwnd = ::window_from_handle(::GetFocus());
+      if(pwnd != NULL)
+      {
+         if(get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
+            || ::user::window_util::IsAscendant(get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
+         {
+            return pwnd;
+         }
+         else
+         {
+            return NULL;
+         }
+      }
+      pwnd = System.window_from_os_data(::GetFocus());
+      if(pwnd != NULL)
+      {
+         if(get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
+            || ::user::window_util::IsAscendant(get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
+         {
+            return pwnd;
+         }
+         else
+         {
+            return NULL;
+         }
+      }
+      pwnd = m_spuiFocus;
+      if(pwnd != NULL)
+      {
+         if(get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
+            || ::user::window_util::IsAscendant(get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
+         {
+            return pwnd;
+         }
+         else
+         {
+            return NULL;
+         }
+      }
+      return NULL;
+#else
+
+      return System.get_active_guie();
+
+#endif
+
+   }
+
+
+   application_ptra & session::appptra()
+   {
+
+      return m_appptra;
+
+   }
+
 
 
 } // namespace base

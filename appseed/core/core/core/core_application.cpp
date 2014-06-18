@@ -293,7 +293,7 @@ bool application::initialize1()
 
    if (!is_system())
    {
-      System.register_bergedge_application(this);
+      PlaneSession.register_bergedge_application(this);
    }
 
 
@@ -513,7 +513,7 @@ int32_t application::exit_instance()
    {
       if (!is_system())
       {
-         System.unregister_bergedge_application(this);
+         PlaneSession.unregister_bergedge_application(this);
       }
    }
    catch (...)
@@ -586,7 +586,7 @@ int32_t application::exit_instance()
    try
    {
 
-      if (System.appptra().get_count() <= 1)
+      if (System.get_application_count() <= 1)
       {
 
          if (System.thread::get_os_data() != NULL)
@@ -3284,7 +3284,7 @@ bool application::initialize()
 
    if (!is_system())
    {
-      System.register_bergedge_application(this);
+      PlaneSession.register_bergedge_application(this);
    }
 
    xxdebug_box("register_bergedge_application ok", "register_bergedge_application ok", MB_ICONINFORMATION);
@@ -3526,52 +3526,30 @@ bool application::start_application(bool bSynch, application_bias * pbias)
    }
 
    thread::m_pimpl.create(allocer());
-   //dynamic_cast < thread * > (papp->m_pplaneapp->thread::m_p)->m_p = papp->m_pplaneapp->thread::m_p;
+   
    thread::m_pimpl->m_puser = this;
+
    if (pbias != NULL)
    {
-      m_biasCalling = *pbias;
-   }
-   begin();
 
-   if (bSynch)
-   {
-      try
-      {
-         keep_alive();
-      }
-      catch (...)
-      {
-      }
-      try
-      {
-         //            MESSAGE msg;
-         while (get_run())
-         {
-            // phase1: check to see if we can do idle work
-            while (!has_message())
-            {
-               if (!is_alive())
-               {
-                  return false;
-               }
-               if (m_bReady)
-               {
-                  if (m_iReturnCode == 0)
-                     goto ok;
-                  return false;
-               }
-               Sleep(84);
-            }
-            pump_message();
-         }
-      }
-      catch (...)
-      {
-         return false;
-      }
-   ok:;
+      m_biasCalling = *pbias;
+
    }
+
+   if(bSynch)
+   {
+
+      if(!begin_synch(&m_iReturnCode))
+         return false;
+
+   }
+   else
+   {
+
+      begin();
+
+   }
+
 
    return true;
 
@@ -4035,7 +4013,7 @@ sp(::base::application) application::instantiate_application(const char * pszTyp
 
       }
 
-      papp = System.get_new_app(this, pszType, strNewId);
+      papp = PlaneSession.get_new_app(this, pszType, strNewId);
 
       if (papp == NULL)
          return NULL;

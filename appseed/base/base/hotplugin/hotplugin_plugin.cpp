@@ -33,7 +33,8 @@ namespace hotplugin
       element(papp),
       ::simple_ui::style(papp),
       ::user::interaction(papp),
-      ::thread(papp)
+      ::thread(papp),
+      base::session(papp)
    {
 
       m_pstyle          = this;
@@ -57,6 +58,9 @@ namespace hotplugin
 
       m_eschema         = schema_normal;
 
+      m_pbaseapp = this;
+      m_pbaseapp->m_pbasesession = this;
+      m_pbasesession = this;
 
    }
 
@@ -251,12 +255,12 @@ namespace hotplugin
    {
    }
 
-   bool plugin::initialize()
+   bool plugin::plugin_initialize()
    {
       return true;
    }
 
-   bool plugin::finalize()
+   bool plugin::plugin_finalize()
    {
       return true;
    }
@@ -968,6 +972,8 @@ namespace hotplugin
    {
 
       m_phost = phost;
+      m_pbaseapp = m_phost;
+      m_pbasesession = m_phost;
 
       return true;
 

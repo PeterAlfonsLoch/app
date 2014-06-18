@@ -38,6 +38,10 @@ namespace base
 
 
       sp(::fontopus::fontopus)                                 m_pfontopus;
+      application_ptra                                         m_appptra;
+      sp(::user::interaction)                                  m_spuiFocus;
+
+
 
 
       session(sp(::base::application) papp);
@@ -45,6 +49,8 @@ namespace base
 
       inline ::userpresence::userpresence & userpresence() { return *m_puserpresence; }
       inline sp(::fontopus::fontopus)           fontopus()     { return m_pfontopus; }
+
+      application_ptra & appptra();
 
       virtual bool is_session();
 
@@ -109,6 +115,11 @@ namespace base
 
 
       virtual void  get_cursor_pos(LPPOINT lppoint);
+
+      
+      virtual sp(::user::interaction) get_active_guie();
+      virtual sp(::user::interaction) get_focus_guie();
+
 
    };
 
