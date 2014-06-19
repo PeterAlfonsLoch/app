@@ -1298,22 +1298,33 @@ d.unlock();
             || pbase->m_uiMessage == WM_MBUTTONDOWN
             || pbase->m_uiMessage == WM_MOUSEMOVE)
          {
-            if(Session.fontopus()->m_puser != NULL)
+
+            if(BaseSession.fontopus()->m_puser != NULL)
             {
+
                if(&ApplicationUser != NULL)
                {
+
                   if(ApplicationUser.m_ppresence != NULL)
                   {
+
                      try
                      {
+
                         ApplicationUser.m_ppresence->report_activity();
+
                      }
                      catch(...)
                      {
+
                      }
+
                   }
+
                }
+
             }
+
          }
 
          if(pbase->m_uiMessage == WM_LBUTTONDOWN)
@@ -1325,36 +1336,17 @@ d.unlock();
 
          ::message::mouse * pmouse = (::message::mouse *) pbase;
 
-         Application.m_ptCursor = pmouse->m_pt;
-
          if(m_pbaseapp->m_pbasesession != NULL)
          {
-            Session.m_ptCursor = pmouse->m_pt;
+            BaseSession.m_ptCursor = pmouse->m_pt;
          }
 
          if(m_pui != NULL && m_pui != this && m_pui->m_pbaseapp->m_pbasesession != NULL && m_pui->m_pbaseapp->m_pbasesession != m_pbaseapp->m_pbasesession)
          {
 
-            Sess(m_pui->m_pbaseapp->m_pbasesession).m_ptCursor = pmouse->m_pt;
+            BaseSess(m_pui->m_pbaseapp->m_pbasesession).m_ptCursor = pmouse->m_pt;
 
          }
-
-         sp(base_session) psession;
-
-         if(m_pbaseapp->is_system())
-         {
-
-            psession = System.query_session(0);
-
-            if(psession != NULL && psession->m_bSessionSynchronizedCursor)
-            {
-
-               psession->m_ptCursor = pmouse->m_pt;
-
-            }
-
-         }
-
 
          if(m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
          {
@@ -3796,7 +3788,7 @@ throw not_implemented(get_app());
 
       rect rectScreen;
 
-      System.get_screen_rect(rectScreen);
+      best_monitor(rectScreen);
 
       int iPalaceGuard = 256;
 
@@ -5503,8 +5495,8 @@ if(psurface == g_cairosurface)
    void window::_001OnSetCursor(::signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
-      if(Session.get_cursor() != NULL
-         && Session.get_cursor()->m_ecursor != ::visual::cursor_system)
+      if(BaseSession.get_cursor() != NULL
+         && BaseSession.get_cursor()->m_ecursor != ::visual::cursor_system)
       {
 
          throw not_implemented(get_app());

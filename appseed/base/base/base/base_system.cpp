@@ -267,14 +267,20 @@ namespace base
       if(!set_main_init_data(m_pinitmaindata))
          return false;
 
-
+#ifdef WINDOWSEX
 
       dappy(string(typeid(*this).name()) + " : Going to ::base::system::m_spwindow->CreateEx : " + ::str::from(m_iReturnCode));
+
       if(!m_spwindow->CreateEx(0,NULL,NULL,0,null_rect(),NULL,"::base::system::window::no_twf"))
       {
+
          dappy(string(typeid(*this).name()) + " : ::base::system::m_spwindow->CreateEx failure : " + ::str::from(m_iReturnCode));
+
          return false;
+
       }
+
+#endif
 
       dappy(string(typeid(*this).name()) + " : Going to ::base::session " + ::str::from(m_iReturnCode));
 
@@ -924,6 +930,10 @@ namespace base
 
    }
 
+
+#ifdef WINDOWS
+
+
    system::window::window(sp(::base::application) papp):
       element(papp)
    {
@@ -973,6 +983,9 @@ namespace base
       }
 
    }
+
+
+#endif
 
 
    sp(::user::interaction) system::get_active_guie()

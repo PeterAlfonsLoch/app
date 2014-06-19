@@ -45,6 +45,8 @@ namespace linux
 
       semaphore * TwfGetBufferSemaphore();
 
+      /*
+
       // Bit blitting spread functions
       virtual bool ScreenOutput(
          user::buffer *,
@@ -53,6 +55,8 @@ namespace linux
       virtual bool ScreenOutput();
 
       virtual bool ScreenOutput(user::buffer *, sp(::user::interaction) pwnd);
+
+      */
 
       // Transparent drawing operations
       // controllers

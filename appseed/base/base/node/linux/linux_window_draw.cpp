@@ -39,8 +39,8 @@ namespace linux
    {
       m_dwLastRedrawRequest = ::get_tick_count();
       m_bRender = false;
-      m_pbuffer = new user::buffer(papp);
-      m_pbuffer->m_spdib.create(allocer());
+//      m_pbuffer = new user::buffer(papp);
+//      m_pbuffer->m_spdib.create(allocer());
       m_dwLastUpdate = false;
       m_iFramesPerSecond = 20;
    }
@@ -126,11 +126,11 @@ namespace linux
       m_dwLastUpdate = ::get_tick_count();
       UpdateBuffer();
       return;
-      if(m_pbuffer->GetBuffer()->get_os_data() != NULL)
-      {
+//      if(m_pbuffer->GetBuffer()->get_os_data() != NULL)
+//      {
          //m_pbuffer->m_spdib->fill_channel(255, visual::rgba::channel_alpha);
          //ScreenOutput();
-      }
+//      }
       DWORD dwTakeTime = ::get_tick_count() - m_dwLastUpdate;
       m_dwLastDelay = dwTakeTime;
       if(dwTakeTime > iFailureTime)
@@ -415,8 +415,8 @@ namespace linux
 
 
 
-      rect rectScreen;
-      System.get_screen_rect(&rectScreen);
+//      rect rectScreen;
+//      best_monitor(&rectScreen);
 /*      m_pbuffer->UpdateBuffer(rectScreen.bottom_right());
       if(m_pbuffer->GetBuffer()->get_os_data() == NULL)
          return true;
@@ -445,13 +445,13 @@ namespace linux
 
 
 
-      rect rectUpdate;
+      //rect rectUpdate;
 
-      rectUpdate = rectScreen;
+      //rectUpdate = rectScreen;
 
-      rect rectOptimize;
+      //rect rectOptimize;
 
-      rectOptimize = rectUpdate;
+      //rectOptimize = rectUpdate;
 
       rect rectWindow;
       rect rect9;
@@ -643,6 +643,8 @@ namespace linux
       return true;
    }
 
+   /*
+
    bool window_draw::ScreenOutput()
    {
 
@@ -670,6 +672,7 @@ namespace linux
 
    }
 
+   */
 
    semaphore * window_draw::TwfGetBufferSemaphore()
    {
@@ -1061,6 +1064,7 @@ throw not_implemented(get_app());
 
    }
 
+   /*
 
    // Both the device context and clip region
    // should be in screen coordinates
@@ -1096,10 +1100,15 @@ throw not_implemented(get_app());
    //   TRACE("// TickCount = %d \n", dwTimeOut - dwTimeIn);
    //   TRACE("//\n");
 
+   /*
+
       return true;
    }
 
+   */
 
+
+   /*
 
    bool window_draw::ScreenOutput(
       // pdc is the source primitive::memory device context
@@ -1330,7 +1339,9 @@ throw not_implemented(get_app());
 //   //   TRACE("//\n");
 //
 //      return true;
-   }
+
+
+//   }
 
 
 

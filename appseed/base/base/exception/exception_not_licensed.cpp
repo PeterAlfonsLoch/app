@@ -11,7 +11,7 @@ not_licensed::not_licensed(sp(::base::application) papp, const char * pszRealm, 
    str += "realm=" + m_strRealm + ";";
    m_strUrl       = pszUrl;
    str += "url=" + m_strUrl + ";";
-   printf(":not_licensed(\"%s\"", str);
+   printf(":not_licensed(\"%s\"", str.c_str());
 }
 
 
