@@ -378,19 +378,19 @@ CLASS_DECL_BASE string to_vsstring(const sockaddr *addr)
 
    if(addr->sa_family == AF_INET)
    {
-      
+
       return to_vsstring((in_addr *)addr->sa_data);
 
    }
    else if(addr->sa_family == AF_INET6)
    {
-      
-      return to_vsstring((in_addr6 *)addr->sa_data);
+
+      return to_vsstring((in6_addr *)addr->sa_data);
 
    }
    else
    {
-      
+
       throw "unexpected address family";
 
    }

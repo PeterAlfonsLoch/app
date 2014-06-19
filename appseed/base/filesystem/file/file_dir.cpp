@@ -194,7 +194,7 @@ string dir::get_ca2_module_folder()
 
 #else
 
-   strcpy_dup(lpszModuleFolder, "/ca2/");
+   wcscpy_dup(lpszModuleFolder, L"/ca2/");
 
 
 
@@ -354,7 +354,7 @@ string dir::get_base_module_folder()
 
 #else
 
-   strcpy_dup(lpszModuleFolder, "/core/");
+   wcscpy_dup(lpszModuleFolder, L"/core/");
 
 
 

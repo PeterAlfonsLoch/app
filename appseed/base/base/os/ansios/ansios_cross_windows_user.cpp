@@ -12,11 +12,11 @@ int_bool MessageBoxAForConsole(oswindow window, const char * psz, const char * p
 
 int_bool MessageBoxA(oswindow window, const char * psz, const char * pszTitle, uint32_t uiFlags)
 {
-   
+
 //   return (*g_messageboxa)(window, psz, pszTitle, uiFlags);
 
-   return show_simple_ui_message_box(::get_thread_app(), psz, pszTitle, uiFlags);
-   
+   return simple_message_box(window, psz, pszTitle, uiFlags);
+
 }
 
 
@@ -160,9 +160,9 @@ repeat:
    }
    else
    {
-      
+
       getc(stdin);
-      
+
    }
 
 

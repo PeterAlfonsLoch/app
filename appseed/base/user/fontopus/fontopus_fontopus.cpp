@@ -240,7 +240,7 @@ namespace fontopus
                m_pthreadCreatingUser->m_evReady.wait(millis(84));
 
             }
-            
+
             if(m_puser != NULL)
                return m_puser;
 
@@ -423,7 +423,7 @@ namespace fontopus
 
       string strRequestingServer = System.url().get_server(pszRequestingServerOrUrl);
 
-      DWORD dwGetFontopusBeg = ::GetTickCount();
+      DWORD dwGetFontopusBeg = ::get_tick_count();
 
       string strGetFontopus("http://" + strRequestingServer + "/get_fontopus");
 
@@ -438,7 +438,7 @@ namespace fontopus
       if(domainFontopus.m_strRadix != "ca2")
          return "";
 
-      DWORD dwGetFontopusEnd = ::GetTickCount();
+      DWORD dwGetFontopusEnd = ::get_tick_count();
 
       TRACE("NetLogin: Get Fontopus Millis = %d",dwGetFontopusEnd - dwGetFontopusBeg);
 
@@ -467,11 +467,11 @@ namespace fontopus
    int32_t create_user_thread::run()
    {
 
-      
+
 #ifdef WINDOWSEX
-      
+
       ::AttachThreadInput(GetCurrentThreadId(),(uint32_t)System.thread::m_pimpl->get_os_int(),TRUE);
-      
+
 #endif
 
       ::fontopus::user * puser = BaseSession.fontopus()->create_current_user();
