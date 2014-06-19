@@ -40,8 +40,8 @@ namespace mac
    {
       m_dwLastRedrawRequest = ::get_tick_count();
       m_bRender = false;
-      m_pbuffer = new user::buffer(papp);
-      m_pbuffer->m_spdib.create(allocer());
+//      m_pbuffer = new user::buffer(papp);
+//      m_pbuffer->m_spdib.create(allocer());
       m_dwLastUpdate = false;
       m_bProDevianMode = true;
       
@@ -128,11 +128,11 @@ namespace mac
       m_dwLastUpdate = ::get_tick_count();
       UpdateBuffer();
       return;
-      if(m_pbuffer->GetBuffer()->get_os_data() != NULL)
-      {
+//      if(m_pbuffer->GetBuffer()->get_os_data() != NULL)
+  //    {
          //m_pbuffer->m_spdib->fill_channel(255, visual::rgba::channel_alpha);
          //ScreenOutput();
-      }
+    //  }
       DWORD dwTakeTime = ::get_tick_count() - m_dwLastUpdate;
       m_dwLastDelay = dwTakeTime;
       if(dwTakeTime > iFailureTime)
@@ -322,6 +322,23 @@ namespace mac
                 false);
       
    }
+
+   
+   bool window_draw::pre_run()
+   {
+
+      if(!create_message_queue("ca2::twf - ca2 Transparent Window Framework"))
+      {
+         
+         TRACE("Could not initialize ca2::twf - ca2 Transparent Window Framework!");
+         
+         return 0;
+         
+      }
+      
+      return true;
+
+   }
    
    
    UINT window_draw::RedrawProc()
@@ -405,18 +422,18 @@ namespace mac
       
       
       
-      rect rectScreen;
-      System.get_screen_rect(&rectScreen);
-      m_pbuffer->UpdateBuffer(rectScreen.bottom_right());
-      if(m_pbuffer->GetBuffer()->get_os_data() == NULL)
-         return true;
+//      rect rectScreen;
+//      System.get_screen_rect(&rectScreen);
+//      m_pbuffer->UpdateBuffer(rectScreen.bottom_right());
+//      if(m_pbuffer->GetBuffer()->get_os_data() == NULL)
+//         return true;
       
-      ::draw2d::graphics * pdc = (dynamic_cast < ::draw2d::graphics * > (m_pbuffer->GetBuffer()));
+//      ::draw2d::graphics * pdc = (dynamic_cast < ::draw2d::graphics * > (m_pbuffer->GetBuffer()));
       
-      if(pdc == NULL)
-      {
-         return false;
-      }
+//      if(pdc == NULL)
+//      {
+//         return false;
+//      }
       
       
       user::oswindow_array hwnda;
@@ -436,13 +453,13 @@ namespace mac
       
       
       
-      rect rectUpdate;
+//      rect rectUpdate;
       
-      rectUpdate = rectScreen;
+//      rectUpdate = rectScreen;
       
-      rect rectOptimize;
+//      rect rectOptimize;
       
-      rectOptimize = rectUpdate;
+//      rectOptimize = rectUpdate;
       
       rect rectWindow;
       rect rect9;
@@ -634,6 +651,8 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
       return true;
    }
    
+/*
+ 
    bool window_draw::ScreenOutput()
    {
       
@@ -660,6 +679,8 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
       return true;
       
    }
+ 
+ */
    
    
    semaphore * window_draw::TwfGetBufferSemaphore()
@@ -1052,6 +1073,8 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
    // Both the device context and clip region
    // should be in screen coordinates
    
+/*
+   
    bool window_draw::ScreenOutput(
                                   user::buffer * pbuffer,
                                   ::draw2d::region & rgnUpdate)
@@ -1084,11 +1107,18 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
       //   TRACE("// window_draw::TwfRender\n");
       //   TRACE("// TickCount = %d \n", dwTimeOut - dwTimeIn);
       //   TRACE("//\n");
-      
+ 
+/*
+  
       return true;
+ 
    }
+ 
+ */
    
    
+
+/*
    
    bool window_draw::ScreenOutput(
                                   // pdc is the source primitive::memory device context
@@ -1319,7 +1349,7 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
       //   //   TRACE("//\n");
       //
       //      return true;
-   }
+//   }
    
    
    

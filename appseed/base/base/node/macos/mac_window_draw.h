@@ -46,13 +46,13 @@ namespace mac
       semaphore * TwfGetBufferSemaphore();
       
       // Bit blitting spread functions
-      virtual bool ScreenOutput(
-                                user::buffer *,
-                                ::draw2d::region & rgnUpdate);
+//      virtual bool ScreenOutput(
+//                                user::buffer *,
+//                                ::draw2d::region & rgnUpdate);
       
-      virtual bool ScreenOutput();
+//      virtual bool ScreenOutput();
       
-      virtual bool ScreenOutput(user::buffer *, ::user::interaction* pwnd);
+//      virtual bool ScreenOutput(user::buffer *, ::user::interaction* pwnd);
       
       // Transparent drawing operations
       // controllers
@@ -135,6 +135,17 @@ namespace mac
       
       virtual void message_queue_message_handler(signal_details * pobj);
       
+      virtual bool pre_run();
+      
+      
    };
+
    
 } // namespace mac
+
+
+
+
+
+
+
