@@ -35,18 +35,45 @@ assert_exception::assert_exception(sp(::base::application) papp, const char * ps
    ::exception::base(papp),
    simple_exception(papp)
 {
-      if(pszFile == NULL)
-      {
-         printf(":assert(NULL, %d)",lLine);
-      }
-      else
-      {
-         printf(":assert(\"%s\":%d)",pszFile,lLine);
-      }
+   
+#ifdef _LP64
+   
+   if(pszFile == NULL)
+   {
+   
+      printf(":assert(NULL, %ld)",lLine);
+   
+   }
+   else
+   {
+   
+      printf(":assert(\"%s\":%ld)",pszFile,lLine);
       
+   }
+   
+#else
+   
+   if(pszFile == NULL)
+   {
+      
+      printf(":assert(NULL, %d)",lLine);
+      
+   }
+   else
+   {
+      
+      printf(":assert(\"%s\":%d)",pszFile,lLine);
+      
+   }
+
+#endif
+   
    m_strFile = pszFile;
+   
    m_lLine = lLine;
+   
 }
+
 
 assert_exception::~assert_exception()
 {
