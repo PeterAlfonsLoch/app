@@ -677,7 +677,7 @@ namespace fontopus
 
       string strRsaModulus;
 
-      DWORD dwGetLoginBeg = ::GetTickCount();
+      DWORD dwGetLoginBeg = ::get_tick_count();
       property_set set;
 
 
@@ -737,7 +737,7 @@ namespace fontopus
       if(strRsaModulus.is_empty())
          return "";
 
-      DWORD dwGetLoginEnd = ::GetTickCount();
+      DWORD dwGetLoginEnd = ::get_tick_count();
 
       TRACE("NetLogin: Get Login Millis = %d",dwGetLoginEnd - dwGetLoginBeg);
 
@@ -758,7 +758,7 @@ namespace fontopus
 
       string strAuth;
 
-      DWORD dwAuthBeg = ::GetTickCount();
+      DWORD dwAuthBeg = ::get_tick_count();
       {
 
          string strAuthUrl("https://" + strApiServer + "/account/auth?" + m_pcallback->oprop("defer_registration").get_string()
@@ -801,7 +801,7 @@ namespace fontopus
          TRACE0("login_thread::NetLogin Total time Application.http().get(\"" + strAuthUrl + "\") : " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
 
       }
-      DWORD dwAuthEnd = ::GetTickCount();
+      DWORD dwAuthEnd = ::get_tick_count();
 
       TRACE("NetLogin: Authentication Millis = %d",dwAuthEnd - dwAuthBeg);
 

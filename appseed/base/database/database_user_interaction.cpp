@@ -179,11 +179,9 @@ namespace database
 
             memstream >> bFullScreen;
 
-
             bool bIconic = false;
 
             memstream >> bIconic;
-
 
             rect rectWindow;
 
@@ -191,7 +189,7 @@ namespace database
 
             rect rectRestore;
 
-            index iMatchingMonitor = BaseSession.get_good_restore(rectRestore,rectWindow);
+            BaseSession.get_good_restore(rectRestore,rectWindow);
 
             SetWindowPos(
                ZORDER_TOP,
