@@ -4296,13 +4296,13 @@ namespace mac
       return MAC_WINDOW(const_cast < ::window * > (&wnd))->get_handle() != get_handle();
    }
    
-   DWORD window::GetStyle()
+   DWORD window::GetStyle() const
    {
       ASSERT(::IsWindow(get_handle()));
       return (DWORD)::GetWindowLong(get_handle(), GWL_STYLE);
    }
    
-   DWORD window::GetExStyle()
+   DWORD window::GetExStyle() const
    {
       ASSERT(::IsWindow(get_handle()));
       return (DWORD)::GetWindowLong(get_handle(), GWL_EXSTYLE);
