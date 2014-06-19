@@ -194,7 +194,6 @@
 		<Unit filename="base/base/base_mktime.cpp" />
 		<Unit filename="base/base/base_muldiv64.cpp" />
 		<Unit filename="base/base/base_muldiv64.h" />
-		<Unit filename="base/base/base_new.cpp" />
 		<Unit filename="base/base/base_new.h" />
 		<Unit filename="base/base/base_number.h" />
 		<Unit filename="base/base/base_os.h" />
