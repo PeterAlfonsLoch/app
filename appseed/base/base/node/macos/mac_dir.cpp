@@ -1245,6 +1245,31 @@ namespace mac
       return path(path(str, "ca2", strRelative), lpcsz, lpcsz2);
    }
    
+   string dir::commonappdata(const char * lpcsz, const char * lpcsz2)
+   {
+      string str;
+      /*SHGetSpecialFolderPath(
+       NULL,
+       str,
+       CSIDL_COMMON_APPDATA,
+       FALSE);*/
+      
+      str = path(getenv("HOME"), ".ca2/commmonappdata");
+      string strRelative;
+      strRelative = element();
+      //index iFind = strRelative.find(':');
+      //if(iFind >= 0)
+      {
+         // strsize iFind1 = strRelative.reverse_find("\\", iFind);
+         //strsize iFind2 = strRelative.reverse_find("/", iFind);
+         //strsize iStart = max(iFind1 + 1, iFind2 + 1);
+         
+         //strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
+      }
+      return path(path(str, "ca2", strRelative), lpcsz, lpcsz2);
+   }
+
+   
    string dir::usersystemappdata(sp(::base::application)  papp, const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)
    {
       UNREFERENCED_PARAMETER(papp);

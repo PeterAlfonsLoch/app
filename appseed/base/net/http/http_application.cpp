@@ -261,7 +261,7 @@ namespace http
 
       string str;
 
-      int32_t iAttempt = 0;
+//      int32_t iAttempt = 0;
 
       string strUrl(pszUrl);
 

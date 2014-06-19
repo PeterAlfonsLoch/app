@@ -31,7 +31,7 @@ namespace colorertake5
       ::call_stack(papp),
       ::exception::base(papp)
    {
-         printf(":colorertake5(%s)", msg);
+         printf(":colorertake5(%s)", msg.c_str());
       m_strMessage = "colorertake5::exception: ";
       m_strMessage += msg;
    }

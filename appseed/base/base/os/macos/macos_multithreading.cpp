@@ -223,4 +223,20 @@ void __node_term_thread()
 }
 
 
+bool __os_init_thread()
+{
+   
+   return true;
+   
+}
+
+
+bool __os_term_thread()
+{
+   
+   return true;
+   
+}
+
+
 

@@ -3029,6 +3029,14 @@
 		07B0980F18495CBE007A0560 /* webserver_http_request.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0970818495CBE007A0560 /* webserver_http_request.h */; };
 		07B0981018495CBE007A0560 /* webserver_http_response.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0970918495CBE007A0560 /* webserver_http_response.h */; };
 		07B0981118495CBE007A0560 /* webserver_http_transaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0970A18495CBE007A0560 /* webserver_http_transaction.h */; };
+		07B1431619535FC6009848A2 /* base_application_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B1431219535FC6009848A2 /* base_application_interface.cpp */; };
+		07B1431719535FC6009848A2 /* base_application_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B1431219535FC6009848A2 /* base_application_interface.cpp */; };
+		07B1431819535FC6009848A2 /* base_application_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B1431219535FC6009848A2 /* base_application_interface.cpp */; };
+		07B1431919535FC6009848A2 /* base_application_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B1431319535FC6009848A2 /* base_application_interface.h */; };
+		07B1431A19535FC6009848A2 /* base_session_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B1431419535FC6009848A2 /* base_session_interface.cpp */; };
+		07B1431B19535FC6009848A2 /* base_session_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B1431419535FC6009848A2 /* base_session_interface.cpp */; };
+		07B1431C19535FC6009848A2 /* base_session_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B1431419535FC6009848A2 /* base_session_interface.cpp */; };
+		07B1431D19535FC6009848A2 /* base_session_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B1431519535FC6009848A2 /* base_session_interface.h */; };
 		07BDFB3318F7D94E00CCABA9 /* base_new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BDFB3218F7D94E00CCABA9 /* base_new.cpp */; };
 		07C8D688191CF0EC00137494 /* fs_link.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C8D686191CF0EC00137494 /* fs_link.cpp */; };
 		07C8D689191CF0EC00137494 /* fs_link.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C8D687191CF0EC00137494 /* fs_link.h */; };
@@ -6358,6 +6366,10 @@
 		07B0970818495CBE007A0560 /* webserver_http_request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webserver_http_request.h; sourceTree = "<group>"; };
 		07B0970918495CBE007A0560 /* webserver_http_response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webserver_http_response.h; sourceTree = "<group>"; };
 		07B0970A18495CBE007A0560 /* webserver_http_transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webserver_http_transaction.h; sourceTree = "<group>"; };
+		07B1431219535FC6009848A2 /* base_application_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_application_interface.cpp; sourceTree = "<group>"; };
+		07B1431319535FC6009848A2 /* base_application_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_application_interface.h; sourceTree = "<group>"; };
+		07B1431419535FC6009848A2 /* base_session_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_session_interface.cpp; sourceTree = "<group>"; };
+		07B1431519535FC6009848A2 /* base_session_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_session_interface.h; sourceTree = "<group>"; };
 		07BD556C16210BD4008E31F0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		07BDFB3218F7D94E00CCABA9 /* base_new.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_new.cpp; sourceTree = "<group>"; };
 		07C8D686191CF0EC00137494 /* fs_link.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fs_link.cpp; sourceTree = "<group>"; };
@@ -7442,6 +7454,10 @@
 		07B07E2B18495B37007A0560 /* base */ = {
 			isa = PBXGroup;
 			children = (
+				07B1431219535FC6009848A2 /* base_application_interface.cpp */,
+				07B1431319535FC6009848A2 /* base_application_interface.h */,
+				07B1431419535FC6009848A2 /* base_session_interface.cpp */,
+				07B1431519535FC6009848A2 /* base_session_interface.h */,
 				07E7E740190B53570082F182 /* base_a_basic_rid_off.h */,
 				079AE0681886483600635C39 /* base_action_context.cpp */,
 				079AE0691886483600635C39 /* base_action_context.h */,
@@ -11639,6 +11655,7 @@
 				07B08CBF18495B40007A0560 /* crypto_aes.h in Headers */,
 				07B094B018495C2A007A0560 /* collection_base_enum.h in Headers */,
 				07B08FE118495B41007A0560 /* md32_common.h in Headers */,
+				07B1431919535FC6009848A2 /* base_application_interface.h in Headers */,
 				9AE7255D17E83B69003E47F9 /* primitive_edit.h in Headers */,
 				07F5B1F7184A3B430092C3E1 /* file_writer_flush.h in Headers */,
 				07A6C884190C4D2500859288 /* dso.h in Headers */,
@@ -11649,6 +11666,7 @@
 				07B090CA18495B41007A0560 /* srp.h in Headers */,
 				07A6C88D190C4D2500859288 /* evp.h in Headers */,
 				07B090EF18495B41007A0560 /* ui.h in Headers */,
+				07B1431D19535FC6009848A2 /* base_session_interface.h in Headers */,
 				07B0919518495B42007A0560 /* e_gost_err.h in Headers */,
 				07B08C1918495B40007A0560 /* base_system.h in Headers */,
 				07B090D318495B41007A0560 /* stack.h in Headers */,
@@ -12721,6 +12739,7 @@
 				07B08C4918495B40007A0560 /* zip_in_file.cpp in Sources */,
 				07B0952218495C2B007A0560 /* math_math.cpp in Sources */,
 				07B0914018495B41007A0560 /* v3_utl.c in Sources */,
+				07B1431619535FC6009848A2 /* base_application_interface.cpp in Sources */,
 				079AE0B8188648D400635C39 /* database_application.cpp in Sources */,
 				07B08F3018495B41007A0560 /* ec_pmeth.c in Sources */,
 				07B08EB018495B41007A0560 /* comp_lib.c in Sources */,
@@ -13361,6 +13380,7 @@
 				07B08F7B18495B41007A0560 /* e_aes_cbc_hmac_sha1.c in Sources */,
 				07B08D1F18495B41007A0560 /* exception_interface_only.cpp in Sources */,
 				07B0913118495B41007A0560 /* v3_ia5.c in Sources */,
+				07B1431A19535FC6009848A2 /* base_session_interface.cpp in Sources */,
 				0722EC7D192556D8003E99F4 /* mac1.cpp in Sources */,
 				07B08FF618495B41007A0560 /* mdc2dgst.c in Sources */,
 				07F5B208184A3B430092C3E1 /* fs_remote_native_file.cpp in Sources */,
@@ -13671,6 +13691,7 @@
 				078579E81917B6F800FFFE51 /* rfc3454.c in Sources */,
 				078579E91917B6F800FFFE51 /* strerror-idna.c in Sources */,
 				078579EA1917B6F800FFFE51 /* strerror-pr29.c in Sources */,
+				07B1431B19535FC6009848A2 /* base_session_interface.cpp in Sources */,
 				078579EB1917B6F800FFFE51 /* strerror-punycode.c in Sources */,
 				078579EC1917B6F800FFFE51 /* strerror-stringprep.c in Sources */,
 				078579ED1917B6F800FFFE51 /* strerror-tld.c in Sources */,
@@ -13903,6 +13924,7 @@
 				078578771917B6BD00FFFE51 /* e_cast.c in Sources */,
 				078578781917B6BD00FFFE51 /* e_des.c in Sources */,
 				078578791917B6BD00FFFE51 /* e_des3.c in Sources */,
+				07B1431719535FC6009848A2 /* base_application_interface.cpp in Sources */,
 				0785787A1917B6BD00FFFE51 /* e_idea.c in Sources */,
 				0785787B1917B6BD00FFFE51 /* e_null.c in Sources */,
 				0785787C1917B6BD00FFFE51 /* e_old.c in Sources */,
@@ -14740,6 +14762,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07AAB14F1926B2EF0050A443 /* multithreading_thread_impl.cpp in Sources */,
+				07B1431C19535FC6009848A2 /* base_session_interface.cpp in Sources */,
 				0751A474192A99B700CFD2B0 /* zlib_compress.c in Sources */,
 				073DBD73192D36A7008EEB76 /* ansios_thread_impl.cpp in Sources */,
 				0751A48F192A99B700CFD2B0 /* zlib_inflate.c in Sources */,
@@ -14764,6 +14787,7 @@
 				0751A477192A99B700CFD2B0 /* zlib_crc32.c in Sources */,
 				0751A489192A99B700CFD2B0 /* zlib_infback.c in Sources */,
 				0751A486192A99B700CFD2B0 /* zlib_gzwrite.c in Sources */,
+				07B1431819535FC6009848A2 /* base_application_interface.cpp in Sources */,
 				0751A4A1192AB15000CFD2B0 /* multithreading.cpp in Sources */,
 				07A0D7B61923356B00039222 /* RoundViewController.mm in Sources */,
 			);
