@@ -52,8 +52,8 @@ namespace linux
       bool operator==(const ::window& wnd) const;
       bool operator!=(const ::window& wnd) const;
 
-      DWORD GetStyle();
-      DWORD GetExStyle();
+      DWORD GetStyle() const;
+      DWORD GetExStyle() const;
       bool ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
       bool ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
 

@@ -477,3 +477,64 @@ void __node_term_thread()
 
 
 
+
+
+
+
+
+//thread_int_ptr < HRESULT > t_hresultCoInitialize;
+
+
+bool __os_init_thread()
+{
+
+//   t_hresultCoInitialize = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
+//
+//   if(FAILED(t_hresultCoInitialize))
+//   {
+//
+//      if(t_hresultCoInitialize.operator HRESULT() == RPC_E_CHANGED_MODE)
+//      {
+//
+//         t_hresultCoInitialize = ::CoInitializeEx(NULL,COINIT_APARTMENTTHREADED);
+//
+//         if(FAILED(t_hresultCoInitialize))
+//         {
+//
+//            ::simple_message_box(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
+//
+//            return false;
+//
+//         }
+//
+//      }
+//      else
+//      {
+//
+//         ::simple_message_box(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
+//
+//         return false;
+//
+//      }
+//
+//   }
+
+   return true;
+
+}
+
+
+
+bool __os_term_thread()
+{
+
+//   if(SUCCEEDED(t_hresultCoInitialize))
+//   {
+//
+//      CoUninitialize();
+//
+//   }
+
+   return true;
+
+}
