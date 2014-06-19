@@ -37,14 +37,16 @@ namespace base
       m_bSystemSynchronizedScreen = m_pbasesystem->m_bSystemSynchronizedScreen;
       m_iMainMonitor = -1;
 
+#ifdef WINDOWS
 
       if(m_hinstance == NULL)
-
       {
 
          m_hinstance = m_pbaseapp->m_hinstance;
 
       }
+
+#endif
 
       m_pifs                     = new ifs(this,"");
       m_prfs                     = new ::fs::remote_native(this,"");
@@ -287,7 +289,7 @@ namespace base
 
          if(iMainMonitor < 0 || iMainMonitor >= m_rectaScreen.get_count())
          {
-          
+
             iMainMonitor = 0;
 
          }
@@ -339,7 +341,7 @@ namespace base
 
    ::count session::get_monitor_count()
    {
-      
+
       if(m_bSystemSynchronizedScreen)
       {
 
@@ -358,7 +360,7 @@ namespace base
 
    bool session::get_monitor_rect(index iMonitor,LPRECT lprect)
    {
-   
+
       if(m_bSystemSynchronizedScreen)
       {
 
@@ -686,7 +688,7 @@ namespace base
 
       if(!::base::application::initialize1())
          return false;
-    
+
       m_puserpresence = canew(::userpresence::userpresence(this));
 
       if(m_puserpresence.is_null())
@@ -830,11 +832,11 @@ namespace base
 #ifdef WINDOWSEX
    BOOL CALLBACK system::monitor_enum_proc(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor,LPARAM dwData)
    {
-      
+
       ::base::system * psystem = (::base::system *) dwData;
-      
+
       psystem->monitor_enum(hmonitor,hdcMonitor,lprcMonitor);
-      
+
       return TRUE; // to enumerate all
 
    }

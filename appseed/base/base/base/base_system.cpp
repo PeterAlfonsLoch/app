@@ -178,7 +178,7 @@ namespace base
 
 
 #ifdef MATTER_CACHE_FROM_HTTP_SERVER
-      
+
       m_bMatterFromHttpCache = true;
 
 #else
@@ -241,7 +241,11 @@ namespace base
       if(!::base::application::process_initialize())
          return false;
 
+#ifdef WINDOWS
+
       m_spwindow = canew(window(this));
+
+#endif
 
       m_spos.create(allocer());
 
@@ -271,7 +275,7 @@ namespace base
          dappy(string(typeid(*this).name()) + " : ::base::system::m_spwindow->CreateEx failure : " + ::str::from(m_iReturnCode));
          return false;
       }
-         
+
       dappy(string(typeid(*this).name()) + " : Going to ::base::session " + ::str::from(m_iReturnCode));
 
       m_pbasesession = new ::base::session(this);
@@ -953,16 +957,16 @@ namespace base
 
                try
                {
-                  
+
                   System.frames()[i].WfiRestore(true);
 
                }
                catch(...)
                {
                }
-               
+
             }
-            
+
 
          }
 
