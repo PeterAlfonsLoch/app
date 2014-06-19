@@ -2016,6 +2016,9 @@ namespace user
 
       ::user::interaction * puiParent = (::user::interaction *) this;
 
+      if(puiParent == NULL)
+         return NULL;
+      
       ::user::interaction * puiOwner;
 
       while ((puiOwner = puiParent->get_owner()) != NULL)
@@ -4276,7 +4279,7 @@ namespace user
 
       sp(::user::interaction) pui = GetTopLevelParent();
       
-      if(pui.is_null())
+      if(pui.is_null() || pui == this)
       {
 
          best_monitor(lprect);

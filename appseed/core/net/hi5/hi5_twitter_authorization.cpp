@@ -139,7 +139,7 @@ namespace hi5
          
          rect rectOpen;
 
-         m_ptabview->best_top_level_parent(rectOpen);
+         m_ptabview->GetParentFrame()->best_top_level_parent(rectOpen);
 
          int32_t iWidth = rectOpen.width();
 
@@ -149,7 +149,7 @@ namespace hi5
 
          rectOpen.top = iHeight * 2 / 3;
 
-         sp(simple_frame_window) pframe = m_pviewAuth->GetTopLevelParent();
+         sp(simple_frame_window) pframe = m_pviewAuth->GetParentFrame();
 
          if(pframe != NULL)
          {
@@ -179,9 +179,9 @@ namespace hi5
             rectOpen.width(), rectOpen.height(),
             SWP_SHOWWINDOW);
 
-         m_pviewAuth->GetTopLevelParent()->SetForegroundWindow();
+         m_pviewAuth->GetParentFrame()->SetForegroundWindow();
 
-         m_pviewAuth->GetTopLevelParent()->BringWindowToTop();
+         m_pviewAuth->GetParentFrame()->BringWindowToTop();
 
       }
 
