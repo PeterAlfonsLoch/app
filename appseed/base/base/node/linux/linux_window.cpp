@@ -4287,13 +4287,13 @@ throw not_implemented(get_app());
       return LNX_WINDOW(const_cast < ::window * >  (&wnd))->get_handle() != ((window *)this)->get_handle();
    }
 
-   DWORD window::GetStyle()
+   DWORD window::GetStyle() const
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
       return (DWORD)::GetWindowLong((oswindow) get_handle(), GWL_STYLE);
    }
 
-   DWORD window::GetExStyle()
+   DWORD window::GetExStyle() const
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
       return (DWORD)::GetWindowLong((oswindow) get_handle(), GWL_EXSTYLE);

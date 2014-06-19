@@ -8,33 +8,33 @@
 namespace simple_ui
 {
 
-   
+
    message_box::message_box(sp(::base::application) papp) :
       element(papp)
    {
-      
+
       m_uiFlags      = 0;
       m_iResult      = 0;
-      
+
    }
 
-   
+
    message_box::~message_box()
    {
-      
+
    }
 
-   
+
    int32_t message_box::show(const char * pszMessage, uint32_t uiFlags)
    {
-      
+
       m_uiFlags = uiFlags;
-      
+
       if(!CreateEx(WS_EX_LAYERED, NULL, NULL, 0, null_rect(), NULL, "fontopus"))
          throw simple_exception(get_app(), "not excepted! Failing Message box!!");
 
       m_ptapOk = new ::simple_ui::tap(get_app());
-      
+
       m_ptapOk->create(this, "ok");
 
       m_ptapOk->SetWindowText("OK");
@@ -42,11 +42,11 @@ namespace simple_ui
       ::rect rectDesktop;
 
       stringa stra;
-      
+
       stra.add("\r");
 
       stra.add("\n");
-      
+
       stra.add("\r\n");
 
       m_stra.add_smallest_tokens(pszMessage, stra);
@@ -80,9 +80,9 @@ namespace simple_ui
       }
 
       rectFontopus.left = rectDesktop.left + (width(rectDesktop) - w) / 2;
-      
+
       rectFontopus.top = rectDesktop.top + (height(rectDesktop) - h) / 3;
-      
+
       rectFontopus.right = rectFontopus.left + w;
 
       rectFontopus.bottom = rectFontopus.top + h;
@@ -96,9 +96,9 @@ namespace simple_ui
       BringToTop(SW_NORMAL);
 
       RunModalLoop();
-      
+
       return m_iResult;
-      
+
    }
 
 
@@ -145,57 +145,62 @@ namespace simple_ui
 
       GetClientRect(rectClient);
 
-      m_ptapOk->SetWindowPos(ZORDER_TOP, rectClient.left + 10, rectClient.bottom - 94, 200, 84, SWP_SHOWWINDOW);
+      if(m_ptapOk.is_set())
+      {
+
+         m_ptapOk->SetWindowPos(ZORDER_TOP, rectClient.left + 10, rectClient.bottom - 94, 200, 84, SWP_SHOWWINDOW);
+
+      }
 
    }
 
-   
+
    bool message_box::on_action(const char * pszId)
    {
-      
+
       if(stricmp_dup(pszId, "ok") == 0)
       {
-         
+
          m_iResult = IDOK;
-         
+
          EndModalLoop(IDOK);
-         
+
          return true;
-         
+
       }
       else if(stricmp_dup(pszId, "yes") == 0)
       {
-         
+
          m_iResult = IDYES;
-         
+
          EndModalLoop(IDOK);
-         
+
          return true;
-         
+
       }
       else if(stricmp_dup(pszId, "no") == 0)
       {
-         
+
          m_iResult = IDNO;
-         
+
          EndModalLoop(IDOK);
-         
+
          return true;
-         
+
       }
       else if(stricmp_dup(pszId, "cancel") == 0)
       {
-         
+
          m_iResult = IDCANCEL;
-         
+
          EndModalLoop(IDOK);
-         
+
          return true;
-         
+
       }
-      
+
       return false;
-      
+
    }
 
 
