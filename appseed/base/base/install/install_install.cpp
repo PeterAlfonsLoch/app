@@ -1430,7 +1430,7 @@ namespace install
 
       string strUrl;
 
-      strUrl = "http://" + strVersion + ".spaignition.api.server.ca2.cc/md5?version=basis&stage=";
+      strUrl = "http://" + strVersion + ".spaignition.api.server.ca2.cc/md5?version=" + strVersion + "&stage=";
       strUrl += pszTemplate;
       strUrl += "&build=";
       strUrl += strFormatBuild;
