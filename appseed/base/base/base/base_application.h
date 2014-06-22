@@ -64,7 +64,7 @@ namespace base
       string                                          m_strLibraryName;
       string                                          m_strAppId;
       mutex                                           m_mutexFrame;
-      sp(::comparable_array < ::user::interaction * > ) m_pframea;
+      sp(::ptr_array < ::user::interaction > )        m_pframea;
       sp(::user::user)                                m_spuser;
       sp(::database::server)                          m_spdataserver;
 #ifdef WINDOWS
@@ -189,7 +189,7 @@ namespace base
 
 
 
-      ::user::interaction_ptr_array frames();
+      ptr_array < ::user::interaction > frames();
       virtual void add_frame(sp(::user::interaction) pwnd);
       virtual void remove_frame(sp(::user::interaction) pwnd);
 

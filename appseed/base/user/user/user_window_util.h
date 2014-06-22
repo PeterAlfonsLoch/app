@@ -22,6 +22,7 @@ namespace user
 
 
       interaction_ptr_array(sp(::base::application) papp);
+      interaction_ptr_array(const ptr_array < ::user::interaction > & a);
       interaction_ptr_array(const ::user::interaction_ptr_array & a)
       {
 

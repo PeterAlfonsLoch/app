@@ -1,5 +1,6 @@
 #pragma once
 
+/*
 
 class CLASS_DECL_BASE ptr_array :
    virtual public comparable_raw_array < void * >::type
@@ -204,3 +205,4 @@ public:
 
 
 
+*/

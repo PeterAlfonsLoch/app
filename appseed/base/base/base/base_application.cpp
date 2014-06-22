@@ -639,7 +639,7 @@ namespace base
    }
 
 
-   ::user::interaction_ptr_array application::frames()
+   ptr_array < ::user::interaction > application::frames()
    {
 
       synch_lock sl(&m_mutexFrame);
@@ -1211,7 +1211,7 @@ namespace base
       if (oswindowCapture == NULL)
          return NULL;
 
-      return ::GetCapture()->get_user_interaction()->m_pimpl.cast < window >()->get_capture();
+      return ::GetCapture()->get_user_interaction()->m_pimpl->get_capture();
 
 #endif
 
@@ -1283,7 +1283,7 @@ namespace base
 
          if(strSchema.is_empty())
          {
-          
+
             return System.dir().simple_path(get_locale(),get_schema());
 
          }
@@ -1293,7 +1293,7 @@ namespace base
             return System.dir().simple_path(get_locale(),strSchema);
 
          }
-          
+
       }
       else
       {
@@ -2477,7 +2477,7 @@ namespace base
 
       if(is_system() || is_session())
       {
-       
+
          return ::thread::run();
 
       }
@@ -4200,7 +4200,7 @@ namespace base
          if(ptimer->m_nIDEvent == 123)
          {
             m_spuiMessage->KillTimer(ptimer->m_nIDEvent);
-            frames().send_message_to_descendants(application::APPM_LANGUAGE);
+            ::user::interaction_ptr_array(frames()).send_message_to_descendants(application::APPM_LANGUAGE);
             System.appa_load_string_table();
          }
       }

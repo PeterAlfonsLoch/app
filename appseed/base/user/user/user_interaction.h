@@ -35,7 +35,7 @@ namespace user
 
       enum e_type
       {
-         
+
          type_window,
          type_frame,
          type_view
@@ -50,7 +50,7 @@ namespace user
       public:
 
 
-         sp(interaction)        m_pui;
+         interaction *        m_pui;
          uint_ptr             m_uiId;
          UINT                 m_uiElapse;
          UINT                 m_uiLastSent;
@@ -100,12 +100,12 @@ namespace user
 
       sp(mutex)                           m_spmutex;
       EAppearance                         m_eappearance;
-      sp(interaction)                     m_pimpl;
-      static sp(interaction)                g_puiMouseMoveCapture;
-      spa(interaction)                    m_uiptraChild;
+      interaction *                       m_pimpl;
+      static interaction *                g_puiMouseMoveCapture;
+      ptr_array < interaction >           m_uiptraChild;
       string                              m_strName;
       id                                  m_id;
-      sp(interaction)                       m_puiOwner;
+      interaction *                       m_puiOwner;
       UINT                                m_nFlags;      // see WF_ flags above
       bool                                m_bCursorInside;
       ::visual::e_cursor                  m_ecursor;
@@ -197,8 +197,8 @@ namespace user
 
 
       virtual sp(::user::interaction) get_os_focus_uie();
-      
-      
+
+
       virtual void on_keyboard_focus(::user::keyboard_focus * pfocus);
 
 
@@ -446,17 +446,17 @@ namespace user
 
       virtual window * get_wnd() const;
 
-      
+
       enum RepositionFlags
       {
-         
+
          reposDefault = 0,
          reposQuery = 1,
          reposExtra = 2,
          reposNoPosLeftOver = 0x8000
-            
+
       };
-      
+
 
       virtual void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlag = reposDefault, LPRECT lpRectParam = NULL, LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
 
@@ -509,9 +509,9 @@ namespace user
       template < class T >
       T * GetTypedParent() const
       {
-         
+
          ::user::interaction * pthis = (::user::interaction *)this;
-         
+
          ASSERT_VALID(pthis);
 
          sp(interaction) pParentWnd = get_parent();  // start with one parent up
@@ -601,7 +601,7 @@ namespace user
       virtual bool track_popup_menu(sp(::xml::node) lpnode, int32_t iFlags);
       virtual bool track_popup_xml_matter_menu(const char * pszMatter, int32_t iFlags);
 
-      
+
       virtual void WfiEnableFullScreen(bool bEnable = true);
       virtual bool WfiIsFullScreen();
       virtual bool WfiIsFullScreenEnabled();
@@ -623,10 +623,10 @@ namespace user
 
       virtual bool set_appearance(EAppearance eappearance);
       virtual bool set_appearance_before(EAppearance eappearance);
-      
-      
+
+
       virtual void show_keyboard(bool bShow = true);
-      
+
       virtual void keep_alive(::base::live_object * pliveobject = NULL);
 
       virtual sp(::user::interaction) best_top_level_parent(LPRECT lprect);

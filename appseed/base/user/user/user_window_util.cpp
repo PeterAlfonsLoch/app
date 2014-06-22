@@ -904,6 +904,17 @@ namespace user
 
    }
 
+   interaction_ptr_array::interaction_ptr_array(const ptr_array < ::user::interaction > & ptra)
+   {
+
+    for(index i = 0; i < ptra.get_count(); i++)
+    {
+
+        add(ptra[i]);
+
+    }
+
+   }
 
    sp(::user::interaction) interaction_ptr_array::find_first_typed(sp(type) info)
    {
