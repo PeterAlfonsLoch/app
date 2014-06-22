@@ -134,7 +134,7 @@ namespace mac
 
       bool bOk;
 
-      bOk = copydesk::finalize();
+      bOk = ::base::copydesk::finalize();
 
       if(window_sp::is_set() && window_sp::m_p->IsWindow())
       {

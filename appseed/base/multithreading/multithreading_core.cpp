@@ -116,10 +116,24 @@ CLASS_DECL_BASE bool __wait_threading_count_except(::thread * pthread, ::duratio
 
          for(index i = 0; i < ::multithreading::s_pthreadptra->get_count(); i++)
          {
+            
+            try
+            {
 
-            ::multithreading::s_pthreadptra->element_at(i)->m_bRun = false;
+               ::multithreading::s_pthreadptra->element_at(i)->m_bRun = false;
+               
+               if(::multithreading::s_pthreadptra->element_at(i)->m_pimpl.is_set())
+               {
 
-            ::multithreading::s_pthreadptra->element_at(i)->m_pimpl->m_bRun = false;
+                  ::multithreading::s_pthreadptra->element_at(i)->m_pimpl->m_bRun = false;
+                  
+               }
+               
+            }
+            catch (...)
+            {
+            
+            }
 
          }
 

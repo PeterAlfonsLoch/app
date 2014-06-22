@@ -2744,8 +2744,42 @@ namespace user
          }
 
          post_message(WM_NULL);
+         
+         try
+         {
+            
+            sp(::thread) pthread = ::get_thread();
+            
+            if(pthread.is_set())
+            {
 
-         ::get_thread()->post_thread_message(WM_NULL);
+               pthread->post_thread_message(WM_NULL);
+               
+            }
+            
+         }
+         catch(...)
+         {
+            
+         }
+
+         try
+         {
+            
+            sp(::thread) pthread = m_pthread;
+            
+            if(pthread.is_set())
+            {
+               
+               pthread->post_thread_message(WM_NULL);
+               
+            }
+            
+         }
+         catch(...)
+         {
+            
+         }
 
       }
 
