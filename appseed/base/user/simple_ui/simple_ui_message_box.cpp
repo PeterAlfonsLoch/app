@@ -221,7 +221,7 @@ int32_t simple_ui_message_box(oswindow window, const char * lpText,const char * 
 
    int32_t iResult = pmessagebox->show(lpText, uiFlags);
 
-   pmessagebox->DestroyWindow();
+   //pmessagebox->DestroyWindow();
 
    return iResult;
 

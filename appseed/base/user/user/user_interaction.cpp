@@ -74,6 +74,8 @@ namespace user
    interaction::~interaction()
    {
 
+        DestroyWindow();
+
    }
 
 
@@ -534,6 +536,26 @@ namespace user
 
       try
       {
+        ShowWindow(SW_HIDE);
+      }
+      catch(...)
+      {
+
+      }
+
+      try
+      {
+
+         System.remove_frame(this);
+
+      }
+      catch(...)
+      {
+
+      }
+
+      try
+      {
          if (m_pbaseapp != NULL)
          {
             m_pbaseapp->remove_frame(this);
@@ -755,20 +777,20 @@ namespace user
 
       if(BaseSession.m_bDrawCursor)
       {
-         
+
          point ptCursor;
-         
+
          BaseSession.get_cursor_pos(&ptCursor);
-         
+
          ScreenToClient(&ptCursor);
 
          ::visual::cursor * pcursor = BaseSession.get_cursor();
-         
+
          if(pcursor != NULL && pgraphics != NULL)
          {
-            
+
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-            
+
             pcursor->to(pgraphics,ptCursor);
 
          }
@@ -2018,7 +2040,7 @@ namespace user
 
       if(puiParent == NULL)
          return NULL;
-      
+
       ::user::interaction * puiOwner;
 
       while ((puiOwner = puiParent->get_owner()) != NULL)
@@ -2744,41 +2766,41 @@ namespace user
          }
 
          post_message(WM_NULL);
-         
+
          try
          {
-            
+
             sp(::thread) pthread = ::get_thread();
-            
+
             if(pthread.is_set())
             {
 
                pthread->post_thread_message(WM_NULL);
-               
+
             }
-            
+
          }
          catch(...)
          {
-            
+
          }
 
          try
          {
-            
+
             sp(::thread) pthread = m_pthread;
-            
+
             if(pthread.is_set())
             {
-               
+
                pthread->post_thread_message(WM_NULL);
-               
+
             }
-            
+
          }
          catch(...)
          {
-            
+
          }
 
       }
@@ -4312,7 +4334,7 @@ namespace user
    {
 
       sp(::user::interaction) pui = GetTopLevelParent();
-      
+
       if(pui.is_null() || pui == this)
       {
 
@@ -4374,7 +4396,7 @@ namespace user
 
       if(bSet && iMatchingMonitor >= 0)
       {
-         
+
          SetWindowPos(iZOrder,rect,uiSwpFlags);
 
       }
@@ -4393,7 +4415,7 @@ namespace user
 
    index interaction::good_iconify(LPRECT lprect,bool bSet,UINT uiSwpFlags,int_ptr iZOrder)
    {
-      
+
       ::rect rectWindow;
 
       GetWindowRect(rectWindow);
