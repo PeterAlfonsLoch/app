@@ -1590,7 +1590,7 @@ uint32_t _thread_proc_start_core_system(void * p)
 
    ::base::system * psystem = (::base::system *)p;
 
-   ::plane::system * pplanesystem = dynamic_cast <::plane::system *> (psystem);
+   ::plane::system * pplanesystem = dynamic_cast < ::plane::system * > (psystem);
 
    return pplanesystem->::core::system::main();
 
