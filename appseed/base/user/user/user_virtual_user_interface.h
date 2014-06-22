@@ -12,7 +12,6 @@ public:
    bool                       m_bEnabled;
    ::draw2d::font_sp              m_spfont;
    bool                       m_bCreate;
-   sp(::user::interaction)    m_pparent;
    sp(::user::interaction)    m_puiMessage;
 
 

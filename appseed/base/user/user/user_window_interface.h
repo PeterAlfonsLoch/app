@@ -56,7 +56,7 @@ namespace user
       };
 
 
-      sp(interaction)                     m_pui;
+      interaction *                       m_pui;
       // window rectangle relative to the parent
       // this rectangle comes before in importance compared to m_rectWindow
       // m_rectWindow should be sychronized and recalculated based
@@ -69,6 +69,8 @@ namespace user
       ETranslucency                       m_etranslucency;
 
       static window_interface *           g_pwndLastLButtonDown;
+
+      ::user::interaction *               m_pparent;
 
 
 

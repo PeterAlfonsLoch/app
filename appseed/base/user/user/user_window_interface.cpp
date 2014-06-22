@@ -27,7 +27,8 @@ namespace user
       m_rectParentClient(0, 0, 0, 0)
    {
       m_bVoidPaint               = false;
-      m_pui                    = NULL;
+      m_pui                      = NULL;
+      m_pparent                  = NULL;
       m_etranslucency            = TranslucencyNone;
       m_bBackgroundBypass        = false;
    }
@@ -38,7 +39,8 @@ namespace user
       m_rectParentClient(0, 0, 0, 0)
    {
       m_bVoidPaint               = false;
-      m_pui                    = NULL;
+      m_pui                      = NULL;
+      m_pparent                  = NULL;
       m_etranslucency            = TranslucencyNone;
       m_bBackgroundBypass        = false;
    }
@@ -80,7 +82,7 @@ namespace user
       UNREFERENCED_PARAMETER(lprect);
    //   TwfRender(pdc, GetSafeoswindow_(), lprect, NULL, true);
    }
-   
+
 
    window_interface * window_interface::window_interface_get_parent() const
    {
@@ -100,9 +102,9 @@ namespace user
 
    void window_interface::TwfGetWndArray(::user::oswindow_array & oswindowa)
    {
-      
+
       ::user::interaction_ptr_array & wndpa = *dynamic_cast < ::user::interaction_ptr_array * >(get_app());
-      
+
       oswindowa = wndpa.get_hwnda();
 
    }
@@ -160,7 +162,7 @@ namespace user
    // that are lower z order siblings of a higher z order
    // top level window that contains all
    // the update region in a opaque area.
-   // It doesn´t eliminates from the update parent windows
+   // It doesnÂ´t eliminates from the update parent windows
    // obscured by opaque children.
 
    /*void window_interface::Optimize001(
@@ -361,7 +363,7 @@ namespace user
 
    bool window_interface::enable_window(bool bEnable)
    {
-      
+
       UNREFERENCED_PARAMETER(bEnable);
 
       return true;
@@ -427,12 +429,12 @@ namespace user
 
    bool window_interface::Redraw(LPCRECT lprect, ::draw2d::region * prgn)
    {
-      
+
       if(get_wnd() == NULL)
          return false;
 
       return get_wnd()->RedrawWindow(lprect, prgn, RDW_INVALIDATE);
-      
+
    }
 
 
